@@ -7,6 +7,24 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-08 — craft refresh (run 1 pre-research pass)
+
+- **360Brew is live as THE ranker** (LinkedIn Engineering, ~Mar 2026):
+  distribution now runs on meaning/intent matching, not keywords. On-slide
+  vector text and a topically explicit caption directly feed ranking;
+  reinforces the vector-text hard gate. (dataslayer.ai 2026 algorithm
+  review.)
+- **AuthoredUp 3M-post study (Mar 2025 to Feb 2026)**: documents earn 39%
+  more reach / 30% more engagement than the average post; documents are
+  12.92% of all saves (2.6x their content share); only 4.88% of creators
+  post documents regularly. Format edge persists. (contentdrips 2026-07-01.)
+- **Q1 2026 softening**: carousel reach declining quarter over quarter
+  while infographic-style posts hit 28.6% of top-1% posts. The keepable
+  data-slide mandate is now the growth edge, not a nice-to-have.
+- Mid-2026 "authenticity update": engagement bait, pods, and link spam
+  penalized harder; polls effectively dead (0.07% ER). Nothing to change
+  for us; confirms educational + native strategy.
+
 ## 2026-07-08 — framework build (engine smoke test lessons)
 
 - **Grain economics**: full-frame feTurbulence grain rasterizes to a 10-40MB
