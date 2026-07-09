@@ -9,8 +9,8 @@ and decides whether it goes up. Nothing posts on its own.
 It also maintains itself. After every run it studies what went wrong,
 looks outside for better technique, and ships small verified upgrades to
 its own machinery. Those changes ride along in the daily email, so you
-can watch the machine evolve from your inbox and roll back any week that
-got worse.
+can watch the machine evolve from your inbox and roll back whatever made
+it worse.
 
 ## The pipeline
 
