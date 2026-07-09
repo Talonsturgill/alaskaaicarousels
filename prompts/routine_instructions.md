@@ -50,7 +50,8 @@ maintainer can post in ninety seconds.
   render.py, qa.py, assemble.py, bootstrap.sh). Art libraries and geodata
   under `assets/` (see SKILL.md).
 - Subagents (Task tool): `scout`, `fact-checker`, `treatment-director`,
-  `copywriter`, `pixel-critic`, `flow-critic`, `scorer`.
+  `copywriter`, `pixel-critic`, `flow-critic`, `scorer`,
+  `upgrade-engineer` (Phase 12; pinned to Opus).
 - Scripts: `scripts/caption_check.py`, `scripts/gmail_draft.py`.
 - Built-in WebSearch/WebFetch for all research (they route through
   Anthropic and work regardless of network policy). Gmail MCP
@@ -285,6 +286,13 @@ The editorial retro (Phase 14) improves the CONTENT brain; this phase
 improves the MACHINE. It runs after the merge and BEFORE the Gmail draft
 so every upgrade appears in that dated email, giving the maintainer a
 daily-monitorable, rollback-able trail.
+
+Spawn the `upgrade-engineer` subagent (pinned to Opus by maintainer
+requirement: it edits the automation itself) with the run date, the
+run_state path, and your incident notes; it executes steps 1-3 below and
+returns its report. If subagents are unavailable, the showrunner executes
+the same steps under the same hard rules. Either way, step 4 (the
+separate commit) is the showrunner's.
 
 1. **Diff what happened against what this document says should happen.**
    Walk run_state.json phase by phase with fresh eyes and list every

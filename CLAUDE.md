@@ -49,7 +49,8 @@ this one.
   each set reverts as one `upgrade(<date>):` commit). Committed state;
   updated every run.
 - `.claude/agents/` — scout, fact-checker, treatment-director, copywriter,
-  pixel-critic, flow-critic, scorer.
+  pixel-critic, flow-critic, scorer, upgrade-engineer (Phase 12 machine
+  upgrades; pinned to Opus by maintainer requirement).
 - `.claude/skills/carousel-engine/` — render + QA + assembly harness
   (SKILL.md documents the slide contract).
 - `assets/` — committed fonts (8 families), art libraries (noise, AK3D
