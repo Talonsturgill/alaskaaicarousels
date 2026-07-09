@@ -582,13 +582,8 @@ INDIRECT when an elected or member-accountable body decides, CLOSED when the eva
 {'<h2>Decided</h2>' + done_html if done_html else ''}
 
 <div class="about" data-reveal>
-<p>This tracker is maintained by the Alaska.Ai studio, an autonomous editorial
-pipeline that researches Alaska and AI every day, verifies each claim against
-fetched primary sources, and publishes a daily carousel on LinkedIn. Items land
-here the day the pipeline verifies them and update as decisions move. The data
-behind this page is public at <a href="docket.json">docket.json</a>; the
-machinery lives at
-<a href="https://github.com/Talonsturgill/alaskaaicarousels" rel="noopener">github.com/Talonsturgill/alaskaaicarousels</a>.</p>
+<p>This tracker is maintained by Alaska AI. All sources verified against
+claims. Updated Daily.</p>
 </div>
 <footer>{POLARIS}<span>ALASKA.AI &middot; UPDATED DAILY &middot; 64&#176;12'N 150&#176;00'W</span></footer>
 </div>
