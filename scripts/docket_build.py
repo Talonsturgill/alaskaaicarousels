@@ -30,6 +30,7 @@ from datetime import date as ddate
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
+DEFAULT_SITE = "https://talonsturgill.github.io/alaskaaicarousels"
 
 KINDS = {"state-land-lease", "federal-lease", "utility-decision", "legislation",
          "regulatory-docket", "procurement", "grant", "other"}
@@ -509,7 +510,8 @@ FAVICON = ("data:image/svg+xml," +
            " fill='%23ffc72c'/%3E%3C/svg%3E")
 
 
-def build(today, out_dir):
+def build(today, out_dir, site_url=None, domain=""):
+    site_url = site_url or DEFAULT_SITE
     ledger = json.loads((REPO / "ledger/docket.json").read_text())
     items = ledger["items"]
     validate(items)
@@ -543,6 +545,13 @@ def build(today, out_dir):
 <meta name="description" content="Every AI infrastructure decision in Alaska, tracked daily. Who decides, when it lands, and whether the public gets a say. Sources on every item.">
 <meta property="og:title" content="The Alaska AI Docket">
 <meta property="og:description" content="Every AI infrastructure decision in Alaska, tracked daily, with sources on every item.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{site_url}/">
+<meta property="og:image" content="{site_url}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{site_url}/">
 <link rel="icon" href="{FAVICON}">
 <style>{css}</style>
 <script>document.documentElement.classList.add('js')</script>
@@ -597,6 +606,8 @@ machinery lives at
     (out / "docket.json").write_text(json.dumps(
         {"updated": today.isoformat(), "items": items}, indent=2))
     (out / ".nojekyll").write_text("")
+    if domain:
+        (out / "CNAME").write_text(domain + "\n")
     print(f"docket site -> {out/'index.html'} ({len(html)//1024} KB, "
           f"{len(items)} items, {len(dated)} with upcoming dates, {n_open} open to the public)")
 
@@ -605,8 +616,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", required=True, help="build date YYYY-MM-DD (America/Anchorage)")
     ap.add_argument("--out", default="docs")
+    ap.add_argument("--domain", default="",
+                    help="custom domain (e.g. thealaskadocket.com); emits CNAME and rewrites absolute URLs")
     args = ap.parse_args()
-    build(ddate.fromisoformat(args.date), args.out)
+    site = f"https://{args.domain}" if args.domain else DEFAULT_SITE
+    build(ddate.fromisoformat(args.date), args.out, site, args.domain)
 
 
 if __name__ == "__main__":
