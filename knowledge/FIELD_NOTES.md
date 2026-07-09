@@ -7,6 +7,36 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-08 — run 1 retro (Carousel No. 1, "Four Rooms, One Open Door")
+
+- **Shipped 8.64 vs 8.3** (9 slides, vector PDF 10.74MB) after one revision
+  cycle. Round 0 scored 6.9: the scorer caught a slide-3 DOM text overlap
+  (body line over a bar label) that machine QA passed — the
+  machine-qa-is-not-taste instinct, confirmed the hard way.
+- **DEGRADED run**: a session usage limit blocked ALL worker subagents
+  mid-run (treatment directors, copywriter, pixel critic, flow critic).
+  Showrunner authored the treatment/copy and self-reviewed; the objective
+  gates (render QA, caption lint) and the scorer (which recovered later)
+  still ran. Fallback held, but solo review missed a collision the scorer
+  caught: parallel critics are not optional at full quality.
+- **d3 zoom trap (new instinct)**: fitExtent to a small lon/lat bbox
+  polygon renders a giant fill disc + mis-scaled map. Manual zoom (baseline
+  full-state fit, then scale x zoom and re-translate onto the target) with
+  a STROKE-ONLY coastline is the reliable recipe (slides 2 and 7).
+- **data-decorative does not inherit**: mark the leaf text element (span,
+  b, appended SVG text), not the parent div.
+- **pypdf/cryptography panic**: the container's Debian cryptography 41
+  rust binding panics on import, killing the vector PDF path;
+  `pip install --user --upgrade cryptography` fixes it. Consider adding to
+  bootstrap.sh.
+- Scorer false-positive to remember: serif fonts render straight U+0027 as
+  a typographic apostrophe glyph; verify quote characters with grep at the
+  SOURCE level before treating as a hard fail.
+- Story note: the STAK docket (ADL 422741) final decision lands after Jul
+  17 — next run should check it for an update angle; Bristol Bay AI
+  sockeye counting is the parked runner-up (claims c64-c77, fully
+  verified).
+
 ## 2026-07-08 — craft refresh (run 1 pre-research pass)
 
 - **360Brew is live as THE ranker** (LinkedIn Engineering, ~Mar 2026):
