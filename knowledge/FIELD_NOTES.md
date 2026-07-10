@@ -7,6 +7,12 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-10 — craft refresh (run 3 pre-research pass)
+
+- **Personal profile carousels earn ~63% more engagement than company-page carousels** (dataslayer/linkboost 2026). Alaska.Ai posts from a page; the human should consider cross-posting the deck from a personal profile, or at minimum knows the page handicap is real. Aftercare-relevant, not a design change.
+- **Buffer 2026 State of Social Media (52M+ posts)** reports a median LinkedIn carousel engagement rate far above single-format medians; the wide spread confirms carousels as the highest-ceiling format but says nothing new to change the build. Documents still #1 (~6.6% ER convergent).
+- **Year-over-year platform contraction is steeper than the mid-2025 read**: views ~-50%, engagement ~-25%, follower growth ~-59% (dataslayer Feb 2026). Reinforces judging against OUR trailing median and the keepable-artifact strategy over applause. Nothing to change in the machine.
+
 ## 2026-07-09 — run 2 retro (Carousel No. 2, "One River, Two Ways to Count It")
 
 - **Shipped 8.83 vs 8.3** (9 slides, vector PDF 4.94MB), zero hard fails, one pixel-refinement
