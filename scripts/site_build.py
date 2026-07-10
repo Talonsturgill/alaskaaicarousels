@@ -95,6 +95,22 @@ def nav(prefix, active):
 </nav>"""
 
 
+def subscribe_html():
+    """Native signup form posting straight to Buttondown, styled to house."""
+    return """<h2 data-reveal id="alerts">Deadline alerts, in your inbox</h2>
+<p class="sub" data-reveal>One email when a public comment window opens or a decision is about
+to land. Nothing else, ever. Unsubscribe any time.</p>
+<form class="subscribe" data-reveal action="https://buttondown.com/api/emails/embed-subscribe/AlaskaAI"
+method="post" target="_blank">
+  <label class="vh" for="bd-email">Your email</label>
+  <input type="email" name="email" id="bd-email" required placeholder="you@example.com"
+  autocomplete="email">
+  <button class="cta gold" type="submit">GET ALERTS</button>
+</form>
+<p class="fineprint" data-reveal>Free, run by the desk, delivered by
+<a href="https://buttondown.com/refer/AlaskaAI" rel="noopener">Buttondown</a>.</p>"""
+
+
 def footer(prefix, today):
     return f"""<footer>
 <div class="foot-grid">
@@ -419,6 +435,20 @@ border:1px solid var(--line);border-radius:12px;padding:24px 26px;}
 .prose{max-width:660px;font-size:17px;}
 .prose p{margin:18px 0;}
 .prose a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.25);}
+
+/* ---------- subscribe ---------- */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.subscribe{display:flex;gap:12px;flex-wrap:wrap;max-width:560px;}
+.subscribe input[type=email]{flex:1;min-width:230px;background:rgba(10,22,38,.85);
+border:1px solid var(--line);border-radius:6px;padding:13px 16px;color:var(--snow);
+font-family:JBMono,monospace;font-size:13.5px;letter-spacing:.03em;transition:border-color .2s;}
+.subscribe input[type=email]::placeholder{color:#5f7390;}
+.subscribe input[type=email]:focus{border-color:var(--gold);outline:none;}
+.subscribe .cta{border:none;cursor:pointer;font-family:JBMono,monospace;}
+.fineprint{font-family:JBMono,monospace;font-size:11px;color:#5a6d87;
+letter-spacing:.08em;margin-top:14px;}
+.fineprint a{color:var(--mute);text-decoration:none;border-bottom:1px solid rgba(141,162,190,.3);}
+.fineprint a:hover{color:var(--snow);}
 
 /* ---------- footer ---------- */
 .about-line{border-top:1px solid var(--line);margin-top:90px;padding-top:34px;font-size:15px;
@@ -750,6 +780,7 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 {latest_html}
 {closing}
 {steps}
+{subscribe_html()}
 <div class="about-line" data-reveal><p>{next_line}All sources verified against claims.</p></div>"""
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "NewsMediaOrganization", "@id": f"{site_url}/#org", "name": "Alaska AI",
@@ -791,6 +822,7 @@ comment window is open right now.</p>
 INDIRECT when an elected or member-accountable body decides, CLOSED when the evaluation is private.</p>
 {live_html}
 {'<h2>Decided</h2>' + done_html if done_html else ''}
+{subscribe_html()}
 <div class="about-line" data-reveal><p>All sources verified against claims.
 The data behind this page is public at <a href="../docket.json" style="color:var(--blue);text-decoration:none">docket.json</a>.</p></div>"""
     ld = {"@context": "https://schema.org", "@type": "Dataset",

@@ -302,19 +302,26 @@ Save `out/<date>/score_report.json`.
    until fixed). Because the archive reads runs/, run it AFTER step 1
    copies runs/<date>/. docs/ changes ride the run commit; the Pages
    workflow republishes on merge.
-3. Append this run's entries to ledger/topics.json and ledger/artwork.json
+3. Subscriber alerts: run `python scripts/docket_alerts.py --date <date>`.
+   It sends AT MOST one Buttondown email per run, only for real docket
+   events (a comment window newly open, a deadline or vote inside 48
+   hours), deduped forever via ledger/alerts.json, which rides this run's
+   commit. If BUTTONDOWN_API_KEY is unset it prints SKIP; that is not a
+   failure. Never compose subscriber email by hand; the script is the
+   only sender and its house-style lint is the gate.
+4. Append this run's entries to ledger/topics.json and ledger/artwork.json
    (full schemas), and 1-3 new instincts to ledger/instincts.json
    (confidence-scored; also bump/decay confirmed/contradicted ones).
    Append the retro bullets to knowledge/FIELD_NOTES.md. If a NEW technique
    was invented, add it to knowledge/TECHNIQUE_LIBRARY.md with a dated note.
-4. COMPLETION GATE: verify run_state.json shows every prior phase done and
+5. COMPLETION GATE: verify run_state.json shows every prior phase done and
    every file in (1) exists and is non-trivial. Do not proceed otherwise.
-5. Branch `claude/carousel-<date>`; commit everything (runs/, ledger/,
+6. Branch `claude/carousel-<date>`; commit everything (runs/, ledger/,
    docs/, knowledge/ changes); push with retries (2s/4s/8s/16s backoff).
-6. Open a PR (ready, not draft) and MERGE IT TO MAIN in the same run —
+7. Open a PR (ready, not draft) and MERGE IT TO MAIN in the same run —
    this repo's CLAUDE.md policy overrides any draft-PR default. The raw
    URLs in the email point at main; the merge must land before the email.
-7. Verify two spot URLs resolve (WebFetch a slide PNG raw URL + the PDF
+8. Verify two spot URLs resolve (WebFetch a slide PNG raw URL + the PDF
    URL on main). If raw URLs 404, wait 30s and retry once; if still
    broken, fall back to branch-pinned URLs and note it.
 

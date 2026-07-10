@@ -168,6 +168,29 @@ def main():
                        f'No tracked windows or votes inside 14 days. '
                        f'<a href="{site_url}">The full docket.</a></div>')
 
+    # subscriber alerts sent by this run (ledger/alerts.json, monitor trail)
+    alerts_path = Path(__file__).resolve().parents[1] / "ledger/alerts.json"
+    sent_today = []
+    if alerts_path.exists():
+        try:
+            sent_today = [e for e in json.loads(alerts_path.read_text())["sent"]
+                          if e.get("sent_on") == args.run_date]
+        except Exception:
+            pass
+    if sent_today:
+        rows = "\n".join(f"<tr><td>{esc(e['kind'])}</td><td>{esc(e['subject'])}<br>"
+                         f"<span style='color:#98a2b3'>{esc(e['key'])}</span></td></tr>"
+                         for e in sent_today)
+        docket_html += (
+            f'<h2>Subscriber alerts sent this run ({len(sent_today)})</h2>'
+            f'<div style="font-size:13.5px;color:#667085;margin-bottom:8px">Auto-sent '
+            f'through Buttondown to the deadline-alerts list. The no-repeat ledger is '
+            f'ledger/alerts.json.</div>'
+            f'<table class="score"><tr><th>Kind</th><th>Email</th></tr>{rows}</table>')
+    else:
+        docket_html += ('<div style="font-size:13px;color:#98a2b3;margin-top:6px">'
+                        'Subscriber alerts sent this run: none due.</div>')
+
     if upgrades:
         up_rows = "\n".join(
             f"<tr><td>{esc(u.get('kind','fix'))}<br>"

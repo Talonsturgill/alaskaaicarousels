@@ -20,7 +20,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-10 -10 20 20'%3E%3Cpath d='M0,-9 L2.2,-2.2 L9,0 L2.2,2.2 L0,9 L-2.2,2.2 L-9,0 L-2.2,-2.2 Z' fill='%23ffc72c'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="../fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../fonts/jbmono-md.woff2" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"The Alaska AI Docket","description":"Every AI infrastructure decision in Alaska. Land leases, comment windows, utility votes and legislation, with deciders, deadlines and public access, sourced and updated daily.","url":"https://alaskaaihq.com/docket/","dateModified":"2026-07-09","creator":{"@type":"Organization","name":"Alaska AI","url":"https://alaskaaihq.com/"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://alaskaaihq.com/docket.json"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"The Alaska AI Docket","description":"Every AI infrastructure decision in Alaska. Land leases, comment windows, utility votes and legislation, with deciders, deadlines and public access, sourced and updated daily.","url":"https://alaskaaihq.com/docket/","dateModified":"2026-07-10","creator":{"@type":"Organization","name":"Alaska AI","url":"https://alaskaaihq.com/"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://alaskaaihq.com/docket.json"}]}</script>
 <style>
 :root{--night:#02060f;--deep:#050b16;--panel:#0a1626;--panel2:#0e2138;--line:#1c3350;
 --snow:#f4f8ff;--body:#c3d2e6;--mute:#8da2be;--gold:#ffc72c;--halo:#ffda6e;
@@ -330,6 +330,20 @@ border:1px solid var(--line);border-radius:12px;padding:24px 26px;}
 .prose p{margin:18px 0;}
 .prose a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.25);}
 
+/* ---------- subscribe ---------- */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.subscribe{display:flex;gap:12px;flex-wrap:wrap;max-width:560px;}
+.subscribe input[type=email]{flex:1;min-width:230px;background:rgba(10,22,38,.85);
+border:1px solid var(--line);border-radius:6px;padding:13px 16px;color:var(--snow);
+font-family:JBMono,monospace;font-size:13.5px;letter-spacing:.03em;transition:border-color .2s;}
+.subscribe input[type=email]::placeholder{color:#5f7390;}
+.subscribe input[type=email]:focus{border-color:var(--gold);outline:none;}
+.subscribe .cta{border:none;cursor:pointer;font-family:JBMono,monospace;}
+.fineprint{font-family:JBMono,monospace;font-size:11px;color:#5a6d87;
+letter-spacing:.08em;margin-top:14px;}
+.fineprint a{color:var(--mute);text-decoration:none;border-bottom:1px solid rgba(141,162,190,.3);}
+.fineprint a:hover{color:var(--snow);}
+
 /* ---------- footer ---------- */
 .about-line{border-top:1px solid var(--line);margin-top:90px;padding-top:34px;font-size:15px;
 color:var(--mute);max-width:660px;}
@@ -523,6 +537,18 @@ INDIRECT when an elected or member-accountable body decides, CLOSED when the eva
   </div>
 </article>
 
+<h2 data-reveal id="alerts">Deadline alerts, in your inbox</h2>
+<p class="sub" data-reveal>One email when a public comment window opens or a decision is about
+to land. Nothing else, ever. Unsubscribe any time.</p>
+<form class="subscribe" data-reveal action="https://buttondown.com/api/emails/embed-subscribe/AlaskaAI"
+method="post" target="_blank">
+  <label class="vh" for="bd-email">Your email</label>
+  <input type="email" name="email" id="bd-email" required placeholder="you@example.com"
+  autocomplete="email">
+  <button class="cta gold" type="submit">GET ALERTS</button>
+</form>
+<p class="fineprint" data-reveal>Free, run by the desk, delivered by
+<a href="https://buttondown.com/refer/AlaskaAI" rel="noopener">Buttondown</a>.</p>
 <div class="about-line" data-reveal><p>All sources verified against claims.
 The data behind this page is public at <a href="../docket.json" style="color:var(--blue);text-decoration:none">docket.json</a>.</p></div>
 </main>
@@ -536,7 +562,7 @@ The data behind this page is public at <a href="../docket.json" style="color:var
     <a href="../docket.json">DATA</a>
   </div>
 </div>
-<div class="foot-line">BUILT IN THE NORTH &middot; UPDATED 2026-07-09 &middot;
+<div class="foot-line">BUILT IN THE NORTH &middot; UPDATED 2026-07-10 &middot;
 61&#176;13'N 149&#176;54'W &middot; EVERY FACT VERIFIED TO ITS SOURCE</div>
 </footer>
 </div>
