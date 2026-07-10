@@ -7,6 +7,21 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-09 — craft refresh (run 2 pre-research pass)
+
+- Platform numbers hold, nothing new vs run 1's craft note: documents still the
+  #1 format (6.6 to 7.0% ER, ~5x reach of static, 12.92% of all saves), 8-10
+  slides, 15-20s dwell the ranking signal. (dataslayer/contentdrips/postunreel 2026.)
+- **Echogram as a portable visual language (NEW craft handle)**: imaging-sonar
+  fish counting compresses hundreds of sonar video frames into a single
+  "echogram" band (time on one axis, range on the other, each fish a bright
+  streak). This is a real, drawable, information-dense motif for any AK
+  fisheries-AI deck: a seeded streak field where streak COUNT encodes the fish
+  number and density encodes run strength, with a flat 2D axis. Portable to
+  offline Canvas. (arxiv 2502.05129 "Counting Fish with Temporal Representations
+  of Sonar Video"; arxiv 2505.06637 multimodal foundation AI for wild salmon in
+  Indigenous rivers.) Parked as a technique candidate; only used if the story lands there.
+
 ## 2026-07-08 — run 1 retro (Carousel No. 1, "Four Rooms, One Open Door")
 
 - **Shipped 8.64 vs 8.3** (9 slides, vector PDF 10.74MB) after one revision
