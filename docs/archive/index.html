@@ -330,6 +330,20 @@ border:1px solid var(--line);border-radius:12px;padding:24px 26px;}
 .prose p{margin:18px 0;}
 .prose a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.25);}
 
+/* ---------- subscribe ---------- */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.subscribe{display:flex;gap:12px;flex-wrap:wrap;max-width:560px;}
+.subscribe input[type=email]{flex:1;min-width:230px;background:rgba(10,22,38,.85);
+border:1px solid var(--line);border-radius:6px;padding:13px 16px;color:var(--snow);
+font-family:JBMono,monospace;font-size:13.5px;letter-spacing:.03em;transition:border-color .2s;}
+.subscribe input[type=email]::placeholder{color:#5f7390;}
+.subscribe input[type=email]:focus{border-color:var(--gold);outline:none;}
+.subscribe .cta{border:none;cursor:pointer;font-family:JBMono,monospace;}
+.fineprint{font-family:JBMono,monospace;font-size:11px;color:#5a6d87;
+letter-spacing:.08em;margin-top:14px;}
+.fineprint a{color:var(--mute);text-decoration:none;border-bottom:1px solid rgba(141,162,190,.3);}
+.fineprint a:hover{color:var(--snow);}
+
 /* ---------- footer ---------- */
 .about-line{border-top:1px solid var(--line);margin-top:90px;padding-top:34px;font-size:15px;
 color:var(--mute);max-width:660px;}
@@ -407,7 +421,7 @@ Newest first.</p>
     <a href="../docket.json">DATA</a>
   </div>
 </div>
-<div class="foot-line">BUILT IN THE NORTH &middot; UPDATED 2026-07-09 &middot;
+<div class="foot-line">BUILT IN THE NORTH &middot; UPDATED 2026-07-10 &middot;
 61&#176;13'N 149&#176;54'W &middot; EVERY FACT VERIFIED TO ITS SOURCE</div>
 </footer>
 </div>

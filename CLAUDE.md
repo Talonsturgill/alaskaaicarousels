@@ -48,7 +48,8 @@ this one.
   instincts.json (self-improvement), upgrades.json (automation-change
   trail: Phase 12's machine upgrades, surfaced in every dated Gmail draft;
   each set reverts as one `upgrade(<date>):` commit), docket.json (the
-  public Alaska AI Docket, maintained in Phase 3.5). Committed state;
+  public Alaska AI Docket, maintained in Phase 3.5), alerts.json (the
+  no-repeat ledger for auto-sent subscriber emails). Committed state;
   updated every run.
 - `.claude/agents/` — scout, fact-checker, treatment-director, copywriter,
   pixel-critic, flow-critic, scorer, upgrade-engineer (Phase 12 machine
@@ -58,7 +59,9 @@ this one.
 - `assets/` — committed fonts (8 families), art libraries (noise, AK3D
   software-3D, Zdog, d3, topojson), true-lon/lat Alaska geodata, places
   gazetteer.
-- `scripts/` — gmail_draft.py, caption_check.py, site_build.py (builds the
+- `scripts/` — gmail_draft.py, caption_check.py, docket_alerts.py (sends
+  at most one Buttondown subscriber email per run for live docket events;
+  SKIPs without BUTTONDOWN_API_KEY), site_build.py (builds the
   whole public site into docs/: home, docket, archive + per-deck pages,
   about; validates ledger/docket.json and lint-gates every page), and
   docket_build.py (shared library: projection, docket components, gates —
