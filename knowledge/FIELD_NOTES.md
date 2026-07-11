@@ -7,6 +7,11 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-11 — craft refresh (run 4 pre-research pass)
+
+- **Named, reusable frameworks drive saves (new actionable handle).** Multiple 2026 carousel roundups (Oktopost, Morphica, SocialPilot) converge that the highest-save decks hand the reader a NAMED, portable thinking tool ("The 3-C Framework", "The RICE Method") they can carry and reuse, not just a story. For us that means: when the story allows, give the deck ONE named lens or rule-of-thumb the reader keeps (a coined term, a 3-part test, a checklist), stated once and reinforced on the close. Save-value is our whole strategy, so this is a real lever, not fluff. Does not change gates.
+- Platform numbers otherwise hold: documents remain the top organic format (~4.5% ER, ~45% over video, ~6x reach of link posts, ~3x save rate of text), 4:5 portrait, 6-10 slides the sweet spot, caption under ~150 words driving INTO the deck, personal-profile edge persists (aftercare note for the human, not a design change).
+
 ## 2026-07-10 — run 3 retro (Carousel No. 3, "The Machine That Hears a Mountain Think")
 
 - Story: AVO volcano-monitoring AI (VOISS-Net + VolcSARvatory) with the live Great Sitkin
