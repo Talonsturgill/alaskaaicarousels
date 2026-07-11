@@ -1,0 +1,75 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:1080px;height:1350px;overflow:hidden;background:#03060d}
+canvas#scene{position:absolute;inset:0;width:1080px;height:1350px}
+.kicker{position:absolute;left:80px;top:92px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.16em;color:#8FDCF7}
+h1{position:absolute;left:80px;top:152px;max-width:880px;font-family:"Fraunces",serif;font-weight:400;font-size:104px;line-height:1.0;letter-spacing:-.02em;color:#F4F8FF;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.dek{position:absolute;left:80px;top:412px;max-width:620px;font-family:"Manrope",sans-serif;font-size:32px;line-height:1.42;color:#D9E4F0}
+.counter{position:absolute;right:80px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;color:#7C93A8}
+.tag{position:absolute;left:80px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:21px;color:#54687C;letter-spacing:.08em}
+.star{position:absolute;left:80px;top:64px;width:18px;height:18px}
+</style></head><body>
+<canvas id="scene" width="2160" height="2700"></canvas>
+<svg class="star" viewBox="0 0 20 20"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" fill="#FFC72C"/></svg>
+<div class="kicker">ENGINE PROOF &middot; THE FULL STACK</div>
+<h1>World class,<br>every morning.</h1>
+<div class="dek">One GPU render pass, one film grade, one palette engine. The machine now lights, shades, and grades its own artwork.</div>
+<div class="tag" data-decorative>AKTHREE + AKPOST + AKC &middot; SEED 20260711</div>
+<div class="counter">03 / 03</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script type="module">
+window.renderReady=(async()=>{
+  const THREE=await import('@@ASSETS@@/js/three.module.min.js');
+  const AKT=(await import('@@ASSETS@@/js/akthree.js')).init(THREE);
+  const glcv=document.createElement('canvas');    // offscreen GL, composite to 2D
+  glcv.width=2160; glcv.height=2700;
+  if(!AKT.webglOK(glcv)){ return true; }
+  const R=AKT.setup(glcv,{w:1080,h:1350,bg:0x04070e,fog:[0x0d1b2e,10,46],exposure:1.02});
+  AKT.environment(R,{intensity:0.7});
+  AKT.rig(R,AKT.rigs.arcticNight);
+  AKT.ground(R,{color:0x0b1a2c,y:0,roughness:0.9});
+  // monument: an extruded Alaska-star plinth + gold lathe beacon + ice shards
+  // star extrude (8-point) low right
+  const starPts=[]; const S1=1.35,S2=0.52;
+  for(let k=0;k<16;k++){ const a=k*Math.PI/8; const r=(k%2===0)?S1:S2; starPts.push([Math.cos(a)*r,Math.sin(a)*r]); }
+  const plinth=AKT.extrude(starPts,0.5,AKT.mat.plastic(0x14304a,{roughness:0.55}),{bevelThickness:0.05,bevelSize:0.04});
+  plinth.rotation.x=-Math.PI/2; plinth.position.set(1.1,0.48,0.6); AKT.add(R,plinth);
+  // gold beacon lathe on the plinth
+  const prof=[[0.001,0],[0.42,0],[0.46,0.08],[0.3,0.22],[0.26,0.9],[0.34,1.05],[0.22,1.3],[0.08,1.85],[0.10,2.05],[0.001,2.18]];
+  const beacon=AKT.lathe(prof,AKT.mat.gold(),{segments:96});
+  beacon.position.set(1.1,0.53,0.6); AKT.add(R,beacon);
+  // beacon light: small emissive tip + point light
+  const tip=new THREE.Mesh(new THREE.SphereGeometry(0.09,24,16),AKT.mat.emissive(0xffe9b0,2.2));
+  tip.position.set(1.1,2.76,0.6); AKT.add(R,tip,{cast:false});
+  const pl=new THREE.PointLight(0xffd98a,26,9); pl.position.set(1.1,2.85,0.6); R.scene.add(pl);
+  // ice shards field (deterministic scatter, seeded)
+  AK.reseed(20260711); const rng=AK.rng(7);
+  const shardMat=AKT.mat.plastic(0x9fd7ee,{roughness:0.22,metalness:0.05});
+  for(let i=0;i<26;i++){
+    const h=0.24+rng()*1.5, w=0.1+rng()*0.34;
+    const shard=new THREE.Mesh(new THREE.ConeGeometry(w,h,5),shardMat);
+    const a=rng()*Math.PI*2, rr=1.6+rng()*5.2;
+    shard.position.set(Math.cos(a)*rr-0.4, h/2, Math.sin(a)*rr+0.4);
+    shard.rotation.y=rng()*Math.PI; shard.rotation.z=(rng()-0.5)*0.16;
+    AKT.add(R,shard);
+  }
+  // low monumental camera (horizon low), subject at right third
+  AKT.frame(R,{from:[-3.6,2.1,8.6],look:[1.5,0.55,0.2],fov:52});
+  const shot=await AKT.snapshot(R);
+  // composite GL frame onto the visible 2D canvas, then grade
+  const cv=document.getElementById('scene');
+  const cx=cv.getContext('2d',{willReadFrequently:true});
+  cx.drawImage(glcv,0,0);
+  if(shot.ok){
+    AKPOST.grade(cx,{exposure:0.06,saturation:1.1,contrast:1.14,
+      lift:[0.008,0.013,0.024],gain:[1.03,1.0,0.965],vignette:0.22,
+      bloom:{threshold:0.66,strength:0.5,radius:10},
+      grain:{amount:0.045,size:3,seed:20260711},dither:true,sharpen:0.3});
+  }
+  await document.fonts.ready;
+  return true;
+})();
+</script></body></html>

@@ -7,6 +7,29 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-11 — THE 3D UPGRADE (maintainer-directed dev session, post run 4)
+
+- **The 2D-to-3D leap landed.** Empirical probes overturned the standing "WebGL experimental"
+  assumption: SwiftShader/ANGLE (Vulkan "Subzero") renders a full PBR frame (MeshStandardMaterial,
+  2048px PCFSoft shadows, ACES, AA) at 2160x2700 in ~70ms in this container. Forum lore said 24-31s;
+  measure, do not inherit. Four new committed benches: akthree (GPU PBR + procedural IBL + brand
+  rigs/materials), aksdf (CPU SDF raymarcher for organic sculpted heroes), akpost (film-grade post:
+  correct op order, IGN dither, masked grain, unsharp), akcolor (OKLCH ramps + gradient-map
+  underpainting). TECHNIQUE_LIBRARY 87-90; DESIGN_DOCTRINE gained THE RENDERED LADDER; proof deck at
+  examples/proof-3d (3 slides, qa PASS).
+- **Two bugs the bench now encodes forever:** (1) three.js setPixelRatio must precede setSize or the
+  backing store silently drops to 1x (all early probes were unknowingly 1080p); (2) a nested block
+  comment in a JS header killed a module load with a bare "Unexpected token" page error; node --check
+  everything committed.
+- **Scene-authoring lessons from the proofs:** emissive tubes at tone-mapped exposure balloon into
+  washed bands (keep emissive intensity <= ~2.5 and radius small); SDF carved tunnels go near-black
+  without an indirect floor; light-bottomed renders need dark-ink footer furniture (contrast gate
+  caught it).
+- **Parked, high-value next steps:** matcap + G-buffer deferred pass for ak3d (per-pixel normals,
+  Blender-clay look without GPU); APCA text-contrast auto-solver; saliency-map focal-hierarchy QA
+  check (Itti-Koch downsample: assert the intended focal wins); strata-texture helper (run 4 retro);
+  llvmpipe lane (--use-angle=gl) as a SwiftShader hedge if Chromium's deprecation ever lands.
+
 ## 2026-07-11 — run 4 retro (Carousel No. 4, "The Cook Inlet Gas Machine")
 
 - **Shipped 8.90 vs 8.3** (9 slides, vector PDF 2.94MB), zero hard fails, 1 pixel round + 1 flow round.

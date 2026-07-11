@@ -140,6 +140,73 @@
    "verification": "Reconstruction over an fbm-mottled ochre band (#B0803A) with the exact failing text/colours: RAW cx.fillText label reads ~1.9:1 (reproduces the shipped-then-caught defect) and RAW ENSTAR/HILCORP merge into 'ENSTAHILCORP' at ~2.8:1; the SAME labels via AK.canvasLabel read ~8.5:1 (bg = plate rgb(26,25,23), independent of the ochre) and ~12.9:1, and AK.rectsOverlap keeps them apart -- confirmed visually and by a pixel sampler using qa.py's contrast method. Regression: out/2026-07-11/slides render OK + qa PASS 0/0 and examples/demo-deck render OK + qa WARN (the single known 2026-07-10 slide-03 busy-art warn), both unchanged (new asset is unreferenced). qa.py on the verification slide: PASS 0/0 (no false positives). No gate/threshold weakened; no new runtime dependency (vanilla offline JS); shipped slides not modified.",
    "rollback": "revert the upgrade(2026-07-11) commit",
    "commit": "upgrade(2026-07-11) commit 814b8c4 on PR #22 (revert this single prefixed commit to roll back)"
+  },
+  {
+   "run_date": "2026-07-11",
+   "kind": "improvement",
+   "trigger": "Maintainer directive (2026-07-11 dev session): take the studio from 2D to 3D and make the illustration world class. Empirical probe overturned the 'WebGL experimental' assumption: SwiftShader/ANGLE renders a full PBR frame at 2160x2700 in ~70ms in this container.",
+   "rollback": "revert the upgrade(2026-07-11) 3D-bench commit",
+   "area": "assets",
+   "change": "GPU PBR bench: committed three.module.min.js (r170, MIT) + new assets/js/akthree.js (deterministic scene kit: ACES + PCFSoft shadow rig, procedural IBL softbox room via PMREMGenerator, brand material presets gold/steel/clay/plastic/ice/emissive, arcticNight/goldenHour/galleryWhite lighting rigs, lathe/tube/extrude geometry helpers, webglOK probe + black-frame snapshot sentinel). Includes the pixelRatio-before-setSize fix that a hand-rolled integration would silently miss (renders at 1x).",
+   "files": [
+    "assets/js/three.module.min.js",
+    "assets/js/akthree.js",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "examples/proof-3d slide-01/03 render PASS with 0 errors (3.4-8.7s incl full pipeline); sentinel verified reading 24 px variance; regression: examples/demo-deck (baseline WARN unchanged) and runs/2026-07-11 slides (PASS) re-rendered clean with the new assets present."
+  },
+  {
+   "run_date": "2026-07-11",
+   "kind": "improvement",
+   "trigger": "Maintainer directive (2026-07-11 dev session): take the studio from 2D to 3D and make the illustration world class. Empirical probe overturned the 'WebGL experimental' assumption: SwiftShader/ANGLE renders a full PBR frame at 2160x2700 in ~70ms in this container.",
+   "rollback": "revert the upgrade(2026-07-11) 3D-bench commit",
+   "area": "assets",
+   "change": "CPU SDF raymarcher: new assets/js/aksdf.js (sphere tracing, quadratic smin, twist/repeat/fbm displacement, tetrahedral normals, single-ray soft shadows, 5-tap AO applied to indirect terms only per the Quilez rule, fresnel rim, two-tone ramp, ACES out; deadlineMs graceful degradation) for organic sculpted heroes meshes cannot do.",
+   "files": [
+    "assets/js/aksdf.js"
+   ],
+   "verification": "examples/proof-3d slide-02 renders a blended fbm-displaced monument with shadows+AO in 7.9s at 540x675 internal (inside the 30s cap with full quality flags true); qa PASS."
+  },
+  {
+   "run_date": "2026-07-11",
+   "kind": "improvement",
+   "trigger": "Maintainer directive (2026-07-11 dev session): take the studio from 2D to 3D and make the illustration world class. Empirical probe overturned the 'WebGL experimental' assumption: SwiftShader/ANGLE renders a full PBR frame at 2160x2700 in ~70ms in this container.",
+   "rollback": "revert the upgrade(2026-07-11) 3D-bench commit",
+   "area": "assets",
+   "change": "Film-grade post pipeline: new assets/js/akpost.js implementing the researched minimal grading stack in the correct op order (bloom in linear, exposure, saturation, log-contrast pivot 0.18, ACES, gamma, lift/gain split-tone, luminance-masked soft-light grain, IGN dither as the banding killer, unsharp output sharpening) plus AKPOST.depthGrade (atmospheric-perspective numbers for layered 2D scenes).",
+   "files": [
+    "assets/js/akpost.js"
+   ],
+   "verification": "Graded flagship proof slide (bloom catches the emissive beacon only, grain shaped into shadows, no banding on the night sky at 1:1); qa PASS; ~0.9s at 2160x2700 within the render budget."
+  },
+  {
+   "run_date": "2026-07-11",
+   "kind": "improvement",
+   "trigger": "Maintainer directive (2026-07-11 dev session): take the studio from 2D to 3D and make the illustration world class. Empirical probe overturned the 'WebGL experimental' assumption: SwiftShader/ANGLE renders a full PBR frame at 2160x2700 in ~70ms in this container.",
+   "rollback": "revert the upgrade(2026-07-11) 3D-bench commit",
+   "area": "assets",
+   "change": "OKLCH color engine: new assets/js/akcolor.js (sRGB<->OKLab/OKLCH, material ramps with the chroma bell + warm-light/cool-shadow hue drift, OKLab gradient mixing with no gray dead zone, gradient-map LUT underpainting, gamut mapping by chroma reduction at constant L/H).",
+   "files": [
+    "assets/js/akcolor.js"
+   ],
+   "verification": "Ramp/mix/LUT outputs spot-checked for gamut validity (all emitted hex parse and round-trip); used in the graded proof deck; loads clean (node --check + in-page)."
+  },
+  {
+   "run_date": "2026-07-11",
+   "kind": "improvement",
+   "trigger": "Maintainer directive (2026-07-11 dev session): take the studio from 2D to 3D and make the illustration world class. Empirical probe overturned the 'WebGL experimental' assumption: SwiftShader/ANGLE renders a full PBR frame at 2160x2700 in ~70ms in this container.",
+   "rollback": "revert the upgrade(2026-07-11) 3D-bench commit",
+   "area": "knowledge",
+   "change": "Doctrine + library wired to the new bench: TECHNIQUE_LIBRARY entries 87-90 (GPU PBR Scene, SDF Raymarched Hero, Film Grade Pass, OKLCH Ramps + Gradient-Map Underpainting) with entry 49 superseded; DESIGN_DOCTRINE section 4 gains THE RENDERED LADDER (rendered hero + graded finish = the new craft floor for hero slides); SKILL.md documents the libraries, the pixelRatio rule, the sentinel, and the fallback mandate; examples/proof-3d committed as the 3-slide engine proof.",
+   "files": [
+    "knowledge/TECHNIQUE_LIBRARY.md",
+    "knowledge/DESIGN_DOCTRINE.md",
+    ".claude/skills/carousel-engine/SKILL.md",
+    "examples/proof-3d/slides/slide-01.html",
+    "examples/proof-3d/slides/slide-02.html",
+    "examples/proof-3d/slides/slide-03.html"
+   ],
+   "verification": "proof-3d renders+qa PASS from its committed location; knowledge files lint clean (no dashes)."
   }
  ],
  "scan_log": [
@@ -166,6 +233,12 @@
    "focus": "generative/procedural art portable to offline Canvas/SVG (texture/relief/noise) -- rotated off self-improving-pipeline 07-08, typography 07-09, editorial-dataviz/cartography 07-10; chosen to serve this run's weakest rubric (artwork craft = 7: flat strata bands, plain lenses)",
    "found": "Inigo Quilez fbm article: additive noise octaves with gain=2^-H; H=1 (gain 0.5), ~5-6 octaves matches real mountain/rock spectra (-9dB/octave) -- the geological parameter set. Domain-warp article: f(g(p)) marbling. KEY: these primitives are ALREADY committed in noise.js (AK.fbm2/fbm3/warp2/simplex2), so a strata-texture/rim-light craft helper is a thin painterly layer over existing math, not new deps; relief needs only a lighter upper-left rim stroke on filled shapes plus low-alpha clipped fbm mottling.",
    "outcome": "parked (FIELD_NOTES 2026-07-11: strata-texture / rim-light craft helper with concrete parameters + source URLs); no frontier code applied this run -- one reactive fix (aklabel.js) took the slot and the craft helper is held to the next improvement slot the day after a 4-upgrade day"
+  },
+  {
+   "run_date": "2026-07-11",
+   "focus": "3D rendering in headless offline browsers + world-class illustration levers (maintainer-directed dev session; two research passes: SDF raymarching/rasterization/three.js-SwiftShader, and post-grading/texture/OKLCH color science)",
+   "found": "SwiftShader WebGL2 is fully functional here (~70ms/frame PBR, contradicting 24-31s forum reports); Quilez canon for CPU raymarching (quadratic smin only, AO never on the key light, 4-tap normals, half-res upscale); the minimal grading stack op order; IGN dither as the banding killer; OKLCH ramps with chroma bell + hue drift.",
+   "outcome": "applied (akthree + aksdf + akpost + akcolor + knowledge wiring). Parked: matcap G-buffer deferred pass for ak3d, APCA text-contrast solver, saliency focal-hierarchy QA check, strata-texture helper (from run 4 retro)."
   }
  ]
 }

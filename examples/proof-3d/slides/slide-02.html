@@ -1,0 +1,57 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:1080px;height:1350px;overflow:hidden;background:#04070e}
+canvas#scene{position:absolute;inset:0;width:1080px;height:1350px}
+.kicker{position:absolute;left:80px;top:92px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.16em;color:#8FDCF7}
+h1{position:absolute;left:80px;top:150px;max-width:900px;font-family:"Fraunces",serif;font-weight:400;font-size:92px;line-height:1.02;letter-spacing:-.02em;color:#F4F8FF;font-variation-settings:"opsz" 144}
+#t{position:absolute;right:80px;top:104px;font-family:"JetBrains Mono",monospace;font-size:22px;color:#7C93A8}
+.counter{position:absolute;right:80px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;color:#22303f}
+.tag{position:absolute;left:80px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:21px;color:#33465c;letter-spacing:.08em}
+</style></head><body>
+<canvas id="scene" width="2160" height="2700"></canvas>
+<div class="kicker">ENGINE PROOF &middot; SDF RAYMARCH</div>
+<h1>Sculpted by distance fields.</h1>
+<div id="t" data-decorative></div>
+<div class="tag" data-decorative>AKSDF &middot; SOFT SHADOWS &middot; 5-TAP AO &middot; SMIN &middot; FBM</div>
+<div class="counter">02 / 03</div>
+<script src="@@ASSETS@@/js/aksdf.js"></script>
+<script>
+window.renderReady=(async()=>{
+  const cv=document.getElementById('scene');
+  const cx=cv.getContext('2d',{willReadFrequently:true}); cx.scale(2,2);
+  const S=AKSDF; S.reseed(20260711);
+  const t0=performance.now();
+  // scene: a molten blended monument on a ground, carved torus + blobs, fbm-displaced
+  const scene=(p)=>{
+    // ground
+    let g=p[1]+0.02*S.noise3(p[0]*0.8,0,p[2]*0.8);
+    // twisted monument core
+    const q=S.opTwist(S.sub(p,[0,1.05,0]),0.55);
+    let m=S.sdRoundBox(q,[0.62,1.05,0.62],0.18);
+    // blend in two spheres (organic shoulders)
+    m=S.smin(m,S.sdSphere(S.sub(p,[-1.05,0.62,0.45]),0.58),0.42);
+    m=S.smin(m,S.sdSphere(S.sub(p,[0.95,0.5,-0.35]),0.5),0.42);
+    // carve a torus window
+    m=S.opSub(m,S.sdTorus(S.sub(p,[0,1.42,0]),0.62,0.24));
+    // surface detail: thin-shell fbm displacement
+    if(m<0.12){ m+=0.045*S.fbm3(p[0]*2.6,p[1]*2.6,p[2]*2.6,3); }
+    // satellite pebbles
+    let peb=S.sdSphere(S.sub(p,[-1.9,0.16,1.3]),0.17);
+    peb=Math.min(peb,S.sdSphere(S.sub(p,[1.75,0.13,1.05]),0.14));
+    const d1=[g,2],d2=[m,1],d3=[peb,3];
+    let best=d1; if(d2[0]<best[0])best=d2; if(d3[0]<best[0])best=d3;
+    return best;
+  };
+  const rep=S.render(cx,{scene,width:540,height:675,box:[0,0,1080,1350],
+    cam:{pos:[3.4,2.3,4.6],look:[0,0.95,0],fov:46},
+    light:[0.55,0.75,0.35],
+    mats:{1:{color:[1.0,0.72,0.16],spec:0.5},2:{color:[0.32,0.42,0.55],spec:0.1},3:{color:[0.85,0.55,0.3],spec:0.3}},
+    sky:[0.016,0.03,0.06],fog:0.055,
+    keyColor:[1.0,0.92,0.78],shadowColor:[0.15,0.22,0.35],deadlineMs:20000});
+  const ms=Math.round(performance.now()-t0);
+  document.getElementById('t').textContent=ms+'ms · sh:'+rep.shadows+' ao:'+rep.ao;
+  await document.fonts.ready;
+  return true;
+})();
+</script></body></html>

@@ -122,6 +122,25 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
 - `assets/js/ak3d.js` — software 3D: perspective camera, heightfield/box
   meshes, painter's z-sort, Lambert + fog, 3D polylines & point clouds (`AK3D.*`)
 - `assets/js/zdog.min.js` — Zdog round pseudo-3D engine (canvas, no GPU)
+- `assets/js/three.module.min.js` (r170, MIT) + `assets/js/akthree.js` —
+  the GPU PBR bench (PROVEN on SwiftShader in this container, ~70ms/frame at
+  2160x2700): materials/rigs/IBL/lathe/tube/extrude. ES module: load via
+  `<script type="module">` + `await import('@@ASSETS@@/js/...')`. RULES:
+  akthree sets pixelRatio BEFORE size (hand-rolled three code that reverses
+  them silently renders at 1x); `await AKT.snapshot(R)` and check `.ok`
+  (black-frame sentinel); design a Canvas fallback for `AKT.webglOK()===false`;
+  composite via an offscreen canvas + drawImage when mixing with 2D art.
+- `assets/js/aksdf.js` — CPU SDF raymarcher (`AKSDF.*`): organic sculpted
+  heroes, soft shadows + 5-tap AO + smin blends; render 480x720 internal into
+  a box, ~5-15s; `deadlineMs` degrades gracefully.
+- `assets/js/akpost.js` — film grade (`AKPOST.grade`): bloom -> exposure ->
+  saturation -> log-contrast -> ACES -> gamma -> split-tone -> masked grain ->
+  IGN dither -> unsharp. Call ONCE on the art canvas after drawing, before
+  the grain tile (or use akpost's own grain and skip the tile). DOM text is
+  never affected.
+- `assets/js/akcolor.js` — OKLCH engine (`AKC.*`): material ramps (chroma
+  bell + warm-light/cool-shadow hue drift), OKLab gradient mixing,
+  gradient-map LUT underpainting.
 - `assets/js/d3.v7.min.js` + `topojson-client.min.js` — maps & dataviz
 - `assets/geo/alaska-state.geo.json` — Alaska outline, true lon/lat (137 rings)
 - `assets/geo/alaska-boroughs.geo.json` — all 29 boroughs/census areas
@@ -132,10 +151,11 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   context only), `assets/geo/world-land-110m.json` (unprojected TopoJSON —
   use for globes/great-circle work)
 
-WebGL/three.js: `--enable-unsafe-swiftshader` is passed but treat WebGL as
-**experimental** — probe `canvas.getContext('webgl')` and keep a Canvas-2D
-fallback. Everything needed is achievable without it (AK3D, Zdog, CSS 3D
-transforms, SVG lighting filters all render reliably headless).
+WebGL/three.js: PROVEN in this container as of 2026-07-11 (SwiftShader/ANGLE
+Vulkan "Subzero"; see akthree above and examples/proof-3d). Still probe
+`AKT.webglOK()` and keep a Canvas-2D fallback DESIGN per slide — headless
+failure modes are silent (black frame / flat-2D fallback), which is exactly
+what the snapshot sentinel catches.
 
 ## Review artifacts
 
