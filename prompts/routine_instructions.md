@@ -239,6 +239,10 @@ type spec. Craft expectations:
 
 - Layered: atmosphere + structure + anchor + type + grain; genuine detail
   in every region (zoom test); the deck's depth technique realized.
+- Hero slides climb THE RENDERED LADDER (DESIGN_DOCTRINE section 4): GPU PBR
+  via akthree, or an aksdf raymarched hero, with an akpost film grade and
+  akcolor OKLCH ramps; every akthree slide carries a designed Canvas fallback
+  and checks the snapshot sentinel.
 - Deterministic (seeded), offline (assets via @@ASSETS@@ only), text in
   DOM/SVG never canvas, canvases at 2x backing, renderReady for async art,
   data-decorative on intentional micro-text.

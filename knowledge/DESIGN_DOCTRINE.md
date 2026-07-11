@@ -102,6 +102,21 @@ the AK3D composition math (horizonY = cy + tan(−pitch)·f) — never eyeball.
 3D data honesty: parallel projection for data (iso/cabinet), NEVER
 perspective on quantities, no 3D pies, grid/labels stay flat 2D.
 
+THE RENDERED LADDER (2026-07-11, the 2D-to-3D upgrade). The bench now runs
+GPU-rendered artwork as a first-class option, and hero slides should reach
+for the highest rung the story supports:
+1. **akthree (GPU PBR, #87)** — real materials, soft shadow maps, IBL
+   reflections, ACES. The default for object heroes, monuments, dimensional
+   systems. ~3-9s per slide.
+2. **aksdf (CPU raymarch, #88)** — sculpted organic masses with soft shadows
+   and contact AO; painterly. One hero panel per deck.
+3. **AK3D / Zdog / CSS 3D** — the zero-dependency fallback bench (every
+   akthree slide MUST have a designed fallback for webglOK()===false).
+Whatever the rung: finish the ART canvas with the film grade (akpost, #89)
+and build palettes/ramps in OKLCH (akcolor, #90). A rendered hero with a
+graded finish is the new craft floor for hero slides; flat is still a
+CHOICE, but it now competes against a machine that can render.
+
 ## 5. Genuine detail (the anti-lazy standard)
 
 Every slide must survive the zoom test — at 100% there is craft in every

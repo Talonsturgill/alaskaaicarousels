@@ -1,0 +1,44 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:1080px;height:1350px;overflow:hidden;background:#04070e}
+canvas#scene{position:absolute;inset:0;width:1080px;height:1350px}
+.kicker{position:absolute;left:80px;top:92px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.16em;color:#8FDCF7}
+h1{position:absolute;left:80px;top:150px;max-width:900px;font-family:"Fraunces",serif;font-weight:400;font-size:96px;line-height:1.02;letter-spacing:-0.02em;color:#F4F8FF;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.counter{position:absolute;right:80px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;color:#7C93A8}
+.tag{position:absolute;left:80px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:21px;color:#54687C;letter-spacing:.08em}
+</style></head><body>
+<canvas id="scene" width="2160" height="2700"></canvas>
+<div class="kicker">ENGINE PROOF &middot; GPU PBR BENCH</div>
+<h1>Rendered, not drawn.</h1>
+<div class="tag" data-decorative>AKTHREE &middot; SWIFTSHADER &middot; ACES &middot; IBL &middot; PCFSOFT</div>
+<div class="counter">01 / 03</div>
+<script type="module">
+window.renderReady=(async()=>{
+  const THREE=await import('@@ASSETS@@/js/three.module.min.js');
+  const AKT=(await import('@@ASSETS@@/js/akthree.js')).init(THREE);
+  const cv=document.getElementById('scene');
+  if(!AKT.webglOK(cv)) { document.body.style.background='#111'; return true; }
+  const R=AKT.setup(cv,{w:1080,h:1350,bg:0x04070e,fog:[0x0b1622,10,42],exposure:1.15});
+  AKT.environment(R,{intensity:0.65});
+  AKT.rig(R,AKT.rigs.arcticNight);
+  AKT.ground(R,{color:0x0c1c30,y:0});
+  // hero: gold torus knot (the machine), clay sphere, steel valve-like lathe, blue tube route
+  const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.05,.35,240,40),AKT.mat.gold());
+  knot.position.set(-0.4,1.75,0); knot.rotation.y=0.6; AKT.add(R,knot);
+  const sphere=new THREE.Mesh(new THREE.SphereGeometry(.85,64,48),AKT.mat.clay(0xE8853C));
+  sphere.position.set(-2.7,.85,1.6); AKT.add(R,sphere);
+  // lathe: a vessel/valve body profile
+  const prof=[[0.0,0],[0.55,0],[0.62,0.12],[0.5,0.35],[0.5,0.9],[0.68,1.05],[0.68,1.25],[0.36,1.42],[0.12,1.45],[0.0,1.45]];
+  const vessel=AKT.lathe(prof,AKT.mat.steel(),{segments:80});
+  vessel.position.set(2.4,0,1.2); vessel.scale.set(1.5,1.5,1.5); AKT.add(R,vessel);
+  // glowing route tube weaving through
+  const pts=[[-5,0.15,3.2],[-2.5,0.35,2.6],[-0.5,0.5,3.0],[1.6,0.35,2.6],[3.6,0.6,1.6],[5.2,0.9,0.4]];
+  const tube=AKT.tube(pts,0.07,AKT.mat.emissive(0x5ac8f0,2.4),{segments:160});
+  AKT.add(R,tube,{cast:false});
+  AKT.frame(R,{from:[4.6,3.0,7.2],look:[0,1.0,0.4],fov:50});
+  AKT.snapshot(R);
+  await document.fonts.ready;
+  return true;
+})();
+</script></body></html>

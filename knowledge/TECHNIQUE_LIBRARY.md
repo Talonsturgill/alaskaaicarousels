@@ -179,10 +179,67 @@ headless Chromium (Canvas 2D, SVG, CSS) unless flagged. Committed helpers:
     (0 0 5px / 20px / 40px) + near-white core. Signals, night-tech. D1
 48. **Long Shadow** — silhouette extruded 45° (stacked 1px shadows or one
     skewed fading polygon to frame edge). Flat-design dimensionality. D1
-49. **WebGL/SwiftShader (EXPERIMENTAL)** — three.js under
-    --enable-unsafe-swiftshader; MUST probe getContext('webgl2') and keep a
-    Canvas-2D fallback design; expect 6-24s renders; silent flat-2D
-    fallback is the trap. Reserve for occasional hero renders only. D4
+49. **WebGL/SwiftShader — SUPERSEDED (2026-07-11)**: the GPU path is now
+    PROVEN and first-class via the committed akthree bench; see #87. The old
+    warnings survive as rules inside #87 (probe, sentinel, fallback design).
+
+## RENDERED 3D (the GPU + raymarch bench — NEW 2026-07-11)
+
+The 2D-to-3D leap. Verified in this container: WebGL2 runs via SwiftShader
+(ANGLE/Vulkan "Subzero") and a full PBR frame at 2160x2700 costs ~70ms to
+render (~3-9s per slide all-in). Every deck now has access to REAL rendered
+artwork. Doctrine still applies: perspective for scenes, never for quantities;
+text stays DOM/SVG; one imaginary light per deck; fog in the sky's hue.
+
+87. **GPU PBR Scene (akthree)** — three.module.min.js (r170, committed) +
+    `assets/js/akthree.js`. Physically-based materials (gold/steel/clay/
+    plastic/ice/emissive presets from the brand world), 2048px PCFSoft shadow
+    maps, ACES tone mapping, procedural IBL (`AKT.environment`: an emissive
+    softbox room through PMREMGenerator, so metals get REAL reflections with
+    zero texture files), three-point illustration rigs (`AKT.rigs.arcticNight
+    / goldenHour / galleryWhite`), geometry helpers (lathe / tube-on-path /
+    extrude-with-bevel). HARD RULES: `setPixelRatio` BEFORE `setSize` (the
+    bench does it; hand-rolled three code that reverses them silently renders
+    1x); `await AKT.snapshot(R)` and CHECK `.ok` (black-frame sentinel: reads
+    24 px, catches the documented headless first-paint race and silent-2D
+    fallback); always design a Canvas/AK3D fallback for `AKT.webglOK()===false`;
+    render into an OFFSCREEN canvas and `drawImage` onto the slide's 2D canvas
+    when compositing with 2D art or akpost. Hero scenes, monuments, object
+    still-lifes, dimensional systems. D3
+88. **SDF Raymarched Hero (aksdf)** — `assets/js/aksdf.js`, pure-JS CPU
+    sphere-tracing for ORGANIC sculpted forms meshes are bad at (blended
+    blobs, carved monuments, molten masses). Primitives + quadratic smin (the
+    only safe smin: never overestimates distance) + twist/repeat/fbm
+    displacement (thin-shell: only when |d|<0.12); tetrahedral normals; 5-tap
+    AO applied to sky/indirect ONLY (never the key term: Quilez rule); single
+    soft-shadow ray (k~14); fresnel rim; two-tone warm-key/cool-shadow ramp;
+    ACES + gamma out. Render at 480x720 internal into a box and upscale (the
+    softness reads painterly); ~5-15s for <=12 primitives; `deadlineMs`
+    degrades shadows->AO, never aborts. Carved tunnels go near-black: raise
+    the indirect floor or light them with an emissive material. One hero
+    panel per deck, cache by seed. D4
+89. **Film Grade Pass (akpost)** — `assets/js/akpost.js`. THE finishing move:
+    call `AKPOST.grade(ctx,{...})` once on the ART canvas after all drawing.
+    Researched op order (not optional): bloom (linear, brights) -> exposure ->
+    saturation -> log-contrast (pivot 0.18) -> ACES filmic -> display gamma ->
+    lift/gain split-tone -> luminance-masked soft-light grain -> IGN dither
+    (kills 8-bit banding; ALWAYS on with large soft gradients) -> unsharp
+    mask. House grade for the dark-arctic register lives in the file header.
+    Restraint: aberration only on hero-art slides (never data/type); total
+    texture budget (grain+dither+feTurbulence) <= ~10%; brand-exact marks
+    (gold Polaris, wordmark) stay DOM/SVG so the grade never shifts them.
+    `AKPOST.depthGrade(d)` returns the atmospheric-perspective numbers
+    (mix/contrast/chroma/blur) for layered 2D scenes. D2
+90. **OKLCH Material Ramps + Gradient-Map Underpainting (akcolor)** —
+    `assets/js/akcolor.js`. Perceptually even palette math: `AKC.ramp(base,
+    {steps:7, keyHue, ambientHue, drift})` builds 5-7 step material ramps
+    with the chroma bell (peak at L~0.55) and hue drift toward the key in
+    light / ambient in shadow ("warm light, cool shadow", numerically).
+    `AKC.mixOklab` for gradients (no gray dead zone); `AKC.gradientMapLUT` +
+    `applyGradientMap` remaps a grayscale value-study underpainting through a
+    brand ramp: instant "everything in one light" cohesion. Gamut-maps by
+    CHROMA reduction at constant L/H (never RGB clamping). Use ramp steps for
+    shading instead of ad-hoc lightening. D2
 
 ## SUBJECT ICONS (story-anchor illustrations)
 
