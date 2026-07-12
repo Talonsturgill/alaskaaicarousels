@@ -7,6 +7,13 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-12 — craft refresh (run 5)
+
+- Named, reusable frameworks drive SAVES on LinkedIn carousels (a coined "The N-Thing Method" reads as a portable thinking tool). Reinforces giving each deck a named thesis/frame on the cover, not just a headline. Consider a coined frame when the story has a clean structural spine.
+- 8 to 10 slides remains the save-optimal band with roughly 15 to 20 seconds dwell; nothing here changes current practice. Consistency of the visual system across every slide (background, type, accent, grid) is repeated as the top design driver, which the constellation system already enforces.
+
+---
+
 ## 2026-07-11 — THE 3D UPGRADE (maintainer-directed dev session, post run 4)
 
 - **The 2D-to-3D leap landed.** Empirical probes overturned the standing "WebGL experimental"
