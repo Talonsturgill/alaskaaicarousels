@@ -226,7 +226,7 @@
    ],
    "verification": "Reconstructions FAIL as required (dead-GL slide: 'dead canvas variance 0'; 1x slide: 'low-res canvas backing 1x', qa exit 1). Regression: examples/proof-3d PASS (after the probe-pollution fix the gate itself caught), examples/demo-deck baseline WARN unchanged, runs/2026-07-11 PASS. No gate weakened; two added.",
    "rollback": "revert the upgrade(2026-07-11) gates commit",
-   "commit": "PLACEHOLDER upgrade(2026-07-11) gates"
+   "commit": "upgrade(2026-07-11) commit 4afc86c on PR #26 (revert this single prefixed commit to roll back)"
   }
  ],
  "scan_log": [
