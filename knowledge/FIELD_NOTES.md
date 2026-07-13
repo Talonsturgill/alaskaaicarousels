@@ -7,6 +7,23 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-13 — run 6 retro (Carousel No. 6, "The Interior's Power Math")
+
+- **Shipped 8.69 vs 8.3** (9 slides, vector PDF 3.26MB), zero hard fails, 1 pixel round (all 9 reviewed; S2/S3/S4 had blocker/major issues, all fixed + re-verified) + 1 flow round (SHIP, 8.2) + 1 post-score fix. Story: GVEA's July 13 board vote on a second ~$120M LM6000 gas turbine, framed "Firm power, soft load" -- a member-owned Interior co-op asked to finance firm gas capacity on member debt while the AI loads that make firm power feel urgent (Air Force EULs at Eielson/Clear/JBER) are still proposals. Deliberate pivot to a flat editorial FIRM/SOFT type-weight ledger + one rendered turbine, after four straight energy/monitoring/robotics decks.
+- **The winning frame was the essayist's, strengthened by the other two directors.** "Firm power, soft load" (a portable rule-of-thumb) beat "the megawatt mortgage" (data-journalist) and "the phantom load" (systems-illustrator); the phantom-load idea was GRAFTED in (the SOFT column drawn in drafting phantom-dashes), and all three converged on the rendered LM6000 object as the depth hero. Synthesis > any single pitch.
+- **Fact-check recovered claims the fact-checker dropped on dead URLs.** The fact-checker returned 19 verified claims but dropped the GVEA fuel-spike (its guessed alaskasnewssource/ADN URLs 404'd). A quick showrunner re-fetch with the REAL URLs (gvea primary via search + alaskasnewssource + KUAC) recovered the +61%/$45.74/$2.50-to-$5.10 backdrop (c19-c24) that became the emotional core (S5). Lesson: when the fact-checker drops a claim for a fetch failure (not a falsehood), retry the URL yourself before abandoning a strong beat.
+- **Honesty firewall as a DESIGN problem, not just a copy one.** The load-bearing S3 ("what the paper reports" vs "what the co-op says") FAILED the pixel critic because the attributed data-center panel rendered larger/brighter than GVEA's own words -- visual favoritism inverting the honesty point. Fix: identical panels (same top, min-height, plate, quote glyphs). New instinct logged (equalize-honesty-panels).
+- **Rendered object hero needs a text scrim, not text-shadow.** S4's body copy over the akthree steel turbine dropped below 4.5:1 (pixel BLOCKER) despite a shadow; a Deep-Sea-Scrim DOM gradient behind the text column fixed it while keeping the object big. Also: the first lathe profile read as a propane bottle; a bell intake + casing seams + a rear exhaust stack + a control cabinet made it read as an industrial turbine package. Two new instincts (render-object-text-scrim; and reshape-for-silhouette). Weakest rubric criterion again = artwork craft (7): the turbine still reads slightly generic as a chrome vessel; parked as a reusable LM6000-specific object-hero detail kit.
+- **The dividing-rule motif carried the whole argument.** A FIRM(solid)/SOFT(ghost) vertical rule that migrates per beat and SEALS into a gold "closed door" at synthesis (executive session) then splits open into the close question read as one evolving object across the filmstrip (flow critic confirmed motif + palette-arc). Generalizes to any two-sided / certain-vs-speculative story.
+- **Recurring fixes that held:** fixed-width centered label boxes tripped the safe-zone gate on their BOX edges (S2); content-width nowrap fixed it (new instinct). Instrument-Serif-italic-only again false-FAILed render.py's upright-400 font probe; the offscreen upright-loader span cleared it (the parked 07-10 probe fix is now worth landing as a real engine change -- Phase 12 candidate).
+
+## 2026-07-13 — craft refresh (run 6 pre-research pass)
+
+- **"Bounce rate" is now named as an explicit tracked document-post signal** (dataslayer Feb 2026, digitallybugged 2026 guide): the algorithm reportedly reads whether a viewer swipes past slide 1, and a high slide-1-to-slide-2 dropoff suppresses reach. This is a sharper articulation of our existing "steepest drop is 1 to 2 / cover must earn the swipe" rule, not a new lever. Practical restatement for the directors room: the cover's ONLY job is to buy the second slide, and slide 2 must pay immediately (no agenda beat). Nothing to change in the gates.
+- Everything else reconfirms current practice: documents remain the top organic format (~6.6% ER), saves ~5x a like / ~2x a comment in reach value, 8 to 10 slides and 15 to 20s dwell the save-optimal band. No doctrine change.
+
+---
+
 ## 2026-07-12 — run 5 retro (Carousel No. 5, "First Machine to the Fire")
 
 - **Shipped 8.54 vs 8.3** (9 slides, vector PDF 2.3MB), zero hard fails, 1 pixel round + confirmed fixes + 1 flow round. Story: Alaska as the world's proving ground for autonomous wildfire robots (XPRIZE Autonomous track finals via UAF ACUASI on a 1,000 sq km range; five finalists; September 2026 verdict). Deliberate break from four straight energy/infrastructure/monitoring decks.
@@ -350,3 +367,22 @@ into the doctrine/library files and prune here.
   (structure tree, per-image alt, reading order) is a large unbounded effort
   on vector-drawn pages with no semantic DOM and is NOT recommended. Source:
   https://www.grackledocs.com/en/a-guide-to-wcag-standards-for-pdfs/
+
+## 2026-07-13 — parked frontier candidate (headless-rendering scan)
+
+- **Pin chromium-headless-shell / re-baseline on any Playwright upgrade
+  (parked, watch item).** Playwright v1.49 removed Chromium's OLD headless
+  mode; the NEW headless mode (real Chrome without a window) renders
+  screenshots DIFFERENTLY and the Playwright team explicitly says to update
+  all screenshot expectations after upgrading. Playwright ships a separate
+  chromium-headless-shell build (install --only-shell) that keeps the old,
+  lighter, deterministic behavior render.py currently relies on. This engine
+  pins nothing and re-baselines nothing, so a future Playwright/Chromium bump
+  in the cloud environment could silently shift PNG output, kerning, WebGL
+  behavior, and every pixel gate's baseline at once. Parked (not a defect
+  today; the installed Playwright still uses the shell path): when the
+  environment's Playwright is upgraded, either pin chromium-headless-shell or
+  re-verify examples/demo-deck + examples/proof-3d visually and re-baseline
+  the busy-art/contrast noise floors BEFORE trusting a green run. Sources:
+  https://github.com/microsoft/playwright/issues/33566 ,
+  https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/check
