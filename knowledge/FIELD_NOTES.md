@@ -7,6 +7,13 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-13 — craft refresh (run 6 pre-research pass)
+
+- **"Bounce rate" is now named as an explicit tracked document-post signal** (dataslayer Feb 2026, digitallybugged 2026 guide): the algorithm reportedly reads whether a viewer swipes past slide 1, and a high slide-1-to-slide-2 dropoff suppresses reach. This is a sharper articulation of our existing "steepest drop is 1 to 2 / cover must earn the swipe" rule, not a new lever. Practical restatement for the directors room: the cover's ONLY job is to buy the second slide, and slide 2 must pay immediately (no agenda beat). Nothing to change in the gates.
+- Everything else reconfirms current practice: documents remain the top organic format (~6.6% ER), saves ~5x a like / ~2x a comment in reach value, 8 to 10 slides and 15 to 20s dwell the save-optimal band. No doctrine change.
+
+---
+
 ## 2026-07-12 — run 5 retro (Carousel No. 5, "First Machine to the Fire")
 
 - **Shipped 8.54 vs 8.3** (9 slides, vector PDF 2.3MB), zero hard fails, 1 pixel round + confirmed fixes + 1 flow round. Story: Alaska as the world's proving ground for autonomous wildfire robots (XPRIZE Autonomous track finals via UAF ACUASI on a 1,000 sq km range; five finalists; September 2026 verdict). Deliberate break from four straight energy/infrastructure/monitoring decks.
