@@ -268,6 +268,19 @@
    "verification": "Reconstruction slide using ONLY Instrument Serif italic (no offscreen upright loader): PRE-FIX qa FAILs 'font not loaded: Instrument Serif w400' (fonts_missing [{Instrument Serif,400}]); POST-FIX qa PASSes 0/0 (fonts_missing []). Non-weakening negative: a DECLARED italic @font-face pointing at a missing .ttf still FAILs 'font not loaded: Broken Face w400 italic'. Regression: this run's out/2026-07-13/slides render OK + qa PASS 0/0 (font verdict unchanged), examples/demo-deck render OK + qa WARN (the known busy-art warn, font verdict unchanged). render.py in-page JS + qa.py both syntax-clean (node --check / ast.parse). No gate/threshold weakened; no new runtime dependency; shipped slides not modified.",
    "rollback": "revert the upgrade(2026-07-13) commit",
    "commit": "pending upgrade(2026-07-13) commit (showrunner stages this set)"
+  },
+  {
+   "run_date": "2026-07-14",
+   "kind": "fix",
+   "area": "prompt",
+   "change": "Added a FAILURE PROTOCOL clause codifying the account usage / weekly-limit fallback: on a 'You've hit your weekly limit'-class subagent error, treat the whole subagent layer as terminal for the run (every other subagent will fail identically), do NOT respawn or fan out further, switch immediately to solo showrunner execution (research, fact-check, treatment, copy, pixel review by reading each render PNG and the contact sheet, and scoring in the main loop), hold the score conservatively for the missing independent critic pass, disclose the degraded pass in the Gmail draft, and protect the Gmail deliverable by not spending budget on doomed fan-outs or discretionary scans.",
+   "trigger": "Run 2026-07-14: all six Phase-2 scout subagents died on 'Agent terminated early due to an API error: You've hit your weekly limit, resets 5pm (UTC)'; the six parallel spawns burned budget before the terminal signal was clear. The showrunner then shipped Carousel No. 7 solo. This makes the already-correct fallback explicit and prevents future budget waste on re-spawns.",
+   "files": [
+    "prompts/routine_instructions.md"
+   ],
+   "verification": "Prose clause in the FAILURE PROTOCOL; no engine/script code changed, so the render.py + qa.py verification bar is satisfied vacuously (this run's slides and examples/demo-deck both rendered and QA-passed cleanly during the normal pipeline). Re-read the clause for correctness; weakens no gate, threshold, or hard-fail rule (it only removes wasted retries).",
+   "rollback": "Revert this upgrade commit; the FAILURE PROTOCOL returns to its prior three bullets. Behavior is unchanged in healthy runs.",
+   "commit": ""
   }
  ],
  "scan_log": [
@@ -312,6 +325,12 @@
    "focus": "headless-Chromium/Playwright rendering capabilities (rotation: fresh; last 3+ were editorial-dataviz 07-10, procedural-art 07-11, 3D 07-11, accessibility/PDF 07-12; never a primary focus before)",
    "found": "MDN FontFaceSet.check confirms font-style is a matching axis (a normal-style query matches only the normal @font-face) -- the mechanism behind this run's reactive fix. Playwright v1.49 REMOVED the old Chromium headless mode; screenshots render differently under the new headless mode, and Playwright ships chromium-headless-shell to preserve old-mode fidelity (install --only-shell). Determinism/regression risk for this engine's PNGs whenever Playwright is upgraded.",
    "outcome": "applied (the font-style probe fix, corroborated by the MDN check() semantics) + parked (FIELD_NOTES 2026-07-13: pin chromium-headless-shell / re-baseline screenshots on any Playwright upgrade, source URLs). No separate frontier code -- the reactive fix filled the daily 0-1 budget."
+  },
+  {
+   "run_date": "2026-07-14",
+   "focus": "self-improving-pipeline resilience / graceful degradation (rotated off editorial-dataviz 07-10, procedural-art + 3D 07-11, accessibility/PDF 07-12, headless-Chromium/Playwright 07-13)",
+   "searches": 0,
+   "note": "HELD TO ZERO SEARCHES deliberately. The account weekly usage limit that killed the subagents draws from the same pool as the main loop, and the run's one irreplaceable output is the Gmail draft, so discretionary search budget was preserved for delivery. The reactive lesson was captured from this run's own evidence and shipped as the FAILURE PROTOCOL fix above. PARKED candidate: 'canary-first fan-out' (spawn one subagent, read its error before fanning out) was NOT adopted because serializing a canary adds latency to every healthy run to save budget only on rare limit-hit runs; the zero-latency FAILURE-PROTOCOL clause is the safer form of the same fix."
   }
  ]
 }

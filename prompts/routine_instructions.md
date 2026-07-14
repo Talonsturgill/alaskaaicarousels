@@ -447,6 +447,20 @@ learned, and the one thing to improve next run. Mark run_state complete.
 
 ## FAILURE PROTOCOL
 
+- Account usage / weekly-limit errors on a subagent (e.g. "You've hit your
+  weekly limit") are TERMINAL for the whole subagent layer this run, not a
+  transient retry: every other subagent (fact-checker, treatment-directors,
+  copywriter, pixel-critics, flow-critic, scorer, upgrade-engineer) will fail
+  identically and re-spawning only burns the shared budget. Switch IMMEDIATELY
+  to solo showrunner execution — do research, fact-check, treatment, copy,
+  pixel review (by reading each render PNG and the contact sheet yourself),
+  and scoring in the main loop. Hold the score conservatively for the missing
+  independent critic pass, and state the degraded pass plainly in the Gmail
+  draft. Main-loop WebSearch/WebFetch and the Gmail/GitHub tools are typically
+  unaffected, so a complete deck can still ship; protect the Gmail deliverable
+  (the run's one irreplaceable output) by not spending budget on doomed
+  fan-outs or discretionary scans. (Codified 2026-07-14 after all six scouts
+  died on the weekly limit; the showrunner shipped Carousel No. 7 solo.)
 - Engine breakage you cannot fix in ~3 attempts: ship a REDUCED deck
   (fewer slides, simpler techniques) rather than nothing — quality bar
   still applies to what ships.
