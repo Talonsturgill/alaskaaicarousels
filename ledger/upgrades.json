@@ -280,7 +280,7 @@
    ],
    "verification": "Prose clause in the FAILURE PROTOCOL; no engine/script code changed, so the render.py + qa.py verification bar is satisfied vacuously (this run's slides and examples/demo-deck both rendered and QA-passed cleanly during the normal pipeline). Re-read the clause for correctness; weakens no gate, threshold, or hard-fail rule (it only removes wasted retries).",
    "rollback": "Revert this upgrade commit; the FAILURE PROTOCOL returns to its prior three bullets. Behavior is unchanged in healthy runs.",
-   "commit": ""
+   "commit": "524164d"
   }
  ],
  "scan_log": [
