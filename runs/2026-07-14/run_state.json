@@ -16,10 +16,10 @@
   "flow_review": "done",
   "assemble": "done",
   "scoring": "done",
-  "ship": "in_progress",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-07-14/plan.md",
@@ -32,7 +32,13 @@
   "caption": "out/2026-07-14/caption.txt",
   "slides": "out/2026-07-14/slides (8) + render PNGs",
   "final": "out/2026-07-14/final (carousel.pdf vector 2.63MB, contact_sheet, thumbs)",
-  "score": "out/2026-07-14/score_report.json (8.95)"
+  "score": "out/2026-07-14/score_report.json (8.95)",
+  "automation_retro": "runs/2026-07-14/automation_retro.md"
  },
- "research_note": "All scout+subagent tasks hit the account weekly usage limit; showrunner executed research/claims solo (main-loop WebSearch/WebFetch working)."
+ "research_note": "All scout+subagent tasks hit the account weekly usage limit; showrunner executed research/claims solo (main-loop WebSearch/WebFetch working).",
+ "merged_sha": "83e644c",
+ "pr": 32,
+ "upgrade_commit": "524164d",
+ "gmail_draft_id": "r-6721592139421874559",
+ "complete": true
 }
