@@ -309,7 +309,7 @@
    ],
    "verification": "Prompt and instinct prose reviewed for correctness and internal consistency; no code, gate, threshold, or hard-fail rule changed.",
    "rollback": "Revert this commit; the FAILURE PROTOCOL returns to the 2026-07-14 wait-for-any-limit wording.",
-   "commit": ""
+   "commit": "8689cfc"
   }
  ],
  "scan_log": [
