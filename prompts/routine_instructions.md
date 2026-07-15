@@ -462,16 +462,17 @@ learned, and the one thing to improve next run. Mark run_state complete.
   retry REPLACES the failed agent, it never adds new ones; subagent spawning
   stays bounded and showrunner-only per NON-NEGOTIABLE 7 whether or not
   anything failed.
-  - ONLY IF the failure is an account usage limit of ANY kind (the 5-hour
-    rolling / session limit, a weekly limit, or any rate / usage window, e.g.
-    "You've hit your weekly limit, resets 5pm UTC"): do NOT degrade to a solo
-    showrunner run, do NOT ship a reduced deck, and do NOT abandon the run.
-    WAIT until the limit resets (use the stated reset time; if none is given,
-    poll with backoff), then automatically FIRE BACK UP: respawn the failed
-    subagent(s) and RESUME the pipeline from where it stopped (run_state.json
-    makes the run resumable phase by phase, so no completed work is lost).
-    Wait-then-resume is the ONLY correct response to a usage limit, no matter
-    how long the wait; waiting is only for this limit case.
+  - ONLY IF the failure is an account usage limit of ANY kind (5-hour
+    rolling / session, weekly, or any other window, e.g. "You've hit your
+    weekly limit, resets 5pm UTC"): do NOT degrade to a solo run, do NOT ship
+    a reduced deck, and do NOT abandon the run. Whichever limit it is, the
+    response is always the same three steps: (1) FIND OUT WHEN IT RESETS (read
+    the reset time from the error; if none is stated, poll with backoff until
+    you can tell it has cleared), (2) WAIT until that reset, however long it
+    takes, (3) START AGAIN at that moment: respawn the failed subagent(s) and
+    RESUME the pipeline from where it stopped (run_state.json makes the run
+    resumable phase by phase, so no completed work is lost). Waiting is only
+    for this usage-limit case.
   - For ANY OTHER failure (a crash, a transient API error, a timeout, a
     malformed result): do NOT wait, just RESPAWN that one failed agent (up to
     the ~3-attempt cap) and continue.
