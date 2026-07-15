@@ -166,14 +166,16 @@ def render_html(due, today):
             f"<div style='font-size:13px;color:#6a7783;line-height:1.5;padding-top:2px;'>"
             f"{access}</div>"
             f"<div style='padding-top:13px;'><a href='{src}' style='font-size:14px;"
-            f"font-weight:bold;color:#0b1a2e;background:#FFC72C;text-decoration:none;"
-            f"padding:9px 17px;border-radius:4px;display:inline-block;'>"
-            "Act or read the record &rarr;</a></div></td></tr></table>")
+            f"font-weight:bold;color:#0b1a2e !important;background-color:#FFC72C;"
+            f"text-decoration:none !important;padding:10px 18px;border-radius:4px;"
+            f"display:inline-block;'>"
+            "<span style='color:#0b1a2e !important;text-decoration:none;'>"
+            "Act or read the record &rarr;</span></a></div></td></tr></table>")
     P.append(
         "<table width='100%' cellpadding='0' cellspacing='0' role='presentation' "
         "style='margin-top:4px;'><tr><td style='padding:14px 0 0;border-top:1px solid "
         f"#e3e9ee;'><a href='{esc(SITE)}' style='font-family:Menlo,Consolas,monospace;"
-        "font-size:14px;color:#0b64b8;text-decoration:none;'>Every decision we track, "
+        "font-size:14px;color:#0b64b8 !important;text-decoration:none;'>Every decision we track, "
         "with live countdowns &rarr;</a></td></tr></table>")
     P.append("</div>")
     return "\n".join(P)
