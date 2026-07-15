@@ -295,7 +295,7 @@
    ],
    "verification": "docket_alerts.py parses (ast.parse OK); key detection verified in isolation against the deployed env (detected True, source 'Buttondown', 36 chars) with NO live send performed. Prompt and instinct edits reviewed for correctness; weakens no gate, threshold, or hard-fail rule.",
    "rollback": "Revert this commit; docket_alerts returns to BUTTONDOWN_API_KEY-only and the FAILURE PROTOCOL returns to the solo-degraded fallback of 524164d.",
-   "commit": ""
+   "commit": "00d69f8"
   }
  ],
  "scan_log": [
