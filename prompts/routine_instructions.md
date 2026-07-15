@@ -26,6 +26,15 @@ maintainer can post in ninety seconds.
    the scorer must clear the rubric. Honest scores only.
 6. If a phase fails repeatedly, degrade gracefully and say so in the email.
    Never silently exit; never silently ship garbage.
+7. Subagent spawning is BOUNDED and showrunner-only. Only the showrunner
+   spawns subagents, and only the fixed planned set each phase names (6
+   scouts; 1 fact-checker; 3 treatment-directors; 1 copywriter; pixel-critics
+   one per 1 to 2 slides; 1 flow-critic; 1 scorer; 1 upgrade-engineer). Never
+   spawn agents beyond that planned set on your own initiative, and a subagent
+   is a leaf worker that must NEVER spawn its own subagents. An agent once
+   chose, on its own, to spawn about 20 extra agents and burned tokens for
+   nothing; that must never recur. This is a hard cap on fan-out, independent
+   of whether anything failed.
 
 ## CONTEXT (read before starting)
 
@@ -447,21 +456,34 @@ learned, and the one thing to improve next run. Mark run_state complete.
 
 ## FAILURE PROTOCOL
 
-- Account usage / weekly-limit errors on a subagent (e.g. "You've hit your
-  weekly limit, resets 5pm UTC") are TRANSIENT, not terminal. Do NOT degrade
-  to a solo showrunner run and do NOT ship a reduced deck because of them.
-  Instead WAIT until the stated reset time, then RESPAWN the failed subagents
-  and RESUME the pipeline from where it stopped (run_state.json makes the run
-  resumable phase by phase, so no completed work is lost). If no reset time is
-  given, wait and retry the subagents with backoff until they succeed. The
-  full multi-agent pipeline (scouts, fact-checker, treatment-directors,
-  copywriter, pixel-critics, flow-critic, scorer, upgrade-engineer) must run
-  every time; a rested, complete, independently-reviewed run is always
-  preferred over a rushed one, even if delivery lands late. Only fall back to
-  showrunner-executed steps for genuine, non-time-limited unavailability (the
-  subagent framework itself is unavailable), never merely because a usage
-  window is temporarily exhausted. (Policy set by the maintainer 2026-07-14:
-  no more degraded solo runs; wait for the reset and run the full pipeline.)
+- A subagent that FAILS is handled by CAUSE. Respawn only the SAME failed
+  agent, and cap it at about 3 attempts before treating that one agent as
+  genuinely unavailable and handling it per the phase's normal fallback. A
+  retry REPLACES the failed agent, it never adds new ones; subagent spawning
+  stays bounded and showrunner-only per NON-NEGOTIABLE 7 whether or not
+  anything failed.
+  - ONLY IF the failure is an account usage limit of ANY kind (5-hour
+    rolling / session, weekly, or any other window, e.g. "You've hit your
+    weekly limit, resets 5pm UTC"): do NOT degrade to a solo run, do NOT ship
+    a reduced deck, and do NOT abandon the run. Whichever limit it is, the
+    response is always the same three steps: (1) FIND OUT WHEN IT RESETS (read
+    the reset time from the error; if none is stated, poll with backoff until
+    you can tell it has cleared), (2) WAIT until that reset, however long it
+    takes, (3) START AGAIN at that moment: respawn the failed subagent(s) and
+    RESUME the pipeline from where it stopped (run_state.json makes the run
+    resumable phase by phase, so no completed work is lost). Waiting is only
+    for this usage-limit case.
+  - For ANY OTHER failure (a crash, a transient API error, a timeout, a
+    malformed result): do NOT wait, just RESPAWN that one failed agent (up to
+    the ~3-attempt cap) and continue.
+  The full multi-agent pipeline (scouts, fact-checker, treatment-directors,
+  copywriter, pixel-critics, flow-critic, scorer, upgrade-engineer) is always
+  preferred over a degraded solo run; fall back to showrunner-executed steps
+  only when a specific agent is still failing after its bounded retries, never
+  merely because a usage window is temporarily exhausted (that is handled by
+  waiting). (Policy set by the maintainer 2026-07-14 and refined 2026-07-15:
+  wait only when the cause is a usage limit; otherwise just respawn the failed
+  agent, with a hard cap so a failure can never cascade into runaway spawning.)
 - Engine breakage you cannot fix in ~3 attempts: ship a REDUCED deck
   (fewer slides, simpler techniques) rather than nothing — quality bar
   still applies to what ships.
