@@ -38,10 +38,10 @@ import docket_build as db  # projection, validation, docket components, gates
 REPO = Path(__file__).resolve().parents[1]
 RAW = "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main"
 
-# Booking page for the free 20 minute intro call (Calendly, Cal.com, or a
-# Google Calendar appointment page). While empty the services hero keeps its
+# Booking page for the free intro call (Calendly, Cal.com, or a Google
+# Calendar appointment page). While empty the services hero keeps its
 # form-first buttons; set it and rebuild to lead with the booking button.
-BOOKING_URL = ""
+BOOKING_URL = "https://calendly.com/talon-sturgill-ixzj/30min"
 MONTH_FULL = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"]
 
@@ -966,10 +966,10 @@ def services_page(today, site_url):
     raw address stays out of the page source (anti-scrape)."""
     if BOOKING_URL:
         hero_ctas = (f'<a class="cta gold" href="{BOOKING_URL}" target="_blank" '
-                     'rel="noopener">BOOK A FREE 20 MINUTE CALL</a>\n'
+                     'rel="noopener">BOOK A FREE INTRO CALL</a>\n'
                      '  <a class="cta ghost" href="#apply">SEE WHAT PAYS</a>')
         talk_first = (f' Rather talk first? <a href="{BOOKING_URL}" target="_blank" '
-                      'rel="noopener">Book a free 20 minute call</a> and we will tell you '
+                      'rel="noopener">Book a free intro call</a> and we will tell you '
                       'straight whether AI is worth your while yet.')
     else:
         hero_ctas = ('<a class="cta gold" href="#apply">SEE WHAT PAYS</a>\n'
