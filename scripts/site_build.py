@@ -971,10 +971,16 @@ def services_page(today, site_url):
         talk_first = (f' Rather talk first? <a href="{BOOKING_URL}" target="_blank" '
                       'rel="noopener">Book a free intro call</a> and we will tell you '
                       'straight whether AI is worth your while yet.')
+        autoresp = ("Thanks for reaching out to Alaska AI. A real person reads every note "
+                    "and will reply within one business day. If you would rather just talk, "
+                    f"book a free intro call and skip the back and forth. {BOOKING_URL} "
+                    "Talk soon, Talon at Alaska AI")
     else:
         hero_ctas = ('<a class="cta gold" href="#apply">SEE WHAT PAYS</a>\n'
                      '  <a class="cta ghost" href="#field-study">THE FIELD STUDY</a>')
         talk_first = ""
+        autoresp = ("Thanks for reaching out to Alaska AI. A real person reads every note "
+                    "and will reply within one business day. Talk soon, Talon at Alaska AI")
 
     stats = """<div class="statrow">
   <div class="stat"><div class="n"><span data-count="88">88</span>%</div><div class="l">OF ORGANIZATIONS USE AI</div></div>
@@ -1105,7 +1111,8 @@ do not want to become an engineer to win with it, you are exactly who this desk 
 <p class="sub" data-reveal>A few quick lines about your operation. You get a straight read
 on whether the Field Study fits, and a no costs you nothing.{talk_first}</p>
 <form class="leadform" data-reveal action="https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771" method="POST">
-  <input type="hidden" name="_subject" value="Field Study application">
+  <input type="hidden" name="_subject" value="New Alaska AI lead (services page)">
+  <input type="hidden" name="_autoresponse" value="{autoresp}">
   <input type="hidden" name="_template" value="table">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="{site_url}/services/thanks/">
@@ -1166,15 +1173,26 @@ any work begins. The docket stays free. The deck ships daily either way.</p></di
 
 
 def services_thanks_page(today, site_url):
-    """Where the lead form redirects after FormSubmit relays a submission."""
-    body = """<div class="hero" style="min-height:56vh;padding-top:12vh">
+    """Where the lead form redirects after FormSubmit relays a submission. A
+    fresh lead is warmest right now, so the primary action here is to book the
+    call, not to wander off into the archive."""
+    if BOOKING_URL:
+        thanks_ctas = (f'<a class="cta gold" href="{BOOKING_URL}" target="_blank" '
+                       'rel="noopener">BOOK A FREE INTRO CALL</a>\n'
+                       '  <a class="cta ghost" href="../../archive/">READ THE DAILY BEAT</a>')
+        thanks_line = ("Rather talk it through now? Grab a free intro call below and skip "
+                       "the wait.")
+    else:
+        thanks_ctas = ('<a class="cta gold" href="../../archive/">READ THE DAILY BEAT</a>\n'
+                       '  <a class="cta ghost" href="../">BACK TO SERVICES</a>')
+        thanks_line = "While you wait, the day's deck is worth a swipe."
+    body = f"""<div class="hero" style="min-height:56vh;padding-top:12vh">
 <div class="chip kind">APPLICATION RECEIVED</div>
-<h1 style="margin-top:14px">Got it. The desk is <em>reading</em></h1>
-<p class="tag">Your note is in and a person reads every one. You get a straight answer
-either way, and a no costs you nothing. While you wait, the day's deck is worth a swipe.</p>
+<h1 style="margin-top:14px">Got it. Want to <em>skip the wait</em></h1>
+<p class="tag">Your note is in and a person reads every one, you get a straight answer within
+one business day. {thanks_line}</p>
 <div class="ctarow">
-  <a class="cta gold" href="../../archive/">READ THE DAILY BEAT</a>
-  <a class="cta ghost" href="../">BACK TO SERVICES</a>
+  {thanks_ctas}
 </div>
 </div>"""
     return page("Application received - Alaska AI",
