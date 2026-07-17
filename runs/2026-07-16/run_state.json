@@ -15,9 +15,10 @@
   "flow_review": "done",
   "assemble": "done",
   "scoring": "done",
-  "ship": "in_progress",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
- }
+  "ship": "held-not-merged",
+  "upgrade": "skipped-held-run",
+  "gmail": "done",
+  "retro": "done"
+ },
+ "hold_note": "Parallel run collision: official 2026-07-17 No.9 (Quinhagak) shipped and merged first and already docketed AIDEA; this run held on branch tsturg/ecstatic-cerf-gktbp2 / PR #46, NOT merged. Gmail draft r-1147130387680364260 created (HOLD-flagged)."
 }
