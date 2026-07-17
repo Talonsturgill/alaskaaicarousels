@@ -489,3 +489,41 @@ into the doctrine/library files and prune here.
   (a grid, a campus, a network read as constructed, not camera-mapped);
   still parked from 07-14 as an available move, not yet used. Source:
   https://fastercapital.com/content/Visualization-Techniques--Isometric-Projection--A-New-Angle-on-Data-Visualization.html
+
+## 2026-07-16 - retro (Carousel No. 9, "First You Spend the Land", 8.31)
+
+- STORY. A genuinely new fifth Alaska data-center decision: AIDEA (the state's
+  own development bank) set to receive 30 to 31 square miles of state land
+  north of Houston, noncompetitively and at NO COST, for a "multi-use
+  industrial and energy district" whose named uses include scalable data
+  centers, while the neighboring City of Houston moves to ban data centers
+  (vote Aug 13) and the state comment window closes Aug 19. Frame =
+  STATE-AS-DEVELOPER / LAND-FIRST-PURPOSE-LATER, kept deliberately clear of
+  No.1's civic-access "four rooms" (hard guard set at selection; scorer
+  confirmed dedupe-clean and the frame distinct).
+- HERO (NEW). Unit-Square Land Plat: a 2:1 dimetric parallel-projection
+  survey plat of equal-area cells (Cabinet Extrusion + ISOTYPE + dimetric
+  lighting + phantom-dash ghost pads) as an evolving chassis. KEY: parallel
+  projection preserves equal areas, so the SAME cell honestly doubles as the
+  cover unit, the 8-vs-639 ISOTYPE mark, and the 1-of-31 scale unit. Paired
+  with a permanent USE: ____ blank deed-line that fills every field but
+  purpose and becomes the reader's open field at the close (flow-critic called
+  the USE-blank device "genuinely permanent and escalating").
+- CRAFT CEILING (recurring). Artwork craft was again the weakest criterion
+  (8), same class as run 8's graded relief (7.5): a deliberately restrained,
+  argued-honest hero reads dimensional and ships, but leaves the rendered
+  ceiling (GPU-PBR/raymarch/film-grade showpiece, or at least AO in the empty
+  cell wells and dimetric-diamond ISOTYPE marks instead of flat squares) on
+  the table. Two consecutive argued-restrained heroes; consider reaching for
+  one genuinely rendered plat moment next time the story allows.
+- PROCESS. Directors room converged hard (all three lenses independently
+  proposed a warm-ground land plat + land-first argument + Instrument Serif +
+  corridor edge-tease); synthesis grafted the data-journalist's honest
+  unit-square chassis + the essayist's argument/close + the systems
+  illustrator's dimensional lighting. Body-line-count was the dominant pixel
+  defect (S2 to S6 wrapped 4 to 5 lines vs a 3-line target) -> new instinct
+  manrope-body-line-budget (~45 char/line; size max-width from word count).
+- DATE/RESILIENCE. Run recovered from a mid-Phase-2 session usage limit
+  (reset already past on re-invoke); respawned all six scouts and resumed per
+  the FAILURE PROTOCOL wait-then-resume. Dated the edition 2026-07-16 (the
+  missing slot after 07-15) though executed on 07-17 UTC.

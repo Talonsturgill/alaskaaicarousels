@@ -1,0 +1,23 @@
+{
+  "carousel_no": 9,
+  "weighted_total": 8.31,
+  "threshold": 8.3,
+  "ship": true,
+  "criteria": [
+    {"name": "Thumb-stop cover", "score": 8, "weight": 0.14, "justification": "S1 huge Instrument Serif stated-position over an empty warm plat + gold $0 flag; stops the scroll at 432px. Docked for a subtle Alaskan cue and type carrying most of the focal load."},
+    {"name": "Story arc & swipe momentum", "score": 8, "weight": 0.14, "justification": "Clean seven-beat argument, plat-state motif + corridor edge-tease drive swipe; contact sheet reads as one composed land-survey. S4 breather flattens momentum slightly; S3/S4 mildly reorderable."},
+    {"name": "Artwork craft & genuine detail", "score": 8, "weight": 0.16, "justification": "Dimetric plat argued as a deliberate honesty choice (not flat-hero capped); reads genuinely dimensional (cabinet thickness, cast shadows, extruded STAK cube, consistent single key light). Held to 8: matte surfaces, large voids, S4 ISOTYPE as flat squares, no GPU-PBR/raymarched/film-graded showpiece."},
+    {"name": "Story-art fusion", "score": 9, "weight": 0.14, "justification": "Parameters encode numbers with a literal anchor per slide (30+1 cells, $0 stamp, 8 vs 639 equal marks, 1 of 31, ban barrier + 6-to-1, gold 6 DAYS, deed with blank USE). The permanent USE-blank device is exceptional."},
+    {"name": "Alaska authenticity & local relevance", "score": 9, "weight": 0.12, "justification": "AIDEA, DNR, City of Houston, Mat-Su Assembly, STAK/North Slope, Parks Highway + Alaska Railroad, Ruaro, coords; Virginia 639 as honest contrast not imported beat."},
+    {"name": "Insight density & factual weight", "score": 8, "weight": 0.10, "justification": "Every content slide adds a new verified specific; bodies 25-50 words, no filler. S8 is a designed recap rather than new specifics."},
+    {"name": "Variety vs ledger", "score": 9, "weight": 0.08, "justification": "All six subsystems diverge from the last decks and are justified. Not 10 because the underlying techniques are library staples."},
+    {"name": "Legibility & platform fitness", "score": 8, "weight": 0.07, "justification": "Body 32px+, contrast 11-13:1, counters present, vector PDF 2.3MB titled. Squeaker: S8 DECISION label near-kisses its value (legible, not clipped)."},
+    {"name": "Copy: voice & hook", "score": 8, "weight": 0.05, "justification": "Hook 134 chars, 715 total, position-taking voice, deck-summary present, debatable close, straight quotes, no dashes/banned phrases. One slightly list-like middle sentence."},
+    {"name": "Deliverable completeness", "score": 8, "weight": 0.10, "justification": "PDF vector 2.3MB/9/titled; thumbs + contact sheet; 3 niche hashtags, first-comment block, title, deck-summary, 9 alt-texts. Cover USE tag not rendered on S1 (device lands on S2/S8/S9); URL resolution downstream."}
+  ],
+  "hard_fails_all_pass": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Give at least one plat a genuinely rendered depth moment (graded loam with ambient occlusion in the empty cell wells or a film-graded key) and swap the flat square ISOTYPE for the dossier's dimetric top-diamond marks, so the hero climbs from tasteful-minimal into best-in-class.",
+  "notes": "No hard fails, so no 6.9 cap. Raw weighted sum 9.14; criterion weights sum to 1.10, so normalized to the 10-scale = 8.31, a razor-thin pass (>= 8.30, does not round up). Robust: passes comfortably on the raw sum and by 0.01 normalized. Marginal pass driven by strong story/authenticity/variety rather than rendered-artwork spectacle.",
+  "editor_notes_for_email": "SHIP as a marginal pass (8.31 vs 8.3). Disclose: the plat is a deliberately restrained, honest dimetric survey aesthetic (argued in the storyboard for area honesty), not a GPU-PBR/film-graded hero, and the S4 ISOTYPE is plain flat squares. Cosmetic nits for the record: the cover USE tag string did not render on S1 (device intact on S2/S8/S9); S8 DECISION/41 pages spacing is tight. No factual, contrast, dash, emoji, hashtag, or claim-id issues; PDF vector 2.3MB; topic and hero ledger-clean."
+}

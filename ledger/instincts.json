@@ -31,9 +31,9 @@
    "id": "machine-qa-is-not-taste",
    "learned": "2026-07-08",
    "instinct": "Never treat a machine_qa PASS as composition approval; the pixel critics judge composition, hierarchy, and collision at full size and thumb size.",
-   "evidence": "A slide with the terrain crammed into the bottom 15% and a stat row colliding with the ridge passed every objective gate. | CONFIRMED 2026-07-08: pixel/scorer caught 4 DOM collisions (slide 3 overlap hard fail, slide 8 door graze, slide 9 coastline, slide 2 crowding) that machine_qa PASSED | CONFIRMED 2026-07-09: machine_qa PASSED (WARN) but pixel critics caught the S4 '12 fish' claim being uncountable, the S5 unblurred foreground (DOF), and the S6 dishonest 0-year nub bar -- all composition/honesty, not objective. | CONFIRMED 2026-07-11: critics caught ~10 canvas-vs-DOM overlaps + low-contrast in-section labels that machine_qa PASSED (S2 legend/homes, S3 curve labels, S4 readouts on ochre, S6 SUSPENDED, S7 flag mash, S8 context on ochre). | CONFIRMED 2026-07-13: pixel critics caught a favored honesty panel (S3), a bottle-read turbine (S4), and a strikethrough ledger (S7) that machine_qa PASSED clean. | CONFIRMED 2026-07-14: qa PASS with 0 warnings, but the ship decision rested on the showrunner reading every full-size PNG and the contact sheet for composition",
+   "evidence": "A slide with the terrain crammed into the bottom 15% and a stat row colliding with the ridge passed every objective gate. | CONFIRMED 2026-07-08: pixel/scorer caught 4 DOM collisions (slide 3 overlap hard fail, slide 8 door graze, slide 9 coastline, slide 2 crowding) that machine_qa PASSED | CONFIRMED 2026-07-09: machine_qa PASSED (WARN) but pixel critics caught the S4 '12 fish' claim being uncountable, the S5 unblurred foreground (DOF), and the S6 dishonest 0-year nub bar -- all composition/honesty, not objective. | CONFIRMED 2026-07-11: critics caught ~10 canvas-vs-DOM overlaps + low-contrast in-section labels that machine_qa PASSED (S2 legend/homes, S3 curve labels, S4 readouts on ochre, S6 SUSPENDED, S7 flag mash, S8 context on ochre). | CONFIRMED 2026-07-13: pixel critics caught a favored honesty panel (S3), a bottle-read turbine (S4), and a strikethrough ledger (S7) that machine_qa PASSED clean. | CONFIRMED 2026-07-14: qa PASS with 0 warnings, but the ship decision rested on the showrunner reading every full-size PNG and the contact sheet for composition | CONFIRMED 2026-07-16: qa PASS 0/0 on all 9, yet critics caught body 4-5 line wraps, a curly-reading apostrophe, and an S7 canvas timeline crossing DOM labels.",
    "confidence": 0.99,
-   "last_confirmed": "2026-07-15"
+   "last_confirmed": "2026-07-16"
   },
   {
    "id": "d3-zoom-manual",
@@ -47,9 +47,9 @@
    "id": "verify-body-line-count",
    "learned": "2026-07-08",
    "instinct": "Before rendering, sanity-check long serif/body copy line counts against any fixed-position labels, bars, or plates; DOM text overlaps pass machine QA but fail the eye.",
-   "evidence": "Slide 3 body wrapped to 4 lines and overlapped the 'URBAN ALASKA GRID PEAK' bar label (a scorer-caught hard fail); slide 5 quote 4 slid under the Boyle plate. Both passed machine_qa safe-zone checks. | CONFIRMED 2026-07-09: four headline-wrap collisions (S1/S4/S7/S8) all traced to a display headline in a container narrower than its longest line; each machine_qa-FAILED as a text overprint. | CONFIRMED 2026-07-11: S2/S3/S4 body blocks overran their planned line counts into the section; capping max-width so the body ENDS in the sky zone fixed all three.",
-   "confidence": 0.9,
-   "last_confirmed": "2026-07-11"
+   "evidence": "Slide 3 body wrapped to 4 lines and overlapped the 'URBAN ALASKA GRID PEAK' bar label (a scorer-caught hard fail); slide 5 quote 4 slid under the Boyle plate. Both passed machine_qa safe-zone checks. | CONFIRMED 2026-07-09: four headline-wrap collisions (S1/S4/S7/S8) all traced to a display headline in a container narrower than its longest line; each machine_qa-FAILED as a text overprint. | CONFIRMED 2026-07-11: S2/S3/S4 body blocks overran their planned line counts into the section; capping max-width so the body ENDS in the sky zone fixed all three. | CONFIRMED 2026-07-16: body line-count vs the 3-line target was the dominant pixel-critic finding across S2 to S6; widening the measure from word count fixed all.",
+   "confidence": 0.95,
+   "last_confirmed": "2026-07-16"
   },
   {
    "id": "data-decorative-on-leaf",
@@ -186,9 +186,33 @@
    "id": "relief-depth-not-just-grade",
    "learned": "2026-07-15",
    "instinct": "A graded 2D relief map ships and fuses story well, but a bare graded silhouette with a grid overlay reads FLAT and caps artwork-craft; when the map is the hero, invest in genuine multiplane depth (directional hillshade with real contrast, atmospheric fade, interior texture) or climb the rendered ladder. Argued-flat clears the bar but leaves craft points on the table.",
-   "evidence": "Run 8 scorer put artwork-craft at 7.5 (weakest criterion), one_sentence_fix was exactly give the relief plates genuine multiplane depth instead of a graded 2D map with a grid overlay. Total still shipped at 8.78.",
-   "confidence": 0.6,
-   "last_confirmed": "2026-07-15"
+   "evidence": "Run 8 scorer put artwork-craft at 7.5 (weakest criterion), one_sentence_fix was exactly give the relief plates genuine multiplane depth instead of a graded 2D map with a grid overlay. Total still shipped at 8.78. | CONFIRMED 2026-07-16: artwork craft was again the weakest criterion (8) on a deliberately-restrained argued hero (dimetric plat, flat-square ISOTYPE, large voids); argued-restrained clears the bar but leaves the rendered ceiling on the table.",
+   "confidence": 0.65,
+   "last_confirmed": "2026-07-16"
+  },
+  {
+   "id": "unit-square-honest-isotype",
+   "learned": "2026-07-16",
+   "instinct": "When a story has one countable unit (one square mile, one facility), draw it as ONE equal-size mark and reuse that SAME mark everywhere (cover cell = ISOTYPE mark = scale unit); parallel or dimetric projection preserves equal areas so a dimensional plat can carry an honest ISOTYPE (8 vs 639) and a 1-of-N scale without faking any quantity.",
+   "evidence": "Run 9 (First You Spend the Land): the 2:1 dimetric plat cell doubled as the S4 ISOTYPE mark and the S5 1-of-31 scale unit; scorer story-art-fusion 9, and the honesty held because the projection is parallel (equal-area), not perspective.",
+   "confidence": 0.72,
+   "last_confirmed": "2026-07-16"
+  },
+  {
+   "id": "manrope-body-line-budget",
+   "learned": "2026-07-16",
+   "instinct": "Budget Manrope body copy at about 45 characters per line: a 25-word body needs roughly 700px width to land in 3 lines at 32px; a too-narrow column (<= 620px) silently wraps to 4 or 5 lines and the pixel critics flag it. Set body max-width from the word count at PLAN time and verify against the fixed labels below it.",
+   "evidence": "Run 9: S2/S3/S4/S5/S6 bodies at 560 to 640px all wrapped to 4 to 5 lines vs the dossier's 3-line target; pixel critics flagged S2/S3/S4 as revise. Widening to 700 to 730px (and repositioning S4) resolved every one.",
+   "confidence": 0.7,
+   "last_confirmed": "2026-07-16"
+  },
+  {
+   "id": "font-glyph-apostrophe",
+   "learned": "2026-07-16",
+   "instinct": "Manrope and some display faces DRAW the straight apostrophe U+0027 with a slight curve, which a forensic critic reads as a curly quote even though the character is house-rule-compliant; the cleanest fix is to rephrase possessives and contractions out of the affected body copy (JetBrains Mono renders U+0027 straight, so mono labels are safe).",
+   "evidence": "Run 9: the S2 pixel critic flagged 'Alaska's'/'state's' as curly apostrophes though the source bytes were all U+0027; rephrasing S2/S5/S7 bodies to avoid apostrophes removed the ambiguity.",
+   "confidence": 0.65,
+   "last_confirmed": "2026-07-16"
   }
  ]
 }

@@ -1,0 +1,174 @@
+{
+  "document_title": "First You Spend the Land. Then You Decide What For.",
+  "slides": [
+    {
+      "n": 1,
+      "strings": {
+        "kicker": "ALASKA.AI   No. 9",
+        "headline": "First you spend the land. / Then you decide what for.",
+        "use_tag": "USE: ______________",
+        "dek": "Alaska is moving 30 to 31 square miles of public land to its own development bank. For free.",
+        "footer": "ALASKA.AI   |   61 48 N 149 49 W   |   01 / 09"
+      }
+    },
+    {
+      "n": 2,
+      "strings": {
+        "kicker": "THE DEAL",
+        "headline": "The seller and the buyer / are the same government.",
+        "deed_seller": "SELLER   State of Alaska, DNR",
+        "deed_buyer": "BUYER    AIDEA, state development bank",
+        "deed_price": "PRICE    $0",
+        "deed_method": "METHOD   noncompetitive, no bid",
+        "deed_use": "USE      ______________",
+        "body": "The state land agency is moving 30 to 31 square miles of state land to AIDEA, its own development bank. No cost, no bid.",
+        "footer": "ALASKA.AI   |   02 / 09"
+      }
+    },
+    {
+      "n": 3,
+      "strings": {
+        "kicker": "WHAT IT IS FOR",
+        "headline": "The purpose is / a word on a plat.",
+        "body": "The 41 page decision lists scalable data centers and AI and robotics manufacturing among the uses. Not one is a project yet.",
+        "pull_quote": "There are no pre-determined and set land use decisions made by AIDEA.",
+        "attribution": "RANDY RUARO, AIDEA EXECUTIVE DIRECTOR",
+        "footer": "ALASKA.AI   |   03 / 09"
+      }
+    },
+    {
+      "n": 4,
+      "strings": {
+        "kicker": "THE BOOM",
+        "headline": "The boom Alaska / does not have.",
+        "isotype_label_alaska": "ALASKA  8",
+        "isotype_label_virginia": "VIRGINIA  639",
+        "body": "Alaska has 8 data centers, the fourth fewest of any state. Virginia has 639.",
+        "attribution": "counts per Alaska's News Source",
+        "footer": "ALASKA.AI   |   04 / 09"
+      }
+    },
+    {
+      "n": 5,
+      "strings": {
+        "kicker": "TO SCALE",
+        "headline": "The biggest one proposed / fills one square.",
+        "body": "The largest proposed AI data center in Alaska, STAK on the North Slope, would cover about 1 square mile. Here it fills 1 of 31 cells. Thirty sit empty.",
+        "scale_note": "STAK, reportedly over $10 billion, would draw more than 1 gigawatt, about 30 percent above urban Alaska's peak.",
+        "dimension_call": "1 of 31",
+        "footer": "ALASKA.AI   |   05 / 09"
+      }
+    },
+    {
+      "n": 6,
+      "strings": {
+        "kicker": "THE TOWN",
+        "headline": "The town on the boundary / wants to ban them.",
+        "body": "The City of Houston has an ordinance to ban data centers, with a vote set for August 13. In March the Borough Assembly voted 6 to 1 to designate parcels, overriding a mayoral veto.",
+        "attributed_line": "The ordinance claims a documented risk of accelerated permafrost thaw.",
+        "tally_label": "6 to 1",
+        "footer": "ALASKA.AI   |   06 / 09"
+      }
+    },
+    {
+      "n": 7,
+      "strings": {
+        "kicker": "TWO CLOCKS",
+        "headline": "Two votes, / six days apart.",
+        "timeline_cell_1": "AUG 13   Houston votes on a data-center ban",
+        "timeline_cell_2": "AUG 19, 5 PM   State comment window closes",
+        "dimension_call": "6 DAYS",
+        "body": "The town votes on its ban six days before the state closes its comment window on the giveaway. They are pulling opposite ways.",
+        "footer": "ALASKA.AI   |   07 / 09"
+      }
+    },
+    {
+      "n": 8,
+      "strings": {
+        "kicker": "THE ORDER",
+        "headline": "Everything is decided but / the one thing that matters.",
+        "deed_row_1": "SELLER  State of Alaska      BUYER  AIDEA",
+        "deed_row_2": "PRICE   $0                   METHOD  noncompetitive",
+        "deed_row_3": "ACRES   30 to 31 sq mi       DECISION  41 pages",
+        "deed_row_4": "LOCAL   Assembly 6 to 1, veto overridden",
+        "deed_row_use": "USE     ______________",
+        "body": "The land is given now, for free. What it is for gets decided later. The land is spent first. The purpose, and the risk, come second.",
+        "footer": "ALASKA.AI   |   08 / 09"
+      }
+    },
+    {
+      "n": 9,
+      "strings": {
+        "ask": "Should Alaska spend public land / before it knows what it is for?",
+        "use_field": "USE:  |",
+        "civic_fact": "Public comment is open through 5 p.m. August 19.",
+        "source_note": "Sources in comments.",
+        "brand_block": "ALASKA.AI    alaskaaihq.com",
+        "footer": "61 48 N 149 49 W   |   09 / 09"
+      }
+    }
+  ],
+  "slide_claim_ids": {
+    "1": [
+      "C1",
+      "C2",
+      "C3",
+      "C9"
+    ],
+    "2": [
+      "C1",
+      "C2"
+    ],
+    "3": [
+      "C3",
+      "C4",
+      "C9"
+    ],
+    "4": [
+      "C8"
+    ],
+    "5": [
+      "C12",
+      "C13",
+      "C14"
+    ],
+    "6": [
+      "C6",
+      "C7",
+      "C11",
+      "C10"
+    ],
+    "7": [
+      "C5",
+      "C6"
+    ],
+    "8": [
+      "C1",
+      "C2",
+      "C4",
+      "C11"
+    ],
+    "9": [
+      "C5"
+    ]
+  },
+  "caption": "Alaska just moved to hand 30 to 31 square miles of public land to its own development bank for $0, with no bid and no decided purpose.\n\nThe buyer is AIDEA, the state's own development authority. The seller is the state. One government sells to itself, for free, and names the purpose, data centers or AI manufacturing, later.\n\nThe deck covers the deal, Alaska's 8 data centers against Virginia's 639, the one square mile the biggest real proposal would fill, and why the City of Houston next door is voting to ban data centers six days before the state's comment closes.\n\nShould a state give away the ground for an industry before it decides what that ground is actually for?",
+  "hashtags": [
+    "#AIDEA",
+    "#MatSuBorough",
+    "#DataCenterSiting"
+  ],
+  "first_comment": "Primary reporting on the AIDEA land transfer and the Houston ban.\nMat-Su Sentinel, state agency plans Houston-area industrial park https://www.matsusentinel.com/state-agency-plans-houston-area-industrial-park-data-centers-distribution-hub/\nAlaska's News Source, new state proposal could bring data centers to a Mat-Su industrial park https://www.alaskasnewssource.com/2026/07/17/new-state-proposal-could-bring-data-centers-mat-su-part-industrial-park/\nAnchorage Daily News, data-center critics flood Alaska land managers over the North Slope STAK project https://www.adn.com/business-economy/2026/07/07/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/\nEvery decision we track, with live deadlines, lives at alaskaaihq.com\nKnow a detail we missed? Add it in the comments.",
+  "deck_summary_line": "A 9 slide breakdown of Alaska's plan to transfer 30 to 31 square miles of public land to AIDEA, its own development bank, for $0 and no competitive bid while the neighboring City of Houston moves to ban data centers. It asks whether public land should be spent before its purpose is set.",
+  "alt_text": [
+    "Cover slide. A dimetric survey plat of mostly empty land under the words First you spend the land. Then you decide what for.",
+    "A land deed reading seller State of Alaska DNR, buyer AIDEA, price $0, method noncompetitive no bid, and a blank use line over an empty plat.",
+    "A stack of 41 pages beside an empty plat wearing floating use labels, with a pull quote from AIDEA director Randy Ruaro that no land use decisions are pre-determined.",
+    "An isotype chart of 8 amber marks labeled Alaska against a dense field of 639 grey marks labeled Virginia, all the same size.",
+    "A land plat where one of 31 cells is built up as the STAK proposal and the other thirty sit empty, marked one of 31.",
+    "A red hatched ban barrier crossing the state plat, with a 6 to 1 tally for the borough override and a line on permafrost risk from the ordinance.",
+    "A timeline strip showing Houston's August 13 data-center ban vote and the state's August 19 comment close, six days apart, the gap called out in gold.",
+    "A fully filled land deed where every field is answered, seller, buyer, $0, noncompetitive, 30 to 31 square miles, 41 pages, 6 to 1, except a large blank use line.",
+    "A closing plat with one lit amber cell and an open use field, under the question Should Alaska spend public land before it knows what it is for."
+  ]
+}
