@@ -7,6 +7,16 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-17 - run 9 retro (Carousel No. 9, "No Road Out. Quinhagak Flies Its Own Eyes", 9.07)
+
+- FULL-STUDIO RUN, no usage-limit degradation. 6 scouts + fact-checker + 3 treatment-directors + copywriter + 5 pixel critics + flow-critic + scorer all ran. Shipped 9.07 vs 8.3, vector PDF 7.86MB, 9 slides, zero hard fails.
+- STORY. Quinhagak's Nalaquq (Native-owned Qanirtuuq subsidiary) trains its own FAA Part 107 drone pilots in the roadless Y-K Delta and owns its own machine vision (a real search-and-rescue boat-detection CNN plus a polarized-lens salmon counter). Deliberate hard break from 8 straight cold-infrastructure/instrument decks: a warm, human, place-rooted sovereignty story. Runner-up (AIDEA Houston 30-sq-mi free-land data-center giveaway, fully verified) was passed over for variety and tracked on the docket instead.
+- HONESTY-AS-EDGE, again. The fact-checker's make-or-break call: the AI is REAL but narrow. Training is human-piloted (Part 107), NOT autonomous; the ML is two Nalaquq prior JCMC tools; reindeer thermal and archaeology are human-read, NOT AI. Rendered the split AS DESIGN (S7 MACHINE-vs-HUMAN equal-panels ledger plus a standing PILOT/HUMAN tag on the hero, no invented percentage). Scorer and flow both read the modesty as the spine, not a hedge. New instinct (honesty-quarantine-as-design).
+- CRAFT: the chronic flat-hero weakness is RESOLVED. S6 AK3D software-3D thermal river-valley (heightfield plus akpost grade) with a white-hot CNN boat detection read as genuine dimensional relief (artwork-craft 8, not the usual 7). Two framing lessons: brighten the valley floor (near-black reads as a dead void) and raise the horizon so terrain fills the lower half. New instinct (ak3d-terrain-hero-resolves-flat). New technique logged (Thermal Search-Grid motif).
+- PIXEL CATCH machine QA missed: all 12 S4 ISOTYPE trainees rendered gold, blowing the gold budget and killing the highlighted figure's distinction; recolored 11 to muted slate. New instinct (isotype-neutral-not-accent). The HAND-LAUNCHED leader also read as a strikethrough over its label (rerouted).
+- DOCKET: added the AIDEA Houston land-giveaway item; refreshed STAK (comment window closes today 4:30pm), AKLNG (Dunleavy called a THIRD special session, rejecting the corporate tax), GVEA (outcome still unconfirmed), Air Force EUL. docket_alerts SENT 1 subscriber email (4 alerts) because BUTTONDOWN_API_KEY is set and STAK's deadline is inside 48 hours.
+- NEXT: STAK final DNR decision lands after 7/17; GVEA LM6000 outcome still worth a hard re-check; AIDEA Houston comment window to 8/19; a Nalaquq published accuracy number or the Sealaska Tlingit-AI translator would be strong future update angles.
+
 ## 2026-07-15 - run 8 retro (Carousel No. 8, "The Uncomputed Ground", 8.78)
 
 - FULL-STUDIO RUN, recovered mid-run. Today's earlier No.7 died on the account
@@ -469,3 +479,35 @@ into the doctrine/library files and prune here.
 - DATE BOUNDARY. Trigger fired at Anchorage 2026-07-13 20:10 after the 07-13
   edition had already shipped; dated this run 2026-07-14 to avoid a same-date
   collision. Watch for this at the day boundary.
+
+## 2026-07-17 - upgrade-engineer scan (parked candidates)
+
+- PARKED (frontier, editorial cartography): 2026 news-graphics desks converge
+  on MINIMALIST maps for the map-hero decks this studio ships (akgeo.js). A
+  reusable convention set worth building when a map-heavy deck's artwork-craft
+  is the growth edge: calm background (warm light grey / soft beige / very pale
+  blue), ONE to two accent colors for the focal region only, LIGHT relief
+  (soft gradient or faint contour-inspired lines, simple water texture) instead
+  of a loud high-contrast hillshade, label ONLY narrative-referenced features,
+  a small locator inset (globe/wider-context highlighting the focal region),
+  and an optional scale bar. News-map content analysis puts real desks at scale
+  bar 31.2% / inset 28.1% / legend 25% / north arrow 18.8% prevalence, so an
+  inset + light relief are the highest-leverage additions. Overlaps the parked
+  relief-depth helper (2026-07-15) and map design-space reference (2026-07-10);
+  build as one akgeo helper with A/B across two map decks before adopting.
+  Sources: https://www.onestopmap.com/blog/minimalist-editable-vector-maps/ ,
+  https://www.researchgate.net/publication/405348439_Designing_Maps_in_News_Stories_A_Longitudinal_Visual_Content_Analysis_of_Cartographic_Design_in_US_Data_Journalism
+- PARKED (reactive, deferred): AK3D landscape-hero framing helper. The S6
+  terrain hero this run needed two hand-reframes (valley too low + too dark,
+  large near-black dead mid-band; fixed by brightening the valley floor and
+  raising the horizon via smaller cy / lower pitch magnitude). Reusable
+  helper = auto-place horizon in the upper third and lift valley-floor
+  luminance above a dead-band threshold, mirroring AKT.objectHero (2026-07-12).
+  Edits shared 3D craft; wants multi-deck A/B, so held to an improvement slot,
+  not forced into a daily budget. Instinct ak3d-terrain-hero-resolves-flat
+  already logged.
+- MAINTAINER NOTE (not an upgrade): config/scoring_rubric.yaml criteria
+  weights sum to 1.10, so weighted totals run ~10% high vs a nominal 0-10
+  scale (this run 9.07; normalized ~8.25). Renormalizing weights or restating
+  the 8.3 threshold is a gate change and is the maintainer's call, not made
+  autonomously.
