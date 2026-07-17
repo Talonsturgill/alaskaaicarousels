@@ -469,3 +469,23 @@ into the doctrine/library files and prune here.
 - DATE BOUNDARY. Trigger fired at Anchorage 2026-07-13 20:10 after the 07-13
   edition had already shipped; dated this run 2026-07-14 to avoid a same-date
   collision. Watch for this at the day boundary.
+
+## 2026-07-16 - craft refresh (document-post distribution + isometric)
+
+- Document (carousel) posts remain the single strongest organic format on
+  LinkedIn in 2026: reporting puts them at roughly 39% more reach and 30%
+  more engagement than the average post, with about a 6.6% engagement rate,
+  the highest of any format, driven by dwell time (a viewer swiping 15 to 20
+  seconds is a far stronger ranker signal than a 3-second text scan). Keeps
+  the 6 to 10 slide, one-idea-per-slide, strong-hook, single-CTA spine we
+  already run. Sources: https://contentdrips.com/blog/2026/07/linkedin-document-posts/ ,
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- Distribution lever (for the maintainer, not the deck): the highest-reach
+  carousels in 2026 tend to post from a person's profile rather than a
+  company page, and employee-advocacy resharing extends reach past what a
+  page alone gets. Aftercare candidate only; does not change the artifact.
+- Isometric projection (three axes at 120 degrees, equal foreshortening)
+  reconfirmed as a fresh, GL-free hero geometry for a built-system story
+  (a grid, a campus, a network read as constructed, not camera-mapped);
+  still parked from 07-14 as an available move, not yet used. Source:
+  https://fastercapital.com/content/Visualization-Techniques--Isometric-Projection--A-New-Angle-on-Data-Visualization.html
