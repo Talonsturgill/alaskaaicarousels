@@ -1043,8 +1043,8 @@ ends with something you own. Prices are where the work starts, scoped in the ope
     <h3>The Partnership</h3>
     <p>An embedded engineer plus standing AI leadership, for owners who want to win the AI
     front of their industry without becoming engineers. We work inside your business, keep
-    every system on the best model for the job, train models you own outright, and stay on
-    the hook for the outcome, not the deliverable.</p>
+    every system on the best model for the job, and stay on the hook for the outcome, not
+    the deliverable.</p>
   </div>
 </div>"""
 
@@ -1078,16 +1078,17 @@ we already run.</p>
 
     trust = """<h2 data-reveal>Grown-up about security and your data</h2>
 <p class="sub" data-reveal>The systems we build are not science projects. They run on
-infrastructure your own IT team already trusts, and your data stays yours.</p>
+infrastructure your own IT team already trusts, built by a desk that takes your data as
+seriously as you do.</p>
 <div class="steps">
   <div class="step" data-reveal><div class="k">01 &middot; ENTERPRISE CLOUD</div><h3>Azure, AWS, or Google</h3>
   <p>We deploy on the enterprise cloud that fits your stack and your compliance, the same
   infrastructure your IT department already knows how to sign off on. Real security, real
   scale, not a tool running on someone's laptop.</p></div>
-  <div class="step" data-reveal><div class="k">02 &middot; YOUR DATA STAYS YOURS</div><h3>Nobody else trains on it</h3>
-  <p>Your records, your proposals, your proprietary work stay in your control. They do not
-  train someone else's model. And the model we build you is one you own outright, so your
-  data lives in your asset, not a vendor's.</p></div>
+  <div class="step" data-reveal><div class="k">02 &middot; DATA HANDLED RIGHT</div><h3>Private and scoped to the job</h3>
+  <p>Your records, your proposals, your proprietary work stay in your control and are handled
+  to the standard your industry demands. Access is scoped to the job, nothing is fed to a
+  public model, and nothing leaves without your say.</p></div>
   <div class="step" data-reveal><div class="k">03 &middot; SHOWS ITS WORK</div><h3>Provenance is in our blood</h3>
   <p>The same desk that will not publish a claim without a source builds AI that does the
   same. Answers you can trace, not answers it made up. In a business where a wrong number
