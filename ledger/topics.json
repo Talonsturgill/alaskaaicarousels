@@ -409,6 +409,53 @@
    "headline": "No Road Out. Quinhagak Flies Its Own Eyes",
    "sources_lead": "KYUK 2026-07-14 (Samantha Watson); Alaska Public Media / Alaska News Nightly 2026-07-14; nalaquq.com; JCMC paper (SAR CNN + salmon counting, background)",
    "outcome_notes": "Shipped 9.07 vs 8.3, vector PDF 7.86MB, 9 slides, zero hard fails. 6 scouts + fact-checker + 3 treatments + copywriter + 5 pixel critics (8 ship / 1 revise-then-fixed) + flow (SHIP) + scorer, full studio, no usage-limit degradation. S6 AK3D thermal terrain hero resolved the chronic flat-hero weakness. Runner-up = AIDEA Houston 30-sq-mi free-land data-center giveaway (now tracked on the public docket)."
+  },
+  {
+   "run_date": "2026-07-18",
+   "carousel_no": 10,
+   "topic": "Will an Alaska data center raise your power bill: on-grid vs off-grid and the cost-allocation gap",
+   "angle": "A myth-correcting ratepayer-economics analysis. Off-grid North Slope (STAK) is behind-the-meter and cannot touch Railbelt bills; the on-grid AIDEA Mat-Su park just advanced by the state can, and there a big load can spread fixed costs and LOWER rates (per a Launch Alaska op-ed) or compete for scarce gas and RAISE them, decided by the rate deal. The gap: Anchorage adopted AO 2026-27 (10 to 2) while the statewide bill HB 259 sits in the House Energy Committee, so no statewide cost-allocation rule exists.",
+   "entities": [
+    "AIDEA",
+    "STAK Energy",
+    "Mat-Su Borough",
+    "Houston (Alaska)",
+    "North Slope",
+    "Deadhorse",
+    "Chugach Electric",
+    "Anchorage Assembly",
+    "Railbelt",
+    "DNR",
+    "Launch Alaska (Penny Gage)",
+    "Randy Ruaro",
+    "Virginia (data-center comparator)"
+   ],
+   "keywords": [
+    "data center",
+    "power bill",
+    "ratepayers",
+    "cost allocation",
+    "rate deal",
+    "on-grid",
+    "off-grid",
+    "behind the meter",
+    "Railbelt",
+    "AO 2026-27",
+    "HB 259",
+    "AIDEA",
+    "STAK",
+    "anchor load",
+    "fixed costs",
+    "Cook Inlet gas"
+   ],
+   "headline": "Will a data center raise your power bill?",
+   "sources_lead": [
+    "https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
+    "https://alaskabeacon.com/2026/07/16/alaskas-economic-development-agency-plans-a-mat-su-industrial-park-with-data-centers/",
+    "https://www.alaskasnewssource.com/2026/07/17/new-state-proposal-could-bring-data-centers-mat-su-part-industrial-park/",
+    "https://www.adn.com/alaska-news/anchorage/2026/03/27/anchorage-assembly-preemptively-adopts-data-center-regulations/"
+   ],
+   "outcome_notes": ""
   }
  ]
 }

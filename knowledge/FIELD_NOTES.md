@@ -512,3 +512,50 @@ into the doctrine/library files and prune here.
   scale (this run 9.07; normalized ~8.25). Renormalizing weights or restating
   the 8.3 threshold is a gate change and is the maintainer's call, not made
   autonomously.
+
+## 2026-07-18 - retro (Carousel No. 10, "On the grid, or off it", 8.90)
+
+- STORY. The kitchen-table data-center question, corrected: will an Alaska data
+  center raise your power bill? The honest answer splits on one wire. Off-grid
+  North Slope (STAK) self-generates behind the meter, disconnected from the
+  Railbelt, so it CANNOT raise city bills (the misconception behind 500-plus
+  angry comments). The on-grid project the state just advanced (AIDEA's ~30 sq
+  mi Mat-Su transfer, July 16-17) can, and there a big load either spreads fixed
+  costs and LOWERS rates (per a Launch Alaska op-ed) or competes for scarce gas
+  and RAISES them, decided by the rate deal. The gap: Anchorage adopted AO
+  2026-27 (10 to 2) while the statewide bill HB 259 sits in the House Energy
+  Committee. Both Beat A and Beat F independently converged on this as the
+  send-to-a-coworker story.
+- CRAFT. New hero: an ISOMETRIC WIRING-DIAGRAM built-system with ONE conduit
+  motif that changes shape every slide (cut/junction/severed/snap/fork/baseline/
+  dormant/solid-vs-dashed/sealed) + a gold progress tick + edge-tease. The
+  strongest story-art fusion move: the off-grid subject rendered as a DETACHED
+  slate slab with NO glow makes "disconnected = cannot touch your bill" legible
+  at 432px with zero words (story-art fusion scored 9). Fresh iso hero, never a
+  series signature; diverged from all last-4 heroes; offline pure-Canvas iso, no
+  GL race.
+- GROWTH EDGE (recurring). Artwork-craft capped at 7 again: the S5 FORK hero,
+  the deck's own designated depth showcase, read as a FLAT two-arrow schematic.
+  The iso chassis broke the flat-hero weakness on S3/S4 (raised slabs/boxes with
+  three-face light + cast shadows read dimensional) but NOT on S5, where a flat
+  gold disc + a barely-visible DOF-blurred grid stayed flat. Lesson (new
+  instinct iso-focal-node-needs-raised-base): give the one hero node a genuinely
+  raised 3D pedestal (three-face base + real contact shadow) and make the DOF
+  grid present enough to read. Held to a logged lesson, not re-opened post-score.
+- HONESTY. C4 (Chugach 1%/yr, 2.3% in 2025, $2.5M per 1%) is an attributed
+  Launch Alaska op-ed, flagged on-slide on S5 ("Launch Alaska argues") AND inside
+  the S6 card frame ("PER A LAUNCH ALASKA OP-ED, ADN, APRIL 2026"); the two rate
+  arrows were rendered EQUAL so the deck favors neither outcome. AO 2026-27
+  (adopted, solid gold, 10-to-2 bar) vs HB 259 (in committee, dashed phantom
+  void) encodes "Anchorage acted, the state has not" without overclaiming. No
+  AKLNG-buyer claim. Fact-checker caught and corrected SB 250 -> HB 259 and
+  dropped an unverifiable Cook-Inlet-gas-share figure.
+- RECORD-SYNC. copy_sync_check caught 6 real drifts after the pixel-polish
+  hand-edits (readout "MMcf gas / day" -> "per day"; the shortened S4 parcel;
+  the S6 kicker/card-header/annotations that are separate rendered elements);
+  reconciled copy.json to the shipped render before ship. The check earns its
+  place every run there is a hand-edit.
+- MAINTAINER WATCH-ITEM (from the scorer). This is the 4th deck touching
+  data-centers-and-electricity (Nos. 1, 4, 6, 10). The frame here is genuinely
+  distinct (ratepayer economics / on-off-grid), but if audience data shows topic
+  fatigue, space these out.

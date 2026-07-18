@@ -1,0 +1,43 @@
+{
+ "run_date": "2026-07-18",
+ "carousel_no": 10,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "done",
+  "assemble": "done",
+  "scoring": "done",
+  "ship": "in_progress",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-07-18/plan.md",
+  "run_state": "out/2026-07-18/run_state.json",
+  "skill_read": "engine SKILL.md + demo slide-01 reviewed",
+  "scout_findings_merged": "out/2026-07-18/scout_findings_merged.md",
+  "claims": "out/2026-07-18/claims.json",
+  "selection": "out/2026-07-18/selection.md",
+  "docket": "ledger/docket.json (updated)",
+  "storyboard": "out/2026-07-18/storyboard.md",
+  "copy": "out/2026-07-18/copy.json",
+  "caption": "out/2026-07-18/caption.txt",
+  "slides": "out/2026-07-18/slides (9)",
+  "render": "out/2026-07-18/render",
+  "machine_qa": "out/2026-07-18/render/machine_qa.json (PASS)",
+  "final_pdf": "out/2026-07-18/final/carousel.pdf (vector, 3.98MB)",
+  "contact_sheet": "out/2026-07-18/final/contact_sheet.png",
+  "score_report": "out/2026-07-18/score_report.json (8.90 SHIP)",
+  "runs_dir": "runs/2026-07-18/ (9 png, pdf, thumbs, reports)",
+  "site": "docs/ (17 pages)"
+ }
+}

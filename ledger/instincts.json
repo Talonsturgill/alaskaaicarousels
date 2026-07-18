@@ -23,17 +23,17 @@
    "id": "grain-as-tile",
    "learned": "2026-07-08",
    "instinct": "Apply grain as a small repeating tile (AK.grainTile), never a full-frame feTurbulence rect.",
-   "evidence": "Full-frame SVG grain rasterized to a 34MB incompressible bitmap in the printed PDF; the tile version produced 6.7MB. | CONFIRMED 2026-07-08: AK.grainTile used on all 9 slides; PDF 10.7MB, no incompressible full-frame grain | CONFIRMED 2026-07-14: all 8 slides used AK.grainTile tiles, no full-frame feTurbulence; qa clean",
-   "confidence": 0.96,
-   "last_confirmed": "2026-07-15"
+   "evidence": "Full-frame SVG grain rasterized to a 34MB incompressible bitmap in the printed PDF; the tile version produced 6.7MB. | CONFIRMED 2026-07-08: AK.grainTile used on all 9 slides; PDF 10.7MB, no incompressible full-frame grain | CONFIRMED 2026-07-14: all 8 slides used AK.grainTile tiles, no full-frame feTurbulence; qa clean | CONFIRMED 2026-07-18: AK.grainTile on all 9 slides; vector PDF 3.98MB, no full-frame feTurbulence.",
+   "confidence": 0.99,
+   "last_confirmed": "2026-07-18"
   },
   {
    "id": "machine-qa-is-not-taste",
    "learned": "2026-07-08",
    "instinct": "Never treat a machine_qa PASS as composition approval; the pixel critics judge composition, hierarchy, and collision at full size and thumb size.",
-   "evidence": "A slide with the terrain crammed into the bottom 15% and a stat row colliding with the ridge passed every objective gate. | CONFIRMED 2026-07-08: pixel/scorer caught 4 DOM collisions (slide 3 overlap hard fail, slide 8 door graze, slide 9 coastline, slide 2 crowding) that machine_qa PASSED | CONFIRMED 2026-07-09: machine_qa PASSED (WARN) but pixel critics caught the S4 '12 fish' claim being uncountable, the S5 unblurred foreground (DOF), and the S6 dishonest 0-year nub bar -- all composition/honesty, not objective. | CONFIRMED 2026-07-11: critics caught ~10 canvas-vs-DOM overlaps + low-contrast in-section labels that machine_qa PASSED (S2 legend/homes, S3 curve labels, S4 readouts on ochre, S6 SUSPENDED, S7 flag mash, S8 context on ochre). | CONFIRMED 2026-07-13: pixel critics caught a favored honesty panel (S3), a bottle-read turbine (S4), and a strikethrough ledger (S7) that machine_qa PASSED clean. | CONFIRMED 2026-07-14: qa PASS with 0 warnings, but the ship decision rested on the showrunner reading every full-size PNG and the contact sheet for composition",
+   "evidence": "A slide with the terrain crammed into the bottom 15% and a stat row colliding with the ridge passed every objective gate. | CONFIRMED 2026-07-08: pixel/scorer caught 4 DOM collisions (slide 3 overlap hard fail, slide 8 door graze, slide 9 coastline, slide 2 crowding) that machine_qa PASSED | CONFIRMED 2026-07-09: machine_qa PASSED (WARN) but pixel critics caught the S4 '12 fish' claim being uncountable, the S5 unblurred foreground (DOF), and the S6 dishonest 0-year nub bar -- all composition/honesty, not objective. | CONFIRMED 2026-07-11: critics caught ~10 canvas-vs-DOM overlaps + low-contrast in-section labels that machine_qa PASSED (S2 legend/homes, S3 curve labels, S4 readouts on ochre, S6 SUSPENDED, S7 flag mash, S8 context on ochre). | CONFIRMED 2026-07-13: pixel critics caught a favored honesty panel (S3), a bottle-read turbine (S4), and a strikethrough ledger (S7) that machine_qa PASSED clean. | CONFIRMED 2026-07-14: qa PASS with 0 warnings, but the ship decision rested on the showrunner reading every full-size PNG and the contact sheet for composition | CONFIRMED 2026-07-18: qa PASS 0/0 yet showrunner+pixel critics caught S3 body-vs-readout collision, S4 tight gutter, S6 parchment contrast, S7 label-box overprint, S8 canvas-label routing; composition read by eye and critics, not qa.",
    "confidence": 0.99,
-   "last_confirmed": "2026-07-15"
+   "last_confirmed": "2026-07-18"
   },
   {
    "id": "d3-zoom-manual",
@@ -47,9 +47,9 @@
    "id": "verify-body-line-count",
    "learned": "2026-07-08",
    "instinct": "Before rendering, sanity-check long serif/body copy line counts against any fixed-position labels, bars, or plates; DOM text overlaps pass machine QA but fail the eye.",
-   "evidence": "Slide 3 body wrapped to 4 lines and overlapped the 'URBAN ALASKA GRID PEAK' bar label (a scorer-caught hard fail); slide 5 quote 4 slid under the Boyle plate. Both passed machine_qa safe-zone checks. | CONFIRMED 2026-07-09: four headline-wrap collisions (S1/S4/S7/S8) all traced to a display headline in a container narrower than its longest line; each machine_qa-FAILED as a text overprint. | CONFIRMED 2026-07-11: S2/S3/S4 body blocks overran their planned line counts into the section; capping max-width so the body ENDS in the sky zone fixed all three.",
-   "confidence": 0.9,
-   "last_confirmed": "2026-07-11"
+   "evidence": "Slide 3 body wrapped to 4 lines and overlapped the 'URBAN ALASKA GRID PEAK' bar label (a scorer-caught hard fail); slide 5 quote 4 slid under the Boyle plate. Both passed machine_qa safe-zone checks. | CONFIRMED 2026-07-09: four headline-wrap collisions (S1/S4/S7/S8) all traced to a display headline in a container narrower than its longest line; each machine_qa-FAILED as a text overprint. | CONFIRMED 2026-07-11: S2/S3/S4 body blocks overran their planned line counts into the section; capping max-width so the body ENDS in the sky zone fixed all three. | CONFIRMED 2026-07-18: S3 body overran into the readouts (qa FAILed the safe-zone but the collision was a relayout fix); capping the measure so it ends in the sky zone cleared it.",
+   "confidence": 0.95,
+   "last_confirmed": "2026-07-18"
   },
   {
    "id": "data-decorative-on-leaf",
@@ -207,6 +207,21 @@
    "learned": "2026-07-17",
    "instinct": "An AK3D software-3D heightfield valley finished with an akpost thermal grade genuinely climbs the rendered ladder (reads as real dimensional relief, resolving the chronic flat-hero weakness) and is a reliable no-GL alternative to akthree for LANDSCAPE heroes. Two framing rules learned the hard way: brighten the valley floor (a near-black floor reads as a dead void) and raise the horizon (small cy / lower pitch magnitude) so terrain fills the lower half, not a thin band under a dead mid-zone.",
    "confidence": 0.75
+  },
+  {
+   "id": "iso-wiring-diagram-continuity",
+   "learned": "2026-07-18",
+   "instinct": "For a systems / infrastructure / on-grid-vs-off-grid ARGUMENT deck, a shared isometric world (fixed upper-left light, three-face shading) plus ONE conduit motif that changes SHAPE every slide (cut -> junction -> severed -> snap-live -> fork -> baseline -> dormant -> solid-vs-dashed -> sealed) with a gold progress tick and edge-tease is a strong, low-risk, offline continuity chassis that reads as one composed sequence on the contact sheet.",
+   "evidence": "Run 10: flow-critic called the conduit continuity 'strong, reads cleanly left-to-right', sequence_reads_as_one true, verdict ship; the deck diverged hard from the last-4 heroes and scored 8.90.",
+   "confidence": 0.72,
+   "last_confirmed": "2026-07-18"
+  },
+  {
+   "id": "iso-focal-node-needs-raised-base",
+   "learned": "2026-07-18",
+   "instinct": "An isometric SCHEMATIC hero (a fork/pivot/junction) still scores as FLAT artwork-craft unless the focal node is a genuinely RAISED 3D object (an iso pedestal/three-face base + a real contact shadow, not just a flat gold disc) AND the DOF context grid is PRESENT enough to read; a blurred grid at low opacity 'barely registers' and the eye reads a flat two-arrow diagram. Give the one designated depth-showcase slide a dimensional node next iso deck.",
+   "evidence": "Run 10 scorer: artwork-craft 7 (weakest), one_sentence_fix was exactly to give the S5 fork hero real dimensional depth; the flat gold disc + faint blurred grid read as a schematic despite the deck's iso chassis. S3/S4 (which used raised slabs/boxes + cast shadows) read dimensional; S5 (disc only) did not.",
+   "confidence": 0.6
   }
  ]
 }
