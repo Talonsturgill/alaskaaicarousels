@@ -354,6 +354,32 @@ text stays DOM/SVG; one imaginary light per deck; fog in the sky's hue.
     Road Out. Quinhagak Flies Its Own Eyes." Generalizes to any sensing / detection /
     search-and-rescue / monitoring story. D2
 
+58d. **Isometric Wiring-Diagram + Evolving Conduit** (NEW 2026-07-18) — a whole
+    deck built as ONE shared 2:1 dimetric isometric world (screen sx=(i-j)*W/2,
+    sy=(i+j)*H/4 - z*rise; draw rows back-to-front for free occlusion; one global
+    upper-left light with three-face shading top/left/right and a 14% cast shadow
+    thrown down-right) whose focal objects change per beat, tied together by ONE
+    glowing CONDUIT that changes SHAPE every slide and carries a small gold
+    progress tick: cut by the right edge (cover) -> splits at a gold junction
+    (the on/off distinction) -> a SEVERED blunt stub with a visible black GAP to a
+    DETACHED slate island (off-grid) -> snaps LIVE into a gold anchor node on a
+    cyan web (on-grid) -> forks into two EQUAL tapered arrows at a gold pivot (the
+    two-way mechanism) -> flattens into a data baseline -> a dormant hairline at
+    rest (breather) -> a SOLID gold stub vs a DASHED phantom void (#67) (adopted
+    vs pending) -> a sealed gold ring (close). RULES that make it read: the state
+    change must be a SHAPE change not brightness; the OFF/disconnected subject is
+    a slate slab with NO glow (this is what makes "not on your grid" legible at
+    432px with zero words); keep the conduit routed AROUND all DOM text at plan
+    time (canvas ink is invisible to qa.py); one gold budget (junction, node,
+    pivot, tick, seal). CRAFT CAVEAT (run 10 scorer): schematic iso reads FLAT
+    unless the ONE hero/focal node is a genuinely RAISED 3D object (iso pedestal +
+    three-face base + real contact shadow, not a flat disc) and the DOF context
+    grid is present enough to register; raised slabs/boxes (the island, the
+    anchor) read dimensional, a flat disc does not. Used as the hero + continuity
+    chassis of "On the grid, or off it." Generalizes to any on-grid-vs-off-grid,
+    network, supply-chain, or infrastructure-siting ARGUMENT deck. Pure Canvas 2D,
+    offline, no GL. D3
+
 ## LINE & DIAGRAM FLAIR
 
 The meta-law from every lineage (ink, drafting, cartography, transit maps,

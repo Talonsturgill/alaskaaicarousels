@@ -1,0 +1,154 @@
+{
+  "document_title": "Alaska data centers and your power bill, on the grid or off",
+  "slides": {
+    "S1": {
+      "kicker": "ALASKA.AI / No. 10 / THE POWER BILL QUESTION",
+      "headline": "Will a data center raise your power bill?",
+      "body": "In Alaska the honest answer splits on one line.",
+      "labels": [
+        "ALASKA.AI",
+        "70 18'N 148 27'W",
+        "01 / 09"
+      ]
+    },
+    "S2": {
+      "kicker": "THE ONE DISTINCTION",
+      "headline": "On the grid, or off it.",
+      "body": "OFF THE GRID. Runs on its own gas. Never touches your wires. ON THE GRID. Shares the wires, and the bill, with you.",
+      "labels": [
+        "OFF THE GRID",
+        "ON THE GRID",
+        "02 / 09"
+      ],
+      "chips": [
+        "off-grid vs Railbelt, C3e"
+      ]
+    },
+    "S3": {
+      "kicker": "OFF THE GRID / NORTH SLOPE",
+      "headline": "The one everyone feared is off the line.",
+      "body": "STAK's proposed campus sits about 25 miles south of Deadhorse and self-generates a gigawatt or more, roughly 30 percent above urban Alaska's peak. It burns gas behind the meter, with no wire to the Railbelt.",
+      "labels": [
+        "NO WIRE TO THE RAILBELT",
+        "03 / 09"
+      ],
+      "chips": [
+        "1 GW+ self-generated, ~30% over urban peak",
+        "350 to 500 MMcf gas per day",
+        "500+ comments, fewer than 12 in favor"
+      ]
+    },
+    "S4": {
+      "kicker": "ON THE GRID / MAT-SU",
+      "headline": "This one plugs into your grid.",
+      "body": "The state just moved to hand AIDEA about 30 square miles of land near Houston for a data-center district, on the Railbelt. Public comment is open through August 19.",
+      "labels": [
+        "\"there are no pre-determined and set land use decisions\"",
+        "Randy Ruaro, AIDEA",
+        "04 / 09"
+      ],
+      "chips": [
+        "~30 sq mi to AIDEA"
+      ]
+    },
+    "S5": {
+      "kicker": "ON THE GRID, IT CUTS BOTH WAYS",
+      "headline": "It all turns on the rate deal.",
+      "body": "RATES COULD FALL. A big anchor load can spread fixed costs, Launch Alaska argues. RATES COULD RISE. Or compete for scarce Railbelt gas.",
+      "labels": [
+        "THE RATE DEAL",
+        "RATES COULD FALL",
+        "RATES COULD RISE",
+        "direction, not magnitude",
+        "05 / 09"
+      ]
+    },
+    "S6": {
+      "kicker": "THE CASE FOR LOWER",
+      "headline": "The case for lower, in one chart.",
+      "body": "And every 1% drop leaves about $2.5M in fixed costs with nowhere to go. A big anchor load could spread those costs, the argument goes. Could.",
+      "labels": [
+        "PER A LAUNCH ALASKA OP-ED, ADN, APRIL 2026",
+        "Chugach-area electric sales, the last 15 years",
+        "about 1% a year",
+        "2.3% drop in 2025",
+        "06 / 09"
+      ]
+    },
+    "S7": {
+      "kicker": "SCALE",
+      "headline": "Alaska is at the very beginning.",
+      "body": "Eight data centers here, against the nation's leader at 639, as reported by Alaska's News Source. The rules get written while the count is still small.",
+      "labels": [
+        "ALASKA 8",
+        "VIRGINIA 639",
+        "1 block = 1 data center",
+        "07 / 09"
+      ]
+    },
+    "S8": {
+      "kicker": "THE WRONG FIGHT",
+      "headline": "Build vs ban is the wrong fight.",
+      "body": "Houston is weighing a ban, postponed to August 13. But the lever is the rate deal. Anchorage adopted guardrails 10 to 2. The statewide bill that would set rate rules, HB 259, still sits in the House Energy Committee.",
+      "labels": [
+        "BUILD",
+        "BAN",
+        "REQUIRE THE RULES",
+        "08 / 09"
+      ],
+      "chips": [
+        "AO 2026-27   ADOPTED 10 to 2   (Anchorage)",
+        "HB 259   IN COMMITTEE   (state)"
+      ]
+    },
+    "S9": {
+      "kicker": "THE QUESTION TO ASK",
+      "headline": "Before the next data center plugs in, ask one thing. Who writes the rate deal, and does it lower your bill or raise it?",
+      "body": "On the grid or off it changes everything. What should Alaska require first?",
+      "labels": [
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "sources in comments",
+        "61 13'N 149 54'W",
+        "09 / 09"
+      ]
+    }
+  },
+  "caption": "A data center on the North Slope cannot touch your Anchorage power bill. One in the Mat-Su can.\n\nThe difference is not the size of the load, it is one wire. Off-grid projects self-generate and never reach the Railbelt. On-grid ones plug into the same network you pay into. There the answer still splits two ways, and the rate deal decides which.\n\nThis deck walks through both Alaska projects in the news, the on-grid versus off-grid split, and why the build-versus-ban fight skips the lever that actually sets your rate.\n\nSo what should Alaska require first, a rate deal on every big new load, or nothing until the count grows?\n\n#AlaskaEnergy #DataCenters #Railbelt",
+  "caption_char_count": 665,
+  "first_comment": "Sources\n\nSTAK North Slope, off-grid and behind-the-meter. Northern Journal. https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/\nSTAK lease-document analysis. Northern Alaska Environmental Center. https://northern.org/news/stak-energy-campus-what-the-states-lease-documents-reveal-about-scale-risk-and-unanswered-questions/\nMat-Su AIDEA land transfer. Alaska Beacon. https://alaskabeacon.com/2026/07/16/alaskas-economic-development-agency-plans-a-mat-su-industrial-park-with-data-centers/\nMat-Su park, the Houston ban, and the 8 vs 639 count. Alaska's News Source. https://www.alaskasnewssource.com/2026/07/17/new-state-proposal-could-bring-data-centers-mat-su-part-industrial-park/\nAnchorage AO 2026-27 adopted 10 to 2, and HB 259 in committee. Anchorage Daily News. https://www.adn.com/alaska-news/anchorage/2026/03/27/anchorage-assembly-preemptively-adopts-data-center-regulations/\nThe case for lower rates, opinion by Penny Gage of Launch Alaska, an ADN op-ed. https://www.adn.com/opinions/2026/04/29/opinion-the-hidden-threat-to-your-electric-bill-and-what-we-can-do-about-it/\n\nEvery decision we track, with live deadlines, lives at alaskaaihq.com\nSee a source I missed? Add it in the comments.",
+  "notes": "Copywriter output. C4 attributed on S5 (Launch Alaska argues) and inside the S6 card header. AO 2026-27 ADOPTED 10 to 2; HB 259 IN COMMITTEE. No AKLNG-buyer claim (C6 unused). No em/en dashes; ranges X to Y; straight quotes.",
+  "claim_index": {
+    "S1": [],
+    "S2": [
+      "C3e"
+    ],
+    "S3": [
+      "C3",
+      "C3c",
+      "C3d",
+      "C3e"
+    ],
+    "S4": [
+      "C1",
+      "C1b",
+      "C1d"
+    ],
+    "S5": [
+      "C4",
+      "C4b"
+    ],
+    "S6": [
+      "C4"
+    ],
+    "S7": [
+      "C2"
+    ],
+    "S8": [
+      "C1e",
+      "C5b",
+      "C5"
+    ],
+    "S9": []
+  }
+}
