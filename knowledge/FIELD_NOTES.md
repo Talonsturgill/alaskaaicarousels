@@ -598,3 +598,18 @@ the >=50px minimum. No machine change is bounded enough for the daily budget
   the tightly-paced one-point-per-slide + alternating text/visual rhythm the
   storyboard gate already enforces is the correct dwell play; polls collapsed to
   ~0.07% engagement (the studio never uses them). Nothing to change.
+
+## 2026-07-18 - reactive gap for next Phase 12 (gmail_draft copy fields)
+
+- RECURRED (logged 2026-07-17, bit again 2026-07-18): scripts/gmail_draft.py
+  reads copy.get('post_copy') and copy.get('aftercare'), but the copywriter
+  agent + Phase 6 emit 'caption' (the post text) and no 'aftercare'. Result:
+  the "Paste the post copy" block and the Aftercare checklist render EMPTY in
+  the draft unless the showrunner hand-adds post_copy=caption and an aftercare
+  list to copy.json before running gmail_draft. The showrunner patched it in
+  the moment this run. Bounded permanent fix for a future Phase 12: make
+  gmail_draft.py fall back post_copy -> caption when post_copy is absent, and
+  synthesize a default aftercare checklist from CAROUSEL_CRAFT (or have the
+  copywriter emit both fields). Weakens no gate; removes a recurring manual
+  step. Held this run because Phase 12's daily budget was taken by the
+  copy_sync_check list-form fix.
