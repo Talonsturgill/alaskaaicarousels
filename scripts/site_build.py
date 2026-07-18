@@ -42,6 +42,68 @@ RAW = "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main"
 # Calendar appointment page). While empty the services hero keeps its
 # form-first buttons; set it and rebuild to lead with the booking button.
 BOOKING_URL = "https://calendly.com/talon-sturgill-ixzj/30min"
+
+# The public entity. One canonical Organization node, emitted in full on the
+# home page and referenced from every other page's JSON-LD through the same
+# @id, so Google and the AI answer engines resolve "Alaska AI" to a single
+# unambiguous thing instead of four loose fragments. sameAs lists the real
+# profiles; add new ones here and rebuild.
+SAMEAS = [
+    "https://www.linkedin.com/company/alaska-ai/",
+    "https://www.tiktok.com/@alaskaai_",
+]
+ANCHORAGE_GEO = {"@type": "GeoCoordinates", "latitude": 61.2181, "longitude": -149.9003}
+
+
+def org_id(site_url):
+    return f"{site_url}/#org"
+
+
+def org_ld(site_url):
+    """The canonical Alaska AI entity: one node, both hats (the newsroom and
+    the studio), with the place, the founder, and the profiles attached."""
+    return {
+        "@type": ["NewsMediaOrganization", "ProfessionalService"],
+        "@id": org_id(site_url),
+        "name": "Alaska AI",
+        "alternateName": ["Alaska.Ai", "Alaska AI HQ"],
+        "url": f"{site_url}/",
+        "logo": {"@type": "ImageObject", "url": f"{site_url}/apple-touch-icon.png",
+                 "width": 180, "height": 180},
+        "image": f"{site_url}/og.png",
+        "description": "Alaska AI is the daily publication on Alaska's AI beat and an "
+                       "AI studio in Anchorage that builds AI systems for Alaska "
+                       "businesses. Every fact verified to its source.",
+        "email": "docket@alaskaaihq.com",
+        "contactPoint": {"@type": "ContactPoint", "email": "docket@alaskaaihq.com",
+                         "contactType": "inquiries"},
+        "address": {"@type": "PostalAddress", "addressLocality": "Anchorage",
+                    "addressRegion": "AK", "addressCountry": "US"},
+        "geo": ANCHORAGE_GEO,
+        "areaServed": [
+            {"@type": "State", "name": "Alaska"},
+            {"@type": "City", "name": "Anchorage"},
+            {"@type": "City", "name": "Fairbanks"},
+            {"@type": "City", "name": "Juneau"},
+        ],
+        "founder": {"@type": "Person", "name": "Talon Sturgill",
+                    "url": f"{site_url}/about/"},
+        "sameAs": SAMEAS,
+        "knowsAbout": ["artificial intelligence", "Alaska AI infrastructure",
+                       "AI for small business", "voice agents", "workflow automation",
+                       "AI for tourism", "AI for healthcare",
+                       "Alaska Native corporations"],
+    }
+
+
+def breadcrumb_ld(site_url, crumbs):
+    """crumbs is a list of (name, path) from the home page down."""
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "name": name,
+                 "item": f"{site_url}/{path}"}
+                for i, (name, path) in enumerate(crumbs)]}
+
 MONTH_FULL = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"]
 
@@ -639,12 +701,19 @@ JS = """
 
 
 def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.png",
-         og_size=(1200, 630), ld=None):
+         og_size=(1200, 630), ld=None, crumbs=None, noindex=False):
     css = SITE_CSS.replace("FONTPREFIX", prefix).replace("GRAIN_URI", db.grain_data_uri() or "none")
     canonical = f"{site_url}/{path}"
     og_url = og_image if og_image.startswith("http") else f"{site_url}/{og_image}"
-    ld_html = (f'<script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>'
-               if ld else "")
+    blocks = []
+    if ld:
+        blocks.append(ld)
+    if crumbs:
+        blocks.append(breadcrumb_ld(site_url, crumbs))
+    ld_html = "".join(
+        f'<script type="application/ld+json">{json.dumps(b, separators=(",", ":"))}</script>'
+        for b in blocks)
+    robots_html = '<meta name="robots" content="noindex,follow">\n' if noindex else ""
     preload = "".join(
         f'<link rel="preload" href="{prefix}fonts/{f}" as="font" type="font/woff2" crossorigin>'
         for f in ("fraunces.woff2", "manrope.woff2", "jbmono-md.woff2"))
@@ -655,7 +724,7 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<meta name="theme-color" content="#02060f">
+{robots_html}<meta name="theme-color" content="#02060f">
 <meta property="og:site_name" content="Alaska AI">
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="{esc(title)}">
@@ -665,6 +734,7 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 <meta property="og:image" content="{og_url}">
 <meta property="og:image:width" content="{og_size[0]}">
 <meta property="og:image:height" content="{og_size[1]}">
+<meta property="og:image:alt" content="{esc(title)}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="{canonical}">
 <link rel="icon" href="{db.FAVICON}">
@@ -723,10 +793,80 @@ def load_runs():
             "hook": caption.split("\n")[0].strip(),
             "caption": caption,
             "first_comment": copy.get("first_comment", ""),
+            "summary": copy.get("deck_summary_line", ""),
+            "slide_data": copy.get("slide_copy") or copy.get("slides"),
+            "hashtags": copy.get("hashtags", []),
             "slides": asm.get("slides", 0),
             "pdf_mb": asm.get("pdf_mb", 0),
         })
     return out
+
+
+HEAD_KEYS = ("headline", "head", "hero", "display", "hook", "title", "hook_lines")
+BODY_KEYS = ("body", "dek", "sub", "subhead", "text", "overline", "supporting")
+
+
+def _slide_text(entry, keys):
+    """Pull the first present text field from a per-slide dict. Each run's
+    copywriter invents its own schema (head/body, headline/dek, hook_lines,
+    nested {text} objects), so read tolerantly."""
+    for k in keys:
+        v = entry.get(k)
+        if isinstance(v, dict):
+            v = v.get("text", "")
+        if isinstance(v, list):
+            v = " ".join(str(x) for x in v)
+        if isinstance(v, str) and v.strip():
+            return " ".join(v.split())
+    return ""
+
+
+def slide_alts(r):
+    """Descriptive alt text per slide from the run's own per-slide copy, so
+    the story inside the PNGs is legible to search engines and screen
+    readers. Handles every copy.json shape the runs have used."""
+    data = r.get("slide_data")
+    entries = {}
+    if isinstance(data, list):
+        for idx, s in enumerate(data, 1):
+            if not isinstance(s, dict):
+                continue
+            num = str(s.get("slide", s.get("n", idx))).lstrip("S0") or str(idx)
+            if num.isdigit():
+                entries[int(num)] = s
+    elif isinstance(data, dict):
+        for k, s in data.items():
+            num = str(k).lstrip("S0")
+            if num.isdigit() and isinstance(s, dict):
+                entries[int(num)] = s
+    alts = {}
+    for i, s in entries.items():
+        head = _slide_text(s, HEAD_KEYS).rstrip(".")
+        body = _slide_text(s, BODY_KEYS).rstrip(".")
+        text = ". ".join(t for t in (head, body) if t)
+        if text:
+            alts[i] = text.replace(": ", ", ")[:160]
+    return alts
+
+
+def caption_paragraphs(r):
+    """The deck's LinkedIn caption rendered as site paragraphs: the real,
+    crawlable text of the story. Drops the hook line (the hero already says
+    it), trailing hashtag lines, and anything after the sources label."""
+    lines = [l.rstrip() for l in r["caption"].split("\n")]
+    if lines and lines[0].strip() == r["hook"]:
+        lines = lines[1:]
+    kept = []
+    for l in lines:
+        s = l.strip()
+        if s.startswith("#") and " #" in s or (s.startswith("#") and len(s.split()) > 1):
+            continue
+        if s.lower().rstrip(":") in ("sources", "source"):
+            break
+        kept.append(l)
+    text = "\n".join(kept).strip().replace(": ", ", ")
+    paras = [p.strip() for p in text.split("\n\n") if p.strip()]
+    return "".join(f"<p>{esc(p)}</p>" for p in paras)
 
 
 def pretty_date(iso):
@@ -807,14 +947,14 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 {subscribe_html()}
 <div class="about-line" data-reveal><p>{next_line}All sources verified against claims.</p></div>"""
     ld = {"@context": "https://schema.org", "@graph": [
-        {"@type": "NewsMediaOrganization", "@id": f"{site_url}/#org", "name": "Alaska AI",
-         "url": f"{site_url}/", "logo": f"{site_url}/og.png",
-         "description": "The daily publication on Alaska's AI beat, verified to the source."},
+        org_ld(site_url),
         {"@type": "WebSite", "url": f"{site_url}/", "name": "Alaska AI",
-         "publisher": {"@id": f"{site_url}/#org"}}]}
-    return page("Alaska AI", "The daily publication on Alaska's AI beat. Verified stories, "
-                "a public docket of every AI infrastructure decision, and bespoke data art. "
-                "Built by and for Alaskans.", body, "", "home", today, site_url, "", ld=ld)
+         "alternateName": "Alaska AI HQ",
+         "publisher": {"@id": org_id(site_url)}}]}
+    return page("Alaska AI - AI Consulting and Daily AI News for Alaska",
+                "Alaska's AI desk in Anchorage. Daily verified stories on Alaska and AI, "
+                "a public docket of AI infrastructure decisions, and AI consulting for "
+                "Alaska businesses.", body, "", "home", today, site_url, "", ld=ld)
 
 
 def docket_page(today, site_url, docket):
@@ -855,13 +995,15 @@ The data behind this page is public at <a href="../docket.json" style="color:var
                          "windows, utility votes and legislation, with deciders, deadlines "
                          "and public access, sourced and updated daily.",
           "url": f"{site_url}/docket/", "dateModified": today.isoformat(),
-          "creator": {"@type": "Organization", "name": "Alaska AI", "url": f"{site_url}/"},
+          "creator": {"@id": org_id(site_url)},
           "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json",
                             "contentUrl": f"{site_url}/docket.json"}]}
-    return page("The Alaska AI Docket", "Every AI infrastructure decision in Alaska, tracked daily. "
-                "Who decides, when it lands, and whether the public gets a say.",
+    return page("The Alaska AI Docket - AI Infrastructure Decisions in Alaska",
+                "Every AI infrastructure decision in Alaska, tracked daily. Who decides, "
+                "when it lands, and whether the public gets a say. Sources on every item.",
                 body, "../", "the docket", today, site_url, "docket/",
-                og_image="og-docket.png", ld=ld)
+                og_image="og-docket.png", ld=ld,
+                crumbs=[("Alaska AI", ""), ("The Docket", "docket/")])
 
 
 def archive_page(today, site_url, runs):
@@ -876,10 +1018,13 @@ def archive_page(today, site_url, runs):
 <p class="tag">Every deck we have shipped, one verified Alaska and AI story at a time.
 Newest first.</p>
 </div>
+<h2 class="vh">Every deck</h2>
 <div class="deckgrid" style="margin-top:44px">{decks}</div>"""
-    return page("Archive - Alaska AI", "Every carousel Alaska AI has published. Verified stories "
-                "about Alaska and AI, drawn as bespoke data art.",
-                body, "../", "archive", today, site_url, "archive/")
+    return page("The Alaska AI Archive - Daily Verified Alaska and AI Stories",
+                "Every carousel Alaska AI has published. One verified story a day on "
+                "Alaska and AI, drawn as bespoke data art.",
+                body, "../", "archive", today, site_url, "archive/",
+                crumbs=[("Alaska AI", ""), ("Archive", "archive/")])
 
 
 def sources_text(first_comment):
@@ -909,12 +1054,17 @@ CROSS = ('<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">'
 
 
 def deck_page(today, site_url, r):
+    alts = slide_alts(r)
+    n_slides, deck_title = r["slides"], r["title"]
     slides = "".join(
         f'<img src="{RAW}/runs/{r["date"]}/slide-{i:02d}.png" width="1080" height="1350" '
-        f'alt="Slide {i} of {r["slides"]}"'
+        f'alt="{esc(alts.get(i) or f"{deck_title}, slide {i} of {n_slides}")}"'
         + (' fetchpriority="high"' if i == 1 else ' loading="lazy"') + '>'
-        for i in range(1, r["slides"] + 1))
+        for i in range(1, n_slides + 1))
     srcs = esc(sources_text(r["first_comment"]))
+    story = caption_paragraphs(r)
+    story_html = (f'<h2 data-reveal>The story</h2>\n<div class="prose" data-reveal>{story}</div>'
+                  if story else "")
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <div class="chip kind">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div>
 <h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">{esc(r['title'])}</h1>
@@ -939,17 +1089,23 @@ def deck_page(today, site_url, r):
   <a class="cta gold" href="{RAW}/runs/{r['date']}/carousel.pdf">DOWNLOAD THE PDF ({r['pdf_mb']} MB)</a>
   <a class="cta ghost" href="../">EVERY DECK</a>
 </div>
+{story_html}
 <h2 data-reveal>Sources</h2>
 <pre class="copy" data-reveal>{srcs}</pre>"""
     ld = {"@context": "https://schema.org", "@type": "NewsArticle",
           "headline": r["title"], "datePublished": r["date"],
+          "dateModified": r["date"],
+          "description": (r.get("summary") or r["hook"])[:300],
           "image": f"{RAW}/runs/{r['date']}/slide-01.png",
           "url": f"{site_url}/archive/{r['date']}/",
-          "publisher": {"@type": "Organization", "name": "Alaska AI", "url": f"{site_url}/"},
-          "author": {"@type": "Organization", "name": "Alaska AI"}}
-    return page(f"{r['title']} - Alaska AI", r["hook"][:150],
+          "keywords": ", ".join(t.lstrip("#") for t in (r.get("hashtags") or [])[:8]),
+          "publisher": {"@id": org_id(site_url)},
+          "author": {"@id": org_id(site_url)}}
+    return page(f"{r['title']} - Alaska AI", (r.get("summary") or r["hook"])[:155],
                 body, "../../", "archive", today, site_url, f"archive/{r['date']}/",
-                og_image=f"{RAW}/runs/{r['date']}/slide-01.png", og_size=(1080, 1350), ld=ld)
+                og_image=f"{RAW}/runs/{r['date']}/slide-01.png", og_size=(1080, 1350), ld=ld,
+                crumbs=[("Alaska AI", ""), ("Archive", "archive/"),
+                        (r["title"], f"archive/{r['date']}/")])
 
 
 def services_page(today, site_url):
@@ -1096,7 +1252,7 @@ seriously as you do.</p>
 
     body = f"""<div class="hero heroanim">
 <div><div class="daylight">{daylight_chip(today)}</div></div>
-<h1>Put AI to <em>work</em></h1>
+<h1>Put AI to work <em>in Alaska</em></h1>
 <p class="tag">Alaska AI reads the state's AI beat every morning. The rest of the day, this
 desk builds AI systems for Alaska businesses. Digital employees for the jobs you cannot
 fill, paperwork engines for the filings that never stop, and straight answers about what
@@ -1126,6 +1282,31 @@ the Valley. Processors in Kodiak and Dutch Harbor. Native corporations with a pr
 and a federal deadline. Contractors, utilities, and the shops that keep them all supplied.
 If you already know what you want built, bring it. If you only know that AI matters and you
 do not want to become an engineer to win with it, you are exactly who this desk works for.</p>
+<h2 data-reveal>Straight answers</h2>
+<p class="sub" data-reveal>The questions every owner asks first, answered the way we would
+answer them across a table.</p>
+<h3 data-reveal>Who is Alaska AI?</h3>
+<p data-reveal>Alaska AI is an AI studio and daily publication in Anchorage. One desk reads
+the state's AI beat every morning, publishes the deck and the docket, and builds AI systems
+for Alaska businesses the rest of the day. Founded and run in state by Talon Sturgill.</p>
+<h3 data-reveal>What does AI consulting cost in Alaska?</h3>
+<p data-reveal>The Field Study starts at $2,500 and tells you exactly what AI is worth in
+your operation before you commit to anything. Builds start at $6,000. The Partnership, an
+embedded AI engineer plus standing AI leadership, starts at $6,000 a month. Every price is
+scoped in the open before work begins.</p>
+<h3 data-reveal>What can AI actually do for an Alaska business?</h3>
+<p data-reveal>The proven wins are unglamorous. A front desk that answers every call and
+books while you sleep. Assistants that know your own files cold. Paperwork engines for the
+proposals, permits and filings that never stop. Digital employees for the seasonal jobs you
+cannot fill. We tell you plainly when a plain rule beats an AI, because it often does.</p>
+<h3 data-reveal>Do you only work in Anchorage?</h3>
+<p data-reveal>No. The desk sits in Anchorage and works statewide, from the Slope to
+Southeast. Lodges, clinics, processors, Native corporations and contractors anywhere in
+Alaska, remote first and on site when it matters.</p>
+<h3 data-reveal>Do we need to be technical to work with you?</h3>
+<p data-reveal>No. That is the point. You get an embedded engineer who speaks plain English,
+shows the work, and cares about the outcome. You stay the expert on your business and we
+stay the expert on the AI.</p>
 <h2 data-reveal id="apply">See what pays</h2>
 <p class="sub" data-reveal>A few quick lines about your operation. You get a straight read
 on whether the Field Study fits, and a no costs you nothing.{talk_first}</p>
@@ -1163,12 +1344,8 @@ desk that writes the deck. Prefer email? docket@alaskaaihq.com reaches the same 
 <div class="about-line" data-reveal><p>Prices are starting points, scoped in the open before
 any work begins. The docket stays free. The deck ships daily either way.</p></div>"""
 
-    ld = {"@context": "https://schema.org", "@type": "ProfessionalService",
-          "name": "Alaska AI", "url": f"{site_url}/services/",
-          "areaServed": {"@type": "State", "name": "Alaska"},
-          "description": "AI systems built in Alaska for Alaska businesses. Digital "
-                         "employees, paperwork engines and embedded AI partnership from "
-                         "the desk behind the state's daily AI beat.",
+    ld = {"@context": "https://schema.org", **org_ld(site_url),
+          "priceRange": "From $2,500",
           "makesOffer": [
               {"@type": "Offer", "name": "The Field Study",
                "description": "Deep discovery inside your operation and across your "
@@ -1185,10 +1362,12 @@ any work begins. The docket stays free. The deck ships daily either way.</p></di
                               "monthly.",
                "priceSpecification": {"@type": "PriceSpecification", "minPrice": 6000,
                                       "priceCurrency": "USD"}}]}
-    return page("Services - Alaska AI", "AI systems built in Alaska for Alaska businesses. "
-                "Digital employees, paperwork engines and embedded AI partnership from the "
-                "desk behind the state's daily AI beat. The Field Study from $2,500.",
-                body, "../", "services", today, site_url, "services/", ld=ld)
+    return page("AI Consulting for Alaska Businesses - Alaska AI",
+                "AI consulting and builds for Alaska businesses. Voice agents, digital "
+                "employees and paperwork engines from an Anchorage desk. The Field Study "
+                "from $2,500.",
+                body, "../", "services", today, site_url, "services/", ld=ld,
+                crumbs=[("Alaska AI", ""), ("Services", "services/")])
 
 
 def services_thanks_page(today, site_url):
@@ -1216,33 +1395,68 @@ one business day. {thanks_line}</p>
 </div>"""
     return page("Application received - Alaska AI",
                 "Your Field Study application is in. You get a straight answer either way.",
-                body, "../../", "services", today, site_url, "services/thanks/")
+                body, "../../", "services", today, site_url, "services/thanks/",
+                noindex=True)
 
 
 def about_page(today, site_url):
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <h1>Built in the <em>North</em></h1>
+<p class="tag">Alaska AI is a daily publication and an AI studio in Anchorage, Alaska.
+One desk, two jobs, every fact verified to its source.</p>
 </div>
 <div class="prose" data-reveal>
+<h2>What Alaska AI is</h2>
 <p>Alaska AI is a daily publication about the biggest technology shift of our
 lifetimes, told from the only place we would tell it from. AI is arriving in
 Alaska the way pipelines and railroads once did, as land leases, gas
 contracts, utility votes and federal solicitations. Alaskans deserve to see
 it coming, in plain English, with receipts.</p>
+<p>The same desk is a working AI studio. It builds voice agents, assistants
+trained on a company's own files, paperwork engines and digital employees
+for Alaska businesses, statewide from Anchorage. That work lives on the
+<a href="../services/">services page</a>. Writing the beat every morning is
+exactly why the studio knows what actually pays.</p>
+<h2>Who runs it</h2>
+<p>Alaska AI is founded and run by Talon Sturgill in Anchorage. One desk
+reads the state's AI beat every morning, publishes the deck and the docket,
+and builds AI systems for Alaska businesses the rest of the day. In state,
+in winter, at the end of the road system like everyone else.</p>
+<h2>How the work gets verified</h2>
 <p>Every day Alaska AI works six beats across the state, from power and
 compute to policy and money to what Alaskans are actually saying. Every
-claim is verified against a fetched primary source before it appears
-anywhere, and every deck's artwork is drawn fresh for its story. The same
-desk maintains <a href="../docket/">the Alaska AI Docket</a>, a public
+number and quote is re-fetched from a primary source before it can appear
+on a slide, the docket, or this site, and each one carries its own claim
+record. Every deck's artwork is drawn fresh from code for its story. The
+same desk maintains <a href="../docket/">the Alaska AI Docket</a>, a public
 tracker of every AI infrastructure decision in the state and whether the
-public gets a say in it.</p>
-<p>Some rules never bend. Every fact carries a verified claim. No topic
-repeats. No two decks look alike.</p>
-<p>Find the decks daily on LinkedIn under Alaska AI.</p>
+public gets a say in it, published as open data.</p>
+<h2>The rules that never bend</h2>
+<p>Every fact carries a verified claim. No topic repeats. No two decks look
+alike. Honest scores, honest emails, and a plain answer when AI is not the
+right tool for the job.</p>
+<h2>Where to find us</h2>
+<p>The decks ship daily on
+<a href="https://www.linkedin.com/company/alaska-ai/">LinkedIn</a> and
+<a href="https://www.tiktok.com/@alaskaai_">TikTok</a> under Alaska AI.
+The docket and the archive live here. For the studio, start with
+<a href="../services/">services</a> or write to docket@alaskaaihq.com.</p>
 </div>"""
-    return page("About - Alaska AI", "Alaska AI is a daily publication on Alaska's AI beat, "
-                "built in the North and verified to the source.",
-                body, "../", "about", today, site_url, "about/")
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "AboutPage", "url": f"{site_url}/about/",
+         "name": "About Alaska AI",
+         "about": {"@id": org_id(site_url)}},
+        org_ld(site_url),
+        {"@type": "Person", "@id": f"{site_url}/about/#talon",
+         "name": "Talon Sturgill", "jobTitle": "Founder",
+         "worksFor": {"@id": org_id(site_url)},
+         "url": f"{site_url}/about/"}]}
+    return page("About Alaska AI - An AI Studio and Daily AI Publication in Anchorage",
+                "Alaska AI is a daily publication on Alaska's AI beat and an AI studio "
+                "in Anchorage, founded by Talon Sturgill. Every fact verified to its "
+                "source.",
+                body, "../", "about", today, site_url, "about/", ld=ld,
+                crumbs=[("Alaska AI", ""), ("About", "about/")])
 
 
 def not_found_page(today, site_url):
@@ -1259,7 +1473,7 @@ The stars will get you home.</p>
 </div>"""
     return page("Page not found - Alaska AI",
                 "That page does not exist. The stars will get you home.",
-                body, "/", "none", today, site_url, "404.html")
+                body, "/", "none", today, site_url, "404.html", noindex=True)
 
 
 def touch_icon(out):
@@ -1283,12 +1497,45 @@ def touch_icon(out):
     im.save(out / "apple-touch-icon.png", optimize=True)
 
 
-def sitemap(site_url, runs):
-    urls = ["", "docket/", "archive/", "services/", "about/"] + [f"archive/{r['date']}/" for r in runs]
-    entries = "".join(f"<url><loc>{site_url}/{u}</loc></url>" for u in urls)
+def sitemap(site_url, runs, today):
+    """Truthful lastmod only: home, docket, and archive genuinely change every
+    build (new deck, docket updates), deck pages carry their publish date, and
+    services/about omit lastmod rather than fake a daily bump. Google ignores
+    priority and changefreq, so neither is emitted."""
+    iso = today.isoformat()
+    entries = []
+    for u in ("", "docket/", "archive/", "services/", "about/"):
+        lm = f"<lastmod>{iso}</lastmod>" if u in ("", "docket/", "archive/") else ""
+        entries.append(f"<url><loc>{site_url}/{u}</loc>{lm}</url>")
+    for r in runs:
+        entries.append(f"<url><loc>{site_url}/archive/{r['date']}/</loc>"
+                       f"<lastmod>{r['date']}</lastmod></url>")
     return ('<?xml version="1.0" encoding="UTF-8"?>'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-            f"{entries}</urlset>")
+            + "".join(entries) + "</urlset>")
+
+
+def llms_txt(site_url):
+    """A curated map for LLM agents (llmstxt.org). Near-zero cost to serve;
+    answer engines mostly ignore it today, but agent tooling reads it and the
+    docket feed is exactly the kind of data an agent wants."""
+    return f"""# Alaska AI
+
+> Alaska AI is the daily publication on Alaska's AI beat and an AI studio in
+> Anchorage that builds AI systems for Alaska businesses. Every fact on the
+> site is verified against a fetched primary source.
+
+## Core pages
+
+- [AI consulting for Alaska businesses]({site_url}/services/)
+- [The Alaska AI Docket, every AI infrastructure decision in the state]({site_url}/docket/)
+- [The archive, one verified Alaska and AI story a day]({site_url}/archive/)
+- [About Alaska AI]({site_url}/about/)
+
+## Data
+
+- [The docket as open JSON]({site_url}/docket.json)
+"""
 
 
 # ---------- build ----------
@@ -1338,8 +1585,12 @@ def build(today, out_dir, site_url=None, domain=""):
     (out / "docket").mkdir(exist_ok=True)
     (out / "docket" / "docket.json").write_text(feed)
     touch_icon(out)
-    (out / "sitemap.xml").write_text(sitemap(site_url, runs))
-    (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {site_url}/sitemap.xml\n")
+    (out / "sitemap.xml").write_text(sitemap(site_url, runs, today))
+    (out / "robots.txt").write_text(
+        "User-agent: *\nAllow: /\n\n"
+        "# AI answer engines and their crawlers are welcome to read and cite this site.\n\n"
+        f"Sitemap: {site_url}/sitemap.xml\n")
+    (out / "llms.txt").write_text(llms_txt(site_url))
     (out / ".nojekyll").write_text("")
     if domain:
         (out / "CNAME").write_text(domain + "\n")
