@@ -1417,10 +1417,8 @@ exactly why the studio knows what actually pays.</p>
 <h2>Who runs it</h2>
 <p>Alaska AI is founded and run by <a href="https://www.linkedin.com/in/talonsturgill">Talon
 Sturgill</a>, born and raised in Anchorage and the lead AI engineer at Transform Labs, a
-large lab in the Lower 48 that works with enterprise clients. One desk reads the state's AI
-beat every morning, publishes the deck and the docket, and builds AI systems for Alaska
-businesses the rest of the day. Alaska AI brings that level of expertise directly to Alaska
-to drive the community forward.</p>
+large lab in the Lower 48 that works with enterprise clients. Alaska AI brings that
+expertise home to help Alaska businesses that rarely get access to it.</p>
 <h2>How the work gets verified</h2>
 <p>Every day Alaska AI works six beats across the state, from power and
 compute to policy and money to what Alaskans are actually saying. Every
