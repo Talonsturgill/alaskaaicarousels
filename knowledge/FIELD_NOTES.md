@@ -613,3 +613,17 @@ the >=50px minimum. No machine change is bounded enough for the daily budget
   copywriter emit both fields). Weakens no gate; removes a recurring manual
   step. Held this run because Phase 12's daily budget was taken by the
   copy_sync_check list-form fix.
+
+## 2026-07-19 - craft refresh (annotation hierarchy on data slides)
+
+Fresh EuroVis 2026 practitioner study on visualization annotation, useful for
+this studio's keepable data slide:
+- Attention plan, not a pile: pick ONE primary annotation, give it the strongest
+  placement and emphasis so it reads first; keep every other annotation
+  consistently secondary via lighter weight and reduced salience. Busy-ness reads
+  as amateur.
+- Annotate next to the data, not in a detached legend or keyed list. For any
+  small-multiples panel, label in place rather than off to the side.
+- LinkedIn platform side: no change from the 2026-07-18 scan (documents still the
+  highest-reach format, saves the dominant signal, 7 to 10 slides the sweet spot).
+  Logged nothing new there.
