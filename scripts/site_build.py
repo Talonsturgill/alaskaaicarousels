@@ -921,9 +921,6 @@ These rules never bend.</p>
   <div class="step" data-reveal><div class="k">02 &middot; VERIFIED</div><h3>Claims or it did not happen</h3>
   <p>Every number and quote is re-fetched from a primary source before it can appear on a slide,
   the docket, or this site.</p></div>
-  <div class="step" data-reveal><div class="k">03 &middot; DRAWN</div><h3>Art from code, daily</h3>
-  <p>Each deck's artwork is written as fresh code, seeded and reviewed pixel by pixel. No two decks
-  alike, by rule.</p></div>
 </div>"""
 
     next_line = ""
