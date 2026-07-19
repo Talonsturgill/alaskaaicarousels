@@ -1428,10 +1428,6 @@ record. Every deck's artwork is drawn fresh from code for its story. The
 same desk maintains <a href="../docket/">the Alaska AI Docket</a>, a public
 tracker of every AI infrastructure decision in the state and whether the
 public gets a say in it, published as open data.</p>
-<h2>The rules that never bend</h2>
-<p>Every fact carries a verified claim. No topic repeats. No two decks look
-alike. Honest scores, honest emails, and a plain answer when AI is not the
-right tool for the job.</p>
 <h2>Where to find us</h2>
 <p>The decks ship daily on
 <a href="https://www.linkedin.com/company/alaska-ai/">LinkedIn</a> and
