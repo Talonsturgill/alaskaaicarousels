@@ -243,6 +243,29 @@
    "instinct": "An inline <svg> appended into a positioned div carries a baseline line-box that pushes body scrollHeight past 1350 and trips render.py body_overflow (a hard fail), even with body overflow hidden. Add '#map svg { display:block }' (or display:block on any appended SVG layer) on every d3/SVG map slide.",
    "evidence": "Run 2026-07-19: the two globe slides (S1, S9) reported body_overflow=true until display:block was added to the appended svg; the demo cartography slide already had this rule and I had omitted it.",
    "confidence": 0.85
+  },
+  {
+   "id": "policy-deck-writing-surface-substrate",
+   "learned": "2026-07-20",
+   "instinct": "For a text/policy/education deck that risks flat craft, use a shared writing-surface substrate (a ruled gradebook/ledger page) plus ONE evolving object motif (a pencil) that changes STATE every slide and whose length encodes a countdown, with a single rendered object hero; it reads as one composed film, keeps the motif on every slide, and is fully offline.",
+   "evidence": "Run 12 (Written in Pencil): the gradebook-page + evolving-pencil chassis scored story-art-fusion 8 and flow SHIP sequence-reads-as-one 8.3; total 8.55. The flow-critic initially flagged the motif dropping out on the two non-pencil slides (S4/S6), fixed by adding the pencil there.",
+   "confidence": 0.7,
+   "last_confirmed": "2026-07-20"
+  },
+  {
+   "id": "dark-fixtures-on-paper-slides",
+   "learned": "2026-07-20",
+   "instinct": "On lit-cream/paper slides, brand FIXTURES that are normally gold or light (the mono counter, coords, site line) drop to ~1.5:1 and read as invisible furniture; set the counter/labels to a dark graphite or brown on paper slides and keep gold only for the deliberate accent (the Polaris icon, a seal). qa.py passes them (data-decorative) but the scorer dings legibility.",
+   "evidence": "Run 12: the S5 hero and S6 card counters rendered gold-on-cream ~1.5:1 (scorer flagged, legibility 7); darkened to graphite before ship. Machine QA never failed them.",
+   "confidence": 0.72,
+   "last_confirmed": "2026-07-20"
+  },
+  {
+   "id": "hero-object-needs-contrasting-functional-detail",
+   "learned": "2026-07-20",
+   "instinct": "An akthree object hero still reads as a monochrome gold/plastic rod unless its STORY-CRITICAL functional detail is a distinct contrasting material (a dark graphite writing tip actually contacting a drawn line), because a warm rim over a single-material barrel gilds the whole object. Give the one designated hero its key detail in a contrasting material and place it on the thing it acts on, not just good lighting.",
+   "evidence": "Run 12 S5 pencil: pixel + scorer both read it as slightly 'gold rod'; darkening the nib and adding a half-written line under the tip helped but the barrel still gilds under the rim. Logged as the artwork-craft growth edge (7).",
+   "confidence": 0.6
   }
  ]
 }

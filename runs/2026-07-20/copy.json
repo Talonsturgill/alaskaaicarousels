@@ -1,0 +1,159 @@
+{
+ "title": "Written in Pencil",
+ "caption": "A Kenai school district bought an $8,300 AI tool for its classrooms, then started writing the rules to govern it.\n\nThe tools reached Alaska schools before the policy did. The Kenai Peninsula proposal turns on two questions. Who guards student data, and who defines academic honesty when a chatbot can write the essay.\n\nThe 9 slides walk through the data guardrail, Alaska's statewide K-12 AI framework from 2025, and where the school board actually disagrees.\n\nWho should define honesty in your kid's classroom, the district or the teacher?",
+ "hashtags": [
+  "#AlaskaEducation",
+  "#AIinSchools",
+  "#EdTechPolicy"
+ ],
+ "post_copy": "A Kenai school district bought an $8,300 AI tool for its classrooms, then started writing the rules to govern it.\n\nThe tools reached Alaska schools before the policy did. The Kenai Peninsula proposal turns on two questions. Who guards student data, and who defines academic honesty when a chatbot can write the essay.\n\nThe 9 slides walk through the data guardrail, Alaska's statewide K-12 AI framework from 2025, and where the school board actually disagrees.\n\nWho should define honesty in your kid's classroom, the district or the teacher?\n\n#AlaskaEducation #AIinSchools #EdTechPolicy",
+ "first_comment": "Sources for this post\n\nKBBI/KDLL public radio, proposed KPBSD AI policies targeting academic honesty and student privacy (July 8 2026) https://www.kbbi.org/2026-07-08/proposed-school-district-ai-policies-target-academic-honesty-student-privacy\n\nAlaska DEED, district AI guidance covering the 6-step process, FERPA and COPPA vetting, and the 6 to 8 week pilot window https://education.alaska.gov/artificial-intelligence/district\n\nEdTech Innovation Hub, Alaska becomes the 32nd US state to release a K-12 AI framework https://www.edtechinnovationhub.com/news/alaska-becomes-32nd-us-state-to-release-k-12-ai-education-framework\n\nWorth flagging that the Alaska DEED framework is 2025 context, released last October, not breaking news. The new development is the Kenai proposal.\n\nAdd anything I missed in the replies.",
+ "aftercare": [
+  "Post Tuesday to Thursday, 8 to 11am Alaska time, for the strongest reach; you own the final cadence.",
+  "Upload as a PDF document post and set the document title to Written in Pencil so the deck renders in the LinkedIn viewer.",
+  "Paste the first comment source block within 60 seconds of posting so links land before early engagement.",
+  "Reply to every comment in the first 60 to 90 minutes while the post is live.",
+  "Consider cross-posting from your personal profile to widen the initial reach.",
+  "Check saves and comments after 48 hours and note what landed for the next run."
+ ],
+ "slides": {
+  "slide-01": {
+   "kicker": "ALASKA CLASSROOMS  2026",
+   "headline": "AI is already\nin class. The rulebook\nis still in pencil.",
+   "sub": "An $8,300 tool is on the desk. The policy is a draft.",
+   "wordmark": "ALASKA.AI",
+   "counter": "01 / 09",
+   "coords": "60.55 N  151.26 W",
+   "claim_ids": [
+    "s1",
+    "s2"
+   ]
+  },
+  "slide-02": {
+   "kicker": "WHAT THE DISTRICT ALREADY SPENT",
+   "monument": "$8,300",
+   "headline": "The tool is paid for.\nThe rulebook is a draft.",
+   "body": "Kenai's district has spent $8,300 to date on a three year MagicSchool subscription for students and staff. The policy meant to govern it is still a draft.",
+   "annotation": "TOOL: BOUGHT   RULES: DRAFT",
+   "counter": "02 / 09",
+   "claim_ids": [
+    "s1",
+    "s2"
+   ]
+  },
+  "slide-03": {
+   "kicker": "THE PROPOSAL COMES DOWN TO TWO QUESTIONS",
+   "headline": "Two questions decide it.",
+   "left_label": "WHO DEFINES HONESTY",
+   "left_body": "The policy would define academic honesty and set consequences for misusing AI, like plagiarism.",
+   "right_label": "WHO GUARDS THE DATA",
+   "right_body": "And it would bar teachers from feeding student data into AI tools the district has not approved.",
+   "counter": "03 / 09",
+   "claim_ids": [
+    "s4",
+    "s3"
+   ]
+  },
+  "slide-04": {
+   "kicker": "THE LINE DRAWN FIRST",
+   "headline": "Student data is\nthe hard boundary.",
+   "body": "Under the proposal, teachers could not feed student data into AI tools the district has not approved. Alaska's vetting rules require FERPA and COPPA, the federal student privacy laws.",
+   "labels": [
+    "APPROVED",
+    "NOT APPROVED",
+    "FERPA",
+    "COPPA"
+   ],
+   "counter": "04 / 09",
+   "claim_ids": [
+    "s3",
+    "s13"
+   ]
+  },
+  "slide-05": {
+   "kicker": "WHY WRITE IT IN PENCIL",
+   "headline": "Write it in pencil,\nnot ink.",
+   "quote": "\"If you are putting such strict parameters, it may really limit where we're going to be continuously changing the language.\"",
+   "attribution": "KARI DENDURENT, KPBSD ASSISTANT SUPERINTENDENT",
+   "counter": "05 / 09",
+   "claim_ids": [
+    "s8"
+   ]
+  },
+  "slide-06": {
+   "kicker": "ALASKA DEED  OCT 2025   CONTEXT, NOT NEWS",
+   "headline": "Alaska already has a playbook.",
+   "stat_header": "32ND OF 50 STATES",
+   "left_column_head": "SEVEN PRINCIPLES",
+   "left_items": [
+    "Human-centered design",
+    "Fair access",
+    "Transparency",
+    "Oversight",
+    "Security",
+    "Ethical use",
+    "Cultural responsiveness"
+   ],
+   "right_column_head": "SIX STEPS TO A POLICY",
+   "right_items": [
+    "Form a team",
+    "Define a vision",
+    "Vetting and procurement",
+    "AI-literacy training",
+    "Integrate locally",
+    "Continuous review"
+   ],
+   "seals": [
+    "FERPA + COPPA",
+    "6 TO 8 WEEK PILOT"
+   ],
+   "caret_note": "Augments human judgment, does not replace it.",
+   "annotation": "A PROCESS, NOT A BAN.",
+   "counter": "06 / 09",
+   "claim_ids": [
+    "s9",
+    "s10",
+    "s11",
+    "s12",
+    "s13",
+    "s15"
+   ]
+  },
+  "slide-07": {
+   "kicker": "THE REAL DISAGREEMENT",
+   "headline": "Not whether. How.",
+   "quote_a": "\"AI is here ... it's really, really important right now that we carefully examine how we use it.\"",
+   "attribution_a": "MICA VANBUSKIRK, KPBSD BOARD",
+   "quote_b": "\"Let teachers say, 'This is acceptable in this situation,' 'It's not acceptable in this situation.'\"",
+   "attribution_b": "VANBUSKIRK, ON TEACHER DISCRETION",
+   "counter": "07 / 09",
+   "claim_ids": [
+    "s7b",
+    "s7"
+   ]
+  },
+  "slide-08": {
+   "kicker": "THE CLOCK",
+   "headline": "The deadline\nis fall.",
+   "body": "Kenai aims to have its AI rules in place by the start of the new school year. Its committee began this work in 2025, building on the state framework.",
+   "district_strip": "AND NOT ALONE:  FAIRBANKS  MAT-SU  WRANGELL  ANCHORAGE",
+   "counter": "08 / 09",
+   "claim_ids": [
+    "s6",
+    "s5",
+    "s16"
+   ]
+  },
+  "slide-09": {
+   "eyebrow": "YOUR MOVE",
+   "ask": "Who should define honesty\nin your kid's classroom,\nthe district or the teacher?",
+   "close_line": "The tools are here. Write the rules in pencil.",
+   "source_note": "SOURCES IN COMMENTS",
+   "wordmark": "ALASKA.AI",
+   "site": "alaskaaihq.com",
+   "counter": "09 / 09",
+   "coords": "60.55 N  151.26 W",
+   "claim_ids": []
+  }
+ }
+}

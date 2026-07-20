@@ -1,0 +1,23 @@
+{
+ "run_date": "2026-07-20",
+ "carousel_no": 12,
+ "phases": {
+  "wake": "done: out/2026-07-20/plan.md, run_state.json",
+  "craft_refresh": "done: FIELD_NOTES 2026-07-20 note (reconfirm + subtraction handle)",
+  "research": "done: out/2026-07-20/scouts/beat_{A,B,C,D,E,F}.json",
+  "claims": "done: out/2026-07-20/claims.json (16 verified claims, schools cluster)",
+  "docket": "done: STAK re-verified 07-20 note; AIDEA confirmed open to Aug19; no new item (edu story not infra)",
+  "selection": "done: out/2026-07-20/selection.md (AI in AK classrooms; runner-up bycatch)",
+  "directors_room": "done: 3 treatments synthesized -> out/2026-07-20/storyboard.md (Written in Pencil)",
+  "copy": "done: out/2026-07-20/copy.json + caption.txt (caption_check PASS, style_lint clean)",
+  "art_build": "done: 9 slides render OK, qa PASS (WARN), vector PDF 2.13MB; S5 akthree hero rendered",
+  "pixel_review": "done: 5 critics, all fixes applied (S5/S6 majors resolved), re-render qa PASS; copy_sync_check PASS",
+  "flow_review": "done: flow-critic SHIP 8.3, sequence reads as one; 3 continuity fixes applied (S4/S6/S9 pencil)",
+  "assemble": "done: out/2026-07-20/final/carousel.pdf vector 2.2MB, 9 slides, contact_sheet+thumbs",
+  "scoring": "done: score_report.json 8.55 vs 8.3, no hard fails, ships",
+  "ship": "in_progress",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ }
+}

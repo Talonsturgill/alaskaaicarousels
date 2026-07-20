@@ -7,6 +7,45 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-07-20 - run retro (Carousel No. 12, "Written in Pencil", 8.55)
+
+- FULL-STUDIO RUN, no usage-limit degradation. 6 scouts + fact-checker + 3 treatment-directors +
+  copywriter + 5 pixel critics + flow-critic + scorer all ran. Shipped 8.55 vs 8.3, vector PDF 2.2MB,
+  9 slides, zero hard fails.
+- STORY. The first education deck of the series: the rules for AI in Alaska's classrooms are being
+  written now. In-window anchor = Kenai Peninsula Borough School District's proposed AI policy (KBBI,
+  July 8), which already spent $8,300 on MagicSchool before the governing policy exists. Deliberate
+  net-new pivot away from the fatigued data-center/power beat (Nos 1,4,6,10) and the covered
+  salmon/volcano/wildfire/Navy/minerals/SAR/permafrost topics. The DEED 2025 K-12 AI framework (32nd
+  state, 7 principles, 6-step process) is the keepable backbone, stamped "CONTEXT, NOT NEWS."
+- FACT-CHECK KILLED A TEMPTING LEAD. The in-window Space Force GBRD radar award ($423M, 2 Alaska
+  radars, July 17) looked strong but the fact-checker confirmed NONE of the primary/trade sources say
+  AI or ML; it is analog-to-digital radar digitization. Building an "AI" deck on it would have
+  fabricated the premise. Dropped. (NSF minerals in-window = hard dedupe with No.8; STAK/AIDEA =
+  fatigue.) Runner-up NOAA YOLOv11 salmon-bycatch (fully verified, primary NOAA) passed over for
+  salmon+CV adjacency to No.2 (11 days prior) + background date.
+- CRAFT. New chassis: a gradebook-page editorial substrate + an evolving pencil motif whose length
+  encodes the shrinking runway to the fall deadline, with ONE rendered akthree pencil-on-lit-gradebook
+  still-life as the depth hero and 8 flat editorial slides (argued). Diverges from all last-4 heroes.
+  Flow-critic SHIP 8.3, sequence-reads-as-one. New technique + 3 instincts logged.
+- PIXEL/FLOW CATCHES machine QA missed: S5 headline "not ink." washed out on the lit cream page
+  (fixed with a DOM Deep-Sea-Scrim, not the fading gradient); S5 gradebook ruled lines + half-written
+  line were absent and the tip read gold (added lines, darkened the nib); S6 headline overprinted the
+  ISOTYPE grid (SVG marks are invisible to qa.py's text-only collision check) and a big dead mid-card
+  band (relocated the 32/50 strip down, freed the headline full width); two bodies (S2/S4) wrapped to
+  4 lines; the pencil motif dropped out on S4/S6 (flow-critic; added the pencil to both). All fixed
+  and re-verified.
+- SCORER (8.55). Weakest = artwork craft (7): one moderately-rendered hero carrying 8 flat slides,
+  and the pencil still reads a touch like a gold rod without a fully distinct graphite writing tip
+  (logged growth edge). Legibility 7: low-contrast accent furniture (gold counter on paper ~1.5:1,
+  red-on-cream) darkened before ship. Alaska authenticity 9.
+- DOCKET: no new AI-infrastructure decision item (an education-policy story is not infrastructure).
+  Re-verified STAK (comment window closed July 17, DNR weighing) and AIDEA Houston (open to Aug 19);
+  both accurate. docket_alerts result noted at ship.
+- NEXT: if KPBSD adopts the policy at the start of the school year, that is a clean UPDATE angle. The
+  Sealaska Tlingit AI translator and the ANLC ChatGPT-DEI grant story remain strong untouched
+  language-AI angles once corroborated with a second readable source.
+
 ## 2026-07-20 - craft refresh (run 12 pre-research pass)
 
 - Platform numbers RECONFIRMED, nothing to change: document/carousel posts remain
