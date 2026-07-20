@@ -1,0 +1,103 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'TOOL: BOUGHT RULES: DRAFT' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'THE PROPOSAL COMES DOWN TO TWO QUESTIONS' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'THE LINE DRAWN FIRST' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOT APPROVED' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'APPROVED' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'FERPA' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'COPPA' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'WHY WRITE IT IN PENCIL' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'KARI DENDURENT, KPBSD ASSISTANT SUPERINTENDENT' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA DEED OCT 2025 CONTEXT, NOT NEWS' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SEVEN PRINCIPLES' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SIX STEPS TO A POLICY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '1' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Form a team' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '2' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Define a vision' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '3' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Vetting and procurement' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '4' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AI-literacy training' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '5' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Integrate locally' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '6' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Continuous review' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '32ND OF 50 STATES TO PUBLISH A K-12 AI FRAMEWORK' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'FERPA + COPPA' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '6 TO 8 WEEK PILOT' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'SIX STEPS TO A POLICY' at 580,338 456x29 (margin 80px)",
+        "outside safe zone: '06 / 09' at 899,1303 101x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'THE REAL DISAGREEMENT' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'MICA VANBUSKIRK, KPBSD BOARD' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'VANBUSKIRK, ON TEACHER DISCRETION' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "low contrast ~2.9 on '\"' (est.)",
+        "low contrast ~2.9 on '\"' (est.)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'THE CLOCK' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AND NOT ALONE:' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'FAIRBANKS' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'MAT-SU' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WRANGELL' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ANCHORAGE' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ANCHORAGE' at 863,1088 157x49 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'SOURCES IN COMMENTS' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'alaskaaihq.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 43,
+  "verdict": "WARN"
+}

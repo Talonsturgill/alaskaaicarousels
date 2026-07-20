@@ -1,0 +1,27 @@
+{
+ "weighted_total": 8.55, "ship_threshold": 8.3, "threshold": 8.3, "ships": true, "ship": true,
+ "criteria": [
+  {"name": "Thumb-stop cover", "score": 7, "weight": 0.14},
+  {"name": "Story arc & swipe momentum", "score": 8, "weight": 0.14},
+  {"name": "Artwork craft & genuine detail", "score": 7, "weight": 0.16},
+  {"name": "Story-art fusion", "score": 8, "weight": 0.14},
+  {"name": "Alaska authenticity & local relevance", "score": 9, "weight": 0.12},
+  {"name": "Insight density & factual weight", "score": 8, "weight": 0.10},
+  {"name": "Variety vs ledger", "score": 8, "weight": 0.08},
+  {"name": "Legibility & platform fitness", "score": 7, "weight": 0.07},
+  {"name": "Copy: voice & hook", "score": 8, "weight": 0.05},
+  {"name": "Deliverable completeness", "score": 8, "weight": 0.10}
+ ],
+ "any_hard_fail": false,
+ "weakest_criteria": ["Artwork craft & genuine detail", "Legibility & platform fitness", "Thumb-stop cover"],
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Give two or three of the flat argument slides genuine layered depth/light (or sharpen the hero so a distinct graphite tip visibly rests writing on the line) so the deck's craft is not carried by a single moderately-rendered hero.",
+ "shortfalls_for_email": [
+  "Low-contrast counter on the lit-paper hero (S5) was darkened to graphite before ship.",
+  "S6 red annotation and the CONTEXT-NOT-NEWS stamp were darkened for legibility on paper.",
+  "Many kickers/labels render 18-23px (marked data-decorative); acceptable but recurring.",
+  "8 of 9 slides are flat editorial (deliberately argued) with one rendered pencil hero; the hero reads slightly like a gold rod without a fully distinct graphite writing tip (logged growth edge).",
+  "The DEED framework is Oct-2025 context, stamped CONTEXT, NOT NEWS; the caption frames the Kenai proposal as the new development."
+ ],
+ "verdict_note": "Weighted 8.55, no hard fails, clears 8.3 (revision_rounds=2). Ships. Ceiling held by flat-heavy artwork and low-contrast accent furniture, neither gate-level."
+}

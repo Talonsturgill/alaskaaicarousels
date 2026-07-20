@@ -487,6 +487,45 @@
    "headline": "Reading the Frozen Ground at the Top of America",
    "sources_lead": "https://phys.org/news/2026-06-digital-twin-alaska-permafrost-real.html",
    "outcome_notes": "Score 8.81 (threshold 8.3), no hard fails. Chosen over an in-window STAK data-center re-touch (11 days after No.1, would be the 5th data-center deck) to protect feed variety. Single-source (Phys.org; JGR paywalled/not independently checked) framed honestly on S8 and in the first comment. Story ~5 weeks old, framed as recent research not breaking news."
+  },
+  {
+   "run_date": "2026-07-20",
+   "carousel_no": 12,
+   "topic": "Alaska schools writing the rules for AI in the classroom, anchored by Kenai Peninsula Borough School District's proposed AI policy",
+   "angle": "The tools arrived before the rules: KPBSD already spent $8,300 on a MagicSchool subscription while its governing AI policy is still a draft; the two real questions are who defines academic honesty and who guards student data, and the smart move is to write the policy in pencil (revisable) not ink. Framed against Alaska's 2025 DEED K-12 AI framework (32nd state, 7 principles, 6-step process) as labeled context.",
+   "entities": [
+    "Kenai Peninsula Borough School District",
+    "KPBSD",
+    "MagicSchool",
+    "Alaska DEED",
+    "Kari Dendurent",
+    "Mica VanBuskirk",
+    "FERPA",
+    "COPPA",
+    "Fairbanks",
+    "Mat-Su",
+    "Wrangell",
+    "Anchorage"
+   ],
+   "keywords": [
+    "AI in education",
+    "K-12",
+    "academic honesty",
+    "student data privacy",
+    "school policy",
+    "MagicSchool",
+    "DEED framework",
+    "classroom AI",
+    "FERPA",
+    "COPPA"
+   ],
+   "headline": "AI is already in class. The rulebook is still in pencil.",
+   "sources_lead": [
+    "https://www.kbbi.org/2026-07-08/proposed-school-district-ai-policies-target-academic-honesty-student-privacy",
+    "https://education.alaska.gov/artificial-intelligence/district",
+    "https://www.edtechinnovationhub.com/news/alaska-becomes-32nd-us-state-to-release-k-12-ai-education-framework"
+   ],
+   "outcome_notes": ""
   }
  ]
 }
