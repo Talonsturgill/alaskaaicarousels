@@ -18,17 +18,25 @@ Produce:
    - Closing line: a real, debatable question tied to the deck's tension.
    - Then exactly 3 niche hashtags on their own line.
    Voice: analytical, position-taking, plain English, grade 8-10. No em/en
-   dashes, straight quotes, no banned phrases, no links, no "follow us".
+   dashes, NO COLONS EVER (clock times excepted; restructure the sentence
+   instead), no semicolons, straight quotes, no banned phrases, no links,
+   no "follow us".
    NEVER a sources list, source citations, or URLs anywhere in the post
    copy; sources exist ONLY in the first-comment block (rule 2), and
    caption_check hard-fails a caption that carries them.
    The caption teases; the deck delivers. Never duplicate slide text.
 2. **First-comment source block** — paste-ready:
-   "Sources:" then one line per source: outlet, headline fragment, URL.
+   A colon-free header line ("Sources, primary first") then one line per
+   source (outlet, headline fragment, full raw URL).
+   Every line carries its FULL RAW URL as plain text (the maintainer
+   pastes this into LinkedIn; hyperlink-only text loses the link).
    Order: primary first. Then ONE light site line, varied daily, pointing
    at https://alaskaaihq.com (e.g. "Every decision we track, with live
    deadlines, lives at alaskaaihq.com" energy; never salesy, never more
    than one line). Plus one line inviting readers to add context.
+   If the deck ships with music or any produced media, its credits are
+   their OWN paste-ready comment block (plain text, raw URLs where one
+   exists) — NEVER in the post copy.
 3. **Document title** — ≤60 chars, specific, title-cased, no clickbait.
 4. **Slide copy polish** — review every storyboard string against voice
    rules and word budgets (25-50 words/slide, headlines ≤3 sense-broken

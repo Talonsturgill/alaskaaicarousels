@@ -77,15 +77,17 @@ ul.check{padding-left:20px;font-size:14px;} ul.check li{margin:5px 0;}
 import re as _re
 
 _POST_URL = _re.compile(r"https?://|doi\.org|www\.", _re.I)
-_SRC_HEAD = _re.compile(r"(?i)^\s*sources?\b\s*($|[:,]|for\b|below\b|in\b)")
+_SRC_HEAD = _re.compile(r"(?i)^\s*(sources?|credits?|music|audio|soundtrack|sound|track)\b"
+                        r"\s*($|[:,]|for\b|below\b|in\b|by\b|courtesy\b|credits?\b)")
 
 
 def _strip_sources_from_post(text):
-    """The post copy NEVER carries sources; they live in the first comment
-    only (maintainer rule, 2026-07-21, after a delivered draft showed them in
-    both places). Last-mile guard: drop any sources block and any URL-bearing
-    line from the paste-ready post, whatever upstream produced. Hashtag and
-    body lines pass through untouched."""
+    """The post copy NEVER carries sources or credits (music, audio, any
+    production credit); those live in the paste-ready comment blocks only
+    (maintainer rule, 2026-07-21, after a delivered draft showed both in the
+    post above the hashtags). Last-mile guard: drop any sources or credits
+    block and any URL-bearing line from the paste-ready post, whatever
+    upstream produced. Hashtag and body lines pass through untouched."""
     out, dropping, dropped = [], False, 0
     for line in text.split("\n"):
         s = line.strip()
@@ -101,8 +103,8 @@ def _strip_sources_from_post(text):
             continue
         out.append(line)
     if dropped:
-        print(f"gmail_draft: stripped {dropped} source/URL line(s) from the post copy "
-              "(sources belong ONLY in the first comment)")
+        print(f"gmail_draft: stripped {dropped} source/credit/URL line(s) from the post "
+              "copy (sources and credits belong ONLY in the comment paste blocks)")
     return "\n".join(out).strip()
 
 

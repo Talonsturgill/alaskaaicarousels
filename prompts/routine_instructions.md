@@ -236,11 +236,13 @@ slide-copy corrections back into the storyboard. Write the post copy to
 If FAIL: fix (yourself or via one more copywriter round) and re-lint
 until PASS. Save the final copywriter JSON to `out/<date>/copy.json`.
 HARD RULE (2026-07-21): the post copy NEVER contains a sources list,
-source citations, or URLs. Sources live ONLY in the first-comment block.
-This holds for `caption.txt`, `post_copy`, and any post text assembled
-later in the run (the draft step also strips leaks as a last resort, but
-never rely on it). caption_check now hard-fails a caption that carries a
-sources block.
+source citations, music or audio credits, credits of any kind, or URLs.
+All of that lives ONLY in the paste-ready comment blocks (sources in the
+first comment, media credits in their own block). This holds for
+`caption.txt`, `post_copy`, and any post text assembled later in the run
+(the draft step also strips leaks as a last resort, but never rely on
+it). caption_check hard-fails a caption that carries a sources or
+credits block.
 Then pre-flight the house prose-colon rule the Phase 11 ship gate enforces,
 so it never blocks at ship: `python scripts/style_lint.py --file
 out/<date>/copy.json --json-field first_comment` and the same on any other
@@ -464,6 +466,22 @@ address, html_body). Save the returned draft id to
 FALLBACK if Gmail MCP is unavailable: commit gmail_payload.json under
 runs/<date>/ and make the run summary VERY loud about where the payload
 lives and what to do with it.
+
+THE EMAIL BODY IS THE SCRIPT'S OUTPUT, VERBATIM (hard rule, 2026-07-21,
+after a delivered draft drifted from the script and broke the paste
+contract). Never hand-compose, restyle, or "improve" the draft body, and
+never re-create the draft with a different body after the script ran. The
+paste-ready blocks are a copy/paste contract with the maintainer:
+- The POST block contains ONLY the hook, body, closing question, and
+  hashtags. No sources, no music or production credits, no URLs, nothing
+  else. The maintainer selects it and pastes it whole.
+- The FIRST-COMMENT block is PLAIN TEXT, one source per line, each line
+  carrying its full raw URL visibly. Never hyperlink-only text, the URLs
+  must survive a copy/paste into LinkedIn.
+- If the deck ships with music or any produced media, its credits are
+  their OWN plain-text paste block labeled for the comments, with raw
+  URLs where a URL exists, never in the post block and never
+  hyperlink-only.
 
 ## PHASE 14 — RETRO
 

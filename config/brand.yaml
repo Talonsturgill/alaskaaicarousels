@@ -22,7 +22,8 @@ brand:
       - "Name specific entities, numbers, dates, agencies, bases, regions, dollar amounts."
       - "End the post with a real, debatable question to readers."
       - "Plain English. Complex ideas in simple sentences. Grade 8-10 reading level."
-      - "Never use em dashes or en dashes, ever, in post copy OR on-slide text. Write ranges as 'X to Y'. For a pause use a comma, a period, parentheses, or a colon. Straight quotes only."
+      - "Never use em dashes or en dashes, ever, in post copy OR on-slide text. Write ranges as 'X to Y'. Straight quotes only."
+      - "NEVER use a colon, ever, in post copy or on-slide text (maintainer rule, 2026-07-21). For a pause use a comma, a period, or parentheses. Restructure the sentence instead of reaching for a colon. Clock times like 4:30 are the only exception."
       - "Cite the source of a claim inline when it matters ('per the RCA filing', 'NOAA data show')."
     dont:
       - "Don't sign off with 'Follow Alaska.Ai'. The close slide's single ask handles it."
@@ -92,6 +93,7 @@ visual:
     supporting_palettes_rotate: "from the story's material world; see DESIGN_DOCTRINE §3"
   on_slide_text_rules:
     - "No em dashes or en dashes in ANY on-slide string. Zero exceptions."
+    - "No colons in any on-slide string (clock times excepted). Restructure instead."
     - "Straight quotes. Tabular numerals for data. Units spaced (43 MW, not 43MW)."
     - "No emojis, no hashtags on slides."
     - "Every factual on-slide number/claim carries a claim-id in the dossier."
