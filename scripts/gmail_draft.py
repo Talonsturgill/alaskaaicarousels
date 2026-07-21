@@ -74,6 +74,40 @@ ul.check{padding-left:20px;font-size:14px;} ul.check li{margin:5px 0;}
 """
 
 
+import re as _re
+
+_POST_URL = _re.compile(r"https?://|doi\.org|www\.", _re.I)
+_SRC_HEAD = _re.compile(r"(?i)^\s*(sources?|credits?|music|audio|soundtrack|sound|track)\b"
+                        r"\s*($|[:,]|for\b|below\b|in\b|by\b|courtesy\b|credits?\b)")
+
+
+def _strip_sources_from_post(text):
+    """The post copy NEVER carries sources or credits (music, audio, any
+    production credit); those live in the paste-ready comment blocks only
+    (maintainer rule, 2026-07-21, after a delivered draft showed both in the
+    post above the hashtags). Last-mile guard: drop any sources or credits
+    block and any URL-bearing line from the paste-ready post, whatever
+    upstream produced. Hashtag and body lines pass through untouched."""
+    out, dropping, dropped = [], False, 0
+    for line in text.split("\n"):
+        s = line.strip()
+        if _SRC_HEAD.match(s):
+            dropping, dropped = True, dropped + 1
+            continue
+        if dropping and (not s or _POST_URL.search(s) or s[:1] in "-*"):
+            dropped += bool(s)
+            continue
+        dropping = False
+        if _POST_URL.search(s):
+            dropped += 1
+            continue
+        out.append(line)
+    if dropped:
+        print(f"gmail_draft: stripped {dropped} source/credit/URL line(s) from the post "
+              "copy (sources and credits belong ONLY in the comment paste blocks)")
+    return "\n".join(out).strip()
+
+
 def preview_b64(png_path, width=480, quality=80):
     im = Image.open(png_path).convert("RGB")
     h = int(im.height * width / im.width)
@@ -182,7 +216,7 @@ def main():
     # post_copy -> caption fallback: the copywriter/Phase 6 emit 'caption' and
     # often no 'post_copy'; without this the paste-ready post block renders empty
     # (recurring gap, 2026-07-17/18/19). Never mutates copy.json.
-    post_copy_text = copy.get("post_copy") or copy.get("caption", "")
+    post_copy_text = _strip_sources_from_post(copy.get("post_copy") or copy.get("caption", ""))
     # aftercare -> synthesized default when the copywriter omits it, so the
     # "where reach is won" block is never empty.
     aftercare_items = copy.get("aftercare") or DEFAULT_AFTERCARE

@@ -76,6 +76,21 @@ def lint(text):
     if URLISH.search(t):
         fails.append("LINKS: URL-like string in body (sources go in first comment)")
 
+    # Sources and credits (music, audio, any production credit) belong ONLY
+    # in the paste-ready comment blocks, never in the post (maintainer rule,
+    # 2026-07-21: a delivered draft carried sources AND music credits in the
+    # post above the hashtags as well as in their own sections).
+    if re.search(r"(?im)^\s*(sources?|credits?|music|audio|soundtrack|sound|track)\b"
+                 r"\s*($|[:,]|for\b|below\b|in\b|by\b|courtesy\b|credits?\b)", t):
+        fails.append("SOURCES/CREDITS: sources or credits block in the post copy; "
+                     "they go ONLY in the comment paste blocks")
+
+    # colons are banned in the caption, ever (maintainer rule, 2026-07-21;
+    # brand.yaml previously allowed them and captions kept shipping with
+    # them). Clock times like 4:30 are the only pass.
+    if ":" in re.sub(r"\d{1,2}:\d{2}", " ", t):
+        fails.append("PUNCT: colon present (never use colons; rewrite the sentence)")
+
     # punctuation & characters
     for ch, name in BANNED_PUNCT.items():
         if ch in t:
