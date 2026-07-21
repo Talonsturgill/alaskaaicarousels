@@ -152,7 +152,7 @@ def flag_sky():
 
 def nav(prefix, active):
     links = [("", "HOME"), ("docket/", "THE DOCKET"),
-             ("archive/", "ARCHIVE"), ("services/", "SERVICES"),
+             ("archive/", "ARTICLES"), ("services/", "SERVICES"),
              ("about/", "ABOUT")]
     on = ' class="on"'
     a = "".join(
@@ -184,7 +184,7 @@ def footer(prefix, today):
   <div class="foot-brand">{db.POLARIS}<span>ALASKA.AI</span></div>
   <div class="foot-links">
     <a href="{prefix}docket/">THE DOCKET</a>
-    <a href="{prefix}archive/">ARCHIVE</a>
+    <a href="{prefix}archive/">ARTICLES</a>
     <a href="{prefix}services/">SERVICES</a>
     <a href="{prefix}about/">ABOUT</a>
     <a href="{prefix}docket.json">DATA</a>
@@ -1012,16 +1012,16 @@ def archive_page(today, site_url, runs):
   <div class="who">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div></div>
 </a>""" for r in runs)
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
-<h1>The <em>archive</em></h1>
+<h1>The <em>articles</em></h1>
 <p class="tag">One verified Alaska and AI story at a time. Newest first.</p>
 </div>
 <h2 class="vh">Every deck</h2>
 <div class="deckgrid" style="margin-top:44px">{decks}</div>"""
-    return page("The Alaska AI Archive - Daily Verified Alaska and AI Stories",
+    return page("Alaska AI Articles - Daily Verified Alaska and AI Stories",
                 "Every carousel Alaska AI has published. One verified story a day on "
                 "Alaska and AI, drawn as bespoke data art.",
-                body, "../", "archive", today, site_url, "archive/",
-                crumbs=[("Alaska AI", ""), ("Archive", "archive/")])
+                body, "../", "articles", today, site_url, "archive/",
+                crumbs=[("Alaska AI", ""), ("Articles", "archive/")])
 
 
 def sources_text(first_comment):
@@ -1099,9 +1099,9 @@ def deck_page(today, site_url, r):
           "publisher": {"@id": org_id(site_url)},
           "author": {"@id": org_id(site_url)}}
     return page(f"{r['title']} - Alaska AI", (r.get("summary") or r["hook"])[:155],
-                body, "../../", "archive", today, site_url, f"archive/{r['date']}/",
+                body, "../../", "articles", today, site_url, f"archive/{r['date']}/",
                 og_image=f"{RAW}/runs/{r['date']}/slide-01.png", og_size=(1080, 1350), ld=ld,
-                crumbs=[("Alaska AI", ""), ("Archive", "archive/"),
+                crumbs=[("Alaska AI", ""), ("Articles", "archive/"),
                         (r["title"], f"archive/{r['date']}/")])
 
 
@@ -1431,7 +1431,7 @@ public gets a say in it, published as open data.</p>
 <p>The decks ship daily on
 <a href="https://www.linkedin.com/company/alaska-ai/">LinkedIn</a> and
 <a href="https://www.tiktok.com/@alaskaai_">TikTok</a> under Alaska AI.
-The docket and the archive live here. For the studio, start with
+The docket and the articles live here. For the studio, start with
 <a href="../services/">services</a> or write to docket@alaskaaihq.com.</p>
 </div>"""
     ld = {"@context": "https://schema.org", "@graph": [
@@ -1524,7 +1524,7 @@ def llms_txt(site_url):
 
 - [AI consulting for Alaska businesses]({site_url}/services/)
 - [The Alaska AI Docket, every AI infrastructure decision in the state]({site_url}/docket/)
-- [The archive, one verified Alaska and AI story a day]({site_url}/archive/)
+- [Articles, one verified Alaska and AI story a day]({site_url}/archive/)
 - [About Alaska AI]({site_url}/about/)
 
 ## Data
