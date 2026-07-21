@@ -378,6 +378,20 @@
    "rollback": "revert the upgrade(2026-07-20) commit (gmail_draft.py returns to score.get('ship',False) / score.get('threshold','?') / score.get('weakest_criterion','?') with no aliasing)",
    "commit": "pending upgrade(2026-07-20) commit (showrunner stages this set)",
    "commit_sha": "dd9ebd6b71c06875d7e87b144ff24ce9d933851b"
+  },
+  {
+   "run_date": "2026-07-21",
+   "kind": "fix",
+   "area": "engine",
+   "change": "AKT.snapshot (the akthree black-frame sentinel) gains a second, purely-additive COVERAGE accept path: after the historic 24-sample mean/variance read it does one full-buffer readPixels and counts strided lit pixels (luminance > litFloor=12), and returns ok=true if EITHER the mean/variance path passes OR the lit-pixel count clears LIT_MIN (max(48, 0.08% of samples)). It now returns {ok, variance, litCount} and accepts opts {litFloor, litMin, stride}. This fixes the silent false-fail where an object hero that fills only part of the frame over a transparent/dark empty background read mean/variance ~0 at the 24 sparse points and was wrongly judged a dead GL frame, forcing the flat Canvas fallback. The dead-canvas contract is preserved: a genuinely black/empty frame has litCount 0 AND fails mean/variance, so it still returns ok=false.",
+   "trigger": "Run 2026-07-21 primary reactive scar (chronic flat-hero / artwork-craft=7): S6's akthree GPU beluga composited over a transparent background as a subject filling under ~half the frame; the sentinel's 24 random samples mostly hit empty pixels so mean/variance read ~0 and .ok returned false, silently forcing the designed Canvas fallback. The Canvas beluga shipped and reads flat, capping artwork-craft at 7. The sentinel could not distinguish a real minority-coverage subject from a dead frame.",
+   "files": [
+    "assets/js/akthree.js",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "Defect reconstruction with two headless WebGL slides that surface shot.ok/litCount/variance into the DOM (read back from render_report.json text_nodes). (a) REAL SUBJECT: a lit hero filling only a compact center region that the 24 deterministic sample points all miss (nearest point ~182 buffer-px from center) -- PRE-FIX ok=0 var=0.00 (false-fail, indistinguishable from dead), POST-FIX ok=1 litCount=462 var=0.00 (LIT_MIN=73 at 91260 samples, 6.3x margin). (b) DEAD FRAME: empty scene, black clear, nothing drawn -- ok=0 litCount=0 both pre and post (contract preserved). Regression: examples/proof-3d (akthree slides 01/03) render OK + qa PASS 0/0 unchanged; examples/demo-deck render OK + qa WARN (known slide-03 busy-art warn) unchanged; this run's out/2026-07-21/slides render OK + qa PASS 0/0 unchanged. node --check akthree.js OK. No gate/threshold weakened (accept path is purely additive; a dead frame still fails); no new runtime dependency (uses the committed three.module.min.js + WebGL readPixels already in use); shipped slides not modified (all tests in scratch dirs).",
+   "rollback": "revert the upgrade(2026-07-21) commit (AKT.snapshot returns to the 24-sample mean/variance-only sentinel returning {ok, variance})",
+   "commit": "pending upgrade(2026-07-21) commit (showrunner stages this set)"
   }
  ],
  "scan_log": [
@@ -463,6 +477,13 @@
    "searches": 5,
    "found": "The settled dataviz fix for text over marks is a TEXT HALO: a contrasting outline behind glyphs (SVG stroke + paint-order='stroke fill', stroke-width ~0.12-0.18em, halo color picked from text luminance) so contrast depends on (text, halo) not the art beneath -- the exact vector-text analogue of the studio's canvas-only aklabel.js, and the missing piece for S6's headline-over-ISOTYPE-grid blind spot that both existing gates (text-vs-text 07-08, PNG busy-art 07-10) passed. Tabular lining figures (font-feature-settings 'tnum') align numerals in stat/all-cap settings (Datawrapper/Type Network). CSS text-wrap: balance/pretty RECONFIRMED to not guarantee headline line count nor prevent overflow and pretty ignores widows (Chrome/MDN Sept 2025), so aktype.js AK.fitText stays the correct mechanism. Sources: https://data.europa.eu/apps/data-visualisation-guide/text-halos , https://www.datawrapper.de/blog/fonts-for-data-visualization , https://developer.chrome.com/blog/css-text-wrap-pretty",
    "outcome": "parked (FIELD_NOTES 2026-07-20: SVG/DOM text-halo helper + text-over-SVG-mark QA warn candidate needing a mark-intent attribute to bound false positives + tabular-figures craft note, all with source URLs). No frontier code applied: they are improvements not reactive fixes, the daily 0-1 budget was taken by the reactive gmail_draft.py score-key fix, and the halo helper edits shared rendering craft wanting a multi-deck A/B."
+  },
+  {
+   "run_date": "2026-07-21",
+   "focus": "generative/procedural art portable to offline Canvas/SVG (last touched 2026-07-11; distinct from the last three foci LinkedIn-platform 07-18, headless-Chromium 07-19, typography 07-20); chosen to attack this run's chronic flat-hero / artwork-craft=7 weakness from the Canvas-fallback side (S6's GPU beluga fell back to a flat 2D beluga)",
+   "searches": 4,
+   "found": "The settled offline way to make a flat 2D canvas hero read as sculpted VOLUME without a GPU: build a procedural heightfield (noise.js AK.fbm2/warp2, already committed), derive a per-pixel normal from a 3x3 Sobel of the height (N=normalize(-dH/dx,-dH/dy,1/strength)), then Lambert-shade in 2D (ambient + max(dot(N,L),0)*diffuse with a light-Z for roundness + optional attenuation). ~100 lines vanilla JS, zero new deps -- the exact 2D analogue of akthree.objectHero's rim-carve. Hardware normal-mapped sprite pipelines (SpriteIlluminator/PixiJS) were ruled out as GPU-shader + baked-texture, off-policy. Sources: https://github.com/mattdesl/lwjgl-basics/wiki/ShaderLesson6 , https://arxiv.org/pdf/2212.09692 , https://arxiv.org/pdf/2311.15354",
+   "outcome": "parked (FIELD_NOTES 2026-07-21: 2.5D relit-heightfield form-shading helper with concrete Sobel+Lambert parameters + source URLs). No frontier code applied: it is an improvement not a reactive fix, the daily 0-1 budget was taken by the reactive AKT.snapshot coverage fix, and it edits shared rendering craft wanting a multi-deck A/B (it should be designed together with the parked relief-depth helper 2026-07-15 and strata-texture helper 2026-07-11 as one form/relief module over noise.js)."
   }
  ]
 }

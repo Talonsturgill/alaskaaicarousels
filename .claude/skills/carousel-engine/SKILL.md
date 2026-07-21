@@ -133,7 +133,13 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   `<script type="module">` + `await import('@@ASSETS@@/js/...')`. RULES:
   akthree sets pixelRatio BEFORE size (hand-rolled three code that reverses
   them silently renders at 1x); `await AKT.snapshot(R)` and check `.ok`
-  (black-frame sentinel); design a Canvas fallback for `AKT.webglOK()===false`;
+  (black-frame sentinel: returns `{ok, variance, litCount}` and accepts a frame
+  either via the historic 24-sample mean/variance OR via COVERAGE -- a dense
+  strided lit-pixel count, so an OBJECT HERO that fills only part of the frame
+  over a transparent/dark empty background is no longer wrongly judged dead and
+  forced to the flat Canvas fallback; a genuinely black/empty frame still has
+  litCount 0 and returns `ok:false`. Tune with `AKT.snapshot(R,{litFloor,litMin,stride})` only if needed);
+  design a Canvas fallback for `AKT.webglOK()===false`;
   composite via an offscreen canvas + drawImage when mixing with 2D art.
   OBJECT HERO: for a single foreground object that must read as a SILHOUETTE
   against a darker background (the backlit-machine case), call
