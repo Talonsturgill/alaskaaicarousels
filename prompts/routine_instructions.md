@@ -235,6 +235,12 @@ slide-copy corrections back into the storyboard. Write the post copy to
 `python scripts/caption_check.py out/<date>/caption.txt`
 If FAIL: fix (yourself or via one more copywriter round) and re-lint
 until PASS. Save the final copywriter JSON to `out/<date>/copy.json`.
+HARD RULE (2026-07-21): the post copy NEVER contains a sources list,
+source citations, or URLs. Sources live ONLY in the first-comment block.
+This holds for `caption.txt`, `post_copy`, and any post text assembled
+later in the run (the draft step also strips leaks as a last resort, but
+never rely on it). caption_check now hard-fails a caption that carries a
+sources block.
 Then pre-flight the house prose-colon rule the Phase 11 ship gate enforces,
 so it never blocks at ship: `python scripts/style_lint.py --file
 out/<date>/copy.json --json-field first_comment` and the same on any other

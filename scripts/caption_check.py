@@ -76,6 +76,12 @@ def lint(text):
     if URLISH.search(t):
         fails.append("LINKS: URL-like string in body (sources go in first comment)")
 
+    # A sources list belongs ONLY in the first comment, never in the post
+    # (maintainer rule, 2026-07-21: a delivered draft carried sources in the
+    # post above the hashtags AND in the comment block; the post stays clean).
+    if re.search(r"(?im)^\s*sources?\b\s*($|[:,]|for\b|below\b|in\b)", t):
+        fails.append("SOURCES: sources block in the post copy; sources go ONLY in the first comment")
+
     # punctuation & characters
     for ch, name in BANNED_PUNCT.items():
         if ch in t:

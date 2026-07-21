@@ -19,6 +19,9 @@ Produce:
    - Then exactly 3 niche hashtags on their own line.
    Voice: analytical, position-taking, plain English, grade 8-10. No em/en
    dashes, straight quotes, no banned phrases, no links, no "follow us".
+   NEVER a sources list, source citations, or URLs anywhere in the post
+   copy; sources exist ONLY in the first-comment block (rule 2), and
+   caption_check hard-fails a caption that carries them.
    The caption teases; the deck delivers. Never duplicate slide text.
 2. **First-comment source block** — paste-ready:
    "Sources:" then one line per source: outlet, headline fragment, URL.
