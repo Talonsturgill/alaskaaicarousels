@@ -230,27 +230,60 @@ export function init(THREE) {
   /* ---- render ------------------------------------------------------------ */
   // Renders one still, waits a paint tick, then ASSERTS the frame is not black
   // (research-documented headless failure modes: first-paint race and silent
-  // 2D fallback). Returns {ok, variance}; on ok=false the slide MUST fall back
-  // to its Canvas/AK3D design rather than ship a black rectangle.
-  AKT.snapshot = async function (R) {
+  // 2D fallback). Returns {ok, variance, litCount}; on ok=false the slide MUST
+  // fall back to its Canvas/AK3D design rather than ship a black rectangle.
+  //
+  // TWO accept paths, OR'd (purely additive -- a frame the old logic accepted
+  // is still accepted, so no existing full-bleed scene regresses):
+  //  (1) global 24-sample mean/variance (the historic full-scene check), and
+  //  (2) COVERAGE: a dense strided read counts pixels carrying real light; a
+  //      lit cluster >= LIT_MIN passes. This fixes the silent false-fail on an
+  //      OBJECT HERO that fills only part of the frame over a transparent/dark
+  //      empty background (run 2026-07-21 S6: the akthree beluga's lit subject
+  //      is a minority of the frame, so the 24 sparse points read ~0 and the
+  //      frame was wrongly judged dead, forcing the flat Canvas fallback).
+  // The DEAD-CANVAS CONTRACT is preserved: a genuinely black/empty frame has
+  // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
+  AKT.snapshot = async function (R, o) {
+    o = o || {};
     R.renderer.render(R.scene, R.camera);
     await new Promise(r => requestAnimationFrame(() => r()));
-    let ok = true, variance = -1;
+    let ok = true, variance = -1, litCount = -1;
     try {
       const gl = R.renderer.getContext();
+      const W = gl.drawingBufferWidth, H = gl.drawingBufferHeight;
+      // (1) historic sparse mean/variance (unchanged coordinates + formula)
       const N = 24, px = new Uint8Array(4);
       let sum = 0, sum2 = 0;
       for (let i = 0; i < N; i++) {
-        const x = ((i * 2654435761) >>> 8) % gl.drawingBufferWidth;
-        const y = ((i * 40503) >>> 4) % gl.drawingBufferHeight;
+        const x = ((i * 2654435761) >>> 8) % W;
+        const y = ((i * 40503) >>> 4) % H;
         gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
         const v = (px[0] + px[1] + px[2]) / 3;
         sum += v; sum2 += v * v;
       }
       variance = sum2 / N - (sum / N) * (sum / N);
-      ok = (sum / N > 1) || variance > 1;   // all-black frame fails both
+      const meanVarOK = (sum / N > 1) || variance > 1;
+      // (2) coverage: one full-buffer read, strided lit-pixel count
+      const LIT_FLOOR = o.litFloor != null ? o.litFloor : 12;   // luminance/255
+      const STRIDE = o.stride != null ? o.stride : 8;
+      const buf = new Uint8Array(W * H * 4);
+      gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, buf);
+      let sampled = 0, lit = 0;
+      for (let y = 0; y < H; y += STRIDE) {
+        for (let x = 0; x < W; x += STRIDE) {
+          const p = (y * W + x) * 4;
+          sampled++;
+          if ((buf[p] + buf[p + 1] + buf[p + 2]) / 3 > LIT_FLOOR) lit++;
+        }
+      }
+      litCount = lit;
+      // a real lit subject far exceeds this; a dead/black frame gives exactly 0
+      const LIT_MIN = o.litMin != null ? o.litMin
+        : Math.max(48, Math.round(sampled * 0.0008));
+      ok = meanVarOK || lit >= LIT_MIN;
     } catch (e) { /* readPixels unavailable: trust the render */ }
-    return { ok, variance };
+    return { ok, variance, litCount };
   };
 
   /* ---- object hero ------------------------------------------------------ */

@@ -858,3 +858,46 @@ LinkedIn-platform 07-18, headless-Chromium 07-19).
   for Developers / MDN, Sept 2025) -- so aktype.js AK.fitText (JS binary-search
   fit-to-box) remains the correct headline mechanism, unchanged since 07-09. The
   4-line body overflow is authoring discipline, not a wrap-CSS fix.
+
+## 2026-07-21 - upgrade-engineer scan (generative/procedural art focus, parked candidate)
+
+Frontier focus: generative/procedural art portable to offline Canvas/SVG (last
+touched 2026-07-11; distinct from the last three foci LinkedIn-platform 07-18,
+headless-Chromium 07-19, typography 07-20). Chosen to serve this run's recurring
+weakness from a second angle: when the GPU akthree hero falls back to Canvas
+(as S6's beluga did this run), the 2D fallback reads FLAT and caps artwork-craft
+at 7. The reactive snapshot fix (below) makes the GPU path survive more often;
+this parked helper would raise the FALLBACK floor so even the Canvas path reads
+dimensional.
+
+- PARKED - 2.5D RELIT-HEIGHTFIELD FORM-SHADING helper (a canvas hero that reads
+  as sculpted volume with NO GPU, over the already-committed noise.js). The
+  settled portable technique, all over the frontier (mattdesl ShaderLesson6,
+  the pixel-art normal-map compilation arXiv 2212.09692, the web 2.5D dynamic-
+  paintings pipeline arXiv 2311.15354): build a procedural HEIGHTFIELD (noise.js
+  AK.fbm2 / warp2, already committed), derive a per-pixel NORMAL from the height
+  gradient via a 3x3 Sobel (N = normalize(-dH/dx, -dH/dy, 1/strength)), then
+  LAMBERT-shade in 2D: intensity = ambient + max(dot(N, L), 0) * diffuse, with L
+  built per-pixel from a light position and a light-Z (the depth that gives the
+  form its roundness) and an optional 1/(c + l*D + q*D^2) attenuation. Result: a
+  flat filled silhouette becomes a shaded, dimensional form, offline, ~100 lines
+  of vanilla JS, ZERO new deps (pure ImageData math over the committed noise
+  primitives). This is the exact 2D analogue of akthree.objectHero's rim-carve
+  and would give the Canvas fallback (and any 2D relief hero) a real sense of
+  volume instead of the flat blob that keeps capping artwork-craft at 7.
+  Held (PARKED, not applied) because: (1) it is an IMPROVEMENT not a reactive
+  fix and the daily 0-1 budget was taken by the snapshot coverage fix below;
+  (2) it edits shared rendering craft that wants a careful multi-deck A/B (pick
+  light-Z / strength / ambient defaults that read across dark AND light decks)
+  before it becomes a committed helper; (3) it overlaps the parked relief-depth
+  helper (2026-07-15) and the strata-texture/rim-light helper (2026-07-11) --
+  the three should be designed together as one form-and-relief craft module over
+  noise.js rather than piecemeal. Next improvement slot after a reactive-light
+  day is the place to build and A/B it. Sources:
+  https://github.com/mattdesl/lwjgl-basics/wiki/ShaderLesson6 ,
+  https://arxiv.org/pdf/2212.09692 , https://arxiv.org/pdf/2311.15354
+- NOTE (dead end, recorded so it is not re-scanned): hardware normal-mapped
+  sprite lighting (SpriteIlluminator, PixiJS/Phaser normal pipelines) needs a
+  WebGL fragment shader and pre-baked normal textures -- not portable to pure 2D
+  canvas and off-policy (external asset pipeline). The Sobel-from-procedural-
+  height path above is the offline, dependency-free form that fits this studio.
