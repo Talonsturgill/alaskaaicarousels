@@ -1,24 +1,87 @@
 {
-  "run_date": "2026-07-21",
-  "carousel_no": 13,
-  "weighted_total": 8.77,
-  "threshold": 8.3,
-  "ship": true,
-  "revision_rounds": 1,
-  "hard_fails": [],
-  "scores": {
-    "thumb_stop_cover": 7,
-    "story_arc_swipe": 8,
-    "artwork_craft": 7,
-    "story_art_fusion": 9,
-    "alaska_authenticity": 8,
-    "insight_density": 8,
-    "variety_vs_ledger": 9,
-    "legibility_platform": 8,
-    "copy_voice_hook": 9,
-    "deliverable_completeness": 8
+ "run_date": "2026-07-21",
+ "carousel_no": 13,
+ "weighted_total": 8.77,
+ "threshold": 8.3,
+ "ship": true,
+ "revision_rounds": 1,
+ "hard_fails": [],
+ "scores": {
+  "thumb_stop_cover": 7,
+  "story_arc_swipe": 8,
+  "artwork_craft": 7,
+  "story_art_fusion": 9,
+  "alaska_authenticity": 8,
+  "insight_density": 8,
+  "variety_vs_ledger": 9,
+  "legibility_platform": 8,
+  "copy_voice_hook": 9,
+  "deliverable_completeness": 8
+ },
+ "weakest_criterion": "Artwork craft and genuine detail",
+ "one_sentence_fix": "Rebuild the S3 beluga to read as a dimensional cold-rim-lit animal rather than a flat illustration (recover the GPU PBR path or hand-shade a gradient-mesh with real volume), and fill the dead lower-thirds on S3/S5/S8.",
+ "editor_notes": "No hard fails; ships at 8.77 vs 8.3. Caveats disclosed in the email: (1) the S3 beluga hero is the designed Canvas fallback because the akthree GPU snapshot sentinel false-negatived on the transparent subject, and it reads flat (the deck's weakest surface). (2) Honesty is clean: no invented detection-accuracy percentage, the 331 count is hedged (may be stabilizing, still about three quarters below 1979), and the S8 boundary box shows noise/prey/habitat with no intake port.",
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "Strong specific claim in huge type + '331 LEFT' kicker, but type-only cover and the gold call is small at 432px."
   },
-  "weakest_criterion": "Artwork craft and genuine detail",
-  "one_sentence_fix": "Rebuild the S3 beluga to read as a dimensional cold-rim-lit animal rather than a flat illustration (recover the GPU PBR path or hand-shade a gradient-mesh with real volume), and fill the dead lower-thirds on S3/S5/S8.",
-  "editor_notes": "No hard fails; ships at 8.77 vs 8.3. Caveats disclosed in the email: (1) the S3 beluga hero is the designed Canvas fallback because the akthree GPU snapshot sentinel false-negatived on the transparent subject, and it reads flat (the deck's weakest surface). (2) Honesty is clean: no invented detection-accuracy percentage, the 331 count is hedged (may be stabilizing, still about three quarters below 1979), and the S8 boundary box shows noise/prey/habitat with no intake port."
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Clean beats; loops plant and pay; contact sheet reads as one composed sequence."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7,
+   "weight": 0.16,
+   "notes": "Real atmosphere (shafts, hydrophone, chart panel) but the S3 beluga shipped as the flat Canvas fallback (akthree snapshot false-negative); dead lower-thirds on S3/S5/S8."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 9,
+   "weight": 0.14,
+   "notes": "The single gold call that never multiplies IS the thesis; S7 honest chart; S8 boundary box with no intake port; water unchanged S1 vs S8."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12,
+   "notes": "Cook Inlet, Anchorage coords, NOAA/ADF&G, the iconic endangered beluga, named numbers; slightly less place-specific in open water."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Each content slide adds a new verified specific; 25 to 50 words; cover intentionally number-lean."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 9,
+   "weight": 0.08,
+   "notes": "Composition, palette, type, hook, and continuity all diverge from decks 9 to 12; dials justified."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07,
+   "notes": "Floors met, vector PDF with title, counters + depth readouts; one squeaker on small mono ticks."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 9,
+   "weight": 0.05,
+   "notes": "Hook ~92 chars, caption 685 in band, position-taking, real debatable close, grade 8 to 10."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Post copy, 3 hashtags, first-comment sources, title, aftercare present; URL resolution verified on main."
+  }
+ ],
+ "editor_notes_for_email": "No hard fails; ships at 8.77 vs 8.3. Caveats disclosed in the email: (1) the S3 beluga hero is the designed Canvas fallback because the akthree GPU snapshot sentinel false-negatived on the transparent subject, and it reads flat (the deck's weakest surface). (2) Honesty is clean: no invented detection-accuracy percentage, the 331 count is hedged (may be stabilizing, still about three quarters below 1979), and the S8 boundary box shows noise/prey/habitat with no intake port."
 }
