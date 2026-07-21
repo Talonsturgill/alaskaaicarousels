@@ -391,7 +391,7 @@
    ],
    "verification": "Defect reconstruction with two headless WebGL slides that surface shot.ok/litCount/variance into the DOM (read back from render_report.json text_nodes). (a) REAL SUBJECT: a lit hero filling only a compact center region that the 24 deterministic sample points all miss (nearest point ~182 buffer-px from center) -- PRE-FIX ok=0 var=0.00 (false-fail, indistinguishable from dead), POST-FIX ok=1 litCount=462 var=0.00 (LIT_MIN=73 at 91260 samples, 6.3x margin). (b) DEAD FRAME: empty scene, black clear, nothing drawn -- ok=0 litCount=0 both pre and post (contract preserved). Regression: examples/proof-3d (akthree slides 01/03) render OK + qa PASS 0/0 unchanged; examples/demo-deck render OK + qa WARN (known slide-03 busy-art warn) unchanged; this run's out/2026-07-21/slides render OK + qa PASS 0/0 unchanged. node --check akthree.js OK. No gate/threshold weakened (accept path is purely additive; a dead frame still fails); no new runtime dependency (uses the committed three.module.min.js + WebGL readPixels already in use); shipped slides not modified (all tests in scratch dirs).",
    "rollback": "revert the upgrade(2026-07-21) commit (AKT.snapshot returns to the 24-sample mean/variance-only sentinel returning {ok, variance})",
-   "commit": "pending upgrade(2026-07-21) commit (showrunner stages this set)"
+   "commit": "63fed63"
   }
  ],
  "scan_log": [
