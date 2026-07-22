@@ -929,6 +929,17 @@ def caption_paragraphs(r):
     return "".join(f"<p>{esc(p)}</p>" for p in paras)
 
 
+def video_count():
+    """Published-video count from the feed the video automation maintains at
+    docs/videos/videos.json. Counted live at every build, so the stat updates
+    whenever the site rebuilds; zero (and no crash) if the feed is absent."""
+    try:
+        d = json.loads((REPO / "docs" / "videos" / "videos.json").read_text())
+        return len(d.get("videos") or [])
+    except Exception:
+        return 0
+
+
 def pretty_date(iso):
     d = ddate.fromisoformat(iso)
     return f"{MONTH_FULL[d.month - 1]} {d.day}, {d.year}"
@@ -942,8 +953,10 @@ def home_page(today, site_url, docket, runs):
     nearest = db.next_date(dated[0], today) if dated else None
     latest = runs[0] if runs else None
 
+    n_videos = video_count()
     stats = f"""<div class="statrow">
-  <div class="stat"><div class="n" data-count="{len(runs)}">{len(runs):02d}</div><div class="l">DECKS SHIPPED</div></div>
+  <div class="stat"><div class="n" data-count="{len(runs)}">{len(runs):02d}</div><div class="l">ARTICLES WRITTEN</div></div>
+  <div class="stat"><div class="n" data-count="{n_videos}">{n_videos:02d}</div><div class="l">VIDEOS PUBLISHED</div></div>
   <div class="stat"><div class="n" data-count="{len(live)}">{len(live):02d}</div><div class="l">DECISIONS TRACKED</div></div>
   <div class="stat"><div class="n g" data-count="{n_open}">{n_open:02d}</div><div class="l">DOORS OPEN TO YOU</div></div>
 </div>"""
@@ -994,7 +1007,7 @@ These rules never bend.</p>
 AI beat, verified to the source and told for Alaskans. From the Slope to Southeast, daily.</p>
 <div class="ctarow">
   <a class="cta gold" href="docket/">THE DOCKET</a>
-  <a class="cta ghost" href="archive/">THE DECKS</a>
+  <a class="cta ghost" href="archive/">ARTICLES</a>
 </div>
 {stats}
 </div>
@@ -1689,7 +1702,7 @@ The stars will get you home.</p>
 <div class="ctarow">
   <a class="cta gold" href="/">BACK HOME</a>
   <a class="cta ghost" href="/docket/">THE DOCKET</a>
-  <a class="cta ghost" href="/archive/">THE DECKS</a>
+  <a class="cta ghost" href="/archive/">ARTICLES</a>
 </div>
 </div>"""
     return page("Page not found - Alaska AI",
