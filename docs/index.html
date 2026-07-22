@@ -196,10 +196,17 @@ color:var(--snow);line-height:1.15;margin:12px 0 14px;}
 /* ---------- latest video ---------- */
 .latestvid{display:grid;grid-template-columns:clamp(230px,30vw,320px) 1fr;gap:44px;
 align-items:center;}
-.vidwrap{border-radius:16px;border:1px solid var(--line);overflow:hidden;
+.vidwrap{position:relative;border-radius:16px;border:1px solid var(--line);overflow:hidden;
 background:var(--panel);box-shadow:0 24px 70px rgba(0,0,0,.5);}
 .vidwrap video{display:block;width:100%;aspect-ratio:9/16;height:auto;object-fit:cover;
-background:var(--deep);}
+background:var(--deep);cursor:pointer;}
+.vsound{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+display:flex;align-items:center;gap:7px;border:1px solid rgba(255,199,44,.55);
+border-radius:999px;padding:8px 15px;background:rgba(2,6,15,.72);color:var(--gold);
+font-family:JBMono,monospace;font-size:11px;letter-spacing:.14em;cursor:pointer;
+backdrop-filter:blur(6px);white-space:nowrap;}
+.vsound:hover{background:rgba(2,6,15,.9);}
+.vsound.on{opacity:.55;}
 .latestvid h3{font-family:Fraunces,serif;font-weight:540;font-size:clamp(24px,3vw,32px);
 color:var(--snow);line-height:1.15;margin:12px 0 14px;}
 .latestvid p{font-size:16.5px;max-width:56ch;}
@@ -499,7 +506,8 @@ every fact. Gold means a door is open to the public right now.</p>
 collection.</p>
 <div class="latestvid" data-reveal>
   <div class="vidwrap"><video id="hv" muted playsinline loop preload="none"
-  aria-label="The latest Alaska AI video"></video></div>
+  aria-label="The latest Alaska AI video"></video>
+  <button class="vsound" id="hvsound" type="button" aria-label="Toggle sound">TAP FOR SOUND</button></div>
   <div>
     <div class="chip kind" id="hvdate"></div>
     <h3 id="hvtitle"></h3>
@@ -519,7 +527,7 @@ fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
   var abs=function(u){return /^https?:\/\//.test(u)?u:base+u};
   var el=document.getElementById('hv');
   if(v.poster)el.poster=abs(v.poster);
-  el.dataset.src=abs(v.video);
+  el.dataset.src=abs(v.video_mobile||v.video);
   document.getElementById('hvtitle').textContent=v.title||'';
   document.getElementById('hvcap').textContent=v.caption||'';
   var d=document.getElementById('hvdate');
@@ -533,6 +541,16 @@ fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
     else el.pause();
   })},{threshold:0.3});
   io.observe(el);
+  var sb=document.getElementById('hvsound');
+  var toggle=function(){
+    el.muted=!el.muted;
+    sb.textContent=el.muted?'TAP FOR SOUND':'MUTE';
+    sb.classList.toggle('on',!el.muted);
+    if(!el.getAttribute('src'))el.src=el.dataset.src;
+    el.play().catch(function(){});
+  };
+  sb.addEventListener('click',toggle);
+  el.addEventListener('click',toggle);
 }).catch(function(){});
 })();
 </script>
