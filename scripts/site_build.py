@@ -1464,12 +1464,12 @@ def scan_page(today, site_url):
     publishable key are public by design, the database itself is unreachable
     from the browser."""
     body = """<div class="hero" style="min-height:auto;padding-top:9vh">
-<div class="chip kind">FREE &middot; ONE TO TWO MINUTES &middot; NO SIGNUP TO SEE IT</div>
+<div class="chip kind">FREE &middot; ABOUT 20 MINUTES OF REAL RESEARCH &middot; NO SIGNUP TO SEE IT</div>
 <h1 style="margin-top:14px">Would AI actually help <em>your business</em></h1>
-<p class="tag">Drop your website. Our scanner reads your own public pages and hands back an
-honest map. The pockets where AI earns its place, the ones where a plain rule wins first,
-and the ones it should not touch at all. When the honest answer is that you do not need AI,
-it says so. That is the point.</p>
+<p class="tag">Drop your website. A team of research agents reads your own public pages and
+hands back an honest map. The pockets where AI earns its place, the ones where a plain rule
+wins first, and the ones it should not touch at all. When the honest answer is that you do
+not need AI, it says so. That is the point.</p>
 </div>
 <div id="scanapp">
 <form class="leadform" id="scanform" style="max-width:640px">
@@ -1479,6 +1479,10 @@ it says so. That is the point.</p>
     placeholder="yourbusiness.com/book"></label>
   <label>A current job posting, optional but a strong signal<textarea name="jobs" id="f-jobs"
     placeholder="Paste a job post or its link"></textarea></label>
+  <label>Email, optional. The scan takes 15 to 30 minutes of real research. Leave this and we
+  will send your link when it is ready. A person sends it, no list, no spam.
+  <input type="email" name="notify" id="f-notify" placeholder="you@yourbusiness.com"></label>
+  <div id="ts-slot"></div>
   <button class="cta gold" id="f-go" type="submit">SCAN MY BUSINESS</button>
   <p class="fineprint" id="f-err" style="color:#ff9e9e"></p>
 </form>
@@ -1490,22 +1494,46 @@ every observation.</p>
 (function(){
   var FN = "https://gsuvfpnyzebycqhsekus.supabase.co/functions/v1";
   var PUBKEY = "sb_publishable_7Ax5z5BRwIGspG4ok4Hv1Q_6ZpN5fnl";
+  // Cloudflare Turnstile sitekey (public). Empty string = widget off. When the
+  // matching secret is set server-side the gatekeeper requires the token.
+  var TS_SITEKEY = "";
   var HEADERS = { "content-type": "application/json", "apikey": PUBKEY,
                   "authorization": "Bearer " + PUBKEY };
   var app = document.getElementById("scanapp");
   var params = new URLSearchParams(location.search);
   var token = params.get("token");
   var pre = params.get("url");
+  var startedAt = Date.now();
 
-  function waiting(){
-    app.innerHTML = '<div style="text-align:center;padding:60px 0">' +
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  function waiting(progress){
+    var mins = Math.max(1, Math.round((Date.now() - startedAt) / 60000));
+    var feed = "";
+    var notes = (progress || []).slice(-8);
+    for (var i = 0; i < notes.length; i++) {
+      feed += '<div style="display:flex;gap:10px;padding:5px 0;font-size:14px;' +
+        'border-bottom:1px solid rgba(255,255,255,.05);color:' +
+        (i === notes.length - 1 ? 'var(--snow,#F4F8FF)' : 'rgba(175,198,194,.85)') + '">' +
+        '<span style="font-family:monospace;font-size:12px;color:var(--blue);white-space:nowrap;' +
+        'padding-top:2px">' + esc(notes[i].at) + '</span><span>' + esc(notes[i].note) + '</span></div>';
+    }
+    if (!feed) {
+      feed = '<div style="display:flex;gap:10px;padding:5px 0;font-size:14px;' +
+        'color:rgba(175,198,194,.85)"><span style="font-family:monospace;font-size:12px;' +
+        'color:var(--blue);padding-top:2px">now</span><span>Queued, an agent is picking this up</span></div>';
+    }
+    app.innerHTML = '<div style="text-align:center;padding:50px 0 20px">' +
       '<div style="width:26px;height:26px;border:3px solid rgba(90,200,240,.25);' +
       'border-top-color:var(--blue);border-radius:50%;margin:0 auto 18px;' +
       'animation:scanspin .9s linear infinite"></div>' +
-      '<p class="sub" style="margin:0 auto 6px;max-width:520px">Reading your public footprint ' +
-      'and laddering the honest calls.</p>' +
-      '<p class="fineprint">This takes one to two minutes. Keep this tab open, ' +
-      'or bookmark this link and come back.</p></div>' +
+      '<p class="sub" style="margin:0 auto 6px;max-width:520px">A team of agents is reading ' +
+      'your public footprint and laddering the honest calls.</p>' +
+      '<p class="fineprint">Real research takes 15 to 30 minutes. Watching for ' + mins +
+      ' min. Keep this tab open, or bookmark this link and come back.</p>' +
+      '<div style="max-width:520px;margin:14px auto 0;text-align:left;' +
+      'border-top:1px solid rgba(255,255,255,.08);padding-top:12px">' + feed + '</div></div>' +
       '<style>@keyframes scanspin{to{transform:rotate(360deg)}}</style>';
   }
 
@@ -1516,8 +1544,9 @@ every observation.</p>
   }
 
   function poll(){
-    waiting();
+    waiting([]);
     var tries = 0;
+    // 5s interval, 480 tries, 40 minutes of patience, matched to real run times.
     var t = setInterval(function(){
       tries++;
       fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers: HEADERS })
@@ -1535,24 +1564,38 @@ every observation.</p>
             clearInterval(t);
             fail("That scan did not finish. It happens when a site blocks reading or the " +
                  "footprint is unreachable.");
-          } else if (tries > 90) {
+          } else if (tries > 480) {
             clearInterval(t);
             fail("This is taking longer than usual. Bookmark this link and check back in a bit.");
+          } else {
+            waiting(d.progress);
           }
         });
-    }, 3000);
+    }, 5000);
   }
 
   function wire(){
     if (pre) { document.getElementById("f-url").value = pre; }
+    if (TS_SITEKEY) {
+      document.getElementById("ts-slot").innerHTML =
+        '<div class="cf-turnstile" data-sitekey="' + esc(TS_SITEKEY) + '" data-theme="dark"></div>';
+      var s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      s.async = true; s.defer = true;
+      document.head.appendChild(s);
+    }
     document.getElementById("scanform").addEventListener("submit", function(e){
       e.preventDefault();
       var btn = document.getElementById("f-go"), err = document.getElementById("f-err");
+      var tsToken = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || "") : "";
+      if (TS_SITEKEY && !tsToken) { err.textContent = "finish the human check above first"; return; }
       err.textContent = ""; btn.disabled = true; btn.textContent = "STARTING...";
       fetch(FN + "/scan-request", { method: "POST", headers: HEADERS, body: JSON.stringify({
         url: document.getElementById("f-url").value,
         booking_url: document.getElementById("f-booking").value || null,
-        jobs: document.getElementById("f-jobs").value || null
+        jobs: document.getElementById("f-jobs").value || null,
+        notify_email: document.getElementById("f-notify").value || null,
+        turnstile_token: tsToken || null
       })}).then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
       .then(function(x){
         if (!x.ok) { throw new Error(x.d.error || "could not start the scan"); }
@@ -1560,6 +1603,7 @@ every observation.</p>
       }).catch(function(ex){
         err.textContent = ex.message;
         btn.disabled = false; btn.textContent = "SCAN MY BUSINESS";
+        if (TS_SITEKEY && window.turnstile) { turnstile.reset(); }
       });
     });
   }
