@@ -1557,7 +1557,7 @@ every observation.</p>
   var PUBKEY = "sb_publishable_7Ax5z5BRwIGspG4ok4Hv1Q_6ZpN5fnl";
   // Cloudflare Turnstile sitekey (public). Empty string = widget off. When the
   // matching secret is set server-side the gatekeeper requires the token.
-  var TS_SITEKEY = "";
+  var TS_SITEKEY = "0x4AAAAAAD7e1lYKOUSxa5sV";
   var HEADERS = { "content-type": "application/json", "apikey": PUBKEY,
                   "authorization": "Bearer " + PUBKEY };
   var app = document.getElementById("scanapp");
