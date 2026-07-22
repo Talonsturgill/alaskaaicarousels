@@ -928,7 +928,7 @@ def home_page(today, site_url, docket, runs):
     latest_html = ""
     if latest:
         cover = f"{RAW}/runs/{latest['date']}/slide-01.png"
-        latest_html = f"""<h2 data-reveal>The latest deck</h2>
+        latest_html = f"""<h2 data-reveal>Our Latest Article</h2>
 <p class="sub" data-reveal>One verified Alaska and AI story a day, drawn as a swipeable carousel.</p>
 <div class="latest" data-reveal>
   <a class="cover" href="archive/{latest['date']}/"><img src="{cover}" width="1080" height="1350" alt="{esc(latest['title'])} cover slide" loading="lazy"></a>
