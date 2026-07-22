@@ -4,7 +4,11 @@
 Pages: / (home), /docket/ (the tracker), /archive/ (every shipped deck),
 /archive/<date>/ (deck detail with a swipeable gallery), /about/. Plus
 sitemap.xml, robots.txt, and the public data feed docket.json (kept at the
-root AND under /docket/ so shared links never break).
+root AND under /docket/ so shared links never break). /videos/ (the
+Dispatch video feed) is NOT generated: docs/videos/index.html is a static
+passthrough preserved verbatim, and docs/videos/videos.json is data owned
+by publish_feed.py in the alaska-ai-weekly repo; the build only emits the
+nav link and the sitemap entry for it.
 
 Data in: ledger/docket.json (tracker), runs/<date>/ (shipped decks: copy,
 caption, reports; slide images referenced from raw.githubusercontent so
@@ -184,8 +188,8 @@ def ak_favicon():
 
 def nav(prefix, active):
     links = [("", "HOME"), ("docket/", "THE DOCKET"),
-             ("archive/", "ARTICLES"), ("services/", "SERVICES"),
-             ("about/", "ABOUT")]
+             ("archive/", "ARTICLES"), ("videos/", "VIDEOS"),
+             ("services/", "SERVICES"), ("about/", "ABOUT")]
     on = ' class="on"'
     a = "".join(
         f'<a href="{prefix}{href or "./"}"{on if key.lower().startswith(active) else ""}>{key}</a>'
@@ -234,7 +238,7 @@ def footer(prefix, today):
   <div class="foot-brand">{ak_mark()}<span>ALASKA.AI</span></div>
   <div class="foot-links">
     <a href="{prefix}docket/">THE DOCKET</a>
-    <a href="{prefix}archive/">ARTICLES</a>
+    <a href="{prefix}archive/">ARTICLES</a><a href="{prefix}videos/">VIDEOS</a>
     <a href="{prefix}scan/">THE SCANNER</a>
     <a href="{prefix}services/">SERVICES</a>
     <a href="{prefix}about/">ABOUT</a>
@@ -1672,14 +1676,15 @@ def touch_icon(out):
 
 
 def sitemap(site_url, runs, today):
-    """Truthful lastmod only: home, docket, and archive genuinely change every
-    build (new deck, docket updates), deck pages carry their publish date, and
-    services/about omit lastmod rather than fake a daily bump. Google ignores
-    priority and changefreq, so neither is emitted."""
+    """Truthful lastmod only: home, videos, docket, and archive genuinely
+    change every build (new deck, new dispatch video, docket updates), deck
+    pages carry their publish date, and services/about omit lastmod rather
+    than fake a daily bump. Google ignores priority and changefreq, so
+    neither is emitted."""
     iso = today.isoformat()
     entries = []
-    for u in ("", "docket/", "archive/", "services/", "scan/", "about/"):
-        lm = f"<lastmod>{iso}</lastmod>" if u in ("", "docket/", "archive/") else ""
+    for u in ("", "videos/", "docket/", "archive/", "services/", "scan/", "about/"):
+        lm = f"<lastmod>{iso}</lastmod>" if u in ("", "videos/", "docket/", "archive/") else ""
         entries.append(f"<url><loc>{site_url}/{u}</loc>{lm}</url>")
     for r in runs:
         entries.append(f"<url><loc>{site_url}/archive/{r['date']}/</loc>"
@@ -1755,6 +1760,25 @@ def build(today, out_dir, site_url=None, domain=""):
         p = out / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(html)
+
+    # The videos page is a static passthrough, owned outside this generator.
+    # docs/videos/index.html is a hand-built, self-contained player (inline
+    # CSS/JS; it fetches its feed at runtime) and docs/videos/videos.json is
+    # that feed, data prepended daily by publish_feed.py in the
+    # alaska-ai-weekly repo. Neither file is generated, reformatted, or
+    # deleted here, ever. Building into a fresh out dir copies both over
+    # byte for byte so the VIDEOS nav link on every page still resolves.
+    videos_src = REPO / "docs" / "videos"
+    if videos_src.is_dir():
+        if (out / "videos").resolve() != videos_src.resolve():
+            (out / "videos").mkdir(parents=True, exist_ok=True)
+            for name in ("index.html", "videos.json"):
+                f = videos_src / name
+                if f.exists():
+                    (out / "videos" / name).write_bytes(f.read_bytes())
+    else:
+        print("warning: docs/videos/ not found, the VIDEOS nav link will 404",
+              file=sys.stderr)
 
     feed = json.dumps({"updated": today.isoformat(), "items": docket[0]}, indent=2)
     (out / "docket.json").write_text(feed)
