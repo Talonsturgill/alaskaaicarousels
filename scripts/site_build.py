@@ -1074,6 +1074,7 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 <div class="ctarow">
   <a class="cta gold" href="docket/">DOCKET</a>
   <a class="cta ghost" href="archive/">ARTICLES</a>
+  <a class="cta ghost" href="videos/">VIDEOS</a>
 </div>
 {stats}
 </div>
