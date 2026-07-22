@@ -187,7 +187,7 @@ def ak_favicon():
 # ---------- shared chrome ----------
 
 def nav(prefix, active):
-    links = [("", "HOME"), ("docket/", "THE DOCKET"),
+    links = [("", "HOME"), ("docket/", "DOCKET"),
              ("archive/", "ARTICLES"), ("videos/", "VIDEOS"),
              ("services/", "SERVICES"), ("about/", "ABOUT")]
     on = ' class="on"'
@@ -237,7 +237,7 @@ def footer(prefix, today):
 <div class="foot-grid">
   <div class="foot-brand">{ak_mark()}<span>ALASKA.AI</span></div>
   <div class="foot-links">
-    <a href="{prefix}docket/">THE DOCKET</a>
+    <a href="{prefix}docket/">DOCKET</a>
     <a href="{prefix}archive/">ARTICLES</a><a href="{prefix}videos/">VIDEOS</a>
     <a href="{prefix}scan/">THE SCANNER</a>
     <a href="{prefix}services/">SERVICES</a>
@@ -1072,7 +1072,7 @@ fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
 <p class="tag">Alaska AI watches it happen. Every deal, docket and decision on the state's
 AI beat, verified to the source and told for Alaskans. From the Slope to Southeast, daily.</p>
 <div class="ctarow">
-  <a class="cta gold" href="docket/">THE DOCKET</a>
+  <a class="cta gold" href="docket/">DOCKET</a>
   <a class="cta ghost" href="archive/">ARTICLES</a>
 </div>
 {stats}
@@ -1138,9 +1138,9 @@ The data behind this page is public at <a href="../docket.json" style="color:var
     return page("The Alaska AI Docket - AI Infrastructure Decisions in Alaska",
                 "Every AI infrastructure decision in Alaska, tracked daily. Who decides, "
                 "when it lands, and whether the public gets a say. Sources on every item.",
-                body, "../", "the docket", today, site_url, "docket/",
+                body, "../", "docket", today, site_url, "docket/",
                 og_image="og-docket.png", ld=ld,
-                crumbs=[("Alaska AI", ""), ("The Docket", "docket/")])
+                crumbs=[("Alaska AI", ""), ("Docket", "docket/")])
 
 
 def archive_page(today, site_url, runs):
@@ -1767,7 +1767,7 @@ def not_found_page(today, site_url):
 The stars will get you home.</p>
 <div class="ctarow">
   <a class="cta gold" href="/">BACK HOME</a>
-  <a class="cta ghost" href="/docket/">THE DOCKET</a>
+  <a class="cta ghost" href="/docket/">DOCKET</a>
   <a class="cta ghost" href="/archive/">ARTICLES</a>
 </div>
 </div>"""
