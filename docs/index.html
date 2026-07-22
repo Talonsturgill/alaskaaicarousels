@@ -193,6 +193,18 @@ transition:transform .25s,box-shadow .25s;box-shadow:0 24px 70px rgba(0,0,0,.5);
 .latest h3{font-family:Fraunces,serif;font-weight:540;font-size:clamp(24px,3vw,32px);
 color:var(--snow);line-height:1.15;margin:12px 0 14px;}
 .latest p{font-size:16.5px;max-width:56ch;}
+/* ---------- latest video ---------- */
+.latestvid{display:grid;grid-template-columns:clamp(230px,30vw,320px) 1fr;gap:44px;
+align-items:center;}
+.vidwrap{border-radius:16px;border:1px solid var(--line);overflow:hidden;
+background:var(--panel);box-shadow:0 24px 70px rgba(0,0,0,.5);}
+.vidwrap video{display:block;width:100%;aspect-ratio:9/16;height:auto;object-fit:cover;
+background:var(--deep);}
+.latestvid h3{font-family:Fraunces,serif;font-weight:540;font-size:clamp(24px,3vw,32px);
+color:var(--snow);line-height:1.15;margin:12px 0 14px;}
+.latestvid p{font-size:16.5px;max-width:56ch;}
+@media(max-width:720px){.latestvid{grid-template-columns:1fr;}
+.vidwrap{max-width:320px;}}
 
 /* ---------- cards (docket closing soon + archive) ---------- */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;}
@@ -481,17 +493,49 @@ every fact. Gold means a door is open to the public right now.</p>
   <div class="who">HOUSTON CITY COUNCIL VOTE ON A DATA-CENTER BAN ORDINANCE (POSTPONED FROM JULY 16)</div>
 </a></div>
 <div class="ctarow" data-reveal><a class="cta gold" href="docket/">OPEN THE FULL DOCKET</a></div>
-<h2 data-reveal>The house rules</h2>
-<p class="sub" data-reveal>Alaska AI works the state's AI beat the way a newsroom would.
-These rules never bend.</p>
-<div class="steps">
-  <div class="step" data-reveal><div class="k">01 &middot; RESEARCHED</div><h3>Six beats, every day</h3>
-  <p>Power and compute, research and Indigenous AI, the field, policy and money, robotics, and what
-  Alaskans are actually saying.</p></div>
-  <div class="step" data-reveal><div class="k">02 &middot; VERIFIED</div><h3>Claims or it did not happen</h3>
-  <p>Every number and quote is re-fetched from a primary source before it can appear on a slide,
-  the docket, or this site.</p></div>
+<div id="homevidsec" hidden>
+<h2 data-reveal>Our Latest Video</h2>
+<p class="sub" data-reveal>The newest video from the daily feed. Tap through for the whole
+collection.</p>
+<div class="latestvid" data-reveal>
+  <div class="vidwrap"><video id="hv" muted playsinline loop preload="none"
+  aria-label="The latest Alaska AI video"></video></div>
+  <div>
+    <div class="chip kind" id="hvdate"></div>
+    <h3 id="hvtitle"></h3>
+    <p id="hvcap"></p>
+    <div class="ctarow"><a class="cta gold" href="videos/">EVERY VIDEO</a></div>
+  </div>
 </div>
+</div>
+<script>
+(function(){
+var sec=document.getElementById('homevidsec');if(!sec||!window.fetch)return;
+fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
+  var base=m.media_base||'';
+  var vs=(m.videos||[]).filter(function(v){return v&&v.video});
+  if(!vs.length)return;
+  var v=vs[0];
+  var abs=function(u){return /^https?:\/\//.test(u)?u:base+u};
+  var el=document.getElementById('hv');
+  if(v.poster)el.poster=abs(v.poster);
+  el.dataset.src=abs(v.video);
+  document.getElementById('hvtitle').textContent=v.title||'';
+  document.getElementById('hvcap').textContent=v.caption||'';
+  var d=document.getElementById('hvdate');
+  try{d.textContent=new Date(v.date+'T12:00:00').toLocaleDateString('en-US',
+    {month:'long',day:'numeric',year:'numeric'}).toUpperCase()+' \u00b7 ON VIDEO'}
+  catch(e){d.textContent=(v.date||'').toUpperCase()}
+  sec.hidden=false;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){if(!el.getAttribute('src'))el.src=el.dataset.src;
+      el.play().catch(function(){});}
+    else el.pause();
+  })},{threshold:0.3});
+  io.observe(el);
+}).catch(function(){});
+})();
+</script>
 <h2 data-reveal id="alerts">Deadline alerts, in your inbox</h2>
 <p class="sub" data-reveal>One email when a public comment window opens or a decision is about
 to land. Nothing else, ever. Unsubscribe any time.</p>
