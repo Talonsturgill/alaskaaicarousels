@@ -72,6 +72,14 @@ this one.
 - `docs/` — the public Alaska AI site, published by GitHub Pages
   (.github/workflows/pages.yml) on every merge to main that touches it:
   https://alaskaaihq.com/ (GitHub Pages, custom domain)
+- `docs/videos/` — HARD GUARD. docs/videos/index.html is a static
+  passthrough (never template, lint, or regenerate it) and
+  docs/videos/videos.json is external data owned by publish_feed.py in
+  the alaska-ai-weekly repo, appended to daily — never write, reformat,
+  or delete either from this repo's builds or routine runs.
+  site_build.py only emits the VIDEOS nav link and the sitemap entry
+  for the page, and copies both files verbatim when building into a
+  fresh out dir.
 - `examples/demo-deck/` — 4 engine-proof slides exercising SVG filter
   atmospheres, d3 cartography, generative flow fields, and software 3D.
   PLUMBING references, not style templates.

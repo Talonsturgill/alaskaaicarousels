@@ -4,7 +4,11 @@
 Pages: / (home), /docket/ (the tracker), /archive/ (every shipped deck),
 /archive/<date>/ (deck detail with a swipeable gallery), /about/. Plus
 sitemap.xml, robots.txt, and the public data feed docket.json (kept at the
-root AND under /docket/ so shared links never break).
+root AND under /docket/ so shared links never break). /videos/ (the
+Dispatch video feed) is NOT generated: docs/videos/index.html is a static
+passthrough preserved verbatim, and docs/videos/videos.json is data owned
+by publish_feed.py in the alaska-ai-weekly repo; the build only emits the
+nav link and the sitemap entry for it.
 
 Data in: ledger/docket.json (tracker), runs/<date>/ (shipped decks: copy,
 caption, reports; slide images referenced from raw.githubusercontent so
@@ -48,10 +52,64 @@ BOOKING_URL = "https://calendly.com/talon-sturgill-ixzj/30min"
 # @id, so Google and the AI answer engines resolve "Alaska AI" to a single
 # unambiguous thing instead of four loose fragments. sameAs lists the real
 # profiles; add new ones here and rebuild.
-SAMEAS = [
-    "https://www.linkedin.com/company/alaska-ai/",
-    "https://www.tiktok.com/@alaskaai_",
+# name, profile URL (tracking params stripped), and the standard 24x24 icon path.
+SOCIALS = [
+    ("LinkedIn", "https://www.linkedin.com/company/alaska-ai/",
+     "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 "
+     "1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 "
+     "3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 "
+     "0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 "
+     "2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 "
+     ".774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 "
+     "22.271V1.729C24 .774 23.2 0 22.225 0z"),
+    ("TikTok", "https://www.tiktok.com/@alaskaai_",
+     "M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 "
+     "1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 "
+     "2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 "
+     "3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 "
+     "1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 "
+     "4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 "
+     "1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"),
+    ("YouTube", "https://youtube.com/@alaska_ai",
+     "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 "
+     "3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 "
+     "5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 "
+     "9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"
+     "M9.545 15.568V8.432L15.818 12l-6.273 3.568z"),
+    ("Instagram", "https://www.instagram.com/alaskaai_",
+     "M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717"
+     "-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 "
+     "12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 "
+     "2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 "
+     "8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 "
+     "1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558"
+     "-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149"
+     "-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c"
+     "-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 "
+     "4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 "
+     "1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 "
+     "4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679"
+     "-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015"
+     "-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421"
+     "-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061"
+     "-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9"
+     "-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65"
+     "-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 "
+     "6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c"
+     "-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 "
+     "1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 "
+     "1.44.645 1.44 1.439z"),
+    ("Facebook", "https://www.facebook.com/share/1GMRTzE1tK/",
+     "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 "
+     "11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 "
+     "2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 "
+     "3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"),
+    ("X", "https://x.com/Microvestapp",
+     "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 "
+     "7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 "
+     "3.24H4.298Z"),
 ]
+SAMEAS = [url for _, url, _ in SOCIALS]
 ANCHORAGE_GEO = {"@type": "GeoCoordinates", "latitude": 61.2181, "longitude": -149.9003}
 
 
@@ -183,9 +241,9 @@ def ak_favicon():
 # ---------- shared chrome ----------
 
 def nav(prefix, active):
-    links = [("", "HOME"), ("docket/", "THE DOCKET"),
-             ("archive/", "ARTICLES"), ("services/", "SERVICES"),
-             ("about/", "ABOUT")]
+    links = [("", "HOME"), ("docket/", "DOCKET"),
+             ("archive/", "ARTICLES"), ("videos/", "VIDEOS"),
+             ("services/", "SERVICES"), ("about/", "ABOUT")]
     on = ' class="on"'
     a = "".join(
         f'<a href="{prefix}{href or "./"}"{on if key.lower().startswith(active) else ""}>{key}</a>'
@@ -229,18 +287,23 @@ When the honest answer is that you do not need AI, the scan says so. That is the
 
 
 def footer(prefix, today):
+    icons = "".join(
+        f'<a href="{url}" target="_blank" rel="noopener" aria-label="Alaska AI on {name}" '
+        f'title="{name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="{d}"/></svg></a>'
+        for name, url, d in SOCIALS)
     return f"""<footer>
 <div class="foot-grid">
   <div class="foot-brand">{ak_mark()}<span>ALASKA.AI</span></div>
   <div class="foot-links">
-    <a href="{prefix}docket/">THE DOCKET</a>
-    <a href="{prefix}archive/">ARTICLES</a>
+    <a href="{prefix}docket/">DOCKET</a>
+    <a href="{prefix}archive/">ARTICLES</a><a href="{prefix}videos/">VIDEOS</a>
     <a href="{prefix}scan/">THE SCANNER</a>
     <a href="{prefix}services/">SERVICES</a>
     <a href="{prefix}about/">ABOUT</a>
     <a href="{prefix}docket.json">DATA</a>
   </div>
 </div>
+<div class="socials">{icons}</div>
 <div class="foot-line">BUILT IN THE NORTH &middot; UPDATED {today.isoformat()} &middot;
 61&#176;13'N 149&#176;54'W &middot; EVERY FACT VERIFIED TO ITS SOURCE</div>
 </footer>"""
@@ -417,6 +480,25 @@ transition:transform .25s,box-shadow .25s;box-shadow:0 24px 70px rgba(0,0,0,.5);
 .latest h3{font-family:Fraunces,serif;font-weight:540;font-size:clamp(24px,3vw,32px);
 color:var(--snow);line-height:1.15;margin:12px 0 14px;}
 .latest p{font-size:16.5px;max-width:56ch;}
+/* ---------- latest video ---------- */
+.latestvid{display:grid;grid-template-columns:clamp(230px,30vw,320px) 1fr;gap:44px;
+align-items:center;}
+.vidwrap{position:relative;border-radius:16px;border:1px solid var(--line);overflow:hidden;
+background:var(--panel);box-shadow:0 24px 70px rgba(0,0,0,.5);}
+.vidwrap video{display:block;width:100%;aspect-ratio:9/16;height:auto;object-fit:cover;
+background:var(--deep);cursor:pointer;}
+.vsound{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+display:flex;align-items:center;gap:7px;border:1px solid rgba(255,199,44,.55);
+border-radius:999px;padding:8px 15px;background:rgba(2,6,15,.72);color:var(--gold);
+font-family:JBMono,monospace;font-size:11px;letter-spacing:.14em;cursor:pointer;
+backdrop-filter:blur(6px);white-space:nowrap;}
+.vsound:hover{background:rgba(2,6,15,.9);}
+.vsound.on{opacity:.55;}
+.latestvid h3{font-family:Fraunces,serif;font-weight:540;font-size:clamp(24px,3vw,32px);
+color:var(--snow);line-height:1.15;margin:12px 0 14px;}
+.latestvid p{font-size:16.5px;max-width:56ch;}
+@media(max-width:720px){.latestvid{grid-template-columns:1fr;}
+.vidwrap{max-width:320px;}}
 
 /* ---------- cards (docket closing soon + archive) ---------- */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;}
@@ -603,6 +685,14 @@ font-size:13px;letter-spacing:.22em;color:var(--snow);}
 font-size:11.5px;letter-spacing:.14em;}
 .foot-links a{color:var(--mute);text-decoration:none;transition:color .2s;}
 .foot-links a:hover{color:var(--gold);}
+.socials{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;}
+.socials a{display:flex;width:40px;height:40px;align-items:center;justify-content:center;
+border:1px solid var(--line);border-radius:11px;transition:transform .2s,border-color .2s,
+box-shadow .2s;}
+.socials svg{width:17px;height:17px;fill:var(--mute);transition:fill .2s;}
+.socials a:hover{transform:translateY(-3px);border-color:rgba(255,199,44,.6);
+box-shadow:0 8px 22px rgba(0,0,0,.4);}
+.socials a:hover svg{fill:var(--gold);}
 .foot-line{margin-top:18px;font-family:JBMono,monospace;font-size:11px;color:#5a6d87;
 letter-spacing:.14em;line-height:2;}
 
@@ -925,6 +1015,17 @@ def caption_paragraphs(r):
     return "".join(f"<p>{esc(p)}</p>" for p in paras)
 
 
+def video_count():
+    """Published-video count from the feed the video automation maintains at
+    docs/videos/videos.json. Counted live at every build, so the stat updates
+    whenever the site rebuilds; zero (and no crash) if the feed is absent."""
+    try:
+        d = json.loads((REPO / "docs" / "videos" / "videos.json").read_text())
+        return len(d.get("videos") or [])
+    except Exception:
+        return 0
+
+
 def pretty_date(iso):
     d = ddate.fromisoformat(iso)
     return f"{MONTH_FULL[d.month - 1]} {d.day}, {d.year}"
@@ -938,8 +1039,10 @@ def home_page(today, site_url, docket, runs):
     nearest = db.next_date(dated[0], today) if dated else None
     latest = runs[0] if runs else None
 
+    n_videos = video_count()
     stats = f"""<div class="statrow">
-  <div class="stat"><div class="n" data-count="{len(runs)}">{len(runs):02d}</div><div class="l">DECKS SHIPPED</div></div>
+  <div class="stat"><div class="n" data-count="{len(runs)}">{len(runs):02d}</div><div class="l">ARTICLES WRITTEN</div></div>
+  <div class="stat"><div class="n" data-count="{n_videos}">{n_videos:02d}</div><div class="l">VIDEOS PUBLISHED</div></div>
   <div class="stat"><div class="n" data-count="{len(live)}">{len(live):02d}</div><div class="l">DECISIONS TRACKED</div></div>
   <div class="stat"><div class="n g" data-count="{n_open}">{n_open:02d}</div><div class="l">DOORS OPEN TO YOU</div></div>
 </div>"""
@@ -967,17 +1070,64 @@ every fact. Gold means a door is open to the public right now.</p>
 <div class="cards">{cards}</div>
 <div class="ctarow" data-reveal><a class="cta gold" href="docket/">OPEN THE FULL DOCKET</a></div>"""
 
-    steps = """<h2 data-reveal>The house rules</h2>
-<p class="sub" data-reveal>Alaska AI works the state's AI beat the way a newsroom would.
-These rules never bend.</p>
-<div class="steps">
-  <div class="step" data-reveal><div class="k">01 &middot; RESEARCHED</div><h3>Six beats, every day</h3>
-  <p>Power and compute, research and Indigenous AI, the field, policy and money, robotics, and what
-  Alaskans are actually saying.</p></div>
-  <div class="step" data-reveal><div class="k">02 &middot; VERIFIED</div><h3>Claims or it did not happen</h3>
-  <p>Every number and quote is re-fetched from a primary source before it can appear on a slide,
-  the docket, or this site.</p></div>
-</div>"""
+    # Our Latest Video: the skeleton is baked, the newest entry is pulled live
+    # from videos/videos.json (owned by the video automation) so this section
+    # always shows the freshest video with no rebuild needed. The mp4 only
+    # loads when the section scrolls into view, and it autoplays muted there.
+    steps = """<div id="homevidsec" hidden>
+<h2 data-reveal>Our Latest Video</h2>
+<p class="sub" data-reveal>The newest video from the daily feed. Tap through for the whole
+collection.</p>
+<div class="latestvid" data-reveal>
+  <div class="vidwrap"><video id="hv" muted playsinline loop preload="none"
+  aria-label="The latest Alaska AI video"></video>
+  <button class="vsound" id="hvsound" type="button" aria-label="Toggle sound">TAP FOR SOUND</button></div>
+  <div>
+    <div class="chip kind" id="hvdate"></div>
+    <h3 id="hvtitle"></h3>
+    <p id="hvcap"></p>
+    <div class="ctarow"><a class="cta gold" href="videos/">EVERY VIDEO</a></div>
+  </div>
+</div>
+</div>
+<script>
+(function(){
+var sec=document.getElementById('homevidsec');if(!sec||!window.fetch)return;
+fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
+  var base=m.media_base||'';
+  var vs=(m.videos||[]).filter(function(v){return v&&v.video});
+  if(!vs.length)return;
+  var v=vs[0];
+  var abs=function(u){return /^https?:\\/\\//.test(u)?u:base+u};
+  var el=document.getElementById('hv');
+  if(v.poster)el.poster=abs(v.poster);
+  el.dataset.src=abs(v.video_mobile||v.video);
+  document.getElementById('hvtitle').textContent=v.title||'';
+  document.getElementById('hvcap').textContent=v.caption||'';
+  var d=document.getElementById('hvdate');
+  try{d.textContent=new Date(v.date+'T12:00:00').toLocaleDateString('en-US',
+    {month:'long',day:'numeric',year:'numeric'}).toUpperCase()+' \\u00b7 ON VIDEO'}
+  catch(e){d.textContent=(v.date||'').toUpperCase()}
+  sec.hidden=false;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){if(!el.getAttribute('src'))el.src=el.dataset.src;
+      el.play().catch(function(){});}
+    else el.pause();
+  })},{threshold:0.3});
+  io.observe(el);
+  var sb=document.getElementById('hvsound');
+  var toggle=function(){
+    el.muted=!el.muted;
+    sb.textContent=el.muted?'TAP FOR SOUND':'MUTE';
+    sb.classList.toggle('on',!el.muted);
+    if(!el.getAttribute('src'))el.src=el.dataset.src;
+    el.play().catch(function(){});
+  };
+  sb.addEventListener('click',toggle);
+  el.addEventListener('click',toggle);
+}).catch(function(){});
+})();
+</script>"""
 
     next_line = ""
     if nearest and dated:
@@ -989,8 +1139,9 @@ These rules never bend.</p>
 <p class="tag">Alaska AI watches it happen. Every deal, docket and decision on the state's
 AI beat, verified to the source and told for Alaskans. From the Slope to Southeast, daily.</p>
 <div class="ctarow">
-  <a class="cta gold" href="docket/">THE DOCKET</a>
-  <a class="cta ghost" href="archive/">THE DECKS</a>
+  <a class="cta gold" href="docket/">DOCKET</a>
+  <a class="cta ghost" href="archive/">ARTICLES</a>
+  <a class="cta ghost" href="videos/">VIDEOS</a>
 </div>
 {stats}
 </div>
@@ -1055,9 +1206,9 @@ The data behind this page is public at <a href="../docket.json" style="color:var
     return page("The Alaska AI Docket - AI Infrastructure Decisions in Alaska",
                 "Every AI infrastructure decision in Alaska, tracked daily. Who decides, "
                 "when it lands, and whether the public gets a say. Sources on every item.",
-                body, "../", "the docket", today, site_url, "docket/",
+                body, "../", "docket", today, site_url, "docket/",
                 og_image="og-docket.png", ld=ld,
-                crumbs=[("Alaska AI", ""), ("The Docket", "docket/")])
+                crumbs=[("Alaska AI", ""), ("Docket", "docket/")])
 
 
 def archive_page(today, site_url, runs):
@@ -1688,8 +1839,8 @@ def not_found_page(today, site_url):
 The stars will get you home.</p>
 <div class="ctarow">
   <a class="cta gold" href="/">BACK HOME</a>
-  <a class="cta ghost" href="/docket/">THE DOCKET</a>
-  <a class="cta ghost" href="/archive/">THE DECKS</a>
+  <a class="cta ghost" href="/docket/">DOCKET</a>
+  <a class="cta ghost" href="/archive/">ARTICLES</a>
 </div>
 </div>"""
     return page("Page not found - Alaska AI",
@@ -1720,14 +1871,15 @@ def touch_icon(out):
 
 
 def sitemap(site_url, runs, today):
-    """Truthful lastmod only: home, docket, and archive genuinely change every
-    build (new deck, docket updates), deck pages carry their publish date, and
-    services/about omit lastmod rather than fake a daily bump. Google ignores
-    priority and changefreq, so neither is emitted."""
+    """Truthful lastmod only: home, videos, docket, and archive genuinely
+    change every build (new deck, new dispatch video, docket updates), deck
+    pages carry their publish date, and services/about omit lastmod rather
+    than fake a daily bump. Google ignores priority and changefreq, so
+    neither is emitted."""
     iso = today.isoformat()
     entries = []
-    for u in ("", "docket/", "archive/", "services/", "scan/", "about/"):
-        lm = f"<lastmod>{iso}</lastmod>" if u in ("", "docket/", "archive/") else ""
+    for u in ("", "videos/", "docket/", "archive/", "services/", "scan/", "about/"):
+        lm = f"<lastmod>{iso}</lastmod>" if u in ("", "videos/", "docket/", "archive/") else ""
         entries.append(f"<url><loc>{site_url}/{u}</loc>{lm}</url>")
     for r in runs:
         entries.append(f"<url><loc>{site_url}/archive/{r['date']}/</loc>"
@@ -1803,6 +1955,25 @@ def build(today, out_dir, site_url=None, domain=""):
         p = out / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(html)
+
+    # The videos page is a static passthrough, owned outside this generator.
+    # docs/videos/index.html is a hand-built, self-contained player (inline
+    # CSS/JS; it fetches its feed at runtime) and docs/videos/videos.json is
+    # that feed, data prepended daily by publish_feed.py in the
+    # alaska-ai-weekly repo. Neither file is generated, reformatted, or
+    # deleted here, ever. Building into a fresh out dir copies both over
+    # byte for byte so the VIDEOS nav link on every page still resolves.
+    videos_src = REPO / "docs" / "videos"
+    if videos_src.is_dir():
+        if (out / "videos").resolve() != videos_src.resolve():
+            (out / "videos").mkdir(parents=True, exist_ok=True)
+            for name in ("index.html", "videos.json"):
+                f = videos_src / name
+                if f.exists():
+                    (out / "videos" / name).write_bytes(f.read_bytes())
+    else:
+        print("warning: docs/videos/ not found, the VIDEOS nav link will 404",
+              file=sys.stderr)
 
     feed = json.dumps({"updated": today.isoformat(), "items": docket[0]}, indent=2)
     (out / "docket.json").write_text(feed)
