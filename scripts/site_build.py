@@ -1255,7 +1255,11 @@ ends with something you own. Prices are where the work starts, scoped in the ope
     every system on the best model for the job, and stay on the hook for the outcome, not
     the deliverable.</p>
   </div>
-</div>"""
+</div>
+<p class="fineprint" data-reveal style="margin-top:14px">Financing is available on all
+three. Cash flow in Alaska runs in seasons, so terms get shaped to the job and the year
+you actually have. If the money is the sticking point, say so and we will put numbers
+to it.</p>"""
 
     headcount = """<h2 data-reveal>Cut once, correctly</h2>
 <p data-reveal>Some businesses are weighing AI against headcount. Few say it out loud, and
