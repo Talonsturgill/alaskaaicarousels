@@ -983,3 +983,20 @@ dimensional.
   https://www.maptiler.com/news/2026/02/multidirectional-hillshades-and-terrain-color-ramps-for-web-maps/ ,
   https://gist.github.com/maning/28ad9ebb1dcb1ea85440 , https://eduard.earth/ ,
   https://github.com/mattdesl/lwjgl-basics/wiki/ShaderLesson6
+
+## 2026-07-23 - craft refresh (No.15)
+
+- LinkedIn 2026 reconfirms the settled numbers (8-10 slides, hook first, one
+  idea per slide, single CTA, first-hour comment replies). Fresh data point
+  worth keeping in mind, not a doctrine change: AuthoredUp's analysis of ~3M
+  posts (Mar 2025 to Feb 2026) puts document/carousel engagement highest of
+  any format (~6.6%, ~39% more reach, ~30% more engagement than average), and
+  SAVES are now ~5x the weight of a like. Design one genuinely keepable
+  reference slide per deck (the "save this" beat), and keep display type
+  legible at the 432px feed thumbnail, not just at 1080. Sources:
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/ ,
+  https://www.getcreator.io/stats/linkedin-carousel-benchmarks
+- Small multiples reconfirmed as the right form for multi-entity/multi-place
+  comparison (one shared scale, a grid) over a single cluttered chart, useful
+  if this run's story is multi-base or multi-region. Source:
+  https://en.wikipedia.org/wiki/Small_multiple
