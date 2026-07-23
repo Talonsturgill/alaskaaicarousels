@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Capture Memory, a scripted demonstration for Bristol Bay Native Corporation, prepared by Alaska AI</title>
+<style>
+:root{
+  --bg:#070b12; --panel:#0d1420; --panel2:#111a28; --line:#1e2b3d;
+  --ink:#eef3fb; --muted:#9fb0c6; --faint:#6f7f96;
+  --aur1:#57e0c8; --aur2:#5aa9ff; --aur3:#9b8cff; --warm:#ffd18c;
+  --good:#5fd0a6; --warn:#ffb35c; --stop:#ff7d84;
+  --maxw:960px;
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{
+  margin:0;background:
+    radial-gradient(1100px 500px at 82% -8%, rgba(90,169,255,.12), transparent 60%),
+    radial-gradient(900px 460px at 6% 3%, rgba(87,224,200,.10), transparent 55%),
+    var(--bg);
+  color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  letter-spacing:.1px;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px 90px}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin:0 0 10px}
+h1{font-size:clamp(26px,4.6vw,42px);line-height:1.06;margin:.1em 0 .28em;font-weight:680;letter-spacing:-.4px}
+h2{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--aur1);margin:0 0 6px;font-weight:640}
+h3{font-size:clamp(19px,2.7vw,25px);line-height:1.16;margin:.1em 0 .5em;font-weight:640;letter-spacing:-.2px}
+p{margin:0 0 14px}
+a{color:var(--aur2);text-decoration:none;border-bottom:1px solid rgba(90,169,255,.35)}
+strong{color:#fff;font-weight:640}
+.small{font-size:13.5px;color:var(--muted)}
+.faint{color:var(--faint)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:18px 0 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.mark{display:flex;align-items:center;gap:11px;font-weight:660;letter-spacing:.02em}
+.dot{width:12px;height:12px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--aur1),var(--aur3));
+  box-shadow:0 0 16px 2px rgba(87,224,200,.5)}
+.byline{font-size:12px;color:var(--faint);text-align:right;line-height:1.5}
+
+.cover{padding:40px 0 26px;border-bottom:1px solid var(--line)}
+.thesis{font-size:clamp(17px,2.4vw,21px);line-height:1.45;color:var(--ink);max-width:46rem;margin:.2em 0 1.1em;font-weight:460}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:3px 11px;color:var(--muted);font-size:12.5px}
+.pill b{color:var(--ink);font-weight:640}
+
+/* demo banner */
+.banner{display:flex;gap:13px;align-items:flex-start;background:linear-gradient(180deg,rgba(255,209,140,.07),rgba(255,209,140,.03));
+  border:1px solid rgba(255,209,140,.32);border-radius:12px;padding:14px 16px;margin:22px 0 6px}
+.banner .b-ic{flex:0 0 auto;width:22px;height:22px;border-radius:6px;border:1px solid rgba(255,209,140,.5);
+  display:flex;align-items:center;justify-content:center;color:var(--warm);font-size:12px;font-weight:700;margin-top:1px}
+.banner p{margin:0;font-size:13.5px;color:#e7dcc6;line-height:1.55}
+.banner b{color:var(--warm)}
+
+.sec{padding:32px 0;border-bottom:1px solid var(--line)}
+.sec:last-of-type{border-bottom:0}
+.lede{color:var(--muted);max-width:44rem;font-size:15px}
+
+/* console */
+.console{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;margin-top:16px}
+.c-head{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:13px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.015);flex-wrap:wrap}
+.c-title{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:640;letter-spacing:.02em}
+.c-title .dot{width:9px;height:9px;box-shadow:0 0 10px 1px rgba(87,224,200,.5)}
+.c-id{font-size:11.5px;color:var(--faint);display:flex;align-items:center;gap:7px}
+.who{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--muted)}
+.who .av{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--aur2),var(--aur3));
+  display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#0a0f18}
+
+.c-body{padding:16px}
+.askbox{display:flex;gap:9px;align-items:stretch;flex-wrap:wrap}
+.askbox input{flex:1 1 260px;min-width:0;background:#0a1018;border:1px solid var(--line);color:var(--ink);
+  border-radius:10px;padding:12px 14px;font-size:14.5px;font-family:inherit}
+.askbox input::placeholder{color:var(--faint)}
+.askbox button{flex:0 0 auto;background:linear-gradient(180deg,#1a2942,#142032);border:1px solid var(--aur2);
+  color:var(--ink);border-radius:10px;padding:12px 18px;font-size:14px;font-weight:640;cursor:pointer}
+.askbox button:hover{border-color:var(--aur1)}
+.hint{font-size:12px;color:var(--faint);margin:10px 2px 4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{background:#0a1018;border:1px solid var(--line);color:var(--muted);border-radius:999px;
+  padding:8px 13px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.35}
+.chip:hover{border-color:var(--aur2);color:var(--ink)}
+.chip.restricted{border-color:rgba(255,125,132,.35);color:#f0b9bc}
+.chip.restricted:hover{border-color:var(--stop)}
+.chip .ct{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:2px}
+.chip.restricted .ct{color:var(--stop)}
+
+/* pipeline steps */
+.pipe{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.pstep{flex:1 1 150px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#0a1018;opacity:.4;transition:opacity .25s,border-color .25s}
+.pstep.on{opacity:1;border-color:rgba(90,169,255,.4)}
+.pstep.gate.on{border-color:rgba(255,209,140,.5)}
+.pstep.stop.on{border-color:var(--stop)}
+.pstep .pn{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+.pstep .pl{font-size:12.5px;color:var(--ink);line-height:1.35}
+.pstep .ps{font-size:11px;color:var(--muted);margin-top:3px}
+.pstep.on .pn{color:var(--aur1)}
+.pstep.gate.on .pn{color:var(--warm)}
+.pstep.stop.on .pn{color:var(--stop)}
+
+/* acl banners */
+.acl{border-radius:12px;padding:14px 16px;margin:16px 0 4px;display:flex;gap:12px;align-items:flex-start}
+.acl.ok{background:rgba(95,208,166,.07);border:1px solid rgba(95,208,166,.34)}
+.acl.no{background:rgba(255,125,132,.07);border:1px solid rgba(255,125,132,.4)}
+.acl .ic{flex:0 0 auto;width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.acl.ok .ic{border:1px solid rgba(95,208,166,.55);color:var(--good)}
+.acl.no .ic{border:1px solid rgba(255,125,132,.55);color:var(--stop)}
+.acl .at{font-size:13px;font-weight:660;margin-bottom:3px}
+.acl.ok .at{color:var(--good)}
+.acl.no .at{color:#ffb0b4}
+.acl .ad{font-size:12.5px;color:var(--muted);line-height:1.5}
+.acl .ad b{color:var(--ink)}
+
+/* result cards */
+.results{margin-top:16px;display:grid;gap:12px}
+.rcard{background:#0b121d;border:1px solid var(--line);border-radius:13px;padding:15px 16px}
+.rc-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.rc-ent{font-size:14.5px;font-weight:660;color:#fff}
+.rc-meta{font-size:12px;color:var(--faint)}
+.rc-tags{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 11px}
+.tg{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--line);
+  border-radius:6px;padding:2px 8px;color:var(--muted)}
+.tg.ill{color:var(--warm);border-color:rgba(255,209,140,.4)}
+.tg.trace{color:var(--good);border-color:rgba(95,208,166,.4)}
+.tg.cui{color:var(--aur3);border-color:rgba(155,140,255,.4)}
+.passage{border-left:2px solid var(--aur1);padding:4px 0 4px 14px;margin:2px 0 12px;color:#dbe6f5;font-size:14px;line-height:1.55}
+.src-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;
+  padding-top:11px;border-top:1px solid rgba(30,43,61,.7)}
+.cite{font-size:12px;color:var(--muted)}
+.cite b{color:var(--ink)}
+.conf{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--muted)}
+.bar{width:82px;height:6px;border-radius:4px;background:#152033;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--aur1),var(--aur2))}
+
+.emptynote{font-size:13px;color:var(--muted);background:#0b121d;border:1px dashed var(--line);border-radius:12px;padding:16px;margin-top:14px;line-height:1.55}
+.emptynote b{color:var(--ink)}
+
+.disc{font-size:11.5px;color:var(--faint);margin-top:14px;line-height:1.55}
+
+/* handoff artifact */
+.artifact{background:#0a0f17;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:16px}
+.a-head{padding:15px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;background:rgba(255,255,255,.015)}
+.a-head .al{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--aur1)}
+.a-head .at{font-size:16px;font-weight:660;color:#fff;margin-top:2px}
+.a-head .ameta{font-size:11.5px;color:var(--faint);text-align:right;line-height:1.5}
+.a-body{padding:18px}
+.a-line{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(30,43,61,.6)}
+.a-line:last-child{border-bottom:0}
+.a-num{flex:0 0 auto;width:22px;height:22px;border-radius:6px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--aur2);font-weight:700}
+.a-line .txt{font-size:13.5px;color:var(--ink);line-height:1.5}
+.a-line .txt .m{color:var(--faint);font-size:12px}
+.a-foot{padding:14px 18px;border-top:1px solid var(--line);background:rgba(255,209,140,.04);
+  display:flex;gap:11px;align-items:flex-start}
+.a-foot .fic{flex:0 0 auto;color:var(--warm);font-weight:800;font-size:13px}
+.a-foot p{margin:0;font-size:12.5px;color:#e7dcc6;line-height:1.55}
+.a-foot b{color:var(--warm)}
+
+/* radar */
+.radar{display:grid;gap:11px;margin-top:16px}
+.solrow{background:#0b121d;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.solrow .st{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.solrow .sname{font-size:14px;font-weight:640;color:#fff}
+.solrow .sag{font-size:12px;color:var(--muted);margin-top:2px}
+.solrow .sd{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.mtag{font-size:11px;border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--muted)}
+.mtag.set{color:var(--aur1);border-color:rgba(87,224,200,.38)}
+.mtag.due{color:var(--warm);border-color:rgba(255,209,140,.4)}
+.mtag.fit{color:var(--aur2);border-color:rgba(90,169,255,.4)}
+.deadline{font-size:11.5px;color:var(--faint)}
+
+/* operation steps */
+.op{display:grid;gap:12px;margin-top:16px}
+@media(min-width:720px){.op{grid-template-columns:repeat(3,1fr)}}
+.opcard{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:16px 17px}
+.opcard .opn{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--aur1);font-weight:640;margin-bottom:7px}
+.opcard h4{margin:0 0 6px;font-size:15px;color:#fff;font-weight:640}
+.opcard p{margin:0;font-size:13px;color:var(--muted);line-height:1.55}
+.guard{margin-top:16px;background:rgba(90,169,255,.05);border:1px solid rgba(90,169,255,.28);border-radius:12px;padding:14px 16px;font-size:13.5px;color:#cfe0f4;line-height:1.55}
+.guard b{color:#fff}
+
+footer{padding:30px 0 0;color:var(--faint);font-size:12.5px;line-height:1.6}
+footer a{color:var(--muted)}
+
+@media(max-width:560px){
+  .byline{text-align:left}
+  .a-head .ameta{text-align:left}
+}
+@media print{
+  body{background:#fff;color:#0a0f17}
+  .chip,.askbox button{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="mark"><span class="dot"></span> Alaska AI</div>
+    <div class="byline">
+      Prepared by Alaska AI for Bristol Bay Native Corporation<br>
+      Interactive demonstration, July 23 2026
+    </div>
+  </div>
+
+  <section class="cover">
+    <p class="eyebrow">Capture Memory, proposed build</p>
+    <h1>Your winning proposals, findable across all 22 subsidiaries.</h1>
+    <p class="thesis">A governed retrieval layer over Bristol Bay's own past performance, prior proposals, resumes, and compliance answers. A writer asks in plain language and gets back sourced, reusable prior text with the winning entity and contract cited beside it. It retrieves and it cites. It never drafts a full proposal and it never submits anything.</p>
+    <div class="pills">
+      <span class="pill"><b>22</b> government-services subsidiaries</span>
+      <span class="pill"><b>&gt;$300M</b> in contracts per year</span>
+      <span class="pill"><b>2,500+</b> personnel worldwide</span>
+      <span class="pill">Defense Health Agency, US Air Force, US Army medical, NRC</span>
+    </div>
+
+    <div class="banner">
+      <span class="b-ic">i</span>
+      <p>This is a <b>scripted demonstration</b> of the proposed build, running on <b>illustrative sample data</b> so you can click through the workflow. It is not the live system and it is not connected to any Bristol Bay document. The real system runs inside a <b>governed, FedRAMP-authorized environment</b> over Bristol Bay's own files, with per-document CUI and ITAR classification signed off by your compliance owner. The source labels shown below, subsidiary A, B, and C, along with the contract labels and passages, are illustrative stand-ins for the kind of sourced answer the system returns. They are not real Bristol Bay subsidiaries or contract records.</p>
+    </div>
+  </section>
+
+  <!-- ================= WRITER CONSOLE ================= -->
+  <section class="sec">
+    <h2>Scenario one, the writer console</h2>
+    <h3>Ask in plain language. Get sourced prior text back.</h3>
+    <p class="lede">Pick one of the scripted questions below, the kind a proposal writer asks when a new solicitation lands. Watch the deterministic access-control gate run <strong>before</strong> retrieval, then read the sourced results. Every answer carries the winning entity, a contract label, and a traceable-to-source badge.</p>
+
+    <div class="console">
+      <div class="c-head">
+        <div class="c-title"><span class="dot"></span> Capture Memory, Writer Console</div>
+        <div class="who">
+          <span class="av">PW</span> Signed in as Proposal Writer, Bristol Bay Services &middot; clearance Standard + CUI-Medical
+        </div>
+      </div>
+      <div class="c-body">
+        <div class="askbox">
+          <input id="q" type="text" placeholder="Ask about prior past performance, resumes, or compliance answers" readonly>
+          <button id="run" type="button">Search memory</button>
+        </div>
+        <p class="hint">Scripted questions, click one to run it</p>
+        <div class="chips" id="chips"></div>
+
+        <div class="pipe" id="pipe">
+          <div class="pstep" data-s="0"><div class="pn">Step 1</div><div class="pl">Identity verified</div><div class="ps">Entra ID Gov, CAC/PIV</div></div>
+          <div class="pstep gate" data-s="1"><div class="pn">Step 2, gate</div><div class="pl">Access-control decision</div><div class="ps">Deterministic, outside the model</div></div>
+          <div class="pstep" data-s="2"><div class="pl">Retrieval</div><div class="pn">Step 3</div><div class="ps">Hybrid search, cleared chunks only</div></div>
+          <div class="pstep" data-s="3"><div class="pn">Step 4</div><div class="pl">Sourced answer + citations</div><div class="ps">Screened for untraceable text</div></div>
+        </div>
+
+        <div id="aclbox"></div>
+        <div class="results" id="results"></div>
+        <div id="afterresults"></div>
+      </div>
+    </div>
+    <p class="disc">Where the model fits, understanding the plain-language question and matching it to relevant prior text across entities where keyword search fails. Everything around it is deliberately not AI. The access-control rule is deterministic and tested exhaustively, because a permission boundary is never handed to a language model.</p>
+  </section>
+
+  <!-- ================= HANDOFF ARTIFACT ================= -->
+  <section class="sec">
+    <h2>Scenario two, the handoff</h2>
+    <h3>What the writer actually receives.</h3>
+    <p class="lede">When a writer works a live solicitation, Capture Memory hands back a reuse packet, the found sources gathered in one place, each cited to its origin. This is the artifact, rendered the way it lands in the writer's console. Nothing here is drafted into a proposal and nothing is submitted.</p>
+
+    <div class="artifact">
+      <div class="a-head">
+        <div>
+          <div class="al">Reuse packet, generated by Capture Memory</div>
+          <div class="at">Defense Health Agency medical staffing, recompete</div>
+        </div>
+        <div class="ameta">
+          For Proposal Writer, Bristol Bay Services<br>
+          Illustrative sample &middot; 3 cleared sources found<br>
+          Every line traceable to origin
+        </div>
+      </div>
+      <div class="a-body">
+        <div class="a-line">
+          <span class="a-num">1</span>
+          <div class="txt">Past performance narrative, medical staffing across military treatment facilities.<br>
+          <span class="m">Source, Bristol Bay Services subsidiary A &middot; Defense Health Agency &middot; illustrative contract label DHA-MTF-STAFF (sample) &middot; retrieval confidence 0.92</span></div>
+        </div>
+        <div class="a-line">
+          <span class="a-num">2</span>
+          <div class="txt">Key-personnel resume, licensed program manager with military-health staffing history.<br>
+          <span class="m">Source, Bristol Bay Services subsidiary B &middot; US Army medical command &middot; illustrative contract label AMEDD-BOS (sample) &middot; retrieval confidence 0.87</span></div>
+        </div>
+        <div class="a-line">
+          <span class="a-num">3</span>
+          <div class="txt">Compliance-matrix answer, quality management and credentialing approach.<br>
+          <span class="m">Source, Bristol Bay Services subsidiary C &middot; US Air Force &middot; illustrative contract label AFMS-QA (sample) &middot; retrieval confidence 0.81</span></div>
+        </div>
+      </div>
+      <div class="a-foot">
+        <span class="fic">!</span>
+        <p><b>Human on the trigger.</b> The writer opens each source, verifies it against the current solicitation, and decides what to reuse. Capture Memory found and cited these passages. It did not rewrite them, it did not draft a proposal section, and it cannot file or send anything. Compliance-graded text stays human-owned, always.</p>
+      </div>
+    </div>
+    <p class="disc">Illustrative sample. In the live system the packet is assembled only from documents the signed-in writer is cleared to see, each source is a real Bristol Bay subsidiary, and every contract label is a real origin stamp, not the neutral placeholders shown here.</p>
+  </section>
+
+  <!-- ================= OPPORTUNITY RADAR ================= -->
+  <section class="sec">
+    <h2>Scenario three, Opportunity Radar</h2>
+    <h3>A deterministic eligibility and deadline lookup.</h3>
+    <p class="lede">The companion piece watches public solicitation feeds and flags fitting opportunities early, filtered by NAICS code, set-aside, and deadline. This is a lookup with a right answer, so it stays a rule, not a model. The fit score is a labeled suggestion, never a decision. This is sample feed data shown to illustrate the panel.</p>
+
+    <div class="radar">
+      <div class="solrow">
+        <div class="st">
+          <div>
+            <div class="sname">Medical staffing services, military treatment facilities</div>
+            <div class="sag">Defense Health Agency &middot; sample SAM.gov feed</div>
+          </div>
+          <div class="deadline">Response due in 11 days</div>
+        </div>
+        <div class="sd">
+          <span class="mtag">NAICS 621399</span>
+          <span class="mtag set">8(a) set-aside</span>
+          <span class="mtag fit">Suggested fit, high</span>
+          <span class="mtag due">Reusable prior text found, 3 sources</span>
+        </div>
+      </div>
+      <div class="solrow">
+        <div class="st">
+          <div>
+            <div class="sname">Base operations support, medical logistics</div>
+            <div class="sag">US Air Force &middot; sample SAM.gov feed</div>
+          </div>
+          <div class="deadline">Response due in 19 days</div>
+        </div>
+        <div class="sd">
+          <span class="mtag">NAICS 561210</span>
+          <span class="mtag set">8(a) set-aside</span>
+          <span class="mtag fit">Suggested fit, medium</span>
+          <span class="mtag due">Reusable prior text found, 1 source</span>
+        </div>
+      </div>
+      <div class="solrow">
+        <div class="st">
+          <div>
+            <div class="sname">Technical and quality-assurance support services</div>
+            <div class="sag">Nuclear Regulatory Commission &middot; sample SAM.gov feed</div>
+          </div>
+          <div class="deadline">Response due in 26 days</div>
+        </div>
+        <div class="sd">
+          <span class="mtag">NAICS 541690</span>
+          <span class="mtag set">Small business set-aside</span>
+          <span class="mtag fit">Suggested fit, medium</span>
+          <span class="mtag due">Eligibility check passed</span>
+        </div>
+      </div>
+      <div class="solrow">
+        <div class="st">
+          <div>
+            <div class="sname">Full and open engineering services, no set-aside</div>
+            <div class="sag">Filtered out &middot; sample SAM.gov feed</div>
+          </div>
+          <div class="deadline">Not shown to writer</div>
+        </div>
+        <div class="sd">
+          <span class="mtag">NAICS 541330</span>
+          <span class="mtag">Full and open, no 8(a) eligibility</span>
+        </div>
+      </div>
+    </div>
+    <p class="disc">Sample feed data. The last row shows the rule working in the other direction, a solicitation the group is not eligible for is filtered out by the deterministic check before it ever reaches the writer, so the panel stays honest.</p>
+  </section>
+
+  <!-- ================= HOW IT SITS ================= -->
+  <section class="sec">
+    <h2>How it sits in your operation</h2>
+    <h3>Three steps, and a human on the trigger the whole way.</h3>
+    <div class="op">
+      <div class="opcard">
+        <div class="opn">Step one</div>
+        <h4>A writer asks</h4>
+        <p>A solicitation lands anywhere in the 22-subsidiary family. The writer asks Capture Memory in plain language, the same question they would ask a colleague who had been at Bristol Bay for twenty years.</p>
+      </div>
+      <div class="opcard">
+        <div class="opn">Step two</div>
+        <h4>The system finds and cites</h4>
+        <p>Access control clears the writer first, then retrieval returns prior text they are allowed to see, each passage stamped with the winning entity and contract. The system finds and cites. It does not invent.</p>
+      </div>
+      <div class="opcard">
+        <div class="opn">Step three</div>
+        <h4>The writer decides</h4>
+        <p>The writer verifies each source and chooses what to reuse. Every compliance-graded word stays human-owned. Nothing is auto-drafted and nothing is submitted by the tool, ever.</p>
+      </div>
+    </div>
+    <div class="guard">
+      <b>The guarantee you can see.</b> The permission boundary is deterministic and sits outside the model, so a boundary failure can never be a model failure. Try the restricted question in the console above, the gate returns "not cleared" and retrieval never runs. That is the design spec, not a setting.
+    </div>
+  </section>
+
+  <footer>
+    <p>Capture Memory, a scripted demonstration prepared by Alaska AI for Bristol Bay Native Corporation. Interactive demo using illustrative sample data. It is not a live system and it holds no Bristol Bay documents. The proposed build retrieves and cites prior text with a human reviewing and owning every reuse. It does not draft full proposals and it does not submit anything. Company facts shown, the 22 government-services subsidiaries, more than 300 million dollars in contracts per year, over 2,500 personnel worldwide, and the agencies served, are drawn from Bristol Bay's own public sources. The source labels subsidiary A, B, and C, the contract labels, the passages, and the SAM.gov-style feed are illustrative stand-ins and do not represent real Bristol Bay subsidiaries or contract records.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var QUERIES = [
+    {
+      id:"dha",
+      label:"Reuse across entities",
+      text:"Who has Defense Health Agency medical-staffing past performance we can reuse?",
+      cleared:true,
+      acl:{title:"Access granted for this caller",
+        body:"Caller is <b>cleared for CUI-Medical</b>. Retrieval is limited to documents this identity may see. Two of the sources below are CUI and surface only because the writer is cleared."},
+      results:[
+        {ent:"Bristol Bay Services subsidiary A", agency:"Defense Health Agency", contract:"DHA-MTF-STAFF (sample)", type:"Past performance narrative", conf:0.92, cui:true,
+          passage:"Provided credentialed medical and dental staffing across multiple military treatment facilities, sustaining fill rates above the contract threshold through a surge in demand, with zero credentialing lapses over the base period."},
+        {ent:"Bristol Bay Services subsidiary B", agency:"US Army medical command", contract:"AMEDD-BOS (sample)", type:"Key-personnel resume", conf:0.87, cui:true,
+          passage:"Program manager, licensed clinician with 12 years of military-health staffing delivery, prior performance managing multi-site provider recruiting, onboarding, and compliance for Army medical facilities."},
+        {ent:"Bristol Bay Services subsidiary C", agency:"US Air Force", contract:"AFMS-QA (sample)", type:"Compliance-matrix answer", conf:0.81, cui:false,
+          passage:"Quality management approach for clinical staffing, credential verification at intake, monthly file audits, and a corrective-action loop tied to the government quality-assurance surveillance plan."}
+      ]
+    },
+    {
+      id:"nrc",
+      label:"Compliance answers",
+      text:"Pull our quality-assurance compliance-matrix answers for a Nuclear Regulatory Commission technical-services bid.",
+      cleared:true,
+      acl:{title:"Access granted for this caller",
+        body:"Caller is cleared for the requested library. These sources are <b>not CUI</b> and are available to standard proposal staff."},
+      results:[
+        {ent:"Bristol Bay Services subsidiary C", agency:"Nuclear Regulatory Commission", contract:"NRC-TSS-QA (sample)", type:"Compliance-matrix answer", conf:0.9, cui:false,
+          passage:"Quality assurance program aligned to the client's graded approach, documented procedures, independent verification, records control, and a nonconformance and corrective-action process reviewed at defined milestones."},
+        {ent:"Bristol Bay Services subsidiary B", agency:"Nuclear Regulatory Commission", contract:"NRC-ENG-SUP (sample)", type:"Past performance narrative", conf:0.84, cui:false,
+          passage:"Delivered technical and engineering support with a formal QA plan, meeting all deliverable acceptance criteria across the period of performance with no material deficiencies reported."}
+      ]
+    },
+    {
+      id:"resume",
+      label:"Find a resume",
+      text:"Find a program-manager resume with US Air Force base-operations-support experience.",
+      cleared:true,
+      acl:{title:"Access granted for this caller",
+        body:"Caller is cleared for the requested library. One matching resume is CUI and surfaces because the writer holds that clearance."},
+      results:[
+        {ent:"Bristol Bay Services subsidiary B", agency:"US Air Force", contract:"AFBOS-SVC (sample)", type:"Key-personnel resume", conf:0.88, cui:true,
+          passage:"Program manager, 15 years of base operations support, led multi-function service delivery on an Air Force installation covering facilities, logistics, and support services, with award-fee scores in the very good to excellent range."},
+        {ent:"Bristol Bay Services subsidiary C", agency:"US Air Force", contract:"AFBOS-LOG (sample)", type:"Key-personnel resume", conf:0.79, cui:false,
+          passage:"Deputy program manager, logistics and supply chain lead on Air Force support contracts, managed inventory accountability and property control across dispersed sites."}
+      ]
+    },
+    {
+      id:"itar",
+      label:"Restricted, watch the gate",
+      restricted:true,
+      text:"Pull the ITAR-controlled radar technical-data narrative from the classified Air Force program.",
+      cleared:false,
+      acl:{title:"Not cleared, retrieval did not run",
+        body:"The requested material is <b>ITAR-controlled technical data</b>. This identity is not on the cleared list for that program, so the deterministic access-control gate stopped the request <b>before</b> any retrieval. The model never saw the corpus and returned nothing. ITAR data reachable by a non-cleared person can be an unauthorized export, which is exactly why this boundary is a hard-coded rule, tested against a red-team permission set, and never handed to a language model."}
+    }
+  ];
+
+  var q = document.getElementById("q");
+  var chips = document.getElementById("chips");
+  var pipe = document.getElementById("pipe");
+  var aclbox = document.getElementById("aclbox");
+  var results = document.getElementById("results");
+  var after = document.getElementById("afterresults");
+  var runBtn = document.getElementById("run");
+  var current = null;
+
+  QUERIES.forEach(function(it){
+    var c = document.createElement("button");
+    c.type = "button";
+    c.className = "chip" + (it.restricted ? " restricted" : "");
+    c.innerHTML = '<span class="ct">' + esc(it.label) + '</span>' + esc(it.text);
+    c.addEventListener("click", function(){ load(it); });
+    chips.appendChild(c);
+  });
+
+  runBtn.addEventListener("click", function(){ if(current) run(current); });
+
+  function load(it){
+    current = it;
+    q.value = it.text;
+    clearOut();
+    setSteps(-1);
+    run(it);
+  }
+
+  function clearOut(){
+    aclbox.innerHTML = "";
+    results.innerHTML = "";
+    after.innerHTML = "";
+  }
+
+  function setSteps(upTo, mode){
+    var steps = pipe.querySelectorAll(".pstep");
+    steps.forEach(function(s){
+      s.classList.remove("on","stop");
+      var idx = parseInt(s.getAttribute("data-s"),10);
+      if(idx <= upTo){
+        s.classList.add("on");
+        if(mode === "stop" && idx === 1){ s.classList.add("stop"); }
+      }
+    });
+  }
+
+  function run(it){
+    clearOut();
+    // animate the pipeline
+    setSteps(0);
+    setTimeout(function(){
+      if(it.cleared){
+        setSteps(1);
+        setTimeout(function(){ showAcl(it); setSteps(2); }, 360);
+        setTimeout(function(){ setSteps(3); showResults(it); }, 820);
+      } else {
+        // gate stops at step 2, retrieval never runs
+        pipe.querySelector('.pstep[data-s="0"]').classList.add("on");
+        pipe.querySelector('.pstep[data-s="1"]').classList.add("on","stop");
+        setTimeout(function(){ showAcl(it); showBlocked(it); }, 380);
+      }
+    }, 260);
+  }
+
+  function showAcl(it){
+    var ok = it.cleared;
+    aclbox.innerHTML =
+      '<div class="acl ' + (ok ? "ok" : "no") + '">' +
+        '<span class="ic">' + (ok ? "OK" : "BLOCKED") + '</span>' +
+        '<div><div class="at">' + esc(it.acl.title) + '</div>' +
+        '<div class="ad">' + it.acl.body + '</div></div>' +
+      '</div>';
+  }
+
+  function showBlocked(it){
+    results.innerHTML =
+      '<div class="emptynote"><b>No results returned.</b> The access-control gate ran first and denied the request, so retrieval never touched the corpus. This is the boundary working exactly as designed. A different writer, cleared for that program, would see results here. The identity, not the question, decides.</div>';
+  }
+
+  function showResults(it){
+    var html = "";
+    it.results.forEach(function(r){
+      var pct = Math.round(r.conf * 100);
+      html +=
+        '<div class="rcard">' +
+          '<div class="rc-top">' +
+            '<div class="rc-ent">' + esc(r.ent) + '</div>' +
+            '<div class="rc-meta">' + esc(r.type) + '</div>' +
+          '</div>' +
+          '<div class="rc-tags">' +
+            '<span class="tg ill">Illustrative sample</span>' +
+            '<span class="tg trace">Traceable to source</span>' +
+            (r.cui ? '<span class="tg cui">CUI, cleared for caller</span>' : '') +
+          '</div>' +
+          '<div class="passage">' + esc(r.passage) + '</div>' +
+          '<div class="src-row">' +
+            '<div class="cite">Source, <b>' + esc(r.ent) + '</b> &middot; ' + esc(r.agency) + ' &middot; ' + esc(r.contract) + '</div>' +
+            '<div class="conf">Retrieval confidence ' + pct + '%<span class="bar"><i style="width:' + pct + '%"></i></span></div>' +
+          '</div>' +
+        '</div>';
+    });
+    results.innerHTML = html;
+    after.innerHTML =
+      '<div class="emptynote">Capture Memory found and cited the prior text above. The writer verifies each source and decides what to reuse. <b>Nothing is drafted into a proposal and nothing is submitted.</b> A low-confidence retrieval, or a question with no clean match, returns an honest "I do not have that" and routes to a human, never a fabricated answer.</div>';
+  }
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  // preload the first scenario so the console is never empty
+  load(QUERIES[0]);
+})();
+</script>
+</body>
+</html>
