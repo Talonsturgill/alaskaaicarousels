@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "beluga-from-orbit-2026-07-23",
+      "date": "2026-07-23",
+      "title": "Counting Belugas From Orbit",
+      "caption": "NOAA's experimental GAIA machine vision is learning to find the endangered Cook Inlet belugas, about 331 left, in satellite imagery. The honest open question is whether it can get the clear satellite passes it needs over Anchorage's crowded sky.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/beluga-orbit-2026-07-23-dispatch_master_9x16.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/beluga-orbit-2026-07-23-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/beluga-orbit-2026-07-23-dispatch_9x16_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/beluga-orbit-2026-07-23-poster_thumb.jpg"
+    },
+    {
       "id": "2026-07-22-checkpoint-lever",
       "date": "2026-07-22",
       "title": "The Checkpoint Lever",
