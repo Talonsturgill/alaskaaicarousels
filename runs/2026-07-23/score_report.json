@@ -1,0 +1,31 @@
+{
+  "run_date": "2026-07-23",
+  "carousel_no": 15,
+  "weighted_score": 8.90,
+  "threshold": 8.3,
+  "passes": true,
+  "criteria": [
+    {"name": "Thumb-stop cover", "score": 8, "weight": 0.14, "note": "10-word authority declarative + rendered gold-seal focal point, reads at 432px; strong but a quiet declarative with no number."},
+    {"name": "Story arc & swipe momentum", "score": 8, "weight": 0.14, "note": "Clean 9-beat arc; seal state machine binds the sequence; contact sheet reads as one composed run."},
+    {"name": "Artwork craft & genuine detail", "score": 7, "weight": 0.16, "note": "GPU-PBR gold seal is a genuine dimensional hero recurring as a state machine, but 8 of 9 slides are flat editorial/data at density 3; recurring series ceiling."},
+    {"name": "Story-art fusion", "score": 9, "weight": 0.14, "note": "Seal encodes the story literally; 40x bar = 40x length, 41/50 dots = 80%+, 31 dots = n=31, S7 refuses to fabricate a 2025 point."},
+    {"name": "Alaska authenticity & local relevance", "score": 9, "weight": 0.12, "note": "ANTHC, SCF, Maniilaq, Anchorage, Stanford, Cerner AI Scribe, 40x medevac, 80% roadless; deeply Alaskan."},
+    {"name": "Insight density & factual weight", "score": 7, "weight": 0.10, "note": "Every content slide adds a verified specific, but the deck rests on one paper plus a same-team companion; honestly framed."},
+    {"name": "Variety vs ledger", "score": 8, "weight": 0.08, "note": "Fresh authority-seal chassis, new hook archetype, Fraunces+Archivo+JBMono trio diverge; docked for the house deep_night navy base reappearing."},
+    {"name": "Legibility & platform fitness", "score": 8, "weight": 0.07, "note": "Body 32-38px, safe zones held, readable at 432px, vector PDF 2.8MB with title, counters present."},
+    {"name": "Copy voice & hook", "score": 8, "weight": 0.05, "note": "42-char definition-subversion hook, analytical voice, real debatable close; hook clever but soft."},
+    {"name": "Deliverable completeness", "score": 9, "weight": 0.10, "note": "post_copy, 3 hashtags, first-comment source block with primary + companion links, title, 9 slides, thumbs, contact sheet, aftercare all present."}
+  ],
+  "hard_fails": [],
+  "one_sentence_fix": "Lift the deck off its single rendered seal by giving two or three flat editorial/data slides real dimensional depth or filling their dead lower zones, so artwork craft stops being the recurring ceiling.",
+  "honest_shortfalls": [
+    "Artwork rests almost entirely on the one GPU-PBR seal; 8 of 9 slides are flat with some dead lower zones (recurring series ceiling, artwork craft 7).",
+    "Single-source deck: all 15 claims trace to one IJCH paper plus a same-team, not-independent companion, capping genuine factual weight even though the 58e honesty architecture handles it with real craft.",
+    "Palette base is the house deep_night navy again, so palette-family divergence is weaker than the fresh hero/hook/type suggest.",
+    "Cover and hook are strong but quiet declaratives with no number, so the thumb-stop is very good rather than best-in-class."
+  ],
+  "resolved_after_scoring": [
+    "The S6 'n = 31' stamp was gold (a gold-budget break); recolored to forget-me-not to hold gold as authority-only. Re-rendered, QA PASS, record-sync PASS."
+  ],
+  "editor_notes_for_email": "Ship-worthy at 8.90 vs 8.3, zero hard fails, honesty handled with genuine craft (persistent provenance stamp, DEPLOYED vs PROPOSED discipline on S4, n=31 snapshot stamp, and S7's chart that refuses to invent a 2025 number). A deliberate starved-window governance-context deck built on one ~9-week-old peer-reviewed paper plus a same-team companion, framed explicitly as such on S8 and in the first comment, NOT breaking news; keep that framing when posting and route replies to the who-decides question. Paste the first-comment source block within about 60 seconds of posting."
+}

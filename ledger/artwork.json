@@ -344,6 +344,27 @@
     "58h Cadastral-Plate-on-Relief + evolving gold parcel motif (TECHNIQUE_LIBRARY)"
    ],
    "notes": "Scorer 8.86, zero hard fails, honesty pass. Story-art fusion 9 (gold-parcel single-meaning motif, 8-vs-639 ISOTYPE, S6 geography-defeats-the-ordinance). Recurring ceiling: artwork-craft 7 (coarse low-poly + flat raised-plate). Next run should build the LAND hero as a real extruded solid or apply the parked 2.5D relit-heightfield Sobel helper."
+  },
+  {
+   "run_date": "2026-07-23",
+   "carousel_no": 15,
+   "slide_count": 9,
+   "hero_structure": "Rendered gold AUTHORITY SEAL (akthree GPU PBR embossed disc + gold ring + Polaris) recurring as a STATE MACHINE across all 9 slides (full rendered hero -> bare ring -> small mark -> stamps the deployed tool while withholding the proposed one -> ring becomes the CARE+FAIR framework -> authors' mark -> caps the adoption arrow -> examined between evidence plates -> sealed into the gold Polaris at close). First authority-object governance chassis in the series. NOT iso-wiring (10), globe+buried-cable (11), gradebook+pencil (12), underwater depth-world (13), cartographic relief+parcel (14).",
+   "atmosphere": "Deep-arctic charter night, layered deep_night navy (#02060F/#081426/#0E2138) with cool radial washes and grain, one warm gold-authority object per slide. NOT gradebook-at-night (12), abyssal Cook Inlet teal (13), boreal survey-green (14).",
+   "depth_technique": "akthree GPU PBR object hero (#87) with objectHero backlit rim + akpost grade + akcolor gold ramp on S1; SVG-emboss seal echo elsewhere; deck otherwise flat editorial/data at density 3.",
+   "line_voice": "Instrument/Editorial + Drafting (mono telemetry, 58e evidence-tag title-block plates, dashed phantom #67 for proposed state).",
+   "continuity_device": "(A) the gold seal-authority STATE MACHINE (grants/withholds/seals), doubling as progress; (B) a persistent mono PROVENANCE SPINE stamp 'IJCH // MAY 23 2026 // SINGLE SOURCE' on every content slide; (C) edge-tease. NOT single-gold-call (13) or parcel-state (14).",
+   "hook_archetype": "Authority / order-of-operations DECLARATIVE ('In Alaska Native health, the Tribe decides what AI runs'). NOT before-after (12), sensory/number cold-open (13), big-number monument (14), direct-question (10), place-paradox (11).",
+   "palette_family": "deep-night navy base + forget-me-not #6EA5FF (data/community) + aurora-green #3CE6B4 (DEPLOYED only) + flag gold #FFC72C (AUTHORITY only, the seal/Polaris, held out of the data slides) + slate #5A6A80 (proposed/context). NOT chalkboard+lit-paper (12), abyssal-teal+silt+pearl (13), boreal spruce-green (14).",
+   "type_pairing": "Fraunces (charter serif, display+body) + Archivo (sans, data/system poster voice) + JetBrains Mono (telemetry). One serif + one sans + mono.",
+   "narrative_structure": "hook -> definition -> stakes(data) -> deployed vs proposed -> CARE+FAIR ruleset (keepable) -> the authors (n=31 snapshot) -> adoption honest chart (keepable) -> single-source honest turn -> close (single ask).",
+   "variance_dials": {
+    "design_variance": 4,
+    "visual_density": 3,
+    "type_temperature": 3
+   },
+   "new_techniques_logged": [],
+   "notes": "Single-source, ~9-week-old governance-context deck; honesty rendered as design (58e evidence tags S8, provenance spine, deployed/proposed discipline S4, n=31 stamp S6, no-invented-2025-number chart S7). Scored 8.90. Recurring ceiling artwork-craft 7 (8 of 9 slides flat off the one rendered seal)."
   }
  ]
 }

@@ -983,3 +983,58 @@ dimensional.
   https://www.maptiler.com/news/2026/02/multidirectional-hillshades-and-terrain-color-ramps-for-web-maps/ ,
   https://gist.github.com/maning/28ad9ebb1dcb1ea85440 , https://eduard.earth/ ,
   https://github.com/mattdesl/lwjgl-basics/wiki/ShaderLesson6
+
+## 2026-07-23 - craft refresh (No.15)
+
+- LinkedIn 2026 reconfirms the settled numbers (8-10 slides, hook first, one
+  idea per slide, single CTA, first-hour comment replies). Fresh data point
+  worth keeping in mind, not a doctrine change: AuthoredUp's analysis of ~3M
+  posts (Mar 2025 to Feb 2026) puts document/carousel engagement highest of
+  any format (~6.6%, ~39% more reach, ~30% more engagement than average), and
+  SAVES are now ~5x the weight of a like. Design one genuinely keepable
+  reference slide per deck (the "save this" beat), and keep display type
+  legible at the 432px feed thumbnail, not just at 1080. Sources:
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/ ,
+  https://www.getcreator.io/stats/linkedin-carousel-benchmarks
+- Small multiples reconfirmed as the right form for multi-entity/multi-place
+  comparison (one shared scale, a grid) over a single cluttered chart, useful
+  if this run's story is multi-base or multi-region. Source:
+  https://en.wikipedia.org/wiki/Small_multiple
+
+## 2026-07-23 - retro (No.15 "Governed First", Alaska Native tribal-health AI governance)
+
+- SHIPPED 8.90 vs 8.3, 9 slides, vector PDF 2.8MB, zero hard fails. Full studio ran
+  (6 scouts, fact-checker, 3 treatment-directors, 2 caption-directors + caption-critic,
+  copywriter, 5 pixel-critics, flow-critic, scorer). Machine QA PASS, caption_check PASS,
+  copy_sync_check PASS.
+- DEDUPE SAVE (the run's biggest lesson): the intended lead, the XPRIZE Wildfire
+  autonomous-response finals near Nenana, was a near-exact dupe of No.5 (07-12, "First
+  Machine to the Fire") 11 days earlier, same competition, ACUASI, 1,000 sq km range,
+  detect-decide loop, September verdict. It slipped the first dedupe pass because the
+  topics-list title showed truncated ("Alaska as the world's proving ground for"); caught
+  only via a TECHNIQUE_LIBRARY note that named the prior deck. Three treatment-director
+  pitches (all strong) were voided and the room re-tasked (via SendMessage, staying within
+  the 3-director cap) onto the replacement story. FIX for next run and an upgrade candidate:
+  a Phase-4 entity/keyword cross-check against the FULL topic text of the ledger, not titles.
+- STARVED WINDOW, HONEST PIVOT: late-July interim + a burned top pick left the window thin
+  for fresh in-window AI-core Alaska news. Went with the strongest available true story, a
+  peer-reviewed IJCH paper (2026-05-23, ~9 weeks old) on how the Alaska Native tribal health
+  system governs AI under Indigenous data sovereignty. Framed explicitly as governance
+  context, not breaking news, and as SINGLE-SOURCE, on-deck (S8 58e evidence tags, persistent
+  provenance stamp) and in the first comment. The scorer accepted the honesty as genuine craft.
+- WHAT WORKED: the gold AUTHORITY SEAL chassis (a rendered akthree GPU-PBR embossed disc that
+  recurs as a state machine, and ties gold=authority across the deck) diverged cleanly from
+  the last 4 decks and scored story-art-fusion 9. The honesty architecture (DEPLOYED Cerner AI
+  Scribe vs PROPOSED medevac model as solid-green vs dashed-slate on S4; n=31 snapshot stamp
+  on S6; S7's chart that plots ONE real 2022 point and refuses to fabricate a 2025 number)
+  turned a thin single source into a trustworthy deck.
+- CRAFT CEILING (again): artwork-craft capped at 7 because 8 of 9 slides are flat editorial/
+  data off the single rendered seal, with some dead lower zones (S2/S4/S8/S9). Next governance/
+  editorial deck should give 2-3 non-hero slides real dimensional depth (a second rendered
+  object, relief/emboss on a data plate, or a filled lower third) rather than leaning the whole
+  depth budget on one hero.
+- CAPTION streak broken at last: 6+ runs of LEGACY STANDARD / hook-context-deckpointer /
+  bolted-question gave way to DEFINITION SUBVERSION + PUNCH THEN PROOF + a who-decides close.
+- CHART MISREAD RISK: a verified negative-framed metric ("share who had never heard") drawn as
+  a falling line on an adoption slide can read as decline at a glance; a bold "awareness rose"
+  arrow label fixed it without inventing the positive number.

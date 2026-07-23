@@ -1,0 +1,28 @@
+{
+  "run_date": "2026-07-23",
+  "carousel_no": 15,
+  "document_title": "Governed First, Alaska Native Health and AI",
+  "post_copy": "Data sovereignty is not a privacy setting.\n\nIt is a Tribe's right to govern what gets collected, who owns it, and what gets built on top.\n\nA peer-reviewed paper documents Alaska's tribal health system doing both, adopting clinical machine learning and governing it first, under the CARE and FAIR principles.\n\nAir evac in Alaska runs at least 40 times higher than anywhere else in the US.\nOver 80% of communities sit off the road system.\nA Cerner AI Scribe already runs in rural primary care visits.\nA medevac decision-support model is still under development, not live.\nIn 2022, 35% of people surveyed had never heard the term AI/ML. By the 2025 symposium, far fewer could say that.\n\nSo who decides what gets built on that data, the Tribe that owns it or the vendor that ships the model?\n\n#IndigenousDataSovereignty #AlaskaNativeHealth #ClinicalAI",
+  "hook_chars": 42,
+  "hashtags": ["#IndigenousDataSovereignty", "#AlaskaNativeHealth", "#ClinicalAI"],
+  "first_comment": "Sources, primary first\nThis whole picture rests on one peer-reviewed paper, dated May 23, 2026. Everything below traces back to it, so read it as documented governance context, not breaking news.\nInternational Journal of Circumpolar Health, peer-reviewed symposium-perspectives paper, May 23, 2026, full text https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/\nInternational Journal of Circumpolar Health, DOI record for the same paper https://www.tandfonline.com/doi/full/10.1080/22423982.2026.2677426\nFrontiers in Artificial Intelligence, companion community-engaged AI framework paper, April 7, 2025, same author team (not independent) https://pmc.ncbi.nlm.nih.gov/articles/PMC12009764/\nEvery Alaska AI decision we track, with live deadlines, lives at alaskaaihq.com\nClose to this work or see something we missed, add context in the comments.",
+  "caption_meta": {"opening_move": "DEFINITION SUBVERSION", "structure": "PUNCH THEN PROOF", "closing_move": "who-decides"},
+  "aftercare": [
+    "Post this draft Tuesday to Thursday, 8:00 to 11:00 AKT, for the strongest reach. Drafts arrive daily and you own the cadence, so hold it for a strong slot if today is off-peak.",
+    "Paste the first-comment source block within about 60 seconds of posting so the primary paper and companion links land under the deck immediately.",
+    "Reply to every comment in the first hour. Frame this as documented governance context on a single peer-reviewed paper, not breaking news, and route the debate to the who-decides question.",
+    "Check saves and comments after 48 hours. High saves signal the CARE plus FAIR reference card (S5) and the honest adoption chart (S7) landed."
+  ],
+  "claims_used": ["c01", "c05", "c06", "c07", "c08", "c09", "c10", "c11", "c12", "c13", "c14", "c15"],
+  "slides": [
+    {"n": 1, "headline": "In Alaska Native health, the Tribe decides what AI runs.", "kicker": "ALASKA.AI    No. 15"},
+    {"n": 2, "headline": "Sovereignty means the Tribe governs its own data.", "kicker": "What sovereignty means"},
+    {"n": 3, "headline": "In Alaska, that record is life and death.", "kicker": "Why it matters here", "figures": ["at least 40x", "over 80%"]},
+    {"n": 4, "headline": "One is live. One is proposed.", "kicker": "What is already running"},
+    {"n": 5, "headline": "Two rule sets, one authority.", "kicker": "The rules the seal enforces"},
+    {"n": 6, "headline": "Alaska Native institutions convened this.", "kicker": "Who is writing the rules"},
+    {"n": 7, "headline": "In 2022, a third had never heard of AI.", "kicker": "How fast it arrived"},
+    {"n": 8, "headline": "This rests on one paper.", "kicker": "How solid is this"},
+    {"n": 9, "headline": "Adopt fast. Govern first.", "kicker": "The Alaska model", "ask": "Should Tribal approval over health data be the national default?"}
+  ]
+}

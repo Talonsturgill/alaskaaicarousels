@@ -608,6 +608,44 @@
     "https://www.alaskasnewssource.com/2026/07/17/new-state-proposal-could-bring-data-centers-mat-su-part-industrial-park/"
    ],
    "outcome_notes": "Shipped 8.86 vs 8.3, 9 slides, vector PDF 8.82MB, zero hard fails. Full studio (6 scouts + fact-checker + 3 treatment-directors + copywriter + 5 pixel critics + flow-critic + scorer). AI-infrastructure land decision (data centers = AI's physical plant); distinct DECISION/angle/entities from prior data-center decks. Weakest = artwork-craft (7): low-poly terrain coarse under zoom + the S2 raised cadastral plate read flat despite layered drop-shadows."
+  },
+  {
+   "run_date": "2026-07-23",
+   "carousel_no": 15,
+   "topic": "How Alaska's tribal health system is governing AI and machine learning on its own data under Indigenous data sovereignty, documented in a peer-reviewed International Journal of Circumpolar Health paper (2026-05-23); ANTHC, Southcentral Foundation, Maniilaq, with Stanford and UAF.",
+   "angle": "Adopt fast, govern first, on the Tribe's own authority. Indigenous data sovereignty (CARE + FAIR) decides what runs on Alaska Native health data. Deployed Cerner AI Scribe kept distinct from a proposed medevac decision-support model. Alaska stakes air-evac at least 40x, over 80% roadless. SINGLE-SOURCE, about nine weeks old, framed as governance context not breaking news (58e honesty). Chosen after the intended pick (XPRIZE wildfire finals) was a dedupe collision with No.5 (2026-07-12).",
+   "entities": [
+    "ANTHC",
+    "Southcentral Foundation",
+    "Maniilaq Association",
+    "Stanford University",
+    "UAF Center for Alaska Native Health Research",
+    "International Journal of Circumpolar Health",
+    "Vanessa Hiratsuka",
+    "Cerner AI Scribe",
+    "CARE principles",
+    "FAIR principles",
+    "Indigenous data sovereignty",
+    "Anchorage"
+   ],
+   "keywords": [
+    "tribal health",
+    "clinical AI",
+    "Indigenous data sovereignty",
+    "CARE",
+    "FAIR",
+    "AI scribe",
+    "medevac decision-support",
+    "health data governance",
+    "ANTHC",
+    "roadless",
+    "air evacuation",
+    "narrow ML",
+    "single source"
+   ],
+   "headline": "Governed First",
+   "sources_lead": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/",
+   "outcome_notes": "Shipped 8.90 vs 8.3, 9 slides, vector PDF 2.8MB, zero hard fails. Single-source governance-context deck, honestly framed."
   }
  ]
 }
