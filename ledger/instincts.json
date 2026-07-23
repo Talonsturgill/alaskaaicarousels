@@ -314,6 +314,30 @@
    "evidence": "No.14 (07-22): fact-checker flagged 'data centers' as attachment/coverage-sourced and '8/639' as single-outlet; rendering both as attribution chips scored honesty pass and insight-density 8.",
    "confidence": 0.72,
    "last_confirmed": "2026-07-22"
+  },
+  {
+   "id": "i43",
+   "learned": "2026-07-23",
+   "instinct": "At the Phase 4 dedupe gate, grep the FULL topic/angle/entities text of recent ledger entries for the candidate story's key ENTITIES and NOUNS before committing and before the directors room. Truncated topic-list titles are not enough.",
+   "evidence": "No.15's intended pick (XPRIZE Wildfire autonomous-response finals) was a near-exact dupe of No.5 (2026-07-12, 'First Machine to the Fire'), caught only when a technique-library note referenced the prior deck; the topics-list title had displayed truncated as 'Alaska as the world's proving ground for'. Three treatment-director pitches were wasted before the pivot.",
+   "confidence": 0.85,
+   "last_confirmed": "2026-07-23"
+  },
+  {
+   "id": "i44",
+   "learned": "2026-07-23",
+   "instinct": "For a single-source or thin deck, render the sourcing limit as design: a persistent provenance stamp on every slide, a dedicated 58e evidence-tag turn (SOURCED solid vs NOT-INDEPENDENT dashed), a DEPLOYED-vs-PROPOSED weight and color split, an n=<sample> snapshot stamp on any small-sample data, and a chart that visibly refuses to plot an unverified point.",
+   "evidence": "No.15 'Governed First' rested on one IJCH paper plus a same-team companion; the honesty architecture scored story-art-fusion 9 and drew zero honesty hard-fails, shipping at 8.90.",
+   "confidence": 0.78,
+   "last_confirmed": "2026-07-23"
+  },
+  {
+   "id": "i45",
+   "learned": "2026-07-23",
+   "instinct": "A verified negative-framed metric ('share who had never heard') plotted as a falling line on an adoption or progress slide risks a first-glance decline misread; label the axis AND the trend direction explicitly and boldly, and keep the one real datapoint rather than inventing the positive complement.",
+   "evidence": "No.15 S7 flow-critic flagged the 35%-never-heard falling line as a possible decline misread; fixed with a bold 'awareness rose' arrow label while keeping the single verified point.",
+   "confidence": 0.7,
+   "last_confirmed": "2026-07-23"
   }
  ]
 }

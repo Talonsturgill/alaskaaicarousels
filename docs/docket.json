@@ -334,10 +334,15 @@
           "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/committee-sets-alaska-lng-tax-cut-bill-including-expanded-corporate-tax-for-final-vote",
           "outlet": "Alaska Public Media",
           "date": "2026-07-16"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/07/21/third-special-session-gas-line-begins-next-week-what-makes-it-different-than-last-two/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-07-21"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-19",
+      "last_updated": "2026-07-23",
       "history": [
         {
           "date": "2026-07-08",
@@ -378,6 +383,10 @@
         {
           "date": "2026-07-21",
           "note": "Six days out from the third special session, which convenes July 27 in Juneau. Per Anchorage Daily News and Alaska Public Media reporting from July 16 and July 20 the up to 55 billion dollar, 800 mile gas line tax terms remain unsettled after the July 16 House deadlock, with some legislators blaming Hilcorp for the bill's collapse and the governor rejecting that claim. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to help justify the line."
+        },
+        {
+          "date": "2026-07-23",
+          "note": "Four days out from the third special session, which convenes July 27 in Juneau. Governor Dunleavy has said he will reintroduce the Alaska LNG gas line tax provisions without the expanded S corporation corporate income tax that stalled HB 381 in the July 16 House 19 to 19 deadlock. The session opens about three weeks before the August 18 primary, per Alaska's News Source and Alaska Public Media reporting from July 16 and July 21. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the roughly 55 billion dollar, 800 mile line."
         }
       ]
     },
