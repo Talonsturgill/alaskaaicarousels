@@ -421,6 +421,19 @@
    "rollback": "revert the upgrade(2026-07-23) commit (deletes scripts/dedupe_check.py and the Phase 4 pre-flight prompt line; the dedupe gate reverts to unaided human semantic comparison)",
    "commit": "pending upgrade(2026-07-23) commit (showrunner stages this set)",
    "commit_sha": "131a3f90909647f6185c24b90bf5de3887fe4b0f"
+  },
+  {
+   "run_date": "2026-07-23",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "gmail_draft.py now accepts the scorer agent's native score_report keys: 'passes' (alongside ship/ships) for the pass/fail banner, 'weighted_score' (alongside weighted_total) for the score, and derives the weakest criterion from the report card's lowest-scored criterion when no weakest_criterion/weakest_criteria key is present. Prevents a passing run from rendering the wrong 'Shipped below threshold. ? / 10' banner.",
+   "trigger": "Run 2026-07-23 Phase 13: this run's score_report (weighted_score 8.90, passes true) rendered as 'Shipped below threshold. ? / 10 vs 8.3. Weakest: ?' because the script read only ship/weighted_total/weakest_criterion. Third recurrence of scorer-key drift (07-19, 07-20, 07-23).",
+   "files_touched": [
+    "scripts/gmail_draft.py"
+   ],
+   "verification": "ast.parse OK; re-ran gmail_draft.py on out/2026-07-23 -> banner now 'Quality gate passed: 8.9 / 10 (threshold 8.3)', no 'Shipped below threshold', no 'Weakest: ?'. Backward compatible (ship/ships/weighted_total still read first).",
+   "rollback": "revert the follow-up upgrade(2026-07-23) commit touching scripts/gmail_draft.py; the banner reverts to reading only ship/weighted_total/weakest_criterion keys.",
+   "commit_sha": "98c3223ba5946d3c9c98ed3f0309ccdbc5c172a9"
   }
  ],
  "scan_log": [

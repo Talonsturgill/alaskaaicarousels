@@ -201,17 +201,28 @@ def main():
                 return v
         return default
 
-    ship = bool(_alias("ship", "ships", default=False))
+    # 'passes' is the scorer agent's native pass/fail key; 'weighted_score' its
+    # native total. Accept them alongside the historical 'ship'/'ships' and
+    # 'weighted_total' so an agent-native score_report never renders the wrong
+    # "shipped below threshold" banner (recurred 2026-07-19/20/23). Never
+    # mutates score_report.json.
+    ship = bool(_alias("ship", "ships", "passes", default=False))
     threshold = _alias("threshold", "ship_threshold", default="?")
+    weighted = _alias("weighted_total", "weighted_score", default="?")
     weakest = _alias("weakest_criterion", default=None)
     if weakest is None:
         wc = score.get("weakest_criteria")
-        weakest = wc[0] if isinstance(wc, list) and wc else "?"
+        if isinstance(wc, list) and wc:
+            weakest = wc[0]
+        else:
+            # last-resort: derive the weakest criterion from the report card
+            crits = [c for c in score.get("criteria", []) if isinstance(c, dict) and "score" in c]
+            weakest = min(crits, key=lambda c: c["score"])["name"] if crits else "?"
     ship_html = (
-        f'<div class="ok"><b>Quality gate passed:</b> {score.get("weighted_total", "?")} / 10 '
+        f'<div class="ok"><b>Quality gate passed:</b> {weighted} / 10 '
         f'(threshold {threshold}).</div>' if ship else
         f'<div class="flag"><b>Shipped below threshold.</b> '
-        f'{score.get("weighted_total", "?")} / 10 vs {threshold}. '
+        f'{weighted} / 10 vs {threshold}. '
         f'Weakest: {esc(str(weakest))}. '
         f'Fix next time: {esc(str(score.get("one_sentence_fix", "?")))}</div>')
     notes = esc(str(score.get("editor_notes_for_email", "") or "None."))
