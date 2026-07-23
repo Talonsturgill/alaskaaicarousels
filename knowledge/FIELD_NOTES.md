@@ -1038,3 +1038,32 @@ dimensional.
 - CHART MISREAD RISK: a verified negative-framed metric ("share who had never heard") drawn as
   a falling line on an adoption slide can read as decline at a glance; a bold "awareness rose"
   arrow label fixed it without inventing the positive number.
+
+## 2026-07-23 - Phase 12 frontier PARK (focus: self-improving-pipeline / agentic dedup)
+
+- SHINGLE + MinHash near-duplicate signal for dedupe_check.py (PARKED, candidate refinement).
+  Today's reactive fix (scripts/dedupe_check.py) scores a candidate against the ledger by
+  distinctive named-entity phrase overlap + keyword-token Jaccard. That is exactly right for
+  this run's collision (XPRIZE/No.5 shared 9 named entities) and for the common case where two
+  decks share proper nouns. The residual blind spot: a REWORDED near-dupe that shares almost no
+  named entities or keyword vocabulary but tells the same story could still read "clear" under
+  bag-of-words token overlap. The settled robustness upgrade is to add a character/token
+  k-SHINGLE + MinHash-estimated Jaccard similarity signal (k=3-5 char shingles or ~5-word
+  token shingles; near-dup threshold ~0.8 for full documents, but calibrate LOWER and against
+  the ENTITY+ANGLE fields only for our short entries) as a SECOND cheap signal, keeping the
+  cascade shape (cheap shingle screen -> shortlist -> the human reads the full entry, which is
+  the studio's "LLM adjudication on candidates only" analogue). ~60 lines pure-Python stdlib,
+  no deps (hash() over shingles, H=64-128 permutations via (a*h+b) mod prime). PARKED not
+  applied because: (a) it is an improvement, not a reactive fix, and the daily 0-1 slot was
+  taken by shipping+verifying dedupe_check.py itself; (b) it needs its own multi-case tuning to
+  avoid false-positive FLOODING on a small ledger where many decks legitimately share the
+  "who-decides / Alaska AI infrastructure" frame (a naive 0.8 threshold on 12 short entries is
+  untuned); (c) it should be designed and A/B-verified together with, not bolted onto, the
+  freshly-shipped tool. Also noted: 2026 self-improving-loop write-ups still store scars as
+  PROSE reminders prepended to prompts; this studio's machinery-over-prose doctrine (a scar
+  becomes an executable check, as today) is the stronger form and the scan reconfirmed it.
+  Sources: https://arxiv.org/abs/2607.01601 (SemHash-LLM cascade: cheap hash screen, expensive
+  check on candidates only), https://blog.nelhage.com/post/fuzzy-dedup/ (Jaccard+MinHash how-to),
+  https://mattilyra.github.io/2017/05/23/document-deduplication-with-lsh.html (shingle sizes /
+  LSH banding), https://www.analyticsvidhya.com/blog/2026/06/self-improving-loops/ (prose-lesson
+  memory pattern, the weaker alternative to executable checks).

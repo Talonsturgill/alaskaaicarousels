@@ -195,6 +195,13 @@ potential (geometry/quantity/place the art can encode), (3) tangibility,
 DEDUPE GATE: compare the candidate semantically against every
 ledger/topics.json entry from the last 120 days (topic + angle + entities
 + keywords — a new URL for the same story is still the same story).
+As a MANDATORY pre-flight before the directors room, run
+`python scripts/dedupe_check.py --entities "<candidate entities>" --keywords
+"<candidate keywords>"` (it greps the FULL topic/angle/entities/keywords
+text of every in-window entry, never the truncated title): read in FULL
+every entry it prints as a LIKELY DUPLICATE (exit 1) before proceeding.
+The script is an advisory signal, not the gate — the semantic call is
+still yours — but a LIKELY DUPLICATE match means stop and read.
 Within 90 days: pick a different story, OR reframe explicitly as an
 UPDATE with material new developments (say so on the cover). Write the
 decision + runner-up in `out/<date>/selection.md`.
