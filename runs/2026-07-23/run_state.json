@@ -15,10 +15,13 @@
   "flow_review": "done",
   "assemble": "done",
   "scoring": "done",
-  "ship": "pending",
+  "ship": "done",
   "upgrade": "pending",
-  "gmail": "pending",
+  "gmail": "done",
   "retro": "pending"
  },
- "note": "XPRIZE burned (dupe of 07-12); pivoted to ANTHC tribal-health AI governance"
+ "note": "XPRIZE burned (dupe of 07-12); pivoted to ANTHC tribal-health AI governance",
+ "merge_sha": "71d64ccccbd85e92bd0881f5eb7eab1b5cbda1d1",
+ "pr": 95,
+ "gmail_draft_id": "r4700644669250070287"
 }
