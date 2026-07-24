@@ -1081,3 +1081,35 @@ dimensional.
 - Nothing new on the cartography/relief craft front worth a doctrine change this pass
   (IJC 12.2 2026 covers genAI-in-cartography and 3D thematic geovis at a level already
   matched by our AK3D/hillshade bench). Parked, no action.
+
+## 2026-07-24 - retro (No.16 "500 to Fewer Than 12. One Office Holds the Pen.", STAK North Slope revolt)
+
+- SHIPPED 8.66 vs 8.3, 9 slides, vector PDF 3.39MB, zero hard fails. Full studio ran (6 scouts,
+  fact-checker, 3 treatment-directors, 2 caption-directors + caption-critic, copywriter, 5 pixel-critics
+  + a round-2 re-review, flow-critic, scorer). Machine QA PASS, caption_check PASS (898 chars), copy_sync PASS.
+- THE RUN'S BIGGEST LESSON (a real miss): this is a SAME-DOCKET REVISIT of No.1 (2026-07-08), which
+  anchored its four-rooms survey on this exact STAK docket (ADL 422741) with the SAME "500 wrote in,
+  fewer than 12 said yes" cover. dedupe_check.py CAUGHT it (No.1 was the top match at jaccard 0.279),
+  but I read the tool output with `tail -30` in Phase 4 and the No.1 line printed ABOVE the visible
+  window, so I proceeded believing it cleared (I read No.10/No.14 lower down, not No.1). The scorer
+  caught it from artwork.json. FIX applied this run: shipped honestly as an explicit post-comment-closure
+  UPDATE (No.1 ran while comment was OPEN; the window CLOSED July 17, now pending final finding), with a
+  cover peg "COMMENT CLOSED JULY 17. NOW ONE OFFICE DECIDES." and a loud maintainer flag in the email.
+  PERMANENT FIXES: (1) instinct dedupe-never-tail (never tail/head the dedupe output); (2) Phase 12
+  upgrade candidate: make dedupe_check print its single STRONGEST match in a LOUD summary line at the
+  END of output so a tail cannot miss it.
+- CRAFT WIN (the ceiling moved): distributing real depth across S3 (akthree GPU-PBR tundra-machine, lifted
+  off near-black with dark-clay material + IBL + a bronze HemisphereLight bounce, low horizon, cab+bed
+  pickup scale figure), S4 (honest cabinet-extruded +30% bars), S5/S7 (akrelief 2.5D relit sort cards +
+  material chips), and S8 (SVG-emboss debossed unsigned-pen) got the scorer to call it "the strongest
+  artwork craft the series has shipped." The hero no longer reads flat. The RESIDUAL ceiling is DEAD
+  LOWER ZONES (S2/S5/S8/S9) and an intermittent comment-stack spine (flow-critic motif_reads_across_all_9
+  false; partially patched with right-edge margin slivers on S4/S8). Next run: a lower-third-fill helper
+  + a constant margin sliver and a visible pen-migration increment on every slide.
+- HONESTY ARCHITECTURE that worked: the SORT (S5) grading objections, the fair correction (S6, the bill
+  fear is weakest because the campus self-generates off the Railbelt, labeled Alaska.Ai analysis), the
+  single-source lease-doc figures hedged "per the Northern Center" on every slide, no fabricated Railbelt
+  MW figure, and the unsigned pen (pending final finding). Fact-checker rejected the Shinkei robot-salmon
+  lead (in-window Alaska peg paywalled + no proof the robot runs on Alaska boats) - a good save.
+- CAPTION: LEDGER TALLY / INVERTED PYRAMID / PRICE broke the streak cleanly; critic's one fix removed a
+  verbatim-cover-phrase leak and a "500 to 12" overstatement.

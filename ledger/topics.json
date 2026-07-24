@@ -646,6 +646,48 @@
    "headline": "Governed First",
    "sources_lead": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/",
    "outcome_notes": "Shipped 8.90 vs 8.3, 9 slides, vector PDF 2.8MB, zero hard fails. Single-source governance-context deck, honestly framed."
+  },
+  {
+   "run_date": "2026-07-24",
+   "carousel_no": 16,
+   "topic": "The STAK Energy North Slope AI data-center public revolt reaches its decision point. Alaska DNR's preliminary decision (ADL 422741) to lease Stak Energy 715.4 acres near Deadhorse for a gas-fired AI data center drew more than 500 public comments to fewer than a dozen in support; the written comment window CLOSED July 17, 2026 and the 50-year lease now sits with DNR's Division of Oil and Gas for a final finding.",
+   "angle": "Consent / who holds the pen, shipped as the post-comment-closure UPDATE to No.1 (2026-07-08), which anchored a four-rooms survey on this SAME STAK docket while the comment window was still OPEN. This is a single-story deep-dive at the decision point: the machine at continental scale (1 to 3 GW, about 30% over urban Alaska peak, 350 to 500 MMcf/day gas), the honesty SORT (the loudest fear, higher home power bills, is the weakest because the North Slope campus self-generates off the Railbelt grid; the strongest hold, 50 years of public land, 7.1M cu yd gravel, gas by the day), and the unsigned pen. Material development vs No.1: the comment window CLOSED July 17, now pending final finding, said so on the cover peg.",
+   "entities": [
+    "Stak Energy",
+    "John Boyle",
+    "Alaska DNR",
+    "Division of Oil and Gas",
+    "ADL 422741",
+    "Deadhorse",
+    "Dalton Highway",
+    "North Slope",
+    "Railbelt",
+    "Anchorage",
+    "Fairbanks",
+    "Northern Alaska Environmental Center",
+    "Dunleavy"
+   ],
+   "keywords": [
+    "AI data center",
+    "gas-fired data center",
+    "public comment revolt",
+    "state land lease",
+    "50-year lease",
+    "gigawatt",
+    "gravel",
+    "tundra",
+    "who decides",
+    "consent",
+    "off-grid",
+    "Railbelt",
+    "final finding",
+    "ADL 422741",
+    "500 vs fewer than 12",
+    "form letters lacking substance"
+   ],
+   "headline": "500 to Fewer Than 12. One Office Holds the Pen.",
+   "sources_lead": "Alaska DNR ADL 422741 primary notice + Anchorage Daily News + Northern Journal (Northern Center lease-doc review for hedged figures)",
+   "outcome_notes": "Scored 8.66 vs 8.3, zero hard fails, vector PDF 3.39MB. SAME-DOCKET REVISIT of No.1 (2026-07-08): missed in Phase 4 because dedupe_check output was read with `tail`, truncating its TOP match (No.1, jaccard 0.279, same ADL, same 500-vs-12 cover). Shipped honestly as an explicit post-comment-closure UPDATE (cover peg COMMENT CLOSED JULY 17) and flagged for the maintainer. Craft: S3 akthree rendered tundra-machine + S7 akrelief material chips broke the recurring flat-hero ceiling (scorer called them the strongest artwork the series has shipped); artwork-craft still capped 7 for dead lower zones (S2/S5/S8/S9)."
   }
  ]
 }

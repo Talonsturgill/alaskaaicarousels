@@ -365,6 +365,29 @@
    },
    "new_techniques_logged": [],
    "notes": "Single-source, ~9-week-old governance-context deck; honesty rendered as design (58e evidence tags S8, provenance spine, deployed/proposed discipline S4, n=31 stamp S6, no-invented-2025-number chart S7). Scored 8.90. Recurring ceiling artwork-craft 7 (8 of 9 slides flat off the one rendered seal)."
+  },
+  {
+   "run_date": "2026-07-24",
+   "carousel_no": 16,
+   "slide_count": 9,
+   "hero_structure": "The Adjudicated Margin (NEW): an op-ed-page chassis where a right-side MARGIN OF RECORD holds the public as a stack of ~500 hairline comment-rules, a migrating gold PEN is the deciding hand that at the climax refuses to sign (nib lifted + phantom-dash signature), and mid-deck the record physically SORTS into a raised oxblood HOLDS column vs one flat dashed WEAK card. Paired with a single akthree GPU-PBR rendered tundra-machine hero (S3). NOT gradebook+pencil (12), underwater depth-world (13), cadastral relief+gold-parcel (14), or rendered gold authority seal (15).",
+   "atmosphere": "op-ed-at-night: warm ink-black paper register (#0B0A0C/#14100E/#1C1512) + paper-tooth stipple + small grain tile; one bronze low-sun tundra scene on S3. NOT abyssal Cook Inlet teal (13), boreal survey-green (14), or deep-arctic charter navy (15).",
+   "depth_technique": "akthree GPU PBR rendered machine-on-tundra hero (S3, low horizon ~42%, goldenHour rig + bronze hemisphere bounce + IBL + akpost grade, designed AK3D/akrelief CPU fallback + snapshot sentinel); akrelief.js 2.5D relit sort cards (S5) and three relit material chips (S7); honest cabinet-extruded 3D bars in parallel projection (S4); SVG-emboss debossed pull-quote + layered-shadow decision plate (S8). Depth distributed front-to-back to break the recurring flat-hero ceiling.",
+   "line_voice": "Instrument/Editorial + Drafting (scotch rules, dimension bracket, leader discipline, phantom-dash #67 for the unsigned signature and the severed grid link, mono telemetry).",
+   "continuity_device": "motif:the-adjudicated-margin (comment-stack + migrating gold pen that refuses to sign, sorting into strong/weak mid-deck, resolving into the gold Polaris) + road edge-tease (gravel road exits the ground slides) + palette-arc (public forget-me-not -> the sort oxblood/slate -> gold decision -> Polaris). NOT parcel-state+section-line (14), NOT seal-state-machine+provenance-spine (15).",
+   "hook_archetype": "reclaimed QUOTE (the developer's dismissal 'Form letters lacking substance.' turned into the dare, attribution beneath). NOT sensory/number cold-open (13), big-number monument (14), or authority/order-of-operations declarative (15).",
+   "palette_family": "warm ink-black paper base + forget-me-not #6EA5FF (the public/500/grid) + oxblood #C64632 (strong objection) + slate #5E6570 (weak objection) + snow #F4F8FF + flag gold #FFC72C RESERVED (pen/decision/Polaris/counter); S3 hero adds low-sun bronze #C88A3C + sodium #F3A24C. NOT abyssal-teal (13), boreal green (14), deep-night-navy dominant (15).",
+   "type_pairing": "Instrument Serif (essay display + pull-quotes) + Manrope (body) + JetBrains Mono (instrument/figures). NOT Archivo+JBMono+Fraunces-italic (14), NOT Fraunces+Archivo+JBMono (15).",
+   "narrative_structure": "argument / honesty-sort: reclaimed-quote hook -> the decision (pen appears) -> rendered tundra-machine breather -> GW-vs-grid data -> the SORT (turn) -> the weakest fear (honest) -> the strongest objections -> who holds the pen (unsigned) -> single-ask close.",
+   "variance_dials": {
+    "design_variance": 4,
+    "visual_density": 4,
+    "type_temperature": 3
+   },
+   "new_techniques_logged": [
+    "Adjudicated Margin + refusing pen (NEW): an op-ed chassis whose right-margin stack of ~N hairline comment-rules IS the public record, a migrating gold pen is the deciding hand that climaxes UNSIGNED (nib lifted + phantom-dash), and the record physically sorts into raised strong vs flat-dashed weak columns; generalizes to any public-comment / consent / who-decides decision story."
+   ],
+   "notes": "Scored 8.66. SAME-DOCKET UPDATE to No.1 (07-08 STAK revolt) shipped post-comment-closure with a cover peg (dedupe miss corrected). Craft WIN: the akthree tundra-machine hero (S3) + akrelief material chips (S7) are the strongest rendered artwork the series has shipped and broke the flat-hero ceiling on the hero; artwork-craft still 7 because dead lower zones persist (S2/S5/S8/S9) and the comment-stack reads intermittently across the deck (flow-critic motif_reads_across_all_9 false, partially patched with S4/S8 margin slivers). Next run: fill lower thirds and keep a constant margin sliver + a visible pen-migration path on every slide."
   }
  ]
 }
