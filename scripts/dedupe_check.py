@@ -168,7 +168,8 @@ def run(cand, entries, ref_date, window, exclude_date):
         if s["verdict"] == "clear":
             continue
         s.update(run_date=rd_raw, carousel_no=e.get("carousel_no"),
-                 topic=e.get("topic", ""), headline=e.get("headline", ""))
+                 topic=e.get("topic", ""), headline=e.get("headline", ""),
+                 date_distance=(ref_date - rd).days)
         results.append(s)
     order = {"LIKELY DUPLICATE": 0, "SOFT OVERLAP": 1}
     results.sort(key=lambda r: (order[r["verdict"]], -len(r["entity_hits"]), -r["jaccard"]))
@@ -234,9 +235,27 @@ def main(argv=None):
     if likely:
         print("\n  >> %d LIKELY DUPLICATE match(es). READ each in full before the directors "
               "room; within 90 days pick a different story or reframe as a material UPDATE." % len(likely))
-        return 1
-    print("\n  soft overlaps only; confirm by eye that the angle/entities are genuinely distinct.")
-    return 0
+    else:
+        print("\n  soft overlaps only; confirm by eye that the angle/entities are genuinely distinct.")
+
+    # LOUD final summary. results is pre-sorted strongest-first (LIKELY DUPLICATE
+    # before SOFT OVERLAP, then most shared named entities, then highest jaccard),
+    # so results[0] is the single strongest collision. Printing it as the LAST
+    # lines makes it impossible to miss even when this output is read with `tail`
+    # (the 2026-07-24 No.16 miss: the strongest match No.1 printed at the TOP and
+    # a `tail` of the output truncated it). This restates the existing signal; it
+    # never changes a verdict, the exit code, or the per-match list above.
+    top = results[0]
+    dd = top.get("date_distance")
+    when = ("%d days ago" % dd) if isinstance(dd, int) else "date unknown"
+    n_ent = len(top["entity_hits"])
+    print("\n" + "=" * 74)
+    print("  STRONGEST MATCH: No.%s %s (%s) -- %s -- %d shared entit%s, jaccard %s"
+          % (top["carousel_no"], top["run_date"], when, top["verdict"],
+             n_ent, "y" if n_ent == 1 else "ies", top["jaccard"]))
+    print("  >> READ THIS ENTRY IN FULL before the directors room. Do NOT `tail` this output.")
+    print("=" * 74)
+    return 1 if likely else 0
 
 
 if __name__ == "__main__":

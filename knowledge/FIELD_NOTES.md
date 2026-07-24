@@ -1113,3 +1113,21 @@ dimensional.
   lead (in-window Alaska peg paywalled + no proof the robot runs on Alaska boats) - a good save.
 - CAPTION: LEDGER TALLY / INVERTED PYRAMID / PRICE broke the streak cleanly; critic's one fix removed a
   verbatim-cover-phrase leak and a "500 to 12" overstatement.
+- FRONTIER SCAN PARK (Phase 12, focus: LinkedIn platform/algorithm 2026; last platform scan 2026-07-18):
+  The one genuinely NEW signal since the 07-18 scan is that carousel/document COMPLETION RATE ("how many
+  slides people actually view") is now an EXPLICIT feed-ranking input, not just a dwell-time proxy: decks
+  that lose viewers before the end are down-ranked, so the 8-10 slide sweet spot is now enforced by
+  completion, not just reach decay, and cover/S1 must state clear value to protect through-rate. LinkedIn's
+  360Brew LLM-embedding retrieval (searchengineland/ALM: rebuilt Q1-2026 feed, sub-50ms embedding
+  retrieval, ranks by topical MEANING not keywords) rewards a narrow consistent topic - the studio's daily
+  Alaska+AI focus already maximizes this. Everything else RECONFIRMS 07-18 (doc format ~6.6% engagement /
+  highest; saves > comments > likes; ~60% external-link reach penalty; 2160x2700 portrait, 80px safe zone).
+  WHY PARKED (not applied): all levers are strategy/craft, not a boundable machine gate - the studio already
+  ships 9 slides (compliant with 8-10) so a slide-count gate would never fire, and "cover states clear
+  value" / "front-load the hook" / "topical consistency" are subjective storyboard-taste calls, not
+  verifiable checks. CANDIDATE for the maintainer: fold "protect carousel completion-rate (front-load cover
+  value, hold 8-10 slides, no dead final slide)" into the Phase 5 storyboard objectives and the scorer's
+  through-line criterion as PROSE guidance, and reconfirm the 07-18 external-link maintainer note. Sources:
+  https://searchengineland.com/linkedin-updates-feed-algorithm-llm-ranking-retrieval-471708 ,
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now ,
+  https://www.socialpilot.co/blog/linkedin-algorithm
