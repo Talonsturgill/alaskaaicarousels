@@ -338,6 +338,20 @@
    "evidence": "No.15 S7 flow-critic flagged the 35%-never-heard falling line as a possible decline misread; fixed with a bold 'awareness rose' arrow label while keeping the single verified point.",
    "confidence": 0.7,
    "last_confirmed": "2026-07-23"
+  },
+  {
+   "id": "dedupe-never-tail",
+   "learned": "2026-07-24",
+   "confidence": 0.95,
+   "instinct": "NEVER read dedupe_check.py output with `tail` or `head`: its strongest LIKELY DUPLICATE can print anywhere in the list, and the routine requires reading EVERY LIKELY DUPLICATE in full. Read the whole output and scan by token_jaccard before the directors room.",
+   "evidence": "No.16: dedupe_check flagged No.1 (2026-07-08, same STAK docket ADL 422741, same 500-vs-12 cover) as the TOP match at jaccard 0.279, but I read it with tail -30 and the No.1 line was above the visible window, so I selected a same-docket revisit believing it cleared. Caught only by the scorer. Same failure class as No.15's XPRIZE/No.5 near-dupe."
+  },
+  {
+   "id": "distributed-depth-breaks-ceiling",
+   "learned": "2026-07-24",
+   "confidence": 0.8,
+   "instinct": "To break the chronic artwork-craft=7 flat-hero ceiling, DISTRIBUTE real depth across 4+ slides via reliable CPU means (akrelief 2.5D relit cards/material chips, honest cabinet-extruded parallel bars, SVG-emboss deboss) plus ONE GL akthree hero, and lift rendered machine materials off near-black (dark clay + IBL + colored ambient bounce). The remaining ceiling after that is DEAD LOWER ZONES, fix those next.",
+   "evidence": "No.16: S3 akthree tundra-machine + S4 cabinet bars + S5/S7 akrelief cards + S8 deboss = scorer called it the strongest artwork the series has shipped, hero no longer flat; but artwork-craft still 7 for empty lower thirds on S2/S5/S8/S9."
   }
  ]
 }
