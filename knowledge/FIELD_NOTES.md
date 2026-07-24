@@ -1067,3 +1067,17 @@ dimensional.
   https://mattilyra.github.io/2017/05/23/document-deduplication-with-lsh.html (shingle sizes /
   LSH banding), https://www.analyticsvidhya.com/blog/2026/06/self-improving-loops/ (prose-lesson
   memory pattern, the weaker alternative to executable checks).
+
+## 2026-07-24 - Phase 1 craft refresh (No.16)
+
+- CONFIRM + SHARPEN (LinkedIn saves): 2026 practitioner data keeps finding that
+  NAMED, reusable frameworks are the single most reliable save-driver on carousels
+  ("The 3-C Framework", "The RICE Method"), because a save is a bet the reader will
+  reuse the artifact. Our house move is the named motif plus a keepable data slide;
+  this run, make the deck's ONE keepable slide read as a reusable tool (a named
+  test, a labeled ladder, a checklist), not just a chart. Confirms existing doctrine;
+  no rule change. Sources: postunreel.com/blog/linkedin-carousel-engagement-rate-statistics-2026,
+  metricool 2026 study (via oktopost/socialpilot roundups).
+- Nothing new on the cartography/relief craft front worth a doctrine change this pass
+  (IJC 12.2 2026 covers genAI-in-cartography and 3D thematic geovis at a level already
+  matched by our AK3D/hillshade bench). Parked, no action.
