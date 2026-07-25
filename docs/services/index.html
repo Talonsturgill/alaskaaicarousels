@@ -353,7 +353,12 @@ border:1px solid var(--line);border-radius:12px;padding:24px 26px;}
 /* ---------- prose (about) ---------- */
 .prose{max-width:660px;font-size:17px;}
 .prose p{margin:18px 0;}
-.prose a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.25);}
+/* a.proselink is for an inline link OUTSIDE a .prose block. The base rule is
+   a{color:inherit} with no decoration reset, so a bare anchor in a plain
+   paragraph falls back to the browser's underline and the paragraph's colour,
+   which is the one link on the site that did not look like the others. */
+.prose a,a.proselink{color:var(--blue);text-decoration:none;
+border-bottom:1px solid rgba(90,200,240,.25);}
 
 /* ---------- subscribe ---------- */
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
@@ -596,7 +601,8 @@ answer them across a table.</p>
 <h3 data-reveal>Who is Alaska AI?</h3>
 <p data-reveal>Alaska AI is an AI studio and daily publication in Anchorage. It publishes
 the state's AI beat every morning and builds AI systems for Alaska businesses. Founded and
-run by Talon Sturgill, an AI engineer born and raised in Anchorage.</p>
+run by <a class="proselink" href="https://www.linkedin.com/in/talonsturgill">Talon
+Sturgill</a>, an AI engineer born and raised in Anchorage.</p>
 <h3 data-reveal>What can AI actually do for an Alaska business?</h3>
 <p data-reveal>More than most people think. Answer every call and web inquiry day or night
 and book while you sleep. Draft the proposals, permits, invoices and filings that eat your
