@@ -206,9 +206,17 @@ def main():
     # 'weighted_total' so an agent-native score_report never renders the wrong
     # "shipped below threshold" banner (recurred 2026-07-19/20/23). Never
     # mutates score_report.json.
-    ship = bool(_alias("ship", "ships", "passes", default=False))
-    threshold = _alias("threshold", "ship_threshold", default="?")
-    weighted = _alias("weighted_total", "weighted_score", default="?")
+    # 2026-07-25: the third recurrence of this key drift in a week. That run's
+    # scorer wrote 'passes_as_scored' / 'weighted_score_as_scored' /
+    # 'threshold_applied' (it distinguishes the score of record from the raw
+    # criterion arithmetic), so the banner rendered "? / 10 vs ?" and the
+    # maintainer's headline number was missing from the delivered draft. The
+    # alias lists now cover every spelling any scorer has produced; add to them
+    # rather than hand-editing a generated body.
+    ship = bool(_alias("ship", "ships", "passes", "passes_as_scored", default=False))
+    threshold = _alias("threshold", "ship_threshold", "threshold_applied", default="?")
+    weighted = _alias("weighted_total", "weighted_score", "weighted_score_as_scored",
+                      "raw_weighted_score", default="?")
     weakest = _alias("weakest_criterion", default=None)
     if weakest is None:
         wc = score.get("weakest_criteria")
@@ -224,8 +232,14 @@ def main():
         f'<div class="flag"><b>Shipped below threshold.</b> '
         f'{weighted} / 10 vs {threshold}. '
         f'Weakest: {esc(str(weakest))}. '
-        f'Fix next time: {esc(str(score.get("one_sentence_fix", "?")))}</div>')
-    notes = esc(str(score.get("editor_notes_for_email", "") or "None."))
+        # a bare "?" in a delivered draft reads as a broken email, so say plainly
+        # that the scorer did not state one rather than printing a placeholder
+        f'Fix next time: {esc(str(_alias("one_sentence_fix", "fix_next_time", "next_run_fix", default="not stated by the scorer")))}'
+        + (f' <br><b>Why the cap:</b> {esc(str(score.get("cap_reason")))}'
+           if score.get("cap_reason") else '')
+        + '</div>')
+    notes = esc(str(_alias("editor_notes_for_email", "notes_for_the_email",
+                           "editor_note", default="") or "None."))
 
     # post_copy -> caption fallback: the copywriter/Phase 6 emit 'caption' and
     # often no 'post_copy'; without this the paste-ready post block renders empty
