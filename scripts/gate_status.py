@@ -138,6 +138,30 @@ def copy_sync_row(rows, run, rdir):
     rows.add("copy_sync", "PASS" if p.returncode == 0 else "FAIL", line[:140])
 
 
+def scanner_sync_row(rows):
+    """Repo-level, not run-level: the run rebuilds docs/ and ships whatever the
+    scanner page currently says, so the contract behind it is a ship gate like
+    any other. Exit 2 means the check could not look, which is a FAIL and not a
+    pass, because a blind check is how the last drift got through."""
+    script = REPO / "scripts" / "scanner_sync_check.py"
+    if not script.exists():
+        rows.absent("scanner_sync", "scripts/scanner_sync_check.py missing")
+        return
+    try:
+        p = subprocess.run([sys.executable, str(script)],
+                           capture_output=True, text=True, timeout=180)
+    except Exception as e:
+        rows.add("scanner_sync", "FAIL", "could not run scanner_sync_check (%s)" % type(e).__name__)
+        return
+    out = (p.stdout + p.stderr).strip().splitlines() or [""]
+    if p.returncode == 0:
+        rows.add("scanner_sync", "PASS", "the live scan page still matches the routine contract")
+    elif p.returncode == 2:
+        rows.add("scanner_sync", "FAIL", "check could not run: %s" % out[0][:120])
+    else:
+        rows.add("scanner_sync", "FAIL", out[0][:140])
+
+
 def assemble_row(rows, run, rep, fdir):
     asm, note = load_json(fdir / "assemble_report.json")
     if asm is None:
@@ -233,6 +257,7 @@ def main():
     qa_row(rows, rdir)
     caption_row(rows, run)
     copy_sync_row(rows, run, rdir)
+    scanner_sync_row(rows)
     assemble_row(rows, run, rep, fdir)
     score_row(rows, run)
     artifacts_row(rows, run, rdir, rep)

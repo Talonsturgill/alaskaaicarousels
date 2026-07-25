@@ -602,7 +602,7 @@ margin-top:12px;min-height:16px;}
 }
 @media (prefers-reduced-motion:reduce){
   .sw-bear.l,.sw-bear.r,.sw-hit,.sw-flake,.sw-aur path,.sw-agent.on .dot,
-  .sw-agent.on::after,.sw-ln{animation:none;}
+  .sw-agent.on::after,.sw-ln,.sw-scrim,.sw-modal{animation:none;}
   .sw-bear.r{transform:scaleX(-1);}
   .sw-hit{opacity:1;transform:translateX(-50%) scale(1);}
   .sw-quip,.sw-line,.sw-ring .bar{transition:none;}
@@ -734,14 +734,35 @@ every observation.</p>
     + '</svg>';
 
   var CIRC = 263.9; // 2 * pi * r, r = 42
-  var quipI = 0, callI = 0, quipT = null, callT = null, clockT = null;
+  var quipI = 0, callI = 0, quipT = null, callT = null, clockT = null, modalT = null;
   // feedSig starts null, never "", so the very first paint of an empty feed
   // still renders the queued placeholder instead of an empty box.
   var lastPhase = "claim", feedSig = null, modalUp = false;
+  // The run is over, one way or another. Nothing may paint, poll or pop after
+  // this flips, which is what keeps the email modal off a finished report.
+  var settled = false;
+  // The most notes we have painted. progress is append only, so a reply
+  // carrying fewer is a bad read, never news.
+  var seen = 0, feedNotes = [];
 
   function store(k){ try { return localStorage.getItem(k) === "1"; } catch(e){ return false; } }
   function mark(k){ try { localStorage.setItem(k, "1"); } catch(e){} }
-  function stopTimers(){ clearInterval(quipT); clearInterval(callT); clearInterval(clockT); }
+  // Every timer the page owns, including the one setTimeout. An earlier
+  // version listed only the intervals, so the 45s email modal survived the
+  // teardown and dropped itself over finished reports.
+  function stopTimers(){
+    clearInterval(quipT); clearInterval(callT); clearInterval(clockT);
+    clearTimeout(modalT);
+  }
+  // The modal lives on document.body, so replacing the app does not remove it.
+  // Every ending has to sweep it, or a modal opened a minute earlier sits on
+  // top of the report or the error asking for an email.
+  function dropModal(){
+    var s = document.querySelectorAll(".sw-scrim");
+    for (var k = 0; k < s.length; k++) {
+      if (s[k].parentNode) { s[k].parentNode.removeChild(s[k]); }
+    }
+  }
   function hideHero(){
     var h = document.getElementById("scanhero");
     if (h) { h.style.display = "none"; }
@@ -866,11 +887,21 @@ every observation.</p>
     stopTimers();
     quipT = setInterval(function(){ cycleQuip(false); }, 7000);
     callT = setInterval(function(){ cycleCall(false); }, 4600);
-    clockT = setInterval(function(){ paint(window.__swProgress || []); }, 20000);
+    clockT = setInterval(function(){ paint(feedNotes); }, 20000);
   }
 
   function paint(progress){
-    var notes = progress || [], i;
+    // Normalize once, here, and nowhere else. progress is a raw jsonb column
+    // written by hand-composed SQL, so it can arrive as a non-array or carry a
+    // null element. Everything downstream then works on a plain array of real
+    // objects and cannot throw, which matters because a throw inside paint
+    // used to kill the poll loop for the life of the tab.
+    var notes = [], i;
+    if (progress && Object.prototype.toString.call(progress) === "[object Array]") {
+      for (i = 0; i < progress.length; i++) {
+        if (progress[i]) { notes.push(progress[i]); }
+      }
+    }
     var mins = Math.max(0, Math.round((Date.now() - startedAt) / 60000));
     var phase = currentPhase(notes);
     if (phase !== lastPhase) {
@@ -891,23 +922,31 @@ every observation.</p>
     // the old phase shape for rows written before kind existed. Counting kind
     // is what keeps these true once the feed runs dense: a critic round that
     // emits ten notes is still one round.
-    var nPages = 0, nInd = 0, nGate = 0, kinded = false;
-    for (i = 0; i < notes.length; i++) {
-      if (notes[i] && notes[i].kind) { kinded = true; break; }
-    }
-    for (i = 0; i < notes.length; i++) {
-      var ph = notes[i] && notes[i].phase, nt = (notes[i] && notes[i].note) || "";
-      var kd = notes[i] && notes[i].kind;
-      if (kinded) {
-        if (kd === "page")   { nPages++; }
-        if (kd === "search") { nInd++; }
-        if (kd === "round")  { nGate++; }
+    // The fallback is decided PER NOTE, never once for the whole feed. A
+    // single flag was wrong: one kinded note flipped it for everything, so
+    // every kind-less note fell out of the totals at once and a tile could
+    // drop from 14 to 0 mid run while its 14 lines sat in the feed below.
+    //
+    // sync:counters begin
+    // scripts/scanner_sync_check.py cuts this block out and RUNS it against
+    // probe feeds, so keep it self contained: read only `notes`, declare
+    // everything else, and leave nPages, nInd and nGate holding the three tile
+    // values. Rename any of that and the check tells you which one it lost.
+    var nPages = 0, nInd = 0, nGate = 0;
+    for (var ci = 0; ci < notes.length; ci++) {
+      var kd = notes[ci].kind;
+      if (kd) {
+        if (kd === "page")        { nPages++; }
+        else if (kd === "search") { nInd++; }
+        else if (kd === "round")  { nGate++; }
       } else {
+        var ph = notes[ci].phase, nt = notes[ci].note || "";
         if (ph === "footprint" && /^reading /i.test(nt)) { nPages++; }
-        if (ph === "industry") { nInd++; }
-        if (ph === "critic")   { nGate++; }
+        else if (ph === "industry") { nInd++; }
+        else if (ph === "critic")   { nGate++; }
       }
     }
+    // sync:counters end
     function put(id, v){ var e = document.getElementById(id); if (e) { e.textContent = v; } }
     put("sw-pages", nPages); put("sw-ind", nInd); put("sw-gate", nGate);
 
@@ -958,7 +997,10 @@ every observation.</p>
 
   // --------------------- the leave-your-email moment ---------------------
   function emailModal(){
-    if (modalUp || !token || store("swnotify." + token)) { return; }
+    // settled is the guard that matters. Offering to email someone their link
+    // when the scan is already on their screen, or has already failed, reads
+    // as the page not knowing what it just did.
+    if (settled || modalUp || !token || store("swnotify." + token)) { return; }
     modalUp = true;
     var scrim = document.createElement("div");
     scrim.className = "sw-scrim";
@@ -974,12 +1016,20 @@ every observation.</p>
       '<div class="sw-skip"><a id="sw-later">NO THANKS, I WILL WAIT HERE</a></div></div>';
     document.body.appendChild(scrim);
 
-    function close(){ if (scrim.parentNode) { scrim.parentNode.removeChild(scrim); } }
-    scrim.querySelector("#sw-later").addEventListener("click", function(){
-      mark("swnotify." + token); close();
-    });
+    // Dismissing is dismissing, however they do it. Only the NO THANKS link
+    // used to be remembered, so Escape or a click on the backdrop brought the
+    // same modal back 45 seconds into every later visit to the link. The
+    // keydown listener comes off with it, so a closed modal stops holding a
+    // detached subtree and its fetch closure alive.
+    function onKey(e){ if (e.key === "Escape") { close(); } }
+    function close(){
+      mark("swnotify." + token);
+      document.removeEventListener("keydown", onKey);
+      if (scrim.parentNode) { scrim.parentNode.removeChild(scrim); }
+    }
+    scrim.querySelector("#sw-later").addEventListener("click", close);
     scrim.addEventListener("click", function(e){ if (e.target === scrim) { close(); } });
-    addEventListener("keydown", function(e){ if (e.key === "Escape") { close(); } });
+    document.addEventListener("keydown", onKey);
     var input = scrim.querySelector("#sw-email");
     if (input) { input.focus(); }
 
@@ -1013,7 +1063,9 @@ every observation.</p>
   }
 
   function fail(head, msg){
+    settled = true;
     stopTimers();
+    dropModal();
     hideHero();
     app.innerHTML = '<div class="sw-head" style="margin-top:6vh"><div class="sw-headtx">' +
       '<h1 class="sw-h1">' + head + '</h1><p>' + msg + '</p>' +
@@ -1023,8 +1075,9 @@ every observation.</p>
   function poll(){
     shell();
     paint([]);
-    // Give them a beat to watch the bears before asking for anything.
-    setTimeout(emailModal, 45000);
+    // Give them a beat to watch the bears before asking for anything. The
+    // handle goes in modalT so stopTimers() can cancel it on every ending.
+    modalT = setTimeout(emailModal, 45000);
     // A slow scan is never given up on. The page keeps the feed alive at a
     // steady 5s for as long as the run takes, because a long run is still a
     // running run. A self scheduling timeout rather than setInterval, so a
@@ -1035,44 +1088,91 @@ every observation.</p>
     // hours is four times the top of a real run, so a scan that is merely
     // slow will never see it. It also bounds a forgotten tab.
     var started = Date.now(), STOP_AFTER = 7200000;
-    function next(){ setTimeout(tick, 5000); }
+    // scan-result names three errors. Two of them never fix themselves, so
+    // asking again for two hours only fabricates a waiting room for a scan
+    // that is not running. "lookup failed" is the read breaking rather than
+    // the scan, which can pass, so it is tolerated for two minutes first.
+    var DEAD = { "not found": 1, "bad token": 1 }, readFails = 0;
+    function next(){ if (!settled) { setTimeout(tick, 5000); } }
     function tick(){
+      var httpOk = true;
       fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers: HEADERS })
-        .then(function(r){ return r.json(); }).catch(function(){ return {}; })
+        .then(function(r){ httpOk = r.ok; return r.json(); })
+        .catch(function(){ return {}; })
         .then(function(d){
           if (d.status === "done" || d.status === "degraded") {
+            settled = true;
             stopTimers();
-            var scrims = document.querySelectorAll(".sw-scrim");
-            for (var i = 0; i < scrims.length; i++) { scrims[i].parentNode.removeChild(scrims[i]); }
+            dropModal();
             document.body.style.setProperty("--skyglow", "1");
             var f = document.createElement("iframe");
             f.setAttribute("sandbox", "allow-forms allow-popups allow-top-navigation-by-user-activation");
             f.className = "sw-frame";
-            f.srcdoc = d.html || "";
+            // A finished row with no html is reachable, so say something
+            // rather than hand them a blank box with no way forward.
+            f.srcdoc = d.html || "<!doctype html><meta charset='utf-8'>" +
+              "<body style='background:#02060f;color:#f4f8ff;font:16px/1.6 system-ui,sans-serif;" +
+              "padding:40px'><p>Your scan finished but the page did not come back with it. " +
+              "Reload this link and it should appear.</p>";
             app.innerHTML = "";
             app.appendChild(f);
             return;
           }
-          if (d.status === "failed" || d.error === "not found") {
+          if (d.status === "failed") {
             fail("That scan did not finish", "It happens when a site blocks reading or the " +
                  "footprint is unreachable.");
             return;
           }
-          // A dropped request lands here as an empty object. Repaint only on a
-          // reply that actually carried the feed, otherwise one blip would
-          // flash the ring, the roster and every counter back to zero.
-          if (d.progress) {
-            window.__swProgress = d.progress;
-            paint(window.__swProgress);
+          if (d.error && DEAD[d.error]) {
+            if (d.error === "bad token") {
+              fail("That link is not a scan we have",
+                   "The token in this address is not one we issued, so there is nothing here "
+                   + "to watch. Usually it means the link got cut short on its way to you.");
+            } else {
+              fail("That scan did not finish", "It happens when a site blocks reading or the "
+                   + "footprint is unreachable.");
+            }
+            return;
+          }
+          if (d.error || !httpOk) {
+            // The read is failing rather than the scan. Ride it out briefly,
+            // then stop rather than animate a room we cannot see into.
+            readFails++;
+            if (readFails > 24) {
+              fail("We cannot read your scan right now",
+                   "The scan itself may well be fine. Our reader has been failing for two "
+                   + "minutes, so this page will not learn anything by asking again. Open "
+                   + "this link again in a few minutes.");
+              return;
+            }
+            next();
+            return;
+          }
+          readFails = 0;
+          // Repaint only on a reply that carried at least as much feed as we
+          // have already shown. progress is append only, so anything shorter
+          // is a bad read, and painting it would flash the ring, the roster
+          // and every counter back to zero. An empty array is truthy, so the
+          // old check let exactly that through.
+          if (Object.prototype.toString.call(d.progress) === "[object Array]"
+              && d.progress.length >= seen) {
+            seen = d.progress.length;
+            feedNotes = d.progress;
+            paint(feedNotes);
           }
           if (Date.now() - started > STOP_AFTER) {
-            fail("This scan stopped reporting",
-                 "It has been going two hours without finishing, well past the longest real "
-                 + "scan, so it stalled on our side rather than simply took a while.");
+            fail("This page has been watching for two hours",
+                 "That is well past the longest real scan and nothing has come back, so it "
+                 + "has stopped asking. If you left an email we will still send your link "
+                 + "when it lands. Otherwise open this link again to pick the watch back up.");
             return;
           }
           next();
-        });
+        })
+        // The last line of defence. Anything thrown above lands here, and
+        // without it the loop simply stopped, with no error on screen and the
+        // two hour net dead too, because the net lives inside that handler.
+        .catch(function(){ next(); });
     }
     next();
   }

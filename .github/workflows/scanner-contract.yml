@@ -1,0 +1,85 @@
+name: Scanner contract
+
+# The live Bottleneck Scanner page and the routine that feeds it live in two
+# repos and are maintained by hand on both sides. They drifted once already:
+# the routine started writing a `kind` on every progress note, nobody told this
+# page, and the HONESTY GATE ROUNDS tile read 50 for a five round gate for as
+# long as it took someone to notice on a live run.
+#
+# scanner_sync_check.py is what would have caught it. This is the thing that
+# runs it, which is the part that was missing.
+
+on:
+  pull_request:
+    paths:
+      - "scripts/site_build.py"
+      - "scripts/scanner_sync_check.py"
+      - "vendor/scanner/**"
+      - "docs/scan/**"
+      - ".github/workflows/scanner-contract.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/site_build.py"
+      - "scripts/scanner_sync_check.py"
+      - "vendor/scanner/**"
+      - "docs/scan/**"
+      - ".github/workflows/scanner-contract.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The check runs the page's own counter block rather than reading it, so
+      # it needs a JavaScript engine. Runners ship one, pinned here so a runner
+      # image change cannot quietly turn this into a skip. 22 rather than 20,
+      # which the runners are already warning about.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: The contract itself
+        run: python scripts/scanner_sync_check.py
+
+      # docs/ is committed and Pages serves it straight, so a correct builder
+      # with a stale build still ships the old page to every visitor. The scan
+      # page is byte identical across build dates apart from the footer stamp,
+      # so rebuild at the date already stamped on the committed page and
+      # require an exact match.
+      - name: Pillow, so the build is the real one
+        run: pip install --quiet Pillow
+
+      - name: The committed page matches the builder
+        run: |
+          set -euo pipefail
+          page=docs/scan/index.html
+          date=$(grep -o 'UPDATED [0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}' "$page" | head -1 | cut -d' ' -f2)
+          if [ -z "$date" ]; then
+            echo "Could not read the build date stamped on $page."
+            echo "That stamp is how this job rebuilds at the same date. Look at the footer."
+            exit 1
+          fi
+          echo "Rebuilding at $date, the date stamped on the committed page."
+          python scripts/site_build.py --date "$date" --out /tmp/rebuild
+          if ! diff -u "$page" /tmp/rebuild/scan/index.html; then
+            echo
+            echo "The committed scan page is not what scripts/site_build.py emits today."
+            echo "docs/ is committed and Pages serves it straight, so this diff is what"
+            echo "a visitor would NOT be getting."
+            echo
+            echo "Fix with:  pip install Pillow"
+            echo "           python scripts/site_build.py --date <YYYY-MM-DD> --out docs"
+            echo "           git add docs/ && git commit"
+            exit 1
+          fi
+          echo "The committed page and the builder agree, byte for byte."

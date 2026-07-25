@@ -375,14 +375,29 @@ const BEAR_SVG = `
 
 let startedAt = Date.now();
 let quipIdx = 0, quipTimer = null, modalShown = false, lastFeedLen = -1, lastPhase = "claim";
-let teachIdx = 0, teachTimer = null;
+let teachIdx = 0, teachTimer = null, modalTimer = null;
+// The run is over, one way or another. Nothing may poll, paint or pop after
+// this flips. It is what keeps the email modal off a finished report.
+let settled = false;
+// The most notes painted so far. progress is append only, so a reply carrying
+// fewer is a bad read, never news.
+let seenNotes = 0;
 // How many of the most recent notes the terminal shows. The routine now writes
 // 60 to 120 notes a run, so this is a rolling window, not the whole feed.
 const FEED_LINES = 9;
 
+// progress is a raw jsonb column written by hand-composed SQL, so it can come
+// back as something other than an array of objects. Normalize once, here, and
+// let everything downstream assume real notes. Before this, a single null
+// element threw inside paintWait, and paintWait runs on every poll, so one bad
+// row stopped the whole waiting room for the life of the tab.
+function notesOf(progress){
+  return Array.isArray(progress) ? progress.filter(Boolean) : [];
+}
+
 function currentPhase(progress){
   let best = "claim", bestI = -1;
-  for (const p of (progress || [])) {
+  for (const p of notesOf(progress)) {
     const i = PHASES.indexOf(p.phase);
     if (i > bestI) { bestI = i; best = p.phase; }
   }
@@ -395,7 +410,11 @@ function percentFor(phase, mins){
   const ceil = next ? (PHASE_PCT[next] ?? 100) : 100;
   // Creep a little inside the phase so a long step never looks frozen, but
   // never pass the next phase's floor. The number stays honest.
-  const creep = Math.min(ceil - base - 1, Math.max(0, mins - 1) * 1.2);
+  // The outer Math.max(0) is what stops the creep going NEGATIVE. On the last
+  // phase base and ceil are both 100, so the inner Math.min hands back -1 and
+  // a finished run would read 99 percent. Latent today, since no note is
+  // written with phase done, and one line rather than a note in the log.
+  const creep = Math.max(0, Math.min(ceil - base - 1, Math.max(0, mins - 1) * 1.2));
   return Math.min(100, Math.round(base + creep));
 }
 
@@ -534,17 +553,23 @@ function paintWait(progress){
   // the old phase shape for rows written before kind existed. Counting kind is
   // what lets the feed run dense without a counter turning into a lie: a critic
   // round that emits ten notes is still one round.
-  const notes = progress || [];
-  const kinded = notes.some(p => p.kind);
-  const nPages = kinded
-    ? notes.filter(p => p.kind === "page").length
-    : notes.filter(p => p.phase === "footprint" && /^reading /i.test(p.note || "")).length;
-  const nInd = kinded
-    ? notes.filter(p => p.kind === "search").length
-    : notes.filter(p => p.phase === "industry").length;
-  const nGate = kinded
-    ? notes.filter(p => p.kind === "round").length
-    : notes.filter(p => p.phase === "critic").length;
+  // The fallback is decided PER NOTE, never once for the whole feed. A single
+  // kinded flag was wrong: one kinded note flipped it for everything, so every
+  // kind-less note dropped out of the totals at the same instant and a tile
+  // could fall from 14 to 0 mid run with its 14 lines still in the feed below.
+  const notes = notesOf(progress);
+  const tally = { page: 0, search: 0, round: 0 };
+  for (const p of notes) {
+    let k = p.kind;
+    if (!k) {
+      const ph = p.phase, txt = p.note || "";
+      k = ph === "footprint" && /^reading /i.test(txt) ? "page"
+        : ph === "industry" ? "search"
+        : ph === "critic" ? "round" : "";
+    }
+    if (tally[k] !== undefined) tally[k]++;
+  }
+  const nPages = tally.page, nInd = tally.search, nGate = tally.round;
   const setNum = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
   setNum("st-pages", nPages); setNum("st-ind", nInd); setNum("st-gate", nGate);
 
@@ -586,7 +611,10 @@ function paintWait(progress){
 
 /* --------------------- the "leave your email" moment --------------------- */
 function showEmailModal(){
-  if (modalShown || !token || seen("notified:" + token)) return;
+  // settled is the guard that matters. Offering to email someone their link
+  // while the report is already on their screen, or after it failed, reads as
+  // a page that does not know what it just did.
+  if (settled || modalShown || !token || seen("notified:" + token)) return;
   modalShown = true;
   const scrim = document.createElement("div");
   scrim.className = "scrim";
@@ -605,8 +633,11 @@ function showEmailModal(){
     </div>`;
   document.body.appendChild(scrim);
 
-  const close = ()=> scrim.remove();
-  scrim.querySelector("#m-skip").addEventListener("click", ()=>{ mark("notified:" + token); close(); });
+  // Dismissing is dismissing, however they do it. Only the skip link used to
+  // be remembered, so a click on the backdrop brought the same modal back 45
+  // seconds into every later visit to the same link.
+  const close = ()=>{ mark("notified:" + token); scrim.remove(); };
+  scrim.querySelector("#m-skip").addEventListener("click", close);
   scrim.addEventListener("click", (e)=>{ if (e.target === scrim) close(); });
 
   scrim.querySelector("#m-go").addEventListener("click", async ()=>{
@@ -637,22 +668,55 @@ function showEmailModal(){
 }
 
 /* -------------------------------- polling -------------------------------- */
+// Every timer the page owns, in one place. The 45s modal timer used to sit
+// outside this, so a scan that finished at second 44 dropped an email capture
+// over the top of the finished report.
+function stopTimers(){
+  clearInterval(quipTimer); clearInterval(teachTimer); clearTimeout(modalTimer);
+}
+// The scrim lives on document.body, so replacing app does not remove it. Every
+// ending has to sweep it, or a modal opened a minute earlier sits on top of the
+// report or the error still asking for an email.
+function dropModal(){
+  document.querySelectorAll(".scrim").forEach(s=>s.remove());
+}
+function stopWaiting(head, body){
+  settled = true; stopTimers(); dropModal();
+  app.innerHTML = `<div class="mc"><div class="mc-txt"><h2>${head}</h2><p>${body}</p></div></div>`;
+}
+
 async function poll(){
   renderWaitShell();
   paintWait([]);
   const tick = setInterval(()=>paintWait(window.__lastProgress || []), 15000);
   // Give them a beat to watch the bears before asking for anything.
-  setTimeout(showEmailModal, 45000);
+  modalTimer = setTimeout(showEmailModal, 45000);
 
-  // 5s interval, 480 tries = 40 minutes of patience, matched to real run times.
-  for (let i=0; i<480; i++) {
-    let d;
-    try { d = await (await fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers:HEADERS })).json(); }
-    catch { d = {}; }
+  // A slow scan is never given up on. This used to stop after 480 tries, which
+  // is 40 minutes, chosen when a run wrote about a dozen notes. The dense feed
+  // pushed real runs past that, so a healthy long scan hit "taking longer than
+  // usual" and stopped polling for good while the run was still going. Now it
+  // rides at a steady 5s for as long as the run takes.
+  //
+  // The only stop is a two hour net for a scan that hung rather than took a
+  // while. Two hours is four times the top of a real run.
+  const startedPolling = Date.now(), STOP_AFTER = 7200000;
+  // scan-result names three errors. "not found" and "bad token" never fix
+  // themselves, so asking again for two hours only fabricates a waiting room
+  // for a scan that is not running. "lookup failed" is the READ breaking
+  // rather than the scan, which can pass, so it gets two minutes first.
+  let readFails = 0;
+
+  while (!settled) {
+    let d, httpOk = true;
+    try {
+      const r = await fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers:HEADERS });
+      httpOk = r.ok;
+      d = await r.json();
+    } catch { d = {}; httpOk = false; }
 
     if (d.status === "done" || d.status === "degraded") {
-      clearInterval(tick); clearInterval(quipTimer); clearInterval(teachTimer);
-      document.querySelectorAll(".scrim").forEach(s=>s.remove());
+      settled = true; stopTimers(); dropModal();
       document.body.style.setProperty("--aur", "1");
       const wrap = document.querySelector(".wrap");
       wrap.classList.remove("run"); wrap.classList.add("wide");
@@ -663,19 +727,54 @@ async function poll(){
       return;
     }
     if (d.status === "failed" || d.error === "not found") {
-      clearInterval(tick); clearInterval(quipTimer); clearInterval(teachTimer);
-      app.innerHTML = `<div class="mc"><div class="mc-txt"><h2>That scan did not finish</h2>
-        <p><a href="?">Run it again</a>, and if it keeps failing, reach us at
-        <a href="https://alaskaaihq.com">alaskaaihq.com</a>.</p></div></div>`;
+      stopWaiting("That scan did not finish",
+        `<a href="?">Run it again</a>, and if it keeps failing, reach us at
+         <a href="https://alaskaaihq.com">alaskaaihq.com</a>.`);
       return;
     }
-    window.__lastProgress = d.progress || [];
-    paintWait(window.__lastProgress);
+    if (d.error === "bad token") {
+      // Its own words. This is almost always a link cut short in transit, not
+      // a scan that ran and failed, and it will never resolve by asking again.
+      stopWaiting("That link is not a scan we have",
+        `The token in this address is not one we issued, so there is nothing here to
+         watch. <a href="?">Start a new scan</a>.`);
+      return;
+    }
+    if (d.error || !httpOk) {
+      // The read is failing rather than the scan. Ride it out briefly, then
+      // stop rather than animate a room we cannot see into.
+      if (++readFails > 24) {
+        stopWaiting("We cannot read your scan right now",
+          `The scan itself may well be fine. Our reader has been failing for two minutes,
+           so this page will not learn anything by asking again. Open this link again in
+           a few minutes.`);
+        return;
+      }
+      await new Promise(r=>setTimeout(r, 5000));
+      continue;
+    }
+    readFails = 0;
+
+    // Repaint only on a reply that carried at least as much feed as is already
+    // on screen. progress is append only, so anything shorter is a bad read,
+    // and `d.progress || []` used to hand paintWait an empty array on every
+    // dropped request, flashing the ring, the roster and all three counters
+    // back to zero.
+    if (Array.isArray(d.progress) && d.progress.length >= seenNotes) {
+      seenNotes = d.progress.length;
+      window.__lastProgress = d.progress;
+      paintWait(window.__lastProgress);
+    }
+
+    if (Date.now() - startedPolling > STOP_AFTER) {
+      stopWaiting("This page has been watching for two hours",
+        `That is well past the longest real scan and nothing has come back, so it has
+         stopped asking. If you left an email we will still send your link when it
+         lands. Otherwise open this link again to pick the watch back up.`);
+      return;
+    }
     await new Promise(r=>setTimeout(r, 5000));
   }
-  clearInterval(tick); clearInterval(quipTimer);
-  app.innerHTML = `<div class="mc"><div class="mc-txt"><h2>This is taking longer than usual</h2>
-    <p>Bookmark this link and check back, or <a href="?">start over</a>.</p></div></div>`;
 }
 
 if (token) poll(); else renderForm();
