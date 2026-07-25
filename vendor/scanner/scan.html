@@ -376,6 +376,9 @@ const BEAR_SVG = `
 let startedAt = Date.now();
 let quipIdx = 0, quipTimer = null, modalShown = false, lastFeedLen = -1, lastPhase = "claim";
 let teachIdx = 0, teachTimer = null;
+// How many of the most recent notes the terminal shows. The routine now writes
+// 60 to 120 notes a run, so this is a rolling window, not the whole feed.
+const FEED_LINES = 9;
 
 function currentPhase(progress){
   let best = "claim", bestI = -1;
@@ -527,10 +530,21 @@ function paintWait(progress){
 
   // Live counts, every one of them read straight off the feed the routine
   // wrote. Nothing here is a decoration, and nothing here is inflated.
+  // Counters read the note's kind when the routine set one, and fall back to
+  // the old phase shape for rows written before kind existed. Counting kind is
+  // what lets the feed run dense without a counter turning into a lie: a critic
+  // round that emits ten notes is still one round.
   const notes = progress || [];
-  const nPages = notes.filter(p => p.phase === "footprint" && /^reading /i.test(p.note || "")).length;
-  const nInd   = notes.filter(p => p.phase === "industry").length;
-  const nGate  = notes.filter(p => p.phase === "critic").length;
+  const kinded = notes.some(p => p.kind);
+  const nPages = kinded
+    ? notes.filter(p => p.kind === "page").length
+    : notes.filter(p => p.phase === "footprint" && /^reading /i.test(p.note || "")).length;
+  const nInd = kinded
+    ? notes.filter(p => p.kind === "search").length
+    : notes.filter(p => p.phase === "industry").length;
+  const nGate = kinded
+    ? notes.filter(p => p.kind === "round").length
+    : notes.filter(p => p.phase === "critic").length;
   const setNum = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
   setNum("st-pages", nPages); setNum("st-ind", nInd); setNum("st-gate", nGate);
 
@@ -557,10 +571,12 @@ function paintWait(progress){
     el.className = "agent" + (working ? " work" : (finished ? " done" : ""));
   });
 
-  // terminal feed
-  const list = (progress || []).slice(-6);
-  if (list.length !== lastFeedLen) {
-    lastFeedLen = list.length;
+  // terminal feed. Compare the TOTAL note count, not the window length, or the
+  // window pins at its own size and the feed stops repainting after that many
+  // notes. That bug froze the feed at note six.
+  const list = notes.slice(-FEED_LINES);
+  if (notes.length !== lastFeedLen) {
+    lastFeedLen = notes.length;
     const feed = document.getElementById("feed");
     if (feed) feed.innerHTML = list.length
       ? list.map(p => `<div class="ln"><span class="t">${esc(p.at)}</span><span class="txt">${esc(p.note)}</span></div>`).join("")
