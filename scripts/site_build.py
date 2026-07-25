@@ -2355,7 +2355,11 @@ every observation.</p>
     });
     function tick(){
       var httpOk = true;
-      fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers: HEADERS })
+      // `since` says how many notes we already hold, so the reply can carry
+      // only what is new. An older deployment ignores it and sends the whole
+      // feed, which still works, see the reader below.
+      fetch(FN + "/scan-result?token=" + encodeURIComponent(token) + "&since=" + seen,
+            { headers: HEADERS })
         .then(function(r){ httpOk = r.ok; return r.json(); })
         .catch(function(){ return {}; })
         .then(function(d){
@@ -2408,16 +2412,34 @@ every observation.</p>
             return;
           }
           readFails = 0;
-          // Repaint only on a reply that carried at least as much feed as we
-          // have already shown. progress is append only, so anything shorter
-          // is a bad read, and painting it would flash the ring, the roster
-          // and every counter back to zero. An empty array is truthy, so the
-          // old check let exactly that through.
-          if (Object.prototype.toString.call(d.progress) === "[object Array]"
-              && d.progress.length >= seen) {
-            seen = d.progress.length;
-            feedNotes = d.progress;
-            paint(feedNotes);
+          // The reply carries either the whole feed or only what is new since
+          // the last poll, and says which by whether progress_from is there.
+          // A deployment that predates the cursor sends the whole feed and no
+          // progress_from, which reads here as "from 0", so both work.
+          //
+          // Repaint only on a reply that accounts for at least as much feed as
+          // is already shown. progress is append only, so anything shorter is a
+          // bad read, and painting it would flash the ring, the roster and
+          // every counter back to zero. An empty array is truthy, so the check
+          // this replaced let exactly that through.
+          if (Object.prototype.toString.call(d.progress) === "[object Array]") {
+            var from = (typeof d.progress_from === "number") ? d.progress_from : 0;
+            var total = (typeof d.progress_len === "number")
+              ? d.progress_len : from + d.progress.length;
+            if (from === 0) {
+              if (total >= seen) { seen = total; feedNotes = d.progress; paint(feedNotes); }
+            } else if (from === seen && total >= seen) {
+              if (d.progress.length) {
+                seen = total;
+                feedNotes = feedNotes.concat(d.progress);
+                paint(feedNotes);
+              }
+            } else {
+              // We and the server disagree about how much we hold. Ask for the
+              // whole feed next time rather than stitching a gap into the
+              // terminal and reporting counts with a hole in them.
+              seen = 0;
+            }
           }
           if (Date.now() - started > STOP_AFTER) {
             fail("This page has been watching for two hours",
