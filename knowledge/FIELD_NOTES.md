@@ -1288,3 +1288,29 @@ editorial dataviz 07-22) and because this run's scar is a legibility defect.
   near edge fall outside the opening polygon and are silently clipped away (it ate the hero's
   fireweed inlay and gold specular until they were moved to the far half). Any depth-plan
   dossier should state, per mark, which polygon clips it and at what depth it was projected.
+
+### 2026-07-25 (No. 17) — Phase 13/14 addendum, two lessons that arrived after the retro
+
+Both are process lessons, and both are logged here rather than as instincts because
+this run already appended 5 instincts against a 1 to 3 cap (retro deviation D10).
+They are the two strongest instinct candidates for run No. 18.
+
+- READ THE GENERATED EMAIL BODY BEFORE DELIVERING IT. The draft's score banner
+  rendered "Shipped below threshold. ? / 10 vs ?. ... Fix next time: ?" because
+  this run's scorer used key spellings the generator did not know. The maintainer's
+  single most important number was missing from the only artifact a human reads,
+  and no gate covers the email because the email IS the delivery. The
+  verbatim-body rule is not a reason to skip reading it; it is the reason reading
+  it matters, because the only legal fix is upstream in the generator. Fixed and
+  logged as the run's third upgrade (957ff66). This is the fourth appearance of
+  the same key drift (07-19, 07-20, 07-23), which is what "extend the alias list
+  by one each time" buys you. The lists are now exhaustive.
+- VERIFY A SUBAGENT'S VERIFICATION, ESPECIALLY WHEN IT REPORTS SUCCESS. The
+  upgrade-engineer's report was strong and its central claim held under
+  independent re-testing (the new gate does FAIL on a reconstruction of the
+  defect and does leave the shipped deck and demo-deck clean). But its
+  "correct on the flat runs/<date>/ copy too" was overstated: in flat mode the
+  PNG sweep ran off a render report that flat mode does not have, so ten slide
+  PNGs went unchecked while the row still printed PASS. That is the exact defect
+  class the upgrade existed to prevent, sitting inside the upgrade. A confident,
+  well-evidenced report is not evidence; re-running the check is.
