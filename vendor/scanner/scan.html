@@ -710,7 +710,12 @@ async function poll(){
   while (!settled) {
     let d, httpOk = true;
     try {
-      const r = await fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers:HEADERS });
+      // `since` says how many notes we already hold, so the reply can carry
+      // only what is new. An older deployment ignores it and sends the whole
+      // feed, which still works, see the reader below.
+      const r = await fetch(
+        FN + "/scan-result?token=" + encodeURIComponent(token) + "&since=" + seenNotes,
+        { headers:HEADERS });
       httpOk = r.ok;
       d = await r.json();
     } catch { d = {}; httpOk = false; }
@@ -755,15 +760,38 @@ async function poll(){
     }
     readFails = 0;
 
-    // Repaint only on a reply that carried at least as much feed as is already
-    // on screen. progress is append only, so anything shorter is a bad read,
-    // and `d.progress || []` used to hand paintWait an empty array on every
-    // dropped request, flashing the ring, the roster and all three counters
-    // back to zero.
-    if (Array.isArray(d.progress) && d.progress.length >= seenNotes) {
-      seenNotes = d.progress.length;
-      window.__lastProgress = d.progress;
-      paintWait(window.__lastProgress);
+    // The reply carries either the whole feed or only what is new since the
+    // last poll, and says which by whether progress_from is there. A
+    // deployment that predates the cursor sends the whole feed and no
+    // progress_from, which reads here as "from 0", so both work.
+    //
+    // Repaint only on a reply that accounts for at least as much feed as is
+    // already on screen. progress is append only, so anything shorter is a bad
+    // read, and `d.progress || []` used to hand paintWait an empty array on
+    // every dropped request, flashing the ring, the roster and all three
+    // counters back to zero.
+    if (Array.isArray(d.progress)) {
+      const from = typeof d.progress_from === "number" ? d.progress_from : 0;
+      const total = typeof d.progress_len === "number"
+        ? d.progress_len : from + d.progress.length;
+      if (from === 0) {
+        if (total >= seenNotes) {
+          seenNotes = total;
+          window.__lastProgress = d.progress;
+          paintWait(window.__lastProgress);
+        }
+      } else if (from === seenNotes && total >= seenNotes) {
+        if (d.progress.length) {
+          seenNotes = total;
+          window.__lastProgress = (window.__lastProgress || []).concat(d.progress);
+          paintWait(window.__lastProgress);
+        }
+      } else {
+        // We and the server disagree about how much we hold. Ask for the whole
+        // feed next time rather than stitching a gap into the terminal and
+        // reporting counts with a hole in them.
+        seenNotes = 0;
+      }
     }
 
     if (Date.now() - startedPolling > STOP_AFTER) {
