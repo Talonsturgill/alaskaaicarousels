@@ -4,23 +4,21 @@
       "file": "slide-01.html",
       "fails": [],
       "warns": [
-        "outside safe zone: 'Reports made public the week of July 20 ' at 80,1200 940x31 (margin 80px)"
+        "outside safe zone: 'Campaign finance reports made public the' at 80,1200 940x62 (margin 80px)"
       ]
     },
     {
       "file": "slide-02.html",
       "fails": [],
       "warns": [
+        "outside safe zone: '1.8 M reported since February' at 558,759 473x30 (margin 80px)",
         "outside safe zone: '100,000 largest single gift' at 613,979 441x30 (margin 80px)"
       ]
     },
     {
       "file": "slide-03.html",
       "fails": [],
-      "warns": [
-        "text collision (69% overprint): 'On data centers he told the Anchorag' x 'ALASKA.AI' near 80,1288 [decorative involved]",
-        "outside safe zone: 'On data centers he told the Anchorage Da' at 80,1192 910x121 (margin 80px)"
-      ]
+      "warns": []
     },
     {
       "file": "slide-04.html",
@@ -61,6 +59,6 @@
     }
   ],
   "fails": 0,
-  "warns": 5,
+  "warns": 4,
   "verdict": "WARN"
 }

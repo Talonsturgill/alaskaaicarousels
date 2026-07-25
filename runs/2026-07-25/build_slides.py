@@ -155,7 +155,7 @@ function slabShadow(cx) {
   const f = face(-SLABX, SLABX, -SLABZ, SLABZ, -SLABTH);
   quad(cx, f.map(q => [q[0] - 8, q[1] + off * 0.9]), P.shade);
   cx.filter = 'none';
-  cx.globalAlpha = 0.42; cx.filter = 'blur(7px)';
+  cx.globalAlpha = 0.46; cx.filter = 'blur(5px)';
   quad(cx, f.map(q => [q[0] - 3, q[1] + off * 0.28]), P.shade);
   cx.filter = 'none';
   cx.restore();
@@ -383,12 +383,12 @@ async function glBays(cx) {
     R.camera.lookAt(0, LY, 0);
     AKT.environment(R, { intensity: 0.30 });
     /* the room the slab sits in, so the cast shadow is a real PBR shadow */
-    AKT.ground(R, { size: 90, color: 0xe6dccb, roughness: 0.95, y: -0.32 });
+    AKT.ground(R, { size: 90, color: 0xded3bf, roughness: 0.95, y: -0.31 });
 
     const stone = AKT.mat.clay(0xf3ede1, { roughness: 0.88 });
-    const side  = AKT.mat.clay(0xc6b9a1, { roughness: 0.90 });
-    const wall  = AKT.mat.clay(0x8f8674, { roughness: 0.94 });
-    const deep  = AKT.mat.clay(0x352c24, { roughness: 0.95 });
+    const side  = AKT.mat.clay(0xcfc4af, { roughness: 0.90 });
+    const wall  = AKT.mat.clay(0x6b6253, { roughness: 0.94 });
+    const deep  = AKT.mat.clay(0x3a3128, { roughness: 0.95 });
     const G = new THREE.Group();
     const plane = (w, h, mat, pos, rot) => {
       const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
@@ -418,7 +418,7 @@ async function glBays(cx) {
     AKT.add(R, G);
     /* one key light for the whole deck, azimuth 151 deg, elevation 35 deg */
     AKT.rig(R, {
-      key: { color: 0xfff3e0, i: 3.9, pos: [-5.2, 6.4, 3.4], radius: 7, shadowSize: 5 },
+      key: { color: 0xfff3e0, i: 3.6, pos: [3.4, 7.6, 4.2], radius: 8, shadowSize: 6 },
       fill: { color: 0xdcd6c8, i: 0.42, pos: [4.0, 2.2, 6.0] },
       ambient: { color: 0xa89f8d, i: 0.75 }
     });
@@ -502,7 +502,7 @@ slide(
     data-fit='{{"min":92,"max":126,"maxLines":4}}'>THE MONEY<br>IS ON FILE.<br>THE AI POLICY<br>IS NOT.</h1>
 """ + L(W18, -0.71, 20, -14, txt="Cut to the dollar")
       + L(W18, 0.29, 20, -14, txt="Ruled, never cut")
-      + """<div class="basemono" style="width:940px">Reports made public the week of July 20 2026</div>
+      + """<div class="basemono" style="width:940px">Campaign finance reports made public the week of July 20</div>
 """)
 
 # =============================================================== SLIDE 02 ====
@@ -573,9 +573,9 @@ function extraArt(cx) {
 <h1 class="display" style="width:820px;font-size:84px;font-variation-settings:'SOFT' 60,'WONK' 0,'opsz' 96;font-weight:800;line-height:1.02"
     data-fit='{{"min":62,"max":84,"maxLines":3}}'>Six people at one AI company, about a fifth of the biggest haul in the field.</h1>
 <div class="chip fw" style="left:80px;top:470px;width:900px">This deck runs on a model built by Anthropic. Full disclosure, slide 09.</div>
-""" + L(WELL_X0, -0.92, 4, -52, txt="1.8 M reported since February")
-      + L(W18, -0.92, 22, -16, cls="lab", txt="372,000")
-      + L(W18, -0.92, 22, 14, cls="lab dk sm", txt="Six Anthropic employees")
+""" + L(W18, -0.92, 22, -16, cls="lab dk sm", txt="1.8 M reported since February")
+      + L(WELL_X0, -0.92, 10, -84, cls="lab", txt="372,000")
+      + L(WELL_X0, -0.92, 10, -54, cls="lab dk sm", txt="Six Anthropic employees")
       + L(W372, -0.50, 22, 16, txt="About a fifth")
       + L(W372, -0.50, 22, 44, txt="Alaska.Ai arithmetic")
       + L(WELL_X0, 0.30, 6, 14, txt="In state share, not disclosed")
@@ -625,7 +625,7 @@ function extraArt(cx) {
 <div class="lab dk sm" style="left:106px;top:452px">Jonathan Kreiss-Tomkins</div>
 <div class="chip" style="left:106px;top:500px;width:790px">Candidate survey, Northern Journal, June 2026. Background, outside the 10 day window.</div>
 """ + L(WELL_X0, -0.30, 6, -40, txt="The record stops here")
-      + """<div class="z base">On data centers he told the Anchorage Daily News that until Alaska has "a process and a policy we don't right now", nothing should happen.</div>
+      + """<div class="z base">On data centers he told the Anchorage Daily News that until Alaska has "a process and a policy", nothing should happen.</div>
 """)
 
 # =============================================================== SLIDE 04 ====
@@ -693,6 +693,12 @@ slide(
     cfg_extra=dict(wells=[], scored=[]),
     extra_js=r"""
 function extraArt(cx) {
+  /* one fireweed inlay on the CUT bay's floor. Fireweed has meant the compulsory
+     record since the cover, so the bay labelled COMPELLED BY LAW must carry it. */
+  cx.save();
+  quad(cx, face(-1.40, -0.06, -0.62, 0.62, 0)); cx.clip();
+  quad(cx, face(-1.30, -0.72, -0.30, -0.10, -0.255), P.fireweed);
+  cx.restore();
   /* the SCORED right bay, ruled and never cut. No interior colour of any kind. */
   cx.save();
   cx.strokeStyle = mix(P.body, P.ink, 0.35); cx.lineWidth = 2.4;
@@ -731,13 +737,13 @@ Z7, ZH7, ZG7 = -1.03, 0.26, 0.10
 s7_scored, s7_wells = [], []
 for i, (nm, money) in enumerate(BLANKS):
     z = Z7 + i * (ZH7 + ZG7)
-    s7_scored.append(dict(x0=-1.42, x1=-0.62, z0=z, z1=z + ZH7, dot=True))
+    s7_scored.append(dict(x0=-1.34, x1=-0.60, z0=z, z1=z + ZH7, dot=True))
     if money:
         s7_wells.append(dict(x0=-0.50, x1=-0.50 + money * W_PER_M, z0=z + 0.04,
                              z1=z + ZH7 - 0.05, d=0.09, gold=True))
 for i, (t,) in enumerate(ANSWERS):
     z = Z7 + (4 + i) * (ZH7 + ZG7)
-    s7_wells.append(dict(x0=-1.42, x1=-0.30, z0=z, z1=z + ZH7, d=0.05,
+    s7_wells.append(dict(x0=-1.34, x1=-0.30, z0=z, z1=z + ZH7, d=0.05,
                          fill="#4A4038"))
 slide(
     7, az=158, shmul=2.02, late=0.50, coord="61 deg 34'N 149 deg 15'W",
@@ -749,7 +755,7 @@ slide(
 <div class="chip" style="left:80px;top:400px;width:900px">Not a count of the field. The named answers and non answers in one June 2026 survey.</div>
 <div class="chip" style="left:80px;top:486px;width:900px">Background, Northern Journal, June 2026</div>
 """ + "".join(
-    L(-1.42, Z7 + i * (ZH7 + ZG7), 10, -40, txt=nm)
+    L(-1.34, Z7 + i * (ZH7 + ZG7), 8, -40, txt=nm)
     for i, (nm, money) in enumerate(BLANKS)
 ) + "".join(
     L(-0.50 + money * W_PER_M, Z7 + i * (ZH7 + ZG7) + ZH7 / 2, 34, -16,
