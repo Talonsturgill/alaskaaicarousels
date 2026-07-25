@@ -537,18 +537,25 @@ def main():
 
     problems, notes = [], []
 
-    compare("The function base URL (FN)", scalar(ref_txt, "FN"), HTML_LABEL,
-            scalar(live_txt, "FN"), problems,
-            "Every request from the page goes to this host, so a stale one "
-            "means the page talks to nothing.")
-    compare("The publishable key (PUBKEY)", scalar(ref_txt, "PUBKEY"), HTML_LABEL,
-            scalar(live_txt, "PUBKEY"), problems,
-            "It is sent as both apikey and the bearer token, so a stale one "
-            "means every call comes back 401.")
-    compare("The Turnstile sitekey (TS_SITEKEY)", scalar(ref_txt, "TS_SITEKEY"),
-            HTML_LABEL, scalar(live_txt, "TS_SITEKEY"), problems,
-            "The gatekeeper requires a token whenever the matching secret is "
-            "set server-side, so a stale sitekey means nobody can start a scan.")
+    # Read each value once. The PASS block prints the same four things the
+    # comparisons just checked, and re-extracting them there meant the report
+    # could, in principle, print something other than what was compared.
+    wiring = [
+        ("The function base URL (FN)", "FN", "function base URL",
+         "Every request from the page goes to this host, so a stale one "
+         "means the page talks to nothing."),
+        ("The publishable key (PUBKEY)", "PUBKEY", "publishable key",
+         "It is sent as both apikey and the bearer token, so a stale one "
+         "means every call comes back 401."),
+        ("The Turnstile sitekey (TS_SITEKEY)", "TS_SITEKEY", "turnstile sitekey",
+         "The gatekeeper requires a token whenever the matching secret is "
+         "set server-side, so a stale sitekey means nobody can start a scan."),
+    ]
+    ref_wiring = {}
+    for title, name, label, hint in wiring:
+        ref_wiring[label] = scalar(ref_txt, name)
+        compare(title, ref_wiring[label], HTML_LABEL, scalar(live_txt, name),
+                problems, hint)
 
     ref_ep, live_ep = endpoints(ref_txt), endpoints(live_txt)
     if ref_ep != live_ep:
@@ -563,8 +570,8 @@ def main():
             "The endpoint names have drifted.%s\n"
             "    An endpoint only one side calls is a feature only one side ships." % detail)
 
-    phases = live_phases(live_txt)
-    check_phases(spec_phases(spec_txt), phases, problems)
+    phases, spec_ph = live_phases(live_txt), spec_phases(spec_txt)
+    check_phases(spec_ph, phases, problems)
     check_wiring(phases, live_phase_pct(live_txt), live_agent_phases(live_txt), problems)
 
     kinds_ref = spec_kinds(spec_txt)
@@ -588,11 +595,10 @@ def main():
         print("scanner_sync_check: PASS")
         print("  spec        %s" % SPEC_LABEL)
         print("  wiring      %s" % HTML_LABEL)
-        print("  function base URL   %s" % scalar(ref_txt, "FN"))
-        print("  publishable key     %s" % scalar(ref_txt, "PUBKEY"))
-        print("  turnstile sitekey   %s" % scalar(ref_txt, "TS_SITEKEY"))
+        for _, _, label, _ in wiring:
+            print("  %-19s %s" % (label, ref_wiring[label]))
         print("  endpoints (%d)       %s" % (len(ref_ep), ", ".join(ref_ep)))
-        ph = spec_phases(spec_txt) or []
+        ph = spec_ph or []
         print("  phases (%d)          %s" % (len(ph), ", ".join(ph)))
         print("  kinds (%d)           %s" % (len(kinds_ref or []), ", ".join(kinds_ref or [])))
         print("  ignored (%d)         %s" % (len(IGNORED_KINDS), ", ".join(sorted(IGNORED_KINDS))))
