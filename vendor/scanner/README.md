@@ -17,30 +17,38 @@ THE PROGRESS FEED section.
 | --- | --- |
 | repo | `Talonsturgill/alaska-ai-scanner` |
 | path | `prompts/scan_routine.md` |
-| commit | `c60a5e3b851ec92bc312c6cc28fa969975918f8d` (branch `main`) |
+| last changed at | `c60a5e3b851ec92bc312c6cc28fa969975918f8d` (branch `main`) |
 | landed by | PR #10, "make the live feed dense, and fix the two bugs that would have hidden it" |
 | sha256 | `7c7b548693b1c14d0fa28f99823476b2132b7b03aaa9417c44b08cf73fb192bf` |
 | bytes | 29323 |
+
+The commit row is the commit that last CHANGED the file, not whatever main
+happens to be at. The two files move independently, and pinning both to the
+same tip commit would say a file changed when it did not.
 
 ## scan.html, four wiring constants and nothing else
 
 **This file is NOT a specification and must never be copied over the live
 page.** It is a reference implementation of the same flow, maintained by hand
-alongside ours, and the two have drifted in both directions.
+alongside ours, and the two have drifted in both directions before.
 
-Where they differ today, at the time of this snapshot:
+As of this snapshot they agree on everything that governs a run. Scanner PR
+#12 brought the reference in line on the poll loop (a steady 5s with no give-up
+on a slow run, and a two hour net for a hung one), the counters (decided per
+note, so a mixed feed does not drop its kind-less half), the null and non array
+guards on `progress`, the dropped-request guard, and the modal teardown. The
+feed freeze at note six was fixed upstream in PR #10 before this file was ever
+vendored. None of that needs re-fixing on either side.
 
-- it stops polling after 480 tries, which is 40 minutes. The live page rides a
-  slow run for two hours instead, because the dense feed pushed real runs past
-  40 minutes and a healthy long scan was hitting "This is taking longer than
-  usual" and never coming back.
-- it wears its own type and its own tokens, which is the point, see below.
+What still differs is small and cosmetic. Escape closes the modal here and not
+there. Our reduced-motion block covers more. The finished-with-no-html message
+is worded differently. And the chrome, which is the whole point, see below.
 
-Where they no longer differ, so nobody re-fixes a fixed thing: the feed freeze
-at note six was fixed upstream in PR #10, and both sides now repaint on the
-total note count. And both sides do have a give-up state; ours is just longer.
+That paragraph is prose and prose goes stale, which is how this README came to
+carry two false claims about the live page in the first place. Trust it as a
+pointer, never as the contract. The contract is the part the check reads.
 
-It is vendored for exactly four values that have no better machine readable
+This file is vendored for exactly four values that have no better machine readable
 home in that repo, and the check reads nothing else from it.
 
 - the Supabase function base URL
@@ -53,9 +61,10 @@ home in that repo, and the check reads nothing else from it.
 | --- | --- |
 | repo | `Talonsturgill/alaska-ai-scanner` |
 | path | `web/scan.html` |
-| commit | `c60a5e3b851ec92bc312c6cc28fa969975918f8d` (branch `main`) |
-| sha256 | `2e4aa9d3c85003113184218700db3b0fc3cf98ae1f6582b717fe7552888cb579` |
-| bytes | 35279 |
+| last changed at | `18fe7e9d045fd1cf07891d2b3552742ca8f40d91` (branch `main`) |
+| landed by | PR #12, "stop giving up on a slow scan, and seven other things a run can hit" |
+| sha256 | `a35a630fe317e9e11729ab45532f8440ff7f3f5333764e261a862c3ec593a6f5` |
+| bytes | 40102 |
 
 Those sha256 rows are not decoration. The check recomputes both and fails if
 either file has been edited here, because a vendored snapshot nobody can trust
