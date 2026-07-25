@@ -1131,3 +1131,38 @@ dimensional.
   https://searchengineland.com/linkedin-updates-feed-algorithm-llm-ranking-retrieval-471708 ,
   https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now ,
   https://www.socialpilot.co/blog/linkedin-algorithm
+
+## 2026-07-25 - Phase 1 craft refresh (No.17)
+
+- COMPLETION RATE, now with a number. The 07-24 scan established that carousel
+  completion is an explicit ranking input; this pass found the practitioner
+  benchmark attached to it. Well-structured carousels average about a 36 percent
+  completion rate (share of viewers who reach the last slide), and completion
+  falls off hard past roughly 15 slides. Our 8 to 10 band is safe. The operative
+  lesson is unchanged but sharper, every slide has to earn the swipe because the
+  LAST slide's view count is a ranking input, not just a courtesy. Sources:
+  https://usevisuals.com/blog/linkedin-carousel-engagement-statistics-2026 ,
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- TREAT WITH SUSPICION, do not adopt: the same practitioner posts circulate a
+  claim that "exactly 7 slides perform 18 percent better than any other length"
+  while ALSO reporting 5 to 10 and 9 to 12 as the sweet spot in the same article,
+  and quoting a carousel engagement rate of 1.92 percent against the 6.60 percent
+  figure the same tier reports elsewhere. Internally inconsistent, no method
+  published. No doctrine change. CAROUSEL_CRAFT's 8-10 band stands on the tier-B
+  sources.
+- NEW AND DECISION-RELEVANT (feed physics for a LIGHT deck). Practitioner
+  guidance converges on dark covers outperforming light ones for FEED visibility,
+  because LinkedIn shrinks the cover to roughly 200px in-feed and a dark, saturated
+  field holds thumbnail contrast against the platform's own light chrome better
+  than a light field does. That is tier-C evidence, not tier-A, and it does not
+  forbid the light register brand.yaml permits once per 8 runs. It does set the
+  price of admission, if a deck goes light, the COVER must carry an unusually
+  large, near-black display headline plus one saturated accent mass, and it must
+  be judged at 432px before anything else gets built. Dark text on light remains
+  the readability gold standard once the reader is inside the deck. Sources:
+  https://carouselli.com/blog/linkedin-carousel-colors ,
+  https://carouselli.com/blog/linkedin-carousel-design ,
+  https://postunreel.com/blog/linkedin-carousel-design-best-practices
+- Type note, no action. The 2026 print and editorial trend reporting is all
+  high-contrast and maximalist serif display, which the house already owns
+  through Fraunces and Instrument Serif. Nothing here the library lacks.
