@@ -6,6 +6,11 @@ canvas#scene{position:absolute;inset:0;width:1080px;height:1350px}
 .kicker{position:absolute;left:80px;top:92px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.16em;color:#8FDCF7}
 h1{position:absolute;left:80px;top:152px;max-width:880px;font-family:"Fraunces",serif;font-weight:400;font-size:104px;line-height:1.0;letter-spacing:-.02em;color:#F4F8FF;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
 .dek{position:absolute;left:80px;top:412px;max-width:620px;font-family:"Manrope",sans-serif;font-size:32px;line-height:1.42;color:#D9E4F0}
+/* The dek sits over the GL hero's gold column, so it gets a scrim plate: the
+   remedy qa.py's label-crossed-by-art gate asks for on a dark ground (a
+   knockout or halo on a light one). Without it the hero's specular runs
+   through the letterforms at the glyphs' own value and the copy is struck. */
+.dekscrim{position:absolute;left:62px;top:396px;width:664px;height:172px;background:rgba(3,6,13,.84)}
 .counter{position:absolute;right:80px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;color:#7C93A8}
 .tag{position:absolute;left:80px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:21px;color:#54687C;letter-spacing:.08em}
 .star{position:absolute;left:80px;top:64px;width:18px;height:18px}
@@ -14,6 +19,7 @@ h1{position:absolute;left:80px;top:152px;max-width:880px;font-family:"Fraunces",
 <svg class="star" viewBox="0 0 20 20"><path d="M10 0 L12 8 L20 10 L12 12 L10 20 L8 12 L0 10 L8 8 Z" fill="#FFC72C"/></svg>
 <div class="kicker">ENGINE PROOF &middot; THE FULL STACK</div>
 <h1>World class,<br>every morning.</h1>
+<div class="dekscrim" data-decorative></div>
 <div class="dek">One GPU render pass, one film grade, one palette engine. The machine now lights, shades, and grades its own artwork.</div>
 <div class="tag" data-decorative>AKTHREE + AKPOST + AKC &middot; SEED 20260711</div>
 <div class="counter">03 / 03</div>

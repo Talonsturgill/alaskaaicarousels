@@ -14,6 +14,12 @@ Checks per slide (consuming render_report.json + the PNGs):
     high-contrast structured edges (a canvas/bitmap arc or texture the DOM
     collision gate cannot see). Added 2026-07-10 after canvas flightpath/orbit
     arcs crossed body copy and a headline and machine QA passed both.
+  - LABEL CROSSED BY ART (FAIL): samples a thin ring around each non-decorative
+    label's glyph ink and FAILS when ink of the GLYPHS' OWN VALUE touches the
+    letterforms across the label (a rule, scored outline or groove edge struck
+    through the text). Knockout plates and halos leave that ring clean.
+    Added 2026-07-25 after four slides shipped art-band labels crossed by
+    canvas-drawn geometry through two scoring cycles of PASS with zero warns.
   - CANVAS RASTER TEXT (WARN only): warns when a slide draws meaningful text
     (>=4 alphabetic chars) via canvas fillText/strokeText, which ships as a
     bitmap in the vector PDF and is invisible to the ranker/copy_sync/a11y.
@@ -144,6 +150,76 @@ def busy_art_under_text(img_arr, node, scale):
         edges = int(((hd > BUSY_EDGE_LUM) & hb).sum()) + int(((vd > BUSY_EDGE_LUM) & vb).sum())
         d = edges / tot
         worst = d if worst is None else max(worst, d)
+    return worst
+
+
+GLYPH_RING_IN = 2       # px of anti-aliased glyph edge skipped before the ring starts
+GLYPH_RING_OUT = 5      # px outer radius of the ring sampled around the glyphs
+GLYPH_MIN_SPAN = 20     # min |paper - ink| luminance span to reason about at all
+GLYPH_SAME_FRAC = 0.5   # ring pixel counts as foreign ink when it is this much closer to ink than paper
+GLYPH_WARN = 0.02       # contaminated ring fraction that points the critics at the label
+GLYPH_FAIL = 0.07       # contaminated ring fraction that, WITH extent, is a crossed label
+GLYPH_FAIL_EXTENT = 0.30  # fraction of the label's columns (or rows) the contamination spans
+
+
+def glyph_ink_contamination(img_arr, node, scale):
+    """FAIL-grade detector for a label CROSSED by canvas/SVG geometry.
+
+    Added 2026-07-25. busy_art_under_text() only WARNs, and only looked at
+    primary text (>= 30px), so the art-band mono labels of run 2026-07-25 (24px)
+    were never sampled at all: groove edges, scored slot outlines and leader
+    rules ran straight through four slides' label glyphs and qa.py reported PASS
+    with zero warns across TWO scoring cycles (two hard fails, score capped 6.9).
+
+    Measures the DEFENSE rather than the busyness, which is what separates the
+    defect from legitimate art-band typography: sample a thin ring around the
+    glyph ink (skipping GLYPH_RING_IN px of anti-aliasing) and count ring pixels
+    whose luminance is closer to the GLYPH's own value than to the local paper
+    value. A knockout plate, a halo, or any deliberate contrast reserve leaves
+    that ring clean (a halo is the OPPOSITE value, so it never trips). A rule,
+    outline or groove edge crossing the letterforms puts ink of the glyph's own
+    value directly against them, all the way across the label.
+
+    Returns (frac, extent) where frac is the contaminated share of the ring and
+    extent is the larger of the column/row span of that contamination (a rule
+    crossing a label contaminates nearly every column; a single incidental blob
+    contaminates few), or None when unmeasurable.
+    """
+    color = parse_css_color(node.get("color"))
+    if color is None:
+        return None
+    ink_lum = 0.2126 * color[0] + 0.7152 * color[1] + 0.0722 * color[2]
+    lines = node.get("lines") or [[node["x"], node["y"], node["w"], node["h"]]]
+    H, W = img_arr.shape[:2]
+    worst = None
+    for bx, by, bw, bh in lines:
+        # pad the box so the ring is measurable at the glyph extremes
+        x0, y0 = max(0, int(bx * scale) - 3), max(0, int(by * scale) - 3)
+        x1, y1 = min(W, int((bx + bw) * scale) + 3), min(H, int((by + bh) * scale) + 3)
+        if x1 - x0 < 8 or y1 - y0 < 8:
+            continue
+        crop = img_arr[y0:y1, x0:x1, :3].astype(float)
+        lum = 0.2126 * crop[..., 0] + 0.7152 * crop[..., 1] + 0.0722 * crop[..., 2]
+        ink = np.abs(crop - np.array(color)).sum(axis=2) < BUSY_INK_DIST
+        if ink.mean() > 0.75 or ink.sum() < 20:
+            continue  # solid plate of the ink colour, or no glyph ink found
+        near = _dilate(ink, GLYPH_RING_IN)
+        far = _dilate(ink, GLYPH_RING_OUT)
+        ring = far & ~near
+        if int(ring.sum()) < 40:
+            continue
+        outer = ~far
+        paper = float(np.median(lum[outer])) if int(outer.sum()) > 40 else float(np.median(lum[ring]))
+        span = abs(paper - ink_lum)
+        if span < GLYPH_MIN_SPAN:
+            continue  # ink and ground are near-equal; the contrast gate owns this
+        cont = np.abs(lum[ring] - ink_lum) < GLYPH_SAME_FRAC * span
+        frac = float(cont.mean())
+        cmask = np.zeros_like(ring)
+        cmask[ring] = cont
+        extent = max(float(cmask.any(axis=0).mean()), float(cmask.any(axis=1).mean()))
+        if worst is None or frac > worst[0]:
+            worst = (frac, extent)
     return worst
 
 
@@ -315,14 +391,43 @@ def main():
             # canvas/bitmap-under-text tripwire (WARN only): the DOM collision
             # gate cannot see canvas ink, so busy art crossing a text line box
             # is otherwise invisible to the machine (2026-07-10 S3/S4 arcs).
-            # Restricted to primary text, where a crossing genuinely hurts.
-            if primary:
-                busy = busy_art_under_text(arr, node, scale)
-                if busy is not None and busy >= BUSY_WARN:
+            # 2026-07-25: no longer restricted to primary (>=30px) text. The
+            # art-band mono labels that shipped crossed by canvas geometry were
+            # 24px, so the size filter meant the only gate that could have seen
+            # them never even sampled their boxes.
+            busy = busy_art_under_text(arr, node, scale)
+            if busy is not None and busy >= BUSY_WARN:
+                res["warns"].append(
+                    f"busy art under text (bg edge density {busy:.2f}) beneath "
+                    f"'{node['text'][:40]}' -- canvas/bitmap may be crossing a "
+                    f"text line box; pixel critic verify legibility")
+
+            # LABEL CROSSED BY ART (2026-07-25). The FAIL tier the run of
+            # 2026-07-25 needed: foreign ink of the glyphs' own value touching
+            # the letterforms across the label = a rule/outline/groove edge
+            # struck through the text, whatever layer drew it. A knockout plate
+            # or a halo leaves the ring clean, so protected art-band type never
+            # trips. data-decorative text is out of scope (skipped above) and
+            # data-overlap-ok demotes the FAIL to a WARN, so a deliberate
+            # layering stays the author's call.
+            gi = glyph_ink_contamination(arr, node, scale)
+            if gi is not None:
+                gfrac, gext = gi
+                if gfrac >= GLYPH_FAIL and gext >= GLYPH_FAIL_EXTENT:
+                    msg = (f"label crossed by art ({gfrac:.0%} of the ring around "
+                           f"'{node['text'][:40]}' is ink of the glyphs' own value, "
+                           f"spanning {gext:.0%} of the label) -- a rule, outline or "
+                           f"edge is running through the letterforms; put the label on "
+                           f"a knockout plate, halo it, or move the geometry")
+                    if node.get("overlap_ok"):
+                        res["warns"].append(msg + " [marked data-overlap-ok]")
+                    else:
+                        res["fails"].append(msg)
+                elif gfrac >= GLYPH_WARN:
                     res["warns"].append(
-                        f"busy art under text (bg edge density {busy:.2f}) beneath "
-                        f"'{node['text'][:40]}' -- canvas/bitmap may be crossing a "
-                        f"text line box; pixel critic verify legibility")
+                        f"art touching glyphs ({gfrac:.0%} of the ring around "
+                        f"'{node['text'][:40]}', spanning {gext:.0%}) -- pixel critic "
+                        f"verify the label is not crossed")
 
         out["fails"] += len(res["fails"])
         out["warns"] += len(res["warns"])

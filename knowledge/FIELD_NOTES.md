@@ -1219,3 +1219,72 @@ dimensional.
   money constant is not reader-verifiable; the hero's three money wells never shipped so
   it argues by symbol; c26 went unused; the sundial device reads weakly and should not be
   counted as a continuity device next run. The light-ground allowance is now SPENT.
+
+## 2026-07-25 - Phase 12 frontier PARK + API-trap PARK (focus: accessibility / PDF and document formats)
+
+Focus chosen by rotation (last accessibility/PDF scan was 2026-07-12, the stalest slot;
+the last three foci were LinkedIn platform 07-24, self-improving pipelines 07-23,
+editorial dataviz 07-22) and because this run's scar is a legibility defect.
+
+- APPLIED this run (reactive, see ledger/upgrades.json): qa.py's new label-crossed-by-art
+  FAIL. The scan corroborated its shape rather than inventing it: the settled rule for text
+  over imagery is that the measurement must hold at the WORST-CASE point under the text, not
+  on average, and the remedy ladder is scrim -> semi-opaque box behind the text -> halo or
+  outline, with 4.5:1 (3:1 large) still the operative ratio. The new gate measures the ring
+  immediately around the glyphs and names those three remedies in its failure message.
+  Sources: https://www.nngroup.com/articles/text-over-images/ , https://webaim.org/articles/contrast/
+- WORST-CASE-WINDOW CONTRAST for qa.py's contrast_estimate (PARKED, candidate tightening).
+  contrast_estimate() estimates the background as the median of the pixels most unlike the
+  text colour ACROSS THE WHOLE BBOX, so a dark rule or a bright specular crossing one third
+  of a label is averaged away: the box-wide ratio can read a comfortable 8:1 while a 24px
+  window inside it reads 1.6:1. The bounded design is to slide a window of about the cap
+  height along each line box, compute the ratio per window, and report the WORST window
+  (with a minimum window-ink count so a two-pixel window cannot dominate). PARKED because it
+  changes an existing FAIL threshold applied to every text node in every deck, so it needs a
+  multi-deck calibration pass (this run's 10 slides, demo-deck, proof-3d, and at least two
+  older decks) to prove it does not flood; and because today's new ring-contamination gate
+  already catches the acute case that actually shipped.
+  Source: https://www.nngroup.com/articles/text-over-images/ (worst-case rule),
+  https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html
+- WCAG 3 / APCA still NOT a threshold source (checked, no action for about a year). As of
+  April 2026 the WCAG 3 draft states the contrast algorithm "is yet to be determined"; APCA
+  was pulled from the draft in 2023 and remains exploratory; WCAG 2.2 AA is the operative
+  standard and finalisation estimates run 2029 to 2030. qa.py's WCAG2-style luminance ratios
+  stay correct. Source: https://adrianroselli.com/2026/04/wcag3-contrast-as-of-april-2026.html
+- TAGGED PDF for the DOWNLOADABLE artifact only (PARKED, low priority, honest payoff).
+  Playwright 1.61's page.pdf() accepts tagged=True (verified against the installed signature:
+  both `outline` and `tagged` are present) and Chromium has emitted tagged PDFs since Chrome
+  85. But assemble.py prints ten single-page PDFs and merges them with pypdf, and a page-level
+  merge carries no /StructTreeRoot, so the merged deck would gain nothing; preserving the
+  structure tree across a ten-document merge is the hard half. And the platform payoff is
+  ZERO: screen-reader testing of LinkedIn document posts finds the text is effectively OCR'd,
+  heading levels survive only partially, alt text is acknowledged but never read out, list
+  tags and reading order are lost, and there is no per-slide alt-text field for a multi-page
+  PDF upload. The real payoff would be the PDF people download from alaskaaihq.com and the
+  email. PDF/UA-1 remains the practical conformance target in 2026 (PDF/UA-2 tooling is still
+  catching up). Sources:
+  https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels/ ,
+  https://pdfa.org/chrome-plated-pdfs-exploring-google-chromes-new-pdf-capabilities/ ,
+  https://pdfa.org/european-accessibility-act-and-its-importance-for-pdf-accessibility/
+- akthree TRANSPARENT-CLEAR DEFAULT (PARKED API trap, from this run's own scars, not the scan).
+  This run's GL hero set scene.background = null expecting transparency and got OPAQUE BLACK,
+  because a WebGLRenderer built without alpha clears black at alpha 1; a black frame on a bone
+  deck, caught by eye. The bounded fix is inside AKT.setup: build the renderer with
+  alpha: true always, and when opts.bg == null call renderer.setClearAlpha(0) so an
+  unspecified background composites transparently over whatever the slide's 2D layer already
+  drew. An explicit opts.bg still clears opaque, and AKT.snapshot's sentinel is unaffected
+  (transparent pixels read as luminance 0, exactly like the black frame it already rejects).
+  PARKED because it changes the shared GPU path for every future deck and deserves its own
+  run's verification budget (two GL smoke slides, proof-3d, and the run deck) rather than a
+  third slot in a run that already spent two on the label gate and the gate-status script.
+- GOLD BEFORE AKPOST.grade comes out ACID (PARKED doctrine + helper candidate). #FFC72C drawn
+  into the canvas BEFORE AKPOST.grade is pushed yellow-green by the ACES tone map. This run
+  fixed it by deferring brand gold to a post-grade pass. Two durable options: a documented
+  rule (brand accents are always drawn after the grade) or an akpost protected-swatch pass
+  that re-asserts named brand colours after grading. Doctrine first, helper only if it recurs.
+- DEPTH-PROJECTION FOOTGUN in an axonometric chassis (PARKED, TECHNIQUE_LIBRARY candidate for
+  a development session). A mark placed at recess depth projects about 56 px LOWER on screen
+  than the same x,z at depth 0 with this run's geom.py, so marks positioned near a recess's
+  near edge fall outside the opening polygon and are silently clipped away (it ate the hero's
+  fireweed inlay and gold specular until they were moved to the far half). Any depth-plan
+  dossier should state, per mark, which polygon clips it and at what depth it was projected.

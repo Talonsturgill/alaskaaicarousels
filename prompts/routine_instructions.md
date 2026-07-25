@@ -325,6 +325,18 @@ and their designed Canvas fallback.
 python .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slides \
   --render-dir out/<date>/render --out-dir out/<date>/final --title "<document title>"
 ```
+1b. RECONCILE BEFORE THE CRITICS (hard ordering, 2026-07-25). Append the
+   storyboard's BUILD RECONCILIATION section (every dossier number the build
+   actually changed: camera azimuth, thicknesses, label sizes, planned
+   elements that did not ship) BEFORE spawning any pixel-critic. Run
+   2026-07-25 spawned its 4 critics first and roughly a third of their
+   findings measured the renders against superseded numbers. Generate that
+   section's gate lines from the artifacts, never by hand:
+   `python scripts/gate_status.py --run-dir out/<date>` and paste its block
+   verbatim. (That run's hand-written block claimed "qa.py PASS, zero warns"
+   while machine_qa.json on disk said WARN with 5, and only the scorer caught
+   the contradiction.)
+
 2. Spawn `pixel-critic` agents IN PARALLEL — one per 1-2 slides — each
    with the render PNG path, the thumb path, the slide's dossier, and the
    deck's doctrine excerpts. They transcribe, verify checklists, and
@@ -410,7 +422,14 @@ JSON in its final message, which YOU persist to
    Also re-run `python scripts/copy_sync_check.py --copy out/<date>/copy.json
    --render-report out/<date>/render/render_report.json` as the final guard
    that the copy.json about to ship still matches the rendered slides (it
-   reads only; reconcile any mismatch before merge).
+   reads only; reconcile any mismatch before merge). Then
+   `python scripts/gate_status.py --run-dir out/<date> --require` must exit 0:
+   it re-reads every gate artifact and PARSES each one instead of measuring
+   bytes, so a corrupt-but-large report can never pass and a valid small one
+   can never false-flag (run 2026-07-25's completion gate rejected a valid
+   196-byte caption_report.json against a 200-byte size threshold). An honest
+   below-threshold score is a WARN row, not a FAIL, so it never blocks a
+   disclosed shortfall ship.
 6. Branch `claude/carousel-<date>`; commit everything (runs/, ledger/,
    docs/, knowledge/ changes); push with retries (2s/4s/8s/16s backoff).
 7. Open a PR (ready, not draft) and MERGE IT TO MAIN in the same run —

@@ -66,6 +66,16 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   layering (a chip on an opaque plate crossing a display line box) must be
   declared with `data-overlap-ok` on the floating element — the gate then
   warns instead, and the pixel critics judge it.
+- **Art may never cross a label's glyphs** (2026-07-25): qa.py samples a thin
+  ring around every non-decorative label's ink and FAILS when ink of the
+  GLYPHS' OWN VALUE touches the letterforms across the label, whatever layer
+  drew it (a canvas groove edge, a scored outline, an SVG leader rule, a GL
+  hero's specular). Text set over art needs a declared defense: an opaque
+  knockout plate, a scrim on a dark ground, or a halo (a halo is the opposite
+  value, so it never trips the gate). `data-overlap-ok` demotes the FAIL to a
+  WARN when the layering is deliberate and you have judged it legible. This is
+  the gate that DOM `text_collisions` structurally cannot be: it reads pixels,
+  so canvas and SVG geometry are visible to it.
 - Determinism: seed all noise (`AK.reseed(seed)`, `AK.rng(seed)`). Derive the
   seed from the run date. Same inputs must reproduce the same pixels.
 - Fonts: use `assets/fonts/fonts.css` families — Fraunces (100-900 + italic,
