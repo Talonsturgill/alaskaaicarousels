@@ -2055,12 +2055,27 @@ every observation.</p>
 
     // Every count below is read straight off the feed the routine wrote.
     // Nothing here is decoration and nothing here is inflated.
-    var nPages = 0, nInd = 0, nGate = 0;
+    //
+    // Counters read the note's kind when the routine set one, and fall back to
+    // the old phase shape for rows written before kind existed. Counting kind
+    // is what keeps these true once the feed runs dense: a critic round that
+    // emits ten notes is still one round.
+    var nPages = 0, nInd = 0, nGate = 0, kinded = false;
+    for (i = 0; i < notes.length; i++) {
+      if (notes[i] && notes[i].kind) { kinded = true; break; }
+    }
     for (i = 0; i < notes.length; i++) {
       var ph = notes[i] && notes[i].phase, nt = (notes[i] && notes[i].note) || "";
-      if (ph === "footprint" && /^reading /i.test(nt)) { nPages++; }
-      if (ph === "industry") { nInd++; }
-      if (ph === "critic") { nGate++; }
+      var kd = notes[i] && notes[i].kind;
+      if (kinded) {
+        if (kd === "page")   { nPages++; }
+        if (kd === "search") { nInd++; }
+        if (kd === "round")  { nGate++; }
+      } else {
+        if (ph === "footprint" && /^reading /i.test(nt)) { nPages++; }
+        if (ph === "industry") { nInd++; }
+        if (ph === "critic")   { nGate++; }
+      }
     }
     function put(id, v){ var e = document.getElementById(id); if (e) { e.textContent = v; } }
     put("sw-pages", nPages); put("sw-ind", nInd); put("sw-gate", nGate);
@@ -2093,7 +2108,7 @@ every observation.</p>
       el.className = "sw-agent" + (working ? " on" : (last < at ? " did" : ""));
     }
 
-    var list = notes.slice(-6), feed = "", sig = "";
+    var list = notes.slice(-9), feed = "", sig = "";
     for (i = 0; i < list.length; i++) { sig += "|" + list[i].at + list[i].note; }
     if (sig !== feedSig) {
       feedSig = sig;
