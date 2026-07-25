@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "the-one-it-didnt-hear",
+      "date": "2026-07-25",
+      "title": "The One It Didn't Hear",
+      "caption": "Alaska runs a landslide detection algorithm across some 200 seismic stations, but the August 2025 Tracy Arm slide fell outside the coverage and produced no automatic detection. NSF just awarded UAF $1,772,170 to start building a forecast.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/2026-07-25-master_9x16.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/2026-07-25-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/2026-07-25-master_9x16_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/2026-07-25-poster_thumb.jpg"
+    },
+    {
       "id": "2026-07-24-box-that-waits",
       "date": "2026-07-24",
       "title": "The Box That Waits for You",
