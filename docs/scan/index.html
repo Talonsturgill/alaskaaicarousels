@@ -1010,16 +1010,17 @@ every observation.</p>
     paint([]);
     // Give them a beat to watch the bears before asking for anything.
     setTimeout(emailModal, 45000);
-    // There is NO give-up state. A long run is still a running run, so the
-    // page keeps the feed alive until the scan finishes or the backend says it
-    // failed. A self scheduling timeout rather than setInterval, so a slow
-    // response can never stack requests on top of each other. Past 45 minutes
-    // the cadence eases from 5s to 15s, which a watcher will not notice but
-    // keeps a tab left open overnight from hammering the function.
-    var started = Date.now();
-    function next(){
-      setTimeout(tick, Date.now() - started > 2700000 ? 15000 : 5000);
-    }
+    // A slow scan is never given up on. The page keeps the feed alive at a
+    // steady 5s for as long as the run takes, because a long run is still a
+    // running run. A self scheduling timeout rather than setInterval, so a
+    // slow response can never stack requests on top of each other.
+    //
+    // The ONE stop is a two hour safety net, for a run that wedges without
+    // ever reporting done or failed. Nothing else ends the loop, and two
+    // hours is four times the top of a real run, so a scan that is merely
+    // slow will never see it. It also bounds a forgotten tab.
+    var started = Date.now(), STOP_AFTER = 7200000;
+    function next(){ setTimeout(tick, 5000); }
     function tick(){
       fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers: HEADERS })
         .then(function(r){ return r.json(); }).catch(function(){ return {}; })
@@ -1048,6 +1049,12 @@ every observation.</p>
           if (d.progress) {
             window.__swProgress = d.progress;
             paint(window.__swProgress);
+          }
+          if (Date.now() - started > STOP_AFTER) {
+            fail("This scan stopped reporting",
+                 "It has been going two hours without finishing, well past the longest real "
+                 + "scan, so it stalled on our side rather than simply took a while.");
+            return;
           }
           next();
         });
