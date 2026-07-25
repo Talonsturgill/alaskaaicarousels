@@ -1,0 +1,14 @@
+Gmail draft id: r527359669990126098 (to Talon.sturgill@gmail.com)
+Body: the gmail_draft.py output VERBATIM for all text (POST block, first-comment
+sources, score banner, report card, editor's note, docket, automation-changes,
+aftercare byte-for-byte). The ONLY delivery adaptation, same as 2026-07-24: the
+10 inline base64 slide previews were swapped to their main-hosted raw thumb URLs
+(all verified HTTP 200) because the 518 KB inline-base64 body exceeds what can be
+passed through the MCP create_draft call. Verified programmatically that the two
+bodies are byte-identical after stripping <img> tags, and that no data: URI
+remains. All 15 raw URLs in the body were checked HTTP 200 on main before sending.
+PARKED upgrade candidate, now two runs old: gmail_draft.py should offer a
+URL-image body mode (or create the draft itself) so no manual swap is needed.
+This run's Phase 12 budget was spent on the qa.py glyph gate, gate_status.py and
+the gmail_draft.py placeholder fix, so it stays parked rather than being taken as
+a fourth upgrade.

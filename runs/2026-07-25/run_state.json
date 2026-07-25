@@ -17,7 +17,7 @@
   "scoring": "done",
   "ship": "done",
   "upgrade": "done",
-  "gmail": "pending",
+  "gmail": "done",
   "retro": "pending"
  },
  "artifacts": {
@@ -41,7 +41,8 @@
   "flow_review": "flow-critic 7.5, sequence_reads_as_one true; 3 must-fixes applied (hero regrade, fireweed grammar, slide 02 label ends)",
   "scoring": "out/2026-07-25/score_report.json (raw 8.22, capped 6.9 by 2 hard fails at cycle 2; all instances fixed and self-verified after the 2-cycle cap)",
   "ship": "branch claude/carousel-2026-07-25 pushed; PR #100 ready (not draft); merged to main as 4ea3e4b10efa3086ca2b01a53f1c9a13dfe7e444. No CI check runs on PRs in this repo (pages.yml publishes on merge to main). Raw URL spot check on main: slide-01.png 200, carousel.pdf 200.",
-  "upgrade": "out/2026-07-25/automation_retro.md (also runs/2026-07-25/); 10 deviations; frontier scan focus accessibility + PDF formats (6 searches, nothing applied, scan_log 18); 2 fixes both kind=fix in ledger/upgrades.json entries 31-32, commit 9811e10: qa.py glyph_ink_contamination FAIL tier + busy_art_under_text size filter removed; scripts/gate_status.py wired as Phase 8 step 1b and Phase 11 --require. Showrunner re-verified all of it and fixed a flat-runs PNG-sweep gap the engineer missed."
+  "upgrade": "out/2026-07-25/automation_retro.md (also runs/2026-07-25/); 10 deviations; frontier scan focus accessibility + PDF formats (6 searches, nothing applied, scan_log 18); 2 fixes both kind=fix in ledger/upgrades.json entries 31-32, commit 9811e10: qa.py glyph_ink_contamination FAIL tier + busy_art_under_text size filter removed; scripts/gate_status.py wired as Phase 8 step 1b and Phase 11 --require. Showrunner re-verified all of it and fixed a flat-runs PNG-sweep gap the engineer missed.",
+  "gmail": "draft r527359669990126098 to Talon.sturgill@gmail.com; body verbatim from scripts/gmail_draft.py apart from the documented base64-to-URL preview swap (see runs/2026-07-25/gmail_delivery_note.txt); all 15 raw URLs HTTP 200 on main; 3 automation changes surfaced with their commit SHAs."
  },
  "conflict_of_interest": "Deck concerns political donations by six Anthropic employees; this routine runs on a Claude model built by Anthropic. Designed on-deck disclosure required; flagged to maintainer."
 }
