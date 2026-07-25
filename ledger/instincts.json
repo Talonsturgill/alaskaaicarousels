@@ -352,6 +352,46 @@
    "confidence": 0.8,
    "instinct": "To break the chronic artwork-craft=7 flat-hero ceiling, DISTRIBUTE real depth across 4+ slides via reliable CPU means (akrelief 2.5D relit cards/material chips, honest cabinet-extruded parallel bars, SVG-emboss deboss) plus ONE GL akthree hero, and lift rendered machine materials off near-black (dark clay + IBL + colored ambient bounce). The remaining ceiling after that is DEAD LOWER ZONES, fix those next.",
    "evidence": "No.16: S3 akthree tundra-machine + S4 cabinet bars + S5/S7 akrelief cards + S8 deboss = scorer called it the strongest artwork the series has shipped, hero no longer flat; but artwork-craft still 7 for empty lower thirds on S2/S5/S8/S9."
+  },
+  {
+   "instinct": "qa.py's text-collision check is DOM-ONLY. Any label positioned against Canvas or SVG geometry (a groove edge, a scored outline, a leader rule, a scotch rule) can collide freely and the gate still returns PASS with zero warns. Do not read a green gate as a green deck. Every art-band label must ship on an opaque knockout plate by default, which makes non-collision structural instead of a registration-tuning exercise. Run 2026-07-25 predicted this in its own slide-02 risk flag and then shipped the bug on four slides across two scoring cycles anyway.",
+   "confidence": 0.97,
+   "first_seen": "2026-07-25",
+   "run_dates": [
+    "2026-07-25"
+   ]
+  },
+  {
+   "instinct": "A recess viewed obliquely HIDES a band of its own floor equal to the recess depth's screen projection, so drawing a recess's floor and walls unclipped makes every groove read as a raised BLOCK sitting on the surface. Clip all recess interiors to the OPENING polygon. Corollary, and it bites twice: any mark placed at recess depth also projects lower on screen, so a mark near the recess's near edge gets clipped away entirely. Put marks in the far half. Three pixel critics independently reported the inverted read before the cause was found.",
+   "confidence": 0.95,
+   "first_seen": "2026-07-25",
+   "run_dates": [
+    "2026-07-25"
+   ]
+  },
+  {
+   "instinct": "A positioning class and a styling class must never be separable in slide CSS. Run 2026-07-25's .display rule carried left and top but no position:absolute, so every headline collapsed to 0,0 and overprinted its own kicker on six slides at once. Put position:absolute in the same rule as the coordinates it needs, and never rely on a second utility class to make a positioned element positioned.",
+   "confidence": 0.92,
+   "first_seen": "2026-07-25",
+   "run_dates": [
+    "2026-07-25"
+   ]
+  },
+  {
+   "instinct": "Spawn pixel critics only AFTER the storyboard has been reconciled to what actually shipped. Run 2026-07-25 spawned four critics against a pre-reconciliation dossier and roughly a third of their findings were measured against superseded numbers (a camera azimuth, a slab thickness, and label sizes that had all deliberately changed). The false findings cost real triage time and risked masking the true ones.",
+   "confidence": 0.88,
+   "first_seen": "2026-07-25",
+   "run_dates": [
+    "2026-07-25"
+   ]
+  },
+  {
+   "instinct": "A semantic accent needs a lint, not a promise. Run 2026-07-25 bound fireweed to 'the compulsory record and nothing else', then used it on slide 08's six VOLUNTARY candidate positions, so the accent lost its discriminating work. If a colour carries one meaning, enumerate every slide it may appear on in the dossier and check the list before render.",
+   "confidence": 0.82,
+   "first_seen": "2026-07-25",
+   "run_dates": [
+    "2026-07-25"
+   ]
   }
  ]
 }
