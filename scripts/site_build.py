@@ -281,9 +281,7 @@ ones it should not touch. Free, about 20 minutes of real research, no signup to 
   <input type="text" name="url" id="scan-url" required placeholder="yourbusiness.com"
   autocomplete="url" inputmode="url">
   <button class="cta gold" type="submit">SCAN MY BUSINESS</button>
-</form>
-<p class="fineprint" data-reveal>We fetch only your own public pages and we never promise outcomes.
-When the honest answer is that you do not need AI, the scan says so. That is the point.</p>"""
+</form>"""
 
 
 def footer(prefix, today):
