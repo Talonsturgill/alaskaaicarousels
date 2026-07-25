@@ -190,34 +190,112 @@ def map_svg(ordered_items, w=1000, h=620):
     T = fit_transform(coast, w, h, 44)
     coast_d = path_d(coast, T)
     grat_d = path_d(graticule_paths(), T, close=False)
-    pts = [list(T(albers(it["location"]["lon"], it["location"]["lat"]))) for _, it in located]
-    for _ in range(60):   # relax overlapping pins apart (min 34px separation)
-        moved = False
-        for a in range(len(pts)):
-            for b in range(a + 1, len(pts)):
-                dx = pts[b][0] - pts[a][0]; dy = pts[b][1] - pts[a][1]
-                dist = max(0.001, math.hypot(dx, dy))
-                if dist < 34:
-                    push = (34 - dist) / 2.0
-                    ux, uy = dx / dist, dy / dist
-                    if abs(dx) < 1 and abs(dy) < 1: ux, uy = 0.0, 1.0
-                    pts[a][0] -= ux * push; pts[a][1] -= uy * push
-                    pts[b][0] += ux * push; pts[b][1] += uy * push
-                    moved = True
-        if not moved:
-            break
-    pins = []
-    for (n, it), (x, y) in zip(located, pts):
-        c = PIN_COLOR[it["public_access"]]
-        pulse = ""
-        if it["public_access"] == "open":
-            pulse = (f'<circle cx="{x:.0f}" cy="{y:.0f}" r="15" fill="none" stroke="{c}" stroke-width="1.6" opacity="0.8">'
-                     f'<animate attributeName="r" values="15;30" dur="2.8s" repeatCount="indefinite"/>'
-                     f'<animate attributeName="opacity" values="0.8;0" dur="2.8s" repeatCount="indefinite"/></circle>')
-        pins.append(
-            f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">{pulse}'
-            f'<circle cx="{x:.0f}" cy="{y:.0f}" r="14" fill="#050b16" stroke="{c}" stroke-width="2.6"/>'
-            f'<text x="{x:.0f}" y="{y + 5:.0f}" text-anchor="middle" class="pinnum" fill="{c}">{n}</text></a>')
+
+    # THE DOT NEVER MOVES. It sits on the projected coordinate and nothing is
+    # allowed to nudge it, because a pin that has drifted for the sake of tidy
+    # spacing is a map telling a small lie. Only the LABEL is placed for
+    # legibility, and any label that had to move is tethered to its dot by a
+    # visible line, which is how a paper atlas has always handled this.
+    #
+    # What this replaced: a relaxation pass that pushed every pin apart to a
+    # 34px floor. At this scale 1px is about 3.7 km, so that floor was 125 km.
+    # Two docket items sharing one coordinate ended up drawn 78 miles apart.
+    anchors = [T(albers(it["location"]["lon"], it["location"]["lat"])) for _, it in located]
+
+    # Items at one coordinate are ONE place, so they get one dot carrying every
+    # number, rather than being spread out to look like several places.
+    groups = []   # (x, y, [(n, item), ...])
+    for (n, it), (x, y) in zip(located, anchors):
+        for g in groups:
+            if math.hypot(g[0] - x, g[1] - y) < 2.0:
+                g[2].append((n, it))
+                break
+        else:
+            groups.append((x, y, [(n, it)]))
+
+    # Label placement. Width comes from how many numbers the badge carries.
+    def badge_w(g):
+        return 28.0 if len(g[2]) == 1 else 20.0 + 15.0 * len(g[2])
+    # A displaced label has to clear its own dot, or the badge covers the dot and
+    # the tether it is meant to disclose, and the reader is back to trusting a
+    # badge that has quietly moved. LEAD_MIN is measured from the dot, so at a
+    # badge radius of 14 there is always visible tether between the two.
+    LEAD_MIN = 27.0
+    labels = [[g[0], g[1]] for g in groups]
+    for _ in range(12):
+        for _ in range(40):                       # push labels off each other
+            moved = False
+            for a in range(len(groups)):
+                for b in range(a + 1, len(groups)):
+                    need = (badge_w(groups[a]) + badge_w(groups[b])) / 2.0 + 6.0
+                    dx = labels[b][0] - labels[a][0]; dy = labels[b][1] - labels[a][1]
+                    dist = max(0.001, math.hypot(dx, dy))
+                    if dist < need:
+                        push = (need - dist) / 2.0
+                        ux, uy = dx / dist, dy / dist
+                        if abs(dx) < 1 and abs(dy) < 1: ux, uy = 0.0, 1.0
+                        labels[a][0] -= ux * push; labels[a][1] -= uy * push
+                        labels[b][0] += ux * push; labels[b][1] += uy * push
+                        moved = True
+            if not moved:
+                break
+        # then push any label that moved at all out far enough to be readable
+        for i, g in enumerate(groups):
+            dx = labels[i][0] - g[0]; dy = labels[i][1] - g[1]
+            dist = math.hypot(dx, dy)
+            if 0.5 < dist < LEAD_MIN:
+                ux, uy = dx / dist, dy / dist
+                labels[i][0] = g[0] + ux * LEAD_MIN
+                labels[i][1] = g[1] + uy * LEAD_MIN
+
+    # Three layers, because a dot hidden under a NEIGHBOUR's badge is just as
+    # useless as one hidden under its own. Tethers at the back, badges over
+    # them, and the dots last so nothing can ever cover the one mark on this
+    # map that is telling the literal truth about where something is.
+    leads, badges, dots = [], [], []
+    for g, (lx, ly) in zip(groups, labels):
+        ax, ay, members = g
+        first = members[0][1]
+        c = PIN_COLOR[first["public_access"]]
+        # Any member being open earns the pulse, so a live decision still reads
+        # as live when it shares a coordinate with a settled one.
+        live = any(it["public_access"] == "open" for _, it in members)
+        if live:
+            leads.append(
+                f'<circle cx="{ax:.0f}" cy="{ay:.0f}" r="8" fill="none" stroke="{PIN_COLOR["open"]}" '
+                f'stroke-width="1.6" opacity="0.8">'
+                f'<animate attributeName="r" values="8;26" dur="2.8s" repeatCount="indefinite"/>'
+                f'<animate attributeName="opacity" values="0.8;0" dur="2.8s" repeatCount="indefinite"/></circle>')
+        # The tether and the dot exist only when the label had to move. An
+        # undisplaced badge is already sitting on the coordinate, so a dot under
+        # it would just collide with its own number.
+        if math.hypot(lx - ax, ly - ay) > 3.0:
+            leads.append(f'<line class="pinlead" x1="{ax:.1f}" y1="{ay:.1f}" '
+                         f'x2="{lx:.1f}" y2="{ly:.1f}" stroke="{c}"/>')
+            dots.append(f'<circle class="pindot" cx="{ax:.1f}" cy="{ay:.1f}" r="3.4" fill="{c}"/>')
+        if len(members) == 1:
+            n, it = members[0]
+            badges.append(
+                f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
+                f'<circle cx="{lx:.0f}" cy="{ly:.0f}" r="14" fill="#050b16" stroke="{c}" stroke-width="2.6"/>'
+                f'<text x="{lx:.0f}" y="{ly + 5:.0f}" text-anchor="middle" class="pinnum" fill="{c}">{n}</text></a>')
+        else:
+            bw = badge_w(g)
+            x0 = lx - bw / 2.0
+            badges.append(f'<rect x="{x0:.0f}" y="{ly - 14:.0f}" width="{bw:.0f}" height="28" rx="14" '
+                          f'fill="#050b16" stroke="{c}" stroke-width="2.6"/>')
+            # No colon and no item titles in here. This is visible prose to the
+            # build's colon gate, and a title can carry a colon of its own.
+            badges.append(f'<title>{len(members)} decisions at '
+                          f'{esc(first["location"]["name"])}</title>')
+            for i, (n, it) in enumerate(members):
+                tx = x0 + 10.0 + 15.0 * i + 7.5
+                mc = PIN_COLOR[it["public_access"]]
+                badges.append(
+                    f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
+                    f'<text x="{tx:.0f}" y="{ly + 5:.0f}" text-anchor="middle" class="pinnum" '
+                    f'fill="{mc}">{n}</text></a>')
+    pins = leads + badges + dots
     caption = "".join(
         f'<a class="mapkey" href="#{esc(it["id"])}"><b class="k-{it["public_access"]}">{n}</b>'
         f'<span>{esc(it["location"]["name"])}</span></a>'
@@ -391,6 +469,10 @@ h1 em{font-style:normal;color:var(--gold);}
 .maphero{margin:44px -24px 0;padding:10px 24px 6px;position:relative;}
 .maphero svg{width:100%;height:auto;display:block;}
 .pinnum{font-family:JBMono,monospace;font-size:13.5px;font-weight:500;}
+/* The dot is the truth, sitting exactly on the coordinate. The badge is placed
+   for legibility and the lead line shows how far it had to go to get there. */
+.pindot{opacity:.95;}
+.pinlead{stroke-width:1.1;opacity:.5;stroke-dasharray:2 3;}
 .mapcap{display:flex;gap:10px 26px;flex-wrap:wrap;padding:14px 2px 0;}
 .mapkey{display:flex;align-items:center;gap:9px;font-family:JBMono,monospace;font-size:12.5px;
 letter-spacing:.05em;color:var(--mute);text-decoration:none;transition:color .2s;}
