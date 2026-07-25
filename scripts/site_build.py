@@ -1906,7 +1906,7 @@ every observation.</p>
   var quipI = 0, callI = 0, quipT = null, callT = null, clockT = null;
   // feedSig starts null, never "", so the very first paint of an empty feed
   // still renders the queued placeholder instead of an empty box.
-  var lastPhase = "claim", feedSig = null, modalUp = false, tries = 0;
+  var lastPhase = "claim", feedSig = null, modalUp = false;
 
   function store(k){ try { return localStorage.getItem(k) === "1"; } catch(e){ return false; } }
   function mark(k){ try { localStorage.setItem(k, "1"); } catch(e){} }
@@ -2179,14 +2179,22 @@ every observation.</p>
     paint([]);
     // Give them a beat to watch the bears before asking for anything.
     setTimeout(emailModal, 45000);
-    // 5s interval, 480 tries, 40 minutes of patience, matched to real run times.
-    var t = setInterval(function(){
-      tries++;
+    // There is NO give-up state. A long run is still a running run, so the
+    // page keeps the feed alive until the scan finishes or the backend says it
+    // failed. A self scheduling timeout rather than setInterval, so a slow
+    // response can never stack requests on top of each other. Past 45 minutes
+    // the cadence eases from 5s to 15s, which a watcher will not notice but
+    // keeps a tab left open overnight from hammering the function.
+    var started = Date.now();
+    function next(){
+      setTimeout(tick, Date.now() - started > 2700000 ? 15000 : 5000);
+    }
+    function tick(){
       fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers: HEADERS })
         .then(function(r){ return r.json(); }).catch(function(){ return {}; })
         .then(function(d){
           if (d.status === "done" || d.status === "degraded") {
-            clearInterval(t); stopTimers();
+            stopTimers();
             var scrims = document.querySelectorAll(".sw-scrim");
             for (var i = 0; i < scrims.length; i++) { scrims[i].parentNode.removeChild(scrims[i]); }
             document.body.style.setProperty("--skyglow", "1");
@@ -2196,20 +2204,24 @@ every observation.</p>
             f.srcdoc = d.html || "";
             app.innerHTML = "";
             app.appendChild(f);
-          } else if (d.status === "failed" || d.error === "not found") {
-            clearInterval(t);
+            return;
+          }
+          if (d.status === "failed" || d.error === "not found") {
             fail("That scan did not finish", "It happens when a site blocks reading or the " +
                  "footprint is unreachable.");
-          } else if (tries > 480) {
-            clearInterval(t);
-            fail("This is taking longer than usual",
-                 "Bookmark this link and check back in a bit. It stays at this address.");
-          } else {
-            window.__swProgress = d.progress || [];
+            return;
+          }
+          // A dropped request lands here as an empty object. Repaint only on a
+          // reply that actually carried the feed, otherwise one blip would
+          // flash the ring, the roster and every counter back to zero.
+          if (d.progress) {
+            window.__swProgress = d.progress;
             paint(window.__swProgress);
           }
+          next();
         });
-    }, 5000);
+    }
+    next();
   }
 
   function wire(){
