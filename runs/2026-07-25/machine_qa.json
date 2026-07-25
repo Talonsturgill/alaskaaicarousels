@@ -1,0 +1,66 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'Reports made public the week of July 20 ' at 80,1200 940x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '100,000 largest single gift' at 613,979 441x30 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "text collision (69% overprint): 'On data centers he told the Anchorag' x 'ALASKA.AI' near 80,1288 [decorative involved]",
+        "outside safe zone: 'On data centers he told the Anchorage Da' at 80,1192 910x121 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'Heilala 1.6 M, 1.4 M of it his own' at 491,816 555x30 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-10.html",
+      "fails": [],
+      "warns": []
+    }
+  ],
+  "fails": 0,
+  "warns": 5,
+  "verdict": "WARN"
+}
