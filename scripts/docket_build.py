@@ -183,6 +183,89 @@ def path_d(paths, T, close=True):
 
 PIN_COLOR = {"open": "#3ce6b4", "indirect": "#8da2be", "closed": "#f2a43a"}
 
+# The transmission backbone, drawn under the pins. Almost every decision on this
+# docket is really a decision about this grid, so without it the pins look like
+# a coincidence: four of them cluster on the Railbelt because that is where the
+# power is, and the map should say so rather than leave the reader to know it.
+#
+# Three weights, because the difference between a 69 kV line and the 230 kV
+# Anchorage ring is the difference between serving a town and carrying a load.
+GRID_TIERS = [("t1", 69.0, 138.0), ("t2", 138.0, 230.0), ("t3", 230.0, 1e9)]
+
+
+LAYER_FILES = {
+    "grid": "ak-transmission-69kv.geo.json",
+    "gen": "ak-generation-20mw.geo.json",
+    "taps": "ak-taps.geo.json",
+}
+
+
+def layer_data(name):
+    """A layer's asset, or None. A missing context layer must never break the
+    docket, so every caller treats absence as "do not draw and do not offer"."""
+    src = REPO / "assets/geo" / LAYER_FILES[name]
+    if not src.exists():
+        return None
+    try:
+        return json.loads(src.read_text())
+    except (ValueError, OSError):
+        return None
+
+
+def available_layers():
+    """Which layers can actually be drawn. The page asks before it offers a
+    toggle for something that would not appear."""
+    return [k for k in ("grid", "gen", "taps") if layer_data(k)]
+
+
+def _polyline(segs, T):
+    return " ".join("M" + " L".join("%.1f,%.1f" % T(albers(x, y)) for x, y in seg)
+                    for seg in segs if len(seg) >= 2)
+
+
+def grid_paths(T):
+    """Transmission projected through the map's own transform, split into voltage
+    tiers so weight can carry voltage."""
+    d = layer_data("grid")
+    if not d:
+        return []
+    lines = d.get("lines", [])
+    out = []
+    for tier, lo, hi in GRID_TIERS:
+        segs = [L["pts"] for L in lines if lo <= L.get("kv", 0) < hi]
+        if segs:
+            out.append((tier, _polyline(segs, T)))
+    return out
+
+
+def taps_path(T):
+    d = layer_data("taps")
+    return _polyline(d.get("lines", []), T) if d else ""
+
+
+def generation_marks(T):
+    """Plants as circles with area proportional to nameplate capacity, which is
+    the honest encoding: doubling the megawatts doubles the ink, where doubling
+    the radius would quadruple it and overstate the big plants.
+
+    Floored at 3.2 so the smallest kept plant is still a target a thumb can hit
+    on a phone, since most readers are on one."""
+    d = layer_data("gen")
+    if not d:
+        return ""
+    out = []
+    for p in d.get("plants", []):
+        x, y = T(albers(p["at"][0], p["at"][1]))
+        # Scaled so the biggest plant in Alaska, Sullivan at 309 MW, lands near
+        # 16px rather than 24. At 24 the Cook Inlet plants merged into one beige
+        # mass that swallowed two pins, which is the opposite of informative.
+        r = max(2.8, 0.92 * math.sqrt(p.get("mw", 0)))
+        out.append('<g class="mk" data-x="%.1f" data-y="%.1f" transform="translate(%.1f,%.1f)">'
+                   '<circle class="gen" cx="0" cy="0" r="%.1f"><title>%s, %g MW, %s</title>'
+                   '</circle></g>'
+                   % (x, y, x, y, r, esc(p.get("n", "")), p.get("mw", 0), esc(p.get("src", ""))))
+    return "".join(out)
+
 
 def map_svg(ordered_items, w=1000, h=620):
     located = [(n, it) for n, it in enumerate(ordered_items, 1) if it.get("location")]
@@ -190,39 +273,140 @@ def map_svg(ordered_items, w=1000, h=620):
     T = fit_transform(coast, w, h, 44)
     coast_d = path_d(coast, T)
     grat_d = path_d(graticule_paths(), T, close=False)
-    pts = [list(T(albers(it["location"]["lon"], it["location"]["lat"]))) for _, it in located]
-    for _ in range(60):   # relax overlapping pins apart (min 34px separation)
-        moved = False
-        for a in range(len(pts)):
-            for b in range(a + 1, len(pts)):
-                dx = pts[b][0] - pts[a][0]; dy = pts[b][1] - pts[a][1]
-                dist = max(0.001, math.hypot(dx, dy))
-                if dist < 34:
-                    push = (34 - dist) / 2.0
-                    ux, uy = dx / dist, dy / dist
-                    if abs(dx) < 1 and abs(dy) < 1: ux, uy = 0.0, 1.0
-                    pts[a][0] -= ux * push; pts[a][1] -= uy * push
-                    pts[b][0] += ux * push; pts[b][1] += uy * push
-                    moved = True
-        if not moved:
-            break
-    pins = []
-    for (n, it), (x, y) in zip(located, pts):
-        c = PIN_COLOR[it["public_access"]]
-        pulse = ""
-        if it["public_access"] == "open":
-            pulse = (f'<circle cx="{x:.0f}" cy="{y:.0f}" r="15" fill="none" stroke="{c}" stroke-width="1.6" opacity="0.8">'
-                     f'<animate attributeName="r" values="15;30" dur="2.8s" repeatCount="indefinite"/>'
-                     f'<animate attributeName="opacity" values="0.8;0" dur="2.8s" repeatCount="indefinite"/></circle>')
-        pins.append(
-            f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">{pulse}'
-            f'<circle cx="{x:.0f}" cy="{y:.0f}" r="14" fill="#050b16" stroke="{c}" stroke-width="2.6"/>'
-            f'<text x="{x:.0f}" y="{y + 5:.0f}" text-anchor="middle" class="pinnum" fill="{c}">{n}</text></a>')
+
+    # THE DOT NEVER MOVES. It sits on the projected coordinate and nothing is
+    # allowed to nudge it, because a pin that has drifted for the sake of tidy
+    # spacing is a map telling a small lie. Only the LABEL is placed for
+    # legibility, and any label that had to move is tethered to its dot by a
+    # visible line, which is how a paper atlas has always handled this.
+    #
+    # What this replaced: a relaxation pass that pushed every pin apart to a
+    # 34px floor. At this scale 1px is about 3.7 km, so that floor was 125 km.
+    # Two docket items sharing one coordinate ended up drawn 78 miles apart.
+    anchors = [T(albers(it["location"]["lon"], it["location"]["lat"])) for _, it in located]
+
+    # Items at one coordinate are ONE place, so they get one dot carrying every
+    # number, rather than being spread out to look like several places.
+    groups = []   # (x, y, [(n, item), ...])
+    for (n, it), (x, y) in zip(located, anchors):
+        for g in groups:
+            if math.hypot(g[0] - x, g[1] - y) < 2.0:
+                g[2].append((n, it))
+                break
+        else:
+            groups.append((x, y, [(n, it)]))
+
+    # Label placement. Width comes from how many numbers the badge carries.
+    def badge_w(g):
+        return 28.0 if len(g[2]) == 1 else 20.0 + 15.0 * len(g[2])
+    # A displaced label has to clear its own dot, or the badge covers the dot and
+    # the tether it is meant to disclose, and the reader is back to trusting a
+    # badge that has quietly moved. LEAD_MIN is measured from the dot, so at a
+    # badge radius of 14 there is always visible tether between the two.
+    LEAD_MIN = 27.0
+    labels = [[g[0], g[1]] for g in groups]
+    for _ in range(12):
+        for _ in range(40):                       # push labels off each other
+            moved = False
+            for a in range(len(groups)):
+                for b in range(a + 1, len(groups)):
+                    need = (badge_w(groups[a]) + badge_w(groups[b])) / 2.0 + 6.0
+                    dx = labels[b][0] - labels[a][0]; dy = labels[b][1] - labels[a][1]
+                    dist = max(0.001, math.hypot(dx, dy))
+                    if dist < need:
+                        push = (need - dist) / 2.0
+                        ux, uy = dx / dist, dy / dist
+                        if abs(dx) < 1 and abs(dy) < 1: ux, uy = 0.0, 1.0
+                        labels[a][0] -= ux * push; labels[a][1] -= uy * push
+                        labels[b][0] += ux * push; labels[b][1] += uy * push
+                        moved = True
+            if not moved:
+                break
+        # then push any label that moved at all out far enough to be readable
+        for i, g in enumerate(groups):
+            dx = labels[i][0] - g[0]; dy = labels[i][1] - g[1]
+            dist = math.hypot(dx, dy)
+            if 0.5 < dist < LEAD_MIN:
+                ux, uy = dx / dist, dy / dist
+                labels[i][0] = g[0] + ux * LEAD_MIN
+                labels[i][1] = g[1] + uy * LEAD_MIN
+
+    # Three layers, because a dot hidden under a NEIGHBOUR's badge is just as
+    # useless as one hidden under its own. Tethers at the back, badges over
+    # them, and the dots last so nothing can ever cover the one mark on this
+    # map that is telling the literal truth about where something is.
+    #
+    # Every mark is emitted as a MARKER: a <g class="mk"> that carries its map
+    # coordinate in data-x and data-y and draws its contents around its own
+    # origin. Geometry lives in a separate group that the zoom scales, markers
+    # get repositioned instead of resized. Without that, fitting the view to the
+    # pins on a phone would blow the badges up to the size of boroughs, and on a
+    # 390px screen the marks also have to be scaled UP rather than down.
+    #
+    # With no script the transform below is already the correct unzoomed
+    # position, so the map is complete and clickable before anything runs.
+    def mk(layer, x, y, body, cls=""):
+        layer.append(f'<g class="mk{(" " + cls) if cls else ""}" data-x="{x:.1f}" '
+                     f'data-y="{y:.1f}" transform="translate({x:.1f},{y:.1f})">{body}</g>')
+
+    leads, badges, dots = [], [], []
+    for g, (lx, ly) in zip(groups, labels):
+        ax, ay, members = g
+        first = members[0][1]
+        c = PIN_COLOR[first["public_access"]]
+        ox, oy = lx - ax, ly - ay          # badge offset, constant in screen units
+        # The status classes ride on the tether and the dot as well as the badge,
+        # so a filter that dims a pin dims the whole mark rather than leaving an
+        # orphan dot and a line pointing at nothing.
+        acls = "pinmk " + " ".join(sorted({"a-" + it["public_access"] for _, it in members}))
+        # Any member being open earns the pulse, so a live decision still reads
+        # as live when it shares a coordinate with a settled one.
+        if any(it["public_access"] == "open" for _, it in members):
+            mk(leads, ax, ay,
+               f'<circle cx="0" cy="0" r="8" fill="none" stroke="{PIN_COLOR["open"]}" '
+               f'stroke-width="1.6" opacity="0.8">'
+               f'<animate attributeName="r" values="8;26" dur="2.8s" repeatCount="indefinite"/>'
+               f'<animate attributeName="opacity" values="0.8;0" dur="2.8s" repeatCount="indefinite"/>'
+               f'</circle>', cls=acls)
+        # The tether and the dot exist only when the label had to move. An
+        # undisplaced badge is already sitting on the coordinate, so a dot under
+        # it would just collide with its own number.
+        if math.hypot(ox, oy) > 3.0:
+            mk(leads, ax, ay, f'<line class="pinlead" x1="0" y1="0" x2="{ox:.1f}" '
+                              f'y2="{oy:.1f}" stroke="{c}"/>', cls=acls)
+            mk(dots, ax, ay, f'<circle class="pindot" cx="0" cy="0" r="3.4" fill="{c}"/>', cls=acls)
+        if len(members) == 1:
+            n, it = members[0]
+            body = (f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
+                    f'<circle class="pinbadge" cx="{ox:.0f}" cy="{oy:.0f}" r="14" fill="#050b16" '
+                    f'stroke="{c}" stroke-width="2.6"/><text x="{ox:.0f}" y="{oy + 5:.0f}" '
+                    f'text-anchor="middle" class="pinnum" fill="{c}">{n}</text></a>')
+            mk(badges, ax, ay, body, cls=acls)
+        else:
+            bw = badge_w(g)
+            x0 = ox - bw / 2.0
+            parts = [f'<rect x="{x0:.0f}" y="{oy - 14:.0f}" width="{bw:.0f}" height="28" rx="14" '
+                     f'fill="#050b16" stroke="{c}" stroke-width="2.6"/>',
+                     # No colon and no item titles in here. This is visible prose to
+                     # the build's colon gate, and a title can carry a colon of its own.
+                     f'<title>{len(members)} decisions at '
+                     f'{esc(first["location"]["name"])}</title>']
+            for i, (n, it) in enumerate(members):
+                tx = x0 + 10.0 + 15.0 * i + 7.5
+                parts.append(
+                    f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
+                    f'<text x="{tx:.0f}" y="{oy + 5:.0f}" text-anchor="middle" class="pinnum" '
+                    f'fill="{PIN_COLOR[it["public_access"]]}">{n}</text></a>')
+            mk(badges, ax, ay, "".join(parts), cls=acls)
+    pins = leads + badges + dots
+    grid = "".join(f'<path class="gx gx-{tier}" d="{d}"/>' for tier, d in grid_paths(T))
+    taps = f'<path class="tp" d="{taps_path(T)}"/>' if taps_path(T) else ""
+    gen = generation_marks(T)
     caption = "".join(
         f'<a class="mapkey" href="#{esc(it["id"])}"><b class="k-{it["public_access"]}">{n}</b>'
         f'<span>{esc(it["location"]["name"])}</span></a>'
         for n, it in located)
-    svg = f"""<svg viewBox="0 0 {w} {h}" role="img" aria-label="Map of Alaska with every tracked decision pinned">
+    svg = f"""<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map of Alaska with every tracked decision pinned">
 <defs>
   <filter id="coastglow" x="-20%" y="-20%" width="140%" height="140%">
     <feGaussianBlur stdDeviation="5" result="b"/>
@@ -232,8 +416,13 @@ def map_svg(ordered_items, w=1000, h=620):
     <stop offset="0%" stop-color="#0d2038"/><stop offset="100%" stop-color="#081426"/>
   </radialGradient>
 </defs>
-<path d="{grat_d}" fill="none" stroke="rgba(110,165,255,0.07)" stroke-width="1"/>
-<path d="{coast_d}" fill="url(#landfill)" stroke="#5ac8f0" stroke-width="1.5" filter="url(#coastglow)"/>
+<g id="mzoom">
+  <path d="{grat_d}" fill="none" stroke="rgba(110,165,255,0.07)" stroke-width="1"/>
+  <path d="{coast_d}" fill="url(#landfill)" stroke="#5ac8f0" stroke-width="1.5" filter="url(#coastglow)"/>
+  <g class="lyr lyr-taps" aria-hidden="true">{taps}</g>
+  <g class="lyr lyr-grid" aria-hidden="true">{grid}</g>
+</g>
+<g class="lyr lyr-gen">{gen}</g>
 {''.join(pins)}
 </svg>"""
     return svg, caption
@@ -391,6 +580,10 @@ h1 em{font-style:normal;color:var(--gold);}
 .maphero{margin:44px -24px 0;padding:10px 24px 6px;position:relative;}
 .maphero svg{width:100%;height:auto;display:block;}
 .pinnum{font-family:JBMono,monospace;font-size:13.5px;font-weight:500;}
+/* The dot is the truth, sitting exactly on the coordinate. The badge is placed
+   for legibility and the lead line shows how far it had to go to get there. */
+.pindot{opacity:.95;}
+.pinlead{stroke-width:1.1;opacity:.5;stroke-dasharray:2 3;}
 .mapcap{display:flex;gap:10px 26px;flex-wrap:wrap;padding:14px 2px 0;}
 .mapkey{display:flex;align-items:center;gap:9px;font-family:JBMono,monospace;font-size:12.5px;
 letter-spacing:.05em;color:var(--mute);text-decoration:none;transition:color .2s;}

@@ -581,6 +581,7 @@ box-shadow:0 0 12px rgba(255,199,44,.85);animation:heartbeat 2.4s ease-in-out in
 .maphero a circle{transition:stroke-width .2s;}
 .maphero a:hover circle{stroke-width:4;}
 .pinnum{font-family:JBMono,monospace;font-size:13.5px;font-weight:500;}
+
 .mapcap{display:flex;gap:10px 26px;flex-wrap:wrap;padding:14px 2px 0;}
 .mapkey{display:flex;align-items:center;gap:9px;font-family:JBMono,monospace;font-size:12.5px;
 letter-spacing:.05em;color:var(--mute);text-decoration:none;transition:color .2s;}
@@ -724,6 +725,326 @@ html.js [data-reveal].in{opacity:1;transform:none;}
 }
 """
 
+MAP_JS = """
+(function(){
+  'use strict';
+/* ------------------------ the docket map ------------------------
+   Pan and zoom, and on a phone an opening view fitted to the pins.
+
+   GEOMETRY scales, MARKS do not. The coastline, the grid and the pipeline
+   live inside #mzoom and take the transform. Every pin, dot, tether and
+   plant is a .mk group carrying its map coordinate, and it gets REPOSITIONED
+   rather than resized. Without that split, the fitted phone view would blow
+   the badges up to the size of boroughs.
+
+   Everything here is an enhancement. With no script the map is already drawn
+   at the right positions and every pin is already a working link. */
+var mapsvg = document.querySelector('.maphero svg');
+if (mapsvg && mapsvg.querySelector('#mzoom')) {
+  var VBW = 1000, VBH = 620;
+  var mz = mapsvg.querySelector('#mzoom');
+  var marks = [].slice.call(mapsvg.querySelectorAll('.mk'));
+  var reset = document.getElementById('mapreset');
+  var k = 1, tx = 0, ty = 0, mscale = 1, home = null;
+
+  /* The svg is xMidYMid SLICE, so on a phone, where the frame is far taller
+     than the map's own 1000 by 620, the drawing is scaled to FILL and the
+     sides are cropped. That means the scale is not simply width over 1000,
+     and the window a reader can actually see is smaller than the viewBox.
+     Ask the browser for the real matrix rather than assuming either. */
+  function ctm(){
+    var m = mapsvg.getScreenCTM();
+    return (m && m.a) ? m.a : (mapsvg.getBoundingClientRect().width / VBW) || 1;
+  }
+  function px(){ return 1 / ctm(); }   /* viewBox units per css pixel */
+  function view(){                     /* the visible window, in viewBox units */
+    var r = mapsvg.getBoundingClientRect(), s = ctm();
+    var w = s ? r.width / s : VBW, h = s ? r.height / s : VBH;
+    return { w: w, h: h, x0: VBW / 2 - w / 2, y0: VBH / 2 - h / 2,
+             x1: VBW / 2 + w / 2, y1: VBH / 2 + h / 2 };
+  }
+  var inset = 0;   /* band at the top the sticky nav will cover anyway */
+  function clampT(){
+    /* Keep the drawing covering the visible window, so no amount of dragging
+       can leave a band of empty background down one side. The top is allowed
+       to fall short by `inset`, because that strip is behind the nav and
+       without the allowance this clamp simply undid the nav reservation. */
+    var v = view();
+    tx = Math.min(v.x0, Math.max(v.x1 - VBW * k, tx));
+    ty = Math.min(v.y0 + inset, Math.max(v.y1 - VBH * k, ty));
+  }
+  function apply(){
+    mz.setAttribute('transform', 'translate(' + tx.toFixed(2) + ' ' + ty.toFixed(2) +
+                    ') scale(' + k.toFixed(4) + ')');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var x = (+m.getAttribute('data-x')) * k + tx;
+      var y = (+m.getAttribute('data-y')) * k + ty;
+      m.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) +
+                     ') scale(' + mscale.toFixed(3) + ')');
+    }
+    if (reset) reset.hidden = (Math.abs(k - home.k) < 0.01 &&
+                               Math.abs(tx - home.tx) < 1 && Math.abs(ty - home.ty) < 1);
+  }
+  function zoomAt(nk, cx, cy){
+    nk = Math.min(8, Math.max(1, nk));
+    if (nk === k) return;
+    tx = cx - (cx - tx) * (nk / k);
+    ty = cy - (cy - ty) * (nk / k);
+    k = nk; clampT(); apply();
+  }
+  function toVB(ev){
+    var r = mapsvg.getBoundingClientRect(), s = px();
+    return { x: (ev.clientX - r.left) * s, y: (ev.clientY - r.top) * s };
+  }
+
+  /* On a narrow screen the whole state squeezes into a couple of hundred
+     pixels and the pins are about five across, so open on the pins instead,
+     and scale the marks UP because the svg itself is scaled so far down. */
+  function fit(){
+    var r = mapsvg.getBoundingClientRect();
+    var narrow = r.width < 620;
+    var v = view();
+    /* A mark is constant size in viewBox units, and on a phone the whole
+       drawing is scaled down hard, so a badge that reads fine on a desktop
+       comes out about 14px across on a handset. Scale the marks up until a
+       badge is roughly 30px, which is a real target for a thumb without
+       letting the pins swallow the state. 28 units is the badge diameter. */
+    mscale = narrow ? Math.max(1, Math.min(3.4, 30 / (28 * ctm()))) : 1;
+    var xs = [], ys = [];
+    for (var i = 0; i < marks.length; i++) {
+      if (!/pinmk/.test(marks[i].getAttribute('class') || '')) continue;
+      xs.push(+marks[i].getAttribute('data-x'));
+      ys.push(+marks[i].getAttribute('data-y'));
+    }
+    if (!narrow || !xs.length) {
+      /* Wide screens get the whole state, unzoomed and unmoved, and no nav
+         allowance, because on a wide screen the nav is not over the map. */
+      inset = 0; k = 1; tx = 0; ty = 0; clampT();
+      home = { k: k, tx: tx, ty: ty };
+      return;
+    }
+    /* The bbox above is of ANCHORS, but a badge sits up to LEAD_MIN away from
+       its anchor and is drawn at mark scale, so the ink reaches about 27 plus
+       a 16 radius beyond the anchor, all of it scaled. Padding by less than
+       that fits the anchors and leaves a badge hanging off the edge, which is
+       how pin 7 ended up half outside the frame. */
+    var pad = 45 * mscale;
+    var x0 = Math.min.apply(null, xs) - pad, x1 = Math.max.apply(null, xs) + pad;
+    var y0 = Math.min.apply(null, ys) - pad, y1 = Math.max.apply(null, ys) + pad;
+    /* The site nav is sticky. Scrolled to the right place it sits over the
+       top of the map, and the northernmost pin landed 66px down, which is
+       entirely underneath it. Reserve that band so no pin can hide there. */
+    var nav = document.querySelector('.topnav');
+    var top = nav ? nav.getBoundingClientRect().height * px() : 0;
+    inset = top;
+    var uy0 = v.y0 + top, uh = Math.max(40, v.h - top);
+    k = Math.min(8, Math.max(1, Math.min(v.w / (x1 - x0), uh / (y1 - y0))));
+    tx = (v.x0 + v.x1) / 2 - ((x0 + x1) / 2) * k;
+    ty = (uy0 + v.y1) / 2 - ((y0 + y1) / 2) * k;
+    clampT();
+    home = { k: k, tx: tx, ty: ty };
+  }
+
+  /* Wheel zooms only with a modifier, so a plain scroll past the map still
+     scrolls the page. Pinch on a trackpad arrives as ctrlKey and is honoured. */
+  mapsvg.addEventListener('wheel', function(e){
+    if (!e.ctrlKey && !e.metaKey) return;
+    e.preventDefault();
+    var p = toVB(e);
+    zoomAt(k * (e.deltaY < 0 ? 1.16 : 1 / 1.16), p.x, p.y);
+  }, { passive: false });
+
+  mapsvg.addEventListener('dblclick', function(e){
+    var p = toVB(e);
+    zoomAt(k * 1.9, p.x, p.y);
+  });
+
+  var pts = {}, n = 0, last = null, pinchD = 0, moved = 0;
+  mapsvg.addEventListener('pointerdown', function(e){
+    pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+    n++; moved = 0;
+    if (n === 1) { last = { x: e.clientX, y: e.clientY }; }
+    if (n === 2) { pinchD = 0; }
+  });
+  mapsvg.addEventListener('pointermove', function(e){
+    if (!pts[e.pointerId]) return;
+    pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+    var ids = Object.keys(pts);
+    if (ids.length === 1 && last) {
+      var s = px();
+      var dx = (e.clientX - last.x) * s, dy = (e.clientY - last.y) * s;
+      moved += Math.abs(dx) + Math.abs(dy);
+      if (k > 1) {
+        e.preventDefault();
+        tx += dx; ty += dy; clampT(); apply();
+      }
+      last = { x: e.clientX, y: e.clientY };
+    } else if (ids.length === 2) {
+      e.preventDefault();
+      var a = pts[ids[0]], b = pts[ids[1]];
+      var d = Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+      if (pinchD) {
+        var r = mapsvg.getBoundingClientRect(), s2 = px();
+        zoomAt(k * (d / pinchD),
+               ((a.x + b.x) / 2 - r.left) * s2, ((a.y + b.y) / 2 - r.top) * s2);
+      }
+      pinchD = d;
+    }
+  });
+  function endPointer(e){
+    if (pts[e.pointerId]) { delete pts[e.pointerId]; n = Math.max(0, n - 1); }
+    if (!n) { last = null; pinchD = 0; }
+  }
+  mapsvg.addEventListener('pointerup', endPointer);
+  mapsvg.addEventListener('pointercancel', endPointer);
+  /* A drag must not fire the pin link it happened to start on. */
+  mapsvg.addEventListener('click', function(e){
+    if (moved > 12) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+
+  /* Buttons, because ctrl and scroll is not something a reader can be
+     expected to guess, and on a phone there is no wheel at all. They are
+     revealed only once the script is running, so a no-script page never
+     shows a control that would do nothing. */
+  var ctl = document.getElementById('mapzoomctl');
+  if (ctl) ctl.hidden = false;
+  function step(f){ zoomAt(k * f, VBW / 2, VBH / 2); }
+  var zin = document.getElementById('mapin'), zout = document.getElementById('mapout');
+  if (zin) zin.addEventListener('click', function(){ step(1.6); });
+  if (zout) zout.addEventListener('click', function(){ step(1 / 1.6); });
+  if (reset) {
+    reset.addEventListener('click', function(){
+      k = home.k; tx = home.tx; ty = home.ty; clampT(); apply();
+    });
+  }
+  var rt = null;
+  addEventListener('resize', function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){ fit(); apply(); }, 180);
+  });
+  fit(); apply();
+  mapsvg.classList.add('zoomable');
+}
+})();
+"""
+
+
+MAP_CSS = """/* A clustered badge is a rect and its numbers are the links, so the circle rule
+   above cannot reach them. CSS beats a presentation attribute, so this wins
+   over the fill set on the element. */
+.maphero a .pinnum{transition:fill .2s;}
+.maphero a:hover .pinnum{fill:var(--snow);}
+/* The dot is the truth, sitting exactly on the coordinate. The badge is placed
+   for legibility and the lead line shows how far it had to go to get there. */
+.pindot{opacity:.95;}
+.pinlead{stroke-width:1.1;opacity:.5;stroke-dasharray:2 3;}
+@media (max-width:760px){
+  /* The map's own aspect is 1000 by 620, so at 390px wide it renders 242px tall
+     and the state is a smear across the top of the screen with 5px pins. Give
+     it real height and let preserveAspectRatio slice crop the sides instead;
+     the opening view is fitted to the pins, so nothing that matters is cropped
+     out, and the scale roughly triples. */
+  .maphero svg{height:min(64vh,540px);}
+  .lyrbar{padding-top:16px;}
+  .lyrnote{font-size:12.5px;}
+}
+/* ---------- map layers, toggled with a checkbox and no script ----------
+   The grid is drawn white rather than in any pin colour, so infrastructure
+   never reads as a docket item. Weight carries the voltage: a 230 kV ring is
+   a different kind of fact from a 69 kV spur and should not look the same. */
+.gx{fill:none;stroke:#dcebff;stroke-linecap:round;stroke-linejoin:round;}
+.gx-t1{stroke-width:1.1;opacity:.40;}
+.gx-t2{stroke-width:1.9;opacity:.56;}
+.gx-t3{stroke-width:3;opacity:.78;}
+/* TAPS is oil, not power, so it is dashed rather than another solid thread that
+   would read as more grid. Copper, NOT the amber the closed pins use: the first
+   pass made this #f2a43a and the pipeline read as a line of settled decisions. */
+.tp{fill:none;stroke:#b5794a;stroke-width:2.2;opacity:.75;stroke-dasharray:7 5;
+stroke-linecap:round;}
+/* Generation. Area is megawatts, so a plant twice the size gets twice the ink,
+   where doubling the radius would quadruple it and flatter the big plants.
+   One colour, not one per fuel: this map already asks a reader to hold three
+   pin colours and a grid, and fuel type is in the tooltip where it belongs. */
+.gen{fill:#a78bd0;fill-opacity:.26;stroke:#c9b4ee;stroke-width:1;stroke-opacity:.6;}
+.lyr{transition:opacity .4s ease;}
+.lyrbox{position:absolute;width:1px;height:1px;opacity:0;margin:0;
+clip-path:inset(50%);pointer-events:none;}
+.lyr-grid,.lyr-gen,.lyr-taps{opacity:0;pointer-events:none;}
+#lyr-grid:checked ~ svg .lyr-grid,
+#lyr-gen:checked ~ svg .lyr-gen,
+#lyr-taps:checked ~ svg .lyr-taps{opacity:1;}
+#lyr-gen:checked ~ svg .lyr-gen{pointer-events:auto;}
+.lyrbar{padding:14px 2px 0;}
+.lyrchips{display:flex;gap:10px;flex-wrap:wrap;}
+.lyrbar label{display:inline-flex;align-items:center;gap:9px;cursor:pointer;flex:none;
+font-family:JBMono,monospace;font-size:11px;letter-spacing:.14em;color:var(--mute);
+border:1px solid var(--line);border-radius:999px;padding:0 16px 0 12px;
+min-height:44px;-webkit-tap-highlight-color:transparent;
+transition:color .2s,border-color .2s,background .2s;}
+.lyrbar label:hover{color:var(--snow);border-color:#2c5876;}
+.lyrbar label .sw{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;
+flex:none;transition:background .2s,box-shadow .2s;}
+#lyr-grid:checked ~ .lyrbar label[for="lyr-grid"],
+#lyr-gen:checked ~ .lyrbar label[for="lyr-gen"],
+#lyr-taps:checked ~ .lyrbar label[for="lyr-taps"]{color:var(--snow);border-color:#3a6f96;
+background:rgba(90,200,240,.07);}
+#lyr-grid:checked ~ .lyrbar label[for="lyr-grid"] .sw{background:#dcebff;
+box-shadow:0 0 9px rgba(220,235,255,.8);}
+#lyr-gen:checked ~ .lyrbar label[for="lyr-gen"] .sw{background:#c9b4ee;
+box-shadow:0 0 9px rgba(201,180,238,.8);}
+#lyr-taps:checked ~ .lyrbar label[for="lyr-taps"] .sw{background:#c98a5c;
+box-shadow:0 0 9px rgba(201,138,92,.8);}
+.lyrbox:focus-visible ~ .lyrbar label{outline:2px solid var(--gold);outline-offset:3px;}
+/* Each note appears only while its own layer is on, so the bar stays one line
+   of chips until a reader actually asks what they are looking at. */
+.lyrnotes{padding-top:2px;}
+.lyrnote{display:none;font-size:12px;line-height:1.6;color:var(--mute);max-width:70ch;
+padding-top:10px;}
+#lyr-grid:checked ~ .lyrbar .n-grid,
+#lyr-gen:checked ~ .lyrbar .n-gen,
+#lyr-taps:checked ~ .lyrbar .n-taps{display:block;}
+@media (prefers-reduced-motion:reduce){.lyr{transition:none;}}
+/* ---------- pan and zoom ----------
+   Strokes must not thicken with the zoom, or the grid turns into ribbons the
+   moment anyone looks closely. pan-y keeps the page scrollable on a phone:
+   the map takes horizontal drags and pinches, the page keeps vertical ones. */
+.maphero svg .gx,.maphero svg .tp,#mzoom>path{vector-effect:non-scaling-stroke;}
+.maphero svg.zoomable{touch-action:pan-y;}
+.maphero svg.zoomable .mk{cursor:pointer;}
+.mapzoomctl{display:inline-flex;gap:8px;}
+.mapzoomctl[hidden]{display:none;}
+.mapzoomctl button{font-family:JBMono,monospace;font-size:11px;letter-spacing:.14em;
+color:var(--mute);background:transparent;border:1px solid var(--line);border-radius:999px;
+min-height:44px;min-width:44px;padding:0 14px;cursor:pointer;
+transition:color .2s,border-color .2s,background .2s;}
+.mapzoomctl button:hover{color:var(--snow);border-color:#2c5876;}
+#mapin,#mapout{font-size:17px;line-height:1;padding:0;}
+.mapreset{color:var(--gold);background:rgba(255,199,44,.08);
+border-color:rgba(255,199,44,.4);}
+.mapreset:hover{background:rgba(255,199,44,.16);border-color:var(--gold);}
+.mapreset[hidden]{display:none;}
+/* ---------- status filter ----------
+   Three checkboxes, all on. A pin shows if ANY of its statuses is still on,
+   which falls out of these rules being independent rather than exclusive. */
+.pinmk{opacity:.13;transition:opacity .3s;}
+#f-open:checked ~ svg .pinmk.a-open,
+#f-indirect:checked ~ svg .pinmk.a-indirect,
+#f-closed:checked ~ svg .pinmk.a-closed{opacity:1;}
+.lyrbar label[for^="f-"]{border-style:dashed;}
+#f-open:checked ~ .lyrbar label[for="f-open"] .sw{background:var(--green);
+box-shadow:0 0 9px rgba(60,230,180,.7);}
+#f-indirect:checked ~ .lyrbar label[for="f-indirect"] .sw{background:#8da2be;
+box-shadow:0 0 9px rgba(141,162,190,.7);}
+#f-closed:checked ~ .lyrbar label[for="f-closed"] .sw{background:var(--amber);
+box-shadow:0 0 9px rgba(242,164,58,.7);}
+#f-open:checked ~ .lyrbar label[for="f-open"],
+#f-indirect:checked ~ .lyrbar label[for="f-indirect"],
+#f-closed:checked ~ .lyrbar label[for="f-closed"]{color:var(--snow);border-color:#3a6f96;
+border-style:solid;background:rgba(90,200,240,.07);}
+@media (prefers-reduced-motion:reduce){.pinmk{transition:none;}}"""
+
+
 JS = """
 (function(){
   'use strict';
@@ -840,12 +1161,18 @@ JS = """
       });
     }
   }
+
 })();
 """
 
 
 def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.png",
-         og_size=(1200, 630), ld=None, crumbs=None, noindex=False):
+         og_size=(1200, 630), ld=None, crumbs=None, noindex=False,
+         extra_css="", extra_js=""):
+    # Per-page CSS and JS. The docket map's styling and its pan and zoom are
+    # about 4 KB gzipped, and before this existed they rode the shared bundle
+    # onto all 25 pages, which made a page with no map on it 15 percent heavier
+    # for nothing. Most readers are on a phone, so that is not a rounding error.
     css = SITE_CSS.replace("FONTPREFIX", prefix).replace("GRAIN_URI", db.grain_data_uri() or "none")
     canonical = f"{site_url}/{path}"
     og_url = og_image if og_image.startswith("http") else f"{site_url}/{og_image}"
@@ -886,6 +1213,7 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 {preload}
 {ld_html}
 <style>{css}</style>
+{('<style>' + extra_css + '</style>') if extra_css else ''}
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -901,6 +1229,7 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 {footer(prefix, today)}
 </div>
 <script>{JS}</script>
+{('<script>' + extra_js + '</script>') if extra_js else ''}
 </body>
 </html>"""
 
@@ -1163,6 +1492,51 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 def docket_page(today, site_url, docket):
     items, live, done, dated, live_sorted = docket
     svg, mapcap = db.map_svg(live_sorted + done)
+    # Layer toggles, done with real checkboxes and real labels rather than
+    # script. Every checkbox has to come BEFORE the svg in the markup, because
+    # the whole mechanism is the sibling combinator. The grid carries `checked`
+    # so it is on by default; the other two start off, so the map a reader
+    # meets is still mostly pins. Works with the keyboard, works with JS off.
+    LAYER_UI = [
+        ("grid", "GRID", True,
+         "Transmission at 69 kV and up. The raw state layer is 93 percent local "
+         "distribution from one utility, so it is cut at the transmission floor."),
+        ("gen", "GENERATION", False,
+         "Power plants of 20 MW and up. That is 31 of Alaska's 152 plants but 78 "
+         "percent of its capacity. Circle area is nameplate megawatts."),
+        ("taps", "PIPELINE", False,
+         "The Trans Alaska Pipeline System. Gas lines are left out, being 96 "
+         "percent sub-kilometre distribution with nothing to sort them by."),
+    ]
+    # The status filter, same mechanism. All three start on, so the map a
+    # reader meets shows every decision and the filter is something they reach
+    # for rather than something they have to undo.
+    FILTERS = [("open", "OPEN"), ("indirect", "INDIRECT"), ("closed", "CLOSED")]
+    have = db.available_layers()
+    ui = [row for row in LAYER_UI if row[0] in have]
+    layerbox = "".join(
+        '<input class="lyrbox" type="checkbox" id="lyr-%s"%s>' % (k, " checked" if on else "")
+        for k, _, on, _ in ui)
+    layerbox += "".join('<input class="lyrbox" type="checkbox" id="f-%s" checked>' % k
+                        for k, _ in FILTERS)
+    chips = "".join(
+        '<label for="lyr-%s"><span class="sw"></span>%s</label>' % (k, lab)
+        for k, lab, _, _ in ui)
+    fchips = "".join(
+        '<label for="f-%s"><span class="sw"></span>%s</label>' % (k, lab)
+        for k, lab in FILTERS)
+    notes = "".join('<span class="lyrnote n-%s">%s</span>' % (k, note)
+                    for k, _, _, note in ui)
+    layerbar = ('<div class="lyrbar">'
+                '<div class="lyrchips">%s'
+                '<span class="mapzoomctl" hidden id="mapzoomctl">'
+                '<button type="button" id="mapout" aria-label="Zoom the map out">-</button>'
+                '<button type="button" id="mapin" aria-label="Zoom the map in">+</button>'
+                '<button type="button" class="mapreset" id="mapreset" hidden>FIT ALASKA</button>'
+                '</span>'
+                '</div>'
+                '<div class="lyrchips lyrfilters">%s</div>'
+                '<div class="lyrnotes">%s</div></div>' % (chips, fchips, notes))
     n_open = sum(1 for it in live if it["public_access"] == "open")
     nearest = db.next_date(dated[0], today) if dated else None
     cards = "".join(db.card_html(it, today) for it in dated[:6])
@@ -1179,7 +1553,7 @@ def docket_page(today, site_url, docket):
 when it lands, and whether the public gets a say. Sources on every item.</p>
 {stats}
 </div>
-<div class="maphero">{svg}<div class="mapcap">{mapcap}</div></div>
+<div class="maphero">{layerbox}{svg}{layerbar}<div class="mapcap">{mapcap}</div></div>
 <h2>Closing soon</h2>
 <p class="sub">The nearest deadlines and votes. A pulsing pin on the map means a public
 comment window is open right now.</p>
@@ -1206,7 +1580,9 @@ The data behind this page is public at <a href="../docket.json" style="color:var
                 "when it lands, and whether the public gets a say. Sources on every item.",
                 body, "../", "docket", today, site_url, "docket/",
                 og_image="og-docket.png", ld=ld,
-                crumbs=[("Alaska AI", ""), ("Docket", "docket/")])
+                crumbs=[("Alaska AI", ""), ("Docket", "docket/")],
+                # The map's styling and its pan and zoom ride on this page only.
+                extra_css=MAP_CSS, extra_js=MAP_JS)
 
 
 def archive_page(today, site_url, runs):
