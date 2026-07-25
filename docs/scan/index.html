@@ -500,9 +500,19 @@ background-size:55% 100%;background-repeat:no-repeat;animation:swsweep 1.7s line
 /* the rink */
 .sw-rink{position:relative;height:236px;border:1px solid var(--line);border-radius:14px;
 overflow:hidden;background:linear-gradient(180deg,rgba(90,200,240,.07),rgba(2,6,15,0) 68%);}
-.sw-aur{position:absolute;inset:0;width:100%;height:100%;opacity:.4;}
-.sw-aur path{animation:swwave 15s ease-in-out infinite alternate;}
-.sw-aur path:nth-child(2){animation-duration:21s;animation-direction:alternate-reverse;}
+/* The wave rides the svg element, never the path inside it. A transform on an
+   SVG path is a layout every frame in Chromium, 1200 a minute measured sitting
+   still; the same animation on the svg box is 81. The origin is left at its
+   default 50% 50% deliberately: a path transforms about the centre of the view
+   box, and since the view box maps onto the whole rink, the centre of the svg
+   element is the same point. Pinning it to 0 0 moves the wave visibly.
+   The opacity sits on the wrapper, NOT on each svg. Two waves at .4 each
+   composite to more than the two of them under a single .4, so putting it on
+   both lightened every pixel where they overlap. */
+.sw-aurs{position:absolute;inset:0;opacity:.4;}
+.sw-aur{position:absolute;inset:0;width:100%;height:100%;
+animation:swwave 15s ease-in-out infinite alternate;}
+.sw-aur.b{animation-duration:21s;animation-direction:alternate-reverse;}
 @keyframes swwave{from{transform:translateX(-4%) scaleY(.92);}to{transform:translateX(5%) scaleY(1.1);}}
 .sw-ice{position:absolute;left:0;right:0;bottom:0;height:52px;
 background:linear-gradient(180deg,rgba(244,248,255,.11),rgba(244,248,255,.03));
@@ -601,7 +611,7 @@ margin-top:12px;min-height:16px;}
   .sw-bear.r{right:calc(50% - 91px);}
 }
 @media (prefers-reduced-motion:reduce){
-  .sw-bear.l,.sw-bear.r,.sw-hit,.sw-flake,.sw-aur path,.sw-agent.on .dot,
+  .sw-bear.l,.sw-bear.r,.sw-hit,.sw-flake,.sw-aur,.sw-agent.on .dot,
   .sw-agent.on::after,.sw-ln,.sw-scrim,.sw-modal{animation:none;}
   .sw-bear.r{transform:scaleX(-1);}
   .sw-hit{opacity:1;transform:translateX(-50%) scale(1);}
@@ -735,9 +745,14 @@ every observation.</p>
 
   var CIRC = 263.9; // 2 * pi * r, r = 42
   var quipI = 0, callI = 0, quipT = null, callT = null, clockT = null, modalT = null;
-  // feedSig starts null, never "", so the very first paint of an empty feed
-  // still renders the queued placeholder instead of an empty box.
-  var lastPhase = "claim", feedSig = null, modalUp = false;
+  // The poll's own handle, so a hidden tab can stand the loop down and a
+  // returning one can pick it straight back up.
+  var pollT = null, pollDue = false;
+  var lastPhase = "claim", modalUp = false;
+  // How many notes the terminal has rendered, and the identity of the last one.
+  // Together they answer "did this feed simply grow" in two comparisons, which
+  // is what lets a new note be appended instead of the whole terminal rebuilt.
+  var feedCount = 0, feedTail = null;
   // The run is over, one way or another. Nothing may paint, poll or pop after
   // this flips, which is what keeps the email modal off a finished report.
   var settled = false;
@@ -747,12 +762,18 @@ every observation.</p>
 
   function store(k){ try { return localStorage.getItem(k) === "1"; } catch(e){ return false; } }
   function mark(k){ try { localStorage.setItem(k, "1"); } catch(e){} }
-  // Every timer the page owns, including the one setTimeout. An earlier
+  // The decorative loop on its own. A backgrounded tab stops these and a tab
+  // coming back restarts them, which must NOT touch the email timer: cancelling
+  // that on every hide would mean anyone who glanced away in the first 45
+  // seconds never got offered the email at all.
+  function stopDecor(){
+    clearInterval(quipT); clearInterval(callT); clearInterval(clockT);
+  }
+  // Every timer the page owns, including the two setTimeouts. An earlier
   // version listed only the intervals, so the 45s email modal survived the
   // teardown and dropped itself over finished reports.
   function stopTimers(){
-    clearInterval(quipT); clearInterval(callT); clearInterval(clockT);
-    clearTimeout(modalT);
+    stopDecor(); clearTimeout(modalT); clearTimeout(pollT);
   }
   // The modal lives on document.body, so replacing the app does not remove it.
   // Every ending has to sweep it, or a modal opened a minute earlier sits on
@@ -848,17 +869,25 @@ every observation.</p>
       '<p class="sw-lab">THE CREW ON YOUR SCAN</p>' +
       '<div class="sw-roster">' + roster + '</div>' +
       '<div class="sw-rink">' +
-        '<svg class="sw-aur" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true">' +
+        // Two svg elements rather than one carrying two paths, because the
+        // wave animation lives on the svg BOX now instead of on the path.
+        // Animating transform on an SVG path forces a full layout every frame:
+        // measured at 1200 layouts a minute sitting still, and moving the same
+        // animation up to the svg element takes that to 81. Each svg carries
+        // its own gradient so neither depends on an id defined in the other.
+        '<div class="sw-aurs">' +
+        '<svg class="sw-aur a" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true">' +
         '<defs><linearGradient id="swau1" x1="0" y1="0" x2="0" y2="1">' +
         '<stop offset="0%" stop-color="#3ce6b4" stop-opacity=".42"/>' +
-        '<stop offset="100%" stop-color="#3ce6b4" stop-opacity="0"/></linearGradient>' +
-        '<linearGradient id="swau2" x1="0" y1="0" x2="0" y2="1">' +
+        '<stop offset="100%" stop-color="#3ce6b4" stop-opacity="0"/></linearGradient></defs>' +
+        '<path fill="url(#swau1)" d="M0,12 C70,52 130,-14 200,22 C270,58 330,4 400,34 ' +
+        'L400,132 L0,132 Z"/></svg>' +
+        '<svg class="sw-aur b" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true">' +
+        '<defs><linearGradient id="swau2" x1="0" y1="0" x2="0" y2="1">' +
         '<stop offset="0%" stop-color="#5ac8f0" stop-opacity=".32"/>' +
         '<stop offset="100%" stop-color="#5ac8f0" stop-opacity="0"/></linearGradient></defs>' +
-        '<path fill="url(#swau1)" d="M0,12 C70,52 130,-14 200,22 C270,58 330,4 400,34 ' +
-        'L400,132 L0,132 Z"/>' +
         '<path fill="url(#swau2)" d="M0,40 C80,4 150,66 220,34 C290,2 350,54 400,26 ' +
-        'L400,150 L0,150 Z"/></svg>' +
+        'L400,150 L0,150 Z"/></svg></div>' +
         flakes +
         '<div class="sw-ice"></div>' +
         '<div class="sw-round" id="sw-round"></div>' +
@@ -884,10 +913,35 @@ every observation.</p>
 
     cycleQuip(true);
     cycleCall(true);
-    stopTimers();
+    startTimers();
+  }
+
+  // The quips, the bear calls and the clock. Split out from shell() so a tab
+  // coming back into view can restart exactly these without rebuilding the room.
+  function startTimers(){
+    stopDecor();
+    if (settled || document.hidden) { return; }
     quipT = setInterval(function(){ cycleQuip(false); }, 7000);
     callT = setInterval(function(){ cycleCall(false); }, 4600);
-    clockT = setInterval(function(){ paint(feedNotes); }, 20000);
+    clockT = setInterval(tickClock, 20000);
+  }
+
+  function put(id, v){ var e = document.getElementById(id); if (e) { e.textContent = v; } }
+
+  // Only the things that move because time passed. The 20s tick used to call
+  // paint(), which recounted the whole feed and re-derived the terminal in
+  // order to advance a minute counter. Everything else on this screen changes
+  // when the FEED changes, which is what the poll already handles.
+  function tickClock(){
+    var mins = Math.max(0, Math.round((Date.now() - startedAt) / 60000));
+    var pct = pctFor(lastPhase, mins);
+    var bar = document.getElementById("sw-bar");
+    if (bar) { bar.setAttribute("stroke-dashoffset", String(CIRC * (1 - pct / 100))); }
+    put("sw-pct", pct + "%");
+    // the site's own sky brightens as the run advances
+    document.body.style.setProperty("--skyglow", String(0.5 + 0.5 * (pct / 100)));
+    put("sw-clock", (mins < 1 ? "just started" : "watching for " + mins + " min") +
+      ", usually 15 to 30");
   }
 
   function paint(progress){
@@ -902,7 +956,6 @@ every observation.</p>
         if (progress[i]) { notes.push(progress[i]); }
       }
     }
-    var mins = Math.max(0, Math.round((Date.now() - startedAt) / 60000));
     var phase = currentPhase(notes);
     if (phase !== lastPhase) {
       lastPhase = phase;
@@ -947,18 +1000,9 @@ every observation.</p>
       }
     }
     // sync:counters end
-    function put(id, v){ var e = document.getElementById(id); if (e) { e.textContent = v; } }
     put("sw-pages", nPages); put("sw-ind", nInd); put("sw-gate", nGate);
 
-    var pct = pctFor(phase, mins);
-    var bar = document.getElementById("sw-bar");
-    if (bar) { bar.setAttribute("stroke-dashoffset", String(CIRC * (1 - pct / 100))); }
-    put("sw-pct", pct + "%");
-    // the site's own sky brightens as the run advances
-    document.body.style.setProperty("--skyglow", String(0.5 + 0.5 * (pct / 100)));
-
-    put("sw-clock", (mins < 1 ? "just started" : "watching for " + mins + " min") +
-      ", usually 15 to 30");
+    tickClock();
     var round = document.getElementById("sw-round");
     if (round) {
       round.innerHTML = "ROUND " + (PHASES.indexOf(phase) + 1) + " &middot; " +
@@ -978,21 +1022,45 @@ every observation.</p>
       el.className = "sw-agent" + (working ? " on" : (last < at ? " did" : ""));
     }
 
-    var list = notes.slice(-9), feed = "", sig = "";
-    for (i = 0; i < list.length; i++) { sig += "|" + list[i].at + list[i].note; }
-    if (sig !== feedSig) {
-      feedSig = sig;
-      for (i = 0; i < list.length; i++) {
-        feed += '<div class="sw-ln"><span class="sw-t">' + esc(list[i].at) +
-          '</span><span class="sw-x">' + esc(list[i].note) + '</span></div>';
+    // The terminal is append only, so it is built append only. Rewriting
+    // innerHTML restarted the swin slide on all nine rows for every note,
+    // which under the dense feed meant the whole terminal flashed 60 to 120
+    // times a run instead of one line arriving at a time. Rows already on
+    // screen are left alone now and only genuinely new ones animate.
+    //
+    // The change test is two comparisons rather than a signature built over
+    // every note, which was a 6 KB string concatenated on every poll and every
+    // clock tick just to answer a yes or no question.
+    var box = document.getElementById("sw-feed");
+    if (box) {
+      var tail = notes.length ? key(notes[notes.length - 1]) : "";
+      // feedTail starts null, never "", so the very first paint of an empty
+      // feed still renders the queued placeholder instead of an empty box.
+      if (notes.length !== feedCount || tail !== feedTail) {
+        // Grew from what is on screen, rather than changed underneath it.
+        var grew = feedCount > 0 && notes.length > feedCount &&
+                   notes[feedCount - 1] && key(notes[feedCount - 1]) === feedTail;
+        if (grew) {
+          for (i = Math.max(feedCount, notes.length - 9); i < notes.length; i++) {
+            box.insertAdjacentHTML("beforeend", row(notes[i]));
+          }
+          while (box.children.length > 9) { box.removeChild(box.firstChild); }
+        } else {
+          var feed = "";
+          for (i = Math.max(0, notes.length - 9); i < notes.length; i++) { feed += row(notes[i]); }
+          box.innerHTML = feed || ('<div class="sw-ln"><span class="sw-t">now</span>' +
+            '<span class="sw-x">queued, an agent is picking this up</span></div>');
+        }
+        feedCount = notes.length;
+        feedTail = tail;
       }
-      if (!feed) {
-        feed = '<div class="sw-ln"><span class="sw-t">now</span>' +
-          '<span class="sw-x">queued, an agent is picking this up</span></div>';
-      }
-      var box = document.getElementById("sw-feed");
-      if (box) { box.innerHTML = feed; }
     }
+  }
+
+  function key(n){ return n.at + "|" + n.note; }
+  function row(n){
+    return '<div class="sw-ln"><span class="sw-t">' + esc(n.at) +
+      '</span><span class="sw-x">' + esc(n.note) + '</span></div>';
   }
 
   // --------------------- the leave-your-email moment ---------------------
@@ -1093,7 +1161,29 @@ every observation.</p>
     // that is not running. "lookup failed" is the read breaking rather than
     // the scan, which can pass, so it is tolerated for two minutes first.
     var DEAD = { "not found": 1, "bad token": 1 }, readFails = 0;
-    function next(){ if (!settled) { setTimeout(tick, 5000); } }
+    // A tab nobody is looking at is asked to stand down rather than keep
+    // pulling the whole feed every five seconds. Two hours in a background tab
+    // was 1440 requests and about 8 MB fetched for a screen nobody could see.
+    // Coming back polls at once, so the room is current the moment it is
+    // looked at rather than up to five seconds stale.
+    function next(){
+      clearTimeout(pollT);
+      if (settled) { return; }
+      if (document.hidden) { pollDue = true; return; }
+      pollT = setTimeout(tick, 5000);
+    }
+    document.addEventListener("visibilitychange", function(){
+      if (settled) { return; }
+      if (document.hidden) {
+        stopDecor();
+        clearTimeout(pollT);
+        pollDue = true;
+        return;
+      }
+      startTimers();
+      tickClock();          // the minute counter caught up in one step
+      if (pollDue) { pollDue = false; tick(); }
+    });
     function tick(){
       var httpOk = true;
       fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers: HEADERS })
