@@ -1375,7 +1375,26 @@ either honesty or legibility; none loosened a gate.
     The lesson is that a positioning class and a styling class must not be
     separable, and it is a Phase 12 candidate.
 
-**Gates at ship:** render 10/10 OK, zero errors, zero warnings. `qa.py` verdict
-PASS, zero fails, zero warns. `caption_check.py` PASS (874 chars, hook 8 chars).
-`style_lint.py` clean. `copy_sync_check.py` PASS, 105 authored strings all
-present in the render. PDF vector, 4.9 MB, 10 pages at 1080x1350.
+**Gates at ship (generated from the artifacts on disk, not from memory).**
+render.py 10/10 OK, 0 errors, 0 warnings.
+`qa.py` verdict **PASS**, 0 fails, 0 warns.
+`caption_check.py` PASS (874 chars, hook 8).
+`style_lint.py` clean. `copy_sync_check.py` PASS.
+PDF **vector**, 4.86 MB, 10 pages at 1080x1350.
+
+13. **PLANNED ELEMENTS THAT DID NOT SHIP** (recorded because the scorer caught
+    the first version of this section omitting them, which is exactly the record
+    drift this document exists to prevent):
+    - Slide 02's checkerboard scale bar labelled "165.6 PX = 1 M". Cut at
+      VISUAL_DENSITY 2 as the fourth annotation system on one slide. The cost is
+      real and the scorer named it: the money constant is now invisible to the
+      reader, so nobody can verify a length themselves. It should come back.
+    - Slide 06's three money wells on the cut bay's floor. The hero therefore
+      argues by symbol rather than by measurement and is not continuous with
+      slides 02 and 04.
+    - Claim c26 (McGuire on an explainable, human appealable path). Dropped when
+      slide 07 went from seven rows to six, so the record wall shows two real
+      answers against four blanks rather than three.
+    - Correction to item 6 above: c5 and c6 (the 100,000 dollar gift, Soldotna to
+      Berkeley) did NOT end up in the base strip. They are art-band leader labels
+      on the drilled point. The earlier wording was wrong.

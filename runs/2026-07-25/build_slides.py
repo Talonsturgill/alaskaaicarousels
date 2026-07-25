@@ -248,7 +248,7 @@ function well(cx, w) {
     const gx1 = F[0][0] + (F[1][0] - F[0][0]) * 0.42, gy1 = F[0][1] + (F[1][1] - F[0][1]) * 0.42;
     const iy = (F[3][1] - F[0][1]) * 0.46;
     cx.save(); quad(cx, O); cx.clip();
-    cx.strokeStyle = P.gold; cx.lineWidth = 2.6; cx.globalAlpha = 0.92;
+    cx.strokeStyle = P.gold; cx.lineWidth = 3.2; cx.globalAlpha = 0.94;
     cx.beginPath(); cx.moveTo(gx0, gy0 + iy); cx.lineTo(gx1, gy1 + iy); cx.stroke();
     cx.globalAlpha = 0.22; cx.lineWidth = 7; cx.filter = 'blur(5px)'; cx.stroke();
     cx.restore(); cx.restore();
@@ -324,7 +324,7 @@ async function paint() {
     const iy = (F[3][1] - F[0][1]) * 0.46;
     cx.save();
     quad(cx, face(w.x0, w.x1, w.z0, w.z1, 0)); cx.clip();
-    cx.strokeStyle = '#FFC72C'; cx.lineWidth = 2.6; cx.globalAlpha = 0.95;
+    cx.strokeStyle = '#FFC72C'; cx.lineWidth = 3.2; cx.globalAlpha = 0.96;
     cx.beginPath(); cx.moveTo(gx0, gy0 + iy); cx.lineTo(gx1, gy1 + iy); cx.stroke();
     cx.restore();
   });
@@ -502,7 +502,7 @@ slide(
     data-fit='{{"min":92,"max":126,"maxLines":4}}'>THE MONEY<br>IS ON FILE.<br>THE AI POLICY<br>IS NOT.</h1>
 """ + L(W18, -0.71, 20, -14, txt="Cut to the dollar")
       + L(W18, 0.29, 20, -14, txt="Ruled, never cut")
-      + """<div class="basemono" style="width:940px">Campaign finance reports made public the week of July 20</div>
+      + """<div class="basemono" style="width:900px">Campaign finance reports, week of July 20 2026</div>
 """)
 
 # =============================================================== SLIDE 02 ====
@@ -573,14 +573,15 @@ function extraArt(cx) {
 <h1 class="display" style="width:820px;font-size:84px;font-variation-settings:'SOFT' 60,'WONK' 0,'opsz' 96;font-weight:800;line-height:1.02"
     data-fit='{{"min":62,"max":84,"maxLines":3}}'>Six people at one AI company, about a fifth of the biggest haul in the field.</h1>
 <div class="chip fw" style="left:80px;top:470px;width:900px">This deck runs on a model built by Anthropic. Full disclosure, slide 09.</div>
-""" + L(W18, -0.92, 22, -16, cls="lab dk sm", txt="1.8 M reported since February")
+""" + L(W18, -0.92, 22, -16, cls="lab dk sm", txt="1.8 M since February")
       + L(WELL_X0, -0.92, 10, -84, cls="lab", txt="372,000")
       + L(WELL_X0, -0.92, 10, -54, cls="lab dk sm", txt="Six Anthropic employees")
       + L(W372, -0.50, 22, 16, txt="About a fifth")
       + L(W372, -0.50, 22, 44, txt="Alaska.Ai arithmetic")
       + L(WELL_X0, 0.30, 6, 14, txt="In state share, not disclosed")
-      + L(0.30, 0.74, 44, -34, txt="100,000 largest single gift")
-      + L(0.30, 0.74, 44, -6, txt="Soldotna to Berkeley")
+      + L(0.30, 0.74, 44, -46, txt="100,000")
+      + L(0.30, 0.74, 44, -18, txt="Largest single gift")
+      + L(0.30, 0.74, 44, 10, txt="Soldotna to Berkeley")
       + """<div class="z base">The majority came from Lower 48 donors, per Anchorage Daily News. No in state split is disclosed, so none is drawn.</div>
 """)
 
@@ -629,7 +630,7 @@ function extraArt(cx) {
 """)
 
 # =============================================================== SLIDE 04 ====
-ROWS = [("Kreiss-Tomkins 1.8 M", 1.80), ("Heilala 1.6 M, 1.4 M of it his own", 1.60),
+ROWS = [("Kreiss-Tomkins 1.8 M", 1.80), ("Heilala 1.6 M, 1.4 M his own", 1.60),
         ("Begich 1.1 M", 1.10), ("Taylor 1.0 M", 1.00), ("Crum 940,000", 0.94)]
 Z0, ZH, ZG = -1.02, 0.34, 0.10
 s4_wells = [dict(x0=WELL_X0, x1=wend(m), z0=Z0 + i * (ZH + ZG),
@@ -681,7 +682,7 @@ function afterGrade(cx) {
     data-fit='{{"min":62,"max":84,"maxLines":3}}'>About 4,700 acres at three Alaska bases, offered for AI data centers.</h1>
 <div class="chip" style="left:80px;top:470px;width:430px">Background, federal solicitation</div>
 <div class="chip" style="left:550px;top:470px;width:430px">Aug 18 primary per news reporting, not the Division of Elections</div>
-""" + "".join(L(0.16, z + 0.14, 22, -16, txt=n) for n, z in TABS)
+""" + "".join(L(0.16, z + 0.14, 22, -24, txt=n) for n, z in TABS)
   + L(0.16, 0.54, 22, -30, txt="Award")
   + L(0.16, 0.54, 22, -2, txt="Not announced")
   + """<div class="z base">Offers were due June 29 2026. No award has been announced. The next governor inherits this already in motion.</div>
@@ -699,6 +700,14 @@ function extraArt(cx) {
   quad(cx, face(-1.40, -0.06, -0.62, 0.62, 0)); cx.clip();
   quad(cx, face(-1.30, -0.72, -0.30, -0.10, -0.255), P.fireweed);
   cx.restore();
+  /* the hero's one gold specular, on the cut bay's floor, after the fireweed */
+  cx.save();
+  quad(cx, face(-1.40, -0.06, -0.62, 0.62, 0)); cx.clip();
+  cx.strokeStyle = P.gold; cx.lineWidth = 3.0; cx.globalAlpha = 0.9;
+  cx.beginPath();
+  cx.moveTo(PX(-1.30, 0.30), PY(-1.30, -0.255, 0.30));
+  cx.lineTo(PX(-0.50, 0.30), PY(-0.50, -0.255, 0.30));
+  cx.stroke(); cx.restore();
   /* the SCORED right bay, ruled and never cut. No interior colour of any kind. */
   cx.save();
   cx.strokeStyle = mix(P.body, P.ink, 0.35); cx.lineWidth = 2.4;
@@ -850,7 +859,7 @@ function afterGrade(cx) {
     dom=f"""
 <h1 class="display" style="top:150px;width:890px;font-size:96px"
     data-fit='{{"min":72,"max":96,"maxLines":1}}'>Who is telling you this.</h1>
-<div style="position:absolute;left:80px;top:300px;width:420px;font-family:'Bricolage Grotesque';font-weight:400;font-size:30px;line-height:1.36;color:{P['body']}">One article by one reporter, published July 23 2026 by the Anchorage Daily News and republished July 24 by Alaska Public Media. One reporting source, not two. The candidate AI positions come from a separate June questionnaire and are labelled background.</div>
+<div style="position:absolute;left:80px;top:300px;width:420px;font-family:'Bricolage Grotesque';font-weight:400;font-size:30px;line-height:1.36;color:{P['body']}">One article by one reporter, published July 23 2026 by the Anchorage Daily News and republished July 24 by Alaska Public Media. One reporting source, not two. The candidate AI positions come from a separate June questionnaire and are labeled background.</div>
 <div style="position:absolute;left:560px;top:300px;width:420px;font-family:'Bricolage Grotesque';font-weight:400;font-size:30px;line-height:1.36;color:{P['body']}">This deck was made with a Claude model built by Anthropic. Six Anthropic employees are the donors in this story. No source reports any donor's motive. This deck claims no causation, and no wrongdoing has been alleged in this reporting.</div>
 <div class="lab dk" style="left:{sx(-1.37, -0.24) + 8:.0f}px;top:{sy(-1.37, -0.16, -0.24) + 4:.0f}px">The sourcing</div>
 <div class="lab dk" style="left:{sx(0.15, -0.24) + 8:.0f}px;top:{sy(0.15, -0.16, -0.24) + 4:.0f}px">The conflict</div>

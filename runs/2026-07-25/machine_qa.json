@@ -3,17 +3,12 @@
     {
       "file": "slide-01.html",
       "fails": [],
-      "warns": [
-        "outside safe zone: 'Campaign finance reports made public the' at 80,1200 940x62 (margin 80px)"
-      ]
+      "warns": []
     },
     {
       "file": "slide-02.html",
       "fails": [],
-      "warns": [
-        "outside safe zone: '1.8 M reported since February' at 558,759 473x30 (margin 80px)",
-        "outside safe zone: '100,000 largest single gift' at 613,979 441x30 (margin 80px)"
-      ]
+      "warns": []
     },
     {
       "file": "slide-03.html",
@@ -23,9 +18,7 @@
     {
       "file": "slide-04.html",
       "fails": [],
-      "warns": [
-        "outside safe zone: 'Heilala 1.6 M, 1.4 M of it his own' at 491,816 555x30 (margin 80px)"
-      ]
+      "warns": []
     },
     {
       "file": "slide-05.html",
@@ -59,6 +52,6 @@
     }
   ],
   "fails": 0,
-  "warns": 4,
-  "verdict": "WARN"
+  "warns": 0,
+  "verdict": "PASS"
 }
