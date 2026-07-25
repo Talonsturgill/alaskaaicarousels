@@ -36,9 +36,11 @@ As of this snapshot they agree on everything that governs a run. Scanner PR
 #12 brought the reference in line on the poll loop (a steady 5s with no give-up
 on a slow run, and a two hour net for a hung one), the counters (decided per
 note, so a mixed feed does not drop its kind-less half), the null and non array
-guards on `progress`, the dropped-request guard, and the modal teardown. The
-feed freeze at note six was fixed upstream in PR #10 before this file was ever
-vendored. None of that needs re-fixing on either side.
+guards on `progress`, the dropped-request guard, and the modal teardown. PR #13
+added the `since` cursor to both sides, so each asks scan-result only for notes
+it does not already hold. The feed freeze at note six was fixed upstream in PR
+#10 before this file was ever vendored. None of that needs re-fixing on either
+side.
 
 What still differs is small and cosmetic. Escape closes the modal here and not
 there. Our reduced-motion block covers more. The finished-with-no-html message
@@ -61,10 +63,10 @@ home in that repo, and the check reads nothing else from it.
 | --- | --- |
 | repo | `Talonsturgill/alaska-ai-scanner` |
 | path | `web/scan.html` |
-| last changed at | `18fe7e9d045fd1cf07891d2b3552742ca8f40d91` (branch `main`) |
-| landed by | PR #12, "stop giving up on a slow scan, and seven other things a run can hit" |
-| sha256 | `a35a630fe317e9e11729ab45532f8440ff7f3f5333764e261a862c3ec593a6f5` |
-| bytes | 40102 |
+| last changed at | `fb273788c8a15102ca3ab64c2a8e27b1cc1908ec` (branch `main`) |
+| landed by | PR #13, "send only what is new, so a long watch stops resending the feed" |
+| sha256 | `052a8bfd8f6fd62991be640f914a2ac166dacfb326efdf3e9f5504db3dda7a82` |
+| bytes | 41382 |
 
 Those sha256 rows are not decoration. The check recomputes both and fails if
 either file has been edited here, because a vendored snapshot nobody can trust
