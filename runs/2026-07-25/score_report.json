@@ -1,0 +1,93 @@
+{
+ "run_date": "2026-07-25",
+ "carousel_no": 17,
+ "threshold_applied": 8.0,
+ "threshold_note": "Revision round 3, so the rubric's iteration ladder gives 8.0. The ladder relaxes the threshold only, never the scores, and never the hard-fail cap of 6.9.",
+ "scoring_cycles_run": 2,
+ "raw_weighted_score": 8.22,
+ "weighted_score_as_scored": 6.9,
+ "passes_as_scored": false,
+ "cap_reason": "Two hard fails at cycle 2, both from ONE root cause: art-band labels colliding with Canvas and SVG geometry. Overlapping text on slides 02, 03, 07 and 09, plus a local contrast failure where slide 03's label crossed a near-black incision.",
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "weight": 0.14,
+   "score": 8
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "weight": 0.14,
+   "score": 8
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "weight": 0.16,
+   "score": 6
+  },
+  {
+   "name": "Story-art fusion",
+   "weight": 0.14,
+   "score": 7
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "weight": 0.12,
+   "score": 9
+  },
+  {
+   "name": "Insight density & factual weight",
+   "weight": 0.1,
+   "score": 8
+  },
+  {
+   "name": "Variety vs ledger",
+   "weight": 0.08,
+   "score": 8
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "weight": 0.07,
+   "score": 6
+  },
+  {
+   "name": "Copy: voice & hook",
+   "weight": 0.05,
+   "score": 8
+  },
+  {
+   "name": "Deliverable completeness",
+   "weight": 0.1,
+   "score": 7
+  }
+ ],
+ "weakest_criterion": "Artwork craft and genuine detail (6 of 10, weight 0.16)",
+ "honesty_audit": "Every binding item in claims.json held across both cycles. No donor motive attributed, the company never said to have given, no in-state split drawn (its absence is made a visible design element on slide 02), no donor named on any slide at all, no responder count, no AI-statute claim, no HCR 3 or HB 259, and the August 18 date hedged on slide 05 and again in the first comment. Both mandatory counter-framings shipped loud: c8 as a slide 04 label and base strip, c14 as the deck's largest quotation. c18 stated twice. The single-reporting-source caveat is a full plate on slide 09. The derived figure is labeled ALASKA.AI ARITHMETIC on the slide that uses it. Honest shortfalls: the scale bar did not ship so the money constant is not reader-verifiable, and dropping c26 leaves the record wall at two answers against four blanks.",
+ "disclosure_audit": "Adequate and arguably over-delivered. The conflict is disclosed four times at escalating depth: a fireweed-ruled chip on slide 02 before the reader meets Anthropic in the artwork, a full plate on slide 09 at the same footprint as the sourcing plate and at 11.9:1, its own paragraph in the post body, and the opening block of the first comment. Aftercare tells the maintainer to read it first and decide for himself.",
+ "post_cycle2_fixes": {
+  "note": "The rubric caps scoring at 2 cycles, and both were spent. Hard fails must be fixed regardless, so the following were applied AFTER cycle 2 and verified by the showrunner reading the renders and the 432px thumbs directly, NOT by a third scorer pass. Recorded this way so the record does not overstate its own verification.",
+  "root_cause": "qa.py's collision check is DOM-only, so any label positioned against Canvas or SVG geometry can collide freely and still return PASS. This run's own slide 02 dossier predicted it in risk flag (b) and the prediction came true on four slides across two cycles. Registration tuning cannot fix a class of bug the gate cannot see.",
+  "structural_fix": "Every art-band label now ships on an opaque bone knockout plate by default (the L() helper's plate argument now defaults to True). A bone plate on bone is invisible where nothing crosses it and masks the geometry where something does, which makes the guarantee structural rather than a tuning exercise.",
+  "instances_fixed_and_self_verified": [
+   "Slide 07: the four candidate names no longer read as struck through by their scored slot outlines, and the slots were widened so BERNADETTE WILSON fits. Verified in slide-07-thumb.png at 432px.",
+   "Slide 03: THE RECORD STOPS HERE now sits on a knockout clear of the near-black incision, which also removes the local contrast failure. Verified in slide-03-thumb.png.",
+   "Slide 02: the drilled point's leader rules were dropped clear of the numeral baselines so nothing crosses 100,000. Verified in slide-02-thumb.png.",
+   "Slide 09: both bay heads now carry knockouts so the scotch rules cannot cross their glyphs.",
+   "Slide 06: the fireweed inlay and the gold specular were being CLIPPED AWAY, because a mark at recess depth projects about 56 px lower on screen and marks near the bay's near edge fell outside the opening polygon. Both moved to the bay's far half and both are now visible. A two-part contact shadow was added as a multiply pass over the GL frame, so the hero is grounded like the other nine slides. Verified in slide-06-thumb.png."
+  ],
+  "gates_after_fixes": "render 10/10 OK, 0 errors, 0 warnings. qa.py PASS, 0 fails, 0 warns. caption_check PASS (874 chars, hook 8). style_lint clean. copy_sync_check PASS. PDF vector, 10 pages.",
+  "still_open_and_disclosed": [
+   "Slide 02's checkerboard scale bar did not ship, so the 165.6 px per million constant is not reader-verifiable.",
+   "Slide 06's three money wells did not ship, so the hero argues by symbol rather than by measurement.",
+   "Claim c26 (McGuire on appealable algorithmic decisions) is unused, so the record wall shows two answers against four blanks.",
+   "Slide 09's plate interiors are pale rather than the near-black used elsewhere for 'on the record', so the value grammar wobbles on the disclosure slide.",
+   "The sundial device reads weakly on the early slides; the flow critic called it below perceptual threshold and scored the sequence 7.5."
+  ]
+ },
+ "flow_critic": {
+  "score": 7.5,
+  "sequence_reads_as_one": true,
+  "verdict_at_time": "revise",
+  "must_fixes_applied": 3
+ },
+ "notes_for_the_email": "The deck's criterion arithmetic came to a raw 8.22, comfortably over the 8.0 threshold that applies at this revision round, but the score was capped at 6.9 by two hard fails from one geometry bug. Every cited instance has since been fixed and re-verified at feed scale, and machine QA is a clean PASS with zero warnings. The cap stands in the record because the rubric caps scoring at two cycles and both were spent, so no third scorer pass confirmed the repair. Read that as an honest process limit rather than a hidden defect. What a human should still check before posting: the mono label on slide 04 reading HEILALA 1.6 M, 1.4 M HIS OWN at 100 percent, because a transposed candidate name is the one defect that would be unrecoverable in public. The story itself is sound. Every honesty gate passes, both mandatory counter-framings shipped, the conflict of interest is disclosed four times, the PDF is vector with the title set, and the caption is clean at 874 chars with exactly three hashtags and no links."
+}

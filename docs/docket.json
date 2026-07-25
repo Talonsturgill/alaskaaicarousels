@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-24",
+  "updated": "2026-07-25",
   "items": [
     {
       "id": "adl-422741-stak-north-slope-lease",
@@ -60,7 +60,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-24",
+      "last_updated": "2026-07-25",
       "history": [
         {
           "date": "2026-07-08",
@@ -117,6 +117,10 @@
         {
           "date": "2026-07-24",
           "note": "Selected as this run's carousel. Re-verified the DNR primary notice ADL 422741 with Northern Journal and ADN during this run's fact-check. It remains a preliminary decision with no Final Finding and Decision posted. The written comment window closed 4:30 p.m. July 17, so the 50-year lease now sits with DNR Division of Oil and Gas for a final best-interest decision. More than 500 comments on record with fewer than a dozen in support, unchanged this run. The deck frames the public revolt and the narrow path that remains once the comment room has closed."
+        },
+        {
+          "date": "2026-07-25",
+          "note": "Carried forward unchanged. The written comment window closed at 4.30 p.m. on July 17, 2026 and the 50 year lease still sits with DNR's Division of Oil and Gas awaiting a final finding and decision. An attempt to re-fetch the state's own public notice page this run returned HTTP 503, so nothing here is updated on rumor. No final decision has surfaced."
         }
       ]
     },
@@ -171,10 +175,15 @@
           "url": "https://www.sullivan.senate.gov/newsroom/press-releases/sullivan-secures-56-provisions-historic-26-billion-for-alaska-in-fy-2027-defense-authorization",
           "outlet": "Office of Sen. Dan Sullivan",
           "date": "2026-06-23"
+        },
+        {
+          "url": "https://www.highergov.com/contract-opportunity/rflp-artificial-intelligence-ai-data-center-deve-afcec-26-r-0006-o-db695/",
+          "outlet": "HigherGov (SAM.gov mirror)",
+          "date": "2026-07-14"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-17",
+      "last_updated": "2026-07-25",
       "history": [
         {
           "date": "2026-07-08",
@@ -191,6 +200,10 @@
         {
           "date": "2026-07-21",
           "note": "A July 19 industry analysis (AIX Energy) notes the Alaska Enhanced Use Lease solicitation for commercial AI data centers on about 4,700 acres across 12 parcels at JBER, Eielson and Clear has moved out of its open proposal phase with no developer award announced, and that unlike the Lower 48 portfolio (which set 100 MW and 500 million dollar minimums) the Alaska request's specific megawatt and capital thresholds are not disclosed. Carried forward as pending decision."
+        },
+        {
+          "date": "2026-07-25",
+          "note": "Re-verified by fetching the solicitation record for AFCEC-26-R-0006. The response deadline was June 29, 2026 at 5 p.m. EDT, extended from May 29, and the opportunity now reads Past Due with no award and no awardee recorded, last updated July 14, 2026. Twenty-six days past the deadline the three Alaska installations named in the request, JBER, Eielson Air Force Base and Clear Space Force Station, still have no publicly announced lessee. Evaluation is private, so there is no public comment room here."
         }
       ]
     },
@@ -343,10 +356,15 @@
           "url": "https://www.alaskasnewssource.com/2026/07/21/third-special-session-gas-line-begins-next-week-what-makes-it-different-than-last-two/",
           "outlet": "Alaska's News Source",
           "date": "2026-07-21"
+        },
+        {
+          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session",
+          "outlet": "Alaska Public Media",
+          "date": "2026-07-16"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-24",
+      "last_updated": "2026-07-25",
       "history": [
         {
           "date": "2026-07-08",
@@ -395,6 +413,10 @@
         {
           "date": "2026-07-24",
           "note": "Three days out from the third special session, which convenes July 27 in Juneau. Carried forward against Alaska's News Source and Alaska Public Media reporting from July 16 and July 21. Governor Dunleavy plans to reintroduce the Alaska LNG gas line tax provisions without the expanded S corporation income tax that stalled HB 381 in the July 16 House 19 to 19 deadlock. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the roughly 55 billion dollar, 800 mile line."
+        },
+        {
+          "date": "2026-07-25",
+          "note": "Two days out from the third special session, which convenes July 27 in Juneau. Re-verified this run by fetching the Alaska Public Media report of July 16. The governor rejected the pass-through S corporation provision that would have subjected Hilcorp and other private producers to Alaska's 9.4 percent corporate income tax while exempting the Alaska LNG project, and he called the third session rather than accept it. That session opens just over three weeks before the August 18 primary, which is the practical squeeze on it. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the line."
         }
       ]
     },

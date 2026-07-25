@@ -61,7 +61,8 @@ HEAD = """<!doctype html><html><head><meta charset="utf-8">
     line-height:1.25;white-space:nowrap}
   .lab.dk{color:%(label)s}
   .lab.sm{font-size:24px}
-  .plate{background:rgba(244,239,228,.90);padding:2px 7px;border-radius:1px}
+  .plate{background:#F2ECE0;padding:3px 9px;border-radius:1px;
+    box-decoration-break:clone}
   .chip{position:absolute;font-family:"JetBrains Mono";font-weight:500;
     font-size:24px;letter-spacing:.07em;text-transform:uppercase;color:%(label)s;
     border-top:1.25px solid %(hair)s;padding-top:7px;line-height:1.35}
@@ -431,6 +432,20 @@ async function glBays(cx) {
   }
   if (ok) {
     cx.drawImage(off, 0, 0, 1080, 1350);
+    /* the GL frame owns the canvas, so the two-part contact shadow that grounds
+       the slab on every other slide has to be laid over it as a multiply pass */
+    const N = [[PX(-SLABX, SLABZ), PY(-SLABX, -SLABTH, SLABZ)],
+               [PX(SLABX, SLABZ), PY(SLABX, -SLABTH, SLABZ)]];
+    const len = SLABTH * SHMUL, dy = S * MZ * len * 3.4;
+    cx.save();
+    cx.globalCompositeOperation = 'multiply';
+    cx.globalAlpha = 0.20; cx.filter = 'blur(28px)';
+    quad(cx, [[N[0][0] - 10, N[0][1]], [N[1][0] - 10, N[1][1]],
+              [N[1][0] - 26, N[1][1] + dy], [N[0][0] - 26, N[0][1] + dy]], P.shade);
+    cx.filter = 'blur(6px)'; cx.globalAlpha = 0.34;
+    quad(cx, [[N[0][0] - 4, N[0][1]], [N[1][0] - 4, N[1][1]],
+              [N[1][0] - 12, N[1][1] + dy * 0.30], [N[0][0] - 12, N[0][1] + dy * 0.30]], P.shade);
+    cx.restore();
   } else {
     /* DESIGNED fallback, geometrically identical because the camera is
        orthographic: the same bay, relit on the CPU by akrelief. */
@@ -477,8 +492,13 @@ def slide(n, *, az, shmul, late, mode="canvas", cfg_extra=None, dom="",
 # =============================================================== SLIDE 01 ====
 
 
-def L(x, z, dx=0, dy=0, cls="lab dk sm", txt="", plate=False):
-    """place a label at a world point on the slab's top face."""
+def L(x, z, dx=0, dy=0, cls="lab dk sm", txt="", plate=True):
+    """Place a label at a world point on the slab's top face.
+
+    plate defaults to TRUE: every art-band label carries a knockout so no glyph
+    can ever be crossed by a groove edge, a scored outline or a leader rule.
+    qa.py cannot see canvas geometry, so this is a structural guarantee rather
+    than a registration tuning exercise."""
     inner = f'<span class="plate">{txt}</span>' if plate else txt
     return (f'<div class="{cls}" style="left:{sx(x, z) + dx:.0f}px;'
             f'top:{sy(x, 0, z) + dy:.0f}px">{inner}</div>\n')
@@ -540,10 +560,10 @@ function extraArt(cx) {
   cx.beginPath(); cx.moveTo(dpx - 17, dpy); cx.lineTo(dpx, dpy + 9);
   cx.lineTo(dpx + 17, dpy); cx.stroke();
   cx.strokeStyle = P.body; cx.lineWidth = 1.25;
-  cx.beginPath(); cx.moveTo(dpx + 14, dpy - 4); cx.lineTo(dpx + 34, dpy - 24);
-  cx.lineTo(dpx + 40, dpy - 24); cx.stroke();
-  cx.beginPath(); cx.moveTo(dpx + 14, dpy + 4); cx.lineTo(dpx + 34, dpy + 4);
-  cx.lineTo(1036, dpy + 4); cx.stroke();
+  cx.beginPath(); cx.moveTo(dpx + 14, dpy - 4); cx.lineTo(dpx + 34, dpy - 30);
+  cx.lineTo(dpx + 40, dpy - 30); cx.stroke();
+  cx.beginPath(); cx.moveTo(dpx + 14, dpy + 6); cx.lineTo(dpx + 34, dpy + 30);
+  cx.lineTo(1030, dpy + 30); cx.stroke();
   cx.fillStyle = P.body; cx.beginPath(); cx.arc(dpx, dpy, 3.4, 0, 6.2832); cx.fill();
   cx.restore();
 
@@ -698,15 +718,15 @@ function extraArt(cx) {
      record since the cover, so the bay labelled COMPELLED BY LAW must carry it. */
   cx.save();
   quad(cx, face(-1.40, -0.06, -0.62, 0.62, 0)); cx.clip();
-  quad(cx, face(-1.30, -0.72, -0.30, -0.10, -0.255), P.fireweed);
+  quad(cx, face(-1.30, -0.74, -0.46, -0.28, -0.26), P.fireweed);
   cx.restore();
   /* the hero's one gold specular, on the cut bay's floor, after the fireweed */
   cx.save();
   quad(cx, face(-1.40, -0.06, -0.62, 0.62, 0)); cx.clip();
   cx.strokeStyle = P.gold; cx.lineWidth = 3.0; cx.globalAlpha = 0.9;
   cx.beginPath();
-  cx.moveTo(PX(-1.30, 0.30), PY(-1.30, -0.255, 0.30));
-  cx.lineTo(PX(-0.50, 0.30), PY(-0.50, -0.255, 0.30));
+  cx.moveTo(PX(-1.30, -0.12), PY(-1.30, -0.26, -0.12));
+  cx.lineTo(PX(-0.56, -0.12), PY(-0.56, -0.26, -0.12));
   cx.stroke(); cx.restore();
   /* the SCORED right bay, ruled and never cut. No interior colour of any kind. */
   cx.save();
@@ -746,7 +766,7 @@ Z7, ZH7, ZG7 = -1.03, 0.26, 0.10
 s7_scored, s7_wells = [], []
 for i, (nm, money) in enumerate(BLANKS):
     z = Z7 + i * (ZH7 + ZG7)
-    s7_scored.append(dict(x0=-1.34, x1=-0.60, z0=z, z1=z + ZH7, dot=True))
+    s7_scored.append(dict(x0=-1.34, x1=-0.52, z0=z, z1=z + ZH7, dot=True))
     if money:
         s7_wells.append(dict(x0=-0.50, x1=-0.50 + money * W_PER_M, z0=z + 0.04,
                              z1=z + ZH7 - 0.05, d=0.09, gold=True))
@@ -861,8 +881,8 @@ function afterGrade(cx) {
     data-fit='{{"min":72,"max":96,"maxLines":1}}'>Who is telling you this.</h1>
 <div style="position:absolute;left:80px;top:300px;width:420px;font-family:'Bricolage Grotesque';font-weight:400;font-size:30px;line-height:1.36;color:{P['body']}">One article by one reporter, published July 23 2026 by the Anchorage Daily News and republished July 24 by Alaska Public Media. One reporting source, not two. The candidate AI positions come from a separate June questionnaire and are labeled background.</div>
 <div style="position:absolute;left:560px;top:300px;width:420px;font-family:'Bricolage Grotesque';font-weight:400;font-size:30px;line-height:1.36;color:{P['body']}">This deck was made with a Claude model built by Anthropic. Six Anthropic employees are the donors in this story. No source reports any donor's motive. This deck claims no causation, and no wrongdoing has been alleged in this reporting.</div>
-<div class="lab dk" style="left:{sx(-1.37, -0.24) + 8:.0f}px;top:{sy(-1.37, -0.16, -0.24) + 4:.0f}px">The sourcing</div>
-<div class="lab dk" style="left:{sx(0.15, -0.24) + 8:.0f}px;top:{sy(0.15, -0.16, -0.24) + 4:.0f}px">The conflict</div>
+<div class="lab dk" style="left:{sx(-1.37, -0.24) + 8:.0f}px;top:{sy(-1.37, -0.16, -0.24) + 4:.0f}px"><span class="plate">The sourcing</span></div>
+<div class="lab dk" style="left:{sx(0.15, -0.24) + 8:.0f}px;top:{sy(0.15, -0.16, -0.24) + 4:.0f}px"><span class="plate">The conflict</span></div>
 <div class="basemono">This disclosure also rides in the first comment.</div>
 """)
 
