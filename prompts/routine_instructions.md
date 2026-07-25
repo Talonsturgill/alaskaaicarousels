@@ -405,6 +405,17 @@ JSON in its final message, which YOU persist to
    alaska-ai-scanner repo and is NOT this routine's concern. Never remove
    them, never edit docs/scan/ by hand, and if site_build.py ever fails
    inside scan_page() or scan_html(), fix the build, do not drop the page.
+2a. Then run `python scripts/scanner_sync_check.py`. The scan page and the
+   routine that feeds it are two hand-maintained sides of one contract, and
+   this run is about to ship whatever the page currently says. The check runs
+   the page's own counter block against probe feeds and compares the phase
+   list, the note kinds and the wiring constants against the vendored
+   contract. Exit 0 ships. Exit 1 is real drift: it names what disagrees, and
+   the fix goes in scan_page(), never in docs/. Exit 2 means it could not look
+   (no node, a missing vendored file, the counter markers gone); treat that as
+   a FAIL too, because a check that cannot see is not a pass. Report the row
+   in GATE STATUS either way, honestly. Do NOT hand-edit the emitted page to
+   turn it green.
 3. Subscriber alerts: run `python scripts/docket_alerts.py --date <date>`.
    It sends AT MOST one Buttondown email per run, only for real docket
    events (a comment window newly open, a deadline or vote inside 48

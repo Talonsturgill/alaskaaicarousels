@@ -2095,20 +2095,27 @@ every observation.</p>
     // single flag was wrong: one kinded note flipped it for everything, so
     // every kind-less note fell out of the totals at once and a tile could
     // drop from 14 to 0 mid run while its 14 lines sat in the feed below.
+    //
+    // sync:counters begin
+    // scripts/scanner_sync_check.py cuts this block out and RUNS it against
+    // probe feeds, so keep it self contained: read only `notes`, declare
+    // everything else, and leave nPages, nInd and nGate holding the three tile
+    // values. Rename any of that and the check tells you which one it lost.
     var nPages = 0, nInd = 0, nGate = 0;
-    for (i = 0; i < notes.length; i++) {
-      var kd = notes[i].kind;
+    for (var ci = 0; ci < notes.length; ci++) {
+      var kd = notes[ci].kind;
       if (kd) {
         if (kd === "page")        { nPages++; }
         else if (kd === "search") { nInd++; }
         else if (kd === "round")  { nGate++; }
       } else {
-        var ph = notes[i].phase, nt = notes[i].note || "";
+        var ph = notes[ci].phase, nt = notes[ci].note || "";
         if (ph === "footprint" && /^reading /i.test(nt)) { nPages++; }
         else if (ph === "industry") { nInd++; }
         else if (ph === "critic")   { nGate++; }
       }
     }
+    // sync:counters end
     function put(id, v){ var e = document.getElementById(id); if (e) { e.textContent = v; } }
     put("sw-pages", nPages); put("sw-ind", nInd); put("sw-gate", nGate);
 
