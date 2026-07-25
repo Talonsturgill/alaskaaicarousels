@@ -193,33 +193,78 @@ PIN_COLOR = {"open": "#3ce6b4", "indirect": "#8da2be", "closed": "#f2a43a"}
 GRID_TIERS = [("t1", 69.0, 138.0), ("t2", 138.0, 230.0), ("t3", 230.0, 1e9)]
 
 
-def grid_available():
-    """Whether the transmission asset is present. The page asks before it draws
-    a toggle for a layer that would not appear."""
-    return (REPO / "assets/geo/ak-transmission-69kv.geo.json").exists()
+LAYER_FILES = {
+    "grid": "ak-transmission-69kv.geo.json",
+    "gen": "ak-generation-20mw.geo.json",
+    "taps": "ak-taps.geo.json",
+}
+
+
+def layer_data(name):
+    """A layer's asset, or None. A missing context layer must never break the
+    docket, so every caller treats absence as "do not draw and do not offer"."""
+    src = REPO / "assets/geo" / LAYER_FILES[name]
+    if not src.exists():
+        return None
+    try:
+        return json.loads(src.read_text())
+    except (ValueError, OSError):
+        return None
+
+
+def available_layers():
+    """Which layers can actually be drawn. The page asks before it offers a
+    toggle for something that would not appear."""
+    return [k for k in ("grid", "gen", "taps") if layer_data(k)]
+
+
+def _polyline(segs, T):
+    return " ".join("M" + " L".join("%.1f,%.1f" % T(albers(x, y)) for x, y in seg)
+                    for seg in segs if len(seg) >= 2)
 
 
 def grid_paths(T):
-    """Transmission segments projected through the map's own transform, grouped
-    into voltage tiers. Returns [(tier, path_d)], or [] when the asset is not
-    there, because a missing decorative layer must never break the docket."""
-    src = REPO / "assets/geo/ak-transmission-69kv.geo.json"
-    if not src.exists():
+    """Transmission projected through the map's own transform, split into voltage
+    tiers so weight can carry voltage."""
+    d = layer_data("grid")
+    if not d:
         return []
-    try:
-        lines = json.loads(src.read_text()).get("lines", [])
-    except (ValueError, OSError):
-        return []
+    lines = d.get("lines", [])
     out = []
     for tier, lo, hi in GRID_TIERS:
         segs = [L["pts"] for L in lines if lo <= L.get("kv", 0) < hi]
-        if not segs:
-            continue
-        d = " ".join(
-            "M" + " L".join("%.1f,%.1f" % T(albers(x, y)) for x, y in seg)
-            for seg in segs)
-        out.append((tier, d))
+        if segs:
+            out.append((tier, _polyline(segs, T)))
     return out
+
+
+def taps_path(T):
+    d = layer_data("taps")
+    return _polyline(d.get("lines", []), T) if d else ""
+
+
+def generation_marks(T):
+    """Plants as circles with area proportional to nameplate capacity, which is
+    the honest encoding: doubling the megawatts doubles the ink, where doubling
+    the radius would quadruple it and overstate the big plants.
+
+    Floored at 3.2 so the smallest kept plant is still a target a thumb can hit
+    on a phone, since most readers are on one."""
+    d = layer_data("gen")
+    if not d:
+        return ""
+    out = []
+    for p in d.get("plants", []):
+        x, y = T(albers(p["at"][0], p["at"][1]))
+        # Scaled so the biggest plant in Alaska, Sullivan at 309 MW, lands near
+        # 16px rather than 24. At 24 the Cook Inlet plants merged into one beige
+        # mass that swallowed two pins, which is the opposite of informative.
+        r = max(2.8, 0.92 * math.sqrt(p.get("mw", 0)))
+        out.append('<circle class="gen gen-%s" cx="%.1f" cy="%.1f" r="%.1f"><title>%s, '
+                   '%g MW, %s</title></circle>'
+                   % (esc(str(p.get("src", "other")).replace(" ", "-")), x, y, r,
+                      esc(p.get("n", "")), p.get("mw", 0), esc(p.get("src", ""))))
+    return "".join(out)
 
 
 def map_svg(ordered_items, w=1000, h=620):
@@ -335,6 +380,8 @@ def map_svg(ordered_items, w=1000, h=620):
                     f'fill="{mc}">{n}</text></a>')
     pins = leads + badges + dots
     grid = "".join(f'<path class="gx gx-{tier}" d="{d}"/>' for tier, d in grid_paths(T))
+    taps = f'<path class="tp" d="{taps_path(T)}"/>' if taps_path(T) else ""
+    gen = generation_marks(T)
     caption = "".join(
         f'<a class="mapkey" href="#{esc(it["id"])}"><b class="k-{it["public_access"]}">{n}</b>'
         f'<span>{esc(it["location"]["name"])}</span></a>'
@@ -351,6 +398,8 @@ def map_svg(ordered_items, w=1000, h=620):
 </defs>
 <path d="{grat_d}" fill="none" stroke="rgba(110,165,255,0.07)" stroke-width="1"/>
 <path d="{coast_d}" fill="url(#landfill)" stroke="#5ac8f0" stroke-width="1.5" filter="url(#coastglow)"/>
+<g class="lyr lyr-taps" aria-hidden="true">{taps}</g>
+<g class="lyr lyr-gen">{gen}</g>
 <g class="lyr lyr-grid" aria-hidden="true">{grid}</g>
 {''.join(pins)}
 </svg>"""

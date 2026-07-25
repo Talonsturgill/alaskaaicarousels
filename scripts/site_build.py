@@ -598,26 +598,53 @@ box-shadow:0 0 12px rgba(255,199,44,.85);animation:heartbeat 2.4s ease-in-out in
 .gx-t1{stroke-width:1.1;opacity:.40;}
 .gx-t2{stroke-width:1.9;opacity:.56;}
 .gx-t3{stroke-width:3;opacity:.78;}
+/* TAPS is oil, not power, so it is dashed rather than another solid thread that
+   would read as more grid. Copper, NOT the amber the closed pins use: the first
+   pass made this #f2a43a and the pipeline read as a line of settled decisions. */
+.tp{fill:none;stroke:#b5794a;stroke-width:2.2;opacity:.75;stroke-dasharray:7 5;
+stroke-linecap:round;}
+/* Generation. Area is megawatts, so a plant twice the size gets twice the ink,
+   where doubling the radius would quadruple it and flatter the big plants.
+   One colour, not one per fuel: this map already asks a reader to hold three
+   pin colours and a grid, and fuel type is in the tooltip where it belongs. */
+.gen{fill:#a78bd0;fill-opacity:.26;stroke:#c9b4ee;stroke-width:1;stroke-opacity:.6;}
 .lyr{transition:opacity .4s ease;}
 .lyrbox{position:absolute;width:1px;height:1px;opacity:0;margin:0;
 clip-path:inset(50%);pointer-events:none;}
-.lyr-grid{opacity:0;}
-.lyrbox:checked ~ svg .lyr-grid{opacity:1;}
-.lyrbar{display:flex;align-items:baseline;gap:14px 18px;flex-wrap:wrap;padding:12px 2px 0;}
+.lyr-grid,.lyr-gen,.lyr-taps{opacity:0;pointer-events:none;}
+#lyr-grid:checked ~ svg .lyr-grid,
+#lyr-gen:checked ~ svg .lyr-gen,
+#lyr-taps:checked ~ svg .lyr-taps{opacity:1;}
+#lyr-gen:checked ~ svg .lyr-gen{pointer-events:auto;}
+.lyrbar{padding:14px 2px 0;}
+.lyrchips{display:flex;gap:10px;flex-wrap:wrap;}
 .lyrbar label{display:inline-flex;align-items:center;gap:9px;cursor:pointer;flex:none;
 font-family:JBMono,monospace;font-size:11px;letter-spacing:.14em;color:var(--mute);
-border:1px solid var(--line);border-radius:999px;padding:7px 15px 7px 11px;
+border:1px solid var(--line);border-radius:999px;padding:0 16px 0 12px;
+min-height:44px;-webkit-tap-highlight-color:transparent;
 transition:color .2s,border-color .2s,background .2s;}
 .lyrbar label:hover{color:var(--snow);border-color:#2c5876;}
 .lyrbar label .sw{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;
 flex:none;transition:background .2s,box-shadow .2s;}
-.lyrbox:checked ~ .lyrbar label[for="lyr-grid"]{color:var(--snow);border-color:#3a6f96;
+#lyr-grid:checked ~ .lyrbar label[for="lyr-grid"],
+#lyr-gen:checked ~ .lyrbar label[for="lyr-gen"],
+#lyr-taps:checked ~ .lyrbar label[for="lyr-taps"]{color:var(--snow);border-color:#3a6f96;
 background:rgba(90,200,240,.07);}
-.lyrbox:checked ~ .lyrbar label[for="lyr-grid"] .sw{background:#dcebff;
+#lyr-grid:checked ~ .lyrbar label[for="lyr-grid"] .sw{background:#dcebff;
 box-shadow:0 0 9px rgba(220,235,255,.8);}
-.lyrbox:focus-visible ~ .lyrbar label[for="lyr-grid"]{outline:2px solid var(--gold);
-outline-offset:3px;}
-.lyrnote{font-size:12px;line-height:1.55;color:var(--mute);max-width:62ch;}
+#lyr-gen:checked ~ .lyrbar label[for="lyr-gen"] .sw{background:#c9b4ee;
+box-shadow:0 0 9px rgba(201,180,238,.8);}
+#lyr-taps:checked ~ .lyrbar label[for="lyr-taps"] .sw{background:#c98a5c;
+box-shadow:0 0 9px rgba(201,138,92,.8);}
+.lyrbox:focus-visible ~ .lyrbar label{outline:2px solid var(--gold);outline-offset:3px;}
+/* Each note appears only while its own layer is on, so the bar stays one line
+   of chips until a reader actually asks what they are looking at. */
+.lyrnotes{padding-top:2px;}
+.lyrnote{display:none;font-size:12px;line-height:1.6;color:var(--mute);max-width:70ch;
+padding-top:10px;}
+#lyr-grid:checked ~ .lyrbar .n-grid,
+#lyr-gen:checked ~ .lyrbar .n-gen,
+#lyr-taps:checked ~ .lyrbar .n-taps{display:block;}
 @media (prefers-reduced-motion:reduce){.lyr{transition:none;}}
 .mapcap{display:flex;gap:10px 26px;flex-wrap:wrap;padding:14px 2px 0;}
 .mapkey{display:flex;align-items:center;gap:9px;font-family:JBMono,monospace;font-size:12.5px;
@@ -1201,19 +1228,36 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 def docket_page(today, site_url, docket):
     items, live, done, dated, live_sorted = docket
     svg, mapcap = db.map_svg(live_sorted + done)
-    # Layer toggles, done with a real checkbox and a real label rather than
-    # script. The checkbox has to come BEFORE the svg in the markup, because
-    # the whole mechanism is the sibling combinator, and it carries `checked`
-    # so the grid is on by default. A reader with JS off still gets the toggle.
-    layerbox, layerbar = "", ""
-    if db.grid_available():
-        layerbox = '<input class="lyrbox" type="checkbox" id="lyr-grid" checked>'
-        layerbar = ("""<div class="lyrbar">
-<label for="lyr-grid"><span class="sw"></span>TRANSMISSION GRID</label>
-<span class="lyrnote">69 kV and above, from the Alaska Energy Authority. Shown because
-almost every decision here is a decision about this grid. Not authoritative and not
-a complete map of every line.</span>
-</div>""")
+    # Layer toggles, done with real checkboxes and real labels rather than
+    # script. Every checkbox has to come BEFORE the svg in the markup, because
+    # the whole mechanism is the sibling combinator. The grid carries `checked`
+    # so it is on by default; the other two start off, so the map a reader
+    # meets is still mostly pins. Works with the keyboard, works with JS off.
+    LAYER_UI = [
+        ("grid", "GRID", True,
+         "Transmission at 69 kV and up. The raw state layer is 93 percent local "
+         "distribution from one utility, so it is cut at the transmission floor."),
+        ("gen", "GENERATION", False,
+         "Power plants of 20 MW and up. That is 31 of Alaska's 152 plants but 78 "
+         "percent of its capacity. Circle area is nameplate megawatts."),
+        ("taps", "PIPELINE", False,
+         "The Trans Alaska Pipeline System. Gas lines are left out, being 96 "
+         "percent sub-kilometre distribution with nothing to sort them by."),
+    ]
+    have = db.available_layers()
+    ui = [row for row in LAYER_UI if row[0] in have]
+    layerbox = "".join(
+        '<input class="lyrbox" type="checkbox" id="lyr-%s"%s>' % (k, " checked" if on else "")
+        for k, _, on, _ in ui)
+    layerbar = ""
+    if ui:
+        chips = "".join(
+            '<label for="lyr-%s"><span class="sw"></span>%s</label>' % (k, lab)
+            for k, lab, _, _ in ui)
+        notes = "".join('<span class="lyrnote n-%s">%s</span>' % (k, note)
+                        for k, _, _, note in ui)
+        layerbar = ('<div class="lyrbar"><div class="lyrchips">%s</div>'
+                    '<div class="lyrnotes">%s</div></div>' % (chips, notes))
     n_open = sum(1 for it in live if it["public_access"] == "open")
     nearest = db.next_date(dated[0], today) if dated else None
     cards = "".join(db.card_html(it, today) for it in dated[:6])
