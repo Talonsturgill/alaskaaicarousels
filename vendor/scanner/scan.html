@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alaska.Ai Bottleneck Scanner</title>
+<style>
+  :root { color-scheme: dark; --bg:#02060F; --panel:#0E2138; --snow:#F4F8FF;
+    --muted:#AFC6C2; --dim:#8FA3BE; --fine:#6E85A4; --gold:#FFC72C;
+    --ice:#5AC8F0; --green:#3CE6B4; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--snow);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased; }
+  .aurora { position:fixed; inset:0 0 auto 0; height:65vh; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(60% 55% at 18% 0%, rgba(60,230,180,0.16), transparent 70%),
+      radial-gradient(55% 50% at 78% 8%, rgba(90,200,240,0.14), transparent 72%),
+      radial-gradient(40% 40% at 50% 0%, rgba(255,199,44,0.06), transparent 70%);
+    animation:drift 22s ease-in-out infinite alternate;
+    opacity:var(--aur,1); transition:opacity 1.2s ease; }
+  @keyframes drift { from { transform:translate3d(-2%,0,0) scale(1); }
+                     to   { transform:translate3d(3%,1.5%,0) scale(1.06); } }
+  .wrap { max-width:680px; margin:0 auto; padding:56px 22px 80px; position:relative; z-index:1; }
+  .wrap.run { max-width:780px; padding-top:38px; }
+  .wrap.wide { max-width:900px; padding-top:24px; }
+  .kick { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12px;
+    letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; }
+  h1 { font-family:Georgia,serif; font-weight:600; font-size:clamp(27px,5vw,36px);
+    line-height:1.16; margin:14px 0 10px; letter-spacing:-0.01em; }
+  .lead { color:var(--muted); font-size:16.5px; margin:0 0 12px; }
+  .honest { color:var(--dim); font-size:14px; margin:0 0 28px; }
+  form { display:flex; flex-direction:column; gap:14px; }
+  label { font-size:14px; color:var(--muted); margin-bottom:-6px; }
+  input, textarea { background:var(--panel); color:var(--snow);
+    border:1px solid rgba(90,200,240,0.3); border-radius:9px; padding:13px 14px;
+    font-size:16px; font-family:inherit; width:100%; }
+  input:focus, textarea:focus { outline:0; border-color:var(--green); }
+  textarea { min-height:70px; resize:vertical; }
+  button { background:var(--gold); color:var(--bg); border:0; border-radius:9px;
+    padding:14px 20px; font-weight:700; font-size:16px; cursor:pointer; margin-top:4px; }
+  button:hover { background:#ffd45c; }
+  button:disabled { opacity:0.6; cursor:default; }
+  .fine { color:var(--fine); font-size:12px; margin-top:10px; }
+  .err { color:#FF9E9E; font-size:14px; min-height:18px; }
+  a { color:var(--ice); }
+
+  /* ---------------- mission control ---------------- */
+  .mc { display:flex; align-items:center; gap:20px; margin:10px 0 26px; flex-wrap:wrap; }
+  .ring { position:relative; width:96px; height:96px; flex:none; }
+  .ring svg { transform:rotate(-90deg); }
+  .ring .trk { stroke:rgba(255,255,255,0.08); }
+  .ring .bar { stroke:url(#g1); stroke-linecap:round;
+    transition:stroke-dashoffset 0.9s cubic-bezier(.3,.9,.3,1); }
+  .ring .pct { position:absolute; inset:0; display:flex; align-items:center;
+    justify-content:center; font-family:ui-monospace,Menlo,monospace;
+    font-size:21px; font-weight:700; color:var(--green);
+    font-variant-numeric:tabular-nums; }
+  .mc-txt { flex:1; min-width:0; }
+  .mc-txt h2 { font-family:Georgia,serif; font-size:25px; margin:0 0 4px; font-weight:600; }
+  .mc-txt p { color:var(--muted); margin:0; font-size:14.5px; }
+  .mc-txt .clock { font-family:ui-monospace,Menlo,monospace; font-size:12px;
+    color:var(--fine); letter-spacing:0.05em; margin-top:6px; }
+
+  /* agent roster */
+  .rosterhd { font-family:ui-monospace,Menlo,monospace; font-size:10px;
+    letter-spacing:0.16em; text-transform:uppercase; color:var(--fine);
+    margin:0 0 8px; }
+  .roster { display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin:0 0 20px; }
+  .agent { background:rgba(14,33,56,0.6); border:1px solid rgba(255,255,255,0.07);
+    border-radius:11px; padding:12px 11px; position:relative; overflow:hidden;
+    transition:border-color 0.4s, background 0.4s; }
+  .agent .dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.2);
+    display:inline-block; margin-right:7px; vertical-align:middle; }
+  .agent .nm { font-size:12.5px; font-weight:600; color:var(--dim); display:inline; }
+  .agent .role { display:block; font-size:11px; color:var(--fine); margin-top:6px;
+    line-height:1.35; }
+  .agent.work { border-color:rgba(60,230,180,0.45); background:rgba(60,230,180,0.07); }
+  .agent.work .dot { background:var(--green); animation:pulse 1.3s ease-in-out infinite; }
+  .agent.work .nm { color:var(--green); }
+  .agent.work::after { content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
+    background:linear-gradient(90deg,transparent,var(--green),transparent);
+    background-size:60% 100%; animation:sweep 1.5s linear infinite; }
+  @keyframes sweep { from { background-position:-60% 0; } to { background-position:160% 0; } }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); }
+                     50% { opacity:0.45; transform:scale(0.8); } }
+  .agent .tick { display:none; }
+  .agent.done { border-color:rgba(90,200,240,0.28); }
+  .agent.done .dot { background:var(--ice); }
+  .agent.done .nm { color:var(--muted); }
+  .agent.done .tick { display:block; position:absolute; top:10px; right:11px;
+    color:var(--ice); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    font-family:ui-monospace,Menlo,monospace; }
+
+  /* the rink */
+  .rink { position:relative; height:200px; margin:0 0 8px; border-radius:14px;
+    background:linear-gradient(180deg, rgba(90,200,240,0.07), rgba(2,6,15,0) 70%);
+    border:1px solid rgba(255,255,255,0.06); overflow:hidden; }
+  .ice { position:absolute; left:0; right:0; bottom:0; height:48px;
+    background:linear-gradient(180deg, rgba(244,248,255,0.10), rgba(244,248,255,0.03)); }
+  .score { position:absolute; top:11px; left:0; right:0; text-align:center;
+    font-family:ui-monospace,Menlo,monospace; font-size:10.5px; letter-spacing:0.16em;
+    color:var(--fine); text-transform:uppercase; }
+  .score b { color:var(--gold); }
+  .bear { position:absolute; bottom:30px; width:112px; height:104px; transform-origin:60% 100%; }
+  .bear.a { left:33%; animation:swipeA 2.4s ease-in-out infinite; }
+  .bear.b { right:33%; animation:swipeB 2.4s ease-in-out infinite; transform:scaleX(-1); }
+  @keyframes swipeA {
+    0%,100% { transform:translateX(0) rotate(0deg); }
+    42%     { transform:translateX(16px) rotate(7deg); }
+    54%     { transform:translateX(9px) rotate(2deg); } }
+  @keyframes swipeB {
+    0%,100% { transform:scaleX(-1) translateX(0) rotate(0deg); }
+    46%     { transform:scaleX(-1) translateX(16px) rotate(7deg); }
+    58%     { transform:scaleX(-1) translateX(9px) rotate(2deg); } }
+  .pow { position:absolute; left:50%; top:76px; transform:translateX(-50%) scale(0);
+    font-family:ui-monospace,Menlo,monospace; font-weight:700; font-size:16px;
+    color:var(--gold); letter-spacing:0.08em; animation:pow 2.4s ease-in-out infinite; }
+  @keyframes pow {
+    0%,38% { transform:translateX(-50%) scale(0); opacity:0; }
+    48%    { transform:translateX(-50%) scale(1.15); opacity:1; }
+    64%    { transform:translateX(-50%) scale(1); opacity:0.9; }
+    78%,100% { transform:translateX(-50%) scale(0.6); opacity:0; } }
+  .flake { position:absolute; width:3px; height:3px; background:#F4F8FF; border-radius:50%;
+    opacity:0.5; animation:fall linear infinite; }
+  @keyframes fall { from { transform:translateY(-12px); } to { transform:translateY(210px); } }
+  .quip { text-align:center; color:var(--muted); font-size:15px; min-height:46px;
+    padding:8px 10px 0; transition:opacity 0.4s; }
+
+  /* aurora curtain behind the bears */
+  .curtain { position:absolute; inset:0; width:100%; height:100%; opacity:0.38; }
+  .curtain path { animation:wave 14s ease-in-out infinite alternate; }
+  .curtain path:nth-child(2) { animation-duration:19s; animation-direction:alternate-reverse; }
+  @keyframes wave { from { transform:translateX(-4%) scaleY(0.92); }
+                    to   { transform:translateX(5%) scaleY(1.1); } }
+
+  /* live stat tiles, every number derived from the feed itself */
+  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin:14px 0 0; }
+  .stat { background:rgba(14,33,56,0.5); border:1px solid rgba(255,255,255,0.06);
+    border-radius:10px; padding:11px 10px; text-align:center; }
+  .stat b { display:block; font-family:ui-monospace,Menlo,monospace; font-size:22px;
+    color:var(--ice); font-variant-numeric:tabular-nums; line-height:1.1; }
+  .stat span { display:block; font-size:10px; color:var(--fine); margin-top:5px;
+    text-transform:uppercase; letter-spacing:0.09em; }
+
+  /* the teaching card, so the wait sells the honesty */
+  .teach { margin:16px 0 0; padding:16px 18px; border-radius:12px;
+    background:rgba(14,33,56,0.45); border:1px solid rgba(255,255,255,0.07); }
+  .teach .hd { font-family:ui-monospace,Menlo,monospace; font-size:10px;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--fine); }
+  .teach .chips { display:flex; gap:7px; flex-wrap:wrap; margin:10px 0 10px; }
+  .chip { font-size:11px; letter-spacing:0.05em; text-transform:uppercase;
+    border:1px solid rgba(255,255,255,0.14); color:var(--fine);
+    border-radius:999px; padding:4px 11px; transition:all 0.45s; }
+  .chip.on { border-color:var(--c); color:var(--c); background:rgba(255,255,255,0.04); }
+  .teach .line { color:var(--muted); font-size:14.5px; min-height:42px;
+    transition:opacity 0.4s; margin:0; }
+
+  .ring.flash .bar { filter:drop-shadow(0 0 7px rgba(60,230,180,0.85)); }
+
+  /* terminal feed */
+  .term { background:rgba(2,6,15,0.55); border:1px solid rgba(255,255,255,0.07);
+    border-radius:11px; padding:6px 14px 10px; margin-top:6px; }
+  .term .hd { font-family:ui-monospace,Menlo,monospace; font-size:10px;
+    letter-spacing:0.16em; color:var(--fine); text-transform:uppercase;
+    padding:8px 0 6px; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .term .ln { display:flex; gap:12px; padding:7px 0; font-size:14px; color:var(--dim);
+    font-family:ui-monospace,Menlo,Consolas,monospace; animation:slidein 0.4s ease; }
+  @keyframes slidein { from { opacity:0; transform:translateY(-4px); } }
+  .term .ln:last-child { color:var(--snow); }
+  .term .ln:last-child .txt::after { content:"_"; color:var(--green);
+    animation:blink 1.1s step-end infinite; margin-left:3px; }
+  @keyframes blink { 50% { opacity:0; } }
+  .term .t { color:var(--ice); white-space:nowrap; font-size:12.5px; padding-top:1px; }
+
+  /* email modal */
+  .scrim { position:fixed; inset:0; background:rgba(2,6,15,0.75); z-index:50;
+    display:flex; align-items:center; justify-content:center; padding:20px;
+    animation:fade 0.25s ease; backdrop-filter:blur(3px); }
+  @keyframes fade { from { opacity:0; } to { opacity:1; } }
+  .modal { background:var(--panel); border:1px solid rgba(60,230,180,0.3);
+    border-radius:14px; padding:26px; max-width:430px; width:100%;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5); animation:pop 0.28s cubic-bezier(.2,.9,.3,1.3); }
+  @keyframes pop { from { transform:translateY(14px) scale(0.96); opacity:0; } }
+  .modal h3 { font-family:Georgia,serif; font-size:21px; margin:0 0 8px; }
+  .modal p { color:var(--muted); font-size:14.5px; margin:0 0 16px; }
+  .modal .row { display:flex; gap:8px; flex-wrap:wrap; }
+  .modal input { flex:1; min-width:190px; }
+  .modal .ok { color:var(--green); font-size:14px; }
+  .modal .skip { text-align:center; margin-top:12px; }
+  .modal .skip a { color:var(--fine); font-size:13px; cursor:pointer; }
+
+  iframe { width:100%; border:0; min-height:88vh; border-radius:12px; background:var(--bg); }
+
+  @media (max-width:620px) {
+    .roster { grid-template-columns:repeat(2,1fr); }
+    .mc { gap:14px; }
+    .ring { width:76px; height:76px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .aurora,.bear,.pow,.flake,.agent.work .dot,.agent.work::after,.term .ln { animation:none; }
+    .pow { opacity:1; transform:translateX(-50%) scale(1); }
+  }
+</style>
+</head>
+<body>
+<div class="aurora"></div>
+<div class="wrap" id="app"></div>
+
+<script>
+// Public by design (publishable key + function URL), safe to ship client-side.
+const FN = "https://gsuvfpnyzebycqhsekus.supabase.co/functions/v1";
+const PUBKEY = "sb_publishable_7Ax5z5BRwIGspG4ok4Hv1Q_6ZpN5fnl";
+// Cloudflare Turnstile sitekey (public). Empty = widget off. When the matching
+// secret is set server-side the gatekeeper REQUIRES the token, so set both.
+const TS_SITEKEY = "0x4AAAAAAD7e1lYKOUSxa5sV";
+const HEADERS = { "content-type": "application/json", "apikey": PUBKEY, "authorization": "Bearer " + PUBKEY };
+const app = document.getElementById("app");
+const params = new URLSearchParams(location.search);
+const token = params.get("token");
+const preUrl = params.get("url"); // a homepage section can GET here to prefill
+
+function esc(s){ return (s||"").replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function seen(k){ try { return localStorage.getItem(k) === "1"; } catch(e) { return false; } }
+function mark(k){ try { localStorage.setItem(k, "1"); } catch(e) {} }
+
+/* ------------------------------- the form ------------------------------- */
+function renderForm(){
+  app.innerHTML = `
+    <div class="kick">Alaska.Ai Bottleneck Scanner</div>
+    <h1>Where would AI actually help your business, and where would it not</h1>
+    <p class="lead">Drop your website. A team of research agents reads your own public
+    pages, goes and finds what has already shipped in your industry anywhere in the
+    world, and hands back an honest map of the pockets where AI earns its place, the
+    ones where a plain rule wins first, and the ones it should not touch at all.</p>
+    <p class="honest">No signup to see it. We describe bottlenecks, we never promise
+    returns, and we tell you when the answer is not AI. That is the whole point.</p>
+    <form id="f">
+      <label for="url">Your website</label>
+      <input id="url" name="url" type="text" placeholder="yourbusiness.com" required autocomplete="url">
+      <label for="booking">Booking or scheduling link (optional)</label>
+      <input id="booking" name="booking" type="text" placeholder="yourbusiness.com/book">
+      <label for="jobs">A current job posting, link or pasted (optional, it is a strong signal)</label>
+      <textarea id="jobs" name="jobs" placeholder="Paste a job post or its link"></textarea>
+      <label for="notify">Email (optional). The scan takes 15 to 30 minutes, leave this and
+      we will email your link the moment it is ready. One email, no list, no spam.</label>
+      <input id="notify" name="notify" type="email" placeholder="you@yourbusiness.com">
+      <div id="ts-slot"></div>
+      <button id="go" type="submit">Scan my business</button>
+      <div class="err" id="err"></div>
+    </form>
+    <p class="fine">We read only your own public pages to say anything about you.
+    Industry examples come from already-published public sources and are labeled as
+    someone else's result. Built by Alaska.Ai.</p>`;
+
+  if (preUrl) document.getElementById("url").value = preUrl;
+
+  if (TS_SITEKEY) {
+    const slot = document.getElementById("ts-slot");
+    slot.innerHTML = '<div class="cf-turnstile" data-sitekey="' + esc(TS_SITEKEY) + '" data-theme="dark"></div>';
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  document.getElementById("f").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const btn = document.getElementById("go"), err = document.getElementById("err");
+    err.textContent = ""; btn.disabled = true; btn.textContent = "Starting...";
+    try {
+      const tsToken = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || "") : "";
+      if (TS_SITEKEY && !tsToken) throw new Error("finish the human check above first");
+      const email = document.getElementById("notify").value || null;
+      const r = await fetch(FN + "/scan-request", { method:"POST", headers:HEADERS, body: JSON.stringify({
+        url: document.getElementById("url").value,
+        booking_url: document.getElementById("booking").value || null,
+        jobs: document.getElementById("jobs").value || null,
+        notify_email: email,
+        turnstile_token: tsToken || null
+      })});
+      const d = await r.json();
+      if (!r.ok) throw new Error(d.error || "could not start the scan");
+      // They already gave an email, so never nag them for it on the wait screen.
+      if (email) mark("notified:" + d.token);
+      location.search = "?token=" + encodeURIComponent(d.token);
+    } catch(ex) {
+      err.textContent = ex.message; btn.disabled = false; btn.textContent = "Scan my business";
+      if (TS_SITEKEY && window.turnstile) turnstile.reset();
+    }
+  });
+}
+
+/* ------------------------------- the wait ------------------------------- */
+// The eight routine phases (scan_routine.md, THE PROGRESS FEED) folded into the
+// six the requester actually cares about.
+const PHASES = ["claim","footprint","industry","feasibility","assemble","critic","render","done"];
+const PHASE_PCT = { claim:6, footprint:24, industry:44, feasibility:62, assemble:72,
+                    critic:84, render:95, done:100 };
+
+// The four agents, in the order they run. This is the value prop made visible.
+const AGENTS = [
+  { key:"footprint",  name:"footprint",   role:"reads your own public pages",        on:["footprint"] },
+  { key:"industry",   name:"industry",    role:"finds what shipped in your field",   on:["industry"] },
+  { key:"mapper",     name:"feasibility", role:"ladders each pocket to its rung",    on:["feasibility","assemble"] },
+  { key:"critic",     name:"honesty gate",role:"tries to kill anything unproven",    on:["critic"] }
+];
+
+// Quips are phase aware, so the bears are commenting on the actual work.
+const QUIPS = {
+  claim: [
+    "Warming up. The bears are stretching.",
+    "Queued. Bear one is already skeptical."
+  ],
+  footprint: [
+    "The bears are arguing about your booking flow.",
+    "Bear two just read your careers page and has opinions.",
+    "Reading your actual pages. No guessing allowed in here."
+  ],
+  industry: [
+    "Off to see what your industry has actually shipped.",
+    "Bear one wants a source. Bear one always wants a source.",
+    "Looking for the failures too. Those are the useful ones."
+  ],
+  feasibility: [
+    "Bear one says rules first. Bear two wants an agent. Bear one is usually right.",
+    "Somebody said the words voice agent and it got heated.",
+    "They are now fighting about whether that counts as a workflow.",
+    "Bear one is checking whether a spreadsheet already does this."
+  ],
+  critic: [
+    "The honesty gate is trying to kill our own findings.",
+    "Anything we cannot source is getting cut right now.",
+    "Bear two wanted to add a chatbot. It did not survive review."
+  ],
+  render: [
+    "Writing your page. Almost there.",
+    "Setting the type. The bears are shaking hands."
+  ]
+};
+const FALLBACK_QUIPS = [
+  "A real scan takes real minutes. The bears are the entertainment.",
+  "Still reading. Still refusing to make anything up.",
+  "The bears agree on one thing, most of this is not an AI problem."
+];
+
+const BEAR_SVG = `
+<svg viewBox="0 0 132 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- back leg, drawn first so it sits behind the body -->
+  <ellipse cx="22" cy="72" rx="11" ry="8" fill="#DFE8F4" transform="rotate(-18 22 72)"/>
+  <!-- body -->
+  <ellipse cx="56" cy="76" rx="35" ry="27" fill="#F4F8FF"/>
+  <ellipse cx="30" cy="94" rx="13" ry="8" fill="#E4ECF7"/>
+  <ellipse cx="76" cy="96" rx="13" ry="8" fill="#E4ECF7"/>
+  <!-- ears, small and set back on the skull -->
+  <circle cx="70" cy="19" r="8.5" fill="#F4F8FF"/>
+  <circle cx="97" cy="16" r="8.5" fill="#F4F8FF"/>
+  <circle cx="70" cy="19" r="3.9" fill="#E3B9BE"/>
+  <circle cx="97" cy="16" r="3.9" fill="#E3B9BE"/>
+  <!-- head. ONE smooth shape that tapers straight into the nose. No separate
+       muzzle patch, no mouth line, the way the old soda bears are drawn. -->
+  <ellipse cx="88" cy="40" rx="30" ry="24" fill="#F4F8FF"/>
+  <!-- nose right at the tip -->
+  <ellipse cx="114" cy="44" rx="5.2" ry="4.2" fill="#222A38"/>
+  <ellipse cx="112.6" cy="42.6" rx="1.4" ry="1" fill="#626D82"/>
+  <!-- eyes, small and close set -->
+  <circle cx="88" cy="30" r="3.1" fill="#222A38"/>
+  <circle cx="101" cy="33" r="2.8" fill="#222A38"/>
+  <!-- swiping arm, on top, kept clear of the face -->
+  <ellipse cx="106" cy="77" rx="16" ry="9" fill="#DCE7F5"
+    stroke="rgba(2,6,15,0.18)" stroke-width="1.5" transform="rotate(24 106 77)"/>
+  <circle cx="120" cy="83" r="5.2" fill="#CBDAEE"
+    stroke="rgba(2,6,15,0.18)" stroke-width="1.5"/>
+</svg>`;
+
+let startedAt = Date.now();
+let quipIdx = 0, quipTimer = null, modalShown = false, lastFeedLen = -1, lastPhase = "claim";
+let teachIdx = 0, teachTimer = null;
+
+function currentPhase(progress){
+  let best = "claim", bestI = -1;
+  for (const p of (progress || [])) {
+    const i = PHASES.indexOf(p.phase);
+    if (i > bestI) { bestI = i; best = p.phase; }
+  }
+  return bestI < 0 ? "claim" : best;
+}
+
+function percentFor(phase, mins){
+  const base = PHASE_PCT[phase] ?? 6;
+  const next = PHASES[PHASES.indexOf(phase) + 1];
+  const ceil = next ? (PHASE_PCT[next] ?? 100) : 100;
+  // Creep a little inside the phase so a long step never looks frozen, but
+  // never pass the next phase's floor. The number stays honest.
+  const creep = Math.min(ceil - base - 1, Math.max(0, mins - 1) * 1.2);
+  return Math.min(100, Math.round(base + creep));
+}
+
+function renderWaitShell(){
+  const flakes = Array.from({length:16}, (_,i)=>{
+    const left = (i * 6.3 + 3) % 97, dur = 6 + (i % 5) * 2.2, delay = (i % 7) * 1.3;
+    return `<div class="flake" style="left:${left}%;animation-duration:${dur}s;animation-delay:-${delay}s"></div>`;
+  }).join("");
+  const roster = AGENTS.map(a => `
+    <div class="agent" id="ag-${a.key}">
+      <span class="tick">done</span>
+      <span class="dot"></span><span class="nm">${esc(a.name)}</span>
+      <span class="role">${esc(a.role)}</span>
+    </div>`).join("");
+
+  document.querySelector(".wrap").classList.add("run");
+  app.innerHTML = `
+    <div class="kick">Alaska.Ai Bottleneck Scanner</div>
+    <div class="mc">
+      <div class="ring">
+        <svg width="96" height="96" viewBox="0 0 96 96">
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#3CE6B4"/><stop offset="100%" stop-color="#5AC8F0"/>
+          </linearGradient></defs>
+          <circle class="trk" cx="48" cy="48" r="42" fill="none" stroke-width="7"/>
+          <circle class="bar" id="bar" cx="48" cy="48" r="42" fill="none" stroke-width="7"
+                  stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
+        </svg>
+        <div class="pct" id="pct">0%</div>
+      </div>
+      <div class="mc-txt">
+        <h2>Deep scan running</h2>
+        <p>Four specialist agents are on this. They read your own pages, hunt
+        published results in your industry worldwide, ladder every pocket to its
+        lowest honest rung, then try to kill anything they cannot source.</p>
+        <div class="clock" id="clk"></div>
+      </div>
+    </div>
+    <div class="rosterhd">the crew on your scan</div>
+    <div class="roster">${roster}</div>
+    <div class="rink">
+      <svg class="curtain" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="au1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3CE6B4" stop-opacity="0.42"/>
+            <stop offset="100%" stop-color="#3CE6B4" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="au2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5AC8F0" stop-opacity="0.34"/>
+            <stop offset="100%" stop-color="#5AC8F0" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#au1)" d="M0,12 C70,52 130,-14 200,22 C270,58 330,4 400,34 L400,132 L0,132 Z"/>
+        <path fill="url(#au2)" d="M0,40 C80,4 150,66 220,34 C290,2 350,54 400,26 L400,150 L0,150 Z"/>
+      </svg>
+      ${flakes}
+      <div class="ice"></div>
+      <div class="score">Rules <b>3</b> &nbsp; Hype <b>0</b></div>
+      <div class="bear a">${BEAR_SVG}</div>
+      <div class="bear b">${BEAR_SVG}</div>
+      <div class="pow">POF</div>
+    </div>
+    <p class="quip" id="quip"></p>
+    <div class="stats">
+      <div class="stat"><b id="st-pages">0</b><span>your pages read</span></div>
+      <div class="stat"><b id="st-ind">0</b><span>industry checks</span></div>
+      <div class="stat"><b id="st-gate">0</b><span>honesty gate rounds</span></div>
+    </div>
+    <div class="teach">
+      <div class="hd">what you are going to get</div>
+      <div class="chips">
+        <span class="chip" id="ch0" style="--c:#3CE6B4">AI would help here</span>
+        <span class="chip" id="ch1" style="--c:#5AC8F0">A rule likely wins first</span>
+        <span class="chip" id="ch2" style="--c:#AFC6C2">Not an AI job</span>
+      </div>
+      <p class="line" id="teachline"></p>
+    </div>
+    <div class="term">
+      <div class="hd">live feed</div>
+      <div id="feed"></div>
+    </div>
+    <p class="fine">Real research takes 15 to 30 minutes. Keep this tab open, or
+    bookmark this link and come back to it. It stays at this address.</p>`;
+
+  cycleQuip(true);
+  clearInterval(quipTimer);
+  quipTimer = setInterval(()=>cycleQuip(false), 7000);
+  cycleTeach(true);
+  clearInterval(teachTimer);
+  teachTimer = setInterval(()=>cycleTeach(false), 4200);
+}
+
+// The three verdicts, cycling. The wait sells the honesty before the page does.
+const TEACH = [
+  "AI genuinely earns its place on this pocket. We name the lowest rung that clears the bar, and the human check that stays.",
+  "A scale, a rule, a barcode, or software you already own does this better. We say so plainly, and we do not sell you a model.",
+  "AI should not touch this one. Low volume, safety critical, or the data does not exist. Naming these is what makes the rest credible."
+];
+function cycleTeach(immediate){
+  const line = document.getElementById("teachline");
+  if (!line) return;
+  const i = teachIdx % 3;
+  for (let k = 0; k < 3; k++) {
+    const c = document.getElementById("ch" + k);
+    if (c) c.className = "chip" + (k === i ? " on" : "");
+  }
+  teachIdx++;
+  if (immediate) { line.textContent = TEACH[i]; return; }
+  line.style.opacity = 0;
+  setTimeout(()=>{ line.textContent = TEACH[i]; line.style.opacity = 1; }, 380);
+}
+
+function cycleQuip(immediate){
+  const q = document.getElementById("quip");
+  if (!q) return;
+  const pool = (QUIPS[lastPhase] || []).concat(FALLBACK_QUIPS);
+  const next = pool[quipIdx % pool.length];
+  quipIdx++;
+  if (immediate) { q.textContent = next; return; }
+  q.style.opacity = 0;
+  setTimeout(()=>{ q.textContent = next; q.style.opacity = 1; }, 400);
+}
+
+function paintWait(progress){
+  const mins = Math.max(0, Math.round((Date.now() - startedAt) / 60000));
+  const phase = currentPhase(progress);
+  if (phase !== lastPhase) {
+    lastPhase = phase; quipIdx = 0; cycleQuip(false);
+    const r = document.querySelector(".ring");
+    if (r) { r.classList.add("flash"); setTimeout(()=>r.classList.remove("flash"), 1400); }
+  }
+
+  // Live counts, every one of them read straight off the feed the routine
+  // wrote. Nothing here is a decoration, and nothing here is inflated.
+  const notes = progress || [];
+  const nPages = notes.filter(p => p.phase === "footprint" && /^reading /i.test(p.note || "")).length;
+  const nInd   = notes.filter(p => p.phase === "industry").length;
+  const nGate  = notes.filter(p => p.phase === "critic").length;
+  const setNum = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  setNum("st-pages", nPages); setNum("st-ind", nInd); setNum("st-gate", nGate);
+
+  // ring
+  const pct = percentFor(phase, mins);
+  const bar = document.getElementById("bar"), pctEl = document.getElementById("pct");
+  if (bar) bar.setAttribute("stroke-dashoffset", String(263.9 * (1 - pct / 100)));
+  if (pctEl) pctEl.textContent = pct + "%";
+  // the aurora brightens as the run advances
+  document.body.style.setProperty("--aur", String(0.55 + 0.45 * (pct / 100)));
+
+  const clk = document.getElementById("clk");
+  if (clk) clk.textContent = (mins < 1 ? "just started" : "running for " + mins + " min")
+    + ", usually 15 to 30";
+
+  // agent roster
+  const at = PHASES.indexOf(phase);
+  AGENTS.forEach(a => {
+    const el = document.getElementById("ag-" + a.key);
+    if (!el) return;
+    const mine = a.on.map(p => PHASES.indexOf(p));
+    const working = a.on.includes(phase);
+    const finished = Math.max(...mine) < at;
+    el.className = "agent" + (working ? " work" : (finished ? " done" : ""));
+  });
+
+  // terminal feed
+  const list = (progress || []).slice(-6);
+  if (list.length !== lastFeedLen) {
+    lastFeedLen = list.length;
+    const feed = document.getElementById("feed");
+    if (feed) feed.innerHTML = list.length
+      ? list.map(p => `<div class="ln"><span class="t">${esc(p.at)}</span><span class="txt">${esc(p.note)}</span></div>`).join("")
+      : `<div class="ln"><span class="t">now</span><span class="txt">queued, an agent is picking this up</span></div>`;
+  }
+}
+
+/* --------------------- the "leave your email" moment --------------------- */
+function showEmailModal(){
+  if (modalShown || !token || seen("notified:" + token)) return;
+  modalShown = true;
+  const scrim = document.createElement("div");
+  scrim.className = "scrim";
+  scrim.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mh">
+      <h3 id="mh">This takes about 20 minutes</h3>
+      <p>Real research is slow, and we would rather be slow than make something up.
+      Drop your email and we will send your link the moment it is ready. One email,
+      no list, no pitch.</p>
+      <div class="row">
+        <input id="m-email" type="email" placeholder="you@yourbusiness.com" autocomplete="email">
+        <button id="m-go" type="button">Send it to me</button>
+      </div>
+      <div class="err" id="m-err"></div>
+      <div class="skip"><a id="m-skip">No thanks, I will wait here</a></div>
+    </div>`;
+  document.body.appendChild(scrim);
+
+  const close = ()=> scrim.remove();
+  scrim.querySelector("#m-skip").addEventListener("click", ()=>{ mark("notified:" + token); close(); });
+  scrim.addEventListener("click", (e)=>{ if (e.target === scrim) close(); });
+
+  scrim.querySelector("#m-go").addEventListener("click", async ()=>{
+    const inp = scrim.querySelector("#m-email"), err = scrim.querySelector("#m-err");
+    const btn = scrim.querySelector("#m-go");
+    const email = (inp.value || "").trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "that email does not look right"; return; }
+    err.textContent = ""; btn.disabled = true; btn.textContent = "Saving...";
+    try {
+      const r = await fetch(FN + "/scan-notify-me", { method:"POST", headers:HEADERS,
+        body: JSON.stringify({ token, email }) });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d.error || "could not save that");
+      mark("notified:" + token);
+      const msg = d.already_done
+        ? "Your scan is already finished, so it is loading on this page right now."
+        : (d.already_set
+            ? "An email is already attached to this scan, so the link is going there."
+            : "We will email your link to " + esc(email) + " the moment the scan finishes. You can close this tab.");
+      scrim.querySelector(".modal").innerHTML =
+        `<h3>Done</h3><p class="ok">${msg}</p>
+         <div class="skip"><a id="m-close">Back to the bears</a></div>`;
+      scrim.querySelector("#m-close").addEventListener("click", close);
+    } catch(ex) {
+      err.textContent = ex.message; btn.disabled = false; btn.textContent = "Send it to me";
+    }
+  });
+}
+
+/* -------------------------------- polling -------------------------------- */
+async function poll(){
+  renderWaitShell();
+  paintWait([]);
+  const tick = setInterval(()=>paintWait(window.__lastProgress || []), 15000);
+  // Give them a beat to watch the bears before asking for anything.
+  setTimeout(showEmailModal, 45000);
+
+  // 5s interval, 480 tries = 40 minutes of patience, matched to real run times.
+  for (let i=0; i<480; i++) {
+    let d;
+    try { d = await (await fetch(FN + "/scan-result?token=" + encodeURIComponent(token), { headers:HEADERS })).json(); }
+    catch { d = {}; }
+
+    if (d.status === "done" || d.status === "degraded") {
+      clearInterval(tick); clearInterval(quipTimer); clearInterval(teachTimer);
+      document.querySelectorAll(".scrim").forEach(s=>s.remove());
+      document.body.style.setProperty("--aur", "1");
+      const wrap = document.querySelector(".wrap");
+      wrap.classList.remove("run"); wrap.classList.add("wide");
+      const f = document.createElement("iframe");
+      f.setAttribute("sandbox", "allow-forms allow-popups allow-top-navigation-by-user-activation");
+      f.srcdoc = d.html || "<p style='color:#fff'>Your scan is ready but did not render. Refresh.</p>";
+      app.innerHTML = ""; app.appendChild(f);
+      return;
+    }
+    if (d.status === "failed" || d.error === "not found") {
+      clearInterval(tick); clearInterval(quipTimer); clearInterval(teachTimer);
+      app.innerHTML = `<div class="mc"><div class="mc-txt"><h2>That scan did not finish</h2>
+        <p><a href="?">Run it again</a>, and if it keeps failing, reach us at
+        <a href="https://alaskaaihq.com">alaskaaihq.com</a>.</p></div></div>`;
+      return;
+    }
+    window.__lastProgress = d.progress || [];
+    paintWait(window.__lastProgress);
+    await new Promise(r=>setTimeout(r, 5000));
+  }
+  clearInterval(tick); clearInterval(quipTimer);
+  app.innerHTML = `<div class="mc"><div class="mc-txt"><h2>This is taking longer than usual</h2>
+    <p>Bookmark this link and check back, or <a href="?">start over</a>.</p></div></div>`;
+}
+
+if (token) poll(); else renderForm();
+</script>
+</body>
+</html>
