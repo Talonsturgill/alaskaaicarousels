@@ -488,7 +488,7 @@
    ],
    "verification": "Regenerated this run's payload: the banner now reads 'Shipped below threshold. 6.9 / 10 vs 8.0. Weakest: Artwork craft and genuine detail (6 of 10, weight 0.16). Fix next time: not stated by the scorer. Why the cap: Two hard fails at cycle 2 ...' and the editor's note carries the scorer's own notes_for_the_email paragraph instead of 'None.'. Zero bare-placeholder occurrences remain in the body. REGRESSION: resolved the alias chain against all six committed score reports, 2026-07-20 through 2026-07-25. The five prior runs are byte-identical in outcome (8.55/8.3, 8.77/8.3, 8.86/8.3, 8.9/8.3, 8.66/8.3, all ship=True) because every added key sits AFTER the existing ones in priority, so nothing already working can be hijacked; only 2026-07-25 changes, from '?' to 6.9 vs 8.0 with ship=False. The preference order was checked deliberately on this run's report, where both weighted_score_as_scored (6.9) and raw_weighted_score (8.22) exist and the capped 6.9 correctly wins. Read-only with respect to score_report.json, and the POST block, first-comment block and every other text block are unchanged, so the paste contract is untouched. No new dependency.",
    "rollback": "revert this commit; gmail_draft.py returns to the shorter alias lists and a capped or alternately-keyed score report renders '? / 10 vs ?' in the email again",
-   "commit": "pending, second upgrade(2026-07-25) commit"
+   "commit": "957ff66 (second upgrade(2026-07-25) commit on main)"
   }
  ],
  "scan_log": [
