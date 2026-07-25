@@ -183,6 +183,44 @@ def path_d(paths, T, close=True):
 
 PIN_COLOR = {"open": "#3ce6b4", "indirect": "#8da2be", "closed": "#f2a43a"}
 
+# The transmission backbone, drawn under the pins. Almost every decision on this
+# docket is really a decision about this grid, so without it the pins look like
+# a coincidence: four of them cluster on the Railbelt because that is where the
+# power is, and the map should say so rather than leave the reader to know it.
+#
+# Three weights, because the difference between a 69 kV line and the 230 kV
+# Anchorage ring is the difference between serving a town and carrying a load.
+GRID_TIERS = [("t1", 69.0, 138.0), ("t2", 138.0, 230.0), ("t3", 230.0, 1e9)]
+
+
+def grid_available():
+    """Whether the transmission asset is present. The page asks before it draws
+    a toggle for a layer that would not appear."""
+    return (REPO / "assets/geo/ak-transmission-69kv.geo.json").exists()
+
+
+def grid_paths(T):
+    """Transmission segments projected through the map's own transform, grouped
+    into voltage tiers. Returns [(tier, path_d)], or [] when the asset is not
+    there, because a missing decorative layer must never break the docket."""
+    src = REPO / "assets/geo/ak-transmission-69kv.geo.json"
+    if not src.exists():
+        return []
+    try:
+        lines = json.loads(src.read_text()).get("lines", [])
+    except (ValueError, OSError):
+        return []
+    out = []
+    for tier, lo, hi in GRID_TIERS:
+        segs = [L["pts"] for L in lines if lo <= L.get("kv", 0) < hi]
+        if not segs:
+            continue
+        d = " ".join(
+            "M" + " L".join("%.1f,%.1f" % T(albers(x, y)) for x, y in seg)
+            for seg in segs)
+        out.append((tier, d))
+    return out
+
 
 def map_svg(ordered_items, w=1000, h=620):
     located = [(n, it) for n, it in enumerate(ordered_items, 1) if it.get("location")]
@@ -296,6 +334,7 @@ def map_svg(ordered_items, w=1000, h=620):
                     f'<text x="{tx:.0f}" y="{ly + 5:.0f}" text-anchor="middle" class="pinnum" '
                     f'fill="{mc}">{n}</text></a>')
     pins = leads + badges + dots
+    grid = "".join(f'<path class="gx gx-{tier}" d="{d}"/>' for tier, d in grid_paths(T))
     caption = "".join(
         f'<a class="mapkey" href="#{esc(it["id"])}"><b class="k-{it["public_access"]}">{n}</b>'
         f'<span>{esc(it["location"]["name"])}</span></a>'
@@ -312,6 +351,7 @@ def map_svg(ordered_items, w=1000, h=620):
 </defs>
 <path d="{grat_d}" fill="none" stroke="rgba(110,165,255,0.07)" stroke-width="1"/>
 <path d="{coast_d}" fill="url(#landfill)" stroke="#5ac8f0" stroke-width="1.5" filter="url(#coastglow)"/>
+<g class="lyr lyr-grid" aria-hidden="true">{grid}</g>
 {''.join(pins)}
 </svg>"""
     return svg, caption

@@ -590,6 +590,35 @@ box-shadow:0 0 12px rgba(255,199,44,.85);animation:heartbeat 2.4s ease-in-out in
    for legibility and the lead line shows how far it had to go to get there. */
 .pindot{opacity:.95;}
 .pinlead{stroke-width:1.1;opacity:.5;stroke-dasharray:2 3;}
+/* ---------- map layers, toggled with a checkbox and no script ----------
+   The grid is drawn white rather than in any pin colour, so infrastructure
+   never reads as a docket item. Weight carries the voltage: a 230 kV ring is
+   a different kind of fact from a 69 kV spur and should not look the same. */
+.gx{fill:none;stroke:#dcebff;stroke-linecap:round;stroke-linejoin:round;}
+.gx-t1{stroke-width:1.1;opacity:.40;}
+.gx-t2{stroke-width:1.9;opacity:.56;}
+.gx-t3{stroke-width:3;opacity:.78;}
+.lyr{transition:opacity .4s ease;}
+.lyrbox{position:absolute;width:1px;height:1px;opacity:0;margin:0;
+clip-path:inset(50%);pointer-events:none;}
+.lyr-grid{opacity:0;}
+.lyrbox:checked ~ svg .lyr-grid{opacity:1;}
+.lyrbar{display:flex;align-items:baseline;gap:14px 18px;flex-wrap:wrap;padding:12px 2px 0;}
+.lyrbar label{display:inline-flex;align-items:center;gap:9px;cursor:pointer;flex:none;
+font-family:JBMono,monospace;font-size:11px;letter-spacing:.14em;color:var(--mute);
+border:1px solid var(--line);border-radius:999px;padding:7px 15px 7px 11px;
+transition:color .2s,border-color .2s,background .2s;}
+.lyrbar label:hover{color:var(--snow);border-color:#2c5876;}
+.lyrbar label .sw{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;
+flex:none;transition:background .2s,box-shadow .2s;}
+.lyrbox:checked ~ .lyrbar label[for="lyr-grid"]{color:var(--snow);border-color:#3a6f96;
+background:rgba(90,200,240,.07);}
+.lyrbox:checked ~ .lyrbar label[for="lyr-grid"] .sw{background:#dcebff;
+box-shadow:0 0 9px rgba(220,235,255,.8);}
+.lyrbox:focus-visible ~ .lyrbar label[for="lyr-grid"]{outline:2px solid var(--gold);
+outline-offset:3px;}
+.lyrnote{font-size:12px;line-height:1.55;color:var(--mute);max-width:62ch;}
+@media (prefers-reduced-motion:reduce){.lyr{transition:none;}}
 .mapcap{display:flex;gap:10px 26px;flex-wrap:wrap;padding:14px 2px 0;}
 .mapkey{display:flex;align-items:center;gap:9px;font-family:JBMono,monospace;font-size:12.5px;
 letter-spacing:.05em;color:var(--mute);text-decoration:none;transition:color .2s;}
@@ -1172,6 +1201,19 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 def docket_page(today, site_url, docket):
     items, live, done, dated, live_sorted = docket
     svg, mapcap = db.map_svg(live_sorted + done)
+    # Layer toggles, done with a real checkbox and a real label rather than
+    # script. The checkbox has to come BEFORE the svg in the markup, because
+    # the whole mechanism is the sibling combinator, and it carries `checked`
+    # so the grid is on by default. A reader with JS off still gets the toggle.
+    layerbox, layerbar = "", ""
+    if db.grid_available():
+        layerbox = '<input class="lyrbox" type="checkbox" id="lyr-grid" checked>'
+        layerbar = ("""<div class="lyrbar">
+<label for="lyr-grid"><span class="sw"></span>TRANSMISSION GRID</label>
+<span class="lyrnote">69 kV and above, from the Alaska Energy Authority. Shown because
+almost every decision here is a decision about this grid. Not authoritative and not
+a complete map of every line.</span>
+</div>""")
     n_open = sum(1 for it in live if it["public_access"] == "open")
     nearest = db.next_date(dated[0], today) if dated else None
     cards = "".join(db.card_html(it, today) for it in dated[:6])
@@ -1188,7 +1230,7 @@ def docket_page(today, site_url, docket):
 when it lands, and whether the public gets a say. Sources on every item.</p>
 {stats}
 </div>
-<div class="maphero">{svg}<div class="mapcap">{mapcap}</div></div>
+<div class="maphero">{layerbox}{svg}{layerbar}<div class="mapcap">{mapcap}</div></div>
 <h2>Closing soon</h2>
 <p class="sub">The nearest deadlines and votes. A pulsing pin on the map means a public
 comment window is open right now.</p>
