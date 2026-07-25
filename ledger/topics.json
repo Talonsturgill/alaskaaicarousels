@@ -688,6 +688,67 @@
    "headline": "500 to Fewer Than 12. One Office Holds the Pen.",
    "sources_lead": "Alaska DNR ADL 422741 primary notice + Anchorage Daily News + Northern Journal (Northern Center lease-doc review for hedged figures)",
    "outcome_notes": "Scored 8.66 vs 8.3, zero hard fails, vector PDF 3.39MB. SAME-DOCKET REVISIT of No.1 (2026-07-08): missed in Phase 4 because dedupe_check output was read with `tail`, truncating its TOP match (No.1, jaccard 0.279, same ADL, same 500-vs-12 cover). Shipped honestly as an explicit post-comment-closure UPDATE (cover peg COMMENT CLOSED JULY 17) and flagged for the maintainer. Craft: S3 akthree rendered tundra-machine + S7 akrelief material chips broke the recurring flat-hero ceiling (scorer called them the strongest artwork the series has shipped); artwork-craft still capped 7 for dead lower zones (S2/S5/S8/S9)."
+  },
+  {
+   "run_date": "2026-07-25",
+   "carousel_no": 17,
+   "topic": "AI-industry money becomes a measurable presence in Alaska's 2026 governor race. Campaign finance reports made public the week of July 20 show Jonathan Kreiss-Tomkins with the field's largest reported haul, 1.8 million dollars, most of it from Lower 48 donors per ADN, including 372,000 dollars from six employees of the AI company Anthropic and a 100,000 dollar largest single gift from an employee who grew up in Soldotna and now lives in Berkeley.",
+   "angle": "The asymmetry of the public record, NOT corruption. Disclosure of campaign money is compulsory and disclosure of AI policy is voluntary, so Alaska knows to the dollar who paid for this race and almost nothing about what any of the 17 candidates would do with AI. Thesis 'on file, off record'. Fairness is architectural rather than a footnote: slide 04 disarms the deck's own accusation at the same depth and the same scale, carrying Heilala's 1.4 million dollars of his own money (more than all six Anthropic employees gave) and the candidate's own line that his national donors' only agenda is whether he can win. No causation asserted anywhere, no donor motive on record, no wrongdoing alleged. First elections, campaign-finance and candidate-platform deck of the series.",
+   "entities": [
+    "Jonathan Kreiss-Tomkins",
+    "Anthropic",
+    "Drake Thomas",
+    "Soldotna",
+    "Berkeley",
+    "Matt Heilala",
+    "Tom Begich",
+    "Treg Taylor",
+    "Adam Crum",
+    "Bernadette Wilson",
+    "Meda DeWitt",
+    "Michael Gilbert",
+    "Edna DeVries",
+    "Alaska governor race 2026",
+    "August 18 2026 primary",
+    "Northern Journal",
+    "Nathaniel Herz",
+    "Anchorage Daily News",
+    "Iris Samuels",
+    "Alaska Public Media",
+    "JBER",
+    "Eielson Air Force Base",
+    "Clear Space Force Station",
+    "AFCEC-26-R-0006"
+   ],
+   "keywords": [
+    "campaign finance",
+    "political donations",
+    "governor race",
+    "primary election",
+    "AI regulation",
+    "deepfakes",
+    "AI in political ads",
+    "out-of-state money",
+    "self-funding",
+    "candidate survey",
+    "non-response",
+    "disclosure asymmetry",
+    "compulsory disclosure",
+    "voluntary disclosure",
+    "AI policy vacuum",
+    "conflict of interest",
+    "elections"
+   ],
+   "sources": [
+    "https://www.adn.com/politics/2026/07/23/democrat-in-alaskas-governor-race-reports-18-million-fundraising-haul-driven-by-californians/",
+    "https://alaskapublic.org/news/politics/elections/2026-07-24/democrat-in-alaskas-governor-race-reports-1-8-million-fundraising-haul-driven-by-californians",
+    "https://www.northernjournal.com/alaska-governors-race-survey-ai-policy-and-news-sources/",
+    "https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/",
+    "https://www.highergov.com/contract-opportunity/rflp-artificial-intelligence-ai-data-center-deve-afcec-26-r-0006-o-db695/"
+   ],
+   "title": "On File, Off Record. Alaska's AI Governor Race.",
+   "dedupe_note": "dedupe_check.py exit 0, no LIKELY DUPLICATE. Strongest match No.14 (2026-07-22) at token_jaccard 0.022 with ZERO shared entities; the only shared keyword was 'center' from the candidate keyword 'data center moratorium'. Full output read, never tailed. Nothing in the 120-day window touches elections, campaign money, candidates or candidate AI platforms.",
+   "conflict_of_interest": "The deck concerns donations by six Anthropic employees and was produced by a routine running on a Claude model built by Anthropic. Disclosed on slide 09 at full headline scale, in a pointer chip on slide 02, in the caption, and at the top of the first comment."
   }
  ]
 }

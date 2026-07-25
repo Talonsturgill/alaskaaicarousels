@@ -1,0 +1,67 @@
+{
+ "run_date": "2026-07-25",
+ "carousel_no": 17,
+ "window": "2026-07-15 to 2026-07-25",
+ "scouts_returned": [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F"
+ ],
+ "ranked_candidates": [
+  {
+   "rank": 1,
+   "id": "D1",
+   "title": "AI-lab money lands in Alaska's governor race, and the platform it funds is AI restriction",
+   "why": "In-window (Jul 20-24), two independent credible outlets (ADN + Alaska Public Media), decision-grade (Aug 18 primary), genuinely AI-centered, zero overlap with all 16 prior decks, visually rich (six donors vs every Alaska donor).",
+   "beat": "D"
+  },
+  {
+   "rank": 2,
+   "id": "A1",
+   "title": "Bradley Lake Expansion files at FERC and clears an AEA financing framework",
+   "why": "Primary-sourced and numbers-rich, but AI framing is analytic not sourced, and it sits on the fatigued power/data-center beat (decks 1,4,6,10,14,16).",
+   "beat": "A"
+  },
+  {
+   "rank": 3,
+   "id": "E1",
+   "title": "ONR Arctic Mobile Observing System year 9, comment closes Aug 21",
+   "why": "Real in-window Federal Register notice with an open comment window, but autonomy not AI (full-text read found no ML), and it is a permit not a decision.",
+   "beat": "E"
+  },
+  {
+   "rank": 4,
+   "id": "B1",
+   "title": "NSF GAIA AI geohazard digital twin, UAF $1.77M",
+   "why": "Strong and AI-classified by NSF, but out of window (Jul 10), no press release, and conceptually adjacent to deck 3 (AI volcano monitoring, UAF) and deck 11 (physics-informed ML digital twin).",
+   "beat": "B"
+  },
+  {
+   "rank": 5,
+   "id": "C2",
+   "title": "Alaska's $272M Rural Health Transformation award, AI and drone projects on the shortlist",
+   "why": "Huge and AI-adjacent, but the award list was never published, so the outcome is unverifiable this run. Park and re-check.",
+   "beat": "C"
+  },
+  {
+   "rank": 6,
+   "id": "F1",
+   "title": "3,048 Alaskans moved off the active voter roll by a DMV records match",
+   "why": "Excellent civic story and in-window, but the scout correctly flags it as deterministic record matching, NOT AI or ML. Cannot be labeled AI.",
+   "beat": "F"
+  }
+ ],
+ "rejected_or_burned": [
+  "C1 NSF Critical Mineral Accelerator Engine = already shipped as deck No.8 (2026-07-15).",
+  "Shinkei robot-harvested Alaska salmon: rejected AGAIN, every in-window peg is 403 or paywalled and shinkei.systems names no Alaska operation.",
+  "F4 AI-generated beluga hoax: out of window and a second beluga-fronted deck 4 days after No.13.",
+  "C3 Blyncsy DOT dashcam AI, C4 Matson WhaleSpotter, E3 DOT robot roster: background only, out of window or vendor-only sourcing.",
+  "D2 BEAD non-deployment funds tied to state AI laws: the AI condition is real but the in-window confirmation has no Alaska or AI mention; needs a primary EO fetch.",
+  "B4 Sealaska AI Tlingit translator: the reporting URL 404s. NOT citable."
+ ],
+ "selected": "D1",
+ "runner_up": "A1"
+}

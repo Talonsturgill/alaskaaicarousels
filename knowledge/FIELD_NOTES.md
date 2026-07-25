@@ -1131,3 +1131,91 @@ dimensional.
   https://searchengineland.com/linkedin-updates-feed-algorithm-llm-ranking-retrieval-471708 ,
   https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now ,
   https://www.socialpilot.co/blog/linkedin-algorithm
+
+## 2026-07-25 - Phase 1 craft refresh (No.17)
+
+- COMPLETION RATE, now with a number. The 07-24 scan established that carousel
+  completion is an explicit ranking input; this pass found the practitioner
+  benchmark attached to it. Well-structured carousels average about a 36 percent
+  completion rate (share of viewers who reach the last slide), and completion
+  falls off hard past roughly 15 slides. Our 8 to 10 band is safe. The operative
+  lesson is unchanged but sharper, every slide has to earn the swipe because the
+  LAST slide's view count is a ranking input, not just a courtesy. Sources:
+  https://usevisuals.com/blog/linkedin-carousel-engagement-statistics-2026 ,
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- TREAT WITH SUSPICION, do not adopt: the same practitioner posts circulate a
+  claim that "exactly 7 slides perform 18 percent better than any other length"
+  while ALSO reporting 5 to 10 and 9 to 12 as the sweet spot in the same article,
+  and quoting a carousel engagement rate of 1.92 percent against the 6.60 percent
+  figure the same tier reports elsewhere. Internally inconsistent, no method
+  published. No doctrine change. CAROUSEL_CRAFT's 8-10 band stands on the tier-B
+  sources.
+- NEW AND DECISION-RELEVANT (feed physics for a LIGHT deck). Practitioner
+  guidance converges on dark covers outperforming light ones for FEED visibility,
+  because LinkedIn shrinks the cover to roughly 200px in-feed and a dark, saturated
+  field holds thumbnail contrast against the platform's own light chrome better
+  than a light field does. That is tier-C evidence, not tier-A, and it does not
+  forbid the light register brand.yaml permits once per 8 runs. It does set the
+  price of admission, if a deck goes light, the COVER must carry an unusually
+  large, near-black display headline plus one saturated accent mass, and it must
+  be judged at 432px before anything else gets built. Dark text on light remains
+  the readability gold standard once the reader is inside the deck. Sources:
+  https://carouselli.com/blog/linkedin-carousel-colors ,
+  https://carouselli.com/blog/linkedin-carousel-design ,
+  https://postunreel.com/blog/linkedin-carousel-design-best-practices
+- Type note, no action. The 2026 print and editorial trend reporting is all
+  high-contrast and maximalist serif display, which the house already owns
+  through Fraunces and Instrument Serif. Nothing here the library lacks.
+
+## 2026-07-25 - retro (No.17 "On File, Off Record", AI money in the governor race)
+
+- SHIPPED at a raw 8.22 against the 8.0 round-3 threshold, but the SCORE OF RECORD is
+  6.9, capped by two hard fails from one geometry bug. Full studio ran: 6 scouts,
+  fact-checker, 3 treatment-directors, 2 caption-directors + caption-critic, copywriter,
+  4 pixel-critics, flow-critic, scorer x2. Machine QA finished PASS with zero warns,
+  caption_check PASS (874 chars), copy_sync PASS, vector PDF 10 pages.
+- STORY. First elections and campaign-finance deck of the series, and the first time
+  AI-industry money is a measurable presence in an Alaska statewide race. Six Anthropic
+  employees gave 372,000 dollars of the field's largest reported haul (1.8M), and the
+  largest single gift of 100,000 came from an employee who grew up in Soldotna. The
+  fact-checker DEMOLISHED my intended centerpiece (the in-state vs out-of-state split
+  came only from a partisan page that now 404s) and that demolition improved the deck:
+  the surviving thesis is the ASYMMETRY of the record itself, that money disclosure is
+  compulsory and policy disclosure is voluntary. Reframing beat patching.
+- THE RUN'S BIGGEST LESSON, and it is a gate lesson not a taste lesson. qa.py's
+  collision check is DOM-only, so labels drawn against canvas geometry collide freely
+  and still return PASS. This deck's OWN slide-02 dossier predicted it in a risk flag
+  and it still shipped on four slides across two scoring cycles. Fixed structurally:
+  every art-band label now ships on an opaque knockout by default. New instinct at 0.97.
+- THE SECOND LESSON is geometric and cost two full rebuild passes. (a) Azimuth 0 in an
+  orthographic camera projects a slab's top face to an axis-aligned RECTANGLE, which
+  rendered as pale bands with no volume; azimuth 14 deg gives two side faces and two
+  interior walls per recess. (b) A recess viewed obliquely hides a band of its own floor
+  equal to the depth's screen projection, so an UNCLIPPED recess reads as a raised BLOCK.
+  Three pixel critics independently reported "reads proud" before the cause was found.
+  Clip recess interiors to the opening polygon, and remember marks at depth project
+  lower, so anything near the near edge gets clipped away (this silently ate the hero's
+  fireweed and gold until it was moved to the far half).
+- PROCESS DEFECT WORTH FIXING. I spawned the pixel critics BEFORE appending the build
+  reconciliation, so about a third of their findings were measured against superseded
+  numbers. Reconcile the record first, then review. New instinct at 0.88.
+- CRAFT VERDICT, honest. Artwork craft scored 6, which is BELOW the 7 ceiling of the
+  last four runs, and the reason is instructive: the distribution strategy was right
+  (all ten slides carry real side faces, groove walls, AO and two-part warm shadows,
+  and there are no dead lower thirds for the first time in the series) but the defects
+  landed on load-bearing elements, above all the hero. Distributing depth is necessary
+  and not sufficient; the thesis frame has to be the most resolved frame, not the least.
+- WHAT WORKED. The MILLED REGISTER chassis and its cut state machine (cut = the record
+  exists and its length encodes dollars, scored = the record does not exist, proud =
+  somebody else's decision) is genuinely inferable without instruction by slide 06, per
+  the flow critic. The UNMEASURED BRACE, a dimension call with one extension line
+  missing and a NOT DISCLOSED value field, is the best honest-absence device the studio
+  has built. Fairness as GEOMETRY rather than as a footnote (slide 04 twinning slide 02
+  at the same depth and scale, carrying the deck's largest quotation against itself) is
+  the pattern to keep. And the four-register conflict disclosure (pointer chip where
+  the name first appears, full plate at headline scale, caption paragraph, first-comment
+  opener) should become the house pattern for any deck with a studio interest in it.
+- STILL OPEN, disclosed rather than hidden: slide 02's scale bar never shipped so the
+  money constant is not reader-verifiable; the hero's three money wells never shipped so
+  it argues by symbol; c26 went unused; the sundial device reads weakly and should not be
+  counted as a continuity device next run. The light-ground allowance is now SPENT.
