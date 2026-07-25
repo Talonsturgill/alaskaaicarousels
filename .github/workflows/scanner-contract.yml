@@ -42,10 +42,11 @@ jobs:
 
       # The check runs the page's own counter block rather than reading it, so
       # it needs a JavaScript engine. Runners ship one, pinned here so a runner
-      # image change cannot quietly turn this into a skip.
+      # image change cannot quietly turn this into a skip. 22 rather than 20,
+      # which the runners are already warning about.
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: The contract itself
         run: python scripts/scanner_sync_check.py
