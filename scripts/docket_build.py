@@ -260,10 +260,10 @@ def generation_marks(T):
         # 16px rather than 24. At 24 the Cook Inlet plants merged into one beige
         # mass that swallowed two pins, which is the opposite of informative.
         r = max(2.8, 0.92 * math.sqrt(p.get("mw", 0)))
-        out.append('<circle class="gen gen-%s" cx="%.1f" cy="%.1f" r="%.1f"><title>%s, '
-                   '%g MW, %s</title></circle>'
-                   % (esc(str(p.get("src", "other")).replace(" ", "-")), x, y, r,
-                      esc(p.get("n", "")), p.get("mw", 0), esc(p.get("src", ""))))
+        out.append('<g class="mk" data-x="%.1f" data-y="%.1f" transform="translate(%.1f,%.1f)">'
+                   '<circle class="gen" cx="0" cy="0" r="%.1f"><title>%s, %g MW, %s</title>'
+                   '</circle></g>'
+                   % (x, y, x, y, r, esc(p.get("n", "")), p.get("mw", 0), esc(p.get("src", ""))))
     return "".join(out)
 
 
@@ -335,49 +335,69 @@ def map_svg(ordered_items, w=1000, h=620):
     # useless as one hidden under its own. Tethers at the back, badges over
     # them, and the dots last so nothing can ever cover the one mark on this
     # map that is telling the literal truth about where something is.
+    #
+    # Every mark is emitted as a MARKER: a <g class="mk"> that carries its map
+    # coordinate in data-x and data-y and draws its contents around its own
+    # origin. Geometry lives in a separate group that the zoom scales, markers
+    # get repositioned instead of resized. Without that, fitting the view to the
+    # pins on a phone would blow the badges up to the size of boroughs, and on a
+    # 390px screen the marks also have to be scaled UP rather than down.
+    #
+    # With no script the transform below is already the correct unzoomed
+    # position, so the map is complete and clickable before anything runs.
+    def mk(layer, x, y, body, cls=""):
+        layer.append(f'<g class="mk{(" " + cls) if cls else ""}" data-x="{x:.1f}" '
+                     f'data-y="{y:.1f}" transform="translate({x:.1f},{y:.1f})">{body}</g>')
+
     leads, badges, dots = [], [], []
     for g, (lx, ly) in zip(groups, labels):
         ax, ay, members = g
         first = members[0][1]
         c = PIN_COLOR[first["public_access"]]
+        ox, oy = lx - ax, ly - ay          # badge offset, constant in screen units
+        # The status classes ride on the tether and the dot as well as the badge,
+        # so a filter that dims a pin dims the whole mark rather than leaving an
+        # orphan dot and a line pointing at nothing.
+        acls = "pinmk " + " ".join(sorted({"a-" + it["public_access"] for _, it in members}))
         # Any member being open earns the pulse, so a live decision still reads
         # as live when it shares a coordinate with a settled one.
-        live = any(it["public_access"] == "open" for _, it in members)
-        if live:
-            leads.append(
-                f'<circle cx="{ax:.0f}" cy="{ay:.0f}" r="8" fill="none" stroke="{PIN_COLOR["open"]}" '
-                f'stroke-width="1.6" opacity="0.8">'
-                f'<animate attributeName="r" values="8;26" dur="2.8s" repeatCount="indefinite"/>'
-                f'<animate attributeName="opacity" values="0.8;0" dur="2.8s" repeatCount="indefinite"/></circle>')
+        if any(it["public_access"] == "open" for _, it in members):
+            mk(leads, ax, ay,
+               f'<circle cx="0" cy="0" r="8" fill="none" stroke="{PIN_COLOR["open"]}" '
+               f'stroke-width="1.6" opacity="0.8">'
+               f'<animate attributeName="r" values="8;26" dur="2.8s" repeatCount="indefinite"/>'
+               f'<animate attributeName="opacity" values="0.8;0" dur="2.8s" repeatCount="indefinite"/>'
+               f'</circle>', cls=acls)
         # The tether and the dot exist only when the label had to move. An
         # undisplaced badge is already sitting on the coordinate, so a dot under
         # it would just collide with its own number.
-        if math.hypot(lx - ax, ly - ay) > 3.0:
-            leads.append(f'<line class="pinlead" x1="{ax:.1f}" y1="{ay:.1f}" '
-                         f'x2="{lx:.1f}" y2="{ly:.1f}" stroke="{c}"/>')
-            dots.append(f'<circle class="pindot" cx="{ax:.1f}" cy="{ay:.1f}" r="3.4" fill="{c}"/>')
+        if math.hypot(ox, oy) > 3.0:
+            mk(leads, ax, ay, f'<line class="pinlead" x1="0" y1="0" x2="{ox:.1f}" '
+                              f'y2="{oy:.1f}" stroke="{c}"/>', cls=acls)
+            mk(dots, ax, ay, f'<circle class="pindot" cx="0" cy="0" r="3.4" fill="{c}"/>', cls=acls)
         if len(members) == 1:
             n, it = members[0]
-            badges.append(
-                f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
-                f'<circle cx="{lx:.0f}" cy="{ly:.0f}" r="14" fill="#050b16" stroke="{c}" stroke-width="2.6"/>'
-                f'<text x="{lx:.0f}" y="{ly + 5:.0f}" text-anchor="middle" class="pinnum" fill="{c}">{n}</text></a>')
+            body = (f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
+                    f'<circle class="pinbadge" cx="{ox:.0f}" cy="{oy:.0f}" r="14" fill="#050b16" '
+                    f'stroke="{c}" stroke-width="2.6"/><text x="{ox:.0f}" y="{oy + 5:.0f}" '
+                    f'text-anchor="middle" class="pinnum" fill="{c}">{n}</text></a>')
+            mk(badges, ax, ay, body, cls=acls)
         else:
             bw = badge_w(g)
-            x0 = lx - bw / 2.0
-            badges.append(f'<rect x="{x0:.0f}" y="{ly - 14:.0f}" width="{bw:.0f}" height="28" rx="14" '
-                          f'fill="#050b16" stroke="{c}" stroke-width="2.6"/>')
-            # No colon and no item titles in here. This is visible prose to the
-            # build's colon gate, and a title can carry a colon of its own.
-            badges.append(f'<title>{len(members)} decisions at '
-                          f'{esc(first["location"]["name"])}</title>')
+            x0 = ox - bw / 2.0
+            parts = [f'<rect x="{x0:.0f}" y="{oy - 14:.0f}" width="{bw:.0f}" height="28" rx="14" '
+                     f'fill="#050b16" stroke="{c}" stroke-width="2.6"/>',
+                     # No colon and no item titles in here. This is visible prose to
+                     # the build's colon gate, and a title can carry a colon of its own.
+                     f'<title>{len(members)} decisions at '
+                     f'{esc(first["location"]["name"])}</title>']
             for i, (n, it) in enumerate(members):
                 tx = x0 + 10.0 + 15.0 * i + 7.5
-                mc = PIN_COLOR[it["public_access"]]
-                badges.append(
+                parts.append(
                     f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
-                    f'<text x="{tx:.0f}" y="{ly + 5:.0f}" text-anchor="middle" class="pinnum" '
-                    f'fill="{mc}">{n}</text></a>')
+                    f'<text x="{tx:.0f}" y="{oy + 5:.0f}" text-anchor="middle" class="pinnum" '
+                    f'fill="{PIN_COLOR[it["public_access"]]}">{n}</text></a>')
+            mk(badges, ax, ay, "".join(parts), cls=acls)
     pins = leads + badges + dots
     grid = "".join(f'<path class="gx gx-{tier}" d="{d}"/>' for tier, d in grid_paths(T))
     taps = f'<path class="tp" d="{taps_path(T)}"/>' if taps_path(T) else ""
@@ -386,7 +406,7 @@ def map_svg(ordered_items, w=1000, h=620):
         f'<a class="mapkey" href="#{esc(it["id"])}"><b class="k-{it["public_access"]}">{n}</b>'
         f'<span>{esc(it["location"]["name"])}</span></a>'
         for n, it in located)
-    svg = f"""<svg viewBox="0 0 {w} {h}" role="img" aria-label="Map of Alaska with every tracked decision pinned">
+    svg = f"""<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map of Alaska with every tracked decision pinned">
 <defs>
   <filter id="coastglow" x="-20%" y="-20%" width="140%" height="140%">
     <feGaussianBlur stdDeviation="5" result="b"/>
@@ -396,11 +416,13 @@ def map_svg(ordered_items, w=1000, h=620):
     <stop offset="0%" stop-color="#0d2038"/><stop offset="100%" stop-color="#081426"/>
   </radialGradient>
 </defs>
-<path d="{grat_d}" fill="none" stroke="rgba(110,165,255,0.07)" stroke-width="1"/>
-<path d="{coast_d}" fill="url(#landfill)" stroke="#5ac8f0" stroke-width="1.5" filter="url(#coastglow)"/>
-<g class="lyr lyr-taps" aria-hidden="true">{taps}</g>
+<g id="mzoom">
+  <path d="{grat_d}" fill="none" stroke="rgba(110,165,255,0.07)" stroke-width="1"/>
+  <path d="{coast_d}" fill="url(#landfill)" stroke="#5ac8f0" stroke-width="1.5" filter="url(#coastglow)"/>
+  <g class="lyr lyr-taps" aria-hidden="true">{taps}</g>
+  <g class="lyr lyr-grid" aria-hidden="true">{grid}</g>
+</g>
 <g class="lyr lyr-gen">{gen}</g>
-<g class="lyr lyr-grid" aria-hidden="true">{grid}</g>
 {''.join(pins)}
 </svg>"""
     return svg, caption
