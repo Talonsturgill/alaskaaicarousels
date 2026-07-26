@@ -1492,3 +1492,55 @@ immediately after, was to make the SCRIPT emit that body and re-verify the
 delivered bytes against the script's output (equal, timestamp aside) so the
 record is true rather than merely close. If a delivery constraint forces a change
 to the body, change the generator, never the draft.
+
+### 2026-07-26 (No. 18) — the artwork-craft ceiling, root cause and fix
+
+Six consecutive scored runs named "dead lower zones" as the ceiling on artwork
+craft (ledger entries 10, 11, 13, 14, 15, 16, 18). Six times it became a
+sentence in this file. It was still a sentence at the end of run 18, and the
+maintainer's question was the right one, which is why not fix the cause.
+
+THE CAUSE WAS A RULE IN OUR OWN DOCTRINE. DESIGN_DOCTRINE 1 read "at least one
+generous quiet zone per slide" with no ceiling and no address. The cheapest
+place to spend an unbounded licence is the bottom band of a top-loaded
+composition. The dossier then wrote that empty bottom into the plan, and the
+pixel critics grade each slide against its OWN dossier, so a slide that
+executed a bad plan passed its acceptance checklist. The only reviewer
+positioned to see it was the scorer, at the ship gate, with no budget left to
+rebuild four slides. That sequencing is why it recurred, because it was structurally
+guaranteed to arrive too late to fix, every single run.
+
+WHAT THE DATA SAID, INCLUDING WHERE THE FIRST ATTEMPT WAS WRONG. A plain
+emptiness measure does not separate the defect. Across the 45 scorer-labeled
+slides the dead ones' whole-frame occupancy (median 0.505) is indistinguishable
+from the rest (0.537), because every slide has quiet margins. Two different
+defects share the name. Some slides have a bottom band that is EMPTY
+(2026-07-17 S09 and 2026-07-20 S03 both ship a bottom 40% with nothing in it,
+and neither was ever named by a scorer, which is its own evidence about
+relying on eyes). Others have a bottom band that is OCCUPIED BUT FLAT, grey
+plates and hairlines on bare ground, which is what run 18's S05 and S08 are.
+Only counting cells that carry MODELED tone catches both.
+
+An absolute craft-density floor was tested and REJECTED, because it fails 48 to 60% of
+every slide the series has shipped, which makes it a taste judgment the machine
+should not make alone, and the doctrine's own position is that flat is a
+legitimate choice. The gate is therefore self-relative and asks only the
+question the scorers kept asking, whether the slide spends its craft up top and
+coasts.
+
+THE FIX IS IN THREE PLACES, EARLIEST FIRST.
+1. The doctrine clause is now bounded and placed. The quiet zone may not exceed
+   about a quarter of the frame and is not the bottom band by default.
+2. SLIDE_DOSSIER_SPEC field 4a, enforced by scripts/dossier_check.py at the
+   Phase 5 storyboard gate, where every dossier names what the bottom band carries
+   and names something with modeled tone. Here the fix costs one paragraph.
+3. qa.py frame_balance(), at render time, FAILing a bottom third that carries
+   under 60% of the slide's own craft density. On run 18's shipped renders it
+   FAILS S05 and S08 and warns S09, against a scorer list of "slides 4, 5, 8
+   and 9", with no false alarm on the rendered heroes S01 and S03.
+
+THE LESSON THAT GENERALIZES. A defect that only the LAST reviewer in the
+pipeline can see will be deferred forever, because by the time it is visible
+the run cannot afford it. Moving detection earlier is worth more than looking
+harder at the end. And when a defect recurs, suspect a rule that permits it
+before suspecting the people following the rule.

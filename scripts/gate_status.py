@@ -102,6 +102,29 @@ def qa_row(rows, rdir):
     rows.add("qa.py", status, detail)
 
 
+def dossier_row(rows, run):
+    """The planning-time lower-third gate (2026-07-26). Run by the storyboard
+    gate in Phase 5; surfaced here so the GATE STATUS block shows whether the
+    plan itself cleared field 4a, not just whether the pixels did."""
+    sb = run / "storyboard.md"
+    if not sb.exists():
+        rows.absent("dossier_check", "storyboard.md missing")
+        return
+    try:
+        p = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "dossier_check.py"),
+             "--run-dir", str(run), "--json"],
+            capture_output=True, text=True, timeout=60)
+        rep = json.loads(p.stdout)
+    except Exception as e:
+        rows.absent("dossier_check", "could not run (%s)" % type(e).__name__)
+        return
+    rows.add("dossier_check", rep.get("verdict", "?"),
+             "%s, %d dossiers, %s fails, %s warns" % (
+                 rep.get("verdict", "?"), len(rep.get("slides", [])),
+                 rep.get("fails", "?"), rep.get("warns", "?")))
+
+
 def caption_row(rows, run):
     cap, note = load_json(run / "caption_report.json")
     if cap is None:
@@ -255,6 +278,7 @@ def main():
     rows = Rows(args.require)
     rep = render_row(rows, rdir)
     qa_row(rows, rdir)
+    dossier_row(rows, run)
     caption_row(rows, run)
     copy_sync_row(rows, run, rdir)
     scanner_sync_row(rows)

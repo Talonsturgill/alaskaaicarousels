@@ -230,6 +230,14 @@ This is where the deck is actually made. Spend real effort here.
    spec, risk flags, and the slide's acceptance checklist.
 4. STORYBOARD GATE (self-review): re-read the spec top to bottom; any
    dossier a stranger couldn't sketch from is incomplete — fix it now.
+   Run `python scripts/dossier_check.py --run-dir out/<date>` and fix every
+   FAIL before Phase 8 (2026-07-26). It enforces field 4a, the lower-third
+   treatment: each dossier must name what the bottom band CARRIES, and name
+   something with modeled tone rather than a plate or a caption. This is the
+   cheapest place in the whole run to kill the dead lower zone — the scorer
+   named it six consecutive runs, always at the ship gate where rebuilding
+   four slides was no longer affordable, so it became a note six times
+   instead of a fix. Here it costs one paragraph.
    Verify: 6-12 slides (default 8-10); cover <= 12 words; slide 2 pays;
    a breather exists; a keepable data slide exists; single-ask close
    with "sources in comments" and the site fixture (alaskaaihq.com small

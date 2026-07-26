@@ -87,6 +87,11 @@ IN_PAGE_QA_JS = """
   const W = window.innerWidth, H = window.innerHeight;
   const out = { text_nodes: [], overflow_warnings: [], fonts_missing: [], body_overflow: false };
   const de = document.documentElement, b = document.body;
+  // data-breather on <body> declares this slide a deliberate rest beat, which
+  // demotes qa.py's frame-balance FAIL to a WARN. Not a free pass: the dossier
+  // gate cross-checks that the storyboard actually declared this slide a
+  // breather, so the attribute can only ratify a plan, never invent one.
+  out.breather = !!(b && b.hasAttribute("data-breather"));
   if (de.scrollWidth > W + 1 || de.scrollHeight > H + 1 ||
       (b && (b.scrollWidth > W + 1 || b.scrollHeight > H + 1))) {
     out.body_overflow = true;
@@ -390,7 +395,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         qa = page.evaluate(IN_PAGE_QA_JS)
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
-                                       "canvas_text")})
+                                       "canvas_text", "breather")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:
