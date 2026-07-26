@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-25",
+  "updated": "2026-07-26",
   "items": [
     {
       "id": "adl-422741-stak-north-slope-lease",
@@ -60,7 +60,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-25",
+      "last_updated": "2026-07-26",
       "history": [
         {
           "date": "2026-07-08",
@@ -121,6 +121,10 @@
         {
           "date": "2026-07-25",
           "note": "Carried forward unchanged. The written comment window closed at 4.30 p.m. on July 17, 2026 and the 50 year lease still sits with DNR's Division of Oil and Gas awaiting a final finding and decision. An attempt to re-fetch the state's own public notice page this run returned HTTP 503, so nothing here is updated on rumor. No final decision has surfaced."
+        },
+        {
+          "date": "2026-07-26",
+          "note": "Re-verification attempted and failed. The DNR public notice path returned HTTP 404 to this run's fact checker and no alternate primary source was reachable, so the status stays pending decision on the strength of the prior run's reporting. No decision is asserted in either direction."
         }
       ]
     },
@@ -317,7 +321,7 @@
         },
         {
           "date": "2026-07-27",
-          "label": "Third special session convenes in Juneau",
+          "label": "Third special session convenes, 10:00 a.m.",
           "kind": "milestone"
         }
       ],
@@ -364,7 +368,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-25",
+      "last_updated": "2026-07-26",
       "history": [
         {
           "date": "2026-07-08",
@@ -417,6 +421,10 @@
         {
           "date": "2026-07-25",
           "note": "Two days out from the third special session, which convenes July 27 in Juneau. Re-verified this run by fetching the Alaska Public Media report of July 16. The governor rejected the pass-through S corporation provision that would have subjected Hilcorp and other private producers to Alaska's 9.4 percent corporate income tax while exempting the Alaska LNG project, and he called the third session rather than accept it. That session opens just over three weeks before the August 18 primary, which is the practical squeeze on it. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the line."
+        },
+        {
+          "date": "2026-07-26",
+          "note": "Re-verified. The governor issued an executive proclamation calling the legislature back effective July 27, 2026 at 10:00 a.m. Alaska's News Source coverage of the session contains no data center or AI load argument, so the gas line remains a gas story on this docket and not an AI one."
         }
       ]
     },
@@ -516,7 +524,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-07-22",
+      "last_updated": "2026-07-26",
       "history": [
         {
           "date": "2026-07-17",
@@ -533,6 +541,10 @@
         {
           "date": "2026-07-22",
           "note": "Selected as this run's carousel. Re-verified the DNR primary notice ADL 234762. It remains a preliminary decision proposing a noncompetitive no-cost conveyance of about 19,950 acres of state land roughly two miles north of Houston to AIDEA, with written public comment open through 5 p.m. August 19. The notice says that if no significant change is required the preliminary decision will issue as the Final Finding and Decision. Daniel Jenkins is the listed contact. This is the one open comment room among the tracked decisions."
+        },
+        {
+          "date": "2026-07-26",
+          "note": "Re-verified against Northern Journal. Public comment on the DNR preliminary decision runs through August 19 and the Houston City Council postponed its vote on a data center restriction ordinance to its next meeting on August 13, to allow a work session that had not yet been scheduled. Parcel described as 30 square miles, roughly 60 road miles north of Anchorage. Dates unchanged."
         }
       ]
     },
@@ -612,6 +624,73 @@
         {
           "date": "2026-07-18",
           "note": "Tracked from this run. The state level counterpart to the Anchorage ordinance, HB 259 would set rate-setting and community benefit standards for big loads but sits in the House Energy Committee. Its stall is the policy gap at the center of Carousel No. 10, no statewide rule decides whether a data center spreads or shifts costs onto households."
+        }
+      ]
+    },
+    {
+      "id": "ratepayer-protection-pledge-alaska-utilities",
+      "title": "The AI ratepayer pledge, and which Alaska utilities have signed it",
+      "kind": "other",
+      "status": "watching",
+      "decider": "Each Alaska electric utility board, including the Railbelt cooperatives",
+      "public_access": "indirect",
+      "access_note": "Alaska's electric cooperatives are governed by boards their own members elect, so a member can ask their board directly whether it intends to sign. A voluntary federal pledge has no public comment docket, which is why this room is indirect rather than open.",
+      "summary": "The White House Ratepayer Protection Pledge asks AI companies, utilities and data center developers to commit that new data center load pays for its own generation and delivery instead of shifting the cost onto households. USA TODAY and POWER both describe it as voluntary and non binding. Gov. Mike Dunleavy signed the governors addendum on July 23, 2026, one of 23 governors. Read live on July 26, 2026 the signatory list showed a single Alaska entity, Cordova Electric Cooperative, a 1,566 customer cooperative that is not connected by transmission line to any other community.",
+      "key_dates": [
+        {
+          "date": "2026-03-04",
+          "label": "Pledge first signed by seven AI companies at the White House",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-07-23",
+          "label": "Governors addendum signed, Dunleavy among 23 governors",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-07-26",
+          "label": "Signatory list read at 281, one Alaska entity on it",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Cordova, Prince William Sound",
+        "lon": -145.7573,
+        "lat": 60.5428
+      },
+      "sources": [
+        {
+          "url": "https://www.whitehouse.gov/ratepayer-protection-pledge/",
+          "outlet": "The White House",
+          "date": "2026-07-26"
+        },
+        {
+          "url": "https://www.rga.org/republican-governors-sign-president-trumps-ratepayer-protection-pledge/",
+          "outlet": "Republican Governors Association",
+          "date": "2026-07-23"
+        },
+        {
+          "url": "https://www.epa.gov/newsreleases/president-trump-expands-historic-ratepayer-protection-pledge-protect-american",
+          "outlet": "U.S. Environmental Protection Agency",
+          "date": "2026-07-23"
+        },
+        {
+          "url": "https://www.powermag.com/white-house-expands-data-center-ratepayer-pledge-as-congress-moves-to-codify-protections/",
+          "outlet": "POWER Magazine",
+          "date": "2026-07-23"
+        },
+        {
+          "url": "https://www.cordovaelectric.com/about/",
+          "outlet": "Cordova Electric Cooperative",
+          "date": "2026-07-26"
+        }
+      ],
+      "first_seen": "2026-07-26",
+      "last_updated": "2026-07-26",
+      "history": [
+        {
+          "date": "2026-07-26",
+          "note": "Tracked. The White House expanded the Ratepayer Protection Pledge on July 23 and 23 Republican governors signed an addendum committing to implement its principles to the greatest extent possible, Dunleavy among them. The pledge itself binds signing companies to five things, build bring or buy new power supply, pay for new delivery infrastructure, pay whether they use the power or not, invest in local jobs, and contribute to grid and community resilience. Both USA TODAY and POWER describe it as non binding. A read of the signatory list on July 26 returned one Alaska name, Cordova Electric Cooperative, and no Railbelt utility."
         }
       ]
     }

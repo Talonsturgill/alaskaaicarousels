@@ -1,0 +1,37 @@
+{
+  "run_date": "2026-07-26",
+  "carousel_no": 18,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "pending",
+    "ship": "pending",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "plan": "out/2026-07-26/plan.md",
+    "craft_refresh": "knowledge/FIELD_NOTES.md (2026-07-26 entry, commit on run branch)",
+    "scout_merge": "out/2026-07-26/scout_merge.md",
+    "claims": "out/2026-07-26/claims.json",
+    "docket": "ledger/docket.json (9 items, new item ratepayer-protection-pledge-alaska-utilities)",
+    "selection": "out/2026-07-26/selection.md",
+    "storyboard": "out/2026-07-26/storyboard.md",
+    "copy": "out/2026-07-26/copy.json",
+    "caption": "out/2026-07-26/caption.txt (+ caption_report.json, PASS)",
+    "slides": "out/2026-07-26/slides/slide-01..09.html",
+    "render": "out/2026-07-26/render (9 PNGs, machine_qa.json PASS 0/0)",
+    "final": "out/2026-07-26/final (carousel.pdf vector, contact_sheet.png, thumbs/)"
+  }
+}

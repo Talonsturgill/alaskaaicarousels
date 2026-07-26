@@ -1,0 +1,272 @@
+{
+  "run_date": "2026-07-26",
+  "carousel_no": 18,
+  "document_title": "One Line Out. Alaska's One Name on the AI Power Pledge",
+  "post_copy": "Cordova sits on Prince William Sound, off the state highway system, with no transmission line to another community.\n\nRead on July 26, it is the only Alaska name on the White House pledge that AI load pays for its own power. Gov. Mike Dunleavy signed the governors addendum on July 23. It is non binding.\n\nA binding version got close. SB 250 would have required commission approved contracts so data center costs stayed with the operator. It passed the Alaska Senate on May 16 and died in House Community and Regional Affairs.\n\n4,700 acres at JBER, Eielson and Clear sit offered for data centers. Cordova's own runs on 150 kilowatts of hydro.\n\nNo Railbelt utility appears on the list. Inside, all 281 names and every megawatt on one axis.\n\nSo which should the next Alaska data center answer to, the pledge the governor signed or the bill the House let die?\n\n#AlaskaEnergy #Railbelt #DataCenterPolicy",
+  "first_comment": "Sources for every number in this deck, primary first.\n\nThe White House, Ratepayer Protection Pledge signatory list and the five commitments, read 2026-07-26, https://www.whitehouse.gov/ratepayer-protection-pledge/\nRepublican Governors Association, Republican governors sign the Ratepayer Protection Pledge, https://www.rga.org/republican-governors-sign-president-trumps-ratepayer-protection-pledge/\nU.S. Environmental Protection Agency, President Trump expands the Ratepayer Protection Pledge, https://www.epa.gov/newsreleases/president-trump-expands-historic-ratepayer-protection-pledge-protect-american\nPOWER Magazine, White House expands data center ratepayer pledge as Congress moves to codify protections, https://www.powermag.com/white-house-expands-data-center-ratepayer-pledge-as-congress-moves-to-codify-protections/\nUSA TODAY via Central Oregon Daily, 23 governors sign Trump's cost pledge for data centers, https://www.centraloregondaily.com/news/nation-world/23-governors-sign-trumps-cost-pledge-for-data-centers-backbone-of-ai/article_0e204a10-f776-5f29-93b4-04f84a68a7eb.html\nCordova Electric Cooperative, About, 1,566 customers, 18 megawatts, and no transmission line to another community, https://www.cordovaelectric.com/about/\nDavis Wright Tremaine, Alaska data center development next steps, https://www.dwt.com/blogs/energy--environmental-law-blog/2026/06/alaska-data-center-development-next-steps\nBillTrack50, Alaska SB 250, an act relating to data centers and utility service for data centers, https://www.billtrack50.com/billdetail/1974439\nBillTrack50, Alaska SB 2, election related deepfakes and state agency use of artificial intelligence, https://www.billtrack50.com/billdetail/1775660\nOffice of Rep. Nick Begich, Begich leads legislation to lower energy costs and introduces the House DATA Act, https://begich.house.gov/media/press-releases/congressman-begich-leads-legislation-lower-energy-costs-introduces-house\nU.S. Air Force, DAF takes steps for potential Alaskan AI data centers, https://www.af.mil/News/Article-Display/Article/4456660/daf-takes-steps-for-potential-alaskan-ai-data-centers/\nFairbanks Daily News-Miner, Air Force solicits interest in Alaska data centers but faces some hurdles, https://www.newsminer.com/news/alaska_news/air-force-solicits-interest-in-alaska-data-centers-but-faces-some-hurdles/article_4a42264e-cadb-4f1c-a8f4-c74d2b099ba2.html\n\nTwo sourcing limits, stated plainly. The finding that Cordova Electric Cooperative is the only Alaska entity on the signatory list is a read of the White House page on July 26, 2026, and another Alaska utility could sign tomorrow. akleg.gov and rca.alaska.gov were unreachable this run, so no claim in this deck rests on either.\n\nEvery decision we track, with live deadlines, lives at https://alaskaaihq.com\n\nIf you work at a Railbelt utility, at the RCA, or on this file in Juneau and can add context or correct something, add it below.",
+  "caption_meta": {
+    "opening_move": "MAP MOVE",
+    "structure": "BRAID",
+    "closing_move": "FORK",
+    "first_words": "Cordova sits on Prince William Sound off",
+    "hook_type": "map-move locator, place plus a topological fact",
+    "room": "2 directors (THE ABSURD DETAIL/ZOOM/WHO DECIDES vs MAP MOVE/BRAID/FORK), critic shipped B with one fix installing the Railbelt absence line; candidate A was killed for echoing ledger entry 07-17's no-road-out frame and for drifting into MAP MOVE while claiming THE ABSURD DETAIL"
+  },
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "White House Ratepayer Protection Pledge",
+      "headline": "One Alaska utility signed. Its wires reach no one else.",
+      "body": "",
+      "labels": [
+        "Signatory list read 2026-07-26 . All 281",
+        "DEAD END TERMINATION, SCHEMATIC"
+      ],
+      "counter": "01 / 09",
+      "claim_ids": [
+        "C10",
+        "C13",
+        "C15"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "The list . read 2026-07-26",
+      "headline": "281 names on the pledge. One of them is in Alaska.",
+      "body": "Cordova Electric Cooperative is filed under Cooperative on the White House signatory page. No Railbelt utility appears on the list as read.",
+      "labels": [
+        "CORDOVA ELECTRIC",
+        "COOPERATIVE . CORDOVA, AK",
+        "Page counters read all 281,"
+      ],
+      "counter": "02 / 09",
+      "claim_ids": [
+        "C10",
+        "C11",
+        "C12",
+        "C13"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "What signing asks of a company",
+      "headline": "Five commitments. Nobody has to keep them.",
+      "body": "USA TODAY and POWER both call the pledge non binding. Twenty three governors signed an addendum promising to implement its principles to the greatest extent possible.",
+      "labels": [
+        "01 BUILD, BRING OR BUY NEW POWER SUPPLY",
+        "02 PAY FOR NEW POWER DELIVERY INFRASTRUCTURE",
+        "03 PAY WHETHER THEY USE THE POWER OR NOT",
+        "04 INVEST IN LOCAL JOBS AND WORKFORCE",
+        "05 CONTRIBUTE TO GRID AND COMMUNITY RESILIENCE",
+        "NOT LANDED"
+      ],
+      "counter": "03 / 09",
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C06"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "The one that signed",
+      "headline": "1,566 customers. 18 megawatts. No line out.",
+      "body": "Cordova Electric Cooperative runs one diesel plant and two hydroelectric plants. The town is off the state highway system and the cooperative is not connected by transmission line to any other community.",
+      "labels": [
+        "CORDOVA DATA CENTER, 150 kW, ON HYDRO",
+        "\"the American people should not be footing the bill for the benefit of private companies\"",
+        "THE PLEDGE, AS QUOTED BY THE RGA"
+      ],
+      "counter": "04 / 09",
+      "claim_ids": [
+        "C05",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "Scale . one axis . printed rule",
+      "headline": "Every megawatt in this story, on one axis.",
+      "body": "",
+      "labels": [
+        "150 kW CORDOVA, HOSTED . 0.83% OF 18 MW",
+        "3 MW IF THE PILOT EXPANDS",
+        "5 MW EIELSON MICROREACTOR, PLANNED",
+        "18 MW CORDOVA ELECTRIC, TOTAL",
+        "25 MW RAILBELT, AS REPORTED MARCH 2026",
+        "24 px = 1 MW",
+        "Acres and megawatts are not one axis.",
+        "4,700 ACRES",
+        "TWELVE PARCELS",
+        "JBER . EIELSON . CLEAR",
+        "\"Power is the one requirement we are shortest on.\"",
+        "PHILIP WIGHT, UAF, MARCH 2026"
+      ],
+      "counter": "05 / 09",
+      "claim_ids": [
+        "C16",
+        "C18",
+        "C26",
+        "C28",
+        "C29"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "The binding version",
+      "headline": "It passed the Senate. Then it stopped.",
+      "body": "SB 250 would have required commission approved contracts so a data center's infrastructure and service costs are borne by the operator rather than shifted to other customers. It passed the Alaska Senate on May 16, 2026 and died in House Community and Regional Affairs.",
+      "labels": [
+        "2026-02-18 INTRODUCED",
+        "2026-05-16 PASSED THE SENATE",
+        "2026-05-20 DEAD",
+        "SB 2 . STATE AGENCY AI AND ELECTION DEEPFAKES",
+        "2025-01-22 INTRODUCED",
+        "2025-04-29 ONE HEARING",
+        "1.7 px = 1 DAY",
+        "SB 250, SEN. LOKI TOBIN . SB 2, SEN. SHELLEY HUGHES"
+      ],
+      "counter": "06 / 09",
+      "claim_ids": [
+        "C19",
+        "C20",
+        "C21",
+        "C22"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "Three instruments, three holding strengths",
+      "headline": "A pledge asks. A contract binds.",
+      "body": "",
+      "labels": [
+        "PLEDGE",
+        "BINDS NOBODY. VOLUNTARY AND NON BINDING.",
+        "SIGNED 2026-07-23. ONLY DRAWN.",
+        "STATUTE",
+        "BINDS EVERY UTILITY IN THE STATE.",
+        "SB 250 PASSED THE SENATE 2026-05-16. TERMINATED.",
+        "CONTRACT",
+        "BINDS ONE NAMED CUSTOMER TO NAMED TERMS.",
+        "SB 250 WOULD HAVE CREATED IT. NEVER BUILT.",
+        "The widest word on this page is the one that does not exist."
+      ],
+      "counter": "07 / 09",
+      "claim_ids": [
+        "C01",
+        "C03",
+        "C04",
+        "C20",
+        "C21"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "The instrument that is moving",
+      "headline": "The other answer is to leave the grid entirely.",
+      "body": "Rep. Nick Begich of Alaska introduced the DATA Act on April 21, 2026. He says it lets manufacturers run on fully self contained grid of one power systems.",
+      "labels": [
+        "SHARED RAIL . COSTS ARE ALLOCATED BY CONTRACT",
+        "OWN FOOTING . NO SHARED SYSTEM TO ALLOCATE",
+        "Two instruments, opposite mechanisms. One regulates the joint, one removes it."
+      ],
+      "counter": "08 / 09",
+      "claim_ids": [
+        "C24",
+        "C25"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "A promise is not an instrument.",
+      "body": "Twenty three governors signed. One Alaska utility signed. Neither signature is a rule.",
+      "labels": [
+        "Save this for the next time somebody promises your bill is safe.",
+        "SOURCES IN COMMENTS",
+        "ALASKA.AI",
+        "alaskaaihq.com"
+      ],
+      "counter": "09 / 09",
+      "claim_ids": [
+        "C01",
+        "C03",
+        "C13"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post this draft on a Tuesday, Wednesday or Thursday between 8 and 11am Alaska time, which is this audience's strongest window, and hold it rather than firing it into a Friday afternoon.",
+    "Paste the sources comment within 60 seconds of publishing, then work the golden hour and reply substantively to every comment in the first 60 to 90 minutes.",
+    "Deck specific warning, the only Alaska entity line is dated to the White House list read on July 26, 2026, so if a Railbelt utility signs after that date, concede it in the thread and repeat the read date rather than defending the claim.",
+    "Two live docket dates will come up from commenters, August 13 for the Houston City Council vote and August 19 for the DNR comment close, so have both at hand, and check saves and comments again at 48 hours."
+  ],
+  "copy_changes": [
+    {
+      "slide": "05",
+      "was": "Alaska's working AI load is 150 kilowatts.",
+      "now": "Cordova's data center runs on 150 kilowatts.",
+      "why": "The copywriter caught a statewide exclusivity claim in the slide's largest type. The Alaska data center count was killed as unverifiable, and C18 supports only the Cordova figure. The scale argument still lands off the ladder beneath it."
+    },
+    {
+      "slide": "04",
+      "was": "ALASKA'S WORKING DATA CENTER, 150 kW, ON HYDRO",
+      "now": "CORDOVA DATA CENTER, 150 kW, ON HYDRO",
+      "why": "Same exclusivity problem, same fix."
+    },
+    {
+      "slide": "01",
+      "was": "DEAD-END TERMINATION, SCHEMATIC",
+      "now": "DEAD END TERMINATION, SCHEMATIC",
+      "why": "House style sets these compounds open across the deck, and an open compound cannot be mistaken for a dash by any lint."
+    },
+    {
+      "slide": "07",
+      "was": "STATE SIGNED 2026-07-23. ONLY DRAWN.",
+      "now": "DUNLEAVY SIGNED 2026-07-23. ONLY DRAWN.",
+      "why": "Names the governor on the synthesis slide, since slide 3's body was cut to 26 words and no longer carries him."
+    },
+    {
+      "slide": "08",
+      "was": "Alaska's US House member introduced the DATA Act",
+      "now": "Rep. Nick Begich of Alaska introduced the DATA Act",
+      "why": "Name specific people on first mention, per brand.yaml."
+    },
+    {
+      "slide": "07",
+      "was": "DUNLEAVY SIGNED 2026-07-23. ONLY DRAWN.",
+      "now": "SIGNED 2026-07-23. ONLY DRAWN.",
+      "why": "The pixel critic caught the ISO date breaking across a line at its hyphen, which is a craft failure in a drafting-voiced deck and briefly reads as a truncated string. Dropping DUNLEAVY sets the date on one line; the governor is already named on slides 3 and 9."
+    },
+    {
+      "slide": "05",
+      "was": "a separate 150 kW = 0.83% OF 18 MW plate",
+      "now": "the ratio folded into the bar label, 150 kW CORDOVA DATA CENTER, HOSTED . 0.83% OF 18 MW",
+      "why": "The pixel critic required the 3.6px bar be MEASURED rather than implied. A floating readout plate collided with the bar label, so the ratio rides the label and the dimension geometry stays."
+    },
+    {
+      "slide": "06",
+      "was": "SB 2 . STATE AGENCY AI USE AND ELECTION DEEPFAKE DISCLOSURE",
+      "now": "SB 2 . STATE AGENCY AI AND ELECTION DEEPFAKES",
+      "why": "The subtitle ran under the DEAD tag's plate. Shortening it clears the tag and keeps SB 2's dead-end clamp visible, which the deck's governing rule requires."
+    },
+    {
+      "slide": "05",
+      "was": "Cordova's data center runs on 150 kilowatts.",
+      "now": "Every megawatt in this story, on one axis.",
+      "why": "Flow critic, the 4 to 5 junction was the deck's weakest because slide 4 already printed 150 kW and 18 MW, so slide 5 spent its one thumb-readable line on a repeat. The new headline names what the slide actually does and opens a new loop."
+    },
+    {
+      "slide": "08",
+      "was": "...without forcing households to subsidize new energy demands.",
+      "now": "cut after 'grid of one power systems.'",
+      "why": "Flow critic, slides 5 to 8 were four consecutive text-heavy frames. The fork diagram and its two labels already carry the mechanism, so this body was the one block redundant to its own art. The cut clause survives in the caption."
+    }
+  ]
+}

@@ -1,185 +1,194 @@
 {
- "_spec": {
-  "purpose": "Caption variety-engine ledger. The caption room MUST read this before writing and the showrunner MUST append after delivery. Divergence rules (hard constraints): opening_move must differ from the last 6 entries; structure from the last 3; closing_move phrasing from the last 1; the caption's first 4 words must not match any of the last 12 entries (caption_check --ledger enforces mechanically). Novel moves are encouraged, name them NEW:<name> and add them to CAPTION_CRAFT.md.",
-  "entry_schema": {
-   "run_date": "YYYY-MM-DD",
-   "opening_move": "from CAPTION_CRAFT.md",
-   "structure": "from CAPTION_CRAFT.md",
-   "closing_move": "fork|stake|prediction|who-decides|price|NEW:...",
-   "first_words": "first 8 words of the shipped caption",
-   "hook_type": "free text"
-  }
- },
- "entries": [
-  {
-   "run_date": "2026-07-08",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "Alaska got more than 500 public comments on",
-   "hook_type": "statement",
-   "furniture": true,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  "_spec": {
+    "purpose": "Caption variety-engine ledger. The caption room MUST read this before writing and the showrunner MUST append after delivery. Divergence rules (hard constraints): opening_move must differ from the last 6 entries; structure from the last 3; closing_move phrasing from the last 1; the caption's first 4 words must not match any of the last 12 entries (caption_check --ledger enforces mechanically). Novel moves are encouraged, name them NEW:<name> and add them to CAPTION_CRAFT.md.",
+    "entry_schema": {
+      "run_date": "YYYY-MM-DD",
+      "opening_move": "from CAPTION_CRAFT.md",
+      "structure": "from CAPTION_CRAFT.md",
+      "closing_move": "fork|stake|prediction|who-decides|price|NEW:...",
+      "first_words": "first 8 words of the shipped caption",
+      "hook_type": "free text"
+    }
   },
-  {
-   "run_date": "2026-07-09",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "A hand-clicker on a Bristol Bay tower has",
-   "hook_type": "statement",
-   "furniture": false,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-10",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "Three Alaska volcanoes are on elevated alert at",
-   "hook_type": "statement",
-   "furniture": true,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-11",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "On July 10, state regulators rejected Alaska's plan",
-   "hook_type": "statement",
-   "furniture": true,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-12",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "Five teams are racing across 1,000 square kilometers",
-   "hook_type": "statement",
-   "furniture": false,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-13",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "Golden Valley Electric's board weighs $120 million in",
-   "hook_type": "statement",
-   "furniture": false,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-14",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "An Alaska Native-owned firm just won a $24.96M",
-   "hook_type": "statement",
-   "furniture": false,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-15",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "Alaska just won a decade-scale federal bet to",
-   "hook_type": "statement",
-   "furniture": false,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-17",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "Quinhagak has no road out, so the roadless",
-   "hook_type": "statement",
-   "furniture": true,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-18",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "A data center on the North Slope cannot",
-   "hook_type": "statement",
-   "furniture": true,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-19",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "Under one road in Utqiagvik, the northernmost US",
-   "hook_type": "statement",
-   "furniture": true,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-20",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "A Kenai school district bought an $8,300 AI",
-   "hook_type": "statement",
-   "furniture": true,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-21",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "Cook Inlet has about 331 belugas left, and",
-   "hook_type": "statement",
-   "furniture": true,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-22",
-   "opening_move": "LEGACY STANDARD",
-   "structure": "hook-context-deckpointer-question",
-   "closing_move": "bolted question",
-   "first_words": "Alaska is moving to hand 31 square miles",
-   "hook_type": "statement",
-   "furniture": true,
-   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-  },
-  {
-   "run_date": "2026-07-23",
-   "opening_move": "DEFINITION SUBVERSION",
-   "structure": "PUNCH THEN PROOF",
-   "closing_move": "who-decides",
-   "first_words": "Data sovereignty is not a privacy",
-   "hook_type": "definition-subversion statement",
-   "furniture": "none",
-   "note": "Broke the long LEGACY STANDARD / hook-context-deckpointer-question / bolted-question streak. Hook 42 chars, 847 total, who-decides close (the Tribe that owns it vs the vendor that ships the model)."
-  },
-  {
-   "run_date": "2026-07-24",
-   "opening_move": "LEDGER TALLY",
-   "structure": "INVERTED PYRAMID",
-   "closing_move": "PRICE",
-   "first_words": "More than 500 comments landed on a",
-   "hook_type": "ledger-tally statement",
-   "furniture": "none",
-   "note": "Caption room: 2 directors (LEDGER TALLY/INVERTED PYRAMID/PRICE vs CONTRADICTION/COLD-OPEN-WARM-CLOSE/FORK), critic picked A with one fix (dropped the verbatim cover phrase 'one office holds the pen' and the '500 to 12' overstatement, replaced with 'ran better than 40 to 1 against, and one state agency still holds the signature'). Hook 96 chars, 898 total (near the 900 ceiling), price close 'what is that public land honestly worth to lease away for half a century?'."
-  },
-  {
-   "run_date": "2026-07-25",
-   "opening_move": "COLD NUMBER",
-   "structure": "COUNTDOWN",
-   "closing_move": "stake",
-   "first_words": "24 days. Then Alaska's primary narrows a field",
-   "hook_type": "bare-interval cold number, 8 chars, numeral-first",
-   "furniture": "none",
-   "note": "Caption room ran 2 directors (CONTRADICTION/BRAID/who-decides vs COLD NUMBER/COUNTDOWN/stake). Critic shipped B with one fix, replacing a closing question that overstated a single June survey non-response about named individuals ('will not say a word about AI') with 'left June's AI questions blank', plus a one-word date correction from 'last week' to 'this week' to agree with slide 01. RECORDED DEMERITS on the winner: COUNTDOWN was executed as bumpers around an inverted-pyramid body rather than time pressure inside the argument, and 'compelled by law' echoes the slide 06 bay label. Two consecutive runs have now opened on a number (07-24 LEDGER TALLY, 07-25 COLD NUMBER), so a third numeric opening is barred on sight. The losing candidate's best line, 'One list exists because a law demanded it. The other because a reporter asked.', is worth grafting in a future run."
-  }
- ]
+  "entries": [
+    {
+      "run_date": "2026-07-08",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "Alaska got more than 500 public comments on",
+      "hook_type": "statement",
+      "furniture": true,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-09",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "A hand-clicker on a Bristol Bay tower has",
+      "hook_type": "statement",
+      "furniture": false,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-10",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "Three Alaska volcanoes are on elevated alert at",
+      "hook_type": "statement",
+      "furniture": true,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-11",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "On July 10, state regulators rejected Alaska's plan",
+      "hook_type": "statement",
+      "furniture": true,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-12",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "Five teams are racing across 1,000 square kilometers",
+      "hook_type": "statement",
+      "furniture": false,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-13",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "Golden Valley Electric's board weighs $120 million in",
+      "hook_type": "statement",
+      "furniture": false,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-14",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "An Alaska Native-owned firm just won a $24.96M",
+      "hook_type": "statement",
+      "furniture": false,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-15",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "Alaska just won a decade-scale federal bet to",
+      "hook_type": "statement",
+      "furniture": false,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-17",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "Quinhagak has no road out, so the roadless",
+      "hook_type": "statement",
+      "furniture": true,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-18",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "A data center on the North Slope cannot",
+      "hook_type": "statement",
+      "furniture": true,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-19",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "Under one road in Utqiagvik, the northernmost US",
+      "hook_type": "statement",
+      "furniture": true,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-20",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "A Kenai school district bought an $8,300 AI",
+      "hook_type": "statement",
+      "furniture": true,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-21",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "Cook Inlet has about 331 belugas left, and",
+      "hook_type": "statement",
+      "furniture": true,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-22",
+      "opening_move": "LEGACY STANDARD",
+      "structure": "hook-context-deckpointer-question",
+      "closing_move": "bolted question",
+      "first_words": "Alaska is moving to hand 31 square miles",
+      "hook_type": "statement",
+      "furniture": true,
+      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+    },
+    {
+      "run_date": "2026-07-23",
+      "opening_move": "DEFINITION SUBVERSION",
+      "structure": "PUNCH THEN PROOF",
+      "closing_move": "who-decides",
+      "first_words": "Data sovereignty is not a privacy",
+      "hook_type": "definition-subversion statement",
+      "furniture": "none",
+      "note": "Broke the long LEGACY STANDARD / hook-context-deckpointer-question / bolted-question streak. Hook 42 chars, 847 total, who-decides close (the Tribe that owns it vs the vendor that ships the model)."
+    },
+    {
+      "run_date": "2026-07-24",
+      "opening_move": "LEDGER TALLY",
+      "structure": "INVERTED PYRAMID",
+      "closing_move": "PRICE",
+      "first_words": "More than 500 comments landed on a",
+      "hook_type": "ledger-tally statement",
+      "furniture": "none",
+      "note": "Caption room: 2 directors (LEDGER TALLY/INVERTED PYRAMID/PRICE vs CONTRADICTION/COLD-OPEN-WARM-CLOSE/FORK), critic picked A with one fix (dropped the verbatim cover phrase 'one office holds the pen' and the '500 to 12' overstatement, replaced with 'ran better than 40 to 1 against, and one state agency still holds the signature'). Hook 96 chars, 898 total (near the 900 ceiling), price close 'what is that public land honestly worth to lease away for half a century?'."
+    },
+    {
+      "run_date": "2026-07-25",
+      "opening_move": "COLD NUMBER",
+      "structure": "COUNTDOWN",
+      "closing_move": "stake",
+      "first_words": "24 days. Then Alaska's primary narrows a field",
+      "hook_type": "bare-interval cold number, 8 chars, numeral-first",
+      "furniture": "none",
+      "note": "Caption room ran 2 directors (CONTRADICTION/BRAID/who-decides vs COLD NUMBER/COUNTDOWN/stake). Critic shipped B with one fix, replacing a closing question that overstated a single June survey non-response about named individuals ('will not say a word about AI') with 'left June's AI questions blank', plus a one-word date correction from 'last week' to 'this week' to agree with slide 01. RECORDED DEMERITS on the winner: COUNTDOWN was executed as bumpers around an inverted-pyramid body rather than time pressure inside the argument, and 'compelled by law' echoes the slide 06 bay label. Two consecutive runs have now opened on a number (07-24 LEDGER TALLY, 07-25 COLD NUMBER), so a third numeric opening is barred on sight. The losing candidate's best line, 'One list exists because a law demanded it. The other because a reporter asked.', is worth grafting in a future run."
+    },
+    {
+      "run_date": "2026-07-26",
+      "opening_move": "MAP MOVE",
+      "structure": "BRAID",
+      "closing_move": "FORK",
+      "first_words": "Cordova sits on Prince William Sound",
+      "hook_type": "map-move locator, place plus a topological fact",
+      "notes": "Two directors. Candidate A (THE ABSURD DETAIL / ZOOM / WHO DECIDES) was killed by the critic for echoing the 07-17 entry's no-road-out sentence frame with the town swapped, and for delivering MAP MOVE while claiming THE ABSURD DETAIL. Winner B took one fix installing the Railbelt absence line. Recorded demerits, the fork's second horn is a dead bill, and both directors opened on the word Cordova."
+    }
+  ]
 }
