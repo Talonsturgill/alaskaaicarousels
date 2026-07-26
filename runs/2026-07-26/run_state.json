@@ -14,7 +14,7 @@
     "pixel_review": "done",
     "flow_review": "done",
     "assemble": "done",
-    "scoring": "pending",
+    "scoring": "done",
     "ship": "pending",
     "upgrade": "pending",
     "gmail": "pending",
@@ -32,6 +32,7 @@
     "caption": "out/2026-07-26/caption.txt (+ caption_report.json, PASS)",
     "slides": "out/2026-07-26/slides/slide-01..09.html",
     "render": "out/2026-07-26/render (9 PNGs, machine_qa.json PASS 0/0)",
-    "final": "out/2026-07-26/final (carousel.pdf vector, contact_sheet.png, thumbs/)"
+    "final": "out/2026-07-26/final (carousel.pdf vector, contact_sheet.png, thumbs/)",
+    "score": "out/2026-07-26/score_report.json (6.9 vs 8.3, both hard fails repaired post-scoring)"
   }
 }

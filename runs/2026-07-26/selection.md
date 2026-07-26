@@ -18,8 +18,10 @@ Read live on July 26, the signatory list carried 281 names (C10). Exactly
 one is an Alaska entity, Cordova Electric Cooperative (C11, C12, C13),
 which serves 1,566 customers, has 18 MW of total generation, is not on the
 state highway system and is not connected by transmission line to any
-other community (C14, C15, C16). Cordova also already hosts Alaska's
-working data center, at 150 kilowatts, on hydro (C17, C18).
+other community (C14, C15, C16). Cordova also already hosts a data
+center, at 150 kilowatts, on hydro (C17, C18). NOTE, the superlative
+"Alaska's working data center" was killed by the copywriter because the
+Alaska data center count failed verification, and it appears on no slide.
 
 Meanwhile SB 250, which would have made the same cost protection legally
 binding through commission approved contracts, passed the Alaska Senate on

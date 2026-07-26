@@ -37,7 +37,7 @@
       "labels": [
         "CORDOVA ELECTRIC",
         "COOPERATIVE . CORDOVA, AK",
-        "PAGE COUNTERS READ ALL 281, COOPERATIVES 176, UTILITIES 69, DEVELOPERS 35. SHOWN AS COUNTERS, NOT AS A SUM."
+        "PAGE COUNTERS READ ALL 281, COOPERATIVES 176, UTILITIES 69, DEVELOPERS 35. COUNTERS, NOT A SUM."
       ],
       "counter": "02 / 09",
       "claim_ids": [
@@ -285,6 +285,12 @@
       "was": "copy.json label truncated to 'Page counters read all 281,'",
       "now": "the full four-part counter string",
       "why": "Artifact integrity. copy.json is a file the maintainer reads and it should carry what the slide actually says."
+    },
+    {
+      "slide": "02",
+      "was": "note at 540px wide, span at y1116",
+      "now": "note at 460px wide starting a new break, span at y1010",
+      "why": "SCORER CYCLE 2 HARD FAIL, introduced by the cycle 1 repair to this same block. Widening the column ran the note 62px past the callout plate's left edge, clipping line 2's comma and overprinting line 4, while the CARRIES span struck through line 3. The note now ends at x540, clear of the plate at x560, and the span sits just under the mark field."
     }
   ]
 }
