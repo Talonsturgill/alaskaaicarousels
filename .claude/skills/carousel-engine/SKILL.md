@@ -76,6 +76,17 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   WARN when the layering is deliberate and you have judged it legible. This is
   the gate that DOM `text_collisions` structurally cannot be: it reads pixels,
   so canvas and SVG geometry are visible to it.
+- **Nothing opaque may be painted over type** (2026-07-26): render.py hit-tests
+  every non-decorative text line box against every OPAQUE element box (opaque
+  background, background image, or `<img>`) using the `elementsFromPoint`
+  stack, and qa.py FAILS when a foreign plate covers >= 20x6px of a line box
+  (WARN from 12x4px). A padded plate's BACKGROUND is not a line box, so
+  `text_collisions` cannot see this: it is how a DEAD tag came to overprint the
+  bottom third of a subtitle and pass with 0 fails and 0 warns, twice. The
+  text's OWN plate (an ancestor or descendant) is never its own occluder, and a
+  plate the text paints ABOVE is legible and never reported. `data-overlap-ok`
+  demotes the FAIL to a WARN. The remedy is to move the plate or the type,
+  never to declare the overlap away.
 - Determinism: seed all noise (`AK.reseed(seed)`, `AK.rng(seed)`). Derive the
   seed from the run date. Same inputs must reproduce the same pixels.
 - Fonts: use `assets/fonts/fonts.css` families — Fraunces (100-900 + italic,
