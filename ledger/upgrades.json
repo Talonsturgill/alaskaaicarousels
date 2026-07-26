@@ -503,7 +503,7 @@
       ],
       "verification": "RECONSTRUCTIONS FAIL: rebuilt S06 (dead plate moved back to top:980, over the subtitle) and S02 (note widened to 540px, running under the callout plate) -> qa.py exit 1, 'text under an opaque plate: STATE AGENCY AI AND ELECTION DEEPFAKES has a 113x17px patch (10% of the line box) painted over by .dead' and 'PAGE COUNTERS READ ALL 281, ... 26x31px patch (5%) painted over by .callout'. CLEAN DECKS PASS: out/2026-07-26/slides 9/9 render OK then qa PASS 0 fails 0 warns (unchanged from the pre-upgrade baseline); examples/demo-deck 4/4 render OK, qa 0 fails and the same pre-existing warn set (1/3/4/1, zero of them from the new check); examples/proof-3d 3/3 qa PASS. NO PIXEL CHANGE: all 9 re-rendered PNGs are identical to the shipped runs/2026-07-26 PNGs (max abs channel delta 0), so the pointer-events probe does not alter a frame. Threshold calibration is data-driven: the only occlusion the clean shipped deck reports at all is the rail's 8x3px gold dot grazing the sponsor line's LEADING band, which sits below both tiers, so the gate is silent on the shipped deck.",
       "rollback": "revert the upgrade(2026-07-26) commit",
-      "commit": "2ae0619"
+      "commit": "fbaedff"
     },
     {
       "run_date": "2026-07-26",
@@ -516,7 +516,7 @@
       ],
       "verification": "BEFORE (HEAD akpost, bad call): render '[OK] slide-01.html ... warnings=0 errors=0', page_errors [], canvas mean 1.5 variance 5.1, qa.py verdict PASS 0/0 on a black canvas. AFTER (same slide, same call): render '[FAIL] slide-01.html ... errors=2', page_errors[0] = 'AKPOST.grade: contrast must be a finite number, got object {\"amount\":1.14,\"pivot\":0.18}', render.py exits 1 HARD FAIL. UNKNOWN-KEY VARIANT (valid contrast, lift/gain hidden in a 'split' wrapper): renders, and qa.py reports the WARN 'AKPOST.grade: unknown option split is being IGNORED (known options: ...)'. REGRESSION: every shipped call site still renders clean -- out/2026-07-26/slides 9/9 OK and qa PASS 0/0 (8 of 9 slides call grade()), examples/proof-3d 3/3 qa PASS (slide-03 calls grade()), examples/demo-deck unaffected (does not use akpost). Re-rendered PNGs identical to the shipped ones (max abs channel delta 0), so validation changes no output.",
       "rollback": "revert the upgrade(2026-07-26) commit",
-      "commit": "2ae0619"
+      "commit": "fbaedff"
     }
   ],
   "scan_log": [
