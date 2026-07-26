@@ -1,0 +1,107 @@
+{
+  "run_date": "2026-07-26",
+  "carousel_no": 18,
+  "scoring_cycles_run": 2,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "weight": 0.14,
+      "score": 8,
+      "note": "10-word headline over a GPU-PBR dead-end insulator string, five bells countable, dated read legible at 432px. Held off 9 by the steel pole splitting the right third the dossier promised to keep empty, and by hard-edged volumetric shafts."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "weight": 0.14,
+      "score": 8,
+      "note": "Nine load-bearing beats; the holding table only lands because the bill's death precedes it. Flow-critic fixes verified. Held off 9 by the incomplete camera move and a soft midpoint."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "weight": 0.16,
+      "score": 6,
+      "note": "WEAKEST. Real akthree GPU PBR hero, but S03's five planned leader lines were never drawn, S04's lit point renders at ~7px against a 65px spec, and dead lower zones persist on S04, S05, S08 and S09. Sixth consecutive ledger entry naming that ceiling."
+    },
+    {
+      "name": "Story-art fusion",
+      "weight": 0.14,
+      "score": 8,
+      "note": "Both printed measurement rules verified by the scorer: 18 MW bar 435px vs 432 spec, 25 MW 604 vs 600, 5 MW 121 vs 120; the 1.7px-per-day rule makes the bill that got furthest visibly the one that lived shortest. Held off 9 because S03's gold phantom crosses the string before stopping instead of approaching and failing."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "weight": 0.12,
+      "score": 9,
+      "note": "Named and exact throughout. Held off 10 because S08's DATA Act beat is federal and its shared rail carries unnamed loads."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "weight": 0.1,
+      "score": 8,
+      "note": "Every content slide adds a new verified specific. Held off 9 because S08 is now thin after the pacing cut and S04/S05 both print 150 kW and 18 MW."
+    },
+    {
+      "name": "Variety vs ledger",
+      "weight": 0.08,
+      "score": 9,
+      "note": "Every divergence rule in artwork.json's _spec satisfied against entries 14 to 17, checked individually. Type pairing never shipped in 17 decks; forget-me-not retired after three consecutive runs."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "weight": 0.07,
+      "score": 5,
+      "note": "Cycle 2 named a NEW hard fail on the S02 honesty note, introduced by the cycle 1 repair to that same block. REPAIRED AND VERIFIED AFTER SCORING, see post_scoring_repairs."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "weight": 0.05,
+      "score": 9,
+      "note": "115-char locator hook, 898 chars, real deck-summary line, genuinely debatable close. Held off 10 for zero headroom at 898 of 900."
+    },
+    {
+      "name": "Deliverable completeness",
+      "weight": 0.1,
+      "score": 7,
+      "note": "Every artifact present and parsing. Docked for internal-document drift, the storyboard was not resynced after the repair rounds and selection.md retains a superlative that was correctly stripped from every slide."
+    }
+  ],
+  "weighted_score": 6.9,
+  "threshold": 8.3,
+  "meets_threshold": false,
+  "hard_fails_at_scoring_time": [
+    {
+      "rule": "clipped, overlapping or cut-off text in any render",
+      "where": "slide 02 honesty note",
+      "evidence": "Widening the note column to 540px in the cycle 1 repair ran it 62px past the callout plate's left edge at x559, clipping line 2's trailing comma and overprinting line 4, while the CARRIES span added at y1116 struck through line 3. machine_qa reported 0 fails and 0 warns while all three were live."
+    }
+  ],
+  "post_scoring_repairs": [
+    {
+      "item": "slide 02 honesty note hard fail",
+      "status": "REPAIRED AND VERIFIED",
+      "what": "Note column pulled back to 460px so it terminates at x540, clear of the callout plate at x560; the note re-broken to four lines with no orphan; the CARRIES span lifted from y1116 to y1010 so it sits under the mark field and crosses no glyph.",
+      "verification": "qa.py PASS 0 fails 0 warns, copy_sync PASS 74/74, and the showrunner read a 1120x400 pixel crop of the note directly, confirming four clean lines, no strikethrough, no plate clipping and no orphaned word."
+    }
+  ],
+  "score_of_record_note": "6.9 is the score of record. The routine caps scoring at two cycles and both were spent. The two hard fails the scorer named (slide 06 in cycle 1, slide 02 in cycle 2) are BOTH repaired and independently verified, so the shipped deck carries no known hard fail, but no third scoring pass was run to re-price the deck, and the honest number therefore stands at 6.9 against a threshold of 8.3.",
+  "weakest_criterion": "Artwork craft and genuine detail, at 6, with Legibility at 5 driven by a defect since repaired.",
+  "one_sentence_fix": "Draw slide 03's five leader lines and restore slide 04's lit point to its specified 65px, which are the two cheapest fixes that would move artwork craft off the ceiling it has now hit six runs running.",
+  "strengths": [
+    "The cycle 1 hard fail on slide 06 is completely repaired, verified at full size, at 432px and on the contact sheet, with both spans still visibly terminating.",
+    "Story-art fusion survives measurement. The printed 24 px = 1 MW rule is honest to within 3px on the 18 MW bar and 4px on the 25 MW bar, and 1.7 px = 1 day makes the argument visually rather than verbally.",
+    "Slide 07 is genuinely keepable. The Archivo width axis IS the holding-strength scale and the widest, heaviest word on the page is the instrument that was never built.",
+    "Claim discipline is exemplary. Every killed item stayed killed, the 281 counter is printed as a counter with an explicit no-arithmetic guard, and the C13 absence claim is dated on all three slides where it appears.",
+    "The caption is the strongest of the recent series."
+  ],
+  "honest_shortfalls_for_the_email": [
+    "The score of record is 6.9 against a threshold of 8.3. Both hard fails found during scoring have been repaired and verified, but the two-cycle cap was reached and the deck was not re-priced.",
+    "The CAMERA MOVE continuity device shipped as two stations, not three. Slide 09 carries no fogged silhouette of the slide 1 string, so the close rhymes with the cover by gesture rather than by object.",
+    "Slide 03's five leader lines were never drawn, so the five-bells-equal-five-commitments mapping is asserted in type but not connected in line.",
+    "Slide 04's lit point renders far smaller than specified, softening the deck's spine at the exact midpoint of the filmstrip.",
+    "Dead lower zones persist on slides 4, 5, 8 and 9. Sixth consecutive ledger entry naming the same ceiling.",
+    "The caption sits at 898 of 900 characters, leaving no headroom for a human edit.",
+    "Both printed measurement rules are exact in the 1080x1350 CSS design space while the delivered PNG is 2x, so a reader measuring the export gets double.",
+    "Dedupe clears the ledger gate cleanly (jaccard 0.096, a new dated act, a near-disjoint fact base, zero shared slide entities), but this is the third deck in nine days touching data centers and Alaska power cost. The next run should reach for the held Yup'ik speech-AI candidate.",
+    "Internal-document drift, non-blocking. The storyboard was not resynced after the repair rounds and selection.md retains a superlative that was correctly stripped from every slide."
+  ],
+  "verdict": "ship with disclosed shortfall"
+}
