@@ -37,7 +37,7 @@
       "labels": [
         "CORDOVA ELECTRIC",
         "COOPERATIVE . CORDOVA, AK",
-        "Page counters read all 281,"
+        "PAGE COUNTERS READ ALL 281, COOPERATIVES 176, UTILITIES 69, DEVELOPERS 35. SHOWN AS COUNTERS, NOT AS A SUM."
       ],
       "counter": "02 / 09",
       "claim_ids": [
@@ -186,7 +186,7 @@
       "n": 9,
       "kicker": "",
       "headline": "A promise is not an instrument.",
-      "body": "Twenty three governors signed. One Alaska utility signed. Neither signature is a rule.",
+      "body": "Twenty three governors signed. One Alaska utility signed, as the list read 2026-07-26. Neither signature is a rule.",
       "labels": [
         "Save this for the next time somebody promises your bill is safe.",
         "SOURCES IN COMMENTS",
@@ -267,6 +267,24 @@
       "was": "...without forcing households to subsidize new energy demands.",
       "now": "cut after 'grid of one power systems.'",
       "why": "Flow critic, slides 5 to 8 were four consecutive text-heavy frames. The fork diagram and its two labels already carry the mechanism, so this body was the one block redundant to its own art. The cut clause survives in the caption."
+    },
+    {
+      "slide": "06",
+      "was": "subtitle at y986 with the DEAD plate at y1006",
+      "now": "subtitle at y962, plate at y1022",
+      "why": "SCORER HARD FAIL. The opaque DEAD plate overprinted the bottom third of STATE AGENCY AI AND ELECTION DEEPFAKES, visible at full size, at 432px and on the contact sheet, while machine QA reported zero fails. Now 25px of clearance, above the deck's own 24px floor."
+    },
+    {
+      "slide": "09",
+      "was": "Twenty three governors signed. One Alaska utility signed. Neither signature is a rule.",
+      "now": "Twenty three governors signed. One Alaska utility signed, as the list read 2026-07-26. Neither signature is a rule.",
+      "why": "C13 is an absence claim at confidence 0.82 and the fact checker required it be dated wherever it appears. Slides 1 and 2 dated it; the close did not, and the close is the most screenshot-able frame in the deck."
+    },
+    {
+      "slide": "02",
+      "was": "copy.json label truncated to 'Page counters read all 281,'",
+      "now": "the full four-part counter string",
+      "why": "Artifact integrity. copy.json is a file the maintainer reads and it should carry what the slide actually says."
     }
   ]
 }
