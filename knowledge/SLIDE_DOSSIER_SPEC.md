@@ -31,6 +31,18 @@ plus the checklist.
    block occupies, the focal point (rule-of-thirds coordinate), the eye
    path (1→2→3), the quiet zone, and the single permitted grid violation
    if any.
+4a. **Lower-third treatment** (REQUIRED, 2026-07-26) — one line naming what
+   the bottom band of the frame CARRIES, and it must be something with
+   modeled tone: the anchor extended into it, annotation furniture run down,
+   a foreground plane, a graded/lit ground, the composition's mass moved
+   there. Naming a plate, a hairline, a caption or the footer fixture does
+   not satisfy this — flat furniture on bare ground is the defect wearing a
+   costume. If this slide is a deliberate rest beat, write "BREATHER —
+   <why the deck needs a rest here>" and set `data-breather` on the slide
+   body; the engine then demotes the frame-balance FAIL to a warning. Every
+   other slide is expected to clear it. Added because the unbounded quiet
+   zone in DESIGN_DOCTRINE 1 let six consecutive runs plan an empty bottom
+   band and pass their own acceptance checklists doing it.
 5. **Depth plan** — the slide's z-stack, layer by layer (background →
    atmosphere → structure → anchor → plates → type → grain), with the ≥4
    depth cues named (occlusion/atmosphere/scale/DOF/fog/shadow/light) and

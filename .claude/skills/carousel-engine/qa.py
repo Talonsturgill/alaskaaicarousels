@@ -28,6 +28,15 @@ Checks per slide (consuming render_report.json + the PNGs):
     consecutive hard fails while machine QA reported PASS, 0 fails, 0 warns:
     text_collisions() only compares GLYPH LINE BOXES, and a padded plate's
     background is not one.
+  - FRAME BALANCE / DEAD LOWER ZONE (FAIL): compares the bottom third's
+    craft-density against the slide's own frame average and FAILS a top-loaded
+    composition (<55%). Added 2026-07-26 after the SIXTH consecutive scorer
+    note naming "dead lower zones" as the series' artwork-craft ceiling. Every
+    earlier gate here judges legibility; nothing measured composition, so the
+    only reviewer who saw this was the scorer, at the ship gate, too late to
+    rebuild slides -- which is why it became a note six times instead of a fix.
+    data-breather on <body> demotes it to WARN (and the dossier gate checks the
+    storyboard actually declared that slide a breather).
   - CANVAS RASTER TEXT (WARN only): warns when a slide draws meaningful text
     (>=4 alphabetic chars) via canvas fillText/strokeText, which ships as a
     bitmap in the vector PDF and is invisible to the ranker/copy_sync/a11y.
@@ -231,6 +240,108 @@ def glyph_ink_contamination(img_arr, node, scale):
     return worst
 
 
+FB_DOWN = 6          # box-downsample factor: kills film grain, keeps structure
+FB_CELL = 9          # downsampled px per grid cell (9*6 = 54 png px = 27 design px)
+FB_LIVE = 8.0        # cell energy (0..255 luminance spread) at which a cell holds anything
+FB_MODELED = 0.55    # tonal entropy at which that content is MODELED, not flat fill
+FB_MARGIN = 3        # cells of the 80px safe-margin ring excluded from the bands
+FB_FAIL = 0.60       # bottom-band craft density / frame craft density = top-loaded
+FB_WARN = 0.80
+
+
+def _box_down(a, k):
+    h, w = a.shape[:2]
+    h -= h % k
+    w -= w % k
+    return a[:h, :w].reshape(h // k, k, w // k, k, -1).mean(axis=(1, 3))
+
+
+def frame_balance(img_arr):
+    """Detect a TOP-LOADED composition -- the 'dead lower zone' that has capped
+    artwork craft at 6-7 for six consecutive runs (ledger entries 10, 11, 13,
+    14, 15, 16, 18).
+
+    Added 2026-07-26 after the sixth consecutive scorer note naming the same
+    defect. The root cause was never a missing pair of eyes, it was
+    DESIGN_DOCTRINE 1's "at least one generous quiet zone per slide": an
+    unbounded, unplaced licence that the directors room kept spending on the
+    frame's bottom band, because that is the cheapest place to put it. The
+    dossier then legitimized the empty bottom, and the pixel critics grade each
+    slide against its own dossier, so the only reviewer who ever saw the defect
+    was the scorer -- at the ship gate, with no budget left to rebuild slides.
+    Every run it therefore became a FIELD_NOTES sentence instead of a fix.
+
+    TWO defects share the name, and separating them is what took this from a
+    note to a gate. (1) The bottom band is EMPTY (2026-07-17 S09 and
+    2026-07-20 S03 both ship a bottom 40% with nothing in it; neither was ever
+    named, which is its own evidence about relying on eyes). (2) The bottom
+    band is OCCUPIED BUT FLAT -- grey label plates and hairlines floating on
+    bare ground, which is what 2026-07-26's S05 and S08 actually are. A plain
+    occupancy measure sees only (1): across the 45 scorer-labeled slides the
+    dead ones' whole-frame occupancy (median 0.505) is indistinguishable from
+    the rest (0.537), because every slide has quiet margins and a flat plate
+    counts as "occupied".
+
+    So a cell only counts when it carries MODELED tone. Box-downsample the PNG
+    6x (film grain is high-frequency and would otherwise read as craft
+    everywhere), then per 27px design cell take the robust luminance spread and
+    peak local gradient (does it hold anything at all) AND the normalized
+    entropy of its tonal histogram (is that content modeled or flat). A flat
+    plate is bimodal and scores ~0.2; graded, textured, lit or rendered art
+    scores 0.7+. Drop the safe-margin ring, then compare the bottom third's
+    craft density against the slide's OWN frame average.
+
+    Deliberately RELATIVE. An absolute craft floor was tested and rejected: it
+    fails 48-60% of every slide the series has ever shipped, which makes it a
+    taste judgment the machine has no business making unilaterally, and the
+    doctrine's own position is that flat is a legitimate choice. The ratio
+    asks only the question the scorers kept asking, which is whether the slide
+    spends its craft up top and coasts. Content spread through the frame
+    scores ~1.0 at any density.
+
+    Returns (ratio, bands) or None if unmeasurable.
+    """
+    d = _box_down(img_arr.astype(np.float32), FB_DOWN)
+    lum = 0.2126 * d[..., 0] + 0.7152 * d[..., 1] + 0.0722 * d[..., 2]
+    rows, cols = lum.shape[0] // FB_CELL, lum.shape[1] // FB_CELL
+    if rows < 3 * FB_MARGIN + 6 or cols < 2 * FB_MARGIN + 2:
+        return None
+    lum = lum[:rows * FB_CELL, :cols * FB_CELL]
+    cells = lum.reshape(rows, FB_CELL, cols, FB_CELL).transpose(0, 2, 1, 3)
+    cells = cells.reshape(rows, cols, FB_CELL * FB_CELL)
+    # robust spread (p90-p10) ignores a lone anti-aliased pixel; the gradient
+    # term keeps a single hard edge through an otherwise flat cell counted.
+    spread = np.percentile(cells, 90, axis=2) - np.percentile(cells, 10, axis=2)
+    gx, gy = np.abs(np.diff(lum, axis=1)), np.abs(np.diff(lum, axis=0))
+    g = np.zeros_like(lum)
+    g[:, :-1] += gx; g[:, 1:] += gx; g[:-1, :] += gy; g[1:, :] += gy
+    gc = g.reshape(rows, FB_CELL, cols, FB_CELL).transpose(0, 2, 1, 3).reshape(rows, cols, -1)
+    live = np.maximum(spread, np.percentile(gc, 98, axis=2)) >= FB_LIVE
+
+    # modeled-tone test: normalized entropy of each cell's luminance histogram
+    bins = 12
+    rng = cells.max(axis=2) - cells.min(axis=2)
+    q = np.clip((cells - cells.min(axis=2, keepdims=True)) /
+                np.maximum(rng[..., None], 1e-6) * (bins - 1), 0, bins - 1).astype(np.int8)
+    ent = np.zeros(q.shape[:2], dtype=np.float32)
+    for b in range(bins):
+        p = (q == b).sum(axis=2) / q.shape[2]
+        ent -= np.where(p > 0, p * np.log2(np.maximum(p, 1e-12)), 0)
+    ent = np.where(rng >= 2.0, ent / np.log2(bins), 0.0)
+
+    craft = live & (ent >= FB_MODELED)
+    inner = craft[FB_MARGIN:rows - FB_MARGIN, FB_MARGIN:cols - FB_MARGIN]
+    band = inner.shape[0] // 3
+    if band < 2:
+        return None
+    occ = float(inner.mean())
+    if occ < 1e-6:
+        return None  # the near-uniform gate above owns a truly blank frame
+    bands = [float(inner[:band].mean()), float(inner[band:2 * band].mean()),
+             float(inner[2 * band:].mean())]
+    return bands[2] / occ, bands
+
+
 OCC_FAIL_W = 20     # px of a line box's WIDTH an opaque plate must cover to FAIL
 OCC_FAIL_H = 6       # px of its HEIGHT (a quarter of the 24px mono floor)
 OCC_WARN_W = 12      # the tripwire band below the FAIL, for the critics' eyes
@@ -298,6 +409,29 @@ def main():
         arr = np.asarray(im)
         if float(arr.std()) < 6.0:
             res["fails"].append(f"near-uniform image (std {arr.std():.1f}) — dead or empty render")
+
+        # FRAME BALANCE / DEAD LOWER ZONE (2026-07-26). The series' longest-
+        # running craft defect, and the first gate here that judges COMPOSITION
+        # rather than legibility. See frame_balance() for why the measurement is
+        # a distribution and not a density. Calibrated on all 162 shipped
+        # full-size slides: the FAIL tier fires on 10% of them and every slide
+        # it fires on is one the scorers named, or (2026-07-17 S09,
+        # 2026-07-20 S03, both bottom-40%-empty) one they should have.
+        fb = frame_balance(arr)
+        if fb is not None:
+            ratio, bands = fb
+            if ratio < FB_WARN:
+                where = f"top {bands[0]:.0%} / mid {bands[1]:.0%} / bottom {bands[2]:.0%} of cells carrying craft"
+                msg = (f"top-loaded composition: the bottom third carries {ratio:.0%} of "
+                       f"this slide's own average craft density ({where}) -- the dead "
+                       f"lower zone. Extend the anchor, run the annotation furniture "
+                       f"down, or move the mass; do not answer it with a bigger quiet zone")
+                if ratio < FB_FAIL and not rec.get("breather"):
+                    res["fails"].append(msg)
+                elif rec.get("breather"):
+                    res["warns"].append(msg + " [data-breather]")
+                else:
+                    res["warns"].append(msg)
 
         # CANVAS HEALTH (2026-07-11, the rendered-3D gates). Two failure modes
         # the DOM/text gates cannot see, both from the GPU-bench research:
