@@ -129,6 +129,21 @@ def main():
                     help="raw.githubusercontent base incl. branch, e.g. .../main")
     ap.add_argument("--branch", required=True)
     ap.add_argument("--payload-out", default="")
+    # The delivery step is size-bound: the whole html_body must pass through a
+    # single Gmail create_draft call, and inline previews dominate its weight.
+    # Defaults are unchanged, so nothing moves unless a run asks for it.
+    ap.add_argument("--preview-width", type=int, default=480,
+                    help="inline slide preview width in px (default 480)")
+    ap.add_argument("--preview-quality", type=int, default=80,
+                    help="inline slide preview JPEG quality (default 80)")
+    ap.add_argument("--preview-mode", choices=("grid", "contact", "remote"), default="grid",
+                    help="grid = one inline preview per slide (default). "
+                         "contact = ONE inline contact-sheet image of the whole deck "
+                         "plus the same per-slide full-res links. remote = the same "
+                         "contact-sheet block but sourced from its raw URL instead of "
+                         "an inline data URI. Use these when the whole html_body must "
+                         "fit through a single create_draft call; the inline previews "
+                         "alone can push the body past what one call can carry.")
     args = ap.parse_args()
 
     run = Path(args.run_dir)
@@ -171,13 +186,32 @@ def main():
 
     esc = html.escape
     slides_html = ""
-    for i, p in enumerate(pngs, 1):
-        b64 = preview_b64(p)
-        full = f"{runs_url}/slide-{i:02d}.png"
-        slides_html += (
-            f'<div class="slide"><img src="data:image/jpeg;base64,{b64}" alt="slide {i}"/>'
-            f'<div class="cap">{i:02d} · <a href="{full}">full res</a></div></div>'
+    sheet = Path(args.run_dir) / "final" / "contact_sheet.png"
+    if args.preview_mode in ("contact", "remote") and sheet.exists():
+        if args.preview_mode == "remote":
+            img_src = f"{runs_url}/contact_sheet.png"
+        else:
+            img_src = ("data:image/jpeg;base64,"
+                       + preview_b64(str(sheet), width=args.preview_width,
+                                     quality=args.preview_quality))
+        links = " &middot; ".join(
+            f'<a href="{runs_url}/slide-{i:02d}.png">{i:02d}</a>'
+            for i in range(1, len(pngs) + 1))
+        slides_html = (
+            f'<div style="margin-bottom:10px"><img src="{img_src}"'
+            f' alt="contact sheet, all {len(pngs)} slides in order"'
+            f' style="width:100%;height:auto;border-radius:6px;border:1px solid #e5e7eb"/></div>'
+            f'<div class="cap" style="font-size:12px;color:#667085">'
+            f'The whole deck in order. Full res, slide by slide &middot; {links}</div>'
         )
+    else:
+        for i, p in enumerate(pngs, 1):
+            b64 = preview_b64(p, width=args.preview_width, quality=args.preview_quality)
+            full = f"{runs_url}/slide-{i:02d}.png"
+            slides_html += (
+                f'<div class="slide"><img src="data:image/jpeg;base64,{b64}" alt="slide {i}"/>'
+                f'<div class="cap">{i:02d} · <a href="{full}">full res</a></div></div>'
+            )
 
     url_list = "\n".join(
         f'<div>Slide {i:02d}: <a href="{runs_url}/slide-{i:02d}.png">{runs_url}/slide-{i:02d}.png</a></div>'
