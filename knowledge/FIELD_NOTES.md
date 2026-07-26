@@ -1351,3 +1351,61 @@ enough to keep, and the third is load-bearing for THIS run (density dial 5).
   density", which is the correct way to run a variance dial of 5. Sources:
   https://www.uxpin.com/studio/blog/ui-grids-how-to-guide/ ,
   https://www.alfdesigngroup.com/post/best-practices-to-design-ui-cards-for-your-website
+
+## 2026-07-26 - retro (No.18 "One Line Out", the AI ratepayer pledge and Alaska's one signature)
+
+- SHIPPED at a score of record 6.9 against a threshold of 8.3, merged as PR #113. Full
+  studio ran: 6 scouts, fact-checker, 3 treatment-directors, 2 caption-directors +
+  caption-critic, copywriter, 5 pixel-critics, flow-critic, scorer x2. Machine gates all
+  green at ship (render 9/9, qa.py PASS 0/0, caption_check PASS, copy_sync 74/74,
+  scanner_sync PASS, assemble vector 7.16 MB). Both hard fails the scorer found were
+  repaired and verified BEFORE ship, so the shipped deck carries no known hard fail; the
+  6.9 stands because the routine's 2-cycle scoring cap was spent and the deck was never
+  re-priced.
+- STORY. Gov. Dunleavy signed the White House Ratepayer Protection Pledge governors
+  addendum on July 23, a voluntary and non binding commitment that AI data center load
+  pays for its own power. Read live July 26, the 281 name signatory list carried exactly
+  ONE Alaska entity, Cordova Electric Cooperative, 1,566 customers, 18 MW, not on the
+  state highway system, not connected by transmission line to any other community, and
+  already hosting a 150 kW data center on hydro. SB 250, the binding version, passed the
+  Senate May 16 and died in House Community and Regional Affairs. Thesis, a promise is
+  not an instrument.
+- THE FACT-CHECKER OVERTURNED THE ENTIRE PITCH, and this is the run's best moment. The
+  scouts' spine was "zero Alaska entities signed." FALSE. The fact-checker found Cordova
+  by searching for utility NAMES rather than for the string "Alaska", because the one
+  Alaska signatory's name does not contain the word Alaska. The replacement spine is far
+  stronger than the pitch. Twelve scout claims were killed for failed verification and
+  none reached a slide. New standing lesson: when checking a list for a state's presence,
+  search the entities you expect to find, never the state's name.
+- THE DOMINANT DEFECT, five instances of one class past a green gate. qa.py reported PASS
+  with 0 fails and 0 warns while: S03 showed only FOUR of five bells (the fifth occluded
+  by a label plate, against a list of five commitments); S05's twelve parcel tiles were
+  clipped out of their own frame; a scotch rule crossed a headline's final period and
+  rendered as a DASH on a deck that forbids dashes; S06's DEAD plate overprinted a
+  subtitle (cycle 1 hard fail); and S02's counter note was clipped and struck through
+  (cycle 2 hard fail, CREATED BY the cycle 1 repair to that same block). Two of the five
+  were manufactured by the fix for the previous one.
+- A POSITIONAL FIX DELETED A FEATURE IN ANOTHER REGION. Raising S04's pull-quote plate to
+  clear the progress rail buried the slide's lit point underneath it, so the deck's
+  declared spine went missing at the exact midpoint of the filmstrip. The pixel critic had
+  already signed off on that slide; only the FLOW critic caught it. Logged as an instinct.
+- akpost SILENTLY BLANKED AN ENTIRE CANVAS. The first S01 render passed with errors=0 and
+  produced a fully black art canvas because AKPOST.grade was called with contrast as an
+  object and lift/gain as hex strings where the contract wants a number and 3-element
+  arrays. NaN propagated through the ImageData. The render report's canvas health block
+  recorded mean 0 variance 0 and that block, read by eye, is the only thing that caught it.
+- CRAFT WIN. New chassis, THE DEAD-END STRING, an akthree GPU PBR insulator string whose
+  FIVE BELLS ARE the pledge's five commitments, with one governing rule across all nine
+  slides (a span CARRIES, TERMINATES, or is ONLY DRAWN, always as a shape change so it
+  survives 432px). Gold INVERTED to mean the promise, drawn as a phantom that never lands.
+  Two slides print their own measuring rule (24 px = 1 MW, 1.7 px = 1 day) and the scorer
+  verified both to within 4 px. Archivo alone plus JetBrains Mono, two families, never
+  shipped in 17 prior decks, with the width axis carrying holding strength on S07.
+- GROWTH EDGE, sixth consecutive run. Dead lower zones on four of nine slides, and artwork
+  craft scored 6. The rendered hero is genuinely strong; the flat slides around it are
+  what hold the number down. Also unshipped, S03's five planned leader lines and a
+  completed camera move on S09.
+- NEXT. Take the held Yup'ik speech-AI candidate. This was the third deck in nine days
+  touching data centers and Alaska power cost; the 90-day ledger gate is clean but a
+  reader experiences it as one long beat. Reddit was 100 percent unreachable to the
+  community scout for the second run running.
