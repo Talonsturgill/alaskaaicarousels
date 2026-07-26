@@ -20,6 +20,14 @@ Checks per slide (consuming render_report.json + the PNGs):
     through the text). Knockout plates and halos leave that ring clean.
     Added 2026-07-25 after four slides shipped art-band labels crossed by
     canvas-drawn geometry through two scoring cycles of PASS with zero warns.
+  - TEXT UNDER AN OPAQUE PLATE (FAIL): consumes render.py's occlusion probe
+    (paint-order-confirmed intersections of each line box with foreign opaque
+    element boxes) and FAILS when a plate covers >=20x6px of a non-decorative
+    line box. Added 2026-07-26 after an opaque DEAD plate over the bottom third
+    of a subtitle and a note column run under a callout plate produced two
+    consecutive hard fails while machine QA reported PASS, 0 fails, 0 warns:
+    text_collisions() only compares GLYPH LINE BOXES, and a padded plate's
+    background is not one.
   - CANVAS RASTER TEXT (WARN only): warns when a slide draws meaningful text
     (>=4 alphabetic chars) via canvas fillText/strokeText, which ships as a
     bitmap in the vector PDF and is invisible to the ranker/copy_sync/a11y.
@@ -223,6 +231,12 @@ def glyph_ink_contamination(img_arr, node, scale):
     return worst
 
 
+OCC_FAIL_W = 20     # px of a line box's WIDTH an opaque plate must cover to FAIL
+OCC_FAIL_H = 6       # px of its HEIGHT (a quarter of the 24px mono floor)
+OCC_WARN_W = 12      # the tripwire band below the FAIL, for the critics' eyes
+OCC_WARN_H = 4
+
+
 def text_collisions(nodes, min_overlap=0.30, min_px=8):
     """Detect text-on-text overprint between distinct elements.
 
@@ -382,6 +396,35 @@ def main():
                 res["warns"].append(
                     f"outside safe zone: '{node['text'][:40]}' at {node['x']},{node['y']} "
                     f"{node['w']}x{node['h']} (margin {args.safe_margin}px)")
+            # TEXT UNDER AN OPAQUE PLATE (2026-07-26). render.py's occlusion
+            # probe reports the largest patch of a line box that a foreign
+            # OPAQUE element provably paints over (paint order confirmed with
+            # elementsFromPoint). text_collisions() cannot see this: it
+            # compares glyph line boxes, and a padded plate's BACKGROUND is
+            # not a line box, so the 2026-07-26 S06 DEAD plate covering the
+            # bottom third of a subtitle scored 0.21 against the 0.30 overlap
+            # ratio and shipped through two scoring cycles of PASS. Covered
+            # type is never a style choice; data-overlap-ok demotes it to WARN
+            # so a deliberate layering stays the author's call.
+            occ = node.get("occluded")
+            if occ:
+                ow, oh = occ.get("w", 0), occ.get("h", 0)
+                if ow >= OCC_FAIL_W and oh >= OCC_FAIL_H:
+                    msg = (f"text under an opaque plate: '{node['text'][:40]}' has a "
+                           f"{ow}x{oh}px patch ({occ.get('frac', 0):.0%} of the line box) "
+                           f"painted over by .{occ.get('by', '?')}"
+                           + (f" '{occ['by_text'][:24]}'" if occ.get("by_text") else "")
+                           + " -- move the plate, move the type, or knock the plate out")
+                    if node.get("overlap_ok"):
+                        res["warns"].append(msg + " [marked data-overlap-ok]")
+                    else:
+                        res["fails"].append(msg)
+                elif ow >= OCC_WARN_W and oh >= OCC_WARN_H:
+                    res["warns"].append(
+                        f"opaque plate grazing text: '{node['text'][:40]}' has a "
+                        f"{ow}x{oh}px patch covered by .{occ.get('by', '?')} -- "
+                        f"pixel critic verify no glyph is cut")
+
             ratio = contrast_estimate(arr, node, scale)
             if ratio is not None:
                 if primary and ratio < 2.0:

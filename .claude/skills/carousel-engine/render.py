@@ -191,6 +191,97 @@ IN_PAGE_QA_JS = """
       } catch (e) {}
     }
   }
+  /* TEXT OCCLUDED BY AN OPAQUE PLATE (2026-07-26). qa.py's text_collisions()
+     compares GLYPH LINE BOXES only, so an opaque element's BACKGROUND is
+     invisible to it: a padded plate can paint over the bottom third of a
+     subtitle while every line-box pair stays under the 30% overlap ratio.
+     That is exactly how the 2026-07-26 S06 and S02 hard fails (a DEAD plate
+     over a subtitle; a note column run 62px past a callout plate) shipped
+     past machine QA reporting zero fails and zero warns, twice.
+
+     For each recorded text node, intersect its line boxes with every OPAQUE
+     element box that is neither an ancestor nor a descendant of it, then
+     confirm PAINT ORDER with elementFromPoint (a temporary
+     pointer-events:auto sheet lets the hit test see decorative layers;
+     pointer-events never affects pixels, and the sheet is removed before the
+     screenshot). If the text paints ABOVE the plate the hit test returns the
+     text and nothing is reported, so knockout plates and chips-on-plates stay
+     legal. Deliberately conservative: canvas/SVG ink, blended layers, sub-0.9
+     alpha and full-bleed ground planes are NOT treated as occluders, so the
+     check only speaks when something opaque provably covers type. */
+  const _alpha = (col) => {
+    const m = /rgba?\(([^)]+)\)/.exec(col || "");
+    if (!m) return 0;
+    const p = m[1].split(",").map(parseFloat);
+    return p.length > 3 ? p[3] : 1;
+  };
+  const peSheet = document.createElement("style");
+  peSheet.textContent = "*{pointer-events:auto !important}";
+  (document.head || de).appendChild(peSheet);
+  try {
+    const solids = [];
+    for (const e of document.querySelectorAll("body *")) {
+      if (e.namespaceURI === "http://www.w3.org/2000/svg") continue;
+      const t = e.tagName;
+      if (t === "CANVAS" || t === "SVG" || t === "SCRIPT" || t === "STYLE") continue;
+      const cs3 = getComputedStyle(e);
+      if (cs3.display === "none" || cs3.visibility === "hidden") continue;
+      if (parseFloat(cs3.opacity) < 0.9) continue;
+      if (cs3.mixBlendMode && cs3.mixBlendMode !== "normal") continue;
+      const solid = _alpha(cs3.backgroundColor) >= 0.9 ||
+                    (cs3.backgroundImage && cs3.backgroundImage !== "none") ||
+                    t === "IMG";
+      if (!solid) continue;
+      const rr = e.getBoundingClientRect();
+      if (rr.width < 4 || rr.height < 4) continue;
+      if (rr.width >= W - 1 && rr.height >= H - 1) continue;  // full-bleed ground plane
+      solids.push([e, rr]);
+    }
+    for (const [tel, idx] of recorded) {
+      const tn = out.text_nodes[idx];
+      let worst = null;
+      for (const [se, sr] of solids) {
+        if (se === tel || se.contains(tel) || tel.contains(se)) continue;
+        for (const ln of tn.lines) {
+          const ix = Math.min(ln[0] + ln[2], sr.right) - Math.max(ln[0], sr.left);
+          const iy = Math.min(ln[1] + ln[3], sr.bottom) - Math.max(ln[1], sr.top);
+          if (ix < 2 || iy < 2) continue;
+          if (worst && ix * iy <= worst._px) continue;
+          const x0 = Math.max(ln[0], sr.left), y0 = Math.max(ln[1], sr.top);
+          let hits = 0, tries = 0;
+          for (const fx of [0.2, 0.5, 0.8]) for (const fy of [0.3, 0.7]) {
+            tries++;
+            // elementsFromPoint returns the whole stack, TOPMOST FIRST. Compare
+            // the plate's depth against the text's: a full-frame grain/edge
+            // overlay sits above both and must not decide the answer, which
+            // singular elementFromPoint would let it do.
+            const stack = document.elementsFromPoint(x0 + ix * fx, y0 + iy * fy);
+            let si = -1, ti = -1;
+            for (let k = 0; k < stack.length; k++) {
+              const nd = stack[k];
+              if (si < 0 && (nd === se || se.contains(nd))) si = k;
+              if (ti < 0 && (nd === tel || tel.contains(nd))) ti = k;
+            }
+            if (si >= 0 && (ti < 0 || si < ti)) hits++;
+          }
+          if (hits * 2 < tries) continue;   // the text paints above the plate: legible
+          worst = {
+            _px: ix * iy, w: Math.round(ix), h: Math.round(iy),
+            frac: Math.round(1000 * (ix * iy) / Math.max(1, ln[2] * ln[3])) / 1000,
+            by: (se.getAttribute("class") || se.id || se.tagName).slice(0, 40),
+            by_text: (se.textContent || "").trim().replace(/\s+/g, " ").slice(0, 40)
+          };
+        }
+      }
+      if (worst) { delete worst._px; tn.occluded = worst; }
+    }
+  } catch (e) {
+    // never fail the render over the probe itself; surface it as a console
+    // error, which render.py records and qa.py reports as a WARN.
+    try { console.error("text-occlusion probe threw: " + e); } catch (e2) {}
+  } finally {
+    peSheet.remove();
+  }
   /* CANVAS TELEMETRY (2026-07-11, the rendered-3D gates): per visible canvas,
      backing resolution vs CSS size (silent-1x detector) and a downsampled
      pixel sample (dead/black-frame detector: a GL context that failed or

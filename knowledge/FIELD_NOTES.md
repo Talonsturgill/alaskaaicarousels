@@ -1409,3 +1409,62 @@ enough to keep, and the third is load-bearing for THIS run (density dial 5).
   touching data centers and Alaska power cost; the 90-day ledger gate is clean but a
   reader experiences it as one long beat. Reddit was 100 percent unreachable to the
   community scout for the second run running.
+
+## 2026-07-26 - Phase 12 frontier PARK (focus: headless-Chromium / Playwright rendering capabilities)
+
+Rotation: last three foci were accessibility/PDF 2026-07-25, LinkedIn platform 2026-07-24,
+self-improving pipelines 2026-07-23. Headless-Chromium was the stalest craft slot
+(2026-07-19) and is the slot that serves this run's dominant scar, which is a
+geometry/occlusion problem inside the browser. The engine's actual browser was probed,
+not assumed: **Chromium 141.0.7390.37**, and it supports `text-box-trim`, `anchor-name` /
+`position-area`, `text-wrap: pretty` and `corner-shape` (all probed with `CSS.supports`
+in the render harness, all offline, all zero-dependency).
+
+- **APPLIED. `document.elementsFromPoint` (the STACK, not the topmost element) is the
+  correct primitive for occlusion.** Singular `elementFromPoint` answers "what would a
+  click hit", which on our slides is always the full-frame `.grain`/`.edge` overlay, so
+  the first draft of today's occlusion gate reported ZERO everywhere including on the
+  reconstructed hard fails. Comparing the plate's depth against the text's depth in the
+  returned stack is what makes the answer paint-order-true. Prior art agrees in
+  principle: hit testing against overlapping objects must return ALL intersecting
+  visuals, not just the first
+  (https://learn.microsoft.com/en-us/dotnet/desktop/wpf/graphics-multimedia/hit-testing-in-the-visual-layer).
+  Shipped as UPGRADE 1 this run.
+- **PARKED CANDIDATE, CSS ANCHOR POSITIONING for annotation plates** (Baseline 2026;
+  Chrome 125+, our Chromium 141 supports it: `anchor-name`, `position-area`,
+  `position-try-fallbacks`).
+  https://developer.chrome.com/blog/anchor-positioning-api ,
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-fallbacks
+  Every instance of this run's dominant defect came from HAND-TUNED absolute
+  coordinates going stale when a neighbouring string changed length. Anchoring a DEAD
+  tag or a callout to the thing it names (`position-area: block-end span-inline-start`)
+  makes the plate move WITH its subject instead of being re-typed by hand each repair.
+  PARKED, not applied: `position-try-fallbacks` only reacts to CONTAINING-BLOCK/viewport
+  overflow, not to collision with a third element, so it is an authoring-doctrine change
+  (how slides are built) with real design surface, not a one-run engine edit. Needs a
+  worked TECHNIQUE_LIBRARY entry and one deck's worth of trial before it becomes house
+  style.
+- **PARKED CANDIDATE, `text-box-trim` / `text-box-edge` (cap-height line boxes).**
+  https://developer.chrome.com/blog/css-text-box-trim ,
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-box-trim
+  Chrome/Edge 133+, Safari 18.2+, still NOT Baseline (no Firefox as of mid-2026) — which
+  does not matter to us, because our only rendering target is our own Chromium.
+  `text-box: trim-both cap alphabetic` makes a text element's box equal its cap-to-
+  baseline ink instead of its half-leading, which (a) makes plate padding and optical
+  alignment exact rather than eyeballed, and (b) removes the false-graze band that
+  forced today's occlusion gate to ignore patches under 6px tall (the rail's gold dot
+  clips 3px of the sponsor line's LEADING, not a glyph). PARKED: it changes vertical
+  rhythm on every text block that adopts it, so it lands as a doctrine + dossier change
+  in a run that can afford to re-tune a deck, not as a silent engine default.
+- **ENVIRONMENT FACT, worth knowing before it bites.** Playwright >= 1.57 switched the
+  default `chromium` channel to Chrome for Testing (`chrome-headless-shell`), and the
+  release notes flag that "screenshots are different" across that transition
+  (https://playwright.dev/python/docs/release-notes). This box's Playwright already
+  expects `chromium_headless_shell-1228`, which is absent; every render this run
+  survived on `render.py`'s `launch_chromium()` fallback to `chromium-1194`. Pixels are
+  stable today. The recommendation (not spent as an upgrade slot) is to record
+  `browser.version` in `render_report.json` so a future pixel shift is diagnosable from
+  the artifacts.
+- **NOTHING FOUND worth applying on the Playwright API side.** The 2026 additions
+  (WebSocket routing, canvas previews in traces, `install --list`) do not touch an
+  offline, single-page, deterministic screenshot pipeline.
