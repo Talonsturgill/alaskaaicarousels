@@ -15,10 +15,10 @@
     "flow_review": "done",
     "assemble": "done",
     "scoring": "done",
-    "ship": "pending",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "ship": "done",
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "done"
   },
   "artifacts": {
     "plan": "out/2026-07-26/plan.md",
@@ -33,6 +33,9 @@
     "slides": "out/2026-07-26/slides/slide-01..09.html",
     "render": "out/2026-07-26/render (9 PNGs, machine_qa.json PASS 0/0)",
     "final": "out/2026-07-26/final (carousel.pdf vector, contact_sheet.png, thumbs/)",
-    "score": "out/2026-07-26/score_report.json (6.9 vs 8.3, both hard fails repaired post-scoring)"
-  }
+    "score": "out/2026-07-26/score_report.json (6.9 vs 8.3, both hard fails repaired post-scoring)",
+    "gmail": "runs/2026-07-26/gmail_draft_id.txt (r64981314159266294) + gmail_payload.json",
+    "ship": "PR #113 merged to main (e81dc89); upgrades PR #114 merged (b470b73)"
+  },
+  "complete": true
 }

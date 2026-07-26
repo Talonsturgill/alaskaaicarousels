@@ -1468,3 +1468,27 @@ in the render harness, all offline, all zero-dependency).
 - **NOTHING FOUND worth applying on the Playwright API side.** The 2026 additions
   (WebSocket routing, canvas previews in traces, `install --list`) do not touch an
   offline, single-page, deterministic screenshot pipeline.
+
+### 2026-07-26 (No. 18) — Phase 13 addendum, the delivery step is size-bound
+
+The Gmail draft is the run's only deliverable to a human, and it nearly did not
+ship. gmail_draft.py inlines one base64 JPEG per slide, which put the html_body
+at 477 KB. The whole body must pass through ONE create_draft call, and 477 KB of
+base64 is roughly 120k tokens, past what a single call can carry. Prior runs got
+away with 373 KB and 530 KB; this is a wall the routine had not hit yet only
+because nobody measured it.
+
+Fixed in the moment per the FAILURE PROTOCOL, and the fix is now in the script
+rather than in a session's head. gmail_draft.py gained --preview-width,
+--preview-quality and --preview-mode (grid | contact | remote). Defaults are
+unchanged, so nothing moves for any existing caller. `remote` emits ONE
+contact-sheet image sourced from its raw URL plus the same per-slide full-res
+links, which lands the body at 16 KB.
+
+THE LESSON THAT MATTERS. The first draft went out with the contact sheet's src
+hand-swapped from a data URI to a raw URL, which is exactly the kind of quiet
+body edit the 2026-07-21 verbatim rule exists to forbid. The right move, taken
+immediately after, was to make the SCRIPT emit that body and re-verify the
+delivered bytes against the script's output (equal, timestamp aside) so the
+record is true rather than merely close. If a delivery constraint forces a change
+to the body, change the generator, never the draft.
