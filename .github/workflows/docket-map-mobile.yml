@@ -1,0 +1,81 @@
+name: Docket map on mobile
+
+# The docket map was signed off against one 390x844 viewport and shipped
+# broken anyway. On a landscape phone it cropped pins clean off the frame, on
+# a tablet it drew its badges at two thirds the size a thumb needs, and every
+# layer toggle threw the reader hundreds of pixels up a 13000px page. None of
+# those are exotic devices. All of them were invisible to a single-viewport
+# check.
+#
+# tests/mobile_docket_map.js walks eight real devices, portrait and landscape,
+# and asserts what a reader would notice. This is the thing that runs it on
+# every change to the map, so the next regression is caught by a machine
+# rather than by the person the site is for.
+
+on:
+  pull_request:
+    paths:
+      - "scripts/site_build.py"
+      - "scripts/docket_build.py"
+      - "ledger/docket.json"
+      - "assets/geo/**"
+      - "tests/mobile_docket_map.js"
+      - "docs/docket/**"
+      - ".github/workflows/docket-map-mobile.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/site_build.py"
+      - "scripts/docket_build.py"
+      - "ledger/docket.json"
+      - "assets/geo/**"
+      - "tests/mobile_docket_map.js"
+      - "docs/docket/**"
+      - ".github/workflows/docket-map-mobile.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mobile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Playwright and the browser it drives
+        run: |
+          npm install --no-save playwright@1.49.1
+          npx playwright install --with-deps chromium
+
+      - name: Pillow, so the build is the real one
+        run: pip install --quiet Pillow
+
+      # Test the page this PR would actually ship. Building fresh rather than
+      # serving committed docs/ means a correct builder with a stale commit
+      # still gets caught, and it means the suite runs even on a PR that
+      # forgot to rebuild.
+      - name: Build the site
+        run: python scripts/site_build.py --date 2026-07-25 --out /tmp/site
+
+      - name: Eight devices, portrait and landscape
+        env:
+          BASE_URL: http://127.0.0.1:8902
+        run: |
+          set -euo pipefail
+          python -m http.server 8902 --directory /tmp/site > /dev/null 2>&1 &
+          server=$!
+          trap 'kill $server 2>/dev/null || true' EXIT
+          for i in $(seq 1 40); do
+            curl -sf http://127.0.0.1:8902/docket/ > /dev/null && break
+            sleep 0.25
+          done
+          node tests/mobile_docket_map.js

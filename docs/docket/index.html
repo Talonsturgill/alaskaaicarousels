@@ -482,7 +482,12 @@ stroke-linecap:round;}
    pin colours and a grid, and fuel type is in the tooltip where it belongs. */
 .gen{fill:#a78bd0;fill-opacity:.26;stroke:#c9b4ee;stroke-width:1;stroke-opacity:.6;}
 .lyr{transition:opacity .4s ease;}
-.lyrbox{position:absolute;width:1px;height:1px;opacity:0;margin:0;
+/* FIXED, not absolute. The checkbox has to sit before the svg for the sibling
+   combinator to reach it, which put it at the TOP of the map. Tapping a chip
+   below the map focuses it, and the browser scrolls a focused control into
+   view, so every toggle threw the reader 363px back up the page. A fixed
+   element is always within the viewport, so there is nothing to scroll to. */
+.lyrbox{position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;margin:0;
 clip-path:inset(50%);pointer-events:none;}
 .lyr-grid,.lyr-gen,.lyr-taps{opacity:0;pointer-events:none;}
 #lyr-grid:checked ~ svg .lyr-grid,
@@ -512,12 +517,23 @@ box-shadow:0 0 9px rgba(201,138,92,.8);}
 .lyrbox:focus-visible ~ .lyrbar label{outline:2px solid var(--gold);outline-offset:3px;}
 /* Each note appears only while its own layer is on, so the bar stays one line
    of chips until a reader actually asks what they are looking at. */
+/* The notes must not change the page's height, or every toggle reflows the
+   document and the browser scrolls to compensate, dragging the chip out from
+   under the reader's thumb. On an iPad in landscape that was a 1099px jump.
+   With script running the notes come OUT of the flow, one shows at a time, and
+   the block reserves the height of the tallest so nothing ever moves. With no
+   script they simply stack, which reflows but at least reads correctly. */
 .lyrnotes{padding-top:2px;}
+.lyrnotes.stable{position:relative;}
+.lyrnotes.stable .lyrnote{position:absolute;left:0;right:0;top:0;display:none;}
+.lyrnotes.stable .lyrnote.show{display:block;}
 .lyrnote{display:none;font-size:12px;line-height:1.6;color:var(--mute);max-width:70ch;
 padding-top:10px;}
 #lyr-grid:checked ~ .lyrbar .n-grid,
 #lyr-gen:checked ~ .lyrbar .n-gen,
 #lyr-taps:checked ~ .lyrbar .n-taps{display:block;}
+.lyrnotes.stable .lyrnote{display:none;}
+.lyrnotes.stable .lyrnote.show{display:block;}
 @media (prefers-reduced-motion:reduce){.lyr{transition:none;}}
 /* ---------- pan and zoom ----------
    Strokes must not thicken with the zoom, or the grid turns into ribbons the
@@ -534,10 +550,14 @@ min-height:44px;min-width:44px;padding:0 14px;cursor:pointer;
 transition:color .2s,border-color .2s,background .2s;}
 .mapzoomctl button:hover{color:var(--snow);border-color:#2c5876;}
 #mapin,#mapout{font-size:17px;line-height:1;padding:0;}
+/* FIT ALASKA holds its space at all times and only becomes visible when the
+   map has actually moved. Using the hidden attribute made it appear from
+   nothing, which rewrapped the chip row by 54px and shoved the zoom button out
+   from under the reader's thumb mid-tap. */
 .mapreset{color:var(--gold);background:rgba(255,199,44,.08);
-border-color:rgba(255,199,44,.4);}
+border-color:rgba(255,199,44,.4);visibility:hidden;}
 .mapreset:hover{background:rgba(255,199,44,.16);border-color:var(--gold);}
-.mapreset[hidden]{display:none;}
+.mapreset.on{visibility:visible;}
 /* ---------- status filter ----------
    Three checkboxes, all on. A pin shows if ANY of its statuses is still on,
    which falls out of these rules being independent rather than exclusive. */
@@ -598,7 +618,7 @@ when it lands, and whether the public gets a say. Sources on every item.</p>
 </g>
 <g class="lyr lyr-gen"><g class="mk" data-x="573.3" data-y="349.7" transform="translate(573.3,349.7)"><circle class="gen" cx="0" cy="0" r="16.2"><title>George M Sullivan Generation Plant 2, 309.3 MW, natural gas</title></circle></g><g class="mk" data-x="554.2" data-y="352.1" transform="translate(554.2,352.1)"><circle class="gen" cx="0" cy="0" r="15.9"><title>Beluga, 300.4 MW, natural gas</title></circle></g><g class="mk" data-x="570.7" data-y="351.7" transform="translate(570.7,351.7)"><circle class="gen" cx="0" cy="0" r="12.0"><title>Southcentral Power Project, 169.7 MW, natural gas</title></circle></g><g class="mk" data-x="578.2" data-y="342.4" transform="translate(578.2,342.4)"><circle class="gen" cx="0" cy="0" r="11.8"><title>Eklutna Generation Station, 165 MW, natural gas</title></circle></g><g class="mk" data-x="597.1" data-y="240.6" transform="translate(597.1,240.6)"><circle class="gen" cx="0" cy="0" r="11.1"><title>North Pole, 145 MW, petroleum</title></circle></g><g class="mk" data-x="557.6" data-y="394.9" transform="translate(557.6,394.9)"><circle class="gen" cx="0" cy="0" r="10.3"><title>Bradley Lake, 126 MW, hydroelectric</title></circle></g><g class="mk" data-x="555.7" data-y="373.0" transform="translate(555.7,373.0)"><circle class="gen" cx="0" cy="0" r="8.8"><title>Soldotna, 90.5 MW, natural gas</title></circle></g><g class="mk" data-x="830.0" data-y="396.8" transform="translate(830.0,396.8)"><circle class="gen" cx="0" cy="0" r="8.1"><title>Snettisham, 78 MW, hydroelectric</title></circle></g><g class="mk" data-x="578.4" data-y="269.1" transform="translate(578.4,269.1)"><circle class="gen" cx="0" cy="0" r="8.1"><title>Healy, 77.8 MW, coal</title></circle></g><g class="mk" data-x="549.8" data-y="367.8" transform="translate(549.8,367.8)"><circle class="gen" cx="0" cy="0" r="8.0"><title>Nikiski Combined Cycle, 75.9 MW, natural gas</title></circle></g><g class="mk" data-x="571.2" data-y="350.0" transform="translate(571.2,350.0)"><circle class="gen" cx="0" cy="0" r="7.3"><title>Hank Nikkels Plant 1, 62.4 MW, natural gas</title></circle></g><g class="mk" data-x="549.7" data-y="367.3" transform="translate(549.7,367.3)"><circle class="gen" cx="0" cy="0" r="7.3"><title>Bernice Lake, 62.4 MW, natural gas</title></circle></g><g class="mk" data-x="816.5" data-y="394.2" transform="translate(816.5,394.2)"><circle class="gen" cx="0" cy="0" r="7.0"><title>Lemon Creek, 57.5 MW, petroleum</title></circle></g><g class="mk" data-x="581.0" data-y="341.6" transform="translate(581.0,341.6)"><circle class="gen" cx="0" cy="0" r="6.1"><title>Eklutna Hydro Project, 44.4 MW, hydroelectric</title></circle></g><g class="mk" data-x="592.0" data-y="238.6" transform="translate(592.0,238.6)"><circle class="gen" cx="0" cy="0" r="5.8"><title>Battery Energy Storage System, 40 MW, batteries</title></circle></g><g class="mk" data-x="570.6" data-y="351.7" transform="translate(570.6,351.7)"><circle class="gen" cx="0" cy="0" r="5.8"><title>International Battery Substation (IBSS), 40 MW, batteries</title></circle></g><g class="mk" data-x="591.9" data-y="237.4" transform="translate(591.9,237.4)"><circle class="gen" cx="0" cy="0" r="5.5"><title>Fairbanks, 36.1 MW, petroleum</title></circle></g><g class="mk" data-x="590.6" data-y="237.6" transform="translate(590.6,237.6)"><circle class="gen" cx="0" cy="0" r="5.5"><title>University of Alaska Fairbanks, 35.7 MW, coal</title></circle></g><g class="mk" data-x="528.9" data-y="459.6" transform="translate(528.9,459.6)"><circle class="gen" cx="0" cy="0" r="5.3"><title>Terror Lake Microgrid, 33.6 MW, hydroelectric</title></circle></g><g class="mk" data-x="814.0" data-y="393.9" transform="translate(814.0,393.9)"><circle class="gen" cx="0" cy="0" r="4.9"><title>Auke Bay, 28.3 MW, petroleum</title></circle></g><g class="mk" data-x="591.7" data-y="237.7" transform="translate(591.7,237.7)"><circle class="gen" cx="0" cy="0" r="4.7"><title>Chena Power Plant, 25.7 MW, coal</title></circle></g><g class="mk" data-x="815.1" data-y="436.1" transform="translate(815.1,436.1)"><circle class="gen" cx="0" cy="0" r="4.6"><title>Jarvis Street, 25.1 MW, petroleum</title></circle></g><g class="mk" data-x="600.8" data-y="242.1" transform="translate(600.8,242.1)"><circle class="gen" cx="0" cy="0" r="4.6"><title>Eielson AFB Central Heat &amp; Power Plant, 24.6 MW, coal</title></circle></g><g class="mk" data-x="578.6" data-y="262.9" transform="translate(578.6,262.9)"><circle class="gen" cx="0" cy="0" r="4.6"><title>Eva Creek Wind, 24.6 MW, wind</title></circle></g><g class="mk" data-x="814.7" data-y="394.3" transform="translate(814.7,394.3)"><circle class="gen" cx="0" cy="0" r="4.5"><title>Industrial Plant, 23.5 MW, petroleum</title></circle></g><g class="mk" data-x="620.7" data-y="259.5" transform="translate(620.7,259.5)"><circle class="gen" cx="0" cy="0" r="4.4"><title>Delta Power, 23.1 MW, petroleum</title></circle></g><g class="mk" data-x="569.7" data-y="76.4" transform="translate(569.7,76.4)"><circle class="gen" cx="0" cy="0" r="4.4"><title>TNSG North Plant, 23.1 MW, natural gas</title></circle></g><g class="mk" data-x="888.9" data-y="466.6" transform="translate(888.9,466.6)"><circle class="gen" cx="0" cy="0" r="4.4"><title>S W Bailey, 23 MW, petroleum</title></circle></g><g class="mk" data-x="891.8" data-y="457.2" transform="translate(891.8,457.2)"><circle class="gen" cx="0" cy="0" r="4.4"><title>Swan Lake, 22.6 MW, hydroelectric</title></circle></g><g class="mk" data-x="883.3" data-y="440.8" transform="translate(883.3,440.8)"><circle class="gen" cx="0" cy="0" r="4.4"><title>Tyee Lake Hydroelectric Facility, 22.6 MW, hydroelectric</title></circle></g><g class="mk" data-x="592.9" data-y="238.2" transform="translate(592.9,238.2)"><circle class="gen" cx="0" cy="0" r="4.3"><title>Utility Plants Section, 22.1 MW, coal</title></circle></g></g>
 <g class="mk pinmk a-open" data-x="571.1" data-y="337.6" transform="translate(571.1,337.6)"><circle cx="0" cy="0" r="8" fill="none" stroke="#3ce6b4" stroke-width="1.6" opacity="0.8"><animate attributeName="r" values="8;26" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0" dur="2.8s" repeatCount="indefinite"/></circle></g><g class="mk pinmk a-open" data-x="571.1" data-y="337.6" transform="translate(571.1,337.6)"><line class="pinlead" x1="0" y1="0" x2="0.2" y2="-27.0" stroke="#3ce6b4"/></g><g class="mk pinmk a-closed" data-x="593.8" data-y="254.2" transform="translate(593.8,254.2)"><line class="pinlead" x1="0" y1="0" x2="2.9" y2="26.8" stroke="#f2a43a"/></g><g class="mk pinmk a-indirect" data-x="592.0" data-y="237.9" transform="translate(592.0,237.9)"><line class="pinlead" x1="0" y1="0" x2="-2.9" y2="-26.8" stroke="#8da2be"/></g><g class="mk pinmk a-indirect" data-x="551.9" data-y="371.6" transform="translate(551.9,371.6)"><line class="pinlead" x1="0" y1="0" x2="-23.4" y2="13.5" stroke="#8da2be"/></g><g class="mk pinmk a-indirect" data-x="570.7" data-y="350.2" transform="translate(570.7,350.2)"><line class="pinlead" x1="0" y1="0" x2="14.4" y2="22.8" stroke="#8da2be"/></g><g class="mk pinmk a-indirect" data-x="818.1" data-y="395.4" transform="translate(818.1,395.4)"><rect x="-25" y="-14" width="50" height="28" rx="14" fill="#050b16" stroke="#8da2be" stroke-width="2.6"/><title>2 decisions at Juneau</title><a href="#aklng-tax-bill-second-special-session" aria-label="The AKLNG gas line tax bill"><text x="-8" y="5" text-anchor="middle" class="pinnum" fill="#8da2be">1</text></a><a href="#hb-259-data-center-utility-standards" aria-label="HB 259, state utility standards for large data centers"><text x="8" y="5" text-anchor="middle" class="pinnum" fill="#8da2be">6</text></a></g><g class="mk pinmk a-open" data-x="571.1" data-y="337.6" transform="translate(571.1,337.6)"><a href="#aidea-houston-industrial-park" aria-label="AIDEA's free state land for a Mat-Su data center park"><circle class="pinbadge" cx="0" cy="-27" r="14" fill="#050b16" stroke="#3ce6b4" stroke-width="2.6"/><text x="0" y="-22" text-anchor="middle" class="pinnum" fill="#3ce6b4">2</text></a></g><g class="mk pinmk a-closed" data-x="568.4" data-y="89.0" transform="translate(568.4,89.0)"><a href="#adl-422741-stak-north-slope-lease" aria-label="STAK Energy's North Slope AI campus lease"><circle class="pinbadge" cx="0" cy="0" r="14" fill="#050b16" stroke="#f2a43a" stroke-width="2.6"/><text x="0" y="5" text-anchor="middle" class="pinnum" fill="#f2a43a">3</text></a></g><g class="mk pinmk a-closed" data-x="593.8" data-y="254.2" transform="translate(593.8,254.2)"><a href="#air-force-eul-ai-data-centers" aria-label="Air Force land leases for AI data centers at JBER, Eielson and Clear"><circle class="pinbadge" cx="3" cy="27" r="14" fill="#050b16" stroke="#f2a43a" stroke-width="2.6"/><text x="3" y="32" text-anchor="middle" class="pinnum" fill="#f2a43a">4</text></a></g><g class="mk pinmk a-indirect" data-x="592.0" data-y="237.9" transform="translate(592.0,237.9)"><a href="#gvea-lm6000-turbine-purchase" aria-label="GVEA's $120 million turbine decision"><circle class="pinbadge" cx="-3" cy="-27" r="14" fill="#050b16" stroke="#8da2be" stroke-width="2.6"/><text x="-3" y="-22" text-anchor="middle" class="pinnum" fill="#8da2be">5</text></a></g><g class="mk pinmk a-indirect" data-x="551.9" data-y="371.6" transform="translate(551.9,371.6)"><a href="#enstar-cook-inlet-gas-storage" aria-label="Enstar's Cook Inlet gas storage plan (Kenai Loop Pool)"><circle class="pinbadge" cx="-23" cy="13" r="14" fill="#050b16" stroke="#8da2be" stroke-width="2.6"/><text x="-23" y="18" text-anchor="middle" class="pinnum" fill="#8da2be">7</text></a></g><g class="mk pinmk a-indirect" data-x="570.7" data-y="350.2" transform="translate(570.7,350.2)"><a href="#anchorage-ao-2026-27-data-center-zoning" aria-label="Anchorage data-center zoning ordinance AO 2026-27"><circle class="pinbadge" cx="14" cy="23" r="14" fill="#050b16" stroke="#8da2be" stroke-width="2.6"/><text x="14" y="28" text-anchor="middle" class="pinnum" fill="#8da2be">8</text></a></g><g class="mk pinmk a-open" data-x="571.1" data-y="337.6" transform="translate(571.1,337.6)"><circle class="pindot" cx="0" cy="0" r="3.4" fill="#3ce6b4"/></g><g class="mk pinmk a-closed" data-x="593.8" data-y="254.2" transform="translate(593.8,254.2)"><circle class="pindot" cx="0" cy="0" r="3.4" fill="#f2a43a"/></g><g class="mk pinmk a-indirect" data-x="592.0" data-y="237.9" transform="translate(592.0,237.9)"><circle class="pindot" cx="0" cy="0" r="3.4" fill="#8da2be"/></g><g class="mk pinmk a-indirect" data-x="551.9" data-y="371.6" transform="translate(551.9,371.6)"><circle class="pindot" cx="0" cy="0" r="3.4" fill="#8da2be"/></g><g class="mk pinmk a-indirect" data-x="570.7" data-y="350.2" transform="translate(570.7,350.2)"><circle class="pindot" cx="0" cy="0" r="3.4" fill="#8da2be"/></g>
-</svg><div class="lyrbar"><div class="lyrchips"><label for="lyr-grid"><span class="sw"></span>GRID</label><label for="lyr-gen"><span class="sw"></span>GENERATION</label><label for="lyr-taps"><span class="sw"></span>PIPELINE</label><span class="mapzoomctl" hidden id="mapzoomctl"><button type="button" id="mapout" aria-label="Zoom the map out">-</button><button type="button" id="mapin" aria-label="Zoom the map in">+</button><button type="button" class="mapreset" id="mapreset" hidden>FIT ALASKA</button></span></div><div class="lyrchips lyrfilters"><label for="f-open"><span class="sw"></span>OPEN</label><label for="f-indirect"><span class="sw"></span>INDIRECT</label><label for="f-closed"><span class="sw"></span>CLOSED</label></div><div class="lyrnotes"><span class="lyrnote n-grid">Transmission at 69 kV and up. The raw state layer is 93 percent local distribution from one utility, so it is cut at the transmission floor.</span><span class="lyrnote n-gen">Power plants of 20 MW and up. That is 31 of Alaska's 152 plants but 78 percent of its capacity. Circle area is nameplate megawatts.</span><span class="lyrnote n-taps">The Trans Alaska Pipeline System. Gas lines are left out, being 96 percent sub-kilometre distribution with nothing to sort them by.</span></div></div><div class="mapcap"><a class="mapkey" href="#aklng-tax-bill-second-special-session"><b class="k-indirect">1</b><span>Juneau</span></a><a class="mapkey" href="#aidea-houston-industrial-park"><b class="k-open">2</b><span>North of Houston, Mat-Su Borough</span></a><a class="mapkey" href="#adl-422741-stak-north-slope-lease"><b class="k-closed">3</b><span>Dalton Highway, about 26 mi south of Deadhorse</span></a><a class="mapkey" href="#air-force-eul-ai-data-centers"><b class="k-closed">4</b><span>JBER, Eielson AFB, Clear SFS</span></a><a class="mapkey" href="#gvea-lm6000-turbine-purchase"><b class="k-indirect">5</b><span>Fairbanks</span></a><a class="mapkey" href="#hb-259-data-center-utility-standards"><b class="k-indirect">6</b><span>Juneau</span></a><a class="mapkey" href="#enstar-cook-inlet-gas-storage"><b class="k-indirect">7</b><span>Kenai Loop Pool, Cook Inlet near Kenai</span></a><a class="mapkey" href="#anchorage-ao-2026-27-data-center-zoning"><b class="k-indirect">8</b><span>Anchorage</span></a></div></div>
+</svg><div class="lyrbar"><div class="lyrchips"><label for="lyr-grid"><span class="sw"></span>GRID</label><label for="lyr-gen"><span class="sw"></span>GENERATION</label><label for="lyr-taps"><span class="sw"></span>PIPELINE</label><span class="mapzoomctl" hidden id="mapzoomctl"><button type="button" id="mapout" aria-label="Zoom the map out">-</button><button type="button" id="mapin" aria-label="Zoom the map in">+</button><button type="button" class="mapreset" id="mapreset">FIT ALASKA</button></span></div><div class="lyrchips lyrfilters"><label for="f-open"><span class="sw"></span>OPEN</label><label for="f-indirect"><span class="sw"></span>INDIRECT</label><label for="f-closed"><span class="sw"></span>CLOSED</label></div><div class="lyrnotes"><span class="lyrnote n-grid">Transmission at 69 kV and up. The raw state layer is 93 percent local distribution from one utility, so it is cut at the transmission floor.</span><span class="lyrnote n-gen">Power plants of 20 MW and up. That is 31 of Alaska's 152 plants but 78 percent of its capacity. Circle area is nameplate megawatts.</span><span class="lyrnote n-taps">The Trans Alaska Pipeline System. Gas lines are left out, being 96 percent sub-kilometre distribution with nothing to sort them by.</span></div></div><div class="mapcap"><a class="mapkey" href="#aklng-tax-bill-second-special-session"><b class="k-indirect">1</b><span>Juneau</span></a><a class="mapkey" href="#aidea-houston-industrial-park"><b class="k-open">2</b><span>North of Houston, Mat-Su Borough</span></a><a class="mapkey" href="#adl-422741-stak-north-slope-lease"><b class="k-closed">3</b><span>Dalton Highway, about 26 mi south of Deadhorse</span></a><a class="mapkey" href="#air-force-eul-ai-data-centers"><b class="k-closed">4</b><span>JBER, Eielson AFB, Clear SFS</span></a><a class="mapkey" href="#gvea-lm6000-turbine-purchase"><b class="k-indirect">5</b><span>Fairbanks</span></a><a class="mapkey" href="#hb-259-data-center-utility-standards"><b class="k-indirect">6</b><span>Juneau</span></a><a class="mapkey" href="#enstar-cook-inlet-gas-storage"><b class="k-indirect">7</b><span>Kenai Loop Pool, Cook Inlet near Kenai</span></a><a class="mapkey" href="#anchorage-ao-2026-27-data-center-zoning"><b class="k-indirect">8</b><span>Anchorage</span></a></div></div>
 <h2>Closing soon</h2>
 <p class="sub">The nearest deadlines and votes. A pulsing pin on the map means a public
 comment window is open right now.</p>
@@ -960,7 +980,7 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   var mz = mapsvg.querySelector('#mzoom');
   var marks = [].slice.call(mapsvg.querySelectorAll('.mk'));
   var reset = document.getElementById('mapreset');
-  var k = 1, tx = 0, ty = 0, mscale = 1, home = null;
+  var k = 1, tx = 0, ty = 0, mscale = 1, home = null, minK = 1;
 
   /* The svg is xMidYMid SLICE, so on a phone, where the frame is far taller
      than the map's own 1000 by 620, the drawing is scaled to FILL and the
@@ -980,13 +1000,17 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   }
   var inset = 0;   /* band at the top the sticky nav will cover anyway */
   function clampT(){
-    /* Keep the drawing covering the visible window, so no amount of dragging
-       can leave a band of empty background down one side. The top is allowed
-       to fall short by `inset`, because that strip is behind the nav and
-       without the allowance this clamp simply undid the nav reservation. */
-    var v = view();
-    tx = Math.min(v.x0, Math.max(v.x1 - VBW * k, tx));
-    ty = Math.min(v.y0 + inset, Math.max(v.y1 - VBH * k, ty));
+    /* Two regimes. When the drawing is BIGGER than the frame, keep it covering
+       so no drag can leave a band of empty background. When it is SMALLER,
+       centre it instead, which is what happens on a short landscape frame where
+       the pins only fit if the map shrinks past the point of filling. Clamping
+       to cover in that case is what cropped eight pins clean off the map. The
+       top is allowed to fall short by `inset`, the strip behind the sticky nav. */
+    var v = view(), w = VBW * k, h = VBH * k, top = v.y0 + inset, uh = v.h - inset;
+    tx = (w <= v.w) ? v.x0 + (v.w - w) / 2
+                    : Math.min(v.x0, Math.max(v.x1 - w, tx));
+    ty = (h <= uh) ? top + (uh - h) / 2
+                   : Math.min(top, Math.max(v.y1 - h, ty));
   }
   function apply(){
     mz.setAttribute('transform', 'translate(' + tx.toFixed(2) + ' ' + ty.toFixed(2) +
@@ -998,11 +1022,14 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       m.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) +
                      ') scale(' + mscale.toFixed(3) + ')');
     }
-    if (reset) reset.hidden = (Math.abs(k - home.k) < 0.01 &&
-                               Math.abs(tx - home.tx) < 1 && Math.abs(ty - home.ty) < 1);
+    if (reset) {
+      var atHome = Math.abs(k - home.k) < 0.01 &&
+                   Math.abs(tx - home.tx) < 1 && Math.abs(ty - home.ty) < 1;
+      reset.classList.toggle('on', !atHome);
+    }
   }
   function zoomAt(nk, cx, cy){
-    nk = Math.min(8, Math.max(1, nk));
+    nk = Math.min(8, Math.max(minK, nk));
     if (nk === k) return;
     tx = cx - (cx - tx) * (nk / k);
     ty = cy - (cy - ty) * (nk / k);
@@ -1017,44 +1044,66 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
      pixels and the pins are about five across, so open on the pins instead,
      and scale the marks UP because the svg itself is scaled so far down. */
   function fit(){
-    var r = mapsvg.getBoundingClientRect();
-    var narrow = r.width < 620;
     var v = view();
-    /* A mark is constant size in viewBox units, and on a phone the whole
-       drawing is scaled down hard, so a badge that reads fine on a desktop
-       comes out about 14px across on a handset. Scale the marks up until a
-       badge is roughly 30px, which is a real target for a thumb without
-       letting the pins swallow the state. 28 units is the badge diameter. */
-    mscale = narrow ? Math.max(1, Math.min(3.4, 30 / (28 * ctm()))) : 1;
+    /* A mark is constant size in viewBox units and the drawing is scaled to the
+       frame, so a badge that reads fine on a desktop comes out about 14px across
+       on a handset. Scale the marks until a badge is roughly 30px, a real target
+       for a thumb, without letting the pins swallow the state. 28 units is the
+       badge diameter.
+
+       Pure geometry, so it needs no breakpoint: on a wide screen the ratio lands
+       under 1 and the Math.max pins it there. This used to be gated on a 620px
+       width test, which is why a tablet drew its badges at 20px for no reason. */
+    mscale = Math.max(1, Math.min(3.4, 30 / (28 * ctm())));
+
     var xs = [], ys = [];
     for (var i = 0; i < marks.length; i++) {
       if (!/pinmk/.test(marks[i].getAttribute('class') || '')) continue;
       xs.push(+marks[i].getAttribute('data-x'));
       ys.push(+marks[i].getAttribute('data-y'));
     }
-    if (!narrow || !xs.length) {
-      /* Wide screens get the whole state, unzoomed and unmoved, and no nav
-         allowance, because on a wide screen the nav is not over the map. */
-      inset = 0; k = 1; tx = 0; ty = 0; clampT();
+    if (!xs.length) {
+      inset = 0; k = 1; minK = 1; tx = 0; ty = 0; clampT();
       home = { k: k, tx: tx, ty: ty };
       return;
     }
-    /* The bbox above is of ANCHORS, but a badge sits up to LEAD_MIN away from
-       its anchor and is drawn at mark scale, so the ink reaches about 27 plus
-       a 16 radius beyond the anchor, all of it scaled. Padding by less than
-       that fits the anchors and leaves a badge hanging off the edge, which is
-       how pin 7 ended up half outside the frame. */
+    /* The bbox is of ANCHORS, but a badge sits up to LEAD_MIN from its anchor
+       and is drawn at mark scale, so the ink reaches about 27 plus a 16 radius
+       beyond it, all scaled. Padding by less fits the anchors and leaves a
+       badge hanging off the edge. */
     var pad = 45 * mscale;
     var x0 = Math.min.apply(null, xs) - pad, x1 = Math.max.apply(null, xs) + pad;
     var y0 = Math.min.apply(null, ys) - pad, y1 = Math.max.apply(null, ys) + pad;
-    /* The site nav is sticky. Scrolled to the right place it sits over the
-       top of the map, and the northernmost pin landed 66px down, which is
-       entirely underneath it. Reserve that band so no pin can hide there. */
+
+    /* THE DECISION IS GEOMETRIC, NOT A BREAKPOINT.
+       Show the whole state when every pin already fits the frame at rest, fit to
+       the pins when it does not. A width test got this wrong in both directions:
+       a landscape phone is 750 wide so it counted as a big screen, but slice
+       left the frame 312 units tall and the northernmost pin was cropped clean
+       off the map. */
+    /* The site nav is sticky, so scrolled to the right place it sits over the
+       top of the map. Work out that band FIRST, because a pin sitting inside
+       the frame but underneath the nav is not visible, and testing the fit
+       without it is how a tablet ended up hiding its northernmost pin while
+       reporting that everything was on screen. Capped, or on a short landscape
+       frame the nav would eat most of the map. */
     var nav = document.querySelector('.topnav');
-    var top = nav ? nav.getBoundingClientRect().height * px() : 0;
+    var top = Math.min(nav ? nav.getBoundingClientRect().height * px() : 0, v.h * 0.3);
+
+    var fits = (x1 - x0) <= v.w && (y1 - y0) <= (v.h - top) &&
+               x0 >= v.x0 && x1 <= v.x1 && y0 >= (v.y0 + top) && y1 <= v.y1;
+    if (fits) {
+      inset = 0; k = 1; minK = 1; tx = 0; ty = 0; clampT();
+      home = { k: k, tx: tx, ty: ty };
+      return;
+    }
     inset = top;
     var uy0 = v.y0 + top, uh = Math.max(40, v.h - top);
-    k = Math.min(8, Math.max(1, Math.min(v.w / (x1 - x0), uh / (y1 - y0))));
+    /* The floor is NOT 1. On a short frame the pins only fit if the map
+       shrinks past the point of filling it, and a map with a little empty
+       background beside it is far better than one with pins cropped off. */
+    k = Math.min(8, Math.max(0.4, Math.min(v.w / (x1 - x0), uh / (y1 - y0))));
+    minK = Math.min(1, k);
     tx = (v.x0 + v.x1) / 2 - ((x0 + x1) / 2) * k;
     ty = (uy0 + v.y1) / 2 - ((y0 + y1) / 2) * k;
     clampT();
@@ -1117,6 +1166,65 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   mapsvg.addEventListener('click', function(e){
     if (moved > 12) { e.preventDefault(); e.stopPropagation(); }
   }, true);
+
+  /* Activating a label focuses its control, and the browser then scrolls that
+     control into view. The layer checkboxes have to sit BEFORE the svg for the
+     sibling combinator to reach them, so they live at the top of the map while
+     their chips are below it, and every toggle smooth-scrolled the reader
+     hundreds of pixels away from the thing they just tapped.
+
+     So when script is running, the label click is handled here and the default
+     is prevented, which flips the checkbox without ever focusing it. The native
+     label still works with no script, and the checkbox is still reachable and
+     operable by keyboard, which is the path that actually wants focus. */
+  var chips = document.querySelectorAll('.lyrbar label[for]');
+  for (var ci = 0; ci < chips.length; ci++) {
+    chips[ci].addEventListener('click', function(e){
+      var box = document.getElementById(this.getAttribute('for'));
+      if (!box) { return; }
+      e.preventDefault();
+      box.checked = !box.checked;
+      showNote(box.id);
+    });
+  }
+
+  /* One note at a time, out of the flow, in a block tall enough for the tallest
+     of them. Every note is measured at the current width rather than guessed,
+     so this holds at 320px and at 1024px without a table of magic numbers. */
+  var notesBox = document.querySelector('.lyrnotes');
+  var notes = notesBox ? notesBox.querySelectorAll('.lyrnote') : [];
+  function sizeNotes(){
+    if (!notesBox || !notes.length) { return; }
+    notesBox.classList.remove('stable');
+    var tallest = 0;
+    for (var i = 0; i < notes.length; i++) {
+      var was = notes[i].style.display;
+      notes[i].style.display = 'block';
+      tallest = Math.max(tallest, notes[i].getBoundingClientRect().height);
+      notes[i].style.display = was;
+    }
+    notesBox.classList.add('stable');
+    notesBox.style.minHeight = Math.ceil(tallest + 10) + 'px';
+  }
+  function showNote(id){
+    if (!notesBox) { return; }
+    var want = id && id.indexOf('lyr-') === 0 ? 'n-' + id.slice(4) : null;
+    var box = want ? document.getElementById(id) : null;
+    for (var i = 0; i < notes.length; i++) { notes[i].classList.remove('show'); }
+    if (want && box && box.checked) {
+      var n = notesBox.querySelector('.' + want);
+      if (n) { n.classList.add('show'); return; }
+    }
+    /* Whatever was turned off, fall back to a layer that is still on, so the
+       block is not left blank while a layer is still drawn on the map. */
+    for (i = 0; i < notes.length; i++) {
+      var key = (notes[i].className.match(/n-([a-z]+)/) || [])[1];
+      var cb = key ? document.getElementById('lyr-' + key) : null;
+      if (cb && cb.checked) { notes[i].classList.add('show'); return; }
+    }
+  }
+  sizeNotes();
+  showNote(null);
 
   /* Buttons, because ctrl and scroll is not something a reader can be
      expected to guess, and on a phone there is no wheel at all. They are

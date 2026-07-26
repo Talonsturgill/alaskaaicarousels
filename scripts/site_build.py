@@ -750,7 +750,7 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   var mz = mapsvg.querySelector('#mzoom');
   var marks = [].slice.call(mapsvg.querySelectorAll('.mk'));
   var reset = document.getElementById('mapreset');
-  var k = 1, tx = 0, ty = 0, mscale = 1, home = null;
+  var k = 1, tx = 0, ty = 0, mscale = 1, home = null, minK = 1;
 
   /* The svg is xMidYMid SLICE, so on a phone, where the frame is far taller
      than the map's own 1000 by 620, the drawing is scaled to FILL and the
@@ -770,13 +770,17 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   }
   var inset = 0;   /* band at the top the sticky nav will cover anyway */
   function clampT(){
-    /* Keep the drawing covering the visible window, so no amount of dragging
-       can leave a band of empty background down one side. The top is allowed
-       to fall short by `inset`, because that strip is behind the nav and
-       without the allowance this clamp simply undid the nav reservation. */
-    var v = view();
-    tx = Math.min(v.x0, Math.max(v.x1 - VBW * k, tx));
-    ty = Math.min(v.y0 + inset, Math.max(v.y1 - VBH * k, ty));
+    /* Two regimes. When the drawing is BIGGER than the frame, keep it covering
+       so no drag can leave a band of empty background. When it is SMALLER,
+       centre it instead, which is what happens on a short landscape frame where
+       the pins only fit if the map shrinks past the point of filling. Clamping
+       to cover in that case is what cropped eight pins clean off the map. The
+       top is allowed to fall short by `inset`, the strip behind the sticky nav. */
+    var v = view(), w = VBW * k, h = VBH * k, top = v.y0 + inset, uh = v.h - inset;
+    tx = (w <= v.w) ? v.x0 + (v.w - w) / 2
+                    : Math.min(v.x0, Math.max(v.x1 - w, tx));
+    ty = (h <= uh) ? top + (uh - h) / 2
+                   : Math.min(top, Math.max(v.y1 - h, ty));
   }
   function apply(){
     mz.setAttribute('transform', 'translate(' + tx.toFixed(2) + ' ' + ty.toFixed(2) +
@@ -788,11 +792,14 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       m.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) +
                      ') scale(' + mscale.toFixed(3) + ')');
     }
-    if (reset) reset.hidden = (Math.abs(k - home.k) < 0.01 &&
-                               Math.abs(tx - home.tx) < 1 && Math.abs(ty - home.ty) < 1);
+    if (reset) {
+      var atHome = Math.abs(k - home.k) < 0.01 &&
+                   Math.abs(tx - home.tx) < 1 && Math.abs(ty - home.ty) < 1;
+      reset.classList.toggle('on', !atHome);
+    }
   }
   function zoomAt(nk, cx, cy){
-    nk = Math.min(8, Math.max(1, nk));
+    nk = Math.min(8, Math.max(minK, nk));
     if (nk === k) return;
     tx = cx - (cx - tx) * (nk / k);
     ty = cy - (cy - ty) * (nk / k);
@@ -807,44 +814,66 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
      pixels and the pins are about five across, so open on the pins instead,
      and scale the marks UP because the svg itself is scaled so far down. */
   function fit(){
-    var r = mapsvg.getBoundingClientRect();
-    var narrow = r.width < 620;
     var v = view();
-    /* A mark is constant size in viewBox units, and on a phone the whole
-       drawing is scaled down hard, so a badge that reads fine on a desktop
-       comes out about 14px across on a handset. Scale the marks up until a
-       badge is roughly 30px, which is a real target for a thumb without
-       letting the pins swallow the state. 28 units is the badge diameter. */
-    mscale = narrow ? Math.max(1, Math.min(3.4, 30 / (28 * ctm()))) : 1;
+    /* A mark is constant size in viewBox units and the drawing is scaled to the
+       frame, so a badge that reads fine on a desktop comes out about 14px across
+       on a handset. Scale the marks until a badge is roughly 30px, a real target
+       for a thumb, without letting the pins swallow the state. 28 units is the
+       badge diameter.
+
+       Pure geometry, so it needs no breakpoint: on a wide screen the ratio lands
+       under 1 and the Math.max pins it there. This used to be gated on a 620px
+       width test, which is why a tablet drew its badges at 20px for no reason. */
+    mscale = Math.max(1, Math.min(3.4, 30 / (28 * ctm())));
+
     var xs = [], ys = [];
     for (var i = 0; i < marks.length; i++) {
       if (!/pinmk/.test(marks[i].getAttribute('class') || '')) continue;
       xs.push(+marks[i].getAttribute('data-x'));
       ys.push(+marks[i].getAttribute('data-y'));
     }
-    if (!narrow || !xs.length) {
-      /* Wide screens get the whole state, unzoomed and unmoved, and no nav
-         allowance, because on a wide screen the nav is not over the map. */
-      inset = 0; k = 1; tx = 0; ty = 0; clampT();
+    if (!xs.length) {
+      inset = 0; k = 1; minK = 1; tx = 0; ty = 0; clampT();
       home = { k: k, tx: tx, ty: ty };
       return;
     }
-    /* The bbox above is of ANCHORS, but a badge sits up to LEAD_MIN away from
-       its anchor and is drawn at mark scale, so the ink reaches about 27 plus
-       a 16 radius beyond the anchor, all of it scaled. Padding by less than
-       that fits the anchors and leaves a badge hanging off the edge, which is
-       how pin 7 ended up half outside the frame. */
+    /* The bbox is of ANCHORS, but a badge sits up to LEAD_MIN from its anchor
+       and is drawn at mark scale, so the ink reaches about 27 plus a 16 radius
+       beyond it, all scaled. Padding by less fits the anchors and leaves a
+       badge hanging off the edge. */
     var pad = 45 * mscale;
     var x0 = Math.min.apply(null, xs) - pad, x1 = Math.max.apply(null, xs) + pad;
     var y0 = Math.min.apply(null, ys) - pad, y1 = Math.max.apply(null, ys) + pad;
-    /* The site nav is sticky. Scrolled to the right place it sits over the
-       top of the map, and the northernmost pin landed 66px down, which is
-       entirely underneath it. Reserve that band so no pin can hide there. */
+
+    /* THE DECISION IS GEOMETRIC, NOT A BREAKPOINT.
+       Show the whole state when every pin already fits the frame at rest, fit to
+       the pins when it does not. A width test got this wrong in both directions:
+       a landscape phone is 750 wide so it counted as a big screen, but slice
+       left the frame 312 units tall and the northernmost pin was cropped clean
+       off the map. */
+    /* The site nav is sticky, so scrolled to the right place it sits over the
+       top of the map. Work out that band FIRST, because a pin sitting inside
+       the frame but underneath the nav is not visible, and testing the fit
+       without it is how a tablet ended up hiding its northernmost pin while
+       reporting that everything was on screen. Capped, or on a short landscape
+       frame the nav would eat most of the map. */
     var nav = document.querySelector('.topnav');
-    var top = nav ? nav.getBoundingClientRect().height * px() : 0;
+    var top = Math.min(nav ? nav.getBoundingClientRect().height * px() : 0, v.h * 0.3);
+
+    var fits = (x1 - x0) <= v.w && (y1 - y0) <= (v.h - top) &&
+               x0 >= v.x0 && x1 <= v.x1 && y0 >= (v.y0 + top) && y1 <= v.y1;
+    if (fits) {
+      inset = 0; k = 1; minK = 1; tx = 0; ty = 0; clampT();
+      home = { k: k, tx: tx, ty: ty };
+      return;
+    }
     inset = top;
     var uy0 = v.y0 + top, uh = Math.max(40, v.h - top);
-    k = Math.min(8, Math.max(1, Math.min(v.w / (x1 - x0), uh / (y1 - y0))));
+    /* The floor is NOT 1. On a short frame the pins only fit if the map
+       shrinks past the point of filling it, and a map with a little empty
+       background beside it is far better than one with pins cropped off. */
+    k = Math.min(8, Math.max(0.4, Math.min(v.w / (x1 - x0), uh / (y1 - y0))));
+    minK = Math.min(1, k);
     tx = (v.x0 + v.x1) / 2 - ((x0 + x1) / 2) * k;
     ty = (uy0 + v.y1) / 2 - ((y0 + y1) / 2) * k;
     clampT();
@@ -907,6 +936,65 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   mapsvg.addEventListener('click', function(e){
     if (moved > 12) { e.preventDefault(); e.stopPropagation(); }
   }, true);
+
+  /* Activating a label focuses its control, and the browser then scrolls that
+     control into view. The layer checkboxes have to sit BEFORE the svg for the
+     sibling combinator to reach them, so they live at the top of the map while
+     their chips are below it, and every toggle smooth-scrolled the reader
+     hundreds of pixels away from the thing they just tapped.
+
+     So when script is running, the label click is handled here and the default
+     is prevented, which flips the checkbox without ever focusing it. The native
+     label still works with no script, and the checkbox is still reachable and
+     operable by keyboard, which is the path that actually wants focus. */
+  var chips = document.querySelectorAll('.lyrbar label[for]');
+  for (var ci = 0; ci < chips.length; ci++) {
+    chips[ci].addEventListener('click', function(e){
+      var box = document.getElementById(this.getAttribute('for'));
+      if (!box) { return; }
+      e.preventDefault();
+      box.checked = !box.checked;
+      showNote(box.id);
+    });
+  }
+
+  /* One note at a time, out of the flow, in a block tall enough for the tallest
+     of them. Every note is measured at the current width rather than guessed,
+     so this holds at 320px and at 1024px without a table of magic numbers. */
+  var notesBox = document.querySelector('.lyrnotes');
+  var notes = notesBox ? notesBox.querySelectorAll('.lyrnote') : [];
+  function sizeNotes(){
+    if (!notesBox || !notes.length) { return; }
+    notesBox.classList.remove('stable');
+    var tallest = 0;
+    for (var i = 0; i < notes.length; i++) {
+      var was = notes[i].style.display;
+      notes[i].style.display = 'block';
+      tallest = Math.max(tallest, notes[i].getBoundingClientRect().height);
+      notes[i].style.display = was;
+    }
+    notesBox.classList.add('stable');
+    notesBox.style.minHeight = Math.ceil(tallest + 10) + 'px';
+  }
+  function showNote(id){
+    if (!notesBox) { return; }
+    var want = id && id.indexOf('lyr-') === 0 ? 'n-' + id.slice(4) : null;
+    var box = want ? document.getElementById(id) : null;
+    for (var i = 0; i < notes.length; i++) { notes[i].classList.remove('show'); }
+    if (want && box && box.checked) {
+      var n = notesBox.querySelector('.' + want);
+      if (n) { n.classList.add('show'); return; }
+    }
+    /* Whatever was turned off, fall back to a layer that is still on, so the
+       block is not left blank while a layer is still drawn on the map. */
+    for (i = 0; i < notes.length; i++) {
+      var key = (notes[i].className.match(/n-([a-z]+)/) || [])[1];
+      var cb = key ? document.getElementById('lyr-' + key) : null;
+      if (cb && cb.checked) { notes[i].classList.add('show'); return; }
+    }
+  }
+  sizeNotes();
+  showNote(null);
 
   /* Buttons, because ctrl and scroll is not something a reader can be
      expected to guess, and on a phone there is no wheel at all. They are
@@ -973,7 +1061,12 @@ stroke-linecap:round;}
    pin colours and a grid, and fuel type is in the tooltip where it belongs. */
 .gen{fill:#a78bd0;fill-opacity:.26;stroke:#c9b4ee;stroke-width:1;stroke-opacity:.6;}
 .lyr{transition:opacity .4s ease;}
-.lyrbox{position:absolute;width:1px;height:1px;opacity:0;margin:0;
+/* FIXED, not absolute. The checkbox has to sit before the svg for the sibling
+   combinator to reach it, which put it at the TOP of the map. Tapping a chip
+   below the map focuses it, and the browser scrolls a focused control into
+   view, so every toggle threw the reader 363px back up the page. A fixed
+   element is always within the viewport, so there is nothing to scroll to. */
+.lyrbox{position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;margin:0;
 clip-path:inset(50%);pointer-events:none;}
 .lyr-grid,.lyr-gen,.lyr-taps{opacity:0;pointer-events:none;}
 #lyr-grid:checked ~ svg .lyr-grid,
@@ -1003,12 +1096,23 @@ box-shadow:0 0 9px rgba(201,138,92,.8);}
 .lyrbox:focus-visible ~ .lyrbar label{outline:2px solid var(--gold);outline-offset:3px;}
 /* Each note appears only while its own layer is on, so the bar stays one line
    of chips until a reader actually asks what they are looking at. */
+/* The notes must not change the page's height, or every toggle reflows the
+   document and the browser scrolls to compensate, dragging the chip out from
+   under the reader's thumb. On an iPad in landscape that was a 1099px jump.
+   With script running the notes come OUT of the flow, one shows at a time, and
+   the block reserves the height of the tallest so nothing ever moves. With no
+   script they simply stack, which reflows but at least reads correctly. */
 .lyrnotes{padding-top:2px;}
+.lyrnotes.stable{position:relative;}
+.lyrnotes.stable .lyrnote{position:absolute;left:0;right:0;top:0;display:none;}
+.lyrnotes.stable .lyrnote.show{display:block;}
 .lyrnote{display:none;font-size:12px;line-height:1.6;color:var(--mute);max-width:70ch;
 padding-top:10px;}
 #lyr-grid:checked ~ .lyrbar .n-grid,
 #lyr-gen:checked ~ .lyrbar .n-gen,
 #lyr-taps:checked ~ .lyrbar .n-taps{display:block;}
+.lyrnotes.stable .lyrnote{display:none;}
+.lyrnotes.stable .lyrnote.show{display:block;}
 @media (prefers-reduced-motion:reduce){.lyr{transition:none;}}
 /* ---------- pan and zoom ----------
    Strokes must not thicken with the zoom, or the grid turns into ribbons the
@@ -1025,10 +1129,14 @@ min-height:44px;min-width:44px;padding:0 14px;cursor:pointer;
 transition:color .2s,border-color .2s,background .2s;}
 .mapzoomctl button:hover{color:var(--snow);border-color:#2c5876;}
 #mapin,#mapout{font-size:17px;line-height:1;padding:0;}
+/* FIT ALASKA holds its space at all times and only becomes visible when the
+   map has actually moved. Using the hidden attribute made it appear from
+   nothing, which rewrapped the chip row by 54px and shoved the zoom button out
+   from under the reader's thumb mid-tap. */
 .mapreset{color:var(--gold);background:rgba(255,199,44,.08);
-border-color:rgba(255,199,44,.4);}
+border-color:rgba(255,199,44,.4);visibility:hidden;}
 .mapreset:hover{background:rgba(255,199,44,.16);border-color:var(--gold);}
-.mapreset[hidden]{display:none;}
+.mapreset.on{visibility:visible;}
 /* ---------- status filter ----------
    Three checkboxes, all on. A pin shows if ANY of its statuses is still on,
    which falls out of these rules being independent rather than exclusive. */
@@ -1537,7 +1645,7 @@ def docket_page(today, site_url, docket):
                 '<span class="mapzoomctl" hidden id="mapzoomctl">'
                 '<button type="button" id="mapout" aria-label="Zoom the map out">-</button>'
                 '<button type="button" id="mapin" aria-label="Zoom the map in">+</button>'
-                '<button type="button" class="mapreset" id="mapreset" hidden>FIT ALASKA</button>'
+                '<button type="button" class="mapreset" id="mapreset">FIT ALASKA</button>'
                 '</span>'
                 '</div>'
                 '<div class="lyrchips lyrfilters">%s</div>'
