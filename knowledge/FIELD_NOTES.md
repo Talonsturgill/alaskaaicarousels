@@ -1314,3 +1314,40 @@ They are the two strongest instinct candidates for run No. 18.
   PNGs went unchecked while the row still printed PASS. That is the exact defect
   class the upgrade existed to prevent, sitting inside the upgrade. A confident,
   well-evidenced report is not evidence; re-running the check is.
+
+## 2026-07-26 - Phase 1 craft refresh (No.18)
+
+Timeboxed pass, 4 queries. Nothing overturns doctrine. Three things are new
+enough to keep, and the third is load-bearing for THIS run (density dial 5).
+
+- SAVES, with the share number attached. Documents are 12.92 percent of all
+  saved posts on LinkedIn against roughly 2.6x their share of total content,
+  and only 4.88 percent of creators post documents regularly. Combined with
+  the settled "one save is worth about five likes in reach", this says the
+  format's edge is not engagement volume, it is that the format is
+  disproportionately KEPT. Keeps the house rule pointed the right way, every
+  deck needs at least one genuinely keepable artifact slide. Source:
+  https://contentdrips.com/blog/2026/07/linkedin-document-posts/
+- ANNOTATION AS A DESIGNED LAYER, not garnish. The 2026 practitioner and
+  educator interviews converge on four decisions that must be made explicitly
+  per chart. (1) Audience, what context has to live ON the chart so it still
+  reads when it is reused with no surrounding text. (2) Hierarchy, one primary
+  annotation dominates and every secondary note is visibly subordinate.
+  (3) Blend or separate, annotations either merge into the chart's own visual
+  language or stand apart as a distinct layer, and the choice is made, not
+  drifted into. (4) Subtraction, keep only the annotations that support the
+  main message. This is the same "deliberate subtraction" note from 07-20,
+  now with a decision list a dossier can actually specify. Sources:
+  https://dl.acm.org/doi/full/10.1145/3772318.3790627 ,
+  https://www.researchgate.net/publication/403683346
+- DENSITY HAS A FLOOR, and the floor is a GAP not a font size. Current dense
+  interface guidance keeps a 12 to 16 px minimum gutter even in high density
+  grids, and leans on BACKGROUND CONTRAST between cells (not more rules, not
+  more borders) to keep boundaries readable as density climbs. Scaled to our
+  1080 canvas the practical read is, when a slide packs a matrix or a small
+  multiple grid, budget the inter-cell gap FIRST and buy density out of the
+  cell contents, never out of the gaps, and separate cells with a value step
+  rather than adding hairlines. The stated tie-break stays "clarity beats
+  density", which is the correct way to run a variance dial of 5. Sources:
+  https://www.uxpin.com/studio/blog/ui-grids-how-to-guide/ ,
+  https://www.alfdesigngroup.com/post/best-practices-to-design-ui-cards-for-your-website
