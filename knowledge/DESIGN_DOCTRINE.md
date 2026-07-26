@@ -16,6 +16,25 @@ pixel critics grade against this document. Companion: TECHNIQUE_LIBRARY.md
   color, 1 loud visual device.** One deliberate grid violation maximum.
 - Negative space is the price of premium: margins never invaded by primary
   content; at least one generous quiet zone per slide.
+- **The quiet zone is bounded and placed** (2026-07-26). It may not exceed
+  roughly a quarter of the frame, and it is NOT the bottom band by default.
+  This clause used to read "at least one generous quiet zone per slide" with
+  no ceiling and no address, and that is the whole story of the series'
+  longest-running defect: the cheapest place to spend an unbounded licence is
+  the bottom of a top-loaded composition, the dossier then legitimized the
+  empty bottom, the pixel critics graded each slide against its own dossier
+  and passed it, and only the scorer ever saw it -- at the ship gate, too late
+  to rebuild slides. "Dead lower zones" was named in six consecutive scored
+  runs and became a FIELD_NOTES sentence every time. A rule with no ceiling is
+  not restraint, it is a budget line the plan will always spend.
+- **The bottom third is composed, not left over.** Every slide's lower band
+  carries something with modeled tone in it: the anchor extended, the
+  annotation furniture run down, a foreground plane, a graded ground, the
+  mass moved. Flat plates and hairlines floating on bare ground do not count
+  as filling it -- that is the same defect wearing furniture. A rest beat is
+  legitimate, but it is DECLARED (dossier field 4, `data-breather` on the
+  slide body), never discovered at scoring. qa.py's frame_balance() measures
+  this and FAILS the build; it is not a matter of taste at review time.
 - Optical > mechanical alignment: pull display-type left edges out slightly
   so glyph stems align; hang punctuation outside the margin.
 

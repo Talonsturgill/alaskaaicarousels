@@ -34,6 +34,10 @@
  *     sharpen: 0.35                     // unsharp amount; skip on halftone regions (moire)
  *   });
  *
+ * THE SHAPES ABOVE ARE ENFORCED (2026-07-26): a wrong option shape THROWS
+ * (contrast is a NUMBER, lift/gain are TOP-LEVEL 3-element arrays), and an
+ * unknown key is reported via console.error rather than silently ignored.
+ *
  * HOUSE GRADE for the dark-arctic register: the defaults above. Brand-exact
  * marks (gold Polaris, wordmark) should be DOM/SVG so the grade never shifts
  * them. Budget total texture (grain + dither + any feTurbulence) <= ~10%.
@@ -47,8 +51,73 @@
     return t.a || 1;
   }
 
+  /* ---- ARGUMENT VALIDATION (2026-07-26) --------------------------------
+   * Added after a slide called grade() with contrast as an OBJECT
+   * ({amount, pivot}) and lift/gain as HEX STRINGS inside an undocumented
+   * `split` wrapper. Every arithmetic op downstream produced NaN, the whole
+   * ImageData wrote 0, and the slide rendered a fully black art canvas with
+   * errors=0: nothing in the engine complained, because grade() coerced
+   * whatever it was handed. A wrong option shape is a bug, not a style, so it
+   * now THROWS (render.py records the page error and hard-fails the slide)
+   * rather than silently blanking a canvas. Unknown keys are reported via
+   * console.error (qa.py surfaces it as a WARN) because a silently ignored
+   * option is how the `split` wrapper hid the real problem.
+   */
+  const NUM_OPTS = ["w", "h", "exposure", "saturation", "contrast", "vignette",
+                    "aberration", "sharpen"];
+  const TRIPLE_OPTS = ["lift", "gain"];
+  const OBJ_OPTS = { bloom: ["threshold", "strength", "radius"],
+                     grain: ["amount", "size", "seed"] };
+  const BOOL_OPTS = ["filmic", "dither"];
+  const KNOWN = NUM_OPTS.concat(TRIPLE_OPTS, BOOL_OPTS, Object.keys(OBJ_OPTS));
+
+  function bad(where, got, want) {
+    throw new TypeError("AKPOST.grade: " + where + " must be " + want +
+      ", got " + (Array.isArray(got) ? "array[" + got.length + "]" : typeof got) +
+      " " + JSON.stringify(got));
+  }
+
+  function validate(o) {
+    for (const k of NUM_OPTS) {
+      if (o[k] == null) continue;
+      if (typeof o[k] !== "number" || !isFinite(o[k])) bad(k, o[k], "a finite number");
+    }
+    for (const k of TRIPLE_OPTS) {
+      if (o[k] == null) continue;
+      const v = o[k];
+      if (!Array.isArray(v) || v.length !== 3 ||
+          !v.every((n) => typeof n === "number" && isFinite(n)))
+        bad(k, v, "a 3-element array of finite numbers, e.g. [0.010, 0.014, 0.024]");
+    }
+    for (const k of Object.keys(OBJ_OPTS)) {
+      if (o[k] == null) continue;
+      const v = o[k];
+      if (typeof v !== "object" || Array.isArray(v))
+        bad(k, v, "an object of {" + OBJ_OPTS[k].join(", ") + "}");
+      for (const f of OBJ_OPTS[k]) {
+        if (v[f] == null) continue;
+        if (typeof v[f] !== "number" || !isFinite(v[f]))
+          bad(k + "." + f, v[f], "a finite number");
+      }
+    }
+    for (const k of BOOL_OPTS) {
+      if (o[k] == null) continue;
+      if (typeof o[k] !== "boolean") bad(k, o[k], "true or false");
+    }
+    for (const k of Object.keys(o)) {
+      if (KNOWN.indexOf(k) === -1) {
+        try {
+          console.error("AKPOST.grade: unknown option '" + k + "' is being IGNORED " +
+            "(known options: " + KNOWN.join(", ") + "). Check the contract in " +
+            "akpost.js: lift/gain are top-level 3-element arrays, contrast is a number.");
+        } catch (e) {}
+      }
+    }
+  }
+
   P.grade = function (ctx, o) {
     o = o || {};
+    validate(o);
     const scale = getScale(ctx);
     const W = Math.round((o.w || ctx.canvas.width / scale) * scale);
     const H = Math.round((o.h || ctx.canvas.height / scale) * scale);
@@ -132,6 +201,16 @@
         lut[c][i] = Math.min(1, Math.max(0, x));
       }
     }
+    /* NaN SENTINEL (2026-07-26): the tone LUT is where every scalar option
+     * lands, so one non-finite entry here means the grade would write a black
+     * (or garbage) frame over the art. Throw instead: a dead canvas that
+     * reports errors=0 is the worst outcome of all. Costs 3 lookups. */
+    for (let c = 0; c < 3; c++) {
+      if (!isFinite(lut[c][0]) || !isFinite(lut[c][NL >> 1]) || !isFinite(lut[c][NL - 1]))
+        throw new Error("AKPOST.grade: tone LUT is non-finite (channel " + c +
+          ") -- a grade option produced NaN; the graded frame would be blank");
+    }
+
     const vig = o.vignette || 0;
     const cxm = W / 2, cym = H / 2, maxR2 = cxm * cxm + cym * cym;
 
