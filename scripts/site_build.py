@@ -1519,7 +1519,7 @@ def home_page(today, site_url, docket, runs):
 
     latest_html = ""
     if latest:
-        cover = f"{RAW}/runs/{latest['date']}/slide-01.png"
+        cover = f"{RAW}/runs/{latest['date']}/slide-01.webp"
         latest_html = f"""<h2 data-reveal>Our Latest Article</h2>
 <p class="sub" data-reveal>One verified Alaska and AI story a day, drawn as a swipeable carousel.</p>
 <div class="latest" data-reveal>
@@ -1731,7 +1731,7 @@ The data behind this page is public at <a href="../docket.json" style="color:var
 def archive_page(today, site_url, runs):
     decks = "".join(
         f"""<a class="deck" href="{r['date']}/" data-reveal>
-  <img src="{RAW}/runs/{r['date']}/slide-01.png" width="1080" height="1350" alt="{esc(r['title'])} cover" loading="lazy">
+  <img src="{RAW}/runs/{r['date']}/slide-01.webp" width="1080" height="1350" alt="{esc(r['title'])} cover" loading="lazy">
   <div class="meta"><h3>{esc(r['title'])}</h3>
   <div class="who">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div></div>
 </a>""" for r in runs)
@@ -1778,7 +1778,7 @@ def deck_page(today, site_url, r):
     alts = slide_alts(r)
     n_slides, deck_title = r["slides"], r["title"]
     slides = "".join(
-        f'<img src="{RAW}/runs/{r["date"]}/slide-{i:02d}.png" width="1080" height="1350" '
+        f'<img src="{RAW}/runs/{r["date"]}/slide-{i:02d}.webp" width="1080" height="1350" '
         f'alt="{esc(alts.get(i) or f"{deck_title}, slide {i} of {n_slides}")}"'
         + (' fetchpriority="high"' if i == 1 else ' loading="lazy"') + '>'
         for i in range(1, n_slides + 1))
@@ -1817,14 +1817,17 @@ def deck_page(today, site_url, r):
           "headline": r["title"], "datePublished": r["date"],
           "dateModified": r["date"],
           "description": (r.get("summary") or r["hook"])[:300],
-          "image": f"{RAW}/runs/{r['date']}/slide-01.png",
+          # og.jpg, not the webp. LinkedIn, Slack and Facebook still handle
+          # WebP link previews inconsistently, and a deck whose card fails to
+          # render on LinkedIn defeats the point of the deck.
+          "image": f"{RAW}/runs/{r['date']}/og.jpg",
           "url": f"{site_url}/archive/{r['date']}/",
           "keywords": ", ".join(t.lstrip("#") for t in (r.get("hashtags") or [])[:8]),
           "publisher": {"@id": org_id(site_url)},
           "author": {"@id": org_id(site_url)}}
     return page(f"{r['title']} - Alaska AI", (r.get("summary") or r["hook"])[:155],
                 body, "../../", "articles", today, site_url, f"archive/{r['date']}/",
-                og_image=f"{RAW}/runs/{r['date']}/slide-01.png", og_size=(1080, 1350), ld=ld,
+                og_image=f"{RAW}/runs/{r['date']}/og.jpg", og_size=(1080, 1350), ld=ld,
                 crumbs=[("Alaska AI", ""), ("Articles", "archive/"),
                         (r["title"], f"archive/{r['date']}/")])
 
