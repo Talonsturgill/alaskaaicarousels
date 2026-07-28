@@ -243,11 +243,19 @@ def artifacts_row(rows, run, rdir, rep):
     if rep is not None:
         pngs = [(s.get("png", ""), rdir / s.get("png", "")) for s in rep.get("slides", [])]
     else:
-        # flat runs/<date>/ has no render report; the slide PNGs sit beside the
+        # flat runs/<date>/ has no render report; the slides sit beside the
         # other artifacts, so glob them rather than reporting a count of zero.
-        pngs = [(p.name, p) for p in sorted(run.glob("slide-*.png"))]
+        # Both extensions, because ship_images.py converts the shipped copies
+        # to WebP in Phase 11. The routine points this at out/<date>, which
+        # keeps its PNGs, but a gate that silently counts zero slides when
+        # aimed at runs/ is a trap worth not leaving lying around.
+        pngs = [(p.name, p) for p in sorted(
+            list(run.glob("slide-*.png")) + list(run.glob("slide-*.webp")))]
     for name, png in pngs:
-        ok, note = binary_ok(png, b"\x89PNG")
+        # WebP is RIFF....WEBP, PNG has its own signature. Check whichever
+        # this file claims to be, so a truncated slide still fails.
+        magic = b"RIFF" if str(name).endswith(".webp") else b"\x89PNG"
+        ok, note = binary_ok(png, magic)
         if not ok:
             bad.append("%s %s" % (name, note))
     n_png = len(pngs)
@@ -256,7 +264,7 @@ def artifacts_row(rows, run, rdir, rep):
                  "%d problem(s): %s" % (len(bad), "; ".join(bad[:4])))
     else:
         rows.add("artifacts", "PASS",
-                 "every named artifact present, JSON parses, %d PNGs valid" % n_png)
+                 "every named artifact present, JSON parses, %d slides valid" % n_png)
 
 
 def main():

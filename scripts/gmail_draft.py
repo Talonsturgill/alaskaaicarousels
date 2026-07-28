@@ -4,8 +4,12 @@
 Composes the HTML body with: paste-ready post copy, paste-ready first
 comment (sources), the document title + upload instructions, inline slide
 previews (downscaled base64 JPEGs so the draft renders instantly), links to
-the full-resolution PNGs and the PDF on GitHub, the scorer's report card,
+the full-resolution slides and the PDF on GitHub, the scorer's report card,
 editor notes, and the aftercare checklist.
+
+Note on extensions: the local renders in --run-dir are PNG, but Phase 11 runs
+ship_images.py before this script, so what is on main is WebP. The public links
+are built from what actually shipped, never from the local extension.
 
 The actual draft creation happens via the Gmail MCP `create_draft` tool —
 this script prints a JSON payload {subject, to, html_body} to stdout.
@@ -182,6 +186,15 @@ def main():
         pass
 
     runs_url = f"{args.raw_base}/runs/{args.run_date}"
+
+    # The local renders are PNG and the shipped copies are WebP. Phase 11 runs
+    # ship_images.py between the render and this email, so a link built with
+    # the local extension points at a file that no longer exists on main. Every
+    # image in the draft 404s and the only person who would notice is whoever
+    # opens it at 6am. Read the extension off what actually shipped.
+    ship_dir = Path(__file__).resolve().parents[1] / "runs" / args.run_date
+    shipped = sorted(ship_dir.glob("slide-*.webp")) if ship_dir.is_dir() else []
+    ext = "webp" if shipped else "png"
     pdf_url = f"{runs_url}/carousel.pdf"
 
     esc = html.escape
@@ -189,13 +202,13 @@ def main():
     sheet = Path(args.run_dir) / "final" / "contact_sheet.png"
     if args.preview_mode in ("contact", "remote") and sheet.exists():
         if args.preview_mode == "remote":
-            img_src = f"{runs_url}/contact_sheet.png"
+            img_src = f"{runs_url}/contact_sheet.{ext}"
         else:
             img_src = ("data:image/jpeg;base64,"
                        + preview_b64(str(sheet), width=args.preview_width,
                                      quality=args.preview_quality))
         links = " &middot; ".join(
-            f'<a href="{runs_url}/slide-{i:02d}.png">{i:02d}</a>'
+            f'<a href="{runs_url}/slide-{i:02d}.{ext}">{i:02d}</a>'
             for i in range(1, len(pngs) + 1))
         slides_html = (
             f'<div style="margin-bottom:10px"><img src="{img_src}"'
@@ -207,14 +220,14 @@ def main():
     else:
         for i, p in enumerate(pngs, 1):
             b64 = preview_b64(p, width=args.preview_width, quality=args.preview_quality)
-            full = f"{runs_url}/slide-{i:02d}.png"
+            full = f"{runs_url}/slide-{i:02d}.{ext}"
             slides_html += (
                 f'<div class="slide"><img src="data:image/jpeg;base64,{b64}" alt="slide {i}"/>'
                 f'<div class="cap">{i:02d} · <a href="{full}">full res</a></div></div>'
             )
 
     url_list = "\n".join(
-        f'<div>Slide {i:02d}: <a href="{runs_url}/slide-{i:02d}.png">{runs_url}/slide-{i:02d}.png</a></div>'
+        f'<div>Slide {i:02d}: <a href="{runs_url}/slide-{i:02d}.{ext}">{runs_url}/slide-{i:02d}.{ext}</a></div>'
         for i in range(1, len(pngs) + 1))
 
     score_rows = "\n".join(
@@ -377,7 +390,7 @@ def main():
   <h2>Image URLs</h2>
   <div class="links">{url_list}
   <div>PDF: <a href="{pdf_url}">{pdf_url}</a></div>
-  <div>Contact sheet: <a href="{runs_url}/contact_sheet.png">{runs_url}/contact_sheet.png</a></div></div>
+  <div>Contact sheet: <a href="{runs_url}/contact_sheet.{ext}">{runs_url}/contact_sheet.{ext}</a></div></div>
 
   {ship_html}
   <h2>Report card</h2>
