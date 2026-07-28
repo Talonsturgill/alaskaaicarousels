@@ -131,30 +131,50 @@ Legend: TODO / WIP / DONE / BLOCKED
 ### Workstream A — Payload (answers the disk question)
 | ID | Task | Status |
 |---|---|---|
-| A1 | Add WebP q92 encoder to carousel-engine; future runs ship `.webp` | TODO |
-| A2 | Backfill: convert all 18 runs' slides + contact sheets to WebP, drop PNGs | TODO |
-| A3 | Point `site_build.py` image refs at `.webp`; keep a raster og:image for social scrapers | TODO |
+| A1 | `scripts/ship_images.py`, adaptive q92->q96->q98->lossless against a 40 dB PSNR floor | DONE `9fc93f0` |
+| A2 | Backfill: 513 MB PNG -> 57.7 MB WebP across 18 runs, 8.9x, 90/342 files escalated | DONE `9fc93f0` |
+| A3 | `site_build.py` -> `.webp` for slides, per-run `og.jpg` for og:image + schema image | DONE `9fc93f0` |
 | A4 | `scripts/prune_runs.py` — 30-day review-scratch retention | TODO |
-| A5 | Investigate `carousel.pdf` size (7 MB x 18 = 126 MB) | TODO |
+| A5 | `carousel.pdf`: 90 MB total. NOT shrinkable. Chromium vector-text output whose source HTML lives in gitignored `out/`, so historical PDFs cannot be regenerated. Vector text is a house rule. LEAVE. | DONE (declined, reasoned) |
 | A6 | Write history-rewrite recommendation, do NOT execute | TODO |
+
+Result: `runs/` 610 MB -> 157 MB. Verified 198 site asset refs, 0 missing;
+18/18 decks complete. User confirmed the concern was Gmail payloads, which are
+17 KB/run and were never the issue.
 
 ### Workstream B — Crawlability (the AI SEO win)
 | ID | Task | Status |
 |---|---|---|
-| B1 | Extract `SITE_CSS` to one external cached stylesheet | TODO |
-| B2 | Render a real article body on every deck page from `copy.json` | TODO |
-| B3 | Inline primary-source hyperlinks in that body from `claims.json` (item 2) | TODO |
-| B4 | Upgrade JSON-LD: `articleBody`, `citation[]`, `isBasedOn`, `author`, `publisher` | TODO |
-| B5 | Per-deck plaintext mirror for LLM fetchers; expand `llms.txt` | TODO |
-| B6 | Verify: re-measure text ratio as GPTBot, before vs after | TODO |
+| B1 | `site.css` + `site.js` externalized and cached sitewide (was ~46 KB inlined per page) | DONE `f1407cc` |
+| B2 | `article_html()` rebuilds the deck as prose from `copy.json` slides | DONE `f1407cc` |
+| B3 | `link_claims()` inline figure links + `claims_html()` full verification record | DONE `f1407cc` |
+| B4 | JSON-LD gained `articleBody`, `wordCount`, `citation[]`, `isBasedOn` | DONE `f1407cc` |
+| B5 | Markdown twin per deck + `llms-full.txt` + rewritten `llms.txt` | DONE `cec787a` |
+| B6 | Verify text ratio as GPTBot against the live site after deploy | TODO |
+
+Measured on deck page 2026-07-26:
+HTML 81,957 -> 59,864. Visible text 4,209 -> 11,482 (2.7x). Ratio 5.1% -> 19.2%.
+Linked sources 0 -> 30, of which 16 primary. Plus a 3 KB Markdown twin.
+
+Gotchas found and fixed, do not regress these:
+- Prose colon gate kills the build on slide copy like "two newer ideas: AI".
+  `house()` normalizes colons, em/en dashes, curly quotes and emoji on
+  everything pulled out of a run. claims.json quotes sources verbatim, so a
+  source's em dash WILL reach the page otherwise.
+- A claim `value` of `2026-04-21` made the matcher link the bare year in
+  "introduced on April 21, 2026", reading as if the year were the fact.
+  `_anchor_candidates` now rejects ISO dates and any bare 4-digit year.
 
 ### Workstream C — Feeds (item 5)
 | ID | Task | Status |
 |---|---|---|
-| C1 | RSS 2.0 + Atom for the daily deck, full content | TODO |
-| C2 | Docket-changes feed (nobody else in Alaska has this) | TODO |
-| C3 | JSON Feed + `<link rel=alternate>` autodiscovery on every page | TODO |
-| C4 | Feed validation gate in `site_build.py` | TODO |
+| C1 | `/feed.xml` RSS 2.0 + `/atom.xml`, full content not teasers | DONE `cec787a` |
+| C2 | `/docket/feed.xml`, sorted by `last_updated`, guid carries the date so movement resurfaces | DONE `cec787a` |
+| C3 | `/feed.json` JSON Feed 1.1 with per-item source list; autodiscovery on all 26 pages | DONE `cec787a` |
+| C4 | `fb.validate()` parses every feed before writing; `db.fail` on bad XML/JSON or banned punctuation | DONE `cec787a` |
+
+All in `scripts/feeds_build.py` (new module, imported by site_build like
+docket_build). Verified 18/18/18/9 items, all parse clean.
 
 ### Workstream D — Source archive (items 2, 3)
 | ID | Task | Status |
