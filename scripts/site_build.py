@@ -832,33 +832,57 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       xs.push(+marks[i].getAttribute('data-x'));
       ys.push(+marks[i].getAttribute('data-y'));
     }
-    if (!xs.length) {
-      inset = 0; k = 1; minK = 1; tx = 0; ty = 0; clampT();
-      home = { k: k, tx: tx, ty: ty };
-      return;
-    }
     /* The bbox is of ANCHORS, but a badge sits up to LEAD_MIN from its anchor
        and is drawn at mark scale, so the ink reaches about 27 plus a 16 radius
        beyond it, all scaled. Padding by less fits the anchors and leaves a
        badge hanging off the edge. */
     var pad = 45 * mscale;
-    var x0 = Math.min.apply(null, xs) - pad, x1 = Math.max.apply(null, xs) + pad;
-    var y0 = Math.min.apply(null, ys) - pad, y1 = Math.max.apply(null, ys) + pad;
+    var x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    if (xs.length) {
+      x0 = Math.min.apply(null, xs) - pad; x1 = Math.max.apply(null, xs) + pad;
+      y0 = Math.min.apply(null, ys) - pad; y1 = Math.max.apply(null, ys) + pad;
+    }
+
+    /* THE HOME VIEW FRAMES ALASKA, NOT THE PINS.
+       Fitting the pin bbox alone drops the reader into whatever corner the
+       decisions happen to cluster in. Right now that is the Railbelt, so the
+       map opened zoomed into the east side with the Peninsula and the
+       Aleutians cut off and nothing to tell you what you were looking at. The
+       state is the subject and the pins are marks on it, so frame the union of
+       the coastline and the padded pins: the whole shape reads, and no badge
+       hangs off an edge. */
+    var coast = mz.querySelector('.coast'), cb = null;
+    if (coast && coast.getBBox) { try { cb = coast.getBBox(); } catch (e) { cb = null; } }
+    if (cb && cb.width && cb.height) {
+      x0 = Math.min(x0, cb.x); x1 = Math.max(x1, cb.x + cb.width);
+      y0 = Math.min(y0, cb.y); y1 = Math.max(y1, cb.y + cb.height);
+    }
+    if (x1 <= x0 || y1 <= y0) {
+      inset = 0; k = 1; minK = 1; tx = 0; ty = 0; clampT();
+      home = { k: k, tx: tx, ty: ty };
+      return;
+    }
 
     /* THE DECISION IS GEOMETRIC, NOT A BREAKPOINT.
-       Show the whole state when every pin already fits the frame at rest, fit to
-       the pins when it does not. A width test got this wrong in both directions:
-       a landscape phone is 750 wide so it counted as a big screen, but slice
-       left the frame 312 units tall and the northernmost pin was cropped clean
-       off the map. */
+       Leave the drawing alone when the state and its pins already fit the frame
+       at rest, and zoom out to them when they do not. A width test got this
+       wrong in both directions: a landscape phone is 750 wide so it counted as
+       a big screen, but slice left the frame 312 units tall and the
+       northernmost pin was cropped clean off the map. */
     /* The site nav is sticky, so scrolled to the right place it sits over the
        top of the map. Work out that band FIRST, because a pin sitting inside
        the frame but underneath the nav is not visible, and testing the fit
        without it is how a tablet ended up hiding its northernmost pin while
-       reporting that everything was on screen. Capped, or on a short landscape
-       frame the nav would eat most of the map. */
+       reporting that everything was on screen. Capped, or the nav would be
+       allowed to eat the whole map on a short frame.
+
+       The cap is 0.36 rather than a rounder 0.3 because a landscape phone
+       gives the map a 219px frame under a 71px nav, so the real band IS 32
+       percent of it. Capping under the truth does not make the nav smaller, it
+       just moves a pin under it, which is what a 0.3 cap did to the Cook Inlet
+       pin. The map still keeps roughly two thirds of its frame. */
     var nav = document.querySelector('.topnav');
-    var top = Math.min(nav ? nav.getBoundingClientRect().height * px() : 0, v.h * 0.3);
+    var top = Math.min(nav ? nav.getBoundingClientRect().height * px() : 0, v.h * 0.36);
 
     var fits = (x1 - x0) <= v.w && (y1 - y0) <= (v.h - top) &&
                x0 >= v.x0 && x1 <= v.x1 && y0 >= (v.y0 + top) && y1 <= v.y1;
@@ -869,10 +893,12 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     }
     inset = top;
     var uy0 = v.y0 + top, uh = Math.max(40, v.h - top);
-    /* The floor is NOT 1. On a short frame the pins only fit if the map
-       shrinks past the point of filling it, and a map with a little empty
-       background beside it is far better than one with pins cropped off. */
-    k = Math.min(8, Math.max(0.4, Math.min(v.w / (x1 - x0), uh / (y1 - y0))));
+    /* The floor is NOT 1. preserveAspectRatio is slice, so the drawing is
+       scaled to COVER the frame and the whole state is off screen at rest on
+       almost every viewport. Getting it back means shrinking past the point of
+       filling the frame, and a map with a little empty background beside it is
+       far better than one with the Aleutians cut off. */
+    k = Math.min(8, Math.max(0.28, Math.min(v.w / (x1 - x0), uh / (y1 - y0))));
     minK = Math.min(1, k);
     tx = (v.x0 + v.x1) / 2 - ((x0 + x1) / 2) * k;
     ty = (uy0 + v.y1) / 2 - ((y0 + y1) / 2) * k;
@@ -1108,11 +1134,15 @@ box-shadow:0 0 9px rgba(201,138,92,.8);}
 .lyrnotes.stable .lyrnote.show{display:block;}
 .lyrnote{display:none;font-size:12px;line-height:1.6;color:var(--mute);max-width:70ch;
 padding-top:10px;}
-#lyr-grid:checked ~ .lyrbar .n-grid,
-#lyr-gen:checked ~ .lyrbar .n-gen,
-#lyr-taps:checked ~ .lyrbar .n-taps{display:block;}
-.lyrnotes.stable .lyrnote{display:none;}
-.lyrnotes.stable .lyrnote.show{display:block;}
+/* The no-script path, and ONLY the no-script path. These carry an id, so they
+   outrank .lyrnotes.stable .lyrnote on specificity and source order cannot take
+   it back. Unscoped, every checked layer forced display:block while the stable
+   rule still pinned each note to top:0, so turning on all three layers printed
+   three notes through each other into an unreadable smear. :not(.stable) hands
+   the notes to the script the moment the script claims them. */
+#lyr-grid:checked ~ .lyrbar .lyrnotes:not(.stable) .n-grid,
+#lyr-gen:checked ~ .lyrbar .lyrnotes:not(.stable) .n-gen,
+#lyr-taps:checked ~ .lyrbar .lyrnotes:not(.stable) .n-taps{display:block;}
 @media (prefers-reduced-motion:reduce){.lyr{transition:none;}}
 /* ---------- pan and zoom ----------
    Strokes must not thicken with the zoom, or the grid turns into ribbons the
@@ -1498,8 +1528,8 @@ def home_page(today, site_url, docket, runs):
     <div class="chip kind">{esc(pretty_date(latest['date'])).upper()} &middot; {latest['slides']} SLIDES</div>
     <h3>{esc(latest['title'])}</h3>
     <p>{esc(latest['hook'])}</p>
-    <div class="ctarow"><a class="cta ghost" href="archive/{latest['date']}/">SWIPE THE DECK</a>
-    <a class="cta ghost" href="archive/">EVERY DECK</a></div>
+    <div class="ctarow"><a class="cta ghost" href="archive/{latest['date']}/">READ</a>
+    <a class="cta ghost" href="archive/">STORIES</a></div>
   </div>
 </div>"""
 

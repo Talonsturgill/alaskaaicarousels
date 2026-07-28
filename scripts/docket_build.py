@@ -418,7 +418,7 @@ def map_svg(ordered_items, w=1000, h=620):
 </defs>
 <g id="mzoom">
   <path d="{grat_d}" fill="none" stroke="rgba(110,165,255,0.07)" stroke-width="1"/>
-  <path d="{coast_d}" fill="url(#landfill)" stroke="#5ac8f0" stroke-width="1.5" filter="url(#coastglow)"/>
+  <path class="coast" d="{coast_d}" fill="url(#landfill)" stroke="#5ac8f0" stroke-width="1.5" filter="url(#coastglow)"/>
   <g class="lyr lyr-taps" aria-hidden="true">{taps}</g>
   <g class="lyr lyr-grid" aria-hidden="true">{grid}</g>
 </g>
