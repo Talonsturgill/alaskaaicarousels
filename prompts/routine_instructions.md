@@ -636,8 +636,18 @@ tracker) and an "Automation changes this run" section rendered
 from ledger/upgrades.json (Phase 12's output) so the maintainer can
 monitor the machine's evolution from the dated emails alone and request
 a revert if a later run degrades. Create the draft via the Gmail MCP
-`create_draft` tool with the payload (subject, to: the maintainer's
-address, html_body). Save the returned draft id to
+`create_draft` tool with the payload EXACTLY as the script emits it
+(subject, to, html_body). The payload's `to` is the literal string `me`,
+which is account-relative and resolves to whatever mailbox the Gmail
+connector authenticates as. Do not substitute a literal address.
+THE MAILBOX, set 2026-07-26. The connector authenticates as
+`docket@alaskaaihq.com`, a Google Workspace mailbox on our own domain. That
+is where the draft lands and the address it would send from, DKIM signed by
+alaskaaihq.com. It replaced a personal Gmail account. There is NO sender,
+From-address or send-as step in this phase: the draft is already from the
+right address, and changing it would be wrong. Nothing here sends; this
+routine drafts only.
+Save the returned draft id to
 `runs/<date>/gmail_draft_id.txt` (amend-commit to main is fine).
 FALLBACK if Gmail MCP is unavailable: commit gmail_payload.json under
 runs/<date>/ and make the run summary VERY loud about where the payload
@@ -713,7 +723,13 @@ learned, and the one thing to improve next run. Mark run_state complete.
 1. Gmail draft exists: post copy, first-comment sources, document title,
    inline previews, working raw URLs for every shipped slide (`.webp`,
    not `.png`) + the PDF, report card, aftercare checklist, and the
-   automation-changes section (even if it says "no changes").
+   automation-changes section (even if it says "no changes"). Prove this
+   from the draft id that `create_draft` RETURNED, saved to
+   `runs/<date>/gmail_draft_id.txt`.
+   Never prove it by listing or searching the mailbox, because the connector was
+   repointed to `docket@alaskaaihq.com` on 2026-07-26 and holds no drafts
+   from earlier runs, so an empty or short listing says nothing about this
+   run and must never be read as a failure.
 2. runs/<date>/ merged to main with all artifacts; ledgers updated
    (including upgrades.json, possibly with zero new entries, and
    docket.json with the day's tracker state); docs/ rebuilt by

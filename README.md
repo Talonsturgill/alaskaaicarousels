@@ -6,6 +6,9 @@ forensic detail, draws every slide with bespoke code, tears its own work
 apart, and leaves a post-ready draft in Gmail. A person reads that draft
 and decides whether it goes up. Nothing posts on its own.
 
+Drafts land in **docket@alaskaaihq.com**, the Workspace mailbox on our own
+domain. That is the inbox to check after a run.
+
 It also maintains itself. After every run it studies what went wrong,
 looks outside for better technique, and ships small verified upgrades to
 its own machinery. Those changes ride along in the daily email, so you
@@ -72,7 +75,7 @@ single source of truth for run behavior.
 Each run lands its artifacts in `runs/<date>/` on `main`. The Gmail draft
 links to them, carries paste-ready post copy and a sources block for the
 first comment, and includes the scorer's honest report card. Drafts
-arrive daily. Posting cadence is yours.
+arrive daily in `docket@alaskaaihq.com`. Posting cadence is yours.
 
 If you want to feed results back, drop a line in the `outcome_notes`
 field of `ledger/topics.json` or just tell the next run in its trigger

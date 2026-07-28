@@ -105,6 +105,15 @@ run a session in this repo with the contents of
 `Alaska.Ai — LinkedIn Carousel No. 1 — <date> — <title>`. Don't post a
 draft you haven't read.
 
+Drafts land in `docket@alaskaaihq.com` (Workspace, our own domain), which
+is the inbox to check. The Gmail connector authenticates as that mailbox,
+so `gmail_draft.py` addresses the payload to the account-relative `me` and
+no address is hardcoded anywhere. The draft is already FROM that address,
+DKIM signed by alaskaaihq.com, so there is no sender or send-as step to
+perform. These routines DRAFT ONLY and never send. Note that the mailbox
+was repointed on 2026-07-26 from a personal Gmail account, so it holds no
+drafts from runs before that date.
+
 ## Engine quickstart (for development sessions)
 
 ```

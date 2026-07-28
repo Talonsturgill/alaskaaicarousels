@@ -415,6 +415,13 @@ def main():
 
     payload = {
         "subject": f"Alaska.Ai — LinkedIn Carousel No. {args.carousel_no} — {args.run_date} — {copy.get('document_title', '')}"[:180],
+        # "me" is deliberately account-relative: it resolves to whatever mailbox
+        # the Gmail connector authenticates as, so a repointed connector needs no
+        # edit here. As of 2026-07-26 that is docket@alaskaaihq.com, a Workspace
+        # mailbox on our own domain (previously a personal Gmail account). Do not
+        # hardcode an address -- it would survive the next repoint and be wrong.
+        # The draft is also already FROM that address with DKIM signed by
+        # alaskaaihq.com, so there is no sender or send-as step to perform.
         "to": "me",
         "html_body": body,
     }
