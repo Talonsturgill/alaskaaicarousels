@@ -131,11 +131,16 @@ def llms_txt(site_url: str, runs: list, docket: dict | None = None,
         "## Data",
         "",
         f"- [The docket as open JSON]({site_url}/docket.json)",
-        f"- [Every deck as plain Markdown]({site_url}/llms-full.txt)",
+        f"- [Every article as plain Markdown, one fetch]({site_url}/llms-full.txt)",
+        f"- [The source archive, every document a claim was verified against]"
+        f"({site_url}/sources/)",
     ]
     if topics:
-        out += ["", "## Standing topics", ""]
-        out += [f"- [{t['title']}]({site_url}/topics/{t['slug']}/) {t.get('blurb', '')}".rstrip()
+        out += ["", "## Standing beats", "",
+                "These pages are permanent. Each stays live whether or not the beat",
+                "made news this week.", ""]
+        out += [f"- [{t['title']}]({site_url}/topics/{t['slug']}/) "
+                f"{t.get('blurb', '')} {t.get('count', 0)} articles.".strip()
                 for t in topics]
     if runs:
         out += ["", "## Recent articles", ""]
