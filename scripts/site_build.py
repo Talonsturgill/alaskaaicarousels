@@ -1626,7 +1626,12 @@ def load_runs():
             "claims": claims,
             "hashtags": copy.get("hashtags", []),
             "slides": asm.get("slides", 0),
-            "pdf_mb": asm.get("pdf_mb", 0),
+            # Measured off the file, not read from assemble_report.json. The
+            # report records the size at assembly time, and the PDF is
+            # resampled after that, so the reported figure was a download size
+            # the reader would never see. The file on disk is the download.
+            "pdf_mb": (round((d / "carousel.pdf").stat().st_size / 1048576, 2)
+                       if (d / "carousel.pdf").exists() else asm.get("pdf_mb", 0)),
         })
     return out
 

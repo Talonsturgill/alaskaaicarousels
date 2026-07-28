@@ -437,6 +437,26 @@ JSON in its final message, which YOU persist to
    `--drop-png` is a separate pass on purpose. It re-opens both files and
    compares dimensions before unlinking, so a missing or truncated WebP
    leaves its PNG alone. Never delete the renders by hand.
+
+1b. Then run `python scripts/shrink_pdfs.py --run <date>`.
+
+   Chromium's print engine emits carousel.pdf in layers: one full-page JPEG
+   per page carrying the art, with the headline and body type on top as real
+   vector text. The art layer is about three quarters of the file and comes
+   out at 192 DPI on a page displayed at 1080 px, which is 2x the pixels
+   anyone sees. This resamples that layer to 144 DPI, still 1.5x native.
+
+   It never rewrites a content stream, so the vector text is untouched by
+   construction, and it still extracts the text before and after and refuses
+   to write a file whose text changed by a single character. It also refuses
+   any image below a 42 dB PSNR floor, any file that got bigger or changed
+   page count or page dimensions, and any saving under 10 percent. Files it
+   declines are left exactly as they are and reported. That is the correct
+   outcome, not a failure, and there is no flag to force past it.
+
+   The floor matters more here than for the slides: this is a second
+   generation of lossy encoding on already-lossy data, not a first pass off a
+   lossless master.
 2. Rebuild the public site (home, docket, archive, per-deck pages, the seven
    standing beats at topics/, the source archive at sources/, about,
    and the Bottleneck Scanner at scan/ plus its homepage section)
