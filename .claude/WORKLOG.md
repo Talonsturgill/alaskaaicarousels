@@ -179,28 +179,61 @@ docket_build). Verified 18/18/18/9 items, all parse clean.
 ### Workstream D — Source archive (items 2, 3)
 | ID | Task | Status |
 |---|---|---|
-| D1 | Mirror cited primary documents to `docs/sources/` at stable URLs | TODO |
-| D2 | Per-deck source list linking original + mirror | TODO |
-| D3 | Wire mirroring into the routine so it runs every day | TODO |
+| D1 | `/sources/` publishes all 95 documents behind 428 claims, grouped by outlet | DONE `83144dd` |
+| D2 | Per-deck verification record links every claim to its document | DONE `f1407cc` |
+| D3 | Rebuilt from `claims.json` on every build, so it is automatic | DONE `f13d366` |
+
+DELIBERATE SCOPE CALL: built an INDEX, not a content mirror. Re-hosting news
+articles is a copyright exposure for a publication, and we had just removed
+455 MB, so re-bloating the repo with mirrored PDFs would undo workstream A.
+The index delivers the actual value (permanence, discoverability, proof of
+sourcing) at zero storage cost. Flagged to the user.
 
 ### Workstream E — Permanent URLs (item 6)
 | ID | Task | Status |
 |---|---|---|
-| E1 | Topic hub pages at `/topics/<slug>/`, live year-round | TODO |
-| E2 | Assign topics from ledger; add hubs to sitemap + `llms.txt` | TODO |
+| E1 | 7 standing beats at `/topics/<slug>/`, render even with zero decks | DONE `83144dd` |
+| E2 | Beats matched from `ledger/topics.json`; in sitemap, `llms.txt`, footer, nav | DONE `83144dd` |
 
 ### Workstream F — Routine integration
 | ID | Task | Status |
 |---|---|---|
-| F1 | Update `prompts/routine_instructions.md` so B/C/D/E happen every run | TODO |
-| F2 | Update carousel-engine `SKILL.md` slide contract for WebP | TODO |
-| F3 | Add run gates: fail if article body, feeds, or source mirrors are missing | TODO |
+| F1 | Phase 3 runs `claims_check.py` (gate); Phase 11 runs `ship_images.py` + documents the whole surface | DONE `f13d366` |
+| F2 | `SKILL.md`: PNG in the review loop, WebP on the way out | DONE `f13d366` |
+| F3 | `claims_check.py` gate + `fb.validate()` feed gate + pinned fact-checker schema | DONE `f13d366` |
 
 ### Wrap
 | ID | Task | Status |
 |---|---|---|
-| Z1 | Full site rebuild, lint gates green, verify no `docs/videos/` writes | TODO |
-| Z2 | Push branch, open ready PR, merge per CLAUDE.md ship policy | TODO |
+| Z1 | Clean rebuild, two builds byte-identical, 987 internal refs 0 broken, 0 banned punctuation, `docs/videos/` untouched | DONE |
+| Z2 | Push branch, open ready PR, merge per CLAUDE.md ship policy | WIP |
+
+## FINAL NUMBERS
+
+| | before | after |
+|---|---|---|
+| `runs/` on disk | 610 MB | 155 MB |
+| deck page HTML (18) | 1,475,226 B | 919,052 B |
+| readable text (18) | 51,534 B | 131,883 B |
+| text ratio | 3.5% | 14.3% |
+| verified claims on the site | 0 | 428 |
+| linked source documents | 0 | 95 |
+| feeds | 0 | 4 |
+| permanent beat pages | 0 | 7 |
+
+## A6 — THE HISTORY REWRITE (recommended, NOT run)
+
+`.git` is still ~668 MB because the PNG blobs live in history. Only
+`git filter-repo --path-glob 'runs/*/slide-*.png' --invert-paths` (plus
+`contact_sheet.png`, `thumbs/`) removes them, and that needs a force-push to
+`main` on a live public repo with an active Pages deploy and open PRs.
+
+NOT RUN. That is the user's call, not an agent's. If they approve:
+1. Fresh mirror clone, run filter-repo there, verify `docs/` and `runs/`
+   still resolve, then force-push.
+2. Deck raw URLs point at `/main/`, so they follow the new head and survive.
+3. Expected result: ~668 MB -> ~120 MB.
+Nothing in the working tree depends on it; this is purely clone weight.
 
 ---
 

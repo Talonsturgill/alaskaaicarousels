@@ -1547,8 +1547,13 @@ def normalize_claims(doc):
             continue
         ev_url, ev_outlet, ev_date = _evidence_bits(c)
         url = _first(c, CLAIM_FIELDS["url"]) or ev_url
-        if not url:
-            continue                       # unsourced, and this section is the sourcing
+        # Must be a real fetchable URL. One run recorded source_url as the
+        # literal "DERIVED" for a ratio computed from two other verified
+        # claims. That is honest bookkeeping and a broken link on the page, and
+        # a section headed "each re-fetched from its source" should not carry a
+        # claim that was never fetched. Derived claims stay out of the record.
+        if not url.lower().startswith(("http://", "https://")):
+            continue
         cid = _first(c, CLAIM_FIELDS["id"]) or f"C{i:02d}"
         primary = c.get("source_is_primary")
         if primary is None:

@@ -202,7 +202,11 @@ def rss(site_url: str, runs: list) -> str:
 <content:encoded><![CDATA[{_item_html(r, site_url)}]]></content:encoded>
 <dc:creator>Alaska AI</dc:creator>
 </item>""")
-    now = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
+    # Stamped from the newest item, not from the clock. A wall-clock
+    # lastBuildDate rewrites the feed on every build and churns the repo with a
+    # diff that means nothing, and the newest article is the honest answer to
+    # when this feed last changed.
+    now = rfc822(runs[0]["date"]) if runs else "Thu, 01 Jan 1970 00:00:00 +0000"
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -296,7 +300,7 @@ def docket_rss(site_url: str, items: list) -> str:
     Sorted by last_updated so a subscriber sees movement, not the docket's
     internal ordering. The guid carries the update date, so an item that moves
     resurfaces in a reader instead of staying silently read."""
-    rows = []
+    rows, stamps = [], []
     for d in sorted(items, key=lambda d: d.get("last_updated") or "", reverse=True):
         did = d.get("id") or ""
         when = (d.get("last_updated") or d.get("first_seen") or "")[:10]
@@ -304,6 +308,7 @@ def docket_rss(site_url: str, items: list) -> str:
             pub = rfc822(when)
         except Exception:
             continue
+        stamps.append(when)
         bits = [b for b in (d.get("status"), d.get("decider"), d.get("location")) if b]
         desc = " ".join(x for x in [d.get("summary") or "", d.get("access_note") or ""] if x)
         if bits:
@@ -317,7 +322,9 @@ def docket_rss(site_url: str, items: list) -> str:
 <description>{xesc(desc.strip())}</description>
 </item>""")
     items = rows[:MAX_ITEMS]
-    now = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
+    # Same reasoning as the article feed: stamp from the newest tracked change,
+    # not the clock, so a rebuild with no docket movement produces no diff.
+    now = rfc822(max(stamps)) if stamps else "Thu, 01 Jan 1970 00:00:00 +0000"
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
