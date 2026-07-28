@@ -32,6 +32,7 @@ aurora, seeded grain. Zero dependencies, static files only.
 import argparse
 import json
 import math
+import re
 import sys
 from datetime import date as ddate, timedelta
 from pathlib import Path
@@ -644,6 +645,34 @@ border:1px solid var(--line);border-radius:12px;padding:24px 26px;}
    which is the one link on the site that did not look like the others. */
 .prose a,a.proselink{color:var(--blue);text-decoration:none;
 border-bottom:1px solid rgba(90,200,240,.25);}
+
+/* ---------- the article, and the verification record under it ---------- */
+/* The deck says it in pictures. This says it in text, so a reader on a screen
+   reader, a search crawler and an answer engine all get the same story. */
+.article .sl{margin:26px 0 0;padding:0 0 0 46px;position:relative;}
+.article .sn{position:absolute;left:0;top:3px;font-family:JBMono,monospace;font-size:12px;
+letter-spacing:.1em;color:#41546f;}
+.article h3{font-size:19px;line-height:1.35;margin:0 0 6px;font-weight:600;}
+.article p{margin:0;color:#b9c8dc;}
+/* A figure that links to the document proving it. The gold underline is the
+   primary-document tell, so a reader can see at a glance how much of a deck
+   rests on filings rather than on somebody else's write-up. */
+a.cite{color:inherit;text-decoration:none;border-bottom:1px dashed rgba(90,200,240,.5);}
+a.cite.primary{border-bottom:1px solid var(--gold);}
+a.cite:hover{background:rgba(90,200,240,.1);}
+ol.claims{list-style:none;margin:18px 0 0;padding:0;max-width:760px;counter-reset:c;}
+ol.claims li{counter-increment:c;position:relative;padding:14px 0 14px 46px;
+border-top:1px solid var(--line);}
+ol.claims li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:16px;
+font-family:JBMono,monospace;font-size:11px;color:#41546f;}
+ol.claims p{margin:0 0 7px;font-size:15.5px;line-height:1.5;color:#c6d4e6;}
+.cmeta{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
+font-family:JBMono,monospace;font-size:11px;letter-spacing:.08em;}
+.cmeta .k{color:#41546f;}
+.cmeta .k.p{color:var(--gold);}
+.cmeta a.src{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.3);}
+.cmeta .d{color:#41546f;}
+@media(max-width:560px){.article .sl{padding-left:32px;}ol.claims li{padding-left:34px;}}
 
 /* ---------- subscribe ---------- */
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
@@ -1316,7 +1345,14 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
     # about 4 KB gzipped, and before this existed they rode the shared bundle
     # onto all 25 pages, which made a page with no map on it 15 percent heavier
     # for nothing. Most readers are on a phone, so that is not a rounding error.
-    css = SITE_CSS.replace("FONTPREFIX", prefix).replace("GRAIN_URI", db.grain_data_uri() or "none")
+    # The shared bundle is linked, not inlined. It is ~40 KB (27 KB of rules
+    # plus a 13 KB grain data URI) and it used to be stamped into all 26 pages,
+    # which meant a crawler reading a deck page got 82 KB of HTML carrying
+    # 4 KB of story. Linking it makes the bundle cacheable across the whole
+    # site and drops the per-page weight by about 46 KB.
+    #
+    # Relative url() in CSS resolves against the stylesheet, not the document,
+    # and site.css sits at the root beside fonts/, so FONTPREFIX is empty there.
     canonical = f"{site_url}/{path}"
     og_url = og_image if og_image.startswith("http") else f"{site_url}/{og_image}"
     blocks = []
@@ -1355,7 +1391,7 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {preload}
 {ld_html}
-<style>{css}</style>
+<link rel="stylesheet" href="{prefix}site.css">
 {('<style>' + extra_css + '</style>') if extra_css else ''}
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -1371,7 +1407,7 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 </main>
 {footer(prefix, today)}
 </div>
-<script>{JS}</script>
+<script src="{prefix}site.js" defer></script>
 {('<script>' + extra_js + '</script>') if extra_js else ''}
 </body>
 </html>"""
@@ -1402,6 +1438,16 @@ def load_runs():
             caption = (d / "caption.txt").read_text().strip()
         except Exception:
             continue
+        # claims.json is the run's verified record: every number and quote the
+        # fact-checker re-fetched, with the URL it was proved against. It is the
+        # most expensive thing a run produces and until now it never reached the
+        # page. Optional, because a run can predate it or ship without one.
+        try:
+            claims = {c["id"]: c for c in
+                      json.loads((d / "claims.json").read_text()).get("claims", [])
+                      if c.get("id")}
+        except Exception:
+            claims = {}
         out.append({
             "date": d.name,
             # house style bans colons on the page; titled decks read fine with a comma
@@ -1411,6 +1457,7 @@ def load_runs():
             "first_comment": copy.get("first_comment", ""),
             "summary": copy.get("deck_summary_line", ""),
             "slide_data": copy.get("slide_copy") or copy.get("slides"),
+            "claims": claims,
             "hashtags": copy.get("hashtags", []),
             "slides": asm.get("slides", 0),
             "pdf_mb": asm.get("pdf_mb", 0),
@@ -1483,6 +1530,171 @@ def caption_paragraphs(r):
     text = "\n".join(kept).strip().replace(": ", ", ")
     paras = [p.strip() for p in text.split("\n\n") if p.strip()]
     return "".join(f"<p>{esc(p)}</p>" for p in paras)
+
+
+def house(text):
+    """House style, applied to text this generator pulls out of a run.
+
+    Slide copy is written to the house rules, but claims.json quotes sources
+    verbatim and a source is free to use an em dash and curly quotes. Those
+    would fail the punctuation gate and take the whole build down, so they are
+    normalized here rather than left to break a ship at midnight."""
+    if not text:
+        return ""
+    for bad, good in (("—", ", "), ("–", ", "),
+                      ("‘", "'"), ("’", "'"),
+                      ("“", '"'), ("”", '"')):
+        text = text.replace(bad, good)
+    text = db.BANNED.sub("", text)              # anything left (emoji) goes
+    text = text.replace(": ", ", ")             # no colons in prose
+    return " ".join(text.split()).rstrip(":")
+
+
+def _anchor_candidates(claim):
+    """Strings worth hunting for in a slide's prose so a claim's number can
+    become a link to the document it was proved against.
+
+    Ordered widest first. "23 governors" is a better anchor than "23", because
+    a bare number matches a counter, a year or another claim's figure."""
+    out = []
+    value = (claim.get("value") or "").strip()
+    if value:
+        out.append(value)
+        # The copywriter rewrites for the slide, so the recorded value rarely
+        # survives intact: "281 total" is set as "281 names", "18 MW" as
+        # "18 megawatts". The figure itself is what carries over, so fall back
+        # to the leading number. Two digits minimum, because a bare "1" or "5"
+        # would land on a counter or an unrelated figure and cite the wrong
+        # document, which is worse than not linking at all.
+        #
+        # Two things are deliberately never anchors. A value that is itself a
+        # date ("2026-04-21") would otherwise contribute "2026" and link the
+        # year in "introduced on April 21, 2026", which reads as though the
+        # year were the fact being verified. And any bare four-digit year is
+        # rejected outright, whatever produced it, for the same reason.
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", value):
+            m = re.match(r"^([\d][\d,.]*)", value)
+            if m and len(m.group(1).replace(",", "").replace(".", "")) >= 2:
+                out.append(m.group(1))
+    return [c for c in dict.fromkeys(out)
+            if len(c) >= 2 and not re.fullmatch(r"(19|20)\d{2}", c)]
+
+
+def claims_html(r, site_url):
+    """The run's verification record, rendered as readable text.
+
+    This is the part no other newsroom in the state publishes. Every run
+    already re-fetches each source and records what it proved, and that record
+    is both the strongest reason to cite this site and, until now, the most
+    expensive thing it threw away. Primary documents sort first."""
+    claims = (r.get("claims") or {}).values()
+    if not claims:
+        return "", 0
+    rows, n = [], 0
+    for c in sorted(claims, key=lambda c: (not c.get("source_is_primary"), c.get("id", ""))):
+        text, url = house(c.get("claim")), c.get("source_url")
+        if not text:
+            continue
+        n += 1
+        outlet = house(c.get("source_outlet")) or "source"
+        when = c.get("date_of_source") or ""
+        primary = bool(c.get("source_is_primary"))
+        kind = f'<span class="k{" p" if primary else ""}">{"PRIMARY" if primary else "REPORT"}</span>'
+        cite = (f'<a class="src" href="{esc(url)}" rel="nofollow noopener" target="_blank">'
+                f'{esc(outlet)}</a>' if url else f'<span class="src">{esc(outlet)}</span>')
+        meta = f'{kind}{cite}' + (
+            f'<span class="d">{esc(when)}</span>' if when else "")
+        rows.append(f'<li id="{esc((c.get("id") or "").lower())}">'
+                    f'<p>{esc(text)}</p><div class="cmeta">{meta}</div></li>')
+    if not rows:
+        return "", 0
+    return f'<ol class="claims">{"".join(rows)}</ol>', n
+
+
+def link_claims(text, claim_ids, claims, used):
+    """Escape `text` for HTML and turn the figures it states into links to the
+    primary documents that prove them.
+
+    This is the difference between a page that asserts a number and a page that
+    shows its work. Each claim is spent once per deck (tracked in `used`) so a
+    figure repeated across slides links on first use and reads clean after.
+
+    Returns (html, linked_ids)."""
+    spans, linked = [], []
+    for cid in claim_ids or []:
+        c = claims.get(cid)
+        if not c or cid in used or not c.get("source_url"):
+            continue
+        for cand in _anchor_candidates(c):
+            pat = re.compile(r"(?<![\w,.])" + re.escape(cand) + r"(?![\w])", re.I)
+            hit = next((m for m in pat.finditer(text)
+                        if not any(s < m.end() and m.start() < e for s, e, _ in spans)), None)
+            if hit:
+                spans.append((hit.start(), hit.end(), c))
+                used.add(cid)
+                linked.append(cid)
+                break
+    if not spans:
+        return esc(text), linked
+
+    spans.sort(key=lambda s: s[0])
+    parts, at = [], 0
+    for start, end, c in spans:
+        parts.append(esc(text[at:start]))
+        outlet = c.get("source_outlet") or "the source"
+        kind = "primary document" if c.get("source_is_primary") else "report"
+        when = c.get("date_of_source") or ""
+        title = f"{outlet}, {kind}" + (f", {when}" if when else "")
+        cls = "cite primary" if c.get("source_is_primary") else "cite"
+        parts.append(f'<a class="{cls}" href="{esc(c["source_url"])}" '
+                     f'title="{esc(title)}" rel="nofollow noopener" target="_blank">'
+                     f'{esc(text[start:end])}</a>')
+        at = end
+    parts.append(esc(text[at:]))
+    return "".join(parts), linked
+
+
+def article_html(r):
+    """The deck rendered as a readable, indexable article.
+
+    A carousel puts its whole argument inside nine PNGs. A person can read
+    those; a crawler, an answer engine and a screen reader cannot, and until
+    now a deck page carried about 1.5 KB of story for nine slides of reporting.
+    The copywriter already wrote every headline and body line, and the
+    fact-checker already tied each one to a fetched source, so the article is
+    reconstructed here from the run's own record rather than written twice.
+
+    Slides with no prose (a chart plate, a closing card) contribute their
+    headline alone, which is what they say."""
+    slides = r.get("slide_data") or []
+    claims = r.get("claims") or {}
+    if not isinstance(slides, list) or not slides:
+        return "", [], ""
+
+    used, cited, blocks, plain = set(), [], [], []
+    for i, s in enumerate(slides, 1):
+        if not isinstance(s, dict):
+            continue
+        head = house(_slide_text(s, HEAD_KEYS))
+        body = house(_slide_text(s, BODY_KEYS))
+        if not head and not body:
+            continue
+        ids = s.get("claim_ids") or s.get("claims") or []
+        chunks = []
+        if head:
+            h, got = link_claims(head, ids, claims, used)
+            cited += got
+            chunks.append(f'<h3>{h}</h3>')
+            plain.append(head)
+        if body:
+            b, got = link_claims(body, ids, claims, used)
+            cited += got
+            chunks.append(f'<p>{b}</p>')
+            plain.append(body)
+        n = s.get("n") or i
+        blocks.append(f'<section class="sl" id="slide-{n:02d}">'
+                      f'<span class="sn">{n:02d}</span>{"".join(chunks)}</section>')
+    return "".join(blocks), cited, "\n\n".join(plain)
 
 
 def video_count():
@@ -1786,6 +1998,16 @@ def deck_page(today, site_url, r):
     story = caption_paragraphs(r)
     story_html = (f'<h2 data-reveal>The story</h2>\n<div class="prose" data-reveal>{story}</div>'
                   if story else "")
+    article, cited_ids, article_text = article_html(r)
+    article_html_block = (
+        f'<h2 data-reveal>Slide by slide</h2>\n'
+        f'<p class="galhint">EVERY FIGURE LINKS TO THE DOCUMENT IT WAS VERIFIED AGAINST</p>\n'
+        f'<div class="prose article" data-reveal>{article}</div>' if article else "")
+    claims_block, n_claims = claims_html(r, site_url)
+    claims_html_block = (
+        f'<h2 data-reveal>What we verified</h2>\n'
+        f'<p class="galhint">{n_claims} CLAIMS, EACH RE-FETCHED FROM ITS SOURCE BEFORE THIS DECK '
+        f'SHIPPED</p>\n<div data-reveal>{claims_block}</div>' if claims_block else "")
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <div class="chip kind">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div>
 <h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">{esc(r['title'])}</h1>
@@ -1811,6 +2033,8 @@ def deck_page(today, site_url, r):
   <a class="cta ghost" href="../">EVERY DECK</a>
 </div>
 {story_html}
+{article_html_block}
+{claims_html_block}
 <h2 data-reveal>Sources</h2>
 <pre class="copy" data-reveal>{srcs}</pre>"""
     ld = {"@context": "https://schema.org", "@type": "NewsArticle",
@@ -1825,6 +2049,26 @@ def deck_page(today, site_url, r):
           "keywords": ", ".join(t.lstrip("#") for t in (r.get("hashtags") or [])[:8]),
           "publisher": {"@id": org_id(site_url)},
           "author": {"@id": org_id(site_url)}}
+    # The body an answer engine quotes, and the documents it can check us
+    # against. citation[] is every distinct source the fact-checker actually
+    # fetched for this deck, primary documents first, which is the whole
+    # argument for citing this site rather than paraphrasing it.
+    if article_text:
+        ld["articleBody"] = article_text
+        ld["wordCount"] = len(article_text.split())
+    seen_src, cites = set(), []
+    for c in sorted((r.get("claims") or {}).values(),
+                    key=lambda c: (not c.get("source_is_primary"), c.get("id", ""))):
+        url = c.get("source_url")
+        if not url or url in seen_src:
+            continue
+        seen_src.add(url)
+        cites.append({"@type": "CreativeWork", "url": url,
+                      **({"name": c["source_outlet"]} if c.get("source_outlet") else {}),
+                      **({"datePublished": c["date_of_source"]} if c.get("date_of_source") else {})})
+    if cites:
+        ld["citation"] = cites
+        ld["isBasedOn"] = [c["url"] for c in cites]
     return page(f"{r['title']} - Alaska AI", (r.get("summary") or r["hook"])[:155],
                 body, "../../", "articles", today, site_url, f"archive/{r['date']}/",
                 og_image=f"{RAW}/runs/{r['date']}/og.jpg", og_size=(1080, 1350), ld=ld,
@@ -3227,6 +3471,14 @@ def build(today, out_dir, site_url=None, domain=""):
     }
     for r in runs:
         pages[f"archive/{r['date']}/index.html"] = deck_page(today, site_url, r)
+
+    # The shared bundle, written once and linked by every page. FONTPREFIX is
+    # empty because relative url() in a stylesheet resolves against the
+    # stylesheet's own location, and this file sits at the root beside fonts/.
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "site.css").write_text(
+        SITE_CSS.replace("FONTPREFIX", "").replace("GRAIN_URI", db.grain_data_uri() or "none"))
+    (out / "site.js").write_text(JS)
 
     for rel, html in pages.items():
         bad = db.BANNED.findall(html)
