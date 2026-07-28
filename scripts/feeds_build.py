@@ -153,10 +153,13 @@ def llms_txt(site_url: str, runs: list, docket: dict | None = None,
 
 def llms_full_txt(site_url: str, runs: list) -> str:
     """Every deck's Markdown in one file, newest first. One fetch, whole corpus."""
+    # Stamped from the newest article, not the clock. A wall-clock date rewrote
+    # this 147 KB file on every build and committed a diff that meant nothing.
+    newest = runs[0]["date"] if runs else "no articles yet"
     head = [f"# Alaska AI, full text corpus",
             "",
-            f"Every article published by Alaska AI, newest first, generated "
-            f"{ddate.today().isoformat()}.",
+            f"Every article published by Alaska AI, newest first. "
+            f"Latest article {newest}.",
             f"Canonical pages live under {site_url}/archive/.",
             ""]
     return "\n".join(head) + "\n\n---\n\n".join(
@@ -309,10 +312,13 @@ def docket_rss(site_url: str, items: list) -> str:
         except Exception:
             continue
         stamps.append(when)
-        bits = [b for b in (d.get("status"), d.get("decider"), d.get("location")) if b]
+        # Read status directly. Filtering falsy fields into a list and taking
+        # the first meant an item with no status published its decider under
+        # the word "Status", which is a wrong statement about a live decision.
+        status = (d.get("status") or "").strip()
         desc = " ".join(x for x in [d.get("summary") or "", d.get("access_note") or ""] if x)
-        if bits:
-            desc = f"{desc} Status, {bits[0]}." if desc else f"Status, {bits[0]}."
+        if status:
+            desc = f"{desc} Status, {status}.".strip()
         rows.append(f"""<item>
 <title>{xesc(d.get('title') or did)}</title>
 <link>{site_url}/docket/#{xesc(did)}</link>

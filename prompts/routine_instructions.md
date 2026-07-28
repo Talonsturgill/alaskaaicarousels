@@ -464,7 +464,13 @@ JSON in its final message, which YOU persist to
    alaska-ai-scanner repo and is NOT this routine's concern. Never remove
    them, never edit docs/scan/ by hand, and if site_build.py ever fails
    inside scan_page() or scan_html(), fix the build, do not drop the page.
-2a. Then run `python scripts/scanner_sync_check.py`. The scan page and the
+2a. Run `python scripts/parsers_check.py`. The readers that turn a run
+   record into a page absorb every shape past runs invented, and this pins
+   them. If it fails, this run's copy.json or claims.json is in a shape the
+   site cannot read, and the deck would publish with an empty verification
+   record. Add the shape to the fixtures and teach the reader to read it.
+
+2b. Then run `python scripts/scanner_sync_check.py`. The scan page and the
    routine that feeds it are two hand-maintained sides of one contract, and
    this run is about to ship whatever the page currently says. The check runs
    the page's own counter block against probe feeds and compares the phase

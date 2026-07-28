@@ -115,9 +115,9 @@ def convert_run(run: Path, dry: bool, keep_png: bool, verify: bool) -> dict:
         dst = src.with_suffix(".webp")
         try:
             if dry:
-                before = src.stat().st_size
-                result["before"] += before
-                result["after"] += before  # unknown until encoded
+                # "after" stays 0: nothing was encoded, so any number here
+                # would be invented. The report prints a dash for it.
+                result["before"] += src.stat().st_size
                 result["files"] += 1
                 continue
             before, after, db, how = encode(src, dst, verify)

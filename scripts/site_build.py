@@ -1461,9 +1461,29 @@ CLAIM_FIELDS = {
 PRIMARY_WORDS = ("primary", "official", "filing", "government", "tier1", "tier 1")
 
 
-def _first(d, keys):
+# When a claim field holds a nested object rather than a string, which key
+# inside it answers the question being asked. This is per logical field on
+# purpose: a single shared order meant asking for the outlet returned the
+# nested url, and a source archive that prints a URL where the outlet goes
+# looks exactly like the thing this publication says it is not.
+NESTED_KEYS = {
+    "url":      ("url", "source_url", "link", "href"),
+    "outlet":   ("outlet", "source_outlet", "publisher", "name", "source"),
+    "date":     ("pub_date", "date", "published", "source_date", "date_of_source"),
+    "claim":    ("claim", "text", "statement"),
+    "value":    ("value", "figure", "number"),
+    "verbatim": ("verbatim", "quote", "verbatim_quote", "text"),
+    "id":       ("id", "claim_id"),
+}
+
+
+def _first(d, keys, field=None):
     """First non-empty value among `keys`, descending one level into the
-    nested evidence objects some runs used instead of flat fields."""
+    nested evidence objects some runs used instead of flat fields.
+
+    `field` names what is being asked for, so the descent looks for the right
+    thing. Without it a nested object is not descended into at all, which is
+    safer than guessing."""
     for k in keys:
         v = d.get(k)
         if isinstance(v, str) and v.strip():
@@ -1474,8 +1494,8 @@ def _first(d, keys):
         # rather than as flat source_url/source_outlet fields.
         if isinstance(v, list) and v and isinstance(v[0], dict):
             v = v[0]
-        if isinstance(v, dict):
-            for kk in ("url", "source_url", "link", "outlet", "text", "quote"):
+        if isinstance(v, dict) and field:
+            for kk in NESTED_KEYS.get(field, ()):
                 if isinstance(v.get(kk), str) and v[kk].strip():
                     return v[kk].strip()
     return ""
@@ -1489,9 +1509,9 @@ def _evidence_bits(c):
         if isinstance(v, list) and v and isinstance(v[0], dict):
             v = v[0]
         if isinstance(v, dict):
-            return (_first(v, ("url", "source_url", "link")),
-                    _first(v, ("outlet", "source_outlet", "publisher")),
-                    _first(v, ("pub_date", "date", "published", "source_date")))
+            return (_first(v, ("url", "source_url", "link"), "url"),
+                    _first(v, ("outlet", "source_outlet", "publisher"), "outlet"),
+                    _first(v, ("pub_date", "date", "published", "source_date"), "date"))
     return "", "", ""
 
 
@@ -1502,9 +1522,13 @@ def _looks_like_claims(rows):
     if not isinstance(rows, list) or not rows or not isinstance(rows[0], dict):
         return False
     hits = sum(1 for c in rows if isinstance(c, dict)
-               and _first(c, CLAIM_FIELDS["claim"])
-               and (_first(c, CLAIM_FIELDS["url"]) or _evidence_bits(c)[0]))
-    return hits >= max(2, len(rows) // 2)
+               and _first(c, CLAIM_FIELDS["claim"], "claim")
+               and (_first(c, CLAIM_FIELDS["url"], "url") or _evidence_bits(c)[0]))
+    # Floor of 1, not 2. A floor of 2 meant a one-claim list was never
+    # recognised as claims at all, so a thin run would have published an empty
+    # verification record rather than its single sourced claim. Real runs carry
+    # 15 to 85, so this never bit in production, but the rule was wrong.
+    return hits >= max(1, len(rows) // 2)
 
 
 def _claim_rows(doc):
@@ -1542,11 +1566,11 @@ def normalize_claims(doc):
     for i, c in enumerate(rows, 1):
         if not isinstance(c, dict):
             continue
-        text = _first(c, CLAIM_FIELDS["claim"])
+        text = _first(c, CLAIM_FIELDS["claim"], "claim")
         if not text:
             continue
         ev_url, ev_outlet, ev_date = _evidence_bits(c)
-        url = _first(c, CLAIM_FIELDS["url"]) or ev_url
+        url = _first(c, CLAIM_FIELDS["url"], "url") or ev_url
         # Must be a real fetchable URL. One run recorded source_url as the
         # literal "DERIVED" for a ratio computed from two other verified
         # claims. That is honest bookkeeping and a broken link on the page, and
@@ -1554,7 +1578,7 @@ def normalize_claims(doc):
         # claim that was never fetched. Derived claims stay out of the record.
         if not url.lower().startswith(("http://", "https://")):
             continue
-        cid = _first(c, CLAIM_FIELDS["id"]) or f"C{i:02d}"
+        cid = _first(c, CLAIM_FIELDS["id"], "id") or f"C{i:02d}"
         primary = c.get("source_is_primary")
         if primary is None:
             primary = c.get("primary")
@@ -1565,12 +1589,12 @@ def normalize_claims(doc):
         out[cid] = {
             "id": cid,
             "claim": text,
-            "value": _first(c, CLAIM_FIELDS["value"]),
+            "value": _first(c, CLAIM_FIELDS["value"], "value"),
             "source_url": url,
-            "source_outlet": _first(c, CLAIM_FIELDS["outlet"]) or ev_outlet,
+            "source_outlet": _first(c, CLAIM_FIELDS["outlet"], "outlet") or ev_outlet,
             "source_is_primary": bool(primary),
-            "date_of_source": (_first(c, CLAIM_FIELDS["date"]) or ev_date)[:10],
-            "verbatim": _first(c, CLAIM_FIELDS["verbatim"]),
+            "date_of_source": (_first(c, CLAIM_FIELDS["date"], "date") or ev_date)[:10],
+            "verbatim": _first(c, CLAIM_FIELDS["verbatim"], "verbatim"),
         }
     return out
 
@@ -1664,7 +1688,7 @@ def slide_entries(r):
 _FURNITURE = re.compile(
     r"^(\d+\s*/\s*\d+"                       # 01 / 10
     r"|ALASKA\.?AI"                          # wordmark
-    r"|\d+\s*deg[^a-z]*"                     # 58 deg 18'N 134 deg 25'W
+    r"|\d+\s*deg\b.*"                        # 58 deg 18'N 134 deg 25'W
     r"|[A-Z]{3}\s+\d{1,2},?\s+\d{4}"         # AUG 18 2026
     r")$", re.I)
 
@@ -1736,8 +1760,28 @@ def house(text):
                       ("“", '"'), ("”", '"')):
         text = text.replace(bad, good)
     text = db.BANNED.sub("", text)              # anything left (emoji) goes
-    text = text.replace(": ", ", ")             # no colons in prose
-    return " ".join(text.split()).rstrip(":")
+    text = " ".join(_decolon(text).split())
+    # A dash sitting between spaces leaves "a , b" once it becomes a comma.
+    text = re.sub(r"\s+([,.;])", r"\1", text)
+    return text.rstrip(" ,:")
+
+
+def _decolon(text):
+    """Remove colons from prose the way prose_colon_gate counts them.
+
+    The gate exempts exactly two things, clock times and URLs, then fails the
+    build on any colon left over. Replacing ": " was not the same rule: copy
+    like "SB 250:the vote" or a bare "Note:x" sailed through and took the
+    nightly ship down with sys.exit(1) at the gate. Match the gate's own
+    exemptions instead of approximating them."""
+    keep = re.compile(r"https?://\S+|\d{1,2}:\d{2}")
+    out, at = [], 0
+    for m in keep.finditer(text):
+        out.append(re.sub(r"\s*:\s*", ", ", text[at:m.start()]))
+        out.append(m.group(0))
+        at = m.end()
+    out.append(re.sub(r"\s*:\s*", ", ", text[at:]))
+    return "".join(out)
 
 
 def _anchor_candidates(claim):
@@ -2389,7 +2433,7 @@ def deck_page(today, site_url, r):
     story = caption_paragraphs(r)
     story_html = (f'<h2 data-reveal>The story</h2>\n<div class="prose" data-reveal>{story}</div>'
                   if story else "")
-    article, cited_ids, article_text = article_html(r)
+    article, _, article_text = article_html(r)
     article_html_block = (
         f'<h2 data-reveal>Slide by slide</h2>\n'
         f'<p class="galhint">EVERY FIGURE LINKS TO THE DOCUMENT IT WAS VERIFIED AGAINST</p>\n'

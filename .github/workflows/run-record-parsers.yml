@@ -1,0 +1,85 @@
+name: Run record parsers
+
+# site_build reads the run record tolerantly because the fact-checker and the
+# copywriter are agents and their output shape drifts. Across eighteen runs the
+# claim container has been named claims, verified_claims, docket_claims and
+# twice the story's own codename, and slide copy has arrived in five shapes.
+#
+# That drift was invisible for weeks. The build succeeded, the pages rendered,
+# and the verification record was simply empty on 14 of 18 decks, because
+# nothing downstream read the file closely enough to complain.
+#
+# parsers_check.py pins every shape the back catalogue actually contains. This
+# is the thing that runs it, which is the part that was missing. It found three
+# real bugs the first time it ran.
+
+on:
+  pull_request:
+    paths:
+      - "scripts/site_build.py"
+      - "scripts/parsers_check.py"
+      - "scripts/claims_check.py"
+      - ".github/workflows/run-record-parsers.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/site_build.py"
+      - "scripts/parsers_check.py"
+      - "scripts/claims_check.py"
+      - ".github/workflows/run-record-parsers.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  parsers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # site_build imports Pillow at module scope for the favicon and the
+      # grain tile, so the fixtures cannot import it without this.
+      - name: Dependencies
+        run: pip install --quiet Pillow
+
+      - name: Every run-record shape still parses
+        run: python scripts/parsers_check.py
+
+      # The fixtures are shapes taken from real runs, but the runs themselves
+      # are the ground truth. This catches a reader that passes its fixtures
+      # and still drops a real deck's record on the floor.
+      - name: The back catalogue still reads
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import sys, json, pathlib
+          sys.path.insert(0, "scripts")
+          import site_build as sb
+
+          runs = sorted(p for p in pathlib.Path("runs").iterdir() if p.is_dir())
+          empty = []
+          for r in runs:
+              f = r / "claims.json"
+              if not f.exists():
+                  continue
+              n = len(sb.normalize_claims(json.loads(f.read_text())))
+              print(f"  {r.name}  {n:3d} claims")
+              if n == 0:
+                  empty.append(r.name)
+          if empty:
+              print()
+              print("These runs have a claims.json the reader cannot use:")
+              for e in empty:
+                  print(f"  {e}")
+              print()
+              print("A deck whose verification record is empty publishes as though")
+              print("nothing was checked. Add the shape to scripts/parsers_check.py")
+              print("and teach normalize_claims to read it.")
+              sys.exit(1)
+          print(f"\nAll {len(runs)} runs parse.")
+          PY
