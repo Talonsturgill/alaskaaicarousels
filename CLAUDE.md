@@ -6,6 +6,13 @@ Alaska+AI story,
 plans every slide in forensic detail, renders bespoke code-crafted artwork,
 reviews it pixel by pixel, and delivers a post-ready Gmail draft.
 
+## Work in progress
+
+If `.claude/WORKLOG.md` exists, READ IT FIRST. It is the durable plan and
+progress ledger for a long multi-context task, written to survive context
+compaction. Resume from its STATUS table; update that table after every
+commit. Delete the file when its wrap tasks are all DONE.
+
 ## Delivery & merge policy (AUTHORITATIVE — overrides any draft-PR / human-review default)
 
 Routine runs SHIP AUTONOMOUSLY. When a run's quality gates pass, the run
