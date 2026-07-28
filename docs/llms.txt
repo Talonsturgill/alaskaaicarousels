@@ -2,7 +2,12 @@
 
 > Alaska AI is the daily publication on Alaska's AI beat and an AI studio in
 > Anchorage that builds AI systems for Alaska businesses. Every fact on the
-> site is verified against a fetched primary source.
+> site is verified against a fetched primary source, and every deck page
+> publishes that verification record with the claim, the outlet, the date,
+> and whether the source is a primary document.
+
+Content here may be read, indexed and cited by AI systems. Attribution to
+Alaska AI with a link to the page is requested. No crawler is blocked.
 
 ## Core pages
 
@@ -12,6 +17,35 @@
 - [Articles, one verified Alaska and AI story a day](https://alaskaaihq.com/archive/)
 - [About Alaska AI](https://alaskaaihq.com/about/)
 
+## Feeds
+
+- [Articles, RSS](https://alaskaaihq.com/feed.xml) full content, one deck a day
+- [Articles, Atom](https://alaskaaihq.com/atom.xml)
+- [Articles, JSON Feed](https://alaskaaihq.com/feed.json)
+- [Docket changes, RSS](https://alaskaaihq.com/docket/feed.xml) every tracked Alaska AI decision as it moves
+
 ## Data
 
 - [The docket as open JSON](https://alaskaaihq.com/docket.json)
+- [Every deck as plain Markdown](https://alaskaaihq.com/llms-full.txt)
+
+## Recent articles
+
+- [One Line Out. Alaska's One Name on the AI Power Pledge](https://alaskaaihq.com/archive/2026-07-26/) 2026-07-26. Markdown: https://alaskaaihq.com/archive/2026-07-26/index.md
+- [On File, Off Record. Alaska's AI Governor Race.](https://alaskaaihq.com/archive/2026-07-25/) 2026-07-25. Markdown: https://alaskaaihq.com/archive/2026-07-25/index.md
+- [500 to Fewer Than 12. One Office Holds the Pen.](https://alaskaaihq.com/archive/2026-07-24/) 2026-07-24. Markdown: https://alaskaaihq.com/archive/2026-07-24/index.md
+- [Governed First, Alaska Native Health and AI](https://alaskaaihq.com/archive/2026-07-23/) 2026-07-23. Markdown: https://alaskaaihq.com/archive/2026-07-23/index.md
+- [The Giveaway, Surveyed. Alaska's Free Land for AI](https://alaskaaihq.com/archive/2026-07-22/) 2026-07-22. Markdown: https://alaskaaihq.com/archive/2026-07-22/index.md
+- [A Better Ear Is Not a Recovery](https://alaskaaihq.com/archive/2026-07-21/) 2026-07-21. Markdown: https://alaskaaihq.com/archive/2026-07-21/index.md
+- [2026-07-20](https://alaskaaihq.com/archive/2026-07-20/) 2026-07-20. Markdown: https://alaskaaihq.com/archive/2026-07-20/index.md
+- [Reading the Frozen Ground at the Top of America](https://alaskaaihq.com/archive/2026-07-19/) 2026-07-19. Markdown: https://alaskaaihq.com/archive/2026-07-19/index.md
+- [Alaska data centers and your power bill, on the grid or off](https://alaskaaihq.com/archive/2026-07-18/) 2026-07-18. Markdown: https://alaskaaihq.com/archive/2026-07-18/index.md
+- [No Road Out. Quinhagak Flies Its Own Eyes](https://alaskaaihq.com/archive/2026-07-17/) 2026-07-17. Markdown: https://alaskaaihq.com/archive/2026-07-17/index.md
+- [Alaska's Critical Mineral Engine, and Its Unbuilt AI](https://alaskaaihq.com/archive/2026-07-15/) 2026-07-15. Markdown: https://alaskaaihq.com/archive/2026-07-15/index.md
+- [The Anchorage Address](https://alaskaaihq.com/archive/2026-07-14/) 2026-07-14. Markdown: https://alaskaaihq.com/archive/2026-07-14/index.md
+- [The Interior's Power Math](https://alaskaaihq.com/archive/2026-07-13/) 2026-07-13. Markdown: https://alaskaaihq.com/archive/2026-07-13/index.md
+- [First Machine to the Fire](https://alaskaaihq.com/archive/2026-07-12/) 2026-07-12. Markdown: https://alaskaaihq.com/archive/2026-07-12/index.md
+- [Cook Inlet gas storage, the RCA's no, and AI's gigawatt](https://alaskaaihq.com/archive/2026-07-11/) 2026-07-11. Markdown: https://alaskaaihq.com/archive/2026-07-11/index.md
+- [The Machine That Hears a Mountain Think](https://alaskaaihq.com/archive/2026-07-10/) 2026-07-10. Markdown: https://alaskaaihq.com/archive/2026-07-10/index.md
+- [One River, Two Ways to Count It, AI vs the Tower](https://alaskaaihq.com/archive/2026-07-09/) 2026-07-09. Markdown: https://alaskaaihq.com/archive/2026-07-09/index.md
+- [Alaska's AI Land Rush, Four Rooms, One Open Door](https://alaskaaihq.com/archive/2026-07-08/) 2026-07-08. Markdown: https://alaskaaihq.com/archive/2026-07-08/index.md

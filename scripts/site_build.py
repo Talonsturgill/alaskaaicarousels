@@ -39,6 +39,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_build as db  # projection, validation, docket components, gates
+import feeds_build as fb   # feeds, plaintext mirrors, llms.txt
 
 REPO = Path(__file__).resolve().parents[1]
 RAW = "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main"
@@ -1340,7 +1341,7 @@ JS = """
 
 def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.png",
          og_size=(1200, 630), ld=None, crumbs=None, noindex=False,
-         extra_css="", extra_js=""):
+         extra_css="", extra_js="", extra_head=""):
     # Per-page CSS and JS. The docket map's styling and its pan and zoom are
     # about 4 KB gzipped, and before this existed they rode the shared bundle
     # onto all 25 pages, which made a page with no map on it 15 percent heavier
@@ -1387,7 +1388,11 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 <meta property="og:image:alt" content="{esc(title)}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="{canonical}">
-<link rel="icon" href="{ak_favicon()}">
+<link rel="alternate" type="application/rss+xml" title="Alaska AI, articles" href="{site_url}/feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Alaska AI, articles" href="{site_url}/atom.xml">
+<link rel="alternate" type="application/feed+json" title="Alaska AI, articles" href="{site_url}/feed.json">
+<link rel="alternate" type="application/rss+xml" title="Alaska AI, docket changes" href="{site_url}/docket/feed.xml">
+{extra_head}<link rel="icon" href="{ak_favicon()}">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {preload}
 {ld_html}
@@ -2073,7 +2078,11 @@ def deck_page(today, site_url, r):
                 body, "../../", "articles", today, site_url, f"archive/{r['date']}/",
                 og_image=f"{RAW}/runs/{r['date']}/og.jpg", og_size=(1080, 1350), ld=ld,
                 crumbs=[("Alaska AI", ""), ("Articles", "archive/"),
-                        (r["title"], f"archive/{r['date']}/")])
+                        (r["title"], f"archive/{r['date']}/")],
+                # Points an agent at the Markdown twin of this page, so it can
+                # take 3 KB of prose instead of parsing 60 KB of HTML for it.
+                extra_head='<link rel="alternate" type="text/markdown" '
+                           f'title="{esc(r["title"])} as Markdown" href="index.md">\n')
 
 
 def services_page(today, site_url):
@@ -3459,6 +3468,12 @@ def build(today, out_dir, site_url=None, domain=""):
     runs = load_runs()
     out = REPO / out_dir
 
+    # Feeds, Markdown mirrors and deck pages all want the same reconstructed
+    # article, so build it once per run here rather than three times downstream.
+    for r in runs:
+        _, _, r["article_text"] = article_html(r)
+        r["cover"] = f"{RAW}/runs/{r['date']}/og.jpg"
+
     pages = {
         "index.html": home_page(today, site_url, docket, runs),
         "docket/index.html": docket_page(today, site_url, docket),
@@ -3516,9 +3531,35 @@ def build(today, out_dir, site_url=None, domain=""):
     (out / "sitemap.xml").write_text(sitemap(site_url, runs, today))
     (out / "robots.txt").write_text(
         "User-agent: *\nAllow: /\n\n"
-        "# AI answer engines and their crawlers are welcome to read and cite this site.\n\n"
+        "# AI answer engines and their crawlers are welcome to read and cite this site.\n"
+        "# Attribution to Alaska AI with a link to the page is requested.\n"
+        "# Every article also exists as Markdown at the same path plus index.md,\n"
+        "# and the whole corpus is one fetch at /llms-full.txt.\n\n"
         f"Sitemap: {site_url}/sitemap.xml\n")
-    (out / "llms.txt").write_text(llms_txt(site_url))
+    # ---------- the machine-readable surface ----------
+    # Feeds carry full content, not teasers. This publication wants to be
+    # quoted correctly more than it wants the click, and the two newsrooms it
+    # competes with publish either a headline-only feed or no feed at all.
+    feeds = {
+        "feed.xml": fb.rss(site_url, runs),
+        "atom.xml": fb.atom(site_url, runs),
+        "feed.json": fb.json_feed(site_url, runs),
+        "docket/feed.xml": fb.docket_rss(site_url, docket[0]),
+    }
+    for rel, text in feeds.items():
+        fb.validate(rel, text, db.fail)
+        p = out / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(text)
+
+    # A Markdown mirror beside every deck page. An agent fetching a URL would
+    # rather have 3 KB of Markdown than parse 60 KB of HTML for the story
+    # inside it, and the file costs one write per run.
+    for r in runs:
+        (out / "archive" / r["date"] / "index.md").write_text(
+            fb.deck_markdown(r, site_url))
+    (out / "llms-full.txt").write_text(fb.llms_full_txt(site_url, runs))
+    (out / "llms.txt").write_text(fb.llms_txt(site_url, runs))
     (out / ".nojekyll").write_text("")
     if domain:
         (out / "CNAME").write_text(domain + "\n")
