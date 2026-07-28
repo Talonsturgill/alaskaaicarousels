@@ -2,5 +2,8 @@ User-agent: *
 Allow: /
 
 # AI answer engines and their crawlers are welcome to read and cite this site.
+# Attribution to Alaska AI with a link to the page is requested.
+# Every article also exists as Markdown at the same path plus index.md,
+# and the whole corpus is one fetch at /llms-full.txt.
 
 Sitemap: https://alaskaaihq.com/sitemap.xml

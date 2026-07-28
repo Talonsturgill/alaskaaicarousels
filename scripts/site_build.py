@@ -32,12 +32,14 @@ aurora, seeded grain. Zero dependencies, static files only.
 import argparse
 import json
 import math
+import re
 import sys
 from datetime import date as ddate, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_build as db  # projection, validation, docket components, gates
+import feeds_build as fb   # feeds, plaintext mirrors, llms.txt
 
 REPO = Path(__file__).resolve().parents[1]
 RAW = "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main"
@@ -294,10 +296,13 @@ def footer(prefix, today):
   <div class="foot-brand">{ak_mark()}<span>ALASKA.AI</span></div>
   <div class="foot-links">
     <a href="{prefix}docket/">DOCKET</a>
-    <a href="{prefix}archive/">ARTICLES</a><a href="{prefix}videos/">VIDEOS</a>
+    <a href="{prefix}archive/">ARTICLES</a><a href="{prefix}topics/">BEATS</a>
+    <a href="{prefix}videos/">VIDEOS</a>
+    <a href="{prefix}sources/">SOURCES</a>
     <a href="{prefix}scan/">THE SCANNER</a>
     <a href="{prefix}services/">SERVICES</a>
     <a href="{prefix}about/">ABOUT</a>
+    <a href="{prefix}feed.xml">RSS</a>
     <a href="{prefix}docket.json">DATA</a>
   </div>
 </div>
@@ -644,6 +649,34 @@ border:1px solid var(--line);border-radius:12px;padding:24px 26px;}
    which is the one link on the site that did not look like the others. */
 .prose a,a.proselink{color:var(--blue);text-decoration:none;
 border-bottom:1px solid rgba(90,200,240,.25);}
+
+/* ---------- the article, and the verification record under it ---------- */
+/* The deck says it in pictures. This says it in text, so a reader on a screen
+   reader, a search crawler and an answer engine all get the same story. */
+.article .sl{margin:26px 0 0;padding:0 0 0 46px;position:relative;}
+.article .sn{position:absolute;left:0;top:3px;font-family:JBMono,monospace;font-size:12px;
+letter-spacing:.1em;color:#41546f;}
+.article h3{font-size:19px;line-height:1.35;margin:0 0 6px;font-weight:600;}
+.article p{margin:0;color:#b9c8dc;}
+/* A figure that links to the document proving it. The gold underline is the
+   primary-document tell, so a reader can see at a glance how much of a deck
+   rests on filings rather than on somebody else's write-up. */
+a.cite{color:inherit;text-decoration:none;border-bottom:1px dashed rgba(90,200,240,.5);}
+a.cite.primary{border-bottom:1px solid var(--gold);}
+a.cite:hover{background:rgba(90,200,240,.1);}
+ol.claims{list-style:none;margin:18px 0 0;padding:0;max-width:760px;counter-reset:c;}
+ol.claims li{counter-increment:c;position:relative;padding:14px 0 14px 46px;
+border-top:1px solid var(--line);}
+ol.claims li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:16px;
+font-family:JBMono,monospace;font-size:11px;color:#41546f;}
+ol.claims p{margin:0 0 7px;font-size:15.5px;line-height:1.5;color:#c6d4e6;}
+.cmeta{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
+font-family:JBMono,monospace;font-size:11px;letter-spacing:.08em;}
+.cmeta .k{color:#41546f;}
+.cmeta .k.p{color:var(--gold);}
+.cmeta a.src{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.3);}
+.cmeta .d{color:#41546f;}
+@media(max-width:560px){.article .sl{padding-left:32px;}ol.claims li{padding-left:34px;}}
 
 /* ---------- subscribe ---------- */
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
@@ -1311,12 +1344,19 @@ JS = """
 
 def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.png",
          og_size=(1200, 630), ld=None, crumbs=None, noindex=False,
-         extra_css="", extra_js=""):
+         extra_css="", extra_js="", extra_head=""):
     # Per-page CSS and JS. The docket map's styling and its pan and zoom are
     # about 4 KB gzipped, and before this existed they rode the shared bundle
     # onto all 25 pages, which made a page with no map on it 15 percent heavier
     # for nothing. Most readers are on a phone, so that is not a rounding error.
-    css = SITE_CSS.replace("FONTPREFIX", prefix).replace("GRAIN_URI", db.grain_data_uri() or "none")
+    # The shared bundle is linked, not inlined. It is ~40 KB (27 KB of rules
+    # plus a 13 KB grain data URI) and it used to be stamped into all 26 pages,
+    # which meant a crawler reading a deck page got 82 KB of HTML carrying
+    # 4 KB of story. Linking it makes the bundle cacheable across the whole
+    # site and drops the per-page weight by about 46 KB.
+    #
+    # Relative url() in CSS resolves against the stylesheet, not the document,
+    # and site.css sits at the root beside fonts/, so FONTPREFIX is empty there.
     canonical = f"{site_url}/{path}"
     og_url = og_image if og_image.startswith("http") else f"{site_url}/{og_image}"
     blocks = []
@@ -1351,11 +1391,15 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 <meta property="og:image:alt" content="{esc(title)}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="{canonical}">
-<link rel="icon" href="{ak_favicon()}">
+<link rel="alternate" type="application/rss+xml" title="Alaska AI, articles" href="{site_url}/feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Alaska AI, articles" href="{site_url}/atom.xml">
+<link rel="alternate" type="application/feed+json" title="Alaska AI, articles" href="{site_url}/feed.json">
+<link rel="alternate" type="application/rss+xml" title="Alaska AI, docket changes" href="{site_url}/docket/feed.xml">
+{extra_head}<link rel="icon" href="{ak_favicon()}">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {preload}
 {ld_html}
-<style>{css}</style>
+<link rel="stylesheet" href="{prefix}site.css">
 {('<style>' + extra_css + '</style>') if extra_css else ''}
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -1371,7 +1415,7 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 </main>
 {footer(prefix, today)}
 </div>
-<script>{JS}</script>
+<script src="{prefix}site.js" defer></script>
 {('<script>' + extra_js + '</script>') if extra_js else ''}
 </body>
 </html>"""
@@ -1391,6 +1435,170 @@ def load_docket(today):
     return items, live, done, dated, live_sorted
 
 
+# claims.json is the run's verified record: every number and quote the
+# fact-checker re-fetched, with the URL it was proved against. It is the most
+# expensive thing a run produces, and it arrives in a different shape almost
+# every day, because the fact-checker is an agent and nothing pinned its
+# schema. Across 18 runs the container has been "claims", "verified_claims" and
+# "docket_claims", and the same field has been called claim/text/statement,
+# source_url/url/evidence_url, source_outlet/outlet/publisher.
+#
+# Reading tolerantly is what makes the whole archive legible rather than only
+# the four runs that happened to use the newest shape. Phase F pins the schema
+# going forward; this keeps the back catalogue working regardless.
+CLAIM_CONTAINERS = ("claims", "verified_claims", "docket_claims", "claims_verified")
+CLAIM_FIELDS = {
+    "id":       ("id", "claim_id"),
+    "claim":    ("claim", "text", "statement"),
+    "value":    ("value", "value_detail", "number_or_date", "figure"),
+    "url":      ("source_url", "url", "evidence_url", "link"),
+    "outlet":   ("source_outlet", "outlet", "publisher", "source"),
+    "date":     ("date_of_source", "source_date", "published", "pub_date", "date"),
+    "verbatim": ("verbatim", "verbatim_quote", "verbatim_support"),
+}
+# A source is primary when the run says so outright, or when the credibility
+# or tier field it used instead means the same thing.
+PRIMARY_WORDS = ("primary", "official", "filing", "government", "tier1", "tier 1")
+
+
+# When a claim field holds a nested object rather than a string, which key
+# inside it answers the question being asked. This is per logical field on
+# purpose: a single shared order meant asking for the outlet returned the
+# nested url, and a source archive that prints a URL where the outlet goes
+# looks exactly like the thing this publication says it is not.
+NESTED_KEYS = {
+    "url":      ("url", "source_url", "link", "href"),
+    "outlet":   ("outlet", "source_outlet", "publisher", "name", "source"),
+    "date":     ("pub_date", "date", "published", "source_date", "date_of_source"),
+    "claim":    ("claim", "text", "statement"),
+    "value":    ("value", "figure", "number"),
+    "verbatim": ("verbatim", "quote", "verbatim_quote", "text"),
+    "id":       ("id", "claim_id"),
+}
+
+
+def _first(d, keys, field=None):
+    """First non-empty value among `keys`, descending one level into the
+    nested evidence objects some runs used instead of flat fields.
+
+    `field` names what is being asked for, so the descent looks for the right
+    thing. Without it a nested object is not descended into at all, which is
+    safer than guessing."""
+    for k in keys:
+        v = d.get(k)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+        if isinstance(v, (int, float)):
+            return str(v)
+        # One run recorded evidence as [{"url":..., "outlet":..., "pub_date":...}]
+        # rather than as flat source_url/source_outlet fields.
+        if isinstance(v, list) and v and isinstance(v[0], dict):
+            v = v[0]
+        if isinstance(v, dict) and field:
+            for kk in NESTED_KEYS.get(field, ()):
+                if isinstance(v.get(kk), str) and v[kk].strip():
+                    return v[kk].strip()
+    return ""
+
+
+def _evidence_bits(c):
+    """url/outlet/date pulled from a nested evidence object, when the run put
+    them there instead of on the claim itself."""
+    for k in ("evidence", "sources", "source"):
+        v = c.get(k)
+        if isinstance(v, list) and v and isinstance(v[0], dict):
+            v = v[0]
+        if isinstance(v, dict):
+            return (_first(v, ("url", "source_url", "link"), "url"),
+                    _first(v, ("outlet", "source_outlet", "publisher"), "outlet"),
+                    _first(v, ("pub_date", "date", "published", "source_date"), "date"))
+    return "", "", ""
+
+
+def _looks_like_claims(rows):
+    """A list of dicts is a claim list when most entries carry a statement and
+    a source. Lets a run name its container anything (two runs used the story
+    codenames "beluga" and "caribou_fallback") without the archive going dark."""
+    if not isinstance(rows, list) or not rows or not isinstance(rows[0], dict):
+        return False
+    hits = sum(1 for c in rows if isinstance(c, dict)
+               and _first(c, CLAIM_FIELDS["claim"], "claim")
+               and (_first(c, CLAIM_FIELDS["url"], "url") or _evidence_bits(c)[0]))
+    # Floor of 1, not 2. A floor of 2 meant a one-claim list was never
+    # recognised as claims at all, so a thin run would have published an empty
+    # verification record rather than its single sourced claim. Real runs carry
+    # 15 to 85, so this never bit in production, but the rule was wrong.
+    return hits >= max(1, len(rows) // 2)
+
+
+def _claim_rows(doc):
+    """Every claim-shaped list in the document, whatever it was named and
+    however deeply the run nested it."""
+    for key in CLAIM_CONTAINERS:
+        if _looks_like_claims(doc.get(key)):
+            return doc[key]
+    # Some runs kept the claims inside the story they belong to.
+    for key in ("stories", "selected_story", "story"):
+        v = doc.get(key)
+        v = v if isinstance(v, list) else ([v] if isinstance(v, dict) else [])
+        rows = [c for s in v if isinstance(s, dict)
+                for c in (s.get("claims") or []) if isinstance(c, dict)]
+        if _looks_like_claims(rows):
+            return rows
+    # Last resort: any top-level list that reads like claims.
+    for key, v in doc.items():
+        if key in ("dropped", "kill_log", "killed", "rejected", "unresolved") \
+                or "drop" in key or "kill" in key or "reject" in key:
+            continue
+        if _looks_like_claims(v):
+            return v
+    return []
+
+
+def normalize_claims(doc):
+    """Every shape of claims.json the runs have produced, as one dict keyed by
+    claim id. Unknown shapes yield nothing rather than a broken page."""
+    rows = _claim_rows(doc)
+    if not rows:
+        return {}
+
+    out = {}
+    for i, c in enumerate(rows, 1):
+        if not isinstance(c, dict):
+            continue
+        text = _first(c, CLAIM_FIELDS["claim"], "claim")
+        if not text:
+            continue
+        ev_url, ev_outlet, ev_date = _evidence_bits(c)
+        url = _first(c, CLAIM_FIELDS["url"], "url") or ev_url
+        # Must be a real fetchable URL. One run recorded source_url as the
+        # literal "DERIVED" for a ratio computed from two other verified
+        # claims. That is honest bookkeeping and a broken link on the page, and
+        # a section headed "each re-fetched from its source" should not carry a
+        # claim that was never fetched. Derived claims stay out of the record.
+        if not url.lower().startswith(("http://", "https://")):
+            continue
+        cid = _first(c, CLAIM_FIELDS["id"], "id") or f"C{i:02d}"
+        primary = c.get("source_is_primary")
+        if primary is None:
+            primary = c.get("primary")
+        if primary is None:
+            blob = " ".join(str(c.get(k, "")) for k in
+                            ("credibility", "tier", "source_type", "status")).lower()
+            primary = any(w in blob for w in PRIMARY_WORDS)
+        out[cid] = {
+            "id": cid,
+            "claim": text,
+            "value": _first(c, CLAIM_FIELDS["value"], "value"),
+            "source_url": url,
+            "source_outlet": _first(c, CLAIM_FIELDS["outlet"], "outlet") or ev_outlet,
+            "source_is_primary": bool(primary),
+            "date_of_source": (_first(c, CLAIM_FIELDS["date"], "date") or ev_date)[:10],
+            "verbatim": _first(c, CLAIM_FIELDS["verbatim"], "verbatim"),
+        }
+    return out
+
+
 def load_runs():
     out = []
     for d in sorted((REPO / "runs").iterdir(), reverse=True):
@@ -1402,6 +1610,10 @@ def load_runs():
             caption = (d / "caption.txt").read_text().strip()
         except Exception:
             continue
+        try:
+            claims = normalize_claims(json.loads((d / "claims.json").read_text()))
+        except Exception:
+            claims = {}
         out.append({
             "date": d.name,
             # house style bans colons on the page; titled decks read fine with a comma
@@ -1411,6 +1623,7 @@ def load_runs():
             "first_comment": copy.get("first_comment", ""),
             "summary": copy.get("deck_summary_line", ""),
             "slide_data": copy.get("slide_copy") or copy.get("slides"),
+            "claims": claims,
             "hashtags": copy.get("hashtags", []),
             "slides": asm.get("slides", 0),
             "pdf_mb": asm.get("pdf_mb", 0),
@@ -1437,10 +1650,13 @@ def _slide_text(entry, keys):
     return ""
 
 
-def slide_alts(r):
-    """Descriptive alt text per slide from the run's own per-slide copy, so
-    the story inside the PNGs is legible to search engines and screen
-    readers. Handles every copy.json shape the runs have used."""
+def slide_entries(r):
+    """Per-slide copy as {slide number: dict}, whatever shape the run used.
+
+    Every run's copywriter invents its own container. Across 18 runs the slide
+    copy has arrived as a list, as a dict keyed "01", as one keyed "S1", and as
+    one keyed "slide-01". Anything that reads slide copy goes through here, so
+    a new shape is fixed in one place instead of silently rendering nothing."""
     data = r.get("slide_data")
     entries = {}
     if isinstance(data, list):
@@ -1452,9 +1668,54 @@ def slide_alts(r):
                 entries[int(num)] = s
     elif isinstance(data, dict):
         for k, s in data.items():
-            num = str(k).lstrip("S0")
-            if num.isdigit() and isinstance(s, dict):
+            num = re.sub(r"^(slide[-_]?|S)", "", str(k), flags=re.I).lstrip("0") or "0"
+            if not num.isdigit():
+                continue
+            if isinstance(s, dict):
                 entries[int(num)] = s
+            elif isinstance(s, list):
+                # One run recorded each slide as the flat list of strings set on
+                # it, furniture and all. Recover the prose and drop the chrome.
+                lines = _prose_lines(s)
+                if lines:
+                    entries[int(num)] = {"headline": lines[0],
+                                         "body": " ".join(lines[1:])}
+    return dict(sorted(entries.items()))
+
+
+# Slide furniture that carries no story: the counter, the wordmark, the
+# coordinate stamp, a bare date. Dropped before the rest is read as prose.
+_FURNITURE = re.compile(
+    r"^(\d+\s*/\s*\d+"                       # 01 / 10
+    r"|ALASKA\.?AI"                          # wordmark
+    r"|\d+\s*deg\b.*"                        # 58 deg 18'N 134 deg 25'W
+    r"|[A-Z]{3}\s+\d{1,2},?\s+\d{4}"         # AUG 18 2026
+    r")$", re.I)
+
+
+def _prose_lines(strings):
+    """The lines from a slide's raw string list that read like sentences.
+
+    Wants at least three words and one lowercase letter, which keeps headlines
+    and dek lines while dropping set-in-caps labels and stamps."""
+    out = []
+    for s in strings:
+        if not isinstance(s, str):
+            continue
+        t = " ".join(s.split())
+        if not t or _FURNITURE.match(t) or len(t) < 12:
+            continue
+        if len(t.split()) < 3 or not any(c.islower() for c in t):
+            continue
+        out.append(t)
+    return out
+
+
+def slide_alts(r):
+    """Descriptive alt text per slide from the run's own per-slide copy, so
+    the story inside the PNGs is legible to search engines and screen
+    readers."""
+    entries = slide_entries(r)
     alts = {}
     for i, s in entries.items():
         head = _slide_text(s, HEAD_KEYS).rstrip(".")
@@ -1483,6 +1744,392 @@ def caption_paragraphs(r):
     text = "\n".join(kept).strip().replace(": ", ", ")
     paras = [p.strip() for p in text.split("\n\n") if p.strip()]
     return "".join(f"<p>{esc(p)}</p>" for p in paras)
+
+
+def house(text):
+    """House style, applied to text this generator pulls out of a run.
+
+    Slide copy is written to the house rules, but claims.json quotes sources
+    verbatim and a source is free to use an em dash and curly quotes. Those
+    would fail the punctuation gate and take the whole build down, so they are
+    normalized here rather than left to break a ship at midnight."""
+    if not text:
+        return ""
+    for bad, good in (("—", ", "), ("–", ", "),
+                      ("‘", "'"), ("’", "'"),
+                      ("“", '"'), ("”", '"')):
+        text = text.replace(bad, good)
+    text = db.BANNED.sub("", text)              # anything left (emoji) goes
+    text = " ".join(_decolon(text).split())
+    # A dash sitting between spaces leaves "a , b" once it becomes a comma.
+    text = re.sub(r"\s+([,.;])", r"\1", text)
+    return text.rstrip(" ,:")
+
+
+def _decolon(text):
+    """Remove colons from prose the way prose_colon_gate counts them.
+
+    The gate exempts exactly two things, clock times and URLs, then fails the
+    build on any colon left over. Replacing ": " was not the same rule: copy
+    like "SB 250:the vote" or a bare "Note:x" sailed through and took the
+    nightly ship down with sys.exit(1) at the gate. Match the gate's own
+    exemptions instead of approximating them."""
+    keep = re.compile(r"https?://\S+|\d{1,2}:\d{2}")
+    out, at = [], 0
+    for m in keep.finditer(text):
+        out.append(re.sub(r"\s*:\s*", ", ", text[at:m.start()]))
+        out.append(m.group(0))
+        at = m.end()
+    out.append(re.sub(r"\s*:\s*", ", ", text[at:]))
+    return "".join(out)
+
+
+def _anchor_candidates(claim):
+    """Strings worth hunting for in a slide's prose so a claim's number can
+    become a link to the document it was proved against.
+
+    Ordered widest first. "23 governors" is a better anchor than "23", because
+    a bare number matches a counter, a year or another claim's figure."""
+    out = []
+    value = (claim.get("value") or "").strip()
+    if value:
+        out.append(value)
+        # The copywriter rewrites for the slide, so the recorded value rarely
+        # survives intact: "281 total" is set as "281 names", "18 MW" as
+        # "18 megawatts". The figure itself is what carries over, so fall back
+        # to the leading number. Two digits minimum, because a bare "1" or "5"
+        # would land on a counter or an unrelated figure and cite the wrong
+        # document, which is worse than not linking at all.
+        #
+        # Two things are deliberately never anchors. A value that is itself a
+        # date ("2026-04-21") would otherwise contribute "2026" and link the
+        # year in "introduced on April 21, 2026", which reads as though the
+        # year were the fact being verified. And any bare four-digit year is
+        # rejected outright, whatever produced it, for the same reason.
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", value):
+            m = re.match(r"^([\d][\d,.]*)", value)
+            if m and len(m.group(1).replace(",", "").replace(".", "")) >= 2:
+                out.append(m.group(1))
+    return [c for c in dict.fromkeys(out)
+            if len(c) >= 2 and not re.fullmatch(r"(19|20)\d{2}", c)]
+
+
+def claims_html(r, site_url):
+    """The run's verification record, rendered as readable text.
+
+    This is the part no other newsroom in the state publishes. Every run
+    already re-fetches each source and records what it proved, and that record
+    is both the strongest reason to cite this site and, until now, the most
+    expensive thing it threw away. Primary documents sort first."""
+    claims = (r.get("claims") or {}).values()
+    if not claims:
+        return "", 0
+    rows, n = [], 0
+    for c in sorted(claims, key=lambda c: (not c.get("source_is_primary"), c.get("id", ""))):
+        text, url = house(c.get("claim")), c.get("source_url")
+        if not text:
+            continue
+        n += 1
+        outlet = house(c.get("source_outlet")) or "source"
+        when = c.get("date_of_source") or ""
+        primary = bool(c.get("source_is_primary"))
+        kind = f'<span class="k{" p" if primary else ""}">{"PRIMARY" if primary else "REPORT"}</span>'
+        cite = (f'<a class="src" href="{esc(url)}" rel="nofollow noopener" target="_blank">'
+                f'{esc(outlet)}</a>' if url else f'<span class="src">{esc(outlet)}</span>')
+        meta = f'{kind}{cite}' + (
+            f'<span class="d">{esc(when)}</span>' if when else "")
+        rows.append(f'<li id="{esc((c.get("id") or "").lower())}">'
+                    f'<p>{esc(text)}</p><div class="cmeta">{meta}</div></li>')
+    if not rows:
+        return "", 0
+    return f'<ol class="claims">{"".join(rows)}</ol>', n
+
+
+def link_claims(text, claim_ids, claims, used):
+    """Escape `text` for HTML and turn the figures it states into links to the
+    primary documents that prove them.
+
+    This is the difference between a page that asserts a number and a page that
+    shows its work. Each claim is spent once per deck (tracked in `used`) so a
+    figure repeated across slides links on first use and reads clean after.
+
+    Returns (html, linked_ids)."""
+    spans, linked = [], []
+    for cid in claim_ids or []:
+        c = claims.get(cid)
+        if not c or cid in used or not c.get("source_url"):
+            continue
+        for cand in _anchor_candidates(c):
+            pat = re.compile(r"(?<![\w,.])" + re.escape(cand) + r"(?![\w])", re.I)
+            hit = next((m for m in pat.finditer(text)
+                        if not any(s < m.end() and m.start() < e for s, e, _ in spans)), None)
+            if hit:
+                spans.append((hit.start(), hit.end(), c))
+                used.add(cid)
+                linked.append(cid)
+                break
+    if not spans:
+        return esc(text), linked
+
+    spans.sort(key=lambda s: s[0])
+    parts, at = [], 0
+    for start, end, c in spans:
+        parts.append(esc(text[at:start]))
+        outlet = c.get("source_outlet") or "the source"
+        kind = "primary document" if c.get("source_is_primary") else "report"
+        when = c.get("date_of_source") or ""
+        title = f"{outlet}, {kind}" + (f", {when}" if when else "")
+        cls = "cite primary" if c.get("source_is_primary") else "cite"
+        parts.append(f'<a class="{cls}" href="{esc(c["source_url"])}" '
+                     f'title="{esc(title)}" rel="nofollow noopener" target="_blank">'
+                     f'{esc(text[start:end])}</a>')
+        at = end
+    parts.append(esc(text[at:]))
+    return "".join(parts), linked
+
+
+def article_html(r):
+    """The deck rendered as a readable, indexable article.
+
+    A carousel puts its whole argument inside nine PNGs. A person can read
+    those; a crawler, an answer engine and a screen reader cannot, and until
+    now a deck page carried about 1.5 KB of story for nine slides of reporting.
+    The copywriter already wrote every headline and body line, and the
+    fact-checker already tied each one to a fetched source, so the article is
+    reconstructed here from the run's own record rather than written twice.
+
+    Slides with no prose (a chart plate, a closing card) contribute their
+    headline alone, which is what they say."""
+    entries = slide_entries(r)
+    claims = r.get("claims") or {}
+    if not entries:
+        return "", [], ""
+
+    used, cited, blocks, plain = set(), [], [], []
+    for n, s in entries.items():
+        head = house(_slide_text(s, HEAD_KEYS))
+        body = house(_slide_text(s, BODY_KEYS))
+        if not head and not body:
+            continue
+        ids = s.get("claim_ids") or s.get("claims") or []
+        chunks = []
+        if head:
+            h, got = link_claims(head, ids, claims, used)
+            cited += got
+            chunks.append(f'<h3>{h}</h3>')
+            plain.append(head)
+        if body:
+            b, got = link_claims(body, ids, claims, used)
+            cited += got
+            chunks.append(f'<p>{b}</p>')
+            plain.append(body)
+        blocks.append(f'<section class="sl" id="slide-{n:02d}">'
+                      f'<span class="sn">{n:02d}</span>{"".join(chunks)}</section>')
+    return "".join(blocks), cited, "\n\n".join(plain)
+
+
+# ---------- standing beats ----------
+# Permanent URLs, live whether or not anything ran on the beat this month.
+# Alaska's News Source keeps /weather/closings/ up all summer returning an
+# empty payload, and the habit and the search ranking survive the off season.
+# A beat page that 404s between stories throws that away every time.
+#
+# The terms are drawn from what the corpus actually contains (the entity and
+# keyword frequencies in ledger/topics.json), not from a taxonomy invented in
+# advance. The blurbs are written to be read: the Anchorage Daily News authored
+# blurbs for its tag pages and never rendered them, which is free ground.
+TOPICS = [
+    {"slug": "data-centers", "title": "Data centers",
+     "blurb": "Every proposed AI and cloud campus in Alaska, the land it wants, "
+              "the power it needs, and who gets to say yes.",
+     "terms": ("data center", "datacenter", "ai campus", "stak energy", "adl 422741",
+               "hyperscale", "colocation", "deadhorse", "gigawatt")},
+    {"slug": "power-and-the-grid", "title": "Power and the grid",
+     "blurb": "The Railbelt, Cook Inlet gas, the turbines and the interties. Who "
+              "pays when a new load the size of a city plugs in.",
+     "terms": ("railbelt", "grid", "turbine", "gvea", "lm6000", "natural gas",
+               "cook inlet", "megawatt", "gigawatt", "cost allocation", "off-grid",
+               "utility", "intertie", "ratepayer", "chugach", "alaska lng")},
+    {"slug": "land-and-permitting", "title": "Land and permitting",
+     "blurb": "State land leases, gravel, permafrost and the public comment "
+              "windows that are the only door most Alaskans get.",
+     "terms": ("state land lease", "dnr", "permit", "gravel", "permafrost",
+               "roadless", "public comment", "aidea", "best interest finding",
+               "right of way", "borough")},
+    {"slug": "defense-and-federal", "title": "Defense and federal",
+     "blurb": "JBER, Eielson, Clear and the federal decisions that land in "
+              "Alaska without an Alaska vote.",
+     "terms": ("jber", "eielson", "clear space force", "air force", "enhanced use lease",
+               "pentagon", "missile defense", "dod", "federal", "congress", "senate",
+               "sullivan", "murkowski", "begich")},
+    {"slug": "research-and-science", "title": "Research and science",
+     "blurb": "The university labs, the agencies and the field science using "
+              "machine learning on Alaska problems.",
+     "terms": ("uaf", "university of alaska", "geophysical institute", "usgs",
+               "deep learning", "machine learning", "computer vision", "research",
+               "salmon", "fish and game", "wildfire", "seismic", "noaa")},
+    {"slug": "data-sovereignty", "title": "Data sovereignty",
+     "blurb": "Who owns Alaska data, who trains on it, and the Native "
+              "corporations and tribes setting terms.",
+     "terms": ("indigenous data sovereignty", "native-owned", "tribal", "ancsa",
+               "native corporation", "data sovereignty", "consultation")},
+    {"slug": "state-policy", "title": "State policy",
+     "blurb": "Bills, the governor's desk, the regulatory commission and "
+              "everything that decides the rules before the concrete pours.",
+     "terms": ("dunleavy", "legislature", "senate bill", "house bill", "sb ", "hb ",
+               "rca", "regulatory commission", "statute", "governor", "session",
+               "who decides", "ballot", "primary")},
+]
+
+
+def topic_index(runs, topics_ledger):
+    """Which decks belong to which beat.
+
+    Matched against the run's own ledger entry (topic, angle, entities,
+    keywords) plus its title and caption, so a deck lands on a beat because of
+    what it is about rather than because of a word that happened to appear in
+    one headline."""
+    by_date = {}
+    for e in (topics_ledger or {}).get("entries", []):
+        d = e.get("run_date")
+        if d:
+            by_date[d] = " ".join([
+                str(e.get("topic") or ""), str(e.get("angle") or ""),
+                " ".join(e.get("entities") or []), " ".join(e.get("keywords") or []),
+            ]).lower()
+    out = {t["slug"]: [] for t in TOPICS}
+    for r in runs:
+        hay = " ".join([by_date.get(r["date"], ""), r["title"].lower(),
+                        (r.get("caption") or "").lower()[:1200]])
+        for t in TOPICS:
+            if any(term in hay for term in t["terms"]):
+                out[t["slug"]].append(r)
+    return out
+
+
+def topic_page(today, site_url, topic, decks, docket_items):
+    """One standing beat. Renders whether or not it has decks on it."""
+    cards = "".join(
+        f"""<a class="deck" href="../../archive/{r['date']}/" data-reveal>
+  <img src="{RAW}/runs/{r['date']}/slide-01.webp" width="1080" height="1350" alt="{esc(r['title'])} cover" loading="lazy">
+  <div class="meta"><h3>{esc(r['title'])}</h3>
+  <div class="who">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div></div>
+</a>""" for r in decks)
+    body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+<div class="chip kind">STANDING BEAT &middot; {len(decks)} {'ARTICLE' if len(decks) == 1 else 'ARTICLES'}</div>
+<h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">{esc(topic['title'])}</h1>
+<p class="tag">{esc(topic['blurb'])}</p>
+</div>"""
+    if decks:
+        body += f'\n<h2>Articles on this beat</h2>\n<div class="decks">{cards}</div>'
+    else:
+        body += ('\n<h2>Nothing here yet</h2>\n<p class="sub">This beat is tracked '
+                 'every day. When Alaska makes news on it, the article lands here.</p>')
+    if docket_items:
+        rows = "".join(
+            f'<li><a class="proselink" href="../../docket/#{esc(d["id"])}">'
+            f'{esc(d.get("title") or d["id"])}</a> <span class="who">'
+            f'{esc((d.get("status") or "").replace("-", " ").upper())}</span></li>'
+            for d in docket_items)
+        body += ('\n<h2 data-reveal>On the docket</h2>\n'
+                 f'<ul class="prose" data-reveal>{rows}</ul>')
+    body += ('\n<h2 data-reveal>Every beat</h2>\n<p class="prose" data-reveal>'
+             + " &middot; ".join(
+                 f'<a class="proselink" href="../{t["slug"]}/">{esc(t["title"])}</a>'
+                 for t in TOPICS) + '</p>')
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage",
+          "name": topic["title"], "description": topic["blurb"],
+          "url": f"{site_url}/topics/{topic['slug']}/",
+          "isPartOf": {"@id": org_id(site_url)},
+          "hasPart": [{"@type": "NewsArticle", "headline": r["title"],
+                       "datePublished": r["date"],
+                       "url": f"{site_url}/archive/{r['date']}/"} for r in decks]}
+    return page(f"{topic['title']} - Alaska AI", topic["blurb"][:155], body,
+                "../../", "articles", today, site_url, f"topics/{topic['slug']}/", ld=ld,
+                crumbs=[("Alaska AI", ""), ("Articles", "archive/"),
+                        (topic["title"], f"topics/{topic['slug']}/")])
+
+
+def topics_index_page(today, site_url, index):
+    rows = "".join(
+        f"""<a class="deck" href="{t['slug']}/" data-reveal>
+  <div class="meta"><h3>{esc(t['title'])}</h3>
+  <div class="who">{len(index.get(t['slug']) or [])} ARTICLES</div>
+  <p class="sub" style="margin-top:8px">{esc(t['blurb'])}</p></div>
+</a>""" for t in TOPICS)
+    body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+<div class="chip kind">{len(TOPICS)} STANDING BEATS</div>
+<h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">The beats</h1>
+<p class="tag">Alaska AI covers seven standing beats. Each page stays live
+whether or not the beat made news this week.</p>
+</div>
+<div class="decks">{rows}</div>"""
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage",
+          "name": "Beats", "url": f"{site_url}/topics/",
+          "isPartOf": {"@id": org_id(site_url)}}
+    return page("The beats - Alaska AI",
+                "The seven standing beats Alaska AI covers, from data centers "
+                "and the Railbelt grid to land permitting and data sovereignty.",
+                body, "../", "articles", today, site_url, "topics/", ld=ld,
+                crumbs=[("Alaska AI", ""), ("Articles", "archive/"),
+                        ("Beats", "topics/")])
+
+
+def sources_page(today, site_url, runs):
+    """Every document this publication has verified a claim against.
+
+    The archive of what we checked, not what we said. It is the reason to trust
+    the decks and, for an answer engine, the cheapest possible proof that the
+    numbers on this site came from somewhere."""
+    by_outlet = {}
+    for r in runs:
+        for c in (r.get("claims") or {}).values():
+            key = (house(c.get("source_outlet")) or "Uncredited source").strip()
+            e = by_outlet.setdefault(key, {"claims": 0, "primary": 0, "urls": {},
+                                           "dates": set(), "runs": set()})
+            e["claims"] += 1
+            e["primary"] += bool(c.get("source_is_primary"))
+            e["urls"].setdefault(c["source_url"], 0)
+            e["urls"][c["source_url"]] += 1
+            e["runs"].add(r["date"])
+            if c.get("date_of_source"):
+                e["dates"].add(c["date_of_source"])
+    order = sorted(by_outlet.items(), key=lambda kv: (-kv[1]["claims"], kv[0]))
+    rows = []
+    for name, e in order:
+        links = "".join(
+            f'<li><a class="proselink" href="{esc(u)}" rel="nofollow noopener" '
+            f'target="_blank">{esc(u[:110])}</a></li>'
+            for u in sorted(e["urls"], key=lambda u: -e["urls"][u])[:8])
+        rows.append(
+            f'<li><p><strong>{esc(name)}</strong></p><div class="cmeta">'
+            f'<span class="k{" p" if e["primary"] else ""}">'
+            f'{e["primary"]} PRIMARY</span>'
+            f'<span class="k">{e["claims"]} CLAIMS</span>'
+            f'<span class="d">{len(e["runs"])} '
+            f'{"ARTICLE" if len(e["runs"]) == 1 else "ARTICLES"}</span></div>'
+            f'<ul class="prose" style="margin-top:8px">{links}</ul></li>')
+    total = sum(e["claims"] for _, e in order)
+    prim = sum(e["primary"] for _, e in order)
+    docs = len({u for _, e in order for u in e["urls"]})
+    body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+<div class="chip kind">{total} VERIFIED CLAIMS &middot; {docs} DOCUMENTS</div>
+<h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">The source archive</h1>
+<p class="tag">Every document Alaska AI has checked a claim against, and how many
+claims rest on it. {prim} of {total} claims are sourced to a primary document.</p>
+</div>
+<h2>By outlet</h2>
+<p class="galhint">SORTED BY HOW MUCH OF THE RECORD RESTS ON THEM</p>
+<ol class="claims">{"".join(rows)}</ol>"""
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage",
+          "name": "The source archive", "url": f"{site_url}/sources/",
+          "isPartOf": {"@id": org_id(site_url)}}
+    return page("The source archive - Alaska AI",
+                f"Every one of the {docs} documents Alaska AI has verified a claim "
+                f"against, by outlet, with {prim} of {total} claims resting on "
+                f"primary documents.", body, "../", "articles", today, site_url,
+                "sources/", ld=ld,
+                crumbs=[("Alaska AI", ""), ("The source archive", "sources/")])
 
 
 def video_count():
@@ -1519,7 +2166,7 @@ def home_page(today, site_url, docket, runs):
 
     latest_html = ""
     if latest:
-        cover = f"{RAW}/runs/{latest['date']}/slide-01.png"
+        cover = f"{RAW}/runs/{latest['date']}/slide-01.webp"
         latest_html = f"""<h2 data-reveal>Our Latest Article</h2>
 <p class="sub" data-reveal>One verified Alaska and AI story a day, drawn as a swipeable carousel.</p>
 <div class="latest" data-reveal>
@@ -1731,7 +2378,7 @@ The data behind this page is public at <a href="../docket.json" style="color:var
 def archive_page(today, site_url, runs):
     decks = "".join(
         f"""<a class="deck" href="{r['date']}/" data-reveal>
-  <img src="{RAW}/runs/{r['date']}/slide-01.png" width="1080" height="1350" alt="{esc(r['title'])} cover" loading="lazy">
+  <img src="{RAW}/runs/{r['date']}/slide-01.webp" width="1080" height="1350" alt="{esc(r['title'])} cover" loading="lazy">
   <div class="meta"><h3>{esc(r['title'])}</h3>
   <div class="who">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div></div>
 </a>""" for r in runs)
@@ -1778,7 +2425,7 @@ def deck_page(today, site_url, r):
     alts = slide_alts(r)
     n_slides, deck_title = r["slides"], r["title"]
     slides = "".join(
-        f'<img src="{RAW}/runs/{r["date"]}/slide-{i:02d}.png" width="1080" height="1350" '
+        f'<img src="{RAW}/runs/{r["date"]}/slide-{i:02d}.webp" width="1080" height="1350" '
         f'alt="{esc(alts.get(i) or f"{deck_title}, slide {i} of {n_slides}")}"'
         + (' fetchpriority="high"' if i == 1 else ' loading="lazy"') + '>'
         for i in range(1, n_slides + 1))
@@ -1786,6 +2433,16 @@ def deck_page(today, site_url, r):
     story = caption_paragraphs(r)
     story_html = (f'<h2 data-reveal>The story</h2>\n<div class="prose" data-reveal>{story}</div>'
                   if story else "")
+    article, _, article_text = article_html(r)
+    article_html_block = (
+        f'<h2 data-reveal>Slide by slide</h2>\n'
+        f'<p class="galhint">EVERY FIGURE LINKS TO THE DOCUMENT IT WAS VERIFIED AGAINST</p>\n'
+        f'<div class="prose article" data-reveal>{article}</div>' if article else "")
+    claims_block, n_claims = claims_html(r, site_url)
+    claims_html_block = (
+        f'<h2 data-reveal>What we verified</h2>\n'
+        f'<p class="galhint">{n_claims} CLAIMS, EACH RE-FETCHED FROM ITS SOURCE BEFORE THIS DECK '
+        f'SHIPPED</p>\n<div data-reveal>{claims_block}</div>' if claims_block else "")
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <div class="chip kind">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div>
 <h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">{esc(r['title'])}</h1>
@@ -1811,22 +2468,51 @@ def deck_page(today, site_url, r):
   <a class="cta ghost" href="../">EVERY DECK</a>
 </div>
 {story_html}
+{article_html_block}
+{claims_html_block}
 <h2 data-reveal>Sources</h2>
 <pre class="copy" data-reveal>{srcs}</pre>"""
     ld = {"@context": "https://schema.org", "@type": "NewsArticle",
           "headline": r["title"], "datePublished": r["date"],
           "dateModified": r["date"],
           "description": (r.get("summary") or r["hook"])[:300],
-          "image": f"{RAW}/runs/{r['date']}/slide-01.png",
+          # og.jpg, not the webp. LinkedIn, Slack and Facebook still handle
+          # WebP link previews inconsistently, and a deck whose card fails to
+          # render on LinkedIn defeats the point of the deck.
+          "image": f"{RAW}/runs/{r['date']}/og.jpg",
           "url": f"{site_url}/archive/{r['date']}/",
           "keywords": ", ".join(t.lstrip("#") for t in (r.get("hashtags") or [])[:8]),
           "publisher": {"@id": org_id(site_url)},
           "author": {"@id": org_id(site_url)}}
+    # The body an answer engine quotes, and the documents it can check us
+    # against. citation[] is every distinct source the fact-checker actually
+    # fetched for this deck, primary documents first, which is the whole
+    # argument for citing this site rather than paraphrasing it.
+    if article_text:
+        ld["articleBody"] = article_text
+        ld["wordCount"] = len(article_text.split())
+    seen_src, cites = set(), []
+    for c in sorted((r.get("claims") or {}).values(),
+                    key=lambda c: (not c.get("source_is_primary"), c.get("id", ""))):
+        url = c.get("source_url")
+        if not url or url in seen_src:
+            continue
+        seen_src.add(url)
+        cites.append({"@type": "CreativeWork", "url": url,
+                      **({"name": c["source_outlet"]} if c.get("source_outlet") else {}),
+                      **({"datePublished": c["date_of_source"]} if c.get("date_of_source") else {})})
+    if cites:
+        ld["citation"] = cites
+        ld["isBasedOn"] = [c["url"] for c in cites]
     return page(f"{r['title']} - Alaska AI", (r.get("summary") or r["hook"])[:155],
                 body, "../../", "articles", today, site_url, f"archive/{r['date']}/",
-                og_image=f"{RAW}/runs/{r['date']}/slide-01.png", og_size=(1080, 1350), ld=ld,
+                og_image=f"{RAW}/runs/{r['date']}/og.jpg", og_size=(1080, 1350), ld=ld,
                 crumbs=[("Alaska AI", ""), ("Articles", "archive/"),
-                        (r["title"], f"archive/{r['date']}/")])
+                        (r["title"], f"archive/{r['date']}/")],
+                # Points an agent at the Markdown twin of this page, so it can
+                # take 3 KB of prose instead of parsing 60 KB of HTML for it.
+                extra_head='<link rel="alternate" type="text/markdown" '
+                           f'title="{esc(r["title"])} as Markdown" href="index.md">\n')
 
 
 def services_page(today, site_url):
@@ -3156,9 +3842,15 @@ def sitemap(site_url, runs, today):
     neither is emitted."""
     iso = today.isoformat()
     entries = []
-    for u in ("", "videos/", "docket/", "archive/", "services/", "scan/", "about/"):
-        lm = f"<lastmod>{iso}</lastmod>" if u in ("", "videos/", "docket/", "archive/") else ""
+    # Beats and the source archive change whenever a deck lands on them, which
+    # is every build that ships an article, so they carry a real lastmod too.
+    fresh = ("", "videos/", "docket/", "archive/", "topics/", "sources/")
+    for u in fresh + ("services/", "scan/", "about/"):
+        lm = f"<lastmod>{iso}</lastmod>" if u in fresh else ""
         entries.append(f"<url><loc>{site_url}/{u}</loc>{lm}</url>")
+    for t in TOPICS:
+        entries.append(f"<url><loc>{site_url}/topics/{t['slug']}/</loc>"
+                       f"<lastmod>{iso}</lastmod></url>")
     for r in runs:
         entries.append(f"<url><loc>{site_url}/archive/{r['date']}/</loc>"
                        f"<lastmod>{r['date']}</lastmod></url>")
@@ -3212,6 +3904,12 @@ def build(today, out_dir, site_url=None, domain=""):
     runs = load_runs()
     out = REPO / out_dir
 
+    # Feeds, Markdown mirrors and deck pages all want the same reconstructed
+    # article, so build it once per run here rather than three times downstream.
+    for r in runs:
+        _, _, r["article_text"] = article_html(r)
+        r["cover"] = f"{RAW}/runs/{r['date']}/og.jpg"
+
     pages = {
         "index.html": home_page(today, site_url, docket, runs),
         "docket/index.html": docket_page(today, site_url, docket),
@@ -3224,6 +3922,34 @@ def build(today, out_dir, site_url=None, domain=""):
     }
     for r in runs:
         pages[f"archive/{r['date']}/index.html"] = deck_page(today, site_url, r)
+
+    # Standing beats and the source archive. Both are permanent URLs: a beat
+    # page renders whether or not anything ran on it, so the link and the
+    # ranking survive a quiet month instead of 404ing between stories.
+    try:
+        topics_ledger = json.loads((REPO / "ledger/topics.json").read_text())
+    except Exception:
+        topics_ledger = {}
+    tindex = topic_index(runs, topics_ledger)
+    pages["topics/index.html"] = topics_index_page(today, site_url, tindex)
+    for t in TOPICS:
+        hits = [d for d in docket[0]
+                if any(term in " ".join([str(d.get("title") or ""),
+                                         str(d.get("summary") or ""),
+                                         str(d.get("kind") or ""),
+                                         str(d.get("decider") or "")]).lower()
+                       for term in t["terms"])]
+        pages[f"topics/{t['slug']}/index.html"] = topic_page(
+            today, site_url, t, tindex.get(t["slug"]) or [], hits[:8])
+    pages["sources/index.html"] = sources_page(today, site_url, runs)
+
+    # The shared bundle, written once and linked by every page. FONTPREFIX is
+    # empty because relative url() in a stylesheet resolves against the
+    # stylesheet's own location, and this file sits at the root beside fonts/.
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "site.css").write_text(
+        SITE_CSS.replace("FONTPREFIX", "").replace("GRAIN_URI", db.grain_data_uri() or "none"))
+    (out / "site.js").write_text(JS)
 
     for rel, html in pages.items():
         bad = db.BANNED.findall(html)
@@ -3261,9 +3987,37 @@ def build(today, out_dir, site_url=None, domain=""):
     (out / "sitemap.xml").write_text(sitemap(site_url, runs, today))
     (out / "robots.txt").write_text(
         "User-agent: *\nAllow: /\n\n"
-        "# AI answer engines and their crawlers are welcome to read and cite this site.\n\n"
+        "# AI answer engines and their crawlers are welcome to read and cite this site.\n"
+        "# Attribution to Alaska AI with a link to the page is requested.\n"
+        "# Every article also exists as Markdown at the same path plus index.md,\n"
+        "# and the whole corpus is one fetch at /llms-full.txt.\n\n"
         f"Sitemap: {site_url}/sitemap.xml\n")
-    (out / "llms.txt").write_text(llms_txt(site_url))
+    # ---------- the machine-readable surface ----------
+    # Feeds carry full content, not teasers. This publication wants to be
+    # quoted correctly more than it wants the click, and the two newsrooms it
+    # competes with publish either a headline-only feed or no feed at all.
+    feeds = {
+        "feed.xml": fb.rss(site_url, runs),
+        "atom.xml": fb.atom(site_url, runs),
+        "feed.json": fb.json_feed(site_url, runs),
+        "docket/feed.xml": fb.docket_rss(site_url, docket[0]),
+    }
+    for rel, text in feeds.items():
+        fb.validate(rel, text, db.fail)
+        p = out / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(text)
+
+    # A Markdown mirror beside every deck page. An agent fetching a URL would
+    # rather have 3 KB of Markdown than parse 60 KB of HTML for the story
+    # inside it, and the file costs one write per run.
+    for r in runs:
+        (out / "archive" / r["date"] / "index.md").write_text(
+            fb.deck_markdown(r, site_url))
+    (out / "llms-full.txt").write_text(fb.llms_full_txt(site_url, runs))
+    (out / "llms.txt").write_text(fb.llms_txt(
+        site_url, runs,
+        topics=[{**t, "count": len(tindex.get(t["slug"]) or [])} for t in TOPICS]))
     (out / ".nojekyll").write_text("")
     if domain:
         (out / "CNAME").write_text(domain + "\n")
