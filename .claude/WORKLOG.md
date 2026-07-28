@@ -206,7 +206,18 @@ sourcing) at zero storage cost. Flagged to the user.
 | ID | Task | Status |
 |---|---|---|
 | Z1 | Clean rebuild, two builds byte-identical, 987 internal refs 0 broken, 0 banned punctuation, `docs/videos/` untouched | DONE |
-| Z2 | Push branch, open ready PR, merge per CLAUDE.md ship policy | WIP |
+| Z2 | Pushed; PR #120 open as DRAFT. Not merged: CLAUDE.md's autonomous-merge policy covers ROUTINE RUNS, and says non-routine development sessions follow normal review etiquette. This is a development session touching the render pipeline, the site generator and the routine prompt at once, so it waits for the user. | DONE |
+
+Verification evidence:
+- CI green: `contract` success, `mobile` success (8 devices, portrait + landscape).
+- Local replication of both CI jobs passed before push.
+- Browser smoke test, 9 pages on a 390px viewport: styles applied from the
+  external bundle, zero JS errors, zero local 404s, zero horizontal overflow.
+- `raw.githubusercontent.com` serves `slide-01.webp` as `image/webp` (497 KB,
+  was 5.03 MB) and `og.jpg` as `image/jpeg`.
+- Checked the defer change for cross-script breakage: `JS` and `MAP_JS` are
+  both IIFEs, overlapping names are locals, no shared globals. Confirmed in a
+  real browser, not just by reading.
 
 ## FINAL NUMBERS
 
