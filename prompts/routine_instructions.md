@@ -417,6 +417,12 @@ JSON in its final message, which YOU persist to
    score_report.json, machine_qa.json, assemble_report.json, selection.md,
    plan.md, run_state.json.
 
+   Copy them as PNG. Step 1a converts them in place, so after Phase 11 the
+   run directory holds slide-NN.webp, contact_sheet.webp and og.jpg. The
+   gates in step 5 read `out/<date>`, which keeps its lossless PNGs and is
+   never touched by the converter, so pixel review and the completion gate
+   are unaffected.
+
 1a. Then run `python scripts/ship_images.py --run <date>`, and once it
    reports OK, `python scripts/ship_images.py --run <date> --drop-png`.
 
@@ -508,6 +514,17 @@ JSON in its final message, which YOU persist to
    commit. If BUTTONDOWN_API_KEY is unset it prints SKIP; that is not a
    failure. Never compose subscriber email by hand; the script is the
    only sender and its house-style lint is the gate.
+3a. Retention: run `python scripts/prune_runs.py --days 30 --apply`.
+
+   It deletes review apparatus only, and only from runs older than 30 days:
+   the contact sheet, the thumbs, storyboard.md, scout_merge.md,
+   selection.md, automation_retro.md and the Gmail payloads. Everything the
+   public site or the record depends on is on a NEVER list inside the
+   script: the slides, og.jpg, carousel.pdf, claims.json, copy.json,
+   caption.txt, score_report.json, run_state.json, plan.md and
+   assemble_report.json. It prints what it removed. "nothing old enough to
+   prune" is a normal result, not a failure.
+
 4. Append this run's entries to ledger/topics.json and ledger/artwork.json
    (full schemas), and 1-3 new instincts to ledger/instincts.json
    (confidence-scored; also bump/decay confirmed/contradicted ones).
@@ -531,9 +548,12 @@ JSON in its final message, which YOU persist to
 7. Open a PR (ready, not draft) and MERGE IT TO MAIN in the same run —
    this repo's CLAUDE.md policy overrides any draft-PR default. The raw
    URLs in the email point at main; the merge must land before the email.
-8. Verify two spot URLs resolve (WebFetch a slide PNG raw URL + the PDF
-   URL on main). If raw URLs 404, wait 30s and retry once; if still
-   broken, fall back to branch-pinned URLs and note it.
+8. Verify two spot URLs resolve (WebFetch a slide raw URL + the PDF URL on
+   main). The shipped slides are `.webp`, not `.png`: ship_images.py
+   converts them in Phase 11 and reclaims the PNGs, so a `.png` URL here
+   is a 404 and means the draft's image links are all broken. If raw URLs
+   404, wait 30s and retry once; if still broken, fall back to
+   branch-pinned URLs and note it.
 
 ## PHASE 12 — AUTOMATION RETRO + UPGRADE (the machine gets better every run)
 
@@ -691,9 +711,9 @@ learned, and the one thing to improve next run. Mark run_state complete.
 ## SUCCESS CRITERIA (all must hold)
 
 1. Gmail draft exists: post copy, first-comment sources, document title,
-   inline previews, working raw URLs for every slide PNG + the PDF,
-   report card, aftercare checklist, and the automation-changes section
-   (even if it says "no changes").
+   inline previews, working raw URLs for every shipped slide (`.webp`,
+   not `.png`) + the PDF, report card, aftercare checklist, and the
+   automation-changes section (even if it says "no changes").
 2. runs/<date>/ merged to main with all artifacts; ledgers updated
    (including upgrades.json, possibly with zero new entries, and
    docket.json with the day's tracker state); docs/ rebuilt by
