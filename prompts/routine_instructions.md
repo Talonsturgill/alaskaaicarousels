@@ -154,6 +154,22 @@ fact-checker has NO Write tool by design (it is an adversarial validator);
 it returns the verified claims as JSON in its final message, which YOU
 persist to `out/<date>/claims.json`. Stories need >= 3 verified claims to
 survive.
+
+Then run `python scripts/claims_check.py --date <date>`. This is a GATE.
+claims.json is no longer an internal note: it is published as the deck's
+"What we verified" record, as rows in the public source archive at
+/sources/, and as the citation list in the JSON-LD and the feeds. The
+check enforces the pinned field names (`claim`, `source_url`,
+`source_outlet`, `source_is_primary`, `date_of_source`), that at least 80
+percent of claims carry a usable source URL, and that at least one source
+is a primary document.
+
+Exit 1 means the deck would publish a broken or uncredited verification
+record. Fix the claims, do not edit the check. If the fact-checker returned
+the wrong field names, re-prompt it with `python scripts/claims_check.py
+--schema` and persist the corrected JSON. This gate exists because for 18
+runs nothing read the file closely enough to complain, and the record
+rendered empty on 14 of 18 decks without anyone noticing.
 If fewer than 2 stories survive: broaden the window to 21 days, rerun
 Phases 2-3 once (note the broadening for the email). If still starved,
 pick the strongest single story and plan a tighter 6-7 slide deck —
@@ -400,9 +416,44 @@ JSON in its final message, which YOU persist to
    storyboard.md, claims.json, copy.json, caption.txt + caption_report.json,
    score_report.json, machine_qa.json, assemble_report.json, selection.md,
    plan.md, run_state.json.
-2. Rebuild the public site (home, docket, archive, per-deck pages, about,
+
+1a. Then run `python scripts/ship_images.py --run <date>`, and once it
+   reports OK, `python scripts/ship_images.py --run <date> --drop-png`.
+
+   The renders are 2x lossless PNGs, right for the pixel-critic loop and
+   wrong for everything downstream: nine of them is ~36 MB, the public site
+   serves them straight off raw.githubusercontent.com, and runs/ was 610 MB
+   growing 34 MB a day. The encoder converts to WebP at full 2160x2700
+   resolution (nothing is downscaled), measures PSNR against the original,
+   and escalates q92 -> q96 -> q98 -> lossless per file until it clears 40
+   dB. Typical result is ~4.5 MB per deck, about 9x smaller, visually
+   identical.
+
+   It also writes `og.jpg`, which every og:image and schema.org image
+   points at. Do not switch those to the WebP: LinkedIn, Slack and Facebook
+   still handle WebP link previews inconsistently, and a deck whose card
+   fails to render on LinkedIn defeats the deck.
+
+   `--drop-png` is a separate pass on purpose. It re-opens both files and
+   compares dimensions before unlinking, so a missing or truncated WebP
+   leaves its PNG alone. Never delete the renders by hand.
+2. Rebuild the public site (home, docket, archive, per-deck pages, the seven
+   standing beats at topics/, the source archive at sources/, about,
    and the Bottleneck Scanner at scan/ plus its homepage section)
    and commit it with the run: `python scripts/site_build.py --date <date>`
+
+   The build also emits the machine-readable surface, all of it derived from
+   the run you just copied, none of it needing a decision from you: the deck
+   page's article body and verification record (built by joining copy.json
+   slides to claims.json on claim_ids), a Markdown twin at
+   archive/<date>/index.md, the four feeds (feed.xml, atom.xml, feed.json,
+   docket/feed.xml), llms.txt and llms-full.txt, and the sitemap. Feeds are
+   parsed before they are written and a malformed one FAILS the build.
+
+   This is the machine-readable moat and it is the point. Both Alaska
+   newsrooms block every AI crawler and neither publishes a usable feed. If
+   a change would make a deck page less legible to a crawler, or would put
+   the story only inside the slide images again, it is the wrong change.
    (it validates ledger/docket.json, reads runs/ for the archive, and
    refuses banned punctuation on every page; a FAIL here blocks the ship
    until fixed). Because the archive reads runs/, run it AFTER step 1

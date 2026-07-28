@@ -121,6 +121,28 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   432px feed thumbs (`assemble_report.json`)
 - `bootstrap.sh` — pip deps (playwright, pypdf, img2pdf; Pillow/numpy present)
 
+## PNG in the loop, WebP on the way out
+
+Everything above stays PNG. Review happens on lossless pixels: the pixel
+critics read the full-size render and the 432px thumb, and a lossy artifact in
+that loop would be indistinguishable from a real type-rendering fault.
+
+Shipping is a separate step, run at Phase 11 after the artifacts are copied to
+`runs/<date>/`, never inside the render loop:
+
+    python scripts/ship_images.py --run <date>              # encode + verify
+    python scripts/ship_images.py --run <date> --drop-png   # reclaim originals
+
+It converts to WebP at the full 2160x2700 (nothing is downscaled), measures
+PSNR against the original, and escalates q92 -> q96 -> q98 -> lossless per file
+until every one clears 40 dB. A deck goes from ~36 MB to ~4.5 MB. It also
+writes `og.jpg`, which every og:image and schema.org image points at, because
+LinkedIn and Slack still handle WebP link previews inconsistently.
+
+The public site references `runs/<date>/slide-NN.webp`. If you change the
+shipped filenames or extensions, `scripts/site_build.py` has to change with
+them or every archive page goes blank.
+
 ## Art libraries (committed, offline)
 
 - `assets/js/noise.js` — seeded simplex 2D/3D, fbm, domain warp (`AK.*`)
