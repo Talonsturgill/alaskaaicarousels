@@ -177,6 +177,58 @@ async function run(browser, label, profile) {
   check(label, 'the page does not scroll sideways', geom.overflowX <= 0,
         geom.overflowX > 0 ? geom.overflowX + 'px of horizontal overflow' : 'no overflow');
 
+  /* The home view must show Alaska, not whatever corner the decisions happen
+     to cluster in. Measured against the coastline itself rather than the
+     viewBox, because the projection does not promise to fill it. */
+  const state = await page.evaluate(() => {
+    const svg = document.querySelector('.maphero svg');
+    const coast = svg.querySelector('.coast');
+    if (!coast) return null;
+    const b = coast.getBoundingClientRect(), f = svg.getBoundingClientRect();
+    return {
+      cut: Math.round(Math.max(0, f.left - b.left) + Math.max(0, b.right - f.right) +
+                      Math.max(0, f.top - b.top) + Math.max(0, b.bottom - f.bottom)),
+      wide: +(b.width / f.width * 100).toFixed(0),
+      tall: +(b.height / f.height * 100).toFixed(0),
+    };
+  });
+  check(label, 'the map opens on the whole shape of Alaska', state && state.cut <= 4,
+        !state ? 'no coastline found to measure'
+               : state.cut ? state.cut + 'px of coastline is outside the frame'
+                           : 'the coast fits, filling ' + state.wide + '% by ' + state.tall + '%');
+  check(label, 'the state is not left as a speck in its frame',
+        !!state && (state.wide >= 55 || state.tall >= 55),
+        state ? 'it fills ' + state.wide + '% of width and ' + state.tall + '% of height' : 'n/a');
+
+  /* Turning on every layer used to print all three notes through each other,
+     because the no-script reveal rules carry an id and outranked the rule that
+     hides them. Unreadable on every device, which is worse than any layout
+     shift. */
+  const stacked = await page.evaluate(async () => {
+    for (const id of ['lyr-grid', 'lyr-gen', 'lyr-taps']) {
+      const l = document.querySelector('label[for="' + id + '"]');
+      if (l) l.click();
+      const b = document.getElementById(id);
+      if (b && !b.checked && l) l.click();
+    }
+    await new Promise(r => setTimeout(r, 120));
+    const vis = [...document.querySelectorAll('.lyrnote')].filter(n => {
+      const r = n.getBoundingClientRect();
+      return r.width > 0 && r.height > 0 && getComputedStyle(n).display !== 'none';
+    });
+    let overlap = 0;
+    for (let i = 0; i < vis.length; i++)
+      for (let j = i + 1; j < vis.length; j++) {
+        const a = vis[i].getBoundingClientRect(), b = vis[j].getBoundingClientRect();
+        if (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) overlap++;
+      }
+    return { on: vis.length, overlap };
+  });
+  check(label, 'every layer on does not stack notes on top of each other',
+        stacked.overlap === 0,
+        stacked.overlap ? stacked.overlap + ' pairs of notes overlap, printing through each other'
+                        : stacked.on + ' note visible with all three layers on');
+
   /* The one that sent the reader up the page. A tap must leave the thing they
      tapped within a few pixels of where their finger already was. */
   const t1 = await tapAndMeasure(page, 'label[for="lyr-gen"]');
