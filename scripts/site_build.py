@@ -2576,8 +2576,9 @@ built. Bring us a specific ask or let the Field Study find the highest payers.</
   <p>The hire you could not make. A named agent with a real job description, working whole
   systems end to end, on shift around the clock.</p></div>
   <div class="step" data-reveal><div class="k">06 &middot; CONNECT</div><h3>The digital crew</h3>
-  <p>Connected agents running the back office together, a working model of your operation.
-  This is the ceiling, and we have built it before.</p></div>
+  <p>Full agentic systems. Connected agents running the back office together, a working
+  model of your operation, with OpenClaw and Hermes style integrations wired into the
+  tools you already use. This is the ceiling, and we have built it before.</p></div>
 </div>"""
 
     tiers = f"""<h2 data-reveal>Three ways in</h2>
