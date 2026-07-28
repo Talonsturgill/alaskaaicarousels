@@ -1432,6 +1432,141 @@ def load_docket(today):
     return items, live, done, dated, live_sorted
 
 
+# claims.json is the run's verified record: every number and quote the
+# fact-checker re-fetched, with the URL it was proved against. It is the most
+# expensive thing a run produces, and it arrives in a different shape almost
+# every day, because the fact-checker is an agent and nothing pinned its
+# schema. Across 18 runs the container has been "claims", "verified_claims" and
+# "docket_claims", and the same field has been called claim/text/statement,
+# source_url/url/evidence_url, source_outlet/outlet/publisher.
+#
+# Reading tolerantly is what makes the whole archive legible rather than only
+# the four runs that happened to use the newest shape. Phase F pins the schema
+# going forward; this keeps the back catalogue working regardless.
+CLAIM_CONTAINERS = ("claims", "verified_claims", "docket_claims", "claims_verified")
+CLAIM_FIELDS = {
+    "id":       ("id", "claim_id"),
+    "claim":    ("claim", "text", "statement"),
+    "value":    ("value", "value_detail", "number_or_date", "figure"),
+    "url":      ("source_url", "url", "evidence_url", "link"),
+    "outlet":   ("source_outlet", "outlet", "publisher", "source"),
+    "date":     ("date_of_source", "source_date", "published", "pub_date", "date"),
+    "verbatim": ("verbatim", "verbatim_quote", "verbatim_support"),
+}
+# A source is primary when the run says so outright, or when the credibility
+# or tier field it used instead means the same thing.
+PRIMARY_WORDS = ("primary", "official", "filing", "government", "tier1", "tier 1")
+
+
+def _first(d, keys):
+    """First non-empty value among `keys`, descending one level into the
+    nested evidence objects some runs used instead of flat fields."""
+    for k in keys:
+        v = d.get(k)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+        if isinstance(v, (int, float)):
+            return str(v)
+        # One run recorded evidence as [{"url":..., "outlet":..., "pub_date":...}]
+        # rather than as flat source_url/source_outlet fields.
+        if isinstance(v, list) and v and isinstance(v[0], dict):
+            v = v[0]
+        if isinstance(v, dict):
+            for kk in ("url", "source_url", "link", "outlet", "text", "quote"):
+                if isinstance(v.get(kk), str) and v[kk].strip():
+                    return v[kk].strip()
+    return ""
+
+
+def _evidence_bits(c):
+    """url/outlet/date pulled from a nested evidence object, when the run put
+    them there instead of on the claim itself."""
+    for k in ("evidence", "sources", "source"):
+        v = c.get(k)
+        if isinstance(v, list) and v and isinstance(v[0], dict):
+            v = v[0]
+        if isinstance(v, dict):
+            return (_first(v, ("url", "source_url", "link")),
+                    _first(v, ("outlet", "source_outlet", "publisher")),
+                    _first(v, ("pub_date", "date", "published", "source_date")))
+    return "", "", ""
+
+
+def _looks_like_claims(rows):
+    """A list of dicts is a claim list when most entries carry a statement and
+    a source. Lets a run name its container anything (two runs used the story
+    codenames "beluga" and "caribou_fallback") without the archive going dark."""
+    if not isinstance(rows, list) or not rows or not isinstance(rows[0], dict):
+        return False
+    hits = sum(1 for c in rows if isinstance(c, dict)
+               and _first(c, CLAIM_FIELDS["claim"])
+               and (_first(c, CLAIM_FIELDS["url"]) or _evidence_bits(c)[0]))
+    return hits >= max(2, len(rows) // 2)
+
+
+def _claim_rows(doc):
+    """Every claim-shaped list in the document, whatever it was named and
+    however deeply the run nested it."""
+    for key in CLAIM_CONTAINERS:
+        if _looks_like_claims(doc.get(key)):
+            return doc[key]
+    # Some runs kept the claims inside the story they belong to.
+    for key in ("stories", "selected_story", "story"):
+        v = doc.get(key)
+        v = v if isinstance(v, list) else ([v] if isinstance(v, dict) else [])
+        rows = [c for s in v if isinstance(s, dict)
+                for c in (s.get("claims") or []) if isinstance(c, dict)]
+        if _looks_like_claims(rows):
+            return rows
+    # Last resort: any top-level list that reads like claims.
+    for key, v in doc.items():
+        if key in ("dropped", "kill_log", "killed", "rejected", "unresolved") \
+                or "drop" in key or "kill" in key or "reject" in key:
+            continue
+        if _looks_like_claims(v):
+            return v
+    return []
+
+
+def normalize_claims(doc):
+    """Every shape of claims.json the runs have produced, as one dict keyed by
+    claim id. Unknown shapes yield nothing rather than a broken page."""
+    rows = _claim_rows(doc)
+    if not rows:
+        return {}
+
+    out = {}
+    for i, c in enumerate(rows, 1):
+        if not isinstance(c, dict):
+            continue
+        text = _first(c, CLAIM_FIELDS["claim"])
+        if not text:
+            continue
+        ev_url, ev_outlet, ev_date = _evidence_bits(c)
+        url = _first(c, CLAIM_FIELDS["url"]) or ev_url
+        if not url:
+            continue                       # unsourced, and this section is the sourcing
+        cid = _first(c, CLAIM_FIELDS["id"]) or f"C{i:02d}"
+        primary = c.get("source_is_primary")
+        if primary is None:
+            primary = c.get("primary")
+        if primary is None:
+            blob = " ".join(str(c.get(k, "")) for k in
+                            ("credibility", "tier", "source_type", "status")).lower()
+            primary = any(w in blob for w in PRIMARY_WORDS)
+        out[cid] = {
+            "id": cid,
+            "claim": text,
+            "value": _first(c, CLAIM_FIELDS["value"]),
+            "source_url": url,
+            "source_outlet": _first(c, CLAIM_FIELDS["outlet"]) or ev_outlet,
+            "source_is_primary": bool(primary),
+            "date_of_source": (_first(c, CLAIM_FIELDS["date"]) or ev_date)[:10],
+            "verbatim": _first(c, CLAIM_FIELDS["verbatim"]),
+        }
+    return out
+
+
 def load_runs():
     out = []
     for d in sorted((REPO / "runs").iterdir(), reverse=True):
@@ -1443,14 +1578,8 @@ def load_runs():
             caption = (d / "caption.txt").read_text().strip()
         except Exception:
             continue
-        # claims.json is the run's verified record: every number and quote the
-        # fact-checker re-fetched, with the URL it was proved against. It is the
-        # most expensive thing a run produces and until now it never reached the
-        # page. Optional, because a run can predate it or ship without one.
         try:
-            claims = {c["id"]: c for c in
-                      json.loads((d / "claims.json").read_text()).get("claims", [])
-                      if c.get("id")}
+            claims = normalize_claims(json.loads((d / "claims.json").read_text()))
         except Exception:
             claims = {}
         out.append({
@@ -1489,10 +1618,13 @@ def _slide_text(entry, keys):
     return ""
 
 
-def slide_alts(r):
-    """Descriptive alt text per slide from the run's own per-slide copy, so
-    the story inside the PNGs is legible to search engines and screen
-    readers. Handles every copy.json shape the runs have used."""
+def slide_entries(r):
+    """Per-slide copy as {slide number: dict}, whatever shape the run used.
+
+    Every run's copywriter invents its own container. Across 18 runs the slide
+    copy has arrived as a list, as a dict keyed "01", as one keyed "S1", and as
+    one keyed "slide-01". Anything that reads slide copy goes through here, so
+    a new shape is fixed in one place instead of silently rendering nothing."""
     data = r.get("slide_data")
     entries = {}
     if isinstance(data, list):
@@ -1504,9 +1636,54 @@ def slide_alts(r):
                 entries[int(num)] = s
     elif isinstance(data, dict):
         for k, s in data.items():
-            num = str(k).lstrip("S0")
-            if num.isdigit() and isinstance(s, dict):
+            num = re.sub(r"^(slide[-_]?|S)", "", str(k), flags=re.I).lstrip("0") or "0"
+            if not num.isdigit():
+                continue
+            if isinstance(s, dict):
                 entries[int(num)] = s
+            elif isinstance(s, list):
+                # One run recorded each slide as the flat list of strings set on
+                # it, furniture and all. Recover the prose and drop the chrome.
+                lines = _prose_lines(s)
+                if lines:
+                    entries[int(num)] = {"headline": lines[0],
+                                         "body": " ".join(lines[1:])}
+    return dict(sorted(entries.items()))
+
+
+# Slide furniture that carries no story: the counter, the wordmark, the
+# coordinate stamp, a bare date. Dropped before the rest is read as prose.
+_FURNITURE = re.compile(
+    r"^(\d+\s*/\s*\d+"                       # 01 / 10
+    r"|ALASKA\.?AI"                          # wordmark
+    r"|\d+\s*deg[^a-z]*"                     # 58 deg 18'N 134 deg 25'W
+    r"|[A-Z]{3}\s+\d{1,2},?\s+\d{4}"         # AUG 18 2026
+    r")$", re.I)
+
+
+def _prose_lines(strings):
+    """The lines from a slide's raw string list that read like sentences.
+
+    Wants at least three words and one lowercase letter, which keeps headlines
+    and dek lines while dropping set-in-caps labels and stamps."""
+    out = []
+    for s in strings:
+        if not isinstance(s, str):
+            continue
+        t = " ".join(s.split())
+        if not t or _FURNITURE.match(t) or len(t) < 12:
+            continue
+        if len(t.split()) < 3 or not any(c.islower() for c in t):
+            continue
+        out.append(t)
+    return out
+
+
+def slide_alts(r):
+    """Descriptive alt text per slide from the run's own per-slide copy, so
+    the story inside the PNGs is legible to search engines and screen
+    readers."""
+    entries = slide_entries(r)
     alts = {}
     for i, s in entries.items():
         head = _slide_text(s, HEAD_KEYS).rstrip(".")
@@ -1671,15 +1848,13 @@ def article_html(r):
 
     Slides with no prose (a chart plate, a closing card) contribute their
     headline alone, which is what they say."""
-    slides = r.get("slide_data") or []
+    entries = slide_entries(r)
     claims = r.get("claims") or {}
-    if not isinstance(slides, list) or not slides:
+    if not entries:
         return "", [], ""
 
     used, cited, blocks, plain = set(), [], [], []
-    for i, s in enumerate(slides, 1):
-        if not isinstance(s, dict):
-            continue
+    for n, s in entries.items():
         head = house(_slide_text(s, HEAD_KEYS))
         body = house(_slide_text(s, BODY_KEYS))
         if not head and not body:
@@ -1696,7 +1871,6 @@ def article_html(r):
             cited += got
             chunks.append(f'<p>{b}</p>')
             plain.append(body)
-        n = s.get("n") or i
         blocks.append(f'<section class="sl" id="slide-{n:02d}">'
                       f'<span class="sn">{n:02d}</span>{"".join(chunks)}</section>')
     return "".join(blocks), cited, "\n\n".join(plain)
