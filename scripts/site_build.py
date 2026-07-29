@@ -169,6 +169,12 @@ MONTH_FULL = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"]
 
 esc = db.esc
+# house() and _decolon moved to docket_build so feeds_build can reach
+# them too. site_build imports feeds_build, so feeds_build importing
+# site_build back would be a cycle; the shared library is the only
+# place both can read from.
+house = db.house
+_decolon = db._decolon
 
 
 # ---------- Anchorage daylight telemetry (NOAA-style approximation) ----------
@@ -1890,42 +1896,8 @@ def caption_paragraphs(r):
     return "".join(f"<p>{esc(p)}</p>" for p in paras)
 
 
-def house(text):
-    """House style, applied to text this generator pulls out of a run.
-
-    Slide copy is written to the house rules, but claims.json quotes sources
-    verbatim and a source is free to use an em dash and curly quotes. Those
-    would fail the punctuation gate and take the whole build down, so they are
-    normalized here rather than left to break a ship at midnight."""
-    if not text:
-        return ""
-    for bad, good in (("—", ", "), ("–", ", "),
-                      ("‘", "'"), ("’", "'"),
-                      ("“", '"'), ("”", '"')):
-        text = text.replace(bad, good)
-    text = db.BANNED.sub("", text)              # anything left (emoji) goes
-    text = " ".join(_decolon(text).split())
-    # A dash sitting between spaces leaves "a , b" once it becomes a comma.
-    text = re.sub(r"\s+([,.;])", r"\1", text)
-    return text.rstrip(" ,:")
 
 
-def _decolon(text):
-    """Remove colons from prose the way prose_colon_gate counts them.
-
-    The gate exempts exactly two things, clock times and URLs, then fails the
-    build on any colon left over. Replacing ": " was not the same rule: copy
-    like "SB 250:the vote" or a bare "Note:x" sailed through and took the
-    nightly ship down with sys.exit(1) at the gate. Match the gate's own
-    exemptions instead of approximating them."""
-    keep = re.compile(r"https?://\S+|\d{1,2}:\d{2}")
-    out, at = [], 0
-    for m in keep.finditer(text):
-        out.append(re.sub(r"\s*:\s*", ", ", text[at:m.start()]))
-        out.append(m.group(0))
-        at = m.end()
-    out.append(re.sub(r"\s*:\s*", ", ", text[at:]))
-    return "".join(out)
 
 
 def _anchor_candidates(claim):
@@ -2570,7 +2542,11 @@ def deck_page(today, site_url, r):
     # against. The article TEXT is still built, because it still feeds
     # articleBody and the Markdown twin that answer engines read, it is simply
     # no longer printed a second time on the page.
-    _, _, article_text = article_html(r)
+    # build() computes this once per run and stores it on r, with a comment
+    # saying so. Recomputing here made it 38 calls in a full build for 19 runs.
+    article_text = r.get("article_text")
+    if article_text is None:
+        _, _, article_text = article_html(r)
     claims_block, n_claims = claims_html(r, site_url)
     claims_html_block = (
         f'<h2 data-reveal>What we verified</h2>\n'
@@ -3698,7 +3674,13 @@ every observation.</p>
       fetch(FN + "/scan-result?token=" + encodeURIComponent(token) + "&since=" + seen,
             { headers: HEADERS })
         .then(function(r){ httpOk = r.ok; return r.json(); })
-        .catch(function(){ return {}; })
+        // A rejected fetch (offline, DNS, CORS, dropped connection) never runs
+        // the handler above, so httpOk kept its initial true and the empty
+        // object carried no d.error. Control then fell past the failure branch
+        // to readFails = 0, and a reader who had lost connectivity watched a
+        // fully animated, apparently-progressing room for the whole two-hour
+        // STOP_AFTER instead of the two-minute give-up this is built around.
+        .catch(function(){ httpOk = false; return {}; })
         .then(function(d){
           if (d.status === "done" || d.status === "degraded") {
             settled = true;
@@ -3990,31 +3972,6 @@ def sitemap(site_url, runs, today):
             + "".join(entries) + "</urlset>")
 
 
-def llms_txt(site_url):
-    """A curated map for LLM agents (llmstxt.org). Near-zero cost to serve;
-    answer engines mostly ignore it today, but agent tooling reads it and the
-    docket feed is exactly the kind of data an agent wants."""
-    return f"""# Alaska AI
-
-> Alaska AI is the daily publication on Alaska's AI beat and an AI studio in
-> Anchorage that builds AI systems for Alaska businesses. Every fact on the
-> site is verified against a fetched primary source.
-
-## Core pages
-
-- [AI consulting for Alaska businesses]({site_url}/services/)
-- [The Bottleneck Scanner, an honest free read of where AI would and would not help a business]({site_url}/scan/)
-- [The Alaska AI Docket, every AI infrastructure decision in the state]({site_url}/docket/)
-- [Articles, one verified Alaska and AI story a day]({site_url}/archive/)
-- [About Alaska AI]({site_url}/about/)
-
-## Data
-
-- [The docket as open JSON]({site_url}/docket.json)
-"""
-
-
-# ---------- build ----------
 
 def prose_colon_gate(rel, html):
     """House style bans colons in visible copy (clock times like 4:30 and
@@ -4077,16 +4034,27 @@ def build(today, out_dir, site_url=None, domain=""):
     # The shared bundle, written once and linked by every page. FONTPREFIX is
     # empty because relative url() in a stylesheet resolves against the
     # stylesheet's own location, and this file sits at the root beside fonts/.
-    out.mkdir(parents=True, exist_ok=True)
-    (out / "site.css").write_text(
-        SITE_CSS.replace("FONTPREFIX", "").replace("GRAIN_URI", db.grain_data_uri() or "none"))
-    (out / "site.js").write_text(JS)
-
+    # GATE EVERY PAGE FIRST, THEN WRITE.
+    #
+    # These two ran in one loop, and db.fail is sys.exit(1), so a page failing
+    # the punctuation or colon gate left docs/ half updated: the pages built
+    # before it were new, the rest stale, and no feeds, sitemap, docket.json or
+    # Markdown mirror were written at all, because those come after. The site
+    # then disagreed with itself about what it contained, and the failure that
+    # was supposed to stop a bad ship had already published part of one.
+    #
+    # An em dash in a source name is enough to trigger it, which is exactly the
+    # case house() exists for and feeds_build was missing.
     for rel, html in pages.items():
         bad = db.BANNED.findall(html)
         if bad:
             db.fail(f"banned punctuation in {rel} {bad[:8]}")
         prose_colon_gate(rel, html)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "site.css").write_text(
+        SITE_CSS.replace("FONTPREFIX", "").replace("GRAIN_URI", db.grain_data_uri() or "none"))
+    (out / "site.js").write_text(JS)
+    for rel, html in pages.items():
         p = out / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(html)
@@ -4133,8 +4101,11 @@ def build(today, out_dir, site_url=None, domain=""):
         "feed.json": fb.json_feed(site_url, runs),
         "docket/feed.xml": fb.docket_rss(site_url, docket[0]),
     }
+    # Same rule for the feeds: validate all four, then write all four, so a
+    # malformed atom.xml cannot leave a fresh feed.xml beside a stale one.
     for rel, text in feeds.items():
         fb.validate(rel, text, db.fail)
+    for rel, text in feeds.items():
         p = out / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(text)

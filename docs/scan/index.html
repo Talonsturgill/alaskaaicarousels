@@ -782,7 +782,13 @@ every observation.</p>
       fetch(FN + "/scan-result?token=" + encodeURIComponent(token) + "&since=" + seen,
             { headers: HEADERS })
         .then(function(r){ httpOk = r.ok; return r.json(); })
-        .catch(function(){ return {}; })
+        // A rejected fetch (offline, DNS, CORS, dropped connection) never runs
+        // the handler above, so httpOk kept its initial true and the empty
+        // object carried no d.error. Control then fell past the failure branch
+        // to readFails = 0, and a reader who had lost connectivity watched a
+        // fully animated, apparently-progressing room for the whole two-hour
+        // STOP_AFTER instead of the two-minute give-up this is built around.
+        .catch(function(){ httpOk = false; return {}; })
         .then(function(d){
           if (d.status === "done" || d.status === "degraded") {
             settled = true;

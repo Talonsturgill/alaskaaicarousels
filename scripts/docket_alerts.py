@@ -44,6 +44,13 @@ MONTH_FULL = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"]
 MAX_PER_RUN = 1  # at most one subscriber email per day, ever
 
+# Words that end in a period without ending a sentence. Alaska legislative
+# copy is full of them, and "HB 259, introduced by Rep." went out looking like
+# a complete thought.
+ABBREVIATIONS = {"Rep", "Sen", "Gov", "Sec", "Dept", "Mr", "Ms", "Mrs", "Dr",
+                 "St", "No", "Inc", "Co", "Corp", "Jr", "Sr", "Ave", "Blvd",
+                 "Ft", "Mt", "vs", "etc", "approx", "Assn", "Comm"}
+
 
 def pretty(iso):
     d = ddate.fromisoformat(iso)
@@ -69,6 +76,34 @@ def load_sent():
     return json.loads(p.read_text())
 
 
+def migrate_window_keys(sent, items, today):
+    """Pin legacy dateless window-open keys to the deadline they were sent for.
+
+    The key gained a date so a reopened comment period can alert again. That
+    change alone would make every already-sent window-open key stop matching,
+    and the next run would mail every open item to subscribers a second time.
+
+    A legacy key means "we already told them about the window that was open
+    then", and the window open then is the one open now unless it has moved.
+    So pin it to the item's current deadline, once, in the ledger. After that
+    the key is dated like any other and a genuinely new window gets a new key.
+    Idempotent; returns True when it changed something."""
+    by_id = {it["id"]: it for it in items}
+    changed = False
+    for e in sent["sent"]:
+        key = e["key"]
+        if not key.endswith("/window-open"):
+            continue
+        iid = key[: -len("/window-open")]
+        it = by_id.get(iid)
+        dl = db.resolve(it, today)["deadline"] if it else None
+        # No item or no deadline: pin to what it was, so it still cannot resend.
+        e["key"] = f"{iid}/window-open/{dl['date'] if dl else 'undated'}"
+        e["migrated_from"] = key
+        changed = True
+    return changed
+
+
 def due_alerts(items, sent_keys, today):
     due = []
     for it in items:
@@ -83,7 +118,13 @@ def due_alerts(items, sent_keys, today):
         # state comment window. r["cta"] also means an expired window can never
         # newly alert as open.
         if r["cta"]:
-            k = f"{it['id']}/window-open"
+            # The key carries the deadline it is about. Without it, one
+            # window-open send silences an item forever, so a REOPENED comment
+            # period or a second hearing on the same docket item is never told
+            # to subscribers. Reopened DNR windows are routine. The near key
+            # below already carried its date; this one did not.
+            dl = r["deadline"]["date"] if r["deadline"] else "undated"
+            k = f"{it['id']}/window-open/{dl}"
             if k not in sent_keys:
                 due.append((k, "window-open", it, r["deadline"]))
         for d in it["key_dates"]:
@@ -93,6 +134,51 @@ def due_alerts(items, sent_keys, today):
                 if k not in sent_keys:
                     due.append((k, "near", it, d))
     return due
+
+
+def teaser(summary):
+    """The first sentence of a summary, without cutting it at an abbreviation.
+
+    summary.split(". ")[0] rendered hb-259 as "HB 259, introduced by Rep." in
+    a subscriber email. Require the next character to start a new sentence, and
+    fall back to the whole summary rather than emit a fragment. The schema says
+    a summary is one or two sentences, so the whole thing is always a safe
+    answer; a truncated one never is."""
+    s = " ".join((summary or "").split())
+    for m in re.finditer(r"\.\s+(?=[A-Z0-9])", s):
+        word = re.search(r"([A-Za-z.]+)$", s[:m.start()])
+        head = word.group(1) if word else ""
+        # A single capital (initials) or a known title is not a sentence end.
+        if head in ABBREVIATIONS or (len(head) == 1 and head.isupper()):
+            continue
+        first = s[:m.start() + 1]
+        if len(first) >= 40 and first.count(" ") >= 6:
+            return first
+        break                          # suspiciously short, do not truncate
+    return s
+
+
+def intro(due):
+    """One opening sentence, describing what is ACTUALLY due.
+
+    This used to be hardcoded to "a public window closing soon" in render_html,
+    which is the body that sends. A `near` alert about another body's vote then
+    opened by telling the reader their comment window was closing, while the
+    card underneath correctly named the vote and the access note underneath
+    that said the window ran another week. The subject line was honest; the
+    body was not. Same defect family as the AUG 13 button.
+
+    Living in compose() means the colon and punctuation lint covers it too,
+    which it never did while it was a literal inside the HTML builder."""
+    kinds = {kind for _, kind, _, _ in due}
+    if kinds == {"window-open"}:
+        return ("A public comment window just opened on an Alaska "
+                "AI-infrastructure decision.")
+    if kinds == {"near"}:
+        return ("A quick heads-up on Alaska AI-infrastructure decisions "
+                "with a date in the next few days.")
+    return ("A quick heads-up on Alaska AI-infrastructure decisions, an open "
+            "comment window and a date landing soon.")
 
 
 def compose(due, today):
@@ -110,10 +196,10 @@ def compose(due, today):
     else:
         subject = f"{len(due)} Alaska AI decisions land in the next few days"
 
-    lines = []
+    lines = [intro(due)]
     for k, kind, it, d in due:
         lines.append(f"**{it['title']}**")
-        lines.append(it["summary"].split(". ")[0] + ".")
+        lines.append(teaser(it["summary"]))
         if d:
             lines.append(f"{d['label']}, {pretty(d['date'])}.")
         lines.append(it["access_note"])
@@ -147,14 +233,12 @@ def render_html(due, today):
     needed) and sits inside the newsletter's branded header/footer. The plain
     prose from compose() is what the colon lint gates; this is the sent body."""
     due = dedupe_by_item(due)
-    intro = ("A quick heads-up on Alaska AI-infrastructure decisions with a "
-             "public window closing soon.")
     P = ["<div style='font-family:Arial,Helvetica,sans-serif;'>",
          f"<p style='font-size:15px;color:#33424f;line-height:1.6;margin:0 0 20px;'>"
-         f"{esc(intro)}</p>"]
+         f"{esc(intro(due))}</p>"]
     for k, kind, it, d in due:
         title = esc(it["title"])
-        summary = esc(it["summary"].split(". ")[0] + ".")
+        summary = esc(teaser(it["summary"]))
         access = esc(it["access_note"])
         src = esc(it["sources"][0]["url"])
         when = ""
@@ -218,7 +302,15 @@ def main():
     today = ddate.fromisoformat(args.date)
 
     ledger = json.loads((REPO / "ledger/docket.json").read_text())
+    # Every other docket consumer validates before it reads. This one did not,
+    # so an item Phase 3.5 added with an empty sources list raised a bare
+    # IndexError from compose() mid-run instead of the intended
+    # "FAIL: <id>: needs at least one source".
+    db.validate(ledger["items"])
     sent = load_sent()
+    if migrate_window_keys(sent, ledger["items"], today):
+        (REPO / "ledger/alerts.json").write_text(json.dumps(sent, indent=2) + "\n")
+        print("alerts ledger migrated to dated window-open keys")
     sent_keys = {e["key"] for e in sent["sent"]}
     due = due_alerts(ledger["items"], sent_keys, today)
     if not due:
