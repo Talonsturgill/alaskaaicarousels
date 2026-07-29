@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sailing Day Control v1, the Operating Day Ledger, Allen Marine Tours, prepared by Alaska AI</title>
+<style>
+:root{
+  --bg:#070b12; --panel:#0d1420; --panel2:#111a28; --line:#1e2b3d; --line2:#2a3b52;
+  --ink:#eef3fb; --muted:#9fb0c6; --faint:#6f7f96;
+  --aur1:#57e0c8; --aur2:#5aa9ff; --aur3:#9b8cff; --warm:#ffd18c;
+  --good:#5fd0a6; --warn:#ffb35c; --bad:#ff6f70;
+  --maxw:1020px;
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 500px at 82% -10%, rgba(90,169,255,.11), transparent 60%),
+    radial-gradient(900px 460px at 4% 2%, rgba(87,224,200,.09), transparent 55%),
+    var(--bg);
+  color:var(--ink);
+  font:15.5px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  letter-spacing:.1px;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px 70px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+p{margin:0 0 12px}
+strong{color:#fff;font-weight:640}
+.small{font-size:13px;color:var(--muted)}
+.faint{color:var(--faint);font-size:12.5px}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin:0 0 8px}
+
+/* ---------- header ---------- */
+header.top{padding:30px 0 20px;border-bottom:1px solid var(--line)}
+.mark{display:flex;align-items:center;gap:10px;font-weight:650;letter-spacing:.02em;font-size:14px}
+.dot{width:11px;height:11px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--aur1),var(--aur3));
+  box-shadow:0 0 15px 2px rgba(87,224,200,.45)}
+h1{font-size:clamp(24px,4vw,36px);line-height:1.08;margin:.42em 0 .18em;font-weight:660;letter-spacing:-.4px}
+.sub{font-size:clamp(15px,2vw,18px);color:var(--muted);margin:0 0 14px;font-weight:450}
+.byline{font-size:12px;color:var(--faint);display:flex;flex-wrap:wrap;gap:7px 10px;align-items:center}
+.pill{border:1px solid var(--line);border-radius:999px;padding:3px 11px;color:var(--muted)}
+.scripted{margin:16px 0 0;border:1px solid rgba(255,179,92,.3);
+  background:linear-gradient(180deg,rgba(255,179,92,.07),rgba(255,179,92,.02));
+  border-radius:12px;padding:12px 15px;font-size:13.5px;color:#f2e1c6}
+.scripted b{color:var(--warm)}
+
+/* ---------- generic blocks ---------- */
+.sec{padding:26px 0;border-bottom:1px solid var(--line)}
+.sec:last-of-type{border-bottom:0}
+h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--aur1);margin:0 0 6px;font-weight:640}
+h3{font-size:clamp(18px,2.6vw,23px);line-height:1.2;margin:.1em 0 .5em;font-weight:640;letter-spacing:-.2px}
+h4{margin:0 0 8px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--aur1);font-weight:640}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);
+  border-radius:13px;padding:16px 17px}
+.card p:last-child{margin-bottom:0}
+.grid2{display:grid;gap:13px}
+@media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;gap:13px}
+@media(min-width:760px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.callout{background:linear-gradient(180deg,rgba(155,140,255,.08),rgba(155,140,255,.02));
+  border:1px solid rgba(155,140,255,.3);border-radius:13px;padding:14px 16px;margin:14px 0 0;font-size:14px}
+.callout b{color:#c9befc}
+
+/* ---------- never-do strip ---------- */
+.never{border:1px solid var(--line);border-radius:13px;background:var(--panel);padding:16px 17px}
+.never ul{list-style:none;margin:0;padding:0}
+.never li{position:relative;padding:6px 0 6px 26px;font-size:14px;border-bottom:1px solid rgba(30,43,61,.7)}
+.never li:last-child{border-bottom:0}
+.never li:before{content:"";position:absolute;left:4px;top:14px;width:11px;height:2px;background:var(--bad);border-radius:2px}
+.never li b{color:#fff}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.tab{background:var(--panel);border:1px solid var(--line);color:var(--muted);
+  border-radius:10px;padding:9px 13px;font-size:13px;cursor:pointer;text-align:left;font-family:inherit;line-height:1.3}
+.tab b{display:block;color:var(--ink);font-weight:600;font-size:13.5px}
+.tab span{font-size:11.5px;color:var(--faint)}
+.tab.on{border-color:rgba(87,224,200,.55);background:linear-gradient(180deg,rgba(87,224,200,.1),var(--panel))}
+.tab.on b{color:var(--aur1)}
+.panel{display:none}
+.panel.on{display:block}
+
+/* ---------- board ---------- */
+.screen{border:1px solid var(--line2);border-radius:14px;background:#080d16;overflow:hidden}
+.screen .bar{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:space-between;
+  padding:10px 14px;background:linear-gradient(180deg,#101a29,#0c1421);border-bottom:1px solid var(--line)}
+.screen .bar .t{font-size:13px;font-weight:620;color:var(--ink)}
+.screen .bar .r{font-size:11.5px;color:var(--faint);letter-spacing:.06em;text-transform:uppercase}
+.tw{overflow-x:auto}
+table.board{border-collapse:collapse;width:100%;font-size:13.5px;min-width:760px}
+table.board th{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);
+  font-weight:560;text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);background:#0a111c}
+table.board td{padding:11px 12px;border-bottom:1px solid rgba(30,43,61,.75);vertical-align:top}
+table.board tr:last-child td{border-bottom:0}
+table.board tr.hit td{background:rgba(255,179,92,.055)}
+.tm{font-size:17px;font-weight:640;letter-spacing:.02em}
+.kind{font-size:12px;color:var(--muted)}
+.refx{font-size:11px;color:var(--faint);letter-spacing:.05em}
+.cnt{font-size:20px;font-weight:660;line-height:1.1}
+.cnt.moved{color:var(--warm)}
+.was{font-size:11.5px;color:var(--faint)}
+.load{font-size:11.5px;color:var(--faint);margin-top:2px}
+.pend{display:inline-block;margin-top:5px;font-size:11.5px;border:1px solid rgba(255,179,92,.5);
+  color:var(--warm);border-radius:6px;padding:2px 7px;background:rgba(255,179,92,.08)}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;border:1px solid var(--line2);
+  border-radius:6px;padding:2px 7px;margin:0 5px 5px 0;color:var(--muted);background:#0b121d;white-space:nowrap}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--faint);flex:none}
+.chip.ok{color:var(--good);border-color:rgba(95,208,166,.45)}.chip.ok i{background:var(--good)}
+.chip.wait{color:var(--warn);border-color:rgba(255,179,92,.5)}.chip.wait i{background:var(--warn)}
+.chip.none{color:var(--bad);border-color:rgba(255,111,112,.55);background:rgba(255,111,112,.08)}.chip.none i{background:var(--bad)}
+.chip.no{color:var(--bad);border-color:rgba(255,111,112,.7);background:rgba(255,111,112,.14)}.chip.no i{background:var(--bad)}
+.chip.num{color:var(--aur2);border-color:rgba(90,169,255,.45)}.chip.num i{background:var(--aur2)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11.5px;color:var(--faint);padding:9px 14px;border-top:1px solid var(--line);background:#0a111c}
+
+/* ---------- alarm ---------- */
+.alarm{border:1px solid rgba(255,111,112,.55);background:linear-gradient(180deg,rgba(255,111,112,.13),rgba(255,111,112,.04));
+  border-radius:12px;padding:12px 15px;margin:0 0 14px;font-size:14px;color:#ffd5d5}
+.alarm b{color:#ff9a9a}
+.calm{border:1px solid rgba(95,208,166,.45);background:linear-gradient(180deg,rgba(95,208,166,.1),rgba(95,208,166,.03));
+  border-radius:12px;padding:12px 15px;margin:0 0 14px;font-size:14px;color:#c8f0e0}
+.calm b{color:var(--good)}
+
+/* ---------- steps ---------- */
+.stepbar{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.sdot{font-size:11.5px;color:var(--faint);border:1px solid var(--line);border-radius:999px;padding:3px 11px;background:var(--panel)}
+.sdot.on{color:var(--aur1);border-color:rgba(87,224,200,.5);background:rgba(87,224,200,.08)}
+.sdot.done{color:var(--muted)}
+.step{display:none}
+.step.on{display:block}
+.nav{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 0;align-items:center}
+
+/* ---------- buttons ---------- */
+button{font-family:inherit}
+.btn{background:linear-gradient(180deg,#16233a,#0f1a28);border:1px solid var(--line2);color:var(--ink);
+  border-radius:9px;padding:9px 15px;font-size:13.5px;cursor:pointer;letter-spacing:.01em}
+.btn:hover{border-color:rgba(90,169,255,.6)}
+.btn.pri{background:linear-gradient(180deg,rgba(87,224,200,.22),rgba(87,224,200,.08));
+  border-color:rgba(87,224,200,.6);color:#d8fff5;font-weight:600}
+.btn.pri:hover{border-color:var(--aur1)}
+.btn.sm{padding:5px 10px;font-size:12px;border-radius:7px}
+.btn.ghost{background:transparent;color:var(--muted)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* ---------- form ---------- */
+.form{display:grid;gap:13px}
+@media(min-width:700px){.form{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:5px}
+.f.wide{grid-column:1/-1}
+.f label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.f select,.f input[type=number],.f input[type=text]{
+  background:#0a111c;border:1px solid var(--line2);color:var(--ink);border-radius:8px;
+  padding:9px 10px;font-size:14px;font-family:inherit;width:100%}
+.f select:focus,.f input:focus{outline:none;border-color:rgba(90,169,255,.7)}
+.f .ro{background:#0a111c;border:1px dashed var(--line2);color:var(--muted);border-radius:8px;padding:9px 10px;font-size:14px}
+.f .hint{font-size:11.5px;color:var(--faint)}
+.parties{display:grid;gap:7px}
+.pw{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:#0a111c}
+.pw input{margin-top:4px;accent-color:#57e0c8}
+.pw .nm{font-size:13.5px}
+.pw .ch{font-size:11.5px;color:var(--faint)}
+.tagx{font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line2);
+  border-radius:5px;padding:1px 6px;color:var(--faint);margin-left:6px}
+.tagx.out{color:var(--warm);border-color:rgba(255,209,140,.4)}
+
+/* ---------- notice ---------- */
+.notice{background:#f6f4ee;color:#16202e;border-radius:11px;padding:16px 18px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  font-size:12.6px;line-height:1.62;white-space:pre-wrap;word-break:break-word;border:1px solid #d8d2c4}
+.notice mark.mg{background:#ffe08a;color:#16202e;border-radius:3px;padding:0 2px;font-weight:700}
+.nhead{display:flex;flex-wrap:wrap;gap:5px 12px;align-items:center;justify-content:space-between;margin:0 0 7px}
+.nhead .to{font-size:12.5px;color:var(--muted)}
+.nhead .via{font-size:11px;color:var(--faint);letter-spacing:.08em;text-transform:uppercase}
+.tmplbox{background:#0a111c;border:1px dashed var(--line2);border-radius:11px;padding:14px 16px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.4px;line-height:1.62;
+  white-space:pre-wrap;color:#b9c8dc;word-break:break-word}
+.tmplbox .mgk{color:var(--aur1);font-weight:700}
+.proof{border:1px solid rgba(95,208,166,.4);background:rgba(95,208,166,.06);border-radius:10px;
+  padding:11px 14px;font-size:13px;color:#c8f0e0;margin:12px 0 0}
+.proof .mono{color:#eafff8}
+
+/* ---------- ack desk ---------- */
+.ackrow{border:1px solid var(--line);border-radius:11px;background:var(--panel);padding:12px 14px;margin:0 0 10px}
+.ackrow.unack{border-color:rgba(255,111,112,.55);background:linear-gradient(180deg,rgba(255,111,112,.09),var(--panel))}
+.ackrow.done{border-color:rgba(95,208,166,.4)}
+.ackrow .top{display:flex;flex-wrap:wrap;gap:6px 12px;justify-content:space-between;align-items:baseline}
+.ackrow .who{font-size:14px;font-weight:600}
+.ackrow .meta{font-size:11.5px;color:var(--faint)}
+.acts{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 0;align-items:center}
+.esc{margin:9px 0 0;font-size:12.5px;color:var(--warn);border-left:2px solid rgba(255,179,92,.6);padding-left:10px}
+.esc.hard{color:var(--bad);border-left-color:rgba(255,111,112,.7)}
+.clockbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 14px;
+  border:1px solid var(--line);border-radius:11px;padding:10px 13px;background:var(--panel)}
+.clockbar .cl{font-size:20px;font-weight:660;letter-spacing:.04em}
+.numin{width:88px;background:#0a111c;border:1px solid var(--line2);color:var(--ink);border-radius:7px;padding:5px 8px;font-size:13px}
+
+/* ---------- log ---------- */
+table.log{border-collapse:collapse;width:100%;font-size:12.8px;min-width:720px}
+table.log th{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:560;
+  text-align:left;padding:8px 11px;border-bottom:1px solid var(--line);background:#0a111c;position:sticky;top:0}
+table.log td{padding:8px 11px;border-bottom:1px solid rgba(30,43,61,.7);vertical-align:top}
+table.log tr.sel td{background:rgba(90,169,255,.09)}
+table.log tr.dim td{opacity:.45}
+table.log tr.clickable{cursor:pointer}
+table.log tr.clickable:hover td{background:rgba(90,169,255,.06)}
+.ev{display:inline-block;font-size:10px;letter-spacing:.09em;text-transform:uppercase;border-radius:5px;
+  padding:1px 6px;border:1px solid var(--line2);color:var(--muted);white-space:nowrap}
+.ev.change{color:var(--warm);border-color:rgba(255,209,140,.45)}
+.ev.notice{color:var(--aur2);border-color:rgba(90,169,255,.4)}
+.ev.ack{color:var(--good);border-color:rgba(95,208,166,.4)}
+.ev.corr{color:var(--bad);border-color:rgba(255,111,112,.5)}
+.ev.seal{color:var(--aur3);border-color:rgba(155,140,255,.45)}
+.logwrap{max-height:430px;overflow:auto}
+.dg{font-size:11px;color:var(--faint);letter-spacing:.04em}
+.replay{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:0 0 14px;
+  border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--panel)}
+.replay input[type=range]{flex:1;min-width:180px;accent-color:#5aa9ff}
+.replay .at{font-size:19px;font-weight:650;letter-spacing:.04em;min-width:62px}
+
+/* ---------- tally ---------- */
+.tally{display:grid;gap:11px}
+@media(min-width:640px){.tally{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.tally{grid-template-columns:repeat(4,1fr)}}
+.tl{border:1px solid var(--line);border-radius:11px;background:var(--panel);padding:13px 14px}
+.tl .n{font-size:27px;font-weight:660;line-height:1.05;letter-spacing:-.5px}
+.tl .l{font-size:11.5px;color:var(--faint);margin-top:5px;line-height:1.4}
+.gate{border:1px solid rgba(255,179,92,.4);background:linear-gradient(180deg,rgba(255,179,92,.09),rgba(255,179,92,.02));
+  border-radius:12px;padding:14px 16px;margin:14px 0 0;font-size:14px;color:#f4e3c8}
+.gate b{color:var(--warm)}
+
+/* ---------- three steps ---------- */
+.stepcard{border:1px solid var(--line);border-radius:13px;background:var(--panel);padding:16px 17px}
+.stepcard .no{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--aur1);margin-bottom:7px}
+.stepcard h5{margin:0 0 7px;font-size:16px;font-weight:640}
+.stepcard p{font-size:13.5px;color:var(--muted);margin:0}
+
+/* ---------- honest ---------- */
+.honest{background:linear-gradient(180deg,rgba(255,179,92,.06),rgba(255,179,92,.015));
+  border:1px solid rgba(255,179,92,.26);border-radius:13px;padding:16px 18px}
+.honest h3{color:var(--warm)}
+.honest ul{list-style:none;padding:0;margin:0}
+.honest li{padding:8px 0 8px 20px;position:relative;border-bottom:1px solid rgba(255,179,92,.12);font-size:13.5px;color:#e7dcc9}
+.honest li:last-child{border-bottom:0}
+.honest li:before{content:"";position:absolute;left:2px;top:16px;width:7px;height:7px;border-radius:2px;background:rgba(255,179,92,.6)}
+
+footer{color:var(--faint);font-size:11.5px;padding:24px 0 0;text-align:center;border-top:1px solid var(--line);margin-top:26px}
+
+/* ---------- print ---------- */
+@media print{
+  body{background:#070b12}
+  .wrap{max-width:none;padding:0 12px 20px}
+  .tabs,.nav,.stepbar,.replay,.clockbar,.acts,.btn{display:none !important}
+  .panel{display:block !important;break-inside:avoid;page-break-inside:avoid;margin-bottom:22px}
+  .step{display:block !important;break-inside:avoid;margin-bottom:16px}
+  .logwrap{max-height:none;overflow:visible}
+  table.board,table.log{min-width:0;font-size:11px}
+  table.log tr.dim td{opacity:1}
+  .screen,.card,.tl,.ackrow{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="mark"><span class="dot"></span> Alaska AI</div>
+  <h1>Sailing Day Control v1</h1>
+  <div class="sub">The Operating Day Ledger. One Juneau operating day, every sailing, every committed party, every change.</div>
+  <div class="byline">
+    <span class="pill">Prepared for Allen Marine Tours</span>
+    <span class="pill">Prepared by Alaska AI</span>
+    <span class="pill">29 July 2026</span>
+    <span class="pill">Juneau, Auke Bay</span>
+  </div>
+  <div class="scripted">
+    <b>This is a scripted demonstration of the proposed build, not a live system.</b>
+    Every sailing, hull, count and party name below is invented sample data built to the shape of the design in the Field Study. None of it is Allen Marine operating data, nothing on this page is connected to anything, and no message here reaches a real person. The one thing that is real is the behavior. What you can click is the shape of what the build does, and what you cannot click is exactly what it refuses to do.
+  </div>
+</header>
+
+<section class="sec">
+  <h2>Start here</h2>
+  <h3>What this screen will never do</h3>
+  <p class="small">We ran six candidate builds down the do you even need AI ladder for you and every one of them bottomed out at plain rules. So the absences below are the design, not gaps in the demonstration. Look for them while you click.</p>
+  <div class="never">
+    <ul>
+      <li><b>It never proposes a vessel.</b> When a count drops it will show you 71 guests on a 118 seat hull and then say nothing at all.</li>
+      <li><b>It never assigns or suggests crew.</b> Crew sits under Coast Guard manning, credentialing and rest rules we could not source from public pages, so it is out of version 1 entirely.</li>
+      <li><b>It never writes a word.</b> Every notice is one fixed template with your numbers merged in. You can read the template itself in scenario 2.</li>
+      <li><b>It never predicts a count.</b> It records the number a person typed and where that person got it, and it labels the source it does not know.</li>
+      <li><b>It never decides.</b> Nothing leaves the desk until a person presses record. There is no queue of pending robot actions anywhere in this build.</li>
+    </ul>
+  </div>
+  <div class="callout"><b>There is no AI in this build.</b> We are an AI shop, and that is still the recommendation. A notice that commits a caterer to a head count should be identical every time so a dock reads it in two seconds, and a fixed template can be tested exhaustively in a way a model cannot.</div>
+</section>
+
+<section class="sec">
+  <h2>Four scenarios</h2>
+  <h3>A Juneau operating day, start to seal</h3>
+  <div class="tabs" id="tabs"></div>
+
+  <!-- ============ SCENARIO 1 ============ -->
+  <div class="panel on" id="p1">
+    <p class="small">Tuesday 11 August 2026. Six sailings out of Auke Bay, four hulls, five committed parties. This screen is read only. It is the same version at the ops desk, on the dock and in the port office, and it is the first thing in this business that can be looked up instead of asked for.</p>
+    <div class="screen">
+      <div class="bar">
+        <div class="t">Juneau operating day, Tuesday 11 August 2026</div>
+        <div class="r">As at 0605, day set</div>
+      </div>
+      <div class="tw"><table class="board" id="board1"></table></div>
+      <div class="legend" id="leg1"></div>
+    </div>
+    <div class="grid2" style="margin-top:14px">
+      <div class="card">
+        <h4>Where each number came from</h4>
+        <p class="small">Every count carries its source. Four of these six sailings say <strong>typed by a person, source system unknown</strong>, and that is honest rather than sloppy. Nothing public told us what carries your cruise line contracted manifests, which is your primary line. Version 1 works with a person typing the number, so it produces the measurement even if every integration turns out to be a telephone call.</p>
+      </div>
+      <div class="card">
+        <h4>Hulls and lodge, sample registry</h4>
+        <div id="reg"></div>
+        <p class="faint" style="margin-top:9px">Hull capacities here are invented inside the 24 to 140 passenger range Allen Marine publishes. A real per hull capacity table does not exist anywhere public, and building one is part of the work.</p>
+      </div>
+    </div>
+    <div class="callout"><b>Juneau daily cruise passenger cap, 16,000 on a Tuesday.</b> 2026 is the first year the cap exists, against prior busiest days of up to 21,000. When the top line is capped by ordinance, the lever that stays fully yours is how cleanly each day runs. That is the entire reason this screen is worth one season.</div>
+  </div>
+
+  <!-- ============ SCENARIO 2 ============ -->
+  <div class="panel" id="p2">
+    <div class="stepbar" id="s2bar"></div>
+
+    <div class="step on" id="s2a">
+      <h3>0912. A number arrives that changes the afternoon</h3>
+      <p class="small">The ship's shore excursion desk calls the Juneau office. The 1245 sailing is down to 71 from 104. Today that call may end in somebody's memory and four more calls. We are assuming that rather than claiming it, and counting it is part of what the slice buys. Here it ends in a typed observation.</p>
+      <div class="card">
+        <h4>Observation received</h4>
+        <div class="mono" style="font-size:13.5px;line-height:1.9">
+          <div>sailing &nbsp; JNU-0811-S4 &nbsp; 1245 &nbsp; contracted shore excursion</div>
+          <div>count &nbsp; &nbsp; was 104 &nbsp; now 71</div>
+          <div>source &nbsp; &nbsp;ship shore excursion desk, by telephone</div>
+          <div>typed by the Juneau operations specialist at 0912</div>
+        </div>
+      </div>
+      <div class="callout"><b>An observation does not move the board on its own.</b> It sits on the sailing as an amber flag until a person records a change. Nothing merges silently, because a number that changed the plan without anyone deciding to is the exact failure this whole design exists to remove.</div>
+      <div class="screen" style="margin-top:14px">
+        <div class="bar"><div class="t">Sailing 1245, JNU-0811-S4</div><div class="r">Observation pending</div></div>
+        <div class="tw"><table class="board" id="board2a"></table></div>
+      </div>
+      <div class="nav"><button class="btn pri" data-go="s2b">Open the Change Desk</button></div>
+    </div>
+
+    <div class="step" id="s2b">
+      <h3>The Change Desk. Typed fields only, no free text anywhere</h3>
+      <p class="small">She is not asking the software what to do. She already decided. This form is where the decision she made gets recorded as a structured event instead of spoken into four phones. Change any field you like and watch what it does to the notice on the next step.</p>
+      <div class="card">
+        <div class="form" id="cdform"></div>
+      </div>
+      <div class="callout"><b>Reason is a closed list and Other is a code, not a text box.</b> Removing free text is the whole reason this design needs no model to read it back. If Other keeps coming back through one season, that is a finding, and we add a code rather than a language model.</div>
+      <div class="nav">
+        <button class="btn ghost" data-go="s2a">Back</button>
+        <button class="btn pri" id="toReview">Review the notices</button>
+      </div>
+    </div>
+
+    <div class="step" id="s2c">
+      <h3>The notice. One fixed template, your numbers merged in</h3>
+      <p class="small">Here is the template itself, exactly as it sits in the code, before anything is merged. Nothing composes this text at run time. It is a golden file in the test suite, so changing one character of it fails the build.</p>
+      <div class="tmplbox" id="tmplshow"></div>
+      <div class="nav" style="margin-top:12px">
+        <button class="btn sm" id="hlToggle">Highlight the merged fields</button>
+        <span class="faint" id="hlNote">Merged fields are shown in the template above in green.</span>
+      </div>
+      <h4 style="margin-top:22px">The same template, rendered for every party this change touches</h4>
+      <div id="notices"></div>
+      <div class="proof" id="proof"></div>
+      <div class="nav">
+        <button class="btn ghost" data-go="s2b">Back to the form</button>
+        <button class="btn pri" id="sendBtn">Record the change and send the notices</button>
+      </div>
+      <p class="faint" style="margin-top:9px">Nothing sends until a person presses that button. There is no automatic path from an observation to a vendor's inbox in this build, by design.</p>
+    </div>
+
+    <div class="step" id="s2d">
+      <h3>Recorded</h3>
+      <div class="calm" id="sentMsg"></div>
+      <div class="screen">
+        <div class="bar"><div class="t">Juneau operating day, Tuesday 11 August 2026</div><div class="r">As at 0913</div></div>
+        <div class="tw"><table class="board" id="board2d"></table></div>
+        <div class="legend" id="leg2"></div>
+      </div>
+      <div class="callout" style="border-color:rgba(255,111,112,.4);background:linear-gradient(180deg,rgba(255,111,112,.08),rgba(255,111,112,.02))">
+        <b style="color:#ff9a9a">Look at the 1245 row and notice what is missing.</b> Seventy one guests are now booked on a 118 seat hull. A product that wanted to look clever would put a suggestion right there. This one will not. It does not know your fuel plan, your dock windows, your next turn or which captain is already on the clock, and software that guesses in front of a dispatcher gets closed by lunchtime. The screen shows the numbers. The call stays hers.
+      </div>
+      <div class="nav"><button class="btn pri" data-tab="3">Now see who has actually read it</button></div>
+    </div>
+  </div>
+
+  <!-- ============ SCENARIO 3 ============ -->
+  <div class="panel" id="p3">
+    <h3>Who has actually read it</h3>
+    <p class="small">The notices from the 0912 change went out. Today, we assume, finding out whether the caterer saw one means calling the caterer. Here every notice carries a single use link with three answers on it and no login. Play the vendors below and watch the board. Advance the clock to see what happens to the ones who say nothing.</p>
+    <div id="ackAlarm"></div>
+    <div class="clockbar">
+      <span class="faint">Clock</span>
+      <span class="cl mono" id="ackClock">0913</span>
+      <button class="btn sm" data-adv="5">Advance 5 minutes</button>
+      <button class="btn sm" data-adv="10">Advance 10 minutes</button>
+      <button class="btn sm ghost" id="ackReset">Reset this scenario</button>
+    </div>
+    <div id="ackDesk"></div>
+    <div class="callout"><b>Three answers and no login, because a coach dispatcher will not create an account for you.</b> Confirm, cannot do, or a number. A number is there because the coach company decides how many coaches it runs, not us. The notice carries the head count and asks. It never tells a vendor what to do about it, because that is their business and not ours to automate.</div>
+    <div class="callout" style="margin-top:11px"><b>The telephone stays in the design on purpose.</b> Email first, one SMS escalation on silence, then a human calls. When she calls, she logs a manual acknowledgement here so the record stays complete. We are not replacing the phone and the marine radio. We are making sure the day they carried gets written down.</div>
+  </div>
+
+  <!-- ============ SCENARIO 4 ============ -->
+  <div class="panel" id="p4">
+    <h3>Replay the day</h3>
+    <p class="small">The board you have been reading is not a document anybody edits. It is a projection of the log below, rebuilt from the first event every time. Drag the clock and the board rebuilds at that minute. Corrections are new events, never overwrites, so a day can be replayed months later exactly as it actually happened, mistakes included.</p>
+    <div class="replay">
+      <span class="faint">Replay at</span>
+      <span class="at mono" id="rpAt">0605</span>
+      <input type="range" id="rpRange" min="0" max="1" value="1" step="1">
+      <button class="btn sm" id="rpPlay">Play the day</button>
+      <button class="btn sm ghost" id="rpEnd">Jump to seal</button>
+    </div>
+    <div class="screen">
+      <div class="bar"><div class="t">Juneau operating day, Tuesday 11 August 2026</div><div class="r" id="rpState">Replay</div></div>
+      <div class="tw"><table class="board" id="board4"></table></div>
+      <div class="legend" id="leg4"></div>
+    </div>
+    <h4 style="margin-top:20px">Append only event log</h4>
+    <div class="screen">
+      <div class="logwrap tw"><table class="log" id="logtable"></table></div>
+    </div>
+    <p class="faint" style="margin-top:8px">Click any notice row to read the artifact that event produced. The eight character digest chains each event to the one before it, so a silently altered log stops matching. In this demonstration that digest is a short stand in. The real log is hash chained and sealed nightly into write once storage.</p>
+    <div id="corrNote"></div>
+    <h4 style="margin-top:22px">What the day counted</h4>
+    <div class="tally" id="tally"></div>
+    <div class="gate" id="gatebox"></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>How it sits in your operation</h2>
+  <h3>Three steps, and a person on the trigger at both ends</h3>
+  <div class="grid3">
+    <div class="stepcard">
+      <div class="no">Step one</div>
+      <h5>She keeps deciding</h5>
+      <p>The Juneau operations specialist makes exactly the call she makes today. The Change Desk is where she types the decision she already made, into fields instead of into four phones. The software has no opinion and no draft waiting for her approval, so there is nothing to rubber stamp on hour twelve of the day your posting describes.</p>
+    </div>
+    <div class="stepcard">
+      <div class="no">Step two</div>
+      <h5>One action reaches everyone</h5>
+      <p>She presses record once and the same fixed notice goes to every party that change touches, on the channel they already use. Acknowledgements come back onto the board on their own. Silence turns red instead of turning into a phone call she has to remember to make.</p>
+    </div>
+    <div class="stepcard">
+      <div class="no">Step three</div>
+      <h5>The day becomes a record</h5>
+      <p>Every observation, change, notice and acknowledgement lands in an append only log you own. At season close you hold the first count of operating day change this business has ever had, and the winter build gets funded or refused on that count instead of on anyone's opinion, ours included.</p>
+    </div>
+  </div>
+  <div class="callout"><b>The human on the trigger is not a policy we wrote on a slide. It is the architecture.</b> There is no path in this system from an incoming number to an outgoing commitment that does not pass through a person pressing a button. That is why version 1 needs no approval queue, no confidence threshold and no model.</div>
+</section>
+
+<section class="sec">
+  <h2>Before you forward this</h2>
+  <div class="honest">
+    <h3>What this demonstration is not</h3>
+    <ul>
+      <li>It is scripted, and a real Juneau day is messier than six sailings and five parties. We built the shape from your own job postings, not from watching a dock. Three shadow days on the Auke Bay dock are in the ask precisely because we would rather design from a real day than from a posting.</li>
+      <li>Every number in the tally comes from the invented day above. Your real figure today is zero, because no count of operating day change exists anywhere. Producing your first real one is the entire first engagement, and we deliberately did not tune the sample day to clear our own gate.</li>
+      <li>We do not know what system carries your cruise line contracted manifests, which is your primary line. That is why the intake here is a person typing a number, and why four rows on the board say source system unknown. That single answer is the biggest swing in our whole estimate.</li>
+      <li>Party names are placeholders. We have no list of your Juneau motorcoach companies or caterers and we were not going to guess at one. The lodge galley is a sample party, included because catering sits downstream of the same head count.</li>
+      <li>Hull capacities are invented inside the 24 to 140 passenger range you publish. No per hull capacity table exists anywhere public.</li>
+      <li>The digest strings in the log are a short non cryptographic stand in so you can watch the chain move. The real thing is a hash chain sealed nightly to write once storage.</li>
+      <li>The churn may turn out to be small. If Juneau sailings rarely change once a day is set, the premise behind this whole screen is wrong, the slice tells you that for the price of a slice, and we recommend you do not build.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  Sailing Day Control v1, the Operating Day Ledger. A scripted demonstration prepared for Allen Marine Tours by Alaska AI, 29 July 2026.<br>
+  Sample data throughout. Not a live system, not connected to anything, and nothing here sends a message to a real person.
+</footer>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   Sample operating day. Every value below is invented for this
+   demonstration. Capacities sit inside the 24 to 140 passenger
+   range Allen Marine publishes. Party names are placeholders.
+   ============================================================ */
+
+var DAY = { label:"11 August 2026", short:"0811", port:"Juneau" };
+
+var HULLS = {
+  H1:{ label:"Hull 1 (sample)", seats:140 },
+  H2:{ label:"Hull 2 (sample)", seats:96 },
+  H3:{ label:"Hull 3 (sample)", seats:118 },
+  H4:{ label:"Hull 4 (sample)", seats:49 }
+};
+
+var PARTIES = {
+  MCA:{ name:"Motorcoach Company A (sample)", channel:"Email", outside:true },
+  MCB:{ name:"Motorcoach Company B (sample)", channel:"Email", outside:true },
+  CAT:{ name:"Caterer A (sample)", channel:"Email", outside:true },
+  OPL:{ name:"Lodge galley (sample)", channel:"Email", outside:false },
+  CRW:{ name:"Vessel crew", channel:"SMS", outside:false }
+};
+
+var SRC_UNKNOWN = "typed by a person, source system unknown";
+
+var SAILINGS = [
+  { id:"S1", time:"0715", kind:"Cruise line contracted shore excursion", line:"Cruise Line A (sample)",
+    hull:"H2", booked:88, source:SRC_UNKNOWN,
+    commit:{ MCA:{l:"coaches", v:"2"}, CRW:{l:"seats to sail", v:"88"} } },
+  { id:"S2", time:"0930", kind:"Cruise line contracted shore excursion", line:"Cruise Line B (sample)",
+    hull:"H1", booked:132, source:SRC_UNKNOWN,
+    commit:{ MCB:{l:"coaches", v:"3"}, CRW:{l:"seats to sail", v:"132"} } },
+  { id:"S3", time:"1100", kind:"Direct to consumer, True Alaskan Tours", line:"FareHarbor",
+    hull:"H4", booked:31, source:"FareHarbor, read only pull (assumed, not verified)",
+    commit:{ CRW:{l:"seats to sail", v:"31"} } },
+  { id:"S4", time:"1245", kind:"Contracted shore excursion with lodge lunch", line:"Cruise Line A (sample)",
+    hull:"H3", booked:104, source:SRC_UNKNOWN,
+    commit:{ MCA:{l:"coaches", v:"3"}, CAT:{l:"covers", v:"104"}, OPL:{l:"covers", v:"104"}, CRW:{l:"seats to sail", v:"104"} } },
+  { id:"S5", time:"1515", kind:"Charter", line:"Charter client (sample)",
+    hull:"H4", booked:22, source:"typed by a person, charter desk",
+    commit:{ MCB:{l:"coaches", v:"1"}, CRW:{l:"seats to sail", v:"22"} } },
+  { id:"S6", time:"1700", kind:"Cruise line contracted shore excursion", line:"Cruise Line A (sample)",
+    hull:"H2", booked:96, source:SRC_UNKNOWN,
+    commit:{ MCA:{l:"coaches", v:"3"}, CRW:{l:"seats to sail", v:"96"} } }
+];
+
+var REASONS = [
+  ["MANIFEST_REVISED","Manifest revised by cruise line"],
+  ["SHIP_LATE","Ship arrival delayed"],
+  ["WEATHER","Weather"],
+  ["NO_SHOWS","Guest no shows at the gangway"],
+  ["DIRECT_BOOKING","Direct booking movement"],
+  ["VESSEL_AVAIL","Vessel availability"],
+  ["OTHER","Other, coded"]
+];
+
+var SOURCES = [
+  "ship shore excursion desk, by telephone",
+  "Auke Bay dock representative, gangway count",
+  "FareHarbor, read only pull (assumed, not verified)",
+  "Viator, read only pull",
+  "tour operator email, logged by hand",
+  "other, logged by hand"
+];
+
+var AUTHORS = ["Juneau operations specialist","Auke Bay dock representative","Juneau office manager"];
+
+/* ---------- the fixed notice templates ----------
+   Segments marked f are fixed characters that never change.
+   Segments marked m are the only things merged in at render time.
+   Nothing here is composed, generated or rewritten.             */
+
+var T_CHANGE = [
+  {f:"ALLEN MARINE TOURS    OPERATING DAY NOTICE\nJuneau    "},{m:"day"},
+  {f:"    change "},{m:"seq"},
+  {f:"\n\n1  Sailing "},{m:"time"},{f:"    "},{m:"ref"},
+  {f:"\n2  Head count was "},{m:"before"},{f:", head count is now "},{m:"after"},
+  {f:"\n3  Your commitment on this sailing, "},{m:"clabel"},{f:" "},{m:"cvalue"},{f:", as last confirmed"},
+  {f:"\n4  Recorded "},{m:"stamp"},{f:" by the "},{m:"author"},{f:", Allen Marine Juneau"},
+  {f:"\n5  Reply CONFIRM or CANNOT DO or send a number\n   "},{m:"ack"},
+  {f:"\n\nThis notice is a fixed template. Only the numbers change.\nAllen Marine Juneau   907-789-0081   Juneauinfo@allenmarine.com"}
+];
+
+var T_CORRECT = [
+  {f:"ALLEN MARINE TOURS    OPERATING DAY NOTICE\nJuneau    "},{m:"day"},
+  {f:"    correction to change "},{m:"seq"},
+  {f:"\n\n1  Sailing "},{m:"time"},{f:"    "},{m:"ref"},
+  {f:"\n2  Correction. The number sent at "},{m:"badstamp"},{f:" was "},{m:"bad"},
+  {f:"\n3  The head count on this sailing is "},{m:"after"},
+  {f:"\n4  Recorded "},{m:"stamp"},{f:" by the "},{m:"author"},{f:", Allen Marine Juneau"},
+  {f:"\n5  Reply CONFIRM or CANNOT DO or send a number\n   "},{m:"ack"},
+  {f:"\n\nThis notice is a fixed template. Only the numbers change.\nAllen Marine Juneau   907-789-0081   Juneauinfo@allenmarine.com"}
+];
+
+/* ============================================================
+   helpers
+   ============================================================ */
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function $(id){ return document.getElementById(id); }
+function pad4(m){ var h=Math.floor(m/60), mm=m%60; return (h<10?"0":"")+h+(mm<10?"0":"")+mm; }
+function toMin(t){ return parseInt(t.slice(0,2),10)*60 + parseInt(t.slice(2),10); }
+function sail(id){ for(var i=0;i<SAILINGS.length;i++){ if(SAILINGS[i].id===id) return SAILINGS[i]; } return null; }
+function refOf(s){ return "JNU-"+DAY.short+"-"+s.id; }
+function partyName(code, sailingId){
+  if(code==="CRW"){ var s=sail(sailingId); return "Vessel crew, "+HULLS[s.hull].label; }
+  return PARTIES[code].name;
+}
+function h32(str){
+  var h=2166136261>>>0;
+  for(var i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h,16777619)>>>0; }
+  return ("00000000"+h.toString(16)).slice(-8);
+}
+
+/* ---------- notice rendering ---------- */
+function renderNotice(tmpl, vals){
+  var text="", spans=[];
+  for(var i=0;i<tmpl.length;i++){
+    var seg=tmpl[i];
+    if(seg.f!==undefined){ text+=seg.f; }
+    else { var v=String(vals[seg.m]===undefined?"":vals[seg.m]);
+           spans.push({s:text.length,e:text.length+v.length,k:seg.m}); text+=v; }
+  }
+  return {text:text, spans:spans};
+}
+function fixedOnly(r){
+  var out="", i=0;
+  for(var k=0;k<r.spans.length;k++){ out += r.text.slice(i, r.spans[k].s); i = r.spans[k].e; }
+  return out + r.text.slice(i);
+}
+function noticeHTML(r, hl){
+  var out="", i=0;
+  for(var k=0;k<r.spans.length;k++){
+    out += esc(r.text.slice(i, r.spans[k].s));
+    var v = esc(r.text.slice(r.spans[k].s, r.spans[k].e));
+    out += hl ? '<mark class="mg">'+v+'</mark>' : v;
+    i = r.spans[k].e;
+  }
+  return out + esc(r.text.slice(i));
+}
+function templateHTML(tmpl, hl){
+  var out="";
+  for(var i=0;i<tmpl.length;i++){
+    var seg=tmpl[i];
+    if(seg.f!==undefined){ out += esc(seg.f); }
+    else { out += hl ? '<span class="mgk">{'+esc(seg.m)+'}</span>' : '{'+esc(seg.m)+'}'; }
+  }
+  return out;
+}
+
+/* ============================================================
+   the log, and the projection the board is built from
+   ============================================================ */
+var LOG = [];
+var NSEQ = 0;
+
+function push(ev){
+  NSEQ += 1; ev.seq = NSEQ; ev.p = ev.p || {};
+  LOG.push(ev);
+  return ev;
+}
+function chain(){
+  var prev="00000000";
+  for(var i=0;i<LOG.length;i++){
+    var e=LOG[i];
+    e.digest = h32(prev + "|" + e.seq + "|" + e.t + "|" + e.type + "|" + JSON.stringify(e.p));
+    prev = e.digest;
+  }
+}
+function sortLog(){
+  LOG.sort(function(a,b){ var d=toMin(a.t)-toMin(b.t); return d!==0?d:(a.seq-b.seq); });
+  chain();
+}
+
+function project(upto){
+  var st = { s:{}, notices:[], sealed:null, changes:[] };
+  for(var i=0;i<SAILINGS.length;i++){
+    var s=SAILINGS[i];
+    st.s[s.id] = { id:s.id, time:s.time, kind:s.kind, line:s.line, hull:s.hull,
+                   count:s.booked, booked:s.booked, source:s.source, pending:null, moves:0 };
+  }
+  for(var k=0;k<LOG.length;k++){
+    var e=LOG[k];
+    if(upto!==undefined && toMin(e.t) > upto) break;
+    var s2 = e.sailing ? st.s[e.sailing] : null;
+    if(e.type==="count_observed" && s2){
+      s2.pending = { to:e.p.to, from:e.p.from, source:e.p.source, t:e.t };
+    } else if(e.type==="change_recorded" && s2){
+      s2.count = e.p.after; s2.pending = null; s2.moves += 1; s2.source = e.p.source;
+      st.changes.push(e);
+    } else if(e.type==="correction" && s2){
+      s2.count = e.p.after; s2.pending = null; s2.moves += 1; s2.source = e.p.source;
+      st.changes.push(e);
+      for(var q=0;q<st.notices.length;q++){ if(st.notices[q].fromSeq===e.p.supersedes){ st.notices[q].superseded=true; } }
+    } else if(e.type==="notice_sent"){
+      st.notices.push({ id:e.p.nid, party:e.p.party, sailing:e.sailing, t:e.t, fromSeq:e.p.fromSeq,
+                        tmpl:e.p.tmpl, ack:null, ackT:null, ackVal:null, manual:false, esc:null, superseded:false });
+    } else if(e.type==="ack"){
+      for(var n=0;n<st.notices.length;n++){
+        if(st.notices[n].id===e.p.nid){
+          st.notices[n].ack=e.p.reply; st.notices[n].ackT=e.t;
+          st.notices[n].ackVal=e.p.value||null; st.notices[n].manual=!!e.p.manual;
+        }
+      }
+    } else if(e.type==="escalation"){
+      for(var m=0;m<st.notices.length;m++){ if(st.notices[m].id===e.p.nid){ st.notices[m].esc=e.p.channel; } }
+    } else if(e.type==="day_sealed"){
+      st.sealed = e;
+    }
+  }
+  return st;
+}
+
+/* ============================================================
+   seeding the sample day
+   ============================================================ */
+var CHANGE_SEQ = null;   /* seq of the 0912 change, once a person records it */
+var RECORDED = null;     /* what was actually recorded, for honest messaging */
+var afternoonLoaded = false;
+
+function seedMorning(){
+  LOG = []; NSEQ = 0; CHANGE_SEQ = null; RECORDED = null; afternoonLoaded = false;
+  push({ t:"0605", type:"day_published", author:AUTHORS[0],
+         text:"Operating day set for Juneau. 6 sailings, 4 hulls, 5 committed parties." });
+  push({ t:"0731", type:"change_recorded", author:AUTHORS[0], sailing:"S1",
+         p:{ before:88, after:90, reason:"MANIFEST_REVISED", source:SRC_UNKNOWN, parties:["CRW"] } });
+  var c1 = NSEQ;
+  push({ t:"0731", type:"notice_sent", author:"system", sailing:"S1",
+         p:{ nid:"n"+c1+"-CRW", party:"CRW", fromSeq:c1, tmpl:"CHANGE" } });
+  push({ t:"0736", type:"ack", author:"Vessel crew", sailing:"S1",
+         p:{ nid:"n"+c1+"-CRW", reply:"CONFIRM" } });
+  push({ t:"0912", type:"count_observed", author:AUTHORS[0], sailing:"S4",
+         p:{ from:104, to:71, source:"ship shore excursion desk, by telephone" } });
+  sortLog();
+}
+
+function recordChange(after, reason, source, parties, author){
+  var ev = push({ t:"0913", type:"change_recorded", author:author, sailing:"S4",
+                  p:{ before:104, after:after, reason:reason, source:source, parties:parties.slice() } });
+  CHANGE_SEQ = ev.seq;
+  RECORDED = { after:after, parties:parties.slice() };
+  for(var i=0;i<parties.length;i++){
+    push({ t:"0913", type:"notice_sent", author:"system", sailing:"S4",
+           p:{ nid:"n"+CHANGE_SEQ+"-"+parties[i], party:parties[i], fromSeq:CHANGE_SEQ, tmpl:"CHANGE" } });
+  }
+  sortLog();
+}
+function ensureChange(){
+  if(CHANGE_SEQ===null){
+    recordChange(71, "MANIFEST_REVISED", "ship shore excursion desk, by telephone", ["MCA","CAT","OPL","CRW"], AUTHORS[0]);
+  }
+}
+function canonicalAcks(){
+  var st = project();
+  var have = {}, exists = {};
+  for(var i=0;i<st.notices.length;i++){
+    if(st.notices[i].fromSeq!==CHANGE_SEQ) continue;
+    exists[st.notices[i].party] = true;
+    if(st.notices[i].ack) have[st.notices[i].party] = true;
+  }
+  var plan = [ ["CRW","0915","CONFIRM",null], ["OPL","0918","CONFIRM",null],
+               ["MCA","0921","NUMBER","2"], ["CAT","0931","CANNOT DO",null] ];
+  for(var k=0;k<plan.length;k++){
+    var pc = plan[k];
+    if(have[pc[0]] || !exists[pc[0]]) continue;
+    push({ t:pc[1], type:"ack", author:partyName(pc[0],"S4"), sailing:"S4",
+           p:{ nid:"n"+CHANGE_SEQ+"-"+pc[0], reply:pc[2], value:pc[3] } });
+  }
+  sortLog();
+}
+function loadAfternoon(){
+  if(afternoonLoaded) return;
+  ensureChange();
+  canonicalAcks();
+
+  push({ t:"1102", type:"change_recorded", author:AUTHORS[2], sailing:"S3",
+         p:{ before:31, after:34, reason:"DIRECT_BOOKING", source:"FareHarbor, read only pull (assumed, not verified)", parties:["CRW"] } });
+  var c2=NSEQ;
+  push({ t:"1102", type:"notice_sent", author:"system", sailing:"S3", p:{ nid:"n"+c2+"-CRW", party:"CRW", fromSeq:c2, tmpl:"CHANGE" } });
+  push({ t:"1104", type:"ack", author:"Vessel crew", sailing:"S3", p:{ nid:"n"+c2+"-CRW", reply:"CONFIRM" } });
+
+  push({ t:"1341", type:"change_recorded", author:AUTHORS[1], sailing:"S6",
+         p:{ before:96, after:68, reason:"MANIFEST_REVISED", source:SRC_UNKNOWN, parties:["MCA","CRW"] } });
+  var c3=NSEQ;
+  push({ t:"1341", type:"notice_sent", author:"system", sailing:"S6", p:{ nid:"n"+c3+"-MCA", party:"MCA", fromSeq:c3, tmpl:"CHANGE" } });
+  push({ t:"1341", type:"notice_sent", author:"system", sailing:"S6", p:{ nid:"n"+c3+"-CRW", party:"CRW", fromSeq:c3, tmpl:"CHANGE" } });
+
+  push({ t:"1347", type:"correction", author:AUTHORS[1], sailing:"S6",
+         p:{ supersedes:c3, bad:68, badstamp:"1341", before:68, after:86, reason:"OTHER",
+             source:SRC_UNKNOWN, parties:["MCA","CRW"], note:"digits transposed at entry" } });
+  var c4=NSEQ;
+  push({ t:"1347", type:"notice_sent", author:"system", sailing:"S6", p:{ nid:"n"+c4+"-MCA", party:"MCA", fromSeq:c4, tmpl:"CORRECT" } });
+  push({ t:"1347", type:"notice_sent", author:"system", sailing:"S6", p:{ nid:"n"+c4+"-CRW", party:"CRW", fromSeq:c4, tmpl:"CORRECT" } });
+  push({ t:"1352", type:"ack", author:PARTIES.MCA.name, sailing:"S6", p:{ nid:"n"+c4+"-MCA", reply:"NUMBER", value:"3" } });
+  push({ t:"1358", type:"ack", author:"Vessel crew", sailing:"S6", p:{ nid:"n"+c4+"-CRW", reply:"CONFIRM" } });
+
+  push({ t:"2010", type:"day_sealed", author:"system",
+         text:"Operating day sealed. Event log digest written to write once storage." });
+  afternoonLoaded = true;
+  sortLog();
+}
+
+/* ============================================================
+   notice construction from a change event
+   ============================================================ */
+function noticeFor(notice){
+  var s = sail(notice.sailing);
+  var chg = null;
+  for(var i=0;i<LOG.length;i++){ if(LOG[i].seq===notice.fromSeq) chg=LOG[i]; }
+  if(!chg) return null;
+  var cm = s.commit[notice.party] || { l:"seats to sail", v:String(chg.p.before) };
+  var ackTok = "ak-"+DAY.short+"-c"+chg.seq+"-"+notice.party.toLowerCase()+"   (single use, sample)";
+  if(notice.tmpl==="CORRECT"){
+    return { tmpl:T_CORRECT, vals:{
+      day:DAY.label, seq:String(chg.p.supersedes), time:s.time, ref:refOf(s),
+      badstamp:chg.p.badstamp, bad:String(chg.p.bad), after:String(chg.p.after),
+      stamp:chg.t, author:chg.author, ack:ackTok } };
+  }
+  return { tmpl:T_CHANGE, vals:{
+    day:DAY.label, seq:String(chg.seq), time:s.time, ref:refOf(s),
+    before:String(chg.p.before), after:String(chg.p.after),
+    clabel:cm.l, cvalue:cm.v, stamp:chg.t, author:chg.author, ack:ackTok } };
+}
+
+/* ============================================================
+   board rendering
+   ============================================================ */
+function ackChip(n){
+  var nm = partyName(n.party, n.sailing);
+  if(n.superseded) return '<span class="chip"><i></i>'+esc(nm)+', notice superseded</span>';
+  if(n.ack==="CONFIRM") return '<span class="chip ok"><i></i>'+esc(nm)+' confirmed '+esc(n.ackT)+(n.manual?" by telephone":"")+'</span>';
+  if(n.ack==="CANNOT DO") return '<span class="chip no"><i></i>'+esc(nm)+' CANNOT DO '+esc(n.ackT)+'</span>';
+  if(n.ack==="NUMBER") return '<span class="chip num"><i></i>'+esc(nm)+' sent a number, '+esc(n.ackVal)+'</span>';
+  return '<span class="chip none"><i></i>'+esc(nm)+', no answer since '+esc(n.t)+'</span>';
+}
+
+function renderBoard(tableId, st, opts){
+  opts = opts || {};
+  var only = opts.only || null;
+  var h = '<thead><tr><th>Time</th><th>Sailing</th><th>Vessel</th><th>Head count</th><th>Committed parties</th><th>Where the number came from</th></tr></thead><tbody>';
+  for(var i=0;i<SAILINGS.length;i++){
+    var base = SAILINGS[i];
+    if(only && base.id!==only) continue;
+    var s = st.s[base.id];
+    var hull = HULLS[s.hull];
+    var moved = s.count !== s.booked;
+    var hit = (opts.hit && opts.hit===base.id) || (s.pending && opts.flagPending);
+    h += '<tr'+(hit?' class="hit"':'')+'>';
+    h += '<td><div class="tm mono">'+esc(s.time)+'</div><div class="refx mono">'+esc(refOf(base))+'</div></td>';
+    h += '<td><div>'+esc(s.kind)+'</div><div class="kind">'+esc(s.line)+'</div></td>';
+    h += '<td><div>'+esc(hull.label)+'</div><div class="kind">'+hull.seats+' seats</div></td>';
+    h += '<td><div class="cnt'+(moved?' moved':'')+'">'+s.count+'</div>';
+    if(moved){ h += '<div class="was">set at '+s.booked+', moved '+s.moves+(s.moves===1?' time':' times')+'</div>'; }
+    else { h += '<div class="was">set at '+s.booked+', unchanged</div>'; }
+    h += '<div class="load">'+s.count+' of '+hull.seats+' seats</div>';
+    if(s.pending){ h += '<div class="pend">observation '+s.pending.to+' at '+esc(s.pending.t)+', not recorded</div>'; }
+    h += '</td>';
+
+    var chips = "", seen = {};
+    for(var n=st.notices.length-1;n>=0;n--){
+      var nt = st.notices[n];
+      if(nt.sailing!==base.id) continue;
+      if(seen[nt.party]) continue;
+      seen[nt.party] = true;
+      chips = ackChip(nt) + chips;
+    }
+    var comm = base.commit;
+    for(var pc in comm){
+      if(!comm.hasOwnProperty(pc)) continue;
+      if(seen[pc]) continue;
+      chips += '<span class="chip"><i></i>'+esc(partyName(pc, base.id))+', '+esc(comm[pc].l)+' '+esc(comm[pc].v)+'</span>';
+    }
+    h += '<td>'+chips+'</td>';
+    h += '<td class="kind">'+esc(s.source)+'</td>';
+    h += '</tr>';
+  }
+  h += '</tbody>';
+  $(tableId).innerHTML = h;
+}
+
+function legend(id){
+  $(id).innerHTML =
+    '<span>Grey, committed and quiet.</span>'+
+    '<span style="color:var(--good)">Green, acknowledged.</span>'+
+    '<span style="color:var(--aur2)">Blue, answered with a number.</span>'+
+    '<span style="color:var(--bad)">Red, no answer or cannot do.</span>'+
+    '<span style="color:var(--warm)">Amber, an observation nobody has recorded yet.</span>';
+}
+
+function renderRegistry(){
+  var h = "";
+  for(var k in HULLS){ if(!HULLS.hasOwnProperty(k)) continue;
+    h += '<span class="chip"><i></i>'+esc(HULLS[k].label)+', '+HULLS[k].seats+' seats</span>';
+  }
+  h += '<span class="chip"><i></i>Lodge galley (sample)</span>';
+  $("reg").innerHTML = h;
+}
+
+/* ============================================================
+   tabs
+   ============================================================ */
+var TABS = [
+  ["1","The board","One day, read only"],
+  ["2","0912, a count moves","Change Desk and the notice"],
+  ["3","Who has read it","Acknowledgement tracking"],
+  ["4","Replay the day","The append only log"]
+];
+function buildTabs(){
+  var h="";
+  for(var i=0;i<TABS.length;i++){
+    h += '<button class="tab'+(i===0?' on':'')+'" data-tab="'+TABS[i][0]+'"><b>'+esc(i+1)+'. '+esc(TABS[i][1])+'</b><span>'+esc(TABS[i][2])+'</span></button>';
+  }
+  $("tabs").innerHTML=h;
+}
+function showTab(n){
+  var t=document.querySelectorAll("#tabs .tab");
+  for(var i=0;i<t.length;i++){ t[i].className = "tab" + (t[i].getAttribute("data-tab")===n ? " on" : ""); }
+  for(var k=1;k<=4;k++){ $("p"+k).className = "panel" + (String(k)===n ? " on" : ""); }
+  if(n==="1"){ renderBoard("board1", project(toMin("0605")), {}); legend("leg1"); }
+  if(n==="3"){ ensureChange(); renderAck(); }
+  if(n==="4"){ loadAfternoon(); setupReplay(); }
+  try{ window.scrollTo({ top: Math.max(0, $("tabs").offsetTop - 16), behavior:"smooth" }); }catch(e){}
+}
+
+/* ============================================================
+   scenario 2
+   ============================================================ */
+var S2STEPS = ["s2a","s2b","s2c","s2d"];
+var S2LABEL = ["Observation","Change Desk","The notice","Recorded"];
+function s2bar(cur){
+  var h="", at = S2STEPS.indexOf(cur);
+  for(var i=0;i<S2STEPS.length;i++){
+    var cls = "sdot" + (i===at ? " on" : (i<at ? " done" : ""));
+    h += '<span class="'+cls+'">'+(i+1)+'. '+esc(S2LABEL[i])+'</span>';
+  }
+  $("s2bar").innerHTML=h;
+}
+function showStep(id){
+  for(var i=0;i<S2STEPS.length;i++){ $(S2STEPS[i]).className = "step" + (S2STEPS[i]===id ? " on" : ""); }
+  s2bar(id);
+  if(id==="s2c"){ renderReview(); }
+}
+
+var FORM = { after:71, reason:"MANIFEST_REVISED", source:"ship shore excursion desk, by telephone",
+             author:AUTHORS[0], parties:{ MCA:true, CAT:true, OPL:true, CRW:true } };
+
+function buildForm(){
+  var s = sail("S4"), h = "";
+  h += '<div class="f"><label>Operating day</label><div class="ro mono">Juneau, '+esc(DAY.label)+'</div><span class="hint">Fixed to the day on the board</span></div>';
+  h += '<div class="f"><label>Sailing</label><select id="fSail"><option>'+esc(s.time+"   "+refOf(s)+"   "+s.kind)+'</option></select><span class="hint">Picked from the day, never typed</span></div>';
+  h += '<div class="f"><label>Change type</label><select id="fType"><option>Head count</option><option disabled>Vessel assignment</option><option disabled>Departure time</option><option disabled>Cancellation</option><option disabled>Vendor commitment</option></select><span class="hint">Other types are greyed in this demonstration only</span></div>';
+  h += '<div class="f"><label>Head count before</label><div class="ro mono">104</div><span class="hint">Read from the ledger, not editable</span></div>';
+  h += '<div class="f"><label>Head count now</label><input type="number" id="fAfter" min="0" max="140" value="'+FORM.after+'"><span class="hint">The only number a person types</span></div>';
+  h += '<div class="f"><label>Source of the number</label><select id="fSrc">';
+  for(var i=0;i<SOURCES.length;i++){ h += '<option'+(SOURCES[i]===FORM.source?' selected':'')+'>'+esc(SOURCES[i])+'</option>'; }
+  h += '</select><span class="hint">Recorded on the event, so one season tells you where your numbers really come from</span></div>';
+  h += '<div class="f"><label>Reason</label><select id="fReason">';
+  for(var r=0;r<REASONS.length;r++){ h += '<option value="'+REASONS[r][0]+'"'+(REASONS[r][0]===FORM.reason?' selected':'')+'>'+esc(REASONS[r][1])+'</option>'; }
+  h += '</select><span class="hint">Closed list. Other is a code, not a text box</span></div>';
+  h += '<div class="f"><label>Recorded by</label><select id="fAuthor">';
+  for(var a=0;a<AUTHORS.length;a++){ h += '<option'+(AUTHORS[a]===FORM.author?' selected':'')+'>'+esc(AUTHORS[a])+'</option>'; }
+  h += '</select><span class="hint">Role, from the port directory</span></div>';
+
+  h += '<div class="f wide"><label>Parties this change touches</label><div class="parties">';
+  for(var pc in s.commit){
+    if(!s.commit.hasOwnProperty(pc)) continue;
+    h += '<label class="pw"><input type="checkbox" data-party="'+pc+'"'+(FORM.parties[pc]?" checked":"")+'>'+
+         '<span><span class="nm">'+esc(partyName(pc,"S4"))+
+         (PARTIES[pc].outside?'<span class="tagx out">outside party</span>':'<span class="tagx">in house</span>')+'</span><br>'+
+         '<span class="ch">'+esc(PARTIES[pc].channel)+', committed '+esc(s.commit[pc].l)+' '+esc(s.commit[pc].v)+'</span></span></label>';
+  }
+  h += '</div><span class="hint">Prefilled from the Juneau vendor directory. She can drop one, and the log records that she did</span></div>';
+  $("cdform").innerHTML = h;
+
+  $("fAfter").addEventListener("input", function(){ var v=parseInt(this.value,10); FORM.after = isNaN(v)?0:v; });
+  $("fSrc").addEventListener("change", function(){ FORM.source = this.value; });
+  $("fReason").addEventListener("change", function(){ FORM.reason = this.value; });
+  $("fAuthor").addEventListener("change", function(){ FORM.author = this.value; });
+  var cbs = document.querySelectorAll('#cdform input[type=checkbox]');
+  for(var c=0;c<cbs.length;c++){
+    cbs[c].addEventListener("change", function(){ FORM.parties[this.getAttribute("data-party")] = this.checked; });
+  }
+}
+
+var HL = false;
+function selectedParties(){
+  var out=[], order=["MCA","CAT","OPL","CRW"];
+  for(var i=0;i<order.length;i++){ if(FORM.parties[order[i]]) out.push(order[i]); }
+  return out;
+}
+function renderReview(){
+  $("tmplshow").innerHTML = templateHTML(T_CHANGE, true);
+  var s = sail("S4");
+  var parties = selectedParties();
+  var html = "", rendered = [];
+  var locked = (CHANGE_SEQ !== null);
+  var after = locked ? RECORDED.after : FORM.after;
+  var author = locked ? "Juneau operations specialist" : FORM.author;
+  if(locked) parties = RECORDED.parties;
+
+  if(parties.length===0){
+    html = '<div class="alarm">No parties are selected, so no notices go out. The change would still be recorded, and the log would show that nobody was told. That is a finding rather than a bug.</div>';
+  }
+  for(var i=0;i<parties.length;i++){
+    var pc = parties[i], cm = s.commit[pc];
+    var vals = { day:DAY.label, seq: locked ? String(CHANGE_SEQ) : "(next)", time:s.time, ref:refOf(s),
+                 before:"104", after:String(after), clabel:cm.l, cvalue:cm.v,
+                 stamp:"0913", author:author,
+                 ack:"ak-"+DAY.short+"-c"+(locked?CHANGE_SEQ:"(next)")+"-"+pc.toLowerCase()+"   (single use, sample)" };
+    var r = renderNotice(T_CHANGE, vals);
+    rendered.push(r);
+    html += '<div style="margin:0 0 14px">'+
+      '<div class="nhead"><div class="to">To '+esc(partyName(pc,"S4"))+'</div><div class="via">via '+esc(PARTIES[pc].channel)+'</div></div>'+
+      '<div class="notice">'+noticeHTML(r, HL)+'</div></div>';
+  }
+  $("notices").innerHTML = html;
+
+  /* the identical text check, computed here rather than asserted */
+  var proof;
+  if(rendered.length<2){
+    proof = 'Select two or more parties to run the identical text check.';
+  } else {
+    var base = fixedOnly(rendered[0]), same = true;
+    for(var k=1;k<rendered.length;k++){ if(fixedOnly(rendered[k])!==base){ same=false; } }
+    proof = '<strong>Identical text check, run in this page just now.</strong> '+
+      'The merged values were stripped out of all '+rendered.length+' notices and what is left was compared character by character. '+
+      'The fixed text is <span class="mono">'+base.length+' characters</span> and it is '+
+      (same ? 'byte for byte identical across every notice' : 'NOT identical, which would fail the build') +
+      '. Change the head count on the form and run this again. Only the digits move.';
+  }
+  $("proof").innerHTML = proof;
+  $("sendBtn").disabled = locked;
+  $("sendBtn").textContent = locked ? "Already recorded at 0913" : "Record the change and send the notices";
+}
+
+/* ============================================================
+   scenario 3, acknowledgement
+   ============================================================ */
+var ACK_CLOCK = toMin("0913");
+function renderAck(){
+  var st = project(), mine = [];
+  for(var i=0;i<st.notices.length;i++){ if(st.notices[i].fromSeq===CHANGE_SEQ) mine.push(st.notices[i]); }
+  $("ackClock").textContent = pad4(ACK_CLOCK);
+
+  var un = 0, cannot = null, lastAck = 0;
+  for(var k=0;k<mine.length;k++){
+    if(!mine[k].ack){ un++; }
+    else { lastAck = Math.max(lastAck, toMin(mine[k].ackT)); }
+    if(mine[k].ack==="CANNOT DO" && !cannot){ cannot = mine[k]; }
+  }
+
+  var alarm;
+  if(mine.length===0){
+    alarm = '<div class="calm">No notices are outstanding on this change.</div>';
+  } else if(un>0){
+    alarm = '<div class="alarm"><b>'+un+' of '+mine.length+' parties have not acknowledged the 1245 change.</b> '+
+      'That sailing leaves in '+(toMin("1245")-ACK_CLOCK)+' minutes. This banner stays red until every party has answered or somebody logs a telephone call. Making silence loud is most of the point.</div>';
+  } else if(cannot){
+    alarm = '<div class="alarm"><b>Everyone answered and one party cannot do it.</b> You knew that at '+esc(cannot.ackT)+
+      ' instead of finding out at the dock. What you do about it is your call, and the screen has no view on it.</div>';
+  } else {
+    alarm = '<div class="calm"><b>All '+mine.length+' parties are on the current number.</b> Elapsed from recorded to fully acknowledged, '+
+      (lastAck - toMin("0913"))+' minutes. We assume that answer costs four telephone calls today and never gets written down, which is one of the things the slice counts.</div>';
+  }
+  $("ackAlarm").innerHTML = alarm;
+
+  var h="";
+  for(var n=0;n<mine.length;n++){
+    var nt = mine[n], waited = ACK_CLOCK - toMin(nt.t);
+    h += '<div class="'+(nt.ack ? "ackrow done" : "ackrow unack")+'">';
+    h += '<div class="top"><div class="who">'+esc(partyName(nt.party, nt.sailing))+
+         (PARTIES[nt.party].outside?'<span class="tagx out">outside party</span>':'<span class="tagx">in house</span>')+'</div>';
+    h += '<div class="meta">notice sent '+esc(nt.t)+' via '+esc(PARTIES[nt.party].channel)+'</div></div>';
+
+    if(nt.ack==="CONFIRM"){
+      h += '<div class="small" style="margin-top:6px;color:var(--good)">CONFIRM at '+esc(nt.ackT)+(nt.manual?', logged by hand after a telephone call':'')+'</div>';
+    } else if(nt.ack==="CANNOT DO"){
+      h += '<div class="small" style="margin-top:6px;color:var(--bad)">CANNOT DO at '+esc(nt.ackT)+'. The board turns this red and says nothing further.</div>';
+    } else if(nt.ack==="NUMBER"){
+      h += '<div class="small" style="margin-top:6px;color:var(--aur2)">Sent a number at '+esc(nt.ackT)+'. Their answer, '+esc(nt.ackVal)+'. They decide their own resourcing. We only carry the head count.</div>';
+    } else {
+      h += '<div class="small" style="margin-top:6px;color:var(--bad)">No answer. '+waited+' minutes since the notice went out.</div>';
+      if(waited>=10 && waited<20){
+        h += '<div class="esc">No acknowledgement after 10 minutes. One SMS escalation queued. That is the last thing this software does on its own.</div>';
+      } else if(waited>=20){
+        h += '<div class="esc hard">No acknowledgement after 20 minutes and nothing automated is left. Call them. The telephone is the escalation of last resort and it stays a person, by design. Log the call below so the record stays complete.</div>';
+      }
+      h += '<div class="acts"><span class="faint">Answer as this party</span>'+
+        '<button class="btn sm" data-ack="'+esc(nt.id)+'" data-reply="CONFIRM">CONFIRM</button>'+
+        '<button class="btn sm" data-ack="'+esc(nt.id)+'" data-reply="CANNOT DO">CANNOT DO</button>'+
+        '<input class="numin mono" type="number" min="0" placeholder="a number" data-num="'+esc(nt.id)+'">'+
+        '<button class="btn sm" data-ack="'+esc(nt.id)+'" data-reply="NUMBER">Send that number</button>';
+      if(waited>=20){
+        h += '<button class="btn sm" data-ack="'+esc(nt.id)+'" data-reply="CONFIRM" data-manual="1">Log a telephone call</button>';
+      }
+      h += '</div>';
+    }
+    h += '</div>';
+  }
+  $("ackDesk").innerHTML = h;
+
+  if($("board2d").innerHTML){ renderBoard("board2d", st, {hit:"S4"}); legend("leg2"); }
+}
+
+function doAck(nid, reply, manual){
+  var val = null;
+  if(reply==="NUMBER"){
+    var inp = document.querySelector('[data-num="'+nid+'"]');
+    if(!inp || inp.value===""){ return; }
+    var parsed = parseInt(inp.value,10);
+    if(isNaN(parsed)){ return; }
+    val = String(parsed);
+  }
+  push({ t:pad4(ACK_CLOCK), type:"ack", author:"demonstration viewer, acting as the party", sailing:"S4",
+         p:{ nid:nid, reply:reply, value:val, manual:!!manual } });
+  sortLog();
+  renderAck();
+}
+
+/* ============================================================
+   scenario 4, log and replay
+   ============================================================ */
+var SELECTED = null;
+var playTimer = null;
+
+function evLabel(e){
+  if(e.type==="day_published") return ["", "DAY SET"];
+  if(e.type==="count_observed") return ["", "OBSERVATION"];
+  if(e.type==="change_recorded") return ["change","CHANGE"];
+  if(e.type==="correction") return ["corr","CORRECTION"];
+  if(e.type==="notice_sent") return ["notice","NOTICE"];
+  if(e.type==="ack") return ["ack","ACK"];
+  if(e.type==="escalation") return ["notice","ESCALATION"];
+  if(e.type==="day_sealed") return ["seal","SEALED"];
+  return ["", e.type.toUpperCase()];
+}
+function evSummary(e){
+  var s = e.sailing ? sail(e.sailing) : null;
+  if(e.type==="day_published") return e.text;
+  if(e.type==="count_observed") return s.time+" observation "+e.p.from+" to "+e.p.to+", "+e.p.source+". Not merged, waiting on a person.";
+  if(e.type==="change_recorded") return s.time+" head count "+e.p.before+" to "+e.p.after+", reason "+e.p.reason+", parties "+e.p.parties.join(" ");
+  if(e.type==="correction") return s.time+" correction of event "+e.p.supersedes+". "+e.p.bad+" was wrong, the head count is "+e.p.after+", "+e.p.note;
+  if(e.type==="notice_sent") return s.time+" notice to "+partyName(e.p.party, e.sailing)+" via "+PARTIES[e.p.party].channel+", template "+e.p.tmpl;
+  if(e.type==="ack") return (e.p.reply==="NUMBER" ? "answered with a number, "+e.p.value : e.p.reply) + (e.p.manual ? ", logged by hand after a telephone call" : "");
+  if(e.type==="escalation") return "escalated to "+e.p.channel+" after silence";
+  if(e.type==="day_sealed") return e.text;
+  return "";
+}
+function renderLog(upto){
+  var st = project();
+  var h='<thead><tr><th>Seq</th><th>Time</th><th>Event</th><th>Author</th><th>What it recorded</th><th>Digest</th></tr></thead><tbody>';
+  for(var i=0;i<LOG.length;i++){
+    var e=LOG[i], lab=evLabel(e);
+    var dim = (upto!==undefined && toMin(e.t)>upto);
+    var clickable = (e.type==="notice_sent");
+    h += '<tr class="'+(dim?"dim ":"")+(clickable?"clickable ":"")+(SELECTED===e.seq?"sel":"")+'"'+(clickable?' data-ev="'+e.seq+'"':'')+'>';
+    h += '<td class="mono dg">'+e.seq+'</td><td class="mono">'+esc(e.t)+'</td>';
+    h += '<td><span class="ev '+lab[0]+'">'+lab[1]+'</span></td>';
+    h += '<td class="kind">'+esc(e.author)+'</td>';
+    h += '<td>'+esc(evSummary(e))+(clickable?' <span class="faint">read it</span>':'')+'</td>';
+    h += '<td class="mono dg">'+esc(e.digest)+'</td></tr>';
+    if(SELECTED===e.seq && clickable){
+      var nt=null;
+      for(var q=0;q<st.notices.length;q++){ if(st.notices[q].id===e.p.nid) nt=st.notices[q]; }
+      if(nt){
+        var built = noticeFor(nt);
+        if(built){
+          var r = renderNotice(built.tmpl, built.vals);
+          h += '<tr><td colspan="6" style="background:#0a111c">'+
+               '<div class="nhead"><div class="to">To '+esc(partyName(nt.party,nt.sailing))+'</div>'+
+               '<div class="via">via '+esc(PARTIES[nt.party].channel)+', template '+esc(nt.tmpl)+(nt.superseded?', superseded':'')+'</div></div>'+
+               '<div class="notice">'+noticeHTML(r,false)+'</div></td></tr>';
+        }
+      }
+    }
+  }
+  h+='</tbody>';
+  $("logtable").innerHTML=h;
+}
+
+function setupReplay(){
+  sortLog();
+  var minT = toMin(LOG[0].t), maxT = toMin(LOG[LOG.length-1].t);
+  var rg = $("rpRange");
+  rg.min = minT; rg.max = maxT;
+  if(rg.getAttribute("data-init")!=="1"){ rg.value = maxT; rg.setAttribute("data-init","1"); }
+  if(parseInt(rg.value,10) > maxT){ rg.value = maxT; }
+  drawReplay(parseInt(rg.value,10));
+  renderTally();
+  $("corrNote").innerHTML =
+    '<div class="callout" style="margin-top:12px"><b>Look at 1341 and 1347.</b> A dock representative typed 68 when the number was 86, digits transposed at the end of a long shift. '+
+    'The 1341 event is still there and it always will be. The 1347 event is a compensating event that supersedes it, the two notices from 1341 are marked superseded rather than deleted, '+
+    'and a corrected notice went out on its own fixed template. Nothing in this log is ever edited or removed. That single property is why a season of it is worth funding a decision on.</div>';
+}
+function drawReplay(m){
+  var st = project(m);
+  $("rpAt").textContent = pad4(m);
+  renderBoard("board4", st, {flagPending:true});
+  legend("leg4");
+  renderLog(m);
+  var done=0;
+  for(var i=0;i<LOG.length;i++){ if(toMin(LOG[i].t)<=m) done++; }
+  $("rpState").textContent = done+" of "+LOG.length+" events applied";
+}
+function median(a){
+  if(!a.length) return null;
+  var b=a.slice().sort(function(x,y){return x-y;});
+  var mid=Math.floor(b.length/2);
+  return b.length%2 ? b[mid] : Math.round((b[mid-1]+b[mid])/2);
+}
+function renderTally(){
+  var st = project(), changes = st.changes;
+  var outsidePer = [], touched = {}, notices = 0, delta = 0, settle = [];
+  for(var i=0;i<changes.length;i++){
+    var c = changes[i];
+    touched[c.sailing] = true;
+    var outs = 0;
+    for(var k=0;k<c.p.parties.length;k++){ if(PARTIES[c.p.parties[k]].outside) outs++; }
+    outsidePer.push(outs);
+    delta += Math.abs(c.p.after - c.p.before);
+    var last = null, all = true, counted = 0;
+    for(var n=0;n<st.notices.length;n++){
+      var nt=st.notices[n];
+      if(nt.fromSeq!==c.seq) continue;
+      notices++;
+      if(nt.superseded) continue;
+      counted++;
+      if(!nt.ackT){ all=false; } else { last = Math.max(last===null?0:last, toMin(nt.ackT)); }
+    }
+    if(all && counted>0 && last!==null){ settle.push(last - toMin(c.t)); }
+  }
+  var medOut = median(outsidePer), medSettle = median(settle);
+  var cards = [
+    [changes.length, "change events recorded on this one sample operating day, the correction counted as its own event"],
+    [Object.keys(touched).length + " of 6", "sailings whose numbers moved after the day was set"],
+    [notices, "notices sent, every one the same fixed template with different digits"],
+    [medSettle===null ? "n/a" : medSettle+" min", "median minutes from a change being recorded to every notified party holding the new number"],
+    [medOut===null ? "n/a" : medOut, "median outside parties touched per change, motorcoach and caterer only"],
+    [delta, "total head count movement across the day, absolute"],
+    [LOG.length, "events in the append only log, not one of them editable"],
+    ["0", "of these numbers exist for a real Juneau operating day today"]
+  ];
+  var h="";
+  for(var c2=0;c2<cards.length;c2++){
+    h += '<div class="tl"><div class="n">'+esc(cards[c2][0])+'</div><div class="l">'+esc(cards[c2][1])+'</div></div>';
+  }
+  $("tally").innerHTML=h;
+
+  var pass = (medOut!==null && medOut>=2);
+  $("gatebox").innerHTML =
+    '<b>Read this against our own gate before you read it as a sales page.</b> The study proposes one bar. '+
+    'GATE 1, the winter build, is funded only if the slice shows ALL THREE of these. Head count changes on a majority of instrumented Juneau operating days. A median of two or more outside parties touched per change. And a measured exposure that, once you tell us what fraction of exposure turns into real cost, clears three times the winter build cost. This demonstration can only test the second one, because an invented day carries no exposure figure and no finance fraction, and even on that one it fails. '+
+    'This invented day gives a median of <strong>'+(medOut===null?"n/a":medOut)+'</strong> outside parties per change, which '+
+    (pass ? 'clears that bar.'
+          : '<strong>fails it</strong>. If your real days looked like this invented one, we would tell you in writing not to fund the winter build, and you would still keep the ledger, the log and the first baseline this business has ever had.')+
+    ' We did not tune the sample day to clear our own gate and we are not going to. The only tally that decides anything is the one counted on your real days, and it does not exist yet.';
+}
+
+/* ============================================================
+   wiring
+   ============================================================ */
+function stopPlay(){ if(playTimer){ clearInterval(playTimer); playTimer=null; $("rpPlay").textContent="Play the day"; } }
+
+function advanceAck(mins){
+  ACK_CLOCK += mins;
+  var st = project();
+  for(var i=0;i<st.notices.length;i++){
+    var nt = st.notices[i];
+    if(nt.fromSeq!==CHANGE_SEQ || nt.ack || nt.esc) continue;
+    if(ACK_CLOCK - toMin(nt.t) >= 10){
+      push({ t:pad4(toMin(nt.t)+10), type:"escalation", author:"system", sailing:nt.sailing,
+             p:{ nid:nt.id, channel:"SMS" } });
+    }
+  }
+  sortLog();
+  renderAck();
+}
+
+function boot(){
+  seedMorning();
+  buildTabs();
+  renderRegistry();
+  renderBoard("board1", project(toMin("0605")), {});
+  legend("leg1");
+  renderBoard("board2a", project(toMin("0912")), {only:"S4", flagPending:true});
+  buildForm();
+  s2bar("s2a");
+  $("tmplshow").innerHTML = templateHTML(T_CHANGE, true);
+
+  document.addEventListener("click", function(ev){
+    var t = ev.target;
+    while(t && t!==document.body){
+      if(t.getAttribute){
+        var tab = t.getAttribute("data-tab");
+        if(tab){ showTab(tab); return; }
+        var go = t.getAttribute("data-go");
+        if(go){ showStep(go); return; }
+        var ack = t.getAttribute("data-ack");
+        if(ack){ doAck(ack, t.getAttribute("data-reply"), t.getAttribute("data-manual")); return; }
+        var adv = t.getAttribute("data-adv");
+        if(adv){ advanceAck(parseInt(adv,10)); return; }
+        var evs = t.getAttribute("data-ev");
+        if(evs){
+          var n=parseInt(evs,10);
+          SELECTED = (SELECTED===n ? null : n);
+          renderLog(parseInt($("rpRange").value,10));
+          return;
+        }
+      }
+      t = t.parentNode;
+    }
+  });
+
+  $("toReview").addEventListener("click", function(){ showStep("s2c"); });
+
+  $("hlToggle").addEventListener("click", function(){
+    HL = !HL;
+    this.textContent = HL ? "Hide the merged fields" : "Highlight the merged fields";
+    $("hlNote").textContent = HL
+      ? "Yellow is everything the ledger merged in. Every other character is fixed."
+      : "Merged fields are shown in the template above in green.";
+    renderReview();
+  });
+
+  $("sendBtn").addEventListener("click", function(){
+    if(CHANGE_SEQ===null){
+      recordChange(FORM.after, FORM.reason, FORM.source, selectedParties(), FORM.author);
+    }
+    var st = project(), count = 0;
+    for(var i=0;i<st.notices.length;i++){ if(st.notices[i].fromSeq===CHANGE_SEQ) count++; }
+    $("sentMsg").innerHTML = '<b>Change recorded at 0913 and '+count+' notice'+(count===1?'':'s')+' sent.</b> '+
+      'One action. The head count on JNU-'+DAY.short+'-S4 is now '+RECORDED.after+', every notified party holds the same five lines in the same order, '+
+      'and the event sits in the log with a timestamp, an author, a reason and a source. If today this is four telephone calls and nothing written down, that is our assumption and not a measurement. Whether it really is four is one of the things the slice counts.';
+    renderBoard("board2d", st, {hit:"S4"});
+    legend("leg2");
+    showStep("s2d");
+  });
+
+  $("ackReset").addEventListener("click", function(){
+    var keep = [];
+    for(var i=0;i<LOG.length;i++){
+      var e = LOG[i];
+      var isMine = e.p && e.p.nid && e.p.nid.indexOf("n"+CHANGE_SEQ+"-")===0;
+      if(isMine && (e.type==="ack" || e.type==="escalation")) continue;
+      keep.push(e);
+    }
+    LOG = keep; ACK_CLOCK = toMin("0913"); sortLog(); renderAck();
+  });
+
+  $("rpRange").addEventListener("input", function(){ stopPlay(); drawReplay(parseInt(this.value,10)); });
+  $("rpPlay").addEventListener("click", function(){
+    if(playTimer){ stopPlay(); return; }
+    var rg = $("rpRange");
+    if(parseInt(rg.value,10) >= parseInt(rg.max,10)){ rg.value = rg.min; }
+    this.textContent = "Stop";
+    playTimer = setInterval(function(){
+      var v = parseInt(rg.value,10) + 7;
+      if(v >= parseInt(rg.max,10)){ v = parseInt(rg.max,10); stopPlay(); }
+      rg.value = v;
+      drawReplay(v);
+    }, 90);
+  });
+  $("rpEnd").addEventListener("click", function(){
+    stopPlay();
+    var rg = $("rpRange"); rg.value = rg.max; drawReplay(parseInt(rg.max,10));
+  });
+}
+
+/* print shows every panel, so make sure every panel holds real content */
+window.addEventListener("beforeprint", function(){
+  stopPlay();
+  ensureChange();
+  if(!$("board2d").innerHTML){ renderBoard("board2d", project(), {hit:"S4"}); legend("leg2"); }
+  renderReview();
+  loadAfternoon();
+  setupReplay();
+  renderAck();
+});
+
+boot();
+</script>
+</body>
+</html>
