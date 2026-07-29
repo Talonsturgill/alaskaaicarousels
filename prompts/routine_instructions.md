@@ -384,6 +384,18 @@ python .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slides
    with the render PNG path, the thumb path, the slide's dossier, and the
    deck's doctrine excerpts. They transcribe, verify checklists, and
    return fix lists.
+
+   If a dossier states field 11a, the WORDLESS CLAIM, pass it in the prompt
+   and require the critic to answer `encoding_reads`. That judgement cannot be
+   automated: it was tested on 2026-07-29 across 171 slides and 19 decks with
+   nine objective image features and none separated the slides scorers named
+   from the rest (best AUC 0.653, Bonferroni p 0.147). Artwork craft has been
+   the weakest criterion in 16 of 19 runs precisely because the only reviewer
+   who ever saw the failure was the scorer, at the ship gate. A critic
+   answering "no, the material change reads as a plinth" at Phase 9 is worth
+   more than any threshold, because there is still budget to rebuild the art.
+   Treat `encoding_reads: no` as a revise, same as any other failed checklist
+   item.
 3. Apply fixes in the slide code (respect "strengths — do not break"),
    re-render ONLY changed slides, re-run qa.py, and re-review ONLY
    changed slides. Loop until every slide verdicts "ship", max 4 rounds.

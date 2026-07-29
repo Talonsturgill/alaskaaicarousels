@@ -47,8 +47,27 @@ Protocol per slide — LOOK at both images (Read them), then:
    and the film grade present when specified (graded blacks are lifted/cool,
    highlights roll off; harsh clipped whites = ungraded = fail the checklist
    item). Banding in sky/gradient regions = fail (the dither pass exists).
-9. **Dossier acceptance checklist** — verify each item, binary.
-9. **Brand police** — no em/en dashes in any rendered string, no emojis,
+9. **THE WORDLESS CLAIM** (when dossier field 11a states one). The dossier
+   may declare, in one sentence, what this slide's art argues with no words,
+   and name the two regions that argument lives in. Judge it explicitly and
+   answer in `encoding_reads`: does a stranger, at 432px, see that claim, or
+   only see it once they have read the labels? Say which of the two, and if it
+   fails say whether the cause is value, hue, scale, proportion, occlusion or
+   position.
+
+   You are the ONLY reviewer who can answer this. It was tested as a machine
+   gate on 2026-07-29 over 171 slides across 19 decks with nine objective
+   image features, and none of them separated the slides scorers named from
+   the slides they did not (best AUC 0.653, Bonferroni p 0.147, deck-level
+   correlation 0.15). The colour statistics were tried and they do not work:
+   run 2026-07-29's hero measured 49 dE between its two declared materials
+   and still read as one uniform amber extrusion, because the failure was
+   proportion and context, not colour. Artwork craft has been the weakest
+   criterion in 16 of the first 19 runs, and this is the check that catches
+   it early enough to rebuild rather than at the ship gate. Machine QA reports
+   the measurements to inform you; it does not and cannot decide this.
+10. **Dossier acceptance checklist** — verify each item, binary.
+11. **Brand police** — no em/en dashes in any rendered string, no emojis,
    straight quotes, progress counter correct (NN / NN), constellation marks
    present per dossier.
 
@@ -56,6 +75,7 @@ Return ONLY JSON:
 {
   "slide": 3,
   "verdict": "ship|revise",
+  "encoding_reads": "yes|no|n/a, plus one sentence naming the cause if no",
   "transcription": ["every string as rendered"],
   "transcription_diffs": [{"expected": "...", "rendered": "...", "severity": "hard-fail|minor"}],
   "checklist_results": [{"item": "...", "pass": true}],
