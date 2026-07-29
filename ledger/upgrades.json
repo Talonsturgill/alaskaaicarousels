@@ -589,7 +589,7 @@
       ],
       "verification": "Run over the real 19-run corpus it independently reproduces the two findings that motivated it: artwork craft weakest 16 of 19, and 'text against geometry' flagged RECURRING across 2026-07-25 and 2026-07-29. Corpus shape drift was the hard part and is covered: 27 spellings of the top-level keys, 4 container shapes for hard_fails (list of strings, list of {rule,status} rows, the bare string 'none (all 13 rules pass)', and {'any': false, 'checked': [...]}), and glossed weakest-criterion lines. Two bugs found and fixed during testing: iterating the string form character by character invented four hard fails named n, o, n and e on 2026-07-10, and a directory of only-corrupt reports printed 'nothing to trend yet' and exited 0, which is a check that cannot see calling itself clean (now reports each unreadable file and exits 2). Determinism confirmed by byte-comparing two --json runs. Edge cases exercised: empty runs dir (exit 0), missing runs dir (exit 2), corrupt alongside good, window larger than corpus, and both --require polarities. ast.parse clean. No existing gate touched: parsers_check PASS, dossier_check PASS 9/0/0, scanner_sync exit 0, gate_status --require exit 0.",
       "rollback": "Delete scripts/trend_check.py and revert the Phase 0 step 7 and Phase 12 step 1 additions in prompts/routine_instructions.md. Nothing else reads it, so removal is inert.",
-      "commit": "80d41152e834a9492c19d70946ea0e69d3d13f76"
+      "commit": "08f035d1be119fd655df6937daf7485c19c2d9e2"
     }
   ],
   "scan_log": [

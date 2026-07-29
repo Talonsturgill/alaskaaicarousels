@@ -654,8 +654,13 @@ the showrunner's.
    post-merge), message prefixed `upgrade(<date>):`, separate from the
    run-artifacts commit, so any single upgrade set can be reverted
    cleanly if the maintainer sees degradation in a later dated email.
-   Record the commit SHA back into the ledger entries (amend or follow-up
-   commit) and push.
+   Record the commit SHA back into the ledger entries with a FOLLOW-UP
+   commit, then push. Not an amend: writing the SHA changes the tree, which
+   changes the SHA, so an amended commit can never carry its own hash. Run
+   2026-07-29 stamped a pre-amend SHA that no longer existed on the branch.
+   A follow-up commit is the only self-consistent option, and the ledger
+   entry then points at the commit that carries the code, which is what a
+   rollback needs.
 
 ## PHASE 13 — GMAIL DRAFT
 
