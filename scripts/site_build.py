@@ -3843,9 +3843,10 @@ lifetimes, told from the only place we would tell it from. AI is arriving in
 Alaska the way pipelines and railroads once did, as land leases, gas
 contracts, utility votes and federal solicitations. Alaskans deserve to see
 it coming, in plain English, with receipts.</p>
-<p>Alaska AI is also a working AI studio. It builds voice agents, assistants
-trained on a company's own files, paperwork engines and digital employees
-for Alaska businesses, statewide from Anchorage. That work lives on the
+<p>Alaska AI is also a working AI studio. It builds agentic systems that run
+whole workflows end to end, along with digital employees, paperwork engines,
+assistants trained on a company's own files, and voice agents. All of it for
+Alaska businesses, statewide. That work lives on the
 <a href="../services/">services page</a>. Writing the beat every morning is
 exactly why the studio knows what actually pays.</p>
 <h2>Who runs it</h2>
