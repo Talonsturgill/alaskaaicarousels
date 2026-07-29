@@ -165,6 +165,25 @@ def breadcrumb_ld(site_url, crumbs):
                  "item": f"{site_url}/{path}"}
                 for i, (name, path) in enumerate(crumbs)]}
 
+
+def ld_json(obj):
+    """Serialize a JSON-LD block for embedding inside a <script> element.
+
+    json.dumps does not escape <, >, or &, so a run-record title of
+    'Robot </script><script>alert(1)//' closed the ld+json element early and
+    the browser then parsed the rest as live script. Every value here traces
+    to an agent-written run record (title, summary, outlet, article body), so
+    this was stored XSS on the origin, and it slipped every gate because the
+    injected </script><script> pair balances and the colon gate's own
+    tag-stripping regex swallowed the JSON tail.
+
+    Escaping the three HTML-significant characters as their \\uXXXX forms keeps
+    the JSON byte-for-byte valid (a JSON string may carry any \\u escape) while
+    making it impossible to break out of the script element. This is the
+    standard defense; browsers and schema parsers read \\u003c as '<'."""
+    return (json.dumps(obj, separators=(",", ":"))
+            .replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026"))
+
 MONTH_FULL = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"]
 
@@ -1497,7 +1516,7 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
     if crumbs:
         blocks.append(breadcrumb_ld(site_url, crumbs))
     ld_html = "".join(
-        f'<script type="application/ld+json">{json.dumps(b, separators=(",", ":"))}</script>'
+        f'<script type="application/ld+json">{ld_json(b)}</script>'
         for b in blocks)
     robots_html = '<meta name="robots" content="noindex,follow">\n' if noindex else ""
     preload = "".join(
