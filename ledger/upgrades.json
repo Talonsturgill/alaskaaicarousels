@@ -609,7 +609,7 @@
       "trigger": "Maintainer asked for the corpus exercise rather than deferring it again. Artwork craft has been the weakest criterion in 16 of the first 19 runs and two prior gate attempts had failed on guessed thresholds: an absolute craft floor (2026-07-26) and colour separability on a declared encoding (2026-07-29 morning).",
       "verification": "THE STUDY IS THE VERIFICATION AND ITS RESULT IS NEGATIVE, DECISIVELY. 171 slides across 19 decks, 24 labelled bad. Best feature detail_ratio at AUC 0.653 against a null standard error of 0.064, so 2.4 SE out with nine features tried; Bonferroni corrected p = 0.147; leave-one-deck-out 0.619 to 0.701, stable and stably noise; correlation with the deck's own artwork-craft score 0.15. No feature separates the groups, so an objective artwork-craft gate is NOT supportable on this corpus and none was shipped. Label derivation was audited by hand via --dump-labels and tightened after three false positives from praise sentences were found. Study output is byte-identical across runs. Regressions: parsers_check PASS, dossier_check PASS 9/0/0, gate_status --require exit 0, trend_check exit 0, all four touched Python files ast.parse clean.",
       "rollback": "Delete scripts/craft_corpus.py, revert the item 9 block in .claude/agents/pixel-critic.md (renumbering 10 and 11 back), and revert the Phase 9 paragraph in prompts/routine_instructions.md. No gate depends on any of it.",
-      "commit": null
+      "commit": "e94f21b82f0cb19222d33c634d55a4ac5dffed53"
     }
   ],
   "scan_log": [
