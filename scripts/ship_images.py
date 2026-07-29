@@ -108,7 +108,11 @@ def convert_run(run: Path, dry: bool, keep_png: bool, verify: bool) -> dict:
 
     result = {"run": run.name, "files": 0, "before": 0, "after": 0,
               "worst_psnr": float("inf"), "og": False, "errors": [], "escalated": 0}
-    if not todo and not slides:
+    # Nothing to convert AND the og.jpg already exists means genuinely no work.
+    # But an already-converted run whose og.jpg is missing still has the one
+    # repair below to do, and returning here skipped it, so the "repairs a
+    # missing og.jpg on re-run" the block below advertises never actually ran.
+    if not todo and (run / "og.jpg").exists():
         return result
 
     for src in todo:

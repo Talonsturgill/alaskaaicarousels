@@ -128,15 +128,31 @@ def score_entry(cand, entry):
     entity_hits = sorted({p for p in cand["entity_phrases"] if _phrase_in(p, blob)})
     keyword_overlap = sorted(cand["keyword_tokens"] & entry_kw_tokens)
 
+    shared = cand["tokens"] & entry_tokens
     union = cand["tokens"] | entry_tokens
-    jaccard = (len(cand["tokens"] & entry_tokens) / len(union)) if union else 0.0
+    jaccard = (len(shared) / len(union)) if union else 0.0
 
-    # Classification. Distinctive named-entity overlap is the strongest
-    # signal (two or more distinct named entities in common ~= the same story);
-    # a high distinctive-token Jaccard is the secondary trigger.
-    if len(entity_hits) >= 2 or jaccard >= 0.30:
+    # Containment, not just Jaccard. A candidate is much smaller than a full
+    # ledger entry's blob (a handful of entities and keywords against every
+    # field of a past run), so even a candidate whose every token appears in
+    # the entry topped out around Jaccard 0.37 and the 0.30 LIKELY DUPLICATE
+    # trigger was mathematically unreachable: a word-for-word repeat of
+    # yesterday's deck scored SOFT OVERLAP and exit 0. Containment measures how
+    # much of the SMALLER set is in the larger, so a repeat scores near 1.0.
+    #
+    # Calibrated on the real ledger: a genuine repeat (candidate rebuilt from a
+    # past entry) scores containment 1.0, while the highest any DIFFERENT story
+    # reaches for a substantial candidate is 0.49, so 0.50 separates cleanly.
+    # The shared-token floors keep a tiny two-token candidate that happens to
+    # sit inside a big entry from tripping on coincidence.
+    denom = min(len(cand["tokens"]), len(entry_tokens)) or 1
+    containment = len(shared) / denom
+
+    if (len(entity_hits) >= 2 or jaccard >= 0.30
+            or (len(shared) >= 5 and containment >= 0.50)):
         verdict = "LIKELY DUPLICATE"
-    elif entity_hits or keyword_overlap or jaccard >= 0.12:
+    elif (entity_hits or keyword_overlap or jaccard >= 0.12
+            or (len(shared) >= 4 and containment >= 0.30)):
         verdict = "SOFT OVERLAP"
     else:
         verdict = "clear"
@@ -146,6 +162,7 @@ def score_entry(cand, entry):
         "entity_hits": entity_hits,
         "keyword_overlap": keyword_overlap,
         "jaccard": round(jaccard, 3),
+        "containment": round(containment, 3),
     }
 
 

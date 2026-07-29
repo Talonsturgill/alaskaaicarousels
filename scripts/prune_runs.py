@@ -44,20 +44,35 @@ RUNS = REPO / "runs"
 SCRATCH_FILES = (
     "contact_sheet.webp", "contact_sheet.png",
     "storyboard.md", "scout_merge.md", "selection.md", "automation_retro.md",
-    "gmail_payload.json", "gmail_draft_id.txt", "caption_report.json",
-    "machine_qa.json",
+    "gmail_payload.json", "gmail_draft_id.txt",
 )
 SCRATCH_DIRS = ("thumbs",)
 
 # Named so a future reader does not have to infer the rule from the code.
+# caption_report.json and machine_qa.json are NOT scratch: gate_status.py
+# re-derives the caption and qa rows from them, and trend_check.py reads
+# machine_qa.json across the window to find defect classes that keep shipping,
+# so deleting them made the repeat-offender engine report itself clean and a
+# pruned run's ship gate un-re-derivable. The routine's own docs already
+# listed them as kept; the code was deleting more than it documented.
 NEVER = ("carousel.pdf", "claims.json", "copy.json", "caption.txt",
          "score_report.json", "run_state.json", "plan.md",
-         "assemble_report.json", "og.jpg")
+         "assemble_report.json", "og.jpg",
+         "caption_report.json", "machine_qa.json")
+
+
+# A file cannot be both scratch and protected. This makes NEVER a real guard,
+# not a comment: a future edit that re-adds machine_qa.json to SCRATCH_FILES
+# fails at import rather than silently deleting a shipped artifact again.
+_OVERLAP = set(SCRATCH_FILES) & set(NEVER)
+assert not _OVERLAP, "prune_runs: these are on both SCRATCH and NEVER: %s" % _OVERLAP
 
 
 def prune(run: Path, apply: bool) -> tuple[int, list[str]]:
     freed, gone = 0, []
     for name in SCRATCH_FILES:
+        if name in NEVER:
+            continue
         f = run / name
         if f.exists() and f.is_file():
             freed += f.stat().st_size
@@ -96,7 +111,11 @@ def main() -> int:
             when = date.fromisoformat(run.name)
         except ValueError:
             continue
-        if when > cutoff:
+        # "older than N days" means age strictly greater than N, so a run
+        # exactly N days old (when == cutoff) is kept, not pruned. With `>` the
+        # cutoff day itself was pruned, and --days 0 would have pruned the run
+        # that just shipped today.
+        if when >= cutoff:
             continue
         freed, gone = prune(run, apply)
         if not gone:

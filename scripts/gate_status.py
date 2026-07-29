@@ -51,6 +51,55 @@ def binary_ok(path, magic):
     return True, None
 
 
+def image_ok(path, magic):
+    """A magic-byte check passes a truncated slide: a WebP keeps its RIFF header
+    and a PNG its signature no matter where the file was cut. This reads the
+    whole file and checks it terminates the way the format requires, so a slide
+    truncated mid-stream fails the ship gate instead of merging to main and
+    404-ing nothing while displaying half an image. Pillow verifies it fully
+    when present; the structural checks stand alone when it is not."""
+    ok, note = binary_ok(path, magic)
+    if not ok:
+        return ok, note
+    b = path.read_bytes()
+    if magic == b"\x89PNG":
+        # PNG must end with the IEND chunk and its CRC.
+        if not b.rstrip(b"\x00").endswith(b"IEND\xaeB`\x82"):
+            return False, "truncated PNG (no IEND trailer)"
+    elif magic == b"RIFF":
+        # RIFF stores total size at bytes 4..8; it must match the file.
+        if len(b) < 12:
+            return False, "truncated WebP (%d bytes)" % len(b)
+        import struct
+        declared = struct.unpack("<I", b[4:8])[0] + 8
+        if declared != len(b):
+            return False, "truncated WebP (RIFF says %d bytes, file is %d)" % (declared, len(b))
+    try:
+        from PIL import Image
+        with Image.open(path) as im:
+            im.verify()
+    except ImportError:
+        pass
+    except Exception:
+        return False, "corrupt image (failed to decode)"
+    return True, None
+
+
+def pdf_ok(path):
+    """%PDF magic passes a 64-byte stub. A real carousel PDF is hundreds of KB
+    and ends with an %%EOF trailer; require both so a truncated or empty-shell
+    PDF fails rather than shipping as the email's download link."""
+    ok, note = binary_ok(path, b"%PDF")
+    if not ok:
+        return ok, note
+    b = path.read_bytes()
+    if len(b) < 4096:
+        return False, "PDF only %d bytes (truncated)" % len(b)
+    if b"%%EOF" not in b[-2048:]:
+        return False, "truncated PDF (no %%EOF trailer)"
+    return True, None
+
+
 def first(d, *keys, default=None):
     for k in keys:
         if isinstance(d, dict) and k in d and d[k] is not None:
@@ -93,12 +142,20 @@ def qa_row(rows, rdir):
     if qa is None:
         rows.absent("qa.py", "render/machine_qa.json %s" % note)
         return
-    verdict = qa.get("verdict", "?")
+    verdict = str(qa.get("verdict", "?")).upper()
     detail = "%s, %s fails, %s warns" % (verdict, qa.get("fails", "?"), qa.get("warns", "?"))
     named = [s["file"] for s in qa.get("slides", []) if s.get("fails")]
     if named:
         detail += " (fails on %s)" % ", ".join(named)
-    status = "FAIL" if qa.get("fails") else ("WARN" if qa.get("warns") else "PASS")
+    # Honor the verdict and the per-slide fail lists, not the top-level counter
+    # alone. A machine_qa.json with a stale fails:0 but verdict FAIL, or a slide
+    # carrying a fail with the counter never incremented, used to stamp PASS
+    # while the row itself spelled out the failing slide. This gate exists
+    # because a summary once disagreed with the artifact; it must not repeat
+    # that with a summary field.
+    fail = qa.get("fails") or named or verdict == "FAIL"
+    warn = qa.get("warns") or verdict == "WARN"
+    status = "FAIL" if fail else ("WARN" if warn else "PASS")
     rows.add("qa.py", status, detail)
 
 
@@ -154,7 +211,12 @@ def copy_sync_row(rows, run, rdir):
                             "--render-report", str(rdir / "render_report.json")],
                            capture_output=True, text=True, timeout=120)
     except Exception as e:
-        rows.add("copy_sync", "n/a", "could not run copy_sync_check (%s)" % type(e).__name__)
+        # A check that could not run is a FAIL at the ship gate, not a pass.
+        # This was the only row that hard-coded n/a on a subprocess failure, so
+        # a timeout or launch error let a stale copy.json ship with the
+        # record-sync tripwire silently never having run. Its siblings
+        # (scanner_sync, docket_dates) use absent() for exactly this reason.
+        rows.absent("copy_sync", "could not run copy_sync_check (%s)" % type(e).__name__)
         return
     line = (p.stdout.strip().splitlines() or [""])[-1] if p.returncode else \
         (p.stdout.strip().splitlines() or [""])[0]
@@ -233,7 +295,7 @@ def assemble_row(rows, run, rep, fdir):
     # records an absolute path from the machine that built it, which can point
     # at a different copy of the run (or at nothing after a move).
     pdf_name = Path(asm.get("pdf") or "carousel.pdf").name
-    ok, bnote = binary_ok(fdir / pdf_name, b"%PDF")
+    ok, bnote = pdf_ok(fdir / pdf_name)
     if not ok:
         status = "FAIL"
         detail += " (carousel.pdf %s)" % bnote
@@ -281,7 +343,7 @@ def artifacts_row(rows, run, rdir, rep):
         # WebP is RIFF....WEBP, PNG has its own signature. Check whichever
         # this file claims to be, so a truncated slide still fails.
         magic = b"RIFF" if str(name).endswith(".webp") else b"\x89PNG"
-        ok, note = binary_ok(png, magic)
+        ok, note = image_ok(png, magic)
         if not ok:
             bad.append("%s %s" % (name, note))
     n_png = len(pngs)
