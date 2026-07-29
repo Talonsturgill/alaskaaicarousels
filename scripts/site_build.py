@@ -583,7 +583,7 @@ h2 a{text-decoration:none;}
 .sub a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.25);}
 .chip{font-family:JBMono,monospace;font-size:12px;letter-spacing:.09em;font-weight:500;}
 .chip.days{color:var(--gold);}
-.chip.kind{color:#6a7d97;}
+.chip.kind{color:#758aa7;}
 .who{font-family:JBMono,monospace;font-size:11.5px;letter-spacing:.09em;color:var(--mute);}
 
 /* ---------- hero (home) ---------- */
@@ -696,7 +696,7 @@ box-shadow:0 0 0 1px rgba(255,199,44,.08),0 18px 60px rgba(0,0,0,.35);}
 .doorcol{flex:none;display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:4px;}
 .door{width:44px;height:56px;}
 .item.a-open .door{filter:drop-shadow(0 0 10px rgba(255,199,44,.45));}
-.doorcol .num{font-family:JBMono,monospace;font-size:12px;color:#5f7390;letter-spacing:.1em;}
+.doorcol .num{font-family:JBMono,monospace;font-size:12px;color:#728aad;letter-spacing:.1em;}
 .item .body{min-width:0;flex:1;}
 .item .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;}
 .item h3{font-family:Fraunces,serif;font-weight:540;font-size:clamp(22px,2.8vw,28px);
@@ -708,7 +708,7 @@ padding:2px 0 2px 14px;margin:14px 0;max-width:64ch;}
 .srcs{font-size:13.5px;color:var(--mute);margin-top:14px;}
 .srcs a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.25);}
 .srcs a:hover{border-bottom-color:var(--blue);}
-.hist{font-size:12.5px;color:#5f7390;margin-top:10px;font-family:JBMono,monospace;letter-spacing:.02em;}
+.hist{font-size:12.5px;color:#728aad;margin-top:10px;font-family:JBMono,monospace;letter-spacing:.02em;}
 .rail{display:flex;margin:22px 0 4px;position:relative;}
 .rail::before{content:"";position:absolute;left:0;right:0;top:5px;height:1.5px;
 background:linear-gradient(90deg,var(--line) 0%,#2c5876 100%);}
@@ -718,7 +718,7 @@ background:linear-gradient(90deg,var(--line) 0%,#2c5876 100%);}
 background:var(--deep);border:2px solid #3a5f84;}
 .stop.future .dot{border-color:var(--gold);box-shadow:0 0 10px rgba(255,199,44,.5);}
 .stop .d{display:block;font-family:JBMono,monospace;font-size:12px;font-weight:500;
-letter-spacing:.08em;color:#5f7390;}
+letter-spacing:.08em;color:#728aad;}
 .stop.future .d{color:var(--gold);}
 .stop .l{display:block;font-size:12.5px;color:var(--mute);line-height:1.35;margin-top:3px;max-width:24ch;}
 .stop.future .l{color:var(--body);}
@@ -756,7 +756,7 @@ scroll-snap-align:center;flex:none;box-shadow:0 16px 46px rgba(0,0,0,.45);
 transition:transform .25s,border-color .25s;}
 html.js .gallery img{cursor:zoom-in;}
 html.js .gallery img:hover{transform:translateY(-3px);border-color:#2c5876;}
-.galhint{font-family:JBMono,monospace;font-size:11.5px;letter-spacing:.14em;color:#5f7390;margin:4px 0 0;}
+.galhint{font-family:JBMono,monospace;font-size:11.5px;letter-spacing:.14em;color:#728aad;margin:4px 0 0;}
 .galbar{display:none;align-items:center;gap:16px;margin-top:6px;font-family:JBMono,monospace;}
 html.js .galbar{display:flex;}
 .galbar .count{font-size:13px;letter-spacing:.18em;color:var(--mute);font-variant-numeric:tabular-nums;min-width:76px;}
@@ -835,10 +835,10 @@ font-family:JBMono,monospace;font-size:11px;letter-spacing:.08em;}
 .subscribe input[type=email],.subscribe input[type=text]{flex:1;min-width:230px;background:rgba(10,22,38,.85);
 border:1px solid var(--line);border-radius:6px;padding:13px 16px;color:var(--snow);
 font-family:JBMono,monospace;font-size:13.5px;letter-spacing:.03em;transition:border-color .2s;}
-.subscribe input[type=email]::placeholder,.subscribe input[type=text]::placeholder{color:#5f7390;}
+.subscribe input[type=email]::placeholder,.subscribe input[type=text]::placeholder{color:#728aad;}
 .subscribe input[type=email]:focus,.subscribe input[type=text]:focus{border-color:var(--gold);outline:none;}
 .subscribe .cta{border:none;cursor:pointer;font-family:JBMono,monospace;}
-.fineprint{font-family:JBMono,monospace;font-size:11px;color:#5a6d87;
+.fineprint{font-family:JBMono,monospace;font-size:11px;color:#728bac;
 letter-spacing:.08em;margin-top:14px;}
 .fineprint a{color:var(--mute);text-decoration:none;border-bottom:1px solid rgba(141,162,190,.3);}
 .fineprint a:hover{color:var(--snow);}
@@ -855,7 +855,7 @@ font-family:Manrope,system-ui,sans-serif;font-size:15px;transition:border-color 
 .leadform textarea{resize:vertical;min-height:76px;}
 .leadform input:focus,.leadform textarea:focus,.leadform select:focus{
 border-color:var(--gold);outline:none;}
-.leadform ::placeholder{color:#5f7390;}
+.leadform ::placeholder{color:#728aad;}
 .leadform select{color:var(--body);}
 .leadform .ctarow{margin-top:28px;}
 .leadform .cta{border:none;cursor:pointer;font-family:JBMono,monospace;}
@@ -881,12 +881,13 @@ box-shadow .2s;}
 .socials a:hover{transform:translateY(-3px);border-color:rgba(255,199,44,.6);
 box-shadow:0 8px 22px rgba(0,0,0,.4);}
 .socials a:hover svg{fill:var(--gold);}
-.foot-line{margin-top:18px;font-family:JBMono,monospace;font-size:11px;color:#5a6d87;
+.foot-line{margin-top:18px;font-family:JBMono,monospace;font-size:11px;color:#728bac;
 letter-spacing:.14em;line-height:2;}
 
 /* ---------- reveals: IO-driven, no-JS users see everything ---------- */
 html.js [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
 html.js [data-reveal].in{opacity:1;transform:none;}
+html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
 @media (max-width:720px){
   .item{flex-direction:column;gap:16px;padding:24px 20px;}
   .doorcol{flex-direction:row;}
@@ -1377,20 +1378,39 @@ JS = """
   'use strict';
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* live countdowns: chips with data-date tick down to the start of that day */
+  /* live countdowns: chips with data-date tick down to the start of that day.
+     The dates are Alaska calendar dates (a public-comment deadline is an
+     Alaska/agency date), so the day boundary must flip at Alaska midnight, not
+     the viewer's. Parsing 'YYYY-MM-DDT00:00:00' used the viewer's local zone, so
+     a reader in Sydney saw "window passed" ~19h before the window actually
+     closed in Alaska. Compute both sides in Alaska wall-clock instead. */
   function pad(n){ return (n < 10 ? '0' : '') + n; }
+  var akFmt;
+  try { akFmt = new Intl.DateTimeFormat('en-US', {timeZone: 'America/Anchorage',
+    year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',
+    second:'2-digit',hour12:false}); } catch(e) { akFmt = null; }
+  /* "now" as an Alaska wall-clock instant, expressed via Date.UTC so both the
+     target midnight and now use the same fiction and subtract cleanly. Falls
+     back to plain local time where Intl lacks the zone (very old engines). */
+  function akNow(){
+    if (!akFmt) return Date.now();
+    var g = {}; akFmt.formatToParts(new Date()).forEach(function(p){ g[p.type] = p.value; });
+    var hh = g.hour === '24' ? 0 : +g.hour;
+    return Date.UTC(+g.year, +g.month - 1, +g.day, hh, +g.minute, +g.second);
+  }
   function tickChips(){
-    var now = new Date();
-    var mid = new Date(now); mid.setHours(0,0,0,0);
+    var now = akNow();
+    var mid = Date.UTC(new Date(now).getUTCFullYear(), new Date(now).getUTCMonth(), new Date(now).getUTCDate());
     document.querySelectorAll('[data-date]').forEach(function(el){
-      var d = new Date(el.getAttribute('data-date') + 'T00:00:00');
-      var days = Math.round((d - mid) / 86400000);
+      var p = el.getAttribute('data-date').split('-');
+      var target = Date.UTC(+p[0], +p[1] - 1, +p[2]);  /* Alaska midnight of that day */
+      var days = Math.round((target - mid) / 86400000);
       var t;
       if (days < 0) { t = 'window passed'; el.classList.remove('days'); el.style.color = '#8da2be'; }
       else if (days === 0) { t = 'TODAY'; }
-      else if (days > 14) { t = 'in ' + days + ' days'; }
+      else if (days > 14 || reduced) { t = 'in ' + days + (days === 1 ? ' day' : ' days'); }
       else {
-        var ms = d - now, hh = Math.floor(ms / 3600000) % 24,
+        var ms = target - now, hh = Math.floor(ms / 3600000) % 24,
             mm = Math.floor(ms / 60000) % 60, ss = Math.floor(ms / 1000) % 60,
             dd = Math.floor(ms / 86400000);
         t = 'in ' + dd + 'd ' + pad(hh) + 'h ' + pad(mm) + 'm ' + pad(ss) + 's';
@@ -1399,7 +1419,10 @@ JS = """
     });
   }
   tickChips();
-  setInterval(tickChips, 1000);
+  /* WCAG 2.2.2: a per-second ticker is auto-updating info with no pause control,
+     so under prefers-reduced-motion show day granularity and refresh once a
+     minute instead of every second. */
+  setInterval(tickChips, reduced ? 60000 : 1000);
 
   /* sticky nav turns to glass once the page moves */
   var nav = document.querySelector('.topnav');
@@ -1417,6 +1440,11 @@ JS = """
   } else {
     document.querySelectorAll('[data-reveal]').forEach(function(el){ el.classList.add('in'); });
   }
+  /* The reveal machinery is now wired, so cancel the inline failsafe. If this
+     script had failed to load or thrown before here, the timeout would fire and
+     reveal-fallback would show all [data-reveal] content, so a broken deploy
+     shows the whole page rather than only the hero over a blank body. */
+  clearTimeout(window.__revealFallback);
 
   /* stat numbers count up when they enter the viewport */
   function countUp(el){
@@ -1552,7 +1580,7 @@ def page(title, desc, body, prefix, active, today, site_url, path, og_image="og.
 {ld_html}
 <link rel="stylesheet" href="{prefix}site.css">
 {('<style>' + extra_css + '</style>') if extra_css else ''}
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');window.__revealFallback=setTimeout(function(){{document.documentElement.classList.add('reveal-fallback')}},3000)</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -3104,9 +3132,9 @@ font-variant-numeric:tabular-nums;}
 line-height:1.1;letter-spacing:-.01em;color:var(--snow);margin:0 0 10px;}
 .sw-headtx p{color:var(--mute);font-size:15.5px;max-width:62ch;margin:0;}
 .sw-clock{font-family:JBMono,monospace;font-size:11.5px;letter-spacing:.13em;
-color:#5f7390;margin-top:12px;}
+color:#728aad;margin-top:12px;}
 .sw-lab{font-family:JBMono,monospace;font-size:11px;letter-spacing:.18em;
-color:#5f7390;margin:0 0 10px;}
+color:#728aad;margin:0 0 10px;}
 
 /* the four agents, lit by the phase on the feed */
 .sw-roster{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 26px;}
@@ -3116,7 +3144,7 @@ transition:border-color .45s,box-shadow .45s;}
 .sw-agent .dot{display:inline-block;width:7px;height:7px;border-radius:50%;
 background:#33475f;margin-right:8px;vertical-align:middle;}
 .sw-agent .nm{font-family:JBMono,monospace;font-size:11.5px;letter-spacing:.11em;color:var(--mute);}
-.sw-agent .role{display:block;font-size:12.5px;color:#5f7390;margin-top:8px;line-height:1.4;}
+.sw-agent .role{display:block;font-size:12.5px;color:#728aad;margin-top:8px;line-height:1.4;}
 .sw-agent .tick{display:none;position:absolute;top:13px;right:13px;font-family:JBMono,monospace;
 font-size:9.5px;letter-spacing:.14em;color:var(--blue);}
 .sw-agent.on{border-color:rgba(255,199,44,.5);
@@ -3173,7 +3201,7 @@ animation:swhit 2.5s ease-in-out infinite;}
 66%{transform:translateX(-50%) scale(1);opacity:.9;}
 80%,100%{transform:translateX(-50%) scale(.6);opacity:0;}}
 .sw-round{position:absolute;top:12px;left:0;right:0;text-align:center;
-font-family:JBMono,monospace;font-size:10.5px;letter-spacing:.2em;color:#5f7390;}
+font-family:JBMono,monospace;font-size:10.5px;letter-spacing:.2em;color:#728aad;}
 .sw-quip{text-align:center;color:var(--body);font-size:15.5px;min-height:50px;
 padding:15px 12px 0;margin:0;transition:opacity .4s;}
 
@@ -3184,14 +3212,14 @@ background:linear-gradient(165deg,var(--panel) 0%,var(--deep) 100%);}
 .sw-stat b{display:block;font-family:JBMono,monospace;font-weight:500;font-size:26px;
 color:var(--snow);line-height:1.05;font-variant-numeric:tabular-nums;}
 .sw-stat span{display:block;font-family:JBMono,monospace;font-size:9.5px;letter-spacing:.15em;
-color:#5f7390;margin-top:9px;}
+color:#728aad;margin-top:9px;}
 
 /* the three calls, cycling, so the wait sells the honesty before the page does */
 .sw-calls{margin:16px 0 0;border:1px solid var(--line);border-radius:14px;padding:20px 22px 22px;
 background:linear-gradient(170deg,var(--panel) 0%,var(--deep) 88%);}
 .sw-chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 15px;}
 .sw-chip{font-family:JBMono,monospace;font-size:10.5px;letter-spacing:.12em;
-border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:#5f7390;
+border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:#728aad;
 transition:color .45s,border-color .45s,background .45s;}
 .sw-chip.lit{color:var(--c);border-color:var(--c);background:rgba(255,255,255,.04);}
 .sw-line{color:var(--body);font-size:15px;min-height:50px;margin:0;max-width:74ch;
@@ -3227,11 +3255,11 @@ margin:0 0 10px;line-height:1.2;}
 border-radius:6px;padding:12px 14px;color:var(--snow);font-family:Manrope,system-ui,sans-serif;
 font-size:15px;transition:border-color .2s;}
 .sw-modal input:focus{border-color:var(--gold);outline:none;}
-.sw-modal input::placeholder{color:#5f7390;}
+.sw-modal input::placeholder{color:#728aad;}
 .sw-modal .cta{border:none;cursor:pointer;font-family:JBMono,monospace;}
 .sw-modal .ok{color:var(--green);font-size:15px;}
 .sw-skip{text-align:center;margin-top:16px;}
-.sw-skip a{font-family:JBMono,monospace;font-size:11px;letter-spacing:.12em;color:#5f7390;
+.sw-skip a{font-family:JBMono,monospace;font-size:11px;letter-spacing:.12em;color:#728aad;
 cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(95,115,144,.4);}
 .sw-skip a:hover{color:var(--snow);}
 .sw-err{font-family:JBMono,monospace;font-size:11px;letter-spacing:.06em;color:#ff9e9e;
