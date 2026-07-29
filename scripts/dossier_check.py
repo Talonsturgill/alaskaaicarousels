@@ -52,6 +52,14 @@ MODELED_HINTS = (
 FLAT_ONLY = ("plate", "hairline", "rule", "caption", "footer", "fixture",
              "label", "counter", "chip")
 
+# Minimum length of a field-4a plan, in characters. Raised from 25 to 200 on
+# 2026-07-29 together with the continuation-walk repair: 25 was a floor for one
+# LINE, and applying it to the whole field would have been a loosening. Every
+# field-4a paragraph written since the field existed runs 400 to 900 characters,
+# so 200 is well clear of real practice and still refuses a one-sentence
+# gesture at the bottom band.
+THIN_PLAN_CHARS = 200
+
 HEAD_RE = re.compile(r"^##\s+SLIDE\s+(\d+)\b(.*)$", re.I | re.M)
 F4A_RE = re.compile(
     r"^\s*4a[.)]?\s*\*{0,2}\s*Lower[- ]third treatment\s*[.:-]?\s*\*{0,2}\s*[.:-]?\s*(.*)$",
@@ -69,23 +77,43 @@ def slide_sections(text):
 
 
 def field_4a(body):
-    """Return the field-4a sentence, following continuation lines, or None."""
+    """Return (whole_field, first_line) for field 4a, or (None, None).
+
+    The continuation walk was broken from the day it shipped (fixed 2026-07-29).
+    `m.end()` sits at the END of the matched 4a line, so the slice begins with a
+    newline and `splitlines()[0]` is the empty string, which tripped the blank-
+    line guard on the very first iteration: the gate read only the field's FIRST
+    LINE and was blind to the rest. Measured on run 2026-07-29's storyboard, it
+    saw 45 to 183 characters of nine fields that run 400 to 900, and two
+    dossiers cleared it on a 45-character fragment. It also distorted the
+    authoring: all nine fields were rewritten to LEAD with modeled-tone words to
+    satisfy it, leaving dangling markdown mid-sentence.
+
+    Continuation stops at a blank line or at the next field marker, so a field
+    is the paragraph the author actually wrote.
+    """
     m = F4A_RE.search(body)
     if not m:
-        return None
-    lines = [m.group(1).strip()]
-    for line in body[m.end():].splitlines():
+        return None, None
+    first = m.group(1).strip()
+    lines = [first]
+    rest = body[m.end():]
+    if rest.startswith("\n"):
+        rest = rest[1:]
+    elif rest.startswith("\r\n"):
+        rest = rest[2:]
+    for line in rest.splitlines():
         s = line.strip()
         if not s or re.match(r"^\s*(\d+[a-z]?[.)]|[A-Z]\.\s|#|-\s*\[)", line):
             break
         lines.append(s)
-    return " ".join(x for x in lines if x).strip()
+    return " ".join(x for x in lines if x).strip(), first
 
 
 def check_slide(no, heading, body, breather_attr):
     fails, warns = [], []
     declared_breather = False
-    text = field_4a(body)
+    text, first = field_4a(body)
     if not text:
         fails.append(
             f"slide {no:02d}: no field 4a (lower-third treatment). "
@@ -93,15 +121,21 @@ def check_slide(no, heading, body, breather_attr):
             "band carries; an unnamed lower third is how six runs shipped dead ones")
     else:
         low = text.lower()
-        declared_breather = "breather" in low or "breather" in heading.lower()
+        # The BREATHER escape hatch is read from the FIRST line and the heading
+        # only, deliberately. Now that the whole field is visible, matching
+        # "breather" anywhere in a 900-character paragraph would let an
+        # incidental mention skip the modeled-tone requirement, which would
+        # widen the hatch. Declaring a breather stays a headline act.
+        declared_breather = "breather" in (first or "").lower() or "breather" in heading.lower()
         if declared_breather:
             if len(re.sub(r"[^a-z]", "", low.split("breather", 1)[-1])) < 12:
                 fails.append(
                     f"slide {no:02d}: declared BREATHER with no reason given. "
                     "The spec requires 'BREATHER -- <why the deck needs a rest here>'")
-        elif len(low) < 25:
+        elif len(low) < THIN_PLAN_CHARS:
             fails.append(
-                f"slide {no:02d}: field 4a is too thin to be a plan ({text!r})")
+                f"slide {no:02d}: field 4a is too thin to be a plan "
+                f"({len(low)} chars, floor {THIN_PLAN_CHARS}) -- {text!r}")
         elif not any(h in low for h in MODELED_HINTS):
             named_flat = [f for f in FLAT_ONLY if f in low]
             fails.append(

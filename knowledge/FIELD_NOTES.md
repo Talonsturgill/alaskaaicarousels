@@ -1620,3 +1620,39 @@ steel to 0xe8edf0 and adding a proud collar at the seam helped; darkening the
 brass to force contrast made the frame muddier and was reverted. Two materials
 separated only by hue collapse under a strongly coloured key. Separate by value
 and by a physical joint, and check it at 432px.
+
+#### Phase 12 frontier scan, typography craft (2026-07-29), parked candidates
+
+- Measure-then-size is the settled practice, and the primitive matters.
+  `getComputedTextLength()` returns only the horizontal ADVANCE (glyphs plus
+  letter-spacing and word-spacing, ignoring `x`), so it gives no height and no
+  anchor-correct origin; `getBBox()` gives the laid-out box, and EXCLUDES
+  stroke, so a haloed label needs half its stroke width added back. Leading or
+  trailing whitespace in an SVG text node corrupts the box in every engine.
+  Applied this run inside `AK.svgPlate`.
+  https://developer.mozilla.org/en-US/docs/Web/API/SVGTextContentElement
+  https://bugzilla.mozilla.org/show_bug.cgi?id=1078743
+- PARKED, label auto-placement. The Vega-Lite legible-label-layout work uses an
+  OCCUPANCY BITMAP (rasterise every mark once, then test candidate label boxes
+  against it with bitwise ops, constant time in mark count) plus an eight-
+  position model (top-left, top, top-right, right, bottom-right, bottom,
+  bottom-left, left) tried in preference order, placing each label in the first
+  free position and skipping gracefully when none is free. That is the
+  principled answer to this run's knock-on churn, where six render cycles went
+  on repairs that each collided with something else. Roughly 150 lines over the
+  existing render, but it changes how slides are composed, so it wants a
+  multi-deck trial rather than a daily slot.
+  https://arxiv.org/html/2405.10953v1
+- PARKED, the complement of the plate helper. SVG `textLength` with
+  `lengthAdjust="spacingAndGlyphs"` fits the TEXT to a fixed box instead of the
+  box to the text, for the case where the plate geometry is load-bearing (a
+  cadastral parcel, a rail tick, a fixed chip stack). Use `spacingAndGlyphs`,
+  never bare `spacing`, which can collide glyphs at tight fits. Chrome supports
+  it on `tspan`; Firefox does not, which does not matter here.
+  https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/text
+- PARKED, craft. 2026 editorial typography uses monospace as an editorial voice
+  (precision, lab-form register) rather than as a code signal, which is the
+  register this studio's mono furniture already occupies, and variable optical-
+  size axes open tracking automatically at small sizes where our all-caps mono
+  labels are hand-tracked at a flat 0.08 to 0.12em. Worth one controlled
+  comparison on a future deck.

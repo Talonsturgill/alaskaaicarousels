@@ -87,6 +87,20 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   plate the text paints ABOVE is legible and never reported. `data-overlap-ok`
   demotes the FAIL to a WARN. The remedy is to move the plate or the type,
   never to declare the overlap away.
+- **An SVG label must sit inside its own plate** (2026-07-29): render.py
+  measures every `<svg><text>` against the `<rect>` painted under it, against
+  any opaque `<rect>` appended AFTER it (SVG has no z-index, document order IS
+  the stack), and against any opaque DOM element composited above the whole
+  `<svg>`; qa.py FAILs all three (WARN under `data-decorative` /
+  `data-overlap-ok`). Six labels shipped off their plates in one deck because
+  the plate width and the label were two separately hand-typed numbers.
+  **Never type a plate width.** Build it from the label:
+  `AK.svgPlate(textEl, {padX, padY, fill, stroke})` (aktype.js) measures the
+  laid-out text with `getBBox`, adds padding and any stroke, and inserts the
+  rect as the label's immediately preceding sibling. Call it after
+  `await document.fonts.ready`, and use `AK.svgPlateAll(selector, opts)` for a
+  whole set. It handles `text-anchor` and `transform`, and `minWidth` grows the
+  plate symmetrically so a centred label stays centred.
 - Determinism: seed all noise (`AK.reseed(seed)`, `AK.rng(seed)`). Derive the
   seed from the run date. Same inputs must reproduce the same pixels.
 - Fonts: use `assets/fonts/fonts.css` families — Fraunces (100-900 + italic,
@@ -163,12 +177,26 @@ them or every archive page goes blank.
   NEVER fitExtent to a small lon/lat bbox (renders a giant fill disc);
   use `AKGeo.zoomTo(proj, geo, lonlat, targetXY, zoom)` and draw the
   coastline STROKE-ONLY at zoom > ~2.
-- `assets/js/aktype.js` — display-headline fit-to-box (`AK.fitText`). Call
-  inside renderReady after `await document.fonts.ready`:
+- `assets/js/aktype.js` (display-headline fit-to-box `AK.fitText`, and
+  measured SVG knockout plates `AK.svgPlate` / `AK.svgPlateAll`). Call both
+  inside renderReady after `await document.fonts.ready`.
   `AK.fitText(el, {min, max, maxLines})` binary-searches font-size so a
   large headline never silently soft-wraps an extra line into the block
   below it (the recurring wrap-collision defect through 2026-07-09). Prefer
   it over hand-tuned font-size on every display headline set in a fixed box.
+  `AK.svgPlate(textEl, {padX, padY, fill, stroke, strokeWidth, rx, minWidth,
+  opacity, className, attrs})` sizes a chip/knockout from the label's own
+  `getBBox` (plus half any stroke, which getBBox excludes) and inserts it as
+  the preceding sibling, so the plate cannot disagree with the text and cannot
+  go stale when the string is edited. It throws a named TypeError on misuse (a
+  render hard fail) and console.errors on untrimmed text, which measures wrong
+  in every engine. It does NOT check font readiness at call time: two such
+  guards were built and measured on 2026-07-29 and both cried wolf on correct
+  usage, so awaiting `document.fonts.ready` is on you and the qa.py gate on the
+  shipped pixels is what actually catches a fallback-sized plate. Run 2026-07-29 shipped six
+  labels off their plates from hand arithmetic (JetBrains Mono 24px at 0.10em
+  advances 16.8px per character, the plates were sized at about 14) and one
+  repair created a seventh by lengthening a string without resizing its chip.
 - `assets/js/aklabel.js` — knockout-plate CANVAS labels (`AK.canvasLabel`).
   Any label drawn with `cx.fillText()` is a bitmap with no DOM node, so the
   QA gates (text_collisions, contrast_estimate, busy-art tripwire) are BLIND
