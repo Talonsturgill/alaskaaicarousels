@@ -1682,3 +1682,49 @@ own `--preview-mode contact` (50 KB, one inline contact sheet) and
 Remote was used, because the body has to be retyped verbatim into the tool call
 and every byte is a chance to drift from the script's output. The raw URLs were
 verified to resolve on main first.
+
+### 2026-07-29 (No. 19), the encoding gate that could not be built, and what it measured instead
+
+Artwork craft has been the weakest rubric criterion in 16 of the first 19 runs.
+The diagnosis was that every gate judges LEGIBILITY and nothing judges whether
+the picture carries the argument it claims, so the only reviewer who ever sees
+a failed encoding is the scorer, at the ship gate, too late to rebuild art.
+
+The plan was a gate. Let a slide declare, machine-readably, what its art says
+without words, then measure whether that survives to feed scale. Run No. 19's
+own hero was the perfect test case: the artwork ledger said the material change
+at hour 7, brushed steel below and polished brass above, was "the thesis with
+zero words", and the scorer said the column read as one uniform amber extrusion.
+
+Two metrics were calibrated against that known-bad and against slide 07's
+sodium-to-slate ownership boundary, which both the scorer and the flow critic
+called the deck's best fusion beat. Measured at 432px:
+
+  known-bad  S03 steel vs brass    dE 49.0   AUC 0.87   visible 58 / 83 pct
+  known-good S07 sodium vs slate   dE 12.2   AUC 0.77   visible 54 / 53 pct
+
+Both metrics are BACKWARDS. Colour separability is higher on the broken
+encoding, because the steel genuinely is a different colour where you can see
+it; it just reads as a glassy plinth instead of as half the object. Occlusion
+is worse on the working one, because a deliberate composition puts type over
+its own art. Any threshold drawn through those numbers passes the defect and
+fails the success. A gate shipped on either would have been worse than no gate,
+because it would have printed "encoding verified" over exactly the failure it
+was built to catch.
+
+So the declaration contract shipped and the verdict did not. qa.py reports the
+numbers into machine_qa for the pixel critics and the scorer, raises no FAIL
+from them, and carries the calibration table in its docstring so the next
+attempt starts from evidence.
+
+The lesson generalises past this gate. The defects this machine has
+successfully automated (text off its plate, art crossing glyphs, a dead lower
+third) are all GEOMETRIC: a thing is where it should not be, and pixels answer
+that directly. This one is SEMANTIC, about proportion and context and whether
+a shape reads as part of an object, and colour statistics do not answer it.
+Before building the next gate, ask which of the two kinds it is. If it is the
+second kind, expect to measure and report rather than to judge, and expect the
+honest deliverable to be a number handed to a critic rather than a threshold.
+
+Making it a real gate needs encoding declarations across the back catalogue so
+a threshold can be FITTED rather than guessed. That is a corpus exercise.

@@ -61,6 +61,32 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   type used as texture) with `data-decorative` so QA doesn't flag it:
   `<div data-decorative class="coords">61°13'N</div>`
   Both `data-decorative` and `data-overlap-ok` inherit to descendants.
+- **Plates are sized from the MEASURED string, never a guessed constant**
+  (2026-07-29): JetBrains Mono at 24px with 0.10em tracking advances exactly
+  16.8px per character; hand-sizing at the eye's estimate of ~14 loses about
+  three characters in twenty. render.py now measures every SVG `<text>` against
+  the `<rect>` painted under it and qa.py FAILS three cases: the label spilling
+  past its plate, an opaque `<rect>` appended AFTER it (SVG has no z-index,
+  only document order), and an opaque DOM element composited above the whole
+  `<svg>`. Six labels shipped off their own plates through two scoring cycles
+  before this existed, because every gate inspected DOM text only.
+- **A slide MAY declare what its art says without words** (2026-07-29), on
+  `<body>`, and the engine will measure whether that survives to feed scale:
+
+  ```html
+  <body data-encodes='[{"claim":"material change at hour 7",
+                        "a":[[732,1052,82,98]], "b":[[736,500,74,540]]}]'>
+  ```
+
+  Regions are `[x,y,w,h]` in CSS px (a CSS selector string also works). qa.py
+  reports, per declaration, the CIELAB distance and rank separability between
+  the two populations AT 432px WIDE, plus how much of each region is visible
+  art rather than furniture. This is OPT-IN and it is a MEASUREMENT, not a
+  gate: it never fails a slide. Two candidate thresholds were calibrated
+  against a real known-bad and a real known-good and both came out backwards
+  (see `encoding_reads` in qa.py). Read the numbers, do not trust a rule
+  drawn through them, and do not add one without showing it separates a
+  known-bad from a known-good on real renders.
 - **Text may never overprint text**: qa.py FAILS when two elements' text
   line boxes intersect (the 2026-07-08 slide-3 defect class). Deliberate
   layering (a chip on an opaque plate crossing a display line box) must be

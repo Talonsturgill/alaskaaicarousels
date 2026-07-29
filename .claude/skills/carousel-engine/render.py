@@ -387,6 +387,89 @@ IN_PAGE_QA_JS = """
     }
   }
 
+  /* DECLARED ENCODINGS (2026-07-29). A slide may state, in machine-readable
+     form, what its artwork is supposed to SAY without words:
+
+       <body data-encodes='[{"claim":"material change at hour 7",
+                             "a":[[732,1052,82,98]], "b":[[736,500,74,540]]}]'>
+
+     Every gate before this one judged LEGIBILITY. Nothing judged whether the
+     picture carried its own argument, so the only reviewer who ever saw a
+     failed encoding was the scorer, at the ship gate, too late to rebuild the
+     art. Artwork craft was the weakest criterion in 16 of the first 19 runs.
+
+     Two things are measured, because calibration showed one is not enough.
+     Run 2026-07-29's hero declared steel below hour 7 and brass above, and
+     the scorer said it read as one uniform amber extrusion. It did not fail
+     on colour: where the steel is visible it sits 43 dE from the brass, so a
+     pure separability check PASSES the defect it was built to catch. What
+     actually failed is PROMINENCE: a knockout plate and the base shadow left
+     only 29 percent of the declared steel section as visible art, so the
+     material change read as a glassy plinth rather than as half the object.
+     Hence art_visible_frac, sampled with elementsFromPoint per region. */
+  out.encodings = [];
+  try {
+    const decl = (document.body && document.body.dataset.encodes) || "";
+    const specs = decl ? JSON.parse(decl) : [];
+    const rectsOf = (v) => {
+      if (typeof v === "string") {
+        return Array.from(document.querySelectorAll(v)).map(e => {
+          const r = e.getBoundingClientRect();
+          return [r.x, r.y, r.width, r.height];
+        });
+      }
+      return (Array.isArray(v) && Array.isArray(v[0])) ? v : [v];
+    };
+    const visibleFrac = (rects) => {
+      let hit = 0, n = 0;
+      for (const [rx, ry, rw, rh] of rects) {
+        const cols = Math.max(3, Math.min(24, Math.round(rw / 8)));
+        const rows = Math.max(3, Math.min(24, Math.round(rh / 8)));
+        for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows; j++) {
+            const px = rx + (rw * (i + 0.5)) / cols;
+            const py = ry + (rh * (j + 0.5)) / rows;
+            if (px < 0 || px > W || py < 0 || py > H) continue;
+            n++;
+            const stack = document.elementsFromPoint(px, py);
+            let blocked = false;
+            for (const e of stack) {
+              const tag = e.tagName.toLowerCase();
+              if (tag === "canvas" || tag === "svg" || tag === "body" || tag === "html") break;
+              if (e.namespaceURI === "http://www.w3.org/2000/svg") {
+                // art drawn as SVG shapes is still the artwork, but an opaque
+                // knockout rect is furniture
+                const f = (e.getAttribute("fill") || "").trim();
+                const m = f.match(/rgba?\(([^)]+)\)/);
+                const al = m ? (parseFloat(m[1].split(",")[3]) || 1) : (f && f !== "none" ? 1 : 0);
+                if (al >= 0.5 && tag === "rect") { blocked = true; break; }
+                continue;
+              }
+              const bg = getComputedStyle(e).backgroundColor || "";
+              const mm = bg.match(/rgba?\(([^)]+)\)/);
+              const a2 = mm ? (parseFloat(mm[1].split(",")[3]) || 1) : 0;
+              if (a2 >= 0.5) { blocked = true; break; }
+            }
+            if (!blocked) hit++;
+          }
+        }
+      }
+      return n ? hit / n : 0;
+    };
+    for (const sp of specs) {
+      const ra = rectsOf(sp.a), rb = rectsOf(sp.b);
+      out.encodings.push({
+        claim: String(sp.claim || "").slice(0, 90),
+        reads: sp.reads || "any",
+        a: ra.map(r => r.map(Math.round)), b: rb.map(r => r.map(Math.round)),
+        a_visible_frac: Math.round(visibleFrac(ra) * 100) / 100,
+        b_visible_frac: Math.round(visibleFrac(rb) * 100) / 100
+      });
+    }
+  } catch (e) {
+    out.encodings.push({ error: String(e).slice(0, 140) });
+  }
+
   /* CANVAS TELEMETRY (2026-07-11, the rendered-3D gates): per visible canvas,
      backing resolution vs CSS size (silent-1x detector) and a downsampled
      pixel sample (dead/black-frame detector: a GL context that failed or
@@ -476,7 +559,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
-           "render_ms": 0, "ok": False}
+           "encodings": [], "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
                             device_scale_factor=scale)
@@ -496,7 +579,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         qa = page.evaluate(IN_PAGE_QA_JS)
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
-                                       "canvas_text", "breather", "svg_plates")})
+                                       "canvas_text", "breather", "svg_plates",
+                                       "encodings")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:

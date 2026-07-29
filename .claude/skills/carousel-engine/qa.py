@@ -249,6 +249,132 @@ FB_FAIL = 0.60       # bottom-band craft density / frame craft density = top-loa
 FB_WARN = 0.80
 
 
+FEED_W = 432          # the thumb width the doctrine's legibility test uses
+
+# NO PASS/FAIL THRESHOLDS HERE, DELIBERATELY. See encoding_reads() for the
+# calibration that killed them. This block MEASURES a declared encoding and
+# reports the numbers; it does not judge. Anyone adding a threshold must first
+# show it separates a known-bad encoding from a known-good one on real renders,
+# because the two obvious candidates provably do not.
+
+
+def _srgb_to_lab(a):
+    """sRGB 0..255 -> CIELAB. Written out rather than imported: the engine's
+    dependency surface is part of its reliability and slides stay offline."""
+    a = a.astype(np.float64) / 255.0
+    lin = np.where(a <= 0.04045, a / 12.92, ((a + 0.055) / 1.055) ** 2.4)
+    m = np.array([[0.4124564, 0.3575761, 0.1804375],
+                  [0.2126729, 0.7151522, 0.0721750],
+                  [0.0193339, 0.1191920, 0.9503041]])
+    t = (lin @ m.T) / np.array([0.95047, 1.0, 1.08883])
+    d = 6.0 / 29.0
+    f = np.where(t > d ** 3, np.cbrt(t), t / (3 * d * d) + 4.0 / 29.0)
+    return np.stack([116 * f[..., 1] - 16,
+                     500 * (f[..., 0] - f[..., 1]),
+                     200 * (f[..., 1] - f[..., 2])], -1)
+
+
+def _rank_auc(x, y):
+    """Mann-Whitney AUC folded to 0.5..1. 0.5 = the two sets are one set."""
+    allv = np.concatenate([x, y])
+    order = np.argsort(allv, kind="mergesort")
+    sv = allv[order]
+    ranks = np.empty(len(allv), float)
+    i = 0
+    while i < len(sv):
+        j = i
+        while j + 1 < len(sv) and sv[j + 1] == sv[i]:
+            j += 1
+        ranks[order[i:j + 1]] = (i + j) / 2.0 + 1.0
+        i = j + 1
+    n1 = len(x)
+    u1 = ranks[:n1].sum() - n1 * (n1 + 1) / 2.0
+    a = u1 / (n1 * len(y))
+    return max(a, 1.0 - a)
+
+
+def encoding_reads(img_arr, enc, design_w, design_h):
+    """MEASURE a declared wordless encoding. Deliberately does not judge it.
+
+    Built 2026-07-29 to close the standing artwork-craft weakness (lowest
+    criterion in 16 of the first 19 runs) by testing whether a slide's art
+    actually carries the argument it claims. Two candidate metrics were
+    calibrated against real renders, using that run's own hero as the
+    known-bad (the scorer: the column "reads as one uniform amber extrusion",
+    its declared steel-below-brass-above material change did not survive) and
+    slide 07's sodium-to-slate ownership boundary as the known-good (a turn
+    the scorer and the flow critic both called the deck's best fusion beat).
+
+    BOTH METRICS FAILED TO SEPARATE THEM, and in the worst direction:
+
+      known-bad  S03 steel vs brass    dE 49.0  AUC 0.87  visible 58/83 pct
+      known-good S07 sodium vs slate   dE 12.2  AUC 0.77  visible 54/53 pct
+
+    Colour separability is HIGHER on the broken encoding than on the working
+    one, because the steel really is a different colour where you can see it;
+    it just reads as a glassy plinth rather than as half the object. And the
+    occlusion fraction is LOWER on the working one, because a deliberate
+    composition puts type over its own art. Any threshold drawn through these
+    numbers passes the defect and fails the success.
+
+    The real defect is semantic, about shape, proportion and context ("is this
+    read as part of the object"), and none of that is a colour statistic. So
+    this function returns numbers for the pixel critics and the scorer to read,
+    and qa.py raises no FAIL from them. That is the honest state of the art
+    here, and it is recorded so the next attempt starts from the evidence
+    rather than from the same intuition. Making it a gate needs encoding
+    declarations across the back catalogue so a threshold can be FITTED rather
+    than guessed, which is a corpus exercise, not a slot at the end of a run.
+
+    Returns (verdict, detail) where verdict is "info" or "warn". Never "fail".
+    """
+    if enc.get("error"):
+        return "warn", f"declaration did not parse ({enc['error']})"
+    ra, rb = enc.get("a") or [], enc.get("b") or []
+    if not ra or not rb:
+        return "warn", "declaration names no regions"
+
+    im = Image.fromarray(img_arr)
+    s = FEED_W / float(design_w)
+    feed = np.asarray(im.resize((FEED_W, max(1, int(round(design_h * s)))), Image.LANCZOS))
+
+    def take(rects):
+        out = []
+        for r in rects:
+            x, y, w, h = r
+            x0, y0 = max(0, int(x * s)), max(0, int(y * s))
+            x1 = min(feed.shape[1], int((x + w) * s))
+            y1 = min(feed.shape[0], int((y + h) * s))
+            if x1 > x0 and y1 > y0:
+                out.append(feed[y0:y1, x0:x1].reshape(-1, 3))
+        return np.concatenate(out) if out else np.zeros((0, 3))
+
+    A, B = take(ra), take(rb)
+    va = enc.get("a_visible_frac")
+    vb = enc.get("b_visible_frac")
+    # Visible AREA, not declared area: a region can be large and still unseen.
+    area_a = len(A) * (va if va is not None else 1.0)
+    area_b = len(B) * (vb if vb is not None else 1.0)
+
+    bits = []
+    if va is not None:
+        bits.append(f"visible {va:.0%}/{vb:.0%}")
+    bits.append(f"seen {int(area_a)}/{int(area_b)}px at {FEED_W}w")
+
+    if len(A) < 12 or len(B) < 12:
+        return "warn", "region too small to measure at feed scale, " + ", ".join(bits)
+
+    la, lb = _srgb_to_lab(A), _srgb_to_lab(B)
+    ma, mb = np.median(la, 0), np.median(lb, 0)
+    axis = mb - ma
+    n = float(np.linalg.norm(axis))
+    auc = _rank_auc(la @ axis / n, lb @ axis / n) if n > 1e-9 else 0.5
+    bits.insert(0, f"dE {n:.1f}, AUC {auc:.2f}")
+    detail = f"'{enc.get('claim', '')}': " + ", ".join(bits)
+
+    return "info", detail
+
+
 def _box_down(a, k):
     h, w = a.shape[:2]
     h -= h % k
@@ -502,6 +628,20 @@ def main():
         for wr in rec.get("overflow_warnings", []):
             level = res["warns"] if wr["kind"] == "tiny-text" else res["fails"]
             level.append(f"{wr['kind']}: '{wr['text'][:50]}' ({wr['detail']})")
+
+        # DECLARED ENCODING DOES NOT READ (2026-07-29). Opt-in: a slide that
+        # declares nothing is not judged here, so this can never block a deck
+        # that has not adopted the contract.
+        for enc in rec.get("encodings", []):
+            verdict, detail = encoding_reads(arr, enc, design_w, design_h)
+            if verdict == "warn":
+                # Only an AUTHORING error warns: a declaration that does not
+                # parse or names a region nobody can measure. The measurement
+                # itself never fails a slide, because no threshold through
+                # these numbers survived calibration (see encoding_reads).
+                res["warns"].append(f"encoding declaration unusable: {detail}")
+            else:
+                res.setdefault("encodings", []).append(detail)
 
         # SVG LABEL OFF ITS OWN PLATE (2026-07-29). render.py measures every
         # SVG <text> against the <rect> painted under it. A label that spills

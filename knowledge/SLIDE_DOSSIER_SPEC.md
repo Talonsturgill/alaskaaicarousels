@@ -73,6 +73,26 @@ plus the checklist.
     position; the annotation furniture (leader lines, ticks, scale bar,
     coordinates) and their weights.
 
+11a. **Wordless claim** (OPTIONAL, added 2026-07-29) — if this slide's art
+    is supposed to carry an argument with no words, state it here in one
+    sentence AND give the two regions that argument lives in, as CSS-px
+    `[x,y,w,h]`, so the slide can carry a `data-encodes` declaration and the
+    engine can measure it. Example from run 2026-07-29's hero: "the material
+    change at hour 7 is the thesis with zero words", steel `[732,1052,82,98]`
+    vs brass `[736,500,74,540]`.
+
+    Write it when the artwork ledger's hero_structure makes a claim of this
+    kind, because that run's ledger made exactly that claim and the render
+    did not deliver it: the scorer found the column read as one uniform amber
+    extrusion and artwork craft came in at 6, its lowest criterion. A claim
+    nobody wrote down in a checkable form is a claim nobody checks.
+
+    Be aware the engine only MEASURES this; it does not gate it, and the two
+    obvious thresholds were tested and both came out backwards (qa.py,
+    `encoding_reads`). The numbers go to the pixel critics and the scorer. The
+    discipline the declaration actually buys is that you had to say, before
+    building, what the picture was supposed to prove.
+
 ### D. VERIFICATION
 12. **Reference intent** — one line naming the aesthetic register ("NASA
     mission poster meets APF telemetry", "Bloomberg BW spread, arctic
