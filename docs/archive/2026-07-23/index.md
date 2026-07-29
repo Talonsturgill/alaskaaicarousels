@@ -29,8 +29,8 @@ Adopt fast. Govern first.
 
 - A symposium-perspectives paper on AI/ML in Alaska Native healthcare was published May 23, 2026 in the International Journal of Circumpolar Health (doi 10.1080/22423982.2026.2677426). [International Journal of Circumpolar Health (via PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/), primary document.
 - The 2025 Anchorage symposium had 31 participants. [IJCH (via PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/), primary document.
-- Symposium participants by organization: ANTHC 38%, Southcentral Foundation 27%, Maniilaq Association 15%, Stanford 8%, CDC Arctic Investigation Program 8%, Other 4%. [IJCH (via PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/), primary document.
-- Symposium participants by role: researchers 27%, IT/programming 24%, leadership 17%, clinicians 12%, compliance 5%, other 15%. [IJCH (via PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/), primary document.
+- Symposium participants by organization, ANTHC 38%, Southcentral Foundation 27%, Maniilaq Association 15%, Stanford 8%, CDC Arctic Investigation Program 8%, Other 4%. [IJCH (via PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/), primary document.
+- Symposium participants by role, researchers 27%, IT/programming 24%, leadership 17%, clinicians 12%, compliance 5%, other 15%. [IJCH (via PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/), primary document.
 - Alaska's air-evacuation rates are cited as at least 40 times higher than anywhere else in the US. [IJCH (via PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/), primary document.
 - Over 80% of Alaska communities are not connected to the road system. [IJCH (via PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/), primary document.
 - In the 2022 baseline, 35% of respondents said they had never heard the term AI/ML. [IJCH (via PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC13202658/), primary document.

@@ -27,6 +27,7 @@ import random
 import re
 import sys
 from datetime import date as ddate
+from functools import lru_cache
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
@@ -239,6 +240,42 @@ def open_count(items, today):
     return sum(1 for it in items if resolve(it, today)["access"] == "open")
 
 
+def _decolon(text):
+    """Remove colons from prose the way prose_colon_gate counts them.
+
+    The gate exempts exactly two things, clock times and URLs, then fails the
+    build on any colon left over. Replacing ": " was not the same rule: copy
+    like "SB 250:the vote" or a bare "Note:x" sailed through and took the
+    nightly ship down with sys.exit(1) at the gate. Match the gate's own
+    exemptions instead of approximating them."""
+    keep = re.compile(r"https?://\S+|\d{1,2}:\d{2}")
+    out, at = [], 0
+    for m in keep.finditer(text):
+        out.append(re.sub(r"\s*:\s*", ", ", text[at:m.start()]))
+        out.append(m.group(0))
+        at = m.end()
+    out.append(re.sub(r"\s*:\s*", ", ", text[at:]))
+    return "".join(out)
+
+def house(text):
+    """House style, applied to text this generator pulls out of a run.
+
+    Slide copy is written to the house rules, but claims.json quotes sources
+    verbatim and a source is free to use an em dash and curly quotes. Those
+    would fail the punctuation gate and take the whole build down, so they are
+    normalized here rather than left to break a ship at midnight."""
+    if not text:
+        return ""
+    for bad, good in (("—", ", "), ("–", ", "),
+                      ("‘", "'"), ("’", "'"),
+                      ("“", '"'), ("”", '"')):
+        text = text.replace(bad, good)
+    text = BANNED.sub("", text)                 # anything left (emoji) goes
+    text = " ".join(_decolon(text).split())
+    # A dash sitting between spaces leaves "a , b" once it becomes a comma.
+    text = re.sub(r"\s+([,.;])", r"\1", text)
+    return text.rstrip(" ,:")
+
 def esc(s):
     return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
             .replace('"', "&quot;"))
@@ -334,8 +371,10 @@ LAYER_FILES = {
 }
 
 
+@lru_cache(maxsize=None)
 def layer_data(name):
-    """A layer's asset, or None. A missing context layer must never break the
+    """A layer's asset, or None. Cached: one build asked for the same three
+    files seven times, parsing each from disk on every call. A missing context layer must never break the
     docket, so every caller treats absence as "do not draw and do not offer"."""
     src = REPO / "assets/geo" / LAYER_FILES[name]
     if not src.exists():
@@ -540,7 +579,8 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
             mk(badges, ax, ay, "".join(parts), cls=acls)
     pins = leads + badges + dots
     grid = "".join(f'<path class="gx gx-{tier}" d="{d}"/>' for tier, d in grid_paths(T))
-    taps = f'<path class="tp" d="{taps_path(T)}"/>' if taps_path(T) else ""
+    _taps_d = taps_path(T)
+    taps = f'<path class="tp" d="{_taps_d}"/>' if _taps_d else ""
     gen = generation_marks(T)
     caption = "".join(
         f'<a class="mapkey" href="#{esc(it["id"])}"><b class="k-{acc(it)}">{n}</b>'
@@ -672,303 +712,21 @@ def card_html(it, today, prefix=""):
 </a>"""
 
 
-CSS_TEMPLATE = """
-:root{--night:#02060f;--deep:#050b16;--panel:#0a1626;--panel2:#0e2138;--line:#1c3350;
---snow:#f4f8ff;--body:#c3d2e6;--mute:#8da2be;--gold:#ffc72c;--halo:#ffda6e;
---green:#3ce6b4;--amber:#f2a43a;--blue:#5ac8f0;--violet:#9664e6;}
-@font-face{font-family:Fraunces;src:url(fonts/fraunces.woff2) format("woff2");font-weight:100 900;font-display:swap;}
-@font-face{font-family:JBMono;src:url(fonts/jbmono.woff2) format("woff2");font-weight:400;font-display:swap;}
-@font-face{font-family:JBMono;src:url(fonts/jbmono-md.woff2) format("woff2");font-weight:500;font-display:swap;}
-@font-face{font-family:Manrope;src:url(fonts/manrope.woff2) format("woff2");font-weight:200 800;font-display:swap;}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--night);color:var(--body);font-family:Manrope,system-ui,sans-serif;
-line-height:1.55;overflow-x:hidden;}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
-background-image:url(GRAIN_URI);mix-blend-mode:overlay;opacity:.55;}
-::selection{background:rgba(255,199,44,.25);}
-a{color:inherit;}
 
-/* ---------- aurora sky ---------- */
-.sky{position:absolute;inset:0 0 auto 0;height:120vh;overflow:hidden;pointer-events:none;z-index:0;}
-.veil{position:absolute;border-radius:50%;filter:blur(70px);mix-blend-mode:screen;opacity:.62;}
-.v1{width:60vw;height:44vh;left:38vw;top:-12vh;background:radial-gradient(closest-side,rgba(60,230,180,.5),transparent 70%);
-animation:drift1 26s ease-in-out infinite alternate;}
-.v2{width:48vw;height:40vh;left:16vw;top:-16vh;background:radial-gradient(closest-side,rgba(90,200,240,.4),transparent 70%);
-animation:drift2 34s ease-in-out infinite alternate;}
-.v3{width:34vw;height:30vh;left:62vw;top:6vh;background:radial-gradient(closest-side,rgba(150,100,230,.28),transparent 70%);
-animation:drift3 42s ease-in-out infinite alternate;}
-@keyframes drift1{from{transform:translate(-6vw,0) rotate(-4deg);}to{transform:translate(7vw,4vh) rotate(5deg);}}
-@keyframes drift2{from{transform:translate(5vw,2vh);}to{transform:translate(-7vw,-2vh);}}
-@keyframes drift3{from{transform:translate(0,0) scale(1);}to{transform:translate(-5vw,3vh) scale(1.15);}}
-.stars{position:absolute;inset:0;background-image:
-radial-gradient(1px 1px at 12% 22%,rgba(244,248,255,.7),transparent 60%),
-radial-gradient(1px 1px at 33% 8%,rgba(244,248,255,.5),transparent 60%),
-radial-gradient(1.5px 1.5px at 56% 30%,rgba(244,248,255,.6),transparent 60%),
-radial-gradient(1px 1px at 72% 12%,rgba(244,248,255,.5),transparent 60%),
-radial-gradient(1px 1px at 88% 26%,rgba(244,248,255,.65),transparent 60%),
-radial-gradient(1.5px 1.5px at 44% 16%,rgba(244,248,255,.4),transparent 60%);}
-
-.wrap{position:relative;max-width:1120px;margin:0 auto;padding:0 24px 110px;z-index:1;}
-
-/* ---------- hero ---------- */
-.brandrow{display:flex;align-items:center;gap:12px;padding:44px 0 0;
-font-family:JBMono,monospace;font-size:13px;letter-spacing:.22em;color:var(--mute);}
-.brandrow .polaris{width:18px;height:18px;flex:none;}
-.brandrow .upd{margin-left:auto;letter-spacing:.12em;color:#5f7390;}
-h1{font-family:Fraunces,serif;font-weight:580;font-size:clamp(42px,7vw,84px);line-height:1.0;
-letter-spacing:-.015em;color:var(--snow);margin:34px 0 0;max-width:11ch;}
-h1 em{font-style:normal;color:var(--gold);}
-.tag{font-size:clamp(17px,2.2vw,21px);max-width:560px;margin:26px 0 0;color:var(--body);}
-.statrow{display:flex;gap:34px;flex-wrap:wrap;margin:36px 0 0;font-family:JBMono,monospace;}
-.stat .n{font-size:clamp(26px,3.4vw,38px);font-weight:500;color:var(--snow);font-variant-numeric:tabular-nums;}
-.stat .n.g{color:var(--gold);text-shadow:0 0 22px rgba(255,199,44,.35);}
-.stat .l{font-size:11.5px;letter-spacing:.18em;color:var(--mute);margin-top:2px;}
-
-/* ---------- map ---------- */
-.maphero{margin:44px -24px 0;padding:10px 24px 6px;position:relative;}
-.maphero svg{width:100%;height:auto;display:block;}
-.pinnum{font-family:JBMono,monospace;font-size:13.5px;font-weight:500;}
-/* The dot is the truth, sitting exactly on the coordinate. The badge is placed
-   for legibility and the lead line shows how far it had to go to get there. */
-.pindot{opacity:.95;}
-.pinlead{stroke-width:1.1;opacity:.5;stroke-dasharray:2 3;}
-.mapcap{display:flex;gap:10px 26px;flex-wrap:wrap;padding:14px 2px 0;}
-.mapkey{display:flex;align-items:center;gap:9px;font-family:JBMono,monospace;font-size:12.5px;
-letter-spacing:.05em;color:var(--mute);text-decoration:none;transition:color .2s;}
-.mapkey:hover{color:var(--snow);}
-.mapkey b{font-weight:500;border:1.5px solid;border-radius:50%;width:21px;height:21px;flex:none;
-text-align:center;line-height:19px;background:var(--deep);}
-.k-open{color:var(--green);border-color:var(--green);}
-.k-indirect{color:var(--mute);border-color:var(--mute);}
-.k-closed{color:var(--amber);border-color:var(--amber);}
-
-/* ---------- sections ---------- */
-h2{font-family:Fraunces,serif;font-weight:540;font-size:clamp(26px,3.6vw,36px);color:var(--snow);
-margin:84px 0 8px;letter-spacing:-.01em;}
-.sub{color:var(--mute);font-size:15.5px;margin-bottom:26px;max-width:640px;}
-
-/* ---------- closing-soon cards ---------- */
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;}
-.card{display:block;background:linear-gradient(165deg,var(--panel) 0%,var(--deep) 100%);
-border:1px solid var(--line);border-radius:12px;padding:22px 24px;text-decoration:none;
-transition:transform .25s,border-color .25s,box-shadow .25s;}
-.card:hover{transform:translateY(-3px);border-color:#2c5876;box-shadow:0 14px 40px rgba(0,0,0,.5);}
-.card.a-open{border-color:rgba(255,199,44,.45);}
-.card.a-open:hover{border-color:var(--gold);box-shadow:0 14px 44px rgba(255,199,44,.13);}
-.cardtop{margin-bottom:14px;}
-.card .big{font-family:Fraunces,serif;font-weight:560;font-size:44px;color:var(--snow);line-height:1;}
-.card.a-open .big{color:var(--gold);}
-.card .when{display:block;margin:8px 0 14px;}
-.card h3{font-family:Manrope,sans-serif;font-weight:600;font-size:16.5px;color:var(--snow);line-height:1.3;}
-.card .who{margin-top:8px;}
-
-/* ---------- badges + chips ---------- */
-.badge{font-family:JBMono,monospace;font-size:11px;letter-spacing:.13em;font-weight:500;
-padding:4px 10px;border-radius:4px;border:1px solid;display:inline-block;}
-.b-open{color:var(--green);border-color:rgba(60,230,180,.5);background:rgba(60,230,180,.06);}
-.b-indirect{color:var(--mute);border-color:rgba(141,162,190,.4);}
-.b-closed{color:var(--amber);border-color:rgba(242,164,58,.5);background:rgba(242,164,58,.05);}
-.chip{font-family:JBMono,monospace;font-size:12px;letter-spacing:.09em;font-weight:500;}
-.chip.days{color:var(--gold);}
-.chip.kind{color:#6a7d97;}
-.who{font-family:JBMono,monospace;font-size:11.5px;letter-spacing:.09em;color:var(--mute);}
-
-/* ---------- docket items ---------- */
-.item{display:flex;gap:26px;background:linear-gradient(170deg,var(--panel) 0%,var(--deep) 88%);
-border:1px solid var(--line);border-radius:14px;padding:30px 32px;margin-bottom:18px;}
-.item.a-open{border-color:rgba(255,199,44,.4);
-box-shadow:0 0 0 1px rgba(255,199,44,.08),0 18px 60px rgba(0,0,0,.35);}
-.doorcol{flex:none;display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:4px;}
-.door{width:44px;height:56px;}
-.item.a-open .door{filter:drop-shadow(0 0 10px rgba(255,199,44,.45));}
-.doorcol .num{font-family:JBMono,monospace;font-size:12px;color:#5f7390;letter-spacing:.1em;}
-.item .body{min-width:0;flex:1;}
-.item .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;}
-.item h3{font-family:Fraunces,serif;font-weight:540;font-size:clamp(22px,2.8vw,28px);
-color:var(--snow);line-height:1.18;margin-bottom:8px;}
-.item p{margin:12px 0;font-size:16px;max-width:70ch;}
-.access{font-size:14.5px;color:var(--mute);border-left:2px solid var(--gold);
-padding:2px 0 2px 14px;margin:14px 0;max-width:64ch;}
-.item.a-indirect .access,.item.a-closed .access{border-left-color:var(--line);}
-.srcs{font-size:13.5px;color:var(--mute);margin-top:14px;}
-.srcs a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.25);}
-.srcs a:hover{border-bottom-color:var(--blue);}
-.hist{font-size:12.5px;color:#5f7390;margin-top:10px;font-family:JBMono,monospace;letter-spacing:.02em;}
-
-/* ---------- timeline rail ---------- */
-.rail{display:flex;margin:22px 0 4px;position:relative;}
-.rail::before{content:"";position:absolute;left:0;right:0;top:5px;height:1.5px;
-background:linear-gradient(90deg,var(--line) 0%,#2c5876 100%);}
-.rail.solo::before{display:none;}
-.stop{flex:1;min-width:0;position:relative;padding:16px 14px 0 0;}
-.stop .dot{position:absolute;top:0;left:0;width:11px;height:11px;border-radius:50%;
-background:var(--deep);border:2px solid #3a5f84;}
-.stop.future .dot{border-color:var(--gold);box-shadow:0 0 10px rgba(255,199,44,.5);}
-.stop .d{display:block;font-family:JBMono,monospace;font-size:12px;font-weight:500;
-letter-spacing:.08em;color:#5f7390;}
-.stop.future .d{color:var(--gold);}
-.stop .l{display:block;font-size:12.5px;color:var(--mute);line-height:1.35;margin-top:3px;max-width:24ch;}
-.stop.future .l{color:var(--body);}
-
-/* ---------- about + footer ---------- */
-.about{border-top:1px solid var(--line);margin-top:90px;padding-top:34px;font-size:15px;
-color:var(--mute);max-width:660px;}
-.about a{color:var(--blue);text-decoration:none;}
-footer{margin-top:60px;display:flex;gap:14px;align-items:center;font-family:JBMono,monospace;
-font-size:11.5px;color:#5a6d87;letter-spacing:.14em;flex-wrap:wrap;}
-footer .polaris{width:13px;height:13px;}
-
-/* ---------- reveal (only when JS runs; no-JS sees everything) ---------- */
-html.js [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
-html.js [data-reveal].in{opacity:1;transform:none;}
-
-@media (max-width:720px){
-  .item{flex-direction:column;gap:16px;padding:24px 20px;}
-  .doorcol{flex-direction:row;}
-  .rail{flex-direction:column;gap:14px;}
-  .rail::before{left:5px;right:auto;top:0;bottom:0;width:1.5px;height:auto;}
-  .stop{padding:0 0 0 26px;}
-  .maphero{margin:34px -12px 0;padding:0 12px;}
-}
-@media (prefers-reduced-motion:reduce){
-  .veil{animation:none;}
-  html.js [data-reveal]{opacity:1;transform:none;transition:none;}
-  html{scroll-behavior:auto;}
-}
-"""
-
-JS = """
-(function(){
-  var now = new Date(); now.setHours(0,0,0,0);
-  document.querySelectorAll('[data-date]').forEach(function(el){
-    var d = new Date(el.getAttribute('data-date') + 'T00:00:00');
-    var days = Math.round((d - now) / 86400000);
-    var t = days > 1 ? 'in ' + days + ' days' : days === 1 ? 'tomorrow'
-          : days === 0 ? 'today' : 'window passed';
-    el.textContent = t;
-    if (days < 0) { el.classList.remove('days'); el.style.color = '#8da2be'; }
-  });
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, {rootMargin: '0px 0px -8% 0px'});
-    document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
-  } else {
-    document.querySelectorAll('[data-reveal]').forEach(function(el){ el.classList.add('in'); });
-  }
-})();
-"""
 
 POLARIS = ('<svg class="polaris" viewBox="-10 -10 20 20" aria-hidden="true">'
            '<path d="M0,-9 L2.2,-2.2 L9,0 L2.2,2.2 L0,9 L-2.2,2.2 L-9,0 L-2.2,-2.2 Z" fill="#ffc72c"/></svg>')
 
-FAVICON = ("data:image/svg+xml," +
-           "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-10 -10 20 20'%3E"
-           "%3Cpath d='M0,-9 L2.2,-2.2 L9,0 L2.2,2.2 L0,9 L-2.2,2.2 L-9,0 L-2.2,-2.2 Z'"
-           " fill='%23ffc72c'/%3E%3C/svg%3E")
 
-
-def build(today, out_dir, site_url=None, domain=""):
-    site_url = site_url or DEFAULT_SITE
-    ledger = json.loads((REPO / "ledger/docket.json").read_text())
-    items = ledger["items"]
-    validate(items)
-
-    live = [it for it in items if it["status"] in ("open-for-comment", "pending-decision", "watching")]
-    done = [it for it in items if it["status"] in ("decided", "closed")]
-    dated = sorted((it for it in live if next_date(it, today)),
-                   key=lambda it: next_date(it, today)["date"])
-    live_sorted = dated + [it for it in live if not next_date(it, today)]
-    svg, mapcap = map_svg(live_sorted + done, today)
-    cards = "".join(card_html(it, today) for it in dated[:6])
-    live_html = "".join(item_html(it, today, n) for n, it in enumerate(live_sorted, 1))
-    done_html = "".join(item_html(it, today, n) for n, it in enumerate(done, len(live_sorted) + 1))
-
-    n_open = open_count(live, today)
-    nearest = nearest_headline(dated, today)
-    stats = f"""<div class="statrow">
-  <div class="stat"><div class="n">{len(live):02d}</div><div class="l">DECISIONS TRACKED</div></div>
-  <div class="stat"><div class="n g">{n_open:02d}</div><div class="l">OPEN TO THE PUBLIC</div></div>
-  {f'<div class="stat"><div class="n">{mon_day(nearest["date"])}</div><div class="l">NEXT DATE</div></div>' if nearest else ''}
-</div>"""
-
-    css = CSS_TEMPLATE.replace("GRAIN_URI", grain_data_uri() or "none")
-
-    html = f"""<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Alaska AI Docket</title>
-<meta name="description" content="Every AI infrastructure decision in Alaska, tracked daily. Who decides, when it lands, and whether the public gets a say. Sources on every item.">
-<meta property="og:title" content="The Alaska AI Docket">
-<meta property="og:description" content="Every AI infrastructure decision in Alaska, tracked daily, with sources on every item.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="{site_url}/">
-<meta property="og:image" content="{site_url}/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="{site_url}/">
-<link rel="icon" href="{FAVICON}">
-<style>{css}</style>
-<script>document.documentElement.classList.add('js')</script>
-</head>
-<body>
-<div class="sky"><div class="stars"></div><div class="veil v1"></div><div class="veil v2"></div><div class="veil v3"></div></div>
-<div class="wrap">
-
-<div class="brandrow">{POLARIS}<span>ALASKA.AI &middot; THE DOCKET</span>
-<span class="upd">UPDATED {today.isoformat()}</span></div>
-
-<h1>Who decides what AI builds in <em>Alaska</em></h1>
-<p class="tag">Land leases, comment windows, utility votes and legislation, tracked every day
-with a source on every fact. Gold marks a door the public can still walk through.</p>
-{stats}
-
-<div class="maphero">{svg}<div class="mapcap">{mapcap}</div></div>
-
-<h2>Closing soon</h2>
-<p class="sub">The nearest deadlines and votes. A pulsing pin on the map means a public
-comment window is open right now.</p>
-<div class="cards">{cards}</div>
-
-<h2>The docket</h2>
-<p class="sub">Access reads OPEN when a formal public comment or testimony path exists today,
-INDIRECT when an elected or member-accountable body decides, CLOSED when the evaluation is private.</p>
-{live_html}
-{'<h2>Decided</h2>' + done_html if done_html else ''}
-
-<div class="about" data-reveal>
-<p>All sources verified against claims.</p>
-</div>
-<footer>{POLARIS}<span>ALASKA.AI &middot; UPDATED DAILY &middot; 64&#176;12'N 150&#176;00'W</span></footer>
-</div>
-<script>{JS}</script>
-</body>
-</html>"""
-
-    bad = BANNED.findall(html)
-    if bad:
-        fail(f"banned punctuation in output: {bad[:8]}")
-
-    out = REPO / out_dir
-    out.mkdir(parents=True, exist_ok=True)
-    (out / "index.html").write_text(html)
-    (out / "docket.json").write_text(json.dumps(
-        {"updated": today.isoformat(), "items": items}, indent=2))
-    (out / ".nojekyll").write_text("")
-    if domain:
-        (out / "CNAME").write_text(domain + "\n")
-    print(f"docket site -> {out/'index.html'} ({len(html)//1024} KB, "
-          f"{len(items)} items, {len(dated)} with upcoming dates, {n_open} open to the public)")
 
 
 def main():
-    # This module is now the shared library (projection, docket components,
-    # gates). The CLI delegates to site_build so a stale invocation can never
-    # overwrite docs/ with the retired single-page layout.
+    # This module is the shared library: projection, date roles, docket
+    # components, house style and the gates. It builds no page of its own.
+    # The retired single-page build() lived here with its own CSS and JS,
+    # 290 lines forked from the live ones and drifted, so a maintainer could
+    # edit the wrong stylesheet and change nothing on the site. Deleted; the
+    # CLI has delegated to site_build since, and still does.
     import site_build
     site_build.main()
 

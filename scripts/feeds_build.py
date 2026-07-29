@@ -19,7 +19,37 @@ from __future__ import annotations
 import json
 import re
 from datetime import date as ddate, datetime, timezone
-from xml.sax.saxutils import escape as xesc
+from xml.sax.saxutils import escape as _escape
+
+import docket_build as db
+
+# saxutils.escape does NOT escape the double quote, and every use below sits
+# inside a double-quoted HTML attribute (src, alt, href). House style says
+# straight quotes, so a quoted title breaks out of its own attribute. Inside
+# CDATA the feed still parses as well-formed XML, so validate() sees nothing
+# and the broken markup ships to every subscriber silently.
+def xesc(s):
+    return _escape(str(s), {'"': "&quot;"})
+
+
+BANNED_CHARS = re.compile("[–—‘’“”]")
+
+
+def _banned_value(obj):
+    """The first banned character in any string inside a decoded JSON document,
+    or None. Walks values rather than the serialized form, because json.dumps
+    writes non-ASCII as escapes and the characters are invisible in the bytes."""
+    if isinstance(obj, str):
+        m = BANNED_CHARS.search(obj)
+        return m.group(0) if m else None
+    if isinstance(obj, dict):
+        obj = obj.values()
+    if isinstance(obj, (list, tuple)) or hasattr(obj, "__iter__"):
+        for v in obj:
+            hit = _banned_value(v)
+            if hit:
+                return hit
+    return None
 
 # Decks ship in the afternoon Alaska time. No run records a wall-clock publish
 # time, so feeds state a consistent 17:00 UTC (about 9am Alaska) rather than
@@ -75,11 +105,11 @@ def deck_markdown(r, site_url: str) -> str:
     if claims:
         lines += ["## What we verified", ""]
         for c in claims:
-            claim = (c.get("claim") or "").strip().rstrip(".")
+            claim = db.house((c.get("claim") or "").strip()).rstrip(".")
             if not claim:
                 continue
             kind = "primary document" if c.get("source_is_primary") else "report"
-            outlet = c.get("source_outlet") or "source"
+            outlet = db.house(c.get("source_outlet")) or "source"
             url = c.get("source_url") or ""
             when = f", {c['date_of_source']}" if c.get("date_of_source") else ""
             cite = f"[{outlet}]({url})" if url else outlet
@@ -178,12 +208,12 @@ def _item_html(r, site_url: str) -> str:
         f'width="1080" height="1350"></p>' if r.get("cover") else "")
     for para in (r.get("article_text") or "").split("\n\n"):
         if para.strip():
-            parts.append(f"<p>{xesc(para.strip())}</p>")
+            parts.append(f"<p>{xesc(db.house(para.strip()))}</p>")
     srcs = _sources(r)
     if srcs:
         parts.append("<h3>Sources</h3><ul>")
         for c in srcs:
-            outlet = xesc(c.get("source_outlet") or "source")
+            outlet = xesc(db.house(c.get("source_outlet")) or "source")
             kind = "primary document" if c.get("source_is_primary") else "report"
             parts.append(f'<li><a href="{xesc(c["source_url"])}">{outlet}</a>, {kind}</li>')
         parts.append("</ul>")
@@ -354,6 +384,16 @@ def validate(name: str, text: str, fail) -> None:
     A malformed feed is worse than no feed: readers cache the failure and stop
     polling. This parses what was actually generated and checks the item count
     is plausible, rather than trusting the template."""
+    # The punctuation gate used to sit below a `return` on the JSON branch,
+    # which made feed.json the one emitted feed never checked. Its "tags"
+    # field, built from copy.json hashtags, was gated nowhere in the codebase.
+    #
+    # Moving the check above the branch is not enough, and that near miss is
+    # worth spelling out: feed.json is written with json.dumps, which escapes
+    # non-ASCII by default, so an em dash lands in the file as the seven ASCII
+    # characters \\u2014. A regex over the serialized text cannot see it. The
+    # gate would have read as fixed and caught nothing. Check the decoded
+    # VALUES for JSON, and the raw text for XML, which is written literally.
     if name.endswith(".json"):
         try:
             d = json.loads(text)
@@ -361,6 +401,9 @@ def validate(name: str, text: str, fail) -> None:
             return fail(f"{name} is not valid JSON: {exc}")
         if not d.get("items"):
             return fail(f"{name} has no items")
+        hit = _banned_value(d)
+        if hit:
+            return fail(f"{name} contains banned punctuation {hit!r}")
         return
     try:
         from xml.etree import ElementTree
@@ -371,5 +414,5 @@ def validate(name: str, text: str, fail) -> None:
         root.findall("{http://www.w3.org/2005/Atom}entry"))
     if not n:
         return fail(f"{name} parsed but contains no items")
-    if re.search(r"[–—‘’“”]", text):
+    if BANNED_CHARS.search(text):
         return fail(f"{name} contains banned punctuation")
