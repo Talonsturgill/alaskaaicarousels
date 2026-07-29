@@ -1555,9 +1555,13 @@ def load_docket(today):
     db.validate(items)
     live = [it for it in items if it["status"] in ("open-for-comment", "pending-decision", "watching")]
     done = [it for it in items if it["status"] in ("decided", "closed")]
-    dated = sorted((it for it in live if db.next_date(it, today)),
-                   key=lambda it: db.next_date(it, today)["date"])
-    live_sorted = dated + [it for it in live if not db.next_date(it, today)]
+    # next_event is a SORT KEY here and nothing else. What each item then
+    # renders comes from db.resolve(), which picks by role. Ordering by "when
+    # does this next move" is a true statement; the bug was letting that same
+    # value fill a deadline slot.
+    dated = sorted((it for it in live if db.next_event(it, today)),
+                   key=lambda it: db.next_event(it, today)["date"])
+    live_sorted = dated + [it for it in live if not db.next_event(it, today)]
     return items, live, done, dated, live_sorted
 
 
@@ -2283,8 +2287,8 @@ def pretty_date(iso):
 
 def home_page(today, site_url, docket, runs):
     items, live, done, dated, live_sorted = docket
-    n_open = sum(1 for it in live if it["public_access"] == "open")
-    nearest = db.next_date(dated[0], today) if dated else None
+    n_open = db.open_count(live, today)
+    nearest = db.nearest_headline(dated, today)
     latest = runs[0] if runs else None
 
     n_videos = video_count()
@@ -2412,7 +2416,7 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 
 def docket_page(today, site_url, docket):
     items, live, done, dated, live_sorted = docket
-    svg, mapcap = db.map_svg(live_sorted + done)
+    svg, mapcap = db.map_svg(live_sorted + done, today)
     # Layer toggles, done with real checkboxes and real labels rather than
     # script. Every checkbox has to come BEFORE the svg in the markup, because
     # the whole mechanism is the sibling combinator. The grid carries `checked`
@@ -2458,8 +2462,8 @@ def docket_page(today, site_url, docket):
                 '</div>'
                 '<div class="lyrchips lyrfilters">%s</div>'
                 '<div class="lyrnotes">%s</div></div>' % (chips, fchips, notes))
-    n_open = sum(1 for it in live if it["public_access"] == "open")
-    nearest = db.next_date(dated[0], today) if dated else None
+    n_open = db.open_count(live, today)
+    nearest = db.nearest_headline(dated, today)
     cards = "".join(db.card_html(it, today) for it in dated[:6])
     live_html = "".join(db.item_html(it, today, n) for n, it in enumerate(live_sorted, 1))
     done_html = "".join(db.item_html(it, today, n) for n, it in enumerate(done, len(live_sorted) + 1))

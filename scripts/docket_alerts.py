@@ -74,10 +74,18 @@ def due_alerts(items, sent_keys, today):
     for it in items:
         if it["status"] not in ("open-for-comment", "pending-decision", "watching"):
             continue
-        if it["status"] == "open-for-comment" and it["public_access"] == "open":
+        r = db.resolve(it, today)
+        # A window-open alert says one thing, that a comment window is open and
+        # here is when it shuts. So it carries the item's OWN action deadline
+        # and nothing else (rule 2). It used to carry the soonest upcoming date
+        # of any kind, which for the AIDEA item after 2026-07-21 would have been
+        # another city's council vote, mailed to subscribers as the close of a
+        # state comment window. r["cta"] also means an expired window can never
+        # newly alert as open.
+        if r["cta"]:
             k = f"{it['id']}/window-open"
             if k not in sent_keys:
-                due.append((k, "window-open", it, db.next_date(it, today)))
+                due.append((k, "window-open", it, r["deadline"]))
         for d in it["key_dates"]:
             dd = ddate.fromisoformat(d["date"])
             if d["kind"] in ("deadline", "vote") and 0 <= (dd - today).days <= 2:

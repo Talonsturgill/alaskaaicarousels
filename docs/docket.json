@@ -556,7 +556,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-07-26",
+      "last_updated": "2026-07-29",
       "history": [
         {
           "date": "2026-07-17",
@@ -577,6 +577,10 @@
         {
           "date": "2026-07-26",
           "note": "Re-verified against Northern Journal. Public comment on the DNR preliminary decision runs through August 19 and the Houston City Council postponed its vote on a data center restriction ordinance to its next meeting on August 13, to allow a work session that had not yet been scheduled. Parcel described as 30 square miles, roughly 60 road miles north of Anchorage. Dates unchanged."
+        },
+        {
+          "date": "2026-07-29",
+          "note": "Correction, display only. From July 21, when the Houston City Council's August 13 vote was added as a tracked key date, this entry's badge, the page NEXT DATE stat, the closing-soon card and the COMMENT NOW button all showed August 13, because every date slot took the soonest upcoming key date regardless of what that date was. August 13 is a different body voting on a different question. The DNR comment deadline was and remains 5 p.m. August 19, 2026, re-verified today against the primary notice, Alaska DNR Online Public Notices id 224431, ADL 234762, which states 5:00 PM, Wednesday, August 19, 2026 and shows no extension or amendment. This entry's summary, access note, timeline and earlier history notes were correct throughout and are unchanged. The renderer now resolves dates by role and a build gate fails any surface that disagrees. No subscriber alert carried the wrong date, the only send, on July 17, predates the August 13 key date."
         }
       ]
     },

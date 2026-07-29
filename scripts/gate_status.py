@@ -185,6 +185,32 @@ def scanner_sync_row(rows):
         rows.add("scanner_sync", "FAIL", out[0][:140])
 
 
+def docket_dates_row(rows):
+    """Repo-level like scanner_sync: the run rebuilds docs/ from the ledger
+    Phase 3.5 just edited, so a date rendered into the wrong slot ships with
+    the run. This is the gate that would have caught COMMENT NOW, CLOSES AUG 13
+    on the AIDEA item, six days before its real close and for a different
+    body's vote. Exit 2 means it could not look, which is a FAIL and not a
+    pass."""
+    script = REPO / "scripts" / "docket_dates_check.py"
+    if not script.exists():
+        rows.absent("docket_dates", "scripts/docket_dates_check.py missing")
+        return
+    try:
+        p = subprocess.run([sys.executable, str(script)],
+                           capture_output=True, text=True, timeout=300)
+    except Exception as e:
+        rows.add("docket_dates", "FAIL", "could not run docket_dates_check (%s)" % type(e).__name__)
+        return
+    out = (p.stdout + p.stderr).strip().splitlines() or [""]
+    if p.returncode == 0:
+        rows.add("docket_dates", "PASS", out[-1][:140])
+    elif p.returncode == 2:
+        rows.add("docket_dates", "FAIL", "check could not look: %s" % out[0][:120])
+    else:
+        rows.add("docket_dates", "FAIL", out[0][:140])
+
+
 def assemble_row(rows, run, rep, fdir):
     asm, note = load_json(fdir / "assemble_report.json")
     if asm is None:
@@ -290,6 +316,7 @@ def main():
     caption_row(rows, run)
     copy_sync_row(rows, run, rdir)
     scanner_sync_row(rows)
+    docket_dates_row(rows)
     assemble_row(rows, run, rep, fdir)
     score_row(rows, run)
     artifacts_row(rows, run, rdir, rep)
