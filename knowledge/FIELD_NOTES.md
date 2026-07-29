@@ -1544,3 +1544,43 @@ pipeline can see will be deferred forever, because by the time it is visible
 the run cannot afford it. Moving detection earlier is worth more than looking
 harder at the end. And when a defect recurs, suspect a rule that permits it
 before suspecting the people following the rule.
+
+## 2026-07-29 (No. 19) - Phase 1 craft refresh
+
+Timeboxed platform + craft scan. Four things are genuinely new against what
+CAROUSEL_CRAFT already carries.
+
+- SAVE WEIGHT IS NOW STATED RELATIVE TO COMMENTS, not just likes. Practitioner
+  syntheses of the 2026 ranking stack put a save at about 5x a like AND about
+  2x a comment, with saves and sends described as the strongest distribution
+  signals. We already build for saves; the new part is that a save now
+  outranks the comment we design the closing question to earn. Keep the
+  question (it is still the cheapest dwell extender) but the keepable slide is
+  the higher-value object, which is an argument for spending the deck's one
+  dense data slide well rather than trimming it.
+  https://www.socialpilot.co/blog/linkedin-algorithm
+- DWELL IS NOW REPORTED IN BANDS, and the spread is enormous. Posts at 61+
+  seconds of dwell are reported at 15.6 percent engagement against 1.2 percent
+  for 0 to 3 seconds. Roughly 70 percent of a post's total reach is described
+  as decided in the first 60 to 90 minutes. Both numbers are practitioner-tier,
+  not official, so they are (M) at best, but they sharpen the golden-hour
+  aftercare line we already print in every email from "reply fast" to "the
+  first 60 to 90 minutes decide most of it".
+  https://meet-lea.com/en/blog/linkedin-algorithm-explained
+- THE SLIDE-COUNT ADVICE HAS SPREAD OUT, and the conflict is unresolved.
+  Oktopost's 2026 carousel guide says 5 to 15 and argues shorter and tighter
+  wins; other 2026 syntheses say 9 to 12 is the sweet spot because dwell needs
+  length. Our 6 to 12 band with an 8 to 10 default sits inside both. NO CHANGE
+  to the doctrine, but stop treating any one practitioner number as settled.
+  Oktopost also lands on a 24 pt design-tool minimum, which is our 24 px
+  absolute floor by a different route, and repeats the 4:5 1080x1350 default.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- THE 2026 DESIGN TREND READING FAVORS WHAT WE ALREADY DO, which is worth
+  knowing mostly so we do not chase it. The trend writing converges on
+  texture, tactility, analog imperfection and layered depth, and away from
+  flat generated-looking infographics toward "designed, with a point of view".
+  That is the house position already (grain tiles, paper tooth, modeled tone,
+  the rendered ladder). The one actionable read is that MATERIAL texture is
+  currently a differentiator rather than a risk, which supports spending
+  density on the bottom third rather than economizing there.
+  https://www.creativebloq.com/design/graphic-design/texture-warmth-and-tactile-rebellion-the-big-graphic-design-trends-for-2026
