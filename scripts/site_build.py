@@ -1555,13 +1555,22 @@ def load_docket(today):
     db.validate(items)
     live = [it for it in items if it["status"] in ("open-for-comment", "pending-decision", "watching")]
     done = [it for it in items if it["status"] in ("decided", "closed")]
-    # next_event is a SORT KEY here and nothing else. What each item then
-    # renders comes from db.resolve(), which picks by role. Ordering by "when
-    # does this next move" is a true statement; the bug was letting that same
-    # value fill a deadline slot.
-    dated = sorted((it for it in live if db.next_event(it, today)),
-                   key=lambda it: db.next_event(it, today)["date"])
-    live_sorted = dated + [it for it in live if not db.next_event(it, today)]
+    # Order by the date each item actually DISPLAYS, not by when it next moves.
+    #
+    # Those are different values, and sorting by one while showing the other is
+    # how a sort key becomes a rendered fact: dated[0] supplies the home page's
+    # headline TITLE while the date beside it came from whichever item resolved
+    # soonest, and dated[:6] decides which cards exist at all. Sorted by
+    # next_event, the AIDEA item leads on its AUG 13 vote and then prints AUG 19,
+    # so a second item closing AUG 15 would put its date next to AIDEA's title.
+    # That is the same defect as the AUG 13 button, arriving through ordering
+    # instead of through selection.
+    #
+    # The set is identical either way, since headline is deadline-or-next-event
+    # and a future deadline is always a future event. Only the order changes.
+    dated = sorted((it for it in live if db.resolve(it, today)["headline"]),
+                   key=lambda it: db.resolve(it, today)["headline"]["date"])
+    live_sorted = dated + [it for it in live if not db.resolve(it, today)["headline"]]
     return items, live, done, dated, live_sorted
 
 
@@ -2288,7 +2297,9 @@ def pretty_date(iso):
 def home_page(today, site_url, docket, runs):
     items, live, done, dated, live_sorted = docket
     n_open = db.open_count(live, today)
-    nearest = db.nearest_headline(dated, today)
+    # Read off dated[0] itself, not recomputed, because the title beside it is
+    # dated[0]'s. One item, one lookup, no way for the pair to disagree.
+    nearest = db.resolve(dated[0], today)["headline"] if dated else None
     latest = runs[0] if runs else None
 
     n_videos = video_count()
@@ -2463,7 +2474,7 @@ def docket_page(today, site_url, docket):
                 '<div class="lyrchips lyrfilters">%s</div>'
                 '<div class="lyrnotes">%s</div></div>' % (chips, fchips, notes))
     n_open = db.open_count(live, today)
-    nearest = db.nearest_headline(dated, today)
+    nearest = db.resolve(dated[0], today)["headline"] if dated else None
     cards = "".join(db.card_html(it, today) for it in dated[:6])
     live_html = "".join(db.item_html(it, today, n) for n, it in enumerate(live_sorted, 1))
     done_html = "".join(db.item_html(it, today, n) for n, it in enumerate(done, len(live_sorted) + 1))
