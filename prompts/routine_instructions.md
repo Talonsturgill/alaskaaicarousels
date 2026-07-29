@@ -115,7 +115,26 @@ artifact existing. If the session restarts, resume from run_state.
    vary the dials themselves run to run.
 6. Note seasonal Alaska context (session dates, fishing openers, freeze-up,
    PFD, Iditarod, wildfire season, military exercises) so scouts don't
-   miss obvious angles. Write `out/<date>/plan.md` with all of the above.
+   miss obvious angles.
+7. Run `python scripts/trend_check.py --window 10` and paste the block into
+   plan.md. This is the STANDING WEAKNESS, as opposed to the variety
+   constraints in step 5, which are about not repeating yourself. It names
+   the criterion that has been weakest across recent runs, the hard-fail
+   CLASSES that have recurred, and the defect classes that keep shipping
+   inside a WARN.
+
+   Read it as a design brief, not as a report. If artwork craft has been
+   the weakest criterion in most of the last ten runs, that is not a fact
+   about the past, it is a prediction about today's deck unless this run
+   does something different, and the place to do something different is
+   here in the plan and in the Phase 5 dossiers, not in a repair pass at
+   Phase 9. Name in plan.md the ONE standing weakness this run is
+   deliberately attacking and how.
+
+   Added 2026-07-29, because the machine had been closing on incidents and
+   not on patterns: text against SVG or canvas geometry capped two runs
+   four days apart before anyone noticed it was the same defect twice.
+   Write `out/<date>/plan.md` with all of the above.
 
 ## PHASE 1 — CRAFT REFRESH (timeboxed: ~10 searches max)
 
@@ -573,8 +592,19 @@ under the same hard rules. Either way, step 4 (the separate commit) is
 the showrunner's.
 
 1. **Diff what happened against what this document says should happen,
-   then scan the frontier.** Walk run_state.json phase by phase with
-   fresh eyes and list every deviation, with evidence: gates that passed
+   then scan the frontier.** START by re-running
+   `python scripts/trend_check.py --window 10`, because this phase's
+   besetting failure is fixing today's incident while a pattern walks past
+   untouched. Whatever that report names as the top repeat offender, this
+   phase must do ONE of exactly two things with it, and say which in
+   automation_retro.md: work on it, or state plainly why it is being
+   deferred again and what would have to be true to tackle it. A deferral
+   is a legitimate answer. A silent deferral is not, and it is how artwork
+   craft stayed the weakest criterion in 16 of the first 19 runs while
+   being the target of 2 upgrades.
+
+   Then walk run_state.json phase by phase with fresh eyes and list every
+   deviation, with evidence: gates that passed
    defects a later gate or human caught; phases that needed manual
    intervention or degraded fallbacks; environment breakage (installs,
    403s, API limits); retries and their causes; anything the subagents
@@ -594,7 +624,11 @@ the showrunner's.
    demands it, so machine churn stays reviewable in the daily emails) —
    frontier improvements fill the remaining slots only when they clear
    the exact same verification bar (ledger `kind` distinguishes "fix"
-   from "improvement" so the email shows which is which). An upgrade may
+   from "improvement" so the email shows which is which). Work on the
+   standing repeat offender counts as a reactive fix and takes precedence
+   over a frontier improvement, even when the offender did not misbehave
+   in THIS run: a defect that has been the weakest criterion for ten runs
+   is more expensive than one that showed up once. An upgrade may
    touch: engine scripts (render/qa/assemble/bootstrap), scripts/,
    assets/js helpers, knowledge files, this prompt, or agent
    definitions. HARD RULES:
