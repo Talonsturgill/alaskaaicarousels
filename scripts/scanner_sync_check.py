@@ -469,10 +469,18 @@ def check_upstream(problems, notes):
         "SCANNER_RAW_BASE",
         "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-scanner/main/")
     token = os.environ.get("SCANNER_REPO_TOKEN") or os.environ.get("GH_TOKEN")
+    # The token authenticates to GitHub and to nowhere else. SCANNER_RAW_BASE is
+    # overridable so this path can be pointed at a local checkout for testing,
+    # but whoever sets that variable must not thereby receive the GitHub token:
+    # attach the Authorization header only when the base is a real GitHub host.
+    from urllib.parse import urlparse
+    host = (urlparse(base).hostname or "").lower()
+    token_ok = host in ("raw.githubusercontent.com", "github.com",
+                        "api.github.com") or host.endswith(".githubusercontent.com")
     for path, label, remote in ((REF_SPEC, SPEC_LABEL, "prompts/scan_routine.md"),
                                 (REF_HTML, HTML_LABEL, "web/scan.html")):
         req = urllib.request.Request(base + remote)
-        if token:
+        if token and token_ok:
             req.add_header("Authorization", "Bearer " + token)
         try:
             body = urllib.request.urlopen(req, timeout=30).read()

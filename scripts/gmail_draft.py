@@ -237,8 +237,8 @@ def main():
         for i in range(1, len(pngs) + 1))
 
     score_rows = "\n".join(
-        f"<tr><td>{esc(c['name'])}</td><td>{c['score']}</td>"
-        f"<td>{c['weight']}</td><td>{esc(str(c.get('notes', '')))[:160]}</td></tr>"
+        f"<tr><td>{esc(c['name'])}</td><td>{esc(str(c['score']))}</td>"
+        f"<td>{esc(str(c['weight']))}</td><td>{esc(str(c.get('notes', '')))[:160]}</td></tr>"
         for c in score.get("criteria", []))
     # Scorer-key aliasing: the scorer agent's native JSON uses 'ships',
     # 'ship_threshold', and 'weakest_criteria' (a list), while the documented
@@ -279,6 +279,12 @@ def main():
             # last-resort: derive the weakest criterion from the report card
             crits = [c for c in score.get("criteria", []) if isinstance(c, dict) and "score" in c]
             weakest = min(crits, key=lambda c: c["score"])["name"] if crits else "?"
+    # weighted and threshold come from the agent-written score_report.json, and
+    # this email is the maintainer's only gate before the LinkedIn post. Left
+    # raw, a score of '</div><div class="ok">Quality gate passed: 9.6...' forged
+    # a green banner over a red verdict. Every value the scorer writes is
+    # escaped, same as the report-card cells above.
+    weighted, threshold = esc(str(weighted)), esc(str(threshold))
     ship_html = (
         f'<div class="ok"><b>Quality gate passed:</b> {weighted} / 10 '
         f'(threshold {threshold}).</div>' if ship else
