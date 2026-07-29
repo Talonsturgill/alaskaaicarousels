@@ -282,8 +282,13 @@ def main():
         # a bare "?" in a delivered draft reads as a broken email, so say plainly
         # that the scorer did not state one rather than printing a placeholder
         f'Fix next time: {esc(str(_alias("one_sentence_fix", "fix_next_time", "next_run_fix", default="not stated by the scorer")))}'
-        + (f' <br><b>Why the cap:</b> {esc(str(score.get("cap_reason")))}'
-           if score.get("cap_reason") else '')
+        # 2026-07-29: that run's scorer wrote 'cap_reason_as_scored', to mark a
+        # cap reason that a later in-run repair has since cleared. Aliased here
+        # for the same reason every other key on this page is: add to the list
+        # rather than hand-editing a generated body.
+        + (f' <br><b>Why the cap:</b> '
+           f'{esc(str(_alias("cap_reason", "cap_reason_as_scored")))}'
+           if _alias("cap_reason", "cap_reason_as_scored") else '')
         + '</div>')
     notes = esc(str(_alias("editor_notes_for_email", "notes_for_the_email",
                            "editor_note", default="") or "None."))

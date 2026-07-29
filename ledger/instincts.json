@@ -474,6 +474,14 @@
       "run_dates": [
         "2026-07-29"
       ]
+    },
+    {
+      "instinct": "The Gmail connector will not accept the account-relative 'me' that gmail_draft.py emits, and it will not accept an empty recipient either. Deliver to the documented mailbox (docket@alaskaaihq.com, which is the address the connector already authenticates as, so nothing about where the draft lands or what it sends from changes) and log it. Also: the default payload inlines one data URI per slide and does not fit one create_draft call, so use the script's own --preview-mode remote, which is smallest and therefore least likely to drift from the script's output when the body is retyped into the tool call.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
     }
   ]
 }

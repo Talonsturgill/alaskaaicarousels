@@ -15,10 +15,10 @@
     "flow_review": "done",
     "assemble": "done",
     "scoring": "done",
-    "ship": "in_progress",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "ship": "done",
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "in_progress"
   },
   "artifacts": {
     "plan": "out/2026-07-29/plan.md",
@@ -33,6 +33,8 @@
     "slides": "out/2026-07-29/slides/slide-01..09.html",
     "render": "out/2026-07-29/render (qa WARN, 0 fails, 1 warn)",
     "final": "out/2026-07-29/final (vector pdf 3.77 MB, 9 thumbs, contact sheet)",
-    "score": "out/2026-07-29/score_report.json (6.90 of record, uncapped 8.33; hard fail fixed post-score)"
+    "score": "out/2026-07-29/score_report.json (6.90 of record, uncapped 8.33; hard fail fixed post-score)",
+    "gmail": "runs/2026-07-29/gmail_draft_id.txt (r-6436660379966629390, docket@alaskaaihq.com)",
+    "upgrades": "ledger/upgrades.json (3 fixes, commit 76709a9)"
   }
 }

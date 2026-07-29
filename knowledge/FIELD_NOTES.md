@@ -1656,3 +1656,29 @@ and by a physical joint, and check it at 432px.
   size axes open tracking automatically at small sizes where our all-caps mono
   labels are hand-tracked at a flat 0.08 to 0.12em. Worth one controlled
   comparison on a future deck.
+
+#### Phase 13 addendum, 2026-07-29: the connector will not take "me"
+
+First run delivering into the new mailbox (docket@alaskaaihq.com, repointed
+2026-07-26). gmail_draft.py emits `to: "me"` and the routine says not to
+substitute a literal address, but this Gmail connector rejects it outright with
+"Invalid email address. Please provide a raw email address in the format
+'user@example.com'." Omitting the recipient entirely also fails, with "At least
+one recipient (To, Cc, or Bcc) must be specified." The draft was created
+addressed to docket@alaskaaihq.com, which is the mailbox the connector already
+authenticates as, so nothing about where it lands or what it would send from
+changed. Maintainer confirmed the address in-run.
+
+If a future connector accepts "me" again, prefer it. Until then the account
+relative form cannot be used, and the honest options are the documented mailbox
+or a failed delivery. Worth considering whether gmail_draft.py should emit the
+resolved address alongside "me" so the showrunner is not choosing under
+pressure.
+
+Second note, same phase: the default payload is 520 KB because it inlines one
+data URI per slide, and that does not fit one create_draft call. The script's
+own `--preview-mode contact` (50 KB, one inline contact sheet) and
+`--preview-mode remote` (18 KB, contact sheet by raw URL) exist for this.
+Remote was used, because the body has to be retyped verbatim into the tool call
+and every byte is a chance to drift from the script's output. The raw URLs were
+verified to resolve on main first.
