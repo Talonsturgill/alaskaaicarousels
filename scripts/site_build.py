@@ -3833,8 +3833,8 @@ every observation.</p>
 def about_page(today, site_url):
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <h1>Built in the <em>North</em></h1>
-<p class="tag">Alaska AI is a daily publication and an AI studio in Anchorage, Alaska.
-One team, two jobs, every fact verified to its source.</p>
+<p class="tag">Alaska AI is a daily publication and an AI studio focused on Alaska.
+One team, two jobs.</p>
 </div>
 <div class="prose" data-reveal>
 <h2>What Alaska AI is</h2>
