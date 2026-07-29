@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-07-29-aurora-ai",
+      "date": "2026-07-29",
+      "title": "Alaska got written into America's AI moonshot",
+      "caption": "The U.S. Energy Department's Genesis Mission award list, posted July 22, includes AURORA-AI, real-time AI for Alaska's power grid, led by Richard Wies at the University of Alaska Fairbanks. The entire public record is one line and no Alaska outlet has reported it.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch_9x16.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch_9x16_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-07-26-voterroll",
       "date": "2026-07-26",
       "title": "The Field That Stopped in 2019",
