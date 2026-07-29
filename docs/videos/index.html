@@ -175,6 +175,12 @@ noscript div{padding:40vh 20px 0;text-align:center;font-family:JBMono,monospace;
   const vids = (manifest.videos || []).filter(v => v && v.video);
   if(!vids.length){ loading.textContent = 'NO VIDEOS YET. CHECK BACK TOMORROW.'; return; }
   const abs = u => /^https?:\/\//.test(u) ? u : base + u;
+  // Every videos.json value below is written into card.innerHTML, so it must be
+  // HTML-escaped or a title/caption/URL carrying markup runs as script on this
+  // origin. Escapes the five HTML-significant characters, which is safe for
+  // both text nodes and double-quoted attributes.
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g,
+    c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmtDate = d => { try{
     return new Date(d + 'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
   }catch(e){ return d; } };
@@ -202,15 +208,15 @@ noscript div{padding:40vh 20px 0;text-align:center;font-family:JBMono,monospace;
     const psrc = posterOf(v);
     card.innerHTML = `
       <div class="stage">
-        <video playsinline loop muted preload="none" ${psrc ? `poster="${psrc}"` : ''} data-src="${srcOf(v)}" aria-label="${v.title.replace(/"/g,'&quot;')}"></video>
-        ${psrc ? `<img class="poster" src="${psrc}" alt="" loading="lazy">` : ''}
+        <video playsinline loop muted preload="none" ${psrc ? `poster="${esc(psrc)}"` : ''} data-src="${esc(srcOf(v))}" aria-label="${esc(v.title)}"></video>
+        ${psrc ? `<img class="poster" src="${esc(psrc)}" alt="" loading="lazy">` : ''}
         <button class="tap" type="button" aria-label="Play or pause"></button>
         <div class="pauseglyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
         <div class="spin" aria-hidden="true"></div>
         <div class="meta">
-          <div class="kicker">ALASKA AI DISPATCH &middot; ${fmtDate(v.date)}</div>
-          <h2 class="title">${v.title}</h2>
-          ${v.caption ? `<p class="cap" title="Tap to expand">${v.caption}</p>` : ''}
+          <div class="kicker">ALASKA AI DISPATCH &middot; ${esc(fmtDate(v.date))}</div>
+          <h2 class="title">${esc(v.title)}</h2>
+          ${v.caption ? `<p class="cap" title="Tap to expand">${esc(v.caption)}</p>` : ''}
         </div>
         <div class="rail">
           <button class="rbtn mutebtn" type="button" aria-label="Toggle sound">
