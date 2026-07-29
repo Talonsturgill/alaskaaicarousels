@@ -1695,13 +1695,53 @@ def _looks_like_claims(rows):
     return hits >= max(1, len(rows) // 2)
 
 
+# Container names whose contents must NEVER be published, even when they are
+# claim-shaped. A fact-checker's dropped/killed lists were already skipped; the
+# unverified family was not, so a run that named its container 'story_claims'
+# (the exact schema drift the tolerant reader exists to absorb) let the
+# last-resort scan reach an 'unverified_but_reported' list and publish it under
+# the "each re-fetched from its source" heading. That list's own record said
+# "the deck MUST NOT attribute a policy motive to these donors".
+_EXCLUDED_CONTAINER_WORDS = (
+    "drop", "kill", "reject", "unresolved", "unverified", "unconfirmed",
+    "not_verified", "notverified", "must_not", "mustnot", "discard",
+    "excluded", "exclude", "quarantine", "hold", "review_needed")
+
+
+def _excluded_container(key):
+    k = str(key).lower()
+    return any(w in k for w in _EXCLUDED_CONTAINER_WORDS)
+
+
 def _claim_rows(doc):
     """Every claim-shaped list in the document, whatever it was named and
-    however deeply the run nested it."""
+    however deeply the run nested it.
+
+    Order matters here because a document can hold more than one claim-shaped
+    list. On 2026-07-21 the run carried two, 'beluga' (16, the story that
+    shipped) and 'caribou_fallback' (6), and selected by dict-iteration order,
+    which is not a decision. Reordering the same file, or the fact-checker
+    naming its containers differently, could publish the wrong story's
+    verification record under a deck it does not belong to. So an explicit
+    pointer wins over every heuristic, and the unverified family is skipped."""
+    # 1. The run's own statement of which story shipped, if it names a
+    #    container that resolves to claims. A pointer that names nothing
+    #    (a human-readable "story" sentence, a story_id with no matching
+    #    container) resolves to None and falls through untouched.
+    for ptr_key in ("selected_story", "selected", "story_id", "chosen"):
+        ptr = doc.get(ptr_key)
+        if not isinstance(ptr, str):
+            continue
+        target = doc.get(ptr)
+        if _looks_like_claims(target):
+            return target
+        if isinstance(target, dict) and _looks_like_claims(target.get("claims")):
+            return target["claims"]
+    # 2. A canonical claims container.
     for key in CLAIM_CONTAINERS:
         if _looks_like_claims(doc.get(key)):
             return doc[key]
-    # Some runs kept the claims inside the story they belong to.
+    # 3. Claims kept inside the story object they belong to.
     for key in ("stories", "selected_story", "story"):
         v = doc.get(key)
         v = v if isinstance(v, list) else ([v] if isinstance(v, dict) else [])
@@ -1709,14 +1749,62 @@ def _claim_rows(doc):
                 for c in (s.get("claims") or []) if isinstance(c, dict)]
         if _looks_like_claims(rows):
             return rows
-    # Last resort: any top-level list that reads like claims.
+    # 4. Last resort: any top-level list that reads like claims, never one the
+    #    run marked as dropped, killed, rejected, or unverified.
     for key, v in doc.items():
-        if key in ("dropped", "kill_log", "killed", "rejected", "unresolved") \
-                or "drop" in key or "kill" in key or "reject" in key:
+        if _excluded_container(key):
             continue
         if _looks_like_claims(v):
             return v
     return []
+
+
+def _iso_date_or_blank(s):
+    """A source date if the field holds one, else empty.
+
+    The field used to be blindly sliced to [:10], which turned the string
+    'current EPA listing' into the chip 'current EP' and published it as a
+    schema.org datePublished, and 'n/a' / 'background' / 'n.d.' the same way.
+    That is fabrication, not degradation: a date the run did not record is
+    dropped, not manufactured from a prefix. Accepts a full or reduced-
+    precision ISO date (YYYY, YYYY-MM, YYYY-MM-DD), optionally followed by a
+    time, which is where the useful part of the old [:10] slice lived."""
+    s = (s or "").strip()
+    m = re.match(r"(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?(?:[T ].*)?$", s)
+    if not m:
+        return ""
+    y, mo, day = m.group(1), m.group(2), m.group(3)
+    try:
+        if day:
+            return ddate(int(y), int(mo), int(day)).isoformat()
+        if mo:
+            if not 1 <= int(mo) <= 12:
+                return ""
+            return f"{y}-{mo}"
+        return y
+    except ValueError:
+        return ""
+
+
+def _outlet_from_url(url):
+    """A readable outlet name derived from a URL host, for claims whose run
+    record carried a source URL but no outlet field.
+
+    Two runs recorded the outlet only as source_title, which is an article
+    headline ('Digital twin of Alaska permafrost ... (Phys.org)'), not an
+    outlet, so 99 claims published as the literal word 'source' and
+    'Uncredited source' became the largest row on the source archive. The host
+    is the honest outlet when the field is absent and the URL is right there;
+    'Uncredited source' stays only for claims that genuinely have neither."""
+    try:
+        from urllib.parse import urlparse
+        host = (urlparse(url).hostname or "").lower()
+    except Exception:
+        return ""
+    if not host:
+        return ""
+    host = host[4:] if host.startswith("www.") else host
+    return host
 
 
 def normalize_claims(doc):
@@ -1755,9 +1843,11 @@ def normalize_claims(doc):
             "claim": text,
             "value": _first(c, CLAIM_FIELDS["value"], "value"),
             "source_url": url,
-            "source_outlet": _first(c, CLAIM_FIELDS["outlet"], "outlet") or ev_outlet,
+            "source_outlet": (_first(c, CLAIM_FIELDS["outlet"], "outlet")
+                              or ev_outlet or _outlet_from_url(url)),
             "source_is_primary": bool(primary),
-            "date_of_source": (_first(c, CLAIM_FIELDS["date"], "date") or ev_date)[:10],
+            "date_of_source": _iso_date_or_blank(
+                _first(c, CLAIM_FIELDS["date"], "date") or ev_date),
             "verbatim": _first(c, CLAIM_FIELDS["verbatim"], "verbatim"),
         }
     return out
@@ -1780,9 +1870,20 @@ def load_runs():
             claims = {}
         out.append({
             "date": d.name,
-            # house style bans colons on the page; titled decks read fine with a comma
-            "title": copy.get("document_title", d.name).replace(": ", ", "),
-            "hook": caption.split("\n")[0].strip(),
+            # Title reads document_title, then the aliases two runs used, then
+            # falls back to the date. 2026-07-20 recorded its headline under
+            # 'title', so with no fallback its <title>, <h1>, og:title and
+            # JSON-LD all published the raw date string '2026-07-20'.
+            #
+            # And it runs through house(), same as claim text and outlet names,
+            # rather than a bare ": " -> ", " replace. house() exists precisely
+            # so a source's em dash or curly quote cannot take the whole build
+            # down at the punctuation gate; the title and hook were the last two
+            # run-record strings reaching a page without it, so one bad
+            # character in any of 19 titles failed every future build.
+            "title": house(copy.get("document_title") or copy.get("title")
+                           or copy.get("deck_title") or d.name),
+            "hook": house(caption.split("\n")[0].strip()),
             "caption": caption,
             "first_comment": copy.get("first_comment", ""),
             "summary": copy.get("deck_summary_line", ""),
@@ -2216,26 +2317,59 @@ def sources_page(today, site_url, runs):
     The archive of what we checked, not what we said. It is the reason to trust
     the decks and, for an answer engine, the cheapest possible proof that the
     numbers on this site came from somewhere."""
+    # A document is a URL, and each document belongs to one outlet. The same
+    # URL can arrive under two outlet spellings across claims, an explicit name
+    # in one run and a domain derived from the URL in another, and grouping
+    # naively by the recorded string then listed the same document under both,
+    # so the DOCUMENTS count (distinct URLs) no longer matched the links shown.
+    # Assign each URL its canonical outlet first, preferring a named outlet over
+    # a bare domain, so every document is counted and shown exactly once.
+    url_outlets = {}
+    for r in runs:
+        for c in (r.get("claims") or {}).values():
+            u = c.get("source_url")
+            if not u:
+                continue
+            name = (house(c.get("source_outlet")) or "Uncredited source").strip()
+            url_outlets.setdefault(u, {})[name] = url_outlets.get(u, {}).get(name, 0) + 1
+
+    def _canonical(names):
+        # A named outlet ("Anchorage Daily News") beats a bare domain
+        # ("adn.com"); among equals, the one recorded on more claims wins.
+        return max(names, key=lambda n: ((" " in n or any(ch.isupper() for ch in n)),
+                                         names[n], n))
+    canon = {u: _canonical(names) for u, names in url_outlets.items()}
+
     by_outlet = {}
     for r in runs:
         for c in (r.get("claims") or {}).values():
-            key = (house(c.get("source_outlet")) or "Uncredited source").strip()
+            u = c.get("source_url")
+            if not u:
+                continue
+            key = canon[u]
             e = by_outlet.setdefault(key, {"claims": 0, "primary": 0, "urls": {},
                                            "dates": set(), "runs": set()})
             e["claims"] += 1
             e["primary"] += bool(c.get("source_is_primary"))
-            e["urls"].setdefault(c["source_url"], 0)
-            e["urls"][c["source_url"]] += 1
+            e["urls"].setdefault(u, 0)
+            e["urls"][u] += 1
             e["runs"].add(r["date"])
             if c.get("date_of_source"):
                 e["dates"].add(c["date_of_source"])
     order = sorted(by_outlet.items(), key=lambda kv: (-kv[1]["claims"], kv[0]))
     rows = []
     for name, e in order:
+        # Show every document. The cap of 8 used to hide the difference between
+        # the DOCUMENTS count in the hero (which counts them all) and the links
+        # actually on the page, so the archive promised a total it did not show.
+        # And mark a truncated URL with an ellipsis: the link text used to be
+        # sliced to 110 characters with no marker, so a reader who read or
+        # copied the visible address off the screen got one that does not
+        # resolve. The href always carries the full URL.
         links = "".join(
             f'<li><a class="proselink" href="{esc(u)}" rel="nofollow noopener" '
-            f'target="_blank">{esc(u[:110])}</a></li>'
-            for u in sorted(e["urls"], key=lambda u: -e["urls"][u])[:8])
+            f'target="_blank">{esc(u[:110])}{"..." if len(u) > 110 else ""}</a></li>'
+            for u in sorted(e["urls"], key=lambda u: -e["urls"][u]))
         rows.append(
             f'<li><p><strong>{esc(name)}</strong></p><div class="cmeta">'
             f'<span class="k{" p" if e["primary"] else ""}">'

@@ -19,13 +19,13 @@ that output is the bug.
 ### PR-BUILD: page-builder correctness
 | id | file | fix | status |
 |----|------|-----|--------|
-| B1 | site_build.py:1679 | _claim_rows: honor selected_story pointer; skip unverified* containers | TODO |
-| B2 | site_build.py:1741 | date [:10] slice fabricates tokens; validate ISO or blank | TODO |
-| B3 | site_build.py:1765 | title: tolerant fallback (title/deck_title) + house() | TODO |
-| B4 | site_build.py:1600 | outlet: derive from URL domain when no outlet field (NOT source_title, which is a headline) | TODO |
-| B5 | site_build.py:2219 | sources_page: cap of 8 disagrees with counted total; show all or count shown | TODO |
-| B6 | site_build.py:1766 | hook through house() (folded into B3) | TODO |
-| B7 | site_build.py:2218 | sources_page: URL truncated to 110 chars w/o ellipsis, link text 404s | TODO |
+| B1 | site_build.py:1679 | _claim_rows: honor selected_story pointer; skip unverified* containers | DONE |
+| B2 | site_build.py:1741 | date [:10] slice fabricates tokens; validate ISO or blank | DONE |
+| B3 | site_build.py:1765 | title: tolerant fallback (title/deck_title) + house() | DONE |
+| B4 | site_build.py:1600 | outlet: derive from URL domain when no outlet field (NOT source_title, which is a headline) | DONE |
+| B5 | site_build.py:2219 | sources_page: cap of 8 disagrees with counted total; show all or count shown | DONE |
+| B6 | site_build.py:1766 | hook through house() (folded into B3) | DONE |
+| B7 | site_build.py:2218 | sources_page: URL truncated to 110 chars w/o ellipsis, link text 404s | DONE |
 
 ### PR-GATE: gate integrity
 | id | file | fix | status |
@@ -51,4 +51,4 @@ Died 4x on API 500/529. Relaunched. Findings TBD -> own PR if any.
 - docs/videos/* is a HARD GUARD (S4). Do not touch from this repo.
 - Every fix verified by running the real code; no regression on 19 runs.
 
-## Status: PR-SEC shipping; PR-BUILD next.
+## Status: PR-BUILD shipping; PR-GATE next.
