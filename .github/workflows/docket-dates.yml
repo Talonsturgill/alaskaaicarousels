@@ -1,0 +1,123 @@
+name: Docket dates
+
+# The docket's whole product is who decides, when it lands, and whether the
+# public gets a say. On 2026-07-21 Phase 3.5 added another city council's
+# August 13 vote to the AIDEA item, whose own DNR comment window closes
+# August 19. Every date slot on the site took the soonest upcoming date of any
+# kind, so the marquee entry shipped a gold button reading COMMENT NOW, CLOSES
+# AUG 13. Six days early, a different body, a different question. The entry's
+# own prose, rail and change notes said August 19 the whole time, and the
+# contradiction sat inside one card with nothing looking at it.
+#
+# The ledger is machine-maintained, so the next automated entry can reintroduce
+# this. docket_dates_check.py is what would have caught it on the day. This is
+# the thing that runs it, which is the part that was missing.
+
+on:
+  pull_request:
+    paths:
+      - "scripts/docket_build.py"
+      - "scripts/site_build.py"
+      - "scripts/docket_alerts.py"
+      - "scripts/gmail_draft.py"
+      - "scripts/docket_dates_check.py"
+      - "ledger/docket.json"
+      - "docs/docket/**"
+      - ".github/workflows/docket-dates.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/docket_build.py"
+      - "scripts/site_build.py"
+      - "scripts/docket_alerts.py"
+      - "scripts/gmail_draft.py"
+      - "scripts/docket_dates_check.py"
+      - "ledger/docket.json"
+      - "docs/docket/**"
+      - ".github/workflows/docket-dates.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # site_build imports Pillow at module scope for the favicon and the grain
+      # tile, and this gate builds the real site rather than a stand-in.
+      - name: Pillow, so the build is the real one
+        run: pip install --quiet Pillow
+
+      # A regression test built only from the currently-shipping fixture will
+      # certify whatever the code does today. This re-enables the pre-fix
+      # selector through the real renderer and requires the gate to go red. If
+      # the gate cannot fail, nothing below it means anything, so it runs first.
+      - name: The gate can still go red
+        run: python scripts/docket_dates_check.py --self-test
+
+      - name: Dates have roles, on every surface
+        run: python scripts/docket_dates_check.py
+
+      # A deadline passing is not a content change, so nothing above would run
+      # on the day it happens. The site is served from committed HTML, so a
+      # window that shut yesterday keeps soliciting comment until someone
+      # rebuilds. Check the days that actually matter for what is in the ledger
+      # now: every upcoming key_date, and the day after each one.
+      - name: The site does not rot into a lie between builds
+        run: |
+          set -euo pipefail
+          python - <<'PY' > /tmp/dates.txt
+          import json, pathlib
+          from datetime import date, timedelta
+          items = json.loads(pathlib.Path("ledger/docket.json").read_text())["items"]
+          days = set()
+          today = max(date.fromisoformat(it["last_updated"]) for it in items)
+          for it in items:
+              for d in it["key_dates"]:
+                  dd = date.fromisoformat(d["date"])
+                  if dd >= today:
+                      days.add(dd)
+                      days.add(dd + timedelta(days=1))
+          print("\n".join(d.isoformat() for d in sorted(days)))
+          PY
+          if [ ! -s /tmp/dates.txt ]; then
+            echo "No upcoming dates in the ledger, nothing to walk."
+            exit 0
+          fi
+          while read -r d; do
+            echo "--- $d"
+            python scripts/docket_dates_check.py --date "$d" --skip-build
+          done < /tmp/dates.txt
+
+      # docs/ is committed and Pages serves it straight, so a correct builder
+      # with a stale build still ships yesterday's dates to every visitor.
+      - name: The committed docket page matches the builder
+        run: |
+          set -euo pipefail
+          page=docs/docket/index.html
+          date=$(grep -o 'UPDATED [0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}' "$page" | head -1 | cut -d' ' -f2)
+          if [ -z "$date" ]; then
+            echo "Could not read the build date stamped on $page."
+            exit 1
+          fi
+          echo "Rebuilding at $date, the date stamped on the committed page."
+          python scripts/site_build.py --date "$date" --out /tmp/rebuild
+          if ! diff -u "$page" /tmp/rebuild/docket/index.html; then
+            echo
+            echo "The committed docket page is not what the builder emits."
+            echo "Pages serves docs/ verbatim, so this diff is what a visitor"
+            echo "would NOT be getting."
+            echo
+            echo "Fix with:  pip install Pillow"
+            echo "           python scripts/site_build.py --date <YYYY-MM-DD> --out docs"
+            echo "           git add docs/ && git commit"
+            exit 1
+          fi
+          echo "The committed page and the builder agree, byte for byte."

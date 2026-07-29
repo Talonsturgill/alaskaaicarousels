@@ -38,6 +38,7 @@ import glob
 import html
 import io
 import json
+import sys
 from pathlib import Path
 
 from PIL import Image
@@ -156,20 +157,25 @@ def main():
     asm = json.loads((run / "final" / "assemble_report.json").read_text())
     pngs = sorted(glob.glob(str(run / "render" / "slide-*.png")))
 
-    # docket: windows and votes ahead (ledger/docket.json, Phase 3.5)
+    # docket: windows and votes ahead (ledger/docket.json, Phase 3.5).
+    #
+    # This block used to compute its own soonest-future-date, which is one more
+    # place a date could be resolved differently from the page it links to.
+    # It now reads docket_build.resolve(), the one resolver every docket
+    # surface reads, so the draft and the site cannot disagree (rule 5).
     docket = []
     dk_path = Path(__file__).resolve().parents[1] / "ledger" / "docket.json"
     try:
         import datetime as _dt
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import docket_build as _db
         _today = _dt.date.fromisoformat(args.run_date)
         for it in json.loads(dk_path.read_text()).get("items", []):
             if it.get("status") in ("decided", "closed"):
                 continue
-            future = sorted(d for d in (dd["date"] for dd in it.get("key_dates", []))
-                            if _dt.date.fromisoformat(d) >= _today)
-            if future and (_dt.date.fromisoformat(future[0]) - _today).days <= 14:
-                lbl = next(dd["label"] for dd in it["key_dates"] if dd["date"] == future[0])
-                docket.append((future[0], it, lbl))
+            d = _db.resolve(it, _today)["headline"]
+            if d and (_dt.date.fromisoformat(d["date"]) - _today).days <= 14:
+                docket.append((d["date"], it, d["label"], _db.resolve(it, _today)["access"]))
         docket.sort(key=lambda x: x[0])
     except Exception:
         pass
@@ -316,8 +322,8 @@ def main():
             f"<span style='color:#98a2b3'>{(_dt.date.fromisoformat(d) - _today).days} days</span></td>"
             f"<td><a href='{site_url}#{esc(it['id'])}'>{esc(it['title'])}</a><br>"
             f"<span style='color:#98a2b3'>{esc(lbl)} &middot; {esc(it['decider'])}"
-            f"{' &middot; OPEN TO THE PUBLIC' if it['public_access'] == 'open' else ''}</span></td></tr>"
-            for d, it, lbl in docket)
+            f"{' &middot; OPEN TO THE PUBLIC' if acc == 'open' else ''}</span></td></tr>"
+            for d, it, lbl, acc in docket)
         docket_html = (
             f'<h2>Docket: closing soon</h2>'
             f'<div style="font-size:13.5px;color:#667085;margin-bottom:8px">From '

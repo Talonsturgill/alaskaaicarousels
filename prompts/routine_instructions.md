@@ -210,6 +210,26 @@ Right after claims:
    dates that moved. Bounded work, a handful of fetches at most.
 3. Never delete an item; decided or dead items change status and keep
    their history. Every change cites a fetched source.
+3a. A key_date's `kind` is its ROLE, and roles are not interchangeable.
+   Pick it deliberately, because the site renders by role and will refuse
+   to publish a mismatch:
+
+     deadline   THE READER must act by this date. The comment close, and
+                only ever this item's own. A call to action can render no
+                other kind.
+     vote       a body votes. Often a DIFFERENT body than this item's
+                decider, on an adjacent question. Never a reader deadline.
+     decision   the deciding body rules.
+     milestone  context. Never actionable.
+
+   On 2026-07-21 this phase added the Houston City Council's August 13
+   vote to the AIDEA item, correctly, as a `vote`. The site then rendered
+   it as that item's comment deadline for nine days, because the selector
+   ignored `kind` and took the soonest date of any kind. The selector is
+   fixed and gated; getting `kind` right here is what keeps it working.
+   If an item's real close date is not published, record no `deadline`
+   rather than a guess. The page will show the window with no date, which
+   is the honest thing and is handled.
 4. Pre-flight style: any docket note or history line you write here must
    pass the same prose-colon rule the Phase 11 ship gate enforces. Lint it
    now, before it hardens: `python scripts/style_lint.py --file <note>` (or
@@ -558,6 +578,38 @@ JSON in its final message, which YOU persist to
    a FAIL too, because a check that cannot see is not a pass. Report the row
    in GATE STATUS either way, honestly. Do NOT hand-edit the emitted page to
    turn it green.
+
+2c. Then run `python scripts/docket_dates_check.py`. Phase 3.5 just edited
+   the docket ledger and step 2 just rendered it, so this is the last point
+   at which a date can be caught in the wrong slot before it publishes.
+
+   It exists because of a real one. On 2026-07-21 Phase 3.5 added the Houston
+   City Council's August 13 vote to the AIDEA item, whose own DNR comment
+   window closes 5 p.m. August 19. Every date slot took the soonest upcoming
+   key_date of any kind, so the marquee entry carried a gold button reading
+   COMMENT NOW, CLOSES AUG 13 for nine days: six days early, a different
+   body, a different question, on the one publication whose entire product is
+   when it lands and whether you get a say. The entry's prose, timeline and
+   change notes said August 19 throughout, and nothing compared them.
+
+   The check asserts that a date's ROLE governs where it may render: only a
+   `deadline`-kind key_date can fill a comment-closes slot, a call to action
+   shows its own action's deadline or no date at all, an expired window stops
+   soliciting comment on its own, and every surface (badge, header stat,
+   closing-soon strip, call to action, homepage, subscriber email) traces to
+   one resolved value. It also reads the item's own prose and fails when the
+   words and the metadata disagree, because that is a human's call.
+
+   Exit 0 ships. Exit 1 names what disagrees. The fix goes in the resolver or
+   in the ledger's `kind` fields, NEVER by editing the entry's prose or its
+   timeline to match a wrong badge; those were correct both times. Exit 2
+   means it could not look, which is a FAIL. Report the row in GATE STATUS
+   honestly either way.
+
+   When Phase 3.5 adds a key_date, pick its `kind` deliberately. `deadline`
+   means THE READER must act by then. Another body's vote is `vote` even when
+   it is the nearest thing on the calendar.
+
 3. Subscriber alerts: run `python scripts/docket_alerts.py --date <date>`.
    It sends AT MOST one Buttondown email per run, only for real docket
    events (a comment window newly open, a deadline or vote inside 48

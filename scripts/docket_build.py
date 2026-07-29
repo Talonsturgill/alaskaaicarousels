@@ -99,10 +99,144 @@ def validate(items):
         parse_date(it["last_updated"], i)
 
 
-def next_date(it, today):
-    upcoming = [d for d in it["key_dates"] if parse_date(d["date"], it["id"]) >= today]
-    upcoming.sort(key=lambda d: d["date"])
-    return upcoming[0] if upcoming else None
+# ---------- dates have roles ----------
+#
+# An item's key_dates are not a bag of timestamps. On 2026-07-21 Phase 3.5
+# added the Houston City Council's August 13 vote to the AIDEA item, whose own
+# DNR comment window closes August 19. Every surface picked the soonest
+# upcoming date of any kind, so a different body's vote on a different question
+# won the slot and the page shipped a gold button reading COMMENT NOW, CLOSES
+# AUG 13 while the entry's own prose, rail and change notes all said August 19.
+# A reader who trusted the button would have believed the window shut six days
+# early, on the one publication whose entire product is when it lands and
+# whether you get a say.
+#
+# The schema already carried the answer. kind is the role:
+#
+#   deadline   the reader must act by this date. This and only this can fill
+#              a comment-closes slot.
+#   vote       a body votes. May be a DIFFERENT body than this item's decider.
+#   decision   the deciding body rules.
+#   milestone  context. Never actionable.
+#
+# So there is no schema change here. The bug was that the selector ignored the
+# field the schema already had.
+
+ACTION_KINDS = {"deadline"}
+# How a date reads on a chip when it is not an action deadline. "by" is
+# deadline language and is reserved for one.
+ROLE_PREFIX = {"deadline": "by", "vote": "vote", "decision": "decision",
+               "milestone": "next"}
+
+
+def _future(it, today, kinds=None):
+    up = [d for d in it["key_dates"]
+          if parse_date(d["date"], it["id"]) >= today
+          and (kinds is None or d["kind"] in kinds)]
+    up.sort(key=lambda d: d["date"])
+    return up[0] if up else None
+
+
+def next_event(it, today):
+    """The soonest upcoming date of ANY kind. A true statement about when this
+    item next moves, and a safe sort key. NOT a deadline, and never to be
+    rendered with deadline language. See resolve()."""
+    return _future(it, today)
+
+
+# next_date is the name this selector shipped under. It read as "this item's
+# date", every surface believed that, and that reading is what put another
+# body's vote behind a COMMENT NOW button. Kept as an alias so nothing breaks,
+# but new code should say which of the two it means.
+next_date = next_event
+
+
+def action_deadline(it, today):
+    """The deadline for the action THIS item asks the reader to take, or None.
+    Rule 3: None means render no date. Never fall back to a nearby one."""
+    return _future(it, today, ACTION_KINDS)
+
+
+def had_action_deadline(it):
+    """True when an action deadline was ever recorded, whether or not it has
+    passed. Distinguishes an expired window (degrade, the site must not keep
+    soliciting comment) from one whose close date was never published
+    (keep the call to action, show no date)."""
+    return any(d["kind"] in ACTION_KINDS for d in it["key_dates"])
+
+
+def resolve(it, today):
+    """The single resolved value per role for one item. Every surface reads
+    this and nothing else, so the badge, the header, the closing-soon strip,
+    the call to action, the homepage and the subscriber email cannot drift
+    apart (rule 5). Returns:
+
+      deadline   the action deadline, or None
+      event      the soonest upcoming date of any kind, or None
+      headline   what this item's chrome shows: the action deadline when it
+                 has one, else the next event, honestly prefixed
+      access     effective public access
+      status     effective status
+      expired    the action deadline is in the past
+      cta        whether an action call to action may render at all
+    """
+    dl = action_deadline(it, today)
+    ev = next_event(it, today)
+    access, status = it["public_access"], it["status"]
+
+    # Rule 4: status follows the deadline, automatically. A published close
+    # date that has passed means no comment path exists NOW, which is exactly
+    # what public_access closed means under this repo's four-rooms model. The
+    # ledger keeps saying open-for-comment until Phase 3.5 next runs; the page
+    # stops saying it the morning the window shuts, with nobody in the loop.
+    # This is the same shape a human recorded by hand for the STAK lease once
+    # its window closed: pending-decision, closed.
+    expired = status == "open-for-comment" and had_action_deadline(it) and dl is None
+    if expired:
+        access, status = "closed", "pending-decision"
+
+    open_now = access == "open" and status == "open-for-comment"
+    return {
+        "deadline": dl,
+        "event": ev,
+        "headline": dl or ev,
+        "access": access,
+        "status": status,
+        "expired": expired,
+        # Rule 3: an open window whose close date was never published still
+        # deserves its call to action. It just does not get a date.
+        "cta": open_now and bool(it["sources"]),
+    }
+
+
+def chip_html(r):
+    """The date chip. Its prefix comes from the role of the date it shows, so
+    "by" can never again be stuck on another body's vote."""
+    d = r["headline"]
+    if not d:
+        return f'<span class="chip" style="color:var(--mute)">{esc(STATUS_LABEL[r["status"]])}</span>'
+    return (f'<span class="chip days" data-date="{d["date"]}">'
+            f'{ROLE_PREFIX[d["kind"]]} {mon_day(d["date"])}</span>')
+
+
+def nearest_headline(items, today):
+    """The docket-wide NEXT DATE stat. It reads the same resolved headline the
+    closing-soon cards read, so the page header and the marquee card cannot
+    disagree (rule 5). This understates by design: on 2026-07-29 it shows the
+    AIDEA comment close, AUG 19, and not the Houston City Council's AUG 13
+    vote, which is genuinely sooner but is a different body on a different
+    question and is not what this page is asking anyone to act on. That vote
+    stays fully visible on its item's timeline rail."""
+    ds = sorted((d for d in (resolve(it, today)["headline"] for it in items) if d),
+                key=lambda d: d["date"])
+    return ds[0] if ds else None
+
+
+def open_count(items, today):
+    """How many doors are open RIGHT NOW, not how many the ledger last said
+    were open. Counts the resolved access so the stat drops the morning a
+    comment window shuts."""
+    return sum(1 for it in items if resolve(it, today)["access"] == "open")
 
 
 def esc(s):
@@ -267,7 +401,7 @@ def generation_marks(T):
     return "".join(out)
 
 
-def map_svg(ordered_items, w=1000, h=620):
+def map_svg(ordered_items, today=None, w=1000, h=620):
     located = [(n, it) for n, it in enumerate(ordered_items, 1) if it.get("location")]
     coast = alaska_paths()
     T = fit_transform(coast, w, h, 44)
@@ -349,19 +483,25 @@ def map_svg(ordered_items, w=1000, h=620):
         layer.append(f'<g class="mk{(" " + cls) if cls else ""}" data-x="{x:.1f}" '
                      f'data-y="{y:.1f}" transform="translate({x:.1f},{y:.1f})">{body}</g>')
 
+    # A pulsing pin promises the reader a comment window is open RIGHT NOW, so
+    # it reads the resolved access, not the ledger's. Without today it cannot
+    # resolve and falls back to the stored value.
+    def acc(it):
+        return resolve(it, today)["access"] if today else it["public_access"]
+
     leads, badges, dots = [], [], []
     for g, (lx, ly) in zip(groups, labels):
         ax, ay, members = g
         first = members[0][1]
-        c = PIN_COLOR[first["public_access"]]
+        c = PIN_COLOR[acc(first)]
         ox, oy = lx - ax, ly - ay          # badge offset, constant in screen units
         # The status classes ride on the tether and the dot as well as the badge,
         # so a filter that dims a pin dims the whole mark rather than leaving an
         # orphan dot and a line pointing at nothing.
-        acls = "pinmk " + " ".join(sorted({"a-" + it["public_access"] for _, it in members}))
+        acls = "pinmk " + " ".join(sorted({"a-" + acc(it) for _, it in members}))
         # Any member being open earns the pulse, so a live decision still reads
         # as live when it shares a coordinate with a settled one.
-        if any(it["public_access"] == "open" for _, it in members):
+        if any(acc(it) == "open" for _, it in members):
             mk(leads, ax, ay,
                f'<circle cx="0" cy="0" r="8" fill="none" stroke="{PIN_COLOR["open"]}" '
                f'stroke-width="1.6" opacity="0.8">'
@@ -396,14 +536,14 @@ def map_svg(ordered_items, w=1000, h=620):
                 parts.append(
                     f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
                     f'<text x="{tx:.0f}" y="{oy + 5:.0f}" text-anchor="middle" class="pinnum" '
-                    f'fill="{PIN_COLOR[it["public_access"]]}">{n}</text></a>')
+                    f'fill="{PIN_COLOR[acc(it)]}">{n}</text></a>')
             mk(badges, ax, ay, "".join(parts), cls=acls)
     pins = leads + badges + dots
     grid = "".join(f'<path class="gx gx-{tier}" d="{d}"/>' for tier, d in grid_paths(T))
     taps = f'<path class="tp" d="{taps_path(T)}"/>' if taps_path(T) else ""
     gen = generation_marks(T)
     caption = "".join(
-        f'<a class="mapkey" href="#{esc(it["id"])}"><b class="k-{it["public_access"]}">{n}</b>'
+        f'<a class="mapkey" href="#{esc(it["id"])}"><b class="k-{acc(it)}">{n}</b>'
         f'<span>{esc(it["location"]["name"])}</span></a>'
         for n, it in located)
     svg = f"""<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map of Alaska with every tracked decision pinned">
@@ -480,23 +620,26 @@ def rail_html(it, today):
 
 
 def item_html(it, today, num):
-    nd = next_date(it, today)
-    chip = (f'<span class="chip days" data-date="{nd["date"]}">by {mon_day(nd["date"])}</span>'
-            if nd else f'<span class="chip" style="color:var(--mute)">{esc(STATUS_LABEL[it["status"]])}</span>')
+    r = resolve(it, today)
+    chip = chip_html(r)
     srcs = " &middot; ".join(
         f'<a href="{esc(s["url"])}" rel="noopener">{esc(s["outlet"])}</a>' for s in it["sources"])
     hist = it["history"][-1] if it["history"] else None
     hist_html = (f'<div class="hist">{esc(hist["date"])} &middot; {esc(hist["note"])}</div>' if hist else "")
     act = ""
-    if (it["public_access"] == "open" and it["status"] == "open-for-comment"
-            and nd and it["sources"]):
+    if r["cta"]:
+        # Rule 2: this label reads its own action's deadline and nothing else.
+        # Rule 3: no deadline, no date. A call to action with no date is fine;
+        # one with a confident wrong date is the thing being fixed here.
+        when = (f' &middot; CLOSES {mon_day(r["deadline"]["date"]).upper()}'
+                if r["deadline"] else "")
         act = (f'<div class="ctarow act"><a class="cta gold sm" href="{esc(it["sources"][0]["url"])}" '
-               f'rel="noopener">COMMENT NOW &middot; CLOSES {mon_day(nd["date"]).upper()}</a></div>')
-    return f"""<article class="item a-{it["public_access"]}" id="{esc(it["id"])}" data-reveal>
-  <div class="doorcol">{door_svg(it["public_access"])}<span class="num">{num:02d}</span></div>
+               f'rel="noopener">COMMENT NOW{when}</a></div>')
+    return f"""<article class="item a-{r["access"]}" id="{esc(it["id"])}" data-reveal>
+  <div class="doorcol">{door_svg(r["access"])}<span class="num">{num:02d}</span></div>
   <div class="body">
     <div class="top">
-      <span class="badge b-{it["public_access"]}">{ACCESS_LABEL[it["public_access"]]}</span>
+      <span class="badge b-{r["access"]}">{ACCESS_LABEL[r["access"]]}</span>
       <span class="chip kind">{esc(KIND_LABEL[it["kind"]]).upper()}</span>
       {chip}
     </div>
@@ -513,13 +656,19 @@ def item_html(it, today, num):
 
 
 def card_html(it, today, prefix=""):
-    nd = next_date(it, today)
-    return f"""<a class="card a-{it["public_access"]}" href="{prefix}#{esc(it["id"])}" data-reveal>
-  <div class="cardtop"><span class="badge b-{it["public_access"]}">{ACCESS_LABEL[it["public_access"]]}</span></div>
-  <div class="big" data-days="{nd['date']}">{mon_day(nd['date'])}</div>
-  <div class="when chip days" data-date="{nd['date']}">by {mon_day(nd['date'])}</div>
+    r = resolve(it, today)
+    d = r["headline"]
+    # Rule 3 again: with no resolved date the card keeps its headline and its
+    # status and simply carries no date, rather than borrowing a nearby one.
+    when = (f'<div class="big" data-days="{d["date"]}">{mon_day(d["date"])}</div>'
+            f'<div class="when chip days" data-date="{d["date"]}">'
+            f'{ROLE_PREFIX[d["kind"]]} {mon_day(d["date"])}</div>') if d else ""
+    who = esc(d["label"]).upper() if d else esc(STATUS_LABEL[r["status"]]).upper()
+    return f"""<a class="card a-{r["access"]}" href="{prefix}#{esc(it["id"])}" data-reveal>
+  <div class="cardtop"><span class="badge b-{r["access"]}">{ACCESS_LABEL[r["access"]]}</span></div>
+  {when}
   <h3>{esc(it["title"])}</h3>
-  <div class="who">{esc(nd["label"]).upper()}</div>
+  <div class="who">{who}</div>
 </a>"""
 
 
@@ -731,13 +880,13 @@ def build(today, out_dir, site_url=None, domain=""):
     dated = sorted((it for it in live if next_date(it, today)),
                    key=lambda it: next_date(it, today)["date"])
     live_sorted = dated + [it for it in live if not next_date(it, today)]
-    svg, mapcap = map_svg(live_sorted + done)
+    svg, mapcap = map_svg(live_sorted + done, today)
     cards = "".join(card_html(it, today) for it in dated[:6])
     live_html = "".join(item_html(it, today, n) for n, it in enumerate(live_sorted, 1))
     done_html = "".join(item_html(it, today, n) for n, it in enumerate(done, len(live_sorted) + 1))
 
-    n_open = sum(1 for it in live if it["public_access"] == "open")
-    nearest = next_date(dated[0], today) if dated else None
+    n_open = open_count(live, today)
+    nearest = nearest_headline(dated, today)
     stats = f"""<div class="statrow">
   <div class="stat"><div class="n">{len(live):02d}</div><div class="l">DECISIONS TRACKED</div></div>
   <div class="stat"><div class="n g">{n_open:02d}</div><div class="l">OPEN TO THE PUBLIC</div></div>
