@@ -3851,8 +3851,8 @@ Alaska businesses, statewide. That work lives on the
 exactly why the studio knows what actually pays.</p>
 <h2>Who runs it</h2>
 <p>Alaska AI is founded and run by <a href="https://www.linkedin.com/in/talonsturgill">Talon
-Sturgill</a>, born and raised in Anchorage and the lead AI engineer at Transform Labs, a
-large lab in the Lower 48 that works with enterprise clients. Alaska AI brings that
+Sturgill</a>, born and raised in Anchorage, where he also works remotely as the lead AI
+engineer for a large Lower 48 lab serving enterprise clients. Alaska AI brings that
 expertise home to help Alaska businesses that rarely get access to it.</p>
 <h2>How the work gets verified</h2>
 <p>Every day Alaska AI works six beats across the state, from power and
@@ -3899,8 +3899,7 @@ The docket and the articles live here. For the studio, start with
         org_ld(site_url),
         {"@type": "Person", "@id": f"{site_url}/about/#talon",
          "name": "Talon Sturgill", "jobTitle": "Lead AI Engineer",
-         "worksFor": [{"@id": org_id(site_url)},
-                      {"@type": "Organization", "name": "Transform Labs"}],
+         "worksFor": {"@id": org_id(site_url)},
          "url": f"{site_url}/about/",
          "birthPlace": {"@type": "Place", "name": "Anchorage, Alaska"},
          "sameAs": ["https://www.linkedin.com/in/talonsturgill"]}]}
