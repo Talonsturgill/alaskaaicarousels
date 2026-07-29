@@ -51,6 +51,31 @@ MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", 
 
 BANNED = re.compile("[–—‘’“”]|[\U0001F000-\U0001FAFF]")
 
+# ---------- reader copy is about the world, not about us ----------
+#
+# Every string in this ledger is published. A reader came here to learn when a
+# decision lands and whether they get a say, and they have no idea this site is
+# generated, so our machinery is not part of their story.
+#
+# On 2026-07-29 the run that fixed the date-role selector also appended a 160
+# word history note to the AIDEA item explaining the fix: which four surfaces
+# had shown the wrong date, that the renderer now resolves dates by role, that
+# a build gate now gates it, and that no subscriber alert had carried the bad
+# date. All true, all useful, all written for the maintainer. It shipped to a
+# public tracker that prospective clients read. The correction itself belonged
+# there; the incident report did not.
+#
+# So the engineering account lives where engineers read it, in the comment
+# below and in Phase 3.5, and this gate keeps it out of reader copy. When a
+# run needs to correct the record, it says what the right answer is and how it
+# was verified. It does not narrate the repair.
+INTERNAL = re.compile(
+    r"\b(?:renderer|selector|build gate|ship gate|lint(?:ed|er)?|"
+    r"site_build|docket_build|style_lint|key_dates?|"
+    r"subscriber alert|display only|badge|button|"
+    r"phase\s*\d|regenerat\w*|this (?:page|site|entry)'s \w+ (?:stat|card))\b",
+    re.I)
+
 
 def fail(msg):
     print(f"FAIL: {msg}", file=sys.stderr)
@@ -96,6 +121,16 @@ def validate(items):
             parse_date(d["date"], i)
             if d.get("kind") not in DATE_KINDS:
                 fail(f"{i}: key_date kind {d.get('kind')!r}")
+        for label, text in ([("summary", it["summary"]),
+                             ("access_note", it["access_note"])]
+                            + [(f"history[{n}]", h["note"])
+                               for n, h in enumerate(it["history"])]):
+            m = INTERNAL.search(text)
+            if m:
+                fail(f"{i}: {label} talks about our machinery, not the "
+                     f"decision ({m.group(0)!r}). Reader copy states the "
+                     f"verified answer and its source; it never narrates how "
+                     f"the site was built or repaired.")
         parse_date(it["first_seen"], i)
         parse_date(it["last_updated"], i)
 

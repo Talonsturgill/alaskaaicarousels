@@ -4770,8 +4770,18 @@ def build(today, out_dir, site_url=None, domain=""):
             db.fail(f"banned punctuation in {rel} {bad[:8]}")
         prose_colon_gate(rel, html)
     out.mkdir(parents=True, exist_ok=True)
+    # Pillow is the one soft dependency, and without it grain_data_uri() returns
+    # "" and this quietly wrote url(none) into the sheet every page loads. A
+    # 2026-07-29 build on a box without Pillow stripped the film grain from all
+    # 47 pages and the only trace was a one-line diff in site.css that a run
+    # would have committed without noticing. Degrading the whole site's texture
+    # is not a fallback, so say so instead.
+    grain = db.grain_data_uri()
+    if not grain:
+        db.fail("no grain texture (Pillow missing). pip install Pillow, then "
+                "rebuild. Shipping without it silently flattens every page.")
     (out / "site.css").write_text(
-        SITE_CSS.replace("FONTPREFIX", "").replace("GRAIN_URI", db.grain_data_uri() or "none"))
+        SITE_CSS.replace("FONTPREFIX", "").replace("GRAIN_URI", grain))
     (out / "site.js").write_text(JS)
     for rel, html in pages.items():
         p = out / rel
