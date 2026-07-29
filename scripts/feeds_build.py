@@ -121,7 +121,7 @@ def deck_markdown(r, site_url: str) -> str:
 
 
 def llms_txt(site_url: str, runs: list, docket: dict | None = None,
-             topics: list | None = None) -> str:
+             topics: list | None = None, decisions: list | None = None) -> str:
     """The curated map at /llms.txt (llmstxt.org).
 
     Expanded from a five-link stub to something an agent can actually work
@@ -160,11 +160,25 @@ def llms_txt(site_url: str, runs: list, docket: dict | None = None,
         "",
         "## Data",
         "",
-        f"- [The docket as open JSON]({site_url}/docket.json)",
+        f"- [The data, schema, licence and how to use it]({site_url}/data/) "
+        f"start here if you want to build on or quote the docket",
+        f"- [The docket as open JSON]({site_url}/docket.json) versioned, "
+        f"CC BY 4.0, field documentation travels with the data",
         f"- [Every article as plain Markdown, one fetch]({site_url}/llms-full.txt)",
         f"- [The source archive, every document a claim was verified against]"
         f"({site_url}/sources/)",
     ]
+    # Every tracked decision has its own canonical page. Listing them here is the
+    # point of this file: an answer engine citing a specific Alaska decision
+    # should link that decision, not the docket index.
+    if decisions:
+        out += ["", "## Tracked decisions", "",
+                "One page per decision, each with the deciding body, the dates that",
+                "matter, whether the public has a way in, a source for every fact,",
+                "and a dated history of how it moved.", ""]
+        for it in decisions:
+            out.append(f"- [{it['title']}]({site_url}/docket/{it['id']}/) "
+                       f"{it.get('decider','')}. Updated {it.get('last_updated','')}.")
     if topics:
         out += ["", "## Standing beats", "",
                 "These pages are permanent. Each stays live whether or not the beat",

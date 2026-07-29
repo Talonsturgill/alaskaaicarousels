@@ -347,6 +347,48 @@ def check_built_site(rep, items, today, out):
 
     # Cross-surface: the header stat, the closing-soon cards on both pages, and
     # the homepage sentence all trace to one resolved value.
+    # Per-decision pages are a SECOND surface rendering the same dates, and a
+    # surface the guard cannot see is a surface that can drift. Every one of
+    # them is read back out of its own emitted HTML, same rules as the entries
+    # on the docket page.
+    for iid, it in by_id.items():
+        dp = out / "docket" / iid / "index.html"
+        if not dp.exists():
+            rep.ok(False, f"decision page {iid}", "no canonical page was built")
+            continue
+        dbody = dp.read_text(encoding="utf-8")
+        res = db.resolve(it, today)
+        where = f"decision page {iid}"
+        m = CTA_RE.search(dbody)
+        if res["cta"]:
+            rep.ok(m is not None, where, "resolver offers a call to action, page has none")
+        else:
+            rep.ok(m is None, where, "page offers a call to action the resolver forbids")
+        if m:
+            want = db.mon_day(res["deadline"]["date"]).upper() if res["deadline"] else None
+            rep.ok(m.group(1) == want, where,
+                   f"call to action shows {m.group(1)!r}, action deadline is {want!r}")
+        for iso, prefix, shown in CHIP_RE.findall(dbody):
+            want = res["headline"]["date"] if res["headline"] else None
+            rep.ok(iso == want, where, f"chip date {iso} != resolved headline {want}")
+            rep.ok(prefix == db.ROLE_PREFIX[res["headline"]["kind"]], where,
+                   f"chip prefix {prefix!r} does not match role "
+                   f"{res['headline']['kind']!r}")
+        rep.ok(f'class="badge b-{res["access"]}"' in dbody, where,
+               f"badge does not read the resolved access {res['access']}")
+        # An Event node is a promise that a comment window is open with that end
+        # date, so it may exist only when the resolver says so, and must carry
+        # the resolved deadline.
+        ev = re.search(r'"@type":"Event".*?"endDate":"(\d{4}-\d{2}-\d{2})"', dbody, re.S)
+        if res["cta"] and res["deadline"]:
+            rep.ok(ev is not None, where, "open window but no Event structured data")
+            if ev:
+                rep.ok(ev.group(1) == res["deadline"]["date"], where,
+                       f"Event endDate {ev.group(1)} != deadline {res['deadline']['date']}")
+        else:
+            rep.ok(ev is None, where,
+                   "publishes an open comment Event the resolver does not support")
+
     nearest = db.nearest_headline(
         [it for it in items
          if it["status"] in ("open-for-comment", "pending-decision", "watching")], today)
