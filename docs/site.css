@@ -75,10 +75,13 @@ radial-gradient(1.2px 1.2px at 80% 38%,rgba(244,248,255,.4),transparent 60%),
 radial-gradient(1px 1px at 5% 10%,rgba(244,248,255,.5),transparent 60%);}
 /* the flag: Big Dipper + Polaris, gold on the night */
 .flagsky{position:absolute;right:2vw;top:5vh;width:min(46vw,560px);height:auto;opacity:.95;}
-.fstar{fill:var(--gold);filter:drop-shadow(0 0 6px rgba(255,199,44,.55));
-animation:twinkle 4s ease-in-out infinite;}
-.fstar.polaris{filter:drop-shadow(0 0 12px rgba(255,199,44,.8));}
-@keyframes twinkle{0%,100%{opacity:.75;}50%{opacity:1;}}
+/* Scintillation rides on opacity only, and only on the glow-and-spikes
+   subgroup. No animated drop-shadow or blur: those repaint a huge area every
+   frame, and the halo is the one layer that should never flicker anyway.
+   The stepped keyframes keep it irregular instead of pulsing. */
+.fstar{animation:twinkle 4s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:.78;}34%{opacity:.94;}47%{opacity:.84;}
+68%{opacity:1;}82%{opacity:.89;}}
 
 .wrap{position:relative;max-width:1120px;margin:0 auto;padding:0 24px 110px;z-index:1;}
 

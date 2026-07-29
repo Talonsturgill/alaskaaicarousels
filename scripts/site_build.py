@@ -192,20 +192,143 @@ def daylight_chip(today):
 
 # ---------- the flag sky (Big Dipper + Polaris, gold on the night) ----------
 
+# The eight gold stars of the flag, drawn as real stars rather than dots.
+#
+# Positions are the official flag geometry (1416x1000, handle up-left, the
+# bowl's pointer edge aimed at Polaris). Everything else is photometry: each
+# star carries its true V magnitude and B-V color index, and the optics follow
+# how a bright point source actually images.
+#
+# Three rules from the astronomy do the heavy lifting:
+#   1. A bright core saturates to WHITE whatever the star's color, because all
+#      three channels clip. The tint lives in a thin ring just outside it.
+#   2. The white core grows only as the square root of the log of brightness,
+#      so it is nearly constant across stars. The brightness hierarchy belongs
+#      in the halo and the diffraction spikes instead.
+#   3. A real point-spread function is Gaussian at the core and a power-law
+#      skirt far out, a range no single gradient can hold. Hence the layers:
+#      aureole (power law), inner glow (Gaussian), color ring, white core.
+# Spikes come from the instrument, not the star, so every star's cross sits at
+# the same angle. They are built from a tapered lens path plus a length
+# gradient, which costs nothing, instead of a blur.
+#
+# name, x, y, V mag, B-V, spike tier (1 full, 2 short, 3 none)
+FLAG_STARS = [
+    ("Alkaid",  148, 181, 1.86, -0.19, 1),
+    ("Mizar",   215, 206, 2.04, +0.02, 2),
+    ("Alioth",  248, 241, 1.77, -0.02, 1),
+    ("Megrez",  282, 278, 3.31, +0.075, 3),
+    ("Dubhe",   382, 314, 1.79, +1.07, 1),
+    ("Phecda",  278, 331, 2.44, -0.013, 2),
+    ("Merak",   353, 356, 2.37, -0.02, 2),
+    ("Polaris", 520,  96, 1.98, +0.60, 1),
+]
+# Gold-family tints keyed to B-V. The flag's stars are gold by law and by
+# brand, so real stellar color is expressed as temperature WITHIN that gold:
+# Alkaid (B3V, the bluest) reads palest, Dubhe (K0III, a genuine orange giant)
+# reads amber, Polaris (F7Ib) reads cream. Six of the seven Dipper stars really
+# are near-identical in color, so they share one gold. Painting a rainbow is
+# what makes constellation art look fake.
+FLAG_TINTS = ["#ffdc8c", "#ffc72c", "#ffd875", "#ffa726"]
+
+
+def _tint_index(bv):
+    if bv <= -0.10:
+        return 0
+    if bv >= 0.90:
+        return 3
+    return 2 if bv >= 0.35 else 1
+
+
 def flag_sky():
-    # eight stars of gold; centers scaled from the official flag geometry
-    # (1416x1000, dipper handle top-left, bowl opening up toward Polaris)
-    dipper = [(148, 181), (215, 206), (248, 241), (282, 278),
-              (382, 314), (278, 331), (353, 356)]
-    stars = "".join(
-        f'<circle class="fstar" cx="{x}" cy="{y}" r="3.2" '
-        f'style="animation-delay:{(i * 0.7) % 4:.1f}s"/>'
-        for i, (x, y) in enumerate(dipper))
-    polaris = ('<path class="fstar polaris" style="animation-delay:2.1s" '
-               'transform="translate(520,96) scale(1.9)" '
-               'd="M0,-9 L2.2,-2.2 L9,0 L2.2,2.2 L0,9 L-2.2,2.2 L-9,0 L-2.2,-2.2 Z"/>')
-    return (f'<svg class="flagsky" viewBox="0 0 600 400" aria-hidden="true">'
-            f"{stars}{polaris}</svg>")
+    # Power-law stop table for the aureole: I(r) = 1/(1+(r/a)^2), the r^-2
+    # stellar aureole. Gaussian table for the inner glow. Both measured, not
+    # eyeballed, which is what keeps the falloff from looking like a blur.
+    au_stops = [(0, 1.0), (3, .80), (6, .50), (12, .20), (20, .083),
+                (35, .029), (60, .010), (100, 0)]
+    gl_stops = [(0, 1.0), (10, .956), (20, .835), (33, .607), (50, .325),
+                (67, .135), (83, .044), (100, 0)]
+    defs = []
+    for i, c in enumerate(FLAG_TINTS):
+        defs.append(
+            f'<radialGradient id="fa{i}">'
+            + "".join(f'<stop offset="{o}%" stop-color="{c}" stop-opacity="{a:.3f}"/>'
+                      for o, a in au_stops) + "</radialGradient>")
+        defs.append(
+            f'<radialGradient id="fg{i}">'
+            + "".join(f'<stop offset="{o}%" stop-color="{c}" stop-opacity="{a:.3f}"/>'
+                      for o, a in gl_stops) + "</radialGradient>")
+        defs.append(
+            f'<radialGradient id="fr{i}">'
+            f'<stop offset="0%" stop-color="{c}" stop-opacity=".95"/>'
+            f'<stop offset="45%" stop-color="{c}" stop-opacity=".78"/>'
+            f'<stop offset="100%" stop-color="{c}" stop-opacity="0"/>'
+            "</radialGradient>")
+    # The saturated core: white and flat, then off a cliff. Identical for every
+    # star, because that is what over-exposure actually does.
+    defs.append('<radialGradient id="fcore">'
+                '<stop offset="0%" stop-color="#fff" stop-opacity="1"/>'
+                '<stop offset="55%" stop-color="#fff" stop-opacity="1"/>'
+                '<stop offset="78%" stop-color="#fff" stop-opacity=".65"/>'
+                '<stop offset="100%" stop-color="#fff" stop-opacity="0"/>'
+                "</radialGradient>")
+    # Spike brightness along its length, hot at the middle, gone at the tips,
+    # cooling from white core to a warm tip the way a real PSF disperses. Two
+    # copies: a gradient runs along the bounding box's x axis, so the vertical
+    # needle needs its own or the falloff lands across the width instead of
+    # along the length.
+    spk_stops = ('<stop offset="0%" stop-color="#fff" stop-opacity="0"/>'
+                 '<stop offset="26%" stop-color="#ffe0a4" stop-opacity=".03"/>'
+                 '<stop offset="38%" stop-color="#ffe9b8" stop-opacity=".11"/>'
+                 '<stop offset="46%" stop-color="#fff6df" stop-opacity=".40"/>'
+                 '<stop offset="50%" stop-color="#fff" stop-opacity=".95"/>'
+                 '<stop offset="54%" stop-color="#fff6df" stop-opacity=".40"/>'
+                 '<stop offset="62%" stop-color="#ffe9b8" stop-opacity=".11"/>'
+                 '<stop offset="74%" stop-color="#ffe0a4" stop-opacity=".03"/>'
+                 '<stop offset="100%" stop-color="#fff" stop-opacity="0"/>')
+    defs.append(f'<linearGradient id="fspk" x1="0" y1="0" x2="1" y2="0">'
+                f"{spk_stops}</linearGradient>")
+    defs.append(f'<linearGradient id="fspkv" x1="0" y1="0" x2="0" y2="1">'
+                f"{spk_stops}</linearGradient>")
+
+    # Decorrelated twinkle periods. Near-prime ratios so the eight stars never
+    # resync into a pulse, and a 0.78 to 1.0 swing, about a third of a
+    # magnitude, which is the honest end of real scintillation.
+    periods = [4.3, 5.9, 3.7, 6.7, 3.1, 5.3, 4.7, 6.1]
+    out = []
+    for i, (name, x, y, mag, bv, tier) in enumerate(FLAG_STARS):
+        t = _tint_index(bv)
+        # Rendered area tracks flux, so radius goes as 10^(-0.2 dm). Pushed to
+        # 0.28 for legibility at hero scale, which is inside the range chart
+        # renderers use and still leaves Megrez visibly the faint one.
+        s = 10 ** (-0.28 * (mag - 1.77))
+        # Polaris is drawn larger on the flag itself, so it keeps that emphasis.
+        halo = s * (1.42 if name == "Polaris" else 1.0)
+        core_r = 2.7 * (s ** 0.35)          # nearly constant, by design
+        ring_r = core_r * 1.95
+        glow_r = 13.0 * halo
+        au_r = 42.0 * halo
+        spikes = ""
+        if tier < 3:
+            L = 46.0 * halo * (1.0 if tier == 1 else 0.46)
+            w = L * 0.020                    # waist, ~1% of length after the
+            # quadratic's midpoint halving. Thinness is the whole trick.
+            spikes = (
+                f'<path fill="url(#fspk)" d="M{x - L:.1f},{y} Q{x},{y - w:.2f} '
+                f'{x + L:.1f},{y} Q{x},{y + w:.2f} {x - L:.1f},{y} Z"/>'
+                f'<path fill="url(#fspkv)" d="M{x},{y - L * 0.91:.1f} '
+                f'Q{x + w:.2f},{y} {x},{y + L * 0.91:.1f} '
+                f'Q{x - w:.2f},{y} {x},{y - L * 0.91:.1f} Z"/>')
+        out.append(
+            f'<circle cx="{x}" cy="{y}" r="{au_r:.1f}" fill="url(#fa{t})"/>'
+            f'<g class="fstar" style="animation-duration:{periods[i]}s;'
+            f'animation-delay:-{periods[i] * 0.37:.1f}s">'
+            f'<circle cx="{x}" cy="{y}" r="{glow_r:.1f}" fill="url(#fg{t})"/>'
+            f"{spikes}</g>"
+            f'<circle cx="{x}" cy="{y}" r="{ring_r:.2f}" fill="url(#fr{t})"/>'
+            f'<circle cx="{x}" cy="{y}" r="{core_r:.2f}" fill="url(#fcore)"/>')
+    return ('<svg class="flagsky" viewBox="0 0 600 400" aria-hidden="true">'
+            f'<defs>{"".join(defs)}</defs>{"".join(out)}</svg>')
 
 
 # ---------- the brand mark (the real logo: gold Alaska on the night) ----------
@@ -389,10 +512,13 @@ radial-gradient(1.2px 1.2px at 80% 38%,rgba(244,248,255,.4),transparent 60%),
 radial-gradient(1px 1px at 5% 10%,rgba(244,248,255,.5),transparent 60%);}
 /* the flag: Big Dipper + Polaris, gold on the night */
 .flagsky{position:absolute;right:2vw;top:5vh;width:min(46vw,560px);height:auto;opacity:.95;}
-.fstar{fill:var(--gold);filter:drop-shadow(0 0 6px rgba(255,199,44,.55));
-animation:twinkle 4s ease-in-out infinite;}
-.fstar.polaris{filter:drop-shadow(0 0 12px rgba(255,199,44,.8));}
-@keyframes twinkle{0%,100%{opacity:.75;}50%{opacity:1;}}
+/* Scintillation rides on opacity only, and only on the glow-and-spikes
+   subgroup. No animated drop-shadow or blur: those repaint a huge area every
+   frame, and the halo is the one layer that should never flicker anyway.
+   The stepped keyframes keep it irregular instead of pulsing. */
+.fstar{animation:twinkle 4s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:.78;}34%{opacity:.94;}47%{opacity:.84;}
+68%{opacity:1;}82%{opacity:.89;}}
 
 .wrap{position:relative;max-width:1120px;margin:0 auto;padding:0 24px 110px;z-index:1;}
 
