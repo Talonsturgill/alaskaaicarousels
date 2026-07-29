@@ -466,7 +466,9 @@
       "new_techniques_logged": [
         "THE HOUR COLUMN (two-material quantity column on a true hour axis under an orthographic GPU camera)"
       ],
-      "notes": "Directors room ran field-documentarian, systems-illustrator and data-journalist. The winner is a synthesis: the systems illustrator's column, the data journalist's provenance chip system, and the field documentarian's atmosphere, palette and type. Its panorama spine, its one-object-under-one-camera chassis and its 1-below-5-above ownership census were all cut, each on the proposing director's own self-critique."
+      "notes": "Directors room ran field-documentarian, systems-illustrator and data-journalist. The winner is a synthesis: the systems illustrator's column, the data journalist's provenance chip system, and the field documentarian's atmosphere, palette and type. Its panorama spine, its one-object-under-one-camera chassis and its 1-below-5-above ownership census were all cut, each on the proposing director's own self-critique.",
+      "post_score_repair_note": "The material change at hour 7 did NOT fully render. Under a single 0xffb067 sodium key, steel at 0xb9bcbd and brass at 0xd39c31 both read as one amber extrusion at feed scale. The repair pass lifted the steel to 0xe8edf0 at roughness 0.62 and added a proud collar at the seam so the change reads as a joint rather than a gradient; darkening the brass to force contrast made the frame muddier and was reverted. The encoding now reads better but not fully. Two materials separated only by hue collapse under a strongly coloured key: separate by value and by a physical joint.",
+      "plate_system_note": "Every mono knockout and chip in this deck was hand-sized at roughly 14px per character against JetBrains Mono's actual 16.8px at 24px with 0.10em tracking. Six labels shipped past their own plates into the scorer. Future decks must compute plate width as 16.8 x charcount + 2 x padding; render.py and qa.py now gate this automatically."
     }
   ]
 }

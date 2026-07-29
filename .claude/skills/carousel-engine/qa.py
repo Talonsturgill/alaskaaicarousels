@@ -503,6 +503,40 @@ def main():
             level = res["warns"] if wr["kind"] == "tiny-text" else res["fails"]
             level.append(f"{wr['kind']}: '{wr['text'][:50]}' ({wr['detail']})")
 
+        # SVG LABEL OFF ITS OWN PLATE (2026-07-29). render.py measures every
+        # SVG <text> against the <rect> painted under it. A label that spills
+        # past its knockout is not a style choice: the plate exists precisely
+        # because the artwork behind it cannot carry type, so every pixel that
+        # escapes lands on unreadable ground, and a chip's border rule ends up
+        # drawn through a letterform. 2px of tolerance absorbs subpixel bbox
+        # rounding; anything past that is the arithmetic being wrong.
+        for sp in rec.get("svg_plates", []):
+            cov = sp.get("covered_px")
+            dom = sp.get("dom_cover_frac") or 0
+            if (cov and cov[0] > 4 and cov[1] > 2) or dom > 0.15:
+                what = (f"a {cov[0]}x{cov[1]}px opaque rect" if cov
+                        else f"an opaque DOM block over {dom:.0%} of its width")
+                msg = (f"svg label painted over: '{sp['text'][:40]}' has "
+                       f"{what} drawn on top of it")
+                if sp.get("overlap_ok"):
+                    res["warns"].append(msg + " [marked data-overlap-ok]")
+                elif sp.get("decorative"):
+                    res["warns"].append(msg + " [decorative]")
+                else:
+                    res["fails"].append(msg)
+            if sp["overrun_px"] <= 2:
+                continue
+            o = sp["over"]
+            sides = ", ".join(f"{k} {v}px" for k, v in o.items() if v > 2)
+            msg = (f"svg label off its plate: '{sp['text'][:40]}' spills {sides}"
+                   f" (worst {sp['overrun_px']}px)")
+            if sp.get("overlap_ok"):
+                res["warns"].append(msg + " [marked data-overlap-ok]")
+            elif sp.get("decorative"):
+                res["warns"].append(msg + " [decorative]")
+            else:
+                res["fails"].append(msg)
+
         # text-on-text overprint (the class of defect no other gate sees).
         # data-overlap-ok marks DELIBERATE layering (e.g., a chip on an
         # opaque plate crossing a display line box): demoted to WARN so the

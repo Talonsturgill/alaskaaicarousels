@@ -287,6 +287,106 @@ IN_PAGE_QA_JS = """
   } finally {
     peSheet.remove();
   }
+  /* SVG KNOCKOUT PLATES (2026-07-29). A <rect> painted before a <text> in the
+     same <svg>, overlapping it, is that label's knockout plate, and the label
+     must sit fully inside it. NOTHING in this file could see that before: SVG
+     text has no line boxes (the Range path above is DOM-only), the plate is a
+     SIBLING rather than an ancestor, and the occlusion probe hit-tests DOM
+     text only. Run 2026-07-29 shipped six labels hanging off their own plates
+     through two scoring cycles with machine_qa reporting 0 fails, including a
+     chip border rule drawn straight through the 'T' of 'PERMITS'. The root
+     cause is arithmetic: JetBrains Mono at 24px with 0.10em tracking advances
+     16.8px per character, and the plate widths were hand-sized at roughly 14.
+     Measure containment here; qa.py grades it. */
+  out.svg_plates = [];
+  for (const sv of document.querySelectorAll('svg')) {
+    const kids = Array.from(sv.querySelectorAll('text, rect'));
+    for (let i = 0; i < kids.length; i++) {
+      const t = kids[i];
+      if (t.tagName.toLowerCase() !== 'text') continue;
+      if (!t.textContent.trim()) continue;
+      const tb = t.getBoundingClientRect();
+      if (tb.width < 1 || tb.height < 1) continue;
+      let plate = null;
+      for (let j = 0; j < i; j++) {
+        const r = kids[j];
+        if (r.tagName.toLowerCase() !== 'rect') continue;
+        const rb = r.getBoundingClientRect();
+        if (rb.width < 1 || rb.height < 1) continue;
+        if (tb.left < rb.right && tb.right > rb.left &&
+            tb.top < rb.bottom && tb.bottom > rb.top) plate = rb;
+      }
+      /* The mirror case, and the one that bit this run twice: a rect painted
+         AFTER the text, overlapping it, is painting OVER the label. SVG has no
+         z-index, only document order, so a plate appended for the block below
+         silently eats the descender of the line above. The DOM occlusion probe
+         cannot see it (elementsFromPoint reports the <svg>, not the <rect>). */
+      let covered = null;
+      for (let j = i + 1; j < kids.length; j++) {
+        const r = kids[j];
+        if (r.tagName.toLowerCase() !== 'rect') continue;
+        const f = (r.getAttribute('fill') || '').trim();
+        if (!f || f === 'none') continue;
+        const m = f.match(/rgba?\(([^)]+)\)/);
+        const alpha = m ? (parseFloat(m[1].split(',')[3]) || 1) : 1;
+        if (alpha * (parseFloat(r.getAttribute('fill-opacity')) || 1) < 0.5) continue;
+        const rb = r.getBoundingClientRect();
+        const ox = Math.min(tb.right, rb.right) - Math.max(tb.left, rb.left);
+        const oy = Math.min(tb.bottom, rb.bottom) - Math.max(tb.top, rb.top);
+        if (ox > 1 && oy > 1) {
+          const area = ox * oy;
+          if (!covered || area > covered.area) covered = { area: area, w: Math.round(ox), h: Math.round(oy) };
+        }
+      }
+      /* And the third way to bury an SVG label: a DOM element painted above
+         the whole <svg>. The furniture layer is one positioned element, so a
+         knockout-plated body div declared after it in the document eats any
+         guard line it happens to overlap, with no SVG-level evidence at all.
+         Ask the compositor what is actually on top of the label's own box. */
+      let domHit = 0, domN = 0;
+      const cy = (tb.top + tb.bottom) / 2;
+      if (cy >= 0 && cy <= H) {
+        for (let s = 0; s <= 10; s++) {
+          const px = tb.left + (tb.width * s) / 10;
+          if (px < 0 || px > W) continue;
+          domN++;
+          for (const e of document.elementsFromPoint(px, cy)) {
+            if (e === sv || e.contains(sv)) break;
+            if (e === t || sv.contains(e)) continue;
+            const bg = getComputedStyle(e).backgroundColor || '';
+            const mm = bg.match(/rgba?\(([^)]+)\)/);
+            const a2 = mm ? (parseFloat(mm[1].split(',')[3]) || 1) : 0;
+            if (a2 >= 0.5) { domHit++; break; }
+          }
+        }
+      }
+      const domFrac = domN ? domHit / domN : 0;
+      if (covered || domFrac > 0.15) {
+        out.svg_plates.push({
+          text: t.textContent.trim().slice(0, 60),
+          covered_px: covered ? [covered.w, covered.h] : null,
+          dom_cover_frac: Math.round(domFrac * 100) / 100,
+          overrun_px: 0, over: { left: 0, right: 0, top: 0, bottom: 0 },
+          decorative: t.hasAttribute('data-decorative'),
+          overlap_ok: t.hasAttribute('data-overlap-ok')
+        });
+      }
+      if (!plate) continue;
+      const over = {
+        left: Math.round(plate.left - tb.left), right: Math.round(tb.right - plate.right),
+        top: Math.round(plate.top - tb.top), bottom: Math.round(tb.bottom - plate.bottom)
+      };
+      const worst = Math.max(over.left, over.right, over.top, over.bottom);
+      if (worst > 0) {
+        out.svg_plates.push({
+          text: t.textContent.trim().slice(0, 60), overrun_px: worst, over: over,
+          decorative: t.hasAttribute('data-decorative'),
+          overlap_ok: t.hasAttribute('data-overlap-ok')
+        });
+      }
+    }
+  }
+
   /* CANVAS TELEMETRY (2026-07-11, the rendered-3D gates): per visible canvas,
      backing resolution vs CSS size (silent-1x detector) and a downsampled
      pixel sample (dead/black-frame detector: a GL context that failed or
@@ -375,7 +475,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                  scale: float, timeout_ms: int) -> dict:
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
-           "body_overflow": False, "canvas_text": [], "render_ms": 0, "ok": False}
+           "body_overflow": False, "canvas_text": [], "svg_plates": [],
+           "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
                             device_scale_factor=scale)
@@ -395,7 +496,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         qa = page.evaluate(IN_PAGE_QA_JS)
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
-                                       "canvas_text", "breather")})
+                                       "canvas_text", "breather", "svg_plates")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:

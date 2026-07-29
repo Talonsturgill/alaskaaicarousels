@@ -1584,3 +1584,39 @@ CAROUSEL_CRAFT already carries.
   currently a differentiator rather than a risk, which supports spending
   density on the bottom third rather than economizing there.
   https://www.creativebloq.com/design/graphic-design/texture-warmth-and-tactile-rebellion-the-big-graphic-design-trends-for-2026
+
+### 2026-07-29 (No. 19), the plates the machine could not see
+
+The scorer capped this run at 6.90 from an uncapped 8.33 on one hard fail, and
+the hard fail was arithmetic. JetBrains Mono at 24px with 0.10em tracking
+advances 16.8px per character. Every knockout plate and chip in the deck had
+been hand-sized at roughly 14. Six labels hung off their own plates across
+slides 04, 05 and 07, including a chip border rule drawn straight through the
+"T" of PERMITS, and one annotation sat entirely off its knockout.
+
+The reason it survived two full scoring cycles is the part worth keeping.
+render.py's overlap detector inspects DOM text line boxes. Every one of these
+defects was SVG text against an SVG rect, against canvas artwork, or under a
+DOM block, so machine_qa reported 0 fails while the deck was visibly broken.
+A gate that cannot see a whole layer will report that layer perfect forever.
+
+The engine now measures it. render.py reports every SVG text against the rect
+painted under it, against any opaque rect appended after it, and against any
+opaque DOM element composited above the svg (sampled with elementsFromPoint
+across the label's own box). qa.py fails all three. The checks were verified
+against a purpose-built ground-truth slide carrying one spill, one painted-over
+label and one correct control: both defects reported, control silent.
+
+Fixing the first two exposed the third inside one render cycle, and every
+repair produced a knock-on. Widening a chip pushed it into a legend. Raising a
+plate cut the label above it. Moving slide 03's source line off the counter
+landed it on the self-audit annotation. This is a family of bugs, not a bug,
+and the discipline is to re-run the gate after every single move.
+
+One craft finding did not resolve. The hero column encodes the thesis as a
+material change at hour 7, steel below and brass above, and under a single
+0xffb067 sodium key both materials read as one amber extrusion. Lifting the
+steel to 0xe8edf0 and adding a proud collar at the seam helped; darkening the
+brass to force contrast made the frame muddier and was reverted. Two materials
+separated only by hue collapse under a strongly coloured key. Separate by value
+and by a physical joint, and check it at 432px.

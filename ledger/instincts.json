@@ -442,6 +442,38 @@
       "run_dates": [
         "2026-07-29"
       ]
+    },
+    {
+      "instinct": "Size every plate from the MEASURED string, never from a guessed constant. JetBrains Mono at 24px with 0.10em tracking advances exactly 16.8px per character, but the eye estimates about 14, and a plate hand-sized on that estimate loses roughly 3 characters per 20. Run 2026-07-29 shipped six labels hanging off their own knockouts through two full scoring cycles, including a chip border rule drawn through the 'T' of PERMITS, because every gate was blind to it. Compute plate width as 16.8 x charcount + 2 x padding, or measure with getComputedTextLength.",
+      "confidence": 0.95,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "A gate that inspects only DOM text cannot see SVG furniture at all, and SVG furniture is where this deck's annotation lives. There are THREE ways to bury an SVG label and the engine now checks all three: spilling past the rect painted under it, being covered by a rect appended after it (SVG has no z-index, only document order), and being composited under an opaque DOM block declared after the whole svg. Fixing the first two exposed the third within one render cycle, so treat this class as a family, never as a single bug.",
+      "confidence": 0.92,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "When a fix moves a block, re-check what the block USED to clear. Every regression in run 2026-07-29's repair pass was a knock-on: widening a chip pushed it into a legend, raising a plate cut the label above it, moving a source line landed it under the counter, and moving it again landed it on the self-audit annotation. Budget the whole column, not the one element, and re-run the gate after every single move rather than after a batch.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "Under a single strongly coloured key light, two materials separated only by HUE collapse into one material. Run 2026-07-29's hero column was steel below hour 7 and brass above, and under a 0xffb067 sodium key both read as the same amber extrusion, so the deck's wordless thesis did not render. Separate by VALUE and by a physical joint (a proud collar at the seam), not by hue, and verify at 432px before believing the encoding lands. Darkening the second material to force contrast made the whole frame muddier and had to be reverted.",
+      "confidence": 0.85,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
     }
   ]
 }

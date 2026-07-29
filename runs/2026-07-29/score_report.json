@@ -1,0 +1,116 @@
+{
+  "run": "Alaska.Ai Carousel No. 19 - 2026-07-29 - The Machine Makes Time. Who Owns the Clock?",
+  "scoring_cycle": "2 of 2 (cap reached; no further scorer was spawned)",
+  "threshold": 8.3,
+  "weighted_total_as_scored": 6.9,
+  "uncapped_weighted_total": 8.33,
+  "cap_reason_as_scored": "one hard fail present at scoring time (clipped/overlapping text on slides 04 and 05), which the rubric caps at 6.9",
+  "passes_as_scored": false,
+  "weakest_criterion": "Legibility and platform fitness",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 9,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 9,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 5,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "hard_fails_as_scored": [
+    "slide 05 'ABOUT 10% OF AK PERMITS' overran its chip by 20px; the chip border rule was drawn through the 'T' of PERMITS",
+    "slide 04 'DIFFERENT MEASURES, NOT ONE.' overran its knockout plate by 34px onto the brass ledge at about 2.8 to 1",
+    "slide 05 '1,300 MARKS, ONE PER PERMIT' overran its plate by 58px",
+    "slide 05 'ONE LIT. NO COUNT.' overran by 12px",
+    "slide 07 'SCORE. THE PERMIT HOLDER' overran by 9px",
+    "slide 07 'ONE MACHINE PER 2 WKS' sat entirely off its knockout plate"
+  ],
+  "post_score_remediation": {
+    "policy_basis": "routine_instructions Phase 10: 'Any HARD FAIL: fix it no matter what (hard fails are never shipped around).' The scoring-cycle cap of 2 was already reached, so the fix was verified by machine gate and by direct pixel review rather than by a third scorer. The number of record therefore predates the fix and is disclosed as such in the Gmail draft.",
+    "root_cause": "JetBrains Mono at 24px with 0.10em tracking advances 16.8px per character; every affected knockout plate and chip had been hand-sized at roughly 14px per character. Nothing in the engine could see the result: render.py's overlap detector inspects DOM text line boxes only, and every defect was SVG text against an SVG rect, against canvas artwork, or under a DOM block.",
+    "engine_upgrade": [
+      "render.py now measures every SVG <text> against the <rect> painted under it and reports containment (out.svg_plates).",
+      "render.py now also reports the two mirror cases: an opaque <rect> painted AFTER the text in document order, and an opaque DOM element composited above the whole <svg>, sampled with elementsFromPoint across the label's own box.",
+      "qa.py grades all three as FAIL (WARN when the label is data-decorative or marked data-overlap-ok).",
+      "Verified against a purpose-built ground-truth slide carrying one spill case, one painted-over case and one correct control: both defects were reported, the control stayed silent."
+    ],
+    "slides_repaired": {
+      "02": "quote attribution plated and lifted to #E4DCD2, clearing the busy-art contrast warn",
+      "03": "'SOURCE, SHINKEI' moved to the free band at the column base; steel lifted to 0xe8edf0 at roughness 0.62 and a proud collar added at the hour-7 seam so the material change reads as a joint; cool fill raised to 1.55",
+      "04": "chip widened to 250px and glosses moved to x 424; guard reflowed to two fitting lines ('TWO MEASURES, NOT ONE.'); body raised to top 724; source chip raised inside the bottom safe zone and restamped 'PAYWALLED, 22 JUL' to match slide 08's publication date",
+      "05": "chip stack moved to x 580 at width 420; legend shortened to 'ONE MARK PER PERMIT'; 'ONE LIT. NO COUNT.' plate widened; TRADE dot pitch opened to '0 7' so it reads sparser than the VENDOR dash at thumb scale; decorative coordinates corrected to the deck-wide 61 26'N 151 09'W",
+      "06": "both quote attributions plated and lifted to #E4DCD2, clearing two busy-art contrast warns",
+      "07": "'EL SEGUNDO, CALIFORNIA' shortened to 'EL SEGUNDO, CA'; left column relaid out (header, list, ledger plate, guard plate, counter) so no plate edge cuts the label above it; guard reflowed to three fitting lines",
+      "08": "phantom retail case lifted to rgba(238,244,250,0.95) at 1.75px and given a cased leader along the shelf line so the gold caret reads as annotation",
+      "09": "ask line raised to top 664 at 36px, closing the stranded quiet zone under the headline"
+    },
+    "verification_after_fix": {
+      "machine_qa": "WARN, 0 fails, 1 warn (a composition note on slide 02, not a defect). All four safe-zone breaches cleared. All six plate overruns cleared. Both low-contrast attributions cleared.",
+      "copy_sync_check": "PASS, 119 authored slide strings all present in the render",
+      "assemble": "9 slides, pdf_mode vector, 3.77 MB, 9 thumbs",
+      "pixel_review": "slides 03, 04, 05, 07 and 09 re-read at 432px by the showrunner; every label sits inside its plate, nothing is cut and nothing is covered"
+    },
+    "score_after_fix": "Not re-scored: the 2-cycle cap was reached. The only rubric item the fix touches is the hard-fail cap and the Legibility criterion the scorer put at 5 and attributed entirely to these defects. Uncapped, the deck was already 8.33 against a threshold of 8.3."
+  },
+  "shortfalls_to_disclose_in_the_email": [
+    "The score of record is 6.90, and it predates the repair. It was capped from an uncapped 8.33 by one hard fail (six mono labels hanging off their own knockout plates on slides 04, 05 and 07). All six are fixed and machine-verified, but the scoring-cycle cap of 2 was already spent, so no post-fix number exists. Read 8.33 as the deck's honest standing and 6.90 as the number the process actually produced.",
+    "The deck's central visual argument still under-reads. The artwork ledger says the hero column's material change at the 7 hour line carries the thesis with zero words. The steel section was lifted and a physical collar added at the seam, which helps, but the column still reads as predominantly one amber material at feed scale. The scorer put artwork craft at 6, its lowest criterion, and that judgement substantially stands.",
+    "Slide 02 carries a composition warn: the bottom third holds 18% of the slide's craft density against a 74% threshold, a dead lower zone the engine flags and this run did not fix.",
+    "One copy line outruns the evidence: 'That deal is fair' asserts a judgement the deck elsewhere argues cannot be made, because slide 06's whole point is that the split is not on the record. Consider 'That part of the deal looks fair' before posting.",
+    "Feed-level variety note, not a dedupe violation: this is the third Cook Inlet deck in 18 days (No.4 gas storage, No.13 beluga) and the second salmon-and-AI deck in 20 (No.2 Wood River counting). Visual variety is excellent; geographic variety is getting thin.",
+    "Every human voice in the deck is the vendor CEO's. No Cook Inlet permit holder appears anywhere on the record, which is why slide 06 carries the fairness beat in words rather than in a quote.",
+    "The whole story rests on one trade report whose body is paywalled and unread. The deck says so twice, on slides 04 and 08."
+  ],
+  "what_is_strong_and_should_survive": [
+    "The fairness beat on slide 06, carried at full weight before the turn rather than buried after it",
+    "The three-form provenance chip system (VENDOR dashed, AGENCY solid, TRADE dotted), taught once large on slide 04 and worn thereafter",
+    "The self-auditing annotation on slide 03: '6.5 s = 0.03 PX HERE. DRAWN 49x TOO THICK.'",
+    "The guard on slide 04 that refuses to collapse two different measures into one number",
+    "The permit-holder guard on slide 07",
+    "The refusal to invent a 2026 Cook Inlet ex-vessel price or a boat count when neither exists on a fetched page"
+  ],
+  "weighted_score_as_scored": 6.9,
+  "weighted_total": 6.9
+}
