@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-23",
+  "updated": "2026-07-29",
   "items": [
     {
       "id": "adl-422741-stak-north-slope-lease",
@@ -60,7 +60,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-26",
+      "last_updated": "2026-07-29",
       "history": [
         {
           "date": "2026-07-08",
@@ -125,6 +125,10 @@
         {
           "date": "2026-07-26",
           "note": "Re-verification attempted and failed. The DNR public notice path returned HTTP 404 to this run's fact checker and no alternate primary source was reachable, so the status stays pending decision on the strength of the prior run's reporting. No decision is asserted in either direction."
+        },
+        {
+          "date": "2026-07-29",
+          "note": "Re-checked the state's own online public notice for ADL 422741. Twelve days after the written comment window closed at 4:30 p.m. on July 17, the Division of Oil and Gas has published no final best interest decision, and the notice still stands as a preliminary decision to offer the 50 year lease on 715.4 acres. Status unchanged at pending decision, and public access stays closed because no comment path remains open. Commenters who filed during the window may appeal the division's final decision if they are aggrieved by it."
         }
       ]
     },
@@ -152,6 +156,11 @@
           "date": "2026-06-29",
           "label": "Developer proposals due",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-07-22",
+          "label": "U.S. House passes FY2027 NDAA carrying a data center lease restriction",
+          "kind": "vote"
         }
       ],
       "location": {
@@ -184,10 +193,20 @@
           "url": "https://www.highergov.com/contract-opportunity/rflp-artificial-intelligence-ai-data-center-deve-afcec-26-r-0006-o-db695/",
           "outlet": "HigherGov (SAM.gov mirror)",
           "date": "2026-07-14"
+        },
+        {
+          "url": "https://clerk.house.gov/Votes/2026278",
+          "outlet": "Office of the Clerk, U.S. House of Representatives",
+          "date": "2026-07-22"
+        },
+        {
+          "url": "https://federalnewsnetwork.com/army/2026/06/house-ndaa-provision-could-derail-army-data-center-projects/",
+          "outlet": "Federal News Network",
+          "date": "2026-06-12"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-25",
+      "last_updated": "2026-07-29",
       "history": [
         {
           "date": "2026-07-08",
@@ -208,6 +227,10 @@
         {
           "date": "2026-07-25",
           "note": "Re-verified by fetching the solicitation record for AFCEC-26-R-0006. The response deadline was June 29, 2026 at 5 p.m. EDT, extended from May 29, and the opportunity now reads Past Due with no award and no awardee recorded, last updated July 14, 2026. Twenty-six days past the deadline the three Alaska installations named in the request, JBER, Eielson Air Force Base and Clear Space Force Station, still have no publicly announced lessee. Evaluation is private, so there is no public comment room here."
+        },
+        {
+          "date": "2026-07-29",
+          "note": "Material update from Congress, verified against primary records. On July 22 at 4:37 p.m. the U.S. House passed H.R. 8800, the National Defense Authorization Act for Fiscal Year 2027, by 216 yea to 212 nay with 3 not voting, and Alaska Representative Nick Begich voted yea, per the House Clerk's roll call 278. Federal News Network reported that the House Armed Services chairman's mark carries an amendment from Rep. Cory Mills of Florida that bars the Defense Department from leasing its land to private companies to build data centers unless they agree not to install or operate data facility equipment containing components manufactured in China, Russia, Iran or North Korea. Army officials warned the standard would drive world class commercial partners and more than 1.3 billion dollars in private capital away from Army land. If it survives conference it narrows who can bid on the Alaska parcels. The Senate has not passed its version. The underlying offer is unchanged, about 4,700 acres across twelve parcels at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station under the enhanced use lease model, which the Air Force says returns at least fair market value in cash."
         }
       ]
     },
@@ -299,10 +322,10 @@
       "title": "The AKLNG gas line tax bill",
       "kind": "legislation",
       "status": "pending-decision",
-      "decider": "Alaska Legislature, second special session",
+      "decider": "Alaska Legislature, third special session",
       "public_access": "indirect",
       "access_note": "Legislators decide; constituents reach them directly. The gas line would feed the grid most Alaska compute would ride on.",
-      "summary": "A conference committee compromise unveiled July 2 would swap the state property tax on the Glenfarne-led Alaska LNG project for a volumetric tax after five years of operation or 500 MMcf per day, and extend the completion deadline to the end of 2034. Floor votes are tentatively set for July 16; the special session ends July 19; the governor has pledged to veto any bill keeping the S corp income tax provision.",
+      "summary": "A conference committee compromise unveiled July 2 would swap the state property tax on the Glenfarne-led Alaska LNG project for a volumetric tax after five years of operation or 500 MMcf per day, and extend the completion deadline to the end of 2034. The House deadlocked 19 to 19 on July 16 over an expanded S corporation income tax, the governor rejected that provision, and a third special session convened July 27 with no bill from the governor and almost no legislators in the room.",
       "key_dates": [
         {
           "date": "2026-07-02",
@@ -365,10 +388,15 @@
           "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session",
           "outlet": "Alaska Public Media",
           "date": "2026-07-16"
+        },
+        {
+          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
+          "outlet": "Alaska Public Media",
+          "date": "2026-07-27"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-26",
+      "last_updated": "2026-07-29",
       "history": [
         {
           "date": "2026-07-08",
@@ -425,6 +453,10 @@
         {
           "date": "2026-07-26",
           "note": "Re-verified. The governor issued an executive proclamation calling the legislature back effective July 27, 2026 at 10:00 a.m. Alaska's News Source coverage of the session contains no data center or AI load argument, so the gas line remains a gas story on this docket and not an AI one."
+        },
+        {
+          "date": "2026-07-29",
+          "note": "Re-verified by fetching Alaska Public Media's July 27 report. The third special session convened July 27 in Juneau with almost nobody in the room, only 3 of 40 House members and 1 senator at the opening technical session, and the governor had introduced no bill, saying his administration would continue meeting with all parties to determine the best path forward to an agreement. House Speaker Bryce Edgmon said the clock is ticking very loudly right now and the governor realizes that. The session opened three weeks before the August 18 primary. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the line."
         }
       ]
     },

@@ -355,10 +355,11 @@
     },
     {
       "instinct": "qa.py's text-collision check is DOM-ONLY. Any label positioned against Canvas or SVG geometry (a groove edge, a scored outline, a leader rule, a scotch rule) can collide freely and the gate still returns PASS with zero warns. Do not read a green gate as a green deck. Every art-band label must ship on an opaque knockout plate by default, which makes non-collision structural instead of a registration-tuning exercise. Run 2026-07-25 predicted this in its own slide-02 risk flag and then shipped the bug on four slides across two scoring cycles anyway.",
-      "confidence": 0.97,
+      "confidence": 0.98,
       "first_seen": "2026-07-25",
       "run_dates": [
-        "2026-07-25"
+        "2026-07-25",
+        "2026-07-29"
       ]
     },
     {
@@ -411,10 +412,67 @@
     },
     {
       "instinct": "A slide that prints its own measuring rule must be measured against it before ship. Run 2026-07-26 printed '24 px = 1 MW' and '1.7 px = 1 day' and asked the pixel critics to measure; they confirmed four of five bars within 4 px and both spans within 3 px, and separately caught that the cabinet extrusion adds a constant offset that is invisible on a 600 px bar and a 5x overstatement on a 3.6 px one. Printing a rule is the strongest honesty device available and it only works if somebody checks it.",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "first_seen": "2026-07-26",
       "run_dates": [
-        "2026-07-26"
+        "2026-07-26",
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "AKPOST.grade costs about 34 SECONDS on a 2D canvas that has already had a WebGL canvas drawn into it, and about 0.9 seconds on the same canvas before that composite. getImageData is pathologically slow in this headless build once GL pixels have landed. Run 2026-07-29's hero blew the 30s renderReady cap twice and the cause was misread as GL cost (the GL itself measured 96 ms to import, 318 ms to snapshot). GRADE THE 2D ATMOSPHERE FIRST, then composite the GL render on top, which is also correct because three.js already applies ACES tone mapping to its own frame.",
+      "confidence": 0.95,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "A near-mirror PBR metal (metalness 0.9 to 1.0) renders BLACK when the scene has no bright environment, and AKT.environment's PMREM is expensive. For an editorial object hero on a dark ground, drop metalness to 0.3 to 0.55 and let the material read on DIRECT light instead of on reflections. Also place the key light LATERALLY, not overhead, or the vertical faces of an upright object take almost no diffuse and the whole silhouette goes to void.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "A continuity device that lives at hairline weight is a full-resolution grace note, not a filmstrip mechanism. Run 2026-07-29's hour rail was positionally flawless across all nine slides and perceptually invisible on the contact sheet, so the mono counter was doing all the progress work. The fix is AREA, not precision: fill the traversed portion of the device so the climb accumulates visible mass at 432px. Check every continuity device on the CONTACT SHEET before believing it works.",
+      "confidence": 0.88,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "Size every plate from the MEASURED string, never from a guessed constant. JetBrains Mono at 24px with 0.10em tracking advances exactly 16.8px per character, but the eye estimates about 14, and a plate hand-sized on that estimate loses roughly 3 characters per 20. Run 2026-07-29 shipped six labels hanging off their own knockouts through two full scoring cycles, including a chip border rule drawn through the 'T' of PERMITS, because every gate was blind to it. Compute plate width as 16.8 x charcount + 2 x padding, or measure with getComputedTextLength.",
+      "confidence": 0.95,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "A gate that inspects only DOM text cannot see SVG furniture at all, and SVG furniture is where this deck's annotation lives. There are THREE ways to bury an SVG label and the engine now checks all three: spilling past the rect painted under it, being covered by a rect appended after it (SVG has no z-index, only document order), and being composited under an opaque DOM block declared after the whole svg. Fixing the first two exposed the third within one render cycle, so treat this class as a family, never as a single bug.",
+      "confidence": 0.92,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "When a fix moves a block, re-check what the block USED to clear. Every regression in run 2026-07-29's repair pass was a knock-on: widening a chip pushed it into a legend, raising a plate cut the label above it, moving a source line landed it under the counter, and moving it again landed it on the self-audit annotation. Budget the whole column, not the one element, and re-run the gate after every single move rather than after a batch.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "Under a single strongly coloured key light, two materials separated only by HUE collapse into one material. Run 2026-07-29's hero column was steel below hour 7 and brass above, and under a 0xffb067 sodium key both read as the same amber extrusion, so the deck's wordless thesis did not render. Separate by VALUE and by a physical joint (a proud collar at the seam), not by hue, and verify at 432px before believing the encoding lands. Darkening the second material to force contrast made the whole frame muddier and had to be reverted.",
+      "confidence": 0.85,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
       ]
     }
   ]

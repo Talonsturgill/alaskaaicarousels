@@ -1,0 +1,38 @@
+{
+  "run_date": "2026-07-29",
+  "carousel_no": 19,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "in_progress",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "plan": "out/2026-07-29/plan.md",
+    "craft_refresh": "knowledge/FIELD_NOTES.md (2026-07-29 entry)",
+    "scout_merge": "out/2026-07-29/scout_merge.md",
+    "docket": "ledger/docket.json (3 items refreshed 2026-07-29)",
+    "claims": "out/2026-07-29/claims.json (30 claims, gate PASS)",
+    "selection": "out/2026-07-29/selection.md",
+    "storyboard": "out/2026-07-29/storyboard.md (9 dossiers + BUILD RECONCILIATION)",
+    "caption": "out/2026-07-29/caption.txt (PASS, 859 chars, hook 96)",
+    "copy": "out/2026-07-29/copy.json (copy_sync PASS, 118 strings)",
+    "slides": "out/2026-07-29/slides/slide-01..09.html",
+    "render": "out/2026-07-29/render (qa WARN, 0 fails, 1 warn)",
+    "final": "out/2026-07-29/final (vector pdf 3.77 MB, 9 thumbs, contact sheet)",
+    "score": "out/2026-07-29/score_report.json (6.90 of record, uncapped 8.33; hard fail fixed post-score)"
+  }
+}

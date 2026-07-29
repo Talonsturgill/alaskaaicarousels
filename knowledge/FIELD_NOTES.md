@@ -1544,3 +1544,79 @@ pipeline can see will be deferred forever, because by the time it is visible
 the run cannot afford it. Moving detection earlier is worth more than looking
 harder at the end. And when a defect recurs, suspect a rule that permits it
 before suspecting the people following the rule.
+
+## 2026-07-29 (No. 19) - Phase 1 craft refresh
+
+Timeboxed platform + craft scan. Four things are genuinely new against what
+CAROUSEL_CRAFT already carries.
+
+- SAVE WEIGHT IS NOW STATED RELATIVE TO COMMENTS, not just likes. Practitioner
+  syntheses of the 2026 ranking stack put a save at about 5x a like AND about
+  2x a comment, with saves and sends described as the strongest distribution
+  signals. We already build for saves; the new part is that a save now
+  outranks the comment we design the closing question to earn. Keep the
+  question (it is still the cheapest dwell extender) but the keepable slide is
+  the higher-value object, which is an argument for spending the deck's one
+  dense data slide well rather than trimming it.
+  https://www.socialpilot.co/blog/linkedin-algorithm
+- DWELL IS NOW REPORTED IN BANDS, and the spread is enormous. Posts at 61+
+  seconds of dwell are reported at 15.6 percent engagement against 1.2 percent
+  for 0 to 3 seconds. Roughly 70 percent of a post's total reach is described
+  as decided in the first 60 to 90 minutes. Both numbers are practitioner-tier,
+  not official, so they are (M) at best, but they sharpen the golden-hour
+  aftercare line we already print in every email from "reply fast" to "the
+  first 60 to 90 minutes decide most of it".
+  https://meet-lea.com/en/blog/linkedin-algorithm-explained
+- THE SLIDE-COUNT ADVICE HAS SPREAD OUT, and the conflict is unresolved.
+  Oktopost's 2026 carousel guide says 5 to 15 and argues shorter and tighter
+  wins; other 2026 syntheses say 9 to 12 is the sweet spot because dwell needs
+  length. Our 6 to 12 band with an 8 to 10 default sits inside both. NO CHANGE
+  to the doctrine, but stop treating any one practitioner number as settled.
+  Oktopost also lands on a 24 pt design-tool minimum, which is our 24 px
+  absolute floor by a different route, and repeats the 4:5 1080x1350 default.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- THE 2026 DESIGN TREND READING FAVORS WHAT WE ALREADY DO, which is worth
+  knowing mostly so we do not chase it. The trend writing converges on
+  texture, tactility, analog imperfection and layered depth, and away from
+  flat generated-looking infographics toward "designed, with a point of view".
+  That is the house position already (grain tiles, paper tooth, modeled tone,
+  the rendered ladder). The one actionable read is that MATERIAL texture is
+  currently a differentiator rather than a risk, which supports spending
+  density on the bottom third rather than economizing there.
+  https://www.creativebloq.com/design/graphic-design/texture-warmth-and-tactile-rebellion-the-big-graphic-design-trends-for-2026
+
+### 2026-07-29 (No. 19), the plates the machine could not see
+
+The scorer capped this run at 6.90 from an uncapped 8.33 on one hard fail, and
+the hard fail was arithmetic. JetBrains Mono at 24px with 0.10em tracking
+advances 16.8px per character. Every knockout plate and chip in the deck had
+been hand-sized at roughly 14. Six labels hung off their own plates across
+slides 04, 05 and 07, including a chip border rule drawn straight through the
+"T" of PERMITS, and one annotation sat entirely off its knockout.
+
+The reason it survived two full scoring cycles is the part worth keeping.
+render.py's overlap detector inspects DOM text line boxes. Every one of these
+defects was SVG text against an SVG rect, against canvas artwork, or under a
+DOM block, so machine_qa reported 0 fails while the deck was visibly broken.
+A gate that cannot see a whole layer will report that layer perfect forever.
+
+The engine now measures it. render.py reports every SVG text against the rect
+painted under it, against any opaque rect appended after it, and against any
+opaque DOM element composited above the svg (sampled with elementsFromPoint
+across the label's own box). qa.py fails all three. The checks were verified
+against a purpose-built ground-truth slide carrying one spill, one painted-over
+label and one correct control: both defects reported, control silent.
+
+Fixing the first two exposed the third inside one render cycle, and every
+repair produced a knock-on. Widening a chip pushed it into a legend. Raising a
+plate cut the label above it. Moving slide 03's source line off the counter
+landed it on the self-audit annotation. This is a family of bugs, not a bug,
+and the discipline is to re-run the gate after every single move.
+
+One craft finding did not resolve. The hero column encodes the thesis as a
+material change at hour 7, steel below and brass above, and under a single
+0xffb067 sodium key both materials read as one amber extrusion. Lifting the
+steel to 0xe8edf0 and adding a proud collar at the seam helped; darkening the
+brass to force contrast made the frame muddier and was reverted. Two materials
+separated only by hue collapse under a strongly coloured key. Separate by value
+and by a physical joint, and check it at 432px.
