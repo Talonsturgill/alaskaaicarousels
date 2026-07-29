@@ -2526,21 +2526,6 @@ def archive_page(today, site_url, runs):
                 crumbs=[("Alaska AI", ""), ("Articles", "archive/")])
 
 
-def sources_text(first_comment):
-    """The first_comment is written for LinkedIn: a 'Sources:' label up top
-    and a reply call-to-action at the bottom. On the site the H2 already says
-    Sources and there is nothing to reply to, so trim both."""
-    lines = [l.rstrip() for l in first_comment.strip().split("\n")]
-    if lines and lines[0].strip().lower().rstrip(":") == "sources":
-        lines = lines[1:]
-    while lines and "http" not in lines[-1]:
-        lines.pop()  # trailing CTA lines; every citation ends in its URL
-    while lines and not lines[0].strip():
-        lines = lines[1:]
-    # house style bans colons; give each citation's URL its own line instead
-    return "\n".join(lines).replace(": http", "\nhttp")
-
-
 CHEV_L = ('<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">'
           '<path d="M10.5 2.5 5 8l5.5 5.5" stroke="currentColor" stroke-width="1.8" '
           'stroke-linecap="round" stroke-linejoin="round"/></svg>')
@@ -2560,15 +2545,17 @@ def deck_page(today, site_url, r):
         f'alt="{esc(alts.get(i) or f"{deck_title}, slide {i} of {n_slides}")}"'
         + (' fetchpriority="high"' if i == 1 else ' loading="lazy"') + '>'
         for i in range(1, n_slides + 1))
-    srcs = esc(sources_text(r["first_comment"]))
     story = caption_paragraphs(r)
     story_html = (f'<h2 data-reveal>The story</h2>\n<div class="prose" data-reveal>{story}</div>'
                   if story else "")
-    article, _, article_text = article_html(r)
-    article_html_block = (
-        f'<h2 data-reveal>Slide by slide</h2>\n'
-        f'<p class="galhint">EVERY FIGURE LINKS TO THE DOCUMENT IT WAS VERIFIED AGAINST</p>\n'
-        f'<div class="prose article" data-reveal>{article}</div>' if article else "")
+    # The slide-by-slide retelling and the pasted sources block are both GONE
+    # from the page (maintainer, 2026-07-29). They crowded the article and both
+    # were redundant once "What we verified" existed, which already lists every
+    # claim with its outlet, its date, and a link to the document it was checked
+    # against. The article TEXT is still built, because it still feeds
+    # articleBody and the Markdown twin that answer engines read, it is simply
+    # no longer printed a second time on the page.
+    _, _, article_text = article_html(r)
     claims_block, n_claims = claims_html(r, site_url)
     claims_html_block = (
         f'<h2 data-reveal>What we verified</h2>\n'
@@ -2599,10 +2586,7 @@ def deck_page(today, site_url, r):
   <a class="cta ghost" href="../">EVERY DECK</a>
 </div>
 {story_html}
-{article_html_block}
-{claims_html_block}
-<h2 data-reveal>Sources</h2>
-<pre class="copy" data-reveal>{srcs}</pre>"""
+{claims_html_block}"""
     ld = {"@context": "https://schema.org", "@type": "NewsArticle",
           "headline": r["title"], "datePublished": r["date"],
           "dateModified": r["date"],
