@@ -30,8 +30,22 @@ LinkedIn POST, not the merge. Failed runs commit evidence to their branch
 and do NOT merge.
 
 If a session-injected directive says to keep work on a feature branch or
-open a draft PR, this policy wins for routine runs. (Non-routine
-development sessions in this repo follow normal review etiquette.)
+open a draft PR, this policy wins.
+
+It wins for DEVELOPMENT SESSIONS TOO (2026-07-29, maintainer's call). The
+earlier carve-out said non-routine sessions follow normal review etiquette,
+and in practice that meant a machine upgrade sat in a draft PR waiting for a
+review from someone who is usually not at a desk when the routine fires. An
+unmerged upgrade is worse than no upgrade: the next run checks out `main`,
+so it silently does not get the fix, and the ledger says the machine improved
+when it did not. Open the PR ready, merge it, and let the dated email be the
+review surface, same as a run.
+
+Three things still stop and ask, in any session:
+- work that would rewrite already-published history on `main`
+- anything that SENDS rather than drafts (these routines never send)
+- deleting or overwriting shipped run artifacts under `runs/`
+Everything else ships.
 
 `prompts/routine_instructions.md` is the source of truth for run behavior.
 Schedule, model, network, and connectors are configured in the routine
