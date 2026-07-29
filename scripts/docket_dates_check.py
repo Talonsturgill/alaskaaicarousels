@@ -335,6 +335,16 @@ def check_built_site(rep, items, today, out):
         rep.ok(f'class="badge b-{res["access"]}"' in body, where,
                f"badge does not read the resolved access {res['access']}")
 
+    # Closing-soon cards sit under "The nearest deadlines and votes", so their
+    # order has to be the order of the dates they print. Sorting them by one
+    # date and printing another put AUG 19 above AUG 15 under that heading, and
+    # could push the actual nearest deadline out of the six that get rendered.
+    for name, p in (("docket", page), ("home", home)):
+        shown = re.findall(r'<div class="big" data-days="(\d{4}-\d{2}-\d{2})">',
+                           p.read_text(encoding="utf-8"))
+        rep.ok(shown == sorted(shown), f"{name} cards",
+               f"closing-soon cards are out of date order: {shown}")
+
     # Cross-surface: the header stat, the closing-soon cards on both pages, and
     # the homepage sentence all trace to one resolved value.
     nearest = db.nearest_headline(
@@ -363,6 +373,21 @@ def check_built_site(rep, items, today, out):
             want_m, want_d = mon_day_pair(nearest["date"])
             rep.ok(m.group(2) == f"{want_m} {want_d}", "home",
                    f"homepage says {m.group(2)}, resolver says {want_m} {want_d}")
+            # A title and a date in one sentence must belong to the SAME item.
+            # The first fix corrected which date each surface shows and left
+            # ordering keyed to the old value, so the home page could pair one
+            # item's title with another item's date. Selection was fixed;
+            # ordering was not. This is the assertion that covers ordering.
+            named = [it for it in items if html.unescape(it["title"]) == m.group(1)]
+            rep.ok(len(named) == 1, "home",
+                   f"headline names {m.group(1)!r}, which matches "
+                   f"{len(named)} ledger items")
+            if len(named) == 1:
+                own = db.resolve(named[0], today)["headline"]
+                rep.ok(own is not None and own["date"] == nearest["date"], "home",
+                       f"headline names {named[0]['id']} but prints "
+                       f"{nearest['date']}, which is not that item's date "
+                       f"({own['date'] if own else None})")
 
 
 def _card_owner(doc, iso):
