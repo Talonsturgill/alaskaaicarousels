@@ -511,6 +511,26 @@ JSON in its final message, which YOU persist to
    newsrooms block every AI crawler and neither publishes a usable feed. If
    a change would make a deck page less legible to a crawler, or would put
    the story only inside the slide images again, it is the wrong change.
+
+   DECK PAGE COMPOSITION IS FIXED (maintainer, 2026-07-29). A deck page
+   carries exactly three sections under the hero, in this order: "The deck"
+   (the gallery), "The story" (the caption as prose), and "What we verified"
+   (the claims record). Nothing else. Two sections were deliberately REMOVED
+   and must never be reintroduced by any run or by Phase 12: a "Slide by
+   slide" retelling of the deck, and a pasted "Sources" block under the
+   verified record. Both crowded the page, and both were redundant, because
+   "What we verified" already prints every claim with its outlet, its date,
+   a PRIMARY or REPORT badge, and a link to the document it was checked
+   against. That IS the sources section.
+
+   This costs the crawler nothing, which is the only reason it was allowed.
+   The article text is still assembled every build, it simply is not printed
+   on the page a second time. It still feeds the JSON-LD `articleBody` and
+   `wordCount`, the citation list, and the Markdown twin at
+   archive/<date>/index.md, and every slide image still carries its own text
+   as alt text. The copywriter also still produces `first_comment` exactly as
+   before, because that is the sources comment the human pastes on LinkedIn.
+   Removing it from the PAGE changed nothing about the post.
    (it validates ledger/docket.json, reads runs/ for the archive, and
    refuses banned punctuation on every page; a FAIL here blocks the ship
    until fixed). Because the archive reads runs/, run it AFTER step 1
