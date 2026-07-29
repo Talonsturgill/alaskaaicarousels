@@ -1728,3 +1728,59 @@ honest deliverable to be a number handed to a critic rather than a threshold.
 
 Making it a real gate needs encoding declarations across the back catalogue so
 a threshold can be FITTED rather than guessed. That is a corpus exercise.
+
+### 2026-07-29 (No. 19), the corpus finally answers the artwork-craft question
+
+Artwork craft has been the weakest rubric criterion in 16 of the first 19 runs
+and three separate attempts have now been made to gate it. This one settles
+whether that is possible, with data rather than intuition, and the answer is no.
+
+scripts/craft_corpus.py derives per-slide labels from what the scorers actually
+wrote (tightened so that praise like "S6's hero RESOLVES the chronic flat-hero
+weakness" is not read as a defect, which the first derivation pass did), then
+computes nine objective image features over every shipped slide and asks
+whether any of them separates a slide scorers named from a slide they did not.
+
+  171 slides, 19 decks, 24 labelled bad, 147 not.
+
+  detail_ratio          AUC 0.653   deck rho  0.15
+  grad_energy           AUC 0.621   deck rho -0.18
+  modeled_bottom_ratio  AUC 0.611   deck rho -0.12
+  tonal_entropy         AUC 0.592
+  chroma_spread         AUC 0.572
+  flat_frac             AUC 0.544
+  hi_mass               AUC 0.531
+  modeled_frac          AUC 0.503
+  mid_contrast          AUC 0.500
+
+Null standard error at 24 against 147 is 0.064, so the best feature is 2.4
+standard errors out, and nine features were tried. Bonferroni corrected p is
+0.147. Leave-one-deck-out puts it between 0.619 and 0.701, so it is stable, and
+stably noise. Its correlation with the deck's own artwork-craft score is 0.15.
+
+AN OBJECTIVE ARTWORK-CRAFT GATE IS NOT SUPPORTABLE. Not "not yet", on this
+corpus. Three attempts, three refutations, each more decisive than the last:
+an absolute craft floor (2026-07-26, failed half of everything ever shipped),
+colour separability on a declared encoding (2026-07-29 morning, came out
+backwards on a known-bad against a known-good), and now nine features against
+the full labelled corpus.
+
+WHAT TO DO WITH THAT, because the answer is not to give up on the weakness.
+The failure is semantic. Run 19's hero measured 49 dE between its two declared
+materials and still read as one uniform amber extrusion, because what was
+wrong was proportion and context, not colour. No pixel statistic answers
+"does this shape read as part of that object". A competent viewer answers it
+instantly.
+
+So the declaration stays and the threshold goes to the reviewer who can
+actually judge it. Dossier field 11a states the wordless claim; the pixel
+critic now receives it and must return encoding_reads, at Phase 9, where there
+is still budget to rebuild art. That is the same lesson 2026-07-26 wrote down
+and did not fully apply: a defect only the LAST reviewer can see is deferred
+forever, so move detection earlier. Machine QA measures and informs; it does
+not decide.
+
+The generalisable rule for this machine: automate the GEOMETRIC defects, where
+a thing is somewhere it should not be and pixels answer directly, and route
+the SEMANTIC ones to a judge with the measurements in hand. Knowing which kind
+you have, before building, is worth more than the gate.
