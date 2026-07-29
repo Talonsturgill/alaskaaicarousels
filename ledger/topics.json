@@ -807,6 +807,65 @@
         "https://www.dwt.com/blogs/energy--environmental-law-blog/2026/06/alaska-data-center-development-next-steps"
       ],
       "outcome_notes": "Adjacent to No.10 (07-18) on the cost allocation gap; dedupe_check returned SOFT OVERLAP ONLY at jaccard 0.096. Deliberately does NOT re-litigate on grid vs off grid economics, and keeps STAK and the Mat-Su parcel in the docket rather than the deck."
+    },
+    {
+      "run_date": "2026-07-29",
+      "carousel_no": 19,
+      "topic": "Shinkei Systems puts its PSDN-S computer-vision harvesting robot on Cook Inlet salmon boats during the 2026 sockeye season, automating the Japanese ike jime technique in 6.5 seconds or less per fish",
+      "angle": "The machine does not make a better fish, it manufactures TIME (about 7 hours of rigor becomes up to 60 by the company's own figure), and every asset built out of those hours is held outside Alaska (the Seremoni Grade brand, a 16,000 sq ft Tacoma plant, the NERA freshness dataset, an El Segundo HQ). Deliberately NOT a grievance: the machines go on the boats free and the company splits proceeds variably with fishermen, which the deck states at full weight on slide 06. Thesis 'somebody else owns the clock'. Also an evidence deck, since every performance number in the story is a vendor number and slide 04 says so.",
+      "entities": [
+        "Shinkei Systems",
+        "PSDN-S",
+        "Poseidon",
+        "Seremoni Grade",
+        "NERA",
+        "Saif Khawaja",
+        "Waiman Meinhold",
+        "Cook Inlet",
+        "Upper Cook Inlet",
+        "sockeye salmon",
+        "ike jime",
+        "Tacoma",
+        "FATHOM Seafood",
+        "El Segundo",
+        "Alaska Department of Fish and Game",
+        "NOAA Fisheries",
+        "IntraFish",
+        "Founders Fund",
+        "Interlagos"
+      ],
+      "keywords": [
+        "robot",
+        "robotics",
+        "computer vision",
+        "harvest",
+        "kill",
+        "ike jime",
+        "shelf life",
+        "rigor mortis",
+        "salmon",
+        "sockeye",
+        "drift gillnet",
+        "set gillnet",
+        "limited entry permit",
+        "ex-vessel price",
+        "premium",
+        "brand",
+        "processing plant",
+        "proprietary dataset",
+        "value capture",
+        "vendor figures",
+        "unaudited",
+        "fisheries"
+      ],
+      "headline": "Not a better fish. More hours.",
+      "sources_lead": [
+        "https://www.intrafish.com/salmon/shinkei-rolls-out-robot-harvested-alaska-salmon/2-1-2019898",
+        "https://www.linkedin.com/posts/shinkeisystems_meet-psdn-s-shinkeis-newest-harvesting-activity-7485731065567981568-f_mm",
+        "https://shinkei.systems/",
+        "https://www.adfg.alaska.gov/index.cfm?adfg=commercialbyareauci.main"
+      ],
+      "outcome_notes": ""
     }
   ]
 }

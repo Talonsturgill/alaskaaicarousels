@@ -1,0 +1,64 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 74% of this slide's own average craft density (top 20% / mid 35% / bottom 18% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "busy art under text (bg edge density 0.06) beneath 'Khawaja, via FISHBIO' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'SOURCE, SHINKEI' at 160,1272 252x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'PAYWALLED, 29 JUL' at 648,1248 286x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ONE LIT. NO COUNT.' at 710,488 302x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'SAIF KHAWAJA, SHINKEI' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath 'KHAWAJA, ON THE SPLIT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": []
+    }
+  ],
+  "fails": 0,
+  "warns": 7,
+  "verdict": "WARN"
+}

@@ -1,0 +1,252 @@
+{
+  "run_date": "2026-07-29",
+  "document_title": "The Machine Makes Time. Who Owns the Clock?",
+  "post_copy": "On a Cook Inlet salmon boat this month, a sockeye enters a steel box on deck and leaves it iced.\n\nComputer vision picks the fish and the path. Brain spiked, gills cut, iced, 6.5 seconds or less by Shinkei's count.\n\nUpper Cook Inlet holds more than 1,300 drift and set gillnet permits, and sockeye carries the value there. Boats in that fleet now carry the machine. It goes aboard free. The catch reportedly sells at a premium. That deal is fair.\n\nA suffocated salmon stiffens in about 7 hours. Shinkei says its process stretches that to 60. Those hours become a brand, Seremoni Grade, a 16,000 square foot plant in Tacoma, and NERA, the firm's own system rating how many days a fish can be sold. Headquarters is El Segundo.\n\nAlaska holds the fish, the water and the crews. Who gets to decide where the clock is owned?\n\n#CookInletSalmon #IkeJime #AlaskaSeafood",
+  "hook_chars": 96,
+  "total_chars": 859,
+  "hashtags": [
+    "#CookInletSalmon",
+    "#IkeJime",
+    "#AlaskaSeafood"
+  ],
+  "first_comment": "Sources, primary first\n\nShinkei Systems, company LinkedIn post announcing PSDN-S for Alaska's wild salmon industry, 23 July 2026 (primary) https://www.linkedin.com/posts/shinkeisystems_meet-psdn-s-shinkeis-newest-harvesting-activity-7485731065567981568-f_mm\nShinkei Systems, company site, read 29 July 2026 (primary) https://shinkei.systems/\nAlaska Department of Fish and Game, Upper Cook Inlet commercial fisheries, read 29 July 2026 (primary) https://www.adfg.alaska.gov/index.cfm?adfg=commercialbyareauci.main\nAlaska Department of Fish and Game, 2025 commercial salmon season summary, 4 November 2025 (primary) https://www.adfg.alaska.gov/index.cfm?adfg=pressreleases.pr&release=2025_11_04\nNOAA Fisheries, Cook Inlet EEZ salmon management, updated 10 July 2026 (primary) https://www.fisheries.noaa.gov/alaska/commercial-fishing/salmon-management-federal-waters-cook-inlet-cook-inlet-eez\nIntraFish, \"Shinkei rolls out robot-harvested Alaska salmon\", 22 July 2026 (body paywalled, this deck cites only the headline, subhead, dateline and photo caption) https://www.intrafish.com/salmon/shinkei-rolls-out-robot-harvested-alaska-salmon/2-1-2019898\nFISHBIO, republication of the IntraFish report, 23 July 2026 https://fishbio.com/news/shinkei-rolls-out-robot-harvested-alaska-salmon/\nNational Fisherman, \"Robots on Deck\", Paul Molyneaux, 6 August 2025 https://www.nationalfisherman.com/robots-on-deck\nThe Spoon, Michael Wolf on Shinkei's robotics and the shelf-life claim, 18 December 2025 https://thespoon.tech/shinkei-hopes-bringing-robotics-ai-to-the-fishing-boat-leads-to-fresher-fish-and-less-waste/\nSalmonBusiness, on the Tacoma processing plant, 13 March 2026 https://www.salmonbusiness.com/robot-powered-seafood-firm-shinkei-expands-with-us-west-coast-processing-facility/\nRobotics and Automation News, on the Tacoma plant and NERA, 11 March 2026 https://roboticsandautomationnews.com/2026/03/11/robotic-seafood-company-shinkei-systems-acquires-first-processing-plant-to-scale-nationwide/99505/\nLos Angeles Times via AOL, Piper Heath, 29 July 2025 https://www.aol.com/news/robot-uses-japanese-tradition-ai-100000819.html\nDeckboss, Wesley Loy on the 2025 Upper Cook Inlet sockeye value, an estimate, 24 October 2025 https://deckboss.blogspot.com/2025/10/impressive-numbers-for-cook-inlet_02076007099.html\n\nEvery decision on this beat, with live deadlines, is tracked at alaskaaihq.com\nIf you fish Upper Cook Inlet or you have run one of these boxes, add what this deck is missing and I will read every reply.",
+  "caption_meta": {
+    "opening_move": "SCENE",
+    "structure": "ZOOM",
+    "closing_move": "who-decides"
+  },
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "A robot now kills Cook Inlet sockeye",
+      "headline": "Not a better fish. More hours.",
+      "body": "",
+      "labels": [
+        "Not abetter fish.More hours."
+      ],
+      "claim_ids": [
+        "C04",
+        "C10",
+        "C14"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "What PSDN-S does on deck",
+      "headline": "Scan. Spike. Cut. Ice. Six and a half seconds.",
+      "body": "Computer vision picks the fish and the path. A spike to the hindbrain, a cut at the gills, then into slush ice.",
+      "labels": [
+        "6.5 s OR LESS",
+        "TOTAL, NOT PER STEP",
+        "HINDBRAIN",
+        "01 SCAN",
+        "02 SPIKE",
+        "03 CUT",
+        "04 ICE",
+        "Computer vision picks the fish and the path. A spike to the hindbrain, a cut at",
+        "\"We're basically doing the equivalent of surgery on these fish in a very difficu",
+        "Khawaja, via FISHBIO"
+      ],
+      "claim_ids": [
+        "C04",
+        "C05",
+        "C09",
+        "C10",
+        "C12",
+        "C13",
+        "C30"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "Rigor mortis, hours after death",
+      "headline": "Seven hours becomes sixty. That gap is the product.",
+      "body": "A suffocated salmon stiffens in about seven hours. Shinkei says its process pushes that to sixty. Same fish. The only thing added is time, and it is added on an Alaska deck.",
+      "labels": [
+        "VENDOR",
+        "60 h CLAIMED",
+        "53 h",
+        "MANUFACTURED",
+        "07 h NATURAL",
+        "6.5 s = 0.03 PX HERE.",
+        "DRAWN 49x TOO THICK.",
+        "1 HOUR = 14 PX",
+        "SOURCE, SHINKEI",
+        "A suffocated salmon stiffens in about seven hours. Shinkei says its process push"
+      ],
+      "claim_ids": [
+        "C03",
+        "C10",
+        "C14",
+        "C21"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "Who measured it",
+      "headline": "Every one of those numbers is the company's own.",
+      "body": "None of it has been tested by anyone outside Shinkei. That does not make it false. It makes it unaudited, which is a different thing.",
+      "labels": [
+        "VENDOR",
+        "THE COMPANY",
+        "SAYS SO",
+        "AGENCY",
+        "A PUBLIC BODY",
+        "PUBLISHED IT",
+        "TRADE, HEDGED",
+        "REPORTED,",
+        "NOT FILED",
+        "6.5 SECONDS",
+        "7 h TO 60 h",
+        "SHELF LIFE 3x",
+        "70% QUALITY LOST",
+        "ONE PER TWO WEEKS",
+        "ALL SHINKEI FIGURES",
+        "3x AND 7 h TO 60 h ARE",
+        "DIFFERENT MEASURES, NOT ONE.",
+        "INTRAFISH BODY",
+        "PAYWALLED, 29 JUL",
+        "None of it has been tested by anyone outside Shinkei. That does not make it fals"
+      ],
+      "claim_ids": [
+        "C01",
+        "C10",
+        "C11",
+        "C12",
+        "C14",
+        "C21"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "What is actually public",
+      "headline": "More than 1,300 permits. A handful of boats.",
+      "body": "What is not public is how many of these boats are running the robot this season.",
+      "labels": [
+        "1,300+ PERMITS, ADF&G",
+        "ABOUT 10% OF ALASKA",
+        "SOCKEYE CARRIES VALUE",
+        "2025 STATEWIDE $541M",
+        "2025 UCI EST $1.73/lb",
+        "ONE LIT. NO COUNT.",
+        "1,300 MARKS, ONE PER PERMIT"
+      ],
+      "claim_ids": [
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C27"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "What the fisherman pays",
+      "headline": "The machine is free. The split is not disclosed.",
+      "body": "Nobody here is being fleeced. What is not on the record anywhere is the share, and a share you cannot see is hard to bargain over.",
+      "labels": [
+        "NOT DISCLOSED",
+        "THE SPLIT",
+        "REPORTEDLY A PREMIUM,",
+        "AMOUNT UNDISCLOSED.",
+        "SAIF KHAWAJA, SHINKEI",
+        "KHAWAJA, ON THE SPLIT",
+        "\"We own the machines and put them on the boats for free.\"",
+        "\"We split it variably with the fishermen we work with.\"",
+        "Nobody here is being fleeced. What is not on the record anywhere is the share, a"
+      ],
+      "claim_ids": [
+        "C06",
+        "C07",
+        "C29"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "What gets built on the hours",
+      "headline": "The fish stays Alaskan. The asset does not.",
+      "body": "Khawaja says the company handles and markets the fish under its own brand. The hours are made on an Alaska deck.",
+      "labels": [
+        "A",
+        "STAYS IN ALASKA",
+        "THE FISH",
+        "THE WATER",
+        "THE BOAT AND THE CREW",
+        "GOES SOUTH",
+        "THE BRAND",
+        "SEREMONI GRADE",
+        "THE PLANT",
+        "16,000 SQ FT, TACOMA",
+        "THE DATASET",
+        "NERA, PROPRIETARY",
+        "THE COMPANY",
+        "EL SEGUNDO, CALIFORNIA",
+        "SOURCES AK, WA, CA",
+        "SERIES A, $22M",
+        "ONE MACHINE PER 2 WKS",
+        "THIS IS A LIST, NOT A",
+        "SCORE. THE PERMIT HOLDER",
+        "OWNS BOAT AND CATCH.",
+        "Khawaja says the company handles and markets the fish under its own brand. The h"
+      ],
+      "claim_ids": [
+        "C08",
+        "C11",
+        "C15",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C21"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "Checked 29 July 2026",
+      "headline": "None of it is on a shelf yet.",
+      "body": "IntraFish says the retail rollout is expected this summer. On the day this deck was built, the brand's own species list ran to six fish and none of them was salmon.",
+      "labels": [
+        "SOURCED",
+        "SHINKEI, OWN POST",
+        "23 JUL 2026, PRIMARY",
+        "NOT READ",
+        "INTRAFISH BODY,",
+        "PAYWALLED, 22 JUL 2026",
+        "SPECIES LIST CARRIED",
+        "NO SALMON",
+        "CHECKED 29 JUL 2026",
+        "THE SHELF IS EMPTY.",
+        "THE HOURS ARE OWNED.",
+        "IntraFish says the retail rollout is expected this summer. On the day this deck",
+        "Khawaja, LA Times",
+        "\"My end goal is that you're walking into your local grocery store and can buy fi"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C21",
+        "C22"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "When the value moves from the fish to the clock, who should own the clock?",
+      "body": "",
+      "labels": [
+        "One answer in the comments.",
+        "alaskaaihq.com",
+        "SOURCES IN COMMENTS"
+      ],
+      "claim_ids": []
+    }
+  ],
+  "aftercare": [
+    "Post Tuesday through Thursday, 8 to 11am Alaska time. If this morning's window closes, hold for the next morning rather than posting into the afternoon.",
+    "Upload the PDF as a document post and set the document title to The Machine Makes Time. Who Owns the Clock? exactly. LinkedIn will not let you change it after publishing.",
+    "Paste the first-comment source block within 60 seconds of publishing, then reload and confirm every URL rendered as visible full text.",
+    "Reply substantively to every comment in the first 90 minutes. Threaded author replies are the largest reach lever available and a dead first hour is rarely recovered.",
+    "If a permit holder, a processor or a Shinkei employee corrects the split, the boat count or the premium, thank them, ask one follow-up, and send the correction back into the run notes. Do not argue the thesis in the thread.",
+    "At 48 hours log saves and comments against the trailing median, weighting saves over comments over shares over likes."
+  ]
+}
