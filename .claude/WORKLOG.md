@@ -60,7 +60,26 @@ roughly 60 percent of the job was already done.
 | A | per-decision pages | DONE |
 | B | dataset contract + /data/ | DONE |
 | C | rich Dataset/entity JSON-LD | DONE |
-| D | /questions/ FAQ layer | TODO |
-| E | decider hubs | TODO |
-| F | citation + license | TODO |
+| D | /questions/ FAQ layer | DONE |
+| E | decider hubs | DROPPED, see note |
+| F | citation + license | DONE |
 | G | extend docket_dates_check to new pages | DONE |
+
+## Note on slice E (decider hubs), dropped deliberately
+
+The plan assumed Alaska DNR decided 4 of 9 items. It does not: as exact
+decider strings all nine are DISTINCT, and DNR only recurs as a substring
+across three. Nine hub pages would have been nine near-empty pages, which is
+thin-content padding, not authority. Folded the real question ("who decides
+whether AI data centers get built in Alaska") into the answer layer as one
+generated, sourced answer listing every deciding body with its decisions.
+Revisit per-decider hubs only if a single body accumulates several decisions.
+
+## Remaining ideas, not built (for a later session)
+
+- Outcome tracking: what the decision actually DID, once it lands. The single
+  most mission-aligned next feature.
+- A guided public-comment helper (scaffold the reader's own comment, never a
+  canned position).
+- Submit the dataset to open-data catalogues now that it has a licence, a
+  version and documented fields.

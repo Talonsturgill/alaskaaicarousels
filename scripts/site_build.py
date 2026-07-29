@@ -2978,6 +2978,165 @@ JSON</a>, item id <code>{esc(it["id"])}</code>.</p>
                         (it["title"], f"docket/{it['id']}/")])
 
 
+def docket_answers(today, site_url, items):
+    """The questions people actually ask about this beat, answered from the
+    ledger rather than written by hand.
+
+    Every answer is GENERATED from verified docket data, so it cannot go stale
+    and cannot contain a fact the record does not carry. Each returns
+    (question, plain-text answer for structured data, html answer). Deadlines
+    come from db.resolve(), never recomputed, so this page cannot disagree with
+    the docket or a decision page."""
+    out = []
+    live = [it for it in items
+            if it["status"] in ("open-for-comment", "pending-decision", "watching")]
+
+    def link(it):
+        return (f'<a class="proselink" href="../docket/{esc(it["id"])}/">'
+                f'{esc(it["title"])}</a>')
+
+    # 1. The one question this publication exists to answer.
+    openers = [(it, db.resolve(it, today)) for it in items]
+    openers = [(it, r) for it, r in openers if r["cta"]]
+    if openers:
+        rows = "".join(
+            f'<li><p>{link(it)} {db.chip_html(r)}</p>'
+            f'<p class="sub">{esc(it["access_note"])}</p>'
+            f'<p><a class="proselink" href="{esc(it["sources"][0]["url"])}" '
+            f'rel="noopener">Comment on the record</a></p></li>'
+            for it, r in openers)
+        plain = ("; ".join(
+            f'{it["title"]}, decided by {it["decider"]}'
+            + (f', comment closes {pretty_date(r["deadline"]["date"])}'
+               if r["deadline"] else ", no published close date")
+            for it, r in openers)) + "."
+        out.append((
+            "Which Alaska AI infrastructure decisions can the public comment on right now?",
+            f"{len(openers)} of the {len(items)} decisions Alaska AI tracks has a formal "
+            f"public comment path open today. {plain}",
+            f'<ol class="claims">{rows}</ol>'))
+    else:
+        out.append((
+            "Which Alaska AI infrastructure decisions can the public comment on right now?",
+            f"None of the {len(items)} decisions Alaska AI tracks has a formal public "
+            f"comment window open today. Windows open and close often, so the docket is "
+            f"the live answer.",
+            '<p class="prose">No formal public comment window is open today. The '
+            '<a class="proselink" href="../docket/">docket</a> is the live answer.</p>'))
+
+    # 2. Who holds the power. One page instead of nine near-empty hub pages,
+    #    because every decider on this beat is currently distinct.
+    deciders = {}
+    for it in items:
+        deciders.setdefault(it["decider"], []).append(it)
+    drows = "".join(
+        f'<li><p><strong>{esc(d)}</strong></p><p class="sub">'
+        + " &middot; ".join(link(i) for i in its) + "</p></li>"
+        for d, its in sorted(deciders.items(), key=lambda kv: (-len(kv[1]), kv[0])))
+    out.append((
+        "Who decides whether AI data centers get built in Alaska?",
+        ("No single body does. Across the decisions Alaska AI tracks, the deciders are "
+         + "; ".join(sorted(deciders)) + "."),
+        f'<p class="prose">No single body does, which is most of why this is hard to '
+        f'follow. Across the {len(items)} tracked decisions the deciders are these.</p>'
+        f'<ol class="claims">{drows}</ol>'))
+
+    # 3. The question a search engine gets asked constantly.
+    dc = [it for it in items
+          if "data cent" in (it["title"] + " " + it["summary"]).lower()]
+    if dc:
+        rows = "".join(
+            f'<li><p>{link(it)}</p><p class="sub">'
+            f'{esc(db.STATUS_LABEL[db.resolve(it, today)["status"]])} &middot; '
+            f'{esc(it["decider"])}</p></li>' for it in dc)
+        out.append((
+            "Are AI data centers being built in Alaska?",
+            (f"Alaska AI tracks {len(dc)} live decisions that would enable AI or cloud "
+             f"data centers in Alaska, covering state land, federal land, utility "
+             f"supply and legislation. Each is a decision in progress rather than a "
+             f"finished project, and each is listed with its deciding body, its dates "
+             f"and a fetched source."),
+            f'<p class="prose">{len(dc)} of the tracked decisions would enable AI or '
+            f'cloud data centers, on state land, federal land, in utility supply or in '
+            f'statute. These are decisions in progress, not finished projects.</p>'
+            f'<ol class="claims">{rows}</ol>'))
+
+    # 4. Geography, straight off the records.
+    places = sorted({(it.get("location") or {}).get("name") for it in items
+                     if (it.get("location") or {}).get("name")})
+    if places:
+        out.append((
+            "Where in Alaska is AI infrastructure being proposed?",
+            "The tracked decisions sit at " + "; ".join(places) + ".",
+            '<p class="prose">The tracked decisions sit at these places. The '
+            '<a class="proselink" href="../docket/">docket map</a> shows them '
+            'against the transmission grid, the generating fleet and the pipeline.</p>'
+            '<ol class="claims">'
+            + "".join(f'<li><p>{esc(p)}</p></li>' for p in places) + '</ol>'))
+
+    # 5. Why the record is worth quoting, stated with numbers rather than adjectives.
+    n_src = len({s["url"] for it in items for s in it.get("sources", [])})
+    n_hist = sum(len(it.get("history", [])) for it in items)
+    out.append((
+        "How reliable is the Alaska AI Docket, and can I reuse it?",
+        (f"Every fact carries the document it was checked against. The docket holds "
+         f"{len(items)} decisions resting on {n_src} source documents, with {n_hist} "
+         f"dated change notes recording how each decision moved. An autonomous daily "
+         f"routine re-fetches a primary source for any decision whose dates are near "
+         f"or past. It is open data under {DATA_LICENSE_LABEL}, so it may be reused "
+         f"and quoted with attribution to Alaska AI and a link."),
+        f'<p class="prose">Every fact carries the document it was checked against. '
+        f'{len(items)} decisions rest on {n_src} source documents, with {n_hist} dated '
+        f'change notes recording how each one moved, and a daily routine re-fetches a '
+        f'primary source whenever a date comes near. Nothing enters on rumour, and what '
+        f'cannot be verified is dropped rather than published softly. It is open data '
+        f'under {DATA_LICENSE_LABEL}. See <a class="proselink" href="../data/">the '
+        f'data</a> for the schema and the licence, and <a class="proselink" '
+        f'href="../sources/">the source archive</a> for every document.</p>'))
+    return out
+
+
+def questions_page(today, site_url, docket):
+    """The answer layer. Answer engines quote direct answers to real questions,
+    and this is the page that gives them sourced ones."""
+    items = docket[0]
+    qa = docket_answers(today, site_url, items)
+    blocks = "".join(
+        f'<h2 data-reveal>{esc(q)}</h2><div data-reveal>{h}</div>' for q, _, h in qa)
+    body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+<div class="chip kind">ANSWERS FROM THE RECORD</div>
+<h1 style="font-size:clamp(32px,4.8vw,56px);margin-top:14px">Questions</h1>
+<p class="tag">The questions people ask about AI infrastructure in Alaska, answered
+from the tracked record rather than from opinion. Every answer here is generated
+from the docket, so it is current as of {esc(pretty_date(today.isoformat()))} and
+carries the same sources the decisions do.</p>
+<div class="ctarow">
+  <a class="cta gold" href="../docket/">THE DOCKET</a>
+  <a class="cta ghost" href="../data/">THE DATA</a>
+</div>
+</div>
+{blocks}"""
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "url": f"{site_url}/questions/",
+        "dateModified": today.isoformat(),
+        "publisher": {"@id": org_id(site_url)},
+        "isPartOf": {"@id": f"{site_url}/docket/#dataset"},
+        "license": DATA_LICENSE,
+        "inLanguage": "en-US",
+        "mainEntity": [{"@type": "Question", "name": q,
+                        "acceptedAnswer": {"@type": "Answer", "text": a}}
+                       for q, a, _ in qa],
+    }
+    return page("Questions - AI infrastructure in Alaska, answered from the record",
+                "Who decides whether AI data centers get built in Alaska, which "
+                "comment windows are open, and where the projects are. Answered from "
+                "a sourced daily record.",
+                body, "../", "docket", today, site_url, "questions/", ld=ld,
+                crumbs=[("Alaska AI", ""), ("Questions", "questions/")])
+
+
 def data_page(today, site_url, docket, runs):
     """The open-data page. Documents the contract, states the license, and shows
     a consumer how to read the docket in one fetch.
@@ -4517,7 +4676,7 @@ def sitemap(site_url, runs, today, decisions=None):
     for it in (decisions or []):
         entries.append(f"<url><loc>{site_url}/docket/{it['id']}/</loc>"
                        f"<lastmod>{it['last_updated']}</lastmod></url>")
-    for u in ("data/",):
+    for u in ("data/", "questions/"):
         entries.append(f"<url><loc>{site_url}/{u}</loc><lastmod>{iso}</lastmod></url>")
     return ('<?xml version="1.0" encoding="UTF-8"?>'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
@@ -4586,6 +4745,7 @@ def build(today, out_dir, site_url=None, domain=""):
     # specific decision has a URL, a title and a lastmod for THAT decision
     # rather than an anchor on a shared page.
     pages["data/index.html"] = data_page(today, site_url, docket, runs)
+    pages["questions/index.html"] = questions_page(today, site_url, docket)
     for _it in docket[0]:
         pages[f"docket/{_it['id']}/index.html"] = decision_page(
             today, site_url, _it, runs)

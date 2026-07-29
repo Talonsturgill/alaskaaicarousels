@@ -389,6 +389,26 @@ def check_built_site(rep, items, today, out):
             rep.ok(ev is None, where,
                    "publishes an open comment Event the resolver does not support")
 
+    # The questions page renders a resolved deadline chip for every open window,
+    # so it is a date surface too and gets the same treatment. Any chip it shows
+    # must belong to an item the resolver says is genuinely open, and carry that
+    # item's resolved headline date.
+    qp = out / "questions" / "index.html"
+    if qp.exists():
+        qbody = qp.read_text(encoding="utf-8")
+        open_ids = {i: db.resolve(it, today) for i, it in by_id.items()
+                    if db.resolve(it, today)["cta"]}
+        want_dates = {r["headline"]["date"] for r in open_ids.values() if r["headline"]}
+        for iso, prefix, shown in CHIP_RE.findall(qbody):
+            rep.ok(iso in want_dates, "questions page",
+                   f"chip shows {iso}, which is not the resolved headline of any "
+                   f"item the resolver reports as open ({sorted(want_dates)})")
+            rep.ok(shown == db.mon_day(iso), "questions page",
+                   f"chip text {shown} does not match its own date {iso}")
+        rep.ok(len(CHIP_RE.findall(qbody)) == len(want_dates), "questions page",
+               f"renders {len(CHIP_RE.findall(qbody))} date chips for "
+               f"{len(want_dates)} open window(s)")
+
     nearest = db.nearest_headline(
         [it for it in items
          if it["status"] in ("open-for-comment", "pending-decision", "watching")], today)
