@@ -548,7 +548,7 @@
       ],
       "verification": "Ground-truth slide built carrying one spill case, one painted-over case and one correctly plated control: both defects reported, control silent. Applied to the live deck it found all six known overruns, then found two further defects the repair itself introduced (slide 03's source line under the counter block, and the same line moved onto the self-audit annotation), each caught within one render cycle. Demo-deck regression: 4/4 render OK, 0 fails. Shipped run after repair: WARN, 0 fails, 1 composition warn.",
       "rollback": "Revert the out.svg_plates block in render.py's IN_PAGE_QA_JS, the 'svg_plates' key in render_slide's rec dict and page.evaluate copy list, and the 'svg label' block in qa.py's per-slide check loop.",
-      "commit": null
+      "commit": "76709a92244ff04ba36d082fcac9a1a7fbbe6d8d"
     },
     {
       "run_date": "2026-07-29",
@@ -561,7 +561,7 @@
       ],
       "verification": "Test slide plating the four exact strings that broke run 2026-07-29: 0 warns, 0 svg_plates findings. Negative control with a hand-sized rect on the same string still FAILS the gate. Two runtime font-readiness guards were written and BOTH REMOVED after measurement: document.fonts.status warned on 3 of 4 correct calls (it flips to 'loading' when any face begins fetching, including one the label just triggered) and document.fonts.check returned false for a loaded rendering face, warning on 4 of 4. A guard that cannot tell correct usage from incorrect usage only teaches authors to ignore QA warnings; the qa.py gate measures the shipped pixels and is the real protection. Demo-deck regression after the change: 4/4 render OK, 0 fails.",
       "rollback": "Remove the svgPlate/svgPlateAll block and the two AK.* assignments at the end of assets/js/aktype.js. No slide in the shipped corpus calls it yet, so removal is inert.",
-      "commit": null
+      "commit": "76709a92244ff04ba36d082fcac9a1a7fbbe6d8d"
     },
     {
       "run_date": "2026-07-29",
@@ -574,7 +574,7 @@
       ],
       "verification": "On run 2026-07-29's storyboard the gate now reads 547 to 660 characters per field where it previously read 46 to 148, and still returns PASS, 9 dossiers, 0 fails, 0 warns. Slide 03's first line is 46 characters against a whole field of 547, so the old code was grading a twelfth of the plan.",
       "rollback": "Revert scripts/dossier_check.py to the single-return field_4a and the 25-character floor.",
-      "commit": null
+      "commit": "76709a92244ff04ba36d082fcac9a1a7fbbe6d8d"
     },
     {
       "run_date": "2026-07-29",
@@ -588,7 +588,7 @@
       ],
       "verification": "Showrunner (in run, Phase 9): verified against a purpose-built ground-truth slide carrying one spill case, one painted-over case and one correct control; both defects were reported and the control stayed silent. Upgrade-engineer (independent, after the fact): an unrelated reconstruction of the run's own defect, three chips hand-sized at roughly 14px per character carrying the shipped strings at JetBrains Mono 24px / 0.10em, FAILs at qa exit 1 with 'svg label off its plate' at 80px, 53px and 67px of spill, while a fourth chip in the SAME slide hand-sized correctly at 415px stays silent, so the gate discriminates the arithmetic rather than the shape. Confirmed by eye at full resolution: the chip rule runs through the 'M' of PERMITS and 'WKS' hangs off the plate, the shipped defect exactly. Regression: this run's 9 slides re-render 9/9 OK, 0 errors, and qa.py returns verdict WARN, 0 fails, 1 warn, per-slide identical to the shipped machine_qa.json; examples/demo-deck renders 4/4 OK and qa returns 0 fails at exit 0 (its warn set gains one entry, 'Unalaska has an opaque DOM block over 100% of its width [decorative]', which is this gate correctly reporting a decorative label on the demo map and is a WARN, not a FAIL). No gate, threshold or hard-fail rule weakened: purely additive FAIL tiers. No new runtime dependency.",
       "rollback": "revert the upgrade(2026-07-29) commit (render.py loses out.svg_plates and qa.py loses the three svg_plate FAIL tiers; the SKILL.md slide-contract bullet goes with upgrade 2)",
-      "commit": null
+      "commit": "76709a92244ff04ba36d082fcac9a1a7fbbe6d8d"
     },
     {
       "run_date": "2026-07-29",
@@ -602,7 +602,7 @@
       ],
       "verification": "DEFECT RECONSTRUCTION, A/B on one pair of slides. Slide A reproduces the shipped defect with three chips whose widths are hand-typed at roughly 14px per character (320, 280, 300) carrying the run's own strings at JetBrains Mono 24px / 0.10em tracking, plus a CONTROL chip hand-sized correctly at 415px: render 2/2 OK, qa.py exit 1 with 3 FAILs, 'svg label off its plate: ABOUT 10% OF AK PERMITS spills right 80px', 'ONE MARK PER PERMIT spills right 53px', 'ONE MACHINE PER 2 WKS spills right 67px', and the control silent. Confirmed by eye at full resolution: the chip's border rule runs through the 'M' of PERMITS and 'WKS' hangs off entirely, which is the shipped defect. Slide B sets the SAME strings at the SAME type spec with every plate built by AK.svgPlate and no width typed anywhere: svg_plates is EMPTY, qa fails 0, including a right-anchored label (text-anchor=end) whose plate follows the anchor and a centred label with minWidth 460 that stays centred, both confirmed by eye. REGRESSION: out/2026-07-29/slides render 9/9 OK 0 errors and qa.py WARN, 0 fails, 1 warn, per-slide identical to the shipped machine_qa.json (all nine slides load aktype.js; the addition is inert until called). examples/demo-deck renders 4/4 OK, qa 0 fails, exit 0 (it does not load aktype.js at all, so it is untouched by this change). node --check clean. No gate, threshold or hard-fail rule weakened (this adds no gate, it removes a way to fail an existing one); no new runtime dependency, vanilla offline JS, about 110 lines; no shipped slide modified.",
       "rollback": "revert the upgrade(2026-07-29) commit (aktype.js loses AK.svgPlate/AK.svgPlateAll and SKILL.md loses the plate bullet; no slide depends on it yet, so nothing else changes)",
-      "commit": null
+      "commit": "76709a92244ff04ba36d082fcac9a1a7fbbe6d8d"
     },
     {
       "run_date": "2026-07-29",
@@ -615,7 +615,7 @@
       ],
       "verification": "FIVE-FIXTURE A/B against the pre-fix gate (git show HEAD:scripts/dossier_check.py), run side by side. Fixture 1, a lead-in first line with the modeled plan from line 2 onward: OLD FAILs it falsely ('names nothing with modeled tone -- The bottom band is composed, not left over.'), NEW passes, which is the authoring distortion removed. Fixture 2, a 46-character single-line gesture carrying one modeled word: OLD PASSES it, NEW FAILs 'too thin to be a plan (46 chars, floor 200)', which is the new catch. Fixture 3, flat furniture on every line: BOTH FAIL, and the new message names all eight furniture words across the field where the old one saw two. Fixture 4, no modeled tone anywhere with the word 'breather' buried on line 4: BOTH FAIL, and a counterfactual run of the same fixture with full-text hatch detection was measured to PASS, which is the loosening the first-line rule prevents. Fixture 5, a properly declared rest slide with its reason on line 1: BOTH pass. REAL DATA: out/2026-07-29/storyboard.md verdict PASS, 9 dossiers, 0 fails, 0 warns before and after, with the fields now read at 547 to 821 characters instead of 45 to 183, all comfortably clear of the 200 floor. gate_status.py's dossier_check row still reads PASS on the real run dir. ast.parse clean, read-only, stdlib only. No gate, threshold or hard-fail rule weakened: the length floor is raised 8x, the breather hatch is held to where it was, and every FAIL the old gate produced on a genuine defect is still produced. ENGINE RE-VERIFIED after the whole upgrade set: out/2026-07-29/slides 9/9 render OK and qa WARN 0 fails 1 warn (identical to shipped), examples/demo-deck 4/4 render OK and qa 0 fails exit 0.",
       "rollback": "revert the upgrade(2026-07-29) commit (dossier_check.py returns to reading field 4a's first line only, with a 25-character floor)",
-      "commit": null
+      "commit": "76709a92244ff04ba36d082fcac9a1a7fbbe6d8d"
     }
   ],
   "scan_log": [
