@@ -145,12 +145,21 @@ def lint(text, ledger_entries=None):
 def main():
     args = [a for a in sys.argv[1:]]
     ledger_entries = None
+    ledger_missing = None
     if "--ledger" in args:
         i = args.index("--ledger")
         ledger_path = Path(args[i + 1])
         del args[i:i + 2]
         if ledger_path.exists():
             ledger_entries = json.loads(ledger_path.read_text()).get("entries", [])
+        else:
+            # Explicitly asked to check variety against a ledger that is not
+            # there (a typo, or the documented relative path 'ledger/captions.json'
+            # run from any cwd but the repo root). Silently leaving the variety
+            # engine off and writing PASS is how a repeated caption opener ships.
+            # A check that cannot look is a FAIL, recorded in the report so the
+            # ship gate sees it too, not a stale pass.
+            ledger_missing = str(ledger_path)
     if args:
         src = Path(args[0])
         text = src.read_text()
@@ -159,6 +168,10 @@ def main():
         text = sys.stdin.read()
         out = Path("caption_report.json")
     rep = lint(text, ledger_entries)
+    if ledger_missing:
+        rep["fails"].append("VARIETY: --ledger %s not found, the caption variety "
+                            "check could not run, so this is not a pass" % ledger_missing)
+        rep["verdict"] = "FAIL"
     out.write_text(json.dumps(rep, indent=2))
     for f in rep["fails"]:
         print("FAIL:", f)

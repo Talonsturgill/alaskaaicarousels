@@ -150,7 +150,7 @@ def check(copy, render_report, window=WINDOW):
             if needle in blob or needle in deck:
                 continue
             misses.append((skey, path, s))
-    return checked, misses, set(per_slide.keys())
+    return checked, misses, set(per_slide.keys()), deck
 
 
 def main():
@@ -176,7 +176,18 @@ def main():
         print("copy_sync_check: copy.json has no 'slides' object", file=sys.stderr)
         return 2
 
-    checked, misses, rendered_keys = check(copy, rr, args.window)
+    checked, misses, rendered_keys, deck = check(copy, rr, args.window)
+
+    # Zero authored strings compared is not agreement, it is nothing to compare.
+    # An empty slides list, or slides under a key this reader does not know,
+    # normalizes to {} and the miss list is then trivially empty, which used to
+    # read as PASS. If the render carries text, the copy that produced it cannot
+    # legitimately have contributed nothing to check.
+    if checked == 0 and deck.strip():
+        print("copy_sync_check: FAIL -- copy.json contributed no slide strings to "
+              "compare, but the render carries text. The slides are empty or under "
+              "a key this check does not read.", file=sys.stderr)
+        return 1
 
     # Slides authored in copy but with no rendered counterpart are their own
     # (softer) signal; surface them but do not fail on them.

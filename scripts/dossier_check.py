@@ -41,14 +41,24 @@ from pathlib import Path
 
 # Field 4a satisfied only by naming something with modeled tone. Flat furniture
 # is the defect wearing a costume, so plates/rules/captions do not clear it.
+# Matched on WORD BOUNDARIES, not as substrings. Bare "ground" is deliberately
+# not a hint: "bare ground" and "the ground plane is left flat" describe the
+# empty lower band this gate exists to catch, and as a substring "ground" also
+# passed on "background". The modeled ways of treating the ground are named
+# explicitly (foreground, graded, relief, hillshade, terrain, contour,
+# topograph), so a real modeled ground still clears while an empty one does not.
+# Word boundaries also stop "lit" matching "quality"/"facility" and "3d"
+# matching an id.
 MODELED_HINTS = (
-    "anchor", "terrain", "ground", "gradient", "graded", "foreground",
+    "anchor", "terrain", "gradient", "graded", "foreground",
     "relief", "hillshade", "fog", "haze", "atmosphere", "shadow", "light",
     "lit", "texture", "grain", "stipple", "dither", "contour", "field",
     "particle", "mesh", "extrud", "depth", "render", "3d", "volumetric",
     "ramp", "wash", "glow", "mass", "silhouette", "topograph", "noise",
     "leader line", "annotation furniture", "scale bar", "tick",
 )
+_MODELED_RE = re.compile(
+    "|".join(r"(?<![a-z])" + re.escape(h) + r"(?![a-z])" for h in MODELED_HINTS))
 FLAT_ONLY = ("plate", "hairline", "rule", "caption", "footer", "fixture",
              "label", "counter", "chip")
 
@@ -136,7 +146,7 @@ def check_slide(no, heading, body, breather_attr):
             fails.append(
                 f"slide {no:02d}: field 4a is too thin to be a plan "
                 f"({len(low)} chars, floor {THIN_PLAN_CHARS}) -- {text!r}")
-        elif not any(h in low for h in MODELED_HINTS):
+        elif not _MODELED_RE.search(low):
             named_flat = [f for f in FLAT_ONLY if f in low]
             fails.append(
                 f"slide {no:02d}: field 4a names nothing with modeled tone"

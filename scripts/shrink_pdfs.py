@@ -132,6 +132,21 @@ def shrink(path: Path, dry: bool) -> dict:
         out["after"] = out["before"]
         return out
 
+    # A raster-fallback PDF carries its type baked into the page image, so
+    # page_text returns "" for every page and the identity check at the end
+    # compares [""] to [""] and always passes: it is blind to the headline type
+    # being resampled inside the DCTDecode art layer, protected only by a global
+    # PSNR average that under-reports exactly at text edges. Refuse rather than
+    # shrink behind a guarantee that does not hold. The master stays; an oversize
+    # raster PDF is the size gate's concern, not this one's. A vector PDF has
+    # real extractable text, so the identity check there is meaningful.
+    if not any(t.strip() for t in before_text):
+        pdf.close()
+        out["error"] = ("raster PDF, no text layer to verify type integrity; "
+                        "keeping the master rather than resampling type-bearing art")
+        out["after"] = out["before"]
+        return out
+
     for x in targets:
         try:
             raw = x.read_raw_bytes()
