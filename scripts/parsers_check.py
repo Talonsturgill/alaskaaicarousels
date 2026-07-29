@@ -43,11 +43,14 @@ CLAIM_SHAPES = {
                      "source_url": "https://a.test/x", "source_outlet": "RGA",
                      "source_is_primary": True, "date_of_source": "2026-07-23"}]},
         {"n": 1, "id": "C01", "outlet": "RGA", "primary": True, "date": "2026-07-23"}),
-    # 2026-07-10, text/source_date, no outlet
+    # 2026-07-10, text/source_date, no outlet field. With no outlet recorded,
+    # the outlet is derived from the source URL host rather than published as
+    # the literal word "source": a claim whose URL is right there is not
+    # uncredited. Only a claim with neither an outlet nor a URL stays blank.
     "text+source_date": (
         {"claims": [{"id": "c01", "text": "A thing is true", "source_url": "https://a.test/x",
                      "source_date": "2026-07-09", "credibility": "primary"}]},
-        {"n": 1, "id": "c01", "outlet": "", "primary": True, "date": "2026-07-09"}),
+        {"n": 1, "id": "c01", "outlet": "a.test", "primary": True, "date": "2026-07-09"}),
     # 2026-07-20, url/published/source_outlet
     "url+published": (
         {"claims": [{"id": "c1", "text": "A thing", "url": "https://a.test/x",

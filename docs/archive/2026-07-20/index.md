@@ -1,4 +1,4 @@
-# 2026-07-20
+# Written in Pencil
 
 > A Kenai school district bought an $8,300 AI tool for its classrooms, then started writing the rules to govern it.
 
@@ -33,11 +33,11 @@ Kenai aims to have its AI rules in place by the start of the new school year. It
 
 ## What we verified
 
-- The Alaska DEED district guidance lays out a 6-step policy development process. [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document, n/a.
-- The DEED guidance urges a balanced, human-centered approach that augments human capabilities without replacing essential judgment or interaction. [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document, n/a.
-- The DEED vetting checklist explicitly mandates federal student-privacy compliance (FERPA and COPPA). [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document, n/a.
-- The DEED guidance cites that approximately 15% of students are aware of AI-generated explicit images depicting their classmates (a cited rationale for guardrails). [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document, n/a.
-- DEED recommends allowing at least 6-8 weeks for a meaningful AI pilot evaluation. [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document, n/a.
+- The Alaska DEED district guidance lays out a 6-step policy development process. [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document.
+- The DEED guidance urges a balanced, human-centered approach that augments human capabilities without replacing essential judgment or interaction. [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document.
+- The DEED vetting checklist explicitly mandates federal student-privacy compliance (FERPA and COPPA). [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document.
+- The DEED guidance cites that approximately 15% of students are aware of AI-generated explicit images depicting their classmates (a cited rationale for guardrails). [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document.
+- DEED recommends allowing at least 6-8 weeks for a meaningful AI pilot evaluation. [Alaska DEED](https://education.alaska.gov/artificial-intelligence/district), primary document.
 - The Kenai Peninsula Borough School District is proposing comprehensive AI policies addressing academic honesty and student data protection. [KBBI/KDLL public radio](https://www.kbbi.org/2026-07-08/proposed-school-district-ai-policies-target-academic-honesty-student-privacy), report, 2026-07-08.
 - The Alaska DEED framework centers on seven guiding principles, human-centered design, fair access, transparency, oversight, security, ethical use, and cultural responsiveness. [EdTech Innovation Hub](https://www.edtechinnovationhub.com/news/alaska-becomes-32nd-us-state-to-release-k-12-ai-education-framework), report, 2025-10.
 - Alaska districts named as engaged in AI-policy work include Fairbanks, Mat-Su, Wrangell, and Anchorage. [EdTech Innovation Hub](https://www.edtechinnovationhub.com/news/alaska-becomes-32nd-us-state-to-release-k-12-ai-education-framework), report, 2025-10.
