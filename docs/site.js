@@ -3,20 +3,39 @@
   'use strict';
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* live countdowns: chips with data-date tick down to the start of that day */
+  /* live countdowns: chips with data-date tick down to the start of that day.
+     The dates are Alaska calendar dates (a public-comment deadline is an
+     Alaska/agency date), so the day boundary must flip at Alaska midnight, not
+     the viewer's. Parsing 'YYYY-MM-DDT00:00:00' used the viewer's local zone, so
+     a reader in Sydney saw "window passed" ~19h before the window actually
+     closed in Alaska. Compute both sides in Alaska wall-clock instead. */
   function pad(n){ return (n < 10 ? '0' : '') + n; }
+  var akFmt;
+  try { akFmt = new Intl.DateTimeFormat('en-US', {timeZone: 'America/Anchorage',
+    year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',
+    second:'2-digit',hour12:false}); } catch(e) { akFmt = null; }
+  /* "now" as an Alaska wall-clock instant, expressed via Date.UTC so both the
+     target midnight and now use the same fiction and subtract cleanly. Falls
+     back to plain local time where Intl lacks the zone (very old engines). */
+  function akNow(){
+    if (!akFmt) return Date.now();
+    var g = {}; akFmt.formatToParts(new Date()).forEach(function(p){ g[p.type] = p.value; });
+    var hh = g.hour === '24' ? 0 : +g.hour;
+    return Date.UTC(+g.year, +g.month - 1, +g.day, hh, +g.minute, +g.second);
+  }
   function tickChips(){
-    var now = new Date();
-    var mid = new Date(now); mid.setHours(0,0,0,0);
+    var now = akNow();
+    var mid = Date.UTC(new Date(now).getUTCFullYear(), new Date(now).getUTCMonth(), new Date(now).getUTCDate());
     document.querySelectorAll('[data-date]').forEach(function(el){
-      var d = new Date(el.getAttribute('data-date') + 'T00:00:00');
-      var days = Math.round((d - mid) / 86400000);
+      var p = el.getAttribute('data-date').split('-');
+      var target = Date.UTC(+p[0], +p[1] - 1, +p[2]);  /* Alaska midnight of that day */
+      var days = Math.round((target - mid) / 86400000);
       var t;
       if (days < 0) { t = 'window passed'; el.classList.remove('days'); el.style.color = '#8da2be'; }
       else if (days === 0) { t = 'TODAY'; }
-      else if (days > 14) { t = 'in ' + days + ' days'; }
+      else if (days > 14 || reduced) { t = 'in ' + days + (days === 1 ? ' day' : ' days'); }
       else {
-        var ms = d - now, hh = Math.floor(ms / 3600000) % 24,
+        var ms = target - now, hh = Math.floor(ms / 3600000) % 24,
             mm = Math.floor(ms / 60000) % 60, ss = Math.floor(ms / 1000) % 60,
             dd = Math.floor(ms / 86400000);
         t = 'in ' + dd + 'd ' + pad(hh) + 'h ' + pad(mm) + 'm ' + pad(ss) + 's';
@@ -25,7 +44,10 @@
     });
   }
   tickChips();
-  setInterval(tickChips, 1000);
+  /* WCAG 2.2.2: a per-second ticker is auto-updating info with no pause control,
+     so under prefers-reduced-motion show day granularity and refresh once a
+     minute instead of every second. */
+  setInterval(tickChips, reduced ? 60000 : 1000);
 
   /* sticky nav turns to glass once the page moves */
   var nav = document.querySelector('.topnav');
@@ -43,6 +65,11 @@
   } else {
     document.querySelectorAll('[data-reveal]').forEach(function(el){ el.classList.add('in'); });
   }
+  /* The reveal machinery is now wired, so cancel the inline failsafe. If this
+     script had failed to load or thrown before here, the timeout would fire and
+     reveal-fallback would show all [data-reveal] content, so a broken deploy
+     shows the whole page rather than only the hero over a blank body. */
+  clearTimeout(window.__revealFallback);
 
   /* stat numbers count up when they enter the viewport */
   function countUp(el){
