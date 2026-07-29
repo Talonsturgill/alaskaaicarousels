@@ -147,6 +147,8 @@ def llms_txt(site_url: str, runs: list, docket: dict | None = None,
         f"not help a business]({site_url}/scan/)",
         f"- [The Alaska AI Docket, every AI infrastructure decision in the state]"
         f"({site_url}/docket/)",
+        f"- [Questions, answered from the tracked record]({site_url}/questions/) "
+        f"which comment windows are open, who decides, where the projects are",
         f"- [Articles, one verified Alaska and AI story a day]({site_url}/archive/)",
         f"- [About Alaska AI]({site_url}/about/)",
         "",
