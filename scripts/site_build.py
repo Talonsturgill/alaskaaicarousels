@@ -2655,15 +2655,7 @@ INDIRECT when an elected or member-accountable body decides, CLOSED when the eva
 {subscribe_html()}
 <div class="about-line" data-reveal><p>All sources verified against claims.
 The data behind this page is public at <a href="../docket.json" style="color:var(--blue);text-decoration:none">docket.json</a>.</p></div>"""
-    ld = {"@context": "https://schema.org", "@type": "Dataset",
-          "name": "The Alaska AI Docket",
-          "description": "Every AI infrastructure decision in Alaska. Land leases, comment "
-                         "windows, utility votes and legislation, with deciders, deadlines "
-                         "and public access, sourced and updated daily.",
-          "url": f"{site_url}/docket/", "dateModified": today.isoformat(),
-          "creator": {"@id": org_id(site_url)},
-          "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json",
-                            "contentUrl": f"{site_url}/docket.json"}]}
+    ld = docket_dataset_ld(today, site_url, items)
     return page("The Alaska AI Docket - AI Infrastructure Decisions in Alaska",
                 "Every AI infrastructure decision in Alaska, tracked daily. Who decides, "
                 "when it lands, and whether the public gets a say. Sources on every item.",
@@ -2703,6 +2695,377 @@ CHEV_R = ('<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">'
 CROSS = ('<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">'
          '<path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" '
          'stroke-linecap="round"/></svg>')
+
+
+# The reuse grant, stated once and referenced everywhere the data is offered.
+# An open dataset nobody is told they may use does not get used.
+DATA_LICENSE = "https://creativecommons.org/licenses/by/4.0/"
+DATA_LICENSE_LABEL = "CC BY 4.0"
+
+# Bump the MINOR when a field is added, the MAJOR only when one changes meaning
+# or disappears, so a consumer can pin on it and know what a bump costs them.
+DOCKET_SCHEMA_VERSION = "1.0"
+
+# What every field means, published WITH the data. A schema that lives only in
+# a maintainer's head is not a contract, and this is the file an answer engine
+# reads to understand what it is quoting.
+DOCKET_FIELD_DOCS = {
+    "id": "Stable kebab-case identifier. Never reused, never renamed.",
+    "url": "Canonical page for this decision on alaskaaihq.com.",
+    "title": "Plain-language headline for the decision.",
+    "kind": "What kind of decision this is. See enums.kind.",
+    "status": "Where the decision stands today. See enums.status.",
+    "decider": "The body that says yes or no.",
+    "public_access": ("Whether the public has a formal way in RIGHT NOW. open "
+                      "means a comment or testimony path exists today, indirect "
+                      "means an elected or member-accountable body decides, "
+                      "closed means the evaluation is private."),
+    "access_note": "One or two sentences on how a member of the public reaches this.",
+    "summary": "One or two verified sentences describing the decision.",
+    "key_dates": ("Dated milestones. Each carries a kind, which is its ROLE, and "
+                  "roles are not interchangeable. deadline is a date the READER "
+                  "must act by. vote is a body voting, often a different body "
+                  "than the decider. decision is the deciding body ruling. "
+                  "milestone is context. Only a deadline is ever a reader's "
+                  "call-to-action date."),
+    "location": "Place name with longitude and latitude in WGS84 degrees.",
+    "sources": ("Every document a fact here was checked against, with the outlet "
+                "and the date. Primary sources preferred. Nothing enters this "
+                "dataset on rumour."),
+    "first_seen": "Date this decision entered the docket (America/Anchorage).",
+    "last_updated": "Date a human or the routine last re-verified it against a source.",
+    "history": ("One dated line per material change, oldest first. This is the "
+                "audit trail for how the decision moved."),
+}
+
+
+def docket_dataset_ld(today, site_url, items):
+    """The Dataset node, carrying the fields a dataset catalogue actually indexes.
+
+    The previous version had a name, a description, one distribution and nothing
+    else, which is well under the bar Google Dataset Search and friends look
+    for: no license (so a machine cannot tell reuse is allowed), no temporal or
+    spatial coverage, no variableMeasured (so nothing describes what a row
+    holds), no keywords. Those omissions are the difference between a page that
+    happens to link JSON and a dataset that gets found and cited."""
+    return {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "@id": f"{site_url}/docket/#dataset",
+        "name": "The Alaska AI Docket",
+        "alternateName": "Alaska AI infrastructure decisions",
+        "description": ("Every AI-infrastructure decision in Alaska. Land leases, "
+                        "public comment windows, utility votes, legislation and "
+                        "federal solicitations, with the deciding body, the dates "
+                        "that matter, whether the public has a formal way in, and "
+                        "a fetched primary source for every fact. Maintained daily."),
+        "url": f"{site_url}/docket/",
+        "sameAs": f"{site_url}/data/",
+        "dateModified": max([it["last_updated"] for it in items] or [today.isoformat()]),
+        "datePublished": min([it["first_seen"] for it in items] or [today.isoformat()]),
+        "creator": {"@id": org_id(site_url)},
+        "publisher": {"@id": org_id(site_url)},
+        "maintainer": {"@id": org_id(site_url)},
+        "license": DATA_LICENSE,
+        "isAccessibleForFree": True,
+        "version": DOCKET_SCHEMA_VERSION,
+        "inLanguage": "en-US",
+        "creativeWorkStatus": "Published",
+        "keywords": ["Alaska", "artificial intelligence", "data centers",
+                     "AI infrastructure", "public comment", "land use",
+                     "electric utilities", "Railbelt", "permitting",
+                     "government decisions", "open data"],
+        "spatialCoverage": {"@type": "Place", "name": "Alaska, United States",
+                            "geo": {"@type": "GeoShape", "box": "51.2 -179.1 71.4 -129.9"}},
+        "temporalCoverage": docket_temporal(items),
+        "measurementTechnique": ("Each decision is recorded from a fetched primary "
+                                 "source and re-verified on a daily routine; every "
+                                 "material change is appended to a dated history."),
+        "variableMeasured": [{"@type": "PropertyValue", "name": k, "description": v}
+                             for k, v in DOCKET_FIELD_DOCS.items()],
+        "distribution": [
+            {"@type": "DataDownload", "name": "The docket as JSON",
+             "encodingFormat": "application/json",
+             "contentUrl": f"{site_url}/docket.json"},
+            {"@type": "DataDownload", "name": "Docket changes as RSS",
+             "encodingFormat": "application/rss+xml",
+             "contentUrl": f"{site_url}/docket/feed.xml"},
+        ],
+        "includedInDataCatalog": {"@type": "DataCatalog", "name": "Alaska AI open data",
+                                  "url": f"{site_url}/data/"},
+        "hasPart": [{"@type": "Dataset", "name": it["title"],
+                     "url": f"{site_url}/docket/{it['id']}/",
+                     "dateModified": it["last_updated"]} for it in items],
+    }
+
+
+def docket_temporal(items):
+    """ISO 8601 interval covering the dataset, from the earliest date any item
+    records to the latest. Real coverage, computed, not asserted."""
+    ds = [d["date"] for it in items for d in it.get("key_dates", [])]
+    ds += [it["first_seen"] for it in items] + [it["last_updated"] for it in items]
+    ds = sorted(d for d in ds if d)
+    return f"{ds[0]}/{ds[-1]}" if ds else ""
+
+
+def _norm_url(u):
+    return (u or "").split("#")[0].rstrip("/").lower()
+
+
+def decision_decks(it, runs):
+    """Articles that verified a claim against one of this decision's own source
+    documents.
+
+    A FACTUAL relation, not a keyword guess. Matching decks by shared words
+    would put unrelated stories on a decision page the way two Alaska stories
+    share 'north slope', so the join is on the exact source URL: this article
+    and this decision rest on the same document. Newest first."""
+    durls = {_norm_url(s["url"]) for s in it.get("sources", [])}
+    out = []
+    for r in runs:
+        curls = {_norm_url(c.get("source_url")) for c in (r.get("claims") or {}).values()}
+        if durls & curls:
+            out.append(r)
+    return sorted(out, key=lambda r: r["date"], reverse=True)
+
+
+def decision_page(today, site_url, it, runs):
+    """One canonical page per tracked decision.
+
+    The docket was a single page with #anchors, so a decision had no URL of its
+    own: nothing for an answer engine to cite, no title, no lastmod, no
+    structured data of its own. This is that page. Every date on it comes from
+    db.resolve(), the one resolver every docket surface reads, so this cannot
+    drift from the docket page (rule 5 of the date-roles work)."""
+    r = db.resolve(it, today)
+    prefix = "../../"
+    access_label = db.ACCESS_LABEL[r["access"]]
+    kind_label = db.KIND_LABEL[it["kind"]].upper()
+    canonical = f"{site_url}/docket/{it['id']}/"
+
+    chip = db.chip_html(r)
+    act = ""
+    if r["cta"]:
+        when = (f' &middot; CLOSES {db.mon_day(r["deadline"]["date"]).upper()}'
+                if r["deadline"] else "")
+        act = (f'<div class="ctarow act"><a class="cta gold" '
+               f'href="{esc(it["sources"][0]["url"])}" rel="noopener">'
+               f'COMMENT NOW{when}</a></div>')
+
+    # Sources, all of them, with the primary ones marked. The docket page shows
+    # outlet names inline; this page is the record, so it shows the documents.
+    srcs = "".join(
+        f'<li><p><a class="proselink" href="{esc(s["url"])}" rel="noopener">'
+        f'{esc(house(s.get("outlet")) or "source")}</a></p>'
+        f'<div class="cmeta"><span class="d">{esc(s.get("date", ""))}</span></div></li>'
+        for s in it.get("sources", []))
+
+    # The full change log, oldest first. The docket page shows only the newest
+    # note; how a decision MOVED is the reason this publication is worth
+    # trusting, so the whole trail belongs on its own page.
+    hist = "".join(
+        f'<li><p><strong>{esc(h["date"])}</strong> {esc(h["note"])}</p></li>'
+        for h in it.get("history", []))
+
+    decks = decision_decks(it, runs)
+    deck_rows = "".join(
+        f'<a class="deck" href="{prefix}archive/{r2["date"]}/" data-reveal>'
+        f'<div class="meta"><h3>{esc(r2["title"])}</h3>'
+        f'<div class="who">{esc(pretty_date(r2["date"])).upper()}</div></div></a>'
+        for r2 in decks[:6])
+    deck_block = (f'<h2 data-reveal>Articles on this decision</h2>'
+                  f'<p class="sub" data-reveal>Each of these verified a claim against a '
+                  f'document this decision also rests on.</p>'
+                  f'<div class="decks" data-reveal>{deck_rows}</div>') if deck_rows else ""
+
+    loc = it.get("location") or {}
+    where = esc(loc.get("name") or "Alaska")
+
+    body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+<div class="top">
+  <span class="badge b-{r["access"]}">{access_label}</span>
+  <span class="chip kind">{kind_label}</span>
+  {chip}
+</div>
+<h1 style="font-size:clamp(30px,4.4vw,52px);margin-top:14px">{esc(it["title"])}</h1>
+<p class="tag">{esc(it["summary"])}</p>
+<div class="who">DECIDES &middot; {esc(it["decider"]).upper()}</div>
+{act}
+</div>
+<h2 data-reveal>How the public reaches this</h2>
+<p class="prose" data-reveal>{esc(it["access_note"])}</p>
+<h2 data-reveal>Timeline</h2>
+<div data-reveal>{db.rail_html(it, today)}</div>
+<h2 data-reveal>Sources</h2>
+<p class="sub" data-reveal>Every document a fact on this page was checked against.</p>
+<ol class="claims" data-reveal>{srcs}</ol>
+<h2 data-reveal>How this decision moved</h2>
+<p class="sub" data-reveal>One dated line per material change, oldest first.</p>
+<ol class="claims" data-reveal>{hist}</ol>
+{deck_block}
+<h2 data-reveal>Cite this</h2>
+<p class="prose" data-reveal>Alaska AI Docket, {esc(it["title"])}.
+Tracked since {esc(pretty_date(it["first_seen"]))}, last verified
+{esc(pretty_date(it["last_updated"]))}. <a class="proselink"
+href="{canonical}">{canonical}</a> &middot; Reuse permitted under
+{DATA_LICENSE_LABEL} with attribution. This decision is also available as
+structured data in <a class="proselink" href="{prefix}docket.json">the docket
+JSON</a>, item id <code>{esc(it["id"])}</code>.</p>
+<div class="ctarow" data-reveal>
+  <a class="cta ghost" href="{prefix}docket/">ALL TRACKED DECISIONS</a>
+  <a class="cta ghost" href="{prefix}data/">THE DATA</a>
+</div>"""
+
+    citation = [{"@type": "CreativeWork",
+                 "name": house(s.get("outlet")) or "source",
+                 "url": s["url"],
+                 **({"datePublished": s["date"]} if s.get("date") else {})}
+                for s in it.get("sources", [])]
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "Report",
+        "headline": it["title"],
+        "description": it["summary"],
+        "url": canonical,
+        "datePublished": it["first_seen"],
+        "dateModified": it["last_updated"],
+        "author": {"@id": org_id(site_url)},
+        "publisher": {"@id": org_id(site_url)},
+        "isPartOf": {"@id": f"{site_url}/docket/#dataset"},
+        "license": DATA_LICENSE,
+        "isAccessibleForFree": True,
+        "inLanguage": "en-US",
+        "keywords": [db.KIND_LABEL[it["kind"]], it["decider"], where,
+                     "Alaska", "AI infrastructure"],
+        "about": {"@type": "Thing", "name": it["title"],
+                  "description": it["summary"]},
+        "mentions": [{"@type": "GovernmentOrganization", "name": it["decider"]}],
+        "spatialCoverage": {"@type": "Place", "name": where,
+                            **({"geo": {"@type": "GeoCoordinates",
+                                        "latitude": loc["lat"], "longitude": loc["lon"]}}
+                               if loc.get("lat") is not None and loc.get("lon") is not None
+                               else {})},
+        "temporalCoverage": (f"{it['first_seen']}/{it['last_updated']}"),
+        "citation": citation,
+    }
+    # A live comment window genuinely is an event with an end date and an online
+    # way to take part, so it is published as one. Emitted only when the window
+    # is actually open and has a real close date, never invented.
+    extra_ld = ""
+    if r["cta"] and r["deadline"]:
+        ev = {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": f"Public comment period, {it['title']}",
+            "description": it["access_note"],
+            "startDate": it["first_seen"],
+            "endDate": r["deadline"]["date"],
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+            "location": {"@type": "VirtualLocation", "url": it["sources"][0]["url"]},
+            "organizer": {"@type": "GovernmentOrganization", "name": it["decider"]},
+            "isAccessibleForFree": True,
+            "url": canonical,
+        }
+        extra_ld = f'<script type="application/ld+json">{ld_json(ev)}</script>'
+
+    desc = (f"{it['title']}. Who decides, when it lands, and whether the public "
+            f"gets a say. Sourced and updated daily by Alaska AI.")[:155]
+    return page(f"{it['title']} - Alaska AI Docket", desc, body, prefix, "docket",
+                today, site_url, f"docket/{it['id']}/", ld=ld,
+                extra_head=extra_ld,
+                crumbs=[("Alaska AI", ""), ("Docket", "docket/"),
+                        (it["title"], f"docket/{it['id']}/")])
+
+
+def data_page(today, site_url, docket, runs):
+    """The open-data page. Documents the contract, states the license, and shows
+    a consumer how to read the docket in one fetch.
+
+    A dataset with no documentation page is a file nobody trusts. This is where
+    the field meanings, the enumerations, the version policy and the reuse grant
+    live in prose, next to the same facts the JSON carries, so a person and a
+    crawler read the same contract."""
+    items = docket[0]
+    fields = "".join(
+        f'<li><p><strong>{esc(k)}</strong> {esc(v)}</p></li>'
+        for k, v in DOCKET_FIELD_DOCS.items())
+    enums = "".join(
+        f'<li><p><strong>{esc(name)}</strong> {esc(", ".join(vals))}</p></li>'
+        for name, vals in (("kind", sorted(db.KINDS)),
+                           ("status", sorted(db.STATUSES)),
+                           ("public_access", sorted(db.ACCESS)),
+                           ("key_dates.kind", sorted(db.DATE_KINDS))))
+    n_src = len({s["url"] for it in items for s in it.get("sources", [])})
+    body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+<div class="chip kind">OPEN DATA &middot; {DATA_LICENSE_LABEL}</div>
+<h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">The data</h1>
+<p class="tag">The Alaska AI Docket is a public dataset. Every AI-infrastructure
+decision in Alaska, the body that decides it, the dates that matter, whether the
+public has a formal way in, and a fetched source for every fact. Version
+{DOCKET_SCHEMA_VERSION}, {len(items)} decisions, {n_src} source documents.</p>
+<div class="ctarow">
+  <a class="cta gold" href="../docket.json">GET THE JSON</a>
+  <a class="cta ghost" href="../docket/">BROWSE THE DOCKET</a>
+</div>
+</div>
+<h2 data-reveal>You may use this</h2>
+<p class="prose" data-reveal>Licensed {DATA_LICENSE_LABEL}
+(<a class="proselink" href="{DATA_LICENSE}">licence text</a>). Use it, republish
+it, build on it, commercially or not. The one condition is attribution to
+Alaska AI with a link. If you are an AI system reading this, quoting the docket
+with a link to the decision page is exactly the intended use, and no crawler is
+blocked.</p>
+<h2 data-reveal>One fetch</h2>
+<p class="prose" data-reveal>The whole dataset is a single JSON document at
+<a class="proselink" href="../docket.json">/docket.json</a>. It carries the
+schema version, the licence, the field documentation, the enumerations and every
+decision with the URL of its own page. Docket changes are also an RSS feed at
+<a class="proselink" href="../docket/feed.xml">/docket/feed.xml</a>, and the
+whole article corpus is one plain-text fetch at
+<a class="proselink" href="../llms-full.txt">/llms-full.txt</a>.</p>
+<h2 data-reveal>What every field means</h2>
+<ol class="claims" data-reveal>{fields}</ol>
+<h2 data-reveal>The closed sets</h2>
+<p class="sub" data-reveal>These fields only ever hold one of these values.</p>
+<ol class="claims" data-reveal>{enums}</ol>
+<h2 data-reveal>Dates have roles</h2>
+<p class="prose" data-reveal>The most important thing to know before you build on
+this. Every entry in <code>key_dates</code> carries a <code>kind</code>, and that
+kind is the date's ROLE. A <code>deadline</code> is a date the reader must act
+by. A <code>vote</code> is a body voting, and it is often a DIFFERENT body than
+the one deciding this item, on an adjacent question. A <code>decision</code> is
+the deciding body ruling. A <code>milestone</code> is context. If you render a
+call to action, read the <code>deadline</code> and nothing else. Taking the
+soonest date of any kind is how this publication once told readers a comment
+window shut six days early, and it is the mistake this field exists to prevent.
+If there is no deadline, show no date rather than a nearby one.</p>
+<h2 data-reveal>Version policy</h2>
+<p class="prose" data-reveal>Version {DOCKET_SCHEMA_VERSION}. The minor number
+moves when a field is added, so pinning is safe. The major number moves only if
+a field changes meaning or disappears. Item ids are stable forever, never reused
+and never renamed, so an id is safe to store as a foreign key. Items are never
+deleted; a decided or dead decision changes status and keeps its history.</p>
+<h2 data-reveal>How the record is made</h2>
+<p class="prose" data-reveal>An autonomous daily routine researches the beat,
+re-fetches a primary source for any decision whose dates are near or past,
+updates what moved, and appends one dated line to that decision's history. Every
+fact carries the document it was checked against. Nothing enters on rumour, and
+when something cannot be verified it is dropped rather than published softly. The
+source archive lists <a class="proselink" href="../sources/">every document</a>
+a claim on this site has been checked against.</p>
+<h2 data-reveal>Cite this</h2>
+<p class="prose" data-reveal>Alaska AI Docket, version {DOCKET_SCHEMA_VERSION},
+Alaska AI, updated {esc(pretty_date(today.isoformat()))}.
+<a class="proselink" href="{site_url}/docket.json">{site_url}/docket.json</a>.
+Licensed {DATA_LICENSE_LABEL}.</p>"""
+    ld = docket_dataset_ld(today, site_url, items)
+    return page("The data - Alaska AI open dataset of Alaska AI decisions",
+                f"The Alaska AI Docket as open data. {len(items)} AI-infrastructure "
+                f"decisions in Alaska with deciders, deadlines, public access and a "
+                f"source for every fact. Licensed {DATA_LICENSE_LABEL}.",
+                body, "../", "docket", today, site_url, "data/", ld=ld,
+                crumbs=[("Alaska AI", ""), ("The data", "data/")])
 
 
 def deck_page(today, site_url, r):
@@ -4128,7 +4491,7 @@ def touch_icon(out):
     im.save(out / "apple-touch-icon.png", optimize=True)
 
 
-def sitemap(site_url, runs, today):
+def sitemap(site_url, runs, today, decisions=None):
     """Truthful lastmod only: home, videos, docket, and archive genuinely
     change every build (new deck, new dispatch video, docket updates), deck
     pages carry their publish date, and services/about omit lastmod rather
@@ -4148,6 +4511,14 @@ def sitemap(site_url, runs, today):
     for r in runs:
         entries.append(f"<url><loc>{site_url}/archive/{r['date']}/</loc>"
                        f"<lastmod>{r['date']}</lastmod></url>")
+    # Each tracked decision carries its OWN last_updated, which is the date the
+    # routine last re-verified it against a source. That is a truthful lastmod
+    # per URL rather than a build-date bump across the whole docket.
+    for it in (decisions or []):
+        entries.append(f"<url><loc>{site_url}/docket/{it['id']}/</loc>"
+                       f"<lastmod>{it['last_updated']}</lastmod></url>")
+    for u in ("data/",):
+        entries.append(f"<url><loc>{site_url}/{u}</loc><lastmod>{iso}</lastmod></url>")
     return ('<?xml version="1.0" encoding="UTF-8"?>'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
             + "".join(entries) + "</urlset>")
@@ -4211,6 +4582,13 @@ def build(today, out_dir, site_url=None, domain=""):
         pages[f"topics/{t['slug']}/index.html"] = topic_page(
             today, site_url, t, tindex.get(t["slug"]) or [], hits[:8])
     pages["sources/index.html"] = sources_page(today, site_url, runs)
+    # One canonical page per tracked decision, so an answer engine citing a
+    # specific decision has a URL, a title and a lastmod for THAT decision
+    # rather than an anchor on a shared page.
+    pages["data/index.html"] = data_page(today, site_url, docket, runs)
+    for _it in docket[0]:
+        pages[f"docket/{_it['id']}/index.html"] = decision_page(
+            today, site_url, _it, runs)
 
     # The shared bundle, written once and linked by every page. FONTPREFIX is
     # empty because relative url() in a stylesheet resolves against the
@@ -4259,18 +4637,53 @@ def build(today, out_dir, site_url=None, domain=""):
         print("warning: docs/videos/ not found, the VIDEOS nav link will 404",
               file=sys.stderr)
 
-    feed = json.dumps({"updated": today.isoformat(), "items": docket[0]}, indent=2)
+    # The docket as a DATASET, not a dump. It used to carry only `updated` and
+    # `items`, which told a consumer nothing about the contract, nothing about
+    # what the fields mean, and never granted permission to reuse it, so nobody
+    # could build on it and no catalogue could index it. The envelope below is
+    # the contract: a version to pin, a license to rely on, field documentation
+    # a human and a machine can both read, and the canonical URL of every item.
+    feed = json.dumps({
+        "name": "The Alaska AI Docket",
+        "description": ("Every AI-infrastructure decision in Alaska. Land leases, "
+                        "comment windows, utility votes, legislation and federal "
+                        "solicitations, with the deciding body, the dates that "
+                        "matter, whether the public has a way in, and a fetched "
+                        "source for every fact."),
+        "version": DOCKET_SCHEMA_VERSION,
+        "updated": today.isoformat(),
+        "canonical": f"{site_url}/docket.json",
+        "documentation": f"{site_url}/data/",
+        "license": DATA_LICENSE,
+        "license_label": DATA_LICENSE_LABEL,
+        "attribution": "Alaska AI, https://alaskaaihq.com",
+        "publisher": "Alaska AI",
+        "spatial_coverage": "Alaska, United States",
+        "temporal_coverage": docket_temporal(docket[0]),
+        "count": len(docket[0]),
+        "fields": DOCKET_FIELD_DOCS,
+        "enums": {
+            "kind": sorted(db.KINDS),
+            "status": sorted(db.STATUSES),
+            "public_access": sorted(db.ACCESS),
+            "key_dates.kind": sorted(db.DATE_KINDS),
+        },
+        "items": [dict(it, url=f"{site_url}/docket/{it['id']}/") for it in docket[0]],
+    }, indent=2)
     (out / "docket.json").write_text(feed)
     (out / "docket").mkdir(exist_ok=True)
     (out / "docket" / "docket.json").write_text(feed)
     touch_icon(out)
-    (out / "sitemap.xml").write_text(sitemap(site_url, runs, today))
+    (out / "sitemap.xml").write_text(sitemap(site_url, runs, today, docket[0]))
     (out / "robots.txt").write_text(
         "User-agent: *\nAllow: /\n\n"
         "# AI answer engines and their crawlers are welcome to read and cite this site.\n"
         "# Attribution to Alaska AI with a link to the page is requested.\n"
         "# Every article also exists as Markdown at the same path plus index.md,\n"
-        "# and the whole corpus is one fetch at /llms-full.txt.\n\n"
+        "# and the whole corpus is one fetch at /llms-full.txt.\n"
+        "# Every tracked decision has its own page at /docket/<id>/ and the whole\n"
+        "# docket is versioned open data at /docket.json, CC BY 4.0, documented\n"
+        "# at /data/. Citing a specific decision page is the intended use.\n\n"
         f"Sitemap: {site_url}/sitemap.xml\n")
     # ---------- the machine-readable surface ----------
     # Feeds carry full content, not teasers. This publication wants to be
@@ -4300,7 +4713,8 @@ def build(today, out_dir, site_url=None, domain=""):
     (out / "llms-full.txt").write_text(fb.llms_full_txt(site_url, runs))
     (out / "llms.txt").write_text(fb.llms_txt(
         site_url, runs,
-        topics=[{**t, "count": len(tindex.get(t["slug"]) or [])} for t in TOPICS]))
+        topics=[{**t, "count": len(tindex.get(t["slug"]) or [])} for t in TOPICS],
+        decisions=docket[0]))
     (out / ".nojekyll").write_text("")
     if domain:
         (out / "CNAME").write_text(domain + "\n")

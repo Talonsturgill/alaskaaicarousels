@@ -659,7 +659,10 @@ def rail_html(it, today):
     return f'<div class="rail{solo}">{"".join(stops)}</div>'
 
 
-def item_html(it, today, num):
+def item_html(it, today, num, prefix=""):
+    """One docket entry. `prefix` is the path from the rendering page to
+    /docket/, so the entry can link to that decision's own canonical page.
+    Empty on the docket page itself, which already sits at /docket/."""
     r = resolve(it, today)
     chip = chip_html(r)
     srcs = " &middot; ".join(
@@ -683,7 +686,7 @@ def item_html(it, today, num):
       <span class="chip kind">{esc(KIND_LABEL[it["kind"]]).upper()}</span>
       {chip}
     </div>
-    <h3>{esc(it["title"])}</h3>
+    <h3><a class="proselink" href="{prefix}{esc(it["id"])}/">{esc(it["title"])}</a></h3>
     <div class="who">DECIDES &middot; {esc(it["decider"]).upper()}</div>
     <p>{esc(it["summary"])}</p>
     <div class="access">{esc(it["access_note"])}</div>
@@ -691,6 +694,8 @@ def item_html(it, today, num):
     {act}
     <div class="srcs">Sources &middot; {srcs}</div>
     {hist_html}
+    <div class="ctarow"><a class="cta ghost sm" href="{prefix}{esc(it["id"])}/">
+      THE FULL RECORD ON THIS DECISION</a></div>
   </div>
 </article>"""
 
