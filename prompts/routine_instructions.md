@@ -19,7 +19,7 @@ maintainer can post in ninety seconds.
 2. No em dashes or en dashes ANYWHERE (slides, copy, comment block).
    Straight quotes. No emojis. Ranges written "X to Y".
 3. No two decks alike: the variety constraints in ledger/artwork.json are
-   hard rules. No topic repeats per ledger/topics.json (90-day window).
+   hard rules. No topic repeats per ledger/topics.json (30-day window).
 4. Slides are bespoke code, planned by dossier before any code is written.
    The engine is a harness, not a template. NO placeholder ever ships.
 5. Machine gates (render QA, caption lint) must PASS; pixel critics and
@@ -74,7 +74,7 @@ maintainer can post in ninety seconds.
 - Today = America/Anchorage date. Research window = last 10 days.
 - CADENCE: the trigger fires DAILY. Every window stated in runs
   (variety: last 4 decks; instincts: 8 runs; light decks: 1 per 8 runs)
-  is RUN-based, not calendar-based. The 90-day topic dedupe IS
+  is RUN-based, not calendar-based. The 30-day topic dedupe IS
   calendar-based and is the binding editorial constraint at daily
   cadence: every run needs a genuinely distinct story or an honest
   UPDATE reframe. The human owns POSTING cadence; the machine's job is
@@ -274,7 +274,7 @@ potential (geometry/quantity/place the art can encode), (3) tangibility,
 (4) would an Alaskan send this to a coworker?
 
 DEDUPE GATE: compare the candidate semantically against every
-ledger/topics.json entry from the last 120 days (topic + angle + entities
+ledger/topics.json entry from the last 30 days (topic + angle + entities
 + keywords — a new URL for the same story is still the same story).
 As a MANDATORY pre-flight before the directors room, run
 `python scripts/dedupe_check.py --entities "<candidate entities>" --keywords
@@ -283,7 +283,7 @@ text of every in-window entry, never the truncated title): read in FULL
 every entry it prints as a LIKELY DUPLICATE (exit 1) before proceeding.
 The script is an advisory signal, not the gate — the semantic call is
 still yours — but a LIKELY DUPLICATE match means stop and read.
-Within 90 days: pick a different story, OR reframe explicitly as an
+Within 30 days: pick a different story, OR reframe explicitly as an
 UPDATE with material new developments (say so on the cover). Write the
 decision + runner-up in `out/<date>/selection.md`.
 

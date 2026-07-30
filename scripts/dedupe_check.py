@@ -17,7 +17,7 @@ WHAT IT IS NOT
     It does NOT replace or weaken the human dedupe gate. It is an advisory
     pre-flight signal: a LIKELY DUPLICATE match (exit 1) means "stop and read
     this entry in full before the directors room", not "auto-reject". The
-    90-day hard-fail rule is still the showrunner's call. Pure stdlib, offline.
+    30-day hard-fail rule is still the showrunner's call. Pure stdlib, offline.
 
 USAGE
     python scripts/dedupe_check.py --entities "XPRIZE Wildfire, ACUASI, Dryad" \
@@ -200,7 +200,7 @@ def main(argv=None):
     ap.add_argument("--desc", default="", help="free-text candidate description")
     ap.add_argument("--topics", default="ledger/topics.json")
     ap.add_argument("--date", default=None, help="reference date YYYY-MM-DD (default today)")
-    ap.add_argument("--window", type=int, default=120, help="lookback days (default 120)")
+    ap.add_argument("--window", type=int, default=30, help="lookback days (default 30)")
     ap.add_argument("--exclude-date", default=None,
                     help="skip ledger entries on this run_date (e.g. the candidate's own row)")
     ap.add_argument("--json", action="store_true", help="emit JSON instead of text")
@@ -251,7 +251,7 @@ def main(argv=None):
         print("    token jaccard: %s" % r["jaccard"])
     if likely:
         print("\n  >> %d LIKELY DUPLICATE match(es). READ each in full before the directors "
-              "room; within 90 days pick a different story or reframe as a material UPDATE." % len(likely))
+              "room; within 30 days pick a different story or reframe as a material UPDATE." % len(likely))
     else:
         print("\n  soft overlaps only; confirm by eye that the angle/entities are genuinely distinct.")
 
