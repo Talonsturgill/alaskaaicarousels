@@ -3333,11 +3333,11 @@ this. Every entry in <code>key_dates</code> carries a <code>kind</code>, and tha
 kind is the date's ROLE. A <code>deadline</code> is a date the reader must act
 by. A <code>vote</code> is a body voting, and it is often a DIFFERENT body than
 the one deciding this item, on an adjacent question. A <code>decision</code> is
-the deciding body ruling. A <code>milestone</code> is context. If you render a
-call to action, read the <code>deadline</code> and nothing else. Taking the
-soonest date of any kind is how this publication once told readers a comment
-window shut six days early, and it is the mistake this field exists to prevent.
-If there is no deadline, show no date rather than a nearby one.</p>
+the deciding body ruling. A <code>milestone</code> is context. If you show
+someone a date to act on, read the <code>deadline</code> and nothing else.
+Taking the soonest date of any kind will hand a reader another body's vote as
+though it were their own deadline, days off the real one. If an item has no
+deadline, show no date rather than a nearby one.</p>
 <h2 data-reveal>Version policy</h2>
 <p class="prose" data-reveal>Version {DOCKET_SCHEMA_VERSION}. The minor number
 moves when a field is added, so pinning is safe. The major number moves only if
