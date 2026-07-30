@@ -1411,10 +1411,21 @@ JS = """
       c: q.get('c') || q.get('utm_campaign') || null
     });
     var TRACK = 'https://gsuvfpnyzebycqhsekus.supabase.co/functions/v1/track';
-    if (nav.sendBeacon) {
-      nav.sendBeacon(TRACK, new Blob([payload], {type: 'application/json'}));
-    } else {
-      fetch(TRACK, {method: 'POST', headers: {'content-type': 'application/json'},
+    /* text/plain, NOT application/json, and that is the whole reason this
+       works. A JSON content type is not CORS safelisted, so it makes the
+       browser send a preflight first, and sendBeacon cannot carry the headers
+       that preflight then negotiates (it has no headers API at all beyond the
+       Blob type). The observed result was nine OPTIONS preflights from real
+       visits with not one POST behind them: every reader was counted as zero.
+
+       text/plain is safelisted, so this is a simple request with no preflight
+       and nothing to negotiate. The collector parses the body as JSON
+       regardless of what the content type claims, so nothing is lost. */
+    var body = new Blob([payload], {type: 'text/plain;charset=UTF-8'});
+    if (!(nav.sendBeacon && nav.sendBeacon(TRACK, body))) {
+      /* sendBeacon returns false when it refuses to queue, so fall through
+         rather than assume it took it. */
+      fetch(TRACK, {method: 'POST', headers: {'content-type': 'text/plain;charset=UTF-8'},
                     body: payload, keepalive: true, mode: 'cors'}).catch(function(){});
     }
   } catch (e) { /* a counter never breaks a page */ }
