@@ -653,7 +653,8 @@
     "knowledge/TECHNIQUE_LIBRARY.md"
    ],
    "verification": "tests/aksnow_verify.py renders tests/aksnow_probe.html, which draws the OLD hatch and the NEW surface over the IDENTICAL contour, palette and region, and gates four features: edge_var 3.38x (line-weight variance, the rubric's own 'uniform line weights' descriptor), orient_spread 2.27x (the old marks are all level), pair_rate 17.43x (the lit-above-dark two-edge claim, measured directly), and low_band_range, where the old hatch measures ~0 because its value ladder SATURATES at 60 percent depth and is flat for the entire bottom third, which is the 'dead lower zone' the scorer named in six consecutive runs. detail_ratio is computed and PRINTED but deliberately NOT gated, because scripts/craft_corpus.py already showed it does not separate craft (AUC 0.653, Bonferroni p 0.147) and because the old hatch wins it by drawing more level lines, which is the defect. On the real deck, lower-band tonal range improved on every measured slide (S01 +0.028, S02 +0.031, S03 +0.055, S04 +0.012, S09 +0.086). render.py 9/9 clean and qa.py 0 fails on this deck; examples/demo-deck renders 4/4 with its pre-existing warn unchanged.",
-   "rollback": "git revert this commit. aksnow.js is additive, so reverting only removes the bench and the probe; no existing engine path depends on it."
+   "rollback": "git revert this commit. aksnow.js is additive, so reverting only removes the bench and the probe; no existing engine path depends on it.",
+   "commit": "1b7a91eaaabb8c127feb5c9e6f7386f3ae3ff08b"
   },
   {
    "run_date": "2026-07-30",
@@ -670,7 +671,8 @@
     "prompts/routine_instructions.md"
    ],
    "verification": "Ran caption_check.py against this run's shipped caption. Without --deck-summary it FAILS with an instructive message; with the declared line it PASSES at 895 chars. Reconstructed the defect both ways: a caption containing 'cannot' fails on the new VOICE rule, and a declared summary that is the closing question fails on the its-own-work rule. This run's own caption was then rewritten to carry a real deck-summary line and re-linted to PASS, and 'cannot' was removed from slide 04's body and from the first-comment block. brand.yaml still parses.",
-   "rollback": "git revert this commit. The gate is one flag plus one block in lint(); reverting restores the previous unenforced state."
+   "rollback": "git revert this commit. The gate is one flag plus one block in lint(); reverting restores the previous unenforced state.",
+   "commit": "1b7a91eaaabb8c127feb5c9e6f7386f3ae3ff08b"
   }
  ],
  "scan_log": [
