@@ -142,4 +142,46 @@
     }
   }
 
+  /* ---------- readership ----------
+     Counts that a page was read. Deliberately learns nothing about who read
+     it: no cookie is set or read, no localStorage, no visitor id, nothing
+     that could identify or re-identify anyone. One send per pageview, and
+     the only things sent are the path, the referrer's HOST (the full
+     referrer URL is never transmitted, it can carry private context) and an
+     explicit campaign tag if the link carried one.
+
+     Honours Do Not Track and Global Privacy Control by sending nothing at
+     all, not by sending-and-discarding. Silent on failure, because a
+     counter must never be visible on the page or delay it. What is and is
+     not collected is stated in full at /privacy/. */
+  try {
+    var nav = navigator || {};
+    var optedOut = nav.doNotTrack === '1' || nav.globalPrivacyControl === true ||
+                   window.doNotTrack === '1' || nav.msDoNotTrack === '1';
+    var local = /^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(location.hostname) ||
+                location.protocol === 'file:';
+    if (!optedOut && !local) {
+      var q = new URLSearchParams(location.search);
+      var camp = q.get('c') || q.get('utm_campaign') || null;
+      var host = null;
+      if (document.referrer) {
+        try { host = new URL(document.referrer).hostname; } catch (e) { host = null; }
+      }
+      var payload = JSON.stringify({
+        p: location.pathname,
+        /* Send a bare origin rather than the referrer itself, so the full
+           referring URL never leaves the reader's browser. */
+        r: host ? ('https://' + host + '/') : null,
+        c: camp
+      });
+      var TRACK = 'https://gsuvfpnyzebycqhsekus.supabase.co/functions/v1/track';
+      if (nav.sendBeacon) {
+        nav.sendBeacon(TRACK, new Blob([payload], {type: 'application/json'}));
+      } else {
+        fetch(TRACK, {method: 'POST', headers: {'content-type': 'application/json'},
+                      body: payload, keepalive: true, mode: 'cors'}).catch(function(){});
+      }
+    }
+  } catch (e) { /* a counter never breaks a page */ }
+
 })();

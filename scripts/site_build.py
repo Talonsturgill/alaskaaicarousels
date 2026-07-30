@@ -450,8 +450,10 @@ def footer(prefix, today):
     <a href="{prefix}scan/">THE SCANNER</a>
     <a href="{prefix}services/">SERVICES</a>
     <a href="{prefix}about/">ABOUT</a>
+    <a href="{prefix}questions/">QUESTIONS</a>
     <a href="{prefix}feed.xml">RSS</a>
-    <a href="{prefix}docket.json">DATA</a>
+    <a href="{prefix}data/">DATA</a>
+    <a href="{prefix}privacy/">PRIVACY</a>
   </div>
 </div>
 <div class="socials">{icons}</div>
@@ -1516,6 +1518,48 @@ JS = """
       });
     }
   }
+
+  /* ---------- readership ----------
+     Counts that a page was read. Deliberately learns nothing about who read
+     it: no cookie is set or read, no localStorage, no visitor id, nothing
+     that could identify or re-identify anyone. One send per pageview, and
+     the only things sent are the path, the referrer's HOST (the full
+     referrer URL is never transmitted, it can carry private context) and an
+     explicit campaign tag if the link carried one.
+
+     Honours Do Not Track and Global Privacy Control by sending nothing at
+     all, not by sending-and-discarding. Silent on failure, because a
+     counter must never be visible on the page or delay it. What is and is
+     not collected is stated in full at /privacy/. */
+  try {
+    var nav = navigator || {};
+    var optedOut = nav.doNotTrack === '1' || nav.globalPrivacyControl === true ||
+                   window.doNotTrack === '1' || nav.msDoNotTrack === '1';
+    var local = /^(localhost|127\\.|0\\.0\\.0\\.0|\\[?::1)/.test(location.hostname) ||
+                location.protocol === 'file:';
+    if (!optedOut && !local) {
+      var q = new URLSearchParams(location.search);
+      var camp = q.get('c') || q.get('utm_campaign') || null;
+      var host = null;
+      if (document.referrer) {
+        try { host = new URL(document.referrer).hostname; } catch (e) { host = null; }
+      }
+      var payload = JSON.stringify({
+        p: location.pathname,
+        /* Send a bare origin rather than the referrer itself, so the full
+           referring URL never leaves the reader's browser. */
+        r: host ? ('https://' + host + '/') : null,
+        c: camp
+      });
+      var TRACK = 'https://gsuvfpnyzebycqhsekus.supabase.co/functions/v1/track';
+      if (nav.sendBeacon) {
+        nav.sendBeacon(TRACK, new Blob([payload], {type: 'application/json'}));
+      } else {
+        fetch(TRACK, {method: 'POST', headers: {'content-type': 'application/json'},
+                      body: payload, keepalive: true, mode: 'cors'}).catch(function(){});
+      }
+    }
+  } catch (e) { /* a counter never breaks a page */ }
 
 })();
 """
@@ -3094,6 +3138,101 @@ def docket_answers(today, site_url, items):
         f'data</a> for the schema and the licence, and <a class="proselink" '
         f'href="../sources/">the source archive</a> for every document.</p>'))
     return out
+
+
+def privacy_page(today, site_url):
+    """What this site collects, stated plainly.
+
+    A publication that asks agencies to be transparent has no standing to run
+    surveillance analytics, and no standing to bury what it collects either.
+    This page exists so the answer is checkable rather than assumed, and it
+    ships in the same commit as the counter it describes."""
+    body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+<div class="chip kind">NO COOKIES &middot; NO TRACKING</div>
+<h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">Privacy</h1>
+<p class="tag">This site counts how often a page is read. It does not attempt to
+learn who read it, and it cannot. No cookies, no visitor identifier, no
+cross-site anything. Here is the whole of it, so you can check rather than
+trust.</p>
+</div>
+<h2 data-reveal>What is counted</h2>
+<p class="prose" data-reveal>When you open a page, a single message records four
+things. The path of the page you opened. The HOST of wherever you came from, so
+<code>linkedin.com</code> rather than the full address of the page you were on.
+A campaign tag, only when the link you followed carried one. And whether the
+screen is a phone, a tablet or a desktop, in those three buckets and no finer.
+That is the complete list.</p>
+<h2 data-reveal>What is never collected</h2>
+<ol class="claims" data-reveal>
+<li><p><strong>No cookies.</strong> None are set and none are read. Nothing is
+written to local storage either.</p></li>
+<li><p><strong>No identifier.</strong> There is no visitor id, no device id and
+no hashed stand-in for one. Two visits by the same person are not, and cannot
+be, linked to each other.</p></li>
+<li><p><strong>Your IP address is not stored.</strong> It reaches the server the
+way it must for any web request, is used only to reject automated traffic, and is
+never written down.</p></li>
+<li><p><strong>Your browser's user agent is not stored.</strong> It is read once,
+in memory, to decide phone or tablet or desktop, and then discarded.</p></li>
+<li><p><strong>Not the page you came from.</strong> Only its host. A full
+referring address can carry private context, so it never leaves your
+browser.</p></li>
+<li><p><strong>No advertising, no data brokers, no third-party analytics.</strong>
+There is no Google Analytics here and no ad network. The counter runs on our own
+infrastructure, so your reading is not an asset anyone else holds.</p></li>
+</ol>
+<h2 data-reveal>Why there is no cookie banner</h2>
+<p class="prose" data-reveal>Because there is nothing to consent to. A consent
+banner exists where a site processes personal data, and nothing described above
+is personal data. We would rather remove the reason for the banner than show you
+one.</p>
+<h2 data-reveal>If you would rather not be counted</h2>
+<p class="prose" data-reveal>Turn on Do Not Track or Global Privacy Control in
+your browser and this site sends nothing at all. Not sent and then ignored,
+simply never sent. Both signals are also honoured a second time at the server,
+so a message that should not have been sent is still not recorded. Any
+content blocker will stop it too, and the site works exactly the same with it
+blocked.</p>
+<h2 data-reveal>What is deliberately imprecise</h2>
+<p class="prose" data-reveal>Country is recorded when the network happens to
+supply it, which on this host it currently does not, so in practice that field
+is empty. Region and city are not recorded at all, and that is a choice rather
+than an oversight. Alaska has small communities where a region is closer to a
+name than a statistic.</p>
+<p class="prose" data-reveal>Because there is no visitor identifier, this site
+cannot report unique visitors, only pages read. That is the honest cost of the
+design and we would rather publish a smaller true number than a larger invented
+one.</p>
+<h2 data-reveal>If you give us something on purpose</h2>
+<p class="prose" data-reveal>Two parts of the site accept something from you
+deliberately, and both are opt in. If you subscribe to deadline alerts, your
+email address is held by our newsletter provider and used to send you those
+alerts and nothing else. If you run the Bottleneck Scanner, it reads the public
+pages of the address you give it, and any contact detail you choose to add is
+used to send you that result. Unsubscribing is one click and removal is on
+request.</p>
+<h2 data-reveal>Why this page exists</h2>
+<p class="prose" data-reveal>This publication spends its time asking public
+bodies who decides, when, and whether anyone gets a say. It would be a poor
+showing to ask that of an agency while quietly building a profile of the people
+who read the answer. If you find anything on this site that contradicts this
+page, that is a defect worth reporting and it will be fixed.</p>
+<div class="ctarow" data-reveal>
+  <a class="cta ghost" href="../about/">ABOUT ALASKA AI</a>
+  <a class="cta ghost" href="../data/">THE DATA</a>
+</div>"""
+    ld = {"@context": "https://schema.org", "@type": "WebPage",
+          "name": "Privacy", "url": f"{site_url}/privacy/",
+          "dateModified": today.isoformat(),
+          "publisher": {"@id": org_id(site_url)},
+          "description": ("What alaskaaihq.com counts and what it never collects. "
+                          "No cookies, no visitor identifier, no stored IP or user "
+                          "agent, no third-party analytics.")}
+    return page("Privacy - Alaska AI",
+                "What this site counts and what it never collects. No cookies, no "
+                "visitor identifier, no stored IP address, no third-party analytics.",
+                body, "../", "about", today, site_url, "privacy/", ld=ld,
+                crumbs=[("Alaska AI", ""), ("Privacy", "privacy/")])
 
 
 def questions_page(today, site_url, docket):
@@ -4676,7 +4815,7 @@ def sitemap(site_url, runs, today, decisions=None):
     for it in (decisions or []):
         entries.append(f"<url><loc>{site_url}/docket/{it['id']}/</loc>"
                        f"<lastmod>{it['last_updated']}</lastmod></url>")
-    for u in ("data/", "questions/"):
+    for u in ("data/", "questions/", "privacy/"):
         entries.append(f"<url><loc>{site_url}/{u}</loc><lastmod>{iso}</lastmod></url>")
     return ('<?xml version="1.0" encoding="UTF-8"?>'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
@@ -4746,6 +4885,7 @@ def build(today, out_dir, site_url=None, domain=""):
     # rather than an anchor on a shared page.
     pages["data/index.html"] = data_page(today, site_url, docket, runs)
     pages["questions/index.html"] = questions_page(today, site_url, docket)
+    pages["privacy/index.html"] = privacy_page(today, site_url)
     for _it in docket[0]:
         pages[f"docket/{_it['id']}/index.html"] = decision_page(
             today, site_url, _it, runs)
