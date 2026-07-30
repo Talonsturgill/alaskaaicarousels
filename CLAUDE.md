@@ -62,7 +62,8 @@ this one.
 ## Layout
 
 - `prompts/` — routine_instructions.md (master prompt) + ROUTINE_PROMPT.txt
-  (trigger pointer).
+  (trigger pointer) + NEXT_RUN.md when a story is queued for the next run
+  (Phase 0 step 0 reads it, the ship step archives it into runs/).
 - `knowledge/` — the studio brain: CAROUSEL_CRAFT (platform science),
   DESIGN_DOCTRINE (visual standard), TECHNIQUE_LIBRARY (80+ named
   techniques), SLIDE_DOSSIER_SPEC (planning format), FIELD_NOTES (living

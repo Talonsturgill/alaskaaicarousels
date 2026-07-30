@@ -101,6 +101,23 @@ artifact existing. If the session restarts, resume from run_state.
 
 ## PHASE 0 — WAKE
 
+0. **CHECK FOR A QUEUED ASSIGNMENT FIRST.** If `prompts/NEXT_RUN.md` exists,
+   READ IT BEFORE ANYTHING ELSE. It is a maintainer directive written by an
+   earlier session and it OVERRIDES this run's own story selection in Phase 4.
+   It does NOT waive any gate: the dedupe gate, the claims gate, the caption
+   gates, the scoring hard fails and the completion gate all still bind exactly
+   as written, and a queued story that trips the dedupe rule still has to ship
+   as an explicit UPDATE with a material new development, or not at all. The
+   brief should say so itself; if it does not, that is the showrunner's call to
+   make and to write into selection.md.
+
+   At ship time, ARCHIVE it into the run so it cannot silently steer a later
+   run: `git mv prompts/NEXT_RUN.md runs/<date>/next_run_brief.md`. A queued
+   assignment is for ONE run. Added 2026-07-30, when the maintainer asked for a
+   specific story to be covered the following day and there was no mechanism to
+   carry that instruction across sessions except hoping the next run's operator
+   remembered.
+
 1. `bash .claude/skills/carousel-engine/bootstrap.sh`
 2. Read the three ledgers + all knowledge/config files listed above.
 3. carousel_no = number of entries in ledger/topics.json + 1.
