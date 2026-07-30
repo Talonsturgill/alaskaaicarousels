@@ -1784,3 +1784,31 @@ The generalisable rule for this machine: automate the GEOMETRIC defects, where
 a thing is somewhere it should not be and pixels answer directly, and route
 the SEMANTIC ones to a judge with the measurements in hand. Knowing which kind
 you have, before building, is worth more than the gate.
+
+### 2026-07-30 (No. 20), craft refresh
+
+- The 2026 benchmark picture is unchanged in substance: native documents remain
+  the top engagement format (Socialinsider 7.00 percent, Oktopost's top-decile
+  B2B pages post more document content than median pages). Nothing here moves a
+  house rule. Sources: socialinsider.io/social-media-benchmarks/linkedin,
+  oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- One framing worth carrying: several 2026 write-ups describe LinkedIn moving
+  from a Relationship Graph to an INTEREST Graph, where content surfaces on
+  what a reader engages with rather than who they follow. If that holds, a deck
+  that is legible about its SUBJECT (place names, agency names, the actual
+  nouns) is doing ranking work, not just accessibility work. It is another
+  argument for the machine-readable moat the site already builds.
+  Source: extramiledigital.com/news/linkedin-announces-2026-algorithm-update/
+- Slide-count advice is drifting up (one 2026 guide says 9 to 12, another says
+  8 to 10 max because completion is penalised). Our band already spans this.
+  No change; noting the drift so a future run does not read it as new.
+- Craft note, relevant to this run's brief against concentrated detail: the
+  landscape-painting literature is blunt that depth comes from VALUE GROUPING
+  before it comes from detail. Background gets light values and minimal
+  contrast, midground medium values and moderate contrast, foreground the full
+  value range plus the sharpest edges and the warmest, most saturated hues. A
+  deck whose craft lives in one precisely modelled object has, by construction,
+  only one value group, which is why it flattens. Group the frame into three
+  value bands FIRST, then spend detail inside the nearest one.
+  Sources: samuelearp.com/blog/depth-in-paintings/,
+  finearttutorials.com/guide/atmospheric-perspective/
