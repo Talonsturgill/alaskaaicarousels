@@ -447,7 +447,7 @@ def footer(prefix, today):
     <a href="{prefix}archive/">ARTICLES</a><a href="{prefix}topics/">BEATS</a>
     <a href="{prefix}videos/">VIDEOS</a>
     <a href="{prefix}sources/">SOURCES</a>
-    <a href="{prefix}scan/">THE SCANNER</a>
+    <a href="{prefix}scan/">SCANNER</a>
     <a href="{prefix}services/">SERVICES</a>
     <a href="{prefix}about/">ABOUT</a>
     <a href="{prefix}questions/">QUESTIONS</a>
@@ -4664,7 +4664,7 @@ every observation.</p>
 </script>"""
     ld = {"@context": "https://schema.org", "@graph": [
         org_ld(site_url),
-        breadcrumb_ld(site_url, [("Home", ""), ("The Scanner", "scan/")])]}
+        breadcrumb_ld(site_url, [("Alaska AI", ""), ("Scanner", "scan/")])]}
     return page("The Bottleneck Scanner - Alaska AI",
                 "Drop your website and get an honest map of where AI would help your "
                 "Alaska business, where a plain rule wins first, and where AI should "
