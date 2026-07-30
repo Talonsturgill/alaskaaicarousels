@@ -637,7 +637,8 @@
     "scripts/gmail_draft.py"
    ],
    "verification": "Regenerated the payload for this run with the same score_report.json. Before the change the Editor's note block rendered 'None.'; after it renders the scorer's full note. Diffed the two bodies and the ONLY changes are that block and the generation timestamp, so nothing else in the paste contract moved.",
-   "rollback": "git revert this commit. The change is two added strings in one _alias call."
+   "rollback": "git revert this commit. The change is two added strings in one _alias call.",
+   "commit": "ec21943d305dc8edc82df78cc45a004540e218d0"
   }
  ],
  "scan_log": [
