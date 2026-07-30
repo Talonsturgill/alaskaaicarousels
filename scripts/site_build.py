@@ -233,11 +233,11 @@ def daylight_chip(today):
 #   3. A real point-spread function is Gaussian at the core and a power-law
 #      skirt far out, a range no single gradient can hold. Hence the layers:
 #      aureole (power law), inner glow (Gaussian), color ring, white core.
-# Spikes come from the instrument, not the star, so every star's cross sits at
-# the same angle. They are built from a tapered lens path plus a length
+# Spikes come from the instrument, not the star, so every star carries a cross
+# at the same angle. They are built from a tapered lens path plus a length
 # gradient, which costs nothing, instead of a blur.
 #
-# name, x, y, V mag, B-V, spike tier (1 full, 2 short, 3 none)
+# name, x, y, V mag, B-V, spike tier (1 full, 2 short, 3 shortest)
 FLAG_STARS = [
     ("Alkaid",  148, 181, 1.86, -0.19, 1),
     ("Mizar",   215, 206, 2.04, +0.02, 2),
@@ -331,23 +331,48 @@ def flag_sky():
         halo = s * (1.42 if name == "Polaris" else 1.0)
         core_r = 2.7 * (s ** 0.35)          # nearly constant, by design
         ring_r = core_r * 1.95
-        glow_r = 13.0 * halo
-        au_r = 42.0 * halo
-        spikes = ""
-        if tier < 3:
-            L = 46.0 * halo * (1.0 if tier == 1 else 0.46)
-            w = L * 0.020                    # waist, ~1% of length after the
-            # quadratic's midpoint halving. Thinness is the whole trick.
-            spikes = (
-                f'<path fill="url(#fspk)" d="M{x - L:.1f},{y} Q{x},{y - w:.2f} '
-                f'{x + L:.1f},{y} Q{x},{y + w:.2f} {x - L:.1f},{y} Z"/>'
-                f'<path fill="url(#fspkv)" d="M{x},{y - L * 0.91:.1f} '
-                f'Q{x + w:.2f},{y} {x},{y + L * 0.91:.1f} '
-                f'Q{x - w:.2f},{y} {x},{y - L * 0.91:.1f} Z"/>')
+        # Halo EXTENT belongs to the atmosphere and the lens, not to the star,
+        # so it is nearly the same for every star in one frame. What a faint
+        # star loses is halo BRIGHTNESS. Scaling extent linearly on flux is what
+        # erased Megrez: at mag 3.31 its glow radius fell to 4.8 against a 3.7
+        # color ring, so the entire halo hid inside the core and the faintest
+        # Dipper star rendered as a bare gold disc while its seven neighbors
+        # carried halos two to three times their ring. Extent now goes as the
+        # 0.45 power, which holds that ratio above 2 at every magnitude, and the
+        # magnitude moves into `dim` where it was always supposed to live.
+        spread = halo ** 0.45
+        glow_r = 13.0 * spread
+        au_r = 42.0 * spread
+        dim = 0.34 + 0.66 * s
+        # Every star gets a cross, because the cross is the instrument. Megrez
+        # used to get none, which is what made it read as a circle rather than
+        # as a faint star. Faint means short and dim, never absent.
+        # Spike length is the aperture's, and it must CLEAR the halo. Only the
+        # middle half of a spike is above 0.1 alpha, so if the tips stop short
+        # of where the glow has faded the whole cross is drawn inside the glow
+        # and cannot be seen. Keying length to glow_r guarantees the escape at
+        # every magnitude, which fixed length times flux never did. Brightness
+        # rides in `dim`; tier only trims for variety across the seven.
+        L = glow_r * 3.5 * (1.0 if tier == 1 else (0.92 if tier == 2 else 0.88))
+        # Waist ~1% of length after the quadratic's midpoint halving, because
+        # thinness is the whole trick, but FLOORED. A waist proportional to
+        # length is the second half of the Megrez bug: at tier 3 it worked out
+        # to 0.18 viewBox units, a quarter of a pixel on the rendered hero, so
+        # antialiasing dissolved the cross and left the bare disc even once the
+        # halo was fixed. Spike width comes from the aperture, so it is the same
+        # for every star in the frame; only length carries brightness.
+        w = max(0.62, L * 0.020)
+        spikes = (
+            f'<path fill="url(#fspk)" d="M{x - L:.1f},{y} Q{x},{y - w:.2f} '
+            f'{x + L:.1f},{y} Q{x},{y + w:.2f} {x - L:.1f},{y} Z"/>'
+            f'<path fill="url(#fspkv)" d="M{x},{y - L * 0.91:.1f} '
+            f'Q{x + w:.2f},{y} {x},{y + L * 0.91:.1f} '
+            f'Q{x - w:.2f},{y} {x},{y - L * 0.91:.1f} Z"/>')
         out.append(
-            f'<circle cx="{x}" cy="{y}" r="{au_r:.1f}" fill="url(#fa{t})"/>'
+            f'<circle cx="{x}" cy="{y}" r="{au_r:.1f}" fill="url(#fa{t})" '
+            f'opacity="{dim:.3f}"/>'
             f'<g class="fstar" style="animation-duration:{periods[i]}s;'
-            f'animation-delay:-{periods[i] * 0.37:.1f}s">'
+            f'animation-delay:-{periods[i] * 0.37:.1f}s" opacity="{dim:.3f}">'
             f'<circle cx="{x}" cy="{y}" r="{glow_r:.1f}" fill="url(#fg{t})"/>'
             f"{spikes}</g>"
             f'<circle cx="{x}" cy="{y}" r="{ring_r:.2f}" fill="url(#fr{t})"/>'
