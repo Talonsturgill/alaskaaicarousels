@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ABR, Inc. Cited search demonstration. Prepared by Alaska AI.</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --surface:#122a46;
+  --deep:#081428;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --gold:#ffc72c;
+  --link:#5ac8f0;
+  --warn:#f2a43a;
+  --ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --u:26px;
+}
+html{-webkit-text-size-adjust:100%;font-synthesis:none}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 var(--ui);letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.page{max-width:60rem;margin:0 auto;padding:0 22px 60px}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0 0 var(--u);text-wrap:pretty}
+a{color:var(--link);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.35)}
+a:hover{border-bottom-color:var(--link)}
+
+/* ---------- header ---------- */
+.top{padding:34px 0 0}
+.mark{display:flex;align-items:center;gap:9px;font:400 11px/1 var(--mono);
+  letter-spacing:.18em;color:var(--ink);text-transform:uppercase}
+.mark i{width:12px;height:12px;display:block;background:var(--gold);
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(28px,4.4vw,42px);
+  line-height:1.06;letter-spacing:-.018em;margin:26px 0 14px;max-width:22ch}
+.deck{color:var(--sub);max-width:44rem;font-size:17px;margin:0 0 18px}
+.covermeta{border-top:1px solid var(--rule);padding-top:12px;margin-top:20px;
+  font:400 11px/1.6 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cap);display:flex;flex-wrap:wrap;gap:6px 26px}
+
+/* ---------- honesty banner ---------- */
+.honest{border-left:2px solid var(--gold);padding:2px 0 2px 18px;margin:30px 0 0;max-width:44rem}
+.honest .lab{font:400 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);display:block;margin-bottom:12px}
+.honest p{color:var(--sub);margin:0 0 12px;font-size:15.5px}
+.honest p:last-child{margin:0}
+.honest strong{color:var(--ink);font-weight:650}
+
+/* ---------- sections ---------- */
+.sec{margin:calc(var(--u)*2.2) 0 0}
+.sec-n{font:400 11px/1 var(--mono);color:var(--gold);letter-spacing:.18em;
+  display:block;margin-bottom:12px;text-transform:uppercase}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(22px,3vw,28px);
+  line-height:1.2;letter-spacing:-.01em;margin:0 0 12px}
+.lede{color:var(--sub);max-width:42rem;font-size:16.5px;margin:0 0 22px}
+
+/* ---------- our commentary, never tool output ---------- */
+.note{border-left:2px solid var(--accent);padding:2px 0 2px 16px;margin:18px 0;
+  max-width:42rem;color:var(--sub);font-size:15px}
+.note .nl{font:400 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:9px}
+.note p{margin:0 0 10px}
+.note p:last-child{margin:0}
+
+/* ---------- console ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 16px}
+.chip{font:400 12.5px/1 var(--ui);color:var(--sub);background:transparent;
+  border:1px solid var(--rule);border-radius:999px;padding:9px 14px;cursor:pointer;
+  text-align:left}
+.chip:hover{border-color:var(--cap);color:var(--ink)}
+.chip[aria-pressed="true"]{border-color:var(--accent);color:var(--ink);
+  box-shadow:inset 0 0 0 1px rgba(60,230,180,.35)}
+.chip.keychip{border-color:rgba(255,199,44,.55);color:var(--gold)}
+.chip.keychip[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
+
+.screen{background:var(--deep);border:1px solid var(--rule);border-radius:10px;
+  overflow:hidden;max-width:52rem}
+.bar-top{display:flex;align-items:center;gap:10px;padding:10px 16px;flex-wrap:wrap;
+  border-bottom:1px solid var(--rule);font:400 10.5px/1.5 var(--mono);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cap)}
+.bar-top i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:block}
+.form{display:flex;gap:10px;padding:16px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.form input{flex:1 1 22rem;min-width:0;background:#02060f;border:1px solid var(--rule);
+  border-radius:7px;color:var(--ink);font:400 15px/1.4 var(--ui);padding:12px 13px}
+.form input:focus{outline:none;border-color:var(--accent)}
+.form button{background:var(--accent);color:#02201a;border:0;border-radius:7px;
+  font:650 14px/1 var(--ui);padding:0 20px;cursor:pointer;min-height:44px}
+.form button:hover{filter:brightness(1.08)}
+.trace{padding:12px 16px;border-bottom:1px solid var(--rule);
+  font:400 12px/1.7 var(--mono);color:var(--cap)}
+.trace b{color:var(--sub);font-weight:400}
+.out{padding:16px}
+
+/* ---------- result cards ---------- */
+.card{border:1px solid var(--rule);border-radius:9px;background:var(--surface);
+  padding:15px 16px;margin:0 0 12px}
+.card:last-child{margin:0}
+.card-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font:400 10.5px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);margin-bottom:9px}
+.card h4{font-size:16px;font-weight:650;line-height:1.35;color:var(--ink);margin:0 0 10px}
+blockquote{margin:0 0 12px;padding:0 0 0 13px;border-left:2px solid var(--rule);
+  color:var(--sub);font-size:15px;line-height:1.55}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px 18px;margin:0 0 12px;padding-top:11px;border-top:1px solid var(--rule)}
+.mi .lab{display:block;font:400 9.5px/1 var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--cap);margin-bottom:5px}
+.mi .val{font:400 13px/1.4 var(--mono);color:var(--sub);word-break:break-word}
+.mi .val.warnv{color:var(--warn)}
+.mi .val.okv{color:var(--accent)}
+.sts{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 11px}
+.st{font:400 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 9px;border-radius:4px;border:1px solid}
+.st-ok{color:var(--accent);border-color:rgba(60,230,180,.4)}
+.st-warn{color:var(--warn);border-color:rgba(242,164,58,.45)}
+.st-block{color:var(--warn);border-color:var(--warn);background:rgba(242,164,58,.12)}
+.statusbar{font-size:14px;line-height:1.5;padding:10px 12px;border-radius:6px}
+.sb-hold{color:var(--sub);background:rgba(242,164,58,.08);
+  border-left:2px solid rgba(242,164,58,.55)}
+.sb-block{color:var(--ink);background:rgba(242,164,58,.14);border-left:2px solid var(--warn)}
+
+/* ---------- the empty result ---------- */
+.empty{padding:34px 16px;text-align:center}
+.empty .eh{font-family:var(--display);font-weight:400;font-size:clamp(22px,3.4vw,30px);
+  color:var(--ink);letter-spacing:-.01em}
+
+/* ---------- vehicle lookup ---------- */
+.veh{margin:14px 0 0;border:1px solid var(--rule);border-radius:9px;padding:14px 16px}
+.veh .vh{font:400 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);margin-bottom:11px;display:block}
+.vrow{display:flex;flex-wrap:wrap;gap:4px 20px;padding:8px 0;border-top:1px solid var(--rule);
+  font:400 13px/1.5 var(--mono);color:var(--sub)}
+.vrow:first-of-type{border-top:0}
+.vrow .vnum{color:var(--ink);letter-spacing:.03em}
+.vrow .vag{color:var(--cap);min-width:6rem}
+
+/* ---------- assembly sheet ---------- */
+.sheet{background:#fbfaf7;color:#1a1f26;border-radius:10px;padding:28px 30px;
+  max-width:48rem;font-size:15px;line-height:1.6}
+.sheet .sh-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  border-bottom:2px solid #1a1f26;padding-bottom:12px;margin-bottom:16px}
+.sheet .sh-title{font:650 15px/1.3 var(--ui);letter-spacing:.01em}
+.sheet .sh-sub{font:400 11px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#5d6672}
+.sheet .sh-field{margin:0 0 14px}
+.sheet .sh-field .k{font:400 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:#5d6672;display:block;margin-bottom:5px}
+.sheet .sh-field .v{color:#1a1f26}
+.sheet .sh-h{font:650 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:#1a1f26;margin:22px 0 12px;padding-top:12px;border-top:1px solid #cfcabc}
+.sheet .item{margin:0 0 16px;padding-left:26px;position:relative}
+.sheet .item .n{position:absolute;left:0;top:1px;font:650 12px/1.6 var(--mono);color:#5d6672}
+.sheet .item q{quotes:'"' '"';color:#1a1f26}
+.sheet .item .cite{display:block;font:400 11.5px/1.7 var(--mono);color:#5d6672;margin-top:6px}
+.sheet .item .flagline{display:inline-block;margin-top:7px;font:400 10px/1 var(--mono);
+  letter-spacing:.1em;text-transform:uppercase;color:#8a5a00;
+  border:1px solid #d8a53a;background:#fdf1d8;padding:5px 8px;border-radius:3px}
+.sheet .sh-foot{margin-top:22px;padding-top:12px;border-top:2px solid #1a1f26;
+  font-size:13.5px;color:#3b434e}
+.sheet .sh-foot p{margin:0 0 8px}
+.sheet .sh-foot p:last-child{margin:0}
+.sheet .sh-foot strong{color:#1a1f26}
+.printrow{margin:14px 0 0}
+.printbtn{background:transparent;border:1px solid var(--rule);color:var(--sub);
+  border-radius:7px;font:400 13px/1 var(--ui);padding:11px 16px;cursor:pointer}
+.printbtn:hover{border-color:var(--cap);color:var(--ink)}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;
+  margin:0 0 var(--u)}
+.step{border-top:2px solid var(--accent);padding-top:14px}
+.step .sn{font:400 11px/1 var(--mono);color:var(--accent);letter-spacing:.14em;
+  display:block;margin-bottom:9px}
+.step p{margin:0;color:var(--sub);font-size:15px}
+
+/* ---------- will not do ---------- */
+.nots{list-style:none;padding:0;margin:0 0 var(--u);max-width:44rem}
+.nots li{position:relative;padding:0 0 15px 24px;color:var(--sub);font-size:15.5px}
+.nots li::before{content:"";position:absolute;left:0;top:10px;width:11px;height:2px;
+  background:var(--warn)}
+.nots li strong{color:var(--ink);font-weight:650}
+.nots li:last-child{padding-bottom:0}
+
+/* ---------- indexed set ---------- */
+.tw{overflow-x:auto;max-width:52rem}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:34rem}
+th,td{padding:10px 16px 10px 0;text-align:left;vertical-align:top}
+th{color:var(--sub);font-size:13px;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;font-weight:400}
+td{color:var(--sub);border-bottom:1px solid rgba(28,51,80,.6)}
+td.m{font-family:var(--mono);font-size:13px;color:var(--cap)}
+td:first-child{color:var(--ink);word-break:break-word}
+caption{text-align:left;color:var(--sub);font-size:15px;margin-bottom:14px;max-width:42rem}
+
+.foot{margin-top:calc(var(--u)*2);padding-top:18px;border-top:1px solid var(--rule);
+  font-size:13.5px;color:var(--cap);max-width:44rem}
+.foot p{margin:0 0 9px}
+
+@media (max-width:640px){
+  body{font-size:15.5px}
+  .page{padding:0 16px 44px}
+  .sheet{padding:22px 18px}
+}
+
+/* ---------- print, light theme. A dark page is unreadable on paper. ---------- */
+@media print{
+  html{-webkit-print-color-adjust:economy;print-color-adjust:auto}
+  :root{--bg:#fff;--surface:#f3f5f8;--deep:#fff;--rule:#c9d1db;--ink:#12181f;
+        --sub:#39434f;--cap:#59636f;--accent:#0d6a5b;--gold:#8a6200;--warn:#8a5a00;
+        --link:#12508f}
+  body{font-size:10.5pt}
+  .page{max-width:none;padding:0}
+  .form button,.printrow,.chip{display:none}
+  .screen,.card,.veh,.sheet,.step{break-inside:avoid}
+  .sheet{background:#fff;border:1px solid #c9d1db}
+  h1,h2{break-after:avoid}
+  a{border-bottom:0}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="top">
+  <div class="mark"><i></i><span>Alaska AI</span></div>
+  <h1>Cited search over ABR's own approved proposal text</h1>
+  <p class="deck">You type the scope of a task order. It returns passages ABR has already used, each one carrying the document it came from, its date and ABR's role on that contract. It finds and cites. It never writes.</p>
+  <div class="covermeta">
+    <span>ABR, Inc.</span>
+    <span>Fairbanks and Anchorage</span>
+    <span>Prepared by Alaska AI</span>
+    <span>30 July 2026</span>
+  </div>
+
+  <div class="honest">
+    <span class="lab">Read this first</span>
+    <p><strong>This is a scripted demonstration of the build in the Field Study. It is not a live system and nothing here is connected to anything.</strong></p>
+    <p>We have never seen ABR's proposal archive. Not one file. So every passage below is ABR's own public web copy standing in for proposal text, and each one names the page it came from. Anyone can check them.</p>
+    <p>Nothing on this page is generated. The passages are quoted. The counts are counts of what is listed. The contract numbers come from a table someone typed once.</p>
+  </div>
+</header>
+
+<section class="sec">
+  <span class="sec-n">01 The console</span>
+  <h2>Type the scope of a task order</h2>
+  <p class="lede">Four queries are scripted. Type something far enough from these and you get the fourth behaviour, which is the one worth checking first.</p>
+
+  <div class="chips" id="chips"></div>
+
+  <div class="screen">
+    <div class="bar-top"><i></i><span>Cited search</span><span>Finding only</span><span>No model in this path</span></div>
+    <form class="form" id="f" autocomplete="off">
+      <input id="q" type="text" aria-label="Scope of the task order" placeholder="Paste the scope of work here">
+      <button type="submit">Run search</button>
+    </form>
+    <div class="trace" id="trace"></div>
+    <div class="out" id="out"></div>
+  </div>
+
+  <div id="annot"></div>
+</section>
+
+<section class="sec">
+  <span class="sec-n">02 The handoff</span>
+  <h2>What lands on the coordinator's desk</h2>
+  <p class="lede">This is the whole output. One sheet of found material with a note of where it came from, built from the first query above. A person takes it from here.</p>
+
+  <div class="sheet">
+    <div class="sh-top">
+      <div>
+        <div class="sh-title">ABR, Inc. Past performance assembly sheet</div>
+        <div class="sh-sub">Cited search. Finding only. No generated text.</div>
+      </div>
+      <div class="sh-sub">30 July 2026<br>Sheet 1 of 1</div>
+    </div>
+
+    <div class="sh-field">
+      <span class="k">Query</span>
+      <span class="v">BLM AIM aquatic and terrestrial monitoring, wadeable stream habitat and vegetation plots on remote BLM lands</span>
+    </div>
+    <div class="sh-field">
+      <span class="k">Source set</span>
+      <span class="v">10 passages drawn from 8 public pages. Recency threshold 36 months.</span>
+    </div>
+
+    <div class="sh-h">Returned, on hold</div>
+
+    <div class="item"><span class="n">1</span>
+      <q>conducted five 10-day sampling hitches to collect detailed habitat data at over 50 wadeable stream sites</q>
+      <span class="cite">abrinc.com/post/alaska-aim . 13 November 2025 . 8 months old . ABR role unset</span>
+      <span class="flagline">On hold. Role field empty.</span>
+    </div>
+
+    <div class="item"><span class="n">2</span>
+      <q>vegetation, soils, hydrology, and permafrost data at 60 plots in remote, logistically challenging BLM lands</q>
+      <span class="cite">abrinc.com/post/alaska-aim . 13 November 2025 . 8 months old . ABR role unset</span>
+      <span class="flagline">On hold. Role field empty.</span>
+    </div>
+
+    <div class="item"><span class="n">3</span>
+      <q>This fall, the ABR team will perform rigorous data QA/QC and deliver datasets in electronic format.</q>
+      <span class="cite">abrinc.com/post/alaska-aim . 13 November 2025 . 8 months old . ABR role unset</span>
+      <span class="flagline">On hold. Role field empty.</span>
+    </div>
+
+    <div class="sh-h">Held back, do not paste</div>
+
+    <div class="item"><span class="n">4</span>
+      Resume record. John C. Seigle, Senior Scientist, named on the source as leading the aquatic component.
+      <span class="cite">abrinc.com/about/staff and abrinc.com/post/alaska-aim . no date on the directory page</span>
+      <span class="flagline">Blocked. The tool can't say this record is current.</span>
+    </div>
+
+    <div class="sh-h">Contract vehicles on file for this agency</div>
+    <div class="item" style="padding-left:0">
+      Bureau of Land Management, Botanical Services BPA. Contract 140L0624A0027, through 30 June 2029.
+      <span class="cite">abrinc.com/clients/government-agencies . typed once into a lookup table and tested . not generated</span>
+    </div>
+
+    <div class="sh-foot">
+      <p><strong>Nothing on this sheet was written by the tool.</strong> Every passage is text that already exists in the cited document. The technical approach is not here and it never will be.</p>
+      <p><strong>No finding, no effect determination and no species conclusion appears on this sheet.</strong> The tool can't produce one and it is not built to try.</p>
+      <p>Four of four records are on hold or blocked. A person clears them.</p>
+    </div>
+  </div>
+
+  <div class="printrow"><button class="printbtn" type="button" id="pr">Print this sheet</button></div>
+
+  <div class="note">
+    <span class="nl">Alaska AI note</span>
+    <p>Three of those records are on hold for the same reason. Nobody has told the tool whether ABR was prime or sub, so it will not guess. The fourth is blocked for a different reason, the directory page carries no date, so the tool will not call the record current. In the built version that field is filled in once during the archive audit and how many clear on the first pass is one of the things the audit would find out, and we have no idea what the answer is. Nothing clears here because we have never seen ABR's files, and a demonstration that pretended otherwise would be the exact failure this tool exists to prevent.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <span class="sec-n">03 The shape of it</span>
+  <h2>How it sits in your operation</h2>
+  <div class="steps">
+    <div class="step"><span class="sn">01</span><p>Your archive is copied once and read only. The tool never writes back to it. If the copy is wrong you delete the copy and nothing else has changed.</p></div>
+    <div class="step"><span class="sn">02</span><p>Someone types the scope and reads what comes back. Every passage carries its document, its date and your role on that contract, and a stale one is flagged before it can be copied.</p></div>
+    <div class="step"><span class="sn">03</span><p>A senior scientist writes the technical approach and signs it, same as today.</p></div>
+  </div>
+</section>
+
+<section class="sec">
+  <span class="sec-n">04 The boundaries</span>
+  <h2>What it will not do, and these are decisions not gaps</h2>
+  <ul class="nots">
+    <li><strong>It does not write.</strong> No technical approach, no past performance narrative, no prose of any kind. Code assembles the sheet. A person writes the proposal. A tool that offered to write it is a tool we would not ship.</li>
+    <li><strong>It does not touch a determination.</strong> No finding, no effect call, no species presence or absence. The Fish and Wildlife Service publishes the failure mode inside its own approval of automated bat classifiers, and a peer reviewed evaluation of those same programs found sensitivity as low as 0.01 on a listed species. Those authors recommend a qualified analyst verify automated classifications before presence or probable absence is confirmed. We are taking them at their word.</li>
+    <li><strong>It does not guess a contract number.</strong> Those come from a table typed once and tested, which is why 140F0S23A0028 keeps its letter S. A model that is 99 percent right on a contract number is 100 percent wrong on the proposal it lands in.</li>
+    <li><strong>It does not offer the nearest wrong answer.</strong> When nothing matches it says so and returns nothing. That behaviour is a test we would write before building, not a promise we make in a meeting.</li>
+    <li><strong>Phase one contains no model at all.</strong> It is a search over your own text running on PostgreSQL, which your own data management page lists as in house expertise. A model layer only switches on if it measurably beats the plain search on a test set your coordinator labelled first, and a tie counts as a loss.</li>
+  </ul>
+</section>
+
+<section class="sec">
+  <span class="sec-n">05 The set</span>
+  <h2>Everything this demonstration can see</h2>
+  <p class="lede">Eight public pages, ten passages, one lookup table. Every count on this page is a count of these, and you can open all of them.</p>
+  <div class="tw">
+    <table>
+      <caption>The demonstration set. In the built version this is your archive instead, and the columns stay the same.</caption>
+      <thead><tr><th>Source</th><th>Date on source</th><th>Holds</th></tr></thead>
+      <tbody>
+        <tr><td>abrinc.com/post/alaska-aim</td><td class="m">13 Nov 2025</td><td class="m">3 passages</td></tr>
+        <tr><td>abrinc.com/post/arctic-village-wetlands</td><td class="m">no year printed</td><td class="m">1 passage, 1 person reference</td></tr>
+        <tr><td>abrinc.com/experience/projects/management-of-caribou-collar-telemetry-data</td><td class="m">2015 to present</td><td class="m">1 passage</td></tr>
+        <tr><td>abrinc.com/services/data-management-and-programming</td><td class="m">undated</td><td class="m">1 passage</td></tr>
+        <tr><td>sealog.abrinc.com</td><td class="m">undated</td><td class="m">1 passage</td></tr>
+        <tr><td>abrinc.com/about/staff</td><td class="m">undated</td><td class="m">1 resume record</td></tr>
+        <tr><td>pacificseabirdgroup.org field technician posting</td><td class="m">4 Mar 2021</td><td class="m">1 passage</td></tr>
+        <tr><td>abrinc.com/clients/government-agencies</td><td class="m">four expiry dates</td><td class="m">lookup table</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="veh" style="max-width:52rem">
+    <span class="vh">The lookup table, in full</span>
+    <div class="vrow"><span class="vag">BLM</span><span class="vnum">140L0624A0027</span><span>Botanical Services BPA, through 30 June 2029</span></div>
+    <div class="vrow"><span class="vag">GSA</span><span class="vnum">47QRAA20D0010</span><span>Multiple Award Schedule, through 3 November 2029</span></div>
+    <div class="vrow"><span class="vag">NOAA</span><span class="vnum">1305M424D0030</span><span>ProTech Oceans, through 28 April 2029</span></div>
+    <div class="vrow"><span class="vag">USFWS</span><span class="vnum">140F0S23A0028</span><span>Wetland Mapping Services BPA, through 23 July 2028</span></div>
+  </div>
+
+  <div class="note">
+    <span class="nl">Alaska AI note</span>
+    <p>Four rows. That is the entire table and it is the whole reason no model goes near a contract number. Someone types it once, someone else checks it against the page, and then it is right forever. The USFWS row carries a letter S where a five would look almost identical in most typefaces, which is exactly the character a fluent model rewrites without telling you.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>Prepared by Alaska AI for ABR, Inc. 30 July 2026.</p>
+  <p>Scripted demonstration of the build described in the Field Study. Not a live system, no proposal archive was accessed and no ABR material beyond its own public web pages was used. Every passage is quoted from the public pages listed above. One of those is a third party job board posting from 2021 rather than an ABR page, which is why the tool flags it.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* The demonstration set. 10 passages across 8 public pages, all fetched and
+     quoted. Nothing in here is generated and no value is inferred. Where a fact
+     was not verifiable it is carried as unset rather than filled in. */
+
+  var SET_PASSAGES = 10;
+  var SET_DOCS = 8;
+
+  var SCENARIOS = [
+    {
+      id: "aim",
+      chip: "BLM aquatic and terrestrial monitoring",
+      query: "BLM AIM aquatic and terrestrial monitoring, wadeable stream habitat and vegetation plots on remote BLM lands",
+      terms: ["blm","aim","aquatic","terrestrial","stream","streams","wadeable","vegetation","plots","habitat","monitoring"],
+      matched: ["blm","aquatic","terrestrial","stream","vegetation","plots"],
+      hits: 4,
+      vehicles: [
+        {ag:"BLM", num:"140L0624A0027", desc:"Botanical Services BPA, through 30 June 2029"}
+      ],
+      vehnote: "Vehicle held by ABR, read off the contracts page. The tool does not claim which vehicle a past project ran under. That link lives in your contract file and we have not seen it.",
+      annot: "Three passages cleared the date rule and one did not. The one that did not is a resume record, which is how resumes go stale quietly. Nobody notices a bio has gone stale until a contracting officer does.",
+      results: [
+        {
+          kind:"Project description", pid:"P-01",
+          title:"Alaska AIM, aquatic component",
+          quote:"conducted five 10-day sampling hitches to collect detailed habitat data at over 50 wadeable stream sites",
+          src:"abrinc.com/post/alaska-aim",
+          url:"https://www.abrinc.com/post/alaska-aim",
+          date:"13 November 2025", age:"8 months", dstate:"ok",
+          sts:[["ok","Date inside threshold"],["warn","Role unset"]],
+          bar:"hold", barText:"On hold. The role field is empty so this can't be marked cleared to paste."
+        },
+        {
+          kind:"Project description", pid:"P-02",
+          title:"Alaska AIM, terrestrial component",
+          quote:"vegetation, soils, hydrology, and permafrost data at 60 plots in remote, logistically challenging BLM lands",
+          src:"abrinc.com/post/alaska-aim",
+          url:"https://www.abrinc.com/post/alaska-aim",
+          date:"13 November 2025", age:"8 months", dstate:"ok",
+          sts:[["ok","Date inside threshold"],["warn","Role unset"]],
+          bar:"hold", barText:"On hold. The role field is empty so this can't be marked cleared to paste."
+        },
+        {
+          kind:"Deliverable language", pid:"P-03",
+          title:"Post season QA and data delivery",
+          quote:"This fall, the ABR team will perform rigorous data QA/QC and deliver datasets in electronic format.",
+          src:"abrinc.com/post/alaska-aim",
+          url:"https://www.abrinc.com/post/alaska-aim",
+          date:"13 November 2025", age:"8 months", dstate:"ok",
+          sts:[["ok","Date inside threshold"],["warn","Role unset"]],
+          bar:"hold", barText:"On hold. The role field is empty so this can't be marked cleared to paste."
+        },
+        {
+          kind:"Resume record", pid:"R-01",
+          title:"John C. Seigle, Senior Scientist",
+          quote:"For the aquatic component, a team led by John Seigle",
+          src:"abrinc.com/about/staff and abrinc.com/post/alaska-aim",
+          url:"https://www.abrinc.com/about/staff",
+          date:"none on the directory page", age:"unknown", dstate:"nodate",
+          sts:[["block","No date on source"],["warn","Role unset"]],
+          bar:"block", barText:"Blocked. The directory page carries no date so the tool can't say this record is current. Confirm it with the person before it goes in a submission."
+        }
+      ]
+    },
+    {
+      id: "wetland",
+      chip: "Wetland mapping on a short schedule",
+      query: "wetland delineation and mapping for a rural Alaska community on a short schedule",
+      terms: ["wetland","wetlands","delineation","mapping","map","rural","community","schedule","turnaround","village"],
+      matched: ["wetland","mapping","community","schedule"],
+      hits: 2,
+      vehicles: [
+        {ag:"USFWS", num:"140F0S23A0028", desc:"Wetland Mapping Services BPA, through 23 July 2028"}
+      ],
+      vehnote: "The character after 140F0 is a letter S. It came out of a typed table rather than a model, which is the only reason we will print it at all.",
+      annot: "Both records came back blocked, so this query produced nothing anyone can paste. That is a working result and not a broken one. The second card is the more interesting failure. ABR's own post names a scientist by first name only, and the directory does list a senior scientist whose first name is Sue. The tool will not join two records on a first name. A person does that in about three seconds and then the join is written down once and never guessed again.",
+      results: [
+        {
+          kind:"Project description", pid:"P-04",
+          title:"Arctic Village wetlands",
+          quote:"Sue produced the wetlands map and associated report on a quick turnaround to support the project on their schedule.",
+          src:"abrinc.com/post/arctic-village-wetlands",
+          url:"https://www.abrinc.com/post/arctic-village-wetlands",
+          date:"no year printed on the post", age:"unknown", dstate:"nodate",
+          sts:[["block","No date on source"],["warn","Role unset"]],
+          bar:"block", barText:"Blocked. The post prints a day and a month and no year, so the tool will not assume one. Undated material does not go in a past performance section."
+        },
+        {
+          kind:"Person reference", pid:"R-02",
+          title:"Sue, no surname on the source",
+          quote:"Sue produced the wetlands map and associated report",
+          src:"abrinc.com/post/arctic-village-wetlands",
+          url:"https://www.abrinc.com/post/arctic-village-wetlands",
+          date:"no year printed on the post", age:"unknown", dstate:"nodate",
+          sts:[["block","Person not resolved"],["block","No date on source"]],
+          bar:"block", barText:"Blocked. The tool can't resolve a first name to a directory record and it will not try. A person confirms who this is, once, and the answer gets stored."
+        }
+      ]
+    },
+    {
+      id: "telemetry",
+      chip: "Long term telemetry data management",
+      query: "long term wildlife telemetry data management for a state agency, daily location updates",
+      terms: ["telemetry","wildlife","data","management","database","state","agency","daily","location","caribou","collar"],
+      matched: ["telemetry","data","management","daily","location"],
+      hits: 4,
+      vehicles: [],
+      vehnote: "",
+      annot: "The fourth card is the one to look at. It is 64 months old against a 36 month threshold, so it comes back flagged with its age on the face of it. It is also not an ABR document. It is a job board reposting, which the source field says out loud. Two reasons to keep it out of a submission and both visible before anyone copies anything.",
+      results: [
+        {
+          kind:"Project description", pid:"P-05",
+          title:"Caribou collar telemetry database, four herds",
+          quote:"Western Arctic Herd (WAH), Teshekpuk Caribou Herd (TCH), Central Arctic Herd (CAH), and Porcupine Caribou Herd ... update the location data daily, add other data such as calving and fall composition data",
+          src:"abrinc.com/experience/projects/management-of-caribou-collar-telemetry-data",
+          url:"https://www.abrinc.com/experience/projects/management-of-caribou-collar-telemetry-data",
+          date:"2015 to present, stated on the source", age:"ongoing", dstate:"ok",
+          sts:[["ok","Ongoing work"],["warn","Role unset"]],
+          bar:"hold", barText:"On hold. The role field is empty so this can't be marked cleared to paste."
+        },
+        {
+          kind:"Capability text", pid:"P-06",
+          title:"In house data management and programming",
+          quote:"Database design and management ... Data collection apps for mobile devices ... Custom, data-driven, dynamic web applications ... Expertise in Microsoft Access, SQL Server, and PostgreSQL",
+          src:"abrinc.com/services/data-management-and-programming",
+          url:"https://www.abrinc.com/services/data-management-and-programming",
+          date:"none on the page", age:"unknown", dstate:"nodate",
+          sts:[["block","No date on source"],["warn","Role unset"]],
+          bar:"block", barText:"Blocked. Service pages carry no date, so the tool treats them as unverifiable for recency. This is the sort of thing an archive audit is for."
+        },
+        {
+          kind:"Software record", pid:"P-07",
+          title:"Software delivered to federal users",
+          quote:"These programs were written for the U.S. Geological Survey-Alaska Science Center, with additional support from the National Park Service and U.S. Fish and Wildlife Service.",
+          src:"sealog.abrinc.com",
+          url:"https://sealog.abrinc.com/",
+          date:"none on the page", age:"unknown", dstate:"nodate",
+          sts:[["block","No date on source"],["warn","Role unset"]],
+          bar:"block", barText:"Blocked. No date on the page. Strong material and it still does not go in a submission until someone attaches a year to it."
+        },
+        {
+          kind:"Field crew text", pid:"P-08",
+          title:"Mobile data entry and proofing",
+          quote:"Data entry and proofing, primarily on mobile electronic devices",
+          src:"pacificseabirdgroup.org, a third party job board and not an ABR page",
+          url:"https://pacificseabirdgroup.org/news/job-opening-field-technician-wildlife-ak/",
+          date:"4 March 2021", age:"64 months", dstate:"stale",
+          sts:[["block","Stale, 64 months"],["block","Not an ABR document"],["warn","Role unset"]],
+          bar:"block", barText:"Blocked, 64 months old against a 36 month threshold. It also came off a third party site rather than an ABR document. Whoever owns the rule sets the number of months. We do not."
+        }
+      ]
+    },
+    {
+      id: "empty",
+      key: true,
+      chip: "The empty result",
+      query: "Phase II environmental site assessment, soil borings and groundwater sampling at a contaminated fuel site",
+      terms: [],
+      matched: [],
+      hits: 0,
+      vehicles: [],
+      vehnote: "",
+      empty: true,
+      annot: "This is the behaviour worth checking first and the whole design turns on it. Nothing scored above the match floor so nothing came back. There is a nearest passage in the set and you are not being shown it, because showing the nearest wrong answer is exactly how the wrong paragraph ends up in a submission. None of this says ABR has never done this work. It says nothing in the set is close enough to paste, and the next step is a person rather than a nearer guess. In the build this is a written test with a number attached, zero nearest wrong answers across 30 to 50 real prior solicitations your coordinator labelled, not a promise anyone makes out loud."
+    }
+  ];
+
+  var EMPTY = SCENARIOS[SCENARIOS.length - 1];
+
+  function $(s){ return document.querySelector(s); }
+  var out = $("#out"), trace = $("#trace"), annot = $("#annot"),
+      chipsWrap = $("#chips"), qInput = $("#q");
+
+  function esc(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+                    .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  SCENARIOS.forEach(function(s){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip" + (s.key ? " keychip" : "");
+    b.setAttribute("aria-pressed","false");
+    b.setAttribute("data-id", s.id);
+    b.textContent = s.chip;
+    b.addEventListener("click", function(){ qInput.value = s.query; run(s); });
+    chipsWrap.appendChild(b);
+  });
+
+  function press(id){
+    var all = chipsWrap.querySelectorAll(".chip");
+    for (var i = 0; i < all.length; i++){
+      all[i].setAttribute("aria-pressed", all[i].getAttribute("data-id") === id ? "true" : "false");
+    }
+  }
+
+  /* Deterministic term match against a fixed list. No ranking model, nothing
+     learned, no scoring beyond counting words from a fixed list. */
+  function pick(text){
+    var q = " " + String(text).toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ") + " ";
+    var best = null, bestScore = 0, matched = [];
+    SCENARIOS.forEach(function(s){
+      if (s.empty) return;
+      var hitTerms = [];
+      s.terms.forEach(function(t){
+        if (q.indexOf(" " + t + " ") !== -1) hitTerms.push(t);
+      });
+      if (hitTerms.length > bestScore){ bestScore = hitTerms.length; best = s; matched = hitTerms; }
+    });
+    if (best && bestScore >= 3) return {s: best, matched: matched};
+    return {s: EMPTY, matched: []};
+  }
+
+  function cardHtml(r){
+    var sts = r.sts.map(function(p){
+      return '<span class="st st-' + p[0] + '">' + esc(p[1]) + '</span>';
+    }).join("");
+    var dcls = r.dstate === "ok" ? "okv" : "warnv";
+    return '' +
+      '<article class="card">' +
+        '<div class="card-top"><span>' + esc(r.kind) + '</span><span>' + esc(r.pid) + '</span></div>' +
+        '<h4>' + esc(r.title) + '</h4>' +
+        '<blockquote>"' + esc(r.quote) + '"</blockquote>' +
+        '<div class="meta">' +
+          '<div class="mi"><span class="lab">Source document</span><span class="val">' +
+            '<a href="' + esc(r.url) + '" target="_blank" rel="noopener noreferrer">' + esc(r.src) + '</a></span></div>' +
+          '<div class="mi"><span class="lab">Date on source</span><span class="val ' + dcls + '">' + esc(r.date) + '</span></div>' +
+          '<div class="mi"><span class="lab">Age</span><span class="val ' + dcls + '">' + esc(r.age) + '</span></div>' +
+          '<div class="mi"><span class="lab">ABR role</span><span class="val warnv">unset</span></div>' +
+        '</div>' +
+        '<div class="sts">' + sts + '</div>' +
+        '<div class="statusbar sb-' + r.bar + '">' + esc(r.barText) + '</div>' +
+      '</article>';
+  }
+
+  function vehHtml(s){
+    if (!s.vehicles || !s.vehicles.length) return "";
+    var rows = s.vehicles.map(function(v){
+      return '<div class="vrow"><span class="vag">' + esc(v.ag) + '</span>' +
+             '<span class="vnum">' + esc(v.num) + '</span>' +
+             '<span>' + esc(v.desc) + '</span></div>';
+    }).join("");
+    return '<div class="veh"><span class="vh">Contract vehicles on file, straight from the lookup table</span>' +
+           rows +
+           '<div class="vrow" style="color:var(--cap);font-family:var(--ui);font-size:13.5px;white-space:normal">' +
+           esc(s.vehnote) + '</div></div>';
+  }
+
+  function run(s, typedTerms){
+    press(s.id);
+    var matched = (typedTerms && typedTerms.length) ? typedTerms : s.matched;
+    var below = SET_PASSAGES - s.hits;
+
+    trace.innerHTML =
+      '<b>' + SET_PASSAGES + '</b> passages scanned across <b>' + SET_DOCS + '</b> documents . ' +
+      'terms matched <b>[' + (matched.length ? esc(matched.join(", ")) : "none") + ']</b> . ' +
+      '<b>' + s.hits + '</b> above the match floor . ' +
+      '<b>' + below + '</b> below the floor and not shown';
+
+    if (s.empty){
+      out.innerHTML = '<div class="empty"><div class="eh">No close match found.</div></div>';
+    } else {
+      out.innerHTML = s.results.map(cardHtml).join("") + vehHtml(s);
+    }
+
+    annot.innerHTML = '<div class="note"><span class="nl">Alaska AI note</span><p>' +
+      esc(s.annot) + '</p></div>';
+  }
+
+  $("#f").addEventListener("submit", function(e){
+    e.preventDefault();
+    var r = pick(qInput.value);
+    run(r.s, r.matched);
+  });
+
+  var pb = document.getElementById("pr");
+  if (pb) pb.addEventListener("click", function(){ window.print(); });
+
+  qInput.value = SCENARIOS[0].query;
+  run(SCENARIOS[0]);
+})();
+</script>
+</body>
+</html>
