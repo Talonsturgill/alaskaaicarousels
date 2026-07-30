@@ -686,7 +686,8 @@
     "CLAUDE.md"
    ],
    "verification": "prompts/NEXT_RUN.md is written and Phase 0 step 0 references it by path. The brief itself states the dedupe problem, names the material new development that justifies the UPDATE, and carries the archive command. Confirmed the file is the only NEXT_RUN in the repo and that CLAUDE.md's layout section now names it. The mechanism is prose in the master prompt rather than code, which is the honest description; there is no script that can enforce 'the showrunner read the brief', and inventing one would be theatre.",
-   "rollback": "git revert this commit and delete prompts/NEXT_RUN.md. Nothing depends on the file existing; Phase 0 step 0 is a no-op when it is absent."
+   "rollback": "git revert this commit and delete prompts/NEXT_RUN.md. Nothing depends on the file existing; Phase 0 step 0 is a no-op when it is absent.",
+   "commit": "337c1d91d95b02ea090ed11c7a66ed4a988c846a"
   }
  ],
  "scan_log": [
