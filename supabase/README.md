@@ -22,6 +22,12 @@ Editing a file here changes nothing until it is deployed.
 | `functions/track/index.ts` | The collector. Receives one beacon per page read, writes a row or a drop reason. Deployed as `track`, version 3. |
 | `functions/stats/index.ts` | The public aggregate endpoint. No key, aggregates only. Deployed as `stats`, version 1. |
 | `migrations/0001_readership.sql` | `page_views`, `page_view_drops`, `readership_stats`, the RLS flags and the grants. |
+| `migrations/0002_publish_drop_reasons.sql` | Adds `drops` to the stats payload, so a zero says which kind of zero it is. |
+
+The client half is gated by `tests/beacon_fires.js`, which drives a real browser
+at the real `site.js` and is the only check in this system that can catch a
+preflight bug. Its `--self-test` reintroduces the shipped bug and requires the
+gate to go red.
 
 Both functions run with `verify_jwt: false`, which is the trust boundary: any
 caller on the internet can reach them, so neither trusts its input. `track`
@@ -68,14 +74,29 @@ curl -sS -o /dev/null -w '%{http_code}\n' \
   --data '{"p":"/probe/","r":null,"c":"probe"}'
 ```
 
-204 proves nothing on its own, because 204 is also what every drop returns.
-Then query the database, and delete the probe row so it does not land in the
-published figures:
+204 proves nothing on its own, because 204 is also what every drop returns. The
+public endpoint now answers both halves of the question with no key, so start
+there rather than in SQL:
+
+```
+curl -sS 'https://gsuvfpnyzebycqhsekus.supabase.co/functions/v1/stats?days=1'
+```
+
+`views` up by one means it stored. `views` flat with a new entry under `drops`
+means it was refused and tells you which guard did it. `views` flat and `drops`
+empty means the request never arrived at all. Then delete the probe row so it
+does not land in the published figures:
 
 ```sql
-select count(*) from public.page_views where campaign = 'probe';
-select reason, count(*) from public.page_view_drops group by reason;
 delete from public.page_views where campaign = 'probe';
+```
+
+That covers the server. It does NOT cover the browser, which is where the bug
+actually was, so after any change to the beacon run the gate:
+
+```
+node tests/beacon_fires.js --self-test   # must go red
+node tests/beacon_fires.js               # must go green
 ```
 
 ## Invariants worth re-checking after any schema change

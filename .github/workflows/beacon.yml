@@ -1,0 +1,63 @@
+name: The reader counter counts
+
+# The counter shipped, was verified with curl, and recorded zero from every real
+# visit for the better part of an hour. curl could not catch it: the bug was a
+# CORS preflight, and curl never sends one. The beacon declared
+# application/json, which is not CORS safelisted, so browsers sent an OPTIONS
+# first, and sendBeacon has no headers API to complete the negotiation that
+# follows. The edge log showed twelve preflights from real readers with not one
+# POST behind them.
+#
+# Every check that passed during that hour passed because it was not a browser.
+# tests/beacon_fires.js is a browser. It runs the real site.js against a
+# stand-in collector on a different origin, so the browser applies the same CORS
+# rules it applies in production, and it asserts the privacy contract too:
+# nothing may ride along in the payload that identifies a reader.
+#
+# The self-test runs FIRST and reintroduces the exact shipped bug. If the gate
+# cannot go red, nothing below it means anything, which was the whole problem
+# the first time.
+
+on:
+  pull_request:
+    paths:
+      - "scripts/site_build.py"
+      - "supabase/functions/track/index.ts"
+      - "tests/beacon_fires.js"
+      - ".github/workflows/beacon.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/site_build.py"
+      - "supabase/functions/track/index.ts"
+      - "tests/beacon_fires.js"
+      - ".github/workflows/beacon.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  beacon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Playwright and the browser it drives
+        run: |
+          npm install --no-save playwright@1.49.1
+          npx playwright install --with-deps chromium
+      # site_build imports Pillow at module scope, and this gate builds the real
+      # site rather than serving committed docs/, so a correct builder sitting on
+      # a stale commit is still tested.
+      - name: Pillow, so the build is the real one
+        run: pip install --quiet Pillow
+      - name: The gate can still go red
+        run: node tests/beacon_fires.js --self-test
+      - name: A real browser counts a real reader
+        run: node tests/beacon_fires.js

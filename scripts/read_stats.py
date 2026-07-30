@@ -51,13 +51,37 @@ def block(s):
     """The plain-text block the Gmail draft carries. Deliberately small; a
     number nobody reads is the problem being fixed, not the solution."""
     days, views = s.get("days", "?"), s.get("views", 0)
+    drops = s.get("drops") or {}
     L = [f"READERSHIP, LAST {days} DAYS", f"  {views} pages read"]
     if isinstance(views, int) and days:
         L[-1] += f", about {round(views / days, 1)} a day"
+
+    def drop_lines():
+        """A refused beacon is not a broken one, and the two used to look
+        identical from here. OPT_OUT is readers exercising a choice, which is
+        the system working; the rest is worth a look."""
+        if not drops:
+            return []
+        opt = {"dnt-header", "gpc-header"}
+        out = ["  not counted"]
+        for k, v in sorted(drops.items(), key=lambda kv: -kv[1]):
+            why = ("reader opted out, honoured" if k in opt else
+                   "automated traffic" if k == "bot-user-agent" else
+                   "WORTH A LOOK")
+            out.append(f"    {v:>4}  {k}, {why}")
+        return out
+
     if not views:
-        L.append("  nothing recorded yet. If this stays at zero a day after the"
-                 " counter shipped, the beacon is not firing.")
+        if not drops:
+            L.append("  nothing recorded yet, and nothing refused either, so"
+                     " nothing is reaching the counter at all. If this stays"
+                     " here a day after a deploy, the beacon is not firing.")
+        else:
+            L.append("  nothing counted, but the collector IS being reached,"
+                     " so the beacon fires and every message was refused.")
+            L += drop_lines()
         return "\n".join(L)
+    L += drop_lines()
 
     def rows(label, items, keyname):
         if not items:
