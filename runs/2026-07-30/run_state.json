@@ -1,0 +1,36 @@
+{
+ "run_date": "2026-07-30",
+ "carousel_no": 20,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "in_progress",
+  "assemble": "done",
+  "scoring": "in_progress",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "wake": "out/2026-07-30/plan.md",
+  "craft_refresh": "knowledge/FIELD_NOTES.md (2026-07-30 entry)",
+  "research": "out/2026-07-30/scout_merge.md (6 scouts: A,B,C,D,E,F all returned)",
+  "docket": "ledger/docket.json (air-force EUL + AKLNG refreshed, GVEA no-change recorded; validate OK, docket_dates_check 117 assertions clean)",
+  "selection": "out/2026-07-30/selection.md",
+  "claims": "out/2026-07-30/claims.json (claims_check PASS 15/15 usable, 11 primary) + evidence_doe_awards_list.txt",
+  "directors_room": "out/2026-07-30/storyboard.md (dossier_check PASS 9/9) + 3 treatments synthesized",
+  "copy": "out/2026-07-30/caption.txt (caption_check PASS) + copy.json (copy_sync PASS 44/44)",
+  "art_build": "out/2026-07-30/slides/*.html (9) + build_slides.py generator; qa.py 0 fails",
+  "pixel_review": "4 critics over 9 slides, 3 fix rounds applied",
+  "assemble": "out/2026-07-30/final/carousel.pdf vector 9.99 MB, 9 thumbs, contact sheet"
+ }
+}

@@ -1,0 +1,58 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'POSTED 7/22/2026 \u00b7 278 SELECTED \u00b7 342 IN' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (7% of the ring around 'A title is the entirepublic record.', spanning 30%) -- pixel critic verify the label is not crossed"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath 'SOURCES IN COMMENTS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 3,
+  "verdict": "WARN"
+}
