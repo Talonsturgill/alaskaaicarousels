@@ -4690,8 +4690,8 @@ Alaska businesses, statewide. That work lives on the
 exactly why the studio knows what actually pays.</p>
 <h2>Who runs it</h2>
 <p>Alaska AI is founded and run by <a href="https://www.linkedin.com/in/talonsturgill">Talon
-Sturgill</a>, born and raised in Anchorage, where he also works remotely as the lead AI
-engineer for a large Lower 48 lab serving enterprise clients. Alaska AI brings that
+Sturgill</a>, born and raised in Anchorage. He is also the lead AI engineer for a large
+Lower 48 lab serving enterprise clients, work he does remotely. Alaska AI brings that
 expertise home to help Alaska businesses that rarely get access to it.</p>
 <h2>How the work gets verified</h2>
 <p>Every day Alaska AI works six beats across the state, from power and
@@ -4910,8 +4910,18 @@ def build(today, out_dir, site_url=None, domain=""):
             db.fail(f"banned punctuation in {rel} {bad[:8]}")
         prose_colon_gate(rel, html)
     out.mkdir(parents=True, exist_ok=True)
+    # Pillow is the one soft dependency, and without it grain_data_uri() returns
+    # "" and this quietly wrote url(none) into the sheet every page loads. A
+    # 2026-07-29 build on a box without Pillow stripped the film grain from all
+    # 47 pages and the only trace was a one-line diff in site.css that a run
+    # would have committed without noticing. Degrading the whole site's texture
+    # is not a fallback, so say so instead.
+    grain = db.grain_data_uri()
+    if not grain:
+        db.fail("no grain texture (Pillow missing). pip install Pillow, then "
+                "rebuild. Shipping without it silently flattens every page.")
     (out / "site.css").write_text(
-        SITE_CSS.replace("FONTPREFIX", "").replace("GRAIN_URI", db.grain_data_uri() or "none"))
+        SITE_CSS.replace("FONTPREFIX", "").replace("GRAIN_URI", grain))
     (out / "site.js").write_text(JS)
     for rel, html in pages.items():
         p = out / rel

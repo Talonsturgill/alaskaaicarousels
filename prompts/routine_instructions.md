@@ -230,6 +230,32 @@ Right after claims:
    If an item's real close date is not published, record no `deadline`
    rather than a guess. The page will show the window with no date, which
    is the honest thing and is handled.
+3b. EVERY STRING HERE IS READER COPY, and the reader does not know this
+   site is generated. Summaries, access notes and history notes are about
+   the decision, never about us. State what is true and how you verified
+   it. Do not narrate the machine: no renderer, selector, build gate,
+   lint, key_dates, phase numbers, subscriber alerts, or which badge or
+   button showed what. `validate()` in scripts/docket_build.py fails the
+   build on that vocabulary.
+
+   On 2026-07-29 the run that fixed the date-role selector also appended
+   160 words to the AIDEA item explaining the fix, which four surfaces
+   had been wrong, that a build gate now guards it, and that no
+   subscriber alert had carried the bad date. Every word was true and
+   every word was written for the maintainer, on a public tracker that
+   prospective clients read. Correcting the record was right. The
+   incident report was not. Three dry sentences carry it:
+
+     Correction. Between July 21 and today this entry showed August 13
+     as the comment deadline. That is the date of a separate Houston City
+     Council vote, which stays tracked here as its own key date. The DNR
+     comment deadline was and remains 5 p.m. August 19, 2026, re-verified
+     today against the primary notice, Alaska DNR Online Public Notices
+     id 224431, ADL 234762.
+
+   Say the right answer, say where you checked it, stop. If a run wants
+   the engineering account written down, it belongs in
+   ledger/upgrades.json and the code comment, not here.
 4. Pre-flight style: any docket note or history line you write here must
    pass the same prose-colon rule the Phase 11 ship gate enforces. Lint it
    now, before it hardens: `python scripts/style_lint.py --file <note>` (or
