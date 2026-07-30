@@ -3229,9 +3229,19 @@ one.</p>
 <p class="prose" data-reveal>Turn on Do Not Track or Global Privacy Control in
 your browser and this site sends nothing at all. Not sent and then ignored,
 simply never sent. Both signals are also honoured a second time at the server,
-so a message that should not have been sent is still not recorded. Any
+so a message that should not have been sent is still not counted. Any
 content blocker will stop it too, and the site works exactly the same with it
 blocked.</p>
+<p class="prose" data-reveal>One caveat, because a page like this is worth
+nothing if it is only mostly complete. When the server refuses a message it
+writes down why it refused and when, and that is the entire record. The words
+<code>dnt-header</code> and a timestamp. No path, no referring host, no address,
+no user agent, nothing that distinguishes one refused message from another. A
+visit that opts out therefore leaves strictly less behind than a counted one,
+and what it leaves cannot be tied to you or to a page. It is kept for one
+reason. The server answers every message the same way whether it counted it or
+threw it away, which is good for you and was briefly terrible for us, because a
+counter that recorded nothing looked exactly like a counter that worked.</p>
 <h2 data-reveal>What is deliberately imprecise</h2>
 <p class="prose" data-reveal>Country is recorded when the network happens to
 supply it, which on this host it currently does not, so in practice that field
