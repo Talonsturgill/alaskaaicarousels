@@ -20,7 +20,7 @@ rubric:
     - "primary text contrast below 4.5:1 at worst point (critic-verified)"
     - "slide count outside 6-12"
     - "machine_qa verdict FAIL, or pdf_mode != vector"
-    - "topic repeats a ledger entry within 90 days without a material new development framed as an update"
+    - "topic repeats a ledger entry within 30 days without a material new development framed as an update"
     - "hero visual structure identical to any of the last 4 decks (artwork ledger)"
     - "banned phrase from brand.yaml in copy or slides"
     - "hashtag count != 3, or link in post body"

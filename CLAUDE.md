@@ -140,7 +140,7 @@ python .claude/skills/carousel-engine/assemble.py --slides-dir examples/demo-dec
 ## House rules that never bend
 
 No em/en dashes anywhere. No emojis. Straight quotes. Every fact carries a
-claim-id. No topic repeats within 90 days. No two decks visually alike
+claim-id. No topic repeats within 30 days. No two decks visually alike
 (ledger-enforced). Vector-text PDFs (raster fallback acceptable if the
 vector path breaks — images beat a broken PDF). Honest scores; honest
 emails.

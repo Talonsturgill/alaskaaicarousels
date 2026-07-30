@@ -221,6 +221,11 @@
           "date": "2026-07-22",
           "label": "U.S. House passes FY2027 NDAA carrying a data center lease restriction",
           "kind": "vote"
+        },
+        {
+          "date": "2026-07-23",
+          "label": "Bill introduced in the U.S. House to ban AI data centers on federal land",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -263,10 +268,20 @@
           "url": "https://federalnewsnetwork.com/army/2026/06/house-ndaa-provision-could-derail-army-data-center-projects/",
           "outlet": "Federal News Network",
           "date": "2026-06-12"
+        },
+        {
+          "url": "https://tlaib.house.gov/posts/rep-tlaib-introduces-a-bill-to-ban-ai-data-centers-on-federal-lands",
+          "outlet": "Office of Rep. Rashida Tlaib, U.S. House",
+          "date": "2026-07-23"
+        },
+        {
+          "url": "https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/",
+          "outlet": "Eielson Air Force Base",
+          "date": "2026-07-20"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-29",
+      "last_updated": "2026-07-30",
       "history": [
         {
           "date": "2026-07-08",
@@ -291,6 +306,10 @@
         {
           "date": "2026-07-29",
           "note": "Material update from Congress, verified against primary records. On July 22 at 4:37 p.m. the U.S. House passed H.R. 8800, the National Defense Authorization Act for Fiscal Year 2027, by 216 yea to 212 nay with 3 not voting, and Alaska Representative Nick Begich voted yea, per the House Clerk's roll call 278. Federal News Network reported that the House Armed Services chairman's mark carries an amendment from Rep. Cory Mills of Florida that bars the Defense Department from leasing its land to private companies to build data centers unless they agree not to install or operate data facility equipment containing components manufactured in China, Russia, Iran or North Korea. Army officials warned the standard would drive world class commercial partners and more than 1.3 billion dollars in private capital away from Army land. If it survives conference it narrows who can bid on the Alaska parcels. The Senate has not passed its version. The underlying offer is unchanged, about 4,700 acres across twelve parcels at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station under the enhanced use lease model, which the Air Force says returns at least fair market value in cash."
+        },
+        {
+          "date": "2026-07-30",
+          "note": "Rep. Rashida Tlaib introduced the No AI Data Centers on Federal Lands Act on July 23 with five cosponsors. It would permanently ban large AI data centers and associated infrastructure on land owned or managed by the United States, including military bases, and would require existing qualifying facilities to be removed and their sites remediated. The 4,700 acres offered here sit on exactly that kind of land. No award has been announced for the Alaska proposals, which were due June 29. Separately, the Air Force posted a second Eielson land solicitation on July 23 with an August 10 deadline, but that one is for mixed use development and is not part of this offering."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -334,7 +353,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-18",
+      "last_updated": "2026-07-30",
       "history": [
         {
           "date": "2026-07-08",
@@ -375,6 +394,10 @@
         {
           "date": "2026-07-18",
           "note": "Five days after the July 13 special meeting a search of GVEA releases and Fairbanks reporting still surfaced no public disclosure of the board decision on the second LM6000 turbine, consistent with a co op board that deliberates in executive session. Status stays pending-decision and remains a hard re-check item."
+        },
+        {
+          "date": "2026-07-30",
+          "note": "Still no announced outcome from the July 13 board session. The cooperative's newsroom could not be reached today, so nothing here is changed."
         }
       ],
       "url": "https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/"
@@ -455,10 +478,15 @@
           "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
           "outlet": "Alaska Public Media",
           "date": "2026-07-27"
+        },
+        {
+          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
+          "outlet": "Alaska Public Media",
+          "date": "2026-07-27"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-29",
+      "last_updated": "2026-07-30",
       "history": [
         {
           "date": "2026-07-08",
@@ -519,6 +547,10 @@
         {
           "date": "2026-07-29",
           "note": "Re-verified by fetching Alaska Public Media's July 27 report. The third special session convened July 27 in Juneau with almost nobody in the room, only 3 of 40 House members and 1 senator at the opening technical session, and the governor had introduced no bill, saying his administration would continue meeting with all parties to determine the best path forward to an agreement. House Speaker Bryce Edgmon said the clock is ticking very loudly right now and the governor realizes that. The session opened three weeks before the August 18 primary. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the line."
+        },
+        {
+          "date": "2026-07-30",
+          "note": "The third special session opened July 27 as a technical session with three House members and one senator in the room. The governor had not introduced a bill and said his administration would keep meeting with all parties before proposing one. Nothing has moved since."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aklng-tax-bill-second-special-session/"

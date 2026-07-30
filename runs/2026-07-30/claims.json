@@ -1,0 +1,246 @@
+{
+  "run_date": "2026-07-30",
+  "story": "Alaska appears exactly once on the Department of Energy's Genesis Mission award list, and its one entry is a University of Alaska Fairbanks project about keeping Alaska's own power on, posted the same week Southcentral utilities warned of rolling blackouts",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "The Department of Energy announced 278 projects selected in the first round of Genesis Mission awards.",
+      "value": "278 projects",
+      "verbatim": "The 278 projects selected today represent the very best of our nation's scientific enterprise.",
+      "source_url": "https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate",
+      "source_outlet": "U.S. Department of Energy",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.97,
+      "notes": "The figure sits inside Secretary Wright's own quote, the strongest form it could take. It independently corroborates the showrunner's row count from the awards PDF, so the deck's denominator is confirmed by two separate routes."
+    },
+    {
+      "id": "C02",
+      "claim": "Exactly one of the 278 award rows is an Alaska institution, a University of Alaska Fairbanks project led by Richard Wies and titled AURORA-AI, Alaska Utility Resilience and Optimization using Real-time AI.",
+      "value": "1 of 278",
+      "verbatim": "Wies, Richard | AURORA-AI: Alaska Utility Resilience & Optimization using Real-time AI | University of Alaska Fairbanks  Fairbanks  AK 99775-7880",
+      "source_url": "https://www.energy.gov/sites/default/files/2026-07/GM-RFA-Awards-List.pdf",
+      "source_outlet": "U.S. Department of Energy",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "THE SPINE. The showrunner downloaded the PDF (HTTP 200, 299,518 bytes, 10 pages) and extracted its text with pypdf. Row count by state-plus-ZIP regex is 278, matching C01. A count of state codes returns AK exactly once. ZIP 99775 is the correct UAF campus ZIP, an internal consistency check. The fact-checker independently confirmed the document is live at the correct size but could not extract text in its environment, so it carried this at 0.85. The extraction is reproducible and the evidence file is saved alongside this run."
+    },
+    {
+      "id": "C03",
+      "claim": "The Genesis Mission awards list was posted by the Department of Energy on July 22, 2026.",
+      "value": "posted 7/22/2026",
+      "verbatim": "Announcement Number: List Posted: 7/22/2026",
+      "source_url": "https://www.energy.gov/sites/default/files/2026-07/GM-RFA-Awards-List.pdf",
+      "source_outlet": "U.S. Department of Energy",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "First line of the extracted document text. Same provenance as C02."
+    },
+    {
+      "id": "C04",
+      "claim": "The Genesis Mission projects involve 342 participating institutions, made up of 16 Department of Energy and NNSA National Laboratories, 142 universities, 157 companies, 13 nonprofit organizations and 14 other institutions.",
+      "value": "342 institutions",
+      "verbatim": "16 DOE and NNSA National Laboratories, 142 universities, 157 companies, 13 nonprofit organizations, 14 other institutions",
+      "source_url": "https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate",
+      "source_outlet": "U.S. Department of Energy",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.94,
+      "notes": "Arithmetic checks out, the five figures sum to 342 exactly. These are PARTICIPATING institutions including collaborators, a larger set than the 278 lead rows on the awards list. The deck must not conflate the two."
+    },
+    {
+      "id": "C05",
+      "claim": "The Department of Energy said the Genesis Mission funding call generated the largest response to a funding opportunity in its history.",
+      "value": "largest response in DOE history",
+      "verbatim": "The Genesis Mission RFA generated the largest response to a funding opportunity in DOE history.",
+      "source_url": "https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate",
+      "source_outlet": "U.S. Department of Energy",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.95,
+      "needs_softening": true,
+      "notes": "Primary but self reported. DOE is characterizing its own program. Attribute in prose as DOE says. It earns its place by establishing how contested the list was that Alaska holds one row on."
+    },
+    {
+      "id": "C06",
+      "claim": "Energy Secretary Chris Wright said America has no shortage of bold ideas or talented scientists and that the response to the Genesis Mission proves it.",
+      "value": "Chris Wright, Secretary of Energy",
+      "verbatim": "America has no shortage of bold ideas or talented scientists, and the response to the Genesis Mission proves that.",
+      "source_url": "https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate",
+      "source_outlet": "U.S. Department of Energy",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "Verified verbatim on the fetched page. Runs continuously into the 278 figure at C01, so the two may be quoted together without distortion."
+    },
+    {
+      "id": "C07",
+      "claim": "The largest single project selected in the first Genesis Mission round is a three year 60 million dollar investment in nuclear energy.",
+      "value": "$60 million",
+      "verbatim": "a three-year, $60 million investment in nuclear energy",
+      "source_url": "https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate",
+      "source_outlet": "U.S. Department of Energy",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "The only dollar figure DOE published on the announcement page. Gives the deck an honest scale contrast without inventing a number for the Alaska award."
+    },
+    {
+      "id": "C08",
+      "claim": "No description of the AURORA-AI project had been published anywhere beyond its title on the award list as of July 30, 2026.",
+      "value": "no published description",
+      "verbatim": "there are no results that mention \"AURORA-AI,\" \"Alaska Utility Resilience,\" or \"Richard Wies.\"",
+      "source_url": "https://www.bing.com/search?q=%22AURORA-AI%22+%22Alaska+Utility+Resilience%22+Wies",
+      "source_outlet": "Search result, negative finding verified by the fact-checker",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.8,
+      "needs_softening": true,
+      "notes": "A NEGATIVE finding, documented rather than assumed. The fact-checker read the live ACEP landing page and searched two engines. The showrunner separately reached Wies's own UAF and ACEP profile pages, see C10 and C11, and neither mentions AURORA-AI. Phrase as no description has been published as of July 30, never as none exists. The deck may quote the project title and must not explain what the project does."
+    },
+    {
+      "id": "C09",
+      "claim": "The National Laboratory of the Rockies announced 12 Genesis Mission projects in a release whose headline names Alaska utility optimization.",
+      "value": "12 projects",
+      "verbatim": "NLR Awarded 12 Genesis Mission Projects Ranging From Semiconductors to Alaska Utility Optimization",
+      "source_url": "https://www.globenewswire.com/news-release/2026/07/22/3331669/0/en/nlr-awarded-12-genesis-mission-projects-ranging-from-semiconductors-to-alaska-utility-optimization.html",
+      "source_outlet": "National Laboratory of the Rockies via GlobeNewswire",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.9,
+      "needs_softening": true,
+      "notes": "HARD LIMIT. The headline is verified verbatim, but the body does NOT name AURORA-AI, Richard Wies or the University of Alaska Fairbanks, and does not say which of the twelve the Alaska reference points to. The deck MAY say a national lab release put Alaska utility optimization in its headline. The deck MAY NOT say the Alaska award has a confirmed lab partner, and MAY NOT resolve whether it is Alaska led or lab led."
+    },
+    {
+      "id": "C10",
+      "claim": "Richard Wies is a Professor of Electrical and Computer Engineering at the University of Alaska Fairbanks.",
+      "value": "Professor of Electrical and Computer Engineering",
+      "verbatim": "Professor of Electrical and Computer Engineering",
+      "source_url": "https://www.uaf.edu/acep/about/our-team/richard-wies.php",
+      "source_outlet": "University of Alaska Fairbanks, Alaska Center for Energy and Power",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "The fact-checker could not verify a title and correctly refused to guess one, after five UAF URL patterns returned 404. The showrunner found the live profile at a different path and separately confirmed the listing on the ECE department people page at https://www.uaf.edu/cem/people/ece.php, which gives his title as Professor in Electrical and Computer Engineering."
+    },
+    {
+      "id": "C11",
+      "claim": "Richard Wies leads research with the Alaska Center for Energy and Power as an electric power systems expert, working on renewable energy integration in remote islanded microgrids.",
+      "value": "remote islanded microgrids",
+      "verbatim": "engineering challenges of renewable energy integration in remote islanded microgrids",
+      "source_url": "https://www.uaf.edu/acep/about/our-team/richard-wies.php",
+      "source_outlet": "University of Alaska Fairbanks, Alaska Center for Energy and Power",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.93,
+      "notes": "This describes the project lead's standing research, NOT the AURORA-AI project, whose contents remain unpublished per C08. The deck must keep that line clean. It is carried because a reader is entitled to know who holds Alaska's one row and what that person actually works on."
+    },
+    {
+      "id": "C12",
+      "claim": "Enstar president John Sims said a winter like last year would bring significant challenges and likely rolling blackouts.",
+      "value": "likely see rolling blackouts",
+      "verbatim": "If we have a winter like we did last year, we are going to have significant challenges and likely see rolling blackouts",
+      "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/southcentral-alaska-gas-utility-says-bills-likely-to-rise-amid-supply-shortage",
+      "source_outlet": "Alaska Public Media",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.92,
+      "needs_softening": true,
+      "notes": "Direct quotation verified verbatim on the fetched page. It is a conditional forecast, so the if clause must stay attached wherever it appears."
+    },
+    {
+      "id": "C13",
+      "claim": "Matanuska Electric Association chief executive Tony Izzo said that for the first time in his career he cannot guarantee reliable power to his customers during periods of normal operation.",
+      "value": "cannot guarantee reliable power",
+      "verbatim": "For the first time in his career, Izzo said, he cannot guarantee reliable power to his customers during periods of normal operation.",
+      "source_url": "https://www.adn.com/alaska-news/anchorage/2026/07/29/alaska-mayors-warn-of-increased-utility-costs-as-southcentral-natural-gas-shortage-becomes-more-urgent/",
+      "source_outlet": "Anchorage Daily News",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.9,
+      "needs_softening": true,
+      "notes": "This is the newspaper's paraphrase of Izzo, not a direct quotation, so it must NOT appear inside quote marks on any slide. Attribute in prose as reported by the Anchorage Daily News."
+    },
+    {
+      "id": "C14",
+      "claim": "Enstar is evaluating whether it is prudent to add new customers to its system, citing a proposed Joint Base Elmendorf-Richardson housing expansion and rising interest in data center development.",
+      "value": "rising interest in data center development",
+      "verbatim": "Enstar is also evaluating whether it's prudent to add new customers into its system, especially when considering a proposed Joint Base Elmendorf-Richardson housing expansion and rising interest in data center development.",
+      "source_url": "https://www.adn.com/alaska-news/anchorage/2026/07/29/alaska-mayors-warn-of-increased-utility-costs-as-southcentral-natural-gas-shortage-becomes-more-urgent/",
+      "source_outlet": "Anchorage Daily News",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.9,
+      "needs_softening": true,
+      "notes": "The one sentence that welds AI load to the Alaska energy crunch, and it is single sourced to one newspaper. Attribute in prose as according to the Anchorage Daily News. Alaska Public Media separately reports Enstar has already turned away new large scale customers, without naming data centers."
+    },
+    {
+      "id": "C15",
+      "claim": "The Department of Energy put the number of isolated microgrid systems in Alaska not connected to larger grids at approximately 200, in a 2017 program description.",
+      "value": "about 200 isolated microgrids",
+      "verbatim": "Across the state there are approximately 200 isolated microgrid systems that are not connected to larger grids",
+      "source_url": "https://www.energy.gov/eere/buildings/articles/gmlc-1321-alaska-microgrid-partnership",
+      "source_outlet": "U.S. Department of Energy",
+      "source_is_primary": true,
+      "date_of_source": "2017-09-14",
+      "fetched": true,
+      "confidence": 0.82,
+      "needs_softening": true,
+      "notes": "DATED. The page is from September 14, 2017 and the figure is approximate in its own wording. Carried because it is primary and it is the scale that makes an Alaska power systems professor's expertise legible. If it is used on a slide the 2017 date must be visible. Same page states most of those systems rely almost exclusively on imported fuel, primarily diesel."
+    }
+  ],
+  "killed": [
+    {
+      "claim": "The 278 award rows span 45 distinct states, with California 56 and Alaska 1.",
+      "why": "The showrunner's parse produced this and the fact-checker recommended dropping it, and the recommendation is accepted. The DOE announcement page attaches the phrase spanning all 50 states to the PROJECTS rather than to the participating institutions, so printing a 45 state count beside DOE's own 50 state language would invite a fair accusation of cherry picking. The distinction could not be established from the page as written. One of 278 carries the deck without it."
+    },
+    {
+      "claim": "The first round of Genesis Mission awards totals 293 million dollars.",
+      "why": "No aggregate dollar figure appears anywhere on the DOE announcement page, which was read in full. The only published figure is the 60 million dollar nuclear project at C07. The number came from a search snippet and is not verified."
+    },
+    {
+      "claim": "The awards list contains 595 awards.",
+      "why": "Wrong, and recorded so it cannot creep back. A scout reported it. DOE's own page gives 278 inside a direct quote from the Secretary, and the showrunner's parse of the PDF returns 278 rows. Discard 595 everywhere."
+    },
+    {
+      "claim": "AURORA-AI has a national laboratory partner at the National Laboratory of the Rockies.",
+      "why": "The release headline names Alaska utility optimization, verified at C09, but the body never names AURORA-AI, Wies or UAF and never says which of the twelve projects the Alaska reference points to. The inference is likely and is still an inference."
+    },
+    {
+      "claim": "A dollar figure is published for the AURORA-AI award specifically.",
+      "why": "None exists in anything either the fact-checker or the showrunner could read. This is a genuine finding rather than a gap. Alaska's single row in the program is named in public with no published budget."
+    },
+    {
+      "claim": "SB 250 passed the Alaska Senate on 2026-05-16 and died in House Community and Regional Affairs, and HB 259 sits in committee.",
+      "why": "Unverifiable this run. akleg.gov returned HTTP 403 on every path tried, and mirrors failed or returned the wrong jurisdiction's bill. Both bills are absent from this deck. This also cost the run its leading candidate, the RTO closed rooms story, which needed them."
+    },
+    {
+      "claim": "The Railbelt open access transmission tariff governs transmission service and cost allocation for large new loads such as data centers.",
+      "why": "The Alaska Energy Authority confirms the RTO must file a nondiscriminatory open access transmission tariff with the Regulatory Commission of Alaska, but no fetched page connects that tariff to data centers or to large new load as a category. Recorded here because it is the reason a strong alternative story was not built."
+    },
+    {
+      "claim": "A Railbelt scale figure such as peak load in megawatts or the number of Alaskans served.",
+      "why": "Could not be verified. The Alaska Energy Authority Railbelt page carries no scale metrics, Chugach Electric's about page returned 404, and railbeltreliabilitycouncil.org failed DNS resolution. The art carries scale without a Railbelt number, and C15 supplies the rural side instead."
+    },
+    {
+      "claim": "The Alaska primary election is August 18, 2026.",
+      "why": "elections.alaska.gov returned HTTP 503 on both the 2026 election page and the site root. Widely known is not verified, and the date is peripheral to this deck."
+    }
+  ]
+}
