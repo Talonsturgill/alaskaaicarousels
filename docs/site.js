@@ -1,4 +1,48 @@
 
+/* ---------- readership ----------
+   In its OWN IIFE, and first, on purpose. Sitting at the end of the main one
+   meant any earlier failure in the map, gallery or lightbox code would starve
+   it, and readership would silently stop being counted while the page still
+   looked fine. A counter must not depend on the rest of the page succeeding,
+   and nothing below depends on the counter either.
+
+   Counts that a page was read and deliberately learns nothing about who read
+   it. No cookie is set or read, no localStorage, no visitor id, nothing that
+   could identify or re-identify anyone. The only things sent are the path, the
+   referrer's HOST (a full referrer URL never leaves the browser, it can carry
+   private context) and an explicit campaign tag when the link had one.
+
+   Honours Do Not Track and Global Privacy Control by sending nothing at all.
+   Silent on failure, because a counter must never be visible on the page or
+   delay it. Full disclosure lives at /privacy/. */
+(function(){
+  'use strict';
+  try {
+    var nav = navigator || {};
+    if (nav.doNotTrack === '1' || nav.globalPrivacyControl === true ||
+        window.doNotTrack === '1' || nav.msDoNotTrack === '1') return;
+    if (/^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(location.hostname) ||
+        location.protocol === 'file:') return;
+    var q = new URLSearchParams(location.search);
+    var host = null;
+    if (document.referrer) {
+      try { host = new URL(document.referrer).hostname; } catch (e) { host = null; }
+    }
+    var payload = JSON.stringify({
+      p: location.pathname,
+      r: host ? ('https://' + host + '/') : null,
+      c: q.get('c') || q.get('utm_campaign') || null
+    });
+    var TRACK = 'https://gsuvfpnyzebycqhsekus.supabase.co/functions/v1/track';
+    if (nav.sendBeacon) {
+      nav.sendBeacon(TRACK, new Blob([payload], {type: 'application/json'}));
+    } else {
+      fetch(TRACK, {method: 'POST', headers: {'content-type': 'application/json'},
+                    body: payload, keepalive: true, mode: 'cors'}).catch(function(){});
+    }
+  } catch (e) { /* a counter never breaks a page */ }
+})();
+
 (function(){
   'use strict';
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -141,47 +185,5 @@
       });
     }
   }
-
-  /* ---------- readership ----------
-     Counts that a page was read. Deliberately learns nothing about who read
-     it: no cookie is set or read, no localStorage, no visitor id, nothing
-     that could identify or re-identify anyone. One send per pageview, and
-     the only things sent are the path, the referrer's HOST (the full
-     referrer URL is never transmitted, it can carry private context) and an
-     explicit campaign tag if the link carried one.
-
-     Honours Do Not Track and Global Privacy Control by sending nothing at
-     all, not by sending-and-discarding. Silent on failure, because a
-     counter must never be visible on the page or delay it. What is and is
-     not collected is stated in full at /privacy/. */
-  try {
-    var nav = navigator || {};
-    var optedOut = nav.doNotTrack === '1' || nav.globalPrivacyControl === true ||
-                   window.doNotTrack === '1' || nav.msDoNotTrack === '1';
-    var local = /^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(location.hostname) ||
-                location.protocol === 'file:';
-    if (!optedOut && !local) {
-      var q = new URLSearchParams(location.search);
-      var camp = q.get('c') || q.get('utm_campaign') || null;
-      var host = null;
-      if (document.referrer) {
-        try { host = new URL(document.referrer).hostname; } catch (e) { host = null; }
-      }
-      var payload = JSON.stringify({
-        p: location.pathname,
-        /* Send a bare origin rather than the referrer itself, so the full
-           referring URL never leaves the reader's browser. */
-        r: host ? ('https://' + host + '/') : null,
-        c: camp
-      });
-      var TRACK = 'https://gsuvfpnyzebycqhsekus.supabase.co/functions/v1/track';
-      if (nav.sendBeacon) {
-        nav.sendBeacon(TRACK, new Blob([payload], {type: 'application/json'}));
-      } else {
-        fetch(TRACK, {method: 'POST', headers: {'content-type': 'application/json'},
-                      body: payload, keepalive: true, mode: 'cors'}).catch(function(){});
-      }
-    }
-  } catch (e) { /* a counter never breaks a page */ }
 
 })();
