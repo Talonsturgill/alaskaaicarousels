@@ -303,8 +303,14 @@ def main():
            f'{esc(str(_alias("cap_reason", "cap_reason_as_scored")))}'
            if _alias("cap_reason", "cap_reason_as_scored") else '')
         + '</div>')
+    # honest_note_for_the_email is what the scorer agent actually emits, and it
+    # was missing from this alias list, so a disclosed shortfall rendered as
+    # "None." on 2026-07-30 until it was caught by eye. Same gap class as the
+    # post_copy fallback below (07-17, 07-18, 07-19): the agent's natural field
+    # name drifts from the reader's, and the email silently loses the content.
     notes = esc(str(_alias("editor_notes_for_email", "notes_for_the_email",
-                           "editor_note", default="") or "None."))
+                           "editor_note", "honest_note_for_the_email",
+                           "honest_note", default="") or "None."))
 
     # post_copy -> caption fallback: the copywriter/Phase 6 emit 'caption' and
     # often no 'post_copy'; without this the paste-ready post block renders empty

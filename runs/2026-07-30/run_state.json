@@ -15,10 +15,10 @@
   "flow_review": "done",
   "assemble": "done",
   "scoring": "done",
-  "ship": "pending",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "wake": "out/2026-07-30/plan.md",
@@ -33,6 +33,11 @@
   "pixel_review": "4 critics over 9 slides, 3 fix rounds applied",
   "assemble": "out/2026-07-30/final/carousel.pdf vector 9.99 MB, 9 thumbs, contact sheet",
   "flow_review": "flow-critic run; S05 re-pointed forward, S03 inversion deepened, S04 running line rewritten",
-  "scoring": "out/2026-07-30/score_report.json weighted 8.09, threshold 7.7, 0 hard fails"
- }
+  "scoring": "out/2026-07-30/score_report.json weighted 8.09, threshold 7.7, 0 hard fails",
+  "ship": "PR #164 merged to main as 5197f1c; raw URLs verified 200 for slide-01.webp, carousel.pdf, og.jpg",
+  "upgrade": "out/2026-07-30/automation_retro.md + upgrade(2026-07-30) commit c71c45a1a684, dedupe window 90 -> 30 days",
+  "gmail": "draft id r-1782907400815727563 in docket@alaskaaihq.com; payload at runs/2026-07-30/gmail_payload.json",
+  "retro": "out/2026-07-30/automation_retro.md"
+ },
+ "complete": true
 }

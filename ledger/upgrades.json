@@ -626,6 +626,18 @@
    "verification": "Ran dedupe_check.py after the change; it reports 'window 30 days ending 2026-07-30' and now returns SOFT OVERLAP only where it previously returned LIKELY DUPLICATE against entries older than 30 days. Re-ran this run's own selected-candidate query and the verdict is unchanged, so the run's own editorial decision does not depend on the loosening. No other gate reads the window.",
    "rollback": "git revert this commit. The window is a single integer in dedupe_check.py's argparse default plus four prose statements; reverting restores 90 days and the 120-day lookback.",
    "commit": "c71c45a1a684392fcbb7448a0b8fe8ba660545f0"
+  },
+  {
+   "run_date": "2026-07-30",
+   "kind": "fix",
+   "area": "scripts (gmail_draft.py)",
+   "change": "gmail_draft.py's editor-note alias list now also accepts honest_note_for_the_email and honest_note, which is what the scorer agent actually emits.",
+   "trigger": "Caught by eye during this run's Phase 13. The scorer wrote a full disclosed shortfall note under honest_note_for_the_email, the alias list did not know that key, and the dated email rendered Editor's note as 'None.' An email that silently drops the one section carrying the run's disclosed weaknesses is the opposite of the honest-emails house rule. Same gap class the file already documents for post_copy on 2026-07-17, 07-18 and 07-19, where the agent's natural field name drifted from the reader's.",
+   "files": [
+    "scripts/gmail_draft.py"
+   ],
+   "verification": "Regenerated the payload for this run with the same score_report.json. Before the change the Editor's note block rendered 'None.'; after it renders the scorer's full note. Diffed the two bodies and the ONLY changes are that block and the generation timestamp, so nothing else in the paste contract moved.",
+   "rollback": "git revert this commit. The change is two added strings in one _alias call."
   }
  ],
  "scan_log": [
