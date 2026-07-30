@@ -388,7 +388,8 @@ def main():
     # Readership. A hosted dashboard is a thing somebody has to remember to
     # open, so the numbers ride the draft instead. Nineteen decks shipped before
     # anything measured whether they were read, which made every editorial call
-    # a guess. Never fatal: no key or no data prints a line saying so.
+    # a guess. Needs no credentials, the figures come from a public aggregate
+    # endpoint. Never fatal: any failure just omits the section.
     reader_html = ""
     try:
         rs_path = Path(__file__).resolve().parent / "read_stats.py"
@@ -396,7 +397,7 @@ def main():
             p = subprocess.run([sys.executable, str(rs_path), "--days", "7"],
                                capture_output=True, text=True, timeout=60)
             txt = (p.stdout or "").strip()
-            if txt and "SKIP" not in txt:
+            if txt:
                 reader_html = (
                     '<h2>What people actually read</h2>'
                     '<div style="font-size:13.5px;color:#667085;margin-bottom:8px">'
@@ -406,11 +407,6 @@ def main():
                     f'<pre style="font-size:12.5px;line-height:1.5;background:#f7f9fb;'
                     f'border-left:4px solid #FFC72C;padding:12px 16px;overflow-x:auto">'
                     f'{esc(txt)}</pre>')
-            elif txt:
-                reader_html = ('<h2>What people actually read</h2>'
-                               '<div style="font-size:14px;color:#667085">'
-                               'No readership key is set in this environment, so the '
-                               'counter could not be read this run.</div>')
     except Exception:
         pass
 
