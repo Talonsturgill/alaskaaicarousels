@@ -8,7 +8,8 @@ captions, exactly 3 hashtags at the end, no links in body, brand punctuation
 rules (no em/en dashes, no semicolons, straight quotes), AI-tell scan,
 closing engagement question required.
 
-  python scripts/caption_check.py out/<run>/caption.txt
+  python scripts/caption_check.py out/<run>/caption.txt \
+      --ledger ledger/captions.json --deck-summary "<the deck-summary line>"
 Writes caption_report.json next to the input. Exit 0 = PASS, 1 = FAIL.
 """
 import json
@@ -38,7 +39,16 @@ UNICODE_BOLD = re.compile("[\U0001D400-\U0001D7FF]")
 URLISH = re.compile(r"https?://|www\.|\S+\.(com|org|net|io|gov|edu)/\S*", re.I)
 
 
-def lint(text, ledger_entries=None):
+# Contractions the house always prefers. "cannot" was banned outright by the
+# maintainer on 2026-07-30 ("always use can't instead, especially in the
+# captions"). It is a voice rule, not a typo rule: "cannot" is the register of a
+# press release and "can't" is the register of a person talking, and this page
+# is supposed to sound like an analyst talking to a busy Alaskan. Mechanically
+# checkable, so it is a gate rather than a note in a doc nobody reads.
+CONTRACTIONS = {"cannot": "can't"}
+
+
+def lint(text, ledger_entries=None, deck_summary=None):
     fails, warns = [], []
     t = text.rstrip("\n")
     lines = t.split("\n")
@@ -104,6 +114,13 @@ def lint(text, ledger_entries=None):
     if UNICODE_BOLD.search(t):
         fails.append("UNICODE: math-alphanumeric fake bold/italic present")
 
+    # house contractions
+    low_pre = t.lower()
+    for bad, good in CONTRACTIONS.items():
+        if re.search(r"(?<![a-z])" + bad + r"(?![a-z])", low_pre):
+            fails.append("VOICE: '%s' is banned house-wide, write '%s' "
+                         "(maintainer rule, 2026-07-30)" % (bad, good))
+
     # AI tells + banned phrases
     low = t.lower()
     for tell in AI_TELLS:
@@ -137,8 +154,42 @@ def lint(text, ledger_entries=None):
                              f"('{first4}...'); open differently")
                 break
 
+    # DECK SUMMARY LINE. brand.yaml sets deck_summary_line: true and
+    # CAROUSEL_CRAFT gives the reason: a LinkedIn document post has NO alt text
+    # at all, so for a screen-reader user the caption is the entire deck. The
+    # rule lapsed silently for three consecutive runs (2026-07-26, 07-29,
+    # 07-30) because nothing enforced it and the scorer could only dock for it
+    # afterwards. The room now has to name the line and the line has to be in
+    # the caption, which is mechanically checkable; whether it is any GOOD stays
+    # with the caption-critic, per the house split of geometric checks from
+    # semantic ones.
+    def _norm(x):
+        return re.sub(r"[^a-z0-9]+", "", x.lower())
+
+    if deck_summary is None:
+        fails.append("DECK SUMMARY: no --deck-summary given. brand.yaml requires a "
+                     "1 to 2 line plain summary of what the deck covers, because a "
+                     "LinkedIn document has no alt text and the caption is all a "
+                     "screen reader gets. Write one, then pass it with "
+                     "--deck-summary \"<the exact line>\"")
+    else:
+        ds = deck_summary.strip()
+        if len(ds) < 40:
+            fails.append("DECK SUMMARY: %d chars is too short to describe a deck; "
+                         "write a real sentence" % len(ds))
+        elif _norm(ds) not in _norm(t):
+            fails.append("DECK SUMMARY: the declared line is not present in the "
+                         "caption verbatim, so the caption does not actually carry it")
+        elif content_lines and _norm(ds) == _norm(content_lines[-1]):
+            fails.append("DECK SUMMARY: the declared line IS the closing question; "
+                         "it has to be its own line doing its own work")
+        elif _norm(ds) == _norm(hook):
+            fails.append("DECK SUMMARY: the declared line IS the hook; "
+                         "it has to be its own line doing its own work")
+
     return {"chars": n, "hook": hook, "hook_len": len(hook),
-            "hashtags": tags, "fails": fails, "warns": warns,
+            "hashtags": tags, "deck_summary": deck_summary,
+            "fails": fails, "warns": warns,
             "verdict": "FAIL" if fails else "PASS"}
 
 
@@ -146,6 +197,11 @@ def main():
     args = [a for a in sys.argv[1:]]
     ledger_entries = None
     ledger_missing = None
+    deck_summary = None
+    if "--deck-summary" in args:
+        i = args.index("--deck-summary")
+        deck_summary = args[i + 1]
+        del args[i:i + 2]
     if "--ledger" in args:
         i = args.index("--ledger")
         ledger_path = Path(args[i + 1])
@@ -167,7 +223,7 @@ def main():
     else:
         text = sys.stdin.read()
         out = Path("caption_report.json")
-    rep = lint(text, ledger_entries)
+    rep = lint(text, ledger_entries, deck_summary)
     if ledger_missing:
         rep["fails"].append("VARIETY: --ledger %s not found, the caption variety "
                             "check could not run, so this is not a pass" % ledger_missing)

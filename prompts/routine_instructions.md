@@ -351,9 +351,19 @@ The caption is conceived fresh per run, never a filled template. Read
    without tags because post_copy diverged from the caption; gmail_draft now
    re-appends the canonical tags as a last resort, but never rely on it).
 5. Write the winner to `out/<date>/caption.txt` and run:
-   `python scripts/caption_check.py out/<date>/caption.txt --ledger ledger/captions.json`
+   `python scripts/caption_check.py out/<date>/caption.txt --ledger ledger/captions.json --deck-summary "<the deck-summary line, verbatim>"`
    If FAIL: fix and re-lint until PASS (the variety gates fail repeated
    openings and banned furniture, see CAPTION_CRAFT).
+
+   TWO GATES ADDED 2026-07-30, both because a rule kept lapsing with nothing
+   watching it. `--deck-summary` is REQUIRED: brand.yaml has always set
+   `deck_summary_line: true` and the room stopped writing one for three
+   consecutive runs, which matters because a LinkedIn document post has NO alt
+   text, so the caption is the whole deck for a screen reader. The declared line
+   must appear in the caption verbatim and must not be the hook or the closing
+   question. Separately, the word "cannot" is now banned house-wide in favour of
+   "can't" (maintainer rule); the linter fails it in the caption, and the same
+   rule binds the first comment and every on-slide string.
 6. Save the final JSON to `out/<date>/copy.json` with the room's
    `opening_move`, `structure`, and `closing_move` carried in a
    `caption_meta` field. At ship (Phase 11), append the ledger entry to

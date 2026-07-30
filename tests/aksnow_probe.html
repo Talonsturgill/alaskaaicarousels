@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- A/B probe for assets/js/aksnow.js.
+
+     LEFT half reproduces the defect: the uniform-weight contour hatch that
+     shipped across six slides of run 2026-07-30 and that four pixel critics
+     and the scorer all read as topographic contour lines rather than as
+     wind-carved snow. RIGHT half draws AKSNOW.surface over the identical
+     contour, the identical palette and the identical region.
+
+     Rendered by render.py and measured by tests/aksnow_verify.py, which
+     asserts the new surface beats the old hatch on the two features that
+     encode "carved" rather than "drawn". Keeping the defect in the file is the
+     point: a probe that only draws the new thing proves nothing. -->
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#02060F}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}</style>
+</head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script>
+const SEED = 20260730;
+const LIT = "#C9DCF0", SHADOW = "#16283F";
+const TOP_Y = 380;
+/* named crest, not top: window.top already exists and a top-level
+   redeclaration is a SyntaxError that kills the page. */
+function crest(x) {
+  return TOP_Y + 30 * AK.fbm2(x * 0.00224, 7.1, {octaves: 5})
+              - 12 * AK.simplex2(x * 0.00091, 3.3);
+}
+
+/* THE DEFECT, reproduced exactly: bands for value, then a single stroke per
+   contour at one of two fixed widths, evenly spaced, level, no lee shadow, no
+   taper, no specular. This is what "distribute the detail" produced. */
+function oldHatch(cx, x0, x1) {
+  const bands = 64, step = 7, depth = 970;
+  for (let b = 0; b < bands; b++) {
+    const t = b / (bands - 1);
+    cx.beginPath();
+    cx.moveTo(x0, 1350);
+    for (let x = x0; x <= x1; x += 4) cx.lineTo(x, crest(x) + b * step);
+    cx.lineTo(x1, 1350); cx.closePath();
+    const p = [201, 220, 240], q = [22, 40, 63], u = Math.pow(t, 0.34);
+    cx.fillStyle = "rgb(" + Math.round(p[0] + (q[0] - p[0]) * u) + "," +
+                            Math.round(p[1] + (q[1] - p[1]) * u) + "," +
+                            Math.round(p[2] + (q[2] - p[2]) * u) + ")";
+    cx.fill();
+  }
+  const rnd = AK.rng(SEED + 707);
+  let off = 4;
+  while (off < 520) {
+    const gap = 4 + 7 * (off / 520) + rnd() * 3;
+    const a = 0.34 * (1 - off / 900) + 0.10;
+    cx.beginPath();
+    for (let x = x0; x <= x1; x += 5) {
+      const y = crest(x) + off + 2.2 * AK.simplex2(x * 0.011, off * 0.05);
+      x === x0 ? cx.moveTo(x, y) : cx.lineTo(x, y);
+    }
+    cx.lineWidth = off < 200 ? 1.4 : 0.9;          /* TWO widths, the whole range */
+    cx.strokeStyle = off < 200 ? "rgba(244,248,255," + a + ")"
+                               : "rgba(201,220,240," + a + ")";
+    cx.stroke();
+    off += gap;
+  }
+}
+
+window.renderReady = new Promise(function (resolve) {
+  const cx = document.getElementById("art").getContext("2d");
+  cx.scale(2, 2);
+  AK.reseed(SEED);
+  cx.fillStyle = "#02060F"; cx.fillRect(0, 0, 1080, 1350);
+
+  cx.save(); cx.beginPath(); cx.rect(0, 0, 540, 1350); cx.clip();
+  oldHatch(cx, -20, 560);
+  cx.restore();
+
+  cx.save(); cx.beginPath(); cx.rect(540, 0, 540, 1350); cx.clip();
+  const stats = AKSNOW.surface(cx, {
+    top: crest, x0: 520, x1: 1100, bottom: 1350,
+    lit: LIT, shadow: SHADOW, seed: SEED,
+    lightDeg: 118, windDeg: 200, ridges: 46,
+    weightNear: 2.2, weightFar: 0.55
+  });
+  AKSNOW.contactShadow(cx, {x: 760, y: 470, w: 70, color: "#101F33"});
+  cx.restore();
+
+  window.__aksnow_stats = stats;
+  resolve();
+});
+</script>
+</body></html>

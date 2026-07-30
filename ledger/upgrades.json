@@ -639,6 +639,38 @@
    "verification": "Regenerated the payload for this run with the same score_report.json. Before the change the Editor's note block rendered 'None.'; after it renders the scorer's full note. Diffed the two bodies and the ONLY changes are that block and the generation timestamp, so nothing else in the paste contract moved.",
    "rollback": "git revert this commit. The change is two added strings in one _alias call.",
    "commit": "ec21943d305dc8edc82df78cc45a004540e218d0"
+  },
+  {
+   "run_date": "2026-07-30",
+   "kind": "improvement",
+   "area": "assets (new bench) + tests (new verification) + this run's deck",
+   "change": "NEW assets/js/aksnow.js, the carved-snow bench. AKSNOW.surface() draws a modelled snow mass from a crest contour with (1) a ridge drawn as a LIT windward edge plus a DARK lee edge rather than a single stroke, (2) line weight that tapers along each mark and scales with depth instead of two fixed widths, (3) specular crest glints, (4) a wind-polish micro-streak population filling the space between ridges, and (5) an order-independent value ladder drawn as strips. AKSNOW.contactShadow() draws the two-part contact-plus-ambient shadow the doctrine has always specified and slides kept omitting, and it THROWS on a pure-black shadow colour. Applied to this run's deck for the drift on six slides, the S05 bench, and every pole base.",
+   "trigger": "The 2026-07-30 scorer's one-sentence fix, verbatim: 'Kill the repeated uniform-weight contour-line drift and build one real sastrugi surface with varying line weight, two-part contact shadows and specular crests, then apply it to S05's empty middle and S08's flat ground.' Artwork craft had been the weakest criterion in 9 of 11 runs. Four pixel critics independently described the old hatch as topographic contour lines rather than as snow.",
+   "files": [
+    "assets/js/aksnow.js",
+    "tests/aksnow_probe.html",
+    "tests/aksnow_verify.py",
+    "knowledge/TECHNIQUE_LIBRARY.md"
+   ],
+   "verification": "tests/aksnow_verify.py renders tests/aksnow_probe.html, which draws the OLD hatch and the NEW surface over the IDENTICAL contour, palette and region, and gates four features: edge_var 3.38x (line-weight variance, the rubric's own 'uniform line weights' descriptor), orient_spread 2.27x (the old marks are all level), pair_rate 17.43x (the lit-above-dark two-edge claim, measured directly), and low_band_range, where the old hatch measures ~0 because its value ladder SATURATES at 60 percent depth and is flat for the entire bottom third, which is the 'dead lower zone' the scorer named in six consecutive runs. detail_ratio is computed and PRINTED but deliberately NOT gated, because scripts/craft_corpus.py already showed it does not separate craft (AUC 0.653, Bonferroni p 0.147) and because the old hatch wins it by drawing more level lines, which is the defect. On the real deck, lower-band tonal range improved on every measured slide (S01 +0.028, S02 +0.031, S03 +0.055, S04 +0.012, S09 +0.086). render.py 9/9 clean and qa.py 0 fails on this deck; examples/demo-deck renders 4/4 with its pre-existing warn unchanged.",
+   "rollback": "git revert this commit. aksnow.js is additive, so reverting only removes the bench and the probe; no existing engine path depends on it."
+  },
+  {
+   "run_date": "2026-07-30",
+   "kind": "fix",
+   "area": "gates + brand config + caption room (two rules that kept lapsing)",
+   "change": "caption_check.py now enforces two things that were previously prose nobody checked. (1) THE DECK SUMMARY LINE. brand.yaml has set deck_summary_line true from the start and the room stopped writing one for three consecutive runs. The linter now REQUIRES --deck-summary, verifies the declared line appears in the caption verbatim, is at least 40 characters, and is neither the hook nor the closing question. Whether the line is any good stays with the caption-critic, per the house split of geometric checks from semantic ones. (2) THE WORD 'cannot' IS BANNED in favour of \"can't\", house-wide, and the linter fails it. Both rules are written into brand.yaml, CAPTION_CRAFT.md, the caption-director and caption-critic agent definitions, and Phase 6 of routine_instructions.md, so the room reads them before it writes rather than being told afterwards.",
+   "trigger": "The deck-summary lapse was caught by the 2026-07-30 scorer, which capped Copy at 6.0 and noted it was the third consecutive run; a rule that only gets enforced by a post-hoc score deduction is not enforced. The contraction ban is a MAINTAINER DIRECTIVE given after that run ('ban the word cannot, always use can't instead, especially in the captions'). Both are TIGHTENINGS, which Phase 12 permits the machine to make on its own.",
+   "files": [
+    "scripts/caption_check.py",
+    "config/brand.yaml",
+    "knowledge/CAPTION_CRAFT.md",
+    ".claude/agents/caption-director.md",
+    ".claude/agents/caption-critic.md",
+    "prompts/routine_instructions.md"
+   ],
+   "verification": "Ran caption_check.py against this run's shipped caption. Without --deck-summary it FAILS with an instructive message; with the declared line it PASSES at 895 chars. Reconstructed the defect both ways: a caption containing 'cannot' fails on the new VOICE rule, and a declared summary that is the closing question fails on the its-own-work rule. This run's own caption was then rewritten to carry a real deck-summary line and re-linted to PASS, and 'cannot' was removed from slide 04's body and from the first-comment block. brand.yaml still parses.",
+   "rollback": "git revert this commit. The gate is one flag plus one block in lint(); reverting restores the previous unenforced state."
   }
  ],
  "scan_log": [

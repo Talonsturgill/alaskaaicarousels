@@ -1870,3 +1870,41 @@ AND ONE THING TO STOP DOING. The deck-summary line that brand.yaml requires has
 now lapsed for three consecutive runs and the scorer capped Copy at 6.0 for it.
 Either the caption room starts writing it or the config should be amended
 honestly. It is no longer an oversight; it is a rule nobody enforces.
+
+### 2026-07-30 (No. 20), addendum, the other half of the artwork fix
+
+The retro above said "distribute the detail" is a plan and not a technique, and
+that the durable version would be one real surface built properly and reused.
+That is now `assets/js/aksnow.js` and it is worth recording what the building
+of it taught, because two of the three lessons were not about snow.
+
+**The metric you reach for first is often the wrong one.** The obvious gate for
+a texture upgrade is "carries more fine detail than what it replaces", and that
+bar FAILED the new surface (detail_ratio 0.98x). Two reasons, both instructive.
+The corpus study of 2026-07-29 had already shown detail_ratio does not separate
+craft (AUC 0.653, Bonferroni p 0.147), so gating on it would have been theatre.
+And mechanically the old hatch WINS on ink, because it draws fifty full-width
+level strokes, so requiring the replacement to out-ink it would have pushed it
+back toward being a dense line field, which is the defect. The gate that works
+measures the DESIGN CLAIM instead: line-weight variance, orientation spread,
+and the rate at which a bright pixel sits directly above a darker one, which is
+the lit-windward-plus-dark-lee structure stated as a number. That last one came
+out 17x.
+
+**A metric written for one purpose found a different, older defect.** While
+calibrating, the value ladders were sampled down the frame and the old hatch
+turned out to SATURATE at about 60 percent depth and then sit flat for the
+entire bottom third. That is the "dead lower zone" the scorer named in six
+consecutive runs, and nobody had ever measured it; it was always described. It
+is now a gated feature, `low_band_range`. The general lesson is that a
+calibration run is a cheap place to find defects you were not looking for, and
+it is worth printing more than you plan to assert on.
+
+**cx.filter applies per draw op.** A surface made of ~850 strokes drawn under
+`cx.filter = "blur(6px)"` blurs 850 times and blew the 45s navigation budget on
+S04. Drawing into an offscreen canvas and blurring once at composite fixed it
+and made that slide 3x faster than it had been even before the new surface.
+This will bite again; it is now in the TECHNIQUE_LIBRARY entry.
+
+Applied to the shipped deck, lower-band tonal range improved on every slide
+measured (S01 +0.028, S02 +0.031, S03 +0.055, S04 +0.012, S09 +0.086).

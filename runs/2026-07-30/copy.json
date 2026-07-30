@@ -2,14 +2,15 @@
  "run_date": "2026-07-30",
  "carousel_no": 20,
  "document_title": "Alaska's One Row on the Federal AI List",
- "post_copy": "Enstar is warning about rolling blackouts and fielding new data center interest in the same week.\nAlaska's one federal AI award points at the grid, not at the new load.\n\n278 projects on the Department of Energy's Genesis Mission list, posted July 22.\n\nExactly one row is Alaska's, a UAF project called AURORA-AI, Alaska Utility Resilience and Optimization using Real-time AI.\n\nSix days later Enstar president John Sims said a winter like last year's would likely bring rolling blackouts.\n\nThe Anchorage Daily News reported Enstar is weighing whether it is prudent to add new customers at all, citing rising interest in data center development.\n\nNo dollar figure has been published for Alaska's row. No description either.\n\nSo what would Alaska's one row have to be worth, in dollars, before it counts as a federal answer to this winter?\n\n#AlaskaEnergy #GenesisMission #Railbelt",
+ "post_copy": "Enstar is warning about rolling blackouts and fielding new data center interest in the same week.\nAlaska's one federal AI award points at the grid, not at the new load.\n\n278 projects on the Department of Energy's Genesis Mission list, posted July 22.\n\nExactly one row is Alaska's, a UAF project called AURORA-AI, Alaska Utility Resilience and Optimization using Real-time AI.\n\nSix days later Enstar president John Sims said a winter like last year's would likely bring rolling blackouts.\n\nInside, the award row as published, what two utility chiefs said, and the blanks in both.\n\nThe Anchorage Daily News reported Enstar is weighing new connections, citing data center interest.\n\nNo dollar figure has been published. No description either.\n\nSo what would Alaska's one row have to be worth, in dollars, before it counts as a federal answer to this winter?\n\n#AlaskaEnergy #GenesisMission #Railbelt",
  "first_comment": "Sources for this deck, in order of use.\n\nU.S. Department of Energy, 2026-07-22. https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate\n\nU.S. Department of Energy, 2026-07-22. https://www.energy.gov/sites/default/files/2026-07/GM-RFA-Awards-List.pdf\n\nNational Laboratory of the Rockies via GlobeNewswire, 2026-07-22. https://www.globenewswire.com/news-release/2026/07/22/3331669/0/en/nlr-awarded-12-genesis-mission-projects-ranging-from-semiconductors-to-alaska-utility-optimization.html\n\nUniversity of Alaska Fairbanks, Alaska Center for Energy and Power, 2026-07-30. https://www.uaf.edu/acep/about/our-team/richard-wies.php\n\nAlaska Public Media, 2026-07-28. https://alaskapublic.org/news/economy/energy/2026-07-28/southcentral-alaska-gas-utility-says-bills-likely-to-rise-amid-supply-shortage\n\nAnchorage Daily News, 2026-07-29. https://www.adn.com/alaska-news/anchorage/2026/07/29/alaska-mayors-warn-of-increased-utility-costs-as-southcentral-natural-gas-shortage-becomes-more-urgent/\n\nU.S. Department of Energy, 2017-09-14. https://www.energy.gov/eere/buildings/articles/gmlc-1321-alaska-microgrid-partnership\n\nEvery number above was checked against the page it links to. The Genesis Mission awards list is a PDF; the Alaska row is on page 9.",
  "caption_meta": {
   "opening_move": "CONTRADICTION",
   "structure": "PUNCH THEN PROOF",
   "closing_move": "PRICE",
   "hook_chars": 97,
-  "total_chars": 877
+  "total_chars": 895,
+  "deck_summary": "Inside, the award row as published, what two utility chiefs said, and the blanks in both."
  },
  "hashtags": [
   "#AlaskaEnergy",
@@ -50,7 +51,7 @@
     "\"If we have a winter like we did last year, we are going to have significant cha",
     "JOHN SIMS, ENSTAR PRESIDENT · JULY 28 2026",
     "ALASKA PUBLIC MEDIA",
-    "The Anchorage Daily News reported that Matanuska Electric's chief executive cann"
+    "The Anchorage Daily News reported that Matanuska Electric's chief executive can'"
    ]
   },
   {
@@ -117,5 +118,5 @@
   "Reply substantively to every comment in the first 60 to 90 minutes.",
   "The closing question is a real one. Answer people who answer it."
  ],
- "authoring_note": "The caption is the caption room's winner byte for byte, with the critic's one fix applied and the opening reflowed onto two lines so the hook completes inside the 140 character fold. The first comment and this record were assembled by the showrunner from claims.json and the rendered text nodes rather than by the copywriter agent, so the slide strings cannot disagree with the render."
+ "authoring_note": "The caption is the caption room's winner byte for byte, with the critic's one fix applied and the opening reflowed onto two lines so the hook completes inside the 140 character fold. The first comment and this record were assembled by the showrunner from claims.json and the rendered text nodes rather than by the copywriter agent, so the slide strings cannot disagree with the render. Revised 2026-07-30 after the run: the deck now uses the committed AKSNOW carved-snow surface, the caption carries the mandatory deck-summary line, and the house ban on 'cannot' in favour of \"can't\" is applied to the caption, the first comment and slide 04."
 }

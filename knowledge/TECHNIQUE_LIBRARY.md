@@ -558,3 +558,23 @@ annotation is the strongest pair):
     + contact shadow) or apply the 2.5D relit-heightfield Sobel form-shading helper. Used as
     the hero + continuity chassis of "The Giveaway, Surveyed" (AIDEA Houston land conveyance).
     Generalizes to any land-lease, siting, zoning, boundary, or public-comment story. D3
+
+91. **Carved Snow Surface (aksnow)** — `assets/js/aksnow.js`. The modelled-ground
+    bench, and the answer to nine runs of artwork craft scoring weakest.
+    `AKSNOW.surface(cx, {top, x0, x1, bottom, lit, shadow, seed, lightDeg,
+    windDeg})` turns a crest contour into a snow mass that reads as CARVED
+    rather than as contour lines. Five parts, and the first three are the whole
+    difference: a ridge is drawn as a LIT windward edge plus a DARK lee edge
+    beneath it, not one stroke; line weight tapers along each mark and scales
+    with depth, so weight VARIANCE carries the texture; crests throw specular
+    glints. Plus a wind-polish micro-streak population so the space between
+    ridges is never bare ramp, and an order-independent value ladder drawn as
+    strips (a fill-to-bottom ladder run dark-to-light silently flattens the
+    whole mass to one value, which is exactly what shipped on 2026-07-30's
+    first pass). `AKSNOW.contactShadow()` gives the two-part contact-plus-
+    ambient shadow the doctrine specifies and slides keep omitting; it THROWS
+    on a pure-black colour. Verified by `tests/aksnow_verify.py`, which renders
+    the old hatch and the new surface over the identical contour and gates four
+    features. PERFORMANCE NOTE: `cx.filter` applies per draw op, so blurring a
+    surface made of ~850 strokes blurs 850 times and will blow the render
+    timeout. Draw into an offscreen canvas and blur once at composite. D2

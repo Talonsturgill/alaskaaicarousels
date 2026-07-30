@@ -25,6 +25,7 @@ brand:
       - "Never use em dashes or en dashes, ever, in post copy OR on-slide text. Write ranges as 'X to Y'. Straight quotes only."
       - "NEVER use a colon, ever, in post copy or on-slide text (maintainer rule, 2026-07-21). For a pause use a comma, a period, or parentheses. Restructure the sentence instead of reaching for a colon. Clock times like 4:30 are the only exception."
       - "Cite the source of a claim inline when it matters ('per the RCA filing', 'NOAA data show')."
+      - "NEVER write 'cannot'. Always write \"can't\" (maintainer rule, 2026-07-30). 'Cannot' is press-release register; this page sounds like an analyst talking to a busy Alaskan. Enforced by scripts/caption_check.py."
     dont:
       - "Don't sign off with 'Follow Alaska.Ai'. The close slide's single ask handles it."
       - "Don't open with 'Imagine...', 'In an era where...', or 'It's no secret that...'"
@@ -96,4 +97,5 @@ visual:
     - "No colons in any on-slide string (clock times excepted). Restructure instead."
     - "Straight quotes. Tabular numerals for data. Units spaced (43 MW, not 43MW)."
     - "No emojis, no hashtags on slides."
+    - "Never 'cannot' on a slide either. Write \"can't\" (maintainer rule, 2026-07-30)."
     - "Every factual on-slide number/claim carries a claim-id in the dossier."

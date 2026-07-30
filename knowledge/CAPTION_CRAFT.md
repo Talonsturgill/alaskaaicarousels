@@ -33,7 +33,7 @@ swipe"), or let the deck sell itself with no pointer at all.
   miles. Zero dollars."
 - SCENE — put the reader somewhere physical at a time. Freeze-up, a dock, a
   hearing room at 5 p.m.
-- CONTRADICTION — two true things that cannot both be comfortable, side by
+- CONTRADICTION — two true things that can't both be comfortable, side by
   side.
 - QUOTE FIRST — a verified human sentence opens, attribution after.
 - SECOND PERSON STAKE — what this decision does to the reader's bill, land,
@@ -84,6 +84,30 @@ excepted), no semicolons, straight quotes, no emojis, exactly 3 niche
 hashtags as the final line, hook under 140 chars, 300-900 chars total, no
 links, no sources, no credits, no AI-tells, close on a real question. The
 variety engine changes the shape, never the standards.
+
+## Two rules the machine now enforces, so they stop lapsing
+
+**THE DECK SUMMARY LINE IS MANDATORY.** brand.yaml has set
+`deck_summary_line: true` since the beginning and the room quietly stopped
+writing one for three consecutive runs (2026-07-26, 07-29, 07-30) because
+nothing checked. The reason it matters is not style. A LinkedIn DOCUMENT post
+carries no alt text at all, so for a screen-reader user the caption is the
+entire deck. One or two plain lines saying what the deck actually contains is
+the only accessible description that exists, and it doubles as ranker signal
+because the ranker reads text and not hashtags.
+
+Write it as its own line. It may not be the hook and it may not be the closing
+question. It is not the banned deck-pointer furniture either, and the
+difference is that furniture points at the artifact ("the deck walks through
+five slides") while a summary names the CONTENTS ("the award row as published,
+what two utility chiefs said, and the blanks in both"). `caption_check.py`
+requires the line to be declared with `--deck-summary` and to appear in the
+caption verbatim; whether it is any good is the critic's call.
+
+**NEVER WRITE "CANNOT".** Always "can't" (maintainer rule, 2026-07-30). This
+holds in the caption, in the first comment and on every slide. "Cannot" is the
+register of a press release; the house voice is a person talking.
+`caption_check.py` fails it.
 
 ## The ledger contract
 

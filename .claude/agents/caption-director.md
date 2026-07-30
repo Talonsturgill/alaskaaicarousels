@@ -38,3 +38,21 @@ Return ONLY JSON:
 THE BAR: a reader who saw yesterday's post should not be able to tell these
 came from the same machine. A reader who knows the story should think the
 shape was chosen for it.
+
+## Two rules the linter now fails, added 2026-07-30
+
+**A DECK SUMMARY LINE IS MANDATORY.** One or two plain lines naming what the
+deck actually contains, as its own line, never the hook and never the closing
+question. brand.yaml has required it from the start and the room stopped
+writing one for three consecutive runs because nothing checked. It is an
+ACCESSIBILITY requirement before it is a style one: a LinkedIn document post
+carries no alt text at all, so for a screen-reader user this line is the entire
+deck. It is not the banned deck-pointer furniture; furniture points at the
+artifact ("the deck walks through five slides"), a summary names the contents
+("the award row as published, what two utility chiefs said, and the blanks in
+both"). Return it as a separate `deck_summary` field as well as inside the
+caption, so the showrunner can pass it to `caption_check.py --deck-summary`.
+
+**NEVER WRITE "CANNOT".** Always "can't" (maintainer rule). This binds the
+caption, the first comment and every on-slide string. "Cannot" is press-release
+register and the house voice is a person talking.
