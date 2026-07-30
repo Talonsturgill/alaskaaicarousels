@@ -1,0 +1,81 @@
+{
+ "run_date": "2026-07-30",
+ "carousel_no": 20,
+ "revision_rounds": 4,
+ "threshold_applied": 7.7,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "weight": 0.14,
+   "score": 8.0,
+   "why": "12 words in 3 hand-broken Fraunces lines, counted number leading and a negation closing, all legible at 432px. Held off 9 because the declared focal point, the gold register tick, loses to the type at thumb size."
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "weight": 0.14,
+   "score": 8.0,
+   "why": "Every slide plants or pays, and the nine mono running lines read down the contact sheet as one continuous sentence. Deducted for S05 being reorderable and for S01, S02, S03 and S09 sharing most of one background."
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "WEAKEST. The single-value-group defect is measurably dead, 2.9 percent of pixels near mid-L against a 12 percent ceiling, and the S07 volumetric beam and the S08 d3 Alaska silhouette survive a zoom. But the same uniform-weight contour drift and the same flat knockout plates repeat across six slides, the promised fall-line sastrugi, two-part contact shadows and specular crests are not in the pixels, and S05 and S08 carry large flat regions."
+  },
+  {
+   "name": "Story-art fusion",
+   "weight": 0.14,
+   "score": 7.0,
+   "why": "The 278-tick register with one gold, hollow on S06 and absent from the strip on S09 as the gold rises into the Polaris, is genuinely specific and pays. But about half the declared encodings did not survive the build, including the six village windows on S04, the 200 pinpoints on S07, and the S03 register inversion the dossier calls the visual event of the turn."
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "Named specifics throughout, and the coordinate fixture correctly switches to Anchorage on the one Southcentral slide. Held at 8 because the deck welds an Interior visual world and a UAF project to a Southcentral gas crisis without noting they are different service territories on the same Railbelt."
+  },
+  {
+   "name": "Insight density and factual weight",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Every content slide adds a new verified specific, word counts sit in the 25 to 50 band, and the honesty discipline is strong, with the 45-state distribution killed rather than printed and the ADN paraphrase kept out of quote marks. Deducted for S03 restating the title already transcribed on S02."
+  },
+  {
+   "name": "Variety vs ledger",
+   "weight": 0.08,
+   "score": 7.0,
+   "why": "Hero structure, hook archetype and continuity all diverge cleanly from the last four decks. But the type trio was asserted in the storyboard as never shipped and it appears in the ledger at No.7 and No.10, and the palette is the series default cold arctic navy rather than a distinctive family."
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "weight": 0.07,
+   "score": 7.0,
+   "why": "Floors met, mono lifted to the 24px mobile floor at build, vector PDF in band with a document title, counters on all nine. Deducted for the decorative coordinate footer sitting at very low contrast on the pale drift on four slides and for three advisory machine warns shipped unaddressed."
+  },
+  {
+   "name": "Copy voice and hook",
+   "weight": 0.05,
+   "score": 6.0,
+   "why": "Mechanics all pass and the close is a genuinely debatable question asking for a number. But brand.yaml requires a deck-summary line and there is none, for the third consecutive run, and the copywriter room was not spawned so the body reads as stacked facts rather than one written argument."
+  },
+  {
+   "name": "Deliverable completeness",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "All artifacts present and parsing, 15 claims with sources plus 9 documented kills, first comment with resolvable URLs, aftercare present. Deducted for the skipped copywriter step and for a stale gate block in the run record, since corrected."
+  }
+ ],
+ "weighted_total": 8.09,
+ "any_hard_fail": false,
+ "ship": true,
+ "hard_fails_checked": 13,
+ "hard_fails_triggered": 0,
+ "weakest_criterion": "Artwork craft and genuine detail",
+ "one_sentence_fix": "Kill the repeated uniform-weight contour drift and build one real sastrugi surface with varying line weight, two-part contact shadows and specular crests, then apply it to S05's empty middle and S08's flat ground, because those regions hold essentially all of the deck's dead pixels.",
+ "honest_note_for_the_email": "Ships at 8.09 against a relaxed 7.7 threshold with zero hard fails, and it ships on its writing and its structure rather than on its pictures. The run set out to fix artwork craft after three straight 6.90s and fixed half the diagnosis. The flat single-value-group failure is genuinely dead. The promised distributed detail never arrived, so the same contour drift and the same knockout plates repeat across six slides.",
+ "showrunner_notes_after_scoring": [
+  "The scorer flagged a possible curly apostrophe on S03 and S04. Checked directly against every rendered text node and there are ZERO curly quotes or dashes anywhere in the deck. Fraunces draws a slightly angled straight apostrophe, which is what it saw. No change needed and nothing to eyeball before posting.",
+  "The scorer is right that the storyboard claimed the Fraunces plus Space Grotesk plus JetBrains Mono trio had never shipped. It appears at No.7 and No.10. The claim was wrong, the artwork ledger entry for this run records it correctly, and the variety score already reflects it.",
+  "The stale GATE STATUS block the scorer caught has been regenerated from the artifacts and now reports copy_sync PASS."
+ ]
+}

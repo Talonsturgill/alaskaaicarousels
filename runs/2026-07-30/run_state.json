@@ -12,9 +12,9 @@
   "copy": "done",
   "art_build": "done",
   "pixel_review": "done",
-  "flow_review": "in_progress",
+  "flow_review": "done",
   "assemble": "done",
-  "scoring": "in_progress",
+  "scoring": "done",
   "ship": "pending",
   "upgrade": "pending",
   "gmail": "pending",
@@ -31,6 +31,8 @@
   "copy": "out/2026-07-30/caption.txt (caption_check PASS) + copy.json (copy_sync PASS 44/44)",
   "art_build": "out/2026-07-30/slides/*.html (9) + build_slides.py generator; qa.py 0 fails",
   "pixel_review": "4 critics over 9 slides, 3 fix rounds applied",
-  "assemble": "out/2026-07-30/final/carousel.pdf vector 9.99 MB, 9 thumbs, contact sheet"
+  "assemble": "out/2026-07-30/final/carousel.pdf vector 9.99 MB, 9 thumbs, contact sheet",
+  "flow_review": "flow-critic run; S05 re-pointed forward, S03 inversion deepened, S04 running line rewritten",
+  "scoring": "out/2026-07-30/score_report.json weighted 8.09, threshold 7.7, 0 hard fails"
  }
 }

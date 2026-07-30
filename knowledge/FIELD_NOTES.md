@@ -1812,3 +1812,61 @@ you have, before building, is worth more than the gate.
   value bands FIRST, then spend detail inside the nearest one.
   Sources: samuelearp.com/blog/depth-in-paintings/,
   finearttutorials.com/guide/atmospheric-perspective/
+
+### 2026-07-30 (No. 20), half the artwork diagnosis was right
+
+The run set out to break a three-deck run of 6.90s where artwork craft was the
+weakest criterion. The diagnosis was that decks 17, 18 and 19 concentrated
+their craft in ONE modelled object, giving the frame one value group. The
+prescription was a PLACE with three value bands, detail distributed across four
+quadrants, and the drafting line voice retired. The deck scored 8.09 and
+artwork craft still came in at 6.0, so the diagnosis was half right and it is
+worth writing down which half.
+
+THE HALF THAT WORKED. The single-value-group failure is measurably dead. The
+mechanism was not aesthetic, it was a loop direction: the drift was filled as
+bands that each ran from their own contour to the frame bottom, and the loop
+ran dark-to-light, so the last and lightest band painted over everything behind
+it and the entire foreground flattened to one pale mass. Inverting the loop
+made the cover fall from L 0.475 at the lit crest to L 0.120 at the near edge,
+with 2.9 percent of pixels within 0.03 of L 0.51 against a 12 percent ceiling.
+That is a one-character fix worth more than any amount of art direction, and it
+passed the machine gate in its broken state because gates measure geometry and
+this was a value defect.
+
+THE HALF THAT DID NOT. Trading one modelled object for nine fields does not by
+itself produce craft; it produces nine chances to spend a detail budget that
+was never spent. What shipped is one background reused nine times with
+per-slide edits. The declared fall-line sastrugi, two-part contact shadows,
+specular crests and scale-graded poles are in the dossier and not in the
+pixels. The generalisable lesson: "distribute the detail" is a plan, not a
+technique, and a plan with no per-region budget gets spent on whatever is
+easiest to draw everywhere, which is a uniform hatch.
+
+WHAT TO DO NEXT TIME. Pick ONE surface and build it properly, then reuse it.
+The scorer's one-sentence fix names it exactly: one real sastrugi surface with
+varying line weight, contact shadows and specular crests, applied to the three
+regions holding the dead pixels, would have moved this criterion more than nine
+separate compositions did.
+
+TWO PROCESS THINGS WORTH KEEPING.
+
+The pixel critics caught two HARD failures that the machine gate could not see
+and that would have shipped: the close carried gold on both the register and
+the Polaris, which destroys the entire argument that the gold has LEFT the
+list, and the data slide had no literal anchor at all, which doctrine fails
+outright. Both were invisible to qa.py because both are semantic. This is the
+2026-07-29 routing lesson confirmed: automate the geometric defects, route the
+semantic ones to a judge.
+
+The flow critic's single highest-value note was worth more than any per-slide
+fix. It identified that slide 5 was simultaneously the deck's only reorderable
+slide, its only failing thumb, and the only frame that planted nothing, and
+that one running-line change plus one forward-planting sentence would close all
+three at once. A sequence-level reviewer finds problems that nine slide-level
+reviewers structurally cannot.
+
+AND ONE THING TO STOP DOING. The deck-summary line that brand.yaml requires has
+now lapsed for three consecutive runs and the scorer capped Copy at 6.0 for it.
+Either the caption room starts writing it or the config should be amended
+honestly. It is no longer an oversight; it is a rule nobody enforces.
