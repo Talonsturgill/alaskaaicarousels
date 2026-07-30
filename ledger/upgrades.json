@@ -624,7 +624,8 @@
     "CLAUDE.md"
    ],
    "verification": "Ran dedupe_check.py after the change; it reports 'window 30 days ending 2026-07-30' and now returns SOFT OVERLAP only where it previously returned LIKELY DUPLICATE against entries older than 30 days. Re-ran this run's own selected-candidate query and the verdict is unchanged, so the run's own editorial decision does not depend on the loosening. No other gate reads the window.",
-   "rollback": "git revert this commit. The window is a single integer in dedupe_check.py's argparse default plus four prose statements; reverting restores 90 days and the 120-day lookback."
+   "rollback": "git revert this commit. The window is a single integer in dedupe_check.py's argparse default plus four prose statements; reverting restores 90 days and the 120-day lookback.",
+   "commit": "c71c45a1a684392fcbb7448a0b8fe8ba660545f0"
   }
  ],
  "scan_log": [
