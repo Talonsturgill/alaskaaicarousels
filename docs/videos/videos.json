@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-07-30-amos",
+      "date": "2026-07-30",
+      "title": "We know where the machine is",
+      "caption": "NOAA Fisheries has proposed authorizing the Navy's Arctic Mobile Observing System for a ninth year, where up to six moored 900 Hz sources let gliders solve their own position under the ice by trilateration. The Beaufort beluga estimate underlying the no-harm finding is from 1992, and Arctic ringed seal abundance is undetermined. Comments close August 21.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-07-30-master_9x16.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-07-30-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-07-30-master_9x16_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-07-30-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-07-29-aurora-ai",
       "date": "2026-07-29",
       "title": "Alaska got written into America's AI moonshot",
