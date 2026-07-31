@@ -376,9 +376,9 @@ h4.sub{font:400 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase
     <li><b>Nothing resolves on a threshold.</b> Every candidate lands in a state called matched, unconfirmed and stays there. There is no score at which the software acts, and we would not add one at any number you named.</li>
     <li><b>There is no bulk resolve.</b> Try the two controls at the top of the work queue. They are in the demonstration because we want you to press them and see what comes back.</li>
     <li><b>Confirming requires a reason.</b> Not a checkbox. A sentence the next person can read in six months when they are asking why this record changed.</li>
-    <li><b>The matcher has no write permission on a Shareholder record.</b> It reads records and writes candidates. It cannot record a confirmation at all, so the guarantee is not a policy somebody could relax later under a deadline.</li>
+    <li><b>The matcher has no write permission on a Shareholder record.</b> It reads records and writes candidates. It can't record a confirmation at all, so the guarantee is not a policy somebody could relax later under a deadline.</li>
   </ul>
-  <p class="lede" style="margin-top:22px">Here is the failure the whole build is shaped around. A wrong match takes the name off the Address Unknown List while the Shareholder still receives nothing. The roster gets shorter, the reporting looks better, and the only person who would notice is the one you already cannot reach.</p>
+  <p class="lede" style="margin-top:22px">Here is the failure the whole build is shaped around. A wrong match takes the name off the Address Unknown List while the Shareholder still receives nothing. The roster gets shorter, the reporting looks better, and the only person who would notice is the one you already can't reach.</p>
 </section>
 
 <section class="sec">
@@ -387,7 +387,7 @@ h4.sub{font:400 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase
   <p class="lede">Written as you click. Machine steps are marked as machine steps, and not one of them changes a Shareholder record.</p>
   <div class="audit">
     <ol id="audit"></ol>
-    <div class="auditfoot">This trail cannot be edited or deleted from this screen. In the built system it lives with the record and leaves with it in an export.</div>
+    <div class="auditfoot">This trail can't be edited or deleted from this screen. In the built system it lives with the record and leaves with it in an export.</div>
   </div>
 </section>
 
@@ -410,7 +410,7 @@ h4.sub{font:400 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase
     <div class="sidenote">
       <div class="blk">
         <h4>Offline is a requirement here, not a nicety</h4>
-        <p>The AIRRAQ fiber network covers 13 Western Alaska communities. The Alaska FiberOptic Project, reported on Calista's own news page, adds seven more Y-K villages, with construction expected to be completed by December 31, 2027. Much of the region runs on satellite in the meantime. An invite that needs a live connection to accept is an invite a large part of the region cannot accept, so the answer is stored on the phone and sent when the connection comes back.</p>
+        <p>The AIRRAQ fiber network covers 13 Western Alaska communities. The Alaska FiberOptic Project, reported on Calista's own news page, adds seven more Y-K villages, with construction expected to be completed by December 31, 2027. Much of the region runs on satellite in the meantime. An invite that needs a live connection to accept is an invite a large part of the region can't accept, so the answer is stored on the phone and sent when the connection comes back.</p>
       </div>
       <div class="blk">
         <h4>It starts a request. It does not move money.</h4>
@@ -562,7 +562,7 @@ var RECORDS = [
        fired:[
          {r:"N1", e:"Kanrilak against Kanrilak."},
          {r:"N4", e:"Mary sits on your table as a shortened form of Marilyn."},
-         {r:"X2", e:"The Bethel record carries no date of birth, so identity cannot be checked against it."},
+         {r:"X2", e:"The Bethel record carries no date of birth, so identity can't be checked against it."},
          {r:"X3", e:"Nothing has been written to the Bethel record since 2018."}
        ]}
     ],
@@ -701,7 +701,7 @@ var CONFIRM_REASONS = [
 ];
 var REJECT_REASONS = [
   "Different person, same surname",
-  "Cannot tell from this evidence, this one needs a phone call",
+  "Can't tell from this evidence, this one needs a phone call",
   "The evidence is too old to rely on",
   "Routed to the village office instead"
 ];
@@ -1021,7 +1021,7 @@ function bulkRefusal(){
   var c = counts();
   modal("This build will not do that", [
     "There are " + c.matched + " records sitting at matched, unconfirmed right now. Resolving them together would change " + c.matched + " Shareholder records on the strength of a score, and a score is a property of a candidate. It is never a property of a person.",
-    "Here is the failure we are protecting against. A wrong match takes the name off the Address Unknown List while the Shareholder still receives nothing. The roster gets shorter, the reporting looks better, and the only person who would notice is the one you already cannot reach.",
+    "Here is the failure we are protecting against. A wrong match takes the name off the Address Unknown List while the Shareholder still receives nothing. The roster gets shorter, the reporting looks better, and the only person who would notice is the one you already can't reach.",
     "So the matcher has no permission to record a confirmation. Not a setting turned off, no permission at all. Open the top record and decide that one instead. The evidence is already on the screen, and how long that actually takes your staff is one of the eight numbers the pilot measures."
   ]);
   tick(1);
