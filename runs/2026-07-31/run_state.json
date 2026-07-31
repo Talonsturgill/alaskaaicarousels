@@ -17,8 +17,8 @@
   "scoring": "done",
   "ship": "done",
   "upgrade": "done",
-  "gmail": "pending",
-  "retro": "pending"
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-07-31/plan.md",
@@ -40,6 +40,8 @@
   "flow_review": "NOT RUN, for budget. Disclosed in the ledger, the storyboard reconciliation and the email.",
   "scoring": "out/2026-07-31/score_report.json, 2 cycles (the rubric max), uncapped 8.53, capped 6.9 on 2 hard fails, both since fixed and machine-verified only",
   "upgrade": "out/2026-07-31/automation_retro.md, 3 upgrades logged for the day (akengrave fix, type-pairing audit improvement, worst-point contrast gate fix). Frontier scan deferred and recorded in scan_log.",
-  "ship": "PR #166 merged to main at 5c03c63, raw URLs verified on main. Two slides re-rendered after the new gate found them and reshipped in the upgrade commit."
+  "ship": "PR #166 merged to main at 5c03c63, raw URLs verified on main. Two slides re-rendered after the new gate found them and reshipped in the upgrade commit.",
+  "gmail": "draft r8011619478564372867 in docket@alaskaaihq.com, subject Alaska.Ai carousel No. 21 2026-07-31. Addressed to the literal mailbox per FIELD_NOTES 2026-07-29, because this connector rejects to=me.",
+  "retro": "knowledge/FIELD_NOTES.md 2026-07-31 (No. 21) entry, two generalizing lessons appended after Phase 12."
  }
 }
