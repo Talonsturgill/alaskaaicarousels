@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Shareholder Reachability and Enrollment Work Queue, a scripted demonstration for Calista Corporation</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --panel:#081321;
+  --surface:#122a46;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --warn:#f2a43a;
+  --gold:#ffc72c;
+  --ui:Manrope,ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Fraunces,Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 var(--ui);letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px 64px}
+p{margin:0 0 14px}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+a{color:#5ac8f0;text-decoration:none;border-bottom:1px solid rgba(90,200,240,.35)}
+button{font-family:inherit}
+
+/* ---------- masthead ---------- */
+.mast{padding:26px 0 0}
+.mark{display:flex;align-items:center;gap:9px;font:400 11px/1 var(--mono);
+  letter-spacing:.18em;color:var(--ink);text-transform:uppercase}
+.mark i{width:12px;height:12px;display:block;background:var(--gold);
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+.mark b{font-weight:400;color:var(--cap)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(27px,4.4vw,40px);
+  line-height:1.04;letter-spacing:-.018em;margin:20px 0 10px}
+.mast .who{font:400 12px/1.5 var(--mono);letter-spacing:.11em;text-transform:uppercase;
+  color:var(--cap);border-top:1px solid var(--rule);padding-top:12px;margin-top:16px;
+  display:flex;flex-wrap:wrap;gap:6px 26px}
+.quiet{color:var(--cap);font-size:15px;max-width:62ch;margin:0}
+
+/* ---------- honesty banner ---------- */
+.banner{border:1px solid var(--warn);border-left-width:3px;border-radius:8px;
+  padding:16px 18px;margin:24px 0 8px;background:rgba(242,164,58,.05)}
+.banner h2{font:400 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--warn);margin-bottom:10px}
+.banner p{color:var(--sub);font-size:15px;margin:0 0 10px}
+.banner p:last-child{margin:0}
+.banner strong{color:var(--ink)}
+
+/* ---------- generic section ---------- */
+.sec{margin:44px 0 0}
+.sec-n{font:400 11px/1 var(--mono);color:var(--accent);letter-spacing:.18em;
+  text-transform:uppercase;display:block;margin-bottom:12px}
+h2.t{font-family:var(--display);font-weight:400;font-size:clamp(21px,3vw,27px);
+  line-height:1.16;letter-spacing:-.01em;margin-bottom:10px}
+.lede{color:var(--sub);font-size:17px;max-width:62ch;margin:0 0 20px}
+
+/* ---------- scenario picker ---------- */
+.scen{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 22px}
+.scen button{display:block;text-align:left;background:var(--panel);color:var(--ink);
+  border:1px solid var(--rule);border-radius:8px;padding:13px 14px;cursor:pointer;
+  font-size:14px;line-height:1.4;transition:border-color .15s,background .15s}
+.scen button:hover{border-color:var(--accent);background:#0c1a2c}
+.scen button.on{border-color:var(--accent);background:#0c1a2c}
+.scen .k{display:block;font:400 10px/1 var(--mono);letter-spacing:.16em;color:var(--cap);
+  text-transform:uppercase;margin-bottom:8px}
+.scen .h{display:block;font-weight:650;margin-bottom:5px}
+.scen .s{display:block;color:var(--cap);font-size:13px}
+
+/* ---------- counters ---------- */
+.counters{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin:0 0 12px}
+.ct{background:var(--panel);padding:14px 14px 15px}
+.ct .n{display:block;font-family:var(--display);font-size:30px;line-height:1;
+  font-variant-numeric:lining-nums tabular-nums;margin-bottom:8px}
+.ct .l{display:block;font-size:12.5px;line-height:1.35;color:var(--cap)}
+.ct.conf .n{color:var(--accent)}
+.ct.unconf .n{color:var(--warn)}
+.ctnote{font-size:13.5px;color:var(--cap);margin:0 0 26px;max-width:74ch;line-height:1.6}
+
+/* ---------- work queue ---------- */
+.bench{border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--panel)}
+.benchbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;
+  padding:11px 14px;border-bottom:1px solid var(--rule);background:#060f1b}
+.benchbar .lab{font:400 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cap)}
+.benchbar input[type=text]{background:#0d1a2b;border:1px solid var(--rule);color:var(--ink);
+  border-radius:5px;padding:5px 8px;font:inherit;font-size:13px;width:150px}
+.benchbar .spacer{flex:1}
+.lockbtn{background:transparent;border:1px dashed var(--rule);color:var(--cap);
+  border-radius:5px;padding:5px 10px;font-size:12.5px;cursor:pointer}
+.lockbtn:hover{border-color:var(--warn);color:var(--warn)}
+.grid{display:grid;grid-template-columns:296px 1fr}
+.qcol{border-right:1px solid var(--rule);min-height:420px}
+.qhead{padding:12px 14px 10px;border-bottom:1px solid var(--rule)}
+.qhead .t{font-size:13px;font-weight:650}
+.qhead .s{font-size:12.5px;color:var(--cap);margin-top:4px;line-height:1.4}
+.qlist{list-style:none;margin:0;padding:0}
+.qlist li{border-bottom:1px solid var(--rule)}
+.qlist button{width:100%;text-align:left;background:transparent;border:0;color:var(--ink);
+  padding:11px 14px;cursor:pointer;display:block;font-size:14px;line-height:1.35}
+.qlist button:hover{background:#0d1a2b}
+.qlist li.sel button{background:#0d1a2b;box-shadow:inset 2px 0 0 var(--accent)}
+.qname{font-weight:650}
+.qmeta{display:block;font:400 11px/1.4 var(--mono);color:var(--cap);margin-top:4px;letter-spacing:.02em}
+.chip{display:inline-block;font:400 9.5px/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;
+  padding:4px 6px;border-radius:3px;border:1px solid;margin-top:7px}
+.c-un{color:var(--warn);border-color:rgba(242,164,58,.5)}
+.c-ok{color:var(--accent);border-color:rgba(60,230,180,.5)}
+.c-no{color:var(--cap);border-color:var(--rule)}
+
+.dcol{padding:16px 18px 20px;min-width:0}
+.dname{font-family:var(--display);font-weight:400;font-size:24px;line-height:1.1;margin-bottom:6px}
+.tag{display:inline-block;font:400 9.5px/1 var(--mono);letter-spacing:.14em;color:var(--warn);
+  border:1px solid rgba(242,164,58,.5);border-radius:3px;padding:4px 6px;vertical-align:3px;margin-left:8px;
+  text-transform:uppercase}
+.dmeta{font:400 12px/1.6 var(--mono);color:var(--cap);letter-spacing:.02em;margin-bottom:14px}
+.kv{border-top:1px solid var(--rule);padding:9px 0;font-size:14px;color:var(--sub);
+  display:grid;grid-template-columns:152px 1fr;gap:14px}
+.kv .k{color:var(--cap);font:400 11px/1.5 var(--mono);letter-spacing:.05em;text-transform:uppercase}
+.state{margin:16px 0 6px;padding:11px 13px;border-radius:7px;font-size:14px;line-height:1.45}
+.state.un{background:rgba(242,164,58,.08);border:1px solid rgba(242,164,58,.35);color:var(--sub)}
+.state.ok{background:rgba(60,230,180,.07);border:1px solid rgba(60,230,180,.35);color:var(--sub)}
+.state.no{background:#0d1a2b;border:1px solid var(--rule);color:var(--sub)}
+.state b{color:var(--ink)}
+
+h4.sub{font:400 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cap);
+  margin:22px 0 11px}
+.cand{border:1px solid var(--rule);border-radius:8px;margin-bottom:11px;background:#0b1728}
+.cand.top{border-color:rgba(242,164,58,.45)}
+.cand.picked{border-color:var(--accent)}
+.candhead{display:flex;gap:14px;align-items:flex-start;padding:12px 14px}
+.candhead .who{flex:1;min-width:0}
+.candhead .cn{font-weight:650;font-size:15px}
+.candhead .cs{display:block;font:400 11.5px/1.5 var(--mono);color:var(--cap);margin-top:3px}
+.score{text-align:right;flex:0 0 96px}
+.score .v{font-family:var(--display);font-size:23px;line-height:1;
+  font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
+.score .u{display:block;font:400 9.5px/1.4 var(--mono);color:var(--cap);letter-spacing:.08em;
+  text-transform:uppercase;margin-top:5px}
+.bar{height:3px;background:var(--rule);border-radius:2px;margin:8px 0 0;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--warn)}
+.cand.picked .bar i{background:var(--accent)}
+.rulesbtn{display:block;width:100%;text-align:left;background:transparent;border:0;
+  border-top:1px solid var(--rule);color:var(--cap);padding:9px 14px;cursor:pointer;
+  font:400 11.5px/1 var(--mono);letter-spacing:.06em}
+.rulesbtn:hover{color:var(--accent)}
+.rules{border-top:1px solid var(--rule);padding:4px 14px 12px}
+.rule{display:grid;grid-template-columns:46px 1fr;gap:12px;padding:10px 0;
+  border-bottom:1px solid rgba(28,51,80,.6);font-size:13.5px;line-height:1.45}
+.rule:last-child{border-bottom:0}
+.rule .p{font:400 13px/1.5 var(--mono);color:var(--accent);text-align:right;
+  font-variant-numeric:tabular-nums}
+.rule.neg .p{color:var(--warn)}
+.rule .t{color:var(--ink)}
+.rule .e{display:block;color:var(--cap);font-size:13px;margin-top:3px}
+.ruletot{display:grid;grid-template-columns:46px 1fr;gap:12px;padding:10px 0 0;
+  border-top:1px solid var(--rule);margin-top:4px;font-size:13.5px}
+.ruletot .p{font:400 13px/1.5 var(--mono);text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.ruletot .t{color:var(--cap)}
+.candacts{border-top:1px solid var(--rule);padding:11px 14px 12px}
+
+.acts{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.btn{border-radius:6px;padding:9px 14px;font-size:14px;cursor:pointer;border:1px solid;
+  background:transparent;line-height:1.2}
+.btn.go{background:var(--accent);border-color:var(--accent);color:#02120d;font-weight:650}
+.btn.go:hover{filter:brightness(1.08)}
+.btn.go[disabled]{opacity:.35;cursor:not-allowed;filter:none}
+.btn.ghost{border-color:var(--rule);color:var(--sub)}
+.btn.ghost:hover{border-color:var(--cap);color:var(--ink)}
+.btn.locked{border-style:dashed;border-color:var(--rule);color:var(--cap)}
+.btn.locked:hover{border-color:var(--warn);color:var(--warn)}
+
+.form{margin-top:16px;border:1px solid var(--rule);border-radius:8px;padding:14px;background:#0b1728}
+.form h5{margin:0 0 10px;font:400 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cap)}
+.form label{display:block;padding:7px 0;font-size:14px;color:var(--sub);cursor:pointer;line-height:1.4}
+.form label input{margin-right:9px;accent-color:#3ce6b4}
+.form .hint{font-size:13px;color:var(--cap);margin:10px 0 0;line-height:1.5}
+.form .warnline{color:var(--warn);font-size:13.5px;margin:10px 0 0}
+.receipt{margin-top:16px;border:1px solid rgba(60,230,180,.35);border-radius:8px;padding:14px;
+  background:rgba(60,230,180,.05);font-size:14px;line-height:1.55;color:var(--sub)}
+.receipt b{color:var(--ink)}
+.receipt .sig{font:400 11.5px/1.7 var(--mono);color:var(--cap);margin-top:9px;letter-spacing:.02em}
+
+/* ---------- refusal modal ---------- */
+.scrim{position:fixed;inset:0;background:rgba(2,6,15,.88);display:none;z-index:40;
+  align-items:center;justify-content:center;padding:20px}
+.scrim.on{display:flex}
+.modal{max-width:560px;background:var(--panel);border:1px solid var(--warn);
+  border-radius:10px;padding:24px;max-height:88vh;overflow:auto}
+.modal .k{font:400 10px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--warn);margin-bottom:12px}
+.modal h3{font-family:var(--display);font-weight:400;font-size:25px;line-height:1.12;margin-bottom:14px}
+.modal p{color:var(--sub);font-size:15px}
+.modal p.last{margin-bottom:18px}
+
+/* ---------- audit ---------- */
+.audit{border:1px solid var(--rule);border-radius:9px;background:var(--panel);overflow:hidden}
+.audit ol{list-style:none;margin:0;padding:0;max-height:308px;overflow:auto}
+.audit li{border-bottom:1px solid var(--rule);padding:10px 14px;font:400 12.5px/1.6 var(--mono);
+  color:var(--sub);letter-spacing:.01em;display:grid;grid-template-columns:76px 132px 1fr;gap:12px}
+.audit li:last-child{border-bottom:0}
+.audit .t{color:var(--cap)}
+.audit .w{color:var(--ink)}
+.audit li.sys .w{color:var(--cap)}
+.auditfoot{padding:10px 14px;border-top:1px solid var(--rule);font-size:13px;color:var(--cap);background:#060f1b}
+
+/* ---------- handoff note ---------- */
+.note{border:1px solid var(--rule);border-radius:9px;background:#0b1728;padding:24px 26px}
+.note .head{border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:18px}
+.note .head .to{font:400 11px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--cap)}
+.note .head .sj{font-family:var(--display);font-size:21px;font-weight:400;margin-top:8px}
+.note p{color:var(--sub);font-size:15px;line-height:1.62}
+.note .lines{margin:18px 0;border-top:1px solid var(--rule)}
+.note .lines div{border-bottom:1px solid var(--rule);padding:9px 0;display:grid;
+  grid-template-columns:1fr auto;gap:16px;font-size:14.5px;color:var(--sub)}
+.note .lines b{font:400 14px/1.5 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.note .sign{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:13px;color:var(--cap);line-height:1.65}
+
+/* ---------- phone ---------- */
+.phonewrap{display:grid;grid-template-columns:312px 1fr;gap:28px;align-items:start}
+.phone{border:1px solid var(--rule);border-radius:26px;background:#060f1b;padding:11px;
+  box-shadow:0 0 0 6px rgba(28,51,80,.28)}
+.pscreen{background:#0b1728;border-radius:18px;overflow:hidden;min-height:458px;display:flex;flex-direction:column}
+.pbar{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;
+  font:400 10.5px/1 var(--mono);letter-spacing:.06em;color:var(--cap);border-bottom:1px solid var(--rule)}
+.pbar .sig{color:var(--warn)}
+.pbar .sig.on{color:var(--accent)}
+.pbody{padding:16px 15px 18px;flex:1}
+.pbody .brand{font:400 10px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--cap);margin-bottom:12px}
+.pbody h4{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.2;margin-bottom:10px}
+.pbody p{font-size:13.5px;line-height:1.55;color:var(--sub);margin:0 0 12px}
+.pquote{border-left:2px solid var(--rule);padding-left:11px;margin:0 0 14px;
+  font-size:13px;line-height:1.55;color:var(--sub)}
+.pquote span{display:block;margin-bottom:6px}
+.pquote cite{display:block;font-style:normal;font-size:11.5px;color:var(--cap);margin-top:7px}
+.pbtn{display:block;width:100%;text-align:left;border-radius:8px;padding:11px 13px;margin-bottom:9px;
+  font-size:14px;cursor:pointer;border:1px solid var(--rule);background:#0d1a2b;color:var(--ink);line-height:1.35}
+.pbtn:hover{border-color:var(--accent)}
+.pbtn.prime{background:var(--accent);border-color:var(--accent);color:#02120d;font-weight:650}
+.pfine{font-size:11.5px;line-height:1.55;color:var(--cap);margin:12px 0 0}
+.pdone{padding:22px 16px}
+.pdone .ic{width:32px;height:32px;border-radius:50%;border:1px solid var(--accent);margin-bottom:14px;
+  display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:15px}
+.pdone .ic.q{border-style:dashed;border-color:var(--warn);color:var(--warn)}
+.pqueued{margin-top:14px;border:1px dashed rgba(242,164,58,.5);border-radius:7px;padding:10px 12px;
+  font-size:12.5px;color:var(--warn);line-height:1.5}
+.psync{margin-top:14px;border:1px solid rgba(60,230,180,.4);border-radius:7px;padding:10px 12px;
+  font-size:12.5px;color:var(--sub);line-height:1.5}
+.toggle{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:var(--sub)}
+.toggle input{accent-color:#3ce6b4;width:15px;height:15px}
+.sidenote{font-size:14.5px;color:var(--sub);line-height:1.62}
+.sidenote h4{font-size:15px;font-weight:650;margin:0 0 8px;color:var(--ink)}
+.sidenote .blk{border-top:1px solid var(--rule);padding:16px 0}
+.sidenote .blk:first-child{border-top:0;padding-top:0}
+.sidenote p{margin:0}
+
+/* ---------- three steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{border-top:2px solid var(--accent);padding-top:14px}
+.step .n{font:400 11px/1 var(--mono);color:var(--accent);letter-spacing:.16em;margin-bottom:9px;display:block}
+.step h4{font-size:16px;font-weight:650;margin-bottom:8px;line-height:1.3}
+.step p{font-size:14.5px;color:var(--sub);line-height:1.55;margin:0}
+
+/* ---------- lists ---------- */
+.wont{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.wont li{border-bottom:1px solid var(--rule);padding:12px 0 12px 26px;position:relative;
+  color:var(--sub);font-size:15px;line-height:1.55}
+.wont li::before{content:"";position:absolute;left:2px;top:21px;width:11px;height:1.5px;background:var(--warn)}
+.wont li b{color:var(--ink);font-weight:650}
+
+.foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--rule);
+  font-size:13.5px;color:var(--cap);line-height:1.7}
+.foot strong{color:var(--sub)}
+.foot a{font-size:13px;word-break:break-word}
+.srcs{list-style:none;margin:12px 0 0;padding:0}
+.srcs li{padding:0 0 7px}
+
+@media (max-width:860px){
+  .grid{grid-template-columns:1fr}
+  .qcol{border-right:0;border-bottom:1px solid var(--rule);min-height:0}
+  .phonewrap{grid-template-columns:1fr}
+  .scen,.steps{grid-template-columns:1fr}
+  .counters{grid-template-columns:1fr 1fr}
+  .audit li{grid-template-columns:72px 1fr;gap:6px 10px}
+  .audit li .m{grid-column:1 / -1}
+}
+@media (max-width:520px){
+  body{font-size:15px}
+  .kv{grid-template-columns:1fr;gap:2px}
+}
+
+/* ---------- print ---------- */
+@media print{
+  :root{--bg:#fff;--panel:#fff;--surface:#f3f5f8;--rule:#c9d2dc;--ink:#101820;
+        --sub:#333d49;--cap:#5a6472;--accent:#0d6b5c;--warn:#8a5a05;--gold:#8a6b00}
+  body{font-size:10.5pt}
+  .wrap{max-width:none;padding:0}
+  .scen,.acts,.candacts,.lockbtn,.rulesbtn,.form,.toggle,.benchbar input{display:none!important}
+  .scrim{display:none!important}
+  .bench,.audit,.note,.cand,.phone,.step{break-inside:avoid}
+  .audit ol{max-height:none;overflow:visible}
+  .grid{grid-template-columns:1fr}
+  .qcol{border-right:0;border-bottom:1px solid var(--rule)}
+  a{border-bottom:0}
+  h2.t,h1{break-after:avoid}
+  .banner{border-color:#8a5a05;background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="mark"><i></i> Calista Corporation <b>&nbsp;/&nbsp; Prepared by Alaska AI</b></div>
+  <h1>Shareholder Reachability and Enrollment Work Queue</h1>
+  <p class="quiet">A scripted demonstration of the build proposed in the Field Study. It runs entirely inside this page, on invented data, and it is not connected to anything.</p>
+  <div class="who">
+    <span>Shareholder Services</span>
+    <span>Anchorage and the Yukon-Kuskokwim Delta</span>
+    <span>July 31, 2026</span>
+  </div>
+</header>
+
+<section class="banner">
+  <h2>Read this first</h2>
+  <p>This is a demonstration, not a system. It was built from public information only. <strong>No Calista system was accessed and no Calista data appears anywhere in it.</strong></p>
+  <p>Every Shareholder name, record number, address and birth date on these screens was <strong>invented for the demonstration</strong>. Any resemblance to a real Calista Shareholder is accidental and unintended. The villages are real communities in your region, used so the screens look like the work rather than like a sample.</p>
+  <p>One real figure sits behind it. The Shareholder Address Unknown List updated July 1, 2026 publishes no count, so we counted the entries on the page and got 127. That is our count of the page rather than a published figure, and the page is linked at the bottom so you can repeat it.</p>
+</section>
+
+<section class="sec">
+  <span class="sec-n">Scenarios</span>
+  <h2 class="t">Three cases, drawn from work Shareholder Services already does by hand</h2>
+  <p class="lede">Pick one to set the scene. The work queue underneath stays live the whole time, so you can leave the script and click anything you want.</p>
+  <div class="scen" id="scen"></div>
+  <p class="lede" id="scenline" style="margin-bottom:24px"></p>
+
+  <div class="counters" id="counters"></div>
+  <p class="ctnote">Four numbers, kept apart on purpose. A confirmed reconnection is counted only after a named person pressed confirm against evidence they could see, and it is never added to matched, unconfirmed. The reconnection line in the Field Study business case counts confirmed reconnections and nothing else, because a shrinking roster looks like success even when a record was matched to the wrong person. These four are this demonstration's own state and they move as you click. They are not Calista figures.</p>
+
+  <div class="bench">
+    <div class="benchbar">
+      <span class="lab">Signed in as</span>
+      <input type="text" id="whoami" value="Demo Reviewer" aria-label="Signed in as">
+      <span class="lab" id="clock">9:14 am</span>
+      <span class="spacer"></span>
+      <button class="lockbtn" id="bulkbtn">Resolve all matched records</button>
+      <button class="lockbtn" id="autobtn">Auto-apply anything over 100</button>
+    </div>
+    <div class="grid">
+      <div class="qcol">
+        <div class="qhead">
+          <div class="t">The work queue</div>
+          <div class="s">Eight invented records, shaped like the ones a roster page and returned mailings would produce. No real person appears here.</div>
+        </div>
+        <ul class="qlist" id="qlist"></ul>
+      </div>
+      <div class="dcol" id="detail"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <span class="sec-n">The refusal</span>
+  <h2 class="t">A score is a property of a candidate. It is never a property of a person.</h2>
+  <p class="lede">This is the part of the build worth arguing about, so it is written down here and not only hidden behind a button.</p>
+  <ul class="wont">
+    <li><b>Nothing resolves on a threshold.</b> Every candidate lands in a state called matched, unconfirmed and stays there. There is no score at which the software acts, and we would not add one at any number you named.</li>
+    <li><b>There is no bulk resolve.</b> Try the two controls at the top of the work queue. They are in the demonstration because we want you to press them and see what comes back.</li>
+    <li><b>Confirming requires a reason.</b> Not a checkbox. A sentence the next person can read in six months when they are asking why this record changed.</li>
+    <li><b>The matcher has no write permission on a Shareholder record.</b> It reads records and writes candidates. It cannot record a confirmation at all, so the guarantee is not a policy somebody could relax later under a deadline.</li>
+  </ul>
+  <p class="lede" style="margin-top:22px">Here is the failure the whole build is shaped around. A wrong match takes the name off the Address Unknown List while the Shareholder still receives nothing. The roster gets shorter, the reporting looks better, and the only person who would notice is the one you already cannot reach.</p>
+</section>
+
+<section class="sec">
+  <span class="sec-n">The audit trail</span>
+  <h2 class="t">Every line carries who, when, and what they were looking at</h2>
+  <p class="lede">Written as you click. Machine steps are marked as machine steps, and not one of them changes a Shareholder record.</p>
+  <div class="audit">
+    <ol id="audit"></ol>
+    <div class="auditfoot">This trail cannot be edited or deleted from this screen. In the built system it lives with the record and leaves with it in an export.</div>
+  </div>
+</section>
+
+<section class="sec">
+  <span class="sec-n">The handoff</span>
+  <h2 class="t">The note Shareholder Services opens in the morning</h2>
+  <p class="lede">This is the artifact the build hands a person, rendered the way it would arrive. It changes as you work the queue above.</p>
+  <div class="note" id="note"></div>
+</section>
+
+<section class="sec">
+  <span class="sec-n">The invite</span>
+  <h2 class="t">What a confirmed Shareholder gets, on a phone, with no signal</h2>
+  <p class="lede">Confirm a record in the work queue, then release the invite by hand. Flip the signal off before you answer and watch what the phone does with it.</p>
+  <div class="phonewrap">
+    <div>
+      <div class="phone"><div class="pscreen" id="phone"></div></div>
+      <label class="toggle" style="margin-top:14px"><input type="checkbox" id="sig" checked> Phone has signal</label>
+    </div>
+    <div class="sidenote">
+      <div class="blk">
+        <h4>Offline is a requirement here, not a nicety</h4>
+        <p>The AIRRAQ fiber network covers 13 Western Alaska communities. The Alaska FiberOptic Project, reported on Calista's own news page, adds seven more Y-K villages, with construction expected to be completed by December 31, 2027. Much of the region runs on satellite in the meantime. An invite that needs a live connection to accept is an invite a large part of the region cannot accept, so the answer is stored on the phone and sent when the connection comes back.</p>
+      </div>
+      <div class="blk">
+        <h4>It starts a request. It does not move money.</h4>
+        <p>Tapping a button sends a request to Shareholder Services. No bank detail is entered on this screen, no payment instruction is created, and no distribution changes until a person at Calista finishes it through the process you already run. Payment movement was not scoped and this demonstration performs none.</p>
+      </div>
+      <div class="blk">
+        <h4>This screen is in English, deliberately</h4>
+        <p>We would not build a Yugtun version of it and we did not generate one for this demonstration. Machine and outsourced translation of Alaska Native languages has a poor documented record in this exact region. Calista already staffs that ability inside Shareholder Services, where the receptionist posting says ability to speak Yupik is strongly preferred, and we will not sell anything that quietly displaces that person.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <span class="sec-n">How it sits in your operation</span>
+  <h2 class="t">Three steps, and a person is standing on the second one</h2>
+  <div class="steps">
+    <div class="step">
+      <span class="n">01</span>
+      <h4>The queue fills itself</h4>
+      <p>The published roster and the returned mail become the work list the day they exist. Nobody retypes a name into a spreadsheet. Nothing about a Shareholder changes at this step, and nothing can.</p>
+    </div>
+    <div class="step">
+      <span class="n">02</span>
+      <h4>A person decides, every time</h4>
+      <p>Candidates wait at matched, unconfirmed. Someone in Shareholder Services opens the evidence, then confirms or rejects with a reason in their own words. There is no bulk action, and no threshold anywhere that resolves a record.</p>
+    </div>
+    <div class="step">
+      <span class="n">03</span>
+      <h4>The record carries its own history</h4>
+      <p>Who decided, when, and the exact evidence in front of them, on every line. If a decision turns out wrong you can find it, and you can find it by name rather than by guessing.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <span class="sec-n">Scope</span>
+  <h2 class="t">What this demonstration will not do, because the study did not scope it</h2>
+  <ul class="wont">
+    <li><b>No model runs anywhere in this page.</b> Phase one of the build contains none either. The matching you see is rules with points, which is exactly why every one of them prints with its evidence beside it.</li>
+    <li><b>No translation of any kind.</b> Not here, not in phase one, not in phase two, not at any price.</li>
+    <li><b>No heir determination.</b> The build can assemble evidence and link every line to its source image. Deciding who an heir is stays with the people who do it now.</li>
+    <li><b>No payment movement.</b> The invite starts a request and a person finishes it.</li>
+    <li><b>No voice agent and no phone answering.</b> It was not scoped and we are not going to demonstrate something we did not propose.</li>
+    <li><b>Nothing is sent to anyone.</b> Not from this page and not from the build. Every outgoing message waits for a person to release it.</li>
+  </ul>
+</section>
+
+<footer class="foot">
+  <p><strong>Prepared by Alaska AI for Calista Corporation, July 31, 2026.</strong> A scripted demonstration of the proposed build, made from public pages. It rides alongside the Field Study and replaces nothing in it.</p>
+  <p>The public pages the framing comes from.</p>
+  <ul class="srcs">
+    <li><a href="https://www.calistacorp.com/shareholders/shareholder-address-unknown-list/">Shareholder Address Unknown List, updated July 1, 2026</a></li>
+    <li><a href="https://www.calistacorp.com/shareholders/shareholder-distributions/">Shareholder Distributions, direct deposit against mail in rural Alaska</a></li>
+    <li><a href="https://www.calistacorp.com/news/alaska-fiberoptic-project-moves-forward/">Alaska FiberOptic Project, seven villages by December 31, 2027</a></li>
+    <li><a href="https://www.hcn.org/articles/can-ai-translate-native-languages-in-times-of-disaster/">High Country News, translation of Alaska Native languages</a></li>
+<li><a href="https://www.stocktitan.net/news/LBRDA/usda-grant-award-expands-airraq-broadband-fiber-project-to-three-v5bau4r9kvze.html">The AIRRAQ Network, 13 Western Alaska communities</a></li>
+<li><a href="https://builtin.com/job/shareholder-services-receptionist/10075528">Shareholder Services Receptionist posting</a></li>
+  </ul>
+</footer>
+
+</div>
+
+<div class="scrim" id="scrim">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+    <div class="k">The build refuses</div>
+    <h3 id="mtitle"></h3>
+    <div id="mbody"></div>
+    <div class="acts">
+      <button class="btn go" id="mclose">Understood</button>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ---------------------------------------------------------------
+   EVERY PERSON, RECORD, ADDRESS AND DATE BELOW IS INVENTED.
+   No Calista system was accessed. No Calista data is present here.
+   The matching is rules with points. There is no model in this file.
+--------------------------------------------------------------- */
+
+var RULES = {
+  N1:{p:40, t:"Surname matches exactly"},
+  N2:{p:30, t:"Surname matches a spelling variant on your table"},
+  N6:{p:28, t:"Surname matches a prior or maiden name on your table"},
+  N3:{p:15, t:"Given name matches exactly"},
+  N7:{p:12, t:"Given name matches a spelling variant on your table"},
+  N4:{p:10, t:"Given name is a shortened or English form on your table"},
+  N5:{p:8,  t:"Middle initial matches"},
+  V1:{p:15, t:"Village matches exactly"},
+  V2:{p:12, t:"Village matches a spelling variant on your table"},
+  A1:{p:20, t:"Box number on the returned envelope matches an address in an older record"},
+  A2:{p:12, t:"Household address matches a Shareholder who receives mail today"},
+  D1:{p:25, t:"Date of birth matches"},
+  D2:{p:8,  t:"Year of birth matches and one side has no day or month"},
+  E1:{p:10, t:"Shareholder record opened in the same year"},
+  X1:{p:-25,t:"Penalty, this surname sits on more than four records in the same village"},
+  X2:{p:-15,t:"Penalty, one side carries no date of birth"},
+  X3:{p:-6, t:"Penalty, the older record has not been touched in five years"}
+};
+
+/* The ceiling is computed from the table, never typed in by hand. Rules that
+   exclude one another (the four surname rules, the three given-name rules)
+   contribute only their best member, which is why no candidate ever reaches it. */
+var MAXPOINTS = (function(){
+  var groups = {surname:["N1","N2","N6"], given:["N3","N7","N4"],
+                village:["V1","V2"], dob:["D1","D2"]};
+  var used = {}, total = 0, g, k, best, i;
+  for (g in groups){
+    if (!groups.hasOwnProperty(g)) continue;
+    best = 0;
+    for (i=0;i<groups[g].length;i++){
+      used[groups[g][i]] = true;
+      if (RULES[groups[g][i]].p > best) best = RULES[groups[g][i]].p;
+    }
+    total += best;
+  }
+  for (k in RULES){
+    if (RULES.hasOwnProperty(k) && !used[k] && RULES[k].p > 0) total += RULES[k].p;
+  }
+  return total;
+})();
+
+function score(c){
+  var s = 0, i;
+  for (i=0;i<c.fired.length;i++){ s += RULES[c.fired[i].r].p; }
+  return s;
+}
+
+var RECORDS = [
+  {
+    id:"SH-04417", name:"Marilyn A. Kanrilak", village:"Kwethluk",
+    since:"On the roster since March 2024",
+    why:"Spring distribution check returned twice, marked unable to forward. Newsletter returned in May.",
+    held:"1 distribution check and 2 mailings",
+    cands:[
+      {id:"C-1", label:"Marilyn A. Kanrelak", sub:"Kwethluk household record, four people, last touched 12 February 2026",
+       fired:[
+         {r:"N2", e:"Kanrelak against Kanrilak. One letter apart. The pair sits on your variant table, entered by Shareholder Services on 12 February."},
+         {r:"N3", e:"Marilyn against Marilyn."},
+         {r:"N5", e:"A against A."},
+         {r:"V1", e:"Kwethluk against Kwethluk."},
+         {r:"A1", e:"PO Box 1148 on the returned envelope matches the address on the 2019 record for this household."},
+         {r:"D1", e:"Both records carry 14 June 1961."}
+       ]},
+      {id:"C-2", label:"Mary Kanrilak", sub:"Bethel record, opened 2011, no activity since 2018",
+       fired:[
+         {r:"N1", e:"Kanrilak against Kanrilak."},
+         {r:"N4", e:"Mary sits on your table as a shortened form of Marilyn."},
+         {r:"X2", e:"The Bethel record carries no date of birth, so identity cannot be checked against it."},
+         {r:"X3", e:"Nothing has been written to the Bethel record since 2018."}
+       ]}
+    ],
+    refuseTop:"The evidence on the top candidate here is about as good as this work ever gets. A box number, a birth date and a village all lining up. It is still a candidate. Six rules agreeing is six rules agreeing, and none of them spoke to Marilyn. If that evidence is enough for you, press confirm and put your name on it. That is the whole difference."
+  },
+  {
+    id:"SH-11902", name:"Peter T. Nicori", village:"Napakiak",
+    since:"On the roster since June 2025",
+    why:"Annual Meeting materials returned in July. A prior mailing to the same box was delivered in 2024.",
+    held:"2 mailings",
+    cands:[
+      {id:"C-3", label:"Peter T. Nicori", sub:"Napakiak record, born 1978, no current mailing address",
+       fired:[
+         {r:"N1", e:"Nicori against Nicori."},
+         {r:"N3", e:"Peter against Peter."},
+         {r:"N5", e:"T against T."},
+         {r:"V1", e:"Napakiak against Napakiak."},
+         {r:"D1", e:"Both records carry 3 March 1978."},
+         {r:"E1", e:"Both records were opened in 1996."}
+       ]},
+      {id:"C-4", label:"Peter Nicori", sub:"Napakiak record, born 1952, receives mail at PO Box 62 today",
+       fired:[
+         {r:"N1", e:"Nicori against Nicori."},
+         {r:"N3", e:"Peter against Peter."},
+         {r:"V1", e:"Napakiak against Napakiak."},
+         {r:"A1", e:"PO Box 62 on the returned envelope matches the address on this record."},
+         {r:"A2", e:"This household includes a Shareholder who is receiving mail today."}
+       ]}
+    ],
+    refuseTop:"Eleven points separate the top two here, and eleven points is not a person. One record matches the birth date on file. The other matches the box the envelope actually came back from. You are either looking at a father and a son who share a name and a household, or at one man carrying two records, and nothing on this screen tells you which. That is a phone call to Napakiak, not a threshold."
+  },
+  {
+    id:"SH-07730", name:"Dora M. Pavilla", village:"Kipnuk",
+    since:"On the roster since November 2023",
+    why:"Newsletter returned three times. A name change was filed with the village office and never reached the Shareholder record.",
+    held:"3 mailings",
+    cands:[
+      {id:"C-5", label:"Dora M. Anaver", sub:"Kipnuk household record, married name filed 2021",
+       fired:[
+         {r:"N6", e:"Pavilla is recorded as the prior name on this record. Shareholder Services entered the pair on 4 March."},
+         {r:"N3", e:"Dora against Dora."},
+         {r:"N5", e:"M against M."},
+         {r:"V1", e:"Kipnuk against Kipnuk."},
+         {r:"D1", e:"Both records carry 2 September 1988."},
+         {r:"A2", e:"This household includes a Shareholder who is receiving mail today."}
+       ]}
+    ]
+  },
+  {
+    id:"SH-02185", name:"Wassillie J. Egoak", village:"Akiak",
+    since:"On the roster since August 2022",
+    why:"Annual Meeting materials returned in July. Distribution check returned in April.",
+    held:"1 distribution check and 1 mailing",
+    cands:[
+      {id:"C-6", label:"Wassilie J. Egoak", sub:"Akiak record, one L, opened 1994",
+       fired:[
+         {r:"N1", e:"Egoak against Egoak."},
+         {r:"N7", e:"Wassilie against Wassillie. The pair sits on your variant table as one spelling."},
+         {r:"N5", e:"J against J."},
+         {r:"V1", e:"Akiak against Akiak."},
+         {r:"D2", e:"Both records say 1957. The Akiak record has no day or month."},
+         {r:"E1", e:"Both records were opened in 1994."}
+       ]},
+      {id:"C-7", label:"W. Egoak", sub:"Akiachak record, opened 2003, sparse",
+       fired:[
+         {r:"N1", e:"Egoak against Egoak."},
+         {r:"V2", e:"Akiachak sits beside Akiak on your table as a village pair staff confuse at entry."},
+         {r:"X2", e:"The Akiachak record carries no date of birth."}
+       ]}
+    ]
+  },
+  {
+    id:"SH-09044", name:"Nick S. Waska", village:"Quinhagak",
+    since:"On the roster since January 2025",
+    why:"Post office box closed. Distribution check returned in April marked box closed, no order.",
+    held:"1 distribution check",
+    cands:[
+      {id:"C-8", label:"Nick S. Waska", sub:"Bethel record, opened 2025, employer address on file",
+       fired:[
+         {r:"N1", e:"Waska against Waska."},
+         {r:"N3", e:"Nick against Nick."},
+         {r:"N5", e:"S against S."},
+         {r:"D1", e:"Both records carry 30 January 1994."},
+         {r:"X1", e:"Waska sits on more than four records in Quinhagak, so the surname carries less weight here than it looks like it should."}
+       ]}
+    ],
+    refuseTop:"The birth date matching exactly is the most convincing single line on this screen. It is also the line most likely to be right about the wrong man, because the surname penalty is doing real work here and there is no address evidence at all. This one says look harder. It does not say resolve."
+  },
+  {
+    id:"SH-05612", name:"Evelyn Tuluk", village:"Tuluksak",
+    since:"On the roster since May 2024",
+    why:"Newsletter returned twice. Village entered as Tuluksak on one record and Tuluksuk on another.",
+    held:"2 mailings",
+    cands:[
+      {id:"C-9", label:"Evelyn Tuluk", sub:"Tuluksuk spelling on an older record, opened 1999",
+       fired:[
+         {r:"N1", e:"Tuluk against Tuluk."},
+         {r:"N3", e:"Evelyn against Evelyn."},
+         {r:"V2", e:"Tuluksuk against Tuluksak. The pair sits on your variant table, entered by Shareholder Services on 12 February."},
+         {r:"D2", e:"Both records say 1966. The older record has no day or month."},
+         {r:"X3", e:"The older record has not been touched since 2019."}
+       ]}
+    ]
+  },
+  {
+    id:"SH-08301", name:"Agnes Chikigak", village:"Toksook Bay",
+    since:"On the roster since February 2021",
+    why:"Longest open record in this queue. Two mailings returned in 2021 and nothing since.",
+    held:"2 mailings",
+    cands:[
+      {id:"C-10", label:"A. Chikigak", sub:"Toksook Bay record, initial only, opened 1988",
+       fired:[
+         {r:"N1", e:"Chikigak against Chikigak."},
+         {r:"V1", e:"Toksook Bay against Toksook Bay."},
+         {r:"X2", e:"The older record carries no date of birth."},
+         {r:"X3", e:"The older record has not been touched since 2016."}
+       ]}
+    ],
+    refuseTop:"This score is low and it should be. A surname and a village is not evidence. It is a coincidence with a number attached to it. The right answer here is probably reject and route it to the village office."
+  },
+  {
+    id:"SH-13458", name:"Joseph M. Alexie", village:"Bethel",
+    since:"On the roster since October 2025",
+    why:"Distribution check returned in April. No forwarding address filed anywhere in the records.",
+    held:"1 distribution check",
+    cands:[]
+  }
+];
+
+var CONFIRM_REASONS = [
+  "I spoke with the Shareholder and she confirmed the address",
+  "I spoke with a household member who confirmed the address",
+  "The village office confirmed the household",
+  "The returned envelope and the older record carry the same box number and the same birth date",
+  "A relative brought the change in to the Bethel office"
+];
+var REJECT_REASONS = [
+  "Different person, same surname",
+  "Cannot tell from this evidence, this one needs a phone call",
+  "The evidence is too old to rely on",
+  "Routed to the village office instead"
+];
+
+var S = {
+  who:"Demo Reviewer",
+  clock:9*60+14,
+  sel:RECORDS[0].id,
+  openRules:{},
+  picked:{},
+  mode:{},
+  reason:{},
+  status:{},
+  decisions:{},
+  audit:[],
+  scen:0,
+  signal:true,
+  invite:"idle",
+  inviteFor:null,
+  inviteAnswer:null,
+  answered:0
+};
+
+(function seedStatus(){
+  for (var i=0;i<RECORDS.length;i++){
+    S.status[RECORDS[i].id] = RECORDS[i].cands.length ? "matched" : "nocand";
+  }
+})();
+
+function tick(n){ S.clock += (n||1); }
+function fmtClock(){
+  var h = Math.floor(S.clock/60)%24, m = S.clock%60;
+  var ap = h<12 ? "am" : "pm";
+  var hh = h%12; if (hh===0) hh = 12;
+  return hh + ":" + (m<10?"0":"") + m + " " + ap;
+}
+function rec(id){ for (var i=0;i<RECORDS.length;i++){ if (RECORDS[i].id===id) return RECORDS[i]; } return null; }
+function cand(r,cid){ for (var i=0;i<r.cands.length;i++){ if (r.cands[i].id===cid) return r.cands[i]; } return null; }
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function totalCands(){
+  var n = 0;
+  for (var i=0;i<RECORDS.length;i++) n += RECORDS[i].cands.length;
+  return n;
+}
+function countByState(st){
+  var n = 0;
+  for (var i=0;i<RECORDS.length;i++) if (S.status[RECORDS[i].id]===st) n++;
+  return n;
+}
+
+S.audit.push({t:"6:02 am", w:"System", m:"Queue built. 8 invented records seeded for this demonstration, with the returned mail already attached to them. No Shareholder record changed.", sys:true});
+S.audit.push({t:"6:02 am", w:"System", m:"Match rules run over 8 records. " + totalCands() + " candidates proposed and written to the candidate table. No Shareholder record changed.", sys:true});
+S.audit.push({t:"6:02 am", w:"System", m:"Opening state set. " + countByState("matched") + " matched and unconfirmed, " + countByState("nocand") + " with no candidate worth a person's time. The matcher stops here every morning.", sys:true});
+
+function log(msg){
+  S.audit.push({t:fmtClock(), w:S.who || "Unnamed user", m:msg, sys:false});
+}
+
+/* ---------------- counters ---------------- */
+function counts(){
+  var c = {nocand:0, matched:0, confirmed:0, nomatch:0}, k;
+  for (k in S.status){ if (S.status.hasOwnProperty(k)) c[S.status[k]]++; }
+  return c;
+}
+function renderCounters(){
+  var c = counts(), i, h = "";
+  var cells = [
+    {n:c.nocand, l:"On the queue with no candidate worth a person's time", cls:""},
+    {n:c.matched, l:"Matched, unconfirmed. Waiting on a person.", cls:"unconf"},
+    {n:c.confirmed, l:"Confirmed reconnections, each signed by a named person", cls:"conf"},
+    {n:c.nomatch, l:"Worked and closed, no match found", cls:""}
+  ];
+  for (i=0;i<cells.length;i++){
+    h += '<div class="ct '+cells[i].cls+'"><span class="n">'+cells[i].n+'</span><span class="l">'+esc(cells[i].l)+'</span></div>';
+  }
+  document.getElementById("counters").innerHTML = h;
+}
+
+/* ---------------- scenarios ---------------- */
+var SCENARIOS = [
+  {k:"Scenario 1", h:"A check comes back from Kwethluk",
+   s:"The ordinary case. Good evidence, one strong candidate, and it still will not resolve itself.",
+   line:"Marilyn A. Kanrilak's spring distribution check came back twice. Open her record, read the six rules that fired and the evidence under each one, then notice that the record does not move until you move it.",
+   go:function(){ S.sel = "SH-04417"; }},
+  {k:"Scenario 2", h:"Two men, one name, in Napakiak",
+   s:"The case where a threshold would have quietly picked a person.",
+   line:"Peter T. Nicori has two candidates. The top one matches the birth date. The second one matches the box the envelope came back from. Press accept the highest score and read what the build says back.",
+   go:function(){ S.sel = "SH-11902"; }},
+  {k:"Scenario 3", h:"Clear the queue before the mailing",
+   s:"The request that always arrives with a deadline attached to it.",
+   line:"The Annual Meeting mailing is going out and somebody asks for the queue to be cleared today. Press resolve all matched records at the top of the work queue.",
+   go:function(){ S.sel = "SH-04417"; setTimeout(bulkRefusal, 280); }}
+];
+function renderScen(){
+  var h = "", i;
+  for (i=0;i<SCENARIOS.length;i++){
+    h += '<button type="button" data-i="'+i+'" class="'+(S.scen===i?"on":"")+'">'
+      + '<span class="k">'+SCENARIOS[i].k+'</span>'
+      + '<span class="h">'+esc(SCENARIOS[i].h)+'</span>'
+      + '<span class="s">'+esc(SCENARIOS[i].s)+'</span></button>';
+  }
+  document.getElementById("scen").innerHTML = h;
+  document.getElementById("scenline").textContent = SCENARIOS[S.scen].line;
+}
+
+/* ---------------- queue ---------------- */
+var CHIP = {
+  matched:["c-un","Matched, unconfirmed"],
+  nocand:["c-no","No candidate"],
+  confirmed:["c-ok","Confirmed by a person"],
+  nomatch:["c-no","Closed, no match"]
+};
+function renderQueue(){
+  var h = "", i, r, ch;
+  for (i=0;i<RECORDS.length;i++){
+    r = RECORDS[i]; ch = CHIP[S.status[r.id]];
+    h += '<li class="'+(S.sel===r.id?"sel":"")+'"><button type="button" data-id="'+r.id+'">'
+      + '<span class="qname">'+esc(r.name)+'</span>'
+      + '<span class="qmeta">'+esc(r.village)+' &nbsp;/&nbsp; '+r.id+'</span>'
+      + '<span class="chip '+ch[0]+'">'+ch[1]+'</span>'
+      + '</button></li>';
+  }
+  document.getElementById("qlist").innerHTML = h;
+}
+
+/* ---------------- detail ---------------- */
+function renderDetail(){
+  var r = rec(S.sel), st = S.status[r.id], h = "", i, j, k;
+
+  h += '<div class="dname">'+esc(r.name)+'<span class="tag">Invented record</span></div>';
+  h += '<div class="dmeta">'+r.id+' &nbsp;/&nbsp; '+esc(r.village)+' &nbsp;/&nbsp; '+esc(r.since)+'</div>';
+  h += '<div class="kv"><span class="k">Why it is here</span><span>'+esc(r.why)+'</span></div>';
+  h += '<div class="kv"><span class="k">Held at the office</span><span>'+esc(r.held)+'</span></div>';
+  h += '<div class="kv"><span class="k">Candidates proposed</span><span>'+r.cands.length+'</span></div>';
+
+  if (st==="matched"){
+    h += '<div class="state un">Status <b>matched, unconfirmed</b>. The rules have proposed what they can and stopped there. Nothing about this Shareholder has changed, and nothing will until somebody here confirms it by name.</div>';
+  } else if (st==="nocand"){
+    h += '<div class="state no">Status <b>on the queue, no candidate</b>. Nothing in the records was close enough to be worth staff time, so the build proposes nothing rather than offering the nearest thing it found. This one wants a phone call or the village office.</div>';
+  } else if (st==="confirmed"){
+    h += '<div class="state ok">Status <b>confirmed reconnection</b>. Recorded against candidate '+S.decisions[r.id].cid+' at '+S.decisions[r.id].at+'.</div>';
+  } else {
+    h += '<div class="state no">Status <b>worked and closed, no match found</b>. Rejected at '+S.decisions[r.id].at+'. The name stays on the published roster, which is the honest outcome.</div>';
+  }
+
+  h += '<h4 class="sub">Candidates the rules proposed, and the evidence behind each one</h4>';
+
+  if (r.cands.length){
+    var best = -999;
+    for (i=0;i<r.cands.length;i++){ if (score(r.cands[i])>best) best = score(r.cands[i]); }
+    for (j=0;j<r.cands.length;j++){
+      var c = r.cands[j], sc = score(c), isTop = (sc===best);
+      var pickedHere = (S.picked[r.id]===c.id);
+      var decidedHere = (S.decisions[r.id] && S.decisions[r.id].cid===c.id);
+      var key = r.id+"|"+c.id, open = !!S.openRules[key];
+      h += '<div class="cand'+(isTop?" top":"")+((pickedHere||decidedHere)?" picked":"")+'">';
+      h += '<div class="candhead"><div class="who"><span class="cn">'+esc(c.label)+'</span>'
+         + '<span class="cs">'+esc(c.sub)+'</span>'
+         + '<div class="bar"><i style="width:'+Math.max(0,Math.round(sc/MAXPOINTS*100))+'%"></i></div></div>'
+         + '<div class="score"><span class="v">'+sc+'</span><span class="u">points of '+MAXPOINTS+'</span></div></div>';
+      h += '<button type="button" class="rulesbtn" data-rules="'+key+'">'
+         + (open?"Hide":"Show")+' the '+c.fired.length+' rules that fired</button>';
+      if (open){
+        h += '<div class="rules">';
+        for (k=0;k<c.fired.length;k++){
+          var f = c.fired[k], R = RULES[f.r];
+          h += '<div class="rule'+(R.p<0?" neg":"")+'"><span class="p">'+(R.p>0?"+":"")+R.p+'</span>'
+             + '<span><span class="t">'+esc(R.t)+'</span><span class="e">'+esc(f.e)+'</span></span></div>';
+        }
+        h += '<div class="ruletot"><span class="p">'+sc+'</span><span class="t">Rule score. '+MAXPOINTS
+           + ' is every rule that can fire together firing at once, which no real candidate reaches. The score belongs to this candidate and is never written to a Shareholder record.</span></div>';
+        h += '</div>';
+      }
+      if (st==="matched"){
+        h += '<div class="candacts"><div class="acts" style="margin:0">'
+          + '<button type="button" class="btn go" data-pick="'+c.id+'">Confirm this is the same Shareholder</button>'
+          + '<button type="button" class="btn ghost" data-rej="'+c.id+'">Not the same person</button>'
+          + '</div></div>';
+      }
+      h += '</div>';
+    }
+    if (st==="matched"){
+      h += '<div class="acts"><button type="button" class="btn locked" id="topbtn">Accept the highest score</button></div>';
+    }
+  } else {
+    h += '<div class="state no">Nothing to show. The build found no record close enough to be worth staff time, and it does not fill the panel with the closest thing it has. An empty screen is the correct output here.</div>';
+  }
+
+  var mode = S.mode[r.id];
+  if (mode){
+    var list = (mode==="confirm") ? CONFIRM_REASONS : REJECT_REASONS;
+    h += '<div class="form"><h5>'+(mode==="confirm"?"Confirm, and say why":"Reject, and say why")+'</h5>';
+    for (i=0;i<list.length;i++){
+      h += '<label><input type="radio" name="rsn" data-rsn="'+i+'"'
+         + (S.reason[r.id]===list[i]?" checked":"")+'> '+esc(list[i])+'</label>';
+    }
+    h += '<p class="hint">The reason is not a checkbox. It is the sentence the next person reads in six months when they are asking why this record changed, so the build will not take the decision without one.</p>';
+    if (S.reason[r.id]===undefined){
+      h += '<p class="warnline">Pick a reason to continue.</p>';
+    }
+    h += '<div class="acts"><button type="button" class="btn go" id="dofinal"'
+       + (S.reason[r.id]===undefined?" disabled":"")+'>'
+       + (mode==="confirm"?"Record the confirmation":"Record the rejection")+'</button>'
+       + '<button type="button" class="btn ghost" id="docancel">Cancel</button></div></div>';
+  }
+
+  if (st==="confirmed"){
+    var d = S.decisions[r.id];
+    h += '<div class="receipt"><b>Confirmed reconnection recorded.</b><br>'
+      + esc(r.name)+' leaves the unreachable queue and is counted in the confirmed column, and only in the confirmed column.'
+      + '<div class="sig">'+esc(d.by)+' &nbsp;/&nbsp; '+d.at+' &nbsp;/&nbsp; candidate '+d.cid+' at '+d.score+' points'
+      + '<br>Reason, '+esc(d.reason)+'</div></div>';
+    if (S.inviteFor===r.id){
+      h += '<div class="acts"><button type="button" class="btn ghost" id="sendinvite">Invite released, see the phone below</button></div>';
+    } else {
+      h += '<div class="acts"><button type="button" class="btn go" id="sendinvite">Release the enrollment invite</button></div>';
+    }
+  }
+  if (st==="nomatch"){
+    var d2 = S.decisions[r.id];
+    h += '<div class="receipt" style="border-color:var(--rule);background:#0d1a2b"><b>Rejection recorded.</b><br>'
+      + 'The candidate is marked wrong and the name stays on the published roster where a relative can still find it.'
+      + '<div class="sig">'+esc(d2.by)+' &nbsp;/&nbsp; '+d2.at+' &nbsp;/&nbsp; candidate '+d2.cid
+      + '<br>Reason, '+esc(d2.reason)+'</div></div>';
+  }
+
+  document.getElementById("detail").innerHTML = h;
+}
+
+/* ---------------- audit ---------------- */
+function renderAudit(){
+  var h = "", i, a;
+  for (i=0;i<S.audit.length;i++){
+    a = S.audit[i];
+    h += '<li'+(a.sys?' class="sys"':'')+'><span class="t">'+a.t+'</span><span class="w">'+esc(a.w)
+       + '</span><span class="m">'+esc(a.m)+'</span></li>';
+  }
+  var ol = document.getElementById("audit");
+  ol.innerHTML = h;
+  ol.scrollTop = ol.scrollHeight;
+}
+
+/* ---------------- handoff note ---------------- */
+function renderNote(){
+  var c = counts();
+  var open = c.nocand + c.matched;
+  var h = "";
+  h += '<div class="head"><div class="to">To Shareholder Services &nbsp;/&nbsp; from the reachability queue &nbsp;/&nbsp; Monday, 3 August</div>'
+     + '<div class="sj">What is waiting for you this morning</div></div>';
+  h += '<p>There are '+open+' records open on the queue. '+c.matched+' of them have at least one candidate for you to look at. '
+     + c.nocand+' do not, and those want a phone call or the village office rather than a screen.</p>';
+  h += '<div class="lines">'
+     + '<div><span>Open, with a candidate waiting on a person</span><b>'+c.matched+'</b></div>'
+     + '<div><span>Open, with nothing the rules could propose</span><b>'+c.nocand+'</b></div>'
+     + '<div><span>Confirmed reconnections, signed</span><b>'+c.confirmed+'</b></div>'
+     + '<div><span>Worked and closed, no match found</span><b>'+c.nomatch+'</b></div>'
+     + '<div><span>Enrollment invites answered</span><b>'+S.answered+'</b></div>'
+     + '</div>';
+  h += '<p>The oldest record on the queue is Agnes Chikigak in Toksook Bay, open since February 2021. Two mailings came back in 2021 and nothing has come back since, which means nothing has been sent that could.</p>';
+  h += '<p>Nothing on this list was resolved by the software overnight. Nothing on this list ever will be. Where a candidate looks strong the note says so and stops there.</p>';
+  h += '<div class="sign">Generated at 6:02 am inside this demonstration. Every count above is kept separate from every other one, and confirmed reconnections are never folded into matched, unconfirmed. This note is an invented artifact inside a demonstration, and its numbers come from the demonstration you are clicking through.</div>';
+  document.getElementById("note").innerHTML = h;
+}
+
+/* ---------------- phone ---------------- */
+function renderPhone(){
+  var h = "", sig = S.signal;
+  h += '<div class="pbar"><span>'+fmtClock()+'</span><span class="sig'+(sig?" on":"")+'">'
+     + (sig?"LTE":"No signal")+'</span></div>';
+
+  if (S.invite==="idle"){
+    h += '<div class="pbody"><div class="brand">Calista Shareholder Services</div>'
+      + '<h4>Nothing to show yet</h4>'
+      + '<p>Confirm a record in the work queue above, then press release the enrollment invite. What that Shareholder would receive appears on this screen.</p>'
+      + '<p>An invite only ever goes out after a person confirms the record and a person releases it. There is no path in this build where the software sends one on its own.</p></div>';
+  } else if (S.invite==="offer"){
+    h += '<div class="pbody"><div class="brand">Calista Shareholder Services</div>'
+      + '<h4>Your record is current again</h4>'
+      + '<p>Someone in Shareholder Services confirmed your address today. You can choose how you get your distribution and your Annual Meeting materials.</p>'
+      + '<div class="pquote"><span>"Direct deposit: The same day as the distribution, but verify with your individual bank"</span>'
+      + '<span>"Mail: 3 weeks or longer, especially in rural Alaska, from the day of distribution."</span>'
+      + '<cite>Calista\'s own words, from the Shareholder Distributions page</cite></div>'
+      + '<button type="button" class="pbtn prime" data-inv="deposit">Start direct deposit</button>'
+      + '<button type="button" class="pbtn" data-inv="electronic">Send my materials electronically</button>'
+      + '<button type="button" class="pbtn" data-inv="mail">Keep everything by mail</button>'
+      + '<p class="pfine">This starts a request. It does not move any money and it does not change your distribution on its own. A person at Shareholder Services will call you to finish it. This screen is in English only.</p></div>';
+  } else if (S.invite==="queued"){
+    h += '<div class="pbody pdone"><div class="ic q"></div>'
+      + '<h4>Saved on this phone</h4>'
+      + '<p>Your answer is stored here. It will send by itself when you are back in range. You can close this and nothing is lost.</p>'
+      + '<div class="pqueued">1 answer waiting to send &nbsp;/&nbsp; '+esc(S.inviteAnswer)+'</div>'
+      + '<p class="pfine">Turn the signal back on beside the phone and watch it go.</p></div>';
+  } else {
+    h += '<div class="pbody pdone"><div class="ic">&#10003;</div>'
+      + '<h4>Sent to Shareholder Services</h4>'
+      + '<p>Your request arrived. Somebody will call you to finish it. Nothing has moved yet and no money has changed hands.</p>'
+      + '<div class="psync">'+esc(S.inviteAnswer)+'<br>Received at '+fmtClock()+'</div>'
+      + '<p class="pfine">In the built system this lands back in the same queue the confirmation came from, with the same audit line and the same name against it.</p></div>';
+  }
+  document.getElementById("phone").innerHTML = h;
+}
+
+/* ---------------- refusals ---------------- */
+function modal(title, paras){
+  var h = "", i;
+  document.getElementById("mtitle").textContent = title;
+  for (i=0;i<paras.length;i++){
+    h += '<p'+(i===paras.length-1?' class="last"':'')+'>'+esc(paras[i])+'</p>';
+  }
+  document.getElementById("mbody").innerHTML = h;
+  document.getElementById("scrim").classList.add("on");
+  document.getElementById("mclose").focus();
+}
+function bulkRefusal(){
+  var c = counts();
+  modal("This build will not do that", [
+    "There are " + c.matched + " records sitting at matched, unconfirmed right now. Resolving them together would change " + c.matched + " Shareholder records on the strength of a score, and a score is a property of a candidate. It is never a property of a person.",
+    "Here is the failure we are protecting against. A wrong match takes the name off the Address Unknown List while the Shareholder still receives nothing. The roster gets shorter, the reporting looks better, and the only person who would notice is the one you already cannot reach.",
+    "So the matcher has no permission to record a confirmation. Not a setting turned off, no permission at all. Open the top record and decide that one instead. The evidence is already on the screen, and how long that actually takes your staff is one of the eight numbers the pilot measures."
+  ]);
+  tick(1);
+  log("Attempted a bulk resolve of " + c.matched + " records. Refused by the build. No record changed.");
+  renderAll();
+}
+function autoRefusal(){
+  modal("There is no such setting", [
+    "There is no threshold at which this software acts on its own, and we would not add one at any number you named. 100 is no different from 90 or from 130. All of them are a score standing in for a person's judgment on a fiduciary record.",
+    "The evidence panel exists so the number never has to carry that weight. Reading the rules and the evidence under them is the entire safety argument for the build, and the pilot measures what it costs in staff minutes.",
+    "If you want it faster, the honest lever is better evidence rather than a lower bar. That is what the name and place variant table is for, and Calista owns it outright."
+  ]);
+  tick(1);
+  log("Attempted to enable auto-apply over 100 points. Refused by the build. The setting does not exist.");
+  renderAll();
+}
+function topRefusal(){
+  var r = rec(S.sel), best = -999, bc = null, i, body = [];
+  for (i=0;i<r.cands.length;i++){
+    if (score(r.cands[i])>best){ best = score(r.cands[i]); bc = r.cands[i]; }
+  }
+  body.push(r.refuseTop || ("The top candidate here scores " + best + ". That is a ranking, which is useful. It is not a decision, which is yours."));
+  body.push("The build ranks candidates so the likeliest one is on top and you read it first. It stops there deliberately. Accepting the top of a list is the same action as accepting a threshold, and it carries the same failure with it.");
+  body.push("Open the rules on " + bc.label + ", read what fired, then press confirm and pick a reason. Your name goes on it, and that is the point.");
+  modal("The top of a list is still a list", body);
+  tick(1);
+  log("Attempted to accept the highest scoring candidate on " + r.id + " without a review. Refused by the build.");
+  renderAll();
+}
+
+/* ---------------- decision ---------------- */
+function finalise(){
+  var r = rec(S.sel), mode = S.mode[r.id], cid = S.picked[r.id], c = cand(r,cid);
+  var reason = S.reason[r.id], at;
+  tick(2);
+  at = fmtClock();
+  S.decisions[r.id] = {by:(S.who||"Unnamed user"), at:at, cid:cid, reason:reason, score:score(c)};
+  if (mode==="confirm"){
+    S.status[r.id] = "confirmed";
+    log("Confirmed " + r.id + " against candidate " + cid + " at " + score(c) + " points. Evidence viewed, "
+        + c.fired.length + " rules. Reason, " + reason + ".");
+  } else {
+    S.status[r.id] = "nomatch";
+    log("Rejected candidate " + cid + " on " + r.id + ". The record stays on the published roster. Reason, " + reason + ".");
+  }
+  S.mode[r.id] = null;
+  S.reason[r.id] = undefined;
+  renderAll();
+}
+
+function renderAll(){
+  document.getElementById("clock").textContent = fmtClock();
+  renderScen();
+  renderCounters();
+  renderQueue();
+  renderDetail();
+  renderAudit();
+  renderNote();
+  renderPhone();
+}
+
+/* ---------------- wiring ---------------- */
+document.getElementById("scen").addEventListener("click", function(e){
+  var b = e.target.closest ? e.target.closest("button[data-i]") : null;
+  if (!b) return;
+  S.scen = parseInt(b.getAttribute("data-i"),10);
+  SCENARIOS[S.scen].go();
+  renderAll();
+});
+
+document.getElementById("qlist").addEventListener("click", function(e){
+  var b = e.target.closest ? e.target.closest("button[data-id]") : null;
+  if (!b) return;
+  S.sel = b.getAttribute("data-id");
+  renderAll();
+});
+
+document.getElementById("detail").addEventListener("click", function(e){
+  var t = e.target.closest ? e.target.closest("button") : null;
+  if (!t) return;
+  var r = rec(S.sel), key, parts;
+
+  if (t.hasAttribute("data-rules")){
+    key = t.getAttribute("data-rules");
+    S.openRules[key] = !S.openRules[key];
+    if (S.openRules[key]){
+      tick(1);
+      parts = key.split("|");
+      log("Opened the evidence on candidate " + parts[1] + " for " + parts[0] + ". Read only, no record changed.");
+    }
+    renderAll(); return;
+  }
+  if (t.hasAttribute("data-pick")){
+    S.picked[r.id] = t.getAttribute("data-pick");
+    S.mode[r.id] = "confirm";
+    S.reason[r.id] = undefined;
+    renderAll(); return;
+  }
+  if (t.hasAttribute("data-rej")){
+    S.picked[r.id] = t.getAttribute("data-rej");
+    S.mode[r.id] = "reject";
+    S.reason[r.id] = undefined;
+    renderAll(); return;
+  }
+  if (t.id==="topbtn"){ topRefusal(); return; }
+  if (t.id==="docancel"){ S.mode[r.id] = null; S.reason[r.id] = undefined; renderAll(); return; }
+  if (t.id==="dofinal"){ if (S.reason[r.id]!==undefined) finalise(); return; }
+  if (t.id==="sendinvite"){
+    if (S.inviteFor!==r.id){
+      tick(1);
+      S.invite = "offer";
+      S.inviteFor = r.id;
+      S.inviteAnswer = null;
+      log("Enrollment invite released to " + r.id + " by hand. Nothing leaves this build without this step.");
+    }
+    renderAll();
+    document.getElementById("phone").scrollIntoView({behavior:"smooth", block:"center"});
+    return;
+  }
+});
+
+document.getElementById("detail").addEventListener("change", function(e){
+  var t = e.target, r, list;
+  if (t && t.hasAttribute && t.hasAttribute("data-rsn")){
+    r = rec(S.sel);
+    list = (S.mode[r.id]==="confirm") ? CONFIRM_REASONS : REJECT_REASONS;
+    S.reason[r.id] = list[parseInt(t.getAttribute("data-rsn"),10)];
+    renderAll();
+  }
+});
+
+document.getElementById("whoami").addEventListener("input", function(e){
+  S.who = e.target.value.trim();
+});
+
+document.getElementById("bulkbtn").addEventListener("click", bulkRefusal);
+document.getElementById("autobtn").addEventListener("click", autoRefusal);
+document.getElementById("mclose").addEventListener("click", function(){
+  document.getElementById("scrim").classList.remove("on");
+});
+document.getElementById("scrim").addEventListener("click", function(e){
+  if (e.target.id==="scrim") document.getElementById("scrim").classList.remove("on");
+});
+document.addEventListener("keydown", function(e){
+  if (e.key==="Escape") document.getElementById("scrim").classList.remove("on");
+});
+
+document.getElementById("sig").addEventListener("change", function(e){
+  S.signal = e.target.checked;
+  if (S.signal && S.invite==="queued"){
+    tick(3);
+    S.invite = "sent";
+    S.answered++;
+    log("Queued enrollment answer arrived from the phone. " + S.inviteAnswer + ". Held for a person to action, nothing moved.");
+  }
+  renderAll();
+});
+
+document.getElementById("phone").addEventListener("click", function(e){
+  var b = e.target.closest ? e.target.closest("button[data-inv]") : null;
+  if (!b) return;
+  var kind = b.getAttribute("data-inv");
+  var label = (kind==="deposit") ? "Direct deposit requested"
+            : (kind==="electronic") ? "Electronic delivery requested"
+            : "Chose to keep everything by mail";
+  S.inviteAnswer = label;
+  tick(2);
+  if (S.signal){
+    S.invite = "sent";
+    S.answered++;
+    log("Enrollment answer received from the Shareholder. " + label + ". Held for a person to action, nothing moved.");
+  } else {
+    S.invite = "queued";
+    log("Enrollment answer taken on a phone with no signal. " + label + ". Stored on the device, not yet sent.");
+  }
+  renderAll();
+});
+
+renderAll();
+</script>
+</body>
+</html>
