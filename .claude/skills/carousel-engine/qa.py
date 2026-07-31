@@ -109,6 +109,62 @@ def contrast_estimate(img_arr, node, scale):
     return (hi + 0.05) / (lo + 0.05)
 
 
+WORST_CELL_PX = 64      # device-px width of the cell the worst-point walk samples
+WORST_MIN_INK = 0.04    # a cell needs this much glyph ink before it is judged
+WORST_MIN_BG = 200      # a cell needs this many background pixels to estimate one
+WORST_FAIL = 3.0        # worst-cell ratio on primary text that is a FAIL
+WORST_WARN = 4.5        # the rubric's own hard-fail line, reported as a WARN below it
+
+
+def contrast_worst_cell(img_arr, node, scale):
+    """Contrast at the WORST POINT of a text node, not averaged over its bbox.
+
+    Added 2026-07-31. contrast_estimate() takes ONE background value, the median
+    of the non-ink pixels across the whole bounding box. On a flat ground that is
+    right. On a GRADED ground it is the thing that hides the defect: a line set
+    across an engraved sheet that runs from dark at one end to lit at the other
+    averages to a comfortable ratio while its lit end is unreadable. The rubric's
+    hard-fail rule says "below 4.5:1 AT WORST POINT" and the machine gate was
+    measuring a mean, so for three runs (2026-07-25, 2026-07-29, 2026-07-31) the
+    only reader who caught it was the scorer, at the ship gate, where a fix costs
+    a whole revision cycle and caps the score at 6.9.
+
+    Walks each line box in WORST_CELL_PX-wide cells, estimates the background
+    from that CELL's own non-ink pixels, and returns the minimum ratio over every
+    cell carrying real glyph ink, or None if nothing was measurable. Tightens the
+    existing check; it never raises a ratio the old one reported.
+    """
+    color = parse_css_color(node.get("color"))
+    if color is None:
+        return None
+    lines = node.get("lines") or [[node["x"], node["y"], node["w"], node["h"]]]
+    H, W = img_arr.shape[:2]
+    lt = rel_luminance(color)
+    worst = None
+    for bx, by, bw, bh in lines:
+        y0, y1 = max(0, int(by * scale)), min(H, int((by + bh) * scale))
+        if y1 - y0 < 8:
+            continue
+        gx0, gx1 = max(0, int(bx * scale)), min(W, int((bx + bw) * scale))
+        for cx0 in range(gx0, gx1, WORST_CELL_PX):
+            cx1 = min(cx0 + WORST_CELL_PX, gx1)
+            if cx1 - cx0 < 16:
+                continue
+            cell = img_arr[y0:y1, cx0:cx1, :3].astype(float)
+            ink = np.abs(cell - np.array(color)).sum(axis=2) < BUSY_INK_DIST
+            if ink.mean() < WORST_MIN_INK or ink.mean() > 0.75:
+                continue
+            bgm = ~_dilate(ink, BUSY_DILATE)
+            if int(bgm.sum()) < WORST_MIN_BG:
+                continue
+            bg = np.median(cell[bgm], axis=0)
+            lb = rel_luminance(bg)
+            lo, hi = min(lt, lb), max(lt, lb)
+            r = (hi + 0.05) / (lo + 0.05)
+            worst = r if worst is None else min(worst, r)
+    return worst
+
+
 BUSY_INK_DIST = 90      # sum-abs RGB distance under which a pixel counts as glyph ink
 BUSY_EDGE_LUM = 28      # luminance step (0..255) that counts as a "structured edge"
 BUSY_DILATE = 2         # px to grow the ink mask by, to exclude anti-aliased glyph edges
@@ -739,6 +795,21 @@ def main():
                     res["fails"].append(f"contrast ~{ratio:.1f} on '{node['text'][:40]}' (est.)")
                 elif ratio < 3.5:
                     res["warns"].append(f"low contrast ~{ratio:.1f} on '{node['text'][:40]}' (est.)")
+            # WORST-POINT contrast (2026-07-31). The line above averages the
+            # background over the whole box, which passes a line whose lit end is
+            # unreadable. This measures the rubric's actual rule.
+            wc = contrast_worst_cell(arr, node, scale)
+            if wc is not None and (ratio is None or wc < ratio - 0.15):
+                if primary and wc < WORST_FAIL:
+                    res["fails"].append(
+                        f"contrast {wc:.1f} at WORST POINT on '{node['text'][:40]}' "
+                        f"(box mean reads {ratio:.1f}) -- the ground under this line "
+                        f"is graded; give it a reserve or move it")
+                elif wc < WORST_WARN:
+                    res["warns"].append(
+                        f"worst-point contrast {wc:.1f} on '{node['text'][:40]}' "
+                        f"(box mean {ratio:.1f}) -- below the rubric's 4.5 line "
+                        f"somewhere along the run of the text")
             # canvas/bitmap-under-text tripwire (WARN only): the DOM collision
             # gate cannot see canvas ink, so busy art crossing a text line box
             # is otherwise invisible to the machine (2026-07-10 S3/S4 arcs).

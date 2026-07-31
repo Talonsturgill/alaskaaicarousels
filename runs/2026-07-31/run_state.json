@@ -15,8 +15,8 @@
   "flow_review": "skipped",
   "assemble": "done",
   "scoring": "done",
-  "ship": "in_progress",
-  "upgrade": "pending",
+  "ship": "done",
+  "upgrade": "done",
   "gmail": "pending",
   "retro": "pending"
  },
@@ -38,6 +38,8 @@
   "new_asset": "assets/js/akengrave.js, committed",
   "pixel_review": "5 pixel-critics over 10 slides, revise on every pair, fixes applied over 5 revision cycles",
   "flow_review": "NOT RUN, for budget. Disclosed in the ledger, the storyboard reconciliation and the email.",
-  "scoring": "out/2026-07-31/score_report.json, 2 cycles (the rubric max), uncapped 8.53, capped 6.9 on 2 hard fails, both since fixed and machine-verified only"
+  "scoring": "out/2026-07-31/score_report.json, 2 cycles (the rubric max), uncapped 8.53, capped 6.9 on 2 hard fails, both since fixed and machine-verified only",
+  "upgrade": "out/2026-07-31/automation_retro.md, 3 upgrades logged for the day (akengrave fix, type-pairing audit improvement, worst-point contrast gate fix). Frontier scan deferred and recorded in scan_log.",
+  "ship": "PR #166 merged to main at 5c03c63, raw URLs verified on main. Two slides re-rendered after the new gate found them and reshipped in the upgrade commit."
  }
 }
