@@ -701,7 +701,7 @@
    ],
    "verification": "Rendered across all ten slides of carousel No.21 over four render passes. Final machine gate: render 10/10 OK with 0 page errors, qa.py verdict WARN with 0 fails. The engraving is visible as genuine intaglio with the lay bending around each sheet's curl and measurable stroke-width variance across every spend region, confirmed independently by five pixel critics who each transcribed and measured their assigned slides. The reserve mechanism was confirmed working by three separate critics, one of whom wrote that there is 'a clean dark bite out of the engraving exactly where each label sits, with a soft feather, and no stroke grazes a glyph anywhere on the frame'. Deck ships with ZERO knockout plates.",
    "rollback": "git revert the akengrave commit. Nothing else in the engine imports it; slides opt in by including the script.",
-   "commit": ""
+   "commit": "dd97883b"
   },
   {
    "run_date": "2026-07-31",
@@ -715,7 +715,7 @@
    ],
    "verification": "The audit found the collision, and the run shipped Instrument Serif + Archivo + JetBrains Mono instead, which has not shipped as a trio in twenty decks. The novelty sentence in the artwork ledger names the specific prior decks for each face rather than asserting novelty.",
    "rollback": "Drop the audit step. It is a process note, not code.",
-   "commit": ""
+   "commit": "01c6d84a"
   },
   {
    "run_date": "2026-07-31",
@@ -729,7 +729,7 @@
    ],
    "verification": "Defect reconstruction on the live run. Against the ten shipped renders the walk returned 5 hits and 0 fails. Three were real defects that had survived two full scoring cycles, five revision rounds, five pixel critics and two scorers, at slide 05's hero body copy (3.9 worst point against a 6.1 box mean) and slide 07's two sponsor attributions (3.7 against 4.3). Both were given a burin reserve, which the deck's own reconciliation item 5 already required, re-rendered, and the walk now returns 2 hits and 0 fails with no new plate clips or collisions on either slide. Regression on examples/demo-deck through render plus qa returned 0 worst-point hits, so flat-ground decks produce no new noise. The old contrast_estimate() is untouched and still runs; the new check can never raise a ratio the old one reported.",
    "rollback": "Revert the upgrade(2026-07-31) commit. contrast_worst_cell() and its five constants are self-contained and its only call site is the one block in the per-node loop, so removing them restores the previous behaviour exactly.",
-   "commit": ""
+   "commit": "691c15fa"
   }
  ],
  "scan_log": [
