@@ -716,6 +716,20 @@
    "verification": "The audit found the collision, and the run shipped Instrument Serif + Archivo + JetBrains Mono instead, which has not shipped as a trio in twenty decks. The novelty sentence in the artwork ledger names the specific prior decks for each face rather than asserting novelty.",
    "rollback": "Drop the audit step. It is a process note, not code.",
    "commit": ""
+  },
+  {
+   "run_date": "2026-07-31",
+   "kind": "fix",
+   "area": "engine",
+   "change": "qa.py now measures text contrast at the WORST POINT of a line rather than as a box-wide mean, so type running across a graded ground is judged by its unreadable end instead of its comfortable average.",
+   "trigger": "The RECURRING hard fail, text against geometry plus its contrast twin, now 3 of the last 10 runs (2026-07-25, 2026-07-29, 2026-07-31), each capping the score at 6.9. The mechanism is exact. contrast_estimate() takes one background value per node, the median of non-ink pixels across the whole bounding box, and the rubric's hard-fail rule reads 'primary text contrast below 4.5 to 1 AT WORST POINT'. The machine was measuring a mean against a rule about a minimum. On this deck, whose entire premise is a lit paper sheet under one raking key, every ground is graded by construction, and the second scorer found slide 07's ballot labels and annotations bare on the lit sheet at 3.3 to 4.4 to 1 while qa.py reported zero contrast warnings on them.",
+   "files": [
+    ".claude/skills/carousel-engine/qa.py",
+    "out/2026-07-31/automation_retro.md"
+   ],
+   "verification": "Defect reconstruction on the live run. Against the ten shipped renders the walk returned 5 hits and 0 fails. Three were real defects that had survived two full scoring cycles, five revision rounds, five pixel critics and two scorers, at slide 05's hero body copy (3.9 worst point against a 6.1 box mean) and slide 07's two sponsor attributions (3.7 against 4.3). Both were given a burin reserve, which the deck's own reconciliation item 5 already required, re-rendered, and the walk now returns 2 hits and 0 fails with no new plate clips or collisions on either slide. Regression on examples/demo-deck through render plus qa returned 0 worst-point hits, so flat-ground decks produce no new noise. The old contrast_estimate() is untouched and still runs; the new check can never raise a ratio the old one reported.",
+   "rollback": "Revert the upgrade(2026-07-31) commit. contrast_worst_cell() and its five constants are self-contained and its only call site is the one block in the per-node loop, so removing them restores the previous behaviour exactly.",
+   "commit": ""
   }
  ],
  "scan_log": [
@@ -850,6 +864,12 @@
    "searches": 5,
    "found": "The scan corrected the primitive for the day's fix and then supplied two parked candidates. (1) APPLIED: getComputedTextLength returns only the horizontal ADVANCE (glyphs plus letter-spacing and word-spacing, ignoring x adjustments), so it yields no height and no anchor-correct origin, while getBBox returns the laid-out box, which is what a knockout plate must contain; getBBox also EXCLUDES stroke, and leading or trailing whitespace corrupts an SVG text box in every engine. AK.svgPlate measures with getBBox, adds half the stroke back, and console.errors on untrimmed text. Headless Chrome measures SVG text differently from desktop Chrome, which is harmless here because the same browser measures the label and screenshots the slide. (2) CORROBORATION: measure-then-size with an explicit padding object is settled dataviz practice, not an invention (Victory backgroundPadding, the standard D3 getBBox recipe, the Vega-Lite legible-label-layout formalisation). (3) PARKED: that paper's occupancy bitmap (rasterise the marks once, test candidate label boxes with bitwise ops) plus an eight-position placement model is the principled answer to this run's knock-on churn, about 150 lines, but it changes how slides are composed and wants a multi-deck trial. (4) PARKED: SVG textLength with lengthAdjust=spacingAndGlyphs is the complement of today's helper, fitting the TEXT to a fixed box where the plate geometry is load-bearing. (5) PARKED craft note: 2026 editorial typography runs monospace as an editorial voice rather than a code signal, and optical-size axes open tracking automatically at small sizes where our all-caps mono is hand-tracked flat at 0.08 to 0.12em. text-box-trim was re-examined and left parked for the same reason as 2026-07-26, it re-tunes vertical rhythm deck-wide. Sources: https://developer.mozilla.org/en-US/docs/Web/API/SVGTextContentElement , https://bugzilla.mozilla.org/show_bug.cgi?id=1078743 , https://github.com/GoogleChrome/puppeteer/issues/814 , https://arxiv.org/html/2405.10953v1 , https://nearform.com/open-source/victory/docs/api/victory-label , https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/text , https://developer.chrome.com/blog/css-text-box-trim",
    "outcome": "applied (the getBBox primitive and the stroke/whitespace caveats are inside upgrade 2, AK.svgPlate) + parked (knowledge/FIELD_NOTES.md 2026-07-29 Phase 12 block: occupancy-bitmap label auto-placement, textLength/lengthAdjust as the complement, mono-as-editorial-voice and optical-size tracking, all with source URLs)"
+  },
+  {
+   "run_date": "2026-07-31",
+   "focus": "DEFERRED. No frontier scan this cycle.",
+   "searches": 0,
+   "found": "Recorded as a deliberate deferral rather than allowed to lapse silently. The phase budget is 0 to 3 upgrades, reactive-first, and holds the usual day to 0 to 1. Two upgrades were already logged during this run (assets/js/akengrave.js as a fix, the full-ledger type pairing audit as an improvement) and the worst-point contrast gate is the third, so the budget was spent before a scan could earn a slot. Working the RECURRING hard fail takes precedence over a frontier improvement by the phase's own rule, and it did. The stalest rotation slot is procedural art portable to offline Canvas/SVG, last scanned 2026-07-21, and it is the nominated focus for 2026-08-01. Note also that 2026-07-30 has no scan_log entry at all, which is the silent-lapse this entry exists to prevent."
   }
  ]
 }

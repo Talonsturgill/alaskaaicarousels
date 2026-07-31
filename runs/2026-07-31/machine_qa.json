@@ -26,7 +26,8 @@
       "warns": [
         "outside safe zone: 'Drake Thomas, ADN opinion, 29 Jul 2026' at 600,826 436x96 (margin 80px)",
         "outside safe zone: 'He grew up in Kenai and lives in Califor' at 164,1146 736x164 (margin 80px)",
-        "outside safe zone: '03 / 10' at 868,1250 118x31 (margin 80px)"
+        "outside safe zone: '03 / 10' at 868,1250 118x31 (margin 80px)",
+        "worst-point contrast 4.4 on '03 / 10' (box mean 6.0) -- below the rubric's 4.5 line somewhere along the run of the text"
       ]
     },
     {
@@ -67,7 +68,8 @@
       "warns": [
         "outside safe zone: 'A governor runs on a joint ticket, so th' at 132,614 880x68 (margin 80px)",
         "outside safe zone: 'The printed text carries no residency te' at 132,678 880x68 (margin 80px)",
-        "outside safe zone: '07 / 10' at 868,1250 118x31 (margin 80px)"
+        "outside safe zone: '07 / 10' at 868,1250 118x31 (margin 80px)",
+        "worst-point contrast 4.2 on '07 / 10' (box mean 5.9) -- below the rubric's 4.5 line somewhere along the run of the text"
       ]
     },
     {
@@ -96,6 +98,6 @@
     }
   ],
   "fails": 0,
-  "warns": 28,
+  "warns": 30,
   "verdict": "WARN"
 }
