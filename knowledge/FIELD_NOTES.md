@@ -1908,3 +1908,49 @@ This will bite again; it is now in the TECHNIQUE_LIBRARY entry.
 
 Applied to the shipped deck, lower-band tonal range improved on every slide
 measured (S01 +0.028, S02 +0.031, S03 +0.055, S04 +0.012, S09 +0.086).
+
+### 2026-07-31 (No. 21), craft refresh
+
+- Platform picture unchanged again, third refresh running. Socialinsider still
+  has native documents top at 7.00 percent against multi-image 6.45 and video
+  6.00, and Oktopost's top-decile B2B pages (22.45 percent ER) still post more
+  document content than median pages (5.72). No house rule moves. Recording the
+  non-change so a future refresh does not re-litigate it.
+  Sources: socialinsider.io/social-media-benchmarks/linkedin,
+  oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- Slide-count drift continues upward in the practitioner guides, one 2026 guide
+  now saying 9 to 12 is the sweet spot on dwell-versus-completion grounds. Our
+  band is 6 to 12 with an 8 to 10 default and already spans it. No change, and
+  this is the second consecutive refresh to note the same drift.
+  Source: postunreel.com/blog/linkedin-carousel-engagement-rate-statistics-2026
+- CRAFT FIND, and it is the one that matters this run. LINE ENGRAVING has a
+  worked-out vocabulary for exactly the problem this machine keeps failing:
+  how to build ONE surface that carries modelled tone with genuine detail
+  everywhere, instead of a uniform hatch. Four transferable rules.
+  (1) Hatching lines WRAP THE FORM. Lay lines follow the surface they describe,
+  so the direction field is the modelling, before any value is applied. A hatch
+  whose direction is constant across a frame is decoration; a hatch whose
+  direction follows the geometry is form. This is precisely what No. 20's
+  uniform contour drift got wrong.
+  (2) THE SWELLED LINE. A single stroke tapers at both ends and widens in the
+  middle, and where swelled lines cross into lozenges they carry tone by
+  themselves and make overlapping hatch layers unnecessary. Line-weight
+  variance is the technique, not a garnish on it, which is the same conclusion
+  aksnow.js reached from the other direction on 2026-07-30.
+  (3) THE VOCABULARY IS THREE PARTS, not one: mainline, crossline, interdot.
+  Tone is built by the RELATIONSHIP between a dominant lay, a crossing lay and
+  the dots that sit in the diamonds, and the three are separately controllable.
+  That is a per-region budget expressed as a drawing system.
+  (4) What sets a line's thickness is the light. Thickness is a lighting
+  decision made per stroke, not a global stroke weight.
+  Sources: risdmuseum.org/exhibitions-events/exhibitions/brilliant-line,
+  metmuseum.org/about-the-met/collection-areas/drawings-and-prints/materials-and-techniques/printmaking/engraving,
+  librarycompany.org/makinganimpression/section2.html
+- GUILLOCHE, same family, and it is a generative system with real parameters
+  rather than an ornament. The patterns are epitrochoids and related curves
+  produced by engine turning, drawn at fractions of a millimetre so the effect
+  is delicate and hard to reproduce, which is the entire point of putting it on
+  money. It is drawable offline in Canvas from three or four numbers, it is
+  detail-dense by construction, and its parameters can carry story quantities.
+  Sources: bankofcanadamuseum.ca/2020/07/the-art-of-guilloche/,
+  mathpuzzle.com/MAA/13-Guilloche Patterns/mathgames_02_09_04.html
