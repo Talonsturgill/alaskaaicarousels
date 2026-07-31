@@ -512,6 +512,26 @@
    "confidence": 0.9,
    "first_seen": "2026-07-30",
    "evidence": "run 2026-07-30, carousel No. 20"
+  },
+  {
+   "run_date": "2026-07-31",
+   "confidence": 0.9,
+   "instinct": "Generate the art AFTER text layout, from MEASURED label boxes, and multiply lay density to zero inside them with a feathered taper. The stroke is then never generated, so there is nothing for a label to collide with and no plate to size wrong. This is structurally stronger than a knockout plate against the recurring 'text against geometry' hard fail, because qa.py's collision walk is DOM only and canvas ink has no node. Two of the ten slides still needed the padding widened from 14 to 22 px before feathered strokes stopped grazing glyph rings, so measure the padding against a render, do not assume it."
+  },
+  {
+   "run_date": "2026-07-31",
+   "confidence": 0.92,
+   "instinct": "Absolute positions guessed from word counts collide. Every layout number on this deck that was guessed produced a text collision, and every one re-derived from render_report.json's measured boxes held. Place the first pass however you like, then read the measured y and h of every node out of the render report and re-derive the stack from those numbers before the second pass. It is the same discipline as sizing a plate from the measured string, applied to layout."
+  },
+  {
+   "run_date": "2026-07-31",
+   "confidence": 0.88,
+   "instinct": "Body copy goes on the dark table or in a reserved burin field, never on the lit half of a lit surface. Slides 02, 03, 08 and 09 all failed contrast or the art-crossing gate for exactly this reason and all four were fixed by moving the text onto the dark ground rather than by brightening the type. Decide the text ground before the composition, not after."
+  },
+  {
+   "run_date": "2026-07-31",
+   "confidence": 0.85,
+   "instinct": "When two of three treatment directors independently propose a type pairing that has already shipped, the last-two-decks rule is too weak to produce felt variety on its own. Run a full-ledger pairing audit before locking type, and write the novelty claim as a sentence naming which decks used each face, so a future run cannot repeat No.20's false novelty claim."
   }
  ]
 }

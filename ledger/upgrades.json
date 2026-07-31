@@ -688,6 +688,34 @@
    "verification": "prompts/NEXT_RUN.md is written and Phase 0 step 0 references it by path. The brief itself states the dedupe problem, names the material new development that justifies the UPDATE, and carries the archive command. Confirmed the file is the only NEXT_RUN in the repo and that CLAUDE.md's layout section now names it. The mechanism is prose in the master prompt rather than code, which is the honest description; there is no script that can enforce 'the showrunner read the brief', and inventing one would be theatre.",
    "rollback": "git revert this commit and delete prompts/NEXT_RUN.md. Nothing depends on the file existing; Phase 0 step 0 is a no-op when it is absent.",
    "commit": "337c1d91d95b02ea090ed11c7a66ed4a988c846a"
+  },
+  {
+   "run_date": "2026-07-31",
+   "kind": "fix",
+   "area": "assets/js",
+   "change": "NEW committed asset assets/js/akengrave.js, a white-line intaglio engraving bench. It implements the line-engraver's four rules as code: the lay wraps the form (direction is rot90 of the height field's gradient, so the direction field IS the modelling before any value is applied), the swelled line (every stroke is a filled tapered polygon, never a stroked path), three separately controllable channels (mainline, crossline, interdot), and thickness as a per-stroke lighting decision. It also ships AKENGRAVE.reserve(), which takes MEASURED label boxes after document.fonts.ready and multiplies lay density to zero inside them with a feathered taper.",
+   "trigger": "Artwork craft has been the weakest scored criterion in 8 of the last 10 runs, mean 6.67, last 6.0, and it is the standing repeat offender named by scripts/trend_check.py at Phase 0. No.20's retro diagnosed why the previous fix failed, in its own words, that 'distribute the detail is a plan, not a technique, and a plan with no per-region budget gets spent on whatever is easiest to draw everywhere'. Three separately gated channels are that per-region budget expressed as a drawing system, so 'everywhere' is not an argument the function accepts. The reserve half targets the OTHER standing offender, the 'text against geometry' hard fail that hit 2026-07-25 and 2026-07-29, which qa.py structurally cannot catch because its collision walk is DOM only.",
+   "files": [
+    "assets/js/akengrave.js",
+    "knowledge/FIELD_NOTES.md"
+   ],
+   "verification": "Rendered across all ten slides of carousel No.21 over four render passes. Final machine gate: render 10/10 OK with 0 page errors, qa.py verdict WARN with 0 fails. The engraving is visible as genuine intaglio with the lay bending around each sheet's curl and measurable stroke-width variance across every spend region, confirmed independently by five pixel critics who each transcribed and measured their assigned slides. The reserve mechanism was confirmed working by three separate critics, one of whom wrote that there is 'a clean dark bite out of the engraving exactly where each label sits, with a soft feather, and no stroke grazes a glyph anywhere on the frame'. Deck ships with ZERO knockout plates.",
+   "rollback": "git revert the akengrave commit. Nothing else in the engine imports it; slides opt in by including the script.",
+   "commit": ""
+  },
+  {
+   "run_date": "2026-07-31",
+   "kind": "improvement",
+   "area": "process",
+   "change": "A full-ledger TYPE PAIRING AUDIT before type is locked, written to the run directory and quoted in the artwork ledger as a sentence naming which prior decks used each face.",
+   "trigger": "Two of the three treatment directors independently proposed display-plus-body-plus-mono trios that had ALREADY SHIPPED (Archivo+Manrope+JBMono at No.8 and No.11; Instrument Serif+Manrope+JBMono at No.16). Both, to their credit, refused to claim novelty without a check. The binding rule only bars the last two decks' pairings, so both were legal, which is the point: the rule is too weak to produce felt variety on its own, and No.20's storyboard already shipped a false novelty claim that the ledger had to correct.",
+   "files": [
+    "runs/2026-07-31/type_pairing_audit.md",
+    "ledger/artwork.json"
+   ],
+   "verification": "The audit found the collision, and the run shipped Instrument Serif + Archivo + JetBrains Mono instead, which has not shipped as a trio in twenty decks. The novelty sentence in the artwork ledger names the specific prior decks for each face rather than asserting novelty.",
+   "rollback": "Drop the audit step. It is a process note, not code.",
+   "commit": ""
   }
  ],
  "scan_log": [

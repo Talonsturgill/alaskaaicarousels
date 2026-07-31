@@ -1,0 +1,683 @@
+{
+  "run_date": "2026-07-31",
+  "story": "Alaska's campaign finance rulebook is itself on the August 18 primary ballot, six days after this page said Alaska knows who paid for the governor's race and nothing about why, and the largest donor has now published his motive",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "Alaska's codified statute AS 15.13.070(b) as published still sets an individual contribution ceiling of $500 per year to a candidate.",
+      "value": "$500 per year",
+      "verbatim": "(b) An individual may contribute not more than (1) $500 per year to a nongroup entity for the purpose of influencing the nomination or election of a candidate, to a candidate, to an individual who conducts a write-in campaign as a candidate, or to a group that is not a political party;",
+      "source_url": "https://codes.findlaw.com/ak/title-15-elections/ak-st-sect-15-13-070/",
+      "source_outlet": "FindLaw codification of Alaska Statutes, current through January 1, 2025",
+      "source_is_primary": false,
+      "date_of_source": "2025-01-01",
+      "fetched": true,
+      "confidence": 0.82,
+      "needs_softening": true,
+      "notes": "SOURCING WEAKNESS DECLARED, NOT HIDDEN. No state hosted copy was reachable. akleg.gov is JavaScript driven and returned only Title 1 or a Title 15 truncated before Chapter 13, through eight routes including the text proxy that worked for everything else. law.justia.com, touchngo.com, alaska.public.law and law.onecle.com all failed. APOC's own Statutes and Regulations page points at the exact akleg URL that would not render. Corroborated as the statute's number by the Ninth Circuit at C08 and by ADN at C41. Print as 'the statute as codified still reads $500'. Do NOT print 'never repealed' as a bare fact."
+    },
+    {
+      "id": "C02",
+      "claim": "The Alaska Public Offices Commission's own published contribution limits table lists what an individual Alaska resident may give a candidate as Unlimited.",
+      "value": "Unlimited",
+      "verbatim": "Individual (AK resident)",
+      "source_url": "https://apoc.doa.alaska.gov/filer-resources/contribution-limits/",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.97,
+      "notes": "Fetched directly, no proxy needed. The row reads Unlimited in the TO CANDIDATE column. This claim plus C01 is the deck's central artifact, the book and the enforced rule disagreeing. The table cites AS 15.13.070 as its own authority, the same section that prints $500."
+    },
+    {
+      "id": "C03",
+      "claim": "The same APOC table lists a non resident individual's limit to an Alaska candidate as Unlimited, identical to an Alaska resident's.",
+      "value": "Unlimited",
+      "verbatim": "Individual (non-resident)",
+      "source_url": "https://apoc.doa.alaska.gov/filer-resources/contribution-limits/",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.97,
+      "notes": "A person in Berkeley and a person in Bethel appear on the same table with the same ceiling, which is no ceiling."
+    },
+    {
+      "id": "C04",
+      "claim": "APOC's contribution limits page carried a July 29, 2026 date stamp, two days before this run and twenty days before the primary.",
+      "value": "July 29, 2026",
+      "verbatim": "July 29, 2026",
+      "source_url": "https://apoc.doa.alaska.gov/filer-resources/contribution-limits/",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.93,
+      "notes": "At the foot of the page. Confirms the Unlimited entry is current guidance, not a stale page."
+    },
+    {
+      "id": "C05",
+      "claim": "The same APOC table lists a group based outside Alaska as Prohibited from giving to a candidate, while listing a non resident individual as Unlimited.",
+      "value": "Prohibited",
+      "verbatim": "Group (based outside Alaska)",
+      "source_url": "https://apoc.doa.alaska.gov/filer-resources/contribution-limits/",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "The asymmetry sits inside one table. Alaska bars the out of state committee and not the out of state person. Nongroup Entity (based outside Alaska) reads Prohibited as well."
+    },
+    {
+      "id": "C06",
+      "claim": "The Ninth Circuit decided Thompson v. Hebdon on July 30, 2021.",
+      "value": "July 30, 2021",
+      "verbatim": "Thompson sent Keller a $100 check for his campaign in 2015, but Keller returned the check because the campaign had already hit the $3,000 nonresident limit.",
+      "source_url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2021/07/30/17-35019.pdf",
+      "source_outlet": "United States Court of Appeals for the Ninth Circuit",
+      "source_is_primary": true,
+      "date_of_source": "2021-07-30",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "The opinion PDF DID text extract through the r.jina.ai prefix, correcting the scout's report that extraction failed. The date is in the filing path and on the face of the opinion. The verbatim field carries the C10 sentence because the date itself is a header string rather than a sentence."
+    },
+    {
+      "id": "C07",
+      "claim": "The Ninth Circuit reversed the district court on the individual to candidate limit, the individual to group limit and the nonresident aggregate limit, while upholding the political party to candidate limit.",
+      "value": "three limits reversed",
+      "verbatim": "While the district court correctly held that the political party-to-candidate limit is constitutional, it erred under Supreme Court precedent in upholding the individual-to-candidate limit, the individual-to-group limit, and the nonresident aggregate limit.",
+      "source_url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2021/07/30/17-35019.pdf",
+      "source_outlet": "United States Court of Appeals for the Ninth Circuit",
+      "source_is_primary": true,
+      "date_of_source": "2021-07-30",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Read verbatim off the opinion by the fact-checker via the text proxy. Matches the scout's transcription character for character."
+    },
+    {
+      "id": "C08",
+      "claim": "The Ninth Circuit opinion identifies the struck provision as the $500 annual limit on an individual contribution to a political candidate at Alaska Stat. section 15.13.070(b)(1).",
+      "value": "$500 annual limit",
+      "verbatim": "the $500 annual limit on an individual contribution to a political candidate",
+      "source_url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2021/07/30/17-35019.pdf",
+      "source_outlet": "United States Court of Appeals for the Ninth Circuit",
+      "source_is_primary": true,
+      "date_of_source": "2021-07-30",
+      "fetched": true,
+      "confidence": 0.92,
+      "notes": "THIS IS THE PRIMARY CORROBORATION FOR C01. A federal appellate court naming the section and the figure. It establishes the statute said $500 as of 2021. It does not by itself establish the codification is unchanged today, which is why C01 stays hedged."
+    },
+    {
+      "id": "C09",
+      "claim": "The Ninth Circuit held that Alaska's aggregate nonresident contribution limit violates the First Amendment.",
+      "value": "nonresident aggregate limit struck",
+      "verbatim": "Accordingly, we hold that Alaska's aggregate nonresident contribution limit violates the First Amendment, and we reverse the district court's judgment on this issue.",
+      "source_url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2021/07/30/17-35019.pdf",
+      "source_outlet": "United States Court of Appeals for the Ninth Circuit",
+      "source_is_primary": true,
+      "date_of_source": "2021-07-30",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "This is the ruling that removed the out of state ceiling as such, which is why C03 and C05 look the way they do."
+    },
+    {
+      "id": "C10",
+      "claim": "Lead plaintiff David Thompson sent candidate Wes Keller a $100 check in 2015 and the campaign returned it because it had already hit the $3,000 nonresident limit.",
+      "value": "$100 check returned",
+      "verbatim": "Thompson sent Keller a $100 check for his campaign in 2015, but Keller returned the check because the campaign had already hit the $3,000 nonresident limit.",
+      "source_url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2021/07/30/17-35019.pdf",
+      "source_outlet": "United States Court of Appeals for the Ninth Circuit",
+      "source_is_primary": true,
+      "date_of_source": "2021-07-30",
+      "fetched": true,
+      "confidence": 0.94,
+      "notes": "RESOLVES CONFLICT E. Read in the opinion itself. USABLE. CAUTION, the $3,000 is the aggregate nonresident ceiling for Keller's state house race, NOT a gubernatorial figure. If the deck stages 2015's hundred dollars against 2026's hundred thousand it must not imply the same ceiling applied to both offices."
+    },
+    {
+      "id": "C11",
+      "claim": "Ballot Measure 1 appears on Alaska's August 18, 2026 primary ballot.",
+      "value": "August 18, 2026 primary ballot",
+      "verbatim": "Ballot Measure No. 1",
+      "source_url": "https://www.elections.alaska.gov/election/2026/Primary/SampleBallots/HD1.pdf",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "Read through the r.jina.ai text proxy because elections.alaska.gov returns 503 on direct fetch. The sample ballot header reads August 18, 2026 Primary Election. Corroborated by ADN 2026-07-30."
+    },
+    {
+      "id": "C12",
+      "claim": "The printed ballot text says individuals could give $2,000 to candidates and $5,000 to political parties.",
+      "value": "$2,000 to candidates",
+      "verbatim": "With this act, individuals could give $2,000 to candidates and $5,000 to political parties.",
+      "source_url": "https://www.elections.alaska.gov/election/2026/Primary/SampleBallots/HD1.pdf",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Verbatim off the official sample ballot. The ballot text says $2,000 flat and carries NO residency term anywhere, so the cap would reach an out of state individual the same as an Alaskan."
+    },
+    {
+      "id": "C13",
+      "claim": "The printed ballot text also says groups besides political parties could give $4,000 to candidates and that individuals could give $4,000 to joint campaigns for governor and lieutenant governor.",
+      "value": "$4,000 to candidates",
+      "verbatim": "Groups besides political parties could give $4,000 to candidates and $5,000 to other parties or groups. Individuals could also give $4,000 to joint campaigns for governor and lieutenant governor, and groups could give $8,000.",
+      "source_url": "https://www.elections.alaska.gov/election/2026/Primary/SampleBallots/HD1.pdf",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "MATTERS FOR THE ARITHMETIC. A governor candidate runs on a joint ticket, which implicates the $4,000 joint figure and not only the $2,000 single candidate figure. If the deck prints a reduction ratio on the $100,000 gift, it must label which cap it is using."
+    },
+    {
+      "id": "C14",
+      "claim": "The ballot text says the new limits would increase with inflation every ten years beginning in 2031.",
+      "value": "every ten years beginning in 2031",
+      "verbatim": "These limits would increase with inflation every ten years beginning in 2031.",
+      "source_url": "https://www.elections.alaska.gov/election/2026/Primary/SampleBallots/HD1.pdf",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.94,
+      "notes": "Use if the deck contrasts the 2006 caps, which were never indexed and so eroded in real terms."
+    },
+    {
+      "id": "C15",
+      "claim": "The Alaska Constitution provides that an initiated law becomes effective ninety days after certification.",
+      "value": "ninety days after certification",
+      "verbatim": "An initiated law becomes effective ninety days after certification, is not subject to veto, and may not be repealed by the legislature within two years of its effective date.",
+      "source_url": "https://ltgov.alaska.gov/information/alaskas-constitution/",
+      "source_outlet": "Office of the Lieutenant Governor of Alaska, Alaska Constitution Article XI Section 6",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "THE RULE IS VERIFIED. THE CONSEQUENCE IS NOT A CLAIM. The 2026 certification has not occurred, so the deck says 'ninety days after certification, which lands after the November general' and NEVER prints a December date."
+    },
+    {
+      "id": "C16",
+      "claim": "The same constitutional section provides that the lieutenant governor certifies the election returns.",
+      "value": "the lieutenant governor certifies",
+      "verbatim": "The lieutenant governor shall certify the election returns.",
+      "source_url": "https://ltgov.alaska.gov/information/alaskas-constitution/",
+      "source_outlet": "Office of the Lieutenant Governor of Alaska, Alaska Constitution Article XI Section 6",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Establishes who starts the ninety day clock and that the clock starts after the August 18 vote, not on it."
+    },
+    {
+      "id": "C17",
+      "claim": "Alaskans passed the $500 contribution cap themselves at the August 22, 2006 primary election by 113,130 votes to 41,836.",
+      "value": "73.00 percent",
+      "verbatim": "YES | 113130 (73.00%)",
+      "source_url": "https://www.elections.alaska.gov/results/06PRIM/data/results.htm",
+      "source_outlet": "Alaska Division of Elections, official 2006 primary election results",
+      "source_is_primary": true,
+      "date_of_source": "2006-08-22",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "RESOLVES CONFLICT D. Page header reads STATE OF ALASKA 2006 PRIMARY ELECTION, August 22, 2006. Measure No. 1, petition 03DISC, 439 of 439 precincts reporting, total votes 154,966, NO 41,836 at 27.00 percent. Cite the Division of Elections, not the opinion pieces."
+    },
+    {
+      "id": "C18",
+      "claim": "The 2006 measure and the 2026 measure both reached voters on an August primary ballot, twenty years apart, and both were numbered Ballot Measure 1.",
+      "value": "two August primary ballots",
+      "verbatim": "MEASURE NO. 1 - 03DISC",
+      "source_url": "https://www.elections.alaska.gov/results/06PRIM/data/results.htm",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2006-08-22",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "Composite of C11 and C17, both primary sourced and both fetched. Safe as a structural observation, not as a new fact."
+    },
+    {
+      "id": "C19",
+      "claim": "Gov. Mike Dunleavy vetoed House Bill 16, which would have reimposed limits on individual donations to political candidates.",
+      "value": "House Bill 16",
+      "verbatim": "Alaska Gov. Mike Dunleavy on Thursday vetoed a bill that would have reimposed limits on the amount of money that individual people can donate to political candidates.",
+      "source_url": "https://alaskabeacon.com/2026/07/10/alaska-governor-vetoes-new-limits-on-political-donations/",
+      "source_outlet": "Alaska Beacon",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-10",
+      "fetched": true,
+      "confidence": 0.88,
+      "needs_softening": true,
+      "notes": "Read via text proxy; alaskabeacon.com 403s on direct fetch. The story says 'on Thursday' in a July 10 story, which is July 9. akleg.gov was unreachable for the bill history or veto transmittal, so the specific date is an inference. Prefer 'vetoed House Bill 16 in July'. Corroborated qualitatively by ADN 2026-07-30."
+    },
+    {
+      "id": "C20",
+      "claim": "Dunleavy's veto message said the bill restricts ordinary political participation while leaving personal wealth as a preferred path to political influence.",
+      "value": "veto message language",
+      "verbatim": "It restricts ordinary political participation while leaving personal wealth as a preferred path to political influence.",
+      "source_url": "https://alaskabeacon.com/2026/07/10/alaska-governor-vetoes-new-limits-on-political-donations/",
+      "source_outlet": "Alaska Beacon",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-10",
+      "fetched": true,
+      "confidence": 0.85,
+      "needs_softening": true,
+      "notes": "Quoted from the Beacon's rendering of the veto message; the transmittal letter itself was unreachable. Attribute as Alaska Beacon's account. The Beacon also carries 'Free speech and participation in elections should not depend on personal wealth.' This is a fairness counterweight quote and the deck should carry it if it carries the reform side."
+    },
+    {
+      "id": "C21",
+      "claim": "The ballot measure Alaskans vote on mirrors the proposal the governor vetoed.",
+      "value": "mirrors the vetoed bill",
+      "verbatim": "a ballot measure identical to the vetoed bill is slated for statewide vote in the Aug. 18 primary election",
+      "source_url": "https://alaskabeacon.com/2026/07/10/alaska-governor-vetoes-new-limits-on-political-donations/",
+      "source_outlet": "Alaska Beacon",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-10",
+      "fetched": true,
+      "confidence": 0.85,
+      "needs_softening": true,
+      "notes": "Corroborated by ADN 2026-07-30, which says 'a bill that mirrored the language of this year's ballot measure'. Two outlets, one says identical and one says mirrored, so print 'mirrors'. This is the sentence that makes the veto the reason the question is on the ballot rather than in statute."
+    },
+    {
+      "id": "C22",
+      "claim": "Six employees of Anthropic collectively gave Jonathan Kreiss Tomkins $372,000, according to the Anchorage Daily News.",
+      "value": "$372,000",
+      "verbatim": "His top contributors include six employees of Anthropic, a California-based artificial intelligence company, who collectively gave Kreiss-Tomkins $372,000.",
+      "source_url": "https://www.adn.com/politics/2026/07/23/democrat-in-alaskas-governor-race-reports-18-million-fundraising-haul-driven-by-californians/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-23",
+      "fetched": true,
+      "confidence": 0.92,
+      "needs_softening": true,
+      "notes": "SIX EMPLOYEES PERSONALLY. THE COMPANY DID NOT GIVE. No corporate or PAC contribution is reported anywhere and the op-ed's bio line disclaims that it represents Anthropic. LIVE DISCREPANCY, the Nome Nugget of 2026-07-30 writes that an analysis linked $400,000 to Anthropic employees. Use ADN's $372,000, which names the six and the sum together, and do not average the two. Nothing here is primary sourced from an APOC filing; the portal could not be queried."
+    },
+    {
+      "id": "C23",
+      "claim": "Drake Thomas gave the Kreiss Tomkins campaign $100,000, the largest single contribution it reported.",
+      "value": "$100,000",
+      "verbatim": "Thomas gave the campaign $100,000, and Kreiss-Tomkins said that Thomas connected him with other Anthropic employees who supported his candidacy.",
+      "source_url": "https://www.adn.com/politics/2026/07/23/democrat-in-alaskas-governor-race-reports-18-million-fundraising-haul-driven-by-californians/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-23",
+      "fetched": true,
+      "confidence": 0.93,
+      "notes": "Corroborated by the op-ed's own headline. The connector half is an INDIRECT quote. If used, attribute as 'Kreiss-Tomkins told the Anchorage Daily News that Thomas connected him with other Anthropic employees'. The op-ed itself never says Thomas recruited, asked or organized anyone. NO CAUSATION AND NO WRONGDOING."
+    },
+    {
+      "id": "C24",
+      "claim": "Kreiss Tomkins reported bringing in $1.8 million since entering the race in February.",
+      "value": "$1.8 million",
+      "verbatim": "Kreiss-Tomkins has brought in $1.8 million since entering the race in February.",
+      "source_url": "https://www.adn.com/politics/2026/07/23/democrat-in-alaskas-governor-race-reports-18-million-fundraising-haul-driven-by-californians/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-23",
+      "fetched": true,
+      "confidence": 0.92,
+      "notes": "Use $1.8 million, not $1.84 million. The $372,000 cluster is about 21 percent of this, which the deck renders as 'about a fifth'. Do not print a decimal percentage; the denominator is rounded and the true range is roughly 20 to 21 percent."
+    },
+    {
+      "id": "C25",
+      "claim": "The Anchorage Daily News described the out of state share of that money only qualitatively and published no percentage.",
+      "value": "a majority, no figure published",
+      "verbatim": "The majority of it came from wealthy donors who live in the Lower 48.",
+      "source_url": "https://www.adn.com/politics/2026/07/23/democrat-in-alaskas-governor-race-reports-18-million-fundraising-haul-driven-by-californians/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-23",
+      "fetched": true,
+      "confidence": 0.94,
+      "notes": "RESOLVES CONFLICT B. The page was queried directly for any out of state PERCENTAGE and none appears. The deck writes 'a majority'. The 80 percent figure is killed."
+    },
+    {
+      "id": "C26",
+      "claim": "Republican candidate Matt Heilala put more than $1.4 million of his own money into a haul of nearly $1.6 million.",
+      "value": "more than $1.4 million of his own",
+      "verbatim": "Of his total haul of nearly $1.6 million, more than $1.4 million came from the candidate himself.",
+      "source_url": "https://www.adn.com/politics/2026/07/23/democrat-in-alaskas-governor-race-reports-18-million-fundraising-haul-driven-by-californians/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-23",
+      "fetched": true,
+      "confidence": 0.92,
+      "notes": "MANDATORY FAIRNESS COUNTERWEIGHT. One candidate's own checkbook is more than three and a half times the entire six person Anthropic cluster, and Ballot Measure 1 would not touch a dollar of it, because self funding is protected under Buckley v. Valeo. Same story and same filing round as C22, so no period mismatch."
+    },
+    {
+      "id": "C27",
+      "claim": "Two Anchorage donors gave Tom Begich more than $525,000 between them, out giving the six person Anthropic cluster.",
+      "value": "$275,000 plus more than $250,000",
+      "verbatim": "Robin Brena, an Anchorage attorney who gave Begich $275,000.",
+      "source_url": "https://www.adn.com/politics/2026/07/23/democrat-in-alaskas-governor-race-reports-18-million-fundraising-haul-driven-by-californians/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-23",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "MANDATORY FAIRNESS COUNTERWEIGHT. The second donor sentence reads 'His top contributors were Justin Weaver, a prolific donor from Anchorage who gave Begich more than $250,000 in recent months.' The sum is a FLOOR, so write 'more than $525,000', never an exact figure. The strongest in state counterweight because both donors are Alaskans."
+    },
+    {
+      "id": "C28",
+      "claim": "Drake Thomas wrote that he is terrified by the pace of AI development and wishes it were slower.",
+      "value": "terrified by the extremely rapid pace",
+      "verbatim": "The honest answer is that I'm terrified by the extremely rapid pace of AI development, and I wish it were slower.",
+      "source_url": "https://www.adn.com/opinions/2026/07/29/opinion-why-this-anthropic-employee-gave-100k-to-a-candidate-for-alaska-governor/",
+      "source_outlet": "Anchorage Daily News opinion, Drake Thomas",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "Primary because it is the donor's own signed statement of his own motive. The words are 'terrified by', not 'terrified of' and not 'frightened'. This is the inversion the deck turns on, since the loudest local speculation guessed the motive was pro data center influence."
+    },
+    {
+      "id": "C29",
+      "claim": "Drake Thomas wrote that it is crazy that Alaska allows unlimited contributions and that he hopes that changes.",
+      "value": "I hope that changes",
+      "verbatim": "Frankly, it's crazy that Alaska allows unlimited contributions, and I hope that changes.",
+      "source_url": "https://www.adn.com/opinions/2026/07/29/opinion-why-this-anthropic-employee-gave-100k-to-a-candidate-for-alaska-governor/",
+      "source_outlet": "Anchorage Daily News opinion, Drake Thomas",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "PART OF CONFLICT C. This is the FULL extent of what he says about the rules. The page was queried directly and Ballot Measure 1 is not named; the only trace is a hyperlink to a separate author's op-ed. THE DECK MAY NOT SAY THOMAS ENDORSED BALLOT MEASURE 1."
+    },
+    {
+      "id": "C30",
+      "claim": "The op-ed's author bio says Drake Thomas grew up in Kenai and that the views are his alone and do not represent Anthropic.",
+      "value": "Kenai",
+      "verbatim": "Drake Thomas grew up in Kenai and now lives in California, where he works for Anthropic. The views in this op-ed are his alone and do not represent Anthropic.",
+      "source_url": "https://www.adn.com/opinions/2026/07/29/opinion-why-this-anthropic-employee-gave-100k-to-a-candidate-for-alaska-governor/",
+      "source_outlet": "Anchorage Daily News opinion, Drake Thomas",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "RESOLVES CONFLICT A in part. He also writes 'My parents still live in Kenai, and I come home every year to ski, fish and hike.' Direct query confirmed the word Soldotna does not appear in the op-ed at all. The disclaimer is the AUTHOR BIO TAGLINE, not an editor's note and not a statement by Anthropic."
+    },
+    {
+      "id": "C31",
+      "claim": "The Anchorage Daily News news desk reported six days earlier that Thomas grew up in Soldotna, which the op-ed does not say.",
+      "value": "Soldotna",
+      "verbatim": "Kreiss-Tomkins' largest contribution came from an Anthropic employee named Drake Thomas, who grew up in Soldotna and now lives in Berkeley, California.",
+      "source_url": "https://www.adn.com/politics/2026/07/23/democrat-in-alaskas-governor-race-reports-18-million-fundraising-haul-driven-by-californians/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-23",
+      "fetched": true,
+      "confidence": 0.93,
+      "notes": "RESOLVES CONFLICT A. RULING, PRINT KENAI. The subject says Kenai in his own signed voice in the body and the bio line; the news desk says Soldotna once and Alaska Public Media's republication carries the same byline, so it is one reporting effort in two places. No correction exists as of 2026-07-31. The towns are about eleven miles apart. The deck may footnote the discrepancy; it must not print Soldotna as the fact."
+    },
+    {
+      "id": "C33",
+      "claim": "Thomas wrote that he works on the safety team at Anthropic and develops reports about the risks of AI models.",
+      "value": "the safety team",
+      "verbatim": "At Anthropic, I work on the safety team, develop reports about the risks of AI models and mitigations for those risks, and make sure these publications are honest and transparent about the downsides of the technology, even when it might be bad PR.",
+      "source_url": "https://www.adn.com/opinions/2026/07/29/opinion-why-this-anthropic-employee-gave-100k-to-a-candidate-for-alaska-governor/",
+      "source_outlet": "Anchorage Daily News opinion, Drake Thomas",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.93,
+      "notes": "The only description of his work on the page. NO JOB TITLE APPEARS. 'Member of technical staff' is not on the page and is killed."
+    },
+    {
+      "id": "C34",
+      "claim": "Thomas described the candidate's data center moratorium call without endorsing it.",
+      "value": "first candidate to call for a moratorium",
+      "verbatim": "JKT is the first candidate in the race to call for a moratorium on data center development; he has proposed state regulation of AI and previously worked to support national regulation of AI.",
+      "source_url": "https://www.adn.com/opinions/2026/07/29/opinion-why-this-anthropic-employee-gave-100k-to-a-candidate-for-alaska-governor/",
+      "source_outlet": "Anchorage Daily News opinion, Drake Thomas",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-29",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "The sole mention. He describes, he does not back it. The deck can't say the donor supports the moratorium. Note the plank cuts AGAINST the industry the donors work in, which is the fact that defeats the 'money bought the policy' framing."
+    },
+    {
+      "id": "C35",
+      "claim": "The campaign's own platform page calls for a moratorium on all new data centers until the legislature can pass comprehensive regulation.",
+      "value": "all new data centers",
+      "verbatim": "Institute a moratorium on all new data centers (similar to New York State) until the legislature can pass comprehensive regulation on data center development.",
+      "source_url": "https://www.jktforak.com/platform",
+      "source_outlet": "Kreiss-Tomkins for Alaska campaign platform page",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "Primary because it is the campaign's own published statement of its own position, fetched on the run date. Section heading is Regulate Data Centers and AI."
+    },
+    {
+      "id": "C36",
+      "claim": "The moratorium plank does not specify a duration, a size threshold, exceptions or the legal authority it would use.",
+      "value": "four unspecified items",
+      "verbatim": "Institute a moratorium on all new data centers (similar to New York State) until the legislature can pass comprehensive regulation on data center development.",
+      "source_url": "https://www.jktforak.com/platform",
+      "source_outlet": "Kreiss-Tomkins for Alaska campaign platform page",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.88,
+      "notes": "An absence of evidence claim, but a strong one. The complete seven bullet section was read and the page queried for each of the four items. The bullet is conditional, not time bound, and says Institute without naming the instrument. DO NOT print New York's threshold or duration as if they were part of this plank; nobody read the New York order. State the gaps as gaps, not as criticisms."
+    },
+    {
+      "id": "C37",
+      "claim": "The candidate said in Nome that he will vote yes on the August 18 initiative to reinstate a $2,000 contribution limit.",
+      "value": "voting yes",
+      "verbatim": "There's a ballot initiative in the August 18 primary to reinstate contribution limits of $2,000 to candidates. I will be enthusiastically voting 'yes.'",
+      "source_url": "https://www.nomenugget.com/news/gubernatorial-candidate-jonathan-kreiss-tomkins-whistle-stops-nome",
+      "source_outlet": "The Nome Nugget, Diana Haecker",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.86,
+      "needs_softening": true,
+      "notes": "RESOLVES CONFLICT C. THE CANDIDATE endorsed the measure by its substance. THE DONOR DID NOT NAME IT. Attribute as 'told The Nome Nugget'. Single sourced to one weekly; hedge accordingly."
+    },
+    {
+      "id": "C38",
+      "claim": "Alaska's seventeen governor candidates have raised nearly $9 million between them, from an analyst's download of APOC data.",
+      "value": "nearly $9 million",
+      "verbatim": "Raw financial disclosure data was downloaded from the Alaska Public Offices Commission (APOC).",
+      "source_url": "https://www.northernjournal.com/alaskas-17-governor-candidates-have-raised-nearly-9-million-this-chart-shows-who-gave-it/",
+      "source_outlet": "Anchorage Press analysis by Will Koeppen, republished by Northern Journal",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-27",
+      "fetched": true,
+      "confidence": 0.83,
+      "needs_softening": true,
+      "notes": "The verbatim is the chain of custody sentence. The figure appears in the headline. NEARLY $9 MILLION IS AS PRECISE AS THE PUBLISHED RECORD GETS, so do not print an exact aggregate. One analyst's download with several republication wrappers and no independent corroboration. 'About 4 percent of the field' is arithmetic on a rounded denominator; nothing finer."
+    },
+    {
+      "id": "C39",
+      "claim": "The next round of Alaska state campaign disclosures is due August 11, seven days before the primary.",
+      "value": "August 11",
+      "verbatim": "The next round of financial disclosures for Alaska's state elections are due on Aug. 11, seven days before the primary election.",
+      "source_url": "https://www.northernjournal.com/alaskas-17-governor-candidates-have-raised-nearly-9-million-this-chart-shows-who-gave-it/",
+      "source_outlet": "Anchorage Press analysis by Will Koeppen, republished by Northern Journal",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-27",
+      "fetched": true,
+      "confidence": 0.88,
+      "notes": "Every dollar figure in this deck is a snapshot that a filing eleven days from now will move. Say so on the slide that carries the numbers."
+    },
+    {
+      "id": "C40",
+      "claim": "Early polling places open across Alaska on August 3, three days after this run.",
+      "value": "August 3",
+      "verbatim": "Early polling places open across the state Aug. 3.",
+      "source_url": "https://www.adn.com/politics/2026/07/30/alaskans-to-vote-on-campaign-finance-limits-after-four-years-of-uncapped-contributions/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "TENSE WARNING. On the run date the correct tense is OPENS or BEGINS, not began. The same story reports absentee ballots have already gone out, so some Alaskans are voting before the deck posts. That is the deadline pressure and it is real."
+    },
+    {
+      "id": "C41",
+      "claim": "The Anchorage Daily News reported that the 2006 initiative lowered the individual limit to $500 and passed with support from over 70 percent of voters.",
+      "value": "over 70 percent",
+      "verbatim": "The limit was lowered back down to $500 in 2006 by ballot initiative, which passed with support from over 70% of voters.",
+      "source_url": "https://www.adn.com/politics/2026/07/30/alaskans-to-vote-on-campaign-finance-limits-after-four-years-of-uncapped-contributions/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "The corroborating secondary leg for C17, not the number to print. ADN independently confirms the pre 2021 figure was $500, which supports C01."
+    },
+    {
+      "id": "C42",
+      "claim": "The measure's sponsors include former Alaska Attorney General Bruce Botelho and Anchorage independent Rep. Calvin Schrage, and they are running no advertising.",
+      "value": "no advertising spending",
+      "verbatim": "Its sponsors, who include former Alaska Attorney General Bruce Botelho and current Anchorage independent Rep. Calvin Schrage, are instead hoping that Alaskans will favor a return to the limits even without any spending on advertising or messaging.",
+      "source_url": "https://www.adn.com/politics/2026/07/30/alaskans-to-vote-on-campaign-finance-limits-after-four-years-of-uncapped-contributions/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.88,
+      "notes": "Underused and strong. The rule that governs a nearly nine million dollar race is being decided by a campaign with no ad budget."
+    },
+    {
+      "id": "C43",
+      "claim": "Rep. Andrew Gray argued for the measure by saying that unlimited donations mean unlimited influence.",
+      "value": "unlimited influence",
+      "verbatim": "When we have unlimited donations, we have unlimited influence.",
+      "source_url": "https://www.adn.com/politics/2026/07/30/alaskans-to-vote-on-campaign-finance-limits-after-four-years-of-uncapped-contributions/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.88,
+      "needs_softening": true,
+      "notes": "GUARDRAIL. Gray's argument is structural and about the ballot measure. It is NOT an accusation against any candidate and must not be deployed as one. The setting of his remarks could not be pinned, so do not describe where he said it. If the deck carries Gray it MUST carry Demboski at C44 on the same or adjacent slide."
+    },
+    {
+      "id": "C44",
+      "claim": "Former Anchorage official Amy Demboski argued against the measure on the ground that it would hurt freedom of speech.",
+      "value": "hurt freedom of speech",
+      "verbatim": "Demboski said that capping contributions to political candidates and groups is akin to limiting the rights of Alaskans 'to support the causes you believe in' and would 'hurt freedom of speech.'",
+      "source_url": "https://www.adn.com/politics/2026/07/30/alaskans-to-vote-on-campaign-finance-limits-after-four-years-of-uncapped-contributions/",
+      "source_outlet": "Anchorage Daily News, Iris Samuels",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.88,
+      "notes": "MANDATORY PAIRING WITH C43. This is an eighteen day out ballot question and the deck takes no side. The verbatim is ADN's construction with two inner quotations, so render it as ADN reported rather than as a clean Demboski sentence."
+    }
+  ],
+  "adjudications": [
+    {
+      "conflict": "A. Hometown, Kenai or Soldotna",
+      "ruling": "PRINT KENAI. Both pages fetched. The ADN opinion piece of 2026-07-29 says Kenai in the subject's own signed voice in the body and again in the author bio, and a direct query confirmed the word Soldotna does not appear on that page at all. The ADN news story of 2026-07-23 says Soldotna once, and Alaska Public Media's republication carries the same byline, so Soldotna is two web pages but one reporting effort. No correction exists as of the run date.",
+      "claims": ["C30", "C31"]
+    },
+    {
+      "conflict": "B. The 80 percent out of state share",
+      "ruling": "KILLED. S6 was wrong; S1 and S3 were right. The ADN page of 2026-07-23 was queried directly and the only out of state characterization it publishes is qualitative. No percentage appears anywhere. The 80 percent, the $1.84 million total and the Feb 2 to July 17 window all fail and all three are killed. Write 'a majority' and $1.8 million.",
+      "claims": ["C24", "C25"]
+    },
+    {
+      "conflict": "C. Does Drake Thomas endorse Ballot Measure 1 by name",
+      "ruling": "NO. S2 was wrong and S1 was right. The op-ed page was queried directly and Ballot Measure 1 is not named; the entire extent of his position on the rules is that it is crazy Alaska allows unlimited contributions and he hopes that changes. Separately the CANDIDATE did endorse it, to The Nome Nugget on 2026-07-30. The deck attributes the general wish to the donor and the specific endorsement to the candidate, and never crosses them.",
+      "claims": ["C29", "C37"]
+    },
+    {
+      "conflict": "D. The 2006 vote share",
+      "ruling": "USE 73 PERCENT AND CITE THE DIVISION OF ELECTIONS. Official 2006 primary returns read through the text proxy. Measure No. 1, petition 03DISC, YES 113,130 at 73.00 percent, NO 41,836 at 27.00 percent, 439 of 439 precincts. ADN's 'over 70%' is consistent and is retained only as the corroborating secondary leg.",
+      "claims": ["C17", "C41"]
+    },
+    {
+      "conflict": "E. The Thompson $100 check anecdote",
+      "ruling": "VERIFIED AND USABLE. Read in the Ninth Circuit opinion itself, which text extracted through the r.jina.ai prefix even though the scout reported extraction failed. One caution, the $3,000 is the aggregate nonresident ceiling for a state house race, not a gubernatorial figure, so staging 2015's hundred dollars against 2026's hundred thousand must not imply the same ceiling applied to both offices.",
+      "claims": ["C10"]
+    }
+  ],
+  "notes_for_the_deck": [
+    "THE CENTRAL ARTIFACT HAS A DECLARED SOURCING WEAKNESS. C02 through C05, the APOC table saying Unlimited, is primary and rock solid. C01, the statute still printing $500, is NOT primary. akleg.gov was tried eight ways including the proxy that worked for everything else. The $500 figure is corroborated by the Ninth Circuit naming section 15.13.070(b)(1) and the $500 annual limit, and by ADN reporting the pre 2021 cap was $500. Phrase the slide as 'the statute as codified still reads $500' with both credited. Do not print 'never repealed' as a bare assertion.",
+    "CLAIM 3 IS A RULE PLUS AN INFERENCE, KEEP THEM APART. C15 and C16 verify the ninety day rule and who certifies. That is all that is verified. The 2026 primary has not been certified, so the deck writes 'ninety days after certification, which lands after the November general' and NEVER a specific December date, and labels the consequence as an inference on the slide.",
+    "SIX EMPLOYEES GAVE PERSONALLY. THE COMPANY DID NOT GIVE. No corporate or PAC contribution is reported anywhere, the op-ed's bio line disclaims that it represents Anthropic, and Anthropic has issued no statement of any kind. Every construction that reads 'Anthropic donated' is wrong. Do not use AnthroPAC in any form.",
+    "NO CAUSATION, NO WRONGDOING, NO SIDE. The primary is eighteen days out. Nothing in the verified record establishes any quid pro quo, and the record cuts the other way, since the plank the candidate published would restrict the industry the donors work in. Any construction implying the money bought the policy, or that the policy is insincere, must not ship.",
+    "THE FAIRNESS COUNTERWEIGHTS ARE NOT OPTIONAL. C26 and C27 must get the same slide depth as the $372,000 cluster, and both come from the same story and filing round so there is no period mismatch. Note explicitly that Ballot Measure 1 would not touch self funding at all.",
+    "PAIR C43 AND C44. If Gray's argument for the measure appears, Demboski's against it appears on the same or the adjacent slide. Gray's quote may not be staged as an attack on any candidate. Do not describe the setting of Gray's remarks.",
+    "TENSE. Early voting OPENS August 3, three days after this run. It has not begun. Absentee ballots have already been mailed, which is the sharper and correct point.",
+    "PRECISION CEILINGS. Nearly $9 million is as precise as the published field total gets. The cluster is about a fifth of one candidate's haul and about 4 percent of the field; no decimals. More than $525,000 and more than $1.4 million are FLOORS. Every dollar figure is a snapshot the August 11 filing will move, and the deck should say so.",
+    "A LIVE NUMBER DISCREPANCY TO STAY AWAY FROM. The Nome Nugget of 2026-07-30 writes that an analysis linked $400,000 to Anthropic employees, while ADN of 2026-07-23 names six employees and $372,000. Use ADN's $372,000 and do not reconcile or average the two.",
+    "THE DONOR HAS NOT BEEN ANSWERED. Nothing published between 2026-07-29 and 2026-07-31 responds to the op-ed by name, and the three hostile local framings all predate it. The deck must not imply a local debate about the op-ed is under way.",
+    "IF THE DECK PRINTS NEW YORK'S THRESHOLD OR DURATION, SOMEBODY MUST FETCH THE EXECUTIVE ORDER FIRST. Nobody read it. C36 states the plank's four unspecified items as gaps, which is defensible; importing New York's specifics as if they were the plank's is not.",
+    "THE JOINT TICKET CAVEAT AT C13. A governor candidate runs on a joint ticket, so the relevant cap may be the $4,000 joint figure rather than the $2,000 single candidate figure. Any reduction ratio printed on the $100,000 gift must label which cap it uses."
+  ],
+  "stories_surviving": [
+    "The rulebook is on the ballot. Alaska's statute still prints $500, APOC's own table says Unlimited, and Ballot Measure 1 asks voters on August 18 whether to write $2,000 back in",
+    "Twenty years apart on the same August primary ballot. Alaskans created the $500 cap themselves in 2006 with 73 percent, a federal court killed it in July 2021, and a veto in July 2026 sent the replacement back to them",
+    "Even a yes vote arrives late. An initiated law takes effect ninety days after certification, so the $2,000 cap would not reach the race that produced the $100,000 check",
+    "The largest donor published his motive, and it is the inverse of what the local speculation assumed",
+    "The concentration and its counterweights. $372,000 from six people is about a fifth of one candidate's money, while one rival put more than $1.4 million of his own in and two Anchorage donors gave another more than $525,000"
+  ],
+  "killed": [
+    {
+      "claim": "More than 80 percent of Kreiss-Tomkins' money is from Outside",
+      "why": "No permitted source publishes any out of state percentage. The ADN story of 2026-07-23 was queried directly and its only characterization is qualitative. The 80 percent traces to a partisan outlet excluded from this run. Write 'a majority'."
+    },
+    {
+      "claim": "More than $1.84 million raised by the campaign",
+      "why": "ADN publishes $1.8 million. The $1.84 million figure appears on no page fetched and traces to the excluded outlet."
+    },
+    {
+      "claim": "The reporting window ran from February 2 to July 17, 2026",
+      "why": "Traces only to the excluded outlet. ADN says 'since entering the race in February' with no window. Printing a precise window would attach false precision to every ratio computed against it."
+    },
+    {
+      "claim": "$365,808 in in-Alaska income for the campaign",
+      "why": "Unverified on any page fetched by any scout or by the fact-checker. Excluded outlet lineage."
+    },
+    {
+      "claim": "$521,812 from a broader AI donor network",
+      "why": "Unverified on any page fetched. Excluded outlet lineage, and it also blurs the six named Anthropic employees into an undefined larger group."
+    },
+    {
+      "claim": "Drake Thomas is a member of technical staff at Anthropic",
+      "why": "No job title appears in the op-ed. The page was queried directly. What it says is that he works on the safety team, which is C33."
+    },
+    {
+      "claim": "Drake Thomas supports Ballot Measure 1",
+      "why": "Ballot Measure 1 is not named anywhere in his op-ed. His only statement on the rules is C29. The candidate, not the donor, endorsed the measure."
+    },
+    {
+      "claim": "The campaign has 1,569 Alaska donors, more than any other campaign for governor",
+      "why": "Verified only as something the donor WROTE in an advocacy piece, unsourced, with no independent confirmation, and the APOC filings portal could not be queried. The verbatim also contains an em dash, which the house rules bar from the published record. Dropped on the fact-checker's own recommendation that the safest choice is to leave it out."
+    },
+    {
+      "claim": "Anthropic donated to a candidate for Alaska governor",
+      "why": "False as stated. Six employees gave personally, the op-ed's bio line disclaims that it represents Anthropic, and no corporate or PAC contribution is reported anywhere. Anthropic has issued no statement."
+    },
+    {
+      "claim": "Ballot Measure 1, if it passes, takes effect in December 2026",
+      "why": "The ninety day rule is verified but the 2026 primary has not been certified, so no specific effective date is verifiable in advance. The deck may say ninety days after certification and that this lands after the November general, flagged as an inference."
+    },
+    {
+      "claim": "Roll call votes on HB 16 were Senate 12 to 8 and House concurrence 21 to 19 with the effective date clause failing 24 to 16",
+      "why": "Single outlet, and akleg.gov returned 403 or 503 on every attempt so no bill history, roll call or veto transmittal was read by any scout or by the fact-checker."
+    },
+    {
+      "claim": "APOC deadlocked 3 to 2 in February 2022 and declined to revive limits at about $1,500 per individual",
+      "why": "The underlying APOC document AO 21-09 could not be read; a site migration killed the URL and the advisory opinion database will not render without a form POST. Two secondary accounts agree but no primary document is in the record, and the claim is not load bearing for this deck's spine. Held out rather than published thin."
+    },
+    {
+      "claim": "Ballot Measure 1 does not restore any out of state contribution limit",
+      "why": "Directionally supported, since the printed ballot text contains no residency term, but it is an absence of evidence claim about a document read through a proxy that may have truncated, and the full act text could not be reached. The safe and verified version is C12, that the cap as printed is a flat $2,000 with no residency term, which means it would reach an out of state individual the same as an Alaskan."
+    },
+    {
+      "claim": "New York's model moratorium covers facilities of 50 MW and above for up to one year",
+      "why": "Nobody read the executive order. The plank cites New York State by name but the specifics were not verified on a fetched page, and importing them would put numbers in the candidate's mouth that his platform does not contain."
+    },
+    {
+      "claim": "An investigation published by an outlet called Alaska Story",
+      "why": "Excluded by direction. Not carried in any form, not searched for, not described."
+    }
+  ]
+}

@@ -1954,3 +1954,60 @@ measured (S01 +0.028, S02 +0.031, S03 +0.055, S04 +0.012, S09 +0.086).
   detail-dense by construction, and its parameters can carry story quantities.
   Sources: bankofcanadamuseum.ca/2020/07/the-art-of-guilloche/,
   mathpuzzle.com/MAA/13-Guilloche Patterns/mathgames_02_09_04.html
+
+### 2026-07-31 (No. 21), the engraving bench, and what the directors room got right
+
+THE CONVERGENCE IS THE HEADLINE. Three treatment directors pitched under three
+lenses (editorial-essayist, historian-of-the-future, data-journalist) without
+seeing each other's work, and all three independently chose the same material,
+line engraving on a printed instrument. That has not happened in twenty runs.
+When the room converges that hard, the material is right and the argument is
+over. Spend the remaining judgement on WHICH organs to graft, not on whether.
+
+THE BEST IDEA IN THE ROOM WAS A MECHANISM, NOT AN IMAGE. Director B proposed
+generating the art AFTER text layout, from MEASURED boxes, so the engraving is
+never given permission to exist under a glyph. Director C arrived at the same
+thing from the other direction. That is structurally stronger than a knockout
+plate against the "text against geometry" hard fail, because qa.py's collision
+walk is DOM only and canvas ink has no node, so a plate is a thing you can
+size wrong and a reservation is a thing that cannot exist. This deck shipped
+with ZERO knockout plates and three separate pixel critics independently
+confirmed no stroke grazes a glyph.
+
+AND THE HONEST CAVEAT ON IT. The first render still had feathered strokes
+grazing glyph rings on two slides. The padding had to go from 14 px to 22 px
+and the feather from 18 to 24. A reservation is only as good as its measured
+padding, so measure it against a render rather than assuming the mechanism
+covers you.
+
+THE THING THAT COST THE MOST TIME, AND IT WAS ENTIRELY SELF-INFLICTED. Every
+absolute layout position guessed from a word count produced a text collision.
+Every position re-derived from render_report.json's MEASURED boxes held. Five
+separate collision-repair render cycles were spent learning this, on a machine
+whose instinct ledger has said "size every plate from the MEASURED string,
+never a guessed constant" at 0.95 confidence since 2026-07-29. The instinct was
+about plates and the defect was about layout, and nobody had generalised it.
+It is generalised now. Read the measured y and h out of the render report and
+re-derive the stack before the second pass.
+
+THE RULE THE BUILD SETTLED ON BY ITSELF. Body copy goes on the dark ground or
+in a reserved burin field, never on the lit half of a lit surface. Slides 02,
+03, 08 and 09 all failed contrast or the art-crossing gate for exactly this
+reason, and all four were fixed by moving the text onto dark ground rather than
+by brightening the type. Decide the text ground before the composition.
+
+TWO OF THREE DIRECTORS PROPOSED A TYPE PAIRING THAT HAD ALREADY SHIPPED. Both
+refused to claim novelty without a check, which is the behaviour the No.20
+correction was supposed to produce and it worked. But the fact that two of
+three landed on already-shipped trios says the last-two-decks rule is too weak
+to produce felt variety on its own. This run added a full-ledger pairing audit
+and it is worth keeping.
+
+WHAT DID NOT SHIP, AND IT IS THE DECK'S REAL WEAKNESS. There is no map and no
+geographic anchor anywhere in ten slides. Director A named exactly this against
+its own pitch before a line was drawn, wrote that "a cartographer's pitch beats
+mine outright on that axis", and said that if the showrunner judged Alaskan-ness
+load bearing then its pitch was the wrong one. The showrunner took the pitch
+anyway and then cut the one coastline the deck had, on slide 03, to solve a
+layout collision. A self-critique that accurate should carry more weight at
+selection time than it did.

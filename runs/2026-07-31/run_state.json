@@ -1,0 +1,40 @@
+{
+ "run_date": "2026-07-31",
+ "carousel_no": 21,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "pending",
+  "flow_review": "pending",
+  "assemble": "done",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-07-31/plan.md",
+  "field_notes_craft_refresh": "knowledge/FIELD_NOTES.md (2026-07-31 entry)",
+  "dedupe_check": "exit 1, No.17 LIKELY DUPLICATE jaccard 0.161, read in full, shipping as explicit UPDATE",
+  "scout_merge": "out/2026-07-31/scout_merge.md (+ scouts/S1..S6_notes.md)",
+  "claims": "out/2026-07-31/claims.json (claims_check PASS, 43/43 usable, 24 primary)",
+  "selection": "out/2026-07-31/selection.md",
+  "docket": "ledger/docket.json, 3 items refreshed, docket_dates_check clean, committed",
+  "storyboard": "out/2026-07-31/storyboard.md, dossier_check PASS 10 dossiers, BUILD RECONCILIATION appended",
+  "type_pairing_audit": "out/2026-07-31/type_pairing_audit.md",
+  "caption": "out/2026-07-31/caption.txt, caption_check PASS 894 chars hook 80",
+  "copy": "out/2026-07-31/copy.json, copy_sync PASS 77 strings, style_lint clean",
+  "slides": "out/2026-07-31/slides/slide-01..10.html, built from out/2026-07-31/build_slides.py",
+  "render": "out/2026-07-31/render, 10/10 OK, qa.py WARN 0 fails",
+  "final": "out/2026-07-31/final, pdf vector 5.05 MB, 10 thumbs, contact sheet",
+  "new_asset": "assets/js/akengrave.js, committed"
+ }
+}
