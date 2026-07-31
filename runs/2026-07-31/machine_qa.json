@@ -4,7 +4,6 @@
       "file": "slide-01.html",
       "fails": [],
       "warns": [
-        "tiny-text: 'One section. Two current answers.' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "outside safe zone: 'Struck by the Ninth Circuit, 30 July 202' at 212,960 868x70 (margin 80px)",
         "outside safe zone: '01 / 10' at 868,1250 118x31 (margin 80px)",
         "low contrast ~3.3 on '01 / 10' (est.)"
@@ -17,9 +16,8 @@
       "file": "slide-02.html",
       "fails": [],
       "warns": [
-        "text collision (40% overprint): 'Same section cited by both. Disclosu' x '58 18 N 134 25 W' near 80,1306 [decorative involved]",
         "outside safe zone: 'APOC limits table, 29 Jul 2026' at 610,642 420x34 (margin 80px)",
-        "outside safe zone: 'Same section cited by both. Disclosure o' at 80,1250 700x68 (margin 80px)",
+        "outside safe zone: 'Same section cited by both. Disclosure o' at 80,1216 820x68 (margin 80px)",
         "outside safe zone: '02 / 10' at 868,1250 118x31 (margin 80px)"
       ]
     },
@@ -28,24 +26,19 @@
       "fails": [],
       "warns": [
         "outside safe zone: 'Drake Thomas, ADN opinion, 29 Jul 2026' at 600,826 436x96 (margin 80px)",
-        "opaque plate grazing text: 'Drake Thomas gave Jonathan Kreiss-Tomkin' has a 648x5px patch covered by .note mono burin -- pixel critic verify no glyph is cut",
-        "outside safe zone: 'He grew up in Kenai and lives in Califor' at 164,1122 716x198 (margin 80px)",
-        "outside safe zone: '03 / 10' at 868,1250 118x31 (margin 80px)",
-        "low contrast ~3.3 on '03 / 10' (est.)"
+        "outside safe zone: 'He grew up in Kenai and lives in Califor' at 164,1146 736x164 (margin 80px)",
+        "outside safe zone: '03 / 10' at 868,1250 118x31 (margin 80px)"
       ]
     },
     {
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 61% of this slide's own average craft density (top 18% / mid 70% / bottom 22% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
-        "tiny-text: 'Matt Heilala, his own money' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'Two Anchorage donors to Tom Begich' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'Six Anthropic employees' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'Drake Thomas, one person' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
-        "outside safe zone: 'One scale, all four rows, 840 px to $1,6' at 132,886 900x68 (margin 80px)",
-        "outside safe zone: 'Gov. Dunleavy's veto message called the ' at 676,940 372x267 (margin 80px)",
-        "outside safe zone: 'Field total nearly $9 million, deliberat' at 132,1174 556x130 (margin 80px)",
+        "top-loaded composition: the bottom third carries 63% of this slide's own average craft density (top 26% / mid 71% / bottom 26% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "text collision (35% overprint): 'Field total nearly $9 million, not d' x '58 18 N 134 25 W' near 148,1306 [decorative involved]",
+        "outside safe zone: 'One scale, all four rows, 840 px to $1,6' at 148,920 916x130 (margin 80px)",
+        "outside safe zone: 'The veto message left personal wealth a ' at 700,1044 344x198 (margin 80px)",
+        "outside safe zone: 'Field total nearly $9 million, not drawn' at 148,1240 576x96 (margin 80px)",
         "outside safe zone: '04 / 10' at 868,1250 118x31 (margin 80px)",
         "low contrast ~3.3 on '04 / 10' (est.)"
       ]
@@ -54,10 +47,8 @@
       "file": "slide-05.html",
       "fails": [],
       "warns": [
-        "tiny-text: 'August 22, 2006' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'ENGRAVING SPECIMEN. R 113.130 . r 41.836 . d 73.00' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
-        "outside safe zone: 'ENGRAVING SPECIMEN. R 113.130 . r 41.836' at 80,1250 929x47 (margin 80px)",
-        "outside safe zone: '05 / 10' at 944,1172 136x82 (margin 80px)"
+        "outside safe zone: 'R 113.130 . r 41.836 . d 73.00 . 73 turn' at 80,1250 721x51 (margin 80px)",
+        "outside safe zone: '05 / 10' at 892,1172 146x51 (margin 80px)"
       ],
       "encodings": [
         "'the mark on this sheet was made by Alaskans, not by a court and not by a governor': dE 73.6, AUC 0.90, visible 0%/0%, seen 0/0px at 432w"
@@ -76,7 +67,7 @@
         "tiny-text: 'Party to candidate' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'Upheld' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "outside safe zone: 'On July 30, 2021 the Ninth Circuit rever' at 180,906 840x91 (margin 80px)",
-        "outside safe zone: 'In 2015 a $100 check came back to a Wisc' at 164,1024 876x96 (margin 80px)",
+        "outside safe zone: 'In 2015 a $100 check came back to an out' at 164,1024 876x96 (margin 80px)",
         "outside safe zone: 'The legislature's replacement was vetoed' at 164,1188 696x130 (margin 80px)",
         "outside safe zone: '06 / 10' at 868,1250 118x31 (margin 80px)"
       ]
@@ -85,9 +76,9 @@
       "file": "slide-07.html",
       "fails": [],
       "warns": [
+        "top-loaded composition: the bottom third carries 69% of this slide's own average craft density (top 23% / mid 28% / bottom 15% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "outside safe zone: 'A governor runs on a joint ticket, so th' at 132,614 880x68 (margin 80px)",
         "outside safe zone: 'The printed text carries no residency te' at 132,678 880x68 (margin 80px)",
-        "low contrast ~3.5 on 'The sponsors are running no advertising ' (est.)",
         "outside safe zone: '07 / 10' at 868,1250 118x31 (margin 80px)"
       ]
     },
@@ -95,7 +86,7 @@
       "file": "slide-08.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 73% of this slide's own average craft density (top 11% / mid 36% / bottom 15% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "top-loaded composition: the bottom third carries 69% of this slide's own average craft density (top 6% / mid 40% / bottom 14% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "outside safe zone: '1 px = 1 day. 90 days. Early voting open' at 560,1006 400x273 (margin 80px)",
         "outside safe zone: '08 / 10' at 868,1250 118x31 (margin 80px)"
       ]
@@ -117,6 +108,6 @@
     }
   ],
   "fails": 0,
-  "warns": 49,
+  "warns": 40,
   "verdict": "WARN"
 }
