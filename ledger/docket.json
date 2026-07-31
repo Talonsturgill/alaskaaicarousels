@@ -106,7 +106,7 @@
     }
    ],
    "first_seen": "2026-07-08",
-   "last_updated": "2026-07-29",
+   "last_updated": "2026-07-31",
    "history": [
     {
      "date": "2026-07-08",
@@ -175,6 +175,10 @@
     {
      "date": "2026-07-29",
      "note": "Re-checked the state's own online public notice for ADL 422741. Twelve days after the written comment window closed at 4:30 p.m. on July 17, the Division of Oil and Gas has published no final best interest decision, and the notice still stands as a preliminary decision to offer the 50 year lease on 715.4 acres. Status unchanged at pending decision, and public access stays closed because no comment path remains open. Commenters who filed during the window may appeal the division's final decision if they are aggrieved by it."
+    },
+    {
+     "date": "2026-07-31",
+     "note": "Two weeks after the written comment window closed at 4:30 p.m. on July 17, the Division of Oil and Gas has still published no final best interest decision on the 50 year lease. Status unchanged at pending decision. Public access stays closed because no comment path remains open, and the only route left belongs to people who filed during the window and may appeal a decision that aggrieves them."
     }
    ]
   },
@@ -267,7 +271,7 @@
     }
    ],
    "first_seen": "2026-07-08",
-   "last_updated": "2026-07-30",
+   "last_updated": "2026-07-31",
    "history": [
     {
      "date": "2026-07-08",
@@ -296,6 +300,10 @@
     {
      "date": "2026-07-30",
      "note": "Rep. Rashida Tlaib introduced the No AI Data Centers on Federal Lands Act on July 23 with five cosponsors. It would permanently ban large AI data centers and associated infrastructure on land owned or managed by the United States, including military bases, and would require existing qualifying facilities to be removed and their sites remediated. The 4,700 acres offered here sit on exactly that kind of land. No award has been announced for the Alaska proposals, which were due June 29. Separately, the Air Force posted a second Eielson land solicitation on July 23 with an August 10 deadline, but that one is for mixed use development and is not part of this offering."
+    },
+    {
+     "date": "2026-07-31",
+     "note": "Re-checked the solicitation record for AFCEC-26-R-0006. It still reads Past Due with no award and no awardee, thirty-two days after the June 29 proposal deadline. The three Alaska installations named in the request still have no publicly announced lessee. Evaluation is private, so no public comment room exists here."
     }
    ]
   },
@@ -587,7 +595,7 @@
    "status": "open-for-comment",
    "decider": "Alaska DNR, Commissioner John Crowther",
    "public_access": "open",
-   "access_note": "Anyone can comment on the DNR preliminary decision to transfer the land to AIDEA through 5 p.m. August 19, 2026, on the DNR website. This is now the one open comment room among the tracked decisions.",
+   "access_note": "Anyone can comment on the DNR preliminary decision to transfer the land to AIDEA through 5 p.m. August 19, 2026, on the DNR website. Commenting also buys standing, because the notice says only people from whom the division receives timely written comment during this window will be eligible to appeal the Final Finding and Decision. This is the one open comment room among the tracked decisions.",
    "summary": "A DNR preliminary decision would transfer about 20,000 acres, roughly 30 square miles, of state land just north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that includes scalable data centers and a logistics hub about 60 road miles north of Anchorage. Public comment runs through August 19.",
    "key_dates": [
     {
@@ -634,7 +642,7 @@
     }
    ],
    "first_seen": "2026-07-17",
-   "last_updated": "2026-07-29",
+   "last_updated": "2026-07-31",
    "history": [
     {
      "date": "2026-07-17",
@@ -659,6 +667,10 @@
     {
      "date": "2026-07-29",
      "note": "Correction. Between July 21 and today this entry showed August 13 as the comment deadline. That is the date of a separate Houston City Council vote, which stays tracked here as its own key date. The DNR comment deadline was and remains 5 p.m. August 19, 2026, re-verified today against the primary notice, Alaska DNR Online Public Notices id 224431, ADL 234762, which shows no extension or amendment."
+    },
+    {
+     "date": "2026-07-31",
+     "note": "Re-verified today against the primary notice, Alaska DNR Online Public Notices id 224431. The deadline is unchanged at 5 p.m. Wednesday, August 19, 2026, the parcel is approximately 19,950 acres about two miles north of Houston, and no extension, amendment or correction appears. Two things worth stating plainly for anyone deciding whether to write. First, the notice limits appeal rights to people who comment during this window, so a comment is the only way to keep a say after the decision issues. Second, the Houston City Council vote tracked here for August 13 is a separate question before a separate body. Mat-Su Sentinel reporting places this parcel outside Houston city limits, and the Matanuska-Susitna Borough, which does have jurisdiction, does not require a special permit for a data center, so a city ban would not by itself reach this land."
     }
    ]
   },

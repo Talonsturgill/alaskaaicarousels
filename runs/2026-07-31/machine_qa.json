@@ -1,0 +1,101 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'Struck by the Ninth Circuit, 30 July 202' at 212,960 868x70 (margin 80px)",
+        "outside safe zone: '01 / 10' at 868,1250 118x31 (margin 80px)"
+      ],
+      "encodings": [
+        "'a printed rule and the mark that killed it are on the same sheet': dE 20.8, AUC 0.60, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'APOC limits table, 29 Jul 2026' at 610,642 420x34 (margin 80px)",
+        "outside safe zone: 'Same section cited by both. Disclosure o' at 80,1216 820x68 (margin 80px)",
+        "outside safe zone: '02 / 10' at 868,1250 118x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'Drake Thomas, ADN opinion, 29 Jul 2026' at 600,826 436x96 (margin 80px)",
+        "outside safe zone: 'He grew up in Kenai and lives in Califor' at 164,1146 736x164 (margin 80px)",
+        "outside safe zone: '03 / 10' at 868,1250 118x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 66% of this slide's own average craft density (top 26% / mid 71% / bottom 27% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "outside safe zone: 'One scale, all four rows, 840 px to $1,6' at 148,920 916x130 (margin 80px)",
+        "outside safe zone: 'The veto message left personal wealth a ' at 700,1044 344x198 (margin 80px)",
+        "outside safe zone: 'Field total nearly $9 million, not drawn' at 148,1232 736x62 (margin 80px)",
+        "outside safe zone: '04 / 10' at 868,1250 118x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'R 113.130 . r 41.836 . d 73.00 . 73 turn' at 80,1250 721x51 (margin 80px)",
+        "outside safe zone: '05 / 10' at 892,1172 146x51 (margin 80px)"
+      ],
+      "encodings": [
+        "'the mark on this sheet was made by Alaskans, not by a court and not by a governor': dE 73.6, AUC 0.90, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'On July 30, 2021 the Ninth Circuit rever' at 180,906 840x91 (margin 80px)",
+        "outside safe zone: 'In 2015 a $100 check came back to an out' at 164,1024 876x96 (margin 80px)",
+        "outside safe zone: 'The legislature's replacement was vetoed' at 164,1188 696x130 (margin 80px)",
+        "outside safe zone: '06 / 10' at 868,1250 118x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'A governor runs on a joint ticket, so th' at 132,614 880x68 (margin 80px)",
+        "outside safe zone: 'The printed text carries no residency te' at 132,678 880x68 (margin 80px)",
+        "outside safe zone: '07 / 10' at 868,1250 118x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 71% of this slide's own average craft density (top 8% / mid 37% / bottom 14% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "outside safe zone: '1 px = 1 day. 90 days. Early voting open' at 560,1006 436x301 (margin 80px)",
+        "outside safe zone: '08 / 10' at 868,1250 118x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'The $500 figure is from the published co' at 100,1174 892x130 (margin 80px)",
+        "outside safe zone: '09 / 10' at 868,1250 118x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-10.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '10 / 10' at 868,1250 118x31 (margin 80px)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 28,
+  "verdict": "WARN"
+}

@@ -910,6 +910,68 @@
     "https://www.uaf.edu/acep/about/our-team/richard-wies.php"
    ],
    "outcome_notes": "Score 8.09 against a relaxed 7.7 threshold after 4 revision rounds, 0 hard fails. Chosen over the gas-curtailment story, which was the day's strongest news peg but failed the dedupe gate with five LIKELY DUPLICATES, and over the RTO closed-rooms story, which lost its spine at fact-check when akleg.gov 403'd on SB 250 and no source connected the Railbelt tariff to large new loads. Runner-up GAIA (NSF 2608510) is fully verified in this run's claims and available to a later run."
+  },
+  {
+   "run_date": "2026-07-31",
+   "carousel_no": 21,
+   "topic": "Alaska's individual campaign contribution limit is printed as $500 in AS 15.13.070(b) as codified and as Unlimited in the Alaska Public Offices Commission's own limits table dated 2026-07-29, because the Ninth Circuit struck the cap on 2021-07-30 and nothing replaced it. Ballot Measure 1, on the same 2026-08-18 primary ballot as the governor's race, asks whether to write $2,000 back in.",
+   "angle": "THE RULEBOOK, not the donors. Shipped as an EXPLICIT UPDATE to No.17 (2026-07-25), stated on the cover. No.17 was a deck about a RECORD (the money is on file, the motive is not); this is a deck about a RULE, and the decider is the reader with a deadline. The material new development is threefold: the largest donor published his motive on 2026-07-29, ADN reported on 2026-07-30 that Ballot Measure 1 cites these same contributions as its example, and this run verified from primary documents that the statute and the enforcer disagree, that a passed initiative takes effect ninety days after certification and so can't govern the race it shares a ballot with, and that Alaskans wrote the $500 cap themselves in 2006 with 73.00 percent on an August primary ballot. Fairness architectural, four donation totals at one scale with the two floors drawn as open terminals. No causation, no wrongdoing, no advocacy eighteen days before the primary.",
+   "entities": [
+    "Alaska Public Offices Commission",
+    "AS 15.13.070",
+    "Thompson v. Hebdon",
+    "Ninth Circuit",
+    "Ballot Measure 1",
+    "23RCF2",
+    "Alaska Division of Elections",
+    "Drake Thomas",
+    "Anthropic",
+    "Jonathan Kreiss-Tomkins",
+    "Matt Heilala",
+    "Tom Begich",
+    "Robin Brena",
+    "Justin Weaver",
+    "Mike Dunleavy",
+    "House Bill 16",
+    "Bruce Botelho",
+    "Calvin Schrage",
+    "Andrew Gray",
+    "Amy Demboski",
+    "Kenai",
+    "Alaska governor race 2026",
+    "August 18 2026 primary",
+    "Alaska Constitution Article XI Section 6"
+   ],
+   "keywords": [
+    "contribution limits",
+    "campaign finance",
+    "ballot measure",
+    "dead letter",
+    "codification",
+    "unlimited contributions",
+    "nonresident aggregate",
+    "initiated law",
+    "ninety days",
+    "certification",
+    "early voting",
+    "self funding",
+    "concentration",
+    "disclosure",
+    "AI donors",
+    "elections"
+   ],
+   "headline": "$500 in the statute. Unlimited in the table. Same law.",
+   "sources": [
+    "https://apoc.doa.alaska.gov/filer-resources/contribution-limits/",
+    "https://cdn.ca9.uscourts.gov/datastore/opinions/2021/07/30/17-35019.pdf",
+    "https://www.elections.alaska.gov/election/2026/Primary/SampleBallots/HD1.pdf",
+    "https://ltgov.alaska.gov/information/alaskas-constitution/",
+    "https://www.elections.alaska.gov/results/06PRIM/data/results.htm"
+   ],
+   "title": "Struck. And Still Printed. Alaska's $500 Cap",
+   "dedupe_note": "dedupe_check.py exit 1 as the queued brief predicted. One LIKELY DUPLICATE, No.17 six days prior, token_jaccard 0.161, 8 shared entities. Full output read, never tailed; the No.17 entry read in full before the directors room. Shipped as an explicit UPDATE on the cover chip and in the caption.",
+   "conflict_of_interest": "Deck concerns donations by six Anthropic employees and was produced by a routine running on a Claude model built by Anthropic. Disclosed on slide 09 at full headline scale (about 100 px), on the cover chip, in the caption, and at the top of the first comment. This run additionally discloses on the cover that it is the SECOND deck this page has published on these donors in seven days.",
+   "outcome_notes": ""
   }
  ]
 }
