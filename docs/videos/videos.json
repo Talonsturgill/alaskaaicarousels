@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-07-31-gate-with-no-number",
+      "date": "2026-07-31",
+      "title": "The Gate With No Number",
+      "caption": "A candidate for governor wants every new Alaska data center frozen until lawmakers act, modeled on New York's pause. New York's covers only the biggest sites and ends within a year; his has neither limit.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/master_9x16.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/master_9x16_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-07-31-gate-with-no-number",
       "date": "2026-07-31",
       "title": "The Gate With No Number",
