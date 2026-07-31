@@ -1,0 +1,142 @@
+{
+ "run_date": "2026-07-31",
+ "carousel_no": 21,
+ "revision_rounds": 4,
+ "threshold_applied": 7.7,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "weight": 0.14,
+   "score": 8.0,
+   "why": "Unmoved. '$500 in the statute. Unlimited in the table. Same law.' is 10 words, two specific numbers, a named tension, set huge in Instrument Serif, and it reads instantly in the 432px thumb I opened. Single oxblood strike through the engraved $500 is a real focal point. Held off 9 by two competing masses (headline block plus the lower $500 plate), by the self-referential eyebrow 'UPDATE TO NO. 17. SECOND DECK ON THESE DONORS IN SEVEN DAYS.' occupying prime cover real estate, and by zero visible Alaska geography."
+  },
+  {
+   "name": "Story arc &amp; swipe momentum",
+   "weight": 0.14,
+   "score": 8.0,
+   "why": "Unmoved. S02 pays the cover's contradiction immediately with both documents side by side, no agenda beat. Beats are distinct: gap, what the gap lets through, the fairness counterweight, the 2006 hero, the four uncapped years, what the ballot asks, the ninety-day gap, disclosure, close. Contact sheet reads as one composed sequence (one green-black ground, one sheet, the oval on every slide). Held at 8 because S05 and S06 are chronologically inverted and S06 is the one slide reorderable without loss, and no flow-critic pass was run to test that."
+  },
+  {
+   "name": "Artwork craft &amp; genuine detail",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Holding the line as instructed, and it slipped slightly. The swelled-line mechanism was NOT rebuilt, so the declared stroke-width variance is still invisible at feed scale: S01, S02, S03, S07, S08 and S10 all carry the same uniform fine mesh with no readable weight hierarchy. Hero shipped flat and argued it in the dossier, which the rubric prices at 7, not above. qa.py independently flags top-loaded composition with dead lower zones on S04, S07 and S08 (bottom third at 63-69% of each slide's own craft density). New craft debt from this revision round: S07's two argument panels are flat 392x268 black rectangles only 40-60% filled, and S08's headline now sets as five lines with 'can't' and 'on' orphaned alone. S06's status cartouches remain the most default-looking objects in the deck."
+  },
+  {
+   "name": "Story-art fusion",
+   "weight": 0.14,
+   "score": 8.0,
+   "why": "Unmoved and genuinely strong. I verified the S04 bar scale myself: declared 840px = $1,600,000, and the measured bars come out 736px / 280px / 194px / 51px against predicted 735 / 276 / 195 / 52. The scale is honest, not decorative. S05's rosette is parameterised by the actual 2006 returns and the specimen line prints those parameters on the slide (R 113.130, r 41.836, d 73.00, 73 turns). The cancel rule changes KIND per beat and inverts to a forget-me-not underscore at S07. The oval is filled gold exactly once, on the hero, in 2006. Capped at 8 because machine_qa's own encoding check reports 'visible 0%/0%, seen 0/0px at 432w' for both S01 and S05 encodings, and a stranger seeing only the art would guess 'engraved document', not 'campaign finance cap'."
+  },
+  {
+   "name": "Alaska authenticity &amp; local relevance",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "Named throughout and accurate: AS 15.13.070(b), APOC, the Ninth Circuit, Division of Elections, Drake Thomas, Jonathan Kreiss-Tomkins, Matt Heilala, Tom Begich, Amy Demboski, Rep. Andrew Gray, Kenai, Anchorage, Berkeley and Bethel, 439 precincts, the August 18 primary. This would make an Alaskan feel seen. Costs a full point for the shortfall the ledger itself records: no map and no geographic anchor anywhere in ten slides. The only geography is a static decorative footer reading 58 18 N 134 25 W on all ten."
+  },
+  {
+   "name": "Insight density &amp; factual weight",
+   "weight": 0.1,
+   "score": 9.0,
+   "why": "Every content slide adds a new verified specific and nothing repeats: two documents (S02), $100,000 plus $372,000 plus the donor's own signed quote (S03), four totals at one scale plus the veto framing (S04), the 2006 vote with precinct count (S05), three-of-four struck plus the 2015 returned check (S06), four proposed caps plus the joint-ticket wrinkle plus both sides (S07), the ninety-day mechanism (S08). 43 claims, 24 primary, claims_check PASS. The sourcing weakness (no APOC filing read directly, statute from a codification not the state server) is printed on S09 rather than hidden. Arithmetic checks out: 113,130 of 154,966 is 73.00 percent."
+  },
+  {
+   "name": "Variety vs ledger",
+   "weight": 0.08,
+   "score": 8.5,
+   "why": "Hero structure, atmosphere, palette family, line voice, continuity device, hook archetype and type pairing all diverge from the last four, and the type-pairing novelty claim was audited against the full ledger rather than the last four (a direct correction of No. 20's false novelty claim). Green-black security printing is a genuinely new palette family for the series. Held off 9 because narrative structure is 'argument', same class as several recent decks, and because topically this is the second deck on the same donors in seven days."
+  },
+  {
+   "name": "Legibility &amp; platform fitness",
+   "weight": 0.07,
+   "score": 6.0,
+   "why": "Up from 5.5 on real fixes, still the lowest score in the deck. Confirmed fixed: S05's counter no longer wraps (single line in a dark chip), and the tiny-text warnings on S04 and S05 are gone from machine_qa. NOT fixed, contrary to the revision report: machine_qa lines 61-68 still list EIGHT sub-24px nodes at 22px on slide-06 ('Individual to candidate', 'Struck' x3, 'Individual to group', 'Nonresident aggregate', 'Party to candidate', 'Upheld'). Still wrong: the S04 overprint, the S07/S08/S10 bare-on-sheet contrast, S08's five-line headline rag, 40 safe-zone warnings, and low contrast ~3.3 on the S01 and S04 progress counters. Vector PDF 4.85MB with title is in band and counters are present on all ten."
+  },
+  {
+   "name": "Copy: voice &amp; hook",
+   "weight": 0.05,
+   "score": 8.5,
+   "why": "Hook is 80 chars and complete well before the fold. 894 chars, inside the 300-900 band though at its ceiling. Analytical and position-taking ('nobody re-set the book'). Deck-summary line present. Real debatable close ('Measure 1's sponsors are buying no ads. Does it clear the August ballot anyway?'). Grade 8-10. Zero em/en dashes, zero colons, zero 'cannot', zero banned phrases, exactly 3 hashtags, no link in body. One soft spot: the Q-and-A scaffolding is slightly mechanical and the disclosure line interrupts momentum immediately before the close."
+  },
+  {
+   "name": "Deliverable completeness",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Down from 8.0. copy.json IS genuinely regenerated from render_report.json and copy_sync passes on 79 strings, which is a real improvement. Caption, claims, 5-item aftercare, 3 hashtags, a 13-source first comment with an explicit sourcing note, document title, and a 10-page vector PDF are all present. Marked down because two shipped evidence artifacts now contradict the shipped pixels: the storyboard's continuity table still specifies S04's 'dashed phantom ring at 3.6x diameter' which was removed and replaced by a bracket, and ledger/artwork.json entry 21 asserts 'NO KNOCKOUT PLATES ANYWHERE by design' while five slides (03, 04, 06, 07, 09) use an opaque .burin plate. The ledger also still says 'three revision cycles' at round four. I could not verify Gmail draft URL resolution from these artifacts."
+  }
+ ],
+ "calculation": "(8.0x0.14)+(8.0x0.14)+(6.5x0.16)+(8.0x0.14)+(8.0x0.12)+(9.0x0.10)+(8.5x0.08)+(6.0x0.07)+(8.5x0.05)+(7.5x0.10) = 1.12+1.12+1.04+1.12+0.96+0.90+0.68+0.42+0.425+0.75 = 8.535 uncapped. Two hard fails survive, so the rubric cap applies: 6.9.",
+ "uncapped_weighted": 8.53,
+ "weighted_total": 6.9,
+ "ships": false,
+ "weakest_criterion": "Legibility &amp; platform fitness (6.0 raw); Artwork craft is the biggest weighted drag at 6.5 x 0.16",
+ "hard_fails": [
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "FAIL",
+   "evidence": "SURVIVED, at a new site on a slide that was re-laid out. S04: the burin note #f4 sits at top:1240 with font-size 24px / line-height 1.42 and 14px padding, so its SECOND line ('NOT DRAWN.') occupies y 1288-1322. The decorative .coords footer '58 18 N 134 25 W' sits at top:1306 and, being later in DOM order, paints ON TOP of the opaque burin plate. They overprint in x 166-249, y 1306-1322. machine_qa.json line 38 measured it independently: \"text collision (35% overprint): 'Field total nearly $9 million, not d' x '58 18 N 134 25 W' near 148,1306\". It is plainly visible in slide-04.png bottom-left, where the coordinate glyphs run through 'NOT DRAWN.'. The lower-half restack that fixed the scale-note collision pushed this note down onto the footer. THE FIVE SITES I NAMED LAST CYCLE ARE ALL GENUINELY FIXED: S03's body now clears the plate with the descenders of 'company gave nothing and has said nothing' intact; S08's inference tag now ends at x 472, inboard of the sheet edge at x 500, fully in the dark column; S04's scale note is in a burin field clear of every bar terminal; S02's footnote moved to y 1216 and clears the coordinates footer; S05's counter is one line. I also re-checked the near-misses on all ten: S06's plate line 3 ends at y 1304 against the footer at y 1306 (2px clearance, ugly but not overlapping), and S03/S09's counters sit inside plate bounding boxes but land in empty space with no glyph within 60px."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "FAIL",
+   "evidence": "THE SITE I FAILED LAST CYCLE IS FIXED: S07's sponsors line is now class .burin at rgba(11,18,16,0.93) with #C6D8CC type, which computes to roughly 11:1, and it reads crisply in both the full render and the 432px thumb. But the rule still fails elsewhere on the same slide, and this is a correction of my own miss rather than a new defect. S07's four ballot-table row labels (.lbl, #9FB4A6, 25px) and the two annotation lines 'A GOVERNOR RUNS ON A JOINT TICKET...' and 'THE PRINTED TEXT CARRIES NO RESIDENCY TERM...' (.note, #A8BCAE, 24px) sit BARE on the lit sheet, not on a burin field. The sheet under them is AKC.ramp('#2C3E34',{steps:9,Lmin:0.22,Lmax:0.6}); akcolor.js confirms those are OKLab L, and the slide's own t = 0.30 + form/150 + 0.42*tone puts that region at ramp index 4-5, i.e. OKLab L 0.41-0.46, i.e. relative luminance 0.069-0.096. Against #A8BCAE (Y 0.474) that is 3.6 to 4.4:1; against #9FB4A6 (Y 0.428) it is 3.3 to 4.0:1. The deck's own palette table corroborates this: it designates the burin field #0B1210 as the label ground with the note 'All type sits here', and separately bans #6E8378 for type because it 'measures 3.6 to 1'. These strings are the exception to the deck's own rule. Same pattern on S08's '1 PX = 1 DAY...' block and S10's 'SOURCES IN COMMENTS'. Caveat stated plainly: this is derived from the source colours and the ramp function, not from a pixel sampler, so it wants the pixel-critic's sampler to confirm before the fix is designed."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "RESOLVED, narrowly. S05's counter no longer wraps. S07's right panel now carries the full Demboski quote including the inner quotation 'to support the causes you believe in' and 'hurt freedom of speech', and the attribution 'AMY DEMBOSKI, AGAINST, AS ADN REPORTED IT' is restored per the C44 pairing, so both panels carry comparable copy with matching attributions. No lorem, TODO, TBD or empty string in any of the 79 rendered strings. Two things stop short of a fail but should be named: S08's headline now sets as five lines with 'can't' and 'on' alone on their own lines (a consequence of narrowing the column to 392px), and S07's two 392x268 argument panels are only 40-60% filled, so both read as unresolved containers."
+  },
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "Transcribed all 79 on-slide strings, post_copy, first_comment, caption.txt and all 5 aftercare items. Every dash is a hyphen in a compound: 're-set', 'non-residents', 'Kreiss-Tomkins', 'OP-ED', 'self funding' (unhyphenated), 'out of state' (unhyphenated). Zero U+2013, zero U+2014."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "None in any rendered slide, in copy.json, in caption.txt or in the first-comment block."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "claims_check PASS, 43 claims, 24 primary. The storyboard's claims index maps every slide to its ids (S01 C01/C02/C04 through S10 C11/C40). C01, the $500 statute figure, carries confidence 0.82 with needs_softening true and an explicit note that no state-hosted copy was reachable across eight routes; the slide accordingly prints 'as codified' rather than 'never repealed', and S09 prints the sourcing weakness on the slide itself."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass",
+   "evidence": "Transcribed all ten slides against copy.json. No misspellings. Arithmetic verified independently: 113,130 / (113,130 + 41,836) = 73.00 percent exactly; 2006 to 2026 is 'twenty years later'; the S04 bar lengths match the declared 840px-to-$1,600,000 scale to within 5px on all four rows. One ambiguity worth noting but not a typo: S03's 'about a fifth of his $1.8 million' leaves 'his' technically attachable to Drake Thomas rather than Kreiss-Tomkins."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "10 slides, render 10/10 OK, assemble_report 10 pages, counters read 01/10 through 10/10."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict WARN, fails 0, warns 40 (down from 49). assemble_report.json pdf_mode 'vector', 4,854,227 bytes (4.85MB, inside the 2-25MB band), 10 pages, title 'Struck. And Still Printed. Alaska's $500 Cap'."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "It IS a 7-day repeat of No. 17, and the deck says so in four places rather than hiding it: the S01 eyebrow 'UPDATE TO NO. 17. SECOND DECK ON THESE DONORS IN SEVEN DAYS.', S09's body, the caption, and the first comment's opening disclosure. The material new development is real and dated: Ballot Measure 1 on the August 18 primary ballot, ADN's July 30 story, and the donor's own July 29 op-ed. The rule is satisfied. The editorial judgment behind it is a separate question for the maintainer, flagged below."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "Last four heroes per ledger/artwork.json: milled bone limestone register (17), GPU PBR insulator string on a yoke plate (18), orthographic Hour Column (19), Inhabited Dark winter valley multiplane (20). This deck is a lit curled paper instrument under a raking copy-stand key carrying white-line intaglio. Not a slab, not an object on a plate, not a quantity column, not a place."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "Scanned all 28 banned phrases against every slide string, the caption and the first comment. None present. Also checked the two maintainer rules that sit outside the banned list: zero colons anywhere in on-slide text or post copy, and zero instances of 'cannot' (S08 correctly prints \"can't\")."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "Exactly three, at the very end: #AlaskaCampaignFinance #BallotMeasure1 #AKleg. No URL anywhere in post_copy; all 13 source URLs plus alaskaaihq.com are confined to the first comment."
+  }
+ ],
+ "one_sentence_fix": "Move S04's #f4 note up (top:1240 to about top:1186, or drop the coords footer on that slide) so 'NOT DRAWN.' clears the coordinates line at y 1306, and add the deck's own .burin class to every string still sitting bare on the lit sheet (S07's four .lbl rows and its two .note annotation lines, S08's '1 PX = 1 DAY' block, S10's 'SOURCES IN COMMENTS'), which is what the dossier's own palette table already requires and which clears both surviving hard fails in one pass.",
+ "honest_note_for_the_email": "Do not post this yet. Uncapped it scores 8.53, its best number in four rounds, but two hard fails survive so the rubric caps it at 6.9 against a 7.7 threshold. Both are narrow and both are CSS-level fixes, not rebuilds.\n\nFIRST, the good news, verified rather than assumed. All five text collisions I named last cycle are genuinely gone: S03's descenders clear the plate, S08's inference tag is fully inboard of the sheet edge, S04's scale note is off the bar terminals, S02's footnote clears the footer, and S05's counter is one line. S07's sponsors line went from unreadable to about 11:1. The S04 phantom ring was replaced by a left-margin bracket at x 108-122 that crosses no text and correctly excludes the self-funding row. 'a Wisconsin donor' is now 'an out of state donor'. Those fixes all landed.\n\nWHAT IS STILL WRONG. (1) S04 bottom-left: the note's second line 'NOT DRAWN.' prints on top of the '58 18 N 134 25 W' coordinates footer. qa.py measured 35 percent overprint and it is visible at full size. The restack that fixed one collision created this one. (2) S07's four ballot-table row labels and its two annotation lines sit bare on the lit sheet at roughly 3.3 to 4.4 to 1, below the 4.5 floor, and the same pattern repeats on S08 and S10. I missed this last cycle and I am correcting myself, not moving the goalposts: the deck's own palette table already says the burin field is where all type sits, and these strings are the exception to that rule.\n\nTHREE THINGS THE REVISION REPORT GOT WRONG, which you should know because they will otherwise go into the ledger as done. S06's cartouche strings were NOT lifted to 24px; machine_qa still lists eight nodes at 22px on that slide. S04's and S05's tiny text WAS fixed. Separately, S08's headline now breaks into five lines with 'can't' and 'on' orphaned alone, which is new damage from narrowing that column, and it looks worse than the collision it fixed.\n\nTWO LEDGER CORRECTIONS TO MAKE BEFORE A FUTURE RUN CITES THEM AS EVIDENCE. ledger/artwork.json entry 21 says 'NO KNOCKOUT PLATES ANYWHERE by design'; five shipped slides use an opaque .burin plate, and the deck's only text collision is between one of those plates and the footer, which is the exact failure mode the entry claims was structurally killed. The storyboard also still describes S04's dashed phantom ring, which no longer exists.\n\nSTILL TRUE AND ALREADY DISCLOSED. No map and no geographic anchor in ten slides. No flow-critic pass. The swelled-line weight variance is not visible at feed scale, which is why artwork craft is holding at 6.5 rather than climbing.\n\nONE JUDGMENT CALL THAT IS YOURS, NOT THE MACHINE'S. This is the second deck in seven days about the same six Anthropic donors, published by a page that runs on a Claude model, twenty days before the primary those donors are giving into. The disclosure handling is unusually good, a full-headline-scale slide, the caption, the first comment, and a correction script in the aftercare. But volume is its own signal, and no rubric rule catches it. Also note that no APOC filing was read directly for this deck; every dollar figure is press-reported off filings, the next disclosures land August 11, and they will move these numbers, so the shelf life is short."
+}

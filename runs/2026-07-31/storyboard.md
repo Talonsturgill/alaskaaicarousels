@@ -1681,6 +1681,70 @@ dot channel, and the foot note moved up.
   amber-olive than to the dossier's stated warm cream. Judge it on the contact
   sheet; it is clearly the only warm frame in the deck, which was the job.
 
+## WHAT THE REVISION ROUNDS CHANGED, AFTER THE CRITICS AND THE SCORER
+
+*(Appended after Phase 9 and Phase 10. Items 1 to 8 above are the pre-critic
+build. Everything below is a change made because a critic or the scorer found
+it, recorded so the dossiers are not left describing a deck that no longer
+exists.)*
+
+**9. Five revision cycles, not three.** Two came from the pixel critics and
+three from the scorer's hard fails. The count matters because the rubric's
+iteration ladder drops the ship threshold from 8.3 to 7.7 at four or more
+rounds, and the deck should not be read as having cleared the easier bar
+quietly.
+
+**10. Slide 04's phantom RING became a phantom BRACKET, and lost its label.**
+The dossier specified a dashed ring at 3.6x the oval's diameter enclosing the
+two exact figures. At the rebuilt bar scale a ring large enough to enclose three
+rows and exclude the fourth ran off the frame, so the reach of Measure 1 is now
+a dashed left bracket in forget-me-not `#6EA5FF` spanning y 596 to 930, which
+encloses the Begich donors, the Anthropic employees and Drake Thomas and
+excludes the Heilala self-funding bar at y 494. The wordless argument is
+unchanged and the exclusion is still the point. The dossier's mono label
+`REACH OF BALLOT MEASURE 1` did NOT ship; the scale note carries the meaning in
+words instead, reading "The bracket marks the three the measure would cap." The
+dossier's acceptance line "the phantom ring visibly excludes the Heilala bar"
+should be read against the bracket.
+
+**11. Slide 02 was rebuilt around the half that slide 01 was carrying.** A pixel
+critic found slide 02's ruled panels rendered literally empty, the values never
+emitted. The APOC "Unlimited" half moved out of slide 01 into those panels,
+which fixed the empty panels and the 01/02 redundancy in the same edit.
+
+**12. Seven slides carry an opaque burin plate, and this is a retreat from the
+run's own thesis.** The build's proudest structural claim was that generative
+reservation removes the need for knockout plates. Reservation does remove it for
+the ENGRAVING, because the stroke is never generated. It does nothing for the
+ruled furniture or for the lit half of the sheet, which is where the scorer
+found five text collisions and three contrast failures. Slides 03, 04, 06, 07,
+08, 09 and 10 now carry `.burin` at `rgba(11,18,16,0.93)`, and slide 07 paints a
+canvas burin field at `[112, 306, 884, 412]` under its ballot rows. Only slides
+01, 02 and 05 ship plate-free. `ledger/artwork.json` originally claimed no
+knockout plates anywhere; that claim is corrected in the ledger rather than left
+standing.
+
+**13. Copy fixes the scorer forced.** "A Wisconsin donor" became "an out of state
+donor", because no claim in claims.json carries "Wisconsin" verbatim. The
+attribution "as ADN reported it" was restored to satisfy C44's mandatory
+pairing. Slide 06's eight cartouche strings went from 22 px to 24 px. Slide 04's
+field note was reflowed to one line so its second line stopped printing over the
+coordinates footer. Slide 08's headline was reflowed.
+
+**14. One fix was reverted.** A background plate behind the slide counters
+cleared two furniture contrast warnings and created two new plate clips on
+slides 08 and 09. The plate was removed and the counter ink brightened to
+`#EAF4EC` instead, which cleared the warning on its own.
+
+**15. What is NOT verified by a critic.** The rubric allows two scoring cycles
+and both were spent. The two hard fails named in the second score report,
+slide 04's footer overprint and the bare strings on slide 07, 08 and 10, are
+fixed and verified by `qa.py` only, at 0 fails and 0 remaining contrast or
+tiny-text warnings. No third scorer and no flow-critic saw the final state.
+`score_report.json` in this run directory is the SECOND report and its
+`weighted_total` of 6.9 and its `ships` flag set false describe the deck BEFORE
+these last fixes. It is shipped unedited rather than restated.
+
 ### GATE STATUS
 
 ```
