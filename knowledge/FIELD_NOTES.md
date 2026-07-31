@@ -2011,3 +2011,29 @@ load bearing then its pitch was the wrong one. The showrunner took the pitch
 anyway and then cut the one coastline the deck had, on slide 03, to solve a
 layout collision. A self-critique that accurate should carry more weight at
 selection time than it did.
+
+THE MACHINE WAS MEASURING A MEAN AGAINST A RULE ABOUT A MINIMUM, AND THAT IS
+WHY THIS DEFECT KEEPS COMING BACK. Three of the last ten runs carried a text
+against geometry or contrast hard fail. Every one of them was found by a human
+at the ship gate, which is the most expensive place to find anything. The cause
+was one line of qa.py. contrast_estimate() estimated the background from the
+median of the non-ink pixels across a whole bounding box, and the rubric's rule
+is about the WORST point. On flat ground those agree. On a graded ground they
+do not, and a deck built on a lit sheet under one raking key has no flat ground
+in it at all. Phase 12 added a worst-cell walk and it immediately found three
+nodes below the rubric's own line on material that two scoring cycles, five
+revision rounds, five pixel critics and two scorers had already passed. THE
+GENERAL LESSON, worth more than the patch. When a defect recurs across runs
+with different art, different builders and different subjects, suspect the
+INSTRUMENT before the craft. Ask what the gate literally computes and whether
+it is the same quantity the rule names. Twice now (2026-07-25's glyph ring,
+today's worst cell) the fix has been a better measurement rather than a better
+drawing.
+
+THE SAME RUN OVERCLAIMED IN ITS OWN LEDGER AND THE SCORER CAUGHT IT. The
+artwork entry said NO KNOCKOUT PLATES ANYWHERE by design, because generative
+reservation was the run's proudest structural idea. Reservation does remove
+plates for the ENGRAVING, since the stroke is never generated. It does nothing
+for ruled furniture or for the lit half of a sheet, and seven of ten slides
+ended up carrying an opaque burin plate. Write the ledger claim from the
+shipped files, not from the intention that opened the build.
