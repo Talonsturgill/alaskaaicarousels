@@ -16,9 +16,9 @@
     "assemble": "done",
     "scoring": "done",
     "ship": "done",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "done"
   },
   "artifacts": {
     "plan": "out/2026-08-01/plan.md",
@@ -28,5 +28,6 @@
     "claims": "out/2026-08-01/claims.json (claims_check PASS 29/29, 3 primary)",
     "docket": "ledger/docket.json (4 items refreshed; docket_dates_check clean, 123 assertions)"
   },
-  "score": 7.92
+  "score": 7.92,
+  "gmail_draft_id": "r3369369881560260020"
 }
