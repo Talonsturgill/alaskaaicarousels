@@ -2151,3 +2151,57 @@ shipped files, not from the intention that opened the build.
   window with the story. Plant the bridge in the first three slides with a
   sourced in-window claim next time, rather than parking it on background at the
   turn.
+
+## 2026-08-01 - Phase 12 frontier PARK (focus: procedural art portable to offline Canvas/SVG)
+
+Rotation slot nominated by the 2026-07-31 scan_log entry: the stalest slot (last
+scanned 2026-07-21) and distinct from the last three foci (07-31 deferred, 07-29
+typography, 07-26 headless Chromium). SCAN WAS PARTIALLY BLOCKED and the slot is
+NOT satisfied: WebSearch returned "web search budget (200 of 200 WebSearch calls)"
+on the first query, so there was no discovery step. What follows came from
+WebFetch against known sources (5 attempts, 3 read). Rescan this slot when the
+search budget resets.
+
+- BLUE-NOISE POINT SETS (PARKED, and the one this studio actually wants). Uniform
+  random placement produces "both severe under- and oversampling", which is clumps
+  and holes; a jittered regular grid produces the opposite failure, visible banding.
+  Two seeded, dependency-free fixes:
+  BEST-CANDIDATE: for each new point generate ~10 candidates, keep the one whose
+  nearest existing sample is farthest. One parameter (candidate count) trading
+  speed for evenness. About 20 lines.
+  BRIDSON POISSON-DISC: keep an active list; sample the annulus r..2r around a
+  random active point, reject any candidate within r of an existing sample, retire
+  a point after k misses; a background grid of cell r/sqrt(2) makes the distance
+  test O(1). Parameters: r (minimum spacing, which IS the visual grain), k (~30).
+  About 60 lines, and it takes an injected rng so it stays seeded.
+  WHY IT MATTERS HERE: No.22 slide 09 placed 3,048 dots for 3,048 registrations
+  and the scorer's verdict was that the field does not read at any size. Dot-density
+  cartography is a recurring shape for this beat (one mark per counted thing), and
+  the mark distribution IS the craft. PARKED not applied: the 0-1 daily budget went
+  to the reactive determinism gate, and a new art helper wants a worked
+  TECHNIQUE_LIBRARY entry with parameters plus a trial slide before a director is
+  told to reach for it. Proposed shape: AK.bluenoise({w,h,r,k,rng,mask}) in
+  assets/js/noise.js, returning an array of points, mask-aware so it can fill a
+  coastline. https://bost.ocks.org/mike/algorithms/
+- FLOW-FIELD PARAMETERS, corroboration for the technique library's existing entry.
+  Grid resolution about 0.5% of image width (integer spacing, and make the grid
+  LARGER than the frame so curves turn around instead of vanishing at the edge);
+  step length 0.1% to 0.5% of width; curve length is the texture dial, short reads
+  as fur and patchy, long reads as smooth leading lines. Seeding advice is the same
+  finding as above: regular grid "can feel overly stiff", uniform random "creates
+  clumps and sparse areas", circle packing sits between them. Also: enforce a
+  minimum distance between curves at each step, and distort the grid BETWEEN rounds
+  for variety. https://tylerxhobbs.com/essays/2020/flow-fields
+- PARTICLE COLLISION RESPONSE in vanilla canvas (collision normal, relative
+  velocity, impulse magnitude over combined mass, plus an explicit repulsion term
+  so interpenetrating particles do not stick). Library-free and small. NOTED, not
+  parked as a candidate: nothing in the current beat wants a physics sim, and a
+  time-stepped simulation is exactly the thing the new determinism gate exists to
+  keep seeded. https://www.gorillasun.de/blog/an-algorithm-for-particle-systems-with-collisions/
+- APPLIED this run instead (reactive, see ledger/upgrades.json): the determinism
+  gate. render.py scans each slide's inline scripts and qa.py FAILs Math.random and
+  the crypto random APIs, WARNs the clock reads. The contract was in SKILL.md from
+  the start and nothing enforced it; an unseeded stipple survived five render
+  rounds and a human found it with grep. Note the compounding relationship with the
+  park above: every technique in this scan is a seeded generator, and the gate is
+  what makes reaching for one safe in a five-round revision loop.

@@ -37,6 +37,14 @@ Checks per slide (consuming render_report.json + the PNGs):
     rebuild slides -- which is why it became a note six times instead of a fix.
     data-breather on <body> demotes it to WARN (and the dossier gate checks the
     storyboard actually declared that slide a breather).
+  - UNSEEDED RANDOMNESS (FAIL): consumes render.py's determinism source scan
+    and FAILS a slide whose inline script calls Math.random() or the crypto
+    random APIs instead of the seeded AK.rng(seed) / AK.reseed(seed) the slide
+    contract requires; clock reads (Date.now, new Date(), performance.now) are
+    a WARN. Added 2026-08-01 after a stipple field shipped on Math.random()
+    through five render rounds on a deck about a public record, caught by a
+    human running grep. Every other check here reads one screenshot, so an
+    irreproducible slide is invisible to all of them.
   - CANVAS RASTER TEXT (WARN only): warns when a slide draws meaningful text
     (>=4 alphabetic chars) via canvas fillText/strokeText, which ships as a
     bitmap in the vector PDF and is invisible to the ranker/copy_sync/a11y.
@@ -591,6 +599,27 @@ def main():
         arr = np.asarray(im)
         if float(arr.std()) < 6.0:
             res["fails"].append(f"near-uniform image (std {arr.std():.1f}) — dead or empty render")
+
+        # DETERMINISM (2026-08-01). render.py scans the slide SOURCE; this is
+        # the judgement. Unseeded randomness is a FAIL because it makes the
+        # slide unreproducible: a repair pass repaints the field, so the render
+        # a pixel critic reviewed is not the render that ships, and the shipped
+        # PNG cannot be rebuilt from the committed HTML. AK.rng(seed) is the
+        # one-argument replacement. Clock reads are a WARN: usually a timing
+        # log, occasionally an animation phase that does feed pixels.
+        for nd in rec.get("nondeterminism", []):
+            where = f"line {nd['line']}: {nd['snippet']}"
+            if nd["tier"] == "hard":
+                res["fails"].append(
+                    f"unseeded randomness: {nd['api']} in this slide's inline "
+                    f"script ({where}) -- the slide contract requires seeded "
+                    f"noise (AK.rng(seed) / AK.reseed(seed), seed from the run "
+                    f"date) so the same source reproduces the same pixels")
+            else:
+                res["warns"].append(
+                    f"clock read in slide script: {nd['api']} ({where}) -- if it "
+                    f"feeds the artwork the slide is not reproducible; pin it to "
+                    f"a constant or a seeded value")
 
         # FRAME BALANCE / DEAD LOWER ZONE (2026-07-26). The series' longest-
         # running craft defect, and the first gate here that judges COMPOSITION
