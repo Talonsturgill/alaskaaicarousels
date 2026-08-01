@@ -2083,3 +2083,71 @@ shipped files, not from the intention that opened the build.
   cheap next to the per-stroke filter cost that bit aksnow on 2026-07-30.
   Sources: shadedrelief.com/shading/Swiss.html, icaci.org/eduard-imhof-1895-1986/,
   berniejenny.info/pdf/2015_Marston_Jenny_ImprovingTheRepresentationOfMajorLandformsInAnalyticalReliefShading.pdf
+
+## 2026-08-01 - run retro (Carousel No. 22, "Where Are the 3,048?", 7.92)
+
+- FULL-STUDIO RUN. 6 scouts + fact-checker + 3 treatment-directors + 2 caption
+  directors + caption critic + copywriter-equivalent + 5 pixel critics + flow
+  critic + scorer. Shipped 7.92 against the RELAXED 7.7 threshold earned by 4+
+  revision rounds; it would not have cleared 8.3, and the email says so.
+- STORY. A quarterly comparison of the voter file against DMV records returned
+  far more than its usual yield and 3,048 registrations were moved to inactive,
+  weeks before the August 18 primary, on data the elections director herself
+  called "probably very old". The deck's spine is that THIS WAS NOT AI, it was
+  two lists compared, and that this is the verification bar Alaska applies now.
+  Net-new subject for the series; dedupe_check exit 0 against a lane
+  (Cook Inlet gas and data centers) that has carried eight of 21 decks and was
+  rejected for the runner-up on exit 1 with seven likely duplicates.
+- THE ROOM CONVERGED AGAIN, three for three. Cartographer, systems illustrator
+  and cinematographer all independently arrived at a true-projection Alaska with
+  all 29 boroughs drawn and NOT ONE FILLED, at Unbounded + Manrope + JetBrains
+  Mono, at Imhof three-band relief with a median generaliser, and at no fog
+  anywhere. Second consecutive run where blind convergence settled the material.
+  The cartographer's chassis won on FEASIBILITY (the cinematographer's ground
+  sampler existed nowhere in the library, by its own admission) and on HONESTY
+  (the systems illustrator's platen was, by its own admission, a model of a
+  machine the state does not have).
+- ALL THREE DIRECTORS REFUSED THE SHOWRUNNER'S BRIEF ON ONE POINT and they were
+  right. The brief asked for a "seventeen times" multiplier; each of them
+  independently declined to print any ratio, because 200 is names returned,
+  3,500 is letters sent and 3,048 is registrations moved, and claims.json says
+  so. Three bars on one printed scale with a printed guard, "THREE DIFFERENT
+  COUNTS. DON'T ADD THEM.", is what shipped, and the scorer called it the most
+  editorially honest element in the deck. A brief can be wrong; a room that
+  pushes back is the point of having one.
+- THE RUN'S OWN CRAFT RULE CAUSED THE RUN'S OWN RECURRING DEFECT, and this is
+  the most useful thing here. Imhof's aerial perspective damps lowland contrast.
+  In this projection the ranges sit mid-frame and the bottom third is Gulf water
+  and peninsula lowland, so the rule itself manufactured the dead lower third
+  and failed frame_balance on three slides. Raising the floor from 0.45 to 0.62
+  fixed it, and the scorer's judgement is that it traded a dead band for a flat
+  one. Before adopting a value rule from another medium, check where the high
+  ground actually lands in YOUR frame.
+- THE HEIGHTFIELD WAS TOO SMOOTH TO SHADE. 3.4 noise units across a 1080px frame
+  gives near-flat Sobel normals, so the state rendered as one pale mass and the
+  whole Imhof apparatus was shading nothing. A detail octave plus strength 3.4
+  to 13.0 is what made terrain read as terrain. Structure before tone is not a
+  slogan; with no structure there is no tone.
+- THREE BUGS THE GATES COULD NOT SEE AND ONE THEY COULD. (1) Clipping vector
+  strokes out of reserved fields ERASED boroughs and coastline from ~40 percent
+  of the state, on the one deck whose thesis is "all 29 drawn"; a pixel critic
+  caught it, no gate could. (2) A leaf filter written as children.length===0
+  silently excluded every label containing a <br>, so multi-line labels got no
+  reservation; that one the art-crossing-glyphs gate DID keep catching, and it
+  took three rounds to stop treating the symptom. (3) The stipple field used
+  Math.random, breaking the determinism contract outright on a deck about
+  records; found by grep, not by any gate. (4) The reservation itself was a dead
+  cell until it was feathered and made darken-only.
+- WHAT DID NOT SHIP, and it is the deck's real weakness. The 3,048 stipple field
+  on slide 09 does not read at any size. It was drawn too small and too faint,
+  then correctly clipped off the boroughs (the art had been contradicting its own
+  caption), and the clip removed most of it because the "void above the state" is
+  land at that station. The scorer's one-sentence fix names it. The general
+  lesson is in the instincts ledger.
+- THE AI BRIDGE IS THE OPEN QUESTION FOR THE NEXT NON-AI STORY. The scorer's
+  verdict is that "not AI, and that is the point" is legitimate and honestly
+  executed but earns the page's beat "only by a nose", because the bridge rests
+  on one April Air Force acreage item sharing no agency, no actor and no time
+  window with the story. Plant the bridge in the first three slides with a
+  sourced in-window claim next time, rather than parking it on background at the
+  turn.

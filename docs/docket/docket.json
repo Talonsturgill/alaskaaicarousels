@@ -10,7 +10,7 @@
   "attribution": "Alaska AI, https://alaskaaihq.com",
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
-  "temporal_coverage": "2026-01-20/2026-08-19",
+  "temporal_coverage": "2026-01-20/2026-08-25",
   "count": 9,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
@@ -192,6 +192,10 @@
         {
           "date": "2026-07-31",
           "note": "Two weeks after the written comment window closed at 4:30 p.m. on July 17, the Division of Oil and Gas has still published no final best interest decision on the 50 year lease. Status unchanged at pending decision. Public access stays closed because no comment path remains open, and the only route left belongs to people who filed during the window and may appeal a decision that aggrieves them."
+        },
+        {
+          "date": "2026-08-01",
+          "note": "The comment window closed July 17. The Division of Oil and Gas is assessing the comments before it makes a final decision on the lease, and no decision date has been published."
         }
       ],
       "url": "https://alaskaaihq.com/docket/adl-422741-stak-north-slope-lease/"
@@ -318,6 +322,10 @@
         {
           "date": "2026-07-31",
           "note": "Re-checked the solicitation record for AFCEC-26-R-0006. It still reads Past Due with no award and no awardee, thirty-two days after the June 29 proposal deadline. The three Alaska installations named in the request still have no publicly announced lessee. Evaluation is private, so no public comment room exists here."
+        },
+        {
+          "date": "2026-08-01",
+          "note": "Re-verified today against the Air Force's own announcement, which states approximately 4,700 acres across twelve parcels at Joint Base Elmendorf Richardson, Eielson Air Force Base and Clear Space Force Station. That announcement sets no lease term in years, so the fifty year figure that has circulated elsewhere does not come from it. No developer selection has been made public as of this run."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -406,6 +414,10 @@
         {
           "date": "2026-07-30",
           "note": "Still no announced outcome from the July 13 board session. The cooperative's newsroom could not be reached today, so nothing here is changed."
+        },
+        {
+          "date": "2026-08-01",
+          "note": "Carried forward unchanged. The utility's newsroom could not be reached today and no report of a board decision on the turbine purchase was found."
         }
       ],
       "url": "https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/"
@@ -433,11 +445,21 @@
         {
           "date": "2026-07-19",
           "label": "Special session ends",
-          "kind": "deadline"
+          "kind": "milestone"
         },
         {
           "date": "2026-07-27",
           "label": "Third special session convenes, 10:00 a.m.",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-10",
+          "label": "Senate could convene in full if the House passes a bill",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-25",
+          "label": "Third special session scheduled to end",
           "kind": "milestone"
         }
       ],
@@ -490,6 +512,11 @@
         {
           "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
           "outlet": "Alaska Public Media",
+          "date": "2026-07-27"
+        },
+        {
+          "url": "https://www.adn.com/politics/alaska-legislature/2026/07/27/3rd-alaska-lng-special-session-starts-with-no-bill-from-governor-4-lawmakers-present/",
+          "outlet": "Anchorage Daily News",
           "date": "2026-07-27"
         }
       ],
@@ -559,6 +586,10 @@
         {
           "date": "2026-07-30",
           "note": "The third special session opened July 27 as a technical session with three House members and one senator in the room. The governor had not introduced a bill and said his administration would keep meeting with all parties before proposing one. Nothing has moved since."
+        },
+        {
+          "date": "2026-08-01",
+          "note": "The third special session convened July 27 with four legislators in the room and no bill from the governor. It is scheduled to end August 25. The Senate plans technical sessions until August 10, when it could convene in full if the House passes a bill the governor will accept."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aklng-tax-bill-second-special-session/"

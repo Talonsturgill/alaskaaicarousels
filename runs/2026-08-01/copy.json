@@ -1,0 +1,161 @@
+{
+  "run_date": "2026-08-01",
+  "carousel_no": 22,
+  "document_title": "Where Are the 3,048? The Map Alaska Hasn't Drawn",
+  "post_copy": "If a state letter about your citizenship came and you set it aside, your registration stays inactive.\n\nThe machine here was two lists. Elections asked the DMV to compare them in March 2026.\nJeannie McLeod, 75, of Anchorage legally changed her first name when she naturalized in 2024.\n\nThe check usually returns about 200 names. This time 3,048 registrations were moved to inactive.\nShe says she was put back on the rolls under \"a name that is not legally mine.\"\n\nRep. Kevin McCabe says this is the division's job. The state's answer is a questioned ballot.\n\nThe comparison ran in bulk. The proof runs one at a time.\n\nThe state's three counts, what the letter asks of you, the pushback, the defense, and the map of the 3,048 nobody has drawn.\n\nBefore Alaska gives AI more authority, does the flag get the benefit of the doubt, or does the person?\n\n#AlaskaElections #VoterRolls #AIGovernance",
+  "first_comment": "Sources for today's deck, in the order the claims appear.\n\nAlaska Public Media, July 23, 2026, on the Division of Elections moving voters to inactive status after a DMV list comparison, including Director Carol Beecher's \"probably very old data\" and what a flagged voter must do next.\nhttps://alaskapublic.org/news/2026-07-23/state-removes-3-500-alaskans-from-voter-rolls-based-in-part-on-old-data\n\nKMXT and Alaska Public Media, July 30, 2026, Liz Ruskin, on the bipartisan letter asking for the names back, and on Jeannie McLeod of Anchorage.\nhttps://www.kmxt.org/alaska-statewide-news/2026-07-30/23-alaska-legislators-ask-state-to-restore-voters-wrongfully-removed-from-the-rolls\n\nAlaska's News Source, July 29, 2026, Wil Courtney, carrying the joint Division of Elections and DMV statement and the letter's own words.\nhttps://www.alaskasnewssource.com/2026/07/30/lawmakers-say-elections-division-illegally-deactivated-registration-thousands-voters-urges-director-reverse-decision/\n\nU.S. Department of the Air Force, April 10, 2026, on roughly 4,700 acres across twelve parcels at JBER, Eielson and Clear offered for AI data centers. Background, outside this story's window.\nhttps://www.af.mil/News/Article-Display/Article/4456660/daf-takes-steps-for-potential-alaskan-ai-data-centers/\n\nOffice of the Lieutenant Governor of Alaska, for the August 18, 2026 primary date.\nhttps://ltgov.alaska.gov/newsroom/2026/06/lt-governor-nancy-dahlstrom-opens-investigation-to-determine-validity-of-dan-j-sullivan-filing-for-u-s-senate/\n\nTwo things this deck deliberately does not say. It doesn't say the deactivation was illegal, because that is the legislators' allegation and no statute text was reachable to test it. And it doesn't say nobody reviewed the flags, because no published account describes a human check either way. Absence of a description is not evidence of absence.",
+  "caption_meta": {
+    "opening_move": "SECOND PERSON STAKE",
+    "structure": "BRAID",
+    "closing_move": "fork",
+    "hook_type": "second-person stake, literally true because silence defaults to inactive",
+    "critic": "Candidate B won. One fix applied, replacing 'You can still vote a questioned ballot.' with 'The state's answer is a questioned ballot.', so the house voice stops promising an outcome no source describes adjudicating."
+  },
+  "hashtags": [
+    "#AlaskaElections",
+    "#VoterRolls",
+    "#AIGovernance"
+  ],
+  "slides": [
+    {
+      "n": 1,
+      "strings": [
+        "ALASKA VOTER ROLLS",
+        "WHERE ARETHE 3,048?",
+        "The state hasn't said.",
+        "ANCHORAGE",
+        "01 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    },
+    {
+      "n": 2,
+      "strings": [
+        "HOW IT HAPPENED",
+        "Elections asked the DMVto compare lists.",
+        "That is how the two agencies described it in a joint statement. The request went",
+        "ABOUT 200 NAMES, THE USUAL QUARTERLY RETURN",
+        "ABOUT 3,500 LETTERS SENT",
+        "3,048 REGISTRATIONS MOVED TO INACTIVE",
+        "THREE DIFFERENT COUNTS.DON'T ADD THEM.",
+        "ONE SHARED SCALE, 0.216 PX PER UNIT",
+        "02 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    },
+    {
+      "n": 3,
+      "strings": [
+        "WHY IT MISSES",
+        "Two true records,different order.",
+        "Some Alaskans got a license before they were citizens, then registered after the",
+        "\"some of this is probably very old data\"",
+        "CAROL BEECHER, DIRECTOR OF ELECTIONS,JULY 22 HEARING",
+        "PROBABLY IS HER WORD.",
+        "ANCHORAGE",
+        "03 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    },
+    {
+      "n": 4,
+      "strings": [
+        "ONE OF THEM",
+        "\"Why would they take it off and reinstate me with a name that is not legally min",
+        "JEANNIE MCLEOD, 75, ANCHORAGE",
+        "She legally changed her first name from Emily to Jeannie when she became a citiz",
+        "HER ACCOUNT. NO SOURCE LINKS THENAME CHANGE TO THE FLAG.",
+        "ANCHORAGE",
+        "04 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    },
+    {
+      "n": 5,
+      "strings": [
+        "How many of the 3,048are records like hers?",
+        "NO ONE HAS SAID.",
+        "05 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    },
+    {
+      "n": 6,
+      "strings": [
+        "WHAT THE LETTER ASKS",
+        "Check the box,or stay inactive.",
+        "RESPOND",
+        "Check a box to say you are a citizen, or call or email the division.",
+        "DON'T RESPOND",
+        "The registration stays on the inactive list.",
+        "EITHER WAY",
+        "You can still vote a questioned ballot, attesting you are a citizen and a valid ",
+        "NO PUBLISHED ACCOUNT DESCRIBES A HUMAN CHECKBETWEEN THE FLAG AND THE STATUS CHAN",
+        "17 DAYS TO THE AUGUST 18 PRIMARY",
+        "06 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    },
+    {
+      "n": 7,
+      "strings": [
+        "THE PUSHBACK",
+        "Legislators askedfor the names back.",
+        "A bipartisan group asked the elections director to put every name back on the ac",
+        "\"cancelled illegally and without just cause\"",
+        "THE LETTER'S WORDS. ANALLEGATION, NOT A FINDING.",
+        "AS OF AUGUST 1 THE DIVISION HAD NOTPUBLICLY REVERSED THE ACTION AND HADSAID IT W",
+        "07 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    },
+    {
+      "n": 8,
+      "strings": [
+        "THE OTHER READING",
+        "Cleaning the rolls isthe division's job.",
+        "\"This is actually their job.\"",
+        "REP. KEVIN MCCABE",
+        "The Division of Elections and the DMV said in a joint statement that all the qua",
+        "LIST MAINTENANCE IS THE JOB.THE QUESTION IS THE CHECK.",
+        "08 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    },
+    {
+      "n": 9,
+      "strings": [
+        "WHAT THE STATE CAN LOCATE",
+        "The acres are on a map.The people are not.",
+        "The Air Force can put 4,700 acres in twelve parcels on a map at Joint Base Elmen",
+        "BACKGROUND. U.S. AIR FORCE,APRIL 10, 2026.",
+        "3,048 MARKS. NO BOROUGH TO PUT THEM IN.",
+        "09 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    },
+    {
+      "n": 10,
+      "strings": [
+        "Two lists is the simplestautomation there is.It still did this.",
+        "Alaska is deciding how much authority to give AI systems. This is the bar it app",
+        "Save this if you know someone who got the letter.",
+        "SOURCES IN COMMENTS",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "ALASKA PRIMARY,AUGUST 18, 2026",
+        "400 KM",
+        "10 / 10",
+        "61°13'N · 149°54'W"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post Tuesday to Thursday, 8 to 11 a.m. Alaska time. The August 18 primary makes this deck time-sensitive; it loses most of its value after that date.",
+    "Paste the first comment immediately, within about 60 seconds of posting.",
+    "Reply substantively to every comment in the first 60 to 90 minutes.",
+    "If someone asks whether this was AI, the answer is no, and that is the deck's point. It was a comparison of two lists.",
+    "If someone says the deactivation was illegal, note that this is what the legislators' letter alleges and that no court has ruled."
+  ],
+  "authoring_note": "Slide strings are extracted from render_report.json, which truncates each text node at 79 characters, so long body strings appear clipped here. They are still the SHIPPED strings rather than separately authored copy, which is the point, and copy_sync_check.py verifies every one against the render. Treat this field as a record of what rendered, not as a full transcript. post_copy is the linted caption verbatim, hashtag line included."
+}
