@@ -2285,42 +2285,85 @@ def article_html(r):
 # keyword frequencies in ledger/topics.json), not from a taxonomy invented in
 # advance. The blurbs are written to be read: the Anchorage Daily News authored
 # blurbs for its tag pages and never rendered them, which is free ground.
+# Each beat carries three names, and they are deliberately not the same string.
+#
+# "title" is the newsroom's name for the beat and is what the site says in its
+# own furniture, where "Data centers" reads correctly because the reader is
+# already on Alaska AI. "h1" and "seo" are what a stranger types, and a stranger
+# does not search for "data centers" hoping to find Alaska. Measured before this
+# split: for "Alaska AI data centers power grid", a query this publication holds
+# better primary material on than anyone, the site did not appear at all, while
+# /about/ ranked for other queries because it was the one page whose words
+# matched what someone would actually search.
+#
+# "seo" stays under about 60 characters so it survives intact in a result list.
 TOPICS = [
     {"slug": "data-centers", "title": "Data centers",
+     "h1": "Alaska data centers",
+     "seo": "Alaska data centers and the AI buildout - Alaska AI",
+     "desc": "Every proposed AI and cloud data center in Alaska, tracked. The land "
+             "each one wants, the power it needs, who decides, and whether the "
+             "public gets a say.",
      "blurb": "Every proposed AI and cloud campus in Alaska, the land it wants, "
               "the power it needs, and who gets to say yes.",
      "terms": ("data center", "datacenter", "ai campus", "stak energy", "adl 422741",
                "hyperscale", "colocation", "deadhorse", "gigawatt")},
     {"slug": "power-and-the-grid", "title": "Power and the grid",
+     "h1": "Alaska power and the grid",
+     "seo": "Alaska power grid and AI data center load - Alaska AI",
+     "desc": "What AI data centers do to the Alaska power grid. The Railbelt, Cook "
+             "Inlet gas, the turbines and the interties, and who pays when a new "
+             "load the size of a city plugs in.",
      "blurb": "The Railbelt, Cook Inlet gas, the turbines and the interties. Who "
               "pays when a new load the size of a city plugs in.",
      "terms": ("railbelt", "grid", "turbine", "gvea", "lm6000", "natural gas",
                "cook inlet", "megawatt", "gigawatt", "cost allocation", "off-grid",
                "utility", "intertie", "ratepayer", "chugach", "alaska lng")},
     {"slug": "land-and-permitting", "title": "Land and permitting",
+     "h1": "Alaska land and permitting for AI",
+     "seo": "Alaska land leases and permits for AI - Alaska AI",
+     "desc": "State land leases, gravel, permafrost and the public comment windows "
+             "that are the only door most Alaskans get into an AI land decision.",
      "blurb": "State land leases, gravel, permafrost and the public comment "
               "windows that are the only door most Alaskans get.",
      "terms": ("state land lease", "dnr", "permit", "gravel", "permafrost",
                "roadless", "public comment", "aidea", "best interest finding",
                "right of way", "borough")},
     {"slug": "defense-and-federal", "title": "Defense and federal",
+     "h1": "Defense and federal AI in Alaska",
+     "seo": "Alaska defense and federal AI decisions - Alaska AI",
+     "desc": "JBER, Eielson, Clear and the federal AI decisions that land in Alaska "
+             "without an Alaska vote, tracked with the record behind each one.",
      "blurb": "JBER, Eielson, Clear and the federal decisions that land in "
               "Alaska without an Alaska vote.",
      "terms": ("jber", "eielson", "clear space force", "air force", "enhanced use lease",
                "pentagon", "missile defense", "dod", "federal", "congress", "senate",
                "sullivan", "murkowski", "begich")},
     {"slug": "research-and-science", "title": "Research and science",
+     "h1": "Alaska AI research and science",
+     "seo": "Alaska AI research and science - Alaska AI",
+     "desc": "The university labs, the agencies and the field science putting "
+             "machine learning to work on Alaska problems, from salmon counts to "
+             "seismic monitoring.",
      "blurb": "The university labs, the agencies and the field science using "
               "machine learning on Alaska problems.",
      "terms": ("uaf", "university of alaska", "geophysical institute", "usgs",
                "deep learning", "machine learning", "computer vision", "research",
                "salmon", "fish and game", "wildfire", "seismic", "noaa")},
     {"slug": "data-sovereignty", "title": "Data sovereignty",
+     "h1": "Alaska data sovereignty and AI",
+     "seo": "Alaska data sovereignty and AI - Alaska AI",
+     "desc": "Who owns Alaska data, who gets to train on it, and the Native "
+             "corporations and tribes setting the terms before the models do.",
      "blurb": "Who owns Alaska data, who trains on it, and the Native "
               "corporations and tribes setting terms.",
      "terms": ("indigenous data sovereignty", "native-owned", "tribal", "ancsa",
                "native corporation", "data sovereignty", "consultation")},
     {"slug": "state-policy", "title": "State policy",
+     "h1": "Alaska AI policy and legislation",
+     "seo": "Alaska AI policy, bills and regulation - Alaska AI",
+     "desc": "Alaska AI bills, the governor's desk, the Regulatory Commission and "
+             "everything that decides the rules before the concrete pours.",
      "blurb": "Bills, the governor's desk, the regulatory commission and "
               "everything that decides the rules before the concrete pours.",
      "terms": ("dunleavy", "legislature", "senate bill", "house bill", "sb ", "hb ",
@@ -2354,44 +2397,144 @@ def topic_index(runs, topics_ledger):
     return out
 
 
+def deck_excerpt(r, limit=190):
+    """The opening of a deck's own published copy, for use under its card.
+
+    A grid of cover images and headlines is almost no text, which left the two
+    beats with no tracked decisions at 141 and 242 words apiece: pages about
+    real reporting that read to a crawler as a menu. This borrows the article's
+    first paragraph rather than inventing a summary for it, so the words on the
+    beat page are words the publication already stood behind."""
+    lines = [l.strip() for l in (r.get("caption") or "").split("\n")]
+    if lines and lines[0] == (r.get("hook") or ""):
+        lines = lines[1:]
+    for l in lines:
+        if not l or l.startswith("#"):
+            continue
+        if l.lower().rstrip(":") in ("sources", "source"):
+            break
+        t = l.replace(": ", ", ")
+        if len(t) <= limit:
+            return t
+        cut = t[:limit].rsplit(" ", 1)[0]
+        return cut.rstrip(",.;") + "..."
+    return ""
+
+
+def topic_standing(items, today):
+    """One paragraph on where a beat stands, computed from the docket.
+
+    Every number and name here is read out of ledger/docket.json at build time
+    rather than written by hand, so this paragraph cannot drift from the docket
+    it summarises and cannot assert something the record does not carry."""
+    if not items:
+        return ""
+    n = len(items)
+    res = [(it, db.resolve(it, today)) for it in items]
+    n_open = sum(1 for _it, r in res if r["access"] == "open"
+                 and r["status"] == "open-for-comment")
+    deciders = []
+    for it in items:
+        d = (it.get("decider") or "").strip()
+        if d and d not in deciders:
+            deciders.append(d)
+    dated = sorted((p for p in res if p[1]["headline"]),
+                   key=lambda p: p[1]["headline"]["date"])
+
+    s = [f"Alaska AI tracks {n} {'decision' if n == 1 else 'decisions'} on this beat, "
+         f"each one with the documents it was verified against."]
+    if n_open:
+        s.append(f"{n_open} {'is' if n_open == 1 else 'are'} open for public comment "
+                 f"right now.")
+    else:
+        s.append("None are open for public comment right now, which is worth knowing "
+                 "before assuming there is still a door open.")
+    if dated:
+        it, r = dated[0]
+        s.append(f"The nearest date is {esc(db.mon_day(r['headline']['date']).title())} "
+                 f"on {esc(it.get('title') or it['id'])}.")
+    if deciders:
+        who = deciders[:3]
+        s.append("The bodies deciding on this beat include "
+                 + esc(", ".join(who[:-1]) + (" and " + who[-1] if len(who) > 1 else who[0]))
+                 + ".")
+    return " ".join(s)
+
+
 def topic_page(today, site_url, topic, decks, docket_items):
-    """One standing beat. Renders whether or not it has decks on it."""
+    """One standing beat. Renders whether or not it has decks on it.
+
+    The decision list is the substance of this page rather than a footnote to
+    it. It used to be a bare list of titles pointing at an anchor on the shared
+    docket index, which spent the beat's best material on a link and sent every
+    reader and crawler to a page about something else. Each decision now carries
+    its status, who decides it, what it actually is, and a link to its OWN
+    page."""
     cards = "".join(
         f"""<a class="deck" href="../../archive/{r['date']}/" data-reveal>
   <img src="{RAW}/runs/{r['date']}/slide-01.webp" width="1080" height="1350" alt="{esc(r['title'])} cover" loading="lazy">
   <div class="meta"><h3>{esc(r['title'])}</h3>
-  <div class="who">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div></div>
+  <div class="who">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div>
+  {f'<p class="sub" style="margin-top:8px">{esc(deck_excerpt(r))}</p>' if deck_excerpt(r) else ''}</div>
 </a>""" for r in decks)
+    n_dec = len(docket_items)
+    chip = f"STANDING BEAT &middot; {len(decks)} {'ARTICLE' if len(decks) == 1 else 'ARTICLES'}"
+    if n_dec:
+        chip += f" &middot; {n_dec} TRACKED {'DECISION' if n_dec == 1 else 'DECISIONS'}"
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
-<div class="chip kind">STANDING BEAT &middot; {len(decks)} {'ARTICLE' if len(decks) == 1 else 'ARTICLES'}</div>
-<h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">{esc(topic['title'])}</h1>
+<div class="chip kind">{chip}</div>
+<h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">{esc(topic.get('h1') or topic['title'])}</h1>
 <p class="tag">{esc(topic['blurb'])}</p>
 </div>"""
-    if decks:
-        body += f'\n<h2>Articles on this beat</h2>\n<div class="decks">{cards}</div>'
-    else:
-        body += ('\n<h2>Nothing here yet</h2>\n<p class="sub">This beat is tracked '
-                 'every day. When Alaska makes news on it, the article lands here.</p>')
+    standing = topic_standing(docket_items, today)
+    if standing:
+        body += ('\n<h2 data-reveal>Where this beat stands</h2>\n'
+                 f'<p class="prose" data-reveal>{standing}</p>')
     if docket_items:
-        rows = "".join(
-            f'<li><a class="proselink" href="../../docket/#{esc(d["id"])}">'
-            f'{esc(d.get("title") or d["id"])}</a> <span class="who">'
-            f'{esc((d.get("status") or "").replace("-", " ").upper())}</span></li>'
-            for d in docket_items)
-        body += ('\n<h2 data-reveal>On the docket</h2>\n'
-                 f'<ul class="prose" data-reveal>{rows}</ul>')
+        rows = []
+        for d in docket_items:
+            r = db.resolve(d, today)
+            meta = [esc(db.STATUS_LABEL.get(r["status"], r["status"]))]
+            if d.get("decider"):
+                meta.append(esc(d["decider"]))
+            if r["headline"]:
+                meta.append(esc(db.mon_day(r["headline"]["date"]).title()))
+            src = d.get("sources") or []
+            rows.append(
+                f'<li data-reveal><p><a class="proselink" href="../../docket/{esc(d["id"])}/">'
+                f'<strong>{esc(d.get("title") or d["id"])}</strong></a></p>'
+                f'<p class="who">{" &middot; ".join(meta)}</p>'
+                f'<p>{esc(d.get("summary") or "")}</p>'
+                f'<p class="who">{len(src)} {"source" if len(src) == 1 else "sources"}'
+                f' on file &middot; <a class="proselink" href="../../docket/{esc(d["id"])}/">'
+                f'the full record</a></p></li>')
+        body += ('\n<h2 data-reveal>Decisions on this beat</h2>\n'
+                 f'<ol class="claims" data-reveal>{"".join(rows)}</ol>'
+                 '\n<p class="prose" data-reveal>Every one of these is also in '
+                 '<a class="proselink" href="../../docket/">the full Alaska AI Docket</a>'
+                 ', published as open data at <a class="proselink" href="../../data/">'
+                 '/data/</a> under CC BY 4.0.</p>')
+    if decks:
+        body += f'\n<h2 data-reveal>Articles on this beat</h2>\n<div class="decks">{cards}</div>'
+    else:
+        body += ('\n<h2 data-reveal>Articles on this beat</h2>\n<p class="prose" '
+                 'data-reveal>This beat is tracked every day. When Alaska makes news '
+                 'on it, the article lands here with every fact carrying the document '
+                 'it was checked against.</p>')
     body += ('\n<h2 data-reveal>Every beat</h2>\n<p class="prose" data-reveal>'
              + " &middot; ".join(
                  f'<a class="proselink" href="../{t["slug"]}/">{esc(t["title"])}</a>'
                  for t in TOPICS) + '</p>')
+    desc = topic.get("desc") or topic["blurb"]
     ld = {"@context": "https://schema.org", "@type": "CollectionPage",
-          "name": topic["title"], "description": topic["blurb"],
+          "name": topic.get("h1") or topic["title"], "description": desc,
           "url": f"{site_url}/topics/{topic['slug']}/",
           "isPartOf": {"@id": org_id(site_url)},
+          "about": {"@type": "Thing", "name": topic.get("h1") or topic["title"]},
           "hasPart": [{"@type": "NewsArticle", "headline": r["title"],
                        "datePublished": r["date"],
                        "url": f"{site_url}/archive/{r['date']}/"} for r in decks]}
-    return page(f"{topic['title']} - Alaska AI", topic["blurb"][:155], body,
+    return page(topic.get("seo") or f"{topic['title']} - Alaska AI", desc[:155], body,
                 "../../", "articles", today, site_url, f"topics/{topic['slug']}/", ld=ld,
                 crumbs=[("Alaska AI", ""), ("Articles", "archive/"),
                         (topic["title"], f"topics/{topic['slug']}/")])
@@ -2628,6 +2771,39 @@ fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
 })();
 </script>"""
 
+    # The beats, on the front page.
+    #
+    # The home page linked to the docket, the articles and the videos, and to no
+    # beat page at all, so the seven pages that answer a question somebody
+    # actually types ("Alaska data centers", "Alaska AI policy") were reachable
+    # only from a nav menu and from each other. They are the pages most likely
+    # to be a stranger's first contact with this publication, and the front page
+    # was not pointing at them.
+    beats = "".join(
+        f"""<a class="deck" href="topics/{t['slug']}/" data-reveal>
+  <div class="meta"><h3>{esc(t.get('h1') or t['title'])}</h3>
+  <p class="sub" style="margin-top:8px">{esc(t['blurb'])}</p></div>
+</a>""" for t in TOPICS)
+    beats_html = f"""<h2 data-reveal><a href="topics/">What Alaska AI covers</a></h2>
+<p class="sub" data-reveal>Seven standing beats, tracked every day. Each one keeps its
+own page whether or not it made news this week, with the decisions on it, who decides
+them, and whether the public still has a way in.</p>
+<div class="decks">{beats}</div>"""
+
+    n_src = sum(len(it.get("sources") or []) for it in items)
+    what_html = f"""<h2 data-reveal>What this is</h2>
+<p class="prose" data-reveal>Alaska AI is a daily publication on Alaska and artificial
+intelligence, and an AI studio in Anchorage. The reporting side writes one verified
+story a day and keeps the Alaska AI Docket, a public record of
+{len(live) + len(done)} AI infrastructure decisions in the state, {n_src} source
+documents on file, and for each one the plain answer to who decides it and whether an
+Alaskan still gets a say. It is published as
+<a class="proselink" href="data/">open data under CC BY 4.0</a> so anyone can check the
+work or build on it. The studio side builds voice agents, assistants trained on a
+company's own files and paperwork automation for
+<a class="proselink" href="services/">Alaska businesses</a>. Both halves run from
+Anchorage.</p>"""
+
     next_line = ""
     if nearest and dated:
         next_line = (f"Next on the docket is {esc(dated[0]['title'])}, "
@@ -2647,7 +2823,9 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 {scan_html()}
 {latest_html}
 {closing}
+{beats_html}
 {steps}
+{what_html}
 {subscribe_html()}
 <div class="about-line" data-reveal><p>{next_line}All sources verified against claims.</p></div>"""
     ld = {"@context": "https://schema.org", "@graph": [
@@ -2912,7 +3090,20 @@ def decision_decks(it, runs):
     return sorted(out, key=lambda r: r["date"], reverse=True)
 
 
-def decision_page(today, site_url, it, runs):
+def beat_line(beats, prefix, lead):
+    """Which standing beats a page belongs to, as links. Empty when none match,
+    because an empty beat line is worse than no beat line."""
+    if not beats:
+        return ""
+    links = " &middot; ".join(
+        f'<a class="proselink" href="{prefix}topics/{t["slug"]}/">'
+        f'{esc(t.get("h1") or t["title"])}</a>' for t in beats)
+    return (f'\n<h2 data-reveal>Beats</h2>\n<p class="prose" data-reveal>{lead} '
+            f'{links}. Each beat page keeps every decision and every article on '
+            f'that subject in one place.</p>')
+
+
+def decision_page(today, site_url, it, runs, beats=()):
     """One canonical page per tracked decision.
 
     The docket was a single page with #anchors, so a decision had no URL of its
@@ -3052,6 +3243,7 @@ JSON</a>, item id <code>{esc(it["id"])}</code>.</p>
         }
         extra_ld = f'<script type="application/ld+json">{ld_json(ev)}</script>'
 
+    body += beat_line(beats, prefix, "This decision is tracked on")
     desc = (f"{it['title']}. Who decides, when it lands, and whether the public "
             f"gets a say. Sourced and updated daily by Alaska AI.")[:155]
     return page(f"{it['title']} - Alaska AI Docket", desc, body, prefix, "docket",
@@ -3423,7 +3615,7 @@ Licensed {DATA_LICENSE_LABEL}.</p>"""
                 crumbs=[("Alaska AI", ""), ("The data", "data/")])
 
 
-def deck_page(today, site_url, r):
+def deck_page(today, site_url, r, beats=()):
     alts = slide_alts(r)
     n_slides, deck_title = r["slides"], r["title"]
     slides = "".join(
@@ -3477,6 +3669,7 @@ def deck_page(today, site_url, r):
 </div>
 {story_html}
 {claims_html_block}"""
+    body += beat_line(beats, "../../", "This article is on")
     ld = {"@context": "https://schema.org", "@type": "NewsArticle",
           "headline": r["title"], "datePublished": r["date"],
           "dateModified": r["date"],
@@ -4915,9 +5108,6 @@ def build(today, out_dir, site_url=None, domain=""):
         "about/index.html": about_page(today, site_url),
         "404.html": not_found_page(today, site_url),
     }
-    for r in runs:
-        pages[f"archive/{r['date']}/index.html"] = deck_page(today, site_url, r)
-
     # Standing beats and the source archive. Both are permanent URLs: a beat
     # page renders whether or not anything ran on it, so the link and the
     # ranking survive a quiet month instead of 404ing between stories.
@@ -4926,16 +5116,39 @@ def build(today, out_dir, site_url=None, domain=""):
     except Exception:
         topics_ledger = {}
     tindex = topic_index(runs, topics_ledger)
+    docket_hits = {}
+    for t in TOPICS:
+        docket_hits[t["slug"]] = [
+            d for d in docket[0]
+            if any(term in " ".join([str(d.get("title") or ""),
+                                     str(d.get("summary") or ""),
+                                     str(d.get("kind") or ""),
+                                     str(d.get("decider") or "")]).lower()
+                   for term in t["terms"])]
+
+    # The beat membership, inverted.
+    #
+    # Every article and every tracked decision belongs to at least one standing
+    # beat, and until now neither said so. An article linked to the beats INDEX
+    # and a decision page linked to no beat at all, so the seven pages that
+    # collect a subject had nothing pointing at them from the pages that are the
+    # subject. Inverting the two maps that already exist costs nothing and turns
+    # a flat pile of pages into a cluster that reads as being about something.
+    beats_for_run, beats_for_item = {}, {}
+    for t in TOPICS:
+        for r in tindex.get(t["slug"]) or []:
+            beats_for_run.setdefault(r["date"], []).append(t)
+        for d in docket_hits[t["slug"]]:
+            beats_for_item.setdefault(d["id"], []).append(t)
+
+    for r in runs:
+        pages[f"archive/{r['date']}/index.html"] = deck_page(
+            today, site_url, r, beats_for_run.get(r["date"]) or [])
+
     pages["topics/index.html"] = topics_index_page(today, site_url, tindex)
     for t in TOPICS:
-        hits = [d for d in docket[0]
-                if any(term in " ".join([str(d.get("title") or ""),
-                                         str(d.get("summary") or ""),
-                                         str(d.get("kind") or ""),
-                                         str(d.get("decider") or "")]).lower()
-                       for term in t["terms"])]
         pages[f"topics/{t['slug']}/index.html"] = topic_page(
-            today, site_url, t, tindex.get(t["slug"]) or [], hits[:8])
+            today, site_url, t, tindex.get(t["slug"]) or [], docket_hits[t["slug"]][:8])
     pages["sources/index.html"] = sources_page(today, site_url, runs)
     # One canonical page per tracked decision, so an answer engine citing a
     # specific decision has a URL, a title and a lastmod for THAT decision
@@ -4945,7 +5158,7 @@ def build(today, out_dir, site_url=None, domain=""):
     pages["privacy/index.html"] = privacy_page(today, site_url)
     for _it in docket[0]:
         pages[f"docket/{_it['id']}/index.html"] = decision_page(
-            today, site_url, _it, runs)
+            today, site_url, _it, runs, beats_for_item.get(_it["id"]) or [])
 
     # The shared bundle, written once and linked by every page. FONTPREFIX is
     # empty because relative url() in a stylesheet resolves against the
