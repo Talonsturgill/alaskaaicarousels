@@ -22,6 +22,7 @@ Read-only. Stdlib only. Exit 0 when no gate row is FAIL (WARN rows are fine),
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -273,6 +274,34 @@ def docket_dates_row(rows):
         rows.add("docket_dates", "FAIL", out[0][:140])
 
 
+def site_fresh_row(rows, run):
+    """Repo-level: proves the committed docs/ is byte-identical to what
+    site_build.py makes from the data this run just committed. A stale page
+    renders exactly as well as a fresh one, which is why both failures on
+    2026-08-01 shipped unnoticed: a run whose deck was tagged to three beats
+    committed a build crediting one, and a session rebuilt with a three-day-old
+    --date and rolled the whole site backwards. The run dir is named for the
+    date, so the gate needs no new argument. Exit non-zero is a FAIL."""
+    script = REPO / "scripts" / "site_fresh_check.py"
+    if not script.exists():
+        rows.absent("site_fresh", "scripts/site_fresh_check.py missing")
+        return
+    date = run.name
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+        rows.absent("site_fresh", "run dir %r is not a date, cannot pick --date" % date)
+        return
+    try:
+        p = subprocess.run([sys.executable, str(script), "--date", date],
+                           capture_output=True, text=True, timeout=600)
+    except Exception as e:
+        rows.add("site_fresh", "FAIL",
+                 "could not run site_fresh_check (%s)" % type(e).__name__)
+        return
+    out = [ln for ln in (p.stdout + p.stderr).strip().splitlines()
+           if ln.strip() and not ln.startswith("note:")] or [""]
+    rows.add("site_fresh", "PASS" if p.returncode == 0 else "FAIL", out[-1 if p.returncode == 0 else 0][:140])
+
+
 def assemble_row(rows, run, rep, fdir):
     asm, note = load_json(fdir / "assemble_report.json")
     if asm is None:
@@ -379,6 +408,7 @@ def main():
     copy_sync_row(rows, run, rdir)
     scanner_sync_row(rows)
     docket_dates_row(rows)
+    site_fresh_row(rows, run)
     assemble_row(rows, run, rep, fdir)
     score_row(rows, run)
     artifacts_row(rows, run, rdir, rep)

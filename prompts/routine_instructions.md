@@ -604,6 +604,47 @@ JSON in its final message, which YOU persist to
    as alt text. The copywriter also still produces `first_comment` exactly as
    before, because that is the sources comment the human pastes on LinkedIn.
    Removing it from the PAGE changed nothing about the post.
+
+   HOME AND ABOUT COPY IS FIXED (maintainer, 2026-07-29 to 2026-08-01). These
+   are decisions, not drafts. Do not "improve" them on a run, and Phase 12
+   must not either. If one genuinely needs to change, the maintainer says so.
+
+   Homepage section order is hero, the Bottleneck Scanner, Our Latest Video,
+   Our Latest Article, the docket, the beats, What this is, subscribe. The
+   video sits directly under the scanner ON PURPOSE. It is the strongest
+   thing on the page and it had drifted to fifth. The variable holding it is
+   `video_html`; it was called `steps` after a section that no longer exists,
+   which is part of how it got lost.
+
+   The studio sentence leads with agentic systems, never with voice agents.
+   Capabilities read as things agents DO (run a workflow end to end, work the
+   paperwork, answer from a company's own files), not as a product list. The
+   same rule governs the About page's studio line. "voice agents" stays in
+   the Organization JSON-LD `knowsAbout` array, which is a machine-readable
+   capability signal and not prose.
+
+   Deleted and not to return: "Both halves run from Anchorage" (homepage),
+   "Art from code daily" (homepage box), "The rules that never bend" (about),
+   the employer name in the About bio, and "in Anchorage, Alaska" as a
+   descriptor of the publication.
+
+   The About bio says born and raised in Anchorage as its own sentence, and
+   the Lower 48 lab work as a separate one, remote and unnamed. It said
+   "Anchorage, WHERE he also works remotely", which asserts current residence.
+   It does not. Anchorage is roots; nothing on the site claims an address.
+
+   Nav labels are bare nouns. DOCKET, ARTICLES, BEATS, VIDEOS, SOURCES,
+   SCANNER, SERVICES, ABOUT, QUESTIONS, RSS, DATA, PRIVACY. Not "THE
+   DOCKET", not "THE SCANNER". The scan page's BreadcrumbList says "Scanner"
+   and roots at "Alaska AI" like every other crumb. The page <title> may
+   still say "The Bottleneck Scanner", which is the tool's name in prose.
+
+   The eight flag stars are photometry, not decoration. Positions, V
+   magnitudes, B-V indices and tints are fixed. Halo extent goes as the 0.45
+   power of flux and spike length is keyed to `glow_r`, because both were
+   scaled linearly once and Megrez, the faintest, rendered as a bare gold
+   disc while its neighbors had halos and crosses. Every star gets a cross;
+   faint means short and dim, never absent. Do not re-linearize either.
    (it validates ledger/docket.json, reads runs/ for the archive, and
    refuses banned punctuation on every page; a FAIL here blocks the ship
    until fixed). Because the archive reads runs/, run it AFTER step 1
@@ -662,6 +703,27 @@ JSON in its final message, which YOU persist to
    When Phase 3.5 adds a key_date, pick its `kind` deliberately. `deadline`
    means THE READER must act by then. Another body's vote is `vote` even when
    it is the nearest thing on the calendar.
+
+2d. LAST, after every other site step, run
+   `python scripts/site_fresh_check.py --date <date>` with the SAME date you
+   passed to site_build.py. It rebuilds the whole site into a temp dir and
+   proves docs/ is byte-identical to what the generator makes from the data
+   you just committed. The build is deterministic, so this is an exact test.
+
+   Two real failures, both on 2026-08-01, are why it exists. A run tagged its
+   deck to three beats and committed a docs/ build crediting only one, so the
+   live beat counts under-reported and the article page linked one beat
+   instead of three. And a development session rebuilt with `--date
+   2026-07-29` while main was at 2026-08-01, rolling the entire site back
+   three days; it was caught only because the diff looked bigger than the
+   change, which is luck rather than a process. A stale page renders exactly
+   as well as a fresh one, which is the whole problem.
+
+   Exit 0 ships. Exit 1 names the pages that disagree with their generator.
+   The fix is ALWAYS to rebuild with the run date and commit the result, or
+   to change site_build.py. Never hand-edit a file under docs/ to make this
+   green; every generated page is rewritten on the next build and the edit
+   would vanish along with whatever it was hiding.
 
 3. Subscriber alerts: run `python scripts/docket_alerts.py --date <date>`.
    It sends AT MOST one Buttondown email per run, only for real docket
