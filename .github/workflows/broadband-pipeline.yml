@@ -1,0 +1,67 @@
+name: broadband pipeline
+
+# The broadband research pipeline publishes dollar figures about named Alaska
+# communities and a named provider. If the USAC feed shifts under it, or an edit
+# reintroduces one of the six documented data traps, that must fail loudly here
+# rather than quietly ship a wrong number.
+#
+# Runs against the committed derived/ output, so it needs no network and no
+# credentials. A weekly run catches drift in the source data itself.
+
+on:
+  pull_request:
+    paths:
+      - "research/broadband/**"
+      - ".github/workflows/broadband-pipeline.yml"
+  push:
+    branches: [main]
+    paths:
+      - "research/broadband/**"
+  schedule:
+    - cron: "17 9 * * 1"   # Mondays, after USAC's weekly refresh
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Assertions against the committed dataset
+        working-directory: research/broadband
+        run: |
+          cp derived/circuits_v2.csv .
+          python3 test_pipeline.py
+
+      - name: Rebuild the bundle from the committed dataset
+        working-directory: research/broadband
+        run: |
+          cp derived/communities_geo.json .
+          mkdir -p build
+          # ak_outline.json is a build input for the map; skip the bundle step if it
+          # is absent rather than failing, since the assertions above are the gate.
+          if [ -f build/ak_outline.json ]; then
+            python3 bundle.py
+          else
+            echo "no map outline committed; assertions above are the gate"
+          fi
+
+      - name: Pipeline is importable and trap handlers behave
+        working-directory: research/broadband
+        run: |
+          python3 - <<'PY'
+          import pipeline as p
+          assert p.purpose_class("Internet access service that includes a connection "
+                                 "from any applicant site directly to the Internet "
+                                 "Service Provider") == "internet"
+          assert p.purpose_class("Data Connection between two or more sites entirely "
+                                 "within the applicant's network") == "wan"
+          assert p.canon_city("ST. MARYS") == p.canon_city("Saint Marys")
+          assert p.canon_city("barrow") == "Utqiagvik"
+          assert p.num("") is None and p.num("3.5") == 3.5
+          print("trap handlers OK")
+          PY

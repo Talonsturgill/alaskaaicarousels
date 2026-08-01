@@ -1,0 +1,4 @@
+# Raw USAC pulls are large and re-fetchable with ./fetch.sh in about a minute.
+# The derived outputs in out/ are committed so the numbers are checkable without a fetch.
+data/
+build/
