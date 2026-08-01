@@ -1,0 +1,33 @@
+{
+  "run_date": "2026-08-01",
+  "carousel_no": 22,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "done"
+  },
+  "artifacts": {
+    "plan": "out/2026-08-01/plan.md",
+    "craft_refresh": "knowledge/FIELD_NOTES.md (2026-08-01 entry)",
+    "scout_merge": "out/2026-08-01/scout_merge.md",
+    "selection": "out/2026-08-01/selection.md (pending claims gate)",
+    "claims": "out/2026-08-01/claims.json (claims_check PASS 29/29, 3 primary)",
+    "docket": "ledger/docket.json (4 items refreshed; docket_dates_check clean, 123 assertions)"
+  },
+  "score": 7.92,
+  "gmail_draft_id": "r3369369881560260020"
+}

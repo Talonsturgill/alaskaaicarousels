@@ -129,6 +129,16 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   plate symmetrically so a centred label stays centred.
 - Determinism: seed all noise (`AK.reseed(seed)`, `AK.rng(seed)`). Derive the
   seed from the run date. Same inputs must reproduce the same pixels.
+  **ENFORCED since 2026-08-01**: render.py scans each slide's INLINE scripts and
+  qa.py FAILs `Math.random()` / `crypto.getRandomValues()` / `crypto.randomUUID()`
+  (WARN on `Date.now()`, `new Date()`, `performance.now()`), naming the line. A
+  vendored library loaded by `src=` is not read, and the string in body copy is
+  DOM text, not script, so neither trips it. The replacement is one argument:
+  `const rnd = AK.rng(<rundate int> + <slide no>)`. This exists because an
+  unseeded stipple field survived five render rounds on 2026-08-01 and was caught
+  by a human running grep; an unseeded field means a repair pass repaints art the
+  pixel critic already reviewed, and the shipped PNG cannot be rebuilt from the
+  committed HTML.
 - Fonts: use `assets/fonts/fonts.css` families — Fraunces (100-900 + italic,
   opsz), JetBrains Mono (400/500/700), Space Grotesk (300-700), Archivo
   (100-900, stretch 62%-125%), Manrope (200-800), Instrument Serif (+italic),

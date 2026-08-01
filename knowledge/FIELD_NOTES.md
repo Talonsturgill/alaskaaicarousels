@@ -2037,3 +2037,171 @@ plates for the ENGRAVING, since the stroke is never generated. It does nothing
 for ruled furniture or for the lit half of a sheet, and seven of ten slides
 ended up carrying an opaque burin plate. Write the ledger claim from the
 shipped files, not from the intention that opened the build.
+
+### 2026-08-01 (No. 22), craft refresh
+
+- Platform picture unchanged for a FOURTH consecutive refresh. Socialinsider
+  still has native documents top at 7.00 percent (now reported with a 14
+  percent year-over-year rise), Oktopost's March 2026 benchmark still puts the
+  median B2B page at 5.72 percent against a top decile of 22.45 percent, and
+  the practitioner guides still drift toward 9 to 12 slides where our band is 6
+  to 12 with an 8 to 10 default. No house rule moves. This is the fourth run to
+  record the same non-change, which is now itself the finding, so a future
+  refresh should spend its budget on craft rather than re-checking benchmarks
+  unless a LinkedIn product change is actually announced.
+  Sources: socialinsider.io/social-media-benchmarks/linkedin,
+  oktopost.com/blog/linkedin-carousel-pdf-best-practices/,
+  postunreel.com/blog/linkedin-carousel-engagement-rate-statistics-2026
+- CRAFT FIND, and it lands exactly on this run's stated weakness. SWISS-MANNER
+  RELIEF SHADING (Imhof) is a worked-out system for the thing this machine
+  keeps failing, which is how to give one surface modelled tone with genuine
+  detail EVERYWHERE rather than a uniform treatment. Four transferable rules,
+  all implementable in offline Canvas.
+  (1) AERIAL PERSPECTIVE IS A VALUE RULE KEYED TO ELEVATION, not a fog layer.
+  High ground carries STRONG contrast between dark shaded slopes and bright
+  illuminated slopes; lowland carries REDUCED contrast, because it reads as
+  further from a reader looking down. Contrast sharpens toward the peaks and
+  softens toward the flats. That is No. 20's three-value-band prescription
+  expressed as a function of the terrain itself, which means the band
+  assignment is computed rather than art-directed, and it cannot collapse into
+  one value group by construction.
+  (2) THE PROCEDURE IS RIDGE-FIRST. Delineate drainage divides and gully lines
+  first, shade along the divides, then work from the darkest slopes toward the
+  brightest peaks. The structure is drawn before the tone, which is the same
+  lesson the engraving find gave as "lay lines wrap the form".
+  (3) NUMBERS THAT ARE ACTUALLY STATED. Shadow values do not exceed 70 percent
+  on the base relief; the finished sheet ranges roughly 3 to 85 percent black,
+  which is a deliberately light-ink high-contrast result rather than a muddy
+  midtone one. Illumination is broadly north-west, adjusted LOCALLY to
+  accentuate individual landforms, so a single global azimuth is a
+  simplification the tradition itself does not observe.
+  (4) GENERALISE WITH A MEDIAN FILTER, NOT A BLUR. A blur over-smooths ridges;
+  a median smooths slope irregularities while preserving ridge and canyon
+  definition, and roughly 50 percent fade back toward the unfiltered surface
+  restores detail on top of the generalised form. This is directly portable:
+  our surfaces are drawn into offscreen canvases already, and a median pass is
+  cheap next to the per-stroke filter cost that bit aksnow on 2026-07-30.
+  Sources: shadedrelief.com/shading/Swiss.html, icaci.org/eduard-imhof-1895-1986/,
+  berniejenny.info/pdf/2015_Marston_Jenny_ImprovingTheRepresentationOfMajorLandformsInAnalyticalReliefShading.pdf
+
+## 2026-08-01 - run retro (Carousel No. 22, "Where Are the 3,048?", 7.92)
+
+- FULL-STUDIO RUN. 6 scouts + fact-checker + 3 treatment-directors + 2 caption
+  directors + caption critic + copywriter-equivalent + 5 pixel critics + flow
+  critic + scorer. Shipped 7.92 against the RELAXED 7.7 threshold earned by 4+
+  revision rounds; it would not have cleared 8.3, and the email says so.
+- STORY. A quarterly comparison of the voter file against DMV records returned
+  far more than its usual yield and 3,048 registrations were moved to inactive,
+  weeks before the August 18 primary, on data the elections director herself
+  called "probably very old". The deck's spine is that THIS WAS NOT AI, it was
+  two lists compared, and that this is the verification bar Alaska applies now.
+  Net-new subject for the series; dedupe_check exit 0 against a lane
+  (Cook Inlet gas and data centers) that has carried eight of 21 decks and was
+  rejected for the runner-up on exit 1 with seven likely duplicates.
+- THE ROOM CONVERGED AGAIN, three for three. Cartographer, systems illustrator
+  and cinematographer all independently arrived at a true-projection Alaska with
+  all 29 boroughs drawn and NOT ONE FILLED, at Unbounded + Manrope + JetBrains
+  Mono, at Imhof three-band relief with a median generaliser, and at no fog
+  anywhere. Second consecutive run where blind convergence settled the material.
+  The cartographer's chassis won on FEASIBILITY (the cinematographer's ground
+  sampler existed nowhere in the library, by its own admission) and on HONESTY
+  (the systems illustrator's platen was, by its own admission, a model of a
+  machine the state does not have).
+- ALL THREE DIRECTORS REFUSED THE SHOWRUNNER'S BRIEF ON ONE POINT and they were
+  right. The brief asked for a "seventeen times" multiplier; each of them
+  independently declined to print any ratio, because 200 is names returned,
+  3,500 is letters sent and 3,048 is registrations moved, and claims.json says
+  so. Three bars on one printed scale with a printed guard, "THREE DIFFERENT
+  COUNTS. DON'T ADD THEM.", is what shipped, and the scorer called it the most
+  editorially honest element in the deck. A brief can be wrong; a room that
+  pushes back is the point of having one.
+- THE RUN'S OWN CRAFT RULE CAUSED THE RUN'S OWN RECURRING DEFECT, and this is
+  the most useful thing here. Imhof's aerial perspective damps lowland contrast.
+  In this projection the ranges sit mid-frame and the bottom third is Gulf water
+  and peninsula lowland, so the rule itself manufactured the dead lower third
+  and failed frame_balance on three slides. Raising the floor from 0.45 to 0.62
+  fixed it, and the scorer's judgement is that it traded a dead band for a flat
+  one. Before adopting a value rule from another medium, check where the high
+  ground actually lands in YOUR frame.
+- THE HEIGHTFIELD WAS TOO SMOOTH TO SHADE. 3.4 noise units across a 1080px frame
+  gives near-flat Sobel normals, so the state rendered as one pale mass and the
+  whole Imhof apparatus was shading nothing. A detail octave plus strength 3.4
+  to 13.0 is what made terrain read as terrain. Structure before tone is not a
+  slogan; with no structure there is no tone.
+- THREE BUGS THE GATES COULD NOT SEE AND ONE THEY COULD. (1) Clipping vector
+  strokes out of reserved fields ERASED boroughs and coastline from ~40 percent
+  of the state, on the one deck whose thesis is "all 29 drawn"; a pixel critic
+  caught it, no gate could. (2) A leaf filter written as children.length===0
+  silently excluded every label containing a <br>, so multi-line labels got no
+  reservation; that one the art-crossing-glyphs gate DID keep catching, and it
+  took three rounds to stop treating the symptom. (3) The stipple field used
+  Math.random, breaking the determinism contract outright on a deck about
+  records; found by grep, not by any gate. (4) The reservation itself was a dead
+  cell until it was feathered and made darken-only.
+- WHAT DID NOT SHIP, and it is the deck's real weakness. The 3,048 stipple field
+  on slide 09 does not read at any size. It was drawn too small and too faint,
+  then correctly clipped off the boroughs (the art had been contradicting its own
+  caption), and the clip removed most of it because the "void above the state" is
+  land at that station. The scorer's one-sentence fix names it. The general
+  lesson is in the instincts ledger.
+- THE AI BRIDGE IS THE OPEN QUESTION FOR THE NEXT NON-AI STORY. The scorer's
+  verdict is that "not AI, and that is the point" is legitimate and honestly
+  executed but earns the page's beat "only by a nose", because the bridge rests
+  on one April Air Force acreage item sharing no agency, no actor and no time
+  window with the story. Plant the bridge in the first three slides with a
+  sourced in-window claim next time, rather than parking it on background at the
+  turn.
+
+## 2026-08-01 - Phase 12 frontier PARK (focus: procedural art portable to offline Canvas/SVG)
+
+Rotation slot nominated by the 2026-07-31 scan_log entry: the stalest slot (last
+scanned 2026-07-21) and distinct from the last three foci (07-31 deferred, 07-29
+typography, 07-26 headless Chromium). SCAN WAS PARTIALLY BLOCKED and the slot is
+NOT satisfied: WebSearch returned "web search budget (200 of 200 WebSearch calls)"
+on the first query, so there was no discovery step. What follows came from
+WebFetch against known sources (5 attempts, 3 read). Rescan this slot when the
+search budget resets.
+
+- BLUE-NOISE POINT SETS (PARKED, and the one this studio actually wants). Uniform
+  random placement produces "both severe under- and oversampling", which is clumps
+  and holes; a jittered regular grid produces the opposite failure, visible banding.
+  Two seeded, dependency-free fixes:
+  BEST-CANDIDATE: for each new point generate ~10 candidates, keep the one whose
+  nearest existing sample is farthest. One parameter (candidate count) trading
+  speed for evenness. About 20 lines.
+  BRIDSON POISSON-DISC: keep an active list; sample the annulus r..2r around a
+  random active point, reject any candidate within r of an existing sample, retire
+  a point after k misses; a background grid of cell r/sqrt(2) makes the distance
+  test O(1). Parameters: r (minimum spacing, which IS the visual grain), k (~30).
+  About 60 lines, and it takes an injected rng so it stays seeded.
+  WHY IT MATTERS HERE: No.22 slide 09 placed 3,048 dots for 3,048 registrations
+  and the scorer's verdict was that the field does not read at any size. Dot-density
+  cartography is a recurring shape for this beat (one mark per counted thing), and
+  the mark distribution IS the craft. PARKED not applied: the 0-1 daily budget went
+  to the reactive determinism gate, and a new art helper wants a worked
+  TECHNIQUE_LIBRARY entry with parameters plus a trial slide before a director is
+  told to reach for it. Proposed shape: AK.bluenoise({w,h,r,k,rng,mask}) in
+  assets/js/noise.js, returning an array of points, mask-aware so it can fill a
+  coastline. https://bost.ocks.org/mike/algorithms/
+- FLOW-FIELD PARAMETERS, corroboration for the technique library's existing entry.
+  Grid resolution about 0.5% of image width (integer spacing, and make the grid
+  LARGER than the frame so curves turn around instead of vanishing at the edge);
+  step length 0.1% to 0.5% of width; curve length is the texture dial, short reads
+  as fur and patchy, long reads as smooth leading lines. Seeding advice is the same
+  finding as above: regular grid "can feel overly stiff", uniform random "creates
+  clumps and sparse areas", circle packing sits between them. Also: enforce a
+  minimum distance between curves at each step, and distort the grid BETWEEN rounds
+  for variety. https://tylerxhobbs.com/essays/2020/flow-fields
+- PARTICLE COLLISION RESPONSE in vanilla canvas (collision normal, relative
+  velocity, impulse magnitude over combined mass, plus an explicit repulsion term
+  so interpenetrating particles do not stick). Library-free and small. NOTED, not
+  parked as a candidate: nothing in the current beat wants a physics sim, and a
+  time-stepped simulation is exactly the thing the new determinism gate exists to
+  keep seeded. https://www.gorillasun.de/blog/an-algorithm-for-particle-systems-with-collisions/
+- APPLIED this run instead (reactive, see ledger/upgrades.json): the determinism
+  gate. render.py scans each slide's inline scripts and qa.py FAILs Math.random and
+  the crypto random APIs, WARNs the clock reads. The contract was in SKILL.md from
+  the start and nothing enforced it; an unseeded stipple survived five render
+  rounds and a human found it with grep. Note the compounding relationship with the
+  park above: every technique in this scan is a seeded generator, and the gate is
+  what makes reaching for one safe in a five-round revision loop.

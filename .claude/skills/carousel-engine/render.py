@@ -544,6 +544,92 @@ def launch_chromium(p):
         raise RuntimeError("No launchable Chromium found (tried default + /opt/pw-browsers)")
 
 
+# --- DETERMINISM SOURCE SCAN (2026-08-01) -----------------------------------
+# SKILL.md's slide contract says "seed all noise (AK.reseed / AK.rng), derive
+# the seed from the run date, same inputs must reproduce the same pixels", and
+# nothing enforced it. On 2026-08-01 a stipple field shipped through five
+# render rounds on Math.random() and was caught by a human running grep, on a
+# deck whose subject was a public RECORD. An unseeded field cannot be
+# re-rendered: a repair pass on slide 9 silently repaints every dot, so a pixel
+# critic's note about one label stops describing the file it was written
+# against, and the shipped PNG can never be reproduced from the committed HTML.
+#
+# The scan reads the slide SOURCE (this is a source-level contract, and the
+# defect is invisible in a single screenshot), and only inside INLINE <script>
+# blocks: vendored libraries under assets/js are loaded by src= and are not
+# read, and a deck that PRINTS the string "Math.random" as body copy is DOM
+# text, not script, so it never trips. Comments and their contents are stripped
+# before matching.
+#   HARD (qa.py FAIL): unseeded randomness. There is no legitimate use of it in
+#     a slide; AK.rng(seed) is the drop-in replacement and takes one argument.
+#   SOFT (qa.py WARN): clock reads. Usually a timing log, occasionally an
+#     animation phase that does feed pixels; the author decides, the machine
+#     just refuses to let it pass unseen.
+NONDET_HARD = [
+    ("Math.random()", re.compile(r"\bMath\s*\.\s*random\s*\(")),
+    ("crypto.getRandomValues()", re.compile(r"\bcrypto\s*\.\s*getRandomValues\s*\(")),
+    ("crypto.randomUUID()", re.compile(r"\bcrypto\s*\.\s*randomUUID\s*\(")),
+]
+NONDET_SOFT = [
+    ("Date.now()", re.compile(r"\bDate\s*\.\s*now\s*\(")),
+    ("new Date()", re.compile(r"\bnew\s+Date\s*\(\s*\)")),
+    ("performance.now()", re.compile(r"\bperformance\s*\.\s*now\s*\(")),
+]
+SCRIPT_RE = re.compile(r"<script\b([^>]*)>(.*?)</script\s*>", re.S | re.I)
+JS_TYPE_OK = ("", "text/javascript", "application/javascript", "module")
+
+
+def _strip_js_comments(js: str) -> str:
+    """Blank out // and /* */ comments, preserving length so offsets survive."""
+    out = list(js)
+    i, n = 0, len(js)
+    while i < n:
+        two = js[i:i + 2]
+        if two == "//":
+            j = js.find("\n", i)
+            j = n if j < 0 else j
+            for k in range(i, j):
+                out[k] = " "
+            i = j
+        elif two == "/*":
+            j = js.find("*/", i + 2)
+            j = n if j < 0 else j + 2
+            for k in range(i, j):
+                if js[k] != "\n":
+                    out[k] = " "
+            i = j
+        else:
+            i += 1
+    return "".join(out)
+
+
+def scan_nondeterminism(html: str, name: str) -> list:
+    """Report unseeded-randomness / clock reads in a slide's inline scripts."""
+    hits = []
+    for m in SCRIPT_RE.finditer(html):
+        attrs, body = m.group(1), m.group(2)
+        if re.search(r"\bsrc\s*=", attrs, re.I):
+            continue                      # external file: vendored, not ours
+        tm = re.search(r"""\btype\s*=\s*["']?([^"'\s>]*)""", attrs, re.I)
+        if tm and tm.group(1).strip().lower() not in JS_TYPE_OK:
+            continue                      # text/template, application/json, ...
+        body_start = m.start(2)
+        clean = _strip_js_comments(body)
+        for tier, table in (("hard", NONDET_HARD), ("soft", NONDET_SOFT)):
+            for api, rx in table:
+                for hit in rx.finditer(clean):
+                    off = body_start + hit.start()
+                    line = html.count("\n", 0, off) + 1
+                    src_line = html.splitlines()[line - 1].strip()
+                    hits.append({"tier": tier, "api": api, "line": line,
+                                 "snippet": src_line[:120]})
+    hits.sort(key=lambda h: (h["line"], h["api"]))
+    if hits:
+        print(f"    [determinism] {name}: "
+              + ", ".join(f"{h['api']} line {h['line']}" for h in hits))
+    return hits
+
+
 def resolve_html(src: Path, resolved_dir: Path) -> Path:
     html = src.read_text()
     if re.search(r'src\s*=\s*["\']https?://|href\s*=\s*["\']https?://|url\(\s*["\']?https?://', html):
@@ -559,7 +645,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
-           "encodings": [], "render_ms": 0, "ok": False}
+           "encodings": [], "nondeterminism": [], "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
                             device_scale_factor=scale)
@@ -635,6 +721,7 @@ def main():
             png = out_dir / (s.stem + ".png")
             rec = render_slide(browser, resolved, png, args.width, args.height,
                                args.scale, args.timeout)
+            rec["nondeterminism"] = scan_nondeterminism(s.read_text(), s.name)
             status = "OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])
             print(f"[{status}] {s.name} -> {png.name}  {rec['render_ms']}ms"
