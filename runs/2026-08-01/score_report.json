@@ -1,0 +1,17 @@
+{"carousel_no":22,"run_date":"2026-08-01","weighted_total":7.92,"threshold_applied":7.7,"ships":true,
+ "hard_fails":[],
+ "weakest_criterion":"Artwork craft and genuine detail",
+ "criteria":[
+  {"name":"Thumb-stop cover","weight":0.14,"score":8},
+  {"name":"Story arc and swipe momentum","weight":0.14,"score":7},
+  {"name":"Artwork craft and genuine detail","weight":0.16,"score":6},
+  {"name":"Story-art fusion","weight":0.14,"score":7},
+  {"name":"Alaska authenticity and local relevance","weight":0.12,"score":9},
+  {"name":"Insight density and factual weight","weight":0.10,"score":8},
+  {"name":"Variety vs ledger","weight":0.08,"score":6},
+  {"name":"Legibility and platform fitness","weight":0.07,"score":6},
+  {"name":"Copy voice and hook","weight":0.05,"score":8},
+  {"name":"Deliverable completeness","weight":0.10,"score":7}],
+ "one_sentence_fix":"Rebuild slide 09 so its 3,048 stipple field is actually visible as a countable swarm, and so the AI turn rests on more than one out-of-window Air Force acreage figure, because that slide is simultaneously the deck's failed signature encoding and the only place the AI frame is argued rather than asserted.",
+ "shortfall_note":"Ships at 7.92 against the RELAXED 7.7 threshold earned by four or more revision rounds. It would NOT clear the standard 8.3 and the email says so. Three criteria sit at 6: artwork craft (relief reads as texture rather than landform on several frames, and reserved fields still read as plates), variety vs ledger (the palette lands in the series' default cold arctic register and the camera-over-relief-map chassis has shipped before at No.1 and No.8), and legibility (the progress counter is overprinted by coastline on slides 02 and 06). The deck's signature encoding, the 3,048 stipple on slide 09, does not read at any size.",
+ "notes_for_the_ledger":"The 'this was not AI, and that is the point' thesis is legitimate and honestly executed, but it earns the page's beat only by a nose. Slide 09 is where it strains, bridging to AI through one April Air Force acreage disclosure that shares no agency, no actor and no time window with the story. A future run taking a non-AI story should plant the AI bridge in the first three slides with a sourced in-window claim rather than parking it on a background item at the turn. The build reconciliation was right that the dossier's own elevation-keyed contrast rule created the dead-lower-third defect, but raising the floor to 0.62 traded a dead band for a flat one. Any encoding drawn as sub-2px marks at low opacity on a near-black field will not survive its own render. Reserved fields at 0.74 damping still read as plates; clip the reservation to the water or carry it full-bleed."}
