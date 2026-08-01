@@ -2037,3 +2037,49 @@ plates for the ENGRAVING, since the stroke is never generated. It does nothing
 for ruled furniture or for the lit half of a sheet, and seven of ten slides
 ended up carrying an opaque burin plate. Write the ledger claim from the
 shipped files, not from the intention that opened the build.
+
+### 2026-08-01 (No. 22), craft refresh
+
+- Platform picture unchanged for a FOURTH consecutive refresh. Socialinsider
+  still has native documents top at 7.00 percent (now reported with a 14
+  percent year-over-year rise), Oktopost's March 2026 benchmark still puts the
+  median B2B page at 5.72 percent against a top decile of 22.45 percent, and
+  the practitioner guides still drift toward 9 to 12 slides where our band is 6
+  to 12 with an 8 to 10 default. No house rule moves. This is the fourth run to
+  record the same non-change, which is now itself the finding, so a future
+  refresh should spend its budget on craft rather than re-checking benchmarks
+  unless a LinkedIn product change is actually announced.
+  Sources: socialinsider.io/social-media-benchmarks/linkedin,
+  oktopost.com/blog/linkedin-carousel-pdf-best-practices/,
+  postunreel.com/blog/linkedin-carousel-engagement-rate-statistics-2026
+- CRAFT FIND, and it lands exactly on this run's stated weakness. SWISS-MANNER
+  RELIEF SHADING (Imhof) is a worked-out system for the thing this machine
+  keeps failing, which is how to give one surface modelled tone with genuine
+  detail EVERYWHERE rather than a uniform treatment. Four transferable rules,
+  all implementable in offline Canvas.
+  (1) AERIAL PERSPECTIVE IS A VALUE RULE KEYED TO ELEVATION, not a fog layer.
+  High ground carries STRONG contrast between dark shaded slopes and bright
+  illuminated slopes; lowland carries REDUCED contrast, because it reads as
+  further from a reader looking down. Contrast sharpens toward the peaks and
+  softens toward the flats. That is No. 20's three-value-band prescription
+  expressed as a function of the terrain itself, which means the band
+  assignment is computed rather than art-directed, and it cannot collapse into
+  one value group by construction.
+  (2) THE PROCEDURE IS RIDGE-FIRST. Delineate drainage divides and gully lines
+  first, shade along the divides, then work from the darkest slopes toward the
+  brightest peaks. The structure is drawn before the tone, which is the same
+  lesson the engraving find gave as "lay lines wrap the form".
+  (3) NUMBERS THAT ARE ACTUALLY STATED. Shadow values do not exceed 70 percent
+  on the base relief; the finished sheet ranges roughly 3 to 85 percent black,
+  which is a deliberately light-ink high-contrast result rather than a muddy
+  midtone one. Illumination is broadly north-west, adjusted LOCALLY to
+  accentuate individual landforms, so a single global azimuth is a
+  simplification the tradition itself does not observe.
+  (4) GENERALISE WITH A MEDIAN FILTER, NOT A BLUR. A blur over-smooths ridges;
+  a median smooths slope irregularities while preserving ridge and canyon
+  definition, and roughly 50 percent fade back toward the unfiltered surface
+  restores detail on top of the generalised form. This is directly portable:
+  our surfaces are drawn into offscreen canvases already, and a median pass is
+  cheap next to the per-stroke filter cost that bit aksnow on 2026-07-30.
+  Sources: shadedrelief.com/shading/Swiss.html, icaci.org/eduard-imhof-1895-1986/,
+  berniejenny.info/pdf/2015_Marston_Jenny_ImprovingTheRepresentationOfMajorLandformsInAnalyticalReliefShading.pdf
