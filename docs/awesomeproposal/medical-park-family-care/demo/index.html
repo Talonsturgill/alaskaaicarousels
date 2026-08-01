@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The pre-call check, a scripted demonstration for Medical Park Family Care</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --surface:#0b1a2d;
+  --surface2:#122a46;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --warn:#f2a43a;
+  --ui:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --u:26px;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 var(--ui);
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.005em;margin:0}
+h1{font-size:26px;line-height:1.25}
+h2{font-size:21px;line-height:1.3}
+h3{font-size:17px;line-height:1.35}
+p{margin:0 0 14px}
+p:last-child{margin-bottom:0}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(60,230,180,.35)}
+.mono{font-family:var(--mono)}
+
+/* ---------- header ---------- */
+header.top{border-bottom:1px solid var(--rule);padding:22px 0 20px;margin-bottom:26px}
+.brandrow{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:baseline;justify-content:space-between;margin-bottom:16px}
+.mark{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.prep{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cap);font-family:var(--mono)}
+.sub{color:var(--sub);max-width:60ch;margin-top:10px;font-size:15px}
+
+.notice{
+  border:1px solid var(--rule);border-left:3px solid var(--warn);
+  background:var(--surface);border-radius:4px;padding:14px 16px;margin-top:18px;
+  font-size:14px;color:var(--sub);max-width:78ch;
+}
+.notice strong{color:var(--ink);font-weight:600}
+
+/* ---------- layout ---------- */
+section{margin:0 0 44px}
+.sectionhead{border-top:1px solid var(--rule);padding-top:18px;margin-bottom:20px}
+.sectionhead .kicker{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+.sectionhead p{color:var(--cap);font-size:14px;max-width:66ch;margin-top:8px}
+
+.stage{display:grid;grid-template-columns:1fr;gap:26px}
+@media(min-width:940px){.stage{grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:34px;align-items:start}}
+
+/* ---------- phone ---------- */
+.phone{
+  border:1px solid var(--rule);border-radius:14px;background:var(--surface);
+  overflow:hidden;max-width:420px;width:100%;
+}
+.phonebar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 14px;background:#050d1a;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:11px;color:var(--cap);letter-spacing:.06em;
+}
+.phonebar b{color:var(--ink);font-weight:600}
+.screen{padding:16px 16px 20px}
+.sitehead{border-bottom:1px solid var(--rule);padding-bottom:12px;margin-bottom:14px}
+.sitehead .name{font-family:var(--display);font-size:16px}
+.sitehead .place{font-size:12px;color:var(--cap);margin-top:3px}
+.openstate{
+  display:flex;gap:8px;align-items:center;margin-top:10px;
+  font-size:12.5px;color:var(--sub);font-family:var(--mono);
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+.dot.shut{background:var(--warn)}
+
+.ask{font-size:14.5px;color:var(--sub);margin-bottom:12px}
+.topics{display:flex;flex-direction:column;gap:8px}
+.topic{
+  display:block;width:100%;text-align:left;cursor:pointer;
+  background:var(--surface2);border:1px solid var(--rule);border-radius:6px;
+  color:var(--ink);font:15px/1.4 var(--ui);padding:12px 14px;
+}
+.topic:hover{border-color:var(--accent)}
+.topic[aria-expanded="true"]{border-color:var(--accent);background:#16324f}
+.topic .chev{float:right;color:var(--cap);font-family:var(--mono);font-size:12px}
+
+.panel{display:none;margin:10px 0 4px;border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:4px;background:#081426;padding:14px}
+.panel.open{display:block}
+.panel h3{margin-bottom:8px}
+.panel p{font-size:14.5px;color:var(--sub)}
+blockquote{
+  margin:12px 0;padding:10px 12px;border-left:2px solid var(--rule);
+  background:rgba(255,255,255,.02);font-size:14px;color:var(--ink);
+}
+blockquote .src{display:block;margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--cap);word-break:break-all}
+
+.meta{
+  margin-top:14px;border-top:1px dashed var(--rule);padding-top:10px;
+  display:flex;flex-wrap:wrap;gap:6px 10px;font-family:var(--mono);font-size:10.5px;color:var(--cap);
+}
+.badge{border:1px solid var(--accent);color:var(--accent);border-radius:3px;padding:2px 6px;letter-spacing:.04em}
+.metaline{width:100%;font-family:var(--mono);font-size:10.5px;color:var(--cap);line-height:1.5}
+
+.chiprow{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.chip{
+  cursor:pointer;background:transparent;border:1px solid var(--rule);border-radius:3px;
+  color:var(--sub);font:12.5px/1 var(--ui);padding:7px 9px;
+}
+.chip:hover{border-color:var(--accent);color:var(--ink)}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+
+.result{margin-top:10px;padding:12px;border:1px solid var(--rule);border-radius:4px;background:var(--surface2);font-size:14px}
+.result .verdict{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.result.no .verdict{color:var(--warn)}
+.result .row{display:flex;gap:8px;font-family:var(--mono);font-size:11px;color:var(--cap);margin-top:8px;border-top:1px dashed var(--rule);padding-top:8px}
+
+table.lookup{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+table.lookup th{
+  text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--cap);font-weight:400;
+  border-bottom:1px solid var(--rule);padding:6px 8px 6px 0;vertical-align:bottom;
+}
+table.lookup td{padding:6px 8px 6px 0;border-bottom:1px solid rgba(28,51,80,.5);color:var(--sub);vertical-align:top}
+table.lookup td.y{color:var(--accent)}
+table.lookup td.n{color:var(--warn)}
+caption{caption-side:bottom;text-align:left;font-family:var(--mono);font-size:10.5px;color:var(--cap);padding-top:8px;line-height:1.5}
+
+input[type=text],input[type=tel],select{
+  width:100%;background:#050d1a;border:1px solid var(--rule);border-radius:4px;
+  color:var(--ink);font:15px var(--ui);padding:11px 12px;
+}
+input::placeholder{color:#6d819c}
+select{appearance:none;background-image:none}
+label{display:block;font-size:12px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cap);margin:0 0 6px}
+.field{margin-bottom:14px}
+.go{
+  cursor:pointer;background:var(--accent);color:#02120d;border:0;border-radius:4px;
+  font:600 15px var(--ui);padding:12px 18px;width:100%;
+}
+.go:hover{background:#54f0c3}
+.ghost{
+  cursor:pointer;background:transparent;color:var(--ink);border:1px solid var(--rule);
+  border-radius:4px;font:14px var(--ui);padding:10px 14px;
+}
+.ghost:hover{border-color:var(--accent)}
+
+/* ---------- notes column ---------- */
+.notes{display:flex;flex-direction:column;gap:16px}
+.note{border:1px solid var(--rule);border-radius:4px;background:var(--surface);padding:15px 16px}
+.note .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+.note h3{margin-bottom:8px}
+.note p,.note li{font-size:14px;color:var(--sub)}
+.note ul{margin:0;padding-left:18px}
+.note li{margin-bottom:7px}
+.note li:last-child{margin-bottom:0}
+
+/* ---------- safety band ---------- */
+.safety{border:1px solid var(--warn);border-radius:6px;background:rgba(242,164,58,.06);padding:16px 18px;margin-bottom:22px}
+.safety .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--warn);display:block;margin-bottom:10px}
+.safety h3{color:var(--ink);margin-bottom:10px}
+.safety p{font-size:14.5px;color:var(--sub)}
+.safety .tel{font-family:var(--mono);color:var(--ink);font-size:15px}
+.routes{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+@media(min-width:700px){.routes{grid-template-columns:1fr 1fr 1fr}}
+.route{border:1px solid var(--rule);border-radius:4px;background:var(--surface);padding:12px 13px}
+.route .who{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cap);display:block;margin-bottom:6px}
+.route p{font-size:13.5px;margin-bottom:0}
+
+/* ---------- queue + staff ---------- */
+.twocol{display:grid;grid-template-columns:1fr;gap:26px}
+@media(min-width:940px){.twocol{grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:34px;align-items:start}}
+.card{border:1px solid var(--rule);border-radius:6px;background:var(--surface);padding:18px}
+.card h3{margin-bottom:10px}
+.card .lead{font-size:14px;color:var(--cap);margin-bottom:16px}
+
+.queue{list-style:none;margin:0;padding:0}
+.qitem{border:1px solid var(--rule);border-radius:4px;background:var(--surface2);padding:12px 13px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start}
+.qitem.done{opacity:.45}
+.qnum{font-family:var(--mono);font-size:17px;color:var(--accent);flex:none;width:30px;line-height:1.3}
+.qbody{flex:1;min-width:0}
+.qtop{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.qname{font-size:15px;color:var(--ink)}
+.qtel{font-family:var(--mono);font-size:13px;color:var(--sub)}
+.qcat{font-size:13.5px;color:var(--sub);margin-top:4px}
+.qmeta{font-family:var(--mono);font-size:10.5px;color:var(--cap);margin-top:6px;line-height:1.6}
+.tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--rule);color:var(--cap);border-radius:2px;padding:2px 5px}
+.tag.samp{border-color:var(--warn);color:var(--warn)}
+.tag.new{border-color:var(--accent);color:var(--accent)}
+.qact{flex:none}
+
+.counter{list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:13px}
+.counter li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--rule);padding:7px 0;color:var(--sub)}
+.counter li span:last-child{color:var(--accent)}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:800px){.steps{grid-template-columns:1fr 1fr 1fr}}
+.step{border:1px solid var(--rule);border-radius:6px;background:var(--surface);padding:18px}
+.step .n{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--accent);display:block;margin-bottom:10px}
+.step h3{margin-bottom:8px}
+.step p{font-size:14px;color:var(--sub)}
+
+footer.foot{border-top:1px solid var(--rule);padding-top:22px;color:var(--cap);font-size:13px}
+footer.foot ul{margin:12px 0 0;padding-left:18px;font-family:var(--mono);font-size:11.5px;line-height:1.9;word-break:break-all}
+.hidden{display:none}
+
+/* ---------- print ---------- */
+@media print{
+  body{background:#fff;color:#111;font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  a{color:#111;border:0}
+  .phone,.card,.note,.step,.route,.notice{background:#fff;border:1px solid #bbb;color:#111}
+  .phonebar{background:#f2f2f2;color:#333}
+  .panel{display:block !important;background:#fafafa;border:1px solid #ccc;border-left:3px solid #444;page-break-inside:avoid}
+  .safety{background:#fff;border:2px solid #333}
+  .mark,.badge,.note .lab,.step .n,.sectionhead .kicker,.safety .lab{color:#111;border-color:#666}
+  .qnum,.counter li span:last-child{color:#111}
+  .topic{background:#fff;border:1px solid #999;color:#111}
+  .noprint{display:none !important}
+  table.lookup td.y,table.lookup td.n{color:#111}
+  h1,h2,h3,.sitehead .name{color:#111}
+  p,.note p,.panel p,.card .lead,caption,.qmeta{color:#333}
+  section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="brandrow">
+    <span class="mark">Alaska AI</span>
+    <span class="prep">Prepared by Alaska AI, August 1, 2026</span>
+  </div>
+  <h1>The pre-call check, built for Medical Park Family Care</h1>
+  <p class="sub">A patient opens this on a phone at 8:40 on a Monday. It answers five things Medical Park has already written down, in Medical Park's own words, and it hands everything else to a person.</p>
+
+  <div class="notice">
+    <p><strong>This is a scripted demonstration.</strong> Alaska AI built it to show what phase one of the proposed build does. It is not connected to Medical Park Family Care in any way. It holds no patient data, it reaches no system, it books nothing, it sends nothing, and nobody is watching it.</p>
+    <p>Every answer inside it was copied by hand from a page on mpfcak.com that we read on August 1, 2026, and the source address is printed under each one. There is no AI anywhere in it, because phase one of the study has no AI in it.</p>
+  </div>
+</header>
+
+<!-- ============ THE PATIENT SCREEN ============ -->
+<section>
+  <div class="sectionhead">
+    <span class="kicker">Scenario one, the phone at 8:40 on a Monday</span>
+    <h2>Five questions with one fixed answer each</h2>
+    <p>Your frequently asked questions page says "Our peak calling time is between 8:30am-10am every morning, especially Mondays." These five are all answerable from pages you already publish. Tap through them the way a patient would.</p>
+  </div>
+
+  <div class="chiprow noprint" role="group" aria-label="Pretend the time is">
+    <span class="chip" style="border:0;color:var(--cap);cursor:default;padding-left:0">Pretend it is</span>
+    <button class="chip on" data-now="0" type="button">Monday 8:40 am</button>
+    <button class="chip" data-now="1" type="button">Saturday 10:00 am</button>
+    <button class="chip" data-now="2" type="button">Tuesday 9:15 pm</button>
+  </div>
+
+  <div class="stage">
+    <div class="phone">
+      <div class="phonebar"><b id="clock">Mon 8:40 am</b><span>mpfcak.com</span></div>
+      <div class="screen">
+        <div class="sitehead">
+          <div class="name">Medical Park Family Care</div>
+          <div class="place">2211 E. Northern Lights Blvd, Anchorage</div>
+          <div class="openstate"><span class="dot" id="dot"></span><span id="openline">Open now. Monday to Friday 7:30am to 6pm.</span></div>
+        </div>
+
+        <p class="ask">What do you need? Pick the closest one.</p>
+
+        <div class="topics">
+
+          <!-- 1. INSURANCE -->
+          <button class="topic" type="button" data-panel="p1" data-count="Insurance" aria-expanded="false">Do you take my insurance?<span class="chev">+</span></button>
+          <div class="panel" id="p1">
+            <h3>Checking your plan against the published list</h3>
+            <p>Pick your plan. The page reads one table and reports what that table says.</p>
+            <div class="chiprow noprint" id="plans"></div>
+            <div id="insResult"></div>
+            <table class="lookup">
+              <caption>This is the whole table the lookup reads. Ten plans accepted, five closed to new patients. Nothing else is consulted, so the same plan gives the same answer every time.</caption>
+              <thead><tr><th>Accepted and preferred provider</th><th>Not accepting new patients</th></tr></thead>
+              <tbody>
+                <tr><td class="y">Premera</td><td class="n">First Health</td></tr>
+                <tr><td class="y">Aetna</td><td class="n">Denali Kid Care</td></tr>
+                <tr><td class="y">Cigna</td><td class="n">Alaska Medicaid</td></tr>
+                <tr><td class="y">Meritain</td><td class="n">Medicare</td></tr>
+                <tr><td class="y">Multiplan</td><td class="n">Tricare</td></tr>
+                <tr><td class="y">United</td><td></td></tr>
+                <tr><td class="y">PHCS</td><td></td></tr>
+                <tr><td class="y">Beech Street</td><td></td></tr>
+                <tr><td class="y">First Choice</td><td></td></tr>
+                <tr><td class="y">Moda</td><td></td></tr>
+              </tbody>
+            </table>
+            <p>Whether your own policy is active, what it pays, and what you would owe are questions about you, so this page won't touch them. That is a phone call to 907-279-8486.</p>
+            <div class="meta">
+              <span class="badge">Lookup, not a guess</span>
+              <span class="metaline">Matched against a fixed 15 row table. No model, no generation, no free text.<br>Last reviewed August 1, 2026. Owner, to be named by Medical Park before the page goes live.<br>From mpfcak.com/patient-information/insurance/</span>
+            </div>
+          </div>
+
+          <!-- 2. SAME DAY -->
+          <button class="topic" type="button" data-panel="p2" data-count="Same day" aria-expanded="false">Can I be seen today?<span class="chev">+</span></button>
+          <div class="panel" id="p2">
+            <h3 id="sdHead">Same day, in Medical Park's words</h3>
+            <div id="sdState"></div>
+            <blockquote>"We reserve appointment slots for same-day needs such as acute illness and injury. Out of respect for your time, please call ahead if you need to be seen on the same day so we may schedule you accordingly."<span class="src">mpfcak.com/patient-information/frequently-asked-questions/</span></blockquote>
+            <blockquote>"Saturday is a walk-in clinic only for acute illnesses and injuries."<span class="src">mpfcak.com/patient-information/frequently-asked-questions/</span></blockquote>
+            <p>Hours are Monday to Friday 7:30am to 6pm and Saturday 9am to 2pm.</p>
+            <p>This page books nothing and holds no schedule, so it can't tell you whether a slot is free. Your page asks people to call ahead, so the answer here is the phone. 907-279-8486.</p>
+            <div class="meta">
+              <span class="badge">Lookup, not a guess</span>
+              <span class="metaline">Two published sentences plus a clock check against your published hours.<br>Last reviewed August 1, 2026. Owner, to be named by Medical Park before the page goes live.<br>From mpfcak.com/patient-information/frequently-asked-questions/ and mpfcak.com/contact-us/</span>
+            </div>
+          </div>
+
+          <!-- 3. REFILL -->
+          <button class="topic" type="button" data-panel="p3" data-count="Refill" aria-expanded="false">Where is my refill?<span class="chev">+</span></button>
+          <div class="panel" id="p3">
+            <h3>Start with your pharmacy, not with us</h3>
+            <p>Most people call the clinic first. Your own page says the pharmacy goes first.</p>
+            <blockquote>"They will check to see if you have refills remaining on your current prescription and, if not, will contact us directly to receive authorization. Please allow 72 hours for this process to take place."<span class="src">mpfcak.com/patient-information/prescription-refills/</span></blockquote>
+            <table class="lookup">
+              <caption>The three steps are the three that sentence describes. Nothing was added to it.</caption>
+              <thead><tr><th>Step</th><th>Who does it</th></tr></thead>
+              <tbody>
+                <tr><td>Check whether refills remain</td><td>Your pharmacy</td></tr>
+                <tr><td>If none remain, contact the clinic for authorization</td><td>Your pharmacy</td></tr>
+                <tr><td>Allow 72 hours for the process</td><td>Everyone</td></tr>
+              </tbody>
+            </table>
+            <p>This page can't see your prescription and it can't tell you where one request has got to. If it has been longer than 72 hours, leave a callback below and the front desk will pick it up.</p>
+            <div class="meta">
+              <span class="badge">Lookup, not a guess</span>
+              <span class="metaline">One published passage, shown whole. The steps restate it and add nothing.<br>Last reviewed August 1, 2026. Owner, to be named by Medical Park before the page goes live.<br>From mpfcak.com/patient-information/prescription-refills/</span>
+            </div>
+          </div>
+
+          <!-- 4. RECORDS -->
+          <button class="topic" type="button" data-panel="p4" data-count="Records" aria-expanded="false">How do I get my records?<span class="chev">+</span></button>
+          <div class="panel" id="p4">
+            <h3>Seven to ten days, and a fee that depends on the release</h3>
+            <blockquote>"Please allow seven to ten days after we receive the request and, if applicable, payment."<span class="src">mpfcak.com/patient-information/frequently-asked-questions/</span></blockquote>
+            <blockquote>"Otherwise, a charge of $25 is assessed to cover a full chart release."<span class="src">mpfcak.com/patient-information/frequently-asked-questions/</span></blockquote>
+            <p>That sentence starts with "Otherwise" because it follows another one on your page. The live version of this answer would carry the whole paragraph rather than the fragment, since a fee sentence quoted halfway is how a front desk ends up on the phone anyway.</p>
+            <p>When was the visit you need?</p>
+            <div class="chiprow noprint">
+              <button class="chip" type="button" data-rec="old">Before October 1, 2019</button>
+              <button class="chip" type="button" data-rec="new">October 1, 2019 or later</button>
+            </div>
+            <div id="recResult"></div>
+            <div class="meta">
+              <span class="badge">Lookup, not a guess</span>
+              <span class="metaline">A date comparison against one cutoff, October 1, 2019. Two outcomes, both written out in advance.<br>Last reviewed August 1, 2026. Owner, to be named by Medical Park before the page goes live.<br>From mpfcak.com/patient-information/frequently-asked-questions/ and mpfcak.com/patient-information/patient-portal/</span>
+            </div>
+          </div>
+
+          <!-- 5. AFTER HOURS -->
+          <button class="topic" type="button" data-panel="p5" data-count="After hours" aria-expanded="false">You are closed. What now?<span class="chev">+</span></button>
+          <div class="panel" id="p5">
+            <h3>Where after hours goes, exactly as you publish it</h3>
+            <p>If this is an emergency, call 911.</p>
+            <p><strong>Under 18</strong></p>
+            <blockquote>"For our pediatric patients (under age 18) we have a 24-hour nurse triage line staffed with pediatric nurse specialists."<span class="src">mpfcak.com/patient-information/frequently-asked-questions/</span></blockquote>
+            <p><strong>Adults</strong></p>
+            <blockquote>"For adult patients, we offer the option to leave a message for a MPFC nurse to contact you in the morning of the next business day. Patients who would like to speak to a nurse after hours may call the Providence Hospital 24-Hour Nurse Advice Line at 907-212-6183."<span class="src">mpfcak.com/patient-information/frequently-asked-questions/</span></blockquote>
+            <p>This page is not an after-hours channel and it reaches nobody. It points at the routes you already run and stops there.</p>
+            <div class="meta">
+              <span class="badge">Lookup, not a guess</span>
+              <span class="metaline">Two published passages, shown whole, split by the one question the page is allowed to ask, over or under 18.<br>Last reviewed August 1, 2026. Owner, to be named by Medical Park before the page goes live.<br>From mpfcak.com/patient-information/frequently-asked-questions/</span>
+            </div>
+          </div>
+
+          <!-- 6. SOMETHING ELSE -->
+          <button class="topic" type="button" data-panel="p6" data-count="Something else" aria-expanded="false">Something else<span class="chev">+</span></button>
+          <div class="panel" id="p6">
+            <h3>Type a word and watch what the page does with it</h3>
+            <p>Your words are matched against a fixed list of topics. There is no model reading this, so anything off the list gets a person rather than an answer.</p>
+            <div class="field noprint">
+              <label for="freeq">What are you after</label>
+              <input type="text" id="freeq" autocomplete="off" placeholder="medicare, saturday, transfer my chart">
+            </div>
+            <div class="chiprow noprint">
+              <button class="chip" type="button" data-try="medicare">medicare</button>
+              <button class="chip" type="button" data-try="saturday">saturday</button>
+              <button class="chip" type="button" data-try="transfer my chart">transfer my chart</button>
+              <button class="chip" type="button" data-try="my knee hurts">my knee hurts</button>
+              <button class="chip" type="button" data-try="chest pain">chest pain</button>
+            </div>
+            <div id="freeResult"></div>
+            <div class="meta">
+              <span class="badge">Lookup, not a guess</span>
+              <span class="metaline">Keyword match, checked in a fixed order. Emergency words first, clinical words second, topics last, so a symptom always beats a topic.<br>Last reviewed August 1, 2026. Owner, to be named by Medical Park before the page goes live.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <span class="lab">Why it behaves that way</span>
+        <h3>Every answer on that screen is a row in a file your staff edit</h3>
+        <p>Nothing on the patient screen was written by us and nothing was written by a model. Each answer is your own sentence, copied, with a source address, a last reviewed date and an owner attached to it. Correcting a line is an edit to that file, never a call to us and never a deploy.</p>
+        <p>The badge on every card says the same thing on purpose. A patient who can see it is a lookup trusts it differently from one who suspects a chatbot, and your staff can audit the whole thing in an afternoon.</p>
+      </div>
+
+      <div class="note">
+        <span class="lab">The scope, stated as refusals</span>
+        <h3>What it will not do, in any version we would build</h3>
+        <ul>
+          <li>No AI. Phase one is a fixed list of answers, a form and a counter.</li>
+          <li>No booking. It holds no schedule and it writes to no system.</li>
+          <li>No triage, no symptom questions, no advice. A clinical word stops it.</li>
+          <li>No after-hours contact. It points at the pediatric triage line and the adult routes you already run, then stops.</li>
+          <li>Nothing about a specific person. It holds no records, so it can't check a policy, a prescription or a balance.</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <span class="lab">The refusal is the feature</span>
+        <h3>A symptom word beats a topic word, always</h3>
+        <p>Type "my knee hurts" into the box on that screen. The page has a records answer and an appointment answer and it uses neither, because the clinical list is checked before the topic list. Your contact page already says where a question like that goes, so the refusal quotes you rather than improvising.</p>
+        <p>A page that answers a clinical question badly is worse than no page at all. This one is built so that outcome is unreachable rather than unlikely.</p>
+      </div>
+
+      <div class="note">
+        <span class="lab">The counter</span>
+        <h3>What was asked, counted from zero</h3>
+        <p>Every tap writes one row. This demonstration counts only your own clicks and starts at zero, so nothing below is a claim about your practice.</p>
+        <ul class="counter" id="counter"><li><span>Nothing opened yet</span><span>0</span></li></ul>
+        <p style="margin-top:12px">In the live build this is the first real number anyone has about what the 8:30 to 10am calls are made of. Week one of the work is the tally sheet that gives it a baseline to sit against.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALLBACK QUEUE ============ -->
+<section>
+  <div class="sectionhead">
+    <span class="kicker">Scenario two, the page runs out of answers</span>
+    <h2>What happens when the honest answer is a person</h2>
+    <p>A page that answers questions with nowhere to put the ones it can't just moves the problem to a different desk. Here is the other half of phase one.</p>
+  </div>
+
+  <div class="safety">
+    <span class="lab">Before anything else, and always above the form</span>
+    <h3>If this is an emergency, call 911</h3>
+    <p>The form below is not monitored. Nobody reads it at night, nobody reads it on a Sunday, and nothing on this page reaches a nurse. If you need help now, use one of these.</p>
+    <div class="routes">
+      <div class="route">
+        <span class="who">Emergency</span>
+        <p class="tel">911</p>
+        <p style="margin-top:6px">Any emergency, any hour.</p>
+      </div>
+      <div class="route">
+        <span class="who">Under 18, after hours</span>
+        <p>Medical Park publishes a 24-hour nurse triage line staffed with pediatric nurse specialists. The live page would carry the exact number and instruction from your own after-hours message, which is not published on the site, so we left it blank rather than guess it.</p>
+      </div>
+      <div class="route">
+        <span class="who">Adults, after hours</span>
+        <p>Leave a message for a MPFC nurse to contact you the morning of the next business day, or call the Providence Hospital 24-Hour Nurse Advice Line at 907-212-6183.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="twocol">
+    <div class="card">
+      <h3>Leave a callback</h3>
+      <p class="lead">Four fields. Your front desk gets a row it can work instead of a voicemail it has to decode.</p>
+      <form id="cbform" novalidate>
+        <div class="field">
+          <label for="cbname">Your name</label>
+          <input type="text" id="cbname" autocomplete="off" placeholder="First and last">
+        </div>
+        <div class="field">
+          <label for="cbtel">Callback number</label>
+          <input type="tel" id="cbtel" autocomplete="off" placeholder="907-555-0100">
+        </div>
+        <div class="field">
+          <label for="cbcat">What is this about</label>
+          <select id="cbcat">
+            <option value="">Choose one</option>
+            <option>Insurance and coverage</option>
+            <option>Appointment or same day request</option>
+            <option>Prescription refill</option>
+            <option>Medical records</option>
+            <option>Billing or a statement</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cbtime">Best time to reach you</label>
+          <select id="cbtime">
+            <option value="">Choose one</option>
+            <option>Today 7:30am to 10am</option>
+            <option>Today 10am to 1pm</option>
+            <option>Today 1pm to 6pm</option>
+            <option>Tomorrow morning</option>
+            <option>Any time during clinic hours</option>
+          </select>
+        </div>
+        <button class="go noprint" type="submit">Add to the callback queue</button>
+        <div id="cbmsg" style="margin-top:12px;font-size:13.5px;color:var(--cap)"></div>
+      </form>
+      <div class="meta" style="margin-top:18px">
+        <span class="badge">By design</span>
+        <span class="metaline">There is no box here for what is wrong. The page holds no clinical information and it never will, so the category list is fixed at six and free text is not collected anywhere on this form. Your front desk asks the real question on the call, the way it does today.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>The front desk view</h3>
+      <p class="lead">One ordered list. Sorted by the window the patient asked for, then by when the request arrived. That is the whole rule, and a person can check it by reading it.</p>
+      <p style="font-family:var(--mono);font-size:11px;color:var(--warn);letter-spacing:.06em;margin-bottom:14px">The two rows below are sample data written for this demonstration. They are not Medical Park patients and no such request exists.</p>
+      <ul class="queue" id="queue"></ul>
+      <div class="meta">
+        <span class="badge">Human on the trigger</span>
+        <span class="metaline">Nothing here dials anyone. Marking a row done is a person saying they made the call. The queue holds no chart, writes to no record system, and takes no action on its own.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT SITS ============ -->
+<section>
+  <div class="sectionhead">
+    <span class="kicker">How it sits in your operation</span>
+    <h2>Three steps, and a person is still on every one that matters</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <span class="n">Step one</span>
+      <h3>Your words go into a file you own</h3>
+      <p>Each answer is copied from your pages, given an owner and a review date, and checked by whoever owns it before the page goes live. Your staff edit that file without calling us. The page has no other source, so it can't say anything you have not approved.</p>
+    </div>
+    <div class="step">
+      <span class="n">Step two</span>
+      <h3>The page answers only what has one fixed answer</h3>
+      <p>Insurance list, same day, refills, records, after hours. Anything clinical, anything about one specific person, anything it does not hold, it stops and hands the patient to your phone or your portal. It never guesses and it never reassures.</p>
+    </div>
+    <div class="step">
+      <span class="n">Step three</span>
+      <h3>Your front desk works the list, and nothing else moves</h3>
+      <p>What the page can't answer lands as a filled-in row with a name, a number, a reason and a window. A person reads it and a person calls. Nothing books, nothing writes to your record system, nothing goes out without a human doing it.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>Scripted demonstration of the phase one build proposed in the Field Study for Medical Park Family Care. Prepared by Alaska AI, August 1, 2026. It is not connected to Medical Park, holds no patient data, books nothing and sends nothing.</p>
+  <p style="margin-top:12px">Every quoted sentence in this demonstration was read on these pages on August 1, 2026.</p>
+  <ul>
+    <li>mpfcak.com/patient-information/frequently-asked-questions/</li>
+    <li>mpfcak.com/patient-information/insurance/</li>
+    <li>mpfcak.com/patient-information/prescription-refills/</li>
+    <li>mpfcak.com/patient-information/patient-portal/</li>
+    <li>mpfcak.com/contact-us/</li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- pretend clock, a lookup against published hours ------- */
+  var DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  /* day index to [open minutes, close minutes], or null for closed */
+  var HOURS = [null,[450,1080],[450,1080],[450,1080],[450,1080],[450,1080],[540,840]];
+  var CONTEXTS = [
+    {day:1,min:520,label:"Mon 8:40 am"},
+    {day:6,min:600,label:"Sat 10:00 am"},
+    {day:2,min:1275,label:"Tue 9:15 pm"}
+  ];
+  var nowIdx = 0;
+
+  function isOpen(c){
+    var h = HOURS[c.day];
+    return !!h && c.min >= h[0] && c.min < h[1];
+  }
+  function fmt(m){
+    var h = Math.floor(m/60), mm = m%60, ap = h>=12 ? "pm" : "am";
+    var hh = h%12; if(hh===0) hh=12;
+    return hh + ":" + (mm<10?"0":"") + mm + ap;
+  }
+  function nextOpen(c){
+    for(var i=1;i<=7;i++){
+      var d = (c.day + i) % 7;
+      if(HOURS[d]) return DAYS[d] + " " + fmt(HOURS[d][0]);
+    }
+    return "";
+  }
+
+  function paintClock(){
+    var c = CONTEXTS[nowIdx];
+    document.getElementById("clock").textContent = c.label;
+    var open = isOpen(c);
+    var dot = document.getElementById("dot");
+    var line = document.getElementById("openline");
+    dot.className = open ? "dot" : "dot shut";
+    if(open && c.day === 6){
+      line.textContent = "Open now. Saturday 9am to 2pm, walk-in for acute illness and injury.";
+    } else if(open){
+      line.textContent = "Open now. Monday to Friday 7:30am to 6pm.";
+    } else {
+      line.textContent = "Closed now. Next open " + nextOpen(c) + ".";
+    }
+    paintSameDay();
+  }
+
+  function paintSameDay(){
+    var c = CONTEXTS[nowIdx];
+    var el = document.getElementById("sdState");
+    var head = document.getElementById("sdHead");
+    if(!el) return;
+    var open = isOpen(c);
+    if(open && c.day === 6){
+      head.textContent = "It is Saturday, which works differently";
+      el.innerHTML = '<div class="result"><div class="verdict">Open, walk-in only</div>' +
+        'Saturday is a walk-in clinic for acute illness and injury. There is no appointment channel on a Saturday, so nothing here books and nothing needs to.' +
+        '<div class="row"><span>Clock check, Sat 10:00 am against 9am to 2pm.</span></div></div>';
+    } else if(open){
+      head.textContent = "You are inside clinic hours right now";
+      el.innerHTML = '<div class="result"><div class="verdict">Open now</div>' +
+        'Same-day slots are held for acute illness and injury, so the answer is to call ahead rather than walk in.' +
+        '<div class="row"><span>Clock check, ' + c.label + ' against 7:30am to 6pm.</span></div></div>';
+    } else {
+      head.textContent = "The clinic is closed right now";
+      el.innerHTML = '<div class="result no"><div class="verdict">Closed</div>' +
+        'Nothing here can hold a slot for the morning. Next open ' + nextOpen(c) + '. If you need someone tonight, the after-hours routes sit above the callback form on this page.' +
+        '<div class="row"><span>Clock check, ' + c.label + ' against published hours.</span></div></div>';
+    }
+  }
+
+  var clockChips = document.querySelectorAll("[data-now]");
+  Array.prototype.forEach.call(clockChips, function(b){
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(clockChips, function(x){ x.className = "chip"; });
+      b.className = "chip on";
+      nowIdx = parseInt(b.getAttribute("data-now"), 10);
+      paintClock();
+    });
+  });
+
+  /* ---------------- topic panels and the counter -------------------------- */
+  var counts = {};
+  function bumpCount(name){
+    counts[name] = (counts[name] || 0) + 1;
+    var ul = document.getElementById("counter");
+    var keys = Object.keys(counts).sort(function(a,b){ return counts[b] - counts[a]; });
+    ul.innerHTML = keys.map(function(k){
+      return "<li><span>" + k + "</span><span>" + counts[k] + "</span></li>";
+    }).join("");
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-panel]"), function(btn){
+    btn.addEventListener("click", function(){
+      var p = document.getElementById(btn.getAttribute("data-panel"));
+      var isOpenPanel = p.className.indexOf("open") > -1;
+      if(isOpenPanel){
+        p.className = "panel";
+        btn.setAttribute("aria-expanded","false");
+        btn.querySelector(".chev").textContent = "+";
+      } else {
+        p.className = "panel open";
+        btn.setAttribute("aria-expanded","true");
+        btn.querySelector(".chev").textContent = "-";
+        bumpCount(btn.getAttribute("data-count"));
+      }
+    });
+  });
+
+  /* ---------------- insurance, a fixed table lookup ---------------------- */
+  var ACCEPTED = ["Premera","Aetna","Cigna","Meritain","Multiplan","United","PHCS","Beech Street","First Choice","Moda"];
+  var CLOSED   = ["First Health","Denali Kid Care","Alaska Medicaid","Medicare","Tricare"];
+
+  var planWrap = document.getElementById("plans");
+  var planHtml = ACCEPTED.concat(CLOSED).map(function(p){
+    return '<button class="chip" type="button" data-plan="' + p + '">' + p + '</button>';
+  }).join("");
+  planHtml += '<button class="chip" type="button" data-plan="__other">My plan is not listed</button>';
+  planWrap.innerHTML = planHtml;
+
+  function closestAttr(el, attr){
+    while(el && el !== document){
+      if(el.getAttribute && el.getAttribute(attr) !== null) return el;
+      el = el.parentNode;
+    }
+    return null;
+  }
+
+  planWrap.addEventListener("click", function(e){
+    var b = closestAttr(e.target, "data-plan");
+    if(!b) return;
+    Array.prototype.forEach.call(planWrap.querySelectorAll(".chip"), function(x){ x.className = "chip"; });
+    b.className = "chip on";
+    var plan = b.getAttribute("data-plan");
+    var out = document.getElementById("insResult");
+    if(plan === "__other"){
+      out.innerHTML = '<div class="result no"><div class="verdict">Not in the table</div>' +
+        'The list holds 15 plans and yours is not one of them, so this page has no answer for you. That is a callback rather than a guess. Leave your number below under Insurance and coverage, or call 907-279-8486.' +
+        '<div class="row"><span>Table miss. 15 rows checked.</span></div></div>';
+      return;
+    }
+    if(ACCEPTED.indexOf(plan) > -1){
+      out.innerHTML = '<div class="result"><div class="verdict">Accepted</div>' +
+        'Medical Park accepts ' + plan + ' and is a preferred provider.' +
+        '<div class="row"><span>Row matched in the accepted column. 15 rows checked.</span></div></div>';
+    } else {
+      out.innerHTML = '<div class="result no"><div class="verdict">Closed to new patients</div>' +
+        'Medical Park is not accepting new patients with ' + plan + '. That covers new patients only. If you are already a patient here, this page holds nothing about you, so call 907-279-8486.' +
+        '<div class="row"><span>Row matched in the closed column. 15 rows checked.</span></div></div>';
+    }
+  });
+
+  /* ---------------- records, one date comparison ------------------------- */
+  var firstRec = document.querySelector("[data-rec]");
+  var recWrap = firstRec ? firstRec.parentNode : null;
+  if(recWrap){
+    recWrap.addEventListener("click", function(e){
+      var b = closestAttr(e.target, "data-rec");
+      if(!b) return;
+      Array.prototype.forEach.call(recWrap.querySelectorAll(".chip"), function(x){ x.className = "chip"; });
+      b.className = "chip on";
+      var out = document.getElementById("recResult");
+      if(b.getAttribute("data-rec") === "old"){
+        out.innerHTML = '<div class="result"><div class="verdict">Older record system</div>' +
+          'Records from before that date sit in a separate system with its own login. Your patient portal page says "Access records from our old electronic record site. This includes records prior to October 1, 2019."' +
+          '<div class="row"><span>Date compared against one cutoff, October 1, 2019.</span></div></div>';
+      } else {
+        out.innerHTML = '<div class="result"><div class="verdict">Current record system</div>' +
+          'Those records are in the current system. Allow seven to ten days after the request and, if applicable, payment. A full chart release is charged at $25.' +
+          '<div class="row"><span>Date compared against one cutoff, October 1, 2019.</span></div></div>';
+      }
+    });
+  }
+
+  /* ---------------- keyword lookup, checked in a fixed order -------------- */
+  var EMERGENCY = ["911","emergency","chest pain","heart attack","stroke","not breathing","can t breathe","cant breathe","unconscious","passed out","overdose","suicide","severe bleeding","bleeding badly"];
+  var CLINICAL = ["pain","hurt","hurts","ache","aching","sore","rash","fever","cough","sick","dizzy","blood","breath","symptom","symptoms","swollen","swelling","infection","headache","vomit","throwing up","nausea","injury","injured","bleeding","pregnant","pregnancy","covid","flu","strep","anxiety","anxious","depressed","depression","dose","dosage","side effect","side effects","lump","should i","is it normal","do i need","diagnos","test result","lab result","results"];
+  var TOPICS = [
+    {panel:"p1", name:"Insurance", words:["insurance","coverage","covered","premera","aetna","cigna","meritain","multiplan","united","phcs","beech","first choice","moda","first health","denali","medicaid","medicare","tricare","carrier","policy","in network","network"]},
+    {panel:"p2", name:"Same day", words:["today","same day","sameday","appointment","appt","walk in","walkin","saturday","weekend","hours","open","closed","schedule","booking","book"]},
+    {panel:"p3", name:"Refill", words:["refill","refills","prescription","pharmacy","rx","medication","meds"]},
+    {panel:"p4", name:"Records", words:["record","records","chart","release","transfer","2019","paperwork","forms"]},
+    {panel:"p5", name:"After hours", words:["after hours","tonight","night","nurse","triage","providence","advice line"]}
+  ];
+
+  function normalize(s){
+    return (" " + s.toLowerCase().replace(/[^a-z0-9 ]+/g," ").replace(/\s+/g," ") + " ");
+  }
+  function hits(hay, list){
+    for(var i=0;i<list.length;i++){
+      if(hay.indexOf(list[i]) > -1) return list[i];
+    }
+    return null;
+  }
+
+  var PHONE_LINE = 'Call 907-279-8486. Monday to Friday 7:30am to 6pm, Saturday 9am to 2pm.';
+  var PORTAL_QUOTE = '<blockquote>"For clinical questions or appointment requests please contact us by phone or via the Patient Portal, rather than email. Email communication is not secure or HIPAA compliant."<span class="src">mpfcak.com/contact-us/</span></blockquote>';
+
+  function answerFor(raw){
+    var out = document.getElementById("freeResult");
+    var q = raw.trim();
+    if(!q){ out.innerHTML = ""; return; }
+    var hay = normalize(q);
+
+    var em = hits(hay, EMERGENCY);
+    if(em){
+      out.innerHTML = '<div class="result no"><div class="verdict">Stop. Call 911</div>' +
+        '<p style="margin:6px 0 0;font-size:15px;color:var(--ink)">If this is an emergency, call 911 now. This page is not monitored by anyone and it reaches no nurse.</p>' +
+        '<div class="row"><span>Emergency list matched on "' + em + '". Checked first, before every other list.</span></div></div>';
+      bumpCount("Refused, emergency");
+      return;
+    }
+
+    var cl = hits(hay, CLINICAL);
+    if(cl){
+      out.innerHTML = '<div class="result no"><div class="verdict">This page does not answer that</div>' +
+        '<p style="margin:6px 0 0">That reads as a clinical question. This page holds nothing about you, it can\'t see your chart, and it will not guess. Your own contact page says where a question like that goes.</p>' +
+        PORTAL_QUOTE +
+        '<p style="margin:0">' + PHONE_LINE + ' If it is easier, leave a callback below and the front desk will ring you.</p>' +
+        '<div class="row"><span>Clinical list matched on "' + cl + '". The topic lists were skipped, which is the rule.</span></div></div>';
+      bumpCount("Refused, clinical");
+      return;
+    }
+
+    for(var i=0;i<TOPICS.length;i++){
+      var t = TOPICS[i];
+      var w = hits(hay, t.words);
+      if(w){
+        var lower = t.name.toLowerCase();
+        out.innerHTML = '<div class="result"><div class="verdict">Matched, ' + lower + '</div>' +
+          'That word sits on the ' + lower + ' list, so the page opens the ' + lower + ' answer above. Same words, same answer, every time.' +
+          '<div class="row"><span>Topic list matched on "' + w + '".</span></div></div>';
+        var p = document.getElementById(t.panel);
+        var btn = document.querySelector('[data-panel="' + t.panel + '"]');
+        if(p.className.indexOf("open") === -1){ btn.click(); }
+        return;
+      }
+    }
+
+    out.innerHTML = '<div class="result no"><div class="verdict">No match</div>' +
+      'The page has no answer for that. Rather than improvise one, it hands you to a person. Leave a callback below under Something else, or call. ' + PHONE_LINE +
+      '<div class="row"><span>No list matched. The default is always a person.</span></div></div>';
+    bumpCount("No match, sent to a person");
+  }
+
+  var freeq = document.getElementById("freeq");
+  freeq.addEventListener("input", function(){ answerFor(freeq.value); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-try]"), function(b){
+    b.addEventListener("click", function(){
+      freeq.value = b.getAttribute("data-try");
+      answerFor(freeq.value);
+    });
+  });
+
+  /* ---------------- the callback queue ------------------------------------ */
+  var WINDOWS = ["Today 7:30am to 10am","Today 10am to 1pm","Today 1pm to 6pm","Tomorrow morning","Any time during clinic hours"];
+  var seq = 900;
+  var queue = [
+    {name:"K. Sample", tel:"907-555-0173", cat:"Insurance and coverage", win:"Today 7:30am to 10am", got:"8:37 am", sample:true, seq:837, done:false},
+    {name:"R. Sample", tel:"907-555-0148", cat:"Medical records", win:"Today 10am to 1pm", got:"8:12 am", sample:true, seq:812, done:false}
+  ];
+
+  function esc(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  function renderQueue(){
+    var live = [], done = [];
+    queue.forEach(function(q){ (q.done ? done : live).push(q); });
+    live.sort(function(a,b){
+      var d = WINDOWS.indexOf(a.win) - WINDOWS.indexOf(b.win);
+      return d !== 0 ? d : a.seq - b.seq;
+    });
+    var ul = document.getElementById("queue");
+    var html = live.map(function(q, i){
+      return '<li class="qitem"><span class="qnum">' + (i+1) + '</span><div class="qbody">' +
+        '<div class="qtop"><span class="qname">' + esc(q.name) + '</span><span class="qtel">' + esc(q.tel) + '</span>' +
+        (q.sample ? '<span class="tag samp">Sample data</span>' : '<span class="tag new">Added by you in this demo</span>') +
+        '</div>' +
+        '<div class="qcat">' + esc(q.cat) + '</div>' +
+        '<div class="qmeta">Asked for ' + esc(q.win) + '<br>Request arrived ' + esc(q.got) + '</div>' +
+        '</div><div class="qact noprint"><button class="ghost" type="button" data-done="' + q.seq + '">Mark called</button></div></li>';
+    }).join("");
+    html += done.map(function(q){
+      return '<li class="qitem done"><span class="qnum">ok</span><div class="qbody">' +
+        '<div class="qtop"><span class="qname">' + esc(q.name) + '</span><span class="qtel">' + esc(q.tel) + '</span></div>' +
+        '<div class="qcat">' + esc(q.cat) + '</div>' +
+        '<div class="qmeta">Marked called by a person. Nothing here dialled it.</div></div></li>';
+    }).join("");
+    ul.innerHTML = html || '<li class="qmeta">The queue is empty.</li>';
+  }
+
+  document.getElementById("queue").addEventListener("click", function(e){
+    var b = closestAttr(e.target, "data-done");
+    if(!b) return;
+    var s = parseInt(b.getAttribute("data-done"), 10);
+    queue.forEach(function(q){ if(q.seq === s) q.done = true; });
+    renderQueue();
+  });
+
+  document.getElementById("cbform").addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = document.getElementById("cbname").value.trim();
+    var tel = document.getElementById("cbtel").value.trim();
+    var cat = document.getElementById("cbcat").value;
+    var win = document.getElementById("cbtime").value;
+    var msg = document.getElementById("cbmsg");
+    if(!name || !tel || !cat || !win){
+      msg.style.color = "var(--warn)";
+      msg.textContent = "All four fields are needed. The front desk works from the row, so a half-filled row is a callback nobody can make.";
+      return;
+    }
+    if(tel.replace(/[^0-9]/g,"").length < 7){
+      msg.style.color = "var(--warn)";
+      msg.textContent = "That number looks short. Check it, since it is the only way anyone reaches you.";
+      return;
+    }
+    seq += 1;
+    queue.push({name:name, tel:tel, cat:cat, win:win, got:"just now, in this demonstration", sample:false, seq:seq, done:false});
+    renderQueue();
+    bumpCount("Callback left");
+    msg.style.color = "var(--cap)";
+    msg.textContent = "Added to the list on the right, in its sorted position. Nothing was sent. This demonstration keeps your entry in this browser tab only and it disappears when you close it.";
+    document.getElementById("cbname").value = "";
+    document.getElementById("cbtel").value = "";
+    document.getElementById("cbcat").value = "";
+    document.getElementById("cbtime").value = "";
+  });
+
+  /* ---------------- boot -------------------------------------------------- */
+  paintClock();
+  renderQueue();
+})();
+</script>
+</body>
+</html>
