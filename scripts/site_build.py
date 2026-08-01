@@ -2723,7 +2723,7 @@ every fact. Gold means a door is open to the public right now.</p>
     # from videos/videos.json (owned by the video automation) so this section
     # always shows the freshest video with no rebuild needed. The mp4 only
     # loads when the section scrolls into view, and it autoplays muted there.
-    steps = """<div id="homevidsec" hidden>
+    video_html = """<div id="homevidsec" hidden>
 <h2 data-reveal>Our Latest Video</h2>
 <p class="sub" data-reveal>The newest video from the daily feed. Tap through for the whole
 collection.</p>
@@ -2806,10 +2806,9 @@ story a day and keeps the Alaska AI Docket, a public record of
 documents on file, and for each one the plain answer to who decides it and whether an
 Alaskan still gets a say. It is published as
 <a class="proselink" href="data/">open data under CC BY 4.0</a> so anyone can check the
-work or build on it. The studio side builds voice agents, assistants trained on a
-company's own files and paperwork automation for
-<a class="proselink" href="services/">Alaska businesses</a>. Both halves run from
-Anchorage.</p>"""
+work or build on it. The studio side builds agentic systems for
+<a class="proselink" href="services/">Alaska businesses</a>, agents that run a whole
+workflow end to end, work the paperwork, and answer from a company's own files.</p>"""
 
     next_line = ""
     if nearest and dated:
@@ -2828,10 +2827,10 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 {stats}
 </div>
 {scan_html()}
+{video_html}
 {latest_html}
 {closing}
 {beats_html}
-{steps}
 {what_html}
 {subscribe_html()}
 <div class="about-line" data-reveal><p>{next_line}All sources verified against claims.</p></div>"""
