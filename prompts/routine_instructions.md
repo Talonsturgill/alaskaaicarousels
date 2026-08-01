@@ -616,12 +616,18 @@ JSON in its final message, which YOU persist to
    `video_html`; it was called `steps` after a section that no longer exists,
    which is part of how it got lost.
 
-   The studio sentence leads with agentic systems, never with voice agents.
-   Capabilities read as things agents DO (run a workflow end to end, work the
-   paperwork, answer from a company's own files), not as a product list. The
-   same rule governs the About page's studio line. "voice agents" stays in
-   the Organization JSON-LD `knowsAbout` array, which is a machine-readable
-   capability signal and not prose.
+   The homepage studio sentence names the FLAGSHIP PRODUCT, which is the
+   agentic operating system, a package of 1 to 1000 AI agents working
+   together to automate every possible aspect of a business. That is the
+   offer, and it is the maintainer's own words (2026-08-01). Never demote it
+   back to a capability list, and never lead with voice agents. Write the
+   count as "1 to 1000", per the ranges rule. "voice agents" stays in the
+   Organization JSON-LD `knowsAbout` array, which is a machine-readable
+   capability signal and not prose, so do not "fix" it to match the copy.
+
+   The About page's studio line still reads as a capability list. That is
+   not drift, it has simply not been rewritten yet. Leave it alone unless
+   the maintainer asks.
 
    Deleted and not to return: "Both halves run from Anchorage" (homepage),
    "Art from code daily" (homepage box), "The rules that never bend" (about),
