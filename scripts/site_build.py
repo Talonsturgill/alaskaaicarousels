@@ -44,6 +44,13 @@ import feeds_build as fb   # feeds, plaintext mirrors, llms.txt
 REPO = Path(__file__).resolve().parents[1]
 RAW = "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main"
 
+# IndexNow key. Not a secret and not a credential: the protocol's whole security
+# model is that only the site owner can put a file at the site's own root, so the
+# key is meant to be public and is published at /<key>.txt by this build. It is
+# fixed rather than generated because rotating it silently orphans the file the
+# search engines already fetched and verified.
+INDEXNOW_KEY = "a7f3c21e9b8d4e5f6a1c0b3d2e8f7a94"
+
 # Booking page for the free intro call (Calendly, Cal.com, or a Google
 # Calendar appointment page). While empty the services hero keeps its
 # form-first buttons; set it and rebuild to lead with the booking button.
@@ -5295,6 +5302,19 @@ def build(today, out_dir, site_url=None, domain=""):
         site_url, runs,
         topics=[{**t, "count": len(tindex.get(t["slug"]) or [])} for t in TOPICS],
         decisions=docket[0]))
+    # IndexNow ownership proof.
+    #
+    # Bing, Yandex, Seznam and Naver take a push instead of waiting for a crawl,
+    # and the whole protocol is this: host a file named for your key, containing
+    # your key. scripts/indexnow.py then submits changed URLs and they are
+    # fetched in minutes rather than whenever the crawler next wanders past.
+    #
+    # Worth being exact about the benefit, because it is easy to oversell.
+    # GOOGLE DOES NOT USE INDEXNOW and this does nothing for a Google ranking.
+    # It matters because Bing's index is what Copilot and ChatGPT search read,
+    # so this is about being citable by the answer engines, which is the same
+    # reason /llms.txt and the per-decision pages exist.
+    (out / f"{INDEXNOW_KEY}.txt").write_text(INDEXNOW_KEY + "\n")
     (out / ".nojekyll").write_text("")
     if domain:
         (out / "CNAME").write_text(domain + "\n")
