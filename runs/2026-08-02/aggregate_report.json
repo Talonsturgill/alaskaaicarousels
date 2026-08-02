@@ -1,0 +1,157 @@
+{
+  "run_dir": "out/2026-08-02",
+  "render_report": "out/2026-08-02/render/render_report.json",
+  "aggregates_file": "out/2026-08-02/aggregates.json",
+  "detected": 18,
+  "declared": 18,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "duration",
+      "fragment": "24 DAYS",
+      "text": "24 DAYS OPEN",
+      "n": 24,
+      "unit": "days"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "Eight kinds",
+      "text": "Eight kinds of public body,one contract.",
+      "n": 8,
+      "subject": "kinds"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "THREE WINDOWS",
+      "text": "THREE WINDOWS, ONE AUGUST",
+      "n": 3,
+      "subject": "windows"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "21 DAYS",
+      "text": "21 DAYS THE ONE FEDERAL WINDOW",
+      "n": 21,
+      "unit": "days"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "21 DAYS",
+      "text": "21 DAYS",
+      "n": 21,
+      "unit": "days"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "24 DAYS",
+      "text": "24 DAYS",
+      "n": 24,
+      "unit": "days"
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "27 TO 31",
+      "text": "FOUR STATE POSTINGS, 27 TO 31 JUL",
+      "from_n": 27,
+      "to_n": 31
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "FOUR STATE POSTINGS",
+      "text": "FOUR STATE POSTINGS, 27 TO 31 JUL",
+      "n": 4,
+      "subject": "state postings"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "3,967 acres",
+      "text": "3,967 acres at Eielson.Four sites, one total.",
+      "n": 3967,
+      "subject": "acres"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "Four sites",
+      "text": "3,967 acres at Eielson.Four sites, one total.",
+      "n": 4,
+      "subject": "sites"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "six possible uses",
+      "text": "The Air Force calls it mixed-use development and names six possible uses. Comput",
+      "n": 6,
+      "subject": "possible uses"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "TWO AIR FORCE ANNOUNCEMENTS",
+      "text": "SEARCHED THE TWO AIR FORCE ANNOUNCEMENTS. THE LEASE DOCUMENT ON SAM.GOV WAS NOT",
+      "n": 2,
+      "subject": "air force announcements"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "Five terms",
+      "text": "Five terms searched.None in the notice.",
+      "n": 5,
+      "subject": "terms"
+    },
+    {
+      "slide": 6,
+      "kind": "ratio",
+      "fragment": "0 OF 5",
+      "text": "0 OF 5 FOUND",
+      "n": 0,
+      "of": 5
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "ONE DAY",
+      "text": "ONE DAY EARLIER",
+      "n": 1,
+      "unit": "day"
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "0 OF 3",
+      "text": "0 OF 3 FOUND",
+      "n": 0,
+      "of": 3
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "21 DAYS",
+      "text": "21 DAYS",
+      "n": 21,
+      "unit": "days"
+    },
+    {
+      "slide": 10,
+      "kind": "count",
+      "fragment": "TWO AIR FORCE NOTICES",
+      "text": "TWO AIR FORCE NOTICES",
+      "n": 2,
+      "subject": "air force notices"
+    }
+  ],
+  "not_rederived": [],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

@@ -2291,3 +2291,54 @@ search budget resets.
   the same four cells made the declared breather the deck's second densest frame,
   so the filmstrip ran five dense slides into the turn. Cutting them restored the
   breather, unspoiled the turn, and fixed the gold drought's attribution at once.
+
+## 2026-08-02 - Phase 12 frontier PARK (focus: editorial dataviz and cartography)
+
+Rotation slot: the stalest (last scanned 2026-07-22) and distinct from the last
+three foci (08-01 procedural art, 07-31 deferred, 07-29 typography). Chosen for
+the stalest-slot rule AND because Phase 12 is DEFERRING the standing artwork-craft
+weakness this run, so the scan was spent stocking that shelf instead. WebSearch
+was available again (the 200-call ceiling that blocked 08-01 and starved all six
+of this run's scouts had reset by Phase 12): 5 searches, 4 fetches, 3 read.
+NOTHING APPLIED. Both upgrade slots went to reactive fact-integrity fixes, which
+outrank a frontier improvement by the phase's own reactive-first rule.
+
+- SLOPE-AND-ASPECT HACHURE SHADING (PARKED, and the one that answers our standing
+  weakness). Woodruff's sketchy-relief method, browser canvas, no dependencies:
+  divide a height field into a grid; at each cell compute SLOPE and ASPECT; draw
+  one short stroke per cell whose WIDTH encodes slope steepness and whose ROTATION
+  encodes aspect; make strokes LONGER than the cell so neighbours blend; jitter
+  cell positions and bend each stroke slightly so the field reads drawn rather
+  than stamped; then redraw the whole field at low opacity several times with the
+  sun angle varied a little each pass, so shadow detail ACCUMULATES.
+  WHY IT MATTERS HERE: our detail is uniform because our stipple/TOOTH fields are
+  parameterised by POSITION, so density falloff is a gradient laid over a texture
+  that is otherwise the same everywhere, and this run proved again that a reader
+  cannot see it (the declared TOOTH falloff ran in code and was invisible in every
+  render, per two pixel critics and the scorer). A hachure field is parameterised
+  by the DATA UNDER IT, so the non-uniformity is structural instead of applied.
+  We already own a height field on every deck that has modelled mass: the lit
+  landform on S05 was hand-shaded this run precisely because AK.reliefShade gave
+  off-palette noise. Parked, not applied, because it wants a worked
+  TECHNIQUE_LIBRARY entry with our own parameters and one trial slide before a
+  director is told to reach for it. https://andywoodruff.com/blog/hachures-and-sketchy-relief-maps/
+- HUMAN-RECOGNISABLE OBJECTS IN THE THUMB (PARKED, cheap, and aimed straight at
+  two recorded shortfalls). The TVCG thumbnail study separates what a thumbnail
+  component does: HROs (human-recognisable objects) and visual legends ATTRACT
+  attention, while data labels and a highlighted data summary carry
+  UNDERSTANDING, and the effective thumbnails combine one of each rather than
+  shrinking the in-body chart. This run's scorer held the cover at 7 because "the
+  Alaskan-ness is entirely verbal" and called S09 the deck's weakest thumb, with
+  "no Alaskan appears beyond a name on a plate" docked separately under
+  authenticity. Our covers are consistently a headline plus an abstract
+  instrument, which is a data summary with no HRO at all. Parked as a cover-brief
+  candidate, not a rule, because "add a recognisable object" is exactly the kind
+  of instruction that becomes clip art if it ships without a worked example.
+  https://arxiv.org/abs/2305.17051
+- CORROBORATION, not novelty: the decade-long content analysis of NYT and WaPo
+  news maps finds FEWER and SIMPLER maps per story, less interactivity, and a
+  measurable RISE in metaphor and designer voice. Our one-instrument-per-deck
+  doctrine and our refusal to ship a second chart on a slide are the same
+  movement, arrived at independently, and the "designer voice" finding is the
+  frontier's version of what this studio calls a declared mechanism.
+  https://arxiv.org/abs/2508.10903

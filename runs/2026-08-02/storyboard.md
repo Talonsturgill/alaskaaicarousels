@@ -1519,3 +1519,21 @@ NOT APPLIED, and disclosed
 - Slide 03's eight lane feeders still do not read as eight feeders.
 - The register is small. At 432px the argument on 05, 06 and 07 is carried by the
   mono labels rather than by the register's silhouette.
+
+## CORRECTION, made after the merge and before the Gmail draft
+
+Slide 07's kicker read "TWO DAYS EARLIER". The DMV request for information was
+published 30 July (C11) and the transcription solicitation 31 July (C02), which
+is ONE day, and both dates are printed on that same slide. The kicker now reads
+"ONE DAY EARLIER".
+
+The error came from this run's own selection.md, which described the two state
+notices as landing "two days apart", and it propagated into the storyboard and
+the slide without anyone re-deriving it. It is the same class of defect the
+fact-checker killed the "eight days" span for earlier in this run, and the same
+class the pixel critic caught on slide 04.
+
+It was found by `scripts/aggregate_check.py`, the gate this run's own Phase 12
+built in response to those two incidents, on its first run against a real deck.
+The caption never carried the claim and needed no change. The slide, the PDF,
+the contact sheet, the thumb and copy.json were regenerated and re-shipped.

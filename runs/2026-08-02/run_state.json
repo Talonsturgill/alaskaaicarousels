@@ -15,10 +15,10 @@
   "flow_review": "done",
   "assemble": "done",
   "scoring": "done",
-  "ship": "in_progress",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "wake": [
@@ -67,6 +67,24 @@
   ],
   "scoring": [
    "out/2026-08-02/score_report.json (8.37 vs 7.7, 0 hard fails, ship)"
+  ],
+  "ship": [
+   "runs/2026-08-02/ merged to main in PR #182",
+   "docs/ rebuilt, site_fresh PASS",
+   "images WebP 13.5x, PDF 3.83 MB"
+  ],
+  "upgrade": [
+   "scripts/aggregate_check.py (new gate)",
+   "scripts/caption_check.py reads brand.yaml",
+   "ledger/upgrades.json 2 entries at b64f384"
+  ],
+  "gmail": [
+   "runs/2026-08-02/gmail_draft_id.txt = r3530438702669857096"
+  ],
+  "retro": [
+   "out/2026-08-02/automation_retro.md",
+   "knowledge/FIELD_NOTES.md 2026-08-02 entry"
   ]
- }
+ },
+ "complete": true
 }
