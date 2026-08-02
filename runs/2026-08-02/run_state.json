@@ -1,0 +1,72 @@
+{
+ "run_date": "2026-08-02",
+ "carousel_no": 23,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "done",
+  "assemble": "done",
+  "scoring": "done",
+  "ship": "in_progress",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "wake": [
+   "out/2026-08-02/plan.md",
+   "out/2026-08-02/run_state.json"
+  ],
+  "craft_refresh": [
+   "knowledge/FIELD_NOTES.md (2026-08-02 entry)"
+  ],
+  "research": [
+   "out/2026-08-02/scout_merge.md",
+   "out/2026-08-02/scout_log.txt"
+  ],
+  "selection": [
+   "out/2026-08-02/selection.md"
+  ],
+  "claims": [
+   "out/2026-08-02/claims.json (27 claims, 24 primary, claims_check PASS)"
+  ],
+  "docket": [
+   "ledger/docket.json (11 items; 2 added, 2 updated; docket_dates_check PASS)"
+  ],
+  "directors_room": [
+   "out/2026-08-02/storyboard.md (dossier_check PASS, 10 dossiers)"
+  ],
+  "art_build": [
+   "out/2026-08-02/slides/slide-01..10.html",
+   "out/2026-08-02/render/ (qa.py PASS 0 fails 0 warns)",
+   "out/2026-08-02/final/carousel.pdf (vector, 3.9 MB)"
+  ],
+  "copy": [
+   "out/2026-08-02/caption.txt (caption_check PASS)",
+   "out/2026-08-02/copy.json (copy_sync_check PASS, 102 strings)",
+   "out/2026-08-02/caption_report.json"
+  ],
+  "pixel_review": [
+   "5 critics, 2 slides each; 8 hard fails and 6 majors fixed"
+  ],
+  "flow_review": [
+   "flow critic 7.2 REVISE; S05 register cut, S05 gate lit gold, S04 loop planted, S09 spine ticked"
+  ],
+  "assemble": [
+   "out/2026-08-02/final/carousel.pdf (vector, 3.83 MB)",
+   "contact_sheet.png",
+   "thumbs/"
+  ],
+  "scoring": [
+   "out/2026-08-02/score_report.json (8.37 vs 7.7, 0 hard fails, ship)"
+  ]
+ }
+}

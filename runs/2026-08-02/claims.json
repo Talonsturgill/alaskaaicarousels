@@ -1,0 +1,395 @@
+{
+  "run_date": "2026-08-02",
+  "story": "Two Alaska state procurement notices closing this month buy speech-to-text and automated compliance without printing the words artificial intelligence, on the same public notice system that carries the governor's order telling agencies to use it",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "The Alaska statewide transcription solicitation is numbered 2026-0200-0064 and is titled Statewide Transcription Services.",
+      "value": "RFP 2026-0200-0064",
+      "verbatim": "RFP 2026-0200-0064 Statewide Transcription Services",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
+      "source_outlet": "Alaska Online Public Notice System, Department of Administration Office of Procurement and Property Management",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.97,
+      "notes": "Primary. The notice is the state's own published solicitation announcement."
+    },
+    {
+      "id": "C02",
+      "claim": "The statewide transcription notice was published on the Alaska Online Public Notice System on July 31, 2026.",
+      "value": "July 31, 2026",
+      "verbatim": "7/31/2026",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
+      "source_outlet": "Alaska Online Public Notice System",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "In window for a 2026-08-02 run."
+    },
+    {
+      "id": "C03",
+      "claim": "The transcription solicitation asks a contractor to convert speech either live or recorded into written or electronic text.",
+      "value": "convert speech into written or electronic text",
+      "verbatim": "provide all transcription services for general, medical, and legal records to convert speech; either live or recorded, into written or electronic text document.",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
+      "source_outlet": "Alaska Online Public Notice System, Office of Procurement and Property Management",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Verbatim including the semicolon as printed. This is the sentence that describes speech to text work without naming any technology."
+    },
+    {
+      "id": "C04",
+      "claim": "The resulting transcription contract may be used by the Alaska Legislative Branch, the Alaska Court System, the University of Alaska, boards and commissions, cities, boroughs, school districts and federally recognized tribes.",
+      "value": "8 named classes of user",
+      "verbatim": "All State of Alaska governmental entities may use the contract resulting from this solicitation, including entities such as the Alaska Legislative Branch, the Alaska Court System, the University of Alaska, Boards and Commissions, and all State of Alaska political subdivisions, cities, boroughs, and school districts, and federally recognized tribes.",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
+      "source_outlet": "Alaska Online Public Notice System, Office of Procurement and Property Management",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "This is the reach claim. Do not convert the named classes into counts. The 229 tribes, 19 boroughs and 53 school districts figures were killed as unverifiable."
+    },
+    {
+      "id": "C05",
+      "claim": "The public notice text for the statewide transcription solicitation does not contain the terms artificial intelligence, machine learning, automated speech recognition, ASR or AI.",
+      "value": "0 of 5 AI terms present",
+      "verbatim": "provide all transcription services for general, medical, and legal records to convert speech; either live or recorded, into written or electronic text document.",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
+      "source_outlet": "Alaska Online Public Notice System",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.88,
+      "notes": "SCOPE LIMIT, load bearing. Terms searched were artificial intelligence, machine learning, automated speech recognition, ASR, AI. None appeared in the public notice text. The full RFP package behind the state procurement portal was NOT read and this claim says nothing about it. Deck must write this as absence from the public notice, never absence from the solicitation."
+    },
+    {
+      "id": "C06",
+      "claim": "Proposals for the statewide transcription solicitation are due at 9:30 A.M. Alaska Daylight Time on Monday, August 24, 2026.",
+      "value": "9:30 A.M. on August 24, 2026",
+      "verbatim": "9:30 A.M. Alaska Daylight Time on Monday, August 24, 2026",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
+      "source_outlet": "Alaska Online Public Notice System",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "Sanity check passed. August 24 falls inside Alaska Daylight Time, so the notice's own timezone label is internally consistent."
+    },
+    {
+      "id": "C07",
+      "claim": "The procurement officer named on the statewide transcription solicitation is Joshua Hartman.",
+      "value": "Joshua Hartman",
+      "verbatim": "Joshua Hartman",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
+      "source_outlet": "Alaska Online Public Notice System",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-31",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "Named public official acting in role, safe to print."
+    },
+    {
+      "id": "C08",
+      "claim": "The Alaska Division of Motor Vehicles published a request for information numbered 02-101-27 on the subject Automatic Compliance and Data Integration CDL.",
+      "value": "RFI 02-101-27",
+      "verbatim": "Automatic Compliance & Data Integration CDL",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224673",
+      "source_outlet": "Alaska Online Public Notice System, Department of Administration Division of Motor Vehicles",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "Subject line uses an ampersand on the page."
+    },
+    {
+      "id": "C09",
+      "claim": "The DMV request for information seeks products, services, technical approaches, and industry best practices related to automated compliance and data integration systems.",
+      "value": "automated compliance and data integration systems",
+      "verbatim": "seeking information from qualified vendors who could provide products, services, technical approaches, and industry best practices related to automated compliance and data integration systems supporting DMV's commercial driver's license (CDL) program.",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224673",
+      "source_outlet": "Alaska Online Public Notice System, Division of Motor Vehicles",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "The word automated is doing the work the word AI would do. That is an observation for the copywriter, not a verified fact about vendor intent."
+    },
+    {
+      "id": "C10",
+      "claim": "The DMV request for information public notice does not contain the terms artificial intelligence, machine learning or AI.",
+      "value": "0 of 3 AI terms present",
+      "verbatim": "automated compliance and data integration systems supporting DMV's commercial driver's license (CDL) program",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224673",
+      "source_outlet": "Alaska Online Public Notice System",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.87,
+      "notes": "SCOPE LIMIT. Terms searched were artificial intelligence, machine learning, AI. Absence is asserted for the public notice text only. Attachments behind the state portal were not read."
+    },
+    {
+      "id": "C11",
+      "claim": "The DMV request for information was published on July 30, 2026 and responses are due August 20, 2026 at 2:00pm.",
+      "value": "published July 30, 2026",
+      "verbatim": "7/30/2026",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224673",
+      "source_outlet": "Alaska Online Public Notice System",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "The notice labels the 2:00pm deadline AKST. August 20 falls inside Alaska Daylight Time, so the notice's own timezone label appears to be an error by the issuer. Print the time without the timezone label."
+    },
+    {
+      "id": "C12",
+      "claim": "Administrative Order No. 360 was signed by Governor Mike Dunleavy on the 4th day of August 2025.",
+      "value": "August 4, 2025",
+      "verbatim": "DATED this 4th day of August 2025",
+      "source_url": "https://gov.alaska.gov/admin-orders/administrative-order-no-360/",
+      "source_outlet": "Office of the Governor, State of Alaska",
+      "source_is_primary": true,
+      "date_of_source": "2025-08-04",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Background, outside the run window by design. The order is the contrast document, not news."
+    },
+    {
+      "id": "C13",
+      "claim": "Administrative Order No. 360 directs agencies to leverage technology such as artificial intelligence to support digitization, automation, and public access to permitting information.",
+      "value": "artificial intelligence named in the order",
+      "verbatim": "Leverage technology, such as artificial intelligence (\"AI\"), to support digitization, automation, and public access to permitting information.",
+      "source_url": "https://gov.alaska.gov/admin-orders/administrative-order-no-360/",
+      "source_outlet": "Office of the Governor, State of Alaska",
+      "source_is_primary": true,
+      "date_of_source": "2025-08-04",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "This is the spine of the deck. The governor's own order prints the phrase; the notices do not."
+    },
+    {
+      "id": "C14",
+      "claim": "Administrative Order No. 360 sets a target of reducing regulatory requirements by 15 percent by December 31, 2026 and by 25 percent cumulative by December 31, 2027.",
+      "value": "15 percent then 25 percent",
+      "verbatim": "Reduce the number of regulatory requirements by 15 percent by December 31, 2026, and 25 percent (cumulative) by December 31, 2027.",
+      "source_url": "https://gov.alaska.gov/admin-orders/administrative-order-no-360/",
+      "source_outlet": "Office of the Governor, State of Alaska",
+      "source_is_primary": true,
+      "date_of_source": "2025-08-04",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "These are targets, not outcomes. Any slide using them must say targets or aims to, never has cut."
+    },
+    {
+      "id": "C15",
+      "claim": "Administrative Order No. 360 requires the Department of Law to compile approved agency plans into a single State Unified Regulatory Plan and post it on the Alaska Online Public Notice System.",
+      "value": "State Unified Regulatory Plan",
+      "verbatim": "The Department of Law shall compile the approved agency plans into a single State Unified Regulatory Plan and post the plan on the Alaska Online Public Notice System.",
+      "source_url": "https://gov.alaska.gov/admin-orders/administrative-order-no-360/",
+      "source_outlet": "Office of the Governor, State of Alaska",
+      "source_is_primary": true,
+      "date_of_source": "2025-08-04",
+      "fetched": true,
+      "confidence": 0.94,
+      "notes": "The hinge. The order routes its own output to the same public notice system that carries the two silent procurement notices."
+    },
+    {
+      "id": "C16",
+      "claim": "The Office of the Governor published its AO 360 Regulatory Reform Plan on the Alaska Online Public Notice System on July 27, 2026.",
+      "value": "July 27, 2026",
+      "verbatim": "Office of the Governor AO 360 Regulatory Reform Plan",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224623",
+      "source_outlet": "Alaska Online Public Notice System, Office of the Governor",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-27",
+      "fetched": true,
+      "confidence": 0.92,
+      "notes": "In window. Attached documents are OOG Regulatory Reform Plan Memo.pdf, Lt. Governor AO 360 Regulatory Reform Efforts.pdf and OOG Baseline and Proposed Regulatory Reform.pdf. The attached PDFs were NOT opened, so nothing is claimed about their contents."
+    },
+    {
+      "id": "C17",
+      "claim": "The Board of Real Estate Appraisers noticed an AO 360 regulations committee meeting on July 28, 2026 for a meeting held August 6, 2026.",
+      "value": "noticed July 28, 2026",
+      "verbatim": "Teleconference/videoconference to conduct a regular AO 360 regulations committee meeting.",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224640",
+      "source_outlet": "Alaska Online Public Notice System, Department of Commerce, Community, and Economic Development, Division of Corporations, Business and Professional Licensing",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "Shows AO 360 is live administrative machinery in the same week as the two silent procurement notices."
+    },
+    {
+      "id": "C18",
+      "claim": "The Air Force Civil Engineer Center and the 354th Fighter Wing have identified four distinct sites at Eielson Air Force Base totaling 3,967 acres for potential development.",
+      "value": "3,967 acres",
+      "verbatim": "The Air Force has identified four distinct sites at Eielson Air Force Base totaling 3,967 acres for potential development.",
+      "source_url": "https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/",
+      "source_outlet": "Eielson Air Force Base, AFIMSC Public Affairs",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-20",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Primary, the Air Force publishing on its own lease. Corroborated verbatim on the AFCEC mirror at https://www.afcec.af.mil/News/Article-Display/Article/4550017/"
+    },
+    {
+      "id": "C19",
+      "claim": "The Eielson lease opportunity is published as Request for Lease Proposal AFCEC-26-R-0009 on SAM.gov with proposals due August 10, 2026 at 5 p.m. Central Standard Time.",
+      "value": "AFCEC-26-R-0009",
+      "verbatim": "The Request for Lease Proposal, AFCEC-26-R-0009, is available on SAM.gov. Proposal submissions are due Aug. 10, 2026, at 5 p.m. Central Standard Time.",
+      "source_url": "https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/",
+      "source_outlet": "Eielson Air Force Base, AFIMSC Public Affairs",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-20",
+      "fetched": true,
+      "confidence": 0.94,
+      "notes": "The release writes Central Standard Time for an August date. Quote it as the Air Force wrote it or drop the timezone. The RLP document itself on SAM.gov could NOT be retrieved."
+    },
+    {
+      "id": "C20",
+      "claim": "Neither the Eielson Air Force Base announcement nor the identical Air Force Civil Engineer Center announcement contains the words artificial intelligence, AI, data center or machine learning.",
+      "value": "0 AI terms on 2 Air Force pages",
+      "verbatim": "Air Force to host virtual industry day for Eielson Air Force Base",
+      "source_url": "https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/",
+      "source_outlet": "Eielson Air Force Base and Air Force Civil Engineer Center",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-20",
+      "fetched": true,
+      "confidence": 0.88,
+      "notes": "SCOPE LIMIT, load bearing. Two pages checked in full, eielson.af.mil article 4550770 and afcec.af.mil article 4550017. Terms searched were artificial intelligence, AI, data center, datacenter, machine learning, energy and power. All absent from both. The underlying RLP on SAM.gov was NOT read and this claim says nothing about it."
+    },
+    {
+      "id": "C21",
+      "claim": "The Eielson announcement describes the proposed project as a mixed-use development combining functions such as residential, commercial, office, cultural, institutional or entertainment.",
+      "value": "mixed-use development",
+      "verbatim": "Mixed-use refers to a type of development, zoning classification, or property use that combines two or more different functions or land uses such as residential, commercial, office, cultural, institutional, or entertainment within the same building, site, or neighborhood.",
+      "source_url": "https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/",
+      "source_outlet": "Eielson Air Force Base, AFIMSC Public Affairs",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-20",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "The list of six land uses is the entire public description of what may be built on 3,967 acres. Compute is not among them, which is the point, but the deck must not assert that compute is excluded."
+    },
+    {
+      "id": "C22",
+      "claim": "A virtual industry day for the Eielson lease was held Wednesday, July 22, 2026 at 1 p.m. Central Time via Microsoft Teams.",
+      "value": "July 22, 2026",
+      "verbatim": "A virtual Industry Day will be held Wednesday, July 22, 2026, at 1 p.m. Central Time via Microsoft Teams.",
+      "source_url": "https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/",
+      "source_outlet": "Eielson Air Force Base, AFIMSC Public Affairs",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-20",
+      "fetched": true,
+      "confidence": 0.94,
+      "notes": "Date checks out as a Wednesday. Registration was handled through a contractor address."
+    },
+    {
+      "id": "C23",
+      "claim": "Deputy Assistant Secretary of the Air Force for Installations Robert Moriarty was reported as saying the service is supporting the growing demands of the AI industry by making land available.",
+      "value": "supporting the growing demands of the AI industry",
+      "verbatim": "By making this land available, we are supporting the growing demands of the AI industry while generating value that directly supports our missions and the readiness of our Airmen and Guardians.",
+      "source_url": "https://www.executivegov.com/articles/matthew-lohmeier-air-force-visit-alaska-jber-eielson",
+      "source_outlet": "ExecutiveGov, by Jerry Petersen",
+      "source_is_primary": false,
+      "date_of_source": "2026-06-26",
+      "fetched": true,
+      "confidence": 0.62,
+      "notes": "WEAKEST SURVIVING CLAIM. Secondary and out of window. ExecutiveGov attributes the quote to a JBER page that returned 404 and 503, and no Air Force page carrying it could be reached. Deck must write it as reportedly or according to ExecutiveGov, must attribute rather than assert, and must not put it in a headline or a pull quote."
+    },
+    {
+      "id": "C24",
+      "claim": "ExecutiveGov reported approximately 4,700 acres of land available across Joint Base Elmendorf Richardson, Eielson Air Force Base and Clear Space Force Station.",
+      "value": "about 4,700 acres",
+      "verbatim": "approximately 4,700 acres of land available across the three facilities",
+      "source_url": "https://www.executivegov.com/articles/matthew-lohmeier-air-force-visit-alaska-jber-eielson",
+      "source_outlet": "ExecutiveGov, by Jerry Petersen",
+      "source_is_primary": false,
+      "date_of_source": "2026-06-26",
+      "fetched": true,
+      "confidence": 0.6,
+      "notes": "Attribute to ExecutiveGov. Eielson alone is 3,967 acres per the primary Air Force release in C18, leaving roughly 733 acres for JBER and Clear combined. Do not add the two figures together and do not present 4,700 as an Air Force figure."
+    },
+    {
+      "id": "C25",
+      "claim": "Senator Dan Sullivan's office said the FY2027 defense authorization requires grid impact assessments before executing or renewing any Enhanced Use Lease for military infrastructure or energy production.",
+      "value": "grid impact assessments before any Enhanced Use Lease",
+      "verbatim": "this legislation mandates that DOW conduct rigorous grid impact assessments, requiring a formalized review of energy demands and commercial grid stability, before executing or renewing any Enhanced Use Lease (EUL) for military infrastructure or energy production.",
+      "source_url": "https://www.sullivan.senate.gov/newsroom/press-releases/sullivan-secures-56-provisions-historic-26-billion-for-alaska-in-fy-2027-defense-authorization",
+      "source_outlet": "Office of United States Senator Dan Sullivan",
+      "source_is_primary": true,
+      "date_of_source": "2026-06-23",
+      "fetched": true,
+      "confidence": 0.78,
+      "notes": "The senator's own office describing provisions he authored, but it is a press release about bill text and the bill text was not read. Background, out of window. Write as according to Senator Sullivan's office or the bill would require, never as current law."
+    },
+    {
+      "id": "C26",
+      "claim": "The House passed the fiscal 2027 defense authorization bill by a vote of 216 to 212 on July 22, 2026.",
+      "value": "216 to 212",
+      "verbatim": "216-212",
+      "source_url": "https://breakingdefense.com/2026/07/house-passes-2027-ndaa-while-measure-remains-stalled-in-the-senate/",
+      "source_outlet": "Breaking Defense",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.72,
+      "notes": "Secondary, single sourced. The article did not print the H.R. number, so the deck must not print it. The bill remained stalled in the Senate, so it is not law."
+    },
+    {
+      "id": "C27",
+      "claim": "The Bureau of Indian Affairs published a list of 575 tribal entities recognized by and eligible for funding and services from the bureau.",
+      "value": "575 tribal entities",
+      "verbatim": "This notice publishes the current list of 575 Tribal entities recognized by and eligible for funding and services from the Bureau of Indian Affairs (BIA)",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/01/30/2026-01899.txt",
+      "source_outlet": "Bureau of Indian Affairs, Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-01-30",
+      "fetched": true,
+      "confidence": 0.93,
+      "notes": "Background. This is the NATIONAL total, not the Alaska total. The Federal Register list separates Native Entities Within the State of Alaska into its own section but prints no count for it, so the commonly cited 229 figure could not be verified and was killed. If the deck needs the Alaska tribes point, use the transcription notice's own phrase federally recognized tribes and print no number."
+    }
+  ],
+  "killed": [
+    {
+      "claim": "The three procurement notices were published inside eight days.",
+      "why": "Arithmetic fails against the verified dates. The Eielson announcement is dated July 20, 2026, the DMV RFI July 30, 2026 and the transcription RFP July 31, 2026. That is a 12 day span inclusive, not eight. The deck may honestly say the two state notices landed two days apart, or that all three landed inside 12 days. Do not print eight days."
+    },
+    {
+      "claim": "Alaska has 229 federally recognized tribes.",
+      "why": "Not verifiable from any page read. The bia.gov page redirects to an ArcGIS app with no readable count. The current Federal Register list gives a national total of 575 and puts Alaska entities in their own section but prints no Alaska subtotal. The Alaska Federation of Natives figure of 192 is its own MEMBERSHIP count. Killed rather than approximated."
+    },
+    {
+      "claim": "Alaska has 19 organized boroughs.",
+      "why": "Could not be verified. commerce.alaska.gov returned 403 Forbidden and dced.alaska.gov did not resolve."
+    },
+    {
+      "claim": "Alaska has 53 or 54 school districts.",
+      "why": "Could not be verified. education.alaska.gov returned 404 on the school directory and the department home page prints no count. The two candidate figures also disagreed with each other."
+    },
+    {
+      "claim": "The Eielson Request for Lease Proposal AFCEC-26-R-0009 does not mention artificial intelligence or data centers.",
+      "why": "The RLP document itself could NOT be reached. SAM.gov is a JavaScript application and returned no readable content on the search page, the opportunity path or the public API without a key. Nothing whatsoever is verified about the contents of the RLP. The surviving absence claim C20 is scoped strictly to the two Air Force news announcements. Any slide implying the solicitation document is silent on AI is unsupported and must not ship."
+    },
+    {
+      "claim": "The FY2027 NDAA is H.R. 8800.",
+      "why": "Breaking Defense confirmed the 216 to 212 vote but did not print any H.R. number, and no second source was reached that did. The number would be invented if printed."
+    },
+    {
+      "claim": "Breaking Defense reported that the FY2027 NDAA carries a provision requiring grid impact assessments before private data centers are approved on military installations.",
+      "why": "The Breaking Defense article contains no information about grid impact assessments or data centers on military installations. The provision is described only in Senator Sullivan's own press release, which survives separately as C25. Attributing it to Breaking Defense would be false."
+    },
+    {
+      "claim": "The Air Force stated that the Alaska land offering is intended to support the AI industry.",
+      "why": "Killed as an Air Force statement. No Air Force page carrying this framing could be reached. The jber.jb.mil article paths returned 404 and 503 and af.mil returned 404. The Moriarty quote survives only as C23, attributed to ExecutiveGov, secondary and out of window, at confidence 0.62."
+    },
+    {
+      "claim": "The Office of the Governor's AO 360 Regulatory Reform Plan attachments discuss artificial intelligence.",
+      "why": "The three attached PDFs were not opened. The notice body itself does not mention artificial intelligence. Nothing is claimed about attachment contents."
+    }
+  ]
+}

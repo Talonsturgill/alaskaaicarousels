@@ -2205,3 +2205,89 @@ search budget resets.
   rounds and a human found it with grep. Note the compounding relationship with the
   park above: every technique in this scan is a seeded generator, and the gate is
   what makes reaching for one safe in a five-round revision loop.
+
+## 2026-08-02 - Phase 1 craft refresh (timeboxed, 4 searches, 2 full reads)
+
+- METRICOOL 2026 IS BIGGER THAN OUR CITATION IMPLIES, and the primary page
+  confirms only one format number. The study is dated 2026-04-14 and covers
+  673,658 posts across 63,108 accounts, which makes it the largest sample in
+  CAROUSEL_CRAFT's evidence base. The only format figure the primary page
+  actually prints is "Carousels get 17x more interactions than images, yet
+  images are still posted 6x more than carousels." Our doctrine cites "17x
+  interactions vs images" already, so the citation is sound and now has its
+  sample size. https://metricool.com/linkedin-trends-study/
+- A CONTRADICTION WORTH WATCHING, NOT YET ACTING ON. Secondary aggregators of
+  the same study report a personal-profile carousel engagement rate of 1.44
+  percent against multi-image at 3.71 percent, alongside a claim that personal
+  profiles out-engage company pages by 63 percent. If both are real, the
+  format ranking INVERTS for personal profiles, which is what this page posts
+  from. Neither figure appears on Metricool's own page (the full breakdown is
+  behind an email gate), so this is UNVERIFIED and must not move doctrine. The
+  aggregate 7.00 percent document ER in CAROUSEL_CRAFT comes from Socialinsider
+  and is unaffected. Flagged for a future run that can reach the full report.
+- MAKE THE DISTRIBUTION NORMAL, NOT UNIFORM. Directly relevant to the standing
+  craft weakness. Uniform randomness is the tell of machine-made marks because
+  "uniformly distributed data doesn't typically show up in nature"; offsetting
+  line endpoints, color values and easing results by a normally distributed
+  value with a small standard deviation is a one-line change per call site that
+  removes it. Pairs with the 2026-08-01 blue-noise park, which fixes the same
+  defect for point sets. https://www.generativehut.com/post/how-to-make-generative-art-feel-natural
+- TWO MORE CHEAP ONES FROM THE SAME SOURCE. Wobble a line by interpolating N
+  points along it, perturbing each, then running two or three passes of
+  neighbour-averaging, which smooths the perturbation into something that reads
+  as a drawn line rather than a jittered one. And use Perlin noise or fBm AS
+  the easing function rather than as the value, which is the difference between
+  a noise texture and a noise-modulated composition.
+
+## 2026-08-02 - No.23, "What the Notice Buys and What It Doesn't Print" (8.37)
+
+- FULL-STUDIO RUN. 6 scouts + fact-checker + 3 treatment-directors + 2 caption
+  directors + caption critic + copywriter + 5 pixel critics + flow critic +
+  scorer. Shipped 8.37 against the RELAXED 7.7 threshold earned by 4+ revision
+  rounds, 0 hard fails.
+- STORY. Alaska published RFP 2026-0200-0064 on 31 July, closing 24 August, one
+  statewide contract to convert speech into text usable by the Legislature, the
+  courts, the university, boards, cities, boroughs, school districts and
+  federally recognized tribes. Its public notice prints none of five AI terms
+  searched. The DMV asked about automated compliance two days earlier and printed
+  none of three. Administrative Order 360 prints the phrase plainly and routes
+  its own plans to the same public notice system. Net-new lane; procurement has
+  never carried a deck in 22 runs.
+- THE RUNNER-UP LOST ON DEDUPE AND THAT WAS RIGHT. Southcentral's gas ceiling was
+  objectively the window's biggest news (Enstar saying out loud it is weighing
+  whether to add data-center load at all, Bradley Lake's 167,000 MWh working out
+  to about 19 MW average, and UAF's own finding that cooling is 5 percent or less
+  of a data center's operating cost). dedupe_check returned 2 LIKELY DUPLICATES.
+  No.4 ran that exact supply-ceiling spine 22 days earlier, and No.20's own
+  ledger notes record a gas-curtailment story rejected on dedupe three days
+  before this run. Eight of 22 decks have been in that lane. The 5 percent
+  cooling finding is the strongest unspent spine in the file.
+- THE DECLARED TARGET DID NOT MOVE, and this is the run's real lesson. Artwork
+  craft scored 6.0 again. The mechanism was three material registers at different
+  detail frequencies with a computed tooth falloff. The registers DID read; the
+  falloff did not, on any slide, per multiple independent critics. And the
+  akthree GPU beat planned for slide 04 was simply never built, so the deck
+  claimed a rung on the rendered ladder and skipped it. A mechanism that runs in
+  code and not in pixels earns nothing.
+- WHAT DID WORK IS A PROCESS FIX, NOT A CRAFT ONE. After No.20 and No.22 both
+  claimed a distinctive palette in prose and were both marked down for landing in
+  the house navy, this run made the claim FALSIFIABLE BEFORE THE BUILD (mean
+  ground hue 300 to 340 at 432px) and handed the test to the critics with an
+  explicit instruction to contradict the plan. Every critic and the scorer
+  measured plum independently. Do that to craft next run.
+- THE PIXEL CRITICS CAUGHT A FACTUAL ERROR NO GATE CAN SEE. Slide 04 printed
+  "FIVE STATE POSTINGS, 22 TO 31 JUL", counting a federal Air Force industry day
+  as a state posting, and it contradicted slide 09 inside the same deck. qa.py,
+  copy_sync_check and claims_check all passed it. Any on-slide string that
+  AGGREGATES verified claims into a new number is itself a new factual assertion.
+- AND THE WORDS "NOT READ" WERE MISSING FROM EVERY HACHURED ROW. Under a heading
+  reading "0 OF 5 FOUND", "FULL RFP PACKAGE, STATE PORTAL" with an unlabelled
+  mark parses as a sixth searched-and-not-found item, which is exactly the claim
+  the fact-checker forbade. An encoding that carries a scope limit must always
+  carry the words too.
+- THE FLOW CRITIC FOUND THE STRUCTURAL DEFECT AND ONE CUT FIXED THREE THINGS.
+  Slide 05 was firing the search register a slide before the turn, spending the
+  missing word the whole architecture was built to withhold until slide 06, and
+  the same four cells made the declared breather the deck's second densest frame,
+  so the filmstrip ran five dense slides into the turn. Cutting them restored the
+  breather, unspoiled the turn, and fixed the gold drought's attribution at once.

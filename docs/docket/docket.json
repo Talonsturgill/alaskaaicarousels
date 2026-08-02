@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-08-01",
+  "updated": "2026-08-02",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2026-01-20/2026-08-25",
-  "count": 9,
+  "count": 11,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -119,7 +119,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-31",
+      "last_updated": "2026-08-02",
       "history": [
         {
           "date": "2026-07-08",
@@ -196,6 +196,10 @@
         {
           "date": "2026-08-01",
           "note": "The comment window closed July 17. The Division of Oil and Gas is assessing the comments before it makes a final decision on the lease, and no decision date has been published."
+        },
+        {
+          "date": "2026-08-02",
+          "note": "Sixteen days after the comment period closed, the Division of Oil and Gas has not published a final finding and decision, and no date for one has been announced."
         }
       ],
       "url": "https://alaskaaihq.com/docket/adl-422741-stak-north-slope-lease/"
@@ -233,6 +237,11 @@
         {
           "date": "2026-07-23",
           "label": "Bill introduced in the U.S. House to ban AI data centers on federal land",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-10",
+          "label": "Proposals due on a separate Eielson mixed-use lease covering 3,967 acres",
           "kind": "milestone"
         }
       ],
@@ -289,7 +298,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-31",
+      "last_updated": "2026-08-02",
       "history": [
         {
           "date": "2026-07-08",
@@ -326,6 +335,10 @@
         {
           "date": "2026-08-01",
           "note": "Re-verified today against the Air Force's own announcement, which states approximately 4,700 acres across twelve parcels at Joint Base Elmendorf Richardson, Eielson Air Force Base and Clear Space Force Station. That announcement sets no lease term in years, so the fifty year figure that has circulated elsewhere does not come from it. No developer selection has been made public as of this run."
+        },
+        {
+          "date": "2026-08-02",
+          "note": "A second and separate Eielson solicitation is now open. Request for Lease Proposal AFCEC-26-R-0009 covers four sites totalling 3,967 acres, held a virtual industry day on July 22, and takes proposals until August 10. The Air Force announcement describes it only as mixed-use development, listing residential, commercial, office, cultural, institutional and entertainment uses, and does not mention artificial intelligence or data centers. That is a description of the announcement. The lease document itself is posted on SAM.gov and has not been read here."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -872,6 +885,92 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/ratepayer-protection-pledge-alaska-utilities/"
+    },
+    {
+      "id": "alaska-statewide-transcription-rfp",
+      "title": "Alaska's statewide speech-to-text contract",
+      "kind": "procurement",
+      "status": "pending-decision",
+      "decider": "Alaska Department of Administration, Office of Procurement and Property Management",
+      "public_access": "closed",
+      "access_note": "A vendor solicitation, not a rulemaking, so no public comment period exists. Proposals are evaluated privately. The notice and the named procurement officer are public.",
+      "summary": "Alaska is soliciting one statewide contract to convert speech, live or recorded, into written text for general, medical and legal records. The notice says every state governmental entity may use the resulting contract, naming the Legislative Branch, the Court System, the University of Alaska, boards and commissions, cities, boroughs, school districts and federally recognized tribes. The public notice does not use the terms artificial intelligence, machine learning or automated speech recognition.",
+      "key_dates": [
+        {
+          "date": "2026-07-31",
+          "label": "Solicitation published on the state public notice system",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-24",
+          "label": "Vendor proposals due, 9:30 a.m.",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Statewide",
+        "lon": -149.9,
+        "lat": 61.2
+      },
+      "sources": [
+        {
+          "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
+          "outlet": "Alaska Online Public Notice System",
+          "date": "2026-07-31"
+        }
+      ],
+      "first_seen": "2026-08-02",
+      "last_updated": "2026-08-02",
+      "history": [
+        {
+          "date": "2026-08-02",
+          "note": "Tracked. RFP 2026-0200-0064, published July 31, proposals due August 24. Procurement officer Joshua Hartman. The reach clause and the absence of any technology term were read directly from the published notice."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/alaska-statewide-transcription-rfp/"
+    },
+    {
+      "id": "dmv-automated-compliance-rfi",
+      "title": "DMV asks vendors about automated compliance for commercial licences",
+      "kind": "procurement",
+      "status": "watching",
+      "decider": "Alaska Department of Administration, Division of Motor Vehicles",
+      "public_access": "closed",
+      "access_note": "A request for information gathers vendor input before any solicitation. There is no public comment path and no decision is made at this stage.",
+      "summary": "The Division of Motor Vehicles asked vendors for products, services, technical approaches and industry best practices related to automated compliance and data integration systems supporting the commercial driver's license program. The public notice does not use the terms artificial intelligence or machine learning.",
+      "key_dates": [
+        {
+          "date": "2026-07-30",
+          "label": "Request for information published",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-20",
+          "label": "Vendor responses due, 2 p.m.",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Statewide",
+        "lon": -149.9,
+        "lat": 61.2
+      },
+      "sources": [
+        {
+          "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224673",
+          "outlet": "Alaska Online Public Notice System",
+          "date": "2026-07-30"
+        }
+      ],
+      "first_seen": "2026-08-02",
+      "last_updated": "2026-08-02",
+      "history": [
+        {
+          "date": "2026-08-02",
+          "note": "Tracked. RFI 02-101-27, published July 30, responses due August 20."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
     }
   ]
 }

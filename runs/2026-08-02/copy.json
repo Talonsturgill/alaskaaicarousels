@@ -1,0 +1,239 @@
+{
+  "run_date": "2026-08-02",
+  "carousel_no": 23,
+  "document_title": "What the Notice Buys and What It Doesn't Print",
+  "post_copy": "\"Leverage technology, such as artificial intelligence,\" says an order the governor signed last August.\n\nVendors have 22 days to bid on one statewide contract to convert speech, live or recorded, into written or electronic text. It closes 9:30 A.M. on 24 August. Four days earlier the DMV's window on \"automated compliance and data integration systems\" shuts. Neither notice prints artificial intelligence, machine learning or AI. Only the notice text was searched, not the packages behind the state portal.\n\nInside the deck, the notice's one sentence on the work, the eight kinds of public body it names, and the one order that prints the word.\n\nAny of those eight can use whatever gets signed. Nobody has to ask first how the work gets done. What does a public body lose by not asking before bids close?\n\n#AlaskaProcurement #AKPublicNotice #GovTech",
+  "caption_meta": {
+    "opening_move": "QUOTE FIRST",
+    "structure": "COUNTDOWN",
+    "closing_move": "stake"
+  },
+  "first_comment": "Sources for this deck, primary first.\n\nAlaska Online Public Notice System, RFP 2026-0200-0064 Statewide Transcription Services, https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684\nAlaska Online Public Notice System, RFI 02-101-27 Automatic Compliance and Data Integration CDL, https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224673\nOffice of the Governor, Administrative Order No. 360, https://gov.alaska.gov/admin-orders/administrative-order-no-360/\nEielson Air Force Base, Air Force to host virtual industry day for Eielson Air Force Base, https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/\nAir Force Civil Engineer Center, the same industry day announcement, https://www.afcec.af.mil/News/Article-Display/Article/4550017/\nAlaska Online Public Notice System, Office of the Governor AO 360 Regulatory Reform Plan, https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224623\nAlaska Online Public Notice System, Board of Real Estate Appraisers AO 360 regulations committee meeting, https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224640",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "RFP 2026-0200-0064 POSTED 31 JUL 2026",
+      "headline": "One state contract.\nEvery court, borough\nand tribe may use it.",
+      "body": "",
+      "labels": [
+        "BIDS CLOSE 9:30 A.M. 24 AUG 2026",
+        "22 PX = 1 DAY"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C04",
+        "C06"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "THE WHOLE DESCRIPTION OF THE WORK",
+      "headline": "This is all the notice\nsays the work is.",
+      "body": "\"provide all transcription services for general, medical, and legal records to convert speech; either live or recorded, into written or electronic text document.\"",
+      "labels": [
+        "RFP 2026-0200-0064 POSTED 31 JUL 2026",
+        "PROCUREMENT OFFICER JOSHUA HARTMAN",
+        "24 DAYS OPEN"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C06",
+        "C07"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "WHO MAY USE THE CONTRACT",
+      "headline": "Eight kinds of public body,\none contract.",
+      "body": "",
+      "labels": [
+        "LEGISLATIVE BRANCH",
+        "COURT SYSTEM",
+        "UNIVERSITY OF ALASKA",
+        "BOARDS AND COMMISSIONS",
+        "CITIES",
+        "BOROUGHS",
+        "SCHOOL DISTRICTS",
+        "FEDERALLY RECOGNIZED TRIBES",
+        "CLASSES, NOT COUNTS. THE NOTICE NAMES KINDS OF BODY, NOT HOW MANY.",
+        "RFP 2026-0200-0064"
+      ],
+      "claim_ids": [
+        "C01",
+        "C04"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "THREE WINDOWS, ONE AUGUST",
+      "headline": "Three Alaska windows\nclose this month.",
+      "body": "",
+      "labels": [
+        "EIELSON LEASE CLOSES 10 AUG",
+        "21 DAYS",
+        "DMV INFORMATION CLOSES 20 AUG",
+        "TRANSCRIPTION RFP CLOSES 24 AUG",
+        "24 DAYS",
+        "22 JUL",
+        "27 JUL",
+        "31 JUL",
+        "TODAY 2 AUG",
+        "22 PX = 1 DAY",
+        "FOUR STATE POSTINGS, 27 TO 31 JUL",
+        "21 DAYS   THE ONE FEDERAL WINDOW"
+      ],
+      "claim_ids": [
+        "C02",
+        "C06",
+        "C11",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C22"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "THE FEDERAL WINDOW",
+      "headline": "3,967 acres at Eielson.\nFour sites, one total.",
+      "body": "The Air Force calls it mixed-use development and names six possible uses. Compute is not one of the six, and the announcement doesn't rule it out either.",
+      "labels": [
+        "RESIDENTIAL",
+        "COMMERCIAL",
+        "OFFICE",
+        "CULTURAL",
+        "INSTITUTIONAL",
+        "ENTERTAINMENT",
+        "SEARCHED THE TWO AIR FORCE ANNOUNCEMENTS. THE LEASE DOCUMENT ON SAM.GOV WAS NOT READ.",
+        "PROPOSALS DUE 10 AUG 2026"
+      ],
+      "claim_ids": [
+        "C18",
+        "C19",
+        "C20",
+        "C21"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "WHAT THE NOTICE DOES NOT SAY",
+      "headline": "Five terms searched.\nNone in the notice.",
+      "body": "",
+      "labels": [
+        "EVERY LIT CELL IS ONE CHARACTER THE NOTICE ACTUALLY PRINTS",
+        "0 OF 5 FOUND",
+        "ARTIFICIAL INTELLIGENCE",
+        "MACHINE LEARNING",
+        "AUTOMATED SPEECH RECOGNITION",
+        "ASR",
+        "AI",
+        "FULL RFP PACKAGE, STATE PORTAL   NOT READ",
+        "THE PUBLIC NOTICE TEXT ONLY. AN EMPTY CELL HAS NO LENGTH.",
+        "OPEN CELL, SEARCHED AND NOT FOUND",
+        "FILLED CELL, DOCUMENT NOT READ"
+      ],
+      "claim_ids": [
+        "C03",
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "TWO DAYS EARLIER",
+      "headline": "The DMV asked\nthe same way.",
+      "body": "\"products, services, technical approaches, and industry best practices related to automated compliance and data integration systems\"\nThe word doing the work is automated.",
+      "labels": [
+        "0 OF 3 FOUND",
+        "ARTIFICIAL INTELLIGENCE",
+        "MACHINE LEARNING",
+        "AI",
+        "DMV ATTACHMENTS, STATE PORTAL   NOT READ",
+        "RFI 02-101-27 POSTED 30 JUL 2026",
+        "RESPONSES DUE 20 AUG 2026, 2 P.M.",
+        "21 DAYS"
+      ],
+      "claim_ids": [
+        "C08",
+        "C09",
+        "C10",
+        "C11"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "THE STATE HAS THE WORDS",
+      "headline": "One state document\nprints it plainly.",
+      "body": "\"Leverage technology, such as artificial intelligence (\"AI\"), to support digitization, automation, and public access to permitting information.\"",
+      "labels": [
+        "ADMINISTRATIVE ORDER 360 SIGNED 4 AUG 2025",
+        "TARGETS, NOT OUTCOMES",
+        "15% BY 31 DEC 2026",
+        "25% CUMULATIVE BY 31 DEC 2027",
+        "ARTIFICIAL INTELLIGENCE PRESENT",
+        "TARGET"
+      ],
+      "claim_ids": [
+        "C12",
+        "C13",
+        "C14"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "THE SAME BOARD",
+      "headline": "The order that names it\nposts to the same system\nas the notices that don't.",
+      "body": "Administrative Order 360 sends its agency plans to the Alaska Online Public Notice System. So do the two solicitations.",
+      "labels": [
+        "27 JUL GOVERNOR'S AO 360 PLAN",
+        "28 JUL BOARD AO 360 COMMITTEE",
+        "30 JUL DMV INFORMATION REQUEST",
+        "31 JUL TRANSCRIPTION RFP",
+        "ALASKA ONLINE PUBLIC NOTICE SYSTEM"
+      ],
+      "claim_ids": [
+        "C02",
+        "C08",
+        "C15",
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "n": 10,
+      "kicker": "ONE THING TO DO",
+      "headline": "Read the notice\nbefore 24 August.",
+      "body": "RFP 2026-0200-0064 is public. So is the DMV request. If your borough, court, school district or tribe is in scope, the only way to know what you are inside of is to read it.",
+      "labels": [
+        "TRANSCRIPTION NOTICE 5 SEARCHED 0 FOUND",
+        "DMV NOTICE 3 SEARCHED 0 FOUND",
+        "TWO AIR FORCE NOTICES 4 SEARCHED 0 FOUND",
+        "FULL SOLICITATION PACKAGES NOT READ",
+        "AN EMPTY CELL HAS NO LENGTH. WE SEARCHED THE PUBLIC NOTICES, NOT THE PACKAGES.",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "SOURCES IN COMMENTS"
+      ],
+      "claim_ids": [
+        "C01",
+        "C04",
+        "C05",
+        "C06",
+        "C10",
+        "C20"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Hold this draft for a Tuesday to Thursday slot, 8 to 11am Alaska time, when this audience is actually on LinkedIn.",
+    "Paste the sources comment within 60 seconds of posting, before the first reader lands.",
+    "Stay on the post for the first 90 minutes and reply to every comment inside that window.",
+    "Answer later comments the same day, in full sentences, never with one word.",
+    "Check saves and comments at 48 hours and note which slide people quoted back."
+  ],
+  "warnings": []
+}
