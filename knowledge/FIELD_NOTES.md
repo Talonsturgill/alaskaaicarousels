@@ -2238,3 +2238,56 @@ search budget resets.
   as a drawn line rather than a jittered one. And use Perlin noise or fBm AS
   the easing function rather than as the value, which is the difference between
   a noise texture and a noise-modulated composition.
+
+## 2026-08-02 - No.23, "What the Notice Buys and What It Doesn't Print" (8.37)
+
+- FULL-STUDIO RUN. 6 scouts + fact-checker + 3 treatment-directors + 2 caption
+  directors + caption critic + copywriter + 5 pixel critics + flow critic +
+  scorer. Shipped 8.37 against the RELAXED 7.7 threshold earned by 4+ revision
+  rounds, 0 hard fails.
+- STORY. Alaska published RFP 2026-0200-0064 on 31 July, closing 24 August, one
+  statewide contract to convert speech into text usable by the Legislature, the
+  courts, the university, boards, cities, boroughs, school districts and
+  federally recognized tribes. Its public notice prints none of five AI terms
+  searched. The DMV asked about automated compliance two days earlier and printed
+  none of three. Administrative Order 360 prints the phrase plainly and routes
+  its own plans to the same public notice system. Net-new lane; procurement has
+  never carried a deck in 22 runs.
+- THE RUNNER-UP LOST ON DEDUPE AND THAT WAS RIGHT. Southcentral's gas ceiling was
+  objectively the window's biggest news (Enstar saying out loud it is weighing
+  whether to add data-center load at all, Bradley Lake's 167,000 MWh working out
+  to about 19 MW average, and UAF's own finding that cooling is 5 percent or less
+  of a data center's operating cost). dedupe_check returned 2 LIKELY DUPLICATES.
+  No.4 ran that exact supply-ceiling spine 22 days earlier, and No.20's own
+  ledger notes record a gas-curtailment story rejected on dedupe three days
+  before this run. Eight of 22 decks have been in that lane. The 5 percent
+  cooling finding is the strongest unspent spine in the file.
+- THE DECLARED TARGET DID NOT MOVE, and this is the run's real lesson. Artwork
+  craft scored 6.0 again. The mechanism was three material registers at different
+  detail frequencies with a computed tooth falloff. The registers DID read; the
+  falloff did not, on any slide, per multiple independent critics. And the
+  akthree GPU beat planned for slide 04 was simply never built, so the deck
+  claimed a rung on the rendered ladder and skipped it. A mechanism that runs in
+  code and not in pixels earns nothing.
+- WHAT DID WORK IS A PROCESS FIX, NOT A CRAFT ONE. After No.20 and No.22 both
+  claimed a distinctive palette in prose and were both marked down for landing in
+  the house navy, this run made the claim FALSIFIABLE BEFORE THE BUILD (mean
+  ground hue 300 to 340 at 432px) and handed the test to the critics with an
+  explicit instruction to contradict the plan. Every critic and the scorer
+  measured plum independently. Do that to craft next run.
+- THE PIXEL CRITICS CAUGHT A FACTUAL ERROR NO GATE CAN SEE. Slide 04 printed
+  "FIVE STATE POSTINGS, 22 TO 31 JUL", counting a federal Air Force industry day
+  as a state posting, and it contradicted slide 09 inside the same deck. qa.py,
+  copy_sync_check and claims_check all passed it. Any on-slide string that
+  AGGREGATES verified claims into a new number is itself a new factual assertion.
+- AND THE WORDS "NOT READ" WERE MISSING FROM EVERY HACHURED ROW. Under a heading
+  reading "0 OF 5 FOUND", "FULL RFP PACKAGE, STATE PORTAL" with an unlabelled
+  mark parses as a sixth searched-and-not-found item, which is exactly the claim
+  the fact-checker forbade. An encoding that carries a scope limit must always
+  carry the words too.
+- THE FLOW CRITIC FOUND THE STRUCTURAL DEFECT AND ONE CUT FIXED THREE THINGS.
+  Slide 05 was firing the search register a slide before the turn, spending the
+  missing word the whole architecture was built to withhold until slide 06, and
+  the same four cells made the declared breather the deck's second densest frame,
+  so the filmstrip ran five dense slides into the turn. Cutting them restored the
+  breather, unspoiled the turn, and fixed the gold drought's attribution at once.

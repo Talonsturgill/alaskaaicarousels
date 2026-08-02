@@ -1,0 +1,91 @@
+{
+  "run_date": "2026-08-02",
+  "carousel_no": 23,
+  "revision_rounds": 4,
+  "threshold_applied": 7.7,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "weight": 0.14,
+      "score": 7,
+      "why": "Specific 11-word claim, reads complete at 432px, gold date chip is actionable. Held at 7 because the Alaskan-ness is entirely verbal and ~350px between headline and chip is near-empty ground."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "weight": 0.14,
+      "score": 8,
+      "why": "Cover plants a loop S02 pays instantly with the notice's whole one-sentence description. Cutting S05's register restored a real breather and left the turn at S06 unspoiled. Docked because S09, the synthesis, is the weakest thumb."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "weight": 0.16,
+      "score": 6,
+      "why": "THE DECLARED TARGET AND IT DID NOT MOVE. The rail is modeled on all ten slides and S08's plinth is properly extruded, but the akthree GPU beat was never built and no dossier argues flat as a choice, the TOOTH falloff is not legible anywhere, and the flat outlined rectangle became the deck's real default on S03 and S05."
+    },
+    {
+      "name": "Story-art fusion",
+      "weight": 0.14,
+      "score": 8,
+      "why": "Solves a genuinely hard problem honestly. An absence has no magnitude, so it encodes PRESENCE, one lit cell per character of the notice's own text, and prints AN EMPTY CELL HAS NO LENGTH. The rail is auditable at a printed 22.0 px per day. Eight identical plates because the notice names the classes as equals."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "weight": 0.12,
+      "score": 8,
+      "why": "Dense with named specifics and correct geography. Docked because the Eielson beat is a federal story grafted in on thin connective tissue, and no Alaskan appears beyond a name on a plate."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "weight": 0.1,
+      "score": 8,
+      "why": "27 claims, 24 primary, an exemplary killed list. Docked for an orphaned 22 JUL tick label on S04 and a thin S09 body."
+    },
+    {
+      "name": "Variety vs ledger",
+      "weight": 0.08,
+      "score": 8,
+      "why": "THE POSTING LANES is genuinely new and breaks the one-object-N-stations chassis by construction. The palette test was made falsifiable before the build and passed. Docked because Manrope shipped in No.22 and a printed constant-scale strip is now the third appearance in five decks."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "weight": 0.07,
+      "score": 7,
+      "why": "All floors met, machine_qa PASS 0/0, vector PDF 3.83 MB. Docked for more than one squeaker, rotated date labels, three dropped labels, and register silhouettes that do not carry at 432px."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "weight": 0.05,
+      "score": 8,
+      "why": "Hook 102 chars and genuinely surprising, 849 total, deck-summary line present and working, a real debatable close. Docked for a figure-stacked second paragraph."
+    },
+    {
+      "name": "Deliverable completeness",
+      "weight": 0.1,
+      "score": 9,
+      "why": "copy.json complete for ten slides, seven-source first comment, title, thumbs, contact sheet, vector PDF, five-item aftercare, empty warnings."
+    }
+  ],
+  "weighted_total": 8.37,
+  "hard_fails": [],
+  "hard_fails_checked": 13,
+  "verdict": "ship",
+  "weakest_criterion": "Artwork craft & genuine detail (6)",
+  "one_sentence_fix": "Build ONE proof slide and judge its 432px thumb before committing the other nine, and kill any declared craft mechanism that does not read there, because that single gate would have caught both the invisible TOOTH falloff and the sub-legible register silhouette before they cost ten slides.",
+  "shortfall_note_for_email": "The deck cleared the bar at 8.37 against 7.7 with zero hard fails, but it did NOT deliver the thing this run existed to fix. Artwork craft scored 6, the declared target, where it has sat for most of the last ten runs. Two promises went unkept and both are disclosed rather than hidden, the akthree GPU beat was never built so every slide is Canvas 2D with no dossier arguing flat as a choice, and the computed TOOTH falloff does not read in any render. The repeatable win this run DID produce is the palette test, made falsifiable before the build and then actually passed.",
+  "what_worked": [
+    "Encoding PRESENCE instead of absence, one lit cell per character of the notice's own verbatim text, with AN EMPTY CELL HAS NO LENGTH printed on the slide.",
+    "Making the palette claim falsifiable BEFORE the build and then passing it, which broke a two-deck losing streak.",
+    "Scope discipline held in the actual pixels on every slide that needed it. No slide asserts a machine will do this work.",
+    "24 of 27 claims primary, with eight killed claims each carrying a stated reason.",
+    "The flow critic's structural catch. Cutting S05's register fixed three findings at once.",
+    "Breaking the one-object-N-stations chassis by construction rather than by argument."
+  ],
+  "what_did_not": [
+    "The rendered ladder. The planned akthree GPU beat was never built and no dossier argues flat as a choice.",
+    "The TOOTH falloff ran in code and earned nothing in pixels. Multiple critics said so independently.",
+    "The flat outlined rectangle became the deck's real default on S03 and S05.",
+    "S09 carries the synthesis on the weakest frame in the deck.",
+    "The declared clip of S06's lattice at x=700 did not land.",
+    "The register's three-state silhouette is too small to work at thumb size."
+  ]
+}
