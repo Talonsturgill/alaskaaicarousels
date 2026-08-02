@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>North Country Charters, scripted demonstration of The Clock, prepared by Alaska AI</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --surface:#0e2039;
+  --surface2:#122a46;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --gold:#ffc72c;
+  --ui:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 var(--ui);letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:56rem;margin:0 auto;padding:26px 22px 60px}
+p{margin:0 0 14px;text-wrap:pretty}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(26px,4.2vw,38px);
+  line-height:1.08;letter-spacing:-.015em}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(20px,2.8vw,25px);
+  line-height:1.2;margin:0 0 8px}
+h3{font-size:16px;font-weight:650;line-height:1.35}
+.eyebrow{font:400 11px/1 var(--mono);letter-spacing:.17em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 14px}
+.mark{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font:400 12px/1.5 var(--mono);
+  letter-spacing:.18em;color:var(--ink);margin-bottom:24px}
+.mark i{width:13px;height:13px;display:block;background:var(--gold);
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+.mark b{font-weight:400;color:var(--cap);letter-spacing:.14em}
+
+.honest{border:1px solid var(--rule);border-left:2px solid var(--gold);
+  background:var(--surface);border-radius:8px;padding:15px 18px;margin:20px 0 26px}
+.honest p{margin:0 0 9px;color:var(--sub);font-size:15px}
+.honest p:last-child{margin:0}
+.honest strong{color:var(--ink);font-weight:650}
+
+.guards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 34px}
+.guard{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:13px 15px}
+.guard b{display:block;font:400 10px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:7px}
+.guard span{font-size:14.5px;color:var(--sub);line-height:1.45}
+
+section{margin:0 0 40px}
+.secn{font:400 11px/1 var(--mono);letter-spacing:.17em;color:var(--gold);display:block;margin-bottom:11px}
+.lede{color:var(--sub);font-size:16.5px;max-width:38rem;margin:0 0 18px}
+
+.day{display:grid;grid-template-columns:minmax(210px,268px) 1fr;gap:18px;align-items:start}
+.rail{background:var(--surface);border:1px solid var(--rule);border-radius:9px;padding:11px}
+.railhead{font:400 10px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);padding:4px 6px 10px}
+.msg{display:block;width:100%;text-align:left;background:transparent;border:1px solid transparent;
+  border-radius:7px;padding:9px 10px;margin-bottom:4px;cursor:pointer;color:var(--sub);
+  font:inherit;line-height:1.35}
+.msg:hover{background:rgba(60,230,180,.06);border-color:var(--rule)}
+.msg .t{font:400 11px/1 var(--mono);color:var(--cap);letter-spacing:.04em}
+.msg .s{display:block;margin-top:4px;font-size:14.5px;color:var(--ink)}
+.msg .f{display:inline-block;margin-top:6px;font:400 10px/1 var(--mono);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--cap)}
+.msg[aria-pressed="true"]{background:rgba(60,230,180,.1);border-color:var(--accent)}
+.msg.listed{cursor:default;opacity:.6}
+.msg.listed:hover{background:transparent;border-color:transparent}
+.railfoot{font-size:12.5px;color:var(--cap);padding:9px 6px 3px;border-top:1px solid var(--rule);
+  margin-top:8px;line-height:1.45}
+
+.player{min-width:0}
+.pbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  border:1px solid var(--rule);background:var(--surface);border-radius:9px;padding:10px 13px;margin-bottom:14px}
+.pbar .pos{font:400 11px/1 var(--mono);letter-spacing:.1em;color:var(--cap);margin-right:auto}
+button.act{font:650 13.5px/1 var(--ui);background:var(--accent);color:#02201a;border:0;
+  border-radius:6px;padding:9px 14px;cursor:pointer}
+button.ghost{font:500 13.5px/1 var(--ui);background:transparent;color:var(--sub);
+  border:1px solid var(--rule);border-radius:6px;padding:9px 12px;cursor:pointer}
+button.ghost[disabled]{color:var(--rule);cursor:default}
+.dots{display:flex;gap:5px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--rule);display:block}
+.dots i.on{background:var(--accent)}
+
+.scn{display:none}
+.scn.active{display:block}
+.step{display:none;border:1px solid var(--rule);border-radius:9px;background:var(--surface);
+  padding:15px 17px;margin-bottom:12px}
+.step.on{display:block}
+.step h3{margin-bottom:4px}
+.stepn{font:400 10px/1.4 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+  display:block;margin-bottom:8px}
+.stepn.plain{color:var(--cap)}
+.step p{font-size:15px;color:var(--sub);margin:9px 0 0}
+.step p.first{margin-top:8px}
+.step p strong{color:var(--ink);font-weight:650}
+
+.tag{display:inline-block;font:400 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--rule);border-radius:4px;padding:5px 7px;color:var(--cap);margin:0 6px 6px 0}
+.tag.ai{border-color:var(--accent);color:var(--accent)}
+
+.mailc{border:1px solid var(--rule);border-radius:8px;background:var(--bg);margin:11px 0 0;overflow:hidden}
+.mailh{padding:10px 14px;border-bottom:1px solid var(--rule);font:400 12px/1.8 var(--mono);color:var(--cap)}
+.mailh span{color:var(--cap);display:inline-block;min-width:7ch}
+.mailh b{color:var(--ink);font-weight:400}
+.mailb{padding:13px 14px;font-size:14.5px;color:var(--sub);white-space:pre-wrap;line-height:1.6}
+.caption{font-size:13.5px;color:var(--cap);margin:9px 0 0;line-height:1.5}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:11px}
+.panel{border:1px solid var(--rule);border-radius:8px;background:var(--bg);padding:11px 13px;min-width:0}
+.panel h4{font:400 10px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cap);
+  margin-bottom:9px}
+.panel .body{font-size:13.5px;color:var(--sub);white-space:pre-wrap;line-height:1.6;
+  font-family:var(--mono);overflow-wrap:anywhere}
+.panel.redacted .body{color:var(--cap)}
+
+.qa{border:1px solid var(--rule);border-radius:8px;background:var(--bg);padding:12px 14px;margin:11px 0 0}
+.qa dt{font:400 10px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cap);margin:0 0 6px}
+.qa dd{margin:0 0 13px;font-size:14.5px;color:var(--sub);line-height:1.55}
+.qa dd:last-child{margin-bottom:0}
+.qa dd.answer{font-family:var(--mono);font-size:15px;color:var(--accent);letter-spacing:.02em}
+.qa dd.answer.no{color:var(--cap)}
+
+.kw{font-family:var(--mono);font-size:13px;color:var(--cap);line-height:1.95;margin:9px 0 0}
+.kw b{color:var(--sub);font-weight:400;display:inline-block;min-width:15ch}
+.kw .res{color:var(--ink)}
+
+.phones{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:11px}
+.phones.one{grid-template-columns:1fr}
+.phone{border:1px solid var(--rule);border-radius:14px;background:var(--surface2);padding:14px}
+.phone .who{font:400 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cap);
+  padding:2px 4px 12px;border-bottom:1px solid var(--rule);margin-bottom:12px;display:block}
+.bub{background:var(--bg);border-radius:13px;border-top-left-radius:4px;padding:11px 13px;
+  font-size:14.5px;color:var(--ink);line-height:1.5;max-width:33ch}
+.bt{font:400 11px/1 var(--mono);color:var(--cap);margin:7px 0 0 4px;display:block}
+
+.tw{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:660px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+th{font:400 10px/1.3 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--cap);
+  white-space:nowrap}
+td{color:var(--sub)}
+td.tm{font-family:var(--mono);font-size:13px;white-space:nowrap;color:var(--cap)}
+td.subj{color:var(--ink)}
+tr:last-child td{border-bottom:0}
+td .yes{color:var(--accent);font-family:var(--mono);font-size:13px}
+td .non{color:var(--cap);font-family:var(--mono);font-size:13px}
+
+.ops{counter-reset:o;display:grid;gap:12px}
+.op{position:relative;border:1px solid var(--rule);border-radius:8px;background:var(--surface);
+  padding:14px 17px 14px 52px}
+.op::before{counter-increment:o;content:counter(o);position:absolute;left:18px;top:14px;
+  font:400 13px/1.6 var(--mono);color:var(--accent)}
+.op h3{margin-bottom:5px}
+.op p{margin:0;font-size:14.5px;color:var(--sub)}
+
+.nots{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.nots li{position:relative;padding:0 0 0 26px;font-size:15px;color:var(--sub);line-height:1.5}
+.nots li::before{content:"";position:absolute;left:3px;top:10px;width:11px;height:1.5px;background:var(--accent)}
+.nots li b{color:var(--ink);font-weight:650}
+
+.foot{margin-top:44px;padding-top:18px;border-top:1px solid var(--rule);
+  font-size:13px;color:var(--cap);line-height:1.6}
+
+@media (max-width:760px){
+  .day{grid-template-columns:1fr}
+  .guards{grid-template-columns:1fr}
+  .two,.phones{grid-template-columns:1fr}
+}
+
+@media print{
+  :root{--bg:#fff;--surface:#f5f7fa;--surface2:#eef2f7;--rule:#c9d2dd;
+        --ink:#101820;--sub:#333d49;--cap:#59636f;--accent:#0d6a5b;--gold:#8a6200}
+  body{font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  .scn{display:block !important}
+  .step{display:block !important;page-break-inside:avoid}
+  .pbar{display:none !important}
+  .msg{border:1px solid var(--rule) !important}
+  section,.op,.phone,.mailc,.qa,.two{page-break-inside:avoid}
+  table{min-width:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="mark"><i></i>Alaska AI<b>PREPARED FOR NORTH COUNTRY CHARTERS</b></div>
+  <p class="eyebrow">Interactive demonstration, The Clock</p>
+  <h1>One August day in your shared inbox, walked message by message</h1>
+</header>
+
+<div class="honest">
+  <p><strong>This is a scripted demonstration, not a live system.</strong> Nothing on this page is connected to your inbox, your phone line or FareHarbor. No message here is real.</p>
+  <p>The guests, their messages, their phone numbers and the day itself are <strong>invented for this page</strong>. Any resemblance to a real guest is accidental. What is not invented is your wording. The automatic reply below is the sentence already on your FAQ, the phone number is the one on your contact page, and the shared inbox is the one you publish.</p>
+  <p>Every button here replays a fixed script. No model runs in this page and no data leaves it.</p>
+</div>
+
+<div class="guards">
+  <div class="guard"><b>The guest side</b><span>A model never writes to a guest. The only thing a guest receives is one fixed sentence you approved.</span></div>
+  <div class="guard"><b>Your mailbox</b><span>Nothing is marked read, filed, archived or hidden. The build only adds. It never changes what is already in there.</span></div>
+  <div class="guard"><b>The decision</b><span>A text says a message looks like a cancellation. Kathy opens FareHarbor and makes the call herself.</span></div>
+</div>
+
+<section>
+  <span class="secn">01 &nbsp;&nbsp; THE SCRIPTED DAY</span>
+  <h2>Pick a message. Three things happen, then it stops.</h2>
+  <p class="lede">Tuesday 25 August, an invented day inside the season. Six messages reach northcountrycharters@gmail.com. Four of them are walked here step by step. Choose one on the left.</p>
+
+  <div class="day">
+    <div class="rail" role="group" aria-label="Messages that arrived on the scripted day">
+      <div class="railhead">Tue 25 Aug &nbsp;&middot;&nbsp; six arrived</div>
+
+      <button class="msg" type="button" aria-pressed="true" data-s="s1">
+        <span class="t">6:41am</span>
+        <span class="s">Meeting spot</span>
+        <span class="f">Walk this one</span>
+      </button>
+
+      <div class="msg listed">
+        <span class="t">11:53am</span>
+        <span class="s">Kids fishing</span>
+        <span class="f">Listed only</span>
+      </div>
+
+      <button class="msg" type="button" aria-pressed="false" data-s="s2">
+        <span class="t">2:08pm</span>
+        <span class="s">Thursday wind</span>
+        <span class="f">Walk this one</span>
+      </button>
+
+      <button class="msg" type="button" aria-pressed="false" data-s="s3">
+        <span class="t">5:26pm</span>
+        <span class="s">Saturday</span>
+        <span class="f">Walk this one</span>
+      </button>
+
+      <div class="msg listed">
+        <span class="t">7:34pm</span>
+        <span class="s">Guest room</span>
+        <span class="f">Listed only</span>
+      </div>
+
+      <button class="msg" type="button" aria-pressed="false" data-s="s4">
+        <span class="t">9:02pm</span>
+        <span class="s">Saturday trip</span>
+        <span class="f">Walk this one</span>
+      </button>
+
+      <p class="railfoot">The two greyed rows are here because the evening summary lists everything that arrives, not only the flagged ones. Six messages in a day is a number we made up to make this page work. Counting the real one is what the fortnight is for.</p>
+    </div>
+
+    <div class="player">
+      <div class="pbar">
+        <span class="pos" id="pos">Step 1 of 5</span>
+        <span class="dots" id="dots" aria-hidden="true"></span>
+        <button class="ghost" type="button" id="back">Back</button>
+        <button class="act" type="button" id="next">Next step</button>
+      </div>
+
+      <!-- ============ SCENARIO 1, not a cancellation ============ -->
+      <div class="scn active" id="s1" data-steps="5">
+
+        <div class="step on" data-n="1">
+          <span class="stepn plain">Step 1 &nbsp;&middot;&nbsp; 6:41am &nbsp;&middot;&nbsp; a message arrives</span>
+          <h3>It lands in the shared inbox, exactly as it does today</h3>
+          <div class="mailc">
+            <div class="mailh">
+              <span>From</span> <b>Dana Whitlock</b> (invented guest)<br>
+              <span>To</span> <b>northcountrycharters@gmail.com</b><br>
+              <span>Subject</span> <b>Meeting spot</b>
+            </div>
+            <div class="mailb">We booked the Wednesday halibut trip for four of us. Two questions before we drive down. Where on the Spit do we meet you, and is there parking near the office? My son forgot his rain bibs, so is there a spare set on the boat?
+
+Thanks
+Dana
+208-555-0142</div>
+          </div>
+          <p class="caption">The build copies this message. It does not open it, mark it, move it or answer it beyond the fixed reply in the next step.</p>
+        </div>
+
+        <div class="step" data-n="2">
+          <span class="stepn plain">Step 2 &nbsp;&middot;&nbsp; 6:41am &nbsp;&middot;&nbsp; inside a minute</span>
+          <h3>The automatic reply goes back, word for word the same as always</h3>
+          <span class="tag">Gmail setting</span><span class="tag">No model involved</span><span class="tag">Reply 1 of 6 today</span>
+          <div class="mailc">
+            <div class="mailh">
+              <span>From</span> <b>North Country Charters</b><br>
+              <span>To</span> <b>Dana Whitlock</b><br>
+              <span>Subject</span> <b>Automatic reply from North Country Charters</b>
+            </div>
+            <div class="mailb">This is an automatic reply. A person has not seen your message yet.
+
+IF YOU NEED TO CANCEL please call us and confirm over the phone with us that you are cancelling. We don't always see voicemails or emails right away and every minute counts.
+
+907-235-7620</div>
+          </div>
+          <p class="caption">The middle line is your FAQ sentence character for character. The opening line and the number are ours and you sign them off. This message was about parking and rain gear, so it had nothing to do with cancelling. It gets the identical sentence anyway. That is the whole reason the sentence is fixed. It can't say anything wrong about a booking, because it says nothing about any booking.</p>
+        </div>
+
+        <div class="step" data-n="3">
+          <span class="stepn">Step 3 &nbsp;&middot;&nbsp; before the model sees anything</span>
+          <h3>The name and the number are blanked first</h3>
+          <div class="two">
+            <div class="panel">
+              <h4>What arrived</h4>
+              <div class="body">From Dana Whitlock
+dwhitlock@example.com
+
+...is there a spare set on the boat?
+
+Thanks
+Dana
+208-555-0142</div>
+            </div>
+            <div class="panel redacted">
+              <h4>What the model receives</h4>
+              <div class="body">From [NAME]
+[EMAIL]
+
+...is there a spare set on the boat?
+
+Thanks
+[NAME]
+[PHONE]</div>
+            </div>
+          </div>
+          <p class="caption">Redaction happens in the small program we build, inside your own Google account, before anything is sent anywhere. The model never receives a guest name, a phone number or an email address.</p>
+        </div>
+
+        <div class="step" data-n="4">
+          <span class="stepn">Step 4 &nbsp;&middot;&nbsp; the one model call</span>
+          <h3>One question, one word back, one short reason</h3>
+          <span class="tag ai">The only model call in the whole build</span>
+          <dl class="qa">
+            <dt>The question, fixed and identical every time</dt>
+            <dd>Does this message say the guest is cancelling, may cancel, or may not show up for a trip they have booked? Answer yes or no, then give one short reason.</dd>
+            <dt>Answer</dt>
+            <dd class="answer no">no</dd>
+            <dt>Reason</dt>
+            <dd>The guest asks where to meet and whether there is spare rain gear. Nothing in the message points at missing the trip.</dd>
+          </dl>
+          <p class="caption">How often that answer is right is not measured, and we won't pretend otherwise. No set of your labelled messages exists yet, which is exactly what the fortnight builds. The rate we assume, ninety in a hundred, is printed as an assumed row in the study's cost table and gets tested against your own labels at gate two before anything larger is funded.</p>
+        </div>
+
+        <div class="step" data-n="5">
+          <span class="stepn plain">Step 5 &nbsp;&middot;&nbsp; then it stops</span>
+          <h3>No text is sent, and the message is still on the evening summary</h3>
+          <p class="first">Nobody's phone buzzes for this one. The guest already has the acknowledgement, the message sits in the inbox untouched, and it appears on the 11:00pm summary with everything else. A quiet result is the normal result.</p>
+          <p>Three of the six messages on this scripted day get a text. That share is invented, the same as the six. We picked it to show the range of cases, not because we think it is your rate. A real Tuesday may flag none, and if a real fortnight flags very few, the honest verdict is that you build nothing.</p>
+        </div>
+      </div>
+
+      <!-- ============ SCENARIO 2, the ambiguous one ============ -->
+      <div class="scn" id="s2" data-steps="5">
+
+        <div class="step on" data-n="1">
+          <span class="stepn plain">Step 1 &nbsp;&middot;&nbsp; 2:08pm &nbsp;&middot;&nbsp; a message arrives</span>
+          <h3>A guest who might be about to call off Thursday</h3>
+          <div class="mailc">
+            <div class="mailh">
+              <span>From</span> <b>Ruth Alvarado</b> (invented guest)<br>
+              <span>To</span> <b>northcountrycharters@gmail.com</b><br>
+              <span>Subject</span> <b>Thursday wind</b>
+            </div>
+            <div class="mailb">We have been watching the forecast all week and Thursday is looking rough out there. Honestly we are wondering whether we should just call it. What do you normally do on a day like that?
+
+Ruth</div>
+          </div>
+          <p class="caption">This one is genuinely unclear. She may be asking a weather question. She may be talking herself out of the trip.</p>
+        </div>
+
+        <div class="step" data-n="2">
+          <span class="stepn plain">Step 2 &nbsp;&middot;&nbsp; 2:08pm &nbsp;&middot;&nbsp; inside a minute</span>
+          <h3>The same automatic reply, unchanged</h3>
+          <span class="tag">Gmail setting</span><span class="tag">No model involved</span><span class="tag">Reply 3 of 6 today</span>
+          <div class="mailc">
+            <div class="mailh">
+              <span>From</span> <b>North Country Charters</b><br>
+              <span>To</span> <b>Ruth Alvarado</b><br>
+              <span>Subject</span> <b>Automatic reply from North Country Charters</b>
+            </div>
+            <div class="mailb">This is an automatic reply. A person has not seen your message yet.
+
+IF YOU NEED TO CANCEL please call us and confirm over the phone with us that you are cancelling. We don't always see voicemails or emails right away and every minute counts.
+
+907-235-7620</div>
+          </div>
+          <p class="caption">Character for character the same reply the 6:41am parking question got. Nothing in it is generated, so nothing in it can drift.</p>
+        </div>
+
+        <div class="step" data-n="3">
+          <span class="stepn">Step 3 &nbsp;&middot;&nbsp; before the model sees anything</span>
+          <h3>The name is blanked first</h3>
+          <div class="two">
+            <div class="panel">
+              <h4>What arrived</h4>
+              <div class="body">From Ruth Alvarado
+ralvarado@example.com
+
+...whether we should just call it.
+
+Ruth</div>
+            </div>
+            <div class="panel redacted">
+              <h4>What the model receives</h4>
+              <div class="body">From [NAME]
+[EMAIL]
+
+...whether we should just call it.
+
+[NAME]</div>
+            </div>
+          </div>
+          <p class="caption">No phone number in this one, so there is nothing else to blank. The rule runs the same way on every message regardless.</p>
+        </div>
+
+        <div class="step" data-n="4">
+          <span class="stepn">Step 4 &nbsp;&middot;&nbsp; the one model call</span>
+          <h3>Unclear is treated as yes, on purpose</h3>
+          <span class="tag ai">The only model call in the whole build</span>
+          <dl class="qa">
+            <dt>The question, fixed and identical every time</dt>
+            <dd>Does this message say the guest is cancelling, may cancel, or may not show up for a trip they have booked? Answer yes or no, then give one short reason.</dd>
+            <dt>Answer</dt>
+            <dd class="answer">yes</dd>
+            <dt>Reason</dt>
+            <dd>The guest raises calling off Thursday because of the wind. It reads as a possible cancellation rather than a settled one.</dd>
+          </dl>
+          <p class="caption">A wrong yes costs one text message. A wrong no costs a seat nobody knew was free. Those two errors are not worth the same, so the question is written to lean toward yes when a message is unclear. You should expect texts about messages that turn out to be nothing.</p>
+        </div>
+
+        <div class="step" data-n="5">
+          <span class="stepn plain">Step 5 &nbsp;&middot;&nbsp; 2:09pm &nbsp;&middot;&nbsp; one text, then it stops</span>
+          <h3>Kathy hears about it, and a person handles the weather conversation</h3>
+          <div class="phones one">
+            <div class="phone">
+              <span class="who">Kathy's phone</span>
+              <div class="bub">North Country inbox watcher. A message that came in at 2:08pm reads like a possible cancellation. The guest wrote Thursday. Nothing has gone to them except the standard reply.</div>
+              <span class="bt">2:09pm</span>
+            </div>
+          </div>
+          <p>The text ends there. It suggests nothing, drafts nothing and books nothing. Kathy opens FareHarbor herself, sees which Thursday trip this is, and picks up the phone.</p>
+          <p class="caption">A weather day is bad news, and bad news is where we deliberately keep software out. A study of 467 people in tourism booking scenarios found that when a booking got worse, and the case they tested was a price increase, willingness to book dropped further if a chatbot delivered the news than if a person did. Weather is our extrapolation from that, not something the study tested. This build makes sure a person is the one having that conversation.</p>
+        </div>
+      </div>
+
+      <!-- ============ SCENARIO 3, the keyword miss ============ -->
+      <div class="scn" id="s3" data-steps="5">
+
+        <div class="step on" data-n="1">
+          <span class="stepn plain">Step 1 &nbsp;&middot;&nbsp; 5:26pm &nbsp;&middot;&nbsp; a message arrives</span>
+          <h3>A cancellation that never uses the word</h3>
+          <div class="mailc">
+            <div class="mailh">
+              <span>From</span> <b>Peter Gaugler</b> (invented guest)<br>
+              <span>To</span> <b>northcountrycharters@gmail.com</b><br>
+              <span>Subject</span> <b>Saturday</b>
+            </div>
+            <div class="mailb">My father in law went into the hospital in Wasilla last night. We are packing the truck and driving north first thing, so we will not make Saturday. I am sorry to do this over email. There is no service where we are staying.
+
+Pete</div>
+          </div>
+          <p class="caption">This is the message that decides whether the build needs a model at all.</p>
+        </div>
+
+        <div class="step" data-n="2">
+          <span class="stepn plain">Step 2 &nbsp;&middot;&nbsp; 5:26pm &nbsp;&middot;&nbsp; inside a minute</span>
+          <h3>The same automatic reply, which is the one that matters here</h3>
+          <span class="tag">Gmail setting</span><span class="tag">No model involved</span><span class="tag">Reply 4 of 6 today</span>
+          <div class="mailc">
+            <div class="mailh">
+              <span>From</span> <b>North Country Charters</b><br>
+              <span>To</span> <b>Peter Gaugler</b><br>
+              <span>Subject</span> <b>Automatic reply from North Country Charters</b>
+            </div>
+            <div class="mailb">This is an automatic reply. A person has not seen your message yet.
+
+IF YOU NEED TO CANCEL please call us and confirm over the phone with us that you are cancelling. We don't always see voicemails or emails right away and every minute counts.
+
+907-235-7620</div>
+          </div>
+          <p class="caption">Pete believes he has told you. Your FAQ asks him to phone and confirm, and until now that request only reached the guests who read the FAQ page. Here it reaches him inside a minute of writing, while he is still at his laptop.</p>
+        </div>
+
+        <div class="step" data-n="3">
+          <span class="stepn">Step 3 &nbsp;&middot;&nbsp; before the model sees anything</span>
+          <h3>The name is blanked first</h3>
+          <div class="two">
+            <div class="panel">
+              <h4>What arrived</h4>
+              <div class="body">From Peter Gaugler
+pgaugler@example.com
+
+...so we will not make Saturday.
+
+Pete</div>
+            </div>
+            <div class="panel redacted">
+              <h4>What the model receives</h4>
+              <div class="body">From [NAME]
+[EMAIL]
+
+...so we will not make Saturday.
+
+Pete</div>
+            </div>
+          </div>
+          <p class="caption">Look at the signature. The header name and the address go, a nickname a guest signs off with can survive, because this matches the header rather than guessing at names. That is a limit of the method and we would rather show it than hide it. The hospital and the town stay in. They are what make the message readable as an emergency, and neither one identifies the guest.</p>
+        </div>
+
+        <div class="step" data-n="4">
+          <span class="stepn">Step 4 &nbsp;&middot;&nbsp; the one model call</span>
+          <h3>A keyword list finds nothing here, which is the entire argument for a model</h3>
+          <div class="kw">
+            <b>cancel</b>not found<br>
+            <b>cancelling</b>not found<br>
+            <b>refund</b>not found<br>
+            <b>reschedule</b>not found<br>
+            <b>can't make it</b>not found<br>
+            <b>Result</b><span class="res">no match, no alert, the message waits</span>
+          </div>
+          <p>He wrote "we will not make Saturday". People write it a hundred ways and no list of words catches all of them. Everywhere else in this build a rule is cheaper and testable, so a rule is what we use. This one node resists a rule, so this one node gets a model.</p>
+          <span class="tag ai">The only model call in the whole build</span>
+          <dl class="qa">
+            <dt>The question, fixed and identical every time</dt>
+            <dd>Does this message say the guest is cancelling, may cancel, or may not show up for a trip they have booked? Answer yes or no, then give one short reason.</dd>
+            <dt>Answer</dt>
+            <dd class="answer">yes</dd>
+            <dt>Reason</dt>
+            <dd>The guest says they will not make Saturday because a family member is in hospital.</dd>
+          </dl>
+        </div>
+
+        <div class="step" data-n="5">
+          <span class="stepn plain">Step 5 &nbsp;&middot;&nbsp; 5:27pm &nbsp;&middot;&nbsp; one text, then it stops</span>
+          <h3>Kathy gets the word the guest typed, and nothing more</h3>
+          <div class="phones one">
+            <div class="phone">
+              <span class="who">Kathy's phone</span>
+              <div class="bub">North Country inbox watcher. A message that came in at 5:26pm reads like a cancellation. The guest wrote Saturday. Nothing has gone to them except the standard reply.</div>
+              <span class="bt">5:27pm</span>
+            </div>
+          </div>
+          <p><strong>Guest stated, Saturday.</strong> That is a word Pete typed, not a date this build worked out. It does not know which Saturday, which trip, or how many days out that is. Kathy opens FareHarbor and checks. Ten seconds.</p>
+          <p class="caption">We looked hard at stamping days to departure onto the alert and cut it. Days to departure can't be derived from an email, your published policy attaches real money to that number, and software guessing at it would be the one place a wrong answer costs a guest the full charter rate. It sits in the roadmap as a later job, behind a read-only FareHarbor lookup that can actually check.</p>
+        </div>
+      </div>
+
+      <!-- ============ SCENARIO 4, the 9pm one, with escalation ============ -->
+      <div class="scn" id="s4" data-steps="5">
+
+        <div class="step on" data-n="1">
+          <span class="stepn plain">Step 1 &nbsp;&middot;&nbsp; 9:02pm &nbsp;&middot;&nbsp; a message arrives</span>
+          <h3>The one the study opens with, walked in full</h3>
+          <div class="mailc">
+            <div class="mailh">
+              <span>From</span> <b>Lena Sorbo</b> (invented guest)<br>
+              <span>To</span> <b>northcountrycharters@gmail.com</b><br>
+              <span>Subject</span> <b>Saturday trip</b>
+            </div>
+            <div class="mailb">Hi, we need to cancel our Saturday charter. Two of us have come down with something and I don't want to get anyone else sick. Really sorry.
+
+Lena
+907-555-0119</div>
+          </div>
+          <p class="caption">An hour after your posted hours close. Nothing here needs a model to spot. It is in the walkthrough because it is the message the study opens with, and because it is the one that shows the second text.</p>
+        </div>
+
+        <div class="step" data-n="2">
+          <span class="stepn plain">Step 2 &nbsp;&middot;&nbsp; 9:02pm &nbsp;&middot;&nbsp; inside a minute</span>
+          <h3>The same automatic reply, at nine at night</h3>
+          <span class="tag">Gmail setting</span><span class="tag">No model involved</span><span class="tag">Reply 6 of 6 today</span>
+          <div class="mailc">
+            <div class="mailh">
+              <span>From</span> <b>North Country Charters</b><br>
+              <span>To</span> <b>Lena Sorbo</b><br>
+              <span>Subject</span> <b>Automatic reply from North Country Charters</b>
+            </div>
+            <div class="mailb">This is an automatic reply. A person has not seen your message yet.
+
+IF YOU NEED TO CANCEL please call us and confirm over the phone with us that you are cancelling. We don't always see voicemails or emails right away and every minute counts.
+
+907-235-7620</div>
+          </div>
+          <p class="caption">The sixth identical reply of the day. This part is a Gmail setting and about ten minutes of work. It exists before any model does, and it is the piece we would switch on in week one whether or not you ever buy the rest.</p>
+        </div>
+
+        <div class="step" data-n="3">
+          <span class="stepn">Step 3 &nbsp;&middot;&nbsp; before the model sees anything</span>
+          <h3>Name and phone number blanked first</h3>
+          <div class="two">
+            <div class="panel">
+              <h4>What arrived</h4>
+              <div class="body">From Lena Sorbo
+lsorbo@example.com
+
+...we need to cancel our
+Saturday charter.
+
+Lena
+907-555-0119</div>
+            </div>
+            <div class="panel redacted">
+              <h4>What the model receives</h4>
+              <div class="body">From [NAME]
+[EMAIL]
+
+...we need to cancel our
+Saturday charter.
+
+[NAME]
+[PHONE]</div>
+            </div>
+          </div>
+          <p class="caption">The same redaction on every message, whether the model is likely to say yes or not.</p>
+        </div>
+
+        <div class="step" data-n="4">
+          <span class="stepn">Step 4 &nbsp;&middot;&nbsp; the one model call</span>
+          <h3>An easy yes, answered the same way as the hard one</h3>
+          <span class="tag ai">The only model call in the whole build</span>
+          <dl class="qa">
+            <dt>The question, fixed and identical every time</dt>
+            <dd>Does this message say the guest is cancelling, may cancel, or may not show up for a trip they have booked? Answer yes or no, then give one short reason.</dd>
+            <dt>Answer</dt>
+            <dd class="answer">yes</dd>
+            <dt>Reason</dt>
+            <dd>The guest says they need to cancel the Saturday charter because two of the party are unwell.</dd>
+          </dl>
+          <p class="caption">One question in, one word and a reason out. The model has no tools, no mailbox access and no way to reply to anybody. It reads a redacted copy and answers.</p>
+        </div>
+
+        <div class="step" data-n="5">
+          <span class="stepn plain">Step 5 &nbsp;&middot;&nbsp; 9:03pm, then 10:02pm</span>
+          <h3>Kathy first. An hour with no reply, then Brian.</h3>
+          <div class="phones">
+            <div class="phone">
+              <span class="who">Kathy's phone</span>
+              <div class="bub">North Country inbox watcher. A message that came in at 9:02pm reads like a cancellation. The guest wrote Saturday. Nothing has gone to them except the standard reply.</div>
+              <span class="bt">9:03pm</span>
+            </div>
+            <div class="phone">
+              <span class="who">Brian's phone</span>
+              <div class="bub">North Country inbox watcher. The 9:02pm message still has no reply an hour on. Kathy was texted at 9:03pm. Nothing has gone to the guest except the standard reply.</div>
+              <span class="bt">10:02pm</span>
+            </div>
+          </div>
+          <p>The second text is the whole escalation. There is no third one, no phone call, no chasing. Six texts a day is the cap across both phones.</p>
+          <p class="caption">Kathy is published as co-owner and office manager, so alerts reach her first. Brian is published as Owner and Captain of The Irish, so for much of a summer day he is on the water, which is why he is the second phone rather than the first.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="secn">02 &nbsp;&nbsp; THE HANDOFF</span>
+  <h2>The evening summary, exactly as it would land</h2>
+  <p class="lede">One email at the end of the day listing everything that arrived, flagged or not. This screen is what keeps the alerts honest. A system that only pings you about the urgent ones can quietly train you to stop scanning the inbox, and then one miss is worse than never having had it.</p>
+
+  <div class="mailc">
+    <div class="mailh">
+      <span>From</span> <b>North Country inbox watcher</b><br>
+      <span>To</span> <b>northcountrycharters@gmail.com</b><br>
+      <span>Sent</span> <b>Tuesday 25 August, 11:00pm</b><br>
+      <span>Subject</span> <b>Everything that arrived today</b>
+    </div>
+    <div class="mailb">Everything that reached the inbox today is below, flagged or not.
+Automatic replies sent, 6 of 6. Texts sent, 4 across 3 messages.
+Nothing here was marked read, filed, archived or moved.
+
+READ AS CANCELLING OR NOT SHOWING UP  (3)
+
+  9:02pm   Saturday trip    Guest wrote Saturday. Text to Kathy 9:03pm.
+                            No reply by 10:02pm, so a text went to Brian.
+  5:26pm   Saturday         Guest wrote Saturday. Text to Kathy 5:27pm.
+  2:08pm   Thursday wind    Guest wrote Thursday. Text to Kathy 2:09pm.
+                            Reads as a possible cancellation, not a settled one.
+
+EVERYTHING ELSE  (3)
+
+  7:34pm   Guest room       Asks whether the room is open the night before a trip.
+  11:53am  Kids fishing     Asks whether a nine year old can come along.
+  6:41am   Meeting spot     Asks where to meet on the Spit, and about rain gear.
+
+The dates above are words the guests typed. Nobody has checked any of them
+against FareHarbor.
+
+Median minutes from a message arriving to a person seeing it, not measured yet.
+That is the number the fortnight is for.</div>
+  </div>
+  <p class="caption">The last two lines stay on the summary until the count exists. We would rather print a blank than a number we made up.</p>
+</section>
+
+<section>
+  <span class="secn">03 &nbsp;&nbsp; THE LOG</span>
+  <h2>A row per message, with the timestamps that produce the count</h2>
+  <p class="lede">Two weeks of this, one day at a time, is the whole 2,800 dollar ask in the study. At the end of it the log is the evidence behind a written verdict, and one of the verdicts available is build nothing further.</p>
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Arrived</th><th scope="col">Subject</th><th scope="col">Auto reply</th>
+          <th scope="col">Model answer</th><th scope="col">Text sent</th><th scope="col">Changed in your mailbox</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="tm">6:41am</td><td class="subj">Meeting spot</td><td class="tm">6:41am</td><td><span class="non">no</span></td><td class="tm">none</td><td class="tm">nothing</td></tr>
+        <tr><td class="tm">11:53am</td><td class="subj">Kids fishing</td><td class="tm">11:53am</td><td><span class="non">no</span></td><td class="tm">none</td><td class="tm">nothing</td></tr>
+        <tr><td class="tm">2:08pm</td><td class="subj">Thursday wind</td><td class="tm">2:08pm</td><td><span class="yes">yes</span></td><td class="tm">2:09pm Kathy</td><td class="tm">nothing</td></tr>
+        <tr><td class="tm">5:26pm</td><td class="subj">Saturday</td><td class="tm">5:26pm</td><td><span class="yes">yes</span></td><td class="tm">5:27pm Kathy</td><td class="tm">nothing</td></tr>
+        <tr><td class="tm">7:34pm</td><td class="subj">Guest room</td><td class="tm">7:34pm</td><td><span class="non">no</span></td><td class="tm">none</td><td class="tm">nothing</td></tr>
+        <tr><td class="tm">9:02pm</td><td class="subj">Saturday trip</td><td class="tm">9:02pm</td><td><span class="yes">yes</span></td><td class="tm">9:03pm Kathy<br>10:02pm Brian</td><td class="tm">nothing</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">The last column is the one to check. The build never marks a message read, never files it and never hides it, because read-only access makes that impossible rather than promised. Whatever you did with these messages is whatever you did.</p>
+</section>
+
+<section>
+  <span class="secn">04 &nbsp;&nbsp; HOW IT SITS IN YOUR OPERATION</span>
+  <h2>Three steps, with a person on every trigger</h2>
+  <div class="ops">
+    <div class="op">
+      <h3>Week one has no AI in it</h3>
+      <p>You read the reply wording and change anything you want changed. Kathy switches it on inside your own Gmail. Ten minutes of work, it answers every message from that morning on, and it stands on its own if you buy nothing else.</p>
+    </div>
+    <div class="op">
+      <h3>Access is read-only, through Google's own consent screen</h3>
+      <p>One click to grant, one click to revoke, and no password shared with anybody. A forwarding rule works if you would rather grant nothing, and it costs you two things, it shows what arrives but never when someone answered, so there is no median-minutes number and no second text when a guest has been waiting. The watcher copies what arrives. It has no permission to change, delete, file or send anything in that mailbox.</p>
+    </div>
+    <div class="op">
+      <h3>Every decision stays with you</h3>
+      <p>A text says a message reads like a cancellation and gives you the word the guest typed. Kathy opens FareHarbor, checks the real date and calls. No guest ever receives anything written by a model. Six texts a day maximum, across both phones.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="secn">05 &nbsp;&nbsp; THE EDGES</span>
+  <h2>What this deliberately does not do</h2>
+  <p class="lede">Each of these was considered and cut. A demonstration that quietly performs more than the study proposes is a demonstration that lies.</p>
+  <ul class="nots">
+    <li><b>No phone, no voicemail, no call answering.</b> This build never touches your line. Being reachable while a captain is on the water is a phone company purchase, not software.</li>
+    <li><b>No reading or writing in FareHarbor.</b> A person opens it. Ten seconds, and the date that governs real money is checked by somebody who can see the actual booking.</li>
+    <li><b>No working out how close the trip is.</b> Days to departure can't be derived from an email, so nothing here is stamped against your fourteen day or twenty four hour lines. A date on this page is a word a guest typed.</li>
+    <li><b>No reply written by a model, ever.</b> The only thing a guest receives is the one fixed sentence you approved.</li>
+    <li><b>No marking read, no filing, no archiving, no hiding.</b> The build is strictly additive.</li>
+    <li><b>No accuracy figure.</b> No labelled set of your own messages exists yet, so any number printed here would be invented. The rate we assume, ninety in a hundred, is printed as an assumed row in the study's cost table and tested at gate two before anything larger is funded.</li>
+    <li><b>No claim about your volume, or about how much of it is cancellations.</b> Six messages on a scripted Tuesday is a number we chose to make this page work, and so is the share of them that read as cancellations. A real Tuesday may produce none at all. What actually arrives is unknown to us, and finding out is the thing being sold.</li>
+  </ul>
+</section>
+
+<p class="foot">
+  Scripted demonstration prepared by Alaska AI for North Country Charters, 2 August 2026. Nothing on this page is connected to a live system. Guests, messages, phone numbers, email addresses and the day itself are invented. The automatic reply text is quoted from northcountrycharters.com/faq, the phone number from northcountrycharters.com/contact-1, and the published titles for Kathy Brennan and Brian Ritchie from northcountrycharters.com/names-you-might-know.
+</p>
+
+</div>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.msg[data-s]'));
+  var scns = Array.prototype.slice.call(document.querySelectorAll('.scn'));
+  var pos  = document.getElementById('pos');
+  var dots = document.getElementById('dots');
+  var next = document.getElementById('next');
+  var back = document.getElementById('back');
+  var cur  = 's1';
+  var step = {s1:1, s2:1, s3:1, s4:1};
+
+  function total(id){
+    var el = document.getElementById(id);
+    return parseInt(el.getAttribute('data-steps'), 10) || 1;
+  }
+
+  function paint(){
+    var el = document.getElementById(cur);
+    var n = step[cur];
+    var t = total(cur);
+
+    scns.forEach(function(s){ s.classList.toggle('active', s.id === cur); });
+    tabs.forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-s') === cur ? 'true' : 'false');
+    });
+
+    Array.prototype.forEach.call(el.querySelectorAll('.step'), function(s){
+      var k = parseInt(s.getAttribute('data-n'), 10);
+      s.classList.toggle('on', k <= n);
+    });
+
+    pos.textContent = (n < t) ? ('Step ' + n + ' of ' + t) : ('All ' + t + ' steps shown');
+    next.textContent = (n < t) ? 'Next step' : 'Start over';
+    back.disabled = (n === 1);
+
+    var d = '';
+    for (var i = 1; i <= t; i++) { d += '<i class="' + (i <= n ? 'on' : '') + '"></i>'; }
+    dots.innerHTML = d;
+  }
+
+  next.addEventListener('click', function(){
+    var t = total(cur);
+    if (step[cur] < t) {
+      step[cur]++;
+      paint();
+      var shown = document.getElementById(cur).querySelector('.step[data-n="' + step[cur] + '"]');
+      if (shown && shown.scrollIntoView) { shown.scrollIntoView({block:'nearest'}); }
+    } else {
+      step[cur] = 1;
+      paint();
+    }
+  });
+
+  back.addEventListener('click', function(){
+    if (step[cur] > 1) { step[cur]--; paint(); }
+  });
+
+  tabs.forEach(function(b){
+    b.addEventListener('click', function(){
+      cur = b.getAttribute('data-s');
+      paint();
+    });
+  });
+
+  paint();
+})();
+</script>
+</body>
+</html>
