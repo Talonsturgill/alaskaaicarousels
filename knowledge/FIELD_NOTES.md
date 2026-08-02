@@ -2205,3 +2205,36 @@ search budget resets.
   rounds and a human found it with grep. Note the compounding relationship with the
   park above: every technique in this scan is a seeded generator, and the gate is
   what makes reaching for one safe in a five-round revision loop.
+
+## 2026-08-02 - Phase 1 craft refresh (timeboxed, 4 searches, 2 full reads)
+
+- METRICOOL 2026 IS BIGGER THAN OUR CITATION IMPLIES, and the primary page
+  confirms only one format number. The study is dated 2026-04-14 and covers
+  673,658 posts across 63,108 accounts, which makes it the largest sample in
+  CAROUSEL_CRAFT's evidence base. The only format figure the primary page
+  actually prints is "Carousels get 17x more interactions than images, yet
+  images are still posted 6x more than carousels." Our doctrine cites "17x
+  interactions vs images" already, so the citation is sound and now has its
+  sample size. https://metricool.com/linkedin-trends-study/
+- A CONTRADICTION WORTH WATCHING, NOT YET ACTING ON. Secondary aggregators of
+  the same study report a personal-profile carousel engagement rate of 1.44
+  percent against multi-image at 3.71 percent, alongside a claim that personal
+  profiles out-engage company pages by 63 percent. If both are real, the
+  format ranking INVERTS for personal profiles, which is what this page posts
+  from. Neither figure appears on Metricool's own page (the full breakdown is
+  behind an email gate), so this is UNVERIFIED and must not move doctrine. The
+  aggregate 7.00 percent document ER in CAROUSEL_CRAFT comes from Socialinsider
+  and is unaffected. Flagged for a future run that can reach the full report.
+- MAKE THE DISTRIBUTION NORMAL, NOT UNIFORM. Directly relevant to the standing
+  craft weakness. Uniform randomness is the tell of machine-made marks because
+  "uniformly distributed data doesn't typically show up in nature"; offsetting
+  line endpoints, color values and easing results by a normally distributed
+  value with a small standard deviation is a one-line change per call site that
+  removes it. Pairs with the 2026-08-01 blue-noise park, which fixes the same
+  defect for point sets. https://www.generativehut.com/post/how-to-make-generative-art-feel-natural
+- TWO MORE CHEAP ONES FROM THE SAME SOURCE. Wobble a line by interpolating N
+  points along it, perturbing each, then running two or three passes of
+  neighbour-averaging, which smooths the perturbation into something that reads
+  as a drawn line rather than a jittered one. And use Perlin noise or fBm AS
+  the easing function rather than as the value, which is the difference between
+  a noise texture and a noise-modulated composition.
