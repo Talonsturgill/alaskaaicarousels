@@ -1,0 +1,257 @@
+{
+ "run_date": "2026-08-02",
+ "note": "Written by Phase 12 on 2026-08-02 as the first declaration set for scripts/aggregate_check.py. Every number this deck DERIVES from claims, declared so it can be re-derived.",
+ "aggregates": [
+  {
+   "kind": "duration",
+   "slide": 2,
+   "text": "24 DAYS OPEN",
+   "fragment": "24 DAYS",
+   "from": {
+    "claim": "C02",
+    "date": "2026-07-31"
+   },
+   "to": {
+    "claim": "C06",
+    "date": "2026-08-24"
+   }
+  },
+  {
+   "kind": "count",
+   "slide": 3,
+   "text": "Eight kinds of public body,one contract.",
+   "fragment": "Eight kinds",
+   "subject": "kinds of public body",
+   "members": [
+    "C04"
+   ],
+   "items": [
+    "Legislative Branch",
+    "Court System",
+    "University of Alaska",
+    "boards and commissions",
+    "cities",
+    "boroughs",
+    "school districts",
+    "federally recognized tribes"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "THREE WINDOWS, ONE AUGUST",
+   "fragment": "THREE WINDOWS",
+   "subject": "windows closing in August",
+   "members": [
+    "C06",
+    "C11",
+    "C19"
+   ]
+  },
+  {
+   "kind": "duration",
+   "slide": 4,
+   "text": "21 DAYS THE ONE FEDERAL WINDOW",
+   "fragment": "21 DAYS",
+   "from": {
+    "claim": "C19",
+    "date": "2026-07-20"
+   },
+   "to": {
+    "claim": "C19",
+    "date": "2026-08-10"
+   }
+  },
+  {
+   "kind": "duration",
+   "slide": 4,
+   "text": "21 DAYS",
+   "fragment": "21 DAYS",
+   "from": {
+    "claim": "C11",
+    "date": "2026-07-30"
+   },
+   "to": {
+    "claim": "C11",
+    "date": "2026-08-20"
+   }
+  },
+  {
+   "kind": "duration",
+   "slide": 4,
+   "text": "24 DAYS",
+   "fragment": "24 DAYS",
+   "from": {
+    "claim": "C02",
+    "date": "2026-07-31"
+   },
+   "to": {
+    "claim": "C06",
+    "date": "2026-08-24"
+   }
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "FOUR STATE POSTINGS, 27 TO 31 JUL",
+   "fragment": "FOUR STATE POSTINGS",
+   "subject": "state postings",
+   "members": [
+    "C16",
+    "C17",
+    "C11",
+    "C02"
+   ]
+  },
+  {
+   "kind": "span",
+   "slide": 4,
+   "text": "FOUR STATE POSTINGS, 27 TO 31 JUL",
+   "fragment": "27 TO 31",
+   "from": {
+    "claim": "C16",
+    "date": "2026-07-27"
+   },
+   "to": {
+    "claim": "C02",
+    "date": "2026-07-31"
+   }
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "3,967 acres at Eielson.Four sites, one total.",
+   "fragment": "3,967 acres",
+   "member": "C18"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "3,967 acres at Eielson.Four sites, one total.",
+   "fragment": "Four sites",
+   "member": "C18"
+  },
+  {
+   "kind": "count",
+   "slide": 5,
+   "text": "The Air Force calls it mixed-use development and names six possible uses.",
+   "fragment": "six possible uses",
+   "subject": "possible uses at Eielson",
+   "members": [
+    "C21"
+   ],
+   "items": [
+    "residential",
+    "commercial",
+    "office",
+    "cultural",
+    "institutional",
+    "entertainment"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 5,
+   "text": "SEARCHED THE TWO AIR FORCE ANNOUNCEMENTS. THE LEASE DOCUMENT ON SAM.GOV WAS NOT READ.",
+   "fragment": "TWO AIR FORCE ANNOUNCEMENTS",
+   "subject": "Air Force announcements searched",
+   "members": [
+    "C20"
+   ],
+   "items": [
+    "Eielson Air Force Base announcement",
+    "Air Force Civil Engineer Center announcement"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "text": "Five terms searched.None in the notice.",
+   "fragment": "Five terms",
+   "subject": "terms searched in the transcription notice",
+   "members": [
+    "C05"
+   ],
+   "items": [
+    "artificial intelligence",
+    "machine learning",
+    "automated speech recognition",
+    "ASR",
+    "AI"
+   ]
+  },
+  {
+   "kind": "ratio",
+   "slide": 6,
+   "text": "0 OF 5 FOUND",
+   "members": [
+    "C05"
+   ],
+   "items": [
+    "artificial intelligence",
+    "machine learning",
+    "automated speech recognition",
+    "ASR",
+    "AI"
+   ],
+   "found": []
+  },
+  {
+   "kind": "ratio",
+   "slide": 7,
+   "text": "0 OF 3 FOUND",
+   "members": [
+    "C10"
+   ],
+   "items": [
+    "artificial intelligence",
+    "machine learning",
+    "AI"
+   ],
+   "found": []
+  },
+  {
+   "kind": "duration",
+   "slide": 7,
+   "text": "21 DAYS",
+   "fragment": "21 DAYS",
+   "from": {
+    "claim": "C11",
+    "date": "2026-07-30"
+   },
+   "to": {
+    "claim": "C11",
+    "date": "2026-08-20"
+   }
+  },
+  {
+   "kind": "count",
+   "slide": 10,
+   "text": "TWO AIR FORCE NOTICES",
+   "fragment": "TWO AIR FORCE NOTICES",
+   "subject": "Air Force notices searched",
+   "members": [
+    "C20"
+   ],
+   "items": [
+    "Eielson Air Force Base announcement",
+    "Air Force Civil Engineer Center announcement"
+   ]
+  },
+  {
+   "kind": "duration",
+   "slide": 7,
+   "text": "ONE DAY EARLIER",
+   "fragment": "ONE DAY",
+   "from": {
+    "claim": "C11",
+    "date": "2026-07-30"
+   },
+   "to": {
+    "claim": "C02",
+    "date": "2026-07-31"
+   },
+   "note": "The DMV request for information was published 30 July and the transcription solicitation 31 July. This kicker read TWO DAYS EARLIER until aggregate_check.py caught it on its first run against a real deck."
+  }
+ ]
+}

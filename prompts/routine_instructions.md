@@ -371,6 +371,14 @@ The caption is conceived fresh per run, never a filled template. Read
    `python scripts/caption_check.py out/<date>/caption.txt --ledger ledger/captions.json --deck-summary "<the deck-summary line, verbatim>"`
    If FAIL: fix and re-lint until PASS (the variety gates fail repeated
    openings and banned furniture, see CAPTION_CRAFT).
+   The phrase gate reads BOTH the script's AI-tell list AND
+   `config/brand.yaml`'s `banned_phrases` (wired 2026-08-02; brand.yaml had
+   never been loaded, so "leverage", "disrupt" and "unlock" were written down
+   as banned and silently unenforced). A brand.yaml phrase inside a
+   straight-quoted VERBATIM passage is a warn, not a fail, because the state's
+   own words are quotable; anywhere else it fails. `--brand <path>` overrides
+   the default `config/brand.yaml`, and an unreadable brand.yaml is a FAIL,
+   not a pass.
 
    TWO GATES ADDED 2026-07-30, both because a rule kept lapsing with nothing
    watching it. `--deck-summary` is REQUIRED: brand.yaml has always set
@@ -487,6 +495,23 @@ python .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slides
    reported string (edit copy.json to match the shipped render, or fix the
    render) until it PASSes, so the scorer and ship gate never inherit a
    stale record.
+6. AGGREGATE pre-flight (added 2026-08-02). Any on-slide string that
+   AGGREGATES claims into a NEW number (a count, a date span, a duration, a
+   ratio) is itself a fresh factual assertion, and no other gate re-derives
+   it. Run 2026-08-02 printed "FIVE STATE POSTINGS, 22 TO 31 JUL" (counting a
+   federal Air Force industry day as a state posting, contradicting slide 09)
+   and qa.py, copy_sync_check and claims_check ALL returned PASS; a pixel
+   critic caught it by reading.
+   Write `out/<date>/aggregates.json` declaring every such number with the
+   claim ids it is derived from, then run
+   `python scripts/aggregate_check.py --run-dir out/<date>`
+   and fix every FAIL — by correcting the slide, not by loosening the
+   declaration. The script's docstring carries the schema and one worked
+   example per kind (count, span, duration, ratio, from_claim, design) and is
+   the reference; aggregates.json itself is run scratch under out/, like the
+   render report. A declaration is a claim about
+   arithmetic: if you cannot name the members, the slide cannot print the
+   number. This is a ship gate (`gate_status.py` row `aggregate`).
 
 ## PHASE 9 — FINAL ASSEMBLY
 

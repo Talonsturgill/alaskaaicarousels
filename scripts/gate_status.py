@@ -224,6 +224,37 @@ def copy_sync_row(rows, run, rdir):
     rows.add("copy_sync", "PASS" if p.returncode == 0 else "FAIL", line[:140])
 
 
+def aggregate_row(rows, run, rdir):
+    """Every number a slide DERIVES from claims (a count, a span, a duration, a
+    ratio) is a fresh factual assertion that claims_check and copy_sync_check
+    structurally cannot see. Run 2026-08-02 printed FIVE STATE POSTINGS with a
+    federal industry day inside the five and every machine gate passed it. Exit
+    2 means the check could not look, which is a FAIL like its siblings."""
+    script = REPO / "scripts" / "aggregate_check.py"
+    if not script.exists():
+        rows.absent("aggregate", "scripts/aggregate_check.py missing")
+        return
+    if not (rdir / "render_report.json").exists():
+        rows.absent("aggregate", "render_report.json missing")
+        return
+    cmd = [sys.executable, str(script), "--run-dir", str(run),
+           "--render-report", str(rdir / "render_report.json"),
+           "--report", str(run / "aggregate_report.json")]
+    if not (run / "claims.json").exists() and (run.parent / "claims.json").exists():
+        cmd += ["--claims", str(run.parent / "claims.json")]
+    try:
+        p = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    except Exception as e:
+        rows.absent("aggregate", "could not run aggregate_check (%s)" % type(e).__name__)
+        return
+    out = (p.stdout + p.stderr).strip().splitlines() or [""]
+    if p.returncode == 2:
+        rows.add("aggregate", "FAIL", "check could not run: %s" % out[0][:120])
+        return
+    line = out[-1] if p.returncode == 0 else out[0]
+    rows.add("aggregate", "PASS" if p.returncode == 0 else "FAIL", line[:140])
+
+
 def scanner_sync_row(rows):
     """Repo-level, not run-level: the run rebuilds docs/ and ships whatever the
     scanner page currently says, so the contract behind it is a ship gate like
@@ -406,6 +437,7 @@ def main():
     dossier_row(rows, run)
     caption_row(rows, run)
     copy_sync_row(rows, run, rdir)
+    aggregate_row(rows, run, rdir)
     scanner_sync_row(rows)
     docket_dates_row(rows)
     site_fresh_row(rows, run)

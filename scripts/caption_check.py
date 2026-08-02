@@ -11,6 +11,26 @@ closing engagement question required.
   python scripts/caption_check.py out/<run>/caption.txt \
       --ledger ledger/captions.json --deck-summary "<the deck-summary line>"
 Writes caption_report.json next to the input. Exit 0 = PASS, 1 = FAIL.
+
+BANNED PHRASES COME FROM TWO PLACES, AND BOTH ARE ENFORCED (2026-08-02).
+Until this run the script's hardcoded AI_TELLS list was the only thing that
+ran; config/brand.yaml's banned_phrases array was never loaded by anything, so
+"leverage", "disrupt", "unlock" and "here's where the frame breaks" were
+written down as banned and silently unenforced. The caption critic and the
+scorer found this independently on 2026-08-02. brand.yaml is now loaded and
+merged, which TIGHTENS the gate.
+
+The one legitimate case, and how it is handled: a banned word inside a
+straight-quoted VERBATIM passage. The 2026-08-02 caption opens on
+'"Leverage technology, such as artificial intelligence," says an order the
+governor signed last August.' That is the state's own words, quoted, and it is
+the whole point of the deck. So a brand.yaml phrase that appears ONLY inside
+straight double quotes is a WARN naming it, not a FAIL. The exemption is
+deliberately narrow:
+  - it applies to phrases sourced from brand.yaml only. Every phrase already
+    in AI_TELLS keeps failing anywhere in the text, quoted or not, so nothing
+    that failed before this change passes after it.
+  - unbalanced quotes mean no exemption.
 """
 import json
 import re
@@ -47,8 +67,51 @@ URLISH = re.compile(r"https?://|www\.|\S+\.(com|org|net|io|gov|edu)/\S*", re.I)
 # checkable, so it is a gate rather than a note in a doc nobody reads.
 CONTRACTIONS = {"cannot": "can't"}
 
+REPO = Path(__file__).resolve().parent.parent
+BRAND_DEFAULT = REPO / "config" / "brand.yaml"
 
-def lint(text, ledger_entries=None, deck_summary=None):
+
+def load_banned_phrases(path=None):
+    """Read brand.yaml's banned_phrases. Returns (phrases, error_or_None).
+
+    Parsed with a 4-line reader rather than an import so the gate has no
+    dependency of its own: the block is a flat list of quoted scalars under
+    'banned_phrases:' and has been for the life of the file.
+    """
+    p = Path(path) if path else BRAND_DEFAULT
+    try:
+        raw = p.read_text()
+    except OSError as e:
+        return [], "cannot read %s (%s)" % (p, e.__class__.__name__)
+    m = re.search(r"(?m)^(\s*)banned_phrases:\s*$", raw)
+    if not m:
+        return [], "%s has no banned_phrases: block" % p
+    indent = len(m.group(1))
+    out = []
+    for line in raw[m.end():].splitlines():
+        if not line.strip():
+            continue
+        cur = len(line) - len(line.lstrip())
+        if cur <= indent and not line.lstrip().startswith("-"):
+            break
+        item = re.match(r"\s*-\s*(.+?)\s*$", line)
+        if not item:
+            break
+        out.append(item.group(1).strip().strip('"').strip("'"))
+    if not out:
+        return [], "%s: banned_phrases is empty" % p
+    return out, None
+
+
+def quoted_spans(t):
+    """[(start, end)] of straight-double-quoted passages. An odd number of
+    quotes means the text is not reliably quotable, so nothing is exempt."""
+    if t.count('"') % 2:
+        return []
+    return [(m.start(), m.end()) for m in re.finditer(r'"[^"]*"', t)]
+
+
+def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
     fails, warns = [], []
     t = text.rstrip("\n")
     lines = t.split("\n")
@@ -127,6 +190,27 @@ def lint(text, ledger_entries=None, deck_summary=None):
         if tell in low:
             fails.append(f"PHRASE: banned/AI-tell '{tell}'")
 
+    # brand.yaml banned_phrases, everything the hardcoded list does not already
+    # carry. Enforced outside straight-quoted verbatim passages; a quoted-only
+    # occurrence is named as a warn so it is never silent (see module docstring).
+    spans = quoted_spans(t)
+    for phrase in (brand_phrases or []):
+        p = phrase.lower().strip()
+        if not p or p in AI_TELLS:
+            continue
+        hits = [m.start() for m in re.finditer(re.escape(p), low)]
+        if not hits:
+            continue
+        unquoted = [i for i in hits
+                    if not any(a <= i and i + len(p) <= b for a, b in spans)]
+        if unquoted:
+            fails.append("PHRASE: banned phrase '%s' (config/brand.yaml "
+                         "banned_phrases)" % p)
+        else:
+            warns.append("PHRASE: banned phrase '%s' appears only inside a "
+                         "straight-quoted verbatim passage, which is allowed. "
+                         "Confirm it really is a quotation." % p)
+
     # engagement question: last non-hashtag line ends with ?
     content_lines = [l for l in nonempty if not all(w.startswith("#") for w in l.split())]
     if content_lines and not content_lines[-1].strip().endswith("?"):
@@ -189,6 +273,7 @@ def lint(text, ledger_entries=None, deck_summary=None):
 
     return {"chars": n, "hook": hook, "hook_len": len(hook),
             "hashtags": tags, "deck_summary": deck_summary,
+            "brand_phrases_loaded": len(brand_phrases or []),
             "fails": fails, "warns": warns,
             "verdict": "FAIL" if fails else "PASS"}
 
@@ -198,6 +283,11 @@ def main():
     ledger_entries = None
     ledger_missing = None
     deck_summary = None
+    brand_path = None
+    if "--brand" in args:
+        i = args.index("--brand")
+        brand_path = args[i + 1]
+        del args[i:i + 2]
     if "--deck-summary" in args:
         i = args.index("--deck-summary")
         deck_summary = args[i + 1]
@@ -223,7 +313,14 @@ def main():
     else:
         text = sys.stdin.read()
         out = Path("caption_report.json")
-    rep = lint(text, ledger_entries, deck_summary)
+    brand_phrases, brand_err = load_banned_phrases(brand_path)
+    rep = lint(text, ledger_entries, deck_summary, brand_phrases)
+    if brand_err:
+        # Same rule as the ledger below: a check that could not look is not a
+        # pass. brand.yaml is committed, so this only fires on a real breakage.
+        rep["fails"].append("BRAND: %s, so the banned_phrases half of the phrase "
+                            "gate could not run" % brand_err)
+        rep["verdict"] = "FAIL"
     if ledger_missing:
         rep["fails"].append("VARIETY: --ledger %s not found, the caption variety "
                             "check could not run, so this is not a pass" % ledger_missing)
