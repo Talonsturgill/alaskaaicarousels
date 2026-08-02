@@ -1,855 +1,952 @@
 {
-  "_spec": {
-    "purpose": "The Alaska AI Docket: a living tracker of every AI-infrastructure decision in Alaska (land leases, utility votes, legislation, regulatory dockets, federal solicitations, procurements). The daily routine's Phase 3.5 appends new items found in verified claims and updates tracked items whose dates are near or past. scripts/docket_build.py renders this ledger into the public site under docs/ (GitHub Pages), and gmail_draft.py surfaces windows closing soon in every daily draft. Every fact here carries a source URL that was fetched and verified by the fact-checker; nothing enters this file on rumor.",
-    "rules": [
-      "Every item and every update cites at least one fetched source URL (primary preferred).",
-      "public_access uses the four-rooms model: open (a formal public comment or testimony path exists NOW), indirect (elected or member-accountable body decides), closed (private evaluation).",
-      "Items are never deleted. Decided or dead items move status to decided/closed and keep their history.",
-      "Dates are ISO YYYY-MM-DD in America/Anchorage; add a time in the label when the hour matters.",
-      "history gets one dated line per material change so the site can show how a decision moved."
-    ],
-    "item_schema": {
-      "id": "kebab-slug, stable forever",
-      "title": "plain headline, no jargon",
-      "kind": "state-land-lease | federal-lease | utility-decision | legislation | regulatory-docket | procurement | grant | other",
-      "status": "open-for-comment | pending-decision | decided | closed | watching",
-      "decider": "the body that says yes or no",
-      "public_access": "open | indirect | closed",
-      "access_note": "one line on how the public reaches this decision, or why it cannot",
-      "summary": "1-2 verified sentences",
-      "key_dates": [
-        {
-          "date": "YYYY-MM-DD",
-          "label": "what happens",
-          "kind": "deadline | vote | decision | milestone"
-        }
-      ],
-      "location": {
-        "name": "place",
-        "lon": 0,
-        "lat": 0
-      },
-      "sources": [
-        {
-          "url": "https://...",
-          "outlet": "name",
-          "date": "YYYY-MM-DD"
-        }
-      ],
-      "first_seen": "YYYY-MM-DD",
-      "last_updated": "YYYY-MM-DD",
-      "history": [
-        {
-          "date": "YYYY-MM-DD",
-          "note": "what changed"
-        }
-      ]
+ "_spec": {
+  "purpose": "The Alaska AI Docket: a living tracker of every AI-infrastructure decision in Alaska (land leases, utility votes, legislation, regulatory dockets, federal solicitations, procurements). The daily routine's Phase 3.5 appends new items found in verified claims and updates tracked items whose dates are near or past. scripts/docket_build.py renders this ledger into the public site under docs/ (GitHub Pages), and gmail_draft.py surfaces windows closing soon in every daily draft. Every fact here carries a source URL that was fetched and verified by the fact-checker; nothing enters this file on rumor.",
+  "rules": [
+   "Every item and every update cites at least one fetched source URL (primary preferred).",
+   "public_access uses the four-rooms model: open (a formal public comment or testimony path exists NOW), indirect (elected or member-accountable body decides), closed (private evaluation).",
+   "Items are never deleted. Decided or dead items move status to decided/closed and keep their history.",
+   "Dates are ISO YYYY-MM-DD in America/Anchorage; add a time in the label when the hour matters.",
+   "history gets one dated line per material change so the site can show how a decision moved."
+  ],
+  "item_schema": {
+   "id": "kebab-slug, stable forever",
+   "title": "plain headline, no jargon",
+   "kind": "state-land-lease | federal-lease | utility-decision | legislation | regulatory-docket | procurement | grant | other",
+   "status": "open-for-comment | pending-decision | decided | closed | watching",
+   "decider": "the body that says yes or no",
+   "public_access": "open | indirect | closed",
+   "access_note": "one line on how the public reaches this decision, or why it cannot",
+   "summary": "1-2 verified sentences",
+   "key_dates": [
+    {
+     "date": "YYYY-MM-DD",
+     "label": "what happens",
+     "kind": "deadline | vote | decision | milestone"
     }
+   ],
+   "location": {
+    "name": "place",
+    "lon": 0,
+    "lat": 0
+   },
+   "sources": [
+    {
+     "url": "https://...",
+     "outlet": "name",
+     "date": "YYYY-MM-DD"
+    }
+   ],
+   "first_seen": "YYYY-MM-DD",
+   "last_updated": "YYYY-MM-DD",
+   "history": [
+    {
+     "date": "YYYY-MM-DD",
+     "note": "what changed"
+    }
+   ]
+  }
+ },
+ "items": [
+  {
+   "id": "adl-422741-stak-north-slope-lease",
+   "title": "STAK Energy's North Slope AI campus lease",
+   "kind": "state-land-lease",
+   "status": "pending-decision",
+   "decider": "Alaska DNR, Division of Oil and Gas",
+   "public_access": "closed",
+   "access_note": "The written comment window closed 4:30 p.m. July 17, 2026. DNR now weighs more than 500 comments before a final best-interest decision on the 50-year lease. No public comment path remains open.",
+   "summary": "A preliminary decision would give STAK Energy a 50-year lease on 715.4 acres of state land about 26 miles south of Deadhorse for a gas-fired AI and cloud campus its developer pegs at more than $10 billion, with 1 to 3 gigawatts of on-site generation. More than 500 public comments arrived before the first deadline; fewer than a dozen supported the project.",
+   "key_dates": [
+    {
+     "date": "2026-05-12",
+     "label": "Preliminary decision noticed (ADL 422741)",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-06-15",
+     "label": "Original comment deadline",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-06-17",
+     "label": "Comment period extended for volume and public interest",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-07-17",
+     "label": "Public comment closes, 4:30 p.m. AKDT",
+     "kind": "deadline"
+    }
+   ],
+   "location": {
+    "name": "Dalton Highway, about 26 mi south of Deadhorse",
+    "lon": -148.6,
+    "lat": 69.82
+   },
+   "sources": [
+    {
+     "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224224",
+     "outlet": "Alaska DNR Online Public Notices",
+     "date": "2026-06-17"
+    },
+    {
+     "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817",
+     "outlet": "Alaska DNR Online Public Notices",
+     "date": "2026-05-12"
+    },
+    {
+     "url": "https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
+     "outlet": "Northern Journal",
+     "date": "2026-07-03"
+    },
+    {
+     "url": "https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
+     "outlet": "Northern Journal",
+     "date": "2026-07-06"
+    }
+   ],
+   "first_seen": "2026-07-08",
+   "last_updated": "2026-08-02",
+   "history": [
+    {
+     "date": "2026-07-08",
+     "note": "Tracked. 500 plus comments on record, fewer than a dozen in favor; deadline already extended once."
+    },
+    {
+     "date": "2026-07-09",
+     "note": "Re-verified via Northern Journal and ADN. More than 500 comments on record, fewer than a dozen in favor. DNR spokesperson Sean Clifton attributes the extension to comment volume, public interest and requests for extension. Stak's John Boyle calls most comments form letters lacking substance. Comment window stays open to July 17."
+    },
+    {
+     "date": "2026-07-10",
+     "note": "Re-confirmed via Northern Journal. The comment window still closes July 17, still more than 500 comments with fewer than a dozen in support. No change to the schedule. One week out."
+    },
+    {
+     "date": "2026-07-11",
+     "note": "Re-confirmed via Northern Journal (July 3 reporting) during this run's fact-check. Comment window still closes 4:30 p.m. July 17, still more than 500 comments with fewer than a dozen in support. Six days out."
+    },
+    {
+     "date": "2026-07-12",
+     "note": "By early July more than 500 public comments had reached DNR on the North Slope lease, with fewer than a dozen in favor, and the comment deadline held at July 17. Opposition ranged across Kodiak, Kotzebue, Seward, Valdez and Nuiqsut and mixed subsistence, tundra gravel and climate objections with a widely repeated but factually shaky fear of higher power bills, since the North Slope is not tied to the Railbelt grid."
+    },
+    {
+     "date": "2026-07-14",
+     "note": "Three days out. The written comment window on ADL 422741 still closes at 4:30 p.m. July 17 per DNR reporting, still more than 500 comments on record with fewer than a dozen in support. No schedule change surfaced this run. This is the one open-comment room among the tracked decisions."
+    },
+    {
+     "date": "2026-07-15",
+     "note": "Two days out. Re-confirmed against Anchorage Daily News reporting from July 7 that more than 500 public comments oppose the Stak Energy North Slope data center lease and fewer than a dozen endorse it, with the written comment window still closing 4:30 p.m. July 17. No schedule change surfaced. This remains the one open comment room among the tracked decisions."
+    },
+    {
+     "date": "2026-07-17",
+     "note": "Comment day. The written comment window on ADL 422741 closes at 4:30 p.m. today, the one open comment room among the tracked decisions. After it closes the lease moves to a pending final decision by DNR. More than 500 comments on record with fewer than a dozen in support, unchanged this run."
+    },
+    {
+     "date": "2026-07-18",
+     "note": "The written comment window closed at 4:30 p.m. July 17, so the lease moves to a pending final decision by DNR Division of Oil and Gas. More than 500 comments on record with fewer than a dozen in support. Reporting notes the campus is off-grid and self-generating on North Slope gas hundreds of miles from urban Alaska, so its fuel use would not directly raise Railbelt household electricity prices. This run reframed the docket around that on-grid versus off-grid distinction."
+    },
+    {
+     "date": "2026-07-19",
+     "note": "Re-verified the DNR primary notice this run. ADL 422741 remains a preliminary decision with no Final Finding and Decision issued yet. The written comment window closed 4:30 p.m. July 17, so the 50-year lease now sits with DNR Division of Oil and Gas for a final best-interest decision. More than 500 comments on record with fewer than a dozen in support, unchanged."
+    },
+    {
+     "date": "2026-07-20",
+     "note": "Re-verified via Northern Journal. The extended written comment window closed July 17 with more than 500 comments on record and fewer than a dozen in support, and DNR will assess the comments before a final decision on the 50-year lease. No Final Finding and Decision is posted yet."
+    },
+    {
+     "date": "2026-07-21",
+     "note": "Carried forward against Alaska Beacon and DataCenterDynamics reporting. The written comment window on ADL 422741 closed 4:30 p.m. July 17 with more than 500 comments on record and fewer than a dozen in favor, and the roughly one square mile campus (up to 3 GW, an estimated 350 to 500 million cubic feet of gas per day) now sits with the DNR Division of Oil and Gas for a Final Finding and Decision. No decision is posted yet this run."
+    },
+    {
+     "date": "2026-07-22",
+     "note": "Re-verified the DNR primary notice ADL 422741. It remains a preliminary decision with no Final Finding and Decision posted. The written comment window closed 4:30 p.m. July 17, so the 50 year lease now sits with DNR Division of Oil and Gas for a final best interest decision. More than 500 comments on record with fewer than a dozen in support, unchanged this run."
+    },
+    {
+     "date": "2026-07-24",
+     "note": "Selected as this run's carousel. Re-verified the DNR primary notice ADL 422741 with Northern Journal and ADN during this run's fact-check. It remains a preliminary decision with no Final Finding and Decision posted. The written comment window closed 4:30 p.m. July 17, so the 50-year lease now sits with DNR Division of Oil and Gas for a final best-interest decision. More than 500 comments on record with fewer than a dozen in support, unchanged this run. The deck frames the public revolt and the narrow path that remains once the comment room has closed."
+    },
+    {
+     "date": "2026-07-25",
+     "note": "Carried forward unchanged. The written comment window closed at 4.30 p.m. on July 17, 2026 and the 50 year lease still sits with DNR's Division of Oil and Gas awaiting a final finding and decision. An attempt to re-fetch the state's own public notice page this run returned HTTP 503, so nothing here is updated on rumor. No final decision has surfaced."
+    },
+    {
+     "date": "2026-07-26",
+     "note": "Re-verification attempted and failed. The DNR public notice path returned HTTP 404 to this run's fact checker and no alternate primary source was reachable, so the status stays pending decision on the strength of the prior run's reporting. No decision is asserted in either direction."
+    },
+    {
+     "date": "2026-07-29",
+     "note": "Re-checked the state's own online public notice for ADL 422741. Twelve days after the written comment window closed at 4:30 p.m. on July 17, the Division of Oil and Gas has published no final best interest decision, and the notice still stands as a preliminary decision to offer the 50 year lease on 715.4 acres. Status unchanged at pending decision, and public access stays closed because no comment path remains open. Commenters who filed during the window may appeal the division's final decision if they are aggrieved by it."
+    },
+    {
+     "date": "2026-07-31",
+     "note": "Two weeks after the written comment window closed at 4:30 p.m. on July 17, the Division of Oil and Gas has still published no final best interest decision on the 50 year lease. Status unchanged at pending decision. Public access stays closed because no comment path remains open, and the only route left belongs to people who filed during the window and may appeal a decision that aggrieves them."
+    },
+    {
+     "date": "2026-08-01",
+     "note": "The comment window closed July 17. The Division of Oil and Gas is assessing the comments before it makes a final decision on the lease, and no decision date has been published."
+    },
+    {
+     "date": "2026-08-02",
+     "note": "Sixteen days after the comment period closed, the Division of Oil and Gas has not published a final finding and decision, and no date for one has been announced."
+    }
+   ]
   },
-  "items": [
+  {
+   "id": "air-force-eul-ai-data-centers",
+   "title": "Air Force land leases for AI data centers at JBER, Eielson and Clear",
+   "kind": "federal-lease",
+   "status": "pending-decision",
+   "decider": "Department of the Air Force, Enhanced Use Lease program",
+   "public_access": "closed",
+   "access_note": "Proposals closed June 29 and are evaluated privately. No public comment period exists; no award timeline has been announced.",
+   "summary": "The Air Force offered about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson AFB and Clear Space Force Station for privately financed AI data centers. Residents near the five Eielson-area parcels raised noise, permafrost and grid concerns, including one parcel less than a mile from North Pole Middle School.",
+   "key_dates": [
     {
-      "id": "adl-422741-stak-north-slope-lease",
-      "title": "STAK Energy's North Slope AI campus lease",
-      "kind": "state-land-lease",
-      "status": "pending-decision",
-      "decider": "Alaska DNR, Division of Oil and Gas",
-      "public_access": "closed",
-      "access_note": "The written comment window closed 4:30 p.m. July 17, 2026. DNR now weighs more than 500 comments before a final best-interest decision on the 50-year lease. No public comment path remains open.",
-      "summary": "A preliminary decision would give STAK Energy a 50-year lease on 715.4 acres of state land about 26 miles south of Deadhorse for a gas-fired AI and cloud campus its developer pegs at more than $10 billion, with 1 to 3 gigawatts of on-site generation. More than 500 public comments arrived before the first deadline; fewer than a dozen supported the project.",
-      "key_dates": [
-        {
-          "date": "2026-05-12",
-          "label": "Preliminary decision noticed (ADL 422741)",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-06-15",
-          "label": "Original comment deadline",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-06-17",
-          "label": "Comment period extended for volume and public interest",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-07-17",
-          "label": "Public comment closes, 4:30 p.m. AKDT",
-          "kind": "deadline"
-        }
-      ],
-      "location": {
-        "name": "Dalton Highway, about 26 mi south of Deadhorse",
-        "lon": -148.6,
-        "lat": 69.82
-      },
-      "sources": [
-        {
-          "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224224",
-          "outlet": "Alaska DNR Online Public Notices",
-          "date": "2026-06-17"
-        },
-        {
-          "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817",
-          "outlet": "Alaska DNR Online Public Notices",
-          "date": "2026-05-12"
-        },
-        {
-          "url": "https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
-          "outlet": "Northern Journal",
-          "date": "2026-07-03"
-        },
-        {
-          "url": "https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
-          "outlet": "Northern Journal",
-          "date": "2026-07-06"
-        }
-      ],
-      "first_seen": "2026-07-08",
-      "last_updated": "2026-07-31",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "note": "Tracked. 500 plus comments on record, fewer than a dozen in favor; deadline already extended once."
-        },
-        {
-          "date": "2026-07-09",
-          "note": "Re-verified via Northern Journal and ADN. More than 500 comments on record, fewer than a dozen in favor. DNR spokesperson Sean Clifton attributes the extension to comment volume, public interest and requests for extension. Stak's John Boyle calls most comments form letters lacking substance. Comment window stays open to July 17."
-        },
-        {
-          "date": "2026-07-10",
-          "note": "Re-confirmed via Northern Journal. The comment window still closes July 17, still more than 500 comments with fewer than a dozen in support. No change to the schedule. One week out."
-        },
-        {
-          "date": "2026-07-11",
-          "note": "Re-confirmed via Northern Journal (July 3 reporting) during this run's fact-check. Comment window still closes 4:30 p.m. July 17, still more than 500 comments with fewer than a dozen in support. Six days out."
-        },
-        {
-          "date": "2026-07-12",
-          "note": "By early July more than 500 public comments had reached DNR on the North Slope lease, with fewer than a dozen in favor, and the comment deadline held at July 17. Opposition ranged across Kodiak, Kotzebue, Seward, Valdez and Nuiqsut and mixed subsistence, tundra gravel and climate objections with a widely repeated but factually shaky fear of higher power bills, since the North Slope is not tied to the Railbelt grid."
-        },
-        {
-          "date": "2026-07-14",
-          "note": "Three days out. The written comment window on ADL 422741 still closes at 4:30 p.m. July 17 per DNR reporting, still more than 500 comments on record with fewer than a dozen in support. No schedule change surfaced this run. This is the one open-comment room among the tracked decisions."
-        },
-        {
-          "date": "2026-07-15",
-          "note": "Two days out. Re-confirmed against Anchorage Daily News reporting from July 7 that more than 500 public comments oppose the Stak Energy North Slope data center lease and fewer than a dozen endorse it, with the written comment window still closing 4:30 p.m. July 17. No schedule change surfaced. This remains the one open comment room among the tracked decisions."
-        },
-        {
-          "date": "2026-07-17",
-          "note": "Comment day. The written comment window on ADL 422741 closes at 4:30 p.m. today, the one open comment room among the tracked decisions. After it closes the lease moves to a pending final decision by DNR. More than 500 comments on record with fewer than a dozen in support, unchanged this run."
-        },
-        {
-          "date": "2026-07-18",
-          "note": "The written comment window closed at 4:30 p.m. July 17, so the lease moves to a pending final decision by DNR Division of Oil and Gas. More than 500 comments on record with fewer than a dozen in support. Reporting notes the campus is off-grid and self-generating on North Slope gas hundreds of miles from urban Alaska, so its fuel use would not directly raise Railbelt household electricity prices. This run reframed the docket around that on-grid versus off-grid distinction."
-        },
-        {
-          "date": "2026-07-19",
-          "note": "Re-verified the DNR primary notice this run. ADL 422741 remains a preliminary decision with no Final Finding and Decision issued yet. The written comment window closed 4:30 p.m. July 17, so the 50-year lease now sits with DNR Division of Oil and Gas for a final best-interest decision. More than 500 comments on record with fewer than a dozen in support, unchanged."
-        },
-        {
-          "date": "2026-07-20",
-          "note": "Re-verified via Northern Journal. The extended written comment window closed July 17 with more than 500 comments on record and fewer than a dozen in support, and DNR will assess the comments before a final decision on the 50-year lease. No Final Finding and Decision is posted yet."
-        },
-        {
-          "date": "2026-07-21",
-          "note": "Carried forward against Alaska Beacon and DataCenterDynamics reporting. The written comment window on ADL 422741 closed 4:30 p.m. July 17 with more than 500 comments on record and fewer than a dozen in favor, and the roughly one square mile campus (up to 3 GW, an estimated 350 to 500 million cubic feet of gas per day) now sits with the DNR Division of Oil and Gas for a Final Finding and Decision. No decision is posted yet this run."
-        },
-        {
-          "date": "2026-07-22",
-          "note": "Re-verified the DNR primary notice ADL 422741. It remains a preliminary decision with no Final Finding and Decision posted. The written comment window closed 4:30 p.m. July 17, so the 50 year lease now sits with DNR Division of Oil and Gas for a final best interest decision. More than 500 comments on record with fewer than a dozen in support, unchanged this run."
-        },
-        {
-          "date": "2026-07-24",
-          "note": "Selected as this run's carousel. Re-verified the DNR primary notice ADL 422741 with Northern Journal and ADN during this run's fact-check. It remains a preliminary decision with no Final Finding and Decision posted. The written comment window closed 4:30 p.m. July 17, so the 50-year lease now sits with DNR Division of Oil and Gas for a final best-interest decision. More than 500 comments on record with fewer than a dozen in support, unchanged this run. The deck frames the public revolt and the narrow path that remains once the comment room has closed."
-        },
-        {
-          "date": "2026-07-25",
-          "note": "Carried forward unchanged. The written comment window closed at 4.30 p.m. on July 17, 2026 and the 50 year lease still sits with DNR's Division of Oil and Gas awaiting a final finding and decision. An attempt to re-fetch the state's own public notice page this run returned HTTP 503, so nothing here is updated on rumor. No final decision has surfaced."
-        },
-        {
-          "date": "2026-07-26",
-          "note": "Re-verification attempted and failed. The DNR public notice path returned HTTP 404 to this run's fact checker and no alternate primary source was reachable, so the status stays pending decision on the strength of the prior run's reporting. No decision is asserted in either direction."
-        },
-        {
-          "date": "2026-07-29",
-          "note": "Re-checked the state's own online public notice for ADL 422741. Twelve days after the written comment window closed at 4:30 p.m. on July 17, the Division of Oil and Gas has published no final best interest decision, and the notice still stands as a preliminary decision to offer the 50 year lease on 715.4 acres. Status unchanged at pending decision, and public access stays closed because no comment path remains open. Commenters who filed during the window may appeal the division's final decision if they are aggrieved by it."
-        },
-        {
-          "date": "2026-07-31",
-          "note": "Two weeks after the written comment window closed at 4:30 p.m. on July 17, the Division of Oil and Gas has still published no final best interest decision on the 50 year lease. Status unchanged at pending decision. Public access stays closed because no comment path remains open, and the only route left belongs to people who filed during the window and may appeal a decision that aggrieves them."
-        },
-        {
-          "date": "2026-08-01",
-          "note": "The comment window closed July 17. The Division of Oil and Gas is assessing the comments before it makes a final decision on the lease, and no decision date has been published."
-        }
-      ]
+     "date": "2026-04-10",
+     "label": "Program announced",
+     "kind": "milestone"
     },
     {
-      "id": "air-force-eul-ai-data-centers",
-      "title": "Air Force land leases for AI data centers at JBER, Eielson and Clear",
-      "kind": "federal-lease",
-      "status": "pending-decision",
-      "decider": "Department of the Air Force, Enhanced Use Lease program",
-      "public_access": "closed",
-      "access_note": "Proposals closed June 29 and are evaluated privately. No public comment period exists; no award timeline has been announced.",
-      "summary": "The Air Force offered about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson AFB and Clear Space Force Station for privately financed AI data centers. Residents near the five Eielson-area parcels raised noise, permafrost and grid concerns, including one parcel less than a mile from North Pole Middle School.",
-      "key_dates": [
-        {
-          "date": "2026-04-10",
-          "label": "Program announced",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-06-05",
-          "label": "Request for lease proposals released",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-06-29",
-          "label": "Developer proposals due",
-          "kind": "deadline"
-        },
-        {
-          "date": "2026-07-22",
-          "label": "U.S. House passes FY2027 NDAA carrying a data center lease restriction",
-          "kind": "vote"
-        },
-        {
-          "date": "2026-07-23",
-          "label": "Bill introduced in the U.S. House to ban AI data centers on federal land",
-          "kind": "milestone"
-        }
-      ],
-      "location": {
-        "name": "JBER, Eielson AFB, Clear SFS",
-        "lon": -147.7,
-        "lat": 64.3
-      },
-      "sources": [
-        {
-          "url": "https://www.af.mil/News/Article-Display/Article/4456660/daf-takes-steps-for-potential-alaskan-ai-data-centers/",
-          "outlet": "U.S. Air Force",
-          "date": "2026-04-10"
-        },
-        {
-          "url": "https://www.newsminer.com/news/local_news/proposed-air-force-data-center-land-leases-raise-some-concerns/article_98cbed0c-6574-464a-8097-c054c46cb699.html",
-          "outlet": "Fairbanks Daily News-Miner",
-          "date": "2026-06-11"
-        },
-        {
-          "url": "https://www.alaskasnewssource.com/2026/06/09/us-military-plans-lease-alaska-land-ai-data-centers-community-responds/",
-          "outlet": "Alaska's News Source",
-          "date": "2026-06-08"
-        },
-        {
-          "url": "https://www.sullivan.senate.gov/newsroom/press-releases/sullivan-secures-56-provisions-historic-26-billion-for-alaska-in-fy-2027-defense-authorization",
-          "outlet": "Office of Sen. Dan Sullivan",
-          "date": "2026-06-23"
-        },
-        {
-          "url": "https://www.highergov.com/contract-opportunity/rflp-artificial-intelligence-ai-data-center-deve-afcec-26-r-0006-o-db695/",
-          "outlet": "HigherGov (SAM.gov mirror)",
-          "date": "2026-07-14"
-        },
-        {
-          "url": "https://clerk.house.gov/Votes/2026278",
-          "outlet": "Office of the Clerk, U.S. House of Representatives",
-          "date": "2026-07-22"
-        },
-        {
-          "url": "https://federalnewsnetwork.com/army/2026/06/house-ndaa-provision-could-derail-army-data-center-projects/",
-          "outlet": "Federal News Network",
-          "date": "2026-06-12"
-        },
-        {
-          "url": "https://tlaib.house.gov/posts/rep-tlaib-introduces-a-bill-to-ban-ai-data-centers-on-federal-lands",
-          "outlet": "Office of Rep. Rashida Tlaib, U.S. House",
-          "date": "2026-07-23"
-        },
-        {
-          "url": "https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/",
-          "outlet": "Eielson Air Force Base",
-          "date": "2026-07-20"
-        }
-      ],
-      "first_seen": "2026-07-08",
-      "last_updated": "2026-07-31",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "note": "Tracked. Bids closed June 29; no public word yet on how many proposals arrived."
-        },
-        {
-          "date": "2026-07-12",
-          "note": "Developer lease proposals closed June 29 and the Air Force is now in private evaluation of bids for up to 12 parcels across JBER, Eielson and Clear. The FY2027 NDAA reported by the Senate Armed Services Committee on June 23 would require a formal grid-impact assessment before the military can approve a data-center Enhanced Use Lease, a statutory check Interior utilities and ratepayers had sought."
-        },
-        {
-          "date": "2026-07-17",
-          "note": "Lease proposals were due June 29 and no developer selection or award has been made public as of this run. Carried forward as pending."
-        },
-        {
-          "date": "2026-07-21",
-          "note": "A July 19 industry analysis (AIX Energy) notes the Alaska Enhanced Use Lease solicitation for commercial AI data centers on about 4,700 acres across 12 parcels at JBER, Eielson and Clear has moved out of its open proposal phase with no developer award announced, and that unlike the Lower 48 portfolio (which set 100 MW and 500 million dollar minimums) the Alaska request's specific megawatt and capital thresholds are not disclosed. Carried forward as pending decision."
-        },
-        {
-          "date": "2026-07-25",
-          "note": "Re-verified by fetching the solicitation record for AFCEC-26-R-0006. The response deadline was June 29, 2026 at 5 p.m. EDT, extended from May 29, and the opportunity now reads Past Due with no award and no awardee recorded, last updated July 14, 2026. Twenty-six days past the deadline the three Alaska installations named in the request, JBER, Eielson Air Force Base and Clear Space Force Station, still have no publicly announced lessee. Evaluation is private, so there is no public comment room here."
-        },
-        {
-          "date": "2026-07-29",
-          "note": "Material update from Congress, verified against primary records. On July 22 at 4:37 p.m. the U.S. House passed H.R. 8800, the National Defense Authorization Act for Fiscal Year 2027, by 216 yea to 212 nay with 3 not voting, and Alaska Representative Nick Begich voted yea, per the House Clerk's roll call 278. Federal News Network reported that the House Armed Services chairman's mark carries an amendment from Rep. Cory Mills of Florida that bars the Defense Department from leasing its land to private companies to build data centers unless they agree not to install or operate data facility equipment containing components manufactured in China, Russia, Iran or North Korea. Army officials warned the standard would drive world class commercial partners and more than 1.3 billion dollars in private capital away from Army land. If it survives conference it narrows who can bid on the Alaska parcels. The Senate has not passed its version. The underlying offer is unchanged, about 4,700 acres across twelve parcels at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station under the enhanced use lease model, which the Air Force says returns at least fair market value in cash."
-        },
-        {
-          "date": "2026-07-30",
-          "note": "Rep. Rashida Tlaib introduced the No AI Data Centers on Federal Lands Act on July 23 with five cosponsors. It would permanently ban large AI data centers and associated infrastructure on land owned or managed by the United States, including military bases, and would require existing qualifying facilities to be removed and their sites remediated. The 4,700 acres offered here sit on exactly that kind of land. No award has been announced for the Alaska proposals, which were due June 29. Separately, the Air Force posted a second Eielson land solicitation on July 23 with an August 10 deadline, but that one is for mixed use development and is not part of this offering."
-        },
-        {
-          "date": "2026-07-31",
-          "note": "Re-checked the solicitation record for AFCEC-26-R-0006. It still reads Past Due with no award and no awardee, thirty-two days after the June 29 proposal deadline. The three Alaska installations named in the request still have no publicly announced lessee. Evaluation is private, so no public comment room exists here."
-        },
-        {
-          "date": "2026-08-01",
-          "note": "Re-verified today against the Air Force's own announcement, which states approximately 4,700 acres across twelve parcels at Joint Base Elmendorf Richardson, Eielson Air Force Base and Clear Space Force Station. That announcement sets no lease term in years, so the fifty year figure that has circulated elsewhere does not come from it. No developer selection has been made public as of this run."
-        }
-      ]
+     "date": "2026-06-05",
+     "label": "Request for lease proposals released",
+     "kind": "milestone"
     },
     {
-      "id": "gvea-lm6000-turbine-purchase",
-      "title": "GVEA's $120 million turbine decision",
-      "kind": "utility-decision",
-      "status": "pending-decision",
-      "decider": "Golden Valley Electric Association board of directors",
-      "public_access": "indirect",
-      "access_note": "A member-owned co-op board decides, in executive session. GVEA members reach it through board elections and member comment periods at regular meetings.",
-      "summary": "GVEA's board weighs buying a GE LM6000 combined-cycle turbine, roughly $120 million for 45 to 58 MW, while data center demand has pushed gas turbine plant costs up 195 percent since 2019 and order waitlists into the early 2030s, per a Bloomberg report cited by the News-Miner. The board reserved an order slot in April for $50,000.",
-      "key_dates": [
-        {
-          "date": "2026-07-13",
-          "label": "Board weighs the purchase in executive session",
-          "kind": "vote"
-        }
-      ],
-      "location": {
-        "name": "Fairbanks",
-        "lon": -147.7164,
-        "lat": 64.8378
-      },
-      "sources": [
-        {
-          "url": "https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html",
-          "outlet": "Fairbanks Daily News-Miner",
-          "date": "2026-06-28"
-        },
-        {
-          "url": "https://fm.kuac.org/energy-and-the-environment/2026-05-28/gvea-plans-extraordinarily-large-increase-in-co-op-fuel-charge",
-          "outlet": "KUAC",
-          "date": "2026-05-28"
-        },
-        {
-          "url": "https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html",
-          "outlet": "Fairbanks Daily News-Miner",
-          "date": "2026-07-06"
-        }
-      ],
-      "first_seen": "2026-07-08",
-      "last_updated": "2026-07-30",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "note": "Tracked ahead of the July 13 executive session."
-        },
-        {
-          "date": "2026-07-09",
-          "note": "Re-verified via KUAC and News-Miner ahead of the July 13 executive session. The Q3 fuel and purchased-power charge rose about 61 percent effective June 1, adding nearly $46 a month for an average residential member. Board member Mary Burtness questioned continued dependence on volatile fossil-fuel prices given the roughly $120 million price tag."
-        },
-        {
-          "date": "2026-07-10",
-          "note": "Three days out. Board executive session on the LM6000 purchase still set for July 13 per the June 28 News-Miner report; a direct fetch of the GVEA newsroom returned HTTP 403, so status carried forward unchanged. Watching for the outcome."
-        },
-        {
-          "date": "2026-07-11",
-          "note": "Two days out. Board executive session on the ~$120M LM6000 purchase still set for July 13 per the June 28 News-Miner report. Direct re-fetch of News-Miner (HTTP 429) and KUAC (HTTP 503) failed this run, so status carried forward unchanged. Watching for the outcome."
-        },
-        {
-          "date": "2026-07-12",
-          "note": "Re-fetched the News-Miner report ahead of the July 13 special board meeting. The board weighs an LM6000 turbine costing about 120 million dollars, rated 45 to 58 MW alone and 76 to 152 MW if paired with steam or battery storage. In April the board approved 50,000 dollars to reserve an order spot plus a 25.6 million dollar overhaul of the 1970s GT1 diesel units. Some co-op members object to the added long-term debt."
-        },
-        {
-          "date": "2026-07-13",
-          "note": "Meeting day. The board was set to weigh the second LM6000 purchase in executive session on July 13, about 120 million dollars for a unit rated 45 to 58 MW alone and 76 to 152 MW paired with steam or storage. The News-Miner reports gas turbine demand has surged because large data centers need guaranteed power, while GVEA frames its own driver as higher load across the board. The vote outcome was not public as of this run, so status stays pending-decision. This is the anchor decision of Carousel No. 6."
-        },
-        {
-          "date": "2026-07-14",
-          "note": "Day after the executive session. A search of GVEA news releases and Fairbanks reporting turned up no public disclosure of the July 13 board decision on the LM6000 purchase, consistent with a co-op board that deliberates in executive session. Status stays pending-decision pending an official post. Watching the GVEA newsroom for a board action notice."
-        },
-        {
-          "date": "2026-07-15",
-          "note": "Two days after the executive session. A direct re-fetch of the GVEA newsroom returned HTTP 403 again and a search of Fairbanks reporting surfaced no public disclosure of the July 13 board decision on the second LM6000 purchase, consistent with a co-op board that deliberates in executive session. Status stays pending-decision. Still watching the GVEA newsroom for a board action notice."
-        },
-        {
-          "date": "2026-07-17",
-          "note": "The board held its special meeting on the second LM6000 turbine on July 13. No public vote outcome has surfaced in GVEA releases or Fairbanks reporting as of this run, so the decision is carried forward as pending and worth a hard re-check next run."
-        },
-        {
-          "date": "2026-07-18",
-          "note": "Five days after the July 13 special meeting a search of GVEA releases and Fairbanks reporting still surfaced no public disclosure of the board decision on the second LM6000 turbine, consistent with a co op board that deliberates in executive session. Status stays pending-decision and remains a hard re-check item."
-        },
-        {
-          "date": "2026-07-30",
-          "note": "Still no announced outcome from the July 13 board session. The cooperative's newsroom could not be reached today, so nothing here is changed."
-        },
-        {
-          "date": "2026-08-01",
-          "note": "Carried forward unchanged. The utility's newsroom could not be reached today and no report of a board decision on the turbine purchase was found."
-        }
-      ]
+     "date": "2026-06-29",
+     "label": "Developer proposals due",
+     "kind": "deadline"
     },
     {
-      "id": "aklng-tax-bill-second-special-session",
-      "title": "The AKLNG gas line tax bill",
-      "kind": "legislation",
-      "status": "pending-decision",
-      "decider": "Alaska Legislature, third special session",
-      "public_access": "indirect",
-      "access_note": "Legislators decide; constituents reach them directly. The gas line would feed the grid most Alaska compute would ride on.",
-      "summary": "A conference committee compromise unveiled July 2 would swap the state property tax on the Glenfarne-led Alaska LNG project for a volumetric tax after five years of operation or 500 MMcf per day, and extend the completion deadline to the end of 2034. The House deadlocked 19 to 19 on July 16 over an expanded S corporation income tax, the governor rejected that provision, and a third special session convened July 27 with no bill from the governor and almost no legislators in the room.",
-      "key_dates": [
-        {
-          "date": "2026-07-02",
-          "label": "Draft compromise unveiled",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-07-16",
-          "label": "Tentative House and Senate floor votes",
-          "kind": "vote"
-        },
-        {
-          "date": "2026-07-19",
-          "label": "Special session ends",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-07-27",
-          "label": "Third special session convenes, 10:00 a.m.",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-08-10",
-          "label": "Senate could convene in full if the House passes a bill",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-08-25",
-          "label": "Third special session scheduled to end",
-          "kind": "milestone"
-        }
-      ],
-      "location": {
-        "name": "Juneau",
-        "lon": -134.4197,
-        "lat": 58.3019
-      },
-      "sources": [
-        {
-          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-06/alaska-lawmakers-roll-out-draft-compromise-tax-cut-bill-for-the-proposed-aklng-gas-line",
-          "outlet": "Alaska Beacon via Alaska Public Media",
-          "date": "2026-07-06"
-        },
-        {
-          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-01/state-lawmakers-delay-vote-on-alaska-lng-tax-bill-until-mid-july",
-          "outlet": "Alaska Public Media",
-          "date": "2026-07-01"
-        },
-        {
-          "url": "https://alaskabeacon.com/2026/07/07/corporate-income-tax-change-remains-key-sticking-point-for-alaska-gas-pipeline-bill/",
-          "outlet": "Alaska Beacon",
-          "date": "2026-07-07"
-        },
-        {
-          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-07/corporate-income-tax-change-remains-key-sticking-point-for-alaska-gas-pipeline-bill",
-          "outlet": "Alaska Public Media",
-          "date": "2026-07-07"
-        },
-        {
-          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/committee-sets-alaska-lng-tax-cut-bill-including-expanded-corporate-tax-for-final-vote",
-          "outlet": "Alaska Public Media",
-          "date": "2026-07-16"
-        },
-        {
-          "url": "https://www.alaskasnewssource.com/2026/07/21/third-special-session-gas-line-begins-next-week-what-makes-it-different-than-last-two/",
-          "outlet": "Alaska's News Source",
-          "date": "2026-07-21"
-        },
-        {
-          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session",
-          "outlet": "Alaska Public Media",
-          "date": "2026-07-16"
-        },
-        {
-          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
-          "outlet": "Alaska Public Media",
-          "date": "2026-07-27"
-        },
-        {
-          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
-          "outlet": "Alaska Public Media",
-          "date": "2026-07-27"
-        },
-        {
-          "url": "https://www.adn.com/politics/alaska-legislature/2026/07/27/3rd-alaska-lng-special-session-starts-with-no-bill-from-governor-4-lawmakers-present/",
-          "outlet": "Anchorage Daily News",
-          "date": "2026-07-27"
-        }
-      ],
-      "first_seen": "2026-07-08",
-      "last_updated": "2026-07-30",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "note": "Tracked. Vote target already slipped once, from July 1 to July 16."
-        },
-        {
-          "date": "2026-07-09",
-          "note": "Re-checked (Alaska Beacon, July 7). The final floor vote is still targeted for July 16. The S corp corporate income tax provision remains the key sticking point, and the governor has pledged to veto a bill that keeps it."
-        },
-        {
-          "date": "2026-07-11",
-          "note": "Floor votes still tentatively July 16, session ends July 19, per prior reporting. Alaska Beacon returned HTTP 403 on re-fetch this run; status carried forward unchanged. Watching for the vote."
-        },
-        {
-          "date": "2026-07-12",
-          "note": "Conferees unveiled a draft compromise on July 2 and set a floor vote for July 16, with the second special session ending July 19. Glenfarne owns 75 percent of the project. The sticking point is an S corporation corporate income tax provision that Governor Dunleavy has vowed to veto, and it is unclear the provision has the House votes. The draft also bars the developer from billing the state if the project is abandoned and requires return of shares and assets within six months."
-        },
-        {
-          "date": "2026-07-14",
-          "note": "Two days out. Floor votes still tentatively set for July 16 and the special session still ends July 19, per Alaska Public Media and Alaska Beacon reporting, with the S corporation income tax provision the unresolved sticking point. No schedule change surfaced this run. Watching the July 16 floor action."
-        },
-        {
-          "date": "2026-07-15",
-          "note": "One day out. Floor votes remain tentatively set for July 16 and the special session still ends July 19, per Alaska Public Media and Alaska Beacon reporting from early July, with the S corporation income tax provision the unresolved sticking point. A search this run surfaced no fresh schedule change or an actual vote result. Watching the July 16 floor action."
-        },
-        {
-          "date": "2026-07-17",
-          "note": "Update. A conference committee passed the final draft of the gasline tax bill HB 381 on July 16, but Governor Dunleavy rejected the expanded corporate tax and called a third Alaska LNG special session rather than accept it, so the tax terms stay unsettled. A final investment decision still waits on both the tax law and RCA review of the Enstar gas supply agreement."
-        },
-        {
-          "date": "2026-07-18",
-          "note": "On July 16 the House deadlocked 19 to 19 and the Senate passed the gas-line tax bill 11 to 8 with a 9.4 percent pass-through tax on S corp oil and gas entities. Governor Dunleavy rejected that tax and called a third Alaska LNG special session to convene July 27 in Juneau, so the pipeline tax terms stay unsettled. The AI and data-center link here is indirect, the administration has courted large gas demand to help justify the line."
-        },
-        {
-          "date": "2026-07-19",
-          "note": "The second special session ended today with the Alaska LNG gasline tax bill still unresolved. On July 16 the House deadlocked 19 to 19 and the Senate passed the bill 11 to 8 with a 9.4 percent pass-through tax on S corp oil and gas entities, which Governor Dunleavy rejected. He called a third special session to convene July 27 in Juneau, so the pipeline tax terms stay unsettled and the AI and data-center link stays indirect."
-        },
-        {
-          "date": "2026-07-21",
-          "note": "Six days out from the third special session, which convenes July 27 in Juneau. Per Anchorage Daily News and Alaska Public Media reporting from July 16 and July 20 the up to 55 billion dollar, 800 mile gas line tax terms remain unsettled after the July 16 House deadlock, with some legislators blaming Hilcorp for the bill's collapse and the governor rejecting that claim. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to help justify the line."
-        },
-        {
-          "date": "2026-07-23",
-          "note": "Four days out from the third special session, which convenes July 27 in Juneau. Governor Dunleavy has said he will reintroduce the Alaska LNG gas line tax provisions without the expanded S corporation corporate income tax that stalled HB 381 in the July 16 House 19 to 19 deadlock. The session opens about three weeks before the August 18 primary, per Alaska's News Source and Alaska Public Media reporting from July 16 and July 21. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the roughly 55 billion dollar, 800 mile line."
-        },
-        {
-          "date": "2026-07-24",
-          "note": "Three days out from the third special session, which convenes July 27 in Juneau. Carried forward against Alaska's News Source and Alaska Public Media reporting from July 16 and July 21. Governor Dunleavy plans to reintroduce the Alaska LNG gas line tax provisions without the expanded S corporation income tax that stalled HB 381 in the July 16 House 19 to 19 deadlock. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the roughly 55 billion dollar, 800 mile line."
-        },
-        {
-          "date": "2026-07-25",
-          "note": "Two days out from the third special session, which convenes July 27 in Juneau. Re-verified this run by fetching the Alaska Public Media report of July 16. The governor rejected the pass-through S corporation provision that would have subjected Hilcorp and other private producers to Alaska's 9.4 percent corporate income tax while exempting the Alaska LNG project, and he called the third session rather than accept it. That session opens just over three weeks before the August 18 primary, which is the practical squeeze on it. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the line."
-        },
-        {
-          "date": "2026-07-26",
-          "note": "Re-verified. The governor issued an executive proclamation calling the legislature back effective July 27, 2026 at 10:00 a.m. Alaska's News Source coverage of the session contains no data center or AI load argument, so the gas line remains a gas story on this docket and not an AI one."
-        },
-        {
-          "date": "2026-07-29",
-          "note": "Re-verified by fetching Alaska Public Media's July 27 report. The third special session convened July 27 in Juneau with almost nobody in the room, only 3 of 40 House members and 1 senator at the opening technical session, and the governor had introduced no bill, saying his administration would continue meeting with all parties to determine the best path forward to an agreement. House Speaker Bryce Edgmon said the clock is ticking very loudly right now and the governor realizes that. The session opened three weeks before the August 18 primary. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the line."
-        },
-        {
-          "date": "2026-07-30",
-          "note": "The third special session opened July 27 as a technical session with three House members and one senator in the room. The governor had not introduced a bill and said his administration would keep meeting with all parties before proposing one. Nothing has moved since."
-        },
-        {
-          "date": "2026-08-01",
-          "note": "The third special session convened July 27 with four legislators in the room and no bill from the governor. It is scheduled to end August 25. The Senate plans technical sessions until August 10, when it could convene in full if the House passes a bill the governor will accept."
-        }
-      ]
+     "date": "2026-07-22",
+     "label": "U.S. House passes FY2027 NDAA carrying a data center lease restriction",
+     "kind": "vote"
     },
     {
-      "id": "enstar-cook-inlet-gas-storage",
-      "title": "Enstar's Cook Inlet gas storage plan (Kenai Loop Pool)",
-      "kind": "regulatory-docket",
-      "status": "decided",
-      "decider": "Regulatory Commission of Alaska (prudency); Alaska DNR (storage lease and technical determination)",
-      "public_access": "indirect",
-      "access_note": "The RCA is a governor-appointed, legislature-confirmed commission; the public reaches its dockets through formal comment and intervention. This prudency request has been decided (denied); the underlying DNR storage-lease question is still open.",
-      "summary": "On July 10, 2026 the Anchorage Daily News reported the RCA issued a 17-page order denying Enstar's request for an advance determination that its proposed Cook Inlet gas storage project was prudent, saying the utility lacked basic information. The $240 million project would have bought the depleted Kenai Loop Pool reservoir from AIX Energy to hold 25 billion cubic feet of gas, close to half Enstar's annual demand, adding up to $12 a month to the average bill. Enstar and Hilcorp have competing DNR lease applications for the same pool, and DNR has not confirmed it is technically capable of storing gas. Without approval, Enstar president John Sims said the company suspended the project.",
-      "key_dates": [
-        {
-          "date": "2026-07-10",
-          "label": "RCA denies Enstar advance determination of prudency (ADN report); Enstar suspends the project",
-          "kind": "decision"
-        },
-        {
-          "date": "2026-07-10",
-          "label": "DNR determination on Kenai Loop Pool storage capability and competing Enstar/Hilcorp leases still pending",
-          "kind": "milestone"
-        }
-      ],
-      "location": {
-        "name": "Kenai Loop Pool, Cook Inlet near Kenai",
-        "lon": -151.25,
-        "lat": 60.55
-      },
-      "sources": [
-        {
-          "url": "https://www.adn.com/business-economy/energy/2026/07/10/state-regulators-reject-enstar-gas-storage-plan-raising-questions-about-solution-to-cook-inlet-shortage/",
-          "outlet": "Anchorage Daily News",
-          "date": "2026-07-10"
-        }
-      ],
-      "first_seen": "2026-07-11",
-      "last_updated": "2026-07-11",
-      "history": [
-        {
-          "date": "2026-07-11",
-          "note": "Tracked from this run's verified claims. RCA denied Enstar's advance prudency determination in a 17-page order (ADN, July 10); Enstar suspended the $240M Kenai Loop Pool storage project. The storage fix for Southcentral's Cook Inlet gas crunch is off the table for now; DNR technical/lease determination and the competing Hilcorp application remain unresolved."
-        }
-      ]
+     "date": "2026-07-23",
+     "label": "Bill introduced in the U.S. House to ban AI data centers on federal land",
+     "kind": "milestone"
     },
     {
-      "id": "aidea-houston-industrial-park",
-      "title": "AIDEA's free state land for a Mat-Su data center park",
-      "kind": "state-land-lease",
-      "status": "open-for-comment",
-      "decider": "Alaska DNR, Commissioner John Crowther",
-      "public_access": "open",
-      "access_note": "Anyone can comment on the DNR preliminary decision to transfer the land to AIDEA through 5 p.m. August 19, 2026, on the DNR website. Commenting also buys standing, because the notice says only people from whom the division receives timely written comment during this window will be eligible to appeal the Final Finding and Decision. This is the one open comment room among the tracked decisions.",
-      "summary": "A DNR preliminary decision would transfer about 20,000 acres, roughly 30 square miles, of state land just north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that includes scalable data centers and a logistics hub about 60 road miles north of Anchorage. Public comment runs through August 19.",
-      "key_dates": [
-        {
-          "date": "2026-07-13",
-          "label": "Preliminary decision reported",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-08-13",
-          "label": "Houston City Council vote on a data-center ban ordinance (postponed from July 16)",
-          "kind": "vote"
-        },
-        {
-          "date": "2026-08-19",
-          "label": "Public comment closes",
-          "kind": "deadline"
-        }
-      ],
-      "location": {
-        "name": "North of Houston, Mat-Su Borough",
-        "lon": -149.82,
-        "lat": 61.63
-      },
-      "sources": [
-        {
-          "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431",
-          "outlet": "Alaska DNR Online Public Notices",
-          "date": "2026-07-10"
-        },
-        {
-          "url": "https://www.dermotcole.com/reportingfromalaska/2026/7/13/khxwch2o4tgrjxuwycm8kmjzjtp69q",
-          "outlet": "Reporting From Alaska",
-          "date": "2026-07-13"
-        },
-        {
-          "url": "https://www.northernjournal.com/alaskas-economic-development-agency-plans-a-mat-su-industrial-park-with-data-centers/",
-          "outlet": "Northern Journal",
-          "date": "2026-07-15"
-        },
-        {
-          "url": "https://www.matsusentinel.com/state-agency-plans-houston-area-industrial-park-data-centers-distribution-hub/",
-          "outlet": "Mat-Su Sentinel",
-          "date": "2026-07-14"
-        }
-      ],
-      "first_seen": "2026-07-17",
-      "last_updated": "2026-07-31",
-      "history": [
-        {
-          "date": "2026-07-17",
-          "note": "Tracked. DNR under Commissioner John Crowther released a 45 page preliminary decision to give about 20,000 acres near Houston to AIDEA at no charge for a data center and industrial district, with public comment open through August 19. Reported by Dermot Cole on July 13 and Northern Journal on July 15."
-        },
-        {
-          "date": "2026-07-18",
-          "note": "Re-verified against Alaska Beacon and Alaska News Source. The 41 page DNR preliminary decision would transfer about 30 square miles of state land north of Houston to AIDEA at no cost for a multi use industrial and energy development district that includes data centers, with public comment open through 5 p.m. August 19. AIDEA director Randy Ruaro said there are no pre determined and set land use decisions. Houston Council Member Johansen introduced a June ordinance to ban data centers within city limits and the council postponed the vote to August 13. Unlike the off grid North Slope campus, a Railbelt data center here could move household bills either way depending on the utility rate deal."
-        },
-        {
-          "date": "2026-07-21",
-          "note": "Re-verified against Mat-Su Sentinel and Alaska News Source reporting from July 15 and 16. The City of Houston council took up Council Member Lisa Johansen's ordinance to ban data center development inside city limits and voted July 16 to postpone action to its August 13 meeting, so a small municipality is now moving to zone out the buildout on the state parcel next door on permafrost thaw and water supply grounds. DNR public comment on the no cost land transfer to AIDEA still runs through 5 p.m. August 19. Added the August 13 council vote as a tracked key date."
-        },
-        {
-          "date": "2026-07-22",
-          "note": "Selected as this run's carousel. Re-verified the DNR primary notice ADL 234762. It remains a preliminary decision proposing a noncompetitive no-cost conveyance of about 19,950 acres of state land roughly two miles north of Houston to AIDEA, with written public comment open through 5 p.m. August 19. The notice says that if no significant change is required the preliminary decision will issue as the Final Finding and Decision. Daniel Jenkins is the listed contact. This is the one open comment room among the tracked decisions."
-        },
-        {
-          "date": "2026-07-26",
-          "note": "Re-verified against Northern Journal. Public comment on the DNR preliminary decision runs through August 19 and the Houston City Council postponed its vote on a data center restriction ordinance to its next meeting on August 13, to allow a work session that had not yet been scheduled. Parcel described as 30 square miles, roughly 60 road miles north of Anchorage. Dates unchanged."
-        },
-        {
-          "date": "2026-07-29",
-          "note": "Correction. Between July 21 and today this entry showed August 13 as the comment deadline. That is the date of a separate Houston City Council vote, which stays tracked here as its own key date. The DNR comment deadline was and remains 5 p.m. August 19, 2026, re-verified today against the primary notice, Alaska DNR Online Public Notices id 224431, ADL 234762, which shows no extension or amendment."
-        },
-        {
-          "date": "2026-07-31",
-          "note": "Re-verified today against the primary notice, Alaska DNR Online Public Notices id 224431. The deadline is unchanged at 5 p.m. Wednesday, August 19, 2026, the parcel is approximately 19,950 acres about two miles north of Houston, and no extension, amendment or correction appears. Two things worth stating plainly for anyone deciding whether to write. First, the notice limits appeal rights to people who comment during this window, so a comment is the only way to keep a say after the decision issues. Second, the Houston City Council vote tracked here for August 13 is a separate question before a separate body. Mat-Su Sentinel reporting places this parcel outside Houston city limits, and the Matanuska-Susitna Borough, which does have jurisdiction, does not require a special permit for a data center, so a city ban would not by itself reach this land."
-        }
-      ]
-    },
-    {
-      "id": "anchorage-ao-2026-27-data-center-zoning",
-      "title": "Anchorage data-center zoning ordinance AO 2026-27",
-      "kind": "legislation",
-      "status": "decided",
-      "decider": "Anchorage Assembly",
-      "public_access": "indirect",
-      "access_note": "The elected Anchorage Assembly adopted the ordinance in a public 10 to 2 vote. Residents reach it through Assembly elections and public testimony.",
-      "summary": "On March 27, 2026 the Anchorage Assembly adopted ordinance AO 2026-27 in a 10 to 2 vote, defining data centers in the municipal zoning code for the first time. It confines them to commercial and industrial zones, requires landscaping buffers and enclosed power equipment, and requires written statements from electric and water utilities that the grid has sufficient system capacity before a project proceeds. Members Scott Myers and Keith McCormick voted against it.",
-      "key_dates": [
-        {
-          "date": "2026-03-27",
-          "label": "Assembly adopts AO 2026-27 (10 to 2)",
-          "kind": "vote"
-        }
-      ],
-      "location": {
-        "name": "Anchorage",
-        "lon": -149.9003,
-        "lat": 61.2181
-      },
-      "sources": [
-        {
-          "url": "https://www.adn.com/alaska-news/anchorage/2026/03/27/anchorage-assembly-preemptively-adopts-data-center-regulations/",
-          "outlet": "Anchorage Daily News",
-          "date": "2026-03-27"
-        }
-      ],
-      "first_seen": "2026-07-18",
-      "last_updated": "2026-07-18",
-      "history": [
-        {
-          "date": "2026-07-18",
-          "note": "Tracked from this run. Anchorage adopted the data center land use framework 10 to 2 on March 27, the first local guardrail of its kind in the state. Sponsored by Anna Brawley and Daniel Volland. Added because Carousel No. 10 turns on whether a Railbelt data center helps or hurts ratepayers, and this ordinance is the one enacted local guardrail while the state bill stalls."
-        }
-      ]
-    },
-    {
-      "id": "hb-259-data-center-utility-standards",
-      "title": "HB 259, state utility standards for large data centers",
-      "kind": "legislation",
-      "status": "pending-decision",
-      "decider": "Alaska Legislature (House Energy Committee)",
-      "public_access": "indirect",
-      "access_note": "Legislators decide. Constituents reach the bill through their representatives and committee testimony. It has not moved out of the House Energy Committee.",
-      "summary": "HB 259, introduced by Rep. Donna Mears in January 2026, would set utility rate-setting guidelines and community benefit standards for large energy use facilities such as data centers. It was referred to the House Energy Committee and has not advanced, so Alaska has no statewide cost-allocation rule governing how a large data-center load is billed against other ratepayers.",
-      "key_dates": [
-        {
-          "date": "2026-01-20",
-          "label": "Referred to House Energy Committee",
-          "kind": "milestone"
-        }
-      ],
-      "location": {
-        "name": "Juneau",
-        "lon": -134.4197,
-        "lat": 58.3019
-      },
-      "sources": [
-        {
-          "url": "https://www.adn.com/alaska-news/anchorage/2026/03/04/data-centers-powering-the-ai-boom-demand-local-energy-anchorage-assembly-members-want-to-regulate-them/",
-          "outlet": "Anchorage Daily News",
-          "date": "2026-03-04"
-        },
-        {
-          "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=HB+259",
-          "outlet": "Alaska State Legislature",
-          "date": "2026-01-20"
-        }
-      ],
-      "first_seen": "2026-07-18",
-      "last_updated": "2026-07-18",
-      "history": [
-        {
-          "date": "2026-07-18",
-          "note": "Tracked from this run. The state level counterpart to the Anchorage ordinance, HB 259 would set rate-setting and community benefit standards for big loads but sits in the House Energy Committee. Its stall is the policy gap at the center of Carousel No. 10, no statewide rule decides whether a data center spreads or shifts costs onto households."
-        }
-      ]
-    },
-    {
-      "id": "ratepayer-protection-pledge-alaska-utilities",
-      "title": "The AI ratepayer pledge, and which Alaska utilities have signed it",
-      "kind": "other",
-      "status": "watching",
-      "decider": "Each Alaska electric utility board, including the Railbelt cooperatives",
-      "public_access": "indirect",
-      "access_note": "Alaska's electric cooperatives are governed by boards their own members elect, so a member can ask their board directly whether it intends to sign. A voluntary federal pledge has no public comment docket, which is why this room is indirect rather than open.",
-      "summary": "The White House Ratepayer Protection Pledge asks AI companies, utilities and data center developers to commit that new data center load pays for its own generation and delivery instead of shifting the cost onto households. USA TODAY and POWER both describe it as voluntary and non binding. Gov. Mike Dunleavy signed the governors addendum on July 23, 2026, one of 23 governors. Read live on July 26, 2026 the signatory list showed a single Alaska entity, Cordova Electric Cooperative, a 1,566 customer cooperative that is not connected by transmission line to any other community.",
-      "key_dates": [
-        {
-          "date": "2026-03-04",
-          "label": "Pledge first signed by seven AI companies at the White House",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-07-23",
-          "label": "Governors addendum signed, Dunleavy among 23 governors",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-07-26",
-          "label": "Signatory list read at 281, one Alaska entity on it",
-          "kind": "milestone"
-        }
-      ],
-      "location": {
-        "name": "Cordova, Prince William Sound",
-        "lon": -145.7573,
-        "lat": 60.5428
-      },
-      "sources": [
-        {
-          "url": "https://www.whitehouse.gov/ratepayer-protection-pledge/",
-          "outlet": "The White House",
-          "date": "2026-07-26"
-        },
-        {
-          "url": "https://www.rga.org/republican-governors-sign-president-trumps-ratepayer-protection-pledge/",
-          "outlet": "Republican Governors Association",
-          "date": "2026-07-23"
-        },
-        {
-          "url": "https://www.epa.gov/newsreleases/president-trump-expands-historic-ratepayer-protection-pledge-protect-american",
-          "outlet": "U.S. Environmental Protection Agency",
-          "date": "2026-07-23"
-        },
-        {
-          "url": "https://www.powermag.com/white-house-expands-data-center-ratepayer-pledge-as-congress-moves-to-codify-protections/",
-          "outlet": "POWER Magazine",
-          "date": "2026-07-23"
-        },
-        {
-          "url": "https://www.cordovaelectric.com/about/",
-          "outlet": "Cordova Electric Cooperative",
-          "date": "2026-07-26"
-        }
-      ],
-      "first_seen": "2026-07-26",
-      "last_updated": "2026-07-26",
-      "history": [
-        {
-          "date": "2026-07-26",
-          "note": "Tracked. The White House expanded the Ratepayer Protection Pledge on July 23 and 23 Republican governors signed an addendum committing to implement its principles to the greatest extent possible, Dunleavy among them. The pledge itself binds signing companies to five things, build bring or buy new power supply, pay for new delivery infrastructure, pay whether they use the power or not, invest in local jobs, and contribute to grid and community resilience. Both USA TODAY and POWER describe it as non binding. A read of the signatory list on July 26 returned one Alaska name, Cordova Electric Cooperative, and no Railbelt utility."
-        }
-      ]
+     "date": "2026-08-10",
+     "label": "Proposals due on a separate Eielson mixed-use lease covering 3,967 acres",
+     "kind": "milestone"
     }
-  ]
+   ],
+   "location": {
+    "name": "JBER, Eielson AFB, Clear SFS",
+    "lon": -147.7,
+    "lat": 64.3
+   },
+   "sources": [
+    {
+     "url": "https://www.af.mil/News/Article-Display/Article/4456660/daf-takes-steps-for-potential-alaskan-ai-data-centers/",
+     "outlet": "U.S. Air Force",
+     "date": "2026-04-10"
+    },
+    {
+     "url": "https://www.newsminer.com/news/local_news/proposed-air-force-data-center-land-leases-raise-some-concerns/article_98cbed0c-6574-464a-8097-c054c46cb699.html",
+     "outlet": "Fairbanks Daily News-Miner",
+     "date": "2026-06-11"
+    },
+    {
+     "url": "https://www.alaskasnewssource.com/2026/06/09/us-military-plans-lease-alaska-land-ai-data-centers-community-responds/",
+     "outlet": "Alaska's News Source",
+     "date": "2026-06-08"
+    },
+    {
+     "url": "https://www.sullivan.senate.gov/newsroom/press-releases/sullivan-secures-56-provisions-historic-26-billion-for-alaska-in-fy-2027-defense-authorization",
+     "outlet": "Office of Sen. Dan Sullivan",
+     "date": "2026-06-23"
+    },
+    {
+     "url": "https://www.highergov.com/contract-opportunity/rflp-artificial-intelligence-ai-data-center-deve-afcec-26-r-0006-o-db695/",
+     "outlet": "HigherGov (SAM.gov mirror)",
+     "date": "2026-07-14"
+    },
+    {
+     "url": "https://clerk.house.gov/Votes/2026278",
+     "outlet": "Office of the Clerk, U.S. House of Representatives",
+     "date": "2026-07-22"
+    },
+    {
+     "url": "https://federalnewsnetwork.com/army/2026/06/house-ndaa-provision-could-derail-army-data-center-projects/",
+     "outlet": "Federal News Network",
+     "date": "2026-06-12"
+    },
+    {
+     "url": "https://tlaib.house.gov/posts/rep-tlaib-introduces-a-bill-to-ban-ai-data-centers-on-federal-lands",
+     "outlet": "Office of Rep. Rashida Tlaib, U.S. House",
+     "date": "2026-07-23"
+    },
+    {
+     "url": "https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/",
+     "outlet": "Eielson Air Force Base",
+     "date": "2026-07-20"
+    }
+   ],
+   "first_seen": "2026-07-08",
+   "last_updated": "2026-08-02",
+   "history": [
+    {
+     "date": "2026-07-08",
+     "note": "Tracked. Bids closed June 29; no public word yet on how many proposals arrived."
+    },
+    {
+     "date": "2026-07-12",
+     "note": "Developer lease proposals closed June 29 and the Air Force is now in private evaluation of bids for up to 12 parcels across JBER, Eielson and Clear. The FY2027 NDAA reported by the Senate Armed Services Committee on June 23 would require a formal grid-impact assessment before the military can approve a data-center Enhanced Use Lease, a statutory check Interior utilities and ratepayers had sought."
+    },
+    {
+     "date": "2026-07-17",
+     "note": "Lease proposals were due June 29 and no developer selection or award has been made public as of this run. Carried forward as pending."
+    },
+    {
+     "date": "2026-07-21",
+     "note": "A July 19 industry analysis (AIX Energy) notes the Alaska Enhanced Use Lease solicitation for commercial AI data centers on about 4,700 acres across 12 parcels at JBER, Eielson and Clear has moved out of its open proposal phase with no developer award announced, and that unlike the Lower 48 portfolio (which set 100 MW and 500 million dollar minimums) the Alaska request's specific megawatt and capital thresholds are not disclosed. Carried forward as pending decision."
+    },
+    {
+     "date": "2026-07-25",
+     "note": "Re-verified by fetching the solicitation record for AFCEC-26-R-0006. The response deadline was June 29, 2026 at 5 p.m. EDT, extended from May 29, and the opportunity now reads Past Due with no award and no awardee recorded, last updated July 14, 2026. Twenty-six days past the deadline the three Alaska installations named in the request, JBER, Eielson Air Force Base and Clear Space Force Station, still have no publicly announced lessee. Evaluation is private, so there is no public comment room here."
+    },
+    {
+     "date": "2026-07-29",
+     "note": "Material update from Congress, verified against primary records. On July 22 at 4:37 p.m. the U.S. House passed H.R. 8800, the National Defense Authorization Act for Fiscal Year 2027, by 216 yea to 212 nay with 3 not voting, and Alaska Representative Nick Begich voted yea, per the House Clerk's roll call 278. Federal News Network reported that the House Armed Services chairman's mark carries an amendment from Rep. Cory Mills of Florida that bars the Defense Department from leasing its land to private companies to build data centers unless they agree not to install or operate data facility equipment containing components manufactured in China, Russia, Iran or North Korea. Army officials warned the standard would drive world class commercial partners and more than 1.3 billion dollars in private capital away from Army land. If it survives conference it narrows who can bid on the Alaska parcels. The Senate has not passed its version. The underlying offer is unchanged, about 4,700 acres across twelve parcels at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station under the enhanced use lease model, which the Air Force says returns at least fair market value in cash."
+    },
+    {
+     "date": "2026-07-30",
+     "note": "Rep. Rashida Tlaib introduced the No AI Data Centers on Federal Lands Act on July 23 with five cosponsors. It would permanently ban large AI data centers and associated infrastructure on land owned or managed by the United States, including military bases, and would require existing qualifying facilities to be removed and their sites remediated. The 4,700 acres offered here sit on exactly that kind of land. No award has been announced for the Alaska proposals, which were due June 29. Separately, the Air Force posted a second Eielson land solicitation on July 23 with an August 10 deadline, but that one is for mixed use development and is not part of this offering."
+    },
+    {
+     "date": "2026-07-31",
+     "note": "Re-checked the solicitation record for AFCEC-26-R-0006. It still reads Past Due with no award and no awardee, thirty-two days after the June 29 proposal deadline. The three Alaska installations named in the request still have no publicly announced lessee. Evaluation is private, so no public comment room exists here."
+    },
+    {
+     "date": "2026-08-01",
+     "note": "Re-verified today against the Air Force's own announcement, which states approximately 4,700 acres across twelve parcels at Joint Base Elmendorf Richardson, Eielson Air Force Base and Clear Space Force Station. That announcement sets no lease term in years, so the fifty year figure that has circulated elsewhere does not come from it. No developer selection has been made public as of this run."
+    },
+    {
+     "date": "2026-08-02",
+     "note": "A second and separate Eielson solicitation is now open. Request for Lease Proposal AFCEC-26-R-0009 covers four sites totalling 3,967 acres, held a virtual industry day on July 22, and takes proposals until August 10. The Air Force announcement describes it only as mixed-use development, listing residential, commercial, office, cultural, institutional and entertainment uses, and does not mention artificial intelligence or data centers. That is a description of the announcement. The lease document itself is posted on SAM.gov and has not been read here."
+    }
+   ]
+  },
+  {
+   "id": "gvea-lm6000-turbine-purchase",
+   "title": "GVEA's $120 million turbine decision",
+   "kind": "utility-decision",
+   "status": "pending-decision",
+   "decider": "Golden Valley Electric Association board of directors",
+   "public_access": "indirect",
+   "access_note": "A member-owned co-op board decides, in executive session. GVEA members reach it through board elections and member comment periods at regular meetings.",
+   "summary": "GVEA's board weighs buying a GE LM6000 combined-cycle turbine, roughly $120 million for 45 to 58 MW, while data center demand has pushed gas turbine plant costs up 195 percent since 2019 and order waitlists into the early 2030s, per a Bloomberg report cited by the News-Miner. The board reserved an order slot in April for $50,000.",
+   "key_dates": [
+    {
+     "date": "2026-07-13",
+     "label": "Board weighs the purchase in executive session",
+     "kind": "vote"
+    }
+   ],
+   "location": {
+    "name": "Fairbanks",
+    "lon": -147.7164,
+    "lat": 64.8378
+   },
+   "sources": [
+    {
+     "url": "https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html",
+     "outlet": "Fairbanks Daily News-Miner",
+     "date": "2026-06-28"
+    },
+    {
+     "url": "https://fm.kuac.org/energy-and-the-environment/2026-05-28/gvea-plans-extraordinarily-large-increase-in-co-op-fuel-charge",
+     "outlet": "KUAC",
+     "date": "2026-05-28"
+    },
+    {
+     "url": "https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html",
+     "outlet": "Fairbanks Daily News-Miner",
+     "date": "2026-07-06"
+    }
+   ],
+   "first_seen": "2026-07-08",
+   "last_updated": "2026-07-30",
+   "history": [
+    {
+     "date": "2026-07-08",
+     "note": "Tracked ahead of the July 13 executive session."
+    },
+    {
+     "date": "2026-07-09",
+     "note": "Re-verified via KUAC and News-Miner ahead of the July 13 executive session. The Q3 fuel and purchased-power charge rose about 61 percent effective June 1, adding nearly $46 a month for an average residential member. Board member Mary Burtness questioned continued dependence on volatile fossil-fuel prices given the roughly $120 million price tag."
+    },
+    {
+     "date": "2026-07-10",
+     "note": "Three days out. Board executive session on the LM6000 purchase still set for July 13 per the June 28 News-Miner report; a direct fetch of the GVEA newsroom returned HTTP 403, so status carried forward unchanged. Watching for the outcome."
+    },
+    {
+     "date": "2026-07-11",
+     "note": "Two days out. Board executive session on the ~$120M LM6000 purchase still set for July 13 per the June 28 News-Miner report. Direct re-fetch of News-Miner (HTTP 429) and KUAC (HTTP 503) failed this run, so status carried forward unchanged. Watching for the outcome."
+    },
+    {
+     "date": "2026-07-12",
+     "note": "Re-fetched the News-Miner report ahead of the July 13 special board meeting. The board weighs an LM6000 turbine costing about 120 million dollars, rated 45 to 58 MW alone and 76 to 152 MW if paired with steam or battery storage. In April the board approved 50,000 dollars to reserve an order spot plus a 25.6 million dollar overhaul of the 1970s GT1 diesel units. Some co-op members object to the added long-term debt."
+    },
+    {
+     "date": "2026-07-13",
+     "note": "Meeting day. The board was set to weigh the second LM6000 purchase in executive session on July 13, about 120 million dollars for a unit rated 45 to 58 MW alone and 76 to 152 MW paired with steam or storage. The News-Miner reports gas turbine demand has surged because large data centers need guaranteed power, while GVEA frames its own driver as higher load across the board. The vote outcome was not public as of this run, so status stays pending-decision. This is the anchor decision of Carousel No. 6."
+    },
+    {
+     "date": "2026-07-14",
+     "note": "Day after the executive session. A search of GVEA news releases and Fairbanks reporting turned up no public disclosure of the July 13 board decision on the LM6000 purchase, consistent with a co-op board that deliberates in executive session. Status stays pending-decision pending an official post. Watching the GVEA newsroom for a board action notice."
+    },
+    {
+     "date": "2026-07-15",
+     "note": "Two days after the executive session. A direct re-fetch of the GVEA newsroom returned HTTP 403 again and a search of Fairbanks reporting surfaced no public disclosure of the July 13 board decision on the second LM6000 purchase, consistent with a co-op board that deliberates in executive session. Status stays pending-decision. Still watching the GVEA newsroom for a board action notice."
+    },
+    {
+     "date": "2026-07-17",
+     "note": "The board held its special meeting on the second LM6000 turbine on July 13. No public vote outcome has surfaced in GVEA releases or Fairbanks reporting as of this run, so the decision is carried forward as pending and worth a hard re-check next run."
+    },
+    {
+     "date": "2026-07-18",
+     "note": "Five days after the July 13 special meeting a search of GVEA releases and Fairbanks reporting still surfaced no public disclosure of the board decision on the second LM6000 turbine, consistent with a co op board that deliberates in executive session. Status stays pending-decision and remains a hard re-check item."
+    },
+    {
+     "date": "2026-07-30",
+     "note": "Still no announced outcome from the July 13 board session. The cooperative's newsroom could not be reached today, so nothing here is changed."
+    },
+    {
+     "date": "2026-08-01",
+     "note": "Carried forward unchanged. The utility's newsroom could not be reached today and no report of a board decision on the turbine purchase was found."
+    }
+   ]
+  },
+  {
+   "id": "aklng-tax-bill-second-special-session",
+   "title": "The AKLNG gas line tax bill",
+   "kind": "legislation",
+   "status": "pending-decision",
+   "decider": "Alaska Legislature, third special session",
+   "public_access": "indirect",
+   "access_note": "Legislators decide; constituents reach them directly. The gas line would feed the grid most Alaska compute would ride on.",
+   "summary": "A conference committee compromise unveiled July 2 would swap the state property tax on the Glenfarne-led Alaska LNG project for a volumetric tax after five years of operation or 500 MMcf per day, and extend the completion deadline to the end of 2034. The House deadlocked 19 to 19 on July 16 over an expanded S corporation income tax, the governor rejected that provision, and a third special session convened July 27 with no bill from the governor and almost no legislators in the room.",
+   "key_dates": [
+    {
+     "date": "2026-07-02",
+     "label": "Draft compromise unveiled",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-07-16",
+     "label": "Tentative House and Senate floor votes",
+     "kind": "vote"
+    },
+    {
+     "date": "2026-07-19",
+     "label": "Special session ends",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-07-27",
+     "label": "Third special session convenes, 10:00 a.m.",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-08-10",
+     "label": "Senate could convene in full if the House passes a bill",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-08-25",
+     "label": "Third special session scheduled to end",
+     "kind": "milestone"
+    }
+   ],
+   "location": {
+    "name": "Juneau",
+    "lon": -134.4197,
+    "lat": 58.3019
+   },
+   "sources": [
+    {
+     "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-06/alaska-lawmakers-roll-out-draft-compromise-tax-cut-bill-for-the-proposed-aklng-gas-line",
+     "outlet": "Alaska Beacon via Alaska Public Media",
+     "date": "2026-07-06"
+    },
+    {
+     "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-01/state-lawmakers-delay-vote-on-alaska-lng-tax-bill-until-mid-july",
+     "outlet": "Alaska Public Media",
+     "date": "2026-07-01"
+    },
+    {
+     "url": "https://alaskabeacon.com/2026/07/07/corporate-income-tax-change-remains-key-sticking-point-for-alaska-gas-pipeline-bill/",
+     "outlet": "Alaska Beacon",
+     "date": "2026-07-07"
+    },
+    {
+     "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-07/corporate-income-tax-change-remains-key-sticking-point-for-alaska-gas-pipeline-bill",
+     "outlet": "Alaska Public Media",
+     "date": "2026-07-07"
+    },
+    {
+     "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/committee-sets-alaska-lng-tax-cut-bill-including-expanded-corporate-tax-for-final-vote",
+     "outlet": "Alaska Public Media",
+     "date": "2026-07-16"
+    },
+    {
+     "url": "https://www.alaskasnewssource.com/2026/07/21/third-special-session-gas-line-begins-next-week-what-makes-it-different-than-last-two/",
+     "outlet": "Alaska's News Source",
+     "date": "2026-07-21"
+    },
+    {
+     "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session",
+     "outlet": "Alaska Public Media",
+     "date": "2026-07-16"
+    },
+    {
+     "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
+     "outlet": "Alaska Public Media",
+     "date": "2026-07-27"
+    },
+    {
+     "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
+     "outlet": "Alaska Public Media",
+     "date": "2026-07-27"
+    },
+    {
+     "url": "https://www.adn.com/politics/alaska-legislature/2026/07/27/3rd-alaska-lng-special-session-starts-with-no-bill-from-governor-4-lawmakers-present/",
+     "outlet": "Anchorage Daily News",
+     "date": "2026-07-27"
+    }
+   ],
+   "first_seen": "2026-07-08",
+   "last_updated": "2026-07-30",
+   "history": [
+    {
+     "date": "2026-07-08",
+     "note": "Tracked. Vote target already slipped once, from July 1 to July 16."
+    },
+    {
+     "date": "2026-07-09",
+     "note": "Re-checked (Alaska Beacon, July 7). The final floor vote is still targeted for July 16. The S corp corporate income tax provision remains the key sticking point, and the governor has pledged to veto a bill that keeps it."
+    },
+    {
+     "date": "2026-07-11",
+     "note": "Floor votes still tentatively July 16, session ends July 19, per prior reporting. Alaska Beacon returned HTTP 403 on re-fetch this run; status carried forward unchanged. Watching for the vote."
+    },
+    {
+     "date": "2026-07-12",
+     "note": "Conferees unveiled a draft compromise on July 2 and set a floor vote for July 16, with the second special session ending July 19. Glenfarne owns 75 percent of the project. The sticking point is an S corporation corporate income tax provision that Governor Dunleavy has vowed to veto, and it is unclear the provision has the House votes. The draft also bars the developer from billing the state if the project is abandoned and requires return of shares and assets within six months."
+    },
+    {
+     "date": "2026-07-14",
+     "note": "Two days out. Floor votes still tentatively set for July 16 and the special session still ends July 19, per Alaska Public Media and Alaska Beacon reporting, with the S corporation income tax provision the unresolved sticking point. No schedule change surfaced this run. Watching the July 16 floor action."
+    },
+    {
+     "date": "2026-07-15",
+     "note": "One day out. Floor votes remain tentatively set for July 16 and the special session still ends July 19, per Alaska Public Media and Alaska Beacon reporting from early July, with the S corporation income tax provision the unresolved sticking point. A search this run surfaced no fresh schedule change or an actual vote result. Watching the July 16 floor action."
+    },
+    {
+     "date": "2026-07-17",
+     "note": "Update. A conference committee passed the final draft of the gasline tax bill HB 381 on July 16, but Governor Dunleavy rejected the expanded corporate tax and called a third Alaska LNG special session rather than accept it, so the tax terms stay unsettled. A final investment decision still waits on both the tax law and RCA review of the Enstar gas supply agreement."
+    },
+    {
+     "date": "2026-07-18",
+     "note": "On July 16 the House deadlocked 19 to 19 and the Senate passed the gas-line tax bill 11 to 8 with a 9.4 percent pass-through tax on S corp oil and gas entities. Governor Dunleavy rejected that tax and called a third Alaska LNG special session to convene July 27 in Juneau, so the pipeline tax terms stay unsettled. The AI and data-center link here is indirect, the administration has courted large gas demand to help justify the line."
+    },
+    {
+     "date": "2026-07-19",
+     "note": "The second special session ended today with the Alaska LNG gasline tax bill still unresolved. On July 16 the House deadlocked 19 to 19 and the Senate passed the bill 11 to 8 with a 9.4 percent pass-through tax on S corp oil and gas entities, which Governor Dunleavy rejected. He called a third special session to convene July 27 in Juneau, so the pipeline tax terms stay unsettled and the AI and data-center link stays indirect."
+    },
+    {
+     "date": "2026-07-21",
+     "note": "Six days out from the third special session, which convenes July 27 in Juneau. Per Anchorage Daily News and Alaska Public Media reporting from July 16 and July 20 the up to 55 billion dollar, 800 mile gas line tax terms remain unsettled after the July 16 House deadlock, with some legislators blaming Hilcorp for the bill's collapse and the governor rejecting that claim. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to help justify the line."
+    },
+    {
+     "date": "2026-07-23",
+     "note": "Four days out from the third special session, which convenes July 27 in Juneau. Governor Dunleavy has said he will reintroduce the Alaska LNG gas line tax provisions without the expanded S corporation corporate income tax that stalled HB 381 in the July 16 House 19 to 19 deadlock. The session opens about three weeks before the August 18 primary, per Alaska's News Source and Alaska Public Media reporting from July 16 and July 21. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the roughly 55 billion dollar, 800 mile line."
+    },
+    {
+     "date": "2026-07-24",
+     "note": "Three days out from the third special session, which convenes July 27 in Juneau. Carried forward against Alaska's News Source and Alaska Public Media reporting from July 16 and July 21. Governor Dunleavy plans to reintroduce the Alaska LNG gas line tax provisions without the expanded S corporation income tax that stalled HB 381 in the July 16 House 19 to 19 deadlock. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the roughly 55 billion dollar, 800 mile line."
+    },
+    {
+     "date": "2026-07-25",
+     "note": "Two days out from the third special session, which convenes July 27 in Juneau. Re-verified this run by fetching the Alaska Public Media report of July 16. The governor rejected the pass-through S corporation provision that would have subjected Hilcorp and other private producers to Alaska's 9.4 percent corporate income tax while exempting the Alaska LNG project, and he called the third session rather than accept it. That session opens just over three weeks before the August 18 primary, which is the practical squeeze on it. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the line."
+    },
+    {
+     "date": "2026-07-26",
+     "note": "Re-verified. The governor issued an executive proclamation calling the legislature back effective July 27, 2026 at 10:00 a.m. Alaska's News Source coverage of the session contains no data center or AI load argument, so the gas line remains a gas story on this docket and not an AI one."
+    },
+    {
+     "date": "2026-07-29",
+     "note": "Re-verified by fetching Alaska Public Media's July 27 report. The third special session convened July 27 in Juneau with almost nobody in the room, only 3 of 40 House members and 1 senator at the opening technical session, and the governor had introduced no bill, saying his administration would continue meeting with all parties to determine the best path forward to an agreement. House Speaker Bryce Edgmon said the clock is ticking very loudly right now and the governor realizes that. The session opened three weeks before the August 18 primary. The tie to AI compute stays indirect, the administration has courted large gas demand, including proposed data centers, to justify the line."
+    },
+    {
+     "date": "2026-07-30",
+     "note": "The third special session opened July 27 as a technical session with three House members and one senator in the room. The governor had not introduced a bill and said his administration would keep meeting with all parties before proposing one. Nothing has moved since."
+    },
+    {
+     "date": "2026-08-01",
+     "note": "The third special session convened July 27 with four legislators in the room and no bill from the governor. It is scheduled to end August 25. The Senate plans technical sessions until August 10, when it could convene in full if the House passes a bill the governor will accept."
+    }
+   ]
+  },
+  {
+   "id": "enstar-cook-inlet-gas-storage",
+   "title": "Enstar's Cook Inlet gas storage plan (Kenai Loop Pool)",
+   "kind": "regulatory-docket",
+   "status": "decided",
+   "decider": "Regulatory Commission of Alaska (prudency); Alaska DNR (storage lease and technical determination)",
+   "public_access": "indirect",
+   "access_note": "The RCA is a governor-appointed, legislature-confirmed commission; the public reaches its dockets through formal comment and intervention. This prudency request has been decided (denied); the underlying DNR storage-lease question is still open.",
+   "summary": "On July 10, 2026 the Anchorage Daily News reported the RCA issued a 17-page order denying Enstar's request for an advance determination that its proposed Cook Inlet gas storage project was prudent, saying the utility lacked basic information. The $240 million project would have bought the depleted Kenai Loop Pool reservoir from AIX Energy to hold 25 billion cubic feet of gas, close to half Enstar's annual demand, adding up to $12 a month to the average bill. Enstar and Hilcorp have competing DNR lease applications for the same pool, and DNR has not confirmed it is technically capable of storing gas. Without approval, Enstar president John Sims said the company suspended the project.",
+   "key_dates": [
+    {
+     "date": "2026-07-10",
+     "label": "RCA denies Enstar advance determination of prudency (ADN report); Enstar suspends the project",
+     "kind": "decision"
+    },
+    {
+     "date": "2026-07-10",
+     "label": "DNR determination on Kenai Loop Pool storage capability and competing Enstar/Hilcorp leases still pending",
+     "kind": "milestone"
+    }
+   ],
+   "location": {
+    "name": "Kenai Loop Pool, Cook Inlet near Kenai",
+    "lon": -151.25,
+    "lat": 60.55
+   },
+   "sources": [
+    {
+     "url": "https://www.adn.com/business-economy/energy/2026/07/10/state-regulators-reject-enstar-gas-storage-plan-raising-questions-about-solution-to-cook-inlet-shortage/",
+     "outlet": "Anchorage Daily News",
+     "date": "2026-07-10"
+    }
+   ],
+   "first_seen": "2026-07-11",
+   "last_updated": "2026-07-11",
+   "history": [
+    {
+     "date": "2026-07-11",
+     "note": "Tracked from this run's verified claims. RCA denied Enstar's advance prudency determination in a 17-page order (ADN, July 10); Enstar suspended the $240M Kenai Loop Pool storage project. The storage fix for Southcentral's Cook Inlet gas crunch is off the table for now; DNR technical/lease determination and the competing Hilcorp application remain unresolved."
+    }
+   ]
+  },
+  {
+   "id": "aidea-houston-industrial-park",
+   "title": "AIDEA's free state land for a Mat-Su data center park",
+   "kind": "state-land-lease",
+   "status": "open-for-comment",
+   "decider": "Alaska DNR, Commissioner John Crowther",
+   "public_access": "open",
+   "access_note": "Anyone can comment on the DNR preliminary decision to transfer the land to AIDEA through 5 p.m. August 19, 2026, on the DNR website. Commenting also buys standing, because the notice says only people from whom the division receives timely written comment during this window will be eligible to appeal the Final Finding and Decision. This is the one open comment room among the tracked decisions.",
+   "summary": "A DNR preliminary decision would transfer about 20,000 acres, roughly 30 square miles, of state land just north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that includes scalable data centers and a logistics hub about 60 road miles north of Anchorage. Public comment runs through August 19.",
+   "key_dates": [
+    {
+     "date": "2026-07-13",
+     "label": "Preliminary decision reported",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-08-13",
+     "label": "Houston City Council vote on a data-center ban ordinance (postponed from July 16)",
+     "kind": "vote"
+    },
+    {
+     "date": "2026-08-19",
+     "label": "Public comment closes",
+     "kind": "deadline"
+    }
+   ],
+   "location": {
+    "name": "North of Houston, Mat-Su Borough",
+    "lon": -149.82,
+    "lat": 61.63
+   },
+   "sources": [
+    {
+     "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431",
+     "outlet": "Alaska DNR Online Public Notices",
+     "date": "2026-07-10"
+    },
+    {
+     "url": "https://www.dermotcole.com/reportingfromalaska/2026/7/13/khxwch2o4tgrjxuwycm8kmjzjtp69q",
+     "outlet": "Reporting From Alaska",
+     "date": "2026-07-13"
+    },
+    {
+     "url": "https://www.northernjournal.com/alaskas-economic-development-agency-plans-a-mat-su-industrial-park-with-data-centers/",
+     "outlet": "Northern Journal",
+     "date": "2026-07-15"
+    },
+    {
+     "url": "https://www.matsusentinel.com/state-agency-plans-houston-area-industrial-park-data-centers-distribution-hub/",
+     "outlet": "Mat-Su Sentinel",
+     "date": "2026-07-14"
+    }
+   ],
+   "first_seen": "2026-07-17",
+   "last_updated": "2026-07-31",
+   "history": [
+    {
+     "date": "2026-07-17",
+     "note": "Tracked. DNR under Commissioner John Crowther released a 45 page preliminary decision to give about 20,000 acres near Houston to AIDEA at no charge for a data center and industrial district, with public comment open through August 19. Reported by Dermot Cole on July 13 and Northern Journal on July 15."
+    },
+    {
+     "date": "2026-07-18",
+     "note": "Re-verified against Alaska Beacon and Alaska News Source. The 41 page DNR preliminary decision would transfer about 30 square miles of state land north of Houston to AIDEA at no cost for a multi use industrial and energy development district that includes data centers, with public comment open through 5 p.m. August 19. AIDEA director Randy Ruaro said there are no pre determined and set land use decisions. Houston Council Member Johansen introduced a June ordinance to ban data centers within city limits and the council postponed the vote to August 13. Unlike the off grid North Slope campus, a Railbelt data center here could move household bills either way depending on the utility rate deal."
+    },
+    {
+     "date": "2026-07-21",
+     "note": "Re-verified against Mat-Su Sentinel and Alaska News Source reporting from July 15 and 16. The City of Houston council took up Council Member Lisa Johansen's ordinance to ban data center development inside city limits and voted July 16 to postpone action to its August 13 meeting, so a small municipality is now moving to zone out the buildout on the state parcel next door on permafrost thaw and water supply grounds. DNR public comment on the no cost land transfer to AIDEA still runs through 5 p.m. August 19. Added the August 13 council vote as a tracked key date."
+    },
+    {
+     "date": "2026-07-22",
+     "note": "Selected as this run's carousel. Re-verified the DNR primary notice ADL 234762. It remains a preliminary decision proposing a noncompetitive no-cost conveyance of about 19,950 acres of state land roughly two miles north of Houston to AIDEA, with written public comment open through 5 p.m. August 19. The notice says that if no significant change is required the preliminary decision will issue as the Final Finding and Decision. Daniel Jenkins is the listed contact. This is the one open comment room among the tracked decisions."
+    },
+    {
+     "date": "2026-07-26",
+     "note": "Re-verified against Northern Journal. Public comment on the DNR preliminary decision runs through August 19 and the Houston City Council postponed its vote on a data center restriction ordinance to its next meeting on August 13, to allow a work session that had not yet been scheduled. Parcel described as 30 square miles, roughly 60 road miles north of Anchorage. Dates unchanged."
+    },
+    {
+     "date": "2026-07-29",
+     "note": "Correction. Between July 21 and today this entry showed August 13 as the comment deadline. That is the date of a separate Houston City Council vote, which stays tracked here as its own key date. The DNR comment deadline was and remains 5 p.m. August 19, 2026, re-verified today against the primary notice, Alaska DNR Online Public Notices id 224431, ADL 234762, which shows no extension or amendment."
+    },
+    {
+     "date": "2026-07-31",
+     "note": "Re-verified today against the primary notice, Alaska DNR Online Public Notices id 224431. The deadline is unchanged at 5 p.m. Wednesday, August 19, 2026, the parcel is approximately 19,950 acres about two miles north of Houston, and no extension, amendment or correction appears. Two things worth stating plainly for anyone deciding whether to write. First, the notice limits appeal rights to people who comment during this window, so a comment is the only way to keep a say after the decision issues. Second, the Houston City Council vote tracked here for August 13 is a separate question before a separate body. Mat-Su Sentinel reporting places this parcel outside Houston city limits, and the Matanuska-Susitna Borough, which does have jurisdiction, does not require a special permit for a data center, so a city ban would not by itself reach this land."
+    }
+   ]
+  },
+  {
+   "id": "anchorage-ao-2026-27-data-center-zoning",
+   "title": "Anchorage data-center zoning ordinance AO 2026-27",
+   "kind": "legislation",
+   "status": "decided",
+   "decider": "Anchorage Assembly",
+   "public_access": "indirect",
+   "access_note": "The elected Anchorage Assembly adopted the ordinance in a public 10 to 2 vote. Residents reach it through Assembly elections and public testimony.",
+   "summary": "On March 27, 2026 the Anchorage Assembly adopted ordinance AO 2026-27 in a 10 to 2 vote, defining data centers in the municipal zoning code for the first time. It confines them to commercial and industrial zones, requires landscaping buffers and enclosed power equipment, and requires written statements from electric and water utilities that the grid has sufficient system capacity before a project proceeds. Members Scott Myers and Keith McCormick voted against it.",
+   "key_dates": [
+    {
+     "date": "2026-03-27",
+     "label": "Assembly adopts AO 2026-27 (10 to 2)",
+     "kind": "vote"
+    }
+   ],
+   "location": {
+    "name": "Anchorage",
+    "lon": -149.9003,
+    "lat": 61.2181
+   },
+   "sources": [
+    {
+     "url": "https://www.adn.com/alaska-news/anchorage/2026/03/27/anchorage-assembly-preemptively-adopts-data-center-regulations/",
+     "outlet": "Anchorage Daily News",
+     "date": "2026-03-27"
+    }
+   ],
+   "first_seen": "2026-07-18",
+   "last_updated": "2026-07-18",
+   "history": [
+    {
+     "date": "2026-07-18",
+     "note": "Tracked from this run. Anchorage adopted the data center land use framework 10 to 2 on March 27, the first local guardrail of its kind in the state. Sponsored by Anna Brawley and Daniel Volland. Added because Carousel No. 10 turns on whether a Railbelt data center helps or hurts ratepayers, and this ordinance is the one enacted local guardrail while the state bill stalls."
+    }
+   ]
+  },
+  {
+   "id": "hb-259-data-center-utility-standards",
+   "title": "HB 259, state utility standards for large data centers",
+   "kind": "legislation",
+   "status": "pending-decision",
+   "decider": "Alaska Legislature (House Energy Committee)",
+   "public_access": "indirect",
+   "access_note": "Legislators decide. Constituents reach the bill through their representatives and committee testimony. It has not moved out of the House Energy Committee.",
+   "summary": "HB 259, introduced by Rep. Donna Mears in January 2026, would set utility rate-setting guidelines and community benefit standards for large energy use facilities such as data centers. It was referred to the House Energy Committee and has not advanced, so Alaska has no statewide cost-allocation rule governing how a large data-center load is billed against other ratepayers.",
+   "key_dates": [
+    {
+     "date": "2026-01-20",
+     "label": "Referred to House Energy Committee",
+     "kind": "milestone"
+    }
+   ],
+   "location": {
+    "name": "Juneau",
+    "lon": -134.4197,
+    "lat": 58.3019
+   },
+   "sources": [
+    {
+     "url": "https://www.adn.com/alaska-news/anchorage/2026/03/04/data-centers-powering-the-ai-boom-demand-local-energy-anchorage-assembly-members-want-to-regulate-them/",
+     "outlet": "Anchorage Daily News",
+     "date": "2026-03-04"
+    },
+    {
+     "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=HB+259",
+     "outlet": "Alaska State Legislature",
+     "date": "2026-01-20"
+    }
+   ],
+   "first_seen": "2026-07-18",
+   "last_updated": "2026-07-18",
+   "history": [
+    {
+     "date": "2026-07-18",
+     "note": "Tracked from this run. The state level counterpart to the Anchorage ordinance, HB 259 would set rate-setting and community benefit standards for big loads but sits in the House Energy Committee. Its stall is the policy gap at the center of Carousel No. 10, no statewide rule decides whether a data center spreads or shifts costs onto households."
+    }
+   ]
+  },
+  {
+   "id": "ratepayer-protection-pledge-alaska-utilities",
+   "title": "The AI ratepayer pledge, and which Alaska utilities have signed it",
+   "kind": "other",
+   "status": "watching",
+   "decider": "Each Alaska electric utility board, including the Railbelt cooperatives",
+   "public_access": "indirect",
+   "access_note": "Alaska's electric cooperatives are governed by boards their own members elect, so a member can ask their board directly whether it intends to sign. A voluntary federal pledge has no public comment docket, which is why this room is indirect rather than open.",
+   "summary": "The White House Ratepayer Protection Pledge asks AI companies, utilities and data center developers to commit that new data center load pays for its own generation and delivery instead of shifting the cost onto households. USA TODAY and POWER both describe it as voluntary and non binding. Gov. Mike Dunleavy signed the governors addendum on July 23, 2026, one of 23 governors. Read live on July 26, 2026 the signatory list showed a single Alaska entity, Cordova Electric Cooperative, a 1,566 customer cooperative that is not connected by transmission line to any other community.",
+   "key_dates": [
+    {
+     "date": "2026-03-04",
+     "label": "Pledge first signed by seven AI companies at the White House",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-07-23",
+     "label": "Governors addendum signed, Dunleavy among 23 governors",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-07-26",
+     "label": "Signatory list read at 281, one Alaska entity on it",
+     "kind": "milestone"
+    }
+   ],
+   "location": {
+    "name": "Cordova, Prince William Sound",
+    "lon": -145.7573,
+    "lat": 60.5428
+   },
+   "sources": [
+    {
+     "url": "https://www.whitehouse.gov/ratepayer-protection-pledge/",
+     "outlet": "The White House",
+     "date": "2026-07-26"
+    },
+    {
+     "url": "https://www.rga.org/republican-governors-sign-president-trumps-ratepayer-protection-pledge/",
+     "outlet": "Republican Governors Association",
+     "date": "2026-07-23"
+    },
+    {
+     "url": "https://www.epa.gov/newsreleases/president-trump-expands-historic-ratepayer-protection-pledge-protect-american",
+     "outlet": "U.S. Environmental Protection Agency",
+     "date": "2026-07-23"
+    },
+    {
+     "url": "https://www.powermag.com/white-house-expands-data-center-ratepayer-pledge-as-congress-moves-to-codify-protections/",
+     "outlet": "POWER Magazine",
+     "date": "2026-07-23"
+    },
+    {
+     "url": "https://www.cordovaelectric.com/about/",
+     "outlet": "Cordova Electric Cooperative",
+     "date": "2026-07-26"
+    }
+   ],
+   "first_seen": "2026-07-26",
+   "last_updated": "2026-07-26",
+   "history": [
+    {
+     "date": "2026-07-26",
+     "note": "Tracked. The White House expanded the Ratepayer Protection Pledge on July 23 and 23 Republican governors signed an addendum committing to implement its principles to the greatest extent possible, Dunleavy among them. The pledge itself binds signing companies to five things, build bring or buy new power supply, pay for new delivery infrastructure, pay whether they use the power or not, invest in local jobs, and contribute to grid and community resilience. Both USA TODAY and POWER describe it as non binding. A read of the signatory list on July 26 returned one Alaska name, Cordova Electric Cooperative, and no Railbelt utility."
+    }
+   ]
+  },
+  {
+   "id": "alaska-statewide-transcription-rfp",
+   "title": "Alaska's statewide speech-to-text contract",
+   "kind": "procurement",
+   "status": "pending-decision",
+   "decider": "Alaska Department of Administration, Office of Procurement and Property Management",
+   "public_access": "closed",
+   "access_note": "A vendor solicitation, not a rulemaking, so no public comment period exists. Proposals are evaluated privately. The notice and the named procurement officer are public.",
+   "summary": "Alaska is soliciting one statewide contract to convert speech, live or recorded, into written text for general, medical and legal records. The notice says every state governmental entity may use the resulting contract, naming the Legislative Branch, the Court System, the University of Alaska, boards and commissions, cities, boroughs, school districts and federally recognized tribes. The public notice does not use the terms artificial intelligence, machine learning or automated speech recognition.",
+   "key_dates": [
+    {
+     "date": "2026-07-31",
+     "label": "Solicitation published on the state public notice system",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-08-24",
+     "label": "Vendor proposals due, 9:30 a.m.",
+     "kind": "milestone"
+    }
+   ],
+   "location": {
+    "name": "Statewide",
+    "lon": -149.9,
+    "lat": 61.2
+   },
+   "sources": [
+    {
+     "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
+     "outlet": "Alaska Online Public Notice System",
+     "date": "2026-07-31"
+    }
+   ],
+   "first_seen": "2026-08-02",
+   "last_updated": "2026-08-02",
+   "history": [
+    {
+     "date": "2026-08-02",
+     "note": "Tracked. RFP 2026-0200-0064, published July 31, proposals due August 24. Procurement officer Joshua Hartman. The reach clause and the absence of any technology term were read directly from the published notice."
+    }
+   ]
+  },
+  {
+   "id": "dmv-automated-compliance-rfi",
+   "title": "DMV asks vendors about automated compliance for commercial licences",
+   "kind": "procurement",
+   "status": "watching",
+   "decider": "Alaska Department of Administration, Division of Motor Vehicles",
+   "public_access": "closed",
+   "access_note": "A request for information gathers vendor input before any solicitation. There is no public comment path and no decision is made at this stage.",
+   "summary": "The Division of Motor Vehicles asked vendors for products, services, technical approaches and industry best practices related to automated compliance and data integration systems supporting the commercial driver's license program. The public notice does not use the terms artificial intelligence or machine learning.",
+   "key_dates": [
+    {
+     "date": "2026-07-30",
+     "label": "Request for information published",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-08-20",
+     "label": "Vendor responses due, 2 p.m.",
+     "kind": "milestone"
+    }
+   ],
+   "location": {
+    "name": "Statewide",
+    "lon": -149.9,
+    "lat": 61.2
+   },
+   "sources": [
+    {
+     "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224673",
+     "outlet": "Alaska Online Public Notice System",
+     "date": "2026-07-30"
+    }
+   ],
+   "first_seen": "2026-08-02",
+   "last_updated": "2026-08-02",
+   "history": [
+    {
+     "date": "2026-08-02",
+     "note": "Tracked. RFI 02-101-27, published July 30, responses due August 20."
+    }
+   ]
+  }
+ ]
 }
