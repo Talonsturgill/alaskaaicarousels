@@ -659,6 +659,14 @@ JSON in its final message, which YOU persist to
    the employer name in the About bio, and "in Anchorage, Alaska" as a
    descriptor of the publication.
 
+   No page pins the STUDIO to a city any more. The homepage opener is "a
+   daily publication on Alaska and artificial intelligence, and an AI
+   studio", full stop (2026-08-03). Anchorage survives only where it is
+   true and load-bearing, which is the founder's roots in the About bio and
+   the Organization address in JSON-LD. Do not re-add "in Anchorage" to
+   prose describing what Alaska AI IS. Alaska is the beat and the market;
+   the studio does not claim an address in its own sentences.
+
    The About bio says born and raised in Anchorage as its own sentence, and
    the Lower 48 lab work as a separate one, remote and unnamed. It said
    "Anchorage, WHERE he also works remotely", which asserts current residence.
