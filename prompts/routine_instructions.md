@@ -665,7 +665,16 @@ JSON in its final message, which YOU persist to
    true and load-bearing, which is the founder's roots in the About bio and
    the Organization address in JSON-LD. Do not re-add "in Anchorage" to
    prose describing what Alaska AI IS. Alaska is the beat and the market;
-   the studio does not claim an address in its own sentences.
+   the studio does not claim an address in its own sentences. The services
+   FAQ's "Who is Alaska AI?" answer says "serving Alaska" for the same
+   reason. Its closing line still says the founder was born and raised in
+   Anchorage, which is the load-bearing exception, not an oversight.
+
+   The two meta descriptions (home, about) and the Organization JSON-LD
+   `description` DO still say "in Anchorage". That is deliberate
+   (maintainer, 2026-08-03). They are search surfaces that carry the local
+   intent this site wants to rank for, and no visitor reads them as page
+   copy. Leave them.
 
    The About bio says born and raised in Anchorage as its own sentence, and
    the Lower 48 lab work as a separate one, remote and unnamed. It said
