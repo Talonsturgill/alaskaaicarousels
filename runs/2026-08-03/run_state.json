@@ -15,10 +15,10 @@
     "flow_review": "done",
     "assemble": "done",
     "scoring": "done",
-    "ship": "pending",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "ship": "done",
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "done"
   },
   "artifacts": {
     "wake": "out/2026-08-03/plan.md",
@@ -31,7 +31,8 @@
     "copy": "out/2026-08-03/copy.json",
     "caption": "out/2026-08-03/caption.txt",
     "score": "out/2026-08-03/score_report.json",
-    "final": "out/2026-08-03/final/carousel.pdf (vector, 9 pages, 3.74 MB)"
+    "final": "out/2026-08-03/final/carousel.pdf (vector, 9 pages, 3.74 MB)",
+    "gmail": "runs/2026-08-03/gmail_draft_id.txt (r-2573718738470751075)"
   },
   "notes": [
     "Run date 2026-08-03 chosen over Anchorage-local 2026-08-02 because the prior run in this same UTC trigger slot already shipped as 2026-08-02; runs/ is a consecutive UTC-date series.",
@@ -39,6 +40,9 @@
     "All six scouts independently reported the session WebSearch budget exhausted at 200/200. Window coverage is thinner than a normal run; every cited URL was still fetched and read in full.",
     "dedupe_check exit 1 on the run's most convergent candidate (NSF Critical Mineral Engine, 3 of 6 scouts) against No.8 2026-07-15 at jaccard 0.174. Dropped, not reframed. Selected story cleared with soft overlaps only.",
     "Phase 3.5 deliberately did NOT add Graphite Creek to the docket. The docket tracks AI-infrastructure decisions in Alaska, and adding a graphite mine would assert on the public tracker exactly the link the fact-checker killed, that this deposit feeds AI buildout. The company names AI among end markets for graphite as a class and names no AI customer. Recorded so a later run does not read the omission as an oversight.",
-    "Scored 6.9 (capped by one hard fail; raw 7.67 vs 7.7). One targeted repair cycle applied; NOT re-scored. Disclosed in the email."
-  ]
+    "Scored 6.9 (capped by one hard fail; raw 7.67 vs 7.7). One targeted repair cycle applied; NOT re-scored. Disclosed in the email.",
+    "PHASE 13 DEVIATION: the Gmail connector rejected the account-relative 'me' recipient with 'Invalid email address'. The draft was addressed to docket@alaskaaihq.com, the mailbox CLAUDE.md documents the connector as authenticating as, which is the same inbox. gmail_payload.json still carries 'me' as the script emits it; only the create_draft call substituted. The body is the script's output verbatim.",
+    "PHASE 13 NOTE: the default grid preview mode produced a 479 KB html_body that cannot pass through one create_draft call. Regenerated with --preview-mode remote (18 KB), which the script provides for exactly this case."
+  ],
+  "complete": true
 }
