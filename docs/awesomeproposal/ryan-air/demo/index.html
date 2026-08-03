@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en">
+<head><meta name="robots" content="noindex,nofollow,noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arrival Notice Desk, Bethel station. A scripted demonstration for Ryan Air, Inc.</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --surface:#0c1c30;
+  --panel:#122a46;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --warn:#f2a43a;
+  --ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--ui);
+  letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:52rem;margin:0 auto;padding:22px 20px 34px}
+
+/* ---------- header ---------- */
+.eyebrow{font:400 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 12px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.eyebrow i{width:11px;height:11px;display:block;background:var(--accent);flex:0 0 auto;
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(27px,4.4vw,38px);
+  line-height:1.04;letter-spacing:-.018em;margin:0 0 10px}
+.sub{color:var(--cap);font:400 12px/1.5 var(--mono);letter-spacing:.07em;
+  text-transform:uppercase;margin:0 0 18px}
+.banner{border-left:2px solid var(--warn);background:rgba(242,164,58,.06);
+  padding:12px 14px;margin:0 0 22px;color:var(--sub);font-size:14px;border-radius:0 6px 6px 0}
+.banner b{color:var(--ink);font-weight:650}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 20px;
+  border-bottom:1px solid var(--rule);padding-bottom:12px}
+.tab{appearance:none;background:transparent;border:1px solid var(--rule);color:var(--cap);
+  font:400 12px/1 var(--mono);letter-spacing:.06em;padding:9px 11px;border-radius:5px;
+  cursor:pointer;text-transform:uppercase}
+.tab:hover{color:var(--ink);border-color:var(--cap)}
+.tab.on{color:#02110c;background:var(--accent);border-color:var(--accent);font-weight:700}
+
+.panel{display:none}
+.panel.on{display:block}
+h2{font-family:var(--display);font-weight:400;font-size:21px;line-height:1.2;margin:0 0 8px;
+  letter-spacing:-.01em}
+h3{font:650 13px/1.3 var(--ui);letter-spacing:.02em;margin:24px 0 8px;color:var(--ink)}
+p{margin:0 0 14px;color:var(--sub);max-width:38rem}
+.small{font-size:13px;color:var(--cap)}
+
+/* ---------- count strip ---------- */
+.strip{display:flex;flex-wrap:wrap;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:7px;overflow:hidden;margin:0 0 10px}
+.strip div{background:var(--surface);padding:11px 15px;flex:1 1 130px}
+.strip span{display:block;font:400 10px/1 var(--mono);letter-spacing:.13em;
+  text-transform:uppercase;color:var(--cap);margin-bottom:6px}
+.strip b{font:400 20px/1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
+.strip b em{font-style:normal;font-size:12px;color:var(--cap);font-family:var(--ui)}
+.stripcap{font:400 11px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--warn);margin:0 0 18px}
+
+/* ---------- rows ---------- */
+.rows{border:1px solid var(--rule);border-radius:7px;overflow:hidden;margin:0 0 16px}
+.rowhead{display:flex;background:var(--panel);padding:8px 14px;font:400 10px/1 var(--mono);
+  letter-spacing:.13em;text-transform:uppercase;color:var(--cap)}
+.rowhead u{text-decoration:none;flex:1 1 auto}
+.row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-start;
+  padding:13px 14px;border-top:1px solid var(--rule);background:var(--surface)}
+.row:first-child{border-top:0}
+.row.q,.row.held{background:rgba(242,164,58,.05)}
+.row.sent{background:rgba(60,230,180,.05)}
+.c-id{flex:1 1 190px;min-width:170px}
+.c-mid{flex:1 1 150px;min-width:140px}
+.c-act{flex:0 1 210px;min-width:190px;text-align:right}
+.ab{font:400 13px/1.3 var(--mono);color:var(--accent);letter-spacing:.02em}
+.who{color:var(--ink);font-weight:650;font-size:14px;margin-top:3px}
+.meta{color:var(--cap);font-size:12.5px;margin-top:3px}
+.meta b{color:var(--sub);font-weight:650;font-variant-numeric:tabular-nums}
+.meta.flag{color:var(--warn)}
+.badge{display:inline-block;font:400 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 8px;border-radius:4px;border:1px solid var(--rule);color:var(--cap)}
+.b-ok{color:var(--accent);border-color:rgba(60,230,180,.4)}
+.b-warn{color:var(--warn);border-color:rgba(242,164,58,.45)}
+.b-sent{color:#02110c;background:var(--accent);border-color:var(--accent);font-weight:700}
+
+/* ---------- buttons ---------- */
+.btn{appearance:none;font:650 12.5px/1 var(--ui);padding:9px 12px;border-radius:5px;
+  cursor:pointer;border:1px solid var(--rule);background:transparent;color:var(--sub);
+  margin:6px 0 0 6px}
+.btn:hover{border-color:var(--cap);color:var(--ink)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#02110c;font-weight:700}
+.btn.pri:hover{filter:brightness(1.08)}
+.btn[disabled]{opacity:.4;cursor:default}
+.btn[disabled]:hover{border-color:var(--accent);color:#02110c;filter:none}
+
+.releasebar{border:1px solid var(--rule);border-radius:7px;background:var(--panel);
+  padding:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.releasebar p{margin:0;font-size:13.5px;max-width:29rem}
+.releasebar p b{color:var(--ink)}
+
+/* ---------- log ---------- */
+.log{margin:16px 0 0;border:1px solid var(--rule);border-radius:7px;overflow:hidden}
+.logh{background:var(--panel);padding:8px 13px;font:400 10px/1 var(--mono);
+  letter-spacing:.13em;text-transform:uppercase;color:var(--cap)}
+.lrow{display:flex;flex-wrap:wrap;gap:4px 14px;padding:9px 13px;border-top:1px solid var(--rule);
+  font:400 12.5px/1.45 var(--mono);color:var(--sub);background:var(--surface)}
+.lrow time{color:var(--cap);flex:0 0 auto;min-width:112px;font-variant-numeric:tabular-nums}
+.lrow em{font-style:normal;color:var(--accent);flex:0 0 auto;min-width:76px}
+.lrow em.w{color:var(--warn)}
+.lrow span{flex:1 1 220px}
+
+/* ---------- queue cards ---------- */
+.card{border:1px solid var(--rule);border-radius:7px;background:var(--surface);
+  padding:16px;margin:0 0 14px}
+.card h4{margin:0 0 4px;font:650 14px/1.3 var(--ui);color:var(--ink)}
+.card p{margin:0 0 10px;font-size:13.5px}
+.cand{display:flex;justify-content:space-between;gap:12px;padding:8px 0;
+  border-top:1px solid var(--rule);font:400 13px/1.4 var(--mono);color:var(--sub)}
+.cand b{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:400}
+.thresh{font:400 12px/1.5 var(--mono);color:var(--warn);padding-top:9px;
+  border-top:1px solid var(--rule)}
+.raw{font:400 13px/1.4 var(--mono);color:var(--ink);background:var(--bg);
+  border:1px solid var(--rule);border-radius:5px;padding:9px 11px;margin:0 0 12px;
+  letter-spacing:.04em}
+.ok{color:var(--accent)}
+.warnt{color:var(--warn)}
+
+/* ---------- the notice ---------- */
+.viewsel{display:flex;gap:6px;margin:0 0 14px;flex-wrap:wrap}
+.notice{border:1px solid var(--rule);border-radius:7px;background:var(--surface);overflow:hidden}
+.nhead{background:var(--panel);padding:12px 16px;border-bottom:1px solid var(--rule)}
+.nhead div{display:flex;gap:12px;font-size:13px;padding:2px 0}
+.nhead span{flex:0 0 62px;font:400 10px/1.5 var(--mono);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--cap)}
+.nhead b{font-weight:400;color:var(--ink)}
+.nbody{padding:18px 16px;color:var(--sub);font-size:14px}
+.nbody p{margin:0 0 13px;max-width:34rem}
+.nquote{border-left:2px solid var(--cap);padding-left:12px;color:var(--ink);max-width:34rem}
+.ndetail{margin:0 0 15px;border-bottom:1px solid var(--rule)}
+.ndetail div{display:flex;gap:12px;padding:6px 0;font-size:13.5px;border-top:1px solid var(--rule)}
+.ndetail span{flex:0 0 108px;color:var(--cap);font:400 11px/1.6 var(--mono);
+  letter-spacing:.09em;text-transform:uppercase}
+.ndetail b{font-weight:650;color:var(--ink);font-variant-numeric:tabular-nums}
+.nsig{border-top:1px solid var(--rule);padding-top:13px;font:400 12.5px/1.6 var(--mono);color:var(--cap)}
+.nstamp{background:var(--panel);border-top:1px solid var(--rule);padding:10px 16px;
+  font:400 11px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cap)}
+.nstamp.sent{color:var(--accent)}
+.sms{font:400 13.5px/1.6 var(--mono);color:var(--ink);background:var(--bg);
+  border:1px solid var(--rule);border-radius:7px;padding:14px;max-width:29rem}
+
+/* template view */
+.tpl .slot{background:rgba(60,230,180,.16);outline:1px solid rgba(60,230,180,.5);
+  border-radius:3px;padding:0 3px;color:var(--accent);font-weight:650}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:12px 0 0;font-size:12.5px;color:var(--cap)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;
+  vertical-align:-1px}
+.i-fix{background:var(--rule)}
+.i-slot{background:rgba(60,230,180,.5)}
+
+/* ---------- annotations ---------- */
+.notes{margin:16px 0 0;padding:0;list-style:none}
+.notes li{position:relative;padding:0 0 11px 18px;color:var(--sub);font-size:13.5px;max-width:38rem}
+.notes li::before{content:"";position:absolute;left:1px;top:9px;width:5px;height:5px;
+  border-radius:50%;background:var(--accent)}
+.notes li:last-child{padding-bottom:0}
+.notes li b{color:var(--ink);font-weight:650}
+
+/* ---------- how it sits ---------- */
+.band{margin:34px 0 0;padding:24px 0 0;border-top:1px solid var(--rule)}
+.steps{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0 0}
+.step{flex:1 1 210px;background:var(--surface);border:1px solid var(--rule);
+  border-radius:7px;padding:14px}
+.step span{display:block;font:400 10px/1 var(--mono);letter-spacing:.16em;color:var(--accent);
+  margin-bottom:9px}
+.step p{margin:0;font-size:13.5px}
+.step b{color:var(--ink);font-weight:650}
+
+.notdo{margin:14px 0 0;padding:0;list-style:none}
+.notdo li{position:relative;padding:0 0 10px 20px;color:var(--sub);font-size:13.5px;max-width:38rem}
+.notdo li::before{content:"";position:absolute;left:2px;top:8px;width:9px;height:2px;
+  background:var(--warn)}
+
+footer{margin:30px 0 0;padding-top:16px;border-top:1px solid var(--rule);
+  color:var(--cap);font-size:12.5px;max-width:38rem}
+footer b{color:var(--sub);font-weight:650}
+
+@media (max-width:560px){
+  .c-act{text-align:left;flex:1 1 100%}
+  .btn{margin-left:0;margin-right:6px}
+}
+
+@media print{
+  :root{--bg:#fff;--surface:#f5f7fa;--panel:#eef1f6;--rule:#ccd4de;
+        --ink:#12181f;--sub:#39434f;--cap:#59636f;--accent:#0f6f60;--warn:#8a5200}
+  body{font-size:10.5pt}
+  .wrap{max-width:none;padding:0}
+  .tabs,.btn,.viewsel{display:none}
+  .panel{display:block;break-inside:auto;margin-bottom:26px;
+    padding-top:18px;border-top:1px solid var(--rule)}
+  .rows,.card,.notice,.log,.step,.strip{break-inside:avoid}
+  .tpl .slot{background:none;outline:1px solid var(--cap);color:var(--ink)}
+  .b-sent{color:#fff}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow"><i></i><span>Ryan Air, Inc.</span><span>Prepared by Alaska AI</span></div>
+  <h1>Arrival Notice Desk</h1>
+  <div class="sub">Bethel station pilot. Scripted demonstration, August 3, 2026</div>
+
+  <div class="banner">
+    <b>This is a demonstration, not a live system.</b> It isn't connected to Takeflite or to
+    anything else, it holds no Ryan Air data, and it sends nothing anywhere. Every airbill,
+    consignee, weight, time, line count and match score below is illustrative sample data we
+    wrote to show the build working. The storage rule, the tariff figures and the Bethel station
+    details are quoted from your own published pages.
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-p="p1">1. Today's release</button>
+    <button class="tab" data-p="p2">2. The queue</button>
+    <button class="tab" data-p="p3">3. The notice</button>
+    <button class="tab" data-p="p4">4. Retraction</button>
+  </div>
+
+  <!-- ============ PANEL 1 ============ -->
+  <section class="panel on" id="p1">
+    <h2>Monday, August 3. The count closed at 5:36 PM.</h2>
+    <p>The Bethel on hand reconciliation is done by hand, same as today. The desk reads that
+      list and compares it against yesterday. Only lines it has never noticed before reach this
+      screen.</p>
+
+    <div class="strip">
+      <div><span>August 2 count</span><b>9 <em>lines</em></b></div>
+      <div><span>Picked up since</span><b>2 <em>lines</em></b></div>
+      <div><span>August 3 count</span><b>13 <em>lines</em></b></div>
+      <div><span>New, never noticed</span><b id="newcount">6 <em>lines</em></b></div>
+    </div>
+    <p class="stripcap">Illustrative sample counts. We hold no Ryan Air figures of any kind.</p>
+
+    <p class="small">Seven lines carried over from the August 2 count. Each already has a notice
+      with a send time against it, so the desk leaves them alone.</p>
+
+    <div class="rows">
+      <div class="rowhead"><u>New lines, August 3</u><u style="flex:0 0 auto">Sample data</u></div>
+      <div id="rowlist"></div>
+    </div>
+
+    <div class="releasebar">
+      <p id="relmsg"></p>
+      <div style="flex:0 0 auto">
+        <button class="btn pri" id="relbtn"></button>
+        <button class="btn" id="resetbtn">Start the day over</button>
+      </div>
+    </div>
+
+    <div id="p1log"></div>
+
+    <ul class="notes">
+      <li><b>Nothing moves without that click.</b> The desk compares, computes and drafts. A
+        person at Bethel decides.</li>
+      <li><b>A held line carries no storage clock.</b> The hold is recorded with its reason and
+        no storage fee can be raised on that shipment.</li>
+      <li><b>Storage dates are arithmetic, not judgment.</b> Notification plus three days, straight
+        off the rule you publish.</li>
+      <li><b>One line arrived two days ago and is only being noticed now.</b> Its storage date
+        counts from today's notice, not from the day it landed, which is exactly what your rule
+        says.</li>
+    </ul>
+  </section>
+
+  <!-- ============ PANEL 2 ============ -->
+  <section class="panel" id="p2">
+    <h2>Two lines the desk refused to guess on</h2>
+    <p>Suppress and queue is the whole safety argument. A computer's best guess about who owns a
+      shipment is the error that costs money, so anything under the threshold goes to a person
+      instead of out the door.</p>
+
+    <div class="card" id="q-match">
+      <h4>RYN-4419363, 2 pieces, 88 lb, to Kwethluk</h4>
+      <p class="small">Consignee as written on the airbill</p>
+      <div class="raw">N A</div>
+      <div class="cand"><span>Consignee record A, Kwethluk</span><b>0.72</b></div>
+      <div class="cand"><span>Consignee record B, Kwethluk</span><b>0.71</b></div>
+      <p class="thresh">Auto match threshold 0.90. Best score 0.72, and the top two sit 0.01
+        apart. Suppressed, no notice drafted.</p>
+      <p class="small">Two consignee records in that village share an initial. We use record
+        labels rather than names because this is sample data about a real place.</p>
+      <div id="q-match-act"></div>
+    </div>
+
+    <div class="card" id="q-contact">
+      <h4>RYN-4419370, 4 pieces, 305 lb, to Napaskiak</h4>
+      <p>Consignee matched at 0.97, well clear of the threshold. There's no email address and no
+        mobile number on file for that record.</p>
+      <p>The desk can't send a written notice to a consignee it has no written address for, so
+        this line stays here and out of every batch.</p>
+      <p class="small">This is the risk the study names first. If most of your consignees are
+        reachable only by a call to a village agent, phase one isn't this build at all, it's
+        capturing contact details at the counter. That is why we want 200 airbills counted
+        before anyone builds anything.</p>
+      <div id="q-contact-act"></div>
+    </div>
+  </section>
+
+  <!-- ============ PANEL 3 ============ -->
+  <section class="panel" id="p3">
+    <h2>What lands with the consignee</h2>
+    <p>One message per consignee, fixed wording, values dropped into slots. Nothing a shipper
+      reads is written by a model.</p>
+
+    <div class="viewsel">
+      <button class="tab on" data-v="email">Email</button>
+      <button class="tab" data-v="text">Text message</button>
+      <button class="tab" data-v="tpl">The template</button>
+    </div>
+
+    <div id="noticebox"></div>
+    <div id="noticenotes"></div>
+  </section>
+
+  <!-- ============ PANEL 4 ============ -->
+  <section class="panel" id="p4">
+    <h2>A notice that went out wrong</h2>
+    <p>A threshold isn't perfect. A score of 0.94 clears the line and is still wrong sometimes,
+      so the correction path ships in version one rather than waiting for version two.</p>
+
+    <div class="rows" style="margin-bottom:16px">
+      <div class="row">
+        <div class="c-id"><div class="ab">RYN-4419318</div>
+          <div class="who">Quinhagak village store</div>
+          <div class="meta">2 pieces, 61 lb, to Quinhagak</div></div>
+        <div class="c-mid">
+          <div class="meta">Airbill reads <b>QUINHAGAK VILLAGE C</b>, truncated at the counter</div>
+          <div class="meta">Matched the store at <b>0.94</b>, above the 0.90 threshold, so it
+            never reached the queue</div>
+          <div class="meta">Notice released <b>August 2, 5:33 PM</b></div></div>
+        <div class="c-act"><span class="badge b-warn">Storage would begin August 5</span></div>
+      </div>
+      <div class="row">
+        <div class="c-id"><div class="ab">Counter call</div>
+          <div class="who">August 3, 9:11 AM</div></div>
+        <div class="c-mid"><div class="meta">The store rings Bethel. The freight isn't theirs.
+          It belongs to the village council, one record over, and the truncated name fits
+          both.</div></div>
+        <div class="c-act"><span class="badge b-warn">Wrong consignee</span></div>
+      </div>
+    </div>
+
+    <div id="retractbox"></div>
+  </section>
+
+  <!-- ============ ALWAYS ON ============ -->
+  <div class="band">
+    <h2>How it sits in your operation</h2>
+    <div class="steps">
+      <div class="step"><span>STEP 1</span><p><b>Your agent counts what's on hand</b>, exactly
+        as the Bethel Lead Cargo Agent posting already describes. Nothing about the physical
+        work changes, because that count is the ground truth everything else rests on.</p></div>
+      <div class="step"><span>STEP 2</span><p><b>The desk compares and drafts.</b> New lines
+        against yesterday, the storage date off your published three day rule, the template
+        filled. Nothing leaves the building at this point.</p></div>
+      <div class="step"><span>STEP 3</span><p><b>Your agent releases or holds.</b> A notice
+        exists only after that click, and every released one is stored with the time it went.
+        That stored record is what your storage clause rests on.</p></div>
+    </div>
+    <p class="small" style="margin-top:14px">For the first two weeks the desk would run alongside the counter and send nothing at all, so you can read what it would have said before anyone
+      receives a word of it.</p>
+
+    <h3>What this demonstration does not do, on purpose</h3>
+    <ul class="notdo">
+      <li>No voice agent on the station phone and no chatbot answering shippers. Every question
+        they would field is a money statement, and a tribunal has already held that a carrier
+        owns what its own website tells a customer.</li>
+      <li>No rate quoting to anyone. Your tariff runs four weight brackets, a $30.00 minimum and
+        6.25 percent federal excise tax, so a quote is arithmetic with modifiers riding on it.
+        That belongs in a calculator you can test, not in an arrival notice.</li>
+      <li>No writes to Takeflite. The desk reads one daily list, and we would hold no Takeflite
+        credentials.</li>
+      <li>Nothing in dispatch or weather. The cost of an error there is a human life and the
+        human relay is the safety control.</li>
+      <li>No autonomous sending, ever. Nothing reaches a consignee without a click from a person
+        standing at Bethel.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <b>Scripted demonstration</b> of the Arrival Notice Desk described in the Field Study. Not a
+    live system, not connected to anything, no Ryan Air data. Airbill references, consignee
+    names, destinations, weights, times, line counts and match scores are illustrative sample
+    data. The storage rule and the tariff figures are quoted from
+    ryanalaska.com/rates-rules/freight-rules/ and the Bethel station address and numbers from
+    ryanalaska.com/contacts/. Prepared by Alaska AI, August 3, 2026.
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var MONTHS = ["January","February","March","April","May","June","July","August",
+                "September","October","November","December"];
+
+  function addDays(iso, n){
+    var d = new Date(iso + "T12:00:00");
+    d.setDate(d.getDate() + n);
+    return d;
+  }
+  function fmt(d){ return MONTHS[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  var NOTIFY_ISO = "2026-08-03";
+  function storageFromNotice(){ return fmt(addDays(NOTIFY_ISO, 3)); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function el(id){ return document.getElementById(id); }
+
+  /* ---------- illustrative sample data, not Ryan Air records ---------- */
+  var ARRIVE_ISO = "2026-08-03";
+
+  var S = {
+    lines: [
+      {ab:"RYN-4419341", who:"Kwethluk village store",    dest:"Kwethluk",    pcs:3, wt:214, at:"4:12 PM",  ch:"Email",          st:"ready", arr:"2026-08-01"},
+      {ab:"RYN-4419347", who:"Akiachak tribal office",    dest:"Akiachak",    pcs:1, wt:46,  at:"1:55 PM",  ch:"Email and text", st:"ready"},
+      {ab:"RYN-4419352", who:"Tuntutuliak clinic",        dest:"Tuntutuliak", pcs:6, wt:512, at:"11:20 AM", ch:"Email",          st:"ready"},
+      {ab:"RYN-4419358", who:"Kongiganak school",         dest:"Kongiganak",  pcs:2, wt:133, at:"2:34 PM",  ch:"Email",          st:"ready"},
+      {ab:"RYN-4419363", who:"Consignee record A",                 dest:"Kwethluk",    pcs:2, wt:88,  at:"3:41 PM",  ch:"Text",           st:"queued", q:"Match uncertain, 0.72 against a 0.90 threshold"},
+      {ab:"RYN-4419370", who:"Napaskiak village council", dest:"Napaskiak",   pcs:4, wt:305, at:"5:02 PM",  ch:"None on file",   st:"queued", q:"No email and no mobile number on file"}
+    ],
+    released: false,
+    assigned: false,
+    contactMarked: false,
+    retracted: false,
+    correctedReleased: false,
+    view: "email"
+  };
+
+  var HOLD_REASON = "Agent held this line at the counter. No storage clock.";
+
+  /* ---------- panel 1, the daily release ---------- */
+  function readyCount(){
+    var n = 0;
+    for (var i=0;i<S.lines.length;i++){ if (S.lines[i].st === "ready") n++; }
+    return n;
+  }
+  function hasHold(){
+    for (var i=0;i<S.lines.length;i++){ if (S.lines[i].st === "held") return true; }
+    return false;
+  }
+
+  function rowHTML(L, i){
+    var cls = "row";
+    if (L.st === "queued") cls += " q";
+    if (L.st === "held")   cls += " held";
+    if (L.st === "sent")   cls += " sent";
+
+    var badge = "", act = "";
+    if (L.st === "ready"){
+      badge = '<span class="badge b-ok">Ready, storage clock starts on release</span>';
+      act   = '<button class="btn" data-hold="' + i + '">Hold this line</button>';
+    } else if (L.st === "held"){
+      badge = '<span class="badge b-warn">Held. No storage clock</span>';
+      act   = S.released
+        ? '<div class="meta">Stays held, rolls to the next count</div>'
+        : '<button class="btn" data-unhold="' + i + '">Undo the hold</button>';
+    } else if (L.st === "queued"){
+      badge = '<span class="badge b-warn">Queued, not drafted</span>';
+      act   = '<button class="btn" data-goq="1">Open in the queue</button>';
+    } else {
+      badge = '<span class="badge b-sent">Sent 5:41 PM</span>';
+      act   = '<div class="meta">Stored with its send time</div>';
+    }
+
+    var arrTxt = L.arr
+      ? 'arrived <b>August 1 at ' + L.at + '</b>, first noticed today'
+      : 'arrived <b>' + L.at + '</b>';
+    var mid = '<div class="meta"><b>' + L.pcs + '</b> pcs, <b>' + L.wt +
+              '</b> lb, ' + arrTxt + '</div>' +
+              '<div class="meta">Written contact, ' + esc(L.ch) + '</div>';
+    if (L.st === "queued") mid += '<div class="meta flag">' + esc(L.q) + '</div>';
+    if (L.st === "held")   mid += '<div class="meta flag">' + esc(HOLD_REASON) + '</div>';
+    if (L.assignedByHand)  mid += '<div class="meta">Assigned by hand in the queue</div>';
+
+    return '<div class="' + cls + '">' +
+      '<div class="c-id"><div class="ab">' + L.ab + '</div>' +
+        '<div class="who">' + esc(L.who) + '</div>' +
+        '<div class="meta">to ' + esc(L.dest) + '</div></div>' +
+      '<div class="c-mid">' + mid + '</div>' +
+      '<div class="c-act">' + badge + act + '</div></div>';
+  }
+
+  function renderP1(){
+    var out = "";
+    for (var i=0;i<S.lines.length;i++){ out += rowHTML(S.lines[i], i); }
+    el("rowlist").innerHTML = out;
+    el("newcount").innerHTML = S.lines.length + ' <em>lines</em>';
+
+    var n = readyCount(), btn = el("relbtn"), msg = el("relmsg");
+    if (S.released){
+      btn.textContent = "Released at 5:41 PM";
+      btn.disabled = true;
+      msg.innerHTML = "<b>Done.</b> Every released notice is stored with its send time. Held " +
+        "and queued lines went nowhere and carry no storage clock.";
+    } else {
+      btn.textContent = (n === 1) ? "Release 1 notice" : "Release " + n + " notices";
+      btn.disabled = (n === 0);
+      msg.innerHTML = "<b>Nothing has been sent.</b> " +
+        (n === 0 ? "No line is ready, so the batch is empty."
+                 : n + " " + (n === 1 ? "notice is" : "notices are") + " drafted and waiting on you.");
+    }
+    renderLog();
+  }
+
+  function heldAb(){ for (var i=0;i<S.lines.length;i++){ if (S.lines[i].st === "held") return S.lines[i].ab; } return ""; }
+
+  function renderLog(){
+    if (!S.released && !hasHold() && !S.assigned && !S.contactMarked){
+      el("p1log").innerHTML = "";
+      return;
+    }
+    var rows = [], i;
+    if (S.assigned)      rows.push(["5:38 PM","Assigned","RYN-4419363 matched by hand, added to the batch",false]);
+    if (S.contactMarked) rows.push(["5:38 PM","Flagged","RYN-4419370 marked for contact capture at the counter",true]);
+    if (hasHold())       rows.push(["5:39 PM","Held", heldAb() + ", " + HOLD_REASON, true]);
+    if (S.released){
+      for (i=0;i<S.lines.length;i++){
+        if (S.lines[i].st === "sent"){
+          rows.push(["5:41 PM","Released", S.lines[i].ab + ", " + S.lines[i].ch.toLowerCase() +
+            ", storage clock started on release", false]);
+        }
+      }
+      rows.push(["5:41 PM","Signed","Batch released by the Bethel Lead Cargo Agent",false]);
+    }
+    var html = '<div class="log"><div class="logh">Notice log, August 3</div>';
+    for (i=0;i<rows.length;i++){
+      html += '<div class="lrow"><time>' + rows[i][0] + '</time><em' +
+        (rows[i][3] ? ' class="w"' : '') + '>' + rows[i][1] + '</em><span>' +
+        esc(rows[i][2]) + '</span></div>';
+    }
+    html += '</div><p class="small" style="margin-top:10px">The log is the actual product. ' +
+      'Your storage clause rests on a record of what you told a consignee and when.</p>';
+    el("p1log").innerHTML = html;
+  }
+
+  el("rowlist").addEventListener("click", function(e){
+    var t = e.target;
+    if (!t.hasAttribute) return;
+    if (t.hasAttribute("data-hold")){   S.lines[+t.getAttribute("data-hold")].st = "held";    renderP1(); return; }
+    if (t.hasAttribute("data-unhold")){ if (S.released) return; S.lines[+t.getAttribute("data-unhold")].st = "ready"; renderP1(); return; }
+    if (t.hasAttribute("data-goq"))     showPanel("p2");
+  });
+
+  el("relbtn").addEventListener("click", function(){
+    if (S.released) return;
+    for (var i=0;i<S.lines.length;i++){
+      if (S.lines[i].st === "ready") S.lines[i].st = "sent";
+    }
+    S.released = true;
+    renderP1(); renderNotice();
+  });
+
+  el("resetbtn").addEventListener("click", function(){
+    S.lines[0].st = "ready"; S.lines[1].st = "ready";
+    S.lines[2].st = "ready"; S.lines[3].st = "ready";
+    S.lines[4].st = "queued"; S.lines[4].assignedByHand = false; S.lines[4].who = "Consignee record A";
+    S.lines[5].st = "queued";
+    S.released = false; S.assigned = false; S.contactMarked = false;
+    renderP1(); renderQueue(); renderNotice();
+  });
+
+  /* ---------- panel 2, the queue ---------- */
+  function renderQueue(){
+    el("q-match-act").innerHTML = S.assigned
+      ? '<p class="small ok" style="margin:10px 0 0">Assigned to ' + esc(S.lines[4].who) +
+        ' and added to today\'s batch. It still needs your release click on screen one.</p>' +
+        '<button class="btn" data-qreset="1">Put it back in the queue</button>'
+      : '<button class="btn" data-assign="a">Assign to record A</button>' +
+        '<button class="btn" data-assign="b">Assign to record B</button>' +
+        '<button class="btn" data-leave="1">Leave in the queue</button>';
+
+    el("q-contact-act").innerHTML = S.contactMarked
+      ? '<p class="small warnt" style="margin:10px 0 0">Marked. It stays out of every batch ' +
+        'until someone captures a written contact at the counter.</p>'
+      : '<button class="btn" data-mark="1">Mark for contact capture at the counter</button>';
+  }
+
+  el("p2").addEventListener("click", function(e){
+    var t = e.target;
+    if (!t.hasAttribute) return;
+    if (t.hasAttribute("data-assign")){
+      S.assigned = true;
+      S.lines[4].st = "ready";
+      S.lines[4].assignedByHand = true;
+      S.lines[4].who = (t.getAttribute("data-assign") === "a") ? "Consignee record A" : "Consignee record B";
+      renderQueue(); renderP1(); return;
+    }
+    if (t.hasAttribute("data-qreset") || t.hasAttribute("data-leave")){
+      S.assigned = false;
+      S.lines[4].st = "queued";
+      S.lines[4].assignedByHand = false;
+      S.lines[4].who = "Consignee record A";
+      renderQueue(); renderP1(); return;
+    }
+    if (t.hasAttribute("data-mark")){ S.contactMarked = true; renderQueue(); }
+  });
+
+  /* ---------- panel 3, the notice ----------
+     One source builds the email, the text and the template view, so the template
+     view is literally the same document with its filled slots painted. */
+  function slot(v){ return '<span class="slot">' + esc(v) + '</span>'; }
+
+  var RULE = "Storage fees may be applied for shipments held more than three days after " +
+             "written notification of arrival at the destination point. Storage fees are " +
+             "$.75 per 100 pounds or part thereof, per day.";
+
+  var SIG = '<div class="nsig">Ryan Air, Inc., Bethel Station<br>P.O. Box 732, Bethel AK 99559' +
+            '<br>Phone 907.885.3190<br>Fax 907.543.3657</div>';
+
+  function noticeHTML(L, tpl){
+    var arrived = fmt(new Date((L.arr || ARRIVE_ISO) + "T12:00:00"));
+    var start = storageFromNotice();
+    var sent = (L.st === "sent");
+
+    return '<div class="notice' + (tpl ? ' tpl' : '') + '">' +
+      '<div class="nhead">' +
+        '<div><span>From</span><b>Ryan Air, Inc., Bethel Station</b></div>' +
+        '<div><span>To</span><b>' + slot(L.who) + '</b></div>' +
+        '<div><span>Subject</span><b>Freight arrived at Bethel, airbill ' + slot(L.ab) + '</b></div>' +
+      '</div>' +
+      '<div class="nbody">' +
+        '<p>Your freight arrived at our Bethel station on ' + slot(arrived) +
+          '. It is ready for pickup.</p>' +
+        '<div class="ndetail">' +
+          '<div><span>Airbill</span><b>' + slot(L.ab) + '</b></div>' +
+          '<div><span>Destination</span><b>' + slot(L.dest) + '</b></div>' +
+          '<div><span>Pieces</span><b>' + slot(L.pcs) + '</b></div>' +
+          '<div><span>Weight</span><b>' + slot(L.wt + " lb") + '</b></div>' +
+          '<div><span>Arrived</span><b>' + slot(L.at) + '</b></div>' +
+        '</div>' +
+        '<p>Our published freight rules say this.</p>' +
+        '<p class="nquote">' + esc(RULE) + '</p>' +
+        '<p>This message is that written notification. Three days on from it puts the ' +
+          'earliest storage date at ' + slot(start) + '.</p>' +
+        '<p>If anything here doesn\'t match what you are expecting, call the Bethel station at ' +
+          '907.885.3190 before you travel.</p>' + SIG +
+      '</div>' +
+      '<div class="nstamp' + (sent ? ' sent' : '') + '">' +
+        (sent ? 'Released by the Bethel Lead Cargo Agent, August 3, 2026, 5:41 PM. Stored in the notice log.'
+              : 'Draft. Not sent. Waiting on a release click at the Bethel counter.') +
+      '</div></div>';
+  }
+
+  function smsText(L){
+    return "Ryan Air Bethel. Airbill " + L.ab + ", " + L.pcs + " pieces, " + L.wt +
+      " lb, arrived " + fmt(new Date((L.arr || ARRIVE_ISO) + "T12:00:00")) + " at " + L.at +
+      ". This message is that written notification. Under our published rules storage may begin " + storageFromNotice() +
+      ". Full notice sent to your email. Questions, call 907.885.3190.";
+  }
+
+  function renderNotice(){
+    var L = S.lines[0], box = el("noticebox"), notes = el("noticenotes");
+
+    if (S.view === "text"){
+      var t = smsText(L);
+      box.innerHTML = '<div class="sms">' + esc(t) + '</div>';
+      notes.innerHTML = '<ul class="notes">' +
+        '<li><b>' + t.length + ' characters.</b> Same fixed wording, same values, one message.</li>' +
+        '<li>Text goes only to a consignee with a mobile number on file. The rest get email. A ' +
+          'consignee with neither never leaves the queue.</li></ul>';
+      return;
+    }
+
+    var tpl = (S.view === "tpl");
+    box.innerHTML = noticeHTML(L, tpl);
+    var slots = box.getElementsByClassName("slot").length;
+
+    if (tpl){
+      notes.innerHTML =
+        '<div class="legend"><span><i class="i-fix"></i>Fixed text, you sign it off once</span>' +
+        '<span><i class="i-slot"></i>Value filled from the daily count</span></div>' +
+        '<ul class="notes">' +
+        '<li><b>' + slots + ' values come out of the count.</b> Every other word is fixed and ' +
+          'signed off by you before the first notice ever goes out.</li>' +
+        '<li><b>The storage paragraph is your sentence, quoted whole.</b> It is never ' +
+          'paraphrased, summarised or reworded, because it is the clause a fee rests on.</li>' +
+        '<li><b>No model writes any part of this.</b> Finding what newly arrived is a ' +
+          'comparison. The storage date is arithmetic. The notice is a template.</li></ul>';
+    } else {
+      notes.innerHTML = '<ul class="notes">' +
+        '<li><b>There\'s no station hours line</b> because your freight rules page doesn\'t ' +
+          'publish any hours. That is one of the five free policy fixes in the roadmap, and the ' +
+          'day it publishes it drops straight into the template.</li>' +
+        '<li><b>No rate, no charge, no quote.</b> Four weight brackets, a $30.00 minimum and ' +
+          '6.25 percent federal excise tax make a quote arithmetic with modifiers riding on it. ' +
+          'That belongs in a calculator you can test.</li>' +
+        '<li><b>The stamp at the bottom is the record.</b> Who released it and at what time, ' +
+          'stored the moment it goes.</li></ul>';
+    }
+  }
+
+  el("p3").addEventListener("click", function(e){
+    var t = e.target;
+    if (!t.hasAttribute || !t.hasAttribute("data-v")) return;
+    S.view = t.getAttribute("data-v");
+    var bs = el("p3").getElementsByClassName("tab");
+    for (var i=0;i<bs.length;i++){
+      if (bs[i].getAttribute("data-v") === S.view) bs[i].classList.add("on");
+      else bs[i].classList.remove("on");
+    }
+    renderNotice();
+  });
+
+  /* ---------- panel 4, the retraction path ---------- */
+  function renderRetract(){
+    var box = el("retractbox");
+
+    if (!S.retracted){
+      box.innerHTML =
+        '<p>One button does three things at once, because doing any of them without the other ' +
+        'two leaves a hole in the record.</p>' +
+        '<button class="btn pri" id="retbtn">Retract and correct</button>';
+      el("retbtn").addEventListener("click", function(){ S.retracted = true; renderRetract(); });
+      return;
+    }
+
+    var done = S.correctedReleased;
+    box.innerHTML =
+      '<div class="card"><h4>1. Retraction sent to the wrong recipient</h4>' +
+      '<div class="notice"><div class="nbody" style="padding:14px 16px">' +
+      '<p style="margin:0">Please disregard our notice of August 2, 2026 for airbill ' +
+      'RYN-4419318. It was sent to you in error. No storage fee applies to you and none will be ' +
+      'raised.</p></div>' +
+      '<div class="nstamp sent">Released August 3, 2026, 9:14 AM</div></div></div>' +
+
+      '<div class="card"><h4>2. The shipment is marked, permanently</h4>' +
+      '<p style="margin:0 0 10px"><span class="badge b-warn">RYN-4419318, no storage fee may be ' +
+      'raised on this shipment</span></p>' +
+      '<p class="small" style="margin:0">Set August 3, 2026, 9:14 AM. The mark can\'t be cleared ' +
+      'by the desk or by a later notice. Any line that was held, retracted or corrected carries ' +
+      'it for good.</p></div>' +
+
+      '<div class="card"><h4>3. A corrected notice, drafted and waiting</h4>' +
+      '<div class="notice"><div class="nhead">' +
+      '<div><span>To</span><b>Quinhagak village council</b></div>' +
+      '<div><span>Subject</span><b>Freight arrived at Bethel, airbill RYN-4419318</b></div>' +
+      '</div><div class="nbody">' +
+      '<p>Your freight arrived at our Bethel station on August 2, 2026. It is ready for pickup ' +
+      'at Bethel.</p>' +
+      '<div class="ndetail">' +
+      '<div><span>Airbill</span><b>RYN-4419318</b></div>' +
+      '<div><span>Destination</span><b>Quinhagak</b></div>' +
+      '<div><span>Pieces</span><b>2</b></div>' +
+      '<div><span>Weight</span><b>61 lb</b></div>' +
+      '</div>' +
+      '<p>An earlier notice for this airbill went to the wrong party, so no storage fee will be ' +
+      'raised on this shipment. There is no storage date on it and there will not be one.</p>' +
+      '<p>If anything here doesn\'t match what you are expecting, call the Bethel station at ' +
+      '907.885.3190 before you travel.</p>' + SIG + '</div>' +
+      '<div class="nstamp' + (done ? ' sent' : '') + '">' +
+      (done ? 'Released by the Bethel Lead Cargo Agent, August 3, 2026, 9:15 AM.'
+            : 'Draft. Not sent. A correction needs the same human click as anything else.') +
+      '</div></div>' +
+      (done ? '' : '<button class="btn pri" id="corrbtn">Release the corrected notice</button>') +
+      '</div>' +
+
+      '<div class="log"><div class="logh">Notice log, RYN-4419318</div>' +
+      '<div class="lrow"><time>Aug 2, 5:33 PM</time><em>Released</em><span>Quinhagak village ' +
+      'store, storage would begin August 5</span></div>' +
+      '<div class="lrow"><time>Aug 3, 9:14 AM</time><em class="w">Retracted</em><span>Wrong ' +
+      'consignee, reason recorded, storage locked off permanently</span></div>' +
+      '<div class="lrow"><time>Aug 3, 9:14 AM</time><em>Drafted</em><span>Corrected consignee, ' +
+      'waiting for release</span></div>' +
+      (done ? '<div class="lrow"><time>Aug 3, 9:15 AM</time><em>Released</em><span>Corrected ' +
+        'notice, no storage date on it</span></div>' : '') +
+      '</div>' +
+
+      '<p class="small" style="margin-top:12px">The two failure directions are not treated as ' +
+      'equal. A missed notice is only the status quo. A wrong one starts a fee clock your ' +
+      'customer didn\'t earn, so everything is tuned toward holding rather than sending.</p>';
+
+    if (!done){
+      el("corrbtn").addEventListener("click", function(){
+        S.correctedReleased = true; renderRetract();
+      });
+    }
+  }
+
+  /* ---------- tabs ---------- */
+  function showPanel(id){
+    var ps = document.getElementsByClassName("panel"), i;
+    for (i=0;i<ps.length;i++){
+      if (ps[i].id === id) ps[i].classList.add("on"); else ps[i].classList.remove("on");
+    }
+    var ts = el("tabs").getElementsByClassName("tab");
+    for (i=0;i<ts.length;i++){
+      if (ts[i].getAttribute("data-p") === id) ts[i].classList.add("on");
+      else ts[i].classList.remove("on");
+    }
+    window.scrollTo(0, 0);
+  }
+  el("tabs").addEventListener("click", function(e){
+    var t = e.target;
+    if (t.hasAttribute && t.hasAttribute("data-p")) showPanel(t.getAttribute("data-p"));
+  });
+
+  renderP1();
+  renderQueue();
+  renderNotice();
+  renderRetract();
+})();
+</script>
+</body>
+</html>
