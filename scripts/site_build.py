@@ -2803,7 +2803,7 @@ them, and whether the public still has a way in.</p>
     n_src = sum(len(it.get("sources") or []) for it in items)
     what_html = f"""<h2 data-reveal>What this is</h2>
 <p class="prose" data-reveal>Alaska AI is a daily publication on Alaska and artificial
-intelligence, and an AI studio in Anchorage. The reporting side writes one verified
+intelligence, and an AI studio. The reporting side writes one verified
 story a day and keeps the Alaska AI Docket, a public record of
 {len(live) + len(done)} AI infrastructure decisions in the state, {n_src} source
 documents on file, and for each one the plain answer to who decides it and whether an
