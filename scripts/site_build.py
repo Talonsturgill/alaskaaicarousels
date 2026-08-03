@@ -3852,7 +3852,7 @@ we already run.</p>
   Client systems get the same habit, so what you own gets better every month.</p></div>
 </div>"""
 
-    trust = """<h2 data-reveal>Grown-up about security and your data</h2>
+    trust = """<h2 data-reveal>Enterprise security and data handling</h2>
 <p class="sub" data-reveal>The systems we build are not science projects. They run on
 infrastructure your own IT team already trusts, built by people who take your data as
 seriously as you do.</p>
