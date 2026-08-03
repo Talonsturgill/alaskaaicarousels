@@ -791,7 +791,8 @@
       ],
       "verification": "tests/akhachure_verify.py gates four properties and PASSES: slope drives width (7.11x between a flat and a steep region against a 2.5x floor), aspect drives rotation (0.00 and 90.00 degrees on x-tilted and y-tilted fields), determinism (same seed identical, different seed differs), and height is not optional (throws without it). A RECONSTRUCTION OF THE DEFECT FAILS: a position-parameterised uniform field returns widthRatio 1.0 against the 2.5x floor. In production the slide 01 pixel critic, not told which region was which, named the heavy basin and the fine plateau correctly and called it shading rather than texture.",
       "known_limit": "Width alone dies at feed scale. qa.py measured the hero's steepness encoding at AUC 0.51 and 0 percent visible at 432px. The next change is a value term so steep ground darkens as well as widens.",
-      "rollback": "git revert the technique commit; no slide outside runs/2026-08-03 imports akhachure."
+      "rollback": "git revert the technique commit; no slide outside runs/2026-08-03 imports akhachure.",
+      "commit": "25b2e83cdd6180f7068eb00766e7e094e6f33405"
     },
     {
       "run_date": "2026-08-03",
@@ -804,7 +805,8 @@
         "ledger/instincts.json"
       ],
       "verification": "Re-rendered; every one of six rows carries its own registered swatch and separator, confirmed by reading the render. qa.py PASS.",
-      "rollback": "n/a, the practice is recorded as an instinct rather than as engine code."
+      "rollback": "n/a, the practice is recorded as an instinct rather than as engine code.",
+      "commit": "25b2e83cdd6180f7068eb00766e7e094e6f33405"
     }
   ],
   "scan_log": [
