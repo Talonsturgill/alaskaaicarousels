@@ -2342,3 +2342,34 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   movement, arrived at independently, and the "designer voice" finding is the
   frontier's version of what this studio calls a declared mechanism.
   https://arxiv.org/abs/2508.10903
+
+## 2026-08-03 - Phase 1 craft refresh (timeboxed, 2 searches, 1 full read)
+
+- SOCIALINSIDER'S PRIMARY PAGE STILL PRINTS 7.00 PERCENT, and now carries its
+  sample. Native documents 7.00 percent (up 14 percent year over year),
+  multi-image 6.45, video 6.00, image 5.30, text 4.50, poll 4.20, link 3.25,
+  against a platform average of 5.20. Sample is 1.3M posts from 16,645 business
+  pages, January 2024 to December 2025. The page itself says the values are 2025
+  data presented as 2026. CAROUSEL_CRAFT's "7.00% ER vs 6.00% video" is exact and
+  now has its provenance. Note the multi-image figure sits second and close,
+  which is the same ranking the unverified Metricool personal-profile breakdown
+  INVERTS; that contradiction (logged 2026-08-02) is still unresolved and still
+  must not move doctrine. https://www.socialinsider.io/social-media-benchmarks/linkedin
+- A SEVEN-SLIDE CLAIM IS CIRCULATING AND IT IS NOT SOURCED. Several SEO
+  aggregators now assert that carousels with exactly 7 slides perform 18 percent
+  better than any other length, and that completion drops 40 percent past 15
+  slides. Neither number traces to Metricool, Socialinsider, Buffer or LinkedIn
+  on any page reached this run; they cite each other. Recorded as UNVERIFIED and
+  explicitly NOT applied. Our 8 to 10 band with a 6 floor comes from completion
+  data plus the measured minus-35 percent below 5, and it stands. Logged because
+  a plausible round number repeated across ten sites is exactly the kind of thing
+  a future run would absorb without checking.
+- HACHURE, THE PARKED TECHNIQUE, HAS A DEEPER LINEAGE THAN THE BLOG POST.
+  Lehmann standardised hachures in 1799; the modern form the studio wants is
+  "slope and aspect hachuring", which depicts slope, aspect and flow direction
+  of a surface simultaneously via vector flowlines. Confirms the parked
+  Woodruff canvas method is the cheap browser-side instance of a real
+  cartographic method rather than a one-off blog trick, which is what it needed
+  before a director could be told to reach for it. PROMOTED FROM PARKED TO BUILT
+  THIS RUN as the declared attack on the standing artwork-craft weakness.
+  https://andywoodruff.com/blog/hachures-and-sketchy-relief-maps/
