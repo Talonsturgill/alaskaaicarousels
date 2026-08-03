@@ -3906,7 +3906,7 @@ do not want to become an engineer to win with it, you are exactly who we work fo
 <p class="sub" data-reveal>The questions every owner asks first, answered the way we would
 answer them across a table.</p>
 <h3 data-reveal>Who is Alaska AI?</h3>
-<p data-reveal>Alaska AI is an AI studio and daily publication in Anchorage. It publishes
+<p data-reveal>Alaska AI is an AI studio and daily publication serving Alaska. It publishes
 the state's AI beat every morning and builds AI systems for Alaska businesses. Founded and
 run by <a class="proselink" href="https://www.linkedin.com/in/talonsturgill">Talon
 Sturgill</a>, an AI engineer born and raised in Anchorage.</p>
