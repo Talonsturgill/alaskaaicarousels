@@ -1,0 +1,44 @@
+{
+  "run_date": "2026-08-03",
+  "carousel_no": 24,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "pending",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "wake": "out/2026-08-03/plan.md",
+    "craft_refresh": "knowledge/FIELD_NOTES.md (2026-08-03 entry)",
+    "research": "out/2026-08-03/scout_merge.md",
+    "claims": "out/2026-08-03/claims.json (18 claims, 7 primary, claims_check PASS)",
+    "selection_pre": "out/2026-08-03/selection.md",
+    "docket": "ledger/docket.json (3 items refreshed: Enstar reopened, Air Force EUL, AKLNG session)",
+    "storyboard": "out/2026-08-03/storyboard.md",
+    "copy": "out/2026-08-03/copy.json",
+    "caption": "out/2026-08-03/caption.txt",
+    "score": "out/2026-08-03/score_report.json",
+    "final": "out/2026-08-03/final/carousel.pdf (vector, 9 pages, 3.74 MB)"
+  },
+  "notes": [
+    "Run date 2026-08-03 chosen over Anchorage-local 2026-08-02 because the prior run in this same UTC trigger slot already shipped as 2026-08-02; runs/ is a consecutive UTC-date series.",
+    "Worker process restarted during Phase 2; the first six scout agents were lost and were respawned once. Counts as one respawn under the FAILURE PROTOCOL crash rule, not a new fan-out.",
+    "All six scouts independently reported the session WebSearch budget exhausted at 200/200. Window coverage is thinner than a normal run; every cited URL was still fetched and read in full.",
+    "dedupe_check exit 1 on the run's most convergent candidate (NSF Critical Mineral Engine, 3 of 6 scouts) against No.8 2026-07-15 at jaccard 0.174. Dropped, not reframed. Selected story cleared with soft overlaps only.",
+    "Phase 3.5 deliberately did NOT add Graphite Creek to the docket. The docket tracks AI-infrastructure decisions in Alaska, and adding a graphite mine would assert on the public tracker exactly the link the fact-checker killed, that this deposit feeds AI buildout. The company names AI among end markets for graphite as a class and names no AI customer. Recorded so a later run does not read the omission as an oversight.",
+    "Scored 6.9 (capped by one hard fail; raw 7.67 vs 7.7). One targeted repair cycle applied; NOT re-scored. Disclosed in the email."
+  ]
+}

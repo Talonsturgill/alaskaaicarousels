@@ -1,0 +1,56 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the proposed pit is a cut INTO the ground, not a mark ON it': dE 15.0, AUC 1.00, visible 0%/0%, seen 0/0px at 432w",
+        "'the Kigluaik front is visibly steeper than the Imuruk flats': dE 15.7, AUC 0.57, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": []
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

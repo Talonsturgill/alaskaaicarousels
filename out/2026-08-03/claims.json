@@ -1,0 +1,244 @@
+{
+  "run_date": "2026-08-03",
+  "carousel_no": 24,
+  "story": "Graphite One's Graphite Creek mine on the Seward Peninsula, the July 28 2026 Brevig Mission community meeting opposing it, and the company naming artificial intelligence infrastructure among the end markets its graphite would serve",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "Graphite One's July 22, 2026 release names artificial intelligence infrastructure among the end markets natural graphite supports.",
+      "source_url": "https://www.prnewswire.com/news-releases/graphite-one-highlights-strategic-alignment-with-white-house-executive-order-reinforcing-us-critical-minerals-supply-chain-302831679.html",
+      "source_outlet": "Graphite One Inc. via PR Newswire",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "verbatim_support": "The United States remains 100% import dependent on natural graphite, one of the most strategically important critical minerals supporting defense systems, batteries, artificial intelligence infrastructure, grid-scale energy storage and advanced manufacturing.",
+      "confidence": "high",
+      "notes": "LOAD BEARING. Verified verbatim, lowercase in the original. Describes natural graphite AS A CLASS. Names no AI customer, no data center offtake, no volume. Primary evidence of what the company says, not that the graphite reaches AI buildout. Never run without C02."
+    },
+    {
+      "id": "C02",
+      "claim": "The same release says Graphite One's anode materials are aimed primarily at the lithium-ion electric vehicle battery and energy storage markets.",
+      "source_url": "https://www.prnewswire.com/news-releases/graphite-one-highlights-strategic-alignment-with-white-house-executive-order-reinforcing-us-critical-minerals-supply-chain-302831679.html",
+      "source_outlet": "Graphite One Inc. via PR Newswire",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "verbatim_support": "to manufacture artificial and natural graphite anode active materials primarily for the lithium-ion electric vehicle battery and energy storage markets.",
+      "confidence": "high",
+      "notes": "The honesty counterweight to C01 and it must be on the deck. Same document, one paragraph apart."
+    },
+    {
+      "id": "C03",
+      "claim": "President Trump signed an executive order titled Securing America's Defense Supply Chains and Ensuring Domestic Acquisition of Critical Materials on July 20, 2026.",
+      "source_url": "https://www.whitehouse.gov/presidential-actions/2026/07/securing-americas-defense-supply-chains-and-ensuring-domestic-acquisition-of-critical-materials/",
+      "source_outlet": "The White House",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-20",
+      "verbatim_support": "Securing America's Defense Supply Chains and Ensuring Domestic Acquisition of Critical Materials",
+      "confidence": "high",
+      "notes": "Title and date verified on whitehouse.gov. No EO number verified anywhere, so the deck prints no number."
+    },
+    {
+      "id": "C04",
+      "claim": "Graphite One says it has received two Letters of Interest for $2.07 billion in financing from the EXIM Bank.",
+      "source_url": "https://www.prnewswire.com/news-releases/graphite-one-highlights-strategic-alignment-with-white-house-executive-order-reinforcing-us-critical-minerals-supply-chain-302831679.html",
+      "source_outlet": "Graphite One Inc. via PR Newswire",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "verbatim_support": "has received two Letters of Interest for $2.07 billion in financing from the EXIM Bank.",
+      "confidence": "high",
+      "notes": "MANDATORY CAVEAT. A Letter of Interest is non-binding. Never write funding or financing secured. The release's own forward-looking section says there is no assurance federal initiatives will result in funding."
+    },
+    {
+      "id": "C05",
+      "claim": "Graphite One says its domestic supply chain strategy has received U.S. government support in the form of two Department of War grants.",
+      "source_url": "https://www.prnewswire.com/news-releases/graphite-one-highlights-strategic-alignment-with-white-house-executive-order-reinforcing-us-critical-minerals-supply-chain-302831679.html",
+      "source_outlet": "Graphite One Inc. via PR Newswire",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "verbatim_support": "Graphite One's complete domestic supply chain strategy has received U.S. government support in the form of two Department of War grants",
+      "confidence": "medium",
+      "notes": "Company statement only. No amounts given, no agency document reached. Say according to the company."
+    },
+    {
+      "id": "C06",
+      "claim": "Graphite One states that Graphite Creek hosts America's largest known natural graphite deposit.",
+      "source_url": "https://www.prnewswire.com/news-releases/graphite-one-highlights-strategic-alignment-with-white-house-executive-order-reinforcing-us-critical-minerals-supply-chain-302831679.html",
+      "source_outlet": "Graphite One Inc. via PR Newswire",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-22",
+      "verbatim_support": "Graphite Creek hosts America's largest known natural graphite deposit.",
+      "confidence": "high",
+      "notes": "ATTRIBUTION TRAP CHECKED. The company's site attributes this phrasing to USGS, but the cited USGS page carries resource figures and NOT the superlative. The deck says the company describes it that way. Never write USGS says largest."
+    },
+    {
+      "id": "C07",
+      "claim": "About 80 people attended the July 28, 2026 community meeting in Brevig Mission, hosted jointly by the Native Village of Brevig Mission, the City of Brevig Mission and the Brevig Mission Native Corp.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "About 80 people filled rows of tables and ate pizza provided by Graphite One at a special joint session hosted by the Native Village of Brevig Mission, the City of Brevig Mission and the Brevig Mission Native Corp.",
+      "confidence": "high",
+      "notes": "Render as about 80, never a flat 80. Alaska Public Media 2026-07-31 is a KNOM republication, not an independent second source."
+    },
+    {
+      "id": "C08",
+      "claim": "KNOM reported that Brevig Mission residents voiced overwhelming opposition to the proposed Graphite One mine at the meeting.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "Residents of the Seward Peninsula village of Brevig Mission voiced overwhelming opposition Tuesday to the proposed Graphite One mine during a meeting with the Canadian mining company and the Bering Straits Native Corp.",
+      "confidence": "high",
+      "notes": "KNOM's characterization of the room, not a vote count. The same article carries a dissenting local voice, Elmer Seetot Jr. of Graphite One's Subsistence Advisory Council, so the deck never presents the village as unanimous."
+    },
+    {
+      "id": "C09",
+      "claim": "Brevig Mission is a village of about 400 people and the proposed mine site is about an hour by boat away.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "The site is about an hour by boat from Brevig Mission, a village of about 400 people.",
+      "confidence": "high",
+      "notes": "Both figures hedged as about in the source. Keep the hedge."
+    },
+    {
+      "id": "C10",
+      "claim": "The proposed mine would be a roughly 1.1 mile wide open pit on state land near the Kigluaik Mountains and the Imuruk Basin.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "The proposed mine would be a roughly 1.1 mile wide open pit on state land near the Kigluaik Mountains and the Imuruk Basin.",
+      "confidence": "high",
+      "notes": "Keep the word roughly. State land status corroborated twice. KNOM also writes that the site sits on a narrow strip of state land surrounded by corporation lands. No DNR claim is made anywhere in the deck."
+    },
+    {
+      "id": "C11",
+      "claim": "The current proposal estimates a 20 year mine life, with the possibility of an extension.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "The current proposal estimates a 20-year mine life, with the possibility of an extension.",
+      "confidence": "high",
+      "notes": "A projection in a proposal, not a permitted term."
+    },
+    {
+      "id": "C12",
+      "claim": "Graphite One says the project could employ about 250 skilled workers.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "Graphite One says the project could employ about 250 skilled workers.",
+      "confidence": "high",
+      "notes": "Company projection. Keep the attribution and the word could. No jobs figure is committed in any permit."
+    },
+    {
+      "id": "C13",
+      "claim": "The U.S. Army Corps of Engineers said it needs a full Environmental Impact Statement instead of the lesser Environmental Assessment, delaying federal permitting, which had been expected to wrap up this fall, by at least a year.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "the U.S Army Corps of Engineers, which holds a key federal permit for the project, said it needs a more extensive Environmental Impact Statement, or EIS, instead of the less scrutinous Environmental Assessment. That delays the project's federal permitting process, which had been expected to wrap up this fall, by at least a year",
+      "confidence": "medium",
+      "notes": "Single-sourced reporting; no Corps document reached (permitting.gov 404 twice). KNOM's closing line says the EIS is expected to be finished in September of next year, so September 2027 may run ONLY with the word expected."
+    },
+    {
+      "id": "C14",
+      "claim": "Bering Straits Native Corporation has invested about $2 million in the project, and with the investment came a seat on a project advisory board.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "Brevig Mission residents also directed concerns toward reps from Bering Straits Native Corporation, which has invested about $2 million in the project. With their investment came a seat on an advisory board for the project.",
+      "confidence": "medium",
+      "notes": "The fairness beat. Alaska Native institutions are not all on one side. Larry Pederson of BSNC said the investment was a way to secure the region a seat at the table despite not having land claims. Residents' claim that BSNC invested without consulting shareholders is an allegation and must be labeled as one if used."
+    },
+    {
+      "id": "C15",
+      "claim": "In November, Brevig Mission's tribe, native corporation and city passed a joint resolution opposing the mine, citing concerns for subsistence resources, cultural integrity, community wellbeing, and long-term sustainability for the region.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "In November, Brevig Mission's tri-entities - the native village, native corporation, and city - passed a joint resolution opposing the mine, citing concerns for 'subsistence resources, cultural integrity, community wellbeing, and long-term sustainability for the region.'",
+      "confidence": "medium",
+      "notes": "KNOM writes In November with no year. The deck says November and assigns no year. Establishes the July 28 meeting is not a first objection."
+    },
+    {
+      "id": "C16",
+      "claim": "Graphite One Chief Operating Officer Mike Schaffner told the meeting, if we can't put a mine in that honors what you just said, there shouldn't be a mine put in.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "\"If we can't put a mine in that honors what you just said, there shouldn't be a mine put in. It's that plain and simple,\" Schaffner said.",
+      "confidence": "high",
+      "notes": "Verbatim, title verified in the same article. A second quote later in the article is misattributed by KNOM and was killed."
+    },
+    {
+      "id": "C17",
+      "claim": "Darla Tocktoo, tribal office coordinator for the Native Village of Brevig Mission, told Graphite One representatives, I know you really want to dig this mine up for your own money, but we are stopping you for our survival.",
+      "source_url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+      "source_outlet": "KNOM",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-30",
+      "verbatim_support": "\"I know you really want to dig this mine up for your own money, but we are stopping you for our survival,\" said Darla Tocktoo, a Brevig Mission resident and the tribal office coordinator for the Native Village of Brevig Mission.",
+      "confidence": "high",
+      "notes": "Title reflects KNOM's 2026-07-30 correction. Use the corrected title."
+    },
+    {
+      "id": "C18",
+      "claim": "Graphite One's planned Ohio anode facility is in Conneaut, and the Ohio EPA determined its air permit application complete and commenced technical review in July 2026.",
+      "source_url": "https://www.graphiteoneinc.com/graphite-one-clears-key-ohio-epa-hurdle-for-planned-ohio-battery-materials-facility/",
+      "source_outlet": "Graphite One Inc.",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-16",
+      "verbatim_support": "The Ohio Environmental Protection Agency (\"Ohio EPA\") has determined the Company's air permit application is complete and has commenced technical review.",
+      "confidence": "medium",
+      "notes": "Technical review is not an issued permit and the plant is not built. The facility's stated output is synthetic anode material for EV and grid storage batteries."
+    }
+  ],
+  "killed": [
+    {
+      "claim": "USGS describes Graphite Creek as the largest known graphite deposit in the United States.",
+      "why": "The exact USGS page the company cites was fetched and carries resource figures only, not the superlative. Survives only as C06, a company claim."
+    },
+    {
+      "claim": "Graphite One's graphite will supply AI data centers or the AI buildout.",
+      "why": "THE MOST IMPORTANT KILL. The release lists artificial intelligence infrastructure as an end market natural graphite AS A CLASS supports. No AI customer, no data center offtake, no volume. The company's own boilerplate says primarily EV battery and energy storage."
+    },
+    {
+      "claim": "Graphite One has $2.07 billion in EXIM Bank financing.",
+      "why": "Materially false rendering. Two Letters of Interest, non-binding, not committed financing."
+    },
+    {
+      "claim": "A quote beginning normally in these types of processes attributed to Schaffner.",
+      "why": "KNOM's attribution is internally inconsistent; the content is plainly BSNC's position. A quote that can't be attributed correctly does not run."
+    },
+    {
+      "claim": "The EIS is targeted for September 2027 (as a standalone fact).",
+      "why": "KNOM writes September of next year and never prints 2027; permitting.gov 404'd twice. Demoted into C13 and may run only with the word expected."
+    },
+    {
+      "claim": "Any Alaska DNR permitting posture.",
+      "why": "No DNR document reached. The deck makes no DNR claim."
+    },
+    {
+      "claim": "An executive order number.",
+      "why": "Federal Register redirected to an unblock interstitial. Title and date verified, number not. The deck prints no number."
+    },
+    {
+      "claim": "Alaska Public Media as independent corroboration of the meeting figures.",
+      "why": "It is a KNOM republication with the same byline, not a second source."
+    }
+  ],
+  "verification_summary": {
+    "claims_verified": 18,
+    "primary_sources": 8,
+    "headline_finding": "The load-bearing claim survives verbatim. The honest story is NARROWER than the scouts implied: the company invokes AI in its federal policy framing while its own product boilerplate points at EV batteries and grid storage. C01 must never run without C02."
+  }
+}

@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-08-02",
+  "updated": "2026-08-03",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -298,7 +298,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-02",
+      "last_updated": "2026-08-03",
       "history": [
         {
           "date": "2026-07-08",
@@ -339,6 +339,10 @@
         {
           "date": "2026-08-02",
           "note": "A second and separate Eielson solicitation is now open. Request for Lease Proposal AFCEC-26-R-0009 covers four sites totalling 3,967 acres, held a virtual industry day on July 22, and takes proposals until August 10. The Air Force announcement describes it only as mixed-use development, listing residential, commercial, office, cultural, institutional and entertainment uses, and does not mention artificial intelligence or data centers. That is a description of the announcement. The lease document itself is posted on SAM.gov and has not been read here."
+        },
+        {
+          "date": "2026-08-03",
+          "note": "Still no selection announced. Lease proposals closed June 29, 2026 after an extension from May 29, and five weeks later there is no public award, shortlist or cancellation. Checked today against the Air Force announcement of the offer and the solicitation record for AFCEC-26-R-0006. The offer covers about 4,700 acres across twelve parcels at three installations on ground leases of up to fifty years, so a decision made quietly is a decision with a fifty-year tail."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -531,10 +535,15 @@
           "url": "https://www.adn.com/politics/alaska-legislature/2026/07/27/3rd-alaska-lng-special-session-starts-with-no-bill-from-governor-4-lawmakers-present/",
           "outlet": "Anchorage Daily News",
           "date": "2026-07-27"
+        },
+        {
+          "url": "https://www.adn.com/politics/alaska-legislature/2026/07/27/3rd-alaska-lng-special-session-starts-with-no-bill-from-governor-4-lawmakers-present/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-07-27"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-07-30",
+      "last_updated": "2026-08-03",
       "history": [
         {
           "date": "2026-07-08",
@@ -603,6 +612,10 @@
         {
           "date": "2026-08-01",
           "note": "The third special session convened July 27 with four legislators in the room and no bill from the governor. It is scheduled to end August 25. The Senate plans technical sessions until August 10, when it could convene in full if the House passes a bill the governor will accept."
+        },
+        {
+          "date": "2026-08-03",
+          "note": "The third special session convened Monday, July 27, 2026 with four legislators attending the pro forma opening and no bill from the governor, who said he would work toward a bill acceptable to both the Legislature and Glenfarne. The session is scheduled to end August 25, 2026. Re-verified today against the Anchorage Daily News, July 27, 2026."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aklng-tax-bill-second-special-session/"
@@ -611,11 +624,11 @@
       "id": "enstar-cook-inlet-gas-storage",
       "title": "Enstar's Cook Inlet gas storage plan (Kenai Loop Pool)",
       "kind": "regulatory-docket",
-      "status": "decided",
+      "status": "pending-decision",
       "decider": "Regulatory Commission of Alaska (prudency); Alaska DNR (storage lease and technical determination)",
       "public_access": "indirect",
-      "access_note": "The RCA is a governor-appointed, legislature-confirmed commission; the public reaches its dockets through formal comment and intervention. This prudency request has been decided (denied); the underlying DNR storage-lease question is still open.",
-      "summary": "On July 10, 2026 the Anchorage Daily News reported the RCA issued a 17-page order denying Enstar's request for an advance determination that its proposed Cook Inlet gas storage project was prudent, saying the utility lacked basic information. The $240 million project would have bought the depleted Kenai Loop Pool reservoir from AIX Energy to hold 25 billion cubic feet of gas, close to half Enstar's annual demand, adding up to $12 a month to the average bill. Enstar and Hilcorp have competing DNR lease applications for the same pool, and DNR has not confirmed it is technically capable of storing gas. Without approval, Enstar president John Sims said the company suspended the project.",
+      "access_note": "The RCA is a governor-appointed, legislature-confirmed commission, and the public reaches its dockets through formal comment and intervention. The prudency question is open again on Enstar's petition for reconsideration. The underlying DNR storage-lease question is also still open.",
+      "summary": "On July 10, 2026 the Anchorage Daily News reported the RCA issued a 17-page order denying Enstar's request for an advance determination that its proposed Cook Inlet gas storage project was prudent, saying the utility lacked basic information. The $240 million project would have bought the depleted Kenai Loop Pool reservoir from AIX Energy to hold 25 billion cubic feet of gas, close to half Enstar's annual demand, adding up to $12 a month to the average bill. Enstar and Hilcorp have competing DNR lease applications for the same pool, and DNR has not confirmed it is technically capable of storing gas. Without approval, Enstar president John Sims said the company suspended the project. Enstar reopened the question on July 24, 2026 with a 31-page petition for reconsideration, arguing the order was erroneous and suffers from a lack of true understanding of the nature of the problem, and calling the Kenai Loop Pool the only viable commercial storage option in Cook Inlet. Alaska Public Media reports the commission has thirty days to respond and that inaction is an automatic denial.",
       "key_dates": [
         {
           "date": "2026-07-10",
@@ -626,6 +639,11 @@
           "date": "2026-07-10",
           "label": "DNR determination on Kenai Loop Pool storage capability and competing Enstar/Hilcorp leases still pending",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-08-23",
+          "label": "RCA acts on Enstar's petition for reconsideration, or the petition is denied automatically",
+          "kind": "decision"
         }
       ],
       "location": {
@@ -638,14 +656,23 @@
           "url": "https://www.adn.com/business-economy/energy/2026/07/10/state-regulators-reject-enstar-gas-storage-plan-raising-questions-about-solution-to-cook-inlet-shortage/",
           "outlet": "Anchorage Daily News",
           "date": "2026-07-10"
+        },
+        {
+          "url": "https://alaskapublic.org/news/economy/2026-07-24/enstar-appeals-rca-decision-saying-natural-gas-storage-cant-wait",
+          "outlet": "Alaska Public Media",
+          "date": "2026-07-24"
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-07-11",
+      "last_updated": "2026-08-03",
       "history": [
         {
           "date": "2026-07-11",
           "note": "Tracked from this run's verified claims. RCA denied Enstar's advance prudency determination in a 17-page order (ADN, July 10); Enstar suspended the $240M Kenai Loop Pool storage project. The storage fix for Southcentral's Cook Inlet gas crunch is off the table for now; DNR technical/lease determination and the competing Hilcorp application remain unresolved."
+        },
+        {
+          "date": "2026-08-03",
+          "note": "Reopened. Enstar filed a 31-page petition for reconsideration on July 24, 2026, calling the denial erroneous and the Kenai Loop Pool the only viable commercial storage option in Cook Inlet. The commission has thirty days to respond and inaction denies the petition automatically, which puts the next decision point on or about August 23, 2026, thirty days from the filing. Status moves back from decided to pending. Re-verified today against Alaska Public Media, July 24, 2026."
         }
       ],
       "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/"

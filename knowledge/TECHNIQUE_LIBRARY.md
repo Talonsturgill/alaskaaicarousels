@@ -578,3 +578,47 @@ annotation is the strongest pair):
     features. PERFORMANCE NOTE: `cx.filter` applies per draw op, so blurring a
     surface made of ~850 strokes blurs 850 times and will blow the render
     timeout. Draw into an offscreen canvas and blur once at composite. D2
+
+92. **Slope-and-Aspect Hachure Field (akhachure)** — `assets/js/akhachure.js`.
+    `AK.hachureField(cx, {x,y,w,h,seed,height,cell,passes,sunAz,sunEl,sunJitter,
+    color,alpha,minWidth,maxWidth,lenScale,jitter,bend,slopeGamma,relief,
+    probes})`. The answer to the diagnosis that finally named the standing
+    craft weakness: our detail is uniform because our stipple and tooth fields
+    are parameterised by POSITION, so a declared falloff is a gradient laid over
+    a texture that is otherwise the same everywhere, and a reader can't see it
+    (proved twice, 2026-08-02's tooth falloff read to nobody). A hachure field
+    is parameterised by the DATA UNDER IT. One short stroke per grid cell, WIDTH
+    from the local slope of a height field, ROTATION from the local aspect,
+    running down the line of steepest descent. Strokes are drawn LONGER than
+    their cell so neighbours blend into a field rather than a stamp grid; cell
+    positions are jittered; each stroke is bent by one perpendicular control
+    point; and the whole field is redrawn several times at low opacity with the
+    sun azimuth varied per pass, so shadow detail ACCUMULATES instead of
+    stacking. `lightBias` drops strokes on faces turned toward the key, which is
+    what makes it read as shading rather than as texture.
+    THREE THINGS THAT MAKE IT DIFFERENT FROM EVERY FIELD WE HAD:
+    (a) `height` is REQUIRED and has NO DEFAULT, on purpose. A default noise
+    field would let a slide buy the look without the data, which is the exact
+    failure the file exists to stop. `AK.hachureFromGrid(values, cols, rows)` is
+    the honest path from a table of story numbers to a shaded field with no
+    noise in between.
+    (b) ALL randomness is normally distributed (Box-Muller off a seeded
+    mulberry32), never uniform, per the 2026-08-02 note that uniform randomness
+    is the tell of a machine-made mark. Still byte-identical run to run, no
+    Math.random, clears the determinism gate.
+    (c) It RETURNS ITS OWN EVIDENCE. `widthRatio` is max/min stroke width over
+    the field, and `probes` takes named CSS-px rectangles and returns each one's
+    mean stroke width and mean slope. That turns "the detail is data-driven"
+    from a claim in prose into a number a dossier declares before the build and
+    a pixel critic is asked to contradict from the render alone, which is the
+    process fix that worked on 2026-08-02's palette claim.
+    Lineage: hachures standardised by Lehmann, 1799; the modern form is slope-
+    and-aspect hachuring, showing slope, aspect and flow direction at once; the
+    browser recipe follows Woodruff's sketchy-relief method
+    (https://andywoodruff.com/blog/hachures-and-sketchy-relief-maps/).
+    DATA HONESTY: this is FORM shading. It is honest about relative steepness,
+    which is what it draws. Never ask a reader to read a magnitude off it;
+    quantities stay in parallel projection with a printed scale. Never draw it
+    under type without an opaque knockout plate, because qa.py's collision check
+    is DOM-only and text-against-geometry is a recurring hard fail. Verified by
+    `tests/akhachure_verify.py`. D2

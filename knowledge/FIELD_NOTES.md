@@ -2342,3 +2342,80 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   movement, arrived at independently, and the "designer voice" finding is the
   frontier's version of what this studio calls a declared mechanism.
   https://arxiv.org/abs/2508.10903
+
+## 2026-08-03 - Phase 1 craft refresh (timeboxed, 2 searches, 1 full read)
+
+- SOCIALINSIDER'S PRIMARY PAGE STILL PRINTS 7.00 PERCENT, and now carries its
+  sample. Native documents 7.00 percent (up 14 percent year over year),
+  multi-image 6.45, video 6.00, image 5.30, text 4.50, poll 4.20, link 3.25,
+  against a platform average of 5.20. Sample is 1.3M posts from 16,645 business
+  pages, January 2024 to December 2025. The page itself says the values are 2025
+  data presented as 2026. CAROUSEL_CRAFT's "7.00% ER vs 6.00% video" is exact and
+  now has its provenance. Note the multi-image figure sits second and close,
+  which is the same ranking the unverified Metricool personal-profile breakdown
+  INVERTS; that contradiction (logged 2026-08-02) is still unresolved and still
+  must not move doctrine. https://www.socialinsider.io/social-media-benchmarks/linkedin
+- A SEVEN-SLIDE CLAIM IS CIRCULATING AND IT IS NOT SOURCED. Several SEO
+  aggregators now assert that carousels with exactly 7 slides perform 18 percent
+  better than any other length, and that completion drops 40 percent past 15
+  slides. Neither number traces to Metricool, Socialinsider, Buffer or LinkedIn
+  on any page reached this run; they cite each other. Recorded as UNVERIFIED and
+  explicitly NOT applied. Our 8 to 10 band with a 6 floor comes from completion
+  data plus the measured minus-35 percent below 5, and it stands. Logged because
+  a plausible round number repeated across ten sites is exactly the kind of thing
+  a future run would absorb without checking.
+- HACHURE, THE PARKED TECHNIQUE, HAS A DEEPER LINEAGE THAN THE BLOG POST.
+  Lehmann standardised hachures in 1799; the modern form the studio wants is
+  "slope and aspect hachuring", which depicts slope, aspect and flow direction
+  of a surface simultaneously via vector flowlines. Confirms the parked
+  Woodruff canvas method is the cheap browser-side instance of a real
+  cartographic method rather than a one-off blog trick, which is what it needed
+  before a director could be told to reach for it. PROMOTED FROM PARKED TO BUILT
+  THIS RUN as the declared attack on the standing artwork-craft weakness.
+  https://andywoodruff.com/blog/hachures-and-sketchy-relief-maps/
+
+## 2026-08-03 - No.24, "A Clause, and a Pit 1.1 Miles Wide" (6.9, repaired, not re-scored)
+
+- FULL-STUDIO RUN. 6 scouts + fact-checker + 3 treatment-directors + 2 caption
+  directors + caption critic + 5 pixel critics + flow critic + scorer. The
+  copywriter was NOT spawned; the showrunner wrote copy.json directly because
+  the session's context budget was the binding constraint by that phase.
+- THE CRAFT TARGET MOVED HALF A STEP, the first movement in ten runs, and the
+  half that moved is worth naming precisely. akhachure encodes stroke WIDTH from
+  the local slope of a height field and ROTATION from its aspect, and its
+  height() is true projected distance to the committed coastline and to a ridge
+  axis with NO noise term. The slide 01 pixel critic, not told which region was
+  which, named the heavy basin and the fine plateau correctly and called it
+  "shading, mostly" rather than texture. That is the test passing.
+- AND THE OTHER HALF IS THE NEXT RUN'S LEVER. qa.py measured the same
+  mechanism on the hero at AUC 0.51, chance, and 0 percent visible at 432px.
+  WIDTH ALONE DIES AT FEED SCALE. The fix is one multiply: scale stroke opacity
+  by normalised slope so steep ground darkens as well as widens. A pixel critic
+  proposed it independently and it is the highest-value single change available
+  to the next deck.
+- A MECHANISM IS A PROPERTY OF THE DECK OR IT IS NOTHING. Four critics
+  independently reported the field was absent from the slides that were not the
+  block, which made the run's signature a property of three frames. It was added
+  to five more and strengthened on a sixth. Declare where a mechanism runs on
+  EVERY slide in the storyboard, not just where it is easy.
+- THE DEDUPE GATE BEAT THE ROOM, AND THAT IS THE POINT OF IT. Three of six
+  scouts independently led with the NSF Critical Mineral Engine, the strongest
+  convergence of the sweep, and dedupe_check returned exit 1 at jaccard 0.174
+  against No.8 nineteen days earlier. Dropped, not reframed, because the only
+  in-window development was a restatement of the original announcement.
+- THE FACT-CHECKER MADE THE STORY SMALLER AND BETTER. It confirmed the
+  load-bearing sentence verbatim and then killed the reading the sentence
+  invites, that the graphite reaches AI buildout. C01 describes natural graphite
+  AS A CLASS and the same release says the product is aimed at EV batteries. The
+  rule "C01 must never run without C02" became a slide.
+- HONESTY BEAT CONCEPT IN THE DIRECTORS ROOM. Two of three treatments built
+  their hero from an INVENTED OBJECT, a room nobody described and a drill core
+  that appears nowhere in the record, and both directors said so in their own
+  self-critiques. On a deck arguing that a company put more weight on a sentence
+  than it could carry, drawing an invented room would have been the same move.
+- THREE GATES EACH CAUGHT SOMETHING NO HUMAN WOULD HAVE. aggregate_check forced
+  a headline change, because "the order took one day" is not derivable from
+  anything in the record while "two days to answer it" is. frame_balance caught
+  a top-loaded cover the moment the block was raised. And the contrast gate
+  caught a global class rewrite that had silently stripped a colour off an
+  unrelated slide's list items.
