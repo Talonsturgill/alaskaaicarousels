@@ -1,0 +1,90 @@
+{
+  "run_date": "2026-08-03",
+  "aggregates": [
+    {
+      "kind": "design",
+      "slide": 1,
+      "fragment": "TWO BARS",
+      "text": "TWO BARS. SAME LENGTH. [C10]",
+      "note": "The deck draws two scale bars of identical pixel length whose computed representative fractions differ by about 1,900x. A property of the artwork, not a claim about the world."
+    },
+    {
+      "kind": "design",
+      "slide": 3,
+      "fragment": "0 TO 10",
+      "text": "0 TO 10 MI, APPROX",
+      "note": "The printed range of the slide's own scale bar, computed from the projection at render time. A property of the artwork."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "fragment": "400 MARKS",
+      "text": "400 MARKS [C09], 80 RINGED [C07]",
+      "member": "C09",
+      "note": "400 ISOTYPE marks encode C09's about 400 residents; the 80 ringed encode C07's about 80 attendees. Both printed as approximate because both sources hedge."
+    },
+    {
+      "kind": "count",
+      "slide": 6,
+      "fragment": "TWO SENTENCES",
+      "text": "ONE TABLE. TWO SENTENCES. SAME SIZE.",
+      "subject": "sentences",
+      "members": [
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "kind": "duration",
+      "slide": 7,
+      "fragment": "Two days",
+      "text": "Two days to answer it.At least a year to review it.",
+      "from": {
+        "claim": "C03",
+        "date": "2026-07-20"
+      },
+      "to": {
+        "claim": "C01",
+        "date": "2026-07-22"
+      }
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "fragment": "FOUR CLOCKS",
+      "text": "FOUR CLOCKS, ONE RATE",
+      "subject": "clocks",
+      "members": [
+        "C03",
+        "C01",
+        "C07",
+        "C13"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "TWO LETTERS",
+      "text": "TWO LETTERS OF INTEREST, $2.07 BN, EXIM BANK. NON-BINDING. NOT FINANCING SECURED",
+      "member": "C04",
+      "note": "The count of two is stated inside C04's own verbatim sentence, not derived by the deck."
+    },
+    {
+      "kind": "count",
+      "slide": 5,
+      "fragment": "THREE ENTITIES",
+      "text": "IN NOVEMBER THE THREE ENTITIES PASSED A JOINTRESOLUTION OPPOSING THE MINE [C15]",
+      "subject": "entities",
+      "members": [
+        "C07",
+        "C15"
+      ],
+      "items": [
+        "Native Village of Brevig Mission",
+        "City of Brevig Mission",
+        "Brevig Mission Native Corp"
+      ],
+      "note": "C07 names all three bodies that jointly hosted the July 28 session; C15 records that the same three passed the November resolution."
+    }
+  ]
+}

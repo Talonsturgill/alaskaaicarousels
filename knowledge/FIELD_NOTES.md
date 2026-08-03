@@ -2373,3 +2373,49 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   before a director could be told to reach for it. PROMOTED FROM PARKED TO BUILT
   THIS RUN as the declared attack on the standing artwork-craft weakness.
   https://andywoodruff.com/blog/hachures-and-sketchy-relief-maps/
+
+## 2026-08-03 - No.24, "A Clause, and a Pit 1.1 Miles Wide" (6.9, repaired, not re-scored)
+
+- FULL-STUDIO RUN. 6 scouts + fact-checker + 3 treatment-directors + 2 caption
+  directors + caption critic + 5 pixel critics + flow critic + scorer. The
+  copywriter was NOT spawned; the showrunner wrote copy.json directly because
+  the session's context budget was the binding constraint by that phase.
+- THE CRAFT TARGET MOVED HALF A STEP, the first movement in ten runs, and the
+  half that moved is worth naming precisely. akhachure encodes stroke WIDTH from
+  the local slope of a height field and ROTATION from its aspect, and its
+  height() is true projected distance to the committed coastline and to a ridge
+  axis with NO noise term. The slide 01 pixel critic, not told which region was
+  which, named the heavy basin and the fine plateau correctly and called it
+  "shading, mostly" rather than texture. That is the test passing.
+- AND THE OTHER HALF IS THE NEXT RUN'S LEVER. qa.py measured the same
+  mechanism on the hero at AUC 0.51, chance, and 0 percent visible at 432px.
+  WIDTH ALONE DIES AT FEED SCALE. The fix is one multiply: scale stroke opacity
+  by normalised slope so steep ground darkens as well as widens. A pixel critic
+  proposed it independently and it is the highest-value single change available
+  to the next deck.
+- A MECHANISM IS A PROPERTY OF THE DECK OR IT IS NOTHING. Four critics
+  independently reported the field was absent from the slides that were not the
+  block, which made the run's signature a property of three frames. It was added
+  to five more and strengthened on a sixth. Declare where a mechanism runs on
+  EVERY slide in the storyboard, not just where it is easy.
+- THE DEDUPE GATE BEAT THE ROOM, AND THAT IS THE POINT OF IT. Three of six
+  scouts independently led with the NSF Critical Mineral Engine, the strongest
+  convergence of the sweep, and dedupe_check returned exit 1 at jaccard 0.174
+  against No.8 nineteen days earlier. Dropped, not reframed, because the only
+  in-window development was a restatement of the original announcement.
+- THE FACT-CHECKER MADE THE STORY SMALLER AND BETTER. It confirmed the
+  load-bearing sentence verbatim and then killed the reading the sentence
+  invites, that the graphite reaches AI buildout. C01 describes natural graphite
+  AS A CLASS and the same release says the product is aimed at EV batteries. The
+  rule "C01 must never run without C02" became a slide.
+- HONESTY BEAT CONCEPT IN THE DIRECTORS ROOM. Two of three treatments built
+  their hero from an INVENTED OBJECT, a room nobody described and a drill core
+  that appears nowhere in the record, and both directors said so in their own
+  self-critiques. On a deck arguing that a company put more weight on a sentence
+  than it could carry, drawing an invented room would have been the same move.
+- THREE GATES EACH CAUGHT SOMETHING NO HUMAN WOULD HAVE. aggregate_check forced
+  a headline change, because "the order took one day" is not derivable from
+  anything in the record while "two days to answer it" is. frame_balance caught
+  a top-loaded cover the moment the block was raised. And the contrast gate
+  caught a global class rewrite that had silently stripped a colour off an
+  unrelated slide's list items.

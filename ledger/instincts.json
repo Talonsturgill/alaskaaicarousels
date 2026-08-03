@@ -1,587 +1,602 @@
 {
- "_spec": {
-  "purpose": "Self-improvement ledger (confidence-scored lessons). Every run's retro appends 1-3 instincts learned from: editor/critic flags, machine QA catches, human edits observed in later Gmail drafts, or performance notes the maintainer adds. Before each run, the orchestrator injects the TOP 5 instincts with confidence >= 0.7 into the directors-room and copy prompts. Confidence rises +0.05 each run that confirms an instinct, falls -0.1 each run that contradicts it. Prune entries below 0.5 confidence that are older than 8 runs.",
-  "entry_schema": {
-   "id": "kebab-slug",
-   "learned": "YYYY-MM-DD",
-   "instinct": "one imperative sentence",
-   "evidence": "what happened that taught this",
-   "confidence": "0.0-1.0",
-   "last_confirmed": "YYYY-MM-DD"
-  }
- },
- "entries": [
-  {
-   "id": "compute-3d-composition",
-   "learned": "2026-07-08",
-   "instinct": "Plan every 3D camera with the horizonY arithmetic in ak3d.js before rendering; never eyeball camera placement.",
-   "evidence": "Two consecutive smoke-test terrain renders buried the mountain range in the bottom 15% of frame until the projection math was computed explicitly. | CONFIRMED 2026-07-08: slide 4 planned the low horizon at an explicit y and used parallax planes, not eyeballed camera; monumental result | CONFIRMED 2026-07-22: No.14 terrain camera planned via horizonY arithmetic (cy 405, pitch -0.32), terrain filled the lower field as composed.",
-   "confidence": 0.9,
-   "last_confirmed": "2026-07-22"
-  },
-  {
-   "id": "grain-as-tile",
-   "learned": "2026-07-08",
-   "instinct": "Apply grain as a small repeating tile (AK.grainTile), never a full-frame feTurbulence rect.",
-   "evidence": "Full-frame SVG grain rasterized to a 34MB incompressible bitmap in the printed PDF; the tile version produced 6.7MB. | CONFIRMED 2026-07-08: AK.grainTile used on all 9 slides; PDF 10.7MB, no incompressible full-frame grain | CONFIRMED 2026-07-14: all 8 slides used AK.grainTile tiles, no full-frame feTurbulence; qa clean | CONFIRMED 2026-07-18: AK.grainTile on all 9 slides; vector PDF 3.98MB, no full-frame feTurbulence.",
-   "confidence": 0.99,
-   "last_confirmed": "2026-07-18"
-  },
-  {
-   "id": "machine-qa-is-not-taste",
-   "learned": "2026-07-08",
-   "instinct": "Never treat a machine_qa PASS as composition approval; the pixel critics judge composition, hierarchy, and collision at full size and thumb size.",
-   "evidence": "A slide with the terrain crammed into the bottom 15% and a stat row colliding with the ridge passed every objective gate. | CONFIRMED 2026-07-08: pixel/scorer caught 4 DOM collisions (slide 3 overlap hard fail, slide 8 door graze, slide 9 coastline, slide 2 crowding) that machine_qa PASSED | CONFIRMED 2026-07-09: machine_qa PASSED (WARN) but pixel critics caught the S4 '12 fish' claim being uncountable, the S5 unblurred foreground (DOF), and the S6 dishonest 0-year nub bar -- all composition/honesty, not objective. | CONFIRMED 2026-07-11: critics caught ~10 canvas-vs-DOM overlaps + low-contrast in-section labels that machine_qa PASSED (S2 legend/homes, S3 curve labels, S4 readouts on ochre, S6 SUSPENDED, S7 flag mash, S8 context on ochre). | CONFIRMED 2026-07-13: pixel critics caught a favored honesty panel (S3), a bottle-read turbine (S4), and a strikethrough ledger (S7) that machine_qa PASSED clean. | CONFIRMED 2026-07-14: qa PASS with 0 warnings, but the ship decision rested on the showrunner reading every full-size PNG and the contact sheet for composition | CONFIRMED 2026-07-18: qa PASS 0/0 yet showrunner+pixel critics caught S3 body-vs-readout collision, S4 tight gutter, S6 parchment contrast, S7 label-box overprint, S8 canvas-label routing; composition read by eye and critics, not qa. | CONFIRMED 2026-07-21: qa PASS 0/0 yet pixel critics caught S2 top-heavy dead-lower-band, S4 core metaphor not reading (faint noise band + needle-as-cable), S8 gold leak on input labels, S3 8-line body -- all composition/semantic, invisible to qa.",
-   "confidence": 0.99,
-   "last_confirmed": "2026-07-21"
-  },
-  {
-   "id": "d3-zoom-manual",
-   "learned": "2026-07-08",
-   "instinct": "Zoom a d3 map by scaling a baseline full-state fitExtent and re-translating onto the target point, drawing the coastline STROKE-ONLY; never fitExtent to a small lon/lat bbox polygon.",
-   "evidence": "Slides 2 and 7 first used fitExtent to a bbox polygon and rendered a giant near-black fill disc plus a mis-scaled mini-Alaska with overlapping labels; the manual scale+translate with stroke-only coast fixed both cleanly.",
-   "confidence": 0.8,
-   "last_confirmed": "2026-07-08"
-  },
-  {
-   "id": "verify-body-line-count",
-   "learned": "2026-07-08",
-   "instinct": "Before rendering, sanity-check long serif/body copy line counts against any fixed-position labels, bars, or plates; DOM text overlaps pass machine QA but fail the eye.",
-   "evidence": "Slide 3 body wrapped to 4 lines and overlapped the 'URBAN ALASKA GRID PEAK' bar label (a scorer-caught hard fail); slide 5 quote 4 slid under the Boyle plate. Both passed machine_qa safe-zone checks. | CONFIRMED 2026-07-09: four headline-wrap collisions (S1/S4/S7/S8) all traced to a display headline in a container narrower than its longest line; each machine_qa-FAILED as a text overprint. | CONFIRMED 2026-07-11: S2/S3/S4 body blocks overran their planned line counts into the section; capping max-width so the body ENDS in the sky zone fixed all three. | CONFIRMED 2026-07-18: S3 body overran into the readouts (qa FAILed the safe-zone but the collision was a relayout fix); capping the measure so it ends in the sky zone cleared it. | CONFIRMED 2026-07-21: S3 body wrapped to 8 lines vs a 6-line plan in a narrow column beside the whale; widening the measure + one font step down fixed it.",
-   "confidence": 0.99,
-   "last_confirmed": "2026-07-21"
-  },
-  {
-   "id": "data-decorative-on-leaf",
-   "learned": "2026-07-08",
-   "instinct": "Put data-decorative on the leaf text element (span, b, or the appended SVG <text>), not just the parent div; the QA tiny-text gate does not inherit it.",
-   "evidence": "annot <div data-decorative> still flagged its child <b>/<span> readouts on slides 2/4/7 until the attribute was added to each leaf element.",
-   "confidence": 0.75,
-   "last_confirmed": "2026-07-08"
-  },
-  {
-   "id": "display-headline-fit-full-width",
-   "learned": "2026-07-09",
-   "instinct": "Set a display headline's container to the full width its longest line needs (or drop the size) and verify the rendered line count before shipping; a too-narrow container silently wraps into the body and fails the overprint gate.",
-   "evidence": "S1 (98px in 952px), S4/S7 (78-80px in ~460px), S8 (94px in 920px) each wrapped an extra line into the block below and machine_qa-FAILED as a collision until widened or downsized.",
-   "confidence": 0.8,
-   "last_confirmed": "2026-07-10"
-  },
-  {
-   "id": "budget-the-lower-third",
-   "learned": "2026-07-09",
-   "instinct": "Budget the bottom third of every slide deliberately: a data readout, a caption, an anchor, or an intentional quiet zone -- do not let it default to dead empty space the scorer reads as thin craft.",
-   "evidence": "Scorer (8.83) capped Artwork Craft at 7 partly for 'large empty lower thirds' on several slides (S2, S6, S7, S8) even though every slide passed gates and critics. | CONFIRMED 2026-07-21: pixel critics flagged dead lower ~40% on S2 and S8; lowering/enlarging the diagram and dropping the boundary box filled them.",
-   "confidence": 0.65,
-   "last_confirmed": "2026-07-21"
-  },
-  {
-   "instinct": "Canvas-drawn art can overprint DOM text without tripping qa.py (it only checks DOM line boxes); route every canvas path/arc/diagram around the text blocks at PLAN time and have pixel critics explicitly check canvas-vs-text collision.",
-   "confidence": 0.87,
-   "born": "2026-07-10",
-   "evidence": "S3 flightpath arc crossed two body lines and S4 orbit crossed the headline; machine QA passed both, pixel critics caught both. | Re-confirmed run 5 (S5 loop arcs vs block plates; S8 body vs closed ring) both caught by pixel/flow critics, invisible to qa.py."
-  },
-  {
-   "instinct": "Give the deck's continuity motif explicit connective tissue on EVERY slide (enter-left/exit-right at low alpha), not just its transformation states; intermittent motifs read as separate images.",
-   "confidence": 0.75,
-   "born": "2026-07-10",
-   "evidence": "Flow critic: conductor trace read on only ~6 of 9 frames until S3/S6/S7 connective strokes were added."
-  },
-  {
-   "instinct": "Keep top-strip kickers short (<=18 chars) when a right-aligned readout shares the row; long kickers visually abut the readout even when boxes do not intersect.",
-   "confidence": 0.7,
-   "born": "2026-07-10",
-   "evidence": "S2/S7/S8 kickers crowded the readout at full width and were shortened."
-  },
-  {
-   "instinct": "Any in-section DOM readout or canvas label over a light strata/ochre band must ride an explicit dark plate (CSS background plate for DOM, canvas knockout rect for canvas text); light mono on ochre measured ~1.5:1 and failed the eye though qa.py PASSED.",
-   "confidence": 0.8,
-   "born": "2026-07-11",
-   "evidence": "Pixel critics failed S4 readouts, S8 context line, S3 curve labels, S6 SUSPENDED tag for contrast on the warm ochre band; a .plate-dark CSS class + canvas knockout chips fixed every one."
-  },
-  {
-   "instinct": "Cap each body block's max-width so it resolves to at most its planned line count and ENDS inside the sky zone (above the section art) at PLAN time, then verify against the surface line; bodies silently overrun into the canvas art region and collide (qa cannot see canvas-vs-text).",
-   "confidence": 0.75,
-   "born": "2026-07-11",
-   "evidence": "S2 (4 lines vs 3), S3, S4 (6 lines) each overran into homes/labels; widening the measure so the body ends by ~y640 cleared the collisions."
-  },
-  {
-   "instinct": "For a state-change motif carried by ONE object (valve open->shut, switch on->off), change the object's GEOMETRY unmistakably (an amber lock-bar across the valve hub), not just a rotation; a subtle rotation of a radial/symmetric object reads identical at 432px.",
-   "confidence": 0.7,
-   "born": "2026-07-11",
-   "evidence": "Flow critic: the 8-spoke valve looked near-identical rotated; the open->shut turn relied entirely on the SUSPENDED tag until an amber lock-bar across the hub made 'shut' read at thumb."
-  },
-  {
-   "instinct": "A discrete-state motif must show its progress with an EXPLICIT quantized cue (a fraction like N/4, or clearly dim-vs-bright segments), not brightness alone; faint-cyan-vs-bright-cyan arc increments read as a static logo at corner/thumb size (flow critic, run 5).",
-   "confidence": 0.8,
-   "born": "2026-07-12",
-   "evidence": "Run 5's Autonomy Ring: per-stage arc increments were illegible until unlit arcs were made gray and an explicit N/4 label was added under the ring."
-  },
-  {
-   "instinct": "When two warm elements must read as the SAME encoding (e.g. two 'Alaska = fire' bars), pin them to one shared token and verify AFTER akpost; a yellowish orange (#FF6A2C, high green channel) drifts toward gold under the grade and both clashes with the split bar and strains the gold budget. Use a redder fire-orange (#E8531F) for on-slide fire that must stay clearly non-gold.",
-   "confidence": 0.75,
-   "born": "2026-07-12",
-   "evidence": "Run 5 slide 3: #FF6A2C lit ISOTYPE bars read gold after grade; #E8531F matched the split bar and cleared the gold budget."
-  },
-  {
-   "instinct": "A rendered akthree object hero reads as a flat blob at thumb unless a warm RIM light (opposite the key) separates it from the background; a pure backlit silhouette de-risks lumpiness but loses recognizability. Add a low rim from the key-light direction and slightly enlarge so the object's profile (rotors/arms) resolves.",
-   "confidence": 0.75,
-   "born": "2026-07-12",
-   "evidence": "Run 5 slide 6: backlit-only drone read as a smear (flow critic); adding a 1.7-intensity warm rim + scale 1.15->1.42 made it read as a quadcopter."
-  },
-  {
-   "id": "equalize-honesty-panels",
-   "learned": "2026-07-13",
-   "instinct": "On a two-source honesty/firewall slide (an attributed third-party claim vs the primary source's own words), give BOTH panels identical visual weight -- same top, min-height, plate opacity, and accent-glyph treatment. A deliberate y-offset or size difference reads as favoritism and inverts the slide's honesty purpose.",
-   "evidence": "Run 6 S3: the left panel (the News-Miner's data-center demand line) rendered larger/brighter than the right (GVEA's own 'higher load' words); the pixel critic flagged the imbalance as favoring the attributed framing. Equal tops + min-height + matched quote glyphs fixed it.",
-   "confidence": 0.8
-  },
-  {
-   "id": "render-object-text-scrim",
-   "learned": "2026-07-13",
-   "instinct": "When DOM text must share a slide with a full-bleed GPU/akthree render, guarantee legibility with a Deep-Sea-Scrim DOM gradient (dark to transparent) behind the text column, layered above the canvas -- not text-shadow, and not by shrinking the object off its composition. text-shadow alone fails over bright specular metal.",
-   "evidence": "Run 6 S4: body copy over the rendered LM6000's steel dome dropped below 4.5:1 (pixel-critic BLOCKER) despite a text-shadow; a left-column dark-to-transparent scrim div made it fully legible while keeping the hero object big.",
-   "confidence": 0.75
-  },
-  {
-   "id": "label-box-safezone",
-   "learned": "2026-07-13",
-   "instinct": "Fixed-width, centered in-scene label DIVs trip the safe-zone gate on their BOX edges even when the glyphs sit well inside the margin. Size in-scene label containers to content (white-space:nowrap + translateX(-50%)) so the box, not just the text, stays within the 80px margins.",
-   "evidence": "Run 6 S2: a 220px-wide centered node-label box at left:815 pushed its right edge past the 1000px safe margin though '2ND UNIT' was short and centered; switching to content-width nowrap boxes cleared the warn.",
-   "confidence": 0.7
-  },
-  {
-   "id": "solo-degraded-run",
-   "learned": "2026-07-14",
-   "instinct": "Two separate rules. (1) Subagent spawning is bounded and showrunner-only (NON-NEGOTIABLE 7): only the showrunner spawns the fixed planned set, subagents are leaf workers that never spawn their own subagents, and never fan out beyond the plan on your own initiative (an agent once CHOSE, with nothing failing, to spawn ~20 extra agents and burned tokens). (2) On a subagent FAILURE, respawn only the same failed agent with about a 3-attempt cap; WAIT only when the cause is a usage/rate/limit error, then resume the full pipeline; for any other failure just respawn and continue.",
-   "evidence": "Run 2026-07-14: all six scouts plus every other subagent died on 'weekly limit resets 5pm UTC'; main-loop WebSearch/WebFetch and Gmail/GitHub MCP kept working; the showrunner ran all 14 phases solo and shipped Carousel No. 7 at 8.95. | REVERSED 2026-07-14 by maintainer directive: no more degraded solo runs; wait for the usage-window reset and run the full pipeline. The 07-14 solo run was the exception that prompted the rule, not the pattern to repeat. | REFINED 2026-07-15 by maintainer: wait only when the cause is a usage limit; otherwise just respawn the failed agent. The original guard was to stop a runaway that spawned ~20 subagents for no reason, not to make every failure a wait. | CORRECTED 2026-07-15: the ~20-agent runaway was an agent spawning agents on its own volition, NOT a failure cascade, so the fan-out cap is a standalone NON-NEGOTIABLE (spawning is bounded and showrunner-only), separate from failure handling.",
-   "confidence": 0.88,
-   "last_confirmed": "2026-07-15"
-  },
-  {
-   "id": "fixed-line-continuity",
-   "learned": "2026-07-14",
-   "instinct": "A single continuity line drawn at an identical fixed y on every slide (a waterline, horizon, or datum) is a very strong, low-risk continuity device: it reads instantly on the contact sheet, carries different local meaning per slide while staying one system, and needs no GL. Pair it with one recurring quantized motif (sonar rings, ticks) for a second device.",
-   "evidence": "Run 2026-07-14: waterline at y=812 across all 8 slides + sonar rings gave an unmistakable one-composed-sequence read on the contact sheet at zero rendering risk; qa PASS with 0 warnings.",
-   "confidence": 0.72,
-   "last_confirmed": "2026-07-14"
-  },
-  {
-   "id": "confidence-meter-honesty-motif",
-   "learned": "2026-07-15",
-   "instinct": "For a funded-but-unproven story, make a corner CONFIDENCE METER (or equivalent state readout) that evolves per beat and NEVER lies to 100% the deck's continuity motif; the refusal to resolve IS the honesty argument and reads instantly across the contact sheet.",
-   "evidence": "Run 8 (The Uncomputed Ground): PROSPECTIVITY 0% COMPUTED -> MODEL NOT BUILT -> MODEL TBD -> SITES NAMED 1 -> WATCH THE MILESTONES carried the honest thesis; the flow-critic named it a device that reads as one instrument tracking one story.",
-   "confidence": 0.72,
-   "last_confirmed": "2026-07-15"
-  },
-  {
-   "id": "truth-color-code",
-   "learned": "2026-07-15",
-   "instinct": "Assign a strict two-color TRUTH CODE (gold = real/committed/confirmed only; a cool phantom color = promise/unbuilt/conditional) and apply it every slide so color does semantic argument, not decoration; verify the real color lands exactly where something is actually real (e.g. gold hits the map exactly once, at the one named site).",
-   "evidence": "Run 8: gold = committed money / one named site / Polaris only; phantom-blue = the AI sentence, the NO MODEL/DATASET/SOFTWARE/SITE ledger, the $160M milestone ceiling. Both pixel and flow critics praised the consistent semantic color; scorer story-art-fusion 9.",
-   "confidence": 0.72,
-   "last_confirmed": "2026-07-15"
-  },
-  {
-   "id": "relief-depth-not-just-grade",
-   "learned": "2026-07-15",
-   "instinct": "A graded 2D relief map ships and fuses story well, but a bare graded silhouette with a grid overlay reads FLAT and caps artwork-craft; when the map is the hero, invest in genuine multiplane depth (directional hillshade with real contrast, atmospheric fade, interior texture) or climb the rendered ladder. Argued-flat clears the bar but leaves craft points on the table.",
-   "evidence": "Run 8 scorer put artwork-craft at 7.5 (weakest criterion), one_sentence_fix was exactly give the relief plates genuine multiplane depth instead of a graded 2D map with a grid overlay. Total still shipped at 8.78.",
-   "confidence": 0.6,
-   "last_confirmed": "2026-07-15"
-  },
-  {
-   "id": "honesty-quarantine-as-design",
-   "learned": "2026-07-17",
-   "instinct": "When a story's real 'AI' is narrow, render the AI-vs-human split EXPLICITLY as design: a dedicated equal-panels ledger (what is machine learning vs what is human-read) plus a standing PILOT/HUMAN tag on the rendered hero and NO invented accuracy percentages. The modesty becomes the deck's intellectual spine, not a hedge, and scores story-art fusion + honesty high. Lineage: No.2 UNPROVEN cell, No.5 confidence meter.",
-   "confidence": 0.8
-  },
-  {
-   "id": "isotype-neutral-not-accent",
-   "learned": "2026-07-17",
-   "instinct": "ISOTYPE figure/quantity fields must use a NEUTRAL fill (slate/parchment); never color the whole crowd in the accent (gold/amber). If everything is gold, gold stops signaling meaning AND the one highlighted item loses its distinction. Keep only the singled-out element warm/haloed. A pixel critic caught all 12 trainees rendered gold on S4.",
-   "confidence": 0.78
-  },
-  {
-   "id": "ak3d-terrain-hero-resolves-flat",
-   "learned": "2026-07-17",
-   "instinct": "An AK3D software-3D heightfield valley finished with an akpost thermal grade genuinely climbs the rendered ladder (reads as real dimensional relief, resolving the chronic flat-hero weakness) and is a reliable no-GL alternative to akthree for LANDSCAPE heroes. Two framing rules learned the hard way: brighten the valley floor (a near-black floor reads as a dead void) and raise the horizon (small cy / lower pitch magnitude) so terrain fills the lower half, not a thin band under a dead mid-zone.",
-   "confidence": 0.75
-  },
-  {
-   "id": "iso-wiring-diagram-continuity",
-   "learned": "2026-07-18",
-   "instinct": "For a systems / infrastructure / on-grid-vs-off-grid ARGUMENT deck, a shared isometric world (fixed upper-left light, three-face shading) plus ONE conduit motif that changes SHAPE every slide (cut -> junction -> severed -> snap-live -> fork -> baseline -> dormant -> solid-vs-dashed -> sealed) with a gold progress tick and edge-tease is a strong, low-risk, offline continuity chassis that reads as one composed sequence on the contact sheet.",
-   "evidence": "Run 10: flow-critic called the conduit continuity 'strong, reads cleanly left-to-right', sequence_reads_as_one true, verdict ship; the deck diverged hard from the last-4 heroes and scored 8.90.",
-   "confidence": 0.72,
-   "last_confirmed": "2026-07-18"
-  },
-  {
-   "id": "iso-focal-node-needs-raised-base",
-   "learned": "2026-07-18",
-   "instinct": "An isometric SCHEMATIC hero (a fork/pivot/junction) still scores as FLAT artwork-craft unless the focal node is a genuinely RAISED 3D object (an iso pedestal/three-face base + a real contact shadow, not just a flat gold disc) AND the DOF context grid is PRESENT enough to read; a blurred grid at low opacity 'barely registers' and the eye reads a flat two-arrow diagram. Give the one designated depth-showcase slide a dimensional node next iso deck.",
-   "evidence": "Run 10 scorer: artwork-craft 7 (weakest), one_sentence_fix was exactly to give the S5 fork hero real dimensional depth; the flat gold disc + faint blurred grid read as a schematic despite the deck's iso chassis. S3/S4 (which used raised slabs/boxes + cast shadows) read dimensional; S5 (disc only) did not.",
-   "confidence": 0.6
-  },
-  {
-   "id": "dom-el-referenced-before-it-exists",
-   "learned": "2026-07-19",
-   "instinct": "A classic (non-module) <script> in the slide body runs at parse time, BEFORE any element placed after it exists. renderReady code that does getElementById on a later-in-body div (e.g. the grain overlay) gets null and the whole slide throws. Put every element the art script touches (grain overlay, canvas) BEFORE the scripts, or use a type=module script (deferred to after parse).",
-   "evidence": "Run 2026-07-19 first render: 8 of 9 slides FAILED with 'Cannot read properties of null (reading style)' at the grain-div lookup; the only survivor was the type=module akthree slide. Moving the grain div above the scripts fixed all 8.",
-   "confidence": 0.9
-  },
-  {
-   "id": "never-canvas-fillText-for-labels",
-   "learned": "2026-07-19",
-   "instinct": "Never set meaningful label text with cx.fillText on canvas. Canvas text rasterizes in the vector PDF, is invisible to the LinkedIn ranker and accessibility, is absent from render_report text_nodes, and therefore FAILS copy_sync_check. Set every label in DOM or SVG; reserve canvas for art only.",
-   "evidence": "Run 2026-07-19: S7 loop labels and S8 annotations drawn with fillText tripped copy_sync_check (authored strings not found in render) and would have shipped as raster text in the PDF; converting them to DOM divs fixed both.",
-   "confidence": 0.88
-  },
-  {
-   "id": "inline-svg-needs-display-block",
-   "learned": "2026-07-19",
-   "instinct": "An inline <svg> appended into a positioned div carries a baseline line-box that pushes body scrollHeight past 1350 and trips render.py body_overflow (a hard fail), even with body overflow hidden. Add '#map svg { display:block }' (or display:block on any appended SVG layer) on every d3/SVG map slide.",
-   "evidence": "Run 2026-07-19: the two globe slides (S1, S9) reported body_overflow=true until display:block was added to the appended svg; the demo cartography slide already had this rule and I had omitted it.",
-   "confidence": 0.85
-  },
-  {
-   "id": "policy-deck-writing-surface-substrate",
-   "learned": "2026-07-20",
-   "instinct": "For a text/policy/education deck that risks flat craft, use a shared writing-surface substrate (a ruled gradebook/ledger page) plus ONE evolving object motif (a pencil) that changes STATE every slide and whose length encodes a countdown, with a single rendered object hero; it reads as one composed film, keeps the motif on every slide, and is fully offline.",
-   "evidence": "Run 12 (Written in Pencil): the gradebook-page + evolving-pencil chassis scored story-art-fusion 8 and flow SHIP sequence-reads-as-one 8.3; total 8.55. The flow-critic initially flagged the motif dropping out on the two non-pencil slides (S4/S6), fixed by adding the pencil there.",
-   "confidence": 0.7,
-   "last_confirmed": "2026-07-20"
-  },
-  {
-   "id": "dark-fixtures-on-paper-slides",
-   "learned": "2026-07-20",
-   "instinct": "On lit-cream/paper slides, brand FIXTURES that are normally gold or light (the mono counter, coords, site line) drop to ~1.5:1 and read as invisible furniture; set the counter/labels to a dark graphite or brown on paper slides and keep gold only for the deliberate accent (the Polaris icon, a seal). qa.py passes them (data-decorative) but the scorer dings legibility.",
-   "evidence": "Run 12: the S5 hero and S6 card counters rendered gold-on-cream ~1.5:1 (scorer flagged, legibility 7); darkened to graphite before ship. Machine QA never failed them.",
-   "confidence": 0.72,
-   "last_confirmed": "2026-07-20"
-  },
-  {
-   "id": "hero-object-needs-contrasting-functional-detail",
-   "learned": "2026-07-20",
-   "instinct": "An akthree object hero still reads as a monochrome gold/plastic rod unless its STORY-CRITICAL functional detail is a distinct contrasting material (a dark graphite writing tip actually contacting a drawn line), because a warm rim over a single-material barrel gilds the whole object. Give the one designated hero its key detail in a contrasting material and place it on the thing it acts on, not just good lighting.",
-   "evidence": "Run 12 S5 pencil: pixel + scorer both read it as slightly 'gold rod'; darkening the nib and adding a half-written line under the tip helped but the barrel still gilds under the rim. Logged as the artwork-craft growth edge (7).",
-   "confidence": 0.6
-  },
-  {
-   "id": "akthree-transparent-subject-snapshot-false-negative",
-   "learned": "2026-07-21",
-   "instinct": "A rendered akthree object composited over a TRANSPARENT background (alpha renderer, subject filling under ~half the frame) makes AKT.snapshot's black-frame sentinel false-negative, because most of its 24 random samples hit empty pixels, so .ok reads false and the slide silently drops to its Canvas fallback. Either render the akthree subject on an OPAQUE in-palette background and composite the whole frame, or design the 2D illustration to BE the hero; do not rely on transparent-bg akthree for a small foreground subject.",
-   "evidence": "Run 13 S3 beluga: alpha-composited akthree whale snapshot returned ok=false every render (transparent water), forcing the Canvas fallback, which shipped and scored the deck's weakest criterion (artwork-craft 7, 'reads flat').",
-   "confidence": 0.7,
-   "last_confirmed": "2026-07-21"
-  },
-  {
-   "id": "audit-accent-leak-before-render",
-   "instinct": "Reserve the deck's single warm accent for its ONE semantic meaning and audit EVERY secondary label/kicker/readout for accent-color leak BEFORE render; the recurring pixel-critic catch is the accent hue bleeding onto elements that are not the accent (a gold noise readout, gold threat labels, a gold kicker) which inverts or dilutes the semantics. Cool everything that is not the accent.",
-   "evidence": "Run 13: pixel critics caught gold on the S4 SHIP NOISE readout (noise is not the hero color), the S8 SHIP NOISE/PREY/HABITAT input labels, and the S1 kicker, all diluting the 'gold = the whale's call' rule; recoloring them cool restored the single-accent read.",
-   "confidence": 0.72,
-   "learned": "2026-07-21",
-   "last_confirmed": "2026-07-21"
-  },
-  {
-   "id": "never-multiplying-motif-as-honesty",
-   "instinct": "For a 'better instrument, not a fix' story, a single evolving motif-point that NEVER multiplies plus a visibly UNCHANGED environment across the deck argues the thesis better than any caption: one call, never a chorus (a clearer signal is not more whales), and the same cold water on the first content slide and the turn slide proves 'measures but cannot move'. Pair with a boundary-box beat (inputs the instrument has no port for).",
-   "evidence": "Run 13 (A Better Ear Is Not a Recovery): scorer story-art-fusion 9 and flow-critic motif_reads_across_all_9 true both credited the single-gold-call-that-never-multiplies + water-unchanged-S1-vs-S8 + the S8 boundary box as the thesis rendered as design.",
-   "confidence": 0.7,
-   "learned": "2026-07-21",
-   "last_confirmed": "2026-07-21"
-  },
-  {
-   "id": "cartographic-parcel-motif-chassis",
-   "learned": "2026-07-22",
-   "instinct": "For a land/place/decision story, an oblique AK3D hillshade-relief terrain (shared identical seed+camera across the land slides) plus ONE gold cadastral PARCEL polygon that changes STATE every slide is a strong, offline, low-risk continuity chassis, and a top-down section-grid PLAT register is a clean second register for the data/process beats; the ground->paper register shift reads as one composed sequence.",
-   "evidence": "No.14 (07-22) 'The Giveaway, Surveyed' shipped 8.86 with story-art-fusion 9 and variety 9 on exactly this chassis; flow-critic confirmed the parcel state-machine + palette arc read as one filmstrip.",
-   "confidence": 0.75,
-   "last_confirmed": "2026-07-22"
-  },
-  {
-   "id": "land-hero-must-be-real-solid",
-   "learned": "2026-07-22",
-   "instinct": "A flat SVG polygon 'raised plate' does NOT read as raised even with two stacked drop-shadows, and a low-poly AK3D heightfield reads coarse/gamey under zoom; to climb the rendered ladder for a LAND/parcel hero, build the parcel as a REAL extruded solid (visible side face + contact shadow) or apply the parked 2.5D relit-heightfield Sobel form-shading helper. Do not rely on drop-shadow alone.",
-   "evidence": "Two runs capped artwork-craft at 7 on an underbuilt hero: No.13 (07-21) beluga Canvas fallback flat, No.14 (07-22) cadastral plate read flat despite layered drop-shadows (scorer one_sentence_fix both runs).",
-   "confidence": 0.72,
-   "last_confirmed": "2026-07-22"
-  },
-  {
-   "id": "honest-attribution-as-furniture",
-   "learned": "2026-07-22",
-   "instinct": "When the primary notice does not literally state the punchy fact (the DNR notice never printed 'data centers'), render the attribution as on-slide design furniture (a mono chip 'PER THE PROJECT DECISION AND LOCAL COVERAGE') and credit single-source stats on-slide ('AS REPORTED BY ...'); the fact-checker's attributed/dropped flags become visible honesty and the scorer's honesty check passes clean.",
-   "evidence": "No.14 (07-22): fact-checker flagged 'data centers' as attachment/coverage-sourced and '8/639' as single-outlet; rendering both as attribution chips scored honesty pass and insight-density 8.",
-   "confidence": 0.72,
-   "last_confirmed": "2026-07-22"
-  },
-  {
-   "id": "i43",
-   "learned": "2026-07-23",
-   "instinct": "At the Phase 4 dedupe gate, grep the FULL topic/angle/entities text of recent ledger entries for the candidate story's key ENTITIES and NOUNS before committing and before the directors room. Truncated topic-list titles are not enough.",
-   "evidence": "No.15's intended pick (XPRIZE Wildfire autonomous-response finals) was a near-exact dupe of No.5 (2026-07-12, 'First Machine to the Fire'), caught only when a technique-library note referenced the prior deck; the topics-list title had displayed truncated as 'Alaska as the world's proving ground for'. Three treatment-director pitches were wasted before the pivot.",
-   "confidence": 0.85,
-   "last_confirmed": "2026-07-23"
-  },
-  {
-   "id": "i44",
-   "learned": "2026-07-23",
-   "instinct": "For a single-source or thin deck, render the sourcing limit as design: a persistent provenance stamp on every slide, a dedicated 58e evidence-tag turn (SOURCED solid vs NOT-INDEPENDENT dashed), a DEPLOYED-vs-PROPOSED weight and color split, an n=<sample> snapshot stamp on any small-sample data, and a chart that visibly refuses to plot an unverified point.",
-   "evidence": "No.15 'Governed First' rested on one IJCH paper plus a same-team companion; the honesty architecture scored story-art-fusion 9 and drew zero honesty hard-fails, shipping at 8.90.",
-   "confidence": 0.78,
-   "last_confirmed": "2026-07-23"
-  },
-  {
-   "id": "i45",
-   "learned": "2026-07-23",
-   "instinct": "A verified negative-framed metric ('share who had never heard') plotted as a falling line on an adoption or progress slide risks a first-glance decline misread; label the axis AND the trend direction explicitly and boldly, and keep the one real datapoint rather than inventing the positive complement.",
-   "evidence": "No.15 S7 flow-critic flagged the 35%-never-heard falling line as a possible decline misread; fixed with a bold 'awareness rose' arrow label while keeping the single verified point.",
-   "confidence": 0.7,
-   "last_confirmed": "2026-07-23"
-  },
-  {
-   "id": "dedupe-never-tail",
-   "learned": "2026-07-24",
-   "confidence": 0.95,
-   "instinct": "NEVER read dedupe_check.py output with `tail` or `head`: its strongest LIKELY DUPLICATE can print anywhere in the list, and the routine requires reading EVERY LIKELY DUPLICATE in full. Read the whole output and scan by token_jaccard before the directors room.",
-   "evidence": "No.16: dedupe_check flagged No.1 (2026-07-08, same STAK docket ADL 422741, same 500-vs-12 cover) as the TOP match at jaccard 0.279, but I read it with tail -30 and the No.1 line was above the visible window, so I selected a same-docket revisit believing it cleared. Caught only by the scorer. Same failure class as No.15's XPRIZE/No.5 near-dupe."
-  },
-  {
-   "id": "distributed-depth-breaks-ceiling",
-   "learned": "2026-07-24",
-   "confidence": 0.8,
-   "instinct": "To break the chronic artwork-craft=7 flat-hero ceiling, DISTRIBUTE real depth across 4+ slides via reliable CPU means (akrelief 2.5D relit cards/material chips, honest cabinet-extruded parallel bars, SVG-emboss deboss) plus ONE GL akthree hero, and lift rendered machine materials off near-black (dark clay + IBL + colored ambient bounce). The remaining ceiling after that is DEAD LOWER ZONES, fix those next.",
-   "evidence": "No.16: S3 akthree tundra-machine + S4 cabinet bars + S5/S7 akrelief cards + S8 deboss = scorer called it the strongest artwork the series has shipped, hero no longer flat; but artwork-craft still 7 for empty lower thirds on S2/S5/S8/S9."
-  },
-  {
-   "instinct": "qa.py's text-collision check is DOM-ONLY. Any label positioned against Canvas or SVG geometry (a groove edge, a scored outline, a leader rule, a scotch rule) can collide freely and the gate still returns PASS with zero warns. Do not read a green gate as a green deck. Every art-band label must ship on an opaque knockout plate by default, which makes non-collision structural instead of a registration-tuning exercise. Run 2026-07-25 predicted this in its own slide-02 risk flag and then shipped the bug on four slides across two scoring cycles anyway.",
-   "confidence": 0.98,
-   "first_seen": "2026-07-25",
-   "run_dates": [
-    "2026-07-25",
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "A recess viewed obliquely HIDES a band of its own floor equal to the recess depth's screen projection, so drawing a recess's floor and walls unclipped makes every groove read as a raised BLOCK sitting on the surface. Clip all recess interiors to the OPENING polygon. Corollary, and it bites twice: any mark placed at recess depth also projects lower on screen, so a mark near the recess's near edge gets clipped away entirely. Put marks in the far half. Three pixel critics independently reported the inverted read before the cause was found.",
-   "confidence": 0.95,
-   "first_seen": "2026-07-25",
-   "run_dates": [
-    "2026-07-25"
-   ]
-  },
-  {
-   "instinct": "A positioning class and a styling class must never be separable in slide CSS. Run 2026-07-25's .display rule carried left and top but no position:absolute, so every headline collapsed to 0,0 and overprinted its own kicker on six slides at once. Put position:absolute in the same rule as the coordinates it needs, and never rely on a second utility class to make a positioned element positioned.",
-   "confidence": 0.92,
-   "first_seen": "2026-07-25",
-   "run_dates": [
-    "2026-07-25"
-   ]
-  },
-  {
-   "instinct": "Spawn pixel critics only AFTER the storyboard has been reconciled to what actually shipped. Run 2026-07-25 spawned four critics against a pre-reconciliation dossier and roughly a third of their findings were measured against superseded numbers (a camera azimuth, a slab thickness, and label sizes that had all deliberately changed). The false findings cost real triage time and risked masking the true ones.",
-   "confidence": 0.88,
-   "first_seen": "2026-07-25",
-   "run_dates": [
-    "2026-07-25"
-   ]
-  },
-  {
-   "instinct": "A semantic accent needs a lint, not a promise. Run 2026-07-25 bound fireweed to 'the compulsory record and nothing else', then used it on slide 08's six VOLUNTARY candidate positions, so the accent lost its discriminating work. If a colour carries one meaning, enumerate every slide it may appear on in the dossier and check the list before render.",
-   "confidence": 0.82,
-   "first_seen": "2026-07-25",
-   "run_dates": [
-    "2026-07-25"
-   ]
-  },
-  {
-   "instinct": "A fix in one region can delete a feature in another, and only the SEQUENCE eye catches it. Run 2026-07-26 raised slide 4's pull quote plate to clear the progress rail in the pixel round, which buried the slide's lit point underneath it. Machine QA stayed PASS, the pixel critic had already signed off on that slide, and the deck's declared spine went missing at the exact midpoint of the filmstrip until the flow critic found it. After ANY positional fix, re-check the slide's own acceptance checklist, not just the gate that prompted the fix.",
-   "confidence": 0.9,
-   "first_seen": "2026-07-26",
-   "run_dates": [
-    "2026-07-26"
-   ]
-  },
-  {
-   "instinct": "An enumerated data-in-art mapping must be COUNTABLE in the render, not merely present in the geometry. Run 2026-07-26 built a five bell insulator string to encode the pledge's five commitments, and the label plate column occluded the fifth bell, so a reader counted four bells beside a list of five. Machine QA passed. When a count IS the argument, put an explicit count check on the slide's acceptance checklist and have a critic report the number they actually see.",
-   "confidence": 0.88,
-   "first_seen": "2026-07-26",
-   "run_dates": [
-    "2026-07-26"
-   ]
-  },
-  {
-   "instinct": "A slide that prints its own measuring rule must be measured against it before ship. Run 2026-07-26 printed '24 px = 1 MW' and '1.7 px = 1 day' and asked the pixel critics to measure; they confirmed four of five bars within 4 px and both spans within 3 px, and separately caught that the cabinet extrusion adds a constant offset that is invisible on a 600 px bar and a 5x overstatement on a 3.6 px one. Printing a rule is the strongest honesty device available and it only works if somebody checks it.",
-   "confidence": 0.9,
-   "first_seen": "2026-07-26",
-   "run_dates": [
-    "2026-07-26",
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "AKPOST.grade costs about 34 SECONDS on a 2D canvas that has already had a WebGL canvas drawn into it, and about 0.9 seconds on the same canvas before that composite. getImageData is pathologically slow in this headless build once GL pixels have landed. Run 2026-07-29's hero blew the 30s renderReady cap twice and the cause was misread as GL cost (the GL itself measured 96 ms to import, 318 ms to snapshot). GRADE THE 2D ATMOSPHERE FIRST, then composite the GL render on top, which is also correct because three.js already applies ACES tone mapping to its own frame.",
-   "confidence": 0.95,
-   "first_seen": "2026-07-29",
-   "run_dates": [
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "A near-mirror PBR metal (metalness 0.9 to 1.0) renders BLACK when the scene has no bright environment, and AKT.environment's PMREM is expensive. For an editorial object hero on a dark ground, drop metalness to 0.3 to 0.55 and let the material read on DIRECT light instead of on reflections. Also place the key light LATERALLY, not overhead, or the vertical faces of an upright object take almost no diffuse and the whole silhouette goes to void.",
-   "confidence": 0.9,
-   "first_seen": "2026-07-29",
-   "run_dates": [
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "A continuity device that lives at hairline weight is a full-resolution grace note, not a filmstrip mechanism. Run 2026-07-29's hour rail was positionally flawless across all nine slides and perceptually invisible on the contact sheet, so the mono counter was doing all the progress work. The fix is AREA, not precision: fill the traversed portion of the device so the climb accumulates visible mass at 432px. Check every continuity device on the CONTACT SHEET before believing it works.",
-   "confidence": 0.88,
-   "first_seen": "2026-07-29",
-   "run_dates": [
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "Size every plate from the MEASURED string, never from a guessed constant. JetBrains Mono at 24px with 0.10em tracking advances exactly 16.8px per character, but the eye estimates about 14, and a plate hand-sized on that estimate loses roughly 3 characters per 20. Run 2026-07-29 shipped six labels hanging off their own knockouts through two full scoring cycles, including a chip border rule drawn through the 'T' of PERMITS, because every gate was blind to it. Compute plate width as 16.8 x charcount + 2 x padding, or measure with getComputedTextLength.",
-   "confidence": 0.95,
-   "first_seen": "2026-07-29",
-   "run_dates": [
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "A gate that inspects only DOM text cannot see SVG furniture at all, and SVG furniture is where this deck's annotation lives. There are THREE ways to bury an SVG label and the engine now checks all three: spilling past the rect painted under it, being covered by a rect appended after it (SVG has no z-index, only document order), and being composited under an opaque DOM block declared after the whole svg. Fixing the first two exposed the third within one render cycle, so treat this class as a family, never as a single bug.",
-   "confidence": 0.92,
-   "first_seen": "2026-07-29",
-   "run_dates": [
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "When a fix moves a block, re-check what the block USED to clear. Every regression in run 2026-07-29's repair pass was a knock-on: widening a chip pushed it into a legend, raising a plate cut the label above it, moving a source line landed it under the counter, and moving it again landed it on the self-audit annotation. Budget the whole column, not the one element, and re-run the gate after every single move rather than after a batch.",
-   "confidence": 0.9,
-   "first_seen": "2026-07-29",
-   "run_dates": [
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "Under a single strongly coloured key light, two materials separated only by HUE collapse into one material. Run 2026-07-29's hero column was steel below hour 7 and brass above, and under a 0xffb067 sodium key both read as the same amber extrusion, so the deck's wordless thesis did not render. Separate by VALUE and by a physical joint (a proud collar at the seam), not by hue, and verify at 432px before believing the encoding lands. Darkening the second material to force contrast made the whole frame muddier and had to be reverted.",
-   "confidence": 0.85,
-   "first_seen": "2026-07-29",
-   "run_dates": [
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "The Gmail connector will not accept the account-relative 'me' that gmail_draft.py emits, and it will not accept an empty recipient either. Deliver to the documented mailbox (docket@alaskaaihq.com, which is the address the connector already authenticates as, so nothing about where the draft lands or what it sends from changes) and log it. Also: the default payload inlines one data URI per slide and does not fit one create_draft call, so use the script's own --preview-mode remote, which is smallest and therefore least likely to drift from the script's output when the body is retyped into the tool call.",
-   "confidence": 0.9,
-   "first_seen": "2026-07-29",
-   "run_dates": [
-    "2026-07-29"
-   ]
-  },
-  {
-   "instinct": "lerpHex and its cousins return an rgb() string, so nesting a colour helper inside itself feeds rgb(...) into a hex parser, every channel comes back NaN, canvas silently KEEPS THE PREVIOUS fillStyle, and a whole region renders the wrong colour with zero console errors and a clean machine gate. Run 2026-07-30 rendered an ice fog lake pure white this way. Never nest a colour helper; precompute endpoints as hex literals.",
-   "confidence": 0.97,
-   "first_seen": "2026-07-30",
-   "evidence": "run 2026-07-30, carousel No. 20"
-  },
-  {
-   "instinct": "A banded fill that paints each band from its own contour DOWN TO THE FRAME BOTTOM must run light-to-dark, never dark-to-light. Dark-to-light means the last and lightest band covers every band behind it and the whole mass flattens to one value. Run 2026-07-30 shipped its first pass this way and produced exactly the single-value-group defect the run existed to kill, and the machine gate passed it because gates measure geometry, not value.",
-   "confidence": 0.95,
-   "first_seen": "2026-07-30",
-   "evidence": "run 2026-07-30, carousel No. 20"
-  },
-  {
-   "instinct": "A scrim sized by hand cannot track a wrapped text block, so it is the same class of error as a hand-typed plate width. If body copy sits over art, put the knockout ON the text element, where it grows with the copy and where the engine treats it as the text's own plate rather than as a foreign occluder. Run 2026-07-30 lost two render rounds to hand-sized scrims that fell short of their own copy.",
-   "confidence": 0.94,
-   "first_seen": "2026-07-30",
-   "evidence": "run 2026-07-30, carousel No. 20"
-  },
-  {
-   "instinct": "SVG paints ABOVE the DOM, so any full-frame SVG overlay will cross body copy that sits under it. Run 2026-07-30's 278-tick register ran straight through the body text on two slides and the fix was moving the register, not the text. Check every SVG overlay's y against every text block's WRAPPED height before rendering.",
-   "confidence": 0.92,
-   "first_seen": "2026-07-30",
-   "evidence": "run 2026-07-30, carousel No. 20"
-  },
-  {
-   "instinct": "A continuity motif's state changes must survive 432px, because that is where the feed grades them. Run 2026-07-30's register inversion at the deck's hinge was a 25px comb inside a 920px strip and died at thumb size, so three consecutive slides read as the same bar. Design every state change as a SILHOUETTE change, not a detail change.",
-   "confidence": 0.9,
-   "first_seen": "2026-07-30",
-   "evidence": "run 2026-07-30, carousel No. 20"
-  },
-  {
-   "run_date": "2026-07-31",
-   "confidence": 0.9,
-   "instinct": "Generate the art AFTER text layout, from MEASURED label boxes, and multiply lay density to zero inside them with a feathered taper. The stroke is then never generated, so there is nothing for a label to collide with and no plate to size wrong. This is structurally stronger than a knockout plate against the recurring 'text against geometry' hard fail, because qa.py's collision walk is DOM only and canvas ink has no node. Two of the ten slides still needed the padding widened from 14 to 22 px before feathered strokes stopped grazing glyph rings, so measure the padding against a render, do not assume it."
-  },
-  {
-   "run_date": "2026-07-31",
-   "confidence": 0.92,
-   "instinct": "Absolute positions guessed from word counts collide. Every layout number on this deck that was guessed produced a text collision, and every one re-derived from render_report.json's measured boxes held. Place the first pass however you like, then read the measured y and h of every node out of the render report and re-derive the stack from those numbers before the second pass. It is the same discipline as sizing a plate from the measured string, applied to layout."
-  },
-  {
-   "run_date": "2026-07-31",
-   "confidence": 0.88,
-   "instinct": "Body copy goes on the dark table or in a reserved burin field, never on the lit half of a lit surface. Slides 02, 03, 08 and 09 all failed contrast or the art-crossing gate for exactly this reason and all four were fixed by moving the text onto the dark ground rather than by brightening the type. Decide the text ground before the composition, not after."
-  },
-  {
-   "run_date": "2026-07-31",
-   "confidence": 0.85,
-   "instinct": "When two of three treatment directors independently propose a type pairing that has already shipped, the last-two-decks rule is too weak to produce felt variety on its own. Run a full-ledger pairing audit before locking type, and write the novelty claim as a sentence naming which decks used each face, so a future run cannot repeat No.20's false novelty claim."
-  },
-  {
-   "run_date": "2026-08-01",
-   "confidence": 0.93,
-   "instinct": "A GENERATIVE RESERVATION IS ITSELF A DEAD CELL unless it keeps some of the ground's own variation. Blending a text field flat toward one value satisfies the contrast gate and then fails frame_balance for exactly the reason the field exists to prevent. Feather it, damp it to roughly three quarters, anchor it DARKER than the ground, and make the blend darken-only so it can never lift water into a visible lighter box."
-  },
-  {
-   "run_date": "2026-08-01",
-   "confidence": 0.9,
-   "instinct": "Do not CLIP vector strokes out of reserved text fields. It erases the geometry, and on a map that geometry may be the deck's entire thesis (this run lost boroughs and coastline across roughly 40 percent of the state before a critic caught it). Draw everything everywhere, then re-damp only the glyph boxes so the geometry ghosts through instead of vanishing."
-  },
-  {
-   "run_date": "2026-08-01",
-   "confidence": 0.88,
-   "instinct": "A leaf-node filter written as children.length===0 silently EXCLUDES every label containing a <br>, so multi-line labels get no reservation at all. Every label that kept failing the art-crossing-glyphs gate on this run was exactly one of those. Filter on 'every child is a BR' instead."
-  },
-  {
-   "run_date": "2026-08-01",
-   "confidence": 0.85,
-   "instinct": "An Imhof-style contrast rule keyed to elevation will CREATE a dead lower third whenever the projection puts the ranges mid-frame and the flats at the bottom. Check where the high ground actually lands in the frame before choosing the lowland damping floor; the craft rule and the composition gate can point in opposite directions."
-  },
-  {
-   "run_date": "2026-08-01",
-   "confidence": 0.82,
-   "instinct": "Sub-2px marks at low opacity on a near-black field do not survive their own render, let alone 432px. If an encoding is a COUNT of many small things, size and opacity have to be chosen against the thumb, and the field has to be clipped to space that is actually empty at that camera station rather than to a rect that looked empty in the plan."
-  },
-  {
-   "instinct": "An absence has NO magnitude, so never draw a count of zero as a bar, arc, area or radius. Encode PRESENCE instead, at full weight, so the missing thing is a fixed-size hole in a dense field, and print a rule on the slide saying the empty mark has no length. Run 2026-08-02 filled each notice's lane with one lit cell per character of that notice's own verbatim text and the scorer called it the best idea in the deck.",
-   "confidence": 0.93,
-   "first_seen": "2026-08-02"
-  },
-  {
-   "instinct": "Make a palette-divergence claim FALSIFIABLE BEFORE the build and hand the test to the pixel critics, never assert distinctiveness in the storyboard. Runs 2026-07-30 and 2026-08-01 both claimed a distinctive family in prose and both were marked down for landing in the series' default cold arctic navy. Run 2026-08-02 imposed a measurable target (mean ground hue 300 to 340 at 432px, against navy's 210 to 250), told the critics to contradict the plan if the pixels contradicted it, and passed on independent measurement. A claim in a storyboard is not evidence.",
-   "confidence": 0.9,
-   "first_seen": "2026-08-02"
-  },
-  {
-   "instinct": "A declared craft mechanism that runs in code but is not LEGIBLE in the render earns nothing and must not be claimed. Run 2026-08-02's computed TOOTH density falloff (0.25x beyond 380px from the focal point) was its single structural answer to uniform detail; multiple pixel critics and the scorer independently reported it is not visible on any slide, in several cases because the composition gave it nowhere to show. Build ONE proof slide and judge its 432px thumb before committing the other nine.",
-   "confidence": 0.88,
-   "first_seen": "2026-08-02"
-  },
-  {
-   "instinct": "NO MACHINE GATE CAN COUNT CLAIMS. Run 2026-08-02 shipped a render reading 'FIVE STATE POSTINGS' that counted a federal Air Force industry day as a state posting and contradicted another slide in the same deck; qa.py, copy_sync_check and claims_check all passed it and a pixel critic caught it. Any on-slide string that AGGREGATES verified claims into a new number is a fresh factual assertion and must be re-derived from claims.json by hand before it renders.",
-   "confidence": 0.92,
-   "first_seen": "2026-08-02"
-  },
-  {
-   "instinct": "A three-state encoding carried by TEXTURE dies at 432px. Hatching goes sub-pixel and collapses to flat gray, so a 'not read' mark becomes indistinguishable from a 'searched and not found' mark, which turns a scope limit into an unsupported finding. Carry states by SILHOUETTE (open box vs solid block inside a box vs solid fill), keep every mark's bounding box identical so no size encodes a count, and ALWAYS print the words too, because run 2026-08-02 shipped three hachured rows whose 'NOT READ' label was missing and a reader would have parsed them as a sixth searched-and-not-found item.",
-   "confidence": 0.9,
-   "first_seen": "2026-08-02"
-  }
- ]
+  "_spec": {
+    "purpose": "Self-improvement ledger (confidence-scored lessons). Every run's retro appends 1-3 instincts learned from: editor/critic flags, machine QA catches, human edits observed in later Gmail drafts, or performance notes the maintainer adds. Before each run, the orchestrator injects the TOP 5 instincts with confidence >= 0.7 into the directors-room and copy prompts. Confidence rises +0.05 each run that confirms an instinct, falls -0.1 each run that contradicts it. Prune entries below 0.5 confidence that are older than 8 runs.",
+    "entry_schema": {
+      "id": "kebab-slug",
+      "learned": "YYYY-MM-DD",
+      "instinct": "one imperative sentence",
+      "evidence": "what happened that taught this",
+      "confidence": "0.0-1.0",
+      "last_confirmed": "YYYY-MM-DD"
+    }
+  },
+  "entries": [
+    {
+      "id": "compute-3d-composition",
+      "learned": "2026-07-08",
+      "instinct": "Plan every 3D camera with the horizonY arithmetic in ak3d.js before rendering; never eyeball camera placement.",
+      "evidence": "Two consecutive smoke-test terrain renders buried the mountain range in the bottom 15% of frame until the projection math was computed explicitly. | CONFIRMED 2026-07-08: slide 4 planned the low horizon at an explicit y and used parallax planes, not eyeballed camera; monumental result | CONFIRMED 2026-07-22: No.14 terrain camera planned via horizonY arithmetic (cy 405, pitch -0.32), terrain filled the lower field as composed.",
+      "confidence": 0.9,
+      "last_confirmed": "2026-07-22"
+    },
+    {
+      "id": "grain-as-tile",
+      "learned": "2026-07-08",
+      "instinct": "Apply grain as a small repeating tile (AK.grainTile), never a full-frame feTurbulence rect.",
+      "evidence": "Full-frame SVG grain rasterized to a 34MB incompressible bitmap in the printed PDF; the tile version produced 6.7MB. | CONFIRMED 2026-07-08: AK.grainTile used on all 9 slides; PDF 10.7MB, no incompressible full-frame grain | CONFIRMED 2026-07-14: all 8 slides used AK.grainTile tiles, no full-frame feTurbulence; qa clean | CONFIRMED 2026-07-18: AK.grainTile on all 9 slides; vector PDF 3.98MB, no full-frame feTurbulence.",
+      "confidence": 0.99,
+      "last_confirmed": "2026-07-18"
+    },
+    {
+      "id": "machine-qa-is-not-taste",
+      "learned": "2026-07-08",
+      "instinct": "Never treat a machine_qa PASS as composition approval; the pixel critics judge composition, hierarchy, and collision at full size and thumb size.",
+      "evidence": "A slide with the terrain crammed into the bottom 15% and a stat row colliding with the ridge passed every objective gate. | CONFIRMED 2026-07-08: pixel/scorer caught 4 DOM collisions (slide 3 overlap hard fail, slide 8 door graze, slide 9 coastline, slide 2 crowding) that machine_qa PASSED | CONFIRMED 2026-07-09: machine_qa PASSED (WARN) but pixel critics caught the S4 '12 fish' claim being uncountable, the S5 unblurred foreground (DOF), and the S6 dishonest 0-year nub bar -- all composition/honesty, not objective. | CONFIRMED 2026-07-11: critics caught ~10 canvas-vs-DOM overlaps + low-contrast in-section labels that machine_qa PASSED (S2 legend/homes, S3 curve labels, S4 readouts on ochre, S6 SUSPENDED, S7 flag mash, S8 context on ochre). | CONFIRMED 2026-07-13: pixel critics caught a favored honesty panel (S3), a bottle-read turbine (S4), and a strikethrough ledger (S7) that machine_qa PASSED clean. | CONFIRMED 2026-07-14: qa PASS with 0 warnings, but the ship decision rested on the showrunner reading every full-size PNG and the contact sheet for composition | CONFIRMED 2026-07-18: qa PASS 0/0 yet showrunner+pixel critics caught S3 body-vs-readout collision, S4 tight gutter, S6 parchment contrast, S7 label-box overprint, S8 canvas-label routing; composition read by eye and critics, not qa. | CONFIRMED 2026-07-21: qa PASS 0/0 yet pixel critics caught S2 top-heavy dead-lower-band, S4 core metaphor not reading (faint noise band + needle-as-cable), S8 gold leak on input labels, S3 8-line body -- all composition/semantic, invisible to qa.",
+      "confidence": 0.99,
+      "last_confirmed": "2026-07-21"
+    },
+    {
+      "id": "d3-zoom-manual",
+      "learned": "2026-07-08",
+      "instinct": "Zoom a d3 map by scaling a baseline full-state fitExtent and re-translating onto the target point, drawing the coastline STROKE-ONLY; never fitExtent to a small lon/lat bbox polygon.",
+      "evidence": "Slides 2 and 7 first used fitExtent to a bbox polygon and rendered a giant near-black fill disc plus a mis-scaled mini-Alaska with overlapping labels; the manual scale+translate with stroke-only coast fixed both cleanly.",
+      "confidence": 0.8,
+      "last_confirmed": "2026-07-08"
+    },
+    {
+      "id": "verify-body-line-count",
+      "learned": "2026-07-08",
+      "instinct": "Before rendering, sanity-check long serif/body copy line counts against any fixed-position labels, bars, or plates; DOM text overlaps pass machine QA but fail the eye.",
+      "evidence": "Slide 3 body wrapped to 4 lines and overlapped the 'URBAN ALASKA GRID PEAK' bar label (a scorer-caught hard fail); slide 5 quote 4 slid under the Boyle plate. Both passed machine_qa safe-zone checks. | CONFIRMED 2026-07-09: four headline-wrap collisions (S1/S4/S7/S8) all traced to a display headline in a container narrower than its longest line; each machine_qa-FAILED as a text overprint. | CONFIRMED 2026-07-11: S2/S3/S4 body blocks overran their planned line counts into the section; capping max-width so the body ENDS in the sky zone fixed all three. | CONFIRMED 2026-07-18: S3 body overran into the readouts (qa FAILed the safe-zone but the collision was a relayout fix); capping the measure so it ends in the sky zone cleared it. | CONFIRMED 2026-07-21: S3 body wrapped to 8 lines vs a 6-line plan in a narrow column beside the whale; widening the measure + one font step down fixed it.",
+      "confidence": 0.99,
+      "last_confirmed": "2026-07-21"
+    },
+    {
+      "id": "data-decorative-on-leaf",
+      "learned": "2026-07-08",
+      "instinct": "Put data-decorative on the leaf text element (span, b, or the appended SVG <text>), not just the parent div; the QA tiny-text gate does not inherit it.",
+      "evidence": "annot <div data-decorative> still flagged its child <b>/<span> readouts on slides 2/4/7 until the attribute was added to each leaf element.",
+      "confidence": 0.75,
+      "last_confirmed": "2026-07-08"
+    },
+    {
+      "id": "display-headline-fit-full-width",
+      "learned": "2026-07-09",
+      "instinct": "Set a display headline's container to the full width its longest line needs (or drop the size) and verify the rendered line count before shipping; a too-narrow container silently wraps into the body and fails the overprint gate.",
+      "evidence": "S1 (98px in 952px), S4/S7 (78-80px in ~460px), S8 (94px in 920px) each wrapped an extra line into the block below and machine_qa-FAILED as a collision until widened or downsized.",
+      "confidence": 0.8,
+      "last_confirmed": "2026-07-10"
+    },
+    {
+      "id": "budget-the-lower-third",
+      "learned": "2026-07-09",
+      "instinct": "Budget the bottom third of every slide deliberately: a data readout, a caption, an anchor, or an intentional quiet zone -- do not let it default to dead empty space the scorer reads as thin craft.",
+      "evidence": "Scorer (8.83) capped Artwork Craft at 7 partly for 'large empty lower thirds' on several slides (S2, S6, S7, S8) even though every slide passed gates and critics. | CONFIRMED 2026-07-21: pixel critics flagged dead lower ~40% on S2 and S8; lowering/enlarging the diagram and dropping the boundary box filled them.",
+      "confidence": 0.65,
+      "last_confirmed": "2026-07-21"
+    },
+    {
+      "instinct": "Canvas-drawn art can overprint DOM text without tripping qa.py (it only checks DOM line boxes); route every canvas path/arc/diagram around the text blocks at PLAN time and have pixel critics explicitly check canvas-vs-text collision.",
+      "confidence": 0.87,
+      "born": "2026-07-10",
+      "evidence": "S3 flightpath arc crossed two body lines and S4 orbit crossed the headline; machine QA passed both, pixel critics caught both. | Re-confirmed run 5 (S5 loop arcs vs block plates; S8 body vs closed ring) both caught by pixel/flow critics, invisible to qa.py."
+    },
+    {
+      "instinct": "Give the deck's continuity motif explicit connective tissue on EVERY slide (enter-left/exit-right at low alpha), not just its transformation states; intermittent motifs read as separate images.",
+      "confidence": 0.75,
+      "born": "2026-07-10",
+      "evidence": "Flow critic: conductor trace read on only ~6 of 9 frames until S3/S6/S7 connective strokes were added."
+    },
+    {
+      "instinct": "Keep top-strip kickers short (<=18 chars) when a right-aligned readout shares the row; long kickers visually abut the readout even when boxes do not intersect.",
+      "confidence": 0.7,
+      "born": "2026-07-10",
+      "evidence": "S2/S7/S8 kickers crowded the readout at full width and were shortened."
+    },
+    {
+      "instinct": "Any in-section DOM readout or canvas label over a light strata/ochre band must ride an explicit dark plate (CSS background plate for DOM, canvas knockout rect for canvas text); light mono on ochre measured ~1.5:1 and failed the eye though qa.py PASSED.",
+      "confidence": 0.8,
+      "born": "2026-07-11",
+      "evidence": "Pixel critics failed S4 readouts, S8 context line, S3 curve labels, S6 SUSPENDED tag for contrast on the warm ochre band; a .plate-dark CSS class + canvas knockout chips fixed every one."
+    },
+    {
+      "instinct": "Cap each body block's max-width so it resolves to at most its planned line count and ENDS inside the sky zone (above the section art) at PLAN time, then verify against the surface line; bodies silently overrun into the canvas art region and collide (qa cannot see canvas-vs-text).",
+      "confidence": 0.75,
+      "born": "2026-07-11",
+      "evidence": "S2 (4 lines vs 3), S3, S4 (6 lines) each overran into homes/labels; widening the measure so the body ends by ~y640 cleared the collisions."
+    },
+    {
+      "instinct": "For a state-change motif carried by ONE object (valve open->shut, switch on->off), change the object's GEOMETRY unmistakably (an amber lock-bar across the valve hub), not just a rotation; a subtle rotation of a radial/symmetric object reads identical at 432px.",
+      "confidence": 0.7,
+      "born": "2026-07-11",
+      "evidence": "Flow critic: the 8-spoke valve looked near-identical rotated; the open->shut turn relied entirely on the SUSPENDED tag until an amber lock-bar across the hub made 'shut' read at thumb."
+    },
+    {
+      "instinct": "A discrete-state motif must show its progress with an EXPLICIT quantized cue (a fraction like N/4, or clearly dim-vs-bright segments), not brightness alone; faint-cyan-vs-bright-cyan arc increments read as a static logo at corner/thumb size (flow critic, run 5).",
+      "confidence": 0.8,
+      "born": "2026-07-12",
+      "evidence": "Run 5's Autonomy Ring: per-stage arc increments were illegible until unlit arcs were made gray and an explicit N/4 label was added under the ring."
+    },
+    {
+      "instinct": "When two warm elements must read as the SAME encoding (e.g. two 'Alaska = fire' bars), pin them to one shared token and verify AFTER akpost; a yellowish orange (#FF6A2C, high green channel) drifts toward gold under the grade and both clashes with the split bar and strains the gold budget. Use a redder fire-orange (#E8531F) for on-slide fire that must stay clearly non-gold.",
+      "confidence": 0.75,
+      "born": "2026-07-12",
+      "evidence": "Run 5 slide 3: #FF6A2C lit ISOTYPE bars read gold after grade; #E8531F matched the split bar and cleared the gold budget."
+    },
+    {
+      "instinct": "A rendered akthree object hero reads as a flat blob at thumb unless a warm RIM light (opposite the key) separates it from the background; a pure backlit silhouette de-risks lumpiness but loses recognizability. Add a low rim from the key-light direction and slightly enlarge so the object's profile (rotors/arms) resolves.",
+      "confidence": 0.75,
+      "born": "2026-07-12",
+      "evidence": "Run 5 slide 6: backlit-only drone read as a smear (flow critic); adding a 1.7-intensity warm rim + scale 1.15->1.42 made it read as a quadcopter."
+    },
+    {
+      "id": "equalize-honesty-panels",
+      "learned": "2026-07-13",
+      "instinct": "On a two-source honesty/firewall slide (an attributed third-party claim vs the primary source's own words), give BOTH panels identical visual weight -- same top, min-height, plate opacity, and accent-glyph treatment. A deliberate y-offset or size difference reads as favoritism and inverts the slide's honesty purpose.",
+      "evidence": "Run 6 S3: the left panel (the News-Miner's data-center demand line) rendered larger/brighter than the right (GVEA's own 'higher load' words); the pixel critic flagged the imbalance as favoring the attributed framing. Equal tops + min-height + matched quote glyphs fixed it.",
+      "confidence": 0.8
+    },
+    {
+      "id": "render-object-text-scrim",
+      "learned": "2026-07-13",
+      "instinct": "When DOM text must share a slide with a full-bleed GPU/akthree render, guarantee legibility with a Deep-Sea-Scrim DOM gradient (dark to transparent) behind the text column, layered above the canvas -- not text-shadow, and not by shrinking the object off its composition. text-shadow alone fails over bright specular metal.",
+      "evidence": "Run 6 S4: body copy over the rendered LM6000's steel dome dropped below 4.5:1 (pixel-critic BLOCKER) despite a text-shadow; a left-column dark-to-transparent scrim div made it fully legible while keeping the hero object big.",
+      "confidence": 0.75
+    },
+    {
+      "id": "label-box-safezone",
+      "learned": "2026-07-13",
+      "instinct": "Fixed-width, centered in-scene label DIVs trip the safe-zone gate on their BOX edges even when the glyphs sit well inside the margin. Size in-scene label containers to content (white-space:nowrap + translateX(-50%)) so the box, not just the text, stays within the 80px margins.",
+      "evidence": "Run 6 S2: a 220px-wide centered node-label box at left:815 pushed its right edge past the 1000px safe margin though '2ND UNIT' was short and centered; switching to content-width nowrap boxes cleared the warn.",
+      "confidence": 0.7
+    },
+    {
+      "id": "solo-degraded-run",
+      "learned": "2026-07-14",
+      "instinct": "Two separate rules. (1) Subagent spawning is bounded and showrunner-only (NON-NEGOTIABLE 7): only the showrunner spawns the fixed planned set, subagents are leaf workers that never spawn their own subagents, and never fan out beyond the plan on your own initiative (an agent once CHOSE, with nothing failing, to spawn ~20 extra agents and burned tokens). (2) On a subagent FAILURE, respawn only the same failed agent with about a 3-attempt cap; WAIT only when the cause is a usage/rate/limit error, then resume the full pipeline; for any other failure just respawn and continue.",
+      "evidence": "Run 2026-07-14: all six scouts plus every other subagent died on 'weekly limit resets 5pm UTC'; main-loop WebSearch/WebFetch and Gmail/GitHub MCP kept working; the showrunner ran all 14 phases solo and shipped Carousel No. 7 at 8.95. | REVERSED 2026-07-14 by maintainer directive: no more degraded solo runs; wait for the usage-window reset and run the full pipeline. The 07-14 solo run was the exception that prompted the rule, not the pattern to repeat. | REFINED 2026-07-15 by maintainer: wait only when the cause is a usage limit; otherwise just respawn the failed agent. The original guard was to stop a runaway that spawned ~20 subagents for no reason, not to make every failure a wait. | CORRECTED 2026-07-15: the ~20-agent runaway was an agent spawning agents on its own volition, NOT a failure cascade, so the fan-out cap is a standalone NON-NEGOTIABLE (spawning is bounded and showrunner-only), separate from failure handling.",
+      "confidence": 0.88,
+      "last_confirmed": "2026-07-15"
+    },
+    {
+      "id": "fixed-line-continuity",
+      "learned": "2026-07-14",
+      "instinct": "A single continuity line drawn at an identical fixed y on every slide (a waterline, horizon, or datum) is a very strong, low-risk continuity device: it reads instantly on the contact sheet, carries different local meaning per slide while staying one system, and needs no GL. Pair it with one recurring quantized motif (sonar rings, ticks) for a second device.",
+      "evidence": "Run 2026-07-14: waterline at y=812 across all 8 slides + sonar rings gave an unmistakable one-composed-sequence read on the contact sheet at zero rendering risk; qa PASS with 0 warnings.",
+      "confidence": 0.72,
+      "last_confirmed": "2026-07-14"
+    },
+    {
+      "id": "confidence-meter-honesty-motif",
+      "learned": "2026-07-15",
+      "instinct": "For a funded-but-unproven story, make a corner CONFIDENCE METER (or equivalent state readout) that evolves per beat and NEVER lies to 100% the deck's continuity motif; the refusal to resolve IS the honesty argument and reads instantly across the contact sheet.",
+      "evidence": "Run 8 (The Uncomputed Ground): PROSPECTIVITY 0% COMPUTED -> MODEL NOT BUILT -> MODEL TBD -> SITES NAMED 1 -> WATCH THE MILESTONES carried the honest thesis; the flow-critic named it a device that reads as one instrument tracking one story.",
+      "confidence": 0.72,
+      "last_confirmed": "2026-07-15"
+    },
+    {
+      "id": "truth-color-code",
+      "learned": "2026-07-15",
+      "instinct": "Assign a strict two-color TRUTH CODE (gold = real/committed/confirmed only; a cool phantom color = promise/unbuilt/conditional) and apply it every slide so color does semantic argument, not decoration; verify the real color lands exactly where something is actually real (e.g. gold hits the map exactly once, at the one named site).",
+      "evidence": "Run 8: gold = committed money / one named site / Polaris only; phantom-blue = the AI sentence, the NO MODEL/DATASET/SOFTWARE/SITE ledger, the $160M milestone ceiling. Both pixel and flow critics praised the consistent semantic color; scorer story-art-fusion 9.",
+      "confidence": 0.72,
+      "last_confirmed": "2026-07-15"
+    },
+    {
+      "id": "relief-depth-not-just-grade",
+      "learned": "2026-07-15",
+      "instinct": "A graded 2D relief map ships and fuses story well, but a bare graded silhouette with a grid overlay reads FLAT and caps artwork-craft; when the map is the hero, invest in genuine multiplane depth (directional hillshade with real contrast, atmospheric fade, interior texture) or climb the rendered ladder. Argued-flat clears the bar but leaves craft points on the table.",
+      "evidence": "Run 8 scorer put artwork-craft at 7.5 (weakest criterion), one_sentence_fix was exactly give the relief plates genuine multiplane depth instead of a graded 2D map with a grid overlay. Total still shipped at 8.78.",
+      "confidence": 0.6,
+      "last_confirmed": "2026-07-15"
+    },
+    {
+      "id": "honesty-quarantine-as-design",
+      "learned": "2026-07-17",
+      "instinct": "When a story's real 'AI' is narrow, render the AI-vs-human split EXPLICITLY as design: a dedicated equal-panels ledger (what is machine learning vs what is human-read) plus a standing PILOT/HUMAN tag on the rendered hero and NO invented accuracy percentages. The modesty becomes the deck's intellectual spine, not a hedge, and scores story-art fusion + honesty high. Lineage: No.2 UNPROVEN cell, No.5 confidence meter.",
+      "confidence": 0.8
+    },
+    {
+      "id": "isotype-neutral-not-accent",
+      "learned": "2026-07-17",
+      "instinct": "ISOTYPE figure/quantity fields must use a NEUTRAL fill (slate/parchment); never color the whole crowd in the accent (gold/amber). If everything is gold, gold stops signaling meaning AND the one highlighted item loses its distinction. Keep only the singled-out element warm/haloed. A pixel critic caught all 12 trainees rendered gold on S4.",
+      "confidence": 0.78
+    },
+    {
+      "id": "ak3d-terrain-hero-resolves-flat",
+      "learned": "2026-07-17",
+      "instinct": "An AK3D software-3D heightfield valley finished with an akpost thermal grade genuinely climbs the rendered ladder (reads as real dimensional relief, resolving the chronic flat-hero weakness) and is a reliable no-GL alternative to akthree for LANDSCAPE heroes. Two framing rules learned the hard way: brighten the valley floor (a near-black floor reads as a dead void) and raise the horizon (small cy / lower pitch magnitude) so terrain fills the lower half, not a thin band under a dead mid-zone.",
+      "confidence": 0.75
+    },
+    {
+      "id": "iso-wiring-diagram-continuity",
+      "learned": "2026-07-18",
+      "instinct": "For a systems / infrastructure / on-grid-vs-off-grid ARGUMENT deck, a shared isometric world (fixed upper-left light, three-face shading) plus ONE conduit motif that changes SHAPE every slide (cut -> junction -> severed -> snap-live -> fork -> baseline -> dormant -> solid-vs-dashed -> sealed) with a gold progress tick and edge-tease is a strong, low-risk, offline continuity chassis that reads as one composed sequence on the contact sheet.",
+      "evidence": "Run 10: flow-critic called the conduit continuity 'strong, reads cleanly left-to-right', sequence_reads_as_one true, verdict ship; the deck diverged hard from the last-4 heroes and scored 8.90.",
+      "confidence": 0.72,
+      "last_confirmed": "2026-07-18"
+    },
+    {
+      "id": "iso-focal-node-needs-raised-base",
+      "learned": "2026-07-18",
+      "instinct": "An isometric SCHEMATIC hero (a fork/pivot/junction) still scores as FLAT artwork-craft unless the focal node is a genuinely RAISED 3D object (an iso pedestal/three-face base + a real contact shadow, not just a flat gold disc) AND the DOF context grid is PRESENT enough to read; a blurred grid at low opacity 'barely registers' and the eye reads a flat two-arrow diagram. Give the one designated depth-showcase slide a dimensional node next iso deck.",
+      "evidence": "Run 10 scorer: artwork-craft 7 (weakest), one_sentence_fix was exactly to give the S5 fork hero real dimensional depth; the flat gold disc + faint blurred grid read as a schematic despite the deck's iso chassis. S3/S4 (which used raised slabs/boxes + cast shadows) read dimensional; S5 (disc only) did not.",
+      "confidence": 0.6
+    },
+    {
+      "id": "dom-el-referenced-before-it-exists",
+      "learned": "2026-07-19",
+      "instinct": "A classic (non-module) <script> in the slide body runs at parse time, BEFORE any element placed after it exists. renderReady code that does getElementById on a later-in-body div (e.g. the grain overlay) gets null and the whole slide throws. Put every element the art script touches (grain overlay, canvas) BEFORE the scripts, or use a type=module script (deferred to after parse).",
+      "evidence": "Run 2026-07-19 first render: 8 of 9 slides FAILED with 'Cannot read properties of null (reading style)' at the grain-div lookup; the only survivor was the type=module akthree slide. Moving the grain div above the scripts fixed all 8.",
+      "confidence": 0.9
+    },
+    {
+      "id": "never-canvas-fillText-for-labels",
+      "learned": "2026-07-19",
+      "instinct": "Never set meaningful label text with cx.fillText on canvas. Canvas text rasterizes in the vector PDF, is invisible to the LinkedIn ranker and accessibility, is absent from render_report text_nodes, and therefore FAILS copy_sync_check. Set every label in DOM or SVG; reserve canvas for art only.",
+      "evidence": "Run 2026-07-19: S7 loop labels and S8 annotations drawn with fillText tripped copy_sync_check (authored strings not found in render) and would have shipped as raster text in the PDF; converting them to DOM divs fixed both.",
+      "confidence": 0.88
+    },
+    {
+      "id": "inline-svg-needs-display-block",
+      "learned": "2026-07-19",
+      "instinct": "An inline <svg> appended into a positioned div carries a baseline line-box that pushes body scrollHeight past 1350 and trips render.py body_overflow (a hard fail), even with body overflow hidden. Add '#map svg { display:block }' (or display:block on any appended SVG layer) on every d3/SVG map slide.",
+      "evidence": "Run 2026-07-19: the two globe slides (S1, S9) reported body_overflow=true until display:block was added to the appended svg; the demo cartography slide already had this rule and I had omitted it.",
+      "confidence": 0.85
+    },
+    {
+      "id": "policy-deck-writing-surface-substrate",
+      "learned": "2026-07-20",
+      "instinct": "For a text/policy/education deck that risks flat craft, use a shared writing-surface substrate (a ruled gradebook/ledger page) plus ONE evolving object motif (a pencil) that changes STATE every slide and whose length encodes a countdown, with a single rendered object hero; it reads as one composed film, keeps the motif on every slide, and is fully offline.",
+      "evidence": "Run 12 (Written in Pencil): the gradebook-page + evolving-pencil chassis scored story-art-fusion 8 and flow SHIP sequence-reads-as-one 8.3; total 8.55. The flow-critic initially flagged the motif dropping out on the two non-pencil slides (S4/S6), fixed by adding the pencil there.",
+      "confidence": 0.7,
+      "last_confirmed": "2026-07-20"
+    },
+    {
+      "id": "dark-fixtures-on-paper-slides",
+      "learned": "2026-07-20",
+      "instinct": "On lit-cream/paper slides, brand FIXTURES that are normally gold or light (the mono counter, coords, site line) drop to ~1.5:1 and read as invisible furniture; set the counter/labels to a dark graphite or brown on paper slides and keep gold only for the deliberate accent (the Polaris icon, a seal). qa.py passes them (data-decorative) but the scorer dings legibility.",
+      "evidence": "Run 12: the S5 hero and S6 card counters rendered gold-on-cream ~1.5:1 (scorer flagged, legibility 7); darkened to graphite before ship. Machine QA never failed them.",
+      "confidence": 0.72,
+      "last_confirmed": "2026-07-20"
+    },
+    {
+      "id": "hero-object-needs-contrasting-functional-detail",
+      "learned": "2026-07-20",
+      "instinct": "An akthree object hero still reads as a monochrome gold/plastic rod unless its STORY-CRITICAL functional detail is a distinct contrasting material (a dark graphite writing tip actually contacting a drawn line), because a warm rim over a single-material barrel gilds the whole object. Give the one designated hero its key detail in a contrasting material and place it on the thing it acts on, not just good lighting.",
+      "evidence": "Run 12 S5 pencil: pixel + scorer both read it as slightly 'gold rod'; darkening the nib and adding a half-written line under the tip helped but the barrel still gilds under the rim. Logged as the artwork-craft growth edge (7).",
+      "confidence": 0.6
+    },
+    {
+      "id": "akthree-transparent-subject-snapshot-false-negative",
+      "learned": "2026-07-21",
+      "instinct": "A rendered akthree object composited over a TRANSPARENT background (alpha renderer, subject filling under ~half the frame) makes AKT.snapshot's black-frame sentinel false-negative, because most of its 24 random samples hit empty pixels, so .ok reads false and the slide silently drops to its Canvas fallback. Either render the akthree subject on an OPAQUE in-palette background and composite the whole frame, or design the 2D illustration to BE the hero; do not rely on transparent-bg akthree for a small foreground subject.",
+      "evidence": "Run 13 S3 beluga: alpha-composited akthree whale snapshot returned ok=false every render (transparent water), forcing the Canvas fallback, which shipped and scored the deck's weakest criterion (artwork-craft 7, 'reads flat').",
+      "confidence": 0.7,
+      "last_confirmed": "2026-07-21"
+    },
+    {
+      "id": "audit-accent-leak-before-render",
+      "instinct": "Reserve the deck's single warm accent for its ONE semantic meaning and audit EVERY secondary label/kicker/readout for accent-color leak BEFORE render; the recurring pixel-critic catch is the accent hue bleeding onto elements that are not the accent (a gold noise readout, gold threat labels, a gold kicker) which inverts or dilutes the semantics. Cool everything that is not the accent.",
+      "evidence": "Run 13: pixel critics caught gold on the S4 SHIP NOISE readout (noise is not the hero color), the S8 SHIP NOISE/PREY/HABITAT input labels, and the S1 kicker, all diluting the 'gold = the whale's call' rule; recoloring them cool restored the single-accent read.",
+      "confidence": 0.72,
+      "learned": "2026-07-21",
+      "last_confirmed": "2026-07-21"
+    },
+    {
+      "id": "never-multiplying-motif-as-honesty",
+      "instinct": "For a 'better instrument, not a fix' story, a single evolving motif-point that NEVER multiplies plus a visibly UNCHANGED environment across the deck argues the thesis better than any caption: one call, never a chorus (a clearer signal is not more whales), and the same cold water on the first content slide and the turn slide proves 'measures but cannot move'. Pair with a boundary-box beat (inputs the instrument has no port for).",
+      "evidence": "Run 13 (A Better Ear Is Not a Recovery): scorer story-art-fusion 9 and flow-critic motif_reads_across_all_9 true both credited the single-gold-call-that-never-multiplies + water-unchanged-S1-vs-S8 + the S8 boundary box as the thesis rendered as design.",
+      "confidence": 0.7,
+      "learned": "2026-07-21",
+      "last_confirmed": "2026-07-21"
+    },
+    {
+      "id": "cartographic-parcel-motif-chassis",
+      "learned": "2026-07-22",
+      "instinct": "For a land/place/decision story, an oblique AK3D hillshade-relief terrain (shared identical seed+camera across the land slides) plus ONE gold cadastral PARCEL polygon that changes STATE every slide is a strong, offline, low-risk continuity chassis, and a top-down section-grid PLAT register is a clean second register for the data/process beats; the ground->paper register shift reads as one composed sequence.",
+      "evidence": "No.14 (07-22) 'The Giveaway, Surveyed' shipped 8.86 with story-art-fusion 9 and variety 9 on exactly this chassis; flow-critic confirmed the parcel state-machine + palette arc read as one filmstrip.",
+      "confidence": 0.75,
+      "last_confirmed": "2026-07-22"
+    },
+    {
+      "id": "land-hero-must-be-real-solid",
+      "learned": "2026-07-22",
+      "instinct": "A flat SVG polygon 'raised plate' does NOT read as raised even with two stacked drop-shadows, and a low-poly AK3D heightfield reads coarse/gamey under zoom; to climb the rendered ladder for a LAND/parcel hero, build the parcel as a REAL extruded solid (visible side face + contact shadow) or apply the parked 2.5D relit-heightfield Sobel form-shading helper. Do not rely on drop-shadow alone.",
+      "evidence": "Two runs capped artwork-craft at 7 on an underbuilt hero: No.13 (07-21) beluga Canvas fallback flat, No.14 (07-22) cadastral plate read flat despite layered drop-shadows (scorer one_sentence_fix both runs).",
+      "confidence": 0.72,
+      "last_confirmed": "2026-07-22"
+    },
+    {
+      "id": "honest-attribution-as-furniture",
+      "learned": "2026-07-22",
+      "instinct": "When the primary notice does not literally state the punchy fact (the DNR notice never printed 'data centers'), render the attribution as on-slide design furniture (a mono chip 'PER THE PROJECT DECISION AND LOCAL COVERAGE') and credit single-source stats on-slide ('AS REPORTED BY ...'); the fact-checker's attributed/dropped flags become visible honesty and the scorer's honesty check passes clean.",
+      "evidence": "No.14 (07-22): fact-checker flagged 'data centers' as attachment/coverage-sourced and '8/639' as single-outlet; rendering both as attribution chips scored honesty pass and insight-density 8.",
+      "confidence": 0.72,
+      "last_confirmed": "2026-07-22"
+    },
+    {
+      "id": "i43",
+      "learned": "2026-07-23",
+      "instinct": "At the Phase 4 dedupe gate, grep the FULL topic/angle/entities text of recent ledger entries for the candidate story's key ENTITIES and NOUNS before committing and before the directors room. Truncated topic-list titles are not enough.",
+      "evidence": "No.15's intended pick (XPRIZE Wildfire autonomous-response finals) was a near-exact dupe of No.5 (2026-07-12, 'First Machine to the Fire'), caught only when a technique-library note referenced the prior deck; the topics-list title had displayed truncated as 'Alaska as the world's proving ground for'. Three treatment-director pitches were wasted before the pivot.",
+      "confidence": 0.85,
+      "last_confirmed": "2026-07-23"
+    },
+    {
+      "id": "i44",
+      "learned": "2026-07-23",
+      "instinct": "For a single-source or thin deck, render the sourcing limit as design: a persistent provenance stamp on every slide, a dedicated 58e evidence-tag turn (SOURCED solid vs NOT-INDEPENDENT dashed), a DEPLOYED-vs-PROPOSED weight and color split, an n=<sample> snapshot stamp on any small-sample data, and a chart that visibly refuses to plot an unverified point.",
+      "evidence": "No.15 'Governed First' rested on one IJCH paper plus a same-team companion; the honesty architecture scored story-art-fusion 9 and drew zero honesty hard-fails, shipping at 8.90.",
+      "confidence": 0.78,
+      "last_confirmed": "2026-07-23"
+    },
+    {
+      "id": "i45",
+      "learned": "2026-07-23",
+      "instinct": "A verified negative-framed metric ('share who had never heard') plotted as a falling line on an adoption or progress slide risks a first-glance decline misread; label the axis AND the trend direction explicitly and boldly, and keep the one real datapoint rather than inventing the positive complement.",
+      "evidence": "No.15 S7 flow-critic flagged the 35%-never-heard falling line as a possible decline misread; fixed with a bold 'awareness rose' arrow label while keeping the single verified point.",
+      "confidence": 0.7,
+      "last_confirmed": "2026-07-23"
+    },
+    {
+      "id": "dedupe-never-tail",
+      "learned": "2026-07-24",
+      "confidence": 0.95,
+      "instinct": "NEVER read dedupe_check.py output with `tail` or `head`: its strongest LIKELY DUPLICATE can print anywhere in the list, and the routine requires reading EVERY LIKELY DUPLICATE in full. Read the whole output and scan by token_jaccard before the directors room.",
+      "evidence": "No.16: dedupe_check flagged No.1 (2026-07-08, same STAK docket ADL 422741, same 500-vs-12 cover) as the TOP match at jaccard 0.279, but I read it with tail -30 and the No.1 line was above the visible window, so I selected a same-docket revisit believing it cleared. Caught only by the scorer. Same failure class as No.15's XPRIZE/No.5 near-dupe."
+    },
+    {
+      "id": "distributed-depth-breaks-ceiling",
+      "learned": "2026-07-24",
+      "confidence": 0.8,
+      "instinct": "To break the chronic artwork-craft=7 flat-hero ceiling, DISTRIBUTE real depth across 4+ slides via reliable CPU means (akrelief 2.5D relit cards/material chips, honest cabinet-extruded parallel bars, SVG-emboss deboss) plus ONE GL akthree hero, and lift rendered machine materials off near-black (dark clay + IBL + colored ambient bounce). The remaining ceiling after that is DEAD LOWER ZONES, fix those next.",
+      "evidence": "No.16: S3 akthree tundra-machine + S4 cabinet bars + S5/S7 akrelief cards + S8 deboss = scorer called it the strongest artwork the series has shipped, hero no longer flat; but artwork-craft still 7 for empty lower thirds on S2/S5/S8/S9."
+    },
+    {
+      "instinct": "qa.py's text-collision check is DOM-ONLY. Any label positioned against Canvas or SVG geometry (a groove edge, a scored outline, a leader rule, a scotch rule) can collide freely and the gate still returns PASS with zero warns. Do not read a green gate as a green deck. Every art-band label must ship on an opaque knockout plate by default, which makes non-collision structural instead of a registration-tuning exercise. Run 2026-07-25 predicted this in its own slide-02 risk flag and then shipped the bug on four slides across two scoring cycles anyway.",
+      "confidence": 0.98,
+      "first_seen": "2026-07-25",
+      "run_dates": [
+        "2026-07-25",
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "A recess viewed obliquely HIDES a band of its own floor equal to the recess depth's screen projection, so drawing a recess's floor and walls unclipped makes every groove read as a raised BLOCK sitting on the surface. Clip all recess interiors to the OPENING polygon. Corollary, and it bites twice: any mark placed at recess depth also projects lower on screen, so a mark near the recess's near edge gets clipped away entirely. Put marks in the far half. Three pixel critics independently reported the inverted read before the cause was found.",
+      "confidence": 0.95,
+      "first_seen": "2026-07-25",
+      "run_dates": [
+        "2026-07-25"
+      ]
+    },
+    {
+      "instinct": "A positioning class and a styling class must never be separable in slide CSS. Run 2026-07-25's .display rule carried left and top but no position:absolute, so every headline collapsed to 0,0 and overprinted its own kicker on six slides at once. Put position:absolute in the same rule as the coordinates it needs, and never rely on a second utility class to make a positioned element positioned.",
+      "confidence": 0.92,
+      "first_seen": "2026-07-25",
+      "run_dates": [
+        "2026-07-25"
+      ]
+    },
+    {
+      "instinct": "Spawn pixel critics only AFTER the storyboard has been reconciled to what actually shipped. Run 2026-07-25 spawned four critics against a pre-reconciliation dossier and roughly a third of their findings were measured against superseded numbers (a camera azimuth, a slab thickness, and label sizes that had all deliberately changed). The false findings cost real triage time and risked masking the true ones.",
+      "confidence": 0.88,
+      "first_seen": "2026-07-25",
+      "run_dates": [
+        "2026-07-25"
+      ]
+    },
+    {
+      "instinct": "A semantic accent needs a lint, not a promise. Run 2026-07-25 bound fireweed to 'the compulsory record and nothing else', then used it on slide 08's six VOLUNTARY candidate positions, so the accent lost its discriminating work. If a colour carries one meaning, enumerate every slide it may appear on in the dossier and check the list before render.",
+      "confidence": 0.82,
+      "first_seen": "2026-07-25",
+      "run_dates": [
+        "2026-07-25"
+      ]
+    },
+    {
+      "instinct": "A fix in one region can delete a feature in another, and only the SEQUENCE eye catches it. Run 2026-07-26 raised slide 4's pull quote plate to clear the progress rail in the pixel round, which buried the slide's lit point underneath it. Machine QA stayed PASS, the pixel critic had already signed off on that slide, and the deck's declared spine went missing at the exact midpoint of the filmstrip until the flow critic found it. After ANY positional fix, re-check the slide's own acceptance checklist, not just the gate that prompted the fix.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-26",
+      "run_dates": [
+        "2026-07-26"
+      ]
+    },
+    {
+      "instinct": "An enumerated data-in-art mapping must be COUNTABLE in the render, not merely present in the geometry. Run 2026-07-26 built a five bell insulator string to encode the pledge's five commitments, and the label plate column occluded the fifth bell, so a reader counted four bells beside a list of five. Machine QA passed. When a count IS the argument, put an explicit count check on the slide's acceptance checklist and have a critic report the number they actually see.",
+      "confidence": 0.88,
+      "first_seen": "2026-07-26",
+      "run_dates": [
+        "2026-07-26"
+      ]
+    },
+    {
+      "instinct": "A slide that prints its own measuring rule must be measured against it before ship. Run 2026-07-26 printed '24 px = 1 MW' and '1.7 px = 1 day' and asked the pixel critics to measure; they confirmed four of five bars within 4 px and both spans within 3 px, and separately caught that the cabinet extrusion adds a constant offset that is invisible on a 600 px bar and a 5x overstatement on a 3.6 px one. Printing a rule is the strongest honesty device available and it only works if somebody checks it.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-26",
+      "run_dates": [
+        "2026-07-26",
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "AKPOST.grade costs about 34 SECONDS on a 2D canvas that has already had a WebGL canvas drawn into it, and about 0.9 seconds on the same canvas before that composite. getImageData is pathologically slow in this headless build once GL pixels have landed. Run 2026-07-29's hero blew the 30s renderReady cap twice and the cause was misread as GL cost (the GL itself measured 96 ms to import, 318 ms to snapshot). GRADE THE 2D ATMOSPHERE FIRST, then composite the GL render on top, which is also correct because three.js already applies ACES tone mapping to its own frame.",
+      "confidence": 0.95,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "A near-mirror PBR metal (metalness 0.9 to 1.0) renders BLACK when the scene has no bright environment, and AKT.environment's PMREM is expensive. For an editorial object hero on a dark ground, drop metalness to 0.3 to 0.55 and let the material read on DIRECT light instead of on reflections. Also place the key light LATERALLY, not overhead, or the vertical faces of an upright object take almost no diffuse and the whole silhouette goes to void.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "A continuity device that lives at hairline weight is a full-resolution grace note, not a filmstrip mechanism. Run 2026-07-29's hour rail was positionally flawless across all nine slides and perceptually invisible on the contact sheet, so the mono counter was doing all the progress work. The fix is AREA, not precision: fill the traversed portion of the device so the climb accumulates visible mass at 432px. Check every continuity device on the CONTACT SHEET before believing it works.",
+      "confidence": 0.88,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "Size every plate from the MEASURED string, never from a guessed constant. JetBrains Mono at 24px with 0.10em tracking advances exactly 16.8px per character, but the eye estimates about 14, and a plate hand-sized on that estimate loses roughly 3 characters per 20. Run 2026-07-29 shipped six labels hanging off their own knockouts through two full scoring cycles, including a chip border rule drawn through the 'T' of PERMITS, because every gate was blind to it. Compute plate width as 16.8 x charcount + 2 x padding, or measure with getComputedTextLength.",
+      "confidence": 0.95,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "A gate that inspects only DOM text cannot see SVG furniture at all, and SVG furniture is where this deck's annotation lives. There are THREE ways to bury an SVG label and the engine now checks all three: spilling past the rect painted under it, being covered by a rect appended after it (SVG has no z-index, only document order), and being composited under an opaque DOM block declared after the whole svg. Fixing the first two exposed the third within one render cycle, so treat this class as a family, never as a single bug.",
+      "confidence": 0.92,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "When a fix moves a block, re-check what the block USED to clear. Every regression in run 2026-07-29's repair pass was a knock-on: widening a chip pushed it into a legend, raising a plate cut the label above it, moving a source line landed it under the counter, and moving it again landed it on the self-audit annotation. Budget the whole column, not the one element, and re-run the gate after every single move rather than after a batch.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "Under a single strongly coloured key light, two materials separated only by HUE collapse into one material. Run 2026-07-29's hero column was steel below hour 7 and brass above, and under a 0xffb067 sodium key both read as the same amber extrusion, so the deck's wordless thesis did not render. Separate by VALUE and by a physical joint (a proud collar at the seam), not by hue, and verify at 432px before believing the encoding lands. Darkening the second material to force contrast made the whole frame muddier and had to be reverted.",
+      "confidence": 0.85,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "The Gmail connector will not accept the account-relative 'me' that gmail_draft.py emits, and it will not accept an empty recipient either. Deliver to the documented mailbox (docket@alaskaaihq.com, which is the address the connector already authenticates as, so nothing about where the draft lands or what it sends from changes) and log it. Also: the default payload inlines one data URI per slide and does not fit one create_draft call, so use the script's own --preview-mode remote, which is smallest and therefore least likely to drift from the script's output when the body is retyped into the tool call.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-29",
+      "run_dates": [
+        "2026-07-29"
+      ]
+    },
+    {
+      "instinct": "lerpHex and its cousins return an rgb() string, so nesting a colour helper inside itself feeds rgb(...) into a hex parser, every channel comes back NaN, canvas silently KEEPS THE PREVIOUS fillStyle, and a whole region renders the wrong colour with zero console errors and a clean machine gate. Run 2026-07-30 rendered an ice fog lake pure white this way. Never nest a colour helper; precompute endpoints as hex literals.",
+      "confidence": 0.97,
+      "first_seen": "2026-07-30",
+      "evidence": "run 2026-07-30, carousel No. 20"
+    },
+    {
+      "instinct": "A banded fill that paints each band from its own contour DOWN TO THE FRAME BOTTOM must run light-to-dark, never dark-to-light. Dark-to-light means the last and lightest band covers every band behind it and the whole mass flattens to one value. Run 2026-07-30 shipped its first pass this way and produced exactly the single-value-group defect the run existed to kill, and the machine gate passed it because gates measure geometry, not value.",
+      "confidence": 0.95,
+      "first_seen": "2026-07-30",
+      "evidence": "run 2026-07-30, carousel No. 20"
+    },
+    {
+      "instinct": "A scrim sized by hand cannot track a wrapped text block, so it is the same class of error as a hand-typed plate width. If body copy sits over art, put the knockout ON the text element, where it grows with the copy and where the engine treats it as the text's own plate rather than as a foreign occluder. Run 2026-07-30 lost two render rounds to hand-sized scrims that fell short of their own copy.",
+      "confidence": 0.94,
+      "first_seen": "2026-07-30",
+      "evidence": "run 2026-07-30, carousel No. 20"
+    },
+    {
+      "instinct": "SVG paints ABOVE the DOM, so any full-frame SVG overlay will cross body copy that sits under it. Run 2026-07-30's 278-tick register ran straight through the body text on two slides and the fix was moving the register, not the text. Check every SVG overlay's y against every text block's WRAPPED height before rendering.",
+      "confidence": 0.92,
+      "first_seen": "2026-07-30",
+      "evidence": "run 2026-07-30, carousel No. 20"
+    },
+    {
+      "instinct": "A continuity motif's state changes must survive 432px, because that is where the feed grades them. Run 2026-07-30's register inversion at the deck's hinge was a 25px comb inside a 920px strip and died at thumb size, so three consecutive slides read as the same bar. Design every state change as a SILHOUETTE change, not a detail change.",
+      "confidence": 0.9,
+      "first_seen": "2026-07-30",
+      "evidence": "run 2026-07-30, carousel No. 20"
+    },
+    {
+      "run_date": "2026-07-31",
+      "confidence": 0.9,
+      "instinct": "Generate the art AFTER text layout, from MEASURED label boxes, and multiply lay density to zero inside them with a feathered taper. The stroke is then never generated, so there is nothing for a label to collide with and no plate to size wrong. This is structurally stronger than a knockout plate against the recurring 'text against geometry' hard fail, because qa.py's collision walk is DOM only and canvas ink has no node. Two of the ten slides still needed the padding widened from 14 to 22 px before feathered strokes stopped grazing glyph rings, so measure the padding against a render, do not assume it."
+    },
+    {
+      "run_date": "2026-07-31",
+      "confidence": 0.92,
+      "instinct": "Absolute positions guessed from word counts collide. Every layout number on this deck that was guessed produced a text collision, and every one re-derived from render_report.json's measured boxes held. Place the first pass however you like, then read the measured y and h of every node out of the render report and re-derive the stack from those numbers before the second pass. It is the same discipline as sizing a plate from the measured string, applied to layout."
+    },
+    {
+      "run_date": "2026-07-31",
+      "confidence": 0.88,
+      "instinct": "Body copy goes on the dark table or in a reserved burin field, never on the lit half of a lit surface. Slides 02, 03, 08 and 09 all failed contrast or the art-crossing gate for exactly this reason and all four were fixed by moving the text onto the dark ground rather than by brightening the type. Decide the text ground before the composition, not after."
+    },
+    {
+      "run_date": "2026-07-31",
+      "confidence": 0.85,
+      "instinct": "When two of three treatment directors independently propose a type pairing that has already shipped, the last-two-decks rule is too weak to produce felt variety on its own. Run a full-ledger pairing audit before locking type, and write the novelty claim as a sentence naming which decks used each face, so a future run cannot repeat No.20's false novelty claim."
+    },
+    {
+      "run_date": "2026-08-01",
+      "confidence": 0.93,
+      "instinct": "A GENERATIVE RESERVATION IS ITSELF A DEAD CELL unless it keeps some of the ground's own variation. Blending a text field flat toward one value satisfies the contrast gate and then fails frame_balance for exactly the reason the field exists to prevent. Feather it, damp it to roughly three quarters, anchor it DARKER than the ground, and make the blend darken-only so it can never lift water into a visible lighter box."
+    },
+    {
+      "run_date": "2026-08-01",
+      "confidence": 0.9,
+      "instinct": "Do not CLIP vector strokes out of reserved text fields. It erases the geometry, and on a map that geometry may be the deck's entire thesis (this run lost boroughs and coastline across roughly 40 percent of the state before a critic caught it). Draw everything everywhere, then re-damp only the glyph boxes so the geometry ghosts through instead of vanishing."
+    },
+    {
+      "run_date": "2026-08-01",
+      "confidence": 0.88,
+      "instinct": "A leaf-node filter written as children.length===0 silently EXCLUDES every label containing a <br>, so multi-line labels get no reservation at all. Every label that kept failing the art-crossing-glyphs gate on this run was exactly one of those. Filter on 'every child is a BR' instead."
+    },
+    {
+      "run_date": "2026-08-01",
+      "confidence": 0.85,
+      "instinct": "An Imhof-style contrast rule keyed to elevation will CREATE a dead lower third whenever the projection puts the ranges mid-frame and the flats at the bottom. Check where the high ground actually lands in the frame before choosing the lowland damping floor; the craft rule and the composition gate can point in opposite directions."
+    },
+    {
+      "run_date": "2026-08-01",
+      "confidence": 0.82,
+      "instinct": "Sub-2px marks at low opacity on a near-black field do not survive their own render, let alone 432px. If an encoding is a COUNT of many small things, size and opacity have to be chosen against the thumb, and the field has to be clipped to space that is actually empty at that camera station rather than to a rect that looked empty in the plan."
+    },
+    {
+      "instinct": "An absence has NO magnitude, so never draw a count of zero as a bar, arc, area or radius. Encode PRESENCE instead, at full weight, so the missing thing is a fixed-size hole in a dense field, and print a rule on the slide saying the empty mark has no length. Run 2026-08-02 filled each notice's lane with one lit cell per character of that notice's own verbatim text and the scorer called it the best idea in the deck.",
+      "confidence": 0.93,
+      "first_seen": "2026-08-02"
+    },
+    {
+      "instinct": "Make a palette-divergence claim FALSIFIABLE BEFORE the build and hand the test to the pixel critics, never assert distinctiveness in the storyboard. Runs 2026-07-30 and 2026-08-01 both claimed a distinctive family in prose and both were marked down for landing in the series' default cold arctic navy. Run 2026-08-02 imposed a measurable target (mean ground hue 300 to 340 at 432px, against navy's 210 to 250), told the critics to contradict the plan if the pixels contradicted it, and passed on independent measurement. A claim in a storyboard is not evidence.",
+      "confidence": 0.9,
+      "first_seen": "2026-08-02"
+    },
+    {
+      "instinct": "A declared craft mechanism that runs in code but is not LEGIBLE in the render earns nothing and must not be claimed. Run 2026-08-02's computed TOOTH density falloff (0.25x beyond 380px from the focal point) was its single structural answer to uniform detail; multiple pixel critics and the scorer independently reported it is not visible on any slide, in several cases because the composition gave it nowhere to show. Build ONE proof slide and judge its 432px thumb before committing the other nine.",
+      "confidence": 0.88,
+      "first_seen": "2026-08-02"
+    },
+    {
+      "instinct": "NO MACHINE GATE CAN COUNT CLAIMS. Run 2026-08-02 shipped a render reading 'FIVE STATE POSTINGS' that counted a federal Air Force industry day as a state posting and contradicted another slide in the same deck; qa.py, copy_sync_check and claims_check all passed it and a pixel critic caught it. Any on-slide string that AGGREGATES verified claims into a new number is a fresh factual assertion and must be re-derived from claims.json by hand before it renders.",
+      "confidence": 0.92,
+      "first_seen": "2026-08-02"
+    },
+    {
+      "instinct": "A three-state encoding carried by TEXTURE dies at 432px. Hatching goes sub-pixel and collapses to flat gray, so a 'not read' mark becomes indistinguishable from a 'searched and not found' mark, which turns a scope limit into an unsupported finding. Carry states by SILHOUETTE (open box vs solid block inside a box vs solid fill), keep every mark's bounding box identical so no size encodes a count, and ALWAYS print the words too, because run 2026-08-02 shipped three hachured rows whose 'NOT READ' label was missing and a reader would have parsed them as a sixth searched-and-not-found item.",
+      "confidence": 0.9,
+      "first_seen": "2026-08-02"
+    },
+    {
+      "instinct": "A detail mechanism that encodes a quantity in STROKE WIDTH ALONE dies at 432px. Width survives the zoom test and fails the feed test. If the encoding has to read at thumb size, it needs a VALUE term too, so the steep regions darken as well as widen. Measured on 2026-08-03: a slope-and-aspect hachure field whose regions a pixel critic named correctly and unprompted at full size scored AUC 0.51 and 0 percent visibility at 432px on the same slide.",
+      "confidence": 0.9,
+      "first_seen": "2026-08-03"
+    },
+    {
+      "instinct": "Never lay out a symbol column against a fixed row pitch when the row TEXT wraps. Rows that wrap to three lines walk every symbol off its own meaning, and the failure is invisible in code review and obvious at thumb size. Drive symbol and separator positions from getBoundingClientRect of the laid-out row. Caught on 2026-08-03 by a flow critic after a pixel critic had already reported the wrong symptom.",
+      "confidence": 0.88,
+      "first_seen": "2026-08-03"
+    },
+    {
+      "instinct": "A global class rewrite in a slide generator can silently strip a colour off unrelated slides. On 2026-08-03 an edit made for one slide's legend rows removed the .arc class from another slide's list items, which lost their bone colour and rendered at 1.2:1 on a dark ground. qa.py caught it, but only because contrast is gated; a spacing property would have shipped. Scope generator edits to the slide they are for.",
+      "confidence": 0.82,
+      "first_seen": "2026-08-03"
+    }
+  ]
 }

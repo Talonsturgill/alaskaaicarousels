@@ -13,6 +13,43 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-08-03/",
+      "url": "https://alaskaaihq.com/archive/2026-08-03/",
+      "title": "A Clause, and a Pit 1.1 Miles Wide",
+      "summary": "AI supply chain here means one item on a five item list.",
+      "content_html": "<p><em>AI supply chain here means one item on a five item list.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-03/og.jpg\" alt=\"A Clause, and a Pit 1.1 Miles Wide cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://www.prnewswire.com/news-releases/graphite-one-highlights-strategic-alignment-with-white-house-executive-order-reinforcing-us-critical-minerals-supply-chain-302831679.html\">Graphite One Inc. via PR Newswire</a>, primary document</li><li><a href=\"https://www.whitehouse.gov/presidential-actions/2026/07/securing-americas-defense-supply-chains-and-ensuring-domestic-acquisition-of-critical-materials/\">The White House</a>, primary document</li><li><a href=\"https://www.graphiteoneinc.com/graphite-one-clears-key-ohio-epa-hurdle-for-planned-ohio-battery-materials-facility/\">Graphite One Inc.</a>, primary document</li><li><a href=\"https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/\">KNOM</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-08-03/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "",
+      "date_published": "2026-08-03T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-03/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 18,
+        "sources": [
+          {
+            "url": "https://www.prnewswire.com/news-releases/graphite-one-highlights-strategic-alignment-with-white-house-executive-order-reinforcing-us-critical-minerals-supply-chain-302831679.html",
+            "outlet": "Graphite One Inc. via PR Newswire",
+            "primary": true
+          },
+          {
+            "url": "https://www.whitehouse.gov/presidential-actions/2026/07/securing-americas-defense-supply-chains-and-ensuring-domestic-acquisition-of-critical-materials/",
+            "outlet": "The White House",
+            "primary": true
+          },
+          {
+            "url": "https://www.graphiteoneinc.com/graphite-one-clears-key-ohio-epa-hurdle-for-planned-ohio-battery-materials-facility/",
+            "outlet": "Graphite One Inc.",
+            "primary": true
+          },
+          {
+            "url": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/",
+            "outlet": "KNOM",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-08-02/",
       "url": "https://alaskaaihq.com/archive/2026-08-02/",
       "title": "What the Notice Buys and What It Doesn't Print",

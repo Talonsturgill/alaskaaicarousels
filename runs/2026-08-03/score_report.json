@@ -1,0 +1,97 @@
+{
+  "run_date": "2026-08-03",
+  "carousel_no": 24,
+  "weighted_total": 6.9,
+  "raw_weighted": 7.67,
+  "threshold": 7.7,
+  "ship": false,
+  "weakest_criterion": "Legibility and platform fitness",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 9,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 6,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 5,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 6,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 5,
+      "weight": 0.1
+    }
+  ],
+  "hard_fails_at_scoring": [
+    {
+      "rule": "clipped or overlapping text",
+      "slide": 2,
+      "detail": "CONNEAUT PLANT, PROPOSED [C18] was drawn underneath the C02 counterweight plate, illegible at any size.",
+      "status_now": "FIXED. The label moved above the plate and the plate moved clear. Re-rendered; qa.py PASS, 0 fails, 0 warns."
+    },
+    {
+      "rule": "house rule, no colons in on-slide text",
+      "slides": [
+        1,
+        3
+      ],
+      "detail": "Representative fractions printed as '1 : N'.",
+      "status_now": "FIXED. They now print 'SCALE 1 TO N'."
+    },
+    {
+      "rule": "shipped deliverables did not match the reviewed renders",
+      "slides": [
+        5
+      ],
+      "detail": "The contact sheet, thumbs and PDF predated the current slide 05.",
+      "status_now": "FIXED. assemble.py re-run after the final render; copy.json rebuilt from the current render report and copy_sync_check PASS at 66 strings."
+    }
+  ],
+  "post_score_repair_note": "THE SCORE OF 6.9 IS PRE-REPAIR AND IS RECORDED AS THE RUN'S SCORE. The cap came from one hard fail on slide 02, and the raw weighted total was 7.67 against a 7.7 threshold, so this deck was below the bar on the merits as well as capped. One targeted revision cycle was applied per the routine, covering the scorer's own one_sentence_fix plus three of its named weakest-criterion repairs: the slide 02 occlusion, the three on-slide colons, the stale assemble outputs, the slide 03 plate stack lying across the hour arc, and the slide 04 tenure fill that had flattened the run's own hachure field. The deck was NOT re-scored, because the session's context budget was exhausted. The honest reading is that the repairs address every blocker the scorer named and probably move the number, and that nobody has measured it. The email says so.",
+  "notable": {
+    "craft_target": "The declared attack HALF-LANDED, which is the first movement on this criterion in ten runs. The hachure field is visibly in the pixels on slides 01, 03 and 09, and the slide 01 pixel critic, not told which region was which, correctly named the heavy basin and the fine plateau and called it shading rather than texture. But qa.py measures the slide 03 steepness encoding at AUC 0.51, which is chance, and 0 percent visible at 432px, so the mechanism reads at full size and not at feed size.",
+    "honesty": "Clean. No slide and no caption line implies the graphite reaches AI buildout. NON-BINDING survives at 432px. The superlative is attributed to the company, never USGS. No executive order number is printed.",
+    "fairness": "Unusually strong. Slide 06 generates both quote plates from one mirrored geometry so equality is structural. Slide 05 prints the dissenting voice at the same weight as the opposition characterisation."
+  },
+  "process_deviations": [
+    "The copywriter subagent was not spawned; the showrunner wrote copy.json, the first comment and the document title directly.",
+    "All six scouts reported the session WebSearch budget exhausted at 200/200, so window coverage was thinner than a normal run.",
+    "The deck was not re-scored after the repair cycle."
+  ]
+}
