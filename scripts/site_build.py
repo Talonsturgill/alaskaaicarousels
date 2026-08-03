@@ -54,7 +54,10 @@ INDEXNOW_KEY = "a7f3c21e9b8d4e5f6a1c0b3d2e8f7a94"
 # Booking page for the free intro call (Calendly, Cal.com, or a Google
 # Calendar appointment page). While empty the services hero keeps its
 # form-first buttons; set it and rebuild to lead with the booking button.
-BOOKING_URL = "https://calendly.com/talon-sturgill-ixzj/30min"
+# This is the ONLY place the booking URL is written. It renders in several
+# spots on the services page and on services/thanks/, so change it here and
+# rebuild; never patch the built HTML. The /30min event was dead (2026-08-01).
+BOOKING_URL = "https://calendly.com/talon-sturgill-ixzj/new-meeting"
 
 # The public entity. One canonical Organization node, emitted in full on the
 # home page and referenced from every other page's JSON-LD through the same
