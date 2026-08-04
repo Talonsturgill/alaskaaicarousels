@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Affiliate past performance completeness check, a demonstration for Tyonek Native Corporation</title>
+<style>
+/* Everything is scoped under .tycd so nothing leaks into the study page that
+   embeds this file. No external assets, no network calls, works from a saved copy. */
+html,body{margin:0;padding:0;background:#02060f}
+.tycd *{box-sizing:border-box}
+.tycd{
+  --bg:#02060f;
+  --surface:#122a46;
+  --panel:#0a1729;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;          /* present, and the one structural accent */
+  --flag:#f2a43a;            /* everything that is not present, one colour on purpose */
+  --gold:#ffc72c;            /* the signed artifact only */
+  --ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --display:Georgia,"Times New Roman",serif;
+  background:var(--bg);color:var(--ink);
+  font:16px/1.6 var(--ui);
+  -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+  padding:0 0 40px;
+}
+.tycd .wrap{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+.tycd .top{padding:26px 0 0}
+.tycd .mark{display:flex;align-items:center;gap:9px;font:400 12px/1 var(--mono);
+  letter-spacing:.18em;color:var(--ink);text-transform:uppercase}
+.tycd .mark i{width:12px;height:12px;display:block;background:var(--gold);
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+.tycd h1{font-family:var(--display);font-weight:400;font-size:29px;line-height:1.18;
+  letter-spacing:-.01em;margin:18px 0 6px;max-width:24ch}
+.tycd .fortitle{font:400 12px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);margin:0}
+
+/* ---------- the honesty strip, always on screen ---------- */
+.tycd .honest{border-left:2px solid var(--flag);padding:2px 0 2px 16px;margin:20px 0 0;
+  color:var(--sub);font-size:15px;line-height:1.55;max-width:64ch}
+.tycd .honest b{color:var(--ink);font-weight:650}
+
+/* ---------- step rail ---------- */
+.tycd .rail{display:flex;gap:0;margin:26px 0 22px;border-bottom:1px solid var(--rule);
+  flex-wrap:wrap}
+.tycd .rail button{appearance:none;background:none;border:0;border-bottom:2px solid transparent;
+  color:var(--cap);font:650 14px/1 var(--ui);padding:0 18px 12px 0;margin-right:8px;
+  cursor:pointer;letter-spacing:.01em}
+.tycd .rail button .n{font:400 11px/1 var(--mono);color:var(--cap);margin-right:7px;
+  letter-spacing:.12em}
+.tycd .rail button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tycd .rail button[aria-selected="true"] .n{color:var(--accent)}
+.tycd .rail button:disabled{opacity:.42;cursor:default}
+
+.tycd .panel[hidden]{display:none}
+.tycd h2{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.25;
+  margin:0 0 8px;letter-spacing:-.008em}
+.tycd h3{font:650 15px/1.35 var(--ui);margin:0 0 8px;color:var(--ink)}
+.tycd p{margin:0 0 16px;max-width:66ch;color:var(--sub)}
+.tycd .lede{font-size:17px;color:var(--sub);margin-bottom:20px;max-width:58ch}
+.tycd .cap{font-size:14px;line-height:1.55;color:var(--cap);max-width:66ch}
+.tycd .kicker{font:400 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 12px}
+
+/* ---------- scenario cards ---------- */
+.tycd .cards{display:grid;gap:12px;margin:0 0 22px}
+.tycd .card{background:var(--surface);border:1px solid transparent;border-radius:10px;
+  padding:16px 18px;text-align:left;cursor:pointer;width:100%;font:inherit;color:inherit;
+  display:block}
+.tycd .card:hover{border-color:var(--rule)}
+.tycd .card[aria-pressed="true"]{border-color:var(--accent)}
+.tycd .card .ct{font:400 11px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--cap);display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:9px}
+.tycd .card .ct .real{color:var(--accent)}
+.tycd .card .ct .illus{color:var(--flag)}
+.tycd .card .cn{font:650 17px/1.3 var(--ui);color:var(--ink);margin-bottom:6px}
+.tycd .card .cs{font-size:14px;line-height:1.55;color:var(--sub);margin:0}
+.tycd .card .cw{font-size:13px;line-height:1.5;color:var(--cap);margin:9px 0 0;
+  font-family:var(--mono);letter-spacing:.01em}
+
+/* ---------- quoted provision ---------- */
+.tycd blockquote{margin:0 0 20px;padding:14px 18px;background:var(--panel);
+  border-left:2px solid var(--gold);border-radius:0 8px 8px 0;color:var(--sub);
+  font-size:15px;line-height:1.6;max-width:70ch}
+.tycd blockquote .qs{color:var(--ink);font-weight:650}
+.tycd blockquote cite{display:block;margin-top:10px;font:400 12px/1.5 var(--mono);
+  letter-spacing:.06em;color:var(--cap);font-style:normal}
+
+/* ---------- legend ---------- */
+.tycd .legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 10px}
+.tycd .legend span{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--cap)}
+
+/* ---------- verdict badges ---------- */
+.tycd .v{display:inline-block;font:400 10px/1 var(--mono);letter-spacing:.12em;
+  text-transform:uppercase;padding:5px 7px;border:1px solid;border-radius:4px;white-space:nowrap}
+.tycd .v-present{color:var(--accent);border-color:rgba(60,230,180,.45)}
+.tycd .v-flag{color:var(--flag);border-color:rgba(242,164,58,.45)}
+
+/* ---------- entity blocks ---------- */
+.tycd .ent{background:var(--surface);border-radius:10px;padding:16px 18px 8px;margin:0 0 12px}
+.tycd .ent-h{display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+  flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.tycd .ent-n{font:650 17px/1.3 var(--ui);color:var(--ink)}
+.tycd .ent-m{font:400 12px/1.5 var(--mono);color:var(--cap);letter-spacing:.04em;margin-top:4px}
+.tycd .ent-s{font:400 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.tycd .row{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:13px 0;
+  border-bottom:1px solid var(--rule);opacity:0;transform:translateY(3px);
+  transition:opacity .18s ease,transform .18s ease}
+.tycd .row.in{opacity:1;transform:none}
+.tycd .ent .row:last-child{border-bottom:0}
+.tycd .row .rl{font:650 15px/1.4 var(--ui);color:var(--ink)}
+.tycd .row .rw{font-size:14px;line-height:1.55;color:var(--sub);margin-top:4px}
+.tycd .row .rp{font:400 12px/1.5 var(--mono);color:var(--cap);margin-top:6px;
+  letter-spacing:.02em;word-break:break-word}
+
+/* ---------- the resolution control, the centre of the whole thing ---------- */
+.tycd .resolve{background:var(--panel);border-radius:8px;padding:14px 16px;margin:12px 0 4px}
+.tycd .resolve h4{font:650 14px/1.35 var(--ui);margin:0 0 6px;color:var(--ink)}
+.tycd .cands{display:grid;gap:8px;margin:12px 0 0}
+.tycd .cand{display:flex;justify-content:space-between;gap:12px;align-items:center;
+  flex-wrap:wrap;background:var(--surface);border:1px solid var(--rule);border-radius:7px;
+  padding:11px 13px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.tycd .cand:hover{border-color:var(--cap)}
+.tycd .cand[aria-pressed="true"]{border-color:var(--accent)}
+.tycd .cand .cl{font:650 15px/1.35 var(--ui);color:var(--ink)}
+.tycd .cand .cm{font:400 12px/1.5 var(--mono);color:var(--cap);letter-spacing:.03em;margin-top:3px}
+.tycd .cand .cx{font:400 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cap)}
+.tycd .cand.seen .cx{color:var(--accent)}
+.tycd .payoff{border-left:2px solid var(--accent);padding:2px 0 2px 15px;margin:14px 0 2px;
+  color:var(--ink);font-size:15px;line-height:1.6;max-width:64ch}
+
+/* ---------- the gap list artifact ---------- */
+.tycd .doc{background:var(--panel);border-left:2px solid var(--gold);border-radius:0 10px 10px 0;
+  padding:20px 22px;margin:0 0 20px;font-family:var(--mono);font-size:13.5px;line-height:1.7;
+  color:var(--sub)}
+.tycd .doc .dt{font:650 13px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 14px}
+.tycd .doc dl{display:grid;grid-template-columns:auto 1fr;gap:2px 18px;margin:0 0 14px}
+.tycd .doc dt{color:var(--cap);letter-spacing:.06em;text-transform:uppercase;font-size:11.5px;
+  padding-top:3px}
+.tycd .doc dd{margin:0;color:var(--ink)}
+.tycd .doc hr{border:0;border-top:1px solid var(--rule);margin:14px 0}
+.tycd .doc .sh{color:var(--ink);letter-spacing:.13em;text-transform:uppercase;font-size:11.5px;
+  font-weight:650;margin:0 0 10px}
+.tycd .doc .item{margin:0 0 14px;padding-left:32px;text-indent:-32px}
+.tycd .doc .item b{color:var(--ink);font-weight:650}
+.tycd .doc .item .why{display:block;text-indent:0;color:var(--cap);margin-top:2px}
+.tycd .doc .ok{color:var(--accent)}
+.tycd .doc .no{color:var(--flag)}
+.tycd .doc p{font-family:var(--mono);font-size:13px;color:var(--cap);max-width:none;margin:0}
+
+/* ---------- the human gate ---------- */
+.tycd .gate{background:var(--surface);border-radius:10px;padding:18px 20px;margin:0 0 18px}
+.tycd .gate .gh{font:650 16px/1.35 var(--ui);color:var(--ink);margin:0 0 4px}
+.tycd .gitem{padding:14px 0;border-bottom:1px solid var(--rule)}
+.tycd .gitem:last-of-type{border-bottom:0}
+.tycd .gitem .gl{font-size:15px;line-height:1.5;color:var(--ink);margin-bottom:9px}
+.tycd .gitem .gl b{font-weight:650}
+.tycd select,.tycd input[type=text]{appearance:none;background:var(--panel);color:var(--ink);
+  border:1px solid var(--rule);border-radius:6px;padding:9px 11px;font:400 15px/1.3 var(--ui);
+  width:100%;max-width:420px}
+.tycd select:focus,.tycd input[type=text]:focus{outline:2px solid var(--accent);outline-offset:1px}
+.tycd label.fl{display:block;font:400 11px/1 var(--mono);letter-spacing:.13em;
+  text-transform:uppercase;color:var(--cap);margin:0 0 7px}
+.tycd .signrow{margin-top:16px;padding-top:16px;border-top:1px solid var(--rule)}
+.tycd button.go{appearance:none;background:var(--accent);color:#04120e;border:0;border-radius:7px;
+  font:650 15px/1 var(--ui);padding:13px 20px;cursor:pointer;margin-top:14px}
+.tycd button.go:disabled{background:var(--rule);color:var(--cap);cursor:not-allowed}
+.tycd button.ghost{appearance:none;background:none;color:var(--accent);border:1px solid var(--rule);
+  border-radius:7px;font:650 14px/1 var(--ui);padding:11px 16px;cursor:pointer}
+.tycd .blocked{font:400 13px/1.5 var(--mono);color:var(--flag);margin-top:10px;letter-spacing:.02em}
+.tycd .stamp{border:1px solid var(--accent);border-radius:8px;padding:16px 18px;
+  font-family:var(--mono);font-size:13.5px;line-height:1.7;color:var(--sub)}
+.tycd .stamp b{color:var(--accent);display:block;letter-spacing:.13em;text-transform:uppercase;
+  font-size:11.5px;margin-bottom:8px}
+
+/* ---------- model placement ---------- */
+.tycd .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 18px}
+.tycd .mcard{background:var(--surface);border-radius:10px;padding:16px 18px}
+.tycd .mcard .mt{font:400 11px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--flag);margin:0 0 10px}
+.tycd .mcard h3{margin-bottom:6px}
+.tycd .mcard p{font-size:14px;line-height:1.55;margin-bottom:12px}
+.tycd .extract{background:var(--panel);border-radius:7px;padding:12px 14px;
+  font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--sub);margin:0 0 12px}
+.tycd .extract .k{color:var(--cap);letter-spacing:.05em}
+.tycd .extract .val{color:var(--ink)}
+.tycd .extract .refuse{color:var(--flag)}
+.tycd .stepnum{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:14px 0;
+  border-bottom:1px solid var(--rule)}
+.tycd .stepnum:last-child{border-bottom:0}
+.tycd .stepnum .sn{font:400 13px/1.5 var(--mono);color:var(--accent);letter-spacing:.1em}
+.tycd .stepnum .st{font:650 15px/1.4 var(--ui);color:var(--ink);margin-bottom:4px}
+.tycd .stepnum .sd{font-size:14px;line-height:1.55;color:var(--sub)}
+
+.tycd .foot{margin-top:34px;padding-top:20px;border-top:1px solid var(--rule);
+  font-size:13.5px;line-height:1.6;color:var(--cap);max-width:70ch}
+.tycd .foot b{color:var(--sub);font-weight:650}
+.tycd .navbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+@media (max-width:640px){
+  .tycd{font-size:16px}
+  .tycd .two{grid-template-columns:1fr}
+  .tycd .row{grid-template-columns:1fr;gap:8px}
+  .tycd h1{font-size:25px}
+  .tycd .doc{padding:16px 16px;font-size:12.5px}
+  .tycd .doc .item{padding-left:0;text-indent:0}
+}
+
+/* A dark page is unreadable on paper, so print flips to positive polarity and
+   opens every panel at once. */
+@media print{
+  html,body{background:#fff}
+  .tycd{--bg:#fff;--surface:#f4f6f9;--panel:#eef1f6;--rule:#ccd4de;
+        --ink:#12181f;--sub:#39434f;--cap:#59636f;--accent:#0f6f60;--flag:#8a4b06;--gold:#7a5a00;
+        padding:0}
+  .tycd .rail,.tycd .navbtns,.tycd button.go,.tycd button.ghost{display:none}
+  .tycd .panel[hidden]{display:block !important;break-before:page}
+  .tycd .row{opacity:1 !important;transform:none !important}
+  .tycd .ent,.tycd .doc,.tycd .gate,.tycd .mcard{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="tycd">
+<div class="wrap">
+
+  <header class="top">
+    <div class="mark"><i></i>Alaska AI</div>
+    <h1>Affiliate past performance completeness check</h1>
+    <p class="fortitle">Tyonek Native Corporation &nbsp;/&nbsp; Prepared by Alaska AI &nbsp;/&nbsp; August 2026</p>
+    <p class="honest"><b>This is a scripted demonstration of the build the field study proposes.</b>
+      It is not a live system, it is connected to nothing, and it holds none of Tyonek's
+      documents. Every entity name on this screen comes from public records. Every registration number in these scenarios is an obvious placeholder written as DEMO, never a real UEI or CAGE, because inventing one that looked real would be the exact error this build exists to prevent. The one real registration number on this page is your parent UEI, in the sources at the foot, which is public on USASpending. The solicitation number is real too, FA8773-25-R-0002, quoted from the GAO decision.</p>
+  </header>
+
+  <nav class="rail" role="tablist" aria-label="Demonstration steps">
+    <button role="tab" id="t1" aria-selected="true" data-p="p1"><span class="n">01</span>Pick the bid</button>
+    <button role="tab" id="t2" aria-selected="false" data-p="p2"><span class="n">02</span>Run the check</button>
+    <button role="tab" id="t3" aria-selected="false" data-p="p3"><span class="n">03</span>Sign the gap list</button>
+    <button role="tab" id="t4" aria-selected="false" data-p="p4"><span class="n">04</span>Where the model sits</button>
+    <button role="tab" id="t5" aria-selected="false" data-p="p5"><span class="n">05</span>How it sits in your operation</button>
+  </nav>
+
+  <!-- ============ 01 PICK THE BID ============ -->
+  <section class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
+    <h2>Pick a bid that names affiliate past performance</h2>
+    <p class="lede">Three scenarios, all built on your own registrations. One uses a real
+      solicitation. Two are illustrative, and they say so, because we would have to invent a
+      solicitation number to pretend otherwise.</p>
+    <div class="cards" id="scenarios"></div>
+    <p class="cap">Entity names come from USASpending and from tyonek.com. Nothing else on this
+      screen is drawn from a real proposal, because we have never seen one.</p>
+  </section>
+
+  <!-- ============ 02 RUN THE CHECK ============ -->
+  <section class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+    <h2 id="checkTitle"></h2>
+    <p class="lede" id="checkSub"></p>
+
+    <blockquote>
+      <span class="qs">"Affiliate companies, sister companies, teaming arrangements, joint
+      venture agreement, etc., will be considered, provided that sufficient documentation is
+      included in the proposal.</span> The prime contractor must demonstrate that the affiliate
+      will perform significant and critical aspects of the contract if awarded. Proposal
+      documentation should include a copy of the signed arrangement such as documented
+      affiliation, a copy of the teaming agreement, a copy of the joint venture agreement, etc.
+      <span class="qs">If the required information is not included in the proposal, the proposed
+      affiliate companies, sister companies, joint venture companies, etc. shall not be
+      evaluated or considered."</span>
+      <cite>Quoted in full from RFP FA8773-25-R-0002, recorded in GAO decision B-424364. The five
+      checks below are that paragraph turned into a rule.</cite>
+    </blockquote>
+
+    <p class="kicker">Verdict source</p>
+    <p class="cap" style="margin-bottom:14px">A fixed rule, version 1.4. No model runs in
+      this step. The rule takes the entities the bid intends to cite, compares what the
+      solicitation demands against what is on file, and returns the same answer every time it is
+      given the same inputs.</p>
+
+    <div class="legend">
+      <span><i class="v v-present">present</i> the only pass</span>
+      <span><i class="v v-flag">missing</i></span>
+      <span><i class="v v-flag">expired</i></span>
+      <span><i class="v v-flag">ambiguous</i></span>
+    </div>
+    <p class="cap" style="margin-bottom:20px">One colour covers everything that is not present,
+      because the build treats them the same. Expired is not present. Ambiguous is treated
+      exactly like missing. Anything not affirmatively verified against a page in a document
+      reports as missing, so a gap can never hide behind a blank.</p>
+
+    <div id="results"></div>
+    <div class="navbtns">
+      <button class="ghost" data-go="p1">Back to the bids</button>
+      <button class="go" id="toGap">See the gap list</button>
+    </div>
+  </section>
+
+  <!-- ============ 03 GAP LIST ============ -->
+  <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+    <h2>The one page a person signs before the proposal goes out</h2>
+    <p class="lede">This is the handoff. It is the whole product of the check, and it is what
+      lands in front of a human.</p>
+    <div class="doc" id="gapdoc"></div>
+    <div class="gate" id="gate"></div>
+    <p class="cap">Roles named on this page come from the cost drivers in the field study. Roles on this page are roles, not people. We did not put any individual's name on a demonstration gap list.</p>
+    <div class="navbtns">
+      <button class="ghost" data-go="p2">Back to the check</button>
+      <button class="ghost" data-go="p4">Where the model sits</button>
+    </div>
+  </section>
+
+  <!-- ============ 04 MODEL PLACEMENT ============ -->
+  <section class="panel" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+    <h2>Two places use a model, and neither one can move a verdict</h2>
+    <p class="lede">Both sit at the outer edges. The completeness decision in the middle is one list compared against another, so a rule does it, every case can be tested, and it gives the same answer every time.</p>
+    <div class="two">
+      <div class="mcard">
+        <p class="mt">Model step one, before the rule</p>
+        <h3>Reads the scanned page as a document is filed</h3>
+        <p>A signed agreement arrives from wherever it is held today. The model proposes what the
+          document is, who signed it and when it expires, copying the text it found and pointing
+          at the page. It refuses to answer without a page reference.</p>
+        <div class="extract">
+          <div><span class="k">document</span> &nbsp;<span class="val">executed affiliation, proposed</span></div>
+          <div><span class="k">found on</span> &nbsp;<span class="val">page 7 of 9</span></div>
+          <div><span class="k">quoted</span> &nbsp;<span class="val">"executed this 12th day of March 2026"</span></div>
+          <div><span class="k">expires</span> &nbsp;<span class="refuse">no answer, no expiry appears on any page</span></div>
+        </div>
+        <p class="cap">A person confirms this once, at filing, never once per bid. The confirmed
+          fact is what the rule reads later, so the model sits upstream of the rule and never
+          inside it.</p>
+      </div>
+      <div class="mcard">
+        <p class="mt">Model step two, after the human gate</p>
+        <h3>Drafts prose from facts a person already approved</h3>
+        <p>Once the gap list is signed, the affiliate narrative is drafted from the approved
+          facts only. It stops where the judgement starts.</p>
+        <div class="extract">
+          Tyonek Technical Services is an affiliate of the offeror. The affiliation is documented
+          in an executed agreement filed under UEI DEMO-S1 and CAGE DEMO-S1, signature page 7 of
+          9, confirmed at filing on 12 March 2026.<br><br>
+          <span class="refuse">[Work share statement, left blank. Stating that this affiliate
+          will perform significant and critical aspects of the contract is a representation about
+          future performance, so a person at Tyonek writes it and owns it.]</span>
+        </div>
+        <p class="cap">A person rewrites and owns every line of this. Nothing here is a verdict,
+          and no draft changes a go or a no go.</p>
+      </div>
+    </div>
+    <p class="cap">A third use is possible, a second reading of the solicitation to flag where it
+      disagrees with yours. The study leaves it out, because reading the provision takes a capture manager about ten minutes, which we are assuming rather than measuring, and a redundant read does not earn its keep at your bid volume.</p>
+    <div class="navbtns">
+      <button class="ghost" data-go="p3">Back to the gap list</button>
+      <button class="ghost" data-go="p5">How it sits in your operation</button>
+    </div>
+  </section>
+
+  <!-- ============ 05 OPERATION ============ -->
+  <section class="panel" id="p5" role="tabpanel" aria-labelledby="t5" hidden>
+    <h2>How it sits in your operation</h2>
+    <p class="lede">Three steps. The work does not disappear, it moves from remembering to
+      verifying.</p>
+    <div class="stepnum">
+      <div class="sn">01</div>
+      <div>
+        <div class="st">At filing, once per document</div>
+        <div class="sd">A signed affiliation, teaming or joint venture agreement is indexed once,
+          wherever it came from. The scanned page is read, a person confirms
+          what it is and when it expires, and that confirmed fact serves every bid afterwards.
+          This happens once, never once per bid.</div>
+      </div>
+    </div>
+    <div class="stepnum">
+      <div class="sn">02</div>
+      <div>
+        <div class="st">At bid time, when the check runs</div>
+        <div class="sd">The rule runs against the entities you intend to cite, resolved on UEI and
+          CAGE only. Names are never matched, so two registrations beginning the same way can't
+          be confused with each other. Every verdict keeps the rule version, the source document
+          and the page it came from, so a debrief question months later has a record to answer it
+          rather than a memory.</div>
+      </div>
+    </div>
+    <div class="stepnum">
+      <div class="sn">03</div>
+      <div>
+        <div class="st">Before submission, a named person signs</div>
+        <div class="sd">Every open item is closed or the affiliate comes out of the proposal, and
+          both of those are a person's call. There is no override in the build, so nothing goes
+          out on a system's say so. The signature is required even on a clean run, because a
+          clean run is a claim someone has to own.</div>
+      </div>
+    </div>
+    <p class="cap" style="margin-top:20px">One row of the work is deliberately untouched.
+      Judging and stating that an affiliate will perform significant and critical aspects of the
+      contract is a contractual representation about future work share, and it belongs to a
+      person at Tyonek. A system that made that call for you would be a liability rather than a
+      feature.</p>
+    <div class="navbtns">
+      <button class="ghost" data-go="p1">Start again</button>
+    </div>
+  </section>
+
+  <div class="foot">
+    <p style="color:inherit"><b>What this demonstration deliberately does not do.</b> It makes no
+      maintenance sign off and no return to service call, because 14 CFR 145.213(d) reserves that
+      to a certificated mechanic or repairman and 14 CFR 43.9 makes the signature itself the
+      approval. It carries no AS9102 first article content and no quality records, because if that material is export controlled a hosted model has to decrypt it to read it, and we read 22 CFR 120.54 as putting that outside the carve out, which your export control people would rule on before anyone wrote code. It touches no government property
+      record. It predicts nothing and it forecasts no maintenance. Each of those is scoped out in
+      the study, with the reason written down.</p>
+    <p style="color:inherit;margin-top:14px">Sources for the verified names and numbers on this page.
+      USASpending child registrations under parent UEI FM96SF3VF8H9, verified. GAO decision
+      B-424364 and B-424364.2 for RFP FA8773-25-R-0002 and the affiliate provision quoted in
+      full, verified. tyonek.com for the four SBA certified 8(a) companies, tyonek.com/capabilities for the certifications, the tyonek.com release of 10 October 2024 for the Coast Guard voice and flight data recorder work, and the Madison IDB report for the $98,115,620 award. Alaska AI, August 2026.</p>
+  </div>
+
+</div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ------------------------------------------------------------------
+   ILLUSTRATIVE IDENTIFIERS
+   Every identifier below is written as DEMO-xx. Real UEIs are twelve
+   alphanumeric characters and real CAGE codes are five, so nothing here has
+   the shape of a real registration number and nothing here can be mistaken
+   for one. The single real identifier on the page is the parent UEI, which is
+   public on USASpending and is labelled as verified.
+   ------------------------------------------------------------------ */
+
+var CHECKS = [
+  "Entity resolved on registration number",
+  "Relationship type confirmed on the register",
+  "Executed agreement on file for that relationship type",
+  "Signature page located, with a page reference",
+  "Statement of significant and critical work share, in the proposal"
+];
+
+var OWNERS = ["contracts administration","contracts administration",
+              "contracts administration","contracts administration","capture"];
+
+function p(why, prov){ return {v:"present", why:why, prov:prov}; }
+function f(v, why, prov){ return {v:v, why:why, prov:prov}; }
+
+var SCEN = [
+  {
+    id:"cyber",
+    real:true,
+    tag:"Solicitation FA8773-25-R-0002",
+    name:"Cyber operations formal training support",
+    sub:"Air Force RFP issued 19 May 2025 as an 8(a) small business set aside under FAR subpart 15.3. The solicitation and its affiliate provision are verified from GAO decision B-424364. The proposal contents below are illustrative, because we have never seen one of your proposals.",
+    what:"2 affiliates cited &nbsp;/&nbsp; submission date on this run 4 Aug 2026",
+    ents:[
+      {
+        name:"Tyonek Technical Services",
+        meta:"SBA certified 8(a) company. Holds the $98,115,620 Cyber Operations Formal Training Support award.",
+        uei:"DEMO-S1", cage:"DEMO-S1",
+        checks:[
+          p("Cited in the proposal with its registration numbers. Resolved on UEI DEMO-S1 and CAGE DEMO-S1. The name was never used to match.",
+            "rule 1.4 / entity register / matched on UEI and CAGE"),
+          p("Affiliation. Confirmed by a person at filing on 12 March 2026.",
+            "rule 1.4 / register field relationship type / confirmed by a person 12 Mar 2026"),
+          p("Executed affiliation document on file. No expiry stated on any page, so the rule treats it as current and records that the absence of an expiry was itself verified.",
+            "rule 1.4 / affiliation document / indexed 12 Mar 2026"),
+          p("Signature page located and legible.",
+            "rule 1.4 / affiliation document / page 7 of 9"),
+          p("A statement of the significant and critical aspects this affiliate will perform is in the proposal volume, written and owned by capture.",
+            "rule 1.4 / proposal volume / present at last index")
+        ]
+      },
+      {
+        name:"Tyonek Aircraft Overhaul",
+        meta:"SBA certified 8(a) company.",
+        uei:"DEMO-A1", cage:"DEMO-A1",
+        checks:[
+          p("Cited with its registration numbers. Resolved on UEI DEMO-A1 and CAGE DEMO-A1.",
+            "rule 1.4 / entity register / matched on UEI and CAGE"),
+          p("Affiliation. Confirmed by a person at filing on 12 March 2026.",
+            "rule 1.4 / register field relationship type / confirmed by a person 12 Mar 2026"),
+          p("Executed affiliation document on file.",
+            "rule 1.4 / affiliation document / indexed 12 Mar 2026"),
+          p("Signature page located and legible.",
+            "rule 1.4 / affiliation document / page 6 of 8"),
+          p("A statement of the significant and critical aspects this affiliate will perform is in the proposal volume, written and owned by capture.",
+            "rule 1.4 / proposal volume / present at last index")
+        ]
+      }
+    ]
+  },
+
+  {
+    id:"tfab",
+    real:false,
+    tag:"Illustrative bid, no solicitation number",
+    name:"TFAB Ground Systems past performance",
+    sub:"An illustrative bid. We give it no solicitation number because we would have to invent one. What is real is the registration picture underneath it. USASpending lists four child registrations beginning TFAB Ground Systems, one in Alaska, two in Alabama and one in Georgia.",
+    what:"1 affiliate cited, by name only &nbsp;/&nbsp; submission date on this run 4 Aug 2026",
+    ents:[
+      {
+        name:"TFAB Ground Systems ...",
+        meta:"Cited by name only. The proposal carries no registration number.",
+        uei:null, cage:null,
+        nameNote:"We show only the part of the name we verified and nothing after it, because USASpending records four registrations beginning this way and we did not verify how each one ends.",
+        checks:[
+          f("ambiguous","Four child registrations begin TFAB Ground Systems, one in Alaska, two in Alabama and one in Georgia. The proposal carries no UEI and no CAGE. The rule will not choose between them. Ambiguous is treated exactly like missing.",
+            "rule 1.4 / entity register / 4 candidates on name prefix, 0 on identifier"),
+          f("missing","No entity resolved, so there is nothing to hold a relationship type.",
+            "rule 1.4 / blocked at resolution / nothing counts until it is verified"),
+          f("missing","No entity resolved, so no document set can be read.",
+            "rule 1.4 / blocked at resolution / nothing counts until it is verified"),
+          f("missing","No document, so no page to point at.",
+            "rule 1.4 / blocked at resolution / nothing counts until it is verified"),
+          f("missing","No entity resolved, so the work share statement can't be tied to a registration.",
+            "rule 1.4 / blocked at resolution / nothing counts until it is verified")
+        ],
+        candidates:[
+          {
+            id:"t1", label:"TFAB Ground Systems ...", state:"Registered in Alaska",
+            uei:"DEMO-T1", cage:"DEMO-T1",
+            checks:[
+              p("Resolved on UEI DEMO-T1 and CAGE DEMO-T1. One candidate on identifier, zero ambiguity.",
+                "rule 1.4 / entity register / matched on UEI and CAGE"),
+              p("Affiliation. Confirmed by a person at filing on 4 February 2026.",
+                "rule 1.4 / register field relationship type / confirmed by a person 4 Feb 2026"),
+              p("Executed affiliation document on file, no expiry stated.",
+                "rule 1.4 / affiliation document / indexed 4 Feb 2026"),
+              p("Signature page located and legible.",
+                "rule 1.4 / affiliation document / page 4 of 7"),
+              p("Work share statement in the proposal volume, written and owned by capture.",
+                "rule 1.4 / proposal volume / present at last index")
+            ]
+          },
+          {
+            id:"t2", label:"TFAB Ground Systems ...", state:"Registered in Alabama",
+            uei:"DEMO-T2", cage:"DEMO-T2",
+            checks:[
+              p("Resolved on UEI DEMO-T2 and CAGE DEMO-T2. One candidate on identifier.",
+                "rule 1.4 / entity register / matched on UEI and CAGE"),
+              p("Teaming arrangement. Confirmed by a person at filing on 19 November 2025.",
+                "rule 1.4 / register field relationship type / confirmed by a person 19 Nov 2025"),
+              p("Executed teaming agreement on file, running to 31 December 2026, current at the submission date.",
+                "rule 1.4 / teaming agreement / expiry 31 Dec 2026, verified on page 2"),
+              p("Signature page located and legible.",
+                "rule 1.4 / teaming agreement / page 6 of 6"),
+              p("Work share statement in the proposal volume, written and owned by capture.",
+                "rule 1.4 / proposal volume / present at last index")
+            ]
+          },
+          {
+            id:"t3", label:"TFAB Ground Systems ...", state:"Registered in Alabama",
+            uei:"DEMO-T3", cage:"DEMO-T3",
+            checks:[
+              p("Resolved on UEI DEMO-T3 and CAGE DEMO-T3. One candidate on identifier.",
+                "rule 1.4 / entity register / matched on UEI and CAGE"),
+              p("Teaming arrangement. Confirmed by a person at filing on 6 January 2025.",
+                "rule 1.4 / register field relationship type / confirmed by a person 6 Jan 2025"),
+              f("expired","The teaming agreement on file ran to 31 January 2026, which is before this submission date. Expired is not present, so it reports as a gap.",
+                "rule 1.4 / teaming agreement / expiry 31 Jan 2026, verified on page 2"),
+              p("Signature page located and legible on the expired document.",
+                "rule 1.4 / teaming agreement / page 5 of 6"),
+              p("Work share statement in the proposal volume, written and owned by capture.",
+                "rule 1.4 / proposal volume / present at last index")
+            ]
+          },
+          {
+            id:"t4", label:"TFAB Ground Systems ...", state:"Registered in Georgia",
+            uei:"DEMO-T4", cage:"DEMO-T4",
+            checks:[
+              p("Resolved on UEI DEMO-T4 and CAGE DEMO-T4. One candidate on identifier.",
+                "rule 1.4 / entity register / matched on UEI and CAGE"),
+              p("Affiliation. Confirmed by a person at filing on 22 September 2025.",
+                "rule 1.4 / register field relationship type / confirmed by a person 22 Sep 2025"),
+              f("missing","No executed agreement is on file for this registration. Nothing was affirmatively verified against a page, so it reports as missing rather than as unknown.",
+                "rule 1.4 / document index / no document held, nothing counts until it is verified"),
+              f("missing","No document, so no page to point at.",
+                "rule 1.4 / document index / nothing counts until it is verified"),
+              p("Work share statement in the proposal volume, written and owned by capture.",
+                "rule 1.4 / proposal volume / present at last index")
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    id:"overhaul",
+    real:false,
+    tag:"Illustrative bid, no solicitation number",
+    name:"Aircraft component overhaul support",
+    sub:"An illustrative bid, submitted after 30 June 2026, citing three of your entities. It exists to show the three verdicts that are not present, sitting next to a clean one.",
+    what:"3 affiliates cited &nbsp;/&nbsp; submission date on this run 12 Aug 2026",
+    ents:[
+      {
+        name:"Tyonek Aircraft Overhaul",
+        meta:"SBA certified 8(a) company. Holds the Coast Guard voice and flight data recorder work announced 10 October 2024.",
+        uei:"DEMO-A1", cage:"DEMO-A1",
+        checks:[
+          p("Cited with its registration numbers. Resolved on UEI DEMO-A1 and CAGE DEMO-A1.",
+            "rule 1.4 / entity register / matched on UEI and CAGE"),
+          p("Teaming arrangement. Confirmed by a person at filing on 3 July 2024.",
+            "rule 1.4 / register field relationship type / confirmed by a person 3 Jul 2024"),
+          f("expired","The teaming agreement on file ran to 30 June 2026. This bid submits on 12 August 2026, so the document is not current. Expired is not present.",
+            "rule 1.4 / teaming agreement / expiry 30 Jun 2026, verified on page 2"),
+          p("Signature page located and legible on the expired document.",
+            "rule 1.4 / teaming agreement / page 5 of 11"),
+          p("Work share statement in the proposal volume, written and owned by capture.",
+            "rule 1.4 / proposal volume / present at last index")
+        ]
+      },
+      {
+        name:"Tyonek Engineering & Agile Manufacturing",
+        meta:"Three child registrations carry this exact name, in Georgia, Alabama and Alaska.",
+        uei:"DEMO-E3", cage:"DEMO-E3",
+        checks:[
+          p("Three registrations carry this exact name. The proposal carried the number, so there was nothing to resolve. Resolved on UEI DEMO-E3 and CAGE DEMO-E3 in one pass.",
+            "rule 1.4 / entity register / 3 candidates on name, 1 on identifier"),
+          p("Affiliation. Confirmed by a person at filing on 28 May 2026.",
+            "rule 1.4 / register field relationship type / confirmed by a person 28 May 2026"),
+          p("Executed affiliation document on file, no expiry stated.",
+            "rule 1.4 / affiliation document / indexed 28 May 2026"),
+          p("Signature page located and legible.",
+            "rule 1.4 / affiliation document / page 9 of 12"),
+          p("Work share statement in the proposal volume, written and owned by capture.",
+            "rule 1.4 / proposal volume / present at last index")
+        ]
+      },
+      {
+        name:"Tyonek Services Overhaul Facility-Stennis",
+        meta:"SBA certified 8(a) company. Holds ISO 9001:2015, AS9100 Rev D, AS9110 Rev C and an FAA Part 145 repair station certificate.",
+        uei:"DEMO-V1", cage:"DEMO-V1",
+        checks:[
+          p("Cited with its registration numbers. Resolved on UEI DEMO-V1 and CAGE DEMO-V1.",
+            "rule 1.4 / entity register / matched on UEI and CAGE"),
+          f("ambiguous","The register holds two documents for this entity, one affiliation and one teaming agreement, and no person has confirmed which arrangement this bid relies on. The rule will not guess which document the provision demands. Ambiguous is treated exactly like missing.",
+            "rule 1.4 / register field relationship type / 2 candidate types, 0 confirmed"),
+          f("missing","The requirement is undetermined, so nothing can be affirmatively verified against it. Nothing counts until it is verified.",
+            "rule 1.4 / blocked at relationship type / nothing counts until it is verified"),
+          f("missing","No required document determined, so no page to point at.",
+            "rule 1.4 / blocked at relationship type / nothing counts until it is verified"),
+          p("Work share statement in the proposal volume, written and owned by capture.",
+            "rule 1.4 / proposal volume / present at last index")
+        ]
+      }
+    ]
+  }
+];
+
+/* ------------------------------------------------------------------ */
+
+var state = { scen:null, pick:null, seen:{}, signed:null, disp:{}, name:"" };
+var $ = function(s,r){ return (r||document).querySelector(s); };
+var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+                  .replace(/"/g,"&quot;");
+}
+function badge(v){
+  var cls = v === "present" ? "v-present" : "v-flag";
+  return '<span class="v '+cls+'">'+esc(v)+'</span>';
+}
+
+/* ---------- tabs ---------- */
+function show(pid){
+  $$(".tycd .panel").forEach(function(p){ p.hidden = (p.id !== pid); });
+  $$(".tycd .rail button").forEach(function(b){
+    b.setAttribute("aria-selected", b.dataset.p === pid ? "true" : "false");
+  });
+  if (pid === "p2") renderCheck();
+  if (pid === "p3") renderGap();
+  var w = document.querySelector(".tycd");
+  if (w && w.scrollIntoView) w.scrollIntoView({block:"start"});
+}
+$$(".tycd .rail button").forEach(function(b){
+  b.addEventListener("click", function(){
+    if (b.disabled) return;
+    show(b.dataset.p);
+  });
+});
+$$(".tycd [data-go]").forEach(function(b){
+  b.addEventListener("click", function(){ show(b.dataset.go); });
+});
+function lockSteps(){
+  ["t2","t3"].forEach(function(id){ $("#"+id).disabled = !state.scen; });
+}
+
+/* ---------- 01 scenarios ---------- */
+function renderScenarios(){
+  $("#scenarios").innerHTML = SCEN.map(function(s){
+    var tagCls = s.real ? "real" : "illus";
+    var tagTxt = s.real ? "Real solicitation" : "Illustrative";
+    return '<button class="card" data-s="'+esc(s.id)+'" aria-pressed="false">'
+      + '<div class="ct"><span class="'+tagCls+'">'+esc(tagTxt)+'</span><span>'+esc(s.tag)+'</span></div>'
+      + '<div class="cn">'+esc(s.name)+'</div>'
+      + '<p class="cs">'+esc(s.sub)+'</p>'
+      + '<p class="cw">'+s.what+'</p>'
+      + '</button>';
+  }).join("");
+  $$("#scenarios .card").forEach(function(c){
+    c.addEventListener("click", function(){
+      state.scen = SCEN.filter(function(s){ return s.id === c.dataset.s; })[0];
+      state.pick = null; state.seen = {}; state.signed = null; state.disp = {}; state.name = "";
+      $$("#scenarios .card").forEach(function(o){
+        o.setAttribute("aria-pressed", o === c ? "true" : "false");
+      });
+      lockSteps();
+      show("p2");
+    });
+  });
+}
+
+/* ---------- which entity object is live right now ---------- */
+function liveEntities(){
+  var s = state.scen;
+  if (!s) return [];
+  return s.ents.map(function(e){
+    if (!e.candidates) return {ent:e, checks:e.checks, uei:e.uei, cage:e.cage,
+                               name:e.name, meta:e.meta, nameNote:e.nameNote};
+    if (!state.pick) return {ent:e, checks:e.checks, uei:null, cage:null,
+                             name:e.name, meta:e.meta, nameNote:e.nameNote, needsPick:true};
+    var c = e.candidates.filter(function(x){ return x.id === state.pick; })[0];
+    return {ent:e, checks:c.checks, uei:c.uei, cage:c.cage,
+            name:c.label,
+            meta:c.state + ". Resolved from four candidates by registration number, never by name.",
+            nameNote:e.nameNote, needsPick:true, cand:c};
+  });
+}
+
+function openCount(){
+  var n = 0;
+  liveEntities().forEach(function(le){
+    le.checks.forEach(function(c){ if (c.v !== "present") n++; });
+  });
+  return n;
+}
+function clearedCount(){
+  var n = 0;
+  liveEntities().forEach(function(le){
+    if (le.checks.every(function(c){ return c.v === "present"; })) n++;
+  });
+  return n;
+}
+
+/* ---------- 02 the check ---------- */
+var revealTimers = [];
+function renderCheck(){
+  var s = state.scen;
+  if (!s) { show("p1"); return; }
+  $("#checkTitle").textContent = s.name;
+  $("#checkSub").textContent = s.sub;
+
+  revealTimers.forEach(clearTimeout); revealTimers = [];
+  var les = liveEntities();
+  var html = les.map(function(le, ei){
+    var allp = le.checks.every(function(c){ return c.v === "present"; });
+    var openN = le.checks.filter(function(c){ return c.v !== "present"; }).length;
+    var ids = le.uei
+      ? "UEI " + le.uei + " &nbsp;/&nbsp; CAGE " + le.cage + " &nbsp;(illustrative placeholders)"
+      : "No registration number in the proposal";
+    var rows = le.checks.map(function(c, ci){
+      return '<div class="row" data-r="'+ei+'-'+ci+'">'
+        + '<div>'+badge(c.v)+'</div>'
+        + '<div><div class="rl">'+esc(CHECKS[ci])+'</div>'
+        + '<div class="rw">'+esc(c.why)+'</div>'
+        + '<div class="rp">'+esc(c.prov)+'</div></div></div>';
+    }).join("");
+    var note = (le.nameNote && !state.pick)
+      ? '<p class="cap" style="margin:12px 0 0">'+esc(le.nameNote)+'</p>' : "";
+    return '<div class="ent">'
+      + '<div class="ent-h"><div><div class="ent-n">'+esc(le.name)+'</div>'
+      + '<div class="ent-m">'+ids+'</div></div>'
+      + '<div class="ent-s" style="color:'+(allp?"var(--accent)":"var(--flag)")+'">'
+      + (allp ? "cleared" : openN + (openN===1?" open item":" open items")) + '</div></div>'
+      + rows + note + '</div>'
+      + (le.needsPick ? resolveBlock(le) : "");
+  }).join("");
+
+  var open = openCount();
+  var summary = '<p class="cap" style="margin:4px 0 18px">'
+    + les.length + (les.length===1?" entity checked, ":" entities checked, ")
+    + clearedCount() + " cleared, " + open + (open===1?" open item":" open items")
+    + " carried to the gap list. Every one of them blocks submission until a person closes it or "
+    + "takes the affiliate out of the proposal.</p>";
+
+  $("#results").innerHTML = html + summary;
+  wireResolve();
+
+  $$("#results .row").forEach(function(r, i){
+    revealTimers.push(setTimeout(function(){ r.classList.add("in"); }, 60 + i * 55));
+  });
+}
+
+function resolveBlock(le){
+  var e = le.ent;
+  var cands = e.candidates.map(function(c){
+    var seen = state.seen[c.id] ? " seen" : "";
+    var press = state.pick === c.id ? "true" : "false";
+    return '<button class="cand'+seen+'" data-c="'+esc(c.id)+'" aria-pressed="'+press+'">'
+      + '<span><span class="cl">'+esc(c.label)+'</span>'
+      + '<span class="cm">'+esc(c.state)+' &nbsp;/&nbsp; UEI '+esc(c.uei)+' &nbsp;/&nbsp; CAGE '+esc(c.cage)+'</span></span>'
+      + '<span class="cx">'+(state.seen[c.id] ? "checked" : "check this one")+'</span>'
+      + '</button>';
+  }).join("");
+
+  var payoff;
+  if (state.seen.t2 && state.seen.t3){
+    payoff = '<p class="payoff">You just watched it. DEMO-T2 and DEMO-T3 are both registered in '
+      + 'Alabama and both names begin the same way. One clears. The other carries an expired '
+      + 'teaming agreement and loses the affiliate. The only thing separating them is the '
+      + 'registration number, which is why the rule reads nothing else.</p>';
+  } else {
+    payoff = '<p class="payoff">Run the two Alabama registrations one after the other. Same name, '
+      + 'same state, and they do not come back the same.</p>';
+  }
+
+  return '<div class="resolve">'
+    + '<h4>Resolve it the only way the rule is allowed to</h4>'
+    + '<p class="cap">The rule keys on UEI and CAGE and never on a company name. Supply the '
+    + 'registration number the proposal left out and the check runs again. With four registrations '
+    + 'beginning the same way across three states, a name matcher that is right most of the time is '
+    + 'precisely the thing that loses a bid, so name similarity here only ever raises a flag.</p>'
+    + '<div class="cands">'+cands+'</div>'
+    + payoff
+    + (state.pick ? '<p style="margin:14px 0 0"><button class="ghost" id="unresolve">Clear the resolution</button></p>' : "")
+    + '</div>';
+}
+
+function wireResolve(){
+  $$("#results .cand").forEach(function(b){
+    b.addEventListener("click", function(){
+      state.pick = b.dataset.c;
+      state.seen[b.dataset.c] = true;
+      state.signed = null; state.disp = {};
+      renderCheck();
+    });
+  });
+  var u = $("#unresolve");
+  if (u) u.addEventListener("click", function(){
+    state.pick = null; state.signed = null; state.disp = {};
+    renderCheck();
+  });
+}
+
+$("#toGap").addEventListener("click", function(){ show("p3"); });
+
+/* ---------- 03 the gap list ---------- */
+function openItems(){
+  var out = [];
+  liveEntities().forEach(function(le){
+    le.checks.forEach(function(c, ci){
+      if (c.v !== "present"){
+        out.push({ent:le.name, uei:le.uei, check:CHECKS[ci], v:c.v, why:c.why,
+                  prov:c.prov, owner:OWNERS[ci], key:le.name+"|"+ci});
+      }
+    });
+  });
+  return out;
+}
+
+function pad(n){ return (n<10?"0":"") + n; }
+
+function renderGap(){
+  var s = state.scen;
+  if (!s) { show("p1"); return; }
+  var les = liveEntities();
+  var items = openItems();
+  var cleared = les.filter(function(le){
+    return le.checks.every(function(c){ return c.v === "present"; });
+  });
+
+  var head = '<div class="dt">Affiliate documentation gap list</div>'
+    + '<dl>'
+    + '<dt>Bid</dt><dd>'+esc(s.name)+'</dd>'
+    + '<dt>Solicitation</dt><dd>'+esc(s.real ? "FA8773-25-R-0002" : "illustrative, no number used")+'</dd>'+ '<dt>Status</dt><dd>Demonstration. The proposal contents on this run are invented. We have never seen a Tyonek proposal.</dd>'
+    + '<dt>Entities</dt><dd>'+les.length+' cited, '+cleared.length+' cleared, '+items.length+' open '+(items.length===1?'item':'items')+'</dd>'
+    + '<dt>Rule set</dt><dd>version 1.4, fixed. No model produced any verdict below.</dd>'
+    + '<dt>Run</dt><dd>4 Aug 2026, 09 12 AKDT</dd>'
+    + '</dl>'
+    + '<p>Every verdict carries the rule version, the source document and the page it came from, '
+    + 'so a debrief question months from now has a record to answer it.</p><hr>';
+
+  var openBlock = '<div class="sh no">Open, must close or the affiliate comes out of the proposal</div>';
+  if (!items.length){
+    openBlock += '<p style="margin-bottom:14px">Nothing is open. Five of five checks are present on '
+      + 'every entity cited. The signature below is still required, because a clean run is a claim '
+      + 'someone has to own.</p>';
+  } else {
+    openBlock += items.map(function(it, i){
+      return '<div class="item"><b>'+pad(i+1)+'</b>&nbsp; <b>'+esc(it.ent)+'</b>'
+        + (it.uei ? ' &nbsp;<span style="color:var(--cap)">UEI '+esc(it.uei)+'</span>' : '')
+        + '<span class="why">'+esc(it.check)+'</span>'
+        + '<span class="why">Verdict &nbsp;<span class="no">'+esc(it.v)+'</span></span>'
+        + '<span class="why">Why &nbsp;'+esc(it.why)+'</span>'
+        + '<span class="why">Owner &nbsp;'+esc(it.owner)+'</span>'
+        + '<span class="why">Trace &nbsp;'+esc(it.prov)+'</span>'
+        + '</div>';
+    }).join("");
+  }
+
+  var clearedBlock = '<hr><div class="sh ok">Cleared</div>';
+  if (!cleared.length){
+    clearedBlock += '<p style="margin-bottom:14px">No entity cleared all five checks on this run.</p>';
+  } else {
+    clearedBlock += cleared.map(function(le){
+      return '<div class="item"><b>'+esc(le.name)+'</b>'
+        + '<span class="why">5 of 5 checks present</span>'
+        + (le.uei ? '<span class="why">Resolved on UEI '+esc(le.uei)+' and CAGE '+esc(le.cage)+', never on the name</span>' : '')
+        + '<span class="why">'+esc(le.checks[3].prov)+'</span>'
+        + '</div>';
+    }).join("");
+  }
+
+  var tail = '<hr><div class="sh">Before submission</div>'
+    + '<p>A named person clears every open item above, or removes that affiliate from the proposal, '
+    + 'then signs. There is no override. Signing releases the package for a person to submit, and '
+    + 'nothing is submitted by this system.</p>';
+
+  $("#gapdoc").innerHTML = head + openBlock + clearedBlock + tail;
+  renderGate(items);
+}
+
+function renderGate(items){
+  if (state.signed){
+    $("#gate").innerHTML = '<div class="stamp"><b>Gap list signed</b>'
+      + 'Signed by ' + esc(state.signed.name) + ' on 4 Aug 2026 at 09 26 AKDT.<br>'
+      + esc(state.signed.n) + (state.signed.n === 1 ? ' open item' : ' open items')
+      + ' dispositioned by hand. Rule set version 1.4 recorded against the signature.<br><br>'
+      + 'The package is released for a person to submit. This demonstration submitted nothing, '
+      + 'sent nothing and filed nothing.</div>'
+      + '<p style="margin:16px 0 0"><button class="ghost" id="resign">Run it again</button></p>';
+    $("#resign").addEventListener("click", function(){
+      state.signed = null; state.disp = {}; state.name = "";
+      renderGap();
+    });
+    return;
+  }
+
+  var rows = items.map(function(it, i){
+    var val = state.disp[it.key] || "";
+    return '<div class="gitem"><div class="gl"><b>'+pad(i+1)+'</b> &nbsp;'+esc(it.ent)
+      + ' &nbsp;'+badge(it.v)+'<br>'+esc(it.check)+'</div>'
+      + '<label class="fl" for="d'+i+'">Disposition, chosen by the person signing</label>'
+      + '<select id="d'+i+'" data-k="'+esc(it.key)+'">'
+      + '<option value=""'+(val===""?" selected":"")+'>Still open</option>'
+      + '<option value="closed"'+(val==="closed"?" selected":"")+'>Closed, the document is now filed and verified</option>'
+      + '<option value="removed"'+(val==="removed"?" selected":"")+'>Affiliate removed from the proposal</option>'
+      + '</select></div>';
+  }).join("");
+
+  var intro = items.length
+    ? '<p class="cap" style="margin-bottom:4px">Each open item takes a decision from the person '
+      + 'signing. There are two ways forward and both of them are a person\'s call. No option here '
+      + 'overrides a verdict, because the build has no override.</p>'
+    : '<p class="cap" style="margin-bottom:4px">Nothing is open on this run. The signature is still '
+      + 'required, because a clean run is a claim someone has to own.</p>';
+
+  $("#gate").innerHTML = '<div class="gh">The gate</div>' + intro + rows
+    + '<div class="signrow">'
+    + '<label class="fl" for="signer">Name and role of the person signing</label>'
+    + '<input type="text" id="signer" value="'+esc(state.name)+'" autocomplete="off" '
+    + 'placeholder="Type a name to sign, for example A. Reviewer, capture">'
+    + '<button class="go" id="signbtn" disabled>Sign the gap list</button>'
+    + '<div class="blocked" id="blocked"></div>'
+    + '</div>';
+
+  $$("#gate select").forEach(function(sel){
+    sel.addEventListener("change", function(){
+      state.disp[sel.dataset.k] = sel.value;
+      refreshGate(items);
+    });
+  });
+  var inp = $("#signer");
+  inp.addEventListener("input", function(){ state.name = inp.value; refreshGate(items); });
+  $("#signbtn").addEventListener("click", function(){
+    state.signed = {name: state.name.trim(), n: items.length};
+    renderGap();
+  });
+  refreshGate(items);
+}
+
+function refreshGate(items){
+  var undone = items.filter(function(it){ return !state.disp[it.key]; }).length;
+  var named = state.name.trim().length > 1;
+  var btn = $("#signbtn"), msg = $("#blocked");
+  if (!btn) return;
+  btn.disabled = !((undone === 0) && named);
+  if (undone > 0){
+    msg.textContent = undone + (undone === 1 ? " open item still needs a disposition. "
+      : " open items still need a disposition. ")
+      + "The package does not release until every one of them is closed or the affiliate is out.";
+  } else if (!named){
+    msg.textContent = "The signature needs a name. An unsigned gap list is an uncleared gap list.";
+  } else {
+    msg.textContent = "";
+  }
+}
+
+/* ---------- boot ---------- */
+renderScenarios();
+lockSteps();
+})();
+</script>
+</body>
+</html>
