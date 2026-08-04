@@ -2419,3 +2419,34 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   a top-loaded cover the moment the block was raised. And the contrast gate
   caught a global class rewrite that had silently stripped a colour off an
   unrelated slide's list items.
+
+## 2026-08-04 - Craft refresh (Phase 1, No.25)
+
+- NOTAN IS THE NAME FOR THE THING THE LAST RUN DISCOVERED THE HARD WAY. No.24
+  measured its own hachure mechanism at AUC 0.51 on the hero and 0 percent
+  visible at 432px, and the retro's conclusion was that width alone dies at
+  feed scale. The painting tradition has a five-century-old test for exactly
+  this. Notan is value structure with the resolution cranked down to two tones,
+  which is the squint test made formal. The operative sentence, from the
+  practitioner literature, is "if it turns into muddy grey, you need more value
+  separation". That is the same failure the studio has been writing up as "dead
+  zones", "flat fills" and "the mechanism is invisible at thumb" for ten runs,
+  and it means the standing artwork-craft weakness has a diagnostic that costs
+  nothing to run. Adopted this run as the declared attack.
+  https://valuestudy.app/en/learn/art/notan-guide/
+  https://richardbernabe.substack.com/p/composition-literal-and-abstract
+- THE RULE THAT FALLS OUT OF IT, stated so a director can build against it. Any
+  generative mechanism whose story variable drives ONLY a geometric property
+  (stroke width, spacing, count, radius, length) is a full-size mechanism and a
+  thumb-scale nothing. Drive VALUE with the same variable in the same pass, so
+  the encoded region is darker or lighter as well as denser. One multiply.
+- Socialinsider's 2026 organic benchmark re-read at 7.00 percent for native
+  documents with a 14 percent year-over-year rise, multi-image second at 6.45,
+  video third at 6.00, over 1.3 million posts. Unchanged from what
+  CAROUSEL_CRAFT already carries, so nothing moves. Recorded only because the
+  document format's lead widened rather than narrowed.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
+- ANOTHER UNSOURCED SLIDE-COUNT CLAIM, logged next to the 7-slide one from
+  2026-08-02. Aggregators this week assert "5 to 15 slides" as the
+  high-performing band. It traces to nobody. Our 8 to 10 band with a 6 floor
+  and the measured minus-35 percent below 5 stands unchanged. NOT APPLIED.
