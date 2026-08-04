@@ -1,0 +1,38 @@
+{
+  "run_date": "2026-08-04",
+  "carousel_no": 25,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "degraded",
+    "flow_review": "degraded",
+    "assemble": "done",
+    "scoring": "pending",
+    "ship": "pending",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "plan": "out/2026-08-04/plan.md",
+    "field_notes": "knowledge/FIELD_NOTES.md (2026-08-04 craft refresh)",
+    "scout_merge": "out/2026-08-04/scout_merge.md",
+    "claims": "out/2026-08-04/claims.json (26 claims, 18 primary, gate PASS)",
+    "selection": "out/2026-08-04/selection.md",
+    "docket": "ledger/docket.json (12 items, +bradley-lake-dixon-diversion)",
+    "storyboard": "out/2026-08-04/storyboard.md (10 dossiers, dossier_check PASS)",
+    "caption": "out/2026-08-04/caption.txt (PASS 878 chars)",
+    "copy": "out/2026-08-04/copy.json",
+    "slides": "out/2026-08-04/slides (10)",
+    "render": "out/2026-08-04/render (machine_qa WARN, 0 fails)",
+    "final": "out/2026-08-04/final (vector PDF)",
+    "aggregates": "out/2026-08-04/aggregates.json (PASS)"
+  }
+}
