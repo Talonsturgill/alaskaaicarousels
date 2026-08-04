@@ -40,10 +40,10 @@ because widening the window for everything would multiply fetches across all
 | T2 one source_doc_count helper + aggregate_check --site assertion | DONE |
 | T3 repair data + append_history + docket_dates_check gate | DONE |
 | T4 sources + date correction + root cause report | DONE |
-| PR 1 (T1-T4) | open |
-| T5 X handle | not started, needs maintainer answer |
-| T6 civic page CTAs | not started |
-| T7 public sector proposal | not started, proposal only |
-| PR 2 (T5-T7) | not started |
+| PR 1 (T1-T4) | DONE, #195 merged |
+| T5 X handle | DONE, maintainer says KEEP, recorded in routine, no code change |
+| T6 civic page CTAs | DONE, docket + archive |
+| T7 public sector proposal | DONE, proposal in PR only, no copy shipped |
+| PR 2 (T5-T7) | open |
 
 Delete this file when all rows are DONE.
