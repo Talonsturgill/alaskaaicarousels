@@ -698,6 +698,13 @@ JSON in its final message, which YOU persist to
    and roots at "Alaska AI" like every other crumb. The page <title> may
    still say "The Bottleneck Scanner", which is the tool's name in prose.
 
+   The SOCIALS X entry points at https://x.com/Microvestapp, which is not an
+   alaskaai handle. That is DELIBERATE (maintainer, 2026-08-04), asked and
+   answered. It is the maintainer's account and it stays in the footer row
+   and in the Organization sameAs list. An audit flagged it as off-brand and
+   the answer was to keep it. Do not remove it and do not "correct" it to a
+   guessed alaskaai handle.
+
    The eight flag stars are photometry, not decoration. Positions, V
    magnitudes, B-V indices and tints are fixed. Halo extent goes as the 0.45
    power of flux and spike length is keyed to `glow_r`, because both were

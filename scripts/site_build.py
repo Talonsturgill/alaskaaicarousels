@@ -2954,7 +2954,10 @@ INDIRECT when an elected or member-accountable body decides, CLOSED when the eva
 {'<h2>Decided</h2>' + done_html if done_html else ''}
 {subscribe_html()}
 <div class="about-line" data-reveal><p>All sources verified against claims.
-The data behind this page is public at <a href="../docket.json" style="color:var(--blue);text-decoration:none">docket.json</a>.</p></div>"""
+The data behind this page is public at <a href="../docket.json" style="color:var(--blue);text-decoration:none">docket.json</a>.</p>
+<p>Alaska AI keeps this docket current with the same kind of autonomous system it
+builds for Alaska businesses.</p>
+<div class="ctarow" style="margin-top:20px"><a class="cta ghost" href="../services/">WHAT WE BUILD</a></div></div>"""
     ld = docket_dataset_ld(today, site_url, items)
     return page("The Alaska AI Docket - AI Infrastructure Decisions in Alaska",
                 "Every AI infrastructure decision in Alaska, tracked daily. Who decides, "
@@ -2978,7 +2981,11 @@ def archive_page(today, site_url, runs):
 <p class="tag">One verified Alaska and AI story at a time. Newest first.</p>
 </div>
 <h2 class="vh">Every deck</h2>
-<div class="deckgrid" style="margin-top:44px">{decks}</div>"""
+<div class="deckgrid" style="margin-top:44px">{decks}</div>
+<div class="about-line" data-reveal><p>Every article here is researched, drawn and
+shipped by the studio's own autonomous system. It builds the same kind of thing for
+Alaska businesses.</p>
+<div class="ctarow" style="margin-top:20px"><a class="cta ghost" href="../services/">WHAT WE BUILD</a></div></div>"""
     return page("Alaska AI Articles - Daily Verified Alaska and AI Stories",
                 "Every carousel Alaska AI has published. One verified story a day on "
                 "Alaska and AI, drawn as bespoke data art.",
