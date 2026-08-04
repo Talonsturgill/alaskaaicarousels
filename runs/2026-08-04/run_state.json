@@ -14,11 +14,11 @@
     "pixel_review": "degraded",
     "flow_review": "degraded",
     "assemble": "done",
-    "scoring": "pending",
-    "ship": "pending",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "skipped",
+    "gmail": "done",
+    "retro": "done"
   },
   "artifacts": {
     "plan": "out/2026-08-04/plan.md",
@@ -33,6 +33,9 @@
     "slides": "out/2026-08-04/slides (10)",
     "render": "out/2026-08-04/render (machine_qa WARN, 0 fails)",
     "final": "out/2026-08-04/final (vector PDF)",
-    "aggregates": "out/2026-08-04/aggregates.json (PASS)"
-  }
+    "aggregates": "out/2026-08-04/aggregates.json (PASS)",
+    "gmail_draft_id": "r-3813177419829572772"
+  },
+  "complete": true,
+  "notes": "Degraded run. Phase 8 pixel critics, the flow critic and Phase 12's upgrade-engineer were not spawned; context budget was exhausted by the art build. The scorer found one hard fail (slide 03 clipped headline) which was fixed, re-rendered, re-shipped and merged in PR #193."
 }
