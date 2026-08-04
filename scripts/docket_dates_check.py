@@ -238,6 +238,25 @@ def check_items(rep, items, today, label="ledger"):
         if r["cta"]:
             rep.ok(r["access"] == "open", where, "offers a call to action while not open")
 
+        # FRESHNESS. last_updated is what a data consumer pins on to know when
+        # this record was last verified, so it may never fall behind the item's
+        # own newest note. gvea-lm6000-turbine-purchase shipped last_updated
+        # 2026-07-30 against a 2026-08-01 history note, and the public feed
+        # under-reported its own freshness by two days with nothing to catch
+        # it. Phase 3.5 hand-edits this ledger, which is precisely why the two
+        # fields can diverge; db.append_history() pairs them for any code that
+        # ever writes them, and this is the gate for everything else.
+        hist = it.get("history") or []
+        if hist and it.get("last_updated"):
+            newest = max(h["date"] for h in hist)
+            rep.ok(newest <= it["last_updated"], where,
+                   f"last_updated {it['last_updated']} is older than this "
+                   f"item's newest history note {newest}. Stamp the item in "
+                   f"the same edit that adds the note.")
+            rep.ok(it["last_updated"] >= it["first_seen"], where,
+                   f"last_updated {it['last_updated']} precedes first_seen "
+                   f"{it['first_seen']}")
+
         # PROSE vs METADATA. Any date the chrome presents as this item's action
         # deadline must appear in the item's own words. This is the assertion
         # that would have caught the shipped defect on the day it shipped:
