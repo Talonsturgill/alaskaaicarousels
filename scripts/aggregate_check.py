@@ -149,6 +149,53 @@ RX_STATE_HOST = re.compile(r"(?i)(\bstate\.ak\.us\b|\balaska\.gov\b|\bakleg\.gov
                            r"\b[a-z0-9.-]*\.ak\.us\b)")
 
 
+# ------------------------------------------------- site-wide aggregates
+#
+# The slide gates above re-derive numbers printed on a DECK. The site prints
+# aggregates too, and it got the same class of error: "source documents" was
+# computed three times with two different definitions. home_page summed
+# len(it["sources"]) and published 47, while docket_answers and data_page
+# counted distinct URLs and published 43. Same label, same question, two
+# answers, because four documents are cited by more than one decision.
+#
+# One definition now lives in site_build.source_doc_count. This asserts the
+# BUILT PAGES agree with it, which catches a reintroduced second computation
+# and a stale docs/ in the same pass.
+
+RX_SITE_SRC_DOCS = re.compile(r"(\d+)\s+source\s+documents")
+
+
+def site_aggregates(docs_dir="docs", ledger="ledger/docket.json"):
+    """Every page that prints a docket aggregate must print the one value the
+    helper derives. Returns (fails, report)."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import site_build as sb
+
+    fails, seen = [], {}
+    try:
+        items = json.loads(Path(ledger).read_text())["items"]
+    except (OSError, ValueError, KeyError) as e:
+        return ["SITE: cannot read %s: %s" % (ledger, e)], {}
+    want = sb.source_doc_count(items)
+
+    root = Path(docs_dir)
+    if not root.is_dir():
+        return ["SITE: %s is not a directory" % docs_dir], {}
+    for f in sorted(root.rglob("*.html")):
+        text = re.sub(r"<[^>]+>", " ", f.read_text(errors="replace"))
+        for got in set(RX_SITE_SRC_DOCS.findall(text)):
+            rel = str(f.relative_to(root))
+            seen.setdefault(rel, set()).add(int(got))
+            if int(got) != want:
+                fails.append(
+                    "SITE: %s prints %s source documents, the docket holds %d "
+                    "distinct source URLs. One definition lives in "
+                    "site_build.source_doc_count; either a second computation "
+                    "came back or docs/ is stale." % (rel, got, want))
+    return fails, {"expected": want,
+                   "pages": {k: sorted(v) for k, v in seen.items()}}
+
+
 # ---------------------------------------------------------------- utilities
 
 def norm(s):
@@ -672,7 +719,10 @@ def run(run_dir, render_report_path=None, aggregates_path=None, claims_path=None
 def main():
     ap = argparse.ArgumentParser(
         description="Re-derive every aggregate number printed on a slide.")
-    ap.add_argument("--run-dir", required=True)
+    ap.add_argument("--run-dir")
+    ap.add_argument("--site", action="store_true",
+                    help="check the BUILT SITE's docket aggregates instead of "
+                         "a deck; needs no run dir")
     ap.add_argument("--render-report")
     ap.add_argument("--aggregates")
     ap.add_argument("--claims")
@@ -681,6 +731,21 @@ def main():
     ap.add_argument("--json", action="store_true", help="print the report as JSON")
     args = ap.parse_args()
 
+    if args.site:
+        fails, rep = site_aggregates()
+        if args.json:
+            print(json.dumps({"fails": fails, **rep}, indent=2))
+        else:
+            for f in fails:
+                print("FAIL:", f)
+            print("aggregate_check --site: %s -- %d page(s) print the docket "
+                  "source count, expected %s"
+                  % ("FAIL" if fails else "PASS",
+                     len(rep.get("pages", {})), rep.get("expected")))
+        return 1 if fails else 0
+
+    if not args.run_dir:
+        ap.error("--run-dir is required unless --site is given")
     code, rep = run(args.run_dir, args.render_report, args.aggregates, args.claims)
     if code == 2:
         print("aggregate_check: %s" % rep.get("error"), file=sys.stderr)

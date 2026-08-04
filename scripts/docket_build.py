@@ -94,6 +94,28 @@ def mon_day(s):
     return f"{MONTHS[d.month - 1]} {d.day}"
 
 
+def append_history(item, date, note):
+    """The ONLY sanctioned way to add a dated note to a docket item.
+
+    `last_updated` is the field a data consumer pins on to know when a record
+    was last verified, and it is meaningless if it can fall behind the item's
+    own newest note. On 2026-08-04 gvea-lm6000-turbine-purchase carried
+    last_updated 2026-07-30 against a 2026-08-01 history note, so the public
+    feed under-reported its own freshness by two days.
+
+    Phase 3.5 edits this ledger by hand, so nothing could have written one
+    field without the other; that is exactly why the two drifted. This makes
+    the pairing available to any code that ever does it programmatically, and
+    docket_dates_check.py enforces the same invariant on the hand-edited file.
+    Appending a note and stamping the item are one operation, not two.
+    """
+    parse_date(date, item.get("id", "<item>"))
+    item.setdefault("history", []).append({"date": date, "note": note})
+    item["history"].sort(key=lambda h: h["date"])
+    item["last_updated"] = max(h["date"] for h in item["history"])
+    return item
+
+
 def validate(items):
     seen = set()
     for it in items:

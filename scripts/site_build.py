@@ -2381,6 +2381,34 @@ TOPICS = [
                "who decides", "ballot", "primary")},
 ]
 
+# Counts that appear in PROSE. A numeral reads wrong mid-sentence and a spelled
+# word rots the moment the list it describes changes length. The About page
+# said Alaska AI "works six beats" while TOPICS held seven and every other page
+# said seven; the topics page said "seven standing beats" in its tag and its
+# meta description while the chip two lines above already interpolated
+# len(TOPICS) correctly. Both were written true and went stale in place. Any
+# sentence that states how many of something the site has goes through here.
+_COUNT_WORDS = ("zero", "one", "two", "three", "four", "five", "six", "seven",
+                "eight", "nine", "ten", "eleven", "twelve")
+
+
+def count_word(n):
+    return _COUNT_WORDS[n] if 0 <= n < len(_COUNT_WORDS) else str(n)
+
+
+def source_doc_count(items):
+    """How many source DOCUMENTS the docket rests on.
+
+    Distinct URLs, because a document cited by two decisions is one document.
+    This existed three times with two different definitions behind one label:
+    the home page summed len(it["sources"]) and reported 47, while the data
+    and sources pages counted distinct URLs and reported 43. Both printed the
+    words "source documents", so the site published two different answers to
+    the same question and the four items that share a citation were counted
+    twice. One definition, one helper, every caller.
+    """
+    return len({s["url"] for it in items for s in (it.get("sources") or [])})
+
 
 def topic_index(runs, topics_ledger):
     """Which decks belong to which beat.
@@ -2560,7 +2588,7 @@ def topics_index_page(today, site_url, index):
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <div class="chip kind">{len(TOPICS)} STANDING BEATS</div>
 <h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">The beats</h1>
-<p class="tag">Alaska AI covers seven standing beats. Each page stays live
+<p class="tag">Alaska AI covers {count_word(len(TOPICS))} standing beats. Each page stays live
 whether or not the beat made news this week.</p>
 </div>
 <div class="decks">{rows}</div>"""
@@ -2568,8 +2596,9 @@ whether or not the beat made news this week.</p>
           "name": "Beats", "url": f"{site_url}/topics/",
           "isPartOf": {"@id": org_id(site_url)}}
     return page("The beats - Alaska AI",
-                "The seven standing beats Alaska AI covers, from data centers "
-                "and the Railbelt grid to land permitting and data sovereignty.",
+                f"The {count_word(len(TOPICS))} standing beats Alaska AI covers, "
+                "from data centers and the Railbelt grid to land permitting "
+                "and data sovereignty.",
                 body, "../", "articles", today, site_url, "topics/", ld=ld,
                 crumbs=[("Alaska AI", ""), ("Articles", "archive/"),
                         ("Beats", "topics/")])
@@ -2800,7 +2829,7 @@ own page whether or not it made news this week, with the decisions on it, who de
 them, and whether the public still has a way in.</p>
 <div class="decks">{beats}</div>"""
 
-    n_src = sum(len(it.get("sources") or []) for it in items)
+    n_src = source_doc_count(items)
     what_html = f"""<h2 data-reveal>What this is</h2>
 <p class="prose" data-reveal>Alaska AI is a daily publication on Alaska and artificial
 intelligence, and an AI studio. The reporting side writes one verified
@@ -3360,7 +3389,7 @@ def docket_answers(today, site_url, items):
             + "".join(f'<li><p>{esc(p)}</p></li>' for p in places) + '</ol>'))
 
     # 5. Why the record is worth quoting, stated with numbers rather than adjectives.
-    n_src = len({s["url"] for it in items for s in it.get("sources", [])})
+    n_src = source_doc_count(items)
     n_hist = sum(len(it.get("history", [])) for it in items)
     out.append((
         "How reliable is the Alaska AI Docket, and can I reuse it?",
@@ -3553,7 +3582,7 @@ def data_page(today, site_url, docket, runs):
                            ("status", sorted(db.STATUSES)),
                            ("public_access", sorted(db.ACCESS)),
                            ("key_dates.kind", sorted(db.DATE_KINDS))))
-    n_src = len({s["url"] for it in items for s in it.get("sources", [])})
+    n_src = source_doc_count(items)
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <div class="chip kind">OPEN DATA &middot; {DATA_LICENSE_LABEL}</div>
 <h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">The data</h1>
@@ -4954,7 +4983,7 @@ Sturgill</a>, born and raised in Anchorage. He is also the lead AI engineer for 
 Lower 48 lab serving enterprise clients, work he does remotely. Alaska AI brings that
 expertise home to help Alaska businesses that rarely get access to it.</p>
 <h2>How the work gets verified</h2>
-<p>Every day Alaska AI works six beats across the state, from power and
+<p>Every day Alaska AI works {count_word(len(TOPICS))} beats across the state, from power and
 compute to policy and money to what Alaskans are actually saying. Every
 number and quote is re-fetched from a primary source before it can appear
 on a slide, the docket, or this site, and each one carries its own claim
