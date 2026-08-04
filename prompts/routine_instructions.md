@@ -394,6 +394,17 @@ The caption is conceived fresh per run, never a filled template. Read
    `caption_meta` field. At ship (Phase 11), append the ledger entry to
    `ledger/captions.json` (run_date, moves, first 8 words, hook_type) in the
    same commit as the run artifacts.
+   `aftercare` MUST BE A LIST OF STRINGS, one per checklist line, not a single
+   string (2026-08-04). gmail_draft.py renders it straight into `<li>` items,
+   so a string is iterated CHARACTER BY CHARACTER and the email ships an
+   aftercare block of about 160 one-letter bullets. Run No.25 did exactly that
+   and only caught it by reading the generated HTML before creating the draft.
+   Two other keys the email reads and silently degrades without: the score
+   report needs `weighted_total` (the email prints "? / 10" if it is missing,
+   which is how No.25's first payload rendered) and `editor_notes_for_email`
+   (it prints "None." otherwise). ALWAYS read the generated `html_body` before
+   calling create_draft. The body is the script's output verbatim, which means
+   a bad INPUT is invisible until it is in the maintainer's inbox.
 HARD RULE (2026-07-21): the post copy NEVER contains a sources list,
 source citations, music or audio credits, credits of any kind, or URLs.
 All of that lives ONLY in the paste-ready comment blocks (sources in the
@@ -923,9 +934,33 @@ from ledger/upgrades.json (Phase 12's output) so the maintainer can
 monitor the machine's evolution from the dated emails alone and request
 a revert if a later run degrades. Create the draft via the Gmail MCP
 `create_draft` tool with the payload EXACTLY as the script emits it
-(subject, to, html_body). The payload's `to` is the literal string `me`,
-which is account-relative and resolves to whatever mailbox the Gmail
-connector authenticates as. Do not substitute a literal address.
+(subject, to, html_body).
+
+THE RECIPIENT, corrected 2026-08-04 after run No.25 hit this live. The
+payload's `to` is the literal string `me`, which is account-relative in the
+Gmail API and resolves to whatever mailbox the connector authenticates as.
+**The Gmail MCP `create_draft` tool REJECTS it**, with "Invalid email
+address. Please provide a raw email address in the format
+'user@example.com'." So pass `docket@alaskaaihq.com` as the `to` and change
+NOTHING else about the payload. That is the mailbox the connector
+authenticates as, so the destination is identical and this is not a
+substitution to some other inbox, which is what the old wording was guarding
+against. Everything else in the payload still ships byte for byte.
+
+Do NOT edit gmail_draft.py to emit the literal address instead. The payload
+is also the committed fallback artifact, and `me` is the correct value for
+any caller that speaks the Gmail API directly. The MCP tool is the odd one
+out, so the workaround belongs at the call site, here, and not in the script.
+
+THE PAYLOAD SIZE, learned the same run. The default `--preview-mode grid`
+inlines one data URI per slide and produces a ~706 KB `html_body`, which
+cannot be passed through a single `create_draft` call. Add
+`--preview-mode remote` (the script's own documented affordance for exactly
+this) and the body drops to about 17 KB with the contact sheet and every
+slide sourced from its raw URL on main. Those URLs are live by this phase
+because Phase 11 already merged. Use `remote` by default; `contact` is the
+middle option if one inline image is wanted.
+
 THE MAILBOX, set 2026-07-26. The connector authenticates as
 `docket@alaskaaihq.com`, a Google Workspace mailbox on our own domain. That
 is where the draft lands and the address it would send from, DKIM signed by
