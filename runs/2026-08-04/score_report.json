@@ -1,0 +1,83 @@
+{
+  "run_date": "2026-08-04",
+  "carousel_no": 25,
+  "weighted_total_as_scored": 6.9,
+  "weighted_total_raw": 7.25,
+  "threshold": 8.3,
+  "ship": false,
+  "ship_decision": "SHIP WITH DISCLOSED SHORTFALL. The scorer returned 7.25 raw, capped to 6.9 by one hard fail. That hard fail (slide 03's display headline clipped by an opaque plate, visible at 432px) WAS FIXED after scoring, re-rendered and re-assembled, so the cap no longer applies. 7.25 is still below the 8.3 threshold and the deck ships with the shortfall stated plainly in the email rather than scored around.",
+  "weakest_criterion": "Artwork craft and genuine detail (5/10)",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 6,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 5,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 5,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 5,
+      "weight": 0.1
+    }
+  ],
+  "hard_fails": [
+    {
+      "rule": "clipped, overlapping or cut-off text in any render",
+      "status": "FOUND, THEN FIXED",
+      "evidence": "Slide 03's display headline broke to three lines against its own AK.fitText maxLines 2 spec and the third line's baseline was sliced by the opaque plate for '27 MI NE OF HOMER'. At 432px 'buys' read as 'buvs'.",
+      "resolution": "Headline capped at 2 lines in an 890px box (renders at 53.5px, 2 lines), the HOMER plate moved to y 372, and the locator inset moved from y 116 to y 326 so it no longer sits on the display line. Re-rendered, qa.py 0 fails, re-assembled, thumb verified by eye."
+    }
+  ],
+  "hard_fails_outstanding": [],
+  "one_sentence_fix": "Put modelled tone into the four large flat black voids (slide 02 top, 06 right, 07 top, 09 upper) so the deck's own 180x180 density gate is met in pixels rather than only in prose.",
+  "confidence_caveat": "No independent critic transcribed a single slide this run. Phase 8's pixel-critic pass and the flow critic did not execute. The scorer transcribed all ten renders itself as the final gate, but one scorer reading images is not two passes. The hard fail it found is precisely the class of defect the missing pass exists to catch, which is direct evidence the omission had a cost.",
+  "editor_notes": [
+    "brand.yaml bans colons in on-slide text with clock times the only exception, and this deck prints drafting scale ratios (SCALE 4:1, 1:24,000, 1:200, 1:100, 1:4) on six slides. Not on the rubric's hard-fail list so it does not cap, but the maintainer should rule on whether ratios are exempt and the rule should then say so.",
+    "Slide 10's gold four-point Polaris sits right after the word 'window' in the display line and reads like the sparkles emoji at feed scale on a deck with a no-emoji rule. It is vector art, not a character, but it should move off the headline.",
+    "The declared gold budget is broken on slide 02 (a gold leader line) and slide 04 (a gold-filled 16 FT chip), both slides where the storyboard held gold out entirely, which flattens slide 10's intended chromatic peak.",
+    "Slide 09 contradicts its own declared gate: the storyboard says the demand sheet is BARE and the value asymmetry across the gap is the picture, but both half-sheets render a graded water block, so the deck's central visual argument survives only in the paragraph.",
+    "Slides 05, 08 and 09 carry a warm ochre gravel texture that appears nowhere in the declared palette. The hue gate passed only because it tests for blue contamination and this drift is warm.",
+    "Slide 09's two match-line plates read 'MATCH LINE SEE SHEET' and stop, because the specified blank box was never drawn, so a deliberate absence looks like a truncation bug.",
+    "'data centres' on slide 09 versus 'data centers' in the caption ships both spellings in one package."
+  ],
+  "credit_where_due": "The notan-first attack partly landed. Slides 02, 04 and 07 show a genuinely graded water mass at both full size and 432px, a real gain over recent runs, and the mechanism's refusal to render the 38 percent projection as water (phantom dash, zero fill, zero streaks, everywhere it appears) is per the scorer the most honest piece of information design this studio has shipped. The problem is it runs on three slides, not nine."
+}
