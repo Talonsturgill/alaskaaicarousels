@@ -705,6 +705,16 @@ JSON in its final message, which YOU persist to
    the answer was to keep it. Do not remove it and do not "correct" it to a
    guessed alaskaai handle.
 
+   The site has NO public-sector or government-facing copy, and that is a
+   parked decision, not an oversight (maintainer, 2026-08-04). An audit
+   flagged it, a proposal was written and reviewed, and the maintainer said
+   hold. A grep for municipality, state agency, public sector or procurement
+   still returns 0 and is SUPPOSED to. Do not write agency copy, do not add a
+   public-sector tier to the services page, and do not build the page the
+   proposal describes. It reopens when the maintainer reopens it. The
+   proposal itself is preserved in PR #196 rather than here, because it is a
+   positioning argument and not a rule.
+
    The eight flag stars are photometry, not decoration. Positions, V
    magnitudes, B-V indices and tints are fixed. Halo extent goes as the 0.45
    power of flux and spike length is keyed to `glow_r`, because both were
