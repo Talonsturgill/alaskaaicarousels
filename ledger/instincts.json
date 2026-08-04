@@ -597,6 +597,21 @@
       "instinct": "A global class rewrite in a slide generator can silently strip a colour off unrelated slides. On 2026-08-03 an edit made for one slide's legend rows removed the .arc class from another slide's list items, which lost their bone colour and rendered at 1.2:1 on a dark ground. qa.py caught it, but only because contrast is gated; a spacing property would have shipped. Scope generator edits to the slide they are for.",
       "confidence": 0.82,
       "first_seen": "2026-08-03"
+    },
+    {
+      "run_date": "2026-08-04",
+      "confidence": 0.95,
+      "instinct": "AK.svgPlate inserts the plate as the label's PRECEDING sibling, and SVG has no z-index, so in a STACK of labels each plate paints over the line above it whenever the rows sit closer together than the plate is tall. JetBrains Mono at 24px with 9px padding makes a 42px plate, so any stack tighter than about 46px self-occludes and qa.py reports it as 'svg label painted over'. Run 2026-08-04 shipped this on six slides at once by stacking at 32px. Space stacked mono labels at 46px minimum, or build every plate before any text."
+    },
+    {
+      "run_date": "2026-08-04",
+      "confidence": 0.9,
+      "instinct": "A deck-wide colour ramp needs a PER-SLIDE SUB-RANGE, not a raw physical ratio. Run 2026-08-04's head ramp mapped 0 to 40 ft of an 1,100 ft machine onto the full 0.88 to 0.16 lightness list, which put the whole band inside the first 4 percent of the ramp and rendered a 400px lower third as one near-white field. The law stayed true and the picture died. Declare each slide's sub-range explicitly (band(u0,u1)) so the deck-wide law holds AND every slide darkens visibly across its own band."
+    },
+    {
+      "run_date": "2026-08-04",
+      "confidence": 0.88,
+      "instinct": "When a generative system encodes a MEASURED quantity, never encode a PROJECTED one in the same visual language. A reader who correctly reads the first as physics will read the second as physics too, and the printed legend that distinguishes them is the first thing that dies at feed scale. Make the system physically unable to render the projection instead: run 2026-08-04 drew every forward-looking figure as phantom dash with zero fill and zero streaks, so measured and projected can never be confused at any scale, with or without a legend."
     }
   ]
 }

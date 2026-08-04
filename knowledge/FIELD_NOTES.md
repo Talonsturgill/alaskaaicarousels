@@ -2450,3 +2450,49 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   2026-08-02. Aggregators this week assert "5 to 15 slides" as the
   high-performing band. It traces to nobody. Our 8 to 10 band with a 6 floor
   and the measured minus-35 percent below 5 stands unchanged. NOT APPLIED.
+
+## 2026-08-04 - No.25, "Drawn to Scale, Except the Demand" (degraded run)
+
+- THE FACT-CHECKER KILLED THE THESIS AND THE REPLACEMENT WAS BETTER. The deck was
+  selected to compare a 0.3 MW capacity gain against a reported 100 MW Air Force
+  per-project minimum. That minimum appears nowhere in the Air Force's own release
+  or in the solicitation record; both scouts had traced it to a single partisan
+  outlet. Nine claims died with it, including every load-side megawatt figure the
+  deck had. What survived is that the Air Force publishes ACRES and publishes no
+  megawatts at all, which turned the deck from a magnitude comparison into an
+  asymmetry of UNITS. A deck that cannot compare two numbers because one of them
+  was never published is a truer deck than one that compares two numbers where one
+  is borrowed from an advocacy blog.
+- THE ROOM CAUGHT THE SHOWRUNNER TWICE, IN ONE PHASE. The caption brief told
+  Director B that LEDGER TALLY had never shipped; it ran on 2026-07-24 with the
+  same structure. B reported the error unprompted, against its own interest, and
+  rotated its close to widen the gap. The critic then killed candidate A, whose
+  assigned opening move was ONE run old inside a six-entry window and whose
+  move-plus-structure pair reproduced 2026-07-23 exactly. Both errors were the
+  showrunner's. The lesson is not that agents catch mistakes, it is that a brief
+  asserting a ledger fact should quote the ledger rather than paraphrase it.
+- A MECHANISM SHOULD BE PHYSICALLY UNABLE TO LIE. The winning treatment proposed
+  encoding the 38 percent projection as 1.38x streak density inside the same water
+  that carries a physics-derived lightness law, and named the seam in its own
+  self-critique. A losing pitch had solved it by construction. Grafted: the
+  projection is drawn as phantom dash with zero fill and zero streaks everywhere,
+  so the generative system cannot render a forward-looking number as water. This
+  is stronger than any legend, because a legend is the first thing to die at 432px.
+- THE NOTAN ATTACK HALF-LANDED AND THE FAILURE IS INSTRUCTIVE. Declaring the
+  two-value mass arrangement before the technique stack did change the build. It
+  also produced the run's worst frame, because a deck-wide lightness law mapped
+  0 to 40 ft of an 1,100 ft machine onto the full ramp and rendered the cover's
+  lower third as one near-white field. The law was correct and the picture was
+  dead. Per-slide sub-ranges fixed it. Value structure is not a formula you apply,
+  it is a thing you have to LOOK at.
+- SIX SLIDES SHIPPED THE SAME PLATE BUG AND ONE RULE EXPLAINS IT. AK.svgPlate
+  inserts the plate as the label's preceding sibling, and SVG document order IS
+  the stack, so in a vertical stack each plate paints over the line above it.
+  A 24px mono label with 9px padding is a 42px plate; stacking at 32px guarantees
+  the defect. qa.py caught all six.
+- DEGRADED, AND SAYING SO. Phase 8's pixel critics and the flow critic were not
+  spawned. The context budget went into the art build, which took three rebuild
+  rounds on the cover alone. The machine gates all ran and all pass, and the
+  showrunner self-reviewed the cover, the hero and the contact sheet, but no
+  independent critic transcribed a slide. That is a real gap in the quality chain
+  and it is disclosed in the email, in the artwork ledger and to the scorer.

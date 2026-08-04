@@ -1,0 +1,183 @@
+{
+  "run_date": "2026-08-04",
+  "carousel_no": 25,
+  "document_title": "Drawn to Scale, Except the Demand",
+  "post_copy": "One column tallies 119.7 megawatts becoming 120.0. The other tallies about 4,700 acres. No unit joins them.\n\nThe megawatts are Bradley Lake. The Alaska Energy Authority has asked FERC to divert Dixon Glacier meltwater into the lake and add a 0.3 MW turbine. AEA projects about 38 percent more average annual generation. More water, not more hardware. Comments close 28 August at 5:00 p.m. Eastern.\n\nThe acres are twelve Air Force parcels at JBER, Eielson and Clear, offered for AI data centers. Robert Moriarty cited \"the growing demands of the AI industry.\"\n\nThat offer names no megawatts. No published number bridges the two records.\n\nSlides carry the fishwater valve in section, the capacity bar against the generation bar, and the twelve parcels.\n\nSo is that blank a hole in the record, or just not the Air Force's number to publish?\n\n#Railbelt #DixonDiversion #AlaskaEnergy",
+  "caption_meta": {
+    "opening_move": "LEDGER TALLY",
+    "structure": "INVERTED PYRAMID",
+    "closing_move": "fork",
+    "hook_type": "ledger tally, two columns posted and then refused a common unit",
+    "first_words": "One column tallies 119.7",
+    "critic_note": "Candidate A (DEFINITION SUBVERSION + PUNCH THEN PROOF) was killed by the critic as a two-axis repeat of 2026-07-23 with an opening move only one run old. The showrunner's brief had assigned it in error and had also wrongly told Director B that LEDGER TALLY had never shipped; Director B caught and reported that unprompted."
+  },
+  "first_comment": "Sources for today's deck, in the order the claims appear.\n\nFederal Energy Regulatory Commission, notice of application accepted for filing, Federal Register 2026-08-03, docket P-8221-124 -- https://www.govinfo.gov/content/pkg/FR-2026-08-03/html/2026-15691.htm\n\nFederal Register API record for the same notice, 2026-08-03 -- https://www.federalregister.gov/api/v1/documents/2026-15691.json\n\nAlaska Energy Authority, Dixon Diversion Project page (cost, schedule, siting) -- https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Bradley-Lake-Hydroelectric-Project/Dixon-Diversion-Project\n\nAlaska Energy Authority, Bradley Lake Hydroelectric Project page (392,000 MWh 1995 to 2020 average, about 10 percent of Railbelt annual power) -- https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Bradley-Lake-Hydroelectric-Project\n\nAlaska Energy Authority newsroom, board endorses a financing package, 2026-07-23 -- https://www.akenergyauthority.org/Who-We-Are/Newsroom/Press-Releases\n\nPetroleum News, Alan Bailey, 2026-08-02 (the 4.6 mile tunnel, up to 30,000 homes) -- https://www.petroleumnews.com/story/2026/08/02/news/aea-final-amendment-application-for-bradley-lake-filed-with-ferc/50288.html\n\nU.S. Department of the Air Force, 2026-04-10 (about 4,700 acres, twelve parcels, the Moriarty quotation) -- https://www.af.mil/News/Article-Display/Article/4456660/daf-takes-steps-for-potential-alaskan-ai-data-centers/\n\nHigherGov mirror of SAM.gov solicitation AFCEC-26-R-0006, last updated 2026-07-14 -- https://www.highergov.com/contract-opportunity/rflp-artificial-intelligence-ai-data-center-deve-afcec-26-r-0006-o-db695/\n\nOne number on slide 07 is ours, not anyone else's. About 149,000 megawatt hours a year is 38 percent applied to the 392,000 MWh average. Nobody has published an absolute figure for the expansion, and the slide says so.\n\nNothing in the Bradley Lake record mentions AI or data centres, and the Air Force offer names no megawatts. The deck does not connect them and neither does any document we found.",
+  "slides": [
+    {
+      "n": 1,
+      "strings": [
+        "0.3 MW MICRO HYDRO TURBINE",
+        "FISHWATER RELEASE VALVE",
+        "+38 PERCENT AVG ANNUAL GENERATION",
+        "APPLICANT PROJECTION",
+        "DETAIL A . SCALE 4:1",
+        "KEY PLAN . 1:24,000",
+        "FERC P-8221-124 . FEDERAL REGISTER 2026-08-03",
+        "New turbine, 0.3 megawatts. New water off Dixon Glacier.",
+        "01 / 10",
+        "59\u00b046'N 150\u00b052'W",
+        "MATCH LINE SEE SHEET 02"
+      ]
+    },
+    {
+      "n": 2,
+      "strings": [
+        "6.4 PX PER MW",
+        "INSTALLED CAPACITY 119.7 MW TO 120.0 MW",
+        "0.0021 PX PER MWh",
+        "AVG ANNUAL GENERATION +38 PERCENT",
+        "APPLICANT PROJECTION",
+        "0.3 MW IS ONE PIXEL AT THIS SCALE",
+        "ENERGY BALANCE . SHEET 02",
+        "The turbines barely change. The water does.",
+        "Capacity is megawatts. Generation is megawatt hours. Different units, not one su",
+        "02 / 10",
+        "MATCH LINE SEE SHEET 03"
+      ]
+    },
+    {
+      "n": 3,
+      "strings": [
+        "DIXON GLACIER APRON",
+        "BRADLEY LAKE",
+        "PENSTOCK",
+        "POWERHOUSE",
+        "4.6 MI CONNECTING TUNNEL",
+        "PER PETROLEUM NEWS",
+        "ABOUT 10 PERCENT OF",
+        "RAILBELT ANNUAL POWER . AEA",
+        "27 MI NE OF HOMER",
+        "HORIZ 1 PX = 0.0091 MI",
+        "LONGITUDINAL PROFILE . 1:24,000 . V.E. 10x",
+        "Head is the resource. The amendment buys more of it.",
+        "03 / 10",
+        "MATCH LINE SEE SHEET 04"
+      ]
+    },
+    {
+      "n": 4,
+      "strings": [
+        "16 FT",
+        "PROPOSED NORMAL MAX POOL",
+        "EXISTING NORMAL MAX POOL",
+        "EST CONSTRUCTION ABOUT $400 MILLION",
+        "AEA ESTIMATE FOR THIS AMENDMENT",
+        "ABOUT 3 YR PERMITTING, THEN 3 YR CONSTRUCTION",
+        "AEA BOARD ENDORSED A",
+        "FINANCING PACKAGE 2026-07-23",
+        "NO STRUCTURE IS PUBLIC",
+        "VERT 1 PX = 0.42 FT",
+        "DAM ELEVATION AND SECTION . 1:200",
+        "The lake's ceiling goes up about 16 feet.",
+        "04 / 10",
+        "MATCH LINE SEE SHEET 05"
+      ]
+    },
+    {
+      "n": 5,
+      "strings": [
+        "FISHWATER OUTLET",
+        "DEFINITION . FISHWATER RELEASE . 1:100",
+        "A fishwater release valve exists to send water past a dam. AEA proposes to put a",
+        "05 / 10",
+        "MATCH LINE SEE SHEET 06",
+        "HORIZ 1 PX = 0.031 FT"
+      ]
+    },
+    {
+      "n": 6,
+      "strings": [
+        "119.7 MW TO 120.0 MW INSTALLED",
+        "0.3 MW MICRO HYDRO TURBINE",
+        "+38 PERCENT AVG ANNUAL GENERATION",
+        "APPLICANT PROJECTION . FROM WATER,",
+        "NOT FROM TURBINES",
+        "STEEL",
+        "CONCRETE",
+        "WATER",
+        "FULL SECTION F-F . SCALE 1:4",
+        "This is the entire capacity increase.",
+        "06 / 10",
+        "MATCH LINE SEE SHEET 07"
+      ]
+    },
+    {
+      "n": 7,
+      "strings": [
+        "ABOUT 149,000 MWh",
+        "ALASKA.AI ARITHMETIC . 38 PERCENT OF",
+        "THE 26 YEAR AVERAGE . PUBLISHED BY NOBODY",
+        "392,000 MWh . 26 YEAR AVERAGE 1995 TO 2020 . AEA",
+        "+38 PERCENT . APPLICANT PROJECTION",
+        "UP TO 30,000 HOMES",
+        "PER PETROLEUM NEWS",
+        "GENERATION . 0.0021 PX PER MWh",
+        "About 149,000 more megawatt hours. Our arithmetic, not AEA's.",
+        "07 / 10",
+        "MATCH LINE SEE SHEET 08"
+      ]
+    },
+    {
+      "n": 8,
+      "strings": [
+        "MEGAWATTS . 0 TO 200 . LETTERED AT 10",
+        "NO FIGURE PUBLISHED",
+        "THIS MARK HAS A FIXED SIZE.",
+        "AN ABSENCE HAS NO LENGTH.",
+        "BRADLEY LAKE 120.0 MW . PLOTTED",
+        "12 PARCELS . ABOUT 4,700 ACRES",
+        "ACRES, NOT MEGAWATTS",
+        "ROBERT MORIARTY . DEPUTY ASSISTANT",
+        "SECRETARY OF THE AIR FORCE FOR INSTALLATIONS",
+        "KEY PLAN . ACRES . NO VERTICAL SCALE",
+        "The other side of the ledger is measured in acres.",
+        "\"supporting the growing demands of the AI industry\"",
+        "08 / 10",
+        "MATCH LINE SEE SHEET 09"
+      ]
+    },
+    {
+      "n": 9,
+      "strings": [
+        "BRADLEY LAKE . P-8221-124",
+        "AIR FORCE . AFCEC-26-R-0006",
+        "MATCH LINE SEE SHEET",
+        "MATCH LINE SEE SHEET",
+        "POSTED 2026-04-10 . CLOSED 2026-06-29",
+        "ARCHIVED 2026-07-14 . NO AWARD HAS BEEN POSTED",
+        "SHEET INDEX",
+        "No document connects these two sheets.",
+        "The FERC notice, AEA's pages and the trade coverage mention neither AI nor data ",
+        "09 / 10"
+      ]
+    },
+    {
+      "n": 10,
+      "strings": [
+        "DUE 2026-08-28 . 5:00 P.M. EASTERN",
+        "1:00 P.M. ALASKA",
+        "ACCEPTING AN APPLICATION FOR FILING",
+        "IS A PROCEDURAL STEP, NOT AN APPROVAL",
+        "SOURCES IN COMMENTS",
+        "P-8221-124",
+        "The comment window is the one part you can still draw on.",
+        "File a comment. FERC docket P-8221-124.",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "10 / 10",
+        "END OF SET"
+      ]
+    }
+  ],
+  "aftercare": "Post Tuesday to Thursday, 8 to 11 a.m. Alaska time. Paste the first comment within about 60 seconds. Reply substantively to every comment in the first 60 to 90 minutes."
+}

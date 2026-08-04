@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-08-03",
+  "updated": "2026-08-04",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -10,8 +10,8 @@
   "attribution": "Alaska AI, https://alaskaaihq.com",
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
-  "temporal_coverage": "2026-01-20/2026-08-25",
-  "count": 11,
+  "temporal_coverage": "2026-01-20/2026-08-28",
+  "count": 12,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -230,6 +230,11 @@
           "kind": "deadline"
         },
         {
+          "date": "2026-07-14",
+          "label": "Solicitation AFCEC-26-R-0006 archived with no award posted",
+          "kind": "milestone"
+        },
+        {
           "date": "2026-07-22",
           "label": "U.S. House passes FY2027 NDAA carrying a data center lease restriction",
           "kind": "vote"
@@ -298,7 +303,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-03",
+      "last_updated": "2026-08-04",
       "history": [
         {
           "date": "2026-07-08",
@@ -343,6 +348,10 @@
         {
           "date": "2026-08-03",
           "note": "Still no selection announced. Lease proposals closed June 29, 2026 after an extension from May 29, and five weeks later there is no public award, shortlist or cancellation. Checked today against the Air Force announcement of the offer and the solicitation record for AFCEC-26-R-0006. The offer covers about 4,700 acres across twelve parcels at three installations on ground leases of up to fifty years, so a decision made quietly is a decision with a fifty-year tail."
+        },
+        {
+          "date": "2026-08-04",
+          "note": "Re-checked. The solicitation for AI data centre development on the three installations closed to proposals on June 29 and was archived on July 14 with no award posted. The Air Force's own announcement describes approximately 4,700 acres across twelve parcels and quotes Deputy Assistant Secretary Robert Moriarty saying the offer supports the growing demands of the AI industry. Neither that announcement nor the solicitation record states how much electricity a project would draw."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -543,7 +552,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-03",
+      "last_updated": "2026-08-04",
       "history": [
         {
           "date": "2026-07-08",
@@ -616,6 +625,10 @@
         {
           "date": "2026-08-03",
           "note": "The third special session convened Monday, July 27, 2026 with four legislators attending the pro forma opening and no bill from the governor, who said he would work toward a bill acceptable to both the Legislature and Glenfarne. The session is scheduled to end August 25, 2026. Re-verified today against the Anchorage Daily News, July 27, 2026."
+        },
+        {
+          "date": "2026-08-04",
+          "note": "Re-checked. The third special session opened on July 27 under a 30-day proclamation with no bill submitted by the governor, who said he would continue meeting with all parties before reintroducing legislation. Attendance on the opening day was reported as a handful of members. The scheduled end date of August 25 is unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aklng-tax-bill-second-special-session/"
@@ -731,7 +744,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-07-31",
+      "last_updated": "2026-08-04",
       "history": [
         {
           "date": "2026-07-17",
@@ -760,6 +773,10 @@
         {
           "date": "2026-07-31",
           "note": "Re-verified today against the primary notice, Alaska DNR Online Public Notices id 224431. The deadline is unchanged at 5 p.m. Wednesday, August 19, 2026, the parcel is approximately 19,950 acres about two miles north of Houston, and no extension, amendment or correction appears. Two things worth stating plainly for anyone deciding whether to write. First, the notice limits appeal rights to people who comment during this window, so a comment is the only way to keep a say after the decision issues. Second, the Houston City Council vote tracked here for August 13 is a separate question before a separate body. Mat-Su Sentinel reporting places this parcel outside Houston city limits, and the Matanuska-Susitna Borough, which does have jurisdiction, does not require a special permit for a data center, so a city ban would not by itself reach this land."
+        },
+        {
+          "date": "2026-08-04",
+          "note": "Re-verified against the primary notice. The comment deadline is unchanged at 5:00 p.m. Wednesday, August 19, 2026, Alaska DNR Online Public Notices id 224431, ADL 234762."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -998,6 +1015,74 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
+    },
+    {
+      "id": "bradley-lake-dixon-diversion",
+      "title": "The Dixon Glacier diversion into Bradley Lake",
+      "kind": "regulatory-docket",
+      "status": "open-for-comment",
+      "decider": "Federal Energy Regulatory Commission",
+      "public_access": "open",
+      "access_note": "Anyone may file a comment, a motion to intervene or a protest with FERC in docket P-8221-124 until 5:00 p.m. Eastern on August 28, which is 1:00 p.m. Alaska time. FERC's eFiling system takes filings online and the notice also gives a mailing address.",
+      "summary": "The Alaska Energy Authority has asked FERC to amend the licence for the Bradley Lake Hydroelectric Project, the largest in Alaska, so it can build a new dam diverting meltwater and surface runoff from the Dixon Glacier into Bradley Lake, raise the lake's normal maximum operating pool by about 16 feet, and install a 0.3 megawatt micro-hydro turbine in one of the dam's fishwater release valves. The application projects about 38 percent more average annual generation while installed capacity rises from 119.7 to 120.0 megawatts, because the gain comes from water rather than from turbines. AEA estimates construction at about $400 million and about three years of study and permitting followed by three years of construction. FERC accepting the application for filing is a procedural step and not an approval.",
+      "key_dates": [
+        {
+          "date": "2026-06-30",
+          "label": "Amendment application filed with FERC",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-07-23",
+          "label": "AEA board endorses a financing package for the expansion",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-03",
+          "label": "FERC notice published in the Federal Register",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-28",
+          "label": "Comments, motions to intervene and protests due, 5:00 p.m. Eastern",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Bradley Lake, Kenai Peninsula",
+        "lon": -150.87,
+        "lat": 59.78
+      },
+      "sources": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-03/html/2026-15691.htm",
+          "outlet": "Federal Energy Regulatory Commission, via govinfo.gov",
+          "date": "2026-08-03"
+        },
+        {
+          "url": "https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Bradley-Lake-Hydroelectric-Project/Dixon-Diversion-Project",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-08-04"
+        },
+        {
+          "url": "https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Bradley-Lake-Hydroelectric-Project",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-08-04"
+        },
+        {
+          "url": "https://www.petroleumnews.com/story/2026/08/02/news/aea-final-amendment-application-for-bradley-lake-filed-with-ferc/50288.html",
+          "outlet": "Petroleum News",
+          "date": "2026-08-02"
+        }
+      ],
+      "first_seen": "2026-08-04",
+      "last_updated": "2026-08-04",
+      "history": [
+        {
+          "date": "2026-08-04",
+          "note": "Tracked. FERC accepted the amendment application for filing and opened a comment window closing 5:00 p.m. Eastern on August 28. The project details, the capacity figures and the 38 percent generation projection were read from the Federal Register notice. The cost estimate, the schedule and the siting 27 miles northeast of Homer come from AEA's own project page. Bradley Lake supplies about 10 percent of the power Railbelt utilities use each year."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
     }
   ]
 }

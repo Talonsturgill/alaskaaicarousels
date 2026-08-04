@@ -1,0 +1,76 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'DETAIL A . SCALE 4:1' at 690,616 336x31 (margin 80px)",
+        "outside safe zone: 'KEY PLAN . 1:24,000' at 700,1180 319x31 (margin 80px)",
+        "low contrast ~1.1 on '01 / 10' (est.)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'RAILBELT ANNUAL POWER . AEA' at 560,1112 454x31 (margin 80px)",
+        "outside safe zone: 'HORIZ 1 PX = 0.0091 MI' at 80,1296 370x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'AEA ESTIMATE FOR THIS AMENDMENT' at 96,1248 521x31 (margin 80px)",
+        "outside safe zone: 'ABOUT 3 YR PERMITTING, THEN 3 YR CONSTRU' at 96,1294 756x31 (margin 80px)",
+        "outside safe zone: 'FINANCING PACKAGE 2026-07-23' at 560,588 470x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '392,000 MWh . 26 YEAR AVERAGE 1995 TO 20' at 240,412 806x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'SECRETARY OF THE AIR FORCE FOR INSTALLAT' at 96,1258 739x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'AIR FORCE . AFCEC-26-R-0006' at 580,154 454x31 (margin 80px)",
+        "outside safe zone: 'MATCH LINE SEE SHEET' at 690,388 336x31 (margin 80px)",
+        "outside safe zone: 'The FERC notice, AEA's pages and the tra' at 80,996 860x301 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-10.html",
+      "fails": [],
+      "warns": []
+    }
+  ],
+  "fails": 0,
+  "warns": 13,
+  "verdict": "WARN"
+}

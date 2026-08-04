@@ -1110,6 +1110,60 @@
       "headline": "A clause mentions AI. The pit is 1.1 miles wide.",
       "sources_lead": "https://knom.org/2026/07/30/brevig-mission-residents-oppose-graphite-one-mine-at-community-meeting/, https://www.prnewswire.com/news-releases/graphite-one-highlights-strategic-alignment-with-white-house-executive-order-reinforcing-us-critical-minerals-supply-chain-302831679.html",
       "outcome_notes": "Scored 6.9 (capped by one hard fail; raw 7.67 vs 7.7). Repaired and not re-scored."
+    },
+    {
+      "run_date": "2026-08-04",
+      "carousel_no": 25,
+      "topic": "FERC opened a public comment window (Federal Register 2026-08-03, docket P-8221-124) on the Alaska Energy Authority's application to amend the Bradley Lake Hydroelectric Project licence, diverting Dixon Glacier meltwater and surface runoff into Bradley Lake, raising the pool about 16 feet, and installing a 0.3 MW micro-hydro turbine in a fishwater release valve",
+      "angle": "THE ASYMMETRY OF UNITS. One side of Alaska's power ledger is measured to the tenth of a megawatt and the other in acres, and nobody has published the number that would connect them. Supply is documented down to a fishwater release valve, about $400 million and six years for a capacity move of 0.3 MW against a projected 38 percent energy gain. Demand, the Air Force's roughly 4,700 acres across twelve parcels at JBER, Eielson and Clear, is documented in LAND and names no megawatts anywhere in its own release. HONESTY FIREWALL ARCHITECTURAL, nothing in any verified document links the diversion to data centres and slide 09 says so at full weight in the deck's only 500-weight display setting. The deck's original comparison anchor, a reported 100 MW per-project minimum, was KILLED by the fact-checker as a single partisan source and the thesis was rebuilt around the absence instead.",
+      "entities": [
+        "Alaska Energy Authority",
+        "Federal Energy Regulatory Commission",
+        "Bradley Lake Hydroelectric Project",
+        "Dixon Glacier",
+        "Homer",
+        "Kenai Peninsula",
+        "Railbelt",
+        "U.S. Department of the Air Force",
+        "Joint Base Elmendorf-Richardson",
+        "Eielson Air Force Base",
+        "Clear Space Force Station",
+        "Robert Moriarty",
+        "Petroleum News"
+      ],
+      "keywords": [
+        "hydroelectric",
+        "hydro",
+        "licence amendment",
+        "non-capacity amendment",
+        "FERC",
+        "P-8221-124",
+        "comment period",
+        "Dixon Diversion",
+        "glacier meltwater",
+        "tunnel",
+        "pool elevation",
+        "micro-hydro",
+        "fishwater release valve",
+        "installed capacity",
+        "average annual generation",
+        "megawatt hours",
+        "Railbelt",
+        "enhanced use lease",
+        "acres",
+        "parcels",
+        "AI data centre",
+        "units asymmetry",
+        "absence in the record"
+      ],
+      "headline": "Drawn to Scale, Except the Demand",
+      "sources_lead": [
+        "https://www.govinfo.gov/content/pkg/FR-2026-08-03/html/2026-15691.htm",
+        "https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Bradley-Lake-Hydroelectric-Project/Dixon-Diversion-Project",
+        "https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Bradley-Lake-Hydroelectric-Project",
+        "https://www.af.mil/News/Article-Display/Article/4456660/daf-takes-steps-for-potential-alaskan-ai-data-centers/"
+      ],
+      "outcome_notes": "Degraded run. Phase 8 pixel critics and the flow critic were not spawned; context budget was exhausted by the art build. Disclosed in the email and to the scorer."
     }
   ]
 }
