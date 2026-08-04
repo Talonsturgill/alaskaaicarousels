@@ -818,7 +818,8 @@
         "prompts/routine_instructions.md"
       ],
       "verification": "Amendment is prose in the master routine, so there is no code path to re-run. Verified against the artifacts of this run: the corrected copy.json aftercare list renders 5 <li> items, weighted_total 7.25 renders as '7.25 / 10 vs 8.3', editor_notes_for_email renders in full, and the remote-mode payload measured 17,282 bytes with 0 data URIs against 722,800 bytes with 10. Draft r-3813177419829572772 was created successfully with to=docket@alaskaaihq.com.",
-      "rollback": "git revert the upgrade(2026-08-04) commit. Reverting restores the old Phase 13 wording, which would send the next run back into the same four failures at the delivery step."
+      "rollback": "git revert the upgrade(2026-08-04) commit. Reverting restores the old Phase 13 wording, which would send the next run back into the same four failures at the delivery step.",
+      "commit": "558cc027d5b4f58df3e5bc48700969728e4428fd"
     }
   ],
   "scan_log": [
