@@ -807,6 +807,18 @@
       "verification": "Re-rendered; every one of six rows carries its own registered swatch and separator, confirmed by reading the render. qa.py PASS.",
       "rollback": "n/a, the practice is recorded as an instinct rather than as engine code.",
       "commit": "25b2e83cdd6180f7068eb00766e7e094e6f33405"
+    },
+    {
+      "run_date": "2026-08-04",
+      "kind": "fix",
+      "area": "prompts/routine_instructions.md, Phase 13 and Phase 6",
+      "change": "Amended Phase 13 to record two things run No.25 discovered live at the delivery step. (1) THE RECIPIENT. The payload's account-relative `to` value of `me` is correct for the Gmail API but the Gmail MCP create_draft tool rejects it outright and demands a raw address, so the phase now says to pass docket@alaskaaihq.com, which is the mailbox that connector already authenticates as, and to change nothing else. It also says explicitly NOT to edit gmail_draft.py to emit the literal address, because the payload is the committed fallback artifact and `me` is right for any caller that speaks the API directly; the MCP tool is the odd one out so the workaround belongs at the call site. (2) THE PAYLOAD SIZE. The default --preview-mode grid inlines one data URI per slide and produces a ~706 KB html_body that cannot pass through a single create_draft call; the phase now directs --preview-mode remote, which yields about 17 KB and is safe because Phase 11 has already merged the raw URLs. Separately amended Phase 6 to pin three copy.json and score_report.json shapes the email reads and silently degrades without, chiefly that `aftercare` MUST be a list because gmail_draft.py renders it into <li> items and a plain string is iterated character by character.",
+      "trigger": "Run No.25 hit all four at the delivery step. create_draft returned 'Invalid email address' on `me`. The default payload came out at 706 KB and could not be passed. The first generated email rendered an aftercare block of about 160 one-letter bullets from a string-valued `aftercare`, printed '? / 10' because score_report.json carried the total under two alias-less keys, and printed 'None.' for the editor's note. All four were caught only by reading the generated HTML before creating the draft.",
+      "files": [
+        "prompts/routine_instructions.md"
+      ],
+      "verification": "Amendment is prose in the master routine, so there is no code path to re-run. Verified against the artifacts of this run: the corrected copy.json aftercare list renders 5 <li> items, weighted_total 7.25 renders as '7.25 / 10 vs 8.3', editor_notes_for_email renders in full, and the remote-mode payload measured 17,282 bytes with 0 data URIs against 722,800 bytes with 10. Draft r-3813177419829572772 was created successfully with to=docket@alaskaaihq.com.",
+      "rollback": "git revert the upgrade(2026-08-04) commit. Reverting restores the old Phase 13 wording, which would send the next run back into the same four failures at the delivery step."
     }
   ],
   "scan_log": [
