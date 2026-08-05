@@ -51,6 +51,38 @@ AI_TELLS = ["delve", "tapestry", "testament", "landscape of", "ever-evolving",
             "here's the honest part", "here is the honest part",
             "here's what matters", "here is what matters", "imagine if",
             "in a world where", "it's no secret"]
+# DATE FORM (owner rule 2026-08-05: "rn ur saying '10 August', the normal way to say it is
+# August 10th"). Month name first, day as an ordinal. ISO stays correct for a PROVENANCE
+# STAMP (a citation line, a filename, a ledger field) but a sentence a human reads takes
+# "August 10th". Mirrors alaska-ai-weekly's scripts/caption_check.py DATE_FORMS so the two
+# surfaces cannot drift apart.
+MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
+ABBREV = r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec"
+DATE_FORMS = [
+    (re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(" + MONTHS + r")\b"),
+     "day-first", "write the month first with an ordinal day, e.g. August 10th"),
+    (re.compile(r"\b(" + MONTHS + r")\s+(\d{1,2})(?!\s*(?:st|nd|rd|th))(?!\d)"),
+     "no ordinal", "add the ordinal, e.g. August 10th"),
+    (re.compile(r"\bthe\s+\d{1,2}(?:st|nd|rd|th)\s+of\s+(" + MONTHS + r")\b"),
+     "of-form", "write it plainly, e.g. August 10th"),
+    (re.compile(r"\b(" + ABBREV + r")\.?\s+\d{1,2}\b"),
+     "abbreviated month", "spell the month out with an ordinal day, e.g. August 10th"),
+]
+
+# COMMA DISCIPLINE (owner rule 2026-08-05: "reduce comma usage by 10% on the captions
+# moving forward"). MEASURED AGAINST THIS DECK'S OWN CAPTIONS, not the weekly repo's.
+# Across the 22 captions shipped as of that date the mean here was 6.88 commas per 100
+# words of body (median 6.52), so ten percent below is 6.20 and the ceiling is 6.2.
+#
+# Deliberately NOT the 4.9 that alaska-ai-weekly uses. Carousel captions run shorter and
+# comma-heavier, and applying that repo's number here would be a 29 percent cut rather than
+# the 10 percent the owner asked for. The RULE is "ten percent below what this surface
+# actually ships", and the two surfaces ship differently.
+#
+# The cure is NOT deleting commas and leaving a run-on. Split at the comma and let it be two
+# sentences, or cut the clause that was only there to be qualified.
+COMMA_PER_100W = 6.2
+
 BANNED_PUNCT = {"—": "em dash", "–": "en dash", ";": "semicolon",
                 "“": "curly quote", "”": "curly quote",
                 "‘": "curly apostrophe", "’": "curly apostrophe"}
@@ -215,6 +247,31 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
     content_lines = [l for l in nonempty if not all(w.startswith("#") for w in l.split())]
     if content_lines and not content_lines[-1].strip().endswith("?"):
         fails.append("CLOSE: final content line must be an engagement question ending with ?")
+
+    # DATE FORM. Hard fail, same reasoning as the house-wide banned-word table: a style rule
+    # nobody checks drifts back within a few runs.
+    for rx, what, fix in DATE_FORMS:
+        mm = rx.search(text)
+        if mm:
+            fails.append(f"DATE: '{mm.group(0)}' is the {what} form - {fix} "
+                         f"(owner rule 2026-08-05). ISO is still right for a citation stamp, "
+                         f"but this is a sentence.")
+            break
+
+    # COMMA DISCIPLINE, measured on the body with the hashtag tail excluded, which is how
+    # the 6.88 baseline was measured so the ceiling and the measurement agree.
+    body_only = re.sub(r"(?m)^\s*#\S+.*$", "", text)
+    body_words = len(body_only.split())
+    if body_words >= 80:
+        n_commas = body_only.count(",")
+        per100 = 100.0 * n_commas / body_words
+        if per100 > COMMA_PER_100W:
+            allowed = int(COMMA_PER_100W * body_words / 100)
+            fails.append(f"COMMAS: {n_commas} commas in {body_words} words is {per100:.2f} per 100, "
+                         f"over the {COMMA_PER_100W} ceiling (owner rule 2026-08-05, ten percent "
+                         f"below this deck's shipped mean of 6.88). Cut at least "
+                         f"{max(1, n_commas - allowed)}. Split the sentence at the comma rather "
+                         f"than deleting the comma.")
 
     # variety engine: banned furniture, the connective tissue that made every
     # caption read like a mail merge (9 of the first 14 runs used it). The
