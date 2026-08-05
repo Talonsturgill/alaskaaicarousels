@@ -79,6 +79,11 @@ are siblings, not parent and child. These rules do not bend:
   docket's Buttondown tag. That list carries its own narrow written promise.
 - A failed fetch writes an explicit unverified record and carries NO number
   forward from yesterday.
+- The daily carousel routine LOOKS at the page every run (Phase 3.6) and may
+  fix presentation only. The collectors, the model config and the two gas
+  ledgers are off limits to it, because cron writes them and a run that edits
+  them corrupts a series CINGSA keeps no archive to rebuild. That phase never
+  blocks a run and a bad run never stops the check.
 - Its accuracy claims are CHECKED, not asserted. The demand model is compared
   monthly against observed EIA deliveries, and the page publishes the gap.
   Nothing on that page trains or learns on its own, and saying otherwise is a
@@ -132,6 +137,8 @@ A missed day is the one irreversible failure this project has.
   site_build imports it), and gaswatch_collect.py (Cook Inlet Gas Watch
   collector, run by .github/workflows/gaswatch.yml, never by a routine run;
   `--self-test` is hermetic and gates every scheduled collection), and
+  gaswatch_pagecheck.py (the routine's daily read-only once over of the
+  published page, exit 2 for attention and never 1, so it cannot abort a run), and
   gaswatch_eia.py (the monthly EIA cross check, own workflow, keyless bulk
   pull; it is what checks the demand model against observed consumption).
 - `docs/` — the public Alaska AI site, published by GitHub Pages

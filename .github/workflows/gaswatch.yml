@@ -30,6 +30,7 @@ on:
     paths:
       - "scripts/gaswatch_collect.py"
       - "scripts/gaswatch_build.py"
+      - "scripts/gaswatch_pagecheck.py"
       - "config/gaswatch_model.json"
       - "config/gaswatch_hdd_history.json"
       - ".github/workflows/gaswatch.yml"
@@ -38,6 +39,7 @@ on:
     paths:
       - "scripts/gaswatch_collect.py"
       - "scripts/gaswatch_build.py"
+      - "scripts/gaswatch_pagecheck.py"
       - "config/gaswatch_model.json"
       - "config/gaswatch_hdd_history.json"
       - ".github/workflows/gaswatch.yml"
@@ -74,6 +76,11 @@ jobs:
       # could reach the site ungated.
       - name: The page library holds its own rules
         run: python3 scripts/gaswatch_build.py --self-test
+
+      # The routine's daily once over. Its red cases have to work, or the
+      # only pair of eyes on the live page is a checker that cannot see.
+      - name: The daily page checker can still go red
+        run: python3 scripts/gaswatch_pagecheck.py --self-test
 
       # A failed fetch still writes a record, marked unverified, carrying no
       # number forward from yesterday. That record has to be committed before
