@@ -920,6 +920,36 @@
    "verification": "Rebuilt. The homepage now renders aidea-houston-industrial-park and bradley-lake-dixon-diversion in the first two slots, matching the stat of 2, with the Air Force milestone third. docket_dates_check clean at 218 assertions. site_fresh_check passes at the run date.",
    "rollback": "git revert the site-counters commit. Selection returns to soonest-date-only and the stat can again out-count the cards.",
    "commit": "pending"
+  },
+  {
+   "run_date": "2026-08-05",
+   "kind": "fix",
+   "area": "engine",
+   "change": "THE BESPOKE CONTRACT IS NOW MEASURED. New scripts/bespoke_check.py computes pairwise similarity of each slide's own drawing code, with the house harness (font links, library tags, counter and footer fixtures, the grade call and the grain tile) stripped first so a deck is never punished for using shared furniture. FAILS a deck whose median clears 0.60, or any single pair at 0.95. Wired into gate_status.py as a ship-gate row and into PHASE 7 of the routine. It measures the OUTCOME rather than the method, so a build script is still allowed and nine frames sharing one drawing function is not.",
+   "trigger": "Maintainer, 2026-08-05, on run No.26: the art is regressing, each slide is made from the same template instead of custom coded one by one, and engagement on the last two posts has fallen with it. Correct. No.26 generated nine slides from one build script in which every frame called the same six drawing functions, and wrote the excuse into its own storyboard. The evidence was already in the run and was filed as a composition note, the scorer saying five of nine frames read as the same picture and a pixel critic calling slide 06 a broken render.",
+   "files_touched": [
+    "scripts/bespoke_check.py",
+    "scripts/gate_status.py",
+    "prompts/routine_instructions.md",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "Thresholds fitted against two real decks rather than guessed. examples/demo-deck, four genuinely bespoke slides, measures 0.049 median and PASSES at 0.071 after harness stripping. Run 2026-08-05's shipped slides measure 0.940 median with a 0.982 worst pair and FAIL, naming 11 offending pairs. gate_status.py now shows a bespoke row and reports the shipped deck as FAIL, which is the honest result.",
+   "rollback": "git revert the bespoke-gate commit. The check and its gate row disappear and the harness-not-a-template rule goes back to being prose nothing measures.",
+   "commit": "pending"
+  },
+  {
+   "run_date": "2026-08-05",
+   "kind": "fix",
+   "area": "voice",
+   "change": "THE HOOK STANDS ALONE. caption_check.py now fails three hook shapes that need context the reader does not have. A letter address to a party who is not the reader. A paired deictic, One X with the other arriving paragraphs later. And a bare pronoun subject at position zero. The verb requirement on the demonstratives keeps This week Alaska filed and These five notices clean.",
+   "trigger": "Maintainer, 2026-08-05, the last two captions have been trash, possible drift. Correct, and the cause was the variety engine optimising for novelty of SHAPE over clarity. 2026-08-04 opened One column tallies 119.7 megawatts becoming 120.0, where the antecedent arrives three paragraphs later. 2026-08-05 opened To the Administration for Native Americans, addressed to a federal agency that will never read it in a feed of Alaskans who had 22 days to act. The two before them, which worked, are plain claims a stranger gets cold.",
+   "files_touched": [
+    "scripts/caption_check.py",
+    "knowledge/CAPTION_CRAFT.md"
+   ],
+   "verification": "Against the 26-caption corpus exactly 2 fail, and they are the two the maintainer named. False-positive suite passes: One in five Alaskans lives off the road system, This week Alaska filed the amendment and These five notices close in August all stay clean, while It is not published, They are not published and Dear Commissioner all fail.",
+   "rollback": "git revert the hook commit. The three checks disappear and a hook can again be a riddle.",
+   "commit": "pending"
   }
  ],
  "scan_log": [

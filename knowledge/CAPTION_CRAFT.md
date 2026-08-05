@@ -118,6 +118,43 @@ look like the same language. Eleven of the first 26 shipped captions broke
 this. `caption_check.py` fails both the day-first form and a bare "August 27"
 with no ordinal and no year.
 
+**THE HOOK STANDS ALONE** (maintainer rule, 2026-08-05, "ur last two captions
+have been trash"). Sentence one is read cold, by a stranger scrolling, with no
+deck open and no context. It must be a complete claim about the world on its
+own terms.
+
+The drift had a cause, and it was this document's own variety engine. The
+engine exists to stop template repetition, and it started optimising for
+novelty of SHAPE, which beat clarity two runs running:
+
+    2026-08-04  "One column tallies 119.7 megawatts becoming 120.0."
+                One column of WHAT. The antecedent arrives three paragraphs
+                later. That is a riddle, not a claim.
+    2026-08-05  "To the Administration for Native Americans."
+                Addressed to a federal agency that will never read it, in a
+                feed of Alaskans who had 22 days to act on the thing.
+
+Against the two before them, which worked, both plain claims a stranger gets
+instantly:
+
+    2026-08-02  "Leverage technology, such as artificial intelligence," says
+                an order the governor signed last August.
+    2026-08-03  AI supply chain here means one item on a five item list.
+
+The rule against this was already written at the top of this file, "form serves
+the story, pick the move the material actually rewards, never a gimmick for
+variety's own sake". Nothing enforced it, and the showrunner's own briefs called
+the assigned opening move "binding", which is how a guardrail became a mandate.
+
+SO THE ASSIGNMENT IS A STARTING CONSTRAINT, NOT AN ORDER. A director who finds
+the assigned move fighting the story says so and proposes the move the story
+rewards. The critic weighs clarity ABOVE ledger freshness, every time. A fresh
+shape that a stranger cannot parse is worth less than a repeated shape that
+lands, and the ledger is there to stop laziness, not to license obscurity.
+
+`caption_check.py` fails the three detectable shapes: a letter address to a
+non-reader, a paired deictic, and a bare pronoun subject at position zero.
+
 **NO FIRST PERSON. EVER.** (maintainer rule, 2026-08-05). No I, we, us, our, my
 or me anywhere in the caption, outside a straight-quoted source. The page is an
 analyst describing the world, never a narrator describing their own work.

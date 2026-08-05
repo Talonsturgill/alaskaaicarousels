@@ -264,6 +264,36 @@ def aggregate_row(rows, run, rdir):
     rows.add("aggregate", "PASS" if p.returncode == 0 else "FAIL", line[:140])
 
 
+def bespoke_row(rows, run):
+    """The engine is a HARNESS, not a template, and until 2026-08-05 nothing
+    measured that. Run No.26 shipped nine slides generated from one build script
+    where every frame called the same six drawing functions, median pairwise art
+    similarity 0.940 against 0.049 for the bespoke reference, and the run wrote a
+    justification for it into its own storyboard. The maintainer caught it by
+    looking at the deck and reported engagement falling with it."""
+    script = REPO / "scripts" / "bespoke_check.py"
+    if not script.exists():
+        rows.absent("bespoke", "scripts/bespoke_check.py missing")
+        return
+    slides = run / "slides"
+    if not slides.is_dir():
+        rows.absent("bespoke", "slides/ missing")
+        return
+    try:
+        p = subprocess.run([sys.executable, str(script), "--slides-dir",
+                            str(slides)], capture_output=True, text=True,
+                           timeout=180)
+    except Exception as e:
+        rows.absent("bespoke", "could not run bespoke_check (%s)" % type(e).__name__)
+        return
+    out = (p.stdout + p.stderr).strip().splitlines() or [""]
+    if p.returncode == 2:
+        rows.add("bespoke", "FAIL", "check could not look: %s" % out[0][:120])
+        return
+    line = out[-1] if p.returncode == 0 else out[0]
+    rows.add("bespoke", "PASS" if p.returncode == 0 else "FAIL", line[:140])
+
+
 def scanner_sync_row(rows):
     """Repo-level, not run-level: the run rebuilds docs/ and ships whatever the
     scanner page currently says, so the contract behind it is a ship gate like
@@ -535,6 +565,7 @@ def main():
     caption_row(rows, run)
     copy_sync_row(rows, run, rdir)
     aggregate_row(rows, run, rdir)
+    bespoke_row(rows, run)
     scanner_sync_row(rows)
     docket_dates_row(rows)
     site_fresh_row(rows, run)
