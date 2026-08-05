@@ -7,8 +7,8 @@ Allow: /
 # and the whole corpus is one fetch at /llms-full.txt.
 # Every tracked decision has its own page at /docket/<id>/ and the whole
 # docket is versioned open data at /docket.json, CC BY 4.0, documented
-# at /data/. Cook Inlet Gas Watch is a second dataset, a daily record of
-# Southcentral Alaska gas storage at /gas-watch/ and /gas-watch.json.
-# at /data/. Citing a specific decision page is the intended use.
+# at /data/. Cook Inlet Gas Watch is a second dataset on the same terms,
+# a daily record of Southcentral Alaska gas storage at /gas-watch/ and
+# /gas-watch.json. Citing a specific decision page is the intended use.
 
 Sitemap: https://alaskaaihq.com/sitemap.xml

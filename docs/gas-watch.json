@@ -171,9 +171,9 @@
   ],
   "crosscheck": {
     "eia_latest_month": "202605",
-    "eia_months_checked": 133,
-    "eia_model_ratio": 1.09,
-    "eia_model_gap_pct": 9,
+    "eia_months_checked": 131,
+    "eia_model_ratio": 1.08,
+    "eia_model_gap_pct": 8,
     "eia_model_runs": "high",
     "eia_ak_working_gas_bcf": 30.0,
     "eia_ak_capacity_bcf": 69.9,

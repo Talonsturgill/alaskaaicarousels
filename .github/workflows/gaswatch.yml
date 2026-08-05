@@ -87,6 +87,19 @@ jobs:
           python3 scripts/gaswatch_collect.py
           echo "status=$?" >> "$GITHUB_OUTPUT"
 
+      # Rebuilding here is what makes the published page as live as it claims
+      # to be. Pillow is a module-scope import of site_build.
+      - name: Rebuild the published page from the new reading
+        if: github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- ledger/gaswatch.jsonl; then
+            echo "Nothing appended, so nothing to rebuild."
+            exit 0
+          fi
+          pip install --quiet Pillow
+          python3 scripts/site_build.py --date "$(date -u +%F)" --out docs
+
       - name: Commit the append
         if: github.event_name != 'pull_request'
         run: |
@@ -109,7 +122,7 @@ jobs:
           print(f"gaswatch({rec['date']}): {bit}, {flags}")
           PY
           )
-          git add ledger/gaswatch.jsonl
+          git add ledger/gaswatch.jsonl docs
           git commit -m "$summary"
           # The daily carousel routine commits to main too, so a push can lose a
           # race it did nothing wrong to lose. Rebase and retry rather than fail
