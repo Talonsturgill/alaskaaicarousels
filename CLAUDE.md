@@ -59,6 +59,34 @@ REFERENCE ONLY (brand lineage, prior art). Never write to it from sessions
 working in this repo; its CLAUDE.md policies govern its own routine, not
 this one.
 
+## Cook Inlet Gas Watch (hard rules)
+
+A daily numeric record of Southcentral Alaska's gas position, published as
+open data beside the docket. The docket tracks discrete decisions on a scale
+of months; the Gas Watch tracks the physical system on a scale of days. They
+are siblings, not parent and child. Four rules do not bend:
+
+- It NEVER publishes a safety verdict. Not a shortfall prediction, not an
+  all clear, not a blackout call. A compressor failure or a sanded well can
+  produce curtailment on a day the numbers looked survivable, so a published
+  verdict would be a credibility loss the data cannot carry. It publishes
+  measured storage, modeled demand, the derived residual, and the size of
+  what is not public.
+- Gas watch records NEVER go into `ledger/docket.json`. The docket schema is
+  decision-centric and a time series does not fit it. Forcing it breaks the
+  docket item count and the version policy.
+- It NEVER reuses `ledger/alerts.json`, `scripts/docket_alerts.py`, or the
+  docket's Buttondown tag. That list carries its own narrow written promise.
+- A failed fetch writes an explicit unverified record and carries NO number
+  forward from yesterday.
+
+The collector runs on `.github/workflows/gaswatch.yml`, not as a routine
+phase, and this is deliberate. The delivery policy below says a failed run
+does not merge, which is right for editorial output and wrong for a time
+series: a carousel run failing its gates on a Tuesday would cost Tuesday's
+storage reading permanently, and CINGSA keeps no archive to backfill from.
+A missed day is the one irreversible failure this project has.
+
 ## Layout
 
 - `prompts/` — routine_instructions.md (master prompt) + ROUTINE_PROMPT.txt
@@ -69,7 +97,8 @@ this one.
   techniques), SLIDE_DOSSIER_SPEC (planning format), FIELD_NOTES (living
   lessons).
 - `config/` — brand.yaml (voice + constellation tokens), sources.yaml,
-  scoring_rubric.yaml.
+  scoring_rubric.yaml, gaswatch_model.json (Gas Watch demand coefficients,
+  kept as data so a refit is a data change and never a code change).
 - `ledger/` — topics.json (dedupe), artwork.json (variety engine),
   captions.json (caption variety engine, enforced by the Phase 6 room),
   instincts.json (self-improvement), upgrades.json (automation-change
@@ -77,7 +106,8 @@ this one.
   each set reverts as one `upgrade(<date>):` commit), docket.json (the
   public Alaska AI Docket, maintained in Phase 3.5), alerts.json (the
   no-repeat ledger for auto-sent subscriber emails). Committed state;
-  updated every run.
+  updated every run. Plus gaswatch.jsonl (Cook Inlet Gas Watch, one
+  append-only line per day, written by its own workflow and NOT by a run).
 - `.claude/agents/` — scout, fact-checker, treatment-director, copywriter,
   pixel-critic, flow-critic, scorer, upgrade-engineer (Phase 12 machine
   upgrades; pinned to Opus by maintainer requirement).
@@ -94,7 +124,9 @@ this one.
   (backend lives in the alaska-ai-scanner repo; never remove them),
   about; validates ledger/docket.json and lint-gates every page), and
   docket_build.py (shared library: projection, docket components, gates —
-  site_build imports it).
+  site_build imports it), and gaswatch_collect.py (Cook Inlet Gas Watch
+  collector, run by .github/workflows/gaswatch.yml, never by a routine run;
+  `--self-test` is hermetic and gates every scheduled collection).
 - `docs/` — the public Alaska AI site, published by GitHub Pages
   (.github/workflows/pages.yml) on every merge to main that touches it:
   https://alaskaaihq.com/ (GitHub Pages, custom domain)
