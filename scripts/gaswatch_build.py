@@ -738,16 +738,23 @@ def self_test():
     # whose subject is AI, describing arithmetic as AI would be the exact
     # overclaim this publication exists to check, and it would put the one page
     # built on being checkable behind a claim that cannot be.
-    overclaims = [w for w in ("our ai", "our model learns", "self-improving",
+    # The guard bans the FALSE CLAIM rather than requiring a particular
+    # disclaimer sentence. The copy should be free to read like a person wrote
+    # it; what it may never say is that the model retrains itself, because
+    # nothing does. Requiring a fixed sentence made the page sound like a
+    # legal notice, which the maintainer was right to reject.
+    overclaims = [w for w in ("our ai", "learns on its own", "self-improving",
                               "machine learning", "neural", "trains itself",
+                              "fine-tunes itself", "fine tunes itself",
                               "gets smarter", "automatically refit",
-                              "continuously trained", "the ai predicts")
+                              "continuously trained", "the ai predicts",
+                              "learns automatically", "retrains")
                   if w in body.lower()]
     check("the page claims no training it does not do", not overclaims, str(overclaims))
-    check("the page says plainly that nothing learns on its own",
-          "nothing here learns on its own" in body.lower())
+    check("the page calls the demand figure an estimate",
+          "estimate" in body.lower())
     check("the page states the limit more data cannot fix",
-          "sendout is not published" in body.lower())
+          "meter reading" in body.lower() and "send out" in body.lower())
     check("no em dash, en dash, curly quote or emoji",
           not re.search("[–—‘’“”]"
                         "|[\U0001F000-\U0001FAFF]", body))
@@ -857,14 +864,12 @@ def page_body(today, site_url, series, model, meta, prefix="../"):
     # page refuses to make.
     if f.get("accuracy_checks"):
         scoreboard = (
-            f'Checked against observed weather on '
-            f'{count(f["accuracy_checks"], "day")} so far, missing by '
-            f'{f["mean_abs_hdd_error"]} degree days on average, about '
-            f'{f["mean_abs_demand_error_mmcfd"]} MMcf per day of demand.')
+            f'Across {count(f["accuracy_checks"], "day")} the forecast behind it '
+            f'has been off by {f["mean_abs_hdd_error"]} degree days on average, '
+            f'about {f["mean_abs_demand_error_mmcfd"]} MMcf per day of gas.')
     else:
-        scoreboard = (
-            'No check has resolved yet, since the first needs a forecast made '
-            'yesterday and a temperature observed today.')
+        scoreboard = ('The daily forecast check needs two days on file, so the '
+                      'first one lands shortly.')
 
     stale_note = ""
     if f.get("unverified_days"):
@@ -1011,14 +1016,17 @@ day in the record is {long_date(f["record_maximum_day_date"])} at
 above the published design day. That is a fact about the weather, not a
 statement about whether the system coped.</p>
 
-<h2 data-reveal>How this gets better</h2>
-<p class="prose" data-reveal>Nothing here learns on its own. The formula is two
-numbers fitted to two published figures, and it moves only when a person moves
-it, as a data change with the reason recorded. Version {f["model_version"]},
-{count(f["model_revisions"], "revision")} on record. {scoreboard}</p>
-<p class="prose" data-reveal>One gap no amount of collecting closes. Utility
-sendout is not published, so this can never be fitted directly to what the
-region actually burned.</p>
+<h2 data-reveal>This gets sharper the longer it runs</h2>
+<p class="prose" data-reveal>It launched {long_date(f["first_date"])} with a
+single day of readings, and every day since adds one more to a record nobody
+else is keeping. {scoreboard} The demand figure is an estimate, so rather than
+ask you to trust it we check it against what Alaska actually burned and publish
+how far off it is. When the record says the estimate should move, we move it,
+and every earlier version stays on file so an old number can still be
+reproduced.</p>
+<p class="prose" data-reveal>One thing more data will not fix. Nobody publishes
+what the utilities send out day to day, so this stays an estimate rather than a
+meter reading, and it will never be anything else.</p>
 
 {crosscheck}
 

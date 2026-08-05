@@ -52,10 +52,18 @@ FORBIDDEN = [
 
 # The page's promises. If any of these stops being true the page has drifted
 # from what CLAUDE.md says it is allowed to be.
+# Substance, not a fixed sentence. The copy is allowed to be rewritten; what
+# it may never do is claim the model retrains itself or drop the limit.
 REQUIRED = [
-    ("nothing here learns on its own", "the no-training statement"),
-    ("sendout is not published", "the limit more data cannot fix"),
+    ("estimate", "the demand figure called an estimate"),
+    ("meter reading", "the limit more data cannot fix"),
     ("verdict", "the no-verdict statement"),
+]
+
+OVERCLAIMS = [
+    "our ai", "learns on its own", "self-improving", "machine learning",
+    "trains itself", "fine-tunes itself", "gets smarter", "continuously trained",
+    "learns automatically", "retrains",
 ]
 
 VERDICT_WORDS = [
@@ -121,6 +129,10 @@ def check_page(out_dir, today=None):
 
     said = [w for w in VERDICT_WORDS if w in text.lower()]
     (ok if not said else bad)("no safety verdict", ", ".join(said) or "none")
+
+    claimed = [w for w in OVERCLAIMS if w in text.lower()]
+    (ok if not claimed else bad)("no training the model does not do",
+                                 ", ".join(claimed) or "none")
 
     # The series behind it, and whether the page agrees with it.
     series = gw.load_series()
@@ -225,10 +237,10 @@ def self_test():
          page.replace("</main>", "<p>Storage None Bcf</p></main>")),
         ("a safety verdict",
          page.replace("</main>", "<p>Southcentral is safe, supply is adequate.</p></main>")),
-        ("the no-training statement removed",
-         page.replace("Nothing here learns on its own", "This model improves itself")),
+        ("a claim that the model trains itself",
+         page.replace("</main>", "<p>The model fine-tunes itself daily.</p></main>")),
         ("the sendout limit removed",
-         page.replace("sendout is not published", "sendout is available")),
+         page.replace("meter reading", "measured reading")),
         ("a numeral nothing computed",
          page.replace("</main>", "<p>Storage sits at 87.3 percent.</p></main>")),
     ]
