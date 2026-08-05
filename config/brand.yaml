@@ -37,6 +37,25 @@ brand:
       - "Don't write 'we' or 'us' implying speaking for Alaskans. Speak about Alaska, not as Alaska."
       - "NEVER OPEN A SENTENCE WITH 'And' OR 'But' (maintainer rule, 2026-08-05). They join clauses. A sentence starting on one is a fragment wearing a full stop. Join it to the sentence before with a comma, or drop the word. Enforced by scripts/caption_check.py."
       - "Don't invent quotes, numbers, or people. If it isn't in claims.json, it doesn't exist."
+  date_format:
+    # OWNER RULE 2026-08-05: "rn ur saying '10 August', the normal way to say it is August 10th."
+    # The live instance was runs/2026-08-04/caption.txt, "Comments close 28 August at 5:00 p.m."
+    # Ten of the captions shipped before this rule carried a wrong form, so it is a habit, not a slip.
+    rule: "In any sentence a human READS OR HEARS, write the month name first and the day as an ordinal. August 10th. Never '10 August', never a bare 'August 10', never 'the 10th of August', never an abbreviated month in prose."
+    good: ["August 10th", "Comments close August 28th", "August 2026 (no day, so no ordinal)"]
+    bad: ["10 August", "August 10", "Aug 10", "the 10th of August", "10th August"]
+    applies_to: "the LinkedIn caption, slide copy that is a SENTENCE, and the Gmail draft's prose."
+    iso_is_still_correct_for: "filenames, ledger and JSON fields, and a PROVENANCE STAMP in a source list, where the date is a citation rather than a sentence. Read it aloud: if it sounds like a person talking, it takes the ordinal."
+    enforced_by: "scripts/caption_check.py DATE_FORMS (hard fail)."
+
+  comma_discipline:
+    # OWNER RULE 2026-08-05: "reduce comma usage by 10% on the captions moving forward."
+    rule: "Captions carry FEWER commas. The ceiling is 6.2 commas per 100 words of caption body."
+    measured_baseline: "22 shipped captions as of 2026-08-05, mean 6.88 commas per 100 words, median 6.52. Ten percent below the mean is 6.20."
+    why_not_the_weekly_repos_number: "alaska-ai-weekly sets 4.9 because its own shipped mean was 5.41. Carousel captions are shorter and comma-heavier, so importing 4.9 here would be a 29 percent cut rather than the 10 percent the owner asked for. The RULE is ten percent below what THIS surface actually ships."
+    how_to_cut_them: "Do NOT just delete commas and leave a run-on, which trades a comma for a worse sentence. Split the sentence at the comma and let it be two sentences. Cut the introductory clause that only existed to be qualified. Drop the appositive restating a noun the reader already has."
+    enforced_by: "scripts/caption_check.py COMMA_PER_100W (hard fail)."
+
   banned_phrases:
     - "game-changer"
     - "revolutionize"

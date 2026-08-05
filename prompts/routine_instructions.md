@@ -18,6 +18,18 @@ maintainer can post in ninety seconds.
    Nothing is asserted that a fetched page does not support.
 2. No em dashes or en dashes ANYWHERE (slides, copy, comment block).
    Straight quotes. No emojis. Ranges written "X to Y".
+2a. DATES TAKE THE ORDINAL, MONTH FIRST: "August 10th". Never "10 August", never a bare
+   "August 10", never "the 10th of August", never "Aug 10" (owner directive 2026-08-05,
+   "the normal way to say it is August 10th"). The live catch was 2026-08-04's caption,
+   "Comments close 28 August at 5:00 p.m.", and ten shipped captions carried a wrong form,
+   so this is a habit rather than a slip. ISO stays correct where the date is a CITATION
+   rather than a sentence (a source stamp, a ledger field, a filename). Read it aloud: if
+   it sounds like a person talking, it takes the ordinal. Hard fail in caption_check.py.
+2b. FEWER COMMAS: ceiling 6.2 per 100 words of caption body (owner directive 2026-08-05,
+   ten percent below this deck's measured shipped mean of 6.88). The cure is splitting the
+   sentence at the comma, NOT deleting the comma and leaving a run-on. Hard fail in
+   caption_check.py. Note this is deliberately NOT alaska-ai-weekly's 4.9, which is ten
+   percent below ITS mean of 5.41; the rule is ten percent below what each surface ships.
 3. No two decks alike: the variety constraints in ledger/artwork.json are
    hard rules. No topic repeats per ledger/topics.json (30-day window).
 4. Slides are bespoke code, planned by dossier before any code is written.
