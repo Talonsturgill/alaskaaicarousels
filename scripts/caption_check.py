@@ -77,6 +77,39 @@ CONTRACTIONS = {"cannot": "can't"}
 # brand.yaml as a true statement nobody enforced and lapsed for three runs
 # running. A caption over budget is not wrong, it is over budget, and the fix
 # is to cut a comma or split a sentence.
+# NO FIRST PERSON IN THE CAPTION (maintainer rule, 2026-08-05). The page is an
+# analyst describing the world, never a narrator describing their own work.
+#
+# THIS NEEDS TWO CHECKS AND NOT ONE, which is the whole lesson. A pronoun grep
+# over all 26 shipped captions returns ZERO bare hits, so by that measure there
+# was never a problem. The drift was real anyway, and it wore no pronoun:
+# No.26 shipped "No page anyone could reach shows what SEDS-AK was worth" and
+# opened a paragraph with "Enclosed,". Both are the studio narrating its own
+# search and its own envelope; the first one is literally the de-pronouned
+# rewrite of a slide that says "any page we could reach". Ban the pronouns AND
+# ban the posture, or the posture just drops the pronoun and carries on.
+# Case-insensitive, because "We stood up" is the same defect as "we stood up".
+# Two deliberate omissions. "mine" is left OUT of the list: this page covers
+# Graphite Creek, Red Dog and Ambler, so "the mine" is a noun here far more
+# often than it is a possessive, and a gate that cries wolf on the mining beat
+# would get worked around. And an ALL-CAPS match longer than one character is
+# skipped, so "the US Air Force" is not read as "us" while a bare "I" still is.
+FIRST_PERSON = re.compile(
+    r"(?<![A-Za-z'])(I|I'm|I've|I'd|I'll|we|we're|we've|we'd|we'll|us|our|ours|"
+    r"ourselves|my|me|let's)(?![A-Za-z'])", re.I)
+# NO SENTENCE OPENS WITH "AND" OR "BUT" (maintainer rule, 2026-08-05). Those
+# are conjunctions joining clauses, and a sentence starting on one is a fragment
+# wearing a full stop. Currently clean across all 26 shipped captions, so this
+# gate is preventive rather than remedial: it exists to stop a habit that shows
+# up in the run records and the retros from leaking into the copy.
+SENTENCE_START_CONJ = re.compile(
+    r"(?:^|(?<=[.!?])\s+|(?<=\n))\s*(And|But)\b")
+
+# The studio-as-narrator postures, first person with the pronoun filed off.
+SELF_NARRATION = re.compile(
+    r"\b(enclosed|(?:anyone|nobody|no one|we) could (?:not )?"
+    r"(?:reach|find|obtain|locate|verify|confirm|turn up))\b", re.I)
+
 COMMA_PER_100 = 1.05
 
 # DATE FORM (maintainer rule, 2026-08-05). "rn ur saying dates like '10 August'
@@ -308,6 +341,34 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
     # The hashtag line is not prose, so it is excluded from both checks below.
     # This is the same slice the 2026-08-05 baseline was measured on.
     body = "\n".join(l for l in lines if not l.strip().startswith("#"))
+
+    # --- FIRST PERSON ------------------------------------------------------
+    # A source quoting itself is quotable, same carve-out the banned-phrase
+    # check already uses. The studio speaking as itself is not.
+    spans = quoted_spans(body)
+    for m in FIRST_PERSON.finditer(body):
+        if any(a <= m.start() < b for a, b in spans):
+            continue
+        w = m.group(1)
+        if len(w) > 1 and w.isupper():      # "the US Air Force", not "us"
+            continue
+        fails.append("FIRST PERSON: '%s' in the caption. The page describes the "
+                     "world, it does not narrate itself. Rewrite the sentence "
+                     "about its subject." % m.group(1))
+    for m in SELF_NARRATION.finditer(body):
+        if any(a <= m.start() < b for a, b in spans):
+            continue
+        fails.append("FIRST PERSON: '%s' is the studio narrating its own work "
+                     "with the pronoun removed. Say what is true of the record, "
+                     "not what the search turned up." % m.group(1))
+
+    # --- SENTENCE-OPENING CONJUNCTIONS -------------------------------------
+    for m in SENTENCE_START_CONJ.finditer(body):
+        if any(a <= m.start() < b for a, b in spans):
+            continue
+        fails.append("CONJUNCTION: a sentence opens with '%s'. Join it to the "
+                     "sentence before with a comma, or drop the word."
+                     % m.group(1))
 
     # --- DATE FORM ---------------------------------------------------------
     for m in DAY_FIRST.finditer(body):

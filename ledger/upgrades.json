@@ -878,6 +878,21 @@
    "verification": "Measured against the whole shipped corpus before writing the thresholds. Of 26 captions, 15 fail the comma budget and 11 fail the date form, so neither rule is a formality. Regex edge cases checked: 'August 27th', 'August 27, 2026' and 'August 27 2026' pass; '27 August' and a bare 'August 27' fail; 'a 27 percent cut' and 'August 2026 was quiet' do not false-positive. A compliant 618-character caption returns PASS. brand.yaml still parses.",
    "rollback": "git revert the voice-rules commit. The two checks disappear from caption_check.py and the rules revert to prose in brand.yaml and CAPTION_CRAFT.md. Note this is a TIGHTENING; reverting it returns the machine to a state where a caption at 1.43 commas per 100 and a day-first date both ship clean.",
    "commit": "bacf271"
+  },
+  {
+   "run_date": "2026-08-05",
+   "kind": "fix",
+   "area": "voice",
+   "change": "TWO MORE MAINTAINER VOICE RULES, gated. (1) NO FIRST PERSON IN A CAPTION, ever, outside a straight-quoted source. This needed TWO checks and that is the finding worth keeping: a pronoun grep over all 26 shipped captions returns ZERO bare hits, so by that measure the page never had a first-person problem. It had one anyway and it wore no pronoun. No.26 shipped 'No page anyone could reach shows what SEDS-AK was worth' and opened a paragraph with 'Enclosed,', which are the studio narrating its own search and its own envelope, and the first is the de-pronouned rewrite of a slide that literally says 'any page we could reach'. caption_check.py now fails the pronouns AND the named postures. Two deliberate holes so the gate does not cry wolf, 'mine' is out of the pronoun list because this page covers Graphite Creek, Red Dog and Ambler where 'the mine' is a noun, and an all-caps match longer than one character is skipped so 'the US Air Force' reads as a country. (2) NO SENTENCE OPENS WITH 'And' OR 'But'. They join clauses, so a sentence starting on one is a fragment wearing a full stop.",
+   "trigger": "Maintainer instruction, 2026-08-05, after reading the No.26 draft. The maintainer called it drift and was right; the run had introduced a LETTER FRAME caption whose whole posture is a sender addressing a recipient, which is first person without the pronoun.",
+   "files_touched": [
+    "config/brand.yaml",
+    "knowledge/CAPTION_CRAFT.md",
+    "scripts/caption_check.py"
+   ],
+   "verification": "Measured against the whole shipped corpus before setting anything. First person, 1 of 26 fails, and it is No.26 itself. Sentence-opening conjunctions, 0 of 26, so that gate is preventive rather than remedial and is recorded as such. False-positive suite passed: 'the mine is 1.1 miles wide', 'the US Air Force leases 4,700 acres' and a quoted 'we will continue to consider' all stay clean, while 'We stood up three notices', 'Our read is', 'I think' and a bare 'us' all fail. A compliant 625-character caption returns PASS with all four of the day's new checks live. brand.yaml still parses.",
+   "rollback": "git revert the first-person voice commit. Both checks disappear from caption_check.py and the rules revert to prose. This is a TIGHTENING; reverting it returns the machine to a state where a caption can narrate its own search and no gate objects.",
+   "commit": "pending"
   }
  ],
  "scan_log": [
