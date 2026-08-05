@@ -282,8 +282,24 @@ def parse_cingsa(raw):
             "CINGSA layout changed, operating capacity is not facility less "
             "physical restrictions, so the rows did not land where expected"
         )
-    if design_volume <= 0:
-        raise ValueError("CINGSA layout changed, storage design volume is not positive")
+    # Unit guard. Every check above passes if CINGSA restates the table in
+    # MMcf instead of Mcf, because the rows still parse and the identities
+    # still hold; every number would just be a thousand times too small and
+    # nothing would say so. The published field is 13 million Mcf, so a band
+    # this wide only trips on a unit change or a decimal shift, never on
+    # ordinary operations.
+    if not 1_000_000 <= design_volume <= 100_000_000:
+        raise ValueError(
+            f"CINGSA units changed, storage design volume reads {design_volume:,.0f} "
+            f"which is outside the plausible band for Mcf")
+    if not 0 <= end <= design_volume * 1.05:
+        raise ValueError(
+            f"CINGSA units changed, ending inventory reads {end:,.0f} against a "
+            f"design volume of {design_volume:,.0f}")
+    if not 1_000 <= wd_fac <= 10_000_000:
+        raise ValueError(
+            f"CINGSA units changed, facility withdrawal capacity reads "
+            f"{wd_fac:,.0f} which is outside the plausible band for Mcf/d")
 
     note = ""
     for i, cell in enumerate(cells):
@@ -366,7 +382,67 @@ def parse_acis_hdd(payload):
 
 def demand(hdd, model):
     """Modeled regional demand in MMcf/d at the given heating degree day count."""
-    return round(model["base_mmcfd"] + model["slope_mmcfd_per_hdd"] * hdd)
+    return round(demand_exact(hdd, model))
+
+
+def demand_exact(hdd, model):
+    """Unrounded demand. Use this wherever a figure is rounded once at the end.
+
+    Rounding twice is how a published number drifts from the one a reader
+    reproduces from the formula, so intermediate steps stay exact.
+    """
+    return model["base_mmcfd"] + model["slope_mmcfd_per_hdd"] * hdd
+
+
+def backtest_facts(model, series):
+    """Recompute every published calibration figure from the committed record.
+
+    Nothing here is typed. config/gaswatch_model.json records what these
+    should come out as, and the self-test fails when code and config disagree,
+    which is what stops a figure nobody computed from reaching the page.
+    """
+    anchors = model.get("calibration_anchors", {})
+    design_day = anchors.get("published_design_day_mmcfd")
+    facts = {}
+
+    hdd_anchor = anchors.get("published_design_day_hdd65")
+    if hdd_anchor is not None:
+        facts["published-design-day"] = {
+            "mmcfd": round(demand_exact(hdd_anchor, model), 2),
+        }
+
+    if series:
+        peak_date, peak_hdd = max(series, key=lambda r: (r[1], r[0]))
+        over = sum(1 for _, v in series
+                   if design_day is not None
+                   and demand_exact(v, model) >= design_day)
+        facts["record-maximum-day"] = {
+            "date": peak_date,
+            # Degree days are whole numbers in the record, so keep them
+            # whole. 77.0 on a published page is machine spill.
+            "hdd65": int(peak_hdd) if float(peak_hdd).is_integer() else peak_hdd,
+            "mmcfd": round(demand_exact(peak_hdd, model), 1),
+            "days_at_or_above_design_day": over,
+        }
+
+        mean_hdd = sum(v for _, v in series) / len(series)
+        facts["record-average-day"] = {
+            "mean_hdd65": round(mean_hdd, 1),
+            "mmcfd": round(demand_exact(mean_hdd, model), 1),
+        }
+
+    for bt in model.get("backtests", []):
+        if bt["id"] != "season-integral":
+            continue
+        lo, hi = bt["input"]["start"], bt["input"]["end"]
+        window = [v for d, v in series if lo <= d <= hi]
+        if window:
+            facts["season-integral"] = {
+                "days": len(window),
+                "season_hdd65": sum(window),
+                "bcf": round(sum(demand_exact(v, model) for v in window) / 1000.0, 1),
+            }
+    return facts
 
 
 def load_model(path):
@@ -376,6 +452,31 @@ def load_model(path):
         if key not in cfg:
             raise ValueError(f"{path} is missing required key {key!r}")
     return cfg
+
+
+def load_hdd_history(model, base_dir=REPO):
+    """The committed Anchorage HDD record, as an ordered list of (date, hdd).
+
+    Stored as a start date plus one integer per day, because the series was
+    verified contiguous with no missing values at fetch time. That is a fifth
+    the size of dated pairs and it makes a gap impossible to represent, which
+    is the right shape for something every published calibration figure is
+    recomputed from.
+    """
+    rel = model.get("hdd_history")
+    if not rel:
+        raise ValueError("model config names no hdd_history file")
+    with open(os.path.join(base_dir, rel), encoding="utf-8") as fh:
+        hist = json.load(fh)
+    start = datetime.fromisoformat(hist["start_date"]).date()
+    series = [((start + timedelta(days=i)).isoformat(), float(v))
+              for i, v in enumerate(hist["daily"])]
+    if len(series) != hist["days"] or series[-1][0] != hist["end_date"]:
+        raise ValueError(
+            f"{rel} is inconsistent, {len(series)} days computed against "
+            f"{hist['days']} declared, ending {series[-1][0]} against "
+            f"{hist['end_date']} declared")
+    return hist, series
 
 
 def model_block(cfg):
@@ -676,29 +777,36 @@ def self_test(model_path):
         if not ok:
             failures.append(label)
 
-    print("model backtests")
+    print("model backtests, every figure recomputed from the committed record")
+    hist, series = load_hdd_history(model)
+    anchors = model.get("calibration_anchors", {})
+    facts = backtest_facts(model, series)
+    check("the HDD record is contiguous and complete",
+          len(series) == hist["days"],
+          f"{len(series)} days, {hist['start_date']} to {hist['end_date']}")
+
     for bt in model.get("backtests", []):
-        if bt["id"] == "design-day":
-            got = demand(bt["input"]["hdd65"], model)
-            check("design day reproduces the recorded expectation",
-                  got == bt["expect_mmcfd"],
-                  f"HDD {bt['input']['hdd65']} gives {got} MMcf/d, "
-                  f"expected {bt['expect_mmcfd']}")
-            check("design day sits within tolerance of the published figure",
-                  abs(got - bt["source_stated_mmcfd"]) <= bt["tolerance_mmcfd"],
-                  f"{got} against {bt['source_stated_mmcfd']} MMcf/d")
-        elif bt["id"] == "season-integral":
-            days = bt["input"]["days"]
-            season_hdd = bt["input"]["season_hdd65"]
-            got = round((model["base_mmcfd"] * days
-                         + model["slope_mmcfd_per_hdd"] * season_hdd) / 1000.0, 1)
-            check("season integral reproduces the recorded expectation",
-                  got == bt["expect_bcf"],
-                  f"{days} days at {season_hdd} HDD gives {got} Bcf, "
-                  f"expected {bt['expect_bcf']}")
-            check("season integral sits within tolerance of the stated figure",
-                  abs(got - bt["source_stated_bcf"]) <= bt["tolerance_bcf"],
-                  f"{got} against {bt['source_stated_bcf']} Bcf")
+        bid = bt["id"]
+        got = facts.get(bid)
+        if got is None:
+            check(f"backtest {bid} is one this code knows how to recompute",
+                  False, "no recomputation defined")
+            continue
+        for key, want in sorted(bt.items()):
+            if not key.startswith("expect_"):
+                continue
+            field = key[len("expect_"):]
+            have = got.get(field)
+            check(f"{bid}, {field.replace('_', ' ')} recomputes",
+                  have == want, f"code gives {have}, config records {want}")
+        anchor = bt.get("compare_to_anchor")
+        if anchor:
+            unit = "bcf" if "tolerance_bcf" in bt else "mmcfd"
+            tol = bt.get(f"tolerance_{unit}")
+            mine = got.get("bcf" if unit == "bcf" else "mmcfd")
+            check(f"{bid} sits within tolerance of {anchor}",
+                  abs(mine - anchors[anchor]) <= tol,
+                  f"{mine} against published {anchors[anchor]}, tolerance {tol}")
 
     print("dashboard parser")
     parsed = parse_cingsa(FIXTURE)
@@ -741,6 +849,13 @@ def self_test(model_path):
              '<td class="data_item">6,423,571</td></tr>', "")),
         ("missing stamp", FIXTURE.replace("Last Updated:", "Refreshed")),
         ("missing storage heading", FIXTURE.replace("Storage Volume (Mcf)", "Volumes")),
+        # A unit change is the one mutation where every structural check still
+        # passes and every number is wrong by a factor of a thousand.
+        ("storage restated in MMcf, which parses but means something else",
+         FIXTURE.replace("13,000,000", "13,000").replace("6,423,571", "6,424")
+                .replace("6,388,680", "6,389")),
+        ("deliverability restated in MMcf/d",
+         FIXTURE.replace("132,117", "132").replace("206,320", "206")),
         ("rows shuffled so the published identity breaks",
          FIXTURE.replace('<td class="data_item">206,320</td><td></td>'
                          '<td class="data_item">132,117</td></tr>\n'

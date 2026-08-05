@@ -1,16 +1,25 @@
 {
   "_spec": {
     "purpose": "Demand model for Cook Inlet Gas Watch. The coefficients live here as data rather than as constants inside scripts/gaswatch_collect.py, so a refit is a data change with its own commit and never a code change. Every collected record carries a copy of this block, so a record always states the model that produced its numbers.",
-    "refit_procedure": "Bump version, edit the coefficients, update every backtest expect_* value to what the new coefficients produce, append a model_history entry naming the reason and the data behind it. Then run python3 scripts/gaswatch_collect.py --self-test, which recomputes every backtest and fails if this file is internally inconsistent.",
-    "honesty_note": "This model is calibrated to two published figures. It is not fit to observed sendout, because observed sendout is not public. Nothing derived from it may be published as a safety verdict, a shortfall prediction, or an all clear."
+    "refit_procedure": "Bump version, edit the coefficients, run python3 scripts/gaswatch_collect.py --self-test, and paste the recomputed figures it prints into the backtests below. Append a model_history entry naming the reason and the data behind it. The self-test recomputes every backtest from config/gaswatch_hdd_history.json and fails if any recorded expectation disagrees, so a typed number that nothing produced cannot survive a commit.",
+    "honesty_note": "This model is calibrated to two published figures. It is not fit to observed sendout, because observed sendout is not public. Nothing derived from it may be published as a safety verdict, a shortfall prediction, or an all clear.",
+    "no_typed_numbers_rule": "Every figure in backtests below is reproduced by code from the committed HDD record. Nothing here is an estimate, a recollection, or a figure copied from prose."
   },
-  "version": "1.0",
+  "version": "1.1",
   "formula": "MMcf/d = 75 + 4.20 * HDD65",
   "base_mmcfd": 75.0,
   "slope_mmcfd_per_hdd": 4.2,
   "hdd_base_f": 65,
   "calibration": "average day 190 MMcf/d, design day 390 MMcf/d at HDD 75",
   "fit_source": "published figures, not fit to observed sendout",
+  "hdd_history": "config/gaswatch_hdd_history.json",
+  "calibration_anchors": {
+    "published_design_day_mmcfd": 390,
+    "published_design_day_hdd65": 75,
+    "published_average_day_mmcfd": 190,
+    "published_season_consumption_bcf": 75,
+    "source_label": "published Cook Inlet design day and average day figures"
+  },
   "measured": [
     "cingsa_inventory",
     "cingsa_capacity",
@@ -31,28 +40,50 @@
   },
   "backtests": [
     {
-      "id": "design-day",
-      "description": "The coldest day in the twelve year PANC record, 2026-01-08, at HDD 76",
+      "id": "published-design-day",
+      "description": "The model evaluated at the published design day temperature. This anchor is exact by construction, since the coefficients were fitted to it.",
+      "computed_from": "coefficients",
       "input": {
-        "hdd65": 76
+        "hdd65": 75
       },
-      "expect_mmcfd": 394,
-      "source_stated_mmcfd": 390,
-      "source_stated_label": "published design day",
-      "tolerance_mmcfd": 5
+      "expect_mmcfd": 390.0,
+      "compare_to_anchor": "published_design_day_mmcfd",
+      "tolerance_mmcfd": 0.05
+    },
+    {
+      "id": "record-maximum-day",
+      "description": "The coldest day in the committed Anchorage record, and what the model asks of the system on that day. Recomputed from the HDD history, never typed.",
+      "computed_from": "hdd_history",
+      "expect_date": "2024-02-02",
+      "expect_hdd65": 77,
+      "expect_mmcfd": 398.4,
+      "expect_days_at_or_above_design_day": 3,
+      "note": "Three days in the committed record model above the published design day of 390 MMcf/d. That is a fact about the weather record, not a claim about whether the system coped, and it must never be published as one."
     },
     {
       "id": "season-integral",
-      "description": "The 2025 to 2026 season integrated over a full year at 10,545 heating degree days",
+      "description": "The 2025 to 2026 gas year integrated day by day from the committed record. Season bounds are July 1st through June 30th.",
+      "computed_from": "hdd_history",
       "input": {
-        "days": 365,
-        "season_hdd65": 10545
+        "start": "2025-07-01",
+        "end": "2026-06-30"
       },
+      "expect_days": 365,
+      "expect_season_hdd65": 10545,
       "expect_bcf": 71.7,
-      "source_stated_bcf": 71.6,
-      "source_stated_label": "build brief figure, 2026-08-04",
-      "tolerance_bcf": 0.2,
-      "note": "A 365 day base term gives 71.7 Bcf and a 364 day base term gives 71.6. The 0.1 Bcf gap is the day count, not the coefficients. Stated regional consumption is near 75 Bcf, so the model runs about 4 percent light across a season and that gap is published, not hidden."
+      "compare_to_anchor": "published_season_consumption_bcf",
+      "tolerance_bcf": 4.0,
+      "note": "The model runs about 4 percent light against stated regional consumption near 75 Bcf across a full gas year. That gap is published rather than hidden. The build brief stated 71.6 Bcf for this figure; the committed record puts the season at 365 days, which gives 71.7."
+    },
+    {
+      "id": "record-average-day",
+      "description": "Mean modeled demand across every day in the committed record, against the published average day figure.",
+      "computed_from": "hdd_history",
+      "expect_mean_hdd65": 25.9,
+      "expect_mmcfd": 183.7,
+      "compare_to_anchor": "published_average_day_mmcfd",
+      "tolerance_mmcfd": 10.0,
+      "note": "The model sits about 3 percent under the published average day. Both published anchors sit slightly above what the observed weather record produces, which is what a two point calibration to design figures would predict."
     }
   ],
   "model_history": [
@@ -63,6 +94,16 @@
       "changed": [
         "base_mmcfd",
         "slope_mmcfd_per_hdd"
+      ]
+    },
+    {
+      "version": "1.1",
+      "effective": "2026-08-05",
+      "reason": "Coefficients unchanged. Backtests rebuilt to recompute from a committed twelve year Anchorage HDD record rather than quote figures from prose. This corrected a factual error carried in from the build brief, which described 2026-01-08 at HDD 76 as the coldest day in the twelve year record. It is the coldest day of that season; the record maximum is 2024-02-02 at HDD 77. It also resolved the season integral to 71.7 Bcf, since the gas year measures 365 days.",
+      "changed": [
+        "backtests",
+        "calibration_anchors",
+        "hdd_history"
       ]
     }
   ]
