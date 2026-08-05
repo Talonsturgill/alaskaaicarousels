@@ -417,7 +417,11 @@ def backtest_facts(model, series):
     hdd_anchor = anchors.get("published_design_day_hdd65")
     if hdd_anchor is not None:
         facts["published-design-day"] = {
-            "mmcfd": round(demand_exact(hdd_anchor, model), 2),
+            # One decimal, like every other modeled figure. Two were carried
+            # while this anchor was a fit target and had to match 390.0 within
+            # a hair. Fitted to observed consumption the model no longer aims
+            # at it, so the extra digit was precision the number does not have.
+            "mmcfd": round(demand_exact(hdd_anchor, model), 1),
         }
 
     if series:
@@ -449,12 +453,33 @@ def backtest_facts(model, series):
         lo, hi = bt["input"]["start"], bt["input"]["end"]
         window = [v for d, v in series if lo <= d <= hi]
         if window:
+            total_hdd = sum(window)
             facts["season-integral"] = {
                 "days": len(window),
-                "season_hdd65": sum(window),
+                # Whole, like the daily values it sums. A refit wrote 10545.0
+                # back into config, and a float degree day is machine spill
+                # wherever it surfaces.
+                "season_hdd65": (int(total_hdd) if float(total_hdd).is_integer()
+                                 else total_hdd),
                 "bcf": round(sum(demand_exact(v, model) for v in window) / 1000.0, 1),
             }
     return facts
+
+
+def notes_quoting_figures(model):
+    """Backtest prose that carries a numeral, which a refit would falsify.
+
+    A backtest note is commentary. The quantities live in expect_ fields, which
+    a refit recomputes, and prose is the one thing it cannot recompute. The
+    first refit proved why that matters: three notes quoting the old
+    coefficients survived the change and read as false the moment the numbers
+    moved. Banning numerals from the prose means an unattended monthly refit
+    cannot leave a wrong figure behind.
+    """
+    return [f"{bt.get('id')}.{key}"
+            for bt in model.get("backtests", [])
+            for key in ("note", "gap_note")
+            if key in bt and re.search(r"\d", bt[key])]
 
 
 def load_model(path):
@@ -822,12 +847,28 @@ def self_test(model_path):
                   have == want, f"code gives {have}, config records {want}")
         anchor = bt.get("compare_to_anchor")
         if anchor:
-            unit = "bcf" if "tolerance_bcf" in bt else "mmcfd"
-            tol = bt.get(f"tolerance_{unit}")
-            mine = got.get("bcf" if unit == "bcf" else "mmcfd")
-            check(f"{bid} sits within tolerance of {anchor}",
-                  abs(mine - anchors[anchor]) <= tol,
-                  f"{mine} against published {anchors[anchor]}, tolerance {tol}")
+            # Reported, not enforced. Once the model is fitted to observed
+            # consumption these anchors are a different measurement, a planning
+            # peak carrying margin against a prediction of expected demand, so
+            # requiring them to agree would demand the fit reproduce a number it
+            # is not trying to reproduce. Only an implausible gap is a fault,
+            # which is what catches a broken fit.
+            mine = got.get("bcf", got.get("mmcfd"))
+            published = anchors[anchor]
+            gap = abs(mine - published) / published * 100
+            limit = bt.get("sanity_gap_pct", 40)
+            check(f"{bid} stays within sanity of {anchor}", gap <= limit,
+                  f"{mine} against published {published}, "
+                  f"{gap:.0f} percent apart, sanity limit {limit}")
+
+    stale = notes_quoting_figures(model)
+    check("no backtest note quotes a figure a refit would falsify",
+          not stale, ", ".join(stale) or "prose carries no numerals")
+    planted = json.loads(json.dumps(model))
+    planted["backtests"][0]["note"] = "The model returns 390 MMcf/d here."
+    check("that rule can still go red",
+          notes_quoting_figures(planted) == [
+              f"{planted['backtests'][0]['id']}.note"])
 
     print("dashboard parser")
     parsed = parse_cingsa(FIXTURE)

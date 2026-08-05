@@ -52,10 +52,19 @@ FORBIDDEN = [
 
 # The page's promises. If any of these stops being true the page has drifted
 # from what CLAUDE.md says it is allowed to be.
+# Substance, not a fixed sentence. The copy is allowed to be rewritten; what
+# it may never do is claim the model retrains itself or drop the limit.
 REQUIRED = [
-    ("nothing here learns on its own", "the no-training statement"),
-    ("sendout is not published", "the limit more data cannot fix"),
+    ("estimate", "the demand figure called an estimate"),
+    ("not reported daily", "the disclosure of what nothing reports daily"),
+    ("enstar realtime sendout", "sendout named in that disclosure"),
     ("verdict", "the no-verdict statement"),
+]
+
+OVERCLAIMS = [
+    "our ai", "learns on its own", "self-improving", "machine learning",
+    "trains itself", "fine-tunes itself", "gets smarter", "continuously trained",
+    "learns automatically", "retrains",
 ]
 
 VERDICT_WORDS = [
@@ -75,6 +84,21 @@ def main_region(page_html):
     """
     m = re.search(r"(?s)<main[^>]*>(.*?)</main>", page_html)
     return m.group(1) if m else page_html
+
+
+def model_skew(verified, model):
+    """(version stamped on the latest reading, whether it differs from config).
+
+    Each record stamps the model that produced its numbers, which is what makes
+    a record auditable. It also means the page can show a modeled peak built on
+    yesterday's coefficients beside today's formula, for one day after every
+    refit, healing on the next collection. Worth noticing, never worth failing
+    over. Nothing caught it the first time a refit landed.
+    """
+    if not verified:
+        return None, False
+    stamped = (verified[-1].get("model") or {}).get("version")
+    return stamped, bool(stamped) and stamped != model.get("version")
 
 
 def visible_text(page_html):
@@ -122,6 +146,10 @@ def check_page(out_dir, today=None):
     said = [w for w in VERDICT_WORDS if w in text.lower()]
     (ok if not said else bad)("no safety verdict", ", ".join(said) or "none")
 
+    claimed = [w for w in OVERCLAIMS if w in text.lower()]
+    (ok if not claimed else bad)("no training the model does not do",
+                                 ", ".join(claimed) or "none")
+
     # The series behind it, and whether the page agrees with it.
     series = gw.load_series()
     model = gw.gc.load_model(gw.MODEL_CONFIG)
@@ -141,6 +169,18 @@ def check_page(out_dir, today=None):
         (ok if str(figs["inventory_pct_of_design"]) in text else bad)(
             "the headline figure reaches the page",
             f"{figs['inventory_pct_of_design']} percent of design")
+
+    # Model skew. Each record stamps the model that produced its numbers, which
+    # is what makes a record auditable, and it also means the page can show a
+    # modeled peak from yesterday's coefficients beside today's formula. That
+    # happens for one day after every refit and it heals on the next collection,
+    # so it is worth noticing and never worth failing over. Nothing caught it
+    # the first time a refit landed.
+    stamped, skewed = model_skew(verified, model)
+    if stamped:
+        (warn if skewed else ok)(
+            "the page and its latest reading share a model",
+            f"reading built on {stamped}, page states {model['version']}")
 
     gaps = gw.continuity(series)
     (ok if not gaps else warn)(
@@ -225,15 +265,23 @@ def self_test():
          page.replace("</main>", "<p>Storage None Bcf</p></main>")),
         ("a safety verdict",
          page.replace("</main>", "<p>Southcentral is safe, supply is adequate.</p></main>")),
-        ("the no-training statement removed",
-         page.replace("Nothing here learns on its own", "This model improves itself")),
-        ("the sendout limit removed",
-         page.replace("sendout is not published", "sendout is available")),
+        ("a claim that the model trains itself",
+         page.replace("</main>", "<p>The model fine-tunes itself daily.</p></main>")),
+        ("the not-reported-daily disclosure removed",
+         page.replace("not reported daily", "all fully reported")),
         ("a numeral nothing computed",
          page.replace("</main>", "<p>Storage sits at 87.3 percent.</p></main>")),
     ]
     for label, mutated in breakages:
         check(f"goes red on {label}", with_page(mutated) == "FAIL")
+
+    same = [{"model": {"version": "9.9"}}]
+    check("model skew is silent when the reading matches the page",
+          model_skew(same, {"version": "9.9"}) == ("9.9", False))
+    check("model skew is seen when a refit has outrun the last reading",
+          model_skew(same, {"version": "9.10"}) == ("9.9", True))
+    check("model skew says nothing with no verified reading",
+          model_skew([], {"version": "9.9"}) == (None, False))
 
     td = tempfile.mkdtemp()
     check("goes red when the page is missing", check_page(td)[1] == "FAIL")

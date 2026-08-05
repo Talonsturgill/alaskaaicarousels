@@ -25,11 +25,13 @@ on:
   pull_request:
     paths:
       - "scripts/gaswatch_eia.py"
+      - "scripts/gaswatch_fit.py"
       - ".github/workflows/gaswatch-eia.yml"
   push:
     branches: [main]
     paths:
       - "scripts/gaswatch_eia.py"
+      - "scripts/gaswatch_fit.py"
       - ".github/workflows/gaswatch-eia.yml"
 
 concurrency:
@@ -54,6 +56,11 @@ jobs:
       - name: The parser works, and it can still go red
         run: python3 scripts/gaswatch_eia.py --self-test
 
+      # The refit is the reason this workflow matters. Its guards have to work
+      # before it is allowed to change a published model unattended.
+      - name: The refit earns its change, and its guards can still refuse
+        run: python3 scripts/gaswatch_fit.py --self-test
+
       - name: Pull the monthly figures
         if: github.event_name != 'pull_request'
         id: pull
@@ -64,18 +71,29 @@ jobs:
 
       # The page reads this file at build time, so a new month has to be
       # committed for the cross check on the site to move.
+      # A new month of observed consumption is a better fit than the one before
+      # it, so the model refits itself here. Rejected fits leave the model
+      # alone and say why, and every accepted one is versioned with the month
+      # count and both error figures.
+      - name: Refit the model on the new month
+        if: github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          python3 scripts/gaswatch_fit.py
+          python3 scripts/gaswatch_collect.py --self-test
+
       - name: Commit a new month
         if: github.event_name != 'pull_request'
         run: |
           set -euo pipefail
-          if git diff --quiet -- ledger/gaswatch_eia.json; then
-            echo "No new month, nothing to commit."
+          if git diff --quiet -- ledger/gaswatch_eia.json config/gaswatch_model.json; then
+            echo "No new month and no refit, nothing to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           month=$(python3 -c "import json;print(json.load(open('ledger/gaswatch_eia.json'))['latest_month'])")
-          git add ledger/gaswatch_eia.json
+          git add ledger/gaswatch_eia.json config/gaswatch_model.json
           git commit -m "gaswatch(eia): figures through $month"
           for delay in 2 4 8 16 0; do
             if git push origin HEAD:main; then

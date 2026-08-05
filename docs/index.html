@@ -27,7 +27,72 @@
 <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/jbmono-md.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["NewsMediaOrganization","ProfessionalService"],"@id":"https://alaskaaihq.com/#org","name":"Alaska AI","alternateName":["Alaska.Ai","Alaska AI HQ"],"url":"https://alaskaaihq.com/","logo":{"@type":"ImageObject","url":"https://alaskaaihq.com/logo.png","width":512,"height":512},"image":"https://alaskaaihq.com/og.png","description":"Alaska AI is the daily publication on Alaska's AI beat and an AI studio in Anchorage that builds AI systems for Alaska businesses. Every fact verified to its source.","email":"docket@alaskaaihq.com","contactPoint":{"@type":"ContactPoint","email":"docket@alaskaaihq.com","contactType":"inquiries"},"address":{"@type":"PostalAddress","addressLocality":"Anchorage","addressRegion":"AK","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":61.2181,"longitude":-149.9003},"areaServed":[{"@type":"State","name":"Alaska"},{"@type":"City","name":"Anchorage"},{"@type":"City","name":"Fairbanks"},{"@type":"City","name":"Juneau"}],"founder":{"@type":"Person","name":"Talon Sturgill","url":"https://alaskaaihq.com/about/","sameAs":["https://www.linkedin.com/in/talonsturgill"]},"sameAs":["https://www.linkedin.com/company/alaska-ai/","https://www.tiktok.com/@alaskaai_","https://youtube.com/@alaska_ai","https://www.instagram.com/alaskaai_","https://www.facebook.com/share/1GMRTzE1tK/","https://x.com/Microvestapp"],"knowsAbout":["artificial intelligence","Alaska AI infrastructure","AI for small business","voice agents","workflow automation","AI for tourism","AI for healthcare","Alaska Native corporations"]},{"@type":"WebSite","url":"https://alaskaaihq.com/","name":"Alaska AI","alternateName":"Alaska AI HQ","publisher":{"@id":"https://alaskaaihq.com/#org"}}]}</script>
 <link rel="stylesheet" href="site.css">
-
+<style>
+.gw-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+gap:12px;margin:26px 0 30px;}
+.gw-stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+padding:16px 15px;border-top:2px solid var(--gold);}
+.gw-stat.gw-blue{border-top-color:var(--blue);}
+.gw-num{font-size:clamp(26px,3.6vw,36px);color:var(--snow);line-height:1.05;
+font-weight:600;}
+.gw-lab{font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+color:var(--body);margin-top:8px;line-height:1.35;}
+.gw-note{font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+color:var(--mute);margin-top:6px;}
+.gw-lede{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:16px;margin:16px 0 30px;}
+.gw-lede>div{background:var(--panel);border:1px solid var(--line);
+border-radius:12px;padding:18px 17px;}
+.gw-lede h3{font-family:Fraunces,Georgia,serif;font-size:19px;color:var(--gold);
+margin-bottom:8px;font-weight:500;}
+.gw-lede p{font-size:15px;color:var(--body);line-height:1.6;}
+.gw-gauge{background:linear-gradient(180deg,var(--panel2),var(--panel));
+border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:16px;
+padding:24px 22px 18px;margin:20px 0 22px;}
+.gw-cta{margin-bottom:34px;}
+.gw-gauge-top{display:flex;justify-content:space-between;align-items:flex-end;
+gap:20px;flex-wrap:wrap;margin-bottom:18px;}
+/* Hero figure. Body sans rather than the serif, and proportional digits, which
+   is what stops a large standalone number reading loose. */
+.gw-hero{font-size:clamp(52px,9vw,86px);line-height:.92;color:var(--gold);
+font-weight:700;letter-spacing:-.02em;font-variant-numeric:proportional-nums;}
+.gw-hero span{font-size:.42em;color:var(--halo);margin-left:2px;font-weight:600;}
+.gw-hero-lab{font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+color:var(--body);margin-top:9px;}
+.gw-gauge-side{text-align:right;}
+.gw-side-num{font-size:clamp(20px,2.6vw,26px);color:var(--snow);font-weight:600;}
+.gw-side-num span{color:var(--mute);font-size:.7em;font-weight:400;}
+.gw-side-lab{font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+color:var(--mute);margin-top:7px;}
+.gw-gauge-track{position:relative;height:30px;border-radius:15px;
+background:var(--deep);border:1px solid var(--line);overflow:hidden;}
+/* Both stops are bright. The first version ramped from a dark gold on the
+   left, which dimmed the end of the bar the eye starts at and encoded nothing,
+   since the bar's LENGTH already carries the value. The sheen is decoration
+   that stays out of the way of the measurement. */
+.gw-gauge-fill{height:100%;border-radius:15px 0 0 15px;
+background:linear-gradient(90deg,var(--gold),var(--halo));
+box-shadow:0 0 18px rgba(255,199,44,.25);}
+.gw-gauge-mark{position:absolute;top:-3px;bottom:-3px;width:2px;
+background:var(--snow);}
+.gw-gauge-foot{display:flex;justify-content:space-between;gap:10px;margin-top:9px;
+font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);}
+.gw-gauge-foot span:last-child{color:var(--body);}
+@media(max-width:560px){.gw-gauge-side{text-align:left;}}
+.gw-chart{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+padding:16px 12px 8px;margin:18px 0;overflow-x:auto;}
+.gw-table{margin:18px 0 8px;overflow-x:auto;}
+.gw-table table{width:100%;border-collapse:collapse;font-size:14px;
+font-variant-numeric:tabular-nums;}
+.gw-table caption{caption-side:bottom;text-align:left;color:var(--mute);
+font-size:13px;padding-top:10px;line-height:1.5;}
+.gw-table th,.gw-table td{padding:9px 11px;border-bottom:1px solid var(--line);
+text-align:right;white-space:nowrap;}
+.gw-table th:first-child,.gw-table td:first-child{text-align:left;}
+.gw-table thead th{color:var(--mute);font-size:11px;letter-spacing:.05em;
+text-transform:uppercase;font-weight:500;}
+.gw-table tbody tr:hover{background:var(--panel);}
+</style>
 <script>document.documentElement.classList.add('js');window.__revealFallback=setTimeout(function(){document.documentElement.classList.add('reveal-fallback')},3000)</script>
 </head>
 <body>
@@ -168,6 +233,28 @@ every fact. Gold means a door is open to the public right now.</p>
   <div class="who">COMMENTS, MOTIONS TO INTERVENE AND PROTESTS DUE, 5:00 P.M. EASTERN</div>
 </a></div>
 <div class="ctarow" data-reveal><a class="cta gold" href="docket/">OPEN THE FULL DOCKET</a></div>
+
+<h2 data-reveal><a href="gas-watch/">Cook Inlet Gas Watch</a></h2>
+<p class="sub" data-reveal>How much gas Southcentral has in the ground, read every
+day and kept. CINGSA publishes today's number and no history, so this record
+exists only because it is collected daily.</p>
+<div class="gw-gauge" data-reveal>
+<div class="gw-gauge-top">
+  <div>
+    <div class="gw-hero">49.7<span>%</span></div>
+    <div class="gw-hero-lab">of design capacity, measured</div>
+  </div>
+  <div class="gw-gauge-side">
+    <div class="gw-side-num">6.46 <span>of 13.0 Bcf</span></div>
+    <div class="gw-side-lab">read August 5th, 2026</div>
+  </div>
+</div>
+<div class="gw-gauge-track"><div class="gw-gauge-fill" style="width:49.7%"></div>
+<div class="gw-gauge-mark" style="left:49.7%"></div></div>
+<div class="gw-gauge-foot"><span>empty</span>
+<span>full, 13.0 Bcf</span></div>
+</div>
+<div class="ctarow" data-reveal><a class="cta ghost" href="gas-watch/">OPEN THE GAS WATCH</a></div>
 <h2 data-reveal><a href="topics/">What Alaska AI covers</a></h2>
 <p class="sub" data-reveal>Seven standing beats, tracked every day. Each one keeps its
 own page whether or not it made news this week, with the decisions on it, who decides

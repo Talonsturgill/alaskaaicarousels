@@ -2746,7 +2746,7 @@ def pretty_date(iso):
 
 # ---------- pages ----------
 
-def home_page(today, site_url, docket, runs):
+def home_page(today, site_url, docket, runs, gas_series=(), gas_model=None):
     items, live, done, dated, live_sorted = docket
     n_open = db.open_count(live, today)
     # Read off dated[0] itself, not recomputed, because the title beside it is
@@ -2782,11 +2782,17 @@ def home_page(today, site_url, docket, runs):
     # DOORS OPEN TO YOU stat directly above it claims.
     cards = "".join(db.card_html(it, today, prefix="docket/")
                     for it in db.home_cards(dated, today, 3))
+    # The gas watch meter, directly under the docket. The two datasets sit
+    # together here the same way they do in the nav. It renders empty when
+    # there is no verified reading, so the homepage never explains an absence.
+    gas_strip = gw.home_strip(gas_series, gas_model) if gas_model else ""
     closing = f"""<h2 data-reveal><a href="docket/">The docket</a></h2>
 <p class="sub" data-reveal>Every AI infrastructure decision in Alaska, tracked daily with a source on
 every fact. Gold means a door is open to the public right now.</p>
 <div class="cards">{cards}</div>
-<div class="ctarow" data-reveal><a class="cta gold" href="docket/">OPEN THE FULL DOCKET</a></div>"""
+<div class="ctarow" data-reveal><a class="cta gold" href="docket/">OPEN THE FULL DOCKET</a></div>
+
+{gas_strip}"""
 
     # Our Latest Video: the skeleton is baked, the newest entry is pulled live
     # from videos/videos.json (owned by the video automation) so this section
@@ -2927,7 +2933,8 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
     return page("Alaska AI - AI Consulting and Daily AI News for Alaska",
                 "Alaska's AI studio in Anchorage. Daily verified stories on Alaska and AI, "
                 "a public docket of AI infrastructure decisions, and AI consulting for "
-                "Alaska businesses.", body, "", "home", today, site_url, "", ld=ld)
+                "Alaska businesses.", body, "", "home", today, site_url, "",
+                ld=ld, extra_css=(gw.GW_CSS if gas_strip else ""))
 
 
 def docket_page(today, site_url, docket):
@@ -5349,7 +5356,8 @@ def build(today, out_dir, site_url=None, domain=""):
     gas_model = gw.gc.load_model(gw.MODEL_CONFIG)
 
     pages = {
-        "index.html": home_page(today, site_url, docket, runs),
+        "index.html": home_page(today, site_url, docket, runs,
+                                gas_series, gas_model),
         "docket/index.html": docket_page(today, site_url, docket),
         "gas-watch/index.html": gas_watch_page(today, site_url, gas_series, gas_model),
         "archive/index.html": archive_page(today, site_url, runs),

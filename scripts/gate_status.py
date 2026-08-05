@@ -395,9 +395,15 @@ def gas_watch_row(rows):
     try:
         figs = gwb.figures(series, model)
         if figs.get("eia_months_checked"):
-            xc = (", EIA through %s, model %d%% %s over %d months"
-                  % (figs["eia_latest_month"], figs["eia_model_gap_pct"],
-                     figs["eia_model_runs"], figs["eia_months_checked"]))
+            # The aggregate ratio used to go here, and it reads near zero by
+            # construction now that the coefficients are fitted to these same
+            # months. Mean monthly error is the figure that still moves when a
+            # fit degrades, so that is the one worth surfacing.
+            miss = figs.get("fit_mean_error_pct")
+            xc = (", EIA through %s over %d months, %s"
+                  % (figs["eia_latest_month"], figs["eia_months_checked"],
+                     "model misses by %s%%" % miss if miss is not None
+                     else "no fit error on file"))
         else:
             xc = ", no EIA cross check on file"
     except Exception as e:

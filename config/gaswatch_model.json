@@ -1,25 +1,26 @@
 {
   "_spec": {
     "purpose": "Demand model for Cook Inlet Gas Watch. The coefficients live here as data rather than as constants inside scripts/gaswatch_collect.py, so a refit is a data change with its own commit and never a code change. Every collected record carries a copy of this block, so a record always states the model that produced its numbers.",
-    "refit_procedure": "Bump version, edit the coefficients, run python3 scripts/gaswatch_collect.py --self-test, and paste the recomputed figures it prints into the backtests below. Append a model_history entry naming the reason and the data behind it. The self-test recomputes every backtest from config/gaswatch_hdd_history.json and fails if any recorded expectation disagrees, so a typed number that nothing produced cannot survive a commit.",
-    "honesty_note": "This model is calibrated to two published figures. It is not fit to observed sendout, because observed sendout is not public. Nothing derived from it may be published as a safety verdict, a shortfall prediction, or an all clear.",
+    "refit_procedure": "scripts/gaswatch_fit.py refits on the monthly EIA workflow. It bumps the version, rewrites the coefficients, recomputes every backtest expectation and appends a model_history entry naming the month count and the error before and after. A fit is rejected unless it has enough months behind it, lands inside physically sane bounds and beats the model it would replace by more than rounding, and a rejected fit leaves the model alone and prints why. To move the coefficients by hand instead, edit them, run python3 scripts/gaswatch_collect.py --self-test, paste the recomputed figures into the backtests below and append the history entry yourself. Either way that self-test recomputes every backtest from config/gaswatch_hdd_history.json and fails if a recorded expectation disagrees, so a typed number that nothing produced cannot survive a commit. Backtest notes carry no numerals, because a refit cannot recompute prose.",
+    "honesty_note": "This model is fitted by least squares to observed EIA Alaska deliveries to residential, commercial and electric power consumers, and refitted whenever another month is published. The published design day and average day are external reference points, not fit targets, so a gap against them is expected and is published rather than tuned away. Nothing derived from this model may be published as a safety verdict, a shortfall prediction, or an all clear.",
     "no_typed_numbers_rule": "Every figure in backtests below is reproduced by code from the committed HDD record. Nothing here is an estimate, a recollection, or a figure copied from prose.",
     "not_public_note": "not_public lists what no source reports DAILY for this region. not_public_monthly_source names the ones that do have a monthly statewide figure, and the page counts them rather than stating a number in prose, so moving an item between these two changes the sentence automatically."
   },
-  "version": "1.2",
-  "formula": "MMcf/d = 75 + 4.20 * HDD65",
-  "base_mmcfd": 75.0,
-  "slope_mmcfd_per_hdd": 4.2,
+  "version": "2.0",
+  "formula": "MMcf/d = 80.868 + 3.439 * HDD65",
+  "base_mmcfd": 80.868,
+  "slope_mmcfd_per_hdd": 3.439,
   "hdd_base_f": 65,
-  "calibration": "average day 190 MMcf/d, design day 390 MMcf/d at HDD 75",
-  "fit_source": "published figures, not fit to observed sendout",
+  "calibration": "fitted to observed EIA Alaska deliveries; the published design day and average day are kept as external reference points, not as fit targets",
+  "fit_source": "least squares against 131 months of observed EIA Alaska deliveries to residential, commercial and electric power consumers",
   "hdd_history": "config/gaswatch_hdd_history.json",
   "calibration_anchors": {
     "published_design_day_mmcfd": 390,
     "published_design_day_hdd65": 75,
     "published_average_day_mmcfd": 190,
     "published_season_consumption_bcf": 75,
-    "source_label": "published Cook Inlet design day and average day figures"
+    "source_label": "published Cook Inlet design day and average day figures",
+    "role": "External reference points, not fit targets. The model is fitted to observed EIA deliveries, so a gap against these published planning figures is expected and is published rather than tuned away. Only an implausible gap is a fault."
   },
   "measured": [
     "cingsa_inventory",
@@ -42,14 +43,15 @@
   "backtests": [
     {
       "id": "published-design-day",
-      "description": "The model evaluated at the published design day temperature. This anchor is exact by construction, since the coefficients were fitted to it.",
+      "description": "The model evaluated at the temperature behind the published design day, for comparison against that planning figure.",
       "computed_from": "coefficients",
       "input": {
         "hdd65": 75
       },
-      "expect_mmcfd": 390.0,
+      "expect_mmcfd": 338.8,
       "compare_to_anchor": "published_design_day_mmcfd",
-      "tolerance_mmcfd": 0.05
+      "sanity_gap_pct": 40,
+      "gap_note": "Reported, not enforced. A gap beyond sanity_gap_pct means the fit is broken, not that the anchor moved."
     },
     {
       "id": "record-maximum-day",
@@ -57,9 +59,9 @@
       "computed_from": "hdd_history",
       "expect_date": "2024-02-02",
       "expect_hdd65": 77,
-      "expect_mmcfd": 398.4,
-      "expect_days_at_or_above_design_day": 3,
-      "note": "Three days in the committed record model above the published design day of 390 MMcf/d. That is a fact about the weather record, not a claim about whether the system coped, and it must never be published as one."
+      "expect_mmcfd": 345.7,
+      "expect_days_at_or_above_design_day": 0,
+      "note": "A fact about the weather record, not a claim about whether the system coped, and it must never be published as one. The count of days at or above the published design day is recomputed from the coefficients, so it moves when the model is refitted."
     },
     {
       "id": "season-integral",
@@ -70,21 +72,23 @@
         "end": "2026-06-30"
       },
       "expect_days": 365,
-      "expect_season_hdd65": 10545,
-      "expect_bcf": 71.7,
+      "expect_season_hdd65": 10545.0,
+      "expect_bcf": 65.8,
       "compare_to_anchor": "published_season_consumption_bcf",
-      "tolerance_bcf": 4.0,
-      "note": "The model runs about 4 percent light against stated regional consumption near 75 Bcf across a full gas year. That gap is published rather than hidden. The build brief stated 71.6 Bcf for this figure; the committed record puts the season at 365 days, which gives 71.7."
+      "note": "The gap against stated regional consumption across a full gas year is published rather than hidden. The published figure is a planning total and this one is modeled consumption, so they are close relatives and not the same measurement.",
+      "sanity_gap_pct": 40,
+      "gap_note": "Reported, not enforced. A gap beyond sanity_gap_pct means the fit is broken, not that the anchor moved."
     },
     {
       "id": "record-average-day",
       "description": "Mean modeled demand across every day in the committed record, against the published average day figure.",
       "computed_from": "hdd_history",
       "expect_mean_hdd65": 25.9,
-      "expect_mmcfd": 183.7,
+      "expect_mmcfd": 169.8,
       "compare_to_anchor": "published_average_day_mmcfd",
-      "tolerance_mmcfd": 10.0,
-      "note": "The model sits about 3 percent under the published average day. Both published anchors sit slightly above what the observed weather record produces, which is what a two point calibration to design figures would predict."
+      "note": "The gap against the published average day is published rather than tuned away. A planning average carries margin that a fit to observed deliveries does not, so the model is expected to sit under it.",
+      "sanity_gap_pct": 40,
+      "gap_note": "Reported, not enforced. A gap beyond sanity_gap_pct means the fit is broken, not that the anchor moved."
     }
   ],
   "model_history": [
@@ -114,10 +118,30 @@
       "changed": [
         "not_public_monthly_source"
       ]
+    },
+    {
+      "version": "2.0",
+      "effective": "2026-08-05",
+      "reason": "Automatic refit against 131 months of observed EIA Alaska deliveries through 202605. Mean monthly error 11.52 to 6.82 percent. Backtests recomputed.",
+      "changed": [
+        "base_mmcfd",
+        "slope_mmcfd_per_hdd",
+        "formula",
+        "fit_source",
+        "backtests"
+      ]
     }
   ],
   "not_public_monthly_source": {
     "hilcorp_storage_inventory": "EIA Alaska underground storage, monthly, statewide, lags about two months",
     "enstar_realtime_sendout": "EIA Alaska deliveries by sector, monthly, statewide, lags about two months"
+  },
+  "fit": {
+    "method": "least squares, consumption = base * days + slope * HDD65",
+    "months": 131,
+    "through": "202605",
+    "mean_error_pct": 6.82,
+    "geography": "EIA reports Alaska statewide. Residential and commercial gas is overwhelmingly Enstar in Southcentral and gas fired power is overwhelmingly Railbelt, so statewide heating and power deliveries stand in for the region. Industrial load is excluded, because Kenai plant demand does not track the weather.",
+    "refit_by": "scripts/gaswatch_fit.py, on the monthly EIA workflow"
   }
 }

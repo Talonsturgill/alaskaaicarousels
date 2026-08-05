@@ -150,6 +150,8 @@ def figures(series, model):
         "hdd_record_start": hist["start_date"],
         "hdd_record_end": hist["end_date"],
         "not_public_count": len(model.get("not_public", [])),
+        "fit_months": (model.get("fit") or {}).get("months"),
+        "fit_mean_error_pct": (model.get("fit") or {}).get("mean_error_pct"),
         # The first history entry is the original fit, not a revision of
         # anything, so counting it published "3 revisions" for two revisions.
         "model_revisions": max(0, len(model.get("model_history", [])) - 1),
@@ -215,7 +217,7 @@ def figures(series, model):
     # Comparisons are computed for the same reason numerals are. A page that
     # says "a minority" in prose is asserting a fact about two figures, and it
     # would keep saying it after those figures crossed over.
-    for key in ("cingsa_share_word", "record_average_direction"):
+    for key in ("record_average_direction", "record_average_gap_pct"):
         try:
             f[key] = _comparison(key, f)
         except KeyError:
@@ -343,6 +345,38 @@ def allowed_numerals(figs, model, extra_strings=()):
             for tok in re.findall(r"\d[\d,]*(?:\.\d+)?", blob)}
 
 
+UNDERCLAIMS = ("not fit to observed", "not fitted to observed",
+               "calibrated to two published figures", "moves only when a person",
+               "only when a person moves it", "working hypothesis",
+               "nothing here learns")
+
+
+def underclaims(model):
+    """Prose in the model config that sells the model short of what it is.
+
+    The overclaim guard beside this one has a twin problem nobody thought to
+    check for. When the model improved, four strings kept describing the old
+    two point calibration, and they ship inside the published feed. One of them
+    said the coefficients move only when a person moves them, which stopped
+    being true the day the monthly workflow started refitting them.
+
+    A false modesty is still a false claim, and it is the harder one to notice,
+    because nothing looks wrong about a page being careful. So it is only an
+    error when a fit exists to contradict it, which keeps the rule honest if
+    the model is ever deliberately unfitted again.
+    """
+    if not model.get("fit"):
+        return []
+    hits = []
+    for key, val in (model.get("_spec") or {}).items():
+        low = val.lower() if isinstance(val, str) else ""
+        hits += [f"_spec.{key}: {w}" for w in UNDERCLAIMS if w in low]
+    for key in ("calibration", "fit_source"):
+        low = str(model.get(key, "")).lower()
+        hits += [f"{key}: {w}" for w in UNDERCLAIMS if w in low]
+    return hits
+
+
 def blank(v):
     """A value the model could not produce yet shows as an empty cell.
 
@@ -359,6 +393,10 @@ def _comparison(key, vals):
     if key == "record_average_direction":
         return ("light" if vals["record_average_day_mmcfd"]
                 < vals["anchor_published_average_day_mmcfd"] else "heavy")
+    if key == "record_average_gap_pct":
+        published = vals["anchor_published_average_day_mmcfd"]
+        return round(abs(vals["record_average_day_mmcfd"] - published)
+                     / published * 100, 1)
     raise KeyError(key)
 
 
@@ -701,14 +739,19 @@ def self_test():
     print("state-dependent wording follows the data")
     base = gc.load_model(MODEL_CONFIG)
     flips = [
-        ("cingsa_share_word",
-         {"design_bcf": 60.0, "eia_ak_capacity_bcf": 69.9}, "majority",
-         {"design_bcf": 13.0, "eia_ak_capacity_bcf": 69.9}, "minority"),
         ("record_average_direction",
          {"record_average_day_mmcfd": 220.0, "anchor_published_average_day_mmcfd": 190},
          "heavy",
          {"record_average_day_mmcfd": 183.7, "anchor_published_average_day_mmcfd": 190},
          "light"),
+        # The size of that gap is computed for the same reason its direction is.
+        # It read "slightly light" in typed prose right up until a refit moved
+        # the model ten percent under the anchor and the word stayed put.
+        ("record_average_gap_pct",
+         {"record_average_day_mmcfd": 228.0, "anchor_published_average_day_mmcfd": 190},
+         20.0,
+         {"record_average_day_mmcfd": 171.0, "anchor_published_average_day_mmcfd": 190},
+         10.0),
     ]
     for key, hi_in, hi_want, lo_in, lo_want in flips:
         got_hi = _comparison(key, hi_in)
@@ -738,16 +781,32 @@ def self_test():
     # whose subject is AI, describing arithmetic as AI would be the exact
     # overclaim this publication exists to check, and it would put the one page
     # built on being checkable behind a claim that cannot be.
-    overclaims = [w for w in ("our ai", "our model learns", "self-improving",
+    # The guard bans the FALSE CLAIM rather than requiring a particular
+    # disclaimer sentence. The copy should be free to read like a person wrote
+    # it; what it may never say is that the model retrains itself, because
+    # nothing does. Requiring a fixed sentence made the page sound like a
+    # legal notice, which the maintainer was right to reject.
+    overclaims = [w for w in ("our ai", "learns on its own", "self-improving",
                               "machine learning", "neural", "trains itself",
-                              "gets smarter", "automatically refit",
-                              "continuously trained", "the ai predicts")
+                              "fine-tunes itself", "fine tunes itself",
+                              "gets smarter",
+                              "continuously trained", "the ai predicts",
+                              "learns automatically", "retrains")
                   if w in body.lower()]
     check("the page claims no training it does not do", not overclaims, str(overclaims))
-    check("the page says plainly that nothing learns on its own",
-          "nothing here learns on its own" in body.lower())
-    check("the page states the limit more data cannot fix",
-          "sendout is not published" in body.lower())
+    sells_short = underclaims(base)
+    check("the config does not describe a model it outgrew",
+          not sells_short, str(sells_short))
+    check("that rule can still go red",
+          underclaims(dict(base, fit={"months": 1}, calibration="working hypothesis"))
+          == ["calibration: working hypothesis"])
+    check("and it stays quiet on a model with no fit",
+          underclaims({"calibration": "working hypothesis"}) == [])
+    check("the page calls the demand figure an estimate",
+          "estimate" in body.lower())
+    check("the page still discloses what nothing reports daily",
+          "not reported daily" in body.lower()
+          and "enstar realtime sendout" in body.lower())
     check("no em dash, en dash, curly quote or emoji",
           not re.search("[–—‘’“”]"
                         "|[\U0001F000-\U0001FAFF]", body))
@@ -805,6 +864,40 @@ def gauge(f):
 </div>"""
 
 
+def home_strip(series, model, prefix=""):
+    """The storage meter for the homepage, under the docket.
+
+    Same figures dict as the page, so the two can never disagree. It renders
+    nothing at all when there is no verified reading, because a homepage is the
+    last place to explain an absence.
+    """
+    f = figures(series, model)
+    if "as_of" not in f:
+        return ""
+    pct = f["inventory_pct_of_design"]
+    return f"""<h2 data-reveal><a href="{prefix}gas-watch/">Cook Inlet Gas Watch</a></h2>
+<p class="sub" data-reveal>How much gas Southcentral has in the ground, read every
+day and kept. CINGSA publishes today's number and no history, so this record
+exists only because it is collected daily.</p>
+<div class="gw-gauge" data-reveal>
+<div class="gw-gauge-top">
+  <div>
+    <div class="gw-hero">{pct}<span>%</span></div>
+    <div class="gw-hero-lab">of design capacity, measured</div>
+  </div>
+  <div class="gw-gauge-side">
+    <div class="gw-side-num">{f["inventory_bcf"]} <span>of {f["design_bcf"]} Bcf</span></div>
+    <div class="gw-side-lab">read {long_date(f["as_of"])}</div>
+  </div>
+</div>
+<div class="gw-gauge-track"><div class="gw-gauge-fill" style="width:{pct}%"></div>
+<div class="gw-gauge-mark" style="left:{pct}%"></div></div>
+<div class="gw-gauge-foot"><span>empty</span>
+<span>full, {f["design_bcf"]} Bcf</span></div>
+</div>
+<div class="ctarow" data-reveal><a class="cta ghost" href="{prefix}gas-watch/">OPEN THE GAS WATCH</a></div>"""
+
+
 def page_body(today, site_url, series, model, meta, prefix="../"):
     """The Gas Watch page.
 
@@ -846,25 +939,25 @@ def page_body(today, site_url, series, model, meta, prefix="../"):
             f'relationship the data does not claim.</p>')
     else:
         chart_block = (
-            f'<p class="sub" data-reveal>The record holds '
-            f'{count(f["days_of_record"], "day")} of readings so far, which is '
-            f'not yet a trend, so there is no '
-            f'chart here. The table below is the whole series. A daily plot '
-            f'appears here once there is more than one verified day to draw.</p>')
+            f'<p class="sub" data-reveal>'
+            f'{count(f["days_of_record"], "day")} on record, which is not yet a '
+            f'trend to plot. The table below is the whole series.</p>')
 
     # The model's live scoreboard. At zero checks it says zero, because an
     # accuracy figure nobody has earned yet is exactly the kind of claim this
     # page refuses to make.
     if f.get("accuracy_checks"):
         scoreboard = (
-            f'Checked against observed weather on '
-            f'{count(f["accuracy_checks"], "day")} so far, missing by '
-            f'{f["mean_abs_hdd_error"]} degree days on average, about '
-            f'{f["mean_abs_demand_error_mmcfd"]} MMcf per day of demand.')
+            f'Across {count(f["accuracy_checks"], "day")} the forecast behind it '
+            f'has been off by {f["mean_abs_hdd_error"]} degree days on average, '
+            f'about {f["mean_abs_demand_error_mmcfd"]} MMcf per day of gas.')
+        scoreboard = " " + scoreboard
     else:
-        scoreboard = (
-            'No check has resolved yet, since the first needs a forecast made '
-            'yesterday and a temperature observed today.')
+        # Say nothing rather than narrate the site's own newness. A sentence
+        # promising that a check "lands shortly" is scaffolding on a page meant
+        # to outlive the week it launched, and the paragraph reads fine without
+        # it. The figure appears on its own once there is one to report.
+        scoreboard = ""
 
     stale_note = ""
     if f.get("unverified_days"):
@@ -910,22 +1003,23 @@ production.</p>"""
     if f.get("eia_months_checked"):
         not_public_note = (
             f"{spell(f['not_public_with_monthly_source'])} of them do have monthly "
-            f"statewide figures, which is where the check above comes from. What "
+            f"statewide figures, which is what the model above is fitted to. What "
             f"no source gives is a daily regional number, and that is the gap "
             f"that matters here.")
-        crosscheck = f"""<h2 data-reveal>Checked against what Alaska burned</h2>
+        crosscheck = f"""<h2 data-reveal>Fitted to what Alaska burned</h2>
 <p class="prose" data-reveal>The US Energy Information Administration publishes
-Alaska gas deliveries and underground storage monthly. Across
-{count(f["eia_months_checked"], "month")} of overlap this model runs
-{f["eia_model_gap_pct"]} percent {f["eia_model_runs"]} against residential,
-commercial and electric power deliveries. That check is statewide and lags about
-two months, so it corrects the model rather than replacing anything here.</p>
+Alaska gas deliveries and underground storage monthly.
+{count(f["eia_months_checked"], "month")} of those deliveries to homes,
+businesses and power plants are what the demand model is fitted to, and each new
+month refits it. So the estimate answers to measured consumption rather than to a
+design document. The figures are statewide and lag about two months, which is why
+they correct the model rather than replace anything here.</p>
 <p class="prose" data-reveal>It also widens the picture. Through
 {long_month(f["eia_latest_month"])} Alaska held {f["eia_ak_working_gas_bcf"]} Bcf
 of working gas across {count(f["eia_storage_fields"], "storage field")}, against
-{f["eia_ak_capacity_bcf"]} Bcf of capacity. CINGSA's design volume is
-{f["design_bcf"]} Bcf, so the field read here daily holds a
-{f["cingsa_share_word"]} of the state's stored gas.</p>"""
+{f["eia_ak_capacity_bcf"]} Bcf of capacity. CINGSA is the only one that reports
+daily, and its {f["design_bcf"]} Bcf field is the one read here every morning.
+The rest surfaces monthly at best, which is why the daily record starts here.</p>"""
     else:
         not_public_note = ""
         crosscheck = ""
@@ -940,8 +1034,13 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 
 {gauge(f)}
 
+<!-- The primary action under the meter used to be GET THE JSON, which asks a
+     reader to know what JSON is before they know what the needle means. Most
+     people arriving here are reporters and Alaskans, not developers. The plain
+     question they actually have goes first, and the file moves down beside the
+     citation, where somebody who wants it is already looking. -->
 <div class="ctarow gw-cta">
-  <a class="cta gold" href="{prefix}gas-watch.json">GET THE JSON</a>
+  <a class="cta gold" href="#what-this-is">WHAT THIS MEANS</a>
   <a class="cta ghost" href="{prefix}docket/{esc(meta["docket_item_id"])}/">THE STORAGE DECISION</a>
 </div>
 
@@ -955,7 +1054,7 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 </div>
 
 
-<h2 data-reveal>What you are looking at</h2>
+<h2 id="what-this-is" data-reveal>What you are looking at</h2>
 <div class="gw-lede" data-reveal>
 <div><h3>The reserve</h3><p>Southcentral Alaska keeps gas in an underground field
 near Kenai, run by CINGSA. Utilities fill it in summer and draw on it in winter.
@@ -988,13 +1087,17 @@ that it is not, is using it wrong.</p>
 <h2 data-reveal>The model, in full</h2>
 <p class="prose" data-reveal>Regional demand in MMcf per day is
 {f["base_mmcfd"]} plus {f["slope_mmcfd_per_hdd"]} times heating degree days on a
-base of {f["hdd_base_f"]} degrees Fahrenheit. Version {f["model_version"]}. It is
-calibrated to two published figures, a design day of
-{f["anchor_published_design_day_mmcfd"]} MMcf per day at
-{f["anchor_published_design_day_hdd65"]} degree days and an average day of
-{f["anchor_published_average_day_mmcfd"]} MMcf per day. It is NOT fitted to
-observed sendout, because observed sendout is not public. Treat the coefficients
-as a working hypothesis, not a measurement.</p>
+base of {f["hdd_base_f"]} degrees Fahrenheit. Version {f["model_version"]}, fitted
+by least squares to {count(f["fit_months"], "month")} of observed Alaska
+deliveries to homes, businesses and power plants, and refitted every time another
+month is published. It misses those months by {f["fit_mean_error_pct"]} percent
+on average, measured against the same record it is fitted to.</p>
+<p class="prose" data-reveal>It sits below the published planning figures, and
+that is expected rather than a problem. A design day of
+{f["anchor_published_design_day_mmcfd"]} MMcf per day is a peak carrying margin
+for a system operator to build against. This predicts what the region actually
+uses, which is a different question, and the gap between them is published here
+instead of tuned away.</p>
 <p class="prose" data-reveal>Every figure below is recomputed at build time from
 {f["hdd_record_days"]:,} days of observed Anchorage degree days covering
 {long_date(f["hdd_record_start"])} to {long_date(f["hdd_record_end"])}. Nothing
@@ -1002,24 +1105,29 @@ on this page is a number somebody typed.</p>
 <ol class="claims" data-reveal>{bt_rows}</ol>
 <p class="prose" data-reveal>Across that record the model averages
 {f["record_average_day_mmcfd"]} MMcf per day against the published average day of
-{f["anchor_published_average_day_mmcfd"]}, so it runs slightly
-{f["record_average_direction"]}. The coldest
+{f["anchor_published_average_day_mmcfd"]}, which is
+{f["record_average_gap_pct"]} percent {f["record_average_direction"]}. The coldest
 day in the record is {long_date(f["record_maximum_day_date"])} at
 {f["record_maximum_day_hdd65"]:g} degree days, which models to
-{f["record_maximum_day_mmcfd"]} MMcf per day. In the whole record,
-{count(f["record_maximum_day_days_at_or_above_design_day"], "day")} model at or
+{f["record_maximum_day_mmcfd"]} MMcf per day. Of the
+{f["hdd_record_days"]:,} days on file,
+{spell(f["record_maximum_day_days_at_or_above_design_day"]).lower()} model at or
 above the published design day. That is a fact about the weather, not a
 statement about whether the system coped.</p>
 
-<h2 data-reveal>How this gets better</h2>
-<p class="prose" data-reveal>Nothing here learns on its own. The formula is two
-numbers fitted to two published figures, and it moves only when a person moves
-it, as a data change with the reason recorded. Version {f["model_version"]},
-{count(f["model_revisions"], "revision")} on record. {scoreboard}</p>
-<p class="prose" data-reveal>One gap no amount of collecting closes. Utility
-sendout is not published, so this can never be fitted directly to what the
-region actually burned.</p>
-
+<h2 data-reveal>This gets sharper the longer it runs</h2>
+<p class="prose" data-reveal>It launched {long_date(f["first_date"])} with a
+single day of readings, and every day adds one more. That record is the whole
+point. CINGSA publishes today's number and keeps no history at all, so the
+trend on this page exists only because it is collected daily and never thrown
+away. One day is a dot. A month shows the shape of a drawdown. A winter shows
+what a cold snap actually costs the field, and no other public source can show
+you that.</p>
+<p class="prose" data-reveal>The demand figure is an estimate, so rather than
+ask you to trust it we fit it to what Alaska actually burned and publish how far
+off it still is.{scoreboard} When the record says the estimate should move,
+we move it, and every earlier version stays on file so an old number can still
+be reproduced.</p>
 {crosscheck}
 
 <h2 data-reveal>What is not reported daily</h2>
@@ -1038,7 +1146,10 @@ day with the provenance of every external fetch behind it. Storage is measured,
 demand is modeled, and each record says which is which. Version
 {f["schema_version"]}. The related tracked decision is
 <a class="proselink" href="{prefix}docket/{esc(meta["docket_item_id"])}/">Enstar's
-Cook Inlet gas storage plan</a>.</p>"""
+Cook Inlet gas storage plan</a>.</p>
+<div class="ctarow" data-reveal>
+  <a class="cta ghost" href="{prefix}gas-watch.json">GET THE RAW DATA</a>
+</div>"""
 
 
 GW_CSS = """
