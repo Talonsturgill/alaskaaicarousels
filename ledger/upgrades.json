@@ -863,6 +863,21 @@
    "verification": "Regenerated the payload for this run before and after. Before, the Editor's note section rendered the literal string 'None.'; after, it renders the scorer's full note beginning 'No hard fail. All nine renders re-transcribed against copy.json'. Payload size 18 KB either way, no other section changed.",
    "rollback": "git revert the follow-up upgrade(2026-08-05) commit. Removing the alias puts the machine back in the state where a scorer emitting notes_for_email silently loses the maintainer's most important paragraph.",
    "commit": "0ba0f92"
+  },
+  {
+   "run_date": "2026-08-05",
+   "kind": "fix",
+   "area": "voice",
+   "change": "TWO MAINTAINER WRITING RULES, both turned into gates rather than notes. (1) DATES ARE MONTH FIRST. 'August 10th', never '10 August'. The ordinal is the bare form; with a year the house writes 'August 27, 2026', which is also what the federal documents this page quotes actually print, so a quoted date and our own date look like the same language. caption_check.py fails the day-first form and a bare 'August 27' carrying neither an ordinal nor a year. (2) A COMMA BUDGET of 1.05 commas per 100 characters of caption body, hashtags excluded. The number was measured rather than guessed, from all 26 shipped captions in runs/*/caption.txt, mean 1.17 per 100 and median 1.12; the budget is ten percent under the mean, which is what was asked for. Both rules are written into config/brand.yaml (voice.do, on_slide_text_rules and linkedin_post) and knowledge/CAPTION_CRAFT.md, and both are enforced by scripts/caption_check.py, which prints the comma count, the density and how many to cut.",
+   "trigger": "Maintainer instruction, 2026-08-05, after reading the No.26 draft. Both rules were made mechanical because brand.yaml has a history of carrying true statements nobody enforced, most recently deck_summary_line, which lapsed for three consecutive runs while sitting in the file set to true.",
+   "files_touched": [
+    "config/brand.yaml",
+    "knowledge/CAPTION_CRAFT.md",
+    "scripts/caption_check.py"
+   ],
+   "verification": "Measured against the whole shipped corpus before writing the thresholds. Of 26 captions, 15 fail the comma budget and 11 fail the date form, so neither rule is a formality. Regex edge cases checked: 'August 27th', 'August 27, 2026' and 'August 27 2026' pass; '27 August' and a bare 'August 27' fail; 'a 27 percent cut' and 'August 2026 was quiet' do not false-positive. A compliant 618-character caption returns PASS. brand.yaml still parses.",
+   "rollback": "git revert the voice-rules commit. The two checks disappear from caption_check.py and the rules revert to prose in brand.yaml and CAPTION_CRAFT.md. Note this is a TIGHTENING; reverting it returns the machine to a state where a caption at 1.43 commas per 100 and a day-first date both ship clean.",
+   "commit": "pending"
   }
  ],
  "scan_log": [

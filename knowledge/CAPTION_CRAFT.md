@@ -109,6 +109,30 @@ holds in the caption, in the first comment and on every slide. "Cannot" is the
 register of a press release; the house voice is a person talking.
 `caption_check.py` fails it.
 
+**DATES ARE MONTH FIRST.** "August 10th", never "10 August" (maintainer rule,
+2026-08-05). The day-then-month form reads as a dateline or a filing header,
+and this page is a person talking. Use the ordinal when no year follows. With
+a year, use the plain form, "August 27, 2026", which is also what the federal
+documents this page quotes actually print, so a quoted date and our own date
+look like the same language. Eleven of the first 26 shipped captions broke
+this. `caption_check.py` fails both the day-first form and a bare "August 27"
+with no ordinal and no year.
+
+**SPEND FEWER COMMAS.** Budget is **1.05 commas per 100 characters** of caption
+body, hashtag line excluded (maintainer rule, 2026-08-05). The number is not a
+guess: every shipped caption was measured, 26 of them, and the mean was 1.17
+per 100 with a median of 1.12. The budget is ten percent under that mean, which
+is what was asked for.
+
+Fifteen of those 26 would fail it, so this is a real constraint and not a
+formality. When you are over, the fix is to cut a comma or split the sentence.
+It is NOT to reach for a semicolon, which is already banned, and it is not to
+run two clauses together without one. A comma splice is worse than a comma.
+The rule exists because the house voice is short declarative sentences and a
+comma is usually the seam where a sentence should have ended.
+`caption_check.py` fails it and prints the count, the density and how many to
+cut.
+
 ## The ledger contract
 
 After every shipped run the showrunner appends to `ledger/captions.json`:
