@@ -619,6 +619,14 @@ background:var(--gold);transition:right .25s ease;}
 .navlinks a:hover::after{right:0;background:var(--blue);}
 .navlinks a.on{color:var(--gold);}
 .navlinks a.on::after{right:0;}
+/* Seven items need a compact row sooner than the rest of the mobile layout
+   does, so this breakpoint is deliberately wider than the 720px block below.
+   A phone in landscape is wide enough to miss that block and too narrow to
+   seat seven links at full size, so the row wrapped and the sticky nav
+   doubled to 121px, which buried four docket map pins under it in a map
+   frame only 219px tall. Compact keeps it to one row there. The wrap is the
+   backstop for real phone widths, where it splits to two rows cleanly. */
+@media (max-width:900px){.navlinks{gap:13px;row-gap:9px;font-size:10.5px;flex-wrap:wrap;}}
 
 /* ---------- type ---------- */
 h1{font-family:Fraunces,serif;font-weight:580;font-size:clamp(44px,7.4vw,92px);line-height:1.0;
@@ -947,11 +955,6 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
   .maphero{margin:34px -12px 0;padding:0 12px;}
   .latest{grid-template-columns:1fr;}
   .flagsky{right:-4vw;top:2vh;width:70vw;opacity:.8;}
-  /* Seven items no longer fit one phone row. Without wrapping, the last link
-     runs off the side and the page clips overflow, so ABOUT would be on the
-     page and unreachable. Wrapping keeps every item tappable and leaves room
-     for an eighth later. */
-  .navlinks{gap:13px;row-gap:9px;font-size:10.5px;flex-wrap:wrap;}
   .topnav{padding:18px 0 12px;}
   .lightbox .lbprev{left:8px;}
   .lightbox .lbnext{right:8px;}
