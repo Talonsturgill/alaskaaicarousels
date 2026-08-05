@@ -67,6 +67,31 @@ URLISH = re.compile(r"https?://|www\.|\S+\.(com|org|net|io|gov|edu)/\S*", re.I)
 # checkable, so it is a gate rather than a note in a doc nobody reads.
 CONTRACTIONS = {"cannot": "can't"}
 
+# THE COMMA BUDGET (maintainer rule, 2026-08-05). "Reduce comma usage by 10
+# percent on the captions moving forward." Turned into a number rather than a
+# vibe by measuring every shipped caption in runs/*/caption.txt, hashtag line
+# excluded: 26 captions, mean 1.17 commas per 100 characters, median 1.12.
+# Ten percent below the mean is 1.05, and that is the budget.
+#
+# It is a GATE and not a warning, because the deck-summary rule sat in
+# brand.yaml as a true statement nobody enforced and lapsed for three runs
+# running. A caption over budget is not wrong, it is over budget, and the fix
+# is to cut a comma or split a sentence.
+COMMA_PER_100 = 1.05
+
+# DATE FORM (maintainer rule, 2026-08-05). "rn ur saying dates like '10 August'
+# the normal way to say it is August 10th." Month before day, always. The
+# ordinal form is the bare one; with a year the house writes "August 27, 2026",
+# which is the standard American form and is what the record's own documents
+# print. Day-then-month ("27 August") is the form being banned.
+MONTHS = ("January February March April May June July August September "
+          "October November December").split()
+DAY_FIRST = re.compile(
+    r"\b([0-9]{1,2})(?:st|nd|rd|th)?\s+(" + "|".join(MONTHS) + r")\b", re.I)
+BARE_CARDINAL = re.compile(
+    r"\b(" + "|".join(MONTHS) + r")\s+([0-9]{1,2})\b(?!\s*(?:st|nd|rd|th|,\s*[0-9]{4}|\s+[0-9]{4}))",
+    re.I)
+
 REPO = Path(__file__).resolve().parent.parent
 BRAND_DEFAULT = REPO / "config" / "brand.yaml"
 
@@ -101,6 +126,15 @@ def load_banned_phrases(path=None):
     if not out:
         return [], "%s: banned_phrases is empty" % p
     return out, None
+
+
+def _ordinal(d):
+    n = int(d)
+    if 10 <= n % 100 <= 20:
+        suf = "th"
+    else:
+        suf = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suf}"
 
 
 def quoted_spans(t):
@@ -271,7 +305,35 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
             fails.append("DECK SUMMARY: the declared line IS the hook; "
                          "it has to be its own line doing its own work")
 
+    # The hashtag line is not prose, so it is excluded from both checks below.
+    # This is the same slice the 2026-08-05 baseline was measured on.
+    body = "\n".join(l for l in lines if not l.strip().startswith("#"))
+
+    # --- DATE FORM ---------------------------------------------------------
+    for m in DAY_FIRST.finditer(body):
+        day, month = m.group(1), m.group(2)
+        fails.append("DATE FORM: '%s' is day before month; the house writes "
+                     "'%s %s' (month first, ordinal when the year is absent)"
+                     % (m.group(0), month.capitalize(), _ordinal(day)))
+    for m in BARE_CARDINAL.finditer(body):
+        fails.append("DATE FORM: '%s' needs the ordinal when no year follows; "
+                     "write '%s %s'"
+                     % (m.group(0), m.group(1).capitalize(), _ordinal(m.group(2))))
+
+    # --- COMMA BUDGET ------------------------------------------------------
+    commas = body.count(",")
+    body_chars = len(body)
+    density = (commas / body_chars * 100) if body_chars else 0.0
+    allowed = int(COMMA_PER_100 * body_chars / 100)
+    if commas > allowed:
+        fails.append("COMMAS: %d in %d chars is %.2f per 100, over the %.2f "
+                     "budget. Cut %d, or split a sentence."
+                     % (commas, body_chars, density, COMMA_PER_100,
+                        commas - allowed))
+
     return {"chars": n, "hook": hook, "hook_len": len(hook),
+            "commas": commas, "comma_per_100": round(density, 2),
+            "comma_budget": COMMA_PER_100,
             "hashtags": tags, "deck_summary": deck_summary,
             "brand_phrases_loaded": len(brand_phrases or []),
             "fails": fails, "warns": warns,

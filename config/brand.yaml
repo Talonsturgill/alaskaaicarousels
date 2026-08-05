@@ -26,6 +26,8 @@ brand:
       - "NEVER use a colon, ever, in post copy or on-slide text (maintainer rule, 2026-07-21). For a pause use a comma, a period, or parentheses. Restructure the sentence instead of reaching for a colon. Clock times like 4:30 are the only exception."
       - "Cite the source of a claim inline when it matters ('per the RCA filing', 'NOAA data show')."
       - "NEVER write 'cannot'. Always write \"can't\" (maintainer rule, 2026-07-30). 'Cannot' is press-release register; this page sounds like an analyst talking to a busy Alaskan. Enforced by scripts/caption_check.py."
+      - "DATES ARE MONTH FIRST (maintainer rule, 2026-08-05). Write 'August 10th', never '10 August'. Use the ordinal when no year follows; with a year use the plain form, 'August 27, 2026', which is what the source documents print. Enforced by scripts/caption_check.py."
+      - "SPEND FEWER COMMAS (maintainer rule, 2026-08-05). Budget is 1.05 commas per 100 characters of caption body, hashtags excluded. That is 10 percent below the 1.17 mean measured across the first 26 shipped captions. When you are over, cut a comma or split the sentence; do not swap in a semicolon, which is already banned. Enforced by scripts/caption_check.py."
     dont:
       - "Don't sign off with 'Follow Alaska.Ai'. The close slide's single ask handles it."
       - "Don't open with 'Imagine...', 'In an era where...', or 'It's no secret that...'"
@@ -69,6 +71,8 @@ brand:
     links_in_body: false             # sources go in first comment
     ends_with: engagement_question
     deck_summary_line: true          # 1-2 plain lines describing the deck (accessibility + ranker)
+    comma_per_100_chars: 1.05        # budget, hashtags excluded; 10% under the 26-caption mean of 1.17
+    date_form: month_first_ordinal   # "August 10th"; with a year, "August 27, 2026"
 
 visual:
   # The constellation system: FIXED marks every deck, everything else rotates.
@@ -98,4 +102,5 @@ visual:
     - "Straight quotes. Tabular numerals for data. Units spaced (43 MW, not 43MW)."
     - "No emojis, no hashtags on slides."
     - "Never 'cannot' on a slide either. Write \"can't\" (maintainer rule, 2026-07-30)."
+    - "Dates are month first on slides too. 'AUGUST 27TH' or 'AUGUST 27, 2026', never '27 AUGUST' (maintainer rule, 2026-08-05)."
     - "Every factual on-slide number/claim carries a claim-id in the dossier."
