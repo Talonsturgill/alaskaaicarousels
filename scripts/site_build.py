@@ -3840,10 +3840,10 @@ built. Bring us a specific ask or let the Field Study find the highest payers.</
 
     tiers = f"""<h2 data-reveal>Three ways in</h2>
 <p class="sub" data-reveal>Every engagement starts with the truth about your operation and
-ends with something you own. Prices are where the work starts, scoped in the open.</p>
+ends with something you own. Scope and price get set on a call, against your numbers.</p>
 <div class="item a-open" id="field-study" data-reveal>
   <div class="body">
-    <div class="top"><span class="chip days">FROM $2,500</span><span class="chip kind">1 TO 2 WEEKS &middot; THE FLAGSHIP</span></div>
+    <div class="top"><span class="chip days">PRICED ON A CALL</span><span class="chip kind">1 TO 2 WEEKS &middot; THE FLAGSHIP</span></div>
     <h3>The Field Study</h3>
     <p>Deep discovery, run like our reporting. We study your operation from the inside and
     your industry and competitors from the outside, then hand you a ranked map of where AI
@@ -3856,7 +3856,7 @@ ends with something you own. Prices are where the work starts, scoped in the ope
 </div>
 <div class="item" data-reveal>
   <div class="body">
-    <div class="top"><span class="chip days">FROM $6,000</span><span class="chip kind">FIRST SYSTEM TYPICALLY LIVE INSIDE A MONTH</span></div>
+    <div class="top"><span class="chip days">PRICED ON A CALL</span><span class="chip kind">FIRST SYSTEM TYPICALLY LIVE INSIDE A MONTH</span></div>
     <h3>The Build</h3>
     <p>Whatever the Field Study surfaces, or whatever you already know you want. Shipped to
     production behind real quality gates, then improved on a schedule. Every build ends with
@@ -3865,7 +3865,7 @@ ends with something you own. Prices are where the work starts, scoped in the ope
 </div>
 <div class="item" data-reveal>
   <div class="body">
-    <div class="top"><span class="chip days">FROM $6,000 A MONTH</span><span class="chip kind">ONGOING</span></div>
+    <div class="top"><span class="chip days">PRICED ON A CALL</span><span class="chip kind">ONGOING &middot; MONTHLY</span></div>
     <h3>The Partnership</h3>
     <p>An embedded engineer plus standing AI leadership, for owners who want to win the AI
     front of their industry without becoming engineers. We work inside your business, keep
@@ -4015,31 +4015,29 @@ on whether the Field Study fits, and a no costs you nothing.{talk_first}</p>
 </form>
 <p class="fineprint" data-reveal>No pitch deck, no drip campaign. One reply, from the same
 people who write the deck. Prefer email? docket@alaskaaihq.com reaches the same place.</p>
-<div class="about-line" data-reveal><p>Prices are starting points, scoped in the open before
+<div class="about-line" data-reveal><p>Every engagement is scoped and priced with you before
 any work begins. The docket stays free. The deck ships daily either way.</p></div>"""
 
+    # No prices in the markup either (maintainer, 2026-08-05). priceRange and
+    # priceSpecification are what Google and the AI answer engines read, so
+    # leaving them would keep quoting the old numbers in search results long
+    # after the page stopped showing them. The offers stay, because naming what
+    # is sold is the SEO value; the figures are what came off.
     ld = {"@context": "https://schema.org", **org_ld(site_url),
-          "priceRange": "From $2,500",
           "makesOffer": [
               {"@type": "Offer", "name": "The Field Study",
                "description": "Deep discovery inside your operation and across your "
-                              "industry, with a ranked roadmap and a working prototype.",
-               "priceSpecification": {"@type": "PriceSpecification", "minPrice": 2500,
-                                      "priceCurrency": "USD"}},
+                              "industry, with a ranked roadmap and a working prototype."},
               {"@type": "Offer", "name": "The Build",
                "description": "Production AI systems, from voice agents to digital "
-                              "employees, each ending in a model the client owns.",
-               "priceSpecification": {"@type": "PriceSpecification", "minPrice": 6000,
-                                      "priceCurrency": "USD"}},
+                              "employees, each ending in a model the client owns."},
               {"@type": "Offer", "name": "The Partnership",
                "description": "An embedded AI engineer plus standing AI leadership, "
-                              "monthly.",
-               "priceSpecification": {"@type": "PriceSpecification", "minPrice": 6000,
-                                      "priceCurrency": "USD"}}]}
+                              "monthly."}]}
     return page("AI Consulting for Alaska Businesses - Alaska AI",
-                "AI consulting and builds for Alaska businesses. Voice agents, digital "
-                "employees and paperwork engines from an Anchorage studio. The Field Study "
-                "from $2,500.",
+                "AI consulting and builds for Alaska businesses. Agentic systems, "
+                "digital employees and paperwork engines, scoped and priced with you "
+                "on a call.",
                 body, "../", "services", today, site_url, "services/", ld=ld,
                 crumbs=[("Alaska AI", ""), ("Services", "services/")])
 
