@@ -892,7 +892,7 @@
    ],
    "verification": "Measured against the whole shipped corpus before setting anything. First person, 1 of 26 fails, and it is No.26 itself. Sentence-opening conjunctions, 0 of 26, so that gate is preventive rather than remedial and is recorded as such. False-positive suite passed: 'the mine is 1.1 miles wide', 'the US Air Force leases 4,700 acres' and a quoted 'we will continue to consider' all stay clean, while 'We stood up three notices', 'Our read is', 'I think' and a bare 'us' all fail. A compliant 625-character caption returns PASS with all four of the day's new checks live. brand.yaml still parses.",
    "rollback": "git revert the first-person voice commit. Both checks disappear from caption_check.py and the rules revert to prose. This is a TIGHTENING; reverting it returns the machine to a state where a caption can narrate its own search and no gate objects.",
-   "commit": "pending"
+   "commit": "b88b351"
   }
  ],
  "scan_log": [
