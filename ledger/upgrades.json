@@ -893,6 +893,33 @@
    "verification": "Measured against the whole shipped corpus before setting anything. First person, 1 of 26 fails, and it is No.26 itself. Sentence-opening conjunctions, 0 of 26, so that gate is preventive rather than remedial and is recorded as such. False-positive suite passed: 'the mine is 1.1 miles wide', 'the US Air Force leases 4,700 acres' and a quoted 'we will continue to consider' all stay clean, while 'We stood up three notices', 'Our read is', 'I think' and a bare 'us' all fail. A compliant 625-character caption returns PASS with all four of the day's new checks live. brand.yaml still parses.",
    "rollback": "git revert the first-person voice commit. Both checks disappear from caption_check.py and the rules revert to prose. This is a TIGHTENING; reverting it returns the machine to a state where a caption can narrate its own search and no gate objects.",
    "commit": "b88b351"
+  },
+  {
+   "run_date": "2026-08-05",
+   "kind": "fix",
+   "area": "site",
+   "change": "THE HOMEPAGE VIDEO COUNTER SELF-CORRECTS. video_count() reads docs/videos/videos.json at BUILD time, but that file is appended to by publish_feed.py in the alaska-ai-weekly repo on its own schedule, so a video landing after the daily site build leaves the stat one behind until the next build. The Our Latest Video section already fetches the same file at runtime, so the counter is now re-read from that same fetch and the number is right whenever the page is loaded. The server-rendered figure stays as the no-JS fallback, and the count-up animation marks the element so hydration never fights it.",
+   "trigger": "Maintainer noticed the homepage said 33 and suspected 34. It was 34. The 34th video, net-comes-first-2026-08-05, landed in commit cc1b14b hours AFTER the day's site build read the file. The build was correct at the moment it ran; the data moved underneath it.",
+   "files_touched": [
+    "scripts/site_build.py"
+   ],
+   "verification": "videos.json holds 34 entries. Rebuilt and the stat now renders data-count=34 and reads 34. site_fresh_check passes at the run date. The hydration path was written against the existing runtime fetch rather than a new one, so no extra request is made.",
+   "rollback": "git revert the site-counters commit. The counter reverts to build-time only and will drift again whenever a video lands between builds.",
+   "commit": "pending"
+  },
+  {
+   "run_date": "2026-08-05",
+   "kind": "fix",
+   "area": "site",
+   "change": "THE HOMEPAGE DOCKET CARDS NOW LEAD WITH OPEN DOORS. New docket_build.home_cards() puts every item whose resolved access is open ahead of the rest, then fills the remaining slots by soonest date. The homepage previously took dated[:3], sorted by soonest headline date alone, while the stat directly above those cards counts open doors with open_count(). The two disagreed the moment a milestone outranked a door.",
+   "trigger": "Maintainer read the homepage, saw 02 DOORS OPEN TO YOU, counted one, and said so. Both doors were real, AIDEA Houston closing August 19th and the Dixon Glacier diversion closing August 28th. Two August 10th MILESTONES, an Air Force proposal date and a legislative convening, held the first two card slots and pushed the second door off the page. A milestone is context; a door is the only thing on that page a reader can act on.",
+   "files_touched": [
+    "scripts/docket_build.py",
+    "scripts/site_build.py"
+   ],
+   "verification": "Rebuilt. The homepage now renders aidea-houston-industrial-park and bradley-lake-dixon-diversion in the first two slots, matching the stat of 2, with the Air Force milestone third. docket_dates_check clean at 218 assertions. site_fresh_check passes at the run date.",
+   "rollback": "git revert the site-counters commit. Selection returns to soonest-date-only and the stat can again out-count the cards.",
+   "commit": "pending"
   }
  ],
  "scan_log": [

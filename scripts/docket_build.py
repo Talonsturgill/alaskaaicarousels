@@ -297,6 +297,25 @@ def open_count(items, today):
     return sum(1 for it in items if resolve(it, today)["access"] == "open")
 
 
+def home_cards(dated, today, n=3):
+    """The homepage's card set. EVERY OPEN DOOR FIRST, then the soonest
+    remaining events.
+
+    Why this is not just dated[:n] (2026-08-05). The stat directly above these
+    cards counts open doors with open_count(), and the cards were selected by
+    soonest date alone, so the two disagreed the moment a milestone outranked a
+    door. On 2026-08-05 the homepage said 02 DOORS OPEN TO YOU and showed one,
+    because two Aug 10 milestones (an Air Force proposal date and a legislative
+    convening) sat ahead of the Aug 28 Dixon Glacier comment close. A milestone
+    is context and a door is the only thing on this page a reader can act on,
+    so a door never loses a slot to one. The maintainer counted the cards and
+    caught it, which is the check this function replaces.
+    """
+    door = [it for it in dated if resolve(it, today)["access"] == "open"]
+    rest = [it for it in dated if it not in door]
+    return (door + rest)[:n]
+
+
 def _decolon(text):
     """Remove colons from prose the way prose_colon_gate counts them.
 
