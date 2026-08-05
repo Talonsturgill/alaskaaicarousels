@@ -753,8 +753,9 @@ def self_test():
     check("the page claims no training it does not do", not overclaims, str(overclaims))
     check("the page calls the demand figure an estimate",
           "estimate" in body.lower())
-    check("the page states the limit more data cannot fix",
-          "meter reading" in body.lower() and "send out" in body.lower())
+    check("the page still discloses what nothing reports daily",
+          "not reported daily" in body.lower()
+          and "enstar realtime sendout" in body.lower())
     check("no em dash, en dash, curly quote or emoji",
           not re.search("[–—‘’“”]"
                         "|[\U0001F000-\U0001FAFF]", body))
@@ -853,11 +854,9 @@ def page_body(today, site_url, series, model, meta, prefix="../"):
             f'relationship the data does not claim.</p>')
     else:
         chart_block = (
-            f'<p class="sub" data-reveal>The record holds '
-            f'{count(f["days_of_record"], "day")} of readings so far, which is '
-            f'not yet a trend, so there is no '
-            f'chart here. The table below is the whole series. A daily plot '
-            f'appears here once there is more than one verified day to draw.</p>')
+            f'<p class="sub" data-reveal>'
+            f'{count(f["days_of_record"], "day")} on record, which is not yet a '
+            f'trend to plot. The table below is the whole series.</p>')
 
     # The model's live scoreboard. At zero checks it says zero, because an
     # accuracy figure nobody has earned yet is exactly the kind of claim this
@@ -867,9 +866,13 @@ def page_body(today, site_url, series, model, meta, prefix="../"):
             f'Across {count(f["accuracy_checks"], "day")} the forecast behind it '
             f'has been off by {f["mean_abs_hdd_error"]} degree days on average, '
             f'about {f["mean_abs_demand_error_mmcfd"]} MMcf per day of gas.')
+        scoreboard = " " + scoreboard
     else:
-        scoreboard = ('The daily forecast check needs two days on file, so the '
-                      'first one lands shortly.')
+        # Say nothing rather than narrate the site's own newness. A sentence
+        # promising that a check "lands shortly" is scaffolding on a page meant
+        # to outlive the week it launched, and the paragraph reads fine without
+        # it. The figure appears on its own once there is one to report.
+        scoreboard = ""
 
     stale_note = ""
     if f.get("unverified_days"):
@@ -1026,13 +1029,9 @@ what a cold snap actually costs the field, and no other public source can show
 you that.</p>
 <p class="prose" data-reveal>The demand figure is an estimate, so rather than
 ask you to trust it we check it against what Alaska actually burned and publish
-how far off it is. {scoreboard} When the record says the estimate should move,
+how far off it is.{scoreboard} When the record says the estimate should move,
 we move it, and every earlier version stays on file so an old number can still
 be reproduced.</p>
-<p class="prose" data-reveal>One thing more data will not fix. Nobody publishes
-what the utilities send out day to day, so this stays an estimate rather than a
-meter reading, and it will never be anything else.</p>
-
 {crosscheck}
 
 <h2 data-reveal>What is not reported daily</h2>

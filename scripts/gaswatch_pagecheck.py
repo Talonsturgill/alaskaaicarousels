@@ -56,7 +56,8 @@ FORBIDDEN = [
 # it may never do is claim the model retrains itself or drop the limit.
 REQUIRED = [
     ("estimate", "the demand figure called an estimate"),
-    ("meter reading", "the limit more data cannot fix"),
+    ("not reported daily", "the disclosure of what nothing reports daily"),
+    ("enstar realtime sendout", "sendout named in that disclosure"),
     ("verdict", "the no-verdict statement"),
 ]
 
@@ -239,8 +240,8 @@ def self_test():
          page.replace("</main>", "<p>Southcentral is safe, supply is adequate.</p></main>")),
         ("a claim that the model trains itself",
          page.replace("</main>", "<p>The model fine-tunes itself daily.</p></main>")),
-        ("the sendout limit removed",
-         page.replace("meter reading", "measured reading")),
+        ("the not-reported-daily disclosure removed",
+         page.replace("not reported daily", "all fully reported")),
         ("a numeral nothing computed",
          page.replace("</main>", "<p>Storage sits at 87.3 percent.</p></main>")),
     ]
