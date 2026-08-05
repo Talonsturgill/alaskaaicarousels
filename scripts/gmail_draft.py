@@ -308,8 +308,14 @@ def main():
     # "None." on 2026-07-30 until it was caught by eye. Same gap class as the
     # post_copy fallback below (07-17, 07-18, 07-19): the agent's natural field
     # name drifts from the reader's, and the email silently loses the content.
+    # "notes_for_email" added 2026-08-05, the FOURTH spelling of this field to
+    # reach the email as "None.". The alias list is the fix for a class of bug
+    # that keeps recurring because the scorer's prompt names the key and the
+    # prompt is written fresh each run; widening the list is cheaper than
+    # hoping the next prompt matches.
     notes = esc(str(_alias("editor_notes_for_email", "notes_for_the_email",
-                           "editor_note", "honest_note_for_the_email",
+                           "notes_for_email", "editor_note",
+                           "honest_note_for_the_email",
                            "honest_note", default="") or "None."))
 
     # post_copy -> caption fallback: the copywriter/Phase 6 emit 'caption' and
