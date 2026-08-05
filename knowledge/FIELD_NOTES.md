@@ -2496,3 +2496,144 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   showrunner self-reviewed the cover, the hero and the contact sheet, but no
   independent critic transcribed a slide. That is a real gap in the quality chain
   and it is disclosed in the email, in the artwork ledger and to the scorer.
+
+## 2026-08-05 - craft refresh (Phase 1, No.26)
+
+- A LINE'S WEIGHT IS A FUNCTION OF THE DEPTH DISCONTINUITY IT REPRESENTS, not
+  of how important the thing is. HONEST FRAMING FIRST, because the library
+  already half-carries this. TECHNIQUE_LIBRARY #58, the Profile-Heaviest Rule,
+  says "outer silhouette gets hero weight; interior seams hair/fine". So the
+  headline is not new. What the source adds is the LIGHT term and the contact
+  term. In Greg Maxson's words, "Lines within an object are thin, exterior
+  object lines are heavier" and "exterior object lines that are down and away
+  from the light source are heavier and darker still", so the silhouette is not
+  one weight, it is two, split by where the key is. The exploded-view variant,
+  line contrast shading, "uses heavier lines on all outside edges of objects".
+  https://rj-graffix.com/multiple-line-weights-in-technical-illustration/
+- THE COROLLARY IS THE ONE THAT PAYS, and it is the six-run defect stated from
+  the other end. "the bottom of the cube and cylinder are thin lines because
+  they represent the joint between two surfaces. A heavy line would suggest
+  the objects float above the other art." A CONTACT LINE STAYS THIN. Every
+  time this studio has written up "flat plates and hairlines floating on bare
+  ground" it has been describing a contact edge drawn at silhouette weight.
+  The fix is mechanical, not a matter of taste, and it costs one parameter.
+  #58 does not say this and nothing in the five-token weight system implies
+  it, because #58 reads the object in isolation and the contact edge is the
+  one edge that is about the object's RELATIONSHIP to what is under it.
+- ADOPTED AS THIS RUN'S DECLARED ATTACK, one axis over from the notan attack
+  of 2026-08-04. Value structure needed a companion, because a two-value mass
+  arrangement says where the darks go and says nothing about the edges between
+  them. Silhouette heaviest, interior edge thin, contact edge thinnest,
+  declared per object in dossier field 7 so a pixel critic can check the ratio
+  instead of judging the vibe.
+- NOTHING NEW ON THE PLATFORM SIDE, and one recurring piece of noise logged
+  for the third time. Aggregators now assert that "carousels with exactly 7
+  slides perform 18% better than any other length"; it traces to nobody, same
+  as the 5-to-15 claim logged 2026-08-04 and the 7-slide claim logged
+  2026-08-02. Document engagement re-reads at 6.60 percent, consistent with
+  the 7.00 percent Socialinsider figure CAROUSEL_CRAFT already carries and
+  measured on a different corpus, so nothing moves. Our 8 to 10 band with a 6
+  floor stands. NOT APPLIED.
+
+## 2026-08-05 - No.26, "Both sides are printed on page 47241" (7.27, below threshold, shipped disclosed)
+
+- THREE SCOUTS FOUND THE SAME STORY THROUGH THREE DIFFERENT DOORS. Beat D found
+  the ANA issuance in the grants portal, Beat E in GovInfo, and Beat C surfaced
+  it incidentally while reading all 49 Alaska documents published in the Federal
+  Register during the window, reporting it as the only Alaska AI item in the
+  register. Convergence from unrelated search paths is the strongest selection
+  signal the room gets and it has not happened this cleanly since No.21.
+- THE LOSING TREATMENTS SUPPLIED THE WINNER'S BEST ORGANS, and both losing
+  directors named their own fatal flaw unprompted. The systems illustrator wrote
+  "the machine shop is invented, there is no casting in this story"; the
+  historian's brass tags were equally invented. The essayist was drawing the
+  thing that actually exists. But the historian's MANUFACTURE GRAMMAR, four
+  provenance states carried by the physical state of the object rather than by a
+  line convention, translated straight onto paper as the INK STATE, and its
+  double-struck idea became the EVOLVED and REPLACED overprint. The systems
+  illustrator's bore() constraint, a function that throws without a claim id,
+  became liftLeaf() and combTooth(). Grafting works best when the graft is a
+  MECHANISM rather than an image.
+- A SUBAGENT CAUGHT THE SHOWRUNNER AGAIN, third run in three. A treatment
+  director audited claims.json against the story summary and found that nothing
+  in the file carried the AI3 close date, only EAGLE's, so the deck was one
+  slide from asserting a date its own verification record did not hold. Re-fetched
+  and added as C29. The caption critic then caught three standing ledger
+  instructions the showrunner's briefs had missed.
+- THE RUN'S DECLARED ATTACK HALF LANDED, AND THE HALF THAT FAILED IS THE
+  INSTRUCTIVE ONE. The contact corollary is right and the line ratios were built
+  as specified, and it made no difference on the first pass, because a two-part
+  shadow in #1A0F08 laid on a table already near #0B0906 is a 4 L-unit change
+  that no critic and no scale can see. A shadow is a SUBTRACTION and needs
+  something to subtract from. The fix is a warm pool of ground light composited
+  under the object first. Same class of error on the silhouette, where a light
+  stroke centred on a light object's boundary puts half its width on paper it
+  matches; it has to be outside-aligned onto the dark side.
+- THE GEOMETRY WAS CORRECT AND EDITORIALLY USELESS. A leaf hinged at the back of
+  a 4.30-unit block projects its face INTO the block's own footprint at every
+  angle the mapping allowed, so the first render put four display runs on the
+  dark table at about 1.2 to 1 while every constant in the dossier was honest.
+  A projection can be right and still refuse to hold the thing it exists to
+  hold, and the check for that is not arithmetic, it is placing one string.
+- DEGRADED, AND SAYING SO. No flow-critic was spawned, so the deck's sequence had
+  no independent reviewer other than the scorer, who duly reported that five of
+  nine frames read as the same picture. The build reconciliation was also written
+  AFTER the pixel critics rather than before, which is the 2026-07-25 defect
+  repeating; the exposure was bounded because the critic briefs described the
+  current build, but four of them still measured leaf angles that no longer
+  existed. And the deck reached NO rung on the rendered ladder, because the GPU
+  path was specified in the storyboard and never built.
+
+## 2026-08-05 - Phase 12 upgrade engineer (parked candidates + scan)
+
+- APPLIED, so recorded here only as a pointer: a declared contact shadow is now
+  MEASURED by the engine and FAILS below 4.0 L* of separation from the ground
+  it claims to darken (`data-contacts` on `<body>`, see SKILL.md), and a stale
+  GATE STATUS block now fails the ship gate (`gate_status.py --verify-pasted`).
+  Both are in ledger/upgrades.json with their verification numbers.
+- PARKED: BURNED ANGLES SHOULD BE A SCHEMA FIELD, NOT PROSE IN `notes`. This
+  run's caption briefs cleared every mechanical window in captions.json
+  (opening move vs last 6, structure vs last 3, first four words vs last 12)
+  and still broke three standing instructions, because all three live as
+  sentences inside prior entries' `notes`: PRICE burned 07-30, who-decides
+  burned for six runs on 08-03, and "do not open a deck summary on Inside"
+  08-02. Both directors then opened on "Inside" and only the caption critic,
+  reading the ledger by hand, caught it. THE SHAPE OF THE FIX: a `burned`
+  array on each entry, each item {angle|word|opening, expires_after_run,
+  reason}, and a caption_check.py rule that reads the union of unexpired
+  burns. PARKED rather than applied because it is a schema change plus a
+  back-migration of prose out of `notes` across the whole file, and today's
+  two slots went to reactive engine fixes. Strongest candidate for the next
+  run. The literature calls this exactly what it is: instruction files should
+  compile into enforcement checks rather than be re-read and hoped over
+  (ContextCov, https://arxiv.org/pdf/2603.00822 ; the linter-as-executable-
+  spec argument, https://factory.ai/news/using-linters-to-direct-agents ).
+- PARKED: A SKIPPED REVIEW PHASE SHOULD BE A GATE ROW. run_state.json recorded
+  `flow_review: "skipped (degraded, disclosed)"` and nothing downstream cared;
+  the scorer then found five of nine frames reading as the same picture with no
+  independent reviewer having seen the sequence. A gate_status.py row that
+  reads run_state.json and FAILs a skipped review phase absent a disclosure
+  string is small and objective. Parked for budget only.
+- CORROBORATION, not novelty, from the frontier scan (focus: agent/automation
+  workflow patterns for self-improving pipelines, the stalest rotation slot).
+  (1) PROPOSE-THEN-VERIFY: "design every shippable agentic workflow so the
+  agent that proposes a change never approves it", and the value comes from
+  INDEPENDENCE between the steps, not from the second step's rigour. Three runs
+  in a row a subagent has caught the showrunner (a legend's symbol pitch, a
+  claims.json hole, three burned caption angles). That is not luck, it is the
+  pattern working, and it argues for making the independent auditor a standing
+  step. https://www.coderabbit.ai/guides/how-to-design-agentic-workflows
+  (2) THE VERIFIABILITY CONSTRAINT: self-improvement is reliable only where
+  outcomes are objectively verifiable; where they are not, systems "hack their
+  reward functions without meaningful progress" (73.8 percent of KernelBench
+  optimizations in one study showed proxy gains without real gains). This is
+  the argument for why Phase 12 took the ARITHMETIC slice of artwork craft (is
+  this region darker than that region) and deliberately left the taste slice
+  alone, and it is the same conclusion encoding_reads() reached empirically in
+  July. https://openreview.net/forum?id=ikrQWGgxYg
+  (3) HARNESS ENGINEERING: keep the verifier, the tracer and the runs directory
+  READ-ONLY to the improving agent, so it cannot disable its own evaluation;
+  pair every harness edit with a falsifiable prediction; and keep durable state
+  in FILES rather than in context, because subagent output that lives only in a
+  transient chat "quickly becomes obsolete and hidden". Our ledgers already do
+  the third. https://lilianweng.github.io/posts/2026-07-04-harness/

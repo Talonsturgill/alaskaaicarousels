@@ -87,6 +87,30 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   (see `encoding_reads` in qa.py). Read the numbers, do not trust a rule
   drawn through them, and do not add one without showing it separates a
   known-bad from a known-good on real renders.
+- **A contact shadow must have something to subtract from** (2026-08-05), and
+  a slide that declares one gets measured on it:
+
+  ```html
+  <body data-contacts='[{"what":"the shut block on the table",
+                         "shadow":[[236,1178,608,30]],
+                         "ground":[[236,1248,608,30]]}]'>
+  ```
+
+  Same rect grammar as `data-encodes`. qa.py takes the median CIELAB L* of
+  each region AT 432px WIDE and **FAILS below 4.0 L\* of separation**, WARNs
+  below 8.0. OPT-IN like the encoding contract, but unlike it this one is a
+  GATE, because the question is one-dimensional and the slide asked it itself:
+  a FAIL is the slide contradicting its own declaration, not a taste call.
+  DECLARE IT ON EVERY OBJECT THE DOSSIER SAYS SITS ON SOMETHING. Run No.26
+  built the two-part shadow exactly as specified, in `#1A0F08` at alpha 0.55,
+  on a table already rendering near `#0B0906`; the composite is a **1.2 L\***
+  change, four pixel critics returned `contact_edge_reads: no`, and machine QA
+  passed the deck with zero fails. The fix is never a stronger shadow, it is a
+  LIT GROUND: put a warm pool of light under where the object sits, then cast
+  into it. The same run's slide 04, whose bar shadows the critics called
+  convincing, measures 8.1. Related and not gated: a silhouette stroke on a
+  LIGHT object must be outside-aligned onto the dark side, because a centred
+  stroke puts half its width on paper it matches.
 - **Text may never overprint text**: qa.py FAILS when two elements' text
   line boxes intersect (the 2026-07-08 slide-3 defect class). Deliberate
   layering (a chip on an opaque plate crossing a display line box) must be

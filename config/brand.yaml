@@ -26,13 +26,36 @@ brand:
       - "NEVER use a colon, ever, in post copy or on-slide text (maintainer rule, 2026-07-21). For a pause use a comma, a period, or parentheses. Restructure the sentence instead of reaching for a colon. Clock times like 4:30 are the only exception."
       - "Cite the source of a claim inline when it matters ('per the RCA filing', 'NOAA data show')."
       - "NEVER write 'cannot'. Always write \"can't\" (maintainer rule, 2026-07-30). 'Cannot' is press-release register; this page sounds like an analyst talking to a busy Alaskan. Enforced by scripts/caption_check.py."
+      - "DATES ARE MONTH FIRST (maintainer rule, 2026-08-05). Write 'August 10th', never '10 August'. Use the ordinal when no year follows; with a year use the plain form, 'August 27, 2026', which is what the source documents print. Enforced by scripts/caption_check.py."
+      - "SPEND FEWER COMMAS (maintainer rule, 2026-08-05). Budget is 1.05 commas per 100 characters of caption body, hashtags excluded. That is 10 percent below the 1.17 mean measured across the first 26 shipped captions. When you are over, cut a comma or split the sentence; do not swap in a semicolon, which is already banned. Enforced by scripts/caption_check.py."
     dont:
       - "Don't sign off with 'Follow Alaska.Ai'. The close slide's single ask handles it."
       - "Don't open with 'Imagine...', 'In an era where...', or 'It's no secret that...'"
       - "Don't use 'game-changer', 'revolutionize', 'disrupt', 'synergy', or 'leverage' (as a verb)."
       - "Don't use emojis. Anywhere. Slides or copy."
+      - "NO FIRST PERSON IN THE CAPTION, EVER (maintainer rule, 2026-08-05). No I, we, us, our, my or me outside a straight-quoted source. The page describes the world; it never narrates its own work. This also bans the pronoun-free version of the same posture, 'no page anyone could reach', 'Enclosed,', 'what the search turned up'. Say what is true of the record instead. Enforced by scripts/caption_check.py."
       - "Don't write 'we' or 'us' implying speaking for Alaskans. Speak about Alaska, not as Alaska."
+      - "NEVER OPEN A SENTENCE WITH 'And' OR 'But' (maintainer rule, 2026-08-05). They join clauses. A sentence starting on one is a fragment wearing a full stop. Join it to the sentence before with a comma, or drop the word. Enforced by scripts/caption_check.py."
       - "Don't invent quotes, numbers, or people. If it isn't in claims.json, it doesn't exist."
+  date_format:
+    # OWNER RULE 2026-08-05: "rn ur saying '10 August', the normal way to say it is August 10th."
+    # The live instance was runs/2026-08-04/caption.txt, "Comments close 28 August at 5:00 p.m."
+    # Ten of the captions shipped before this rule carried a wrong form, so it is a habit, not a slip.
+    rule: "In any sentence a human READS OR HEARS, write the month name first and the day as an ordinal. August 10th. Never '10 August', never a bare 'August 10', never 'the 10th of August', never an abbreviated month in prose."
+    good: ["August 10th", "Comments close August 28th", "August 2026 (no day, so no ordinal)"]
+    bad: ["10 August", "August 10", "Aug 10", "the 10th of August", "10th August"]
+    applies_to: "the LinkedIn caption, slide copy that is a SENTENCE, and the Gmail draft's prose."
+    iso_is_still_correct_for: "filenames, ledger and JSON fields, and a PROVENANCE STAMP in a source list, where the date is a citation rather than a sentence. Read it aloud: if it sounds like a person talking, it takes the ordinal."
+    enforced_by: "scripts/caption_check.py DATE_FORMS (hard fail)."
+
+  comma_discipline:
+    # OWNER RULE 2026-08-05: "reduce comma usage by 10% on the captions moving forward."
+    rule: "Captions carry FEWER commas. The ceiling is 6.2 commas per 100 words of caption body."
+    measured_baseline: "22 shipped captions as of 2026-08-05, mean 6.88 commas per 100 words, median 6.52. Ten percent below the mean is 6.20."
+    why_not_the_weekly_repos_number: "alaska-ai-weekly sets 4.9 because its own shipped mean was 5.41. Carousel captions are shorter and comma-heavier, so importing 4.9 here would be a 29 percent cut rather than the 10 percent the owner asked for. The RULE is ten percent below what THIS surface actually ships."
+    how_to_cut_them: "Do NOT just delete commas and leave a run-on, which trades a comma for a worse sentence. Split the sentence at the comma and let it be two sentences. Cut the introductory clause that only existed to be qualified. Drop the appositive restating a noun the reader already has."
+    enforced_by: "scripts/caption_check.py COMMA_PER_100W (hard fail)."
+
   banned_phrases:
     - "game-changer"
     - "revolutionize"
@@ -69,6 +92,8 @@ brand:
     links_in_body: false             # sources go in first comment
     ends_with: engagement_question
     deck_summary_line: true          # 1-2 plain lines describing the deck (accessibility + ranker)
+    comma_per_100_chars: 1.05        # budget, hashtags excluded; 10% under the 26-caption mean of 1.17
+    date_form: month_first_ordinal   # "August 10th"; with a year, "August 27, 2026"
 
 visual:
   # The constellation system: FIXED marks every deck, everything else rotates.
@@ -98,4 +123,7 @@ visual:
     - "Straight quotes. Tabular numerals for data. Units spaced (43 MW, not 43MW)."
     - "No emojis, no hashtags on slides."
     - "Never 'cannot' on a slide either. Write \"can't\" (maintainer rule, 2026-07-30)."
+    - "Dates are month first on slides too. 'AUGUST 27TH' or 'AUGUST 27, 2026', never '27 AUGUST' (maintainer rule, 2026-08-05)."
+    - "No first person on a slide either. Slide 08 of No.26 shipped 'not on any page we could reach' and that is the drift this rule exists to stop (maintainer rule, 2026-08-05)."
+    - "No slide string opens with 'And' or 'But' (maintainer rule, 2026-08-05)."
     - "Every factual on-slide number/claim carries a claim-id in the dossier."

@@ -7,9 +7,12 @@
     "#DixonDiversion",
     "#AlaskaEnergy"
   ],
-  "deck_summary": "Slides carry the fishwater valve in section, the capacity bar against the generation bar, and the twelve parcels.",
+  "deck_summary": "A test summary line for the linter.",
   "brand_phrases_loaded": 27,
-  "fails": [],
+  "fails": [
+    "DATE: '28 August' is the day-first form - write the month first with an ordinal day, e.g. August 10th (owner rule 2026-08-05). ISO is still right for a citation stamp, but this is a sentence.",
+    "DECK SUMMARY: 35 chars is too short to describe a deck; write a real sentence"
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

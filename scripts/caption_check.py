@@ -51,6 +51,38 @@ AI_TELLS = ["delve", "tapestry", "testament", "landscape of", "ever-evolving",
             "here's the honest part", "here is the honest part",
             "here's what matters", "here is what matters", "imagine if",
             "in a world where", "it's no secret"]
+# DATE FORM (owner rule 2026-08-05: "rn ur saying '10 August', the normal way to say it is
+# August 10th"). Month name first, day as an ordinal. ISO stays correct for a PROVENANCE
+# STAMP (a citation line, a filename, a ledger field) but a sentence a human reads takes
+# "August 10th". Mirrors alaska-ai-weekly's scripts/caption_check.py DATE_FORMS so the two
+# surfaces cannot drift apart.
+MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
+ABBREV = r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec"
+DATE_FORMS = [
+    (re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(" + MONTHS + r")\b"),
+     "day-first", "write the month first with an ordinal day, e.g. August 10th"),
+    (re.compile(r"\b(" + MONTHS + r")\s+(\d{1,2})(?!\s*(?:st|nd|rd|th))(?!\d)"),
+     "no ordinal", "add the ordinal, e.g. August 10th"),
+    (re.compile(r"\bthe\s+\d{1,2}(?:st|nd|rd|th)\s+of\s+(" + MONTHS + r")\b"),
+     "of-form", "write it plainly, e.g. August 10th"),
+    (re.compile(r"\b(" + ABBREV + r")\.?\s+\d{1,2}\b"),
+     "abbreviated month", "spell the month out with an ordinal day, e.g. August 10th"),
+]
+
+# COMMA DISCIPLINE (owner rule 2026-08-05: "reduce comma usage by 10% on the captions
+# moving forward"). MEASURED AGAINST THIS DECK'S OWN CAPTIONS, not the weekly repo's.
+# Across the 22 captions shipped as of that date the mean here was 6.88 commas per 100
+# words of body (median 6.52), so ten percent below is 6.20 and the ceiling is 6.2.
+#
+# Deliberately NOT the 4.9 that alaska-ai-weekly uses. Carousel captions run shorter and
+# comma-heavier, and applying that repo's number here would be a 29 percent cut rather than
+# the 10 percent the owner asked for. The RULE is "ten percent below what this surface
+# actually ships", and the two surfaces ship differently.
+#
+# The cure is NOT deleting commas and leaving a run-on. Split at the comma and let it be two
+# sentences, or cut the clause that was only there to be qualified.
+COMMA_PER_100W = 6.2
+
 BANNED_PUNCT = {"—": "em dash", "–": "en dash", ";": "semicolon",
                 "“": "curly quote", "”": "curly quote",
                 "‘": "curly apostrophe", "’": "curly apostrophe"}
@@ -66,6 +98,64 @@ URLISH = re.compile(r"https?://|www\.|\S+\.(com|org|net|io|gov|edu)/\S*", re.I)
 # is supposed to sound like an analyst talking to a busy Alaskan. Mechanically
 # checkable, so it is a gate rather than a note in a doc nobody reads.
 CONTRACTIONS = {"cannot": "can't"}
+
+# THE COMMA BUDGET (maintainer rule, 2026-08-05). "Reduce comma usage by 10
+# percent on the captions moving forward." Turned into a number rather than a
+# vibe by measuring every shipped caption in runs/*/caption.txt, hashtag line
+# excluded: 26 captions, mean 1.17 commas per 100 characters, median 1.12.
+# Ten percent below the mean is 1.05, and that is the budget.
+#
+# It is a GATE and not a warning, because the deck-summary rule sat in
+# brand.yaml as a true statement nobody enforced and lapsed for three runs
+# running. A caption over budget is not wrong, it is over budget, and the fix
+# is to cut a comma or split a sentence.
+# NO FIRST PERSON IN THE CAPTION (maintainer rule, 2026-08-05). The page is an
+# analyst describing the world, never a narrator describing their own work.
+#
+# THIS NEEDS TWO CHECKS AND NOT ONE, which is the whole lesson. A pronoun grep
+# over all 26 shipped captions returns ZERO bare hits, so by that measure there
+# was never a problem. The drift was real anyway, and it wore no pronoun:
+# No.26 shipped "No page anyone could reach shows what SEDS-AK was worth" and
+# opened a paragraph with "Enclosed,". Both are the studio narrating its own
+# search and its own envelope; the first one is literally the de-pronouned
+# rewrite of a slide that says "any page we could reach". Ban the pronouns AND
+# ban the posture, or the posture just drops the pronoun and carries on.
+# Case-insensitive, because "We stood up" is the same defect as "we stood up".
+# Two deliberate omissions. "mine" is left OUT of the list: this page covers
+# Graphite Creek, Red Dog and Ambler, so "the mine" is a noun here far more
+# often than it is a possessive, and a gate that cries wolf on the mining beat
+# would get worked around. And an ALL-CAPS match longer than one character is
+# skipped, so "the US Air Force" is not read as "us" while a bare "I" still is.
+FIRST_PERSON = re.compile(
+    r"(?<![A-Za-z'])(I|I'm|I've|I'd|I'll|we|we're|we've|we'd|we'll|us|our|ours|"
+    r"ourselves|my|me|let's)(?![A-Za-z'])", re.I)
+# NO SENTENCE OPENS WITH "AND" OR "BUT" (maintainer rule, 2026-08-05). Those
+# are conjunctions joining clauses, and a sentence starting on one is a fragment
+# wearing a full stop. Currently clean across all 26 shipped captions, so this
+# gate is preventive rather than remedial: it exists to stop a habit that shows
+# up in the run records and the retros from leaking into the copy.
+SENTENCE_START_CONJ = re.compile(
+    r"(?:^|(?<=[.!?])\s+|(?<=\n))\s*(And|But)\b")
+
+# The studio-as-narrator postures, first person with the pronoun filed off.
+SELF_NARRATION = re.compile(
+    r"\b(enclosed|(?:anyone|nobody|no one|we) could (?:not )?"
+    r"(?:reach|find|obtain|locate|verify|confirm|turn up))\b", re.I)
+
+COMMA_PER_100 = 1.05
+
+# DATE FORM (maintainer rule, 2026-08-05). "rn ur saying dates like '10 August'
+# the normal way to say it is August 10th." Month before day, always. The
+# ordinal form is the bare one; with a year the house writes "August 27, 2026",
+# which is the standard American form and is what the record's own documents
+# print. Day-then-month ("27 August") is the form being banned.
+MONTHS = ("January February March April May June July August September "
+          "October November December").split()
+DAY_FIRST = re.compile(
+    r"\b([0-9]{1,2})(?:st|nd|rd|th)?\s+(" + "|".join(MONTHS) + r")\b", re.I)
+BARE_CARDINAL = re.compile(
+    r"\b(" + "|".join(MONTHS) + r")\s+([0-9]{1,2})\b(?!\s*(?:st|nd|rd|th|,\s*[0-9]{4}|\s+[0-9]{4}))",
+    re.I)
 
 REPO = Path(__file__).resolve().parent.parent
 BRAND_DEFAULT = REPO / "config" / "brand.yaml"
@@ -101,6 +191,15 @@ def load_banned_phrases(path=None):
     if not out:
         return [], "%s: banned_phrases is empty" % p
     return out, None
+
+
+def _ordinal(d):
+    n = int(d)
+    if 10 <= n % 100 <= 20:
+        suf = "th"
+    else:
+        suf = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suf}"
 
 
 def quoted_spans(t):
@@ -216,6 +315,31 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
     if content_lines and not content_lines[-1].strip().endswith("?"):
         fails.append("CLOSE: final content line must be an engagement question ending with ?")
 
+    # DATE FORM. Hard fail, same reasoning as the house-wide banned-word table: a style rule
+    # nobody checks drifts back within a few runs.
+    for rx, what, fix in DATE_FORMS:
+        mm = rx.search(text)
+        if mm:
+            fails.append(f"DATE: '{mm.group(0)}' is the {what} form - {fix} "
+                         f"(owner rule 2026-08-05). ISO is still right for a citation stamp, "
+                         f"but this is a sentence.")
+            break
+
+    # COMMA DISCIPLINE, measured on the body with the hashtag tail excluded, which is how
+    # the 6.88 baseline was measured so the ceiling and the measurement agree.
+    body_only = re.sub(r"(?m)^\s*#\S+.*$", "", text)
+    body_words = len(body_only.split())
+    if body_words >= 80:
+        n_commas = body_only.count(",")
+        per100 = 100.0 * n_commas / body_words
+        if per100 > COMMA_PER_100W:
+            allowed = int(COMMA_PER_100W * body_words / 100)
+            fails.append(f"COMMAS: {n_commas} commas in {body_words} words is {per100:.2f} per 100, "
+                         f"over the {COMMA_PER_100W} ceiling (owner rule 2026-08-05, ten percent "
+                         f"below this deck's shipped mean of 6.88). Cut at least "
+                         f"{max(1, n_commas - allowed)}. Split the sentence at the comma rather "
+                         f"than deleting the comma.")
+
     # variety engine: banned furniture, the connective tissue that made every
     # caption read like a mail merge (9 of the first 14 runs used it). The
     # old SUMMARY warn that ENCOURAGED a deck-pointer line is retired.
@@ -271,7 +395,63 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
             fails.append("DECK SUMMARY: the declared line IS the hook; "
                          "it has to be its own line doing its own work")
 
+    # The hashtag line is not prose, so it is excluded from both checks below.
+    # This is the same slice the 2026-08-05 baseline was measured on.
+    body = "\n".join(l for l in lines if not l.strip().startswith("#"))
+
+    # --- FIRST PERSON ------------------------------------------------------
+    # A source quoting itself is quotable, same carve-out the banned-phrase
+    # check already uses. The studio speaking as itself is not.
+    spans = quoted_spans(body)
+    for m in FIRST_PERSON.finditer(body):
+        if any(a <= m.start() < b for a, b in spans):
+            continue
+        w = m.group(1)
+        if len(w) > 1 and w.isupper():      # "the US Air Force", not "us"
+            continue
+        fails.append("FIRST PERSON: '%s' in the caption. The page describes the "
+                     "world, it does not narrate itself. Rewrite the sentence "
+                     "about its subject." % m.group(1))
+    for m in SELF_NARRATION.finditer(body):
+        if any(a <= m.start() < b for a, b in spans):
+            continue
+        fails.append("FIRST PERSON: '%s' is the studio narrating its own work "
+                     "with the pronoun removed. Say what is true of the record, "
+                     "not what the search turned up." % m.group(1))
+
+    # --- SENTENCE-OPENING CONJUNCTIONS -------------------------------------
+    for m in SENTENCE_START_CONJ.finditer(body):
+        if any(a <= m.start() < b for a, b in spans):
+            continue
+        fails.append("CONJUNCTION: a sentence opens with '%s'. Join it to the "
+                     "sentence before with a comma, or drop the word."
+                     % m.group(1))
+
+    # --- DATE FORM ---------------------------------------------------------
+    for m in DAY_FIRST.finditer(body):
+        day, month = m.group(1), m.group(2)
+        fails.append("DATE FORM: '%s' is day before month; the house writes "
+                     "'%s %s' (month first, ordinal when the year is absent)"
+                     % (m.group(0), month.capitalize(), _ordinal(day)))
+    for m in BARE_CARDINAL.finditer(body):
+        fails.append("DATE FORM: '%s' needs the ordinal when no year follows; "
+                     "write '%s %s'"
+                     % (m.group(0), m.group(1).capitalize(), _ordinal(m.group(2))))
+
+    # --- COMMA BUDGET ------------------------------------------------------
+    commas = body.count(",")
+    body_chars = len(body)
+    density = (commas / body_chars * 100) if body_chars else 0.0
+    allowed = int(COMMA_PER_100 * body_chars / 100)
+    if commas > allowed:
+        fails.append("COMMAS: %d in %d chars is %.2f per 100, over the %.2f "
+                     "budget. Cut %d, or split a sentence."
+                     % (commas, body_chars, density, COMMA_PER_100,
+                        commas - allowed))
+
     return {"chars": n, "hook": hook, "hook_len": len(hook),
+            "commas": commas, "comma_per_100": round(density, 2),
+            "comma_budget": COMMA_PER_100,
             "hashtags": tags, "deck_summary": deck_summary,
             "brand_phrases_loaded": len(brand_phrases or []),
             "fails": fails, "warns": warns,

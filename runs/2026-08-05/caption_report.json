@@ -1,0 +1,23 @@
+{
+  "chars": 879,
+  "hook": "To the Administration for Native Americans. You stood up three notices for FY 2026. SEDS-AK is not one of them.",
+  "hook_len": 111,
+  "commas": 12,
+  "comma_per_100": 1.43,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaNative",
+    "#ANCSA",
+    "#AIinIndianCountry"
+  ],
+  "deck_summary": "Enclosed, the objection and the reply as printed, EAGLE at $24,000,000, the AI3 Action Institute at $3,500,000, and the blank where SEDS-AK's number would go.",
+  "brand_phrases_loaded": 27,
+  "fails": [
+    "FIRST PERSON: 'anyone could reach' is the studio narrating its own work with the pronoun removed. Say what is true of the record, not what the search turned up.",
+    "FIRST PERSON: 'Enclosed' is the studio narrating its own work with the pronoun removed. Say what is true of the record, not what the search turned up.",
+    "DATE FORM: '27 August' is day before month; the house writes 'August 27th' (month first, ordinal when the year is absent)",
+    "COMMAS: 12 in 839 chars is 1.43 per 100, over the 1.05 budget. Cut 4, or split a sentence."
+  ],
+  "warns": [],
+  "verdict": "FAIL"
+}

@@ -470,6 +470,55 @@ IN_PAGE_QA_JS = """
     out.encodings.push({ error: String(e).slice(0, 140) });
   }
 
+  /* DECLARED CONTACT SHADOWS (2026-08-05). A shadow is a SUBTRACTION and it
+     needs something to subtract FROM. Run No.26 declared the contact corollary
+     as its attack, built the two-part shadow exactly as specified in #1A0F08
+     at alpha 0.55, and laid it on a table already rendering near #0B0906. The
+     composite is a 1.2 L* change. FOUR pixel critics independently returned
+     contact_edge_reads: no, the scorer called three of nine slides
+     "floating-adjacent", and qa.py passed the deck with zero fails, because
+     every gate in it judges legibility, collision or balance and none of them
+     asks whether a declared depth cue survived compositing.
+
+     A slide states, in machine-readable form, where its contact shadow is and
+     what ground it is supposed to darken:
+
+       <body data-contacts='[{"what":"the shut block on the table",
+                              "shadow":[[236,1178,608,26]],
+                              "ground":[[236,1246,608,26]]}]'>
+
+     Rects are [x,y,w,h] in design px, a list of rects or a single rect, or a
+     CSS selector resolved by getBoundingClientRect (same grammar as
+     data-encodes). qa.py measures median L* of each region at feed scale and
+     FAILs when the shadow is not meaningfully darker than its own ground.
+
+     Unlike the encoding probe there is no elementsFromPoint pass here: a
+     contact shadow is CANVAS PAINT, so occlusion by type is a legitimate
+     composition and the only question is what the pixels do. */
+  out.contacts = [];
+  try {
+    const cdecl = (document.body && document.body.dataset.contacts) || "";
+    const cspecs = cdecl ? JSON.parse(cdecl) : [];
+    const rectsOf2 = (v) => {
+      if (typeof v === "string") {
+        return Array.from(document.querySelectorAll(v)).map(e => {
+          const r = e.getBoundingClientRect();
+          return [r.x, r.y, r.width, r.height];
+        });
+      }
+      return (Array.isArray(v) && Array.isArray(v[0])) ? v : [v];
+    };
+    for (const sp of cspecs) {
+      out.contacts.push({
+        what: String(sp.what || "").slice(0, 90),
+        shadow: rectsOf2(sp.shadow).map(r => r.map(Math.round)),
+        ground: rectsOf2(sp.ground).map(r => r.map(Math.round))
+      });
+    }
+  } catch (e) {
+    out.contacts.push({ error: String(e).slice(0, 140) });
+  }
+
   /* CANVAS TELEMETRY (2026-07-11, the rendered-3D gates): per visible canvas,
      backing resolution vs CSS size (silent-1x detector) and a downsampled
      pixel sample (dead/black-frame detector: a GL context that failed or
@@ -645,7 +694,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
-           "encodings": [], "nondeterminism": [], "render_ms": 0, "ok": False}
+           "encodings": [], "contacts": [], "nondeterminism": [],
+           "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
                             device_scale_factor=scale)
@@ -666,7 +716,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
-                                       "encodings")})
+                                       "encodings", "contacts")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:
