@@ -215,7 +215,7 @@ def figures(series, model):
     # Comparisons are computed for the same reason numerals are. A page that
     # says "a minority" in prose is asserting a fact about two figures, and it
     # would keep saying it after those figures crossed over.
-    for key in ("cingsa_share_word", "record_average_direction"):
+    for key in ("record_average_direction",):
         try:
             f[key] = _comparison(key, f)
         except KeyError:
@@ -701,9 +701,6 @@ def self_test():
     print("state-dependent wording follows the data")
     base = gc.load_model(MODEL_CONFIG)
     flips = [
-        ("cingsa_share_word",
-         {"design_bcf": 60.0, "eia_ak_capacity_bcf": 69.9}, "majority",
-         {"design_bcf": 13.0, "eia_ak_capacity_bcf": 69.9}, "minority"),
         ("record_average_direction",
          {"record_average_day_mmcfd": 220.0, "anchor_published_average_day_mmcfd": 190},
          "heavy",
@@ -811,6 +808,40 @@ def gauge(f):
 <div class="gw-gauge-foot"><span>empty</span>
 <span>full, {f["design_bcf"]} Bcf</span></div>
 </div>"""
+
+
+def home_strip(series, model, prefix=""):
+    """The storage meter for the homepage, under the docket.
+
+    Same figures dict as the page, so the two can never disagree. It renders
+    nothing at all when there is no verified reading, because a homepage is the
+    last place to explain an absence.
+    """
+    f = figures(series, model)
+    if "as_of" not in f:
+        return ""
+    pct = f["inventory_pct_of_design"]
+    return f"""<h2 data-reveal><a href="{prefix}gas-watch/">Cook Inlet Gas Watch</a></h2>
+<p class="sub" data-reveal>How much gas Southcentral has in the ground, read every
+day and kept. CINGSA publishes today's number and no history, so this record
+exists only because it is collected daily.</p>
+<div class="gw-gauge" data-reveal>
+<div class="gw-gauge-top">
+  <div>
+    <div class="gw-hero">{pct}<span>%</span></div>
+    <div class="gw-hero-lab">of design capacity, measured</div>
+  </div>
+  <div class="gw-gauge-side">
+    <div class="gw-side-num">{f["inventory_bcf"]} <span>of {f["design_bcf"]} Bcf</span></div>
+    <div class="gw-side-lab">read {long_date(f["as_of"])}</div>
+  </div>
+</div>
+<div class="gw-gauge-track"><div class="gw-gauge-fill" style="width:{pct}%"></div>
+<div class="gw-gauge-mark" style="left:{pct}%"></div></div>
+<div class="gw-gauge-foot"><span>empty</span>
+<span>full, {f["design_bcf"]} Bcf</span></div>
+</div>
+<div class="ctarow" data-reveal><a class="cta ghost" href="{prefix}gas-watch/">OPEN THE GAS WATCH</a></div>"""
 
 
 def page_body(today, site_url, series, model, meta, prefix="../"):
@@ -931,9 +962,9 @@ two months, so it corrects the model rather than replacing anything here.</p>
 <p class="prose" data-reveal>It also widens the picture. Through
 {long_month(f["eia_latest_month"])} Alaska held {f["eia_ak_working_gas_bcf"]} Bcf
 of working gas across {count(f["eia_storage_fields"], "storage field")}, against
-{f["eia_ak_capacity_bcf"]} Bcf of capacity. CINGSA's design volume is
-{f["design_bcf"]} Bcf, so the field read here daily holds a
-{f["cingsa_share_word"]} of the state's stored gas.</p>"""
+{f["eia_ak_capacity_bcf"]} Bcf of capacity. CINGSA is the only one that reports
+daily, and its {f["design_bcf"]} Bcf field is the one read here every morning.
+The rest surfaces monthly at best, which is why the daily record starts here.</p>"""
     else:
         not_public_note = ""
         crosscheck = ""
