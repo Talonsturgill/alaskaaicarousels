@@ -2881,6 +2881,7 @@ them, and whether the public still has a way in.</p>
 <div class="decks">{beats}</div>"""
 
     n_src = source_doc_count(items)
+
     what_html = f"""<h2 data-reveal>What this is</h2>
 <p class="prose" data-reveal>Alaska AI is a daily publication on Alaska and artificial
 intelligence, and an AI studio. The reporting side writes one verified
@@ -3622,7 +3623,7 @@ carries the same sources the decisions do.</p>
                 crumbs=[("Alaska AI", ""), ("Questions", "questions/")])
 
 
-def data_page(today, site_url, docket, runs):
+def data_page(today, site_url, docket, runs, gas_series=(), gas_model=None):
     """The open-data page. Documents the contract, states the license, and shows
     a consumer how to read the docket in one fetch.
 
@@ -3631,6 +3632,24 @@ def data_page(today, site_url, docket, runs):
     live in prose, next to the same facts the JSON carries, so a person and a
     crawler read the same contract."""
     items = docket[0]
+    gas_days = len(gas_series)
+    gas_para = (
+        "Cook Inlet Gas Watch is a separate dataset on the same terms, a daily "
+        "numeric record of Southcentral Alaska's natural gas position at "
+        f'<a class="proselink" href="../gas-watch/">/gas-watch/</a>, one JSON '
+        f'document at <a class="proselink" href="../gas-watch.json">'
+        f"/gas-watch.json</a>. Measured Cook Inlet storage and deliverability, "
+        "modeled regional demand from Anchorage degree days, and a derived non "
+        "CINGSA supply figure that falls out of the mass balance and is "
+        "published nowhere else. One object per day, oldest first, every record "
+        "carrying the model that produced it and the provenance of every fetch "
+        "behind it. It is kept separate from the docket deliberately, because "
+        "the docket schema is built around who decides and when, and a time "
+        "series does not fit those fields. It publishes no verdict on whether "
+        "supply is adequate, and it never will, because the deliverability data "
+        "that would justify one is not public."
+        + (f" {gas_days} day of readings so far." if gas_days == 1
+           else f" {gas_days} days of readings so far." if gas_days else ""))
     fields = "".join(
         f'<li><p><strong>{esc(k)}</strong> {esc(v)}</p></li>'
         for k, v in DOCKET_FIELD_DOCS.items())
@@ -3668,6 +3687,8 @@ decision with the URL of its own page. Docket changes are also an RSS feed at
 <a class="proselink" href="../docket/feed.xml">/docket/feed.xml</a>, and the
 whole article corpus is one plain-text fetch at
 <a class="proselink" href="../llms-full.txt">/llms-full.txt</a>.</p>
+<h2 data-reveal>The second dataset</h2>
+<p class="prose" data-reveal>{gas_para}</p>
 <h2 data-reveal>What every field means</h2>
 <ol class="claims" data-reveal>{fields}</ol>
 <h2 data-reveal>The closed sets</h2>
@@ -5144,7 +5165,7 @@ def sitemap(site_url, runs, today, decisions=None):
     entries = []
     # Beats and the source archive change whenever a deck lands on them, which
     # is every build that ships an article, so they carry a real lastmod too.
-    fresh = ("", "videos/", "docket/", "archive/", "topics/", "sources/")
+    fresh = ("", "videos/", "docket/", "gas-watch/", "archive/", "topics/", "sources/")
     for u in fresh + ("services/", "scan/", "about/"):
         lm = f"<lastmod>{iso}</lastmod>" if u in fresh else ""
         entries.append(f"<url><loc>{site_url}/{u}</loc>{lm}</url>")
@@ -5178,6 +5199,99 @@ GAS_WATCH_META = {
 }
 
 
+GAS_WATCH_FIELD_DOCS = {
+    "date": "The CINGSA nomination day the record describes, ISO 8601.",
+    "cingsa.inventory_mcf": "Measured working gas in Cook Inlet storage at end of day, thousand cubic feet.",
+    "cingsa.inventory_pct_of_design": "Measured inventory as a percent of the field's design volume.",
+    "cingsa.withdrawal_operating_mcfd": "Measured maximum daily withdrawal the field can deliver, thousand cubic feet per day.",
+    "cingsa.inventory_delta_mcf": "Measured change in inventory across the day. Negative is a withdrawal.",
+    "forecast": "Per day Anchorage forecast, mean temperature, heating degree days and modeled demand.",
+    "derived.peak_modeled_demand_mmcfd": "Highest modeled regional demand in the forecast window, million cubic feet per day. Model output, not a measurement.",
+    "reconciliation.non_cingsa_supply_mmcfd": "Derived daily gas supply from everything that is not CINGSA storage, obtained from the mass balance. Field production plus any Hilcorp storage movement combined. Published nowhere else.",
+    "reconciliation.error": "Forecast heating degree days minus observed, the model's own daily accuracy check.",
+    "model": "The demand coefficients that produced this record, carried per record so an old number stays reproducible.",
+    "sources": "Provenance for every external fetch, with url, timestamp, http status and attempt count.",
+    "verified": "False when a fetch failed or the source was stale. An unverified record carries no number forward from the day before.",
+}
+
+
+def gas_watch_ld(today, site_url, series, model, figs):
+    """Dataset structured data for the gas watch.
+
+    Without this the page is HTML that happens to link a JSON file. With it,
+    Google Dataset Search, A11y and citation tools, and any model reading the
+    page can tell what a row holds, how often it updates, what it may be reused
+    for, and which fields are measured against which are modeled. That last
+    distinction is the whole point of the dataset, so it belongs in the machine
+    readable layer and not only in the prose.
+
+    variableMeasured is where a scraper learns that non_cingsa_supply is
+    derived and published nowhere else, which is the reason to cite us."""
+    latest = gw.latest_verified(series)
+    return {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "@id": f"{site_url}/gas-watch/#dataset",
+        "name": "Cook Inlet Gas Watch",
+        "alternateName": ["Southcentral Alaska natural gas storage tracker",
+                          "Cook Inlet gas storage daily record"],
+        "description": (
+            "A daily numeric record of Southcentral Alaska's natural gas position. "
+            "Measured Cook Inlet storage inventory and deliverability from the CINGSA "
+            "public dashboard, modeled regional demand from Anchorage heating degree "
+            "days, and the derived non CINGSA supply that falls out of the mass "
+            "balance and is published nowhere else. CINGSA keeps no archive, so this "
+            "series exists only because it is collected daily. It publishes no safety "
+            "verdict, no shortfall prediction and no all clear."),
+        "url": f"{site_url}/gas-watch/",
+        "dateModified": figs.get("as_of", today.isoformat()),
+        "datePublished": figs.get("first_date", today.isoformat()),
+        "creator": {"@id": org_id(site_url)},
+        "publisher": {"@id": org_id(site_url)},
+        "maintainer": {"@id": org_id(site_url)},
+        "license": DATA_LICENSE,
+        "isAccessibleForFree": True,
+        "version": gw.SCHEMA_VERSION,
+        "inLanguage": "en-US",
+        "creativeWorkStatus": "Published",
+        "accrualPeriodicity": "P1D",
+        "keywords": [
+            "Cook Inlet", "Southcentral Alaska", "natural gas storage", "CINGSA",
+            "Alaska energy", "gas supply", "Enstar", "Anchorage", "heating degree days",
+            "gas deliverability", "energy data", "open data", "Railbelt",
+            "Alaska natural gas", "storage inventory", "gas shortfall", "Kenai"],
+        "spatialCoverage": {
+            "@type": "Place", "name": "Southcentral Alaska, United States",
+            "geo": {"@type": "GeoShape", "box": "58.9 -154.0 62.5 -145.0"}},
+        "temporalCoverage": (f"{series[0]['date']}/{figs.get('as_of', today.isoformat())}"
+                             if series else today.isoformat()),
+        "measurementTechnique": (
+            "Storage inventory and deliverability are read daily from the CINGSA "
+            "public dashboard and stamped with the source timestamp. Regional demand "
+            "is modeled from the National Weather Service Anchorage forecast using a "
+            "published two point linear calibration, and is not fitted to observed "
+            "utility sendout, which is not public. Non CINGSA supply is derived from "
+            "the mass balance, demand less measured storage withdrawal, using "
+            "observed degree days one day in arrears. A failed fetch writes an "
+            "explicit unverified record and carries no number forward."),
+        "variableMeasured": [{"@type": "PropertyValue", "name": k, "description": v}
+                             for k, v in GAS_WATCH_FIELD_DOCS.items()],
+        "distribution": [
+            {"@type": "DataDownload", "name": "The full series as JSON",
+             "encodingFormat": "application/json",
+             "contentUrl": f"{site_url}/gas-watch.json"},
+        ],
+        "includedInDataCatalog": {"@type": "DataCatalog", "name": "Alaska AI open data",
+                                  "url": f"{site_url}/data/"},
+        "isRelatedTo": {"@type": "Dataset", "@id": f"{site_url}/docket/#dataset",
+                        "name": "The Alaska AI Docket",
+                        "url": f"{site_url}/docket/{GAS_WATCH_META['docket_item_id']}/"},
+        "citation": (f"Alaska AI, Cook Inlet Gas Watch, {site_url}/gas-watch/, "
+                     f"read {figs.get('as_of', today.isoformat())}."),
+        **({"distributionSize": len(series)} if series else {}),
+    }
+
+
 def gas_watch_page(today, site_url, series, model):
     """Cook Inlet Gas Watch, the live instrument beside the docket.
 
@@ -5202,6 +5316,7 @@ def gas_watch_page(today, site_url, series, model):
             "supply nobody else publishes. No safety verdict, ever.")
     return page("Cook Inlet Gas Watch", desc, body, "../", "gas", today, site_url,
                 "gas-watch/", extra_css=gw.GW_CSS,
+                ld=gas_watch_ld(today, site_url, series, model, figs),
                 crumbs=[("Home", ""), ("Gas Watch", "gas-watch/")])
 
 
@@ -5289,7 +5404,8 @@ def build(today, out_dir, site_url=None, domain=""):
     # One canonical page per tracked decision, so an answer engine citing a
     # specific decision has a URL, a title and a lastmod for THAT decision
     # rather than an anchor on a shared page.
-    pages["data/index.html"] = data_page(today, site_url, docket, runs)
+    pages["data/index.html"] = data_page(today, site_url, docket, runs,
+                                        gas_series, gas_model)
     pages["questions/index.html"] = questions_page(today, site_url, docket)
     pages["privacy/index.html"] = privacy_page(today, site_url)
     for _it in docket[0]:
@@ -5415,6 +5531,8 @@ def build(today, out_dir, site_url=None, domain=""):
         "# and the whole corpus is one fetch at /llms-full.txt.\n"
         "# Every tracked decision has its own page at /docket/<id>/ and the whole\n"
         "# docket is versioned open data at /docket.json, CC BY 4.0, documented\n"
+        "# at /data/. Cook Inlet Gas Watch is a second dataset, a daily record of\n"
+        "# Southcentral Alaska gas storage at /gas-watch/ and /gas-watch.json.\n"
         "# at /data/. Citing a specific decision page is the intended use.\n\n"
         f"Sitemap: {site_url}/sitemap.xml\n")
     # ---------- the machine-readable surface ----------
@@ -5446,7 +5564,10 @@ def build(today, out_dir, site_url=None, domain=""):
     (out / "llms.txt").write_text(fb.llms_txt(
         site_url, runs,
         topics=[{**t, "count": len(tindex.get(t["slug"]) or [])} for t in TOPICS],
-        decisions=docket[0]))
+        decisions=docket[0],
+        gas_watch=({"count": len(gas_series),
+                    "coverage": f"{gas_series[0]['date']} to {gas_series[-1]['date']}"}
+                   if gas_series else None)))
     # IndexNow ownership proof.
     #
     # Bing, Yandex, Seznam and Naver take a push instead of waiting for a crawl,

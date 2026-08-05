@@ -121,7 +121,8 @@ def deck_markdown(r, site_url: str) -> str:
 
 
 def llms_txt(site_url: str, runs: list, docket: dict | None = None,
-             topics: list | None = None, decisions: list | None = None) -> str:
+             topics: list | None = None, decisions: list | None = None,
+             gas_watch: dict | None = None) -> str:
     """The curated map at /llms.txt (llmstxt.org).
 
     Expanded from a five-link stub to something an agent can actually work
@@ -147,6 +148,10 @@ def llms_txt(site_url: str, runs: list, docket: dict | None = None,
         f"not help a business]({site_url}/scan/)",
         f"- [The Alaska AI Docket, every AI infrastructure decision in the state]"
         f"({site_url}/docket/)",
+        f"- [Cook Inlet Gas Watch, the daily numeric record of Southcentral "
+        f"Alaska's natural gas position]({site_url}/gas-watch/) measured storage, "
+        f"modeled demand, and a derived non CINGSA supply figure published "
+        f"nowhere else. It states no verdict on supply adequacy",
         f"- [Questions, answered from the tracked record]({site_url}/questions/) "
         f"which comment windows are open, who decides, where the projects are",
         f"- [Articles, one verified Alaska and AI story a day]({site_url}/archive/)",
@@ -166,6 +171,11 @@ def llms_txt(site_url: str, runs: list, docket: dict | None = None,
         f"start here if you want to build on or quote the docket",
         f"- [The docket as open JSON]({site_url}/docket.json) versioned, "
         f"CC BY 4.0, field documentation travels with the data",
+        f"- [Cook Inlet Gas Watch as open JSON]({site_url}/gas-watch.json) "
+        f"one object per day, CC BY 4.0, every record carries the model that "
+        f"produced it and the provenance of every fetch behind it"
+        + (f". {gas_watch['count']} days on record, {gas_watch['coverage']}"
+           if gas_watch else ""),
         f"- [Every article as plain Markdown, one fetch]({site_url}/llms-full.txt)",
         f"- [The source archive, every document a claim was verified against]"
         f"({site_url}/sources/)",
