@@ -2534,3 +2534,52 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   the 7.00 percent Socialinsider figure CAROUSEL_CRAFT already carries and
   measured on a different corpus, so nothing moves. Our 8 to 10 band with a 6
   floor stands. NOT APPLIED.
+
+## 2026-08-05 - No.26, "Both sides are printed on page 47241" (7.27, below threshold, shipped disclosed)
+
+- THREE SCOUTS FOUND THE SAME STORY THROUGH THREE DIFFERENT DOORS. Beat D found
+  the ANA issuance in the grants portal, Beat E in GovInfo, and Beat C surfaced
+  it incidentally while reading all 49 Alaska documents published in the Federal
+  Register during the window, reporting it as the only Alaska AI item in the
+  register. Convergence from unrelated search paths is the strongest selection
+  signal the room gets and it has not happened this cleanly since No.21.
+- THE LOSING TREATMENTS SUPPLIED THE WINNER'S BEST ORGANS, and both losing
+  directors named their own fatal flaw unprompted. The systems illustrator wrote
+  "the machine shop is invented, there is no casting in this story"; the
+  historian's brass tags were equally invented. The essayist was drawing the
+  thing that actually exists. But the historian's MANUFACTURE GRAMMAR, four
+  provenance states carried by the physical state of the object rather than by a
+  line convention, translated straight onto paper as the INK STATE, and its
+  double-struck idea became the EVOLVED and REPLACED overprint. The systems
+  illustrator's bore() constraint, a function that throws without a claim id,
+  became liftLeaf() and combTooth(). Grafting works best when the graft is a
+  MECHANISM rather than an image.
+- A SUBAGENT CAUGHT THE SHOWRUNNER AGAIN, third run in three. A treatment
+  director audited claims.json against the story summary and found that nothing
+  in the file carried the AI3 close date, only EAGLE's, so the deck was one
+  slide from asserting a date its own verification record did not hold. Re-fetched
+  and added as C29. The caption critic then caught three standing ledger
+  instructions the showrunner's briefs had missed.
+- THE RUN'S DECLARED ATTACK HALF LANDED, AND THE HALF THAT FAILED IS THE
+  INSTRUCTIVE ONE. The contact corollary is right and the line ratios were built
+  as specified, and it made no difference on the first pass, because a two-part
+  shadow in #1A0F08 laid on a table already near #0B0906 is a 4 L-unit change
+  that no critic and no scale can see. A shadow is a SUBTRACTION and needs
+  something to subtract from. The fix is a warm pool of ground light composited
+  under the object first. Same class of error on the silhouette, where a light
+  stroke centred on a light object's boundary puts half its width on paper it
+  matches; it has to be outside-aligned onto the dark side.
+- THE GEOMETRY WAS CORRECT AND EDITORIALLY USELESS. A leaf hinged at the back of
+  a 4.30-unit block projects its face INTO the block's own footprint at every
+  angle the mapping allowed, so the first render put four display runs on the
+  dark table at about 1.2 to 1 while every constant in the dossier was honest.
+  A projection can be right and still refuse to hold the thing it exists to
+  hold, and the check for that is not arithmetic, it is placing one string.
+- DEGRADED, AND SAYING SO. No flow-critic was spawned, so the deck's sequence had
+  no independent reviewer other than the scorer, who duly reported that five of
+  nine frames read as the same picture. The build reconciliation was also written
+  AFTER the pixel critics rather than before, which is the 2026-07-25 defect
+  repeating; the exposure was bounded because the critic briefs described the
+  current build, but four of them still measured leaf angles that no longer
+  existed. And the deck reached NO rung on the rendered ladder, because the GPU
+  path was specified in the storyboard and never built.

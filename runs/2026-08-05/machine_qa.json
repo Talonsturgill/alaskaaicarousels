@@ -18,10 +18,7 @@
     {
       "file": "slide-04.html",
       "fails": [],
-      "warns": [
-        "worst-point contrast 3.6 on 'NCNTTA NOT A DATUM' (box mean 6.4) -- below the rubric's 4.5 line somewhere along the run of the text",
-        "outside safe zone: 'Bar height is dollars. The fourth notice' at 80,1188 820x112 (margin 80px)"
-      ]
+      "warns": []
     },
     {
       "file": "slide-05.html",
@@ -40,9 +37,7 @@
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "text collision (85% overprint): 'EVOLVED' x 'REPLACED' near 746,574 [marked data-overlap-ok]",
-        "outside safe zone: 'EVOLVED' at 738,566 300x58 (margin 80px)",
-        "outside safe zone: 'REPLACED' at 746,574 320x58 (margin 80px)"
+        "text collision (85% overprint): 'EVOLVED' x 'REPLACED' near 596,574 [marked data-overlap-ok]"
       ]
     },
     {
@@ -59,6 +54,6 @@
     }
   ],
   "fails": 0,
-  "warns": 6,
+  "warns": 2,
   "verdict": "WARN"
 }
