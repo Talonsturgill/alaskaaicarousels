@@ -145,7 +145,28 @@ def figures(series, model):
         "hdd_record_start": hist["start_date"],
         "hdd_record_end": hist["end_date"],
         "not_public_count": len(model.get("not_public", [])),
+        "model_revisions": len(model.get("model_history", [])),
     }
+
+    # The scoreboard for the model itself. Every day the collector records what
+    # the forecast said against what the weather did, so the error is measured
+    # rather than asserted. These are the numbers that justify a refit, or
+    # refuse to. At zero checks they are absent, and the page says so instead
+    # of implying an accuracy nobody has earned yet.
+    checks = [r.get("reconciliation") or {} for r in series]
+    scored = [c for c in checks
+              if c.get("forecast_hdd65") is not None and c.get("actual_hdd65") is not None]
+    f["accuracy_checks"] = len(scored)
+    if scored:
+        errs = [abs(c["forecast_hdd65"] - c["actual_hdd65"]) for c in scored]
+        f["mean_abs_hdd_error"] = round(sum(errs) / len(errs), 1)
+        f["worst_hdd_error"] = round(max(errs), 1)
+        # What that error is worth in gas, which is the units a reader cares
+        # about. Degree days are the input; MMcf per day is the output.
+        f["mean_abs_demand_error_mmcfd"] = round(
+            sum(errs) / len(errs) * model["slope_mmcfd_per_hdd"], 1)
+    balanced = [c for c in checks if c.get("non_cingsa_supply_mmcfd") is not None]
+    f["balance_days"] = len(balanced)
     f.update({f"anchor_{k}": v for k, v in anchors.items()
               if isinstance(v, (int, float))})
     for bid, vals in facts.items():
@@ -519,6 +540,22 @@ def self_test():
     check("the page states no adequacy verdict", not banned, str(banned))
     check("the page carries the limits of the data",
           "not public" in body.lower() and "verdict" in body.lower())
+
+    # The overclaim guard. The model is two hand set coefficients fitted to two
+    # published figures; nothing trains, learns, or updates itself. On a site
+    # whose subject is AI, describing arithmetic as AI would be the exact
+    # overclaim this publication exists to check, and it would put the one page
+    # built on being checkable behind a claim that cannot be.
+    overclaims = [w for w in ("our ai", "our model learns", "self-improving",
+                              "machine learning", "neural", "trains itself",
+                              "gets smarter", "automatically refit",
+                              "continuously trained", "the ai predicts")
+                  if w in body.lower()]
+    check("the page claims no training it does not do", not overclaims, str(overclaims))
+    check("the page says plainly that nothing learns on its own",
+          "nothing here learns on its own" in body.lower())
+    check("the page states the limit more data cannot fix",
+          "sendout is not published" in body.lower())
     check("no em dash, en dash, curly quote or emoji",
           not re.search("[–—‘’“”]"
                         "|[\U0001F000-\U0001FAFF]", body))
@@ -597,6 +634,23 @@ def page_body(today, site_url, series, model, meta, prefix="../"):
             f'chart here. The table below is the whole series. A daily plot '
             f'appears here once there is more than one verified day to draw.</p>')
 
+    # The model's live scoreboard. At zero checks it says zero, because an
+    # accuracy figure nobody has earned yet is exactly the kind of claim this
+    # page refuses to make.
+    if f.get("accuracy_checks"):
+        scoreboard = (
+            f'So far the forecast has been checked against the observed weather on '
+            f'{count(f["accuracy_checks"], "day")}, missing by '
+            f'{f["mean_abs_hdd_error"]} degree days on average and by '
+            f'{f["worst_hdd_error"]} at worst, which is about '
+            f'{f["mean_abs_demand_error_mmcfd"]} MMcf per day of modeled demand. '
+            f'The mass balance has resolved on {count(f["balance_days"], "day")}.')
+    else:
+        scoreboard = (
+            'No check has resolved yet, because the first one needs a forecast '
+            'made yesterday and a temperature observed today, so this scoreboard '
+            'stays empty until the record is old enough to fill it.')
+
     stale_note = ""
     if f.get("unverified_days"):
         stale_note = (
@@ -654,6 +708,8 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
       "model output", "blue")}
 </div>
 
+{gauge(f)}
+
 <h2 data-reveal>What you are looking at</h2>
 <div class="gw-lede" data-reveal>
 <div><h3>The reserve</h3><p>Southcentral Alaska keeps gas in an underground field
@@ -668,7 +724,6 @@ likely burned, and what is left came from somewhere nobody reports daily. That
 residual is the number no other source publishes.</p></div>
 </div>
 
-{gauge(f)}
 
 <h2 data-reveal>This page will never tell you whether the lights stay on</h2>
 <p class="prose" data-reveal>It publishes what is measured, what is modeled, and
@@ -709,6 +764,29 @@ day in the record is {long_date(f["record_maximum_day_date"])} at
 {count(f["record_maximum_day_days_at_or_above_design_day"], "day")} model at or
 above the published design day. That is a fact about the weather, not a
 statement about whether the system coped.</p>
+
+<h2 data-reveal>This model is a hypothesis, and the record is how it gets tested</h2>
+<p class="prose" data-reveal>Nothing here learns on its own. The formula above is
+two numbers fitted to two published figures, and it will sit exactly as it is
+until a person changes it. Saying otherwise would be the kind of claim this
+publication exists to check.</p>
+<p class="prose" data-reveal>What does accumulate is evidence. Every collection
+records what the forecast said against what the weather actually did, so the
+error is measured rather than asserted, and the residual series builds a picture
+of a supply nobody reports. {scoreboard} When that evidence justifies moving a
+coefficient, the coefficient moves, and because the model lives in a data file
+rather than in code, the change is one commit with a reason attached. Version
+{f["model_version"]}, {count(f["model_revisions"], "revision")} on record, and
+every past version stays readable in the feed so an old number can always be
+reproduced with the model that produced it.</p>
+<p class="prose" data-reveal>This takes seasons, not days. A model of heating
+demand cannot be judged in August. The honest position is that today's figures
+are a starting hypothesis published with its own error bars showing, and that
+the page will say so until the record is long enough to argue otherwise.</p>
+<p class="prose" data-reveal>One limit no amount of collecting will fix. Utility
+sendout is not published, so this model can never be fitted directly to what the
+region actually burned. More data sharpens the check, it does not close that
+gap, and any version of this page claiming otherwise would be wrong.</p>
 
 <h2 data-reveal>What is not public</h2>
 <p class="prose" data-reveal>These are the things no public feed reports daily,
@@ -755,8 +833,13 @@ margin-bottom:11px;flex-wrap:wrap;}
 .gw-gauge-head span:last-child{color:var(--snow);}
 .gw-gauge-track{position:relative;height:22px;border-radius:11px;
 background:var(--deep);border:1px solid var(--line);overflow:hidden;}
+/* Both stops are bright. The first version ramped from a dark gold on the
+   left, which dimmed the end of the bar the eye starts at and encoded nothing,
+   since the bar's LENGTH already carries the value. The sheen is decoration
+   that stays out of the way of the measurement. */
 .gw-gauge-fill{height:100%;border-radius:11px 0 0 11px;
-background:linear-gradient(90deg,#8a6a12,var(--gold));}
+background:linear-gradient(90deg,var(--gold),var(--halo));
+box-shadow:0 0 18px rgba(255,199,44,.25);}
 .gw-gauge-mark{position:absolute;top:-3px;bottom:-3px;width:2px;
 background:var(--snow);}
 .gw-gauge-foot{display:flex;justify-content:space-between;gap:10px;margin-top:9px;

@@ -14,6 +14,7 @@ Alaska AI with a link to the page is requested. No crawler is blocked.
 - [AI consulting for Alaska businesses](https://alaskaaihq.com/services/)
 - [The Bottleneck Scanner, an honest free read of where AI would and would not help a business](https://alaskaaihq.com/scan/)
 - [The Alaska AI Docket, every AI infrastructure decision in the state](https://alaskaaihq.com/docket/)
+- [Cook Inlet Gas Watch, the daily numeric record of Southcentral Alaska's natural gas position](https://alaskaaihq.com/gas-watch/) measured storage, modeled demand, and a derived non CINGSA supply figure published nowhere else. It states no verdict on supply adequacy
 - [Questions, answered from the tracked record](https://alaskaaihq.com/questions/) which comment windows are open, who decides, where the projects are
 - [Articles, one verified Alaska and AI story a day](https://alaskaaihq.com/archive/)
 - [About Alaska AI](https://alaskaaihq.com/about/)
@@ -29,6 +30,7 @@ Alaska AI with a link to the page is requested. No crawler is blocked.
 
 - [The data, schema, licence and how to use it](https://alaskaaihq.com/data/) start here if you want to build on or quote the docket
 - [The docket as open JSON](https://alaskaaihq.com/docket.json) versioned, CC BY 4.0, field documentation travels with the data
+- [Cook Inlet Gas Watch as open JSON](https://alaskaaihq.com/gas-watch.json) one object per day, CC BY 4.0, every record carries the model that produced it and the provenance of every fetch behind it. 1 days on record, 2026-08-05 to 2026-08-05
 - [Every article as plain Markdown, one fetch](https://alaskaaihq.com/llms-full.txt)
 - [The source archive, every document a claim was verified against](https://alaskaaihq.com/sources/)
 
