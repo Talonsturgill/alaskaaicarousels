@@ -24,6 +24,18 @@ python .claude/skills/carousel-engine/assemble.py \
     --out-dir out/<run>/final --title "<document title>"            # carousel.pdf (VECTOR text) + contact sheet + thumbs
 ```
 
+Prove the deck is bespoke before shipping it:
+
+```bash
+python scripts/bespoke_check.py --slides-dir out/<run>/slides
+```
+
+"The engine is a HARNESS, not a template" was true and unmeasured until
+2026-08-05, when a run shipped nine slides at 0.940 median pairwise art-code
+similarity (bespoke reference: 0.049) and justified it in its own storyboard.
+The gate measures the outcome, not the method, so generating the HTML is still
+fine and nine frames sharing one drawing function is not.
+
 Re-render only fixed slides with `--only 3,7`. Read every report; never ship a
 FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
 

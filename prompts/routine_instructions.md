@@ -464,6 +464,43 @@ type spec. Craft expectations:
   the silhouette: a light stroke centred on a light object's boundary puts
   half its width on paper it matches, so outside-align it onto the dark side.
 
+EVERY SLIDE IS WRITTEN FOR THAT SLIDE. This is the whole product and it is the
+one thing the machine can do that a person cannot do at this cadence, so it is
+now gated rather than asserted:
+
+```
+python scripts/bespoke_check.py --slides-dir out/<date>/slides
+```
+
+It measures pairwise similarity of each slide's own drawing code, with the house
+harness stripped out, and FAILS a deck whose median clears 0.60. The bespoke
+reference, examples/demo-deck, measures 0.049.
+
+A BUILD SCRIPT IS NOT THE PROBLEM AND IS NOT BANNED. Generating the HTML is
+fine. What is banned is the OUTCOME the gate measures, nine frames that are one
+drawing function called nine times with different arguments. Run 2026-08-05
+shipped exactly that at a median of 0.940 with one pair byte-identical, and,
+worse, wrote the excuse into its own storyboard, "this is not a template
+either, it is this deck's own build, written once because all nine slides are
+the SAME OBJECT under a FROZEN CAMERA". That sentence is what this regression
+sounds like when it is allowed to grade itself. The evidence was already in the
+run and got filed as a composition note: the scorer said five of nine frames
+read as the same picture, and a pixel critic called one slide a broken render.
+The maintainer then reported engagement falling on the back of it.
+
+The SAME gate measures a second failure the maintainer named in the same
+breath, "blocky, almost like a kid was drag and dropping shapes into the
+slides". Also literally true: No.26 made 126 axis-aligned rectangle calls
+against 73 drawn marks, a 37 percent drawn share against the reference deck's
+82, while the technique library's entire bench (flow fields, contours, stipple,
+hachure, relief, raymarch, PBR) sat unused. A gradient inside a fillRect is
+still a box. bespoke_check FAILS a drawn share under 45 percent.
+
+If the deck's concept is genuinely one object revisited, that raises the bar on
+the art rather than lowering it. Each frame still needs its own composition,
+its own elements and its own drawing code. A shared projection helper is house
+furniture; a shared `drawTheWholeSlide()` is a template.
+
 Then render + machine gate:
 ```
 python .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render

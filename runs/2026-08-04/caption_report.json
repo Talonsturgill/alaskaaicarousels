@@ -2,16 +2,20 @@
   "chars": 878,
   "hook": "One column tallies 119.7 megawatts becoming 120.0. The other tallies about 4,700 acres. No unit joins them.",
   "hook_len": 107,
+  "commas": 7,
+  "comma_per_100": 0.84,
+  "comma_budget": 1.05,
   "hashtags": [
     "#Railbelt",
     "#DixonDiversion",
     "#AlaskaEnergy"
   ],
-  "deck_summary": "A test summary line for the linter.",
+  "deck_summary": "Slides carry the fishwater valve in section, the capacity bar against the generation bar, and the twelve parcels.",
   "brand_phrases_loaded": 27,
   "fails": [
     "DATE: '28 August' is the day-first form - write the month first with an ordinal day, e.g. August 10th (owner rule 2026-08-05). ISO is still right for a citation stamp, but this is a sentence.",
-    "DECK SUMMARY: 35 chars is too short to describe a deck; write a real sentence"
+    "HOOK: 'One ... the other' with no antecedent. A stranger reading sentence one cold has nothing to attach it to. Name the two things.",
+    "DATE FORM: '28 August' is day before month; the house writes 'August 28th' (month first, ordinal when the year is absent)"
   ],
   "warns": [],
   "verdict": "FAIL"

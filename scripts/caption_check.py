@@ -129,6 +129,42 @@ CONTRACTIONS = {"cannot": "can't"}
 FIRST_PERSON = re.compile(
     r"(?<![A-Za-z'])(I|I'm|I've|I'd|I'll|we|we're|we've|we'd|we'll|us|our|ours|"
     r"ourselves|my|me|let's)(?![A-Za-z'])", re.I)
+# THE HOOK STANDS ALONE (maintainer rule, 2026-08-05, "ur last two captions
+# have been trash, possible drift"). Sentence one is read cold, by a stranger
+# scrolling, with no deck open and no context. It has to be a complete claim
+# about the world on its own terms.
+#
+# The drift was real and it was the VARIETY ENGINE eating the caption. The
+# engine exists to stop template repetition, and it started optimising for
+# novelty of SHAPE, which beat clarity two runs running:
+#
+#   2026-08-04  "One column tallies 119.7 megawatts becoming 120.0."
+#               One column of WHAT. The antecedent arrives three paragraphs
+#               later. The hook is a riddle, not a claim.
+#   2026-08-05  "To the Administration for Native Americans."
+#               Addressed to a federal agency that will never read it, in a
+#               feed of Alaskans who had 22 days to act. The reader is a
+#               bystander to someone else's letter.
+#
+# Compare the two that worked, both plain claims a stranger gets instantly:
+#   2026-08-02  "Leverage technology, such as artificial intelligence," says
+#               an order the governor signed last August.
+#   2026-08-03  AI supply chain here means one item on a five item list.
+#
+# CAPTION_CRAFT already said "form serves the story, never a gimmick for
+# variety's own sake". The rule existed; nothing enforced it, and the
+# showrunner's own briefs called the assigned move "binding", which is how a
+# guardrail became a mandate. These three checks are the enforcement.
+HOOK_ADDRESS = re.compile(r"^\s*(To the |To Mr|To Ms|To Dr|Dear )", re.I)
+# The paired-deictic riddle: "One X ... The other ...". Both halves needed, so
+# a plain "One in five Alaskans" opener never trips it.
+HOOK_PAIRED = re.compile(r"^\s*One\b", re.I)
+# A bare pronoun subject at position zero has nothing to refer back to. The
+# verb requirement keeps "This week Alaska filed" and "These five notices"
+# clean, since those carry their own noun.
+HOOK_BARE_PRONOUN = re.compile(
+    r"^\s*(It|They|This|That|These|Those)\s+(is|are|was|were|has|have|had|will|would|makes|made)\b")
+
 # NO SENTENCE OPENS WITH "AND" OR "BUT" (maintainer rule, 2026-08-05). Those
 # are conjunctions joining clauses, and a sentence starting on one is a fragment
 # wearing a full stop. Currently clean across all 26 shipped captions, so this
@@ -418,6 +454,20 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
         fails.append("FIRST PERSON: '%s' is the studio narrating its own work "
                      "with the pronoun removed. Say what is true of the record, "
                      "not what the search turned up." % m.group(1))
+
+    # --- THE HOOK STANDS ALONE ---------------------------------------------
+    first_sentence = re.split(r"(?<=[.?!])\s", hook)[0] if hook else ""
+    if HOOK_ADDRESS.match(first_sentence):
+        fails.append("HOOK: opens as a letter addressed to someone who is not "
+                     "the reader. The audience is Alaskans in a feed, not the "
+                     "body being written to. Open on the claim instead.")
+    if HOOK_PAIRED.match(first_sentence) and re.search(r"\bthe other\b", hook, re.I):
+        fails.append("HOOK: 'One ... the other' with no antecedent. A stranger "
+                     "reading sentence one cold has nothing to attach it to. "
+                     "Name the two things.")
+    if HOOK_BARE_PRONOUN.match(first_sentence):
+        fails.append("HOOK: opens on a bare pronoun with nothing before it to "
+                     "refer to. Say the noun.")
 
     # --- SENTENCE-OPENING CONJUNCTIONS -------------------------------------
     for m in SENTENCE_START_CONJ.finditer(body):
