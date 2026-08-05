@@ -37,6 +37,16 @@ Checks per slide (consuming render_report.json + the PNGs):
     rebuild slides -- which is why it became a note six times instead of a fix.
     data-breather on <body> demotes it to WARN (and the dossier gate checks the
     storyboard actually declared that slide a breather).
+  - DECLARED CONTACT SHADOW DOES NOT READ (FAIL): opt-in. A slide may name, on
+    <body data-contacts>, the region its contact shadow occupies and the ground
+    that shadow is supposed to darken; this measures both at feed scale in
+    CIELAB and FAILs below 4.0 L* of separation, WARNs below 8.0. Added
+    2026-08-05 after run No.26 made the contact corollary its declared attack,
+    built the shadow exactly as specified in #1A0F08 at alpha 0.55, laid it on
+    a table already near #0B0906 for a 1.2 L* composite, and shipped an object
+    four pixel critics said was floating while machine QA reported 0 fails. A
+    shadow is a subtraction and needs something to subtract from; nothing here
+    had ever asked whether a declared depth cue survived compositing.
   - UNSEEDED RANDOMNESS (FAIL): consumes render.py's determinism source scan
     and FAILS a slide whose inline script calls Math.random() or the crypto
     random APIs instead of the seeded AK.rng(seed) / AK.reseed(seed) the slide
@@ -439,6 +449,102 @@ def encoding_reads(img_arr, enc, design_w, design_h):
     return "info", detail
 
 
+# CONTACT SHADOW READ THRESHOLDS, in CIELAB L* at feed scale (432px wide).
+# FITTED, not guessed, from run No.26 (2026-08-05), the run that produced the
+# defect this gate exists to catch:
+#
+#   known-bad, the shipped defect    #1A0F08 @ a0.55 over #0B0906 -> dL 1.24
+#   known-bad, measured in the final renders of the three slides the scorer
+#     still called "floating-adjacent" (S01, S06, S09): the whole ground band
+#     below the object varies by 1.6 to 2.0 L* end to end, i.e. no dip at all
+#   known-half-good, the mid-run repair (a warm ground pool at #2A2118 under
+#     the object, then the same shadow) -> dL 4.3 measured in the reconstruction
+#     under out/upgrade-2026-08-05/, and the scorer's verdict on it was
+#     "half landed"
+#   known-GOOD, measured in the shipped render of slide 04, whose bar-base
+#     shadows the scorer and the pixel critics called convincing: dL 8.1 at
+#     both bars (shadow L* 81.7 / 82.7 against paper at L* 89.8 / 90.7)
+#
+# So FAIL below 4.0 sits under everything that has ever read at all and above
+# everything that measurably did not, and WARN below 8.0 lands one tenth of an
+# L* under the studio's own known-good, which is where a comfort band belongs:
+# the half-landed repair warns, the shadow that convinced does not. A JND for
+# two large flat patches side by side
+# is about 0.4 L*, so 4.0 is an order of magnitude over it: the margin pays
+# for the LANCZOS downscale to feed width, the paper tooth and film grain the
+# shadow is composited into, and the fact that a blurred shadow has no edge to
+# help the eye. Raising these is a tightening and is fine; lowering them is
+# the maintainer's call.
+CONTACT_FAIL_DL = 4.0
+CONTACT_WARN_DL = 8.0
+
+
+def contact_reads(img_arr, con, design_w, design_h):
+    """MEASURE a declared contact shadow against the ground it claims to darken.
+
+    Built 2026-08-05. Every other gate here judges legibility, collision or
+    composition. Nothing asked whether a declared DEPTH CUE survived
+    compositing, so the run that made the contact edge its whole declared
+    attack shipped a shadow worth 1.2 L* on top of a near-black table, four
+    pixel critics reported the object floating, and machine QA returned zero
+    fails. A shadow is a subtraction; it needs something to subtract from.
+
+    Unlike encoding_reads() this one DOES fail, and the reason it can is that
+    the question is one-dimensional and the slide asked it itself. "Is this
+    region darker than that region" needs no semantics, no shape reading and
+    no taste. A FAIL here is the slide contradicting its own declaration.
+
+    Returns (verdict, detail), verdict in "info" | "warn" | "fail".
+    """
+    if con.get("error"):
+        return "warn", "declaration did not parse (%s)" % con["error"]
+    rs, rg = con.get("shadow") or [], con.get("ground") or []
+    if not rs or not rg:
+        return "warn", "declaration names no shadow/ground region"
+
+    im = Image.fromarray(img_arr)
+    s = FEED_W / float(design_w)
+    feed = np.asarray(im.resize((FEED_W, max(1, int(round(design_h * s)))), Image.LANCZOS))
+
+    def take(rects):
+        out = []
+        for r in rects:
+            x, y, w, h = r
+            x0, y0 = max(0, int(x * s)), max(0, int(y * s))
+            x1 = min(feed.shape[1], int((x + w) * s))
+            y1 = min(feed.shape[0], int((y + h) * s))
+            if x1 > x0 and y1 > y0:
+                out.append(feed[y0:y1, x0:x1].reshape(-1, 3))
+        return np.concatenate(out) if out else np.zeros((0, 3))
+
+    S, G = take(rs), take(rg)
+    what = con.get("what", "") or "contact shadow"
+    if len(S) < 12 or len(G) < 12:
+        return "warn", ("'%s': region too small to measure at feed scale "
+                        "(%d/%d px at %dw)" % (what, len(S), len(G), FEED_W))
+
+    ls = float(np.median(_srgb_to_lab(S)[..., 0]))
+    lg = float(np.median(_srgb_to_lab(G)[..., 0]))
+    d = lg - ls
+    bits = "'%s': shadow L* %.1f vs ground L* %.1f, dL %.1f at %dw" % (
+        what, ls, lg, d, FEED_W)
+
+    if d < CONTACT_FAIL_DL:
+        extra = ""
+        if lg < 12.0:
+            # The exact shape of the No.26 defect, named so the fix is obvious.
+            extra = (" -- the ground is already near black (L* %.1f), so there "
+                     "is nothing left to subtract; light the ground first "
+                     "(a warm pool under the object), then cast the shadow"
+                     % lg)
+        return "fail", bits + (" -- below the %.1f L* floor, the object floats"
+                               % CONTACT_FAIL_DL) + extra
+    if d < CONTACT_WARN_DL:
+        return "warn", bits + (" -- under the %.1f L* comfort band; it reads, "
+                               "barely" % CONTACT_WARN_DL)
+    return "info", bits
+
+
 def _box_down(a, k):
     h, w = a.shape[:2]
     h -= h % k
@@ -727,6 +833,18 @@ def main():
                 res["warns"].append(f"encoding declaration unusable: {detail}")
             else:
                 res.setdefault("encodings", []).append(detail)
+
+        # DECLARED CONTACT SHADOW DOES NOT READ (2026-08-05). Opt-in like the
+        # encoding contract, so a deck that declares nothing is not judged
+        # here. When a slide DOES declare one, the measurement is a hard gate.
+        for con in rec.get("contacts", []):
+            verdict, detail = contact_reads(arr, con, design_w, design_h)
+            if verdict == "fail":
+                res["fails"].append("contact shadow does not read: " + detail)
+            elif verdict == "warn":
+                res["warns"].append("contact shadow: " + detail)
+            else:
+                res.setdefault("contacts", []).append(detail)
 
         # SVG LABEL OFF ITS OWN PLATE (2026-07-29). render.py measures every
         # SVG <text> against the <rect> painted under it. A label that spills

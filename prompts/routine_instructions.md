@@ -440,6 +440,17 @@ type spec. Craft expectations:
   — the numbers are already computed; implement them.
 - Panorama spine decks: build the shared field as a function of global
   x = (slideIndex * 1080) + localX so seams are exact.
+- EVERY OBJECT THAT SITS ON SOMETHING DECLARES ITS CONTACT SHADOW on
+  `<body data-contacts>` (see SKILL.md for the rect grammar). qa.py measures
+  the shadow against the ground it claims to darken and FAILS below 4.0 L* at
+  feed scale. A shadow is a SUBTRACTION and needs something to subtract from:
+  No.26 built its two-part contact shadow exactly as the dossier specified,
+  in #1A0F08 at alpha 0.55, on a table already near #0B0906, and the composite
+  was a 1.2 L* change that four pixel critics all read as "the object floats".
+  The fix is never a stronger shadow, it is a LIT GROUND, a warm pool of light
+  under where the object sits, cast into afterwards. Same class of error on
+  the silhouette: a light stroke centred on a light object's boundary puts
+  half its width on paper it matches, so outside-align it onto the dark side.
 
 Then render + machine gate:
 ```
@@ -471,6 +482,13 @@ python .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slides
    verbatim. (That run's hand-written block claimed "qa.py PASS, zero warns"
    while machine_qa.json on disk said WARN with 5, and only the scorer caught
    the contradiction.)
+
+   REGENERATE IT AT THE LAST RENDER, NOT THE FIRST (2026-08-05). A pasted
+   block goes stale the moment another render round happens under it. Run
+   No.26 pasted once, rendered four more times, and shipped a block that
+   contradicted its own artifacts on four rows and carried an unresolved
+   [FAIL] site_fresh nobody addressed; the scorer caught it. Re-paste after
+   the final render, and the ship gate now checks you did.
 
 2. Spawn `pixel-critic` agents IN PARALLEL — one per 1-2 slides — each
    with the render PNG path, the thumb path, the slide's dossier, and the
@@ -837,6 +855,12 @@ JSON in its final message, which YOU persist to
    196-byte caption_report.json against a 200-byte size threshold). An honest
    below-threshold score is a WARN row, not a FAIL, so it never blocks a
    disclosed shortfall ship.
+   Then `python scripts/gate_status.py --run-dir out/<date>
+   --verify-pasted out/<date>/storyboard.md` must exit 0: it regenerates the
+   block and diffs it row by row against the one in the run record, so a
+   block pasted before the last render round cannot ship stale (2026-08-05).
+   If it reports stale rows, re-paste the fresh block; never edit the pasted
+   one by hand.
 6. Branch `claude/carousel-<date>`; commit everything (runs/, ledger/,
    docs/, knowledge/ changes); push with retries (2s/4s/8s/16s backoff).
 7. Open a PR (ready, not draft) and MERGE IT TO MAIN in the same run —

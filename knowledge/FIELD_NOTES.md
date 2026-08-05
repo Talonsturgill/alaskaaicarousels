@@ -2583,3 +2583,57 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   current build, but four of them still measured leaf angles that no longer
   existed. And the deck reached NO rung on the rendered ladder, because the GPU
   path was specified in the storyboard and never built.
+
+## 2026-08-05 - Phase 12 upgrade engineer (parked candidates + scan)
+
+- APPLIED, so recorded here only as a pointer: a declared contact shadow is now
+  MEASURED by the engine and FAILS below 4.0 L* of separation from the ground
+  it claims to darken (`data-contacts` on `<body>`, see SKILL.md), and a stale
+  GATE STATUS block now fails the ship gate (`gate_status.py --verify-pasted`).
+  Both are in ledger/upgrades.json with their verification numbers.
+- PARKED: BURNED ANGLES SHOULD BE A SCHEMA FIELD, NOT PROSE IN `notes`. This
+  run's caption briefs cleared every mechanical window in captions.json
+  (opening move vs last 6, structure vs last 3, first four words vs last 12)
+  and still broke three standing instructions, because all three live as
+  sentences inside prior entries' `notes`: PRICE burned 07-30, who-decides
+  burned for six runs on 08-03, and "do not open a deck summary on Inside"
+  08-02. Both directors then opened on "Inside" and only the caption critic,
+  reading the ledger by hand, caught it. THE SHAPE OF THE FIX: a `burned`
+  array on each entry, each item {angle|word|opening, expires_after_run,
+  reason}, and a caption_check.py rule that reads the union of unexpired
+  burns. PARKED rather than applied because it is a schema change plus a
+  back-migration of prose out of `notes` across the whole file, and today's
+  two slots went to reactive engine fixes. Strongest candidate for the next
+  run. The literature calls this exactly what it is: instruction files should
+  compile into enforcement checks rather than be re-read and hoped over
+  (ContextCov, https://arxiv.org/pdf/2603.00822 ; the linter-as-executable-
+  spec argument, https://factory.ai/news/using-linters-to-direct-agents ).
+- PARKED: A SKIPPED REVIEW PHASE SHOULD BE A GATE ROW. run_state.json recorded
+  `flow_review: "skipped (degraded, disclosed)"` and nothing downstream cared;
+  the scorer then found five of nine frames reading as the same picture with no
+  independent reviewer having seen the sequence. A gate_status.py row that
+  reads run_state.json and FAILs a skipped review phase absent a disclosure
+  string is small and objective. Parked for budget only.
+- CORROBORATION, not novelty, from the frontier scan (focus: agent/automation
+  workflow patterns for self-improving pipelines, the stalest rotation slot).
+  (1) PROPOSE-THEN-VERIFY: "design every shippable agentic workflow so the
+  agent that proposes a change never approves it", and the value comes from
+  INDEPENDENCE between the steps, not from the second step's rigour. Three runs
+  in a row a subagent has caught the showrunner (a legend's symbol pitch, a
+  claims.json hole, three burned caption angles). That is not luck, it is the
+  pattern working, and it argues for making the independent auditor a standing
+  step. https://www.coderabbit.ai/guides/how-to-design-agentic-workflows
+  (2) THE VERIFIABILITY CONSTRAINT: self-improvement is reliable only where
+  outcomes are objectively verifiable; where they are not, systems "hack their
+  reward functions without meaningful progress" (73.8 percent of KernelBench
+  optimizations in one study showed proxy gains without real gains). This is
+  the argument for why Phase 12 took the ARITHMETIC slice of artwork craft (is
+  this region darker than that region) and deliberately left the taste slice
+  alone, and it is the same conclusion encoding_reads() reached empirically in
+  July. https://openreview.net/forum?id=ikrQWGgxYg
+  (3) HARNESS ENGINEERING: keep the verifier, the tracer and the runs directory
+  READ-ONLY to the improving agent, so it cannot disable its own evaluation;
+  pair every harness edit with a falsifiable prediction; and keep durable state
+  in FILES rather than in context, because subagent output that lives only in a
+  transient chat "quickly becomes obsolete and hidden". Our ledgers already do
+  the third. https://lilianweng.github.io/posts/2026-07-04-harness/
