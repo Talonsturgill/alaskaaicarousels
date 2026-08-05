@@ -65,6 +65,31 @@ FAIL_MEDIAN = 0.60      # median pairwise similarity of per-slide art code
 WARN_MEDIAN = 0.35
 FAIL_PAIR = 0.95        # any single pair this alike is the same slide twice
 
+# THE SECOND DIMENSION (2026-08-05, same maintainer report):
+#
+#   "ur artwork on the last two seems like blocky, almost like a kid was drag
+#    and dropping shapes into the slides, as opposed to before when you made
+#    them from scratch and custom to the stories"
+#
+# Also literally true and also measurable. Run No.26's nine slides make 126
+# axis-aligned rectangle calls against 37 marks that are drawn, sampled or
+# generated. examples/demo-deck makes 2 against 9. A deck built out of
+# fillRect with a gradient in it is a deck of boxes however good the palette
+# is, and the technique library's whole bench (flow fields, contours, stipple,
+# hachure, relief, raymarch, PBR) sat unused while this shipped.
+#
+# Rectangles are not banned. Knockout plates are rectangles and are required,
+# and a parallel-projection bar chart is rectangles by doctrine. Those are DOM
+# and SVG here, so they are not counted; only canvas drawing code is read.
+BLOCKY = ("fillRect", "strokeRect", "rect(")
+DRAWN = ("bezierCurveTo", "quadraticCurveTo", "arc(", "arcTo",
+         "createRadialGradient", "putImageData", "getImageData",
+         "fbm2", "simplex2", "simplex3", "warp2", "reliefShade",
+         "AKSDF", "AKT.", "d3.contours", "d3.geoPath", "hachure",
+         "stipple", "contour", "setTransform", "clip(")
+FAIL_DRAWN_SHARE = 0.45   # demo-deck 0.82, run 2026-08-05 0.23
+WARN_DRAWN_SHARE = 0.60
+
 # Stripped before comparing, so the house harness never counts as sameness.
 HARNESS = (
     re.compile(r"<link[^>]*>"),
@@ -116,6 +141,29 @@ def check(slides_dir: Path):
                 "%s and %s are %.0f%% the same art code. That is one slide "
                 "drawn twice, not two slides." % (a.name, b.name, r * 100))
 
+    # --- how much of the art is DRAWN rather than dropped ------------------
+    blocky = drawn = 0
+    for f in files:
+        s = "\n".join(re.findall(r"<script>(.*?)</script>", f.read_text(), re.S))
+        blocky += sum(s.count(k) for k in BLOCKY)
+        drawn += sum(s.count(k) for k in DRAWN)
+    total = blocky + drawn
+    share = (drawn / total) if total else 0.0
+    res["blocky_calls"] = blocky
+    res["drawn_calls"] = drawn
+    res["drawn_share"] = round(share, 3)
+    if total and share < FAIL_DRAWN_SHARE:
+        res["fails"].append(
+            "BLOCKY DECK: %d axis-aligned rectangle calls against %d drawn or "
+            "generated marks, a drawn share of %.0f%% under the %.0f%% line "
+            "(bespoke reference: 82%%). This is shapes dropped onto a page, not "
+            "art made for the story. Reach into the technique bench."
+            % (blocky, drawn, share * 100, FAIL_DRAWN_SHARE * 100))
+    elif total and share < WARN_DRAWN_SHARE:
+        res["warns"].append(
+            "drawn share %.0f%% is low; the deck leans on rectangles."
+            % (share * 100))
+
     med = statistics.median(sims)
     res["median_similarity"] = round(med, 3)
     res["max_similarity"] = round(max(sims), 3)
@@ -157,9 +205,12 @@ def main():
         print("warn: " + w)
     if "median_similarity" in res:
         print("bespoke_check: %s -- %d slides, median pairwise art similarity "
-              "%.3f (fail at %.2f), max pair %.3f"
+              "%.3f (fail at %.2f), max pair %.3f, drawn share %.0f%% "
+              "(%d drawn vs %d blocky, fail under %.0f%%)"
               % (res["verdict"], res["slides"], res["median_similarity"],
-                 FAIL_MEDIAN, res["max_similarity"]))
+                 FAIL_MEDIAN, res["max_similarity"], res.get("drawn_share", 0) * 100,
+                 res.get("drawn_calls", 0), res.get("blocky_calls", 0),
+                 FAIL_DRAWN_SHARE * 100))
     return code
 
 

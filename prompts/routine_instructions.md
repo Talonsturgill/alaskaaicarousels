@@ -488,6 +488,14 @@ run and got filed as a composition note: the scorer said five of nine frames
 read as the same picture, and a pixel critic called one slide a broken render.
 The maintainer then reported engagement falling on the back of it.
 
+The SAME gate measures a second failure the maintainer named in the same
+breath, "blocky, almost like a kid was drag and dropping shapes into the
+slides". Also literally true: No.26 made 126 axis-aligned rectangle calls
+against 73 drawn marks, a 37 percent drawn share against the reference deck's
+82, while the technique library's entire bench (flow fields, contours, stipple,
+hachure, relief, raymarch, PBR) sat unused. A gradient inside a fillRect is
+still a box. bespoke_check FAILS a drawn share under 45 percent.
+
 If the deck's concept is genuinely one object revisited, that raises the bar on
 the art rather than lowering it. Each frame still needs its own composition,
 its own elements and its own drawing code. A shared projection helper is house

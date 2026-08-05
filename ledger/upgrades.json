@@ -950,6 +950,19 @@
    "verification": "Against the 26-caption corpus exactly 2 fail, and they are the two the maintainer named. False-positive suite passes: One in five Alaskans lives off the road system, This week Alaska filed the amendment and These five notices close in August all stay clean, while It is not published, They are not published and Dear Commissioner all fail.",
    "rollback": "git revert the hook commit. The three checks disappear and a hook can again be a riddle.",
    "commit": "pending"
+  },
+  {
+   "run_date": "2026-08-05",
+   "kind": "fix",
+   "area": "engine",
+   "change": "BLOCKY ART IS NOW MEASURED TOO, as a second dimension inside bespoke_check.py. It counts axis-aligned rectangle calls in canvas drawing code against marks that are drawn, sampled or generated (beziers, arcs, radial gradients, per-pixel work, noise, relief, raymarch, PBR, contours, affine transforms, clips) and FAILS a deck whose drawn share falls under 45 percent. Rectangles are not banned; knockout plates are rectangles and required, and a parallel-projection bar is rectangles by doctrine, but those are DOM and SVG so only canvas art is read.",
+   "trigger": "Maintainer, 2026-08-05: the artwork on the last two seems blocky, almost like a kid was drag and dropping shapes into the slides, as opposed to before when they were made from scratch and custom to the stories. Measured and literally true. Run No.26's nine slides make 126 rectangle calls against 73 drawn marks, a 37 percent drawn share, while examples/demo-deck makes 2 against 9 at 82 percent. The technique library's whole bench sat unused.",
+   "files_touched": [
+    "scripts/bespoke_check.py"
+   ],
+   "verification": "Thresholds fitted against the same two real decks. demo-deck PASSES at 82 percent drawn share; run 2026-08-05 FAILS at 37 percent and names the counts. The gate now reports both dimensions on one line so a future run cannot pass one and quietly fail the other.",
+   "rollback": "git revert the blocky-art commit. The drawn-share measure disappears and bespoke_check goes back to similarity only.",
+   "commit": "pending"
   }
  ],
  "scan_log": [
