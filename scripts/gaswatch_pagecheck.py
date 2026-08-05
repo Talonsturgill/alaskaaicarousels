@@ -86,6 +86,21 @@ def main_region(page_html):
     return m.group(1) if m else page_html
 
 
+def model_skew(verified, model):
+    """(version stamped on the latest reading, whether it differs from config).
+
+    Each record stamps the model that produced its numbers, which is what makes
+    a record auditable. It also means the page can show a modeled peak built on
+    yesterday's coefficients beside today's formula, for one day after every
+    refit, healing on the next collection. Worth noticing, never worth failing
+    over. Nothing caught it the first time a refit landed.
+    """
+    if not verified:
+        return None, False
+    stamped = (verified[-1].get("model") or {}).get("version")
+    return stamped, bool(stamped) and stamped != model.get("version")
+
+
 def visible_text(page_html):
     txt = re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", page_html)
     txt = re.sub(r"(?s)<svg.*?</svg>", " ", txt)
@@ -154,6 +169,18 @@ def check_page(out_dir, today=None):
         (ok if str(figs["inventory_pct_of_design"]) in text else bad)(
             "the headline figure reaches the page",
             f"{figs['inventory_pct_of_design']} percent of design")
+
+    # Model skew. Each record stamps the model that produced its numbers, which
+    # is what makes a record auditable, and it also means the page can show a
+    # modeled peak from yesterday's coefficients beside today's formula. That
+    # happens for one day after every refit and it heals on the next collection,
+    # so it is worth noticing and never worth failing over. Nothing caught it
+    # the first time a refit landed.
+    stamped, skewed = model_skew(verified, model)
+    if stamped:
+        (warn if skewed else ok)(
+            "the page and its latest reading share a model",
+            f"reading built on {stamped}, page states {model['version']}")
 
     gaps = gw.continuity(series)
     (ok if not gaps else warn)(
@@ -247,6 +274,14 @@ def self_test():
     ]
     for label, mutated in breakages:
         check(f"goes red on {label}", with_page(mutated) == "FAIL")
+
+    same = [{"model": {"version": "9.9"}}]
+    check("model skew is silent when the reading matches the page",
+          model_skew(same, {"version": "9.9"}) == ("9.9", False))
+    check("model skew is seen when a refit has outrun the last reading",
+          model_skew(same, {"version": "9.10"}) == ("9.9", True))
+    check("model skew says nothing with no verified reading",
+          model_skew([], {"version": "9.9"}) == (None, False))
 
     td = tempfile.mkdtemp()
     check("goes red when the page is missing", check_page(td)[1] == "FAIL")

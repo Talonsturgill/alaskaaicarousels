@@ -345,6 +345,38 @@ def allowed_numerals(figs, model, extra_strings=()):
             for tok in re.findall(r"\d[\d,]*(?:\.\d+)?", blob)}
 
 
+UNDERCLAIMS = ("not fit to observed", "not fitted to observed",
+               "calibrated to two published figures", "moves only when a person",
+               "only when a person moves it", "working hypothesis",
+               "nothing here learns")
+
+
+def underclaims(model):
+    """Prose in the model config that sells the model short of what it is.
+
+    The overclaim guard beside this one has a twin problem nobody thought to
+    check for. When the model improved, four strings kept describing the old
+    two point calibration, and they ship inside the published feed. One of them
+    said the coefficients move only when a person moves them, which stopped
+    being true the day the monthly workflow started refitting them.
+
+    A false modesty is still a false claim, and it is the harder one to notice,
+    because nothing looks wrong about a page being careful. So it is only an
+    error when a fit exists to contradict it, which keeps the rule honest if
+    the model is ever deliberately unfitted again.
+    """
+    if not model.get("fit"):
+        return []
+    hits = []
+    for key, val in (model.get("_spec") or {}).items():
+        low = val.lower() if isinstance(val, str) else ""
+        hits += [f"_spec.{key}: {w}" for w in UNDERCLAIMS if w in low]
+    for key in ("calibration", "fit_source"):
+        low = str(model.get(key, "")).lower()
+        hits += [f"{key}: {w}" for w in UNDERCLAIMS if w in low]
+    return hits
+
+
 def blank(v):
     """A value the model could not produce yet shows as an empty cell.
 
@@ -757,11 +789,19 @@ def self_test():
     overclaims = [w for w in ("our ai", "learns on its own", "self-improving",
                               "machine learning", "neural", "trains itself",
                               "fine-tunes itself", "fine tunes itself",
-                              "gets smarter", "automatically refit",
+                              "gets smarter",
                               "continuously trained", "the ai predicts",
                               "learns automatically", "retrains")
                   if w in body.lower()]
     check("the page claims no training it does not do", not overclaims, str(overclaims))
+    sells_short = underclaims(base)
+    check("the config does not describe a model it outgrew",
+          not sells_short, str(sells_short))
+    check("that rule can still go red",
+          underclaims(dict(base, fit={"months": 1}, calibration="working hypothesis"))
+          == ["calibration: working hypothesis"])
+    check("and it stays quiet on a model with no fit",
+          underclaims({"calibration": "working hypothesis"}) == [])
     check("the page calls the demand figure an estimate",
           "estimate" in body.lower())
     check("the page still discloses what nothing reports daily",
