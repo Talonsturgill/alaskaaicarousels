@@ -39,6 +39,10 @@ MODEL_CONFIG = os.path.join(REPO, "config", "gaswatch_model.json")
 
 SCHEMA_VERSION = "1.0"
 
+# How many days the day by day table shows. Read by display_numerals too, since
+# the caption counts the rows it renders rather than the whole series.
+TABLE_LIMIT = 14
+
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
 
@@ -185,7 +189,7 @@ def figures(series, model):
 
     if latest:
         cin = latest["cingsa"]
-        der = latest.get("derived") or {}
+        der, rec = remodel(latest, model)
         f.update({
             "as_of": latest["date"],
             "inventory_mcf": cin["inventory_mcf"],
@@ -206,7 +210,6 @@ def figures(series, model):
         })
         # How much of a day's supply nothing public measures. This is the size
         # of the hole, stated as a number rather than as an adjective.
-        rec = latest.get("reconciliation") or {}
         if rec.get("non_cingsa_supply_mmcfd") is not None and rec.get("modeled_demand_mmcfd"):
             f["balance_date"] = rec["date"]
             f["non_cingsa_supply_mmcfd"] = rec["non_cingsa_supply_mmcfd"]
@@ -306,7 +309,75 @@ def eia_crosscheck(model, series, path=EIA_LEDGER):
     return out
 
 
-def allowed_numerals(figs, model, extra_strings=()):
+NUMERAL_RE = r"\d[\d,]*(?:\.\d+)?"
+
+
+def tokens(blob):
+    """Numerals as the lint sees them, so both sides never disagree.
+
+    The allowed set was built by hand-formatting values while the lint used a
+    regex, and the two drifted apart on the first negative figure. A residual
+    of -16.5 was authorised as "-16.5" and read off the page as "16.5", since
+    the pattern does not take the sign. One tokenizer, used by both.
+    """
+    return {t.replace(",", "").rstrip(".") for t in re.findall(NUMERAL_RE, blob)}
+
+
+def display_numerals(series, model):
+    """What the day by day table and the chart legitimately render.
+
+    figures() covers the latest reading, which WAS every reading on launch day,
+    so this gap did not exist for exactly one day and then became fatal. On the
+    second reading the table draws a row per day and the chart draws an axis,
+    carrying storage figures and tick values figures() never produced. The lint
+    would have called them invented and site_build calls that a hard fail, so
+    the nightly rebuild would have died and taken the commit step with it,
+    stranding the day's collection uncommitted. CINGSA keeps no archive, so that
+    day would have been gone.
+
+    Every value here comes from the same transformation the renderer applies to
+    the same record, so a numeral is still authorised by data and never by a
+    literal typed in to silence a complaint.
+    """
+    rendered = []
+    rows = [r for r in series
+            if r.get("verified") and (r.get("cingsa") or {}).get("inventory_mcf")]
+    for r in rows:
+        cin = r["cingsa"]
+        der, rec = remodel(r, model)
+        # The date column too. figures() carries the first and last date, so
+        # every date between them was unauthorised the moment the series grew a
+        # middle. Both renderings, the ISO the table prints and the long form
+        # prose and captions use.
+        rendered += [r["date"], long_date(r["date"])]
+        for v in (round(cin["inventory_mcf"] / 1_000_000, 2),
+                  cin["inventory_pct_of_design"],
+                  der.get("peak_modeled_demand_mmcfd"),
+                  rec.get("non_cingsa_supply_mmcfd")):
+            # Both renderings of the same value. A table cell prints a float
+            # straight, so round(x, 1) reaches a reader as "112.0", while the
+            # chart formats with :g and the same value reads "112".
+            if v is not None:
+                rendered += [str(v), f"{v:g}"]
+    # The axis. Same bounds call the chart makes, on the same two series, so
+    # the ticks are authorised by the data rather than by their appearance.
+    if len(rows) >= 2:
+        for vals in ([round(r["cingsa"]["inventory_mcf"] / 1_000_000, 2) for r in rows],
+                     [remodel(r, model)[0].get("peak_modeled_demand_mmcfd")
+                      for r in rows]):
+            have = [v for v in vals if v is not None]
+            if not have:
+                continue
+            _, _, ticks = nice_bounds(min(have) * 0.98, max(have) * 1.02)
+            rendered += [f"{t:g}" for t in ticks] + [str(t) for t in ticks]
+    # The table caption counts the rows it shows, which is not verified_days
+    # once the series outgrows the window. It read "14 verified readings" with
+    # nothing authorising 14.
+    rendered.append(str(min(len(rows), TABLE_LIMIT)))
+    return tokens(" ".join(rendered))
+
+
+def allowed_numerals(figs, model, extra_strings=(), series=()):
     """Every numeral that may legally appear in page prose.
 
     Built from the data itself, never by adding a literal to silence the lint.
@@ -341,8 +412,7 @@ def allowed_numerals(figs, model, extra_strings=()):
     # date trip a lint aimed at invented figures.
     blob += " ".join(long_date(d) for d in
                      sorted(set(re.findall(r"\d{4}-\d{2}-\d{2}", blob))))
-    return {tok.replace(",", "").rstrip(".")
-            for tok in re.findall(r"\d[\d,]*(?:\.\d+)?", blob)}
+    return tokens(blob) | display_numerals(series, model)
 
 
 UNDERCLAIMS = ("not fit to observed", "not fitted to observed",
@@ -375,6 +445,32 @@ def underclaims(model):
         low = str(model.get(key, "")).lower()
         hits += [f"{key}: {w}" for w in UNDERCLAIMS if w in low]
     return hits
+
+
+def remodel(rec, model):
+    """(derived, reconciliation) recomputed from a record's measured inputs.
+
+    A record stamps the model that produced its numbers. That is what makes the
+    ledger auditable and it is why the ledger itself is never rewritten. The
+    page is a different promise. It publishes one formula and tells the reader
+    every figure traces back to it, so a modeled peak carried over from
+    yesterday's coefficients is a number they cannot reproduce from what they
+    were just shown. That was live for a day after the first refit.
+
+    Measured values are never touched. Only what the model computed is computed
+    again, from the same stored inputs, with the coefficients being published.
+    """
+    der = dict(rec.get("derived") or {})
+    recon = dict(rec.get("reconciliation") or {})
+    if der.get("peak_forecast_hdd") is not None:
+        der["peak_modeled_demand_mmcfd"] = gc.demand(der["peak_forecast_hdd"], model)
+    if recon.get("actual_hdd65") is not None:
+        recon["modeled_demand_mmcfd"] = gc.demand(recon["actual_hdd65"], model)
+        w = recon.get("storage_withdrawal_mmcfd")
+        if w is not None:
+            recon["non_cingsa_supply_mmcfd"] = round(
+                recon["modeled_demand_mmcfd"] - w, 1)
+    return der, recon
 
 
 def blank(v):
@@ -439,9 +535,8 @@ def numeral_lint(page_html, allowed):
     txt = re.sub(r"<[^>]+>", " ", txt)
     txt = _html.unescape(txt)
     bad = []
-    for tok in re.findall(r"\d[\d,]*(?:\.\d+)?", txt):
-        norm = tok.replace(",", "").rstrip(".")
-        if norm not in allowed:
+    for tok in re.findall(NUMERAL_RE, txt):
+        if tok.replace(",", "").rstrip(".") not in allowed:
             bad.append(tok)
     return bad
 
@@ -491,8 +586,11 @@ def chart_svg(series, model, w=920, panel_h=150, gap=34):
     Below two points there is no trend to draw, so the caller falls back to the
     meter and the stat tiles rather than plotting a line through one dot.
     """
-    pts = [(r["date"], r["cingsa"]["inventory_mcf"] / 1_000_000,
-            (r.get("derived") or {}).get("peak_modeled_demand_mmcfd"))
+    # Storage rounded to the two decimals the table shows. The direct label
+    # renders this value with :g, so an unrounded 6.423571 would have printed
+    # every digit on the chart and matched nothing the lint could authorise.
+    pts = [(r["date"], round(r["cingsa"]["inventory_mcf"] / 1_000_000, 2),
+            remodel(r, model)[0].get("peak_modeled_demand_mmcfd"))
            for r in series
            if r.get("verified") and (r.get("cingsa") or {}).get("inventory_mcf")]
     if len(pts) < 2:
@@ -568,7 +666,7 @@ def chart_svg(series, model, w=920, panel_h=150, gap=34):
 {p1}{p2}{dates}</svg>"""
 
 
-def table_html(series, limit=14):
+def table_html(series, model, limit=TABLE_LIMIT):
     """The table view twin. Every plotted value readable without the chart.
 
     This is also the form a reporter actually wants, since it can be copied
@@ -579,8 +677,8 @@ def table_html(series, limit=14):
         return ""
     body = ""
     for r in rows:
-        cin, der = r["cingsa"], (r.get("derived") or {})
-        rec = r.get("reconciliation") or {}
+        cin = r["cingsa"]
+        der, rec = remodel(r, model)
         body += (
             f'<tr><td>{esc(r["date"])}</td>'
             f'<td>{round(cin["inventory_mcf"] / 1_000_000, 2)}</td>'
@@ -728,6 +826,44 @@ def self_test():
           "this previously passed a paragraph and certified nothing")
     check("chart geometry is still ignored",
           not numeral_lint('<svg><path d="M12.3,45.6 L78.9,10.1"/></svg>', allowed))
+    # A WHOLE PAGE, on a series longer than one day. Every check above ran on
+    # the live ledger, which held a single reading, and a single reading is the
+    # one length at which figures() happens to cover everything the table and
+    # the chart draw. On the second day the page would have carried a row per
+    # date, an axis, and a caption counting rows, none of it authorised, and
+    # site_build calls that a hard fail. The nightly rebuild would have died and
+    # taken the commit step with it, losing a reading CINGSA cannot reissue.
+    # So the lint is now exercised at the lengths the page will actually reach.
+    import copy as _copy
+    live = load_series()
+    meta = {"license": "https://creativecommons.org/licenses/by/4.0/",
+            "license_label": "CC BY 4.0", "attribution": "Alaska AI",
+            "publisher": "Alaska AI", "spatial_coverage": "Alaska",
+            "docket_item_id": "enstar-cook-inlet-gas-storage"}
+    stretched = []
+    for days in (2, 15, 60):
+        sim, inv = [], 6_100_000
+        for i in range(days):
+            r = _copy.deepcopy(live[-1])
+            r["date"] = (date(2026, 8, 5) + timedelta(days=i)).isoformat()
+            inv += 37_311 if i % 3 else -52_907
+            r["cingsa"]["inventory_mcf"] = inv
+            r["cingsa"]["inventory_pct_of_design"] = round(inv / 13_000_000 * 100, 1)
+            r["derived"]["peak_forecast_hdd"] = round(3.4 + i * 1.7, 1)
+            r["derived"]["peak_modeled_demand_mmcfd"] = 999
+            r["reconciliation"]["actual_hdd65"] = round(2.9 + i * 1.6, 1)
+            r["reconciliation"]["storage_withdrawal_mmcfd"] = round(-31.5 + i * 4.4, 1)
+            r["reconciliation"]["non_cingsa_supply_mmcfd"] = 999
+            sim.append(r)
+        page = page_body(date(2026, 12, 1), "https://alaskaaihq.com", sim, model,
+                         meta, prefix="../")
+        left = numeral_lint(page, allowed_numerals(
+            figures(sim, model), model, ["CC BY 4.0"], sim))
+        if left or "999" in page:
+            stretched.append((days, sorted(set(left))[:4], "999" in page))
+    check("a page built on a real length series invents nothing",
+          not stretched, str(stretched) or "2, 15 and 60 day series all clean")
+
     check("a number typed into a config note does not authorise itself",
           bool(numeral_lint("<p>Storage sits at 71.6 Bcf.</p>", allowed)),
           "71.6 appears in a model config note and used to pass")
@@ -1079,7 +1215,7 @@ that it is not, is using it wrong.</p>
 
 <h2 data-reveal>Day by day</h2>
 {chart_block}
-{table_html(series)}
+{table_html(series, model)}
 {stale_note}
 
 {balance}

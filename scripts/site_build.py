@@ -5313,7 +5313,8 @@ def gas_watch_page(today, site_url, series, model):
     body = gw.page_body(today, site_url, series, model, GAS_WATCH_META)
     figs = gw.figures(series, model)
     planted = gw.numeral_lint(
-        body, gw.allowed_numerals(figs, model, [DATA_LICENSE_LABEL, gw.SCHEMA_VERSION]))
+        body, gw.allowed_numerals(figs, model,
+                                  [DATA_LICENSE_LABEL, gw.SCHEMA_VERSION], series))
     if planted:
         db.fail("gas watch page carries numeral(s) no computation produced, "
                 f"{sorted(set(planted))[:6]}. Every figure must come from "
