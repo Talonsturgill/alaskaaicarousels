@@ -86,19 +86,22 @@ def main_region(page_html):
     return m.group(1) if m else page_html
 
 
-def model_skew(verified, model):
-    """(version stamped on the latest reading, whether it differs from config).
+def stale_model_output(figs, model):
+    """Whether a displayed model figure disagrees with the published formula.
 
-    Each record stamps the model that produced its numbers, which is what makes
-    a record auditable. It also means the page can show a modeled peak built on
-    yesterday's coefficients beside today's formula, for one day after every
-    refit, healing on the next collection. Worth noticing, never worth failing
-    over. Nothing caught it the first time a refit landed.
+    Each record stamps the model that produced its numbers, so for a day after
+    every refit the ledger holds a modeled peak built on the old coefficients.
+    The page recomputes model output from the record's measured inputs for
+    exactly that reason, and this is what proves it did. A reader who takes the
+    formula off the page and the degree days off the page has to arrive at the
+    number beside them.
     """
-    if not verified:
-        return None, False
-    stamped = (verified[-1].get("model") or {}).get("version")
-    return stamped, bool(stamped) and stamped != model.get("version")
+    hdd = figs.get("peak_forecast_hdd")
+    shown = figs.get("peak_modeled_demand_mmcfd")
+    if hdd is None or shown is None:
+        return None
+    want = gw.gc.demand(hdd, model)
+    return None if shown == want else f"page shows {shown}, formula gives {want}"
 
 
 def visible_text(page_html):
@@ -170,17 +173,11 @@ def check_page(out_dir, today=None):
             "the headline figure reaches the page",
             f"{figs['inventory_pct_of_design']} percent of design")
 
-    # Model skew. Each record stamps the model that produced its numbers, which
-    # is what makes a record auditable, and it also means the page can show a
-    # modeled peak from yesterday's coefficients beside today's formula. That
-    # happens for one day after every refit and it heals on the next collection,
-    # so it is worth noticing and never worth failing over. Nothing caught it
-    # the first time a refit landed.
-    stamped, skewed = model_skew(verified, model)
-    if stamped:
-        (warn if skewed else ok)(
-            "the page and its latest reading share a model",
-            f"reading built on {stamped}, page states {model['version']}")
+    drift = stale_model_output(figs, model)
+    (ok if not drift else bad)(
+        "a reader can reproduce the modeled peak from the published formula",
+        drift or f"{figs.get('peak_modeled_demand_mmcfd')} MMcf/d "
+                 f"from model {model['version']}")
 
     gaps = gw.continuity(series)
     (ok if not gaps else warn)(
@@ -198,7 +195,7 @@ def check_page(out_dir, today=None):
 
     # Nothing invented, checked against the same lint the build runs.
     planted = gw.numeral_lint(body, gw.allowed_numerals(
-        figs, model, ["CC BY 4.0", gw.SCHEMA_VERSION]))
+        figs, model, ["CC BY 4.0", gw.SCHEMA_VERSION], series))
     (ok if not planted else bad)("every numeral traces to a computation",
                                  ", ".join(sorted(set(planted))[:6]) or "clean")
 
@@ -275,13 +272,16 @@ def self_test():
     for label, mutated in breakages:
         check(f"goes red on {label}", with_page(mutated) == "FAIL")
 
-    same = [{"model": {"version": "9.9"}}]
-    check("model skew is silent when the reading matches the page",
-          model_skew(same, {"version": "9.9"}) == ("9.9", False))
-    check("model skew is seen when a refit has outrun the last reading",
-          model_skew(same, {"version": "9.10"}) == ("9.9", True))
-    check("model skew says nothing with no verified reading",
-          model_skew([], {"version": "9.9"}) == (None, False))
+    live = gw.gc.load_model(gw.MODEL_CONFIG)
+    figs = gw.figures(gw.load_series(), live)
+    check("the shipped peak reproduces from the shipped formula",
+          stale_model_output(figs, live) is None,
+          stale_model_output(figs, live) or "reproduces")
+    check("a peak left on old coefficients is caught",
+          stale_model_output(dict(figs, peak_modeled_demand_mmcfd=999), live)
+          is not None)
+    check("it says nothing when there is no peak to check",
+          stale_model_output({}, live) is None)
 
     td = tempfile.mkdtemp()
     check("goes red when the page is missing", check_page(td)[1] == "FAIL")
