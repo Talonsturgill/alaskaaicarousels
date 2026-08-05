@@ -26,12 +26,16 @@ on:
     paths:
       - "scripts/gaswatch_eia.py"
       - "scripts/gaswatch_fit.py"
+      - "scripts/gaswatch_hdd.py"
+      - "config/gaswatch_hdd_history.json"
       - ".github/workflows/gaswatch-eia.yml"
   push:
     branches: [main]
     paths:
       - "scripts/gaswatch_eia.py"
       - "scripts/gaswatch_fit.py"
+      - "scripts/gaswatch_hdd.py"
+      - "config/gaswatch_hdd_history.json"
       - ".github/workflows/gaswatch-eia.yml"
 
 concurrency:
@@ -61,6 +65,9 @@ jobs:
       - name: The refit earns its change, and its guards can still refuse
         run: python3 scripts/gaswatch_fit.py --self-test
 
+      - name: The HDD extender refuses a gap, and can still say no
+        run: python3 scripts/gaswatch_hdd.py --self-test
+
       - name: Pull the monthly figures
         if: github.event_name != 'pull_request'
         id: pull
@@ -68,6 +75,19 @@ jobs:
           set +e
           python3 scripts/gaswatch_eia.py
           echo "status=$?" >> "$GITHUB_OUTPUT"
+
+      # The refit only sees a month present in BOTH the EIA ledger and the
+      # observed degree day record, and nothing was ever writing the second
+      # one. It was committed once, ending 2026-08-04, so the fit would have
+      # gained the two months EIA still owed it and then frozen forever, while
+      # the page kept saying it refits every time another month is published.
+      # Extending the weather record here, before the refit, is what keeps that
+      # sentence true. A failure leaves the record alone and does not stop the
+      # month from being committed.
+      - name: Extend the observed degree day record
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        run: python3 scripts/gaswatch_hdd.py
 
       # The page reads this file at build time, so a new month has to be
       # committed for the cross check on the site to move.
@@ -86,14 +106,16 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           set -euo pipefail
-          if git diff --quiet -- ledger/gaswatch_eia.json config/gaswatch_model.json; then
-            echo "No new month and no refit, nothing to commit."
+          if git diff --quiet -- ledger/gaswatch_eia.json config/gaswatch_model.json \
+                                   config/gaswatch_hdd_history.json; then
+            echo "No new month, no refit and no new weather, nothing to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           month=$(python3 -c "import json;print(json.load(open('ledger/gaswatch_eia.json'))['latest_month'])")
-          git add ledger/gaswatch_eia.json config/gaswatch_model.json
+          git add ledger/gaswatch_eia.json config/gaswatch_model.json \
+                  config/gaswatch_hdd_history.json
           git commit -m "gaswatch(eia): figures through $month"
           for delay in 2 4 8 16 0; do
             if git push origin HEAD:main; then
@@ -106,6 +128,38 @@ jobs:
             fi
             sleep "$delay"
             git pull --rebase origin main
+          done
+
+      # A refit changes every figure the page derives from the model, and this
+      # workflow used to commit that without rebuilding. That left docs/ lagging
+      # the model until something else rebuilt it, which is what armed the
+      # collector-blocking gate this same review found. Rebuild here so the
+      # model and the page land together.
+      - name: Rebuild the page onto the refitted model
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          if git diff --quiet HEAD~1 -- config/gaswatch_model.json 2>/dev/null; then
+            echo "Model unchanged, page rebuild not needed."
+            exit 0
+          fi
+          pip install --quiet Pillow
+          python3 scripts/site_build.py --date "$(TZ=America/Anchorage date +%F)" --out docs
+          if git diff --quiet -- docs; then
+            echo "Page unchanged."
+            exit 0
+          fi
+          git add docs
+          git commit -m "gaswatch(page): rebuilt onto the refitted model"
+          for delay in 2 4 8 0; do
+            if git push origin HEAD:main; then
+              echo "Page is on main."
+              exit 0
+            fi
+            [ "$delay" = "0" ] && { echo "Page push failed; the model is on main and the next collection rebuilds."; exit 0; }
+            sleep "$delay"
+            git pull --rebase origin main || exit 0
           done
 
       - name: Surface a failed pull

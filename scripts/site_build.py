@@ -2746,7 +2746,8 @@ def pretty_date(iso):
 
 # ---------- pages ----------
 
-def home_page(today, site_url, docket, runs, gas_series=(), gas_model=None):
+def home_page(today, site_url, docket, runs, gas_series=(), gas_model=None,
+              gas_figs=None):
     items, live, done, dated, live_sorted = docket
     n_open = db.open_count(live, today)
     # Read off dated[0] itself, not recomputed, because the title beside it is
@@ -2785,7 +2786,7 @@ def home_page(today, site_url, docket, runs, gas_series=(), gas_model=None):
     # The gas watch meter, directly under the docket. The two datasets sit
     # together here the same way they do in the nav. It renders empty when
     # there is no verified reading, so the homepage never explains an absence.
-    gas_strip = gw.home_strip(gas_series, gas_model) if gas_model else ""
+    gas_strip = gw.home_strip(gas_series, gas_model, figs=gas_figs) if gas_model else ""
     closing = f"""<h2 data-reveal><a href="docket/">The docket</a></h2>
 <p class="sub" data-reveal>Every AI infrastructure decision in Alaska, tracked daily with a source on
 every fact. Gold means a door is open to the public right now.</p>
@@ -5272,12 +5273,20 @@ def gas_watch_ld(today, site_url, series, model, figs):
             "geo": {"@type": "GeoShape", "box": "58.9 -154.0 62.5 -145.0"}},
         "temporalCoverage": (f"{series[0]['date']}/{figs.get('as_of', today.isoformat())}"
                              if series else today.isoformat()),
+        # Derived from the model config, not typed. This sentence said the model
+        # used "a published two point linear calibration, and is not fitted to
+        # observed utility sendout" for hours after the least-squares refit
+        # shipped, so the machine-readable layer contradicted the visible prose
+        # two screens above it. gaswatch_build.underclaims() was written for
+        # exactly that failure but only reads the config, and the routine's page
+        # checker scopes to <main>, so nothing could see it. Reading the config
+        # here means it cannot drift from the model again.
         "measurementTechnique": (
             "Storage inventory and deliverability are read daily from the CINGSA "
             "public dashboard and stamped with the source timestamp. Regional demand "
-            "is modeled from the National Weather Service Anchorage forecast using a "
-            "published two point linear calibration, and is not fitted to observed "
-            "utility sendout, which is not public. Non CINGSA supply is derived from "
+            "is modeled from the National Weather Service Anchorage forecast, "
+            f"{model.get('fit_source', 'see the model config')}. "
+            "Non CINGSA supply is derived from "
             "the mass balance, demand less measured storage withdrawal, using "
             "observed degree days one day in arrears. A failed fetch writes an "
             "explicit unverified record and carries no number forward."),
@@ -5299,7 +5308,7 @@ def gas_watch_ld(today, site_url, series, model, figs):
     }
 
 
-def gas_watch_page(today, site_url, series, model):
+def gas_watch_page(today, site_url, series, model, figs=None):
     """Cook Inlet Gas Watch, the live instrument beside the docket.
 
     The docket tracks decisions on a scale of months. This tracks the physical
@@ -5310,8 +5319,8 @@ def gas_watch_page(today, site_url, series, model):
     Every figure on this page is computed in gaswatch_build.figures() from the
     committed record. numeral_lint() below refuses to ship a number that traces
     back to nothing, so no typed or remembered figure can reach a reader."""
-    body = gw.page_body(today, site_url, series, model, GAS_WATCH_META)
-    figs = gw.figures(series, model)
+    body = gw.page_body(today, site_url, series, model, GAS_WATCH_META, figs=figs)
+    figs = gw.figures(series, model, figs)
     planted = gw.numeral_lint(
         body, gw.allowed_numerals(figs, model,
                                   [DATA_LICENSE_LABEL, gw.SCHEMA_VERSION], series))
@@ -5355,12 +5364,19 @@ def build(today, out_dir, site_url=None, domain=""):
 
     gas_series = gw.load_series()
     gas_model = gw.gc.load_model(gw.MODEL_CONFIG)
+    # Computed once here and handed to everything that needs it. The homepage
+    # strip, the gas watch page, its feed and its numeral lint were each asking
+    # for the same dict from the same two inputs, four full recomputations and
+    # nine reparses of the 4,599 day weather record per build, on a build that
+    # runs on every collector cron.
+    gas_figs = gw.figures(gas_series, gas_model) if gas_model else None
 
     pages = {
         "index.html": home_page(today, site_url, docket, runs,
-                                gas_series, gas_model),
+                                gas_series, gas_model, gas_figs),
         "docket/index.html": docket_page(today, site_url, docket),
-        "gas-watch/index.html": gas_watch_page(today, site_url, gas_series, gas_model),
+        "gas-watch/index.html": gas_watch_page(today, site_url, gas_series,
+                                              gas_model, gas_figs),
         "archive/index.html": archive_page(today, site_url, runs),
         "services/index.html": services_page(today, site_url),
         "services/thanks/index.html": services_thanks_page(today, site_url),
@@ -5529,7 +5545,8 @@ def build(today, out_dir, site_url=None, domain=""):
     # the docket has `items`, because a time series does not fit a schema built
     # around who decides and when.
     (out / "gas-watch.json").write_text(json.dumps(
-        gw.feed(gas_series, gas_model, site_url, today, GAS_WATCH_META), indent=2))
+        gw.feed(gas_series, gas_model, site_url, today, GAS_WATCH_META,
+                figs=gas_figs), indent=2))
     touch_icon(out)
     (out / "sitemap.xml").write_text(sitemap(site_url, runs, today, docket[0]))
     (out / "robots.txt").write_text(

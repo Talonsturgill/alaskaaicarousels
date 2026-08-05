@@ -40,6 +40,7 @@ Run:
 """
 
 import argparse
+import calendar
 import collections
 import html
 import json
@@ -466,6 +467,20 @@ def backtest_facts(model, series):
     return facts
 
 
+def is_whole_month(ym, days_on_file):
+    """Whether every calendar day of ym is in the HDD record.
+
+    The test was `< 28`, which admits a 31 day month holding 28 days. That is
+    not academic: extending the record mid month is the only way it ever grows,
+    so the trailing month is partial by construction every single time. A
+    December with 28 days on file fitted against 31 days of observed
+    consumption asks for about ten percent more gas per day than reality, on
+    the coldest and highest weight month in the sample.
+    """
+    year, month = int(ym[:4]), int(ym[4:6])
+    return days_on_file >= calendar.monthrange(year, month)[1]
+
+
 def notes_quoting_figures(model):
     """Backtest prose that carries a numeral, which a refit would falsify.
 
@@ -491,6 +506,9 @@ def load_model(path):
     return cfg
 
 
+_HDD_CACHE = {}
+
+
 def load_hdd_history(model, base_dir=REPO):
     """The committed Anchorage HDD record, as an ordered list of (date, hdd).
 
@@ -503,7 +521,18 @@ def load_hdd_history(model, base_dir=REPO):
     rel = model.get("hdd_history")
     if not rel:
         raise ValueError("model config names no hdd_history file")
-    with open(os.path.join(base_dir, rel), encoding="utf-8") as fh:
+    path = os.path.join(base_dir, rel)
+    # A whole site build parsed this nine times, rebuilding 4,599 dated pairs
+    # each time, because four separate callers each wanted the same figures.
+    # Keyed on mtime and size, so gaswatch_hdd.py extending the record within a
+    # single process is still seen. Cheap today at one series record and it
+    # grows with the record, on a build that runs on every collector cron.
+    st = os.stat(path)
+    key = (path, st.st_mtime_ns, st.st_size)
+    hit = _HDD_CACHE.get(key)
+    if hit is not None:
+        return hit
+    with open(path, encoding="utf-8") as fh:
         hist = json.load(fh)
     start = datetime.fromisoformat(hist["start_date"]).date()
     series = [((start + timedelta(days=i)).isoformat(), float(v))
@@ -513,6 +542,10 @@ def load_hdd_history(model, base_dir=REPO):
             f"{rel} is inconsistent, {len(series)} days computed against "
             f"{hist['days']} declared, ending {series[-1][0]} against "
             f"{hist['end_date']} declared")
+    # Only a validated read is cached, so a broken file raises every time
+    # rather than once.
+    _HDD_CACHE.clear()
+    _HDD_CACHE[key] = (hist, series)
     return hist, series
 
 

@@ -253,10 +253,23 @@ def main():
     s = rec["series"]
     m = rec["latest_month"]
     print(f"EIA through {m}, {rec['months']} months on file")
-    print(f"  Alaska working gas in storage   {s['ak_working_gas_mmcf'][m]:,} MMcf")
-    print(f"  Alaska working gas capacity     {s['ak_working_gas_capacity_mmcf'][m]:,} MMcf")
-    print(f"  storage fields in Alaska        {s['ak_storage_field_count'][m]}")
-    print(f"  delivered to consumers          {s['delivered_total_mmcf'][m]:,} MMcf")
+
+    # latest_month comes from the DELIVERY series alone, and EIA-191 storage
+    # routinely lags it. Indexing every series at that month raised a KeyError
+    # here, after the ledger had already been written, so a pull that worked
+    # ended in a traceback and a red job. A series that has not caught up says
+    # so and the summary carries on.
+    def line(label, key, unit=""):
+        val = s.get(key, {}).get(m)
+        if val is None:
+            print(f"  {label:32s}not published for {m} yet")
+        else:
+            print(f"  {label:32s}{val:,}{unit}")
+
+    line("Alaska working gas in storage", "ak_working_gas_mmcf", " MMcf")
+    line("Alaska working gas capacity", "ak_working_gas_capacity_mmcf", " MMcf")
+    line("storage fields in Alaska", "ak_storage_field_count")
+    line("delivered to consumers", "delivered_total_mmcf", " MMcf")
     return 0
 
 

@@ -31,6 +31,7 @@ on:
       - "scripts/gaswatch_collect.py"
       - "scripts/gaswatch_build.py"
       - "scripts/gaswatch_pagecheck.py"
+      - "scripts/gaswatch_hdd.py"
       - "config/gaswatch_model.json"
       - "config/gaswatch_hdd_history.json"
       - ".github/workflows/gaswatch.yml"
@@ -40,6 +41,7 @@ on:
       - "scripts/gaswatch_collect.py"
       - "scripts/gaswatch_build.py"
       - "scripts/gaswatch_pagecheck.py"
+      - "scripts/gaswatch_hdd.py"
       - "config/gaswatch_model.json"
       - "config/gaswatch_hdd_history.json"
       - ".github/workflows/gaswatch.yml"
@@ -79,6 +81,16 @@ jobs:
 
       # The routine's daily once over. Its red cases have to work, or the
       # only pair of eyes on the live page is a checker that cannot see.
+      #
+      # This step is hermetic ONLY because the self-test renders its own
+      # reference page. It used to assert that the COMMITTED docs/ passed,
+      # which made a gate about the checker into an assertion about the
+      # checkout, and it exits 1. gaswatch-eia.yml commits a refit without
+      # rebuilding the page, so every refit left docs/ lagging the model and
+      # the very next collection aborted here, before the collector ran, and
+      # lost a CINGSA reading that cannot be reissued. Measured, not theorised.
+      # Whether the LIVE page is current is a real question and it belongs to
+      # `--out docs`, which exits 2 and cannot abort anything.
       - name: The daily page checker can still go red
         run: python3 scripts/gaswatch_pagecheck.py --self-test
 
@@ -94,20 +106,19 @@ jobs:
           python3 scripts/gaswatch_collect.py
           echo "status=$?" >> "$GITHUB_OUTPUT"
 
-      # Rebuilding here is what makes the published page as live as it claims
-      # to be. Pillow is a module-scope import of site_build.
-      - name: Rebuild the published page from the new reading
-        if: github.event_name != 'pull_request'
-        run: |
-          set -euo pipefail
-          if git diff --quiet -- ledger/gaswatch.jsonl; then
-            echo "Nothing appended, so nothing to rebuild."
-            exit 0
-          fi
-          pip install --quiet Pillow
-          python3 scripts/site_build.py --date "$(date -u +%F)" --out docs
-
-      - name: Commit the append
+      # THE READING GOES FIRST, ON ITS OWN. This used to `git add
+      # ledger/gaswatch.jsonl docs` in one commit, which meant the retry loop's
+      # `git pull --rebase` had to replay regenerated HTML. The carousel routine
+      # rewrites those same generated files on main, so a rebase across a
+      # concurrent routine merge conflicts on docs/index.html, sitemap.xml and
+      # friends. Under `set -e` that kills the step mid-rebase and the runner is
+      # torn down with the day's append only in the discarded checkout.
+      #
+      # A one-line JSONL append onto a file nothing else writes cannot conflict.
+      # So the reading is committed and pushed alone, and the page rebuild is a
+      # separate commit afterwards that is allowed to fail without taking the
+      # irreplaceable half with it.
+      - name: Commit the reading, by itself
         if: github.event_name != 'pull_request'
         run: |
           set -euo pipefail
@@ -129,14 +140,11 @@ jobs:
           print(f"gaswatch({rec['date']}): {bit}, {flags}")
           PY
           )
-          git add ledger/gaswatch.jsonl docs
+          git add ledger/gaswatch.jsonl
           git commit -m "$summary"
-          # The daily carousel routine commits to main too, so a push can lose a
-          # race it did nothing wrong to lose. Rebase and retry rather than fail
-          # and drop the day's reading.
           for delay in 2 4 8 16 0; do
             if git push origin HEAD:main; then
-              echo "Pushed."
+              echo "Reading is on main."
               exit 0
             fi
             if [ "$delay" = "0" ]; then
@@ -145,6 +153,48 @@ jobs:
             fi
             sleep "$delay"
             git pull --rebase origin main
+          done
+
+      # Now the page. Rebuilding here is what makes the published page as live
+      # as it claims to be. Pillow is a module-scope import of site_build. The
+      # Alaska date, not the UTC one: site_build's --date is documented as
+      # America/Anchorage and the evening cron is 07:20 UTC, which is the
+      # PREVIOUS day in Alaska. Passing `date -u` stamped the whole site a day
+      # early every evening, closing comment windows that were still open and
+      # writing tomorrow into the sitemap.
+      - name: Rebuild and commit the page
+        if: github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          pip install --quiet Pillow
+          python3 scripts/site_build.py --date "$(TZ=America/Anchorage date +%F)" --out docs
+          if git diff --quiet -- docs; then
+            echo "Page unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git commit -m "gaswatch(page): rebuilt from $(TZ=America/Anchorage date +%F)'s reading"
+          for delay in 2 4 8 0; do
+            if git push origin HEAD:main; then
+              echo "Page is on main."
+              exit 0
+            fi
+            if [ "$delay" = "0" ]; then
+              # The reading is already safe on main, so this is a page that can
+              # be rebuilt any time rather than a loss. Say so and stay green.
+              echo "Could not push the rebuilt page. The reading is already on"
+              echo "main, and the next run or the next routine build regenerates"
+              echo "the page from it."
+              exit 0
+            fi
+            sleep "$delay"
+            git checkout -- docs
+            git pull --rebase origin main
+            python3 scripts/site_build.py --date "$(TZ=America/Anchorage date +%F)" --out docs
+            git add docs
+            git commit --amend --no-edit
           done
 
       # Last, so the commit above always lands first. A non-zero collector exit
