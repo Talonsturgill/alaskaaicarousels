@@ -15,10 +15,10 @@
   "flow_review": "skipped (degraded, disclosed)",
   "assemble": "done",
   "scoring": "done",
-  "ship": "in_progress",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-08-05/plan.md",
@@ -37,7 +37,12 @@
   "aggregates": "out/2026-08-05/aggregates.json (PASS)",
   "score": "out/2026-08-05/score_report.json (7.27 vs 7.7, no hard fails)",
   "pixel_reviews": "4 critics over 9 slides, 2 revision rounds applied",
-  "runs": "runs/2026-08-05/ (webp slides, vector pdf, og.jpg)"
+  "runs": "runs/2026-08-05/ (webp slides, vector pdf, og.jpg)",
+  "gmail_draft_id": "runs/2026-08-05/gmail_draft_id.txt (r-4236277722638805665)",
+  "gmail_payload": "runs/2026-08-05/gmail_payload.json",
+  "upgrades": "3 logged in ledger/upgrades.json, merged as PR #199 plus a follow-up commit",
+  "merged": "PR #198 (run) and PR #199 (upgrades), both merged to main"
  },
- "shortfall": "Weighted 7.27 against a 4-round threshold of 7.7. No hard fails. Shipped with the shortfall disclosed in the email per the routine's FAILURE and SUCCESS criteria."
+ "shortfall": "Weighted 7.27 against a 4-round threshold of 7.7. No hard fails. Shipped with the shortfall disclosed in the email per the routine's FAILURE and SUCCESS criteria.",
+ "complete": true
 }

@@ -862,7 +862,7 @@
    ],
    "verification": "Regenerated the payload for this run before and after. Before, the Editor's note section rendered the literal string 'None.'; after, it renders the scorer's full note beginning 'No hard fail. All nine renders re-transcribed against copy.json'. Payload size 18 KB either way, no other section changed.",
    "rollback": "git revert the follow-up upgrade(2026-08-05) commit. Removing the alias puts the machine back in the state where a scorer emitting notes_for_email silently loses the maintainer's most important paragraph.",
-   "commit": "pending"
+   "commit": "0ba0f92"
   }
  ],
  "scan_log": [
