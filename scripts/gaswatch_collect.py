@@ -422,9 +422,12 @@ def backtest_facts(model, series):
 
     if series:
         peak_date, peak_hdd = max(series, key=lambda r: (r[1], r[0]))
-        over = sum(1 for _, v in series
-                   if design_day is not None
-                   and demand_exact(v, model) >= design_day)
+        # None, not 0, when there is no anchor to compare against. Zero is a
+        # claim about the weather; absence is the truth. With the old form a
+        # refit that dropped the anchor would have published "0 days model at
+        # or above the design day" as though something had counted them.
+        over = (sum(1 for _, v in series if demand_exact(v, model) >= design_day)
+                if design_day is not None else None)
         facts["record-maximum-day"] = {
             "date": peak_date,
             # Degree days are whole numbers in the record, so keep them
@@ -573,6 +576,10 @@ def reconcile(records, recon_date, actual_hdd, model):
     if block["forecast_hdd65"] is not None and actual_hdd is not None:
         block["error"] = round(block["forecast_hdd65"] - actual_hdd, 1)
     if actual_hdd is None:
+        # The balance for this date resolves on exactly one run. If ACIS was
+        # down for it, the residual is gone with the same permanence a CINGSA
+        # gap has, so say so in the record rather than leaving a silent null.
+        block["unresolved"] = True
         return block
 
     block["modeled_demand_mmcfd"] = demand(actual_hdd, model)
@@ -663,7 +670,7 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now):
     except Exception as exc:
         if acis_probe.status == "ok":
             acis_probe.status = "parse_failed"
-            acis_probe.error = f"{type(acis_probe.error or exc).__name__}: {exc}"
+            acis_probe.error = f"{type(exc).__name__}: {exc}"
 
     derived = {
         "peak_forecast_date": None,
@@ -691,6 +698,11 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now):
         if peak["modeled_demand_mmcfd"] >= DESIGN_DAY_APPROACH_MMCFD:
             flags.append("demand_approaching_design_day")
 
+    # Resolve the balance before the flags are settled, so a day whose residual
+    # could not be computed is visible in flags rather than only as a null.
+    recon = reconcile(records, recon_date, actual_hdd, model)
+    if recon.get("unresolved"):
+        flags.append("balance_unresolved")
     if cingsa.get("fetch_status") == "ok":
         if cingsa["withdrawal_restriction_mcfd"] > 0:
             flags.append("withdrawal_restriction_active")
@@ -718,7 +730,7 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now):
         "forecast": forecast,
         "forecast_source_updated": forecast_updated,
         "derived": derived,
-        "reconciliation": reconcile(records, recon_date, actual_hdd, model),
+        "reconciliation": recon,
         "model": model_block(model),
         "sources": [p.as_dict() for p in probes],
         "flags": sorted(set(flags)),

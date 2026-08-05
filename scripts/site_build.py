@@ -5531,9 +5531,9 @@ def build(today, out_dir, site_url=None, domain=""):
         "# and the whole corpus is one fetch at /llms-full.txt.\n"
         "# Every tracked decision has its own page at /docket/<id>/ and the whole\n"
         "# docket is versioned open data at /docket.json, CC BY 4.0, documented\n"
-        "# at /data/. Cook Inlet Gas Watch is a second dataset, a daily record of\n"
-        "# Southcentral Alaska gas storage at /gas-watch/ and /gas-watch.json.\n"
-        "# at /data/. Citing a specific decision page is the intended use.\n\n"
+        "# at /data/. Cook Inlet Gas Watch is a second dataset on the same terms,\n"
+        "# a daily record of Southcentral Alaska gas storage at /gas-watch/ and\n"
+        "# /gas-watch.json. Citing a specific decision page is the intended use.\n\n"
         f"Sitemap: {site_url}/sitemap.xml\n")
     # ---------- the machine-readable surface ----------
     # Feeds carry full content, not teasers. This publication wants to be

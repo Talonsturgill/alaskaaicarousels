@@ -150,7 +150,9 @@ def figures(series, model):
         "hdd_record_start": hist["start_date"],
         "hdd_record_end": hist["end_date"],
         "not_public_count": len(model.get("not_public", [])),
-        "model_revisions": len(model.get("model_history", [])),
+        # The first history entry is the original fit, not a revision of
+        # anything, so counting it published "3 revisions" for two revisions.
+        "model_revisions": max(0, len(model.get("model_history", [])) - 1),
     }
 
     # The scoreboard for the model itself. Every day the collector records what
@@ -251,17 +253,21 @@ def eia_crosscheck(model, series, path=EIA_LEDGER):
     for d, v in hdd_series:
         by_month.setdefault(d[:4] + d[5:7], []).append(v)
 
+    sectors = ("residential_mmcf", "commercial_mmcf", "electric_power_mmcf")
     pairs = []
     for ym, days in sorted(by_month.items()):
-        obs = sum(s.get(k, {}).get(ym, 0) for k in
-                  ("residential_mmcf", "commercial_mmcf", "electric_power_mmcf"))
-        if not obs:
+        # Every sector must be present. Summing with a zero default counted a
+        # month that had two sectors of three as though the third were zero,
+        # which quietly dragged the published ratio. EIA genuinely publishes
+        # sectors at different times, so this is the ordinary case, not an edge.
+        if not all(ym in s.get(k, {}) for k in sectors):
             continue
         # Only whole months. A partial month of degree days against a full
         # month of deliveries would read as the model running light.
         if len(days) < 28:
             continue
-        pairs.append((sum(gc.demand_exact(v, model) for v in days), obs))
+        pairs.append((sum(gc.demand_exact(v, model) for v in days),
+                      sum(s[k][ym] for k in sectors)))
     if not pairs:
         return {}
     modeled = sum(p[0] for p in pairs)
@@ -273,10 +279,19 @@ def eia_crosscheck(model, series, path=EIA_LEDGER):
         "eia_model_ratio": round(modeled / observed, 2),
         "eia_model_gap_pct": round(abs(modeled / observed - 1) * 100),
         "eia_model_runs": "high" if modeled > observed else "low",
-        "eia_ak_working_gas_bcf": round(s["ak_working_gas_mmcf"][month] / 1000, 1),
-        "eia_ak_capacity_bcf": round(s["ak_working_gas_capacity_mmcf"][month] / 1000, 1),
-        "eia_storage_fields": s["ak_storage_field_count"][month],
     }
+    # The storage figures come from Form EIA-191, which can lag the delivery
+    # series that sets latest_month. Missing months are absent rather than
+    # fatal, so a normal reporting lead cannot take the whole site build down.
+    storage = {
+        "eia_ak_working_gas_bcf": ("ak_working_gas_mmcf", 1000, 1),
+        "eia_ak_capacity_bcf": ("ak_working_gas_capacity_mmcf", 1000, 1),
+        "eia_storage_fields": ("ak_storage_field_count", 1, 0),
+    }
+    for key, (sid, div, places) in storage.items():
+        val = s.get(sid, {}).get(month)
+        if val is not None:
+            out[key] = round(val / div, places) if div != 1 else val
     # Storage outside CINGSA needs a CINGSA reading in the same month EIA
     # reports. Until the daily record is old enough to overlap, this stays
     # absent rather than differencing two different months.
@@ -295,7 +310,29 @@ def allowed_numerals(figs, model, extra_strings=()):
     Built from the data itself, never by adding a literal to silence the lint.
     A number reaches this set only because something computed it.
     """
-    blob = json.dumps([figs, model, list(extra_strings)])
+    # Only computed values and the model's NUMERIC fields. Feeding the whole
+    # config in let a number typed into a _spec or note string authorise itself
+    # on the page, which is exactly the hand-written figure this lint exists to
+    # stop. The season-integral note mentions 71.6, and that was enough to let
+    # "Storage sits at 71.6 Bcf" through.
+    # Data authorises a numeral; prose does not. Feeding the whole config in
+    # let a number typed into a note authorise itself on the page, which is the
+    # hand-written figure this lint exists to stop. Filtering to numbers alone
+    # was too blunt, since ISO dates in `input` are data too. So the rule is by
+    # KEY, and these keys hold sentences.
+    PROSE_KEYS = {"_spec", "description", "note", "reason", "purpose",
+                  "honesty_note", "refit_procedure", "calibration", "fit_source",
+                  "source_stated_label", "identity", "no_typed_numbers_rule",
+                  "not_public_note", "limits"}
+
+    def data_only(node):
+        if isinstance(node, dict):
+            return {k: data_only(v) for k, v in node.items() if k not in PROSE_KEYS}
+        if isinstance(node, list):
+            return [data_only(v) for v in node]
+        return node
+
+    blob = json.dumps([figs, data_only(model), list(extra_strings)])
     # An ISO date in the data renders on the page as "August 5th, 2026", whose
     # day part is "5" and not the zero padded "05" the ISO string carries. The
     # rendered form is still the data, so expand it here rather than letting a
@@ -335,9 +372,14 @@ def spell(n):
     return words[n].capitalize() if 0 <= n < len(words) else str(n)
 
 
+def noun(n, singular, plural=None):
+    """Just the noun, agreeing with n. For a label that sits beside its number."""
+    return singular if n == 1 else (plural or singular + "s")
+
+
 def count(n, singular, plural=None):
     """A counted noun that agrees with its number. One day, two days."""
-    return f"{n} {singular if n == 1 else (plural or singular + 's')}"
+    return f"{n} {noun(n, singular, plural)}"
 
 
 def numeral_lint(page_html, allowed):
@@ -347,7 +389,13 @@ def numeral_lint(page_html, allowed):
     computed but meaningless as figures. The chart's own text labels are linted
     separately by passing them through as prose.
     """
-    txt = re.sub(r"(?s)<svg.*?</svg>", " ", page_html)
+    # Keep the chart's text labels, drop its geometry. Stripping the whole SVG
+    # meant a typed numeral in an axis or a direct label was never linted, while
+    # the docstring claimed those labels were covered.
+    def keep_svg_text(m):
+        return " ".join(re.findall(r"(?s)<text[^>]*>(.*?)</text>", m.group(0)))
+
+    txt = re.sub(r"(?s)<svg.*?</svg>", keep_svg_text, page_html)
     txt = re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", txt)
     txt = re.sub(r"(?s)<!--.*?-->", " ", txt)
     txt = re.sub(r"<[^>]+>", " ", txt)
@@ -637,8 +685,14 @@ def self_test():
     check("a number nothing computed is caught", bool(planted), str(planted))
     check("chart geometry is not mistaken for prose",
           not numeral_lint(chart_svg(load_series(), model), allowed))
-    check("a typed number inside a chart label would still be caught",
-          bool(numeral_lint("<p>9182736 barrels</p>", allowed)))
+    check("a typed number inside a chart TEXT label is caught",
+          bool(numeral_lint("<svg><text>9182736</text></svg>", allowed)),
+          "this previously passed a paragraph and certified nothing")
+    check("chart geometry is still ignored",
+          not numeral_lint('<svg><path d="M12.3,45.6 L78.9,10.1"/></svg>', allowed))
+    check("a number typed into a config note does not authorise itself",
+          bool(numeral_lint("<p>Storage sits at 71.6 Bcf.</p>", allowed)),
+          "71.6 appears in a model config note and used to pass")
 
     # The maintainer asked who updates the wording when the state changes. The
     # answer has to be nobody, and this is what proves it. Every comparison the
@@ -760,9 +814,22 @@ def page_body(today, site_url, series, model, meta, prefix="../"):
     it is the product.
     """
     f = figures(series, model)
-    if not series:
-        return ('<div class="hero"><h1>Cook Inlet Gas Watch</h1>'
-                '<p class="tag">No record has been collected yet.</p></div>')
+    # Guard on a usable READING, not on a non-empty series. figures() correctly
+    # drops as_of and the inventory keys when nothing is verified, and the body
+    # below indexes them, so a ledger holding only unverified records raised
+    # KeyError here. site_build calls this before writing any page, so that
+    # crash cost the whole site, not one page.
+    if not series or "as_of" not in f:
+        note = ("No reading has been collected yet."
+                if not series else
+                f'{count(f["days_of_record"], "day")} on record, none of them '
+                f'verified. A fetch failed or the source had stopped updating, '
+                f'and no number is carried forward from a day that did work.')
+        return (f'<div class="hero" style="min-height:auto;padding-top:9vh">'
+                f'<div class="chip kind">LIVE INSTRUMENT</div>'
+                f'<h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">'
+                f'Cook Inlet Gas Watch</h1>'
+                f'<p class="tag">{note}</p></div>')
 
     # Below two readings there is no trend, and a line through one dot is a
     # chart pretending to know something. The meter and the tiles carry the
@@ -883,7 +950,8 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 {stat("MMcf/d going in today", f["injection_in_progress_mmcfd"], "measured")}
 {stat("MMcf/d modeled peak ahead", f.get("peak_modeled_demand_mmcfd", "n/a"),
       "model output", "blue")}
-{stat("days on record", f["days_of_record"], "collected daily")}
+{stat(noun(f["days_of_record"], "day") + " on record", f["days_of_record"],
+      "collected daily")}
 </div>
 
 

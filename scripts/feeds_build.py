@@ -174,8 +174,8 @@ def llms_txt(site_url: str, runs: list, docket: dict | None = None,
         f"- [Cook Inlet Gas Watch as open JSON]({site_url}/gas-watch.json) "
         f"one object per day, CC BY 4.0, every record carries the model that "
         f"produced it and the provenance of every fetch behind it"
-        + (f". {gas_watch['count']} days on record, {gas_watch['coverage']}"
-           if gas_watch else ""),
+        + (f". {gas_watch['count']} day{'' if gas_watch['count'] == 1 else 's'} "
+           f"on record, {gas_watch['coverage']}" if gas_watch else ""),
         f"- [Every article as plain Markdown, one fetch]({site_url}/llms-full.txt)",
         f"- [The source archive, every document a claim was verified against]"
         f"({site_url}/sources/)",

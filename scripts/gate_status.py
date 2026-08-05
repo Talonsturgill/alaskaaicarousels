@@ -371,15 +371,21 @@ def gas_watch_row(rows):
     if not series:
         rows.absent("gas_watch", "no readings collected yet")
         return
+    # A gap and a run of unverified days are both WARN, never FAIL. CINGSA
+    # keeps no archive, so a gap can never be repaired, and the collector
+    # refuses to write a second record for a date it already holds. A FAIL
+    # here would be unclearable and would block the merge of every future
+    # carousel run over a gas outage that has nothing to do with the deck.
+    # Data problems are surfaced, not used to hold editorial hostage.
     missing = gwb.continuity(series)
-    if missing:
-        rows.add("gas_watch", "FAIL",
-                 "%d missing day(s) in the series, first %s"
-                 % (len(missing), missing[0]))
-        return
     verified = [r for r in series if r.get("verified")]
+    if missing:
+        rows.add("gas_watch", "WARN",
+                 "%d day(s) on record, %d missing from the series, first %s"
+                 % (len(series), len(missing), missing[0]))
+        return
     if not verified:
-        rows.add("gas_watch", "FAIL", "%d day(s) on record, none verified" % len(series))
+        rows.add("gas_watch", "WARN", "%d day(s) on record, none verified" % len(series))
         return
     from datetime import date as _d
     age = (_d.today() - _d.fromisoformat(verified[-1]["date"])).days

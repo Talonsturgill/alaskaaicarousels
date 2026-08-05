@@ -64,7 +64,7 @@ this one.
 A daily numeric record of Southcentral Alaska's gas position, published as
 open data beside the docket. The docket tracks discrete decisions on a scale
 of months; the Gas Watch tracks the physical system on a scale of days. They
-are siblings, not parent and child. Four rules do not bend:
+are siblings, not parent and child. These rules do not bend:
 
 - It NEVER publishes a safety verdict. Not a shortfall prediction, not an
   all clear, not a blackout call. A compressor failure or a sanded well can
