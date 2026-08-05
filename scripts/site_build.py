@@ -2881,6 +2881,7 @@ them, and whether the public still has a way in.</p>
 <div class="decks">{beats}</div>"""
 
     n_src = source_doc_count(items)
+
     what_html = f"""<h2 data-reveal>What this is</h2>
 <p class="prose" data-reveal>Alaska AI is a daily publication on Alaska and artificial
 intelligence, and an AI studio. The reporting side writes one verified
@@ -3622,7 +3623,7 @@ carries the same sources the decisions do.</p>
                 crumbs=[("Alaska AI", ""), ("Questions", "questions/")])
 
 
-def data_page(today, site_url, docket, runs):
+def data_page(today, site_url, docket, runs, gas_series=(), gas_model=None):
     """The open-data page. Documents the contract, states the license, and shows
     a consumer how to read the docket in one fetch.
 
@@ -3631,6 +3632,24 @@ def data_page(today, site_url, docket, runs):
     live in prose, next to the same facts the JSON carries, so a person and a
     crawler read the same contract."""
     items = docket[0]
+    gas_days = len(gas_series)
+    gas_para = (
+        "Cook Inlet Gas Watch is a separate dataset on the same terms, a daily "
+        "numeric record of Southcentral Alaska's natural gas position at "
+        f'<a class="proselink" href="../gas-watch/">/gas-watch/</a>, one JSON '
+        f'document at <a class="proselink" href="../gas-watch.json">'
+        f"/gas-watch.json</a>. Measured Cook Inlet storage and deliverability, "
+        "modeled regional demand from Anchorage degree days, and a derived non "
+        "CINGSA supply figure that falls out of the mass balance and is "
+        "published nowhere else. One object per day, oldest first, every record "
+        "carrying the model that produced it and the provenance of every fetch "
+        "behind it. It is kept separate from the docket deliberately, because "
+        "the docket schema is built around who decides and when, and a time "
+        "series does not fit those fields. It publishes no verdict on whether "
+        "supply is adequate, and it never will, because the deliverability data "
+        "that would justify one is not public."
+        + (f" {gas_days} day of readings so far." if gas_days == 1
+           else f" {gas_days} days of readings so far." if gas_days else ""))
     fields = "".join(
         f'<li><p><strong>{esc(k)}</strong> {esc(v)}</p></li>'
         for k, v in DOCKET_FIELD_DOCS.items())
@@ -3668,6 +3687,8 @@ decision with the URL of its own page. Docket changes are also an RSS feed at
 <a class="proselink" href="../docket/feed.xml">/docket/feed.xml</a>, and the
 whole article corpus is one plain-text fetch at
 <a class="proselink" href="../llms-full.txt">/llms-full.txt</a>.</p>
+<h2 data-reveal>The second dataset</h2>
+<p class="prose" data-reveal>{gas_para}</p>
 <h2 data-reveal>What every field means</h2>
 <ol class="claims" data-reveal>{fields}</ol>
 <h2 data-reveal>The closed sets</h2>
@@ -5383,7 +5404,8 @@ def build(today, out_dir, site_url=None, domain=""):
     # One canonical page per tracked decision, so an answer engine citing a
     # specific decision has a URL, a title and a lastmod for THAT decision
     # rather than an anchor on a shared page.
-    pages["data/index.html"] = data_page(today, site_url, docket, runs)
+    pages["data/index.html"] = data_page(today, site_url, docket, runs,
+                                        gas_series, gas_model)
     pages["questions/index.html"] = questions_page(today, site_url, docket)
     pages["privacy/index.html"] = privacy_page(today, site_url)
     for _it in docket[0]:

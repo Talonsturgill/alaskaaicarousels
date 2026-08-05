@@ -583,20 +583,33 @@ def stat(label, value, note, tone="gold"):
 
 
 def gauge(f):
-    """The storage level against the field's design capacity.
+    """The storage level against the field's design capacity. The lead element.
 
     A bar rather than a dial, because a dial implies a red zone and a red zone
     is a verdict. This shows a measured ratio and stops there.
+
+    It carries the hero figure because it is the one number a reader who gives
+    this page four seconds will take away, and because it is measured rather
+    than modeled. The figure is set in the body sans at display size, not the
+    serif, and with proportional rather than tabular digits, which is what
+    keeps a large standalone number from reading loose.
     """
     pct = f["inventory_pct_of_design"]
     return f"""<div class="gw-gauge" data-reveal>
-<div class="gw-gauge-head"><span>MEASURED STORAGE</span>
-<span>{f["inventory_bcf"]} of {f["design_bcf"]} Bcf</span></div>
+<div class="gw-gauge-top">
+  <div>
+    <div class="gw-hero">{pct}<span>%</span></div>
+    <div class="gw-hero-lab">of design capacity, measured</div>
+  </div>
+  <div class="gw-gauge-side">
+    <div class="gw-side-num">{f["inventory_bcf"]} <span>of {f["design_bcf"]} Bcf</span></div>
+    <div class="gw-side-lab">Cook Inlet storage, read {long_date(f["as_of"])}</div>
+  </div>
+</div>
 <div class="gw-gauge-track"><div class="gw-gauge-fill" style="width:{pct}%"></div>
 <div class="gw-gauge-mark" style="left:{pct}%"></div></div>
 <div class="gw-gauge-foot"><span>empty</span>
-<span class="gw-gauge-pct">{pct} percent of design capacity</span>
-<span>full</span></div>
+<span>full, {f["design_bcf"]} Bcf</span></div>
 </div>"""
 
 
@@ -700,15 +713,16 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 </div>
 </div>
 
+{gauge(f)}
+
 <div class="gw-stats" data-reveal>
-{stat("Bcf in storage", f["inventory_bcf"], "measured")}
-{stat("percent of design", f["inventory_pct_of_design"], "measured")}
 {stat("MMcf/d withdrawal capacity", f["withdrawal_operating_mmcfd"], "measured")}
+{stat("MMcf/d going in today", f["injection_in_progress_mmcfd"], "measured")}
 {stat("MMcf/d modeled peak ahead", f.get("peak_modeled_demand_mmcfd", "n/a"),
       "model output", "blue")}
+{stat("days on record", f["days_of_record"], "collected daily")}
 </div>
 
-{gauge(f)}
 
 <h2 data-reveal>What you are looking at</h2>
 <div class="gw-lede" data-reveal>
@@ -825,26 +839,38 @@ border-radius:12px;padding:18px 17px;}
 .gw-lede h3{font-family:Fraunces,Georgia,serif;font-size:19px;color:var(--gold);
 margin-bottom:8px;font-weight:500;}
 .gw-lede p{font-size:15px;color:var(--body);line-height:1.6;}
-.gw-gauge{background:var(--panel);border:1px solid var(--line);border-radius:14px;
-padding:18px 18px 15px;margin:8px 0 30px;}
-.gw-gauge-head{display:flex;justify-content:space-between;gap:12px;
-font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);
-margin-bottom:11px;flex-wrap:wrap;}
-.gw-gauge-head span:last-child{color:var(--snow);}
-.gw-gauge-track{position:relative;height:22px;border-radius:11px;
+.gw-gauge{background:linear-gradient(180deg,var(--panel2),var(--panel));
+border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:16px;
+padding:24px 22px 18px;margin:26px 0 26px;}
+.gw-gauge-top{display:flex;justify-content:space-between;align-items:flex-end;
+gap:20px;flex-wrap:wrap;margin-bottom:18px;}
+/* Hero figure. Body sans rather than the serif, and proportional digits, which
+   is what stops a large standalone number reading loose. */
+.gw-hero{font-size:clamp(52px,9vw,86px);line-height:.92;color:var(--gold);
+font-weight:700;letter-spacing:-.02em;font-variant-numeric:proportional-nums;}
+.gw-hero span{font-size:.42em;color:var(--halo);margin-left:2px;font-weight:600;}
+.gw-hero-lab{font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+color:var(--body);margin-top:9px;}
+.gw-gauge-side{text-align:right;}
+.gw-side-num{font-size:clamp(20px,2.6vw,26px);color:var(--snow);font-weight:600;}
+.gw-side-num span{color:var(--mute);font-size:.7em;font-weight:400;}
+.gw-side-lab{font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+color:var(--mute);margin-top:7px;}
+.gw-gauge-track{position:relative;height:30px;border-radius:15px;
 background:var(--deep);border:1px solid var(--line);overflow:hidden;}
 /* Both stops are bright. The first version ramped from a dark gold on the
    left, which dimmed the end of the bar the eye starts at and encoded nothing,
    since the bar's LENGTH already carries the value. The sheen is decoration
    that stays out of the way of the measurement. */
-.gw-gauge-fill{height:100%;border-radius:11px 0 0 11px;
+.gw-gauge-fill{height:100%;border-radius:15px 0 0 15px;
 background:linear-gradient(90deg,var(--gold),var(--halo));
 box-shadow:0 0 18px rgba(255,199,44,.25);}
 .gw-gauge-mark{position:absolute;top:-3px;bottom:-3px;width:2px;
 background:var(--snow);}
 .gw-gauge-foot{display:flex;justify-content:space-between;gap:10px;margin-top:9px;
 font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);}
-.gw-gauge-pct{color:var(--snow);}
+.gw-gauge-foot span:last-child{color:var(--body);}
+@media(max-width:560px){.gw-gauge-side{text-align:left;}}
 .gw-chart{background:var(--panel);border:1px solid var(--line);border-radius:14px;
 padding:16px 12px 8px;margin:18px 0;overflow-x:auto;}
 .gw-table{margin:18px 0 8px;overflow-x:auto;}
