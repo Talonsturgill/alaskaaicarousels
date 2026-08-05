@@ -427,12 +427,21 @@ def ak_favicon():
 # ---------- shared chrome ----------
 
 def nav(prefix, active):
-    links = [("", "HOME"), ("docket/", "DOCKET"),
+    # GAS WATCH sits beside DOCKET because they are the two datasets, decisions
+    # on a scale of months and the physical system on a scale of days. Added to
+    # the top nav on the maintainer's call, 2026-08-05, over the build brief's
+    # footer-first guidance.
+    links = [("", "HOME"), ("docket/", "DOCKET"), ("gas-watch/", "GAS WATCH"),
              ("archive/", "ARTICLES"), ("videos/", "VIDEOS"),
              ("services/", "SERVICES"), ("about/", "ABOUT")]
     on = ' class="on"'
+    # An empty `active` must light nothing, because every string starts with
+    # the empty string. Passing "" once lit all six links gold at the same time
+    # on the gas watch page, which reads as a broken nav rather than a page
+    # with no section.
     a = "".join(
-        f'<a href="{prefix}{href or "./"}"{on if key.lower().startswith(active) else ""}>{key}</a>'
+        f'<a href="{prefix}{href or "./"}"'
+        f'{on if active and key.lower().startswith(active) else ""}>{key}</a>'
         for href, key in links)
     return f"""<nav class="topnav">
   <a class="wordmark" href="{prefix}./">{ak_mark()}<span>ALASKA.AI</span></a>
@@ -610,6 +619,14 @@ background:var(--gold);transition:right .25s ease;}
 .navlinks a:hover::after{right:0;background:var(--blue);}
 .navlinks a.on{color:var(--gold);}
 .navlinks a.on::after{right:0;}
+/* Seven items need a compact row sooner than the rest of the mobile layout
+   does, so this breakpoint is deliberately wider than the 720px block below.
+   A phone in landscape is wide enough to miss that block and too narrow to
+   seat seven links at full size, so the row wrapped and the sticky nav
+   doubled to 121px, which buried four docket map pins under it in a map
+   frame only 219px tall. Compact keeps it to one row there. The wrap is the
+   backstop for real phone widths, where it splits to two rows cleanly. */
+@media (max-width:900px){.navlinks{gap:13px;row-gap:9px;font-size:10.5px;flex-wrap:wrap;}}
 
 /* ---------- type ---------- */
 h1{font-family:Fraunces,serif;font-weight:580;font-size:clamp(44px,7.4vw,92px);line-height:1.0;
@@ -938,7 +955,6 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
   .maphero{margin:34px -12px 0;padding:0 12px;}
   .latest{grid-template-columns:1fr;}
   .flagsky{right:-4vw;top:2vh;width:70vw;opacity:.8;}
-  .navlinks{gap:14px;font-size:10.5px;}
   .topnav{padding:18px 0 12px;}
   .lightbox .lbprev{left:8px;}
   .lightbox .lbnext{right:8px;}
@@ -5184,7 +5200,7 @@ def gas_watch_page(today, site_url, series, model):
     desc = ("A daily numeric record of Southcentral Alaska's natural gas position. "
             "Measured Cook Inlet storage, modeled regional demand, and the derived "
             "supply nobody else publishes. No safety verdict, ever.")
-    return page("Cook Inlet Gas Watch", desc, body, "../", "", today, site_url,
+    return page("Cook Inlet Gas Watch", desc, body, "../", "gas", today, site_url,
                 "gas-watch/", extra_css=gw.GW_CSS,
                 crumbs=[("Home", ""), ("Gas Watch", "gas-watch/")])
 
