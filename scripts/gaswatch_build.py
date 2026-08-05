@@ -994,8 +994,13 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 
 {gauge(f)}
 
+<!-- The primary action under the meter used to be GET THE JSON, which asks a
+     reader to know what JSON is before they know what the needle means. Most
+     people arriving here are reporters and Alaskans, not developers. The plain
+     question they actually have goes first, and the file moves down beside the
+     citation, where somebody who wants it is already looking. -->
 <div class="ctarow gw-cta">
-  <a class="cta gold" href="{prefix}gas-watch.json">GET THE JSON</a>
+  <a class="cta gold" href="#what-this-is">WHAT THIS MEANS</a>
   <a class="cta ghost" href="{prefix}docket/{esc(meta["docket_item_id"])}/">THE STORAGE DECISION</a>
 </div>
 
@@ -1009,7 +1014,7 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 </div>
 
 
-<h2 data-reveal>What you are looking at</h2>
+<h2 id="what-this-is" data-reveal>What you are looking at</h2>
 <div class="gw-lede" data-reveal>
 <div><h3>The reserve</h3><p>Southcentral Alaska keeps gas in an underground field
 near Kenai, run by CINGSA. Utilities fill it in summer and draw on it in winter.
@@ -1101,7 +1106,10 @@ day with the provenance of every external fetch behind it. Storage is measured,
 demand is modeled, and each record says which is which. Version
 {f["schema_version"]}. The related tracked decision is
 <a class="proselink" href="{prefix}docket/{esc(meta["docket_item_id"])}/">Enstar's
-Cook Inlet gas storage plan</a>.</p>"""
+Cook Inlet gas storage plan</a>.</p>
+<div class="ctarow" data-reveal>
+  <a class="cta ghost" href="{prefix}gas-watch.json">GET THE RAW DATA</a>
+</div>"""
 
 
 GW_CSS = """
