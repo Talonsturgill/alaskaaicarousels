@@ -129,6 +129,7 @@
   /* stat numbers count up when they enter the viewport */
   function countUp(el){
     var to = parseInt(el.getAttribute('data-count'), 10) || 0;
+    el.dataset.counted = '1';
     if (reduced || to === 0) { el.textContent = pad(to); return; }
     var t0 = null;
     function step(ts){

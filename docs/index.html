@@ -53,7 +53,7 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 </div>
 <div class="statrow">
   <div class="stat"><div class="n" data-count="26">26</div><div class="l">ARTICLES WRITTEN</div></div>
-  <div class="stat"><div class="n" data-count="33">33</div><div class="l">VIDEOS PUBLISHED</div></div>
+  <div class="stat"><div class="n" id="vidstat" data-count="34">34</div><div class="l">VIDEOS PUBLISHED</div></div>
   <div class="stat"><div class="n" data-count="12">12</div><div class="l">DECISIONS TRACKED</div></div>
   <div class="stat"><div class="n g" data-count="2">02</div><div class="l">DOORS OPEN TO YOU</div></div>
 </div>
@@ -90,6 +90,20 @@ var sec=document.getElementById('homevidsec');if(!sec||!window.fetch)return;
 fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
   var base=m.media_base||'';
   var vs=(m.videos||[]).filter(function(v){return v&&v.video});
+  /* THE VIDEO COUNTER SELF-CORRECTS (2026-08-05). video_count() reads the feed
+     at BUILD time, but docs/videos/videos.json is appended to by publish_feed.py
+     in the alaska-ai-weekly repo on its own schedule, so a video landing after
+     today's build leaves the homepage stat one behind until the next one. That
+     is exactly what happened on 2026-08-05: the build read 33 and the 34th
+     video landed hours later. The number is re-read here from the same fetch
+     this section already makes, so the page is right whenever it is loaded.
+     The server-rendered number stays as the no-JS fallback. */
+  var st=document.getElementById('vidstat');
+  if(st&&vs.length){
+    var n=vs.length;
+    st.setAttribute('data-count',String(n));
+    if(!st.dataset.counted)st.textContent=(n<10?'0':'')+n;
+  }
   if(!vs.length)return;
   var v=vs[0];
   var abs=function(u){return /^https?:\/\//.test(u)?u:base+u};
@@ -142,16 +156,16 @@ every fact. Gold means a door is open to the public right now.</p>
   <div class="big" data-days="2026-08-10">AUG 10</div><div class="when chip days" data-date="2026-08-10">next AUG 10</div>
   <h3>Air Force land leases for AI data centers at JBER, Eielson and Clear</h3>
   <div class="who">PROPOSALS DUE ON A SEPARATE EIELSON MIXED-USE LEASE COVERING 3,967 ACRES</div>
-</a><a class="card a-indirect" href="docket/#aklng-tax-bill-second-special-session" data-reveal>
-  <div class="cardtop"><span class="badge b-indirect">INDIRECT</span></div>
-  <div class="big" data-days="2026-08-10">AUG 10</div><div class="when chip days" data-date="2026-08-10">next AUG 10</div>
-  <h3>The AKLNG gas line tax bill</h3>
-  <div class="who">SENATE COULD CONVENE IN FULL IF THE HOUSE PASSES A BILL</div>
 </a><a class="card a-open" href="docket/#aidea-houston-industrial-park" data-reveal>
   <div class="cardtop"><span class="badge b-open">OPEN TO YOU</span></div>
   <div class="big" data-days="2026-08-19">AUG 19</div><div class="when chip days" data-date="2026-08-19">by AUG 19</div>
   <h3>AIDEA's free state land for a Mat-Su data center park</h3>
   <div class="who">PUBLIC COMMENT CLOSES</div>
+</a><a class="card a-open" href="docket/#bradley-lake-dixon-diversion" data-reveal>
+  <div class="cardtop"><span class="badge b-open">OPEN TO YOU</span></div>
+  <div class="big" data-days="2026-08-28">AUG 28</div><div class="when chip days" data-date="2026-08-28">by AUG 28</div>
+  <h3>The Dixon Glacier diversion into Bradley Lake</h3>
+  <div class="who">COMMENTS, MOTIONS TO INTERVENE AND PROTESTS DUE, 5:00 P.M. EASTERN</div>
 </a></div>
 <div class="ctarow" data-reveal><a class="cta gold" href="docket/">OPEN THE FULL DOCKET</a></div>
 <h2 data-reveal><a href="topics/">What Alaska AI covers</a></h2>

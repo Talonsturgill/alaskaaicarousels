@@ -1541,6 +1541,7 @@ JS = """
   /* stat numbers count up when they enter the viewport */
   function countUp(el){
     var to = parseInt(el.getAttribute('data-count'), 10) || 0;
+    el.dataset.counted = '1';
     if (reduced || to === 0) { el.textContent = pad(to); return; }
     var t0 = null;
     function step(ts){
@@ -2723,7 +2724,7 @@ def home_page(today, site_url, docket, runs):
     n_videos = video_count()
     stats = f"""<div class="statrow">
   <div class="stat"><div class="n" data-count="{len(runs)}">{len(runs):02d}</div><div class="l">ARTICLES WRITTEN</div></div>
-  <div class="stat"><div class="n" data-count="{n_videos}">{n_videos:02d}</div><div class="l">VIDEOS PUBLISHED</div></div>
+  <div class="stat"><div class="n" id="vidstat" data-count="{n_videos}">{n_videos:02d}</div><div class="l">VIDEOS PUBLISHED</div></div>
   <div class="stat"><div class="n" data-count="{len(live)}">{len(live):02d}</div><div class="l">DECISIONS TRACKED</div></div>
   <div class="stat"><div class="n g" data-count="{n_open}">{n_open:02d}</div><div class="l">DOORS OPEN TO YOU</div></div>
 </div>"""
@@ -2744,7 +2745,10 @@ def home_page(today, site_url, docket, runs):
   </div>
 </div>"""
 
-    cards = "".join(db.card_html(it, today, prefix="docket/") for it in dated[:3])
+    # Open doors first, so this section can never show fewer doors than the
+    # DOORS OPEN TO YOU stat directly above it claims.
+    cards = "".join(db.card_html(it, today, prefix="docket/")
+                    for it in db.home_cards(dated, today, 3))
     closing = f"""<h2 data-reveal><a href="docket/">The docket</a></h2>
 <p class="sub" data-reveal>Every AI infrastructure decision in Alaska, tracked daily with a source on
 every fact. Gold means a door is open to the public right now.</p>
@@ -2777,6 +2781,20 @@ var sec=document.getElementById('homevidsec');if(!sec||!window.fetch)return;
 fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
   var base=m.media_base||'';
   var vs=(m.videos||[]).filter(function(v){return v&&v.video});
+  /* THE VIDEO COUNTER SELF-CORRECTS (2026-08-05). video_count() reads the feed
+     at BUILD time, but docs/videos/videos.json is appended to by publish_feed.py
+     in the alaska-ai-weekly repo on its own schedule, so a video landing after
+     today's build leaves the homepage stat one behind until the next one. That
+     is exactly what happened on 2026-08-05: the build read 33 and the 34th
+     video landed hours later. The number is re-read here from the same fetch
+     this section already makes, so the page is right whenever it is loaded.
+     The server-rendered number stays as the no-JS fallback. */
+  var st=document.getElementById('vidstat');
+  if(st&&vs.length){
+    var n=vs.length;
+    st.setAttribute('data-count',String(n));
+    if(!st.dataset.counted)st.textContent=(n<10?'0':'')+n;
+  }
   if(!vs.length)return;
   var v=vs[0];
   var abs=function(u){return /^https?:\\/\\//.test(u)?u:base+u};

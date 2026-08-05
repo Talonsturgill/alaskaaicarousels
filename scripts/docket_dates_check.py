@@ -364,6 +364,24 @@ def check_built_site(rep, items, today, out):
         rep.ok(shown == sorted(shown), f"{name} cards",
                f"closing-soon cards are out of date order: {shown}")
 
+    # The homepage stat and the cards under it are one claim, not two. On
+    # 2026-08-05 the header read 02 DOORS OPEN TO YOU and the strip below it
+    # showed one gold card, because the cards were picked by soonest date and
+    # two milestones outranked a door. The maintainer counted them and caught
+    # it; nothing here could. A door is the only thing on that page a reader
+    # can act on, so the strip shows every one it has room for.
+    hbody = home.read_text(encoding="utf-8")
+    strip = re.search(r'<div class="cards">(.*?)</div>\s*<div class="ctarow"',
+                      hbody, flags=re.S)
+    rep.ok(strip is not None, "home cards", "no closing-soon card strip on the home page")
+    if strip:
+        slots = len(re.findall(r'class="badge b-', strip.group(1)))
+        gold = len(re.findall(r'class="badge b-open"', strip.group(1)))
+        doors = db.open_count(items, today)
+        rep.ok(gold == min(doors, slots), "home cards",
+               f"header says {doors} open door(s), the {slots} cards below it show "
+               f"{gold}. A door never loses a card slot to a milestone.")
+
     # Cross-surface: the header stat, the closing-soon cards on both pages, and
     # the homepage sentence all trace to one resolved value.
     # Per-decision pages are a SECOND surface rendering the same dates, and a

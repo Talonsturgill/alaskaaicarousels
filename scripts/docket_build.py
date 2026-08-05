@@ -297,6 +297,36 @@ def open_count(items, today):
     return sum(1 for it in items if resolve(it, today)["access"] == "open")
 
 
+def home_cards(dated, today, n=3):
+    """The homepage's card set. SELECTION prefers every open door; ORDER stays
+    the order of the dates the cards print.
+
+    Why this is not just dated[:n] (2026-08-05). The stat directly above these
+    cards counts open doors with open_count(), and the cards were selected by
+    soonest date alone, so the two disagreed the moment a milestone outranked a
+    door. On 2026-08-05 the homepage said 02 DOORS OPEN TO YOU and showed one,
+    because two Aug 10 milestones (an Air Force proposal date and a legislative
+    convening) sat ahead of the Aug 28 Dixon Glacier comment close. A milestone
+    is context and a door is the only thing on this page a reader can act on,
+    so a door never loses a slot to one. The maintainer counted the cards and
+    caught it, which is the check this function replaces.
+
+    Selection and order are two different questions, and the first version of
+    this function answered both with one list. Returning the doors first put
+    AUG 19, AUG 28, AUG 10 under a heading that promises the nearest deadlines,
+    and docket_dates_check caught it, correctly. That gate has been standing
+    since 2026-07-21 against exactly this, a card strip whose printed dates run
+    out of order under that heading. So choose door-first, then hand the chosen
+    set back in `dated` order, which is date order. Both readings survive: the
+    doors are all there for the stat to be true, and the dates climb for the
+    heading to be true.
+    """
+    door = [it for it in dated if resolve(it, today)["access"] == "open"]
+    rest = [it for it in dated if it not in door]
+    chosen = {id(it) for it in (door + rest)[:n]}
+    return [it for it in dated if id(it) in chosen]
+
+
 def _decolon(text):
     """Remove colons from prose the way prose_colon_gate counts them.
 
