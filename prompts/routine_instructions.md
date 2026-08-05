@@ -765,6 +765,27 @@ JSON in its final message, which YOU persist to
    and roots at "Alaska AI" like every other crumb. The page <title> may
    still say "The Bottleneck Scanner", which is the tool's name in prose.
 
+   THE SERVICES PAGE PUBLISHES NO PRICES (maintainer, 2026-08-05). The three
+   tiers used to carry FROM $2,500, FROM $6,000 and FROM $6,000 A MONTH. They
+   now read PRICED ON A CALL, and the reasoning is commercial rather than
+   cosmetic. A published floor prices some prospects out before they ever
+   ask, and it lets larger ones decide they are above the shop. Both are lost
+   conversations, so the number comes off and the call is the way to get it.
+
+   That means the JSON-LD too. `priceRange` and every `priceSpecification`
+   came off the same day, because those are what Google and the AI answer
+   engines read, and leaving them would keep quoting the old figures in
+   search long after the page stopped showing them. `makesOffer` stays with
+   names and descriptions, since naming what is sold is the SEO value.
+
+   Do not restore a price, a starting price, a range, or a "from" figure
+   anywhere on the site or in its markup. The financing paragraph STAYS, and
+   it is now the mechanism, since it already ends by inviting the reader to
+   raise money as a subject. The lead form's Budget range field also stays;
+   it asks what the READER can spend, which is qualification and not a price
+   list, and its top band exists so a large prospect can see the shop plays
+   at that level.
+
    The SOCIALS X entry points at https://x.com/Microvestapp, which is not an
    alaskaai handle. That is DELIBERATE (maintainer, 2026-08-04), asked and
    answered. It is the maintainer's account and it stays in the footer row
