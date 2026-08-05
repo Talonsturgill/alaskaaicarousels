@@ -1,0 +1,132 @@
+name: gas watch
+
+# Cook Inlet Gas Watch collects a daily numeric record of Southcentral Alaska's
+# natural gas position. The CINGSA dashboard holds today's snapshot and nothing
+# else. No archive, no JSON endpoint, no history of any kind. A day that is not
+# collected is a day of series that cannot be recovered later, which makes a
+# missed run the one irreversible failure this project has.
+#
+# WHY THIS IS NOT A CAROUSEL PHASE. CLAUDE.md says a failed run commits evidence
+# and does not merge. That is right for editorial output and wrong for a time
+# series. If a carousel run failed its quality gates on a Tuesday, Tuesday's
+# storage reading would be gone for good. So the collector runs on its own
+# schedule, indifferent to whether the day's story was any good.
+#
+# TWICE DAILY on purpose. CINGSA posts once a day and sits behind a CDN that
+# hands out an occasional redirect or 403, and NWS returns an occasional 503.
+# The evening run is the primary and the next morning is the retry. The record
+# is keyed to the CINGSA nomination day rather than the run date, so both runs
+# resolve to the same day and the collector's idempotency check sees them as
+# one. A second run after a good one writes nothing.
+
+on:
+  schedule:
+    # 23:20 AKDT, and 22:20 AKST in winter, after the daily CINGSA post.
+    - cron: "20 7 * * *"
+    # 08:20 AKDT the following morning, the retry.
+    - cron: "20 16 * * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/gaswatch_collect.py"
+      - "config/gaswatch_model.json"
+      - ".github/workflows/gaswatch.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/gaswatch_collect.py"
+      - "config/gaswatch_model.json"
+      - ".github/workflows/gaswatch.yml"
+
+# Two runs a day plus the routine's own commits to main means these can overlap.
+# Appends are cheap and a lost one costs a day, so queue rather than cancel.
+concurrency:
+  group: gaswatch
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Hermetic, no network, and it runs before anything is fetched or written.
+      # It proves the coefficients in config still produce the backtests they
+      # claim, that the dashboard parser still returns the snapshot verified on
+      # August 3rd, 2026, and that the parser goes red when the page moves under
+      # it. A gate that cannot fail certifies nothing, so the red cases are part
+      # of the same run.
+      - name: The model reproduces, and the parser can still go red
+        run: python3 scripts/gaswatch_collect.py --self-test
+
+      # A failed fetch still writes a record, marked unverified, carrying no
+      # number forward from yesterday. That record has to be committed before
+      # the job is allowed to go red, otherwise surfacing the failure would
+      # throw away the evidence of it.
+      - name: Collect today's record
+        if: github.event_name != 'pull_request'
+        id: collect
+        run: |
+          set +e
+          python3 scripts/gaswatch_collect.py
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Commit the append
+        if: github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- ledger/gaswatch.jsonl; then
+            echo "Nothing appended, so nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          summary=$(python3 - <<'PY'
+          import json, pathlib
+          rec = json.loads(pathlib.Path("ledger/gaswatch.jsonl").read_text().strip().split("\n")[-1])
+          cin = rec.get("cingsa") or {}
+          if rec.get("verified"):
+              bit = f"{cin['inventory_mcf'] / 1e6:.2f} Bcf, {cin['inventory_pct_of_design']} percent of design"
+          else:
+              bit = f"unverified, {cin.get('fetch_status', 'no reading')}"
+          flags = ", ".join(rec.get("flags") or []) or "no flags"
+          print(f"gaswatch({rec['date']}): {bit}, {flags}")
+          PY
+          )
+          git add ledger/gaswatch.jsonl
+          git commit -m "$summary"
+          # The daily carousel routine commits to main too, so a push can lose a
+          # race it did nothing wrong to lose. Rebase and retry rather than fail
+          # and drop the day's reading.
+          for delay in 2 4 8 16 0; do
+            if git push origin HEAD:main; then
+              echo "Pushed."
+              exit 0
+            fi
+            if [ "$delay" = "0" ]; then
+              echo "Push failed after every retry."
+              exit 1
+            fi
+            sleep "$delay"
+            git pull --rebase origin main
+          done
+
+      # Last, so the commit above always lands first. A non-zero collector exit
+      # means the record went in unverified or the day could not be repaired,
+      # and that has to be visible rather than silently green.
+      - name: Surface a failed or stale collection
+        if: github.event_name != 'pull_request'
+        run: |
+          status="${{ steps.collect.outputs.status }}"
+          case "$status" in
+            0) echo "Verified record for the day." ;;
+            2) echo "Record written UNVERIFIED. A fetch failed or the source is stale."; exit 1 ;;
+            3) echo "An unverified record already stands for this date and the retry also failed."; exit 1 ;;
+            *) echo "Collector exited $status."; exit 1 ;;
+          esac
