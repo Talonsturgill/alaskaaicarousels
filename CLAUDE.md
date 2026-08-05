@@ -140,6 +140,10 @@ python .claude/skills/carousel-engine/assemble.py --slides-dir examples/demo-dec
 
 ## House rules that never bend
 
+Dates take the ordinal, month first: "August 10th", never "10 August" and never a bare
+"August 10" (owner, 2026-08-05). ISO stays correct for a citation stamp or a ledger field.
+Captions run under 6.2 commas per 100 words, ten percent below this deck's own shipped mean.
+Both are enforced as hard fails in scripts/caption_check.py and spelled out in config/brand.yaml.
 No em/en dashes anywhere. No emojis. Straight quotes. Every fact carries a
 claim-id. No topic repeats within 30 days. No two decks visually alike
 (ledger-enforced). Vector-text PDFs (raster fallback acceptable if the
