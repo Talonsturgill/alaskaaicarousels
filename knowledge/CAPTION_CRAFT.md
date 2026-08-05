@@ -118,6 +118,40 @@ look like the same language. Eleven of the first 26 shipped captions broke
 this. `caption_check.py` fails both the day-first form and a bare "August 27"
 with no ordinal and no year.
 
+**NO FIRST PERSON. EVER.** (maintainer rule, 2026-08-05). No I, we, us, our, my
+or me anywhere in the caption, outside a straight-quoted source. The page is an
+analyst describing the world, never a narrator describing their own work.
+
+**THIS RULE NEEDS TWO CHECKS AND THAT IS THE WHOLE LESSON.** A pronoun grep
+over all 26 shipped captions returns ZERO bare hits, so by that measure the
+page never had a first-person problem. It had one anyway, and it wore no
+pronoun. No.26 shipped "No page anyone could reach shows what SEDS-AK was
+worth" and opened a paragraph with "Enclosed,". Both are the studio narrating
+its own search and its own envelope, and the first is literally the
+de-pronouned rewrite of a slide that says "any page we could reach". Ban the
+pronouns and the posture together, or the posture just drops the pronoun and
+carries on.
+
+The fix is always the same move. Convert a claim about the SEARCH into a claim
+about the RECORD. "No page anyone could reach shows the figure" becomes "No
+published page shows the figure." "Enclosed, the objection and the reply"
+becomes "The objection and the reply, as printed." What the studio tried is
+never the story; what is true is.
+
+`caption_check.py` fails both the pronouns and the named postures. Two
+deliberate holes in the pronoun list, so the gate does not cry wolf: "mine" is
+omitted because this page covers Graphite Creek, Red Dog and Ambler and "the
+mine" is a noun here far more often than a possessive, and an all-caps match
+longer than one character is skipped so "the US Air Force" reads as a country.
+
+**NEVER OPEN A SENTENCE WITH "AND" OR "BUT"** (maintainer rule, 2026-08-05).
+They are conjunctions that join clauses, so a sentence starting on one is a
+fragment wearing a full stop. Join it to the sentence before with a comma, or
+drop the word entirely, which usually reads better than either. Currently clean
+across all 26 shipped captions, so this gate is preventive: it exists because
+the habit is all over the run records and the retros and it would eventually
+leak into the copy.
+
 **SPEND FEWER COMMAS.** Budget is **1.05 commas per 100 characters** of caption
 body, hashtag line excluded (maintainer rule, 2026-08-05). The number is not a
 guess: every shipped caption was measured, 26 of them, and the mean was 1.17

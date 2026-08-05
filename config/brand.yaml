@@ -33,7 +33,9 @@ brand:
       - "Don't open with 'Imagine...', 'In an era where...', or 'It's no secret that...'"
       - "Don't use 'game-changer', 'revolutionize', 'disrupt', 'synergy', or 'leverage' (as a verb)."
       - "Don't use emojis. Anywhere. Slides or copy."
+      - "NO FIRST PERSON IN THE CAPTION, EVER (maintainer rule, 2026-08-05). No I, we, us, our, my or me outside a straight-quoted source. The page describes the world; it never narrates its own work. This also bans the pronoun-free version of the same posture, 'no page anyone could reach', 'Enclosed,', 'what the search turned up'. Say what is true of the record instead. Enforced by scripts/caption_check.py."
       - "Don't write 'we' or 'us' implying speaking for Alaskans. Speak about Alaska, not as Alaska."
+      - "NEVER OPEN A SENTENCE WITH 'And' OR 'But' (maintainer rule, 2026-08-05). They join clauses. A sentence starting on one is a fragment wearing a full stop. Join it to the sentence before with a comma, or drop the word. Enforced by scripts/caption_check.py."
       - "Don't invent quotes, numbers, or people. If it isn't in claims.json, it doesn't exist."
   date_format:
     # OWNER RULE 2026-08-05: "rn ur saying '10 August', the normal way to say it is August 10th."
@@ -122,4 +124,6 @@ visual:
     - "No emojis, no hashtags on slides."
     - "Never 'cannot' on a slide either. Write \"can't\" (maintainer rule, 2026-07-30)."
     - "Dates are month first on slides too. 'AUGUST 27TH' or 'AUGUST 27, 2026', never '27 AUGUST' (maintainer rule, 2026-08-05)."
+    - "No first person on a slide either. Slide 08 of No.26 shipped 'not on any page we could reach' and that is the drift this rule exists to stop (maintainer rule, 2026-08-05)."
+    - "No slide string opens with 'And' or 'But' (maintainer rule, 2026-08-05)."
     - "Every factual on-slide number/claim carries a claim-id in the dossier."
