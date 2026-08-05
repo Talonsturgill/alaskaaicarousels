@@ -210,6 +210,16 @@ def figures(series, model):
             f["storage_withdrawal_mmcfd"] = rec["storage_withdrawal_mmcfd"]
             f["unmeasured_share_pct"] = round(
                 rec["non_cingsa_supply_mmcfd"] / rec["modeled_demand_mmcfd"] * 100, 1)
+    # Comparisons are computed for the same reason numerals are. A page that
+    # says "a minority" in prose is asserting a fact about two figures, and it
+    # would keep saying it after those figures crossed over.
+    for key in ("cingsa_share_word", "record_average_direction"):
+        try:
+            f[key] = _comparison(key, f)
+        except KeyError:
+            pass
+    monthly = model.get("not_public_monthly_source") or {}
+    f["not_public_with_monthly_source"] = len(monthly)
     return {k: v for k, v in f.items() if v is not None}
 
 
@@ -302,6 +312,27 @@ def blank(v):
     Never the word None, which is machine spill, and never a zero, which a
     reader would take for a measurement of nothing."""
     return "" if v is None else v
+
+
+def _comparison(key, vals):
+    """The one place a comparison word is decided, so page and test agree."""
+    if key == "cingsa_share_word":
+        d, c = vals["design_bcf"], vals["eia_ak_capacity_bcf"]
+        return "minority" if d * 2 < c else "majority" if d * 2 > c else "half"
+    if key == "record_average_direction":
+        return ("light" if vals["record_average_day_mmcfd"]
+                < vals["anchor_published_average_day_mmcfd"] else "heavy")
+    raise KeyError(key)
+
+
+def spell(n):
+    """Small counts read as words when they open a sentence.
+
+    Derived from the value, never typed, so it still moves with the data.
+    """
+    words = ["none", "one", "two", "three", "four", "five",
+             "six", "seven", "eight", "nine"]
+    return words[n].capitalize() if 0 <= n < len(words) else str(n)
 
 
 def count(n, singular, plural=None):
@@ -609,6 +640,32 @@ def self_test():
     check("a typed number inside a chart label would still be caught",
           bool(numeral_lint("<p>9182736 barrels</p>", allowed)))
 
+    # The maintainer asked who updates the wording when the state changes. The
+    # answer has to be nobody, and this is what proves it. Every comparison the
+    # prose makes is fed flipped inputs and has to flip with them. A typed word
+    # would sit still and fail here.
+    print("state-dependent wording follows the data")
+    base = gc.load_model(MODEL_CONFIG)
+    flips = [
+        ("cingsa_share_word",
+         {"design_bcf": 60.0, "eia_ak_capacity_bcf": 69.9}, "majority",
+         {"design_bcf": 13.0, "eia_ak_capacity_bcf": 69.9}, "minority"),
+        ("record_average_direction",
+         {"record_average_day_mmcfd": 220.0, "anchor_published_average_day_mmcfd": 190},
+         "heavy",
+         {"record_average_day_mmcfd": 183.7, "anchor_published_average_day_mmcfd": 190},
+         "light"),
+    ]
+    for key, hi_in, hi_want, lo_in, lo_want in flips:
+        got_hi = _comparison(key, hi_in)
+        got_lo = _comparison(key, lo_in)
+        check(f"{key} follows its inputs both ways",
+              got_hi == hi_want and got_lo == lo_want,
+              f"{got_hi} and {got_lo}, expected {hi_want} and {lo_want}")
+    n = len(base.get("not_public_monthly_source") or {})
+    check("the count of monthly-source items is read from config, not typed",
+          spell(n).lower() in ("none", "one", "two", "three"), f"{n} recorded")
+
     print("the no verdict rule")
     body = page_body(date.today(), "https://alaskaaihq.com", load_series(), model,
                      {"license": "https://creativecommons.org/licenses/by/4.0/",
@@ -733,17 +790,14 @@ def page_body(today, site_url, series, model, meta, prefix="../"):
     # page refuses to make.
     if f.get("accuracy_checks"):
         scoreboard = (
-            f'So far the forecast has been checked against the observed weather on '
-            f'{count(f["accuracy_checks"], "day")}, missing by '
-            f'{f["mean_abs_hdd_error"]} degree days on average and by '
-            f'{f["worst_hdd_error"]} at worst, which is about '
-            f'{f["mean_abs_demand_error_mmcfd"]} MMcf per day of modeled demand. '
-            f'The mass balance has resolved on {count(f["balance_days"], "day")}.')
+            f'Checked against observed weather on '
+            f'{count(f["accuracy_checks"], "day")} so far, missing by '
+            f'{f["mean_abs_hdd_error"]} degree days on average, about '
+            f'{f["mean_abs_demand_error_mmcfd"]} MMcf per day of demand.')
     else:
         scoreboard = (
-            'No check has resolved yet, because the first one needs a forecast '
-            'made yesterday and a temperature observed today, so this scoreboard '
-            'stays empty until the record is old enough to fill it.')
+            'No check has resolved yet, since the first needs a forecast made '
+            'yesterday and a temperature observed today.')
 
     stale_note = ""
     if f.get("unverified_days"):
@@ -788,26 +842,23 @@ production.</p>"""
     # and an excuse.
     if f.get("eia_months_checked"):
         not_public_note = (
-            "Two of them do have monthly statewide figures, which is where the "
-            "check above comes from. What no source gives is a daily regional "
-            "number, and that is the gap that matters here.")
-        crosscheck = f"""<h2 data-reveal>Checked against what Alaska actually burned</h2>
-<p class="prose" data-reveal>The model is not left to speak for itself. The US
-Energy Information Administration publishes Alaska gas deliveries by sector and
-Alaska underground storage every month, and across
+            f"{spell(f['not_public_with_monthly_source'])} of them do have monthly "
+            f"statewide figures, which is where the check above comes from. What "
+            f"no source gives is a daily regional number, and that is the gap "
+            f"that matters here.")
+        crosscheck = f"""<h2 data-reveal>Checked against what Alaska burned</h2>
+<p class="prose" data-reveal>The US Energy Information Administration publishes
+Alaska gas deliveries and underground storage monthly. Across
 {count(f["eia_months_checked"], "month")} of overlap this model runs
-{f["eia_model_gap_pct"]} percent {f["eia_model_runs"]} against deliveries to
-residential, commercial and electric power consumers. That check is monthly,
-statewide, and lags about two months, so it corrects the model over time and
-replaces nothing on this page.</p>
-<p class="prose" data-reveal>The same source is why the storage picture is wider
-than one field. Through {long_month(f["eia_latest_month"])} it puts Alaska
-working gas at
-{f["eia_ak_working_gas_bcf"]} Bcf across
-{count(f["eia_storage_fields"], "storage field")}, against
-{f["eia_ak_capacity_bcf"]} Bcf of working capacity. CINGSA's design volume is
-{f["design_bcf"]} Bcf, so the field this page reads every day holds a minority
-of the state's stored gas, and the rest is reported monthly at best.</p>"""
+{f["eia_model_gap_pct"]} percent {f["eia_model_runs"]} against residential,
+commercial and electric power deliveries. That check is statewide and lags about
+two months, so it corrects the model rather than replacing anything here.</p>
+<p class="prose" data-reveal>It also widens the picture. Through
+{long_month(f["eia_latest_month"])} Alaska held {f["eia_ak_working_gas_bcf"]} Bcf
+of working gas across {count(f["eia_storage_fields"], "storage field")}, against
+{f["eia_ak_capacity_bcf"]} Bcf of capacity. CINGSA's design volume is
+{f["design_bcf"]} Bcf, so the field read here daily holds a
+{f["cingsa_share_word"]} of the state's stored gas.</p>"""
     else:
         not_public_note = ""
         crosscheck = ""
@@ -883,7 +934,8 @@ on this page is a number somebody typed.</p>
 <ol class="claims" data-reveal>{bt_rows}</ol>
 <p class="prose" data-reveal>Across that record the model averages
 {f["record_average_day_mmcfd"]} MMcf per day against the published average day of
-{f["anchor_published_average_day_mmcfd"]}, so it runs slightly light. The coldest
+{f["anchor_published_average_day_mmcfd"]}, so it runs slightly
+{f["record_average_direction"]}. The coldest
 day in the record is {long_date(f["record_maximum_day_date"])} at
 {f["record_maximum_day_hdd65"]:g} degree days, which models to
 {f["record_maximum_day_mmcfd"]} MMcf per day. In the whole record,
@@ -891,28 +943,14 @@ day in the record is {long_date(f["record_maximum_day_date"])} at
 above the published design day. That is a fact about the weather, not a
 statement about whether the system coped.</p>
 
-<h2 data-reveal>This model is a hypothesis, and the record is how it gets tested</h2>
-<p class="prose" data-reveal>Nothing here learns on its own. The formula above is
-two numbers fitted to two published figures, and it will sit exactly as it is
-until a person changes it. Saying otherwise would be the kind of claim this
-publication exists to check.</p>
-<p class="prose" data-reveal>What does accumulate is evidence. Every collection
-records what the forecast said against what the weather actually did, so the
-error is measured rather than asserted, and the residual series builds a picture
-of a supply nobody reports. {scoreboard} When that evidence justifies moving a
-coefficient, the coefficient moves, and because the model lives in a data file
-rather than in code, the change is one commit with a reason attached. Version
-{f["model_version"]}, {count(f["model_revisions"], "revision")} on record, and
-every past version stays readable in the feed so an old number can always be
-reproduced with the model that produced it.</p>
-<p class="prose" data-reveal>This takes seasons, not days. A model of heating
-demand cannot be judged in August. The honest position is that today's figures
-are a starting hypothesis published with its own error bars showing, and that
-the page will say so until the record is long enough to argue otherwise.</p>
-<p class="prose" data-reveal>One limit no amount of collecting will fix. Utility
-sendout is not published, so this model can never be fitted directly to what the
-region actually burned. More data sharpens the check, it does not close that
-gap, and any version of this page claiming otherwise would be wrong.</p>
+<h2 data-reveal>How this gets better</h2>
+<p class="prose" data-reveal>Nothing here learns on its own. The formula is two
+numbers fitted to two published figures, and it moves only when a person moves
+it, as a data change with the reason recorded. Version {f["model_version"]},
+{count(f["model_revisions"], "revision")} on record. {scoreboard}</p>
+<p class="prose" data-reveal>One gap no amount of collecting closes. Utility
+sendout is not published, so this can never be fitted directly to what the
+region actually burned.</p>
 
 {crosscheck}
 

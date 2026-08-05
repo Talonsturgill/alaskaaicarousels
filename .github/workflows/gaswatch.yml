@@ -29,13 +29,17 @@ on:
   pull_request:
     paths:
       - "scripts/gaswatch_collect.py"
+      - "scripts/gaswatch_build.py"
       - "config/gaswatch_model.json"
+      - "config/gaswatch_hdd_history.json"
       - ".github/workflows/gaswatch.yml"
   push:
     branches: [main]
     paths:
       - "scripts/gaswatch_collect.py"
+      - "scripts/gaswatch_build.py"
       - "config/gaswatch_model.json"
+      - "config/gaswatch_hdd_history.json"
       - ".github/workflows/gaswatch.yml"
 
 # Two runs a day plus the routine's own commits to main means these can overlap.
@@ -64,6 +68,12 @@ jobs:
       # of the same run.
       - name: The model reproduces, and the parser can still go red
         run: python3 scripts/gaswatch_collect.py --self-test
+
+      # The page library carries the numeral lint, the no-verdict assertions
+      # and the overclaim guard. Nothing was running it, so a change there
+      # could reach the site ungated.
+      - name: The page library holds its own rules
+        run: python3 scripts/gaswatch_build.py --self-test
 
       # A failed fetch still writes a record, marked unverified, carrying no
       # number forward from yesterday. That record has to be committed before
