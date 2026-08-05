@@ -49,6 +49,16 @@ maintainer can post in ninety seconds.
    nothing; that must never recur. This is a hard cap on fan-out, independent
    of whether anything failed.
 
+19. THE GAS WATCH NUMBERS ARE NOT YOURS. `ledger/gaswatch.jsonl`,
+   `ledger/gaswatch_eia.json`, `config/gaswatch_model.json`,
+   `config/gaswatch_hdd_history.json`, `scripts/gaswatch_collect.py` and
+   `scripts/gaswatch_eia.py` are written by cron jobs and by deliberate
+   human refits. A run that edits any of them is corrupting a published
+   time series that cannot be rebuilt, because CINGSA keeps no archive.
+   You may edit the PRESENTATION (`scripts/gaswatch_build.py` HTML and CSS,
+   `site_build.gas_watch_page`) and nothing else. Phase 3.6 is the daily
+   look; it reports, it never blocks the run, and a bad deck never stops it.
+
 ## CONTEXT (read before starting)
 
 - This repo (alaskaaicarousels) is the working repo. If a sibling checkout
@@ -99,7 +109,7 @@ At wake, create `out/<date>/run_state.json`:
 {"run_date": "...", "carousel_no": N,
  "phases": {"wake": "pending", "craft_refresh": "pending",
   "research": "pending", "claims": "pending", "docket": "pending",
-  "selection": "pending",
+  "gas_watch": "pending", "selection": "pending",
   "directors_room": "pending", "copy": "pending", "art_build": "pending",
   "pixel_review": "pending", "flow_review": "pending", "assemble": "pending",
   "scoring": "pending", "ship": "pending", "upgrade": "pending",
@@ -294,6 +304,79 @@ Right after claims:
 
 The site itself is rebuilt at ship time (Phase 11); this phase only
 maintains the data.
+
+## PHASE 3.6 — GAS WATCH ONCE OVER (daily eyes on the live page)
+
+`/gas-watch/` is Cook Inlet Gas Watch, the OTHER thing this site publishes.
+A daily numeric record of Southcentral Alaska's gas position, built by
+`scripts/gaswatch_build.py` from `ledger/gaswatch.jsonl`. Read the Gas Watch
+section of CLAUDE.md before touching anything here.
+
+You are the only pair of eyes on that page. The maintainer is not opening it
+each morning, and its collectors run on their own cron with nobody watching
+the OUTPUT. You rebuild `docs/` every run, and your Phase 12 engineer can edit
+any script, so you are also the most likely thing to break it.
+
+**THE HARD LINE. You do not produce the numbers and you never touch what does.**
+Off limits, every run, no exceptions:
+
+    scripts/gaswatch_collect.py     the parser, the model arithmetic, the
+                                    derivations, the flags
+    scripts/gaswatch_eia.py         the monthly cross check
+    config/gaswatch_model.json      coefficients, anchors, backtests
+    config/gaswatch_hdd_history.json   the observed weather record
+    ledger/gaswatch.jsonl           the series. append-only, cron-written
+    ledger/gaswatch_eia.json        the EIA figures
+
+Those are written by cron jobs and by deliberate human refits, and a run that
+edits them is corrupting a published time series that cannot be rebuilt. If
+one of them looks wrong, you REPORT it in the draft. You do not fix it.
+
+1. Build the site as normal, then run the checker. It is read-only and it
+   never aborts your run:
+
+       python scripts/gaswatch_pagecheck.py --out docs
+
+   Exit 0 clean, exit 2 needs attention. Exit 1 means the checker itself
+   broke, which is a Phase 12 problem, not a page problem.
+
+2. Then LOOK at it, because a checker cannot judge whether a page reads well.
+   Open `docs/gas-watch/index.html` at desktop and phone width the way Phase 8
+   looks at a slide. You are asking what a reporter would ask:
+
+   - does the meter read instantly, and does the big figure match the tiles
+   - is anything cut off, overlapping, or crowded on a phone
+   - does a sentence contradict a number beside it
+   - does a counted noun disagree with its count ("1 days")
+   - does any sentence assert a state the data could flip, which is a bug
+     even when it is currently true. Comparisons belong in
+     `gaswatch_build._comparison`, not in prose.
+   - does the page still refuse to say whether supply is adequate
+
+3. FIX only presentation. Layout, spacing, wording, a stale sentence, a
+   plural. Those live in `gaswatch_build.py`'s HTML and CSS and in
+   `site_build.gas_watch_page`. After any edit:
+
+       python scripts/gaswatch_build.py --self-test
+       python scripts/site_build.py --date <date> --out docs
+       python scripts/gaswatch_pagecheck.py --out docs
+
+   Every numeral on that page must come from `gaswatch_build.figures()`. If
+   you find yourself typing a number into copy, you are doing it wrong, and
+   the build will refuse it anyway.
+
+4. Record one line in the run record and in the Gmail draft (Phase 13), even
+   when clean, so the maintainer sees the page was looked at:
+
+       GAS WATCH: PASS, read <date>, <N> days on record, chart <present|absent>
+
+   On exit 2, say what is wrong and whether you fixed it or left it.
+
+**This phase NEVER fails the run.** CLAUDE.md keeps the collector independent
+of this routine precisely so neither holds the other hostage. A gas problem is
+reported and carried in the draft; it does not block the deck, and a bad deck
+does not stop the page being checked. If the page is broken in a way you must
+not fix, say so plainly in the draft and ship the deck.
 
 ## PHASE 4 — SELECTION + DEDUPE GATE
 
@@ -945,6 +1028,17 @@ JSON in its final message, which YOU persist to
 
 ## PHASE 12 — AUTOMATION RETRO + UPGRADE (the machine gets better every run)
 
+GAS WATCH GUARDRAIL, read before proposing any upgrade that touches it. The
+collectors, the model config and the two gas ledgers are off limits to this
+routine (non-negotiable 19). An upgrade may improve the PAGE, the checker or
+the gates around them. If an upgrade would change a coefficient, a parser, a
+derivation or a committed record, it is not an upgrade this routine makes;
+write it up in the draft as a proposal for the maintainer instead. Any change
+to `scripts/gaswatch_build.py` reruns its self-test AND
+`scripts/gaswatch_pagecheck.py` before ship, because that file carries the
+numeral lint, the no-verdict assertions and the overclaim guard.
+
+
 The editorial retro (Phase 14) improves the CONTENT brain; this phase
 improves the MACHINE. It runs after the merge and BEFORE the Gmail draft
 so every upgrade appears in that dated email, giving the maintainer a
@@ -1043,7 +1137,11 @@ ledger/docket.json (windows and votes within 14 days, linking the public
 tracker) and an "Automation changes this run" section rendered
 from ledger/upgrades.json (Phase 12's output) so the maintainer can
 monitor the machine's evolution from the dated emails alone and request
-a revert if a later run degrades. Create the draft via the Gmail MCP
+a revert if a later run degrades. Carry Phase 3.6's one-line GAS WATCH
+verdict in the draft too, clean or not. It is the only report the
+maintainer gets that the live page was looked at, and a silent pass is
+worth as much as a failure here, because silence is what a broken page
+would also produce. Create the draft via the Gmail MCP
 `create_draft` tool with the payload EXACTLY as the script emits it
 (subject, to, html_body).
 
