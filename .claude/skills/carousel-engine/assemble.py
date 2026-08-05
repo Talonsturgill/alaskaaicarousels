@@ -24,6 +24,7 @@ import glob
 import io
 import json
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -102,12 +103,16 @@ def vector_pdf(slides_dir: Path, out_pdf: Path, width: int, height: int, title: 
         print(f"vector pdf failed ({e}); falling back to raster", file=sys.stderr)
         return False
     finally:
-        for f in tmp.glob("*.pdf"):
-            f.unlink()
-        tmp.rmdir()
-        for f in resolved_dir.glob("*"):
-            f.unlink()
-        resolved_dir.rmdir()
+        # Cleanup must never decide the outcome. An exception raised in here
+        # REPLACES the `return False` the except block just computed, so main()
+        # never reaches raster_pdf() and the run ends with a traceback and no
+        # PDF at all. resolve_html writing anything nested, or a leftover
+        # directory from an interrupted run, is enough: unlink raises
+        # IsADirectoryError, or rmdir raises OSError on a non-empty dir.
+        # CLAUDE.md says images beat a broken PDF, and this path was yielding
+        # neither.
+        for d in (tmp, resolved_dir):
+            shutil.rmtree(d, ignore_errors=True)
 
 
 def raster_pdf(pngs, out_pdf: Path) -> bool:

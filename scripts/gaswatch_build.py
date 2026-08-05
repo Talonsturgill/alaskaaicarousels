@@ -125,12 +125,19 @@ def continuity(series):
 
 # ------------------------------------------------------------------ figures
 
-def figures(series, model):
+def figures(series, model, figs=None):
     """Every number the page displays, computed once, in one place.
+
+    Pass `figs` to reuse a dict a caller already built. A whole site build
+    computed this four times and reparsed the 4,599 day weather record nine
+    times, because home_strip, page_body, feed and site_build each asked
+    independently for the same answer from the same two inputs.
 
     If a figure is not in this dict it does not go on the page. That is what
     makes numeral_lint() able to prove the page carries nothing invented.
     """
+    if figs is not None:
+        return figs
     hist, hdd_series = gc.load_hdd_history(model, REPO)
     facts = gc.backtest_facts(model, hdd_series)
     anchors = model.get("calibration_anchors", {})
@@ -268,8 +275,10 @@ def eia_crosscheck(model, series, path=EIA_LEDGER):
         if not all(ym in s.get(k, {}) for k in sectors):
             continue
         # Only whole months. A partial month of degree days against a full
-        # month of deliveries would read as the model running light.
-        if len(days) < 28:
+        # month of deliveries would read as the model running light. Calendar
+        # length, not a flat 28, since the record grows by being extended mid
+        # month and its trailing month is therefore always short.
+        if not gc.is_whole_month(ym, len(days)):
             continue
         pairs.append((sum(gc.demand_exact(v, model) for v in days),
                       sum(s[k][ym] for k in sectors)))
@@ -302,7 +311,10 @@ def eia_crosscheck(model, series, path=EIA_LEDGER):
     # absent rather than differencing two different months.
     same_month = [r for r in series if r.get("verified")
                   and r["date"][:4] + r["date"][5:7] == month]
-    if same_month:
+    # Both halves have to be present. EIA-191 storage lags the delivery series
+    # that sets latest_month, which the loop above already allows for, so this
+    # differenced a figure against a key that was legitimately absent.
+    if same_month and "eia_ak_working_gas_bcf" in out:
         cingsa_bcf = same_month[-1]["cingsa"]["inventory_mcf"] / 1_000_000
         out["eia_non_cingsa_storage_bcf"] = round(
             out["eia_ak_working_gas_bcf"] - cingsa_bcf, 1)
@@ -697,7 +709,7 @@ design are measured. Modeled peak and non CINGSA supply are model output.</capti
 
 # ------------------------------------------------------------------ feed
 
-def feed(series, model, site_url, today, meta):
+def feed(series, model, site_url, today, meta, figs=None):
     """The gas-watch.json envelope.
 
     Reuses the docket feed's meta keys exactly, so the two read as one data
@@ -734,7 +746,7 @@ def feed(series, model, site_url, today, meta):
                       hdd_history_start=hist["start_date"],
                       hdd_history_end=hist["end_date"]),
         "model_history": model.get("model_history", []),
-        "crosscheck": {k: v for k, v in figures(series, model).items()
+        "crosscheck": {k: v for k, v in figures(series, model, figs).items()
                        if k.startswith("eia_")},
         "crosscheck_source": {
             "publisher": "US Energy Information Administration",
@@ -1000,14 +1012,14 @@ def gauge(f):
 </div>"""
 
 
-def home_strip(series, model, prefix=""):
+def home_strip(series, model, prefix="", figs=None):
     """The storage meter for the homepage, under the docket.
 
     Same figures dict as the page, so the two can never disagree. It renders
     nothing at all when there is no verified reading, because a homepage is the
     last place to explain an absence.
     """
-    f = figures(series, model)
+    f = figures(series, model, figs)
     if "as_of" not in f:
         return ""
     pct = f["inventory_pct_of_design"]
@@ -1034,7 +1046,7 @@ exists only because it is collected daily.</p>
 <div class="ctarow" data-reveal><a class="cta ghost" href="{prefix}gas-watch/">OPEN THE GAS WATCH</a></div>"""
 
 
-def page_body(today, site_url, series, model, meta, prefix="../"):
+def page_body(today, site_url, series, model, meta, prefix="../", figs=None):
     """The Gas Watch page.
 
     Structure follows what a reporter on deadline needs, in order. What the
@@ -1042,7 +1054,7 @@ def page_body(today, site_url, series, model, meta, prefix="../"):
     derived, and what nobody can see. The methodology is not an appendix here,
     it is the product.
     """
-    f = figures(series, model)
+    f = figures(series, model, figs)
     # Guard on a usable READING, not on a non-empty series. figures() correctly
     # drops as_of and the inventory keys when nothing is verified, and the body
     # below indexes them, so a ledger holding only unverified records raised
@@ -1136,6 +1148,69 @@ production.</p>"""
     # so. Two of them have monthly public figures, which is where the cross
     # check comes from. Correcting that is the difference between a limitation
     # and an excuse.
+    # The statewide paragraph needs the EIA-191 storage series, which lags the
+    # delivery series that sets latest_month. eia_crosscheck leaves those keys
+    # absent on purpose when it does, and this paragraph indexed them anyway,
+    # so an ordinary reporting lead crashed the whole site build. The delivery
+    # months and the storage months are separate facts, so they are now
+    # separate paragraphs and the second one waits for its data.
+    # figures() drops every None-valued key, so an optional model field is
+    # absent rather than empty. Two sentences indexed those keys anyway and
+    # took the whole site build down with a KeyError. A model with no `fit`
+    # block is a case underclaims() explicitly supports, and backtest_facts
+    # sets days_at_or_above_design_day to None on purpose when the design day
+    # anchor is gone. Both are now sentences that appear when their data does.
+    fitted = ""
+    if "fit_months" in f and "fit_mean_error_pct" in f:
+        fitted = (f" Fitted by least squares to {count(f['fit_months'], 'month')}"
+                  f" of observed Alaska deliveries to homes, businesses and power"
+                  f" plants, and refitted every time another month is published."
+                  f" It misses those months by {f['fit_mean_error_pct']} percent"
+                  f" on average, measured against the same record it is fitted"
+                  f" to.")
+
+    # Same shape. This whole paragraph is about the published design day, so it
+    # belongs to that anchor and goes with it if the anchor is ever dropped.
+    planning_gap = ""
+    if "anchor_published_design_day_mmcfd" in f:
+        planning_gap = f"""<p class="prose" data-reveal>It sits below the published
+planning figures, and that is expected rather than a problem. A design day of
+{f["anchor_published_design_day_mmcfd"]} MMcf per day is a peak carrying margin
+for a system operator to build against. This predicts what the region actually
+uses, which is a different question, and the gap between them is published here
+instead of tuned away.</p>"""
+
+    # The comparison against the published average day, and its magnitude and
+    # direction, all come from one anchor. _comparison already declines to set
+    # the last two when it is missing, so the clause travels as a unit.
+    against_average = ""
+    if all(k in f for k in ("anchor_published_average_day_mmcfd",
+                            "record_average_gap_pct", "record_average_direction")):
+        against_average = (
+            f" against the published average day of "
+            f"{f['anchor_published_average_day_mmcfd']}, which is "
+            f"{f['record_average_gap_pct']} percent "
+            f"{f['record_average_direction']}")
+
+    over_design = ""
+    if "record_maximum_day_days_at_or_above_design_day" in f:
+        over_design = (
+            f" Of the {f['hdd_record_days']:,} days on file, "
+            f"{spell(f['record_maximum_day_days_at_or_above_design_day']).lower()}"
+            f" model at or above the published design day. That is a fact about"
+            f" the weather, not a statement about whether the system coped.")
+
+    statewide = ""
+    if all(k in f for k in ("eia_ak_working_gas_bcf", "eia_storage_fields",
+                            "eia_ak_capacity_bcf")):
+        statewide = f"""
+<p class="prose" data-reveal>It also widens the picture. Through
+{long_month(f["eia_latest_month"])} Alaska held {f["eia_ak_working_gas_bcf"]} Bcf
+of working gas across {count(f["eia_storage_fields"], "storage field")}, against
+{f["eia_ak_capacity_bcf"]} Bcf of capacity. CINGSA is the only one that reports
+daily, and its {f["design_bcf"]} Bcf field is the one read here every morning.
+The rest surfaces monthly at best, which is why the daily record starts here.</p>"""
+
     if f.get("eia_months_checked"):
         not_public_note = (
             f"{spell(f['not_public_with_monthly_source'])} of them do have monthly "
@@ -1150,12 +1225,7 @@ businesses and power plants are what the demand model is fitted to, and each new
 month refits it. So the estimate answers to measured consumption rather than to a
 design document. The figures are statewide and lag about two months, which is why
 they correct the model rather than replace anything here.</p>
-<p class="prose" data-reveal>It also widens the picture. Through
-{long_month(f["eia_latest_month"])} Alaska held {f["eia_ak_working_gas_bcf"]} Bcf
-of working gas across {count(f["eia_storage_fields"], "storage field")}, against
-{f["eia_ak_capacity_bcf"]} Bcf of capacity. CINGSA is the only one that reports
-daily, and its {f["design_bcf"]} Bcf field is the one read here every morning.
-The rest surfaces monthly at best, which is why the daily record starts here.</p>"""
+{statewide}"""
     else:
         not_public_note = ""
         crosscheck = ""
@@ -1223,33 +1293,18 @@ that it is not, is using it wrong.</p>
 <h2 data-reveal>The model, in full</h2>
 <p class="prose" data-reveal>Regional demand in MMcf per day is
 {f["base_mmcfd"]} plus {f["slope_mmcfd_per_hdd"]} times heating degree days on a
-base of {f["hdd_base_f"]} degrees Fahrenheit. Version {f["model_version"]}, fitted
-by least squares to {count(f["fit_months"], "month")} of observed Alaska
-deliveries to homes, businesses and power plants, and refitted every time another
-month is published. It misses those months by {f["fit_mean_error_pct"]} percent
-on average, measured against the same record it is fitted to.</p>
-<p class="prose" data-reveal>It sits below the published planning figures, and
-that is expected rather than a problem. A design day of
-{f["anchor_published_design_day_mmcfd"]} MMcf per day is a peak carrying margin
-for a system operator to build against. This predicts what the region actually
-uses, which is a different question, and the gap between them is published here
-instead of tuned away.</p>
+base of {f["hdd_base_f"]} degrees Fahrenheit. Version {f["model_version"]}.{fitted}</p>
+{planning_gap}
 <p class="prose" data-reveal>Every figure below is recomputed at build time from
 {f["hdd_record_days"]:,} days of observed Anchorage degree days covering
 {long_date(f["hdd_record_start"])} to {long_date(f["hdd_record_end"])}. Nothing
 on this page is a number somebody typed.</p>
 <ol class="claims" data-reveal>{bt_rows}</ol>
 <p class="prose" data-reveal>Across that record the model averages
-{f["record_average_day_mmcfd"]} MMcf per day against the published average day of
-{f["anchor_published_average_day_mmcfd"]}, which is
-{f["record_average_gap_pct"]} percent {f["record_average_direction"]}. The coldest
+{f["record_average_day_mmcfd"]} MMcf per day{against_average}. The coldest
 day in the record is {long_date(f["record_maximum_day_date"])} at
 {f["record_maximum_day_hdd65"]:g} degree days, which models to
-{f["record_maximum_day_mmcfd"]} MMcf per day. Of the
-{f["hdd_record_days"]:,} days on file,
-{spell(f["record_maximum_day_days_at_or_above_design_day"]).lower()} model at or
-above the published design day. That is a fact about the weather, not a
-statement about whether the system coped.</p>
+{f["record_maximum_day_mmcfd"]} MMcf per day.{over_design}</p>
 
 <h2 data-reveal>This gets sharper the longer it runs</h2>
 <p class="prose" data-reveal>It launched {long_date(f["first_date"])} with a

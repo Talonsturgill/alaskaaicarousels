@@ -52,9 +52,25 @@ ABBREVIATIONS = {"Rep", "Sen", "Gov", "Sec", "Dept", "Mr", "Ms", "Mrs", "Dr",
                  "Ft", "Mt", "vs", "etc", "approx", "Assn", "Comm"}
 
 
+def ordinal(n):
+    """August 10th, never August 10. CLAUDE.md, house rules that never bend."""
+    if 10 <= n % 100 <= 20:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
 def pretty(iso):
+    """The subscriber email's date form.
+
+    This returned a bare "August 10", which CLAUDE.md names explicitly as
+    forbidden. Nothing gated it: lint() checks punctuation only, and
+    caption_check.py's DATE_FORMS, the enforcement CLAUDE.md cites, never sees
+    this file. So the rule held everywhere a gate was watching and nowhere else.
+    """
     d = ddate.fromisoformat(iso)
-    return f"{MONTH_FULL[d.month - 1]} {d.day}"
+    return f"{MONTH_FULL[d.month - 1]} {ordinal(d.day)}"
 
 
 def lint(text):
@@ -294,11 +310,79 @@ def send(subject, body, dry):
     return True
 
 
+def self_test():
+    """This file had no gate at all, which is how both of its bugs survived.
+
+    A bare "August 10" shipped to subscribers for weeks against a house rule
+    CLAUDE.md calls one that never bends, and --dry-run rewrote the one ledger
+    that guarantees an email cannot fire twice. lint() only ever checked
+    punctuation, and caption_check.py, the enforcement CLAUDE.md cites for the
+    date rule, never sees this file. So the rule held everywhere something was
+    watching and nowhere else.
+    """
+    ok = [True]
+
+    def check(label, cond, detail=""):
+        print(f"  {'PASS' if cond else 'FAIL'}  {label}{'  ' + detail if detail else ''}")
+        if not cond:
+            ok[0] = False
+
+    print("dates take the ordinal, month first")
+    cases = {"2026-08-01": "August 1st", "2026-08-02": "August 2nd",
+             "2026-08-03": "August 3rd", "2026-08-04": "August 4th",
+             "2026-08-10": "August 10th", "2026-08-11": "August 11th",
+             "2026-08-12": "August 12th", "2026-08-13": "August 13th",
+             "2026-08-21": "August 21st", "2026-08-22": "August 22nd",
+             "2026-08-23": "August 23rd", "2026-12-31": "December 31st"}
+    wrong = {k: pretty(k) for k, v in cases.items() if pretty(k) != v}
+    check("every awkward day number reads correctly", not wrong, str(wrong))
+    # \d+ can backtrack, so "August 10th" matched a naive lookahead by taking
+    # only the 1 and finding 0 next. Excluding a following digit is the point.
+    check("no bare month-and-number survives",
+          not re.search(r"[A-Z][a-z]+ \d+(?![a-z\d])",
+                        " ".join(pretty(k) for k in cases)))
+
+    print("composed copy carries the house form")
+    # The real shape due_alerts emits, (key, kind, item, deadline).
+    item = {"id": "x", "title": "A tracked decision",
+            "summary": "One sentence about it.",
+            "access_note": "Open to the public.",
+            "sources": [{"url": "https://example.org/a"}]}
+    deadline = {"label": "Comment window closes", "date": "2026-08-10",
+                "kind": "comment window"}
+    due = [("x/near/2026-08-10", "near", item, deadline)]
+    subject, body = compose(due, ddate(2026, 8, 5))
+    check("compose emits an ordinal date", "August 10th" in body,
+          next((ln for ln in body.splitlines() if "August" in ln), "no date line"))
+    check("and no bare one",
+          not re.search(r"[A-Z][a-z]+ \d+(?![a-z\d])", body))
+
+    print("the punctuation lint still works")
+    for bad in ("an em dash \u2014 here", "a curly \u2019quote"):
+        try:
+            lint(bad)
+            check(f"rejects {bad[:12]!r}", False, "passed anyway")
+        except SystemExit:
+            check(f"rejects {bad[:12]!r}", True)
+
+    print()
+    if not ok[0]:
+        print("self-test FAILED")
+        return 1
+    print("self-test clean")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--date", required=True)
+    ap.add_argument("--date")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
+    if args.self_test:
+        return self_test()
+    if not args.date:
+        ap.error("--date is required unless --self-test is given")
     today = ddate.fromisoformat(args.date)
 
     ledger = json.loads((REPO / "ledger/docket.json").read_text())
@@ -309,8 +393,16 @@ def main():
     db.validate(ledger["items"])
     sent = load_sent()
     if migrate_window_keys(sent, ledger["items"], today):
-        (REPO / "ledger/alerts.json").write_text(json.dumps(sent, indent=2) + "\n")
-        print("alerts ledger migrated to dated window-open keys")
+        # A dry run writes nothing, including this. The migration ran before
+        # the dry-run branch was ever reached, so inspecting what WOULD be sent
+        # left a modified alerts ledger in the working tree, and the run then
+        # committed it. That file is the only thing guaranteeing a subscriber
+        # email cannot fire twice, so it is not one to touch on a read.
+        if args.dry_run:
+            print("alerts ledger needs a key migration, not writing it on a dry run")
+        else:
+            (REPO / "ledger/alerts.json").write_text(json.dumps(sent, indent=2) + "\n")
+            print("alerts ledger migrated to dated window-open keys")
     sent_keys = {e["key"] for e in sent["sent"]}
     due = due_alerts(ledger["items"], sent_keys, today)
     if not due:

@@ -86,22 +86,37 @@ def main_region(page_html):
     return m.group(1) if m else page_html
 
 
-def stale_model_output(figs, model):
-    """Whether a displayed model figure disagrees with the published formula.
+PEAK_ON_PAGE = (r'gw-num">\s*(-?[\d.]+)\s*</div>\s*<div class="gw-lab">'
+                r'\s*MMcf/d modeled peak ahead')
+
+
+def stale_model_output(page_html, figs, model):
+    """Whether the peak PRINTED ON THE PAGE disagrees with the published formula.
 
     Each record stamps the model that produced its numbers, so for a day after
     every refit the ledger holds a modeled peak built on the old coefficients.
     The page recomputes model output from the record's measured inputs for
-    exactly that reason, and this is what proves it did. A reader who takes the
-    formula off the page and the degree days off the page has to arrive at the
-    number beside them.
+    exactly that reason, and this is what proves it did.
+
+    It reads the rendered HTML, which the first version of this did not. That
+    one took the peak out of figures() and compared it against the same formula
+    applied to the same inputs by the same model, so it was the identity
+    check gc.demand(h, m) == gc.demand(h, m) wearing a costume. Moving the
+    model +7 MMcf/d left figures at 111 and the shipped page at 104 and it
+    still returned None. A gate that reads its answer from the thing it is
+    checking against is not a gate.
     """
     hdd = figs.get("peak_forecast_hdd")
-    shown = figs.get("peak_modeled_demand_mmcfd")
-    if hdd is None or shown is None:
+    if hdd is None:
         return None
-    want = gw.gc.demand(hdd, model)
-    return None if shown == want else f"page shows {shown}, formula gives {want}"
+    m = re.search(PEAK_ON_PAGE, page_html)
+    if not m:
+        return "no modeled peak found on the page to check"
+    shown, want = float(m.group(1)), gw.gc.demand(hdd, model)
+    if shown == want:
+        return None
+    return (f"page prints {m.group(1)}, the published formula on "
+            f"{hdd} degree days gives {want}")
 
 
 def visible_text(page_html):
@@ -173,7 +188,7 @@ def check_page(out_dir, today=None):
             "the headline figure reaches the page",
             f"{figs['inventory_pct_of_design']} percent of design")
 
-    drift = stale_model_output(figs, model)
+    drift = stale_model_output(page, figs, model)
     (ok if not drift else bad)(
         "a reader can reproduce the modeled peak from the published formula",
         drift or f"{figs.get('peak_modeled_demand_mmcfd')} MMcf/d "
@@ -229,6 +244,39 @@ def render(rows, verdict):
 
 # ------------------------------------------------------------------ self test
 
+REFERENCE_META = {
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "license_label": "CC BY 4.0",
+    "attribution": "Alaska AI",
+    "publisher": "Alaska AI",
+    "spatial_coverage": "Alaska",
+    "docket_item_id": "enstar-cook-inlet-gas-storage",
+}
+
+
+def render_reference(out_dir, today=None):
+    """A correct page and feed, built here, for the self-test to work against.
+
+    Built from gaswatch_build rather than from site_build, so it needs no
+    Pillow, no fonts and no run artifacts, and it cannot be stale by
+    construction. It is a <main> wrapper around the same page_body the site
+    ships, which is all check_page scopes to anyway.
+    """
+    today = today or date.today()
+    series = gw.load_series()
+    model = gw.gc.load_model(gw.MODEL_CONFIG)
+    body = gw.page_body(today, "https://alaskaaihq.com", series, model,
+                        REFERENCE_META, prefix="../")
+    os.makedirs(os.path.join(out_dir, "gas-watch"), exist_ok=True)
+    with open(os.path.join(out_dir, "gas-watch", "index.html"), "w",
+              encoding="utf-8") as fh:
+        fh.write(f"<main>{body}</main>")
+    with open(os.path.join(out_dir, "gas-watch.json"), "w", encoding="utf-8") as fh:
+        json.dump(gw.feed(series, model, "https://alaskaaihq.com", today,
+                          REFERENCE_META), fh)
+    return out_dir
+
+
 def self_test():
     """The checker has to be able to go red, or it certifies nothing."""
     ok = [True]
@@ -239,9 +287,22 @@ def self_test():
             ok[0] = False
 
     import tempfile
-    good = os.path.join(REPO, "docs")
+
+    # HERMETIC. This used to open docs/ and assert the COMMITTED page passed,
+    # which made a gate about the checker into an assertion about the checkout.
+    # It ran third in gaswatch.yml, before the collector, and it exits 1, so a
+    # docs/ that lagged the model took the whole job down and the day's CINGSA
+    # reading with it. gaswatch-eia.yml arms exactly that every time it refits,
+    # since it commits a new model and does not rebuild the page. Measured:
+    # move base_mmcfd +7 without rebuilding and this self-test exits 1.
+    #
+    # So it renders its own page from the same library the site uses and tests
+    # the checker against that. Whether the page in docs/ is current is a real
+    # question, and it is the job of `--out docs`, which exits 2 and cannot
+    # abort anything.
+    good = render_reference(tempfile.mkdtemp())
     rows, verdict = check_page(good)
-    check("the shipped page passes", verdict in ("PASS", "WARN"),
+    check("a freshly built page passes", verdict in ("PASS", "WARN"),
           f"verdict {verdict}, " +
           ", ".join(f"{s} {l}" for s, l, _ in rows if s == "FAIL") or "no fails")
 
@@ -274,14 +335,19 @@ def self_test():
 
     live = gw.gc.load_model(gw.MODEL_CONFIG)
     figs = gw.figures(gw.load_series(), live)
-    check("the shipped peak reproduces from the shipped formula",
-          stale_model_output(figs, live) is None,
-          stale_model_output(figs, live) or "reproduces")
-    check("a peak left on old coefficients is caught",
-          stale_model_output(dict(figs, peak_modeled_demand_mmcfd=999), live)
-          is not None)
-    check("it says nothing when there is no peak to check",
-          stale_model_output({}, live) is None)
+    check("a freshly built page's peak reproduces from its formula",
+          stale_model_output(page, figs, live) is None,
+          stale_model_output(page, figs, live) or "reproduces")
+    # The case the identity-check version could not see. The page is left
+    # alone and the MODEL moves under it, which is what a refit does.
+    moved = dict(live, base_mmcfd=live["base_mmcfd"] + 7.0)
+    check("a page left behind by a refit is caught",
+          stale_model_output(page, figs, moved) is not None,
+          stale_model_output(page, moved and figs, moved) or "MISSED IT")
+    check("a page with no peak on it is reported, not passed",
+          stale_model_output("<main>nothing here</main>", figs, live) is not None)
+    check("it says nothing when the record carries no forecast",
+          stale_model_output(page, {}, live) is None)
 
     td = tempfile.mkdtemp()
     check("goes red when the page is missing", check_page(td)[1] == "FAIL")

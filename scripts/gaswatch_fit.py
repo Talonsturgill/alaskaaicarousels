@@ -69,7 +69,7 @@ def observations(model, eia_path=EIA_LEDGER):
         by_month.setdefault(d[:4] + d[5:7], []).append(v)
     rows = []
     for ym, days in sorted(by_month.items()):
-        if len(days) < 28:
+        if not gc.is_whole_month(ym, len(days)):
             continue
         if not all(ym in series.get(k, {}) for k in SECTORS):
             continue
