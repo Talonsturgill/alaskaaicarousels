@@ -383,8 +383,21 @@ def gas_watch_row(rows):
         return
     from datetime import date as _d
     age = (_d.today() - _d.fromisoformat(verified[-1]["date"])).days
-    note = ("%d day(s) on record, %d verified, no gaps, latest %s"
-            % (len(series), len(verified), verified[-1]["date"]))
+    # The monthly EIA cross check is what keeps the model honest against
+    # observed consumption, so a stale or absent one is worth seeing here.
+    xc = ""
+    try:
+        figs = gwb.figures(series, model)
+        if figs.get("eia_months_checked"):
+            xc = (", EIA through %s, model %d%% %s over %d months"
+                  % (figs["eia_latest_month"], figs["eia_model_gap_pct"],
+                     figs["eia_model_runs"], figs["eia_months_checked"]))
+        else:
+            xc = ", no EIA cross check on file"
+    except Exception as e:
+        xc = ", EIA cross check unreadable (%s)" % type(e).__name__
+    note = ("%d day(s) on record, %d verified, no gaps, latest %s%s"
+            % (len(series), len(verified), verified[-1]["date"], xc))
     if age > 2:
         rows.add("gas_watch", "WARN", "%s, which is %d days old" % (note, age))
     else:

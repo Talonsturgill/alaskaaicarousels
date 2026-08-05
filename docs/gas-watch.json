@@ -148,6 +148,22 @@
       ]
     }
   ],
+  "crosscheck": {
+    "eia_latest_month": "202605",
+    "eia_months_checked": 133,
+    "eia_model_ratio": 1.09,
+    "eia_model_gap_pct": 9,
+    "eia_model_runs": "high",
+    "eia_ak_working_gas_bcf": 30.0,
+    "eia_ak_capacity_bcf": 69.9,
+    "eia_storage_fields": 5
+  },
+  "crosscheck_source": {
+    "publisher": "US Energy Information Administration",
+    "url": "https://api.eia.gov/bulk/NG.zip",
+    "documentation": "https://www.eia.gov/opendata/",
+    "note": "Monthly, Alaska statewide, lags about two months. It checks the demand model and the storage picture. It is not a refit and it does not close the daily gap."
+  },
   "series": [
     {
       "date": "2026-08-05",
