@@ -1,0 +1,101 @@
+name: gas watch eia crosscheck
+
+# The daily collector reads CINGSA. This reads the US Energy Information
+# Administration once a month, which is what lets the demand model be checked
+# against gas Alaska actually consumed, and what puts CINGSA's volume in the
+# context of the state's other storage fields.
+#
+# WHY IT IS SEPARATE FROM gaswatch.yml. That workflow runs twice a day and a
+# missed run there costs a storage reading permanently. This one pulls a 4 MB
+# archive that changes once a month, so running it daily would be waste, and a
+# missed run costs nothing because the next one picks the same month up. The
+# two failure modes are different, so the two schedules are different.
+#
+# The bulk endpoint needs no API key, which is the only reason this can run
+# unattended. The keyed v2 API returns API_KEY_MISSING.
+
+on:
+  schedule:
+    # EIA posts the Natural Gas Monthly near the end of the month. Running on
+    # the 3rd and the 18th means a late posting is picked up without waiting a
+    # full month, and the collector writes nothing when the month has not moved.
+    - cron: "40 8 3 * *"
+    - cron: "40 8 18 * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/gaswatch_eia.py"
+      - ".github/workflows/gaswatch-eia.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/gaswatch_eia.py"
+      - ".github/workflows/gaswatch-eia.yml"
+
+concurrency:
+  group: gaswatch-eia
+  cancel-in-progress: false
+
+jobs:
+  crosscheck:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Hermetic, and it runs first. It proves the archive parser still finds
+      # every series it needs, and that it goes red when one disappears rather
+      # than publishing a cross check built on a partial pull.
+      - name: The parser works, and it can still go red
+        run: python3 scripts/gaswatch_eia.py --self-test
+
+      - name: Pull the monthly figures
+        if: github.event_name != 'pull_request'
+        id: pull
+        run: |
+          set +e
+          python3 scripts/gaswatch_eia.py
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+
+      # The page reads this file at build time, so a new month has to be
+      # committed for the cross check on the site to move.
+      - name: Commit a new month
+        if: github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- ledger/gaswatch_eia.json; then
+            echo "No new month, nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          month=$(python3 -c "import json;print(json.load(open('ledger/gaswatch_eia.json'))['latest_month'])")
+          git add ledger/gaswatch_eia.json
+          git commit -m "gaswatch(eia): figures through $month"
+          for delay in 2 4 8 16 0; do
+            if git push origin HEAD:main; then
+              echo "Pushed."
+              exit 0
+            fi
+            if [ "$delay" = "0" ]; then
+              echo "Push failed after every retry."
+              exit 1
+            fi
+            sleep "$delay"
+            git pull --rebase origin main
+          done
+
+      - name: Surface a failed pull
+        if: github.event_name != 'pull_request'
+        run: |
+          status="${{ steps.pull.outputs.status }}"
+          if [ "$status" != "0" ]; then
+            echo "EIA pull exited $status."
+            exit 1
+          fi
+          echo "EIA pull clean."

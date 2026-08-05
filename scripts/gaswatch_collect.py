@@ -151,6 +151,15 @@ def http(probe, data=None, headers=None):
     4xx is not retried, because a 403 or a 404 will not fix itself in eight
     seconds.
     """
+    return http_bytes(probe, data=data, headers=headers).decode("utf-8", "ignore")
+
+
+def http_bytes(probe, data=None, headers=None):
+    """The same fetch, undecoded, for payloads that are not text.
+
+    The EIA bulk dataset is a zip archive, and decoding it as utf-8 before
+    unzipping would corrupt it. Text callers go through http(), which decodes.
+    """
     h = {"User-Agent": UA}
     if headers:
         h.update(headers)
@@ -161,7 +170,7 @@ def http(probe, data=None, headers=None):
             req = urllib.request.Request(probe.url, data=data, headers=h,
                                          method=probe.method)
             with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
-                body = resp.read().decode("utf-8", "ignore")
+                body = resp.read()
                 probe.http_status = resp.status
                 probe.status = "ok"
                 probe.fetched_utc = iso_z(now_utc())

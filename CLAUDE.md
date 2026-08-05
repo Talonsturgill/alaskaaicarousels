@@ -79,6 +79,10 @@ are siblings, not parent and child. Four rules do not bend:
   docket's Buttondown tag. That list carries its own narrow written promise.
 - A failed fetch writes an explicit unverified record and carries NO number
   forward from yesterday.
+- Its accuracy claims are CHECKED, not asserted. The demand model is compared
+  monthly against observed EIA deliveries, and the page publishes the gap.
+  Nothing on that page trains or learns on its own, and saying otherwise is a
+  hard fail in scripts/gaswatch_build.py.
 
 The collector runs on `.github/workflows/gaswatch.yml`, not as a routine
 phase, and this is deliberate. The delivery policy below says a failed run
@@ -107,7 +111,8 @@ A missed day is the one irreversible failure this project has.
   public Alaska AI Docket, maintained in Phase 3.5), alerts.json (the
   no-repeat ledger for auto-sent subscriber emails). Committed state;
   updated every run. Plus gaswatch.jsonl (Cook Inlet Gas Watch, one
-  append-only line per day, written by its own workflow and NOT by a run).
+  append-only line per day, written by its own workflow and NOT by a run) and
+  gaswatch_eia.json (monthly EIA figures behind the model cross check).
 - `.claude/agents/` — scout, fact-checker, treatment-director, copywriter,
   pixel-critic, flow-critic, scorer, upgrade-engineer (Phase 12 machine
   upgrades; pinned to Opus by maintainer requirement).
@@ -126,7 +131,9 @@ A missed day is the one irreversible failure this project has.
   docket_build.py (shared library: projection, docket components, gates —
   site_build imports it), and gaswatch_collect.py (Cook Inlet Gas Watch
   collector, run by .github/workflows/gaswatch.yml, never by a routine run;
-  `--self-test` is hermetic and gates every scheduled collection).
+  `--self-test` is hermetic and gates every scheduled collection), and
+  gaswatch_eia.py (the monthly EIA cross check, own workflow, keyless bulk
+  pull; it is what checks the demand model against observed consumption).
 - `docs/` — the public Alaska AI site, published by GitHub Pages
   (.github/workflows/pages.yml) on every merge to main that touches it:
   https://alaskaaihq.com/ (GitHub Pages, custom domain)

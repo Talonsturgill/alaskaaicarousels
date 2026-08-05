@@ -61,6 +61,11 @@ def ordinal(n):
     return f"{n}{suffix}"
 
 
+def long_month(ym):
+    """EIA stamps months as 202605. A reader wants May 2026."""
+    return f"{MONTHS[int(ym[4:6]) - 1]} {ym[:4]}"
+
+
 def long_date(iso):
     d = date.fromisoformat(iso)
     return f"{MONTHS[d.month - 1]} {ordinal(d.day)}, {d.year}"
@@ -167,6 +172,7 @@ def figures(series, model):
             sum(errs) / len(errs) * model["slope_mmcfd_per_hdd"], 1)
     balanced = [c for c in checks if c.get("non_cingsa_supply_mmcfd") is not None]
     f["balance_days"] = len(balanced)
+    f.update(eia_crosscheck(model, series))
     f.update({f"anchor_{k}": v for k, v in anchors.items()
               if isinstance(v, (int, float))})
     for bid, vals in facts.items():
@@ -205,6 +211,72 @@ def figures(series, model):
             f["unmeasured_share_pct"] = round(
                 rec["non_cingsa_supply_mmcfd"] / rec["modeled_demand_mmcfd"] * 100, 1)
     return {k: v for k, v in f.items() if v is not None}
+
+
+EIA_LEDGER = os.path.join(REPO, "ledger", "gaswatch_eia.json")
+
+
+def eia_crosscheck(model, series, path=EIA_LEDGER):
+    """The monthly external check, recomputed here rather than stored.
+
+    Two things the project could not do before. The demand model gets compared
+    against observed Alaska deliveries to residential, commercial and electric
+    power consumers, and storage outside CINGSA falls out of Alaska statewide
+    working gas less the volume this page measures daily.
+
+    Every figure is computed from the committed EIA file and the committed HDD
+    record, so the same no-typed-numeral rule covers it.
+    """
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding="utf-8") as fh:
+        eia = json.load(fh)
+    s = eia.get("series") or {}
+    month = eia.get("latest_month")
+    if not month or not s:
+        return {}
+
+    _, hdd_series = gc.load_hdd_history(model, REPO)
+    by_month = {}
+    for d, v in hdd_series:
+        by_month.setdefault(d[:4] + d[5:7], []).append(v)
+
+    pairs = []
+    for ym, days in sorted(by_month.items()):
+        obs = sum(s.get(k, {}).get(ym, 0) for k in
+                  ("residential_mmcf", "commercial_mmcf", "electric_power_mmcf"))
+        if not obs:
+            continue
+        # Only whole months. A partial month of degree days against a full
+        # month of deliveries would read as the model running light.
+        if len(days) < 28:
+            continue
+        pairs.append((sum(gc.demand_exact(v, model) for v in days), obs))
+    if not pairs:
+        return {}
+    modeled = sum(p[0] for p in pairs)
+    observed = sum(p[1] for p in pairs)
+
+    out = {
+        "eia_latest_month": month,
+        "eia_months_checked": len(pairs),
+        "eia_model_ratio": round(modeled / observed, 2),
+        "eia_model_gap_pct": round(abs(modeled / observed - 1) * 100),
+        "eia_model_runs": "high" if modeled > observed else "low",
+        "eia_ak_working_gas_bcf": round(s["ak_working_gas_mmcf"][month] / 1000, 1),
+        "eia_ak_capacity_bcf": round(s["ak_working_gas_capacity_mmcf"][month] / 1000, 1),
+        "eia_storage_fields": s["ak_storage_field_count"][month],
+    }
+    # Storage outside CINGSA needs a CINGSA reading in the same month EIA
+    # reports. Until the daily record is old enough to overlap, this stays
+    # absent rather than differencing two different months.
+    same_month = [r for r in series if r.get("verified")
+                  and r["date"][:4] + r["date"][5:7] == month]
+    if same_month:
+        cingsa_bcf = same_month[-1]["cingsa"]["inventory_mcf"] / 1_000_000
+        out["eia_non_cingsa_storage_bcf"] = round(
+            out["eia_ak_working_gas_bcf"] - cingsa_bcf, 1)
+    return out
 
 
 def allowed_numerals(figs, model, extra_strings=()):
@@ -447,6 +519,15 @@ def feed(series, model, site_url, today, meta):
                       hdd_history_start=hist["start_date"],
                       hdd_history_end=hist["end_date"]),
         "model_history": model.get("model_history", []),
+        "crosscheck": {k: v for k, v in figures(series, model).items()
+                       if k.startswith("eia_")},
+        "crosscheck_source": {
+            "publisher": "US Energy Information Administration",
+            "url": "https://api.eia.gov/bulk/NG.zip",
+            "documentation": "https://www.eia.gov/opendata/",
+            "note": "Monthly, Alaska statewide, lags about two months. It checks "
+                    "the demand model and the storage picture. It is not a refit "
+                    "and it does not close the daily gap."},
         "series": series,
     }
 
@@ -701,6 +782,36 @@ production.</p>"""
     not_public = "".join(f"<li><p>{esc(x.replace('_', ' '))}</p></li>"
                          for x in model.get("not_public", []))
 
+    # The build brief called all three of these not public, and this page said
+    # so. Two of them have monthly public figures, which is where the cross
+    # check comes from. Correcting that is the difference between a limitation
+    # and an excuse.
+    if f.get("eia_months_checked"):
+        not_public_note = (
+            "Two of them do have monthly statewide figures, which is where the "
+            "check above comes from. What no source gives is a daily regional "
+            "number, and that is the gap that matters here.")
+        crosscheck = f"""<h2 data-reveal>Checked against what Alaska actually burned</h2>
+<p class="prose" data-reveal>The model is not left to speak for itself. The US
+Energy Information Administration publishes Alaska gas deliveries by sector and
+Alaska underground storage every month, and across
+{count(f["eia_months_checked"], "month")} of overlap this model runs
+{f["eia_model_gap_pct"]} percent {f["eia_model_runs"]} against deliveries to
+residential, commercial and electric power consumers. That check is monthly,
+statewide, and lags about two months, so it corrects the model over time and
+replaces nothing on this page.</p>
+<p class="prose" data-reveal>The same source is why the storage picture is wider
+than one field. Through {long_month(f["eia_latest_month"])} it puts Alaska
+working gas at
+{f["eia_ak_working_gas_bcf"]} Bcf across
+{count(f["eia_storage_fields"], "storage field")}, against
+{f["eia_ak_capacity_bcf"]} Bcf of working capacity. CINGSA's design volume is
+{f["design_bcf"]} Bcf, so the field this page reads every day holds a minority
+of the state's stored gas, and the rest is reported monthly at best.</p>"""
+    else:
+        not_public_note = ""
+        crosscheck = ""
+
     return f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <div class="chip kind">LIVE INSTRUMENT &middot; {esc(meta["license_label"])}</div>
 <h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">Cook Inlet Gas Watch</h1>
@@ -802,9 +913,12 @@ sendout is not published, so this model can never be fitted directly to what the
 region actually burned. More data sharpens the check, it does not close that
 gap, and any version of this page claiming otherwise would be wrong.</p>
 
-<h2 data-reveal>What is not public</h2>
+{crosscheck}
+
+<h2 data-reveal>What is not reported daily</h2>
 <p class="prose" data-reveal>These are the things no public feed reports daily,
-and their absence is why this page publishes numbers rather than conclusions.</p>
+and their absence is why this page publishes numbers rather than conclusions.
+{not_public_note}</p>
 <ol class="claims" data-reveal>{not_public}</ol>
 
 <h2 data-reveal>How to cite it</h2>
