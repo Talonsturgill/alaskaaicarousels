@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Desk Answer Book, a working demonstration for Fountainhead Hotels</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --panel:#0b1728;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --gold:#ffc72c;
+  --warn:#f2a43a;
+  --link:#5ac8f0;
+  --ui:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--ui);
+  letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:60rem;margin:0 auto;padding:0 18px 56px}
+
+/* ---------- permanent honesty banner ---------- */
+.banner{position:sticky;top:0;z-index:40;background:#0a1a12;
+  border-bottom:1px solid #1d4536;padding:9px 18px;font:400 12.5px/1.55 var(--mono);
+  color:#9fdcc4}
+.banner b{color:var(--accent);font-weight:400;letter-spacing:.16em}
+.banner .full{display:block;max-width:60rem;margin:0 auto}
+
+/* ---------- header ---------- */
+header{padding:30px 0 0}
+.mark{display:flex;align-items:center;gap:9px;font:400 11.5px/1 var(--mono);
+  letter-spacing:.18em;color:var(--ink);margin-bottom:26px}
+.mark i{width:12px;height:12px;display:block;background:var(--gold);
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(30px,5.4vw,46px);
+  line-height:1.03;letter-spacing:-.02em;margin:0 0 12px}
+.sub{color:var(--sub);max-width:36rem;margin:0 0 10px}
+.quiet{color:var(--cap);font-size:14px;max-width:38rem;margin:0;line-height:1.6}
+
+.eb{font:400 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);display:block;margin:0 0 12px}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(21px,3vw,27px);
+  line-height:1.2;letter-spacing:-.012em;margin:0 0 10px}
+h3{font-size:17px;font-weight:650;line-height:1.32;margin:0}
+section{margin:44px 0 0}
+hr.d{border:0;border-top:1px solid var(--rule);margin:44px 0 0}
+p.body{color:var(--sub);max-width:42rem}
+
+/* ---------- control deck ---------- */
+.deck{background:var(--panel);border:1px solid var(--rule);border-radius:12px;
+  padding:16px 16px 18px;margin:22px 0 0}
+.lbl{font:400 10.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cap);display:block;margin:0 0 9px}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;font-size:14px;color:var(--sub);background:#0e2036;
+  border:1px solid var(--rule);border-radius:8px;padding:8px 13px;cursor:pointer;
+  line-height:1.25;text-align:left}
+button:hover{border-color:#2c4d74;color:var(--ink)}
+button.on{background:rgba(60,230,180,.11);border-color:var(--accent);color:var(--ink)}
+button.on .bs{color:var(--accent)}
+.bs{display:block;font:400 10.5px/1.35 var(--mono);color:var(--cap);margin-top:3px;
+  letter-spacing:.03em}
+.deck .grp{margin-top:20px}
+.deck .grp:first-child{margin-top:0}
+
+.dateline{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 12px}
+.bigdate{font-family:var(--display);font-size:clamp(24px,4.4vw,34px);line-height:1;
+  letter-spacing:-.02em}
+.nudge{display:flex;gap:6px}
+.nudge button{padding:5px 11px;font:400 15px/1 var(--mono)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:26px;
+  background:transparent;cursor:pointer;display:block;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:3px;
+  background:linear-gradient(90deg,#1c3350,#2c4d74)}
+input[type=range]::-moz-range-track{height:4px;border-radius:3px;background:#24405f}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;
+  border-radius:50%;background:var(--accent);border:3px solid #02060f;margin-top:-8px;
+  box-shadow:0 0 0 1px var(--accent)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;
+  background:var(--accent);border:3px solid #02060f}
+.ticks{display:flex;justify-content:space-between;font:400 10.5px/1 var(--mono);
+  color:var(--cap);letter-spacing:.06em;margin-top:2px}
+
+/* ---------- season windows ---------- */
+.seasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;
+  margin:22px 0 0}
+.chip{border:1px solid var(--rule);border-radius:10px;padding:12px 13px;background:var(--panel)}
+.chip.open{border-color:rgba(60,230,180,.5);background:rgba(60,230,180,.07)}
+.chip .st{font:400 10.5px/1 var(--mono);letter-spacing:.16em;color:var(--cap)}
+.chip.open .st{color:var(--accent)}
+.chip .nm{font-size:14.5px;font-weight:650;margin:7px 0 4px;line-height:1.3}
+.chip .dt{font:400 12px/1.5 var(--mono);color:var(--cap)}
+.chip .nx{font-size:12.5px;color:var(--sub);margin-top:6px;line-height:1.45}
+.disagree{margin:14px 0 0;border-left:2px solid var(--warn);padding:2px 0 2px 14px;
+  color:var(--sub);font-size:14.5px;max-width:44rem;line-height:1.6}
+.disagree b{color:var(--warn);font-weight:650}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:6px;margin:36px 0 0;border-bottom:1px solid var(--rule)}
+.tabs button{border:0;background:transparent;border-bottom:2px solid transparent;
+  border-radius:0;padding:10px 4px;margin-right:22px;font-size:15px}
+.tabs button.on{background:transparent;color:var(--ink);border-bottom-color:var(--accent)}
+
+/* ---------- find ---------- */
+.find{margin:24px 0 0}
+input[type=text]{width:100%;font:inherit;font-size:16px;color:var(--ink);
+  background:var(--panel);border:1px solid var(--rule);border-radius:9px;padding:11px 13px}
+input[type=text]:focus{outline:0;border-color:var(--accent)}
+.hint{font-size:13px;color:var(--cap);margin:9px 0 0;line-height:1.6}
+.hint b{color:var(--sub);font-weight:650}
+.tryrow{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 0}
+.tryrow button{padding:5px 10px;font:400 12px/1.3 var(--mono)}
+.count{font:400 11.5px/1.5 var(--mono);letter-spacing:.08em;color:var(--cap);
+  margin:22px 0 12px;text-transform:uppercase}
+.miss{border:1px solid var(--rule);border-left:2px solid var(--warn);
+  border-radius:0 10px 10px 0;padding:14px 16px;color:var(--sub);font-size:14.5px;
+  line-height:1.6;margin:0 0 18px}
+.miss b{color:var(--ink)}
+.log{margin:14px 0 0;font:400 12.5px/1.7 var(--mono);color:var(--cap)}
+.log span{color:var(--sub)}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:12px;
+  padding:16px 16px 14px;display:flex;flex-direction:column}
+.card.flag{border-color:rgba(242,164,58,.55)}
+.card.line{border-color:rgba(90,200,240,.45)}
+.card .a{color:var(--sub);font-size:15px;margin:9px 0 0;line-height:1.55}
+.q{color:var(--ink)}
+.band{margin:12px 0 0;border-radius:8px;padding:10px 12px;font-size:13.5px;line-height:1.6;
+  background:rgba(242,164,58,.09);border:1px solid rgba(242,164,58,.35);color:#f0d3ab}
+.band .bt{display:block;font:400 10.5px/1 var(--mono);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--warn);margin-bottom:7px}
+.quote{margin:12px 0 0;border-left:2px solid var(--rule);padding:0 0 0 12px;
+  font-size:14px;line-height:1.55;color:var(--cap)}
+.quote .qt{display:block;font:400 10px/1 var(--mono);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--cap);margin-bottom:6px}
+.meta{margin:14px 0 0;padding-top:11px;border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px 12px}
+.meta div{min-width:0}
+.mk{display:block;font:400 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:#7f92aa;margin-bottom:4px}
+.mv{font:400 11.5px/1.5 var(--mono);color:var(--cap);word-break:break-word}
+.mv a{color:var(--link);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.35)}
+.tag{display:inline-block;font:400 10px/1 var(--mono);letter-spacing:.1em;
+  border:1px solid var(--rule);border-radius:5px;padding:4px 6px;margin:0 4px 4px 0;color:var(--cap)}
+.tag.hit{border-color:rgba(60,230,180,.5);color:var(--accent)}
+
+/* ---------- the card that refuses ---------- */
+.askrow{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.askrow button{padding:6px 10px;font-size:12.5px}
+.answerbox{margin:12px 0 0;background:#08131f;border:1px solid rgba(90,200,240,.35);
+  border-radius:9px;padding:13px 14px;font-size:14px;line-height:1.62;color:var(--sub)}
+.answerbox .at{display:block;font:400 10.5px/1 var(--mono);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--link);margin-bottom:8px}
+.answerbox .asked{display:block;color:var(--ink);margin-bottom:8px}
+
+/* ---------- the printed shift sheet ---------- */
+.sheetwrap{margin:24px 0 0}
+.sheet{background:#f6f3ec;color:#14181d;border-radius:4px;padding:30px 30px 26px;
+  box-shadow:0 18px 44px rgba(0,0,0,.5);max-width:44rem;margin:0 auto;
+  font:15px/1.55 Georgia,"Times New Roman",serif}
+.sheet .sh1{font:400 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:#5d6672}
+.sheet h4{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:26px;
+  line-height:1.1;margin:8px 0 4px;letter-spacing:-.01em}
+.sheet .prop{font-size:17px;font-weight:700;margin:0 0 14px}
+.sheet .rule{border:0;border-top:1.5px solid #14181d;margin:14px 0}
+.sheet .rule.thin{border-top:1px solid #b9b3a6}
+.sheet .stamp{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:10px 18px;font:400 11.5px/1.55 var(--mono);color:#3b434e}
+.sheet .stamp b{display:block;font-weight:400;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:#77808c;margin-bottom:3px}
+.sheet .win{margin:12px 0 0;font:400 11.5px/1.7 var(--mono);color:#3b434e}
+.sheet .win i{font-style:normal;color:#0f5c48;font-weight:700}
+.sheet ol{list-style:none;counter-reset:l;margin:0;padding:0}
+.sheet ol li{counter-increment:l;position:relative;padding:7px 0 7px 30px;
+  border-bottom:1px solid #ddd7c9}
+.sheet ol li::before{content:counter(l,decimal-leading-zero);position:absolute;left:0;top:9px;
+  font:400 11px/1.4 var(--mono);color:#8b8578}
+.sheet ol li b{display:block;font-weight:700;font-size:15px}
+.sheet ol li span{display:block;color:#39424e;font-size:14.5px}
+.sheet ol li.blank b{color:#9a9488;font-weight:400;letter-spacing:.1em}
+.sheet ol li.blank em{font-style:italic;color:#8b8578;font-size:14px}
+.sheet ol li.hold b{color:#0f5c48}
+.sheet .foot{margin:16px 0 0;font-size:12.5px;line-height:1.65;color:#4a5360}
+.sheet .foot em{font-style:italic}
+.sheet .foot p{margin:0 0 9px}
+.printrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+
+/* ---------- how it sits ---------- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:20px 0 0}
+.step{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:16px}
+.step .n{font:400 11px/1 var(--mono);letter-spacing:.16em;color:var(--accent);display:block;
+  margin-bottom:10px}
+.step p{color:var(--sub);font-size:14.5px;margin:8px 0 0;line-height:1.55}
+.guarantee{margin:20px 0 0;border-left:2px solid var(--accent);padding:2px 0 2px 16px;
+  max-width:42rem;color:var(--sub)}
+.guarantee b{color:var(--ink)}
+
+/* ---------- sources ---------- */
+.srcs{list-style:none;margin:16px 0 0;padding:0;max-width:44rem}
+.srcs li{padding:0 0 12px;color:var(--cap);font-size:13.5px;line-height:1.55}
+.srcs a{color:var(--link);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.3);
+  font:400 12.5px/1.5 var(--mono);word-break:break-all}
+.foot{margin-top:38px;padding-top:20px;border-top:1px solid var(--rule);color:var(--cap);
+  font-size:13.5px;line-height:1.65;max-width:44rem}
+
+@media (max-width:640px){
+  body{font-size:15.5px}
+  .wrap{padding:0 14px 44px}
+  .cards{grid-template-columns:1fr}
+  .sheet{padding:22px 18px}
+  .banner{font-size:11.5px}
+}
+
+/* ---------- print, the sheet is the thing worth printing ---------- */
+@media print{
+  .noprint{display:none !important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  .sheetwrap{margin:0}
+  .sheet{box-shadow:none;background:#fff;max-width:none;padding:0;border-radius:0}
+  .sheet ol li{break-inside:avoid}
+  #sheettab{display:block !important}
+}
+</style>
+</head>
+<body>
+
+<div class="banner noprint"><span class="full"><b>DEMONSTRATION</b> &nbsp;Not a live system. Every answer here was copied from Fountainhead Hotels' own published pages, read on 5 August 2026. Nothing on this page is connected to a booking system, a property system, or anything that changes today. There is no AI in this build.</span></div>
+
+<div class="wrap">
+
+<header class="noprint">
+  <div class="mark"><i></i> ALASKA AI</div>
+  <span class="eb">Fountainhead Hotels &nbsp;/&nbsp; Fairbanks, Alaska</span>
+  <h1>The Desk Answer Book</h1>
+  <p class="sub">A working demonstration of the build proposed for Wedgewood Resort, Sophie Station Suites and Bear Lodge. Prepared by Alaska AI.</p>
+  <p class="quiet">This is a scripted demonstration of the proposed build, not software you are running. The cards, the windows and the printed sheet behave exactly as the study describes them. The content is limited to what your own public pages say, because that is all we are entitled to know so far.</p>
+</header>
+
+<section class="noprint" id="controls">
+  <span class="eb">01 &nbsp;The desk book</span>
+  <h2>Pick a property. Move the date.</h2>
+  <p class="body">Property is a setting, never a guess. The season is a date, so a rule handles it and every case can be tested. Nothing below infers anything.</p>
+
+  <div class="deck">
+    <div class="grp">
+      <span class="lbl">Property</span>
+      <div class="row" id="props"></div>
+    </div>
+
+    <div class="grp">
+      <span class="lbl">Date at the desk</span>
+      <div class="dateline">
+        <span class="bigdate" id="bigdate">5 August 2026</span>
+        <span class="nudge">
+          <button type="button" id="prevd" aria-label="one day back">&#8592;</button>
+          <button type="button" id="nextd" aria-label="one day forward">&#8594;</button>
+        </span>
+      </div>
+      <input type="range" id="slider" min="0" max="303" value="4" aria-label="date at the desk">
+      <div class="ticks"><span>1 AUG 2026</span><span>31 MAY 2027</span></div>
+      <div class="row" id="presets" style="margin-top:14px"></div>
+    </div>
+  </div>
+
+  <div class="seasons" id="seasons"></div>
+  <div id="disagree"></div>
+</section>
+
+<div class="tabs noprint">
+  <button type="button" id="tab-book" class="on">Desk book</button>
+  <button type="button" id="tab-sheet">Printed shift sheet</button>
+</div>
+
+<div id="booktab" class="noprint">
+  <div class="find">
+    <input type="text" id="q" placeholder="Find a card. Type a word a guest would use." autocomplete="off">
+    <p class="hint">Plain word matching. No synonyms, no meaning, no model. It matches whole words from the start, so it finds "van" without ever guessing that "ride from the airport" means the same thing. <b>Try "checkout" and watch it find nothing, then try "check-out".</b> That gap is real, it is the honest limit of the first thing we would build, and the ask log below is what turns it into a decision later instead of a guess now.</p>
+    <div class="tryrow">
+      <button type="button" class="try" data-q="checkout">checkout</button>
+      <button type="button" class="try" data-q="check-out">check-out</button>
+      <button type="button" class="try" data-q="van">van</button>
+      <button type="button" class="try" data-q="aurora">aurora</button>
+      <button type="button" class="try" data-q="tonight">tonight</button>
+      <button type="button" class="try" data-q="">clear</button>
+    </div>
+    <div id="asklog"></div>
+  </div>
+
+  <div class="count" id="count"></div>
+  <div id="missbox"></div>
+  <div class="cards" id="cards"></div>
+</div>
+
+<div id="sheettab" style="display:none">
+  <div class="sheetwrap">
+    <div class="printrow noprint">
+      <button type="button" id="printbtn">Print this sheet</button>
+      <button type="button" id="backbtn">Back to the cards</button>
+    </div>
+    <p class="body noprint">The study says plainly that this sheet of paper is probably the most used thing in the whole build, so it is a real deliverable rather than an export nobody maintains. It changes with the property and the date, it carries the day it goes out of date, and a card past its review date drops off it on its own.</p>
+    <div class="sheet" id="sheet"></div>
+  </div>
+</div>
+
+<hr class="d noprint">
+
+<section class="noprint">
+  <span class="eb">02 &nbsp;How it sits in your operation</span>
+  <h2>Three steps, with a person on every one of them</h2>
+  <p class="body">You more than double hotel staffing for summer to make sure guests have caring, personal experiences at your properties, and the roster starts with Seasonal Front Desk Clerks. Those are the people this is for.</p>
+
+  <div class="steps">
+    <div class="step">
+      <span class="n">STEP ONE</span>
+      <h3>One named person changes one card</h3>
+      <p>A front desk supervisor owns the cards day to day. They edit one card, the change is dated and signed, and all three desks are saying the same thing that afternoon. Nothing edits itself, nothing is generated.</p>
+    </div>
+    <div class="step">
+      <span class="n">STEP TWO</span>
+      <h3>The calendar decides, not memory</h3>
+      <p>Every window above comes from a window you already publish. 21 August is past or it is not. Nobody has to hold three calendars in their head, and every case can be tested before anyone relies on it.</p>
+    </div>
+    <div class="step">
+      <span class="n">STEP THREE</span>
+      <h3>The clerk answers the guest</h3>
+      <p>A clerk reads a card and says it in their own words. Anything genuinely new still goes to a supervisor, which is the right answer, and your desks are staffed 24/7 anyway.</p>
+    </div>
+  </div>
+
+  <div class="guarantee">
+    <p><b>A guest never talks to this.</b> It sends nothing, books nothing, prices nothing, decides nothing. It holds answers your people agreed on, shows the ones that are true today, and prints them. Every answer that reaches a guest passes through a person first, every time, because there is no other path through it.</p>
+  </div>
+</section>
+
+<hr class="d noprint">
+
+<section class="noprint">
+  <span class="eb">03 &nbsp;Where this came from</span>
+  <h2>Six of your own pages, read on 5 August 2026</h2>
+  <p class="body">Every card traces to one of these. Nothing here was invented. Where your pages disagree with each other the card says so instead of picking a side, because picking the side is your call rather than ours.</p>
+  <ul class="srcs">
+    <li>Your homepage, on extended stay and corporate lodging routed to your Reservations Manager<br><a href="https://www.fountainheadhotels.com" target="_blank" rel="noopener">https://www.fountainheadhotels.com</a></li>
+    <li>Your FAQ, on check-in and check-out, late check-outs, cancellations, third-party rates, the direct line, the shuttle call and 24/7 desks<br><a href="https://www.fountainheadhotels.com/faq" target="_blank" rel="noopener">https://www.fountainheadhotels.com/faq</a></li>
+    <li>Your contact page, listing all three properties and the general guest inbox<br><a href="https://www.fountainheadhotels.com/contact-us" target="_blank" rel="noopener">https://www.fountainheadhotels.com/contact-us</a></li>
+    <li>Your Wedgewood aurora page, dating the season August 21 through April 21<br><a href="https://www.fountainheadhotels.com/wedgewood-resort/specials/aurora-season-special" target="_blank" rel="noopener">https://www.fountainheadhotels.com/wedgewood-resort/specials/aurora-season-special</a></li>
+    <li>Your Bear Lodge page, on a seasonal hotel and the Golden Bear window<br><a href="https://www.fountainheadhotels.com/bear-lodge" target="_blank" rel="noopener">https://www.fountainheadhotels.com/bear-lodge</a></li>
+    <li>Your Bear Lodge rooms page, on the courtesy van, its group exclusion, the Northern Lights wakeup call and the headlamps<br><a href="https://www.fountainheadhotels.com/bear-lodge-rooms.html" target="_blank" rel="noopener">https://www.fountainheadhotels.com/bear-lodge-rooms.html</a></li>
+  </ul>
+
+  <div class="foot">
+    <p>A demonstration, not a live system. It runs entirely inside this page, it stores nothing, it sends nothing, it reaches no network. The last-reviewed date on every card is 5 August 2026, the day we read your pages. In the real build that date is the day your named owner last checked it, which is the only version of it that means anything.</p>
+    <p>Two of your published date ranges for aurora season differ by about a week, and mid-August is a phrase rather than a date so that gap is our reading of your words. That is what happens to any business that has maintained a lot of pages over a lot of years. It is cheap to fix once, and it is why this build starts with an audit rather than with software.</p>
+    <p>Prepared by Alaska AI for Fountainhead Hotels, 5 August 2026.</p>
+  </div>
+</section>
+
+</div>
+
+<script>
+"use strict";
+
+/* ------------------------------------------------------------------
+   Dates. Every state in this demonstration is computed from published
+   dates, never inferred. Same input, same output, always.
+   ------------------------------------------------------------------ */
+var DAY = 86400000;
+var MONTHS = ["January","February","March","April","May","June","July",
+              "August","September","October","November","December"];
+
+function ms(s){ var p = s.split("-"); return Date.UTC(+p[0], +p[1]-1, +p[2]); }
+var START     = ms("2026-08-01");
+var MAXOFF    = 303;   /* 31 May 2027 */
+var TODAY_OFF = 4;     /* 5 August 2026, the date of the study */
+
+function dateOf(off){ return new Date(START + off*DAY); }
+function mmdd(d){
+  var m = d.getUTCMonth()+1, x = d.getUTCDate();
+  return (m<10?"0":"")+m+"-"+(x<10?"0":"")+x;
+}
+function human(d){ return d.getUTCDate()+" "+MONTHS[d.getUTCMonth()]+" "+d.getUTCFullYear(); }
+function humanMD(md){ var p = md.split("-"); return (+p[1]) + " " + MONTHS[(+p[0])-1]; }
+function humanISO(s){ return human(new Date(ms(s))); }
+function offOfISO(s){ return Math.round((ms(s)-START)/DAY); }
+
+/* Recurring annual windows, in the company's own published wording. */
+function inWin(d, w){
+  if(!w) return true;
+  var x = mmdd(d);
+  if(w.s <= w.e) return x >= w.s && x <= w.e;
+  return x >= w.s || x <= w.e;
+}
+function daysUntilOpen(off, w){
+  for(var i=1;i<=366;i++){ if(inWin(dateOf(off+i), w)) return i; }
+  return null;
+}
+function lastOpenDay(off, w){
+  for(var i=1;i<=366;i++){ if(!inWin(dateOf(off+i), w)) return dateOf(off+i-1); }
+  return null;
+}
+
+/* ------------------------------------------------------------------
+   Properties, with the addresses published on the contact page.
+   ------------------------------------------------------------------ */
+var PROPS = [
+  {id:"w", name:"Wedgewood Resort",      addr:"212 Wedgewood Drive, Fairbanks Alaska"},
+  {id:"s", name:"Sophie Station Suites", addr:"1717 University Avenue, Fairbanks Alaska"},
+  {id:"b", name:"Bear Lodge",            addr:"325 Wedgewood Drive, Fairbanks Alaska, 99701"}
+];
+
+/* ------------------------------------------------------------------
+   Windows. Two of these are the same season, on two of your pages.
+   ------------------------------------------------------------------ */
+var WINS = {
+  summer:  {name:"Summer window",
+            s:"05-15", e:"09-15", pub:"mid-May through mid-September", fuzzy:true},
+  auroraW: {name:"Aurora window, your Wedgewood dates",
+            s:"08-21", e:"04-21", pub:"August 21 through April 21",    fuzzy:false},
+  auroraB: {name:"Aurora window, your Bear Lodge dates",
+            s:"08-15", e:"04-30", pub:"mid-August to late April",      fuzzy:true}
+};
+
+var SRC = {
+  home:      {label:"Your homepage",              path:"fountainheadhotels.com",
+              url:"https://www.fountainheadhotels.com"},
+  faq:       {label:"Your FAQ page",              path:"/faq",
+              url:"https://www.fountainheadhotels.com/faq"},
+  contact:   {label:"Your contact page",          path:"/contact-us",
+              url:"https://www.fountainheadhotels.com/contact-us"},
+  aurora:    {label:"Your Wedgewood aurora page", path:"/wedgewood-resort/specials/aurora-season-special",
+              url:"https://www.fountainheadhotels.com/wedgewood-resort/specials/aurora-season-special"},
+  bear:      {label:"Your Bear Lodge page",       path:"/bear-lodge",
+              url:"https://www.fountainheadhotels.com/bear-lodge"},
+  bearrooms: {label:"Your Bear Lodge rooms page", path:"/bear-lodge-rooms.html",
+              url:"https://www.fountainheadhotels.com/bear-lodge-rooms.html"}
+};
+
+var OWNER = "Front desk supervisor, name not set";
+var READ  = "2026-08-05";
+
+/* ------------------------------------------------------------------
+   The cards. Every answer traces to a page. Nothing is invented.
+   ------------------------------------------------------------------ */
+var CARDS = [
+  {
+    id:"checkin", props:["w","s","b"], win:null, due:"2027-02-01", src:"faq",
+    q:"When can I check in, and when do I have to be out?",
+    a:"Check-in starts at 4PM. Check-out is 11AM, Alaska Standard Time.",
+    short:"In from 4PM. Out by 11AM, Alaska Standard Time.",
+    quote:"Check-in begins at 4PM and check-out is 11AM Alaska Standard Time (AST).",
+    tags:"arrival departure early time hour room"
+  },
+  {
+    id:"late", props:["w","s","b"], win:"summer", due:"2026-09-01", src:"faq",
+    q:"Can I have a late check-out?",
+    a:"Not while the summer window is open. Your FAQ runs that window mid-May through mid-September.",
+    short:"Not offered while the summer window is open, mid-May through mid-September.",
+    quote:"we are unable to offer late check-outs during the summer months (mid-May through mid-September)",
+    tags:"late stay longer afternoon extend departure summer"
+  },
+  {
+    id:"cancel", props:["w","s","b"], win:null, due:"2027-02-01", src:"faq",
+    q:"How much notice do I need to cancel?",
+    a:"At least 24 hours. That is the notice window, and it is the only part of the cancellation terms this card claims.",
+    short:"At least 24 hours notice.",
+    quote:"All cancellations must be made at least 24 hours in advance.",
+    tags:"cancel cancellation refund change notice"
+  },
+  {
+    id:"thirdparty", props:["w","s","b"], win:null, due:"2026-12-01", src:"faq",
+    q:"I booked on another website. Can you fix my rate?",
+    a:"A rate booked through a third-party site can't be changed here once the reservation was made there.  Booking direct next time is what gets the special rate.",
+    short:"A rate booked on another site can't be changed here. Book direct next time for the special rate.",
+    quote:null,
+    tags:"third party website online agency price pricing rate cheaper booked"
+  },
+  {
+    id:"direct", props:["w","s","b"], win:null, due:"2027-02-01", src:"faq",
+    q:"How do I get the special rate?",
+    a:"Book direct on 800.528.4916. Discounted and special rates are held for direct bookings.",
+    short:"800.528.4916, direct, for the special rate.",
+    quote:"PLEASE BOOK WITH US DIRECTLY TO RESERVE YOUR SPECIAL RATE. Call us directly at 800.528.4916 with help booking your reservation.",
+    tags:"discount special deal book direct phone number reserve toll free"
+  },
+  {
+    id:"desk247", props:["w","s","b"], win:null, due:"2027-03-01", src:"faq",
+    q:"Is anybody at the desk overnight?",
+    a:"Yes. The desk is staffed around the clock, every day of the stay.",
+    short:"Yes. The desk is staffed 24/7.",
+    quote:"Yes. We are available 24/7 to assist you during your stay.",
+    tags:"night overnight open hours staffed desk reception help"
+  },
+  {
+    id:"shuttlecall", props:["w","s","b"], win:null, due:"2027-01-15", src:"faq",
+    q:"I have landed. How do I get the shuttle?",
+    a:"The guest calls the hotel once they have their luggage, then the shuttle comes. Every pickup starts with that call.",
+    short:"Guest calls the hotel once they have their luggage, then the shuttle comes.",
+    quote:"Once you have your luggage, please call your hotel for the shuttle",
+    tags:"shuttle pickup airport landed arrive baggage luggage transport"
+  },
+  {
+    id:"van", props:["b"], win:null, due:"2027-01-15", src:"bearrooms",
+    q:"Is there a courtesy van, and when does it run?",
+    a:"It runs 24 hours, to and from Fairbanks International Airport and the Alaska Railroad Station, for arriving and departing guests. It is complimentary.",
+    short:"24 hours, to and from Fairbanks International Airport and the Alaska Railroad Station.",
+    quote:"24-hour courtesy van services to and from the Fairbanks International Airport and Alaska Railroad Station for arriving and departing guests.",
+    tags:"van courtesy complimentary airport railroad rail train transport ride",
+    note:"This is published on your Bear Lodge rooms page, so the card is tagged to Bear Lodge only. Whether the same wording covers the other two properties is a question for the audit, so the card does not claim it."
+  },
+  {
+    id:"vangroups", props:["b"], win:null, due:"2027-01-15", src:"bearrooms",
+    q:"A tour group wants the courtesy van. Do we take them?",
+    a:"No. The van excludes tour groups and large groups traveling together. This is written policy, so it is a rule rather than a judgement call at the desk.",
+    short:"It excludes tour groups and large groups traveling together.",
+    quote:"this excludes tour groups and large groups traveling together.",
+    tags:"tour group bus large party van exclude coach"
+  },
+  {
+    id:"goldenbear", props:["b"], win:"summer", due:"2027-08-01", src:"bear",
+    q:"Is the Golden Bear Restaurant open?",
+    a:"Yes, while the summer window is open. Your page runs it mid-May to mid-September.",
+    short:"Open during summer months, mid-May to mid-September.",
+    quote:"Open during summer months (mid-May to mid-September), the Golden Bear Restaurant",
+    tags:"golden bear restaurant food dinner breakfast eat dining"
+  },
+  {
+    id:"auroraspecial", props:["w"], win:"auroraW", due:"2027-01-05", src:"aurora",
+    q:"Is the Aurora Season Special running?",
+    a:"Yes. Your Wedgewood aurora page dates Aurora Season August 21 through April 21, with a spacious suite.",
+    short:"Running. Aurora Season, August 21 through April 21.",
+    quote:"Visit Fairbanks during Aurora Season, August 21 through April 21, and stay in your own spacious suite.",
+    tags:"aurora northern lights special suite season offer wedgewood"
+  },
+  {
+    id:"wakeup", props:["b"], win:"auroraB", due:"2027-01-05", src:"bearrooms",
+    q:"Can I get a wakeup call if the lights come out, and can I rent a headlamp?",
+    a:"Yes to both, during Aurora Season. The Northern Lights wakeup call is courtesy. Headlamps rent at the front desk.",
+    short:"Courtesy Northern Lights wakeup call during Aurora Season. Headlamps rent at the front desk.",
+    quote:"Courtesy Northern Lights wakeup call during the Aurora Season (mid-August to late April)",
+    quote2:"Headlamps available for rent at front desk for trail-walking or Aurora watching",
+    tags:"aurora northern lights wakeup wake call headlamp torch rent trail walking",
+    conflict:true
+  },
+  {
+    id:"extended", props:["w","s","b"], win:null, due:"2026-11-01", src:"home",
+    q:"Someone wants an extended stay or corporate lodging",
+    a:"That does not go through the booking engine. It goes to Becky Kunkle, Reservations Manager, on beckyk@fdialaska.com or 907-458-6123.",
+    short:"Becky Kunkle, Reservations Manager. beckyk@fdialaska.com, 907-458-6123.",
+    quote:"Looking for an extended stay, corporate lodging or need a short-term rental?",
+    quote2:"Interested? Work with our Reservations Manager Becky Kunkle for availability and very best rates.",
+    tags:"extended stay corporate long term monthly business rental relocation crew"
+  },
+  {
+    id:"inbox", props:["w","s","b"], win:null, due:"2027-03-15", src:"contact",
+    q:"Where do general guest emails go?",
+    a:"askus@fountainheadhotels.com. It is published on your contact page under all three properties, with no name attached to it.",
+    short:"askus@fountainheadhotels.com.",
+    quote:null,
+    tags:"email inbox contact message write question askus"
+  },
+  {
+    id:"address", props:["w","s","b"], win:null, due:"2027-06-01", src:"contact",
+    q:"What is this property's address?",
+    a:{w:"212 Wedgewood Drive, Fairbanks Alaska.",
+       s:"1717 University Avenue, Fairbanks Alaska.",
+       b:"325 Wedgewood Drive, Fairbanks Alaska, 99701."},
+    shortByProp:true,
+    quote:null,
+    tags:"address street where located directions map find drive avenue"
+  },
+  {
+    id:"live", props:["w","s","b"], win:null, due:null, src:null, kind:"line",
+    q:"Is a room free tonight, and what does it cost?",
+    a:"This book holds none of that, on purpose. Try it.",
+    short:"Not on this sheet, ever. Look it up where you already look it up, then answer the guest yourself.",
+    tags:"availability available tonight vacancy rate rates price cost room ready status occupancy sold"
+  },
+  {
+    id:"bearseason", props:["b"], win:null, due:null, src:"bear", kind:"open",
+    q:"What dates is Bear Lodge actually open?",
+    a:"No agreed answer yet.",
+    short:null,
+    quote:"As a seasonal hotel located on the grounds of Wedgewood Resort, we offer all of the same amenities",
+    tags:"bear lodge open closed season dates winter operating"
+  }
+];
+
+var SHORTNAME = {
+  checkin:"check-in and check-out", late:"late check-out", cancel:"cancellation",
+  thirdparty:"third-party rate", direct:"direct booking", desk247:"overnight desk",
+  shuttlecall:"shuttle call", van:"courtesy van", vangroups:"van and groups",
+  goldenbear:"Golden Bear", auroraspecial:"Aurora Season Special",
+  wakeup:"Northern Lights wakeup call", extended:"extended stay", inbox:"guest inbox",
+  address:"address", live:"live status", bearseason:"Bear Lodge season"
+};
+
+/* ------------------------------------------------------------------
+   State
+   ------------------------------------------------------------------ */
+var state = { prop:"w", off:TODAY_OFF, q:"", tab:"book", asked:null };
+var askLog = [];
+
+function $(id){ return document.getElementById(id); }
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+                  .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function propName(id){
+  for(var i=0;i<PROPS.length;i++){ if(PROPS[i].id===id) return PROPS[i].name; }
+  return "";
+}
+function shortName(c){ return SHORTNAME[c.id] || c.id; }
+function answerOf(c){ return (typeof c.a === "string") ? c.a : c.a[state.prop]; }
+function shortOf(c){ return c.shortByProp ? c.a[state.prop] : c.short; }
+function isStale(c, off){ return c.due ? dateOf(off).getTime() > ms(c.due) : false; }
+function showsAt(c, prop, off){
+  if(c.props.indexOf(prop) < 0) return false;
+  if(!c.win) return true;
+  return inWin(dateOf(off), WINS[c.win]);
+}
+function visible(prop, off){
+  var out = [];
+  for(var i=0;i<CARDS.length;i++){ if(showsAt(CARDS[i], prop, off)) out.push(CARDS[i]); }
+  return out;
+}
+function listOf(a){
+  if(a.length === 1) return a[0];
+  return a.slice(0,-1).join(", ") + " and " + a[a.length-1];
+}
+
+/* The next date on which this property's page changes, and why. Walked
+   forward one day at a time, never guessed. */
+function sig(prop, off){
+  var v = visible(prop, off), a = [];
+  for(var i=0;i<v.length;i++){ a.push(v[i].id + (isStale(v[i], off) ? "!" : "")); }
+  return a.join(",");
+}
+function whyChanged(prop, a, b){
+  var before = visible(prop, a), after = visible(prop, b);
+  var bi = {}, ai = {}, i, reasons = [];
+  for(i=0;i<before.length;i++) bi[before[i].id] = true;
+  for(i=0;i<after.length;i++)  ai[after[i].id]  = true;
+  for(i=0;i<after.length;i++){
+    if(!bi[after[i].id]) reasons.push("the " + shortName(after[i]) + " card appears");
+  }
+  for(i=0;i<before.length;i++){
+    if(!ai[before[i].id]) reasons.push("the " + shortName(before[i]) + " card comes off");
+  }
+  for(i=0;i<after.length;i++){
+    if(bi[after[i].id] && !isStale(after[i],a) && isStale(after[i],b)){
+      reasons.push("the " + shortName(after[i]) + " card passes its review date");
+    }
+  }
+  return reasons.length ? listOf(reasons) : "the page changes";
+}
+function nextChange(prop, off){
+  var base = sig(prop, off);
+  for(var i=1;i<=366;i++){
+    if(sig(prop, off+i) !== base){
+      return { off: off+i, date: dateOf(off+i), why: whyChanged(prop, off+i-1, off+i) };
+    }
+  }
+  return null;
+}
+
+/* ------------------------------------------------------------------
+   Controls
+   ------------------------------------------------------------------ */
+function renderProps(){
+  var h = "", i;
+  for(i=0;i<PROPS.length;i++){
+    var p = PROPS[i];
+    h += '<button type="button" class="pbtn' + (state.prop===p.id?" on":"") + '" data-p="' + p.id + '">' +
+         esc(p.name) + '<span class="bs">' + esc(p.addr) + '</span></button>';
+  }
+  $("props").innerHTML = h;
+  var bs = $("props").getElementsByClassName("pbtn");
+  for(i=0;i<bs.length;i++){
+    bs[i].onclick = function(){ state.prop = this.getAttribute("data-p"); state.asked = null; render(); };
+  }
+}
+
+var PRESETS = [
+  {iso:"2026-08-05", note:"the date of the study"},
+  {iso:"2026-08-20", note:"your two pages disagree"},
+  {iso:"2026-08-21", note:"aurora opens at Wedgewood"},
+  {iso:"2026-09-05", note:"a card past its review date"},
+  {iso:"2026-09-16", note:"the summer window shuts"},
+  {iso:"2027-04-22", note:"the same gap, in spring"}
+];
+function renderPresets(){
+  var h = "", i;
+  for(i=0;i<PRESETS.length;i++){
+    var p = PRESETS[i], o = offOfISO(p.iso);
+    h += '<button type="button" class="prbtn' + (state.off===o?" on":"") + '" data-o="' + o + '">' +
+         esc(human(dateOf(o))) + '<span class="bs">' + esc(p.note) + '</span></button>';
+  }
+  $("presets").innerHTML = h;
+  var bs = $("presets").getElementsByClassName("prbtn");
+  for(i=0;i<bs.length;i++){
+    bs[i].onclick = function(){ state.off = +this.getAttribute("data-o"); render(); };
+  }
+}
+
+/* ------------------------------------------------------------------
+   Season windows, the part that flips
+   ------------------------------------------------------------------ */
+function renderSeasons(){
+  var d = dateOf(state.off), h = "", keys = ["summer","auroraW","auroraB"], i;
+  for(i=0;i<keys.length;i++){
+    var w = WINS[keys[i]], open = inWin(d, w), nx;
+    if(open){
+      var last = lastOpenDay(state.off, w);
+      nx = last ? "Last day is " + human(last) + "." : "Open.";
+    } else {
+      var n = daysUntilOpen(state.off, w);
+      nx = (n === null) ? "Closed."
+         : "Opens " + human(dateOf(state.off + n)) + ", in " + n + (n===1 ? " day." : " days.");
+    }
+    h += '<div class="chip' + (open?" open":"") + '">' +
+           '<span class="st">' + (open ? "OPEN" : "CLOSED") + '</span>' +
+           '<div class="nm">' + esc(w.name) + '</div>' +
+           '<div class="dt">' + esc(w.pub) + '</div>' +
+           '<div class="nx">' + esc(nx) + '</div>' +
+         '</div>';
+  }
+  $("seasons").innerHTML = h;
+
+  var aw = inWin(d, WINS.auroraW), ab = inWin(d, WINS.auroraB), msg = "";
+  if(aw !== ab){
+    msg = ab
+      ? '<b>Your two pages disagree today.</b> Your Bear Lodge rooms page has aurora season open. Your Wedgewood aurora page does not. A guest asking gets a different answer depending on which page the clerk learned from. That is the defect this build closes first, and it is the ordinary result of keeping a lot of pages over a lot of years.'
+      : '<b>Your two pages disagree today.</b> Your Wedgewood aurora page has aurora season shut. Your Bear Lodge rooms page still has it open. Same season, two published ranges, about a week apart at each end.';
+  }
+  $("disagree").innerHTML = msg ? '<div class="disagree">' + msg + '</div>' : "";
+}
+
+/* ------------------------------------------------------------------
+   Find. Plain word matching, deliberately dumb, honest about it.
+   ------------------------------------------------------------------ */
+function rxEsc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+function hayOf(c){
+  var a = (typeof c.a === "string") ? c.a : (c.a.w + " " + c.a.s + " " + c.a.b);
+  return (c.q + " " + a + " " + (c.quote||"") + " " + (c.quote2||"") + " " +
+          (c.short||"") + " " + (c.tags||"")).toLowerCase();
+}
+function matches(c, q){
+  if(!q) return true;
+  var terms = q.toLowerCase().split(/\s+/), hay = hayOf(c), i;
+  for(i=0;i<terms.length;i++){
+    if(!terms[i]) continue;
+    if(!(new RegExp("\\b" + rxEsc(terms[i]))).test(hay)) return false;
+  }
+  return true;
+}
+
+/* A card can match the words and still not be true here today. Say which,
+   rather than letting a scoped-out card look like a broken search. */
+function scopedOut(q){
+  var out = [], i;
+  for(i=0;i<CARDS.length;i++){
+    var c = CARDS[i];
+    if(!matches(c, q)) continue;
+    if(showsAt(c, state.prop, state.off)) continue;
+    if(c.props.indexOf(state.prop) < 0){
+      var names = [];
+      for(var j=0;j<c.props.length;j++) names.push(propName(c.props[j]));
+      out.push("the " + shortName(c) + " card is tagged to " + listOf(names));
+    } else {
+      var n = daysUntilOpen(state.off, WINS[c.win]);
+      out.push("the " + shortName(c) + " card is true again on " +
+               (n === null ? "no date in the next year" : human(dateOf(state.off + n))));
+    }
+  }
+  return out;
+}
+
+/* ------------------------------------------------------------------
+   Cards
+   ------------------------------------------------------------------ */
+function cardHTML(c){
+  var off = state.off, stale = isStale(c, off), cls = "card";
+  if(c.kind === "line") cls += " line";
+  if(stale || c.conflict || c.kind === "open") cls += " flag";
+
+  var h = '<div class="' + cls + '">';
+  h += '<h3 class="q">' + esc(c.q) + '</h3>';
+  h += '<p class="a">' + esc(answerOf(c)) + '</p>';
+
+  if(c.kind === "line"){
+    h += '<div class="askrow">' +
+           '<button type="button" class="ask" data-a="Is anything free tonight?">Is anything free tonight?</button>' +
+           '<button type="button" class="ask" data-a="What is tonight&#39;s rate?">What is tonight\'s rate?</button>' +
+           '<button type="button" class="ask" data-a="Is 214 ready yet?">Is 214 ready yet?</button>' +
+         '</div>';
+    if(state.asked){
+      h += '<div class="answerbox"><span class="at">What the card returns</span>' +
+           '<span class="asked">Asked, "' + esc(state.asked) + '"</span>' +
+           'This book holds policy and how-to. It holds nothing that changes today. No availability, no rates, no room status. ' +
+           'Nothing we verified names a booking or property system you run, so a card claiming to know tonight\'s rooms would be a card that lies. ' +
+           'Look it up where you already look it up, then answer the guest yourself. ' +
+           'All three of those questions return this same reply, because the reply is the boundary rather than a failure to answer.</div>';
+    } else {
+      h += '<div class="answerbox"><span class="at">What the card returns</span>' +
+           'Ask it one of those. The refusal is the point, and it is the honest ceiling on the whole build. ' +
+           'Your own two-week paper tally is what tells you how large a share of your desk\'s questions land here.</div>';
+    }
+  }
+
+  if(c.kind === "open"){
+    h += '<div class="band"><span class="bt">No agreed answer yet</span>' +
+         'Your Bear Lodge page says it is a seasonal hotel. It gives no dates for that, and nothing else we read gives them either. ' +
+         'The restaurant window on the same page belongs to the restaurant, so borrowing it for the rooms would be inventing an answer. ' +
+         'This card stays open until someone on your side fills it in, which is exactly what the audit is for.</div>';
+  }
+
+  if(c.conflict){
+    h += '<div class="band"><span class="bt">Two published date ranges, not settled</span>' +
+         'Your Bear Lodge rooms page dates aurora season mid-August to late April. Your Wedgewood aurora page dates it August 21 through April 21. ' +
+         'This card carries the Bear Lodge dates because that is the page it came from. No owner has settled which range is right, so the card shows the disagreement rather than hiding it. ' +
+         'Settling it is an afternoon of work, and it wants doing before 21 August.</div>';
+  }
+
+  if(stale){
+    h += '<div class="band"><span class="bt">Past its review date</span>' +
+         'This card came due on ' + esc(humanISO(c.due)) + ' and nobody has checked it since. It stays on the screen, because hiding the only answer a clerk has helps nobody. ' +
+         'It dropped off the printed shift sheet on its own the same day, so a stale answer never gets taped to a desk. ' +
+         'Owner, ' + esc(OWNER) + '.</div>';
+  }
+
+  if(c.quote){
+    h += '<div class="quote"><span class="qt">Your words</span>"' + esc(c.quote) + '"' +
+         (c.quote2 ? '<br><br>"' + esc(c.quote2) + '"' : '') + '</div>';
+  }
+  if(c.note){
+    h += '<p class="hint" style="margin-top:12px">' + esc(c.note) + '</p>';
+  }
+
+  var tags = "", i;
+  for(i=0;i<c.props.length;i++){
+    tags += '<span class="tag' + (c.props[i]===state.prop?" hit":"") + '">' + esc(propName(c.props[i])) + '</span>';
+  }
+  var when;
+  if(c.win){
+    var w = WINS[c.win];
+    when = w.pub + (w.fuzzy ? " (read here as " + humanMD(w.s) + " to " + humanMD(w.e) +
+                              ", a reading of your words and not a fact)" : "");
+  } else {
+    when = "All year, no window";
+  }
+  var srcHTML = c.src
+    ? esc(SRC[c.src].label) + '<br><a href="' + SRC[c.src].url + '" target="_blank" rel="noopener">' +
+      esc(SRC[c.src].path) + '</a>'
+    : "None. This card exists to hold a line, so it cites nothing.";
+
+  h += '<div class="meta">' +
+         '<div style="grid-column:1/-1"><span class="mk">Property</span>' + tags + '</div>' +
+         '<div><span class="mk">When it is true</span><span class="mv">' + esc(when) + '</span></div>' +
+         '<div><span class="mk">Source</span><span class="mv">' + srcHTML + '</span></div>' +
+         '<div><span class="mk">Owner</span><span class="mv">' + esc(OWNER) + '</span></div>' +
+         '<div><span class="mk">Last reviewed</span><span class="mv">' + esc(humanISO(READ)) +
+            ', by us, reading your page</span></div>' +
+         '<div><span class="mk">Review due</span><span class="mv">' +
+            (c.due ? esc(humanISO(c.due)) + (stale ? ", overdue" : "") : "Set at handover") +
+         '</span></div>' +
+       '</div>';
+
+  return h + '</div>';
+}
+
+function renderCards(){
+  var vis = visible(state.prop, state.off), q = state.q.trim(), shown = [], i;
+  for(i=0;i<vis.length;i++){ if(matches(vis[i], q)) shown.push(vis[i]); }
+
+  var head = shown.length + " of " + vis.length + " cards true today, " +
+             propName(state.prop) + ", " + human(dateOf(state.off));
+  if(q) head += ", matching " + q;
+  $("count").textContent = head;
+
+  var miss = "", elsewhere = q ? scopedOut(q) : [];
+
+  if(q && shown.length === 0 && elsewhere.length === 0){
+    miss += '<div class="miss"><b>Nothing matches those letters.</b> Plain word matching, so a paraphrase misses, and it is honest about missing. ' +
+            'In the build this search drops into the ask log, and the log is what tells you which questions need a card, or a better wording on the card you already have. ' +
+            'A search box that matches a guest\'s wording rather than their letters sits on the Next lane of the roadmap, priced only if your own log asks for it.</div>';
+    if(askLog.indexOf(q) < 0) askLog.push(q);
+  } else if(q && elsewhere.length){
+    miss += '<div class="miss"><b>Matched, and not true here today.</b> ' +
+            esc(listOf(elsewhere).charAt(0).toUpperCase() + listOf(elsewhere).slice(1)) + '. ' +
+            'Property and date are settings, so this page only ever shows what is true in the building you picked on the day you picked.</div>';
+  } else if(q && shown.length < vis.length){
+    miss += '<div class="miss">The cards this search hides are still true today. Clear the box to see the whole page for ' +
+            esc(propName(state.prop)) + '.</div>';
+  }
+
+  if(state.prop === "s"){
+    miss += '<div class="miss">Everything on this screen for Sophie Station Suites comes from pages that cover all three properties. ' +
+            'Anything specific to this building gets written by your team during the audit, because a demonstration built from public pages has no business inventing it.</div>';
+  }
+  $("missbox").innerHTML = miss;
+
+  var h = "";
+  for(i=0;i<shown.length;i++) h += cardHTML(shown[i]);
+  if(!shown.length && !q){
+    h = '<div class="miss">No cards are true at ' + esc(propName(state.prop)) + ' on this date.</div>';
+  }
+  $("cards").innerHTML = h;
+
+  var asks = $("cards").getElementsByClassName("ask");
+  for(i=0;i<asks.length;i++){
+    asks[i].onclick = function(){ state.asked = this.getAttribute("data-a"); renderCards(); };
+  }
+  renderAskLog();
+}
+
+function renderAskLog(){
+  if(!askLog.length){ $("asklog").innerHTML = ""; return; }
+  var h = '<div class="log">Ask log, this session only, stored nowhere and sent nowhere. ';
+  for(var i=0;i<askLog.length;i++){
+    h += '<span>' + esc(askLog[i]) + '</span>' + (i < askLog.length-1 ? ", " : "");
+  }
+  $("asklog").innerHTML = h + '</div>';
+}
+
+/* ------------------------------------------------------------------
+   The printed shift sheet
+   ------------------------------------------------------------------ */
+function renderSheet(){
+  var off = state.off, d = dateOf(off), vis = visible(state.prop, off), i;
+  var onSheet = [], dropped = [];
+  for(i=0;i<vis.length;i++){
+    var c = vis[i];
+    if(c.kind === "open") continue;
+    if(isStale(c, off)){ dropped.push(c); continue; }
+    onSheet.push(c);
+  }
+
+  var nc = nextChange(state.prop, off);
+  var good    = nc ? human(dateOf(nc.off - 1)) : "No change in the next twelve months";
+  var reprint = nc ? human(nc.date) + ", when " + nc.why : "None scheduled in the next twelve months";
+
+  var wins = [], keys = ["summer","auroraW","auroraB"];
+  for(i=0;i<keys.length;i++){
+    var w = WINS[keys[i]];
+    wins.push('<div>' + esc(w.name) + " &nbsp;" + (inWin(d,w) ? '<i>OPEN</i>' : "closed") +
+              " &nbsp;" + esc(w.pub) + '</div>');
+  }
+
+  var h = '<div class="sh1">Fountainhead Hotels</div>' +
+          '<h4>Desk shift sheet</h4>' +
+          '<div class="prop">' + esc(propName(state.prop)) + '</div>' +
+          '<hr class="rule">' +
+          '<div class="stamp">' +
+            '<div><b>Printed</b>' + esc(human(d)) + '</div>' +
+            '<div><b>Good through</b>' + esc(good) + '</div>' +
+            '<div><b>Reprint</b>' + esc(reprint) + '</div>' +
+            '<div><b>Card owner</b>' + esc(OWNER) + '</div>' +
+          '</div>' +
+          '<div class="win">' + wins.join("") + '</div>' +
+          '<hr class="rule thin">' +
+          '<ol>';
+
+  for(i=0;i<20;i++){
+    if(i < onSheet.length){
+      var card = onSheet[i];
+      h += '<li' + (card.kind === "line" ? ' class="hold"' : '') + '><b>' + esc(card.q) + '</b>' +
+           '<span>' + esc(shortOf(card)) + '</span></li>';
+    } else {
+      h += '<li class="blank"><b>. . . . . . . . . . . . . . . . . . . . . . . .</b>' +
+           '<em>To be written with your team in the audit. No page publishes this one.</em></li>';
+    }
+  }
+  h += '</ol>';
+
+  h += '<div class="foot">' +
+       '<p>' + onSheet.length + ' of the twenty lines came from your own published pages. The rest are blank on purpose. ' +
+       'The operating long tail your desk actually gets asked is on no page we could read, so filling those lines is a veteran and an afternoon at each property, never us guessing.</p>';
+  if(dropped.length){
+    var names = [];
+    for(i=0;i<dropped.length;i++) names.push(shortName(dropped[i]));
+    h += '<p>' + dropped.length + (dropped.length === 1 ? ' card is off this sheet' : ' cards are off this sheet') +
+         ' for being past a review date, ' + esc(listOf(names)) + '. ' +
+         'It stays on the screen with a band on it so a clerk who needs it can still find it. A stale answer never gets taped to a desk.</p>';
+  }
+  h += '<p><em>Demonstration only. Built from Fountainhead Hotels\' own published pages, read on 5 August 2026, by Alaska AI. ' +
+       'This sheet holds policy and how-to. It never holds availability, rates or room status.</em></p>' +
+       '</div>';
+
+  $("sheet").innerHTML = h;
+}
+
+/* ------------------------------------------------------------------
+   Wiring
+   ------------------------------------------------------------------ */
+function render(){
+  $("slider").value = state.off;
+  $("bigdate").textContent = human(dateOf(state.off));
+  renderProps();
+  renderPresets();
+  renderSeasons();
+  renderCards();
+  renderSheet();   /* kept current so a print from either tab is right */
+}
+
+$("slider").oninput = function(){ state.off = +this.value; render(); };
+$("prevd").onclick  = function(){ if(state.off > 0){ state.off--; render(); } };
+$("nextd").onclick  = function(){ if(state.off < MAXOFF){ state.off++; render(); } };
+$("q").oninput      = function(){ state.q = this.value; renderCards(); };
+
+var tries = document.getElementsByClassName("try");
+for(var t=0;t<tries.length;t++){
+  tries[t].onclick = function(){
+    var v = this.getAttribute("data-q");
+    $("q").value = v; state.q = v; renderCards();
+  };
+}
+
+function setTab(which){
+  state.tab = which;
+  $("tab-book").className  = (which === "book")  ? "on" : "";
+  $("tab-sheet").className = (which === "sheet") ? "on" : "";
+  $("booktab").style.display  = (which === "book")  ? "" : "none";
+  $("sheettab").style.display = (which === "sheet") ? "" : "none";
+  render();
+}
+$("tab-book").onclick  = function(){ setTab("book"); };
+$("tab-sheet").onclick = function(){ setTab("sheet"); };
+$("backbtn").onclick   = function(){ setTab("book"); };
+$("printbtn").onclick  = function(){ window.print(); };
+
+render();
+</script>
+</body>
+</html>
