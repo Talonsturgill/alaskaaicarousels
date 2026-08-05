@@ -220,13 +220,30 @@ def self_test():
 
     print("the real data earns a refit")
     rows = observations(model)
+
+    # The committed model IS the current fit, so refitting it must decline.
+    # That is the guard against version churn, and it is the state the monthly
+    # workflow sits in on every month that publishes nothing new.
     prop, why = evaluate(model, rows)
-    check("the committed record produces a usable fit", prop is not None, why)
+    check("refitting an already fitted model is declined", prop is None, why)
+
+    # So the refit path is exercised from a model that has drifted. Derived by
+    # perturbing the committed coefficients, never typed, so this still works
+    # after the next refit moves them.
+    drifted = dict(model,
+                   base_mmcfd=round(model["base_mmcfd"] * 0.9, 3),
+                   slope_mmcfd_per_hdd=round(model["slope_mmcfd_per_hdd"] * 1.2, 4))
+    prop, why = evaluate(drifted, rows)
+    check("a drifted model is pulled back to the record", prop is not None, why)
     if prop:
         check("the fit beats the model it replaces",
               prop["mean_error_pct"] < prop["previous_mean_error_pct"],
               f"{prop['previous_mean_error_pct']} to {prop['mean_error_pct']} percent")
-        new = apply_fit(model, prop, date(2026, 8, 5), "202605")
+        check("the fit recovers the committed coefficients",
+              abs(prop["base_mmcfd"] - model["base_mmcfd"]) < 0.01
+              and abs(prop["slope_mmcfd_per_hdd"] - model["slope_mmcfd_per_hdd"]) < 0.001,
+              f"base {prop['base_mmcfd']}, slope {prop['slope_mmcfd_per_hdd']}")
+        new = apply_fit(drifted, prop, date(2026, 8, 5), "202605")
         _, hdd = gc.load_hdd_history(new, REPO)
         facts = gc.backtest_facts(new, hdd)
         stale = []
@@ -236,6 +253,12 @@ def self_test():
                 if k.startswith("expect_") and k[7:] in got and got[k[7:]] != v:
                     stale.append(f"{bt['id']}.{k}")
         check("a refit leaves no stale backtest behind", not stale, str(stale))
+        # A refit recomputes every expect_ field and cannot recompute prose, so
+        # a note that quoted a figure would come out of this false. The rule is
+        # that notes carry no numerals, and it is worth checking on the refitted
+        # model rather than only on the committed one.
+        left = gc.notes_quoting_figures(new)
+        check("a refit leaves no note quoting an old figure", not left, str(left))
         check("the refit is versioned and logged",
               new["version"] != model["version"]
               and len(new["model_history"]) == len(model["model_history"]) + 1,

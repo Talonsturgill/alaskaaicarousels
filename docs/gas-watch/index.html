@@ -183,27 +183,32 @@ design are measured. Modeled peak and non CINGSA supply are model output.</capti
 
 <h2 data-reveal>The model, in full</h2>
 <p class="prose" data-reveal>Regional demand in MMcf per day is
-75.0 plus 4.2 times heating degree days on a
-base of 65 degrees Fahrenheit. Version 1.2. It is
-calibrated to two published figures, a design day of
-390 MMcf per day at
-75 degree days and an average day of
-190 MMcf per day. It is NOT fitted to
-observed sendout, because observed sendout is not public. Treat the coefficients
-as a working hypothesis, not a measurement.</p>
+80.868 plus 3.439 times heating degree days on a
+base of 65 degrees Fahrenheit. Version 2.0, fitted
+by least squares to 131 months of observed Alaska
+deliveries to homes, businesses and power plants, and refitted every time another
+month is published. It misses those months by 6.82 percent
+on average, measured against the same record it is fitted to.</p>
+<p class="prose" data-reveal>It sits below the published planning figures, and
+that is expected rather than a problem. A design day of
+390 MMcf per day is a peak carrying margin
+for a system operator to build against. This predicts what the region actually
+uses, which is a different question, and the gap between them is published here
+instead of tuned away.</p>
 <p class="prose" data-reveal>Every figure below is recomputed at build time from
 4,599 days of observed Anchorage degree days covering
 January 1st, 2014 to August 4th, 2026. Nothing
 on this page is a number somebody typed.</p>
-<ol class="claims" data-reveal><li><p><strong>The model evaluated at the published design day temperature. This anchor is exact by construction, since the coefficients were fitted to it.</strong> The model returns 390.0 MMcf/d.</p></li><li><p><strong>The coldest day in the committed Anchorage record, and what the model asks of the system on that day. Recomputed from the HDD history, never typed.</strong> The model returns 398.4 MMcf/d.</p></li><li><p><strong>The 2025 to 2026 gas year integrated day by day from the committed record. Season bounds are July 1st through June 30th.</strong> The model returns 71.7 Bcf.</p></li><li><p><strong>Mean modeled demand across every day in the committed record, against the published average day figure.</strong> The model returns 183.7 MMcf/d.</p></li></ol>
+<ol class="claims" data-reveal><li><p><strong>The model evaluated at the temperature behind the published design day, for comparison against that planning figure.</strong> The model returns 338.8 MMcf/d.</p></li><li><p><strong>The coldest day in the committed Anchorage record, and what the model asks of the system on that day. Recomputed from the HDD history, never typed.</strong> The model returns 345.7 MMcf/d.</p></li><li><p><strong>The 2025 to 2026 gas year integrated day by day from the committed record. Season bounds are July 1st through June 30th.</strong> The model returns 65.8 Bcf.</p></li><li><p><strong>Mean modeled demand across every day in the committed record, against the published average day figure.</strong> The model returns 169.8 MMcf/d.</p></li></ol>
 <p class="prose" data-reveal>Across that record the model averages
-183.7 MMcf per day against the published average day of
-190, so it runs slightly
-light. The coldest
+169.8 MMcf per day against the published average day of
+190, which is
+10.6 percent light. The coldest
 day in the record is February 2nd, 2024 at
 77 degree days, which models to
-398.4 MMcf per day. In the whole record,
-3 days model at or
+345.7 MMcf per day. Of the
+4,599 days on file,
+none model at or
 above the published design day. That is a fact about the weather, not a
 statement about whether the system coped.</p>
 
@@ -216,17 +221,18 @@ away. One day is a dot. A month shows the shape of a drawdown. A winter shows
 what a cold snap actually costs the field, and no other public source can show
 you that.</p>
 <p class="prose" data-reveal>The demand figure is an estimate, so rather than
-ask you to trust it we check it against what Alaska actually burned and publish
-how far off it is. When the record says the estimate should move,
+ask you to trust it we fit it to what Alaska actually burned and publish how far
+off it still is. When the record says the estimate should move,
 we move it, and every earlier version stays on file so an old number can still
 be reproduced.</p>
-<h2 data-reveal>Checked against what Alaska burned</h2>
+<h2 data-reveal>Fitted to what Alaska burned</h2>
 <p class="prose" data-reveal>The US Energy Information Administration publishes
-Alaska gas deliveries and underground storage monthly. Across
-131 months of overlap this model runs
-8 percent high against residential,
-commercial and electric power deliveries. That check is statewide and lags about
-two months, so it corrects the model rather than replacing anything here.</p>
+Alaska gas deliveries and underground storage monthly.
+131 months of those deliveries to homes,
+businesses and power plants are what the demand model is fitted to, and each new
+month refits it. So the estimate answers to measured consumption rather than to a
+design document. The figures are statewide and lag about two months, which is why
+they correct the model rather than replace anything here.</p>
 <p class="prose" data-reveal>It also widens the picture. Through
 May 2026 Alaska held 30.0 Bcf
 of working gas across 5 storage fields, against
@@ -237,7 +243,7 @@ The rest surfaces monthly at best, which is why the daily record starts here.</p
 <h2 data-reveal>What is not reported daily</h2>
 <p class="prose" data-reveal>These are the things no public feed reports daily,
 and their absence is why this page publishes numbers rather than conclusions.
-Two of them do have monthly statewide figures, which is where the check above comes from. What no source gives is a daily regional number, and that is the gap that matters here.</p>
+Two of them do have monthly statewide figures, which is what the model above is fitted to. What no source gives is a daily regional number, and that is the gap that matters here.</p>
 <ol class="claims" data-reveal><li><p>hilcorp storage inventory</p></li><li><p>daily field deliverability</p></li><li><p>enstar realtime sendout</p></li></ol>
 
 <h2 data-reveal>How to cite it</h2>

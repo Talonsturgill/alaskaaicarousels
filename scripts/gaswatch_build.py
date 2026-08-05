@@ -150,6 +150,8 @@ def figures(series, model):
         "hdd_record_start": hist["start_date"],
         "hdd_record_end": hist["end_date"],
         "not_public_count": len(model.get("not_public", [])),
+        "fit_months": (model.get("fit") or {}).get("months"),
+        "fit_mean_error_pct": (model.get("fit") or {}).get("mean_error_pct"),
         # The first history entry is the original fit, not a revision of
         # anything, so counting it published "3 revisions" for two revisions.
         "model_revisions": max(0, len(model.get("model_history", [])) - 1),
@@ -215,7 +217,7 @@ def figures(series, model):
     # Comparisons are computed for the same reason numerals are. A page that
     # says "a minority" in prose is asserting a fact about two figures, and it
     # would keep saying it after those figures crossed over.
-    for key in ("record_average_direction",):
+    for key in ("record_average_direction", "record_average_gap_pct"):
         try:
             f[key] = _comparison(key, f)
         except KeyError:
@@ -359,6 +361,10 @@ def _comparison(key, vals):
     if key == "record_average_direction":
         return ("light" if vals["record_average_day_mmcfd"]
                 < vals["anchor_published_average_day_mmcfd"] else "heavy")
+    if key == "record_average_gap_pct":
+        published = vals["anchor_published_average_day_mmcfd"]
+        return round(abs(vals["record_average_day_mmcfd"] - published)
+                     / published * 100, 1)
     raise KeyError(key)
 
 
@@ -706,6 +712,14 @@ def self_test():
          "heavy",
          {"record_average_day_mmcfd": 183.7, "anchor_published_average_day_mmcfd": 190},
          "light"),
+        # The size of that gap is computed for the same reason its direction is.
+        # It read "slightly light" in typed prose right up until a refit moved
+        # the model ten percent under the anchor and the word stayed put.
+        ("record_average_gap_pct",
+         {"record_average_day_mmcfd": 228.0, "anchor_published_average_day_mmcfd": 190},
+         20.0,
+         {"record_average_day_mmcfd": 171.0, "anchor_published_average_day_mmcfd": 190},
+         10.0),
     ]
     for key, hi_in, hi_want, lo_in, lo_want in flips:
         got_hi = _comparison(key, hi_in)
@@ -949,16 +963,17 @@ production.</p>"""
     if f.get("eia_months_checked"):
         not_public_note = (
             f"{spell(f['not_public_with_monthly_source'])} of them do have monthly "
-            f"statewide figures, which is where the check above comes from. What "
+            f"statewide figures, which is what the model above is fitted to. What "
             f"no source gives is a daily regional number, and that is the gap "
             f"that matters here.")
-        crosscheck = f"""<h2 data-reveal>Checked against what Alaska burned</h2>
+        crosscheck = f"""<h2 data-reveal>Fitted to what Alaska burned</h2>
 <p class="prose" data-reveal>The US Energy Information Administration publishes
-Alaska gas deliveries and underground storage monthly. Across
-{count(f["eia_months_checked"], "month")} of overlap this model runs
-{f["eia_model_gap_pct"]} percent {f["eia_model_runs"]} against residential,
-commercial and electric power deliveries. That check is statewide and lags about
-two months, so it corrects the model rather than replacing anything here.</p>
+Alaska gas deliveries and underground storage monthly.
+{count(f["eia_months_checked"], "month")} of those deliveries to homes,
+businesses and power plants are what the demand model is fitted to, and each new
+month refits it. So the estimate answers to measured consumption rather than to a
+design document. The figures are statewide and lag about two months, which is why
+they correct the model rather than replace anything here.</p>
 <p class="prose" data-reveal>It also widens the picture. Through
 {long_month(f["eia_latest_month"])} Alaska held {f["eia_ak_working_gas_bcf"]} Bcf
 of working gas across {count(f["eia_storage_fields"], "storage field")}, against
@@ -1027,13 +1042,17 @@ that it is not, is using it wrong.</p>
 <h2 data-reveal>The model, in full</h2>
 <p class="prose" data-reveal>Regional demand in MMcf per day is
 {f["base_mmcfd"]} plus {f["slope_mmcfd_per_hdd"]} times heating degree days on a
-base of {f["hdd_base_f"]} degrees Fahrenheit. Version {f["model_version"]}. It is
-calibrated to two published figures, a design day of
-{f["anchor_published_design_day_mmcfd"]} MMcf per day at
-{f["anchor_published_design_day_hdd65"]} degree days and an average day of
-{f["anchor_published_average_day_mmcfd"]} MMcf per day. It is NOT fitted to
-observed sendout, because observed sendout is not public. Treat the coefficients
-as a working hypothesis, not a measurement.</p>
+base of {f["hdd_base_f"]} degrees Fahrenheit. Version {f["model_version"]}, fitted
+by least squares to {count(f["fit_months"], "month")} of observed Alaska
+deliveries to homes, businesses and power plants, and refitted every time another
+month is published. It misses those months by {f["fit_mean_error_pct"]} percent
+on average, measured against the same record it is fitted to.</p>
+<p class="prose" data-reveal>It sits below the published planning figures, and
+that is expected rather than a problem. A design day of
+{f["anchor_published_design_day_mmcfd"]} MMcf per day is a peak carrying margin
+for a system operator to build against. This predicts what the region actually
+uses, which is a different question, and the gap between them is published here
+instead of tuned away.</p>
 <p class="prose" data-reveal>Every figure below is recomputed at build time from
 {f["hdd_record_days"]:,} days of observed Anchorage degree days covering
 {long_date(f["hdd_record_start"])} to {long_date(f["hdd_record_end"])}. Nothing
@@ -1041,12 +1060,13 @@ on this page is a number somebody typed.</p>
 <ol class="claims" data-reveal>{bt_rows}</ol>
 <p class="prose" data-reveal>Across that record the model averages
 {f["record_average_day_mmcfd"]} MMcf per day against the published average day of
-{f["anchor_published_average_day_mmcfd"]}, so it runs slightly
-{f["record_average_direction"]}. The coldest
+{f["anchor_published_average_day_mmcfd"]}, which is
+{f["record_average_gap_pct"]} percent {f["record_average_direction"]}. The coldest
 day in the record is {long_date(f["record_maximum_day_date"])} at
 {f["record_maximum_day_hdd65"]:g} degree days, which models to
-{f["record_maximum_day_mmcfd"]} MMcf per day. In the whole record,
-{count(f["record_maximum_day_days_at_or_above_design_day"], "day")} model at or
+{f["record_maximum_day_mmcfd"]} MMcf per day. Of the
+{f["hdd_record_days"]:,} days on file,
+{spell(f["record_maximum_day_days_at_or_above_design_day"]).lower()} model at or
 above the published design day. That is a fact about the weather, not a
 statement about whether the system coped.</p>
 
@@ -1059,8 +1079,8 @@ away. One day is a dot. A month shows the shape of a drawdown. A winter shows
 what a cold snap actually costs the field, and no other public source can show
 you that.</p>
 <p class="prose" data-reveal>The demand figure is an estimate, so rather than
-ask you to trust it we check it against what Alaska actually burned and publish
-how far off it is.{scoreboard} When the record says the estimate should move,
+ask you to trust it we fit it to what Alaska actually burned and publish how far
+off it still is.{scoreboard} When the record says the estimate should move,
 we move it, and every earlier version stays on file so an old number can still
 be reproduced.</p>
 {crosscheck}
