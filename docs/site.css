@@ -437,7 +437,11 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
   .maphero{margin:34px -12px 0;padding:0 12px;}
   .latest{grid-template-columns:1fr;}
   .flagsky{right:-4vw;top:2vh;width:70vw;opacity:.8;}
-  .navlinks{gap:14px;font-size:10.5px;}
+  /* Seven items no longer fit one phone row. Without wrapping, the last link
+     runs off the side and the page clips overflow, so ABOUT would be on the
+     page and unreachable. Wrapping keeps every item tappable and leaves room
+     for an eighth later. */
+  .navlinks{gap:13px;row-gap:9px;font-size:10.5px;flex-wrap:wrap;}
   .topnav{padding:18px 0 12px;}
   .lightbox .lbprev{left:8px;}
   .lightbox .lbnext{right:8px;}
