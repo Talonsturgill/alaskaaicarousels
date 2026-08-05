@@ -344,6 +344,53 @@ def docket_dates_row(rows):
         rows.add("docket_dates", "FAIL", out[0][:140])
 
 
+def gas_watch_row(rows):
+    """Repo-level: the gas watch series is only worth publishing if it is whole.
+
+    CINGSA keeps no archive, so a day that goes uncollected cannot be recovered
+    later and a gap is permanent. This checks the three things that make the
+    series citable: no missing day between the first and last record, exactly
+    one standing record per date, and a latest reading recent enough that the
+    page is not quietly serving a number from last week. Staleness is a WARN
+    rather than a FAIL because the collector runs on its own schedule and a
+    carousel run must never be blocked by it."""
+    ledger = REPO / "ledger" / "gaswatch.jsonl"
+    if not ledger.exists():
+        rows.absent("gas_watch", "ledger/gaswatch.jsonl missing")
+        return
+    try:
+        sys.path.insert(0, str(REPO / "scripts"))
+        import gaswatch_build as gwb
+        series = gwb.load_series(str(ledger))
+        model = gwb.gc.load_model(str(REPO / "config" / "gaswatch_model.json"))
+        gwb.figures(series, model)          # every published figure recomputes
+    except Exception as e:
+        rows.add("gas_watch", "FAIL", "series unreadable (%s) %s"
+                 % (type(e).__name__, str(e)[:90]))
+        return
+    if not series:
+        rows.absent("gas_watch", "no readings collected yet")
+        return
+    missing = gwb.continuity(series)
+    if missing:
+        rows.add("gas_watch", "FAIL",
+                 "%d missing day(s) in the series, first %s"
+                 % (len(missing), missing[0]))
+        return
+    verified = [r for r in series if r.get("verified")]
+    if not verified:
+        rows.add("gas_watch", "FAIL", "%d day(s) on record, none verified" % len(series))
+        return
+    from datetime import date as _d
+    age = (_d.today() - _d.fromisoformat(verified[-1]["date"])).days
+    note = ("%d day(s) on record, %d verified, no gaps, latest %s"
+            % (len(series), len(verified), verified[-1]["date"]))
+    if age > 2:
+        rows.add("gas_watch", "WARN", "%s, which is %d days old" % (note, age))
+    else:
+        rows.add("gas_watch", "PASS", note)
+
+
 def site_fresh_row(rows, run):
     """Repo-level: proves the committed docs/ is byte-identical to what
     site_build.py makes from the data this run just committed. A stale page
@@ -568,6 +615,7 @@ def main():
     bespoke_row(rows, run)
     scanner_sync_row(rows)
     docket_dates_row(rows)
+    gas_watch_row(rows)
     site_fresh_row(rows, run)
     assemble_row(rows, run, rep, fdir)
     score_row(rows, run)

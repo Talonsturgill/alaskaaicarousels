@@ -712,7 +712,9 @@
           "note": "Re-verified against Petroleum News, August 2, 2026, and against the commission's July 8, 2026 order, which Alaska's News Source published in full. The petition for reconsideration was filed July 23, 2026, not July 24 as this entry recorded, which puts the thirty day mark on or about August 22, 2026. The order called an advance determination of prudence an extraordinary request not explicitly contemplated in the commission's governing statutes or regulations, and found the record lacked a sufficient factual basis to judge the $240 million investment prudent. Enstar disputes the finding that a DNR pore space lease approval must come first, and says that starting in 2027 it anticipates a surplus when gas supply purchases will exceed customer demand."
         }
       ],
-      "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/"
+      "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/",
+      "related_dataset": "https://alaskaaihq.com/gas-watch.json",
+      "related_dataset_page": "https://alaskaaihq.com/gas-watch/"
     },
     {
       "id": "aidea-houston-industrial-park",

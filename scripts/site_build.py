@@ -40,6 +40,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_build as db  # projection, validation, docket components, gates
 import feeds_build as fb   # feeds, plaintext mirrors, llms.txt
+import gaswatch_build as gw  # gas watch series, figures, chart, page components
 
 REPO = Path(__file__).resolve().parents[1]
 RAW = "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main"
@@ -482,6 +483,7 @@ def footer(prefix, today):
     <a href="{prefix}archive/">ARTICLES</a><a href="{prefix}topics/">BEATS</a>
     <a href="{prefix}videos/">VIDEOS</a>
     <a href="{prefix}sources/">SOURCES</a>
+    <a href="{prefix}gas-watch/">GAS WATCH</a>
     <a href="{prefix}scan/">SCANNER</a>
     <a href="{prefix}services/">SERVICES</a>
     <a href="{prefix}about/">ABOUT</a>
@@ -2547,6 +2549,21 @@ def topic_page(today, site_url, topic, decks, docket_items):
                 f'<p class="who">{len(src)} {"source" if len(src) == 1 else "sources"}'
                 f' on file &middot; <a class="proselink" href="../../docket/{esc(d["id"])}/">'
                 f'the full record</a></p></li>')
+        # The live instrument at the top of the beat it belongs to. It goes
+        # here rather than into a new beat of its own, because the beat count
+        # is already inconsistent across the site and a new taxonomy node
+        # before that is fixed compounds the problem.
+        if topic["slug"] == "power-and-the-grid":
+            body += (
+                '\n<h2 data-reveal>The live instrument on this beat</h2>\n'
+                '<p class="prose" data-reveal>The decisions below move on a scale '
+                'of months. The physical system moves daily, and '
+                '<a class="proselink" href="../../gas-watch/">Cook Inlet Gas '
+                'Watch</a> reads it every day, measured storage against modeled '
+                'demand, published as open data. CINGSA keeps no archive of its '
+                'own, so that record exists only because it is collected and '
+                'committed daily. It states no verdict about whether supply is '
+                'adequate, because the data cannot carry one.</p>')
         body += ('\n<h2 data-reveal>Decisions on this beat</h2>\n'
                  f'<ol class="claims" data-reveal>{"".join(rows)}</ol>'
                  '\n<p class="prose" data-reveal>Every one of these is also in '
@@ -5135,6 +5152,43 @@ def sitemap(site_url, runs, today, decisions=None):
 
 
 
+GAS_WATCH_META = {
+    "license": DATA_LICENSE,
+    "license_label": DATA_LICENSE_LABEL,
+    "attribution": "Alaska AI, https://alaskaaihq.com",
+    "publisher": "Alaska AI",
+    "spatial_coverage": "Southcentral Alaska, United States",
+    "docket_item_id": "enstar-cook-inlet-gas-storage",
+}
+
+
+def gas_watch_page(today, site_url, series, model):
+    """Cook Inlet Gas Watch, the live instrument beside the docket.
+
+    The docket tracks decisions on a scale of months. This tracks the physical
+    system on a scale of days. Siblings, not parent and child, which is why the
+    series lives in its own ledger and its own feed rather than inside
+    docket.json, whose schema is decision-centric and would break.
+
+    Every figure on this page is computed in gaswatch_build.figures() from the
+    committed record. numeral_lint() below refuses to ship a number that traces
+    back to nothing, so no typed or remembered figure can reach a reader."""
+    body = gw.page_body(today, site_url, series, model, GAS_WATCH_META)
+    figs = gw.figures(series, model)
+    planted = gw.numeral_lint(
+        body, gw.allowed_numerals(figs, model, [DATA_LICENSE_LABEL, gw.SCHEMA_VERSION]))
+    if planted:
+        db.fail("gas watch page carries numeral(s) no computation produced, "
+                f"{sorted(set(planted))[:6]}. Every figure must come from "
+                "gaswatch_build.figures().")
+    desc = ("A daily numeric record of Southcentral Alaska's natural gas position. "
+            "Measured Cook Inlet storage, modeled regional demand, and the derived "
+            "supply nobody else publishes. No safety verdict, ever.")
+    return page("Cook Inlet Gas Watch", desc, body, "../", "", today, site_url,
+                "gas-watch/", extra_css=gw.GW_CSS,
+                crumbs=[("Home", ""), ("Gas Watch", "gas-watch/")])
+
+
 def prose_colon_gate(rel, html):
     """House style bans colons in visible copy (clock times like 4:30 and
     URLs are not prose and pass). Fails the build if one slips in."""
@@ -5160,9 +5214,13 @@ def build(today, out_dir, site_url=None, domain=""):
         _, _, r["article_text"] = article_html(r)
         r["cover"] = f"{RAW}/runs/{r['date']}/og.jpg"
 
+    gas_series = gw.load_series()
+    gas_model = gw.gc.load_model(gw.MODEL_CONFIG)
+
     pages = {
         "index.html": home_page(today, site_url, docket, runs),
         "docket/index.html": docket_page(today, site_url, docket),
+        "gas-watch/index.html": gas_watch_page(today, site_url, gas_series, gas_model),
         "archive/index.html": archive_page(today, site_url, runs),
         "services/index.html": services_page(today, site_url),
         "services/thanks/index.html": services_thanks_page(today, site_url),
@@ -5310,11 +5368,27 @@ def build(today, out_dir, site_url=None, domain=""):
             "public_access": sorted(db.ACCESS),
             "key_dates.kind": sorted(db.DATE_KINDS),
         },
-        "items": [dict(it, url=f"{site_url}/docket/{it['id']}/") for it in docket[0]],
+        # The reciprocal half of the gas watch cross reference. Emitted into
+        # the feed rather than written into ledger/docket.json, so the two
+        # datasets join by stable id without mutating a machine-maintained
+        # ledger whose item count and schema other gates depend on. Additive,
+        # which the docket's own version policy already allows for.
+        "items": [
+            dict(it, url=f"{site_url}/docket/{it['id']}/",
+                 **({"related_dataset": f"{site_url}/gas-watch.json",
+                     "related_dataset_page": f"{site_url}/gas-watch/"}
+                    if it["id"] == GAS_WATCH_META["docket_item_id"] else {}))
+            for it in docket[0]],
     }, indent=2)
     (out / "docket.json").write_text(feed)
     (out / "docket").mkdir(exist_ok=True)
     (out / "docket" / "docket.json").write_text(feed)
+    # The gas watch series, beside the docket and deliberately not inside it.
+    # Same envelope keys so the two read as one data family, but `series` where
+    # the docket has `items`, because a time series does not fit a schema built
+    # around who decides and when.
+    (out / "gas-watch.json").write_text(json.dumps(
+        gw.feed(gas_series, gas_model, site_url, today, GAS_WATCH_META), indent=2))
     touch_icon(out)
     (out / "sitemap.xml").write_text(sitemap(site_url, runs, today, docket[0]))
     (out / "robots.txt").write_text(

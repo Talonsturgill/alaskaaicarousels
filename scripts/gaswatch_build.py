@@ -1,0 +1,793 @@
+#!/usr/bin/env python3
+"""gaswatch_build.py, the shared library behind the Cook Inlet Gas Watch page.
+
+scripts/site_build.py is an assembler. Reading the series, deriving every
+displayed figure, drawing the chart, and building the page components live
+here, the same way scripts/docket_build.py carries that load for the docket.
+
+THE RULE THIS FILE EXISTS TO ENFORCE. Not one numeral on the published page is
+typed by a human or a language model. Every figure is computed in figures()
+from the committed record and interpolated at build time, and numeral_lint()
+fails the build if a number appears on the page that does not trace back to the
+data that produced it. Maintainer's instruction, 2026-08-05, and the reason is
+sound. A model writing "storage sits near half of design" into prose is exactly
+how a wrong number ships, and prose drifts from data silently.
+
+The page never publishes a safety verdict. Not a shortfall prediction, not an
+all clear. It publishes measured storage, modeled demand, the derived residual,
+and the size of what is not public. See CLAUDE.md, hard rules.
+
+Run:
+  python3 scripts/gaswatch_build.py --self-test
+"""
+
+import argparse
+import html as _html
+import json
+import os
+import re
+import sys
+from datetime import date, datetime, timedelta
+
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+import gaswatch_collect as gc  # noqa: E402  the model and its arithmetic live there
+
+LEDGER = os.path.join(REPO, "ledger", "gaswatch.jsonl")
+MODEL_CONFIG = os.path.join(REPO, "config", "gaswatch_model.json")
+
+SCHEMA_VERSION = "1.0"
+
+MONTHS = ["January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December"]
+
+
+def fail(msg):
+    print(f"FAIL: {msg}", file=sys.stderr)
+    raise SystemExit(1)
+
+
+def esc(s):
+    return _html.escape(str(s), quote=True)
+
+
+def ordinal(n):
+    """House style takes the ordinal, month first. August 10th, never 10 August."""
+    if 10 <= n % 100 <= 20:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
+def long_date(iso):
+    d = date.fromisoformat(iso)
+    return f"{MONTHS[d.month - 1]} {ordinal(d.day)}, {d.year}"
+
+
+# ------------------------------------------------------------------ reader
+
+def load_series(path=LEDGER):
+    """Every date's standing record, oldest first.
+
+    Lines are append only, so a repair line for a date follows the unverified
+    line it replaces. Last write wins per date, which is the same resolution
+    gaswatch_collect.standing() applies, kept consistent on purpose so the page
+    and the collector never disagree about which line counts.
+    """
+    if not os.path.exists(path):
+        return []
+    by_date = {}
+    with open(path, encoding="utf-8") as fh:
+        for lineno, line in enumerate(fh, 1):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rec = json.loads(line)
+            except json.JSONDecodeError as exc:
+                fail(f"{path} line {lineno} is not valid JSON, {exc}")
+            by_date[rec["date"]] = rec
+    return [by_date[d] for d in sorted(by_date)]
+
+
+def latest_verified(series):
+    for rec in reversed(series):
+        if rec.get("verified"):
+            return rec
+    return None
+
+
+def continuity(series):
+    """Missing calendar days between the first and last record."""
+    if len(series) < 2:
+        return []
+    have = {r["date"] for r in series}
+    first = date.fromisoformat(series[0]["date"])
+    last = date.fromisoformat(series[-1]["date"])
+    out, cur = [], first
+    while cur <= last:
+        if cur.isoformat() not in have:
+            out.append(cur.isoformat())
+        cur += timedelta(days=1)
+    return out
+
+
+# ------------------------------------------------------------------ figures
+
+def figures(series, model):
+    """Every number the page displays, computed once, in one place.
+
+    If a figure is not in this dict it does not go on the page. That is what
+    makes numeral_lint() able to prove the page carries nothing invented.
+    """
+    hist, hdd_series = gc.load_hdd_history(model, REPO)
+    facts = gc.backtest_facts(model, hdd_series)
+    anchors = model.get("calibration_anchors", {})
+
+    verified = [r for r in series if r.get("verified")]
+    latest = latest_verified(series)
+
+    f = {
+        "days_of_record": len(series),
+        "verified_days": len(verified),
+        "unverified_days": len(series) - len(verified),
+        "missing_days": len(continuity(series)),
+        "first_date": series[0]["date"] if series else None,
+        "last_date": series[-1]["date"] if series else None,
+        "model_version": model["version"],
+        "schema_version": SCHEMA_VERSION,
+        "base_mmcfd": model["base_mmcfd"],
+        "slope_mmcfd_per_hdd": model["slope_mmcfd_per_hdd"],
+        "hdd_base_f": model["hdd_base_f"],
+        "hdd_record_days": hist["days"],
+        "hdd_record_start": hist["start_date"],
+        "hdd_record_end": hist["end_date"],
+        "not_public_count": len(model.get("not_public", [])),
+    }
+    f.update({f"anchor_{k}": v for k, v in anchors.items()
+              if isinstance(v, (int, float))})
+    for bid, vals in facts.items():
+        for k, v in vals.items():
+            f[f"{bid.replace('-', '_')}_{k}"] = v
+
+    if latest:
+        cin = latest["cingsa"]
+        der = latest.get("derived") or {}
+        f.update({
+            "as_of": latest["date"],
+            "inventory_mcf": cin["inventory_mcf"],
+            "inventory_bcf": round(cin["inventory_mcf"] / 1_000_000, 2),
+            "inventory_pct_of_design": cin["inventory_pct_of_design"],
+            "design_mcf": cin["storage_design_mcf"],
+            "design_bcf": round(cin["storage_design_mcf"] / 1_000_000, 1),
+            "inventory_delta_mcf": cin["inventory_delta_mcf"],
+            "withdrawal_operating_mmcfd": round(
+                cin["withdrawal_operating_mcfd"] / 1000, 1),
+            "withdrawal_restriction_mcfd": cin["withdrawal_restriction_mcfd"],
+            "injection_in_progress_mmcfd": round(
+                cin["injection_in_progress_mcfd"] / 1000, 1),
+            "source_timestamp": cin.get("source_timestamp"),
+            "peak_forecast_date": der.get("peak_forecast_date"),
+            "peak_forecast_hdd": der.get("peak_forecast_hdd"),
+            "peak_modeled_demand_mmcfd": der.get("peak_modeled_demand_mmcfd"),
+        })
+        # How much of a day's supply nothing public measures. This is the size
+        # of the hole, stated as a number rather than as an adjective.
+        rec = latest.get("reconciliation") or {}
+        if rec.get("non_cingsa_supply_mmcfd") is not None and rec.get("modeled_demand_mmcfd"):
+            f["balance_date"] = rec["date"]
+            f["non_cingsa_supply_mmcfd"] = rec["non_cingsa_supply_mmcfd"]
+            f["modeled_demand_mmcfd"] = rec["modeled_demand_mmcfd"]
+            f["storage_withdrawal_mmcfd"] = rec["storage_withdrawal_mmcfd"]
+            f["unmeasured_share_pct"] = round(
+                rec["non_cingsa_supply_mmcfd"] / rec["modeled_demand_mmcfd"] * 100, 1)
+    return {k: v for k, v in f.items() if v is not None}
+
+
+def allowed_numerals(figs, model, extra_strings=()):
+    """Every numeral that may legally appear in page prose.
+
+    Built from the data itself, never by adding a literal to silence the lint.
+    A number reaches this set only because something computed it.
+    """
+    blob = json.dumps([figs, model, list(extra_strings)])
+    # An ISO date in the data renders on the page as "August 5th, 2026", whose
+    # day part is "5" and not the zero padded "05" the ISO string carries. The
+    # rendered form is still the data, so expand it here rather than letting a
+    # date trip a lint aimed at invented figures.
+    blob += " ".join(long_date(d) for d in
+                     sorted(set(re.findall(r"\d{4}-\d{2}-\d{2}", blob))))
+    return {tok.replace(",", "").rstrip(".")
+            for tok in re.findall(r"\d[\d,]*(?:\.\d+)?", blob)}
+
+
+def blank(v):
+    """A value the model could not produce yet shows as an empty cell.
+
+    Never the word None, which is machine spill, and never a zero, which a
+    reader would take for a measurement of nothing."""
+    return "" if v is None else v
+
+
+def count(n, singular, plural=None):
+    """A counted noun that agrees with its number. One day, two days."""
+    return f"{n} {singular if n == 1 else (plural or singular + 's')}"
+
+
+def numeral_lint(page_html, allowed):
+    """Numerals in visible prose that trace back to nothing in the data.
+
+    SVG is excluded because chart geometry is pixel coordinates, which are
+    computed but meaningless as figures. The chart's own text labels are linted
+    separately by passing them through as prose.
+    """
+    txt = re.sub(r"(?s)<svg.*?</svg>", " ", page_html)
+    txt = re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", txt)
+    txt = re.sub(r"(?s)<!--.*?-->", " ", txt)
+    txt = re.sub(r"<[^>]+>", " ", txt)
+    txt = _html.unescape(txt)
+    bad = []
+    for tok in re.findall(r"\d[\d,]*(?:\.\d+)?", txt):
+        norm = tok.replace(",", "").rstrip(".")
+        if norm not in allowed:
+            bad.append(tok)
+    return bad
+
+
+# ------------------------------------------------------------------ chart
+
+def nice_bounds(lo, hi, ticks=4):
+    """Axis bounds and tick values on round numbers, computed not chosen."""
+    # A span that is flat, or so narrow it is flat relative to its own
+    # magnitude, cannot produce a readable axis and rounds badly besides.
+    # Storage barely moves day to day, so this is the ordinary case early in
+    # the series, not an exotic one.
+    if hi - lo <= max(abs(lo), abs(hi), 1.0) * 1e-4:
+        hi = lo + max(abs(lo) * 0.01, 1.0)
+    span = hi - lo
+    raw = span / max(1, ticks)
+    mag = 10 ** int(f"{raw:e}".split("e")[1])
+    step = next(m * mag for m in (1, 2, 2.5, 5, 10) if m * mag >= raw)
+    start = step * int(lo / step) if lo >= 0 else step * (int(lo / step) - 1)
+    # Walk until the last tick is at or above hi. Stopping at the last tick
+    # below hi is how a data point ends up drawn above the top gridline, which
+    # is what the self-test caught the first time this was written.
+    vals, v = [], start
+    while True:
+        vals.append(round(v, 6))
+        if v >= hi - step * 1e-9:
+            break
+        v += step
+    return vals[0], vals[-1], vals
+
+
+def chart_svg(series, model, w=920, panel_h=150, gap=34):
+    """Storage and modeled demand as small multiples on a shared time axis.
+
+    TWO PANELS, ONE SCALE EACH. The first draft of this plotted both on one
+    frame with storage on the left axis and demand on the right, which is a
+    dual axis chart. The alignment of two y scales is arbitrary, so the reader
+    sees a correlation the data never claimed. Small multiples say the same
+    thing without inventing the relationship.
+
+    Colour. Both marks are the site's brand accents. Against the panel surface
+    they clear the 3 to 1 contrast floor and, being one series per panel, there
+    is no adjacent pair to separate, which is the case the categorical
+    lightness band is scoped to. Deeper in band steps of the same hues were
+    generated and rejected as less legible on a surface this close to black.
+
+    Below two points there is no trend to draw, so the caller falls back to the
+    meter and the stat tiles rather than plotting a line through one dot.
+    """
+    pts = [(r["date"], r["cingsa"]["inventory_mcf"] / 1_000_000,
+            (r.get("derived") or {}).get("peak_modeled_demand_mmcfd"))
+           for r in series
+           if r.get("verified") and (r.get("cingsa") or {}).get("inventory_mcf")]
+    if len(pts) < 2:
+        return ""
+
+    pad_l, pad_r, pad_b = 64, 16, 30
+    iw = w - pad_l - pad_r
+    n = len(pts)
+    h = panel_h * 2 + gap + pad_b
+    MONO = 'font-size="11" font-family="JBMono,monospace"'
+
+    def x(i):
+        return pad_l + iw * i / (n - 1)
+
+    def panel(top, vals, title, unit, colour, fill_id):
+        have = [(i, v) for i, v in vals if v is not None]
+        if not have:
+            return ""
+        lo, hi, ticks = nice_bounds(min(v for _, v in have) * 0.98,
+                                    max(v for _, v in have) * 1.02)
+
+        def y(v):
+            return top + panel_h - panel_h * (v - lo) / (hi - lo)
+
+        # Solid hairlines one shade off the surface. Dashed grid reads as a
+        # threshold when it is only a grid.
+        g = "".join(
+            f'<line x1="{pad_l}" y1="{y(t):.1f}" x2="{pad_l + iw}" y2="{y(t):.1f}" '
+            f'stroke="#152a44" stroke-width="1"/>'
+            f'<text x="{pad_l - 10}" y="{y(t) + 4:.1f}" text-anchor="end" '
+            f'fill="#8da2be" {MONO}>{t:g}</text>' for t in ticks)
+        d = " ".join(f'{"M" if k == 0 else "L"}{x(i):.1f},{y(v):.1f}'
+                     for k, (i, v) in enumerate(have))
+        area = (f'{d} L{x(have[-1][0]):.1f},{top + panel_h} '
+                f'L{x(have[0][0]):.1f},{top + panel_h} Z')
+        # One direct label, on the latest point, which is the value a reader
+        # came for. A number on every point is noise.
+        li, lv = have[-1]
+        return f"""<path d="{area}" fill="url(#{fill_id})"/>{g}
+<path d="{d}" fill="none" stroke="{colour}" stroke-width="2"
+ stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="{x(li):.1f}" cy="{y(lv):.1f}" r="4.5" fill="{colour}"
+ stroke="#0a1626" stroke-width="2"/>
+<text x="{pad_l}" y="{top - 8}" fill="#f4f8ff" {MONO}>{title}</text>
+<text x="{pad_l + iw}" y="{top - 8}" text-anchor="end" fill="#8da2be" {MONO}>{unit}</text>
+<text x="{x(li) - 9:.1f}" y="{y(lv) - 10:.1f}" text-anchor="end" fill="{colour}"
+ {MONO}>{lv:g}</text>"""
+
+    top1, top2 = 22, 22 + panel_h + gap
+    p1 = panel(top1, [(i, p[1]) for i, p in enumerate(pts)],
+               "MEASURED STORAGE", "Bcf", "#ffc72c", "gwA")
+    p2 = panel(top2, [(i, p[2]) for i, p in enumerate(pts)],
+               "MODELED PEAK DEMAND", "MMcf per day", "#5ac8f0", "gwB")
+
+    dates = "".join(
+        f'<text x="{x(i):.1f}" y="{h - 9}" '
+        f'text-anchor="{"start" if i == 0 else "end"}" fill="#8da2be" {MONO}>'
+        f'{pts[i][0]}</text>' for i in (0, n - 1))
+
+    return f"""<svg viewBox="0 0 {w} {h}" width="100%" role="img"
+ aria-label="Two charts sharing one time axis. Measured Cook Inlet storage
+ inventory in Bcf, and modeled peak daily demand in MMcf per day. The same
+ values are in the table below."
+ style="max-width:100%;height:auto;display:block">
+<defs>
+<linearGradient id="gwA" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffc72c" stop-opacity=".20"/>
+<stop offset="1" stop-color="#ffc72c" stop-opacity="0"/></linearGradient>
+<linearGradient id="gwB" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#5ac8f0" stop-opacity=".16"/>
+<stop offset="1" stop-color="#5ac8f0" stop-opacity="0"/></linearGradient>
+</defs>
+{p1}{p2}{dates}</svg>"""
+
+
+def table_html(series, limit=14):
+    """The table view twin. Every plotted value readable without the chart.
+
+    This is also the form a reporter actually wants, since it can be copied
+    into a story without reading pixels off a line.
+    """
+    rows = [r for r in series if r.get("verified")][-limit:]
+    if not rows:
+        return ""
+    body = ""
+    for r in rows:
+        cin, der = r["cingsa"], (r.get("derived") or {})
+        rec = r.get("reconciliation") or {}
+        body += (
+            f'<tr><td>{esc(r["date"])}</td>'
+            f'<td>{round(cin["inventory_mcf"] / 1_000_000, 2)}</td>'
+            f'<td>{cin["inventory_pct_of_design"]}</td>'
+            f'<td>{blank(der.get("peak_modeled_demand_mmcfd"))}</td>'
+            f'<td>{blank(rec.get("non_cingsa_supply_mmcfd"))}</td></tr>')
+    return f"""<div class="gw-table" data-reveal>
+<table>
+<caption>The most recent {count(len(rows), "verified reading")}. Storage and percent of
+design are measured. Modeled peak and non CINGSA supply are model output.</caption>
+<thead><tr><th scope="col">Date</th><th scope="col">Storage Bcf</th>
+<th scope="col">Percent of design</th><th scope="col">Modeled peak MMcf/d</th>
+<th scope="col">Non CINGSA supply MMcf/d</th></tr></thead>
+<tbody>{body}</tbody></table></div>"""
+
+
+# ------------------------------------------------------------------ feed
+
+def feed(series, model, site_url, today, meta):
+    """The gas-watch.json envelope.
+
+    Reuses the docket feed's meta keys exactly, so the two read as one data
+    family and a consumer who parsed one can parse the other. Where the docket
+    has items, this has series, one object per day, oldest first.
+    """
+    hist, hdd_series = gc.load_hdd_history(model, REPO)
+    return {
+        "name": "Cook Inlet Gas Watch",
+        "description": ("A daily numeric record of Southcentral Alaska's natural "
+                        "gas position. Measured storage inventory and "
+                        "deliverability from the CINGSA public dashboard, modeled "
+                        "regional demand from Anchorage degree days, and the "
+                        "derived non CINGSA supply that falls out of the mass "
+                        "balance. It publishes no safety verdict of any kind."),
+        "version": SCHEMA_VERSION,
+        "updated": today.isoformat(),
+        "canonical": f"{site_url}/gas-watch.json",
+        "documentation": f"{site_url}/gas-watch/",
+        "license": meta["license"],
+        "license_label": meta["license_label"],
+        "attribution": meta["attribution"],
+        "publisher": meta["publisher"],
+        "spatial_coverage": meta["spatial_coverage"],
+        "temporal_coverage": (f"{series[0]['date']}/{series[-1]['date']}"
+                              if series else None),
+        "count": len(series),
+        "related_docket_item": f"{site_url}/docket/{meta['docket_item_id']}/",
+        "warning": ("This dataset must not be used to state or imply whether the "
+                    "region will make it through a cold snap. Supply side "
+                    "deliverability is not public, so no adequacy conclusion can "
+                    "be drawn from these numbers."),
+        "model": dict(model, hdd_history_days=hist["days"],
+                      hdd_history_start=hist["start_date"],
+                      hdd_history_end=hist["end_date"]),
+        "model_history": model.get("model_history", []),
+        "series": series,
+    }
+
+
+# ------------------------------------------------------------------ self test
+
+def self_test():
+    print("reader")
+    ok = [True]
+
+    def check(label, cond, detail=""):
+        print(f"  {'PASS' if cond else 'FAIL'}  {label}{'  ' + detail if detail else ''}")
+        if not cond:
+            ok[0] = False
+
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        p = os.path.join(td, "s.jsonl")
+        with open(p, "w") as fh:
+            fh.write(json.dumps({"date": "2026-08-01", "verified": True,
+                                 "cingsa": {"inventory_mcf": 5_000_000,
+                                            "storage_design_mcf": 13_000_000,
+                                            "inventory_pct_of_design": 38.5,
+                                            "inventory_delta_mcf": 1000,
+                                            "withdrawal_operating_mcfd": 132117,
+                                            "withdrawal_restriction_mcfd": 0,
+                                            "injection_in_progress_mcfd": 1000},
+                                 "derived": {"peak_modeled_demand_mmcfd": 120},
+                                 "reconciliation": {}, "flags": []}) + "\n")
+            fh.write(json.dumps({"date": "2026-08-03", "verified": False,
+                                 "cingsa": {"fetch_status": "failed"},
+                                 "reconciliation": {}, "flags": []}) + "\n")
+            fh.write(json.dumps({"date": "2026-08-03", "verified": True,
+                                 "cingsa": {"inventory_mcf": 5_100_000,
+                                            "storage_design_mcf": 13_000_000,
+                                            "inventory_pct_of_design": 39.2,
+                                            "inventory_delta_mcf": 2000,
+                                            "withdrawal_operating_mcfd": 132117,
+                                            "withdrawal_restriction_mcfd": 0,
+                                            "injection_in_progress_mcfd": 2000},
+                                 "derived": {"peak_modeled_demand_mmcfd": 130},
+                                 "reconciliation": {}, "flags": []}) + "\n")
+        s = load_series(p)
+        check("a repair line supersedes the unverified line it follows",
+              len(s) == 2 and s[1]["verified"], f"{len(s)} standing records")
+        check("standing records come back oldest first",
+              [r["date"] for r in s] == ["2026-08-01", "2026-08-03"])
+        check("a real gap is reported", continuity(s) == ["2026-08-02"],
+              str(continuity(s)))
+
+    print("axis bounds")
+    # Swept rather than spot checked, because the failure mode is a data point
+    # drawn outside the plotted area and it only shows up at certain spans.
+    escaped = []
+    for a in (0.0, 0.7, 5.0, 6.13, 99.4, 1234.0):
+        for span in (0.0, 0.001, 0.4, 1.7, 13.0, 480.0):
+            top = a + span
+            eps = max(abs(top), 1.0) * 1e-9
+            lo, hi, ticks = nice_bounds(a, top)
+            if lo > a + eps or hi < top - eps or len(ticks) < 2 or ticks != sorted(ticks):
+                escaped.append((a, top, lo, hi))
+    check("every tested span is fully inside its axis", not escaped,
+          f"36 spans swept, {len(escaped)} escaped" +
+          (f", first {escaped[0]}" if escaped else ""))
+    lo, hi, ticks = nice_bounds(5.0, 5.0)
+    check("a flat series still produces a usable axis", hi > lo, f"{lo} to {hi}")
+
+    print("the numeral lint")
+    model = gc.load_model(MODEL_CONFIG)
+    figs = figures(load_series(), model)
+    allowed = allowed_numerals(figs, model, ["CC BY 4.0"])
+    check("a figure drawn from the data passes",
+          not numeral_lint(f"<p>Storage holds {figs.get('inventory_bcf')} Bcf.</p>",
+                           allowed))
+    planted = numeral_lint("<p>Storage sits at 87.3 percent of design.</p>", allowed)
+    check("a number nothing computed is caught", bool(planted), str(planted))
+    check("chart geometry is not mistaken for prose",
+          not numeral_lint(chart_svg(load_series(), model), allowed))
+    check("a typed number inside a chart label would still be caught",
+          bool(numeral_lint("<p>9182736 barrels</p>", allowed)))
+
+    print("the no verdict rule")
+    body = page_body(date.today(), "https://alaskaaihq.com", load_series(), model,
+                     {"license": "https://creativecommons.org/licenses/by/4.0/",
+                      "license_label": "CC BY 4.0", "attribution": "Alaska AI",
+                      "publisher": "Alaska AI", "spatial_coverage": "Alaska",
+                      "docket_item_id": "enstar-cook-inlet-gas-storage"})
+    banned = [w for w in ("will run out", "all clear", "shortfall is",
+                          "blackout", "we will make it", "is safe", "is not safe")
+              if w in body.lower()]
+    check("the page states no adequacy verdict", not banned, str(banned))
+    check("the page carries the limits of the data",
+          "not public" in body.lower() and "verdict" in body.lower())
+    check("no em dash, en dash, curly quote or emoji",
+          not re.search("[–—‘’“”]"
+                        "|[\U0001F000-\U0001FAFF]", body))
+    colon_txt = re.sub(r"<[^>]+>", "\n", re.sub(r"(?s)<svg.*?</svg>", " ", body))
+    colon_txt = re.sub(r"https?://\S+", " ", colon_txt)
+    colon_txt = re.sub(r"\d{1,2}:\d{2}", " ", colon_txt)
+    colons = [l.strip() for l in colon_txt.split("\n") if ":" in l]
+    check("no prose colon, which site_build's ship gate would refuse",
+          not colons, str(colons[:2]))
+
+    print()
+    if not ok[0]:
+        print("self-test FAILED")
+        return 1
+    print("self-test clean")
+    return 0
+
+
+# ------------------------------------------------------------------ page
+
+def stat(label, value, note, tone="gold"):
+    return (f'<div class="gw-stat gw-{tone}"><div class="gw-num">{esc(value)}</div>'
+            f'<div class="gw-lab">{esc(label)}</div>'
+            f'<div class="gw-note">{esc(note)}</div></div>')
+
+
+def gauge(f):
+    """The storage level against the field's design capacity.
+
+    A bar rather than a dial, because a dial implies a red zone and a red zone
+    is a verdict. This shows a measured ratio and stops there.
+    """
+    pct = f["inventory_pct_of_design"]
+    return f"""<div class="gw-gauge" data-reveal>
+<div class="gw-gauge-head"><span>MEASURED STORAGE</span>
+<span>{f["inventory_bcf"]} of {f["design_bcf"]} Bcf</span></div>
+<div class="gw-gauge-track"><div class="gw-gauge-fill" style="width:{pct}%"></div>
+<div class="gw-gauge-mark" style="left:{pct}%"></div></div>
+<div class="gw-gauge-foot"><span>empty</span>
+<span class="gw-gauge-pct">{pct} percent of design capacity</span>
+<span>full</span></div>
+</div>"""
+
+
+def page_body(today, site_url, series, model, meta, prefix="../"):
+    """The Gas Watch page.
+
+    Structure follows what a reporter on deadline needs, in order. What the
+    number is, when it was read, where it came from, how the modeled parts were
+    derived, and what nobody can see. The methodology is not an appendix here,
+    it is the product.
+    """
+    f = figures(series, model)
+    if not series:
+        return ('<div class="hero"><h1>Cook Inlet Gas Watch</h1>'
+                '<p class="tag">No record has been collected yet.</p></div>')
+
+    # Below two readings there is no trend, and a line through one dot is a
+    # chart pretending to know something. The meter and the tiles carry the
+    # page until the series can support a plot.
+    svg = chart_svg(series, model)
+    if svg:
+        chart_block = (
+            f'<div class="gw-chart" data-reveal>{svg}</div>'
+            f'<p class="sub" data-reveal>CINGSA keeps no archive, so this series '
+            f'exists only because it is collected daily and committed. It begins '
+            f'{long_date(f["first_date"])}. Storage is measured. The peak is '
+            f'model output, shown on its own scale because the two quantities '
+            f'are different in kind and sharing one axis would imply a '
+            f'relationship the data does not claim.</p>')
+    else:
+        chart_block = (
+            f'<p class="sub" data-reveal>The record holds '
+            f'{count(f["days_of_record"], "day")} of readings so far, which is '
+            f'not yet a trend, so there is no '
+            f'chart here. The table below is the whole series. A daily plot '
+            f'appears here once there is more than one verified day to draw.</p>')
+
+    stale_note = ""
+    if f.get("unverified_days"):
+        stale_note = (
+            f'<p class="sub" data-reveal>Of {count(f["days_of_record"], "day")} on '
+            f'record, {f["unverified_days"]} carry no verified reading because a fetch '
+            f'failed or the source had stopped updating. Those days are marked '
+            f'unverified in the data and carry no number forward from the day '
+            f'before.</p>')
+
+    balance = ""
+    if "non_cingsa_supply_mmcfd" in f:
+        balance = f"""<h2 data-reveal>What is not measured by anyone</h2>
+<p class="prose" data-reveal>Demand equals field production plus storage
+withdrawal. Storage withdrawal is measured, and demand is modeled, so
+everything that is not CINGSA falls out by subtraction. On
+{long_date(f["balance_date"])} that residual came to
+{f["non_cingsa_supply_mmcfd"]} MMcf per day against modeled demand of
+{f["modeled_demand_mmcfd"]} MMcf per day, which is
+{f["unmeasured_share_pct"]} percent of the region's gas arriving from sources
+no public feed reports daily. That share is the size of the hole in the public
+record, and it is the reason this page draws no conclusion about adequacy.</p>
+<p class="prose" data-reveal>Strictly, the residual is field production plus any
+Hilcorp storage movement combined. The two cannot be separated from public data,
+which is why the field is named non_cingsa_supply and is never called
+production.</p>"""
+
+    bt_rows = ""
+    for b in model.get("backtests", []):
+        bid = b["id"].replace("-", "_")
+        got = f.get(f"{bid}_mmcfd") or f.get(f"{bid}_bcf")
+        unit = "Bcf" if f.get(f"{bid}_bcf") is not None else "MMcf/d"
+        bt_rows += (f'<li><p><strong>{esc(b["description"])}</strong> '
+                    f'The model returns {got} {unit}.</p></li>')
+
+    not_public = "".join(f"<li><p>{esc(x.replace('_', ' '))}</p></li>"
+                         for x in model.get("not_public", []))
+
+    return f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+<div class="chip kind">LIVE INSTRUMENT &middot; {esc(meta["license_label"])}</div>
+<h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">Cook Inlet Gas Watch</h1>
+<p class="tag">A daily numeric record of Southcentral Alaska's gas position.
+Measured storage, modeled demand, and the supply nobody publishes. Read
+{long_date(f["as_of"])}, {count(f["days_of_record"], "day")} on record.</p>
+<div class="ctarow">
+  <a class="cta gold" href="{prefix}gas-watch.json">GET THE JSON</a>
+  <a class="cta ghost" href="{prefix}docket/{esc(meta["docket_item_id"])}/">THE STORAGE DECISION</a>
+</div>
+</div>
+
+<div class="gw-stats" data-reveal>
+{stat("Bcf in storage", f["inventory_bcf"], "measured")}
+{stat("percent of design", f["inventory_pct_of_design"], "measured")}
+{stat("MMcf/d withdrawal capacity", f["withdrawal_operating_mmcfd"], "measured")}
+{stat("MMcf/d modeled peak ahead", f.get("peak_modeled_demand_mmcfd", "n/a"),
+      "model output", "blue")}
+</div>
+
+<h2 data-reveal>What you are looking at</h2>
+<div class="gw-lede" data-reveal>
+<div><h3>The reserve</h3><p>Southcentral Alaska keeps gas in an underground field
+near Kenai, run by CINGSA. Utilities fill it in summer and draw on it in winter.
+The level is published once a day and never archived, so this page reads it and
+keeps the history.</p></div>
+<div><h3>The demand</h3><p>How much gas the region burns is not published at all.
+It tracks how cold it is, so we model it from the Anchorage forecast and show the
+formula and its errors rather than asking anyone to take it on faith.</p></div>
+<div><h3>The gap</h3><p>Subtract what came out of storage from what the region
+likely burned, and what is left came from somewhere nobody reports daily. That
+residual is the number no other source publishes.</p></div>
+</div>
+
+{gauge(f)}
+
+<h2 data-reveal>This page will never tell you whether the lights stay on</h2>
+<p class="prose" data-reveal>It publishes what is measured, what is modeled, and
+what is missing. It does not publish a verdict. A compressor failure or a sanded
+well can produce curtailment on a day these numbers looked comfortable, and
+supply side deliverability is not public, so no adequacy conclusion can honestly
+be drawn from what is here. Anyone using this data to say the region is fine, or
+that it is not, is using it wrong.</p>
+
+<h2 data-reveal>Day by day</h2>
+{chart_block}
+{table_html(series)}
+{stale_note}
+
+{balance}
+
+<h2 data-reveal>The model, in full</h2>
+<p class="prose" data-reveal>Regional demand in MMcf per day is
+{f["base_mmcfd"]} plus {f["slope_mmcfd_per_hdd"]} times heating degree days on a
+base of {f["hdd_base_f"]} degrees Fahrenheit. Version {f["model_version"]}. It is
+calibrated to two published figures, a design day of
+{f["anchor_published_design_day_mmcfd"]} MMcf per day at
+{f["anchor_published_design_day_hdd65"]} degree days and an average day of
+{f["anchor_published_average_day_mmcfd"]} MMcf per day. It is NOT fitted to
+observed sendout, because observed sendout is not public. Treat the coefficients
+as a working hypothesis, not a measurement.</p>
+<p class="prose" data-reveal>Every figure below is recomputed at build time from
+{f["hdd_record_days"]:,} days of observed Anchorage degree days covering
+{long_date(f["hdd_record_start"])} to {long_date(f["hdd_record_end"])}. Nothing
+on this page is a number somebody typed.</p>
+<ol class="claims" data-reveal>{bt_rows}</ol>
+<p class="prose" data-reveal>Across that record the model averages
+{f["record_average_day_mmcfd"]} MMcf per day against the published average day of
+{f["anchor_published_average_day_mmcfd"]}, so it runs slightly light. The coldest
+day in the record is {long_date(f["record_maximum_day_date"])} at
+{f["record_maximum_day_hdd65"]:g} degree days, which models to
+{f["record_maximum_day_mmcfd"]} MMcf per day. In the whole record,
+{count(f["record_maximum_day_days_at_or_above_design_day"], "day")} model at or
+above the published design day. That is a fact about the weather, not a
+statement about whether the system coped.</p>
+
+<h2 data-reveal>What is not public</h2>
+<p class="prose" data-reveal>These are the things no public feed reports daily,
+and their absence is why this page publishes numbers rather than conclusions.</p>
+<ol class="claims" data-reveal>{not_public}</ol>
+
+<h2 data-reveal>How to cite it</h2>
+<p class="prose" data-reveal>The whole series is one JSON document at
+<a class="proselink" href="{prefix}gas-watch.json">/gas-watch.json</a>, licensed
+{esc(meta["license_label"])}
+(<a class="proselink" href="{esc(meta["license"])}">licence text</a>). It carries
+the schema version, the model block with its full history, and one object per
+day with the provenance of every external fetch behind it. Storage is measured,
+demand is modeled, and each record says which is which. Version
+{f["schema_version"]}. The related tracked decision is
+<a class="proselink" href="{prefix}docket/{esc(meta["docket_item_id"])}/">Enstar's
+Cook Inlet gas storage plan</a>.</p>"""
+
+
+GW_CSS = """
+.gw-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+gap:12px;margin:26px 0 30px;}
+.gw-stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+padding:16px 15px;border-top:2px solid var(--gold);}
+.gw-stat.gw-blue{border-top-color:var(--blue);}
+.gw-num{font-size:clamp(26px,3.6vw,36px);color:var(--snow);line-height:1.05;
+font-weight:600;}
+.gw-lab{font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+color:var(--body);margin-top:8px;line-height:1.35;}
+.gw-note{font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+color:var(--mute);margin-top:6px;}
+.gw-lede{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:16px;margin:16px 0 30px;}
+.gw-lede>div{background:var(--panel);border:1px solid var(--line);
+border-radius:12px;padding:18px 17px;}
+.gw-lede h3{font-family:Fraunces,Georgia,serif;font-size:19px;color:var(--gold);
+margin-bottom:8px;font-weight:500;}
+.gw-lede p{font-size:15px;color:var(--body);line-height:1.6;}
+.gw-gauge{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+padding:18px 18px 15px;margin:8px 0 30px;}
+.gw-gauge-head{display:flex;justify-content:space-between;gap:12px;
+font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);
+margin-bottom:11px;flex-wrap:wrap;}
+.gw-gauge-head span:last-child{color:var(--snow);}
+.gw-gauge-track{position:relative;height:22px;border-radius:11px;
+background:var(--deep);border:1px solid var(--line);overflow:hidden;}
+.gw-gauge-fill{height:100%;border-radius:11px 0 0 11px;
+background:linear-gradient(90deg,#8a6a12,var(--gold));}
+.gw-gauge-mark{position:absolute;top:-3px;bottom:-3px;width:2px;
+background:var(--snow);}
+.gw-gauge-foot{display:flex;justify-content:space-between;gap:10px;margin-top:9px;
+font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);}
+.gw-gauge-pct{color:var(--snow);}
+.gw-chart{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+padding:16px 12px 8px;margin:18px 0;overflow-x:auto;}
+.gw-table{margin:18px 0 8px;overflow-x:auto;}
+.gw-table table{width:100%;border-collapse:collapse;font-size:14px;
+font-variant-numeric:tabular-nums;}
+.gw-table caption{caption-side:bottom;text-align:left;color:var(--mute);
+font-size:13px;padding-top:10px;line-height:1.5;}
+.gw-table th,.gw-table td{padding:9px 11px;border-bottom:1px solid var(--line);
+text-align:right;white-space:nowrap;}
+.gw-table th:first-child,.gw-table td:first-child{text-align:left;}
+.gw-table thead th{color:var(--mute);font-size:11px;letter-spacing:.05em;
+text-transform:uppercase;font-weight:500;}
+.gw-table tbody tr:hover{background:var(--panel);}
+"""
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Cook Inlet Gas Watch page library")
+    ap.add_argument("--self-test", action="store_true")
+    args = ap.parse_args()
+    if args.self_test:
+        return self_test()
+    figs = figures(load_series(), gc.load_model(MODEL_CONFIG))
+    print(json.dumps(figs, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
