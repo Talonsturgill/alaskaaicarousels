@@ -2496,3 +2496,41 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   showrunner self-reviewed the cover, the hero and the contact sheet, but no
   independent critic transcribed a slide. That is a real gap in the quality chain
   and it is disclosed in the email, in the artwork ledger and to the scorer.
+
+## 2026-08-05 - craft refresh (Phase 1, No.26)
+
+- A LINE'S WEIGHT IS A FUNCTION OF THE DEPTH DISCONTINUITY IT REPRESENTS, not
+  of how important the thing is. HONEST FRAMING FIRST, because the library
+  already half-carries this. TECHNIQUE_LIBRARY #58, the Profile-Heaviest Rule,
+  says "outer silhouette gets hero weight; interior seams hair/fine". So the
+  headline is not new. What the source adds is the LIGHT term and the contact
+  term. In Greg Maxson's words, "Lines within an object are thin, exterior
+  object lines are heavier" and "exterior object lines that are down and away
+  from the light source are heavier and darker still", so the silhouette is not
+  one weight, it is two, split by where the key is. The exploded-view variant,
+  line contrast shading, "uses heavier lines on all outside edges of objects".
+  https://rj-graffix.com/multiple-line-weights-in-technical-illustration/
+- THE COROLLARY IS THE ONE THAT PAYS, and it is the six-run defect stated from
+  the other end. "the bottom of the cube and cylinder are thin lines because
+  they represent the joint between two surfaces. A heavy line would suggest
+  the objects float above the other art." A CONTACT LINE STAYS THIN. Every
+  time this studio has written up "flat plates and hairlines floating on bare
+  ground" it has been describing a contact edge drawn at silhouette weight.
+  The fix is mechanical, not a matter of taste, and it costs one parameter.
+  #58 does not say this and nothing in the five-token weight system implies
+  it, because #58 reads the object in isolation and the contact edge is the
+  one edge that is about the object's RELATIONSHIP to what is under it.
+- ADOPTED AS THIS RUN'S DECLARED ATTACK, one axis over from the notan attack
+  of 2026-08-04. Value structure needed a companion, because a two-value mass
+  arrangement says where the darks go and says nothing about the edges between
+  them. Silhouette heaviest, interior edge thin, contact edge thinnest,
+  declared per object in dossier field 7 so a pixel critic can check the ratio
+  instead of judging the vibe.
+- NOTHING NEW ON THE PLATFORM SIDE, and one recurring piece of noise logged
+  for the third time. Aggregators now assert that "carousels with exactly 7
+  slides perform 18% better than any other length"; it traces to nobody, same
+  as the 5-to-15 claim logged 2026-08-04 and the 7-slide claim logged
+  2026-08-02. Document engagement re-reads at 6.60 percent, consistent with
+  the 7.00 percent Socialinsider figure CAROUSEL_CRAFT already carries and
+  measured on a different corpus, so nothing moves. Our 8 to 10 band with a 6
+  floor stands. NOT APPLIED.
