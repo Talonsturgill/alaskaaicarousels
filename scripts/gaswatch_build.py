@@ -818,13 +818,14 @@ of the state's stored gas, and the rest is reported monthly at best.</p>"""
 <p class="tag">A daily numeric record of Southcentral Alaska's gas position.
 Measured storage, modeled demand, and the supply nobody publishes. Read
 {long_date(f["as_of"])}, {count(f["days_of_record"], "day")} on record.</p>
-<div class="ctarow">
-  <a class="cta gold" href="{prefix}gas-watch.json">GET THE JSON</a>
-  <a class="cta ghost" href="{prefix}docket/{esc(meta["docket_item_id"])}/">THE STORAGE DECISION</a>
-</div>
 </div>
 
 {gauge(f)}
+
+<div class="ctarow gw-cta">
+  <a class="cta gold" href="{prefix}gas-watch.json">GET THE JSON</a>
+  <a class="cta ghost" href="{prefix}docket/{esc(meta["docket_item_id"])}/">THE STORAGE DECISION</a>
+</div>
 
 <div class="gw-stats" data-reveal>
 {stat("MMcf/d withdrawal capacity", f["withdrawal_operating_mmcfd"], "measured")}
@@ -955,7 +956,8 @@ margin-bottom:8px;font-weight:500;}
 .gw-lede p{font-size:15px;color:var(--body);line-height:1.6;}
 .gw-gauge{background:linear-gradient(180deg,var(--panel2),var(--panel));
 border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:16px;
-padding:24px 22px 18px;margin:26px 0 26px;}
+padding:24px 22px 18px;margin:20px 0 22px;}
+.gw-cta{margin-bottom:34px;}
 .gw-gauge-top{display:flex;justify-content:space-between;align-items:flex-end;
 gap:20px;flex-wrap:wrap;margin-bottom:18px;}
 /* Hero figure. Body sans rather than the serif, and proportional digits, which
