@@ -1018,12 +1018,17 @@ statement about whether the system coped.</p>
 
 <h2 data-reveal>This gets sharper the longer it runs</h2>
 <p class="prose" data-reveal>It launched {long_date(f["first_date"])} with a
-single day of readings, and every day since adds one more to a record nobody
-else is keeping. {scoreboard} The demand figure is an estimate, so rather than
+single day of readings, and every day adds one more. That record is the whole
+point. CINGSA publishes today's number and keeps no history at all, so the
+trend on this page exists only because it is collected daily and never thrown
+away. One day is a dot. A month shows the shape of a drawdown. A winter shows
+what a cold snap actually costs the field, and no other public source can show
+you that.</p>
+<p class="prose" data-reveal>The demand figure is an estimate, so rather than
 ask you to trust it we check it against what Alaska actually burned and publish
-how far off it is. When the record says the estimate should move, we move it,
-and every earlier version stays on file so an old number can still be
-reproduced.</p>
+how far off it is. {scoreboard} When the record says the estimate should move,
+we move it, and every earlier version stays on file so an old number can still
+be reproduced.</p>
 <p class="prose" data-reveal>One thing more data will not fix. Nobody publishes
 what the utilities send out day to day, so this stays an estimate rather than a
 meter reading, and it will never be anything else.</p>
