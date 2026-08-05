@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2026-01-20/2026-08-28",
-  "count": 12,
+  "count": 13,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -765,10 +765,15 @@
           "url": "https://www.matsusentinel.com/state-agency-plans-houston-area-industrial-park-data-centers-distribution-hub/",
           "outlet": "Mat-Su Sentinel",
           "date": "2026-07-14"
+        },
+        {
+          "url": "https://www.adn.com/opinions/2026/08/04/opinion-the-best-time-to-shape-mat-su-development-is-before-it-begins/",
+          "outlet": "Anchorage Daily News, AIDEA opinion",
+          "date": "2026-08-04"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-04",
+      "last_updated": "2026-08-05",
       "history": [
         {
           "date": "2026-07-17",
@@ -801,6 +806,10 @@
         {
           "date": "2026-08-04",
           "note": "Re-verified against the primary notice. The comment deadline is unchanged at 5:00 p.m. Wednesday, August 19, 2026, Alaska DNR Online Public Notices id 224431, ADL 234762."
+        },
+        {
+          "date": "2026-08-05",
+          "note": "AIDEA argued its case in the opinion pages. Deputy director Brandon Brefczynski published a piece in the Anchorage Daily News on August 4 stating there is no committed data center tenant, industrial developer, site plan, power source, cooling system, water supply plan or construction schedule, and that what is open through August 19 is the land decision itself. The Houston City Council vote on a data center ban ordinance is still set for August 13."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1107,6 +1116,79 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
+    },
+    {
+      "id": "ana-ai3-action-institute",
+      "title": "A national AI institute for Native communities, and the Alaska lane that closed with it",
+      "kind": "grant",
+      "status": "pending-decision",
+      "decider": "Administration for Native Americans, HHS Administration for Children and Families",
+      "public_access": "indirect",
+      "access_note": "Only eligible applicants reach this one, so an Alaskan reaches it through a tribe, an ANCSA village or a Native nonprofit that files by August 27. Applications are evaluated privately and no public comment path remains open.",
+      "summary": "The Administration for Native Americans published its final Fiscal Year 2026 program policies on July 28, 2026, standing up three funding opportunities and leaving out SEDS-AK, the Alaska-specific economic development program that ran alongside SEDS for decades. Two days later it posted the AI3 Action Institute, a single national award of up to $3,500,000 to build an artificial intelligence resource center for Native communities, with Alaska Native villages under ANCSA and nonprofit village consortia named as eligible applicants.",
+      "key_dates": [
+        {
+          "date": "2026-07-28",
+          "label": "Final Fiscal Year 2026 issuance published at 91 FR 47241, standing up EAGLE, the AI3 Action Institute and NCNTTA",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-07-28",
+          "label": "EAGLE posted, $24,000,000 across about 31 awards, applications due August 27",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-07-30",
+          "label": "AI3 Action Institute posted, one award, ceiling $3,500,000",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-27",
+          "label": "Applications close on both EAGLE and the AI3 Action Institute",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Statewide, Alaska Native villages and tribal organizations",
+        "lon": -152.0,
+        "lat": 63.0
+      },
+      "sources": [
+        {
+          "url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
+          "outlet": "Federal Register",
+          "date": "2026-07-28"
+        },
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-07-28/html/2026-15150.htm",
+          "outlet": "GovInfo",
+          "date": "2026-07-28"
+        },
+        {
+          "url": "https://simpler.grants.gov/opportunity/8b106d7a-a5ec-4226-b3d4-90bc8c3eade1",
+          "outlet": "Grants.gov, AI3 Action Institute",
+          "date": "2026-07-30"
+        },
+        {
+          "url": "https://simpler.grants.gov/opportunity/bb965470-bd8d-4529-b30b-39efe6f81147",
+          "outlet": "Grants.gov, EAGLE",
+          "date": "2026-07-28"
+        },
+        {
+          "url": "https://tribalbusinessnews.com/sections/economic-development/15712-ana-opens-27-5m-in-new-tribal-grants-replacing-decades-old-economic-development-program",
+          "outlet": "Tribal Business News",
+          "date": "2026-08-04"
+        }
+      ],
+      "first_seen": "2026-08-05",
+      "last_updated": "2026-08-05",
+      "history": [
+        {
+          "date": "2026-08-05",
+          "note": "Tracked. The July 28 issuance records that multiple commenters warned Alaska Tribes could face new barriers once SEDS-AK was folded into a nationwide competition. The agency answered that Alaska Native communities remain eligible across EAGLE project areas, that the IDEAS project area carries forward the spirit of Alaskan self-determination, and that SEDS has evolved rather than ended. Tribal Business News reports no SEDS opportunity has been announced for fiscal 2026."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
     }
   ]
 }

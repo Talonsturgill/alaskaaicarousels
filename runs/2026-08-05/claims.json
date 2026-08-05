@@ -1,0 +1,452 @@
+{
+  "run_date": "2026-08-05",
+  "story": "ANA replaces SEDS and SEDS-AK with a single nationwide EAGLE competition and stands up a first-ever AI3 Action Institute for Native communities, with the Alaska objection recorded in the agency's own Federal Register response",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "The ANA final issuance appears in Federal Register Volume 91, Number 143, published Tuesday, July 28, 2026.",
+      "value": "Volume 91, Number 143",
+      "verbatim": "[Federal Register Volume 91, Number 143 (Tuesday, July 28, 2026)]",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
+      "source_outlet": "Federal Register (Office of the Federal Register)",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.98,
+      "notes": "Corroborated on govinfo at https://www.govinfo.gov/content/pkg/FR-2026-07-28/html/2026-15150.htm, which returns the same header."
+    },
+    {
+      "id": "C02",
+      "claim": "The document begins at Federal Register page 47241 and runs through page 47243.",
+      "value": "page 47241",
+      "verbatim": "[[Page 47241]]",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-07-28/html/2026-15150.htm",
+      "source_outlet": "GovInfo (U.S. Government Publishing Office)",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.97,
+      "notes": "Page markers 47241, 47242 and 47243 all appear. Scout citation of 91 FR 47241 confirmed."
+    },
+    {
+      "id": "C03",
+      "claim": "The issuance stands up three FY 2026 notices of funding opportunity, named EAGLE, the AI3 Action Institute and NCNTTA.",
+      "value": "3 NOFOs",
+      "verbatim": "Economic Advancement Grants for Local Empowerment (EAGLE), AI3 Action Institute--Artificial Intelligence for American Indians (AI3 Action Institute), and the National Center for Native Training and Technical Assistance (NCNTTA).",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
+      "source_outlet": "Administration for Native Americans, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.97,
+      "notes": "Exact count and exact names confirmed."
+    },
+    {
+      "id": "C04",
+      "claim": "The agency's own document records that multiple commenters objected to replacing SEDS-AK with EAGLE and warned Alaska Tribes could face new barriers.",
+      "value": "Multiple commenters",
+      "verbatim": "Multiple commenters raised concerns regarding the replacement of SEDS-AK with EAGLE, including the potential loss of an Alaska-specific funding opportunity and the possibility that Alaska Tribes could face new barriers in competing for funding under a new NOFO.",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
+      "source_outlet": "Administration for Native Americans, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.98,
+      "notes": "THE DECK SPINE. Verified character for character on two separate fetches of the agency's own document."
+    },
+    {
+      "id": "C05",
+      "claim": "ANA responded that Alaska Native communities remain eligible across EAGLE project areas including IDEAS.",
+      "value": "remain eligible",
+      "verbatim": "Alaska Native communities will remain eligible across EAGLE project areas, including IDEAS, and EAGLE will serve Alaska Native communities alongside other eligible Native communities.",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
+      "source_outlet": "Administration for Native Americans, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.98,
+      "notes": "The agency's answer to C04. Pair them; running C04 without C05 would be one-sided."
+    },
+    {
+      "id": "C06",
+      "claim": "ANA states that the EAGLE IDEAS project area carries forward the spirit of Alaskan self-determination.",
+      "value": "spirit of Alaskan self-determination",
+      "verbatim": "The EAGLE IDEAS project area carries forward the spirit of Alaskan self-determination.",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
+      "source_outlet": "Administration for Native Americans, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.97,
+      "notes": "Confirmed verbatim, one sentence."
+    },
+    {
+      "id": "C07",
+      "claim": "ANA also pledged to continue considering the distinct circumstances and needs of Alaska Native communities in future programming.",
+      "value": "future programming",
+      "verbatim": "ANA will continue to consider the distinct circumstances and needs of Alaska Native communities in future programming.",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
+      "source_outlet": "Administration for Native Americans, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Forward-looking agency commitment, not a guarantee. Attribute to ANA."
+    },
+    {
+      "id": "C08",
+      "claim": "IDEAS stands for Indigenous Designs to Empower and Advance Self-Determination.",
+      "value": "Indigenous Designs to Empower and Advance Self-Determination",
+      "verbatim": "Indigenous Designs to Empower and Advance Self-Determination (IDEAS) to enable community-designed solutions to priority needs.",
+      "source_url": "https://simpler.grants.gov/opportunity/bb965470-bd8d-4529-b30b-39efe6f81147",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "SOURCING CORRECTION. The expansion is on the EAGLE grants.gov listing and NOT in the Federal Register document, which uses the bare acronym throughout."
+    },
+    {
+      "id": "C09",
+      "claim": "EAGLE has five project areas.",
+      "value": "5 project areas",
+      "verbatim": "Seventh-Generation Greenhouses to expand affordable, nutritious food production and local enterprise; Microgrids to enhance energy reliability, resilience, and independence; Welders to Elders to promote workforce development and community resilience; Tradition in Action",
+      "source_url": "https://simpler.grants.gov/opportunity/bb965470-bd8d-4529-b30b-39efe6f81147",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.94,
+      "notes": "Five confirmed. Official names are Seventh-Generation Greenhouses, Microgrids, Welders to Elders, Tradition in Action (A Native Elder Program), and IDEAS. The fourth carries a dash in its official name, which the house style bans, so render it as Tradition in Action or with a comma."
+    },
+    {
+      "id": "C10",
+      "claim": "The EAGLE opportunity number is HHS-2026-ACF-ANA-NEG-0120.",
+      "value": "HHS-2026-ACF-ANA-NEG-0120",
+      "verbatim": "HHS-2026-ACF-ANA-NEG-0120",
+      "source_url": "https://simpler.grants.gov/opportunity/bb965470-bd8d-4529-b30b-39efe6f81147",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.98,
+      "notes": ""
+    },
+    {
+      "id": "C11",
+      "claim": "EAGLE was posted on July 28, 2026 and closes on August 27, 2026.",
+      "value": "2026-08-27",
+      "verbatim": "Posted Date: July 28, 2026",
+      "source_url": "https://simpler.grants.gov/opportunity/bb965470-bd8d-4529-b30b-39efe6f81147",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Close date confirmed on two fetches and corroborated independently by Tribal Business News. A 30 day window from posting."
+    },
+    {
+      "id": "C12",
+      "claim": "EAGLE has total program funding of $24,000,000.",
+      "value": "$24,000,000",
+      "verbatim": "$24 million total funding across approximately 31 awards, ranging from $300,000 to $1,000,000 per grant.",
+      "source_url": "https://simpler.grants.gov/opportunity/bb965470-bd8d-4529-b30b-39efe6f81147",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "Corroborated by Tribal Business News. Sanity check passes, 31 awards across the stated range spans $9.3M to $31M and $24M sits inside it."
+    },
+    {
+      "id": "C13",
+      "claim": "EAGLE expects to make 31 awards ranging from $300,000 to $1,000,000.",
+      "value": "31 awards",
+      "verbatim": "Expected Number of Awards: 31",
+      "source_url": "https://simpler.grants.gov/opportunity/bb965470-bd8d-4529-b30b-39efe6f81147",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "Project period is three years, fully funded for FY 2026."
+    },
+    {
+      "id": "C14",
+      "claim": "The AI3 Action Institute opportunity number is HHS-2026-ACF-ANA-NAI-0035.",
+      "value": "HHS-2026-ACF-ANA-NAI-0035",
+      "verbatim": "HHS-2026-ACF-ANA-NAI-0035",
+      "source_url": "https://simpler.grants.gov/opportunity/8b106d7a-a5ec-4226-b3d4-90bc8c3eade1",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.98,
+      "notes": ""
+    },
+    {
+      "id": "C15",
+      "claim": "The AI3 Action Institute was posted on July 30, 2026, two days after the Federal Register issuance.",
+      "value": "2026-07-30",
+      "verbatim": "Posted date: July 30, 2026",
+      "source_url": "https://simpler.grants.gov/opportunity/8b106d7a-a5ec-4226-b3d4-90bc8c3eade1",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.97,
+      "notes": "Confirmed on two fetches. The two day gap from the 2026-07-28 issuance is arithmetic on two verified dates."
+    },
+    {
+      "id": "C16",
+      "claim": "The AI3 Action Institute is a single award with an award ceiling of $3,500,000 and an award floor of $2,500,000.",
+      "value": "$3,500,000",
+      "verbatim": "Award Ceiling: $3,500,000",
+      "source_url": "https://simpler.grants.gov/opportunity/8b106d7a-a5ec-4226-b3d4-90bc8c3eade1",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Floor $2,500,000, expected awards 1, total program funding $3,500,000 all confirmed on the same listing. One award at the ceiling equals the total."
+    },
+    {
+      "id": "C17",
+      "claim": "Both EAGLE and the AI3 Action Institute fall under assistance listing 93.612, Native American Programs.",
+      "value": "93.612",
+      "verbatim": "Assistance Listing Number: 93.612 -- Native American Programs",
+      "source_url": "https://simpler.grants.gov/opportunity/8b106d7a-a5ec-4226-b3d4-90bc8c3eade1",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "Same listing number confirmed independently on the EAGLE page."
+    },
+    {
+      "id": "C18",
+      "claim": "AI3 eligibility explicitly includes Alaska Native villages as defined in the Alaska Native Claims Settlement Act and nonprofit village consortia.",
+      "value": "Alaska Native villages",
+      "verbatim": "Alaska Native villages as defined in the Alaska Native Claims Settlement Act (ANCSA) and/or nonprofit village consortia.",
+      "source_url": "https://simpler.grants.gov/opportunity/8b106d7a-a5ec-4226-b3d4-90bc8c3eade1",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "The load-bearing fact for the national AI door being open to Alaska."
+    },
+    {
+      "id": "C19",
+      "claim": "Applications must be submitted no later than 11:59 pm Eastern Standard Time on the due date, in the listing's own wording.",
+      "value": "11:59 pm Eastern Standard Time",
+      "verbatim": "Electronically submitted applications must be submitted no later than 11:59 pm Eastern Standard Time on the listed application due date.",
+      "source_url": "https://simpler.grants.gov/opportunity/8b106d7a-a5ec-4226-b3d4-90bc8c3eade1",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.93,
+      "notes": "SOFTENING REQUIRED. The listing prints Eastern Standard Time for a date that falls in Eastern Daylight Time. Quote the agency's wording, do not convert, and derive no Alaska local hour from it."
+    },
+    {
+      "id": "C20",
+      "claim": "ANA states the Institute will complement rather than replace broader social and economic development efforts and will address ethical, practical and governance considerations of emerging technologies.",
+      "value": "complement, not replace",
+      "verbatim": "The Institute will complement--not replace--broader social and economic development efforts. When implemented, the Institute will be designed to support informed community decision-making, reflect ongoing Native input, and address ethical, practical, and governance considerations associated with emerging technologies.",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
+      "source_outlet": "Administration for Native Americans, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "SOURCING CORRECTION. This passage is in the Federal Register text, not on the AI3 grants.gov listing where a scout placed it."
+    },
+    {
+      "id": "C21",
+      "claim": "ANA describes the AI3 Action Institute as reducing the learning curve for hundreds of Native communities and supporting the thoughtful integration of AI across Indian Country.",
+      "value": "hundreds of Native communities",
+      "verbatim": "The primary goals are to (1) reduce the immense learning curve on behalf of hundreds of Native communities;",
+      "source_url": "https://simpler.grants.gov/opportunity/8b106d7a-a5ec-4226-b3d4-90bc8c3eade1",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.94,
+      "notes": "The listing also says the Institute will monitor the pace of AI change and support its thoughtful integration across Indian Country."
+    },
+    {
+      "id": "C22",
+      "claim": "A commenter told ANA that consolidating training and technical assistance into a single NCNTTA agreement equates to a reduction of more than 70 percent in regional staffing capacity.",
+      "value": "more than 70 percent",
+      "verbatim": "One commenter stated that the proposed ceiling level of $3.1M over three years for a single NCNTTA cooperative agreement represents a substantial consolidation of resources and equates to a reduction of more than 70 percent in regional staffing capacity.",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
+      "source_outlet": "Administration for Native Americans, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "SOFTENING REQUIRED. A commenter's claim, not a finding, and ANA disputes its premise in C23. May only run beside C23."
+    },
+    {
+      "id": "C23",
+      "claim": "ANA corrected the commenter and said the NCNTTA funding level is 3.1 million per fiscal year rather than over three years.",
+      "value": "3.1 million per fiscal year",
+      "verbatim": "The funding level, which is 3.1 million per fiscal year, is intended to support a coordinated national technical assistance approach that would include serving ANA grant recipients in specific regions through specialized subject-matter experts.",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-07-28/html/2026-15150.htm",
+      "source_outlet": "GovInfo (U.S. Government Publishing Office)",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "A documented disagreement inside the filing, roughly a 3x difference in the money at stake."
+    },
+    {
+      "id": "C24",
+      "claim": "ANA frames EAGLE as an evolution of SEDS rather than a cancellation.",
+      "value": "SEDS has evolved",
+      "verbatim": "ANA confirms that SEDS has evolved, and EAGLE signifies this evolvement.",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-07-28/html/2026-15150.htm",
+      "source_outlet": "GovInfo (U.S. Government Publishing Office)",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-28",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "The agency's framing, directly against the trade press framing in C25."
+    },
+    {
+      "id": "C25",
+      "claim": "Tribal Business News reports the new grants replace SEDS and SEDS-Alaska, which for more than 30 years let tribes propose economic development based on local priorities.",
+      "value": "more than 30 years",
+      "verbatim": "The new grants replace the Social and Economic Development Strategies (SEDS) and SEDS-Alaska programs, which for more than 30 years allowed tribes and Native-serving organizations to propose economic development initiatives based on local priorities.",
+      "source_url": "https://tribalbusinessnews.com/sections/economic-development/15712-ana-opens-27-5m-in-new-tribal-grants-replacing-decades-old-economic-development-program",
+      "source_outlet": "Tribal Business News",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-04",
+      "fetched": true,
+      "confidence": 0.85,
+      "notes": "SOFTENING REQUIRED. Trade press. No primary document giving a SEDS-AK start date was reachable, so this must be attributed and never stated flatly, and the phrase must not be upgraded into a founding year."
+    },
+    {
+      "id": "C26",
+      "claim": "Tribal Business News reports that ANA has not announced a SEDS funding opportunity for fiscal 2026.",
+      "value": "no SEDS for fiscal 2026",
+      "verbatim": "ANA has not announced a SEDS funding opportunity for fiscal 2026.",
+      "source_url": "https://tribalbusinessnews.com/sections/economic-development/15712-ana-opens-27-5m-in-new-tribal-grants-replacing-decades-old-economic-development-program",
+      "source_outlet": "Tribal Business News",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-04",
+      "fetched": true,
+      "confidence": 0.83,
+      "notes": "SOFTENING REQUIRED. An absence-of-evidence claim by a trade outlet, true as of 2026-08-04. Attribute and date it."
+    },
+    {
+      "id": "C27",
+      "claim": "The Alaska Federation of Natives called EAGLE a very narrowly targeted program whose funding largely does not meet the needs of Alaska's tribes.",
+      "value": "very narrowly targeted",
+      "verbatim": "a very narrowly targeted EAGLE program, in which much of the funding does not meet the needs of Alaska's tribes and tribal organizations, especially regarding the complex issues of land, utilities, and training in the trades.",
+      "source_url": "https://nativenewsonline.net/currents/alaska-federation-of-natives-urges-action-ahead-of-deadline-on-key-economic-development-programs/",
+      "source_outlet": "Native News Online",
+      "source_is_primary": false,
+      "date_of_source": "2026-04-14",
+      "fetched": true,
+      "confidence": 0.86,
+      "notes": "ATTRIBUTION AND DATE WARNING. Attributed to the Alaska Federation of Natives as an organization, never to a named person. Published 2026-04-14, during the open comment period, so it is AFN's position then and not a reaction to the July issuance."
+    },
+    {
+      "id": "C28",
+      "claim": "Tribal Business News characterizes the change as shifting federal support from tribally determined projects to administration defined priorities including greenhouses, microgrids, welding and artificial intelligence.",
+      "value": "administration-defined priorities",
+      "verbatim": "shift federal support from tribally determined economic development projects to administration-defined priorities including greenhouses, microgrids, welding workforce development, elder mentorship and artificial intelligence.",
+      "source_url": "https://tribalbusinessnews.com/sections/economic-development/15712-ana-opens-27-5m-in-new-tribal-grants-replacing-decades-old-economic-development-program",
+      "source_outlet": "Tribal Business News",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-04",
+      "fetched": true,
+      "confidence": 0.82,
+      "notes": "SOFTENING REQUIRED. The outlet's characterization, a framing not a fact, and ANA disputes it in C05, C06 and C24. Only usable as an attributed characterization with the agency's counter alongside."
+    },
+    {
+      "id": "C29",
+      "claim": "The AI3 Action Institute closes on August 27, 2026, the same date as EAGLE.",
+      "value": "2026-08-27",
+      "verbatim": "Closing: August 27, 2026",
+      "source_url": "https://simpler.grants.gov/opportunity/8b106d7a-a5ec-4226-b3d4-90bc8c3eade1",
+      "source_outlet": "Grants.gov, HHS Administration for Children and Families",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-30",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "ADDED AT SYNTHESIS, 2026-08-05. A treatment director audited the claims file against the story summary and found that C11 carried EAGLE's close date while nothing carried AI3's, so the deck was one slide away from asserting a date its own record did not hold. The showrunner re-fetched the listing and verified it. Posted date, ceiling, floor, expected awards and opportunity number all re-confirmed on the same fetch."
+    }
+  ],
+  "unverified": [
+    {
+      "assertion": "Number of federally recognized tribes in Alaska and the national total",
+      "why": "The BIA tribal leaders directory returns HTTP 301 to an ArcGIS application with no fetchable text, and a candidate Federal Register BIA list URL returned HTTP 302 to a bot-block host. No primary page carrying the counts was fetched.",
+      "action": "dropped"
+    },
+    {
+      "assertion": "SEDS-AK had a stated dollar amount in a recent fiscal year",
+      "why": "acf.gov/ana/grants returned HTTP 403. No prior-year SEDS-AK notice or ANA report with a figure was reachable. This was the single most valuable number requested and it is not obtainable today.",
+      "action": "dropped"
+    },
+    {
+      "assertion": "SEDS-AK start date as a primary founding year",
+      "why": "No primary document reachable. Only trade press support, and only as more than 30 years.",
+      "action": "survives only as attributed characterization in C25"
+    },
+    {
+      "assertion": "A count of Alaska entities that have ever won a SEDS-AK award",
+      "why": "No source located.",
+      "action": "dropped"
+    },
+    {
+      "assertion": "The package totals $27.5 million as a quoted figure",
+      "why": "The figure appears in the Tribal Business News headline and URL slug, but two fetches of the body returned only $24 million and $3.5 million as separate sentences.",
+      "action": "dropped as a quotation; the sum is arithmetic on C12 and C16 and may be stated as such"
+    },
+    {
+      "assertion": "The Federal Register document lists all five EAGLE project areas or expands the IDEAS acronym",
+      "why": "Three targeted fetches of the FR text returned only Welders to Elders, Microgrids and the bare acronym.",
+      "action": "re-sourced to the grants.gov listing as C08 and C09"
+    },
+    {
+      "assertion": "The complement-not-replace passage appears on the AI3 grants.gov listing",
+      "why": "Two targeted fetches of the AI3 listing returned no instance of the wording. The scout's attribution was wrong.",
+      "action": "re-sourced to the Federal Register as C20"
+    },
+    {
+      "assertion": "Indigenous data sovereignty is addressed in the AI3 listing or the Federal Register text",
+      "why": "The phrase was searched on both documents and returned no match.",
+      "action": "dropped, and the phrase must not appear in the deck"
+    },
+    {
+      "assertion": "An Alaska local closing time derived from the listing deadline",
+      "why": "The listing prints Eastern Standard Time for an August date that falls in Eastern Daylight Time, so any conversion is a one hour guess.",
+      "action": "not computed"
+    }
+  ],
+  "disagreements": [
+    {
+      "assertion": "NCNTTA funding level",
+      "source_a": "A commenter in the Federal Register record, the proposed ceiling level of $3.1M over three years",
+      "source_b": "ANA in the same document, the funding level, which is 3.1 million per fiscal year",
+      "which_i_believe": "ANA, that it is 3.1 million per fiscal year",
+      "why": "The agency is the authority on its own funding level and corrects the misreading in the same paragraph. But the disagreement is itself worth showing, because the commenter's 70 percent staffing claim rests on the three-year reading."
+    },
+    {
+      "assertion": "Is EAGLE a replacement or an evolution of SEDS",
+      "source_a": "ANA, SEDS has evolved, and EAGLE signifies this evolvement",
+      "source_b": "Tribal Business News, the new grants replace SEDS and SEDS-Alaska",
+      "which_i_believe": "Both are defensible and neither may be stated flatly",
+      "why": "A framing dispute, not a factual one. The verifiable facts are that SEDS-AK is not among the three FY2026 notices, that no FY2026 SEDS notice had been announced as of 2026-08-04, and that ANA calls this an evolution."
+    }
+  ],
+  "verdict": {
+    "selected_story_survives": true,
+    "verified_claim_count": 29,
+    "primary_claim_count": 25,
+    "notes": "28 verified claims on the selected story, 23 of them from primary government documents. The deck spine C04 is verified character for character on two independent fetches. The runner-up story (Southcentral gas, Enstar curtailment planning) was verified separately at six claims and is recorded in selection.md rather than here, because claims.json is published as this deck's verification record and should carry only what this deck asserts. ONE UNAVOIDABLE HOLE, disclosed: what SEDS-AK was worth in dollars is not obtainable, so no slide may imply a dollar loss to Alaska. ADDENDUM 2026-08-05. C29 was added at synthesis after a treatment director audited claims.json against the story summary and found no claim carried the AI3 close date, only EAGLE's. Re-fetched and verified. The catch is credited in selection.md."
+  }
+}

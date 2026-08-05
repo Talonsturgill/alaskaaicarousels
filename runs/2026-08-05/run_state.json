@@ -1,0 +1,43 @@
+{
+ "run_date": "2026-08-05",
+ "carousel_no": 26,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "skipped (degraded, disclosed)",
+  "assemble": "done",
+  "scoring": "done",
+  "ship": "in_progress",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-08-05/plan.md",
+  "field_notes": "knowledge/FIELD_NOTES.md (2026-08-05 craft refresh entry)",
+  "scout_merge": "out/2026-08-05/scout_merge.md",
+  "claims": "out/2026-08-05/claims.json",
+  "selection": "out/2026-08-05/selection.md",
+  "docket": "ledger/docket.json (added ana-ai3-action-institute; refreshed aidea-houston-industrial-park)",
+  "storyboard": "out/2026-08-05/storyboard.md",
+  "treatments": "out/2026-08-05/treatment_B_historian.md, treatment_C_essayist.md",
+  "slides": "out/2026-08-05/slides/ (9) + build_slides.py",
+  "render": "out/2026-08-05/render/ (machine_qa.json WARN, 0 fails)",
+  "final": "out/2026-08-05/final/ (carousel.pdf vector 7.34 MB, contact sheet, 9 thumbs)",
+  "caption": "out/2026-08-05/caption.txt + caption_report.json (PASS, 879 chars)",
+  "copy": "out/2026-08-05/copy.json (copy_sync PASS)",
+  "aggregates": "out/2026-08-05/aggregates.json (PASS)",
+  "score": "out/2026-08-05/score_report.json (7.27 vs 7.7, no hard fails)",
+  "pixel_reviews": "4 critics over 9 slides, 2 revision rounds applied",
+  "runs": "runs/2026-08-05/ (webp slides, vector pdf, og.jpg)"
+ },
+ "shortfall": "Weighted 7.27 against a 4-round threshold of 7.7. No hard fails. Shipped with the shortfall disclosed in the email per the routine's FAILURE and SUCCESS criteria."
+}

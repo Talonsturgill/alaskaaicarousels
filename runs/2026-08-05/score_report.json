@@ -1,0 +1,75 @@
+{
+  "run_date": "2026-08-05",
+  "carousel_no": 26,
+  "revision_rounds": 4,
+  "threshold_applied": 7.7,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "weight": 0.14,
+      "score": 7,
+      "why": "11 words, a real page number, a named tension, holds at 432px with one focal point. But the cover carries no Alaska cue at all, the object reads at thumb as an anonymous cream slab rather than a bound record, and the mid-frame is a large empty dark band."
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "weight": 0.14,
+      "score": 6,
+      "why": "A real argument rather than a list. The contact sheet does not deliver it as a composed sequence: five frames read as the same picture, and the deck's own opening state machine is invisible in the pixels because the surviving signal is 2 to 4 hairlines at the card's right margin."
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "weight": 0.16,
+      "score": 5,
+      "why": "The rubric caps a flat hero the dossier does not argue for at 7, and this deck admits NO RUNG. Below that ceiling: bare cream over the lower 40 to 50 percent of the page plane on four slides, the hero's gold mark landing mid-word, the S06 comb floating off the block, and S04's value row straddling the page edge. Genuinely good and to be kept: the 3.2 px striation, the seeded table tooth, the three-face value ladder and the line hierarchy. The declared contact fix half landed, convincing on S04, S05, S07 and S08 and still floating-adjacent on S01, S06 and S09."
+    },
+    {
+      "name": "Story-art fusion",
+      "weight": 0.14,
+      "score": 7,
+      "why": "The deck IS the document, so the literal anchor and the subject are one object, and the printed constants are real. Loses points because the two encodings carrying the most narrative, the opening state and the 31-against-1 comb, do not read."
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "weight": 0.12,
+      "score": 8,
+      "why": "Named throughout and correctly softened. It puts a federal sentence about Alaskans in front of Alaskans who have not read it, and the deadline is live. Short of 10 because there is no geography by design and the cover carries no Alaska signal."
+    },
+    {
+      "name": "Insight density and factual weight",
+      "weight": 0.1,
+      "score": 8,
+      "why": "29 claims, 25 primary, the two spine quotations verified character for character and reproduced exactly. One repeated beat costs it, since the two dollar figures appear on three slides."
+    },
+    {
+      "name": "Variety vs ledger",
+      "weight": 0.08,
+      "score": 7,
+      "why": "Hero, atmosphere, hook archetype and continuity device are all new and the divergence arguments hold; the volunteered No.21 resemblance is a family resemblance and not a repeat. Exactly the rubric's 7, fresh hero with reused subsystems, most notably a horizontal plated strip carrying the lower band on seven of nine slides, which is the calcification No.24 was flagged for."
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "weight": 0.07,
+      "score": 5,
+      "why": "Floors and fixtures met and the PDF is vector at 7.2 MB, but four or five squeakers rather than the one the 7 descriptor allows, including a 3.6 to 1 worst point on a chart annotation, three safe-zone breaches, an orphaned list wrap and an overprint illegible by construction."
+    },
+    {
+      "name": "Copy voice and hook",
+      "weight": 0.05,
+      "score": 8,
+      "why": "879 chars, hook complete at 111, deck-summary line present, a genuinely debatable close, and it takes a position. Held at 8 because the letter frame risks reading as performance and 879 of 900 leaves no headroom."
+    },
+    {
+      "name": "Deliverable completeness",
+      "weight": 0.1,
+      "score": 6,
+      "why": "Every artifact present, but the storyboard's supposedly machine-generated GATE STATUS block was stale against the shipped artifacts on four rows and carried an unaddressed site_fresh FAIL row."
+    }
+  ],
+  "weighted_total": 7.27,
+  "hard_fails": [],
+  "ships": false,
+  "one_sentence_fix": "Rebuild the page plane so it is a visibly different, visibly fuller printed page on every slide, because that one change kills the dead cream half of S02 to S05, makes the opening state machine actually exist in the pixels, and stops five of nine frames reading as the same picture.",
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "notes_for_email": "No hard fail. All nine renders re-transcribed against copy.json and the claims verbatims with zero typos, zero em or en dashes, zero emojis, exactly 3 hashtags, no link in the body, no banned phrase, pdf_mode vector, and no topic or hero-structure repeat. Raw weighted 7.27 against a 4-round threshold of 7.7, so this does NOT ship as scored and the shortfall is disclosed rather than argued around.",
+  "showrunner_addendum": "HONEST ORDERING NOTE, added by the showrunner after scoring. A bounded repair pass ran AFTER this score was computed and is NOT reflected in it. It fixed four of the defects the scorer named: the hero's gold mark now sits as a left-margin tab against the line naming the Act rather than mid-word, the NOT A DATUM annotation moved off the block's tan face and back onto paper, the two S07 margin breaches were pulled inside the safe zone, S07's missing footer fixture was restored, and the stale GATE STATUS block was regenerated from the artifacts. Machine warns went from 6 to 2, and both survivors are the declared overprint and the disclosed slide 09 band. NO RE-SCORE WAS RUN, because the run was out of context budget, so the 7.27 stands as the number of record and it is a number for a slightly worse deck than the one that shipped. That is stated this way round on purpose, because the alternative is claiming an improvement nobody measured."
+}

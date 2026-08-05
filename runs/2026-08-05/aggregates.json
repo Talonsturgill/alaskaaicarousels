@@ -1,0 +1,103 @@
+{
+  "run_date": "2026-08-05",
+  "aggregates": [
+    {
+      "kind": "count",
+      "slide": 4,
+      "fragment": "THREE NOTICES",
+      "text": "THREE NOTICES STOOD UP FOR FY 2026",
+      "subject": "notices",
+      "members": [
+        "C03"
+      ],
+      "items": [
+        "EAGLE",
+        "AI3 Action Institute",
+        "NCNTTA"
+      ],
+      "note": "The three are enumerated inside C03's own verbatim, so the members are items within one claim rather than three claims."
+    },
+    {
+      "kind": "count",
+      "slide": 4,
+      "fragment": "Three notices",
+      "text": "Three notices stood up for 2026. The Alaska-only one is not among them.",
+      "subject": "notices",
+      "members": [
+        "C03"
+      ],
+      "items": [
+        "EAGLE",
+        "AI3 Action Institute",
+        "NCNTTA"
+      ],
+      "note": "Same count as the kicker. The second sentence asserts an absence, and the absence is a property of the same enumeration, since C03 names exactly three and SEDS-AK is not one of them."
+    },
+    {
+      "kind": "count",
+      "slide": 6,
+      "fragment": "TWO DIFFERENT SHAPES",
+      "text": "THE SAME MONTH, TWO DIFFERENT SHAPES",
+      "subject": "different shapes",
+      "members": [
+        "C13",
+        "C16"
+      ],
+      "note": "The two shapes are EAGLE's 31 awards (C13) and the AI3 Action Institute's single award (C16). SAME MONTH is carried by C11 and C29, both closing 2026-08-27."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "fragment": "31 AWARDS",
+      "text": "EAGLE / 31 AWARDS / $24,000,000",
+      "member": "C13",
+      "note": "31 is printed on the listing as Expected Number of Awards and is read straight off C13, not derived. Declared because the slide also DRAWS 31 teeth, so the drawn count has to equal the printed one."
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "fragment": "FIVE PROJECT AREAS",
+      "text": "EAGLE'S FIVE PROJECT AREAS, AS LISTED",
+      "subject": "project areas",
+      "members": [
+        "C09",
+        "C08"
+      ],
+      "items": [
+        "Seventh-Generation Greenhouses",
+        "Microgrids",
+        "Welders to Elders",
+        "Tradition in Action",
+        "Indigenous Designs to Empower and Advance Self-Determination"
+      ],
+      "note": "Enumerated inside C09. The fifth name's expansion is C08, which is on the grants listing and not in the Federal Register, and the slide says so."
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "fragment": "FIVE AREAS",
+      "text": "THE FIVE AREAS ARE NAMED IN THE NOTICE",
+      "subject": "areas",
+      "members": [
+        "C09",
+        "C08"
+      ],
+      "items": [
+        "Seventh-Generation Greenhouses",
+        "Microgrids",
+        "Welders to Elders",
+        "Tradition in Action",
+        "Indigenous Designs to Empower and Advance Self-Determination"
+      ],
+      "note": "The same five. NAMED IN THE NOTICE is the deck's argument and it is a property of C09 itself, since the listing is where the names appear."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "THREE YEARS",
+      "text": "ONE COMMENTER, $3.1M OVER THREE YEARS, A 70 PERCENT CUT",
+      "member": "C22",
+      "note": "THREE YEARS is inside the commenter's own quoted assertion in C22, not the studio's arithmetic. The slide runs it beside C23, where ANA says the figure is 3.1 million per fiscal year, and asserts the disagreement rather than either reading."
+    }
+  ]
+}
