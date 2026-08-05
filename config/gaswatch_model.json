@@ -3,9 +3,10 @@
     "purpose": "Demand model for Cook Inlet Gas Watch. The coefficients live here as data rather than as constants inside scripts/gaswatch_collect.py, so a refit is a data change with its own commit and never a code change. Every collected record carries a copy of this block, so a record always states the model that produced its numbers.",
     "refit_procedure": "Bump version, edit the coefficients, run python3 scripts/gaswatch_collect.py --self-test, and paste the recomputed figures it prints into the backtests below. Append a model_history entry naming the reason and the data behind it. The self-test recomputes every backtest from config/gaswatch_hdd_history.json and fails if any recorded expectation disagrees, so a typed number that nothing produced cannot survive a commit.",
     "honesty_note": "This model is calibrated to two published figures. It is not fit to observed sendout, because observed sendout is not public. Nothing derived from it may be published as a safety verdict, a shortfall prediction, or an all clear.",
-    "no_typed_numbers_rule": "Every figure in backtests below is reproduced by code from the committed HDD record. Nothing here is an estimate, a recollection, or a figure copied from prose."
+    "no_typed_numbers_rule": "Every figure in backtests below is reproduced by code from the committed HDD record. Nothing here is an estimate, a recollection, or a figure copied from prose.",
+    "not_public_note": "not_public lists what no source reports DAILY for this region. not_public_monthly_source names the ones that do have a monthly statewide figure, and the page counts them rather than stating a number in prose, so moving an item between these two changes the sentence automatically."
   },
-  "version": "1.1",
+  "version": "1.2",
   "formula": "MMcf/d = 75 + 4.20 * HDD65",
   "base_mmcfd": 75.0,
   "slope_mmcfd_per_hdd": 4.2,
@@ -105,6 +106,18 @@
         "calibration_anchors",
         "hdd_history"
       ]
+    },
+    {
+      "version": "1.2",
+      "effective": "2026-08-05",
+      "reason": "Coefficients unchanged. Records which not-public items gained a monthly public source, so the page can count them instead of asserting a number that a later edit would strand.",
+      "changed": [
+        "not_public_monthly_source"
+      ]
     }
-  ]
+  ],
+  "not_public_monthly_source": {
+    "hilcorp_storage_inventory": "EIA Alaska underground storage, monthly, statewide, lags about two months",
+    "enstar_realtime_sendout": "EIA Alaska deliveries by sector, monthly, statewide, lags about two months"
+  }
 }
