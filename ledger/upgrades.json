@@ -835,7 +835,7 @@
       ],
       "verification": "DEFECT RECONSTRUCTED AND THE GATE FAILS IT. Built three fixture slides under out/upgrade-2026-08-05/contact-fixture/ that reproduce the run's own contact() function and palette, rendered and QA'd them. (a) known-bad, the defect as shipped: FAIL, 'shadow L* 2.6 vs ground L* 2.5, dL -0.1 at 432w -- below the 4.0 L* floor, the object floats -- the ground is already near black (L* 2.5), so there is nothing left to subtract'. (b) the mid-run repair, a warm ground pool then the same shadow: WARN at dL 4.3, which is exactly the band the scorer's 'half landed' verdict earned it. (c) a brighter pool: dL 7.2, still WARN, so the comfort band is reachable but demanding. Independently, slide 04's shipped bar shadows measure dL 8.1 at both bars, which is the known-good the 8.0 WARN line was drawn under. NO REGRESSION ON EITHER REAL DECK: out/2026-08-05/slides re-rendered 9/9 OK and qa.py returned the identical verdict to the shipped machine_qa.json (WARN, 0 fails, 2 warns, the same two: slide 07's declared data-overlap-ok overprint and slide 09's 63 percent bottom third). examples/demo-deck re-rendered 4/4 OK and qa.py returned 11 warns and 0 fails both BEFORE the change (measured by git stash) and after. The probe returns [] on every slide of both decks, since neither declares data-contacts, so the opt-in is genuinely opt-in.",
       "rollback": "git revert the upgrade(2026-08-05) commit. Reverting removes the probe and the gate; slides that carry data-contacts keep rendering fine, the declaration simply stops being read. Note that this is a TIGHTENING: reverting it puts the machine back in the state where a shadow worth 1.2 L* ships with 0 fails.",
-      "commit": "PENDING"
+      "commit": "fd130be128a56d510658f80ab8fed7a03cbe259d"
     },
     {
       "run_date": "2026-08-05",
@@ -849,7 +849,7 @@
       ],
       "verification": "DEFECT RECONSTRUCTED AND THE GATE FAILS IT. out/upgrade-2026-08-05/stale_block_reconstruction.md rebuilds the block No.26 actually shipped before its repair pass; --verify-pasted against out/2026-08-05 returns exit 1 and catches all four stale rows plus the unresolved FAIL: qa.py detail '0 fails, 5 warns' vs fresh '0 fails, 2 warns'; assemble detail 'pdf vector 6.81 MB' vs fresh '7.23 MB'; artifacts status [WARN] '2 problem(s)' vs fresh [PASS]; site_fresh status [FAIL] vs fresh [PASS], reported twice, once as stale and once as an unresolved FAIL row. PASS PATH VERIFIED: a block generated now and pasted verbatim into out/upgrade-2026-08-05/fresh_block.md returns '[PASS ] 12 row(s) match the artifacts on disk, no FAIL rows', exit 0. RUN AGAINST THE REAL RUN RECORD: out/2026-08-05/storyboard.md returns exit 1 on one row, score [n/a] vs fresh [WARN], which is correct and is the residue of the block having been regenerated before score_report.json existed. Read-only and stdlib only; no other gate_status.py mode changed behaviour (the block printed for out/2026-08-05 is byte-identical before and after).",
       "rollback": "git revert the upgrade(2026-08-05) commit. --verify-pasted disappears and the PHASE 11 line pointing at it becomes a dangling instruction; the rest of gate_status.py is untouched.",
-      "commit": "PENDING"
+      "commit": "fd130be128a56d510658f80ab8fed7a03cbe259d"
     }
   ],
   "scan_log": [
