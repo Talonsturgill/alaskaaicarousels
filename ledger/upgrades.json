@@ -877,7 +877,7 @@
    ],
    "verification": "Measured against the whole shipped corpus before writing the thresholds. Of 26 captions, 15 fail the comma budget and 11 fail the date form, so neither rule is a formality. Regex edge cases checked: 'August 27th', 'August 27, 2026' and 'August 27 2026' pass; '27 August' and a bare 'August 27' fail; 'a 27 percent cut' and 'August 2026 was quiet' do not false-positive. A compliant 618-character caption returns PASS. brand.yaml still parses.",
    "rollback": "git revert the voice-rules commit. The two checks disappear from caption_check.py and the rules revert to prose in brand.yaml and CAPTION_CRAFT.md. Note this is a TIGHTENING; reverting it returns the machine to a state where a caption at 1.43 commas per 100 and a day-first date both ship clean.",
-   "commit": "pending"
+   "commit": "bacf271"
   }
  ],
  "scan_log": [
