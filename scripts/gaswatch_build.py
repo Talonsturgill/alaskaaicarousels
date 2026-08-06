@@ -1331,7 +1331,7 @@ and their absence is why this page publishes numbers rather than conclusions.
 <p class="prose" data-reveal>The whole series is one JSON document at
 <a class="proselink" href="{prefix}gas-watch.json">/gas-watch.json</a>, licensed
 {esc(meta["license_label"])}
-(<a class="proselink" href="{esc(meta["license"])}">licence text</a>). It carries
+(<a class="proselink" href="{esc(meta["license"])}">license text</a>). It carries
 the schema version, the model block with its full history, and one object per
 day with the provenance of every external fetch behind it. Storage is measured,
 demand is modeled, and each record says which is which. Version

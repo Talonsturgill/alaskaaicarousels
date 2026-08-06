@@ -116,6 +116,40 @@ def append_history(item, date, note):
     return item
 
 
+# American spelling, because this is an Alaska publication written for Alaskans
+# and a British form reads as copy that came from somewhere else. Six of these
+# reached the live site before anyone noticed, in item titles, and three of the
+# six predated the batch that surfaced them. The punctuation gate above was
+# watching dashes and quotes and nothing was watching this.
+#
+# Only forms with no American homograph are listed. "practice" and "licence"
+# split on part of speech in British usage and both spellings are valid American
+# nouns, so "license" is the safe target and "practise" is the only side worth
+# catching.
+BRITISH = [
+    (re.compile(r"\bprogramme(s)?\b", re.I), "program"),
+    (re.compile(r"\blicen(ce|ces|ced)\b", re.I), "license"),
+    (re.compile(r"\bpractise(s|d)?\b", re.I), "practice"),
+    (re.compile(r"\bfinalis(e|ed|ing)\b", re.I), "finalize"),
+    (re.compile(r"\borganis(e|ed|ing|ation|ations)\b", re.I), "organize"),
+    (re.compile(r"\brecognis(e|ed|ing)\b", re.I), "recognize"),
+    (re.compile(r"\banalys(e|ed|ing)\b", re.I), "analyze"),
+    (re.compile(r"\bcentre(s)?\b", re.I), "center"),
+    (re.compile(r"\bdefence\b", re.I), "defense"),
+    (re.compile(r"\bbehaviour(s|al)?\b", re.I), "behavior"),
+    (re.compile(r"\bcolour(s|ed)?\b", re.I), "color"),
+    (re.compile(r"\bmodelling\b", re.I), "modeling"),
+    (re.compile(r"\bjudgement(s)?\b", re.I), "judgment"),
+    (re.compile(r"\bcatalogue(s|d)?\b", re.I), "catalog"),
+    (re.compile(r"\btravelled\b", re.I), "traveled"),
+]
+
+
+def britishisms(text):
+    """[(found, American form)] for reader-facing copy. Empty when clean."""
+    return [(m.group(0), us) for pat, us in BRITISH for m in pat.finditer(text or "")]
+
+
 def validate(items):
     seen = set()
     for it in items:
@@ -143,6 +177,20 @@ def validate(items):
             parse_date(d["date"], i)
             if d.get("kind") not in DATE_KINDS:
                 fail(f"{i}: key_date kind {d.get('kind')!r}")
+        for label, text in ([("title", it["title"]), ("decider", it["decider"]),
+                             ("summary", it["summary"]),
+                             ("access_note", it["access_note"])]
+                            + [(f"history[{n}]", h["note"])
+                               for n, h in enumerate(it["history"])]
+                            + [(f"date label {n}", k["label"])
+                               for n, k in enumerate(it["key_dates"])]):
+            brit = britishisms(text)
+            if brit:
+                found, us = brit[0]
+                fail(f"{i}: {label} uses the British {found!r}, write {us!r}. "
+                     f"This is an Alaska publication and a British form reads "
+                     f"as copy that came from somewhere else.")
+
         for label, text in ([("summary", it["summary"]),
                              ("access_note", it["access_note"])]
                             + [(f"history[{n}]", h["note"])

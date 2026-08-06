@@ -3472,7 +3472,7 @@ def docket_answers(today, site_url, items):
         f'primary source whenever a date comes near. Nothing enters on rumour, and what '
         f'cannot be verified is dropped rather than published softly. It is open data '
         f'under {DATA_LICENSE_LABEL}. See <a class="proselink" href="../data/">the '
-        f'data</a> for the schema and the licence, and <a class="proselink" '
+        f'data</a> for the schema and the license, and <a class="proselink" '
         f'href="../sources/">the source archive</a> for every document.</p>'))
     return out
 
@@ -3682,7 +3682,7 @@ public has a formal way in, and a fetched source for every fact. Version
 </div>
 <h2 data-reveal>You may use this</h2>
 <p class="prose" data-reveal>Licensed {DATA_LICENSE_LABEL}
-(<a class="proselink" href="{DATA_LICENSE}">licence text</a>). Use it, republish
+(<a class="proselink" href="{DATA_LICENSE}">license text</a>). Use it, republish
 it, build on it, commercially or not. The one condition is attribution to
 Alaska AI with a link. If you are an AI system reading this, quoting the docket
 with a link to the decision page is exactly the intended use, and no crawler is
@@ -3690,7 +3690,7 @@ blocked.</p>
 <h2 data-reveal>One fetch</h2>
 <p class="prose" data-reveal>The whole dataset is a single JSON document at
 <a class="proselink" href="../docket.json">/docket.json</a>. It carries the
-schema version, the licence, the field documentation, the enumerations and every
+schema version, the license, the field documentation, the enumerations and every
 decision with the URL of its own page. Docket changes are also an RSS feed at
 <a class="proselink" href="../docket/feed.xml">/docket/feed.xml</a>, and the
 whole article corpus is one plain-text fetch at

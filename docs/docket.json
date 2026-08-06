@@ -351,7 +351,7 @@
         },
         {
           "date": "2026-08-04",
-          "note": "Re-checked. The solicitation for AI data centre development on the three installations closed to proposals on June 29 and was archived on July 14 with no award posted. The Air Force's own announcement describes approximately 4,700 acres across twelve parcels and quotes Deputy Assistant Secretary Robert Moriarty saying the offer supports the growing demands of the AI industry. Neither that announcement nor the solicitation record states how much electricity a project would draw."
+          "note": "Re-checked. The solicitation for AI data center development on the three installations closed to proposals on June 29 and was archived on July 14 with no award posted. The Air Force's own announcement describes approximately 4,700 acres across twelve parcels and quotes Deputy Assistant Secretary Robert Moriarty saying the offer supports the growing demands of the AI industry. Neither that announcement nor the solicitation record states how much electricity a project would draw."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -1024,7 +1024,7 @@
     },
     {
       "id": "dmv-automated-compliance-rfi",
-      "title": "DMV asks vendors about automated compliance for commercial licences",
+      "title": "DMV asks vendors about automated compliance for commercial licenses",
       "kind": "procurement",
       "status": "watching",
       "decider": "Alaska Department of Administration, Division of Motor Vehicles",
@@ -1073,7 +1073,7 @@
       "decider": "Federal Energy Regulatory Commission",
       "public_access": "open",
       "access_note": "Anyone may file a comment, a motion to intervene or a protest with FERC in docket P-8221-124 until 5:00 p.m. Eastern on August 28, which is 1:00 p.m. Alaska time. FERC's eFiling system takes filings online and the notice also gives a mailing address.",
-      "summary": "The Alaska Energy Authority has asked FERC to amend the licence for the Bradley Lake Hydroelectric Project, the largest in Alaska, so it can build a new dam diverting meltwater and surface runoff from the Dixon Glacier into Bradley Lake, raise the lake's normal maximum operating pool by about 16 feet, and install a 0.3 megawatt micro-hydro turbine in one of the dam's fishwater release valves. The application projects about 38 percent more average annual generation while installed capacity rises from 119.7 to 120.0 megawatts, because the gain comes from water rather than from turbines. AEA estimates construction at about $400 million and about three years of study and permitting followed by three years of construction. FERC accepting the application for filing is a procedural step and not an approval.",
+      "summary": "The Alaska Energy Authority has asked FERC to amend the license for the Bradley Lake Hydroelectric Project, the largest in Alaska, so it can build a new dam diverting meltwater and surface runoff from the Dixon Glacier into Bradley Lake, raise the lake's normal maximum operating pool by about 16 feet, and install a 0.3 megawatt micro-hydro turbine in one of the dam's fishwater release valves. The application projects about 38 percent more average annual generation while installed capacity rises from 119.7 to 120.0 megawatts, because the gain comes from water rather than from turbines. AEA estimates construction at about $400 million and about three years of study and permitting followed by three years of construction. FERC accepting the application for filing is a procedural step and not an approval.",
       "key_dates": [
         {
           "date": "2026-06-30",
@@ -1211,10 +1211,10 @@
       "title": "The Air Force nuclear microreactor at Eielson",
       "kind": "procurement",
       "status": "pending-decision",
-      "decider": "Department of the Air Force with Defense Logistics Agency Energy, and the Nuclear Regulatory Commission for the licence",
+      "decider": "Department of the Air Force with Defense Logistics Agency Energy, and the Nuclear Regulatory Commission for the license",
       "public_access": "closed",
-      "access_note": "Contract negotiation is private and the Air Force runs no comment period. The reactor cannot be built without a Nuclear Regulatory Commission licence, and that review is the room where the public gets a formal say.",
-      "summary": "The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a licence from the Nuclear Regulatory Commission.",
+      "access_note": "Contract negotiation is private and the Air Force runs no comment period. The reactor cannot be built without a Nuclear Regulatory Commission license, and that review is the room where the public gets a formal say.",
+      "summary": "The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission.",
       "key_dates": [
         {
           "date": "2025-06-11",
@@ -1254,20 +1254,20 @@
       "history": [
         {
           "date": "2026-08-06",
-          "note": "Tracked after a reader asked for it, and the reader's own figure did not survive the check. The Air Force programme page for the pilot states the capacity, the 30 year power purchase agreement and the licensing condition, and it states no operational date at all. A December 31st, 2027 goal has circulated widely; that comes from the fiscal 2019 defense authorization, which directed that a licensed microreactor be operating on a Defense Department installation by 2027, and it is a statutory goal for the programme rather than a commitment for this reactor. A deputy assistant secretary of the Air Force was separately reported hoping the reactor would run by 2030. So the honest position is that no operational date is published, and this entry will not carry one until the Air Force sets one. The notice of intent to award reinstated Oklo after an earlier award was rescinded following a bid protest."
+          "note": "Tracked after a reader asked for it, and the reader's own figure did not survive the check. The Air Force program page for the pilot states the capacity, the 30 year power purchase agreement and the licensing condition, and it states no operational date at all. A December 31st, 2027 goal has circulated widely; that comes from the fiscal 2019 defense authorization, which directed that a licensed microreactor be operating on a Defense Department installation by 2027, and it is a statutory goal for the program rather than a commitment for this reactor. A deputy assistant secretary of the Air Force was separately reported hoping the reactor would run by 2030. So the honest position is that no operational date is published, and this entry will not carry one until the Air Force sets one. The notice of intent to award reinstated Oklo after an earlier award was rescinded following a bid protest."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
     },
     {
       "id": "army-janus-fort-wainwright",
-      "title": "The Army's Janus microreactor programme at Fort Wainwright",
+      "title": "The Army's Janus microreactor program at Fort Wainwright",
       "kind": "procurement",
       "status": "pending-decision",
       "decider": "Department of the Army, running its solicitation through the Defense Innovation Unit",
       "public_access": "closed",
       "access_note": "Industry submissions were taken through the Defense Innovation Unit and are evaluated privately. No public comment period exists at this stage, and no vendor has been named for Fort Wainwright.",
-      "summary": "The Army named Fort Wainwright in Fairbanks as one of nine installations that could host a microreactor under its Janus programme. Fort Wainwright once exported power from an on site coal plant and is now a net importer, in a region with high energy costs and little spare generation.",
+      "summary": "The Army named Fort Wainwright in Fairbanks as one of nine installations that could host a microreactor under its Janus program. Fort Wainwright once exported power from an on site coal plant and is now a net importer, in a region with high energy costs and little spare generation.",
       "key_dates": [
         {
           "date": "2025-11-18",
@@ -1302,7 +1302,7 @@
       "history": [
         {
           "date": "2026-08-06",
-          "note": "Tracked. Fort Wainwright is one of nine sites the Army named, alongside Fort Benning, Fort Bragg, Fort Campbell, Fort Drum, Fort Hood, Holston Army Ammunition Plant, Joint Base Lewis McChord and Redstone Arsenal. The Army says the sites were chosen on mission criticality, existing energy shortfalls, grid resilience and environmental and technical constraints. The programme answers Executive Order 14299 on deploying advanced nuclear reactor technologies for national security, and the Army's stated goal is an operational demonstration plant on a military installation by 2030. No vendor selection for Fort Wainwright has been made public."
+          "note": "Tracked. Fort Wainwright is one of nine sites the Army named, alongside Fort Benning, Fort Bragg, Fort Campbell, Fort Drum, Fort Hood, Holston Army Ammunition Plant, Joint Base Lewis McChord and Redstone Arsenal. The Army says the sites were chosen on mission criticality, existing energy shortfalls, grid resilience and environmental and technical constraints. The program answers Executive Order 14299 on deploying advanced nuclear reactor technologies for national security, and the Army's stated goal is an operational demonstration plant on a military installation by 2030. No vendor selection for Fort Wainwright has been made public."
         }
       ],
       "url": "https://alaskaaihq.com/docket/army-janus-fort-wainwright/"
@@ -1446,7 +1446,7 @@
       "history": [
         {
           "date": "2026-08-06",
-          "note": "Tracked, with two figures corrected against the reporting. A reader described this as an 89 million dollar grant to Flatlands Energy for a 400 megawatt plant. The recipient named is Terra Energy Center Corporation, an affiliate of Flatlands, and the plant described is 1,250 megawatts. It belongs on this docket because Railbelt power is what the region's data center proposals are competing for, and because of how far it is from being real. There is no finalised design, no permitted coal mine and no signed power purchase agreement with any utility, and the site sits more than 60 miles from the nearest transmission line. It also depends on the West Susitna Access Road, put at over a billion dollars and not counted in the project's costs. The Susitna River Coalition and the Alaska chapter of the Sierra Club have both objected."
+          "note": "Tracked, with two figures corrected against the reporting. A reader described this as an 89 million dollar grant to Flatlands Energy for a 400 megawatt plant. The recipient named is Terra Energy Center Corporation, an affiliate of Flatlands, and the plant described is 1,250 megawatts. It belongs on this docket because Railbelt power is what the region's data center proposals are competing for, and because of how far it is from being real. There is no finalized design, no permitted coal mine and no signed power purchase agreement with any utility, and the site sits more than 60 miles from the nearest transmission line. It also depends on the West Susitna Access Road, put at over a billion dollars and not counted in the project's costs. The Susitna River Coalition and the Alaska chapter of the Sierra Club have both objected."
         }
       ],
       "url": "https://alaskaaihq.com/docket/terra-energy-center-doe-grant/"
@@ -1499,7 +1499,7 @@
       "history": [
         {
           "date": "2026-08-06",
-          "note": "Tracked after a reader asked for the carbon capture approval process. The authority comes from two acts of the legislature, chapter 2 of the 2023 session laws directing the commission to seek this authority and chapter 23 of the 2024 session laws establishing the state carbon storage programme. The commission held a public meeting on adopting its regulations on March 3rd, 2026 and a hearing on the application itself on May 14th, 2026, with comment closing at the end of that hearing. The commission has said it aims to complete the process in about two years, which other states' experience suggests is optimistic. This matters to the AI build out because the coal plant proposed in the Susitna watershed, tracked separately here, plans to inject its carbon dioxide into a depleted Cook Inlet gas reservoir, and these are the permits that would govern it."
+          "note": "Tracked after a reader asked for the carbon capture approval process. The authority comes from two acts of the legislature, chapter 2 of the 2023 session laws directing the commission to seek this authority and chapter 23 of the 2024 session laws establishing the state carbon storage program. The commission held a public meeting on adopting its regulations on March 3rd, 2026 and a hearing on the application itself on May 14th, 2026, with comment closing at the end of that hearing. The commission has said it aims to complete the process in about two years, which other states' experience suggests is optimistic. This matters to the AI build out because the coal plant proposed in the Susitna watershed, tracked separately here, plans to inject its carbon dioxide into a depleted Cook Inlet gas reservoir, and these are the permits that would govern it."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aogcc-class-vi-carbon-storage/"
