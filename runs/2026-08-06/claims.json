@@ -1,0 +1,450 @@
+{
+ "run_date": "2026-08-06",
+ "story": "Alaska keeps offering land for AI data centers. Every document from the sellers own side now says the constraint is power.",
+ "claims": [
+  {
+   "id": "C01",
+   "claim": "Enstar has already turned away new, large-scale customers in order to focus on supplying existing ratepayers, Alaska Public Media reported, citing president and CEO John Sims.",
+   "value": "new, large-scale customers",
+   "verbatim": "Enstar has already had to turn away new, large-scale customers to focus on supplying existing ratepayers",
+   "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/southcentral-alaska-gas-utility-says-bills-likely-to-rise-amid-supply-shortage",
+   "source_outlet": "Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-28",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Reporter's paraphrase of Sims, not a direct quotation. Attribute to Alaska Public Media. Reporter Wesley Early."
+  },
+  {
+   "id": "C02",
+   "claim": "Enstar president and CEO John Sims said a winter like last year would bring significant challenges and likely rolling blackouts.",
+   "value": "likely see rolling blackouts",
+   "verbatim": "If we have a winter like we did last year, we are going to have significant challenges and likely see rolling blackouts",
+   "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/southcentral-alaska-gas-utility-says-bills-likely-to-rise-amid-supply-shortage",
+   "source_outlet": "Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-28",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "CONDITIONAL, not a prediction. The conditional clause must stay attached in any slide use."
+  },
+  {
+   "id": "C03",
+   "claim": "Imported LNG prices were running right around 22 dollars per MCF, Enstar's president said.",
+   "value": "$22 per MCF",
+   "verbatim": "Right now, LNG import prices are right around $22 per MCF",
+   "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/southcentral-alaska-gas-utility-says-bills-likely-to-rise-amid-supply-shortage",
+   "source_outlet": "Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-28",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Unit printed as MCF here. A companion piece the same day writes the same class of figure as per thousand cubic feet. Not normalised."
+  },
+  {
+   "id": "C04",
+   "claim": "Enstar's weighted average cost of gas at the time was 10.80 dollars.",
+   "value": "$10.80",
+   "verbatim": "What we're paying today is $10.80",
+   "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/southcentral-alaska-gas-utility-says-bills-likely-to-rise-amid-supply-shortage",
+   "source_outlet": "Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-28",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "The quoted sentence prints no unit. The companion Alaska Beacon piece gives 10.80 per thousand cubic feet as the weighted average cost."
+  },
+  {
+   "id": "C05",
+   "claim": "Enstar's standard contract price for Hilcorp gas is 8.78 dollars per thousand cubic feet.",
+   "value": "$8.78 per thousand cubic feet",
+   "verbatim": "$8.78 per thousand cubic feet of gas",
+   "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/as-winter-approaches-southcentral-alaska-utilities-are-worried-about-running-short-of-gas",
+   "source_outlet": "Alaska Beacon, republished by Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-28",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "By James Brooks. Alaska Beacon's own site returns 403, so the Alaska Public Media republication is the fetched copy."
+  },
+  {
+   "id": "C06",
+   "claim": "Enstar offered new producers a premium of 17.50 dollars per thousand cubic feet and its president said it has not encouraged companies to drill more.",
+   "value": "$17.50 per thousand cubic feet",
+   "verbatim": "hasn't encouraged companies to drill more",
+   "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/as-winter-approaches-southcentral-alaska-utilities-are-worried-about-running-short-of-gas",
+   "source_outlet": "Alaska Beacon, republished by Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-28",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "The page does NOT say the premium bought no supply. Only that Sims said it has not encouraged more drilling. Do not assert a null result the source does not assert."
+  },
+  {
+   "id": "C07",
+   "claim": "Enstar president John Sims said nobody has the gas right now that they are willing to sell.",
+   "value": "nobody has the gas",
+   "verbatim": "It just comes down to the fact that nobody has the gas right now that they're willing to sell.",
+   "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/as-winter-approaches-southcentral-alaska-utilities-are-worried-about-running-short-of-gas",
+   "source_outlet": "Alaska Beacon, republished by Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-28",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Direct quote verified verbatim on the fetched page."
+  },
+  {
+   "id": "C08",
+   "claim": "Hilcorp has drilled 192 wells in Cook Inlet since 2011 and 27 new wells in 2026.",
+   "value": "192 wells since 2011",
+   "verbatim": "192 wells drilled since 2011",
+   "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/as-winter-approaches-southcentral-alaska-utilities-are-worried-about-running-short-of-gas",
+   "source_outlet": "Alaska Beacon, republished by Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-28",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "No primary AOGCC well count reached. Hedge as reported by Alaska Beacon."
+  },
+  {
+   "id": "C09",
+   "claim": "Matanuska Electric Association's Eklutna generation station has a capacity of 171 megawatts.",
+   "value": "171 megawatts",
+   "verbatim": "Eklutna generator: 171 megawatt capacity",
+   "source_url": "https://alaskapublic.org/news/economy/energy/2026-07-28/as-winter-approaches-southcentral-alaska-utilities-are-worried-about-running-short-of-gas",
+   "source_outlet": "Alaska Beacon, republished by Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-28",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "Number confirmed on the page. Surrounding wording unconfirmed, so use the number only."
+  },
+  {
+   "id": "C11",
+   "claim": "Cook Inlet Natural Gas Storage Alaska now holds about 4 billion cubic feet of gas.",
+   "value": "about 4 billion cubic feet",
+   "verbatim": "It now has about 4 billion cubic feet stored at Cook Inlet Natural Gas Storage Alaska.",
+   "source_url": "https://www.matsusentinel.com/mea-says-rolling-blackouts-possible-under-worst-case-winter-gas-shortage/",
+   "source_outlet": "Mat-Su Sentinel",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-29",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "By Tim Bradner. Pair with C12 rather than quoting alone."
+  },
+  {
+   "id": "C12",
+   "claim": "The utility normally likes to have 7 billion cubic feet in storage at the start of cold weather.",
+   "value": "7 billion cubic feet",
+   "verbatim": "The utility normally likes to have 7 billion cubic feet in storage at the start of cold weather.",
+   "source_url": "https://www.matsusentinel.com/mea-says-rolling-blackouts-possible-under-worst-case-winter-gas-shortage/",
+   "source_outlet": "Mat-Su Sentinel",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-29",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "The roughly 3 Bcf gap is arithmetic from C11 and C12, corroborated on the same page by Enstar spokesperson Lindsay Hobson saying We're looking for 3 billion cubic feet of gas. Present the gap as a difference between two published figures."
+  },
+  {
+   "id": "C13",
+   "claim": "MEA chief executive Tony Izzo said curtailment periods would be limited to 30 minutes so buildings would not cool to levels that could pose hazards.",
+   "value": "30 minutes",
+   "verbatim": "Izzo said curtailment periods would be limited to 30 minutes so buildings would not cool to levels that could pose hazards.",
+   "source_url": "https://www.matsusentinel.com/mea-says-rolling-blackouts-possible-under-worst-case-winter-gas-shortage/",
+   "source_outlet": "Mat-Su Sentinel",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-29",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "WORST CASE scenario description, not a forecast, and must be labeled as such."
+  },
+  {
+   "id": "C14",
+   "claim": "Fairbanks saw a 60 percent increase in the cost of fuel last winter when Golden Valley Electric Association had to switch to diesel.",
+   "value": "60 percent",
+   "verbatim": "Fairbanks saw a 60% increase in the cost of fuel last winter when Golden Valley Electric Association had to switch to diesel.",
+   "source_url": "https://www.matsusentinel.com/mea-says-rolling-blackouts-possible-under-worst-case-winter-gas-shortage/",
+   "source_outlet": "Mat-Su Sentinel",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-29",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "Single sourced. Hedge as reported by the Mat-Su Sentinel."
+  },
+  {
+   "id": "C15",
+   "claim": "AIDEA deputy director Brandon Brefczynski wrote that there is no committed data center tenant, industrial developer, site plan, power source, cooling system, water supply plan or construction schedule.",
+   "value": "seven items, none of which exist",
+   "verbatim": "There is no committed data center tenant, industrial developer, site plan, power source, cooling system, water supply plan or construction schedule.",
+   "source_url": "https://www.adn.com/opinions/2026/08/04/opinion-the-best-time-to-shape-mat-su-development-is-before-it-begins/",
+   "source_outlet": "Anchorage Daily News opinion, signed by AIDEA deputy director Brandon Brefczynski",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-04",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "PRIMARY, a signed first person statement by the AIDEA official. Seven items in this order. The author's framing is that this is early stage and a reason for public input, NOT a concession of failure. Quoting it as an admission of collapse would misrepresent him."
+  },
+  {
+   "id": "C16",
+   "claim": "The Alaska Department of Natural Resources preliminary decision concerns approximately 19,950 acres north of Houston.",
+   "value": "19,950 acres",
+   "verbatim": "The Department of Natural Resources' preliminary decision concerning approximately 19,950 acres north of Houston has prompted understandable questions.",
+   "source_url": "https://www.adn.com/opinions/2026/08/04/opinion-the-best-time-to-shape-mat-su-development-is-before-it-begins/",
+   "source_outlet": "Anchorage Daily News opinion, signed by AIDEA deputy director Brandon Brefczynski",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-04",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Verified only as stated by AIDEA's deputy director. The underlying DNR decision document was not reached."
+  },
+  {
+   "id": "C17",
+   "claim": "The DNR preliminary decision remains open for public comment through August 19th, after which DNR will decide whether and under what conditions to proceed.",
+   "value": "August 19th",
+   "verbatim": "The preliminary decision remains open for public comment through Aug. 19, after which DNR will decide whether and under what conditions to proceed.",
+   "source_url": "https://www.adn.com/opinions/2026/08/04/opinion-the-best-time-to-shape-mat-su-development-is-before-it-begins/",
+   "source_outlet": "Anchorage Daily News opinion, signed by AIDEA deputy director Brandon Brefczynski",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-04",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "NO clock time is printed. Do not add one. The op-ed prints Aug. 19 without a year; 2026 inferred from publication date."
+  },
+  {
+   "id": "C18",
+   "claim": "AIDEA says it has declared approximately 495 million dollars in dividends to the state, including the dividend declared for fiscal year 2026.",
+   "value": "$495 million",
+   "verbatim": "AIDEA has declared approximately",
+   "source_url": "https://www.adn.com/opinions/2026/08/04/opinion-the-best-time-to-shape-mat-su-development-is-before-it-begins/",
+   "source_outlet": "Anchorage Daily News opinion, signed by AIDEA deputy director Brandon Brefczynski",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-04",
+   "fetched": true,
+   "confidence": 0.8,
+   "notes": "AIDEA's own self reported cumulative figure in a defensive op-ed. Attribute to AIDEA rather than stating flatly."
+  },
+  {
+   "id": "C19",
+   "claim": "Gov. Mike Dunleavy rejected a conference committee bill and called a third Alaska LNG special session beginning July 27th.",
+   "value": "third special session",
+   "verbatim": "called a third special session beginning July 27",
+   "source_url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session",
+   "source_outlet": "Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-16",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "By Eric Stone. akleg.gov returned 403 on every attempt so no primary legislative record is in this file."
+  },
+  {
+   "id": "C20",
+   "claim": "The Alaska Senate passed the LNG tax measure 11 to 8 on July 16th and the House vote ended in a 19 to 19 tie.",
+   "value": "19 to 19",
+   "verbatim": "Senate passed the measure 11-8 on July 16",
+   "source_url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session",
+   "source_outlet": "Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-16",
+   "fetched": true,
+   "confidence": 0.8,
+   "notes": "A July 20th piece describes the House vote as 19 in favour, two short of what was needed. Both are consistent with 19 yes and 21 required. No primary roll call reachable."
+  },
+  {
+   "id": "C21",
+   "claim": "The Alaska LNG project is expected to cost as much as 54.5 billion dollars.",
+   "value": "$54.5 billion",
+   "verbatim": "which is expected to cost as much as $54.5 billion",
+   "source_url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-20/hilcorp-killed-alaska-lng-bill-some-legislators-say-but-governor-calls-the-claim-bulls-t",
+   "source_outlet": "Alaska Beacon, republished by Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-20",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Only the upper bound is verified. Use as much as. Do not present a range."
+  },
+  {
+   "id": "C22",
+   "claim": "The rejected LNG bill would have required the state and local governments to forgo more than 10 billion dollars in revenue over 30 years.",
+   "value": "more than $10 billion over 30 years",
+   "verbatim": "the state and local governments to forgo more than $10 billion in revenue over 30 years",
+   "source_url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-20/hilcorp-killed-alaska-lng-bill-some-legislators-say-but-governor-calls-the-claim-bulls-t",
+   "source_outlet": "Alaska Beacon, republished by Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-20",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Same page reports Glenfarne owns 75 percent of the pipeline project and the state owned AGDC owns 25 percent."
+  },
+  {
+   "id": "C23",
+   "claim": "House Speaker Bryce Edgmon said the clock is ticking very loudly and that if it is not done this special session he does not know that there will be another opportunity this year.",
+   "value": "another opportunity this year",
+   "verbatim": "The clock is ticking very loudly right now, and the governor realizes that.",
+   "source_url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
+   "source_outlet": "Alaska Public Media",
+   "source_is_primary": false,
+   "date_of_source": "2026-07-27",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Edgmon printed as House Speaker Bryce Edgmon, a Dillingham independent. Full quote continues, if we don't get it done this special session, that I don't know that there will be another opportunity this year."
+  },
+  {
+   "id": "C24",
+   "claim": "Fed Governor Lisa D. Cook said in Anchorage that the most dire predictions about AI job losses have not materialized and that she still sees the development as a significant risk that has not grown over the past year.",
+   "value": "have not materialized",
+   "verbatim": "Thus far, the most dire predictions about AI job losses have not materialized. I still see this development as a significant risk but one that has not grown over the past year.",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260805a.htm",
+   "source_outlet": "Board of Governors of the Federal Reserve System",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-05",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "PRIMARY. Venue, the 2026 Economic Luncheon of the Anchorage Economic Development Corporation, Anchorage, Alaska. Both sentences must travel together or the balance is lost."
+  },
+  {
+   "id": "C25",
+   "claim": "Overall business investment rose at a 10 percent annual rate in the first half of the year, Fed Governor Lisa D. Cook said.",
+   "value": "10 percent annual rate",
+   "verbatim": "Overall business investment rose at a 10 percent annual rate in the first half of the year.",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260805a.htm",
+   "source_outlet": "Board of Governors of the Federal Reserve System",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-05",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "The verified sentence does NOT itself attribute the rise to AI infrastructure. Do not add that attribution."
+  },
+  {
+   "id": "C26",
+   "claim": "Alaska's unemployment rate is 4.4 percent according to the Bureau of Labor Statistics, as cited by Fed Governor Lisa D. Cook in Anchorage.",
+   "value": "4.4 percent",
+   "verbatim": "just 4.4 percent according to the Bureau of Labor Statistics",
+   "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260805a.htm",
+   "source_outlet": "Board of Governors of the Federal Reserve System",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-05",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Verbatim trimmed to a substring because the full printed sentence carries an em dash, which house style forbids reproducing."
+  },
+  {
+   "id": "C27",
+   "claim": "The Air Force solicitation AFCEC-26-R-0006 sought AI data center development at Joint Base Elmendorf Richardson, Eielson Air Force Base and Clear Space Force Station, with responses due June 29th, 2026.",
+   "value": "June 29, 2026",
+   "verbatim": "RFLP Artificial Intelligence (AI) Data Center Development at Joint Base Elmendorf Richardson, Eielson Air Force Base, and Clear Space Force Station",
+   "source_url": "https://www.highergov.com/contract-opportunity/rflp-artificial-intelligence-ai-data-center-deve-afcec-26-r-0006-o-db695/",
+   "source_outlet": "HigherGov, aggregating the federal solicitation",
+   "source_is_primary": false,
+   "date_of_source": "2026-04-10",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "Deadline extended from May 29. Posted April 10, archived July 14, status Past Due. NO award notice present. Aggregator, not the government's own posting; sam.gov unreachable."
+  },
+  {
+   "id": "C28",
+   "claim": "The Air Force offered five sites for lease at Joint Base Elmendorf Richardson ranging from about 60 acres to nearly 200 acres.",
+   "value": "about 60 to nearly 200 acres",
+   "verbatim": "The sites range from about 60 acres to nearly 200 acres.",
+   "source_url": "https://www.adn.com/alaska-news/military/2026/05/05/the-military-wants-to-host-data-centers-in-alaska-raising-questions-about-whether-theres-enough-gas-to-power-them/",
+   "source_outlet": "Anchorage Daily News",
+   "source_is_primary": false,
+   "date_of_source": "2026-05-05",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "BACKGROUND, outside the ten day window, must be dated on the slide. JBER sites only. By Alex DeMarban."
+  },
+  {
+   "id": "C29",
+   "claim": "The Air Force solicitation says the JBER sites have insufficient power for a data center and will require a new connection to Chugach Electric Association in Anchorage.",
+   "value": "insufficient power",
+   "verbatim": "The sites at JBER have 'insufficient power' for a data center, and will require 'a new connection' to Chugach Electric Association in Anchorage",
+   "source_url": "https://www.adn.com/alaska-news/military/2026/05/05/the-military-wants-to-host-data-centers-in-alaska-raising-questions-about-whether-theres-enough-gas-to-power-them/",
+   "source_outlet": "Anchorage Daily News",
+   "source_is_primary": false,
+   "date_of_source": "2026-05-05",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "BACKGROUND, May 5th 2026, must be dated on the slide. The internal quotes indicate the article is quoting solicitation language, so this is the Air Force's own characterisation of its own sites."
+  },
+  {
+   "id": "C30",
+   "claim": "Chugach Electric's gas supply contract with Hilcorp Alaska, its primary supplier, is set to end in 2028.",
+   "value": "2028",
+   "verbatim": "Chugach Electric's gas supply contract with Hilcorp Alaska, its primary supplier, is set to end in 2028",
+   "source_url": "https://www.adn.com/alaska-news/military/2026/05/05/the-military-wants-to-host-data-centers-in-alaska-raising-questions-about-whether-theres-enough-gas-to-power-them/",
+   "source_outlet": "Anchorage Daily News",
+   "source_is_primary": false,
+   "date_of_source": "2026-05-05",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "BACKGROUND, May 5th 2026. Same page reports Chugach's position that any large new customer should pay rates that fully cover its cost of service."
+  },
+  {
+   "id": "C31",
+   "claim": "The Air Force lease offer covers about 4,700 acres across 12 identified parcels at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station.",
+   "value": "about 4,700 acres, 12 parcels",
+   "verbatim": "DAF has issued a request for lease proposals on SAM.gov outlining plans to make about 4,700 acres of land available at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station.",
+   "source_url": "https://www.executivegov.com/articles/air-force-ai-data-centers-alaska",
+   "source_outlet": "ExecutiveGov",
+   "source_is_primary": false,
+   "date_of_source": "2026-04-13",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "BACKGROUND, April 13th 2026, outside the ten day window, must be dated on the slide. The fact-checker had killed this figure because neither HigherGov nor the ADN piece it fetched carries it. Re-verified here from a page that does, which also prints the 12 identified parcels separately. The same page carries NO information about power or utilities at the sites."
+  }
+ ],
+ "killed": [
+  {
+   "claim": "Alaska pitched AI data center developers power at 4 to 5 cents per kilowatt-hour",
+   "why": "KILLED, and it was this deck's original framing device. The cited ADN article of May 5th was fetched twice and contains none of the words cent, cents, kilowatt, kWh or megawatt. Two independent searches for the phrase returned nothing. There is no source for the 4 to 5 cent pitch and the deck was reframed around what is verified."
+  },
+  {
+   "claim": "Chugach large commercial rates are 14 to 17 cents per kilowatt-hour",
+   "why": "KILLED. Same fetch. The words cent and kilowatt do not appear in the cited article. No alternate source found."
+  },
+  {
+   "claim": "House Speaker Bryce Edgmon said the chances of passage at this point are very low",
+   "why": "KILLED. Reached the scout only through a search summary of a News-Miner article that returned HTTP 429, and could not be re-fetched from any working source. Must not appear in any form including paraphrase. C23 is the verified substitute."
+  },
+  {
+   "claim": "HB 381 is the bill before the third special session",
+   "why": "KILLED as unverifiable. akleg.gov returned 403 on three URL forms and legiscan returned 403. No fetched news page names a bill number. The deck may say a third Alaska LNG special session convened July 27th over a pipeline tax measure but must NOT cite a bill number."
+  },
+  {
+   "claim": "The bill grants roughly a 90 percent property tax exemption over more than 30 years",
+   "why": "KILLED. No fetched page states a 90 percent figure. C22 is the verified description."
+  },
+  {
+   "claim": "The Alaska LNG cost range is 44.5 billion to 54.5 billion dollars",
+   "why": "PARTIALLY KILLED. Only the 54.5 billion upper bound is verified. Do not present a range."
+  },
+  {
+   "claim": "The Air Force solicitation set a minimum of 100 megawatts and a minimum 500 million dollar investment",
+   "why": "KILLED and independently confirmed absent. Trade coverage attributes those thresholds to a different, non-Alaska solicitation."
+  },
+  {
+   "claim": "The 10 percent rise in business investment was attributed substantially to AI infrastructure",
+   "why": "KILLED as a compound claim. The verified sentence states only the 10 percent annual rate. Publish C25 without the attribution."
+  },
+  {
+   "claim": "The August 19th comment deadline has a clock time",
+   "why": "KILLED. The op-ed prints through Aug. 19 with no time of day. Do not invent one."
+  },
+  {
+   "claim": "Enstar's 17.50 dollar premium offer failed to buy any supply",
+   "why": "KILLED as framed. The page says only that Sims said it has not encouraged companies to drill more. C06 carries the defensible version."
+  },
+  {
+   "claim": "Four entities acted in a connected or coordinated way, or any of these projects will fail",
+   "why": "NOT A SOURCED CLAIM AND MUST NOT BE IMPLIED. Nothing supports causation, coordination or a prediction of failure. Three of the four statements are explicitly conditional or worst case, and C15's author is arguing the opposite of collapse."
+  },
+  {
+   "claim": "MEA's diesel permit window was extended from two weeks to two months by a named agency",
+   "why": "DROPPED for the slide. The two durations are on the page but the issuing agency and exact permit were not confirmed, so no permitting body may be named. Not carried as a claim."
+  },
+  {
+   "claim": "The Air Force offered 4,700 acres across 12 parcels (ORIGINALLY KILLED, LATER RESTORED)",
+   "why": "Killed by the fact-checker because the two pages it fetched, HigherGov and the ADN May 5th piece, carry neither figure. Restored as C31 after the showrunner fetched ExecutiveGov, which prints both. Recorded here because the kill was correct on the evidence the fact-checker had, and the lesson is that an absent figure means the wrong page was fetched, not that the figure is false."
+  }
+ ]
+}

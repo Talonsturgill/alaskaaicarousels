@@ -1,0 +1,159 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'JBER' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'EIELSON AFB' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CLEAR SFS' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'RESPONSES DUE JUNE 29, 2026' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'Equal weight. Per site split not publish' at 80,1258 681x31 (margin 80px)"
+      ],
+      "encodings": [
+        "'three equal swellings on a bare plate': dE 4.6, AUC 0.52, visible 100%/100%, seen 3304/3304px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ABOUT 60 ACRES' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'A NEW CONNECTION' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '2028' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Anchorage Daily News, May 5, 2026' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "svg label painted over: '2 KM' has an opaque DOM block over 100% of its width drawn on top of it [decorative]",
+        "text collision (83% overprint): '2 KM' x 'STATION 02 / 09FRAME 24 KMSURFACE = ' near 250,1116 [decorative involved]",
+        "art touching glyphs (4% of the ring around '2028', spanning 27%) -- pixel critic verify the label is not crossed",
+        "outside safe zone: 'Three of five site sizes not published.' at 80,1258 618x31 (margin 80px)"
+      ],
+      "encodings": [
+        "'published sizes are modelled, unpublished ones are hollow': dE 27.6, AUC 0.72, visible 100%/100%, seen 961/930px at 432w"
+      ],
+      "contacts": [
+        "'the 200 acre plateau on the lit ground': shadow L* 3.4 vs ground L* 17.5, dL 14.1 at 432w"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Area to scale. Boundary not published.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ONE JBER SITE,NEARLY 200 ACRES,SAME SCALE.' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'Brandon Brefczynski, AIDEA, signed op-ed' at 80,74 941x31 (margin 80px)",
+        "outside safe zone: 'The op-ed lists seven things the project' at 80,1112 452x207 (margin 80px)",
+        "art touching glyphs (5% of the ring around 'The op-ed lists seven things the project', spanning 78%) -- pixel critic verify the label is not crossed",
+        "outside safe zone: 'Area to scale. Boundary not published.' at 560,1290 520x54 (margin 80px)",
+        "outside safe zone: 'ONE JBER SITE,NEARLY 200 ACRES,SAME SCAL' at 812,938 210x104 (margin 80px)",
+        "outside safe zone: 'COMMITTED TENANT' at 812,300 250x26 (margin 80px)",
+        "outside safe zone: 'INDUSTRIAL DEVELOPER' at 812,362 250x52 (margin 80px)",
+        "outside safe zone: 'SITE PLAN' at 812,424 250x26 (margin 80px)",
+        "outside safe zone: 'POWER SOURCE' at 812,486 250x56 (margin 80px)",
+        "outside safe zone: 'COOLING SYSTEM' at 812,548 250x26 (margin 80px)",
+        "outside safe zone: 'WATER SUPPLY PLAN' at 812,610 250x26 (margin 80px)",
+        "outside safe zone: 'CONSTRUCTION SCHEDULE' at 812,672 250x52 (margin 80px)"
+      ],
+      "encodings": [
+        "'only the fourth item is worked': dE 1.6, AUC 0.56, visible 17%/64%, seen 422/1589px at 432w"
+      ],
+      "contacts": [
+        "'the 19,950 acre plateau on the lit ground': shadow L* 31.7 vs ground L* 46.4, dL 14.7 at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'No quantity published for this claim.' at 80,1276 586x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 80% of this slide's own average craft density (top 76% / mid 88% / bottom 58% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "tiny-text: '10.80 is quoted with no unit. Thecompanion report ' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'DOLLARS PER THOUSAND CUBIC FEET, UNITS AS PRINTED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'STANDARD CONTRACT PRICE, HILCORP GAS' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WEIGHTED AVERAGE COST OF GAS' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'PREMIUM OFFERED TO NEW PRODUCERS' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'IMPORTED LNG, AS REPORTED' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "svg label painted over: '0' has an opaque DOM block over 100% of its width drawn on top of it [decorative]",
+        "svg label painted over: '20' has an opaque DOM block over 100% of its width drawn on top of it [decorative]",
+        "svg label painted over: '24' has an opaque DOM block over 100% of its width drawn on top of it [decorative]",
+        "text collision (70% overprint): '24' x 'Four prices. One unit. Different thi' near 304,179 [decorative involved]",
+        "text collision (81% overprint): '10.80 is quoted with no unit. Thecom' x '05 / 09' near 882,1263 [decorative involved]",
+        "outside safe zone: 'Four kinds of price on one scale,not one' at 80,1236 523x62 (margin 80px)",
+        "worst-point contrast 3.8 on 'Four kinds of price on one scale,not one' (box mean 4.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "outside safe zone: '10.80 is quoted with no unit. Thecompani' at 560,1236 520x78 (margin 80px)",
+        "worst-point contrast 3.9 on '10.80 is quoted with no unit. Thecompani' (box mean 8.4) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "art touching glyphs (4% of the ring around '10.80 is quoted with no unit. Thecompani', spanning 60%) -- pixel critic verify the label is not crossed",
+        "art touching glyphs (3% of the ring around '$17.50', spanning 24%) -- pixel critic verify the label is not crossed"
+      ],
+      "encodings": [
+        "'four readings at four heights on one rod': dE 2.2, AUC 0.65, visible 100%/0%, seen 407/0px at 432w"
+      ],
+      "contacts": [
+        "'the rod foot on the worked ground': shadow L* 3.3 vs ground L* 30.8, dL 27.5 at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Difference of two published figures. Not a forecas' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: '7 BCF, THE STATED TARGET' at 706,604 374x62 (margin 80px)",
+        "outside safe zone: 'Difference of two published figures. Not' at 80,1272 755x29 (margin 80px)"
+      ],
+      "encodings": [
+        "'the worked column stops short of the dashed cap': dE 0.6, AUC 0.63, visible 100%/100%, seen 630/630px at 432w"
+      ],
+      "contacts": [
+        "'the storage drum on the lit overburden': shadow L* 6.5 vs ground L* 22.8, dL 16.3 at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Worst case, as described by MEA's chief executive.' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'Worst case, as described by MEA's chief ' at 80,1272 726x29 (margin 80px)"
+      ],
+      "encodings": [
+        "'exactly half the dial is worked': dE 31.9, AUC 0.79, visible 83%/75%, seen 6427/5808px at 432w"
+      ],
+      "contacts": [
+        "'the dial rim on the warm ground': shadow L* 5.1 vs ground L* 13.6, dL 8.5 at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Separate processes on one calendar. No arrows betw' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'A THIRD ALASKA LNG SPECIAL SESSION CONVENED' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'COMMENT CLOSES ON THE HOUSTON PARCEL' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CHUGACH'S GAS CONTRACT WITH ITS PRIMARY SUPPLIER E' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'Separate processes on one calendar. No a' at 80,1272 818x27 (margin 80px)",
+        "outside safe zone: 'CHUGACH'S GAS CONTRACT WITH ITS PRIMARY ' at 660,1136 420x44 (margin 80px)"
+      ],
+      "encodings": [
+        "'three ticks stand alone with nothing drawn between them': dE 0.4, AUC 0.54, visible 100%/100%, seen 10752/2304px at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'alaskaaihq.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'SOURCES IN COMMENTS' at 80,1272 301x31 (margin 80px)"
+      ],
+      "encodings": [
+        "'the only gold node sits where the line stops': dE 4.9, AUC 0.59, visible 100%/100%, seen 576/576px at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 59,
+  "verdict": "WARN"
+}

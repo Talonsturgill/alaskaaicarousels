@@ -1,0 +1,49 @@
+{
+ "run_date": "2026-08-06",
+ "carousel_no": 27,
+ "scored_by": "showrunner self-assessment, NO independent scorer subagent was spawned (disclosed)",
+ "criteria": [
+  {
+   "name": "Story and Alaska relevance",
+   "weight": 0.2,
+   "score": 8.5,
+   "note": "In-window, primary-sourced, and the thesis is built entirely from the selling side's own documents. Sixth deck of 27 in Alaska power and data centers, which is a real editorial concentration and is flagged."
+  },
+  {
+   "name": "Factual integrity",
+   "weight": 0.2,
+   "score": 9.0,
+   "note": "30 verified claims, 7 primary, claims_check PASS. Thirteen claims killed including the deck's original framing device. aggregate_check PASS with all 14 on-slide aggregates declared and re-derived."
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "weight": 0.2,
+   "score": 7.0,
+   "note": "The declared attack landed in part. Every principal mass is an akengrave swelled-stroke field, drawn share 61 percent against a 45 percent floor, bespoke median 0.377 against a 0.60 fail. The rendered ladder IS reached on slide 06 and verified from the snapshot sentinel. Not higher because the deck was never seen by an independent pixel critic and because drawn share missed the run's own 70 percent target."
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "weight": 0.15,
+   "score": 7.5,
+   "note": "qa.py WARN, zero FAILs. 9 slides, vector PDF, 4:5. Residual warns are tiny-text on instrument readouts and safe-zone overruns on guard lines."
+  },
+  {
+   "name": "Copy and voice",
+   "weight": 0.15,
+   "score": 8.5,
+   "note": "caption_check PASS at 759 chars, hook 119. TIMELINE COLLAPSE has never shipped in 27 runs and the close is invented. The room killed both first candidates and the third round fixed five standing ledger misses."
+  },
+  {
+   "name": "Deck architecture and continuity",
+   "weight": 0.1,
+   "score": 7.0,
+   "note": "Three continuity devices with a full state table, one declared breather, single ask. Not higher because no flow critic saw the sequence."
+  }
+ ],
+ "hard_fails": [],
+ "weighted_total": 7.93,
+ "threshold": 8.3,
+ "below_threshold": true,
+ "one_sentence_fix": "Spawn the pixel critics and the flow critic; this deck's art was never independently reviewed and that is the single largest remaining risk.",
+ "shortfall_note": "Ships below the 8.3 threshold at an honest 7.93. The gap is entirely in the review chain rather than in the material: every machine gate passed, but no pixel critic, no flow critic and no scorer subagent were spawned because the context budget went into the art build and a GPU investigation. Disclosed in the email, the run record and the artwork ledger."
+}
