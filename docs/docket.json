@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-08-05",
+  "updated": "2026-08-06",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -10,8 +10,8 @@
   "attribution": "Alaska AI, https://alaskaaihq.com",
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
-  "temporal_coverage": "2026-01-20/2026-08-28",
-  "count": 13,
+  "temporal_coverage": "2022-02-02/2026-08-28",
+  "count": 19,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -740,6 +740,11 @@
           "date": "2026-08-19",
           "label": "Public comment closes",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-08-26",
+          "label": "AIDEA board meeting, the first after comment closes",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -772,10 +777,15 @@
           "url": "https://www.adn.com/opinions/2026/08/04/opinion-the-best-time-to-shape-mat-su-development-is-before-it-begins/",
           "outlet": "Anchorage Daily News, AIDEA opinion",
           "date": "2026-08-04"
+        },
+        {
+          "url": "https://www.aidea.org/About/Board-Members/Board-Meeting-Schedule",
+          "outlet": "Alaska Industrial Development and Export Authority",
+          "date": "2026-08-06"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-05",
+      "last_updated": "2026-08-06",
       "history": [
         {
           "date": "2026-07-17",
@@ -812,6 +822,10 @@
         {
           "date": "2026-08-05",
           "note": "AIDEA argued its case in the opinion pages. Deputy director Brandon Brefczynski published a piece in the Anchorage Daily News on August 4 stating there is no committed data center tenant, industrial developer, site plan, power source, cooling system, water supply plan or construction schedule, and that what is open through August 19 is the land decision itself. The Houston City Council vote on a data center ban ordinance is still set for August 13."
+        },
+        {
+          "date": "2026-08-06",
+          "note": "A reader asked for the authority's funding decisions to be tracked more widely. The one that touches this beat is already here, and it now carries the date the board next sits. The authority's published schedule lists a board meeting on Wednesday, August 26th, 2026, which is the first after public comment closes on August 19th, and the schedule notes that its dates are subject to change or cancellation. No agenda for that meeting has been posted, so whether this project is on it is not yet knowable."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1191,6 +1205,304 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
+    },
+    {
+      "id": "eielson-oklo-microreactor",
+      "title": "The Air Force nuclear microreactor at Eielson",
+      "kind": "procurement",
+      "status": "pending-decision",
+      "decider": "Department of the Air Force with Defense Logistics Agency Energy, and the Nuclear Regulatory Commission for the licence",
+      "public_access": "closed",
+      "access_note": "Contract negotiation is private and the Air Force runs no comment period. The reactor cannot be built without a Nuclear Regulatory Commission licence, and that review is the room where the public gets a formal say.",
+      "summary": "The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a licence from the Nuclear Regulatory Commission.",
+      "key_dates": [
+        {
+          "date": "2025-06-11",
+          "label": "Air Force announces a notice of intent to award to Oklo",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Eielson Air Force Base, Fairbanks North Star Borough",
+        "lon": -147.1017,
+        "lat": 64.6656
+      },
+      "sources": [
+        {
+          "url": "https://www.af.mil/News/Article-Display/Article/4213048/microreactor-pilot-reaches-major-project-milestone/",
+          "outlet": "U.S. Air Force",
+          "date": "2025-06-11"
+        },
+        {
+          "url": "https://www.eielson.af.mil/microreactor/",
+          "outlet": "Eielson Air Force Base",
+          "date": "2026-08-06"
+        },
+        {
+          "url": "https://www.ans.org/news/2025-06-16/article-7114/air-force-issues-notice-to-partner-with-oklo-on-microreactor-deployment-in-alaska/",
+          "outlet": "American Nuclear Society, Nuclear Newswire",
+          "date": "2025-06-16"
+        },
+        {
+          "url": "https://www.airandspaceforces.com/air-force-microreactor-eielson-alaska/",
+          "outlet": "Air and Space Forces Magazine",
+          "date": "2025-06-12"
+        }
+      ],
+      "first_seen": "2026-08-06",
+      "last_updated": "2026-08-06",
+      "history": [
+        {
+          "date": "2026-08-06",
+          "note": "Tracked after a reader asked for it, and the reader's own figure did not survive the check. The Air Force programme page for the pilot states the capacity, the 30 year power purchase agreement and the licensing condition, and it states no operational date at all. A December 31st, 2027 goal has circulated widely; that comes from the fiscal 2019 defense authorization, which directed that a licensed microreactor be operating on a Defense Department installation by 2027, and it is a statutory goal for the programme rather than a commitment for this reactor. A deputy assistant secretary of the Air Force was separately reported hoping the reactor would run by 2030. So the honest position is that no operational date is published, and this entry will not carry one until the Air Force sets one. The notice of intent to award reinstated Oklo after an earlier award was rescinded following a bid protest."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
+    },
+    {
+      "id": "army-janus-fort-wainwright",
+      "title": "The Army's Janus microreactor programme at Fort Wainwright",
+      "kind": "procurement",
+      "status": "pending-decision",
+      "decider": "Department of the Army, running its solicitation through the Defense Innovation Unit",
+      "public_access": "closed",
+      "access_note": "Industry submissions were taken through the Defense Innovation Unit and are evaluated privately. No public comment period exists at this stage, and no vendor has been named for Fort Wainwright.",
+      "summary": "The Army named Fort Wainwright in Fairbanks as one of nine installations that could host a microreactor under its Janus programme. Fort Wainwright once exported power from an on site coal plant and is now a net importer, in a region with high energy costs and little spare generation.",
+      "key_dates": [
+        {
+          "date": "2025-11-18",
+          "label": "Army solicitation released through the Defense Innovation Unit",
+          "kind": "milestone"
+        },
+        {
+          "date": "2025-12-15",
+          "label": "Industry submissions due",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Fort Wainwright, Fairbanks",
+        "lon": -147.6417,
+        "lat": 64.8283
+      },
+      "sources": [
+        {
+          "url": "https://www.ans.org/news/article-7567/us-army-chooses-nine-sites-for-possible-microreactor-by-2030/",
+          "outlet": "American Nuclear Society, Nuclear Newswire",
+          "date": "2025-11-20"
+        },
+        {
+          "url": "https://www.world-nuclear-news.org/articles/us-army-names-potential-microreactor-sites",
+          "outlet": "World Nuclear News",
+          "date": "2025-11-19"
+        }
+      ],
+      "first_seen": "2026-08-06",
+      "last_updated": "2026-08-06",
+      "history": [
+        {
+          "date": "2026-08-06",
+          "note": "Tracked. Fort Wainwright is one of nine sites the Army named, alongside Fort Benning, Fort Bragg, Fort Campbell, Fort Drum, Fort Hood, Holston Army Ammunition Plant, Joint Base Lewis McChord and Redstone Arsenal. The Army says the sites were chosen on mission criticality, existing energy shortfalls, grid resilience and environmental and technical constraints. The programme answers Executive Order 14299 on deploying advanced nuclear reactor technologies for national security, and the Army's stated goal is an operational demonstration plant on a military installation by 2030. No vendor selection for Fort Wainwright has been made public."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/army-janus-fort-wainwright/"
+    },
+    {
+      "id": "cvea-micro-modular-reactor",
+      "title": "Copper Valley Electric's shelved nuclear reactor study",
+      "kind": "utility-decision",
+      "status": "closed",
+      "decider": "Copper Valley Electric Association board",
+      "public_access": "indirect",
+      "access_note": "Copper Valley Electric is a member owned cooperative, so its board answers to ratepayers who elect it. The project is tabled, so there is nothing before the board to comment on now.",
+      "summary": "Copper Valley Electric studied putting a 10 megawatt micro modular reactor into its isolated Glennallen and Valdez system, which is connected to no other utility and burns liquid fossil fuel for roughly a third of its power. The cooperative finished a pre feasibility study, published it, and then tabled the project indefinitely.",
+      "key_dates": [
+        {
+          "date": "2022-02-02",
+          "label": "Study announced with Ultra Safe Nuclear Corporation",
+          "kind": "milestone"
+        },
+        {
+          "date": "2023-08-09",
+          "label": "Board tables the project indefinitely",
+          "kind": "decision"
+        }
+      ],
+      "location": {
+        "name": "Glennallen, Copper River Basin",
+        "lon": -145.5486,
+        "lat": 62.1097
+      },
+      "sources": [
+        {
+          "url": "https://www.cvea.org/about/project-reports/potential-micro-modular-nuclear-reactor-project.html",
+          "outlet": "Copper Valley Electric Association",
+          "date": "2026-08-06"
+        },
+        {
+          "url": "https://www.cvea.org/press/release/2022/02/02/copper-valley-electric-partners-with-ultra-safe-nuclear-corporation-on-feasibility-study-of-micro-modular-reactor-energy-system.html",
+          "outlet": "Copper Valley Electric Association",
+          "date": "2022-02-02"
+        },
+        {
+          "url": "https://www.world-nuclear-news.org/articles/ultra-safe-nuclear-corporation-files-chapter-11-petition",
+          "outlet": "World Nuclear News",
+          "date": "2024-10-30"
+        }
+      ],
+      "first_seen": "2026-08-06",
+      "last_updated": "2026-08-06",
+      "history": [
+        {
+          "date": "2026-08-06",
+          "note": "Added as a closed item, because a reader asked for its approval timeline and there is none. The cooperative's own project record is headed that the micro modular nuclear reactor project was tabled indefinitely, dated August 9th, 2023, and the completed pre feasibility study is posted publicly beside it. The study partner, Ultra Safe Nuclear Corporation, filed for Chapter 11 on October 29th, 2024, and its micro modular reactor business was sold to another company in December 2024. Recording it here rather than leaving it out, because what a utility considered and shelved is part of the record, and a reader looking for this timeline deserves to find the answer rather than nothing."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/cvea-micro-modular-reactor/"
+    },
+    {
+      "id": "eo-14318-data-center-permitting",
+      "title": "The executive order that lets big data centers skip the usual federal review",
+      "kind": "other",
+      "status": "watching",
+      "decider": "The President, carried out by the Council on Environmental Quality and the Interior, Energy and Defense departments",
+      "public_access": "closed",
+      "access_note": "An executive order takes no public comment. Its effect is to remove review steps that would otherwise have carried one, so the room this closes is the environmental review a project would have had.",
+      "summary": "Executive Order 14318, Accelerating Federal Permitting of Data Center Infrastructure, directs federal agencies to speed approvals for data centers adding more than 100 megawatts of load or costing at least 500 million dollars. It tells agencies to find and create categorical exclusions under the National Environmental Policy Act, and directs Interior and Energy to offer federal sites while Defense may competitively lease military land.",
+      "key_dates": [
+        {
+          "date": "2025-07-23",
+          "label": "Order signed",
+          "kind": "milestone"
+        },
+        {
+          "date": "2025-07-28",
+          "label": "Published in the Federal Register",
+          "kind": "milestone"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.federalregister.gov/documents/2025/07/28/2025-14212/accelerating-federal-permitting-of-data-center-infrastructure",
+          "outlet": "Federal Register",
+          "date": "2025-07-28"
+        },
+        {
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-14318-accelerating-federal-permitting-data-center-infrastructure",
+          "outlet": "The American Presidency Project",
+          "date": "2025-07-23"
+        },
+        {
+          "url": "https://www.govinfo.gov/app/details/DCPD-202500788",
+          "outlet": "GovInfo, Compilation of Presidential Documents",
+          "date": "2025-07-23"
+        }
+      ],
+      "first_seen": "2026-08-06",
+      "last_updated": "2026-08-06",
+      "history": [
+        {
+          "date": "2026-08-06",
+          "note": "Tracked, with the number corrected. A reader asked for Executive Order 14314; that order is Making America Beautiful Again by Improving Our National Parks, and it raises national park entry fees for foreign visitors. The order that governs data center permitting is 14318, signed July 23rd, 2025. Its Alaska relevance is direct, because it instructs the Defense Department that it may competitively lease military land for qualifying projects, which is the authority underneath the Air Force offer of about 4,700 acres at Joint Base Elmendorf Richardson, Eielson and Clear that this docket already tracks. A categorical exclusion means a project is presumed to have no significant environmental effect and skips the study that would otherwise be written, so the order's practical effect in Alaska is fewer published environmental findings on the largest power users the state has ever considered."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/eo-14318-data-center-permitting/"
+    },
+    {
+      "id": "terra-energy-center-doe-grant",
+      "title": "An 89 million dollar federal grant for a coal plant in the Susitna watershed",
+      "kind": "grant",
+      "status": "pending-decision",
+      "decider": "U.S. Department of Energy made the selection; the plant itself needs state and federal permits nobody has applied for yet",
+      "public_access": "closed",
+      "access_note": "The grant selection carried no public comment period. Comment rooms open later, when the mine, the plant, the pipeline and the injection well each need their own permits.",
+      "summary": "The Department of Energy selected Terra Energy Center Corporation of Anchorage, an affiliate of Flatlands Energy, for an 89 million dollar grant to study a 1,250 megawatt coal fired power plant west of Skwentna, with a 60 mile pipeline carrying its carbon dioxide to Beluga for injection into a depleted gas reservoir. The money funds a viability assessment rather than construction, and Terra must match it.",
+      "key_dates": [
+        {
+          "date": "2026-06-04",
+          "label": "Federal grant selection announced",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Susitna River watershed, west of Skwentna",
+        "lon": -151.5,
+        "lat": 61.97
+      },
+      "sources": [
+        {
+          "url": "https://www.adn.com/business-economy/energy/2026/06/04/trump-administration-selects-proposed-coal-project-for-89-million-grant-in-susitna-river-watershed/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-06-04"
+        },
+        {
+          "url": "https://www.energy.gov/arctic/alaska-funding-awards",
+          "outlet": "U.S. Department of Energy",
+          "date": "2026-08-06"
+        }
+      ],
+      "first_seen": "2026-08-06",
+      "last_updated": "2026-08-06",
+      "history": [
+        {
+          "date": "2026-08-06",
+          "note": "Tracked, with two figures corrected against the reporting. A reader described this as an 89 million dollar grant to Flatlands Energy for a 400 megawatt plant. The recipient named is Terra Energy Center Corporation, an affiliate of Flatlands, and the plant described is 1,250 megawatts. It belongs on this docket because Railbelt power is what the region's data center proposals are competing for, and because of how far it is from being real. There is no finalised design, no permitted coal mine and no signed power purchase agreement with any utility, and the site sits more than 60 miles from the nearest transmission line. It also depends on the West Susitna Access Road, put at over a billion dollars and not counted in the project's costs. The Susitna River Coalition and the Alaska chapter of the Sierra Club have both objected."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/terra-energy-center-doe-grant/"
+    },
+    {
+      "id": "aogcc-class-vi-carbon-storage",
+      "title": "Alaska's bid to run its own carbon storage permits",
+      "kind": "regulatory-docket",
+      "status": "pending-decision",
+      "decider": "Alaska Oil and Gas Conservation Commission applies; the U.S. Environmental Protection Agency decides",
+      "public_access": "closed",
+      "access_note": "The state comment window closed at the end of the May 14th, 2026 hearing. The federal review of the application carries its own comment period, which has not opened.",
+      "summary": "The Alaska Oil and Gas Conservation Commission is applying to the Environmental Protection Agency for primary enforcement authority over Class VI wells, the wells used to inject carbon dioxide for permanent underground storage. If the application succeeds the state, not the federal government, would permit and police every carbon storage well in Alaska.",
+      "key_dates": [
+        {
+          "date": "2026-03-03",
+          "label": "Public meeting on adopting the state regulations",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-05-14",
+          "label": "State hearing, and the close of written and oral comment",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Anchorage, statewide in effect",
+        "lon": -149.9003,
+        "lat": 61.2181
+      },
+      "sources": [
+        {
+          "url": "https://www.commerce.alaska.gov/web/aogcc/ccus/Home.aspx",
+          "outlet": "Alaska Oil and Gas Conservation Commission",
+          "date": "2026-08-06"
+        },
+        {
+          "url": "https://www.petroleumnews.com/story/2026/04/19/government/aogcc-class-vi-primacy-hearing-scheduled/50086.html",
+          "outlet": "Petroleum News",
+          "date": "2026-04-19"
+        },
+        {
+          "url": "https://www.commerce.alaska.gov/web/Portals/18/pub/Events/Public%20Hearings/2026/2026-05-14/Alaska%20Class%20VI%20UIC%20Primacy%20Application.pdf",
+          "outlet": "State of Alaska, draft primacy application",
+          "date": "2026-04-09"
+        }
+      ],
+      "first_seen": "2026-08-06",
+      "last_updated": "2026-08-06",
+      "history": [
+        {
+          "date": "2026-08-06",
+          "note": "Tracked after a reader asked for the carbon capture approval process. The authority comes from two acts of the legislature, chapter 2 of the 2023 session laws directing the commission to seek this authority and chapter 23 of the 2024 session laws establishing the state carbon storage programme. The commission held a public meeting on adopting its regulations on March 3rd, 2026 and a hearing on the application itself on May 14th, 2026, with comment closing at the end of that hearing. The commission has said it aims to complete the process in about two years, which other states' experience suggests is optimistic. This matters to the AI build out because the coal plant proposed in the Susitna watershed, tracked separately here, plans to inject its carbon dioxide into a depleted Cook Inlet gas reservoir, and these are the permits that would govern it."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/aogcc-class-vi-carbon-storage/"
     }
   ]
 }
