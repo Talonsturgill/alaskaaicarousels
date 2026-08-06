@@ -12,19 +12,43 @@ name: gas watch
 # storage reading would be gone for good. So the collector runs on its own
 # schedule, indifferent to whether the day's story was any good.
 #
-# TWICE DAILY on purpose. CINGSA posts once a day and sits behind a CDN that
-# hands out an occasional redirect or 403, and NWS returns an occasional 503.
-# The evening run is the primary and the next morning is the retry. The record
-# is keyed to the CINGSA nomination day rather than the run date, so both runs
-# resolve to the same day and the collector's idempotency check sees them as
-# one. A second run after a good one writes nothing.
+# FIVE TIMES A DAY, to publish a reading close to when CINGSA publishes it.
+#
+# The evidence for these times is thin and worth stating, because a schedule
+# built on two observations should be revisited rather than trusted. Both come
+# from August 5th, 2026: the nomination day went up stamped 05:00 Alaska, and
+# the same day was restated by 19:34. That is all that is known about when
+# CINGSA posts. If the stamps in ledger/gaswatch.jsonl settle into a different
+# rhythm, move these and say why.
+#
+# Two things make running often the right answer rather than a wasteful one.
+# GitHub runs scheduled workflows late under load, by 2h42m on the morning this
+# was written, so a single well aimed cron is a guess about someone else's queue.
+# And a run that finds nothing new now writes nothing at all: a restatement is
+# only recorded when a measured figure actually moved, so extra attempts cost a
+# few seconds of runner time and never a line in the ledger.
+#
+# The morning runs first capture the day. The evening runs catch its
+# restatement. Any of them can repair another's failure, because a record is
+# keyed to the CINGSA nomination day rather than to the run date.
 
 on:
   schedule:
-    # 23:20 AKDT, and 22:20 AKST in winter, after the daily CINGSA post.
+    # Alaska times below are AKDT. In winter the state is AKST and every one of
+    # these lands an hour earlier, which is fine because none of them is tight
+    # against a deadline.
+    #
+    # 05:50 AKDT, on the heels of the morning posting.
+    - cron: "50 13 * * *"
+    # 07:40 AKDT. GitHub ran a scheduled job 2h42m late today, so the first
+    # attempt cannot be assumed to have happened on time.
+    - cron: "40 15 * * *"
+    # 11:20 AKDT, in case CINGSA posted late.
+    - cron: "20 19 * * *"
+    # 20:40 AKDT, after the evening restatement seen at 19:34.
+    - cron: "40 4 * * *"
+    # 23:20 AKDT, the last look before the day turns over.
     - cron: "20 7 * * *"
-    # 08:20 AKDT the following morning, the retry.
-    - cron: "20 16 * * *"
   workflow_dispatch:
   pull_request:
     paths:
