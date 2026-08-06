@@ -976,11 +976,6 @@
           "kind": "milestone"
         }
       ],
-      "location": {
-        "name": "Statewide",
-        "lon": -149.9,
-        "lat": 61.2
-      },
       "sources": [
         {
           "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224684",
@@ -1018,11 +1013,6 @@
           "kind": "milestone"
         }
       ],
-      "location": {
-        "name": "Statewide",
-        "lon": -149.9,
-        "lat": 61.2
-      },
       "sources": [
         {
           "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224673",
@@ -1137,11 +1127,6 @@
           "kind": "deadline"
         }
       ],
-      "location": {
-        "name": "Statewide, Alaska Native villages and tribal organizations",
-        "lon": -152.0,
-        "lat": 63.0
-      },
       "sources": [
         {
           "url": "https://www.federalregister.gov/documents/full_text/text/2026/07/28/2026-15150.txt",
@@ -1439,11 +1424,6 @@
           "kind": "deadline"
         }
       ],
-      "location": {
-        "name": "Anchorage, statewide in effect",
-        "lon": -149.9003,
-        "lat": 61.2181
-      },
       "sources": [
         {
           "url": "https://www.commerce.alaska.gov/web/aogcc/ccus/Home.aspx",
