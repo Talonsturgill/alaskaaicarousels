@@ -3,7 +3,10 @@ name: Publish docket site
 on:
   push:
     branches: [main]
-    paths: ["docs/**"]
+    # The workflow file itself is a path worth republishing on. A change to the
+    # publisher is a change to what gets published, and without this a fix to
+    # this file could only take effect on whatever unrelated push came next.
+    paths: ["docs/**", ".github/workflows/pages.yml"]
   # GitHub does not start workflow runs for pushes made with GITHUB_TOKEN, and
   # the gas watch collector pushes its nightly page rebuild with exactly that.
   # So the push trigger above never fired for it and the rebuilt page sat on
@@ -35,7 +38,10 @@ jobs:
        github.event.workflow_run.event != 'pull_request')
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      # Either attempt can be the one that published, so the environment URL has to
+      # come from whichever produced it. Reading only the first leaves the deployment
+      # showing a blank URL on every run the retry rescued.
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,5 +51,35 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
+      # 2026-08-06: this step failed twice in one afternoon with
+      #   Failed to get ID Token. Error Code : 503
+      #   upstream connect error or disconnect/reset before headers. reset reason: overflow
+      # which is GitHub's OIDC token service being unavailable, not anything about
+      # this repository. The action's own error text says `Ensure GITHUB_TOKEN has
+      # permission "id-token: write"`, which is canned advice printed for every
+      # token failure and is misleading here: that permission is granted above and
+      # the identical config deployed successfully three times the same morning.
+      #
+      # It matters more than a red tick because the failure is SILENT in effect. The
+      # build succeeds and uploads a valid artifact, so main is correct and the
+      # published site simply keeps serving the previous deploy. On 08-06 that left
+      # the videos page showing a superseded caption for hours with nothing broken
+      # enough to notice. One retry covers a transient 503; a second failure is then
+      # a real signal rather than weather.
       - uses: actions/deploy-pages@v4
         id: deployment
+        continue-on-error: true
+      - name: Retry the deploy once if the token service was unavailable
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        id: deployment_retry
+      - name: Report which attempt published
+        if: always()
+        run: |
+          if [ "${{ steps.deployment.outcome }}" = "success" ]; then
+            echo "deployed on the first attempt"
+          else
+            echo "FIRST DEPLOY ATTEMPT FAILED (${{ steps.deployment.outcome }}), retried."
+            echo "If the retry also failed this job is red and the site is stale while"
+            echo "main is correct. Check the OIDC error text before touching permissions."
+          fi
