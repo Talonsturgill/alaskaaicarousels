@@ -688,19 +688,29 @@ def table_html(series, model, limit=TABLE_LIMIT):
     if not rows:
         return ""
     body = ""
+    gaps = 0
     for r in rows:
         cin = r["cingsa"]
         der, rec = remodel(r, model)
+        if der.get("peak_modeled_demand_mmcfd") is None or \
+                rec.get("non_cingsa_supply_mmcfd") is None:
+            gaps += 1
         body += (
             f'<tr><td>{esc(r["date"])}</td>'
             f'<td>{round(cin["inventory_mcf"] / 1_000_000, 2)}</td>'
             f'<td>{cin["inventory_pct_of_design"]}</td>'
             f'<td>{blank(der.get("peak_modeled_demand_mmcfd"))}</td>'
             f'<td>{blank(rec.get("non_cingsa_supply_mmcfd"))}</td></tr>')
+    # An empty cell is deliberate (see blank()), but on a short table it reads
+    # as data this page failed to collect rather than as a figure the model had
+    # no input for. One sentence, shown only when a cell is actually empty, and
+    # it names no specific input so no arrangement of the data can falsify it.
+    gap_note = (" A blank cell is a figure the model had no input for that day,"
+                " not a reading that went missing." if gaps else "")
     return f"""<div class="gw-table" data-reveal>
 <table>
 <caption>The most recent {count(len(rows), "verified reading")}. Storage and percent of
-design are measured. Modeled peak and non CINGSA supply are model output.</caption>
+design are measured. Modeled peak and non CINGSA supply are model output.{gap_note}</caption>
 <thead><tr><th scope="col">Date</th><th scope="col">Storage Bcf</th>
 <th scope="col">Percent of design</th><th scope="col">Modeled peak MMcf/d</th>
 <th scope="col">Non CINGSA supply MMcf/d</th></tr></thead>
