@@ -575,6 +575,61 @@ def read_ledger(path):
     return records
 
 
+# What has to actually move for a restatement to be worth a line. A dashboard
+# bumping "Last Updated" while every number stays put is not new information,
+# and treating it as one would append a duplicate on every run. That costs
+# nothing at one run a day and becomes ledger bloat the moment the schedule
+# gets tighter, which is exactly what happened when it did.
+MEASURED = ("inventory_mcf", "inventory_delta_mcf", "inventory_pct_of_design",
+            "withdrawal_operating_mcfd", "withdrawal_restriction_mcfd",
+            "injection_operating_mcfd", "injection_in_progress_mcfd",
+            "injection_restriction_mcfd", "storage_design_mcf",
+            "injection_design_mcfd")
+
+
+def same_reading(a, b):
+    """Whether two CINGSA blocks carry identical measurements."""
+    return all((a or {}).get(k) == (b or {}).get(k) for k in MEASURED)
+
+
+def what_to_do(prior, verified, new_stamp, new_cingsa=None):
+    """(action, detail) for a fresh reading against whatever already stands.
+
+    CINGSA posts a nomination day more than once. August 5th, 2026 went up at
+    05:00 Alaska reading 6,456,905 Mcf and was revised by 19:34 the same day to
+    6,500,814, a difference of 43,909 Mcf. The rule was one verified record per
+    nomination day, first one wins, so the page published 49.7 percent of design
+    for that date while CINGSA's own dashboard published 50.0 for it, and no
+    later run could ever close the gap. On a page whose whole claim is that the
+    storage figure is measured rather than modeled, publishing a number the
+    source has already replaced is the worst kind of wrong.
+
+    So a newer posting of the same day supersedes an older one. Append only
+    still holds. Nothing is rewritten, a new line is added, and standing()
+    already resolves last write wins, so the series keeps every posting it ever
+    saw and the page shows the current one.
+
+    A failed fetch never displaces a good reading, in either direction.
+    """
+    if prior is None:
+        return "write", None
+    prior_stamp = (prior.get("cingsa") or {}).get("source_timestamp")
+    if prior.get("verified"):
+        if not verified:
+            return "skip", "a verified record stands and this attempt failed"
+        if not (new_stamp and prior_stamp):
+            return "skip", "a verified record stands and there is no stamp to compare"
+        if new_stamp <= prior_stamp:
+            return "skip", f"the posting on file is {prior_stamp}, this is {new_stamp}"
+        if new_cingsa is not None and same_reading(prior.get("cingsa"), new_cingsa):
+            return "skip", (f"the stamp moved to {new_stamp} and not one measured "
+                            f"figure changed")
+        return "revision", prior_stamp
+    if not verified:
+        return "refuse", "an unverified record stands and this attempt also failed"
+    return "repair", prior.get("collected_utc")
+
+
 def standing(records, date):
     """The record that currently stands for a date, or None.
 
@@ -894,6 +949,40 @@ def self_test(model_path):
                   f"{mine} against published {published}, "
                   f"{gap:.0f} percent apart, sanity limit {limit}")
 
+    print("one nomination day, more than one posting")
+    good = {"verified": True, "collected_utc": "2026-08-05T15:47:47Z",
+            "cingsa": {"source_timestamp": "2026-08-05T05:00:00",
+                       "inventory_mcf": 6456905}}
+    bad = {"verified": False, "collected_utc": "2026-08-05T15:47:14Z",
+           "cingsa": {}}
+    cases = [
+        ("a first reading is written", None, True, "2026-08-05T05:00:00", "write"),
+        ("a restated day supersedes", good, True, "2026-08-05T19:34:00", "revision"),
+        ("the same posting again does nothing", good, True, "2026-08-05T05:00:00", "skip"),
+        ("an older posting never wins", good, True, "2026-08-05T01:00:00", "skip"),
+        ("a failed fetch never displaces a reading", good, False, None, "skip"),
+        ("a good reading repairs an unverified day", bad, True, "2026-08-05T05:00:00", "repair"),
+        ("two failures do not stack", bad, False, None, "refuse"),
+    ]
+    for label, prior, ok_, stamp, want in cases:
+        got, _ = what_to_do(prior, ok_, stamp, {"inventory_mcf": 9})
+        check(label, got == want, f"got {got}, expected {want}")
+
+    # A stamp that moves while nothing measured does is not new information.
+    # Without this a tighter schedule appends a duplicate line every run.
+    same = dict(good["cingsa"], source_timestamp="2026-08-05T06:00:00")
+    act, why = what_to_do(good, True, "2026-08-05T06:00:00", same)
+    check("a bumped stamp with unchanged numbers writes nothing",
+          act == "skip", f"{act}, {why}")
+    moved = dict(same, inventory_mcf=6500814)
+    act, _ = what_to_do(good, True, "2026-08-05T06:00:00", moved)
+    check("a bumped stamp with a changed number still supersedes", act == "revision")
+    # The bug this was written for, stated as the number it published.
+    act, was = what_to_do(good, True, "2026-08-05T19:34:00")
+    check("the August 5th restatement would now be captured",
+          act == "revision" and was == "2026-08-05T05:00:00",
+          f"{act}, superseding {was}")
+
     stale = notes_quoting_figures(model)
     check("no backtest note quotes a figure a refit would falsify",
           not stale, ", ".join(stale) or "prose carries no numerals")
@@ -1035,22 +1124,31 @@ def main():
     # got the number, because a transient CDN failure at 23:20 must not cost the
     # day permanently. Nothing already written is ever rewritten or reordered.
     prior = standing(records, date)
-    if prior is not None:
-        if prior.get("verified"):
-            print(f"{date} already has a verified record, nothing to do.")
-            return 0
-        if not verified:
-            print(f"{date} already has an unverified record and this attempt "
-                  f"also failed. Not stacking a second failure.")
-            for probe in probes:
-                if probe.status != "ok":
-                    print(f"  {probe.name}, {probe.status}, {probe.error}")
-            return 3
+    action, detail = what_to_do(prior, verified,
+                                cingsa.get("source_timestamp"), cingsa)
+    if action == "skip":
+        print(f"{date} needs nothing, {detail}.")
+        return 0
+    if action == "refuse":
+        print(f"{date} already has an unverified record and this attempt "
+              f"also failed. Not stacking a second failure.")
+        for probe in probes:
+            if probe.status != "ok":
+                print(f"  {probe.name}, {probe.status}, {probe.error}")
+        return 3
 
     record = finish_record(date, cingsa, verified, flags, probes, model,
                            records, now)
-    if prior is not None:
-        record["supersedes_unverified"] = prior.get("collected_utc")
+    if action == "repair":
+        record["supersedes_unverified"] = detail
+    elif action == "revision":
+        # CINGSA restated the day. Both postings stay in the file, and the
+        # record says which one it replaces so the change is auditable.
+        record["supersedes_posting"] = detail
+        prior_inv = (prior.get("cingsa") or {}).get("inventory_mcf")
+        print(f"{date} was restated by CINGSA, posting {detail} to "
+              f"{cingsa.get('source_timestamp')}, inventory {prior_inv} to "
+              f"{cingsa.get('inventory_mcf')}.")
 
     if args.dry_run:
         print(json.dumps(record, indent=2))
