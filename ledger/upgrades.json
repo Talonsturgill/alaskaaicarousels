@@ -989,7 +989,8 @@
     "knowledge/TECHNIQUE_LIBRARY.md"
    ],
    "verification": "Used by all nine slides of No.27. bespoke_check median 0.377 against a 0.60 fail, drawn share 61 percent against a 45 percent floor, qa.py zero fails. The entry documents behaviour observed in this run's renders rather than asserted.",
-   "rollback": "Remove entry 93 from knowledge/TECHNIQUE_LIBRARY.md."
+   "rollback": "Remove entry 93 from knowledge/TECHNIQUE_LIBRARY.md.",
+   "commit": "be5cafa423f26747fd772693ffbbaaf36411cffc"
   },
   {
    "run_date": "2026-08-06",
@@ -1001,7 +1002,8 @@
     "knowledge/FIELD_NOTES.md"
    ],
    "verification": "Isolated across four probe renders: AKT.rig black (snap.ok=false, lit=0); MeshBasicMaterial orange at centre pixel; MeshStandardMaterial with hand-rolled lights lit at 92,93,82 with snap.ok=true. Slide 06 ships the GPU rung on the hand-rolled path.",
-   "rollback": "Remove the 2026-08-06 entry from knowledge/FIELD_NOTES.md."
+   "rollback": "Remove the 2026-08-06 entry from knowledge/FIELD_NOTES.md.",
+   "commit": "be5cafa423f26747fd772693ffbbaaf36411cffc"
   }
  ],
  "scan_log": [
