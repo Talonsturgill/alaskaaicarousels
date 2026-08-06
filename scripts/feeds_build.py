@@ -207,7 +207,50 @@ def llms_txt(site_url: str, runs: list, docket: dict | None = None,
     return "\n".join(out) + "\n"
 
 
-def llms_full_txt(site_url: str, runs: list) -> str:
+def docket_markdown(it, site_url: str) -> str:
+    """One tracked decision as Markdown, for the same reason a deck gets one.
+
+    The docket is the most citable thing here and it was the one body of work
+    an agent could not reach in a single fetch. robots.txt tells crawlers the
+    whole corpus is one fetch at /llms-full.txt, and that file held articles
+    only, so an LLM that believed us got no decisions at all.
+    """
+    lines = [f"# {it['title']}", "",
+             f"> {it['summary']}", "",
+             f"Status: {STATUS_WORD.get(it['status'], it['status'])}. "
+             f"Decided by {it['decider']}.",
+             f"Public access: {ACCESS_WORD.get(it['public_access'], it['public_access'])}. "
+             f"{it['access_note']}",
+             f"Canonical: {site_url}/docket/{it['id']}/", ""]
+
+    dates = sorted(it.get("key_dates") or [], key=lambda d: d["date"])
+    if dates:
+        lines += ["## Dates", ""]
+        lines += [f"- {d['date']}, {d['label']} ({d['kind']})" for d in dates]
+        lines.append("")
+
+    srcs = it.get("sources") or []
+    if srcs:
+        lines += ["## Sources", ""]
+        for c in srcs:
+            when = f", {c['date']}" if c.get("date") else ""
+            lines.append(f"- [{c.get('outlet', 'source')}]({c['url']}){when}")
+        lines.append("")
+
+    hist = it.get("history") or []
+    if hist:
+        lines += ["## How this decision moved", ""]
+        lines += [f"**{h['date']}** {h['note']}" for h in hist]
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+
+
+STATUS_WORD = {"open-for-comment": "open for comment", "pending-decision": "pending decision",
+               "decided": "decided", "closed": "closed", "watching": "watching"}
+ACCESS_WORD = {"open": "open to you", "indirect": "indirect", "closed": "closed"}
+
+
+def llms_full_txt(site_url: str, runs: list, docket: dict | None = None) -> str:
     """Every deck's Markdown in one file, newest first. One fetch, whole corpus."""
     # Stamped from the newest article, not the clock. A wall-clock date rewrote
     # this 147 KB file on every build and committed a diff that meant nothing.
@@ -218,8 +261,22 @@ def llms_full_txt(site_url: str, runs: list) -> str:
             f"Latest article {newest}.",
             f"Canonical pages live under {site_url}/archive/.",
             ""]
-    return "\n".join(head) + "\n\n---\n\n".join(
-        deck_markdown(r, site_url) for r in runs) + "\n"
+    body = "\n\n---\n\n".join(deck_markdown(r, site_url) for r in runs)
+
+    # The docket, in the same fetch. Ordered by how soon a reader can still act,
+    # so an agent reading top down meets the open windows first.
+    items = (docket or {}).get("items") or []
+    if items:
+        rank = {"open-for-comment": 0, "pending-decision": 1, "watching": 2,
+                "decided": 3, "closed": 4}
+        items = sorted(items, key=lambda i: (rank.get(i["status"], 5), i["id"]))
+        body += ("\n\n---\n\n# The Alaska AI Docket\n\n"
+                 f"Every AI infrastructure decision tracked in Alaska, "
+                 f"{len(items)} of them, open windows first. Canonical pages "
+                 f"live under {site_url}/docket/ and the same record is "
+                 f"machine readable at {site_url}/docket.json.\n\n---\n\n")
+        body += "\n\n---\n\n".join(docket_markdown(i, site_url) for i in items)
+    return "\n".join(head) + body + "\n"
 
 
 # ---------- feeds ----------

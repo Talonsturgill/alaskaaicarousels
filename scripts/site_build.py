@@ -5586,7 +5586,7 @@ def build(today, out_dir, site_url=None, domain=""):
     for r in runs:
         (out / "archive" / r["date"] / "index.md").write_text(
             fb.deck_markdown(r, site_url))
-    (out / "llms-full.txt").write_text(fb.llms_full_txt(site_url, runs))
+    (out / "llms-full.txt").write_text(fb.llms_full_txt(site_url, runs, {"items": docket[0]}))
     (out / "llms.txt").write_text(fb.llms_txt(
         site_url, runs,
         topics=[{**t, "count": len(tindex.get(t["slug"]) or [])} for t in TOPICS],
