@@ -51,35 +51,66 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
-      # 2026-08-06: this step failed twice in one afternoon with
+      # 2026-08-06. This step failed four times in one afternoon, with TWO different
+      # OIDC faults, and neither is anything about this repository:
+      #
       #   Failed to get ID Token. Error Code : 503
       #   upstream connect error or disconnect/reset before headers. reset reason: overflow
-      # which is GitHub's OIDC token service being unavailable, not anything about
-      # this repository. The action's own error text says `Ensure GITHUB_TOKEN has
-      # permission "id-token: write"`, which is canned advice printed for every
-      # token failure and is misleading here: that permission is granted above and
-      # the identical config deployed successfully three times the same morning.
+      #       -> GitHub's OIDC token service was unavailable. The token never minted.
+      #
+      #   Invalid actions OIDC token due to No keys from key endpoint match the id token
+      #   Failed to create deployment (status: 400)
+      #       -> the token minted fine, and the Pages API rejected it because the key it
+      #          was signed with was not in the JWKS the API reads. A key rotation that
+      #          has not propagated. Nothing in this file can influence it.
+      #
+      # The action prints `Ensure GITHUB_TOKEN has permission "id-token: write"` for the
+      # first one. That is canned advice printed for any token failure and it is
+      # misleading here: the permission is granted above and this same config deployed
+      # successfully three times that morning. Do not go editing the permissions block.
       #
       # It matters more than a red tick because the failure is SILENT in effect. The
-      # build succeeds and uploads a valid artifact, so main is correct and the
-      # published site simply keeps serving the previous deploy. On 08-06 that left
-      # the videos page showing a superseded caption for hours with nothing broken
-      # enough to notice. One retry covers a transient 503; a second failure is then
-      # a real signal rather than weather.
+      # build succeeds and uploads a valid artifact, so main is correct and the published
+      # site simply keeps serving the previous deploy. On 08-06 that left the videos page
+      # showing a superseded caption, and later an eleven-week-stale docket status, with
+      # nothing visibly broken.
+      #
+      # THE FIRST VERSION OF THIS RETRY WAS USELESS AND THE LOGS SHOW EXACTLY WHY. It had
+      # no delay, so both attempts ran 1.0s apart (17:35:31.37 and 17:35:32.37) and hit
+      # the identical bad key state. Retrying instantly into a propagation fault is not a
+      # retry, it is the same request twice. Both faults here are measured in minutes, so
+      # the backoff has to be too. Three attempts across roughly five and a half minutes.
       - uses: actions/deploy-pages@v4
         id: deployment
         continue-on-error: true
-      - name: Retry the deploy once if the token service was unavailable
+
+      - name: Wait out a token-service blip before retrying
         if: steps.deployment.outcome == 'failure'
-        uses: actions/deploy-pages@v4
+        run: sleep 90
+      - uses: actions/deploy-pages@v4
         id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        continue-on-error: true
+
+      - name: Wait longer, then make the last attempt the one that decides the job
+        if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
+        run: sleep 240
+      - uses: actions/deploy-pages@v4
+        id: deployment_final
+        if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
+
       - name: Report which attempt published
         if: always()
         run: |
           if [ "${{ steps.deployment.outcome }}" = "success" ]; then
             echo "deployed on the first attempt"
+          elif [ "${{ steps.deployment_retry.outcome }}" = "success" ]; then
+            echo "first attempt failed, deployed on the retry 90s later"
           else
-            echo "FIRST DEPLOY ATTEMPT FAILED (${{ steps.deployment.outcome }}), retried."
-            echo "If the retry also failed this job is red and the site is stale while"
-            echo "main is correct. Check the OIDC error text before touching permissions."
+            echo "TWO ATTEMPTS FAILED over ~5.5 minutes; the third decided this job."
+            echo "If the job is red, main is CORRECT and the published site is STALE."
+            echo "Read the OIDC error text before touching anything. A 503 means the"
+            echo "token service was down; a 400 'No keys from key endpoint match' means"
+            echo "a GitHub key rotation had not propagated. Neither is fixable here, and"
+            echo "neither is a permissions problem. Re-run the job once GitHub recovers."
           fi
