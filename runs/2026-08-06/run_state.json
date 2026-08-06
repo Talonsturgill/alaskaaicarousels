@@ -17,9 +17,9 @@
   "assemble": "done",
   "scoring": "done",
   "ship": "done",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "upgrade": "done",
+  "gmail": "in_progress",
+  "retro": "in_progress"
  },
  "artifacts": {
   "plan": "out/2026-08-06/plan.md",
