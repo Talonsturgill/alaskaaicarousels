@@ -2,12 +2,23 @@
   "chars": 898,
   "hook": "Cordova sits on Prince William Sound, off the state highway system, with no transmission line to another community.",
   "hook_len": 115,
+  "commas": 7,
+  "comma_per_100": 0.82,
+  "comma_budget": 1.05,
   "hashtags": [
     "#AlaskaEnergy",
     "#Railbelt",
     "#DataCenterPolicy"
   ],
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "DATE: 'July 26' is the no ordinal form - add the ordinal, e.g. August 10th (owner rule 2026-08-05). ISO is still right for a citation stamp, but this is a sentence.",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
+    "DATE FORM: 'July 26' needs the ordinal when no year follows; write 'July 26th'",
+    "DATE FORM: 'July 23' needs the ordinal when no year follows; write 'July 23rd'",
+    "DATE FORM: 'May 16' needs the ordinal when no year follows; write 'May 16th'"
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

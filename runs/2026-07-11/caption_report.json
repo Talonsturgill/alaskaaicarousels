@@ -2,12 +2,22 @@
   "chars": 679,
   "hook": "On July 10, state regulators rejected Alaska's plan to store a single winter of Cook Inlet gas.",
   "hook_len": 95,
+  "commas": 6,
+  "comma_per_100": 0.95,
+  "comma_budget": 1.05,
   "hashtags": [
     "#CookInletGas",
     "#AlaskaEnergy",
     "#DataCenterPower"
   ],
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "DATE: 'July 10' is the no ordinal form - add the ordinal, e.g. August 10th (owner rule 2026-08-05). ISO is still right for a citation stamp, but this is a sentence.",
+    "FURNITURE: banned template phrase 'deck walks through' (see knowledge/CAPTION_CRAFT.md)",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
+    "DATE FORM: 'July 10' needs the ordinal when no year follows; write 'July 10th'"
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

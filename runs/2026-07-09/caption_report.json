@@ -2,12 +2,19 @@
   "chars": 815,
   "hook": "A hand-clicker on a Bristol Bay tower has counted the sockeye since 1955. This year an AI drone wants that job.",
   "hook_len": 111,
+  "commas": 7,
+  "comma_per_100": 0.9,
+  "comma_budget": 1.05,
   "hashtags": [
     "#BristolBay",
     "#FisheriesScience",
     "#AppliedAI"
   ],
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\""
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

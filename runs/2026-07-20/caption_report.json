@@ -2,12 +2,22 @@
   "chars": 585,
   "hook": "A Kenai school district bought an $8,300 AI tool for its classrooms, then started writing the rules to govern it.",
   "hook_len": 113,
+  "commas": 6,
+  "comma_per_100": 1.11,
+  "comma_budget": 1.05,
   "hashtags": [
     "#AlaskaEducation",
     "#AIinSchools",
     "#EdTechPolicy"
   ],
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "COMMAS: 6 commas in 88 words is 6.82 per 100, over the 6.2 ceiling (owner rule 2026-08-05, ten percent below this deck's shipped mean of 6.88). Cut at least 1. Split the sentence at the comma rather than deleting the comma.",
+    "FURNITURE: banned template phrase 'slides walk through' (see knowledge/CAPTION_CRAFT.md)",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
+    "COMMAS: 6 in 541 chars is 1.11 per 100, over the 1.05 budget. Cut 1, or split a sentence."
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

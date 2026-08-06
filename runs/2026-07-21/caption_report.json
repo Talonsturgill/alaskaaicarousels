@@ -2,12 +2,23 @@
   "chars": 685,
   "hook": "Cook Inlet has about 331 belugas left, and AI can finally hear them through the ship noise.",
   "hook_len": 91,
+  "commas": 7,
+  "comma_per_100": 1.11,
+  "comma_budget": 1.05,
   "hashtags": [
     "#CookInletBeluga",
     "#MarineBioacoustics",
     "#AlaskaScience"
   ],
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "PUNCT: colon present (never use colons; rewrite the sentence)",
+    "FURNITURE: banned template phrase 'slides walk through' (see knowledge/CAPTION_CRAFT.md)",
+    "FURNITURE: 'these N slides' as connective tissue (see knowledge/CAPTION_CRAFT.md)",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
+    "COMMAS: 7 in 633 chars is 1.11 per 100, over the 1.05 budget. Cut 1, or split a sentence."
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

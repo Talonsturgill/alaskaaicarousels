@@ -10,10 +10,11 @@
     "#DixonDiversion",
     "#AlaskaEnergy"
   ],
-  "deck_summary": "Slides carry the fishwater valve in section, the capacity bar against the generation bar, and the twelve parcels.",
-  "brand_phrases_loaded": 27,
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
   "fails": [
     "DATE: '28 August' is the day-first form - write the month first with an ordinal day, e.g. August 10th (owner rule 2026-08-05). ISO is still right for a citation stamp, but this is a sentence.",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
     "HOOK: 'One ... the other' with no antecedent. A stranger reading sentence one cold has nothing to attach it to. Name the two things.",
     "DATE FORM: '28 August' is day before month; the house writes 'August 28th' (month first, ordinal when the year is absent)"
   ],
