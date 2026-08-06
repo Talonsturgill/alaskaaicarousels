@@ -1205,6 +1205,53 @@
     "set-aside"
    ],
    "title": "Both sides are printed on page 47241"
+  },
+  {
+   "run_date": "2026-08-06",
+   "carousel_no": 27,
+   "topic": "Two Alaska landholders have ground on the market for AI data centers and each one, in its own document, lists the power as something the site does not have. The Air Force offered about 4,700 acres across 12 parcels at JBER, Eielson and Clear and its own solicitation calls the JBER sites insufficient in power; AIDEA's deputy director, defending approximately 19,950 acres north of Houston, printed seven things the project does not yet have with a power source fourth; and Enstar has already turned away new large-scale customers.",
+   "angle": "THE LAND IS ON OFFER. THE POWER IS NOT. Every load-bearing claim comes from the SELLING side rather than from a critic, so nobody in the deck is contradicted because nobody disagrees. Distinct from No.4 (one RCA storage ruling), No.10 (who pays, cost allocation) and No.14 (the land giveaway itself). Asserts no causation, no coordination, no prediction of failure and no winter adequacy verdict. The original framing, a marketed 4 to 5 cents per kWh against 14 to 17 cents, was KILLED by the fact-checker as unsourced and the reframe is stronger.",
+   "entities": [
+    "U.S. Air Force",
+    "Joint Base Elmendorf-Richardson",
+    "Eielson Air Force Base",
+    "Clear Space Force Station",
+    "AIDEA",
+    "Brandon Brefczynski",
+    "Alaska DNR",
+    "Houston (Alaska)",
+    "Mat-Su Borough",
+    "Enstar",
+    "John Sims",
+    "Chugach Electric Association",
+    "Hilcorp",
+    "Matanuska Electric Association",
+    "Tony Izzo",
+    "Bryce Edgmon",
+    "Cook Inlet",
+    "AFCEC-26-R-0006"
+   ],
+   "keywords": [
+    "data center",
+    "insufficient power",
+    "lease offer",
+    "preliminary decision",
+    "19,950 acres",
+    "4,700 acres",
+    "seven blanks",
+    "gas supply",
+    "turned away large customers",
+    "Cook Inlet storage",
+    "4 Bcf",
+    "7 Bcf",
+    "curtailment",
+    "LNG special session",
+    "August 19th comment window",
+    "supply side"
+   ],
+   "headline": "The Land Is On Offer. The Power Is Not.",
+   "sources_lead": "Anchorage Daily News opinion by AIDEA deputy director Brandon Brefczynski, 2026-08-04 (primary) + Alaska Public Media and Alaska Beacon, 2026-07-28",
+   "outcome_notes": "Shipped 7.93 vs 8.3, below threshold, disclosed. 9 slides, vector PDF 10.76MB. Zero hard fails. qa.py WARN with zero FAILs, bespoke_check WARN at median 0.377 and 61 percent drawn share, aggregate_check PASS with all 14 aggregates declared. DEGRADED: no pixel critics, no flow critic, no copywriter and no scorer subagent were spawned."
   }
  ]
 }

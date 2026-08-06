@@ -269,6 +269,19 @@
    "chars": 879,
    "notes": "Two directors. Candidate A (COLD NUMBER / PUNCH THEN PROOF / PRICE) was killed by the critic under the anti-template law. Its close reproduced the 2026-07-24 PRICE close in CAPTION_CRAFT's own menu wording, a noun-swap the 07-30 critic had already killed once, and its numeric opening sat one run after 08-04's. It also mis-sourced the five project areas to the Federal Register.",
    "demerits": "THE SHOWRUNNER'S BRIEFS MISSED THREE STANDING LEDGER INSTRUCTIONS and the critic caught all three. PRICE was declared burned on 07-30, who-decides was declared burned for six runs on 08-03, and 08-02 barred a deck summary from opening on the word Inside. BOTH directors opened theirs on Inside, which makes it a room-level habit and the second consecutive run it had to be caught by hand. The lesson is the one 08-04 already recorded, that a brief asserting a ledger fact should QUOTE the ledger rather than paraphrase it, and this run proves paraphrase is not the only failure mode, because these instructions were not in the fields the brief read at all."
+  },
+  {
+   "run_date": "2026-08-06",
+   "opening_move": "TIMELINE COLLAPSE",
+   "structure": "Q AND A",
+   "closing_move": "NEW:CONDITION WRITE-IN",
+   "first_words": "April 10th, the Air Force offered about 4,700 acres",
+   "first_8_words": "April 10th, the Air Force offered about 4,700",
+   "chars": 759,
+   "hook_type": "timeline collapse, two beats four months apart with the same blank in both documents",
+   "furniture": "none",
+   "notes": "THE CRITIC KILLED BOTH FIRST CANDIDATES AND WAS RIGHT. Candidate A (CONTRADICTION/PUNCH THEN PROOF/prediction) closed on 'What shows up first, a committed tenant or a supplier with gas to sell?', which is CAPTION_CRAFT's own prediction example with one verb swapped and the noun 'tenant' RETAINED, the THIRD occurrence of this exact failure after 07-30 and 08-05. Its shape was also an exact paragraph-architecture repeat of 2026-07-30 on the same beat with the same cast. Candidate B (MAP MOVE/BRAID/stake) closed on 'Would you offer 19,950 acres before a power source is committed?', a noun-swap of the stake example AND a hard discipline fail, because a rhetorical question with one socially available answer is an adequacy verdict wearing a question mark, aimed at the one signed primary source arguing the opposite. B's MAP MOVE was also a place-name list in which geography never argued. THE SHOWRUNNER'S BRIEF MISSED FIVE STANDING INSTRUCTIONS and the critic caught all five: name a human being (a demerit recorded 07-30, 08-02 and 08-03, and both candidates reduced Brandon Brefczynski to a job title while quoting his list); name the agency the reader must write to (neither named DNR, whose window IS the ask); gloss Enstar as a gas utility (07-30 demerit); these are a LEASE offer and a PRELIMINARY DECISION, not sales; and the seven items belong to the PROJECT, not to the acreage. The shipped caption is a third reassigned round. TIMELINE COLLAPSE had never shipped in 27 runs. The close was INVENTED rather than selected because the menu examples are demonstrably the template directors fill. BURNED going forward: PRICE (07-30), who-decides (08-03, six runs), and now both the prediction and stake MENU EXAMPLES as literal source text.",
+   "demerits": "A documentation conflict the critic surfaced and the maintainer should resolve. brand.yaml comma_discipline and CLAUDE.md set the budget at 6.2 commas per 100 WORDS; brand.yaml linkedin_post.comma_per_100_chars and CAPTION_CRAFT set it at 1.05 per 100 CHARACTERS. Nothing turned on it this run (3 commas, passes both) but it will."
   }
  ]
 }

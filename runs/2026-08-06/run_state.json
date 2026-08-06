@@ -1,0 +1,46 @@
+{
+ "run_date": "2026-08-06",
+ "carousel_no": 27,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done",
+  "selection": "done",
+  "directors_room": "in_progress",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "SKIPPED (degraded, disclosed) - no pixel-critic subagent spawned",
+  "flow_review": "SKIPPED (degraded, disclosed) - no flow-critic subagent spawned",
+  "assemble": "done",
+  "scoring": "done",
+  "ship": "done",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-08-06/plan.md",
+  "field_notes": "knowledge/FIELD_NOTES.md (2026-08-06 craft refresh appended)",
+  "scout_merge": "out/2026-08-06/scout_merge.md",
+  "selection": "out/2026-08-06/selection.md",
+  "claims": "out/2026-08-06/claims.json (29 claims, 7 primary, claims_check PASS)",
+  "docket": "ledger/docket.json (air-force-eul item, 2026-08-06 note on insufficient power; docket_dates_check PASS, 262 assertions)",
+  "storyboard": "runs/2026-08-06/storyboard.md",
+  "copy": "runs/2026-08-06/copy.json",
+  "caption": "runs/2026-08-06/caption.txt",
+  "score": "runs/2026-08-06/score_report.json",
+  "pdf": "runs/2026-08-06/carousel.pdf (vector, 10.76 MB)",
+  "slides": "runs/2026-08-06/slide-NN.webp"
+ },
+ "declared_attack": "ARTWORK CRAFT. akengrave.js (swelled-stroke white-line intaglio, committed 2026-07-31, never entered TECHNIQUE_LIBRARY, unused since No.21) is this deck s mark. Rectangle demoted to furniture, drawn share target 70pct. Rendered ladder climbed AND verified from the render, not the storyboard. reserve() used instead of knockout plates for every label against canvas geometry.",
+ "variance_dials": {
+  "design_variance": 4,
+  "visual_density": 4,
+  "type_temperature": 3
+ },
+ "story": "The land is on offer. The power is not. Alaska keeps offering land for AI data centers and every document from the sellers own side says the constraint is power.",
+ "gas_watch_verdict": "GAS WATCH: PASS, read 2026-08-05, 1 day on record, chart absent (1 verified day, not yet a series). Looked at desktop and phone width. One presentation fix shipped, the day-by-day table now says what a blank cell means. gaswatch_build --self-test clean, pagecheck 15/15 PASS."
+}

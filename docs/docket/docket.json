@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-08-05",
+  "updated": "2026-08-06",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -300,10 +300,15 @@
           "url": "https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/",
           "outlet": "Eielson Air Force Base",
           "date": "2026-07-20"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/military/2026/05/05/the-military-wants-to-host-data-centers-in-alaska-raising-questions-about-whether-theres-enough-gas-to-power-them/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-05-05"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-04",
+      "last_updated": "2026-08-06",
       "history": [
         {
           "date": "2026-07-08",
@@ -352,6 +357,10 @@
         {
           "date": "2026-08-04",
           "note": "Re-checked. The solicitation for AI data center development on the three installations closed to proposals on June 29 and was archived on July 14 with no award posted. The Air Force's own announcement describes approximately 4,700 acres across twelve parcels and quotes Deputy Assistant Secretary Robert Moriarty saying the offer supports the growing demands of the AI industry. Neither that announcement nor the solicitation record states how much electricity a project would draw."
+        },
+        {
+          "date": "2026-08-06",
+          "note": "The lease offer says the JBER sites do not have enough power. The Anchorage Daily News, reporting on the solicitation on May 5, 2026, quotes it describing those sites as having insufficient power for a data center and as requiring a new connection to Chugach Electric Association in Anchorage. Chugach's gas supply contract with Hilcorp Alaska, its primary supplier, ends in 2028."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
