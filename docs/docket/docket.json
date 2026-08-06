@@ -881,15 +881,30 @@
       "id": "hb-259-data-center-utility-standards",
       "title": "HB 259, state utility standards for large data centers",
       "kind": "legislation",
-      "status": "pending-decision",
+      "status": "closed",
       "decider": "Alaska Legislature (House Energy Committee)",
-      "public_access": "indirect",
-      "access_note": "Legislators decide. Constituents reach the bill through their representatives and committee testimony. It has not moved out of the House Energy Committee.",
-      "summary": "HB 259, introduced by Rep. Donna Mears in January 2026, would set utility rate-setting guidelines and community benefit standards for large energy use facilities such as data centers. It was referred to the House Energy Committee and has not advanced, so Alaska has no statewide cost-allocation rule governing how a large data-center load is billed against other ratepayers.",
+      "public_access": "closed",
+      "access_note": "The bill died when the Legislature adjourned. No public path remains to this vehicle. A constituent who wants these standards has to ask a legislator to introduce them again in the 35th Legislature, which convenes in January 2027.",
+      "summary": "HB 259, introduced by Rep. Donna Mears in January 2026, would have set utility rate-setting guidelines and community benefit agreement standards for large energy use facilities such as data centers, and given the Regulatory Commission of Alaska new duties over them. The House Energy Committee heard it twice, on January 29th and February 3rd, 2026, taking testimony from Greensparc, GCI, the Alaska Municipal League and former Rep. Paul Seaton. It never advanced out of that committee, and it carried a second referral to House Community and Regional Affairs it never reached. The bill died with the 34th Legislature at sine die on May 20th, 2026. Alaska still has no statewide cost-allocation rule governing how a large data-center load is billed against other ratepayers, which leaves that question with the Regulatory Commission of Alaska and with individual utility boards.",
       "key_dates": [
         {
           "date": "2026-01-20",
-          "label": "Referred to House Energy Committee",
+          "label": "Prefile released, read the first time, referred to House Energy then Community and Regional Affairs",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-01-29",
+          "label": "First House Energy Committee hearing",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-02-03",
+          "label": "Second House Energy Committee hearing, last recorded action on the bill",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-05-20",
+          "label": "34th Legislature adjourns sine die, the bill dies in committee",
           "kind": "milestone"
         }
       ],
@@ -908,14 +923,23 @@
           "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=HB+259",
           "outlet": "Alaska State Legislature",
           "date": "2026-01-20"
+        },
+        {
+          "url": "https://www.adn.com/politics/alaska-legislature/2026/05/21/alaska-legislature-adjourns-with-eye-toward-special-session/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-05-21"
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-07-18",
+      "last_updated": "2026-08-06",
       "history": [
         {
           "date": "2026-07-18",
           "note": "Tracked from this run. The state level counterpart to the Anchorage ordinance, HB 259 would set rate-setting and community benefit standards for big loads but sits in the House Energy Committee. Its stall is the policy gap at the center of Carousel No. 10, no statewide rule decides whether a data center spreads or shifts costs onto households."
+        },
+        {
+          "date": "2026-08-06",
+          "note": "Correction. This entry showed HB 259 as pending a decision. It is not pending. The bill died in the House Energy Committee when the 34th Legislature adjourned sine die on May 20th, 2026, and this tracker carried the wrong status for the eleven weeks since. Re-verified today against the Legislature's own bill record, which shows the last action on February 3rd, 2026 and no action after it, and against Anchorage Daily News reporting that lawmakers introduced 683 bills in the two-year cycle and passed 111. HB 259 was not among them. Status moves to closed. Two facts this entry had never recorded are now here, that the committee actually heard the bill twice and took outside testimony, and that it carried a second referral to House Community and Regional Affairs that it never reached."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hb-259-data-center-utility-standards/"
@@ -979,11 +1003,15 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-07-26",
+      "last_updated": "2026-08-06",
       "history": [
         {
           "date": "2026-07-26",
           "note": "Tracked. The White House expanded the Ratepayer Protection Pledge on July 23 and 23 Republican governors signed an addendum committing to implement its principles to the greatest extent possible, Dunleavy among them. The pledge itself binds signing companies to five things, build bring or buy new power supply, pay for new delivery infrastructure, pay whether they use the power or not, invest in local jobs, and contribute to grid and community resilience. Both USA TODAY and POWER describe it as non binding. A read of the signatory list on July 26 returned one Alaska name, Cordova Electric Cooperative, and no Railbelt utility."
+        },
+        {
+          "date": "2026-08-06",
+          "note": "Re-read the White House signatory list today. It still shows Cordova Electric Cooperative as the only Alaska entity on it, out of 281 listed signatories, eleven days after the last check. No Railbelt utility has signed. Chugach Electric, Golden Valley Electric, Matanuska Electric and Homer Electric are all still absent, and those are the utilities that would carry a large Railbelt data-center load. Nothing else about the pledge changed."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ratepayer-protection-pledge-alaska-utilities/"
