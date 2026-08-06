@@ -150,6 +150,34 @@ def britishisms(text):
     return [(m.group(0), us) for pat, us in BRITISH for m in pat.finditer(text or "")]
 
 
+# A pin is a claim that a decision happens somewhere. A statewide rule does not,
+# and dropping one on Anchorage because the coordinates have to be something is
+# a map telling a small lie, the same lie the label placer above refuses to
+# tell. Four items carried these: two literally named "Statewide" at Anchorage's
+# coordinates, one at the dead centre of the state, and one carbon storage rule
+# that governs every Class VI well in Alaska sitting on the commission's office.
+#
+# An item with no location is fine. It keeps its page, its place in the docket
+# and its line in the data, and it simply is not drawn on a map of places.
+NOWHERE = re.compile(r"\b(statewide|nationwide|federal[- ]?wide|everywhere|"
+                     r"various|multiple sites|n/?a|tbd|unknown)\b", re.I)
+
+
+def fake_location(loc):
+    """Why this location is not a place, or None when it is one."""
+    if not loc:
+        return None
+    name = str(loc.get("name", ""))
+    m = NOWHERE.search(name)
+    if m:
+        return (f"the location is named {name!r}, and {m.group(0)!r} is not a "
+                f"place. Drop the location instead, the item keeps its page "
+                f"and its row without claiming a spot on the map")
+    if loc.get("lat") is None or loc.get("lon") is None:
+        return "the location has a name but no coordinates"
+    return None
+
+
 def validate(items):
     seen = set()
     for it in items:
@@ -177,6 +205,10 @@ def validate(items):
             parse_date(d["date"], i)
             if d.get("kind") not in DATE_KINDS:
                 fail(f"{i}: key_date kind {d.get('kind')!r}")
+        why = fake_location(it.get("location"))
+        if why:
+            fail(f"{i}: {why}.")
+
         for label, text in ([("title", it["title"]), ("decider", it["decider"]),
                              ("summary", it["summary"]),
                              ("access_note", it["access_note"])]
@@ -576,7 +608,13 @@ def generation_marks(T):
 
 
 def map_svg(ordered_items, today=None, w=1000, h=620):
-    located = [(n, it) for n, it in enumerate(ordered_items, 1) if it.get("location")]
+    # Numbered AFTER filtering, so the pins read 1..n with no holes. Numbering
+    # first and filtering second left the map counting 1, 2, 3, 5, 8 once
+    # statewide items stopped being pinned, and nothing anywhere on the page is
+    # item 4. These numbers are labels for the map's own legend, not positions
+    # in the docket, so a gap points at nothing.
+    located = [(n, it) for n, it
+               in enumerate((i for i in ordered_items if i.get("location")), 1)]
     coast = alaska_paths()
     T = fit_transform(coast, w, h, 44)
     coast_d = path_d(coast, T)
