@@ -37,8 +37,18 @@ ranked, reasoned worklist:
     invisible
   - the worklist is ranked and capped by --budget, and it ALWAYS PRINTS WHAT IT DEFERRED.
     A silent cap reads as "everything is covered" when it is not, which is the whole bug.
-  - exit 1 when any live item is past twice its max age, because at that point the docket
-    is publishing a status nobody has confirmed
+
+STALENESS NEVER FAILS A RUN, and the first draft of this file got that wrong (maintainer,
+2026-08-06: "huh? fail? the routine is to update items if they are not updated, not fail
+the run"). A stale item is an INSTRUCTION TO GO AND LOOK, not a defect in the run that
+finds it. Failing on it is backwards twice over: it punishes today's run for yesterday's
+omission, and because a failed run does not merge, the docket would end up updated LESS
+often the staler it got. That is a loop that runs the wrong way.
+
+So this follows the convention gaswatch_pagecheck.py already sets in this repo: rot exits
+2, which a run records and carries on from. Only a genuinely broken CHECK exits 1, which
+here means an unreadable or malformed ledger. Nothing this file measures about the docket
+can abort a run.
 
 It does not fetch anything and it has no opinion about what a refresh finds. It decides
 WHAT TO LOOK AT, which is the part that was being decided by accident.
@@ -126,8 +136,8 @@ def main():
     ap.add_argument("--budget", type=int, default=6,
                     help="how many items the run will actually re-fetch this pass")
     ap.add_argument("--json", action="store_true", help="emit the worklist as JSON")
-    ap.add_argument("--strict", action="store_true",
-                    help="exit 1 if any live item is past twice its limit")
+    # No --strict, deliberately. See the module docstring: a stale item is work to do,
+    # not a reason to stop, and there is no flag that turns that into a failure.
     a = ap.parse_args()
 
     today = parse_date(a.today) if a.today else dt.date.today()
@@ -142,7 +152,7 @@ def main():
     if a.json:
         print(json.dumps({"today": today.isoformat(), "must_refresh": work,
                           "deferred": deferred, "rotten": rotten}, indent=1))
-        return 1 if (rotten and a.strict) else 0
+        return 2 if rotten else 0
 
     print(f"DOCKET REFRESH WORKLIST for {today}   ({len(items)} tracked, "
           f"{sum(1 for r in rows if r['status'] in LIVE)} live)\n")
@@ -170,9 +180,10 @@ def main():
             print(f"     {r['id']}  {r['status']}, {r['age_days']}d "
                   f"(limit {r['sla_days']}d)")
         print("     The docket is publishing a status nobody has confirmed in that long.")
-        print("     Re-verify these before writing anything new.")
-        if a.strict:
-            return 1
+        print("     Re-verify these FIRST, before writing anything new. This is work to")
+        print("     do, not a reason to stop: exit 2 means attention, and a run records")
+        print("     it and carries on.")
+        return 2
     return 0
 
 
