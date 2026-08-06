@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Anchorage Neighborhood Health Center, intake demonstration, prepared by Alaska AI</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --surface:#0b1a2c;
+  --surface2:#122a46;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --gold:#ffc72c;
+  --warn:#f2a43a;
+  --ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --u:26px;
+}
+html{-webkit-text-size-adjust:100%;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--ui);
+  letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:60rem;margin:0 auto;padding:0 20px 60px}
+p{margin:0 0 var(--u)}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(28px,4.6vw,42px);
+  line-height:1.04;letter-spacing:-.018em}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(21px,3vw,27px);
+  line-height:1.18;margin:0 0 10px}
+h3{font-size:17px;font-weight:700;margin:0 0 8px}
+.mono{font-family:var(--mono)}
+.tnum{font-variant-numeric:lining-nums tabular-nums}
+
+/* ---------- header ---------- */
+header{padding:34px 0 0}
+.mark{display:flex;align-items:center;gap:10px;font:400 12px/1.5 var(--mono);
+  letter-spacing:.17em;text-transform:uppercase;color:var(--cap);margin-bottom:30px;flex-wrap:wrap}
+.mark i{width:13px;height:13px;display:block;background:var(--gold);flex:0 0 auto;
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+.mark b{color:var(--ink);font-weight:400}
+.eyebrow{font:400 11px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 14px}
+header .lede{font-size:18px;color:var(--sub);max-width:36rem;margin:18px 0 0}
+
+/* ---------- the honesty banner ---------- */
+.honest{border-left:2px solid var(--gold);padding:2px 0 2px 18px;margin:26px 0 0;max-width:40rem}
+.honest p{margin:0 0 10px;color:var(--sub);font-size:15px}
+.honest p:last-child{margin:0}
+.honest strong{color:var(--ink);font-weight:700}
+
+/* ---------- sections ---------- */
+section{margin:calc(var(--u)*2.1) 0 0;padding-top:calc(var(--u)*1.1);border-top:1px solid var(--rule)}
+.secn{font:400 11px/1 var(--mono);letter-spacing:.18em;color:var(--gold);
+  display:block;margin-bottom:12px}
+.lede{font-size:17px;color:var(--sub);max-width:38rem}
+.note{font-size:14px;color:var(--cap);max-width:40rem}
+
+/* ---------- controls ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.tab{appearance:none;background:var(--surface);border:1px solid var(--rule);color:var(--sub);
+  font:600 13px/1 var(--ui);padding:11px 14px;border-radius:8px;cursor:pointer;text-align:left}
+.tab:hover{border-color:var(--cap)}
+.tab[aria-pressed="true"]{background:var(--surface2);border-color:var(--accent);color:var(--ink)}
+.tab span{display:block;font:400 11px/1.3 var(--mono);color:var(--cap);margin-top:5px;letter-spacing:.04em}
+.tab[aria-pressed="true"] span{color:var(--accent)}
+
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px}
+button.act{appearance:none;background:var(--accent);color:#02120d;border:0;border-radius:8px;
+  font:700 14px/1 var(--ui);padding:13px 18px;cursor:pointer}
+button.act:hover{filter:brightness(1.08)}
+button.act[disabled]{background:var(--rule);color:var(--cap);cursor:default;filter:none}
+button.ghost{appearance:none;background:transparent;color:var(--sub);border:1px solid var(--rule);
+  border-radius:8px;font:600 14px/1 var(--ui);padding:12px 16px;cursor:pointer}
+button.ghost:hover{border-color:var(--cap);color:var(--ink)}
+.progress{font:400 12px/1 var(--mono);color:var(--cap);letter-spacing:.08em;margin-left:auto}
+
+/* ---------- split ---------- */
+.split{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:18px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:16px}
+.panelh{font:400 11px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+/* phone */
+.phone{background:#050d18;border:1px solid var(--rule);border-radius:16px;padding:10px;min-height:250px}
+.phonebar{display:flex;justify-content:space-between;font:400 10px/1.4 var(--mono);color:var(--cap);
+  padding:2px 4px 10px;border-bottom:1px solid var(--rule);margin-bottom:10px;letter-spacing:.06em}
+.seg{display:flex;gap:0;margin:0 0 12px;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.seg button{flex:1;appearance:none;background:transparent;border:0;color:var(--cap);
+  font:600 12px/1 var(--ui);padding:9px 6px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface2);color:var(--ink)}
+.msgs{display:flex;flex-direction:column;gap:10px;min-height:180px}
+.bub{background:var(--surface2);border-radius:12px;border-top-left-radius:3px;padding:11px 12px;
+  font-size:13.5px;line-height:1.5;color:var(--ink);white-space:pre-line}
+.bub b{display:block;font:400 10px/1 var(--mono);color:var(--accent);letter-spacing:.09em;
+  margin-bottom:8px;text-transform:uppercase}
+.bub i{display:block;font-style:normal;font:400 10px/1 var(--mono);color:var(--cap);margin-top:9px}
+.bub .lnk{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.empty{color:var(--cap);font-size:13px;line-height:1.5;padding:14px 2px;border:1px dashed var(--rule);
+  border-radius:10px;text-align:center}
+
+/* clock + lanes */
+.clock{font:400 clamp(22px,3.4vw,30px)/1.1 var(--mono);color:var(--ink);letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;margin:0 0 6px}
+.clockcap{font:400 11px/1.5 var(--mono);color:var(--cap);letter-spacing:.07em;margin:0 0 16px}
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lane h4{font:400 11px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--cap);
+  padding-bottom:9px;border-bottom:1px solid var(--rule);margin-bottom:4px}
+.lane.after h4{color:var(--accent)}
+.step{padding:11px 0 11px 20px;position:relative;font-size:13.5px;line-height:1.5;color:var(--sub);
+  border-bottom:1px solid rgba(28,51,80,.55)}
+.step:last-child{border-bottom:0}
+.step::before{content:"";position:absolute;left:2px;top:18px;width:6px;height:6px;border-radius:50%;
+  background:var(--rule)}
+.step.act::before{background:var(--accent)}
+.step.human::before{background:var(--gold)}
+.step .st{display:block;font:400 10px/1 var(--mono);color:var(--cap);letter-spacing:.08em;margin-bottom:6px}
+.step.human{color:var(--ink)}
+.lanenote{font-size:12.5px;line-height:1.55;color:var(--cap);margin-top:12px;padding-top:10px;
+  border-top:1px solid var(--rule)}
+
+/* log */
+.log{width:100%;border-collapse:collapse;font:400 12px/1.45 var(--mono);letter-spacing:.01em}
+.log th{text-align:left;color:var(--cap);font-weight:400;padding:0 10px 8px 0;border-bottom:1px solid var(--rule);
+  text-transform:uppercase;letter-spacing:.1em;font-size:10px}
+.log td{padding:8px 10px 8px 0;color:var(--sub);vertical-align:top;border-bottom:1px solid rgba(28,51,80,.5)}
+.log td.ok{color:var(--accent)}
+.log td.hum{color:var(--gold)}
+.logwrap{overflow-x:auto}
+
+/* kill switch */
+.kill{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:14px;padding-top:14px;
+  border-top:1px solid var(--rule)}
+.kill p{margin:0;font-size:13px;color:var(--cap);max-width:32rem;line-height:1.55}
+button.rev{appearance:none;background:transparent;border:1px solid var(--warn);color:var(--warn);
+  border-radius:8px;font:700 12px/1 var(--ui);padding:11px 14px;cursor:pointer;flex:0 0 auto}
+button.rev:hover{background:rgba(242,164,58,.1)}
+
+/* ---------- artifact ---------- */
+.artifact{background:var(--surface);border:1px solid var(--rule);border-left:2px solid var(--gold);
+  border-radius:10px;padding:20px;font:400 13.5px/1.62 var(--mono);color:var(--sub);
+  white-space:pre-wrap;overflow-x:auto}
+.artifact .h{color:var(--ink);font-weight:700}
+.artifact .g{color:var(--gold)}
+.artifact .a{color:var(--accent)}
+.artifact .m{color:var(--cap)}
+
+/* review screen */
+.review{background:var(--surface);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.revh{background:var(--surface2);padding:14px 18px;font:400 11px/1.5 var(--mono);letter-spacing:.11em;
+  text-transform:uppercase;color:var(--cap);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.revh b{color:var(--ink);font-weight:400}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.f{padding:13px 18px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);min-width:0}
+.f:nth-child(2n){border-right:0}
+.f .k{font:400 10px/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--cap);
+  display:block;margin-bottom:7px}
+.f .v{font-size:14.5px;color:var(--ink);word-break:break-word}
+.f .src{font:400 11px/1.45 var(--mono);color:var(--cap);margin-top:6px;display:block}
+.revfoot{padding:16px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.revfoot p{margin:0;font-size:13px;color:var(--cap);flex:1 1 16rem;line-height:1.55}
+.filed{color:var(--accent);font:700 13px/1.5 var(--ui)}
+
+/* ---------- calculator ---------- */
+.calc{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:18px;align-items:start}
+.ctl{margin:0 0 16px}
+.ctl label{display:block;font:400 10px/1.3 var(--mono);letter-spacing:.11em;text-transform:uppercase;
+  color:var(--cap);margin-bottom:8px}
+select,input[type="date"]{width:100%;background:#050d18;border:1px solid var(--rule);color:var(--ink);
+  border-radius:8px;padding:11px 12px;font:400 14px/1.2 var(--ui);font-variant-numeric:tabular-nums}
+select:focus,input[type="date"]:focus{outline:2px solid var(--accent);outline-offset:1px}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:0 0 11px;font-size:13.5px;color:var(--sub);
+  line-height:1.45;cursor:pointer}
+.chk input{margin:3px 0 0;accent-color:var(--accent);flex:0 0 auto;width:15px;height:15px}
+.out{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.o{background:var(--surface);padding:14px 16px}
+.o .k{font:400 10px/1.3 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--cap);
+  display:block;margin-bottom:8px}
+.o .v{font:400 19px/1.25 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.o .v.g{color:var(--gold)}
+.o .v.w{color:var(--warn)}
+.o .v.sm{font-size:15px}
+.rule{margin:16px 0 0;padding:14px 16px;background:var(--surface);border:1px solid var(--rule);
+  border-radius:10px;font-size:14px;color:var(--sub);line-height:1.6}
+.rule q{color:var(--ink);font-style:normal}
+.rule q::before,.rule q::after{content:'"'}
+.trig{list-style:none;margin:16px 0 0;padding:0}
+.trig li{display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--rule);font-size:14px;
+  color:var(--sub);line-height:1.55;align-items:flex-start}
+.trig .badge{flex:0 0 auto;font:700 10px/1 var(--mono);letter-spacing:.1em;padding:6px 8px;border-radius:5px;
+  text-transform:uppercase;margin-top:2px}
+.trig .yes{background:rgba(60,230,180,.14);color:var(--accent)}
+.trig .no{background:rgba(166,185,209,.1);color:var(--cap)}
+.trig b{color:var(--ink);font-weight:700}
+
+/* tests */
+.tests{width:100%;border-collapse:collapse;font:400 12.5px/1.5 var(--mono)}
+.tests th{text-align:left;color:var(--cap);font-weight:400;font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;padding:0 12px 9px 0;border-bottom:1px solid var(--rule)}
+.tests td{padding:9px 12px 9px 0;color:var(--sub);border-bottom:1px solid rgba(28,51,80,.5);vertical-align:top}
+.tests td.p{color:var(--accent);font-weight:700}
+.tests td.f{color:var(--warn);font-weight:700}
+
+/* ---------- steps ---------- */
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:0 0 var(--u)}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:18px}
+.card .n{font:400 11px/1 var(--mono);color:var(--gold);letter-spacing:.16em;display:block;margin-bottom:11px}
+.card h3{margin-bottom:8px}
+.card p{margin:0;font-size:14px;color:var(--sub);line-height:1.6}
+
+/* later phase */
+.later{background:transparent;border:1px dashed var(--rule);border-radius:12px;padding:18px;color:var(--cap)}
+.later h3{color:var(--cap)}
+.later p{font-size:14px;color:var(--cap);margin:0 0 12px;line-height:1.6}
+.later p:last-child{margin:0}
+.offsw{display:inline-flex;align-items:center;gap:10px;font:400 11px/1 var(--mono);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--cap);background:transparent;border:1px solid var(--rule);
+  border-radius:999px;padding:9px 14px;cursor:pointer}
+.offsw i{width:9px;height:9px;border-radius:50%;background:var(--rule);display:block}
+.offmsg{margin-top:12px;font-size:13.5px;color:var(--warn);line-height:1.6;display:none}
+.offmsg.on{display:block}
+
+/* footer */
+footer{margin-top:calc(var(--u)*2);padding-top:var(--u);border-top:1px solid var(--rule);
+  font-size:13px;color:var(--cap);max-width:44rem;line-height:1.65}
+footer a{color:var(--cap)}
+footer ul{list-style:none;padding:0;margin:14px 0 0;font-family:var(--mono);font-size:12px;line-height:1.9}
+
+@media (max-width:820px){
+  .split,.calc{grid-template-columns:1fr}
+  .lanes{grid-template-columns:1fr}
+  .lane.after{margin-top:10px}
+}
+@media (max-width:560px){
+  body{font-size:15px}
+  .wrap{padding:0 15px 44px}
+  .fields{grid-template-columns:1fr}
+  .f{border-right:0}
+  .artifact{font-size:12px;padding:14px}
+}
+
+@media print{
+  :root{--bg:#fff;--surface:#f5f7fa;--surface2:#eaeff5;--rule:#ccd4de;
+        --ink:#101820;--sub:#37414d;--cap:#5b6673;--accent:#0d6a5b;--gold:#8a6400;--warn:#8a5200}
+  body{font-size:11pt}
+  .bar,.tabs,.seg,button,.kill,.offsw{display:none !important}
+  .split,.calc,.lanes{grid-template-columns:1fr 1fr}
+  section{break-inside:auto;border-top:1px solid var(--rule)}
+  .panel,.card,.review,.artifact,.out{break-inside:avoid}
+  a{text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="mark"><i></i><span>Prepared by Alaska AI</span><b>&nbsp;&nbsp;Scripted demonstration of the proposed build</b></div>
+  <p class="eyebrow">Anchorage Neighborhood Health Center &nbsp;&middot;&nbsp; Anchorage, Alaska &nbsp;&middot;&nbsp; August 6th 2026</p>
+  <h1>The new patient intake build, running.</h1>
+  <p class="lede">Phase one is a trigger, a fixed reminder ladder, a sliding fee date calculator with tests, a staff review screen and a send log. There is no model anywhere in it. Everything below is that build, played out on your own published rules.</p>
+
+  <div class="honest">
+    <p><strong>This is a scripted demonstration, not a live system.</strong> It runs entirely in this browser on made up example data. It is connected to nothing of yours, it reads no patient record, it sends no message, and it books no appointment.</p>
+    <p>Every fact about ANHC in here comes from pages you publish. The names are obvious placeholders. No model runs at any point in it, because phase one contains none.</p>
+  </div>
+</header>
+
+<!-- ============ 1. SPLIT SCREEN ============ -->
+<section>
+  <span class="secn">01 &nbsp;/&nbsp; THE TWO PATHS</span>
+  <h2>One registration, today and after, side by side</h2>
+  <p class="lede">Pick a scenario, submit the registration, then step it forward. The left is the patient's phone. The right is your side, and the clock. The only thing that changes is when the send happens.</p>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div class="bar">
+    <button class="act" id="go">Submit this registration</button>
+    <button class="ghost" id="play">Play it through</button>
+    <button class="ghost" id="reset">Reset</button>
+    <span class="progress" id="prog">STEP 0 OF 0</span>
+  </div>
+
+  <p class="note" id="setup" style="margin-bottom:16px"></p>
+
+  <div class="split">
+    <div class="panel">
+      <p class="panelh">The patient's phone</p>
+      <div class="seg" role="group" aria-label="Which path you are watching">
+        <button id="segToday" aria-pressed="false" type="button">Today</button>
+        <button id="segAfter" aria-pressed="true" type="button">After</button>
+      </div>
+      <div class="phone">
+        <div class="phonebar"><span>907-743-7200</span><span id="phoneMode">AFTER</span></div>
+        <div class="msgs" id="msgs"></div>
+      </div>
+      <p class="note" style="margin:12px 0 0;font-size:12.5px">Draft message copy, written to be read aloud by your staff and yours to change. Both paths send the same words. Only the timing differs.</p>
+    </div>
+
+    <div class="panel">
+      <p class="panelh">Your side, and the clock</p>
+      <p class="clock tnum" id="clock">Waiting to start</p>
+      <p class="clockcap" id="clockcap">Press submit to fire a registration into both paths.</p>
+      <div class="lanes">
+        <div class="lane">
+          <h4>Today</h4>
+          <div id="laneToday"></div>
+        </div>
+        <div class="lane after">
+          <h4>After phase one</h4>
+          <div id="laneAfter"></div>
+        </div>
+      </div>
+      <p class="lanenote">The Today side is scripted to your own published promise, <span class="mono">within 1-2 business days</span>, because nobody publishes how long it actually takes. That missing number is the first thing phase one measures, and it gets measured before anything is scaled.</p>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <p class="panelh">Send log <span style="color:var(--cap);letter-spacing:0;text-transform:none;font-family:var(--ui);font-size:12px">every send, every result, readable by your staff without us</span></p>
+    <div class="logwrap">
+      <table class="log">
+        <thead><tr><th style="width:90px">Time</th><th style="width:80px">Channel</th><th>Event</th><th style="width:150px">Result</th></tr></thead>
+        <tbody id="logbody"><tr><td colspan="4" style="color:var(--cap)">Nothing sent yet.</td></tr></tbody>
+      </table>
+    </div>
+    <div class="kill">
+      <p id="killtext">The kill switch is part of phase one. One click puts new registrations back on today's process, the log stays readable, and nothing has to be unpicked.</p>
+      <button class="rev" id="killbtn" type="button">Revert to today's process</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. THE HANDOFF ============ -->
+<section>
+  <span class="secn">02 &nbsp;/&nbsp; THE HANDOFF</span>
+  <h2>What your staff open at 7:30 in the morning</h2>
+  <p class="lede">This is the screen that matters most, because it is the one a person actually reads. Everything under the second heading is a decision, and every decision stays with your staff.</p>
+
+  <div class="artifact" id="note"></div>
+  <p class="note" style="margin-top:14px">Scripted example, built to show the shape of the note rather than any real weekend. The three measures at the bottom are the ones we could find no published figure for anywhere, which is why phase one collects them before it changes anything else.</p>
+
+  <h3 style="margin-top:calc(var(--u)*1.6)">The review screen, one packet</h3>
+  <p class="note" style="margin-bottom:16px">Every value here was typed by the patient on the form you already publish. No model read it, no model rewrote it, nothing was inferred. The dates are computed from your sliding fee rules in tested code. A person confirms before anything is filed.</p>
+
+  <div class="review">
+    <div class="revh"><span>Packet <b>REG-4416</b> &nbsp;&middot;&nbsp; Example patient A</span><span id="revstate">Waiting for a person</span></div>
+    <div class="fields">
+      <div class="f"><span class="k">Registration received</span><span class="v tnum">Sunday August 9th, 8:40 p.m.</span><span class="src">Your online registration form</span></div>
+      <div class="f"><span class="k">Intake links sent</span><span class="v tnum">Sunday August 9th, 8:40 p.m.</span><span class="src">Automatic, 11 seconds after the event</span></div>
+      <div class="f"><span class="k">New patient rule</span><span class="v">First time registering with ANHC</span><span class="src">Your published 36 month rule</span></div>
+      <div class="f"><span class="k">Form language chosen</span><span class="v">Spanish</span><span class="src">One of the four you already publish</span></div>
+      <div class="f"><span class="k">Sliding fee application</span><span class="v">Documentation submitted</span><span class="src">Patient uploaded, not yet reviewed</span></div>
+      <div class="f"><span class="k">Discount dates, if approved</span><span class="v tnum">Expires August 10th 2027, last day it applies August 9th 2027</span><span class="src">Computed from the determination date, Monday August 10th, one year with documentation, same convention as the tests below</span></div>
+      <div class="f"><span class="k">The determination</span><span class="v" style="color:var(--gold)">Stays with a person</span><span class="src">Software computes the dates, never the decision</span></div>
+      <div class="f"><span class="k">Scheduling</span><span class="v">Your staff call, unchanged</span><span class="src">Nothing here writes to a scheduling system</span></div>
+    </div>
+    <div class="revfoot">
+      <p>Confirming files the packet and stamps the log. It books nothing and it tells no patient anything.</p>
+      <button class="act" id="confirm" type="button">Confirm and file</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. CALCULATOR ============ -->
+<section>
+  <span class="secn">03 &nbsp;/&nbsp; THE DATE CALCULATOR</span>
+  <h2>Your sliding fee rules, computed instead of remembered</h2>
+  <p class="lede">The expiry trigger in your published sliding fee policy is arithmetic on a date. That makes it a rules problem, so it gets a rules fix, with tests. Change the inputs and watch it work.</p>
+
+  <div class="calc">
+    <div class="panel">
+      <div class="ctl">
+        <label for="dtype">What the patient submitted</label>
+        <select id="dtype">
+          <option value="doc">Documentation of household income</option>
+          <option value="self">Self declaration</option>
+          <option value="temp">Temporary self declaration of income form</option>
+        </select>
+      </div>
+      <div class="ctl">
+        <label for="issue">Date the discount was issued</label>
+        <input type="date" id="issue" value="2026-08-06">
+      </div>
+      <div class="ctl" id="lastuseWrap" style="display:none">
+        <label for="lastuse">Last time this patient used the temporary form</label>
+        <input type="date" id="lastuse" value="">
+      </div>
+      <label class="chk"><input type="checkbox" id="cNew"> This person is a new patient at ANHC</label>
+      <label class="chk"><input type="checkbox" id="cChange"> Household size or annual income has changed</label>
+      <p class="note" style="margin:16px 0 0;font-size:12.5px">Today for this demonstration is August 6th 2026, the day the study was prepared.</p>
+    </div>
+
+    <div>
+      <div class="out" id="out"></div>
+      <div class="rule" id="ruleq"></div>
+      <ul class="trig" id="trigs"></ul>
+      <p class="note" style="margin-top:16px">One year means the same date the following year. Six months means the same day of the month six months on, moved back to the last day of that month when the day does not exist. Thirty days means thirty days. That convention is a decision rather than a fact, so it lives in the tests below where you can see it and change it.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:calc(var(--u)*1.5)">The tests, run in this page just now</h3>
+  <p class="note" style="margin-bottom:14px">These call the same functions the calculator above calls. In the build they run on every change, which is the whole reason a date rule is safe to automate when a determination is not.</p>
+  <div class="logwrap">
+    <table class="tests">
+      <thead><tr><th>Case</th><th>Expected</th><th>Computed</th><th style="width:70px">Result</th></tr></thead>
+      <tbody id="testbody"></tbody>
+    </table>
+  </div>
+  <p class="note" style="margin-top:14px" id="testsum"></p>
+</section>
+
+<!-- ============ 4. HOW IT SITS ============ -->
+<section>
+  <span class="secn">04 &nbsp;/&nbsp; HOW IT SITS IN YOUR OPERATION</span>
+  <h2>Three steps, and a person on every one that matters</h2>
+
+  <div class="three">
+    <div class="card">
+      <span class="n">STEP 01</span>
+      <h3>It listens, it does not replace</h3>
+      <p>It watches for one event, a completed online registration. Nothing changes about how someone registers, what your form asks, or where the answers go. On any failure the patient gets the same links and the same callback they get today.</p>
+    </div>
+    <div class="card">
+      <span class="n">STEP 02</span>
+      <h3>It sends what you already send</h3>
+      <p>The same intake links, in the languages you already publish each form in, at the moment the registration lands instead of somewhere inside your published one to two business day window. Two reminders follow on a fixed clock, then the ladder stops and hands the record to a person. Every send is logged with a timestamp and a result.</p>
+    </div>
+    <div class="card">
+      <span class="n">STEP 03</span>
+      <h3>A person decides, every time</h3>
+      <p>Your staff review the packet, make the sliding fee determination against the documents, and call to book the appointment exactly as they do now. Software computes dates. It never makes a determination, never books, and never answers a clinical question.</p>
+    </div>
+  </div>
+
+  <div class="later">
+    <h3>The later phase, switched off and not part of this ask</h3>
+    <p>Two supervised model steps sit in a later phase of the study, reading what a patient types into candidate values on a form, and answering the narrow set of administrative questions you already publish. Neither is in phase one. Neither gets funded unless your own measurements say it should.</p>
+    <button class="offsw" id="offsw" type="button"><i></i>Model steps &nbsp;&middot;&nbsp; off</button>
+    <p class="offmsg" id="offmsg">Off, and it stays off. This demonstration performs nothing from the later phase. Three things stay out at every phase, your ambient scribe which is working and is not ours to disturb, live spoken interpretation, and clinical triage.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong style="color:var(--ink)">This is a demonstration of a proposed build, not a product and not a live system.</strong> It is scripted, it runs offline in this browser, and it holds no patient data of any kind. Prepared by Alaska AI for Anchorage Neighborhood Health Center, August 6th 2026.</p>
+  <p style="margin-bottom:0">Everything it says about ANHC comes from these pages.</p>
+  <ul>
+    <li>anhc.org/new-patients &nbsp;&middot;&nbsp; the two 1 to 2 business day windows, the 36 month rule, the 45 minute first appointment</li>
+    <li>anhc.org/sliding-fee-discount-program &nbsp;&middot;&nbsp; one year and six months, the 30 day temporary form, the three reapplication triggers, the four form languages</li>
+    <li>anhc.org/hours-and-location &nbsp;&middot;&nbsp; the medical clinic running 7:30 a.m. to 9:00 p.m. Monday through Thursday</li>
+    <li>anhc.org/contact &nbsp;&middot;&nbsp; the main line 907-743-7200 and its TEXT ME channel</li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* =========================================================
+   Message copy. Draft, written to be read aloud, sent
+   identically on both paths. Only the timing differs.
+   ========================================================= */
+var MSG_LINKS = {
+  who: "ANHC 907-743-7200",
+  body: "Anchorage Neighborhood Health Center. Thanks for registering. Your new patient forms are ready.\n\n1. Registration and health history\n   <span class=\"lnk\">your-form-link/registration</span>\n2. Sliding fee discount application\n   <span class=\"lnk\">your-form-link/sliding-fee</span>\n\nThe sliding fee discount application opens in English, Spanish, Tagalog or Samoan.\n\nSomeone from ANHC will call you to schedule your first appointment. Your first appointment may last up to 45 minutes.\n\nFor questions call 907-743-7200. You can also text TEXT ME to the same number."
+};
+var MSG_R1 = {
+  who: "ANHC 907-743-7200",
+  body: "Anchorage Neighborhood Health Center. One form is still open, the sliding fee discount application.\n\n<span class=\"lnk\">your-form-link/sliding-fee</span>\n\nFor questions call 907-743-7200."
+};
+var MSG_R2 = {
+  who: "ANHC 907-743-7200",
+  body: "Anchorage Neighborhood Health Center. This is the last automatic reminder about your sliding fee discount application.\n\n<span class=\"lnk\">your-form-link/sliding-fee</span>\n\nIf it is easier, call 907-743-7200 and a person will help you finish it."
+};
+
+/* =========================================================
+   Scenarios. Three, all drawn from ANHC's published pages.
+   ========================================================= */
+var SC = [
+{
+  id:"sun", tab:"Sunday 8:40 p.m.", sub:"The weekend registration",
+  setup:"Example patient A fills in your online registration form at 8:40 on a Sunday evening. Your published sequence says a text with the form links arrives within 1 to 2 business days.",
+  beats:[
+   {clock:"SUN 8:40 P.M.", cap:"Registration submitted. Both paths start here.",
+    today:{k:"wait", t:"Registration received. Your published window starts now, within 1 to 2 business days. What happens inside that window is not published, and it is the first question we would ask your staff."},
+    after:{k:"act", t:"The registration event fires the send. Nothing waits on somebody being at a desk."},
+    log:[{t:"20:40:06", c:"system", e:"registration received", r:"trigger fired", k:"ok"}]},
+
+   {clock:"SUN 8:40 P.M.", cap:"Eleven seconds later.",
+    today:{k:"wait", t:"Nothing yet. The published window has hours left in it."},
+    after:{k:"act", t:"The text with both form links reaches the phone. The send is logged with a timestamp and a result."},
+    msgAfter:MSG_LINKS,
+    log:[{t:"20:40:17", c:"text", e:"intake links sent, 2 forms", r:"delivered", k:"ok"}]},
+
+   {clock:"SUN 9:07 P.M.", cap:"The patient is still holding the phone.",
+    today:{k:"wait", t:"Still inside the published window. Nothing here is anyone's fault, and we are not claiming to know what the window is for."},
+    after:{k:"act", t:"Registration and health history comes back complete. That is the first of the three measurements you do not have today."},
+    log:[{t:"21:07:44", c:"web", e:"registration and health history complete", r:"stored", k:"ok"}]},
+
+   {clock:"MON 7:30 A.M.", cap:"The medical clinic opens.",
+    today:{k:"wait", t:"The clinic opens. Where this registration sits inside your published window is not something we can see from outside."},
+    after:{k:"act", t:"Staff open a list that already moved overnight, with a completed form attached to this one."}},
+
+   {clock:"MON, IN THE WINDOW", cap:"Inside your published 1 to 2 business day promise.",
+    today:{k:"wait", t:"The text with the form links goes out, somewhere inside the published window. The second published window, the scheduling call, starts after the forms come back."},
+    msgToday:MSG_LINKS,
+    after:{k:"human", t:"A person reviews the packet and calls to book the appointment. That call is unchanged and it stays a call."},
+    log:[{t:"07:52:10", c:"staff", e:"packet confirmed by a person", r:"ready to schedule", k:"hum"}]}
+  ]
+},
+{
+  id:"thu", tab:"Thursday 8:12 p.m.", sub:"While the clinic is still open",
+  setup:"Example patient C registers at 8:12 on a Thursday evening. Your medical clinic runs 7:30 a.m. to 9:00 p.m. Monday through Thursday, so the lights are on for another forty eight minutes.",
+  beats:[
+   {clock:"THU 8:12 P.M.", cap:"Clinic open until 9:00 p.m.",
+    today:{k:"wait", t:"Registration received. The published window starts now, and your medical clinic is open until 9 p.m. Whether that changes anything inside the window is not something we can see from outside."},
+    after:{k:"act", t:"The event fires the send. Time of day is not a factor, because no person sits in the path."},
+    log:[{t:"20:12:31", c:"system", e:"registration received", r:"trigger fired", k:"ok"}]},
+
+   {clock:"THU 8:12 P.M.", cap:"Nine seconds later.",
+    today:{k:"wait", t:"Nothing yet."},
+    after:{k:"act", t:"Text delivered. The patient is awake, has the phone in hand, and the links are on it."},
+    msgAfter:MSG_LINKS,
+    log:[{t:"20:12:40", c:"text", e:"intake links sent, 2 forms", r:"delivered", k:"ok"}]},
+
+   {clock:"THU 8:39 P.M.", cap:"Twenty seven minutes in.",
+    today:{k:"wait", t:"Nothing yet."},
+    after:{k:"act", t:"The patient opens the sliding fee discount application and picks the Spanish form. Nothing new had to be written, because you already publish it in English, Spanish, Tagalog and Samoan."},
+    log:[{t:"20:39:02", c:"web", e:"sliding fee application opened, Spanish", r:"in progress", k:"ok"}]},
+
+   {clock:"THU 9:00 P.M.", cap:"The medical clinic closes.",
+    today:{k:"wait", t:"Still inside the published window. Nothing here is a failure, and we are not claiming to know what the window holds."},
+    after:{k:"act", t:"Both forms are back complete, forty five minutes after the registration landed. That number exists only because something counted it."},
+    log:[{t:"20:57:19", c:"web", e:"both forms complete", r:"packet ready for review", k:"ok"}]},
+
+   {clock:"FRI 7:30 A.M.", cap:"The next business morning.",
+    today:{k:"wait", t:"The text with the form links goes out, somewhere inside the published window. The forms have not been started yet, because the patient only just got them."},
+    msgToday:MSG_LINKS,
+    after:{k:"human", t:"A person opens a complete packet, makes the sliding fee determination against the documents, and calls to schedule. Both of those stay human."},
+    log:[{t:"07:41:55", c:"staff", e:"packet confirmed by a person", r:"ready to schedule", k:"hum"}]}
+  ]
+},
+{
+  id:"back", tab:"Back after three years", sub:"The one that stalls partway",
+  setup:"Example patient B was last seen by an ANHC provider more than thirty six months ago. Your own rule counts that as a new patient, so the whole intake loop starts again. This one also stops partway, which is the case nothing surfaces today.",
+  beats:[
+   {clock:"TUE 11:02 A.M.", cap:"A returning patient re-enters the loop.",
+    today:{k:"wait", t:"Registration received. Anyone not seen by an ANHC provider in the last 36 months counts as a new patient, so this person starts the published sequence from the top."},
+    after:{k:"act", t:"Same rule, same person, same starting point. The difference is that the send fires now."},
+    log:[{t:"11:02:14", c:"system", e:"registration received, 36 month rule applies", r:"trigger fired", k:"ok"}]},
+
+   {clock:"TUE 11:02 A.M.", cap:"Twelve seconds later.",
+    today:{k:"wait", t:"Nothing yet."},
+    after:{k:"act", t:"Text delivered with both form links, and the sliding fee application in the four languages you publish it in."},
+    msgAfter:MSG_LINKS,
+    log:[{t:"11:02:26", c:"text", e:"intake links sent, 2 forms", r:"delivered", k:"ok"}]},
+
+   {clock:"TUE 11:26 A.M.", cap:"The part that goes wrong.",
+    today:{k:"wait", t:"Nothing yet, so nothing to notice."},
+    after:{k:"act", t:"Registration and health history comes back complete. The sliding fee application is opened, then left. The record now knows exactly where they stopped."},
+    log:[{t:"11:26:48", c:"web", e:"health history complete, sliding fee left open", r:"partial", k:"ok"}]},
+
+   {clock:"WED 11:02 A.M.", cap:"Twenty four hours after the send.",
+    today:{k:"wait", t:"The text with the form links goes out, somewhere inside the published window."},
+    msgToday:MSG_LINKS,
+    after:{k:"act", t:"First reminder on the fixed ladder, and only for the form that is still open. The one already back is not chased."},
+    msgAfter:MSG_R1,
+    log:[{t:"11:02:14", c:"text", e:"reminder 1 of 2, sliding fee only", r:"delivered", k:"ok"}]},
+
+   {clock:"FRI 11:02 A.M.", cap:"Seventy two hours after the send.",
+    today:{k:"wait", t:"The links are out. Whether anyone started them is not something we can see."},
+    after:{k:"act", t:"Second and last automatic reminder. After this the ladder stops. It never sends a third time and it never keeps going on its own."},
+    msgAfter:MSG_R2,
+    log:[{t:"11:02:09", c:"text", e:"reminder 2 of 2, final automatic send", r:"delivered", k:"ok"}]},
+
+   {clock:"FRI 11:03 A.M.", cap:"Handed to a person.",
+    today:{k:"wait", t:"Today this surfaces on the scheduling call, if it surfaces at all. Someone who registers and is never booked leaves no trace in a schedule."},
+    after:{k:"human", t:"Flagged for a person, with the form they stopped on named. A staff member picks up the phone, which is the right answer for this one."},
+    log:[{t:"11:03:00", c:"system", e:"stalled 72h, flagged for staff", r:"queued for a person", k:"hum"}]}
+  ]
+}
+];
+
+/* ---------- element handles ---------- */
+var $ = function(id){ return document.getElementById(id); };
+var tabsEl=$("tabs"), msgsEl=$("msgs"), laneT=$("laneToday"), laneA=$("laneAfter"),
+    logEl=$("logbody"), clockEl=$("clock"), clockCap=$("clockcap"),
+    progEl=$("prog"), setupEl=$("setup"), goBtn=$("go"), playBtn=$("play"),
+    resetBtn=$("reset"), segT=$("segToday"), segA=$("segAfter"),
+    phoneMode=$("phoneMode");
+
+var si = 0;      /* scenario index */
+var bi = -1;     /* beat index, -1 means not started */
+var view = "after";
+var timer = null;
+var reverted = false;
+
+/* ---------- tabs ---------- */
+SC.forEach(function(s, i){
+  var b = document.createElement("button");
+  b.className = "tab";
+  b.type = "button";
+  b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+  b.innerHTML = s.tab + "<span>" + s.sub + "</span>";
+  b.addEventListener("click", function(){ si = i; stop(); bi = -1; syncTabs(); render(); });
+  tabsEl.appendChild(b);
+});
+function syncTabs(){
+  var kids = tabsEl.children;
+  for (var i = 0; i < kids.length; i++){
+    kids[i].setAttribute("aria-pressed", i === si ? "true" : "false");
+  }
+  setupEl.textContent = SC[si].setup;
+}
+
+/* ---------- rendering ---------- */
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function bubble(m, time){
+  return '<div class="bub"><b>' + esc(m.who) + '</b>' + m.body + '<i>' + esc(time) + '</i></div>';
+}
+
+function render(){
+  var s = SC[si], beats = s.beats;
+  var shown = bi + 1;
+  progEl.textContent = "STEP " + shown + " OF " + beats.length;
+
+  if (bi < 0){
+    clockEl.textContent = "Waiting to start";
+    clockCap.textContent = "Press submit to fire a registration into both paths.";
+  } else {
+    clockEl.textContent = beats[bi].clock;
+    clockCap.textContent = beats[bi].cap;
+  }
+
+  var ht = "", ha = "";
+  for (var i = 0; i <= bi; i++){
+    var b = beats[i];
+    ht += '<div class="step ' + b.today.k + '"><span class="st">' + esc(b.clock) + '</span>' + esc(b.today.t) + '</div>';
+    ha += '<div class="step ' + b.after.k + '"><span class="st">' + esc(b.clock) + '</span>' + esc(b.after.t) + '</div>';
+  }
+  if (bi < 0){
+    ht = '<div class="step" style="color:var(--cap)">Not started.</div>';
+    ha = '<div class="step" style="color:var(--cap)">Not started.</div>';
+  }
+  laneT.innerHTML = ht;
+  laneA.innerHTML = ha;
+
+  var msgs = "";
+  for (var j = 0; j <= bi; j++){
+    var bb = beats[j];
+    var m = (view === "after") ? bb.msgAfter : bb.msgToday;
+    if (m){ msgs += bubble(m, bb.clock.toLowerCase()); }
+  }
+  if (!msgs){
+    msgs = '<div class="empty">' + (view === "after"
+      ? "Nothing sent yet on this path."
+      : "Nothing on the phone yet. Your published window says within 1 to 2 business days, and what happens inside it is not published.") + '</div>';
+  }
+  msgsEl.innerHTML = msgs;
+  phoneMode.textContent = view === "after" ? "AFTER" : "TODAY";
+
+  var rows = "";
+  for (var k = 0; k <= bi; k++){
+    var L = beats[k].log || [];
+    for (var n = 0; n < L.length; n++){
+      var e = L[n];
+      rows += "<tr><td>" + esc(e.t) + "</td><td>" + esc(e.c) + "</td><td>" + esc(e.e) +
+              '</td><td class="' + e.k + '">' + esc(e.r) + "</td></tr>";
+    }
+  }
+  if (reverted){
+    rows += '<tr><td>now</td><td>system</td><td>kill switch pulled by a named staff member</td>' +
+            '<td class="hum">reverted to today</td></tr>';
+  }
+  logEl.innerHTML = rows || '<tr><td colspan="4" style="color:var(--cap)">Nothing sent yet.</td></tr>';
+
+  var done = bi >= beats.length - 1;
+  goBtn.textContent = bi < 0 ? "Submit this registration" : (done ? "Scenario complete" : "Step forward");
+  goBtn.disabled = done;
+  playBtn.textContent = timer ? "Pause" : "Play it through";
+}
+
+function step(){
+  var beats = SC[si].beats;
+  if (bi < beats.length - 1){ bi++; render(); }
+  if (bi >= beats.length - 1){ stop(); }
+}
+function stop(){ if (timer){ clearInterval(timer); timer = null; } render(); }
+
+goBtn.addEventListener("click", function(){ stop(); step(); });
+playBtn.addEventListener("click", function(){
+  if (timer){ stop(); return; }
+  if (bi >= SC[si].beats.length - 1){ bi = -1; }
+  step();
+  if (bi < SC[si].beats.length - 1){ timer = setInterval(step, 1500); }
+  render();
+});
+resetBtn.addEventListener("click", function(){ stop(); bi = -1; reverted = false; killReset(); render(); });
+segT.addEventListener("click", function(){ view = "today"; segT.setAttribute("aria-pressed","true"); segA.setAttribute("aria-pressed","false"); render(); });
+segA.addEventListener("click", function(){ view = "after"; segA.setAttribute("aria-pressed","true"); segT.setAttribute("aria-pressed","false"); render(); });
+
+/* ---------- kill switch ---------- */
+var killBtn = $("killbtn"), killText = $("killtext");
+var killDefault = killText.textContent;
+function killReset(){
+  killBtn.textContent = "Revert to today's process";
+  killText.textContent = killDefault;
+}
+killBtn.addEventListener("click", function(){
+  reverted = !reverted;
+  if (reverted){
+    killBtn.textContent = "Turn it back on";
+    killText.textContent = "Reverted. New registrations go straight back to your current process and the published 1 to 2 business day window. Nothing has to be unpicked, no data is lost, and the log stays readable. This is the way out, and it ships in phase one rather than being promised later.";
+  } else {
+    killReset();
+  }
+  render();
+});
+
+/* ---------- the morning note ---------- */
+var NOTE = [
+'<span class="h">ANHC INTAKE, MORNING NOTE</span>',
+'<span class="m">Monday August 10th 2026, 7:30 a.m. Covers Friday 5:00 p.m. to now.</span>',
+'',
+'<span class="g">WHAT HAPPENED WITHOUT ANYONE HERE</span>',
+'  Registrations received .................. 5',
+'  Intake links sent automatically ......... 4',
+'  Not sent, no working mobile number ...... 1',
+'  Packets back complete ................... 3',
+'  Started and stopped partway ............. 1',
+'',
+'<span class="g">NEEDS A PERSON</span>',
+'  1. Example patient B, REG-4417',
+'     Health history back. Sliding fee application opened',
+'     Sunday 9:14 p.m. and left. Reminder 1 went at 24 hours.',
+'     <span class="a">Action, a call. Nothing further sends automatically.</span>',
+'',
+'  2. Example patient E, REG-4419',
+'     No working mobile number on the registration, so nothing',
+'     was sent. This one never was a text problem.',
+'     <span class="a">Action, a call on 907-743-7200.</span>',
+'',
+'<span class="g">READY TO SCHEDULE, PACKETS COMPLETE</span>',
+'  Example patient A, REG-4416 ... documentation submitted',
+'  Example patient C, REG-4418 ... self declaration',
+'  Example patient D, REG-4420 ... documentation submitted',
+'  <span class="m">Every one of these is still a call your staff make.</span>',
+'',
+'<span class="g">THE THREE MEASURES</span>',
+'                                  baseline    this weekend',
+'  Time to links delivered ......  <span class="m">not yet</span>     <span class="a">11 seconds</span>',
+'  Time to packet complete ......  <span class="m">not yet</span>     <span class="a">2.9 hours</span>',
+'  Never reaching a booking .....  <span class="m">not yet</span>     <span class="m">too early</span>',
+'  <span class="m">Baseline is blank because collecting it is week one.</span>',
+'  <span class="m">Reported split by channel, always. A text and web path</span>',
+'  <span class="m">can\'t reach the people your mobile clinic reaches at</span>',
+'  <span class="m">shelters, and one blended number would hide that.</span>',
+'',
+'<span class="m">Scripted example. Not real patients and not real numbers.</span>'
+].join("\n");
+$("note").innerHTML = NOTE;
+
+/* ---------- review screen ---------- */
+var confirmBtn = $("confirm"), revstate = $("revstate");
+confirmBtn.addEventListener("click", function(){
+  revstate.innerHTML = '<span class="filed">Filed by a person at 7:52 a.m.</span>';
+  confirmBtn.outerHTML = '<span class="filed">Filed. The sliding fee determination and the scheduling call both stay with your staff.</span>';
+});
+
+/* =========================================================
+   DATE MATH. Deterministic, and the same functions the
+   test table below calls.
+   ========================================================= */
+var MONTHS = ["January","February","March","April","May","June","July",
+              "August","September","October","November","December"];
+
+function dim(y, m){ return new Date(Date.UTC(y, m, 0)).getUTCDate(); }   /* m is 1 to 12 */
+function mk(y, m, d){ return {y:y, m:m, d:d}; }
+function parse(v){
+  var p = String(v).split("-");
+  if (p.length !== 3) return null;
+  var y = parseInt(p[0],10), m = parseInt(p[1],10), d = parseInt(p[2],10);
+  if (!y || !m || !d) return null;
+  return mk(y, m, d);
+}
+function addMonths(dt, n){
+  var t = (dt.m - 1) + n;
+  var y = dt.y + Math.floor(t / 12);
+  var m = ((t % 12) + 12) % 12 + 1;
+  var d = Math.min(dt.d, dim(y, m));
+  return mk(y, m, d);
+}
+function addDays(dt, n){
+  var j = new Date(Date.UTC(dt.y, dt.m - 1, dt.d + n));
+  return mk(j.getUTCFullYear(), j.getUTCMonth() + 1, j.getUTCDate());
+}
+function ord(n){
+  var s = ["th","st","nd","rd"], v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+function fmt(dt){ return MONTHS[dt.m - 1] + " " + ord(dt.d) + " " + dt.y; }
+function diffDays(a, b){
+  return Math.round((Date.UTC(b.y, b.m - 1, b.d) - Date.UTC(a.y, a.m - 1, a.d)) / 86400000);
+}
+
+var TODAY = mk(2026, 8, 6);   /* the day the study was prepared */
+
+var RULES = {
+  doc:  {term:function(d){ return addMonths(d, 12); },
+         label:"One year, documentation submitted",
+         quote:"Your sliding fee discount is only valid for one year (if you submitted documentation) or six months (if you completed a self-declaration)."},
+  self: {term:function(d){ return addMonths(d, 6); },
+         label:"Six months, self declaration",
+         quote:"Your sliding fee discount is only valid for one year (if you submitted documentation) or six months (if you completed a self-declaration)."},
+  temp: {term:function(d){ return addDays(d, 30); },
+         label:"Thirty days, temporary self declaration",
+         quote:"This temporary discount is valid for 30 days. You must provide proof of household income within 30 days to continue to receive the discount."}
+};
+
+/* ---------- calculator wiring ---------- */
+var dtype=$("dtype"), issue=$("issue"), lastuse=$("lastuse"), lastWrap=$("lastuseWrap"),
+    cNew=$("cNew"), cChange=$("cChange"), outEl=$("out"), ruleEl=$("ruleq"), trigEl=$("trigs");
+
+function cell(k, v, cls){
+  return '<div class="o"><span class="k">' + k + '</span><span class="v ' + (cls||"") + '">' + v + "</span></div>";
+}
+
+function calc(){
+  lastWrap.style.display = dtype.value === "temp" ? "block" : "none";
+
+  var d = parse(issue.value);
+  if (!d){
+    outEl.innerHTML = '<div class="o"><span class="k">Waiting</span><span class="v sm">Pick an issue date</span></div>';
+    ruleEl.textContent = "Pick an issue date to see the rule that applies.";
+    trigEl.innerHTML = "";
+    return;
+  }
+
+  var r = RULES[dtype.value];
+  var exp = r.term(d);
+  var last = addDays(exp, -1);
+  var left = diffDays(TODAY, exp);
+
+  var cells = "";
+  cells += cell("Term applied", r.label, "sm");
+  cells += cell("Expires on", fmt(exp), "g");
+  cells += cell("Last day it applies", fmt(last), "sm");
+  cells += cell("From August 6th 2026",
+    left > 0 ? (left + " days left") : (left === 0 ? "expires today" : (Math.abs(left) + " days expired")),
+    left > 0 ? "sm" : "w");
+
+  if (dtype.value === "temp"){
+    cells += cell("Proof of income due", fmt(addDays(d, 30)), "sm");
+    cells += cell("Form usable again", fmt(addMonths(d, 12)), "sm");
+  }
+  outEl.innerHTML = cells;
+
+  var ruleHtml = "The rule this came from, in your own words. <q>" + r.quote + "</q>";
+  if (dtype.value === "temp"){
+    ruleHtml += " Your page also limits it. <q>You may only use the temporary Self-Declaration of Income form once every twelve months.</q>";
+    var lu = parse(lastuse.value);
+    if (lu){
+      var ok = addMonths(lu, 12);
+      if (diffDays(d, ok) > 0){
+        ruleHtml += ' <span style="color:var(--warn)">The temporary form is not available on this date. The last use was ' +
+          fmt(lu) + " and the next date it may be used is " + fmt(ok) +
+          ". The review screen stops here and asks for documentation or a self declaration instead.</span>";
+      } else {
+        ruleHtml += ' <span style="color:var(--accent)">The last use was ' + fmt(lu) +
+          ", more than twelve months before this issue date, so the temporary form is available.</span>";
+      }
+    }
+  }
+  ruleEl.innerHTML = ruleHtml;
+
+  var t = [];
+  t.push({on:cNew.checked, q:"If you're a new patient at ANHC",
+    n: cNew.checked ? "Applies now. A first application is what starts the clock above."
+                    : "Does not apply to this record today."});
+  t.push({on:cChange.checked, q:"After a change in your household size or annual income",
+    n: cChange.checked ? "Applies now, ahead of the expiry date. A change resets the application rather than waiting for " + fmt(exp) + "."
+                       : "Does not apply to this record today. It fires on an event, never on the calendar."});
+  t.push({on:true, q:"Before your discount expires",
+    n:"Applies on " + fmt(exp) + ". Phase one computes that date and shows it on the review screen. Whether anything is sent to the patient about it is a later question, and nothing is priced until you tell us whether you already send renewal reminders."});
+
+  var html = "";
+  for (var i = 0; i < t.length; i++){
+    html += '<li><span class="badge ' + (t[i].on ? "yes" : "no") + '">' + (t[i].on ? "applies" : "no") +
+            "</span><span><b>" + t[i].q + "</b><br>" + t[i].n + "</span></li>";
+  }
+  trigEl.innerHTML = html;
+}
+[dtype, issue, lastuse, cNew, cChange].forEach(function(el){
+  el.addEventListener("change", calc);
+  el.addEventListener("input", calc);
+});
+
+/* ---------- the tests ---------- */
+var TESTS = [
+  {name:"Documentation, issued August 6th 2026",
+   expect:"August 6th 2027",
+   run:function(){ return fmt(RULES.doc.term(mk(2026,8,6))); }},
+  {name:"Self declaration, issued August 31st 2026, six months lands on a short month",
+   expect:"February 28th 2027",
+   run:function(){ return fmt(RULES.self.term(mk(2026,8,31))); }},
+  {name:"Self declaration, issued December 31st 2026",
+   expect:"June 30th 2027",
+   run:function(){ return fmt(RULES.self.term(mk(2026,12,31))); }},
+  {name:"Documentation, issued February 29th 2028, leap day",
+   expect:"February 28th 2029",
+   run:function(){ return fmt(RULES.doc.term(mk(2028,2,29))); }},
+  {name:"Temporary form, issued August 6th 2026, thirty days",
+   expect:"September 5th 2026",
+   run:function(){ return fmt(RULES.temp.term(mk(2026,8,6))); }},
+  {name:"Temporary form used August 6th 2026, next date it may be used",
+   expect:"August 6th 2027",
+   run:function(){ return fmt(addMonths(mk(2026,8,6), 12)); }},
+  {name:"Temporary form used March 1st 2026, a second use on January 4th 2027 is refused",
+   expect:"refused until March 1st 2027",
+   run:function(){
+     var lu = mk(2026,3,1), want = mk(2027,1,4), ok = addMonths(lu, 12);
+     return diffDays(want, ok) > 0 ? ("refused until " + fmt(ok)) : "allowed";
+   }},
+  {name:"Documentation, issued December 1st 2026, crosses the year",
+   expect:"December 1st 2027",
+   run:function(){ return fmt(RULES.doc.term(mk(2026,12,1))); }}
+];
+
+(function runTests(){
+  var rows = "", pass = 0;
+  for (var i = 0; i < TESTS.length; i++){
+    var got = TESTS[i].run();
+    var ok = got === TESTS[i].expect;
+    if (ok) pass++;
+    rows += "<tr><td>" + esc(TESTS[i].name) + "</td><td>" + esc(TESTS[i].expect) +
+            "</td><td>" + esc(got) + '</td><td class="' + (ok ? "p" : "f") + '">' +
+            (ok ? "pass" : "fail") + "</td></tr>";
+  }
+  $("testbody").innerHTML = rows;
+  $("testsum").textContent = pass + " of " + TESTS.length +
+    " passed, computed in this page when it loaded. A date rule is safe to automate because a test can prove it. A sliding fee determination is not, which is why that one stays with a person.";
+})();
+
+/* ---------- later phase switch, inert on purpose ---------- */
+$("offsw").addEventListener("click", function(){ $("offmsg").classList.toggle("on"); });
+
+/* ---------- start ---------- */
+syncTabs();
+calc();
+render();
+})();
+</script>
+</body>
+</html>
