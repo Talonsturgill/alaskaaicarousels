@@ -167,7 +167,7 @@ def llms_txt(site_url: str, runs: list, docket: dict | None = None,
         "",
         "## Data",
         "",
-        f"- [The data, schema, licence and how to use it]({site_url}/data/) "
+        f"- [The data, schema, license and how to use it]({site_url}/data/) "
         f"start here if you want to build on or quote the docket",
         f"- [The docket as open JSON]({site_url}/docket.json) versioned, "
         f"CC BY 4.0, field documentation travels with the data",
