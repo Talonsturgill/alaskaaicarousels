@@ -2637,3 +2637,61 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   in FILES rather than in context, because subagent output that lives only in a
   transient chat "quickly becomes obsolete and hidden". Our ledgers already do
   the third. https://lilianweng.github.io/posts/2026-07-04-harness/
+
+## 2026-08-06 - craft refresh (Phase 1, No.27)
+
+- THE SEARCH WENT LOOKING FOR A TECHNIQUE AND FOUND THE STUDIO ALREADY BUILT
+  IT, WHICH IS THE FINDING. The refresh started from the engraver's tone
+  variables. An 1840s account of copperplate work describes strokes producing
+  tone "according to their position, their relative approximation, and their
+  thickness, tints more or less varied"
+  (https://victorianweb.org/graphics/kinds/copper.html): direction, spacing,
+  WIDTH. TECHNIQUE_LIBRARY #63 fixes the angle and varies nothing, #64 varies
+  spacing 4 to 12 px, #92 varies direction and spacing off a heightfield, and
+  none of the three modulates stroke width. That looked like the gap. It is
+  not. `assets/js/akengrave.js` was committed 2026-07-31 for No.21 and already
+  implements all three variables, from the same RISD "Brilliant Line" material,
+  as four stated rules: the lay wraps the form, the swelled line, three
+  separately gated channels (mainline, crossline, interdot), and thickness set
+  per stroke by the light.
+- AKENGRAVE IS NOT IN TECHNIQUE_LIBRARY.MD. It has no entry number. Grepping
+  the library for "engrave", "white line" or "intaglio" returns nothing. The
+  directors room reads the library, so a bench built specifically to answer
+  artwork craft has been invisible to every planning phase since the day after
+  it shipped. It has been used in exactly one deck, No.21, and runs 22 through
+  26 never touched it. Those five runs scored 7.92, 8.37, 6.90, 7.25 and 7.27
+  with artwork craft the weakest criterion in four of them, and No.26's retro
+  concluded that "the technique library's entire bench sat unused" without
+  noticing that this part of the bench was not in the library to be used.
+- THE LESSON IS ABOUT THE LEDGER, NOT ABOUT ENGRAVING. A capability that exists
+  in code and not in the index does not exist. The upgrade trail recorded
+  akengrave in ledger/upgrades.json, which is the automation-change log, and
+  nothing wrote it into the file the planning phase actually reads. Phase 12
+  candidate for this run, and cheap: give it a number.
+- IT ALSO CARRIES A STRUCTURAL ANSWER TO THE OTHER REPEAT OFFENDER. Text
+  against geometry has been a hard fail in 3 of the last 10 runs because
+  qa.py's collision walk is DOM-only. akengrave's `reserve()` takes MEASURED
+  text boxes after `document.fonts.ready` and multiplies lay density by zero
+  inside them, tapering across a feather, so the colliding stroke is never
+  generated and there is no plate to size wrong. That is better than a knockout
+  and nothing has used it since it was written.
+- ADOPTED AS THIS RUN'S DECLARED ATTACK on the standing weakness, artwork craft
+  (weakest in 7 of the last 10 scored runs, mean 5.78, last 5.0). Every drawn
+  mass in this deck is an accumulation of swelled strokes whose direction comes
+  from a named form field and whose width carries the value, and every on-slide
+  label sitting against canvas geometry is reserved rather than plated.
+- ONE GENUINELY NEW IDEA FROM THE SCAN, PARKED. Line direction does not need a
+  heightfield, only a crude proxy solid: "Face detection is used to estimate a
+  rough proxy geometry of the head consisting of a cylinder, which is used to
+  warp the dither matrix, causing the engraving lines to curve around the face"
+  (https://arxiv.org/abs/2008.05336). akengrave's `form` is already an
+  arbitrary `(x,y) => height` callback, so a cylinder or a sphere proxy is a
+  three-line function and needs no code change. Worth writing into the library
+  entry as the usage pattern for non-terrain objects.
+- NOTHING NEW ON THE PLATFORM SIDE, and the fourth logging of manufactured
+  slide-count numbers. Aggregators this week repeat "exactly 7 slides perform
+  18% better than any other length" (logged 2026-08-02 and 2026-08-05) and add
+  two more with no traceable study behind them, "carousels generate 278% more
+  engagement than video posts and 596% more than text-only". Document
+  engagement re-reads at the 7.00 percent Socialinsider figure CAROUSEL_CRAFT
+  already carries. Our 8 to 10 band with a 6 floor stands. NOT APPLIED.
