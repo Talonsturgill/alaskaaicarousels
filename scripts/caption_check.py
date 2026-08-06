@@ -49,7 +49,12 @@ AI_TELLS = ["delve", "tapestry", "testament", "landscape of", "ever-evolving",
             "synergy", "embark", "seamless", "cutting-edge", "revolutionize",
             "supercharge", "skyrocket", "buckle up", "let's dive",
             "here's the honest part", "here is the honest part",
-            "here's what matters", "here is what matters", "imagine if",
+            "here's what matters", "here is what matters",
+            # Owner rule, 2026-08-06. The "here's the X part" construction is a
+            # narrator clearing his throat before the point, and this one slips
+            # past the two bans above because neither is a substring of it.
+            "here's the part that matters", "here is the part that matters",
+            "imagine if",
             "in a world where", "it's no secret"]
 # DATE FORM (owner rule 2026-08-05: "rn ur saying '10 August', the normal way to say it is
 # August 10th"). Month name first, day as an ordinal. ISO stays correct for a PROVENANCE
