@@ -2695,3 +2695,52 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   engagement than video posts and 596% more than text-only". Document
   engagement re-reads at the 7.00 percent Socialinsider figure CAROUSEL_CRAFT
   already carries. Our 8 to 10 band with a 6 floor stands. NOT APPLIED.
+
+## 2026-08-06 - No.27, "The Land Is On Offer. The Power Is Not." (7.93, below threshold, shipped disclosed)
+
+- AKT.rig RENDERS A BLACK FRAME IN THIS CONTAINER, and the sentinel is the only
+  reason the run knew. `AKT.webglOK()` returns true, the buffer is 2x, the context
+  is not lost, and a `MeshBasicMaterial` box renders orange at the centre pixel,
+  so geometry, camera and buffer are all fine. `AKT.rig(R, AKT.rigs.arcticNight)`
+  plus `AKT.environment` produces mean and variance both under 1 across 24 samples
+  and zero lit pixels. Hand-rolled `THREE.DirectionalLight` plus `AmbientLight`
+  renders correctly, `snap.ok=true`, and that is how slide 06 reached the rendered
+  ladder. The suspect is the rig's `castShadow` key with a 2048 map and PCFSoft on
+  SwiftShader, but the run did not isolate it further. UNTIL THIS IS FIXED, HAND
+  ROLL THE LIGHTS. Three prior runs specified a rung and shipped none, and this is
+  a plausible reason why nobody could tell.
+- THE ENGRAVING BENCH WAS BUILT ON 2026-07-31 AND THEN LOST FOR FIVE DECKS,
+  because it never got a TECHNIQUE_LIBRARY number and the directors room reads
+  that file rather than `assets/js/`. Now #93. The general failure is worth more
+  than the instance: `ledger/upgrades.json` records what the machine BUILT, and
+  nothing checks that a new capability reaches the file the planning phase READS.
+- A CONTACT SHADOW MUST BE CAST AFTER THE LAY, not before it. Slide 05 cast its
+  shadow, then ran `eng.surface` over the top, and the engraving painted the
+  shadow region BRIGHTER than the ground it was supposed to darken. qa.py reported
+  a NEGATIVE dL of -3.1, which is a signature worth recognising on sight: a
+  negative delta means the order is wrong, a small positive delta means the ground
+  is too dark. The two failures look identical in prose and have opposite fixes.
+- THE FACT-CHECKER KILLED THE THESIS FOR THE SECOND TIME IN THREE RUNS AND THE
+  REPLACEMENT WAS BETTER AGAIN. The deck was selected around a 4 to 5 cent per kWh
+  pitch against 14 to 17 cents. Neither figure exists in the cited article, which
+  was fetched twice and contains none of the words cent, kilowatt or megawatt. The
+  scout had carried both in good faith. Stripping the invented price left a deck
+  built entirely from the SELLING side's own documents, which is harder to argue
+  with than a rate comparison because nobody in it is contradicted.
+- A KILLED CLAIM CAN MEAN THE WRONG PAGE WAS FETCHED. The same fact-checker killed
+  the 4,700 acres and 12 parcels as unsourced, which conflicted with the docket,
+  which cited them. Checking rather than believing either found the figures are
+  real and widely reported; the fact-checker had simply fetched two pages that do
+  not carry them. Restored as C31, with the kill KEPT in the file and annotated,
+  because the kill was correct on the evidence it had.
+- THE CAPTION CRITIC KILLED BOTH CANDIDATES AND FOUND FIVE STANDING INSTRUCTIONS
+  THE BRIEF HAD MISSED. Fourth run in four that a subagent has caught the
+  showrunner. Both closes were CAPTION_CRAFT's own MENU EXAMPLES with the nouns
+  swapped, which is now the third occurrence after 07-30 and 08-05. THE MENU IS
+  THE TEMPLATE. Treat the printed examples as burned source text, not as models,
+  and require an invented close whenever the story can carry one.
+- DEGRADED, AND SAYING SO. No pixel critics, no flow critic, no copywriter and no
+  scorer subagent. Every machine gate ran and passed and the showrunner reviewed
+  every frame, but no independent reviewer transcribed a slide, which is the same
+  gap disclosed on 08-04 and 08-05. Three runs in a row is a pattern rather than
+  an incident, and the cause each time was context spent on the art build.

@@ -978,6 +978,30 @@
    "verification": "Red-tested by restoring the pre-fix selector on disk: the new assertion fails with 'header says 2 open door(s), the 3 cards below it show 1'. Green on the fix at 220 assertions, plus the self-test, the walk across all 15 upcoming ledger dates, and a byte-identical rebuild of both the home and docket pages.",
    "rollback": "git revert 0c660ed. The strip reverts to door-first order and the new doors-vs-cards assertion goes away with it.",
    "commit": "0c660ed"
+  },
+  {
+   "run_date": "2026-08-06",
+   "kind": "fix",
+   "area": "knowledge/TECHNIQUE_LIBRARY.md",
+   "change": "Gave assets/js/akengrave.js a library number (#93) with its four rules, its tone-gate semantics, the low-raking-key requirement, the reserve() text-collision kill, the performance rule and the shadow-ordering rule.",
+   "trigger": "Phase 1 went looking for stroke-width modulation and found the bench already existed, committed 2026-07-31 for No.21, with NO entry in the file the directors room reads. It had been used in exactly one deck. Runs 22 through 26 never touched it and artwork craft was the weakest criterion in four of them.",
+   "files": [
+    "knowledge/TECHNIQUE_LIBRARY.md"
+   ],
+   "verification": "Used by all nine slides of No.27. bespoke_check median 0.377 against a 0.60 fail, drawn share 61 percent against a 45 percent floor, qa.py zero fails. The entry documents behaviour observed in this run's renders rather than asserted.",
+   "rollback": "Remove entry 93 from knowledge/TECHNIQUE_LIBRARY.md."
+  },
+  {
+   "run_date": "2026-08-06",
+   "kind": "fix",
+   "area": "knowledge/FIELD_NOTES.md",
+   "change": "Recorded that AKT.rig plus AKT.environment renders a black frame in this container while hand-rolled DirectionalLights render correctly, with the isolation evidence, plus the negative-dL contact-shadow signature and the menu-as-template caption finding.",
+   "trigger": "Slide 06 shipped the AK3D fallback on its first render even though webglOK() returned true. A MeshBasicMaterial probe proved geometry, camera and buffer were fine, so the fault is in the rig. Three prior runs specified a rendered rung and built none.",
+   "files": [
+    "knowledge/FIELD_NOTES.md"
+   ],
+   "verification": "Isolated across four probe renders: AKT.rig black (snap.ok=false, lit=0); MeshBasicMaterial orange at centre pixel; MeshStandardMaterial with hand-rolled lights lit at 92,93,82 with snap.ok=true. Slide 06 ships the GPU rung on the hand-rolled path.",
+   "rollback": "Remove the 2026-08-06 entry from knowledge/FIELD_NOTES.md."
   }
  ],
  "scan_log": [

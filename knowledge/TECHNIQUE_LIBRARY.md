@@ -622,3 +622,48 @@ annotation is the strongest pair):
     under type without an opaque knockout plate, because qa.py's collision check
     is DOM-only and text-against-geometry is a recurring hard fail. Verified by
     `tests/akhachure_verify.py`. D2
+
+93. **White-Line Intaglio Surface (akengrave)** — `assets/js/akengrave.js`. THE
+    ENGRAVER'S BENCH, and the answer to modelled tone with genuine detail
+    everywhere instead of a uniform hatch. Committed 2026-07-31 for No.21 and
+    then LOST, because it was never given a number here and the directors room
+    reads this file. Five consecutive decks did not use it and artwork craft was
+    the weakest criterion in four of them. That is the lesson: a capability that
+    exists in code and not in the index does not exist.
+    `AKENGRAVE.create({seed, light:{azDeg, elDeg}})`, then
+    `await document.fonts.ready`, then `eng.reserve(AKENGRAVE.boxesFor(sel))`,
+    then `eng.surface(cx, {region, form, tone, budget, inkLo, inkHi, wMax,
+    crossDeg, step, feather})`.
+    FOUR RULES IT IMPLEMENTS: the lay wraps the form (direction is the modelling,
+    before any value); THE SWELLED LINE (a stroke tapers at both ends and widens
+    in the middle, drawn as a filled tapered polygon, never a stroked path);
+    three separately gated channels (mainline always, crossline only where
+    `tone <= 0.45`, interdots only where `tone <= 0.22`, which is a per-region
+    DETAIL BUDGET expressed as a drawing system); and thickness set PER STROKE by
+    the light, `0.75 + (wMax-0.75) * pow(1-ndotl, 1.6)`.
+    LOW `tone` MEANS DARK. Getting this backwards inverts the whole detail budget.
+    A LOW RAKING KEY IS A CRAFT DECISION, NOT A MOOD. Elevation 20 to 30 spreads
+    `ndotl` across nearly its full range so the swell is LEGIBLE; a high key
+    flattens every stroke to one width and gives back the uniform hatch the bench
+    exists to avoid. Elevation under about 15 collapses the other way, with every
+    face in shadow at `wMax`.
+    `form` IS AN ARBITRARY `(x,y) => height`, so it does not need a heightfield.
+    Any object takes a crude proxy solid (a cylinder, a plateau, a torus section),
+    and No.27 went further and made `form` a STORY QUANTITY on every slide, with
+    each frame printing `SURFACE = <what> (<claim-id>)`. That turns the craft into
+    an editorial argument and it is the strongest use of this bench so far.
+    `reserve()` IS THE STRUCTURAL KILL FOR TEXT AGAINST GEOMETRY, a hard fail in
+    3 of 10 runs, because qa.py's collision walk is DOM-only. It takes MEASURED
+    boxes after `fonts.ready` and multiplies lay density to zero inside them with
+    a feather, so the colliding stroke is never generated and there is no plate to
+    size wrong. It also makes contrast a computed constant, since the region's
+    base fill is what sits under every label.
+    PERFORMANCE: `normalAt` calls `form` four times per sample and `_walk` samples
+    every `step` px, so a many-term `form` puts millions of calls on the main
+    thread. Precompute any multi-source form into a 4 px lookup grid and hand the
+    bench a bilinear sampler. Never set `cx.filter` inside a stroke loop.
+    A SHADOW CAST ONTO THIS SURFACE NEEDS A LIT GROUND FIRST. No.27 laid #12202E
+    over #060B14 and three contact shadows measured under 2.0 L* of separation
+    before the pools were rebuilt brighter. Light the ground, THEN cast, and cast
+    AFTER `eng.surface` or the lay paints over the shadow and it samples brighter
+    than the ground it is supposed to darken. D3
