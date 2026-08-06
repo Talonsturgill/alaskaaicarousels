@@ -243,10 +243,44 @@ Right after claims:
    comment window, vote, regulatory docket, solicitation, procurement)
    not yet tracked, with its key dates, decider, four-rooms access state
    (open | indirect | closed), and source URLs straight from claims.json.
-2. Refresh tracked items whose next key date is within 7 days or has
-   passed: re-fetch one primary source (the notice page, the docket, the
-   newsroom), update status and history with a dated note, and correct
-   dates that moved. Bounded work, a handful of fetches at most.
+2. Refresh the items the WORKLIST names. Do not choose them yourself:
+
+       python scripts/docket_staleness.py --today <date> --budget 6
+
+   For each item it lists, re-fetch one primary source (the notice page,
+   the docket, the newsroom), update status and history with a dated
+   note, and correct dates that moved. Set `last_updated` even when
+   nothing changed, because "checked and unchanged" is a fact about the
+   item and an unset stamp is indistinguishable from never having looked.
+
+   THE OLD RULE SAID "whose next key date is within 7 days or has passed,
+   bounded work, a handful of fetches at most", AND IT LEAKED (maintainer,
+   2026-08-06: "I am afraid that it is not checking each item daily").
+   Measured that day: nine of the seventeen live items had NO future key
+   date, so all nine fell through to the "or has passed" clause, which
+   nominates every one of them at once, against a budget of "a handful",
+   with no priority order and no record of which lost. Whichever items a
+   run noticed got checked and the rest aged in silence.
+   `hb-259-data-center-utility-standards` sat 19 days at pending-decision.
+   `ratepayer-protection-pledge` sat 11 days.
+
+   The blind spot was worst where the stakes are highest. `adl-422741`,
+   STAK Energy's 50-year lease on 715.4 acres for a campus its developer
+   puts above $10 billion, closed comments on July 17th and DNR is now
+   weighing a final best-interest decision. That decision has no published
+   date, so the item has no future key date, so the selector meant to
+   catch breaking changes was structurally least able to see the item most
+   likely to break. An item awaiting an unscheduled decision is not a
+   quiet item, it is the loudest one, and the script now gives exactly
+   those a 3-day leash.
+
+   The script also prints anything it DEFERRED past the budget and
+   anything ROTTEN (past twice its limit while still live). Read both.
+   A cap that does not announce itself is indistinguishable from full
+   coverage, which is how this went unnoticed for weeks. If items are
+   rotten, re-verify them BEFORE writing anything new, and if the deferred
+   list is non-empty on consecutive days, raise `--budget` rather than
+   letting the tail rot.
 3. Never delete an item; decided or dead items change status and keep
    their history. Every change cites a fetched source.
 3a. A key_date's `kind` is its ROLE, and roles are not interchangeable.
