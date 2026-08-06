@@ -18,8 +18,8 @@
   "scoring": "done",
   "ship": "done",
   "upgrade": "done",
-  "gmail": "in_progress",
-  "retro": "in_progress"
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-08-06/plan.md",
@@ -42,5 +42,7 @@
   "type_temperature": 3
  },
  "story": "The land is on offer. The power is not. Alaska keeps offering land for AI data centers and every document from the sellers own side says the constraint is power.",
- "gas_watch_verdict": "GAS WATCH: PASS, read 2026-08-05, 1 day on record, chart absent (1 verified day, not yet a series). Looked at desktop and phone width. One presentation fix shipped, the day-by-day table now says what a blank cell means. gaswatch_build --self-test clean, pagecheck 15/15 PASS."
+ "gas_watch_verdict": "GAS WATCH: PASS, read 2026-08-05, 1 day on record, chart absent (1 verified day, not yet a series). Looked at desktop and phone width. One presentation fix shipped, the day-by-day table now says what a blank cell means. gaswatch_build --self-test clean, pagecheck 15/15 PASS.",
+ "gmail_draft_id": "r-389320546833067519",
+ "complete": true
 }
