@@ -841,15 +841,21 @@ def self_test():
 
     print("the numeral lint")
     model = gc.load_model(MODEL_CONFIG)
-    figs = figures(load_series(), model)
-    allowed = allowed_numerals(figs, model, ["CC BY 4.0"])
+    live_series = load_series()
+    figs = figures(live_series, model)
+    # The series goes in. Without it display_numerals contributes nothing, so
+    # the axis ticks the chart draws are unauthorised and the chart check below
+    # fails. It passed for a day anyway, because the chart needs two readings to
+    # draw at all and the ledger held one. Same blind spot the series-length
+    # cases were added to close, sitting inside the file that closed it.
+    allowed = allowed_numerals(figs, model, ["CC BY 4.0"], live_series)
     check("a figure drawn from the data passes",
           not numeral_lint(f"<p>Storage holds {figs.get('inventory_bcf')} Bcf.</p>",
                            allowed))
     planted = numeral_lint("<p>Storage sits at 87.3 percent of design.</p>", allowed)
     check("a number nothing computed is caught", bool(planted), str(planted))
     check("chart geometry is not mistaken for prose",
-          not numeral_lint(chart_svg(load_series(), model), allowed))
+          not numeral_lint(chart_svg(live_series, model), allowed))
     check("a typed number inside a chart TEXT label is caught",
           bool(numeral_lint("<svg><text>9182736</text></svg>", allowed)),
           "this previously passed a paragraph and certified nothing")
