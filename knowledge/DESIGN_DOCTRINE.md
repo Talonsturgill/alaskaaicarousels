@@ -166,6 +166,12 @@ wallpaper:
    zero anchors = wallpaper = fail.
 5. Diagram, don't decorate: thin leader lines, small mono labels, units,
    a scale — the grammar that signals "this image contains information."
+   A LEADER THAT POINTS AT NOTHING IS THE OPPOSITE SIGNAL. Every leader is
+   authored as a world-coordinate polyline ending ON the feature's own
+   coordinates and declared in `window.__akLeaders` (SKILL.md), because a
+   leader stopping in void is indistinguishable, to any reviewer, from one
+   reaching something small: No.28 shipped two of them past two pixel critics,
+   a flow critic and a scoring cycle.
 6. Alaska geography is the brand's recurring hero: committed GeoJSON +
    the canonical projection (parallels 55/65, rotate 154) — but vary the
    treatment (glow coast, stipple interior, hillshade, boroughs choropleth,

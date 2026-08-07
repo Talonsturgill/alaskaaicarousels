@@ -123,6 +123,29 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   convincing, measures 8.1. Related and not gated: a silhouette stroke on a
   LIGHT object must be outside-aligned onto the dark side, because a centred
   stroke puts half its width on paper it matches.
+- **A leader must land on the thing it points at, and say where that is**
+  (2026-08-07). EVERY drafting leader, callout rule or detail-circle tail is
+  authored as a **world-coordinate polyline that terminates ON the target's own
+  coordinates**, never as a fixed offset from the annotation's own centre, and
+  the slide declares it:
+
+  ```js
+  var SLIVER = [BX + 2, 838];                 // the feature's own coordinates
+  var leader = [[168, 884], [128, 856], SLIVER];   // bends, then the target
+  window.__akLeaders = [{ target: "the 2024 sliver's dimension line",
+                          at: SLIVER, to: leader[leader.length - 1] }];
+  ```
+
+  qa.py **FAILS** when `to` and `at` are more than `LEADER_LAND_PX` (24 design
+  px) apart. Opt-in like the contracts above, and like them a FAIL is the slide
+  contradicting its own arithmetic. Run No.28's slide 06 shipped two detail
+  circles whose leaders ran into empty void, through two pixel critics, a flow
+  critic and the first scoring cycle, because their tails were
+  `tail:[-70,-70,-150,-150]` from each circle's centre: the target was never
+  named anywhere, so there was nothing for any reviewer or gate to check, and a
+  leader stopping in void looks exactly like a leader reaching something small.
+  No pixel test can settle it (the landing tick puts ink at the terminus). The
+  discipline is the point: writing `at:` forces you to go find the target.
 - **Text may never overprint text**: qa.py FAILS when two elements' text
   line boxes intersect (the 2026-07-08 slide-3 defect class). Deliberate
   layering (a chip on an opaque plate crossing a display line box) must be

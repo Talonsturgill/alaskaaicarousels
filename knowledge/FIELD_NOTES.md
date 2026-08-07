@@ -2846,3 +2846,64 @@ fails. What the run actually taught is below.
   Both losses were legitimate. 02's went when `aggregate_check` killed a headline
   carrying "roughly 3,000", a rounding across two disagreeing sources; 03's went to
   the device's own 110 px display floor. Both are now recorded in the table itself.
+
+## 2026-08-07 - Phase 12 upgrade engineer (parked candidates + scan)
+
+- APPLIED, recorded here only as pointers, with the numbers in
+  ledger/upgrades.json: (1) `gate_status.py --sync` WRITES the GATE STATUS block
+  into the run record and the routine now re-syncs before the scorer, so the
+  staleness the 0.99 instinct keeps predicting is no longer a hand step; (2) a
+  drafting leader is now DECLARED in `window.__akLeaders` as
+  `{target, at:[x,y], to:[x,y]}` and qa.py FAILS a leader ending more than 24
+  design px from the feature it names (SKILL.md carries the contract).
+
+- PARKED: OPTICAL SIZE IS THE ONE TYPE AXIS NO GATE CAN SEE, AND IT BURNED THIS
+  RUN TWICE. `opsz 144 / wght 300` at 112px and then `opsz 108` on 64px blocks
+  both dropped the lowercase e crossbar, so the render read "wcrc" and "publishcd"
+  while copy.json, the render report and copy_sync_check all held the correct
+  STRINGS. That gate compares DOM text to recorded text; the glyphs are a
+  different question and nothing asks it.
+  What the frontier scan established. The Fraunces ">256px at max opsz renders
+  wrong" report is a FIREFOX bug (undercasetype/Fraunces#208,
+  https://github.com/undercasetype/Fraunces/issues/208), not ours. The rule that
+  does apply to us is the plain one: opsz is an OPTICAL SIZE axis and the browser
+  sets it from the rendered size for free under `font-optical-sizing: auto`
+  (default). Pinning `font-variation-settings:"opsz" N` is a deliberate
+  divergence from the size you are actually setting, and it also RESETS every
+  other axis on that element (MDN), which on Fraunces means SOFT and WONK snap
+  back to default. House rule going forward, not yet a gate: pin opsz only when
+  it is within about a quarter of the rendered px size, and when you pin it,
+  restate every axis you care about in the same declaration.
+  Why it is parked and not a gate. A probe run this phase (grid of px 48-160 x
+  opsz auto/matched/108/144 x wght 300/430/470, rendered in this container's
+  Chromium) confirmed the axis IS applied -- 'eee' at 100px measures 157.1px wide
+  at opsz 9 and 125.0px at opsz 144 -- but a naive "ink in the middle band of the
+  glyph" crossbar metric did NOT separate the broken cells from the good ones: it
+  returned identical numbers across all four opsz settings and collapsed to zero
+  at every size above 80px, because the band lands inside the counter as the
+  glyph grows. That is the encoding_reads lesson again, and shipping an
+  uncalibrated threshold into the type gates would be worse than the defect. A
+  real gate here needs a glyph-shape test (template-match the rendered glyph
+  against the same glyph at a known-good axis position, or count horizontal ink
+  runs across the x-height) calibrated on the two known-bad renders this run
+  produced and the good ones that replaced them. Both known-bads are recoverable:
+  the slide 01/02/03 HTML history is in the run branch.
+  Sources: https://developer.mozilla.org/en-US/docs/Web/CSS/font-variation-settings
+  (one axis set here overrides the others), https://pixelambacht.nl/2021/optical-size-hidden-superpower/
+  (let the browser do it unless you are deliberately breaking the rules),
+  https://github.com/undercasetype/Fraunces/issues/208.
+
+- PARKED, and it is a RECOMMENDATION to the maintainer rather than a candidate
+  gate: THE RENDERED LADDER NEEDS FUNDING, NOT DISCLOSURE. Four decks in six
+  (23, 24, 26, 28) argued a rung and shipped the 2D fallback, honestly disclosed
+  every time, and the scorer priced this run's at 0.48 of a point, the largest
+  single remaining loss. Phase 12 measured the obvious suspect and cleared it:
+  `examples/proof-3d` renders in this container TODAY, 3/3 slides, 0 page errors,
+  8.0/9.3/9.1s. The GPU is there. What is missing is sequencing: the rung slide
+  is written like every other slide, in slide order, with the same budget, so it
+  is always the first thing sacrificed when nine slides need to clear the gates.
+  A gate cannot fix this without banning the honest fallback the doctrine
+  allows. The fix is Phase 7 order: build the rung slide FIRST, render it, check
+  the sentinel, and if it fails, amend the dossier to declare no rung before any
+  other slide is written -- so a rung is a thing the run has already paid for
+  when it is claimed, not a thing it intends to pay for later.

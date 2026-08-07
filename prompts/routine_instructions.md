@@ -581,6 +581,16 @@ type spec. Craft expectations:
   the silhouette: a light stroke centred on a light object's boundary puts
   half its width on paper it matches, so outside-align it onto the dark side.
 
+- EVERY DRAFTING LEADER IS A WORLD-COORDINATE POLYLINE THAT ENDS ON ITS
+  TARGET'S OWN COORDINATES, declared in `window.__akLeaders` as
+  `{target, at:[x,y], to:[x,y]}` (SKILL.md). qa.py FAILS a leader that ends
+  more than 24 design px from the feature it names. No.28's slide 06 shipped
+  two detail circles whose leaders ran into empty void, past two pixel critics,
+  a flow critic and the first scoring cycle, because the tails were fixed
+  offsets from each circle's own centre and the target was never named
+  anywhere. A leader stopping in void looks exactly like a leader reaching
+  something small, so no reviewer can catch this and no pixel test can.
+
 EVERY SLIDE IS WRITTEN FOR THAT SLIDE. This is the whole product and it is the
 one thing the machine can do that a person cannot do at this cadence, so it is
 now gated rather than asserted:
@@ -642,19 +652,25 @@ python .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slides
    actually changed: camera azimuth, thicknesses, label sizes, planned
    elements that did not ship) BEFORE spawning any pixel-critic. Run
    2026-07-25 spawned its 4 critics first and roughly a third of their
-   findings measured the renders against superseded numbers. Generate that
-   section's gate lines from the artifacts, never by hand:
-   `python scripts/gate_status.py --run-dir out/<date>` and paste its block
-   verbatim. (That run's hand-written block claimed "qa.py PASS, zero warns"
-   while machine_qa.json on disk said WARN with 5, and only the scorer caught
-   the contradiction.)
+   findings measured the renders against superseded numbers. Never hand-write
+   that section's gate lines. The block is WRITTEN INTO the run record by the
+   script itself (2026-08-07):
+   `python scripts/gate_status.py --run-dir out/<date> --sync
+   out/<date>/storyboard.md`
+   (2026-07-25's hand-written block claimed "qa.py PASS, zero warns" while
+   machine_qa.json on disk said WARN with 5, and only the scorer caught the
+   contradiction.)
 
-   REGENERATE IT AT THE LAST RENDER, NOT THE FIRST (2026-08-05). A pasted
-   block goes stale the moment another render round happens under it. Run
-   No.26 pasted once, rendered four more times, and shipped a block that
-   contradicted its own artifacts on four rows and carried an unresolved
-   [FAIL] site_fresh nobody addressed; the scorer caught it. Re-paste after
-   the final render, and the ship gate now checks you did.
+   RE-SYNC AFTER EVERY ROUND THAT CHANGES AN ARTIFACT, NOT ONCE (2026-08-05,
+   2026-08-07). The block goes stale the moment another render, re-assemble or
+   site rebuild happens under it. No.26 pasted once, rendered four more times,
+   and shipped a block contradicting its own artifacts on four rows plus an
+   unresolved [FAIL] site_fresh. No.28 then did it TWICE in one run with the
+   instinct logged at 0.95, and its scorer read a record claiming 29 qa warns
+   and a missing score report on a deck measuring 20 that had scored. `--sync`
+   is idempotent and rewrites nothing when the record is already fresh, so the
+   rule is simply: run it again after every round. The ship gate still checks
+   you did.
 
 2. Spawn `pixel-critic` agents IN PARALLEL — one per 1-2 slides — each
    with the render PNG path, the thumb path, the slide's dossier, and the
@@ -717,6 +733,14 @@ email), contact_sheet.png, thumbs/. Verify assemble_report.json: slides
 count correct, pdf_mb in 2-25 (raster may run larger; <90 hard cap).
 
 ## PHASE 10 — SCORING
+
+FIRST, RE-SYNC THE RUN RECORD (2026-08-07, and this is the whole point of the
+step's position): `python scripts/gate_status.py --run-dir out/<date> --sync
+out/<date>/storyboard.md`. The scorer reads storyboard.md and prices its gate
+block into Deliverable completeness, so a block staled by the revision rounds
+between Phase 8 and here costs real points for a defect that does not exist.
+That is exactly what happened on 2026-08-07. The staleness check at the
+completion gate is a backstop; it runs AFTER the scorer, so it cannot save this.
 
 Spawn `scorer` with everything (renders, thumbs, contact sheet, storyboard,
 copy.json, claims.json, machine_qa.json, assemble_report.json, ledgers,
@@ -1046,8 +1070,8 @@ JSON in its final message, which YOU persist to
    --verify-pasted out/<date>/storyboard.md` must exit 0: it regenerates the
    block and diffs it row by row against the one in the run record, so a
    block pasted before the last render round cannot ship stale (2026-08-05).
-   If it reports stale rows, re-paste the fresh block; never edit the pasted
-   one by hand.
+   If it reports stale rows, refresh them with `--sync out/<date>/storyboard.md`
+   and read what changed; never edit the block by hand.
 6. Branch `claude/carousel-<date>`; commit everything (runs/, ledger/,
    docs/, knowledge/ changes); push with retries (2s/4s/8s/16s backoff).
 7. Open a PR (ready, not draft) and MERGE IT TO MAIN in the same run —
