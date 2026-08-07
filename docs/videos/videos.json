@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-08-07-boat-not-brain",
+      "date": "2026-08-07",
+      "title": "The Boat, Not The Brain",
+      "caption": "A robot uses machine learning to find the brain of each individual salmon, because that spot sits in a different place in every fish. That part is real and independently reported. Its arrival in Alaska is one trade write up against more than 1,300 Cook Inlet permits.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-08-07-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-08-07-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-08-07-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-08-07-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-08-06-same-face-same-plate",
       "date": "2026-08-06",
       "title": "The Same Face, The Same Plate",
