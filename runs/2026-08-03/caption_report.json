@@ -2,14 +2,24 @@
   "chars": 898,
   "hook": "AI supply chain here means one item on a five item list.",
   "hook_len": 56,
+  "commas": 11,
+  "comma_per_100": 1.3,
+  "comma_budget": 1.05,
   "hashtags": [
     "#CriticalMinerals",
     "#GraphiteCreek",
     "#AlaskaPermitting"
   ],
-  "deck_summary": "The five end markets at equal weight, the land tenure, both sides at one size, and the permitting clock.",
-  "brand_phrases_loaded": 27,
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "DATE: 'July 22' is the no ordinal form - add the ordinal, e.g. August 10th (owner rule 2026-08-05). ISO is still right for a citation stamp, but this is a sentence.",
+    "COMMAS: 11 commas in 148 words is 7.43 per 100, over the 6.2 ceiling (owner rule 2026-08-05, ten percent below this deck's shipped mean of 6.88). Cut at least 2. Split the sentence at the comma rather than deleting the comma.",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
+    "DATE FORM: 'July 22' needs the ordinal when no year follows; write 'July 22nd'",
+    "DATE FORM: 'July 28' needs the ordinal when no year follows; write 'July 28th'",
+    "COMMAS: 11 in 847 chars is 1.30 per 100, over the 1.05 budget. Cut 3, or split a sentence."
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

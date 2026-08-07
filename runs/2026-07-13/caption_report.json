@@ -2,14 +2,20 @@
   "chars": 633,
   "hook": "Golden Valley Electric's board weighs $120 million in new gas capacity today, and its members carry the debt.",
   "hook_len": 109,
+  "commas": 6,
+  "comma_per_100": 1.0,
+  "comma_budget": 1.05,
   "hashtags": [
     "#AlaskaEnergy",
     "#GVEA",
     "#AIDataCenters"
   ],
-  "fails": [],
-  "warns": [
-    "SUMMARY: no deck-summary line detected (accessibility + ranker)"
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "COMMAS: 6 commas in 96 words is 6.25 per 100, over the 6.2 ceiling (owner rule 2026-08-05, ten percent below this deck's shipped mean of 6.88). Cut at least 1. Split the sentence at the comma rather than deleting the comma.",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\""
   ],
-  "verdict": "PASS"
+  "warns": [],
+  "verdict": "FAIL"
 }

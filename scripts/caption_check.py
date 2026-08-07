@@ -49,7 +49,12 @@ AI_TELLS = ["delve", "tapestry", "testament", "landscape of", "ever-evolving",
             "synergy", "embark", "seamless", "cutting-edge", "revolutionize",
             "supercharge", "skyrocket", "buckle up", "let's dive",
             "here's the honest part", "here is the honest part",
-            "here's what matters", "here is what matters", "imagine if",
+            "here's what matters", "here is what matters",
+            # Owner rule, 2026-08-06. The "here's the X part" construction is a
+            # narrator clearing his throat before the point, and this one slips
+            # past the two bans above because neither is a substring of it.
+            "here's the part that matters", "here is the part that matters",
+            "imagine if",
             "in a world where", "it's no secret"]
 # DATE FORM (owner rule 2026-08-05: "rn ur saying '10 August', the normal way to say it is
 # August 10th"). Month name first, day as an ordinal. ISO stays correct for a PROVENANCE
@@ -238,6 +243,37 @@ def _ordinal(d):
     return f"{n}{suf}"
 
 
+# OWNER RULES 2026-08-06. Two style fixes rather than bans, so each one names
+# the replacement in its failure. Both are exempt inside a straight-quoted
+# verbatim passage, on the same reasoning as the phrase list: a source is
+# allowed to write however it wrote.
+#
+# CANNOT. "can't" is how the voice speaks. "cannot" is stiffer and reads
+# written rather than said.
+CANNOT_RE = re.compile(r"\bcannot\b", re.I)
+
+# AND / BUT AS AN OPENER. A sentence that opens on a conjunction is leaning on
+# the one before it. Matched only at a real sentence start: the top of the
+# text, after terminal punctuation and a space, or at the head of a line. A
+# decimal cannot trip it because "3.5 And" has no space after the period, and
+# the trailing boundary means Andrew and Butler are untouched.
+OPENER_RE = re.compile(r"(?:\A|(?<=[.!?])\s+|\n\s*)(And|But)\b")
+
+
+# THE CONTRAST REFRAME. The Economist's 2026 comparison of its own articles
+# against ChatGPT, Claude, Gemini and Grok named this the giveaway structure:
+# "It's not about X, it's about Y." It manufactures a sense of insight without
+# supplying one, which is exactly the move a publication built on verified
+# figures cannot afford. Matched only in its tight form, one subject pronoun
+# negated and then restated across a comma, so an ordinary sentence that
+# happens to carry "not" is untouched.
+_SUBJ = r"(?:it|this|that)"
+CONTRAST_RE = re.compile(
+    rf"\b{_SUBJ}(?:'s| is)\s+not\s+[^.!?;]{{2,70}},\s*{_SUBJ}(?:'s| is)\b"
+    rf"|\b{_SUBJ}\s+isn't\s+[^.!?;]{{2,70}},\s*{_SUBJ}(?:'s| is)\b",
+    re.I)
+
+
 def quoted_spans(t):
     """[(start, end)] of straight-double-quoted passages. An odd number of
     quotes means the text is not reliably quotable, so nothing is exempt."""
@@ -345,6 +381,31 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
             warns.append("PHRASE: banned phrase '%s' appears only inside a "
                          "straight-quoted verbatim passage, which is allowed. "
                          "Confirm it really is a quotation." % p)
+
+    for m in CONTRAST_RE.finditer(t):
+        if any(a <= m.start() and m.end() <= b for a, b in spans):
+            continue
+        fails.append("STYLE: the contrast reframe, %r. It manufactures insight "
+                     "instead of supplying it. State the thing that is true and "
+                     "stop." % m.group(0)[:60])
+
+    # Owner rules 2026-08-06. Same quoted-passage exemption as the phrase list.
+    for m in CANNOT_RE.finditer(t):
+        if any(a <= m.start() and m.end() <= b for a, b in spans):
+            warns.append("STYLE: 'cannot' appears only inside a straight-quoted "
+                         "verbatim passage, which is allowed. Confirm it really "
+                         "is a quotation.")
+        else:
+            fails.append("STYLE: %r, write \"can't\". The voice speaks it that "
+                         "way and 'cannot' reads written rather than said."
+                         % m.group(0))
+    for m in OPENER_RE.finditer(t):
+        if any(a <= m.start(1) and m.end(1) <= b for a, b in spans):
+            continue
+        fails.append("STYLE: a sentence opens on %r. A sentence that opens on a "
+                     "conjunction is leaning on the one before it. Join them, or "
+                     "cut the conjunction and let the sentence stand."
+                     % m.group(1))
 
     # engagement question: last non-hashtag line ends with ?
     content_lines = [l for l in nonempty if not all(w.startswith("#") for w in l.split())]

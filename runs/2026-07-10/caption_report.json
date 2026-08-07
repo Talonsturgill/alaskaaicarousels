@@ -2,12 +2,21 @@
   "chars": 723,
   "hook": "Three Alaska volcanoes are on elevated alert at once, and an AI built in Fairbanks is what stands watch over them.",
   "hook_len": 114,
+  "commas": 6,
+  "comma_per_100": 0.88,
+  "comma_budget": 1.05,
   "hashtags": [
     "#AlaskaVolcanoes",
     "#VolcanoMonitoring",
     "#GeoAI"
   ],
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "FURNITURE: banned template phrase 'deck walks through' (see knowledge/CAPTION_CRAFT.md)",
+    "FURNITURE: banned template phrase 'this deck walks' (see knowledge/CAPTION_CRAFT.md)",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\""
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

@@ -46,39 +46,117 @@ border-radius:12px;padding:18px 17px;}
 .gw-lede h3{font-family:Fraunces,Georgia,serif;font-size:19px;color:var(--gold);
 margin-bottom:8px;font-weight:500;}
 .gw-lede p{font-size:15px;color:var(--body);line-height:1.6;}
-.gw-gauge{background:linear-gradient(180deg,var(--panel2),var(--panel));
-border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:16px;
-padding:24px 22px 18px;margin:20px 0 22px;}
+/* THE METER.
+   A bar and never a dial, because a dial implies a red zone and a red zone is
+   a verdict this page does not get to publish. For the same reason the fill
+   carries no severity ramp: the standard meter runs accent to warning to
+   danger with magnitude, and doing that here would colour 30 percent as alarm
+   and 80 as safe, which is exactly the judgement the data cannot support. One
+   hue at one intensity at every value. The LENGTH is the whole message.
+
+   The unfilled track is meant to be a lighter step of the fill's own ramp, so
+   the vessel reads across its full width instead of the fill floating on a
+   void. On this palette that rule cannot be followed literally: gold over navy
+   composites to olive at every alpha worth using, #263237 at ten percent and
+   #323a36 at fifteen, which is mud. So the track is a lighter step of the
+   SURFACE and the gold family is carried by a warm rim and the fill itself.
+   The purpose of the rule is kept; the letter of it would have looked worse.
+
+   No outer glow on the fill. The first pass had a 26px gold bloom that spilled
+   across the empty track and turned the boundary between full and empty, the
+   one edge a reader actually measures, into a brown smear. */
+.gw-gauge{position:relative;overflow:hidden;
+background:
+  radial-gradient(130% 160% at 0% 0%,rgba(255,199,44,.09),transparent 55%),
+  linear-gradient(180deg,var(--panel2),var(--panel));
+border:1px solid var(--line);border-radius:18px;
+padding:20px 24px 18px;margin:20px 0 22px;
+box-shadow:0 18px 44px -28px rgba(0,0,0,.9);}
+.gw-gauge::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;
+background:linear-gradient(90deg,var(--gold),rgba(255,199,44,.16) 62%,transparent);}
 .gw-cta{margin-bottom:34px;}
-.gw-gauge-top{display:flex;justify-content:space-between;align-items:flex-end;
-gap:20px;flex-wrap:wrap;margin-bottom:18px;}
-/* Hero figure. Body sans rather than the serif, and proportional digits, which
-   is what stops a large standalone number reading loose. */
-.gw-hero{font-size:clamp(52px,9vw,86px);line-height:.92;color:var(--gold);
-font-weight:700;letter-spacing:-.02em;font-variant-numeric:proportional-nums;}
-.gw-hero span{font-size:.42em;color:var(--halo);margin-left:2px;font-weight:600;}
-.gw-hero-lab{font-size:13px;letter-spacing:.08em;text-transform:uppercase;
-color:var(--body);margin-top:9px;}
-.gw-gauge-side{text-align:right;}
-.gw-side-num{font-size:clamp(20px,2.6vw,26px);color:var(--snow);font-weight:600;}
-.gw-side-num span{color:var(--mute);font-size:.7em;font-weight:400;}
-.gw-side-lab{font-size:12px;letter-spacing:.05em;text-transform:uppercase;
-color:var(--mute);margin-top:7px;}
-.gw-gauge-track{position:relative;height:30px;border-radius:15px;
-background:var(--deep);border:1px solid var(--line);overflow:hidden;}
-/* Both stops are bright. The first version ramped from a dark gold on the
-   left, which dimmed the end of the bar the eye starts at and encoded nothing,
-   since the bar's LENGTH already carries the value. The sheen is decoration
-   that stays out of the way of the measurement. */
-.gw-gauge-fill{height:100%;border-radius:15px 0 0 15px;
-background:linear-gradient(90deg,var(--gold),var(--halo));
-box-shadow:0 0 18px rgba(255,199,44,.25);}
-.gw-gauge-mark{position:absolute;top:-3px;bottom:-3px;width:2px;
-background:var(--snow);}
-.gw-gauge-foot{display:flex;justify-content:space-between;gap:10px;margin-top:9px;
-font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);}
-.gw-gauge-foot span:last-child{color:var(--body);}
-@media(max-width:560px){.gw-gauge-side{text-align:left;}}
+
+.gw-gauge-head{display:flex;justify-content:space-between;align-items:baseline;
+gap:12px;flex-wrap:wrap;font-size:11px;letter-spacing:.14em;
+text-transform:uppercase;font-family:JBMono,ui-monospace,monospace;}
+.gw-gauge-what{color:var(--halo);}
+.gw-gauge-when{color:var(--mute);}
+
+/* The hero and its qualifiers sit together on the left and share a baseline.
+   Right-aligning the second block put 500px of nothing between two numbers
+   that describe the same reading. */
+.gw-gauge-read{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;
+margin:10px 0 18px;}
+.gw-hero{font-size:clamp(56px,9vw,88px);line-height:.82;color:var(--gold);
+font-weight:800;letter-spacing:-.035em;font-variant-numeric:proportional-nums;}
+.gw-hero span{font-size:.34em;color:var(--halo);margin-left:3px;font-weight:600;
+letter-spacing:0;}
+.gw-gauge-of{display:flex;flex-direction:column;gap:4px;padding-bottom:5px;
+border-left:1px solid var(--line);padding-left:20px;}
+.gw-gauge-of-lab{font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+color:var(--mute);font-family:JBMono,ui-monospace,monospace;}
+.gw-gauge-of-num{font-size:clamp(20px,2.4vw,26px);color:var(--snow);
+font-weight:600;font-variant-numeric:proportional-nums;line-height:1.1;}
+.gw-gauge-of-num i{color:var(--mute);font-size:.7em;font-weight:400;
+font-style:normal;}
+/* Pushed to the far right so the reading row reads left to right as level,
+   then volume, then what it did today. */
+.gw-gauge-move{margin-left:auto;text-align:right;display:flex;
+flex-direction:column;gap:4px;padding-bottom:5px;}
+.gw-gauge-move-num{font-size:clamp(18px,2.1vw,23px);color:var(--halo);
+font-weight:600;font-variant-numeric:proportional-nums;line-height:1.15;}
+.gw-gauge-move-num i{display:block;color:var(--mute);font-size:.55em;
+font-weight:400;font-style:normal;letter-spacing:.08em;text-transform:uppercase;
+margin-top:2px;}
+
+.gw-gauge-track{position:relative;height:38px;border-radius:7px;
+background:linear-gradient(180deg,#22314a,#1a2740);
+box-shadow:inset 0 1px 0 rgba(255,218,110,.22),
+           inset 0 -1px 0 rgba(0,0,0,.35),
+           inset 0 12px 20px -14px rgba(0,0,0,.75);}
+.gw-gauge-fill{position:absolute;inset:0 auto 0 0;width:var(--pct);
+border-radius:6px 2px 2px 6px;
+background:linear-gradient(180deg,var(--halo),var(--gold) 58%,#e6a911);
+animation:gwfill .9s cubic-bezier(.2,.75,.25,1) both;}
+/* The meniscus. The one pixel a reader measures against the ticks below, so it
+   is the brightest thing on the bar and nothing blooms across it. */
+.gw-gauge-fill::after{content:"";position:absolute;inset:0 0 0 auto;width:2px;
+background:#fff6d8;}
+@keyframes gwfill{from{width:0;}to{width:var(--pct);}}
+@media(prefers-reduced-motion:reduce){.gw-gauge-fill{animation:none;}}
+
+/* The reading rides inside the fill, against its leading edge, which is where
+   a reader is already looking. A flag floating above the bar collided with the
+   track and needed the value repeated a third time to make sense. */
+.gw-gauge-flag{position:absolute;top:0;bottom:0;left:0;width:var(--pct);
+display:flex;align-items:center;justify-content:flex-end;
+padding-right:10px;pointer-events:none;}
+.gw-gauge-flag-num{font-size:12px;font-weight:700;letter-spacing:.06em;
+color:#3a2a02;font-variant-numeric:proportional-nums;
+font-family:JBMono,ui-monospace,monospace;}
+/* Too little gas to letter inside, so the number steps out onto the track. */
+.gw-gauge-flag.is-left{width:auto;left:var(--pct);padding-right:0;padding-left:10px;
+justify-content:flex-start;}
+.gw-gauge-flag.is-left .gw-gauge-flag-num{color:var(--halo);}
+
+.gw-gauge-axis{display:flex;justify-content:space-between;height:8px;}
+.gw-gauge-axis span{width:1px;height:4px;background:#22344e;}
+.gw-gauge-axis span:first-child,.gw-gauge-axis span:last-child,
+.gw-gauge-axis span:nth-child(3){height:8px;background:#2c4a6e;}
+.gw-gauge-foot{display:flex;justify-content:space-between;gap:10px;margin-top:1px;
+font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);
+font-family:JBMono,ui-monospace,monospace;}
+.gw-gauge-cap{color:var(--body);}
+@media(max-width:560px){
+  .gw-gauge{padding:18px 15px 16px;}
+  .gw-gauge-read{gap:14px;}
+  .gw-gauge-of{border-left:0;padding-left:0;}
+  .gw-gauge-move{margin-left:0;text-align:left;flex-direction:row;
+  align-items:baseline;gap:8px;flex-wrap:wrap;}
+  /* One line on a phone. Stacked, the unit and its direction cost three rows
+     for a figure that is a footnote to the level above it. */
+  .gw-gauge-move-num i{display:inline;font-size:.6em;margin-top:0;}
+}
 .gw-chart{background:var(--panel);border:1px solid var(--line);border-radius:14px;
 padding:16px 12px 8px;margin:18px 0;overflow-x:auto;}
 .gw-table{margin:18px 0 8px;overflow-x:auto;}
@@ -238,22 +316,38 @@ every fact. Gold means a door is open to the public right now.</p>
 <p class="sub" data-reveal>How much gas Southcentral has in the ground, read every
 day and kept. CINGSA publishes today's number and no history, so this record
 exists only because it is collected daily.</p>
-<div class="gw-gauge" data-reveal>
-<div class="gw-gauge-top">
-  <div>
-    <div class="gw-hero">50.0<span>%</span></div>
-    <div class="gw-hero-lab">of design capacity, measured</div>
+<figure class="gw-gauge" data-reveal>
+<figcaption class="gw-gauge-head">
+  <span class="gw-gauge-what">Cook Inlet storage</span>
+  <span class="gw-gauge-when">read August 6th, 2026</span>
+</figcaption>
+<div class="gw-gauge-read">
+  <div class="gw-hero">50.3<span>%</span></div>
+  <div class="gw-gauge-of">
+    <span class="gw-gauge-of-lab">of design capacity</span>
+    <span class="gw-gauge-of-num">6.54 <i>of 13.0 Bcf</i></span>
   </div>
-  <div class="gw-gauge-side">
-    <div class="gw-side-num">6.5 <span>of 13.0 Bcf</span></div>
-    <div class="gw-side-lab">read August 5th, 2026</div>
+  <div class="gw-gauge-move">
+    <span class="gw-gauge-of-lab">On the day</span>
+    <span class="gw-gauge-move-num">34.8
+      <i>MMcf into storage</i></span>
   </div>
 </div>
-<div class="gw-gauge-track"><div class="gw-gauge-fill" style="width:50.0%"></div>
-<div class="gw-gauge-mark" style="left:50.0%"></div></div>
-<div class="gw-gauge-foot"><span>empty</span>
-<span>full, 13.0 Bcf</span></div>
+<div class="gw-gauge-track" role="img"
+ aria-label="Storage at 50.3 percent of design capacity, 6.54 of 13.0 Bcf, read August 6th, 2026.">
+  <div class="gw-gauge-fill" style="--pct:50.3%"></div>
+  <div class="gw-gauge-flag " style="--pct:50.3%">
+    <span class="gw-gauge-flag-num">6.54</span>
+  </div>
 </div>
+<div class="gw-gauge-axis" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+<div class="gw-gauge-foot">
+  <span>Empty</span>
+  <span class="gw-gauge-cap">Full, 13.0 Bcf</span>
+</div>
+</figure>
 <div class="ctarow" data-reveal><a class="cta ghost" href="gas-watch/">OPEN THE GAS WATCH</a></div>
 <h2 data-reveal><a href="topics/">What Alaska AI covers</a></h2>
 <p class="sub" data-reveal>Seven standing beats, tracked every day. Each one keeps its

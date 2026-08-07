@@ -2,12 +2,24 @@
   "chars": 755,
   "hook": "Quinhagak has no road out, so the roadless Yup'ik village learned to fly its own drones.",
   "hook_len": 88,
+  "commas": 11,
+  "comma_per_100": 1.55,
+  "comma_budget": 1.05,
   "hashtags": [
     "#ruralAlaska",
     "#YukonKuskokwimDelta",
     "#droneSAR"
   ],
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "VOICE: 'cannot' is banned house-wide, write 'can't' (maintainer rule, 2026-07-30)",
+    "STYLE: 'cannot', write \"can't\". The voice speaks it that way and 'cannot' reads written rather than said.",
+    "COMMAS: 11 commas in 119 words is 9.24 per 100, over the 6.2 ceiling (owner rule 2026-08-05, ten percent below this deck's shipped mean of 6.88). Cut at least 4. Split the sentence at the comma rather than deleting the comma.",
+    "FURNITURE: banned template phrase 'deck walks through' (see knowledge/CAPTION_CRAFT.md)",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
+    "COMMAS: 11 in 711 chars is 1.55 per 100, over the 1.05 budget. Cut 4, or split a sentence."
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

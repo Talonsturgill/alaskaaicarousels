@@ -2,12 +2,21 @@
   "chars": 896,
   "hook": "An Alaska Native-owned firm just won a $24.96M Navy contract for autonomous stealth boats. They will be built in Oregon.",
   "hook_len": 120,
+  "commas": 13,
+  "comma_per_100": 1.53,
+  "comma_budget": 1.05,
   "hashtags": [
     "#AlaskaBusiness",
     "#DefenseContracting",
     "#Autonomy"
   ],
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "COMMAS: 13 commas in 136 words is 9.56 per 100, over the 6.2 ceiling (owner rule 2026-08-05, ten percent below this deck's shipped mean of 6.88). Cut at least 5. Split the sentence at the comma rather than deleting the comma.",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
+    "COMMAS: 13 in 850 chars is 1.53 per 100, over the 1.05 budget. Cut 5, or split a sentence."
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

@@ -2,12 +2,21 @@
   "chars": 744,
   "hook": "Five teams are racing across 1,000 square kilometers of Alaska to prove a machine can fight a wildfire with no human in the loop.",
   "hook_len": 129,
+  "commas": 7,
+  "comma_per_100": 1.01,
+  "comma_budget": 1.05,
   "hashtags": [
     "#AlaskaWildfire",
     "#AutonomousDrones",
     "#XPRIZEWildfire"
   ],
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "PUNCT: colon present (never use colons; rewrite the sentence)",
+    "FURNITURE: banned template phrase 'the deck covers' (see knowledge/CAPTION_CRAFT.md)",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\""
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

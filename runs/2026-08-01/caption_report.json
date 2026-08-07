@@ -2,13 +2,21 @@
   "chars": 889,
   "hook": "If a state letter about your citizenship came and you set it aside, your registration stays inactive.",
   "hook_len": 101,
+  "commas": 11,
+  "comma_per_100": 1.3,
+  "comma_budget": 1.05,
   "hashtags": [
     "#AlaskaElections",
     "#VoterRolls",
     "#AIGovernance"
   ],
-  "deck_summary": "The state's three counts, what the letter asks of you, the pushback, the defense, and the map of the 3,048 nobody has drawn.",
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "COMMAS: 11 commas in 150 words is 7.33 per 100, over the 6.2 ceiling (owner rule 2026-08-05, ten percent below this deck's shipped mean of 6.88). Cut at least 2. Split the sentence at the comma rather than deleting the comma.",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
+    "COMMAS: 11 in 846 chars is 1.30 per 100, over the 1.05 budget. Cut 3, or split a sentence."
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }

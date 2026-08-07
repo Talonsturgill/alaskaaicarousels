@@ -2,13 +2,23 @@
   "chars": 895,
   "hook": "Enstar is warning about rolling blackouts and fielding new data center interest in the same week.",
   "hook_len": 97,
+  "commas": 10,
+  "comma_per_100": 1.17,
+  "comma_budget": 1.05,
   "hashtags": [
     "#AlaskaEnergy",
     "#GenesisMission",
     "#Railbelt"
   ],
-  "deck_summary": "Inside, the award row as published, what two utility chiefs said, and the blanks in both.",
-  "fails": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "DATE: 'July 22' is the no ordinal form - add the ordinal, e.g. August 10th (owner rule 2026-08-05). ISO is still right for a citation stamp, but this is a sentence.",
+    "COMMAS: 10 commas in 140 words is 7.14 per 100, over the 6.2 ceiling (owner rule 2026-08-05, ten percent below this deck's shipped mean of 6.88). Cut at least 2. Split the sentence at the comma rather than deleting the comma.",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\"",
+    "DATE FORM: 'July 22' needs the ordinal when no year follows; write 'July 22nd'",
+    "COMMAS: 10 in 855 chars is 1.17 per 100, over the 1.05 budget. Cut 2, or split a sentence."
+  ],
   "warns": [],
-  "verdict": "PASS"
+  "verdict": "FAIL"
 }
