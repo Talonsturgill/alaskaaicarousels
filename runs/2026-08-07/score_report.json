@@ -1,0 +1,141 @@
+{
+  "run_date": "2026-08-07",
+  "carousel_no": 28,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "weight": 0.14,
+      "score": 8,
+      "why": "Untouched by round 3 and still strong. Nine words, two specific numbers, a named tension, 'More than 600 were citizens. About 1,900 never answered.' The hollow 1,900 still holds its 3.0px stroke at 432px. The eyebrow 'AN UPDATE TO THE AUGUST 1ST DECK' does honest disclosure work as the first string a reader meets. Held off 9-10 for the same two reasons as cycle 1, neither of which was addressed. Nothing in the art is visibly Alaskan (an abstract card field on void, only the words say Alaska), and the lower-left repoussoir specimen collapses to an indistinct dark smudge at thumb size while the mono tag 'ALASKA BEACON, AUGUST 6TH, 2026' crosses it (machine_qa: 'busy art under text, bg edge density 0.05'). Top-loaded composition still warns, bottom third at 70% of the slide's own craft density."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "weight": 0.14,
+      "score": 7,
+      "why": "The beat structure is real and every loop is planted and paid: cover condition, finding at true share, the gap, the hero 1,900, a declared breather, the true-scale drawing, the turn (paused not reversed), the remedy, one ask. Slide 06 is a genuine change of register and 08 is the payoff the whole deck earns. But the flow critic's surviving finding is still visible in contact_sheet.png with fresh eyes: frames 01, 02 and 03 are one picture three times, a left-hand text column against a right-hand card field, and 03's recrop to 3x makes the cards larger without making the composition different. This is the disclosed three-of-nine-share-a-skeleton shortfall, and I am pricing it rather than reporting it. Descriptor 7 exactly, coherent but reorderable in places."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "weight": 0.16,
+      "score": 7,
+      "why": "Up one from cycle 1 because the largest craft defect in the deck is genuinely repaired, verified in the pixels. Slide 06's lower band now coheres: the guard has left the cream rail, the 40x circle's leader is a world-coordinate polyline landing with a tick on the 2,000-records datum at the left, the 24x circle's leader lands on the right terminus of the 580,000 rail, and both circles now sit on their subject's side of the frame with the tags swapped to match. The deck's most technical frame no longer contains furniture pointing at nothing. Slide 08's ellipse along the lit top arris is a better-motivated light than the circular core it replaced. Real craft is present throughout and I credit it: the emissive light law holds on all nine, drawn share 56%, median pairwise similarity 0.186, the drift on 04 and the engraved card on 08 are properly modelled. Against that, the disclosed shortfalls are priced here and they are what hold this at 7. THE RENDERED LADDER WAS DECLARED AND NOT REACHED: the dossier argues akthree GPU PBR on slide 04 at length and 04 ships the Canvas 2D fallback, which is descriptor 7's named demerit (hero stayed flat while the dossier argued for the rung rather than arguing flat), and it is the fourth deck in six to specify a rung and ship none. akpost, IGN dither and akcolor unused, though no banding is visible by eye on 05 or 08 so that cost little. Dead zones remain: slide 05's bottom third carries 6% craft cells, and slide 07's lower-right quadrant is a large empty warm glow beside a low-detail grey-green plane. Four contacts now sit under the 8.0 dL comfort band, 06 at 4.9, 09 at 5.8, and 05 and 08 at 7.3, the last of which is the acknowledged direct price of moving the light off slide 08's guard."
+    },
+    {
+      "name": "Story-art fusion",
+      "weight": 0.14,
+      "score": 8,
+      "why": "Still among the strongest in the series and roughly net-flat this round. The printed unit ('ONE CARD EQUALS 25 REGISTRATIONS') and independently true card counts hold (27 = 685, 24 struck = 600, 4 cool = 100, 14 dead = 350, 76 unlit = 1,900 at 25 per card), the lit fraction IS the measured fraction, and the open right edge makes the deck structurally unable to draw a closed whole. Slide 06 GAINED fusion this round: with the detail circles landing on real features, the claim that the two published totals differ by less than the drawing's line weight is now drawn as well as printed. Slide 07 lost a little: the undeliverable card no longer physically covers the date strip, it now abuts its left terminus, so the occlusion reads as inference rather than as a fact of the geometry. Still docked because the HOLLOW FIGURE grammar the deck's honesty argument rests on fires on 3 of 9 slides, and slide 03's 'ABOUT 85' is still set solid on the frame built to hold the one number counting people about whom nothing is known. Correcting the table fixed the record, not the deck."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "weight": 0.12,
+      "score": 8,
+      "why": "Division of Elections, Division of Motor Vehicles, Alaska Beacon, Alaska Public Media, myvoterportal.alaska.gov, the August 18th primary, the questioned ballot at the precinct, Juneau at 58 18 N 134 25 W on the cover footer. Slide 08 is real civic utility for a specific Alaskan with a deadline tomorrow, not marketing. One imported beat holds it off 9: the visual world is placeless index cards in a void, so nothing in the pixels is Alaskan, and no person is named on any slide ('the director' rather than Carol Beecher), a defensible fairness choice that still costs specificity."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "weight": 0.1,
+      "score": 8,
+      "why": "Every content slide adds a new verified specific: 685/600/100/350 with both published totals and their outlets (02), the gap plus the image-only provenance (03), 1,900 with the 62.8% drawn-field tag (04), the March 2026 comparison and the not-AI disclosure (05), 2,000 against 580,000 at a printed 1px = 645 records (06), paused plus no blanket restoration plus an undated second notice (07), four remedies with a live deadline (08). Body counts run 36 to 47 words, inside the 25-50 band. Docked for re-spending rather than filler: the 350 undeliverable carries on both 02 and 07, and the more-than-100 on both 02 and 03."
+    },
+    {
+      "name": "Variety vs ledger",
+      "weight": 0.08,
+      "score": 8,
+      "why": "Hero diverges from all four of Cut Block (24), Head Sheet (25), Open Block (26) and Traverse (27) against ledger/artwork.json, and I confirmed in the pixels that no table, bench, ground plane or camera station appears on any of the nine renders. Atmosphere diverges from three consecutive external keys because the light is emitted by the subject, which is a genuinely new idea for this series and one a critic can measure. Held at 8 because 2+ subsystems are reused and the entry says so: Fraunces plus Manrope plus JetBrains Mono is No.1's exact trio with the display face one deck old, and the register is again the house dark ground with a warm accent, the failure the ledger already priced on Nos. 20 and 22."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "weight": 0.07,
+      "score": 8,
+      "why": "Up five from cycle 1, and I verified each repair rather than taking the list on trust. Slide 06's guard 'THE TWO PUBLISHED TOTALS DIFFER BY LESS THAN THIS DRAWING'S LINE WEIGHT' now sits in the dark band beside the two datum lines it describes and I read every word of it in slide-06-thumb.png at 432px, where in cycle 1 it vanished entirely. Slide 08's 'NO PAGE PUBLISHES A DEADLINE FOR CONTACTING THE DIVISION' is fully legible at 432px in slide-08-thumb.png at its new #C6D2DC full opacity. Slide 07's 'PRIMARY, AUGUST 18TH, 2026' is gold on bare void with its hairline under it. Slide 07's chip contains both 'NO BLANKET' and 'RESTORATION' inside the box (text lines at y approx 423 and 468 inside a box spanning 385 to 497). Slide 02's body last line 'undeliverable.' now clears the unit tag with a full line of air. Slide 08's engraved stack clears the 80px margin and the portal URL sits well inside it. machine_qa carries zero contrast measurements and zero safe-zone rows other than slide 04's hero, which bleeds by design. Vector PDF 7.6 MB with title, 9 counters, 9 thumbs. Held at 8, not higher, because there are more squeakers than descriptor 7's 'one', all of which read but none of which is clean: slide 02's two totals lines run across the dark card grid (machine_qa measures art touching 40% of the ring around the 3,058 line, spanning 19%), slide 01's 'ALASKA BEACON, AUGUST 6TH, 2026' crosses the repoussoir card, slide 09's 'SOURCES IN COMMENTS' crosses the dark card rank, slide 03's final 'D' in 'DESCRIBED' grazes the caliper hairline, slide 06's '3,058 ALASKA BEACON, AUGUST 6TH' clears the cream card row by roughly 20px, and slide 08's engraved mono runs at 26px, below the 32px body floor, defended in the dossier as labels inset on a known solid at 9.1 to 1 and confirmed legible at 432px."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "weight": 0.05,
+      "score": 9,
+      "why": "Unchanged and still the deck's best-executed component. Hook lands in 132 chars and is a real contradiction rather than a tease, 600 citizens came off the list and she won't restore them herself. 869 chars inside the 300-900 band, exactly 3 hashtags at the end, no link in body, deck-summary line present, and the close is a genuinely debatable measurement question, 'Against 580,000 records compared, what is more than 600 a measure of?' The provenance paragraph about the letter posting as three images with no text layer is the position-taking the voice exists for. No first person, no banned phrase, no colon, no em or en dash, 'won't' not 'cannot', dates month-first ordinal. One soft line, paragraph 2's 'Both sit in one August 6th letter' leans on a referent the single-sentence lead only half establishes."
+    },
+    {
+      "name": "Deliverable completeness",
+      "weight": 0.1,
+      "score": 8,
+      "why": "The cycle-1 dock is genuinely cleared. The deck header's HOLLOW FIGURE state table now reads AS BUILT in the table itself, with a fourth column marking 01, 04 and 09 as 'fires', 02 and 03 as 'does NOT fire', and two paragraphs recording exactly why each lost its firing (02 to the aggregate_check headline rewrite, 03 to the device's own 110px display floor). Everything else is present: copy.json, caption.txt, claims.json with 24 claims each carrying verbatim, outlet, URL, date, confidence and conflict fields, aggregates.json and an aggregate_report PASS, a storyboard with a build reconciliation and all three revision rounds recorded, vector PDF with document title, contact sheet, 9 thumbs, a 9-source first comment with an explicit sourcing note on the 3,048 versus 3,058 conflict, and a 6-item aftercare list that flags the August 8th staleness risk. Held at 8 because the same defect family survives one level down. The GATE STATUS block inside storyboard.md, the one explicitly labelled 'generated by scripts/gate_status.py, do not hand-write these lines' and marked for verbatim paste into the run record, still reports '[WARN] qa.py WARN, 0 fails, 29 warns' and '[n/a] score, score_report.json missing', which describes the deck as it stood two rounds ago. The third-round prose beneath it says '0 fails, 19 warns' while render/machine_qa.json says 20. A shipped artifact should not misstate the run's own gate state. Gmail draft, URL resolution and inline previews are downstream of this gate and unverified here."
+    }
+  ],
+  "weighted_total": 8.55,
+  "threshold_applied": 8.0,
+  "threshold_rationale": "Iteration ladder row {revision_rounds: 3, threshold: 8.0}, applied for exactly three art revision rounds. I am counting the three the orchestrator names and the artifacts evidence: the machine-gate round recorded in BUILD RECONCILIATION, the pixel and flow critic round recorded in SECOND REVISION ROUND, and the scoring-cycle round recorded in THIRD REVISION ROUND. Three, not four or more, so the 8.0 row applies rather than the 7.7 row. This choice does not decide the verdict. The weighted total of 8.55 clears the ladder-relaxed 8.0, and it also clears the unrelaxed base ship_threshold of 8.3, so this deck ships on its own merits and not on a relaxation. The ladder relaxed the threshold; it did not relax a single score.",
+  "ship": true,
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "PASS",
+      "evidence": "Transcribed all nine renders at 2160x2700 plus copy.json post_copy, caption.txt and first_comment with fresh eyes. Only hyphens appear, in 'non-routine' (slide 06 body and caption) and in URL slugs in the first comment. 'in person' is unhyphenated on slide 08. claims.json C08 records that the source sentence contains an em dash and that the excerpt was deliberately cut before it."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "PASS",
+      "evidence": "None in any render, caption, first comment, aftercare or editor notes. The gold Polaris on slides 01 through 09 is drawn 4-point vector art at 14px (34px on slide 09), not a character."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "PASS",
+      "evidence": "Every on-slide figure maps to a C-id in the dossiers and to an entry in claims.json carrying outlet, URL, date and verbatim. aggregate_report.json verdict PASS, 14 assertions detected against 12 declared, the two undeclared being the artwork's own printed constants (25 registrations per card, 645 records per px) which aggregates.json lists as not_rederived with reasons. One soft spot noted rather than failed, unchanged from cycle 1: slide 03's 'ABOUT 85, STATUS NOT DESCRIBED' is a derived residual (C04 minus C01) not declared in aggregates.json, and since 600 is a floor the true gap is 'up to about 85'."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide",
+      "status": "PASS",
+      "evidence": "Transcribed every headline and body block at full size and diffed against copy.json. The Fraunces optical-size bug remains fixed at every size: 'were citizens' (01), 'Two published totals. Four reported outcomes.' (02), 'More than 600 were confirmed.' (03), 'records', 'reversed', 'remedy' (06, 07) all render with the lowercase e crossbar intact. Checked 'undeliverable', 'unilaterally', 'ineligibility', 'myvoterportal.alaska.gov', 'questioned', 'RESTORATION', '58 18 N 134 25 W'. copy_sync_check PASS, 53 authored slide strings all present in the render. No misspelling found."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "PASS",
+      "evidence": "All three cycle-1 instances are repaired and verified by eye. Slide 06's guard is out of the cream emitter rail and reads in full in the dark band; the two source lines moved with it and clear the cream card row. Slide 07's chip contains both words of 'NO BLANKET RESTORATION' inside its border. Slide 02's 'undeliverable.' clears the mono unit tag by a full line. Slide 08's four engraved lines and portal URL sit inside the 80px margin. Re-scanned all nine at full size for any new collision: no text box intersects another text box anywhere, and no glyph is cut by a frame edge. Remaining art-under-text spots (slide 01's Beacon tag on the repoussoir, slide 02's two totals lines on the dark grid, slide 09's sources line on the dark card rank, slide 03's 'D' grazing the caliper hairline) are all fully readable and are priced under Legibility, not failed here."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+      "status": "PASS",
+      "evidence": "machine_qa.json now carries ZERO contrast rows across all nine slides, down from three sub-4.5 measurements in cycle 1 (06 at 1.4, 07 at 3.5, 08 at 3.6). I verified the two worst by eye at feed size rather than trusting the number. In slide-06-thumb.png at 432px every word of 'THE TWO PUBLISHED TOTALS DIFFER BY LESS THAN THIS DRAWING'S LINE WEIGHT' is legible where in cycle 1 the whole line vanished. In slide-08-thumb.png 'NO PAGE PUBLISHES A DEADLINE FOR CONTACTING THE DIVISION' reads cleanly at its new #C6D2DC full opacity with the secondary pool moved right onto the card's arris. Slide 07's 'PRIMARY, AUGUST 18TH, 2026' is gold on bare void."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "PASS",
+      "evidence": "9 slides. assemble_report.json slides 9, 9 thumbs listed, counters run 01/09 through 09/09 and I confirmed each counter in its render."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "PASS",
+      "evidence": "machine_qa.json verdict 'WARN', fails 0, warns 20 (down from 29). assemble_report.json pdf_mode 'vector' (checked the field directly, not the prose), pdf_bytes 7,603,241 which is 7.6 MB and inside the 2-25 MB band, title 'More Than 600 Were Citizens. About 1,900 Never Answered'."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "PASS",
+      "evidence": "Same underlying story as No.22 (2026-08-01), six days back, but it carries a material new development, the August 6th Beecher letter reporting more than 600 confirmed citizens, the paused DMV comparison and the refusal to restore unilaterally (C01, C10, C11), and the update framing is printed as the FIRST string a reader meets on slide 01, 'AN UPDATE TO THE AUGUST 1ST DECK', confirmed in the render."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "PASS",
+      "evidence": "ledger/artwork.json last four hero_structures are THE CUT BLOCK (24), THE HEAD SHEET (25), THE OPEN BLOCK (26), THE TRAVERSE (27). This deck is a population of identical cards on an unbounded void with no object, no ground plane and no camera stations, lit only from inside the subject. Confirmed in the pixels across all nine renders and the contact sheet: no table, bench, sheet, title block or horizon appears anywhere."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "PASS",
+      "evidence": "Re-read the full banned_phrases list (75 entries) plus the dont rules against caption.txt, post_copy, first_comment and all 53 slide strings with fresh eyes. No banned phrase. No colon on any slide or in the caption. No first person. No sentence opening on 'And' or 'But'. 'won't' rather than 'cannot'. Same minor house-rule wobble as cycle 1, noted not failed because it is not on the hard-fail list and caption_check passes: brand.yaml date_format says use the plain form when a year follows, and slides 01 and 07 print 'AUGUST 6TH, 2026' and 'AUGUST 18TH, 2026'."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "PASS",
+      "evidence": "#AlaskaElections #VoterRolls #AKpol, exactly 3, at the very end. No URL anywhere in post_copy; the nine source links live in first_comment. caption_check PASS at 869 chars, hook 132 chars, 3 hashtags."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "PASS",
+      "evidence": "No placeholder text in any render or JSON. The empty phantom chip on slide 07 is deliberate and labelled 'SECOND NOTICE, NO DATE PUBLISHED'. Separately noted as stale rather than unfinished, and therefore priced under Deliverable completeness rather than failed here: storyboard.md's generated GATE STATUS block still reports 29 qa warns and 'score_report.json missing', which is the pre-round-3 state."
+    }
+  ],
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Build the hero on the rendered ladder for real, either akthree GPU PBR or an aksdf raymarched slide 04 with an akpost grade over it, because that single unclaimed rung is the largest remaining weighted loss in the deck (0.48 of a point) and this is now the fourth deck in six to declare a rung in the dossier and ship the fallback.",
+  "shortfall_note_for_email": "SHIPS, and it should go out TODAY. Weighted 8.55 against a threshold of 8.0, and it also clears the unrelaxed 8.3, so this is not a deck that squeaked through on a relaxed bar. All hard fails from the first scoring cycle are cleared and I verified each repair in the pixels rather than on the report: slide 06's honesty guard about the two published totals now reads word for word at 432px where it was previously invisible, slide 08's deadline guard reads clean, slide 07's chip contains RESTORATION inside its box, slide 02's body clears the unit tag, slide 08's engraved stack clears the safe zone, and both of slide 06's detail circles now land their leaders on the features they enlarge. Four things the maintainer should know before posting. (1) TIMING IS THE REAL RISK. Slide 08's first line is the August 8th absentee-request deadline, which is tomorrow. Posted today the deck's most useful slide is live; posted Saturday it is wrong. If this slips past today, slide 08 needs a rebuild, not a caption note. (2) The rendered ladder was declared and not reached AGAIN. Slide 04 ships the designed Canvas 2D fallback and it is disclosed honestly in the reconciliation, but this is the fourth deck in six with the same shortfall and it should be logged in the artwork ledger as a shortfall rather than a rung, with a decision made about whether the dossier stops specifying rungs the run cannot fund. (3) One shipped artifact is still out of date. The GATE STATUS block inside storyboard.md, the one marked 'do not hand-write these lines', still reports 29 qa warns and says score_report.json is missing, and the round-3 prose says 19 warns where machine_qa.json says 20. Regenerate that block before the file lands in runs/. (4) The disclosed craft prices are real and accepted: slide 08's contact shadow now reads dL 7.3 in the 'reads, barely' band, which is the direct cost of moving the light off the guard, and three of nine frames still share a skeleton. Editorially this is strong work. The card counts in the artwork were independently verified true, the emissive light law is a genuinely new idea for this series, the deck says out loud that the director's letter is published as three images with no text layer, and the caption room killing both first candidates for inventing a mechanism the record does not describe is exactly the behaviour to repeat.",
+  "notes": "Arithmetic, no cap applied because there are no hard fails: (8 x 0.14) + (7 x 0.14) + (7 x 0.16) + (8 x 0.14) + (8 x 0.12) + (8 x 0.10) + (8 x 0.08) + (8 x 0.07) + (9 x 0.05) + (8 x 0.10) = 1.12 + 0.98 + 1.12 + 1.12 + 0.96 + 0.80 + 0.64 + 0.56 + 0.45 + 0.80 = 8.55. Weights sum to 1.00. Movement from cycle 1: Legibility & platform fitness 3 to 8 (all three sub-4.5 contrast measurements gone, chip fixed, collision cleared, safe zone cleared, verified at 432px), Artwork craft 6 to 7 (slide 06's lower band repaired, the unreached ladder and the remaining dead zones still holding it at descriptor 7), everything else unchanged. Raw total moved 8.04 to 8.55 and the 6.9 cap is gone. Disclosed shortfalls judged rather than rediscovered, as instructed: the unreached akthree ladder and the missing akpost grade are priced in Artwork craft at 7, no banding was visible by eye on slides 05 or 08 so the absent IGN dither cost nothing, akcolor's absence cost nothing visible, three-frames-alike is priced in Story arc at 7, and slide 08's dL 7.3 contact is priced in Artwork craft as an accepted trade for a legible guard. Two things I found fresh rather than inherited: the stale GATE STATUS block and the 19-versus-20 warn count in storyboard.md (priced in Deliverable completeness), and a font observation worth one line to the editor but not a defect, copy.json holds straight apostrophes throughout and copy_sync passes, but Manrope renders 'won't' on slide 07 and 'Division's' on slide 09 with a curved glyph; the authored copy is compliant so this is a face behaviour, not a copy error. Files reviewed: /home/user/alaskaaicarousels/config/scoring_rubric.yaml, /home/user/alaskaaicarousels/config/brand.yaml, /home/user/alaskaaicarousels/out/2026-08-07/render/slide-01.png through slide-09.png, /home/user/alaskaaicarousels/out/2026-08-07/final/contact_sheet.png, /home/user/alaskaaicarousels/out/2026-08-07/final/thumbs/slide-06-thumb.png, /home/user/alaskaaicarousels/out/2026-08-07/final/thumbs/slide-08-thumb.png, /home/user/alaskaaicarousels/out/2026-08-07/storyboard.md, /home/user/alaskaaicarousels/out/2026-08-07/copy.json, /home/user/alaskaaicarousels/out/2026-08-07/caption.txt, /home/user/alaskaaicarousels/out/2026-08-07/claims.json, /home/user/alaskaaicarousels/out/2026-08-07/aggregate_report.json, /home/user/alaskaaicarousels/out/2026-08-07/render/machine_qa.json, /home/user/alaskaaicarousels/out/2026-08-07/final/assemble_report.json, /home/user/alaskaaicarousels/out/2026-08-07/score_report.json, /home/user/alaskaaicarousels/ledger/artwork.json, /home/user/alaskaaicarousels/ledger/topics.json."
+}

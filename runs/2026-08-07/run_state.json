@@ -1,0 +1,41 @@
+{
+ "run_date": "2026-08-07",
+ "carousel_no": 28,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done (6 scouts, out/2026-08-07/scout_merge.md)",
+  "claims": "done (24 claims, 4 primary, claims_check PASS)",
+  "docket": "done (7 items refreshed, budget raised 6->7)",
+  "gas_watch": "done (PASS, one presentation fix applied)",
+  "selection": "done (out/2026-08-07/selection.md)",
+  "directors_room": "done (3 treatments, storyboard.md, dossier_check PASS)",
+  "copy": "done (caption room killed both first candidates, reassigned round shipped; caption_check PASS)",
+  "art_build": "done (9 slides, qa 0 fails, bespoke PASS 0.190 median / 56% drawn)",
+  "pixel_review": "in-progress (3 pixel critics spawned)",
+  "flow_review": "in-progress (flow critic spawned)",
+  "assemble": "done (vector PDF 8.23 MB, 9 slides)",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-08-07/plan.md",
+  "field_notes": "knowledge/FIELD_NOTES.md 2026-08-07 craft refresh",
+  "scout_merge": "out/2026-08-07/scout_merge.md",
+  "selection": "out/2026-08-07/selection.md",
+  "claims": "out/2026-08-07/claims.json",
+  "claims_notes": "out/2026-08-07/claims_notes.md",
+  "storyboard": "out/2026-08-07/storyboard.md",
+  "directors_room": "out/2026-08-07/directors_room.md",
+  "caption": "out/2026-08-07/caption.txt",
+  "copy": "out/2026-08-07/copy.json",
+  "aggregates": "out/2026-08-07/aggregates.json",
+  "render": "out/2026-08-07/render",
+  "final": "out/2026-08-07/final"
+ },
+ "gas_watch_line": "GAS WATCH: PASS, read 2026-08-07, 2 days on record, chart present",
+ "story": "UPDATE to No.22: Alaska tells legislators 600+ of the ~3,000 removed from the voter roll were citizens; ~1,900 never replied; primary Aug 18"
+}
