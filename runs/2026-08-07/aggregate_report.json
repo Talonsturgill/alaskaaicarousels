@@ -1,0 +1,136 @@
+{
+  "run_dir": "out/2026-08-07",
+  "render_report": "out/2026-08-07/render/render_report.json",
+  "aggregates_file": "out/2026-08-07/aggregates.json",
+  "detected": 14,
+  "declared": 12,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "600 were citizens",
+      "text": "More than 600 were citizens. About 1,900 never answered.",
+      "n": 600,
+      "subject": "were citizens"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Two published totals",
+      "text": "Two published totals. Four reported outcomes.",
+      "n": 2,
+      "subject": "published totals"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Four reported outcomes",
+      "text": "Two published totals. Four reported outcomes.",
+      "n": 4,
+      "subject": "reported outcomes"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "25 registrations",
+      "text": "One card equals 25 registrations",
+      "n": 25,
+      "subject": "registrations"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "four reported groups",
+      "text": "The four reported groups fall short of both published totals",
+      "n": 4,
+      "subject": "reported groups"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "three images",
+      "text": "The director's letter posts as three images with no text layer. These figures re",
+      "n": 3,
+      "subject": "images"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "2,000 records",
+      "text": "2,000 records in 2024. More than 580,000 this year.",
+      "n": 2000,
+      "subject": "records"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "645 records",
+      "text": "Drawn true at 1 px equals 645 records",
+      "n": 645,
+      "subject": "records"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "two divisions",
+      "text": "The two divisions compared just 2,000 records in 2024. More than 580,000 were co",
+      "n": 2,
+      "subject": "divisions"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "2,000 records",
+      "text": "The two divisions compared just 2,000 records in 2024. More than 580,000 were co",
+      "n": 2000,
+      "subject": "records"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "580,000 records",
+      "text": "580,000 records",
+      "n": 580000,
+      "subject": "records"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "2,000 records",
+      "text": "2,000 records",
+      "n": 2000,
+      "subject": "records"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "two published totals",
+      "text": "The two published totals differ by less than this drawing's line weight",
+      "n": 2,
+      "subject": "published totals"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "15 days",
+      "text": "Early and absentee in person voting opens 15 days before Election Day",
+      "n": 15,
+      "unit": "days"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 2,
+      "text": "One card equals 25 registrations",
+      "note": "The deck's printed unit constant, a property of the artwork rather than a claim about the record."
+    },
+    {
+      "slide": 6,
+      "text": "Drawn true at 1 px equals 645 records",
+      "note": "The drawing's printed scale constant. 580,000 records over 899.2 px is 645 records per px, a property of the artwork."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

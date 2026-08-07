@@ -1,0 +1,119 @@
+{
+ "run_date": "2026-08-07",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "More than 600 were citizens. About 1,900 never answered.",
+   "fragment": "600 were citizens",
+   "member": "C01",
+   "note": "Printed verbatim from the Beacon's reading of the Beecher letter. A floor, not a total."
+  },
+  {
+   "kind": "count",
+   "slide": 2,
+   "text": "Two published totals. Four reported outcomes.",
+   "fragment": "Two published totals",
+   "subject": "published totals",
+   "members": [
+    "C02",
+    "C03"
+   ],
+   "note": "Alaska Public Media printed 3,048 on July 23rd and the Alaska Beacon printed 3,058 on August 6th. No fetched page reconciles them, so the deck counts the totals rather than picking one."
+  },
+  {
+   "kind": "count",
+   "slide": 2,
+   "text": "Roughly 3,000 registrations. Four reported outcomes.",
+   "fragment": "Four reported outcomes",
+   "subject": "reported outcomes",
+   "members": [
+    "C04",
+    "C05",
+    "C06",
+    "C07"
+   ]
+  },
+  {
+   "kind": "design",
+   "slide": 2,
+   "text": "One card equals 25 registrations",
+   "fragment": "25 registrations",
+   "note": "The deck's printed unit constant, a property of the artwork rather than a claim about the record."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "The director's letter posts as three images with no text layer.",
+   "fragment": "three images",
+   "member": "C17"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "2,000 records in 2024. More than 580,000 this year.",
+   "fragment": "2,000 records",
+   "member": "C08"
+  },
+  {
+   "kind": "design",
+   "slide": 6,
+   "text": "Drawn true at 1 px equals 645 records",
+   "fragment": "645 records",
+   "note": "The drawing's printed scale constant. 580,000 records over 899.2 px is 645 records per px, a property of the artwork."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "More than 580,000 records were compared this year",
+   "fragment": "580,000 records",
+   "member": "C09"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Early and absentee in person voting opens 15 days before Election Day",
+   "fragment": "15 days",
+   "member": "C19",
+   "note": "The Division's own rule, printed verbatim. The derived calendar date August 3rd is deliberately NOT printed."
+  },
+  {
+   "kind": "count",
+   "slide": 2,
+   "text": "The four reported groups fall short of both published totals",
+   "fragment": "four reported groups",
+   "subject": "reported groups",
+   "members": [
+    "C04",
+    "C05",
+    "C06",
+    "C07"
+   ],
+   "note": "About 685 plus more than 100 plus about 350 plus about 1,900 is about 3,035, short of C03's 3,048 and C02's 3,058. The residual is drawn on the slide as a channel with no closing wall rather than printed as a figure."
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "text": "The two divisions compared just 2,000 records in 2024.",
+   "fragment": "two divisions",
+   "subject": "divisions",
+   "members": [
+    "C13",
+    "C08"
+   ],
+   "note": "The Division of Elections and the Division of Motor Vehicles, named in the joint statement (C13) and in the Beacon's 2024 comparison figure (C08)."
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "text": "The two published totals differ by less than this drawing's line weight",
+   "fragment": "two published totals",
+   "subject": "published totals",
+   "members": [
+    "C02",
+    "C03"
+   ],
+   "note": "3,058 from the Alaska Beacon and 3,048 from Alaska Public Media, drawn as two datum lines 2 px apart at the slide's printed constant and magnified 24x so the reader can see the disagreement is smaller than the drawing's own line weight."
+  }
+ ]
+}

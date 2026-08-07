@@ -2790,3 +2790,59 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   the repoussoir carries continuity so it changes state per slide and cannot be copied
   forward; and the falsifiable test is zero top-loaded warnings in the final qa.py,
   recorded in the run record either way.
+
+## 2026-08-07 - retro (No.28, the silent 1,900)
+
+Shipped 8.55 against a threshold of 8.0, clearing the unrelaxed 8.3 as well, after
+three art revision rounds. The first scoring cycle returned 6.9, capped by two hard
+fails. What the run actually taught is below.
+
+- **All three contrast failures were the same mistake wearing three hats, which is type set
+  over an object whose TONE WAS THE ARGUMENT.** Slide 06's honesty guard lay across
+  the cream emitter rail, in a deck where light equals knowledge. Slide 07's primary
+  date lay on the dead grey-green undeliverable card, the one solid that must never
+  receive warm light. Slide 08's deadline guard sat in the core of the card's own
+  spill. Every available "fix" that touched a tone would have cost the thesis to
+  save a line. The right move each time was to move the type, or move the light.
+  Nothing on any load-bearing object changed and the scorer went 3 to 8 on
+  Legibility.
+
+- **The deck's most technical frame contained two leaders pointing at nothing for
+  two whole rounds.** They were written as pixel deltas from each detail circle's
+  own centre, so no render could ever check whether they arrived. Rewritten as
+  world-coordinate polylines that terminate ON the feature with a landing tick, and
+  the two circles swapped sides so each sits on its subject's side of the frame.
+  Two pixel critics and a flow critic had already read the slide. The defect is
+  invisible to them because a leader stopping in void looks exactly like a leader
+  reaching something small.
+
+- **A generated block pasted into the run record went stale AGAIN**, three days
+  after the instinct that says not to do this was logged at 0.95 confidence. The
+  GATE STATUS block was pasted after the critic round; a third round then ran and
+  the block shipped claiming 29 qa warns and a missing score report on a deck that
+  measured 20 and had scored. `gate_status.py --verify-pasted` catches it, but only
+  at the completion gate, which is after the scorer has already read the stale file
+  and priced it. The instinct is now at 0.99. The real fix is procedural. Paste it
+  once, at the last render, and never before.
+
+- **Two independent caption directors invented the same mechanism.** Both wrote that
+  the more than 600 were confirmed because they wrote back. C01 says plainly that
+  600 is not the count who contacted the Division. When two writers working in
+  parallel reach the same false bridge, that is not two slips, it is the shape of
+  the record pulling toward the inference a reader wants. The brief has to carry
+  what the sources do NOT say, in capitals, not only what they do.
+
+- **The rendered ladder was declared and not reached for the fourth time in six
+  decks.** Slide 04's dossier argues akthree GPU PBR at length and the slide ships
+  the designed Canvas 2D fallback. It is disclosed honestly every time, which is
+  becoming its own problem, because a shortfall disclosed four times in six runs is
+  a standing capability gap, not a per-run miss. The open question for Phase 12 is
+  whether the dossier should stop specifying rungs a run cannot fund, or whether
+  the run should be able to fund them.
+
+- **The HOLLOW FIGURE table described a five-slide device on a deck that implements
+  three**, and the correction had been written only in prose 1,200 lines below the
+  table. Correcting the record is not correcting the deck, and the scorer said so.
+  Both losses were legitimate. 02's went when `aggregate_check` killed a headline
+  carrying "roughly 3,000", a rounding across two disagreeing sources; 03's went to
+  the device's own 110 px display floor. Both are now recorded in the table itself.

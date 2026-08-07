@@ -1,0 +1,101 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 34% / mid 27% / bottom 18% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "busy art under text (bg edge density 0.06) beneath 'An update to the August 1st deckAlaska v' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'Alaska Beacon, August 6th, 2026' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "encodings": [
+        "'almost none of this population produced information': dE 24.7, AUC 0.98, visible 0%/0%, seen 0/0px at 432w"
+      ],
+      "contacts": [
+        "'the enlarged specimen sitting in the lit pool': shadow L* 8.7 vs ground L* 17.5, dL 8.8 at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 49% / mid 39% / bottom 30% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "busy art under text (bg edge density 0.06) beneath '3,048 reported by Alaska Public Media, J' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath '3,058 reported by the Alaska Beacon, Aug' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (40% of the ring around '3,058 reported by the Alaska Beacon, Aug', spanning 19%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.06) beneath 'The four reported groups fall short of b' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the specimen fan on the emitting specimen pool': shadow L* 5.3 vs ground L* 23.7, dL 18.4 at 432w"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'The director's letter posts as three ima' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the unstruck specimen in its own pool': shadow L* 7.9 vs ground L* 53.6, dL 45.7 at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '1,900' at 70,300 516x217 (margin 80px)",
+        "busy art under text (bg edge density 0.06) beneath '62.8 percent of the drawn field' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "encodings": [
+        "'the measured part of this population is a corner of the frame': dE 15.9, AUC 0.94, visible 100%/82%, seen 4032/40934px at 432w"
+      ],
+      "contacts": [
+        "'the drift of unanswered cards in the single emitter pool': shadow L* 18.6 vs ground L* 29.3, dL 10.7 at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 65% of this slide's own average craft density (top 14% / mid 7% / bottom 6% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone [data-breather]",
+        "contact shadow: 'the unlit card in the emitting card pool': shadow L* 4.7 vs ground L* 12.0, dL 7.3 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "busy art under text (bg edge density 0.07) beneath 'Joint statement, Division of Motor Vehic' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the emitter rail on its own overlapping pools': shadow L* 18.2 vs ground L* 23.1, dL 4.9 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "busy art under text (bg edge density 0.06) beneath 'These records are not the same people as' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the unaddressed card lying over the date strip': shadow L* 9.9 vs ground L* 28.7, dL 18.7 at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the remedy card lifting off the picture plane': shadow L* 11.6 vs ground L* 18.9, dL 7.3 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the last dark card in the Polaris pool': shadow L* 4.3 vs ground L* 10.1, dL 5.8 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "busy art under text (bg edge density 0.06) beneath 'alaskaaihq.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'Sources in comments' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 20,
+  "verdict": "WARN"
+}
