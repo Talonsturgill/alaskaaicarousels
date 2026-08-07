@@ -2907,3 +2907,32 @@ fails. What the run actually taught is below.
   the sentinel, and if it fails, amend the dossier to declare no rung before any
   other slide is written -- so a rung is a thing the run has already paid for
   when it is claimed, not a thing it intends to pay for later.
+
+## 2026-08-07 - the editor's note, fifth recurrence, first structural one
+
+The dated email's Editor's note rendered as "None." again. Five runs have now
+lost that field, and the code comment above the alias list is a record of the
+first four. This one was different and worth separating from the others.
+
+The previous four were key drift. The scorer's prompt names a key, the prompt is
+written fresh each run, the agent's natural spelling wanders, and the reader
+looks for a name nobody wrote. Widening the alias list was the right fix each
+time and it kept working.
+
+This time the alias list was RIGHT and the lookup was wrong. `_alias` only ever
+searched `score_report.json`. The showrunner had written the run's own note into
+`copy.json` under `editor_notes_for_email`, which is the FIRST name on that
+list, and it still came back empty, because the function never opened that file.
+A widened list could never have fixed it. The tell was that two notes vanished
+at once, one of which used a name the code demonstrably knew.
+
+Worth carrying forward. When a field has failed the same way several times and
+the standing fix stops working, check whether the fix was ever addressing the
+mechanism or only the symptom. Four successful patches to an alias list is
+evidence the list was incomplete; it is not evidence the lookup was correct.
+
+Both files carry an editor note now and they say different things. The scorer's
+is a verdict on the deck and can stop a post. The run's own is the Gas Watch
+verdict, the caption-room record and the sourcing caveat. Printing one and
+silently dropping the other was never going to be right, so the script prints
+both, scorer first.
