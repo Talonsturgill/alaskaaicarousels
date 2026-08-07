@@ -694,20 +694,35 @@ def table_html(series, model, limit=TABLE_LIMIT):
     rows = [r for r in series if r.get("verified")][-limit:]
     if not rows:
         return ""
+    # The residual describes the day BEFORE the record that carries it, because
+    # it needs that day's OBSERVED weather and a day's weather is only observed
+    # once the day is over. The reconciliation object says so in its own `date`
+    # field. Keying the cell to the record instead put August 5th's 141.7 on the
+    # August 6th row while the prose section above the table, which reads
+    # balance_date, said August 5th in the same breath. Look up by the date the
+    # figure is ABOUT, so a value can never land on a row it does not describe.
+    residual = {}
+    for r in series:
+        if not r.get("verified"):
+            continue
+        on = (r.get("reconciliation") or {}).get("date")
+        _, rec_any = remodel(r, model)
+        if on and rec_any.get("non_cingsa_supply_mmcfd") is not None:
+            residual[on] = rec_any["non_cingsa_supply_mmcfd"]
     body = ""
     gaps = 0
     for r in rows:
         cin = r["cingsa"]
-        der, rec = remodel(r, model)
-        if der.get("peak_modeled_demand_mmcfd") is None or \
-                rec.get("non_cingsa_supply_mmcfd") is None:
+        der, _ = remodel(r, model)
+        resid = residual.get(r["date"])
+        if der.get("peak_modeled_demand_mmcfd") is None or resid is None:
             gaps += 1
         body += (
             f'<tr><td>{esc(r["date"])}</td>'
             f'<td>{round(cin["inventory_mcf"] / 1_000_000, 2)}</td>'
             f'<td>{cin["inventory_pct_of_design"]}</td>'
             f'<td>{blank(der.get("peak_modeled_demand_mmcfd"))}</td>'
-            f'<td>{blank(rec.get("non_cingsa_supply_mmcfd"))}</td></tr>')
+            f'<td>{blank(resid)}</td></tr>')
     # An empty cell is deliberate (see blank()), but on a short table it reads
     # as data this page failed to collect rather than as a figure the model had
     # no input for. One sentence, shown only when a cell is actually empty, and

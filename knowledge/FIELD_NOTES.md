@@ -2744,3 +2744,49 @@ outrank a frontier improvement by the phase's own reactive-first rule.
   every frame, but no independent reviewer transcribed a slide, which is the same
   gap disclosed on 08-04 and 08-05. Three runs in a row is a pattern rather than
   an incident, and the cause each time was context spent on the art build.
+
+## 2026-08-07 - craft refresh (Phase 1, No.28)
+
+- NOTHING NEW ON THE PLATFORM SIDE, and the FIFTH logging of the same manufactured
+  numbers. Aggregators this week again print "596% more engagement than standard text
+  posts" and "278% more engagement than video posts" with no traceable study behind
+  either (logged 2026-08-02, 2026-08-05 and 2026-08-06). Two of them now also report
+  documents at a 6.60 percent engagement rate against Socialinsider's 7.00, without
+  saying whose panel produced 6.60. One claim IS worth carrying forward because it
+  matches what LinkedIn's own ranking papers say rather than contradicting them: "the
+  LinkedIn algorithm prioritizes dwell time above almost every other metric", which is
+  the mechanism CAROUSEL_CRAFT already builds on. The 5 to 15 slide band the same
+  posts recommend is wider and vaguer than our 8 to 10 with a 6 floor, so our band
+  stands. NOT APPLIED.
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now
+- THE VISUAL-CRAFT HALF WENT LOOKING FOR THE TOP-LOADED COMPOSITION DEFECT AND FOUND
+  IT HAS A 400-YEAR-OLD NAME. Top-loaded composition is now in 5 of the last 10 runs'
+  final machine_qa and shipped again yesterday. The house already has a rule
+  (DESIGN_DOCTRINE 1, "the bottom third is composed, not left over"), a dossier field
+  (4a), a planning gate (dossier_check.py) and a pixel measurement (frame_balance).
+  What it does not have is a DEVICE, and every attempt so far has reached for
+  furniture, which the doctrine itself calls "the same defect wearing a costume".
+  REPOUSSOIR is the device: a near-foreground mass along the bottom and one side edge,
+  rising through the picture plane, bleeding off frame, occluding the subject's base.
+- IT PAYS TWICE, WHICH IS WHY IT IS THE RIGHT ANSWER AND A PLATE IS NOT. A repoussoir
+  is a lit solid, so it fills the lower band with modeled tone BY CONSTRUCTION rather
+  than by decoration; and it is simultaneously the strongest depth cue available,
+  because "occlusion of distant objects by nearer ones" costs nothing and reads
+  instantly. The 2019 survey puts the compounding plainly: "this repoussoir tree adds
+  a remarkably rich set of cues which make the painting have palpable depth". Poussin's
+  Landscape with a Calm and Claude's Coast Scene with the Rape of Europa are the named
+  exemplars; van Ruisdael's side tree is the same move in Dutch landscape.
+  https://eclecticlight.co/2019/06/15/pushing-it-back-depth-and-repoussoir-1/
+- IT IS ALREADY IN OUR OWN DOCTRINE TWICE AND HAS NO ENTRY NUMBER. TECHNIQUE_LIBRARY
+  mentions "repoussoir foreground bleeding off-frame" inside #42 Multiplane Parallax
+  and again inside a scene recipe, and DESIGN_DOCTRINE section 4 lists "a blurred
+  foreground element bleeding off-frame = instant expensive lens" as depth cue 4. So
+  the studio has written the word down three times and never made it a technique the
+  directors room can be assigned. That is the identical failure mode FIELD_NOTES
+  recorded yesterday about akengrave: a capability that exists in prose and not in the
+  index does not exist. Phase 12 candidate, cheap, same shape as yesterday's fix.
+- ADOPTED AS THIS RUN'S DECLARED ATTACK on the standing weakness. Every slide's dossier
+  field 4a names a repoussoir element or declares a breather with `data-breather` set;
+  the repoussoir carries continuity so it changes state per slide and cannot be copied
+  forward; and the falsifiable test is zero top-loaded warnings in the final qa.py,
+  recorded in the run record either way.
