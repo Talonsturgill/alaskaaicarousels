@@ -1017,7 +1017,7 @@
    ],
    "verification": "`python scripts/gate_status.py --self-test` -> 16 checks, 0 failures (covers: a block staled by a later round is caught and names its stale rows; --sync rewrites it; the record then verifies; prose above and below, the code fence and a single block survive; --sync is idempotent; a NEW round stales it again and --sync re-freshens it; indented blocks keep their indent; a record with no block gets one appended; an unresolved FAIL row still refuses; a missing target is reported, not created). END TO END on this run's artifacts: reconstructed the exact No.28 defect in a copy of out/2026-08-07/storyboard.md (qa row set to 29 warns, score row set to [FAIL] score_report.json missing); --verify-pasted printed 2 stale rows plus 1 unresolved FAIL and exited 1; --sync rewrote 16 lines as 14 fresh rows and exited 0; a second --sync reported 'already fresh (14 rows match the artifacts)' and changed nothing; --verify-pasted then exited 0; `diff` against the shipped out/2026-08-07/storyboard.md is IDENTICAL. No gate, threshold or hard-fail rule was changed.",
    "rollback": "revert the upgrade(2026-08-07) commit; --sync is additive, the pre-existing --require and --verify-pasted paths are untouched",
-   "commit": "pending upgrade(2026-08-07)"
+   "commit": "9e0ad0c16829f2769a1b7866bfed2064330714be"
   },
   {
    "run_date": "2026-08-07",
@@ -1034,7 +1034,7 @@
    ],
    "verification": "DEFECT RECONSTRUCTION: a fixture slide rebuilt from the No.28 slide 06 code (detail circle at 250,950 with tail:[-70,-70,-150,-150], target sliver at 760,470) renders and qa.py FAILS it -- \"leader lands on nothing: the leader for '2024 sliver on the datum line' ends at (100,800) but that feature is declared at (760,470), 738 design px away (tolerance 24)\". The repaired form of the same fixture (world-coordinate polyline terminating on the sliver) raises no leader row at all. REGRESSION: re-rendered this run's nine slides through the patched render.py and qa.py -> 0 fails, 20 warns, per-slide fail/warn counts IDENTICAL to the shipped out/2026-08-07/render/machine_qa.json; examples/demo-deck re-rendered 4/4 OK and qa exits 0 with warns only. No deck declares leaders yet, so the harvest is [] everywhere and nothing else moved. REJECTED ON THE MERITS: a pixel test of the terminus, because the leader's own landing tick puts ink where it ends, so every variant either always passes or fires on legitimate dense art.",
    "rollback": "revert the upgrade(2026-08-07) commit; the check is opt-in and reads a key no shipped slide sets, so reverting cannot change any existing deck's verdict",
-   "commit": "pending upgrade(2026-08-07)"
+   "commit": "9e0ad0c16829f2769a1b7866bfed2064330714be"
   }
  ],
  "scan_log": [
