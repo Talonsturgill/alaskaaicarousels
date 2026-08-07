@@ -1098,8 +1098,7 @@ def home_strip(series, model, prefix="", figs=None):
     # the other and the redesign would have had to be done twice.
     return f"""<h2 data-reveal><a href="{prefix}gas-watch/">Cook Inlet Gas Watch</a></h2>
 <p class="sub" data-reveal>How much gas Southcentral has in the ground, read every
-day and kept. CINGSA publishes today's number and no history, so this record
-exists only because it is collected daily.</p>
+day and kept.</p>
 {gauge(f)}
 <div class="ctarow" data-reveal><a class="cta ghost" href="{prefix}gas-watch/">OPEN THE GAS WATCH</a></div>"""
 
