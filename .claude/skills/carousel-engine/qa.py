@@ -47,6 +47,16 @@ Checks per slide (consuming render_report.json + the PNGs):
     four pixel critics said was floating while machine QA reported 0 fails. A
     shadow is a subtraction and needs something to subtract from; nothing here
     had ever asked whether a declared depth cue survived compositing.
+  - LEADER LANDS ON NOTHING (FAIL): opt-in. A slide declares each drafting
+    leader in window.__akLeaders as {target, at:[x,y], to:[x,y]} -- the feature's
+    own coordinates and where the leader ends -- and this FAILs when the two are
+    more than LEADER_LAND_PX apart. Added 2026-08-07 after run No.28's slide 06
+    shipped two detail-circle leaders pointing at void through two pixel critics,
+    a flow critic and the first scoring cycle: their tails were fixed pixel
+    deltas from each circle's own centre, so the target was never named anywhere
+    and no reviewer could tell a leader reaching something small from one
+    reaching nothing. A pixel test cannot answer it (the landing tick puts ink at
+    the terminus); declared arithmetic can.
   - UNSEEDED RANDOMNESS (FAIL): consumes render.py's determinism source scan
     and FAILS a slide whose inline script calls Math.random() or the crypto
     random APIs instead of the seeded AK.rng(seed) / AK.reseed(seed) the slide
@@ -75,6 +85,7 @@ Writes <render-dir>/machine_qa.json
 
 import argparse
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -475,6 +486,59 @@ def encoding_reads(img_arr, enc, design_w, design_h):
 # shadow is composited into, and the fact that a blurred shadow has no edge to
 # help the eye. Raising these is a tightening and is fine; lowering them is
 # the maintainer's call.
+# A leader may stop a little short of the feature it points at -- the drafting
+# gap is real practice -- but a gap is a few px, not a journey. 24 design px is
+# 2.2% of the frame width, comfortably past any intentional gap and far inside
+# run No.28's misses (300 and 240 px). Tolerance, not a threshold to tune down.
+LEADER_LAND_PX = 24.0
+
+
+def leader_lands(ld):
+    """CHECK A DECLARED LEADER AGAINST ITS DECLARED TARGET (2026-08-07).
+
+    Run No.28's slide 06 shipped two drafting detail circles whose leader lines
+    ran out into empty void, through two pixel critics, a flow critic and the
+    first scoring cycle. Nobody was careless: a leader stopping in void looks
+    exactly like a leader reaching something small, and the tails were authored
+    as fixed pixel deltas from each circle's OWN centre
+    (tail:[-70,-70,-150,-150]), so there was no place in the slide, the record
+    or the pipeline where the target was ever named. There was nothing to check.
+
+    A PIXEL test cannot answer this and was rejected rather than shipped weak:
+    the leader's own landing tick puts ink at its terminus, so "is there ink
+    where it ends" is always yes, and any corridor-masked variant of it would
+    fire on legitimate art. What the machine CAN check is arithmetic the author
+    supplies: where the leader ends, and where the feature it enlarges actually
+    is. Two points, one distance. This is the same shape as the contact-shadow
+    and encoding contracts -- opt-in, declared by the slide, failed only when
+    the slide contradicts itself -- and the real work it does is in the
+    authoring: you cannot write `at:` without going and finding the target's
+    coordinates, which is exactly the step the defect skipped.
+
+    Returns (verdict, detail): "fail" (the declaration disagrees with itself),
+    "warn" (the declaration is unusable, an authoring error) or "ok".
+    """
+    name = ld.get("target")
+    to, at = ld.get("to"), ld.get("at")
+    if not name:
+        return "warn", ("a leader was declared with no target name; every "
+                        "leader names the feature it points at")
+    if not to or not at:
+        miss = "to" if not to else "at"
+        return "warn", ("leader %r declares no numeric %r point (both `to`, "
+                        "where the leader ends, and `at`, the target's own "
+                        "coordinates, are required)" % (name, miss))
+    d = math.hypot(to[0] - at[0], to[1] - at[1])
+    if d > LEADER_LAND_PX:
+        return "fail", ("the leader for %r ends at (%g,%g) but that feature is "
+                        "declared at (%g,%g), %.0f design px away (tolerance "
+                        "%.0f). Author the leader as a world-coordinate "
+                        "polyline that terminates ON the target's coordinates, "
+                        "not as an offset from the annotation's own centre"
+                        % (name, to[0], to[1], at[0], at[1], d, LEADER_LAND_PX))
+    return "ok", "leader %r lands %.1fpx from its target" % (name, d)
+
+
 CONTACT_FAIL_DL = 4.0
 CONTACT_WARN_DL = 8.0
 
@@ -845,6 +909,19 @@ def main():
                 res["warns"].append("contact shadow: " + detail)
             else:
                 res.setdefault("contacts", []).append(detail)
+
+        # LEADER LANDS ON NOTHING (2026-08-07). Opt-in, and pure arithmetic on
+        # two declared points, so it cannot false-positive on an undeclared
+        # slide or on art it cannot understand. See LEADER_LAND_PX for why the
+        # measurement is a declaration and not a pixel test.
+        for ld in rec.get("leaders", []):
+            verdict, detail = leader_lands(ld)
+            if verdict == "fail":
+                res["fails"].append("leader lands on nothing: " + detail)
+            elif verdict == "warn":
+                res["warns"].append("leader declaration unusable: " + detail)
+            else:
+                res.setdefault("leaders", []).append(detail)
 
         # SVG LABEL OFF ITS OWN PLATE (2026-07-29). render.py measures every
         # SVG <text> against the <rect> painted under it. A label that spills

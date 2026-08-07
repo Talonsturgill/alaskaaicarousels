@@ -313,10 +313,27 @@ def main():
     # that keeps recurring because the scorer's prompt names the key and the
     # prompt is written fresh each run; widening the list is cheaper than
     # hoping the next prompt matches.
-    notes = esc(str(_alias("editor_notes_for_email", "notes_for_the_email",
-                           "notes_for_email", "editor_note",
-                           "honest_note_for_the_email",
-                           "honest_note", default="") or "None."))
+    # 2026-08-07: the FIFTH spelling, "shortfall_note_for_email", and the first
+    # time the LOOKUP ITSELF was wrong rather than the key. _alias only ever
+    # searched score_report.json, so a note the showrunner wrote into copy.json
+    # under a name ON THIS LIST still rendered "None.". Both files carry an
+    # editor note now, they say different things, and No.28 lost BOTH: the
+    # scorer's warning that the deck carries an August 8th deadline expiring
+    # tomorrow, and the run's own Gas Watch verdict, caption-room record and
+    # sourcing caveat. Read both sources and print both, in that order, because
+    # the scorer's note is the one that can stop a post.
+    def _note_from(src):
+        for k in ("editor_notes_for_email", "notes_for_the_email",
+                  "notes_for_email", "editor_note",
+                  "shortfall_note_for_email", "shortfall_note",
+                  "honest_note_for_the_email", "honest_note"):
+            v = src.get(k)
+            if v is not None and v != "":
+                return str(v)
+        return ""
+
+    _parts = [p for p in (_note_from(score), _note_from(copy)) if p.strip()]
+    notes = "<br><br>".join(esc(p).replace("\n", "<br>") for p in _parts) or "None."
 
     # post_copy -> caption fallback: the copywriter/Phase 6 emit 'caption' and
     # often no 'post_copy'; without this the paste-ready post block renders empty

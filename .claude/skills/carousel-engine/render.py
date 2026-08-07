@@ -572,6 +572,37 @@ IN_PAGE_QA_JS = """
       out.canvas_text.push(e);
     }
   } catch (e) {}
+  /* ANNOTATION LEADERS (2026-08-07). A leader line that stops in open field
+     looks exactly like a leader reaching something small, which is why run
+     No.28's slide 06 shipped two detail-circle leaders pointing at void through
+     TWO pixel critics and a flow critic: the tails were fixed pixel deltas from
+     each circle's own centre (tail:[-70,-70,-150,-150]), so no reviewer and no
+     gate could tell what they were supposed to arrive at. Pixels cannot answer
+     it either (the leader's own landing tick puts ink at the terminus), so the
+     slide DECLARES the arithmetic instead: for every drafting leader, where it
+     ends and where the feature it points at actually is. qa.py then checks the
+     two agree. Opt-in by construction -- a slide with no leaders declares
+     nothing -- but SKILL.md makes the declaration part of the slide contract
+     for any leader, callout or detail-circle annotation.
+
+       window.__akLeaders = [{ target: '2024 sliver dimension line',
+                               at: [BX + 2, 838],       // the FEATURE's own coords
+                               to: [BX + 2, 838] }];    // where the leader ends
+  */
+  out.leaders = [];
+  try {
+    const pt = (v) => Array.isArray(v) && v.length === 2 &&
+      v.every((n) => typeof n === "number" && isFinite(n))
+        ? [Math.round(v[0] * 10) / 10, Math.round(v[1] * 10) / 10] : null;
+    for (const e of (Array.isArray(window.__akLeaders) ? window.__akLeaders : []).slice(0, 60)) {
+      out.leaders.push({
+        target: (e && typeof e.target === "string" && e.target.trim())
+          ? e.target.trim().slice(0, 90) : null,
+        to: pt(e && e.to),
+        at: pt(e && e.at)
+      });
+    }
+  } catch (e) {}
   return out;
 }
 """
@@ -716,7 +747,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
-                                       "encodings", "contacts")})
+                                       "encodings", "contacts", "leaders")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:
