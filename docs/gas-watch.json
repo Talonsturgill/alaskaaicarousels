@@ -379,28 +379,28 @@
     },
     {
       "date": "2026-08-06",
-      "collected_utc": "2026-08-06T21:57:43Z",
+      "collected_utc": "2026-08-07T00:21:12Z",
       "collector_version": "1.0",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-08-06T09:00:00",
-        "source_timestamp_utc": "2026-08-06T17:00:00Z",
-        "inventory_mcf": 6501158,
-        "inventory_delta_mcf": 40067,
+        "source_timestamp": "2026-08-06T16:00:00",
+        "source_timestamp_utc": "2026-08-07T00:00:00Z",
+        "inventory_mcf": 6539667,
+        "inventory_delta_mcf": 34802,
         "storage_design_mcf": 13000000,
-        "inventory_pct_of_design": 50.0,
+        "inventory_pct_of_design": 50.3,
         "withdrawal_design_mcfd": 215000,
-        "withdrawal_operating_mcfd": 132117,
-        "withdrawal_available_mcfd": 132117,
+        "withdrawal_operating_mcfd": 159900,
+        "withdrawal_available_mcfd": 159900,
         "withdrawal_restriction_mcfd": 0,
         "injection_design_mcfd": 225000,
         "injection_operating_mcfd": 206320,
-        "injection_available_mcfd": 166253,
-        "injection_in_progress_mcfd": 40067,
+        "injection_available_mcfd": 171518,
+        "injection_in_progress_mcfd": 34802,
         "injection_restriction_mcfd": 0,
         "operational_note": "CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
-        "source_age_hours": 5.0
+        "source_age_hours": 0.4
       },
       "forecast": [
         {
@@ -458,9 +458,9 @@
         "peak_forecast_hdd": 6.3,
         "peak_modeled_demand_mmcfd": 103,
         "forecast_window_demand_bcf": 0.59,
-        "storage_withdrawal_mmcfd": -40.1,
+        "storage_withdrawal_mmcfd": -34.8,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 63.1,
+        "days_cover_at_peak": 63.5,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -506,7 +506,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-06T21:57:46Z",
+          "fetched_utc": "2026-08-07T00:21:13Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -515,7 +515,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-06T21:57:48Z",
+          "fetched_utc": "2026-08-07T00:21:14Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -524,12 +524,13 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-06T21:57:49Z",
+          "fetched_utc": "2026-08-07T00:21:15Z",
           "http_status": 200,
           "attempts": 1
         }
       ],
-      "flags": []
+      "flags": [],
+      "supersedes_posting": "2026-08-06T09:00:00"
     }
   ]
 }
