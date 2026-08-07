@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The documentation gap check, phase one. A scripted demonstration for R&amp;M Consultants, Inc.</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --panel:#0a1626;
+  --surface:#122a46;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#ffc72c;              /* one accent. Deliberately not green, because a
+                                    green tick would read as an all clear. */
+  --ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.55 var(--ui);letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:52rem;margin:0 auto;padding:26px 22px 40px}
+
+/* ---------- header ---------- */
+.mark{display:flex;align-items:center;gap:9px;font:400 12px/1 var(--mono);
+  letter-spacing:.18em;color:var(--ink);text-transform:uppercase}
+.mark i{width:12px;height:12px;display:block;background:var(--accent);
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+.hd{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:baseline;
+  justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:14px}
+.hd .for{font:400 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--cap)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(25px,4vw,33px);
+  line-height:1.12;letter-spacing:-.015em;margin:22px 0 8px;max-width:26ch}
+.sub{color:var(--sub);margin:0 0 20px;max-width:56ch}
+
+/* ---------- the honesty band, first thing under the title ---------- */
+.disc{border-left:2px solid var(--accent);padding:2px 0 2px 16px;margin:0 0 26px;max-width:62ch}
+.disc h2{font:400 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 10px}
+.disc p{margin:0 0 9px;color:var(--sub);font-size:15px}
+.disc p:last-child{margin-bottom:0}
+
+/* ---------- scenario tabs ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px}
+.tab{appearance:none;background:var(--panel);border:1px solid var(--rule);border-radius:8px;
+  color:var(--sub);font:inherit;font-size:14px;text-align:left;padding:9px 13px;cursor:pointer;
+  line-height:1.3}
+.tab b{display:block;color:var(--ink);font-weight:650;font-size:14px}
+.tab span{display:block;font:400 11px/1.4 var(--mono);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--cap);margin-top:3px}
+.tab:hover{border-color:#2a4a71}
+.tab[aria-pressed="true"]{border-color:var(--accent);background:#141d24}
+.tabnote{font-size:13px;color:var(--cap);margin:10px 0 22px}
+
+/* ---------- scenario ---------- */
+.scen{display:none}
+.scen.on{display:block}
+.scenhead{background:var(--panel);border:1px solid var(--rule);border-radius:10px;
+  padding:15px 17px;margin:0 0 20px}
+.scenhead h3{margin:0 0 4px;font-family:var(--display);font-weight:400;font-size:21px;
+  line-height:1.2;color:var(--ink)}
+.scenhead .meta{font:400 11px/1.7 var(--mono);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--cap)}
+.scenhead .ev{color:var(--sub);font-size:14px;margin-top:8px}
+.illus{display:inline-block;font:400 10px/1 var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:#0a1220;background:var(--accent);
+  padding:4px 7px;border-radius:3px;margin-bottom:9px}
+
+/* ---------- steps ---------- */
+.step{border-top:1px solid var(--rule);padding:18px 0 4px}
+.step.off{display:none}
+.stepn{font:400 11px/1 var(--mono);letter-spacing:.16em;color:var(--accent);
+  text-transform:uppercase;display:block;margin-bottom:9px}
+.step h4{margin:0 0 6px;font-size:17px;font-weight:650;color:var(--ink)}
+.step .lede{color:var(--sub);font-size:15px;margin:0 0 15px;max-width:62ch}
+.small{font-size:13px;color:var(--cap);margin:12px 0 0;max-width:62ch}
+
+/* rule cards */
+.rules{display:grid;gap:9px;margin:0}
+.rule{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:12px 14px}
+.rule .rid{font:400 12px/1 var(--mono);letter-spacing:.09em;color:var(--accent)}
+.rule .req{color:var(--ink);font-size:15px;margin:7px 0 9px;line-height:1.45}
+.kv{display:grid;grid-template-columns:8.5rem 1fr;gap:3px 14px;font-size:13px;margin:0}
+.kv dt{font:400 10px/1.7 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--cap)}
+.kv dd{margin:0;color:var(--sub);line-height:1.5}
+
+/* reader log */
+.log{border-top:1px solid var(--rule)}
+.logrow{display:grid;grid-template-columns:7.2rem 1fr;gap:0 14px;
+  border-bottom:1px solid var(--rule);padding:11px 0;align-items:baseline}
+.tag{font:400 10px/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;
+  padding:5px 0;color:var(--cap)}
+.tag.read{color:var(--sub)}
+.tag.skip{color:var(--accent)}
+.logrow .nm{color:var(--ink);font-size:15px}
+.logrow .dt{color:var(--cap);font-size:13px;margin-top:3px;line-height:1.5}
+
+/* check rows */
+.chk{border-top:1px solid var(--rule)}
+.chkrow{display:grid;grid-template-columns:4.6rem 1fr 8.6rem;gap:0 14px;
+  border-bottom:1px solid var(--rule);padding:10px 0;align-items:baseline;
+  opacity:0;transform:translateY(3px);transition:opacity .18s linear,transform .18s linear}
+.chkrow.in{opacity:1;transform:none}
+.chkrow .cid{font:400 12px/1.6 var(--mono);color:var(--cap)}
+.chkrow .clab{color:var(--sub);font-size:14px;line-height:1.45}
+.chkrow .cnote{display:block;color:var(--cap);font-size:12.5px;margin-top:3px}
+.res{font:400 11px/1.6 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-align:right}
+.res.found{color:var(--cap)}
+.res.missing{color:var(--accent)}
+.res.idle{color:var(--accent);border-bottom:1px dashed var(--accent);display:inline-block}
+.chkrow.missing{background:linear-gradient(90deg,rgba(255,199,44,.07),transparent 60%)}
+.runline{font:400 12px/1.6 var(--mono);color:var(--cap);margin:13px 0 0;letter-spacing:.04em}
+
+/* ---------- the handoff artifact ---------- */
+.report{background:#0d1a2c;border:1px solid #26405f;border-radius:10px;
+  padding:0;overflow:hidden;margin:2px 0 0}
+.rpthead{padding:16px 20px 14px;border-bottom:1px solid #26405f}
+.rpttitle{font:400 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 11px}
+.rpthead h5{margin:0 0 3px;font-family:var(--display);font-weight:400;font-size:20px;color:var(--ink)}
+.rpthead .rline{font-size:13.5px;color:var(--sub);margin:3px 0 0}
+.rpthead .rmeta{font:400 11px/1.7 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cap);margin-top:9px}
+.rptstand{margin:0;padding:13px 20px;background:rgba(255,199,44,.06);
+  border-bottom:1px solid #26405f;color:var(--ink);font-size:14px;line-height:1.5}
+.rptsec{padding:16px 20px;border-bottom:1px solid #26405f}
+.rptsec:last-child{border-bottom:0}
+.rptsec h6{margin:0 0 12px;font:400 11px/1 var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--cap)}
+.rptsec h6 b{color:var(--ink);font-weight:400}
+.items{list-style:none;margin:0;padding:0;counter-reset:it}
+.items li{counter-increment:it;position:relative;padding:0 0 15px 30px}
+.items li:last-child{padding-bottom:0}
+.items li::before{content:counter(it);position:absolute;left:0;top:1px;
+  font:400 12px/1.5 var(--mono);color:var(--accent)}
+.items .it{color:var(--ink);font-size:15px;line-height:1.45}
+.items .src{font:400 11.5px/1.6 var(--mono);color:var(--accent);margin-top:5px;letter-spacing:.03em}
+.items .whr{color:var(--cap);font-size:13px;margin-top:4px;line-height:1.5}
+.unex{list-style:none;margin:0;padding:0}
+.unex li{position:relative;border-left:2px dashed rgba(255,199,44,.5);
+  margin-left:2px;padding:0 0 14px 16px}
+.unex li:last-child{padding-bottom:0}
+.unex .it{color:var(--ink);font-size:15px;line-height:1.45}
+.unex .whr{color:var(--cap);font-size:13px;margin-top:4px;line-height:1.5}
+.rptfoot{padding:14px 20px;color:var(--cap);font-size:13px;line-height:1.55}
+.rptfoot p{margin:0 0 8px}
+.rptfoot p:last-child{margin-bottom:0}
+.rptfoot .sig{font:400 11px/1.7 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cap);margin-top:9px}
+
+/* ---------- run bar ---------- */
+.runbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;
+  border-top:1px solid var(--rule);padding:18px 0 0;margin-top:18px}
+.btn{appearance:none;background:var(--accent);border:0;border-radius:7px;color:#0a1220;
+  font:650 15px/1 var(--ui);padding:12px 18px;cursor:pointer}
+.btn:hover{background:#ffd45c}
+.btn.ghost{background:transparent;border:1px solid var(--rule);color:var(--sub);font-weight:400}
+.btn.ghost:hover{background:transparent;border-color:#2a4a71}
+.runbar .hint{font-size:13px;color:var(--cap);max-width:42ch}
+
+/* ---------- how it sits ---------- */
+.sits{margin-top:36px;border-top:1px solid var(--rule);padding-top:26px}
+.sits h2{font-family:var(--display);font-weight:400;font-size:24px;margin:0 0 6px;line-height:1.15}
+.sits .lede{color:var(--sub);font-size:15px;margin:0 0 20px;max-width:60ch}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.three div{background:var(--panel);border:1px solid var(--rule);border-radius:9px;padding:14px 16px}
+.three b{display:block;font:400 11px/1 var(--mono);letter-spacing:.14em;color:var(--accent);
+  text-transform:uppercase;margin-bottom:9px}
+.three p{margin:0;color:var(--sub);font-size:14px;line-height:1.5}
+.three p+p{margin-top:8px;color:var(--cap);font-size:13px}
+
+footer{margin-top:32px;border-top:1px solid var(--rule);padding-top:20px;
+  color:var(--cap);font-size:13px;line-height:1.6;max-width:66ch}
+footer p{margin:0 0 9px}
+footer p:last-child{margin-bottom:0}
+footer strong{color:var(--sub);font-weight:650}
+
+@media (max-width:640px){
+  .wrap{padding:20px 16px 32px}
+  .three{grid-template-columns:1fr}
+  .kv{grid-template-columns:1fr;gap:1px}
+  .chkrow{grid-template-columns:4.2rem 1fr;gap:0 10px}
+  .res{grid-column:2;text-align:left;margin-top:4px}
+  .logrow{grid-template-columns:1fr}
+  .tag{padding:0 0 4px}
+}
+
+/* Print opens everything, on a light ground, because a dark page is unreadable on paper. */
+@media print{
+  :root{--bg:#fff;--panel:#f5f7fa;--surface:#eef1f6;--rule:#ccd4de;
+        --ink:#12181f;--sub:#39434f;--cap:#59636f;--accent:#8a6300}
+  body{font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  .scen{display:block !important;break-before:page}
+  .scen:first-of-type{break-before:auto}
+  .step.off{display:block !important}
+  .chkrow{opacity:1 !important;transform:none !important}
+  .runbar,.tabs,.tabnote{display:none !important}
+  .report{background:#f7f9fc;border-color:#ccd4de}
+  .rpthead,.rptsec,.rptstand{border-color:#ccd4de}
+  .rptstand{background:#fbf3dd}
+  .illus{background:#8a6300;color:#fff}
+  .step,.report,.three div,.rule{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hd">
+    <div class="mark"><i></i>Prepared by Alaska AI</div>
+    <div class="for">R&amp;M Consultants, Inc. &nbsp;/&nbsp; Anchorage, Fairbanks, Juneau, Wasilla</div>
+  </div>
+
+  <h1>The documentation gap check, phase one</h1>
+  <p class="sub">Ahead of a pay estimate or a progress submittal, and again at closeout, it reads the
+  documentation you already produce and reports the contract required items it did not find.</p>
+
+  <div class="disc">
+    <h2>Read this first</h2>
+    <p>This is a scripted demonstration of the build proposed in the field study. It is not a live
+    system and it is not connected to anything.</p>
+    <p>We have never seen R&amp;M's records. Every project, folder, rule, record and count below was
+    made up for this page and is labelled illustrative, and so is every pairing of an office with a
+    service line. Nothing here is a fact about your operation,
+    and no number here is a claim about time saved or money recovered.</p>
+    <p><strong>Phase one contains no AI.</strong> What runs is a list of plain rules, each one naming
+    the contract section it came from. The same run gives the same answer every time, which is most
+    of the reason for building it this way.</p>
+    <p>Nothing published anywhere says R&amp;M has ever had a funding disallowance, an audit finding
+    or a record dispute. We looked, we found no evidence of one, and nothing on this page suggests
+    otherwise.</p>
+  </div>
+
+  <nav class="tabs" id="tabs" aria-label="Choose a scenario"></nav>
+  <p class="tabnote">Three illustrative runs, one per office. Pick one and step through it.</p>
+
+  <main id="stage"></main>
+
+  <section class="sits">
+    <h2>How it sits in your operation</h2>
+    <p class="lede">Three steps. Nothing changes for your field crews and there is nothing for them to install. The
+    change lands on two desks, whoever prepares the submittal and whoever reviews it, and if those two
+    do not change how they work nothing moves. A person stays on every decision the report touches.</p>
+    <div class="three">
+      <div>
+        <b>Step one</b>
+        <p>Your construction administration lead writes the rulebook. One plain file per contract, one
+        line per requirement, each line naming the section it came from.</p>
+        <p>They can read it, argue with it, and change it. If the software went away in a year, that
+        written list would still be worth having.</p>
+      </div>
+      <div>
+        <b>Step two</b>
+        <p>The check runs ahead of each pay estimate or progress submittal, and again at closeout. It
+        opens the folders you already fill and writes nothing back into them.</p>
+        <p>It logs every place it looked, so it can tell you afterward what it was not able to open.</p>
+      </div>
+      <div>
+        <b>Step three</b>
+        <p>The report reaches a person. They decide whether a gap matters, chase what is worth
+        chasing, and correct the rulebook when it is wrong.</p>
+        <p>Nothing here submits, approves, holds or blocks anything. The report is an input to a
+        judgement that stays with the person whose name is on the project.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>The report never says a project is complete.</strong> It lists the specific items the
+    rules did not find, then names everything it was not able to examine. A wrong flag costs a project
+    manager a minute. A wrong clear costs the check that person would otherwise have done themselves,
+    right before the submittal goes out. So this report never says a project is complete. A requirement
+    the rulebook is missing still shows up as nothing at all, which is why the rulebook has a named
+    owner and a maintenance condition.</p>
+    <p>Section numbers on this page are illustrative and were written for the demonstration. In the
+    build, every rule carries the section copied out of that project's own contract documents, because
+    a rule nobody can trace back is a rule nobody can argue with.</p>
+    <p>Prepared by Alaska AI for R&amp;M Consultants, Inc. August 7th 2026. Built from R&amp;M's public
+    pages only. A scripted demonstration of a proposed build, not a product running on your data.</p>
+  </footer>
+
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+   Illustrative data, invented for this demonstration. None of it came
+   from R&M, because we have never seen their records. Phase one has no
+   model in it, so every result below is written down in this file
+   rather than inferred, which is what the real rulebook does too.
+------------------------------------------------------------------ */
+var SCEN = [
+{
+  id: "pay",
+  tab: "Pay estimate no. 4",
+  tabsub: "Fairbanks",
+  project: "Birch Creek Road Rehabilitation",
+  meta: "Fairbanks office &nbsp;/&nbsp; Construction Administration, Materials Testing",
+  event: "Monthly pay estimate no. 4, covering work performed July 1st through July 31st 2026. The check ran overnight, ahead of the submittal.",
+  totals: { total: 21, shown: 7, ran: 19, idle: 2 },
+  rules: [
+    { id:"CA-03", req:"A daily inspector report exists for every calendar day the contractor worked.",
+      sec:"Standard Specifications 105-1.09", look:"One report file per day counted as a working day on the weekly statement of working days." },
+    { id:"CA-06", req:"Certified payroll is on file for the prime and for every subcontractor, for every week with work on site.",
+      sec:"Standard Specifications 107-1.11", look:"One payroll record per firm per week that appears in the daily reports." },
+    { id:"MT-02", req:"Every hot mix asphalt lot placed has a gradation and asphalt content result on file.",
+      sec:"Standard Specifications 401-3.02", look:"One test record per lot number recorded in the daily reports." },
+    { id:"MT-05", req:"Compaction results are on file for each embankment lift accepted.",
+      sec:"Standard Specifications 203-3.05", look:"One density record per lift and station range logged as accepted." },
+    { id:"CA-11", req:"A material certification is on file for each pay item accepted on certification.",
+      sec:"Standard Specifications 106-1.03", look:"One certification document per pay item the rulebook flags as certification accepted." },
+    { id:"CA-14", req:"Every pay item quantity on the estimate ties back to a source document.",
+      sec:"Special Provisions 109-1.02", look:"Each estimate line carries a reference to a field measurement, a test record or a delivery ticket." },
+    { id:"EN-02", req:"An erosion and sediment control inspection report is on file for each inspection the permit requires.",
+      sec:"Standard Specifications 641-3.01", look:"One inspection report per required interval and per qualifying rain event." }
+  ],
+  reader: [
+    { st:"read", nm:"Project folder, daily reports", dt:"Opened. 26 report files logged." },
+    { st:"read", nm:"Project folder, certified payroll", dt:"Opened. 34 payroll files logged." },
+    { st:"read", nm:"Materials testing exports, asphalt and soils", dt:"Opened. 61 test records logged." },
+    { st:"read", nm:"Project folder, material certifications", dt:"Opened. 19 certification files logged." },
+    { st:"read", nm:"Quantity records workbook", dt:"Opened. 44 rows logged." },
+    { st:"skip", nm:"Erosion control binder, scanned pages", dt:"Opened and logged as images. The rules read text, so nothing inside these pages was checked." },
+    { st:"skip", nm:"Subcontractor shared folder", dt:"Not opened. Read access was refused, so the reader recorded the refusal and moved on." }
+  ],
+  checks: [
+    { id:"CA-03", lab:"Daily inspector report for every working day", st:"missing", note:"27 working days on the statement. 26 reports found." },
+    { id:"CA-06", lab:"Certified payroll for every firm, every week worked", st:"missing", note:"5 firms across 8 weeks. One week is short." },
+    { id:"MT-02", lab:"Gradation and asphalt content per asphalt lot", st:"missing", note:"8 lots recorded. 7 have a result." },
+    { id:"MT-05", lab:"Compaction results per accepted embankment lift", st:"found", note:"Every lift logged as accepted has a density record." },
+    { id:"CA-11", lab:"Material certification per certification accepted item", st:"missing", note:"6 items flagged. 5 have a certification." },
+    { id:"CA-14", lab:"Every estimate quantity ties to a source document", st:"found", note:"44 estimate lines carry a reference." },
+    { id:"EN-02", lab:"Erosion and sediment control inspection reports", st:"idle", note:"The only copy is a scanned binder, so this rule had nothing readable to run against." }
+  ],
+  report: {
+    head: "Birch Creek Road Rehabilitation",
+    line: "Pay estimate no. 4, work performed July 1st through July 31st 2026",
+    meta: "Goes to the project manager, Fairbanks &nbsp;/&nbsp; copy to the construction administration lead, Anchorage",
+    missing: [
+      { it:"Certified payroll for the week ending July 18th 2026, Hollis Excavation.",
+        src:"Rule CA-06 &nbsp;/&nbsp; Standard Specifications 107-1.11",
+        whr:"Looked in the project folder under certified payroll. Payrolls for the same firm are on file for the three weeks either side." },
+      { it:"Daily inspector report for July 22nd 2026.",
+        src:"Rule CA-03 &nbsp;/&nbsp; Standard Specifications 105-1.09",
+        whr:"Looked in the project folder under daily reports. The weekly statement of working days counts July 22nd as a working day." },
+      { it:"Gradation and asphalt content result for hot mix asphalt lot 7.",
+        src:"Rule MT-02 &nbsp;/&nbsp; Standard Specifications 401-3.02",
+        whr:"Looked in the materials testing export for asphalt. Lots 1 through 6 and lot 8 each have a result." },
+      { it:"Material certification for the guardrail posts appearing on this estimate.",
+        src:"Rule CA-11 &nbsp;/&nbsp; Standard Specifications 106-1.03",
+        whr:"Looked in the project folder under material certifications. The estimate carries the item at 640 linear feet." }
+    ],
+    unex: [
+      { it:"The erosion control binder, 46 scanned pages.",
+        whr:"The pages logged as images with no text the rules could read, so rule EN-02 did not run. Whether today's records are readable this way is one of the questions the first two weeks answer." },
+      { it:"The subcontractor shared folder.",
+        whr:"Read access was refused. Rule CA-09, on commercially useful function reviews, did not run, because its records live in there." },
+      { it:"Anything filed after the reader ran.",
+        whr:"It read the folder as it stood on Monday night. A record added Tuesday morning is not in this report." }
+    ],
+    foot: "19 of the 21 rules in this contract's illustrative rulebook ran. 2 did not run, CA-09 and EN-02, both named above."
+  }
+},
+{
+  id: "prog",
+  tab: "Progress submittal no. 2",
+  tabsub: "Wasilla",
+  project: "Willow Slough Bridge Replacement",
+  meta: "Wasilla office &nbsp;/&nbsp; Construction Administration, Special Inspections",
+  event: "Progress submittal no. 2, structures work through July 24th 2026. The check ran Sunday night, ahead of the submittal.",
+  totals: { total: 16, shown: 6, ran: 15, idle: 1 },
+  rules: [
+    { id:"SI-01", req:"A special inspection report exists for every day structural welding took place.",
+      sec:"Standard Specifications 504-3.06", look:"One inspection report per day welding is recorded in the daily reports." },
+    { id:"SI-04", req:"A welder qualification record is on file for every welder named in an inspection report.",
+      sec:"Standard Specifications 504-2.02", look:"Every welder name appearing in an inspection report has a matching qualification record." },
+    { id:"SI-07", req:"High strength bolt installation is inspected and recorded for each connection lot.",
+      sec:"Standard Specifications 504-3.09", look:"One inspection record per connection lot listed in the erection sequence." },
+    { id:"MT-08", req:"Concrete cylinder results at 28 days are on file for each structural placement.",
+      sec:"Standard Specifications 501-4.03", look:"One 28 day result set per placement recorded in the daily reports." },
+    { id:"CA-05", req:"A driving log exists for every pile the records show as installed.",
+      sec:"Standard Specifications 505-3.04", look:"One log per pile number appearing in the daily reports." },
+    { id:"CA-14", req:"Every pay item quantity on the submittal ties back to a source document.",
+      sec:"Special Provisions 109-1.02", look:"Each line carries a reference to a field measurement, a test record or a delivery ticket." }
+  ],
+  reader: [
+    { st:"read", nm:"Project folder, special inspection reports", dt:"Opened. 22 reports logged." },
+    { st:"read", nm:"Project folder, welder qualifications", dt:"Opened. 6 qualification records logged." },
+    { st:"read", nm:"Concrete test results, lab export", dt:"Opened. 17 result sets logged." },
+    { st:"read", nm:"Pile driving logs, field tablet export", dt:"Opened. 31 logs logged." },
+    { st:"read", nm:"Quantity records workbook", dt:"Opened. 28 rows logged." },
+    { st:"skip", nm:"Fabricator submittals sent as email attachments", dt:"Not opened. The reader reads project folders and it does not read mailboxes." }
+  ],
+  checks: [
+    { id:"SI-01", lab:"Special inspection report for every welding day", st:"found", note:"22 welding days recorded. 22 reports found." },
+    { id:"SI-04", lab:"Qualification record for every welder named", st:"missing", note:"7 welder names appear in reports. 6 have a record." },
+    { id:"SI-07", lab:"Bolt installation inspection per connection lot", st:"missing", note:"6 connection lots in the erection sequence. 5 have a record." },
+    { id:"MT-08", lab:"28 day cylinder results per structural placement", st:"missing", note:"9 placements. 8 have a 28 day result set." },
+    { id:"CA-05", lab:"Driving log for every pile shown as installed", st:"found", note:"31 piles recorded. 31 logs found." },
+    { id:"CA-14", lab:"Every submittal quantity ties to a source document", st:"found", note:"28 lines carry a reference." }
+  ],
+  report: {
+    head: "Willow Slough Bridge Replacement",
+    line: "Progress submittal no. 2, structures work through July 24th 2026",
+    meta: "Goes to the project manager, Wasilla &nbsp;/&nbsp; copy to the construction administration lead, Anchorage",
+    missing: [
+      { it:"Welder qualification record for the welder named in the inspection reports of July 8th and July 9th 2026.",
+        src:"Rule SI-04 &nbsp;/&nbsp; Standard Specifications 504-2.02",
+        whr:"Looked in the project folder under welder qualifications. Six of the seven names in the reports have a record there." },
+      { it:"High strength bolt installation record for connection lot 4.",
+        src:"Rule SI-07 &nbsp;/&nbsp; Standard Specifications 504-3.09",
+        whr:"Looked in the project folder under special inspection reports. Lots 1, 2, 3, 5 and 6 each have one." },
+      { it:"Cylinder results at 28 days for the abutment 2 placement of July 16th 2026.",
+        src:"Rule MT-08 &nbsp;/&nbsp; Standard Specifications 501-4.03",
+        whr:"Looked in the concrete lab export. The 7 day results for the same placement are on file." }
+    ],
+    unex: [
+      { it:"Fabricator submittals that arrived as email attachments.",
+        whr:"Those records sit in a mailbox rather than the project folder, so rule SI-09, on mill certification for fabricated steel, did not run." },
+      { it:"Anything added to the folder after Sunday night, when the reader ran.",
+        whr:"A record filed Monday morning is not in this report." }
+    ],
+    foot: "15 of the 16 rules in this contract's illustrative rulebook ran. 1 did not run, SI-09, named above."
+  }
+},
+{
+  id: "close",
+  tab: "Project closeout",
+  tabsub: "Juneau",
+  project: "Inlet View Float Replacement",
+  meta: "Juneau office &nbsp;/&nbsp; Construction Administration, Waterfront",
+  event: "Closeout package, assembled ahead of final acceptance and final payment. The check ran the morning the package was opened.",
+  totals: { total: 24, shown: 7, ran: 22, idle: 2 },
+  rules: [
+    { id:"CO-01", req:"An as built sheet is on file for every plan sheet issued for construction.",
+      sec:"Standard Specifications 105-1.14", look:"One as built sheet per issued sheet number, including sheets revised by a change order." },
+    { id:"CO-03", req:"A final quantity record exists for every pay item, tied to a source document.",
+      sec:"Special Provisions 109-1.08", look:"Each final quantity line carries a reference to a measurement, a ticket or a test record." },
+    { id:"CO-05", req:"A change order document exists for every final quantity that moved beyond what the contract allows without one.",
+      sec:"Standard Specifications 104-1.03", look:"Compare each final quantity against the plan quantity and the threshold written into the rulebook." },
+    { id:"CO-08", req:"Certified payroll is on file for every week the prime or a subcontractor worked.",
+      sec:"Standard Specifications 107-1.11", look:"One payroll record per firm per week that appears in the daily reports." },
+    { id:"CO-11", req:"Warranty and maintenance documents are on file for each item the contract warrants.",
+      sec:"Standard Specifications 107-1.19", look:"One document per warranted item listed in the rulebook." },
+    { id:"CO-14", req:"Each permit condition has a closing record in the project file.",
+      sec:"Standard Specifications 641-3.07", look:"One closing record per condition listed on the permits attached to the contract." },
+    { id:"CO-19", req:"A material certification is on file for every item accepted on certification.",
+      sec:"Standard Specifications 106-1.03", look:"One certification per item the rulebook flags as certification accepted." }
+  ],
+  reader: [
+    { st:"read", nm:"Project record, as built sheets", dt:"Opened. 38 sheets logged." },
+    { st:"read", nm:"Final quantity workbook", dt:"Opened. 96 rows logged." },
+    { st:"read", nm:"Change order file", dt:"Opened. 5 documents logged." },
+    { st:"read", nm:"Project folder, certified payroll", dt:"Opened. 71 payroll files logged." },
+    { st:"read", nm:"Permit conditions folder", dt:"Opened. 14 conditions logged, 9 of them with a closing record attached." },
+      { st:"read", nm:"Warranty and maintenance documents", dt:"Opened. 4 documents logged, one per warranted item." },
+      { st:"read", nm:"Project folder, material certifications", dt:"Opened. 10 certifications logged against 11 items flagged." },
+    { st:"skip", nm:"The owner agency's own record system", dt:"Not opened. Phase one does not connect to it. Whether it can, and whether you hold the authority to feed it, is one of the three questions the first two weeks answer." },
+    { st:"skip", nm:"Project photographs", dt:"Opened as a file list and counted at 1,240 files. The rules count files and they do not look at pictures, so nothing in the photo record was checked." },
+    { st:"skip", nm:"Inspector notebooks from the first month, scanned", dt:"Opened and logged as images with no readable text." }
+  ],
+  checks: [
+    { id:"CO-01", lab:"An as built sheet for every issued plan sheet", st:"missing", note:"39 sheets issued. 38 as built sheets found." },
+    { id:"CO-03", lab:"Final quantity record tied to a source document", st:"found", note:"96 lines carry a reference." },
+    { id:"CO-05", lab:"Change order for every quantity beyond the threshold", st:"missing", note:"One line sits above the plan quantity with no change order beside it." },
+    { id:"CO-08", lab:"Certified payroll for every firm, every week worked", st:"missing", note:"6 firms across 14 weeks. One week is short." },
+    { id:"CO-11", lab:"Warranty and maintenance documents per warranted item", st:"found", note:"4 warranted items. 4 documents found." },
+    { id:"CO-14", lab:"A closing record for every permit condition", st:"missing", note:"14 conditions. 9 have a closing record." },
+    { id:"CO-19", lab:"Material certification per certification accepted item", st:"missing", note:"11 items flagged. 10 have a certification." }
+  ],
+  report: {
+    head: "Inlet View Float Replacement",
+    line: "Closeout package, ahead of final acceptance and final payment",
+    meta: "Goes to the project manager, Juneau &nbsp;/&nbsp; copy to the construction administration lead, Anchorage",
+    missing: [
+      { it:"As built sheet for plan sheet S-14, the sheet revised by change order 3.",
+        src:"Rule CO-01 &nbsp;/&nbsp; Standard Specifications 105-1.14",
+        whr:"Looked in the project record under as built sheets. 38 of the 39 issued sheets have one." },
+      { it:"Closing records for permit conditions 6, 9, 11, 12 and 14.",
+        src:"Rule CO-14 &nbsp;/&nbsp; Standard Specifications 641-3.07",
+        whr:"Looked in the permit conditions folder. 9 of the 14 conditions have a closing record attached." },
+      { it:"Certified payroll for the week ending July 25th 2026, Southeast Marine Contractors.",
+        src:"Rule CO-08 &nbsp;/&nbsp; Standard Specifications 107-1.11",
+        whr:"Looked in the project folder under certified payroll. The firm appears in the daily reports for that week." },
+      { it:"A change order document for pay item 603(2), where the final quantity sits above the plan quantity.",
+        src:"Rule CO-05 &nbsp;/&nbsp; Standard Specifications 104-1.03",
+        whr:"Compared the final quantity workbook against the plan quantities. The change order file holds 5 documents and none of them names this item." },
+      { it:"Material certification for the treated timber decking accepted on certification.",
+        src:"Rule CO-19 &nbsp;/&nbsp; Standard Specifications 106-1.03",
+        whr:"Looked in the project folder under material certifications. 10 of the 11 flagged items have one." }
+    ],
+    unex: [
+      { it:"The owner agency's own record system.",
+        whr:"Phase one does not read it, so anything filed only on their side sits outside this report. Rule CO-21, on records the agency holds, did not run. Whether a connection is possible, and whether you hold the authority for it, is one of the three questions the first two weeks answer." },
+      { it:"1,240 project photographs.",
+        whr:"The rules count files and they do not look at pictures, so nothing in the photo record was checked." },
+      { it:"Two scanned inspector notebooks from the first month on site.",
+        whr:"The pages logged as images with no readable text, so rule CO-07, on daily inspector reports for that period, did not run against them." }
+    ],
+    foot: "22 of the 24 rules in this contract's illustrative rulebook ran. 2 did not run, CO-07 and CO-21, both named above."
+  }
+}
+];
+
+/* ---------------- rendering ---------------- */
+
+var stage = document.getElementById("stage");
+var tabsEl = document.getElementById("tabs");
+var state = {};              /* per scenario, how many steps are open */
+var timers = [];
+
+function ruleCards(s){
+  var h = '<div class="rules">';
+  s.rules.forEach(function(r){
+    h += '<div class="rule"><div class="rid">' + r.id + '</div>' +
+         '<p class="req">' + r.req + '</p>' +
+         '<dl class="kv">' +
+           '<dt>Section</dt><dd>' + r.sec + '</dd>' +
+           '<dt>What it looks for</dt><dd>' + r.look + '</dd>' +
+         '</dl></div>';
+  });
+  return h + '</div>';
+}
+
+function readerLog(s){
+  var h = '<div class="log">';
+  s.reader.forEach(function(r){
+    h += '<div class="logrow"><div class="tag ' + r.st + '">' +
+         (r.st === "read" ? "Read" : "Not read") + '</div>' +
+         '<div><div class="nm">' + r.nm + '</div><div class="dt">' + r.dt + '</div></div></div>';
+  });
+  return h + '</div>';
+}
+
+function checkRows(s){
+  var h = '<div class="chk">';
+  s.checks.forEach(function(c, i){
+    var word = c.st === "found" ? "Found" : (c.st === "missing" ? "Not found" : "Did not run");
+    h += '<div class="chkrow ' + c.st + '" data-i="' + i + '">' +
+         '<div class="cid">' + c.id + '</div>' +
+         '<div class="clab">' + c.lab + '<span class="cnote">' + c.note + '</span></div>' +
+         '<div class="res ' + c.st + '">' + word + '</div></div>';
+  });
+  return h + '</div>';
+}
+
+function reportBlock(s){
+  var r = s.report;
+  var h = '<div class="report">' +
+    '<div class="rpthead">' +
+      '<p class="rpttitle">Documentation gap report</p>' +
+      '<h5>' + r.head + '</h5>' +
+      '<p class="rline">' + r.line + '</p>' +
+      '<p class="rmeta">' + r.meta + '</p>' +
+    '</div>' +
+    '<p class="rptstand">This report does not say the project is complete. It lists the specific ' +
+    'contract required items the rules did not find, then names what it was not able to examine. ' +
+    'What any of it means is a judgement, and that judgement stays with you.</p>' +
+    '<div class="rptsec"><h6>Items the rules did not find <b>(' + r.missing.length + ')</b></h6><ol class="items">';
+  r.missing.forEach(function(m){
+    h += '<li><div class="it">' + m.it + '</div><div class="src">' + m.src + '</div>' +
+         '<div class="whr">' + m.whr + '</div></li>';
+  });
+  h += '</ol></div><div class="rptsec"><h6>Not examined <b>(' + r.unex.length + ')</b></h6><ul class="unex">';
+  r.unex.forEach(function(u){
+    h += '<li><div class="it">' + u.it + '</div><div class="whr">' + u.whr + '</div></li>';
+  });
+  h += '</ul></div><div class="rptfoot"><p>' + r.foot + '</p>' +
+       '<p>Nothing was sent, held, approved or blocked by this report. It sits in an inbox until a ' +
+       'person reads it.</p>' +
+       '<p class="sig">Written by the documentation gap check, a rules check. No person wrote this ' +
+       'report and no model wrote it. The rules it ran are the ones in your own rulebook.</p>' +
+       '</div></div>';
+  return h;
+}
+
+function scenarioHTML(s, idx){
+  var t = s.totals;
+  return '<section class="scen' + (idx === 0 ? ' on' : '') + '" id="scen-' + s.id + '">' +
+
+    '<div class="scenhead"><span class="illus">Illustrative project</span>' +
+      '<h3>' + s.project + '</h3>' +
+      '<div class="meta">' + s.meta + '</div>' +
+      '<p class="ev">' + s.event + '</p></div>' +
+
+    '<div class="step off" data-n="1"><span class="stepn">Step 1 &nbsp;/&nbsp; The rulebook</span>' +
+      '<h4>What this contract requires, written down</h4>' +
+      '<p class="lede">One plain file per contract, maintained by your construction administration ' +
+      'lead. This illustrative rulebook holds ' + t.total + ' rules and ' + t.shown + ' are shown ' +
+      'here. Every rule names the section it came from, so anyone can go and read the source and ' +
+      'disagree with the rule.</p>' + ruleCards(s) +
+      '<p class="small">Section numbers on this page are illustrative. In the build they are copied ' +
+      'out of that project\'s own contract documents.</p></div>' +
+
+    '<div class="step off" data-n="2"><span class="stepn">Step 2 &nbsp;/&nbsp; The reader</span>' +
+      '<h4>Every place it looked, including the places it was turned away from</h4>' +
+      '<p class="lede">The reader opens what it is pointed at and writes nothing back into your ' +
+      'folders. It logs each location and whether it was able to read it, which is what makes the ' +
+      'second list in the report possible.</p>' + readerLog(s) +
+      '<p class="small">A location it was not able to read is recorded as exactly that. It is never ' +
+      'treated as a location with nothing in it.</p></div>' +
+
+    '<div class="step off" data-n="3"><span class="stepn">Step 3 &nbsp;/&nbsp; The check</span>' +
+      '<h4>Each rule against what the reader found</h4>' +
+      '<p class="lede">Plain matching. No model, no scoring, no judgement. A rule with nothing ' +
+      'readable to run against is reported as a rule that did not run, never as a rule that ' +
+      'passed.</p>' + checkRows(s) +
+      '<p class="runline">' + t.ran + ' of the ' + t.total + ' rules ran. ' + t.idle +
+      (t.idle === 1 ? ' did not run.' : ' did not run.') + '</p></div>' +
+
+    '<div class="step off" data-n="4"><span class="stepn">Step 4 &nbsp;/&nbsp; The handoff</span>' +
+      '<h4>The report, as the project manager receives it</h4>' +
+      '<p class="lede">This is the whole product of a run. It arrives before the submittal goes out ' +
+      'and it goes to a person.</p>' + reportBlock(s) + '</div>' +
+
+    '<div class="runbar"><button class="btn" data-act="next" data-s="' + s.id + '"></button>' +
+      '<span class="hint"></span></div>' +
+
+    '</section>';
+}
+
+var LABELS = ["Load the rulebook", "Read the records", "Run the check", "Open the report"];
+var HINTS = [
+  "Scripted, so it gives the same illustrative answer every time you press it.",
+  "The rulebook is per contract, so the rule count differs from one project to the next.",
+  "The reader only reads. It writes nothing back into your folders.",
+  "A rule with nothing readable to run against becomes a line in the second list.",
+  ""
+];
+
+function buildTabs(){
+  var h = "";
+  SCEN.forEach(function(s, i){
+    h += '<button class="tab" type="button" data-act="tab" data-s="' + s.id + '" aria-pressed="' +
+         (i === 0 ? "true" : "false") + '"><b>' + s.tab + '</b><span>' + s.tabsub + '</span></button>';
+  });
+  tabsEl.innerHTML = h;
+}
+
+function buildStage(){
+  var h = "";
+  SCEN.forEach(function(s, i){ h += scenarioHTML(s, i); state[s.id] = 0; });
+  stage.innerHTML = h;
+  SCEN.forEach(function(s){ paintBar(s.id); });
+}
+
+function paintBar(id){
+  var sc = document.getElementById("scen-" + id);
+  var n = state[id];
+  var btn = sc.querySelector(".runbar .btn");
+  var hint = sc.querySelector(".runbar .hint");
+  if (n >= 4){
+    btn.textContent = "Run it again";
+    btn.className = "btn ghost";
+    hint.textContent = "Nothing here submits, approves or holds anything. The report is an input to a person's judgement.";
+  } else {
+    btn.textContent = LABELS[n];
+    btn.className = "btn";
+    hint.textContent = HINTS[n];
+  }
+}
+
+function clearTimers(){
+  timers.forEach(function(t){ clearTimeout(t); });
+  timers = [];
+}
+
+function revealRows(sc){
+  var rows = sc.querySelectorAll(".chkrow");
+  for (var i = 0; i < rows.length; i++){ rows[i].classList.add("in"); }
+}
+
+function advance(id){
+  var sc = document.getElementById("scen-" + id);
+  if (state[id] >= 4){                       /* run it again, from the top */
+    clearTimers();
+    state[id] = 0;
+    var steps = sc.querySelectorAll(".step");
+    for (var i = 0; i < steps.length; i++){ steps[i].className = "step off"; }
+    var rows = sc.querySelectorAll(".chkrow");
+    for (var j = 0; j < rows.length; j++){ rows[j].classList.remove("in"); }
+    paintBar(id);
+    sc.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+  state[id] += 1;
+  var n = state[id];
+  var step = sc.querySelector('.step[data-n="' + n + '"]');
+  step.className = "step";
+  if (n === 3){
+    var crows = step.querySelectorAll(".chkrow");
+    var line = step.querySelector(".runline");
+    var settled = line.textContent;
+    line.textContent = "Running the rules.";
+    crows.forEach(function(row, i){
+      timers.push(setTimeout(function(){ row.classList.add("in"); }, 90 + i * 130));
+    });
+    timers.push(setTimeout(function(){ line.textContent = settled; }, 150 + crows.length * 130));
+  }
+  paintBar(id);
+  step.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function showScenario(id){
+  clearTimers();
+  SCEN.forEach(function(s){
+    var el = document.getElementById("scen-" + s.id);
+    el.className = "scen" + (s.id === id ? " on" : "");
+    if (state[s.id] >= 3) revealRows(el);    /* a run left mid animation still reads right */
+  });
+  var btns = tabsEl.querySelectorAll(".tab");
+  for (var i = 0; i < btns.length; i++){
+    btns[i].setAttribute("aria-pressed", btns[i].getAttribute("data-s") === id ? "true" : "false");
+  }
+}
+
+document.addEventListener("click", function(e){
+  var b = e.target && e.target.closest ? e.target.closest("[data-act]") : null;
+  if (!b) return;
+  var act = b.getAttribute("data-act");
+  if (act === "tab") showScenario(b.getAttribute("data-s"));
+  if (act === "next") advance(b.getAttribute("data-s"));
+});
+
+/* Print opens every step of every run, so a paper copy carries all three in full. */
+window.addEventListener("beforeprint", function(){
+  clearTimers();
+  revealRows(document);
+});
+
+buildTabs();
+buildStage();
+</script>
+</body>
+</html>
