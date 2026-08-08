@@ -158,6 +158,19 @@ def main():
     asm = json.loads((run / "final" / "assemble_report.json").read_text())
     pngs = sorted(glob.glob(str(run / "render" / "slide-*.png")))
 
+    # The size quoted next to the download link must be the size of the file
+    # that link actually serves. assemble_report records the PDF as Chromium
+    # printed it, and shrink_pdfs.py then resamples the art layer on the way
+    # into runs/, so quoting the assemble figure overstates the download by
+    # about a third (2.18 MB against a shipped 1.57 MB on 2026-08-08). Measure
+    # the shipped copy when it exists and fall back to the report when it does
+    # not, which is the case while a run is still mid-flight.
+    shipped_pdf = (Path(__file__).resolve().parents[1] / "runs" / args.run_date
+                   / "carousel.pdf")
+    pdf_mb = asm.get("pdf_mb", "?")
+    if shipped_pdf.exists():
+        pdf_mb = round(shipped_pdf.stat().st_size / (1024 * 1024), 2)
+
     # docket: windows and votes ahead (ledger/docket.json, Phase 3.5).
     #
     # This block used to compute its own soonest-future-date, which is one more
@@ -268,7 +281,10 @@ def main():
     # alias lists now cover every spelling any scorer has produced; add to them
     # rather than hand-editing a generated body.
     ship = bool(_alias("ship", "ships", "passes", "passes_as_scored", default=False))
-    threshold = _alias("threshold", "ship_threshold", "threshold_applied", default="?")
+    # 2026-08-08: the fourth recurrence. No.29's scorer wrote 'threshold_used',
+    # so the banner delivered "8.02 / 10 (threshold ?)" over a genuine pass.
+    threshold = _alias("threshold", "ship_threshold", "threshold_applied",
+                       "threshold_used", "ship_threshold_used", default="?")
     weighted = _alias("weighted_total", "weighted_score", "weighted_score_as_scored",
                       "raw_weighted_score", default="?")
     weakest = _alias("weakest_criterion", default=None)
@@ -446,7 +462,7 @@ def main():
 
   <h2>1 &middot; Upload the document</h2>
   <div class="step">Download <a href="{pdf_url}"><b>carousel.pdf</b></a>
-  ({asm.get('pdf_mb', '?')} MB, vector text) &rarr; LinkedIn &rarr; start a post &rarr;
+  ({pdf_mb} MB, vector text) &rarr; LinkedIn &rarr; start a post &rarr;
   add a <b>document</b> &rarr; upload the PDF &rarr; title it:
   <b>{esc(copy.get('document_title', ''))}</b></div>
 
