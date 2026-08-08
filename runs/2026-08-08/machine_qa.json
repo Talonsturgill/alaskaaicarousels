@@ -8,7 +8,7 @@
         "art touching glyphs (4% of the ring around '01 / 09', spanning 15%) -- pixel critic verify the label is not crossed"
       ],
       "encodings": [
-        "'every fish passes one lit gate, one at a time': dE 23.7, AUC 1.00, visible 0%/0%, seen 0/0px at 432w"
+        "'every fish passes one lit gate, one at a time': dE 83.5, AUC 0.99, visible 0%/0%, seen 0/0px at 432w"
       ],
       "contacts": [
         "'the chute on the lake bed': shadow L* 2.2 vs ground L* 16.2, dL 14.0 at 432w"
@@ -58,7 +58,7 @@
         "art touching glyphs (4% of the ring around '05 / 09', spanning 15%) -- pixel critic verify the label is not crossed"
       ],
       "encodings": [
-        "'this frame is fully readable': dE 3.5, AUC 1.00, visible 0%/0%, seen 0/0px at 432w"
+        "'the lit gate is tellable from the water it sits in': dE 93.7, AUC 0.96, visible 0%/0%, seen 0/0px at 432w"
       ],
       "contacts": [
         "'the chute on the lit bed': shadow L* 0.8 vs ground L* 17.8, dL 17.1 at 432w"
@@ -71,7 +71,7 @@
         "art touching glyphs (4% of the ring around '06 / 09', spanning 15%) -- pixel critic verify the label is not crossed"
       ],
       "encodings": [
-        "'the object is identical and only the light changed': dE 0.9, AUC 0.58, visible 0%/0%, seen 0/0px at 432w"
+        "'the same gate is no longer tellable from the water, and only the light changed': dE 1.6, AUC 0.77, visible 0%/0%, seen 0/0px at 432w"
       ],
       "contacts": [
         "'the chute on the unlit bed': shadow L* 0.8 vs ground L* 12.2, dL 11.5 at 432w"

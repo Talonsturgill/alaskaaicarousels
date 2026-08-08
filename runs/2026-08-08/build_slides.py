@@ -190,7 +190,8 @@ slide(1, s01_body, s01_js,
       ' data-contacts=\'[{"what":"the chute on the lake bed",'
       '"shadow":[[300,980,300,40]],"ground":[[300,1090,300,40]]}]\''
       ' data-encodes=\'[{"claim":"every fish passes one lit gate, one at a time",'
-      '"a":[[188,612,96,108]],"b":[[760,240,180,180]]}]\'')
+      '"reads":"differ",'
+      '"a":[[431,539,96,108]],"b":[[96,1200,140,120]]}]\'')
 
 # =============================================================== SLIDE 05
 s05_body = f"""
@@ -225,8 +226,9 @@ window.__fit = function(){ AK.fitText(document.getElementById('h5'),{min:64,max:
 slide(5, s05_body, s05_js,
       ' data-contacts=\'[{"what":"the chute on the lit bed",'
       '"shadow":[[286,960,300,40]],"ground":[[286,1076,300,40]]}]\''
-      ' data-encodes=\'[{"claim":"this frame is fully readable",'
-      '"a":[[188,612,96,108]],"b":[[96,208,180,180]]}]\'')
+      ' data-encodes=\'[{"claim":"the lit gate is tellable from the water it sits in",'
+      '"reads":"differ",'
+      '"a":[[468,603,96,108]],"b":[[96,1200,140,120]]}]\'')
 
 # =============================================================== SLIDE 06
 s06_body = f"""
@@ -265,7 +267,8 @@ window.__fit = function(){ AK.fitText(document.getElementById('h6'),{min:104,max
 slide(6, s06_body, s06_js,
       ' data-contacts=\'[{"what":"the chute on the unlit bed",'
       '"shadow":[[286,960,300,40]],"ground":[[286,1076,300,40]]}]\''
-      ' data-encodes=\'[{"claim":"the object is identical and only the light changed",'
-      '"a":[[188,612,96,108]],"b":[[96,208,180,180]]}]\'')
+      ' data-encodes=\'[{"claim":"the same gate is no longer tellable from the water, and only the light changed",'
+      '"reads":"same",'
+      '"a":[[468,603,96,108]],"b":[[96,1200,140,120]]}]\'')
 
 print("wrote 01, 05, 06")
