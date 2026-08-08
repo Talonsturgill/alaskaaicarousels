@@ -1077,6 +1077,19 @@
    "verification": "DEFECT RECONSTRUCTION: regenerating the payload from this run's unchanged score_report.json and artifacts before the patch reproduces both defects verbatim ('threshold ?' and '2.18 MB'); after the patch the same inputs render 'threshold 8.0' and '1.57 MB', which is the byte size of runs/2026-08-08/carousel.pdf. FALLBACK: with the shipped PDF absent the script still renders the assemble_report figure rather than raising, so a mid-flight run is unaffected. NO OTHER CHANGE: the two payloads are otherwise identical.",
    "rollback": "revert the fix(2026-08-08) commit. Both changes are local to gmail_draft.py's body assembly, read-only against score_report.json and the shipped artifacts, and touch no gate.",
    "commit": "69c073cec6ce265e9c75a4e091249deffda26e14"
+  },
+  {
+   "run_date": "2026-08-08",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "THE RUN RECORD'S SCORE ROW READS THE SAME THRESHOLD SPELLINGS THE DRAFT DOES. gate_status.py's score-row alias list gains `threshold_used` and `ship_threshold_used`, matching the list gmail_draft.py gained in 69c073c. Two surfaces read the scorer's threshold and only one of them was fixed, which is the same defect wearing a second hat. Nothing else in gate_status moves, no gate verdict changes, and score_report.json is still never mutated.",
+   "trigger": "Immediately after 69c073c landed, the completion gate for this same run still printed '[PASS] score 8.02 / 10 vs threshold ?, scorer says passes=True'. The block is the run record pasted into the storyboard, so the shipped runs/2026-08-08/storyboard.md carries the question mark at line 1187. That line is LEFT AS IT IS on purpose: it is a faithful record of what the machine printed at the time, and rewriting a generated status block after the fact would make the record say something the run never said. The fix applies from the next run forward.",
+   "files": [
+    "scripts/gate_status.py"
+   ],
+   "verification": "DEFECT RECONSTRUCTION AND REPAIR on this run's unchanged score_report.json: before the patch the row reads 'vs threshold ?', after it reads 'vs threshold 8.0', and the run's overall result is unchanged at 0 FAIL rows with the identical 14 rows either side. gate_status.py --self-test PASSES at 16 checks, 0 failures, including the append/verify round trip and the unresolved-FAIL refusal.",
+   "rollback": "revert the fix(2026-08-08) gate_status commit. One alias list, read-only against score_report.json, no verdict logic touched.",
+   "commit": "3efc32895cfe10cdd92da902fe3f4dd3244fa98d"
   }
  ],
  "scan_log": [
