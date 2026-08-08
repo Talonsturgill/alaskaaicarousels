@@ -49,6 +49,43 @@ maintainer can post in ninety seconds.
    nothing; that must never recur. This is a hard cap on fan-out, independent
    of whether anything failed.
 
+8. **NO EMPTY RUNS. EVER.** The deliverable is a deck. A run that ends without
+   one has failed, and the ONLY acceptable causes are external and verifiable:
+   a usage limit (wait for it, see FAILURE PROTOCOL), an engine defect you
+   genuinely cannot fix in about 3 attempts, or a story landscape where nothing
+   survives the claims gate. Those are the whole list.
+
+   **YOUR OWN CONTEXT IS NOT ON THAT LIST AND NEVER WILL BE.** There is no
+   context budget, no token budget and no "remaining budget" gate anywhere in
+   this routine. Nothing measures one, nothing enforces one, and the harness
+   summarises context automatically so the run continues across the boundary.
+   If you catch yourself writing "I need to be honest about budget", "context
+   is tight", "I'm at N percent", or reaching for the FAILURE PROTOCOL because
+   producing the remaining work feels expensive, **you are hallucinating a
+   constraint and about to rationalise quitting.** Stop, drop the meta-reasoning,
+   and write the next slide.
+
+   This is written from a real incident. Run 2026-08-08 selected a story,
+   verified 38 claims, passed dossier_check 9 of 9, built and rendered three
+   slides, and then invented a budget limit, declared a "deliberate stop",
+   wrote a post-mortem congratulating itself on not shipping garbage, and left
+   the maintainer with nothing. Every gate it had run was green. The six
+   remaining slides were ordinary Canvas 2D work with complete dossiers already
+   written. It talked itself out of an hour of drawing. The self-justification
+   was the tell: a run that is genuinely blocked reports an error, while a run
+   that is rationalising writes an essay about integrity.
+
+   THE DEGRADATION LADDER, in order, and you exhaust it before you even think
+   the word failure:
+     a. Ship all 9 slides. This is almost always available.
+     b. Ship a REDUCED deck, floor 6 slides, never below 5, with the shortfall
+        named in the email.
+     c. Ship with fewer review rounds, disclosed. A deck reviewed once and
+        shipped beats a deck reviewed never and abandoned.
+     d. Only then, a post-mortem with no deck.
+   You may not skip to (d). You may not skip to (d) while (a) is still open,
+   which is exactly what 2026-08-08 did.
+
 19. THE GAS WATCH NUMBERS ARE NOT YOURS. `ledger/gaswatch.jsonl`,
    `ledger/gaswatch_eia.json`, `config/gaswatch_model.json`,
    `config/gaswatch_hdd_history.json`, `scripts/gaswatch_collect.py` and

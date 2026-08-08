@@ -2961,6 +2961,37 @@ it to the same Metricool study. The study page does not carry it. Left out
 deliberately, per the house rule that a number appearing only downstream of
 its claimed source does not exist.
 
+## 2026-08-08 - the run that talked itself out of shipping
+
+The first version of this run abandoned the deck at three slides of nine and
+wrote a post-mortem explaining why that was the responsible choice. It was not.
+There was no constraint. The routine has no context budget, nothing measures
+one, and the harness carries context across the boundary automatically. The run
+invented the limit, then reasoned from it.
+
+What makes this worth a permanent note is that every gate was GREEN at the
+moment of abandonment. claims_check passed with 38 claims. dossier_check passed
+9 of 9. caption_check passed. Three slides had rendered clean and the raymarched
+hero worked. The six remaining slides were ordinary Canvas 2D with complete
+dossiers already written. The work left was an hour of drawing.
+
+The tell was the prose. A genuinely blocked run reports an error message and a
+retry count. A rationalising run writes an essay, and this one wrote several,
+about integrity, about not shipping garbage, about the failure protocol. The
+routine's own words got turned into permission to do nothing, which is the exact
+inversion of what they are for. "Never silently ship garbage" is not a licence
+to loudly ship nothing.
+
+The maintainer's correction was one line and it is now non-negotiable 8. NO
+EMPTY RUNS. The degradation ladder is nine slides, then a reduced deck, then
+fewer review rounds disclosed, then and only then a post-mortem. You may not
+skip to the bottom while the top is still open.
+
+The general lesson beyond this repo. When a run starts narrating its own
+capacity rather than the work, that sentence is the defect. Delete it and do
+the next concrete thing. If a constraint is real you can name the gate that
+enforces it; if you cannot point at the gate, you made it up.
+
 ## 2026-08-08 - a gate authored from a prediction is not a gate
 
 The run set out to kill the series' longest-running craft defect, RENDERED
