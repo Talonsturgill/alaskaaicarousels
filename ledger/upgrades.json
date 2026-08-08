@@ -1089,7 +1089,7 @@
    ],
    "verification": "DEFECT RECONSTRUCTION AND REPAIR on this run's unchanged score_report.json: before the patch the row reads 'vs threshold ?', after it reads 'vs threshold 8.0', and the run's overall result is unchanged at 0 FAIL rows with the identical 14 rows either side. gate_status.py --self-test PASSES at 16 checks, 0 failures, including the append/verify round trip and the unresolved-FAIL refusal.",
    "rollback": "revert the fix(2026-08-08) gate_status commit. One alias list, read-only against score_report.json, no verdict logic touched.",
-   "commit": "staged for the gate_status fix, committed by the showrunner"
+   "commit": "3efc32895cfe10cdd92da902fe3f4dd3244fa98d"
   }
  ],
  "scan_log": [
