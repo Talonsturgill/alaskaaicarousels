@@ -5332,7 +5332,7 @@ def gas_watch_page(today, site_url, series, model, figs=None):
             "Measured Cook Inlet storage, modeled regional demand, and the derived "
             "supply nobody else publishes. No safety verdict, ever.")
     return page("Cook Inlet Gas Watch", desc, body, "../", "gas", today, site_url,
-                "gas-watch/", extra_css=gw.GW_CSS,
+                "gas-watch/", extra_css=gw.GW_CSS, extra_js=gw.GW_JS,
                 ld=gas_watch_ld(today, site_url, series, model, figs),
                 crumbs=[("Home", ""), ("Gas Watch", "gas-watch/")])
 

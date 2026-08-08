@@ -159,6 +159,38 @@ font-family:JBMono,ui-monospace,monospace;}
 }
 .gw-chart{background:var(--panel);border:1px solid var(--line);border-radius:14px;
 padding:16px 12px 8px;margin:18px 0;overflow-x:auto;}
+/* THE HOVER LAYER. An HTML chart is interactive by default, and without this
+   the only way to read a middle day was to count gridlines. The crosshair
+   snaps to the nearest date so the pointer aims at a day rather than at a 2px
+   line, and one readout carries every panel for that day. Everything it shows
+   is also in the table below, so it enhances and never gates. */
+.gw-plot{position:relative;}
+/* A 920 wide viewBox scaled into a 342px phone card takes 11px mono down to
+   about 4px, which is a picture of a chart rather than a chart. The card is
+   already overflow-x auto, so the plot keeps a readable floor and the CARD
+   scrolls. The page itself still does not, which is the line that matters. */
+.gw-chart svg{min-width:600px;}
+.gw-hit{cursor:crosshair;}
+.gw-hit:focus{outline:none;}
+.gw-hit:focus-visible{outline:2px solid var(--halo);outline-offset:-2px;}
+.gw-tip{position:absolute;z-index:3;pointer-events:none;min-width:190px;
+background:rgba(5,11,22,.97);border:1px solid var(--line);border-radius:10px;
+padding:10px 12px;box-shadow:0 18px 40px -20px #000;
+transform:translate(-50%,0);}
+.gw-tip-d{font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+color:var(--mute);font-family:JBMono,ui-monospace,monospace;
+margin-bottom:7px;white-space:nowrap;}
+.gw-tip-r{display:flex;align-items:baseline;gap:9px;white-space:nowrap;
+margin-top:5px;}
+/* A short stroke of the series colour, not a filled box. At tooltip density a
+   box is data-weight ink doing a label's job. */
+.gw-tip-k{width:12px;height:2px;border-radius:1px;flex:none;}
+/* Value leads, series name follows. The reader has the series and wants the
+   number, which is the legend's hierarchy inverted. */
+.gw-tip-v{color:var(--snow);font-weight:700;font-size:14px;
+font-variant-numeric:proportional-nums;}
+.gw-tip-n{color:var(--mute);font-size:11px;letter-spacing:.05em;
+text-transform:uppercase;}
 .gw-table{margin:18px 0 8px;overflow-x:auto;}
 .gw-table table{width:100%;border-collapse:collapse;font-size:14px;
 font-variant-numeric:tabular-nums;}
@@ -267,36 +299,51 @@ be drawn from what is here. Anyone using this data to say the region is fine, or
 that it is not, is using it wrong.</p>
 
 <h2 data-reveal>Day by day</h2>
-<div class="gw-chart" data-reveal><svg viewBox="0 0 920 364" width="100%" role="img"
- aria-label="Two charts sharing one time axis. Measured Cook Inlet storage
- inventory in Bcf, and modeled peak daily demand in MMcf per day. The same
- values are in the table below."
+<div class="gw-chart" data-reveal><div class="gw-plot" data-gw-plot='[{&quot;d&quot;: &quot;August 5th, 2026&quot;, &quot;v&quot;: [[&quot;MEASURED STORAGE&quot;, &quot;6.5&quot;, &quot;#ffc72c&quot;], [&quot;MODELED PEAK DEMAND&quot;, &quot;104&quot;, &quot;#5ac8f0&quot;], [&quot;NON CINGSA SUPPLY, DERIVED&quot;, &quot;141.7&quot;, &quot;#9664e6&quot;]]}, {&quot;d&quot;: &quot;August 6th, 2026&quot;, &quot;v&quot;: [[&quot;MEASURED STORAGE&quot;, &quot;6.54&quot;, &quot;#ffc72c&quot;], [&quot;MODELED PEAK DEMAND&quot;, &quot;103&quot;, &quot;#5ac8f0&quot;], [&quot;NON CINGSA SUPPLY, DERIVED&quot;, &quot;136.8&quot;, &quot;#9664e6&quot;]]}, {&quot;d&quot;: &quot;August 7th, 2026&quot;, &quot;v&quot;: [[&quot;MEASURED STORAGE&quot;, &quot;6.54&quot;, &quot;#ffc72c&quot;], [&quot;MODELED PEAK DEMAND&quot;, &quot;101&quot;, &quot;#5ac8f0&quot;], [&quot;NON CINGSA SUPPLY, DERIVED&quot;, null, &quot;#9664e6&quot;]]}]'>
+<svg viewBox="0 0 920 462" width="100%" role="img"
+ aria-label="3 charts sharing one time axis, covering
+ August 5th, 2026 to August 7th, 2026. Measured Cook Inlet
+ storage in Bcf, modeled peak daily demand, and derived non CINGSA supply, both
+ in MMcf per day. Every value is in the table below."
  style="max-width:100%;height:auto;display:block">
 <defs>
 <linearGradient id="gwA" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#ffc72c" stop-opacity=".20"/>
+<stop offset="0" stop-color="#ffc72c" stop-opacity=".10"/>
 <stop offset="1" stop-color="#ffc72c" stop-opacity="0"/></linearGradient>
 <linearGradient id="gwB" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#5ac8f0" stop-opacity=".16"/>
+<stop offset="0" stop-color="#5ac8f0" stop-opacity=".10"/>
 <stop offset="1" stop-color="#5ac8f0" stop-opacity="0"/></linearGradient>
+<linearGradient id="gwC" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#9664e6" stop-opacity=".10"/>
+<stop offset="1" stop-color="#9664e6" stop-opacity="0"/></linearGradient>
 </defs>
-<path d="M64.0,97.0 L484.0,82.0 L904.0,82.0 L904.0,172 L64.0,172 Z" fill="url(#gwA)"/><line x1="64" y1="172.0" x2="904" y2="172.0" stroke="#152a44" stroke-width="1"/><text x="54" y="176.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">6.3</text><line x1="64" y1="134.5" x2="904" y2="134.5" stroke="#152a44" stroke-width="1"/><text x="54" y="138.5" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">6.4</text><line x1="64" y1="97.0" x2="904" y2="97.0" stroke="#152a44" stroke-width="1"/><text x="54" y="101.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">6.5</text><line x1="64" y1="59.5" x2="904" y2="59.5" stroke="#152a44" stroke-width="1"/><text x="54" y="63.5" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">6.6</text><line x1="64" y1="22.0" x2="904" y2="22.0" stroke="#152a44" stroke-width="1"/><text x="54" y="26.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">6.7</text>
-<path d="M64.0,97.0 L484.0,82.0 L904.0,82.0" fill="none" stroke="#ffc72c" stroke-width="2"
+<path d="M62.0,77.0 L482.0,74.8 L902.0,74.8 L902.0,132 L62.0,132 Z" fill="url(#gwA)"/><line x1="62" y1="132.0" x2="902" y2="132.0" stroke="#152a44" stroke-width="1"/><text x="52" y="136.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">5.5</text><line x1="62" y1="104.5" x2="902" y2="104.5" stroke="#152a44" stroke-width="1"/><text x="52" y="108.5" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">6</text><line x1="62" y1="77.0" x2="902" y2="77.0" stroke="#152a44" stroke-width="1"/><text x="52" y="81.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">6.5</text><line x1="62" y1="49.5" x2="902" y2="49.5" stroke="#152a44" stroke-width="1"/><text x="52" y="53.5" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">7</text><line x1="62" y1="22.0" x2="902" y2="22.0" stroke="#152a44" stroke-width="1"/><text x="52" y="26.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">7.5</text>
+<path d="M62.0,77.0 L482.0,74.8 L902.0,74.8" fill="none" stroke="#ffc72c" stroke-width="2"
  stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="904.0" cy="82.0" r="4.5" fill="#ffc72c"
+<circle cx="902.0" cy="74.8" r="4.5" fill="#ffc72c"
  stroke="#0a1626" stroke-width="2"/>
-<text x="64" y="14" fill="#f4f8ff" font-size="11" font-family="JBMono,monospace">MEASURED STORAGE</text>
-<text x="904" y="14" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">Bcf</text>
-<text x="895.0" y="72.0" text-anchor="end" fill="#ffc72c"
- font-size="11" font-family="JBMono,monospace">6.54</text><path d="M64.0,266.0 L484.0,281.0 L904.0,311.0 L904.0,356 L64.0,356 Z" fill="url(#gwB)"/><line x1="64" y1="356.0" x2="904" y2="356.0" stroke="#152a44" stroke-width="1"/><text x="54" y="360.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">98</text><line x1="64" y1="326.0" x2="904" y2="326.0" stroke="#152a44" stroke-width="1"/><text x="54" y="330.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">100</text><line x1="64" y1="296.0" x2="904" y2="296.0" stroke="#152a44" stroke-width="1"/><text x="54" y="300.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">102</text><line x1="64" y1="266.0" x2="904" y2="266.0" stroke="#152a44" stroke-width="1"/><text x="54" y="270.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">104</text><line x1="64" y1="236.0" x2="904" y2="236.0" stroke="#152a44" stroke-width="1"/><text x="54" y="240.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">106</text><line x1="64" y1="206.0" x2="904" y2="206.0" stroke="#152a44" stroke-width="1"/><text x="54" y="210.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">108</text>
-<path d="M64.0,266.0 L484.0,281.0 L904.0,311.0" fill="none" stroke="#5ac8f0" stroke-width="2"
+<text x="62" y="13" fill="#f4f8ff" font-size="11" font-family="JBMono,monospace">MEASURED STORAGE</text>
+<text x="902" y="13" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">Bcf</text>
+<text x="892.0" y="63.8" text-anchor="end" fill="#f4f8ff"
+ font-size="11" font-family="JBMono,monospace">6.54</text><path d="M62.0,227.2 L482.0,229.4 L902.0,233.8 L902.0,280 L62.0,280 Z" fill="url(#gwB)"/><line x1="62" y1="280.0" x2="902" y2="280.0" stroke="#152a44" stroke-width="1"/><text x="52" y="284.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">80</text><line x1="62" y1="258.0" x2="902" y2="258.0" stroke="#152a44" stroke-width="1"/><text x="52" y="262.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">90</text><line x1="62" y1="236.0" x2="902" y2="236.0" stroke="#152a44" stroke-width="1"/><text x="52" y="240.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">100</text><line x1="62" y1="214.0" x2="902" y2="214.0" stroke="#152a44" stroke-width="1"/><text x="52" y="218.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">110</text><line x1="62" y1="192.0" x2="902" y2="192.0" stroke="#152a44" stroke-width="1"/><text x="52" y="196.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">120</text><line x1="62" y1="170.0" x2="902" y2="170.0" stroke="#152a44" stroke-width="1"/><text x="52" y="174.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">130</text>
+<path d="M62.0,227.2 L482.0,229.4 L902.0,233.8" fill="none" stroke="#5ac8f0" stroke-width="2"
  stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="904.0" cy="311.0" r="4.5" fill="#5ac8f0"
+<circle cx="902.0" cy="233.8" r="4.5" fill="#5ac8f0"
  stroke="#0a1626" stroke-width="2"/>
-<text x="64" y="198" fill="#f4f8ff" font-size="11" font-family="JBMono,monospace">MODELED PEAK DEMAND</text>
-<text x="904" y="198" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">MMcf per day</text>
-<text x="895.0" y="301.0" text-anchor="end" fill="#5ac8f0"
- font-size="11" font-family="JBMono,monospace">101</text><text x="64.0" y="355" text-anchor="start" fill="#8da2be" font-size="11" font-family="JBMono,monospace">2026-08-05</text><text x="904.0" y="355" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">2026-08-07</text></svg></div><p class="sub" data-reveal>CINGSA keeps no archive, so this series exists only because it is collected daily and committed. It begins August 5th, 2026. Storage is measured. The peak is model output, shown on its own scale because the two quantities are different in kind and sharing one axis would imply a relationship the data does not claim.</p>
+<text x="62" y="161" fill="#f4f8ff" font-size="11" font-family="JBMono,monospace">MODELED PEAK DEMAND</text>
+<text x="902" y="161" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">MMcf per day</text>
+<text x="892.0" y="222.8" text-anchor="end" fill="#f4f8ff"
+ font-size="11" font-family="JBMono,monospace">101</text><path d="M62.0,370.7 L482.0,377.4 L482.0,428 L62.0,428 Z" fill="url(#gwC)"/><line x1="62" y1="428.0" x2="902" y2="428.0" stroke="#152a44" stroke-width="1"/><text x="52" y="432.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">100</text><line x1="62" y1="400.5" x2="902" y2="400.5" stroke="#152a44" stroke-width="1"/><text x="52" y="404.5" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">120</text><line x1="62" y1="373.0" x2="902" y2="373.0" stroke="#152a44" stroke-width="1"/><text x="52" y="377.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">140</text><line x1="62" y1="345.5" x2="902" y2="345.5" stroke="#152a44" stroke-width="1"/><text x="52" y="349.5" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">160</text><line x1="62" y1="318.0" x2="902" y2="318.0" stroke="#152a44" stroke-width="1"/><text x="52" y="322.0" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">180</text>
+<path d="M62.0,370.7 L482.0,377.4" fill="none" stroke="#9664e6" stroke-width="2"
+ stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="482.0" cy="377.4" r="4.5" fill="#9664e6"
+ stroke="#0a1626" stroke-width="2"/>
+<text x="62" y="309" fill="#f4f8ff" font-size="11" font-family="JBMono,monospace">NON CINGSA SUPPLY, DERIVED</text>
+<text x="902" y="309" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">MMcf per day</text>
+<text x="472.0" y="366.4" text-anchor="end" fill="#f4f8ff"
+ font-size="11" font-family="JBMono,monospace">136.8</text><text x="64.0" y="451" text-anchor="start" fill="#8da2be" font-size="11" font-family="JBMono,monospace">Aug 5th</text><text x="482.0" y="451" text-anchor="middle" fill="#8da2be" font-size="11" font-family="JBMono,monospace">Aug 6th</text><text x="900.0" y="451" text-anchor="end" fill="#8da2be" font-size="11" font-family="JBMono,monospace">Aug 7th</text><line class="gw-cross" x1="62.0" y1="16" x2="62.0" y2="428.0" stroke="#f4f8ff" stroke-width="1" opacity="0" data-rule="0"/><line class="gw-cross" x1="482.0" y1="16" x2="482.0" y2="428.0" stroke="#f4f8ff" stroke-width="1" opacity="0" data-rule="1"/><line class="gw-cross" x1="902.0" y1="16" x2="902.0" y2="428.0" stroke="#f4f8ff" stroke-width="1" opacity="0" data-rule="2"/><circle class="gw-mk" data-mk="0" cx="62.0" cy="77.0" r="3.5" fill="#ffc72c" stroke="#0a1626" stroke-width="2" opacity="0"/><circle class="gw-mk" data-mk="1" cx="482.0" cy="74.8" r="3.5" fill="#ffc72c" stroke="#0a1626" stroke-width="2" opacity="0"/><circle class="gw-mk" data-mk="2" cx="902.0" cy="74.8" r="3.5" fill="#ffc72c" stroke="#0a1626" stroke-width="2" opacity="0"/><circle class="gw-mk" data-mk="0" cx="62.0" cy="227.2" r="3.5" fill="#5ac8f0" stroke="#0a1626" stroke-width="2" opacity="0"/><circle class="gw-mk" data-mk="1" cx="482.0" cy="229.4" r="3.5" fill="#5ac8f0" stroke="#0a1626" stroke-width="2" opacity="0"/><circle class="gw-mk" data-mk="2" cx="902.0" cy="233.8" r="3.5" fill="#5ac8f0" stroke="#0a1626" stroke-width="2" opacity="0"/><circle class="gw-mk" data-mk="0" cx="62.0" cy="370.7" r="3.5" fill="#9664e6" stroke="#0a1626" stroke-width="2" opacity="0"/><circle class="gw-mk" data-mk="1" cx="482.0" cy="377.4" r="3.5" fill="#9664e6" stroke="#0a1626" stroke-width="2" opacity="0"/><rect class="gw-hit" x="-148.0" y="16" width="420.0" height="412.0" fill="transparent" data-i="0" tabindex="0" role="button" aria-label="August 5th, 2026"/><rect class="gw-hit" x="272.0" y="16" width="420.0" height="412.0" fill="transparent" data-i="1" tabindex="-1" role="button" aria-label="August 6th, 2026"/><rect class="gw-hit" x="692.0" y="16" width="420.0" height="412.0" fill="transparent" data-i="2" tabindex="-1" role="button" aria-label="August 7th, 2026"/></svg>
+<div class="gw-tip" hidden></div>
+</div></div><p class="sub" data-reveal>CINGSA keeps no archive, so this series exists only because it is collected daily and committed. It begins August 5th, 2026. Storage is measured. The peak is model output, shown on its own scale because the two quantities are different in kind and sharing one axis would imply a relationship the data does not claim.</p>
 <div class="gw-table" data-reveal>
 <table>
 <caption>The most recent 3 verified readings. Storage and percent of
@@ -417,6 +464,89 @@ Cook Inlet gas storage plan</a>.</p>
 </footer>
 </div>
 <script src="../site.js" defer></script>
+<script>
+(function(){
+  var plot = document.querySelector('.gw-plot');
+  if (!plot) return;
+  var tip = plot.querySelector('.gw-tip');
+  var svg = plot.querySelector('svg');
+  var data;
+  try { data = JSON.parse(plot.getAttribute('data-gw-plot')); } catch (e) { return; }
+  var rules = plot.querySelectorAll('.gw-cross');
+  var marks = plot.querySelectorAll('.gw-mk');
+  var hits  = plot.querySelectorAll('.gw-hit');
 
+  function clear(){
+    for (var i=0;i<rules.length;i++) rules[i].setAttribute('opacity','0');
+    for (var j=0;j<marks.length;j++) marks[j].setAttribute('opacity','0');
+    tip.hidden = true;
+  }
+
+  function show(i, target){
+    var row = data[i];
+    if (!row) return;
+    for (var a=0;a<rules.length;a++)
+      rules[a].setAttribute('opacity', rules[a].getAttribute('data-rule')==String(i) ? '.5' : '0');
+    for (var b=0;b<marks.length;b++)
+      marks[b].setAttribute('opacity', marks[b].getAttribute('data-mk')==String(i) ? '1' : '0');
+
+    // textContent throughout. Series names are data, never markup.
+    tip.textContent = '';
+    var d = document.createElement('div');
+    d.className = 'gw-tip-d';
+    d.textContent = row.d;
+    tip.appendChild(d);
+    row.v.forEach(function(v){
+      if (v[1] === null) return;
+      var r = document.createElement('div'); r.className = 'gw-tip-r';
+      var k = document.createElement('span'); k.className = 'gw-tip-k';
+      k.style.background = v[2];
+      var val = document.createElement('span'); val.className = 'gw-tip-v';
+      val.textContent = v[1];
+      var nm = document.createElement('span'); nm.className = 'gw-tip-n';
+      nm.textContent = v[0];
+      r.appendChild(k); r.appendChild(val); r.appendChild(nm);
+      tip.appendChild(r);
+    });
+    tip.hidden = false;
+
+    // Anchored to the top of the plot rather than to the hit rect. The rect
+    // spans every panel and starts near y=16, so hanging the readout above it
+    // put the whole tooltip off the top edge of the card. Pinned inside and
+    // clamped horizontally, it can never be clipped on any day.
+    var pr = plot.getBoundingClientRect(), tr = target.getBoundingClientRect();
+    var x = tr.left - pr.left + tr.width/2, half = tip.offsetWidth/2;
+    tip.style.left = Math.max(half + 6, Math.min(pr.width - half - 6, x)) + 'px';
+    tip.style.top = '6px';
+  }
+
+  // Move the single tab stop with the focus, so Tab always leaves the chart in
+  // one press no matter how many days the record holds.
+  function rove(i){
+    if (i < 0 || i >= hits.length) return;
+    for (var a=0;a<hits.length;a++) hits[a].setAttribute('tabindex', a===i ? '0' : '-1');
+    hits[i].focus();
+  }
+
+  for (var i=0;i<hits.length;i++){
+    (function(el){
+      var idx = parseInt(el.getAttribute('data-i'), 10);
+      el.addEventListener('pointerenter', function(){ show(idx, el); });
+      el.addEventListener('focus', function(){ show(idx, el); });
+      el.addEventListener('blur', clear);
+      el.addEventListener('keydown', function(ev){
+        var to = ev.key === 'ArrowLeft' ? idx - 1
+               : ev.key === 'ArrowRight' ? idx + 1
+               : ev.key === 'Home' ? 0
+               : ev.key === 'End' ? hits.length - 1 : null;
+        if (to === null) return;
+        ev.preventDefault();
+        rove(to);
+      });
+    })(hits[i]);
+  }
+  svg.addEventListener('pointerleave', clear);
+})();
+</script>
 </body>
 </html>

@@ -70,6 +70,13 @@ def long_month(ym):
     return f"{MONTHS[int(ym[4:6]) - 1]} {ym[:4]}"
 
 
+def short_date(iso):
+    """Aug 6th. The axis has no room for the full form and the house rule is
+    about the ordinal and the order, not the length of the month name."""
+    d = date.fromisoformat(iso)
+    return f"{MONTHS[d.month - 1][:3]} {ordinal(d.day)}"
+
+
 def long_date(iso):
     d = date.fromisoformat(iso)
     return f"{MONTHS[d.month - 1]} {ordinal(d.day)}, {d.year}"
@@ -375,17 +382,18 @@ def display_numerals(series, model):
             # chart formats with :g and the same value reads "112".
             if v is not None:
                 rendered += [str(v), f"{v:g}"]
-    # The axis. Same bounds call the chart makes, on the same two series, so
-    # the ticks are authorised by the data rather than by their appearance.
-    if len(rows) >= 2:
-        for vals in ([round(r["cingsa"]["inventory_mcf"] / 1_000_000, 2) for r in rows],
-                     [remodel(r, model)[0].get("peak_modeled_demand_mmcfd")
-                      for r in rows]):
-            have = [v for v in vals if v is not None]
-            if not have:
-                continue
-            _, _, ticks = nice_bounds(min(have) * 0.98, max(have) * 1.02)
-            rendered += [f"{t:g}" for t in ticks] + [str(t) for t in ticks]
+    # The axis and the chart's own values, taken from the same definition the
+    # chart draws from. Recomputing them here is how the residual panel's ticks
+    # came out unauthorised the moment it was added.
+    pts, live = chart_data(series, model)
+    for pl in (live or []):
+        for t in pl["ticks"]:
+            rendered += [f"{t:g}", str(t)]
+        for _i, v in pl["have"]:
+            rendered += [f"{v:g}", str(v)]
+    for pt in (pts or []):
+        rendered += [pt[0], long_date(pt[0]), short_date(pt[0])]
+
     # The table caption counts the rows it shows, which is not verified_days
     # once the series outgrows the window. It read "14 verified readings" with
     # nothing authorising 14.
@@ -489,6 +497,34 @@ def remodel(rec, model):
     return der, recon
 
 
+def residual_by_day(series, model):
+    """Derived non CINGSA supply, keyed by the day it DESCRIBES.
+
+    The balance resolves one day in arrears, because it needs that day's
+    observed degree days and a day's weather is only observed once the day is
+    over. So the record for August 6th carries the residual FOR August 5th, and
+    its reconciliation object says so in its own `date` field. Read straight off
+    the record instead, and the one figure nobody else publishes is misdated by
+    a day, every day.
+
+    This lives in one place because the same mistake was made twice
+    independently, once in the table and once in the chart, and fixed twice in
+    parallel. A third reader of this data would have made it a third time.
+
+    Verified is the only filter. A residual needs a reconciliation, not an
+    inventory reading, so a record whose storage figure did not come through
+    still describes the day before it perfectly well.
+    """
+    on_day = {}
+    for r in series:
+        if not r.get("verified"):
+            continue
+        recon = remodel(r, model)[1]
+        if recon.get("date") and recon.get("non_cingsa_supply_mmcfd") is not None:
+            on_day[recon["date"]] = recon["non_cingsa_supply_mmcfd"]
+    return on_day
+
+
 def blank(v):
     """A value the model could not produce yet shows as an empty cell.
 
@@ -562,14 +598,26 @@ def numeral_lint(page_html, allowed):
 
 # ------------------------------------------------------------------ chart
 
-def nice_bounds(lo, hi, ticks=4):
-    """Axis bounds and tick values on round numbers, computed not chosen."""
+def nice_bounds(lo, hi, ticks=4, min_span=0.0):
+    """Axis bounds and tick values on round numbers, computed not chosen.
+
+    min_span is the honesty control. Storage moved 6.50 to 6.54 Bcf on the
+    first two days of the record, which is three tenths of one percent of a
+    13 Bcf field, and an axis fitted to the data drew that as a climb across
+    the full height of the panel. A reader saw a mountain where the field had
+    barely moved. Given a floor tied to the field itself, a flat record renders
+    flat, which is true, and a real winter drawdown fills the panel on its own
+    without anyone choosing a range.
+    """
     # A span that is flat, or so narrow it is flat relative to its own
     # magnitude, cannot produce a readable axis and rounds badly besides.
     # Storage barely moves day to day, so this is the ordinary case early in
     # the series, not an exotic one.
     if hi - lo <= max(abs(lo), abs(hi), 1.0) * 1e-4:
         hi = lo + max(abs(lo) * 0.01, 1.0)
+    if min_span and hi - lo < min_span:
+        mid = (lo + hi) / 2.0
+        lo, hi = mid - min_span / 2.0, mid + min_span / 2.0
     span = hi - lo
     raw = span / max(1, ticks)
     mag = 10 ** int(f"{raw:e}".split("e")[1])
@@ -587,102 +635,210 @@ def nice_bounds(lo, hi, ticks=4):
     return vals[0], vals[-1], vals
 
 
-def chart_svg(series, model, w=920, panel_h=150, gap=34):
-    """Storage and modeled demand as small multiples on a shared time axis.
+PANEL_SPEC = [
+    # title, unit, colour, gradient id, index into a point, minimum axis span.
+    ("MEASURED STORAGE", "Bcf", "#ffc72c", "gwA", 1, None),
+    ("MODELED PEAK DEMAND", "MMcf per day", "#5ac8f0", "gwB", 2, 40.0),
+    ("NON CINGSA SUPPLY, DERIVED", "MMcf per day", "#9664e6", "gwC", 3, 60.0),
+]
 
-    TWO PANELS, ONE SCALE EACH. The first draft of this plotted both on one
-    frame with storage on the left axis and demand on the right, which is a
-    dual axis chart. The alignment of two y scales is arbitrary, so the reader
-    sees a correlation the data never claimed. Small multiples say the same
-    thing without inventing the relationship.
 
-    Colour. Both marks are the site's brand accents. Against the panel surface
-    they clear the 3 to 1 contrast floor and, being one series per panel, there
-    is no adjacent pair to separate, which is the case the categorical
-    lightness band is scoped to. Deeper in band steps of the same hues were
-    generated and rejected as less legible on a surface this close to black.
+def chart_data(series, model):
+    """(points, live panels with their axes) or (None, None) below two days.
+
+    ONE definition, because chart_svg draws these and display_numerals has to
+    authorise every numeral they put on the page. Computed twice they drift,
+    and the numeral lint then calls the chart's own axis invented, which is
+    exactly what happened when the residual panel was added.
+    """
+    rows = [r for r in series
+            if r.get("verified") and (r.get("cingsa") or {}).get("inventory_mcf")]
+    if len(rows) < 2:
+        return None, None
+
+    # Off the whole series, not the plotted rows: a record with no storage
+    # reading cannot be a point on the storage panel and still carries a sound
+    # residual for the day before it.
+    residual_on = residual_by_day(series, model)
+
+    pts = []
+    for r in rows:
+        der = remodel(r, model)[0]
+        pts.append((r["date"],
+                    round(r["cingsa"]["inventory_mcf"] / 1_000_000, 2),
+                    der.get("peak_modeled_demand_mmcfd"),
+                    residual_on.get(r["date"])))
+
+    design = round((rows[-1]["cingsa"].get("storage_design_mcf") or 0) / 1_000_000, 1)
+    live = []
+    for title, unit, colour, fid, idx, min_span in PANEL_SPEC:
+        have = [(i, p[idx]) for i, p in enumerate(pts) if p[idx] is not None]
+        # The same rule the whole chart follows, applied per panel. One point
+        # is not a trend, and a 132px panel holding a single dot with its label
+        # hanging into the axis says less than no panel at all. The residual
+        # resolves a day in arrears, so it is always the last to qualify.
+        if len(have) < 2:
+            continue
+        # A tenth of the field for storage. Below that the panel draws noise.
+        span = min_span if min_span is not None else max(design * 0.10, 0.4)
+        lo, hi, ticks = nice_bounds(min(v for _, v in have) * 0.98,
+                                    max(v for _, v in have) * 1.02,
+                                    min_span=span)
+        live.append({"title": title, "unit": unit, "colour": colour, "fid": fid,
+                     "idx": idx, "have": have, "lo": lo, "hi": hi, "ticks": ticks})
+    return pts, live
+
+
+def chart_svg(series, model, w=920, panel_h=110, gap=38):
+    """The record so far, as small multiples on one time axis.
+
+    THREE PANELS, ONE SCALE EACH. An early draft put storage and demand on one
+    frame with two y scales, which is a dual axis chart. The alignment of two
+    scales is arbitrary, so the reader sees a correlation the data never
+    claimed. Small multiples say the same thing without inventing it.
+
+    The third panel is the residual, non CINGSA supply, which is the figure no
+    other public source publishes and which was in the table and missing from
+    the picture.
+
+    HONEST AXES. Each panel takes a minimum span tied to the thing it measures,
+    so a day when nothing moved renders as a day when nothing moved. Fitted to
+    the data alone, the first two readings, 6.50 and 6.54 Bcf of a 13 Bcf
+    field, drew as a climb across the whole panel.
+
+    Colour. Both marks are the site's brand accents and clear the 3 to 1
+    contrast floor on this surface. One series per panel, so there is no
+    adjacent pair to separate and no legend box to draw; the panel title names
+    what is plotted.
 
     Below two points there is no trend to draw, so the caller falls back to the
     meter and the stat tiles rather than plotting a line through one dot.
     """
-    # Storage rounded to the two decimals the table shows. The direct label
-    # renders this value with :g, so an unrounded 6.423571 would have printed
-    # every digit on the chart and matched nothing the lint could authorise.
-    pts = [(r["date"], round(r["cingsa"]["inventory_mcf"] / 1_000_000, 2),
-            remodel(r, model)[0].get("peak_modeled_demand_mmcfd"))
-           for r in series
-           if r.get("verified") and (r.get("cingsa") or {}).get("inventory_mcf")]
-    if len(pts) < 2:
+    pts, live = chart_data(series, model)
+    if not pts:
         return ""
-
-    pad_l, pad_r, pad_b = 64, 16, 30
+    pad_l, pad_r, pad_b = 62, 18, 34
     iw = w - pad_l - pad_r
     n = len(pts)
-    h = panel_h * 2 + gap + pad_b
     MONO = 'font-size="11" font-family="JBMono,monospace"'
+    INK, MUTE, GRID = "#f4f8ff", "#8da2be", "#152a44"
 
     def x(i):
         return pad_l + iw * i / (n - 1)
 
-    def panel(top, vals, title, unit, colour, fill_id):
-        have = [(i, v) for i, v in vals if v is not None]
-        if not have:
-            return ""
-        lo, hi, ticks = nice_bounds(min(v for _, v in have) * 0.98,
-                                    max(v for _, v in have) * 1.02)
+    h = panel_h * len(live) + gap * (len(live) - 1) + pad_b + 22
 
-        def y(v):
+    body, tops, dots = "", {}, ""
+    for k, pl in enumerate(live):
+        title, unit, colour, fid = pl["title"], pl["unit"], pl["colour"], pl["fid"]
+        have, lo, hi, ticks = pl["have"], pl["lo"], pl["hi"], pl["ticks"]
+        top = 22 + k * (panel_h + gap)
+        tops[pl["idx"]] = (top, colour)
+
+        def y(v, top=top, lo=lo, hi=hi):
             return top + panel_h - panel_h * (v - lo) / (hi - lo)
 
-        # Solid hairlines one shade off the surface. Dashed grid reads as a
-        # threshold when it is only a grid.
-        g = "".join(
+        grid = "".join(
             f'<line x1="{pad_l}" y1="{y(t):.1f}" x2="{pad_l + iw}" y2="{y(t):.1f}" '
-            f'stroke="#152a44" stroke-width="1"/>'
+            f'stroke="{GRID}" stroke-width="1"/>'
             f'<text x="{pad_l - 10}" y="{y(t) + 4:.1f}" text-anchor="end" '
-            f'fill="#8da2be" {MONO}>{t:g}</text>' for t in ticks)
-        d = " ".join(f'{"M" if k == 0 else "L"}{x(i):.1f},{y(v):.1f}'
-                     for k, (i, v) in enumerate(have))
+            f'fill="{MUTE}" {MONO}>{t:g}</text>' for t in ticks)
+        d = " ".join(f'{"M" if j == 0 else "L"}{x(i):.1f},{y(v):.1f}'
+                     for j, (i, v) in enumerate(have))
         area = (f'{d} L{x(have[-1][0]):.1f},{top + panel_h} '
                 f'L{x(have[0][0]):.1f},{top + panel_h} Z')
-        # One direct label, on the latest point, which is the value a reader
-        # came for. A number on every point is noise.
         li, lv = have[-1]
-        return f"""<path d="{area}" fill="url(#{fill_id})"/>{g}
+        # A high last reading put this value on top of the unit label in the
+        # panel's top right corner. Measured, not guessed: above the dot when
+        # there is room, below it when there is not.
+        lab_y = y(lv) - 11
+        if lab_y < top + 11:
+            lab_y = y(lv) + 17
+        # The endpoint value in INK with a keyed dot beside it, never in the
+        # series colour. A light accent is illegible as text on this surface,
+        # and identity belongs to the mark rather than to the letters.
+        body += f"""<path d="{area}" fill="url(#{fid})"/>{grid}
 <path d="{d}" fill="none" stroke="{colour}" stroke-width="2"
  stroke-linejoin="round" stroke-linecap="round"/>
 <circle cx="{x(li):.1f}" cy="{y(lv):.1f}" r="4.5" fill="{colour}"
  stroke="#0a1626" stroke-width="2"/>
-<text x="{pad_l}" y="{top - 8}" fill="#f4f8ff" {MONO}>{title}</text>
-<text x="{pad_l + iw}" y="{top - 8}" text-anchor="end" fill="#8da2be" {MONO}>{unit}</text>
-<text x="{x(li) - 9:.1f}" y="{y(lv) - 10:.1f}" text-anchor="end" fill="{colour}"
+<text x="{pad_l}" y="{top - 9}" fill="{INK}" {MONO}>{title}</text>
+<text x="{pad_l + iw}" y="{top - 9}" text-anchor="end" fill="{MUTE}" {MONO}>{unit}</text>
+<text x="{x(li) - 10:.1f}" y="{lab_y:.1f}" text-anchor="end" fill="{INK}"
  {MONO}>{lv:g}</text>"""
+        # One hover dot per point per panel, placed now while the scale is in
+        # scope. Generated after the loop they all sat at cy 0.
+        dots += "".join(
+            f'<circle class="gw-mk" data-mk="{i}" cx="{x(i):.1f}" cy="{y(v):.1f}" '
+            f'r="3.5" fill="{colour}" stroke="#0a1626" stroke-width="2" '
+            f'opacity="0"/>' for i, v in have)
 
-    top1, top2 = 22, 22 + panel_h + gap
-    p1 = panel(top1, [(i, p[1]) for i, p in enumerate(pts)],
-               "MEASURED STORAGE", "Bcf", "#ffc72c", "gwA")
-    p2 = panel(top2, [(i, p[2]) for i, p in enumerate(pts)],
-               "MODELED PEAK DEMAND", "MMcf per day", "#5ac8f0", "gwB")
-
+    # Ordinal dates, house style, and never more than will fit.
+    step = max(1, n // 6)
+    want = sorted({0, *range(0, n, step), n - 1})
+    # A date label is about 62px of mono. Keep the first and the last, and drop
+    # any interior mark that would land inside a neighbour.
+    marks, MINPX = [], 74
+    for i in want:
+        if i in (0, n - 1):
+            continue
+        if (x(i) - x(marks[-1] if marks else 0) >= MINPX
+                and x(n - 1) - x(i) >= MINPX):
+            marks.append(i)
+    marks = [0] + marks + ([n - 1] if n > 1 else [])
     dates = "".join(
-        f'<text x="{x(i):.1f}" y="{h - 9}" '
-        f'text-anchor="{"start" if i == 0 else "end"}" fill="#8da2be" {MONO}>'
-        f'{pts[i][0]}</text>' for i in (0, n - 1))
+        f'<text x="{min(max(x(i), pad_l + 2), pad_l + iw - 2):.1f}" y="{h - 11}" '
+        f'text-anchor="{"start" if i == 0 else ("end" if i == n - 1 else "middle")}" '
+        f'fill="{MUTE}" {MONO}>{short_date(pts[i][0])}</text>' for i in marks)
 
-    return f"""<svg viewBox="0 0 {w} {h}" width="100%" role="img"
- aria-label="Two charts sharing one time axis. Measured Cook Inlet storage
- inventory in Bcf, and modeled peak daily demand in MMcf per day. The same
- values are in the table below."
+    # The hover layer. One crosshair snapping to the nearest date and one
+    # readout carrying every series for it, so the pointer never has to land on
+    # a 2px line. Values are written by script from a payload the numeral lint
+    # does not scan, and every one of them is already in the table below, so
+    # the tooltip enhances and never gates.
+    #
+    # ROVING TABINDEX, one stop for the whole chart. Every day used to take
+    # tabindex="0", which reads fine at three days and becomes 365 tab presses
+    # to get PAST the chart inside a year. The series grows by one every
+    # morning, so that was a defect with a delivery date. The first day holds
+    # the only stop, arrow keys move between days, and Home and End jump to the
+    # ends. Tab leaves the chart in one press however long the record gets.
+    hit = "".join(
+        f'<rect class="gw-hit" x="{x(i) - iw / max(1, n - 1) / 2:.1f}" y="16" '
+        f'width="{iw / max(1, n - 1):.1f}" height="{h - pad_b - 16:.1f}" '
+        f'fill="transparent" data-i="{i}" tabindex="{0 if i == 0 else -1}" '
+        f'role="button" aria-label="{esc(long_date(pts[i][0]))}"/>' for i in range(n))
+    rules = "".join(
+        f'<line class="gw-cross" x1="{x(i):.1f}" y1="16" x2="{x(i):.1f}" '
+        f'y2="{h - pad_b:.1f}" stroke="{INK}" stroke-width="1" opacity="0" '
+        f'data-rule="{i}"/>' for i in range(n))
+    payload = json.dumps([
+        {"d": long_date(p[0]),
+         "v": [[pl["title"], ("%g" % p[pl["idx"]]) if p[pl["idx"]] is not None else None,
+                pl["colour"]] for pl in live]}
+        for p in pts])
+
+    return f"""<div class="gw-plot" data-gw-plot='{esc(payload)}'>
+<svg viewBox="0 0 {w} {h}" width="100%" role="img"
+ aria-label="{esc(len(live))} charts sharing one time axis, covering
+ {esc(long_date(pts[0][0]))} to {esc(long_date(pts[-1][0]))}. Measured Cook Inlet
+ storage in Bcf, modeled peak daily demand, and derived non CINGSA supply, both
+ in MMcf per day. Every value is in the table below."
  style="max-width:100%;height:auto;display:block">
 <defs>
 <linearGradient id="gwA" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#ffc72c" stop-opacity=".20"/>
+<stop offset="0" stop-color="#ffc72c" stop-opacity=".10"/>
 <stop offset="1" stop-color="#ffc72c" stop-opacity="0"/></linearGradient>
 <linearGradient id="gwB" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#5ac8f0" stop-opacity=".16"/>
+<stop offset="0" stop-color="#5ac8f0" stop-opacity=".10"/>
 <stop offset="1" stop-color="#5ac8f0" stop-opacity="0"/></linearGradient>
+<linearGradient id="gwC" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#9664e6" stop-opacity=".10"/>
+<stop offset="1" stop-color="#9664e6" stop-opacity="0"/></linearGradient>
 </defs>
-{p1}{p2}{dates}</svg>"""
+{body}{dates}{rules}{dots}{hit}</svg>
+<div class="gw-tip" hidden></div>
+</div>"""
 
 
 def table_html(series, model, limit=TABLE_LIMIT):
@@ -694,21 +850,13 @@ def table_html(series, model, limit=TABLE_LIMIT):
     rows = [r for r in series if r.get("verified")][-limit:]
     if not rows:
         return ""
-    # The residual describes the day BEFORE the record that carries it, because
-    # it needs that day's OBSERVED weather and a day's weather is only observed
-    # once the day is over. The reconciliation object says so in its own `date`
-    # field. Keying the cell to the record instead put August 5th's 141.7 on the
-    # August 6th row while the prose section above the table, which reads
-    # balance_date, said August 5th in the same breath. Look up by the date the
-    # figure is ABOUT, so a value can never land on a row it does not describe.
-    residual = {}
-    for r in series:
-        if not r.get("verified"):
-            continue
-        on = (r.get("reconciliation") or {}).get("date")
-        _, rec_any = remodel(r, model)
-        if on and rec_any.get("non_cingsa_supply_mmcfd") is not None:
-            residual[on] = rec_any["non_cingsa_supply_mmcfd"]
+    # Keyed by the day the figure is ABOUT, so a value can never land on a row
+    # it does not describe. Keying the cell to the record instead put August
+    # 5th's 141.7 on the August 6th row while the prose above the table, which
+    # reads balance_date, said August 5th in the same breath. Built from the
+    # WHOLE series rather than the displayed window, because the residual for
+    # the oldest visible row is carried by the record before it.
+    residual = residual_by_day(series, model)
     body = ""
     gaps = 0
     for r in rows:
@@ -853,6 +1001,93 @@ def self_test():
           (f", first {escaped[0]}" if escaped else ""))
     lo, hi, ticks = nice_bounds(5.0, 5.0)
     check("a flat series still produces a usable axis", hi > lo, f"{lo} to {hi}")
+
+    print("the chart says what the data says")
+    chart_model = gc.load_model(MODEL_CONFIG)
+    live_rows = [r for r in load_series() if r.get("verified")]
+    if len(live_rows) >= 2:
+        _pts, _live = chart_data(load_series(), chart_model)
+        # The residual belongs to the day it describes. The record for the 6th
+        # carries the balance FOR the 5th, and plotting it on the 6th would
+        # misdate the one figure nobody else publishes, every single day.
+        by_date = {p[0]: p[3] for p in _pts}
+        want = residual_by_day(load_series(), chart_model)
+        misplaced = [d for d, v in want.items() if d in by_date and by_date[d] != v]
+        # NOT a check that the keying is right. Both sides of this comparison
+        # now come from residual_by_day, so it agrees with itself whatever that
+        # function does, which is the same self-confirming shape that let the
+        # misdating live for a day. What it still catches is chart_data losing
+        # or shifting a value on the way to a point. The keying is pinned on
+        # built data below, where a wrong answer has nothing to agree with.
+        check("every balanced day reaches the chart intact", not misplaced,
+              str(misplaced) or f"{len(want)} balanced day(s)")
+        check("a panel needs two points, like the chart does",
+              all(len(pl["have"]) >= 2 for pl in _live),
+              str([(pl["title"], len(pl["have"])) for pl in _live]))
+
+    # Against a BUILT series rather than the ledger, because the ledger holds
+    # two balanced days today and a case that only bites on a shape the data
+    # has not reached yet is not a case. Day two's record carries the balance
+    # FOR day one, so a reader keying off the record puts it on day two.
+    off_by_one = [
+        {"date": "2026-08-01", "verified": True,
+         "cingsa": {"inventory_mcf": 5_000_000, "storage_design_mcf": 13_000_000,
+                    "inventory_pct_of_design": 38.5},
+         "derived": {}, "reconciliation": {}, "flags": []},
+        {"date": "2026-08-02", "verified": True,
+         "cingsa": {"inventory_mcf": 5_100_000, "storage_design_mcf": 13_000_000,
+                    "inventory_pct_of_design": 39.2},
+         "derived": {},
+         "reconciliation": {"date": "2026-08-01", "actual_hdd65": 12.0,
+                            "storage_withdrawal_mmcfd": 40.0},
+         "flags": []},
+    ]
+    placed = residual_by_day(off_by_one, chart_model)
+    balance = remodel(off_by_one[1], chart_model)[1]["non_cingsa_supply_mmcfd"]
+    check("a balance lands on the day it is about, not the day it arrived",
+          placed == {"2026-08-01": balance}, str(placed))
+    plotted = {p[0]: p[3] for p in chart_data(off_by_one, chart_model)[0]}
+    check("the chart reads it from there",
+          plotted == {"2026-08-01": balance, "2026-08-02": None}, str(plotted))
+    # Same figure, same row, in the other reader. These two were written apart
+    # and got the keying wrong apart, so agreement is the thing to assert.
+    table_rows = re.findall(r"<tr><td>(2026-08-\d\d)</td>.*?<td>([^<]*)</td></tr>",
+                            table_html(off_by_one, chart_model))
+    check("and the table puts it on the same row",
+          table_rows == [("2026-08-01", str(balance)), ("2026-08-02", "")],
+          str(table_rows))
+
+    # ONE tab stop, whatever the length. This is checked on a long synthetic
+    # series because at today's three days the broken version and the fixed one
+    # are both fine, and the difference only becomes a problem months out.
+    long_series = []
+    for d in range(200):
+        long_series.append(
+            {"date": (date(2026, 1, 1) + timedelta(days=d)).isoformat(),
+             "verified": True,
+             "cingsa": {"inventory_mcf": 5_000_000 + d * 1000,
+                        "storage_design_mcf": 13_000_000,
+                        "inventory_pct_of_design": 38.5},
+             "derived": {}, "reconciliation": {}, "flags": []})
+    long_svg = chart_svg(long_series, chart_model)
+    stops = long_svg.count('tabindex="0"')
+    days = long_svg.count('class="gw-hit"')
+    check("a long record still costs one tab press to skip", stops == 1,
+          f"{days} days, {stops} tab stop(s)")
+    check("and the other days stay reachable by arrow key",
+          'ArrowLeft' in GW_JS and 'ArrowRight' in GW_JS and "'End'" in GW_JS)
+
+    # A flat record has to render flat. Fitted to the data alone, two readings
+    # a hundredth apart filled the panel and read as a climb.
+    flat_lo, flat_hi, _t = nice_bounds(6.50 * 0.98, 6.54 * 1.02, min_span=1.3)
+    check("a day when nothing moved does not fill the panel",
+          (6.54 - 6.50) / (flat_hi - flat_lo) < 0.05,
+          f"axis {flat_lo} to {flat_hi}, the move is "
+          f"{(6.54 - 6.50) / (flat_hi - flat_lo) * 100:.1f} percent of it")
+    real_lo, real_hi, _t = nice_bounds(3.1 * 0.98, 9.8 * 1.02, min_span=1.3)
+    check("and a real drawdown still fills it",
+          (9.8 - 3.1) / (real_hi - real_lo) > 0.6,
+          f"axis {real_lo} to {real_hi}")
 
     print("the numeral lint")
     model = gc.load_model(MODEL_CONFIG)
@@ -1092,7 +1327,6 @@ def home_strip(series, model, prefix="", figs=None):
     f = figures(series, model, figs)
     if "as_of" not in f:
         return ""
-    pct = f["inventory_pct_of_design"]
     # ONE meter, built once. The homepage and the gas watch page carried
     # separate copies of this markup, so a change to either could drift from
     # the other and the redesign would have had to be done twice.
@@ -1400,6 +1634,94 @@ Cook Inlet gas storage plan</a>.</p>
 </div>"""
 
 
+
+# The chart's hover layer. Small enough to inline, and it degrades to the
+# static picture plus the table if it never runs.
+GW_JS = r"""
+(function(){
+  var plot = document.querySelector('.gw-plot');
+  if (!plot) return;
+  var tip = plot.querySelector('.gw-tip');
+  var svg = plot.querySelector('svg');
+  var data;
+  try { data = JSON.parse(plot.getAttribute('data-gw-plot')); } catch (e) { return; }
+  var rules = plot.querySelectorAll('.gw-cross');
+  var marks = plot.querySelectorAll('.gw-mk');
+  var hits  = plot.querySelectorAll('.gw-hit');
+
+  function clear(){
+    for (var i=0;i<rules.length;i++) rules[i].setAttribute('opacity','0');
+    for (var j=0;j<marks.length;j++) marks[j].setAttribute('opacity','0');
+    tip.hidden = true;
+  }
+
+  function show(i, target){
+    var row = data[i];
+    if (!row) return;
+    for (var a=0;a<rules.length;a++)
+      rules[a].setAttribute('opacity', rules[a].getAttribute('data-rule')==String(i) ? '.5' : '0');
+    for (var b=0;b<marks.length;b++)
+      marks[b].setAttribute('opacity', marks[b].getAttribute('data-mk')==String(i) ? '1' : '0');
+
+    // textContent throughout. Series names are data, never markup.
+    tip.textContent = '';
+    var d = document.createElement('div');
+    d.className = 'gw-tip-d';
+    d.textContent = row.d;
+    tip.appendChild(d);
+    row.v.forEach(function(v){
+      if (v[1] === null) return;
+      var r = document.createElement('div'); r.className = 'gw-tip-r';
+      var k = document.createElement('span'); k.className = 'gw-tip-k';
+      k.style.background = v[2];
+      var val = document.createElement('span'); val.className = 'gw-tip-v';
+      val.textContent = v[1];
+      var nm = document.createElement('span'); nm.className = 'gw-tip-n';
+      nm.textContent = v[0];
+      r.appendChild(k); r.appendChild(val); r.appendChild(nm);
+      tip.appendChild(r);
+    });
+    tip.hidden = false;
+
+    // Anchored to the top of the plot rather than to the hit rect. The rect
+    // spans every panel and starts near y=16, so hanging the readout above it
+    // put the whole tooltip off the top edge of the card. Pinned inside and
+    // clamped horizontally, it can never be clipped on any day.
+    var pr = plot.getBoundingClientRect(), tr = target.getBoundingClientRect();
+    var x = tr.left - pr.left + tr.width/2, half = tip.offsetWidth/2;
+    tip.style.left = Math.max(half + 6, Math.min(pr.width - half - 6, x)) + 'px';
+    tip.style.top = '6px';
+  }
+
+  // Move the single tab stop with the focus, so Tab always leaves the chart in
+  // one press no matter how many days the record holds.
+  function rove(i){
+    if (i < 0 || i >= hits.length) return;
+    for (var a=0;a<hits.length;a++) hits[a].setAttribute('tabindex', a===i ? '0' : '-1');
+    hits[i].focus();
+  }
+
+  for (var i=0;i<hits.length;i++){
+    (function(el){
+      var idx = parseInt(el.getAttribute('data-i'), 10);
+      el.addEventListener('pointerenter', function(){ show(idx, el); });
+      el.addEventListener('focus', function(){ show(idx, el); });
+      el.addEventListener('blur', clear);
+      el.addEventListener('keydown', function(ev){
+        var to = ev.key === 'ArrowLeft' ? idx - 1
+               : ev.key === 'ArrowRight' ? idx + 1
+               : ev.key === 'Home' ? 0
+               : ev.key === 'End' ? hits.length - 1 : null;
+        if (to === null) return;
+        ev.preventDefault();
+        rove(to);
+      });
+    })(hits[i]);
+  }
+  svg.addEventListener('pointerleave', clear);
+})();
+"""
+
 GW_CSS = """
 .gw-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
 gap:12px;margin:26px 0 30px;}
@@ -1532,6 +1854,38 @@ font-family:JBMono,ui-monospace,monospace;}
 }
 .gw-chart{background:var(--panel);border:1px solid var(--line);border-radius:14px;
 padding:16px 12px 8px;margin:18px 0;overflow-x:auto;}
+/* THE HOVER LAYER. An HTML chart is interactive by default, and without this
+   the only way to read a middle day was to count gridlines. The crosshair
+   snaps to the nearest date so the pointer aims at a day rather than at a 2px
+   line, and one readout carries every panel for that day. Everything it shows
+   is also in the table below, so it enhances and never gates. */
+.gw-plot{position:relative;}
+/* A 920 wide viewBox scaled into a 342px phone card takes 11px mono down to
+   about 4px, which is a picture of a chart rather than a chart. The card is
+   already overflow-x auto, so the plot keeps a readable floor and the CARD
+   scrolls. The page itself still does not, which is the line that matters. */
+.gw-chart svg{min-width:600px;}
+.gw-hit{cursor:crosshair;}
+.gw-hit:focus{outline:none;}
+.gw-hit:focus-visible{outline:2px solid var(--halo);outline-offset:-2px;}
+.gw-tip{position:absolute;z-index:3;pointer-events:none;min-width:190px;
+background:rgba(5,11,22,.97);border:1px solid var(--line);border-radius:10px;
+padding:10px 12px;box-shadow:0 18px 40px -20px #000;
+transform:translate(-50%,0);}
+.gw-tip-d{font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+color:var(--mute);font-family:JBMono,ui-monospace,monospace;
+margin-bottom:7px;white-space:nowrap;}
+.gw-tip-r{display:flex;align-items:baseline;gap:9px;white-space:nowrap;
+margin-top:5px;}
+/* A short stroke of the series colour, not a filled box. At tooltip density a
+   box is data-weight ink doing a label's job. */
+.gw-tip-k{width:12px;height:2px;border-radius:1px;flex:none;}
+/* Value leads, series name follows. The reader has the series and wants the
+   number, which is the legend's hierarchy inverted. */
+.gw-tip-v{color:var(--snow);font-weight:700;font-size:14px;
+font-variant-numeric:proportional-nums;}
+.gw-tip-n{color:var(--mute);font-size:11px;letter-spacing:.05em;
+text-transform:uppercase;}
 .gw-table{margin:18px 0 8px;overflow-x:auto;}
 .gw-table table{width:100%;border-collapse:collapse;font-size:14px;
 font-variant-numeric:tabular-nums;}
