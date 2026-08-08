@@ -2936,3 +2936,27 @@ is a verdict on the deck and can stop a post. The run's own is the Gas Watch
 verdict, the caption-room record and the sourcing caveat. Printing one and
 silently dropping the other was never going to be right, so the script prints
 both, scorer first.
+
+## 2026-08-08 - craft refresh, one number worth keeping
+
+Timeboxed platform pass. Almost everything returned restates CAROUSEL_CRAFT
+already: the 17x-versus-images figure, the 77 percent comment lift on posts
+carrying a question, the 673,000-post sample. Two-thirds of the results were
+SEO pages citing each other rather than a study.
+
+One figure is new and verified on the primary. Metricool's LinkedIn study,
+published April 14th 2026 over more than 673,000 posts from about 63,000
+accounts, reports that close to 40 percent of all interactions land in the
+first 24 hours after posting. Our golden-hour rule already covers the first
+60 to 90 minutes and is about author replies. This is a different and larger
+window, and it is the one the maintainer actually controls by choosing a
+posting time. Worth carrying into the aftercare block: the decision that
+matters is not only replying fast, it is not posting into a day the author
+cannot be present for.
+
+A claim seen twice but NOT written down here, because it could not be found
+on the study's own page: that personal-profile carousels outperform company
+-page carousels by 63 percent. Three aggregator pages assert it and attribute
+it to the same Metricool study. The study page does not carry it. Left out
+deliberately, per the house rule that a number appearing only downstream of
+its claimed source does not exist.
