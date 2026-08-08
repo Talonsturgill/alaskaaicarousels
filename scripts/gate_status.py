@@ -493,7 +493,11 @@ def score_row(rows, run):
         return
     # Report the scorer's own numbers. Never re-derive a verdict here.
     weighted = first(sc, "weighted_score_as_scored", "weighted_score", "weighted_total", default="?")
-    thr = first(sc, "threshold_applied", "threshold", "ship_threshold", default="?")
+    # 2026-08-08: No.29's scorer wrote 'threshold_used', so the run record read
+    # "8.02 / 10 vs threshold ?" over a genuine pass. Same alias list, same rule
+    # as gmail_draft.py: extend it, never hand-write the row.
+    thr = first(sc, "threshold_applied", "threshold", "ship_threshold",
+                "threshold_used", "ship_threshold_used", default="?")
     passes = first(sc, "passes_as_scored", "passes", "ship", "ships")
     detail = "%s / 10 vs threshold %s, scorer says passes=%s" % (weighted, thr, passes)
     if sc.get("cap_reason"):
