@@ -31,6 +31,21 @@ deliberately narrow:
     in AI_TELLS keeps failing anywhere in the text, quoted or not, so nothing
     that failed before this change passes after it.
   - unbalanced quotes mean no exemption.
+
+THE CAPTION IS NOT THE ONLY COPY A READER SEES (2026-08-08). Optional flag:
+
+  python scripts/caption_check.py out/<run>/caption.txt --copy out/<run>/copy.json
+
+Run No.29 shipped six bare non-ordinal dates ("August 5, 2026") in copy.json's
+`first_comment`, the sources block that gets pasted under the post within 60
+seconds of publishing. CLAUDE.md names the ordinal form as a house rule that
+never bends and cites THIS FILE as its enforcement, and the enforcement was
+real: DATE_FORMS would have caught every one of them. It just never saw the
+text, because this gate reads caption.txt and nothing else. The scorer caught
+it by eye at the ship gate. So the SAME rule table now also runs over the
+reader-facing prose fields of copy.json, which is a widening of an existing
+gate and adds no new rule. See COPY_READER_FIELDS for what is in scope and why
+the editor-only fields are not.
 """
 import json
 import re
@@ -200,6 +215,32 @@ BARE_CARDINAL = re.compile(
 
 REPO = Path(__file__).resolve().parent.parent
 BRAND_DEFAULT = REPO / "config" / "brand.yaml"
+
+# THE COPY FIELDS A READER ACTUALLY SEES (2026-08-08). Scope is deliberately
+# narrow and deliberately explicit rather than "every string in the file":
+#
+#   document_title     set on upload, rendered under the deck on LinkedIn
+#   post_copy          the caption itself (already gated via caption.txt; kept
+#                      here so a copy.json that drifts from caption.txt is
+#                      still checked)
+#   deck_summary_line  a line of the caption
+#   first_comment      the sources block, pasted under the post. THE DEFECT.
+#   slides[].*         kicker, headline and any label strings, which are set
+#                      in type on the artwork
+#
+# NOT in scope, and this is the reason: `editor_notes_for_email`, `aftercare`
+# and `caption_meta` are addressed to the maintainer in the dated draft, never
+# to a reader, and `aftercare` legitimately carries clock forms ("8 to 11 a.m.")
+# and process prose. Gating a private note on public house style would train the
+# machine to work around the gate, which is worse than the gate not existing.
+COPY_READER_FIELDS = ("document_title", "post_copy", "deck_summary_line",
+                      "first_comment")
+COPY_SLIDE_SKIP = {"n", "claim_ids", "claim_id", "note", "beat", "words",
+                   "lines", "breather"}
+# A citation stamp is allowed to be ISO and a URL is allowed to be anything.
+# DATE_FORMS never matches an ISO date, but a URL path like /2026/08/05/ and a
+# query string are stripped first so no rule can ever fire inside a link.
+_URLISH_STRIP = re.compile(r"https?://\S+|www\.\S+")
 
 
 def load_banned_phrases(path=None):
@@ -569,6 +610,55 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
             "verdict": "FAIL" if fails else "PASS"}
 
 
+def copy_prose(copy):
+    """Yield (field_path, string) for every reader-facing prose string in a
+    copy.json. See COPY_READER_FIELDS for the scope and the exclusions."""
+    out = []
+    for k in COPY_READER_FIELDS:
+        v = copy.get(k)
+        if isinstance(v, str) and v.strip():
+            out.append((k, v))
+    slides = copy.get("slides")
+    items = []
+    if isinstance(slides, list):
+        items = [("slides[%d]" % i, s) for i, s in enumerate(slides)]
+    elif isinstance(slides, dict):
+        items = sorted(slides.items())
+    for key, s in items:
+        if not isinstance(s, dict):
+            continue
+        for k, v in s.items():
+            if k in COPY_SLIDE_SKIP:
+                continue
+            vals = v if isinstance(v, list) else [v]
+            for i, item in enumerate(vals):
+                if isinstance(item, str) and re.search(r"[A-Za-z]", item):
+                    path = "%s.%s" % (key, k)
+                    if isinstance(v, list):
+                        path += "[%d]" % i
+                    out.append((path, item))
+    return out
+
+
+def check_copy_dates(copy):
+    """Run the house DATE_FORMS table over copy.json's reader-facing prose.
+
+    Widens an existing gate to the surfaces it was always supposed to cover;
+    adds no rule of its own. Returns a list of failure strings. Every hit is
+    reported, not just the first: run No.29's first_comment carried six.
+    """
+    fails = []
+    for path, raw in copy_prose(copy):
+        text = _URLISH_STRIP.sub(" ", raw)
+        for rx, what, fix in DATE_FORMS:
+            for m in rx.finditer(text):
+                fails.append(
+                    "DATE (copy.json %s): '%s' is the %s form - %s (owner rule "
+                    "2026-08-05). ISO is still right for a citation stamp, but "
+                    "this is prose a reader sees." % (path, m.group(0), what, fix))
+    return fails
+
+
 def main():
     args = [a for a in sys.argv[1:]]
     ledger_entries = None
@@ -578,6 +668,11 @@ def main():
     if "--brand" in args:
         i = args.index("--brand")
         brand_path = args[i + 1]
+        del args[i:i + 2]
+    copy_path = None
+    if "--copy" in args:
+        i = args.index("--copy")
+        copy_path = Path(args[i + 1])
         del args[i:i + 2]
     if "--deck-summary" in args:
         i = args.index("--deck-summary")
@@ -616,6 +711,22 @@ def main():
         rep["fails"].append("VARIETY: --ledger %s not found, the caption variety "
                             "check could not run, so this is not a pass" % ledger_missing)
         rep["verdict"] = "FAIL"
+    if copy_path is not None:
+        # Same rule as --ledger and --brand above: a check that was asked for
+        # and could not look is a FAIL, never a silent pass.
+        try:
+            copy_obj = json.loads(copy_path.read_text())
+        except (OSError, ValueError) as e:
+            rep["fails"].append("COPY: --copy %s could not be read (%s), so the "
+                                "house date form was checked on the caption only"
+                                % (copy_path, e.__class__.__name__))
+            rep["verdict"] = "FAIL"
+        else:
+            hits = check_copy_dates(copy_obj)
+            rep["copy_fields_checked"] = len(copy_prose(copy_obj))
+            rep["fails"].extend(hits)
+            if hits:
+                rep["verdict"] = "FAIL"
     out.write_text(json.dumps(rep, indent=2))
     for f in rep["fails"]:
         print("FAIL:", f)

@@ -584,6 +584,18 @@ so it never blocks at ship: `python scripts/style_lint.py --file
 out/<date>/copy.json --json-field first_comment` and the same on any other
 emitted copy field (caption goes through caption_check above). Rephrase any
 prose colon out now (the ship gate itself is unchanged).
+Then re-run the caption gate WITH the rest of the copy, once copy.json exists:
+`python scripts/caption_check.py out/<date>/caption.txt --ledger
+ledger/captions.json --deck-summary "<the line, verbatim>" --copy
+out/<date>/copy.json`. Added 2026-08-08: No.29 shipped SEVEN bare non-ordinal
+dates ("August 5, 2026") in `first_comment`, the block that gets pasted under
+the post, and the scorer caught them by eye. The rule table that bans them had
+existed since 2026-08-05 and would have caught every one; it simply never saw
+any text but caption.txt. `--copy` runs the same table over `document_title`,
+`post_copy`, `deck_summary_line`, `first_comment` and every slide kicker,
+headline and label. Editor-only fields (`editor_notes_for_email`, `aftercare`,
+`caption_meta`) are deliberately out of scope. Fix the dates, do not narrow
+the flag. This report is the one gate_status reads, so run it LAST.
 
 ## PHASE 7 — ART BUILD
 

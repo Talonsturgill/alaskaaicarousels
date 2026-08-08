@@ -3035,3 +3035,55 @@ far emissive plane is not visible down a 2.4 m tunnel from a camera 21 degrees
 off axis, because the acceptance half-angle is about 5 degrees. The fix that
 works is a short emissive plug just inside the mouth, which is also physically
 right for translucent polyethylene.
+
+## 2026-08-08 - Phase 12 upgrade engineer (what shipped, what is parked, the scan)
+
+SHIPPED, and both are widenings of gates that already existed rather than new
+opinions. (1) `data-encodes` now requires `"reads":"differ"|"same"` and qa.py
+FAILS a declaration that omits it, plus a `"differ"` under 4.0 dE at feed
+scale. The prose rule directly above this entry, RENDER FIRST THEN WRITE THE
+RECTANGLE, is now machinery: on the shipped slides 05 and 06 the declared
+aperture rect sits at x=188 and the aperture actually drew at x=468, and with
+the true rect the same declaration reads dE 89.9 instead of 3.5. (2)
+`caption_check.py --copy` runs the house DATE_FORMS table over copy.json's
+reader-facing fields. The table has banned bare cardinal dates since
+2026-08-05; it had simply never been shown any text but caption.txt, and 24 of
+29 shipped copy.json files carry at least one hit.
+
+PARKED, from the frontier scan (focus: LinkedIn platform, the slot the
+2026-08-07 entry nominated; last scanned 2026-07-24).
+
+- THE RANKER READS A TEXT PROMPT, NOT PIXELS, and this is now on the record
+  from LinkedIn's own engineering blog rather than inferred. "Engineering the
+  next generation of LinkedIn's Feed", Hristo Danchev, March 12th 2026,
+  describes a prompt library that "transforms features into templated
+  sequences" carrying format, author identity, engagement counts, article
+  metadata and POST TEXT, embedded by an LLM and ranked by a multi-gate
+  mixture-of-experts head that gates passive tasks (click, skip, long-dwell)
+  separately from active ones (like, comment, share). Two things follow. The
+  vector-text-PDF rule and qa.py's canvas-raster-text warn now have a primary
+  source, not a practitioner claim. And there is NO documented OCR of document
+  pages anywhere in that post, so type that lives only as canvas pixels is
+  invisible to ranking as well as to a screen reader. Parked rather than
+  applied because the existing warn already says the right thing; this is a
+  citation upgrade for it, and it belongs in CAROUSEL_CRAFT's source list on a
+  run that is editing that file for another reason.
+  https://www.linkedin.com/blog/engineering/feed/engineering-the-next-generation-of-linkedins-feed
+- CAROUSELS HAVE NO PER-SLIDE ALT TEXT ON LINKEDIN, at all. A screen reader
+  announces that a graphic is present and then cannot describe it; an
+  accessible source PDF can sometimes be read out, but only for simple
+  content. Our decks are the hard case (canvas art, SVG furniture). Parked as
+  a question for the maintainer rather than a change: the honest options are a
+  plain-text slide-by-slide summary in the first comment beside the sources,
+  or nothing, and adding a second paste-ready block to the post is an
+  editorial decision about the post's shape, not an engine fix.
+  https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels/
+- WATCH ITEM, not yet actionable: documents still lead every 2026 benchmark
+  (6.6% ER at the May 2026 refresh, still the top format), and the 8-10 slide
+  band with ~1.45x reach that CAROUSEL_CRAFT already carries is unchanged. The
+  one NEW claim worth watching is secondary-source only, that carousel reach
+  declined quarter on quarter through Q1 2026. Nothing to do until it appears
+  in a named study; recorded so the next platform scan starts from it.
+- Byproduct, fixed in passing: CAROUSEL_CRAFT.md's "Why this format" paragraph
+  contained a stray Russian word ("Каждый swipe = dwell"). Every run reads that
+  file at Phase 1. Now "Every swipe = dwell".
