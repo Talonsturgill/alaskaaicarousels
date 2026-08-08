@@ -11,25 +11,28 @@ html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;backgrou
 .it{font-family:'Instrument Serif';font-style:italic;color:#A9BFA0}
 .bd{font-family:Archivo;font-variation-settings:'wdth' 100,'wght' 400;
   font-size:34px;line-height:1.38;color:#D8E4DE}
-.mn{font-family:'JetBrains Mono';font-weight:400;font-size:20px;
+.mn{font-family:'JetBrains Mono';font-weight:400;font-size:22px;
   letter-spacing:.08em;color:#8FA36A;font-variant-numeric:tabular-nums lining-nums}
-.log{position:absolute;left:80px;bottom:44px}
-.ctr{position:absolute;right:80px;top:64px;color:#C9D6CE}
-.crd{position:absolute;left:80px;bottom:16px;font-size:18px;color:#3E5248}
+.log{position:absolute;left:80px;bottom:88px}
+.ctr{position:absolute;right:88px;top:72px;color:#C9D6CE;font-size:24px}
+.goldtick{position:absolute;right:186px;top:82px;width:12px;height:5px;background:#FFC72C}
+.crd{position:absolute;left:80px;bottom:52px;font-size:18px;color:#3E5248}
 .gold{color:#FFC72C}
 </style>
 <canvas id="art" width="2160" height="2700"></canvas>
-<body data-contacts='[{"what":"the chute on the unlit bed","shadow":[[286,960,300,40]],"ground":[[286,1076,300,40]]}]' data-encodes='[{"claim":"the object is identical and only the light changed","a":[[188,612,96,108]],"b":[[96,208,180,180]]}]'>
+<body data-contacts='[{"what":"the chute on the unlit bed","shadow":[[506,1116,72,32]],"ground":[[636,1116,72,32]]}]' data-encodes='[{"claim":"the object is identical and only the light changed","a":[[188,612,96,108]],"b":[[96,208,180,180]]}]'>
 
 <div class="lyr">
+<div style="position:absolute;left:0;top:300px;width:820px;height:760px;background:linear-gradient(90deg,rgba(4,8,13,0.90) 0%,rgba(4,8,13,0.72) 42%,rgba(4,8,13,0) 100%)"></div>
   <div class="kick" style="position:absolute;left:80px;top:120px">THE MONEY THAT DOESN'T</div>
-  <div id="h6" class="hl" style="position:absolute;left:80px;top:186px;width:920px;font-size:128px">Grant money lights damage.</div>
-  <div class="hl" style="position:absolute;left:80px;top:392px;width:820px;font-size:62px">"This system isn't damaged."</div>
-  <div class="bd" style="position:absolute;left:80px;top:590px;width:640px">"There's lots of money out there to fix and monitor broken systems"<br><br>"there's no funding for the weir right now"</div>
-  <div class="bd" style="position:absolute;left:80px;top:830px;width:640px;font-size:26px;
-       font-variation-settings:'wdth' 62,'wght' 500;letter-spacing:.02em">Jeff Feldpausch, Sitka Tribe of Alaska, to KCAW, August 5, 2026</div>
-  <div class="mn log">SHOT 06 / 09 . FOV 64 . KEY 1 TO 1 . DOLLY 0.00 M</div>
-  <div class="mn ctr">06 / 09</div>
+  <div id="h6" class="hl" style="position:absolute;left:80px;top:178px;width:800px;font-size:106px">Grant money lights damage.</div>
+  <div class="hl" style="position:absolute;left:80px;top:436px;width:660px;font-size:56px">"This system isn't damaged."</div>
+  <div class="bd" style="position:absolute;left:80px;top:614px;width:620px">"There's lots of money out there to fix and monitor broken systems"<br><br>"there's no funding for the weir right now"</div>
+  <div class="bd" style="position:absolute;left:80px;top:846px;width:620px;font-size:26px;
+       font-variation-settings:'wdth' 62,'wght' 500;letter-spacing:.02em">Jeff Feldpausch, Sitka Tribe of Alaska, to KCAW, August 5th, 2026</div>
+  <div class="mn log" data-decorative>SHOT 06 / 09 . FOV 64 . KEY 1 TO 1 . DOLLY 0.00 M</div>
+  <div class="goldtick"></div>
+<div class="mn ctr">06 / 09</div>
   <div class="mn crd" data-decorative>56&#176;51'N 135&#176;10'W</div>
 </div>
 
@@ -119,7 +122,7 @@ function rayFrame(cx, opts){
     mats: {
       1:{color:[0.013*opts.g,0.022*opts.g,0.019*opts.g], spec:0.05},
       2:{color:[0.17*opts.g,0.18*opts.g,0.172*opts.g], spec:0.20,
-         emissive:[0.085*opts.e,0.079*opts.e,0.064*opts.e]},
+         emissive:[0.085*opts.e+opts.rim,0.079*opts.e+opts.rim*0.94,0.064*opts.e+opts.rim*0.78]},
       3:{color:[0.02,0.02,0.02], spec:0.0,
          emissive:[2.60*opts.e,2.16*opts.e,1.48*opts.e]},
       4:{color:[0.014*opts.g,0.020*opts.g,0.018*opts.g], spec:0.40},
@@ -149,11 +152,11 @@ function probe(cx, rect){                 // median L* of a region, feed scale
 function draw(){
   var cx = document.getElementById('art').getContext('2d');
   cx.setTransform(2,0,0,2,0,0);
-  atmos(cx, 20260808+6, '#0C1A17', '#0A1512', 0.12);
+  atmos(cx, 20260808+6, '#070F0D', '#060B0A', 0.12);
   AKPOST.grade(cx, {exposure:1.06, saturation:0.98, contrast:1.05});
   // IDENTICAL camera, IDENTICAL scene. Only the light rig changes: gain 1.00
   // to 0.16 and the polyethylene emissive to 6 percent. That is the argument.
-  rayFrame(cx, {w:480,h:720,g:0.16,e:0.06,
+  rayFrame(cx, {w:480,h:720,g:0.13,e:0.0036,rim:0.020,
                 cam:{pos:[0.85,0.62,-2.15], look:[-0.02,0.44,0.30], fov:64}});
   shafts(cx, 2, 0.02, 286, 900, 0.72, 20260808+6);
   grain(cx, 20260808+6);
@@ -163,7 +166,7 @@ function draw(){
     open_water: probe(cx,[96,208,180,180])
   };
 }
-window.__fit = function(){ AK.fitText(document.getElementById('h6'),{min:104,max:132,maxLines:1}); };
+window.__fit = function(){ AK.fitText(document.getElementById('h6'),{min:84,max:110,maxLines:2}); };
 
 </script>
 

@@ -11,23 +11,24 @@ html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;backgrou
 .it{font-family:'Instrument Serif';font-style:italic;color:#A9BFA0}
 .bd{font-family:Archivo;font-variation-settings:'wdth' 100,'wght' 400;
   font-size:34px;line-height:1.38;color:#D8E4DE}
-.mn{font-family:'JetBrains Mono';font-weight:400;font-size:20px;
+.mn{font-family:'JetBrains Mono';font-weight:400;font-size:22px;
   letter-spacing:.08em;color:#8FA36A;font-variant-numeric:tabular-nums lining-nums}
-.log{position:absolute;left:80px;bottom:44px}
-.ctr{position:absolute;right:80px;top:64px;color:#C9D6CE}
-.crd{position:absolute;left:80px;bottom:16px;font-size:18px;color:#3E5248}
+.log{position:absolute;left:80px;bottom:88px}
+.ctr{position:absolute;right:88px;top:72px;color:#C9D6CE;font-size:24px}
+.goldtick{position:absolute;right:186px;top:82px;width:12px;height:5px;background:#FFC72C}
+.crd{position:absolute;left:80px;bottom:52px;font-size:18px;color:#3E5248}
 .gold{color:#FFC72C}
 </style>
 <canvas id="art" width="2160" height="2700"></canvas>
-<body data-contacts='[{"what":"the chute on the lake bed","shadow":[[300,980,300,40]],"ground":[[300,1090,300,40]]}]' data-encodes='[{"claim":"every fish passes one lit gate, one at a time","a":[[188,612,96,108]],"b":[[760,240,180,180]]}]'>
+<body data-contacts='[{"what":"the chute on the lake bed","shadow":[[300,1116,80,40]],"ground":[[640,1058,80,40]]}]' data-encodes='[{"claim":"every fish passes one lit gate, one at a time","a":[[188,612,96,108]],"b":[[760,240,180,180]]}]'>
 
 <div class="lyr">
   <div class="kick" style="position:absolute;left:80px;top:120px">REDOUBT LAKE WEIR . SITKA TRIBE OF ALASKA</div>
-  <div id="h1" class="hl" style="position:absolute;left:540px;top:190px;width:462px;font-size:132px">"The system<br>is not broken.<br>That's the problem."</div>
-  <div class="bd" style="position:absolute;left:540px;top:640px;width:452px;font-size:26px;
-       font-variation-settings:'wdth' 62,'wght' 500;letter-spacing:.02em">Jeff Feldpausch, Sitka Tribe of Alaska, to KCAW, August 5, 2026</div>
-  <div class="mn log">SHOT 01 / 09 . FOV 58 . KEY 6 TO 1 . DOLLY 0.00 M</div>
-  <div class="mn ctr">01 / 09</div>
+  <div id="h1" class="hl" style="position:absolute;left:80px;top:168px;width:920px;font-size:132px">"The system<br>is not broken.<br>That's the problem."</div>
+  <div class="bd" style="position:absolute;left:80px;top:604px;width:270px;font-size:25px;font-variation-settings:'wdth' 62,'wght' 500;letter-spacing:.02em;line-height:1.42">Jeff Feldpausch, Sitka Tribe of Alaska, to KCAW, August 5th, 2026</div>
+  <div class="mn log" data-decorative>SHOT 01 / 09 . FOV 58 . KEY 6 TO 1 . DOLLY 0.00 M</div>
+  <div class="goldtick"></div>
+<div class="mn ctr">01 / 09</div>
   <div class="mn crd" data-decorative>56&#176;51'N 135&#176;10'W</div>
 </div>
 
@@ -144,14 +145,55 @@ function probe(cx, rect){                 // median L* of a region, feed scale
   return Math.round(v[Math.floor(v.length/2)]*10)/10;
 }
 
+
+/* THE COVER'S OWN FOREGROUND. None of this exists on any other slide: a blurred
+   near-field picket pair and a half-seen sockeye bleeding off the bottom-left,
+   plus a surface shimmer band and a hand-built vignette. This is the
+   instant-expensive-lens repoussoir the cover needs and the hero frames do not. */
+function coverForeground(cx){
+  cx.save(); cx.filter='blur(26px)';
+  var g1=cx.createLinearGradient(0,700,300,1350);
+  g1.addColorStop(0,'#0D1815'); g1.addColorStop(1,'#050B09');
+  cx.fillStyle=g1;
+  cx.beginPath(); cx.moveTo(-40,624); cx.lineTo(126,596); cx.lineTo(168,1350);
+  cx.lineTo(-40,1350); cx.closePath(); cx.fill();
+  cx.beginPath(); cx.moveTo(206,668); cx.lineTo(300,656); cx.lineTo(338,1350);
+  cx.lineTo(232,1350); cx.closePath(); cx.fill();
+  cx.restore(); cx.filter='none';
+  // a sockeye half out of frame at the bottom left, softened by the near water
+  cx.save(); cx.filter='blur(15px)'; cx.translate(196,1256); cx.rotate(-0.20);
+  cx.fillStyle='#0A100E';
+  cx.beginPath();
+  cx.moveTo(-330,0); cx.quadraticCurveTo(-160,-84,80,-62);
+  cx.quadraticCurveTo(268,-42,352,4); cx.quadraticCurveTo(268,50,80,66);
+  cx.quadraticCurveTo(-160,86,-330,0); cx.closePath(); cx.fill();
+  cx.beginPath(); cx.moveTo(-330,0); cx.lineTo(-424,-70); cx.lineTo(-398,0);
+  cx.lineTo(-424,70); cx.closePath(); cx.fill();
+  cx.restore(); cx.filter='none';
+  // the lake surface far above, a thin shimmer band the hero frames never show
+  AK.reseed(20260808+11);
+  cx.save(); cx.globalCompositeOperation='screen';
+  for(var i=0;i<70;i++){
+    var y=96+AK.fbm2(i*0.31,0.7,3)*54, w=40+((i*29)%120), x=(i*17.4)%1080;
+    cx.fillStyle='rgba(160,190,140,'+(0.020+((i%5)*0.006)).toFixed(3)+')';
+    cx.fillRect(x,y,w,2.4);
+  }
+  cx.restore();
+  // a hand-built vignette so the cover reads as one focal object at 432px
+  var vg=cx.createRadialGradient(300,830,180,300,830,940);
+  vg.addColorStop(0,'rgba(4,8,13,0)'); vg.addColorStop(1,'rgba(4,8,13,0.72)');
+  cx.fillStyle=vg; cx.fillRect(0,0,1080,1350);
+}
 function draw(){
   var cx = document.getElementById('art').getContext('2d');
   cx.setTransform(2,0,0,2,0,0);
   atmos(cx, 20260808+1, '#0A1614', '#08110F', 0.16);
   AKPOST.grade(cx, {exposure:1.02, saturation:0.95, contrast:1.06});
   rayFrame(cx, {w:440,h:660,g:1.0,e:1.0,
-                cam:{pos:[0.85,0.62,-2.15], look:[-0.16,0.40,0.34], fov:58}});
+                cam:{pos:[0.55,0.90,-2.40], look:[-0.22,0.34,0.44], fov:58}});
+
   shafts(cx, 4, 0.08, 300, 940, 0.55, 20260808+1);
+  coverForeground(cx);
   grain(cx, 20260808+1);
   window.__akProbes = {
     slot_core: probe(cx,[188,612,96,108]),
@@ -159,7 +201,7 @@ function draw(){
     open_water: probe(cx,[760,240,180,180])
   };
 }
-window.__fit = function(){ AK.fitText(document.getElementById('h1'),{min:104,max:138,maxLines:3}); };
+window.__fit = function(){ AK.fitText(document.getElementById('h1'),{min:120,max:156,maxLines:3}); };
 
 </script>
 
