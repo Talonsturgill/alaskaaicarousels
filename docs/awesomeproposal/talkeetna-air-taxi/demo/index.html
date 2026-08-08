@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Talkeetna Air Taxi, working demonstration, prepared by Alaska AI</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --surface:#122a46;
+  --surface2:#0b1a2d;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --gold:#ffc72c;
+  --link:#5ac8f0;
+  --warn:#f2a43a;
+  --ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 var(--ui);letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:26px 20px 40px}
+
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(28px,5vw,40px);
+  line-height:1.02;letter-spacing:-.02em}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(21px,3vw,26px);
+  line-height:1.2;letter-spacing:-.01em;margin-bottom:8px}
+h3{font-size:17px;font-weight:700;line-height:1.3;margin:22px 0 8px}
+h4{font-size:15px;font-weight:700;line-height:1.3}
+p{margin:0 0 16px;text-wrap:pretty}
+p:last-child{margin-bottom:0}
+strong{font-weight:700;color:var(--ink)}
+.sub{color:var(--sub)}
+.cap{color:var(--cap)}
+
+/* ---------- cover ---------- */
+.mark{display:flex;align-items:center;gap:9px;font:400 11px/1 var(--mono);
+  letter-spacing:.18em;color:var(--ink);margin-bottom:22px}
+.mark i{width:12px;height:12px;display:block;background:var(--gold);
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+.eyebrow{font:400 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 12px}
+.cover .tag{margin:14px 0 0;color:var(--sub);font-size:17px;max-width:34rem}
+.covermeta{margin-top:18px;padding-top:12px;border-top:1px solid var(--rule);
+  font:400 11px/1.6 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cap);display:flex;flex-wrap:wrap;gap:6px 22px}
+
+/* ---------- the honesty bar ---------- */
+.honest{border-left:2px solid var(--gold);padding:2px 0 2px 16px;margin:24px 0 26px;
+  color:var(--sub);font-size:15px;max-width:40rem}
+.honest b{color:var(--ink)}
+
+/* ---------- scenario nav ---------- */
+nav.scen{position:sticky;top:0;z-index:20;background:rgba(2,6,15,.94);
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  margin:0 -20px 26px;padding:10px 20px;display:flex;flex-wrap:wrap;gap:8px}
+nav.scen button{font:400 12px/1.1 var(--mono);letter-spacing:.06em;color:var(--cap);
+  background:transparent;border:1px solid var(--rule);border-radius:999px;
+  padding:8px 13px;cursor:pointer}
+nav.scen button:hover{color:var(--ink);border-color:var(--cap)}
+nav.scen button[aria-current="true"]{color:#04121a;background:var(--accent);
+  border-color:var(--accent);font-weight:700}
+
+/* ---------- sections ---------- */
+section.sc{display:none;margin:0 0 34px}
+section.sc.on{display:block}
+.secn{font:400 11px/1 var(--mono);color:var(--gold);letter-spacing:.18em;
+  display:block;margin-bottom:10px}
+.setup{color:var(--sub);font-size:16px;max-width:38rem;margin:0 0 22px;
+  border-left:1px solid var(--rule);padding-left:16px}
+
+.cols{display:grid;grid-template-columns:390px 1fr;gap:26px;align-items:start}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
+
+/* ---------- device column ---------- */
+.device{max-width:390px}
+.urlbar{display:flex;align-items:center;gap:8px;font:400 11px/1 var(--mono);
+  color:var(--cap);background:var(--surface2);border:1px solid var(--rule);
+  border-radius:8px 8px 0 0;padding:9px 12px;word-break:break-all}
+.urlbar i{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+.screen{background:#050d1a;border:1px solid var(--rule);border-top:0;
+  border-radius:0 0 10px 10px;padding:14px}
+.devcap{font-size:13px;color:var(--cap);margin-top:9px;line-height:1.5}
+
+/* board */
+.bhead{display:flex;justify-content:space-between;align-items:baseline;
+  gap:10px;padding-bottom:10px;border-bottom:1px solid var(--rule);margin-bottom:12px}
+.bhead .name{font:700 12px/1.2 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.bhead .clk{font:400 12px/1.2 var(--mono);color:var(--cap);font-variant-numeric:tabular-nums}
+.btitle{font-family:var(--display);font-size:20px;line-height:1.15;margin:0 0 3px}
+.bdate{font:400 11px/1.4 var(--mono);color:var(--cap);margin:0 0 14px}
+
+.card{background:var(--surface);border-radius:9px;padding:13px 14px;margin:0 0 12px}
+.card:last-child{margin-bottom:0}
+.klabel{font:400 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cap);display:block;margin-bottom:8px}
+
+.statv{font-family:var(--display);font-size:30px;line-height:1;margin:0 0 8px}
+.statv.flying{color:var(--accent)}
+.statv.holding{color:var(--warn)}
+.statv.down{color:#ff9b8a}
+.statv.none{color:var(--cap);font-size:19px;line-height:1.25}
+.stampline{font:400 11px/1.5 var(--mono);color:var(--cap);margin:0 0 8px}
+.statnote{font-size:13px;line-height:1.5;color:var(--sub);margin:0}
+.quoteback{font-size:14px;line-height:1.55;color:var(--ink);margin:0 0 6px}
+.ttlbar{height:3px;background:var(--rule);border-radius:2px;overflow:hidden;margin:10px 0 0}
+.ttlbar span{display:block;height:100%;background:var(--accent)}
+
+/* camera panels */
+.cam{background:var(--surface);border-radius:9px;overflow:hidden;margin:0 0 12px}
+.camart{position:relative;line-height:0}
+.camart svg{display:block;width:100%;height:auto}
+.camchip{position:absolute;left:8px;top:8px;font:400 9px/1 var(--mono);
+  letter-spacing:.14em;text-transform:uppercase;color:#cfe0f2;
+  background:rgba(2,6,15,.72);border:1px solid rgba(166,185,209,.4);
+  border-radius:3px;padding:4px 6px}
+.camdead{position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  background:rgba(2,6,15,.74);text-align:center;padding:12px}
+.camdead b{display:block;font:700 12px/1.3 var(--ui);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--warn)}
+.camdead span{display:block;font:400 11px/1.5 var(--mono);color:var(--cap);margin-top:5px}
+.cam.dead .camdead{display:flex}
+.cam.dead .camart svg{filter:grayscale(1);opacity:.4}
+.camtxt{padding:11px 13px 13px}
+.camtxt h4{margin:0 0 8px;font-size:14px;color:var(--ink)}
+.rows{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;
+  font:400 11px/1.45 var(--mono);margin:0}
+.rows dt{color:var(--cap);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.rows dd{margin:0;color:var(--sub)}
+.slot{color:var(--cap);border-bottom:1px dotted var(--cap);padding-bottom:1px}
+
+.samp{font-size:14px;line-height:1.55;color:var(--sub);margin:0 0 8px}
+.attrib{font:400 10px/1.5 var(--mono);color:var(--cap);margin:0}
+.chipS{display:inline-block;font:400 9px/1 var(--mono);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--warn);border:1px solid var(--warn);
+  border-radius:3px;padding:3px 5px;margin-left:8px;vertical-align:1px}
+.bfoot{border-top:1px solid var(--rule);margin-top:14px;padding-top:12px;
+  font-size:13px;line-height:1.55;color:var(--cap)}
+.bfoot b{color:var(--sub);font-weight:400}
+.bfoot .tel{color:var(--link);white-space:nowrap}
+
+/* ---------- controls ---------- */
+.ctrl{background:var(--surface2);border:1px dashed var(--rule);border-radius:10px;
+  padding:14px 15px;margin:0 0 20px}
+.ctrl .klabel{color:var(--gold)}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.btnrow:last-child{margin-bottom:0}
+button.b{font:400 13px/1.1 var(--ui);color:var(--ink);background:#16304e;
+  border:1px solid var(--rule);border-radius:7px;padding:9px 12px;cursor:pointer}
+button.b:hover{border-color:var(--cap)}
+button.b[aria-pressed="true"]{background:var(--accent);color:#04121a;
+  border-color:var(--accent);font-weight:700}
+button.b.warnstate[aria-pressed="true"]{background:var(--warn);border-color:var(--warn);color:#1a0f02}
+button.b.ghost{background:transparent;color:var(--cap)}
+button.b.ghost:hover{color:var(--ink)}
+.ctrlnote{font-size:13px;line-height:1.5;color:var(--cap);margin:10px 0 0}
+
+.note{font-size:15px;line-height:1.6;color:var(--sub);margin:0 0 16px;max-width:36rem}
+.note.warnbox{border-left:2px solid var(--warn);padding-left:14px}
+.note.hide{display:none}
+
+/* ---------- provenance marks ---------- */
+.pm{display:inline-block;width:10px;height:10px;border:1.5px solid currentColor;
+  vertical-align:0;margin-right:7px;flex:none}
+.pm-v{background:currentColor;color:var(--accent)}
+.pm-m{color:var(--cap);background:linear-gradient(135deg,currentColor 50%,transparent 50%)}
+.pm-a{color:var(--warn)}
+.pmkey{font:400 12px/1.6 var(--mono);color:var(--cap);display:flex;flex-wrap:wrap;
+  gap:4px 20px;margin:14px 0 0}
+.pmkey span{display:flex;align-items:center}
+
+/* ---------- page cards (the facts record) ---------- */
+.pages{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 18px}
+@media (max-width:700px){.pages{grid-template-columns:1fr !important}}
+.pg{background:var(--surface);border-radius:9px;padding:12px 13px}
+.pg .path{font:400 10px/1.4 var(--mono);color:var(--link);word-break:break-all;
+  display:block;margin-bottom:9px}
+.pg p{font-size:14px;line-height:1.5;color:var(--ink);margin:0}
+.pg p.win{color:var(--cap);margin-top:7px;font-size:13px}
+.pg.diff{outline:1px solid var(--warn)}
+.pg.same{outline:1px solid var(--accent)}
+
+.rec{background:var(--surface2);border:1px solid var(--rule);border-radius:10px;
+  padding:15px;margin:0 0 18px}
+.rec .klabel{color:var(--accent)}
+.recrows{display:grid;grid-template-columns:auto 1fr;gap:7px 16px;
+  font:400 12px/1.5 var(--mono);margin:0}
+.recrows dt{color:var(--cap);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.recrows dd{margin:0;color:var(--ink)}
+.recrows dd.undec{color:var(--warn)}
+
+table.rectab{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 8px}
+table.rectab th{text-align:left;font-size:12px;font-weight:700;color:var(--cap);
+  letter-spacing:.08em;text-transform:uppercase;padding:0 14px 8px 0;
+  border-bottom:1px solid var(--rule)}
+table.rectab td{padding:9px 14px 9px 0;vertical-align:top;color:var(--sub);
+  border-bottom:1px solid rgba(28,51,80,.6)}
+table.rectab td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink);white-space:nowrap}
+table.rectab tr.amber td{color:var(--warn)}
+.tw{overflow-x:auto}
+
+/* ---------- price line ---------- */
+.priceline{background:var(--surface);border-radius:10px;padding:16px;margin:0 0 16px;max-width:640px}
+.plrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:9px 0;border-bottom:1px solid rgba(28,51,80,.7);
+  opacity:0;transform:translateY(4px);transition:opacity .35s ease,transform .35s ease}
+.plrow.in{opacity:1;transform:none}
+.plrow:last-child{border-bottom:0}
+.plrow .lbl{font-size:14px;line-height:1.45;color:var(--sub);display:flex;align-items:baseline}
+.plrow .val{font:400 15px/1 var(--mono);color:var(--ink);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.plrow.tot{border-top:2px solid var(--gold);border-bottom:0;margin-top:5px;padding-top:12px}
+.plrow.tot .lbl,.plrow.tot .val{color:var(--ink);font-weight:700}
+.plrow.tot .val{font-size:17px}
+.plrow.aside{border-bottom:0;padding-top:12px}
+.plrow.aside .lbl,.plrow.aside .val{color:var(--cap);font-size:13px}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0 8px}
+@media (max-width:700px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);border-radius:10px;padding:16px}
+.step .n{font:400 11px/1 var(--mono);color:var(--gold);letter-spacing:.16em;display:block;margin-bottom:10px}
+.step h4{margin:0 0 7px;font-size:15px}
+.step p{font-size:14px;line-height:1.55;color:var(--sub);margin:0}
+
+ul.refuse{list-style:none;padding:0;margin:18px 0 0;max-width:40rem}
+ul.refuse li{position:relative;padding:0 0 12px 22px;color:var(--sub);font-size:15px;line-height:1.55}
+ul.refuse li::before{content:"";position:absolute;left:1px;top:9px;width:10px;height:2px;background:var(--warn)}
+ul.refuse li b{color:var(--ink)}
+
+hr.div{border:0;border-top:1px solid var(--rule);margin:34px 0 28px}
+footer{border-top:1px solid var(--rule);margin-top:30px;padding-top:16px;
+  font-size:13px;line-height:1.6;color:var(--cap);max-width:40rem}
+
+/* ---------- print ---------- */
+@media print{
+  :root{--bg:#fff;--surface:#f3f6f9;--surface2:#fafbfc;--rule:#ccd4de;
+        --ink:#12181f;--sub:#39434f;--cap:#59636f;--link:#12508f;--accent:#0f6f60;--warn:#8a5205}
+  body{font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  nav.scen,.ctrl{display:none !important}
+  section.sc{display:block !important;margin-bottom:22px}
+  .screen{background:#fff}
+  .cam,.card,.step,.pg,.rec,.priceline{break-inside:avoid}
+  .plrow{opacity:1 !important;transform:none !important}
+  .note.hide{display:block}
+  h1,h2,h3{break-after:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="mark"><i></i>ALASKA AI</div>
+  <p class="eyebrow">Working demonstration</p>
+  <h1>Talkeetna Air Taxi</h1>
+  <p class="tag">The conditions page and the facts record, clickable, at the address that returns a 301 today.</p>
+  <div class="covermeta">
+    <span>Prepared by Alaska AI</span>
+    <span>August 8th, 2026</span>
+    <span>talkeetnaair.com</span>
+  </div>
+</header>
+
+<div class="honest">
+  <p><b>This is a scripted demonstration, not a live system.</b> It is connected to nothing, it fetches nothing, and no weather on these screens is real. Every fact about your operation here was read off your own public pages, and the camera pictures are drawings made in code rather than photographs.</p>
+  <p>There is no AI in this build and there is none in this demonstration. Nothing on this page is generated. Everything you click is fixed code you could read.</p>
+</div>
+
+<nav class="scen" id="nav">
+  <button type="button" data-go="s1" aria-current="true">1. The conditions page</button>
+  <button type="button" data-go="s2">2. The status, and the expiry</button>
+  <button type="button" data-go="s3">3. Three answers, one record</button>
+  <button type="button" data-go="s4">4. The price line</button>
+</nav>
+
+<!-- ============================= SCENARIO 1 ============================= -->
+<section class="sc on" id="s1">
+  <span class="secn">SCENARIO 01</span>
+  <h2>A guest wakes in Anchorage and wants to know whether the drive is worth it</h2>
+  <p class="setup">Saturday, July 11th, 6:52 AM. A Southside Explorer is booked at noon, so check in is 11:15, 45 minutes before departure. Today that guest looks for a camera, finds that talkeetnaair.com/denali-webcam/ redirects to your homepage, and phones the counter. This is what would be at that address instead.</p>
+
+  <div class="cols">
+    <div>
+      <div class="device">
+        <div class="urlbar"><i></i>talkeetnaair.com/denali-webcam/</div>
+        <div class="screen">
+          <div class="bhead">
+            <span class="name">Talkeetna Air Taxi</span>
+            <span class="clk" data-role="clock">6:52 AM</span>
+          </div>
+          <p class="btitle">Conditions</p>
+          <p class="bdate">Saturday, July 11th</p>
+
+          <div class="card" data-role="statuscard"></div>
+
+          <div id="camgrid"></div>
+
+          <div class="card">
+            <span class="klabel">Current observation <span class="chipS">Scripted sample</span></span>
+            <p class="samp">Wind from the southeast at 7 knots. Visibility 10 miles. Broken cloud at 3,500 feet. Temperature 54 F.</p>
+            <p class="attrib">Observed 6:35 AM, <span data-role="obsage">17 minutes ago</span>.<br>Public automated observation, republished here. Decoded by a fixed lookup table, never by a model.</p>
+          </div>
+
+          <div class="card">
+            <span class="klabel">Forecast <span class="chipS">Scripted sample</span></span>
+            <p class="samp">Areas of low cloud through mid morning. Gradual clearing after noon. Light and variable wind.</p>
+            <p class="attrib">Issued 5:04 AM by the National Weather Service. Republished here word for word. Talkeetna Air Taxi did not write it and does not forecast.</p>
+          </div>
+
+          <div class="bfoot">
+            <p><b>This page does not say whether a flight will go.</b> We give a briefing on visibility and current conditions when you check in, 45 minutes before departure, and it is then your decision whether to fly or not. If we cancel, or you decide not to fly due to weather conditions, you always receive a 100 percent refund.</p>
+            <p style="margin-top:8px">To ask a person, please call us the day you are flying to inquire about weather. <span class="tel">(907) 733-2218</span></p>
+          </div>
+        </div>
+        <p class="devcap">The whole thing is one mobile page. Every sentence in that grey footer is your own published policy, close to word for word.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="ctrl">
+        <span class="klabel">Demo controls, not part of the page</span>
+        <div class="btnrow">
+          <button type="button" class="b" id="sceneBtn">Draw a different morning</button>
+          <button type="button" class="b" id="quietBtn">The Ruth camera stops sending</button>
+        </div>
+        <div class="btnrow">
+          <button type="button" class="b ghost" id="pauseBtn">Pause the clock</button>
+          <button type="button" class="b ghost" id="resetBtn">Reset the demonstration</button>
+        </div>
+        <p class="ctrlnote">The clock runs fast here, one minute every second, so the timers are watchable. The time in the corner of the page is that demo clock.</p>
+      </div>
+
+      <h3>Every camera is labelled twice</h3>
+      <p class="note">The site it sits on, and where that site sits relative to the route you fly. That second label is the whole point of the page. A clear picture of the valley is not a clear picture of a mountain tens of miles away, and a guest who reads a clear valley camera as a green light for a Summit Tour has been handed exactly the promise this build exists to avoid.</p>
+      <p class="note">Press <strong>Draw a different morning</strong> and the two states swap. Both of them happen. Neither camera predicts the other, which is why each panel says where it is standing before it shows you anything.</p>
+
+      <h3>The site names are blank on purpose</h3>
+      <p class="note">Which FAA cameras actually see the Ruth, the Kahiltna, Tokositna West, the Root Canal and the Kichatna Spires is the one thing we could not settle from your pages. It is a day of checking before this page is priced. If the honest answer comes back valley only, we say so and you take the facts record alone at a lower price.</p>
+
+      <h3>A dead camera shows its age, not a blank</h3>
+      <p class="note">Press <strong>The Ruth camera stops sending</strong> and watch the frame age climb. Past 30 minutes the panel says the camera is unavailable and keeps showing how old the last frame is. It never goes blank pretending to be current, and it never offers an opinion about the picture. Camera health here is subtraction on two timestamps, which is a thing code can be tested on exhaustively.</p>
+      <p class="note">The 30 minute cutoff is a number you set. It is not a number we decided for you.</p>
+      <p class="pmkey">
+        <span><i class="pm pm-v"></i>Verified on your pages</span>
+        <span><i class="pm pm-m"></i>Modelled by us</span>
+        <span><i class="pm pm-a"></i>Scripted for this demo</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SCENARIO 2 ============================= -->
+<section class="sc" id="s2">
+  <span class="secn">SCENARIO 02</span>
+  <h2>The counter has ten seconds, so the page has to survive being ignored</h2>
+  <p class="setup">7:12 AM. There is a climbing party at the desk working through park check in, then gear weighing, then payment, and the phone is going. The status control is one tap. Nobody is ever required to touch it, which is the property everything else rests on.</p>
+
+  <div class="cols">
+    <div>
+      <div class="device">
+        <div class="urlbar"><i></i>talkeetnaair.com/denali-webcam/</div>
+        <div class="screen">
+          <div class="bhead">
+            <span class="name">What the guest sees</span>
+            <span class="clk" data-role="clock">6:52 AM</span>
+          </div>
+          <div class="card" data-role="statuscard"></div>
+        </div>
+        <p class="devcap">The same card as scenario one, on its own so the clock is easy to watch.</p>
+      </div>
+
+      <div class="device" style="margin-top:22px">
+        <div class="urlbar"><i></i>staff sign in, never public</div>
+        <div class="screen">
+          <div class="bhead">
+            <span class="name">Set the current status</span>
+            <span class="clk">Counter, Talkeetna</span>
+          </div>
+          <div class="btnrow" style="margin-bottom:12px">
+            <button type="button" class="b" data-set="flying">Flying</button>
+            <button type="button" class="b warnstate" data-set="holding">Holding</button>
+            <button type="button" class="b warnstate" data-set="down">Down</button>
+          </div>
+          <div class="btnrow">
+            <button type="button" class="b ghost" data-set="clear">Clear it now</button>
+            <button type="button" class="b ghost" id="ignoreBtn">Nobody touches it all morning</button>
+          </div>
+          <p class="attrib" style="margin-top:13px">Publishes as the current status, stamped with the clock time you set it. There is no tomorrow here and no 2 PM block here, on purpose. You are saying what it is now.</p>
+        </div>
+        <p class="devcap">The counter's whole screen. One tap, three choices, no fields to fill in.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>Watch it clear itself</h3>
+      <p class="note">Set a status and the card stamps the clock time and starts a countdown. In this demonstration the clock runs at one minute a second and the status clears after 30 minutes, so you can watch it happen in half a minute. The real timeout is longer and it is a number we set with you.</p>
+      <p class="note">When it clears, the page falls back to your own sentence about calling on the day, with your own phone number under it. <strong>That is the safety property, and it is the reason this is worth shipping.</strong> The worst this page can ever do, on the worst morning, with every feed dead and nobody having touched anything, is exactly what your website does today.</p>
+
+      <div class="note warnbox hide" id="downWarn">
+        <p><strong>Careful with that one. It is the expensive direction, and it runs against instinct.</strong> Your refund is unconditional at 100 percent, so a page reading Flying on a marginal morning costs goodwill and some counter time. A guest who reads Holding at 9 AM and stands down on a day that clears by 11 turns a paid seat into a refund plus a seat you can no longer sell, on an aircraft that seats ten.</p>
+        <p>That asymmetry is why this field carries the current hour only, never a later tour block, and why it times out fast rather than sitting there going stale.</p>
+      </div>
+
+      <h3>We would rather tell you the weak part</h3>
+      <p class="note">This field gets flipped on calm mornings and goes untouched on the busy marginal ones, which are the mornings guests look hardest. Its usefulness runs opposite to the need for it. That is why none of the money in the study rests on it, and why the case rests on the pictures, which need nobody to do anything and work hardest on the worst days.</p>
+      <p class="note">Press <strong>Nobody touches it all morning</strong> to see the state this page will spend most of its life in. That state is the design rather than the failure.</p>
+
+      <div class="ctrl">
+        <span class="klabel">Demo controls, not part of the page</span>
+        <div class="btnrow">
+          <button type="button" class="b ghost" id="pauseBtn2">Pause the clock</button>
+          <button type="button" class="b ghost" id="resetBtn2">Reset the demonstration</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SCENARIO 3 ============================= -->
+<section class="sc" id="s3">
+  <span class="secn">SCENARIO 03</span>
+  <h2>One question, three published answers, and only you can pick</h2>
+  <p class="setup">A guest is deciding whether to call tonight or in the morning, so they look up when your office closes in July. Three of your pages answer, and the three answers disagree. None of this is a criticism of how you run the counter. It is a website that grew a page at a time.</p>
+
+  <div class="btnrow" style="margin-bottom:18px">
+    <button type="button" class="b" id="modeToday" aria-pressed="true">Your site today</button>
+    <button type="button" class="b" id="modeRec" aria-pressed="false">Rendering from one record</button>
+  </div>
+
+  <div class="pages" id="pageCards"></div>
+
+  <div class="rec" id="recCard" hidden>
+    <span class="klabel">The record</span>
+    <dl class="recrows">
+      <dt>Record</dt><dd>office_hours_in_season</dd>
+      <dt>Value</dt><dd id="recVal" class="undec">not decided yet</dd>
+      <dt>Owner</dt><dd>Courtney Shaffer, General Manager</dd>
+      <dt>Reviewed</dt><dd id="recRev" class="undec">not yet set</dd>
+      <dt>Renders on</dt><dd>3 pages</dd>
+      <dt>Source</dt><dd>decided by you, never found by us</dd>
+    </dl>
+    <div class="btnrow" style="margin-top:14px">
+      <button type="button" class="b" data-hours="7 AM until 7 PM">7 AM until 7 PM</button>
+      <button type="button" class="b" data-hours="7 AM until 9 PM">7 AM until 9 PM</button>
+      <button type="button" class="b" data-hours="7:30 am until 6:30 pm">7:30 am until 6:30 pm</button>
+    </div>
+    <p class="ctrlnote">Pick one and all three pages change at once. That is the entire feature.</p>
+  </div>
+
+  <p class="note" id="s3note"></p>
+
+  <h3>We would be guessing, and a model would guess with more confidence</h3>
+  <p class="note">Asked to reconcile three published hours, a model picks one and sounds certain about it. The right answer is not in the pages. It is in your head. Five minutes with whoever knows settles it, then it is settled in every place at once, and it stays settled because one named person owns it and the build fails if a fact goes six months without a look.</p>
+
+  <h3>What else the record holds</h3>
+  <p class="note">Every fact a customer asks about, in one place, rendered rather than retyped. Every value below came off your own pages.</p>
+  <div class="tw">
+  <table class="rectab">
+    <thead><tr><th>Record</th><th>Value</th><th>Owner</th><th>Reviewed</th></tr></thead>
+    <tbody>
+      <tr><td>season</td><td><i class="pm pm-v"></i>May 1st until September 15th</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+      <tr><td>check_in_window</td><td><i class="pm pm-v"></i>45 minutes before departure</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+      <tr><td>glacier_landing_addon</td><td><i class="pm pm-v"></i>$125 per person, about 30 minutes</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+      <tr><td>park_entrance_fee</td><td><i class="pm pm-v"></i>$15 per person, due at the flight</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+      <tr><td>summit_tour_minimum</td><td><i class="pm pm-v"></i>4 passengers</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+      <tr><td>winter_explorer_minimum</td><td><i class="pm pm-v"></i>2 passengers</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+      <tr><td>federal_transportation_tax</td><td><i class="pm pm-v"></i>7.5 percent of total flight cost</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+      <tr><td>borough_tax</td><td><i class="pm pm-v"></i>3 percent of total cost</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+      <tr><td>weather_refund</td><td><i class="pm pm-v"></i>100 percent, on a cancellation or a decision not to fly</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+      <tr class="amber"><td>office_hours_in_season</td><td><i class="pm pm-a"></i>three answers published, undecided</td><td>Courtney Shaffer</td><td>not yet set</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note cap">The review dates are blank because this record does not exist yet. Filling them in is the first working session, and it belongs outside May 1st to September 15th, when the person who owns these facts can actually give you half a day.</p>
+</section>
+
+<!-- ============================= SCENARIO 4 ============================= -->
+<section class="sc" id="s4">
+  <span class="secn">SCENARIO 04</span>
+  <h2>Two of your pages price the same tour, and nothing explains the gap</h2>
+  <p class="setup">A guest is comparing three Talkeetna operators on a phone. Your flightseeing index says the Southside Explorer starts at $304 per adult. The Southside Explorer's own page says adults $275. The difference is not a mistake. It is your published taxes, and no page of yours says so.</p>
+
+  <div class="pages" style="grid-template-columns:1fr 1fr;max-width:560px">
+    <div class="pg diff">
+      <span class="path">talkeetnaair.com/flightseeing/</span>
+      <p>Southside Explorer<br>From $304 per Adult</p>
+    </div>
+    <div class="pg diff">
+      <span class="path">talkeetnaair.com/southside-explorer/</span>
+      <p>1 Hour Flight (Flight Only)<br>Adults: $275</p>
+    </div>
+  </div>
+
+  <div class="btnrow" style="margin:18px 0">
+    <button type="button" class="b" id="plFlight" aria-pressed="true">Flight only</button>
+    <button type="button" class="b" id="plGlacier" aria-pressed="false">With a glacier landing</button>
+    <button type="button" class="b ghost" id="plRun">Show the line again</button>
+  </div>
+
+  <div class="priceline" id="priceline"></div>
+
+  <p class="note" id="plNote"></p>
+
+  <h3>Arithmetic goes in code, never in a model</h3>
+  <p class="note">Every fee on your price list is a published rule. The rate is fixed, the input is a fare you set, and a customer can check the answer on a phone in ten seconds. That belongs in code where it is testable rather than in a model where it is merely plausible. Once the fare lives in the record, both pages render from it, so a fare change is one edit and the index follows on its own.</p>
+
+  <h3>What we could check, and what we could not</h3>
+  <p class="note">Only the Southside Explorer publishes both halves where we could read them. Mountain Voyager at $387, Grand Denali at $476 and Summit Tour at $547 sit on your index with no product page figure in front of us to check them against. We are not going to model those three and call it a finding.</p>
+  <p class="pmkey">
+    <span><i class="pm pm-v"></i>Verified on your pages</span>
+    <span><i class="pm pm-m"></i>Modelled by us</span>
+  </p>
+</section>
+
+<hr class="div">
+
+<!-- ============================= HOW IT SITS ============================= -->
+<section>
+  <span class="secn">HOW IT SITS IN YOUR OPERATION</span>
+  <h2>Three steps, and a person stays on the trigger in all three</h2>
+  <div class="steps">
+    <div class="step">
+      <span class="n">01</span>
+      <h4>Nobody has to do anything</h4>
+      <p>The pictures, the observation and the forecast arrive on their own, and every one of them carries the time it arrived. If your counter never opens the status control for a whole season, the page still works and still stamps everything.</p>
+    </div>
+    <div class="step">
+      <span class="n">02</span>
+      <h4>A person sets the one word</h4>
+      <p>When someone does set the status, the page publishes what that person set and the clock time they set it. No prediction, no later tour block, no opinion about a picture. It is a person reporting, with their timestamp attached.</p>
+    </div>
+    <div class="step">
+      <span class="n">03</span>
+      <h4>It expires back to your sentence</h4>
+      <p>Left alone it clears itself, and the page returns to "please call us the day you are flying to inquire about weather" with your number under it. The go, no go call stays at your counter, after the briefing, where you put it.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section>
+  <span class="secn">WHAT THIS BUILD REFUSES TO DO</span>
+  <h2>The refusals are as much of the product as the page is</h2>
+  <ul class="refuse">
+    <li><b>No verdict on whether a flight will go.</b> Not on the page, not in a notification, not anywhere. An independent 2025 benchmark ran 147,182 images from 444 FAA camera sites and found no model reaching the FAA's own accuracy threshold, with the best averaging about 1.8 statute miles of error.</li>
+    <li><b>No forecast wearing a status field's clothes.</b> Current hour only. A status set on a 2 PM block at 10 AM is a prediction published on your domain under your name.</li>
+    <li><b>No opinion about a picture.</b> A stale camera is stale by the clock. Deciding in software whether an image looks flyable is the exact place a model sneaks into a build described as model free.</li>
+    <li><b>No visibility number presented as yours.</b> Anything derived stays attributed to whoever derived it, with its error attached, or it gets dropped.</li>
+    <li><b>No advance cancellation notice.</b> Your published policy is that you do not notify in advance. Automating one turns a policy into a promise and manufactures refunds when it is wrong.</li>
+    <li><b>No price, fee, tax or duration figure produced by a model.</b> Every one of them is a published rule and every one is checkable by the customer.</li>
+    <li><b>No chatbot, no assistant, no voice agent, on the site or on the phone.</b> The highest frequency guest question is whether it is flying today, which is the one question you deliberately route to a person after a briefing.</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Scripted demonstration prepared by Alaska AI for Talkeetna Air Taxi, August 8th, 2026. Built only from pages published at talkeetnaair.com, plus the independent benchmark named above. Connected to nothing, fetching nothing, storing nothing.</p>
+  <p style="margin-top:10px">The camera pictures are illustrations drawn in code. The observation and forecast text is scripted sample content and is not real weather.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------------------------------------------------------------
+   Demo clock. One demo minute per real second, so the timers are
+   watchable. Everything time related is subtraction on this number,
+   which is exactly how the real build decides a frame is stale.
+   --------------------------------------------------------------- */
+var START = 6*60 + 52;          /* 6:52 AM */
+var STATUS_TTL = 30;            /* demo minutes */
+var CAM_DEAD_AT = 30;           /* demo minutes */
+var CAM_REFRESH = 5;            /* demo minutes */
+var OBS_AT = 6*60 + 35;
+
+function freshCams(){
+  return [
+    {last: START - 1, quiet: false},
+    {last: START - 3, quiet: false},
+    {last: START - 2, quiet: false}
+  ];
+}
+
+var state = {
+  clock: START,
+  running: true,
+  status: "flying",
+  setAt: START - 5,
+  scene: 0,
+  cams: freshCams()
+};
+
+var CAMS = [
+  {art: "field",
+   head: "The field at Talkeetna",
+   rel: "Where the aircraft leave from. This is the valley floor, not the mountain."},
+  {art: "ruth",
+   head: "Camera two, if a site up-route toward the Ruth exists",
+   rel: "One of your drop-off glaciers. Tens of miles from the field."},
+  {art: "kahiltna",
+   head: "Camera three, if a site up-route toward the Kahiltna exists",
+   rel: "Summit Tour and glacier landing country, subject to the coverage check."}
+];
+
+function fmt(m){
+  m = ((m % 1440) + 1440) % 1440;
+  var h = Math.floor(m/60), mi = m % 60;
+  var ap = h < 12 ? "AM" : "PM";
+  var hh = h % 12; if (hh === 0) hh = 12;
+  return hh + ":" + (mi < 10 ? "0" : "") + mi + " " + ap;
+}
+function ago(n){
+  if (n <= 0) return "just now";
+  if (n === 1) return "1 minute ago";
+  return n + " minutes ago";
+}
+function all(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+
+/* ---------------------------------------------------------------
+   Camera illustrations. Drawn in code, never fetched, never a photo.
+   Scene 0, clear at the field with cloud up the routes.
+   Scene 1, low cloud on the field with the routes clear above it.
+   Both happen, and neither one predicts the other.
+   --------------------------------------------------------------- */
+var PROFILE = {
+  field: {
+    far:  "0,112 30,104 62,110 92,97 124,104 158,93 196,101 232,91 268,99 300,93 320,99",
+    near: "0,133 40,127 84,135 130,129 176,137 220,131 268,139 320,133"
+  },
+  ruth: {
+    far:  "0,105 22,79 44,93 68,53 92,75 116,45 140,69 166,39 192,67 216,51 244,81 272,59 300,87 320,73",
+    near: "0,139 46,129 96,141 148,131 200,143 252,133 300,145 320,137"
+  },
+  kahiltna: {
+    far:  "0,111 36,97 72,85 104,59 140,43 176,49 210,71 246,87 282,99 320,109",
+    near: "0,136 44,130 92,140 142,132 192,142 244,132 292,142 320,136"
+  }
+};
+var CLOUDBAND = "0,86 40,78 80,88 130,76 180,86 230,74 280,84 320,78";
+var LOWBAND   = "0,118 44,110 88,120 134,108 182,118 228,106 276,116 320,110";
+
+function camSvg(idx){
+  var c = CAMS[idx], p = PROFILE[c.art];
+  var clouded;
+  if (state.scene === 0) clouded = (idx !== 0) ? "high" : "none";
+  else clouded = (idx === 0) ? "low" : "none";
+
+  var skyTop  = clouded === "none" ? "#14314f" : "#39454f";
+  var skyBot  = clouded === "none" ? "#37628a" : "#6a7783";
+  var farFill = clouded === "none" ? "#4c657f" : "#42505f";
+  var id = "g" + idx + "s" + state.scene;
+
+  var s = '<svg viewBox="0 0 320 160" role="img" aria-label="Illustration standing in for a camera frame">';
+  s += '<defs><linearGradient id="sky' + id + '" x1="0" y1="0" x2="0" y2="1">';
+  s += '<stop offset="0" stop-color="' + skyTop + '"/><stop offset="1" stop-color="' + skyBot + '"/></linearGradient>';
+  s += '<pattern id="hat' + id + '" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">';
+  s += '<line x1="0" y1="0" x2="0" y2="7" stroke="#e2eaf6" stroke-width="1" opacity="0.055"/></pattern></defs>';
+  s += '<rect x="0" y="0" width="320" height="160" fill="url(#sky' + id + ')"/>';
+  s += '<polygon points="' + p.far + ' 320,160 0,160" fill="' + farFill + '"/>';
+  if (clouded === "high"){
+    s += '<polygon points="' + CLOUDBAND + ' 320,160 0,160" fill="#8b96a3" opacity="0.93"/>';
+    s += '<polygon points="' + CLOUDBAND + ' 320,160 0,160" fill="#aab4bf" opacity="0.3" transform="translate(0,7)"/>';
+  }
+  if (clouded === "low"){
+    s += '<polygon points="' + LOWBAND + ' 320,160 0,160" fill="#8b96a3" opacity="0.95"/>';
+  }
+  s += '<polygon points="' + p.near + ' 320,160 0,160" fill="#08151f"/>';
+  s += '<rect x="0" y="0" width="320" height="160" fill="url(#hat' + id + ')"/>';
+  s += '</svg>';
+  return s;
+}
+
+function buildCams(){
+  var g = document.getElementById("camgrid");
+  if (!g) return;
+  var h = "";
+  for (var i = 0; i < CAMS.length; i++){
+    h += '<div class="cam" data-cam="' + i + '">';
+    h +=   '<div class="camart">' + camSvg(i);
+    h +=     '<span class="camchip">Drawing, not a photograph</span>';
+    h +=     '<div class="camdead"><div><b>Camera unavailable</b><span data-deadage></span></div></div>';
+    h +=   '</div>';
+    h +=   '<div class="camtxt"><h4>' + CAMS[i].head + '</h4>';
+    h +=     '<dl class="rows">';
+    h +=       '<dt>FAA site</dt><dd><span class="slot">named at the coverage check</span></dd>';
+    h +=       '<dt>Distance</dt><dd><span class="slot">measured at the coverage check</span></dd>';
+    h +=       '<dt>Relation</dt><dd>' + CAMS[i].rel + '</dd>';
+    h +=       '<dt>Frame</dt><dd data-age>just now</dd>';
+    h +=     '</dl></div>';
+    h += '</div>';
+  }
+  g.innerHTML = h;
+}
+
+function redrawCams(){
+  all("[data-cam]").forEach(function(el){
+    var i = parseInt(el.getAttribute("data-cam"), 10);
+    var art = el.querySelector(".camart");
+    var keep = art.querySelector(".camchip").outerHTML + art.querySelector(".camdead").outerHTML;
+    art.innerHTML = camSvg(i) + keep;
+  });
+}
+
+/* ---------------------------------------------------------------
+   Render. The status card has exactly two states, one a person set
+   and one that is their own FAQ sentence.
+   --------------------------------------------------------------- */
+var FAQ = "please call us the day you are flying to inquire about weather";
+var LABEL = {flying: "Flying", holding: "Holding", down: "Down"};
+
+function statusLive(){
+  return state.status !== null && (state.clock - state.setAt) < STATUS_TTL;
+}
+
+function statusHtml(){
+  var h = '<span class="klabel">Set by our counter</span>';
+  if (statusLive()){
+    var left = STATUS_TTL - (state.clock - state.setAt);
+    var pct = Math.max(0, Math.round(100 * left / STATUS_TTL));
+    h += '<p class="statv ' + state.status + '">' + LABEL[state.status] + '</p>';
+    h += '<p class="stampline">Set at ' + fmt(state.setAt) + ' today, ' + ago(state.clock - state.setAt) + '.</p>';
+    h += '<p class="statnote">This is what a person at our counter saw when they set it. It is not a forecast, and it does not say what conditions will be at your departure time.</p>';
+    h += '<div class="ttlbar"><span style="width:' + pct + '%"></span></div>';
+    h += '<p class="stampline" style="margin:7px 0 0">Clears itself in ' + left + ' minute' + (left === 1 ? "" : "s") + '.</p>';
+  } else {
+    h += '<p class="statv none">Nobody has set a status this hour.</p>';
+    h += '<p class="quoteback">"' + FAQ + '"</p>';
+    h += '<p class="stampline">Our flightseeing FAQ, unchanged. (907) 733-2218</p>';
+  }
+  return h;
+}
+
+function render(){
+  all("[data-role=clock]").forEach(function(el){ el.textContent = fmt(state.clock); });
+  all("[data-role=statuscard]").forEach(function(el){ el.innerHTML = statusHtml(); });
+  all("[data-role=obsage]").forEach(function(el){ el.textContent = ago(state.clock - OBS_AT); });
+
+  all("[data-cam]").forEach(function(el){
+    var i = parseInt(el.getAttribute("data-cam"), 10);
+    var age = state.clock - state.cams[i].last;
+    var dead = age > CAM_DEAD_AT;
+    el.classList.toggle("dead", dead);
+    el.querySelector("[data-age]").textContent = dead ? "last frame " + ago(age) : "arrived " + ago(age);
+    el.querySelector("[data-deadage]").textContent = "Last frame arrived " + ago(age) + ".";
+  });
+
+  ["flying","holding","down"].forEach(function(k){
+    all('[data-set="' + k + '"]').forEach(function(b){
+      b.setAttribute("aria-pressed", String(statusLive() && state.status === k));
+    });
+  });
+
+  var w = document.getElementById("downWarn");
+  if (w){
+    var show = statusLive() && (state.status === "holding" || state.status === "down");
+    w.classList.toggle("hide", !show);
+  }
+
+  var q = document.getElementById("quietBtn");
+  if (q) q.textContent = state.cams[1].quiet ? "Bring the Ruth camera back" : "The Ruth camera stops sending";
+
+  var t = state.running ? "Pause the clock" : "Start the clock";
+  ["pauseBtn","pauseBtn2"].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.textContent = t;
+  });
+}
+
+function tick(){
+  if (!state.running) return;
+  state.clock += 1;
+  for (var i = 0; i < state.cams.length; i++){
+    if (!state.cams[i].quiet && (state.clock - state.cams[i].last) >= CAM_REFRESH){
+      state.cams[i].last = state.clock;
+    }
+  }
+  render();
+}
+
+/* ---------------------------------------------------------------
+   Wiring
+   --------------------------------------------------------------- */
+function bind(id, fn){ var el = document.getElementById(id); if (el) el.addEventListener("click", fn); }
+
+document.getElementById("nav").addEventListener("click", function(e){
+  var b = e.target.closest("button[data-go]");
+  if (!b) return;
+  all("#nav button").forEach(function(x){ x.setAttribute("aria-current", String(x === b)); });
+  all("section.sc").forEach(function(s){ s.classList.toggle("on", s.id === b.getAttribute("data-go")); });
+  window.scrollTo(0, 0);
+});
+
+document.addEventListener("click", function(e){
+  var b = e.target.closest("[data-set]");
+  if (!b) return;
+  var v = b.getAttribute("data-set");
+  if (v === "clear"){ state.status = null; }
+  else { state.status = v; state.setAt = state.clock; }
+  render();
+});
+
+function reset(){
+  state.clock = START;
+  state.status = "flying";
+  state.setAt = START - 5;
+  state.running = true;
+  state.scene = 0;
+  state.cams = freshCams();
+  redrawCams();
+  render();
+}
+
+bind("sceneBtn", function(){ state.scene = state.scene === 0 ? 1 : 0; redrawCams(); });
+bind("quietBtn", function(){
+  var c = state.cams[1];
+  c.quiet = !c.quiet;
+  if (!c.quiet) c.last = state.clock;
+  render();
+});
+bind("ignoreBtn", function(){ state.status = null; render(); });
+bind("pauseBtn", function(){ state.running = !state.running; render(); });
+bind("pauseBtn2", function(){ state.running = !state.running; render(); });
+bind("resetBtn", reset);
+bind("resetBtn2", reset);
+
+/* ---------------------------------------------------------------
+   Scenario 3, the facts record
+   --------------------------------------------------------------- */
+var PAGES = [
+  {path: "talkeetnaair.com/climbing-support-faq/",
+   today: "Our office is staffed 7 AM until 7 PM after May 1st until September 15th."},
+  {path: "talkeetnaair.com/hiking/faq/ (helicopter FAQ)",
+   today: "Our office is staffed 7 AM until 9 PM after May 1st until September 15th."},
+  {path: "talkeetnaair.com/flightseeing-faq/",
+   today: "office hours are daily from 7:30 am to 6:30 pm",
+   win: "scoped to a summer and shoulder window through September 30th, a different window from the other two"}
+];
+var spine = {mode: "today", hours: null};
+
+function drawPages(){
+  var h = "";
+  for (var i = 0; i < PAGES.length; i++){
+    var p = PAGES[i], cls, body, win = "";
+    if (spine.mode === "today"){
+      cls = "diff";
+      body = p.today;
+      if (p.win) win = p.win;
+    } else {
+      cls = spine.hours ? "same" : "";
+      body = "Our office is staffed " + (spine.hours || "[not decided yet]") +
+             " after May 1st until September 15th.";
+      if (p.win) win = "The out of season window is a second value on the same record, decided by you at the working session.";
+    }
+    h += '<div class="pg ' + cls + '"><span class="path">' + p.path + '</span><p>' + body + '</p>';
+    if (win) h += '<p class="win">' + win + '</p>';
+    h += '</div>';
+  }
+  document.getElementById("pageCards").innerHTML = h;
+
+  document.getElementById("recCard").hidden = (spine.mode === "today");
+  document.getElementById("modeToday").setAttribute("aria-pressed", String(spine.mode === "today"));
+  document.getElementById("modeRec").setAttribute("aria-pressed", String(spine.mode === "rec"));
+
+  var rv = document.getElementById("recVal"), rr = document.getElementById("recRev");
+  if (spine.hours){
+    rv.textContent = spine.hours; rv.classList.remove("undec");
+    rr.textContent = "August 8th, 2026"; rr.classList.remove("undec");
+  } else {
+    rv.textContent = "not decided yet"; rv.classList.add("undec");
+    rr.textContent = "not yet set"; rr.classList.add("undec");
+  }
+  all("#recCard [data-hours]").forEach(function(b){
+    b.setAttribute("aria-pressed", String(b.getAttribute("data-hours") === spine.hours));
+  });
+
+  var n = document.getElementById("s3note");
+  if (spine.mode === "today"){
+    n.textContent = "Three separately fetched pages, three answers. Two are scoped to the same season and the third to a longer window, which is part of what the working session decides. ";
+  } else if (!spine.hours){
+    n.textContent = "The record exists now and all three pages render from it. The value is still empty, because the correct answer is not on any of your pages. It is in your head.";
+  } else {
+    n.textContent = "One decision, three pages, one edit. Anyone reading any of them tonight gets the same answer, and so does the person answering the phone.";
+  }
+}
+bind("modeToday", function(){ spine.mode = "today"; drawPages(); });
+bind("modeRec", function(){ spine.mode = "rec"; drawPages(); });
+document.addEventListener("click", function(e){
+  var b = e.target.closest("[data-hours]");
+  if (!b) return;
+  spine.hours = b.getAttribute("data-hours");
+  drawPages();
+});
+
+/* ---------------------------------------------------------------
+   Scenario 4, the price line. Published rates, arithmetic in code,
+   which is the point being made rather than a shortcut.
+   --------------------------------------------------------------- */
+var FED = 0.075, BOR = 0.03;
+var price = {mode: "flight"};
+
+function money(n){ return "$" + n.toFixed(2); }
+
+function drawPrice(){
+  var glacier = price.mode === "glacier";
+  var fare = glacier ? 400 : 275;
+  var fed = fare * FED, bor = fare * BOR, tot = fare + fed + bor;
+
+  var rows = [
+    {m: "pm-v",
+     l: glacier
+        ? "Adult fare, one hour thirty with a glacier landing, from your Southside Explorer page"
+        : "Adult fare, one hour flight only, from your Southside Explorer page",
+     v: money(fare)},
+    {m: "pm-v", l: "Federal Transportation Tax at 7.5 percent, from your climbing support page", v: "+ " + money(fed)},
+    {m: "pm-v", l: "Borough Tax at 3 percent, same page", v: "+ " + money(bor)},
+    {m: "pm-m",
+     l: glacier
+        ? "Total, which your index publishes no figure for"
+        : "Total, which rounds to the From $304 per Adult on your flightseeing index",
+     v: money(tot), tot: true}
+  ];
+  if (glacier){
+    rows.push({m: "pm-v", l: "Park entrance fee, $15 per person, due at the flight and outside the fare", v: "$15.00", aside: true});
+  }
+
+  var h = "";
+  for (var i = 0; i < rows.length; i++){
+    var r = rows[i];
+    h += '<div class="plrow' + (r.tot ? " tot" : "") + (r.aside ? " aside" : "") + '">';
+    h += '<span class="lbl"><i class="pm ' + r.m + '"></i>' + r.l + '</span>';
+    h += '<span class="val">' + r.v + '</span></div>';
+  }
+  document.getElementById("priceline").innerHTML = h;
+  all("#priceline .plrow").forEach(function(el, i){
+    setTimeout(function(){ el.classList.add("in"); }, 90 + i * 280);
+  });
+
+  document.getElementById("plFlight").setAttribute("aria-pressed", String(!glacier));
+  document.getElementById("plGlacier").setAttribute("aria-pressed", String(glacier));
+
+  var n = document.getElementById("plNote");
+  n.textContent = glacier
+    ? "The fare half already checks out where you publish both numbers. $275 plus the $125 you publish for a glacier landing is exactly the $400 on your own page, and the landing adds about 30 minutes. The $442.00 above is ours rather than yours, because your index publishes no with-landing figure to check it against. The $15 park entrance fee sits outside the fare and is due at the flight."
+    : "$275 times 1.105 is $303.875 exactly, which is the $304 you publish. No page of yours says this, so we modelled it rather than read it, and one sentence from you either confirms it or kills it. Once it is confirmed the record holds the fare, the two rates and the rule, and both pages render from the same place.";
+}
+bind("plFlight", function(){ price.mode = "flight"; drawPrice(); });
+bind("plGlacier", function(){ price.mode = "glacier"; drawPrice(); });
+bind("plRun", drawPrice);
+
+/* ---------------------------------------------------------------
+   Go
+   --------------------------------------------------------------- */
+buildCams();
+render();
+drawPages();
+drawPrice();
+setInterval(tick, 1000);
+
+/* Print carries every scenario, frozen where the reader left it. */
+window.addEventListener("beforeprint", function(){ state.running = false; render(); });
+})();
+</script>
+</body>
+</html>
