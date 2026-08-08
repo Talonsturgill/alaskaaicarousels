@@ -1,30 +1,83 @@
-{"carousel_no":29,"run_date":"2026-08-08","cycle":3,"revision_rounds":3,
- "threshold_used":8.0,"weighted_total":8.02,"ship":true,"hard_fails":[],
- "weakest_criterion":"Legibility and platform fitness",
- "criteria":[
-  {"name":"Thumb-stop cover","weight":0.14,"score":8.0},
-  {"name":"Story arc and swipe momentum","weight":0.14,"score":7.0},
-  {"name":"Artwork craft and genuine detail","weight":0.16,"score":7.0},
-  {"name":"Story-art fusion","weight":0.14,"score":7.0},
-  {"name":"Alaska authenticity and local relevance","weight":0.12,"score":8.0},
-  {"name":"Insight density and factual weight","weight":0.10,"score":8.0},
-  {"name":"Variety vs ledger","weight":0.08,"score":8.0},
-  {"name":"Legibility and platform fitness","weight":0.07,"score":6.0},
-  {"name":"Copy voice and hook","weight":0.05,"score":8.0},
-  {"name":"Deliverable completeness","weight":0.10,"score":6.0}],
- "strengths":[
+{
+ "carousel_no": 29,
+ "run_date": "2026-08-08",
+ "cycle": 3,
+ "revision_rounds": 3,
+ "threshold_used": 8.0,
+ "weighted_total": 8.02,
+ "ship": true,
+ "hard_fails": [],
+ "weakest_criterion": "Legibility and platform fitness",
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "weight": 0.14,
+   "score": 8.0
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "weight": 0.14,
+   "score": 7.0
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "weight": 0.16,
+   "score": 7.0
+  },
+  {
+   "name": "Story-art fusion",
+   "weight": 0.14,
+   "score": 7.0
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "weight": 0.12,
+   "score": 8.0
+  },
+  {
+   "name": "Insight density and factual weight",
+   "weight": 0.1,
+   "score": 8.0
+  },
+  {
+   "name": "Variety vs ledger",
+   "weight": 0.08,
+   "score": 8.0
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "weight": 0.07,
+   "score": 6.0
+  },
+  {
+   "name": "Copy voice and hook",
+   "weight": 0.05,
+   "score": 8.0
+  },
+  {
+   "name": "Deliverable completeness",
+   "weight": 0.1,
+   "score": 6.0
+  }
+ ],
+ "strengths": [
   "All three cycle-2 strikethroughs repaired and verified at full size and at 432px.",
   "The epistemic register is the deck's best asset. Instrument Serif Italic reserved for the three hedged figures, 'no published validation was found' rather than 'there is none', and the 7,791 attribution explicitly marked unknown.",
   "Two data-in-art mappings read without their captions, the 50 white and 50 red ISOTYPE split and the empty 2026 tick.",
-  "The rendered ladder was reached and gated on measured evidence rather than asserted. Zero qa fails, bespoke median 0.270, drawn share 62 percent."],
- "shortfalls":[
+  "The rendered ladder was reached and gated on measured evidence rather than asserted. Zero qa fails, bespoke median 0.270, drawn share 62 percent."
+ ],
+ "shortfalls": [
   "The central wordless claim on slides 05 and 06 does not measure (dE 3.5 and 0.9). The declared probe boxes sample the wrong pixels, so the storyboard's build gate never actually gated.",
   "Device C, ONE FISH AT A TIME, exists only at the 01 to 02 cut.",
   "Slide 02's declared Sitka Sound inset was never built, so one of two declared literal anchors is missing.",
   "Stair-step aliasing on every raymarched edge from the internal-buffer upscale.",
   "Three 22px strings under the 24px mobile floor, and two labels shipped as canvas raster rather than DOM.",
-  "Slide 09 steps down in craft from the established world; slide 04's lower third is a documented dead zone."],
- "post_score_repairs":[
+  "Slide 09 steps down in craft from the established world; slide 04's lower third is a documented dead zone."
+ ],
+ "post_score_repairs": [
   "The scorer flagged that the ADIPOSE FIN label anchored on the dorsal contour toward the head, while the adipose fin sits back near the tail. Being wrong about fish anatomy on a subsistence salmon deck is a credibility cost out of proportion to the label, so the anatomical claim was DROPPED and the callout now reads THE FISH IN FOCUS, which is what the leader actually points at.",
-  "Slide 03's '50 BEFORE . 100 NOW (C24)', the deck's faintest string at 3.6 worst point, was lifted to #F4F8FF."],
- "one_sentence_fix":"Re-site the 05 and 06 data-encodes probe regions onto the aperture where it actually rendered, because the declared slot core samples empty water about 300 px left of the real slot, which is why the deck's central wordless claim reports dE 0.9 and never gated anything."}
+  "Slide 03's '50 BEFORE . 100 NOW (C24)', the deck's faintest string at 3.6 worst point, was lifted to #F4F8FF."
+ ],
+ "one_sentence_fix": "Re-site the 05 and 06 data-encodes probe regions onto the aperture where it actually rendered, because the declared slot core samples empty water about 300 px left of the real slot, which is why the deck's central wordless claim reports dE 0.9 and never gated anything.",
+ "editor_notes_for_email": "GAS WATCH: PASS, read 2026-08-08, 7 days on record, chart present, checker clean. The daily read caught one prose defect and fixed it in presentation only. The page had been publishing a ratio-to-demand as a share of the region's gas, which read as 134.1 percent of it on an injection day. The explaining clause is now computed from the sign of the measured withdrawal. Collector, model config and both gas ledgers untouched.\n\nSCORE: 8.02 against the 8.0 threshold for three revision rounds. Zero hard fails. It cleared by 0.02 and nothing scored above 8, so this is a pass and not a comfortable one.\n\nTWO REPAIRS MADE AFTER THE SCORE. Slide 08's leader was labelled ADIPOSE FIN but anchored on the dorsal contour toward the head, and the adipose fin sits back near the tail. The scorer could not resolve the fish's orientation from the render and flagged it. Alaskans will know, so the anatomical claim is dropped rather than guessed and the callout now reads THE FISH IN FOCUS. Slide 03's faintest string was lifted to full white.\n\nSOURCING CAVEAT: the Daily Sitka Sentinel blocks direct fetching, so its Redoubt reporting was read through the Ketchikan Daily News reprint. Salmon Vision's published model metric is deliberately absent from every slide and from the caption, struck at the storyboard level by unanimous director agreement, so the two incommensurable accuracy figures can never meet.\n\nONE THING NEEDING YOUR CALL. Four of six scouts led with the Anthropic employees' $372,000 to a candidate for governor, plainly the loudest Alaska AI story of the week. It was ruled out because this page already ran it on July 25th and again on July 31st, and the July 31st deck disclosed on its own cover that it was the second in seven days. It is also this publication's own maker, which is a judgement that belongs to you rather than to an unattended run. Say the word and a future run will cover the backlash with the same disclosure protocol the two earlier decks used."
+}
