@@ -39,14 +39,14 @@
   {
    "kind": "design",
    "slide": 6,
-   "text": "SHOT 06 / 09 . FOV 64 . KEY 1 TO 1 . DOLLY 0.00 M",
+   "text": "SHOT 06 / 09 . FOV 64 . KEY 1 TO 1 . DOLLY 7.62 M . NO MOVE",
    "fragment": "1 TO 1",
    "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
   },
   {
    "kind": "design",
    "slide": 7,
-   "text": "SHOT 07 / 09 . FOV FLAT . KEY 3 TO 1 RAKING . DOLLY 0.00 M",
+   "text": "SHOT 07 / 09 . FOV FLAT . KEY 3 TO 1 RAKING . DOLLY 7.62 M . NO MOVE",
    "fragment": "3 TO 1",
    "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
   },
@@ -63,6 +63,13 @@
    "text": "SALMON VISION . A COLLABORATIVE EFFORTOF FOUR ORGANISATIONS (C17)",
    "fragment": "FOUR ORGANISATIONS",
    "member": "C17"
+  },
+  {
+   "kind": "design",
+   "slide": 9,
+   "text": "SHOT 09 / 09 . FOV 50 . KEY 1.5 TO 1 . DOLLY 15.00 M TOTAL . A 15 MILE BOAT RIDE FROM SITKA (C29)",
+   "fragment": "5 TO 1",
+   "note": "the close's key to fill ratio. The flow critic caught that slide 09 was the only frame dropping the KEY field, so the falling-key motif now closes on a number like the other eight. A light rig value, not a claim about the world."
   }
  ]
 }

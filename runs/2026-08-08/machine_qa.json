@@ -4,7 +4,6 @@
       "file": "slide-01.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 11% / mid 45% / bottom 19% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "art touching glyphs (5% of the ring around '\"The systemis not broken.That's the prob', spanning 19%) -- pixel critic verify the label is not crossed",
         "art touching glyphs (4% of the ring around '01 / 09', spanning 15%) -- pixel critic verify the label is not crossed"
       ],
@@ -34,10 +33,7 @@
       "file": "slide-03.html",
       "fails": [],
       "warns": [
-        "tiny-text: 'ABOUT 35 PERCENT OF ALL SUBSISTENCE SOCKEYE HARVES' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: '50 BEFORE . 100 NOW (C24)' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "text collision (66% overprint): 'ABOUT 35 PERCENT OF ALL SUBSISTENCE ' x 'SHOT 03 / 09 . FOV 44 . KEY 7 TO 1 .' near 80,1233 [decorative involved]",
-        "worst-point contrast 3.5 on '50 BEFORE . 100 NOW (C24)' (box mean 4.4) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "worst-point contrast 3.6 on '50 BEFORE . 100 NOW (C24)' (box mean 4.4) -- below the rubric's 4.5 line somewhere along the run of the text",
         "art touching glyphs (4% of the ring around '03 / 09', spanning 15%) -- pixel critic verify the label is not crossed"
       ],
       "contacts": [
@@ -86,13 +82,8 @@
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "tiny-text: 'THE WEIR HAD COUNTED 7,791 BY JUNE 29TH, 2026. THE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'EARLY 1980sABOUT 800' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: '2023153,406' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: '2024210,253' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: '2025NEARLY 229,000' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: '2026NO BAR' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "art touching glyphs (5% of the ring around '2026NO BAR', spanning 52%) -- pixel critic verify the label is not crossed",
+        "top-loaded composition: the bottom third carries 64% of this slide's own average craft density (top 16% / mid 16% / bottom 8% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "tiny-text: 'REPORTED AS NEARLY 229,000 (C31). BARS ARE LINEAR ' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "art touching glyphs (4% of the ring around '07 / 09', spanning 15%) -- pixel critic verify the label is not crossed"
       ],
       "leaders": [
@@ -121,6 +112,6 @@
     }
   ],
   "fails": 0,
-  "warns": 26,
+  "warns": 17,
   "verdict": "WARN"
 }
