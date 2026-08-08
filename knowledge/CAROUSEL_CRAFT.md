@@ -12,7 +12,7 @@ starred★ rules as hard gates.
 Documents/carousels are the #1 engagement format in every 2024-2026 dataset
 (Socialinsider 7.00% ER vs 6.00% video; Metricool: 17x interactions vs images;
 vdB reach multiplier 1.45x). They are also the most-SAVED format, and 1 save
-counts ~5x a like in reach value. Каждый swipe = dwell, and dwell is the
+counts ~5x a like in reach value. Every swipe = dwell, and dwell is the
 ranking signal (LinkedIn engineering, LiRank/LiGR/360Brew papers). Every
 swipe extends dwell. We build keepable reference artifacts, not applause.
 

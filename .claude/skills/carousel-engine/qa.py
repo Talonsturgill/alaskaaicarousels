@@ -336,11 +336,18 @@ FB_WARN = 0.80
 
 FEED_W = 432          # the thumb width the doctrine's legibility test uses
 
-# NO PASS/FAIL THRESHOLDS HERE, DELIBERATELY. See encoding_reads() for the
-# calibration that killed them. This block MEASURES a declared encoding and
-# reports the numbers; it does not judge. Anyone adding a threshold must first
-# show it separates a known-bad encoding from a known-good one on real renders,
-# because the two obvious candidates provably do not.
+# NO PASS/FAIL THRESHOLD ON WHETHER AN ENCODING *WORKS*, DELIBERATELY. See
+# encoding_reads() for the calibration that killed the two obvious candidates.
+# That block MEASURES and does not judge, and anyone adding a quality threshold
+# must first show it separates a known-bad encoding from a known-good one on
+# real renders.
+#
+# ENC_DIFFER_MIN_DE IS NOT THAT THRESHOLD. It answers a strictly narrower and
+# purely mechanical question -- did the probe measure ANYTHING -- and it is only
+# ever applied to a direction THE SLIDE ITSELF DECLARED. See the DIRECTION
+# CONTRACT block in encoding_reads() for the fit.
+ENC_DIFFER_MIN_DE = 4.0
+ENC_READS_VALUES = ("differ", "same")
 
 
 def _srgb_to_lab(a):
@@ -411,7 +418,61 @@ def encoding_reads(img_arr, enc, design_w, design_h):
     declarations across the back catalogue so a threshold can be FITTED rather
     than guessed, which is a corpus exercise, not a slot at the end of a run.
 
-    Returns (verdict, detail) where verdict is "info" or "warn". Never "fail".
+    THE DIRECTION CONTRACT (2026-08-08). Everything above is still true about
+    JUDGING an encoding, and none of it is being softened. What run No.29 proved
+    is that a probe can fail one step earlier, before any semantics are in play:
+    slides 05 and 06 declared the deck's central wordless claim, the two probe
+    rectangles were computed from the STORYBOARD'S CAMERA ARITHMETIC instead of
+    measured off a render, and they landed on empty water about 300 design px
+    left of where the aperture actually drew. The declaration reported dE 0.9 /
+    AUC 0.58, the deck's own build gate never gated anything, and the scorer
+    caught it at the ship gate and made it the run's one_sentence_fix. The same
+    failure had already happened once earlier in that run, on a probe pair that
+    reported the DARK frame as brighter than the lit one.
+    The light itself was fine: measured off the shipped pixels the aperture runs
+    98.3 L* lit against 26.9 L* unlit. The rectangle was wrong.
+
+    So a slide now says WHICH WAY its declaration should read, and that one word
+    is checked:
+
+      "reads":"differ"  the two regions must be tellable apart
+      "reads":"same"    an absence or sameness claim; they should match
+
+    A declaration with no `reads` is a FAIL, not a pass. It is the same rule
+    caption_check.py applies to a missing --ledger and a missing brand.yaml: a
+    check that cannot look is a failure, not a stale green. An encoding that
+    states no direction is a number nobody can be wrong about, which is exactly
+    what shipped. The repair is one word, and typing it is the point: you cannot
+    write "differ" without going and looking at what the render actually did.
+    Slides that declare no encoding at all are untouched; the contract stays
+    opt-in.
+
+    THE FLOOR IS FITTED, NOT GUESSED, over every data-encodes line in the
+    shipped corpus (runs/*/machine_qa.json, 19 declarations across 7 runs):
+
+      the DIFFER claims that worked        dE 12.1, 15.0, 15.7, 15.9, 20.8,
+                                              23.7, 24.7, 25.3, 27.6, 31.9, 73.6
+      the low cluster, all SAMENESS or
+        ABSENCE claims where a small dE
+        is the CORRECT answer              dE 0.4 'three ticks stand alone with
+                                              nothing drawn between them',
+                                              1.6, 2.2, 4.6 'three equal
+                                              swellings on a bare plate', 4.9
+      the known DEFECT, run No.29          dE 0.9 and dE 3.5, both probes off
+                                              their own aperture
+
+    4.0 sits under every confirmed working differ claim by a factor of three and
+    over the run No.29 defect, and the low cluster is not in its way because
+    those claims declare "same" and are not gated. Note what this floor
+    deliberately does NOT do: the 2026-07-29 known-bad, the steel-below-brass
+    column the scorer said read as one uniform extrusion, measured dE 49.0 and
+    PASSES here, correctly, because this is not a judgment of whether the
+    encoding works. The calibration above still stands; nothing here revisits it.
+    No threshold is drawn for "same", because the corpus has no known-bad for
+    that direction to fit one against, and guessing is what this docstring
+    exists to prevent.
+
+    Returns (verdict, detail) where verdict is "info", "warn" or "fail".
     """
     if enc.get("error"):
         return "warn", f"declaration did not parse ({enc['error']})"
@@ -456,6 +517,28 @@ def encoding_reads(img_arr, enc, design_w, design_h):
     auc = _rank_auc(la @ axis / n, lb @ axis / n) if n > 1e-9 else 0.5
     bits.insert(0, f"dE {n:.1f}, AUC {auc:.2f}")
     detail = f"'{enc.get('claim', '')}': " + ", ".join(bits)
+
+    # THE DIRECTION CONTRACT. See the docstring for the fit and for why this is
+    # not the quality threshold the calibration rejected.
+    reads = str(enc.get("reads") or "").strip().lower()
+    if reads not in ENC_READS_VALUES:
+        said = "nothing" if not reads or reads == "any" else repr(enc.get("reads"))
+        return "fail", (
+            "the declaration says %s about which way it should read, so no "
+            "check on it is possible and the number below is not evidence. Add "
+            '"reads":"differ" (the two regions must be tellable apart) or '
+            '"reads":"same" (an absence or sameness claim). Measured %s'
+            % (said, detail))
+    if reads == "differ" and n < ENC_DIFFER_MIN_DE:
+        return "fail", (
+            "%s. The slide declares reads:\"differ\" and the two regions are "
+            "%.1f dE apart at %dpx wide, under the %.1f floor: at feed scale "
+            "these are one population, so this probe is measuring the same "
+            "thing twice. The usual cause is a region computed from the "
+            "storyboard's camera arithmetic rather than MEASURED off a render. "
+            "Open the PNG, find where the feature actually drew, and author the "
+            "rects from that."
+            % (detail, n, FEED_W, ENC_DIFFER_MIN_DE))
 
     return "info", detail
 
@@ -889,11 +972,16 @@ def main():
         # that has not adopted the contract.
         for enc in rec.get("encodings", []):
             verdict, detail = encoding_reads(arr, enc, design_w, design_h)
-            if verdict == "warn":
+            if verdict == "fail":
+                # THE DIRECTION CONTRACT (2026-08-08). Still not a judgment of
+                # whether the encoding WORKS -- no threshold through those
+                # numbers survived calibration and none has been added. This
+                # fails only when the declaration cannot be checked at all, or
+                # when the slide contradicts the direction it declared itself.
+                res["fails"].append(f"encoding declaration is not evidence: {detail}")
+            elif verdict == "warn":
                 # Only an AUTHORING error warns: a declaration that does not
-                # parse or names a region nobody can measure. The measurement
-                # itself never fails a slide, because no threshold through
-                # these numbers survived calibration (see encoding_reads).
+                # parse or names a region nobody can measure.
                 res["warns"].append(f"encoding declaration unusable: {detail}")
             else:
                 res.setdefault("encodings", []).append(detail)

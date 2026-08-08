@@ -391,7 +391,16 @@ IN_PAGE_QA_JS = """
      form, what its artwork is supposed to SAY without words:
 
        <body data-encodes='[{"claim":"material change at hour 7",
+                             "reads":"differ",
                              "a":[[732,1052,82,98]], "b":[[736,500,74,540]]}]'>
+
+     `reads` is REQUIRED as of 2026-08-08 and is one of "differ" (the two
+     regions must be tellable apart) or "same" (an absence or sameness claim).
+     qa.py FAILS a declaration that omits it, and FAILS a "differ" whose two
+     regions are under 4.0 dE apart at feed scale. Run No.29 authored two probe
+     rectangles from the storyboard's camera arithmetic instead of measuring
+     them off a render; they landed on empty water 300px from the aperture,
+     reported dE 0.9, and gated nothing. MEASURE THE RECTS OFF THE PNG.
 
      Every gate before this one judged LEGIBILITY. Nothing judged whether the
      picture carried its own argument, so the only reviewer who ever saw a

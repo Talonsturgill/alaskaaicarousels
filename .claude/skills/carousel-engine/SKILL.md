@@ -86,19 +86,37 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   `<body>`, and the engine will measure whether that survives to feed scale:
 
   ```html
-  <body data-encodes='[{"claim":"material change at hour 7",
+  <body data-encodes='[{"claim":"material change at hour 7", "reads":"differ",
                         "a":[[732,1052,82,98]], "b":[[736,500,74,540]]}]'>
   ```
 
   Regions are `[x,y,w,h]` in CSS px (a CSS selector string also works). qa.py
   reports, per declaration, the CIELAB distance and rank separability between
   the two populations AT 432px WIDE, plus how much of each region is visible
-  art rather than furniture. This is OPT-IN and it is a MEASUREMENT, not a
-  gate: it never fails a slide. Two candidate thresholds were calibrated
+  art rather than furniture. Whether the encoding WORKS is still a
+  MEASUREMENT and not a gate: two candidate quality thresholds were calibrated
   against a real known-bad and a real known-good and both came out backwards
   (see `encoding_reads` in qa.py). Read the numbers, do not trust a rule
   drawn through them, and do not add one without showing it separates a
   known-bad from a known-good on real renders.
+  **`reads` is REQUIRED (2026-08-08) and two things about it DO fail.** It is
+  `"differ"` (the two regions must be tellable apart) or `"same"` (an absence
+  or sameness claim). A declaration that omits it FAILS, because a probe that
+  states no direction is a number nobody can be wrong about; and a `"differ"`
+  whose regions are **under 4.0 dE apart** at feed scale FAILS, because at that
+  distance the probe is measuring the same thing twice. Neither is a judgment
+  of the art. **MEASURE THE RECTS OFF THE RENDERED PNG, NEVER OFF THE
+  STORYBOARD'S CAMERA ARITHMETIC.** Run No.29 computed both probe boxes from
+  the camera maths on slides 05 and 06, they landed on empty water ~300px left
+  of where the aperture actually drew (declared x=188, actual x=468, verified
+  by block-scanning the shipped PNG), the deck's central wordless claim
+  reported dE 0.9 and the deck's own build gate gated nothing. The light was
+  never the problem: measured on the true rect the same declaration reads
+  dE 89.9. The same run had already burned one probe pair earlier the same way,
+  reporting the DARK frame as brighter than the lit one. Open the PNG, find the
+  feature, then write the numbers. The floor is fitted over all 19 declarations
+  in `runs/*/machine_qa.json`; sameness claims are not gated because the corpus
+  has no known-bad to fit against.
 - **A contact shadow must have something to subtract from** (2026-08-05), and
   a slide that declares one gets measured on it:
 
