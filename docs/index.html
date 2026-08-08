@@ -159,6 +159,38 @@ font-family:JBMono,ui-monospace,monospace;}
 }
 .gw-chart{background:var(--panel);border:1px solid var(--line);border-radius:14px;
 padding:16px 12px 8px;margin:18px 0;overflow-x:auto;}
+/* THE HOVER LAYER. An HTML chart is interactive by default, and without this
+   the only way to read a middle day was to count gridlines. The crosshair
+   snaps to the nearest date so the pointer aims at a day rather than at a 2px
+   line, and one readout carries every panel for that day. Everything it shows
+   is also in the table below, so it enhances and never gates. */
+.gw-plot{position:relative;}
+/* A 920 wide viewBox scaled into a 342px phone card takes 11px mono down to
+   about 4px, which is a picture of a chart rather than a chart. The card is
+   already overflow-x auto, so the plot keeps a readable floor and the CARD
+   scrolls. The page itself still does not, which is the line that matters. */
+.gw-chart svg{min-width:600px;}
+.gw-hit{cursor:crosshair;}
+.gw-hit:focus{outline:none;}
+.gw-hit:focus-visible{outline:2px solid var(--halo);outline-offset:-2px;}
+.gw-tip{position:absolute;z-index:3;pointer-events:none;min-width:190px;
+background:rgba(5,11,22,.97);border:1px solid var(--line);border-radius:10px;
+padding:10px 12px;box-shadow:0 18px 40px -20px #000;
+transform:translate(-50%,0);}
+.gw-tip-d{font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+color:var(--mute);font-family:JBMono,ui-monospace,monospace;
+margin-bottom:7px;white-space:nowrap;}
+.gw-tip-r{display:flex;align-items:baseline;gap:9px;white-space:nowrap;
+margin-top:5px;}
+/* A short stroke of the series colour, not a filled box. At tooltip density a
+   box is data-weight ink doing a label's job. */
+.gw-tip-k{width:12px;height:2px;border-radius:1px;flex:none;}
+/* Value leads, series name follows. The reader has the series and wants the
+   number, which is the legend's hierarchy inverted. */
+.gw-tip-v{color:var(--snow);font-weight:700;font-size:14px;
+font-variant-numeric:proportional-nums;}
+.gw-tip-n{color:var(--mute);font-size:11px;letter-spacing:.05em;
+text-transform:uppercase;}
 .gw-table{margin:18px 0 8px;overflow-x:auto;}
 .gw-table table{width:100%;border-collapse:collapse;font-size:14px;
 font-variant-numeric:tabular-nums;}
