@@ -1076,7 +1076,7 @@
    ],
    "verification": "DEFECT RECONSTRUCTION: regenerating the payload from this run's unchanged score_report.json and artifacts before the patch reproduces both defects verbatim ('threshold ?' and '2.18 MB'); after the patch the same inputs render 'threshold 8.0' and '1.57 MB', which is the byte size of runs/2026-08-08/carousel.pdf. FALLBACK: with the shipped PDF absent the script still renders the assemble_report figure rather than raising, so a mid-flight run is unaffected. NO OTHER CHANGE: the two payloads are otherwise identical.",
    "rollback": "revert the fix(2026-08-08) commit. Both changes are local to gmail_draft.py's body assembly, read-only against score_report.json and the shipped artifacts, and touch no gate.",
-   "commit": "staged for fix(2026-08-08), committed by the showrunner"
+   "commit": "69c073cec6ce265e9c75a4e091249deffda26e14"
   }
  ],
  "scan_log": [
