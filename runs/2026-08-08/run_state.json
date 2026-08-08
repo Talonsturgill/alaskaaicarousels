@@ -58,7 +58,21 @@
    "out/2026-08-08/slides/slide-06.html",
    "out/2026-08-08/render/ (3 PNGs)",
    "out/2026-08-08/probe/ (validated aksdf scene)"
+  ],
+  "gmail": [
+   "runs/2026-08-08/gmail_payload.json",
+   "gmail draft r-2474478252361380030 (docket@alaskaaihq.com)"
+  ],
+  "upgrade": [
+   "upgrade(2026-08-08) 81a715813bc7850a469cd4915098068b201ac213: data-encodes reads gate + caption_check --copy",
+   "fix(2026-08-08) 69c073cec6ce265e9c75a4e091249deffda26e14: gmail draft threshold alias + shipped PDF size",
+   "ledger/upgrades.json (3 entries, 1 scan_log entry)"
+  ],
+  "ship": [
+   "runs/2026-08-08/ (9 webp, contact sheet, og.jpg, carousel.pdf 1.57 MB vector)",
+   "PR #238 merged, PR #239 merged, PR #240 merged",
+   "docs/ rebuilt to 29 decks, site_fresh_check OK"
   ]
  },
- "outcome": "SHIPPED. No.29, 9 slides, scored 8.02 vs the 3-round threshold of 8.0, zero hard fails."
+ "outcome": "SHIPPED. No.29, 9 slides, scored 8.02 vs the 3-round threshold of 8.0, zero hard fails. The first attempt abandoned the run at 3 of 9 slides on an invented context budget and drafted a failure post-mortem; the maintainer rejected that and the run was finished. Non-negotiable 8 (NO EMPTY RUNS EVER) and two instincts were written so the rationalisation is named before it starts. Post-merge, the three encoding probes were re-sited on coordinates measured off real renders and the new reads gate now holds them."
 }
