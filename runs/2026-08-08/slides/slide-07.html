@@ -29,13 +29,13 @@ html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;backgrou
 <div class="mn" style="position:absolute;left:596px;top:236px;width:404px;line-height:1.45;font-size:24px">THE WEIR HAD COUNTED 7,791 BY JUNE 29TH, 2026. THE DEPARTMENT'S PAGE DOES NOT SAY WHETHER A PERSON OR THE MACHINE COUNTED THEM. (C11)</div>
 
 <div class="it" style="position:absolute;left:596px;top:530px;width:404px;font-size:25px;line-height:1.4">Fish and Game projected more than 40,000 for the 2026 season on June 30th. A projection is not a count, so it gets no bar. (C12)</div>
-<div class="mn" style="position:absolute;left:104px;top:1040px;width:210px;font-size:24px;line-height:1.28;color:#F4F8FF">EARLY 1980s<br>ABOUT 800</div>
+<div class="it" style="position:absolute;left:104px;top:1040px;width:230px;font-size:26px;line-height:1.24;color:#C7D2C0">early 1980s<br>about 800</div>
 <div class="mn" style="position:absolute;left:270px;top:806px;width:210px;font-size:24px;line-height:1.28;color:#F4F8FF">2023<br>153,406</div>
 <div class="mn" style="position:absolute;left:436px;top:700px;width:210px;font-size:24px;line-height:1.28;color:#F4F8FF">2024<br>210,253</div>
 <div class="mn" style="position:absolute;left:602px;top:640px;width:210px;font-size:24px;line-height:1.28;color:#F4F8FF">2025<br>229,000</div>
 <div class="mn" style="position:absolute;left:790px;top:1040px;width:210px;font-size:24px;line-height:1.28;color:#F4F8FF">2026<br>NO BAR</div>
-<div class="mn" style="position:absolute;left:80px;top:668px;width:340px;font-size:22px;line-height:1.36">REPORTED AS NEARLY 229,000 (C31). BARS ARE LINEAR AND THE 1980s FIGURE IS UNDER ONE TICK.</div>
-<div class="mn log" data-decorative>SHOT 07 / 09 . FOV FLAT . KEY 3 TO 1 RAKING . DOLLY 7.62 M . NO MOVE</div>
+<div class="mn" style="position:absolute;left:80px;top:470px;width:430px;font-size:22px;line-height:1.36">REPORTED AS NEARLY 229,000 (C31). BARS ARE LINEAR AND THE 1980s FIGURE IS UNDER ONE TICK.</div>
+<div class="mn log" data-decorative>SHOT 07 / 09 . KEY 3 TO 1 RAKING . DOLLY 7.62 M . NO MOVE</div>
 <div class="goldtick"></div>
 <div class="mn ctr">07 / 09</div>
 <div class="mn crd" data-decorative>56&#176;51'N 135&#176;10'W</div></div>
@@ -158,18 +158,10 @@ function draw(){
   // printed axis values, so the honesty device is delivered and not asserted
   cx.fillStyle='#8FA36A'; cx.font='20px "JetBrains Mono"'; cx.textAlign='right';
   for(var v=0;v<=200000;v+=100000){ var yy=base-Math.round(maxh*v/MAX);
-    cx.fillText(v===0?'0':(v/1000)+'K',96,yy+7); }
+    cx.fillText(v===0?'0':(v/1000)+'K',96,yy-14); }
   cx.textAlign='left';
-  // the bottom band is composed: extension ticks off every bar into a dimension
-  // rule, then a lit foreground plane below the reserved log line.
-  for(var i=0;i<5;i++){ var xx=x0+i*(bw+gap);
-    cx.strokeStyle='rgba(170,200,160,0.34)'; cx.lineWidth=1.25;
-    cx.beginPath(); cx.moveTo(xx,1190); cx.lineTo(xx,1222); cx.stroke();
-    cx.beginPath(); cx.moveTo(xx+bw,1190); cx.lineTo(xx+bw,1222); cx.stroke();
-    cx.strokeStyle='rgba(170,200,160,0.55)'; cx.lineWidth=2;
-    cx.beginPath(); cx.moveTo(xx,1222); cx.lineTo(xx+bw,1222); cx.stroke();
-    cx.beginPath(); cx.moveTo(xx+5,1217); cx.lineTo(xx,1222); cx.lineTo(xx+5,1227); cx.stroke();
-    cx.beginPath(); cx.moveTo(xx+bw-5,1217); cx.lineTo(xx+bw,1222); cx.lineTo(xx+bw-5,1227); cx.stroke(); }
+  // the bottom band is carried by a lit foreground plane below the reserved
+  // log line. No dimension furniture may enter the log band.
   var fpl=cx.createLinearGradient(0,1288,1080,1350);
   fpl.addColorStop(0,'#22342A'); fpl.addColorStop(0.55,'#16241E'); fpl.addColorStop(1,'#0A1210');
   cx.fillStyle=fpl; cx.beginPath();

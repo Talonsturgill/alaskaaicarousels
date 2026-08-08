@@ -104,7 +104,7 @@ function draw(){
   cx.moveTo(-660,10); cx.lineTo(-806,-116); cx.lineTo(-770,10);
   cx.lineTo(-806,136); cx.closePath(); cx.fill();
   // wet fresnel rim along the lit shoulder
-  cx.strokeStyle='rgba(255,227,174,0.85)'; cx.lineWidth=7;
+  cx.strokeStyle='rgba(212,226,196,0.72)'; cx.lineWidth=7;
   cx.beginPath(); cx.moveTo(-330,-136); cx.quadraticCurveTo(60,-150,430,-40); cx.stroke();
   // the eye, the only tack-sharp thing in the frame
   cx.fillStyle='#F4F8FF'; cx.beginPath(); cx.arc(392,-30,17,0,6.2832); cx.fill();
@@ -117,15 +117,18 @@ function draw(){
   cx.fillStyle=hg; cx.beginPath();
   cx.moveTo(890,742); cx.lineTo(1080,700); cx.lineTo(1080,1210); cx.lineTo(902,1160);
   cx.closePath(); cx.fill();
-  cx.fillStyle='rgba(110,165,255,0.30)'; cx.fillRect(946,900,120,64);
+  cx.fillStyle='rgba(127,160,140,0.26)'; cx.fillRect(946,900,120,64);
   cx.restore(); cx.filter='none';
   // the drafting leader to the adipose fin's own coordinates
   var FIN=[846+60,858-120];
   cx.strokeStyle='rgba(6,14,12,0.75)'; cx.lineWidth=7;
-  cx.beginPath(); cx.moveTo(300,1244); cx.lineTo(620,1244); cx.lineTo(FIN[0],FIN[1]); cx.stroke();
+  cx.beginPath(); cx.moveTo(556,1120); cx.lineTo(700,1120); cx.lineTo(FIN[0],FIN[1]); cx.stroke();
   cx.strokeStyle='#A9BFA0'; cx.lineWidth=1.5;
-  cx.beginPath(); cx.moveTo(300,1244); cx.lineTo(620,1244); cx.lineTo(FIN[0],FIN[1]); cx.stroke();
+  cx.beginPath(); cx.moveTo(556,1120); cx.lineTo(700,1120); cx.lineTo(FIN[0],FIN[1]); cx.stroke();
   cx.fillStyle='#A9BFA0'; cx.beginPath(); cx.arc(FIN[0],FIN[1],4,0,6.2832); cx.fill();
+  cx.fillStyle='#0A100E'; cx.fillRect(330,1100,214,34);
+  cx.fillStyle='#C7D2C0'; cx.font='24px "JetBrains Mono"';
+  cx.fillText('ADIPOSE FIN',344,1124);
   grain(cx,20260808+8);
   window.__akLeaders=[{target:'the adipose fin',at:FIN,to:FIN}];
 }
