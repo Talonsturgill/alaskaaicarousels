@@ -2960,3 +2960,47 @@ on the study's own page: that personal-profile carousels outperform company
 it to the same Metricool study. The study page does not carry it. Left out
 deliberately, per the house rule that a number appearing only downstream of
 its claimed source does not exist.
+
+## 2026-08-08 - a gate authored from a prediction is not a gate
+
+The run set out to kill the series' longest-running craft defect, RENDERED
+LADDER DECLARED AND NOT REACHED, four decks in six. Its plan was not to assert
+the rung but to GATE it, with luminance probes proving the key light actually
+falls between the two hero frames, which was also the deck's whole argument.
+
+The ladder was reached. Three slides are genuinely raymarched.
+
+The gate failed, and it failed one level up from the defect it was built to
+catch. The probe rectangles were written into the slides from the storyboard's
+PREDICTED screen coordinates, computed from the camera arithmetic, rather than
+measured off an actual render. They landed off the aperture. The measured
+separation then came out backwards, with the dark frame reading brighter than
+the lit one, which is the opposite of the argument the deck was making.
+
+The old failure was asserting a rung without checking it. The new one is
+building a check and never verifying the check points at the thing. Both are
+the same underlying error, trusting a number nobody looked at.
+
+The rule that follows is cheap and absolute. RENDER FIRST, THEN WRITE THE
+RECTANGLE. A probe region is authored by locating the feature in a real render
+and reading its coordinates off, never by predicting where the feature will
+land. The camera arithmetic is for composing the frame. It is not evidence
+about where anything ended up.
+
+Second lesson from the same run, and it is about allocation rather than craft.
+Six scouts returned about 490,000 tokens and four of them led with the same
+story, which was already dead on dedupe. Three treatment-directors returned
+about 224,000 tokens of complete decks and two were discarded after synthesis.
+Both rooms worked exactly as designed and both were paid for out of the same
+budget that then had to build nine slides. The planning phases are cheap to
+make luxurious and expensive to settle. When the storyboard is complete and
+gated, what is left belongs to production.
+
+Third, an engine finding worth not rediscovering. `aksdf` material `emissive`
+must be an ARRAY, not a scalar. Passing a number makes `S.mul` index a number,
+every channel goes NaN, the pixel writes 0, and the surface renders black with
+no console error. Same silent class as the `lerpHex` nesting trap. Related, a
+far emissive plane is not visible down a 2.4 m tunnel from a camera 21 degrees
+off axis, because the acceptance half-angle is about 5 degrees. The fix that
+works is a short emissive plug just inside the mouth, which is also physically
+right for translucent polyethylene.
