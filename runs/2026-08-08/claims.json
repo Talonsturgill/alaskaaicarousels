@@ -1,0 +1,498 @@
+{
+  "run_date": "2026-08-08",
+  "carousel_no": 29,
+  "story": "Sitka Tribe of Alaska runs an AI video escapement counter at the Redoubt Lake weir while saying no operating funding exists for it",
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "The U.S. Fish and Wildlife Service listed a fiscal year 2024 Tribal Wildlife Grant to the Sitka Tribe of Alaska titled \"Artificial Intelligence for Subsistence Salmon Monitoring and Management\".",
+      "value": "Artificial Intelligence for Subsistence Salmon Monitoring and Management",
+      "verbatim": "Sitka Tribe of Alaska (Artificial Intelligence for Subsistence Salmon Monitoring and Management)",
+      "source_url": "https://www.fws.gov/press-release/2024-10/service-awards-more-64-million-tribal-wildlife-grants-advance-shared",
+      "source_outlet": "U.S. Fish and Wildlife Service",
+      "source_is_primary": true,
+      "date_of_source": "2024-10-16",
+      "note": "Grant title confirmed word for word on the national award list. The same title appears on the Service's Alaska specific release dated October 17th, 2024, which is independent corroboration of the title but carries no dollar figure.",
+      "confidence": "high"
+    },
+    {
+      "id": "C2",
+      "claim": "That Tribal Wildlife Grant to the Sitka Tribe of Alaska was $200,000.",
+      "value": "$200,000",
+      "verbatim": "$200,000 to install artificial intelligence enabled video that will produce automated real-time counts of Redoubt Lake sockeye salmon, reducing real-time monitoring costs.",
+      "source_url": "https://www.fws.gov/press-release/2024-10/service-awards-more-64-million-tribal-wildlife-grants-advance-shared",
+      "source_outlet": "U.S. Fish and Wildlife Service",
+      "source_is_primary": true,
+      "date_of_source": "2024-10-16",
+      "note": "HARD LIMIT. This is a fiscal year 2024 award to INSTALL the system. Neither this page nor the KCAW interview describes it as ongoing operating money for the weir, and KCAW names no funder at all. Do not write or imply that this grant funds the weir now.",
+      "confidence": "high"
+    },
+    {
+      "id": "C3",
+      "claim": "The Service described the award as paying to install artificial intelligence enabled video producing automated real time counts of Redoubt Lake sockeye salmon and reducing real time monitoring costs.",
+      "value": "automated real-time counts",
+      "verbatim": "to install artificial intelligence enabled video that will produce automated real-time counts of Redoubt Lake sockeye salmon, reducing real-time monitoring costs",
+      "source_url": "https://www.fws.gov/press-release/2024-10/service-awards-more-64-million-tribal-wildlife-grants-advance-shared",
+      "source_outlet": "U.S. Fish and Wildlife Service",
+      "source_is_primary": true,
+      "date_of_source": "2024-10-16",
+      "note": "The cost reduction is the agency's stated project rationale, not a measured result. Attribute it.",
+      "confidence": "high"
+    },
+    {
+      "id": "C4",
+      "claim": "The Service's Alaska release said the Sitka Tribe of Alaska would partner with the Wild Salmon Center and the U.S. Forest Service to install the AI enabled video chutes.",
+      "value": "Wild Salmon Center and the US Forest Service",
+      "verbatim": "The Sitka Tribe of Alaska will partner with Wild Salmon Center and the US Forest Service to install artificial intelligence (AI)-enabled video chutes",
+      "source_url": "https://www.fws.gov/press-release/2024-10/us-fish-wildlife-service-awards-more-13-million-tribal-wildlife-grants-alaska",
+      "source_outlet": "U.S. Fish and Wildlife Service",
+      "source_is_primary": true,
+      "date_of_source": "2024-10-17",
+      "note": "Useful bridge to C17, since the Wild Salmon Center is also named as a Salmon Vision founding collaborator.",
+      "confidence": "high"
+    },
+    {
+      "id": "C5",
+      "claim": "The Service said it was awarding more than $1.3 million in Tribal Wildlife Grants to federally recognized Tribes in Alaska in that round.",
+      "value": "$1.3 million",
+      "verbatim": "The U.S. Fish and Wildlife Service is awarding more than $1.3 million to federally-recognized Tribes in Alaska to benefit fish and wildlife resources and their habitats.",
+      "source_url": "https://www.fws.gov/press-release/2024-10/us-fish-wildlife-service-awards-more-13-million-tribal-wildlife-grants-alaska",
+      "source_outlet": "U.S. Fish and Wildlife Service",
+      "source_is_primary": true,
+      "date_of_source": "2024-10-17",
+      "note": "Context only. Sitka's $200,000 is roughly a seventh of the Alaska total. That ratio is derived arithmetic, not the agency's own statement.",
+      "confidence": "high"
+    },
+    {
+      "id": "C6",
+      "claim": "The Alaska Department of Fish and Game raised the annual subsistence limit for Redoubt Bay and Lake sockeye salmon to 100 fish per individual or household.",
+      "value": "100 sockeye",
+      "verbatim": "Individual/household annual limit: 100 fish",
+      "source_url": "https://www.adfg.alaska.gov/sf/EONR/index.cfm?ADFG=region.NR&Year=2026&NRID=4070",
+      "source_outlet": "Alaska Department of Fish and Game, Division of Sport Fish",
+      "source_is_primary": true,
+      "date_of_source": "2026-06-30",
+      "note": "The department release states the new limit. The prior limit of 50 is sourced separately at C24 from Feldpausch, not from this emergency order page.",
+      "confidence": "high"
+    },
+    {
+      "id": "C7",
+      "claim": "The same emergency order set the Redoubt subsistence possession limit at 25 sockeye salmon per individual or household.",
+      "value": "25 sockeye",
+      "verbatim": "Individual/household possession limit: 25 fish",
+      "source_url": "https://www.adfg.alaska.gov/sf/EONR/index.cfm?ADFG=region.NR&Year=2026&NRID=4070",
+      "source_outlet": "Alaska Department of Fish and Game, Division of Sport Fish",
+      "source_is_primary": true,
+      "date_of_source": "2026-06-30",
+      "note": "Possession limit and annual limit are different quantities. Do not conflate 25 with 100.",
+      "confidence": "high"
+    },
+    {
+      "id": "C8",
+      "claim": "The same order set the Redoubt sport bag and possession limit at 6 sockeye salmon.",
+      "value": "6 sockeye",
+      "verbatim": "Bag and possession limit: 6 sockeye salmon",
+      "source_url": "https://www.adfg.alaska.gov/sf/EONR/index.cfm?ADFG=region.NR&Year=2026&NRID=4070",
+      "source_outlet": "Alaska Department of Fish and Game, Division of Sport Fish",
+      "source_is_primary": true,
+      "date_of_source": "2026-06-30",
+      "note": "Sport fishery, separate from the subsistence fishery in C6 and C7.",
+      "confidence": "high"
+    },
+    {
+      "id": "C9",
+      "claim": "The liberalized Redoubt limits took effect at 12:01 a.m. on July 1st, 2026.",
+      "value": "12:01 a.m. July 1st, 2026",
+      "verbatim": "Effective July 1, 2026 at 12:01 a.m.",
+      "source_url": "https://www.adfg.alaska.gov/sf/EONR/index.cfm?ADFG=region.NR&Year=2026&NRID=4070",
+      "source_outlet": "Alaska Department of Fish and Game, Division of Sport Fish",
+      "source_is_primary": true,
+      "date_of_source": "2026-06-30",
+      "note": "Release issued June 30th, 2026, one day before the effective time.",
+      "confidence": "high"
+    },
+    {
+      "id": "C10",
+      "claim": "The Redoubt Lake weir was installed on June 14th, 2026 for the 2026 season.",
+      "value": "June 14th, 2026",
+      "verbatim": "The Redoubt Lake weir, installed June 14, 2026",
+      "source_url": "https://www.adfg.alaska.gov/sf/EONR/index.cfm?ADFG=region.NR&Year=2026&NRID=4070",
+      "source_outlet": "Alaska Department of Fish and Game, Division of Sport Fish",
+      "source_is_primary": true,
+      "date_of_source": "2026-06-30",
+      "note": "This is the 2026 seasonal install date. The AI camera system itself was first installed in August 2025 per C35. Two different events, do not merge.",
+      "confidence": "high"
+    },
+    {
+      "id": "C11",
+      "claim": "The weir had counted 7,791 sockeye salmon by June 29th, 2026.",
+      "value": "7,791 sockeye",
+      "verbatim": "had counted 7,791 sockeye salmon by June 29",
+      "source_url": "https://www.adfg.alaska.gov/sf/EONR/index.cfm?ADFG=region.NR&Year=2026&NRID=4070",
+      "source_outlet": "Alaska Department of Fish and Game, Division of Sport Fish",
+      "source_is_primary": true,
+      "date_of_source": "2026-06-30",
+      "note": "The page does not state whether this count came from the AI system or from hand counting. Do not attribute it to the AI.",
+      "confidence": "high"
+    },
+    {
+      "id": "C12",
+      "claim": "The department said projected escapement for the 2026 Redoubt season exceeds 40,000 sockeye salmon.",
+      "value": "more than 40,000",
+      "verbatim": "the projected escapement for the 2026 season exceeds 40,000 sockeye salmon",
+      "source_url": "https://www.adfg.alaska.gov/sf/EONR/index.cfm?ADFG=region.NR&Year=2026&NRID=4070",
+      "source_outlet": "Alaska Department of Fish and Game, Division of Sport Fish",
+      "source_is_primary": true,
+      "date_of_source": "2026-06-30",
+      "note": "NEEDS SOFTENING. This is a projection made on June 30th, 2026, not a final count. Write it as projected or expected to exceed, and attribute to ADF and G. It is also far below the 2025 count in C31, so do not present it as a record.",
+      "confidence": "high"
+    },
+    {
+      "id": "C13",
+      "claim": "Salmon Vision reports a mean average precision of 80.2 percent for its detection model.",
+      "value": "80.2 percent",
+      "verbatim": "80.2%",
+      "source_url": "https://salmonvision.org/",
+      "source_outlet": "Salmon Vision Collaborative",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-08",
+      "note": "COMPARABILITY WARNING. Page is undated, so date_of_source is the access date of August 8th, 2026. This is a published model metric across the species set in C14 and is NOT comparable to the about a 95 percent confidence interval Feldpausch gives in C22. Never place the two figures side by side.",
+      "confidence": "high"
+    },
+    {
+      "id": "C14",
+      "claim": "Salmon Vision reports detecting 6 salmon species among 17 total species.",
+      "value": "6 salmon species of 17 total",
+      "verbatim": "6 salmon species detected ... 17 total species detected",
+      "source_url": "https://salmonvision.org/",
+      "source_outlet": "Salmon Vision Collaborative",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-08",
+      "note": "Undated page, access date recorded. Verbatim reflects two adjacent counters on the page, joined here with an ellipsis.",
+      "confidence": "high"
+    },
+    {
+      "id": "C15",
+      "claim": "Salmon Vision reports its models were trained on over 5 million annotated frames.",
+      "value": "over 5 million annotated frames",
+      "verbatim": "over 5 million annotated frames",
+      "source_url": "https://salmonvision.org/",
+      "source_outlet": "Salmon Vision Collaborative",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-08",
+      "note": "Undated page, access date recorded.",
+      "confidence": "high"
+    },
+    {
+      "id": "C16",
+      "claim": "Salmon Vision publishes its model code under an MIT open research license and its data and annotations under a Creative Commons BY-NC-SA 4.0 license.",
+      "value": "MIT and CC BY-NC-SA 4.0",
+      "verbatim": "Model code are freely available to the research community under a MIT open research license. Data and annotations are published under a creative commons license (BY-NC-SA 4.0)",
+      "source_url": "https://salmonvision.org/about/",
+      "source_outlet": "Salmon Vision Collaborative",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-08",
+      "note": "Undated page, access date recorded. Corroborated by the same licensing line in the homepage footer. BY-NC-SA is non commercial, so open source applies to the code and not to the training data.",
+      "confidence": "high"
+    },
+    {
+      "id": "C17",
+      "claim": "Salmon Vision describes itself as a collaborative effort by the Pacific Salmon Foundation, Wild Salmon Center, Simon Fraser University computing sciences and Lumax Ecological Analytics.",
+      "value": "four founding organizations",
+      "verbatim": "Salmon Vision is a collaborative effort by the Pacific Salmon Foundation, Wild Salmon Center, Simon Fraser University computing sciences, and Lumax Ecological Analytics",
+      "source_url": "https://salmonvision.org/about/",
+      "source_outlet": "Salmon Vision Collaborative",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-08",
+      "note": "The scout brief listed three founders. The page names a fourth, Lumax Ecological Analytics. Use the page's list of four.",
+      "confidence": "high"
+    },
+    {
+      "id": "C18",
+      "claim": "Salmon Vision lists the Sitka Tribe of Alaska among its partners, alongside the Alaska Department of Fish and Game and Fisheries and Oceans Canada.",
+      "value": "Sitka Tribe of Alaska",
+      "verbatim": "Sitka Tribe of Alaska",
+      "source_url": "https://salmonvision.org/",
+      "source_outlet": "Salmon Vision Collaborative",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-08",
+      "note": "Undated page, access date recorded. The partner list is a name listing only. It does not describe the Redoubt deployment or vouch for its performance.",
+      "confidence": "high"
+    },
+    {
+      "id": "C19",
+      "claim": "Jeff Feldpausch, resource protection director for the Sitka Tribe of Alaska, said there is no funding for the weir right now.",
+      "value": "no funding for the weir right now",
+      "verbatim": "I know there's been some concern about AI taking away jobs, and the reality is, there's no funding for the weir right now.",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "Verified character for character on the fetched page. Single sourced to KCAW and no primary document confirms the funding gap, so attribute in copy as told KCAW. This phrase is also the article headline.",
+      "confidence": "high"
+    },
+    {
+      "id": "C20",
+      "claim": "Feldpausch said the Tribe looked high and low for grant sources and all of them deal with systems that need remediation.",
+      "value": "all of them deal with systems that need some sort of remediation",
+      "verbatim": "We have looked high and low for different grant sources, and all of them deal with systems that need some sort of remediation.",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "Verified character for character. The adjacent sentences They're a damaged system. This system isn't damaged. It is blowing the doors off of it. were also verified verbatim and may be used.",
+      "confidence": "high"
+    },
+    {
+      "id": "C21",
+      "claim": "Feldpausch said there is lots of money to fix and monitor broken systems but no regular funding for a system that is not broken.",
+      "value": "a system that isn't broken",
+      "verbatim": "There's lots of money out there to fix and monitor broken systems, but there's no regular funding out there for this side of it: for a system that isn't broken.",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "Verified character for character. The preceding sentence The system is not broken. That's the problem [when] going after grant funds. was also verified verbatim, brackets included as KCAW printed them. NOTE FOR SLIDE COPY, the source sentence contains a colon, which house style forbids on a slide. Quote only the fragment before or after it, or use the preceding sentence instead.",
+      "confidence": "high"
+    },
+    {
+      "id": "C22",
+      "claim": "Feldpausch said the computer has learned to count sockeye and the program has reached about a 95 percent confidence interval on counting sockeye through the system.",
+      "value": "about a 95% confidence interval",
+      "verbatim": "The computer itself has actually learned how to count sockeye, and the data we have provided the program has gotten up to about a 95% confidence interval on counting sockeye through the system.",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "COMPARABILITY WARNING AND SOFTENING REQUIRED. This is an operator's self report in a radio interview, not a published validation, and confidence interval is not a standard accuracy metric. Present only as Feldpausch told KCAW. Never set it beside the 80.2 percent in C13, which measures a different thing.",
+      "confidence": "high"
+    },
+    {
+      "id": "C23",
+      "claim": "Feldpausch said a commercial fishery is now taking place at Redoubt that would not happen if the weir were not in place.",
+      "value": "commercial fishery",
+      "verbatim": "We have a commercial fishery that's now taking place that wouldn't if the weir wasn't in place.",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "One sided framing from the Tribe's own director. Attribute. No independent source was found confirming the causal link.",
+      "confidence": "high"
+    },
+    {
+      "id": "C24",
+      "claim": "Feldpausch said harvesters can now take up to 100 sockeye a year, up from 50, and that this would not have happened without the weir.",
+      "value": "100 a year, up from 50",
+      "verbatim": "harvesters can get up to 100 sockeye a year, up from 50",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "Verbatim deliberately truncated before an em dash in the source, which house style forbids reproducing. The full sentence continues that would not happen without the weir being in place. The 100 figure is independently corroborated by ADF and G at C6. The prior 50 figure rests on Feldpausch alone.",
+      "confidence": "high"
+    },
+    {
+      "id": "C25",
+      "claim": "Feldpausch said conflicts between people and bears are emerging because bears cannot fish the weir pool away from where people fish in the saltwater.",
+      "value": "human-bear interactions",
+      "verbatim": "The bears don't have the ability to fish in that weir pool away from where people are fishing down in the saltwater, so we're starting to see some conflicts",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "Verbatim truncated for length. The quote continues between human-bear interactions that may not have been in there in the past because there was a different pool of fish for them to fish out of. Corroborated as a real field condition by the July 30th, 2026 bear warning at C37.",
+      "confidence": "high"
+    },
+    {
+      "id": "C26",
+      "claim": "Feldpausch said runs at Redoubt were significantly depressed in the early 1980s with around 800 sockeye returning.",
+      "value": "around 800 sockeye",
+      "verbatim": "In the early '80s, the runs at Redoubt were significantly depressed. I think there were around 800 sockeye returning at the time",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "NEEDS SOFTENING. The speaker himself hedges with I think. Present as a recollection, not a record figure. No agency source was located for the 1980s count.",
+      "confidence": "medium"
+    },
+    {
+      "id": "C27",
+      "claim": "KCAW described the Redoubt setup as a white polyethylene plastic chute with a video camera on the side, with a float in the lagoon carrying battery packs, solar panels and a Starlink system.",
+      "value": "white polyethylene plastic chute",
+      "verbatim": "a white polyethylene plastic chute with a video camera on the side",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "The float detail is a second verified phrase on the same page, A float in the lagoon has battery packs, solar panels, and a Starlink system.",
+      "confidence": "high"
+    },
+    {
+      "id": "C28",
+      "claim": "KCAW reported that data from the Redoubt system is uploaded online immediately and is accessible from the Tribe's office in Sitka.",
+      "value": "uploaded online immediately",
+      "verbatim": "the data is immediately uploaded online and accessible from the Tribe's office in town",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "The article says in town, meaning Sitka. Accessible does not mean publicly accessible.",
+      "confidence": "high"
+    },
+    {
+      "id": "C29",
+      "claim": "Redoubt Falls is a 15 mile boat ride from downtown Sitka.",
+      "value": "15 miles",
+      "verbatim": "the 15-mile boat ride from downtown Sitka",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "The page says boat ride distance, not straight line distance. It does not say south. Write a 15 mile boat ride from Sitka, not 15 miles south of Sitka.",
+      "confidence": "high"
+    },
+    {
+      "id": "C30",
+      "claim": "KCAW identified the Redoubt counting system as coming from the British Columbia based company SalmonVision.",
+      "value": "SalmonVision",
+      "verbatim": "a new artificial intelligence system from the British Columbia-based company SalmonVision",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "KCAW Raven Radio, reporting by Hope McKenney",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-05",
+      "note": "KCAW calls it a company. Salmon Vision's own about page calls it a collaborative effort of four organizations, per C17. Prefer the primary self description and note the discrepancy if the deck names the vendor.",
+      "confidence": "high"
+    },
+    {
+      "id": "C31",
+      "claim": "Technicians counted nearly 229,000 sockeye entering Redoubt Lake while operating the weir from mid June to late July of 2025.",
+      "value": "nearly 229,000 sockeye",
+      "verbatim": "Technicians counted nearly 229,000 sockeye entering the lake while operating the Redoubt weir from mid-June to late July.",
+      "source_url": "https://www.ketchikandailynews.com/news/waterfront/redoubt-lake-sockeye-salmon-boom-spurs-study/article_0152260b-191c-486b-b905-4690f2b77baa.html",
+      "source_outlet": "Ketchikan Daily News, reprinting Anna Laffrey of the Daily Sitka Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2025-10-25",
+      "note": "YEAR RESOLVED. The article is dated October 25th, 2025 and frames this as the current season, with 2023 and 2024 named as the previous record years. It is a 2025 figure, not 2026. An earlier run banned this number on the belief it was an unsourced 2026 count. That ban is lifted for the 2025 attribution only. Never label it 2026.",
+      "confidence": "high"
+    },
+    {
+      "id": "C32",
+      "claim": "Redoubt weir counts were 153,406 fish in 2023 and 210,253 in 2024 according to U.S. Forest Service reports.",
+      "value": "153,406 in 2023 and 210,253 in 2024",
+      "verbatim": "Previous record years were 2023 and 2024, with 153,406 fish and 210,253 counted, per USFS reports.",
+      "source_url": "https://www.ketchikandailynews.com/news/waterfront/redoubt-lake-sockeye-salmon-boom-spurs-study/article_0152260b-191c-486b-b905-4690f2b77baa.html",
+      "source_outlet": "Ketchikan Daily News, reprinting Anna Laffrey of the Daily Sitka Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2025-10-25",
+      "note": "Two figures kept in one claim because the source sentence pairs them and the pairing is what makes them readable. Underlying USFS reports were not reached, so this is a secondary citation of a primary count.",
+      "confidence": "high"
+    },
+    {
+      "id": "C33",
+      "claim": "A researcher found that about 35 percent of all subsistence sockeye harvest in Southeast Alaska happens at Redoubt, based on unpublished Forest Service and Fish and Game data.",
+      "value": "about 35 percent",
+      "verbatim": "Based on unpublished USFS and ADF&G data, he found that about 35% of all subsistence sockeye harvest in Southeast Alaska happens at Redoubt.",
+      "source_url": "https://www.ketchikandailynews.com/news/waterfront/redoubt-lake-sockeye-salmon-boom-spurs-study/article_0152260b-191c-486b-b905-4690f2b77baa.html",
+      "source_outlet": "Ketchikan Daily News, reprinting Anna Laffrey of the Daily Sitka Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2025-10-25",
+      "note": "NEEDS SOFTENING. The source itself says the underlying data are unpublished, so the figure cannot be checked against a document. Keep the word unpublished in the sentence.",
+      "confidence": "medium"
+    },
+    {
+      "id": "C34",
+      "claim": "The AI camera system at Redoubt captured 2,600 video clips in two and a half weeks during 2025.",
+      "value": "2,600 video clips",
+      "verbatim": "The AI camera system took 2,600 video clips in two and a half weeks.",
+      "source_url": "https://www.ketchikandailynews.com/news/waterfront/redoubt-lake-sockeye-salmon-boom-spurs-study/article_0152260b-191c-486b-b905-4690f2b77baa.html",
+      "source_outlet": "Ketchikan Daily News, reprinting Anna Laffrey of the Daily Sitka Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2025-10-25",
+      "note": "The specific date range of August 22nd to September 8th, 2025 given in the scout brief was NOT confirmed on the fetched page, which says only two and a half weeks. Use two and a half weeks and do not print the date range.",
+      "confidence": "high"
+    },
+    {
+      "id": "C35",
+      "claim": "Sitka Tribe technicians installed the AI equipment at Redoubt in August 2025 and it was reported as the first in-stream artificial intelligence fish count in Alaska.",
+      "value": "first in Alaska",
+      "verbatim": "This is the first time an artificial intelligence camera system is being used to count fish in-stream in Alaska.",
+      "source_url": "https://www.ketchikandailynews.com/news/waterfront/redoubt-lake-sockeye-salmon-boom-spurs-study/article_0152260b-191c-486b-b905-4690f2b77baa.html",
+      "source_outlet": "Ketchikan Daily News, reprinting Anna Laffrey of the Daily Sitka Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2025-10-25",
+      "note": "NEEDS SOFTENING on the first-in-Alaska claim, which is a newspaper assertion with no cited registry behind it. Write reported as the first. Install month supported by the adjacent phrase STA technicians installed the equipment at Redoubt in August, in an article dated October 2025.",
+      "confidence": "medium"
+    },
+    {
+      "id": "C36",
+      "claim": "Seiners caught about 130,000 sockeye at Redoubt in 2025, the largest commercial harvest there since at least 1985.",
+      "value": "about 130,000 sockeye",
+      "verbatim": "This year, seiners caught about 130,000 sockeye",
+      "source_url": "https://www.ketchikandailynews.com/news/waterfront/redoubt-lake-sockeye-salmon-boom-spurs-study/article_0152260b-191c-486b-b905-4690f2b77baa.html",
+      "source_outlet": "Ketchikan Daily News, reprinting Anna Laffrey of the Daily Sitka Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2025-10-25",
+      "note": "Verbatim truncated before an em dash in the source, which house style forbids reproducing. The sentence continues with the wording the largest commercial harvest there since at least 1985. This year means 2025 given the October 25th, 2025 dateline.",
+      "confidence": "high"
+    },
+    {
+      "id": "C37",
+      "claim": "The U.S. Forest Service and the Sitka Tribe of Alaska issued a joint bear warning for Redoubt Falls on July 30th, 2026, saying several brown bears including two sows with cubs were frequenting the weir.",
+      "value": "two sows with cubs",
+      "verbatim": "Several brown bears, including two sows with cubs, are frequenting the lake's weir",
+      "source_url": "https://www.kcaw.org/2026/07/31/public-urged-to-be-bear-aware-at-redoubt-falls/",
+      "source_outlet": "KCAW Raven Radio",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-31",
+      "note": "KCAW published July 31st, 2026 reporting an announcement issued July 30th, 2026. Both dates verified on the page. The underlying agency notice itself was not reached.",
+      "confidence": "high"
+    },
+    {
+      "id": "C38",
+      "claim": "No published head to head validation of the Redoubt AI counts against hand counts was found on any of the pages fetched for this run.",
+      "value": "no published validation found",
+      "verbatim": "The computer itself has actually learned how to count sockeye",
+      "source_url": "https://www.kcaw.org/2026/08/05/theres-no-funding-for-the-weir-right-now-sitka-tribe-of-alaska-introduces-ai-monitoring-at-redoubt/",
+      "source_outlet": "Alaska.Ai verification note against KCAW Raven Radio, Salmon Vision, ADF and G and USFWS pages",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-08",
+      "note": "LIMIT OF THE RECORD, not a finding of absence. Of the pages fetched on August 8th, 2026, the KCAW interview offers only Feldpausch's self report, Salmon Vision publishes a model wide metric with no Redoubt breakout, and the ADF and G emergency order does not say whether its 7,791 count was machine or hand derived. Phrase as no published Redoubt validation was found, never as there is none.",
+      "confidence": "medium"
+    }
+  ],
+  "stories_surviving": [
+    "Sitka Tribe of Alaska runs an AI video escapement counter at the Redoubt Lake weir",
+    "The AI count sets subsistence harvest limits at Redoubt Bay and Lake",
+    "A working system can't find grant funding because grants target broken systems"
+  ],
+  "killed": [
+    {
+      "claim": "The $200,000 Tribal Wildlife Grant funds operation of the Redoubt weir.",
+      "why": "No fetched page connects the fiscal year 2024 installation grant to current operating money. KCAW names no funder at all, saying only They got a grant. Asserting the link would directly contradict Feldpausch's on the record statement that there is no funding now."
+    },
+    {
+      "claim": "The AI system is about 95 percent accurate versus Salmon Vision's 80.2 percent mean average precision.",
+      "why": "Two incommensurable metrics. A director's spoken confidence interval in a radio interview is not a mean average precision across 17 species. Kept as C22 and C13 with explicit no-comparison notes."
+    },
+    {
+      "claim": "The 2,600 training clips were captured between August 22nd and September 8th, 2025.",
+      "why": "The fetched page says only two and a half weeks. The exact date range appeared in the scout brief but not on the page, so it does not exist for our purposes."
+    },
+    {
+      "claim": "Redoubt Falls is 15 miles south of Sitka.",
+      "why": "The page says the 15-mile boat ride from downtown Sitka and gives no compass bearing. Direction dropped, distance kept at C29 as a boat distance."
+    },
+    {
+      "claim": "The nearly 229,000 count was the largest documented return in contemporary records.",
+      "why": "That superlative wording was not confirmed on the page. The page supports only that 2023 and 2024 were the previous record years, which is what C31 and C32 carry."
+    },
+    {
+      "claim": "The 7,791 sockeye counted by June 29th, 2026 were counted by the AI system.",
+      "why": "The ADF and G emergency order attributes the count to the weir and does not say the AI produced it. Attribution invented."
+    },
+    {
+      "claim": "Salmon Vision is a British Columbia based company.",
+      "why": "Not killed outright but downgraded. KCAW says company, the organization's own about page says collaborative effort by four named organizations. Kept as C30 with the discrepancy flagged, prefer the primary self description at C17."
+    }
+  ]
+}

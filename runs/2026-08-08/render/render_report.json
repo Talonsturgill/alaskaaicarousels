@@ -1,0 +1,873 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "SHOT 01 / 09 . FOV 58 . KEY 6 TO 1 . DOLLY 0.00 M",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "01 / 09",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "REDOUBT LAKE WEIR . SITKA TRIBE OF ALASKA",
+          "x": 80,
+          "y": 120,
+          "w": 524,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(143, 163, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              120,
+              524,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"The systemis not broken.That's the problem.\"",
+          "x": 540,
+          "y": 190,
+          "w": 462,
+          "h": 416,
+          "font_px": 104,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              540,
+              174,
+              411,
+              135
+            ],
+            [
+              540,
+              278,
+              453,
+              135
+            ],
+            [
+              540,
+              382,
+              326,
+              135
+            ],
+            [
+              540,
+              486,
+              343,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Jeff Feldpausch, Sitka Tribe of Alaska, to KCAW, August 5, 2026",
+          "x": 540,
+          "y": 640,
+          "w": 452,
+          "h": 72,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(216, 228, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              540,
+              643,
+              408,
+              28
+            ],
+            [
+              540,
+              679,
+              127,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SHOT 01 / 09 . FOV 58 . KEY 6 TO 1 . DOLLY 0.00 M",
+          "x": 80,
+          "y": 1280,
+          "w": 666,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1280,
+              666,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 905,
+          "y": 64,
+          "w": 95,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              905,
+              64,
+              95,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "56\u00b051'N 135\u00b010'W",
+          "x": 80,
+          "y": 1311,
+          "w": 196,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 82, 72)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1311,
+              196,
+              23
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "every fish passes one lit gate, one at a time",
+          "reads": "any",
+          "a": [
+            [
+              188,
+              612,
+              96,
+              108
+            ]
+          ],
+          "b": [
+            [
+              760,
+              240,
+              180,
+              180
+            ]
+          ],
+          "a_visible_frac": 0,
+          "b_visible_frac": 0
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the chute on the lake bed",
+          "shadow": [
+            [
+              300,
+              980,
+              300,
+              40
+            ]
+          ],
+          "ground": [
+            [
+              300,
+              1090,
+              300,
+              40
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 11465,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 34.4,
+          "variance": 980.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "GOLD MARKS MONEY THAT EXISTS.",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "SHOT 05 / 09 . FOV 64 . KEY 8 TO 1 . DOLLY 7.62 M",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "05 / 09",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE MONEY THAT EXISTS",
+          "x": 80,
+          "y": 120,
+          "w": 282,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(143, 163, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              120,
+              282,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$200,000 paid to install it. Once.",
+          "x": 452,
+          "y": 180,
+          "w": 548,
+          "h": 183,
+          "font_px": 91.5,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              743,
+              166,
+              217,
+              119
+            ],
+            [
+              452,
+              258,
+              431,
+              119
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$200,000",
+          "x": 452,
+          "y": 166,
+          "w": 291,
+          "h": 119,
+          "font_px": 91.5,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              452,
+              166,
+              291,
+              119
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "A fiscal year 2024 Tribal Wildlife Grant from the U.S. Fish and Wildlife Service",
+          "x": 452,
+          "y": 520,
+          "w": 548,
+          "h": 469,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(216, 228, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              452,
+              524,
+              471,
+              37
+            ],
+            [
+              452,
+              571,
+              543,
+              37
+            ],
+            [
+              452,
+              618,
+              521,
+              37
+            ],
+            [
+              452,
+              665,
+              527,
+              37
+            ],
+            [
+              452,
+              712,
+              471,
+              37
+            ],
+            [
+              452,
+              759,
+              488,
+              37
+            ],
+            [
+              452,
+              805,
+              527,
+              37
+            ],
+            [
+              452,
+              852,
+              501,
+              37
+            ],
+            [
+              452,
+              899,
+              495,
+              37
+            ],
+            [
+              452,
+              946,
+              67,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GOLD MARKS MONEY THAT EXISTS.",
+          "x": 452,
+          "y": 960,
+          "w": 394,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              452,
+              960,
+              394,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SHOT 05 / 09 . FOV 64 . KEY 8 TO 1 . DOLLY 7.62 M",
+          "x": 80,
+          "y": 1280,
+          "w": 666,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1280,
+              666,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 905,
+          "y": 64,
+          "w": 95,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              905,
+              64,
+              95,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "56\u00b051'N 135\u00b010'W",
+          "x": 80,
+          "y": 1311,
+          "w": 196,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 82, 72)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1311,
+              196,
+              23
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "this frame is fully readable",
+          "reads": "any",
+          "a": [
+            [
+              188,
+              612,
+              96,
+              108
+            ]
+          ],
+          "b": [
+            [
+              96,
+              208,
+              180,
+              180
+            ]
+          ],
+          "a_visible_frac": 0,
+          "b_visible_frac": 0
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the chute on the lit bed",
+          "shadow": [
+            [
+              286,
+              960,
+              300,
+              40
+            ]
+          ],
+          "ground": [
+            [
+              286,
+              1076,
+              300,
+              40
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 10521,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.8,
+          "variance": 928.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "SHOT 06 / 09 . FOV 64 . KEY 1 TO 1 . DOLLY 0.00 M",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "06 / 09",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE MONEY THAT DOESN'T",
+          "x": 80,
+          "y": 120,
+          "w": 300,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(143, 163, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              120,
+              300,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Grant money lights damage.",
+          "x": 80,
+          "y": 186,
+          "w": 920,
+          "h": 208,
+          "font_px": 104,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              170,
+              640,
+              135
+            ],
+            [
+              80,
+              274,
+              289,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"This system isn't damaged.\"",
+          "x": 80,
+          "y": 392,
+          "w": 820,
+          "h": 62,
+          "font_px": 62,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              383,
+              578,
+              80
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"There's lots of money out there to fix and monitor broken systems\"\"there's no f",
+          "x": 80,
+          "y": 590,
+          "w": 640,
+          "h": 188,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(216, 228, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              594,
+              616,
+              37
+            ],
+            [
+              80,
+              641,
+              373,
+              37
+            ],
+            [
+              80,
+              735,
+              607,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Jeff Feldpausch, Sitka Tribe of Alaska, to KCAW, August 5, 2026",
+          "x": 80,
+          "y": 830,
+          "w": 640,
+          "h": 36,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(216, 228, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              833,
+              538,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SHOT 06 / 09 . FOV 64 . KEY 1 TO 1 . DOLLY 0.00 M",
+          "x": 80,
+          "y": 1280,
+          "w": 666,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1280,
+              666,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 905,
+          "y": 64,
+          "w": 95,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              905,
+              64,
+              95,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "56\u00b051'N 135\u00b010'W",
+          "x": 80,
+          "y": 1311,
+          "w": 196,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 82, 72)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1311,
+              196,
+              23
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "the object is identical and only the light changed",
+          "reads": "any",
+          "a": [
+            [
+              188,
+              612,
+              96,
+              108
+            ]
+          ],
+          "b": [
+            [
+              96,
+              208,
+              180,
+              180
+            ]
+          ],
+          "a_visible_frac": 0,
+          "b_visible_frac": 0
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the chute on the unlit bed",
+          "shadow": [
+            [
+              286,
+              960,
+              300,
+              40
+            ]
+          ],
+          "ground": [
+            [
+              286,
+              1076,
+              300,
+              40
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 11962,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 27.7,
+          "variance": 483.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}
