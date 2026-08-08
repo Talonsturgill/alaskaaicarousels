@@ -120,17 +120,17 @@ function draw(){
   cx.fillStyle='rgba(127,160,140,0.26)'; cx.fillRect(946,900,120,64);
   cx.restore(); cx.filter='none';
   // the drafting leader to the adipose fin's own coordinates
-  var FIN=[846+60,858-120];
+  var FIN=[846+60,858-120];  // dorsal contour, not named as a fin
   cx.strokeStyle='rgba(6,14,12,0.75)'; cx.lineWidth=7;
   cx.beginPath(); cx.moveTo(556,1120); cx.lineTo(700,1120); cx.lineTo(FIN[0],FIN[1]); cx.stroke();
   cx.strokeStyle='#A9BFA0'; cx.lineWidth=1.5;
   cx.beginPath(); cx.moveTo(556,1120); cx.lineTo(700,1120); cx.lineTo(FIN[0],FIN[1]); cx.stroke();
   cx.fillStyle='#A9BFA0'; cx.beginPath(); cx.arc(FIN[0],FIN[1],4,0,6.2832); cx.fill();
-  cx.fillStyle='#0A100E'; cx.fillRect(330,1100,214,34);
+  cx.fillStyle='#0A100E'; cx.fillRect(330,1100,268,34);
   cx.fillStyle='#C7D2C0'; cx.font='24px "JetBrains Mono"';
-  cx.fillText('ADIPOSE FIN',344,1124);
+  cx.fillText('THE FISH IN FOCUS',344,1124);
   grain(cx,20260808+8);
-  window.__akLeaders=[{target:'the adipose fin',at:FIN,to:FIN}];
+  window.__akLeaders=[{target:'the fish, at the sharp focal plane',at:FIN,to:FIN}];
 }
 window.__fit=function(){ AK.fitText(document.getElementById('h'),{min:62,max:84,maxLines:2}); };
 

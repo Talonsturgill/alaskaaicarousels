@@ -11,16 +11,16 @@
   "gas_watch": "done",
   "selection": "done",
   "directors_room": "done",
-  "copy": "in_progress",
-  "art_build": "partial",
-  "pixel_review": "not_reached",
-  "flow_review": "not_reached",
-  "assemble": "not_reached",
-  "scoring": "not_reached",
-  "ship": "evidence_only",
-  "upgrade": "not_reached",
-  "gmail": "pending",
-  "retro": "in_progress"
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "done",
+  "assemble": "done",
+  "scoring": "done",
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "wake": [
@@ -60,5 +60,5 @@
    "out/2026-08-08/probe/ (validated aksdf scene)"
   ]
  },
- "outcome": "INCOMPLETE. No deck shipped. Run branch carries evidence only and is NOT merged."
+ "outcome": "SHIPPED. No.29, 9 slides, scored 8.02 vs the 3-round threshold of 8.0, zero hard fails."
 }

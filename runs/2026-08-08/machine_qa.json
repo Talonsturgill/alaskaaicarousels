@@ -33,7 +33,6 @@
       "file": "slide-03.html",
       "fails": [],
       "warns": [
-        "worst-point contrast 3.6 on '50 BEFORE . 100 NOW (C24)' (box mean 4.4) -- below the rubric's 4.5 line somewhere along the run of the text",
         "art touching glyphs (4% of the ring around '03 / 09', spanning 15%) -- pixel critic verify the label is not crossed"
       ],
       "contacts": [
@@ -93,11 +92,11 @@
       "file": "slide-08.html",
       "fails": [],
       "warns": [
-        "canvas raster text 'ADIPOSE FIN' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'THE FISH IN FOCUS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "art touching glyphs (4% of the ring around '08 / 09', spanning 15%) -- pixel critic verify the label is not crossed"
       ],
       "leaders": [
-        "leader 'the adipose fin' lands 0.0px from its target"
+        "leader 'the fish, at the sharp focal plane' lands 0.0px from its target"
       ]
     },
     {
@@ -112,6 +111,6 @@
     }
   ],
   "fails": 0,
-  "warns": 17,
+  "warns": 16,
   "verdict": "WARN"
 }
