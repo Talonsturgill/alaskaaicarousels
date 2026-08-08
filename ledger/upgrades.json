@@ -1064,6 +1064,19 @@
    "verification": "DEFECT RECONSTRUCTION: the pre-repair copy.json recovered from git (9761462) FAILS with 7 DATE hits, every one in first_comment and every one correctly named with its replacement. The shipped repaired copy.json PASSES over 21 reader-facing fields. A --copy path that does not exist FAILS as a blind check rather than passing silently. NO BEHAVIOUR CHANGE WITHOUT THE FLAG: caption_check on this run's caption.txt with --ledger and --deck-summary and no --copy returns the identical PASS (855 chars, hook 123). FALSE-POSITIVE SWEEP: the checker was run over all 29 runs/*/copy.json and every hit inspected by hand -- all are genuine bare-cardinal or day-first dates in reader-facing prose, none is an ISO citation stamp, a URL fragment, a claim id or an editor-only field. Engine regression: render.py + qa.py re-run on examples/demo-deck (identical, 0 fails) and on this run's slides; this upgrade touches neither.",
    "rollback": "revert the upgrade(2026-08-08) commit. The flag is opt-in and additive: dropping --copy from the Phase 6 call restores the previous behaviour immediately, without a code change.",
    "commit": "81a715813bc7850a469cd4915098068b201ac213"
+  },
+  {
+   "run_date": "2026-08-08",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "THE DATED DRAFT NOW QUOTES TWO NUMBERS IT WAS GETTING WRONG. (1) gmail_draft.py's scorer-key alias list gains `threshold_used` and `ship_threshold_used`, the fourth spelling of the ship threshold a scorer has produced. (2) The size quoted beside the download link is now MEASURED off the shipped runs/<date>/carousel.pdf rather than read from assemble_report.json, falling back to the report when the shipped copy does not exist yet, which is the case while a run is mid-flight. Nothing else in the body moves and score_report.json is still never mutated.",
+   "trigger": "Run No.29's own delivered draft. The scorer wrote `threshold_used`, which was not in the alias list, so the green banner over a genuine pass read '8.02 / 10 (threshold ?)' and the maintainer's gate number was missing from the one human touchpoint. Separately the same body advertised the PDF as 2.18 MB, the size Chromium printed, while the raw URL beside it serves the shrunk 1.57 MB file, a 39 percent overstatement of the download on every run since shrink_pdfs.py was introduced. Both are the honest-emails rule failing on the machine's own arithmetic rather than on editorial judgement.",
+   "files": [
+    "scripts/gmail_draft.py"
+   ],
+   "verification": "DEFECT RECONSTRUCTION: regenerating the payload from this run's unchanged score_report.json and artifacts before the patch reproduces both defects verbatim ('threshold ?' and '2.18 MB'); after the patch the same inputs render 'threshold 8.0' and '1.57 MB', which is the byte size of runs/2026-08-08/carousel.pdf. FALLBACK: with the shipped PDF absent the script still renders the assemble_report figure rather than raising, so a mid-flight run is unaffected. NO OTHER CHANGE: the two payloads are otherwise identical.",
+   "rollback": "revert the fix(2026-08-08) commit. Both changes are local to gmail_draft.py's body assembly, read-only against score_report.json and the shipped artifacts, and touch no gate.",
+   "commit": "69c073cec6ce265e9c75a4e091249deffda26e14"
   }
  ],
  "scan_log": [
