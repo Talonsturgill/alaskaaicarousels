@@ -1,0 +1,182 @@
+<!doctype html><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#04080D}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.lyr{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.kick{font-family:Archivo;font-variation-settings:'wdth' 62,'wght' 600;
+  font-size:26px;letter-spacing:.11em;text-transform:uppercase;color:#8FA36A}
+.hl{font-family:'Instrument Serif';font-weight:400;color:#F4F8FF;
+  line-height:1.0;letter-spacing:-.02em}
+.it{font-family:'Instrument Serif';font-style:italic;color:#A9BFA0}
+.bd{font-family:Archivo;font-variation-settings:'wdth' 100,'wght' 400;
+  font-size:34px;line-height:1.38;color:#D8E4DE}
+.mn{font-family:'JetBrains Mono';font-weight:400;font-size:22px;
+  letter-spacing:.08em;color:#8FA36A;font-variant-numeric:tabular-nums lining-nums}
+.log{position:absolute;left:80px;bottom:88px}
+.ctr{position:absolute;right:88px;top:72px;color:#C9D6CE;font-size:24px}
+.goldtick{position:absolute;right:186px;top:82px;width:12px;height:5px;background:#FFC72C}
+.crd{position:absolute;left:80px;bottom:52px;font-size:18px;color:#3E5248}
+.gold{color:#FFC72C}
+</style>
+<canvas id="art" width="2160" height="2700"></canvas>
+<body data-contacts='[{"what":"the chute on the unlit bed","shadow":[[506,1116,72,32]],"ground":[[636,1116,72,32]]}]' data-encodes='[{"claim":"the object is identical and only the light changed","a":[[188,612,96,108]],"b":[[96,208,180,180]]}]'>
+
+<div class="lyr">
+<div style="position:absolute;left:0;top:300px;width:820px;height:760px;background:linear-gradient(90deg,rgba(4,8,13,0.90) 0%,rgba(4,8,13,0.72) 42%,rgba(4,8,13,0) 100%)"></div>
+  <div class="kick" style="position:absolute;left:80px;top:120px">THE MONEY THAT DOESN'T</div>
+  <div id="h6" class="hl" style="position:absolute;left:80px;top:178px;width:800px;font-size:106px">Grant money lights damage.</div>
+  <div class="hl" style="position:absolute;left:80px;top:436px;width:660px;font-size:56px">"This system isn't damaged."</div>
+  <div class="bd" style="position:absolute;left:80px;top:614px;width:620px">"There's lots of money out there to fix and monitor broken systems"<br><br>"there's no funding for the weir right now"</div>
+  <div class="bd" style="position:absolute;left:80px;top:846px;width:620px;font-size:26px;
+       font-variation-settings:'wdth' 62,'wght' 500;letter-spacing:.02em">Jeff Feldpausch, Sitka Tribe of Alaska, to KCAW, August 5th, 2026</div>
+  <div class="mn log" data-decorative>SHOT 06 / 09 . FOV 64 . KEY 1 TO 1 . DOLLY 7.62 M . NO MOVE</div>
+  <div class="goldtick"></div>
+<div class="mn ctr">06 / 09</div>
+  <div class="mn crd" data-decorative>56&#176;51'N 135&#176;10'W</div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/aksdf.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+/* THE REDOUBT CHUTE WORLD - metres, +Y up, +Z upstream. Shared by 01/05/06 only. */
+var S = AKSDF; S.reseed(20260808);
+function scene(p){
+  var best, mat;
+  var db = S.sdBox(S.sub(p,[0,-0.05,0]),[7,0.05,9]);
+  if (db < 0.14) db += S.fbm3(p[0]*1.6, 0.5, p[2]*1.6, 3)*0.030;
+  best = db; mat = 1;
+  var co = S.sdBox(S.sub(p,[0,0.45,1.20]),[0.31,0.35,1.20]);
+  var ci = S.sdBox(S.sub(p,[0,0.45,1.24]),[0.21,0.25,1.34]);
+  var chute = S.opSub(co, ci);
+  if (chute < best){ best = chute; mat = 2; }
+  var plug = S.sdBox(S.sub(p,[0,0.45,0.16]),[0.205,0.245,0.02]);
+  if (plug < best){ best = plug; mat = 3; }
+  var cam = S.sdCapsule(p,[0.34,0.62,0.46],[0.34,0.62,0.64],0.048);
+  if (cam < best){ best = cam; mat = 4; }
+  var q = S.sub(p,[0.02,0.45,0.86]);
+  var body = S.sdCapsule(q,[0,0,-0.19],[0,0,0.17],0.052);
+  var head = S.sdSphere(S.sub(q,[0,-0.005,0.23]),0.049);
+  var hump = S.sdSphere(S.sub(q,[0,0.052,-0.03]),0.045);
+  var tail = S.sdRoundBox(S.sub(q,[0,0,-0.275]),[0.004,0.052,0.042],0.010);
+  var fish = S.smin(S.smin(body,head,0.055), S.smin(hump,tail,0.09), 0.055);
+  if (fish < best){ best = fish; mat = 5; }
+  var rp = S.opRepXZ(p, 0.235, 400);
+  var pick = S.sdBox(S.sub(rp,[0,0.50,-1.25]),[0.026,0.50,0.026]);
+  var bnd = S.sdBox(S.sub(p,[0,0.50,-1.25]),[2.40,0.50,0.06]);
+  var pk = S.opSub(S.opInter(pick, bnd), S.sdBox(S.sub(p,[0,0.45,-1.25]),[0.40,0.62,0.40]));
+  if (pk < best){ best = pk; mat = 6; }
+  return [best, mat];
+}
+
+function atmos(cx, seed, fogTop, fogBot, dz){
+  var g = cx.createLinearGradient(0,0,0,1350);
+  g.addColorStop(0, fogTop); g.addColorStop(0.62, fogBot); g.addColorStop(1, '#04080D');
+  cx.fillStyle = g; cx.fillRect(0,0,1080,1350);
+  var r = AK.rng(seed);
+  for (var i=0;i<220;i++){                 // silt motes, near field
+    var x = r()*1080, y = 200 + r()*1150, s = 0.5 + r()*1.9;
+    cx.globalAlpha = 0.05 + r()*0.10;
+    cx.fillStyle = '#8FA36A';
+    cx.beginPath(); cx.arc(x,y,s,0,6.2832); cx.fill();
+  }
+  cx.globalAlpha = 1;
+}
+function grain(cx, seed){
+  var t = document.createElement('canvas'); t.width = 96; t.height = 96;
+  var tc = t.getContext('2d'), id = tc.createImageData(96,96), r = AK.rng(seed);
+  for (var i=0;i<96*96;i++){
+    var v = 118 + (r()*74 - 37);
+    id.data[i*4]=v; id.data[i*4+1]=v; id.data[i*4+2]=v; id.data[i*4+3]=17;
+  }
+  tc.putImageData(id,0,0);
+  var pat = cx.createPattern(t,'repeat');
+  cx.globalCompositeOperation = 'overlay';
+  cx.fillStyle = pat; cx.fillRect(0,0,1080,1350);
+  cx.globalCompositeOperation = 'source-over';
+}
+function shafts(cx, n, alpha, ox, oy, spread, seed){
+  var r = AK.rng(seed);
+  cx.save(); cx.globalCompositeOperation = 'screen';
+  for (var i=0;i<n;i++){
+    var a = -1.9 + (i/(n-1||1))*spread + (r()-0.5)*0.05;
+    var w = 26 + r()*40, L = 900 + r()*420;
+    cx.save(); cx.translate(ox,oy); cx.rotate(a);
+    var g = cx.createLinearGradient(0,0,0,-L);
+    g.addColorStop(0,'rgba(192,138,62,'+alpha+')');
+    g.addColorStop(1,'rgba(192,138,62,0)');
+    cx.fillStyle = g;
+    cx.beginPath(); cx.moveTo(-w*0.30,0); cx.lineTo(w*0.30,0);
+    cx.lineTo(w*1.5,-L); cx.lineTo(-w*1.5,-L); cx.closePath(); cx.fill();
+    cx.restore();
+  }
+  cx.restore();
+}
+
+function rayFrame(cx, opts){
+  var r = AKSDF.render(cx, {
+    scene: scene, width: opts.w, height: opts.h, box:[0,0,1080,1350],
+    cam: opts.cam, light: [-0.34,0.86,0.38],
+    mats: {
+      1:{color:[0.013*opts.g,0.022*opts.g,0.019*opts.g], spec:0.05},
+      2:{color:[0.17*opts.g,0.18*opts.g,0.172*opts.g], spec:0.20,
+         emissive:[0.085*opts.e+opts.rim,0.079*opts.e+opts.rim*0.94,0.064*opts.e+opts.rim*0.78]},
+      3:{color:[0.02,0.02,0.02], spec:0.0,
+         emissive:[2.60*opts.e,2.16*opts.e,1.48*opts.e]},
+      4:{color:[0.014*opts.g,0.020*opts.g,0.018*opts.g], spec:0.40},
+      5:{color:[0.013*opts.g,0.019*opts.g,0.017*opts.g], spec:0.50},
+      6:{color:[0.012*opts.g,0.017*opts.g,0.015*opts.g], spec:0.10}
+    },
+    sky:[0.006,0.013,0.015], fog:0.135,
+    keyColor:[1.00,0.92,0.76], shadowColor:[0.055,0.095,0.085],
+    seed: 20260808, deadlineMs: 12000, maxSteps: 96, eps: 0.0015
+  });
+  window.__akHero = {rung:'aksdf', scene:'redoubt-chute', internal:[opts.w,opts.h],
+                     primitives:9, shadows:r.shadows, ao:r.ao,
+                     degraded:!(r.shadows && r.ao)};
+  return r;
+}
+function probe(cx, rect){                 // median L* of a region, feed scale
+  var d = cx.getImageData(rect[0]*2, rect[1]*2, rect[2]*2, rect[3]*2).data, v=[];
+  for (var i=0;i<d.length;i+=16){
+    var R=d[i]/255,G=d[i+1]/255,B=d[i+2]/255;
+    var Y=0.2126*R+0.7152*G+0.0722*B;
+    v.push(Y<=0.008856?903.3*Y:116*Math.pow(Y,1/3)-16);
+  }
+  v.sort(function(a,b){return a-b;});
+  return Math.round(v[Math.floor(v.length/2)]*10)/10;
+}
+
+function draw(){
+  var cx = document.getElementById('art').getContext('2d');
+  cx.setTransform(2,0,0,2,0,0);
+  atmos(cx, 20260808+6, '#070F0D', '#060B0A', 0.12);
+  AKPOST.grade(cx, {exposure:1.06, saturation:0.98, contrast:1.05});
+  // IDENTICAL camera, IDENTICAL scene. Only the light rig changes: gain 1.00
+  // to 0.16 and the polyethylene emissive to 6 percent. That is the argument.
+  rayFrame(cx, {w:480,h:720,g:0.13,e:0.0036,rim:0.020,
+                cam:{pos:[0.85,0.62,-2.15], look:[-0.02,0.44,0.30], fov:64}});
+  shafts(cx, 2, 0.02, 286, 900, 0.72, 20260808+6);
+  grain(cx, 20260808+6);
+  window.__akProbes = {
+    slot_core: probe(cx,[188,612,96,108]),
+    wall_shadow: probe(cx,[404,748,90,90]),
+    open_water: probe(cx,[96,208,180,180])
+  };
+}
+window.__fit = function(){ AK.fitText(document.getElementById('h6'),{min:84,max:110,maxLines:2}); };
+
+</script>
+
+<script>
+window.renderReady = new Promise(function(res){
+  (async function(){
+    await document.fonts.ready;
+    draw();
+    if (window.__fit) window.__fit();
+    res();
+  })();
+});
+</script>

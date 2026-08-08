@@ -1,0 +1,159 @@
+<!doctype html><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#04080D}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.lyr{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.kick{font-family:Archivo;font-variation-settings:'wdth' 62,'wght' 600;
+ font-size:26px;letter-spacing:.11em;text-transform:uppercase;color:#8FA36A}
+.hl{font-family:'Instrument Serif';font-weight:400;color:#F4F8FF;line-height:1.0;letter-spacing:-.02em}
+.it{font-family:'Instrument Serif';font-style:italic;color:#A9BFA0}
+.bd{font-family:Archivo;font-variation-settings:'wdth' 100,'wght' 400;
+ font-size:34px;line-height:1.38;color:#D8E4DE}
+.inst{font-family:Archivo;font-variation-settings:'wdth' 62,'wght' 500;
+ font-size:26px;letter-spacing:.02em;color:#D8E4DE}
+.mn{font-family:'JetBrains Mono';font-weight:400;font-size:22px;letter-spacing:.08em;
+ color:#8FA36A;font-variant-numeric:tabular-nums lining-nums}
+.log{position:absolute;left:80px;bottom:88px}
+.ctr{position:absolute;right:88px;top:72px;color:#C9D6CE;font-size:24px}
+.goldtick{position:absolute;right:186px;top:82px;width:12px;height:5px;background:#FFC72C}
+.crd{position:absolute;left:80px;bottom:52px;font-size:18px;color:#3E5248}
+.gold{color:#FFC72C}
+</style>
+<canvas id="art" width="2160" height="2700"></canvas>
+<body data-contacts='[{"what":"the camera housing on the chute wall","shadow":[[332,996,120,20]],"ground":[[332,1064,120,20]]}]'>
+<div class="lyr">
+<div class="kick" style="position:absolute;left:80px;top:120px">THE INSTRUMENT</div>
+<div id="h" class="hl" style="position:absolute;left:80px;top:180px;width:900px;font-size:84px">One camera. One chute.<br>One fish at a time.</div>
+<div class="bd" style="position:absolute;left:80px;top:404px;width:600px">KCAW describes a white polyethylene plastic chute with a video camera on the side. A float in the lagoon carries battery packs, solar panels and a Starlink system. The data reaches the Tribe's office in Sitka immediately.</div>
+<div class="mn" style="position:absolute;left:80px;top:700px;width:600px;line-height:1.5">SALMON VISION . A COLLABORATIVE EFFORT<br>OF FOUR ORGANISATIONS (C17)</div>
+<div class="mn log" data-decorative>SHOT 02 / 09 . FOV 68 . KEY 5 TO 1 . DOLLY 2.22 M</div>
+<div class="goldtick"></div>
+<div class="mn ctr">02 / 09</div>
+<div class="mn crd" data-decorative>56&#176;51'N 135&#176;10'W</div></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+
+function px(cx){ cx.setTransform(2,0,0,2,0,0); }
+function vgrad(cx,stops){ var g=cx.createLinearGradient(0,0,0,1350);
+  for(var i=0;i<stops.length;i++) g.addColorStop(stops[i][0],stops[i][1]);
+  cx.fillStyle=g; cx.fillRect(0,0,1080,1350); }
+function motes(cx,seed,n,alo,ahi){ var r=AK.rng(seed);
+  for(var i=0;i<n;i++){ var x=r()*1080,y=r()*1350,s=0.5+r()*2.0;
+    cx.globalAlpha=alo+r()*(ahi-alo); cx.fillStyle='#8FA36A';
+    cx.beginPath(); cx.arc(x,y,s,0,6.2832); cx.fill(); } cx.globalAlpha=1; }
+function caustic(cx,seed,x0,y0,w,h,alpha,scale){
+  AK.reseed(seed); cx.save(); cx.beginPath(); cx.rect(x0,y0,w,h); cx.clip();
+  cx.globalCompositeOperation='screen';
+  for(var y=y0;y<y0+h;y+=3){ for(var x=x0;x<x0+w;x+=3){
+      var v=AK.fbm2(x/scale,y/scale,3);
+      if(v>0.30){ cx.fillStyle='rgba(192,138,62,'+(alpha*(v-0.30)*2.2).toFixed(3)+')';
+        cx.fillRect(x,y,3,3); } } }
+  cx.restore(); }
+function grain(cx,seed){ var t=document.createElement('canvas'); t.width=96;t.height=96;
+  var tc=t.getContext('2d'), id=tc.createImageData(96,96), r=AK.rng(seed);
+  for(var i=0;i<96*96;i++){ var v=118+(r()*74-37);
+    id.data[i*4]=v;id.data[i*4+1]=v;id.data[i*4+2]=v;id.data[i*4+3]=17; }
+  tc.putImageData(id,0,0);
+  cx.globalCompositeOperation='overlay'; cx.fillStyle=cx.createPattern(t,'repeat');
+  cx.fillRect(0,0,1080,1350); cx.globalCompositeOperation='source-over'; }
+/* two-part contact shadow cast onto a ground that is LIT first */
+function litPool(cx,x,y,rx,ry,c0,c1){
+  // The gradient must be built AFTER the transform, centred on the origin.
+  // Built in user space and then translated, it lands somewhere else entirely
+  // and the pool renders as a near-black smear, which is how three contact
+  // shadows failed their own declaration on the first pass.
+  cx.save(); cx.translate(x,y); cx.scale(1,ry/rx);
+  var g=cx.createRadialGradient(0,0,0,0,0,rx);
+  g.addColorStop(0,c0); g.addColorStop(1,c1); cx.fillStyle=g;
+  cx.beginPath(); cx.arc(0,0,rx,0,6.2832); cx.fill(); cx.restore(); }
+function contact(cx,x,y,w,h){
+  var g=cx.createLinearGradient(0,y,0,y+h*3.4);
+  g.addColorStop(0,'rgba(6,14,12,0.86)'); g.addColorStop(1,'rgba(6,14,12,0)');
+  cx.fillStyle=g; cx.beginPath();
+  cx.ellipse(x,y+h*0.5,w*0.66,h*1.5,0,0,6.2832); cx.fill();
+  cx.fillStyle='rgba(4,10,9,0.92)';
+  cx.beginPath(); cx.ellipse(x,y,w*0.46,h*0.34,0,0,6.2832); cx.fill(); }
+
+function draw(){
+  var cx=document.getElementById('art').getContext('2d'); px(cx);
+  vgrad(cx,[[0,'#0A1614'],[0.55,'#08110F'],[1,'#04080D']]);
+  motes(cx,20260808+2,190,0.04,0.13);
+  AKPOST.grade(cx,{exposure:1.02,saturation:0.95,contrast:1.06});
+  // lit bed pool the chute sits in, then the flank, then the shadow into it
+  litPool(cx,470,1130,520,150,'rgba(46,66,44,0.55)','rgba(46,66,44,0)');
+  caustic(cx,20260808+2,0,980,1080,370,0.16,52);
+  // the chute flank driving out of the bottom right corner, 3/4 view
+  var A=[218,946],B=[1080,1128],C=[1080,1350],D=[196,1148];
+  var g=cx.createLinearGradient(218,946,1080,1200);
+  g.addColorStop(0,'#3A4438'); g.addColorStop(0.45,'#242C24'); g.addColorStop(1,'#121A16');
+  cx.fillStyle=g; cx.beginPath(); cx.moveTo(A[0],A[1]); cx.lineTo(B[0],B[1]);
+  cx.lineTo(C[0],C[1]); cx.lineTo(D[0],D[1]); cx.closePath(); cx.fill();
+  // top face, catching the key
+  var g2=cx.createLinearGradient(196,880,1080,1060);
+  g2.addColorStop(0,'#8E9A86'); g2.addColorStop(1,'#3E4A3C');
+  cx.fillStyle=g2; cx.beginPath(); cx.moveTo(196,894); cx.lineTo(1080,1042);
+  cx.lineTo(1080,1128); cx.lineTo(218,946); cx.closePath(); cx.fill();
+  // ribbed stiffeners down the flank, line-weight hierarchy
+  AK.reseed(20260808+2);
+  for(var i=0;i<16;i++){ var t=i/15, x=218+t*862, y=946+t*182;
+    cx.strokeStyle='rgba(10,18,15,'+(0.30+0.24*Math.abs(Math.sin(i))).toFixed(2)+')';
+    cx.lineWidth=(i%4===0)?3:1.25;
+    cx.beginPath(); cx.moveTo(x,y); cx.lineTo(x-16,y+198); cx.stroke(); }
+  // the counting camera housing on the wall, with its own contact shadow
+  contact(cx,392,1006,120,20);
+  var hg=cx.createLinearGradient(330,930,430,1000);
+  hg.addColorStop(0,'#4E5A4A'); hg.addColorStop(1,'#161E18');
+  cx.fillStyle=hg; cx.beginPath();
+  cx.ellipse(380,966,54,30,-0.19,0,6.2832); cx.fill();
+  cx.fillStyle='#0C1210'; cx.beginPath(); cx.ellipse(380,966,20,13,-0.19,0,6.2832); cx.fill();
+  cx.fillStyle='rgba(255,227,174,0.55)'; cx.beginPath();
+  cx.ellipse(372,960,6,4,-0.19,0,6.2832); cx.fill();
+  // the float above, on the surface, with the uplink dashed to it
+  // the float, modelled under the deck's one global key rather than a raw rect
+  var ftop=cx.createLinearGradient(742,292,932,318);
+  ftop.addColorStop(0,'#3A4A38'); ftop.addColorStop(1,'#16241E');
+  cx.fillStyle=ftop; cx.beginPath();
+  cx.moveTo(742,300); cx.lineTo(932,288); cx.lineTo(932,314); cx.lineTo(742,326); cx.closePath(); cx.fill();
+  cx.fillStyle='#0A100E'; cx.beginPath();
+  cx.moveTo(742,326); cx.lineTo(932,314); cx.lineTo(932,330); cx.lineTo(742,342); cx.closePath(); cx.fill();
+  cx.strokeStyle='rgba(255,227,174,0.34)'; cx.lineWidth=2;
+  cx.beginPath(); cx.moveTo(742,300); cx.lineTo(932,288); cx.stroke();
+  cx.fillStyle='#2E3A2C';
+  cx.beginPath(); cx.moveTo(788,300); cx.lineTo(824,262); cx.lineTo(866,262);
+  cx.lineTo(842,300); cx.closePath(); cx.fill();
+  cx.setLineDash([10,8]); cx.strokeStyle='rgba(143,163,106,0.60)'; cx.lineWidth=2;
+  cx.beginPath(); cx.moveTo(838,342); cx.lineTo(560,940); cx.stroke();
+  cx.setLineDash([]);
+  cx.fillStyle='#0A100E'; cx.fillRect(700,742,300,34);
+  cx.fillStyle='#8FA36A'; cx.font='22px "JetBrains Mono"';
+  cx.fillText('UPLINK TO SITKA (C28)',710,766);
+  // the fish tail from slide 01, now sharp, entering at the right edge
+  cx.fillStyle='#0C1210'; cx.beginPath();
+  cx.moveTo(1080,830); cx.quadraticCurveTo(1006,858,962,846);
+  cx.quadraticCurveTo(1000,884,1080,900); cx.closePath(); cx.fill();
+  // three shafts into the right column, so the band has depth instead of a hole
+  cx.save(); cx.globalCompositeOperation='screen';
+  for(var q=0;q<3;q++){ var a=-2.42+q*0.30;
+    cx.save(); cx.translate(902,236); cx.rotate(a);
+    var sg=cx.createLinearGradient(0,0,0,-880);
+    sg.addColorStop(0,'rgba(192,138,62,0.06)'); sg.addColorStop(1,'rgba(192,138,62,0)');
+    cx.fillStyle=sg; cx.beginPath(); cx.moveTo(-16,0); cx.lineTo(16,0);
+    cx.lineTo(96,-880); cx.lineTo(-96,-880); cx.closePath(); cx.fill(); cx.restore(); }
+  cx.restore();
+  var fogb=cx.createLinearGradient(0,300,0,940);
+  fogb.addColorStop(0,'rgba(74,92,46,0)'); fogb.addColorStop(0.5,'rgba(74,92,46,0.10)');
+  fogb.addColorStop(1,'rgba(74,92,46,0)');
+  cx.fillStyle=fogb; cx.fillRect(560,300,520,640);
+  grain(cx,20260808+2);
+  window.__akLeaders=[{target:'the counting camera housing',at:[380,966],to:[380,966]}];
+}
+window.__fit=function(){ AK.fitText(document.getElementById('h'),{min:62,max:88,maxLines:2}); };
+
+window.renderReady = new Promise(function(res){
+  (async function(){ await document.fonts.ready; draw();
+    if (window.__fit) window.__fit(); res(); })();
+});
+</script>

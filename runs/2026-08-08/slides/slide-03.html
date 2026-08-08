@@ -1,0 +1,170 @@
+<!doctype html><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#04080D}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.lyr{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.kick{font-family:Archivo;font-variation-settings:'wdth' 62,'wght' 600;
+ font-size:26px;letter-spacing:.11em;text-transform:uppercase;color:#8FA36A}
+.hl{font-family:'Instrument Serif';font-weight:400;color:#F4F8FF;line-height:1.0;letter-spacing:-.02em}
+.it{font-family:'Instrument Serif';font-style:italic;color:#A9BFA0}
+.bd{font-family:Archivo;font-variation-settings:'wdth' 100,'wght' 400;
+ font-size:34px;line-height:1.38;color:#D8E4DE}
+.inst{font-family:Archivo;font-variation-settings:'wdth' 62,'wght' 500;
+ font-size:26px;letter-spacing:.02em;color:#D8E4DE}
+.mn{font-family:'JetBrains Mono';font-weight:400;font-size:22px;letter-spacing:.08em;
+ color:#8FA36A;font-variant-numeric:tabular-nums lining-nums}
+.log{position:absolute;left:80px;bottom:88px}
+.ctr{position:absolute;right:88px;top:72px;color:#C9D6CE;font-size:24px}
+.goldtick{position:absolute;right:186px;top:82px;width:12px;height:5px;background:#FFC72C}
+.crd{position:absolute;left:80px;bottom:52px;font-size:18px;color:#3E5248}
+.gold{color:#FFC72C}
+</style>
+<canvas id="art" width="2160" height="2700"></canvas>
+<body data-contacts='[{"what":"the isotype shelf","shadow":[[716,1198,144,18]],"ground":[[716,1250,144,18]]}]'>
+<div class="lyr">
+<div style="position:absolute;left:40px;top:120px;width:372px;height:1060px;background:linear-gradient(90deg,rgba(4,10,9,0.90) 0%,rgba(4,10,9,0.86) 72%,rgba(4,10,9,0) 100%)"></div>
+<div class="kick" style="position:absolute;left:80px;top:120px">WHAT THE COUNT DECIDES</div>
+<div id="h" class="hl" style="position:absolute;left:80px;top:172px;width:300px;font-size:64px">This number sets a household's legal limit.</div>
+<div class="bd" style="position:absolute;left:80px;top:414px;width:300px;font-size:25px">Alaska Department of Fish and Game raised the Redoubt annual subsistence limit to 100 sockeye per household, effective 12&#58;01 a.m. on July 1st, 2026. Feldpausch told KCAW the limit was 50 before.</div>
+<div class="mn" style="position:absolute;left:80px;top:800px;font-size:24px">ANNUAL LIMIT (C6)</div>
+<div class="mn" style="position:absolute;left:80px;top:858px;width:300px;line-height:1.45;font-size:24px">ABOUT 35 PERCENT OF ALL SUBSISTENCE SOCKEYE HARVEST IN SOUTHEAST ALASKA HAPPENS HERE, ON UNPUBLISHED FOREST SERVICE AND FISH AND GAME DATA (C33)</div>
+<div class="mn" style="position:absolute;left:566px;top:1156px;font-size:24px;color:#F4F8FF">50 BEFORE . 100 NOW (C24)</div>
+<div class="mn log" data-decorative>SHOT 03 / 09 . FOV 44 . KEY 7 TO 1 . DOLLY 3.53 M</div>
+<div class="goldtick"></div>
+<div class="mn ctr">03 / 09</div>
+<div class="mn crd" data-decorative>56&#176;51'N 135&#176;10'W</div></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+
+function px(cx){ cx.setTransform(2,0,0,2,0,0); }
+function vgrad(cx,stops){ var g=cx.createLinearGradient(0,0,0,1350);
+  for(var i=0;i<stops.length;i++) g.addColorStop(stops[i][0],stops[i][1]);
+  cx.fillStyle=g; cx.fillRect(0,0,1080,1350); }
+function motes(cx,seed,n,alo,ahi){ var r=AK.rng(seed);
+  for(var i=0;i<n;i++){ var x=r()*1080,y=r()*1350,s=0.5+r()*2.0;
+    cx.globalAlpha=alo+r()*(ahi-alo); cx.fillStyle='#8FA36A';
+    cx.beginPath(); cx.arc(x,y,s,0,6.2832); cx.fill(); } cx.globalAlpha=1; }
+function caustic(cx,seed,x0,y0,w,h,alpha,scale){
+  AK.reseed(seed); cx.save(); cx.beginPath(); cx.rect(x0,y0,w,h); cx.clip();
+  cx.globalCompositeOperation='screen';
+  for(var y=y0;y<y0+h;y+=3){ for(var x=x0;x<x0+w;x+=3){
+      var v=AK.fbm2(x/scale,y/scale,3);
+      if(v>0.30){ cx.fillStyle='rgba(192,138,62,'+(alpha*(v-0.30)*2.2).toFixed(3)+')';
+        cx.fillRect(x,y,3,3); } } }
+  cx.restore(); }
+function grain(cx,seed){ var t=document.createElement('canvas'); t.width=96;t.height=96;
+  var tc=t.getContext('2d'), id=tc.createImageData(96,96), r=AK.rng(seed);
+  for(var i=0;i<96*96;i++){ var v=118+(r()*74-37);
+    id.data[i*4]=v;id.data[i*4+1]=v;id.data[i*4+2]=v;id.data[i*4+3]=17; }
+  tc.putImageData(id,0,0);
+  cx.globalCompositeOperation='overlay'; cx.fillStyle=cx.createPattern(t,'repeat');
+  cx.fillRect(0,0,1080,1350); cx.globalCompositeOperation='source-over'; }
+/* two-part contact shadow cast onto a ground that is LIT first */
+function litPool(cx,x,y,rx,ry,c0,c1){
+  // The gradient must be built AFTER the transform, centred on the origin.
+  // Built in user space and then translated, it lands somewhere else entirely
+  // and the pool renders as a near-black smear, which is how three contact
+  // shadows failed their own declaration on the first pass.
+  cx.save(); cx.translate(x,y); cx.scale(1,ry/rx);
+  var g=cx.createRadialGradient(0,0,0,0,0,rx);
+  g.addColorStop(0,c0); g.addColorStop(1,c1); cx.fillStyle=g;
+  cx.beginPath(); cx.arc(0,0,rx,0,6.2832); cx.fill(); cx.restore(); }
+function contact(cx,x,y,w,h){
+  var g=cx.createLinearGradient(0,y,0,y+h*3.4);
+  g.addColorStop(0,'rgba(6,14,12,0.86)'); g.addColorStop(1,'rgba(6,14,12,0)');
+  cx.fillStyle=g; cx.beginPath();
+  cx.ellipse(x,y+h*0.5,w*0.66,h*1.5,0,0,6.2832); cx.fill();
+  cx.fillStyle='rgba(4,10,9,0.92)';
+  cx.beginPath(); cx.ellipse(x,y,w*0.46,h*0.34,0,0,6.2832); cx.fill(); }
+
+function draw(){
+  var cx=document.getElementById('art').getContext('2d'); px(cx);
+  vgrad(cx,[[0,'#08120F'],[0.5,'#0A1614'],[1,'#050B0A']]);
+  AKPOST.grade(cx,{exposure:1.04,saturation:0.96,contrast:1.07});
+  // one-point tunnel: the machine's own optical axis. Far mouth 275x328 at centre.
+  var cxs=540, cys=675, hw=137.6, hh=164;
+  var near=[[-980,-1180],[2060,-1180],[2060,2530],[-980,2530]];
+  for(var s=14;s>=1;s--){
+    var t=s/14, w=hw+(980-hw)*t*t, h=hh+(1180-hh)*t*t;
+    var v=0.055+0.10*(1-t);
+    cx.fillStyle='rgb('+Math.round(v*255*0.62)+','+Math.round(v*255*0.86)+','+Math.round(v*255*0.72)+')';
+    cx.beginPath(); cx.rect(cxs-w,cys-h,w*2,h*2); cx.fill();
+    cx.strokeStyle='rgba(8,16,13,0.55)'; cx.lineWidth=(s%3===0)?2.5:1;
+    cx.stroke();
+  }
+  // the lit far aperture, the only pure light in the frame
+  var ag=cx.createRadialGradient(cxs,cys,10,cxs,cys,158);
+  ag.addColorStop(0,'#F8FBF6'); ag.addColorStop(0.55,'#FFE3AE'); ag.addColorStop(1,'rgba(255,227,174,0)');
+  cx.fillStyle=ag; cx.fillRect(cxs-260,cys-300,520,600);
+  var core=cx.createRadialGradient(cxs,cys-18,12,cxs,cys,196);
+  core.addColorStop(0,'#FFFFFF'); core.addColorStop(0.58,'#F4F8FF');
+  core.addColorStop(1,'#E4E9DC');
+  cx.fillStyle=core; cx.fillRect(cxs-hw,cys-hh,hw*2,hh*2);
+  cx.strokeStyle='#FFE3AE'; cx.lineWidth=13;
+  cx.strokeRect(cxs-hw+6,cys-hh+6,hw*2-12,hh*2-12);
+  cx.save(); cx.globalCompositeOperation='screen';
+  var bl=cx.createRadialGradient(cxs,cys,hw,cxs,cys,hw+150);
+  bl.addColorStop(0,'rgba(255,227,174,0.30)'); bl.addColorStop(1,'rgba(255,227,174,0)');
+  cx.fillStyle=bl; cx.fillRect(cxs-320,cys-360,640,720); cx.restore();
+  // the one-point floor: a trapezoid converging on the aperture's lower corners,
+  // which is what makes this frame an interior rather than a poster
+  var fl=cx.createLinearGradient(0,1350,0,841);
+  fl.addColorStop(0,'#1E3128'); fl.addColorStop(0.55,'#16291C'); fl.addColorStop(1,'#0A1614');
+  cx.fillStyle=fl; cx.beginPath();
+  cx.moveTo(-40,1350); cx.lineTo(cxs-hw,cys+hh); cx.lineTo(cxs+hw,cys+hh);
+  cx.lineTo(1120,1350); cx.closePath(); cx.fill();
+  for(var i=1;i<9;i++){ var t=i/9, y=1350-(1350-(cys+hh))*t;
+    var wl=(-40)+((cxs-hw)-(-40))*t, wr=1120+((cxs+hw)-1120)*t;
+    cx.strokeStyle='rgba(150,180,140,'+(0.16*(1-t)+0.04).toFixed(3)+')';
+    cx.lineWidth=(i%3===0)?2.2:1;
+    cx.beginPath(); cx.moveTo(wl,y); cx.lineTo(wr,y); cx.stroke(); }
+  caustic(cx,20260808+3,0,860,1080,490,0.15,44);
+  // one fish crossing left of centre, silhouette, with a belly shadow on the floor
+  cx.save(); cx.translate(560,760); cx.rotate(0.06); cx.scale(0.60,0.60);
+  cx.fillStyle='rgba(6,12,10,0.55)';
+  cx.beginPath(); cx.ellipse(6,196,190,26,0,0,6.2832); cx.fill();
+  cx.fillStyle='#0C1210'; cx.beginPath();
+  cx.moveTo(-300,0); cx.quadraticCurveTo(-150,-64,90,-46);
+  cx.quadraticCurveTo(250,-30,318,0); cx.quadraticCurveTo(250,32,90,48);
+  cx.quadraticCurveTo(-150,66,-300,0); cx.closePath(); cx.fill();
+  cx.beginPath(); cx.moveTo(-300,0); cx.lineTo(-386,-62); cx.lineTo(-364,0);
+  cx.lineTo(-386,62); cx.closePath(); cx.fill();
+  cx.restore();
+  // ISOTYPE: 100 same-size sockeye, 50 snow + 50 sockeye red, on a lit shelf
+  var ox=566, oy=846, cw=44, ch=33;
+  // LIGHT the shelf ground first so the 100 marks have something to sit on
+  litPool(cx,788,1216,320,86,'rgba(96,118,74,0.80)','rgba(96,118,74,0)');
+  cx.fillStyle='#141E1A'; cx.fillRect(556,1188,462,10);
+  cx.fillStyle='rgba(5,11,9,0.88)';
+  cx.beginPath(); cx.ellipse(788,1206,228,14,0,0,6.2832); cx.fill();
+  for(var i=0;i<100;i++){
+    var r=Math.floor(i/10), c=i%10;
+    var x=ox+c*cw, y=oy+r*ch;
+    cx.fillStyle=(i<50)?'#F4F8FF':'#C4402C';
+    cx.beginPath();
+    cx.moveTo(x,y+9); cx.quadraticCurveTo(x+14,y+2,x+27,y+9);
+    cx.quadraticCurveTo(x+14,y+16,x,y+9); cx.closePath(); cx.fill();
+    cx.beginPath(); cx.moveTo(x+27,y+9); cx.lineTo(x+34,y+3);
+    cx.lineTo(x+34,y+15); cx.closePath(); cx.fill();
+    cx.fillStyle='rgba(6,12,10,0.34)';
+    cx.beginPath(); cx.ellipse(x+17,y+20,15,3,0,0,6.2832); cx.fill();
+  }
+  var TGT=[cxs,cys+hh-14];
+  cx.strokeStyle='rgba(8,16,13,0.55)'; cx.lineWidth=5.5;
+  cx.beginPath(); cx.moveTo(392,1046); cx.lineTo(470,1046); cx.lineTo(TGT[0],TGT[1]); cx.stroke();
+  cx.strokeStyle='#8FA36A'; cx.lineWidth=1.5;
+  cx.beginPath(); cx.moveTo(392,1046); cx.lineTo(470,1046); cx.lineTo(TGT[0],TGT[1]); cx.stroke();
+  cx.fillStyle='#8FA36A'; cx.beginPath(); cx.arc(TGT[0],TGT[1],5,0,6.2832); cx.fill();
+  grain(cx,20260808+3);
+  window.__akLeaders=[{target:'the far aperture the count is read at',at:TGT,to:TGT}];
+}
+window.__fit=function(){ AK.fitText(document.getElementById('h'),{min:52,max:66,maxLines:3}); };
+
+window.renderReady = new Promise(function(res){
+  (async function(){ await document.fonts.ready; draw();
+    if (window.__fit) window.__fit(); res(); })();
+});
+</script>

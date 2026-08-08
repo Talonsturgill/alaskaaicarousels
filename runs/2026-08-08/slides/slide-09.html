@@ -1,0 +1,137 @@
+<!doctype html><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#04080D}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.lyr{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.kick{font-family:Archivo;font-variation-settings:'wdth' 62,'wght' 600;
+ font-size:26px;letter-spacing:.11em;text-transform:uppercase;color:#8FA36A}
+.hl{font-family:'Instrument Serif';font-weight:400;color:#F4F8FF;line-height:1.0;letter-spacing:-.02em}
+.it{font-family:'Instrument Serif';font-style:italic;color:#A9BFA0}
+.bd{font-family:Archivo;font-variation-settings:'wdth' 100,'wght' 400;
+ font-size:34px;line-height:1.38;color:#D8E4DE}
+.inst{font-family:Archivo;font-variation-settings:'wdth' 62,'wght' 500;
+ font-size:26px;letter-spacing:.02em;color:#D8E4DE}
+.mn{font-family:'JetBrains Mono';font-weight:400;font-size:22px;letter-spacing:.08em;
+ color:#8FA36A;font-variant-numeric:tabular-nums lining-nums}
+.log{position:absolute;left:80px;bottom:88px}
+.ctr{position:absolute;right:88px;top:72px;color:#C9D6CE;font-size:24px}
+.goldtick{position:absolute;right:186px;top:82px;width:12px;height:5px;background:#FFC72C}
+.crd{position:absolute;left:80px;bottom:52px;font-size:18px;color:#3E5248}
+.gold{color:#FFC72C}
+</style>
+<canvas id="art" width="2160" height="2700"></canvas>
+<body data-contacts='[{"what":"the chute in the pulled back frame","shadow":[[330,1072,80,28]],"ground":[[482,1094,74,28]]}]'>
+<div class="lyr">
+<div id="h" class="hl" style="position:absolute;left:80px;top:170px;width:900px;font-size:84px">A working instrument with no line item.</div>
+<div class="inst" style="position:absolute;left:80px;top:404px;width:820px;font-size:44px;letter-spacing:.06em;font-variation-settings:'wdth' 62,'wght' 600;color:#F4F8FF">SAVE THIS FOR THE NEXT FUNDING CYCLE.</div>
+<div class="mn" style="position:absolute;left:80px;top:530px;font-size:24px">SOURCES IN COMMENTS</div>
+<div class="hl" style="position:absolute;left:700px;top:1024px;font-size:40px;letter-spacing:.04em">ALASKA.AI</div>
+<div class="mn" data-decorative style="position:absolute;left:700px;top:1082px;color:#8FA36A">alaskaaihq.com</div>
+<div class="mn log" data-decorative>SHOT 09 / 09 . FOV 50 . KEY 1.5 TO 1 . DOLLY 15.00 M TOTAL . A 15 MILE BOAT RIDE FROM SITKA (C29)</div>
+<div class="goldtick"></div>
+<div class="mn ctr">09 / 09</div>
+<div class="mn crd" data-decorative>56&#176;51'N 135&#176;10'W</div></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+
+function px(cx){ cx.setTransform(2,0,0,2,0,0); }
+function vgrad(cx,stops){ var g=cx.createLinearGradient(0,0,0,1350);
+  for(var i=0;i<stops.length;i++) g.addColorStop(stops[i][0],stops[i][1]);
+  cx.fillStyle=g; cx.fillRect(0,0,1080,1350); }
+function motes(cx,seed,n,alo,ahi){ var r=AK.rng(seed);
+  for(var i=0;i<n;i++){ var x=r()*1080,y=r()*1350,s=0.5+r()*2.0;
+    cx.globalAlpha=alo+r()*(ahi-alo); cx.fillStyle='#8FA36A';
+    cx.beginPath(); cx.arc(x,y,s,0,6.2832); cx.fill(); } cx.globalAlpha=1; }
+function caustic(cx,seed,x0,y0,w,h,alpha,scale){
+  AK.reseed(seed); cx.save(); cx.beginPath(); cx.rect(x0,y0,w,h); cx.clip();
+  cx.globalCompositeOperation='screen';
+  for(var y=y0;y<y0+h;y+=3){ for(var x=x0;x<x0+w;x+=3){
+      var v=AK.fbm2(x/scale,y/scale,3);
+      if(v>0.30){ cx.fillStyle='rgba(192,138,62,'+(alpha*(v-0.30)*2.2).toFixed(3)+')';
+        cx.fillRect(x,y,3,3); } } }
+  cx.restore(); }
+function grain(cx,seed){ var t=document.createElement('canvas'); t.width=96;t.height=96;
+  var tc=t.getContext('2d'), id=tc.createImageData(96,96), r=AK.rng(seed);
+  for(var i=0;i<96*96;i++){ var v=118+(r()*74-37);
+    id.data[i*4]=v;id.data[i*4+1]=v;id.data[i*4+2]=v;id.data[i*4+3]=17; }
+  tc.putImageData(id,0,0);
+  cx.globalCompositeOperation='overlay'; cx.fillStyle=cx.createPattern(t,'repeat');
+  cx.fillRect(0,0,1080,1350); cx.globalCompositeOperation='source-over'; }
+/* two-part contact shadow cast onto a ground that is LIT first */
+function litPool(cx,x,y,rx,ry,c0,c1){
+  // The gradient must be built AFTER the transform, centred on the origin.
+  // Built in user space and then translated, it lands somewhere else entirely
+  // and the pool renders as a near-black smear, which is how three contact
+  // shadows failed their own declaration on the first pass.
+  cx.save(); cx.translate(x,y); cx.scale(1,ry/rx);
+  var g=cx.createRadialGradient(0,0,0,0,0,rx);
+  g.addColorStop(0,c0); g.addColorStop(1,c1); cx.fillStyle=g;
+  cx.beginPath(); cx.arc(0,0,rx,0,6.2832); cx.fill(); cx.restore(); }
+function contact(cx,x,y,w,h){
+  var g=cx.createLinearGradient(0,y,0,y+h*3.4);
+  g.addColorStop(0,'rgba(6,14,12,0.86)'); g.addColorStop(1,'rgba(6,14,12,0)');
+  cx.fillStyle=g; cx.beginPath();
+  cx.ellipse(x,y+h*0.5,w*0.66,h*1.5,0,0,6.2832); cx.fill();
+  cx.fillStyle='rgba(4,10,9,0.92)';
+  cx.beginPath(); cx.ellipse(x,y,w*0.46,h*0.34,0,0,6.2832); cx.fill(); }
+
+function draw(){
+  var cx=document.getElementById('art').getContext('2d'); px(cx);
+  vgrad(cx,[[0,'#081310'],[0.5,'#060E0C'],[1,'#04080D']]);
+  motes(cx,20260808+9,260,0.03,0.10);
+  AKPOST.grade(cx,{exposure:1.0,saturation:0.92,contrast:1.05});
+  // the pulled-back bed: one warm pool around a small aperture, heaviest fog
+  litPool(cx,371,1010,420,190,'rgba(50,66,44,0.50)','rgba(50,66,44,0)');
+  caustic(cx,20260808+9,120,880,620,300,0.10,58);
+  // far weir line, small, receding
+  for(var i=0;i<14;i++){ var x=96+i*62;
+    cx.fillStyle='rgba(10,18,15,'+(0.75-i*0.02).toFixed(2)+')';
+    cx.fillRect(x,832,9,132); }
+  // the aperture, now 139x165, alone
+  var ag=cx.createRadialGradient(371,979,8,371,979,150);
+  ag.addColorStop(0,'#FFF2D6'); ag.addColorStop(0.4,'#FFE3AE'); ag.addColorStop(1,'rgba(255,227,174,0)');
+  cx.fillStyle=ag; cx.fillRect(200,830,350,320);
+  // light the ground first, then cast into it, so the shadow has something to
+  // subtract from. A darker shadow on a dark bed is the No.26 mistake.
+  litPool(cx,371,1092,250,58,'rgba(138,158,96,0.95)','rgba(138,158,96,0)');
+  cx.fillStyle='rgba(3,7,6,0.95)';
+  cx.beginPath(); cx.ellipse(371,1080,86,17,0,0,6.2832); cx.fill();
+  contact(cx,371,1082,168,20);
+  cx.fillStyle='#1C2620'; cx.fillRect(292,896,158,178);
+  cx.fillStyle='#FFE3AE'; cx.fillRect(301,905,139,165);
+  // two surviving shaft feet, graded into the band
+  cx.save(); cx.globalCompositeOperation='screen';
+  for(var i=0;i<2;i++){ var a=-1.75+i*0.34;
+    cx.save(); cx.translate(371,960); cx.rotate(a);
+    var g=cx.createLinearGradient(0,0,0,-620);
+    g.addColorStop(0,'rgba(192,138,62,0.03)'); g.addColorStop(1,'rgba(192,138,62,0)');
+    cx.fillStyle=g; cx.beginPath(); cx.moveTo(-12,0); cx.lineTo(12,0);
+    cx.lineTo(60,-620); cx.lineTo(-60,-620); cx.closePath(); cx.fill(); cx.restore(); }
+  cx.restore();
+  // the fish completing its crossing, partly in the band
+  cx.fillStyle='#0A100E'; cx.beginPath();
+  cx.moveTo(560,1044); cx.quadraticCurveTo(640,1016,712,1030);
+  cx.quadraticCurveTo(640,1064,560,1044); cx.closePath(); cx.fill();
+  // the gold Polaris, once, above the aperture on its vertical axis
+  var S=[371,742], R=27;
+  cx.fillStyle='#FFC72C';
+  cx.beginPath();
+  cx.moveTo(S[0],S[1]-R); cx.quadraticCurveTo(S[0]+4,S[1]-4,S[0]+R,S[1]);
+  cx.quadraticCurveTo(S[0]+4,S[1]+4,S[0],S[1]+R);
+  cx.quadraticCurveTo(S[0]-4,S[1]+4,S[0]-R,S[1]);
+  cx.quadraticCurveTo(S[0]-4,S[1]-4,S[0],S[1]-R); cx.closePath(); cx.fill();
+  var hg=cx.createRadialGradient(S[0],S[1],2,S[0],S[1],54);
+  hg.addColorStop(0,'rgba(255,218,110,0.45)'); hg.addColorStop(1,'rgba(255,218,110,0)');
+  cx.fillStyle=hg; cx.beginPath(); cx.arc(S[0],S[1],54,0,6.2832); cx.fill();
+  grain(cx,20260808+9);
+}
+window.__fit=function(){ AK.fitText(document.getElementById('h'),{min:62,max:88,maxLines:2}); };
+
+window.renderReady = new Promise(function(res){
+  (async function(){ await document.fonts.ready; draw();
+    if (window.__fit) window.__fit(); res(); })();
+});
+</script>

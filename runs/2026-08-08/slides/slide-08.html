@@ -1,0 +1,141 @@
+<!doctype html><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#04080D}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.lyr{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.kick{font-family:Archivo;font-variation-settings:'wdth' 62,'wght' 600;
+ font-size:26px;letter-spacing:.11em;text-transform:uppercase;color:#8FA36A}
+.hl{font-family:'Instrument Serif';font-weight:400;color:#F4F8FF;line-height:1.0;letter-spacing:-.02em}
+.it{font-family:'Instrument Serif';font-style:italic;color:#A9BFA0}
+.bd{font-family:Archivo;font-variation-settings:'wdth' 100,'wght' 400;
+ font-size:34px;line-height:1.38;color:#D8E4DE}
+.inst{font-family:Archivo;font-variation-settings:'wdth' 62,'wght' 500;
+ font-size:26px;letter-spacing:.02em;color:#D8E4DE}
+.mn{font-family:'JetBrains Mono';font-weight:400;font-size:22px;letter-spacing:.08em;
+ color:#8FA36A;font-variant-numeric:tabular-nums lining-nums}
+.log{position:absolute;left:80px;bottom:88px}
+.ctr{position:absolute;right:88px;top:72px;color:#C9D6CE;font-size:24px}
+.goldtick{position:absolute;right:186px;top:82px;width:12px;height:5px;background:#FFC72C}
+.crd{position:absolute;left:80px;bottom:52px;font-size:18px;color:#3E5248}
+.gold{color:#FFC72C}
+</style>
+<canvas id="art" width="2160" height="2700"></canvas>
+<body>
+<div class="lyr">
+<div class="kick" style="position:absolute;left:80px;top:120px">THE UNCHECKED NUMBER</div>
+<div id="h" class="hl" style="position:absolute;left:80px;top:176px;width:660px;font-size:84px">Nobody has published a count of the counter.</div>
+<div class="bd" style="position:absolute;left:80px;top:474px;width:452px">Feldpausch told KCAW the program has reached <span class="it" style="font-size:36px">"about a 95% confidence interval"</span> on counting sockeye through the system. That is an operator's self report in a radio interview. A confidence interval is not an accuracy metric. No published Redoubt validation was found.</div>
+<div class="mn log" data-decorative>SHOT 08 / 09 . FOV 44 . KEY 2 TO 1 . DOLLY 10.21 M</div>
+<div class="goldtick"></div>
+<div class="mn ctr">08 / 09</div>
+<div class="mn crd" data-decorative>56&#176;51'N 135&#176;10'W</div></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+
+function px(cx){ cx.setTransform(2,0,0,2,0,0); }
+function vgrad(cx,stops){ var g=cx.createLinearGradient(0,0,0,1350);
+  for(var i=0;i<stops.length;i++) g.addColorStop(stops[i][0],stops[i][1]);
+  cx.fillStyle=g; cx.fillRect(0,0,1080,1350); }
+function motes(cx,seed,n,alo,ahi){ var r=AK.rng(seed);
+  for(var i=0;i<n;i++){ var x=r()*1080,y=r()*1350,s=0.5+r()*2.0;
+    cx.globalAlpha=alo+r()*(ahi-alo); cx.fillStyle='#8FA36A';
+    cx.beginPath(); cx.arc(x,y,s,0,6.2832); cx.fill(); } cx.globalAlpha=1; }
+function caustic(cx,seed,x0,y0,w,h,alpha,scale){
+  AK.reseed(seed); cx.save(); cx.beginPath(); cx.rect(x0,y0,w,h); cx.clip();
+  cx.globalCompositeOperation='screen';
+  for(var y=y0;y<y0+h;y+=3){ for(var x=x0;x<x0+w;x+=3){
+      var v=AK.fbm2(x/scale,y/scale,3);
+      if(v>0.30){ cx.fillStyle='rgba(192,138,62,'+(alpha*(v-0.30)*2.2).toFixed(3)+')';
+        cx.fillRect(x,y,3,3); } } }
+  cx.restore(); }
+function grain(cx,seed){ var t=document.createElement('canvas'); t.width=96;t.height=96;
+  var tc=t.getContext('2d'), id=tc.createImageData(96,96), r=AK.rng(seed);
+  for(var i=0;i<96*96;i++){ var v=118+(r()*74-37);
+    id.data[i*4]=v;id.data[i*4+1]=v;id.data[i*4+2]=v;id.data[i*4+3]=17; }
+  tc.putImageData(id,0,0);
+  cx.globalCompositeOperation='overlay'; cx.fillStyle=cx.createPattern(t,'repeat');
+  cx.fillRect(0,0,1080,1350); cx.globalCompositeOperation='source-over'; }
+/* two-part contact shadow cast onto a ground that is LIT first */
+function litPool(cx,x,y,rx,ry,c0,c1){
+  // The gradient must be built AFTER the transform, centred on the origin.
+  // Built in user space and then translated, it lands somewhere else entirely
+  // and the pool renders as a near-black smear, which is how three contact
+  // shadows failed their own declaration on the first pass.
+  cx.save(); cx.translate(x,y); cx.scale(1,ry/rx);
+  var g=cx.createRadialGradient(0,0,0,0,0,rx);
+  g.addColorStop(0,c0); g.addColorStop(1,c1); cx.fillStyle=g;
+  cx.beginPath(); cx.arc(0,0,rx,0,6.2832); cx.fill(); cx.restore(); }
+function contact(cx,x,y,w,h){
+  var g=cx.createLinearGradient(0,y,0,y+h*3.4);
+  g.addColorStop(0,'rgba(6,14,12,0.86)'); g.addColorStop(1,'rgba(6,14,12,0)');
+  cx.fillStyle=g; cx.beginPath();
+  cx.ellipse(x,y+h*0.5,w*0.66,h*1.5,0,0,6.2832); cx.fill();
+  cx.fillStyle='rgba(4,10,9,0.92)';
+  cx.beginPath(); cx.ellipse(x,y,w*0.46,h*0.34,0,0,6.2832); cx.fill(); }
+
+function draw(){
+  var cx=document.getElementById('art').getContext('2d'); px(cx);
+  vgrad(cx,[[0,'#0A1614'],[0.5,'#08120F'],[1,'#04080D']]);
+  AKPOST.grade(cx,{exposure:1.03,saturation:0.96,contrast:1.06});
+  // chute floor in raking key, the band the cast shadow crosses
+  var fgd=cx.createLinearGradient(0,940,1080,1350);
+  fgd.addColorStop(0,'#1A2A22'); fgd.addColorStop(1,'#080F0D');
+  cx.fillStyle=fgd; cx.fillRect(0,940,1080,410);
+  caustic(cx,20260808+8,0,940,1080,410,0.12,44);
+  // the fish, macro, one tack-sharp focal plane on the eye at (703,727)
+  cx.save(); cx.translate(846,858);
+  // full-length cast shadow travelling down-right at the global 34 degrees
+  cx.save(); cx.rotate(0.59); cx.fillStyle='rgba(5,11,9,0.62)';
+  cx.beginPath(); cx.ellipse(120,300,620,54,0,0,6.2832); cx.fill(); cx.restore();
+  var bg=cx.createLinearGradient(-620,-160,540,190);
+  bg.addColorStop(0,'#0C1512'); bg.addColorStop(0.38,'#263A2C');
+  bg.addColorStop(0.66,'#41573C'); bg.addColorStop(1,'#101A15');
+  cx.fillStyle=bg; cx.beginPath();
+  cx.moveTo(-660,10); cx.quadraticCurveTo(-330,-150,60,-118);
+  cx.quadraticCurveTo(420,-92,560,6); cx.quadraticCurveTo(420,104,60,132);
+  cx.quadraticCurveTo(-330,164,-660,10); cx.closePath(); cx.fill();
+  // dorsal hump and tail
+  cx.fillStyle='#1B2B23'; cx.beginPath();
+  cx.moveTo(-190,-116); cx.quadraticCurveTo(-90,-196,60,-120); cx.closePath(); cx.fill();
+  cx.fillStyle='#0C1512'; cx.beginPath();
+  cx.moveTo(-660,10); cx.lineTo(-806,-116); cx.lineTo(-770,10);
+  cx.lineTo(-806,136); cx.closePath(); cx.fill();
+  // wet fresnel rim along the lit shoulder
+  cx.strokeStyle='rgba(212,226,196,0.72)'; cx.lineWidth=7;
+  cx.beginPath(); cx.moveTo(-330,-136); cx.quadraticCurveTo(60,-150,430,-40); cx.stroke();
+  // the eye, the only tack-sharp thing in the frame
+  cx.fillStyle='#F4F8FF'; cx.beginPath(); cx.arc(392,-30,17,0,6.2832); cx.fill();
+  cx.fillStyle='#04080D'; cx.beginPath(); cx.arc(392,-30,9,0,6.2832); cx.fill();
+  cx.restore();
+  // near-field readout housing, unresolvably blurred, bleeding off the right
+  cx.save(); cx.filter='blur(38px)';
+  var hg=cx.createLinearGradient(880,760,1080,1180);
+  hg.addColorStop(0,'#2A3830'); hg.addColorStop(1,'#0A1210');
+  cx.fillStyle=hg; cx.beginPath();
+  cx.moveTo(890,742); cx.lineTo(1080,700); cx.lineTo(1080,1210); cx.lineTo(902,1160);
+  cx.closePath(); cx.fill();
+  cx.fillStyle='rgba(127,160,140,0.26)'; cx.fillRect(946,900,120,64);
+  cx.restore(); cx.filter='none';
+  // the drafting leader to the adipose fin's own coordinates
+  var FIN=[846+60,858-120];  // dorsal contour, not named as a fin
+  cx.strokeStyle='rgba(6,14,12,0.75)'; cx.lineWidth=7;
+  cx.beginPath(); cx.moveTo(556,1120); cx.lineTo(700,1120); cx.lineTo(FIN[0],FIN[1]); cx.stroke();
+  cx.strokeStyle='#A9BFA0'; cx.lineWidth=1.5;
+  cx.beginPath(); cx.moveTo(556,1120); cx.lineTo(700,1120); cx.lineTo(FIN[0],FIN[1]); cx.stroke();
+  cx.fillStyle='#A9BFA0'; cx.beginPath(); cx.arc(FIN[0],FIN[1],4,0,6.2832); cx.fill();
+  cx.fillStyle='#0A100E'; cx.fillRect(330,1100,268,34);
+  cx.fillStyle='#C7D2C0'; cx.font='24px "JetBrains Mono"';
+  cx.fillText('THE FISH IN FOCUS',344,1124);
+  grain(cx,20260808+8);
+  window.__akLeaders=[{target:'the fish, at the sharp focal plane',at:FIN,to:FIN}];
+}
+window.__fit=function(){ AK.fitText(document.getElementById('h'),{min:62,max:84,maxLines:2}); };
+
+window.renderReady = new Promise(function(res){
+  (async function(){ await document.fonts.ready; draw();
+    if (window.__fit) window.__fit(); res(); })();
+});
+</script>

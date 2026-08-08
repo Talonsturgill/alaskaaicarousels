@@ -1,0 +1,141 @@
+{
+  "run_dir": "out/2026-08-08",
+  "render_report": "out/2026-08-08/render/render_report.json",
+  "aggregates_file": "out/2026-08-08/aggregates.json",
+  "detected": 10,
+  "declared": 10,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "span",
+      "fragment": "6 TO 1",
+      "text": "SHOT 01 / 09 . FOV 58 . KEY 6 TO 1 . DOLLY 0.00 M",
+      "from_n": 6,
+      "to_n": 1
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "FOUR ORGANISATIONS",
+      "text": "SALMON VISION . A COLLABORATIVE EFFORTOF FOUR ORGANISATIONS (C17)",
+      "n": 4,
+      "subject": "organisations"
+    },
+    {
+      "slide": 2,
+      "kind": "span",
+      "fragment": "5 TO 1",
+      "text": "SHOT 02 / 09 . FOV 68 . KEY 5 TO 1 . DOLLY 2.22 M",
+      "from_n": 5,
+      "to_n": 1
+    },
+    {
+      "slide": 3,
+      "kind": "span",
+      "fragment": "7 TO 1",
+      "text": "SHOT 03 / 09 . FOV 44 . KEY 7 TO 1 . DOLLY 3.53 M",
+      "from_n": 7,
+      "to_n": 1
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "4 TO 1",
+      "text": "SHOT 04 / 09 . FOV 72 . KEY 4 TO 1 DIFFUSE . DOLLY 6.57 M",
+      "from_n": 4,
+      "to_n": 1
+    },
+    {
+      "slide": 5,
+      "kind": "span",
+      "fragment": "8 TO 1",
+      "text": "SHOT 05 / 09 . FOV 64 . KEY 8 TO 1 . DOLLY 7.62 M",
+      "from_n": 8,
+      "to_n": 1
+    },
+    {
+      "slide": 6,
+      "kind": "span",
+      "fragment": "1 TO 1",
+      "text": "SHOT 06 / 09 . FOV 64 . KEY 1 TO 1 . DOLLY 7.62 M . NO MOVE",
+      "from_n": 1,
+      "to_n": 1
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "3 TO 1",
+      "text": "SHOT 07 / 09 . KEY 3 TO 1 RAKING . DOLLY 7.62 M . NO MOVE",
+      "from_n": 3,
+      "to_n": 1
+    },
+    {
+      "slide": 8,
+      "kind": "span",
+      "fragment": "2 TO 1",
+      "text": "SHOT 08 / 09 . FOV 44 . KEY 2 TO 1 . DOLLY 10.21 M",
+      "from_n": 2,
+      "to_n": 1
+    },
+    {
+      "slide": 9,
+      "kind": "span",
+      "fragment": "5 TO 1",
+      "text": "SHOT 09 / 09 . FOV 50 . KEY 1.5 TO 1 . DOLLY 15.00 M TOTAL . A 15 MILE BOAT RIDE",
+      "from_n": 5,
+      "to_n": 1
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 1,
+      "text": "SHOT 01 / 09 . FOV 58 . KEY 6 TO 1 . DOLLY 0.00 M",
+      "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
+    },
+    {
+      "slide": 2,
+      "text": "SHOT 02 / 09 . FOV 68 . KEY 5 TO 1 . DOLLY 2.22 M",
+      "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
+    },
+    {
+      "slide": 3,
+      "text": "SHOT 03 / 09 . FOV 44 . KEY 7 TO 1 . DOLLY 3.53 M",
+      "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
+    },
+    {
+      "slide": 4,
+      "text": "SHOT 04 / 09 . FOV 72 . KEY 4 TO 1 DIFFUSE . DOLLY 6.57 M",
+      "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
+    },
+    {
+      "slide": 5,
+      "text": "SHOT 05 / 09 . FOV 64 . KEY 8 TO 1 . DOLLY 7.62 M",
+      "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
+    },
+    {
+      "slide": 6,
+      "text": "SHOT 06 / 09 . FOV 64 . KEY 1 TO 1 . DOLLY 7.62 M . NO MOVE",
+      "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
+    },
+    {
+      "slide": 7,
+      "text": "SHOT 07 / 09 . KEY 3 TO 1 RAKING . DOLLY 7.62 M . NO MOVE",
+      "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
+    },
+    {
+      "slide": 8,
+      "text": "SHOT 08 / 09 . FOV 44 . KEY 2 TO 1 . DOLLY 10.21 M",
+      "note": "the shot log's key to fill lighting ratio, a property of the artwork's light rig and not a claim about the world. It is the deck's continuity device, and the 8 to 1 on slide 05 falling to 1 to 1 on slide 06 IS the argument, rendered."
+    },
+    {
+      "slide": 9,
+      "text": "SHOT 09 / 09 . FOV 50 . KEY 1.5 TO 1 . DOLLY 15.00 M TOTAL . A 15 MILE BOAT RIDE FROM SITKA (C29)",
+      "note": "the close's key to fill ratio. The flow critic caught that slide 09 was the only frame dropping the KEY field, so the falling-key motif now closes on a number like the other eight. A light rig value, not a claim about the world."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "S2 'SALMON VISION . A COLLABORATIVE EFFORTOF FOUR OR' [from_claim]: the noun 'organisation' does not appear in claim C17; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

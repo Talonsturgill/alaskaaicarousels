@@ -238,7 +238,7 @@ def figures(series, model, figs=None):
     # says "a minority" in prose is asserting a fact about two figures, and it
     # would keep saying it after those figures crossed over.
     for key in ("record_average_direction", "record_average_gap_pct",
-                "inventory_delta_direction"):
+                "inventory_delta_direction", "residual_regime"):
         try:
             f[key] = _comparison(key, f)
         except KeyError:
@@ -544,6 +544,13 @@ def _comparison(key, vals):
     if key == "inventory_delta_direction":
         d = vals["inventory_delta_mcf"]
         return "into storage" if d > 0 else ("out of storage" if d < 0 else "either way")
+    if key == "residual_regime":
+        # The residual is demand minus MEASURED storage withdrawal, so on a day
+        # the field is filling the withdrawal is negative and the residual comes
+        # out ABOVE demand. The ratio is then over one hundred percent, which is
+        # correct arithmetic and reads as an error unless the page says why.
+        w = vals["storage_withdrawal_mmcfd"]
+        return "filling" if w < 0 else ("drawing" if w > 0 else "flat")
     if key == "record_average_gap_pct":
         published = vals["anchor_published_average_day_mmcfd"]
         return round(abs(vals["record_average_day_mmcfd"] - published)
@@ -1178,6 +1185,13 @@ def self_test():
         ("inventory_delta_direction",
          {"inventory_delta_mcf": 39723}, "into storage",
          {"inventory_delta_mcf": -51200}, "out of storage"),
+        # A residual above modeled demand is not a bug, it is an injection day.
+        # The page said "134.1 percent of the region's gas" on exactly such a
+        # day, which is impossible as written, so the clause explaining it is
+        # keyed to the sign of the measured withdrawal instead of being typed.
+        ("residual_regime",
+         {"storage_withdrawal_mmcfd": -38.3}, "filling",
+         {"storage_withdrawal_mmcfd": 61.4}, "drawing"),
     ]
     for key, hi_in, hi_want, lo_in, lo_want in flips:
         got_hi = _comparison(key, hi_in)
@@ -1409,16 +1423,31 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None):
 
     balance = ""
     if "non_cingsa_supply_mmcfd" in f:
+        # The regime clause is computed, never typed. The old sentence called
+        # this ratio a share "of the region's gas", which caps at one hundred by
+        # definition, and the page was publishing 134.1 percent of it on a summer
+        # injection day. The number was right and the noun was wrong.
+        regime = {
+            "filling": ("It runs higher than demand because the field was "
+                        "filling that day, so some of that gas went into "
+                        "storage rather than to a burner"),
+            "drawing": ("It runs lower than demand because the field was "
+                        "draining that day, and measured storage covered the "
+                        "difference"),
+            "flat": ("It matches demand because storage neither filled nor "
+                     "drained that day"),
+        }[f["residual_regime"]]
         balance = f"""<h2 data-reveal>What is not measured by anyone</h2>
 <p class="prose" data-reveal>Demand equals field production plus storage
 withdrawal. Storage withdrawal is measured, and demand is modeled, so
 everything that is not CINGSA falls out by subtraction. On
 {long_date(f["balance_date"])} that residual came to
 {f["non_cingsa_supply_mmcfd"]} MMcf per day against modeled demand of
-{f["modeled_demand_mmcfd"]} MMcf per day, which is
-{f["unmeasured_share_pct"]} percent of the region's gas arriving from sources
-no public feed reports daily. That share is the size of the hole in the public
-record, and it is the reason this page draws no conclusion about adequacy.</p>
+{f["modeled_demand_mmcfd"]} MMcf per day, or
+{f["unmeasured_share_pct"]} percent of it, and all of it arrived from sources
+no public feed reports daily. {regime}. That ratio is the size of the hole in
+the public record, and it is the reason this page draws no conclusion about
+adequacy.</p>
 <p class="prose" data-reveal>Strictly, the residual is field production plus any
 Hilcorp storage movement combined. The two cannot be separated from public data,
 which is why the field is named non_cingsa_supply and is never called

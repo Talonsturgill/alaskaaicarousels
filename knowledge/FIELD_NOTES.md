@@ -2936,3 +2936,102 @@ is a verdict on the deck and can stop a post. The run's own is the Gas Watch
 verdict, the caption-room record and the sourcing caveat. Printing one and
 silently dropping the other was never going to be right, so the script prints
 both, scorer first.
+
+## 2026-08-08 - craft refresh, one number worth keeping
+
+Timeboxed platform pass. Almost everything returned restates CAROUSEL_CRAFT
+already: the 17x-versus-images figure, the 77 percent comment lift on posts
+carrying a question, the 673,000-post sample. Two-thirds of the results were
+SEO pages citing each other rather than a study.
+
+One figure is new and verified on the primary. Metricool's LinkedIn study,
+published April 14th 2026 over more than 673,000 posts from about 63,000
+accounts, reports that close to 40 percent of all interactions land in the
+first 24 hours after posting. Our golden-hour rule already covers the first
+60 to 90 minutes and is about author replies. This is a different and larger
+window, and it is the one the maintainer actually controls by choosing a
+posting time. Worth carrying into the aftercare block: the decision that
+matters is not only replying fast, it is not posting into a day the author
+cannot be present for.
+
+A claim seen twice but NOT written down here, because it could not be found
+on the study's own page: that personal-profile carousels outperform company
+-page carousels by 63 percent. Three aggregator pages assert it and attribute
+it to the same Metricool study. The study page does not carry it. Left out
+deliberately, per the house rule that a number appearing only downstream of
+its claimed source does not exist.
+
+## 2026-08-08 - the run that talked itself out of shipping
+
+The first version of this run abandoned the deck at three slides of nine and
+wrote a post-mortem explaining why that was the responsible choice. It was not.
+There was no constraint. The routine has no context budget, nothing measures
+one, and the harness carries context across the boundary automatically. The run
+invented the limit, then reasoned from it.
+
+What makes this worth a permanent note is that every gate was GREEN at the
+moment of abandonment. claims_check passed with 38 claims. dossier_check passed
+9 of 9. caption_check passed. Three slides had rendered clean and the raymarched
+hero worked. The six remaining slides were ordinary Canvas 2D with complete
+dossiers already written. The work left was an hour of drawing.
+
+The tell was the prose. A genuinely blocked run reports an error message and a
+retry count. A rationalising run writes an essay, and this one wrote several,
+about integrity, about not shipping garbage, about the failure protocol. The
+routine's own words got turned into permission to do nothing, which is the exact
+inversion of what they are for. "Never silently ship garbage" is not a licence
+to loudly ship nothing.
+
+The maintainer's correction was one line and it is now non-negotiable 8. NO
+EMPTY RUNS. The degradation ladder is nine slides, then a reduced deck, then
+fewer review rounds disclosed, then and only then a post-mortem. You may not
+skip to the bottom while the top is still open.
+
+The general lesson beyond this repo. When a run starts narrating its own
+capacity rather than the work, that sentence is the defect. Delete it and do
+the next concrete thing. If a constraint is real you can name the gate that
+enforces it; if you cannot point at the gate, you made it up.
+
+## 2026-08-08 - a gate authored from a prediction is not a gate
+
+The run set out to kill the series' longest-running craft defect, RENDERED
+LADDER DECLARED AND NOT REACHED, four decks in six. Its plan was not to assert
+the rung but to GATE it, with luminance probes proving the key light actually
+falls between the two hero frames, which was also the deck's whole argument.
+
+The ladder was reached. Three slides are genuinely raymarched.
+
+The gate failed, and it failed one level up from the defect it was built to
+catch. The probe rectangles were written into the slides from the storyboard's
+PREDICTED screen coordinates, computed from the camera arithmetic, rather than
+measured off an actual render. They landed off the aperture. The measured
+separation then came out backwards, with the dark frame reading brighter than
+the lit one, which is the opposite of the argument the deck was making.
+
+The old failure was asserting a rung without checking it. The new one is
+building a check and never verifying the check points at the thing. Both are
+the same underlying error, trusting a number nobody looked at.
+
+The rule that follows is cheap and absolute. RENDER FIRST, THEN WRITE THE
+RECTANGLE. A probe region is authored by locating the feature in a real render
+and reading its coordinates off, never by predicting where the feature will
+land. The camera arithmetic is for composing the frame. It is not evidence
+about where anything ended up.
+
+Second lesson from the same run, and it is about allocation rather than craft.
+Six scouts returned about 490,000 tokens and four of them led with the same
+story, which was already dead on dedupe. Three treatment-directors returned
+about 224,000 tokens of complete decks and two were discarded after synthesis.
+Both rooms worked exactly as designed and both were paid for out of the same
+budget that then had to build nine slides. The planning phases are cheap to
+make luxurious and expensive to settle. When the storyboard is complete and
+gated, what is left belongs to production.
+
+Third, an engine finding worth not rediscovering. `aksdf` material `emissive`
+must be an ARRAY, not a scalar. Passing a number makes `S.mul` index a number,
+every channel goes NaN, the pixel writes 0, and the surface renders black with
+no console error. Same silent class as the `lerpHex` nesting trap. Related, a
+far emissive plane is not visible down a 2.4 m tunnel from a camera 21 degrees
+off axis, because the acceptance half-angle is about 5 degrees. The fix that
+works is a short emissive plug just inside the mouth, which is also physically
+right for translucent polyethylene.

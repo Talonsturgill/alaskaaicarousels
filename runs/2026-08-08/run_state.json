@@ -1,0 +1,64 @@
+{
+ "run_date": "2026-08-08",
+ "carousel_no": 29,
+ "notes": "Trigger fired 07:13 UTC = 23:13 AKDT Aug 7th. runs/2026-08-07 already shipped, so this run takes 2026-08-08.",
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "done",
+  "assemble": "done",
+  "scoring": "done",
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
+ },
+ "artifacts": {
+  "wake": [
+   "out/2026-08-08/plan.md",
+   "out/2026-08-08/run_state.json"
+  ],
+  "craft_refresh": [
+   "knowledge/FIELD_NOTES.md (2026-08-08 entry)"
+  ],
+  "research": [
+   "out/2026-08-08/scout_merge.md"
+  ],
+  "selection": [
+   "out/2026-08-08/selection.md",
+   "out/2026-08-08/selection_wip.md"
+  ],
+  "docket": [
+   "ledger/docket.json (4 items refreshed, 0 deferred, 0 rotten)"
+  ],
+  "gas_watch": [
+   "scripts/gaswatch_build.py (residual_regime fix)",
+   "pagecheck PASS 15/15"
+  ],
+  "claims": [
+   "out/2026-08-08/claims.json (38 claims, claims_check PASS, 18 primary)"
+  ],
+  "directors_room": [
+   "out/2026-08-08/storyboard.md (dossier_check PASS 9/9)",
+   "out/2026-08-08/treatments/cartographer.md",
+   "out/2026-08-08/treatments/historian.md"
+  ],
+  "art_build": [
+   "out/2026-08-08/slides/slide-01.html",
+   "out/2026-08-08/slides/slide-05.html",
+   "out/2026-08-08/slides/slide-06.html",
+   "out/2026-08-08/render/ (3 PNGs)",
+   "out/2026-08-08/probe/ (validated aksdf scene)"
+  ]
+ },
+ "outcome": "SHIPPED. No.29, 9 slides, scored 8.02 vs the 3-round threshold of 8.0, zero hard fails."
+}
