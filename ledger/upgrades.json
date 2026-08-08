@@ -1049,7 +1049,7 @@
    ],
    "verification": "DEFECT RECONSTRUCTION on the real shipped slide-06 render: the declaration exactly as it shipped FAILS ('says nothing about which way it should read'); the same rects with reads:\"differ\" FAIL on dE 0.9 under the 4.0 floor; an unknown direction word FAILS and is named; the identical degenerate numbers declared reads:\"same\" return info and are correctly NOT gated. KNOWN-GOOD/KNOWN-BAD SEPARATION end to end through render.py + qa.py on a scratch copy of the deck: slide-01 (sound declaration) dE 23.7 PASS, slide-05 with the rect MEASURED off the PNG dE 89.9 PASS (was 3.5 FAIL on the predicted rect), slide-06 still on the predicted rect dE 0.9 FAIL. REGRESSION: examples/demo-deck re-rendered and re-QA'd before and after, IDENTICAL (4 slides, 0 fails, same warn set slide for slide) because it declares no encodings. This run's 9 slides re-rendered and re-QA'd: 0 fails -> 3 fails, all three on the three data-encodes slides for the declared reason, warns 16 -> 16 with no other row changed.",
    "rollback": "revert the upgrade(2026-08-08) commit. Isolated to encoding_reads() plus its two constants and one branch in qa.py's main loop; the encoding contract is opt-in, so reverting restores measurement-only behaviour with no effect on any slide that declares nothing.",
-   "commit": "staged for upgrade(2026-08-08), committed by the showrunner"
+   "commit": "81a715813bc7850a469cd4915098068b201ac213"
   },
   {
    "run_date": "2026-08-08",
@@ -1063,7 +1063,7 @@
    ],
    "verification": "DEFECT RECONSTRUCTION: the pre-repair copy.json recovered from git (9761462) FAILS with 7 DATE hits, every one in first_comment and every one correctly named with its replacement. The shipped repaired copy.json PASSES over 21 reader-facing fields. A --copy path that does not exist FAILS as a blind check rather than passing silently. NO BEHAVIOUR CHANGE WITHOUT THE FLAG: caption_check on this run's caption.txt with --ledger and --deck-summary and no --copy returns the identical PASS (855 chars, hook 123). FALSE-POSITIVE SWEEP: the checker was run over all 29 runs/*/copy.json and every hit inspected by hand -- all are genuine bare-cardinal or day-first dates in reader-facing prose, none is an ISO citation stamp, a URL fragment, a claim id or an editor-only field. Engine regression: render.py + qa.py re-run on examples/demo-deck (identical, 0 fails) and on this run's slides; this upgrade touches neither.",
    "rollback": "revert the upgrade(2026-08-08) commit. The flag is opt-in and additive: dropping --copy from the Phase 6 call restores the previous behaviour immediately, without a code change.",
-   "commit": "staged for upgrade(2026-08-08), committed by the showrunner"
+   "commit": "81a715813bc7850a469cd4915098068b201ac213"
   }
  ],
  "scan_log": [
