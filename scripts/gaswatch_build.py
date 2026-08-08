@@ -796,11 +796,18 @@ def chart_svg(series, model, w=920, panel_h=110, gap=38):
     # a 2px line. Values are written by script from a payload the numeral lint
     # does not scan, and every one of them is already in the table below, so
     # the tooltip enhances and never gates.
+    #
+    # ROVING TABINDEX, one stop for the whole chart. Every day used to take
+    # tabindex="0", which reads fine at three days and becomes 365 tab presses
+    # to get PAST the chart inside a year. The series grows by one every
+    # morning, so that was a defect with a delivery date. The first day holds
+    # the only stop, arrow keys move between days, and Home and End jump to the
+    # ends. Tab leaves the chart in one press however long the record gets.
     hit = "".join(
         f'<rect class="gw-hit" x="{x(i) - iw / max(1, n - 1) / 2:.1f}" y="16" '
         f'width="{iw / max(1, n - 1):.1f}" height="{h - pad_b - 16:.1f}" '
-        f'fill="transparent" data-i="{i}" tabindex="0" role="button" '
-        f'aria-label="{esc(long_date(pts[i][0]))}"/>' for i in range(n))
+        f'fill="transparent" data-i="{i}" tabindex="{0 if i == 0 else -1}" '
+        f'role="button" aria-label="{esc(long_date(pts[i][0]))}"/>' for i in range(n))
     rules = "".join(
         f'<line class="gw-cross" x1="{x(i):.1f}" y1="16" x2="{x(i):.1f}" '
         f'y2="{h - pad_b:.1f}" stroke="{INK}" stroke-width="1" opacity="0" '
@@ -1049,6 +1056,26 @@ def self_test():
     check("and the table puts it on the same row",
           table_rows == [("2026-08-01", str(balance)), ("2026-08-02", "")],
           str(table_rows))
+
+    # ONE tab stop, whatever the length. This is checked on a long synthetic
+    # series because at today's three days the broken version and the fixed one
+    # are both fine, and the difference only becomes a problem months out.
+    long_series = []
+    for d in range(200):
+        long_series.append(
+            {"date": (date(2026, 1, 1) + timedelta(days=d)).isoformat(),
+             "verified": True,
+             "cingsa": {"inventory_mcf": 5_000_000 + d * 1000,
+                        "storage_design_mcf": 13_000_000,
+                        "inventory_pct_of_design": 38.5},
+             "derived": {}, "reconciliation": {}, "flags": []})
+    long_svg = chart_svg(long_series, chart_model)
+    stops = long_svg.count('tabindex="0"')
+    days = long_svg.count('class="gw-hit"')
+    check("a long record still costs one tab press to skip", stops == 1,
+          f"{days} days, {stops} tab stop(s)")
+    check("and the other days stay reachable by arrow key",
+          'ArrowLeft' in GW_JS and 'ArrowRight' in GW_JS and "'End'" in GW_JS)
 
     # A flat record has to render flat. Fitted to the data alone, two readings
     # a hundredth apart filled the panel and read as a climb.
@@ -1666,12 +1693,29 @@ GW_JS = r"""
     tip.style.top = '6px';
   }
 
+  // Move the single tab stop with the focus, so Tab always leaves the chart in
+  // one press no matter how many days the record holds.
+  function rove(i){
+    if (i < 0 || i >= hits.length) return;
+    for (var a=0;a<hits.length;a++) hits[a].setAttribute('tabindex', a===i ? '0' : '-1');
+    hits[i].focus();
+  }
+
   for (var i=0;i<hits.length;i++){
     (function(el){
       var idx = parseInt(el.getAttribute('data-i'), 10);
       el.addEventListener('pointerenter', function(){ show(idx, el); });
       el.addEventListener('focus', function(){ show(idx, el); });
       el.addEventListener('blur', clear);
+      el.addEventListener('keydown', function(ev){
+        var to = ev.key === 'ArrowLeft' ? idx - 1
+               : ev.key === 'ArrowRight' ? idx + 1
+               : ev.key === 'Home' ? 0
+               : ev.key === 'End' ? hits.length - 1 : null;
+        if (to === null) return;
+        ev.preventDefault();
+        rove(to);
+      });
     })(hits[i]);
   }
   svg.addEventListener('pointerleave', clear);
