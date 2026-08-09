@@ -243,6 +243,14 @@ font-family:JBMono,ui-monospace,monospace;font-size:10.5px;letter-spacing:.17em;
 color:var(--gold);margin-bottom:11px;}
 .qkick::after{content:"";flex:1;height:1px;
 background:linear-gradient(90deg,rgba(255,199,44,.34),transparent);}
+/* Every answer has an address. The control is quiet until the answer is
+   worth passing on, which is the moment a reader reaches for it. */
+.qshare{flex:none;order:9;background:none;border:1px solid var(--line);
+color:var(--mute);border-radius:999px;padding:4px 10px;cursor:pointer;
+font-family:inherit;font-size:9.5px;letter-spacing:.14em;
+opacity:.6;transition:opacity .2s ease,border-color .2s ease,color .2s ease;}
+.qans:hover .qshare,.qshare:focus-visible{opacity:1;}
+.qshare:hover{border-color:rgba(255,199,44,.45);color:var(--gold);outline:none;}
 .qbig{position:relative;z-index:1;font-family:Fraunces,serif;font-weight:520;
 font-size:clamp(19px,2.3vw,25px);line-height:1.4;color:var(--snow);
 letter-spacing:-.012em;margin:0;}
@@ -381,6 +389,7 @@ letter-spacing:.07em;color:var(--mute);margin-top:13px;
 display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
 .qfoot kbd{border:1px solid var(--line);border-radius:5px;padding:2px 5px;
 background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
+
 </style>
 <script>document.documentElement.classList.add('js');window.__revealFallback=setTimeout(function(){document.documentElement.classList.add('reveal-fallback')},3000)</script>
 </head>
@@ -2282,7 +2291,9 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     shown = a.rows || []; sel = -1;
     var html = '', i;
     if (a.lead) {
-      html += '<div class="qans"><div class="qkick">' + esc(a.kick || '') + '</div>' +
+      html += '<div class="qans"><div class="qkick">' + esc(a.kick || '') +
+        '<button type="button" class="qshare" id="qshare" ' +
+        'aria-label="Copy a link to this answer">COPY LINK</button></div>' +
         '<p class="qbig">' + esc(a.lead) + '</p>' +
         (a.sub ? '<p class="qsub">' + esc(a.sub) + '</p>' : '') +
         note(a) + '</div>';
@@ -2308,6 +2319,8 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     panel.hidden = false;
     var deep = document.getElementById('qdeep');
     if (deep) deep.addEventListener('click', research);
+    var share = document.getElementById('qshare');
+    if (share) share.addEventListener('click', copyLink);
     Array.prototype.forEach.call(panel.querySelectorAll('.qchip'), function(b){
       b.addEventListener('click', function(){
         input.value = b.getAttribute('data-q'); input.focus(); run();
@@ -2375,8 +2388,52 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     }
   }
 
+  /* =================================================================
+     THE URL IS THE ANSWER'S ADDRESS. A public record whose answers cannot be
+     linked is a record you have to tell people how to search. Every answer
+     writes itself into the address bar, and an address with a question in it
+     opens straight to that answer, so a reply in a comment thread can carry
+     the answer rather than directions to it.
+
+     replaceState, not pushState. Typing produces an answer per keystroke and
+     a history entry per keystroke would bury whatever page the reader came
+     from under thirty of them, which breaks the back button for the sake of
+     a feature nobody asked for.
+     ================================================================= */
+  function share(q){
+    if (!window.history || !history.replaceState) return;
+    var u = location.pathname;
+    if (q) u += '?q=' + encodeURIComponent(q);
+    try { history.replaceState(null, '', u + location.hash); } catch (e) {}
+  }
+  function copyLink(){
+    var btn = document.getElementById('qshare');
+    var url = location.href;
+    var done = function(word){
+      if (!btn) return;
+      btn.textContent = word;
+      setTimeout(function(){ if (btn) btn.textContent = 'COPY LINK'; }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function(){ done('COPIED'); },
+                                             function(){ done('PRESS CTRL C'); });
+      return;
+    }
+    // Older browsers, and any page served without a secure context. Selecting
+    // the text is the fallback that always works, because the reader can
+    // finish it themselves.
+    var t = document.createElement('textarea');
+    t.value = url; t.setAttribute('readonly', '');
+    t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { done(document.execCommand('copy') ? 'COPIED' : 'PRESS CTRL C'); }
+    catch (e) { done('PRESS CTRL C'); }
+    document.body.removeChild(t);
+  }
+
   function run(){
     var q = input.value.trim();
+    share(q);
     if (!q) { empty(); return; }
     views.hidden = true;
     if (tries) tries.hidden = true;
@@ -2562,7 +2619,22 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     });
   });
 
-  empty();
+  // An address carrying a question opens on its answer. The box is scrolled
+  // into view because a shared link usually lands mid page, and an answer the
+  // reader has to go looking for is not much better than no link at all.
+  (function(){
+    var m = /[?&]q=([^&]*)/.exec(location.search);
+    if (!m) { empty(); return; }
+    var q = '';
+    try { q = decodeURIComponent(m[1].replace(/\+/g, ' ')); } catch (e) { q = ''; }
+    q = q.slice(0, 400).replace(/[\u0000-\u001f]/g, ' ').trim();
+    if (!q) { empty(); return; }
+    empty();
+    input.value = q;
+    box.classList.add('on');
+    run();
+    if (box.scrollIntoView) box.scrollIntoView({block: 'center'});
+  })();
 })();
 </script>
 </body>

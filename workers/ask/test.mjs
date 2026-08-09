@@ -1,14 +1,13 @@
 // Tests for the answer checks. Run: node workers/ask/test.mjs
 //
 // Every control gets a green case AND a red case. A check that cannot fail
-// certifies nothing, and three of the four here are the only thing standing
-// between a model's guess and a published claim.
+// certifies nothing, and these are the only thing standing between what a
+// fired routine writes and a claim published under the site's name.
 
 import {
   normalise, numerals, checkVerdict, checkCitations, checkNumerals,
   checkSentence, splitSentences,
 } from "./checks.js";
-import { createReleaser } from "./stream.js";
 
 let failures = 0;
 function check(label, cond, detail = "") {
@@ -135,59 +134,6 @@ section("sentence splitting");
   const { sentences } = splitSentences("Storage was 6.54 Bcf on the 7th. Next. ");
   check("a decimal does not split a sentence", sentences[0] === "Storage was 6.54 Bcf on the 7th.",
     JSON.stringify(sentences[0]));
-}
-
-// ----------------------------------------------------------- the releaser
-// The gate that decides what a reader actually sees. Driven here with the
-// tokenisation a real stream produces: text arriving mid-word, mid-sentence.
-async function run(chunks) {
-  const seen = [], withheld = [];
-  const r = createReleaser({
-    allowed, slugs,
-    onText: (t) => seen.push(t),
-    onWithheld: (v) => withheld.push(v.reason),
-  });
-  for (const c of chunks) await r.push(c);
-  await r.end();
-  return { seen, withheld, text: r.text, stopped: r.stopped };
-}
-
-section("the releaser");
-{
-  const r = await run(["Comments are ", "open [[aidea-hou", "ston-industrial-park]]. ",
-                       "The window closes in 2026."]);
-  check("a clean answer arrives split into sentences", r.seen.length === 2,
-    JSON.stringify(r.seen));
-  check("nothing was withheld", r.withheld.length === 0);
-  check("the cacheable text is the whole answer",
-    r.text === "Comments are open [[aidea-houston-industrial-park]]. The window closes in 2026.",
-    JSON.stringify(r.text));
-}
-{
-  // The case the whole design exists for: a true opening sentence followed by
-  // an invented figure. The good sentence ships, the bad one never appears.
-  const r = await run(["Storage was 6.54 Bcf. ", "It will reach 12.75 Bcf by November."]);
-  check("the verified sentence was released", r.seen.length === 1, JSON.stringify(r.seen));
-  check("the sentence with an invented figure never shipped",
-    !r.seen.join(" ").includes("12.75"), JSON.stringify(r.seen));
-  check("the reader is told it was withheld", r.withheld[0] === "numeral", JSON.stringify(r.withheld));
-  check("the releaser stops after a failure", r.stopped);
-}
-{
-  const r = await run(["There is enough gas for the winter."]);
-  check("a verdict in the very first sentence releases nothing",
-    r.seen.length === 0 && r.withheld[0] === "verdict", JSON.stringify(r));
-  check("a stopped answer has no cacheable text", r.text === "", JSON.stringify(r.text));
-}
-{
-  const r = await run(["No trailing punctuation here"]);
-  check("a final fragment with no full stop is still released and checked",
-    r.seen.length === 1, JSON.stringify(r.seen));
-}
-{
-  const r = await run(["The record does not say whether there will be enough gas."]);
-  check("a correct refusal is not itself withheld",
-    r.seen.length === 1 && r.withheld.length === 0, JSON.stringify(r));
 }
 
 console.log();

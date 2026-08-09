@@ -1,12 +1,12 @@
-// The deep lane. A question that needs the actual repository rather than the
-// published record, answered by firing a Claude Code routine.
+// The archive lane. A question that needs the actual repository rather than
+// the published record, answered by firing a Claude Code routine.
 //
-// WHY THIS EXISTS ALONGSIDE THE FAST LANE. The fast lane answers from
-// ask-corpus.json, which is the published record and nothing else. Some
-// questions need more than that: the run archive, the ledgers, the history of
-// how an item changed, a cross reference nothing on the site exposes. A
-// routine runs as a full Claude Code session with the repository cloned, so it
-// can read all of it.
+// WHY THIS EXISTS AT ALL. The in-page engine answers from the record shipped
+// inside the docket page, which is every field of every tracked decision, and
+// that covers almost everything anyone asks. Some questions need more: the run
+// archive, the ledgers, the history of how an item changed, a cross reference
+// nothing on the site exposes. A routine runs as a full Claude Code session
+// with the repository cloned, so it can read all of it.
 //
 // WHAT IT COSTS. Latency, and a lot of it. POSTing to a routine's /fire
 // endpoint STARTS A NEW SESSION: provision a container, clone the repos, run
@@ -15,8 +15,8 @@
 // carousel spends, so this lane is deliberately a button someone chooses
 // rather than the default path.
 //
-// WHY THERE IS STORAGE HERE WHEN THE FAST LANE HAS NONE. /fire returns a
-// session id, not an answer. The routine finishes later and has to put the
+// WHY THERE IS STORAGE HERE AT ALL. /fire returns a session id, not an
+// answer. The routine finishes later and has to put the
 // answer somewhere the page can poll. The Cache API cannot do this job: a
 // cache write in one Cloudflare datacentre is not readable from another, so
 // the routine's delivery and the visitor's poll could land in different places
@@ -68,13 +68,13 @@ export async function fire(question, id, env) {
 }
 
 /**
- * Verify an answer the routine delivered, using the SAME checks the fast lane
+ * Verify an answer the routine delivered, using the same checks that guard
  * runs. A slower answer is not a more trusted one: it came from a model too,
  * and it had a whole repository to invent numbers from rather than one file.
  *
- * Returns the accepted prefix. Unlike the fast lane there is no reader waiting
- * on a stream, so the whole answer is checked at once and truncated at the
- * first sentence that fails.
+ * Returns the accepted prefix. Nobody is waiting on a stream here, so the
+ * whole answer is checked at once and truncated at the first sentence that
+ * fails.
  */
 export function verify(answer, { allowed, slugs }) {
   const { sentences, remainder } = splitSentences(answer.trim());
@@ -108,8 +108,8 @@ export async function start(question, env) {
 export async function deliver(body, env, corpus) {
   // The routine authenticates with a shared secret it reads from its cloud
   // environment's variables. Without this anyone who guesses a request id
-  // could write the answer, which is a worse hole than the one the fast lane's
-  // Turnstile closes: this text is published under the site's name.
+  // could write the answer, which is a worse hole than the one Turnstile
+  // closes, because this text publishes under the site's name.
   if (!env.DELIVER_SECRET || body.secret !== env.DELIVER_SECRET) {
     return { status: 403, body: { error: "no" } };
   }
