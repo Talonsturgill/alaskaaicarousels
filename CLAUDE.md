@@ -140,7 +140,17 @@ A missed day is the one irreversible failure this project has.
   gaswatch_pagecheck.py (the routine's daily read-only once over of the
   published page, exit 2 for attention and never 1, so it cannot abort a run), and
   gaswatch_eia.py (the monthly EIA cross check, own workflow, keyless bulk
-  pull; it is what checks the demand model against observed consumption).
+  pull; it is what checks the demand model against observed consumption), and
+  ask_answers.py (the docket ask box's answer engine, built into the page so a
+  question is answered in the reader's own browser with nothing sent anywhere;
+  it ships the index, the entity vocabulary, the four smart views and 500 plus
+  catalogued questions, each paired with the route that answers it), and
+  ask_corpus.py (the published corpus behind the two model lanes in
+  workers/ask/, which are for the question the record cannot answer).
+- `tests/` — ask_engine.mjs, the ask box's browser suite. It asks every
+  catalogued question in a real page and reads the answer back out of the DOM,
+  because that engine writes prose at read time where no build-time lint can
+  reach it. Needs a built site, `SITE=/tmp/site node tests/ask_engine.mjs`.
 - `docs/` — the public Alaska AI site, published by GitHub Pages
   (.github/workflows/pages.yml) on every merge to main that touches it:
   https://alaskaaihq.com/ (GitHub Pages, custom domain)
