@@ -117,7 +117,7 @@ const expand = (entry) => {
 };
 const CAT = DATA.q.map(expand);
 const BAD = /undefined|NaN|\[object|~|Infinity|null,|,\s*\./;
-const PUNCT = /[–—‘’“”]/;
+const PUNCT = /[\u2013\u2014\u2018\u2019\u201c\u201d]/;
 // A colon in prose fails this house's style gate everywhere else, so an
 // answer written at read time is held to the same rule. Clock times are
 // not prose and the record's own access notes carry them.
@@ -377,7 +377,7 @@ const NASTY = [
   '\\\\', '((((', '[[[[', '*', '.*', '$^', '(?:', '(?<=', '\\p{L}',
   '   ', '\u{1F525}\u{1F525}\u{1F525}', "'; DROP TABLE items;--",
   'null', 'undefined', 'NaN', '{}', '[]', '0', '-1', '1e309',
-  ' ', 'Ω≈ç√∫', '‮‭reversed',
+  '\u0000\u0001', '\u03a9\u2248\u00e7\u221a\u222b', '\u202e\u202dreversed',
   'kenai '.repeat(200), 'a b c d e f g h i j k l m n o p q r s t u v w x y z',
 ];
 for (const q of NASTY) {
