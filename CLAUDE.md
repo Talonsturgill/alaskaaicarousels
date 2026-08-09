@@ -145,8 +145,10 @@ A missed day is the one irreversible failure this project has.
   question is answered in the reader's own browser with nothing sent anywhere;
   it ships the index, the entity vocabulary, the four smart views and 500 plus
   catalogued questions, each paired with the route that answers it), and
-  ask_corpus.py (the published corpus behind the two model lanes in
-  workers/ask/, which are for the question the record cannot answer).
+  ask_corpus.py (the published corpus behind the archive lane in workers/ask/,
+  which fires a routine for the question the record cannot answer and is the
+  only lane left; the paid Messages API lane was removed 2026-08-09 because
+  free is a requirement and the in-page engine covers what it was for).
 - `tests/` — ask_engine.mjs, the ask box's browser suite. It asks every
   catalogued question in a real page and reads the answer back out of the DOM,
   because that engine writes prose at read time where no build-time lint can

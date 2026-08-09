@@ -32,6 +32,7 @@ aurora, seeded grain. Zero dependencies, static files only.
 import argparse
 import json
 import math
+import os
 import re
 import sys
 from datetime import date as ddate, timedelta
@@ -972,16 +973,16 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
 }
 """
 
-# The deployed Worker that answers docket questions. Empty until it is
-# deployed, and the ask box does not render at all while it is empty, so a
-# half-finished setup shows the docket exactly as it looks today rather than a
-# form that fails when someone uses it. See workers/ask/README.md.
-ASK_ENDPOINT = ""
-
-# The fast lane needs a paid Console key. Off by default, because the free
-# paths cover the common case and a box that cannot answer without a credit
-# card is not a box this site should ship.
-ASK_FAST_LANE = False
+# The deployed Worker behind the ARCHIVE lane, for a question the in-page
+# engine has no field for. Empty until it is deployed, and while it is empty
+# the archive link does not render at all, so a half-finished setup shows the
+# docket exactly as it looks today rather than a form that fails when someone
+# uses it. The box itself does not depend on this and never did.
+#
+# The environment wins over the constant, so turning the lane on is a deploy
+# variable rather than a commit, and a one-off build can point at a staging
+# worker without editing anything. See workers/ask/README.md.
+ASK_ENDPOINT = os.environ.get("ASK_ENDPOINT", "")
 
 # The same Turnstile widget the scanner uses. A sitekey is per domain and
 # public by design, so one widget covers both forms and there is nothing to
@@ -1068,6 +1069,14 @@ font-family:JBMono,ui-monospace,monospace;font-size:10.5px;letter-spacing:.17em;
 color:var(--gold);margin-bottom:11px;}
 .qkick::after{content:"";flex:1;height:1px;
 background:linear-gradient(90deg,rgba(255,199,44,.34),transparent);}
+/* Every answer has an address. The control is quiet until the answer is
+   worth passing on, which is the moment a reader reaches for it. */
+.qshare{flex:none;order:9;background:none;border:1px solid var(--line);
+color:var(--mute);border-radius:999px;padding:4px 10px;cursor:pointer;
+font-family:inherit;font-size:9.5px;letter-spacing:.14em;
+opacity:.6;transition:opacity .2s ease,border-color .2s ease,color .2s ease;}
+.qans:hover .qshare,.qshare:focus-visible{opacity:1;}
+.qshare:hover{border-color:rgba(255,199,44,.45);color:var(--gold);outline:none;}
 .qbig{position:relative;z-index:1;font-family:Fraunces,serif;font-weight:520;
 font-size:clamp(19px,2.3vw,25px);line-height:1.4;color:var(--snow);
 letter-spacing:-.012em;margin:0;}
@@ -1206,6 +1215,38 @@ letter-spacing:.07em;color:var(--mute);margin-top:13px;
 display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
 .qfoot kbd{border:1px solid var(--line);border-radius:5px;padding:2px 5px;
 background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
+
+"""
+
+QIDX_CSS = """
+/* THE INDEX, on the questions page. The box answers in the browser, so a
+   crawler reading the HTML sees an empty field and none of the answers behind
+   it. This is the same catalogue as plain links, which a crawler follows and
+   a person browses. Collapsed by default because five hundred questions in
+   one column is a wall, and open enough to be readable because the content of
+   a details element is still in the document. */
+.qidxwrap{display:grid;gap:8px;margin-top:20px;}
+.qidx{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+overflow:hidden;}
+.qidx summary{display:flex;align-items:baseline;gap:12px;cursor:pointer;
+padding:13px 16px;list-style:none;
+transition:background .18s ease;}
+.qidx summary::-webkit-details-marker{display:none;}
+.qidx summary::after{content:"+";margin-left:auto;color:var(--mute);
+font-family:JBMono,ui-monospace,monospace;font-size:14px;line-height:1;}
+.qidx[open] summary::after{content:"-";}
+.qidx summary:hover{background:rgba(255,199,44,.045);}
+.qidx summary b{color:var(--snow);font-size:15px;font-weight:600;
+letter-spacing:-.01em;}
+.qidx summary span{font-family:JBMono,ui-monospace,monospace;font-size:10.5px;
+letter-spacing:.1em;color:var(--mute);white-space:nowrap;}
+.qidx ul{list-style:none;margin:0;padding:2px 16px 15px;
+display:grid;gap:2px;}
+.qidx li a{display:block;color:var(--body);font-size:14px;line-height:1.5;
+text-decoration:none;padding:5px 9px;border-radius:8px;border-left:2px solid transparent;
+transition:background .16s ease,color .16s ease,border-color .16s ease;}
+.qidx li a:hover,.qidx li a:focus-visible{background:rgba(255,255,255,.03);
+color:var(--snow);border-left-color:var(--gold);outline:none;}
 """
 
 ASK_JS = r"""
@@ -2173,7 +2214,9 @@ ASK_JS = r"""
     shown = a.rows || []; sel = -1;
     var html = '', i;
     if (a.lead) {
-      html += '<div class="qans"><div class="qkick">' + esc(a.kick || '') + '</div>' +
+      html += '<div class="qans"><div class="qkick">' + esc(a.kick || '') +
+        '<button type="button" class="qshare" id="qshare" ' +
+        'aria-label="Copy a link to this answer">COPY LINK</button></div>' +
         '<p class="qbig">' + esc(a.lead) + '</p>' +
         (a.sub ? '<p class="qsub">' + esc(a.sub) + '</p>' : '') +
         note(a) + '</div>';
@@ -2199,6 +2242,8 @@ ASK_JS = r"""
     panel.hidden = false;
     var deep = document.getElementById('qdeep');
     if (deep) deep.addEventListener('click', research);
+    var share = document.getElementById('qshare');
+    if (share) share.addEventListener('click', copyLink);
     Array.prototype.forEach.call(panel.querySelectorAll('.qchip'), function(b){
       b.addEventListener('click', function(){
         input.value = b.getAttribute('data-q'); input.focus(); run();
@@ -2266,8 +2311,52 @@ ASK_JS = r"""
     }
   }
 
+  /* =================================================================
+     THE URL IS THE ANSWER'S ADDRESS. A public record whose answers cannot be
+     linked is a record you have to tell people how to search. Every answer
+     writes itself into the address bar, and an address with a question in it
+     opens straight to that answer, so a reply in a comment thread can carry
+     the answer rather than directions to it.
+
+     replaceState, not pushState. Typing produces an answer per keystroke and
+     a history entry per keystroke would bury whatever page the reader came
+     from under thirty of them, which breaks the back button for the sake of
+     a feature nobody asked for.
+     ================================================================= */
+  function share(q){
+    if (!window.history || !history.replaceState) return;
+    var u = location.pathname;
+    if (q) u += '?q=' + encodeURIComponent(q);
+    try { history.replaceState(null, '', u + location.hash); } catch (e) {}
+  }
+  function copyLink(){
+    var btn = document.getElementById('qshare');
+    var url = location.href;
+    var done = function(word){
+      if (!btn) return;
+      btn.textContent = word;
+      setTimeout(function(){ if (btn) btn.textContent = 'COPY LINK'; }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function(){ done('COPIED'); },
+                                             function(){ done('PRESS CTRL C'); });
+      return;
+    }
+    // Older browsers, and any page served without a secure context. Selecting
+    // the text is the fallback that always works, because the reader can
+    // finish it themselves.
+    var t = document.createElement('textarea');
+    t.value = url; t.setAttribute('readonly', '');
+    t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { done(document.execCommand('copy') ? 'COPIED' : 'PRESS CTRL C'); }
+    catch (e) { done('PRESS CTRL C'); }
+    document.body.removeChild(t);
+  }
+
   function run(){
     var q = input.value.trim();
+    share(q);
     if (!q) { empty(); return; }
     views.hidden = true;
     if (tries) tries.hidden = true;
@@ -2453,7 +2542,22 @@ ASK_JS = r"""
     });
   });
 
-  empty();
+  // An address carrying a question opens on its answer. The box is scrolled
+  // into view because a shared link usually lands mid page, and an answer the
+  // reader has to go looking for is not much better than no link at all.
+  (function(){
+    var m = /[?&]q=([^&]*)/.exec(location.search);
+    if (!m) { empty(); return; }
+    var q = '';
+    try { q = decodeURIComponent(m[1].replace(/\+/g, ' ')); } catch (e) { q = ''; }
+    q = q.slice(0, 400).replace(/[\u0000-\u001f]/g, ' ').trim();
+    if (!q) { empty(); return; }
+    empty();
+    input.value = q;
+    box.classList.add('on');
+    run();
+    if (box.scrollIntoView) box.scrollIntoView({block: 'center'});
+  })();
 })();
 """
 
@@ -5131,6 +5235,81 @@ page, that is a defect worth reporting and it will be fixed.</p>
                 crumbs=[("Alaska AI", ""), ("Privacy", "privacy/")])
 
 
+def question_index_html(today):
+    """Every question the docket box can answer, written out and linked.
+
+    THE BOX ANSWERS IN THE BROWSER, WHICH MEANS NOTHING CRAWLS IT. A question
+    typed into the docket page is resolved by script after the page loads, so
+    an answer engine reading the HTML sees an empty field and none of the five
+    hundred answers behind it. That is the right trade for the reader, who
+    gets an answer in the same frame, and it leaves the record invisible to
+    exactly the systems people now ask about public records.
+
+    This is the other half. The same catalogue, rendered as plain links a
+    crawler can follow and a person can browse, each one an address that opens
+    the box already answered. It is not a duplicate of the answers, because an
+    answer computed against today would go stale the moment it was written
+    into a static page, and a wrong deadline is worse than a link.
+    """
+    from urllib.parse import quote
+
+    data = ask_answers.build(today)
+    if not data.get("q"):
+        return ""
+    by_id = {r["id"]: r for r in data["index"]}
+    fac = data["facets"]
+
+    ITEM = {"what", "who", "when", "where", "how", "stat", "chg", "src",
+            "next", "kind", "since"}
+    groups, order = {}, []
+
+    def put(head, q):
+        if head not in groups:
+            groups[head] = []
+            order.append(head)
+        groups[head].append(q)
+
+    for entry in data["q"]:
+        q = ask_answers.expand(entry, by_id, fac)
+        route = entry.split("|", 1)[1]
+        kind, target = route.split(":", 1)
+        if kind in ITEM and target in by_id:
+            put(by_id[target]["title"], q)
+        elif kind in ("fac", "facopen"):
+            group = target.split("/", 1)[0]
+            put({"agency": "By who decides", "place": "By where it lands",
+                 "topic": "By subject", "kind": "By kind of decision",
+                 "status": "By status", "access": "By whether you get a say",
+                 }.get(group, "By category"), q)
+        elif kind == "meta":
+            put("About this record", q)
+        else:
+            put("By timing and totals", q)
+
+    # Decisions first and in the order the docket lists them, then the ways of
+    # slicing the whole record. A reader scanning for their own project should
+    # not have to walk past six pages of filters to reach it.
+    titles = [r["title"] for r in data["index"] if r["title"] in groups]
+    rest = [h for h in order if h not in set(titles)]
+    blocks = []
+    for head in titles + rest:
+        links = "".join(
+            '<li><a href="../docket/?q=%s">%s</a></li>'
+            % (quote(q, safe=""), esc(q)) for q in groups[head])
+        blocks.append(
+            '<details class="qidx"><summary><b>%s</b><span>%s</span></summary>'
+            '<ul>%s</ul></details>' % (esc(head), gw.count(len(groups[head]),
+                                                           "question"), links))
+    return (
+        '<h2 data-reveal>Everything you can ask this record</h2>'
+        '<p class="sub" data-reveal>%s the docket answers about itself, each one '
+        'a link that opens the answer. They are answered inside the page from '
+        'the record it carries, so nothing is sent anywhere and the answer is '
+        'computed against the day you read it rather than the day it was '
+        'written.</p><div class="qidxwrap" data-reveal>%s</div>'
+        % (gw.count(len(data["q"]), "question"), "".join(blocks)))
+
+
 def questions_page(today, site_url, docket):
     """The answer layer. Answer engines quote direct answers to real questions,
     and this is the page that gives them sourced ones."""
@@ -5138,6 +5317,7 @@ def questions_page(today, site_url, docket):
     qa = docket_answers(today, site_url, items)
     blocks = "".join(
         f'<h2 data-reveal>{esc(q)}</h2><div data-reveal>{h}</div>' for q, _, h in qa)
+    blocks += question_index_html(today)
     body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <div class="chip kind">ANSWERS FROM THE RECORD</div>
 <h1 style="font-size:clamp(32px,4.8vw,56px);margin-top:14px">Questions</h1>
@@ -5169,6 +5349,7 @@ carries the same sources the decisions do.</p>
                 "comment windows are open, and where the projects are. Answered from "
                 "a sourced daily record.",
                 body, "../", "docket", today, site_url, "questions/", ld=ld,
+                extra_css=QIDX_CSS,
                 crumbs=[("Alaska AI", ""), ("Questions", "questions/")])
 
 

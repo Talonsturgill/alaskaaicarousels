@@ -495,6 +495,79 @@ head('E3. follow up questions');
 }
 
 /* ==================================================================
+   E4. THE ADDRESS. A public record whose answers cannot be linked is a
+   record you have to tell people how to search. Every answer writes
+   itself into the address bar and every address with a question in it
+   opens straight to that answer.
+   ================================================================== */
+head('E4. shareable answers');
+{
+  const r = await ask('who decides the STAK lease');
+  const url = await p.evaluate(() => location.search);
+  ok('typing writes the question into the address', /q=who/.test(url), url);
+  await ask('');
+  ok('clearing takes it back out',
+     (await p.evaluate(() => location.search)) === '');
+  const before = await p.evaluate(() => history.length);
+  await ask('kenai'); await ask('nuclear'); await ask('juneau');
+  // One history entry per keystroke would bury the page the reader came from
+  // under thirty of them, which breaks the back button to add nothing.
+  ok('typing does not stack history entries',
+     (await p.evaluate(() => history.length)) === before);
+}
+for (const [q, want] of [
+  ['who decides the STAK lease', /Alaska DNR/],
+  ['what can I still comment on', /open to public comment/],
+  ['what is this', /Alaska AI Docket/],
+]) {
+  const p2 = await b.newPage({ viewport: { width: 1240, height: 900 } });
+  p2.on('pageerror', e => errs.push(String(e)));
+  await p2.goto(URL + '?q=' + encodeURIComponent(q));
+  await p2.waitForTimeout(350);
+  const r = await p2.evaluate(() => ({
+    val: document.getElementById('qq').value,
+    lead: (document.querySelector('.qbig') || {}).textContent || '',
+  }));
+  ok(`a link to "${q}" opens answered`, r.val === q && want.test(r.lead),
+     `val="${r.val}" lead="${r.lead.slice(0, 46)}"`);
+  await p2.close();
+}
+// An address is the one input a stranger can hand another person, so it gets
+// the same treatment as anything else typed into the box.
+for (const bad of ['<script>window.__pwned=1</script>', '%%%', '%E0%A4%A',
+                   'a'.repeat(900), '', 'javascript:alert(1)']) {
+  const p3 = await b.newPage();
+  p3.on('pageerror', e => errs.push(String(e)));
+  let threw = false;
+  try {
+    await p3.goto(URL + '?q=' + encodeURIComponent(bad));
+    await p3.waitForTimeout(180);
+  } catch (e) { threw = true; }
+  const pwned = await p3.evaluate(() => !!window.__pwned).catch(() => false);
+  const len = await p3.evaluate(() =>
+    document.getElementById('qq').value.length).catch(() => 0);
+  ok(`a hostile address survives ${JSON.stringify(bad.slice(0, 20))}`,
+     !threw && !pwned && len <= 400, `len=${len}`);
+  await p3.close();
+}
+{
+  const p4 = await b.newPage({ viewport: { width: 1240, height: 900 } });
+  p4.on('pageerror', e => errs.push(String(e)));
+  await p4.goto(URL + '?q=kenai');
+  await p4.waitForTimeout(300);
+  const has = await p4.evaluate(() => !!document.getElementById('qshare'));
+  ok('an answer offers a copy link', has);
+  if (has) {
+    await p4.click('#qshare');
+    await p4.waitForTimeout(140);
+    ok('clicking it reports what happened',
+       /COPIED|CTRL C/.test(await p4.evaluate(() =>
+         document.getElementById('qshare').textContent)));
+  }
+  await p4.close();
+}
+
+/* ==================================================================
    F. ACCESSIBILITY
    ================================================================== */
 head('F. accessibility');

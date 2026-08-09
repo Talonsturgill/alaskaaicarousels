@@ -1,123 +1,133 @@
 # The ask box
 
-Three lanes behind one box on the docket page.
+Two lanes behind one box on the docket page.
 
-| Lane | Where it runs | Answers from | Speed | Billed to |
+| Lane | Where it runs | Answers from | Speed | Costs |
 |---|---|---|---|---|
-| **engine** | the reader's browser | the record shipped inside the page | the same frame | nothing |
-| **fast** | `POST /` | `ask-corpus.json`, the published record | about a second | a paid Console key |
-| **deep** | `POST /deep` then poll `GET /result` | the whole repository, via a fired routine | minutes | the claude.ai subscription |
+| **the engine** | the reader's browser | the record shipped inside the page | the same frame | nothing |
+| **the archive** | this worker, via a fired routine | the whole repository | minutes | a slot from the daily routine cap |
 
-**The engine is the box.** It is the default path, it needs no worker, no key
-and no network, and it answers almost everything, because almost every
-question about a docket is a filter, a field read, a sort or a count rather
-than an act of reasoning. Who decides the STAK lease is a field. What can I
-comment on is a filter. How many does DNR have is a count. Answering those in
-the page is not a cheaper approximation of a model answer, it is a better one,
-because nothing is generated so nothing can be invented, and it is rebuilt
-from the ledger on every build so it is exactly current.
+**The engine is the box.** It needs no worker, no key and no network, and it
+answers almost everything, because almost every question about a docket is a
+filter, a field read, a sort or a count rather than an act of reasoning. Who
+decides the STAK lease is a field. What can I comment on is a filter. How many
+does DNR have is a count. Answering those in the page is not a cheaper
+approximation of a model answer, it is a better one, because nothing is
+generated so nothing can be invented, and it is rebuilt from the ledger on
+every build so it is exactly current.
 
-Its code lives in `scripts/ask_answers.py`, which builds the payload, and in
-`ASK_JS` in `scripts/site_build.py`, which resolves a question against it. Its
-tests are `scripts/ask_answers.py --self-test` and `tests/ask_engine.mjs`.
+Its code is `scripts/ask_answers.py`, which builds the payload, and `ASK_JS`
+in `scripts/site_build.py`, which resolves a question against it. Its tests
+are `scripts/ask_answers.py --self-test` and `tests/ask_engine.mjs`.
 
-The two model lanes are for what is left, which is the open-ended question
-nobody anticipated. Both are optional and the box works without either.
-
-**The two model lanes are independent.** Deploy either without the other. With no
-`ANTHROPIC_API_KEY` the fast lane returns 503 and the deep lane still works,
-which is the configuration to use if you want this to cost nothing beyond the
-subscription you already pay for.
-
-Answers from both lanes go through the same checks before they are displayed.
-A slower answer is not a more trusted one.
+**This worker is the remainder.** It is a link under a no-match, for the
+open-ended question the published record has no field for. It is optional and
+the box works without it. Until `ASK_ENDPOINT` is set, the link does not
+render at all, so a half-finished deploy shows the docket exactly as it looks
+today rather than a broken form.
 
 ```
-docs/ask-corpus.json      the whole public record, built by scripts/ask_corpus.py
-   |                      and published by GitHub Pages like every other page
+a question the engine cannot answer
+   |
    v
-worker.js                 holds the key, calls the Messages API with the record
-   |                      in a cached prompt prefix, streams the answer back
+POST /deep                fires the routine, returns a request id
+   |                      Turnstile gates this, because each one spends a
+   |                      slot from the account's daily routine cap
    v
-checks.js + stream.js     every sentence is verified before it is displayed
+the routine               a whole Claude Code session, reading the repository
+   |
+   v
+POST /deliver             behind DELIVER_SECRET, verified sentence by sentence
+   |                      against docs/ask-corpus.json before it is stored
+   v
+GET /result?id=...        the page has been polling for it
 ```
+
+## There is no API key here
+
+The routine trigger's token is a `sk-ant-oat01-` bearer generated in one click
+at [claude.ai/code/routines](https://claude.ai/code/routines), and it draws on
+the claude.ai subscription rather than on Console credit. No card, no separate
+account, no metered call.
+
+What it costs instead is time. A fired routine starts a whole Claude Code
+session, so an answer takes minutes, and each one spends a slot from the
+account's daily run cap that the daily carousel also draws on. That trade is
+the reason the page calls this searching the archive and says how long it
+takes.
+
+A paid Messages API lane used to sit in front of this one. It was removed on
+2026-08-09, because free was a hard requirement and it could never be turned
+on, and because the in-page engine that shipped the same day answers what it
+was actually for. `checks.js` survived it and now guards this lane.
 
 ## Why there is no vector database here
 
 The record is about 29,000 tokens. Retrieval, embeddings, reranking and a
 vector index exist to choose what to show a model that cannot see everything.
-This model sees everything, every time, so that machinery would add latency,
-cost, and a class of failure the corpus size otherwise deletes: a retriever
-that fetches the wrong passage answers confidently from the wrong source, and
-no reranker recovers that.
+Anything reading this record can see all of it, so that machinery would add
+latency, cost, and a class of failure the corpus size otherwise deletes: a
+retriever that fetches the wrong passage answers confidently from the wrong
+source, and no reranker recovers that.
 
 The published guidance for 2026 puts the crossover at roughly 500,000 tokens.
 This record is about six percent of that, and it would have to grow by a factor
 of seventeen before retrieval started paying for itself.
 
-## Getting an API key
+## Setting it up
 
-The key is for the **Claude Developer Platform**, which is billed separately
-from a claude.ai Pro or Max subscription. A subscription does not include API
-credit and its login will not authenticate this endpoint.
+Three things, in this order. Nothing renders on the site until the last one.
 
-1. Go to <https://platform.claude.com> and sign in. Use the same email as the
-   claude.ai account if you want them under one identity, but it is a separate
-   account with separate billing.
-2. **Billing** in the left sidebar, then add a payment method and buy credit.
-   Start with the smallest amount; see the cost note below for why that lasts.
-3. **API keys** in the left sidebar, then **Create key**. Name it
-   `alaskaai-ask` so it can be revoked without touching anything else.
-4. Copy the key. It starts with `sk-ant-api03-` and is shown once.
+### 1. The routine
 
-If the key ever leaks, revoke it on that same page. Nothing else in this repo
-uses it, so revoking it stops the ask box and breaks nothing else.
+`prompts/ASK_ROUTINE.md` carries the prompt to paste and, more importantly,
+the environment to put it in. **Read the warning at the top of that file
+before you create the routine.** It is the only thing in this project that
+runs on text a stranger typed, and the default is that every connector on your
+account is attached to it.
 
-## The deep lane needs no key at all
+Create it at [claude.ai/code/routines](https://claude.ai/code/routines), add
+an API trigger, and keep the `sk-ant-oat01-` token and the `trig_...` id. Put
+`DELIVER_SECRET` into the routine's cloud environment variables with the same
+value you are about to give the worker.
 
-The routine trigger's token is a `sk-ant-oat01-` bearer generated in one click
-at [claude.ai/code/routines](https://claude.ai/code/routines), and it draws on
-the claude.ai subscription rather than on Console credit. No card, no separate
-account. What it costs instead is time (a fired routine starts a whole Claude
-Code session, so minutes) and a slot from the account's daily routine run cap,
-which is shared with the daily carousel.
-
-Setting it up is `prompts/ASK_ROUTINE.md`, which carries the prompt to paste
-and, more importantly, the environment to put it in. Read the warning at the
-top of that file before you create the routine: it is the only thing in this
-project that runs on text a stranger typed, and the default is that every
-connector on your account is attached to it.
-
-## Deploy
+### 2. The worker
 
 ```bash
 npm install -g wrangler          # once
-wrangler login                   # opens a browser, same Cloudflare account as Turnstile
+wrangler login                   # same Cloudflare account as Turnstile
 
 cd workers/ask
 wrangler kv namespace create ASK_KV       # paste the printed id into wrangler.toml
 
-wrangler secret put TURNSTILE_SECRET      # from the Turnstile widget's settings
-
-# deep lane
 wrangler secret put ROUTINE_TOKEN         # sk-ant-oat01-... from the API trigger
 wrangler secret put ROUTINE_TRIGGER_ID    # trig_... from the same modal
-wrangler secret put DELIVER_SECRET        # any long random string; the routine gets it too
-
-# fast lane, optional
-wrangler secret put ANTHROPIC_API_KEY     # sk-ant-api03-... from platform.claude.com
+wrangler secret put DELIVER_SECRET        # the same long random string the routine has
+wrangler secret put TURNSTILE_SECRET      # from the Turnstile widget's settings
 
 wrangler deploy
 ```
 
 `wrangler deploy` prints the URL, which looks like
-`https://alaskaai-ask.<your-subdomain>.workers.dev`. Put that URL into
-`ASK_ENDPOINT` in `scripts/site_build.py` and rebuild the site. Until it is
-set, the ask box does not render at all, so a half-finished deploy shows the
-docket exactly as it looks today rather than a broken form.
+`https://alaskaai-ask.<your-subdomain>.workers.dev`.
 
 No DNS change is needed. The site stays on GitHub Pages and calls the
 workers.dev URL cross-origin, the same shape as the existing scanner calls.
+
+### 3. The site
+
+Set the URL and rebuild. It can come from the environment, so turning the lane
+on does not have to be a code change:
+
+```bash
+ASK_ENDPOINT=https://alaskaai-ask.<your-subdomain>.workers.dev \
+  python3 scripts/site_build.py --date "$(TZ=America/Anchorage date +%F)" --out docs
+```
+
+To make it permanent, put the same URL in `ASK_ENDPOINT` at the top of
+`scripts/site_build.py`. The environment wins over the constant when both are
+set, so a one-off build can point at a staging worker without editing
+anything.
 
 ## Turnstile
 
@@ -128,8 +138,8 @@ then **Secret key**.
 
 If `TURNSTILE_SECRET` is unset the worker still runs and skips verification.
 That is convenient for a first deploy and wrong to leave in place: every
-question costs money and an unprotected endpoint is a bill someone else can
-run up.
+request spends a routine run, and an unprotected endpoint is a daily cap
+someone else can exhaust.
 
 ## Watching it
 
@@ -137,36 +147,23 @@ run up.
 wrangler tail                    # live log
 ```
 
-Two things are logged. `withheld` records every answer a check refused, with
+Two things are logged. `withheld` records every sentence a check refused, with
 the question, the sentence, and which control caught it; those are worth
 reading because they are either the guard working or the guard misfiring, and
-you cannot tell which without looking. `upstream error` records API failures.
+you cannot tell which without looking. `fire failed` records a routine that
+would not start.
 
-Nothing else is stored. Questions are not persisted anywhere, so the log is
-the only record and it rolls off.
-
-## Cost
-
-Roughly 3 cents a question when the prompt cache is warm, and about 20 cents
-for the first question after a gap, since that one pays to write the cache. The
-answer cache means a repeated question costs nothing at all.
-
-The corpus changes daily when the gas watch collector runs, which retires both
-caches. That is deliberate: a cached answer about an open comment window is
-worse than a slow one.
-
-Bounds worth knowing: `MAX_TOKENS` caps each answer at 900 tokens, and
-`MAX_QUESTION` rejects anything over 400 characters before it reaches the API.
-Turnstile is what stops the volume. For a hard ceiling, add a rate-limiting
-rule in the Cloudflare dashboard against the worker's route.
+Nothing else is stored. Questions are not persisted beyond the in-flight
+entry, which expires by itself, so the log is the only record and it rolls
+off.
 
 ## Tests
 
 ```bash
-node test.mjs                                     # the checks and the release gate
+node test.mjs                                     # the answer checks
 node test-deep.mjs                                # delivery auth and the poll state machine
 python3 ../../scripts/ask_corpus.py --self-test   # the corpus and its allow-list
 ```
 
 All three run in CI on any change under `workers/ask/`, to the corpus builder,
-or to the routine prompt.
+or to the routine prompt, alongside the in-page engine's own two suites.
