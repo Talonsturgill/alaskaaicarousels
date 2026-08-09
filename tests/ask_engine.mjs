@@ -41,11 +41,24 @@ const exe = process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const b = await chromium.launch(
   (await import('node:fs')).existsSync(exe) ? { executablePath: exe } : {});
 const p = await b.newPage({ viewport: { width: 1240, height: 900 } });
+
+// NOTHING THIRD PARTY. The engine under test answers from data already in
+// the page and never makes a request, so this suite should not either. The
+// only outbound call the docket page can make is the Turnstile widget that
+// gates the optional archive lane, and on a file:// origin Cloudflare
+// answers it with a 400 and the widget throws. That is a true fact about
+// running a hosted challenge off a local file and it says nothing at all
+// about whether the box answers a question, so the request is blocked and
+// the run is hermetic.
+await p.route('**://challenges.cloudflare.com/**', r => r.abort());
+
 const errs = [];
-p.on('pageerror', e => errs.push(String(e)));
+p.on('pageerror', e => {
+  if (!/turnstile/i.test(String(e))) errs.push(String(e));
+});
 p.on('console', m => {
   if (m.type() === 'error' &&
-      !/CORS|ERR_FAILED|ERR_CONNECTION|ERR_FILE_NOT_FOUND|font|turnstile|challenges\.cloudflare/i.test(m.text()))
+      !/CORS|ERR_FAILED|ERR_ABORTED|ERR_BLOCKED|ERR_CONNECTION|ERR_FILE_NOT_FOUND|font|turnstile|challenges\.cloudflare/i.test(m.text()))
     errs.push(m.text());
 });
 await p.goto(URL);
