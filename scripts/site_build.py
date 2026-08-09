@@ -2387,13 +2387,22 @@ ASK_JS = r"""
      between a box that keeps up and one that stutters.
      Anything that READS the painted list flushes first, so the DOM a keyboard
      walks is never a frame behind the field it belongs to. */
-  var pending = 0;
+  var frame = 0, timer = 0;
+  function apply(){
+    if (frame) { cancelAnimationFrame(frame); frame = 0; }
+    if (timer) { clearTimeout(timer); timer = 0; }
+    run();
+  }
   function schedule(){
-    if (!pending) pending = requestAnimationFrame(function(){ pending = 0; run(); });
+    if (frame || timer) return;
+    frame = requestAnimationFrame(apply);
+    // Frames stop in a backgrounded tab, and an answer that waits for one
+    // that is never coming is a box that has stopped working. The timer is
+    // the floor under the frame, and whichever arrives first cancels the
+    // other, so the work still happens exactly once.
+    timer = setTimeout(apply, 32);
   }
-  function flush(){
-    if (pending) { cancelAnimationFrame(pending); pending = 0; run(); }
-  }
+  function flush(){ if (frame || timer) apply(); }
   input.addEventListener('input', schedule);
   input.addEventListener('focus', function(){ box.classList.add('on'); armTurnstile(); });
   input.addEventListener('blur', function(){

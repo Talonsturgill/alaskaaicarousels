@@ -431,8 +431,9 @@ for (const k of ['open', 'soon', 'new', 'done']) {
   }));
   ok(`view "${k}" answers and types itself into the field`,
      r.lead.length > 25 && r.val.length > 10 && r.hidden, `val="${r.val}"`);
-  await p.fill('#qq', '');
-  await p.waitForTimeout(50);
+  // Clearing the field is a keystroke like any other, so it goes through the
+  // same helper. Filling and then sleeping raced the box's own scheduling.
+  await ask('');
   const back = await p.evaluate(() => !document.getElementById('qviews').hidden);
   ok(`and clearing the field returns from "${k}"`, back);
 }
