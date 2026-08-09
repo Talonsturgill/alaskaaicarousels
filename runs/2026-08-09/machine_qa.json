@@ -1,0 +1,103 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the fifth tread has no material in it': dE 11.6, AUC 1.00, visible 100%/100%, seen 1224/1020px at 432w"
+      ],
+      "contacts": [
+        "'the stepped instrument standing on the datum': shadow L* 19.6 vs ground L* 78.9, dL 59.3 at 432w"
+      ],
+      "leaders": [
+        "leader 'the left lip of the open tread' lands 0.0px from its target"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'K AND 1' at 70,1058 130x34 (margin 80px)",
+        "outside safe zone: 'NEW SINCE JULY, AR 6161.5 IS AUGUST 3RD ' at 80,1272 740x68 (margin 80px)",
+        "worst-point contrast 3.5 on 'NEW SINCE JULY, AR 6161.5 IS AUGUST 3RD ' (box mean 3.9) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'THE POSTED DRAFTS APPEAR TO DRAW NO GRAD' at 80,1252 772x47 (margin 80px)"
+      ],
+      "encodings": [
+        "'the AI document is split into two unequal drafts': dE 70.6, AUC 0.82, visible 83%/83%, seen 478/1912px at 432w"
+      ],
+      "contacts": [
+        "'the cleft slab on the datum': shadow L* 63.1 vs ground L* 81.4, dL 18.3 at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ON JULY 6TH THE BOARD ASKED FOR TRAINING' at 80,1268 740x45 (margin 80px)"
+      ],
+      "contacts": [
+        "'the two slabs on the floor': shadow L* 59.6 vs ground L* 81.4, dL 21.8 at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'NO MINUTES ARE POSTED FOR EITHER AUGUST ' at 80,1180 740x154 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'Seven documents. None adopted on the pos' at 80,158 960x114 (margin 80px)",
+        "outside safe zone: 'EMPTY' at 130,1274 150x31 (margin 80px)",
+        "outside safe zone: 'UNKNOWN' at 400,1274 150x31 (margin 80px)",
+        "outside safe zone: 'FILLED, NONE HERE' at 670,1274 150x62 (margin 80px)"
+      ],
+      "encodings": [
+        "'no seat in this table is filled': dE 70.9, AUC 0.91, visible 63%/100%, seen 257/408px at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'COMPARED' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "outside safe zone: '8,300 DOLLARS SPENT TO DATE ON MAGICSCHO' at 80,1252 740x78 (margin 80px)"
+      ],
+      "contacts": [
+        "'the benchmark disc set in the datum': shadow L* 46.2 vs ground L* 66.1, dL 20.0 at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "text collision (47% overprint): '60\u00b029'N \u00b7 151\u00b003'W' x 'SEPTEMBER 14' near 698,1198 [decorative involved]",
+        "outside safe zone: 'SEPTEMBER 14 IS THE NEXT REGULAR BOARD M' at 80,1272 740x43 (margin 80px)"
+      ],
+      "encodings": [
+        "'nothing is resting on the calendar': dE 58.7, AUC 1.00, visible 100%/100%, seen 280/280px at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "low contrast ~3.4 on 'alaskaaihq.com' (est.)",
+        "worst-point contrast 3.0 on 'alaskaaihq.com' (box mean 3.4) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 16,
+  "verdict": "WARN"
+}

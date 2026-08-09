@@ -203,6 +203,13 @@ def main(argv=None):
     ap.add_argument("--window", type=int, default=30, help="lookback days (default 30)")
     ap.add_argument("--exclude-date", default=None,
                     help="skip ledger entries on this run_date (e.g. the candidate's own row)")
+    ap.add_argument("--run-dir", default=None,
+                    help="derive the fingerprint from the RUN ITSELF (claims.json story, "
+                         "copy.json headlines and slide labels) instead of hand-typed "
+                         "strings. Added 2026-08-09 after run No.30 answered this gate "
+                         "about a candidate it then discarded, and shipped a Phase 4 PASS "
+                         "that described a story the run was no longer making. A gate you "
+                         "can answer about the wrong question is not a gate.")
     ap.add_argument("--json", action="store_true", help="emit JSON instead of text")
     args = ap.parse_args(argv)
 
@@ -210,7 +217,39 @@ def main(argv=None):
         return [x.strip() for x in s.split(",") if x.strip()]
 
     entities, keywords = _split(args.entities), _split(args.keywords)
-    if not entities and not keywords and not args.desc.strip():
+    desc = args.desc
+    if args.run_dir:
+        import os as _os
+        ents, kws, bits = [], [], []
+        cj = _os.path.join(args.run_dir, "claims.json")
+        yj = _os.path.join(args.run_dir, "copy.json")
+        try:
+            with open(cj, encoding="utf-8") as fh:
+                cd = json.load(fh)
+            bits.append(cd.get("story", ""))
+            for c in cd.get("claims", []):
+                o = (c.get("source_outlet") or "").strip()
+                if o and o not in ents:
+                    ents.append(o)
+        except Exception as exc:
+            print("dedupe_check: cannot read %s: %s" % (cj, exc), file=sys.stderr)
+            return 2
+        try:
+            with open(yj, encoding="utf-8") as fh:
+                yd = json.load(fh)
+            bits.append(yd.get("document_title", ""))
+            bits.append(yd.get("deck_summary_line", ""))
+            for sl in yd.get("slides", []):
+                for k in ("kicker", "headline", "body"):
+                    if sl.get(k):
+                        bits.append(sl[k])
+                for lab in sl.get("labels", []) or []:
+                    bits.append(lab)
+        except Exception:
+            pass
+        desc = (desc + " " + " ".join(b for b in bits if b)).strip()
+        entities = entities + ents
+    if not entities and not keywords and not desc.strip():
         ap.error("supply at least one of --entities / --keywords / --desc")
 
     try:
@@ -222,7 +261,7 @@ def main(argv=None):
 
     ref = _parse_date(args.date) if args.date else _dt.date.today()
     excl = _parse_date(args.exclude_date) if args.exclude_date else None
-    cand = build_candidate(entities, keywords, args.desc)
+    cand = build_candidate(entities, keywords, desc)
     if not cand["tokens"]:
         ap.error("candidate has no distinctive tokens after stopword removal")
 

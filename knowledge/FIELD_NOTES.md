@@ -3121,3 +3121,31 @@ PARKED, from the frontier scan (focus: LinkedIn platform, the slot the
   That is the vocabulary this run's dossier field 4a needed. Nothing here is
   measured, so it stays a craft note and not a rule.
   https://madegooddesigns.com/poster-design-principles/
+
+## 2026-08-09 (retro, run No.30)
+
+- **A GATE YOU CAN ANSWER ABOUT THE WRONG QUESTION IS NOT A GATE.** The Phase 4
+  dedupe pre-flight ran against a candidate this run then discarded, and was
+  never re-run when the story changed. The stale PASS sat in the record for six
+  phases describing a story No.30 was not making. The real collision, No.12
+  from twenty days earlier, was caught by a CAPTION DIRECTOR reading
+  ledger/captions.json, not by the gate built to catch it. Fixed the same run
+  with `dedupe_check.py --run-dir`, which derives the fingerprint from the
+  shipped artifacts. **Re-run the dedupe gate whenever the candidate changes,
+  and prefer --run-dir over hand-typed strings.**
+- The caption room is a second pair of eyes on FACTS, not only on prose. One
+  director caught the dedupe collision and the other caught a tense error, that
+  the fact-checker had written "teachers returned on August 12th" when August
+  12th is three days in the future. Neither is a caption problem. Brief the room
+  with the claims file and let it read.
+- **A high-key deck is not a dark deck with the values inverted.** akthree GPU
+  PBR was built and measured twice on the hero and both times the ACES curve
+  plus the ambient needed to keep a bone wall off grey flattened four clay
+  treads into one white blob. akrelief's Sobel-normal Lambert shading gave the
+  value range back because the ramp endpoints are under the slide's control.
+  Rung 2 of the rendered ladder was the right rung here, and the dossier says so.
+  If a later run wants GPU on a light ground, the thing to fix first is the
+  house akpost grade, which is written for dark arctic.
+- Bumping every mono string to the 24px floor in one pass re-wrapped nine
+  slides' bottom bands and produced eleven new collisions. Type floors and
+  layout are one problem, not two. Set the floor BEFORE laying out the band.

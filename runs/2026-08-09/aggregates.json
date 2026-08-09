@@ -1,0 +1,77 @@
+{
+ "run_date": "2026-08-09",
+ "aggregates": [
+  {
+   "text": "One draft. Two kinds of answer.",
+   "slide": 2,
+   "kind": "count",
+   "value": 2,
+   "members": [
+    "C22",
+    "C23"
+   ],
+   "note": "AR 6161.5 answers elementary grades with a minute figure and secondary schools with a qualitative standard. Two kinds of answer inside one document."
+  },
+  {
+   "text": "One room. Two meetings. No posted outcome.",
+   "slide": 5,
+   "kind": "count",
+   "value": 2,
+   "members": [
+    "C01",
+    "C34"
+   ],
+   "note": "The 10:00 AM Policy Review Committee and the 6:00 PM regular board meeting, both in the Betty J. Glick Assembly Chambers on August 3, 2026."
+  },
+  {
+   "text": "Seven documents. None adopted on the posted record.",
+   "slide": 6,
+   "kind": "count",
+   "value": 7,
+   "members": [
+    "C04",
+    "C14",
+    "C15",
+    "C27",
+    "C28",
+    "C29",
+    "C30"
+   ],
+   "note": "AR 5131.9, BP 6161.5 and AR 6161.5 at the committee, and BP 5131.9, AR 5125, BP 1114 and AR 6161.4 at the board. Seven distinct marks."
+  },
+  {
+   "text": "TWO ROWS SAY UNKNOWN BECAUSE NO MINUTES ARE POSTED.",
+   "slide": 6,
+   "kind": "count",
+   "value": 2,
+   "members": [
+    "C28",
+    "C30"
+   ],
+   "note": "AR 5125 and AR 6161.4 are the two rows listed First Reading and Action. C56 establishes that no minutes are posted to settle whether the board acted."
+  },
+  {
+   "text": "Alaska's Strategic Framework, Artificial Intelligence for K-12, sets seven guiding principles.",
+   "slide": 7,
+   "kind": "from_claim",
+   "value": 7,
+   "members": [
+    "C45",
+    "C46"
+   ],
+   "note": "The K-12 in the document title is part of its name, not a count. The seven is the principle count printed in the framework.",
+   "claim": "C45"
+  },
+  {
+   "text": "8,300 DOLLARS SPENT TO DATE ON MAGICSCHOOL, PER KBBI, JULY.",
+   "slide": 7,
+   "kind": "from_claim",
+   "value": 8300,
+   "members": [
+    "C41"
+   ],
+   "note": "Carried verbatim from C41, an official's statement to KBBI. Not derived, not audited, and never divided by anything.",
+   "claim": "C41"
+  }
+ ]
+}
