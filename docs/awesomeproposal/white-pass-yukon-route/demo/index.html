@@ -451,7 +451,7 @@ button.ghost{appearance:none;background:transparent;border:1px solid var(--rule)
       same inputs give the same order every time, which is exactly why this part earns no model.</p>
 
     <p class="note"><b>Your decision, not ours.</b> Whether a request stamped before the cutoff is
-      honoured at that stamp is a policy call only White Pass can make. The five day spike puts
+      honoured at that stamp is a policy call only White Pass can make. The five day written assessment puts
       that answer in writing before any code is written, and if the answer is no, the build does
       not start.</p>
 
@@ -525,7 +525,7 @@ button.ghost{appearance:none;background:transparent;border:1px solid var(--rule)
     </div>
 
     <p class="note"><b>What these settle.</b> The study puts the breakeven at 2,960 guest contacts
-      a season on conservative assumptions. Counter one is what answers it. If your real count
+      a season on conservative assumptions. Counter one carries both numbers, and it is the total that answers it. If your real count
       lands comfortably above that, the case holds. If it lands under, your published window
       already covers nearly everything and the right answer is not to build this. That condition
       is written into the season close gate and it stays in.</p>
@@ -570,7 +570,7 @@ button.ghost{appearance:none;background:transparent;border:1px solid var(--rule)
         policy.</strong> We're not automating that, in this phase or any later one.</p>
       <p>The one model this roadmap ever proposes is a single call on one node, sorting
         unstructured inbound email, built off season and gated on a season of your own labelled
-        examples. No corpus, no phase two, nothing billed.</p>
+        examples. No examples, no phase two, nothing billed.</p>
     </div>
   </section>
 
@@ -952,7 +952,7 @@ function renderQueue(){
   var q = buildRows(), h = "", i;
   for (i = 0; i < q.sorted.length; i++){ h += rowHTML(q.sorted[i], i); }
   h += "<p class=\"subhead\">Can't be sorted against a cutoff</p>";
-  h += '<div class="unsortnote"><p>Nothing structured arrived with this one, so there is no departure to measure it against. A person opens it first. Sorting unstructured email by intent is the single job the roadmap holds back for a later phase, built off season and gated on a season of your own labelled examples. No corpus, no phase two, nothing billed.</p></div>';
+  h += '<div class="unsortnote"><p>Nothing structured arrived with this one, so there is no departure to measure it against. A person opens it first. Sorting unstructured email by intent is the single job the roadmap holds back for a later phase, built off season and gated on a season of your own labelled examples. No examples, no phase two, nothing billed.</p></div>';
   for (i = 0; i < q.rest.length; i++){ h += rowHTML(q.rest[i], q.sorted.length + i); }
   el("queue").innerHTML = h;
   el("qCount").textContent = q.count;
