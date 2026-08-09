@@ -4397,7 +4397,7 @@ def home_page(today, site_url, docket, runs, gas_series=(), gas_model=None,
     stats = f"""<div class="statrow">
   <div class="stat"><div class="n" data-count="{len(runs)}">{len(runs):02d}</div><div class="l">ARTICLES WRITTEN</div></div>
   <div class="stat"><div class="n" id="vidstat" data-count="{n_videos}">{n_videos:02d}</div><div class="l">VIDEOS PUBLISHED</div></div>
-  <div class="stat"><div class="n" data-count="{len(live)}">{len(live):02d}</div><div class="l">DECISIONS TRACKED</div></div>
+  <div class="stat"><div class="n" data-count="{len(live) + len(done)}">{len(live) + len(done):02d}</div><div class="l">DECISIONS TRACKED</div></div>
   <div class="stat"><div class="n g" data-count="{n_open}">{n_open:02d}</div><div class="l">DOORS OPEN TO YOU</div></div>
 </div>"""
 
@@ -4630,7 +4630,7 @@ def docket_page(today, site_url, docket):
     live_html = "".join(db.item_html(it, today, n) for n, it in enumerate(live_sorted, 1))
     done_html = "".join(db.item_html(it, today, n) for n, it in enumerate(done, len(live_sorted) + 1))
     stats = f"""<div class="statrow">
-  <div class="stat"><div class="n">{len(live):02d}</div><div class="l">DECISIONS TRACKED</div></div>
+  <div class="stat"><div class="n">{len(live) + len(done):02d}</div><div class="l">DECISIONS TRACKED</div></div>
   <div class="stat"><div class="n g">{n_open:02d}</div><div class="l">OPEN TO THE PUBLIC</div></div>
   {f'<div class="stat"><div class="n">{db.mon_day(nearest["date"])}</div><div class="l">NEXT DATE</div></div>' if nearest else ''}
 </div>"""
@@ -7059,6 +7059,39 @@ def gas_watch_page(today, site_url, series, model, figs=None):
                 crumbs=[("Home", ""), ("Gas Watch", "gas-watch/")])
 
 
+def tracked_count_gate(pages):
+    """Every surface that states how many decisions are tracked must state the
+    same number.
+
+    THIS SHIPPED WRONG. The stat row counted only the decisions still in
+    progress while its own label said TRACKED, the about copy counted all of
+    them, and the ask box counted all of them, so one page said seventeen in
+    large numerals directly above a field offering to answer about twenty. A
+    reader who notices that has no way to tell which number is the lie, and on
+    a record whose entire value is being right, that is the most expensive
+    kind of small error.
+
+    The docket keeps a decided item rather than removing it, so the outcome
+    stays checkable later. That is the rule, so a count of what is tracked
+    includes them.
+    """
+    import re as _re
+    seen = {}
+    for rel, html in pages.items():
+        for pat, what in (
+            (r'<div class="n"[^>]*>(\d+)</div><div class="l">DECISIONS TRACKED</div>', "stat row"),
+            (r'Ask anything about (\d+) tracked decisions', "ask box"),
+            (r'(\d+) AI infrastructure decisions in the state', "about copy"),
+            (r'The docket tracks (\d+) Alaska decisions', "no match reply"),
+        ):
+            for m in _re.finditer(pat, html):
+                seen.setdefault(int(m.group(1)), []).append(f"{rel} {what}")
+    if len(seen) > 1:
+        detail = "; ".join(f"{n} in {', '.join(sorted(set(w)))}" for n, w in sorted(seen.items()))
+        db.fail("the site disagrees with itself about how many decisions are "
+                f"tracked. {detail}")
+
+
 def prose_colon_gate(rel, html):
     """House style bans colons in visible copy (clock times like 4:30 and
     URLs are not prose and pass). Fails the build if one slips in."""
@@ -7178,6 +7211,7 @@ def build(today, out_dir, site_url=None, domain=""):
         if bad:
             db.fail(f"banned punctuation in {rel} {bad[:8]}")
         prose_colon_gate(rel, html)
+    tracked_count_gate(pages)
     out.mkdir(parents=True, exist_ok=True)
     # Pillow is the one soft dependency, and without it grain_data_uri() returns
     # "" and this quietly wrote url(none) into the sheet every page loads. A
@@ -7340,8 +7374,11 @@ def build(today, out_dir, site_url=None, domain=""):
     (out / ".nojekyll").write_text("")
     if domain:
         (out / "CNAME").write_text(domain + "\n")
+    # docket is (items, live, done, dated, live_sorted). The count reported
+    # here is what the pages state, which is everything on the record, because
+    # a decided item is kept rather than removed.
     print(f"site -> {out} ({len(pages)} pages, {len(runs)} decks, "
-          f"{len(docket[1])} tracked decisions)")
+          f"{len(docket[1]) + len(docket[2])} tracked decisions)")
 
 
 def main():
