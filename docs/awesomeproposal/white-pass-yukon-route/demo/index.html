@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Out of hours request desk, scripted demonstration for White Pass &amp; Yukon Route Railway</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --surface:#122a46;
+  --surface2:#0b1c30;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --warn:#f2a43a;
+  --ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --display:Georgia,"Iowan Old Style","Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 var(--ui);letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:60rem;margin:0 auto;padding:0 20px 44px}
+p{margin:0 0 16px}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+strong{font-weight:650;color:var(--ink)}
+
+/* ---------- honesty banner ---------- */
+.banner{border-left:3px solid var(--warn);background:var(--surface2);
+  padding:14px 18px;margin:20px 0 0;border-radius:0 8px 8px 0}
+.banner p{margin:0;font-size:14.5px;line-height:1.55;color:var(--sub);max-width:56rem}
+.banner b{color:var(--ink);font-weight:650}
+
+/* ---------- head ---------- */
+.head{padding:26px 0 0}
+.mark{display:flex;align-items:center;gap:9px;font:400 11.5px/1 var(--mono);
+  letter-spacing:.18em;text-transform:uppercase;color:var(--cap);margin-bottom:18px}
+.mark i{width:12px;height:12px;display:block;background:var(--accent);
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+.mark span{color:var(--ink)}
+.head h1{font-family:var(--display);font-weight:400;line-height:1.05;
+  font-size:clamp(27px,4.6vw,42px);letter-spacing:-.015em;max-width:22ch}
+.head .co{font:400 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 12px}
+.head .quiet{font-size:15px;color:var(--cap);margin:14px 0 0;max-width:44rem}
+
+/* ---------- step nav ---------- */
+.steps{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;
+  border-top:1px solid var(--rule);padding-top:18px}
+.steps button{appearance:none;background:transparent;border:1px solid var(--rule);
+  color:var(--cap);font:400 13px/1 var(--ui);padding:9px 13px;border-radius:999px;
+  cursor:pointer;letter-spacing:.01em}
+.steps button b{font:400 11px/1 var(--mono);color:var(--cap);margin-right:7px}
+.steps button:hover{border-color:var(--cap);color:var(--ink)}
+.steps button[aria-selected="true"]{border-color:var(--accent);color:var(--ink);
+  background:rgba(60,230,180,.07)}
+.steps button[aria-selected="true"] b{color:var(--accent)}
+
+.panel{display:none;margin-top:28px}
+.panel.on{display:block}
+.sechead{font:400 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 12px}
+.panel h2{font-family:var(--display);font-weight:400;font-size:clamp(21px,3vw,27px);
+  line-height:1.2;letter-spacing:-.01em;max-width:26ch}
+.lede{font-size:16.5px;color:var(--sub);margin:12px 0 22px;max-width:42rem}
+.note{font-size:14px;line-height:1.55;color:var(--cap);max-width:44rem;margin:12px 0 0}
+.note b{color:var(--sub);font-weight:650}
+
+/* ---------- device frames ---------- */
+.device{background:var(--surface);border-radius:10px;overflow:hidden;margin:0 0 18px}
+.chrome{display:flex;align-items:center;gap:10px;padding:10px 14px;
+  border-bottom:1px solid var(--rule);background:var(--surface2)}
+.chrome .dots{display:flex;gap:5px}
+.chrome .dots i{width:8px;height:8px;border-radius:50%;background:var(--rule);display:block}
+.chrome .addr{font:400 12px/1 var(--mono);color:var(--cap);letter-spacing:.02em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chrome .tag{margin-left:auto;font:400 10px/1 var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--warn);white-space:nowrap}
+.body{padding:22px}
+
+/* ---------- language toggle ---------- */
+.langbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 20px}
+.langbar button{appearance:none;background:transparent;border:1px solid var(--rule);
+  color:var(--cap);font:400 13px/1 var(--ui);padding:7px 12px;border-radius:6px;cursor:pointer}
+.langbar button[aria-pressed="true"]{border-color:var(--accent);color:var(--ink);
+  background:rgba(60,230,180,.07)}
+.langbar .lnote{flex:1 1 100%;font:400 12.5px/1.5 var(--ui);color:var(--cap);margin-top:2px}
+
+/* ---------- form ---------- */
+.f{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+.f .full{grid-column:1 / -1}
+label{display:block;font-size:13.5px;color:var(--sub);font-weight:650;margin:0 0 6px}
+.hint{font-size:12.5px;line-height:1.5;color:var(--cap);margin:6px 0 0}
+select,input[type="text"],input[type="email"],input[type="date"],textarea{
+  width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--rule);
+  border-radius:7px;padding:10px 12px;font:400 15px/1.4 var(--ui)}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--cap) 50%),
+  linear-gradient(135deg,var(--cap) 50%,transparent 50%);
+  background-position:calc(100% - 17px) 19px,calc(100% - 12px) 19px;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:34px}
+textarea{min-height:88px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.flag{border:1px dashed var(--warn);border-radius:7px;padding:11px 12px;margin-top:8px;
+  font-size:12.5px;line-height:1.5;color:var(--sub);background:rgba(242,164,58,.05)}
+.submit{appearance:none;background:var(--accent);color:#02201a;border:0;border-radius:7px;
+  padding:13px 20px;font:650 15px/1 var(--ui);cursor:pointer;letter-spacing:.01em}
+.submit:hover{filter:brightness(1.08)}
+.subnote{font-size:12.5px;line-height:1.5;color:var(--cap);margin:10px 0 0;max-width:38rem}
+.stamp{font:400 12px/1.5 var(--mono);color:var(--cap);border-top:1px solid var(--rule);
+  margin-top:20px;padding-top:12px}
+
+/* ---------- receipt ---------- */
+.receipt{background:var(--surface);border-radius:10px;padding:24px;margin:0 0 18px;
+  border-top:3px solid var(--accent)}
+.receipt h3{font-family:var(--display);font-weight:400;font-size:23px;line-height:1.2}
+.rauto{font:400 12px/1.5 var(--mono);color:var(--warn);letter-spacing:.06em;margin:8px 0 20px}
+.times{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 20px}
+.tbox{background:var(--surface2);border-radius:8px;padding:14px 16px}
+.tbox .k{font:400 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 8px}
+.tbox .v{font:400 16px/1.35 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.tbox.primary{border:1px solid var(--accent)}
+.tbox.primary .k{color:var(--accent)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:9px 18px;margin:0 0 20px;
+  font-size:14.5px;align-items:baseline}
+.kv dt{color:var(--cap);font:400 12px/1.5 var(--mono);letter-spacing:.06em;
+  text-transform:uppercase;white-space:nowrap}
+.kv dd{margin:0;color:var(--ink)}
+.rblock{border-top:1px solid var(--rule);padding-top:16px;margin-top:4px}
+.rblock h4{font-size:13.5px;font-weight:650;color:var(--sub);margin:0 0 8px}
+.rblock p{font-size:14.5px;color:var(--sub);margin:0 0 10px}
+.nrefund{border-left:3px solid var(--warn);padding:2px 0 2px 14px;margin:16px 0 0}
+.nrefund p{margin:0;font-size:14.5px;color:var(--ink)}
+
+/* ---------- queue ---------- */
+.qmeta{display:flex;flex-wrap:wrap;gap:10px 26px;font:400 12px/1.5 var(--mono);
+  letter-spacing:.06em;color:var(--cap);border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);padding:12px 0;margin:0 0 8px}
+.qmeta b{color:var(--ink);font-weight:400}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--cap);margin:14px 0 18px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;vertical-align:0}
+.legend .g{background:var(--accent)}
+.legend .a{background:var(--warn)}
+.qrow{background:var(--surface);border-radius:9px;margin:0 0 9px;overflow:hidden;
+  border-left:3px solid var(--rule)}
+.qrow.past{border-left-color:var(--warn)}
+.qrow.before{border-left-color:var(--accent)}
+.qrow.unsorted{border-left-color:var(--cap);border-left-style:dashed}
+.qrow.mine{box-shadow:inset 0 0 0 1px var(--accent)}
+.qtop{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;padding:14px 16px 0;
+  width:100%;background:transparent;border:0;color:inherit;text-align:left;cursor:pointer;font:inherit}
+.qtop:hover .arrived{color:var(--ink)}
+.badge{font:400 12px/1 var(--mono);letter-spacing:.05em;padding:6px 9px;border-radius:5px;
+  white-space:nowrap;font-variant-numeric:tabular-nums}
+.badge.past{background:rgba(242,164,58,.13);color:var(--warn)}
+.badge.before{background:rgba(60,230,180,.11);color:var(--accent)}
+.badge.unk{background:rgba(166,185,209,.12);color:var(--cap)}
+.arrived{font:400 13.5px/1.4 var(--mono);color:var(--sub);font-variant-numeric:tabular-nums}
+.chan{font:400 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cap);border:1px solid var(--rule);border-radius:4px;padding:5px 7px;white-space:nowrap}
+.mineflag{font:400 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.qfields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px 18px;padding:12px 16px 14px}
+.qfields .k{font:400 10.5px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--cap);display:block;margin:0 0 5px}
+.qfields .v{font-size:14.5px;color:var(--ink);line-height:1.4}
+.qfields .v.dim{color:var(--cap)}
+.expand{font:400 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin-left:auto;white-space:nowrap}
+.detail{border-top:1px solid var(--rule);background:var(--surface2);padding:18px 16px}
+.detail h4{font:400 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 10px}
+.msg{background:var(--bg);border:1px solid var(--rule);border-radius:7px;padding:14px 15px;
+  font-size:15px;line-height:1.6;color:var(--ink);margin:0 0 8px}
+.policy{border-left:2px solid var(--accent);padding:2px 0 2px 14px;margin:16px 0 0}
+.policy p{font:400 14px/1.6 var(--mono);color:var(--sub);margin:0 0 8px}
+.policy p:last-child{margin:0}
+.decide{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule)}
+.decide .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button.ghost{appearance:none;background:transparent;border:1px solid var(--rule);
+  color:var(--cap);border-radius:6px;padding:10px 14px;font:400 14px/1 var(--ui);cursor:not-allowed}
+.unsortnote{background:var(--surface2);border-left:3px dashed var(--cap);border-radius:0 8px 8px 0;
+  padding:14px 16px;margin:0 0 9px}
+.unsortnote p{margin:0;font-size:14px;line-height:1.55;color:var(--sub)}
+.subhead{font:400 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cap);margin:22px 0 12px}
+
+/* ---------- counters ---------- */
+.illus{border:1px dashed var(--warn);border-radius:9px;padding:16px 18px;margin:0 0 20px;
+  background:rgba(242,164,58,.05)}
+.illus .t{font:400 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--warn);margin:0 0 10px}
+.illus p{margin:0;font-size:14px;line-height:1.6;color:var(--sub)}
+.counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:12px}
+.ctr{background:var(--surface);border-radius:9px;padding:17px 18px}
+.ctr .n{font:400 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 12px}
+.ctr .big{font-family:var(--display);font-weight:400;font-size:34px;line-height:1;
+  color:var(--ink);font-variant-numeric:lining-nums tabular-nums;margin:0}
+.ctr .unit{font-size:14px;color:var(--cap);margin:8px 0 0;line-height:1.45}
+.bars{margin:14px 0 0}
+.bar{display:grid;grid-template-columns:1fr auto;gap:4px 10px;margin:0 0 9px;align-items:center}
+.bar .lb{font-size:13.5px;color:var(--sub)}
+.bar .pc{font:400 13px/1 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.bar .track{grid-column:1 / -1;height:5px;border-radius:3px;background:var(--surface2);overflow:hidden}
+.bar .fill{height:100%;background:var(--accent);border-radius:3px;display:block}
+.bar.amber .fill{background:var(--warn)}
+.ctrtag{font:400 10px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--warn);margin:14px 0 0;border-top:1px solid var(--rule);padding-top:10px}
+
+/* ---------- how it sits ---------- */
+.ops{margin-top:44px;border-top:1px solid var(--rule);padding-top:30px}
+.opsgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:22px}
+.op{background:var(--surface);border-radius:9px;padding:18px 19px}
+.op .n{font:400 12px/1 var(--mono);color:var(--accent);letter-spacing:.1em;margin:0 0 12px}
+.op h3{font-size:16.5px;font-weight:650;line-height:1.35;margin:0 0 9px;color:var(--ink)}
+.op p{font-size:14.5px;color:var(--sub);margin:0}
+.guarantee{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:24px 0 0;max-width:44rem}
+.guarantee p{margin:0 0 10px;font-size:16px;color:var(--ink)}
+.guarantee p:last-child{margin:0;color:var(--sub);font-size:14.5px}
+
+.foot{margin-top:44px;border-top:1px solid var(--rule);padding-top:20px;
+  font-size:13px;line-height:1.6;color:var(--cap);max-width:46rem}
+.foot b{color:var(--sub);font-weight:650}
+
+@media (max-width:640px){
+  body{font-size:15.5px}
+  .wrap{padding:0 15px 34px}
+  .f{grid-template-columns:1fr}
+  .times{grid-template-columns:1fr}
+  .body{padding:17px}
+  .receipt{padding:18px}
+  .kv{grid-template-columns:1fr;gap:3px 0}
+  .kv dd{margin-bottom:8px}
+  .expand{margin-left:0;flex-basis:100%}
+}
+
+@media print{
+  :root{--bg:#fff;--surface:#f3f6f9;--surface2:#eaeef3;--rule:#ccd4de;
+        --ink:#12181f;--sub:#39434f;--cap:#59636f;--accent:#0f6f60;--warn:#8a5200}
+  body{font-size:10.5pt}
+  .wrap{max-width:none;padding:0}
+  .steps,.expand,.submit,.langbar button{display:none}
+  .panel{display:block;margin-top:26px;break-inside:avoid}
+  .qrow,.ctr,.op,.receipt,.device,.illus,.banner{break-inside:avoid}
+  a{color:inherit}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="banner">
+    <p><b>This is a demonstration built by Alaska AI from White Pass's own published pages.</b>
+    It is not connected to any White Pass system, it reads nothing and it writes nothing.
+    Every request, name, time and figure on this page is illustrative and was written by us
+    to show how the proposed build behaves. No guest data appears anywhere here.</p>
+  </div>
+
+  <header class="head">
+    <div class="mark"><i></i><span>Alaska AI</span></div>
+    <p class="co">White Pass &amp; Yukon Route Railway, Skagway</p>
+    <h1>Out of hours guest request capture and triage desk</h1>
+    <p class="quiet">A scripted demonstration of the proposed build, prepared by Alaska AI.
+      Timestamp first, model second. There is no artificial intelligence anywhere in this phase,
+      which is the recommendation rather than a shortcut. It's a form, a clock and a queue.</p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Demonstration steps">
+    <button role="tab" id="t1" aria-controls="p1" aria-selected="true"  onclick="go(1)"><b>01</b>The guest, 9:04 PM Saturday</button>
+    <button role="tab" id="t2" aria-controls="p2" aria-selected="false" onclick="go(2)"><b>02</b>The receipt</button>
+    <button role="tab" id="t3" aria-controls="p3" aria-selected="false" onclick="go(3)"><b>03</b>Monday morning queue</button>
+    <button role="tab" id="t4" aria-controls="p4" aria-selected="false" onclick="go(4)"><b>04</b>The four counters</button>
+  </nav>
+
+  <!-- ============ 1. GUEST ============ -->
+  <section class="panel on" id="p1" role="tabpanel" aria-labelledby="t1">
+    <p class="sechead">Scenario one</p>
+    <h2>Saturday evening, and the reservation office is closed until Monday</h2>
+    <p class="lede">A guest holding a Monday departure decides at 9:04 PM on Saturday that they
+      can't travel. Your published route is a phone call to 1-800-343-7373, and the office runs
+      Monday to Friday, 7:00 AM to 3:00 PM Alaska Time. This is what they would meet instead.</p>
+
+    <div class="device">
+      <div class="chrome">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="addr">request desk, illustrative address only</span>
+        <span class="tag">Demonstration</span>
+      </div>
+      <div class="body">
+
+        <div class="langbar">
+          <button type="button" aria-pressed="true"  onclick="setLang('en')">English</button>
+          <button type="button" aria-pressed="false" onclick="setLang('es')">Espa&ntilde;ol</button>
+          <button type="button" aria-pressed="false" onclick="setLang('ja')">&#26085;&#26412;&#35486;</button>
+          <span class="lnote">Alaska AI note. These strings are fixed and were translated once by
+            a person, then frozen. Nothing on this page is translated as you click, no machine
+            translation runs at any point, and your policy wording is never paraphrased.</span>
+        </div>
+
+        <div id="formpane" lang="en">
+          <h3 id="fTitle" style="font-family:var(--display);font-weight:400;font-size:21px;line-height:1.25;margin:0 0 10px"></h3>
+          <p id="fIntro" style="font-size:14.5px;color:var(--sub);margin:0 0 22px;max-width:40rem"></p>
+
+          <div class="f">
+            <div>
+              <label for="qType" id="lType"></label>
+              <select id="qType" onchange="draw()">
+                <option value="cancel"></option>
+                <option value="date"></option>
+                <option value="party"></option>
+                <option value="question"></option>
+              </select>
+            </div>
+            <div>
+              <label for="qDate" id="lDate"></label>
+              <input type="date" id="qDate" value="2026-08-10" onchange="draw()">
+            </div>
+            <div>
+              <label for="qProd" id="lProd"></label>
+              <select id="qProd" onchange="draw()">
+                <option value="Summit Excursion">Summit Excursion</option>
+                <option value="Bennett Scenic Journey" selected>Bennett Scenic Journey</option>
+                <option value="Steam Summit Loop">Steam Summit Loop</option>
+              </select>
+              <p class="hint" id="hProd"></p>
+            </div>
+            <div>
+              <label for="qRef" id="lRef"></label>
+              <input type="text" id="qRef" value="WP-88214" oninput="draw()">
+              <div class="flag" id="hRef"></div>
+            </div>
+            <div class="full">
+              <label for="qMsg" id="lMsg"></label>
+              <textarea id="qMsg" oninput="draw()">We booked the Bennett trip for Monday morning. Our ship's schedule changed and we sail before the train gets back, so we need to cancel. Two adults.</textarea>
+            </div>
+            <div>
+              <label for="qName" id="lName"></label>
+              <input type="text" id="qName" value="D. Reyes">
+            </div>
+            <div>
+              <label for="qEmail" id="lEmail"></label>
+              <input type="email" id="qEmail" value="guest@example.com">
+            </div>
+            <div class="full">
+              <button class="submit" type="button" id="fSubmit" onclick="submitReq()"></button>
+              <p class="subnote" id="hSubmit"></p>
+            </div>
+          </div>
+
+          <p class="stamp">Scripted clock for this demonstration. Saturday, August 8th, 2026,
+            9:04 PM Alaska Time. Guest device set to Pacific Time.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="note"><b>What is deliberately absent.</b> No chat window, no voice agent, no
+      assistant of any kind. Nothing here answers the guest, nothing decides anything, and nothing
+      reads or writes your ticketing system. The guest states what they need in a structured way,
+      the server records when they stated it, and a person handles it on Monday. That is the
+      entire first build.</p>
+  </section>
+
+  <!-- ============ 2. RECEIPT ============ -->
+  <section class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
+    <p class="sechead">The handoff to the guest</p>
+    <h2>The receipt, which confirms a time and nothing else</h2>
+    <p class="lede">This is the artifact the guest actually receives, rendered as they would see
+      it. It says what arrived and when it arrived, in their time and in yours. It never states a
+      refund outcome, because that decision belongs to your desk and your policy.</p>
+
+    <div class="receipt" id="rcpt" lang="en">
+      <h3 id="rTitle"></h3>
+      <p class="rauto" id="rAuto"></p>
+
+      <div class="times">
+        <div class="tbox">
+          <p class="k" id="rLocalK"></p>
+          <p class="v">Saturday, August 8th, 2026<br>10:04 PM Pacific Time</p>
+        </div>
+        <div class="tbox primary">
+          <p class="k" id="rAkK"></p>
+          <p class="v">Saturday, August 8th, 2026<br>9:04 PM Alaska Time</p>
+        </div>
+      </div>
+
+      <dl class="kv">
+        <dt id="rNumK"></dt><dd id="rNumV">REQ 2026-0808-2104-0417</dd>
+        <dt id="rTypeK"></dt><dd id="rTypeV"></dd>
+        <dt id="rProdK"></dt><dd id="rProdV"></dd>
+        <dt id="rDepK"></dt><dd id="rDepV"></dd>
+        <dt id="rRefK"></dt><dd id="rRefV"></dd>
+      </dl>
+
+      <div class="rblock">
+        <h4 id="rNextK"></h4>
+        <p id="rNextV"></p>
+        <p id="rPhoneV"></p>
+      </div>
+
+      <div class="nrefund">
+        <p id="rNoRefund"></p>
+      </div>
+    </div>
+
+    <p class="note"><b>Why the wording is locked.</b> Your cancellation terms carry two clauses
+      that are opposites separated by a preposition, up to 24 hours prior and within 24 hours.
+      Anything that paraphrases those can swap them, and that is a money misstatement on your own
+      site. In Moffatt v. Air Canada the tribunal held the airline liable for what the chatbot on
+      its own site said about a refund policy. So this receipt quotes your governed policy file
+      word for word or says nothing at all, and it never reaches a conclusion about money.</p>
+
+    <p class="note"><b>The two clocks.</b> The guest's local time comes from their own device,
+      which on a cruise is often still set to the port they flew into. Alaska Time is what the
+      server wrote, and the server write is the record. Nobody can edit it afterwards, including
+      us.</p>
+
+    <p style="margin-top:22px"><button class="submit" type="button" onclick="go(3)">Open the Monday queue</button></p>
+  </section>
+
+  <!-- ============ 3. QUEUE ============ -->
+  <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
+    <p class="sechead">Scenario two</p>
+    <h2>Monday at 7:00 AM, the desk opens to a sorted queue instead of a voicemail</h2>
+    <p class="lede">Five cruise ships were listed arriving in Skagway on Sunday August 9th, 2026,
+      on a published arrivals schedule, and your window was closed all day. Here is what
+      accumulated. Every item carries a server written arrival time, and the queue is sorted
+      nearest that guest's own 24 hour cutoff first.</p>
+
+    <div class="qmeta">
+      <span>Monday, August 10th, 2026, <b>7:00 AM Alaska Time</b></span>
+      <span>Open items <b id="qCount">6</b></span>
+      <span>Sorted by <b>time against each guest's 24 hour cutoff</b></span>
+    </div>
+
+    <div class="legend">
+      <span><i class="a"></i>Arrived inside that guest's 24 hour window</span>
+      <span><i class="g"></i>Arrived before that guest's cutoff</span>
+      <span>Select any row to open what the agent sees</span>
+    </div>
+
+    <div id="queue"></div>
+
+    <p class="note"><b>The sort is arithmetic on two timestamps.</b> Nothing here scores a
+      request, ranks it by importance or predicts anything. The cutoff is the departure time minus
+      24 hours, the arrival time is what the server wrote, and the difference is the sort key. The
+      same inputs give the same order every time, which is exactly why this part earns no model.</p>
+
+    <p class="note"><b>Your decision, not ours.</b> Whether a request stamped before the cutoff is
+      honoured at that stamp is a policy call only White Pass can make. The five day spike puts
+      that answer in writing before any code is written, and if the answer is no, the build does
+      not start.</p>
+
+    <p class="note"><b>Departure times shown here are illustrative.</b> No departure time appears
+      on the pages we read, so this demonstration uses one fixed time per excursion to make the
+      arithmetic visible. The real queue would read the departure from your own reservation
+      record. Nothing on this page is connected to it.</p>
+  </section>
+
+  <!-- ============ 4. COUNTERS ============ -->
+  <section class="panel" id="p4" role="tabpanel" aria-labelledby="t4">
+    <p class="sechead">The by-product</p>
+    <h2>Four counters you don't have today, written as the desk works</h2>
+    <p class="lede">These fall out of your agent resolving items the way they already do. No
+      extra keystrokes, no separate log. They're the part we'd argue hardest for, because they
+      can't be bought and they don't exist anywhere today.</p>
+
+    <div class="illus">
+      <p class="t">Illustrative figures, shoulder season sample</p>
+      <p>Read the shape, not the numbers. <strong>No contact volume, channel split or passenger
+      count is published anywhere for White Pass</strong>, so there is no real figure to put here
+      and we will not invent one. The readout below is a 21 day sample we wrote ourselves to show
+      the form of the output. Anything you actually capture before your October 7th close is a
+      shoulder season sample too, since Bennett closes September 12th, so it should not shape a
+      2027 design without being measured again against your opening weeks.</p>
+    </div>
+
+    <div class="counters">
+      <div class="ctr">
+        <p class="n">1. Out of hours contact volume</p>
+        <p class="big">247 of 412</p>
+        <p class="unit">Guest contacts that arrived outside the published window of Monday to
+          Friday, 7:00 AM to 3:00 PM Alaska Time. Sixty percent of the sample.</p>
+        <p class="ctrtag">Illustrative</p>
+      </div>
+
+      <div class="ctr">
+        <p class="n">2. Arrival against the cutoff</p>
+        <p class="big">58 of 247</p>
+        <p class="unit">Out of hours arrivals that were already inside that guest's own 24 hour
+          window when they landed. Twenty three percent. The other 189 arrived with time still on
+          their clock.</p>
+        <p class="ctrtag">Illustrative</p>
+      </div>
+
+      <div class="ctr">
+        <p class="n">3. Language mix</p>
+        <div class="bars">
+          <div class="bar"><span class="lb">English</span><span class="pc">79%</span><span class="track"><span class="fill" style="width:79%"></span></span></div>
+          <div class="bar"><span class="lb">Spanish</span><span class="pc">14%</span><span class="track"><span class="fill" style="width:14%"></span></span></div>
+          <div class="bar"><span class="lb">Japanese</span><span class="pc">7%</span><span class="track"><span class="fill" style="width:7%"></span></span></div>
+        </div>
+        <p class="unit">Counted from the language the guest chose, never guessed. You publish that
+          you're seeking staff fluent in Spanish and Japanese, so this is the counter that tells
+          you whether that instinct is right.</p>
+        <p class="ctrtag">Illustrative</p>
+      </div>
+
+      <div class="ctr">
+        <p class="n">4. Intent mix</p>
+        <div class="bars">
+          <div class="bar"><span class="lb">Ask a question</span><span class="pc">43%</span><span class="track"><span class="fill" style="width:43%"></span></span></div>
+          <div class="bar"><span class="lb">Change the date</span><span class="pc">25%</span><span class="track"><span class="fill" style="width:25%"></span></span></div>
+          <div class="bar amber"><span class="lb">Cancel a booking</span><span class="pc">21%</span><span class="track"><span class="fill" style="width:21%"></span></span></div>
+          <div class="bar"><span class="lb">Change the party size</span><span class="pc">11%</span><span class="track"><span class="fill" style="width:11%"></span></span></div>
+        </div>
+        <p class="unit">Taken from the dropdown the guest picked. Nothing classifies anything.
+          Email arriving as free text stays uncounted here until a later phase earns it.</p>
+        <p class="ctrtag">Illustrative</p>
+      </div>
+    </div>
+
+    <p class="note"><b>What these settle.</b> The study puts the breakeven at 2,960 guest contacts
+      a season on conservative assumptions. Counter one is what answers it. If your real count
+      lands comfortably above that, the case holds. If it lands under, your published window
+      already covers nearly everything and the right answer is not to build this. That condition
+      is written into the season close gate and it stays in.</p>
+
+    <p class="note"><b>The one that cuts against us.</b> If counter two shows out of hours
+      arrivals are rare, the readout says so in your own numbers, the roadmap stops there and no
+      phase two is proposed.</p>
+  </section>
+
+  <!-- ============ HOW IT SITS ============ -->
+  <section class="ops">
+    <p class="sechead">How it sits in your operation</p>
+    <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(21px,3vw,27px);line-height:1.2">Three steps, and a person is on every one that matters</h2>
+
+    <div class="opsgrid">
+      <div class="op">
+        <p class="n">01</p>
+        <h3>The guest writes it down, at any hour</h3>
+        <p>Your form, an out of hours greeting on 1-800-343-7373 and a timestamped copy of
+          anything sent to info@wpyr.com all write one queue. The server stamps the arrival time
+          before anything else runs, so the record that they tried exists whether or not anybody
+          was at a desk.</p>
+      </div>
+      <div class="op">
+        <p class="n">02</p>
+        <h3>It waits, and nothing acts on it</h3>
+        <p>Nothing is answered, nothing is decided, nothing is written to your ticketing system.
+          The queue holds the request and its stamp, in the order that matters. Your ticketing
+          vendor is absent from this design on purpose.</p>
+      </div>
+      <div class="op">
+        <p class="n">03</p>
+        <h3>Your agent opens it Monday at 7:00 AM</h3>
+        <p>They read the request, see where it sat against that guest's 24 hour cutoff, and apply
+          your cancellation policy the way they do today. The desk records what they decided, and
+          that record is the only thing this software ever writes.</p>
+      </div>
+    </div>
+
+    <div class="guarantee">
+      <p><strong>Deciding whether a guest gets their money back stays with your agent and your
+        policy.</strong> We're not automating that, in this phase or any later one.</p>
+      <p>The one model this roadmap ever proposes is a single call on one node, sorting
+        unstructured inbound email, built off season and gated on a season of your own labelled
+        examples. No corpus, no phase two, nothing billed.</p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p><b>Prepared by Alaska AI for White Pass &amp; Yukon Route Railway.</b> August 9th, 2026.
+      A scripted demonstration of the recommended first build, assembled only from pages White
+      Pass publishes itself. The office window, the cancellation terms, the ten dollar per person
+      penalty, the phone number, the inbox, the excursion names and the season dates are quoted
+      from wpyr.com. The Sunday ship count comes from a published arrivals schedule. Everything
+      else you see, every request, name, reference, message, time and figure, was written by us
+      to demonstrate the build and matches no real guest and no real record.</p>
+    <p>This page holds no live connection of any kind. It runs entirely offline in your browser
+      and sends nothing anywhere.</p>
+  </footer>
+</div>
+
+<script>
+"use strict";
+
+/* ---------------- fixed, human translated interface strings ----------------
+   These are frozen strings, the way the build would ship them. Nothing here is
+   generated or translated at runtime. Excursion names stay in English because
+   that is how they are sold. */
+var S = {
+  en: {
+    title:"Request the reservation office",
+    intro:"The reservation office is open Monday to Friday, 7:00 AM to 3:00 PM Alaska Time. You can write your request here at any hour. It is recorded with the time it arrives.",
+    lType:"What do you need", lDate:"Departure date", lProd:"Excursion",
+    lRef:"Booking reference", lMsg:"Anything the office should know",
+    lName:"Name", lEmail:"Email",
+    opts:{cancel:"Cancel a booking", date:"Change the date",
+          party:"Change the number of people", question:"Ask a question"},
+    hProd:"Excursion names stay in English, the way they are sold.",
+    hRef:"Captured exactly as you type it. It is not checked against any system, and leaving it blank is fine.",
+    submit:"Send this request",
+    hSubmit:"This puts your request in the reservation office queue. It does not cancel anything, it does not change anything, and it does not decide anything about a refund.",
+    rTitle:"We have your request",
+    rAuto:"Automatic acknowledgement. Nobody has read your request yet.",
+    rLocalK:"Your local time", rAkK:"Alaska Time, as recorded",
+    rNumK:"Request number", rTypeK:"You asked to", rProdK:"Excursion",
+    rDepK:"Departure date", rRefK:"Booking reference as typed",
+    rNextK:"What happens next",
+    rNext:"The reservation office opens Monday to Friday at 7:00 AM Alaska Time. A person reads your request, applies the cancellation policy and replies to you.",
+    rPhone:"You can also call the office on 1-800-343-7373 during its open hours.",
+    rNoRefund:"This receipt does not say whether you get a refund. That decision belongs to the reservation office.",
+    none:"Not given"
+  },
+  es: {
+    title:"Solicitud a la oficina de reservas",
+    intro:"La oficina de reservas abre de lunes a viernes, de 7:00 AM a 3:00 PM, hora de Alaska. Puede escribir su solicitud aquí a cualquier hora. Queda registrada con la hora en que llega.",
+    lType:"¿Qué necesita?", lDate:"Fecha de salida", lProd:"Excursión",
+    lRef:"Número de reserva", lMsg:"Lo que la oficina deba saber",
+    lName:"Nombre", lEmail:"Correo electrónico",
+    opts:{cancel:"Cancelar una reserva", date:"Cambiar la fecha",
+          party:"Cambiar el número de personas", question:"Hacer una pregunta"},
+    hProd:"Los nombres de las excursiones se mantienen en inglés, tal como se venden.",
+    hRef:"Se registra exactamente como usted lo escribe. No se verifica en ningún sistema, y puede dejarlo en blanco.",
+    submit:"Enviar esta solicitud",
+    hSubmit:"Esto coloca su solicitud en la lista de la oficina de reservas. No cancela nada, no cambia nada y no decide nada sobre un reembolso.",
+    rTitle:"Hemos recibido su solicitud",
+    rAuto:"Acuse de recibo automático. Todavía nadie ha leído su solicitud.",
+    rLocalK:"Su hora local", rAkK:"Hora de Alaska, registrada",
+    rNumK:"Número de solicitud", rTypeK:"Usted pidió", rProdK:"Excursión",
+    rDepK:"Fecha de salida", rRefK:"Número de reserva tal como se escribió",
+    rNextK:"Qué sucede después",
+    rNext:"La oficina de reservas abre de lunes a viernes a las 7:00 AM, hora de Alaska. Una persona leerá su solicitud, aplicará la política de cancelación y le responderá.",
+    rPhone:"También puede llamar a la oficina al 1-800-343-7373 durante su horario de atención.",
+    rNoRefund:"Este acuse de recibo no indica si usted recibirá un reembolso. Esa decisión corresponde a la oficina de reservas.",
+    none:"No indicado"
+  },
+  ja: {
+    title:"予約オフィスへのご依頼",
+    intro:"予約オフィスの営業時間は、月曜日から金曜日の午前7時から午後3時（アラスカ時間）です。ご依頼は時間帯を問わずこちらにご記入いただけます。受信した時刻とともに記録されます。",
+    lType:"ご依頼の内容", lDate:"出発日", lProd:"ご乗車のコース",
+    lRef:"予約番号", lMsg:"オフィスにお伝えしたいこと",
+    lName:"お名前", lEmail:"メールアドレス",
+    opts:{cancel:"予約をキャンセルする", date:"日付を変更する",
+          party:"人数を変更する", question:"質問する"},
+    hProd:"コース名は販売時の英語表記のままです。",
+    hRef:"入力されたとおりに記録します。いかなるシステムとも照合しません。空欄のままでも構いません。",
+    submit:"この依頼を送信する",
+    hSubmit:"送信すると、ご依頼が予約オフィスの受付一覧に入ります。この操作で予約がキャンセルまたは変更されることはなく、払い戻しの可否が決まることもありません。",
+    rTitle:"ご依頼を受け付けました",
+    rAuto:"これは自動送信の受付確認です。担当者はまだ内容を確認していません。",
+    rLocalK:"お客様の現地時間", rAkK:"アラスカ時間での記録",
+    rNumK:"受付番号", rTypeK:"ご依頼の内容", rProdK:"ご乗車のコース",
+    rDepK:"出発日", rRefK:"入力された予約番号",
+    rNextK:"今後の流れ",
+    rNext:"予約オフィスは月曜日から金曜日の午前7時（アラスカ時間）に開きます。担当者がご依頼を確認し、キャンセル規定に基づいて対応のうえご返信します。",
+    rPhone:"営業時間内は 1-800-343-7373 でもお問い合わせいただけます。",
+    rNoRefund:"この受付確認は、払い戻しの可否をお知らせするものではありません。その判断は予約オフィスが行います。",
+    none:"未記入"
+  }
+};
+var LANGNAME = {en:"English", es:"Spanish", ja:"Japanese"};
+
+/* ---------------- clock helpers ----------------
+   All times are built in UTC and only ever displayed as fixed strings, so the
+   arithmetic is identical in every browser and every time zone. */
+function T(y,m,d,hh,mm){ return Date.UTC(y, m-1, d, hh, mm); }
+var DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var MONS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function ord(n){
+  if (n % 100 >= 11 && n % 100 <= 13) return n + "th";
+  if (n % 10 === 1) return n + "st";
+  if (n % 10 === 2) return n + "nd";
+  if (n % 10 === 3) return n + "rd";
+  return n + "th";
+}
+function clock(ts){
+  var d = new Date(ts), h = d.getUTCHours(), m = d.getUTCMinutes();
+  var ap = h < 12 ? "AM" : "PM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + ":" + (m < 10 ? "0" + m : m) + " " + ap;
+}
+function dstamp(ts){
+  var d = new Date(ts);
+  return DAYS[d.getUTCDay()] + " " + MONS[d.getUTCMonth()] + " " + ord(d.getUTCDate());
+}
+function full(ts){ return dstamp(ts) + ", " + clock(ts); }
+function dur(ms){
+  var m = Math.round(Math.abs(ms) / 60000), h = Math.floor(m / 60);
+  return h + " h " + (m % 60) + " m";
+}
+
+/* Illustrative departure times, one per excursion. No departure time appears on
+   the pages we read, so these are ours, not White Pass's. */
+var DEP = {"Summit Excursion":[8,15], "Bennett Scenic Journey":[8,0], "Steam Summit Loop":[9,30]};
+var FALLBACK = [8,0];   /* earliest of the three, the conservative read */
+
+var CUT = 24 * 60 * 60 * 1000;
+var ARRIVED = T(2026,8,8,21,4);      /* our guest, Saturday 9:04 PM Alaska Time */
+
+/* ---------------- the scripted queue ---------------- */
+var ROWS = [
+  {
+    id:"REQ 2026-0809-2341-0511", arr:T(2026,8,9,23,41), ch:"Web form",
+    type:"Cancel a booking", prod:"Summit Excursion", dep:T(2026,8,10,8,15),
+    lang:"English", ref:"4471-88",
+    msg:"Our ship is running late out of Juneau and we will not make the 8:15 train. Two adults and one child. What are our options?",
+    detail:"Arrived from the form. Every field below came from a dropdown or a text box, so nothing had to be interpreted."
+  },
+  {
+    id:"REQ 2026-0809-1952-0498", arr:T(2026,8,9,19,52), ch:"Phone callback",
+    type:"Cancel or change, keypad option 1", prod:null, dep:T(2026,8,10,8,0),
+    depNote:"Date entered on the keypad. No departure time was given, so the desk computes to the earliest departure of that day, which is the conservative read.",
+    lang:"Spanish", langNote:"Chosen from the recorded greeting menu.",
+    ref:null,
+    msg:"Callback number captured on the keypad. The recording is held for the agent to play. Nothing is transcribed and nothing is summarised.",
+    detail:"Arrived from the out of hours greeting on 1-800-343-7373. The greeting takes a callback number, a departure date and a menu choice. It answers no questions and it quotes no policy."
+  },
+  {
+    id:"REQ 2026-0809-2220-0505", arr:T(2026,8,9,22,20), ch:"Web form",
+    type:"Change the date", prod:"Summit Excursion", dep:T(2026,8,11,8,15),
+    lang:"English", ref:null,
+    msg:"The forecast for Tuesday looks rough and we would rather ride on Thursday if there is room. Four of us.",
+    detail:"Arrived from the form. This one is a change rather than a cancellation, so the 24 hour clause reads differently. Your agent decides which, never the software."
+  },
+  {
+    id:"MINE", mine:true, arr:ARRIVED, ch:"Web form",
+    detail:"This is the request submitted at the start of this demonstration. The arrival time was written by the server at 9:04 PM Alaska Time on Saturday, before anything else ran."
+  },
+  {
+    id:"REQ 2026-0809-1838-0483", arr:T(2026,8,9,18,38), ch:"Web form",
+    type:"Change the number of people", prod:"Steam Summit Loop", dep:T(2026,8,12,9,30),
+    lang:"Japanese", ref:"SSL-20812",
+    msg:"大人2名の予約を大人3名に変更できますか。祖母が一緒に乗れることになりました。",
+    msgNote:"The interface strings are translated and frozen. Free text is not translated, in this phase or by any machine. Your desk handles it the way it does today, which is one reason you publish that you are seeking Japanese speaking staff.",
+    detail:"Arrived from the form. The guest chose the language themselves, so the language counter is a count rather than a guess."
+  },
+  {
+    id:"REQ 2026-0809-2115-0502", arr:T(2026,8,9,21,15), ch:"Email to info@wpyr.com",
+    unsorted:true, type:null, prod:null, dep:null, lang:"Spanish", ref:null,
+    msg:"Buenas noches. Necesitamos cambiar la fecha de nuestra excursión. Somos cuatro personas y llegamos el martes. Gracias.",
+    detail:"Arrived as a timestamped copy of an email. The arrival time is stamped the same way, which is the whole point. Nothing else about it is structured."
+  }
+];
+
+/* ---------------- state ---------------- */
+var lang = "en";
+var req = {type:"cancel", prod:"Bennett Scenic Journey", date:"2026-08-10", ref:"WP-88214", msg:""};
+var openRow = null;
+
+function el(id){ return document.getElementById(id); }
+function txt(id, v){ var n = el(id); if (n) { n.textContent = v; } }
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+                  .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function go(n){
+  for (var i = 1; i <= 4; i++){
+    el("p" + i).className = "panel" + (i === n ? " on" : "");
+    el("t" + i).setAttribute("aria-selected", i === n ? "true" : "false");
+  }
+  if (n === 3) { renderQueue(); }
+}
+
+function setLang(code){
+  lang = code;
+  var b = document.querySelectorAll(".langbar button");
+  var codes = ["en","es","ja"];
+  for (var i = 0; i < b.length; i++){
+    b[i].setAttribute("aria-pressed", codes[i] === code ? "true" : "false");
+  }
+  el("formpane").setAttribute("lang", code);
+  el("rcpt").setAttribute("lang", code);
+  paintForm();
+  paintReceipt();
+  renderQueue();
+}
+
+function paintForm(){
+  var s = S[lang];
+  txt("fTitle", s.title); txt("fIntro", s.intro);
+  txt("lType", s.lType); txt("lDate", s.lDate); txt("lProd", s.lProd);
+  txt("lRef", s.lRef); txt("lMsg", s.lMsg); txt("lName", s.lName); txt("lEmail", s.lEmail);
+  txt("hProd", s.hProd); txt("hRef", s.hRef);
+  txt("fSubmit", s.submit); txt("hSubmit", s.hSubmit);
+  var o = el("qType").options, keys = ["cancel","date","party","question"];
+  for (var i = 0; i < o.length; i++){ o[i].textContent = s.opts[keys[i]]; }
+}
+
+function readForm(){
+  req.type = el("qType").value;
+  req.prod = el("qProd").value;
+  req.date = el("qDate").value;
+  req.ref  = el("qRef").value;
+  req.msg  = el("qMsg").value;
+}
+
+function depTS(dateStr, prod){
+  if (!dateStr) { return null; }
+  var p = dateStr.split("-");
+  if (p.length !== 3) { return null; }
+  var t = DEP[prod] || FALLBACK;
+  return T(parseInt(p[0],10), parseInt(p[1],10), parseInt(p[2],10), t[0], t[1]);
+}
+
+function paintReceipt(){
+  var s = S[lang];
+  txt("rTitle", s.rTitle); txt("rAuto", s.rAuto);
+  txt("rLocalK", s.rLocalK); txt("rAkK", s.rAkK);
+  txt("rNumK", s.rNumK); txt("rTypeK", s.rTypeK); txt("rProdK", s.rProdK);
+  txt("rDepK", s.rDepK); txt("rRefK", s.rRefK);
+  txt("rNextK", s.rNextK); txt("rNextV", s.rNext); txt("rPhoneV", s.rPhone);
+  txt("rNoRefund", s.rNoRefund);
+  txt("rTypeV", s.opts[req.type]);
+  txt("rProdV", req.prod);
+  var d = depTS(req.date, req.prod);
+  txt("rDepV", d ? dstamp(d) + ", " + new Date(d).getUTCFullYear() : s.none);
+  txt("rRefV", (req.ref && req.ref.trim()) ? req.ref.trim() : s.none);
+}
+
+function draw(){ readForm(); paintReceipt(); }
+
+function submitReq(){
+  readForm();
+  paintReceipt();
+  go(2);
+}
+
+/* ---------------- queue rendering ---------------- */
+function buildRows(){
+  var out = [], i;
+  for (i = 0; i < ROWS.length; i++){
+    var r = ROWS[i], row;
+    if (r.mine){
+      row = {
+        id:"REQ 2026-0808-2104-0417", mine:true, arr:r.arr, ch:r.ch,
+        type:S.en.opts[req.type], prod:req.prod, dep:depTS(req.date, req.prod),
+        lang:LANGNAME[lang], ref:(req.ref && req.ref.trim()) ? req.ref.trim() : null,
+        msg:req.msg, detail:r.detail
+      };
+    } else {
+      row = {
+        id:r.id, arr:r.arr, ch:r.ch, type:r.type, prod:r.prod, dep:r.dep,
+        depNote:r.depNote, lang:r.lang, langNote:r.langNote, ref:r.ref,
+        msg:r.msg, msgNote:r.msgNote, detail:r.detail, unsorted:r.unsorted
+      };
+    }
+    row.cut = row.dep ? row.dep - CUT : null;
+    row.margin = (row.cut === null) ? null : (row.cut - row.arr);
+    out.push(row);
+  }
+  var sorted = [], rest = [];
+  for (i = 0; i < out.length; i++){
+    if (out[i].unsorted || out[i].margin === null) { rest.push(out[i]); }
+    else { sorted.push(out[i]); }
+  }
+  sorted.sort(function(a,b){ return a.margin - b.margin; });
+  return {sorted:sorted, rest:rest, count:out.length};
+}
+
+function rowHTML(r, idx){
+  var past = (r.margin !== null && r.margin < 0);
+  var cls = (r.margin === null) ? "unsorted" : (past ? "past" : "before");
+  var badge, btxt;
+  if (r.margin === null){
+    badge = "unk"; btxt = "No departure stated";
+  } else if (past){
+    badge = "past"; btxt = "Past cutoff by " + dur(r.margin);
+  } else {
+    badge = "before"; btxt = dur(r.margin) + " to spare";
+  }
+  var open = (openRow === idx);
+  var h = "";
+  h += '<div class="qrow ' + cls + (r.mine ? " mine" : "") + '">';
+  h += '<button class="qtop" type="button" onclick="toggle(' + idx + ')" aria-expanded="' + open + '">';
+  h += '<span class="badge ' + badge + '">' + esc(btxt) + '</span>';
+  h += '<span class="arrived">Arrived ' + esc(full(r.arr)) + ' Alaska Time</span>';
+  h += '<span class="chan">' + esc(r.ch) + '</span>';
+  if (r.mine) { h += '<span class="mineflag">Your request</span>'; }
+  h += '<span class="expand">' + (open ? "Close" : "Open") + '</span>';
+  h += '</button>';
+
+  h += '<div class="qfields">';
+  h += '<div><span class="k">Request</span><span class="v' + (r.type ? "" : " dim") + '">' +
+       esc(r.type || "Not stated, free text only") + '</span></div>';
+  h += '<div><span class="k">Excursion</span><span class="v' + (r.prod ? "" : " dim") + '">' +
+       esc(r.prod || "Not stated") + '</span></div>';
+  h += '<div><span class="k">Departure</span><span class="v' + (r.dep ? "" : " dim") + '">' +
+       esc(r.dep ? (dstamp(r.dep) + ", " + clock(r.dep)) : "Not stated") + '</span></div>';
+  h += '<div><span class="k">24 hour cutoff</span><span class="v' + (r.cut ? "" : " dim") + '">' +
+       esc(r.cut ? (dstamp(r.cut) + ", " + clock(r.cut)) : "No departure, so no cutoff yet") + '</span></div>';
+  h += '<div><span class="k">Language</span><span class="v">' + esc(r.lang) + '</span></div>';
+  h += '</div>';
+
+  if (open){
+    h += '<div class="detail">';
+    h += '<h4>What the agent opens</h4>';
+    h += '<p style="font-size:14.5px;color:var(--sub);margin:0 0 14px;max-width:44rem">' + esc(r.detail) + '</p>';
+
+    h += '<h4>Server written arrival</h4>';
+    h += '<p style="font:400 14px/1.5 var(--mono);color:var(--ink);margin:0 0 4px">' +
+         esc(full(r.arr)) + ' Alaska Time</p>';
+    h += '<p style="font-size:13px;color:var(--cap);margin:0 0 16px">Written on arrival, before anything else ran. Nobody can edit it afterwards, including us. Request ' + esc(r.id) + '.</p>';
+
+    h += '<h4>Booking reference</h4>';
+    h += '<p style="font:400 14px/1.5 var(--mono);color:' + (r.ref ? "var(--ink)" : "var(--cap)") + ';margin:0 0 4px">' +
+         esc(r.ref || "Not given") + '</p>';
+    h += '<p style="font-size:13px;color:var(--cap);margin:0 0 16px">Captured exactly as it was typed. It is not checked against any system and nothing looks it up.</p>';
+
+    if (r.depNote){
+      h += '<h4>How the cutoff was computed</h4>';
+      h += '<p style="font-size:13.5px;color:var(--sub);margin:0 0 16px;max-width:44rem">' + esc(r.depNote) + '</p>';
+    }
+    if (r.langNote){
+      h += '<h4>Language</h4>';
+      h += '<p style="font-size:13.5px;color:var(--sub);margin:0 0 16px;max-width:44rem">' + esc(r.lang) + '. ' + esc(r.langNote) + '</p>';
+    }
+
+    h += '<h4>What the guest wrote</h4>';
+    h += '<div class="msg">' + esc((r.msg && r.msg.trim()) ? r.msg : "Nothing written.") + '</div>';
+    if (r.msgNote){
+      h += '<p style="font-size:13px;color:var(--cap);margin:0 0 8px;max-width:44rem">' + esc(r.msgNote) + '</p>';
+    }
+
+    h += '<div class="policy">';
+    h += '<h4 style="margin-bottom:8px">Your policy, quoted from the governed file</h4>';
+    h += '<p>A cancellation may be made up to 24 hours prior to departure to receive a refund (minus penalty).</p>';
+    h += '<p>If a cancellation is made within 24 hours of departure time, guest forfeits all rights to a refund.</p>';
+    h += '<p>$10.00 penalty per person.</p>';
+    h += '</div>';
+    h += '<p style="font-size:13px;color:var(--cap);margin:10px 0 0;max-width:44rem">Word for word from your cancellation page. Every guest facing sentence about policy is checked in code to be an exact span of that one file, so nothing paraphrases it and nothing can swap the two clauses.</p>';
+
+    h += '<div class="decide">';
+    h += '<h4>Where a person decides</h4>';
+    h += '<p style="font-size:14.5px;color:var(--ink);margin:0 0 12px;max-width:44rem">Your agent reads this and applies your cancellation policy, the way they do today. The software holds no view on the outcome and never states one.</p>';
+    h += '<div class="row"><button class="ghost" type="button" disabled>Record the outcome</button>';
+    h += '<span style="font-size:13px;color:var(--cap);max-width:34rem">Disabled in this demonstration. In the build this records what your agent decided, which is the only write this software ever makes. Nothing writes to your ticketing system.</span></div>';
+    h += '</div>';
+    h += '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderQueue(){
+  var q = buildRows(), h = "", i;
+  for (i = 0; i < q.sorted.length; i++){ h += rowHTML(q.sorted[i], i); }
+  h += "<p class=\"subhead\">Can't be sorted against a cutoff</p>";
+  h += '<div class="unsortnote"><p>Nothing structured arrived with this one, so there is no departure to measure it against. A person opens it first. Sorting unstructured email by intent is the single job the roadmap holds back for a later phase, built off season and gated on a season of your own labelled examples. No corpus, no phase two, nothing billed.</p></div>';
+  for (i = 0; i < q.rest.length; i++){ h += rowHTML(q.rest[i], q.sorted.length + i); }
+  el("queue").innerHTML = h;
+  el("qCount").textContent = q.count;
+}
+
+function toggle(i){
+  openRow = (openRow === i) ? null : i;
+  renderQueue();
+}
+
+/* ---------------- boot ---------------- */
+paintForm();
+readForm();
+paintReceipt();
+renderQueue();
+</script>
+</body>
+</html>
