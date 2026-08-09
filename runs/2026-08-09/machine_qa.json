@@ -5,7 +5,7 @@
       "fails": [],
       "warns": [],
       "encodings": [
-        "'the fifth tread has no material in it': dE 11.9, AUC 1.00, visible 100%/100%, seen 1224/1020px at 432w"
+        "'the fifth tread has no material in it': dE 11.6, AUC 1.00, visible 100%/100%, seen 1224/1020px at 432w"
       ],
       "contacts": [
         "'the stepped instrument standing on the datum': shadow L* 19.6 vs ground L* 78.9, dL 59.3 at 432w"
@@ -55,14 +55,11 @@
       "file": "slide-06.html",
       "fails": [],
       "warns": [
-        "text collision (53% overprint): '60\u00b029'N \u00b7 151\u00b003'W' x 'FILLED, NONE HERE' near 698,1316 [decorative involved]",
         "outside safe zone: 'Seven documents. None adopted on the pos' at 80,158 960x114 (margin 80px)",
         "outside safe zone: 'SEAT' at 971,322 69x72 (margin 80px)",
         "outside safe zone: 'EMPTY' at 130,1274 150x31 (margin 80px)",
         "outside safe zone: 'UNKNOWN' at 400,1274 150x31 (margin 80px)",
-        "outside safe zone: 'FILLED, NONE HERE' at 670,1274 150x62 (margin 80px)",
-        "busy art under text (bg edge density 0.03) beneath 'FILLED, NONE HERE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
-        "art touching glyphs (7% of the ring around 'FILLED, NONE HERE', spanning 26%) -- pixel critic verify the label is not crossed"
+        "outside safe zone: 'FILLED, NONE HERE' at 670,1274 150x62 (margin 80px)"
       ],
       "encodings": [
         "'no seat in this table is filled': dE 71.0, AUC 0.91, visible 79%/100%, seen 322/408px at 432w"
@@ -83,7 +80,7 @@
       "file": "slide-08.html",
       "fails": [],
       "warns": [
-        "outside safe zone: 'SEPTEMBER 14 IS THE NEXT REGULAR BOARD M' at 80,1272 740x43 (margin 80px)"
+        "outside safe zone: 'SEPTEMBER 14TH IS THE NEXT REGULAR BOARD' at 80,1272 740x74 (margin 80px)"
       ],
       "encodings": [
         "'nothing is resting on the calendar': dE 58.7, AUC 1.00, visible 100%/100%, seen 280/280px at 432w"
@@ -96,6 +93,6 @@
     }
   ],
   "fails": 0,
-  "warns": 15,
+  "warns": 12,
   "verdict": "WARN"
 }
