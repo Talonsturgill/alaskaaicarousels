@@ -5,7 +5,7 @@
       "fails": [],
       "warns": [],
       "encodings": [
-        "'the fifth tread has no material in it': dE 11.6, AUC 1.00, visible 100%/100%, seen 1224/1020px at 432w"
+        "'the fifth tread has no material in it': dE 11.9, AUC 1.00, visible 100%/100%, seen 1224/1020px at 432w"
       ],
       "contacts": [
         "'the stepped instrument standing on the datum': shadow L* 19.6 vs ground L* 78.9, dL 59.3 at 432w"
@@ -18,9 +18,7 @@
       "file": "slide-02.html",
       "fails": [],
       "warns": [
-        "outside safe zone: 'K AND 1' at 70,1058 130x34 (margin 80px)",
-        "outside safe zone: 'NEW SINCE JULY, AR 6161.5 IS AUGUST 3RD ' at 80,1272 740x68 (margin 80px)",
-        "worst-point contrast 3.5 on 'NEW SINCE JULY, AR 6161.5 IS AUGUST 3RD ' (box mean 3.9) -- below the rubric's 4.5 line somewhere along the run of the text"
+        "outside safe zone: 'NEW SINCE JULY, AR 6161.5 IS AUGUST 3RD ' at 80,1272 740x78 (margin 80px)"
       ]
     },
     {
@@ -57,13 +55,17 @@
       "file": "slide-06.html",
       "fails": [],
       "warns": [
+        "text collision (53% overprint): '60\u00b029'N \u00b7 151\u00b003'W' x 'FILLED, NONE HERE' near 698,1316 [decorative involved]",
         "outside safe zone: 'Seven documents. None adopted on the pos' at 80,158 960x114 (margin 80px)",
+        "outside safe zone: 'SEAT' at 971,322 69x72 (margin 80px)",
         "outside safe zone: 'EMPTY' at 130,1274 150x31 (margin 80px)",
         "outside safe zone: 'UNKNOWN' at 400,1274 150x31 (margin 80px)",
-        "outside safe zone: 'FILLED, NONE HERE' at 670,1274 150x62 (margin 80px)"
+        "outside safe zone: 'FILLED, NONE HERE' at 670,1274 150x62 (margin 80px)",
+        "busy art under text (bg edge density 0.03) beneath 'FILLED, NONE HERE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (7% of the ring around 'FILLED, NONE HERE', spanning 26%) -- pixel critic verify the label is not crossed"
       ],
       "encodings": [
-        "'no seat in this table is filled': dE 70.9, AUC 0.91, visible 63%/100%, seen 257/408px at 432w"
+        "'no seat in this table is filled': dE 71.0, AUC 0.91, visible 79%/100%, seen 322/408px at 432w"
       ]
     },
     {
@@ -81,7 +83,6 @@
       "file": "slide-08.html",
       "fails": [],
       "warns": [
-        "text collision (47% overprint): '60\u00b029'N \u00b7 151\u00b003'W' x 'SEPTEMBER 14' near 698,1198 [decorative involved]",
         "outside safe zone: 'SEPTEMBER 14 IS THE NEXT REGULAR BOARD M' at 80,1272 740x43 (margin 80px)"
       ],
       "encodings": [
@@ -91,13 +92,10 @@
     {
       "file": "slide-09.html",
       "fails": [],
-      "warns": [
-        "low contrast ~3.4 on 'alaskaaihq.com' (est.)",
-        "worst-point contrast 3.0 on 'alaskaaihq.com' (box mean 3.4) -- below the rubric's 4.5 line somewhere along the run of the text"
-      ]
+      "warns": []
     }
   ],
   "fails": 0,
-  "warns": 16,
+  "warns": 15,
   "verdict": "WARN"
 }
