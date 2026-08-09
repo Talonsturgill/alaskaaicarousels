@@ -41,6 +41,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_build as db  # projection, validation, docket components, gates
 import feeds_build as fb   # feeds, plaintext mirrors, llms.txt
 import gaswatch_build as gw  # gas watch series, figures, chart, page components
+import ask_corpus           # the answering corpus behind the docket's ask box
 
 REPO = Path(__file__).resolve().parents[1]
 RAW = "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main"
@@ -969,6 +970,224 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
   body::before{display:none;}
 }
 """
+
+# The deployed Worker that answers docket questions. Empty until it is
+# deployed, and the ask box does not render at all while it is empty, so a
+# half-finished setup shows the docket exactly as it looks today rather than a
+# form that fails when someone uses it. See workers/ask/README.md.
+ASK_ENDPOINT = ""
+
+# The same Turnstile widget the scanner uses. A sitekey is per domain and
+# public by design, so one widget covers both forms and there is nothing to
+# keep in sync. The matching secret goes to the worker, not here.
+TS_SITEKEY = "0x4AAAAAAD7e1lYKOUSxa5sV"
+
+# The four questions the record is best at, offered as buttons. Two jobs. They
+# teach a reader in one glance that this answers from a specific record rather
+# than from the whole internet, which is the expectation that decides whether
+# they trust the answer. And because everyone clicks the same four strings,
+# they land on the answer cache and come back instantly and free.
+ASK_SUGGESTIONS = [
+    "What can I still comment on?",
+    "What changed in the last week?",
+    "Which decisions could affect my power bill?",
+    "What is happening on the Kenai Peninsula?",
+]
+
+ASK_CSS = """
+.ask{max-width:760px;margin:38px auto 0;}
+.ask form{display:flex;gap:10px;align-items:stretch;}
+.ask input[type=text]{flex:1;min-width:0;background:var(--panel);color:var(--snow);
+border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:16px;
+font-family:inherit;}
+.ask input[type=text]:focus{outline:2px solid var(--halo);outline-offset:-2px;}
+.ask button.go{background:var(--gold);color:#0b0b0f;border:0;border-radius:12px;
+padding:0 20px;font-weight:700;letter-spacing:.06em;font-size:13px;cursor:pointer;
+font-family:JBMono,ui-monospace,monospace;}
+.ask button.go[disabled]{opacity:.5;cursor:default;}
+.askchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.askchips button{background:transparent;color:var(--mute);border:1px solid var(--line);
+border-radius:999px;padding:7px 13px;font-size:12.5px;cursor:pointer;font-family:inherit;}
+.askchips button:hover{color:var(--snow);border-color:var(--halo);}
+.askout{margin-top:18px;background:var(--panel);border:1px solid var(--line);
+border-radius:14px;padding:18px 20px;font-size:15.5px;line-height:1.62;}
+.askout[hidden]{display:none;}
+.askout p{margin:0 0 10px;}
+.askout a.cite{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.3);}
+.asknote{font-size:12.5px;color:var(--mute);margin-top:12px;
+font-family:JBMono,ui-monospace,monospace;letter-spacing:.04em;}
+/* A withheld answer is styled as a stop, not as an error. The reader is being
+   told the record could not back the next sentence, which is the system
+   working. */
+.askstop{border-left:2px solid var(--gold);padding-left:12px;color:var(--mute);
+font-size:14px;margin-top:12px;}
+.askcursor{display:inline-block;width:7px;height:16px;background:var(--gold);
+vertical-align:-2px;animation:askblink 1s steps(2) infinite;}
+@keyframes askblink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+@media (max-width:560px){.ask form{flex-direction:column;}
+.ask button.go{padding:13px 20px;}}
+"""
+
+ASK_JS = r"""
+(function(){
+  var form = document.getElementById('askform');
+  if (!form) return;
+  var input = document.getElementById('askq');
+  var go = document.getElementById('askgo');
+  var out = document.getElementById('askout');
+  var note = document.getElementById('asknote');
+  var ENDPOINT = form.getAttribute('data-endpoint');
+  var TS_SITEKEY = form.getAttribute('data-sitekey') || '';
+  var tsReady = false, busy = false;
+
+  // Turnstile is loaded on first contact rather than on page load, so a reader
+  // who never asks anything never fetches it. By the time they finish typing
+  // the widget has almost always settled, so submitting feels like no check
+  // happened at all.
+  function armTurnstile(){
+    if (tsReady || !TS_SITEKEY) return;
+    tsReady = true;
+    var holder = document.getElementById('asktsp');
+    holder.innerHTML = '<div class="cf-turnstile" data-sitekey="' + TS_SITEKEY +
+                       '" data-theme="dark" data-size="flexible"></div>';
+    var s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  input.addEventListener('focus', armTurnstile, {once:true});
+
+  // Model text is inserted with textContent, never innerHTML. The only markup
+  // this builds is the citation link, and its href comes from a slug the
+  // worker already checked against the record, not from the model's string.
+  function render(target, text){
+    var re = /\[\[([a-z0-9-]+)\]\]/g, at = 0, m;
+    while ((m = re.exec(text)) !== null) {
+      if (m.index > at) target.appendChild(document.createTextNode(text.slice(at, m.index)));
+      var a = document.createElement('a');
+      a.className = 'cite';
+      a.href = '../docket/' + m[1] + '/';
+      a.textContent = m[1].replace(/-/g, ' ');
+      target.appendChild(a);
+      at = m.index + m[0].length;
+    }
+    if (at < text.length) target.appendChild(document.createTextNode(text.slice(at)));
+  }
+
+  function reset(){ busy = false; go.disabled = false; go.textContent = 'ASK'; }
+
+  function ask(question){
+    if (busy || !question.trim()) return;
+    busy = true; go.disabled = true; go.textContent = 'READING...';
+    out.hidden = false;
+    out.textContent = '';
+    var para = document.createElement('p');
+    var cursor = document.createElement('span');
+    cursor.className = 'askcursor';
+    para.appendChild(cursor);
+    out.appendChild(para);
+    note.textContent = '';
+
+    var token = '';
+    if (TS_SITEKEY && window.turnstile) { token = turnstile.getResponse() || ''; }
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify({question: question, turnstile_token: token || null})
+    }).then(function(r){
+      if (!r.ok) { return r.json().then(function(d){ throw new Error(d.error || 'that did not work'); }); }
+      var reader = r.body.getReader(), dec = new TextDecoder(), buf = '';
+      function pump(){
+        return reader.read().then(function(res){
+          if (res.done) { cursor.remove(); reset(); return; }
+          buf += dec.decode(res.value, {stream:true});
+          var frames = buf.split('\n\n'); buf = frames.pop() || '';
+          frames.forEach(function(frame){
+            var ev = '', data = '';
+            frame.split('\n').forEach(function(line){
+              if (line.indexOf('event: ') === 0) ev = line.slice(7);
+              else if (line.indexOf('data: ') === 0) data = line.slice(6);
+            });
+            if (!ev) return;
+            var d = {};
+            try { d = JSON.parse(data); } catch (e) { return; }
+            if (ev === 'answer') {
+              if (para.childNodes.length > 1) para.insertBefore(document.createTextNode(' '), cursor);
+              var frag = document.createDocumentFragment();
+              render(frag, d.text);
+              para.insertBefore(frag, cursor);
+            } else if (ev === 'withheld') {
+              cursor.remove();
+              var stop = document.createElement('div');
+              stop.className = 'askstop';
+              stop.textContent = 'The rest of this answer was withheld. A ' +
+                (d.reason === 'numeral' ? 'figure in it does not appear in the record'
+                 : d.reason === 'citation' ? 'source it cited does not exist'
+                 : 'claim in it is one this record does not make') + '.';
+              out.appendChild(stop);
+            } else if (ev === 'error') {
+              cursor.remove();
+              note.textContent = d.error || 'the answer was cut short';
+            } else if (ev === 'done') {
+              cursor.remove();
+              note.textContent = d.cached ? 'ANSWERED FROM THE RECORD, CACHED'
+                                          : 'ANSWERED FROM THE RECORD';
+              if (TS_SITEKEY && window.turnstile) { turnstile.reset(); }
+              reset();
+            }
+          });
+          return pump();
+        });
+      }
+      return pump();
+    }).catch(function(e){
+      cursor.remove();
+      note.textContent = (e && e.message) || 'that did not work';
+      if (TS_SITEKEY && window.turnstile) { turnstile.reset(); }
+      reset();
+    });
+  }
+
+  form.addEventListener('submit', function(e){ e.preventDefault(); ask(input.value); });
+  Array.prototype.forEach.call(document.querySelectorAll('.askchips button'), function(b){
+    b.addEventListener('click', function(){
+      armTurnstile();
+      input.value = b.textContent;
+      ask(b.textContent);
+    });
+  });
+})();
+"""
+
+
+def ask_html():
+    """The ask box, or nothing at all when no worker is deployed.
+
+    Rendering nothing is the point. A form that posts into the void is worse
+    than no form, and this way the docket page is unchanged until the endpoint
+    in ASK_ENDPOINT actually answers.
+    """
+    if not ASK_ENDPOINT:
+        return ""
+    chips = "".join("<button type=\"button\">%s</button>" % esc(q)
+                    for q in ASK_SUGGESTIONS)
+    return f"""<div class="ask" data-reveal>
+<form id="askform" data-endpoint="{esc(ASK_ENDPOINT)}" data-sitekey="{esc(TS_SITEKEY)}">
+  <label class="vh" for="askq">Ask a question about the docket</label>
+  <input type="text" id="askq" maxlength="400" autocomplete="off"
+         placeholder="Ask anything about these decisions">
+  <button type="submit" class="go" id="askgo">ASK</button>
+</form>
+<div class="askchips">{chips}</div>
+<div id="asktsp"></div>
+<div class="askout" id="askout" hidden></div>
+<p class="asknote" id="asknote"></p>
+<p class="asknote">Answers come only from this docket. Every figure is checked
+against the record before it is shown, and anything the record cannot back is
+withheld.</p>
+</div>"""
+
 
 MAP_JS = """
 (function(){
@@ -3001,6 +3220,7 @@ def docket_page(today, site_url, docket):
 <p class="tag">Every AI infrastructure decision in Alaska, tracked daily. Who decides,
 when it lands, and whether the public gets a say. Sources on every item.</p>
 {stats}
+{ask_html()}
 </div>
 <div class="maphero">{layerbox}{svg}{layerbar}<div class="mapcap">{mapcap}</div></div>
 <h2>Closing soon</h2>
@@ -3025,8 +3245,11 @@ builds for Alaska businesses.</p>
                 body, "../", "docket", today, site_url, "docket/",
                 og_image="og-docket.png", ld=ld,
                 crumbs=[("Alaska AI", ""), ("Docket", "docket/")],
-                # The map's styling and its pan and zoom ride on this page only.
-                extra_css=MAP_CSS, extra_js=MAP_JS)
+                # The map's styling and its pan and zoom ride on this page only,
+                # and so does the ask box. Both are appended rather than
+                # replaced so neither can quietly drop the other.
+                extra_css=MAP_CSS + (ASK_CSS if ASK_ENDPOINT else ""),
+                extra_js=MAP_JS + (ASK_JS if ASK_ENDPOINT else ""))
 
 
 def archive_page(today, site_url, runs):
@@ -5547,6 +5770,14 @@ def build(today, out_dir, site_url=None, domain=""):
     (out / "gas-watch.json").write_text(json.dumps(
         gw.feed(gas_series, gas_model, site_url, today, GAS_WATCH_META,
                 figs=gas_figs), indent=2))
+    # The answering corpus for the ask box, published like any other page so
+    # the worker reads the same record a person does. Emitted on every build,
+    # including the collector's nightly rebuild, so the day the gas watch
+    # moves the corpus moves with it and yesterday's cached answers retire.
+    # Written whether or not a worker is deployed: it costs one file and it
+    # means turning the ask box on is a one-line change rather than a
+    # migration.
+    ask_corpus.write(str(out / "ask-corpus.json"), today=today, site_url=site_url)
     touch_icon(out)
     (out / "sitemap.xml").write_text(sitemap(site_url, runs, today, docket[0]))
     (out / "robots.txt").write_text(

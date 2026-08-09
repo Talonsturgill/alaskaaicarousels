@@ -1,0 +1,65 @@
+name: ask box
+
+# The ask box publishes prose to the public site at read time, which is where
+# none of the build-time page lints can reach it. These two suites are the only
+# thing standing between a model's guess and a published claim, so they run on
+# every change to either half.
+#
+# The corpus builder and the worker each own one end of the same contract: the
+# builder decides which numbers an answer may contain, the worker refuses
+# anything else. A change to one without the other silently loosens the guard,
+# so both run together and neither is optional.
+
+on:
+  pull_request:
+    paths:
+      - "workers/ask/**"
+      - "scripts/ask_corpus.py"
+      - "scripts/site_build.py"
+      - "ledger/docket.json"
+      - ".github/workflows/ask.yml"
+  push:
+    branches: [main]
+    paths:
+      - "workers/ask/**"
+      - "scripts/ask_corpus.py"
+      - "scripts/site_build.py"
+      - "ledger/docket.json"
+      - ".github/workflows/ask.yml"
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # Builds the corpus from the live ledger and proves the allow-list
+      # covers its own source. An allow-list that did not would refuse true
+      # answers, which reads to a visitor as the record being wrong.
+      - name: The corpus covers what it authorises
+        run: python3 scripts/ask_corpus.py --self-test
+
+      # Every control gets a red case. The half that matters most is the set
+      # of nine sentences that must NOT trip the no-verdict guard: a guard
+      # that blocks its own correct refusal teaches the model to answer
+      # instead, which is the exact outcome the rule exists to prevent.
+      - name: The answer checks hold, and can still go red
+        run: node workers/ask/test.mjs
+
+      # The corpus ships as part of the site, so a builder change that breaks
+      # the page build has to fail here rather than at deploy.
+      - name: The site still builds with the corpus in it
+        run: |
+          pip install --quiet Pillow
+          python3 scripts/site_build.py --date "$(TZ=America/Anchorage date +%F)" --out /tmp/site
+          test -s /tmp/site/ask-corpus.json
+          echo "corpus published at $(wc -c < /tmp/site/ask-corpus.json) bytes"
