@@ -1546,6 +1546,83 @@
           "note": "Tracked after a reader asked for the carbon capture approval process. The authority comes from two acts of the legislature, chapter 2 of the 2023 session laws directing the commission to seek this authority and chapter 23 of the 2024 session laws establishing the state carbon storage program. The commission held a public meeting on adopting its regulations on March 3rd, 2026 and a hearing on the application itself on May 14th, 2026, with comment closing at the end of that hearing. The commission has said it aims to complete the process in about two years, which other states' experience suggests is optimistic. This matters to the AI build out because the coal plant proposed in the Susitna watershed, tracked separately here, plans to inject its carbon dioxide into a depleted Cook Inlet gas reservoir, and these are the permits that would govern it."
         }
       ]
+    },
+    {
+      "id": "kpbsd-ai-policy-package",
+      "title": "The Kenai Peninsula school district's AI rulebook",
+      "kind": "other",
+      "status": "pending-decision",
+      "decider": "Kenai Peninsula Borough School District Board of Education",
+      "public_access": "indirect",
+      "access_note": "An elected school board decides, and its regular meetings carry a public comment period. There is no formal comment window on these documents and no published date for a final vote, so an Alaskan reaches this one through a board member or from the podium at a meeting.",
+      "summary": "The Kenai Peninsula Borough School District is writing the rules for artificial intelligence in its 39 schools while the school year starts. Its Policy Review Committee took up AR 5131.9 Academic Honesty, a new administrative regulation the district says was brought forward in relation to the inclusion of AI, on August 3, 2026, with two competing drafts posted, one from Administration and one from board member Mica VanBuskirk. That same evening the full board took first readings on three more documents the district describes as revised for AI-related policy shifts, AR 5125 Student Records, BP 1114 Communication Using Electronic Media and BP 5131.9 Academic Honesty, plus AR 6161.4 Acceptable Use. Nothing in the package is adopted. The district told KBBI in July that it has spent 8,300 dollars to date on a three year MagicSchool subscription for students and staff, so the classroom AI tool was bought before the rulebook was finished. Upstream sits Alaska's Strategic Framework, Artificial Intelligence for K-12, issued by the Department of Education and Early Development, which means what Kenai adopts previews what other Alaska districts face.",
+      "key_dates": [
+        {
+          "date": "2026-07-06",
+          "label": "AR 5131.9 first presented to the Policy Review Committee and postponed",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-03",
+          "label": "Committee takes up AR 5131.9 with two competing drafts, and the board takes first readings on four more documents that evening",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-19",
+          "label": "First student day of the 2026-27 year districtwide",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-14",
+          "label": "Next regular board meeting",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Soldotna, Kenai Peninsula Borough",
+        "lon": -151.0583,
+        "lat": 60.4877
+      },
+      "sources": [
+        {
+          "url": "https://egov.kpbsd.org/agenda/666",
+          "outlet": "KPBSD E-Governance",
+          "date": "2026-08-03"
+        },
+        {
+          "url": "https://egov.kpbsd.org/agenda/666?item=10054",
+          "outlet": "KPBSD E-Governance",
+          "date": "2026-08-03"
+        },
+        {
+          "url": "https://egov.kpbsd.org/agenda/667",
+          "outlet": "KPBSD E-Governance",
+          "date": "2026-08-03"
+        },
+        {
+          "url": "https://education.alaska.gov/artificial-intelligence",
+          "outlet": "Alaska Department of Education and Early Development",
+          "date": "2026-08-09"
+        },
+        {
+          "url": "https://www.kbbi.org/2026-07-08/proposed-school-district-ai-policies-target-academic-honesty-student-privacy",
+          "outlet": "KBBI AM 890",
+          "date": "2026-07-08"
+        },
+        {
+          "url": "https://www.kdll.org/local-news/2026-08-03/school-board-considers-classroom-screen-time-limits",
+          "outlet": "KDLL 91.9 FM",
+          "date": "2026-08-03"
+        }
+      ],
+      "first_seen": "2026-08-09",
+      "last_updated": "2026-08-09",
+      "history": [
+        {
+          "date": "2026-08-09",
+          "note": "Tracked. Verified against the district's own agendas and the posted policy drafts. AR 5131.9 sits under Policy Review-Ongoing on the August 3rd committee agenda after being postponed on July 6th, and two versions are attached, one from Administration and one from board member VanBuskirk. The Administration draft makes misuse of AI tools a violation of academic honesty subject to discipline under BP 5144. A separate pair, BP 6161.5 and AR 6161.5 on high-quality instruction and purposeful use of technology, came to the same meeting as new business and caps routine instructional technology at 15 minutes a day in kindergarten and first grade, rising to 90 in fourth and fifth, while stating that routine daily technology limits are not established for secondary schools. Those two documents never mention artificial intelligence. No committee minutes for August 3rd are posted, so no outcome is recorded here."
+        }
+      ]
     }
   ]
 }
