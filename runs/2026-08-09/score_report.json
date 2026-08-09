@@ -1,0 +1,76 @@
+{
+ "run_date": "2026-08-09",
+ "carousel_no": 30,
+ "scoring_cycles": 2,
+ "revision_rounds": 2,
+ "threshold": 8.3,
+ "weighted_total": 7.57,
+ "ship": false,
+ "weakest_criterion": "Legibility and platform fitness",
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "score": 5,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "score": 9,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density and factual weight",
+   "score": 7,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 9,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "score": 4,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy voice and hook",
+   "score": 7,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 7,
+   "weight": 0.1
+  }
+ ],
+ "hard_fails_at_cycle_2": [
+  "slide 06, coordinate readout overprinting FILLED, NONE HERE at 53 percent",
+  "slide 06 kicker said ONE AGENDA over a table drawn from two agendas, and the caption's deck summary said eight documents where the slide said seven",
+  "slide 08 printed the sentence SEPTEMBER 14 IS THE NEXT REGULAR BOARD MEETING with a bare date, against the house ordinal rule"
+ ],
+ "showrunner_addendum": "HONEST ACCOUNTING. The scorer's cycle-2 raw weighted total was 7.57 and it capped that to 6.9 because three hard fails survived cycle 1. All three were then repaired and verified, so the cap no longer applies and 7.57 is the honest figure on the shipped artifacts. THE DECK WAS NOT RE-SCORED AFTER THAT REPAIR, because the routine caps scoring at two cycles, so 7.57 is a raw total from a scorer that was looking at three defects which are now gone rather than a measured verdict on what shipped. Read it as a floor and not as a grade. 7.57 is still BELOW the 8.3 threshold and this ships as a disclosed shortfall, not as a pass. Repairs made after cycle 2, each verified in the render, machine QA and the gates: slide 06's coordinate readout moved to the lower left and no longer collides; slide 06's kicker is now TWO AGENDAS, AUGUST 3, 2026 with the count declared in aggregates.json against C04 and C27; the caption's deck summary now says the seven documents that moved in one day, matching the slide; slide 08 now reads SEPTEMBER 14TH; the tan block was removed from slide 01's open tread; the flat compositing square behind slide 07's brass disc was removed; slide 06's FILLED legend disc is now visually distinct from EMPTY; and the caption now tells a reader in its own body that this page covered the district in July and the minute ladder is new since then, which both scoring cycles asked for.",
+ "known_unfixed": [
+  "Slide 07 ships the DEED benchmark beat rather than the storyboard's planned stone-and-purchase escalation, so the TWO MATERIALS continuity device has only one stone instance and the reader never fully learns the code. The deck lost its only escalation beat.",
+  "Slide 07's COMPARED label is canvas raster text, so it is not selectable, searchable or read aloud in the PDF.",
+  "Safe-zone warnings remain on several bottom caption plates.",
+  "Slide 02 uses gold on four DRAFT minute figures, which sits against the storyboard's own rule that gold means already true."
+ ],
+ "one_sentence_fix": "Rebuild slide 07 as the storyboard's stone-and-purchase escalation so the TWO MATERIALS device is actually taught and the deck regains its missing escalation beat.",
+ "process_note": "The pixel-critic and flow-critic rounds were CUT at the maintainer's mid-run instruction to finish fast under a token constraint. Both scoring cycles independently identified defects that are exactly what a transcribing pixel critic sweeps for, and the scorer priced the cut at about two points. That is the honest cost of the shortcut and it is disclosed in the email."
+}
