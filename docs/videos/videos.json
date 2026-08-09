@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-08-09",
+      "date": "2026-08-09",
+      "title": "The Method, Not The Metal",
+      "caption": "Alaska just won a rare earth award that contains no rare earths. On August 5th NSF obligated $5,998,412 across three linked awards, and most of the described work is software, not biology.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster_thumb.jpg"
+    },
+    {
       "id": "2026-08-08-not-in-the-buying",
       "date": "2026-08-08",
       "title": "Not In The Buying",
