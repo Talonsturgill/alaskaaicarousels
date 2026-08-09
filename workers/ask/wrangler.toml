@@ -1,0 +1,19 @@
+name = "alaskaai-ask"
+main = "worker.js"
+compatibility_date = "2026-08-08"
+
+# No KV, no D1, no Durable Objects, no Vectorize. This endpoint holds one
+# secret and calls one API; everything it needs to remember for a day lives in
+# the built-in Cache API, which is part of the runtime rather than a service
+# that can be down. Adding a binding here would add something to go wrong.
+
+[observability]
+enabled = true
+
+# Secrets are set with `wrangler secret put`, never in this file:
+#   ANTHROPIC_API_KEY   required. See README.md for where to get one.
+#   TURNSTILE_SECRET    optional but strongly recommended. Without it the
+#                       endpoint answers anyone who can send a POST, and every
+#                       answer costs money. The worker skips verification when
+#                       it is unset rather than failing closed, so a deploy
+#                       without it works and is simply unprotected.
