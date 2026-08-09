@@ -3087,3 +3087,65 @@ PARKED, from the frontier scan (focus: LinkedIn platform, the slot the
 - Byproduct, fixed in passing: CAROUSEL_CRAFT.md's "Why this format" paragraph
   contained a stray Russian word ("Каждый swipe = dwell"). Every run reads that
   file at Phase 1. Now "Every swipe = dwell".
+
+## 2026-08-09 (Phase 1 craft refresh, run No.30)
+
+- BENCHMARK REFRESH, and the useful part is the SPREAD rather than the median.
+  The Oktopost LinkedIn Benchmark dated March 2026 (n = 1,000+ B2B company
+  pages) puts the median B2B engagement rate at 5.72 percent on a median 826
+  impressions and 51 engagements per post, with the top decile of pages at
+  22.45 percent. A four-times gap between the median page and the top tenth is
+  the number that matters here, because it says format alone is not what
+  separates them. CAROUSEL_CRAFT's 7.00 percent Socialinsider figure is a
+  FORMAT average across all posters; 5.72 is a POSTER median for B2B pages.
+  They are not in conflict and should not be averaged together.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- POSSIBLY LOAD-BEARING FOR THIS PAGE, parked for the maintainer rather than
+  acted on. The Metricool 2026 study (n = 673,658 posts) reports personal
+  profile carousels seeing 63 percent higher engagement than company page
+  carousels. Alaska.Ai's decks are drafted without an opinion about which
+  surface posts them, and this routine has no way to know which one the
+  maintainer uses. If these are going out from a company page, that is the
+  single largest lever in any 2026 dataset and it costs nothing to test.
+  Recording it here rather than in the email because it is a distribution
+  decision, not a run finding.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- Slide-count guidance in the newer secondary sources has WIDENED to 5 to 15,
+  which is looser than CAROUSEL_CRAFT's 8 to 10 and is NOT a reason to loosen
+  ours. The house band comes from completion data, and a wider band from a
+  practitioner blog is not evidence that completion improved. No change.
+- Composition, for the standing top-loading defect: the design literature is
+  consistent that bottom-heavy layouts read as grounded and stable while
+  top-loaded ones read as unresolved, and it treats the lower third as a
+  PLACEMENT ZONE for a load-bearing element rather than as leftover space.
+  That is the vocabulary this run's dossier field 4a needed. Nothing here is
+  measured, so it stays a craft note and not a rule.
+  https://madegooddesigns.com/poster-design-principles/
+
+## 2026-08-09 (retro, run No.30)
+
+- **A GATE YOU CAN ANSWER ABOUT THE WRONG QUESTION IS NOT A GATE.** The Phase 4
+  dedupe pre-flight ran against a candidate this run then discarded, and was
+  never re-run when the story changed. The stale PASS sat in the record for six
+  phases describing a story No.30 was not making. The real collision, No.12
+  from twenty days earlier, was caught by a CAPTION DIRECTOR reading
+  ledger/captions.json, not by the gate built to catch it. Fixed the same run
+  with `dedupe_check.py --run-dir`, which derives the fingerprint from the
+  shipped artifacts. **Re-run the dedupe gate whenever the candidate changes,
+  and prefer --run-dir over hand-typed strings.**
+- The caption room is a second pair of eyes on FACTS, not only on prose. One
+  director caught the dedupe collision and the other caught a tense error, that
+  the fact-checker had written "teachers returned on August 12th" when August
+  12th is three days in the future. Neither is a caption problem. Brief the room
+  with the claims file and let it read.
+- **A high-key deck is not a dark deck with the values inverted.** akthree GPU
+  PBR was built and measured twice on the hero and both times the ACES curve
+  plus the ambient needed to keep a bone wall off grey flattened four clay
+  treads into one white blob. akrelief's Sobel-normal Lambert shading gave the
+  value range back because the ramp endpoints are under the slide's control.
+  Rung 2 of the rendered ladder was the right rung here, and the dossier says so.
+  If a later run wants GPU on a light ground, the thing to fix first is the
+  house akpost grade, which is written for dark arctic.
+- Bumping every mono string to the 24px floor in one pass re-wrapped nine
+  slides' bottom bands and produced eleven new collisions. Type floors and
+  layout are one problem, not two. Set the floor BEFORE laying out the band.
