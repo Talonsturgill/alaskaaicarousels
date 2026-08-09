@@ -1016,6 +1016,11 @@ border-radius:14px;padding:18px 20px;font-size:15.5px;line-height:1.62;}
 .askout a.cite{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.3);}
 .asknote{font-size:12.5px;color:var(--mute);margin-top:12px;
 font-family:JBMono,ui-monospace,monospace;letter-spacing:.04em;}
+/* The deep lane reads as a link rather than a second button, because it is the
+   exception and a page with two equal buttons makes a reader choose before
+   they know the difference. */
+.asklink{background:none;border:0;padding:0;font:inherit;color:var(--blue);
+cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
 /* A withheld answer is styled as a stop, not as an error. The reader is being
    told the record could not back the next sentence, which is the system
    working. */
@@ -1149,6 +1154,68 @@ ASK_JS = r"""
     });
   }
 
+  // The deep lane. A different promise from the fast one, so it says so: the
+  // reader is choosing to wait minutes for an answer read out of the whole
+  // repository rather than seconds for one read out of the published record.
+  function research(question){
+    if (busy || !question.trim()) return;
+    busy = true; go.disabled = true;
+    out.hidden = false;
+    out.textContent = '';
+    var para = document.createElement('p');
+    para.textContent = 'Reading the full record. This takes a few minutes, and the answer appears here when it lands.';
+    out.appendChild(para);
+    note.textContent = 'RESEARCHING';
+
+    var token = '';
+    if (TS_SITEKEY && window.turnstile) { token = turnstile.getResponse() || ''; }
+
+    fetch(ENDPOINT + '/deep', {
+      method: 'POST', headers: {'content-type': 'application/json'},
+      body: JSON.stringify({question: question, turnstile_token: token || null})
+    }).then(function(r){
+      return r.json().then(function(d){ if (!r.ok) throw new Error(d.error || 'that did not work'); return d; });
+    }).then(function(d){
+      var tries = 0;
+      // Every four seconds for twenty minutes, matching the worker's own
+      // expiry. A run that has not delivered by then is not going to.
+      (function poll(){
+        if (++tries > 300) { note.textContent = 'THE RUN DID NOT FINISH'; reset(); return; }
+        fetch(ENDPOINT + '/result?id=' + encodeURIComponent(d.id))
+          .then(function(r){ return r.json(); })
+          .then(function(s){
+            if (s.state === 'running') { setTimeout(poll, 4000); return; }
+            out.textContent = '';
+            if (s.state === 'done' && s.text) {
+              var p = document.createElement('p');
+              render(p, s.text);
+              out.appendChild(p);
+              if (s.withheld) {
+                var stop = document.createElement('div');
+                stop.className = 'askstop';
+                stop.textContent = 'The rest of this answer was withheld because it could not be checked against the record.';
+                out.appendChild(stop);
+              }
+              note.textContent = 'ANSWERED FROM THE FULL RECORD';
+            } else {
+              note.textContent = s.error || 'the research run did not return an answer';
+            }
+            if (TS_SITEKEY && window.turnstile) { turnstile.reset(); }
+            reset();
+          }).catch(function(){ setTimeout(poll, 4000); });
+      })();
+    }).catch(function(e){
+      note.textContent = (e && e.message) || 'that did not work';
+      if (TS_SITEKEY && window.turnstile) { turnstile.reset(); }
+      reset();
+    });
+  }
+
+  var deep = document.getElementById('askdeep');
+  if (deep) {
+    deep.addEventListener('click', function(){ armTurnstile(); research(input.value); });
+  }
+
   form.addEventListener('submit', function(e){ e.preventDefault(); ask(input.value); });
   Array.prototype.forEach.call(document.querySelectorAll('.askchips button'), function(b){
     b.addEventListener('click', function(){
@@ -1180,6 +1247,9 @@ def ask_html():
   <button type="submit" class="go" id="askgo">ASK</button>
 </form>
 <div class="askchips">{chips}</div>
+<p class="asknote"><button type="button" class="asklink" id="askdeep">Or search the
+full archive instead</button>, which reads every ledger and every published article
+rather than the summary record. It takes a few minutes.</p>
 <div id="asktsp"></div>
 <div class="askout" id="askout" hidden></div>
 <p class="asknote" id="asknote"></p>

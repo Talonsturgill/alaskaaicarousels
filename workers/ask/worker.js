@@ -25,6 +25,7 @@
 // there, visibly, rather than being quietly repaired.
 
 import { createReleaser } from "./stream.js";
+import * as deep from "./deep.js";
 
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const API = "https://api.anthropic.com/v1/messages";
@@ -117,7 +118,29 @@ async function loadCorpus() {
 export default {
   async fetch(request, env, ctx) {
     if (request.method === "OPTIONS") return new Response(null, { headers: CORS });
+
+    const path = new URL(request.url).pathname.replace(/\/+$/, "");
+
+    // The deep lane. Polling is a GET because it happens every few seconds for
+    // minutes and has no body; everything else is a POST.
+    if (path === "/result") {
+      const id = new URL(request.url).searchParams.get("id") || "";
+      const out = await deep.result(id, env);
+      return json(out.body, out.status);
+    }
+
     if (request.method !== "POST") return json({ error: "POST only" }, 405);
+
+    // The routine delivering a finished answer. Not from a browser, so it is
+    // outside the Turnstile path and behind a shared secret instead.
+    if (path === "/deliver") {
+      let body;
+      try { body = await request.json(); } catch { return json({ error: "invalid JSON" }, 400); }
+      let corpus;
+      try { corpus = await loadCorpus(); } catch { return json({ error: "corpus unreachable" }, 502); }
+      const out = await deep.deliver(body, env, corpus);
+      return json(out.body, out.status);
+    }
 
     let payload;
     try {
@@ -135,6 +158,22 @@ export default {
     const ip = request.headers.get("cf-connecting-ip") || "";
     const human = await verifyTurnstile(payload.turnstile_token, env.TURNSTILE_SECRET, ip);
     if (!human) return json({ error: "finish the human check first" }, 403);
+
+    // Starting a research run spends a slot from the account's daily routine
+    // cap and draws on the same subscription usage the carousel spends, so it
+    // sits behind the same human check as the fast lane and returns an id the
+    // page polls rather than a stream.
+    if (path === "/deep") {
+      if (!env.ROUTINE_TOKEN || !env.ROUTINE_TRIGGER_ID || !env.ASK_KV) {
+        return json({ error: "research is not configured" }, 503);
+      }
+      try {
+        return json({ id: await deep.start(question, env) });
+      } catch (e) {
+        console.log("fire failed", String(e));
+        return json({ error: "could not start the research run" }, 502);
+      }
+    }
 
     if (!env.ANTHROPIC_API_KEY) return json({ error: "not configured" }, 503);
 

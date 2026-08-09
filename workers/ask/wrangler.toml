@@ -2,18 +2,42 @@ name = "alaskaai-ask"
 main = "worker.js"
 compatibility_date = "2026-08-08"
 
-# No KV, no D1, no Durable Objects, no Vectorize. This endpoint holds one
-# secret and calls one API; everything it needs to remember for a day lives in
-# the built-in Cache API, which is part of the runtime rather than a service
-# that can be down. Adding a binding here would add something to go wrong.
+# No D1, no Durable Objects, no Vectorize. The fast lane stores nothing at all;
+# its repeat answers live in the built-in Cache API, which is part of the
+# runtime rather than a service that can be down.
+#
+# KV is here only for the deep lane, and only because /fire returns a session
+# id rather than an answer, so a finished routine run has to put its answer
+# somewhere the page can poll for it. The Cache API cannot do that job: a write
+# in one Cloudflare datacentre is not readable from another, so the delivery
+# and the poll could land in different places and the answer would be lost.
+# KV is part of the Workers platform and does not pause when idle.
+#
+# Create it once, then paste the id below:
+#   wrangler kv namespace create ASK_KV
+[[kv_namespaces]]
+binding = "ASK_KV"
+id = "REPLACE_WITH_THE_ID_WRANGLER_PRINTS"
 
 [observability]
 enabled = true
 
 # Secrets are set with `wrangler secret put`, never in this file:
-#   ANTHROPIC_API_KEY   required. See README.md for where to get one.
-#   TURNSTILE_SECRET    optional but strongly recommended. Without it the
-#                       endpoint answers anyone who can send a POST, and every
-#                       answer costs money. The worker skips verification when
-#                       it is unset rather than failing closed, so a deploy
-#                       without it works and is simply unprotected.
+#   ANTHROPIC_API_KEY    fast lane only. A paid Console key. Omit it and the
+#                        fast lane returns 503 while the deep lane still works.
+#   TURNSTILE_SECRET     optional but strongly recommended. Without it the
+#                        endpoint answers anyone who can send a POST, and every
+#                        answer costs either money or a routine run. The worker
+#                        skips verification when it is unset rather than
+#                        failing closed, so a deploy without it works and is
+#                        simply unprotected.
+#   ROUTINE_TOKEN        deep lane. The sk-ant-oat01- bearer generated on the
+#                        routine's API trigger. Draws on the claude.ai
+#                        subscription, not on Console credit.
+#   ROUTINE_TRIGGER_ID   deep lane. The trig_... id from the same modal.
+#   DELIVER_SECRET       deep lane. Any long random string. The routine reads
+#                        the same value from its cloud environment's variables
+#                        and sends it back when it delivers an answer. Without
+#                        it /deliver refuses everything, because anyone who
+#                        guessed a request id could otherwise publish text
+#                        under the site's name.

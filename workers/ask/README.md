@@ -1,7 +1,22 @@
 # The ask box
 
-Answers questions about the docket from the published record. One Cloudflare
-Worker, one API key, no database.
+Two lanes behind one box on the docket page.
+
+| Lane | Route | Answers from | Speed | Billed to |
+|---|---|---|---|---|
+| **fast** | `POST /` | `ask-corpus.json`, the published record | about a second | a paid Console key |
+| **deep** | `POST /deep` then poll `GET /result` | the whole repository, via a fired routine | minutes | the claude.ai subscription |
+
+The fast lane is the default and the box's main path. The deep lane is a link
+under it, for a question the published record cannot answer.
+
+**The two lanes are independent.** Deploy either without the other. With no
+`ANTHROPIC_API_KEY` the fast lane returns 503 and the deep lane still works,
+which is the configuration to use if you want this to cost nothing beyond the
+subscription you already pay for.
+
+Answers from both lanes go through the same checks before they are displayed.
+A slower answer is not a more trusted one.
 
 ```
 docs/ask-corpus.json      the whole public record, built by scripts/ask_corpus.py
@@ -44,6 +59,21 @@ credit and its login will not authenticate this endpoint.
 If the key ever leaks, revoke it on that same page. Nothing else in this repo
 uses it, so revoking it stops the ask box and breaks nothing else.
 
+## The deep lane needs no key at all
+
+The routine trigger's token is a `sk-ant-oat01-` bearer generated in one click
+at [claude.ai/code/routines](https://claude.ai/code/routines), and it draws on
+the claude.ai subscription rather than on Console credit. No card, no separate
+account. What it costs instead is time (a fired routine starts a whole Claude
+Code session, so minutes) and a slot from the account's daily routine run cap,
+which is shared with the daily carousel.
+
+Setting it up is `prompts/ASK_ROUTINE.md`, which carries the prompt to paste
+and, more importantly, the environment to put it in. Read the warning at the
+top of that file before you create the routine: it is the only thing in this
+project that runs on text a stranger typed, and the default is that every
+connector on your account is attached to it.
+
 ## Deploy
 
 ```bash
@@ -51,8 +81,18 @@ npm install -g wrangler          # once
 wrangler login                   # opens a browser, same Cloudflare account as Turnstile
 
 cd workers/ask
-wrangler secret put ANTHROPIC_API_KEY     # paste the sk-ant-api03-... key
+wrangler kv namespace create ASK_KV       # paste the printed id into wrangler.toml
+
 wrangler secret put TURNSTILE_SECRET      # from the Turnstile widget's settings
+
+# deep lane
+wrangler secret put ROUTINE_TOKEN         # sk-ant-oat01-... from the API trigger
+wrangler secret put ROUTINE_TRIGGER_ID    # trig_... from the same modal
+wrangler secret put DELIVER_SECRET        # any long random string; the routine gets it too
+
+# fast lane, optional
+wrangler secret put ANTHROPIC_API_KEY     # sk-ant-api03-... from platform.claude.com
+
 wrangler deploy
 ```
 
@@ -109,8 +149,10 @@ rule in the Cloudflare dashboard against the worker's route.
 ## Tests
 
 ```bash
-node test.mjs                                  # the checks and the release gate
+node test.mjs                                     # the checks and the release gate
+node test-deep.mjs                                # delivery auth and the poll state machine
 python3 ../../scripts/ask_corpus.py --self-test   # the corpus and its allow-list
 ```
 
-Both run in CI on any change under `workers/ask/` or to the corpus builder.
+All three run in CI on any change under `workers/ask/`, to the corpus builder,
+or to the routine prompt.
