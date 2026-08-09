@@ -17,6 +17,7 @@ on:
       - "scripts/ask_corpus.py"
       - "scripts/site_build.py"
       - "ledger/docket.json"
+      - "prompts/ASK_ROUTINE.md"
       - ".github/workflows/ask.yml"
   push:
     branches: [main]
@@ -54,6 +55,12 @@ jobs:
       # instead, which is the exact outcome the rule exists to prevent.
       - name: The answer checks hold, and can still go red
         run: node workers/ask/test.mjs
+
+      # The deep lane runs on text a stranger typed, and delivers back into a
+      # page under the site's name. Its authentication and its reuse of the
+      # same checks are the whole of its safety, so both are gated.
+      - name: The deep lane verifies and authenticates what it publishes
+        run: node workers/ask/test-deep.mjs
 
       # The corpus ships as part of the site, so a builder change that breaks
       # the page build has to fail here rather than at deploy.
