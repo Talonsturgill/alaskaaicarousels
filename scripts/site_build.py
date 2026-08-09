@@ -42,6 +42,7 @@ import docket_build as db  # projection, validation, docket components, gates
 import feeds_build as fb   # feeds, plaintext mirrors, llms.txt
 import gaswatch_build as gw  # gas watch series, figures, chart, page components
 import ask_corpus           # the answering corpus behind the docket's ask box
+import ask_answers          # the query index and smart views the page ships with
 
 REPO = Path(__file__).resolve().parents[1]
 RAW = "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main"
@@ -977,287 +978,1522 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
 # form that fails when someone uses it. See workers/ask/README.md.
 ASK_ENDPOINT = ""
 
+# The fast lane needs a paid Console key. Off by default, because the free
+# paths cover the common case and a box that cannot answer without a credit
+# card is not a box this site should ship.
+ASK_FAST_LANE = False
+
 # The same Turnstile widget the scanner uses. A sitekey is per domain and
 # public by design, so one widget covers both forms and there is nothing to
 # keep in sync. The matching secret goes to the worker, not here.
 TS_SITEKEY = "0x4AAAAAAD7e1lYKOUSxa5sV"
 
-# The four questions the record is best at, offered as buttons. Two jobs. They
-# teach a reader in one glance that this answers from a specific record rather
-# than from the whole internet, which is the expectation that decides whether
-# they trust the answer. And because everyone clicks the same four strings,
-# they land on the answer cache and come back instantly and free.
-ASK_SUGGESTIONS = [
-    "What can I still comment on?",
-    "What changed in the last week?",
-    "Which decisions could affect my power bill?",
-    "What is happening on the Kenai Peninsula?",
-]
-
 ASK_CSS = """
-.ask{max-width:760px;margin:38px auto 0;}
-.ask form{display:flex;gap:10px;align-items:stretch;}
-.ask input[type=text]{flex:1;min-width:0;background:var(--panel);color:var(--snow);
-border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:16px;
-font-family:inherit;}
-.ask input[type=text]:focus{outline:2px solid var(--halo);outline-offset:-2px;}
-.ask button.go{background:var(--gold);color:#0b0b0f;border:0;border-radius:12px;
-padding:0 20px;font-weight:700;letter-spacing:.06em;font-size:13px;cursor:pointer;
-font-family:JBMono,ui-monospace,monospace;}
-.ask button.go[disabled]{opacity:.5;cursor:default;}
-.askchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-.askchips button{background:transparent;color:var(--mute);border:1px solid var(--line);
-border-radius:999px;padding:7px 13px;font-size:12.5px;cursor:pointer;font-family:inherit;}
-.askchips button:hover{color:var(--snow);border-color:var(--halo);}
-.askout{margin-top:18px;background:var(--panel);border:1px solid var(--line);
-border-radius:14px;padding:18px 20px;font-size:15.5px;line-height:1.62;}
-.askout[hidden]{display:none;}
-.askout p{margin:0 0 10px;}
-.askout a.cite{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(90,200,240,.3);}
-.asknote{font-size:12.5px;color:var(--mute);margin-top:12px;
-font-family:JBMono,ui-monospace,monospace;letter-spacing:.04em;}
-/* The deep lane reads as a link rather than a second button, because it is the
-   exception and a page with two equal buttons makes a reader choose before
-   they know the difference. */
-.asklink{background:none;border:0;padding:0;font:inherit;color:var(--blue);
-cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
-/* A withheld answer is styled as a stop, not as an error. The reader is being
-   told the record could not back the next sentence, which is the system
-   working. */
-.askstop{border-left:2px solid var(--gold);padding-left:12px;color:var(--mute);
-font-size:14px;margin-top:12px;}
-.askcursor{display:inline-block;width:7px;height:16px;background:var(--gold);
-vertical-align:-2px;animation:askblink 1s steps(2) infinite;}
-@keyframes askblink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
-@media (max-width:560px){.ask form{flex-direction:column;}
-.ask button.go{padding:13px 20px;}}
+/* THE ASK BOX.
+   Twenty tracked decisions live in the page as structured data, so a question
+   is answered in the same frame the key was pressed. No request, no spinner,
+   no model. That is what the design has to communicate, because a reader who
+   thinks something is being sent somewhere waits for it. Hence the command
+   palette shape, the count that moves while you type, the meter that narrows
+   under the field, and an answer that is never preceded by a loading state. */
+.qbox{max-width:820px;margin:48px auto 0;position:relative;}
+
+/* The shell. A ring of light that only exists while the box has focus, so
+   the resting state stays quiet and the active state is unmistakable. */
+@property --qa{syntax:"<angle>";inherits:false;initial-value:0deg;}
+.qshell{position:relative;border-radius:20px;isolation:isolate;
+background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.014));
+border:1px solid var(--line);
+box-shadow:0 24px 60px -34px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.05);
+transition:border-color .24s ease, box-shadow .24s ease, transform .24s ease;}
+.qshell::before{content:"";position:absolute;inset:-1px;border-radius:21px;padding:1px;
+background:conic-gradient(from var(--qa,0deg),transparent 0 52%,
+  rgba(255,199,44,.9) 68%,rgba(90,200,240,.75) 80%,transparent 90%);
+-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+mask-composite:exclude;opacity:0;transition:opacity .32s ease;pointer-events:none;}
+.qbox.on .qshell{border-color:rgba(255,199,44,.3);transform:translateY(-1px);
+box-shadow:0 32px 74px -34px rgba(0,0,0,.95),
+            0 0 0 5px rgba(255,199,44,.055),
+            inset 0 1px 0 rgba(255,255,255,.08);}
+.qbox.on .qshell::before{opacity:1;animation:qspin 4.6s linear infinite;}
+@keyframes qspin{to{--qa:360deg;}}
+
+.qfield{display:flex;align-items:center;gap:13px;padding:18px 19px;}
+.qicon{width:19px;height:19px;flex:none;color:var(--mute);transition:color .24s ease;}
+.qbox.on .qicon{color:var(--gold);}
+/* The field and its ghost sit in one box with identical metrics, so the
+   completion always starts exactly where the typing stopped. Nothing is
+   measured, which is why it cannot drift. */
+.qinput{position:relative;flex:1;min-width:0;display:flex;}
+.qghost{position:absolute;inset:0;display:flex;align-items:center;white-space:pre;
+overflow:hidden;font-family:inherit;font-size:17px;line-height:1.4;
+letter-spacing:-.01em;pointer-events:none;user-select:none;}
+#qgt{color:transparent;}
+#qgr{color:var(--mute);opacity:.5;}
+#qq{position:relative;flex:1;min-width:0;background:none;border:0;outline:none;
+color:var(--snow);font-size:17px;line-height:1.4;font-family:inherit;letter-spacing:-.01em;}
+#qq::placeholder{color:var(--mute);opacity:.72;}
+.qkbd{flex:none;font-family:JBMono,ui-monospace,monospace;font-size:11px;
+color:var(--mute);border:1px solid var(--line);border-radius:7px;
+padding:4px 7px;letter-spacing:.06em;background:rgba(0,0,0,.25);}
+@media (hover:none){.qkbd{display:none;}}
+
+/* The live readout. It moves on every keystroke, which is the whole point.
+   The reader watches twenty become three and understands that nothing was
+   sent anywhere. */
+.qcount{position:absolute;right:2px;top:-27px;font-family:JBMono,ui-monospace,monospace;
+font-size:11px;letter-spacing:.14em;color:var(--mute);
+opacity:0;transition:opacity .25s ease;}
+.qbox.on .qcount{opacity:1;}
+.qrail{position:absolute;left:14px;right:14px;bottom:0;height:1px;overflow:hidden;
+opacity:0;transition:opacity .3s ease;}
+.qbox.on .qrail{opacity:.7;}
+.qmeter{height:100%;transform-origin:0 50%;transform:scaleX(1);
+background:linear-gradient(90deg,var(--gold),rgba(255,199,44,.35) 55%,transparent);
+transition:transform .4s cubic-bezier(.22,1,.36,1);}
+
+/* THE ANSWER. The reason this is not a search box. A question about a field
+   gets that field, in a block that says which field it is, so nothing has to
+   be glued grammatically onto the record's own prose and nothing can read as
+   a claim the record does not make. */
+.qans{position:relative;border-radius:16px;padding:21px 23px 19px;margin-bottom:13px;
+background:linear-gradient(158deg,rgba(255,199,44,.055),rgba(255,255,255,.012) 58%);
+border:1px solid rgba(255,199,44,.17);overflow:hidden;
+animation:qrise .36s cubic-bezier(.22,1,.36,1) both;}
+.qans::after{content:"";position:absolute;inset:0;pointer-events:none;
+background:radial-gradient(700px 190px at 6% -50%,rgba(255,199,44,.13),transparent 70%);}
+.qkick{position:relative;z-index:1;display:flex;align-items:center;gap:10px;
+font-family:JBMono,ui-monospace,monospace;font-size:10.5px;letter-spacing:.17em;
+color:var(--gold);margin-bottom:11px;}
+.qkick::after{content:"";flex:1;height:1px;
+background:linear-gradient(90deg,rgba(255,199,44,.34),transparent);}
+.qbig{position:relative;z-index:1;font-family:Fraunces,serif;font-weight:520;
+font-size:clamp(19px,2.3vw,25px);line-height:1.4;color:var(--snow);
+letter-spacing:-.012em;margin:0;}
+.qsub{position:relative;z-index:1;font-size:13.5px;color:var(--mute);
+line-height:1.6;margin:11px 0 0;}
+.qfix{position:relative;z-index:1;font-family:JBMono,ui-monospace,monospace;
+font-size:10.5px;letter-spacing:.05em;color:var(--mute);margin:9px 0 0;}
+.qfix b{color:var(--body);font-weight:400;}
+
+/* Follow up questions, pulled from the same catalogue that completes the
+   field. They are what the record can also say about the thing just asked
+   about, so they teach the shape of it rather than advertising a feature. */
+.qalso{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 13px;}
+.qalsol,.qtryl{font-family:JBMono,ui-monospace,monospace;font-size:10px;
+letter-spacing:.17em;color:var(--mute);opacity:.65;}
+.qchip,.qtry{background:rgba(255,255,255,.028);border:1px solid var(--line);
+color:var(--body);border-radius:999px;padding:6px 13px;font-family:inherit;
+font-size:12.5px;line-height:1.35;cursor:pointer;text-align:left;
+max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+transition:border-color .18s ease,background .18s ease,color .18s ease;}
+.qchip:hover,.qtry:hover,.qchip:focus-visible,.qtry:focus-visible{
+border-color:rgba(255,199,44,.42);color:var(--snow);
+background:rgba(255,199,44,.055);outline:none;}
+
+/* Smart views. Shown when nothing is typed, so the empty state teaches what
+   the record can answer instead of sitting there blank. Each is a saved
+   query and clicking one types it, which is what makes clearing the field
+   the way back. */
+.qviews{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;}
+/* display:grid beats the [hidden] attribute's default display:none, so
+   hiding these from script silently did nothing without this line. */
+.qviews[hidden]{display:none;}
+.qview{position:relative;text-align:left;background:var(--panel);
+border:1px solid var(--line);border-radius:14px;padding:15px 16px;cursor:pointer;
+font-family:inherit;overflow:hidden;
+transition:border-color .2s ease,background .2s ease,transform .2s ease;}
+.qview::after{content:"";position:absolute;right:-40px;bottom:-70px;
+width:170px;height:170px;pointer-events:none;opacity:0;transition:opacity .26s ease;
+background:radial-gradient(circle,rgba(255,199,44,.15),transparent 66%);}
+.qview:hover,.qview:focus-visible{border-color:rgba(255,199,44,.4);
+background:rgba(255,199,44,.035);transform:translateY(-2px);outline:none;}
+.qview:hover::after,.qview:focus-visible::after{opacity:1;}
+.qview b{position:relative;display:block;color:var(--snow);font-size:14.5px;
+font-weight:600;margin-bottom:5px;letter-spacing:-.01em;}
+.qview span{position:relative;display:block;color:var(--mute);font-size:12px;
+font-family:JBMono,ui-monospace,monospace;letter-spacing:.05em;}
+.qtries{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:12px;}
+.qtries[hidden]{display:none;}
+@media (max-width:620px){.qviews{grid-template-columns:1fr;}}
+
+/* Results. They stagger in top down, because motion here is structure. It
+   tells the eye the order the record ranked them in. */
+.qpanel{margin-top:14px;}
+.qpanel[hidden]{display:none;}
+.qhit{display:block;position:relative;text-decoration:none;
+background:var(--panel);border:1px solid var(--line);border-radius:14px;
+padding:15px 16px 14px 52px;margin-bottom:8px;overflow:hidden;
+/* The stagger rides an inline custom property set while the row's markup is
+   built, so it tracks the real result count without a second pass over the
+   list writing a style on to every card after it lands. */
+animation:qin .3s cubic-bezier(.22,1,.36,1) both;
+animation-delay:calc(var(--qi,0) * 24ms);
+transition:border-color .2s ease,background .2s ease,transform .2s ease;}
+.qrank{position:absolute;left:17px;top:16px;font-family:JBMono,ui-monospace,monospace;
+font-size:11px;letter-spacing:.07em;color:var(--mute);opacity:.45;}
+/* The lighting follows the pointer. Two custom properties written on move, so
+   it costs a style recalculation and never a layout. */
+.qglow{position:absolute;inset:0;pointer-events:none;opacity:0;
+transition:opacity .26s ease;
+background:radial-gradient(230px 170px at var(--mx,50%) var(--my,50%),
+  rgba(255,199,44,.11),transparent 68%);}
+.qhit::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+background:var(--gold);transform:scaleY(0);transform-origin:50% 0;
+transition:transform .24s cubic-bezier(.22,1,.36,1);}
+.qhit:hover,.qhit.sel{border-color:rgba(255,199,44,.3);
+background:rgba(255,255,255,.03);transform:translateY(-1px);}
+.qhit:hover .qglow,.qhit.sel .qglow{opacity:1;}
+.qhit:hover::before,.qhit.sel::before{transform:scaleY(1);}
+.qhit:focus-visible{outline:2px solid var(--halo);outline-offset:-2px;}
+@keyframes qin{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes qrise{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .qhit,.qans{animation:none;}
+  .qbox.on .qshell::before{animation:none;}
+  .qshell,.qview,.qhit,.qhit::before,.qglow,.qmeter{transition:none;}
+}
+.qtop{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
+.qtitle{flex:1;min-width:0;color:var(--snow);font-size:15.5px;font-weight:600;
+line-height:1.35;letter-spacing:-.01em;}
+.qtitle mark,.qsum mark{background:rgba(255,199,44,.19);color:var(--gold);
+border-radius:3px;padding:0 2px;}
+.qmeta{font-family:JBMono,ui-monospace,monospace;font-size:11px;
+letter-spacing:.07em;color:var(--mute);margin-top:7px;
+display:flex;flex-wrap:wrap;gap:7px;align-items:center;}
+.qmeta i{font-style:normal;opacity:.45;}
+.qpill{flex:none;font-family:JBMono,ui-monospace,monospace;font-size:10px;
+letter-spacing:.11em;padding:3px 8px;border-radius:999px;
+border:1px solid var(--line);color:var(--mute);white-space:nowrap;}
+.qpill.open{color:#0b0b0f;background:var(--gold);border-color:var(--gold);}
+.qpill.soon{color:var(--gold);border-color:rgba(255,199,44,.45);
+background:rgba(255,199,44,.08);}
+.qsum{color:var(--mute);font-size:13.5px;line-height:1.55;margin:0;}
+/* On a phone the pill and the title fight over one line and the title loses.
+   The state of a decision is the smaller fact, so it moves above and the
+   title gets the width. */
+@media (max-width:560px){
+  .qtop{flex-direction:column-reverse;align-items:flex-start;gap:7px;}
+  .qhit{padding:14px 15px 13px 44px;}
+  .qrank{left:14px;}
+}
+.qmore{font-family:JBMono,ui-monospace,monospace;font-size:11px;
+letter-spacing:.08em;color:var(--mute);text-align:center;margin:12px 0 0;}
+
+/* Nothing matched. Offers the archive rather than a dead end. */
+.qnone{background:var(--panel);border:1px dashed var(--line);border-radius:14px;
+padding:20px 18px;text-align:center;}
+.qnone p{margin:0 0 12px;color:var(--mute);font-size:14px;line-height:1.6;}
+.qnone .qtryl{margin:0 0 11px;display:block;}
+.qnonealso{justify-content:center;margin:0;}
+.qdeep{background:none;border:1px solid rgba(90,200,240,.35);color:var(--blue);
+border-radius:999px;padding:9px 17px;font-family:JBMono,ui-monospace,monospace;
+font-size:11.5px;letter-spacing:.09em;cursor:pointer;
+transition:background .18s ease,border-color .18s ease;}
+.qdeep:hover{background:rgba(90,200,240,.09);border-color:rgba(90,200,240,.6);}
+.qdeep[disabled]{opacity:.5;cursor:default;}
+.qout{margin-top:12px;background:var(--panel);border:1px solid var(--line);
+border-radius:13px;padding:16px 18px;font-size:14.5px;line-height:1.62;
+color:var(--snow);text-align:left;}
+.qout[hidden]{display:none;}
+.qout a.cite{color:var(--blue);text-decoration:none;
+border-bottom:1px solid rgba(90,200,240,.3);}
+.qstop{border-left:2px solid var(--gold);padding-left:12px;color:var(--mute);
+font-size:13px;margin-top:10px;}
+.qfoot{font-family:JBMono,ui-monospace,monospace;font-size:11px;
+letter-spacing:.07em;color:var(--mute);margin-top:13px;
+display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.qfoot kbd{border:1px solid var(--line);border-radius:5px;padding:2px 5px;
+background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
 """
 
 ASK_JS = r"""
 (function(){
-  var form = document.getElementById('askform');
-  if (!form) return;
-  var input = document.getElementById('askq');
-  var go = document.getElementById('askgo');
-  var out = document.getElementById('askout');
-  var note = document.getElementById('asknote');
-  var ENDPOINT = form.getAttribute('data-endpoint');
-  var TS_SITEKEY = form.getAttribute('data-sitekey') || '';
-  var tsReady = false, busy = false;
+  var box = document.getElementById('qbox');
+  if (!box) return;
+  var DATA;
+  try { DATA = JSON.parse(document.getElementById('qdata').textContent); }
+  catch (e) { return; }
 
-  // Turnstile is loaded on first contact rather than on page load, so a reader
-  // who never asks anything never fetches it. By the time they finish typing
-  // the widget has almost always settled, so submitting feels like no check
-  // happened at all.
+  var input = document.getElementById('qq');
+  var gTyped = document.getElementById('qgt');
+  var gRest = document.getElementById('qgr');
+  var panel = document.getElementById('qres');
+  var views = document.getElementById('qviews');
+  var tries = document.getElementById('qtries');
+  var count = document.getElementById('qcount');
+  var meter = document.getElementById('qmeter');
+  var ENDPOINT = box.getAttribute('data-endpoint') || '';
+  var TS_SITEKEY = box.getAttribute('data-sitekey') || '';
+
+  var IDX = DATA.index, FAC = DATA.facets, NALL = IDX.length;
+  var byId = {}, bi;
+  for (bi = 0; bi < NALL; bi++) byId[IDX[bi].id] = IDX[bi];
+
+  var sel = -1, shown = [], deepBusy = false, lastAns = null;
+
+  /* =================================================================
+     WORDS
+     ================================================================= */
+
+  function esc(s){ var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+  function rx(s){ return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  // One spelling for anything that arrives from a keyboard. Curly quotes come
+  // from phones, and stripping punctuation is what lets a typed question and
+  // a catalogued one compare as equal.
+  function norm(s){
+    return String(s).toLowerCase()
+      .replace(/[\u2018\u2019]/g, "'")
+      .replace(/[^a-z0-9'\s-]/g, ' ')
+      .replace(/\s+/g, ' ').trim();
+  }
+  function bag(str){
+    var o = {}, a = str.split(' ');
+    for (var i = 0; i < a.length; i++) o[a[i]] = 1;
+    return o;
+  }
+
+  // Words that carry no filter. A question phrased as a question has to rank
+  // the same as the bare keywords inside it, or the polite reader gets worse
+  // answers than the terse one.
+  var STOP = bag("a about all am an and another any anybody anything are as at " +
+    "be been being both but by can cant come could did do does doing done dont " +
+    "each else even ever every everything few for from get give go going got " +
+    "had has have having he her here hers him his how i if in into is it its " +
+    "just know let like made make many may me might more most much must my need " +
+    "no nor not now of off on once one only or other our out over own please " +
+    "put really right said same say see seen shall she should show so some " +
+    "care cares live lives living near nearby around deal stop help worry " +
+    "worried learn find finding looking look mine ours theirs anyone someone " +
+    "someone something still such take tell than that thats the their them then " +
+    "there these they thing things think this those though to too under until " +
+    "happening happen happens going occurring involve involves involving " +
+    "related regarding concerning matter matters stuff everybody nothing " +
+    "decision decisions item items entry entries record records docket " +
+    "up us use used using very want was way we well were what whats when where " +
+    "which while who whom whose why will with within would yeah yes yet you your");
+
+  // What SHAPE of answer is wanted. Read off the whole phrase and not off
+  // tokens, because "how many" and "how do i" share a word and are not the
+  // same question. First rule that matches wins, so the specific ones lead.
+  //
+  // A rule that fires CONSUMES its own words. This is the difference between
+  // a question and a search. "When is the next deadline" is not a request for
+  // records containing the word deadline, it is a request for dates, and
+  // leaving those words in the keyword pool made it match the one summary
+  // that happens to say deadline and miss the other eight dates entirely.
+  var QRULES = [
+    ['cnt', /\bhow (?:many|much)\b|\bcount\b|\bhow big\b|\bhow long a list\b/],
+    ['since', /\bwhen did\b[^?]*\b(?:start|started|begin|began)\b|\bsince when\b|\bhow long has\b|\bhow old\b/],
+    ['when', /^when\b|\bwhen (?:does|do|is|are|will|did|would|can)\b/],
+    ['how', /\b(?:can|could|may|should) (?:i|we|the public|anyone|someone|people)\b|\bhow (?:do|can|could|would|might) (?:i|we|you|anyone|someone|people)\b|\bcomment\b|\btestif|\bparticipat|\btake part\b|\bhave a say\b|\bweigh in\b|\bbe heard\b|\bpublic input\b|\bspeak up\b|\bobject\b/],
+    ['who', /\bwho\b|\bwhose\b|\bwhich (?:agency|body|department|commission|board|office|one decides)\b|\bwhat (?:agency|body|department|commission|board|office)\b|\bdecided by\b|\bdecid(?:e|es|ed|ing)\b|\bin charge\b|\bresponsible\b|\bsigns off\b/],
+    ['since', /\bsince when\b|\bhow long has\b|\bfirst (?:seen|tracked|added|noticed)\b|\bstart(?:ed)?\b|\btracking since\b|\bhow old\b/],
+    ['when', /\bwhen\b|\bwhat (?:date|day|time)\b|\bdeadline\b|\bdue\b|\bhow soon\b|\bclose[sd]?\b|\bclosing\b|\bexpire[sd]?\b|\bcut ?off\b/],
+    ['where', /\bwhere (?:is|are|does|do|will|would|about)\b|\bwhat (?:location|place|site)\b|\bwhich (?:borough|town|city|region|part of alaska)\b|\blocated\b|\bwhereabouts\b/],
+    ['next', /\bhappens? next\b|\bwhat is next\b|\bwhat comes next\b|\bnext step\b|\bnext up\b|\bthen what\b|\bwhat follows\b/],
+    ['chg', /\bchanged?\b|\bmoved?\b|\bupdate[sd]?\b|\bnews\b|\blately\b|\brecent(?:ly)?\b|\bhappened\b|\bany movement\b|\bwhat is new\b/],
+    ['src', /\bsources?\b|\bcitations?\b|\bcite[sd]?\b|\bproof\b|\bevidence\b|\bread more\b|\blinks?\b|\bdocuments?\b|\bfilings?\b|\bwhere did (?:you|this) (?:get|come)\b|\bback(?:ed|ing) this\b/],
+    ['stat', /\bstatus\b|\bdecided\b|\bsettled\b|\bresolved\b|\bfinished\b|\bstill (?:open|pending|going|live)\b|\bhas it been\b|\boutcome\b|\bresult\b|\bover yet\b/],
+    ['kind', /\bwhat kind\b|\bwhat type\b|\bwhat sort\b|\bcategory\b|\bwhat class\b/],
+    ['where', /\bwhere\b/],
+    ['what', /\bwhat is\b|\bwhat are\b|\btell me\b|\bexplain\b|\bwhy\b|\bdetails?\b|\bsummar|\babout\b/]
+  ];
+  var CONSUME = {
+    cnt: /\b(?:how|many|much|count|number|total)\b/g,
+    how: /\b(?:comment|comments|commenting|testify|testimony|participate|participating|input|feedback|say|speak|heard|weigh|part|object|objection|public|able)\b/g,
+    who: /\b(?:who|whose|decide|decides|decided|deciding|decision|decisions|agency|agencies|body|bodies|department|commission|board|office|charge|responsible|behind|runs|running)\b/g,
+    when: /\b(?:when|date|dates|day|deadline|deadlines|due|soon|close|closes|closed|closing|expire|expires|cutoff|cut|off|upcoming|coming|next|timing|schedule)\b/g,
+    where: /\b(?:where|location|located|place|places|site|borough|town|city|region|whereabouts)\b/g,
+    next: /\b(?:next|happens|happen|step|steps|follows|then|after|upcoming|coming)\b/g,
+    chg: /\b(?:change|changed|changes|move|moved|moves|update|updated|updates|news|lately|recent|recently|happened|movement|new)\b/g,
+    src: /\b(?:source|sources|citation|citations|cite|cited|proof|evidence|link|links|document|documents|filing|filings|reference|references|backing|backed)\b/g,
+    stat: /\b(?:status|state|decided|settled|resolved|finished|pending|outcome|result|over|yet|still|progress)\b/g,
+    kind: /\b(?:kind|type|sort|category|class|classified)\b/g,
+    since: /\b(?:since|start|started|starting|first|tracked|tracking|added|noticed|old|long|began)\b/g,
+    what: /\b(?:tell|explain|details|detail|summary|summarise|summarize|about|why|mean|means)\b/g
+  };
+  function qtype(n){
+    for (var i = 0; i < QRULES.length; i++) if (QRULES[i][1].test(n)) return QRULES[i][0];
+    return null;
+  }
+  function unask(n, qt){
+    if (!qt || !CONSUME[qt]) return n;
+    return n.replace(CONSUME[qt], ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  // A question about the RECORD rather than about anything inside it. Every
+  // pattern names the record explicitly, so "what is this" resolves here and
+  // "what is the STAK lease" cannot.
+  var MRULES = [
+    ['what', /\bwhat is (?:this|the docket|the alaska ai docket|this (?:site|page|record|thing|list))\b|\bwhat am i looking at\b|\bwhat does this (?:do|track|cover)\b/],
+    ['how', /\bhow (?:is |does )?(?:this|the docket|it) (?:kept|maintained|built|made|work|works|get built|put together)\b|\bhow do you (?:track|keep|check)\b/],
+    ['when', /\bhow often\b|\bhow frequently\b|\bhow current\b|\bhow fresh\b|\bwhen (?:is|was) (?:this|the docket|it) updated\b|\bhow up to date\b/],
+    ['where', /\bwhere does (?:this|the) data come from\b|\bwhat are (?:your|the) sources\s*$|\bwhere do you get (?:this|your|the data)\b/],
+    ['who', /\bwho (?:keeps|runs|made|writes|owns|built|is behind)\b|\bwho are you\b|\bwhose site\b/],
+    ['why', /\bwhy does this exist\b|\bwhy (?:build|make|keep) this\b|\bwhat is the point\b/],
+    ['ai', /\bwritten by (?:an )?ai\b|\bis this (?:ai|generated|a bot|automated|written by)\b|\bdid a (?:robot|model|bot|machine)\b|\bchatgpt\b|\bllm\b|\bhallucinat/],
+    ['cost', /\bhow much does this cost\b|\bis (?:this|it) free\b|\bpaywall\b|\bsubscription fee\b|\bdo i (?:have to )?pay\b/],
+    ['data', /\bdownload the data\b|\bis there an api\b|\braw data\b|\bjson\b|\bcsv\b|\bmachine readable\b|\bbulk data\b/],
+    ['correct', /\bwhat if (?:something is|it is|its) wrong\b|\bhow do corrections\b|\breport (?:an |a )?(?:error|mistake|problem|correction)\b|\bfix a mistake\b|\bis this accurate\b|\bsomething is wrong\b/],
+    ['search', /\bare my searches\b|\bis this private\b|\bdo you track me\b|\bcookies\b|\banalytics\b|\bwhat do you log\b/],
+    ['removed', /\bget removed\b|\bdeleted\b|\btaken down\b|\bdo (?:decided )?items? (?:stay|disappear)\b/],
+    ['gas', /\bgas watch\b|\bcook inlet gas\b/],
+    ['subscribe', /\bsubscribe\b|\bmailing list\b|\bnewsletter\b|\bemail (?:list|updates|alerts)\b|\bnotify me\b|\bget updates\b/],
+    ['contact', /\bcontact\b|\bget in touch\b|\breach you\b|\bsend (?:a )?tip\b|\bemail you\b|\bsubmit a (?:tip|decision|correction)\b/]
+  ];
+  function metaKey(n){
+    for (var i = 0; i < MRULES.length; i++) {
+      if (MRULES[i][1].test(n) && DATA.meta[MRULES[i][0]]) return MRULES[i][0];
+    }
+    return null;
+  }
+
+  /* =================================================================
+     ENTITIES. Every named thing the record holds, matched as a PHRASE and
+     longest first, so "not open" beats "open" and "north slope" beats
+     "slope". This is what turns a query naming an agency from a text match
+     that might work into a lookup that always does.
+     ================================================================= */
+  var PHRASES = [];
+  (function(){
+    for (var g in FAC) {
+      for (var i = 0; i < FAC[g].length; i++) {
+        var e = FAC[g][i];
+        for (var j = 0; j < e.terms.length; j++) {
+          var t = norm(e.terms[j]);
+          if (t.length >= 3) PHRASES.push({t: t, g: g, k: e.key, e: e});
+        }
+      }
+    }
+    PHRASES.sort(function(a, b){ return b.t.length - a.t.length; });
+  })();
+  function facetOf(g, k){
+    var list = FAC[g] || [];
+    for (var i = 0; i < list.length; i++) if (list[i].key === k) return list[i];
+    return null;
+  }
+  // Every facet phrase present, longest first, each consuming its own words so
+  // one phrase cannot be counted twice and its words cannot also read as a
+  // leftover keyword.
+  function findFacets(n){
+    var left = ' ' + n + ' ', out = [], seen = {};
+    for (var i = 0; i < PHRASES.length; i++) {
+      var p = PHRASES[i], at = left.indexOf(' ' + p.t + ' ');
+      if (at === -1) continue;
+      if (!seen[p.g + '/' + p.k]) { seen[p.g + '/' + p.k] = 1; out.push(p); }
+      left = left.slice(0, at + 1) + left.slice(at + 1 + p.t.length);
+    }
+    return {hits: out, left: left.trim()};
+  }
+
+  /* =================================================================
+     TIME. A reader planning a comment thinks in weeks and month names, never
+     in ISO. Every window is measured against the reader's own clock, so a
+     page cached last night still answers today's question.
+     ================================================================= */
+  var MONTHS = ['January','February','March','April','May','June','July',
+                'August','September','October','November','December'];
+  function daysOut(iso){
+    if (!iso) return null;
+    var p = iso.split('-');
+    var then = new Date(+p[0], +p[1] - 1, +p[2]);
+    var now = new Date(); now.setHours(0,0,0,0);
+    return Math.round((then - now) / 86400000);
+  }
+  function ordinal(n){
+    var s = (n % 100 >= 10 && n % 100 <= 20) ? 'th'
+          : ({1:'st',2:'nd',3:'rd'}[n % 10] || 'th');
+    return n + s;
+  }
+  // House style takes the ordinal, month first. The year appears only when it
+  // is not this one, because a reader reading a page today does not need to be
+  // told the year twice.
+  function longDate(iso){
+    if (!iso) return '';
+    var p = iso.split('-'), y = +p[0], m = +p[1], d = +p[2];
+    var out = MONTHS[m - 1] + ' ' + ordinal(d);
+    if (y !== new Date().getFullYear()) out += ', ' + y;
+    return out;
+  }
+  function when(iso){
+    var d = daysOut(iso);
+    if (d === null) return '';
+    if (d < 0) return 'passed';
+    if (d === 0) return 'today';
+    if (d === 1) return 'tomorrow';
+    if (d < 14) return d + ' days';
+    return longDate(iso);
+  }
+  function outIn(d){
+    if (d === 0) return 'today';
+    if (d === 1) return 'tomorrow';
+    if (d < 0) return Math.abs(d) === 1 ? 'a day ago' : Math.abs(d) + ' days ago';
+    return d + ' days out';
+  }
+  var TRULES = [
+    [/\btoday\b/, 0], [/\btomorrow\b/, 1],
+    [/\bthis week\b|\bnext (?:7|seven) days\b|\bwithin a week\b|\bin a week\b/, 7],
+    [/\bnext (?:two|2) weeks\b|\bfortnight\b|\bnext (?:14|fourteen) days\b/, 14],
+    [/\bthis month\b|\bnext (?:30|thirty) days\b|\bwithin a month\b|\bin a month\b/, 30],
+    [/\bnext (?:two|2) months\b|\bnext (?:60|sixty) days\b/, 60],
+    [/\bnext (?:three|3) months\b|\bnext (?:90|ninety) days\b|\bthis quarter\b/, 90],
+    [/\bthis year\b|\bnext (?:12|twelve) months\b|\brest of the year\b/, 365]
+  ];
+  function findWindow(n){
+    var m = n.match(/\bnext (\d{1,3}) days?\b/);
+    if (m) return {days: Math.min(3650, +m[1]), label: 'the next ' + m[1] + ' days', ate: m[0]};
+    for (var i = 0; i < TRULES.length; i++) {
+      var t = n.match(TRULES[i][0]);
+      if (t) {
+        var d = TRULES[i][1];
+        return {days: d, ate: t[0], label: d === 0 ? 'today' : d === 1 ? 'by tomorrow'
+                       : 'the next ' + d + ' days'};
+      }
+    }
+    for (var j = 0; j < 12; j++) {
+      var mon = MONTHS[j].toLowerCase();
+      if (new RegExp('\\b' + mon + '\\b').test(n)) {
+        var now = new Date(), y = now.getFullYear();
+        if (j < now.getMonth()) y++;
+        return {month: y + '-' + ('0' + (j + 1)).slice(-2), ate: mon,
+                label: MONTHS[j] + ' ' + y};
+      }
+    }
+    return null;
+  }
+  function monthWindow(ym){
+    var p = ym.split('-');
+    return {month: ym, label: MONTHS[+p[1] - 1] + ' ' + p[0]};
+  }
+  function inWindow(row, w){
+    if (!row.on) return false;
+    if (w.month) return row.on.slice(0, 7) === w.month;
+    var d = daysOut(row.on);
+    return d !== null && d >= 0 && d <= w.days;
+  }
+
+  var SRULES = [
+    ['near', /\b(?:nearest|soonest|earliest|closest|most urgent|first up|up first)\b/],
+    ['new', /\b(?:newest|just added|most recently added|latest addition|newly tracked)\b/],
+    ['old', /\b(?:oldest|longest running|tracked the longest|been here longest)\b/],
+    ['busy', /\bwhich agency has the most\b|\bbusiest agency\b|\bwho has the most\b|\bmost decisions\b/],
+    ['place', /\bwhere is the most\b|\bbusiest (?:place|region|borough)\b|\bmost happening\b/],
+    ['moved', /\bmoved most recently\b|\blast(?:est)? change\b|\bmost recent change\b/]
+  ];
+  function findSup(n){
+    for (var i = 0; i < SRULES.length; i++) if (SRULES[i][1].test(n)) return SRULES[i][0];
+    return null;
+  }
+
+  /* =================================================================
+     SPELLING. A reader who types kenia or micoreactor has said exactly what
+     they want, and a strict matcher answers nothing. Correction runs only
+     against words the record actually uses, so it can never invent a term,
+     and only on a token nothing matched, so it costs nothing on a good query.
+     ================================================================= */
+  var VOCAB = DATA.vocab || [];
+  function editWithin(a, b, max){
+    var la = a.length, lb = b.length, i, j;
+    if (Math.abs(la - lb) > max) return max + 1;
+    // Optimal string alignment. A transposition costs one edit, because ot
+    // for to is the most common typing mistake there is, and reading it needs
+    // the row BEFORE last. Two rolling rows cannot see that far, which is why
+    // three are kept.
+    var two = null, prev = [], cur = [];
+    for (j = 0; j <= lb; j++) prev[j] = j;
+    for (i = 1; i <= la; i++) {
+      cur = [i];
+      var best = i;
+      for (j = 1; j <= lb; j++) {
+        var cost = a.charAt(i - 1) === b.charAt(j - 1) ? 0 : 1;
+        var v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+        if (two && i > 1 && j > 1 &&
+            a.charAt(i - 1) === b.charAt(j - 2) &&
+            a.charAt(i - 2) === b.charAt(j - 1)) v = Math.min(v, two[j - 2] + 1);
+        cur[j] = v;
+        if (v < best) best = v;
+      }
+      if (best > max) return max + 1;
+      two = prev; prev = cur;
+    }
+    return prev[lb];
+  }
+  function correct(tok){
+    if (tok.length < 4) return null;
+    var head = tok.slice(0, 3);
+    var max = tok.length >= 8 ? 2 : 1, best = null, bd = max + 1;
+    for (var i = 0; i < VOCAB.length; i++) {
+      var v = VOCAB[i];
+      if (v.slice(0, 3) !== head) continue;
+      if (Math.abs(v.length - tok.length) > max) continue;
+      var d = editWithin(tok, v, max);
+      if (d < bd) { bd = d; best = v; if (d === 1) break; }
+    }
+    return bd <= max ? best : null;
+  }
+
+  var SYN = DATA.syn || {};
+  function tokens(n){
+    var raw = n.split(' '), out = [], i, k;
+    for (i = 0; i < raw.length; i++) {
+      var t = raw[i].replace(/^'+|'+$/g, '');
+      if (!t || STOP[t] || t.length < 2) continue;
+      if (out.indexOf(t) === -1) out.push(t);
+      // What the reader types and what the record says are two vocabularies.
+      // Every expansion here was checked against the corpus at build time, so
+      // none of them can widen a search into words the record does not use.
+      var s = SYN[t];
+      if (s) for (k = 0; k < s.length; k++) if (out.indexOf(s[k]) === -1) out.push(s[k]);
+    }
+    return out;
+  }
+  function anywhere(t){
+    for (var i = 0; i < NALL; i++) if (IDX[i].hay.indexOf(t) !== -1) return true;
+    return false;
+  }
+  // Drop the words the record has never heard of, and fix the ones that look
+  // like a slip. A token nothing contains is not a filter, it is noise, and
+  // requiring it meant "who decides the STAK lease" found nothing at all.
+  function settle(toks){
+    var out = [], fixed = [], dropped = [];
+    for (var i = 0; i < toks.length; i++) {
+      if (anywhere(toks[i])) { out.push(toks[i]); continue; }
+      var c = correct(toks[i]);
+      if (c && anywhere(c)) { out.push(c); fixed.push([toks[i], c]); }
+      else dropped.push(toks[i]);
+    }
+    return {toks: out, fixed: fixed, dropped: dropped};
+  }
+
+  /* =================================================================
+     RANKING
+     ================================================================= */
+  function score(row, toks, phrase){
+    var s = 0, hit = 0, title = row.title.toLowerCase(), i;
+    // Whole words only. Matching a handle as a substring meant the two
+    // letters of AI, sitting inside f-ai-rbanks, scored an unrelated decision
+    // sixty points and put it above the one the reader named.
+    for (i = 0; i < row.alias.length; i++) {
+      var h = row.alias[i];
+      if (toks.indexOf(h) !== -1 ||
+          (phrase && new RegExp('\\b' + rx(h) + '\\b').test(phrase))) s += 60;
+    }
+    for (i = 0; i < toks.length; i++) {
+      var t = toks[i];
+      if (row.hay.indexOf(t) === -1) continue;
+      hit++;
+      if (title.indexOf(t) !== -1) s += 12;
+      if (new RegExp('\\b' + rx(t)).test(title)) s += 10;
+      if ((row.decider || '').toLowerCase().indexOf(t) !== -1) s += 6;
+      if ((row.where || '').toLowerCase().indexOf(t) !== -1) s += 6;
+      if (row.topics.join(' ').indexOf(t) !== -1) s += 5;
+      if ((row.kind || '').indexOf(t) !== -1) s += 4;
+      s += 1;
+    }
+    if (!hit && !s) return 0;
+    // Coverage, not unanimity. Requiring every token to appear in the same row
+    // looked strict and was simply wrong, because one stray word that happens
+    // to sit in an unrelated summary would disqualify the only row that
+    // answers the question.
+    if (toks.length > 1 && hit / toks.length < 0.5 && s < 60) return 0;
+    if (phrase && phrase.length > 6 && title.indexOf(phrase) !== -1) s += 40;
+    s += hit * 10;
+    if (row.access === 'open') s += 5;
+    if (row.on) s += 2;
+    return s;
+  }
+  function rank(pool, toks, phrase){
+    var out = [], i;
+    for (i = 0; i < pool.length; i++) {
+      var s = score(pool[i], toks, phrase);
+      if (s > 0) out.push([s, i, pool[i]]);
+    }
+    // Stable, so results do not shuffle when the reader adds a character that
+    // changes nothing.
+    out.sort(function(a, b){ return b[0] - a[0] || a[1] - b[1]; });
+    return out;
+  }
+
+  /* =================================================================
+     THE PARSE. A query, typed or catalogued, becomes one plan. Everything
+     downstream reads the plan, so a catalogued question is not a special
+     case with a canned reply, it is a query whose plan was worked out ahead
+     of time and handed to the same resolver.
+     ================================================================= */
+  function planFromRoute(route){
+    var c = route.indexOf(':'), kind = route.slice(0, c), target = route.slice(c + 1);
+    var p = {qt: null, facets: [], win: null, sup: null, meta: null, ids: null,
+             view: null, toks: [], raw: [], fixed: [], dropped: [], phrase: '',
+             exact: true};
+    if (kind === 'view') { p.view = target; return p; }
+    if (kind === 'meta') { p.meta = target; return p; }
+    if (kind === 'win') { p.win = {days: +target, label: 'the next ' + target + ' days'}; return p; }
+    if (kind === 'mon') { p.win = monthWindow(target); return p; }
+    if (kind === 'sup') { p.sup = target; return p; }
+    if (kind === 'cnt') {
+      if (target === 'open') p.facets = [{g: 'access', k: 'open'}];
+      else if (target === 'done') p.view = 'done';
+      else if (target === 'dated') p.win = {days: 3650, label: 'the whole record'};
+      else if (target === 'src') p.qt = 'src';
+      return p;
+    }
+    if (kind === 'fac' || kind === 'facopen') {
+      var g = target.split('/');
+      p.facets = [{g: g[0], k: g[1]}];
+      if (kind === 'facopen') p.facets.push({g: 'access', k: 'open'});
+      return p;
+    }
+    if (byId[target]) { p.qt = kind; p.ids = [target]; }
+    return p;
+  }
+
+  function plan(q){
+    var n = norm(q);
+    if (!n) return null;
+    // A catalogued question can never be mis-read, so it is checked first.
+    if (CATMAP[n]) { var p0 = planFromRoute(CATMAP[n]); p0.q = n; return p0; }
+    var p = {qt: null, facets: [], win: null, sup: null, meta: metaKey(n),
+             ids: null, view: null, toks: [], raw: [], fixed: [], dropped: [],
+             phrase: n, exact: false, q: n};
+    if (p.meta) return p;
+    p.sup = findSup(n);
+    p.win = findWindow(n);
+    // A time phrase is a filter, not a keyword. Leaving september in the pool
+    // made the box report that the record does not use the word, which is
+    // true and beside the point.
+    var body = p.win && p.win.ate ? n.split(p.win.ate).join(' ') : n;
+    var f = findFacets(body);
+    for (var i = 0; i < f.hits.length; i++) p.facets.push({g: f.hits[i].g, k: f.hits[i].k});
+    p.qt = qtype(f.left);
+    var raw = tokens(unask(f.left, p.qt));
+    var s = settle(raw);
+    p.raw = raw;
+    p.toks = s.toks;
+    p.fixed = s.fixed;
+    p.dropped = s.dropped;
+    return p;
+  }
+
+  /* =================================================================
+     THE RESOLVER. One plan in, one answer out. Every sentence it writes is
+     assembled from fields and counts, so there is nothing here that can be
+     wrong in a way the record is not already wrong.
+     ================================================================= */
+  function nOf(n, one, many){ return n + ' ' + (n === 1 ? one : (many || one + 's')); }
+  function ids(rows){ var a = [], i; for (i = 0; i < rows.length; i++) a.push(rows[i].id); return a; }
+  function byDate(a, b){ return (a.on || '9') < (b.on || '9') ? -1 : 1; }
+
+  function openIn(rows){
+    var o = [], i;
+    for (i = 0; i < rows.length; i++) if (rows[i].access === 'open') o.push(rows[i]);
+    return o;
+  }
+  function datedIn(rows){
+    var o = [], i;
+    for (i = 0; i < rows.length; i++) if (rows[i].on) o.push(rows[i]);
+    o.sort(byDate);
+    return o;
+  }
+
+  // A counted sentence about a set. Never a verdict, never a prediction, just
+  // how many there are and the one thing a reader can act on next. Everything
+  // in it is a count or a field, so there is nothing here that can be wrong in
+  // a way the record is not already wrong.
+  //
+  // The phrase arrives as a plural verb clause because these sentences have to
+  // read like English at both counts. Nine decisions carry a date, one
+  // decision carries a date, and nothing on the docket carries a date are the
+  // same sentence with the verb agreed rather than three canned strings.
+  var VERB = {match: 'matches', carry: 'carries', are: 'is', have: 'has',
+              sit: 'sits', land: 'lands'};
+  function agree(phrase){
+    var sp = phrase.indexOf(' '), head = sp === -1 ? phrase : phrase.slice(0, sp);
+    return VERB[head] ? VERB[head] + phrase.slice(head.length) : phrase;
+  }
+  function setLead(rows, phrase, quiet){
+    if (!rows.length) return 'Nothing on the docket ' + agree(phrase) + '.';
+    var open = openIn(rows), dated = datedIn(rows);
+    var out = nOf(rows.length, 'decision') + ' ' +
+              (rows.length === 1 ? agree(phrase) : phrase) + '.';
+    // Do not say open twice. The clause is worth its space only when the
+    // reader did not already ask for it.
+    if (!quiet && phrase.indexOf('open to public comment') === -1) {
+      if (open.length) {
+        out += ' ' + open.length + (open.length === 1 ? ' is' : ' are') +
+               ' open to public comment right now.';
+      } else if (rows.length > 1) {
+        out += ' None of them has an open public comment window today.';
+      }
+    }
+    if (dated.length && phrase.indexOf('published date') === -1) {
+      out += ' The nearest published date is ' + longDate(dated[0].on) + ', ' +
+             outIn(daysOut(dated[0].on)) + '.';
+    } else if (dated.length) {
+      out += ' The nearest is ' + longDate(dated[0].on) + ', ' +
+             outIn(daysOut(dated[0].on)) + '.';
+    }
+    return out;
+  }
+
+  function tally(rows, get){
+    var seen = {}, order = [], i, j, v;
+    for (i = 0; i < rows.length; i++) {
+      v = get(rows[i]);
+      var list = (typeof v === 'string') ? [v] : (v || []);
+      for (j = 0; j < list.length; j++) {
+        if (!list[j]) continue;
+        if (!seen[list[j]]) { seen[list[j]] = 0; order.push(list[j]); }
+        seen[list[j]]++;
+      }
+    }
+    order.sort(function(a, b){ return seen[b] - seen[a] || (a < b ? -1 : 1); });
+    return {order: order, n: seen};
+  }
+  // Questions about a SET rather than an item. A reader asking who decides all
+  // of this does not want twenty deciders read out, they want to know how many
+  // bodies are involved and which one carries the most.
+  function setAnswer(qt, rows, phrase){
+    var t, i;
+    if (!rows.length) return null;
+    if (qt === 'who') {
+      t = tally(rows, function(r){ return r.agencies.length ? r.agencies : [r.decider]; });
+      if (t.order.length === 1) return t.order[0] + ' decides all of them.';
+      return nOf(t.order.length, 'separate body', 'separate bodies') +
+             ' decide these. ' + t.order[0] + ' carries the most, with ' +
+             t.n[t.order[0]] + ' of them' + '.';
+    }
+    if (qt === 'where') {
+      t = tally(rows, function(r){ return r.places; });
+      if (t.order.length === 1) return 'All of them land in ' + t.order[0] + '.';
+      return 'They land across ' + nOf(t.order.length, 'part of Alaska', 'parts of Alaska') +
+             '. ' + t.order[0] + ' carries the most, with ' + t.n[t.order[0]] + ' of them' + '.';
+    }
+    if (qt === 'kind') {
+      t = tally(rows, function(r){ return r.kind; });
+      if (t.order.length === 1) return 'Every one of them is a ' + t.order[0] + '.';
+      return 'They break into ' + nOf(t.order.length, 'type') + ' of decision. Most are a ' +
+             t.order[0] + ', ' + t.n[t.order[0]] + ' of them' + '.';
+    }
+    if (qt === 'src') {
+      t = tally(rows, function(r){ return r.outlets; });
+      return nOf(t.order.length, 'named source') +
+             (t.order.length === 1 ? ' stands' : ' stand') + ' behind these, led by ' +
+             t.order.slice(0, 3).join(', ') +
+             '. Every one is listed with its date on the decision page.';
+    }
+    if (qt === 'stat') {
+      t = tally(rows, function(r){ return r.statusLabel; });
+      var bits2 = [];
+      for (i = 0; i < t.order.length; i++) bits2.push(t.n[t.order[i]] + ' ' + t.order[i]);
+      return nOf(rows.length, 'decision') + ' in that set. ' + bits2.join(', ') + '.';
+    }
+    return null;
+  }
+
+  function fieldAnswer(qt, r){
+    var d, i, parts;
+    switch (qt) {
+      case 'who':
+        return {kick: 'WHO DECIDES', lead: r.decider, sub: 'on ' + r.title};
+      case 'when':
+        if (!r.on) return {kick: 'WHEN', sub: 'on ' + r.title,
+          lead: 'No upcoming date is published for it. It is ' + r.statusLabel +
+                ', and the record carries a date only once one is filed.'};
+        d = daysOut(r.on);
+        return {kick: r.role === 'deadline' ? 'DEADLINE' : 'NEXT DATE', sub: 'on ' + r.title,
+          lead: longDate(r.on) + ', ' + outIn(d) + '. ' + (r.onLabel || 'Published date.')};
+      case 'where':
+        return {kick: 'WHERE', sub: 'on ' + r.title,
+          lead: r.where || 'Statewide. No single site is on the record for it.'};
+      case 'how':
+        if (r.access === 'open') return {kick: 'YES, IT IS OPEN', lead: r.howto, sub: 'on ' + r.title};
+        if (r.access === 'indirect') return {kick: 'NOT A FORMAL COMMENT', lead: r.howto, sub: 'on ' + r.title};
+        return {kick: 'NO OPEN COMMENT PATH', lead: r.howto, sub: 'on ' + r.title};
+      case 'stat':
+        return {kick: 'STATUS', sub: 'on ' + r.title,
+          lead: 'It is ' + r.statusLabel + '. ' + (r.note || r.summary)};
+      case 'chg':
+        if (!r.moved) return {kick: 'WHAT CHANGED', sub: 'on ' + r.title,
+          lead: 'Nothing has moved on it since it was first tracked on ' + longDate(r.first) + '.'};
+        return {kick: 'LAST MOVED ' + longDate(r.moved).toUpperCase(), lead: r.note, sub: 'on ' + r.title};
+      case 'src':
+        return {kick: nOf(r.outlets.length, 'SOURCE').toUpperCase(), sub: 'on ' + r.title,
+          lead: r.outlets.join(', ') + '. Every one is listed with its date on the decision page.'};
+      case 'next':
+        for (i = 0; i < r.dates.length; i++) {
+          if (daysOut(r.dates[i][0]) >= 0) {
+            return {kick: 'WHAT HAPPENS NEXT', sub: 'on ' + r.title,
+              lead: r.dates[i][1] + ', ' + longDate(r.dates[i][0]) + ', ' +
+                    outIn(daysOut(r.dates[i][0])) + '.'};
+          }
+        }
+        return {kick: 'WHAT HAPPENS NEXT', sub: 'on ' + r.title,
+          lead: 'No further date is published. It is ' + r.statusLabel +
+                ' and the record is checked against its source every day.'};
+      case 'kind':
+        return {kick: 'TYPE', sub: 'on ' + r.title,
+          lead: 'A ' + r.kind + ', decided by ' + r.decider + '.'};
+      case 'since':
+        d = daysOut(r.first);
+        parts = 'Tracked since ' + longDate(r.first) + ', ' + outIn(d) + '.';
+        if (r.dates.length) parts += ' The earliest date on its record is ' +
+          longDate(r.dates[0][0]) + '.';
+        return {kick: 'TRACKED SINCE', lead: parts, sub: 'on ' + r.title};
+      default:
+        return {kick: r.kind.toUpperCase(), lead: r.summary, sub: r.title};
+    }
+  }
+
+  // How a question type narrows a SET rather than an item. Every type has both
+  // forms, which is what lets one question work whether the reader named a
+  // decision or a whole agency.
+  function narrow(qt, rows){
+    if (qt === 'how') return {rows: openIn(rows), what: 'are open to public comment',
+                              kick: 'OPEN TO COMMENT',
+                              miss: 'None of them takes public comment today, so what is ' +
+                                    'shown is every one of them and who decides it.'};
+    if (qt === 'when' || qt === 'next') return {rows: datedIn(rows),
+                              what: 'carry a published date', kick: 'PUBLISHED DATES',
+                              miss: 'None of them has a published upcoming date yet.'};
+    if (qt === 'chg') {
+      var m = [], i;
+      for (i = 0; i < rows.length; i++) if (rows[i].moved) m.push(rows[i]);
+      m.sort(function(a, b){ return a.moved < b.moved ? 1 : -1; });
+      return {rows: m, what: 'have something written into the record',
+              kick: 'RECENT MOVEMENT', miss: 'Nothing has moved on any of them yet.'};
+    }
+    if (qt === 'since') {
+      var so = rows.slice(); so.sort(function(a, b){ return a.first < b.first ? -1 : 1; });
+      return {rows: so, what: 'are on the record, oldest first',
+              kick: 'OLDEST FIRST', miss: ''};
+    }
+    return {rows: rows, what: '', kick: '', miss: ''};
+  }
+
+  function facetLabel(f){
+    var e = facetOf(f.g, f.k);
+    return e ? e.label : f.k.replace(/-/g, ' ');
+  }
+
+  function clone(p){
+    var o = {}, k;
+    for (k in p) if (Object.prototype.hasOwnProperty.call(p, k)) o[k] = p[k];
+    return o;
+  }
+  function resolve(p){
+    var i, rows, e;
+
+    if (p.meta) {
+      return {kick: 'ABOUT THIS RECORD', lead: DATA.meta[p.meta], sub: '',
+              rows: [], toks: [], route: 'meta:' + p.meta};
+    }
+    if (p.view) {
+      for (i = 0; i < DATA.views.length; i++) {
+        if (DATA.views[i].key === p.view) {
+          var v = DATA.views[i];
+          rows = [];
+          for (var vi = 0; vi < v.ids.length; vi++) if (byId[v.ids[vi]]) rows.push(byId[v.ids[vi]]);
+          return {kick: v.q.replace(/\?$/, '').toUpperCase(), lead: v.summary, sub: '',
+                  rows: rows, toks: [], route: 'view:' + p.view};
+        }
+      }
+    }
+    // Words that name nothing in the record are not a filter, and letting them
+    // fall through would answer a question about bananas with the whole
+    // docket. Saying so is the honest result and it is the one a reader can
+    // act on, because it tells them the subject is not tracked rather than
+    // leaving them to work that out from twenty wrong cards.
+    if (p.raw && p.raw.length && !p.toks.length && !p.facets.length &&
+        !p.win && !p.sup && !p.ids) {
+      return {kick: 'NOT ON THE RECORD', rows: [], toks: [], sub: '', route: '',
+              lead: 'Nothing here uses ' + (p.raw.length === 1 ? 'that word' : 'those words') +
+                    '. The docket tracks ' + NALL + ' Alaska decisions about artificial ' +
+                    'intelligence, so a question about anything else has no answer here ' +
+                    'rather than a wrong one.'};
+    }
+
+    // Start from the whole record and narrow. Facets intersect, a window
+    // intersects, and only then does text ranking run, so "anything open in
+    // Juneau this month" is three filters rather than a lucky text match.
+    //
+    // A FILTER THAT EMPTIES THE SET IS BACKED OFF AND NAMED. Handing back a
+    // blank page because nothing in Juneau takes comment today tells a reader
+    // less than handing back the Juneau decisions and saying none of them
+    // does. The set they can act on is the one before the filter that killed
+    // it, and the filter that killed it is the answer to what they asked.
+    rows = IDX.slice();
+    var named = [], culprit = '', missed = '';
+    var chain = [];
+    for (i = 0; i < p.facets.length; i++) {
+      e = facetOf(p.facets[i].g, p.facets[i].k);
+      if (e) chain.push({label: e.label, ids: e.ids, miss: ''});
+    }
+    if (p.win) {
+      var nx = datedIn(IDX);
+      chain.push({label: p.win.label, win: p.win,
+        miss: nx.length ? 'The nearest published date on the whole record is ' +
+              longDate(nx[0].on) + ', ' + outIn(daysOut(nx[0].on)) + '.' : ''});
+    }
+    for (i = 0; i < chain.length; i++) {
+      var keep = [], f = chain[i];
+      for (var j = 0; j < rows.length; j++) {
+        if (f.win ? inWindow(rows[j], f.win) : f.ids.indexOf(rows[j].id) !== -1) keep.push(rows[j]);
+      }
+      if (!keep.length) { culprit = f.label; missed = f.miss; break; }
+      rows = keep;
+      named.push(f.label);
+    }
+
+    var single = null, toks = p.toks || [], froute = '';
+    if (p.facets.length) froute = 'fac:' + p.facets[0].g + '/' + p.facets[0].k;
+    // Asking who decides the DNR list is asking a question the filter has
+    // already answered. Keeping the type would count deciders back at a reader
+    // who just named one, so the type is spent and the list is the answer.
+    var ANSWERED = {who: 'agency', where: 'place', kind: 'kind',
+                    stat: 'status', how: 'access'};
+    if (p.qt && ANSWERED[p.qt]) {
+      for (i = 0; i < p.facets.length; i++) {
+        if (p.facets[i].g === ANSWERED[p.qt]) { p = clone(p); p.qt = null; break; }
+      }
+    }
+    if (p.ids) {
+      single = byId[p.ids[0]] || null;
+      if (single) rows = [single];
+    } else if (toks.length) {
+      var ranked = rank(rows.length ? rows : IDX, toks, p.phrase);
+      if (ranked.length) {
+        rows = [];
+        for (i = 0; i < ranked.length; i++) rows.push(ranked[i][2]);
+        // Decisive when one row is well clear of the next, which is what makes
+        // "who decides the STAK lease" answer about the STAK lease rather than
+        // hand back a list and leave the reader to do the work.
+        if (ranked.length === 1 || ranked[0][0] >= ranked[1][0] * 1.7 ||
+            ranked[0][0] >= 60) single = ranked[0][2];
+      }
+      // Nothing landed inside the filtered set. The filter is the stronger
+      // signal of the two, so it is kept rather than answering nothing, and
+      // the words that missed are named in the answer.
+    }
+
+    if (p.sup) {
+      var pool = rows.length ? rows : IDX;
+      if (p.sup === 'near') {
+        var dt = datedIn(pool);
+        if (!dt.length) return {kick: 'NEAREST DATE', rows: [], toks: toks,
+          lead: 'Nothing in that set has a published upcoming date.', sub: ''};
+        return {kick: 'NEAREST DATE', rows: dt, toks: toks, sub: dt[0].title,
+          lead: longDate(dt[0].on) + ', ' + outIn(daysOut(dt[0].on)) + '. ' +
+                (dt[0].onLabel || '')};
+      }
+      if (p.sup === 'new' || p.sup === 'old') {
+        var so = pool.slice();
+        so.sort(function(a, b){ return (a.first < b.first ? -1 : 1) * (p.sup === 'new' ? -1 : 1); });
+        return {kick: p.sup === 'new' ? 'MOST RECENTLY ADDED' : 'TRACKED THE LONGEST',
+          rows: so, toks: toks, sub: so[0].title,
+          lead: so[0].title + ', first tracked on ' + longDate(so[0].first) + ', ' +
+                outIn(daysOut(so[0].first)) + '.'};
+      }
+      if (p.sup === 'moved') {
+        var mv = narrow('chg', pool).rows;
+        if (!mv.length) return {kick: 'LAST MOVEMENT', rows: [], toks: toks, sub: '',
+          lead: 'Nothing in that set has moved since it was first tracked.'};
+        return {kick: 'LAST MOVEMENT', rows: mv, toks: toks, sub: mv[0].title,
+          lead: longDate(mv[0].moved) + '. ' + mv[0].note};
+      }
+      if (p.sup === 'busy' || p.sup === 'place') {
+        var grp = p.sup === 'busy' ? FAC.agency : FAC.place, best = null;
+        for (i = 0; i < grp.length; i++) if (!best || grp[i].ids.length > best.ids.length) best = grp[i];
+        if (!best) return {kick: 'THE RECORD', rows: pool, toks: toks, sub: '',
+          lead: setLead(pool, 'the whole record')};
+        var br = [];
+        for (i = 0; i < best.ids.length; i++) if (byId[best.ids[i]]) br.push(byId[best.ids[i]]);
+        return {kick: best.label.toUpperCase(), rows: br, toks: toks, sub: '',
+          lead: best.label + ' carries the most, with ' + nOf(best.ids.length, 'tracked decision') + '.'};
+      }
+    }
+
+    // A filter that lands on exactly one decision has named it as surely as a
+    // title match would, so a field question about it gets the field rather
+    // than a set sentence describing a set of one.
+    if (!single && rows.length === 1 && p.qt && p.qt !== 'cnt') single = rows[0];
+
+    if (single && p.qt && p.qt !== 'cnt') {
+      var a = fieldAnswer(p.qt, single);
+      a.rows = rows.length ? rows : [single];
+      a.toks = toks;
+      a.route = p.qt + ':' + single.id;
+      return a;
+    }
+    if (single && !p.qt && !p.facets.length && !p.win) {
+      var a2 = fieldAnswer('what', single);
+      a2.rows = rows;
+      a2.toks = toks;
+      a2.route = 'what:' + single.id;
+      return a2;
+    }
+
+    // A set. The question type narrows it further, and the sentence says how
+    // many and what is nearest rather than pretending to a summary of them.
+    var before = rows.length;
+    var nar = narrow(p.qt, rows);
+    var emptied = before && !nar.rows.length;
+    // A narrowing that leaves nothing is worth saying out loud, and then the
+    // set before it is still the useful answer. Showing a blank page because
+    // none of the two matching decisions is open today tells a reader less
+    // than showing both and saying neither is open.
+    if (!emptied) rows = nar.rows;
+    // THE SENTENCE HAS TO DESCRIBE THE SET IT IS SITTING ABOVE. Saying one
+    // decision matches Fairbanks, when four do and the words narrowed it to
+    // one, is a false statement on a page whose only value is being right.
+    var bits = [];
+    if (toks.length) {
+      bits.push(named.length ? 'match that inside ' + named.join(', ') : 'match that');
+    } else if (named.length) {
+      bits.push('match ' + named.join(', '));
+    }
+    if (nar.what && rows.length !== before) bits.push(nar.what);
+    if (!bits.length) bits.push(nar.what || 'are on the record');
+    var phrase = bits.join(' and ');
+    var kick = named.length ? named.join(' / ').toUpperCase()
+             : (nar.kick && rows.length !== before ? nar.kick
+                : (p.qt === 'cnt' || !toks.length ? 'THE WHOLE RECORD'
+                   : nOf(rows.length, 'MATCH', 'MATCHES')));
+    var lead = setLead(rows, phrase, emptied || !!culprit);
+    if (emptied && nar.miss) lead += ' ' + nar.miss;
+    if (culprit) {
+      lead += ' Nothing among them matches ' + culprit +
+              ', so what is shown is the set before that.';
+      // Only when the sentence above did not already name a nearest date.
+      if (missed && !datedIn(rows).length) lead += ' ' + missed;
+    }
+    var agg = emptied ? null : setAnswer(p.qt, rows, phrase);
+    return {kick: kick, lead: agg || lead, sub: agg ? lead : '',
+            rows: rows, toks: toks, route: froute};
+  }
+
+  /* =================================================================
+     THE CATALOGUE, put back together. The name of the thing asked about is
+     stored as a tilde because it is already in the route, so it is looked up
+     here rather than shipped a dozen times over.
+     ================================================================= */
+  function labelFor(route){
+    var c = route.indexOf(':'), kind = route.slice(0, c), target = route.slice(c + 1);
+    if (kind === 'fac' || kind === 'facopen') {
+      var g = target.split('/'), e = facetOf(g[0], g[1]);
+      return e ? e.label : '';
+    }
+    return byId[target] ? byId[target].title : '';
+  }
+  var CAT = [], CATMAP = {};
+  (function(){
+    for (var i = 0; i < DATA.q.length; i++) {
+      var bar = DATA.q[i].indexOf('|');
+      var q = DATA.q[i].slice(0, bar), route = DATA.q[i].slice(bar + 1);
+      if (q.indexOf('~') !== -1) q = q.split('~').join(labelFor(route));
+      var n = norm(q);
+      CAT.push({q: q, route: route, n: n});
+      if (!CATMAP[n]) CATMAP[n] = route;
+    }
+  })();
+  function related(route, n){
+    var c = route.indexOf(':'), target = route.slice(c + 1), out = [], seen = {};
+    seen[route.slice(0, c)] = 1;
+    // One per question type. Three ways of asking what something is teaches a
+    // reader nothing about what else this holds.
+    for (var i = 0; i < CAT.length && out.length < n; i++) {
+      var e = CAT[i], ec = e.route.indexOf(':');
+      if (e.route.slice(ec + 1) !== target) continue;
+      var t = e.route.slice(0, ec);
+      if (seen[t]) continue;
+      seen[t] = 1;
+      out.push(e);
+    }
+    return out;
+  }
+  function chipLabel(e){
+    var lab = labelFor(e.route);
+    if (lab && lab.length > 20 && e.q.indexOf(lab) !== -1) return e.q.split(lab).join('it');
+    return e.q;
+  }
+  function completion(typed){
+    if (!typed || typed.length < 2) return '';
+    var low = typed.toLowerCase();
+    for (var i = 0; i < CAT.length; i++) {
+      if (CAT[i].q.length > typed.length && CAT[i].q.toLowerCase().indexOf(low) === 0) return CAT[i].q;
+    }
+    return '';
+  }
+
+  /* =================================================================
+     PAINT
+     ================================================================= */
+  function highlight(text, toks){
+    var keep = [], i;
+    for (i = 0; i < toks.length; i++) if (toks[i].length >= 3) keep.push(rx(toks[i]));
+    if (!keep.length) return esc(text);
+    var re = new RegExp('(' + keep.join('|') + ')', 'ig'), out = '', last = 0, m;
+    // Segments are escaped one at a time rather than marking up already
+    // escaped text, so a token like amp cannot land inside an entity and
+    // break it.
+    while ((m = re.exec(text)) !== null) {
+      if (!m[0].length) { re.lastIndex++; continue; }
+      out += esc(text.slice(last, m.index)) + '<mark>' + esc(m[0]) + '</mark>';
+      last = m.index + m[0].length;
+    }
+    return out + esc(text.slice(last));
+  }
+  function pill(row){
+    if (row.access === 'open') return '<span class="qpill open">OPEN NOW</span>';
+    var d = daysOut(row.on);
+    if (d !== null && d >= 0 && d < 21) return '<span class="qpill soon">' + esc(when(row.on).toUpperCase()) + '</span>';
+    return '<span class="qpill">' + esc(row.statusLabel.toUpperCase()) + '</span>';
+  }
+  function card(row, toks, i){
+    var meta = [];
+    if (row.agency) meta.push(esc(row.agency));
+    if (row.where) meta.push(esc(row.where));
+    if (row.on) meta.push((row.role === 'deadline' ? 'closes ' : 'next ') + esc(when(row.on)));
+    return '<a class="qhit" style="--qi:' + i + '" href="../docket/' + esc(row.id) +
+      '/" role="option">' +
+      '<span class="qrank">' + ('0' + (i + 1)).slice(-2) + '</span>' +
+      '<span class="qglow" aria-hidden="true"></span>' +
+      '<div class="qtop"><span class="qtitle">' + highlight(row.title, toks) + '</span>' +
+      pill(row) + '</div>' +
+      '<p class="qsum">' + highlight(row.summary, toks) + '</p>' +
+      (meta.length ? '<div class="qmeta">' + meta.join(' <i>/</i> ') + '</div>' : '') +
+      '</a>';
+  }
+
+  var MAXCARDS = 20;
+  function paint(a, route){
+    lastAns = a;
+    shown = a.rows || []; sel = -1;
+    var html = '', i;
+    if (a.lead) {
+      html += '<div class="qans"><div class="qkick">' + esc(a.kick || '') + '</div>' +
+        '<p class="qbig">' + esc(a.lead) + '</p>' +
+        (a.sub ? '<p class="qsub">' + esc(a.sub) + '</p>' : '') +
+        note(a) + '</div>';
+    }
+    var also = route ? related(route, 3) : [];
+    if (also.length) {
+      html += '<div class="qalso"><span class="qalsol">ALSO ASK</span>';
+      for (i = 0; i < also.length; i++) {
+        html += '<button type="button" class="qchip" data-q="' + esc(also[i].q) + '">' +
+          esc(chipLabel(also[i])) + '</button>';
+      }
+      html += '</div>';
+    }
+    if (!shown.length) {
+      html += nothing(!a.lead);
+    } else {
+      for (i = 0; i < shown.length && i < MAXCARDS; i++) html += card(shown[i], a.toks || [], i);
+      if (shown.length > MAXCARDS) {
+        html += '<p class="qmore">' + (shown.length - MAXCARDS) + ' more on the record below.</p>';
+      }
+    }
+    panel.innerHTML = html;
+    panel.hidden = false;
+    var deep = document.getElementById('qdeep');
+    if (deep) deep.addEventListener('click', research);
+    Array.prototype.forEach.call(panel.querySelectorAll('.qchip'), function(b){
+      b.addEventListener('click', function(){
+        input.value = b.getAttribute('data-q'); input.focus(); run();
+      });
+    });
+    input.setAttribute('aria-expanded', 'true');
+  }
+  // What the box did with the query that the query did not ask for. A silent
+  // spelling fix reads as a wrong answer, and a silently ignored word reads as
+  // a filter that was applied.
+  function note(a){
+    var out = '';
+    if (a.fixed && a.fixed.length) {
+      out += '<p class="qfix">Read <b>' + esc(a.fixed[0][0]) + '</b> as <b>' +
+             esc(a.fixed[0][1]) + '</b></p>';
+    }
+    if (a.dropped && a.dropped.length && a.rows && a.rows.length) {
+      out += '<p class="qfix">Nothing on the record uses <b>' +
+             esc(a.dropped.join(', ')) + '</b>, so it was not used to filter</p>';
+    }
+    return out;
+  }
+  function nothing(say){
+    var vq = '';
+    for (var i = 0; i < DATA.views.length; i++) {
+      vq += '<button type="button" class="qchip" data-q="' + esc(DATA.views[i].q) +
+            '">' + esc(DATA.views[i].q) + '</button>';
+    }
+    return '<div class="qnone">' +
+      (say ? '<p>Nothing on the docket matches that. The record covers ' + NALL +
+             ' Alaska decisions about artificial intelligence, so a question about ' +
+             'anything else has no answer here rather than a wrong one.</p>' : '') +
+      '<p class="qtryl">TRY ONE OF THESE</p>' +
+      '<div class="qalso qnonealso">' + vq + '</div>' +
+      (ENDPOINT ? '<button type="button" class="qdeep" id="qdeep">SEARCH THE FULL ARCHIVE</button>' +
+                  '<div class="qout" id="qout" hidden></div>' : '') +
+      '</div>';
+  }
+  function setCount(n){
+    count.textContent = n + ' OF ' + NALL;
+    if (meter) meter.style.transform = 'scaleX(' + (NALL ? n / NALL : 0) + ')';
+  }
+
+  function empty(){
+    panel.hidden = true; panel.innerHTML = ''; views.hidden = false;
+    if (tries) tries.hidden = false;
+    shown = []; sel = -1; lastAns = null;
+    setCount(NALL);
+    count.textContent = NALL + ' TRACKED';
+    input.setAttribute('aria-expanded', 'false');
+    ghost('');
+  }
+
+  function ghost(typed){
+    if (!gTyped || !gRest) return;
+    var c = typed ? completion(typed) : '';
+    // A completion the field has already scrolled past would sit in the wrong
+    // place, so it is only offered while the whole query is still visible.
+    if (c && input.scrollWidth <= input.clientWidth + 1) {
+      gTyped.textContent = typed;
+      gRest.textContent = c.slice(typed.length);
+      box.dataset.ghost = c;
+    } else {
+      gTyped.textContent = ''; gRest.textContent = ''; delete box.dataset.ghost;
+    }
+  }
+
+  function run(){
+    var q = input.value.trim();
+    if (!q) { empty(); return; }
+    views.hidden = true;
+    if (tries) tries.hidden = true;
+    ghost(input.value);
+    var p = plan(q);
+    if (!p) { empty(); return; }
+    var a = resolve(p);
+    a.fixed = p.fixed;
+    a.dropped = p.dropped;
+    var route = p.exact ? CATMAP[p.q] : (a.route || '');
+    if (!route && a.rows && a.rows.length === 1) route = 'what:' + a.rows[0].id;
+    paint(a, route);
+    setCount(a.rows ? a.rows.length : 0);
+  }
+
+  function view(key){
+    for (var i = 0; i < DATA.views.length; i++) {
+      if (DATA.views[i].key === key) {
+        // A view is a saved query and nothing more, so it goes into the field
+        // like one. Clearing the field is then the way back, which is the only
+        // way back a reader would think to try.
+        input.value = DATA.views[i].q;
+        run();
+        return;
+      }
+    }
+  }
+
+  function move(step){
+    var hits = panel.querySelectorAll('.qhit');
+
+    if (!hits.length) return;
+    if (sel >= 0 && hits[sel]) hits[sel].classList.remove('sel');
+    sel += step;
+    if (sel < 0) sel = hits.length - 1;
+    if (sel >= hits.length) sel = 0;
+    if (hits[sel]) {
+      hits[sel].classList.add('sel');
+      hits[sel].scrollIntoView({block: 'nearest'});
+    }
+  }
+
+  /* ---- the archive lane, for a question the index cannot answer ---- */
   function armTurnstile(){
-    if (tsReady || !TS_SITEKEY) return;
-    tsReady = true;
-    var holder = document.getElementById('asktsp');
-    holder.innerHTML = '<div class="cf-turnstile" data-sitekey="' + TS_SITEKEY +
-                       '" data-theme="dark" data-size="flexible"></div>';
+    if (box.dataset.ts || !TS_SITEKEY) return;
+    box.dataset.ts = '1';
+    var h = document.getElementById('qts');
+    h.innerHTML = '<div class="cf-turnstile" data-sitekey="' + TS_SITEKEY +
+                  '" data-theme="dark" data-size="flexible"></div>';
     var s = document.createElement('script');
     s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
-    s.async = true; s.defer = true;
-    document.head.appendChild(s);
+    s.async = true; s.defer = true; document.head.appendChild(s);
   }
-  input.addEventListener('focus', armTurnstile, {once:true});
-
-  // Model text is inserted with textContent, never innerHTML. The only markup
-  // this builds is the citation link, and its href comes from a slug the
-  // worker already checked against the record, not from the model's string.
-  function render(target, text){
+  function renderCites(target, text){
     var re = /\[\[([a-z0-9-]+)\]\]/g, at = 0, m;
     while ((m = re.exec(text)) !== null) {
       if (m.index > at) target.appendChild(document.createTextNode(text.slice(at, m.index)));
       var a = document.createElement('a');
-      a.className = 'cite';
-      a.href = '../docket/' + m[1] + '/';
-      a.textContent = m[1].replace(/-/g, ' ');
-      target.appendChild(a);
-      at = m.index + m[0].length;
+      a.className = 'cite'; a.href = '../docket/' + m[1] + '/';
+      a.textContent = (byId[m[1]] ? byId[m[1]].title : m[1].replace(/-/g, ' '));
+      target.appendChild(a); at = m.index + m[0].length;
     }
     if (at < text.length) target.appendChild(document.createTextNode(text.slice(at)));
   }
-
-  function reset(){ busy = false; go.disabled = false; go.textContent = 'ASK'; }
-
-  function ask(question){
-    if (busy || !question.trim()) return;
-    busy = true; go.disabled = true; go.textContent = 'READING...';
-    out.hidden = false;
-    out.textContent = '';
-    var para = document.createElement('p');
-    var cursor = document.createElement('span');
-    cursor.className = 'askcursor';
-    para.appendChild(cursor);
-    out.appendChild(para);
-    note.textContent = '';
-
-    var token = '';
-    if (TS_SITEKEY && window.turnstile) { token = turnstile.getResponse() || ''; }
-
-    fetch(ENDPOINT, {
-      method: 'POST',
-      headers: {'content-type': 'application/json'},
-      body: JSON.stringify({question: question, turnstile_token: token || null})
-    }).then(function(r){
-      if (!r.ok) { return r.json().then(function(d){ throw new Error(d.error || 'that did not work'); }); }
-      var reader = r.body.getReader(), dec = new TextDecoder(), buf = '';
-      function pump(){
-        return reader.read().then(function(res){
-          if (res.done) { cursor.remove(); reset(); return; }
-          buf += dec.decode(res.value, {stream:true});
-          var frames = buf.split('\n\n'); buf = frames.pop() || '';
-          frames.forEach(function(frame){
-            var ev = '', data = '';
-            frame.split('\n').forEach(function(line){
-              if (line.indexOf('event: ') === 0) ev = line.slice(7);
-              else if (line.indexOf('data: ') === 0) data = line.slice(6);
-            });
-            if (!ev) return;
-            var d = {};
-            try { d = JSON.parse(data); } catch (e) { return; }
-            if (ev === 'answer') {
-              if (para.childNodes.length > 1) para.insertBefore(document.createTextNode(' '), cursor);
-              var frag = document.createDocumentFragment();
-              render(frag, d.text);
-              para.insertBefore(frag, cursor);
-            } else if (ev === 'withheld') {
-              cursor.remove();
-              var stop = document.createElement('div');
-              stop.className = 'askstop';
-              stop.textContent = 'The rest of this answer was withheld. A ' +
-                (d.reason === 'numeral' ? 'figure in it does not appear in the record'
-                 : d.reason === 'citation' ? 'source it cited does not exist'
-                 : 'claim in it is one this record does not make') + '.';
-              out.appendChild(stop);
-            } else if (ev === 'error') {
-              cursor.remove();
-              note.textContent = d.error || 'the answer was cut short';
-            } else if (ev === 'done') {
-              cursor.remove();
-              note.textContent = d.cached ? 'ANSWERED FROM THE RECORD, CACHED'
-                                          : 'ANSWERED FROM THE RECORD';
-              if (TS_SITEKEY && window.turnstile) { turnstile.reset(); }
-              reset();
-            }
-          });
-          return pump();
-        });
-      }
-      return pump();
-    }).catch(function(e){
-      cursor.remove();
-      note.textContent = (e && e.message) || 'that did not work';
-      if (TS_SITEKEY && window.turnstile) { turnstile.reset(); }
-      reset();
-    });
-  }
-
-  // The deep lane. A different promise from the fast one, so it says so: the
-  // reader is choosing to wait minutes for an answer read out of the whole
-  // repository rather than seconds for one read out of the published record.
-  function research(question){
-    if (busy || !question.trim()) return;
-    busy = true; go.disabled = true;
-    out.hidden = false;
-    out.textContent = '';
-    var para = document.createElement('p');
-    para.textContent = 'Reading the full record. This takes a few minutes, and the answer appears here when it lands.';
-    out.appendChild(para);
-    note.textContent = 'RESEARCHING';
-
-    var token = '';
-    if (TS_SITEKEY && window.turnstile) { token = turnstile.getResponse() || ''; }
-
-    fetch(ENDPOINT + '/deep', {
-      method: 'POST', headers: {'content-type': 'application/json'},
-      body: JSON.stringify({question: question, turnstile_token: token || null})
-    }).then(function(r){
-      return r.json().then(function(d){ if (!r.ok) throw new Error(d.error || 'that did not work'); return d; });
-    }).then(function(d){
-      var tries = 0;
-      // Every four seconds for twenty minutes, matching the worker's own
-      // expiry. A run that has not delivered by then is not going to.
-      (function poll(){
-        if (++tries > 300) { note.textContent = 'THE RUN DID NOT FINISH'; reset(); return; }
-        fetch(ENDPOINT + '/result?id=' + encodeURIComponent(d.id))
-          .then(function(r){ return r.json(); })
-          .then(function(s){
-            if (s.state === 'running') { setTimeout(poll, 4000); return; }
-            out.textContent = '';
-            if (s.state === 'done' && s.text) {
-              var p = document.createElement('p');
-              render(p, s.text);
-              out.appendChild(p);
-              if (s.withheld) {
-                var stop = document.createElement('div');
-                stop.className = 'askstop';
-                stop.textContent = 'The rest of this answer was withheld because it could not be checked against the record.';
-                out.appendChild(stop);
+  function research(){
+    if (deepBusy || !ENDPOINT) return;
+    var q = input.value.trim(); if (!q) return;
+    deepBusy = true;
+    var btn = document.getElementById('qdeep');
+    var out = document.getElementById('qout');
+    if (btn) { btn.disabled = true; btn.textContent = 'READING THE ARCHIVE...'; }
+    if (out) { out.hidden = false; out.textContent =
+      'Reading every ledger and article. This takes a few minutes and the answer appears here.'; }
+    var tok = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || '') : '';
+    fetch(ENDPOINT + '/deep', {method: 'POST', headers: {'content-type': 'application/json'},
+      body: JSON.stringify({question: q, turnstile_token: tok || null})})
+      .then(function(r){ return r.json().then(function(d){
+        if (!r.ok) throw new Error(d.error || 'that did not work'); return d; }); })
+      .then(function(d){
+        var tries = 0;
+        (function poll(){
+          if (++tries > 300) { if (out) out.textContent = 'The run did not finish in time.';
+                               deepBusy = false; if (btn) { btn.disabled = false; btn.textContent = 'TRY AGAIN'; } return; }
+          fetch(ENDPOINT + '/result?id=' + encodeURIComponent(d.id))
+            .then(function(r){ return r.json(); })
+            .then(function(s){
+              if (s.state === 'running') { setTimeout(poll, 4000); return; }
+              if (out) {
+                out.textContent = '';
+                if (s.state === 'done' && s.text) {
+                  var p = document.createElement('p'); p.style.margin = '0';
+                  renderCites(p, s.text); out.appendChild(p);
+                  if (s.withheld) {
+                    var st = document.createElement('div'); st.className = 'qstop';
+                    st.textContent = 'The rest was withheld because it could not be checked against the record.';
+                    out.appendChild(st);
+                  }
+                } else { out.textContent = s.error || 'The archive run returned no answer.'; }
               }
-              note.textContent = 'ANSWERED FROM THE FULL RECORD';
-            } else {
-              note.textContent = s.error || 'the research run did not return an answer';
-            }
-            if (TS_SITEKEY && window.turnstile) { turnstile.reset(); }
-            reset();
-          }).catch(function(){ setTimeout(poll, 4000); });
-      })();
-    }).catch(function(e){
-      note.textContent = (e && e.message) || 'that did not work';
-      if (TS_SITEKEY && window.turnstile) { turnstile.reset(); }
-      reset();
-    });
+              deepBusy = false;
+              if (btn) { btn.disabled = false; btn.textContent = 'SEARCH THE FULL ARCHIVE'; }
+              if (TS_SITEKEY && window.turnstile) turnstile.reset();
+            }).catch(function(){ setTimeout(poll, 4000); });
+        })();
+      }).catch(function(e){
+        if (out) out.textContent = (e && e.message) || 'that did not work';
+        deepBusy = false;
+        if (btn) { btn.disabled = false; btn.textContent = 'TRY AGAIN'; }
+      });
   }
 
-  var deep = document.getElementById('askdeep');
-  if (deep) {
-    deep.addEventListener('click', function(){ armTurnstile(); research(input.value); });
+  /* ---- wiring ----
+     Typing schedules a frame rather than doing the work inside the keystroke.
+     A reader typing at speed, or holding a key down, fires more input events
+     than there are frames to show them, and every one of those but the last
+     is work whose result is thrown away. On a phone that is the difference
+     between a box that keeps up and one that stutters.
+     Anything that READS the painted list flushes first, so the DOM a keyboard
+     walks is never a frame behind the field it belongs to. */
+  var pending = 0;
+  function schedule(){
+    if (!pending) pending = requestAnimationFrame(function(){ pending = 0; run(); });
   }
-
-  form.addEventListener('submit', function(e){ e.preventDefault(); ask(input.value); });
-  Array.prototype.forEach.call(document.querySelectorAll('.askchips button'), function(b){
+  function flush(){
+    if (pending) { cancelAnimationFrame(pending); pending = 0; run(); }
+  }
+  input.addEventListener('input', schedule);
+  input.addEventListener('focus', function(){ box.classList.add('on'); armTurnstile(); });
+  input.addEventListener('blur', function(){
+    if (!input.value.trim()) box.classList.remove('on');
+  });
+  input.addEventListener('keydown', function(e){
+    flush();
+    if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+    else if (e.key === 'Tab' && box.dataset.ghost && !e.shiftKey) {
+      e.preventDefault(); input.value = box.dataset.ghost; run();
+    } else if (e.key === 'ArrowRight' && box.dataset.ghost &&
+               input.selectionStart === input.value.length) {
+      e.preventDefault(); input.value = box.dataset.ghost; run();
+    } else if (e.key === 'Enter') {
+      var hits = panel.querySelectorAll('.qhit');
+      if (sel >= 0 && hits[sel]) { e.preventDefault(); hits[sel].click(); }
+      else if (box.dataset.ghost) { e.preventDefault(); input.value = box.dataset.ghost; run(); }
+    } else if (e.key === 'Escape') {
+      if (input.value) { input.value = ''; run(); }
+      else { input.blur(); box.classList.remove('on'); }
+    }
+  });
+  Array.prototype.forEach.call(views.querySelectorAll('.qview'), function(b){
+    b.addEventListener('click', function(){ input.focus(); view(b.getAttribute('data-key')); });
+  });
+  Array.prototype.forEach.call(box.querySelectorAll('.qtry'), function(b){
     b.addEventListener('click', function(){
-      armTurnstile();
-      input.value = b.textContent;
-      ask(b.textContent);
+      input.value = b.textContent.trim(); input.focus(); run();
     });
   });
+  document.addEventListener('keydown', function(e){
+    if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault(); input.focus(); input.select();
+    }
+  });
+  // The card lighting follows the pointer. One delegated listener writing two
+  // custom properties, so hover costs a style recalculation and not a layout.
+  var raf = 0, mx = 0, my = 0, mt = null;
+  panel.addEventListener('mousemove', function(e){
+    var hit = e.target.closest ? e.target.closest('.qhit') : null;
+    if (!hit) return;
+    var r = hit.getBoundingClientRect();
+    mx = e.clientX - r.left; my = e.clientY - r.top; mt = hit;
+    if (!raf) raf = requestAnimationFrame(function(){
+      raf = 0;
+      if (mt) { mt.style.setProperty('--mx', mx + 'px'); mt.style.setProperty('--my', my + 'px'); }
+    });
+  });
+
+  empty();
 })();
 """
 
 
-def ask_html():
-    """The ask box, or nothing at all when no worker is deployed.
+def ask_html(today):
+    """The query box, or nothing at all when it has nothing to query.
 
-    Rendering nothing is the point. A form that posts into the void is worse
-    than no form, and this way the docket page is unchanged until the endpoint
-    in ASK_ENDPOINT actually answers.
+    Rendering nothing is deliberate. The index is what makes this instant, so a
+    page that failed to build one should show the docket it already has rather
+    than a search field that returns nothing.
     """
-    if not ASK_ENDPOINT:
+    data = ask_answers.build(today)
+    if not data["index"]:
         return ""
-    chips = "".join("<button type=\"button\">%s</button>" % esc(q)
-                    for q in ASK_SUGGESTIONS)
-    return f"""<div class="ask" data-reveal>
-<form id="askform" data-endpoint="{esc(ASK_ENDPOINT)}" data-sitekey="{esc(TS_SITEKEY)}">
-  <label class="vh" for="askq">Ask a question about the docket</label>
-  <input type="text" id="askq" maxlength="400" autocomplete="off"
-         placeholder="Ask anything about these decisions">
-  <button type="submit" class="go" id="askgo">ASK</button>
-</form>
-<div class="askchips">{chips}</div>
-<p class="asknote"><button type="button" class="asklink" id="askdeep">Or search the
-full archive instead</button>, which reads every ledger and every published article
-rather than the summary record. It takes a few minutes.</p>
-<div id="asktsp"></div>
-<div class="askout" id="askout" hidden></div>
-<p class="asknote" id="asknote"></p>
-<p class="asknote">Answers come only from this docket. Every figure is checked
-against the record before it is shown, and anything the record cannot back is
-withheld.</p>
+    cards = "".join(
+        '<button type="button" class="qview" data-key="%s"><b>%s</b><span>%s</span></button>'
+        % (esc(v["key"]), esc(v["q"]),
+           ("%d TRACKED" % len(v["ids"])) if v["ids"] else "NONE RIGHT NOW")
+        for v in data["views"])
+    tries = "".join('<button type="button" class="qtry">%s</button>' % esc(q)
+                    for q in data["try"])
+    endpoint = ASK_ENDPOINT if ASK_ENDPOINT else ""
+    n = len(data["index"])
+    return f"""<div class="qbox" id="qbox" data-reveal
+     data-endpoint="{esc(endpoint)}" data-sitekey="{esc(TS_SITEKEY)}">
+<span class="qcount" id="qcount" aria-hidden="true"></span>
+<div class="qshell"><div class="qfield">
+  <svg class="qicon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6"
+    stroke="currentColor" stroke-width="1.7"/><path d="m13.5 13.5 4 4"
+    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+  <label class="vh" for="qq">Ask the docket</label>
+  <div class="qinput">
+    <div class="qghost" aria-hidden="true"><span id="qgt"></span><span id="qgr"></span></div>
+    <input id="qq" type="text" autocomplete="off" spellcheck="false" role="combobox"
+           aria-expanded="false" aria-controls="qres" aria-autocomplete="list"
+           placeholder="Ask anything about {n} tracked decisions">
+  </div>
+  <kbd class="qkbd">CTRL K</kbd>
+</div><div class="qrail"><div class="qmeter" id="qmeter"></div></div></div>
+<div class="qviews" id="qviews">{cards}</div>
+<div class="qtries" id="qtries"><span class="qtryl">TRY</span>{tries}</div>
+<div class="qpanel" id="qres" role="listbox" aria-label="Answer" hidden></div>
+<div id="qts"></div>
+<div class="qfoot"><span><kbd>TAB</kbd> to complete</span>
+<span><kbd>UP</kbd> <kbd>DOWN</kbd> to move</span>
+<span><kbd>ENTER</kbd> to open</span><span><kbd>ESC</kbd> to clear</span>
+<span>Answered from the record inside this page, so nothing is sent anywhere.</span></div>
+<script type="application/json" id="qdata">{json.dumps(data, separators=(",", ":"))}</script>
 </div>"""
-
 
 MAP_JS = """
 (function(){
@@ -3290,7 +4526,7 @@ def docket_page(today, site_url, docket):
 <p class="tag">Every AI infrastructure decision in Alaska, tracked daily. Who decides,
 when it lands, and whether the public gets a say. Sources on every item.</p>
 {stats}
-{ask_html()}
+{ask_html(today)}
 </div>
 <div class="maphero">{layerbox}{svg}{layerbar}<div class="mapcap">{mapcap}</div></div>
 <h2>Closing soon</h2>
@@ -3318,8 +4554,11 @@ builds for Alaska businesses.</p>
                 # The map's styling and its pan and zoom ride on this page only,
                 # and so does the ask box. Both are appended rather than
                 # replaced so neither can quietly drop the other.
-                extra_css=MAP_CSS + (ASK_CSS if ASK_ENDPOINT else ""),
-                extra_js=MAP_JS + (ASK_JS if ASK_ENDPOINT else ""))
+                # The query box is always on. It answers from the index inside the
+                # page, so it needs no endpoint and no key; ASK_ENDPOINT only adds
+                # the archive lane underneath it.
+                extra_css=MAP_CSS + ASK_CSS,
+                extra_js=MAP_JS + ASK_JS)
 
 
 def archive_page(today, site_url, runs):

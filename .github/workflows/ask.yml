@@ -1,31 +1,46 @@
 name: ask box
 
 # The ask box publishes prose to the public site at read time, which is where
-# none of the build-time page lints can reach it. These two suites are the only
-# thing standing between a model's guess and a published claim, so they run on
-# every change to either half.
+# none of the build-time page lints can reach it. These suites are the only
+# thing standing between a guess and a published claim, so they run on every
+# change to any part of it.
 #
-# The corpus builder and the worker each own one end of the same contract: the
-# builder decides which numbers an answer may contain, the worker refuses
+# THREE HALVES, WHICH IS THE POINT. The answer engine assembles sentences in
+# the page from ledger fields, and it is the one a reader actually meets. The
+# corpus builder and the worker own the two ends of the model lane behind it:
+# the builder decides which numbers an answer may contain, the worker refuses
 # anything else. A change to one without the other silently loosens the guard,
-# so both run together and neither is optional.
+# so they run together and none of them is optional.
+#
+# The engine's own suite runs in a real browser because that is where it runs.
+# Every catalogued question is asked, and the sentence it returns is checked
+# for a count that disagrees with the cards under it, a placeholder that
+# leaked, a colon this house does not publish, and any wording that predicts
+# an outcome. A record whose value is being right cannot ship a sentence that
+# contradicts the page it sits on.
 
 on:
   pull_request:
     paths:
       - "workers/ask/**"
+      - "scripts/ask_answers.py"
       - "scripts/ask_corpus.py"
       - "scripts/site_build.py"
+      - "scripts/docket_build.py"
       - "ledger/docket.json"
       - "prompts/ASK_ROUTINE.md"
+      - "tests/ask_engine.mjs"
       - ".github/workflows/ask.yml"
   push:
     branches: [main]
     paths:
       - "workers/ask/**"
+      - "scripts/ask_answers.py"
       - "scripts/ask_corpus.py"
       - "scripts/site_build.py"
+      - "scripts/docket_build.py"
       - "ledger/docket.json"
+      - "tests/ask_engine.mjs"
       - ".github/workflows/ask.yml"
   workflow_dispatch:
 
@@ -42,6 +57,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+      # The engine that answers in the page. Entities, handles and facet words
+      # are checked against the record they claim to describe, so a rule that
+      # has stopped matching anything fails the build instead of quietly
+      # returning nothing to a reader.
+      - name: The answer engine agrees with the record it reads
+        run: python3 scripts/ask_answers.py --self-test
 
       # Builds the corpus from the live ledger and proves the allow-list
       # covers its own source. An allow-list that did not would refuse true
@@ -70,3 +92,11 @@ jobs:
           python3 scripts/site_build.py --date "$(TZ=America/Anchorage date +%F)" --out /tmp/site
           test -s /tmp/site/ask-corpus.json
           echo "corpus published at $(wc -c < /tmp/site/ask-corpus.json) bytes"
+
+      # The engine runs in a browser, so it is tested in one. Every catalogued
+      # question is asked for real and the answer is read back out of the DOM.
+      - name: Every question the box offers actually answers
+        run: |
+          npm install --no-save playwright@1
+          npx playwright install --with-deps chromium
+          SITE=/tmp/site node tests/ask_engine.mjs

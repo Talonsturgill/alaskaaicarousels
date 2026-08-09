@@ -1,16 +1,30 @@
 # The ask box
 
-Two lanes behind one box on the docket page.
+Three lanes behind one box on the docket page.
 
-| Lane | Route | Answers from | Speed | Billed to |
+| Lane | Where it runs | Answers from | Speed | Billed to |
 |---|---|---|---|---|
+| **engine** | the reader's browser | the record shipped inside the page | the same frame | nothing |
 | **fast** | `POST /` | `ask-corpus.json`, the published record | about a second | a paid Console key |
 | **deep** | `POST /deep` then poll `GET /result` | the whole repository, via a fired routine | minutes | the claude.ai subscription |
 
-The fast lane is the default and the box's main path. The deep lane is a link
-under it, for a question the published record cannot answer.
+**The engine is the box.** It is the default path, it needs no worker, no key
+and no network, and it answers almost everything, because almost every
+question about a docket is a filter, a field read, a sort or a count rather
+than an act of reasoning. Who decides the STAK lease is a field. What can I
+comment on is a filter. How many does DNR have is a count. Answering those in
+the page is not a cheaper approximation of a model answer, it is a better one,
+because nothing is generated so nothing can be invented, and it is rebuilt
+from the ledger on every build so it is exactly current.
 
-**The two lanes are independent.** Deploy either without the other. With no
+Its code lives in `scripts/ask_answers.py`, which builds the payload, and in
+`ASK_JS` in `scripts/site_build.py`, which resolves a question against it. Its
+tests are `scripts/ask_answers.py --self-test` and `tests/ask_engine.mjs`.
+
+The two model lanes are for what is left, which is the open-ended question
+nobody anticipated. Both are optional and the box works without either.
+
+**The two model lanes are independent.** Deploy either without the other. With no
 `ANTHROPIC_API_KEY` the fast lane returns 503 and the deep lane still works,
 which is the configuration to use if you want this to cost nothing beyond the
 subscription you already pay for.
