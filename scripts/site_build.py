@@ -5610,7 +5610,7 @@ def services_page(today, site_url):
     if BOOKING_URL:
         hero_ctas = (f'<a class="cta gold" href="{BOOKING_URL}" target="_blank" '
                      'rel="noopener">BOOK A FREE INTRO CALL</a>\n'
-                     '  <a class="cta ghost" href="#apply">SEE WHAT PAYS</a>')
+                     '  <a class="cta ghost" href="#apply">CONTACT US</a>')
         talk_first = (f' Rather talk first? <a href="{BOOKING_URL}" target="_blank" '
                       'rel="noopener">Book a free intro call</a> and we will tell you '
                       'straight whether AI is worth your while yet.')
@@ -5619,7 +5619,7 @@ def services_page(today, site_url):
                     f"book a free intro call and skip the back and forth. {BOOKING_URL} "
                     "Talk soon, Talon at Alaska AI")
     else:
-        hero_ctas = ('<a class="cta gold" href="#apply">SEE WHAT PAYS</a>\n'
+        hero_ctas = ('<a class="cta gold" href="#apply">CONTACT US</a>\n'
                      '  <a class="cta ghost" href="#field-study">THE FIELD STUDY</a>')
         talk_first = ""
         autoresp = ("Thanks for reaching out to Alaska AI. A real person reads every note "
@@ -5827,7 +5827,7 @@ on whether the Field Study fits, and a no costs you nothing.{talk_first}</p>
     <option>$50,000 and up</option>
   </select></label>
   <div class="ctarow">
-    <button class="cta gold" type="submit">SEE WHAT PAYS</button>
+    <button class="cta gold" type="submit">CONTACT US</button>
     <a class="cta ghost" href="../archive/">READ THE DAILY BEAT</a>
   </div>
 </form>
