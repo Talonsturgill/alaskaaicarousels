@@ -1253,6 +1253,28 @@ background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
 """
 
 QIDX_CSS = """
+/* THE PER DECISION Q AND A. Same shape as the index on the questions page, so
+   a reader who has seen one recognises the other. Open by default for the
+   first few because a block nobody expands teaches nobody anything, and a
+   machine reads the content of a details element either way. */
+.dqawrap{display:grid;gap:7px;margin-top:18px;}
+.dqa{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+overflow:hidden;}
+.dqa summary{display:flex;align-items:center;gap:12px;cursor:pointer;
+padding:13px 16px;list-style:none;touch-action:manipulation;
+transition:background .18s ease;}
+.dqa summary::-webkit-details-marker{display:none;}
+.dqa summary::after{content:"+";margin-left:auto;color:var(--mute);
+font-family:JBMono,ui-monospace,monospace;font-size:14px;line-height:1;}
+.dqa[open] summary::after{content:"-";}
+.dqa summary:hover{background:rgba(255,199,44,.045);}
+.dqa summary b{color:var(--snow);font-size:15px;font-weight:600;
+letter-spacing:-.01em;line-height:1.4;}
+.dqa-a{padding:0 16px 15px;border-top:1px solid rgba(255,255,255,.04);}
+.dqa-k{display:block;font-family:JBMono,ui-monospace,monospace;font-size:10px;
+letter-spacing:.16em;color:var(--gold);margin:13px 0 8px;}
+.dqa-a p{margin:0;color:var(--body);font-size:15px;line-height:1.62;}
+
 /* THE INDEX, on the questions page. The box answers in the browser, so a
    crawler reading the HTML sees an empty field and none of the answers behind
    it. This is the same catalogue as plain links, which a crawler follows and
@@ -4888,6 +4910,51 @@ def beat_line(beats, prefix, lead):
             f'that subject in one place.</p>')
 
 
+def decision_qa(it, today):
+    """The questions this record answers about ONE decision, with the answers,
+    rendered into the decision's own page.
+
+    WHY THE ANSWERS ARE HERE AND NOT ONLY IN THE BOX. The ask box resolves a
+    question in the reader's browser, which is what makes it instant and what
+    makes it unreadable to anything that does not run script. An answer engine
+    fetching this page would find an empty search field and none of the
+    answers behind it, on a record people increasingly reach through exactly
+    those systems.
+
+    So the answers are written into the page too. Same wording, same source,
+    checked against the live box in CI. It costs no new URL, because every one
+    of these sits on a page that already exists and already carries the
+    sources and the history behind the answer.
+    """
+    data = ask_answers.build(today)
+    by_id = {r["id"]: r for r in data["index"]}
+    row = by_id.get(it["id"])
+    if not row:
+        return "", None
+    qa = ask_answers.decision_answers(row, data["q"], by_id, data["facets"], today)
+    if not qa:
+        return "", None
+    blocks = "".join(
+        '<details class="dqa" data-kind="%s"><summary><b>%s</b></summary>'
+        '<div class="dqa-a"><span class="dqa-k">%s</span><p>%s</p></div></details>'
+        % (esc(a["kind"]), esc(a["q"]), esc(a["kick"]), esc(a["lead"]))
+        for a in qa)
+    html = (
+        '<h2 data-reveal>Questions about this decision</h2>'
+        '<p class="sub" data-reveal>Answered from this record, rebuilt every day. '
+        'The same answers come back instantly from the box on the docket page, '
+        'where you can ask about anything else on it.</p>'
+        '<div class="dqawrap" data-reveal>%s</div>' % blocks)
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{"@type": "Question", "name": a["q"],
+                        "acceptedAnswer": {"@type": "Answer", "text": a["lead"]}}
+                       for a in qa],
+    }
+    return html, ld
+
+
 def decision_page(today, site_url, it, runs, beats=()):
     """One canonical page per tracked decision.
 
@@ -5028,12 +5095,17 @@ JSON</a>, item id <code>{esc(it["id"])}</code>.</p>
         }
         extra_ld = f'<script type="application/ld+json">{ld_json(ev)}</script>'
 
+    qa_html, qa_ld = decision_qa(it, today)
+    body += qa_html
+    if qa_ld:
+        extra_ld += f'<script type="application/ld+json">{ld_json(qa_ld)}</script>'
+
     body += beat_line(beats, prefix, "This decision is tracked on")
     desc = (f"{it['title']}. Who decides, when it lands, and whether the public "
             f"gets a say. Sourced and updated daily by Alaska AI.")[:155]
     return page(f"{it['title']} - Alaska AI Docket", desc, body, prefix, "docket",
                 today, site_url, f"docket/{it['id']}/", ld=ld,
-                extra_head=extra_ld,
+                extra_head=extra_ld, extra_css=QIDX_CSS,
                 crumbs=[("Alaska AI", ""), ("Docket", "docket/"),
                         (it["title"], f"docket/{it['id']}/")])
 

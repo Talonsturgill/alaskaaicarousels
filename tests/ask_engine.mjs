@@ -75,9 +75,17 @@ const ask = (q) => p.evaluate((q) => {
   el.dispatchEvent(new Event('input', { bubbles: true }));
   el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Shift', bubbles: true }));
   const t = (s) => { const e = document.querySelector(s); return e ? e.textContent.trim() : ''; };
+  // The kicker carries the copy link button inside it, so its own label is
+  // the first text node rather than the element's whole text.
+  const kickText = () => {
+    const e = document.querySelector('.qkick');
+    if (!e) return '';
+    return [...e.childNodes].filter(n => n.nodeType === 3)
+      .map(n => n.textContent).join('').trim();
+  };
   const a = document.querySelector('.qhit');
   return {
-    kick: t('.qkick'), lead: t('.qbig'), sub: t('.qsub'), fix: t('.qfix'),
+    kick: kickText(), lead: t('.qbig'), sub: t('.qsub'), fix: t('.qfix'),
     hits: document.querySelectorAll('.qhit').length,
     top: a ? a.getAttribute('href') : '',
     none: !!document.querySelector('.qnone'),
@@ -565,6 +573,59 @@ for (const bad of ['<script>window.__pwned=1</script>', '%%%', '%E0%A4%A',
          document.getElementById('qshare').textContent)));
   }
   await p4.close();
+}
+
+/* ==================================================================
+   E5. THE STATIC ANSWERS ON EACH DECISION PAGE.
+
+   The box answers in the browser, so an answer engine fetching a page
+   sees an empty field. The same answers are therefore written into each
+   decision's own page at build time, which means one wording now has two
+   implementations, one in Python and one in JavaScript.
+
+   There is no way to avoid that and every way to make it loud. Every
+   published answer is asked of the live box here and the two are
+   compared. Day counts are normalised out, because the page is built
+   once a day and the box counts against the reader's own clock, and that
+   is the one difference that is meant to be there.
+   ================================================================== */
+head('E5. the published answers match the box');
+{
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const dir = path.join(process.env.SITE, 'docket');
+  const ids = fs.readdirSync(dir, { withFileTypes: true })
+    .filter(d => d.isDirectory()).map(d => d.name);
+  // A day count is the one thing allowed to differ, so it is taken out of
+  // both sides rather than compared and forgiven case by case.
+  const undate = (t) => t
+    .replace(/\b\d+ days? (?:out|ago)\b/g, 'DAYS')
+    .replace(/\ba day ago\b/g, 'DAYS')
+    .replace(/\b(?:today|tomorrow)\b/g, 'DAYS');
+  const strip = (h) => h.replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").trim();
+  let pairs = 0, drift = [], pages = 0;
+  for (const id of ids) {
+    const f = path.join(dir, id, 'index.html');
+    if (!fs.existsSync(f)) continue;
+    const html = fs.readFileSync(f, 'utf8');
+    const blocks = [...html.matchAll(
+      /<details class="dqa"[^>]*><summary><b>(.*?)<\/b><\/summary><div class="dqa-a"><span class="dqa-k">(.*?)<\/span><p>(.*?)<\/p>/gs)];
+    if (blocks.length) pages++;
+    for (const m of blocks) {
+      const q = strip(m[1]), kick = strip(m[2]), lead = strip(m[3]);
+      pairs++;
+      const live = await ask(q);
+      if (undate(live.kick) !== undate(kick) || undate(live.lead) !== undate(lead)) {
+        drift.push(`${id} / ${q.slice(0, 40)}\n      page: [${kick}] ${lead.slice(0, 60)}\n      box:  [${live.kick}] ${live.lead.slice(0, 60)}`);
+      }
+    }
+  }
+  ok('every decision page publishes its answers', pages === ids.length && pairs > 100,
+     `${pairs} answers across ${pages} of ${ids.length} pages`);
+  ok('every published answer is the answer the box gives', !drift.length,
+     `${drift.length} differ, first:\n      ${drift[0] || ''}`);
 }
 
 /* ==================================================================

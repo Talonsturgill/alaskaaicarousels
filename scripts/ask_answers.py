@@ -919,6 +919,145 @@ def expand(entry, by_id, fac):
     return q.replace("~", label_for(route, by_id, fac)) if "~" in q else q
 
 
+
+# ------------------------------------------------------- answers, in Python
+#
+# THIS MIRRORS THE PAGE'S OWN ANSWERER, ON PURPOSE, AND IT IS GATED.
+#
+# The box answers in the reader's browser, which is what makes it instant and
+# what makes it invisible: an answer engine fetching the page sees an empty
+# field, because the sentence does not exist until someone types. So the same
+# answers are written into each decision's own page at build time, where a
+# machine can read them and a person without script still gets them.
+#
+# Two implementations of one wording is a drift risk and there is no way to
+# avoid it, so it is made loud instead. tests/ask_engine.mjs asks every one of
+# these questions in a live box and compares what the box says to what the
+# page says, and a difference fails CI. Day counts are normalised out of that
+# comparison because the page is built once a day and the box counts against
+# the reader's own clock, which is the one difference that is supposed to be
+# there.
+
+def days_out(iso, today):
+    if not iso:
+        return None
+    return (date.fromisoformat(iso) - today).days
+
+
+def long_date(iso, today):
+    """House style takes the ordinal, month first. The year appears only when
+    it is not this one, because a reader reading today does not need telling
+    the year twice."""
+    if not iso:
+        return ""
+    d = date.fromisoformat(iso)
+    out = f"{gw.MONTHS[d.month - 1]} {gw.ordinal(d.day)}"
+    if d.year != today.year:
+        out += f", {d.year}"
+    return out
+
+
+def out_in(d):
+    if d == 0:
+        return "today"
+    if d == 1:
+        return "tomorrow"
+    if d < 0:
+        return "a day ago" if abs(d) == 1 else f"{abs(d)} days ago"
+    return f"{d} days out"
+
+
+# The order the answers read best in on a page. What it is, then who decides
+# it, then the only thing a reader can act on, then when.
+ANSWER_ORDER = ["what", "who", "how", "when", "where", "stat", "next",
+                "chg", "kind", "since", "src"]
+
+
+def answer_for(kind, row, today):
+    """One field question about one decision. Assembled from the record, never
+    generated, so there is nothing here that can be wrong in a way the record
+    is not already wrong."""
+    sub = "on " + row["title"]
+    if kind == "who":
+        return {"kick": "WHO DECIDES", "lead": row["decider"], "sub": sub}
+    if kind == "when":
+        if not row["on"]:
+            return {"kick": "WHEN", "sub": sub,
+                    "lead": "No upcoming date is published for it. It is "
+                            + row["statusLabel"] + ", and the record carries a "
+                            "date only once one is filed."}
+        d = days_out(row["on"], today)
+        return {"kick": "DEADLINE" if row["role"] == "deadline" else "NEXT DATE",
+                "sub": sub,
+                "lead": f"{long_date(row['on'], today)}, {out_in(d)}. "
+                        + (row["onLabel"] or "Published date.")}
+    if kind == "where":
+        return {"kick": "WHERE", "sub": sub,
+                "lead": row["where"] or "Statewide. No single site is on the record for it."}
+    if kind == "how":
+        kick = ("YES, IT IS OPEN" if row["access"] == "open"
+                else "NOT A FORMAL COMMENT" if row["access"] == "indirect"
+                else "NO OPEN COMMENT PATH")
+        return {"kick": kick, "lead": row["howto"], "sub": sub}
+    if kind == "stat":
+        return {"kick": "STATUS", "sub": sub,
+                "lead": f"It is {row['statusLabel']}. " + (row["note"] or row["summary"])}
+    if kind == "chg":
+        if not row["moved"]:
+            return {"kick": "WHAT CHANGED", "sub": sub,
+                    "lead": "Nothing has moved on it since it was first tracked on "
+                            f"{long_date(row['first'], today)}."}
+        return {"kick": f"LAST MOVED {long_date(row['moved'], today).upper()}",
+                "lead": row["note"], "sub": sub}
+    if kind == "src":
+        n = len(row["outlets"])
+        return {"kick": f"{n} {'SOURCE' if n == 1 else 'SOURCES'}", "sub": sub,
+                "lead": ", ".join(row["outlets"]) + ". Every one is listed with "
+                        "its date on the decision page."}
+    if kind == "next":
+        for d0, label, _k in row["dates"]:
+            if days_out(d0, today) >= 0:
+                return {"kick": "WHAT HAPPENS NEXT", "sub": sub,
+                        "lead": f"{label}, {long_date(d0, today)}, "
+                                f"{out_in(days_out(d0, today))}."}
+        return {"kick": "WHAT HAPPENS NEXT", "sub": sub,
+                "lead": f"No further date is published. It is {row['statusLabel']} "
+                        "and the record is checked against its source every day."}
+    if kind == "kind":
+        return {"kick": "TYPE", "sub": sub,
+                "lead": f"A {row['kind']}, decided by {row['decider']}."}
+    if kind == "since":
+        d = days_out(row["first"], today)
+        lead = f"Tracked since {long_date(row['first'], today)}, {out_in(d)}."
+        if row["dates"]:
+            lead += (" The earliest date on its record is "
+                     f"{long_date(row['dates'][0][0], today)}.")
+        return {"kick": "TRACKED SINCE", "lead": lead, "sub": sub}
+    return {"kick": row["kind"].upper(), "lead": row["summary"], "sub": row["title"]}
+
+
+def decision_answers(row, cat, by_id, fac, today):
+    """Every question this record can answer about ONE decision, with its
+    answer. One per shape of answer rather than one per wording, because three
+    ways of asking what something is deserve one entry and not three."""
+    first = {}
+    for entry in cat:
+        q, route = entry.split("|", 1)
+        kind, target = route.split(":", 1)
+        if target != row["id"] or kind not in ANSWER_ORDER:
+            continue
+        first.setdefault(kind, expand(entry, by_id, fac))
+    out = []
+    for kind in ANSWER_ORDER:
+        if kind not in first:
+            continue
+        a = answer_for(kind, row, today)
+        if not a["lead"]:
+            continue
+        out.append({"q": first[kind], "kind": kind, **a})
+    return out
+
+
 def vocabulary(rows, fac):
     """Every word the record contains, for spelling correction.
 
@@ -1146,8 +1285,30 @@ def self_test():
     check("every decision appears in the catalogue", len(reach) == len(rows),
           f"{len(reach)} of {len(rows)}")
 
+    print("the answers written into each decision's own page")
+    every = []
+    for r in rows:
+        qa = decision_answers(r, cat, by_id, fac, today)
+        check(f"{r['id'][:34]} publishes its answers", len(qa) >= 8, f"{len(qa)}")
+        every.extend(qa)
+    # Not a length. Juneau is a complete and correct answer to where is it,
+    # and a rule that calls it too short is a rule about the rule rather than
+    # about the record.
+    check("every published answer says something",
+          all(a["lead"].strip() and a["kick"].strip() for a in every),
+          f"{len(every)} answers")
+    # These go into FAQPage structured data, where a machine quotes them
+    # verbatim under this site's name, so they are held to the same rules as
+    # anything else published here.
+    check("no published answer carries banned punctuation",
+          not [a for a in every if any(c in a["lead"] + a["kick"] for c in "—–‘’“”")])
+    check("no published answer predicts an outcome",
+          not [a for a in every if re.search(
+              r"\b(will be approved|is likely|we expect|guaranteed)\b", a["lead"], re.I)])
+
     print("house style, because this ships as visible page copy")
-    prose = [v["summary"] for v in views] + list(META.values()) + full + out["try"]
+    prose = ([v["summary"] for v in views] + list(META.values()) + full
+             + out["try"] + [a["q"] for a in every])
     for text in prose:
         if ":" in text or any(c in text for c in "—–‘’“”"):
             check(f"clean copy {text[:50]!r}", False)
