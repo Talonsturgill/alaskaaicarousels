@@ -120,12 +120,25 @@ SOCIALS = [
      "11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 "
      "2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 "
      "3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"),
-    ("X", "https://x.com/Microvestapp",
+    ("X", "https://x.com/alaskaaihq",
      "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 "
      "7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 "
      "3.24H4.298Z"),
 ]
 SAMEAS = [url for _, url, _ in SOCIALS]
+
+# The mail icon rides in the same footer row but is NOT a social profile, so it
+# is kept out of SOCIALS and therefore out of sameAs. sameAs means "this is the
+# same entity, elsewhere on the web"; a contact form on our own domain is not
+# another profile of us, and putting it there muddies the entity resolution the
+# whole schema block exists to get right. It also needs the opposite link
+# behavior from its neighbors, staying in the tab rather than opening a new one.
+# House rule is no emojis, so this is an envelope drawn as a path like every
+# other icon in the row, which is also the only way it matches them.
+MAIL_ICON = ("M1.5 5.25A2.25 2.25 0 0 1 3.75 3h16.5a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 "
+             "2.25 0 0 1 20.25 21H3.75a2.25 2.25 0 0 1-2.25-2.25V5.25Zm2.68-.75L12 "
+             "11.19 19.82 4.5H4.18ZM21 6.31l-8.46 7.24a.75.75 0 0 1-.98 0L3 "
+             "6.31v12.44c0 .41.34.75.75.75h16.5c.41 0 .75-.34.75-.75V6.31Z")
 ANCHORAGE_GEO = {"@type": "GeoCoordinates", "latitude": 61.2181, "longitude": -149.9003}
 
 
@@ -487,6 +500,8 @@ def footer(prefix, today):
         f'<a href="{url}" target="_blank" rel="noopener" aria-label="Alaska AI on {name}" '
         f'title="{name}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="{d}"/></svg></a>'
         for name, url, d in SOCIALS)
+    icons += (f'<a href="{prefix}contact/" aria-label="Email Alaska AI" title="Email us">'
+              f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{MAIL_ICON}"/></svg></a>')
     return f"""<footer>
 <div class="foot-grid">
   <div class="foot-brand">{ak_mark()}<span>ALASKA.AI</span></div>
@@ -5874,6 +5889,80 @@ one business day. {thanks_line}</p>
                 noindex=True)
 
 
+def contact_page(today, site_url):
+    """The general contact form, reached from the mail icon in the footer.
+
+    It posts to the SAME FormSubmit endpoint as the services lead form, which
+    is what puts it in docket@alaskaaihq.com. That is deliberate rather than
+    lazy: a second endpoint would be a second address to keep alive, and the
+    first time one of them silently stopped relaying, nobody would find out
+    from the site. `_subject` is what separates the two in the inbox.
+
+    Kept deliberately short. The services form qualifies a lead and asks seven
+    questions to do it. This one exists for the reader who has a question, so
+    asking them to scope a project before they can ask it would lose exactly
+    the message it is here to collect.
+    """
+    body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+<h1>Say <em>hello</em></h1>
+<p class="tag">A question about the docket, a correction, a story worth chasing, or work you
+want built. It all lands in the same inbox and a person reads every one.</p>
+</div>
+<h2 data-reveal>Send us a note</h2>
+<p class="sub" data-reveal>You get an answer within one business day. If you would rather
+just email, we are at docket@alaskaaihq.com.</p>
+<form class="leadform" data-reveal action="https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771" method="POST">
+  <input type="hidden" name="_subject" value="New Alaska AI message (contact form)">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="{site_url}/contact/thanks/">
+  <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <div class="lf-grid">
+    <label>Your name<input type="text" name="name" required autocomplete="name"></label>
+    <label>Email<input type="email" name="email" required autocomplete="email"></label>
+  </div>
+  <label>Business or organization<input type="text" name="business" autocomplete="organization"
+  placeholder="Optional"></label>
+  <label>What is on your mind?<textarea name="message" rows="5" required
+  placeholder="Ask us anything. A question about a tracked decision, a correction, or something you want built."></textarea></label>
+  <div class="ctarow">
+    <button class="cta gold" type="submit">SEND IT</button>
+    <a class="cta ghost" href="../services/">SEE WHAT WE BUILD</a>
+  </div>
+</form>
+<div class="about-line" data-reveal><p>We do not sell or share your address, and there is no
+list to get put on. The docket's deadline alerts are a separate thing you opt into yourself.
+See the <a class="proselink" href="../privacy/">privacy page</a>.</p></div>"""
+    ld = {"@context": "https://schema.org", "@type": "ContactPage",
+          "url": f"{site_url}/contact/", "name": "Contact Alaska AI",
+          "about": {"@id": org_id(site_url)}}
+    return page("Contact Alaska AI",
+                "Send Alaska AI a note. Questions about the docket, corrections, "
+                "story tips, or AI work you want built for an Alaska business.",
+                body, "../", "contact", today, site_url, "contact/", ld=ld,
+                crumbs=[("Alaska AI", ""), ("Contact", "contact/")])
+
+
+def contact_thanks_page(today, site_url):
+    """Where the contact form redirects after FormSubmit relays it. noindex,
+    same as the services thanks page, because a confirmation with no content
+    of its own is not a page anyone should reach from a search result."""
+    body = """<div class="hero" style="min-height:56vh;padding-top:12vh">
+<div class="chip kind">MESSAGE RECEIVED</div>
+<h1 style="margin-top:14px">Got it. We will <em>write back</em></h1>
+<p class="tag">Your note is in and a person reads every one. You get an answer within one
+business day. While you wait, the day's deck is worth a swipe.</p>
+<div class="ctarow">
+  <a class="cta gold" href="../../archive/">READ THE DAILY BEAT</a>
+  <a class="cta ghost" href="../../docket/">OPEN THE DOCKET</a>
+</div>
+</div>"""
+    return page("Message received - Alaska AI",
+                "Your note is in. A person reads every one.",
+                body, "../../", "contact", today, site_url, "contact/thanks/",
+                noindex=True)
+
+
 def scan_page(today, site_url):
     """The Bottleneck Scanner tool page (backend lives in the alaska-ai-scanner
     repo, Supabase Edge Functions + an API-triggered Claude routine). Three
@@ -6915,7 +7004,10 @@ def sitemap(site_url, runs, today, decisions=None):
     # Beats and the source archive change whenever a deck lands on them, which
     # is every build that ships an article, so they carry a real lastmod too.
     fresh = ("", "videos/", "docket/", "gas-watch/", "archive/", "topics/", "sources/")
-    for u in fresh + ("services/", "scan/", "about/"):
+    # contact/ sits with the static pages, no lastmod, because it changes when
+    # the copy changes and not on a build. contact/thanks/ is deliberately
+    # absent: it is noindex, and a confirmation page is not a search result.
+    for u in fresh + ("services/", "scan/", "contact/", "about/"):
         lm = f"<lastmod>{iso}</lastmod>" if u in fresh else ""
         entries.append(f"<url><loc>{site_url}/{u}</loc>{lm}</url>")
     for t in TOPICS:
@@ -7155,6 +7247,8 @@ def build(today, out_dir, site_url=None, domain=""):
         "services/index.html": services_page(today, site_url),
         "services/thanks/index.html": services_thanks_page(today, site_url),
         "scan/index.html": scan_page(today, site_url),
+        "contact/index.html": contact_page(today, site_url),
+        "contact/thanks/index.html": contact_thanks_page(today, site_url),
         "about/index.html": about_page(today, site_url),
         "404.html": not_found_page(today, site_url),
     }
