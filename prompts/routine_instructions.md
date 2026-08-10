@@ -976,12 +976,28 @@ JSON in its final message, which YOU persist to
    list, and its top band exists so a large prospect can see the shop plays
    at that level.
 
-   The SOCIALS X entry points at https://x.com/Microvestapp, which is not an
-   alaskaai handle. That is DELIBERATE (maintainer, 2026-08-04), asked and
-   answered. It is the maintainer's account and it stays in the footer row
-   and in the Organization sameAs list. An audit flagged it as off-brand and
-   the answer was to keep it. Do not remove it and do not "correct" it to a
-   guessed alaskaai handle.
+   The SOCIALS X entry is https://x.com/alaskaaihq (maintainer, 2026-08-10).
+   It used to point at a personal handle, which an audit flagged and the
+   maintainer chose to keep on 2026-08-04; the account was renamed six days
+   later and the entry moved with it. That older note is now void. SOCIALS is
+   the single source for both the footer icon row and the Organization
+   sameAs, so a handle change is one edit here and nowhere else.
+
+   The MAIL ICON in that same footer row is NOT in SOCIALS and must not be
+   added to it. It points at our own /contact/ page, and sameAs means "the
+   same entity, elsewhere on the web", so a page on this domain does not
+   belong there and would blur the entity resolution the schema block exists
+   to get right. It also needs the opposite link behavior from its neighbors,
+   staying in the tab rather than opening a new one. It is an envelope drawn
+   as an SVG path, not an emoji, because the house rule forbids emojis and
+   because a glyph would not match the six icons beside it.
+
+   The contact form posts to the SAME FormSubmit endpoint as the services
+   lead form, which is what lands it in docket@alaskaaihq.com. Do not mint a
+   second endpoint. Two would be two addresses to keep alive, and the first
+   time one quietly stopped relaying nobody would learn it from the site.
+   `_subject` is what separates the two in the inbox. /contact/thanks/ is
+   noindex and deliberately absent from the sitemap.
 
    The site has NO public-sector or government-facing copy, and that is a
    parked decision, not an oversight (maintainer, 2026-08-04). An audit
