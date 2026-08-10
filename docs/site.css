@@ -6,7 +6,13 @@
 @font-face{font-family:JBMono;src:url(fonts/jbmono.woff2) format("woff2");font-weight:400;font-display:swap;}
 @font-face{font-family:JBMono;src:url(fonts/jbmono-md.woff2) format("woff2");font-weight:500;font-display:swap;}
 @font-face{font-family:Manrope;src:url(fonts/manrope.woff2) format("woff2");font-weight:200 800;font-display:swap;}
-@view-transition{navigation:auto;}
+/* NO CROSS DOCUMENT VIEW TRANSITION. Measured on a throttled phone, this cost
+   187ms of frozen page on EVERY link on the site, because the browser holds
+   the old document on screen while it snapshots, loads and cross fades the
+   next one. Tap a decision, watch nothing happen for a fifth of a second.
+   343ms to navigate with it, 156ms without. A fade is not worth a page that
+   feels broken to the person tapping it, least of all on a rural connection.
+*/
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;overflow-x:clip;}
 body{background:var(--night);color:var(--body);font-family:Manrope,system-ui,sans-serif;

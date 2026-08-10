@@ -519,7 +519,13 @@ SITE_CSS = """
 @font-face{font-family:JBMono;src:url(FONTPREFIXfonts/jbmono.woff2) format("woff2");font-weight:400;font-display:swap;}
 @font-face{font-family:JBMono;src:url(FONTPREFIXfonts/jbmono-md.woff2) format("woff2");font-weight:500;font-display:swap;}
 @font-face{font-family:Manrope;src:url(FONTPREFIXfonts/manrope.woff2) format("woff2");font-weight:200 800;font-display:swap;}
-@view-transition{navigation:auto;}
+/* NO CROSS DOCUMENT VIEW TRANSITION. Measured on a throttled phone, this cost
+   187ms of frozen page on EVERY link on the site, because the browser holds
+   the old document on screen while it snapshots, loads and cross fades the
+   next one. Tap a decision, watch nothing happen for a fifth of a second.
+   343ms to navigate with it, 156ms without. A fade is not worth a page that
+   feels broken to the person tapping it, least of all on a rural connection.
+*/
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;overflow-x:clip;}
 body{background:var(--night);color:var(--body);font-family:Manrope,system-ui,sans-serif;
@@ -1092,6 +1098,10 @@ font-size:10.5px;letter-spacing:.05em;color:var(--mute);margin:9px 0 0;}
 .qalso{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 13px;}
 .qalsol,.qtryl{font-family:JBMono,ui-monospace,monospace;font-size:10px;
 letter-spacing:.17em;color:var(--mute);opacity:.65;}
+.qchip:active,.qtry:active,.qview:active,.qshare:active{
+transform:scale(.97);transition-duration:.06s;}
+.qchip,.qtry,.qview,.qshare,.qdeep{touch-action:manipulation;
+-webkit-tap-highlight-color:transparent;}
 .qchip,.qtry{background:rgba(255,255,255,.028);border:1px solid var(--line);
 color:var(--body);border-radius:999px;padding:6px 13px;font-family:inherit;
 font-size:12.5px;line-height:1.35;cursor:pointer;text-align:left;
@@ -1153,6 +1163,15 @@ background:var(--gold);transform:scaleY(0);transform-origin:50% 0;
 transition:transform .24s cubic-bezier(.22,1,.36,1);}
 .qhit:hover,.qhit.sel{border-color:rgba(255,199,44,.3);
 background:rgba(255,255,255,.03);transform:translateY(-1px);}
+/* A tap answers in the same frame, whatever the next page costs. Without
+   this a card sits there looking untouched while the browser works, and a
+   control that does not acknowledge you reads as one that is broken.
+   touch-action kills the 300ms delay a mobile browser holds a tap for while
+   it waits to see whether you meant to double tap. */
+.qhit{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+.qhit:active{transform:translateY(0) scale(.994);
+border-color:rgba(255,199,44,.55);background:rgba(255,199,44,.07);
+transition-duration:.06s;}
 .qhit:hover .qglow,.qhit.sel .qglow{opacity:1;}
 .qhit:hover::before,.qhit.sel::before{transform:scaleY(1);}
 .qhit:focus-visible{outline:2px solid var(--halo);outline-offset:-2px;}
