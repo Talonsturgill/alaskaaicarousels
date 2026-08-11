@@ -117,7 +117,9 @@ A missed day is the one irreversible failure this project has.
   no-repeat ledger for auto-sent subscriber emails). Committed state;
   updated every run. Plus gaswatch.jsonl (Cook Inlet Gas Watch, one
   append-only line per day, written by its own workflow and NOT by a run) and
-  gaswatch_eia.json (monthly EIA figures behind the model cross check).
+  gaswatch_eia.json (monthly EIA figures behind the model cross check) and
+  watch.json (the docket watch queue, written by cron and read by Phase 3.5;
+  a candidate in it is a lead, never a record).
 - `.claude/agents/` — scout, fact-checker, treatment-director, copywriter,
   pixel-critic, flow-critic, scorer, upgrade-engineer (Phase 12 machine
   upgrades; pinned to Opus by maintainer requirement).
@@ -145,6 +147,11 @@ A missed day is the one irreversible failure this project has.
   question is answered in the reader's own browser with nothing sent anywhere;
   it ships the index, the entity vocabulary, the four smart views and 500 plus
   catalogued questions, each paired with the route that answers it), and
+  docket_watch.py (the docket's eyes, a keyless daily sweep of the Alaska
+  Legislature's BASIS and the Federal Register into ledger/watch.json, which is
+  a QUEUE OF CANDIDATES and never the docket itself; runs on
+  .github/workflows/docket-watch.yml and not as a routine phase, for the same
+  reason the gas watch does not), and
   ask_corpus.py (the published corpus behind the archive lane in workers/ask/,
   which fires a routine for the question the record cannot answer and is the
   only lane left; the paid Messages API lane was removed 2026-08-09 because
