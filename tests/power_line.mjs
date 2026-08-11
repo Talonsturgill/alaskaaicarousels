@@ -17,7 +17,14 @@
 
 import { chromium } from 'playwright';
 const URL = 'file://' + process.env.SITE + '/gas-watch/index.html';
-const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+// The pre-installed browser when there is one, whatever playwright resolves
+// otherwise, so this runs the same on a runner as on a workstation. Pinning
+// the workstation path outright is what took this job down the first time it
+// ran in CI, where playwright installs to its own cache and nothing sits at
+// /opt/pw-browsers. Copied from tests/ask_engine.mjs, which already knew.
+const exe = process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
+const b = await chromium.launch(
+  (await import('node:fs')).existsSync(exe) ? { executablePath: exe } : {});
 let fails = 0;
 const ck = (l, c, d = '') => { if (!c) fails++; console.log(`  ${c ? 'PASS' : 'FAIL'}  ${l}${d ? '  ' + d : ''}`); };
 

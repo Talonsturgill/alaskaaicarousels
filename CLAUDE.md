@@ -79,7 +79,8 @@ are siblings, not parent and child. These rules do not bend:
   docket's Buttondown tag. That list carries its own narrow written promise.
 - A failed fetch writes an explicit unverified record and carries NO number
   forward from yesterday.
-- The daily carousel routine LOOKS at the page every run (Phase 3.6) and may
+- The daily carousel routine LOOKS at the page every run (Phase 3.6, which
+  signs off the whole site and reads this page more deeply) and may
   fix presentation only. The collectors, the model config and the two gas
   ledgers are off limits to it, because cron writes them and a run that edits
   them corrupts a series CINGSA keeps no archive to rebuild. That phase never
@@ -161,6 +162,16 @@ A missed day is the one irreversible failure this project has.
   docket; it holds both the renderer and the numeral authorisation that renderer
   needs, in one module, because the two shipped in separate files once and the
   daily page check went red on prices EIA had measured), and
+  site_signoff.py (the daily once over of EVERY published page, run by the
+  routine in Phase 3.6; it reads the BUILT directory and never the builder,
+  because a build gate only ever proves the builder was right at the moment it
+  ran, and the failure that actually happens here is the build that never
+  happened. It checks nothing rendered empty, no template leakage, no dead
+  internal link or sitemap entry, the house voice in the bytes that shipped,
+  and above all that the CURRENT value in each cron-written ledger is on the
+  page that publishes it. Exit 2 for attention and never 1, so it cannot abort
+  a run. docs/videos/ and docs/awesomeproposal/ are not this repo's to sign off
+  and are skipped, with the count of what was skipped printed), and
   power_utility.py (what each Alaska utility charges, annually from Form EIA-861
   on .github/workflows/power-utility.yml; it exists because a state average is
   the wrong shape for "is my bill going up" when the cheapest and dearest

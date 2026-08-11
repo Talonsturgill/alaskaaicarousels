@@ -26,6 +26,7 @@ on:
       - "scripts/ask_answers.py"
       - "scripts/ask_corpus.py"
       - "scripts/site_build.py"
+      - "scripts/site_signoff.py"
       - "scripts/power_panel.py"
       - "scripts/power_utility.py"
       - "scripts/docket_build.py"
@@ -40,6 +41,7 @@ on:
       - "scripts/ask_answers.py"
       - "scripts/ask_corpus.py"
       - "scripts/site_build.py"
+      - "scripts/site_signoff.py"
       - "scripts/power_panel.py"
       - "scripts/power_utility.py"
       - "scripts/docket_build.py"
@@ -96,6 +98,25 @@ jobs:
           python3 scripts/site_build.py --date "$(TZ=America/Anchorage date +%F)" --out /tmp/site
           test -s /tmp/site/ask-corpus.json
           echo "corpus published at $(wc -c < /tmp/site/ask-corpus.json) bytes"
+
+      # The sign-off the routine runs every morning, run here against the site
+      # this PR would actually deploy.
+      #
+      # docs/ AND NOT THE SCRATCH BUILD, because docs/ is what GitHub Pages
+      # serves. It also carries the fonts and the og images, which site_build
+      # does not emit and which site_fresh_check.py has documented as hand
+      # managed for months, so a fresh build directory is missing every asset
+      # on the site and signing that off would report a correct build as
+      # broken. Pointing at docs/ has the useful side effect that a PR which
+      # changes the builder and forgets to rebuild is caught here.
+      #
+      # Exit 2 is its "needs attention", which is a CI failure even though it
+      # is deliberately not one inside a run. A routine must not abort on it. A
+      # merge should.
+      - name: Every page signs off
+        run: |
+          python3 scripts/site_signoff.py --self-test
+          python3 scripts/site_signoff.py --out docs
 
       # The engine runs in a browser, so it is tested in one. Every catalogued
       # question is asked for real and the answer is read back out of the DOM.
