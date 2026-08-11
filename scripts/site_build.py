@@ -4632,6 +4632,108 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
                 ld=ld, extra_css=(gw.GW_CSS if gas_strip else ""))
 
 
+POWER_CSS = """
+/* WHAT POWER COSTS. A measurement, presented as one. The three sectors sit
+   side by side on purpose, because the gap between what a household pays and
+   what an industrial customer pays is the thing a reader on this page is
+   actually trying to see, and no sentence would say it as plainly. */
+.pw{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px;}
+.pwc{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+padding:17px 18px 15px;}
+.pwc .l{font-family:JBMono,ui-monospace,monospace;font-size:10.5px;
+letter-spacing:.15em;color:var(--mute);}
+.pwc .v{font-family:Fraunces,serif;font-weight:560;font-size:clamp(26px,4vw,36px);
+color:var(--snow);line-height:1.05;margin-top:9px;font-variant-numeric:tabular-nums;}
+.pwc .u{font-size:12.5px;color:var(--mute);margin-top:3px;}
+.pwc .d{font-family:JBMono,ui-monospace,monospace;font-size:11px;
+letter-spacing:.05em;margin-top:10px;color:var(--mute);}
+.pwc .d b{font-weight:500;font-variant-numeric:tabular-nums;}
+.pwc .d.up b{color:var(--amber);}
+.pwc .d.down b{color:var(--green);}
+.pwspark{display:block;width:100%;height:54px;margin-top:14px;overflow:visible;}
+.pwspark path{fill:none;stroke:var(--gold);stroke-width:1.6;
+stroke-linejoin:round;stroke-linecap:round;}
+.pwspark .fill{fill:rgba(255,199,44,.10);stroke:none;}
+.pwspark .end{fill:var(--gold);}
+.pwnote{font-size:13.5px;color:var(--mute);line-height:1.62;margin-top:14px;}
+@media (max-width:640px){.pw{grid-template-columns:1fr;}}
+"""
+
+
+def power_html(today):
+    """What a kilowatt hour costs in Alaska, measured, with nothing added.
+
+    THE QUESTION THIS ANSWERS. A reader who arrives at a page about data
+    centres and the grid is often asking whether their own bill is going up.
+    The record had no answer at all, because the body that would know is the
+    Regulatory Commission of Alaska and its site answers a bot with a 403.
+
+    WHAT IT REFUSES TO SAY. No forecast, in either direction, for the same
+    reason the gas watch publishes no shortfall call. And no attribution: the
+    price moved is a measurement, the price moved BECAUSE of data centres is a
+    claim this data cannot carry, since EIA does not break out who used the
+    power or why the rate changed. The docket tracks the decisions and this
+    tracks the number, and joining them is the reader's judgement.
+    """
+    try:
+        d = json.loads((REPO / "ledger" / "power.json").read_text())
+    except Exception:
+        return ""
+    sect = d.get("sectors") or {}
+    if not all(k in sect for k in ("residential", "commercial", "industrial")):
+        return ""
+
+    def card(key, label):
+        s = sect[key]
+        ch = s.get("change_year")
+        way = "up" if (ch or 0) > 0 else "down" if (ch or 0) < 0 else ""
+        move = (f'<div class="d {way}">{"up" if way == "up" else "down" if way else "level"} '
+                f'<b>{abs(ch):.2f}</b> on a year ago</div>') if ch is not None else ""
+        return (f'<div class="pwc"><div class="l">{esc(label)}</div>'
+                f'<div class="v">{s["latest"]:.2f}</div>'
+                f'<div class="u">cents per kilowatthour</div>{move}</div>')
+
+    # The sparkline is the last ten years of the residential series, which is
+    # what makes this year legible as normal or not without anyone saying so.
+    pts = list(reversed(sect["residential"]["data"]))[-120:]
+    vals = [p[1] for p in pts]
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or 1
+    w, h = 640, 54
+    xy = [(i * w / max(1, len(vals) - 1), h - (v - lo) / span * (h - 6) - 3)
+          for i, v in enumerate(vals)]
+    line = "M" + " L".join(f"{x:.1f} {y:.1f}" for x, y in xy)
+    area = line + f" L{w} {h} L0 {h} Z"
+    spark = (f'<svg class="pwspark" viewBox="0 0 {w} {h}" preserveAspectRatio="none" '
+             f'role="img" aria-label="Alaska residential electricity price, '
+             f'{len(vals)} months to {esc(sect["residential"]["latest_label"])}">'
+             f'<path class="fill" d="{area}"/><path d="{line}"/>'
+             f'<circle class="end" cx="{xy[-1][0]:.1f}" cy="{xy[-1][1]:.1f}" r="2.6"/></svg>')
+
+    res = sect["residential"]
+    return f"""<h2 data-reveal>What power costs here</h2>
+<p class="sub" data-reveal>The average retail price of electricity in Alaska, measured by the
+US Energy Information Administration and published monthly. This is a state average across
+every utility, so a Railbelt customer and a village on diesel are both inside it and neither
+one is it.</p>
+<div class="pw" data-reveal>{card("residential", "HOUSEHOLDS")}{card("commercial", "BUSINESSES")}{card("industrial", "INDUSTRIAL")}</div>
+<div data-reveal>{spark}</div>
+<p class="pwnote" data-reveal>{esc(res["latest_label"])} is the most recent month EIA has
+published, from {esc(gw.count(res["points"], "month"))} going back to
+{esc(month_name(res["first_period"]))}. The line is the last ten years of the household price.
+This page states what the number did and never why, because the data cannot say why, and it
+publishes no figure for a month that has not happened.</p>
+<p class="pwnote" data-reveal><a class="proselink" href="../gas-watch/">Cook Inlet Gas
+Watch</a> tracks the fuel behind most of this power, daily.</p>"""
+
+
+def month_name(period):
+    """202605 becomes May 2026."""
+    m = ["January", "February", "March", "April", "May", "June", "July",
+         "August", "September", "October", "November", "December"]
+    return f"{m[int(period[4:6]) - 1]} {period[:4]}"
+
+
 def docket_page(today, site_url, docket):
     items, live, done, dated, live_sorted = docket
     svg, mapcap = db.map_svg(live_sorted + done, today)
@@ -4698,6 +4800,7 @@ when it lands, and whether the public gets a say. Sources on every item.</p>
 {ask_html(today)}
 </div>
 <div class="maphero">{layerbox}{svg}{layerbar}<div class="mapcap">{mapcap}</div></div>
+{power_html(today)}
 <h2>Closing soon</h2>
 <p class="sub">The nearest deadlines and votes. A pulsing pin on the map means a public
 comment window is open right now.</p>
@@ -4726,7 +4829,7 @@ builds for Alaska businesses.</p>
                 # The query box is always on. It answers from the index inside the
                 # page, so it needs no endpoint and no key; ASK_ENDPOINT only adds
                 # the archive lane underneath it.
-                extra_css=MAP_CSS + ASK_CSS,
+                extra_css=MAP_CSS + ASK_CSS + POWER_CSS,
                 extra_js=MAP_JS + ASK_JS)
 
 
@@ -7478,6 +7581,12 @@ def build(today, out_dir, site_url=None, domain=""):
                     if it["id"] == GAS_WATCH_META["docket_item_id"] else {}))
             for it in docket[0]],
     }, indent=2)
+    # The power series as open data beside the page that shows it, the same
+    # contract every other number on this site ships under.
+    pwr = REPO / "ledger" / "power.json"
+    if pwr.exists():
+        (out / "power.json").write_text(pwr.read_text())
+
     (out / "docket.json").write_text(feed)
     (out / "docket").mkdir(exist_ok=True)
     (out / "docket" / "docket.json").write_text(feed)
