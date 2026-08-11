@@ -387,6 +387,14 @@ letter-spacing:.08em;color:var(--mute);text-align:center;margin:12px 0 0;}
 padding:20px 18px;text-align:center;}
 .qnone p{margin:0 0 12px;color:var(--mute);font-size:14px;line-height:1.6;}
 .qnone .qtryl{margin:0 0 11px;display:block;}
+/* The one route out of a dead end. Quiet, because it is an offer and not a
+   prompt, and a reader who came here for an answer should not be met with a
+   form. */
+.qmiss{margin:16px 0 0!important;padding-top:14px;
+border-top:1px solid var(--line);font-size:13px!important;color:var(--mute);}
+.qmiss a{color:var(--gold);text-decoration:none;
+border-bottom:1px solid rgba(255,199,44,.35);}
+.qmiss a:hover{border-bottom-color:var(--gold);}
 .qnonealso{justify-content:center;margin:0;}
 .qdeep{background:none;border:1px solid rgba(90,200,240,.35);color:var(--blue);
 border-radius:999px;padding:9px 17px;font-family:JBMono,ui-monospace,monospace;
@@ -2502,6 +2510,15 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
              'anything else has no answer here rather than a wrong one.</p>' : '') +
       '<p class="qtryl">TRY ONE OF THESE</p>' +
       '<div class="qalso qnonealso">' + vq + '</div>' +
+      // ASK, DO NOT WATCH. This box answers inside the page and sends nothing,
+      // which is printed a few lines below it and is the reason a reader can
+      // type an address or a project they care about without thinking twice.
+      // That promise costs the one signal a search box normally gives you,
+      // which is what people looked for and did not find. This is the honest
+      // way to buy it back: a reader who wants to tell us does, deliberately,
+      // and a reader who does not is not counted anyway.
+      '<p class="qmiss">Looking for a decision this record does not track? ' +
+      '<a href="../contact/">Tell us what it is</a> and we will go and find it.</p>' +
       (ENDPOINT ? '<button type="button" class="qdeep" id="qdeep">SEARCH THE FULL ARCHIVE</button>' +
                   '<div class="qout" id="qout" hidden></div>' : '') +
       '</div>';

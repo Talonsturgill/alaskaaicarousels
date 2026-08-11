@@ -701,6 +701,48 @@ head('E6. is something being built near me');
 }
 
 /* ==================================================================
+   E7. THE ONE ROUTE OUT OF A DEAD END. This box sends nothing, which is
+   printed on the page and is why a reader can type a project they care
+   about without thinking twice. It also costs the signal a search box
+   normally gives you, which is what people looked for and did not find.
+   Asking is the honest way to buy that back. Watching is not.
+   ================================================================== */
+head('E7. a dead end offers a way out');
+{
+  const off = await p.evaluate(() => {
+    const m = document.querySelector('.qmiss'), a = document.querySelector('.qmiss a');
+    return { text: m ? m.textContent.trim() : '', href: a ? a.getAttribute('href') : '' };
+  });
+  await ask('bananas');
+  const miss = await p.evaluate(() => {
+    const m = document.querySelector('.qmiss'), a = document.querySelector('.qmiss a');
+    return { text: m ? m.textContent.trim() : '', href: a ? a.getAttribute('href') : '' };
+  });
+  ok('a question the record cannot answer offers to be told about it',
+     /Tell us/.test(miss.text), miss.text.slice(0, 50));
+  ok('and points at a contact page that exists', miss.href === '../contact/',
+     miss.href);
+  const fs = await import('node:fs');
+  ok('the contact page is really there',
+     fs.existsSync(process.env.SITE + '/contact/index.html'));
+
+  // A town with nothing near it is the single most valuable place for this,
+  // because that reader is the one whose part of Alaska is missing.
+  const places = ((DATA.near || {}).places || []).filter(pl => !pl.ids.length);
+  if (places.length) {
+    await ask(`What is happening near ${places[0].name}?`);
+    ok(`"near ${places[0].name}" offers it too`,
+       await p.evaluate(() => !!document.querySelector('.qmiss')));
+  }
+
+  // And never when there is an answer. A reader who got what they came for
+  // should not be met with a form.
+  await ask('kenai');
+  ok('an answered question is not asked for feedback',
+     await p.evaluate(() => !document.querySelector('.qmiss')));
+}
+
+/* ==================================================================
    F. ACCESSIBILITY
    ================================================================== */
 head('F. accessibility');
