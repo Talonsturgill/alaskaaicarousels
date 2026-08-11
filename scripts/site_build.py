@@ -42,6 +42,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_build as db  # projection, validation, docket components, gates
 import feeds_build as fb   # feeds, plaintext mirrors, llms.txt
 import gaswatch_build as gw  # gas watch series, figures, chart, page components
+import power_panel as pw    # the retail power price panel and its lint authorisation
 import ask_corpus           # the answering corpus behind the docket's ask box
 import ask_answers          # the query index and smart views the page ships with
 
@@ -4399,7 +4400,7 @@ def topic_page(today, site_url, topic, decks, docket_items):
                 'demand, published as open data. CINGSA keeps no archive of its '
                 'own, so that record exists only because it is collected and '
                 'committed daily. It states no verdict about whether supply is '
-                'adequate, because the data cannot carry one.</p>')
+                'adequate, because the data can\'t carry one.</p>')
         body += ('\n<h2 data-reveal>Decisions on this beat</h2>\n'
                  f'<ol class="claims" data-reveal>{"".join(rows)}</ol>'
                  '\n<p class="prose" data-reveal>Every one of these is also in '
@@ -4758,108 +4759,6 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
                 ld=ld, extra_css=(gw.GW_CSS if gas_strip else ""))
 
 
-POWER_CSS = """
-/* WHAT POWER COSTS. A measurement, presented as one. The three sectors sit
-   side by side on purpose, because the gap between what a household pays and
-   what an industrial customer pays is the thing a reader on this page is
-   actually trying to see, and no sentence would say it as plainly. */
-.pw{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px;}
-.pwc{background:var(--panel);border:1px solid var(--line);border-radius:14px;
-padding:17px 18px 15px;}
-.pwc .l{font-family:JBMono,ui-monospace,monospace;font-size:10.5px;
-letter-spacing:.15em;color:var(--mute);}
-.pwc .v{font-family:Fraunces,serif;font-weight:560;font-size:clamp(26px,4vw,36px);
-color:var(--snow);line-height:1.05;margin-top:9px;font-variant-numeric:tabular-nums;}
-.pwc .u{font-size:12.5px;color:var(--mute);margin-top:3px;}
-.pwc .d{font-family:JBMono,ui-monospace,monospace;font-size:11px;
-letter-spacing:.05em;margin-top:10px;color:var(--mute);}
-.pwc .d b{font-weight:500;font-variant-numeric:tabular-nums;}
-.pwc .d.up b{color:var(--amber);}
-.pwc .d.down b{color:var(--green);}
-.pwspark{display:block;width:100%;height:54px;margin-top:14px;overflow:visible;}
-.pwspark path{fill:none;stroke:var(--gold);stroke-width:1.6;
-stroke-linejoin:round;stroke-linecap:round;}
-.pwspark .fill{fill:rgba(255,199,44,.10);stroke:none;}
-.pwspark .end{fill:var(--gold);}
-.pwnote{font-size:13.5px;color:var(--mute);line-height:1.62;margin-top:14px;}
-@media (max-width:640px){.pw{grid-template-columns:1fr;}}
-"""
-
-
-def power_html(today):
-    """What a kilowatt hour costs in Alaska, measured, with nothing added.
-
-    THE QUESTION THIS ANSWERS. A reader who arrives at a page about data
-    centres and the grid is often asking whether their own bill is going up.
-    The record had no answer at all, because the body that would know is the
-    Regulatory Commission of Alaska and its site answers a bot with a 403.
-
-    WHAT IT REFUSES TO SAY. No forecast, in either direction, for the same
-    reason the gas watch publishes no shortfall call. And no attribution: the
-    price moved is a measurement, the price moved BECAUSE of data centres is a
-    claim this data cannot carry, since EIA does not break out who used the
-    power or why the rate changed. The docket tracks the decisions and this
-    tracks the number, and joining them is the reader's judgement.
-    """
-    try:
-        d = json.loads((REPO / "ledger" / "power.json").read_text())
-    except Exception:
-        return ""
-    sect = d.get("sectors") or {}
-    if not all(k in sect for k in ("residential", "commercial", "industrial")):
-        return ""
-
-    def card(key, label):
-        s = sect[key]
-        ch = s.get("change_year")
-        way = "up" if (ch or 0) > 0 else "down" if (ch or 0) < 0 else ""
-        move = (f'<div class="d {way}">{"up" if way == "up" else "down" if way else "level"} '
-                f'<b>{abs(ch):.2f}</b> on a year ago</div>') if ch is not None else ""
-        return (f'<div class="pwc"><div class="l">{esc(label)}</div>'
-                f'<div class="v">{s["latest"]:.2f}</div>'
-                f'<div class="u">cents per kilowatthour</div>{move}</div>')
-
-    # The sparkline is the last ten years of the residential series, which is
-    # what makes this year legible as normal or not without anyone saying so.
-    pts = list(reversed(sect["residential"]["data"]))[-120:]
-    vals = [p[1] for p in pts]
-    lo, hi = min(vals), max(vals)
-    span = (hi - lo) or 1
-    w, h = 640, 54
-    xy = [(i * w / max(1, len(vals) - 1), h - (v - lo) / span * (h - 6) - 3)
-          for i, v in enumerate(vals)]
-    line = "M" + " L".join(f"{x:.1f} {y:.1f}" for x, y in xy)
-    area = line + f" L{w} {h} L0 {h} Z"
-    spark = (f'<svg class="pwspark" viewBox="0 0 {w} {h}" preserveAspectRatio="none" '
-             f'role="img" aria-label="Alaska residential electricity price, '
-             f'{len(vals)} months to {esc(sect["residential"]["latest_label"])}">'
-             f'<path class="fill" d="{area}"/><path d="{line}"/>'
-             f'<circle class="end" cx="{xy[-1][0]:.1f}" cy="{xy[-1][1]:.1f}" r="2.6"/></svg>')
-
-    res = sect["residential"]
-    return f"""<h2 data-reveal>What power costs here</h2>
-<p class="sub" data-reveal>The average retail price of electricity in Alaska, measured by the
-US Energy Information Administration and published monthly. This is a state average across
-every utility, so a Railbelt customer and a village on diesel are both inside it and neither
-one is it.</p>
-<div class="pw" data-reveal>{card("residential", "HOUSEHOLDS")}{card("commercial", "BUSINESSES")}{card("industrial", "INDUSTRIAL")}</div>
-<div data-reveal>{spark}</div>
-<p class="pwnote" data-reveal>{esc(res["latest_label"])} is the most recent month EIA has
-published, from {esc(gw.count(res["points"], "month"))} going back to
-{esc(month_name(res["first_period"]))}. The line is the last ten years of the household price.
-This page states what the number did and never why, because the data cannot say why, and it
-publishes no figure for a month that has not happened.</p>
-<p class="pwnote" data-reveal><a class="proselink" href="../gas-watch/">Cook Inlet Gas
-Watch</a> tracks the fuel behind most of this power, daily.</p>"""
-
-
-def month_name(period):
-    """202605 becomes May 2026."""
-    m = ["January", "February", "March", "April", "May", "June", "July",
-         "August", "September", "October", "November", "December"]
-    return f"{m[int(period[4:6]) - 1]} {period[:4]}"
-
-
 def docket_page(today, site_url, docket):
     items, live, done, dated, live_sorted = docket
     svg, mapcap = db.map_svg(live_sorted + done, today)
@@ -4926,7 +4825,6 @@ when it lands, and whether the public gets a say. Sources on every item.</p>
 {ask_html(today)}
 </div>
 <div class="maphero">{layerbox}{svg}{layerbar}<div class="mapcap">{mapcap}</div></div>
-{power_html(today)}
 <h2>Closing soon</h2>
 <p class="sub">The nearest deadlines and votes. A pulsing pin on the map means a public
 comment window is open right now.</p>
@@ -4955,7 +4853,7 @@ builds for Alaska businesses.</p>
                 # The query box is always on. It answers from the index inside the
                 # page, so it needs no endpoint and no key; ASK_ENDPOINT only adds
                 # the archive lane underneath it.
-                extra_css=MAP_CSS + ASK_CSS + POWER_CSS,
+                extra_css=MAP_CSS + ASK_CSS,
                 extra_js=MAP_JS + ASK_JS)
 
 
@@ -5450,7 +5348,7 @@ def docket_answers(today, site_url, items):
         f'{len(items)} decisions rest on {n_src} source documents, with {n_hist} dated '
         f'change notes recording how each one moved, and a daily routine re-fetches a '
         f'primary source whenever a date comes near. Nothing enters on rumour, and what '
-        f'cannot be verified is dropped rather than published softly. It is open data '
+        f'can\'t be verified is dropped rather than published softly. It is open data '
         f'under {DATA_LICENSE_LABEL}. See <a class="proselink" href="../data/">the '
         f'data</a> for the schema and the license, and <a class="proselink" '
         f'href="../sources/">the source archive</a> for every document.</p>'))
@@ -5468,7 +5366,7 @@ def privacy_page(today, site_url):
 <div class="chip kind">NO COOKIES &middot; NO TRACKING</div>
 <h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">Privacy</h1>
 <p class="tag">This site counts how often a page is read. It does not attempt to
-learn who read it, and it cannot. No cookies, no visitor identifier, no
+learn who read it, and it can't. No cookies, no visitor identifier, no
 cross-site anything. Here is the whole of it, so you can check rather than
 trust.</p>
 </div>
@@ -5484,7 +5382,7 @@ That is the complete list.</p>
 <li><p><strong>No cookies.</strong> None are set and none are read. Nothing is
 written to local storage either.</p></li>
 <li><p><strong>No identifier.</strong> There is no visitor id, no device id and
-no hashed stand-in for one. Two visits by the same person are not, and cannot
+no hashed stand-in for one. Two visits by the same person are not, and can't
 be, linked to each other.</p></li>
 <li><p><strong>Your IP address is not stored.</strong> It reaches the server the
 way it must for any web request, is used only to reject automated traffic, and is
@@ -5516,7 +5414,7 @@ writes down why it refused and when, and that is the entire record. The words
 <code>dnt-header</code> and a timestamp. No path, no referring host, no address,
 no user agent, nothing that distinguishes one refused message from another. A
 visit that opts out therefore leaves strictly less behind than a counted one,
-and what it leaves cannot be tied to you or to a page. It is kept for one
+and what it leaves can't be tied to you or to a page. It is kept for one
 reason. The server answers every message the same way whether it counted it or
 threw it away, which is good for you and was briefly terrible for us, because a
 counter that recorded nothing looked exactly like a counter that worked.</p>
@@ -5527,7 +5425,7 @@ is empty. Region and city are not recorded at all, and that is a choice rather
 than an oversight. Alaska has small communities where a region is closer to a
 name than a statistic.</p>
 <p class="prose" data-reveal>Because there is no visitor identifier, this site
-cannot report unique visitors, only pages read. That is the honest cost of the
+can't report unique visitors, only pages read. That is the honest cost of the
 design and we would rather publish a smaller true number than a larger invented
 one.</p>
 <h2 data-reveal>If you give us something on purpose</h2>
@@ -5781,7 +5679,7 @@ deleted; a decided or dead decision changes status and keeps its history.</p>
 re-fetches a primary source for any decision whose dates are near or past,
 updates what moved, and appends one dated line to that decision's history. Every
 fact carries the document it was checked against. Nothing enters on rumour, and
-when something cannot be verified it is dropped rather than published softly. The
+when something can't be verified it is dropped rather than published softly. The
 source archive lists <a class="proselink" href="../sources/">every document</a>
 a claim on this site has been checked against.</p>
 <h2 data-reveal>Cite this</h2>
@@ -6047,7 +5945,7 @@ seriously as you do.</p>
 <div><div class="daylight">{daylight_chip(today)}</div></div>
 <h1>Put AI to work <em>in Alaska</em></h1>
 <p class="tag">Alaska AI reads the state's AI beat every morning. The rest of the day, we
-build AI systems for Alaska businesses. Digital employees for the jobs you cannot
+build AI systems for Alaska businesses. Digital employees for the jobs you can't
 fill, paperwork engines for the filings that never stop, and straight answers about what
 pays and what does not.</p>
 <div class="ctarow">
@@ -6508,7 +6406,7 @@ every observation.</p>
       on:["industry"] },
     { k:"mapper",    n:"FEASIBILITY",  r:"ladders each pocket to its lowest honest rung",
       on:["feasibility","assemble"] },
-    { k:"critic",    n:"HONESTY GATE", r:"tries to kill anything it cannot source",
+    { k:"critic",    n:"HONESTY GATE", r:"tries to kill anything it can't source",
       on:["critic"] }
   ];
 
@@ -6692,7 +6590,7 @@ every observation.</p>
         '<div class="sw-headtx"><h1 class="sw-h1">Deep scan running</h1>' +
         '<p>Four specialist agents are on this one. They read your own public pages, hunt ' +
         'published results in your industry anywhere in the world, ladder every pocket to its ' +
-        'lowest honest rung, then try to kill anything they cannot source.</p>' +
+        'lowest honest rung, then try to kill anything they can\'t source.</p>' +
         '<div class="sw-clock" id="sw-clock"></div></div>' +
       '</div>' +
       '<p class="sw-lab">THE CREW ON YOUR SCAN</p>' +
@@ -7068,7 +6966,7 @@ every observation.</p>
             // then stop rather than animate a room we cannot see into.
             readFails++;
             if (readFails > 24) {
-              fail("We cannot read your scan right now",
+              fail("We can't read your scan right now",
                    "The scan itself may well be fine. Our reader has been failing for two "
                    + "minutes, so this page will not learn anything by asking again. Open "
                    + "this link again in a few minutes.");
@@ -7452,21 +7350,34 @@ def gas_watch_page(today, site_url, series, model, figs=None):
 
     Every figure on this page is computed in gaswatch_build.figures() from the
     committed record. numeral_lint() below refuses to ship a number that traces
-    back to nothing, so no typed or remembered figure can reach a reader."""
-    body = gw.page_body(today, site_url, series, model, GAS_WATCH_META, figs=figs)
+    back to nothing, so no typed or remembered figure can reach a reader.
+
+    WHY THE POWER PRICE IS HERE AND NOT ON THE DOCKET. It shipped on the docket
+    first and that was the wrong page. The docket is a list of decisions and the
+    retail price is not a decision, it is a measurement of the physical system,
+    which is what this page is for. It also reads as an implied claim in the
+    wrong place: a price sitting inside a list of data centre filings looks like
+    it is being blamed on them, and the collector refuses to attribute for
+    exactly that reason. Beside the gas that generates most of it, it is what it
+    is, a second measured number about the same energy system."""
+    body = gw.page_body(today, site_url, series, model, GAS_WATCH_META, figs=figs,
+                        aside=pw.html(today))
     figs = gw.figures(series, model, figs)
     planted = gw.numeral_lint(
-        body, gw.allowed_numerals(figs, model,
-                                  [DATA_LICENSE_LABEL, gw.SCHEMA_VERSION], series))
+        body, gw.allowed_numerals(
+            figs, model,
+            [DATA_LICENSE_LABEL, gw.SCHEMA_VERSION] + pw.numerals(), series))
     if planted:
         db.fail("gas watch page carries numeral(s) no computation produced, "
                 f"{sorted(set(planted))[:6]}. Every figure must come from "
-                "gaswatch_build.figures().")
+                "gaswatch_build.figures() or from ledger/power.json.")
     desc = ("A daily numeric record of Southcentral Alaska's natural gas position. "
-            "Measured Cook Inlet storage, modeled regional demand, and the derived "
-            "supply nobody else publishes. No safety verdict, ever.")
+            "Measured Cook Inlet storage, modeled regional demand, the derived "
+            "supply nobody else publishes, and what retail power costs. "
+            "No safety verdict, ever.")
     return page("Cook Inlet Gas Watch", desc, body, "../", "gas", today, site_url,
-                "gas-watch/", extra_css=gw.GW_CSS, extra_js=gw.GW_JS,
+                "gas-watch/", extra_css=gw.GW_CSS + pw.CSS,
+                extra_js=gw.GW_JS + pw.JS,
                 ld=gas_watch_ld(today, site_url, series, model, figs),
                 crumbs=[("Home", ""), ("Gas Watch", "gas-watch/")])
 
@@ -7515,6 +7426,65 @@ def prose_colon_gate(rel, html):
     for line in txt.split("\n"):
         if ":" in line:
             db.fail(f"prose colon in {rel} near {line.strip()[:70]!r}")
+
+
+def contraction_gate(rel, html):
+    """House style writes "can't" and never "cannot", on the site too.
+
+    THE RULE ALREADY EXISTED and only half of it was enforced. brand.yaml has
+    banned "cannot" since 2026-07-30 and caption_check.py fails a caption or a
+    slide that uses it, so the word was impossible in a carousel and free on
+    every page of the site the carousel links to. Ten sentences had accumulated
+    that way, including one in the copy shipped last week, and the maintainer
+    found it before this gate did.
+
+    A voice rule enforced on one surface is not a voice rule, it is a lint with
+    a gap, and the gap is always the surface nobody wrote the check for.
+
+    SHIPPED RUN COPY IS EXEMPT, for two reasons that each stand on their own. A
+    deck page and a deck card render artifacts under runs/, and this repo does
+    not rewrite what it has already published. They also carry quoted speech,
+    which brand.yaml exempts anyway, because a source is allowed to write
+    however it wrote. The exemption follows the CARD rather than the page, so a
+    topic page is still gated on the prose it writes itself while the excerpts
+    beneath it are left alone.
+    """
+    import re as _re
+    if _re.fullmatch(r"archive/\d{4}-\d{2}-\d{2}/index\.html", rel):
+        return
+    txt = _re.sub(r'(?s)<a class="deck".*?</a>', " ", html)
+    txt = _re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", txt)
+    txt = _re.sub(r"(?s)<!--.*?-->", " ", txt)
+    txt = __import__("html").unescape(_re.sub(r"<[^>]+>", " ", txt))
+    for m in _re.finditer(r"\bcannot\b", txt, _re.I):
+        near = _re.sub(r"\s+", " ", txt[max(0, m.start() - 45):m.end() + 45]).strip()
+        db.fail(f"'cannot' in visible copy on {rel}. House style writes "
+                f"\"can't\" (brand.yaml contractions). Near {near!r}")
+
+
+def power_placement_gate(pages):
+    """The retail power price belongs to the gas watch, not to the docket.
+
+    It shipped on the docket first and that was wrong twice over. The docket is
+    a list of DECISIONS and a price is a measurement, and a price sitting inside
+    a list of data centre filings reads as an accusation the collector refuses
+    to make, since EIA does not publish who used the power or why the rate
+    moved. Beside the gas that generates most of it, the same number is just a
+    second measurement of one energy system.
+
+    Gated rather than merely moved, because the reason it landed on the docket
+    the first time was that the docket page is where new sections get added, and
+    that gravity has not gone anywhere.
+    """
+    mark = "Current Power Costs"
+    if mark not in pages.get("gas-watch/index.html", ""):
+        db.fail("the gas watch page lost the retail power price. It is the "
+                "page that carries measurements of the energy system.")
+    for rel, html in pages.items():
+        if rel != "gas-watch/index.html" and mark in html:
+            db.fail(f"the retail power price is on {rel}. It belongs on the gas "
+                    "watch page, beside the fuel that generates it, and nowhere "
+                    "else. See power_placement_gate.")
 
 
 def build(today, out_dir, site_url=None, domain=""):
@@ -7625,7 +7595,9 @@ def build(today, out_dir, site_url=None, domain=""):
         if bad:
             db.fail(f"banned punctuation in {rel} {bad[:8]}")
         prose_colon_gate(rel, html)
+        contraction_gate(rel, html)
     tracked_count_gate(pages)
+    power_placement_gate(pages)
     out.mkdir(parents=True, exist_ok=True)
     # Pillow is the one soft dependency, and without it grain_data_uri() returns
     # "" and this quietly wrote url(none) into the sheet every page loads. A

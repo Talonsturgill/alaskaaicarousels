@@ -95,8 +95,15 @@ maintainer can post in ninety seconds.
    human refits. You READ watch.json in Phase 3.5 and you never write it. A run that edits any of them is corrupting a published
    time series that cannot be rebuilt, because CINGSA keeps no archive.
    You may edit the PRESENTATION (`scripts/gaswatch_build.py` HTML and CSS,
-   `site_build.gas_watch_page`) and nothing else. Phase 3.6 is the daily
+   `site_build.gas_watch_page`, `scripts/power_panel.py`) and nothing else.
+   Phase 3.6 is the daily
    look; it reports, it never blocks the run, and a bad deck never stops it.
+   The retail power panel is on the GAS WATCH page, beside the fuel that
+   generates the power, and `site_build.power_placement_gate` fails the build
+   if it turns up on the docket. It shipped on the docket once and the
+   maintainer moved it; the docket lists decisions and a price is a
+   measurement, and a price inside a list of data centre filings reads as an
+   accusation neither dataset can support.
 
 ## CONTEXT (read before starting)
 
