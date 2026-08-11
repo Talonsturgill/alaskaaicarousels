@@ -33,6 +33,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import gaswatch_build as gw  # noqa: E402
+import power_panel as pw  # noqa: E402  the retail price panel and its numerals
 
 # Freshness. The collector runs twice a day, so a published reading older than
 # this means collection or the rebuild has been failing quietly.
@@ -209,8 +210,15 @@ def check_page(out_dir, today=None):
         f"{len(verified)} verified day(s)")
 
     # Nothing invented, checked against the same lint the build runs.
+    #
+    # THE RETAIL POWER PANEL IS PART OF THAT PAGE, so its figures have to be
+    # authorised here exactly as site_build authorises them, out of the same
+    # module. When they were not, this check reported the measured price of
+    # electricity as a numeral nobody computed, on the first build that shipped
+    # the panel. A checker that goes red on correct data is worse than no
+    # checker, because it is the next real finding nobody reads.
     planted = gw.numeral_lint(body, gw.allowed_numerals(
-        figs, model, ["CC BY 4.0", gw.SCHEMA_VERSION], series))
+        figs, model, ["CC BY 4.0", gw.SCHEMA_VERSION] + pw.numerals(), series))
     (ok if not planted else bad)("every numeral traces to a computation",
                                  ", ".join(sorted(set(planted))[:6]) or "clean")
 
@@ -265,8 +273,11 @@ def render_reference(out_dir, today=None):
     today = today or date.today()
     series = gw.load_series()
     model = gw.gc.load_model(gw.MODEL_CONFIG)
+    # The aside goes in, because a reference page missing a section the shipped
+    # page carries would let this whole self-test pass while the only thing it
+    # certifies is a page nobody publishes.
     body = gw.page_body(today, "https://alaskaaihq.com", series, model,
-                        REFERENCE_META, prefix="../")
+                        REFERENCE_META, prefix="../", aside=pw.html(today))
     os.makedirs(os.path.join(out_dir, "gas-watch"), exist_ok=True)
     with open(os.path.join(out_dir, "gas-watch", "index.html"), "w",
               encoding="utf-8") as fh:

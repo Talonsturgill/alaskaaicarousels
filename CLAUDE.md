@@ -153,6 +153,10 @@ A missed day is the one irreversible failure this project has.
   because the RCA would be the obvious source and rca.alaska.gov answers a bot
   with a 403. It publishes a measurement and NEVER a forecast or a cause, and
   its self test fails the build if either appears in the output), and
+  power_panel.py (the Current Power Costs panel on the GAS WATCH page, not the
+  docket; it holds both the renderer and the numeral authorisation that renderer
+  needs, in one module, because the two shipped in separate files once and the
+  daily page check went red on prices EIA had measured), and
   docket_watch.py (the docket's eyes, a keyless daily sweep of the Alaska
   Legislature's BASIS and the Federal Register into ledger/watch.json, which is
   a QUEUE OF CANDIDATES and never the docket itself; runs on
@@ -215,6 +219,12 @@ Dates take the ordinal, month first: "August 10th", never "10 August" and never 
 "August 10" (owner, 2026-08-05). ISO stays correct for a citation stamp or a ledger field.
 Captions run under 6.2 commas per 100 words, ten percent below this deck's own shipped mean.
 Both are enforced as hard fails in scripts/caption_check.py and spelled out in config/brand.yaml.
+Write "can't", never "cannot" (owner, 2026-07-30). It was enforced on captions and
+slides from the day it was made and nowhere else, so ten sentences accumulated across the
+site before the owner found one. site_build.contraction_gate now fails the build on
+either surface. Shipped run copy under runs/ is exempt, on the page and in the cards
+that excerpt it, because published artifacts are not rewritten and a quoted source is
+allowed to write however it wrote.
 No em/en dashes anywhere. No emojis. Straight quotes. Every fact carries a
 claim-id. No topic repeats within 30 days. No two decks visually alike
 (ledger-enforced). Vector-text PDFs (raster fallback acceptable if the

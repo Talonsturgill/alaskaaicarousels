@@ -269,7 +269,7 @@ every observation.</p>
       on:["industry"] },
     { k:"mapper",    n:"FEASIBILITY",  r:"ladders each pocket to its lowest honest rung",
       on:["feasibility","assemble"] },
-    { k:"critic",    n:"HONESTY GATE", r:"tries to kill anything it cannot source",
+    { k:"critic",    n:"HONESTY GATE", r:"tries to kill anything it can't source",
       on:["critic"] }
   ];
 
@@ -453,7 +453,7 @@ every observation.</p>
         '<div class="sw-headtx"><h1 class="sw-h1">Deep scan running</h1>' +
         '<p>Four specialist agents are on this one. They read your own public pages, hunt ' +
         'published results in your industry anywhere in the world, ladder every pocket to its ' +
-        'lowest honest rung, then try to kill anything they cannot source.</p>' +
+        'lowest honest rung, then try to kill anything they can't source.</p>' +
         '<div class="sw-clock" id="sw-clock"></div></div>' +
       '</div>' +
       '<p class="sw-lab">THE CREW ON YOUR SCAN</p>' +
@@ -829,7 +829,7 @@ every observation.</p>
             // then stop rather than animate a room we cannot see into.
             readFails++;
             if (readFails > 24) {
-              fail("We cannot read your scan right now",
+              fail("We can't read your scan right now",
                    "The scan itself may well be fine. Our reader has been failing for two "
                    + "minutes, so this page will not learn anything by asking again. Open "
                    + "this link again in a few minutes.");

@@ -252,9 +252,9 @@ def main():
     for label in ("residential", "commercial", "industrial"):
         s = out["sectors"][label]
         ch = s["change_year"]
-        arrow = "up" if (ch or 0) > 0 else "down" if (ch or 0) < 0 else "flat"
-        print(f"  {label:<12} {s['latest']:>6} cents/kWh  {s['latest_label']:<14}"
-              f"{arrow} {abs(ch) if ch is not None else 0} on a year ago")
+        move = ("level with a year ago" if not ch else
+                f"{'up' if ch > 0 else 'down'} {abs(ch)} cents from a year ago")
+        print(f"  {label:<12} {s['latest']:>6} cents/kWh  {s['latest_label']:<14}{move}")
     return 0
 
 

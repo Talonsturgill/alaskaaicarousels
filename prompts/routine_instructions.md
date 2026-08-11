@@ -86,15 +86,24 @@ maintainer can post in ninety seconds.
    You may not skip to (d). You may not skip to (d) while (a) is still open,
    which is exactly what 2026-08-08 did.
 
-19. THE GAS WATCH NUMBERS ARE NOT YOURS. `ledger/gaswatch.jsonl`,
-   `ledger/gaswatch_eia.json`, `config/gaswatch_model.json`,
-   `config/gaswatch_hdd_history.json`, `scripts/gaswatch_collect.py` and
-   `scripts/gaswatch_eia.py` are written by cron jobs and by deliberate
-   human refits. A run that edits any of them is corrupting a published
+19. THE CRON-WRITTEN NUMBERS ARE NOT YOURS. `ledger/gaswatch.jsonl`,
+   `ledger/gaswatch_eia.json`, `ledger/power.json`, `ledger/watch.json`,
+   `config/gaswatch_model.json`,
+   `config/gaswatch_hdd_history.json`, `scripts/gaswatch_collect.py`,
+   `scripts/gaswatch_eia.py`, `scripts/power_collect.py` and
+   `scripts/docket_watch.py` are written by cron jobs and by deliberate
+   human refits. You READ watch.json in Phase 3.5 and you never write it. A run that edits any of them is corrupting a published
    time series that cannot be rebuilt, because CINGSA keeps no archive.
    You may edit the PRESENTATION (`scripts/gaswatch_build.py` HTML and CSS,
-   `site_build.gas_watch_page`) and nothing else. Phase 3.6 is the daily
+   `site_build.gas_watch_page`, `scripts/power_panel.py`) and nothing else.
+   Phase 3.6 is the daily
    look; it reports, it never blocks the run, and a bad deck never stops it.
+   The retail power panel is on the GAS WATCH page, beside the fuel that
+   generates the power, and `site_build.power_placement_gate` fails the build
+   if it turns up on the docket. It shipped on the docket once and the
+   maintainer moved it; the docket lists decisions and a price is a
+   measurement, and a price inside a list of data centre filings reads as an
+   accusation neither dataset can support.
 
 ## CONTEXT (read before starting)
 
@@ -276,6 +285,34 @@ honestly framed.
 AI-infrastructure decision in Alaska, served from docs/ via GitHub Pages.
 Right after claims:
 
+0. READ `ledger/watch.json` FIRST. A cron job sweeps the Alaska
+   Legislature's BASIS and the Federal Register every morning and leaves
+   what it found there. It never writes the docket, because everything in
+   it is a LEAD and not a record. Three parts, and each is used differently:
+
+   `bills` are OBSERVATIONS about items already tracked, carrying the
+   status the Legislature itself considers current. Compare each against
+   what `ledger/docket.json` says for that `docket_id`. A difference is a
+   real update with an authoritative source, and it is the cheapest
+   correct change you will make all run. Cite the BASIS url.
+
+   `hearings` are scheduled committee meetings for the committees holding
+   tracked bills. A hearing is a FORWARD date, which is the thing this
+   record exists to publish. Add it as a `key_date` on the item it belongs
+   to. Zero hearings is normal from June to December, and `note_hearings`
+   says so when it happens; that is the Legislature out of session and not
+   a failure.
+
+   `candidates` are things the sweep thinks might belong and cannot judge.
+   Most will not. Triage them the way you triage a scout finding: verify
+   against a primary source before anything reaches the docket, and drop
+   the rest without ceremony. A candidate is a reason to go and look, never
+   a reason to publish.
+
+   `failed` names any source that did not answer. If it is non-empty, say
+   so in the ship note. An empty queue after a failed sweep is a broken
+   collector wearing the costume of a quiet day.
+
 1. From THIS run's verified claims, add any new decision item (a lease,
    comment window, vote, regulatory docket, solicitation, procurement)
    not yet tracked, with its key dates, decider, four-rooms access state
@@ -398,6 +435,9 @@ Off limits, every run, no exceptions:
     config/gaswatch_hdd_history.json   the observed weather record
     ledger/gaswatch.jsonl           the series. append-only, cron-written
     ledger/gaswatch_eia.json        the EIA figures
+    ledger/power.json               Alaska retail electricity price, monthly
+    ledger/watch.json               the docket watch queue. READ in 3.5,
+                                    never written by a run
 
 Those are written by cron jobs and by deliberate human refits, and a run that
 edits them is corrupting a published time series that cannot be rebuilt. If

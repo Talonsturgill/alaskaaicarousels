@@ -1351,13 +1351,21 @@ day and kept.</p>
 <div class="ctarow" data-reveal><a class="cta ghost" href="{prefix}gas-watch/">OPEN THE GAS WATCH</a></div>"""
 
 
-def page_body(today, site_url, series, model, meta, prefix="../", figs=None):
+def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
+              aside=""):
     """The Gas Watch page.
 
     Structure follows what a reporter on deadline needs, in order. What the
     number is, when it was read, where it came from, how the modeled parts were
     derived, and what nobody can see. The methodology is not an appendix here,
     it is the product.
+
+    `aside` is a sibling measurement the site composes and this module does not
+    own, currently the retail power price. It lands after the gas balance and
+    before the methodology, because the methodology that follows describes the
+    gas figures above it and nothing in the aside uses it. Passed in rather than
+    built here so this module keeps depending on the gas ledger alone, which is
+    what lets gaswatch_pagecheck render a reference page with no site build.
     """
     f = figures(series, model, figs)
     # Guard on a usable READING, not on a non-empty series. figures() correctly
@@ -1449,7 +1457,7 @@ no public feed reports daily. {regime}. That ratio is the size of the hole in
 the public record, and it is the reason this page draws no conclusion about
 adequacy.</p>
 <p class="prose" data-reveal>Strictly, the residual is field production plus any
-Hilcorp storage movement combined. The two cannot be separated from public data,
+Hilcorp storage movement combined. The two can't be separated from public data,
 which is why the field is named non_cingsa_supply and is never called
 production.</p>"""
 
@@ -1609,6 +1617,8 @@ that it is not, is using it wrong.</p>
 {stale_note}
 
 {balance}
+
+{aside}
 
 <h2 data-reveal>The model, in full</h2>
 <p class="prose" data-reveal>Regional demand in MMcf per day is

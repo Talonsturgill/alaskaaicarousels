@@ -18,11 +18,13 @@ on:
   pull_request:
     paths:
       - "scripts/power_collect.py"
+      - "scripts/power_panel.py"
       - ".github/workflows/power.yml"
   push:
     branches: [main]
     paths:
       - "scripts/power_collect.py"
+      - "scripts/power_panel.py"
   workflow_dispatch:
 
 permissions:
@@ -42,6 +44,14 @@ jobs:
       # misread.
       - name: The collector measures and refuses to do anything else
         run: python3 scripts/power_collect.py --self-test
+
+      # The panel that draws this number lives on the gas watch page, whose
+      # numeral lint refuses any figure that traces back to nothing. The
+      # renderer and the authorisation it hands that lint sit in one module so
+      # they cannot drift, and this proves they still agree, including that a
+      # typed price is still caught.
+      - name: The panel draws only what the collector measured
+        run: python3 scripts/power_panel.py --self-test
 
   refresh:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
