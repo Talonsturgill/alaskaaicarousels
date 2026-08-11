@@ -1,0 +1,84 @@
+name: docket watch
+
+# The docket's eyes. Two keyless public sources swept into a queue the
+# routine's verification phase reads.
+#
+# WHY THIS IS CRON AND NOT A ROUTINE PHASE, the same argument the gas watch
+# makes. A carousel run that fails its quality gates on a Tuesday must not also
+# cost Tuesday's sweep, because a comment window that opened on Tuesday and
+# closes on Friday is exactly the thing this exists to catch. The sweep runs on
+# its own clock and writes its own file, and a bad run of anything else cannot
+# stop it.
+#
+# IT CANNOT PUBLISH. docket_watch.py writes ledger/watch.json and nothing else,
+# and its own self test asserts that the only path it opens for writing is that
+# queue. Everything in it is a CANDIDATE until a person or a checked agent puts
+# it on the record.
+
+on:
+  schedule:
+    # 06:20 Alaska, before the daily carousel routine fires, so the queue is
+    # already sitting there when the run's verification phase reads it.
+    - cron: "20 14 * * *"
+  pull_request:
+    paths:
+      - "scripts/docket_watch.py"
+      - ".github/workflows/docket-watch.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/docket_watch.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Hermetic, so it goes red on a real regression and never on the
+      # Legislature's maintenance window. A gate that fails for reasons nobody
+      # controls is a gate everybody learns to ignore.
+      - name: The sweep does what it says and cannot touch the docket
+        run: python3 scripts/docket_watch.py --self-test
+
+  sweep:
+    # Only on a real schedule or a deliberate press. A pull request gets the
+    # gate above and no network at all.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sweep BASIS and the Federal Register
+        run: python3 scripts/docket_watch.py --write
+
+      # The queue is committed so the routine reads a file rather than the
+      # network, and so a reviewer can see in the diff exactly what arrived
+      # and when. A day where nothing arrives writes an unchanged file and
+      # commits nothing, which is the correct amount of noise.
+      - name: Commit the queue when it moved
+        run: |
+          git config user.name "alaska-ai-bot"
+          git config user.email "docket@alaskaaihq.com"
+          if git diff --quiet -- ledger/watch.json; then
+            echo "queue unchanged, nothing to commit"
+            exit 0
+          fi
+          git add ledger/watch.json
+          git commit -m "watch($(TZ=America/Anchorage date +%F)): sweep BASIS and the Federal Register"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push failed, refetching and retrying"
+            git pull --rebase origin main || true
+            sleep $((2 ** i))
+          done
