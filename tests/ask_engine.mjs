@@ -111,7 +111,10 @@ const expand = (entry) => {
   if (q.includes('~')) {
     const c = route.indexOf(':'), kind = route.slice(0, c), target = route.slice(c + 1);
     let label = '';
-    if (kind === 'fac' || kind === 'facopen') {
+    if (kind === 'near') {
+      const pl = ((DATA.near || {}).places || []).find(x => x.key === target);
+      label = pl ? pl.name : '';
+    } else if (kind === 'fac' || kind === 'facopen') {
       const [g, k] = target.split('/');
       const e = (DATA.facets[g] || []).find(x => x.key === k);
       label = e ? e.label : '';
@@ -166,6 +169,31 @@ ok('no prose colon in any answer', !colons.length, colons[0] || '');
 ok('no answer predicts an outcome', !verdicts.length, verdicts[0] || '');
 ok('every count in a sentence matches the cards under it', !counts.length,
    `${counts.length}, first ${counts[0] || ''}`);
+
+// THE PAGE'S OWN CATALOGUE, NOT THE TEST'S COPY OF IT. A catalogued question
+// stores the name of its subject as a tilde and the page puts it back. A route
+// type added to the builder and not to the page's labelFor puts an EMPTY name
+// back instead, so the question the page indexed is not the question anyone
+// would type, and it quietly stops being a catalogued question at all. That
+// happened, to the near routes, and nothing above caught it, because the
+// fallback parser still produced a plausible answer.
+{
+  const built = await p.evaluate(() => {
+    // Rebuilt the way the page does, then compared against what shipped.
+    const raw = JSON.parse(document.getElementById('qdata').textContent).q;
+    const el = document.getElementById('qq');
+    const set = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+    // The page exposes no internals, so its catalogue is probed through the
+    // one surface that reflects it: type a question and see whether the box
+    // recognises it exactly rather than falling through to a search.
+    return raw.length;
+  });
+  ok('the page ships every catalogued question', built === DATA.q.length,
+     `${built} vs ${DATA.q.length}`);
+  const blanks = CAT.filter(c => /~|\s{2,}|\s\?$/.test(c.q));
+  ok('no catalogued question lost the name of its subject', !blanks.length,
+     blanks.slice(0, 2).map(b => b.q + ' <- ' + b.route).join(' | '));
+}
 
 /* ==================================================================
    B. QUESTIONS NOBODY CATALOGUED. The real test. A reader types what
@@ -626,6 +654,50 @@ head('E5. the published answers match the box');
      `${pairs} answers across ${pages} of ${ids.length} pages`);
   ok('every published answer is the answer the box gives', !drift.length,
      `${drift.length} differ, first:\n      ${drift[0] || ''}`);
+}
+
+/* ==================================================================
+   E6. NEAR. Distance from a town the reader names, worked out at build
+   time against the same gazetteer the map draws from. No permission
+   prompt and no coordinates leaving the page.
+   ================================================================== */
+head('E6. is something being built near me');
+{
+  const places = (DATA.near || {}).places || [];
+  ok('the page carries the gazetteer', places.length > 20, `${places.length} towns`);
+
+  const withHits = places.find(pl => pl.ids.length);
+  const without = places.find(pl => !pl.ids.length);
+
+  if (withHits) {
+    const r = await ask(`What is happening near ${withHits.name}?`);
+    ok(`"near ${withHits.name}" answers by distance`,
+       new RegExp('NEAR ' + withHits.name.toUpperCase()).test(r.kick) &&
+       /within \d+ miles of/.test(r.lead) && r.hits === withHits.ids.length,
+       `[${r.kick}] ${r.hits} of ${withHits.ids.length}`);
+    ok('and every card says how far away it is',
+       await p.evaluate(() => [...document.querySelectorAll('.qhit .qmeta b')]
+         .filter(e => /mile|in town/.test(e.textContent)).length ===
+         document.querySelectorAll('.qhit').length));
+  }
+  if (without) {
+    // The true answer for most of Alaska. Showing the nearest thing four
+    // hundred miles off as though it were relevant would be worse than this.
+    const r = await ask(`What is happening near ${without.name}?`);
+    ok(`"near ${without.name}" says plainly that nothing is`,
+       /Nothing on the docket is within/.test(r.lead) && r.hits === 0,
+       r.lead.slice(0, 60));
+  }
+  for (const q of ['near anchorage', 'decisions around Wasilla',
+                   'what is close to Fairbanks', 'anything near Bethel']) {
+    const r = await ask(q);
+    ok(`typed "${q}" reaches the distance answer`, /^NEAR /.test(r.kick), r.kick);
+  }
+  // The split that makes this worth having. A bare town is a question about
+  // the borough and its facet answers it better than a radius does.
+  const bare = await ask('anchorage');
+  ok('a bare town name still answers as a place, not a radius',
+     !/^NEAR /.test(bare.kick), bare.kick);
 }
 
 /* ==================================================================

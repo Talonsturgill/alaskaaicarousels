@@ -481,7 +481,8 @@ def index_row(it, today):
     field, so the page never has to parse prose to say who decides something.
     """
     r = db.resolve(it, today)
-    loc = (it.get("location") or {}).get("name") or ""
+    loc_pt = it.get("location") or {}
+    loc = loc_pt.get("name") or ""
     outlets = []
     for s in (it.get("sources") or []):
         o = s.get("outlet", "")
@@ -543,6 +544,11 @@ def index_row(it, today):
         "dates": [[d["date"], trim(d.get("label"), 80), d.get("kind", "milestone")]
                   for d in dates],
         "outlets": outlets,
+        # The point, when the record has one. Five of twenty decisions are
+        # statewide and have none, and inventing a centroid for those would
+        # put a pin on a map where nothing is happening.
+        "at": ([round(loc_pt["lat"], 4), round(loc_pt["lon"], 4)]
+               if loc_pt.get("lat") is not None else None),
         "alias": handles(it),
     }
 
@@ -574,6 +580,68 @@ def index_row(it, today):
 
 
 # ------------------------------------------------------------------ facets
+
+
+
+PLACES_FILE = os.path.join(REPO, "assets", "geo", "alaska-places.json")
+
+# How far from a town still counts as near it. Alaska is enormous and a
+# hundred miles is a normal errand in much of it, so this is deliberately
+# generous. The distance is always shown, so a reader judges for themselves
+# rather than trusting the threshold.
+NEAR_MILES = 120
+
+
+def communities():
+    """The towns a reader would name, with their points.
+
+    From the same gazetteer the map artwork uses, so a place named here is a
+    place the site already draws. Population orders the list and is never
+    published, because the file itself says those figures are for sizing dots
+    and not for citation.
+    """
+    try:
+        raw = json.loads(open(PLACES_FILE).read())
+    except Exception:
+        return []
+    out = []
+    for p in raw.get("places") or []:
+        if p.get("lat") is None or p.get("lon") is None:
+            continue
+        out.append({"name": p["name"],
+                    "key": re.sub(r"[^a-z0-9]+", "-", p["name"].lower()).strip("-"),
+                    "at": [round(p["lat"], 4), round(p["lon"], 4)],
+                    "rank": p.get("pop") or 0})
+    out.sort(key=lambda p: (-p["rank"], p["name"]))
+    for p in out:
+        p.pop("rank", None)
+    return out
+
+
+def miles(a, b):
+    """Great circle distance. The earth's curve matters at Alaska's size, and
+    treating lon and lat as a flat grid would put Utqiagvik and Ketchikan
+    closer together than they are by a wide margin."""
+    import math
+    r = 3958.8
+    p1, p2 = math.radians(a[0]), math.radians(b[0])
+    dp = p2 - p1
+    dl = math.radians(b[1] - a[1])
+    h = math.sin(dp / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return 2 * r * math.asin(min(1, math.sqrt(h)))
+
+
+def near(place, rows, limit=NEAR_MILES):
+    """Tracked decisions within reach of one town, nearest first."""
+    out = []
+    for r in rows:
+        if not r.get("at"):
+            continue
+        d = miles(place["at"], r["at"])
+        if d <= limit:
+            out.append((round(d), r["id"]))
+    out.sort()
+    return out
 
 
 def facets(rows):
@@ -706,7 +774,7 @@ VIEWS = [
 # --------------------------------------------------------------- catalogue
 
 
-def catalogue(rows, fac, today):
+def catalogue(rows, fac, today, places=()):
     """Every question this record can answer, each paired with its route.
 
     A route is `type:target`, and the page hands it to exactly the same
@@ -780,6 +848,9 @@ def catalogue(rows, fac, today):
         add(f"What is {e['label']}?", f"fac:status/{e['key']}", e["label"])
     for e in fac["access"]:
         add(f"What is {e['label']}?", f"fac:access/{e['key']}", e["label"])
+
+    for pl in places:
+        add(f"What is happening near {pl['name']}?", f"near:{pl['key']}", pl["name"])
 
     for days, phrase in ((7, "this week"), (14, "in the next two weeks"),
                          (30, "this month"), (60, "in the next two months"),
@@ -894,7 +965,7 @@ def starters(rows, fac, cat, by_id):
     return out[:6]
 
 
-def label_for(route, by_id, fac):
+def label_for(route, by_id, fac, places=()):
     """The name the tilde in a catalogued question stands for.
 
     THE PAGE MIRRORS THIS IN FIVE LINES. Keep them the same. It is a lookup
@@ -903,6 +974,11 @@ def label_for(route, by_id, fac):
     a reader, which is why the self test expands every entry.
     """
     kind, target = route.split(":", 1)
+    if kind == "near":
+        for p in places:
+            if p["key"] == target:
+                return p["name"]
+        return ""
     if kind in ("fac", "facopen"):
         group, key = target.split("/", 1)
         for e in fac.get(group, []):
@@ -913,10 +989,10 @@ def label_for(route, by_id, fac):
     return row["title"] if row else ""
 
 
-def expand(entry, by_id, fac):
+def expand(entry, by_id, fac, places=()):
     """One catalogue line, written back out in full."""
     q, route = entry.split("|", 1)
-    return q.replace("~", label_for(route, by_id, fac)) if "~" in q else q
+    return q.replace("~", label_for(route, by_id, fac, places)) if "~" in q else q
 
 
 
@@ -1089,7 +1165,13 @@ def build(today=None):
         hits, summary = fn(rows, today)
         views.append({"key": key, "q": q, "summary": summary,
                       "ids": [r["id"] for r in hits]})
-    cat = catalogue(rows, fac, today)
+    # Proximity, worked out here rather than in the page. Forty two towns
+    # against fifteen points is six hundred distances, which is nothing at
+    # build time and pointless to repeat in every reader's browser.
+    places = communities()
+    for pl in places:
+        pl["ids"] = near(pl, rows)
+    cat = catalogue(rows, fac, today, places)
     by_id = {r["id"]: r for r in rows}
     return {
         "generated": today.isoformat(),
@@ -1101,6 +1183,7 @@ def build(today=None):
         "vocab": vocabulary(rows, fac),
         "meta": META,
         "q": cat,
+        "near": {"miles": NEAR_MILES, "places": places},
         "try": starters(rows, fac, cat, by_id),
     }
 
@@ -1255,6 +1338,9 @@ def self_test():
         elif kind == "mon":
             if not re.fullmatch(r"\d{4}-\d{2}", target):
                 bad.append(route)
+        elif kind == "near":
+            if target not in {p["key"] for p in out["near"]["places"]}:
+                bad.append(route)
         elif kind in ("sup", "cnt"):
             pass
         else:
@@ -1262,7 +1348,7 @@ def self_test():
     check("every route points at something that exists", not bad, str(bad[:4]))
     # The tilde is only a saving if it always comes back. One that survives
     # expansion is a raw punctuation mark shown to a reader.
-    full = [expand(e, by_id, fac) for e in cat]
+    full = [expand(e, by_id, fac, out["near"]["places"]) for e in cat]
     check("every question expands back to a whole sentence",
           all("~" not in q and len(q) > 8 for q in full),
           str([q for q in full if "~" in q][:2]))
