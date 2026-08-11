@@ -120,7 +120,11 @@ A missed day is the one irreversible failure this project has.
   gaswatch_eia.json (monthly EIA figures behind the model cross check) and
   watch.json (the docket watch queue, written by cron and read by Phase 3.5;
   a candidate in it is a lead, never a record) and power.json (Alaska retail
-  electricity price by sector, written monthly by cron and never by a run).
+  electricity price by sector, written monthly by cron and never by a run) and
+  power_utility.json (what each Alaska utility charges, annual from Form
+  EIA-861, written by cron and never by a run; it is a DIFFERENT CADENCE from
+  power.json and the two are never blended or subtracted, because one is
+  monthly and near current and the other is a year that ended).
 - `.claude/agents/` — scout, fact-checker, treatment-director, copywriter,
   pixel-critic, flow-critic, scorer, upgrade-engineer (Phase 12 machine
   upgrades; pinned to Opus by maintainer requirement).
@@ -157,6 +161,11 @@ A missed day is the one irreversible failure this project has.
   docket; it holds both the renderer and the numeral authorisation that renderer
   needs, in one module, because the two shipped in separate files once and the
   daily page check went red on prices EIA had measured), and
+  power_utility.py (what each Alaska utility charges, annually from Form EIA-861
+  on .github/workflows/power-utility.yml; it exists because a state average is
+  the wrong shape for "is my bill going up" when the cheapest and dearest
+  utilities are five to one apart, and it reads the boroughs each one serves out
+  of EIA's own service territory file rather than asserting them), and
   docket_watch.py (the docket's eyes, a keyless daily sweep of the Alaska
   Legislature's BASIS and the Federal Register into ledger/watch.json, which is
   a QUEUE OF CANDIDATES and never the docket itself; runs on

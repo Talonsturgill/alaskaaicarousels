@@ -34,14 +34,28 @@ LEDGER = os.path.join(REPO, "ledger", "power.json")
 esc = gw.esc
 
 
-def load():
-    """The committed file, or None. A missing ledger renders no panel and is
-    never a build failure, the same way the gas strip degrades."""
+UTILITY_LEDGER = os.path.join(REPO, "ledger", "power_utility.json")
+
+
+def _read(path):
     try:
-        with open(LEDGER, encoding="utf-8") as fh:
+        with open(path, encoding="utf-8") as fh:
             return json.load(fh)
     except Exception:
         return None
+
+
+def load():
+    """The committed file, or None. A missing ledger renders no panel and is
+    never a build failure, the same way the gas strip degrades."""
+    return _read(LEDGER)
+
+
+def load_utilities():
+    """Per utility prices, or None. Its own file and its own collector, because
+    it is annual where the state series is monthly and blending two cadences in
+    one ledger is how a stale figure ends up wearing a fresh one's date."""
+    return _read(UTILITY_LEDGER)
 
 
 # Ten years of months. Long enough that a reader can see whether this year is
@@ -105,7 +119,49 @@ stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke;}
 font-family:JBMono,ui-monospace,monospace;font-size:10px;letter-spacing:.12em;
 color:var(--mute);text-transform:uppercase;margin-top:7px;}
 .pwnote{font-size:13.5px;color:var(--mute);line-height:1.62;margin-top:16px;}
-@media (max-width:640px){.pw{grid-template-columns:1fr;}}
+/* The instruction has to match the device holding it. A phone was being told
+   to press arrow keys it does not have, next to a line it could not scrub,
+   which reads as a page written for somebody else's hardware. hover:none is
+   the honest test here, because it asks what the input can DO rather than how
+   wide the screen is. */
+.pwtouch{display:none;}
+@media (hover:none){.pwtouch{display:inline;}.pwpoint{display:none;}}
+
+/* WHAT EACH UTILITY CHARGED. The state average answers a question nobody asks.
+   Alaska is eleven retail systems that share a flag and not a grid, and the
+   spread between the cheapest and the dearest is more than five to one, which
+   is the single most useful fact on this page and the one a single average
+   destroys. The bar carries that spread, because 12 against 70 in a column of
+   numerals is arithmetic and the same pair as two lengths is obvious. */
+.pwh3{font-family:Fraunces,serif;font-weight:560;font-size:clamp(19px,2.4vw,23px);
+color:var(--snow);margin-top:34px;line-height:1.25;}
+.pwu{margin-top:16px;overflow-x:auto;}
+.pwu table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+.pwu th{font-family:JBMono,ui-monospace,monospace;font-size:10px;
+letter-spacing:.15em;color:var(--mute);text-transform:uppercase;
+text-align:left;padding:0 11px 9px;font-weight:400;border-bottom:1px solid var(--line);}
+.pwu td{padding:11px;border-bottom:1px solid var(--line);vertical-align:baseline;}
+.pwu tr:last-child td{border-bottom:none;}
+.pwu .n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;}
+.pwu th.n{text-align:right;}
+.pwu .u{color:var(--snow);}
+.pwu .a{color:var(--mute);font-size:12.5px;line-height:1.45;}
+.pwu .p{color:var(--snow);font-weight:600;font-variant-numeric:tabular-nums;}
+.pwu .bar{display:block;height:3px;border-radius:2px;background:var(--gold);
+margin-top:6px;min-width:2px;opacity:.75;}
+.pwu .barcell{width:132px;}
+@media (max-width:640px){
+.pw{grid-template-columns:1fr;}
+/* THE PRICE IS THE COLUMN THE READER CAME FOR, so on a phone it is the one
+   that stays. Three columns in a 520px table put it off the right edge behind
+   a horizontal scroll, which meant the answer was the only thing hidden and
+   the household count, which is context, was the thing on screen. The count
+   yields instead and nothing scrolls. */
+.pwu{overflow-x:visible;}
+.pwu table{min-width:0;}
+.pwu .hh{display:none;}
+.pwu .barcell{width:96px;}
+}
 """
 
 # The power line's hover layer. Small enough to inline, and with JS off the
@@ -118,7 +174,9 @@ JS = r"""
   var data;
   try { data = JSON.parse(c.getAttribute('data-pw')); } catch (e) { return; }
   var hits = c.querySelectorAll('.pwhit');
+  var svg = c.querySelector('svg');
   var rule = c.querySelector('.pwrule'), dot = c.querySelector('.pwdot');
+  if (!svg) return;
   var mo = document.querySelector('.pwread-m');
   var val = document.querySelector('.pwread-v b');
   if (!hits.length || !rule || !dot || !mo || !val) return;
@@ -155,7 +213,6 @@ JS = r"""
   for (var i=0;i<hits.length;i++){
     (function(el){
       var idx = parseInt(el.getAttribute('data-i'), 10);
-      el.addEventListener('pointerenter', function(){ show(idx, el); });
       el.addEventListener('focus', function(){ show(idx, el); });
       el.addEventListener('blur', rest);
       el.addEventListener('keydown', function(ev){
@@ -169,7 +226,61 @@ JS = r"""
       });
     })(hits[i]);
   }
-  c.addEventListener('pointerleave', rest);
+
+  // DRAGGING A FINGER ALONG THE LINE, which is how anyone actually reads a
+  // chart on a phone. It used to be one pointerenter listener per month, and
+  // that is a mouse-only design wearing pointer events: touch captures the
+  // pointer on whatever element received the press, so every later move is
+  // delivered to THAT rect and the eleven rects the finger crossed never hear
+  // anything. The reading changed where you tapped and then froze.
+  //
+  // So the position is hit tested instead. One listener on the svg, the x
+  // turned into viewBox units, nearest month wins. Same code path for a mouse,
+  // a finger and a stylus, and 120 listeners become two.
+  var xs = [];
+  for (var k=0;k<hits.length;k++) xs.push(parseFloat(hits[k].getAttribute('data-x')));
+  var vbw = (svg.viewBox && svg.viewBox.baseVal && svg.viewBox.baseVal.width) || 640;
+  var dragging = false;
+
+  function nearest(clientX){
+    var r = svg.getBoundingClientRect();
+    if (!r.width) return 0;
+    var vx = (clientX - r.left) / r.width * vbw, best = 0, bd = Infinity;
+    for (var i=0;i<xs.length;i++){
+      var d = Math.abs(xs[i] - vx);
+      if (d < bd){ bd = d; best = i; }
+    }
+    return best;
+  }
+
+  function track(ev){
+    var i = nearest(ev.clientX);
+    show(i, hits[i]);
+  }
+
+  svg.addEventListener('pointerdown', function(ev){
+    dragging = true;
+    // Capture, so a finger that wanders off the 96px band vertically keeps
+    // scrubbing instead of dropping the reading mid-drag.
+    if (svg.setPointerCapture) { try { svg.setPointerCapture(ev.pointerId); } catch (e) {} }
+    track(ev);
+  });
+  svg.addEventListener('pointermove', function(ev){
+    // A mouse reads on hover. A finger reads only while it is down, or the
+    // page would jump to a month the moment a scroll passed over the chart.
+    if (ev.pointerType === 'mouse' || dragging) track(ev);
+  });
+  function release(){ dragging = false; }
+  svg.addEventListener('pointerup', release);
+  svg.addEventListener('pointercancel', release);
+
+  // Lifting a finger LEAVES the reading up, because on touch there is no
+  // hover to hold it there and a value that vanishes the instant you stop
+  // touching it is a value you can never read. A mouse leaving still resets,
+  // since the pointer is elsewhere and the latest month is the honest default.
+  c.addEventListener('pointerleave', function(ev){
+    if (ev.pointerType === 'mouse') rest();
+  });
 })();
 """
 
@@ -287,12 +398,85 @@ state, so it shows which way prices are moving and not what any one utility char
 <p class="pwnote" data-reveal>{esc(res["latest_label"])} is the most recent month EIA has
 published, out of {esc(gw.count(res["points"], "month"))} going back to
 {esc(month_name(res["first_period"]))}. The line is every month it has published for
-households since {esc(month_name(pts[0][0]))}, each one placed on its own date. Touch it, point
-at it, or tab to it and use the arrow keys, to read any month exactly. This page states what
-the number did and never why, because the data can't say why, and it publishes no figure for a
-month that hasn't happened.</p>
+households since {esc(month_name(pts[0][0]))}, each one placed on its own date.
+<span class="pwtouch">Drag a finger along it to read any month exactly.</span><span class="pwpoint">Point
+along it, or tab to it and use the arrow keys, to read any month exactly.</span> This page
+states what the number did and never why, because the data can't say why, and it publishes no
+figure for a month that hasn't happened.</p>
+{utilities_html()}
 <p class="pwnote" data-reveal>The decisions behind Alaska's grid are tracked on
 <a class="proselink" href="../docket/">the Alaska AI Docket</a>.</p>"""
+
+
+def utilities_html():
+    """What each Alaska utility charged, one row each, straight from Form 861.
+
+    THE STATE AVERAGE IS THE WRONG SHAPE FOR THE QUESTION and saying so was as
+    far as this page could go, because there was nothing better to offer. There
+    is now. Eleven retail systems, the boroughs each one serves, and what a
+    household on it actually paid across a year.
+
+    The prices are not blended with the monthly series above them and the copy
+    says why. The state line is current to within about two months; Form 861 is
+    annual and the newest year is usually the year before last. Two figures on
+    the same page in the same unit is exactly the setup where a reader subtracts
+    one from the other and gets a number that means nothing, so each one carries
+    its own date in its own heading and the note says not to do it.
+
+    NO COMPARISON IS COMPUTED HERE, deliberately. Anchorage against the state
+    average is the sentence this section is for and it is a sentence about two
+    different years, which makes it wrong however carefully it is written. The
+    rows are shown, the range is stated, and the arithmetic is the reader's.
+    """
+    d = load_utilities()
+    rows = [u for u in ((d or {}).get("utilities") or [])
+            if u.get("sectors", {}).get("residential", {}).get("cents_per_kwh")]
+    if not rows:
+        return ""
+    hi = max(u["sectors"]["residential"]["cents_per_kwh"] for u in rows)
+    low_u = min(rows, key=lambda u: u["sectors"]["residential"]["cents_per_kwh"])
+    high_u = max(rows, key=lambda u: u["sectors"]["residential"]["cents_per_kwh"])
+
+    def row(u):
+        r = u["sectors"]["residential"]
+        cents, cust = r["cents_per_kwh"], r.get("customers")
+        # Width against the dearest row, so a bar is a ratio a reader can trust
+        # rather than a shape fitted to make the table look busy.
+        return (f'<tr><td class="u">{esc(u["name"])}'
+                f'<div class="a">{esc(", ".join(u["areas"]) or "not filed")}</div></td>'
+                f'<td class="n hh">{cust:,}</td>' if cust else
+                f'<tr><td class="u">{esc(u["name"])}'
+                f'<div class="a">{esc(", ".join(u["areas"]) or "not filed")}</div></td>'
+                f'<td class="n hh"></td>')
+
+    def cell(u):
+        cents = u["sectors"]["residential"]["cents_per_kwh"]
+        return (f'<td class="n barcell"><span class="p">{cents:.2f}</span>'
+                f'<span class="bar" style="width:{cents / hi * 100:.0f}%"></span>'
+                f'</td></tr>')
+
+    left = d.get("not_shown", {}).get("short_form_filers")
+    return f"""<h3 class="pwh3" data-reveal>What each utility charged in {d["data_year"]}</h3>
+<p class="pwnote" data-reveal>Alaska is not one grid. These are the
+{esc(gw.count(len(rows), "utility", "utilities"))} that reported a household price on the long
+form of the federal power survey, what a household on each one paid per kilowatthour across the
+year, and the boroughs each serves. It is a year of revenue divided by a year of sales, so it
+is an average of what was billed and not a tariff. Your own bill is the authority on your own
+rate.</p>
+<div class="pwu" data-reveal><table>
+<thead><tr><th>Utility and the boroughs it serves</th><th class="n hh">Households</th>
+<th class="n">Cents per kilowatthour</th></tr></thead>
+<tbody>{"".join(row(u) + cell(u) for u in rows)}</tbody></table></div>
+<p class="pwnote" data-reveal>A household paid {esc(f'{low_u["sectors"]["residential"]["cents_per_kwh"]:.2f}')} cents
+on {esc(low_u["name"])} and {esc(f'{high_u["sectors"]["residential"]["cents_per_kwh"]:.2f}')} cents on
+{esc(high_u["name"])}. That spread is the reason the single state figure above answers almost
+nobody, and it is why this page shows both.</p>
+<p class="pwnote" data-reveal>Do not subtract one of these numbers from the other.
+{d["data_year"]} is the most recent year the federal power survey has published and the line
+above is monthly and much more current, so the two describe different periods as well as
+different things. {esc(gw.count(left, "smaller utility", "smaller utilities"))} file a short
+form that reports one figure across every kind of customer, and a household rate and an all
+customers rate are not the same measurement, so they are counted here and not listed above.</p>"""
 
 
 def month_name(period):
@@ -333,6 +517,20 @@ def numerals():
         for p, v in list(reversed(pts))[-SPARK_MONTHS:]:
             out += [f"{v:.2f}", month_name(p)]
     out.append(str(SPARK_MONTHS))
+
+    # The per utility table, authorised the same way and from its own file. Bar
+    # widths are a style attribute, which the lint strips with every other tag,
+    # so only what a reader can read needs to be here.
+    u = load_utilities() or {}
+    rows = [x for x in (u.get("utilities") or [])
+            if x.get("sectors", {}).get("residential", {}).get("cents_per_kwh")]
+    out += [str(u.get("data_year", "")), str(len(rows)),
+            str(u.get("not_shown", {}).get("short_form_filers", ""))]
+    for x in rows:
+        r = x["sectors"]["residential"]
+        out.append(f"{r['cents_per_kwh']:.2f}")
+        if r.get("customers"):
+            out.append(f"{r['customers']:,}")
     return out
 
 
@@ -385,6 +583,31 @@ def self_test():
     check("it says whose number it is", "Energy Information Administration" in flat)
     check("it says the number is a state average",
           "one number for the whole state" in flat)
+
+    u = load_utilities()
+    if u:
+        print("and it shows what each utility charged, without blending the two")
+        rows = [x for x in u["utilities"]
+                if x.get("sectors", {}).get("residential", {}).get("cents_per_kwh")]
+        check("a row per utility that filed a household price",
+              page.count('<td class="u">') == len(rows), str(len(rows)))
+        for want in ("Chugach Electric Assn Inc", "Matanuska Electric Assn Inc"):
+            check(f"{want} is on the page", want in page)
+        check("the boroughs each serves come with it", "Matanuska Susitna" in page)
+        check("the annual year is stated on the table",
+              f"charged in {u['data_year']}" in flat, str(u["data_year"]))
+        # The state line is monthly and near current, this is annual and two
+        # years back. A reader who subtracts one from the other gets a figure
+        # that describes nothing, so the page has to say so out loud.
+        check("it warns against subtracting one from the other",
+              "not subtract one of these numbers from the other" in flat)
+        check("it says the figure is an average and not a tariff",
+              "not a tariff" in flat)
+        check("the utilities left out are counted, not hidden",
+              "short form" in low)
+        check("no cross year comparison is asserted", not any(
+            p in low for p in ("less than the state", "more than the state",
+                               "below the state average", "above the state average")))
 
     print("house voice")
     check("no 'cannot' anywhere in it", "cannot" not in low)

@@ -1,0 +1,277 @@
+{
+ "generated": "2026-08-11T23:13:19Z",
+ "source": "US Energy Information Administration, Form EIA-861",
+ "source_url": "https://www.eia.gov/electricity/data/eia861/zip/f8612024.zip",
+ "data_year": 2024,
+ "geography": "Alaska, one row per utility, boroughs served as filed",
+ "units": "cents per kilowatthour",
+ "basis": "retail revenue divided by retail sales for the year, as filed. An average of what was billed, not a tariff",
+ "utilities": [
+  {
+   "name": "Chugach Electric Assn Inc",
+   "utility_id": "3522",
+   "ownership": "Cooperative",
+   "areas": [
+    "Anchorage",
+    "Kenai Peninsula"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 21.24,
+     "customers": 97048,
+     "megawatthours": 590921
+    },
+    "commercial": {
+     "cents_per_kwh": 16.88,
+     "customers": 16325,
+     "megawatthours": 1242359
+    },
+    "industrial": {
+     "cents_per_kwh": 14.24,
+     "customers": 5,
+     "megawatthours": 52775
+    }
+   }
+  },
+  {
+   "name": "Matanuska Electric Assn Inc",
+   "utility_id": "11824",
+   "ownership": "Cooperative",
+   "areas": [
+    "Anchorage",
+    "Matanuska Susitna"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 23.37,
+     "customers": 64205,
+     "megawatthours": 466931
+    },
+    "commercial": {
+     "cents_per_kwh": 20.25,
+     "customers": 6849,
+     "megawatthours": 321388
+    }
+   }
+  },
+  {
+   "name": "Golden Valley Elec Assn Inc",
+   "utility_id": "7353",
+   "ownership": "Cooperative",
+   "areas": [
+    "Denali",
+    "Fairbanks North Star",
+    "Southeast Fairbanks",
+    "Yukon Koyukuk"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 30.32,
+     "customers": 40675,
+     "megawatthours": 288667
+    },
+    "commercial": {
+     "cents_per_kwh": 29.15,
+     "customers": 6905,
+     "megawatthours": 118991
+    },
+    "industrial": {
+     "cents_per_kwh": 21.9,
+     "customers": 583,
+     "megawatthours": 819779
+    }
+   }
+  },
+  {
+   "name": "Homer Electric Assn Inc",
+   "utility_id": "19558",
+   "ownership": "Cooperative",
+   "areas": [
+    "Kenai Peninsula"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 29.79,
+     "customers": 29721,
+     "megawatthours": 177136
+    },
+    "commercial": {
+     "cents_per_kwh": 26.39,
+     "customers": 4415,
+     "megawatthours": 160774
+    },
+    "industrial": {
+     "cents_per_kwh": 12.41,
+     "customers": 21,
+     "megawatthours": 150301
+    }
+   }
+  },
+  {
+   "name": "Alaska Electric Light & Power Co.",
+   "utility_id": "213",
+   "ownership": "Investor Owned",
+   "areas": [
+    "Juneau"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 12.93,
+     "customers": 15407,
+     "megawatthours": 170626
+    },
+    "commercial": {
+     "cents_per_kwh": 10.76,
+     "customers": 2459,
+     "megawatthours": 126119
+    },
+    "industrial": {
+     "cents_per_kwh": 11.07,
+     "customers": 139,
+     "megawatthours": 130040
+    }
+   }
+  },
+  {
+   "name": "Alaska Village Elec Coop, Inc",
+   "utility_id": "221",
+   "ownership": "Cooperative",
+   "areas": [
+    "Bethel",
+    "Dillingham",
+    "Kodiak Island",
+    "Kusilvak",
+    "Nome",
+    "Northwest Arctic",
+    "Yakutat",
+    "Yukon Koyukuk"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 69.95,
+     "customers": 7689,
+     "megawatthours": 43854
+    },
+    "commercial": {
+     "cents_per_kwh": 56.8,
+     "customers": 3829,
+     "megawatthours": 81597
+    }
+   }
+  },
+  {
+   "name": "Ketchikan Public Utilities",
+   "utility_id": "10210",
+   "ownership": "Municipal",
+   "areas": [
+    "Ketchikan Gateway"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 12.48,
+     "customers": 6561,
+     "megawatthours": 78034
+    },
+    "commercial": {
+     "cents_per_kwh": 12.03,
+     "customers": 1389,
+     "megawatthours": 76702
+    },
+    "industrial": {
+     "cents_per_kwh": 10.38,
+     "customers": 14,
+     "megawatthours": 22752
+    }
+   }
+  },
+  {
+   "name": "Alaska Power and Telephone Co",
+   "utility_id": "219",
+   "ownership": "Investor Owned",
+   "areas": [
+    "Haines",
+    "Prince of Wales Ketchikan",
+    "Skagway Hoonah Angoon",
+    "Yukon Koyukuk"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 37.18,
+     "customers": 5737,
+     "megawatthours": 27967
+    },
+    "commercial": {
+     "cents_per_kwh": 31.31,
+     "customers": 2719,
+     "megawatthours": 50720
+    }
+   }
+  },
+  {
+   "name": "Kodiak Electric Assn Inc",
+   "utility_id": "10433",
+   "ownership": "Cooperative",
+   "areas": [
+    "Kodiak Island"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 18.83,
+     "customers": 4772,
+     "megawatthours": 39813
+    },
+    "commercial": {
+     "cents_per_kwh": 18.64,
+     "customers": 1363,
+     "megawatthours": 24379
+    },
+    "industrial": {
+     "cents_per_kwh": 16.69,
+     "customers": 120,
+     "megawatthours": 84636
+    }
+   }
+  },
+  {
+   "name": "Kotzebue Electric Assn Inc",
+   "utility_id": "10451",
+   "ownership": "Cooperative",
+   "areas": [
+    "Northwest Arctic"
+   ],
+   "sectors": {
+    "residential": {
+     "cents_per_kwh": 47.9,
+     "customers": 1227,
+     "megawatthours": 7715
+    },
+    "commercial": {
+     "cents_per_kwh": 45.49,
+     "customers": 127,
+     "megawatthours": 11559
+    }
+   }
+  },
+  {
+   "name": "TDX North Slope Generating Co",
+   "utility_id": "19277",
+   "ownership": "Investor Owned",
+   "areas": [
+    "North Slope"
+   ],
+   "sectors": {
+    "commercial": {
+     "cents_per_kwh": 24.81,
+     "customers": 162,
+     "megawatthours": 47662
+    }
+   }
+  }
+ ],
+ "residential_low": 12.48,
+ "residential_high": 69.95,
+ "not_shown": {
+  "short_form_filers": 55,
+  "why": "Alaska's smallest utilities file a short form that reports one revenue figure across all sectors. A household rate and an all customers rate are different measurements and this record does not put them in one column."
+ }
+}

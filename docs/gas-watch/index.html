@@ -258,7 +258,49 @@ stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke;}
 font-family:JBMono,ui-monospace,monospace;font-size:10px;letter-spacing:.12em;
 color:var(--mute);text-transform:uppercase;margin-top:7px;}
 .pwnote{font-size:13.5px;color:var(--mute);line-height:1.62;margin-top:16px;}
-@media (max-width:640px){.pw{grid-template-columns:1fr;}}
+/* The instruction has to match the device holding it. A phone was being told
+   to press arrow keys it does not have, next to a line it could not scrub,
+   which reads as a page written for somebody else's hardware. hover:none is
+   the honest test here, because it asks what the input can DO rather than how
+   wide the screen is. */
+.pwtouch{display:none;}
+@media (hover:none){.pwtouch{display:inline;}.pwpoint{display:none;}}
+
+/* WHAT EACH UTILITY CHARGED. The state average answers a question nobody asks.
+   Alaska is eleven retail systems that share a flag and not a grid, and the
+   spread between the cheapest and the dearest is more than five to one, which
+   is the single most useful fact on this page and the one a single average
+   destroys. The bar carries that spread, because 12 against 70 in a column of
+   numerals is arithmetic and the same pair as two lengths is obvious. */
+.pwh3{font-family:Fraunces,serif;font-weight:560;font-size:clamp(19px,2.4vw,23px);
+color:var(--snow);margin-top:34px;line-height:1.25;}
+.pwu{margin-top:16px;overflow-x:auto;}
+.pwu table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+.pwu th{font-family:JBMono,ui-monospace,monospace;font-size:10px;
+letter-spacing:.15em;color:var(--mute);text-transform:uppercase;
+text-align:left;padding:0 11px 9px;font-weight:400;border-bottom:1px solid var(--line);}
+.pwu td{padding:11px;border-bottom:1px solid var(--line);vertical-align:baseline;}
+.pwu tr:last-child td{border-bottom:none;}
+.pwu .n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;}
+.pwu th.n{text-align:right;}
+.pwu .u{color:var(--snow);}
+.pwu .a{color:var(--mute);font-size:12.5px;line-height:1.45;}
+.pwu .p{color:var(--snow);font-weight:600;font-variant-numeric:tabular-nums;}
+.pwu .bar{display:block;height:3px;border-radius:2px;background:var(--gold);
+margin-top:6px;min-width:2px;opacity:.75;}
+.pwu .barcell{width:132px;}
+@media (max-width:640px){
+.pw{grid-template-columns:1fr;}
+/* THE PRICE IS THE COLUMN THE READER CAME FOR, so on a phone it is the one
+   that stays. Three columns in a 520px table put it off the right edge behind
+   a horizontal scroll, which meant the answer was the only thing hidden and
+   the household count, which is context, was the thing on screen. The count
+   yields instead and nothing scrolls. */
+.pwu{overflow-x:visible;}
+.pwu table{min-width:0;}
+.pwu .hh{display:none;}
+.pwu .barcell{width:96px;}
+}
 </style>
 <script>document.documentElement.classList.add('js');window.__revealFallback=setTimeout(function(){document.documentElement.classList.add('reveal-fallback')},3000)</script>
 </head>
@@ -441,10 +483,32 @@ state, so it shows which way prices are moving and not what any one utility char
 <p class="pwnote" data-reveal>May 2026 is the most recent month EIA has
 published, out of 303 months going back to
 January 2001. The line is every month it has published for
-households since April 2016, each one placed on its own date. Touch it, point
-at it, or tab to it and use the arrow keys, to read any month exactly. This page states what
-the number did and never why, because the data can't say why, and it publishes no figure for a
-month that hasn't happened.</p>
+households since April 2016, each one placed on its own date.
+<span class="pwtouch">Drag a finger along it to read any month exactly.</span><span class="pwpoint">Point
+along it, or tab to it and use the arrow keys, to read any month exactly.</span> This page
+states what the number did and never why, because the data can't say why, and it publishes no
+figure for a month that hasn't happened.</p>
+<h3 class="pwh3" data-reveal>What each utility charged in 2024</h3>
+<p class="pwnote" data-reveal>Alaska is not one grid. These are the
+10 utilities that reported a household price on the long
+form of the federal power survey, what a household on each one paid per kilowatthour across the
+year, and the boroughs each serves. It is a year of revenue divided by a year of sales, so it
+is an average of what was billed and not a tariff. Your own bill is the authority on your own
+rate.</p>
+<div class="pwu" data-reveal><table>
+<thead><tr><th>Utility and the boroughs it serves</th><th class="n hh">Households</th>
+<th class="n">Cents per kilowatthour</th></tr></thead>
+<tbody><tr><td class="u">Chugach Electric Assn Inc<div class="a">Anchorage, Kenai Peninsula</div></td><td class="n hh">97,048</td><td class="n barcell"><span class="p">21.24</span><span class="bar" style="width:30%"></span></td></tr><tr><td class="u">Matanuska Electric Assn Inc<div class="a">Anchorage, Matanuska Susitna</div></td><td class="n hh">64,205</td><td class="n barcell"><span class="p">23.37</span><span class="bar" style="width:33%"></span></td></tr><tr><td class="u">Golden Valley Elec Assn Inc<div class="a">Denali, Fairbanks North Star, Southeast Fairbanks, Yukon Koyukuk</div></td><td class="n hh">40,675</td><td class="n barcell"><span class="p">30.32</span><span class="bar" style="width:43%"></span></td></tr><tr><td class="u">Homer Electric Assn Inc<div class="a">Kenai Peninsula</div></td><td class="n hh">29,721</td><td class="n barcell"><span class="p">29.79</span><span class="bar" style="width:43%"></span></td></tr><tr><td class="u">Alaska Electric Light &amp; Power Co.<div class="a">Juneau</div></td><td class="n hh">15,407</td><td class="n barcell"><span class="p">12.93</span><span class="bar" style="width:18%"></span></td></tr><tr><td class="u">Alaska Village Elec Coop, Inc<div class="a">Bethel, Dillingham, Kodiak Island, Kusilvak, Nome, Northwest Arctic, Yakutat, Yukon Koyukuk</div></td><td class="n hh">7,689</td><td class="n barcell"><span class="p">69.95</span><span class="bar" style="width:100%"></span></td></tr><tr><td class="u">Ketchikan Public Utilities<div class="a">Ketchikan Gateway</div></td><td class="n hh">6,561</td><td class="n barcell"><span class="p">12.48</span><span class="bar" style="width:18%"></span></td></tr><tr><td class="u">Alaska Power and Telephone Co<div class="a">Haines, Prince of Wales Ketchikan, Skagway Hoonah Angoon, Yukon Koyukuk</div></td><td class="n hh">5,737</td><td class="n barcell"><span class="p">37.18</span><span class="bar" style="width:53%"></span></td></tr><tr><td class="u">Kodiak Electric Assn Inc<div class="a">Kodiak Island</div></td><td class="n hh">4,772</td><td class="n barcell"><span class="p">18.83</span><span class="bar" style="width:27%"></span></td></tr><tr><td class="u">Kotzebue Electric Assn Inc<div class="a">Northwest Arctic</div></td><td class="n hh">1,227</td><td class="n barcell"><span class="p">47.90</span><span class="bar" style="width:68%"></span></td></tr></tbody></table></div>
+<p class="pwnote" data-reveal>A household paid 12.48 cents
+on Ketchikan Public Utilities and 69.95 cents on
+Alaska Village Elec Coop, Inc. That spread is the reason the single state figure above answers almost
+nobody, and it is why this page shows both.</p>
+<p class="pwnote" data-reveal>Do not subtract one of these numbers from the other.
+2024 is the most recent year the federal power survey has published and the line
+above is monthly and much more current, so the two describe different periods as well as
+different things. 55 smaller utilities file a short
+form that reports one figure across every kind of customer, and a household rate and an all
+customers rate are not the same measurement, so they are counted here and not listed above.</p>
 <p class="pwnote" data-reveal>The decisions behind Alaska's grid are tracked on
 <a class="proselink" href="../docket/">the Alaska AI Docket</a>.</p>
 
@@ -633,7 +697,9 @@ Cook Inlet gas storage plan</a>.</p>
   var data;
   try { data = JSON.parse(c.getAttribute('data-pw')); } catch (e) { return; }
   var hits = c.querySelectorAll('.pwhit');
+  var svg = c.querySelector('svg');
   var rule = c.querySelector('.pwrule'), dot = c.querySelector('.pwdot');
+  if (!svg) return;
   var mo = document.querySelector('.pwread-m');
   var val = document.querySelector('.pwread-v b');
   if (!hits.length || !rule || !dot || !mo || !val) return;
@@ -670,7 +736,6 @@ Cook Inlet gas storage plan</a>.</p>
   for (var i=0;i<hits.length;i++){
     (function(el){
       var idx = parseInt(el.getAttribute('data-i'), 10);
-      el.addEventListener('pointerenter', function(){ show(idx, el); });
       el.addEventListener('focus', function(){ show(idx, el); });
       el.addEventListener('blur', rest);
       el.addEventListener('keydown', function(ev){
@@ -684,7 +749,61 @@ Cook Inlet gas storage plan</a>.</p>
       });
     })(hits[i]);
   }
-  c.addEventListener('pointerleave', rest);
+
+  // DRAGGING A FINGER ALONG THE LINE, which is how anyone actually reads a
+  // chart on a phone. It used to be one pointerenter listener per month, and
+  // that is a mouse-only design wearing pointer events: touch captures the
+  // pointer on whatever element received the press, so every later move is
+  // delivered to THAT rect and the eleven rects the finger crossed never hear
+  // anything. The reading changed where you tapped and then froze.
+  //
+  // So the position is hit tested instead. One listener on the svg, the x
+  // turned into viewBox units, nearest month wins. Same code path for a mouse,
+  // a finger and a stylus, and 120 listeners become two.
+  var xs = [];
+  for (var k=0;k<hits.length;k++) xs.push(parseFloat(hits[k].getAttribute('data-x')));
+  var vbw = (svg.viewBox && svg.viewBox.baseVal && svg.viewBox.baseVal.width) || 640;
+  var dragging = false;
+
+  function nearest(clientX){
+    var r = svg.getBoundingClientRect();
+    if (!r.width) return 0;
+    var vx = (clientX - r.left) / r.width * vbw, best = 0, bd = Infinity;
+    for (var i=0;i<xs.length;i++){
+      var d = Math.abs(xs[i] - vx);
+      if (d < bd){ bd = d; best = i; }
+    }
+    return best;
+  }
+
+  function track(ev){
+    var i = nearest(ev.clientX);
+    show(i, hits[i]);
+  }
+
+  svg.addEventListener('pointerdown', function(ev){
+    dragging = true;
+    // Capture, so a finger that wanders off the 96px band vertically keeps
+    // scrubbing instead of dropping the reading mid-drag.
+    if (svg.setPointerCapture) { try { svg.setPointerCapture(ev.pointerId); } catch (e) {} }
+    track(ev);
+  });
+  svg.addEventListener('pointermove', function(ev){
+    // A mouse reads on hover. A finger reads only while it is down, or the
+    // page would jump to a month the moment a scroll passed over the chart.
+    if (ev.pointerType === 'mouse' || dragging) track(ev);
+  });
+  function release(){ dragging = false; }
+  svg.addEventListener('pointerup', release);
+  svg.addEventListener('pointercancel', release);
+
+  // Lifting a finger LEAVES the reading up, because on touch there is no
+  // hover to hold it there and a value that vanishes the instant you stop
+  // touching it is a value you can never read. A mouse leaving still resets,
+  // since the pointer is elsewhere and the latest month is the honest default.
+  c.addEventListener('pointerleave', function(ev){
+    if (ev.pointerType === 'mouse') rest();
+  });
 })();
 </script>
 </body>

@@ -87,10 +87,12 @@ maintainer can post in ninety seconds.
    which is exactly what 2026-08-08 did.
 
 19. THE CRON-WRITTEN NUMBERS ARE NOT YOURS. `ledger/gaswatch.jsonl`,
-   `ledger/gaswatch_eia.json`, `ledger/power.json`, `ledger/watch.json`,
+   `ledger/gaswatch_eia.json`, `ledger/power.json`,
+   `ledger/power_utility.json`, `ledger/watch.json`,
    `config/gaswatch_model.json`,
    `config/gaswatch_hdd_history.json`, `scripts/gaswatch_collect.py`,
-   `scripts/gaswatch_eia.py`, `scripts/power_collect.py` and
+   `scripts/gaswatch_eia.py`, `scripts/power_collect.py`,
+   `scripts/power_utility.py` and
    `scripts/docket_watch.py` are written by cron jobs and by deliberate
    human refits. You READ watch.json in Phase 3.5 and you never write it. A run that edits any of them is corrupting a published
    time series that cannot be rebuilt, because CINGSA keeps no archive.

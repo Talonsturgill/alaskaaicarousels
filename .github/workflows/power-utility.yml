@@ -1,0 +1,126 @@
+name: power prices by utility
+
+# What each Alaska utility charges, from Form EIA-861.
+#
+# MONTHLY AND NOT DAILY, because the source is annual. Form EIA-861 for a year
+# lands the following autumn, so there are at most one or two moments a year
+# when this file can change at all. The archive is 4.5 MB, and pulling it every
+# morning would mean about a gigabyte and a half a year taken from a free
+# public service to observe a single edit.
+#
+# That is not a gap in the daily guarantee, it is where the daily guarantee
+# actually lives. Collectors run on their source's clock; scripts/site_signoff.py
+# runs every day and checks that what is PUBLISHED still matches what the
+# collectors wrote and that nothing has gone stale past its own cadence. A daily
+# fetch would refresh an unchanged number. A daily sign-off catches the day a
+# published page and its ledger stop agreeing, which is the failure that has
+# actually happened here.
+#
+# IT CANNOT PUBLISH ANYTHING BUT ITS OWN LEDGER. power_utility.py writes
+# ledger/power_utility.json and nothing else.
+
+on:
+  schedule:
+    # The 12th, well clear of the state series on the 25th, so two commits to
+    # the same ledger directory never race each other.
+    - cron: "0 16 12 * *"
+  pull_request:
+    paths:
+      - "scripts/power_utility.py"
+      - "scripts/power_panel.py"
+      - "tests/power_line.mjs"
+      - ".github/workflows/power-utility.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/power_utility.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Hermetic. It builds real xlsx workbooks in the shape EIA publishes and
+      # asserts the parser reads them, that EIA's balancing rows and other
+      # states are dropped, that a borough comes from EIA's own service
+      # territory file rather than from anyone's memory, and that the output
+      # carries no forecast and names no cause.
+      - name: The collector measures and refuses to do anything else
+        run: python3 scripts/power_utility.py --self-test
+
+      # The table and the numeral authorisation behind it ship in one module,
+      # and this is what proves they still agree.
+      - name: The panel draws only what the collector measured
+        run: python3 scripts/power_panel.py --self-test
+
+  # A separate job because it needs a browser and a real build, and because the
+  # thing it protects is behaviour rather than data. The line's hover shipped
+  # working on a mouse and dead under a finger, and no Python check could ever
+  # have seen that.
+  touch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Playwright and the browser it drives
+        run: |
+          npm install --no-save playwright@1.49.1
+          npx playwright install --with-deps chromium
+
+      - name: Pillow, so the build is the real one
+        run: pip install --quiet Pillow
+
+      # Built fresh rather than served from committed docs/, so a correct
+      # builder with a stale commit is still caught.
+      - name: Build the site
+        run: python3 scripts/site_build.py --date 2026-08-11 --out /tmp/site
+
+      - name: Drag a finger along the price line
+        env:
+          SITE: /tmp/site
+        run: node tests/power_line.mjs
+
+  refresh:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # No year is pinned. The collector asks EIA which year is newest and
+      # walks back until an archive answers, because a hard coded year serves
+      # stale data silently for the months between one release and the next.
+      - name: Read Form EIA-861
+        run: python3 scripts/power_utility.py --write
+
+      - name: Commit when a year landed or a figure moved
+        run: |
+          git config user.name "alaska-ai-bot"
+          git config user.email "docket@alaskaaihq.com"
+          if git diff --quiet -- ledger/power_utility.json; then
+            echo "no new year from EIA, nothing to commit"
+            exit 0
+          fi
+          git add ledger/power_utility.json
+          git commit -m "power($(TZ=America/Anchorage date +%F)): new EIA-861 year"
+          for i in 1 2 3 4; do
+            git push && break
+            git pull --rebase origin main || true
+            sleep $((2 ** i))
+          done
