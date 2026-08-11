@@ -1150,6 +1150,11 @@ font-weight:600;margin-bottom:5px;letter-spacing:-.01em;}
 font-family:JBMono,ui-monospace,monospace;letter-spacing:.05em;}
 .qtries{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:12px;}
 .qtries[hidden]{display:none;}
+/* The near row. Same chip, different question shape, so it gets its own
+   label rather than being mixed into the try strip where a bare town name
+   would read as a search term. */
+.qnears{margin-top:7px;}
+.qnear{font-variant-numeric:tabular-nums;}
 @media (max-width:620px){.qviews{grid-template-columns:1fr;}}
 
 /* Results. They stagger in top down, because motion here is structure. It
@@ -1319,6 +1324,7 @@ ASK_JS = r"""
   var panel = document.getElementById('qres');
   var views = document.getElementById('qviews');
   var tries = document.getElementById('qtries');
+  var nears = document.getElementById('qnears');
   var count = document.getElementById('qcount');
   var meter = document.getElementById('qmeter');
   var ENDPOINT = box.getAttribute('data-endpoint') || '';
@@ -1484,6 +1490,40 @@ ASK_JS = r"""
       left = left.slice(0, at + 1) + left.slice(at + 1 + p.t.length);
     }
     return {hits: out, left: left.trim()};
+  }
+
+  /* =================================================================
+     NEAR. Every tracked decision that has a point, measured against the
+     forty two towns the map already draws, worked out at build time.
+
+     WHY A TOWN AND NOT THE READER'S ACTUAL POSITION. Asking a browser for
+     coordinates raises a permission prompt and hands this page something it
+     has no business holding, on a box whose whole promise is that nothing
+     leaves it. A reader naming their own town gives the same answer and
+     costs them nothing.
+     ================================================================= */
+  var NEAR = (DATA.near && DATA.near.places) || [];
+  var NEARMI = (DATA.near && DATA.near.miles) || 120;
+  // Near, close to, around, by. The word has to be there: a bare Anchorage is
+  // a question about the borough and its facet answers it better, while near
+  // Anchorage is a question about distance and this does.
+  var NEARWORD = /\b(?:near|nearest to|close to|closest to|around|next to|by|within .{0,12} of|in range of)\s+(.{2,40})$/;
+  function nearPlace(n){
+    var m = NEARWORD.exec(n);
+    if (!m) return null;
+    var tail = m[1].replace(/[?.!,]+$/, '').trim();
+    var best = null;
+    for (var i = 0; i < NEAR.length; i++) {
+      var nm = NEAR[i].name.toLowerCase();
+      if (tail === nm || tail.indexOf(nm) !== -1 || nm.indexOf(tail) !== -1) {
+        if (!best || NEAR[i].name.length > best.name.length) best = NEAR[i];
+      }
+    }
+    return best ? best.key : null;
+  }
+  function placeByKey(k){
+    for (var i = 0; i < NEAR.length; i++) if (NEAR[i].key === k) return NEAR[i];
+    return null;
   }
 
   /* =================================================================
@@ -1723,8 +1763,9 @@ ASK_JS = r"""
   function planFromRoute(route){
     var c = route.indexOf(':'), kind = route.slice(0, c), target = route.slice(c + 1);
     var p = {qt: null, facets: [], win: null, sup: null, meta: null, ids: null,
-             view: null, toks: [], raw: [], fixed: [], dropped: [], phrase: '',
-             exact: true};
+             view: null, near: null, toks: [], raw: [], fixed: [], dropped: [],
+             phrase: '', exact: true};
+    if (kind === 'near') { p.near = target; return p; }
     if (kind === 'view') { p.view = target; return p; }
     if (kind === 'meta') { p.meta = target; return p; }
     if (kind === 'win') { p.win = {days: +target, label: 'the next ' + target + ' days'}; return p; }
@@ -1753,9 +1794,15 @@ ASK_JS = r"""
     // A catalogued question can never be mis-read, so it is checked first.
     if (CATMAP[n]) { var p0 = planFromRoute(CATMAP[n]); p0.q = n; return p0; }
     var p = {qt: null, facets: [], win: null, sup: null, meta: metaKey(n),
-             ids: null, view: null, toks: [], raw: [], fixed: [], dropped: [],
-             phrase: n, exact: false, q: n};
+             ids: null, view: null, near: null, toks: [], raw: [], fixed: [],
+             dropped: [], phrase: n, exact: false, q: n};
     if (p.meta) return p;
+    // Distance is asked for explicitly, so it is read before anything else
+    // gets to interpret the town name as a category. Near Anchorage is a
+    // question about miles; Anchorage on its own is a question about the
+    // borough, and the facet answers that one better.
+    p.near = nearPlace(n);
+    if (p.near) return p;
     p.sup = findSup(n);
     p.win = findWindow(n);
     // A time phrase is a filter, not a keyword. Leaving september in the pool
@@ -1987,6 +2034,38 @@ ASK_JS = r"""
       return {kick: 'ABOUT THIS RECORD', lead: DATA.meta[p.meta], sub: '',
               rows: [], toks: [], route: 'meta:' + p.meta};
     }
+    if (p.near) {
+      var pl = placeByKey(p.near);
+      if (pl) {
+        rows = [];
+        var dist = {};
+        for (i = 0; i < pl.ids.length; i++) {
+          var row = byId[pl.ids[i][1]];
+          if (row) { rows.push(row); dist[row.id] = pl.ids[i][0]; }
+        }
+        var lead;
+        if (!rows.length) {
+          // The true and useful answer for most of Alaska. Saying nothing is
+          // tracked near you is worth more than showing the nearest thing
+          // four hundred miles away as though it were relevant.
+          lead = 'Nothing on the docket is within ' + NEARMI + ' miles of ' +
+                 pl.name + '. The record follows ' + NALL + ' decisions and most ' +
+                 'of them sit on the road system, which is a fact about where ' +
+                 'this is being built rather than about where it matters.';
+        } else {
+          lead = nOf(rows.length, 'decision') + ' ' +
+                 (rows.length === 1 ? 'is' : 'are') + ' within ' + NEARMI +
+                 ' miles of ' + pl.name + '. The nearest is ' + rows[0].title +
+                 ', ' + (dist[rows[0].id] < 1 ? 'in the town itself'
+                         : nOf(dist[rows[0].id], 'mile') + ' away') + '.';
+          var op = openIn(rows);
+          if (op.length) lead += ' ' + op.length + (op.length === 1 ? ' is' : ' are') +
+                                 ' open to public comment right now.';
+        }
+        return {kick: 'NEAR ' + pl.name.toUpperCase(), lead: lead, sub: '',
+                rows: rows, toks: [], dist: dist, route: 'near:' + pl.key};
+      }
+    }
     if (p.view) {
       for (i = 0; i < DATA.views.length; i++) {
         if (DATA.views[i].key === p.view) {
@@ -2178,6 +2257,15 @@ ASK_JS = r"""
      ================================================================= */
   function labelFor(route){
     var c = route.indexOf(':'), kind = route.slice(0, c), target = route.slice(c + 1);
+    // Every route type that stores its name as a tilde has to be answered
+    // here. A type added on the building side and not on this one prints an
+    // empty name into a catalogued question, and that question then never
+    // matches what a reader types, which is a silent hole rather than a
+    // visible break. scripts/ask_answers.py label_for is the other half.
+    if (kind === 'near') {
+      var pn = placeByKey(target);
+      return pn ? pn.name : '';
+    }
     if (kind === 'fac' || kind === 'facopen') {
       var g = target.split('/'), e = facetOf(g[0], g[1]);
       return e ? e.label : '';
@@ -2248,8 +2336,11 @@ ASK_JS = r"""
     if (d !== null && d >= 0 && d < 21) return '<span class="qpill soon">' + esc(when(row.on).toUpperCase()) + '</span>';
     return '<span class="qpill">' + esc(row.statusLabel.toUpperCase()) + '</span>';
   }
-  function card(row, toks, i){
+  function card(row, toks, i, dist){
     var meta = [];
+    if (dist !== undefined) {
+      meta.push('<b>' + (dist < 1 ? 'in town' : nOf(dist, 'mile') + ' away') + '</b>');
+    }
     if (row.agency) meta.push(esc(row.agency));
     if (row.where) meta.push(esc(row.where));
     if (row.on) meta.push((row.role === 'deadline' ? 'closes ' : 'next ') + esc(when(row.on)));
@@ -2289,7 +2380,10 @@ ASK_JS = r"""
     if (!shown.length) {
       html += nothing(!a.lead);
     } else {
-      for (i = 0; i < shown.length && i < MAXCARDS; i++) html += card(shown[i], a.toks || [], i);
+      for (i = 0; i < shown.length && i < MAXCARDS; i++) {
+        html += card(shown[i], a.toks || [], i,
+                     a.dist ? a.dist[shown[i].id] : undefined);
+      }
       if (shown.length > MAXCARDS) {
         html += '<p class="qmore">' + (shown.length - MAXCARDS) + ' more on the record below.</p>';
       }
@@ -2346,6 +2440,7 @@ ASK_JS = r"""
   function empty(){
     panel.hidden = true; panel.innerHTML = ''; views.hidden = false;
     if (tries) tries.hidden = false;
+    if (nears) nears.hidden = false;
     shown = []; sel = -1; lastAns = null;
     setCount(NALL);
     count.textContent = NALL + ' TRACKED';
@@ -2416,6 +2511,7 @@ ASK_JS = r"""
     if (!q) { empty(); return; }
     views.hidden = true;
     if (tries) tries.hidden = true;
+    if (nears) nears.hidden = true;
     ghost(input.value);
     var p = plan(q);
     if (!p) { empty(); return; }
@@ -2576,7 +2672,12 @@ ASK_JS = r"""
   });
   Array.prototype.forEach.call(box.querySelectorAll('.qtry'), function(b){
     b.addEventListener('click', function(){
-      input.value = b.textContent.trim(); input.focus(); run();
+      var t = b.textContent.trim();
+      // The near chips carry a town, so they are turned into the question a
+      // reader would have typed rather than being a control of their own.
+      input.value = b.classList.contains('qnear')
+        ? 'What is happening near ' + t + '?' : t;
+      input.focus(); run();
     });
   });
   document.addEventListener('keydown', function(e){
@@ -2635,6 +2736,13 @@ def ask_html(today):
         for v in data["views"])
     tries = "".join('<button type="button" class="qtry">%s</button>' % esc(q)
                     for q in data["try"])
+    # A reader who would never think to type the word near still gets there.
+    # The towns are ordered by size in the gazetteer, so this is the eight
+    # most people live in, and every one of them is a real catalogued
+    # question rather than a control with its own behaviour.
+    hoods = "".join(
+        '<button type="button" class="qtry qnear">%s</button>' % esc(p["name"])
+        for p in (data.get("near", {}).get("places") or [])[:8])
     endpoint = ASK_ENDPOINT if ASK_ENDPOINT else ""
     n = len(data["index"])
     return f"""<div class="qbox" id="qbox" data-reveal
@@ -2655,6 +2763,7 @@ def ask_html(today):
 </div><div class="qrail"><div class="qmeter" id="qmeter"></div></div></div>
 <div class="qviews" id="qviews">{cards}</div>
 <div class="qtries" id="qtries"><span class="qtryl">TRY</span>{tries}</div>
+<div class="qtries qnears" id="qnears"><span class="qtryl">NEAR</span>{hoods}</div>
 <div class="qpanel" id="qres" role="listbox" aria-label="Answer" hidden></div>
 <div id="qts"></div>
 <div class="qfoot"><span><kbd>TAB</kbd> to complete</span>
