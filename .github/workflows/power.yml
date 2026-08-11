@@ -1,0 +1,72 @@
+name: power prices
+
+# What Alaskans pay for electricity, from EIA, monthly.
+#
+# MONTHLY AND NOT DAILY, because the source is monthly. EIA published the May
+# 2026 figure on 22 July. Fetching a 292 MB archive every morning to re-read a
+# number that changes twelve times a year would be rude to a public service
+# that charges nothing, and it would not make the page any more current.
+#
+# WHY THIS EXISTS AT ALL. The body that would answer "is my power bill going
+# up" is the Regulatory Commission of Alaska, and rca.alaska.gov answers a
+# request with a 403. EIA is the way around a shut door, keyless, back to 2001.
+
+on:
+  schedule:
+    # The 25th, comfortably after EIA's usual monthly release.
+    - cron: "30 15 25 * *"
+  pull_request:
+    paths:
+      - "scripts/power_collect.py"
+      - ".github/workflows/power.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/power_collect.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # Hermetic. It builds a real zip in the shape EIA publishes and asserts
+      # the output carries no forecast, names no cause, and states that the
+      # figure is a state average, because all three are how this number gets
+      # misread.
+      - name: The collector measures and refuses to do anything else
+        run: python3 scripts/power_collect.py --self-test
+
+  refresh:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read the EIA bulk electricity file
+        run: python3 scripts/power_collect.py --write
+
+      - name: Commit when the number moved
+        run: |
+          git config user.name "alaska-ai-bot"
+          git config user.email "docket@alaskaaihq.com"
+          if git diff --quiet -- ledger/power.json; then
+            echo "no new month from EIA, nothing to commit"
+            exit 0
+          fi
+          git add ledger/power.json
+          git commit -m "power($(TZ=America/Anchorage date +%F)): new EIA month"
+          for i in 1 2 3 4; do
+            git push && break
+            git pull --rebase origin main || true
+            sleep $((2 ** i))
+          done
