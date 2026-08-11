@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Desk Answer, a working demonstration for Major Marine Tours</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --surface:#122a46;
+  --sunk:#081426;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:17px/1.62 var(--ui);letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.page{max-width:60rem;margin:0 auto;padding:0 22px 72px}
+p{margin:0 0 18px}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(60,230,180,.32);word-break:break-word}
+a:hover{border-bottom-color:var(--accent)}
+
+/* ---------- header ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;padding:26px 0 0}
+.mark{display:flex;align-items:center;gap:9px;font:400 13px/1 var(--mono);letter-spacing:.18em}
+.mark i{width:13px;height:13px;display:block;background:var(--accent);
+  clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+.prep{font:400 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cap)}
+.hero{padding:34px 0 0;border-bottom:1px solid var(--rule);margin-bottom:28px}
+.eyebrow{font:400 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 14px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(32px,5.4vw,50px);
+  line-height:1.02;letter-spacing:-.018em;margin:0 0 16px}
+.sub{font-size:19px;line-height:1.5;color:var(--sub);max-width:38rem;margin:0 0 22px}
+.scripted{font-size:15px;line-height:1.55;color:var(--cap);max-width:40rem;
+  border-left:2px solid var(--rule);padding-left:14px;margin:0 0 30px}
+
+/* ---------- no model panel ---------- */
+.nomodel{background:var(--surface);border-radius:10px;padding:22px 24px;margin:0 0 34px}
+.nomodel h2{font:650 13px/1 var(--ui);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 16px}
+.nomodel p{color:var(--sub);font-size:16px;max-width:44rem}
+.nomodel p:last-child{margin-bottom:0}
+.nomodel strong{color:var(--ink);font-weight:650}
+
+/* ---------- sections ---------- */
+section{margin:0 0 46px}
+.secn{font:400 12px/1 var(--mono);letter-spacing:.18em;color:var(--accent);
+  display:block;margin:0 0 12px}
+h2.sh{font-family:var(--display);font-weight:400;font-size:clamp(23px,3vw,29px);
+  line-height:1.2;letter-spacing:-.01em;margin:0 0 12px}
+.lede{font-size:17px;color:var(--sub);max-width:40rem;margin:0 0 24px}
+
+/* ---------- console ---------- */
+.console{background:var(--surface);border-radius:12px;overflow:hidden}
+.tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--rule);background:var(--sunk)}
+.tab{appearance:none;background:transparent;border:0;border-bottom:2px solid transparent;
+  color:var(--cap);font:650 14px/1 var(--ui);padding:16px 18px;cursor:pointer;letter-spacing:.01em}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.pane{padding:24px}
+.scen{margin:0 0 22px}
+.scen h3{font:400 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 12px}
+.scenrow{display:flex;flex-wrap:wrap;gap:8px}
+.scenbtn{appearance:none;background:var(--sunk);border:1px solid var(--rule);border-radius:999px;
+  color:var(--sub);font:400 14px/1.35 var(--ui);padding:9px 14px;cursor:pointer;text-align:left;max-width:100%}
+.scenbtn:hover{border-color:var(--accent);color:var(--ink)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;
+  padding:20px;background:var(--sunk);border-radius:10px;margin:0 0 22px}
+.f label{display:block;font:400 11px/1.3 var(--mono);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--cap);margin:0 0 8px}
+.f select{width:100%;appearance:none;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule);border-radius:7px;padding:11px 12px;font:400 15px/1.3 var(--ui)}
+.f select:disabled{opacity:.55}
+.f select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.f .locked{font-size:13px;color:var(--cap);margin:7px 0 0;line-height:1.4}
+
+/* ---------- answer card ---------- */
+.card{background:var(--sunk);border-radius:10px;overflow:hidden}
+.cardhead{padding:18px 20px;border-bottom:1px solid var(--rule);
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cardhead .who{font:400 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cap)}
+.chip{font:650 12px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 11px;border-radius:5px}
+.chip.ok{background:rgba(60,230,180,.14);color:var(--accent);box-shadow:inset 0 0 0 1px rgba(60,230,180,.38)}
+.chip.hold{background:rgba(166,185,209,.10);color:var(--cap);box-shadow:inset 0 0 0 1px var(--rule)}
+.row{padding:20px;border-bottom:1px solid var(--rule)}
+.rowq{font:400 11px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 10px}
+.verdict{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.28;
+  color:var(--ink);margin:0 0 12px;max-width:34rem}
+.verdict.hold{color:var(--cap)}
+.detail{font-size:16px;color:var(--sub);max-width:38rem;margin:0 0 18px}
+.detail:last-child{margin-bottom:0}
+
+/* the read-aloud block, the handoff artifact */
+.readbox{border-left:2px solid var(--accent);padding:2px 0 2px 16px;margin:0 0 16px;max-width:40rem}
+.readbox.grey{border-left-color:var(--rule)}
+.readlbl{font:650 11px/1.3 var(--ui);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 10px}
+.readbox.grey .readlbl{color:var(--cap)}
+.q{font-family:var(--display);font-size:18px;line-height:1.48;color:var(--ink);margin:0 0 10px}
+.elide{font:400 13px/1 var(--mono);color:var(--cap);margin:0 0 10px;letter-spacing:.1em}
+.elidenote{font-size:13px;color:var(--cap);margin:-4px 0 12px;line-height:1.45}
+.srcline{font:400 12px/1.5 var(--mono);color:var(--cap);margin:0 0 14px;word-break:break-word}
+.srcline:last-child{margin-bottom:0}
+.canon{border-left:2px dotted var(--rule);padding:2px 0 2px 16px;margin:0 0 16px;max-width:40rem}
+.canon .readlbl{color:var(--cap)}
+.canon .ctext{font-size:16px;color:var(--sub);margin:0 0 8px}
+
+/* miss log slip */
+.slip{background:#050d18;border:1px dashed var(--rule);border-radius:8px;padding:16px 18px;
+  font:400 13px/1.75 var(--mono);color:var(--sub);margin:16px 0 0;max-width:40rem}
+.slip .sl{color:var(--cap)}
+.slip .redact{background:rgba(166,185,209,.14);color:var(--cap);padding:1px 6px;border-radius:3px}
+.sliphd{font:650 11px/1.3 var(--ui);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 12px;font-family:var(--ui)}
+
+/* trace */
+.trace{padding:16px 20px;background:#050d18;border-top:1px solid var(--rule);
+  font:400 12px/1.7 var(--mono);color:var(--cap);word-break:break-word}
+.trace b{color:var(--sub);font-weight:400}
+.standing{padding:16px 20px;border-top:1px solid var(--rule);font-size:15px;color:var(--cap);line-height:1.5}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:0 0 20px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:520px}
+caption{text-align:left;color:var(--cap);font-size:14px;padding-bottom:12px;line-height:1.5}
+th,td{padding:11px 16px 11px 0;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+th{color:var(--sub);font-weight:650;font-size:14px}
+td{color:var(--sub)}
+td:first-child{color:var(--ink)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- exhaustive check ---------- */
+.runbtn{appearance:none;background:transparent;border:1px solid var(--accent);border-radius:7px;
+  color:var(--accent);font:650 15px/1 var(--ui);padding:14px 20px;cursor:pointer}
+.runbtn:hover{background:rgba(60,230,180,.10)}
+.results{margin:22px 0 0}
+
+/* ---------- three steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.step{background:var(--surface);border-radius:10px;padding:22px}
+.step .n{font:400 12px/1 var(--mono);letter-spacing:.18em;color:var(--accent);display:block;margin:0 0 12px}
+.step h3{font-size:17px;font-weight:650;line-height:1.3;margin:0 0 10px;color:var(--ink)}
+.step p{font-size:15px;color:var(--sub);margin:0}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--rule);padding-top:26px;font-size:14px;color:var(--cap);
+  max-width:44rem;line-height:1.6}
+.foot h3{font:650 12px/1.3 var(--ui);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 14px}
+.foot ul{list-style:none;padding:0;margin:0 0 22px}
+.foot li{padding:0 0 8px;font-family:var(--mono);font-size:12px;line-height:1.6}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .page{padding:0 16px 56px}
+  .pane{padding:18px}
+  .fields{padding:16px}
+  .tab{padding:14px 13px;font-size:13px}
+}
+
+@media print{
+  :root{--bg:#fff;--surface:#f3f6f9;--sunk:#fafbfc;--rule:#ccd4de;
+        --ink:#11171e;--sub:#39434f;--cap:#57616d;--accent:#0d6b5c}
+  body{font-size:11pt}
+  .page{max-width:none;padding:0}
+  .slip,.trace{background:#fafbfc}
+  .tab{display:none}
+  .tab[aria-selected="true"]{display:block}
+  .scenrow,.runbtn{display:none}
+  a{border-bottom:0;color:#11417a}
+  section,.card,.step{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="top">
+  <div class="mark"><i></i>Alaska AI</div>
+  <div class="prep">Prepared by Alaska AI</div>
+</div>
+
+<header class="hero">
+  <p class="eyebrow">Major Marine Tours, Seward, Alaska</p>
+  <h1>Desk Answer</h1>
+  <p class="sub">The reservations desk picks a branch, enters what the booking contains, and gets back a date, a fee or an eligibility, with the sentence off your own page to read out loud.</p>
+  <p class="scripted">This is a scripted demonstration of the build the Field Study scoped and did not recommend funding yet. It runs entirely inside this page, it is built from Major Marine's own public pages, and it is not connected to your booking system, your reservations desk or any guest record. Nothing here is fetched live and nothing here is sent anywhere.</p>
+</header>
+
+<div class="nomodel">
+  <h2>There is no model in this</h2>
+  <p><strong>No AI runs here.</strong> Every answer below comes out of a decision table. The same inputs give the same answer every time, the input space is small enough to test end to end, and there is nothing to train, nothing to tune, and no score anyone has to take on trust.</p>
+  <p><strong>It never guesses.</strong> Where your pages carry no rule for a combination, the table refuses to answer and routes the call to a named owner. That refusal is the correct output rather than a failure, and this demonstration shows several of them on purpose.</p>
+  <p><strong>It never talks to a guest.</strong> Desk Answer is a lookup. It has no voice, it writes nothing in your company's voice, and it never pretends to be a person. It hands one published sentence to your agent and your agent reads it.</p>
+</div>
+
+<section>
+  <span class="secn">01</span>
+  <h2 class="sh">Four branches, run them yourself</h2>
+  <p class="lede">Pick a branch, then take a call off the strip or set the fields by hand. Every combination resolves to a published answer or to a named owner, and every card carries the sentence and the link it came from.</p>
+
+  <div class="console">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="pane">
+      <div class="scen">
+        <h3>Real calls</h3>
+        <div class="scenrow" id="scenrow"></div>
+      </div>
+      <div class="fields" id="fields"></div>
+      <div id="card"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="secn">02</span>
+  <h2 class="sh">The dated policy source underneath it, and why a fare with no date returns nothing</h2>
+  <p class="lede">The four branches never quote a fare. The dated policy source they read does hold priced facts, and every priced fact carries a date and a season, because your index page currently carries two live 4 Hour seasons at two different fares.</p>
+
+  <div class="console">
+    <div class="pane">
+      <div class="fields">
+        <div class="f">
+          <label for="seasonsel">What date is the guest asking about</label>
+          <select id="seasonsel">
+            <option value="none">The guest did not give a date</option>
+            <option value="d2026">August 14th, 2026</option>
+            <option value="d2027">April 8th, 2027</option>
+          </select>
+        </div>
+      </div>
+      <div id="seasoncard"></div>
+    </div>
+  </div>
+
+  <div class="tw" style="margin-top:24px">
+    <table>
+      <caption>Both rows are live on your index page today. This is what season scoping means in practice.</caption>
+      <thead><tr><th>Product</th><th>Season</th><th class="mono">Adult</th><th>How the policy source holds it</th></tr></thead>
+      <tbody>
+        <tr><td>4 Hour Kenai Fjords Wildlife Cruise</td><td>June 12th to October 11th, 2026</td><td class="mono">$149.00</td><td>A published sentence, quotable to a guest.</td></tr>
+        <tr><td>4 Hour Spring Wildlife Cruise</td><td>March 20th to May 16th, 2027</td><td class="mono">$109.00</td><td>A row on the index, with no sentence to read aloud.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <span class="secn">03</span>
+  <h2 class="sh">The acceptance bar, run in your browser</h2>
+  <p class="lede">The input space of a decision table is finite, so it gets checked exhaustively rather than sampled. Press the button and this page walks every combination of every field in all four branches and reports what came back.</p>
+  <button class="runbtn" id="runall" type="button">Run every combination</button>
+  <div class="results" id="results"></div>
+</section>
+
+<section>
+  <span class="secn">04</span>
+  <h2 class="sh">How it sits in your operation</h2>
+  <p class="lede">Three steps, and the third one is the reason we scoped it this way.</p>
+  <div class="steps">
+    <div class="step">
+      <span class="n">STEP ONE</span>
+      <h3>The guest asks, the agent enters the booking</h3>
+      <p>The agent picks a branch and fills the two to four fields that branch asks for. No name, no card, no booking reference. The table sees the shape of the booking and nothing about the person.</p>
+    </div>
+    <div class="step">
+      <span class="n">STEP TWO</span>
+      <h3>It answers, or it hands the call to a person</h3>
+      <p>A published answer comes back with the sentence and the link. Where your pages are silent it returns nothing, names the owner of that branch, and writes one log line so the gap gets counted instead of guessed at.</p>
+    </div>
+    <div class="step">
+      <span class="n">STEP THREE</span>
+      <h3>A person still decides</h3>
+      <p>Whether to make an exception is a judgement about a guest and about your business. The table has no authority to grant one and it never offers. That row of the workflow is deliberately untouched.</p>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <h3>Every page this demonstration reads from</h3>
+  <ul id="srclist"></ul>
+  <p>Desk Answer is the build this study scoped and did not recommend funding yet, because the thing it would improve has never been counted at your desk. The study asks instead for a stage with no software in it. This page exists so you can see exactly what is being described before anybody spends money on it.</p>
+  <p>Prepared by Alaska AI for Major Marine Tours. August 10th, 2026. A scripted demonstration, not a live system.</p>
+</div>
+
+</div>
+
+<script>
+"use strict";
+
+/* ------------------------------------------------------------------
+   SOURCES. Every string below is copied character for character from
+   the verified claims file. Nothing here is retyped or tidied.
+   A multi part entry is separate passages from the same page with an
+   elision between them, and it is never rendered as one run of text.
+------------------------------------------------------------------ */
+var SRC = {
+  c4:{parts:["Cruise-only reservations are refundable up to 72 hours prior to your cruise departure."],
+      url:"https://majormarine.com/refund-policy/"},
+  c5:{parts:["A 3% credit card processing fee will be retained for cancellations."],
+      url:"https://majormarine.com/refund-policy/"},
+  c6:{parts:["Cruise and hotel packages are refundable until 7 days prior to the first day of your package reservation"],
+      url:"https://majormarine.com/refund-policy/"},
+  c7:{parts:["Reservations with transportation added (motorcoach or train) are refundable until 21 days prior"],
+      url:"https://majormarine.com/refund-policy/"},
+  c8:{parts:["Reservation date may be changed once, free of charge, up to 24 hours prior to departure.",
+             "Any subsequent change is subject to a $15 per person re-booking fee."],
+      url:"https://majormarine.com/refund-policy/"},
+  c9:{parts:["Tickets not used at the time of sailing (no-show) are completely non-refundable and may not be used on any other sailings."],
+      url:"https://majormarine.com/refund-policy/"},
+  c13:{parts:["Parking lots can fill up quickly, so please call us to add the shuttle to your reservation at least 24 hours before your cruise for your convenience."],
+      url:"https://majormarine.com/seward-check-in/"},
+  c14:{parts:["Advance reservations are required for shuttle pick-up.",
+              "Shuttle is not available for the 8:00 am 6 Hour Kenai Fjords National Park Cruise."],
+      url:"https://majormarine.com/seward-check-in/"},
+  c15:{parts:["A complimentary Major Marine Tours shuttle will make continuous loops between Harbor 360 Hotel, the South Harbor office, and the Cruise Ship Terminal from 7:00 am. – 9:45 a.m., departing every 15 minutes."],
+      url:"https://majormarine.com/seward-check-in/"},
+  c16:{parts:["The Seward Cruise Ship Terminal is located 0.6 miles from Harbor 360 Hotel and 0.8 miles from our South Harbor office."],
+      url:"https://majormarine.com/seward-check-in/"},
+  c17:{parts:["All Cruises Depart from Harbor 360 Hotel Office"],
+      url:"https://majormarine.com/seward-check-in/"},
+  c19:{parts:["Vegetarian guests on the 6 Hour Cruise, 7.5 Hour Cruise and 8.5 Hour Cruise can request a vegetarian sandwich in advance, at the time of reservation."],
+      url:"https://majormarine.com/faq/"},
+  c20:{parts:["The following boats ARE wheelchair accessible on their first deck, inside the main cabin only. The outside decks are not wheelchair accessible.",
+              "The following boats are NOT wheelchair accessible and not recommended for guests with limited mobility.",
+              "None of our vessels can accommodate motorized wheelchairs."],
+      url:"https://majormarine.com/faq/"},
+  c21:{parts:["Rachel Marie, which runs the 12:30pm departure 4 Hour Kenai Fjords Wildlife Cruise"],
+      url:"https://majormarine.com/faq/"},
+  c27:{parts:["2026 Cruise Season: March 7th - October 11th"],
+      url:"https://majormarine.com/"},
+  c39:{parts:["Adult (age 12+): $149.00"],
+      url:"https://majormarine.com/all-cruises/"}
+};
+
+var SOURCE_PAGES = [
+  "https://majormarine.com/refund-policy/",
+  "https://majormarine.com/faq/",
+  "https://majormarine.com/seward-check-in/",
+  "https://majormarine.com/all-cruises/",
+  "https://majormarine.com/our-vessels/",
+  "https://majormarine.com/",
+  "https://majormarine.com/tour/8-5-hour-northwestern-fjord-cruise/",
+  "https://majormarine.com/tour/7-5-hour-kenai-fjords-national-park-cruise/",
+  "https://majormarine.com/tour/6-hour-kenai-fjords-national-park-cruise/",
+  "https://majormarine.com/tour/4-hour-kenai-fjords-wildlife-cruise/",
+  "https://majormarine.com/tour/orca-quest-cruise/"
+];
+
+/* ---------------- products, dated and season scoped ---------------- */
+var PRODUCTS = [
+  {id:"p85",name:"8.5 Hour Northwestern Fjord Cruise",from:"2026-05-29",to:"2026-09-07",
+   season:"May 29th to September 7th, 2026",url:"https://majormarine.com/tour/8-5-hour-northwestern-fjord-cruise/",
+   veg:"yes",
+   deps:[{id:"t0830",label:"8:30 am",from:"2026-05-29",to:"2026-09-07",window:"the whole published season"}]},
+  {id:"p75",name:"7.5 Hour Kenai Fjords National Park Cruise",from:"2026-05-22",to:"2026-09-13",
+   season:"May 22nd to September 13th, 2026",url:"https://majormarine.com/tour/7-5-hour-kenai-fjords-national-park-cruise/",
+   veg:"yes",
+   deps:[{id:"t0930",label:"9:30 am",from:"2026-05-22",to:"2026-09-13",window:"the whole published season"}]},
+  {id:"p6",name:"6 Hour Kenai Fjords National Park Cruise",from:"2026-05-02",to:"2026-09-21",
+   season:"May 2nd to September 21st, 2026",url:"https://majormarine.com/tour/6-hour-kenai-fjords-national-park-cruise/",
+   veg:"yes",
+   deps:[{id:"t0800",label:"8:00 am",from:"2026-06-05",to:"2026-08-23",window:"June 5th to August 23rd, 2026"},
+         {id:"t1130",label:"11:30 am",from:"2026-05-02",to:"2026-09-21",window:"the whole published season"}]},
+  {id:"p4",name:"4 Hour Kenai Fjords Wildlife Cruise",from:"2026-06-12",to:"2026-10-11",
+   season:"June 12th to October 11th, 2026",url:"https://majormarine.com/tour/4-hour-kenai-fjords-wildlife-cruise/",
+   veg:"nomeal",
+   deps:[{id:"t1000",label:"10:00 am",from:"2026-06-12",to:"2026-08-23",window:"June 12th to August 23rd, 2026"},
+         {id:"t1230",label:"12:30 pm",from:"2026-06-21",to:"2026-10-11",window:"June 21st to October 11th, 2026"},
+         {id:"t1500",label:"3:00 pm",from:"2026-06-12",to:"2026-08-23",window:"June 12th to August 23rd, 2026"}]},
+  {id:"psp",name:"4 Hour Spring Wildlife Cruise",from:"2027-03-20",to:"2027-05-16",
+   season:"March 20th to May 16th, 2027",url:"https://majormarine.com/all-cruises/",
+   veg:"unpublished",
+   deps:[{id:"tnp",label:"No departure time published",from:"2027-03-20",to:"2027-05-16",window:"the whole published season"}]},
+  {id:"poq",name:"Orca Quest Cruise",from:"2026-05-18",to:"2026-06-20",
+   season:"May 18th to June 20th, 2026",url:"https://majormarine.com/tour/orca-quest-cruise/",
+   veg:"unpublished",
+   deps:[{id:"t1230b",label:"12:30 pm",from:"2026-05-18",to:"2026-06-20",window:"the whole published season"}]}
+];
+
+var DATES = [
+  {id:"d1",label:"August 14th, 2026",iso:"2026-08-14"},
+  {id:"d2",label:"September 10th, 2026",iso:"2026-09-10"},
+  {id:"d3",label:"October 3rd, 2026",iso:"2026-10-03"},
+  {id:"d4",label:"April 8th, 2027",iso:"2027-04-08"}
+];
+
+function prod(id){for(var i=0;i<PRODUCTS.length;i++){if(PRODUCTS[i].id===id)return PRODUCTS[i];}return PRODUCTS[0];}
+function dep(p,id){for(var i=0;i<p.deps.length;i++){if(p.deps[i].id===id)return p.deps[i];}return p.deps[0];}
+function dateOf(id){for(var i=0;i<DATES.length;i++){if(DATES[i].id===id)return DATES[i];}return DATES[0];}
+function inWindow(iso,from,to){return iso>=from&&iso<=to;}
+function prodOpts(){return PRODUCTS.map(function(p){return {v:p.id,label:p.name};});}
+function depOpts(s){return prod(s.product).deps.map(function(d){return {v:d.id,label:d.label};});}
+
+/* ------------------------------------------------------------------
+   BRANCH 1. REFUND AND CHANGE
+------------------------------------------------------------------ */
+var WHEN = [
+  {v:"w1",label:"21 days or more before departure"},
+  {v:"w2",label:"7 to under 21 days before departure"},
+  {v:"w3",label:"72 hours to under 7 days before departure"},
+  {v:"w4",label:"24 to under 72 hours before departure"},
+  {v:"w5",label:"Under 24 hours, the boat has not sailed"},
+  {v:"w6",label:"The sailing has already departed"}
+];
+var CONTENTS = [
+  {v:"cruise",label:"Cruise only",rule:"c4",clock:"72 hour",ok:["w1","w2","w3"]},
+  {v:"hotel",label:"Cruise and hotel package",rule:"c6",clock:"7 day",ok:["w1","w2"]},
+  {v:"transport",label:"Motorcoach or train added",rule:"c7",clock:"21 day",ok:["w1"]}
+];
+function contentOf(v){for(var i=0;i<CONTENTS.length;i++){if(CONTENTS[i].v===v)return CONTENTS[i];}return CONTENTS[0];}
+function whenLabel(v){for(var i=0;i<WHEN.length;i++){if(WHEN[i].v===v)return WHEN[i].label;}return "";}
+
+var REFUND_STANDING="Whether to make an exception is a judgement about a guest and about your business. This table has no authority to make one and it never offers.";
+
+function decideRefund(s){
+  var rows=[], fired=[];
+  var c=contentOf(s.contents);
+
+  if(s.noshow==="yes"){
+    fired.push("c9");
+    rows.push({
+      q:"Is any of this refundable",
+      hold:false,
+      verdict:"No. A no-show is completely non-refundable and the ticket can't move to another sailing.",
+      detail:"This is the no-show rule standing on its own. The three refund clocks are a different rule about the time before departure, so this card does not set them beside it. Read together they would misstate each other.",
+      cites:[{id:"c9"}]
+    });
+    return {rows:rows,fired:fired,standing:REFUND_STANDING};
+  }
+
+  if(s.when==="w6"){
+    fired.push(c.rule); fired.push("c9"); fired.push("c8");
+    rows.push({
+      q:"Is any of this refundable",
+      hold:true,
+      verdict:"No published rule. Routed to a named owner.",
+      detail:"The boat has gone and the booking is not marked a no-show. The refund clocks are written for the time before departure and the no-show sentence is written for a ticket not used at sailing. Neither one decides this case, so the table returns nothing.",
+      cites:[{id:c.rule},{id:"c9"}],
+      citelabel:"What the pages do say, and why neither one settles it",
+      log:true,
+      logreason:"departed sailing, not marked a no-show. no clock covers it"
+    });
+    rows.push({
+      q:"Can the date still be changed",
+      hold:true,
+      verdict:"No published rule. Routed to a named owner.",
+      detail:"The change rule is written up to 24 hours prior to departure. Nothing published covers a change asked for after the sailing left.",
+      cites:[{id:"c8",parts:[0]}],
+      citelabel:"What the page does say"
+    });
+    return {rows:rows,fired:fired,standing:REFUND_STANDING};
+  }
+
+  var refundable=c.ok.indexOf(s.when)>=0;
+  fired.push(c.rule);
+  if(refundable){
+    fired.push("c5");
+    rows.push({
+      q:"Is it refundable",
+      hold:false,
+      verdict:"Yes, and a 3 percent card processing fee is retained.",
+      detail:"The booking is "+c.label.toLowerCase()+", so the "+c.clock+" clock is the one that applies. At "+whenLabel(s.when).toLowerCase()+" this booking is inside that window.",
+      cites:[{id:c.rule},{id:"c5"}]
+    });
+  }else{
+    var extra=(c.v==="cruise")
+      ? "At "+whenLabel(s.when).toLowerCase()+" the window has closed."
+      : "At "+whenLabel(s.when).toLowerCase()+" the window has closed. A cruise-only booking would still be refundable here on its 72 hour clock, which is the mix-up this branch exists to stop.";
+    rows.push({
+      q:"Is it refundable",
+      hold:false,
+      verdict:"No. This booking is outside its published "+c.clock+" window.",
+      detail:"The booking is "+c.label.toLowerCase()+", so the "+c.clock+" clock is the one that applies. "+extra,
+      cites:[{id:c.rule}]
+    });
+  }
+
+  fired.push("c8");
+  if(s.when==="w5"){
+    rows.push({
+      q:"Can the date be changed, and what does it cost",
+      hold:true,
+      verdict:"No published rule. Routed to a named owner.",
+      detail:"The published rule covers a change made up to 24 hours prior to departure. Inside 24 hours your pages neither grant a change nor refuse one, so the table stops here rather than picking a side.",
+      cites:[{id:"c8",parts:[0]}],
+      citelabel:"What the page does say, and why it does not settle this",
+      log:true,
+      logreason:"date change requested inside 24 hours. no published rule either way"
+    });
+  }else if(s.changes==="none"){
+    rows.push({
+      q:"Can the date be changed, and what does it cost",
+      hold:false,
+      verdict:"Yes. One date change, free of charge.",
+      detail:"No date change is recorded on this booking and there are 24 hours or more before departure, so this is the free one.",
+      cites:[{id:"c8",parts:[0]}]
+    });
+  }else{
+    rows.push({
+      q:"Can the date be changed, and what does it cost",
+      hold:false,
+      verdict:"Yes, at $15 per person.",
+      detail:"The free change on this booking is already spent, so a subsequent change carries the re-booking fee. Both sentences are below and they sit apart on the page, not end to end.",
+      cites:[{id:"c8",parts:[0,1]}]
+    });
+  }
+  return {rows:rows,fired:fired,standing:REFUND_STANDING};
+}
+
+/* ------------------------------------------------------------------
+   BRANCH 2. ACCESSIBILITY
+------------------------------------------------------------------ */
+var MOBILITY=[
+  {v:"motor",label:"Motorized wheelchair"},
+  {v:"manual",label:"Manual wheelchair"},
+  {v:"limited",label:"Limited mobility, walks a short distance"}
+];
+var ACCESSIBLE_LIST="Glacier Express, Skana, Spirit of Adventure, Spirit of Matushka and Kenai Fjords 360";
+var ACCESS_STANDING="A fast wrong answer at the gangway is worse than no answer, so this branch stops rather than reasoning its way past a gap.";
+var SEASON_STANDING="Every dated or priced fact in the dated policy source carries its season, so a question about one year never gets answered out of another.";
+
+function decideAccess(s){
+  var rows=[],fired=[];
+  var p=prod(s.product), d=dep(p,s.dep), dt=dateOf(s.date);
+
+  if(!inWindow(dt.iso,p.from,p.to)){
+    fired.push("c27");
+    rows.push({
+      q:"Does this sailing exist on that date",
+      hold:false,
+      verdict:"No. The "+p.name+" does not sail on "+dt.label+".",
+      detail:"Its published season is "+p.season+". The accessibility question never gets asked, because there is no sailing to ask it about.",
+      cites:[{id:"c27"}],
+      citelabel:"The overall season, which this product sits inside",
+      canon:[{text:p.name+". Published season "+p.season+".",url:p.url}]
+    });
+    return {rows:rows,fired:fired,standing:SEASON_STANDING};
+  }
+
+  if(!inWindow(dt.iso,d.from,d.to)){
+    fired.push("c27");
+    rows.push({
+      q:"Does this sailing exist on that date",
+      hold:false,
+      verdict:"No. The "+d.label+" departure does not run on "+dt.label+".",
+      detail:"The "+p.name+" is inside its season on that date. The "+d.label+" departure is not, because it runs "+d.window+".",
+      cites:[{id:"c27"}],
+      citelabel:"The overall season, which this product sits inside",
+      canon:[{text:p.name+", "+d.label+" departure. Published window "+d.window+".",url:p.url}]
+    });
+    return {rows:rows,fired:fired,standing:SEASON_STANDING};
+  }
+
+  if(p.id==="p4"&&d.id==="t1230"){
+    fired.push("c21");
+    rows.push({
+      q:"Is this sailing wheelchair accessible",
+      hold:true,
+      verdict:"Abstain, and this is the correct output. Routed to a named owner.",
+      detail:"Your FAQ names a vessel for this exact departure. Your vessels page lists eight boats and that name is not on it. Whether it is chartered, retired or simply left off the page is unresolved, so the table applies no vessel rule to this sailing. That holds for the motorized wheelchair sentence too, which is written as none of our vessels, and the table will not stretch it over a boat your vessels page does not list.",
+      cites:[{id:"c21"}],
+      citelabel:"The sentence that stops this branch",
+      canon:[{text:"The vessels page lists eight boats. The name above is not among them. The discrepancy is real, it is verified from both sides, and it is unresolved.",url:"https://majormarine.com/our-vessels/"}],
+      log:true,
+      logreason:"vessel named for this departure is absent from the fleet page. discrepancy unresolved"
+    });
+    return {rows:rows,fired:fired,standing:ACCESS_STANDING};
+  }
+
+  if(s.mobility==="motor"){
+    fired.push("c20");
+    rows.push({
+      q:"Can this guest bring a motorized wheelchair",
+      hold:false,
+      verdict:"No. No vessel takes a motorized wheelchair.",
+      detail:"This one holds right across the fleet, so the table answers it without needing to know which boat runs the sailing. It is the only accessibility question here that does not need the vessel.",
+      cites:[{id:"c20",parts:[2]}]
+    });
+    return {rows:rows,fired:fired,standing:ACCESS_STANDING};
+  }
+
+  fired.push("c20");
+  var cites=[{id:"c20",parts:[0]}];
+  if(s.mobility==="limited"){cites.push({id:"c20",parts:[1]});}
+  rows.push({
+    q:"Is this sailing wheelchair accessible",
+    hold:true,
+    verdict:"Abstain, and this is the correct output. Routed to a named owner.",
+    detail:"Access differs boat by boat, and which boat runs the "+d.label+" "+p.name+" on "+dt.label+" is published nowhere we can read. Until that map exists with an owner and a date on it, this branch stops here every single time.",
+    cites:cites,
+    citelabel:"What the page does say, and it is true of every accessible boat",
+    canon:[{text:"The boats named accessible on the FAQ are "+ACCESSIBLE_LIST+", first deck inside the main cabin only.",url:"https://majormarine.com/faq/"}],
+    log:true,
+    logreason:"vessel serving this departure is not published. accessibility differs by vessel"
+  });
+  return {rows:rows,fired:fired,standing:ACCESS_STANDING};
+}
+
+/* ------------------------------------------------------------------
+   BRANCH 3. SHUTTLE ELIGIBILITY
+------------------------------------------------------------------ */
+var NOTICE=[
+  {v:"n24",label:"24 hours or more before the cruise"},
+  {v:"nlt",label:"Under 24 hours before the cruise"}
+];
+var RESV=[
+  {v:"yes",label:"Yes, already on the booking"},
+  {v:"no",label:"No, not on the booking"}
+];
+var SHUTTLE_STANDING="Boarding is at the Harbor 360 Hotel office on every product, which is the one fact this branch repeats on every card.";
+
+function decideShuttle(s){
+  var rows=[],fired=[];
+  var p=prod(s.product), d=dep(p,s.dep);
+
+  if(p.id==="p6"&&d.id==="t0800"){
+    fired.push("c14"); fired.push("c15"); fired.push("c16"); fired.push("c17");
+    rows.push({
+      q:"Can the shuttle be added to this booking",
+      hold:false,
+      verdict:"No. The shuttle is not available for this departure.",
+      detail:"This is the one departure your check-in page carves out by name. Notice and advance reservation do not change it, so the table answers the same way on every combination of those two fields.",
+      cites:[{id:"c14",parts:[0,1]}]
+    });
+    rows.push({
+      q:"What does run that morning",
+      hold:false,
+      verdict:"A separate terminal loop, and it is not a substitute.",
+      detail:"The loop below is its own service between the hotel, the South Harbor office and the cruise ship terminal. The table reports it as a fact off your page and never offers it as a replacement on this sailing.",
+      cites:[{id:"c15"},{id:"c16"},{id:"c17"}]
+    });
+    return {rows:rows,fired:fired,standing:"Boarding is at the Harbor 360 Hotel office. A guest who drove and parked has nothing covering them at all, before an 8:00 a.m. boarding, which is why this branch is worth getting exactly right."};
+  }
+
+  if(s.resv==="yes"){
+    fired.push("c14"); fired.push("c17");
+    rows.push({
+      q:"Can the shuttle be added to this booking",
+      hold:false,
+      verdict:"It is already on the booking, so the guest is set.",
+      detail:"The published requirement is an advance reservation for shuttle pick-up and this booking has one. Boarding is at the Harbor 360 Hotel office either way.",
+      cites:[{id:"c14",parts:[0]},{id:"c17"}]
+    });
+    return {rows:rows,fired:fired,standing:SHUTTLE_STANDING};
+  }
+
+  if(s.notice==="n24"){
+    fired.push("c13"); fired.push("c14"); fired.push("c17");
+    rows.push({
+      q:"Can the shuttle be added to this booking",
+      hold:false,
+      verdict:"Yes. Add it to the reservation on this call.",
+      detail:"An advance reservation is required and this booking has none, with 24 hours or more still to run. That is exactly the window your page asks people to call inside.",
+      cites:[{id:"c13"},{id:"c14",parts:[0]},{id:"c17"}]
+    });
+    return {rows:rows,fired:fired,standing:SHUTTLE_STANDING};
+  }
+
+  fired.push("c13"); fired.push("c14");
+  rows.push({
+    q:"Can the shuttle be added to this booking",
+    hold:true,
+    verdict:"No published rule. Routed to a named owner.",
+    detail:"There is no advance reservation on the booking and under 24 hours left. Your page asks for 24 hours as a request rather than a refusal, so it neither grants this nor blocks it. The table will not read a request as a rule, because a guest told yes here may find no seat on the van.",
+    cites:[{id:"c13"},{id:"c14",parts:[0]}],
+    citelabel:"What the page does say, and why it does not settle this",
+    log:true,
+    logreason:"shuttle add inside 24 hours with no advance reservation. page states a request, not a rule"
+  });
+  return {rows:rows,fired:fired,standing:SHUTTLE_STANDING};
+}
+
+/* ------------------------------------------------------------------
+   BRANCH 4. DIETARY
+------------------------------------------------------------------ */
+var TIMING=[
+  {v:"now",label:"Booking now, at the time of reservation"},
+  {v:"after",label:"Calling back, the reservation is already made"}
+];
+var DIET_STANDING="A vegetarian sandwich the galley never heard about gets discovered at sea, which is why this branch is strict about the moment the request arrives.";
+
+function decideDiet(s){
+  var rows=[],fired=[];
+  var p=prod(s.product);
+  fired.push("c19");
+
+  if(p.veg==="yes"){
+    if(s.timing==="now"){
+      rows.push({
+        q:"Can a vegetarian sandwich be requested",
+        hold:false,
+        verdict:"Yes. Take the request on this call and put it on the reservation.",
+        detail:"The "+p.name+" is one of the three cruises named in the published sentence, and the guest is booking now, which is the moment that sentence describes.",
+        cites:[{id:"c19"}]
+      });
+    }else{
+      rows.push({
+        q:"Can a vegetarian sandwich be requested",
+        hold:true,
+        verdict:"No published rule. Routed to a named owner.",
+        detail:"The published sentence grants the request in advance, at the time of reservation. This reservation is already made, and nothing published covers a request that arrives afterwards. The galley may well say yes, which is a person's call and not the table's.",
+        cites:[{id:"c19"}],
+        citelabel:"What the page does say, and why it does not settle this",
+        log:true,
+        logreason:"a dietary request arrived after the reservation was taken, request type redacted at capture. published rule covers the booking moment only"
+      });
+    }
+    return {rows:rows,fired:fired,standing:DIET_STANDING};
+  }
+
+  if(p.veg==="nomeal"){
+    rows.push({
+      q:"Can a vegetarian sandwich be requested",
+      hold:false,
+      verdict:"No. This cruise is not one of the three named, and it carries no included meal.",
+      detail:"The published sentence names the 6 Hour, the 7.5 Hour and the 8.5 Hour. The "+p.name+" is not among them.",
+      cites:[{id:"c19"}],
+      canon:[{text:"4 Hour Kenai Fjords Wildlife Cruise. No meal. Snack bar onboard.",url:p.url}]
+    });
+    return {rows:rows,fired:fired,standing:DIET_STANDING};
+  }
+
+  var canon=[{text:p.name+". Published season "+p.season+". Nothing published describes meal service on this product.",url:p.url}];
+  if(p.id==="poq"){
+    canon.push({text:"This product has a live 2026 page and it is not listed on the all-cruises index, which shows five products. The dated policy source carries both facts and settles neither.",url:"https://majormarine.com/all-cruises/"});
+  }
+  rows.push({
+    q:"Can a vegetarian sandwich be requested",
+    hold:true,
+    verdict:"No published rule. Routed to a named owner.",
+    detail:"The published sentence names three cruises and the "+p.name+" is not one of them. Absence from a list is not the same thing as a published no, so the table refuses to turn one into the other.",
+    cites:[{id:"c19"}],
+    citelabel:"What the page does say, and why it does not settle this",
+    canon:canon,
+    log:true,
+    logreason:"product not named in the published sentence and no meal rule published for it"
+  });
+  return {rows:rows,fired:fired,standing:DIET_STANDING};
+}
+
+/* ------------------------------------------------------------------
+   BRANCH DEFINITIONS
+------------------------------------------------------------------ */
+var BRANCHES=[
+{
+  id:"refund", tab:"Refund and change",
+  fields:[
+    {id:"contents",label:"Booking contains",opts:function(){return CONTENTS.map(function(c){return {v:c.v,label:c.label};});}},
+    {id:"when",label:"How long before departure",opts:function(){return WHEN;},
+     lockedWhen:function(s){return s.noshow==="yes";},
+     lockedNote:"A no-show is decided at the time of sailing, so this field is fixed while no-show is yes."},
+    {id:"changes",label:"Date changes already made",opts:function(){return [{v:"none",label:"None yet"},{v:"one",label:"One or more already"}];}},
+    {id:"noshow",label:"Recorded as a no-show",opts:function(){return [{v:"no",label:"No"},{v:"yes",label:"Yes, the guest did not sail"}];}}
+  ],
+  init:{contents:"transport",when:"w2",changes:"none",noshow:"no"},
+  decide:decideRefund,
+  scenarios:[
+    {label:"A guest holds the 8.5 Hour with the train added and calls 9 days out to cancel",
+     state:{contents:"transport",when:"w2",changes:"none",noshow:"no"}},
+    {label:"The same call, if that booking had been cruise only",
+     state:{contents:"cruise",when:"w2",changes:"none",noshow:"no"}},
+    {label:"A guest already moved the date once and calls 20 hours before the boat",
+     state:{contents:"cruise",when:"w5",changes:"one",noshow:"no"}},
+    {label:"A party did not show at the dock this morning and calls at noon",
+     state:{contents:"hotel",when:"w6",changes:"none",noshow:"yes"}}
+  ]
+},
+{
+  id:"access", tab:"Accessibility",
+  fields:[
+    {id:"date",label:"Departure date",opts:function(){return DATES.map(function(d){return {v:d.id,label:d.label};});}},
+    {id:"product",label:"Product",opts:prodOpts},
+    {id:"dep",label:"Departure time",opts:depOpts},
+    {id:"mobility",label:"Mobility",opts:function(){return MOBILITY;}}
+  ],
+  init:{date:"d1",product:"p4",dep:"t1230",mobility:"manual"},
+  decide:decideAccess,
+  scenarios:[
+    {label:"A manual wheelchair, the 12:30 p.m. 4 Hour on August 14th",
+     state:{date:"d1",product:"p4",dep:"t1230",mobility:"manual"}},
+    {label:"A motorized wheelchair, the 11:30 a.m. 6 Hour on August 14th",
+     state:{date:"d1",product:"p6",dep:"t1130",mobility:"motor"}},
+    {label:"Limited mobility, the 9:30 a.m. 7.5 Hour on September 10th",
+     state:{date:"d2",product:"p75",dep:"t0930",mobility:"limited"}},
+    {label:"A family asks about the 8.5 Hour on October 3rd",
+     state:{date:"d3",product:"p85",dep:"t0830",mobility:"manual"}}
+  ]
+},
+{
+  id:"shuttle", tab:"Shuttle eligibility",
+  fields:[
+    {id:"product",label:"Product",opts:prodOpts},
+    {id:"dep",label:"Departure time",opts:depOpts},
+    {id:"notice",label:"Notice before the cruise",opts:function(){return NOTICE;}},
+    {id:"resv",label:"Shuttle already reserved",opts:function(){return RESV;}}
+  ],
+  init:{product:"p6",dep:"t0800",notice:"n24",resv:"no"},
+  decide:decideShuttle,
+  scenarios:[
+    {label:"A guest booked on the 8:00 a.m. 6 Hour asks for the shuttle",
+     state:{product:"p6",dep:"t0800",notice:"n24",resv:"no"}},
+    {label:"A cruise ship guest calls at 4 p.m. the day before an 11:30 a.m. departure with no shuttle on the booking",
+     state:{product:"p6",dep:"t1130",notice:"nlt",resv:"no"}},
+    {label:"A guest with two days to go wants it added to the 12:30 p.m. 4 Hour",
+     state:{product:"p4",dep:"t1230",notice:"n24",resv:"no"}},
+    {label:"A guest who already has it asks where to be in the morning",
+     state:{product:"p75",dep:"t0930",notice:"n24",resv:"yes"}}
+  ]
+},
+{
+  id:"diet", tab:"Dietary",
+  fields:[
+    {id:"product",label:"Product",opts:prodOpts},
+    {id:"timing",label:"When the request arrives",opts:function(){return TIMING;}}
+  ],
+  init:{product:"p75",timing:"now"},
+  decide:decideDiet,
+  scenarios:[
+    {label:"A guest booking the 7.5 Hour right now asks for a vegetarian sandwich",
+     state:{product:"p75",timing:"now"}},
+    {label:"A guest booked the 6 Hour last week and calls back to add one",
+     state:{product:"p6",timing:"after"}},
+    {label:"A guest on the 4 Hour asks what lunch is",
+     state:{product:"p4",timing:"now"}},
+    {label:"A guest asks the same question about the Orca Quest Cruise",
+     state:{product:"poq",timing:"now"}}
+  ]
+}
+];
+
+/* ------------------------------------------------------------------
+   RENDERING
+------------------------------------------------------------------ */
+function el(tag,cls,text){
+  var n=document.createElement(tag);
+  if(cls){n.className=cls;}
+  if(text!==undefined&&text!==null){n.textContent=text;}
+  return n;
+}
+function srcLine(prefix,url){
+  var s=el("p","srcline");
+  s.appendChild(document.createTextNode(prefix+" "));
+  var a=el("a",null,url);
+  a.href=url; a.target="_blank"; a.rel="noopener";
+  s.appendChild(a);
+  return s;
+}
+
+function citeBlock(cite,grey,label){
+  var src=SRC[cite.id];
+  var idx=cite.parts||src.parts.map(function(_,i){return i;});
+  var box=el("div","readbox"+(grey?" grey":""));
+  box.appendChild(el("p","readlbl",label||(grey?"What the page says":"Read this to the guest")));
+  for(var i=0;i<idx.length;i++){
+    if(i>0){box.appendChild(el("p","elide",". . ."));}
+    box.appendChild(el("p","q",'"'+src.parts[idx[i]]+'"'));
+  }
+  if(idx.length>1){
+    box.appendChild(el("p","elidenote","Separate passages from the same page, with the text between them left out. They are printed apart because running them end to end would change what either one says."));
+  }
+  box.appendChild(srcLine("Verbatim, from",src.url));
+  return box;
+}
+
+function canonBlock(c){
+  var box=el("div","canon");
+  box.appendChild(el("p","readlbl","From the dated policy source, not a sentence to read aloud"));
+  box.appendChild(el("p","ctext",c.text));
+  box.appendChild(srcLine("Read off",c.url));
+  return box;
+}
+
+function stamp(){
+  var d=new Date();
+  function p(n){return (n<10?"0":"")+n;}
+  return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());
+}
+
+function labelFor(field,state){
+  var opts=field.opts(state);
+  for(var i=0;i<opts.length;i++){if(opts[i].v===state[field.id])return opts[i].label;}
+  return opts.length?opts[0].label:"";
+}
+
+function slipBlock(branch,state,reason){
+  var box=el("div","slip");
+  box.appendChild(el("p","sliphd","Miss log entry, written at the same moment"));
+  var asked=[];
+  for(var i=0;i<branch.fields.length;i++){
+    var f=branch.fields[i];
+    var val=(f.id==="mobility")?"[REDACT]":labelFor(f,state);
+    asked.push(f.label.toLowerCase()+" = "+val);
+  }
+  var lines=[
+    ["entry     ",stamp()+"   demonstration timestamp, your browser clock"],
+    ["branch    ",branch.tab],
+    ["asked     ",asked.join("   |   ")],
+    ["returned  ","no published rule"],
+    ["reason    ",reason],
+    ["routed to ","the named owner of this branch, unset in this demonstration"],
+    ["retention ","set in writing before the first entry, per the roadmap"]
+  ];
+  for(var j=0;j<lines.length;j++){
+    var row=el("div");
+    row.appendChild(el("span","sl",lines[j][0]+"  "));
+    var pieces=lines[j][1].split("[REDACT]");
+    for(var k=0;k<pieces.length;k++){
+      row.appendChild(document.createTextNode(pieces[k]));
+      if(k<pieces.length-1){row.appendChild(el("span","redact","redacted at capture"));}
+    }
+    box.appendChild(row);
+  }
+  return box;
+}
+
+function renderCard(branch,state,mount){
+  var res=branch.decide(state);
+  mount.innerHTML="";
+  var card=el("div","card");
+
+  var holds=0;
+  for(var i=0;i<res.rows.length;i++){if(res.rows[i].hold)holds++;}
+  var status,cls;
+  if(holds===0){status="Published answer"; cls="ok";}
+  else if(holds===res.rows.length){status="Routed to a person"; cls="hold";}
+  else{status="Part answered"; cls="hold";}
+
+  var head=el("div","cardhead");
+  head.appendChild(el("div","who","Desk Answer, a lookup with no model in it"));
+  head.appendChild(el("span","chip "+cls,status));
+  card.appendChild(head);
+
+  for(var r=0;r<res.rows.length;r++){
+    var row=res.rows[r];
+    var d=el("div","row");
+    d.appendChild(el("p","rowq",row.q));
+    d.appendChild(el("p","verdict"+(row.hold?" hold":""),row.verdict));
+    d.appendChild(el("p","detail",row.detail));
+    for(var c=0;c<row.cites.length;c++){
+      d.appendChild(citeBlock(row.cites[c],row.hold,(c===0&&row.citelabel)?row.citelabel:null));
+    }
+    if(row.canon){
+      for(var q=0;q<row.canon.length;q++){d.appendChild(canonBlock(row.canon[q]));}
+    }
+    if(row.log){
+      d.appendChild(slipBlock(branch,state,row.logreason||"no published rule for this combination"));
+    }
+    card.appendChild(d);
+  }
+
+  if(res.standing){card.appendChild(el("div","standing",res.standing));}
+
+  var bits=[];
+  for(var f=0;f<branch.fields.length;f++){
+    bits.push(branch.fields[f].label.toLowerCase()+" = "+labelFor(branch.fields[f],state));
+  }
+  var tr=el("div","trace");
+  var seen=[],uniq=[];
+  for(var u=0;u<res.fired.length;u++){if(seen.indexOf(res.fired[u])<0){seen.push(res.fired[u]);uniq.push(res.fired[u]);}}
+  [["inputs   ",bits.join("   |   ")],
+   ["rules    ",uniq.join(", ")+"   (claim ids from the verified fact file behind the study)"],
+   ["method   ","table lookup. no model was called. no network request was made."]
+  ].forEach(function(pair){
+    var line=el("div");
+    line.appendChild(el("b",null,pair[0]));
+    line.appendChild(document.createTextNode(pair[1]));
+    tr.appendChild(line);
+  });
+  card.appendChild(tr);
+
+  mount.appendChild(card);
+}
+
+/* ---------------- console wiring ---------------- */
+var current=0;
+var states=BRANCHES.map(function(b){
+  var s={};
+  for(var k in b.init){if(Object.prototype.hasOwnProperty.call(b.init,k))s[k]=b.init[k];}
+  return s;
+});
+
+function clamp(branch,state){
+  for(var i=0;i<branch.fields.length;i++){
+    var f=branch.fields[i];
+    var opts=f.opts(state);
+    var found=false;
+    for(var j=0;j<opts.length;j++){if(opts[j].v===state[f.id])found=true;}
+    if(!found&&opts.length){state[f.id]=opts[0].v;}
+  }
+}
+
+function redraw(){
+  var branch=BRANCHES[current], state=states[current];
+  drawFields();
+  renderCard(branch,state,document.getElementById("card"));
+}
+
+function drawFields(){
+  var branch=BRANCHES[current], state=states[current];
+  clamp(branch,state);
+  var mount=document.getElementById("fields");
+  mount.innerHTML="";
+  branch.fields.forEach(function(f){
+    var wrap=el("div","f");
+    var id="fld_"+branch.id+"_"+f.id;
+    var lab=el("label",null,f.label);
+    lab.setAttribute("for",id);
+    wrap.appendChild(lab);
+    var sel=el("select");
+    sel.id=id;
+    f.opts(state).forEach(function(o){
+      var op=el("option",null,o.label);
+      op.value=o.v;
+      if(o.v===state[f.id]){op.selected=true;}
+      sel.appendChild(op);
+    });
+    var locked=f.lockedWhen?f.lockedWhen(state):false;
+    if(locked){sel.disabled=true;}
+    sel.addEventListener("change",function(){
+      state[f.id]=sel.value;
+      if(f.id==="noshow"&&sel.value==="yes"){state.when="w6";}
+      if(f.id==="product"){state.dep=prod(state.product).deps[0].id;}
+      redraw();
+    });
+    wrap.appendChild(sel);
+    if(locked&&f.lockedNote){wrap.appendChild(el("p","locked",f.lockedNote));}
+    mount.appendChild(wrap);
+  });
+}
+
+function drawScenarios(){
+  var branch=BRANCHES[current], state=states[current];
+  var mount=document.getElementById("scenrow");
+  mount.innerHTML="";
+  branch.scenarios.forEach(function(sc){
+    var b=el("button","scenbtn",sc.label);
+    b.type="button";
+    b.addEventListener("click",function(){
+      for(var k in sc.state){if(Object.prototype.hasOwnProperty.call(sc.state,k))state[k]=sc.state[k];}
+      redraw();
+    });
+    mount.appendChild(b);
+  });
+}
+
+function drawTabs(){
+  var mount=document.getElementById("tabs");
+  mount.innerHTML="";
+  BRANCHES.forEach(function(b,i){
+    var t=el("button","tab",b.tab);
+    t.type="button";
+    t.setAttribute("role","tab");
+    t.setAttribute("aria-selected",i===current?"true":"false");
+    t.addEventListener("click",function(){
+      current=i;
+      drawTabs(); drawScenarios(); redraw();
+    });
+    mount.appendChild(t);
+  });
+}
+
+drawTabs(); drawScenarios(); redraw();
+
+/* ------------------------------------------------------------------
+   SEASON SCOPED FARE. Part of the canon, not a fifth answer branch.
+------------------------------------------------------------------ */
+function renderSeason(){
+  var v=document.getElementById("seasonsel").value;
+  var mount=document.getElementById("seasoncard");
+  mount.innerHTML="";
+  var card=el("div","card");
+  var head=el("div","cardhead");
+  head.appendChild(el("div","who","The dated policy source, season by season"));
+  var row=el("div","row");
+
+  if(v==="none"){
+    head.appendChild(el("span","chip hold","Abstain, no date"));
+    row.appendChild(el("p","rowq","What does the 4 Hour cost"));
+    row.appendChild(el("p","verdict hold","Nothing comes back until the guest gives a date."));
+    row.appendChild(el("p","detail","Two 4 Hour products are live on your index page at two different fares. Answering without a date means picking one at random and being right about half the time, so nothing comes back and the agent asks the guest when they want to sail."));
+    row.appendChild(canonBlock({text:"4 Hour Kenai Fjords Wildlife Cruise, June 12th to October 11th, 2026, adult $149.00. 4 Hour Spring Wildlife Cruise, March 20th to May 16th, 2027, adult $109.00. Both live on the same index.",url:"https://majormarine.com/all-cruises/"}));
+  }else if(v==="d2026"){
+    head.appendChild(el("span","chip ok","Published answer"));
+    row.appendChild(el("p","rowq","What does the 4 Hour cost on August 14th, 2026"));
+    row.appendChild(el("p","verdict","$149.00 adult, on the 4 Hour Kenai Fjords Wildlife Cruise."));
+    row.appendChild(el("p","detail","That date sits inside the 2026 season for this product, so the 2026 fare is the one that applies and there is a published line to read out."));
+    row.appendChild(citeBlock({id:"c39"},false));
+    row.appendChild(canonBlock({text:"4 Hour Kenai Fjords Wildlife Cruise. Published season June 12th to October 11th, 2026.",url:"https://majormarine.com/tour/4-hour-kenai-fjords-wildlife-cruise/"}));
+  }else{
+    head.appendChild(el("span","chip ok","Answer from the source"));
+    row.appendChild(el("p","rowq","What does the 4 Hour cost on April 8th, 2027"));
+    row.appendChild(el("p","verdict","$109.00 adult, and it is a different product."));
+    row.appendChild(el("p","detail","April 2027 falls in the 4 Hour Spring Wildlife Cruise season rather than the 2026 season. The 2026 line below is the one an agent would reach for, and quoting it here would overcharge a guest by forty dollars a head for a product they would not even board."));
+    row.appendChild(citeBlock({id:"c39"},true,"The published sentence that does NOT apply to this date"));
+    row.appendChild(canonBlock({text:"4 Hour Spring Wildlife Cruise, March 20th to May 16th, 2027, adult $109.00. The figure is read off the index table. No single published sentence isolates it, so the dated policy source carries it as a row and hands the agent a figure rather than a line to read aloud.",url:"https://majormarine.com/all-cruises/"}));
+    row.appendChild(el("p","detail","That distinction is deliberate. Where a fact exists as a sentence the agent gets the sentence. Where it exists only as a cell in a table the agent is told so, because reading an invented sentence to a guest is the exact failure this build is designed around."));
+  }
+
+  card.appendChild(head);
+  card.appendChild(row);
+  var tr=el("div","trace");
+  var line=el("div");
+  line.appendChild(el("b",null,"method   "));
+  line.appendChild(document.createTextNode("table lookup, scoped by season. no model was called."));
+  tr.appendChild(line);
+  card.appendChild(tr);
+  mount.appendChild(card);
+}
+document.getElementById("seasonsel").addEventListener("change",renderSeason);
+renderSeason();
+
+/* ------------------------------------------------------------------
+   EXHAUSTIVE CHECK, computed live over the same tables
+------------------------------------------------------------------ */
+function enumerate(branch){
+  var combos=[{}];
+  branch.fields.forEach(function(f){
+    var next=[];
+    combos.forEach(function(base){
+      var seed={};
+      for(var k in branch.init){if(Object.prototype.hasOwnProperty.call(branch.init,k))seed[k]=branch.init[k];}
+      for(var k2 in base){if(Object.prototype.hasOwnProperty.call(base,k2))seed[k2]=base[k2];}
+      f.opts(seed).forEach(function(o){
+        var copy={};
+        for(var k3 in base){if(Object.prototype.hasOwnProperty.call(base,k3))copy[k3]=base[k3];}
+        copy[f.id]=o.v;
+        next.push(copy);
+      });
+    });
+    combos=next;
+  });
+  return combos;
+}
+
+document.getElementById("runall").addEventListener("click",function(){
+  var out=document.getElementById("results");
+  out.innerHTML="";
+  var total=0,answered=0,routed=0,mixed=0,sourced=0,unsourced=0;
+  var perBranch=[];
+
+  BRANCHES.forEach(function(b){
+    var bt=0,ba=0,br=0,bm=0;
+    enumerate(b).forEach(function(state){
+      var full={};
+      for(var k in b.init){if(Object.prototype.hasOwnProperty.call(b.init,k))full[k]=b.init[k];}
+      for(var k2 in state){if(Object.prototype.hasOwnProperty.call(state,k2))full[k2]=state[k2];}
+      clamp(b,full);
+      var res=b.decide(full);
+      bt++; total++;
+      var holds=0, hasCite=true;
+      res.rows.forEach(function(r){
+        if(r.hold)holds++;
+        if(!r.cites||!r.cites.length){hasCite=false;}else{for(var ci=0;ci<r.cites.length;ci++){var cid=r.cites[ci].id; if(!SRC[cid]||!SRC[cid].url||!SRC[cid].parts||!SRC[cid].parts.length){hasCite=false;}}}
+      });
+      if(hasCite){sourced++;}else{unsourced++;}
+      if(holds===0){ba++;answered++;}
+      else if(holds===res.rows.length){br++;routed++;}
+      else{bm++;mixed++;}
+    });
+    perBranch.push({name:b.tab,t:bt,a:ba,r:br,m:bm});
+  });
+
+  var wrap=el("div","tw");
+  var tbl=el("table");
+  var cap=el("caption","","Run just now, in your browser, over the same four tables the console above uses.");
+  tbl.appendChild(cap);
+  var thead=el("thead"), hr=el("tr");
+  ["Branch","Combinations","Published answer","Part answered","Routed to a person"].forEach(function(h,i){
+    hr.appendChild(el("th",i>0?"mono":null,h));
+  });
+  thead.appendChild(hr); tbl.appendChild(thead);
+  var tb=el("tbody");
+  perBranch.forEach(function(p){
+    var tr=el("tr");
+    tr.appendChild(el("td",null,p.name));
+    tr.appendChild(el("td","mono",String(p.t)));
+    tr.appendChild(el("td","mono",String(p.a)));
+    tr.appendChild(el("td","mono",String(p.m)));
+    tr.appendChild(el("td","mono",String(p.r)));
+    tb.appendChild(tr);
+  });
+  var trt=el("tr");
+  trt.appendChild(el("td",null,"All four branches"));
+  trt.appendChild(el("td","mono",String(total)));
+  trt.appendChild(el("td","mono",String(answered)));
+  trt.appendChild(el("td","mono",String(mixed)));
+  trt.appendChild(el("td","mono",String(routed)));
+  tb.appendChild(trt);
+  tbl.appendChild(tb);
+  wrap.appendChild(tbl);
+  out.appendChild(wrap);
+
+  var p1=el("p","detail", unsourced===0 ? ("All "+total+" combinations resolved, and all "+sourced+" of them carried a verbatim published sentence with its link on every question it touched. Checked live in this page just now.") : ("All "+total+" combinations resolved. "+sourced+" carried a verbatim published sentence with its link on every question they touched and "+unsourced+" did not, which is a defect in this demonstration and is reported rather than hidden."));
+  p1.style.maxWidth="40rem";
+  out.appendChild(p1);
+  var p2=el("p","detail","That is the acceptance bar described in the study. A decision table has a finite input space, so it gets checked end to end and signed off cell by cell rather than spot-checked and reported as a percentage somebody has to trust. This run took a few milliseconds and it is checking the demonstration's own table, not a delivered system.");
+  p2.style.maxWidth="40rem";
+  out.appendChild(p2);
+});
+
+/* ---------------- source list ---------------- */
+(function(){
+  var ul=document.getElementById("srclist");
+  SOURCE_PAGES.forEach(function(u){
+    var li=el("li");
+    var a=el("a",null,u);
+    a.href=u; a.target="_blank"; a.rel="noopener";
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+})();
+</script>
+</body>
+</html>
