@@ -87,17 +87,20 @@ maintainer can post in ninety seconds.
    which is exactly what 2026-08-08 did.
 
 19. THE CRON-WRITTEN NUMBERS ARE NOT YOURS. `ledger/gaswatch.jsonl`,
-   `ledger/gaswatch_eia.json`, `ledger/power.json`, `ledger/watch.json`,
+   `ledger/gaswatch_eia.json`, `ledger/power.json`,
+   `ledger/power_utility.json`, `ledger/watch.json`,
    `config/gaswatch_model.json`,
    `config/gaswatch_hdd_history.json`, `scripts/gaswatch_collect.py`,
-   `scripts/gaswatch_eia.py`, `scripts/power_collect.py` and
+   `scripts/gaswatch_eia.py`, `scripts/power_collect.py`,
+   `scripts/power_utility.py` and
    `scripts/docket_watch.py` are written by cron jobs and by deliberate
    human refits. You READ watch.json in Phase 3.5 and you never write it. A run that edits any of them is corrupting a published
    time series that cannot be rebuilt, because CINGSA keeps no archive.
    You may edit the PRESENTATION (`scripts/gaswatch_build.py` HTML and CSS,
    `site_build.gas_watch_page`, `scripts/power_panel.py`) and nothing else.
    Phase 3.6 is the daily
-   look; it reports, it never blocks the run, and a bad deck never stops it.
+   sign-off of every published page; it reports, it never blocks the run, and
+   a bad deck never stops it.
    The retail power panel is on the GAS WATCH page, beside the fuel that
    generates the power, and `site_build.power_placement_gate` fails the build
    if it turns up on the docket. It shipped on the docket once and the
@@ -413,17 +416,28 @@ Right after claims:
 The site itself is rebuilt at ship time (Phase 11); this phase only
 maintains the data.
 
-## PHASE 3.6 — GAS WATCH ONCE OVER (daily eyes on the live page)
+## PHASE 3.6 — SITE SIGN-OFF (daily eyes on every live page)
 
-`/gas-watch/` is Cook Inlet Gas Watch, the OTHER thing this site publishes.
-A daily numeric record of Southcentral Alaska's gas position, built by
-`scripts/gaswatch_build.py` from `ledger/gaswatch.jsonl`. Read the Gas Watch
-section of CLAUDE.md before touching anything here.
+You sign off the WHOLE SITE every run, not one page of it.
 
-You are the only pair of eyes on that page. The maintainer is not opening it
-each morning, and its collectors run on their own cron with nobody watching
-the OUTPUT. You rebuild `docs/` every run, and your Phase 12 engineer can edit
-any script, so you are also the most likely thing to break it.
+alaskaaihq.com is seventy plus pages and it is nobody's job but yours to look
+at them. The maintainer is not opening the site each morning. The collectors
+write numbers on their own cron with nobody watching the OUTPUT. You rebuild
+`docs/` every run, and your Phase 12 engineer can edit any script, so you are
+simultaneously the only thing watching the site and the most likely thing to
+break it.
+
+THE FAILURE THIS PHASE IS FOR is not a bad build. A bad build goes red in CI
+and never ships. It is the build that never HAPPENED: EIA publishes a new
+month, cron commits the ledger, and the page that prints that number keeps
+printing last month's, while every gate in the repo stays green because the
+builder was correct and simply was not run. Only a check that reads the
+PUBLISHED bytes against the CURRENT ledgers can see that, and that is what
+`scripts/site_signoff.py` does.
+
+Within that, `/gas-watch/` still gets its own deeper read, because Cook Inlet
+Gas Watch carries hard rules no generic checker knows. Read the Gas Watch
+section of CLAUDE.md before touching anything there.
 
 **THE HARD LINE. You do not produce the numbers and you never touch what does.**
 Off limits, every run, no exceptions:
@@ -436,6 +450,7 @@ Off limits, every run, no exceptions:
     ledger/gaswatch.jsonl           the series. append-only, cron-written
     ledger/gaswatch_eia.json        the EIA figures
     ledger/power.json               Alaska retail electricity price, monthly
+    ledger/power_utility.json       what each utility charges, annual
     ledger/watch.json               the docket watch queue. READ in 3.5,
                                     never written by a run
 
@@ -443,17 +458,29 @@ Those are written by cron jobs and by deliberate human refits, and a run that
 edits them is corrupting a published time series that cannot be rebuilt. If
 one of them looks wrong, you REPORT it in the draft. You do not fix it.
 
-1. Build the site as normal, then run the checker. It is read-only and it
-   never aborts your run:
+1. Build the site as normal, then run BOTH checkers. Each is read-only and
+   neither can abort your run:
 
+       python scripts/site_signoff.py --out docs
        python scripts/gaswatch_pagecheck.py --out docs
 
    Exit 0 clean, exit 2 needs attention. Exit 1 means the checker itself
    broke, which is a Phase 12 problem, not a page problem.
 
-2. Then LOOK at it, because a checker cannot judge whether a page reads well.
-   Open `docs/gas-watch/index.html` at desktop and phone width the way Phase 8
-   looks at a slide. You are asking what a reporter would ask:
+   `site_signoff.py` covers every page: nothing rendered empty, no template
+   leakage, no dead internal link, no dead sitemap entry, the house voice in
+   the bytes that shipped, and the one thing no build gate can check, which is
+   whether the CURRENT value in each cron-written ledger is actually on the
+   page that publishes it. If it reports a ledger is stale, that is a
+   collector problem you REPORT and never fix. If it reports a ledger's figure
+   is missing from its page, rebuild `docs/` first, because the usual cause is
+   a page that was never rebuilt after cron moved the number.
+
+2. Then LOOK at the site, because a checker cannot judge whether a page reads
+   well. Open `docs/index.html`, `docs/docket/index.html` and
+   `docs/gas-watch/index.html` at desktop and phone width the way Phase 8
+   looks at a slide, plus any page you touched this run. On the gas watch you
+   are asking what a reporter would ask:
 
    - does the meter read instantly, and does the big figure match the tiles
    - is anything cut off, overlapping, or crowded on a phone
@@ -464,30 +491,45 @@ one of them looks wrong, you REPORT it in the draft. You do not fix it.
      `gaswatch_build._comparison`, not in prose.
    - does the page still refuse to say whether supply is adequate
 
+   And on every page, what an ordinary reader would notice: is anything cut
+   off or overlapping on a phone, does an interactive element work with a
+   FINGER and not only a mouse, does a link go where its words say it goes.
+   The price line on the gas watch shipped readable with a mouse and dead
+   under a finger, and no checker here caught it.
+
 3. FIX only presentation. Layout, spacing, wording, a stale sentence, a
-   plural. Those live in `gaswatch_build.py`'s HTML and CSS and in
-   `site_build.gas_watch_page`. After any edit:
+   plural. Those live in `gaswatch_build.py`'s HTML and CSS, in
+   `site_build.py`, and in `power_panel.py` for the retail power panel. After
+   any edit:
 
        python scripts/gaswatch_build.py --self-test
+       python scripts/power_panel.py --self-test
        python scripts/site_build.py --date <date> --out docs
+       python scripts/site_signoff.py --out docs
        python scripts/gaswatch_pagecheck.py --out docs
 
    Every numeral on that page must come from `gaswatch_build.figures()`. If
    you find yourself typing a number into copy, you are doing it wrong, and
    the build will refuse it anyway.
 
-4. Record one line in the run record and in the Gmail draft (Phase 13), even
-   when clean, so the maintainer sees the page was looked at:
+4. Record TWO lines in the run record and in the Gmail draft (Phase 13), even
+   when clean, so the maintainer sees the whole site was looked at:
 
+       SITE SIGN-OFF: <PASS|WARN|FAIL>, <N> pages, <M> checks<, what failed>
        GAS WATCH: PASS, read <date>, <N> days on record, chart <present|absent>
 
-   On exit 2, say what is wrong and whether you fixed it or left it.
+   `site_signoff.py` prints its own line ready to copy. On exit 2, say what is
+   wrong and whether you fixed it or left it.
 
-**This phase NEVER fails the run.** CLAUDE.md keeps the collector independent
-of this routine precisely so neither holds the other hostage. A gas problem is
+**This phase NEVER fails the run.** CLAUDE.md keeps the collectors independent
+of this routine precisely so neither holds the other hostage. A site problem is
 reported and carried in the draft; it does not block the deck, and a bad deck
-does not stop the page being checked. If the page is broken in a way you must
+does not stop the site being checked. If something is broken in a way you must
 not fix, say so plainly in the draft and ship the deck.
+
+**And it never SKIPS.** A clean sign-off still gets its line, because a phase
+that only speaks when it has bad news is indistinguishable from a phase that
+did not run.
 
 ## PHASE 4 — SELECTION + DEDUPE GATE
 
@@ -1300,11 +1342,11 @@ ledger/docket.json (windows and votes within 14 days, linking the public
 tracker) and an "Automation changes this run" section rendered
 from ledger/upgrades.json (Phase 12's output) so the maintainer can
 monitor the machine's evolution from the dated emails alone and request
-a revert if a later run degrades. Carry Phase 3.6's one-line GAS WATCH
-verdict in the draft too, clean or not. It is the only report the
-maintainer gets that the live page was looked at, and a silent pass is
-worth as much as a failure here, because silence is what a broken page
-would also produce. Create the draft via the Gmail MCP
+a revert if a later run degrades. Carry BOTH of Phase 3.6's one-line
+verdicts in the draft too, SITE SIGN-OFF and GAS WATCH, clean or not.
+They are the only report the maintainer gets that the live site was
+looked at, and a silent pass is worth as much as a failure here, because
+silence is what a broken site would also produce. Create the draft via the Gmail MCP
 `create_draft` tool with the payload EXACTLY as the script emits it
 (subject, to, html_body).
 
