@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-08-11",
+  "updated": "2026-08-09",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -119,7 +119,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-07",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-07-08",
@@ -204,6 +204,10 @@
         {
           "date": "2026-08-07",
           "note": "Re-verified today against the primary notice, Alaska DNR Online Public Notices id 224224. The preliminary decision to offer STAK Energy Corporation a 50-year lease on 715.4 acres near Deadhorse stands. Comments closed at 4:30 p.m. on July 17th and no final decision has been issued."
+        },
+        {
+          "date": "2026-08-12",
+          "note": "Re-verified against the state notice. No final best interest decision has been issued on the 715.4 acre, 50-year lease offer, twenty-six days after comment closed."
         }
       ],
       "url": "https://alaskaaihq.com/docket/adl-422741-stak-north-slope-lease/"
@@ -420,7 +424,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-07",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-07-08",
@@ -738,7 +742,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-08-08",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-07-11",
@@ -830,7 +834,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-09",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-07-17",
@@ -883,6 +887,10 @@
         {
           "date": "2026-08-09",
           "note": "Re-verified today against the primary notice, Alaska DNR Online Public Notices id 224431, ADL 234762. The notice reads that the deadline for public comment is 5:00 PM, Wednesday, August 19, 2026 on the proposed conveyance of about 19,950 acres near Houston to AIDEA, and no Final Finding and Decision has been issued. Only persons from whom the division receives timely written comment during that period will be eligible to appeal. The Houston City Council vote on the ordinance that would ban data centers inside city limits remains set for August 13, 2026, postponed there from July 16."
+        },
+        {
+          "date": "2026-08-12",
+          "note": "Re-verified against the state notice. Public comment on the roughly 19,950 acre conveyance north of Houston still closes 5 p.m. on August 19th. The Houston City Council's separate vote on a data center ban ordinance remains set for August 13th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1051,7 +1059,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-08-06",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-07-26",
@@ -1060,6 +1068,10 @@
         {
           "date": "2026-08-06",
           "note": "Re-read the White House signatory list today. It still shows Cordova Electric Cooperative as the only Alaska entity on it, out of 281 listed signatories, eleven days after the last check. No Railbelt utility has signed. Chugach Electric, Golden Valley Electric, Matanuska Electric and Homer Electric are all still absent, and those are the utilities that would carry a large Railbelt data-center load. Nothing else about the pledge changed."
+        },
+        {
+          "date": "2026-08-12",
+          "note": "Re-verified against the White House page. Cordova Electric Cooperative is still the only Alaska utility on the signatory list."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ratepayer-protection-pledge-alaska-utilities/"
@@ -1093,7 +1105,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-07",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-08-02",
@@ -1102,6 +1114,10 @@
         {
           "date": "2026-08-07",
           "note": "Re-verified today against the state public notice, id 224684. Proposals on RFP 2026-0200-0064 are due at 9:30 a.m. Alaska Daylight Time on Monday, August 24, 2026. No amendment, extension or award has been posted."
+        },
+        {
+          "date": "2026-08-12",
+          "note": "Re-verified against the state notice. Proposals for RFP 2026-0200-0064 are still due 9:30 a.m. Alaska Daylight Time on August 24th, with no addenda posted."
         }
       ],
       "url": "https://alaskaaihq.com/docket/alaska-statewide-transcription-rfp/"
@@ -1135,11 +1151,15 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-02",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-08-02",
           "note": "Tracked. RFI 02-101-27, published July 30, responses due August 20."
+        },
+        {
+          "date": "2026-08-12",
+          "note": "Amendment One to the request for information was published August 7th. The response deadline is unchanged, 2 p.m. on August 20th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1203,7 +1223,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-08-07",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-08-04",
@@ -1212,6 +1232,10 @@
         {
           "date": "2026-08-07",
           "note": "Re-verified today against the Federal Register notice and the Alaska Energy Authority's project page. The comment window is open and closes at 5:00 p.m. Eastern on August 28th. The June 30th final amendment application, the roughly $400 million estimate and the three years of study and permitting followed by three years of construction all stand."
+        },
+        {
+          "date": "2026-08-12",
+          "note": "Re-verified against the FERC notice. Comments, motions to intervene and protests are still due 5 p.m. Eastern on August 28th in docket P-8221-124. The amendment would raise the lake about 16 feet, add a 0.3 megawatt micro-hydro turbine, and take the project from 119.7 to 120.0 megawatts while adding roughly 38 percent to average annual generation."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
@@ -1332,11 +1356,15 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-06",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-08-06",
           "note": "Tracked after a reader asked for it, and the reader's own figure did not survive the check. The Air Force program page for the pilot states the capacity, the 30 year power purchase agreement and the licensing condition, and it states no operational date at all. A December 31st, 2027 goal has circulated widely; that comes from the fiscal 2019 defense authorization, which directed that a licensed microreactor be operating on a Defense Department installation by 2027, and it is a statutory goal for the program rather than a commitment for this reactor. A deputy assistant secretary of the Air Force was separately reported hoping the reactor would run by 2030. So the honest position is that no operational date is published, and this entry will not carry one until the Air Force sets one. The notice of intent to award reinstated Oklo after an earlier award was rescinded following a bid protest."
+        },
+        {
+          "date": "2026-08-12",
+          "note": "Re-verified against the base's own program page. No contract has been awarded. The notice of intent to award opened negotiation with Oklo and the award still waits on the company finishing Nuclear Regulatory Commission licensing. The pilot is sized at up to 5 megawatts for critical infrastructure on the base, under a 30-year power purchase agreement."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -1380,7 +1408,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-06",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-08-06",
@@ -1481,7 +1509,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-06",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-08-06",
@@ -1524,11 +1552,15 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-06",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-08-06",
           "note": "Tracked, with two figures corrected against the reporting. A reader described this as an 89 million dollar grant to Flatlands Energy for a 400 megawatt plant. The recipient named is Terra Energy Center Corporation, an affiliate of Flatlands, and the plant described is 1,250 megawatts. It belongs on this docket because Railbelt power is what the region's data center proposals are competing for, and because of how far it is from being real. There is no finalized design, no permitted coal mine and no signed power purchase agreement with any utility, and the site sits more than 60 miles from the nearest transmission line. It also depends on the West Susitna Access Road, put at over a billion dollars and not counted in the project's costs. The Susitna River Coalition and the Alaska chapter of the Sierra Club have both objected."
+        },
+        {
+          "date": "2026-08-12",
+          "note": "Re-verified against the Department of Energy selection page for the coal recommissioning announcement. The award is $89 million for engineering and design of a 1,250 megawatt coal plant built as five 250 megawatt circulating fluidized bed trains, with carbon capture sized to take more than 90 percent of the carbon dioxide, an estimated 8.26 million tonnes a year. Engineering is targeted to finish in 2027 and the plant is projected operational in 2031. This money studies the plant. It does not build it."
         }
       ],
       "url": "https://alaskaaihq.com/docket/terra-energy-center-doe-grant/"
@@ -1572,7 +1604,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-06",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-08-06",
@@ -1650,7 +1682,7 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-08-09",
+      "last_updated": "2026-08-12",
       "history": [
         {
           "date": "2026-08-09",
