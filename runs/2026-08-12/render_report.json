@@ -180,7 +180,7 @@
           "anc": []
         },
         {
-          "text": "SURFACE = DISTANCE TO NEAREST LINE AT 69 KV OR ABOVE. CONTOUR INTERVAL 25 KM. DE",
+          "text": "SURFACE = DISTANCE TO NEAREST LINE AT 69 kV OR ABOVE. CONTOUR INTERVAL 25 km. DE",
           "x": 86,
           "y": 1224,
           "w": 916,
@@ -195,11 +195,71 @@
             [
               86,
               1226,
-              834,
+              392,
+              22
+            ],
+            [
+              499,
+              1226,
+              302,
+              22
+            ],
+            [
+              825,
+              1226,
+              91,
               22
             ]
           ],
           "anc": []
+        },
+        {
+          "text": "kV",
+          "x": 478,
+          "y": 1226,
+          "w": 21,
+          "h": 22,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(19, 26, 32)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              478,
+              1226,
+              21,
+              22
+            ]
+          ],
+          "anc": [
+            6
+          ]
+        },
+        {
+          "text": "km",
+          "x": 801,
+          "y": 1226,
+          "w": 24,
+          "h": 22,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(19, 26, 32)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              801,
+              1226,
+              24,
+              22
+            ]
+          ],
+          "anc": [
+            6
+          ]
         }
       ],
       "body_overflow": false,
@@ -239,7 +299,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4751,
+      "render_ms": 4958,
       "ok": true,
       "canvases": [
         {
@@ -440,7 +500,7 @@
           "anc": []
         },
         {
-          "text": "AGGREGATE. NEAREST LINE AT 69 KV OR ABOVE IN THE STATE TRANSMISSION LAYER. COMPU",
+          "text": "AGGREGATE. NEAREST LINE AT 69 kV OR ABOVE IN THE STATE TRANSMISSION LAYER. COMPU",
           "x": 86,
           "y": 1200,
           "w": 920,
@@ -455,7 +515,13 @@
             [
               86,
               1202,
-              902,
+              291,
+              22
+            ],
+            [
+              398,
+              1202,
+              589,
               22
             ],
             [
@@ -466,6 +532,30 @@
             ]
           ],
           "anc": []
+        },
+        {
+          "text": "kV",
+          "x": 377,
+          "y": 1202,
+          "w": 21,
+          "h": 22,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(126, 139, 147)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              377,
+              1202,
+              21,
+              22
+            ]
+          ],
+          "anc": [
+            7
+          ]
         }
       ],
       "body_overflow": false,
@@ -480,7 +570,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4411,
+      "render_ms": 3973,
       "ok": true,
       "canvases": [
         {
