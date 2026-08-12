@@ -3149,3 +3149,49 @@ PARKED, from the frontier scan (focus: LinkedIn platform, the slot the
 - Bumping every mono string to the 24px floor in one pass re-wrapped nine
   slides' bottom bands and produced eleven new collisions. Type floors and
   layout are one problem, not two. Set the floor BEFORE laying out the band.
+
+## 2026-08-12 (craft refresh, run No.31)
+
+- **THE FIRST COMMENT IS REPORTEDLY NO LONGER A SAFE HARBOUR FOR A LINK, and
+  this collides head on with a house contract.** Multiple 2026 practitioner
+  writeups now assert that LinkedIn scans the comment thread on publish and
+  applies the external-link demotion to a link the AUTHOR posts in the first
+  comment, at roughly the same cost as a link in the body. One writeup puts
+  comment-link visibility suppression "up to 80 percent". CAROUSEL_CRAFT's
+  rule, "Sources go in the FIRST COMMENT (paste block we provide), posted
+  within ~60s", was written when the first comment was the documented
+  workaround. EVIDENCE QUALITY IS LOW AND THAT MATTERS. Every instance traced
+  today is tier C practitioner commentary with no named dataset, no sample
+  size and no methodology; the one tier B number in the vicinity, 1.3 million
+  posts, is about links in the BODY (median reach 18.8 percent lower) and says
+  nothing about comments. Forbes has a July 30th piece on the same claim and
+  returns 403 to a fetch, so it could not be read. NOT ACTIONED and
+  deliberately so, because our first comment is the sources block and the
+  citation record is the product, not a growth tactic. THIS IS A MAINTAINER
+  DECISION, and the honest framing of it is a tradeoff between reach and the
+  verification record rather than a bug to fix. Raised in the No.31 draft.
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now
+- Dwell time is now stated everywhere as the primary ranking input, with one
+  widely repeated figure of 1.2 percent engagement at 0 to 3 seconds against
+  15.6 percent at 61 seconds and above. Same tier C caveat, no dataset named.
+  It changes nothing about what we build, because a nine slide document read
+  end to end is already the dwell-maximising artifact, but it is the reason
+  the format keeps winning and it is worth knowing the number people quote.
+- Slide count guidance in the 2026 crop has DRIFTED WIDER, 5 to 15 in one
+  source and 5 to 10 in another, against our 8 to 10 default. Nothing here is
+  strong enough to move the house band, which rests on completion data rather
+  than on engagement rate per post. Recording the drift so a later refresh can
+  see whether it is a trend or noise.
+- **EVENLY-SPACED STREAMLINES ARE THE PLACEMENT ALGORITHM akhachure DOES NOT
+  HAVE.** Jobard and Lefer, "Creating Evenly-Spaced Streamlines of Arbitrary
+  Density", is the standard method for filling a vector field with lines at a
+  GUARANTEED separation d_sep: integrate a streamline from a seed, stop it when
+  it comes within d_test of any existing line, then queue new seeds at distance
+  d_sep along the line just drawn. Density becomes a single parameter and tone
+  becomes a function of d_sep, which is exactly the mapping a slope field wants
+  and exactly what a fixed grid of hachure cells cannot give. Technique #92
+  already owns the SHADING half of this (stroke width from slope, sun azimuth,
+  aspect); this is the SEEDING half. PARKED as a candidate rather than built,
+  because it is a real algorithm and belongs in assets/js with a verifier, not
+  improvised inside a slide at 2am.
+  https://volzo.de/posts/hatching-hachures-contours/
