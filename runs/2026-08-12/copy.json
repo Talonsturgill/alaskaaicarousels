@@ -1,0 +1,224 @@
+{
+ "post_copy": "What does Cordova do with power it can't sell and can't ship out?\n\nNo transmission line leaves Cordova. 170 kilowatts of computing sits inside the Humpback Creek powerhouse. \"The server was literally 20 feet from the generators,\" said Clay Koplin, CEO of Cordova Electric Cooperative. Koplin estimates 20 to 25 percent of Cordova's hydropower goes unused every year.\n\nThe Energy Department's July 22nd award list named a University of Alaska Fairbanks project and printed no amount. August 11th published $725,000. It funds software that forecasts demand and flags abnormal conditions, not the server. Alaska has over 200 remote microgrids.\n\nThe map with no line out, the twenty feet drawn true, and what the $725,000 buys.\n\nWhat has to already exist in a village before AURORA-AI does anything there?\n\n#AlaskaEnergy #Microgrids #GridResilience",
+ "hook_chars": 65,
+ "total_chars": 844,
+ "hashtags": [
+  "#AlaskaEnergy",
+  "#Microgrids",
+  "#GridResilience"
+ ],
+ "first_comment": "Sources, primary first\n\nUniversity of Alaska Fairbanks, UAF leads AI project to strengthen Alaska's rural power grids, August 11th, 2026. The $725,000, the partner list and the mechanism. https://www.uaf.edu/news/uaf-leads-ai-project-to-strengthen-alaskas-rural-power-grids.php\n\nAlaska Center for Energy and Power at UAF, the same release on ACEP's own site, August 11th, 2026. https://www.uaf.edu/acep/news/2026/uaf-leads-ai-project-to-strengthen-alaskas-rural-power-grids.php\n\nU.S. Department of Energy, Secretary of Energy Chris Wright announces first Genesis Mission projects selected, July 22nd, 2026. 278 projects, 168 of them university led. https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate\n\nU.S. Department of Energy, the Genesis Mission awards list, a 10 page PDF. One of its 278 rows is an Alaska institution. https://www.energy.gov/sites/default/files/2026-07/GM-RFA-Awards-List.pdf\n\nU.S. Department of Energy, March 17th, 2026. The projects were selected under a $293 million Request for Application, and Phase I awards run $500,000 to $750,000 over nine months. https://www.energy.gov/articles/energy-department-announces-293-million-funding-support-genesis-mission-national-science\n\nNational Laboratory of the Rockies, In Alaska, a data center inside a power plant inside a microgrid, March 5th, 2026. The 170 kilowatts, the 83 percent in 2025 and both Koplin lines. https://www.nlr.gov/news/detail/program/2026/in-alaska-a-data-center-inside-a-power-plant-inside-a-microgrid\n\nCordova Electric Cooperative, its own about page. 1,566 customers, 18 megawatts, and no transmission line to other communities. https://www.cordovaelectric.com/about/\n\nU.S. Department of Energy, the renaming of NREL to the National Laboratory of the Rockies, effective December 1st, 2025, so the partner list reads correctly. https://www.energy.gov/cmei/articles/energy-department-renames-nrel-national-lab-rockies\n\nEvery Alaska AI decision this page tracks, with the live comment deadlines beside each one, sits at https://alaskaaihq.com\n\nAnyone who has run or built a village microgrid, add what the record misses here.",
+ "document_title": "No Wire Leaves Cordova. So the Load Moved In.",
+ "slides": [
+  {
+   "n": 1,
+   "beat": "HOOK. The widest frame, a network and a town off it.",
+   "headline": "Nothing leaves Cordova by wire.",
+   "sub": "The amount landed August 11th. $725,000.",
+   "rail_july": "JULY 22ND SELECTED. NO AMOUNT PUBLISHED.",
+   "rail_august": "AUGUST 11TH $725,000. AURORA-AI.",
+   "scale_rail": "FRAME 670 KM",
+   "counter": "01 / 09",
+   "marginalia": "SURFACE = DISTANCE TO NEAREST LINE AT 69 kV OR ABOVE. CONTOUR INTERVAL 25 km. DERIVED.",
+   "claim_ids": [
+    "C01",
+    "C07",
+    "C14",
+    "C35"
+   ]
+  },
+  {
+   "n": 2,
+   "beat": "PAY IMMEDIATELY. The utility's own sentence, then the gap measured.",
+   "headline": "The nearest line is 56 km away.",
+   "quotation": "\"Cordova is not connected to the State Highway System, and CEC is not connected by transmission line to other communities.\"",
+   "attribution": "CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE C29",
+   "scale_rail": "FRAME 300 KM",
+   "counter": "02 / 09",
+   "disclosure": "AGGREGATE. NEAREST LINE AT 69 kV OR ABOVE IN THE STATE TRANSMISSION LAYER. COMPUTED FROM 65 COMMITTED SEGMENTS. NOT A SOURCED FIGURE.",
+   "claim_ids": [
+    "C21",
+    "C29"
+   ],
+   "residents": "ABOUT 2,600 RESIDENTS  C21",
+   "dimension": "56 KM"
+  },
+  {
+   "n": 3,
+   "beat": "ESCALATE. A fifth to a quarter of the water is worth nothing.",
+   "headline": "A fifth of it goes nowhere.",
+   "body_1": "Koplin estimates 20 to 25 percent of Cordova's hydropower goes unused every year.",
+   "body_2": "That is a share of hydropower, not of total demand, and it is an estimate rather than a metered figure.",
+   "label_band": "THE UNUSED FRACTION C20",
+   "label_lower": "LOWER BOUND 20",
+   "label_upper": "UPPER BOUND 25",
+   "scale_rail": "FRAME 60 KM",
+   "counter": "03 / 09",
+   "claim_ids": [
+    "C19",
+    "C20"
+   ],
+   "body_3": "In 2025 hydropower covered more than 83 percent of the town's electrical demand. (C19)"
+  },
+  {
+   "n": 4,
+   "beat": "BREATHER. The water, and one dimension floating on it.",
+   "quotation": "\"The server was literally 20 feet from the generators. It's designed as a super-energy-efficient deployment.\"",
+   "attribution": "CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE C22, C23",
+   "dimension": "20 FT",
+   "scale_rail": "FRAME 60 KM, OBLIQUE",
+   "counter": "04 / 09",
+   "claim_ids": [
+    "C22",
+    "C23"
+   ]
+  },
+  {
+   "n": 5,
+   "beat": "THE FLOOR. Twenty feet, drawn true. The rendered hero.",
+   "headline": "Twenty feet from the turbine.",
+   "body": "Greensparc put 170 kilowatts of computing inside the Humpback Creek run of river plant, several miles north of town. The National Laboratory of the Rockies reported it in March. (C18, C26)",
+   "label_compute": "170 kW COMPUTING C18",
+   "label_generator": "GENERATOR, FORM RECONSTRUCTED",
+   "dimension": "20 FT",
+   "scale_rail": "1 FT = 42 PX",
+   "counter": "05 / 09",
+   "reconstruction_note": "SOURCED 4 / DRAWN 6. THE ROOM IS RECONSTRUCTED FROM MEASURED QUANTITIES. C18, C26",
+   "claim_ids": [
+    "C18",
+    "C22",
+    "C26"
+   ]
+  },
+  {
+   "n": 6,
+   "beat": "DATA. The whole co-op at one honest scale.",
+   "headline": "The whole co-op, to scale.",
+   "table_1": "1,566 CUSTOMERS C27",
+   "table_2": "18 MW NAMEPLATE C28",
+   "table_3": "MORE THAN 83% HYDRO SHARE, 2025 C19",
+   "table_4": "170 kW COMPUTING INSTALLED C18",
+   "table_5": "NONE TRANSMISSION LINE OUT C29",
+   "detail_callout": "DETAIL A SCALE 8 TO 1",
+   "bar_1": "ORCA DIESEL 10.8 MW",
+   "bar_2": "POWER CREEK HYDRO 6.0 MW",
+   "bar_3": "HUMPBACK HYDRO 1.25 MW",
+   "bar_4": "COMPUTING 0.17 MW",
+   "scale_rail": "1 MW = 42.6 PX",
+   "counter": "06 / 09",
+   "aggregate_note": "THE BASELINE IS 840 PX, THE DECK'S TWENTY FEET. 170 kW AGAINST 18,050 kW.  C18, C28",
+   "claim_ids": [
+    "C18",
+    "C19",
+    "C27",
+    "C28",
+    "C29"
+   ]
+  },
+  {
+   "n": 7,
+   "beat": "WIDEN. Cordova is one of a class, and the class is large.",
+   "headline": "Over 200 island grids. One got picked.",
+   "body": "UAF counts over 200 remote microgrids in Alaska. Each one is a closed loop with nothing joining it to the next. Cordova is one of them. (C06)",
+   "register_stamp": "NO SCALE. A COUNT, NOT A MAP.",
+   "label_pip": "CORDOVA",
+   "scale_rail": "200 MARKS DRAWN",
+   "counter": "07 / 09",
+   "legend": "EACH MARK IS ONE REMOTE MICROGRID. 8 ROWS OF 25. THE CUT EDGE IS THE WORD OVER.  C06",
+   "claim_ids": [
+    "C06"
+   ]
+  },
+  {
+   "n": 8,
+   "beat": "THE TURN. Take the server away and the software still reaches in.",
+   "headline": "The money is not for the data center.",
+   "body": "On August 11th UAF published both. $725,000, AURORA-AI, Alaska Utility Resilience and Optimization using Real-time AI, with Richard Wies as principal investigator. It combines utility data, virtual replicas of the power grid and AI to forecast demand and detect abnormal operating conditions. (C01, C02, C03, C05, C07)",
+   "rail_july": "JULY 22ND SELECTED. NO AMOUNT PUBLISHED.",
+   "rail_august": "AUGUST 11TH $725,000. AURORA-AI.",
+   "label_removed": "THE SERVER, REMOVED",
+   "partner_1": "UAF ACEP",
+   "partner_2": "COLORADO STATE",
+   "partner_3": "NAT. LAB OF THE ROCKIES",
+   "partner_4": "CORDOVA ELECTRIC C04",
+   "money_rail": "$500,000 $725,000 $750,000",
+   "counter": "08 / 09",
+   "footnote": "CONSISTENT WITH THE PUBLISHED PHASE I BAND.  C16, C17",
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C07",
+    "C16",
+    "C17",
+    "C30"
+   ],
+   "nrel_note": "NAT. LAB OF THE ROCKIES WAS NREL UNTIL DECEMBER 1ST, 2025.  C30"
+  },
+  {
+   "n": 9,
+   "beat": "CLOSE. One ask, on slide 01's exact frame.",
+   "ask": "If the power can't leave, who should get to use it?",
+   "quotation": "\"Alaska's isolated power systems provide an ideal environment for developing and testing next-generation technologies that can improve electric grid resilience.\"",
+   "attribution": "RICHARD WIES, PRINCIPAL INVESTIGATOR, AURORA-AI C09",
+   "source_note": "SOURCES IN COMMENTS",
+   "site": "alaskaaihq.com",
+   "wordmark": "Alaska.Ai",
+   "coordinates": "60°33'N 145°45'W",
+   "counter": "09 / 09",
+   "claim_ids": [
+    "C03",
+    "C09"
+   ],
+   "scale_rail": "FRAME 670 KM",
+   "rail_august": "AUGUST 11TH  $725,000. AURORA-AI."
+  }
+ ],
+ "deck_summary_line": "The map with no line out, the twenty feet drawn true, and what the $725,000 buys.",
+ "caption_meta": {
+  "opening_move": "QUESTION FIRST",
+  "structure": "ZOOM",
+  "closing_move": "NEW:PRECONDITION AUDIT"
+ },
+ "slide_copy_corrections": [],
+ "aftercare": [
+  "Post Tuesday to Thursday between 8 and 11 a.m. Alaska time, the strongest slots this page has measured. Drafts arrive daily, so holding one for the next good window costs nothing.",
+  "Paste the sources comment within 60 seconds of posting, before the first readers land. Every line carries its raw URL so the link survives the paste.",
+  "Reply to every comment in the first 90 minutes. The first 60 are where the ranking is decided.",
+  "Answer the closing question once in a reply of your own, so the thread has somewhere to go.",
+  "Check saves and comments at 48 hours and log both beside deck No.20, since this deck is the correction to it.",
+  "Never edit the post after it ships. A correction goes in a comment with the source URL under it."
+ ],
+ "editor_notes_for_email": "Carousel No.31 is the Cordova deck, nine slides descending from a 720 km frame to twenty feet of powerhouse floor and climbing back out. It ships as an explicit update to deck No.20, which recorded 150 kilowatts of computing at Humpback Creek. No page fetched this run carries that figure, so every string here reads 170 kilowatts, sourced to the National Laboratory of the Rockies on March 5, 2026, and the ledger should record the correction rather than bury it. Three guards to hold before posting. The $293 million appears on no slide and appears in the first comment only as the size of the Request for Application, which is what the Department of Energy actually published, never as the sum of the 278 awards. The $725,000 is called consistent with the published Phase I band of $500,000 to $750,000 and is never asserted to be a Phase I award, because DOE has not confirmed the phase. Richard Wies is principal investigator and never a professor, and Cordova Electric Cooperative is a named partner and nothing more, since the claim that it supplies the project's operating data was killed. The caption is the room's winner byte for byte and it passed its lint, with no factual error to flag. One line to read twice, the caption puts the 170 kilowatts in the present tense against a March source, which is fair and is also the sentence a Cordova reader would test first.",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C08",
+  "C09",
+  "C10",
+  "C11",
+  "C12",
+  "C14",
+  "C15",
+  "C16",
+  "C17",
+  "C18",
+  "C19",
+  "C20",
+  "C22",
+  "C23",
+  "C26",
+  "C27",
+  "C28",
+  "C29",
+  "C30",
+  "C35"
+ ]
+}

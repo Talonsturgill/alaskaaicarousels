@@ -1,0 +1,67 @@
+{
+ "run_date": "2026-08-12",
+ "note": "Every number these slides derive is declared here so the arithmetic can be re-derived. Run scratch, like the render report.",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "Koplin estimates 20 to 25 percent of Cordova's hydropower goes unused every year",
+   "fragment": "20 to 25",
+   "member": "C20",
+   "note": "NOT a derived span. Both bounds are quoted directly from C20, which reads that Koplin estimates 20 to 25 percent of hydropower goes unused annually. The slide prints the range as a range and never collapses it to a point, and it carries the unit warning that this is a share of hydropower rather than of total demand."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "About 2,600 residents",
+   "fragment": "2,600 RESIDENTS",
+   "member": "C21",
+   "note": "Quoted, not derived. C21 carries the residential population of Cordova as about 2,600. The slide prints the word ABOUT, which is how the source states it, and never a precise count. It is the only human-scale number in the frame and it is what makes the 56 km ring mean something."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "Greensparc put 170 kilowatts of computing inside the Humpback Creek run of river plant",
+   "fragment": "170 kilowatts",
+   "member": "C18",
+   "note": "Quoted, not derived. C18 carries the National Laboratory of the Rockies figure of 170 kilowatts dated March 5th, 2026. The superseded 150 kW figure appears nowhere in this deck."
+  },
+  {
+   "kind": "design",
+   "slide": 6,
+   "text": "DETAIL A SCALE 8 TO 1",
+   "fragment": "8 TO 1",
+   "note": "A PROPERTY OF THE ARTWORK, not a story quantity. The 170 kW block is drawn TRUE at the slide's own 42.6 px per MW, which is 7.2 px. The circled detail enlarges that sliver by a printed factor of 8 so it can be seen. A declared magnification is what separates a detail callout from a cheated scale, and the ratio is printed on the slide precisely so the reader can undo it."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "Over 200 island grids. One got picked.",
+   "fragment": "200 island grids",
+   "member": "C06",
+   "note": "C06 is UAF's own wording, over 200 remote microgrids. The slide says over 200 and never a flat 200. The one that got picked is Cordova Electric Cooperative, a named AURORA-AI partner per C04."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "UAF counts over 200 remote microgrids in Alaska",
+   "fragment": "200 remote microgrids",
+   "member": "C06",
+   "note": "Attributed to UAF on the slide, which is where the count comes from. Verbatim source string is \"With over 200 remote microgrids, Alaska is one of the ideal environments for microgrid research.\""
+  },
+  {
+   "kind": "design",
+   "slide": 7,
+   "text": "200 MARKS DRAWN",
+   "fragment": "200 MARKS",
+   "note": "A PROPERTY OF THE ARTWORK. Exactly 200 full ISOTYPE marks are drawn inside the field at a 42 px pitch, asserted at render time in window.__akMarkCount rather than claimed in a caption, and a further column is CUT by the right edge. The cut edge is how the drawing carries C06's word \"over\". There is no committed dataset of Alaska microgrid locations and the gazetteer holds 42 places, so the field makes NO geographic claim and the slide prints that refusal in its register stamp."
+  },
+  {
+   "kind": "design",
+   "slide": 7,
+   "text": "EACH MARK IS ONE REMOTE MICROGRID. 8 ROWS OF 25. THE CUT EDGE IS THE WORD OVER.",
+   "fragment": "8 ROWS",
+   "note": "A PROPERTY OF THE ARTWORK, and the arithmetic of the field itself. Eight rows of twenty five whole marks is 200, so the count lands exactly by construction rather than by a cap that would truncate the last row. The render asserts it: whole marks are counted at draw time into window.__akMarkCount and the frame errors if the total is not 200. A twenty sixth column straddles the right edge and is CUT, which is how the drawing carries C06's word \"over\" without claiming a number the source does not give."
+  }
+ ]
+}

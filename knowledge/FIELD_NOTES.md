@@ -3149,3 +3149,148 @@ PARKED, from the frontier scan (focus: LinkedIn platform, the slot the
 - Bumping every mono string to the 24px floor in one pass re-wrapped nine
   slides' bottom bands and produced eleven new collisions. Type floors and
   layout are one problem, not two. Set the floor BEFORE laying out the band.
+
+## 2026-08-12 (craft refresh, run No.31)
+
+- **THE FIRST COMMENT IS REPORTEDLY NO LONGER A SAFE HARBOUR FOR A LINK, and
+  this collides head on with a house contract.** Multiple 2026 practitioner
+  writeups now assert that LinkedIn scans the comment thread on publish and
+  applies the external-link demotion to a link the AUTHOR posts in the first
+  comment, at roughly the same cost as a link in the body. One writeup puts
+  comment-link visibility suppression "up to 80 percent". CAROUSEL_CRAFT's
+  rule, "Sources go in the FIRST COMMENT (paste block we provide), posted
+  within ~60s", was written when the first comment was the documented
+  workaround. EVIDENCE QUALITY IS LOW AND THAT MATTERS. Every instance traced
+  today is tier C practitioner commentary with no named dataset, no sample
+  size and no methodology; the one tier B number in the vicinity, 1.3 million
+  posts, is about links in the BODY (median reach 18.8 percent lower) and says
+  nothing about comments. Forbes has a July 30th piece on the same claim and
+  returns 403 to a fetch, so it could not be read. NOT ACTIONED and
+  deliberately so, because our first comment is the sources block and the
+  citation record is the product, not a growth tactic. THIS IS A MAINTAINER
+  DECISION, and the honest framing of it is a tradeoff between reach and the
+  verification record rather than a bug to fix. Raised in the No.31 draft.
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now
+- Dwell time is now stated everywhere as the primary ranking input, with one
+  widely repeated figure of 1.2 percent engagement at 0 to 3 seconds against
+  15.6 percent at 61 seconds and above. Same tier C caveat, no dataset named.
+  It changes nothing about what we build, because a nine slide document read
+  end to end is already the dwell-maximising artifact, but it is the reason
+  the format keeps winning and it is worth knowing the number people quote.
+- Slide count guidance in the 2026 crop has DRIFTED WIDER, 5 to 15 in one
+  source and 5 to 10 in another, against our 8 to 10 default. Nothing here is
+  strong enough to move the house band, which rests on completion data rather
+  than on engagement rate per post. Recording the drift so a later refresh can
+  see whether it is a trend or noise.
+- **EVENLY-SPACED STREAMLINES ARE THE PLACEMENT ALGORITHM akhachure DOES NOT
+  HAVE.** Jobard and Lefer, "Creating Evenly-Spaced Streamlines of Arbitrary
+  Density", is the standard method for filling a vector field with lines at a
+  GUARANTEED separation d_sep: integrate a streamline from a seed, stop it when
+  it comes within d_test of any existing line, then queue new seeds at distance
+  d_sep along the line just drawn. Density becomes a single parameter and tone
+  becomes a function of d_sep, which is exactly the mapping a slope field wants
+  and exactly what a fixed grid of hachure cells cannot give. Technique #92
+  already owns the SHADING half of this (stroke width from slope, sun azimuth,
+  aspect); this is the SEEDING half. PARKED as a candidate rather than built,
+  because it is a real algorithm and belongs in assets/js with a verifier, not
+  improvised inside a slide at 2am.
+  https://volzo.de/posts/hatching-hachures-contours/
+
+## 2026-08-12 — three failures a comment could not prevent (carousel No.31)
+
+Two pixel-critic rounds and a flow critic returned `revise` on all nine slides
+twice. Most of that cost traces to three defects, and none of them was a
+matter of taste.
+
+- **A UNIT WORD MEANING TWO THINGS IN TWO LIBRARIES USED SIDE BY SIDE.**
+  `AKPOST.grade({exposure})` is in STOPS. `AKT.setup({exposure})` is a
+  MULTIPLIER. All nine slides authored `exposure: 1.02` to `1.05` intending
+  "about three percent" and got `2^1.03`, a full stop over. The deck shipped
+  over-exposed, copper `#B8703C` bloomed until five independent critics could
+  not separate it from gold `#FFC72C` at 432 px, and each of them reported it
+  as a different fault on a different slide. akpost.js documents "stops" in its
+  header. It was still got wrong nine times out of nine. A comment is not a
+  guard, and a shared word with two meanings will be got wrong by whoever is
+  moving fastest.
+- **A DECLARED CONSTRAINT THAT FAILS SILENTLY IS WORSE THAN NO CONSTRAINT.**
+  `AK.fitText(el, {maxLines: N})` bottoms out at `min` and overflows rather
+  than reporting when `min` is authored higher than the box width can hold. It
+  did that on five slides. On slide 08 it swallowed "It is for the grid.", the
+  sentence carrying the deck's whole thesis, and the slide shipped stating only
+  the negative half of its own argument. qa.py passed it. The standing instinct
+  about sanity-checking line counts BEFORE rendering is the right instinct and
+  it is not enough, because the check has to live where the constraint lives.
+- **A MEASUREMENT CAN BE EXACT AND STILL BE A LIE.** Slide 05's 840 px
+  dimension was correct to the pixel over a scene whose two masses were 266 px
+  apart, so the twenty feet was drawn as about six and every gate passed it.
+  The fix was not to move the rule, it was to solve the camera FROM the lock:
+  one world unit is one foot, and the camera distance is computed so one foot
+  is 42 screen px. Now the same number produces both the rule and the room and
+  they cannot disagree. Slide 08 inherits that rig, which is what makes its
+  substitution provable rather than asserted.
+
+  The general shape of the answer is a RENDER-TIME SELF-ASSERTION: the slide
+  declares a measured relationship and the render fails if the pixels disagree.
+  Slide 07 does it for its ISOTYPE count via `window.__akMarkCount`, and it
+  earned its keep immediately, catching 189 and then 196 before landing on an
+  exact 200. That is cheaper than a critic round and it does not get tired.
+
+Two smaller ones from the same run. The printed frame widths on the map slides
+were typed constants and were wrong by 7 and 25 percent against the projections
+that actually drew the maps; they are now derived from `proj.invert` at render
+time, which is why the cover reads 670 KM and not 720. And continuity device A,
+the nine-rung ladder, was declared in the storyboard and drawn on ZERO of nine
+slides until round 2 caught it. Nothing gates the gap between a device the deck
+header declares and a device the artwork contains.
+
+PARKED, from the 2026-08-12 frontier scan (focus: accessibility and PDF /
+document-format changes, the stalest rotation slot, last scanned 2026-07-25).
+Nothing applied: all three upgrade slots went to reactive fixes, which outrank a
+frontier improvement by Phase 12's own reactive-first rule.
+
+- **A TAGGED PDF IS ONE ARGUMENT AWAY AND WOULD NOT SURVIVE OUR MERGE.**
+  Playwright's `page.pdf()` has taken `tagged: true` and `outline: true` since
+  v1.42, both defaulting false, Chromium-headless only; we are on 1.62 and
+  `assemble.py` passes neither. Chromium has generated tagged PDFs from the
+  print path since Chrome 85, headless included. So the switch exists. It is
+  PARKED, not flipped, for two measured reasons. First, `assemble.py` prints
+  NINE single-page PDFs and merges them with `pypdf`'s `PdfWriter.add_page`, and
+  the structure tree is a DOCUMENT-level object: not merging `StructTreeRoot` is
+  an open, acknowledged limitation in pypdf, qpdf AND pymupdf alike, so we would
+  generate tags and then drop them, and ship a PDF that claims an accessibility
+  it does not have. That is worse than the honest untagged file we ship now.
+  Second, tagged output is reported as multiples larger, and our vector PDF is
+  already 12.43 MB against LinkedIn's 100 MB cap; the size has to be measured
+  before anything is promised. What would unblock it: merge at the CATALOG level
+  (or print all nine slides as one document in one `page.pdf()` call, which
+  keeps a single structure tree by construction) and then measure. Worth doing
+  for the copy that lives on alaskaaihq.com, NOT for LinkedIn, which re-renders
+  document posts as images anyway.
+  https://playwright.dev/docs/api/class-page
+  https://blog.chromium.org/2020/07/using-chrome-to-generate-more.html
+  https://github.com/qpdf/qpdf/issues/490
+- **THE FOUR-LEVEL MODEL, WHICH IS THE MISSING SHAPE FOR THE ALT-TEXT GAP THE
+  2026-08-08 SCAN PARKED.** Lundgard and Satyanarayan built it by grounded-theory
+  analysis of 2,147 sentences of visualization description: L1 enumerates
+  construction properties (marks and encodings), L2 reports statistical concepts
+  and relations (extrema, correlations), L3 identifies perceptual and cognitive
+  phenomena (complex trends and patterns), L4 elucidates domain-specific
+  insights (social and political context). Evaluated with 30 blind and 90
+  sighted readers, and the finding that matters is that the two groups **differ
+  significantly on which level they rank as most useful**, so a description
+  written by a sighted author for a sighted author is not the same artifact.
+  Why this studio should care: LinkedIn provides no per-slide alt text for
+  carousels at all, the honest options are a plain-text slide-by-slide block in
+  the first comment or nothing, and "write a summary" with no structure produces
+  L4 opinion with no L2 under it. L1-L4 is the structure. It also names what our
+  dossier `encoding_reads` field already gropes at, which is an L3 claim about a
+  picture. PARKED as a caption/first-comment brief candidate rather than a rule,
+  because it is an editorial decision about the post's shape and the maintainer
+  owns that.
+  https://arxiv.org/abs/2110.04406
+- CONTEXT, not actionable: PDF/UA-2 (ISO 14289-2:2024, aligned with PDF 2.0)
+  adds `FENote`, `Em`/`Strong` and sub-structured `Figure` tags, but PDF/UA-1
+  remains the practical 2026 target because validators and tooling still trail
+  it. The April 24th 2026 ADA Title II deadline binds public entities of 50,000
+  or more, which is not us. Recorded so the next accessibility scan does not
+  rediscover it.

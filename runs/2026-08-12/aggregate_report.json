@@ -1,0 +1,93 @@
+{
+  "run_dir": "out/2026-08-12",
+  "render_report": "out/2026-08-12/render/render_report.json",
+  "aggregates_file": "out/2026-08-12/aggregates.json",
+  "detected": 8,
+  "declared": 8,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "2,600 RESIDENTS",
+      "text": "ABOUT 2,600 RESIDENTS C21",
+      "n": 2600,
+      "subject": "residents"
+    },
+    {
+      "slide": 3,
+      "kind": "span",
+      "fragment": "20 to 25",
+      "text": "Koplin estimates 20 to 25 percent of Cordova's hydropower goes unused every year",
+      "from_n": 20,
+      "to_n": 25
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "170 kilowatts",
+      "text": "Greensparc put 170 kilowatts of computing inside the Humpback Creek run of river",
+      "n": 170,
+      "subject": "kilowatts"
+    },
+    {
+      "slide": 6,
+      "kind": "span",
+      "fragment": "8 TO 1",
+      "text": "DETAIL ASCALE 8 TO 1",
+      "from_n": 8,
+      "to_n": 1
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "200 island grids",
+      "text": "Over 200 island grids.One got picked.",
+      "n": 200,
+      "subject": "island grids"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "200 remote microgrids",
+      "text": "UAF counts over 200 remote microgrids in Alaska. Each one is a closed loop with",
+      "n": 200,
+      "subject": "remote microgrids"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "200 MARKS",
+      "text": "200 MARKS DRAWN",
+      "n": 200,
+      "subject": "marks"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "8 ROWS",
+      "text": "EACH MARK IS ONE REMOTE MICROGRID. 8 ROWS OF 25. THE CUT EDGE IS THE WORD OVER.",
+      "n": 8,
+      "subject": "rows"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 6,
+      "text": "DETAIL A SCALE 8 TO 1",
+      "note": "A PROPERTY OF THE ARTWORK, not a story quantity. The 170 kW block is drawn TRUE at the slide's own 42.6 px per MW, which is 7.2 px. The circled detail enlarges that sliver by a printed factor of 8 so it can be seen. A declared magnification is what separates a detail callout from a cheated scale, and the ratio is printed on the slide precisely so the reader can undo it."
+    },
+    {
+      "slide": 7,
+      "text": "200 MARKS DRAWN",
+      "note": "A PROPERTY OF THE ARTWORK. Exactly 200 full ISOTYPE marks are drawn inside the field at a 42 px pitch, asserted at render time in window.__akMarkCount rather than claimed in a caption, and a further column is CUT by the right edge. The cut edge is how the drawing carries C06's word \"over\". There is no committed dataset of Alaska microgrid locations and the gazetteer holds 42 places, so the field makes NO geographic claim and the slide prints that refusal in its register stamp."
+    },
+    {
+      "slide": 7,
+      "text": "EACH MARK IS ONE REMOTE MICROGRID. 8 ROWS OF 25. THE CUT EDGE IS THE WORD OVER.",
+      "note": "A PROPERTY OF THE ARTWORK, and the arithmetic of the field itself. Eight rows of twenty five whole marks is 200, so the count lands exactly by construction rather than by a cap that would truncate the last row. The render asserts it: whole marks are counted at draw time into window.__akMarkCount and the frame errors if the total is not 200. A twenty sixth column straddles the right edge and is CUT, which is how the drawing carries C06's word \"over\" without claiming a number the source does not give."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

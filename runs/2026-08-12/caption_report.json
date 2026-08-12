@@ -1,0 +1,21 @@
+{
+  "chars": 844,
+  "hook": "What does Cordova do with power it can't sell and can't ship out?",
+  "hook_len": 65,
+  "commas": 7,
+  "comma_per_100": 0.87,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaEnergy",
+    "#Microgrids",
+    "#GridResilience"
+  ],
+  "deck_summary": "The map with no line out, the twenty feet drawn true, and what the $725,000 buys.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [
+    "HOOK: opens with a question; declarative openers test better"
+  ],
+  "verdict": "PASS",
+  "copy_fields_checked": 73
+}

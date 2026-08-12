@@ -1,0 +1,139 @@
+```json
+[
+  {
+    "slide": 7,
+    "verdict": "revise",
+    "score_0_10": 5.5,
+    "encoding_reads": "yes, n/a formally (no 11a declared in this dossier) but the intended read holds: at 432 px a stranger sees a dense population of identical rings with exactly one lit warm on a lit pool, which is the beat. The single Cordova pip IS findable at thumb width, though the lit pool and the CORDOVA plate under it are doing most of the finding, not the pip itself.",
+    "transcription": [
+      "Over 200 island grids.",
+      "One got picked.",
+      "NO SCALE.",
+      "A COUNT, NOT A MAP.",
+      "UAF counts over 200 remote microgrids in Alaska. Each one is a closed loop with nothing joining it to the next.",
+      "CORDOVA",
+      "200 MARKS DRAWN",
+      "07 / 09",
+      "EACH MARK IS ONE REMOTE MICROGRID. 200 DRAWN AT 42 PX PITCH, ONE PER FOOT. THE OPEN RIGHT EDGE IS THE WORD OVER.  C06"
+    ],
+    "typos": [],
+    "hard_fails": [
+      "TEXT COLLISION. The headline's terminal period in 'One got picked.' is drawn on top of the register stamp's knockout plate and lands hard against the 'A' of 'A COUNT, NOT A MAP.' At 432 px the two glyphs merge and the stamp reads 'R COUNT, NOT A MAP.' The slide's honesty guarantee is the one string being corrupted.",
+      "THE DRAWING CONTRADICTS ITS OWN PRINTED LEGEND. The legend says 'THE OPEN RIGHT EDGE IS THE WORD OVER' but no column is cut by the frame: every row terminates in a complete, un-clipped ring with roughly 30 to 60 px of clear ground to its right. With a 42 px pitch from x 80 the 24th column lands at x 1046 and nothing straddles x 1080, so the 'over' is asserted in words and absent from the picture. On the one slide in the deck built to refuse an unsupported claim, this is the failure that matters."
+    ],
+    "transcription_diffs": [
+      {"expected": "UAF counts over 200 remote microgrids in Alaska. Each one is a closed loop with nothing joining it to the next. Cordova is one of them. (C06)", "rendered": "... nothing joining it to the next.", "severity": "major", "note": "the third sentence 'Cordova is one of them.' is missing; the CORDOVA label plate is substituting for it and the scorer will diff this against copy.json"},
+      {"expected": "EACH MARK IS ONE REMOTE MICROGRID. 200 DRAWN. THE OPEN EDGE IS THE WORD OVER.", "rendered": "EACH MARK IS ONE REMOTE MICROGRID. 200 DRAWN AT 42 PX PITCH, ONE PER FOOT. THE OPEN RIGHT EDGE IS THE WORD OVER.  C06", "severity": "minor"},
+      {"expected": "200 MARKS FOR OVER 200 MICROGRIDS (declared aggregate) / rail reads 'NO SCALE. A COUNT, NOT A MAP.'", "rendered": "200 MARKS DRAWN", "severity": "minor", "note": "the stamp moved to top right and the rail took a new unlisted string; acceptable as a count, but it is not the declared aggregate text and aggregates.json does not exist"},
+      {"expected": "no CORDOVA label in the dossier copy list", "rendered": "CORDOVA", "severity": "minor", "note": "an added string; it earns its place, declare it"}
+    ],
+    "checklist": [
+      {"item": "Exactly 200 full marks are drawn, countable in the render", "pass": false, "why": "not verifiable and probably not 200. I count 8 full rows of 24 to 25 marks plus 2 masked top-right rows of 6, which is 204 to 212. The pitch measures right at about 42 slide px, so the row length, not the pitch, is the error."},
+      {"item": "The right columns are CUT by the frame edge, and the legend says why", "pass": false, "why": "nothing is cut; every ring is whole and there is clear ground at the right edge of every row"},
+      {"item": "There is no coastline, no projection and no geodata on this slide", "pass": true, "why": "clean. No landform, no graticule, nothing that could be mistaken for a position"},
+      {"item": "The register stamp reads NO SCALE. A COUNT, NOT A MAP.", "pass": false, "why": "present and correctly worded, but the headline period overlaps the plate and the leading 'A' so it does not read cleanly at feed scale"},
+      {"item": "The single distinguished pip is findable at 432 px", "pass": true, "why": "yes. The lit pool, the warm ring, the blue centre and the CORDOVA plate together make it the only place the eye stops in the field"},
+      {"item": "All marks are the same size. None is enlarged to mean more", "pass": true, "why": "one size class throughout, the pip included. The distinction is value, hue and a raised base, never scale. ISOTYPE contract intact."},
+      {"item": "The bottom rows are embossed with contact shadows, not flat discs", "pass": true, "why": "the lower rows carry a visible down-and-right emboss shadow and read as pressed into a lit surface"},
+      {"item": "No mark intrudes into the headline or body boxes", "pass": true, "why": "the reserve mask works. The gap it leaves to the right of the body is larger than the text box, which reads as a ragged hole"}
+    ],
+    "bottom_third": {"carries": "the last four rows of embossed marks with cast shadows, the lit slab pool under the Cordova pip with its three-face base, the CORDOVA plate, the rail plate with its checkerboard bar scale, the counter plate and the legend", "modeled_tone": true, "why": "the emboss shadows and the lit pool are real modeled tone, not plates on bare ground. The dossier's 90 px tailrace strip beneath it all is missing, so the band below y 1150 is thinner than planned."},
+    "contrast_worst": {"where": "bottom legend, grey Archivo on the graded ground below the rail", "estimate": "about 5:1", "ok": true},
+    "thumb_test": {"readable_at_432px": true, "one_takeaway": "a huge population of identical closed loops with exactly one lit differently, and the word CORDOVA under it. The takeaway survives. What does not survive is the register stamp, which reads as 'R COUNT, NOT A MAP.'"},
+    "strengths_do_not_break": [
+      "The ISOTYPE field itself is genuinely beautiful and genuinely honest, and the emboss on the lower rows makes it a surface rather than a dot screen",
+      "One size class, no enlarged pictogram, the distinction carried entirely by value and light",
+      "The lit pool under the Cordova pip is the correct lever for making one mark findable without breaking the count",
+      "The reserve mask around the headline and body is clean, with zero art touching glyphs in the type areas",
+      "No geodata, no coastline, no invented positions. The refusal is real."
+    ],
+    "fixes": [
+      {"what": "Un-collide the register stamp from the headline", "where": "top right, stamp plate currently about x 628 to 1000, y 168 to 260 (slide coords)", "how": "Move the stamp plate to x 640 to 1000, y 300 to 368, which is clear below the headline block (bottom about y 240) and above the body (top about y 378). Keep the gold hollow tick where it is at about (960, 118). Do not shorten the headline.", "severity": "high"},
+      {"what": "Make the right edge actually cut, so the legend is true", "where": "the ISOTYPE field generator", "how": "Keep pitch 42 and the x 80 origin, but continue the column loop while cx - r < 1130 instead of stopping inside the frame, and let the canvas clip. Columns 25 and 26 then straddle x 1080 and are visibly sliced. Draw those clipped rings in the same stroke so they read as continuation, not decoration.", "severity": "high"},
+      {"what": "Make the count checkable instead of asserted", "where": "field generator and the rail string", "how": "Count full (unclipped, unmasked) marks at draw time into window.__akMarkCount and assert === 200 in renderReady; if the mask removes marks from rows 1 and 2, redistribute them into the clipped columns so exactly 200 whole marks survive. The rail may then keep '200 MARKS DRAWN' honestly.", "severity": "high"},
+      {"what": "Restore the dropped body sentence", "where": "body block, after 'nothing joining it to the next.'", "how": "Add 'Cordova is one of them. (C06)' as a fifth line. There is vertical room before the field's first full row at y 470 is reached at this measure.", "severity": "medium"},
+      {"what": "Stop the pip reading as gold", "where": "Cordova pip ring and its trailing conductor", "how": "Set the ring and leader stroke to copper #B8703C matte (OKLCH chroma <= 0.11), not the current bright amber. Gold #FFC72C must stay unique to the hollow August 11 tick on this slide.", "severity": "medium"},
+      {"what": "Terminate the copper leader on something", "where": "the copper tail running right from the pip, ending in bare ground at about (440, 1050)", "how": "End it on the CORDOVA plate's own left edge vertex and declare it in window.__akLeaders. A hero-material path that fades out in void reads as an unfinished stroke.", "severity": "medium"},
+      {"what": "Pull the legend inside the deck's own y gate", "where": "bottom legend, currently about y 1283 to 1327", "how": "Move to y 1200 to 1250. The deck's gate is all DOM text inside y [80, 1270] and the 80 px bottom margin is 1270.", "severity": "medium"},
+      {"what": "Close the ragged hole between the body and the two masked rows", "where": "about x 650 to 800, y 470 to 570", "how": "Tighten the reserve mask to the measured text box plus 24 px instead of the current much wider box, so rows 1 and 2 start closer to the body and the field reads as one population rather than a stranded cluster.", "severity": "low"},
+      {"what": "Restore the tailrace strip", "where": "below y 1150", "how": "The dossier promises a 90 px tailrace strip carrying the band under the field. It is absent, so the rail and counter plates sit on bare graded ground.", "severity": "low"}
+    ]
+  },
+  {
+    "slide": 8,
+    "verdict": "revise",
+    "score_0_10": 2.5,
+    "encoding_reads": "no. The declared claim, 'the control layer reaches every remaining mass, and the thing that was removed is not one of the things it needs', does not read at 432 px and barely reads at full size. The cause is VALUE and POSITION: region a, the phantom empty volume, is a near-ground-value hairline rectangle placed about 330 px BELOW where the server actually stands in slide 05, so it does not hold the server's space; and region b, the generator, is only touched by one of four control leaders, the other three ending on bare floor. What a stranger sees is a gold swoosh, a blue starburst sitting on the body text, and four bars.",
+    "transcription": [
+      "The money is",
+      "not",
+      "for the data",
+      "center.",
+      "JULY 22ND  SELECTED. NO AMOUNT PUBLISHED.",
+      "AUGUST 11TH  $725,000. AURORA-AI.",
+      "On August 11th UAF published both. $725,000, AURORA-AI, with Richard Wies as principal investigator. It combines utility data, virtual replicas of the power grid and AI to forecast demand and detect abnormal operating conditions.",
+      "THE SERVER,",
+      "REMOVED",
+      "UAF ACEP",
+      "COLORADO STATE",
+      "NAT. LAB OF THE ROCKIES",
+      "CORDOVA ELECTRIC C04",
+      "$500,000",
+      "$725,000",
+      "$750,000",
+      "08 / 09",
+      "CONSISTENT WITH THE PUBLISHED PHASE I BAND. NREL WAS RENAMED THE NATIONAL LABORATORY OF THE ROCKIES ON DECEMBER 1ST, 2025.  C16, C17, C30"
+    ],
+    "typos": [],
+    "hard_fails": [
+      "THE DECK'S ARGUMENT IS MISSING FROM THE HEADLINE. The dossier's three hand-broken lines are 'The money is not / for the data center. / It is for the grid.' The render shows four lines, 'The money is / not / for the data / center.', and the third sentence 'It is for the grid.' is GONE. The slide that carries the whole thesis states only the negative half of it. Almost certainly a maxLines 3 clamp swallowing the tail after fitText re-wrapped 'not' onto its own orphan line.",
+      "TEXT OVERFLOWS ITS OWN PLATE. The August 11 rail wraps 'AURORA-AI.' across a line break and the gold 'AI.' is rendered OUTSIDE the knockout window on bare wall at about (990, 330) displayed. The plate was not sized from the measured string.",
+      "PRIMARY TEXT CONTRAST FAILURE, and this is machine QA's 3.1. The blue control-path origin is a hard emissive orb sitting directly on the word 'Richard' in the body block. White Fraunces over that core measures roughly 2.8 to 3.1 to 1, and the glyphs 'ic' are visibly washed out. Art is touching glyphs.",
+      "SECOND TEXT OVERFLOW. 'THE SERVER, REMOVED' is a two-line string on a one-line plate. 'REMOVED' falls off the bottom of the black plate onto the lit floor in a dark grey, roughly 1.7 to 1. The two words that explain the entire slide are the least legible thing on it.",
+      "THE PHANTOM DOES NOT HOLD THE SERVER'S PLACE. Compared side by side with slide 05, the server cabinet occupies about x 205 to 425, y 775 to 1300 (displayed). The phantom dashed outline on 08 sits at about x 152 to 380, y 1105 to 1490. It is shifted down by roughly 330 px and left by 50, it lies entirely below the floor horizon where the server stood above it, and its bottom edge disappears behind the UAF ACEP block. The substitution is therefore NOT provably the same object removed from the same room, which is the whole conceit.",
+      "REQUIRED SOFTENING IS ILLEGIBLE AND OUT OF BOUNDS. 'CONSISTENT WITH THE PUBLISHED PHASE I BAND' is set in a dark grey on the speckled floor at about y 1296 to 1333 slide, past the deck's own y 1270 gate and inside the 80 px bottom margin, at roughly 2.4 to 1. C17's mandated hedge cannot be a string nobody can read. It also no longer sits with the money rail it qualifies."
+    ],
+    "transcription_diffs": [
+      {"expected": "It is for the grid.", "rendered": "(absent)", "severity": "hard-fail"},
+      {"expected": "$725,000, AURORA-AI, Alaska Utility Resilience and Optimization using Real-time AI, with Richard Wies as principal investigator.", "rendered": "$725,000, AURORA-AI, with Richard Wies as principal investigator.", "severity": "major", "note": "C02, the AURORA-AI expansion, is dropped. It is in the claims index for this slide and appears nowhere else in the deck."},
+      {"expected": "(C01, C02, C03, C05, C07) on the body block", "rendered": "(no claim ids on the body)", "severity": "major", "note": "the body asserts the amount, the PI and the mechanism with zero ids while every other block on the deck carries them"},
+      {"expected": "CORDOVA ELECTRIC (C04)", "rendered": "CORDOVA ELECTRIC C04", "severity": "minor", "note": "parens stripped deck-wide, consistent, fine if intentional"},
+      {"expected": "THE NATIONAL LABORATORY OF THE ROCKIES WAS NREL UNTIL DECEMBER 1ST, 2025. (C30)", "rendered": "NREL WAS RENAMED THE NATIONAL LABORATORY OF THE ROCKIES ON DECEMBER 1ST, 2025.  C16, C17, C30", "severity": "minor", "note": "reworded and merged with the band caption; meaning preserved"}
+    ],
+    "checklist": [
+      {"item": "The scene is provably the same room as slide 05, same basis, same light", "pass": true, "why": "yes and this is the slide's best asset. The cylinder, the copper band, the plinth, the floor horizon at y 965 and the key direction are pixel-identical to slide 05. The cached-scene approach worked."},
+      {"item": "The server is GONE and its phantom outline holds the space", "pass": false, "why": "gone, yes. Held, no. The outline is in the wrong place by about 330 px, is a near-invisible hairline, and is occluded by a label plate and a partner block."},
+      {"item": "Control paths are 1.25 px and phantom dashed, and reach every remaining mass", "pass": false, "why": "weight and dash are right, the reach is not. Four leaders: one lands on the copper band, one on the plinth, and two end on bare floor at about (1335, 1400) and (445, 970). None reaches the four partner blocks."},
+      {"item": "$293 million appears NOWHERE on this slide", "pass": true, "why": "confirmed absent. No 293, no million, nowhere."},
+      {"item": "The band caption reads CONSISTENT WITH, never asserting the phase", "pass": true, "why": "wording is correct, 'CONSISTENT WITH THE PUBLISHED PHASE I BAND'. It never says this IS a Phase I award. But see the hard fail: it is illegible and detached from the rail."},
+      {"item": "Wies is 'principal investigator', not 'professor'", "pass": true, "why": "'with Richard Wies as principal investigator'. The word professor does not appear."},
+      {"item": "The NREL renaming footnote is present", "pass": true, "why": "present, though only readable by zooming"},
+      {"item": "The $725,000 tick sits true within the band", "pass": false, "why": "the tick itself is at 90 percent of the rail's run, which is arithmetically right. But the three labels are packed left to right as a list under the left half of the rail, so $725,000 sits under the 50 percent mark and $750,000 ends 260 px short of the rail's end. As drawn the rail encodes nothing a reader can read."},
+      {"item": "Four partner blocks, four claim-id-carrying labels, all with contact shadows", "pass": false, "why": "four blocks and four labels, yes, with Cordova Electric correctly the only copper one. But the blocks have no two-part contact shadow cast into the lit floor, unlike the masses in slide 05, so they float."}
+    ],
+    "bottom_third": {"carries": "four cabinet-extruded partner blocks with lit top faces on the lit concrete floor, the label plate, the money rail and its number plate, the counter", "modeled_tone": true, "why": "the blocks are genuine modeled solids on a graded lit ground, so the band is carried. Two defects: the lids are near-white and out-rank everything else in the frame, and there are no contact shadows under them."},
+    "contrast_worst": {"where": "body block where the blue control-origin glow sits under 'Richard'; then 'REMOVED' on the lit floor; then the Phase I band caption at the bottom", "estimate": "about 2.8 to 1, 1.7 to 1 and 2.4 to 1", "ok": false},
+    "thumb_test": {"readable_at_432px": false, "one_takeaway": "'The money is not for the data center' and then nothing, because the resolving line is missing. The money rail reads as three gold numbers in a row rather than a value inside a band, the phantom outline is invisible, and the blue orb on the body text is the loudest thing in the frame."},
+    "strengths_do_not_break": [
+      "The akthree scene is genuinely rendered and genuinely reused: one light direction, real material gradient on the steel, a matte copper band, a soft cast shadow off the plinth, no dead GL region, no upscale blur, graded blacks with no clipped whites",
+      "It IS legibly the same room as slide 05. Do not re-render the scene, only fix what is drawn over it",
+      "Cordova Electric alone lit copper among the four partner blocks is exactly the right encoding and should survive any revision",
+      "$293 million is correctly absent and 'CONSISTENT WITH' is correctly worded",
+      "The gold tick's true 90 percent position within the rail run is right; only its labelling is wrong"
+    ],
+    "fixes": [
+      {"what": "Restore the third headline line", "where": "display block", "how": "Hand-break exactly as 'The money is not' / 'for the data center.' / 'It is for the grid.' and call AK.fitText(el,{min:78,max:110,maxLines:3}). Verify no CSS line-clamp or overflow hidden is truncating: the orphan 'not' proves the current break is being computed, not authored. Assert el.scrollHeight <= el.clientHeight in renderReady.", "severity": "high"},
+      {"what": "Kill the glow orb off the body text", "where": "control-path origin at about (800, 660) displayed, over the word 'Richard'", "how": "Move the fan origin down into the room, to the empty volume's centre at about (162, 900) slide, so the control layer visibly emanates from where the server used to be. Drop the emissive radius to under 24 px and its alpha to 0.35. Nothing emissive may overlap the body plate. One glowing path in this deck is the gold money tick.", "severity": "high"},
+      {"what": "Put the phantom back where the server actually stood", "where": "dashed rectangle, currently about x 152 to 380, y 1105 to 1490 displayed", "how": "Take the server mesh's own projected bounding box from the cached slide-05 scene (about x 205 to 425, y 775 to 1300 displayed, i.e. x 138 to 287, y 524 to 878 slide) and draw the phantom there. Raise it to 2.0 px in #7E8B93 with the deck's 30 5 6 5 6 5 dash, and knock a slightly darker pool out of the floor inside it so the absence has value, not just an outline. This also fills the dead middle-left and settles the top-loading flag.", "severity": "high"},
+      {"what": "Re-size the two overflowing plates from measured text", "where": "August 11 rail (top right) and 'THE SERVER, REMOVED'", "how": "Build both with AK.svgPlate from getBBox after await document.fonts.ready, allowing two lines. Widen the rail plate to x 600 to 1000 slide so 'AUGUST 11TH  $725,000. AURORA-AI.' sets on one line at 26 px, or set the plate height for the wrapped pair. No glyph may sit outside its window.", "severity": "high"},
+      {"what": "Rebuild the money rail as an axis, not a list", "where": "bottom left, rail line x 140 to 860 displayed with the number plate below", "how": "Direct-label the ends: '$500,000' left-aligned at the rail's left terminal, '$750,000' right-aligned at its right terminal, and '$725,000' centred on the gold tick at 90 percent with a short leader up to it. Set $500,000 and $750,000 in #C9C3AE, and leave ONLY $725,000 gold, since gold means what became public on August 11th. Move 'CONSISTENT WITH THE PUBLISHED PHASE I BAND  C16, C17' onto the rail plate itself at 26 px in #C9C3AE, at or above y 1250.", "severity": "high"},
+      {"what": "Land every control leader on a mesh vertex", "where": "the two leaders ending in bare floor at about (1335, 1400) and (445, 970) displayed", "how": "Terminate all four on their target's own projected vertex from the cached scene and declare each in window.__akLeaders: the generator body, the copper band, the plinth, and at least one of the partner blocks. A control layer that ends in mid air argues nothing.", "severity": "high"},
+      {"what": "Restore C02 and the body's claim ids", "where": "body block", "how": "Set the dossier string verbatim, including 'Alaska Utility Resilience and Optimization using Real-time AI,' and the trailing '(C01, C02, C03, C05, C07)'. If the block then runs six lines, drop the body to 34 px rather than cutting the expansion, which is the only place in the deck AURORA-AI is spelled out.", "severity": "high"},
+      {"what": "Fix the bottom margin", "where": "footnote at about y 1296 to 1333 slide", "how": "Move all remaining footnote text to y <= 1250 and raise its value to #7E8B93 on the graded slab so it clears 4.5 to 1. Deck gate is y [80, 1270].", "severity": "high"},
+      {"what": "Give the partner blocks contact shadows", "where": "four blocks, y 1490 to 1610 displayed", "how": "Two-part, down and right, 0.42 alpha at 6 px and 0.16 alpha at 60 px, in #0A1413, cast into the lit floor after the floor is lit, same as slide 05's masses. Also drop the lid value from near-white to #96A8B0 so they stop out-ranking the gold tick.", "severity": "medium"},
+      {"what": "Cool the conductor so gold keeps one meaning", "where": "the bright amber curve sweeping from the lug across the frame", "how": "It renders at roughly #F0B44A, brighter and yellower than the copper band on the same cylinder, so on the deck's full-gold-budget slide the largest, loudest warm mark is not gold-eligible. Set it to #B8703C matte, OKLCH chroma <= 0.11, per the deck's own copper gate.", "severity": "medium"},
+      {"what": "Nudge the body plate off the headline", "where": "plate top edge at about y 548 displayed against 'center.' descenders", "how": "Drop the plate top by 18 px, or raise the headline block, so there is a clean 24 px gap. It currently touches.", "severity": "medium"}
+    ]
+  }
+]
+```

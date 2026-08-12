@@ -1,0 +1,39 @@
+{
+ "run_date": "2026-08-12",
+ "carousel_no": 31,
+ "weighted_total": 8.42,
+ "threshold": 8.3,
+ "ship": true,
+ "revision_rounds": 3,
+ "scoring_cycles": 1,
+ "hard_fails": [],
+ "criteria": [
+  {"name":"Thumb-stop cover","score":7,"weight":0.14},
+  {"name":"Story arc and swipe momentum","score":8,"weight":0.14},
+  {"name":"Artwork craft and genuine detail","score":6,"weight":0.16},
+  {"name":"Story-art fusion","score":8,"weight":0.14},
+  {"name":"Alaska authenticity and local relevance","score":9,"weight":0.12},
+  {"name":"Insight density and factual weight","score":8,"weight":0.10},
+  {"name":"Variety vs ledger","score":8,"weight":0.08},
+  {"name":"Legibility and platform fitness","score":6,"weight":0.07},
+  {"name":"Copy voice and hook","score":8,"weight":0.05},
+  {"name":"Deliverable completeness","score":9,"weight":0.10}
+ ],
+ "calculation": "(7x0.14)+(8x0.14)+(6x0.16)+(8x0.14)+(9x0.12)+(8x0.10)+(8x0.08)+(6x0.07)+(8x0.05)+(9x0.10) = 8.42. No hard fail, so no 6.9 cap. The rubric's weights sum to 1.10, so this is the literal weighted sum the rubric specifies; normalised it is 7.65 against a normalised 7.55 threshold, same verdict either way.",
+ "weakest_criterion": "Artwork craft and genuine detail, 6 at the rubric's heaviest weight of 0.16, where 1.6 of the 1.68 points lost actually sit.",
+ "one_sentence_fix": "Pull slide 05's camera back so the generator sits whole inside the frame with the 840 px dimension intact, and make the declared akengrave back wall and poche crosshatch slab actually render, because the hero is simultaneously the deck's emptiest frame and the slide carrying its most heavily weighted criterion.",
+ "verified_off_the_pixels": [
+  "slide 05's dimension measures ~838 design px against the declared 840, extension lines rising from the cabinet's right face and the generator's near face",
+  "slide 06's copper baseline measures ~840 px, so the chart is genuinely twenty feet wide",
+  "slide 08's phantom registers with slide 05's cabinet within a few px, which is what makes the substitution provable",
+  "slide 08's money tick sits at 90.0 percent of the $500k to $750k rail, arithmetically exact for $725,000",
+  "slide 07's mark count is asserted at draw time with a 26th column cut by the frame",
+  "the exposure correction is visible: copper and gold separate cleanly at thumb size"
+ ],
+ "three_weakest": [
+  "slide 05, the rendered hero, crops the generator into an unreadable half-drum at the right frame edge and two declared surface techniques did not render, so roughly 40 percent of it is flat gradient and noise",
+  "slide 03's body is a nine-line undifferentiated grey wall with the declared 32 px inter-block gap missing, and its bound labels detach from the two rules they name, so the one slide whose whole job is to draw a range as a range does not read as a range",
+  "the deck broke four of its own declared legibility gates, most visibly slide 09's closing plate sitting about 24 design px from the frame bottom against its own stated 72 px minimum"
+ ],
+ "post_score_correction": "The scorer named one cheap defect it did not fail on: slides 01 and 02 printed '69 KV' and '25 KM' where SI is kV and km, in a deck that sets '170 kW' and '1 MW' correctly in the same face. Corrected after scoring and re-rendered; qa.py still PASS 0/0 and copy_sync still clean. Nothing else on those two frames changed."
+}

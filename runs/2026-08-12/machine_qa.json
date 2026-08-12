@@ -1,0 +1,75 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the nearest 69 kV segment' lands 0.0px from its target",
+        "leader \"Cordova's own mark\" lands 15.6px from its target"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader \"the server cabinet's right face at its base\" lands 0.0px from its target",
+        "leader \"the generator's near face at its base\" lands 0.0px from its target",
+        "leader 'the cabinet, from its label plate' lands 0.0px from its target",
+        "leader 'the generator, from its label plate' lands 0.0px from its target"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the 170 kW block drawn true at this scale' lands 0.0px from its target"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the Cordova pip' lands 18.0px from its target"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader \"the generator's near face at its base\" lands 0.0px from its target",
+        "leader 'the copper band on the generator axis' lands 0.0px from its target",
+        "leader 'the generator shell' lands 0.0px from its target",
+        "leader 'the Cordova Electric partner block' lands 0.0px from its target",
+        "leader 'the UAF ACEP partner block' lands 0.0px from its target"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": []
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

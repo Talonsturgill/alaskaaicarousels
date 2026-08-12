@@ -1,0 +1,159 @@
+```json
+[
+  {
+    "slide": 5,
+    "verdict": "revise",
+    "encoding_reads": "no, half of it: the size half of the claim lands instantly at 432 px (huge lit cylinder against a small dark box), but the 'twenty feet apart' half does not read from the art and is actively contradicted by it, cause = position/proportion, because the drawn gap between the two masses is about 227 px (5.4 ft at the printed 42 px/ft) while the gold rule beneath them is 840 px, so the dimension's ends land on the two LABEL PLATES rather than on the cabinet's right face and the generator's near face.",
+    "transcription": [
+      "Twenty feet",
+      "from the",
+      "turbine.",
+      "Greensparc put 170 kilowatts of computing inside the Humpback Creek run of river plant, several miles north of town.",
+      "170 KW COMPUTING",
+      "C18",
+      "GENERATOR, FORM",
+      "RECONSTRUCTED",
+      "20 FT",
+      "1 FT = 42 PX",
+      "05 / 09",
+      "SOURCED 4 / DRAWN 6. THE ROOM IS RECONSTRUCTED FROM MEASURED QUANTITIES.  C18, C26"
+    ],
+    "typos": [],
+    "hard_fails": [
+      "MISSING COPY. The dossier body is 31 words ending 'The National Laboratory of the Rockies reported it in March. (C18, C26)'. Rendered body stops at 'north of town.' The attribution sentence is absent. C18 carries needs_softening:true with the explicit instruction 'Attribute as the National Laboratory of the Rockies reported in March', so the render drops a required attribution, not just a clause.",
+      "THE DIMENSION DOES NOT DIMENSION THE OBJECTS. The gold rule is metrically correct at 840 px (measured x 118 to 959, exactly the twenty-foot lock) but its extension ticks rise only to the two label plates at y ~1000 and stop. Its left terminus at x 118 sits 24 px LEFT of the cabinet's left edge (x 142); its right terminus at x 959 lands under the mid-body of the generator cylinder, which spans x 550 to off-frame. The actual drawn gap between the cabinet's right face (x 290) and the generator's near face (x 517) is 227 px, about 5 ft. The deck's single load-bearing measurement is drawn wrong on the slide that exists to draw it.",
+      "NO ARROWHEADS ON THE DIMENSION CALL. Dossier section 11 requires 'extension lines with a 4 px gap and 6 px overshoot, 3 to 1 filled arrowheads'. Both ends of the gold rule terminate flush, with no arrowhead of any kind. The deck-wide single arrowhead shape does not appear on this slide."
+    ],
+    "checklist": [
+      {"item": "snapshot.ok is true and logged, or the designed fallback rendered", "pass": true, "why": "The frame is genuinely rendered: cylinder carries a continuous specular gradient, the copper band has its own falloff, PCF-soft cast shadows are present on the floor. No dead or uniform GL region."},
+      {"item": "The dimension measures exactly 840 px and reads 20 FT", "pass": true, "why": "Measured 1245 px at 1600-wide display, which is 841 slide px. '20 FT' prints in dark ink on a knockout window."},
+      {"item": "The dimension is the only hero-weight gold in the deck", "pass": false, "why": "The copper load path curve is rendered as a light amber that reads as a second gold at the same weight, on the same slide, 300 px above the dimension. Palette says copper is gated to OKLCH chroma <= 0.11 and matte precisely so it can never be read as gold. The generator's copper BAND obeys this (clear brown-copper); the conductor does not."},
+      {"item": "The generator carries the words FORM RECONSTRUCTED", "pass": true, "why": "'GENERATOR, FORM RECONSTRUCTED' on a dark plate, tan on near-black, roughly 11:1, legible at full size and at 432 px."},
+      {"item": "The floor is LIT before the shadows are cast, and contact separation clears 4.0 L*", "pass": true, "why": "This is the slide's real achievement. The floor is a genuine mid-key lit plane and the cabinet's two-part shadow sits INSIDE it, tight core plus wide ambient, running down and to the right. Do not break this."},
+      {"item": "The cabinet's blue emissive is under 6 x 18 px and is the only forget-me-not", "pass": false, "why": "The strip measures roughly 5 x 213 slide px, about twelve times the declared height. It is also echoed in the '170 KW COMPUTING' label type, which is defensible as coding but means the checklist's 'only' is not literally true."},
+      {"item": "No fog inside the building", "pass": true, "why": "Interior is clean, no haze over the twenty feet."},
+      {"item": "Every leader terminates on its part's own coordinates", "pass": false, "why": "There are no leaders at all from either label plate to its part. The only lines leaving the plates are the two vertical ticks that drop to the dimension rule, which makes the drawing say the 20 ft is measured between two captions."},
+      {"item": "The camera is orthographic, so no quantity is in perspective", "pass": true, "why": "No convergence anywhere; the cylinder reads as a parallel projection."},
+      {"item": "SOURCED 4 / DRAWN 6 note legible (parent's explicit ask)", "pass": false, "why": "Set in light grey ON the lit floor. Estimated 1.6:1. Invisible at 432 px. Also sits at slide y 1281 to 1291, outside the deck's own gate of y <= 1270, and violates the deck's TWO-VALUE TYPE LAW which says ground above L* 55 takes #131A20."},
+      {"item": "The generator's bleed off the right edge reads as a deliberate crop", "pass": false, "why": "The cylinder and its pedestal are cut cleanly at full height, which on its own would read as a confident crop. It reads as an accident because the dimension's right arrow lands underneath the cylinder instead of on a face, so nothing in the drawing declares where the generator begins."}
+    ],
+    "bottom_third": {
+      "carries": "A real lit concrete floor plane with visible grain, both masses' two-part contact shadows cast into that lit pool, two label plates, the 840 px dimension with its knockout value, the rail plate with a checkerboard bar scale, and the mono counter.",
+      "modeled_tone": true,
+      "why": "Genuinely modeled, not a plate on bare ground. The one weakness is a large flat empty run between y 900 and 1010 where the dossier promised a poche slab at 45/135 crosshatch with a 3.5 px cut edge and a tailrace channel; none of that rendered, so a third of the lower band is bare floor."
+    },
+    "contrast_worst": {
+      "where": "'SOURCED 4 / DRAWN 6. THE ROOM IS RECONSTRUCTED FROM MEASURED QUANTITIES.  C18, C26' at the very bottom, light grey on the lit floor",
+      "estimate": "about 1.6:1",
+      "ok": false
+    },
+    "thumb_test": {
+      "readable_at_432px": true,
+      "one_takeaway": "A small dark box and a big steel cylinder with a copper band on a lit floor, with a gold rule labelled 20 FT under them. The headline, both part labels and '20 FT' all hold. The bottom disclosure line disappears entirely."
+    },
+    "strengths_do_not_break": [
+      "The lit floor with contact shadows bitten INTO it. This is the documented recurring failure and this render actually solves it.",
+      "The generator reads as real steel with a genuinely different copper band material, and the cabinet reads as matte. Three distinct materials in one frame.",
+      "The blue emissive strip against the copper band is the two-hue thesis and it is visible at 432 px.",
+      "Headline and body contrast, roughly 13:1 and 10:1, and no type sits in the forbidden L* 35 to 55 band except the bottom note.",
+      "Grain is present in the floor and the lower band without banding anywhere in the wall or cylinder gradients."
+    ],
+    "fixes": [
+      {"what": "Restore the missing attribution sentence", "where": "body block, Fraunces 36 px", "how": "Append 'The National Laboratory of the Rockies reported it in March. (C18, C26)' so the block reads the full 31 words. Reduce leading to 1.34 if the fourth line crowds the generator top at y 493.", "severity": "high"},
+      {"what": "Make the 840 px dimension actually span the two masses", "where": "scene geometry plus the dimension call at y ~1114", "how": "Move the server cabinet to x 120 to 204 and pull the generator's near face to x 960, per the dossier layout map, so the 840 px gap IS the gap. Then run extension lines vertically from the cabinet's right base vertex and the generator's near base vertex down to the dimension with a 4 px gap and 6 px overshoot, and declare both termini in window.__akLeaders from the mesh's own projected vertices.", "severity": "high"},
+      {"what": "Add the arrowheads", "where": "both ends of the gold dimension rule", "how": "Apply the deck's single marker, filled 3 to 1 at 10 x 3.3 px, markerUnits='strokeWidth', fill='context-stroke'.", "severity": "high"},
+      {"what": "Stop the copper conductor reading as a second gold", "where": "the load path curve from the right edge to the cabinet lug", "how": "Set the stroke to #B8703C flat (no light-amber highlight ramp), clamp to OKLCH chroma <= 0.11, and remove any specular treatment, so it sits visibly browner than the #FFC72C dimension. Also confirm the dimension itself is exactly #FFC72C; as rendered it reads more lemon than the hollow gold tick at top right.", "severity": "high"},
+      {"what": "Fix the reconstruction note", "where": "y 1281 to 1291, bottom of frame", "how": "Move it up to y <= 1260 and set fill #131A20 per the two-value type law, since it sits on the lit floor. Target 7:1 minimum.", "severity": "high"},
+      {"what": "Add leaders from each label plate to its part", "where": "'170 KW COMPUTING C18' and 'GENERATOR, FORM RECONSTRUCTED'", "how": "One 1.25 px polyline from each plate's near edge to the cabinet's front face and the generator's near shell respectively, terminating on the mesh vertex. Without them the two vertical ticks read as the dimension's extension lines from caption to caption.", "severity": "medium"},
+      {"what": "Bring the headline back to two lines", "where": "display block", "how": "It rendered as 'Twenty feet / from the / turbine.', three lines, breaking mid-phrase. The type spec says maxLines 2. Lower AK.fitText min to 92 or widen max width to 640 so it sets 'Twenty feet' / 'from the turbine.'", "severity": "medium"},
+      {"what": "Lift the cabinet out of clipped black", "where": "server cabinet front and side faces", "how": "Raise the base colour to the specified #16211E and add a faint top-face highlight from the 305 azimuth key. As rendered it is near #0d1010 with no visible shading and reads as a hole rather than a matte object, which also fails 'graded blacks are lifted and cool'.", "severity": "medium"},
+      {"what": "Restore the sectioned slab", "where": "y 900 to 1010, between the floor and the dimension", "how": "Draw the poche slab with the promised dense 45/135 crosshatch and 3.5 px cut edge. Right now that band is bare flat fill and it is the emptiest region of the frame.", "severity": "medium"},
+      {"what": "Reduce the emissive strip or restate the spec", "where": "cabinet blue strip", "how": "It is 5 x 213 px against a declared 6 x 18 px. If the tall strip is the intent, amend the dossier; if not, cut it to a 6 x 18 px window. Do not simply delete it, it is the thesis mark.", "severity": "low"},
+      {"what": "Two stray pale rectangles", "where": "roughly x 40 to 88 and x 594 to 641, y 1000", "how": "Small light plates float to the left of each label plate with nothing on them, reading as leftover ledge geometry. Remove or attach them.", "severity": "low"},
+      {"what": "Unit casing", "where": "'170 KW COMPUTING'", "how": "C18's note says use 170 kW and only 170 kW. The Archivo caps transform is uppercasing the unit. Exempt the unit from text-transform so it prints '170 kW COMPUTING'.", "severity": "low"}
+    ],
+    "score_0_10": 5.0
+  },
+  {
+    "slide": 6,
+    "verdict": "revise",
+    "encoding_reads": "n/a, the dossier states no field 11a for this slide. Judged against field 3 instead, 'three blocks and an almost invisible fourth': yes, that reads at 432 px on scale alone, and the sliver being nearly invisible is correctly the argument and is NOT reported as a rendering error here.",
+    "transcription": [
+      "The whole",
+      "co-op,",
+      "to scale.",
+      "1,566",
+      "CUSTOMERS  C27",
+      "18 MW",
+      "NAMEPLATE  C28",
+      "MORE THAN 83%",
+      "HYDRO SHARE, 2025  C19",
+      "170 KW",
+      "COMPUTING INSTALLED  C18",
+      "NONE",
+      "TRANSMISSION LINE OUT  C29",
+      "DETAIL A",
+      "SCALE 8 TO 1",
+      "ORCA DIESEL 10.8 MW",
+      "POWER CREEK 6.0 MW",
+      "HUMPBACK 1.25 MW",
+      "COMPUTING 0.17 MW",
+      "1 MW = 42.6 PX",
+      "06 / 09",
+      "170 KW AGAINST 18,050 KW. AGGREGATE OF C18 AND C28. THE BASELINE IS 840 PX, THE DECK'S TWENTY FEET."
+    ],
+    "typos": [],
+    "hard_fails": [
+      "ART CROSSES GLYPHS. Machine QA's flag is real and I am settling it against the deck: the DETAIL A circle's upper arc passes straight through the letterforms of 'OUT' and 'C29' in the row 'TRANSMISSION LINE OUT  C29'. Visible at full size and still visible at 432 px in the thumb. The circle top sits at slide y ~726 and that text row occupies y ~718 to 737.",
+      "TABLE PLATE UNDER-SIZED. The black table plate stops after the '170 KW / COMPUTING INSTALLED  C18' row at slide y ~670. The fifth row, 'NONE / TRANSMISSION LINE OUT  C29', sits outside it on bare ground. The plate was sized to four rows, not five, which is exactly the 'plate sized from a typed constant rather than the measured box' failure the deck's own gate 6 forbids."
+    ],
+    "checklist": [
+      {"item": "The baseline is exactly 840 px, and the slide says the chart is twenty feet wide", "pass": true, "why": "Measured x 118 to 959, 841 slide px, and the aggregate note prints 'THE BASELINE IS 840 PX, THE DECK'S TWENTY FEET.'"},
+      {"item": "The computing block is drawn TRUE at 7.2 px, not enlarged in place", "pass": true, "why": "Measured about 7 slide px tall. I verified all four against 42.6 px per MW off the render: Orca 466 px against 460 expected, Power Creek 257 against 256, Humpback 51 against 53, computing 7 against 7.2. One true scale, honestly held. This is the best thing on the slide."},
+      {"item": "DETAIL A prints its magnification ratio, 8 TO 1", "pass": true, "why": "'DETAIL A / SCALE 8 TO 1' prints on its own plate in forget-me-not, roughly 5.5:1, and legible at 432 px. Its leader lands on a dot at the sliver's own coordinates, x ~915 y ~1075, and a second leader runs from the plate to the same point. The declared enlargement is present and the terminus is correct."},
+      {"item": "The bars are parallel projection, no perspective on any quantity", "pass": true, "why": "Identical depth offset up and to the right on all four blocks, lids lightest, right faces darker because they face away from the 305 key. Consistent."},
+      {"item": "The aggregate note names C18 and C28 and is not a bare percentage", "pass": true, "why": "'170 KW AGAINST 18,050 KW. AGGREGATE OF C18 AND C28.' Both named, no percentage. Content is correct. Its legibility is not, see contrast."},
+      {"item": "The 83 percent carries its year, 2025", "pass": true, "why": "'MORE THAN 83% / HYDRO SHARE, 2025  C19'."},
+      {"item": "All five table rows carry claim ids", "pass": true, "why": "C27, C28, C19, C18, C29. Every figure checked one by one against claims.json: 1,566 customers = C27 verbatim; 18 MW = C28 verbatim; more than 83 percent in 2025 = C19; 170 kW = C18; none = C29. 10.8 / 6.0 / 1.25 and the 18,050 kW aggregate all trace to C28's own plant split note. No figure on this slide is unsupported."},
+      {"item": "Every bar has a lit top face and a two-part contact shadow", "pass": true, "why": "All four carry a lit lid and a dark wedge running down and to the right along the baseline. The ground they fall on is only weakly lit, so the separation is thinner than on slide 05, but present."},
+      {"item": "COPPER LOAD PATH is THE BUSBAR, carrying the scale", "pass": false, "why": "The baseline conductor renders as a yellow-gold, not the specified copper #B8703C. On a slide where gold must mean nothing, an 840 px gold rule is the single largest warm object in the frame."},
+      {"item": "The 83 percent copper inlay runs 83 percent of the busbar's length", "pass": false, "why": "Dossier section 8 maps C19 onto the busbar as an inlay with the year stamped on it, and specifies verdigris #3E7A6B on the unused fraction. The busbar is uniform end to end. That data mapping is simply not drawn."},
+      {"item": "The sliver's callout number at 62 px Unbounded, the permitted fourth size", "pass": false, "why": "The detail circle contains only a plain blue rectangle. No number. The '#29 big-number tile' in the technique stack did not render, so the enlargement shows a shape and not a quantity."}
+    ],
+    "bottom_third": {
+      "carries": "The lower two thirds of all four blocks with their lit lids and cast shadows, the 840 px busbar baseline, four direct label plates, a stippled tailrace strip at y ~1120 to 1210 with real granular texture, the rail plate with its bar scale and the mono counter.",
+      "modeled_tone": true,
+      "why": "Genuinely modeled. The bars themselves are the mass and they grow up from a low baseline by construction, so anti-top-loading is structural here as the dossier claimed. The stipple band under the baseline holds actual texture rather than flat fill."
+    },
+    "contrast_worst": {
+      "where": "'170 KW AGAINST 18,050 KW. AGGREGATE OF C18 AND C28. THE BASELINE IS 840 PX, THE DECK'S TWENTY FEET.' grey on the lit lower band, slide y ~1283 to 1327",
+      "estimate": "about 1.5:1",
+      "ok": false
+    },
+    "thumb_test": {
+      "readable_at_432px": true,
+      "one_takeaway": "Four blocks at one scale, tall to nothing, with the fourth an almost invisible blue line and a circled DETAIL A pointing at it. Headline, all four bar labels and the table's numbers all hold. The aggregate note does not survive."
+    },
+    "strengths_do_not_break": [
+      "The scale is honest and I verified it block by block off the pixels. 42.6 px per MW holds for all four including the 7 px sliver. Do not let any fix nudge a bar height.",
+      "The declared 8 to 1 detail with a leader landing on the sliver's own coordinates. This is the mechanism that makes an invisible quantity honest and it is the slide's argument.",
+      "The brushed horizontal streak texture in the bar faces. Large fills with real texture, no banding, and it reads as material at full size and as tone at 432 px.",
+      "Direct end labels on every block and no legend anywhere.",
+      "The table's number-above-label rhythm with tabular figures and claim ids trailing in the quieter tan. Genuinely handsome and it is the keepable part."
+    ],
+    "fixes": [
+      {"what": "Get the detail circle off the type", "where": "circle centre about x 885 y 807 r 81, against the 'TRANSMISSION LINE OUT  C29' row", "how": "Drop the circle centre by 60 px to y ~867 and shift left to x ~860, or shorten the fifth row to 'TRANSMISSION LINE OUT' with C29 stacked. Then re-run the reserve mask so the circle geometry is generated through the measured text boxes rather than drawn over them.", "severity": "high"},
+      {"what": "Extend the table plate to cover all five rows", "where": "black table panel, right column", "how": "Size the plate from the measured bbox of all five rows via getBBox after document.fonts.ready, not from a constant. Currently it ends at y ~670 and row five hangs off it.", "severity": "high"},
+      {"what": "Fix the aggregate note's legibility", "where": "two lines at the bottom, y 1283 to 1327", "how": "Move it up to y <= 1260 (it currently breaks the deck's own y <= 1270 gate and leaves only a 23 px bottom margin) and either set fill #131A20 on the lit band or put it on a knockout plate at #C9C3AE. This is the honesty disclosure; at 1.5:1 it is not disclosing anything.", "severity": "high"},
+      {"what": "Recolour the busbar to actual copper", "where": "the 840 px baseline", "how": "#B8703C, matte, OKLCH chroma <= 0.11. As rendered it is the deck's protected gold on a slide entitled to none, and it is the largest warm object in the frame.", "severity": "high"},
+      {"what": "Restore HYDRO to two bar labels", "where": "bar labels 2 and 3", "how": "Dossier copy is 'POWER CREEK HYDRO 6.0 MW' and 'HUMPBACK CREEK HYDRO 1.25 MW'; rendered as 'POWER CREEK 6.0 MW' and 'HUMPBACK 1.25 MW'. The hydro/diesel distinction is what the 83 percent row is about, so dropping it costs the slide its cross-reference. If the plates cannot hold the longer strings, shorten to 'POWER CREEK HYDRO 6.0' and let the MW live on the rail.", "severity": "medium"},
+      {"what": "Put the number in the detail", "where": "inside the DETAIL A circle", "how": "Add the 62 px Unbounded 400 figure the type spec permits as the fourth size, '0.17 MW', beside or under the enlarged block, and clip the enlargement to the circle so it reads as a magnified crop of the baseline rather than a floating swatch. Also verify the enlarged rect is exactly 8 x 7.2 = 57.6 px tall; I measure it at roughly 73 px, which if real is nearer 10 to 1 and would break the very ratio the callout declares.", "severity": "medium"},
+      {"what": "Draw the C19 inlay on the busbar", "where": "baseline, x 118 to 959", "how": "Per dossier section 8, run the copper inlay 83 percent of the busbar length with 2025 stamped on it and verdigris #3E7A6B on the remainder. Right now the slide's second data mapping is absent and the busbar carries no information.", "severity": "medium"},
+      {"what": "Headline to two lines", "where": "display block", "how": "Rendered 'The whole / co-op, / to scale.', three lines, broken after 'whole' rather than by sense. Type spec says maxLines 2. Widen max width or lower fitText min so it sets 'The whole co-op,' / 'to scale.'", "severity": "medium"},
+      {"what": "Unit casing", "where": "'170 KW' in the table and '170 KW AGAINST 18,050 KW' in the note", "how": "Exempt the unit from the Archivo caps transform so it prints kW, matching C18's instruction and the dossier's own copy.", "severity": "low"},
+      {"what": "The empty mid-left", "where": "x 100 to 900, y 500 to 880", "how": "A large void separates the headline from the chart, so the slide reads as two stacked posters. Either raise the baseline group by 60 px or let the tallest bar break up into that band.", "severity": "low"}
+    ],
+    "score_0_10": 6.5
+  }
+]
+```

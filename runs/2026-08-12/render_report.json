@@ -1,0 +1,3158 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Nothing leavesCordovaby wire.",
+          "x": 76,
+          "y": 150,
+          "w": 880,
+          "h": 288,
+          "font_px": 98,
+          "weight": "600",
+          "family": "Unbounded",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              137,
+              880,
+              122
+            ],
+            [
+              76,
+              233,
+              510,
+              122
+            ],
+            [
+              76,
+              329,
+              446,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The amount landed August 11th. $725,000.",
+          "x": 80,
+          "y": 520,
+          "w": 560,
+          "h": 102,
+          "font_px": 38,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              521,
+              555,
+              47
+            ],
+            [
+              80,
+              572,
+              175,
+              47
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "JULY 22ND SELECTED. NO AMOUNT PUBLISHED.",
+          "x": 656,
+          "y": 500,
+          "w": 352,
+          "h": 64,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(126, 139, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              656,
+              502,
+              279,
+              28
+            ],
+            [
+              656,
+              534,
+              223,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AUGUST 11TH $725,000. AURORA-AI.",
+          "x": 656,
+          "y": 572,
+          "w": 352,
+          "h": 64,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              656,
+              574,
+              258,
+              28
+            ],
+            [
+              656,
+              607,
+              125,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRAME 670 KM",
+          "x": 86,
+          "y": 1150,
+          "w": 400,
+          "h": 32,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1152,
+              154,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 867,
+          "y": 1150,
+          "w": 127,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              867,
+              1150,
+              127,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SURFACE = DISTANCE TO NEAREST LINE AT 69 kV OR ABOVE. CONTOUR INTERVAL 25 km. DE",
+          "x": 86,
+          "y": 1224,
+          "w": 916,
+          "h": 26,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(19, 26, 32)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1226,
+              392,
+              22
+            ],
+            [
+              499,
+              1226,
+              302,
+              22
+            ],
+            [
+              825,
+              1226,
+              91,
+              22
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "kV",
+          "x": 478,
+          "y": 1226,
+          "w": 21,
+          "h": 22,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(19, 26, 32)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              478,
+              1226,
+              21,
+              22
+            ]
+          ],
+          "anc": [
+            6
+          ]
+        },
+        {
+          "text": "km",
+          "x": 801,
+          "y": 1226,
+          "w": 24,
+          "h": 22,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(19, 26, 32)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              801,
+              1226,
+              24,
+              22
+            ]
+          ],
+          "anc": [
+            6
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "25 KM",
+          "fn": "fillText",
+          "font": "600 24px Archivo"
+        },
+        {
+          "text": "50 KM",
+          "fn": "fillText",
+          "font": "600 24px Archivo"
+        },
+        {
+          "text": "75 KM",
+          "fn": "fillText",
+          "font": "600 24px Archivo"
+        },
+        {
+          "text": "100 KM",
+          "fn": "fillText",
+          "font": "600 24px Archivo"
+        },
+        {
+          "text": "125 KM",
+          "fn": "fillText",
+          "font": "600 24px Archivo"
+        },
+        {
+          "text": "150 KM",
+          "fn": "fillText",
+          "font": "600 24px Archivo"
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4958,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 46.8,
+          "variance": 1246.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The nearest lineis 56 km away.",
+          "x": 76,
+          "y": 132,
+          "w": 880,
+          "h": 181,
+          "font_px": 92.5,
+          "weight": "600",
+          "family": "Unbounded",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              119,
+              879,
+              115
+            ],
+            [
+              76,
+              210,
+              813,
+              115
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Cordova is not connected to the State Highway System, and CEC is not connected ",
+          "x": 104,
+          "y": 860,
+          "w": 812,
+          "h": 143,
+          "font_px": 35,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(19, 26, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              862,
+              755,
+              43
+            ],
+            [
+              104,
+              910,
+              803,
+              43
+            ],
+            [
+              104,
+              957,
+              429,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE C29",
+          "x": 104,
+          "y": 1040,
+          "w": 760,
+          "h": 33,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(19, 26, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1042,
+              662,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ABOUT 2,600 RESIDENTS C21",
+          "x": 559,
+          "y": 714,
+          "w": 310,
+          "h": 33,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              559,
+              716,
+              310,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\u25b3",
+          "x": 960,
+          "y": 100,
+          "w": 22,
+          "h": 30,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              960,
+              101,
+              22,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRAME 300 KM",
+          "x": 86,
+          "y": 1134,
+          "w": 360,
+          "h": 33,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1136,
+              156,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 867,
+          "y": 1134,
+          "w": 127,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              867,
+              1134,
+              127,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AGGREGATE. NEAREST LINE AT 69 kV OR ABOVE IN THE STATE TRANSMISSION LAYER. COMPU",
+          "x": 86,
+          "y": 1200,
+          "w": 920,
+          "h": 55,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(126, 139, 147)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1202,
+              291,
+              22
+            ],
+            [
+              398,
+              1202,
+              589,
+              22
+            ],
+            [
+              86,
+              1229,
+              426,
+              22
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "kV",
+          "x": 377,
+          "y": 1202,
+          "w": 21,
+          "h": 22,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(126, 139, 147)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              377,
+              1202,
+              21,
+              22
+            ]
+          ],
+          "anc": [
+            7
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "56 KM",
+          "fn": "fillText",
+          "font": "600 26px Archivo"
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3973,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 51.8,
+          "variance": 3235.6
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the nearest 69 kV segment",
+          "to": [
+            493.9,
+            441.1
+          ],
+          "at": [
+            493.9,
+            441.1
+          ]
+        },
+        {
+          "target": "Cordova's own mark",
+          "to": [
+            574.6,
+            645.9
+          ],
+          "at": [
+            563.6,
+            634.9
+          ]
+        }
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "A fifth of itgoes nowhere.",
+          "x": 76,
+          "y": 120,
+          "w": 760,
+          "h": 170,
+          "font_px": 86.5,
+          "weight": "600",
+          "family": "Unbounded",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              108,
+              558,
+              107
+            ],
+            [
+              76,
+              193,
+              757,
+              107
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Koplin estimates 20 to 25 percent of Cordova's hydropower goes unused every year",
+          "x": 80,
+          "y": 368,
+          "w": 640,
+          "h": 143,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(220, 230, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              370,
+              562,
+              42
+            ],
+            [
+              80,
+              418,
+              552,
+              42
+            ],
+            [
+              80,
+              465,
+              169,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "That is a share of hydropower, not of total demand, and it is an estimate rather",
+          "x": 80,
+          "y": 512,
+          "w": 660,
+          "h": 141,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(159, 180, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              514,
+              647,
+              42
+            ],
+            [
+              80,
+              561,
+              660,
+              42
+            ],
+            [
+              80,
+              608,
+              239,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE UNUSED FRACTION C20",
+          "x": 688,
+          "y": 820,
+          "w": 297,
+          "h": 33,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(143, 216, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              688,
+              822,
+              297,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In 2025 hydropower covered more than 83 percent of the town's electrical demand.",
+          "x": 80,
+          "y": 648,
+          "w": 680,
+          "h": 88,
+          "font_px": 32,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(159, 180, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              650,
+              627,
+              39
+            ],
+            [
+              80,
+              694,
+              664,
+              39
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "LOWER BOUND 20",
+          "x": 688,
+          "y": 880,
+          "w": 185,
+          "h": 33,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              688,
+              882,
+              185,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UPPER BOUND 25",
+          "x": 688,
+          "y": 940,
+          "w": 182,
+          "h": 33,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              688,
+              942,
+              182,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\u25b3",
+          "x": 960,
+          "y": 100,
+          "w": 22,
+          "h": 30,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              960,
+              101,
+              22,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRAME 60 KM",
+          "x": 86,
+          "y": 1186,
+          "w": 400,
+          "h": 33,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1188,
+              143,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 867,
+          "y": 1186,
+          "w": 127,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              867,
+              1186,
+              127,
+              35
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3716,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 29.8,
+          "variance": 865.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "\"The server was literally 20 feet from the generators. It's designed as a super-",
+          "x": 88,
+          "y": 196,
+          "w": 800,
+          "h": 185,
+          "font_px": 46,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              88,
+              198,
+              766,
+              57
+            ],
+            [
+              88,
+              260,
+              668,
+              57
+            ],
+            [
+              88,
+              321,
+              748,
+              57
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE C22, C23",
+          "x": 88,
+          "y": 496,
+          "w": 720,
+          "h": 33,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(19, 26, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              88,
+              498,
+              679,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "20 FT",
+          "x": 484,
+          "y": 1018,
+          "w": 112,
+          "h": 45,
+          "font_px": 36,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(10, 20, 19)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              501,
+              1020,
+              78,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\u25b3",
+          "x": 952,
+          "y": 100,
+          "w": 22,
+          "h": 30,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              952,
+              101,
+              22,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRAME 60 KM, OBLIQUE",
+          "x": 86,
+          "y": 1186,
+          "w": 400,
+          "h": 33,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1188,
+              250,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 867,
+          "y": 1186,
+          "w": 127,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              867,
+              1186,
+              127,
+              35
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3961,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 47.4,
+          "variance": 1129.7
+        }
+      ],
+      "breather": true,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Twenty feetfrom the turbine.",
+          "x": 76,
+          "y": 112,
+          "w": 840,
+          "h": 163,
+          "font_px": 83,
+          "weight": "600",
+          "family": "Unbounded",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              101,
+              603,
+              103
+            ],
+            [
+              76,
+              182,
+              837,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Greensparc put 170 kilowatts of computing inside the Humpback Creek run of river",
+          "x": 80,
+          "y": 326,
+          "w": 600,
+          "h": 286,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(214, 226, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              328,
+              491,
+              42
+            ],
+            [
+              80,
+              376,
+              508,
+              42
+            ],
+            [
+              80,
+              423,
+              584,
+              42
+            ],
+            [
+              80,
+              471,
+              430,
+              42
+            ],
+            [
+              80,
+              518,
+              575,
+              42
+            ],
+            [
+              80,
+              566,
+              314,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "170 kW COMPUTING C18",
+          "x": 88,
+          "y": 928,
+          "w": 290,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(159, 192, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              88,
+              930,
+              41,
+              28
+            ],
+            [
+              160,
+              930,
+              185,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "kW",
+          "x": 129,
+          "y": 930,
+          "w": 32,
+          "h": 28,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(159, 192, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              129,
+              930,
+              32,
+              28
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "GENERATOR, FORM RECONSTRUCTED",
+          "x": 660,
+          "y": 928,
+          "w": 326,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              784,
+              930,
+              202,
+              28
+            ],
+            [
+              799,
+              964,
+              187,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "20 FT",
+          "x": 482,
+          "y": 982,
+          "w": 120,
+          "h": 39,
+          "font_px": 30,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              510,
+              985,
+              65,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\u25b3",
+          "x": 952,
+          "y": 100,
+          "w": 22,
+          "h": 30,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              952,
+              101,
+              22,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1 FT = 42 PX",
+          "x": 86,
+          "y": 1180,
+          "w": 400,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1182,
+              125,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 867,
+          "y": 1180,
+          "w": 127,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              867,
+              1180,
+              127,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SOURCED 4 / DRAWN 6. THE ROOM IS RECONSTRUCTED FROM MEASURED QUANTITIES. C18, C2",
+          "x": 86,
+          "y": 1232,
+          "w": 900,
+          "h": 27,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1234,
+              817,
+              22
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4974,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 43.4,
+          "variance": 676.2
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 130.9,
+          "variance": 8273.8
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the server cabinet's right face at its base",
+          "to": [
+            120,
+            900
+          ],
+          "at": [
+            120,
+            900
+          ]
+        },
+        {
+          "target": "the generator's near face at its base",
+          "to": [
+            960,
+            900
+          ],
+          "at": [
+            960,
+            900
+          ]
+        },
+        {
+          "target": "the cabinet, from its label plate",
+          "to": [
+            120,
+            894
+          ],
+          "at": [
+            120,
+            894
+          ]
+        },
+        {
+          "target": "the generator, from its label plate",
+          "to": [
+            966,
+            870
+          ],
+          "at": [
+            966,
+            870
+          ]
+        }
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The whole co-op,to scale.",
+          "x": 76,
+          "y": 112,
+          "w": 840,
+          "h": 165,
+          "font_px": 84,
+          "weight": "600",
+          "family": "Unbounded",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              100,
+              836,
+              105
+            ],
+            [
+              76,
+              182,
+              425,
+              105
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1,566CUSTOMERS C27",
+          "x": 640,
+          "y": 318,
+          "w": 368,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              354,
+              183,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1,566",
+          "x": 640,
+          "y": 318,
+          "w": 368,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              320,
+              59,
+              28
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "18 MWNAMEPLATE C28",
+          "x": 640,
+          "y": 408,
+          "w": 368,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              443,
+              179,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "18 MW",
+          "x": 640,
+          "y": 408,
+          "w": 368,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              410,
+              70,
+              28
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "MORE THAN 83%HYDRO SHARE, 2025 C19",
+          "x": 640,
+          "y": 497,
+          "w": 368,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              533,
+              267,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MORE THAN 83%",
+          "x": 640,
+          "y": 497,
+          "w": 368,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              499,
+              176,
+              28
+            ]
+          ],
+          "anc": [
+            5
+          ]
+        },
+        {
+          "text": "170 kWCOMPUTING INSTALLED C18",
+          "x": 640,
+          "y": 587,
+          "w": 368,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              623,
+              302,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "170 kW",
+          "x": 640,
+          "y": 587,
+          "w": 368,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              589,
+              44,
+              28
+            ]
+          ],
+          "anc": [
+            7
+          ]
+        },
+        {
+          "text": "kW",
+          "x": 684,
+          "y": 589,
+          "w": 32,
+          "h": 28,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              684,
+              589,
+              32,
+              28
+            ]
+          ],
+          "anc": [
+            8,
+            7
+          ]
+        },
+        {
+          "text": "NONETRANSMISSION LINE OUT C29",
+          "x": 640,
+          "y": 676,
+          "w": 368,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              712,
+              317,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NONE",
+          "x": 640,
+          "y": 676,
+          "w": 368,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              678,
+              59,
+              28
+            ]
+          ],
+          "anc": [
+            10
+          ]
+        },
+        {
+          "text": "DETAIL ASCALE 8 TO 1",
+          "x": 800,
+          "y": 986,
+          "w": 200,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(110, 165, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              800,
+              988,
+              94,
+              28
+            ],
+            [
+              800,
+              1022,
+              136,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ORCA DIESEL10.8 MW",
+          "x": 118,
+          "y": 1104,
+          "w": 210,
+          "h": 52,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              1104,
+              124,
+              26
+            ],
+            [
+              118,
+              1130,
+              77,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "POWER CREEK HYDRO6.0 MW",
+          "x": 352,
+          "y": 1104,
+          "w": 210,
+          "h": 52,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              352,
+              1104,
+              208,
+              26
+            ],
+            [
+              352,
+              1130,
+              68,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HUMPBACK HYDRO1.25 MW",
+          "x": 590,
+          "y": 1104,
+          "w": 186,
+          "h": 52,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              590,
+              1104,
+              178,
+              26
+            ],
+            [
+              590,
+              1130,
+              78,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "COMPUTING0.17 MW",
+          "x": 786,
+          "y": 1104,
+          "w": 204,
+          "h": 52,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              786,
+              1104,
+              116,
+              26
+            ],
+            [
+              786,
+              1130,
+              76,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\u25b3",
+          "x": 952,
+          "y": 100,
+          "w": 22,
+          "h": 30,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              952,
+              101,
+              22,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1 MW = 42.6 PX",
+          "x": 86,
+          "y": 1186,
+          "w": 400,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1188,
+              158,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 867,
+          "y": 1186,
+          "w": 127,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              867,
+              1186,
+              127,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE BASELINE IS 840 PX, THE DECK'S TWENTY FEET. 170 kW AGAINST 18,050 kW. C18, C",
+          "x": 86,
+          "y": 1242,
+          "w": 906,
+          "h": 27,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1244,
+              481,
+              22
+            ],
+            [
+              593,
+              1244,
+              144,
+              22
+            ],
+            [
+              761,
+              1244,
+              88,
+              22
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "kW",
+          "x": 567,
+          "y": 1244,
+          "w": 26,
+          "h": 22,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              567,
+              1244,
+              26,
+              22
+            ]
+          ],
+          "anc": [
+            20
+          ]
+        },
+        {
+          "text": "kW",
+          "x": 737,
+          "y": 1244,
+          "w": 24,
+          "h": 22,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              737,
+              1244,
+              24,
+              22
+            ]
+          ],
+          "anc": [
+            20
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "0.17 MW",
+          "fn": "fillText",
+          "font": "40px Unbounded"
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3856,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 26.6,
+          "variance": 700.4
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the 170 kW block drawn true at this scale",
+          "to": [
+            911,
+            1072.4
+          ],
+          "at": [
+            911,
+            1072.4
+          ]
+        }
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Over 200 island grids.One got picked.",
+          "x": 76,
+          "y": 118,
+          "w": 840,
+          "h": 124,
+          "font_px": 63.5,
+          "weight": "600",
+          "family": "Unbounded",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              109,
+              833,
+              79
+            ],
+            [
+              76,
+              171,
+              586,
+              79
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UAF counts over 200 remote microgrids in Alaska. Each one is a closed loop with ",
+          "x": 80,
+          "y": 372,
+          "w": 600,
+          "h": 238,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(214, 226, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              374,
+              448,
+              42
+            ],
+            [
+              80,
+              422,
+              537,
+              42
+            ],
+            [
+              80,
+              469,
+              567,
+              42
+            ],
+            [
+              80,
+              517,
+              506,
+              42
+            ],
+            [
+              80,
+              564,
+              88,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NO SCALE.A COUNT, NOT A MAP.",
+          "x": 684,
+          "y": 300,
+          "w": 300,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(143, 166, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              684,
+              302,
+              112,
+              28
+            ],
+            [
+              684,
+              336,
+              225,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CORDOVA",
+          "x": 240,
+          "y": 1104,
+          "w": 103,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(224, 164, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              240,
+              1106,
+              103,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\u25b3",
+          "x": 952,
+          "y": 100,
+          "w": 22,
+          "h": 30,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              952,
+              101,
+              22,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "200 MARKS DRAWN",
+          "x": 86,
+          "y": 1186,
+          "w": 400,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1188,
+              202,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 867,
+          "y": 1186,
+          "w": 127,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              867,
+              1186,
+              127,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "EACH MARK IS ONE REMOTE MICROGRID. 8 ROWS OF 25. THE CUT EDGE IS THE WORD OVER. ",
+          "x": 86,
+          "y": 1240,
+          "w": 930,
+          "h": 27,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1242,
+              818,
+              22
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3903,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 32.5,
+          "variance": 447.8
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the Cordova pip",
+          "to": [
+            286,
+            906
+          ],
+          "at": [
+            286,
+            888
+          ]
+        }
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The money is notfor the data center.It is for the grid.",
+          "x": 76,
+          "y": 104,
+          "w": 840,
+          "h": 213,
+          "font_px": 72.5,
+          "weight": "600",
+          "family": "Unbounded",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              94,
+              733,
+              90
+            ],
+            [
+              76,
+              165,
+              838,
+              90
+            ],
+            [
+              76,
+              236,
+              672,
+              90
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On August 11th UAF published both. $725,000, AURORA-AI, Alaska Utility Resilienc",
+          "x": 80,
+          "y": 334,
+          "w": 632,
+          "h": 311,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(214, 226, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              335,
+              620,
+              35
+            ],
+            [
+              80,
+              374,
+              561,
+              35
+            ],
+            [
+              80,
+              413,
+              617,
+              35
+            ],
+            [
+              80,
+              452,
+              562,
+              35
+            ],
+            [
+              80,
+              490,
+              592,
+              35
+            ],
+            [
+              80,
+              529,
+              497,
+              35
+            ],
+            [
+              80,
+              568,
+              565,
+              35
+            ],
+            [
+              80,
+              607,
+              199,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "JULY 22ND SELECTED. NO AMOUNT PUBLISHED.",
+          "x": 726,
+          "y": 348,
+          "w": 282,
+          "h": 62,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(126, 139, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              726,
+              350,
+              258,
+              26
+            ],
+            [
+              726,
+              381,
+              206,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AUGUST 11TH $725,000. AURORA-AI.",
+          "x": 726,
+          "y": 418,
+          "w": 282,
+          "h": 62,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              726,
+              420,
+              238,
+              26
+            ],
+            [
+              726,
+              452,
+              116,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE SERVER, REMOVED",
+          "x": 160,
+          "y": 700,
+          "w": 240,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(185, 198, 204)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              160,
+              702,
+              138,
+              28
+            ],
+            [
+              160,
+              736,
+              105,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UAF ACEP",
+          "x": 96,
+          "y": 1056,
+          "w": 200,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1058,
+              102,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "COLORADO STATE",
+          "x": 308,
+          "y": 1056,
+          "w": 200,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              308,
+              1058,
+              188,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NAT. LAB OF THE ROCKIES",
+          "x": 520,
+          "y": 1056,
+          "w": 210,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              520,
+              1058,
+              172,
+              28
+            ],
+            [
+              520,
+              1092,
+              95,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CORDOVA ELECTRIC C04",
+          "x": 742,
+          "y": 1056,
+          "w": 230,
+          "h": 68,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(224, 164, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              742,
+              1058,
+              219,
+              28
+            ],
+            [
+              742,
+              1092,
+              40,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NAT. LAB OF THE ROCKIES WAS NREL UNTIL DECEMBER 1ST, 2025. C30",
+          "x": 88,
+          "y": 1136,
+          "w": 676,
+          "h": 27,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              88,
+              1138,
+              598,
+              22
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$725,000",
+          "x": 776,
+          "y": 1136,
+          "w": 168,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              813,
+              1138,
+              93,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$500,000",
+          "x": 88,
+          "y": 1194,
+          "w": 170,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              88,
+              1196,
+              94,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$750,000",
+          "x": 800,
+          "y": 1194,
+          "w": 146,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              853,
+              1196,
+              93,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CONSISTENT WITH THE PUBLISHED PHASE I BAND. C16, C17",
+          "x": 88,
+          "y": 1232,
+          "w": 640,
+          "h": 27,
+          "font_px": 21,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              88,
+              1234,
+              507,
+              22
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 865,
+          "y": 1230,
+          "w": 127,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              865,
+              1230,
+              127,
+              35
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5411,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44.3,
+          "variance": 709.3
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 85.9,
+          "variance": 8573.5
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the generator's near face at its base",
+          "to": [
+            968,
+            849.6
+          ],
+          "at": [
+            968,
+            849.6
+          ]
+        },
+        {
+          "target": "the copper band on the generator axis",
+          "to": [
+            1027.2,
+            690
+          ],
+          "at": [
+            1027.2,
+            690
+          ]
+        },
+        {
+          "target": "the generator shell",
+          "to": [
+            1056,
+            547.2
+          ],
+          "at": [
+            1056,
+            547.2
+          ]
+        },
+        {
+          "target": "the Cordova Electric partner block",
+          "to": [
+            836,
+            1000
+          ],
+          "at": [
+            836,
+            1000
+          ]
+        },
+        {
+          "target": "the UAF ACEP partner block",
+          "to": [
+            194,
+            1000
+          ],
+          "at": [
+            194,
+            1000
+          ]
+        }
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "If the power can't leave,who should get to use it?",
+          "x": 76,
+          "y": 292,
+          "w": 900,
+          "h": 120,
+          "font_px": 60,
+          "weight": "600",
+          "family": "Unbounded",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              284,
+              848,
+              75
+            ],
+            [
+              76,
+              344,
+              893,
+              75
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Alaska's isolated power systems provide an ideal environment for developing and",
+          "x": 80,
+          "y": 560,
+          "w": 700,
+          "h": 185,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(185, 201, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              562,
+              676,
+              42
+            ],
+            [
+              80,
+              608,
+              697,
+              42
+            ],
+            [
+              80,
+              654,
+              588,
+              42
+            ],
+            [
+              80,
+              701,
+              498,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RICHARD WIES, PRINCIPAL INVESTIGATOR, AURORA-AI (C09)",
+          "x": 80,
+          "y": 744,
+          "w": 760,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              746,
+              641,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SOURCES IN COMMENTS",
+          "x": 104,
+          "y": 1186,
+          "w": 340,
+          "h": 34,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(19, 26, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1188,
+              258,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "x": 721,
+          "y": 1226,
+          "w": 255,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(19, 26, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              721,
+              1226,
+              255,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Alaska.Ai",
+          "x": 696,
+          "y": 1190,
+          "w": 280,
+          "h": 42,
+          "font_px": 34,
+          "weight": "600",
+          "family": "Unbounded",
+          "color": "rgb(19, 26, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              780,
+              1190,
+              196,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "60\u00b033'N 145\u00b045'W",
+          "x": 104,
+          "y": 1238,
+          "w": 280,
+          "h": 29,
+          "font_px": 22,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(30, 42, 49)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1240,
+              161,
+              24
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 861,
+          "y": 1096,
+          "w": 127,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              861,
+              1096,
+              127,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRAME 670 KM",
+          "x": 92,
+          "y": 1096,
+          "w": 360,
+          "h": 28,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(201, 195, 174)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              92,
+              1096,
+              154,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "JULY 22ND SELECTED. NO AMOUNT PUBLISHED.",
+          "x": 642,
+          "y": 96,
+          "w": 360,
+          "h": 60,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(126, 139, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              642,
+              98,
+              348,
+              26
+            ],
+            [
+              642,
+              128,
+              116,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AUGUST 11TH $725,000. AURORA-AI.",
+          "x": 642,
+          "y": 164,
+          "w": 360,
+          "h": 30,
+          "font_px": 24,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              642,
+              166,
+              359,
+              26
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4167,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.9,
+          "variance": 1309.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}
