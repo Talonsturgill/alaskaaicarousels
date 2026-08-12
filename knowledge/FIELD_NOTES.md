@@ -3195,3 +3195,50 @@ PARKED, from the frontier scan (focus: LinkedIn platform, the slot the
   because it is a real algorithm and belongs in assets/js with a verifier, not
   improvised inside a slide at 2am.
   https://volzo.de/posts/hatching-hachures-contours/
+
+## 2026-08-12 — three failures a comment could not prevent (carousel No.31)
+
+Two pixel-critic rounds and a flow critic returned `revise` on all nine slides
+twice. Most of that cost traces to three defects, and none of them was a
+matter of taste.
+
+- **A UNIT WORD MEANING TWO THINGS IN TWO LIBRARIES USED SIDE BY SIDE.**
+  `AKPOST.grade({exposure})` is in STOPS. `AKT.setup({exposure})` is a
+  MULTIPLIER. All nine slides authored `exposure: 1.02` to `1.05` intending
+  "about three percent" and got `2^1.03`, a full stop over. The deck shipped
+  over-exposed, copper `#B8703C` bloomed until five independent critics could
+  not separate it from gold `#FFC72C` at 432 px, and each of them reported it
+  as a different fault on a different slide. akpost.js documents "stops" in its
+  header. It was still got wrong nine times out of nine. A comment is not a
+  guard, and a shared word with two meanings will be got wrong by whoever is
+  moving fastest.
+- **A DECLARED CONSTRAINT THAT FAILS SILENTLY IS WORSE THAN NO CONSTRAINT.**
+  `AK.fitText(el, {maxLines: N})` bottoms out at `min` and overflows rather
+  than reporting when `min` is authored higher than the box width can hold. It
+  did that on five slides. On slide 08 it swallowed "It is for the grid.", the
+  sentence carrying the deck's whole thesis, and the slide shipped stating only
+  the negative half of its own argument. qa.py passed it. The standing instinct
+  about sanity-checking line counts BEFORE rendering is the right instinct and
+  it is not enough, because the check has to live where the constraint lives.
+- **A MEASUREMENT CAN BE EXACT AND STILL BE A LIE.** Slide 05's 840 px
+  dimension was correct to the pixel over a scene whose two masses were 266 px
+  apart, so the twenty feet was drawn as about six and every gate passed it.
+  The fix was not to move the rule, it was to solve the camera FROM the lock:
+  one world unit is one foot, and the camera distance is computed so one foot
+  is 42 screen px. Now the same number produces both the rule and the room and
+  they cannot disagree. Slide 08 inherits that rig, which is what makes its
+  substitution provable rather than asserted.
+
+  The general shape of the answer is a RENDER-TIME SELF-ASSERTION: the slide
+  declares a measured relationship and the render fails if the pixels disagree.
+  Slide 07 does it for its ISOTYPE count via `window.__akMarkCount`, and it
+  earned its keep immediately, catching 189 and then 196 before landing on an
+  exact 200. That is cheaper than a critic round and it does not get tired.
+
+Two smaller ones from the same run. The printed frame widths on the map slides
+were typed constants and were wrong by 7 and 25 percent against the projections
+that actually drew the maps; they are now derived from `proj.invert` at render
+time, which is why the cover reads 670 KM and not 720. And continuity device A,
+the nine-rung ladder, was declared in the storyboard and drawn on ZERO of nine
+slides until round 2 caught it. Nothing gates the gap between a device the deck
+header declares and a device the artwork contains.
