@@ -1,0 +1,308 @@
+```json
+[
+  {
+    "slide": 3,
+    "verdict": "revise",
+    "encoding_reads": "n/a as a declared 11a (slide 03's dossier states no wordless claim), but its field-3 takeaway, \"a green wedge inside a pale band of water, obviously a fraction of a flow\", does NOT read at 432 px: the cause is position plus material, because the tinted band's upper edge IS the waterline (fill runs SURF 792 to y25 907) so it reads as a sunlit surface layer, and the promised #65 dense/sparse material code is absent from the code, leaving the used 75 percent an empty field with the same 0.07-alpha hachure as the unused fraction.",
+    "transcription": [
+      "A fifth of it",
+      "goes",
+      "nowhere.",
+      "Koplin estimates 20 to 25 percent of Cordova's hydropower goes unused every year.",
+      "That is a share of hydropower, not of total demand, and it is an estimate rather than a metered figure.",
+      "HYDRO COVERED MORE THAN 83 PERCENT OF 2025 DEMAND",
+      "C19",
+      "THE UNUSED FRACTION  C20",
+      "LOWER BOUND 20",
+      "UPPER BOUND 25",
+      "FRAME 60 KM",
+      "03 / 09",
+      "[hollow gold triangle glyph, U+25B3, top right]"
+    ],
+    "typos": [],
+    "hard_fails": [],
+    "transcription_diffs": [
+      {
+        "expected": "A fifth of it / goes nowhere. (2 hand-broken lines, fitText maxLines 2)",
+        "rendered": "A fifth of it / goes / nowhere. (3 lines, \"goes\" orphaned alone)",
+        "severity": "hard-fail"
+      },
+      {
+        "expected": "It is a share of hydropower, not of total demand, and it is his estimate rather than a metered figure. (C20)",
+        "rendered": "That is a share of hydropower, not of total demand, and it is an estimate rather than a metered figure.",
+        "severity": "minor"
+      },
+      {
+        "expected": "In 2025 hydropower covered more than 83 percent of the town's electrical demand. (C19) — Fraunces 36 px body",
+        "rendered": "HYDRO COVERED MORE THAN 83 PERCENT OF 2025 DEMAND  C19 — Archivo wdth 62, 26 px caps furniture, wrapping \"C19\" onto its own line",
+        "severity": "hard-fail"
+      }
+    ],
+    "checklist": [
+      {"item": "The band is drawn as a RANGE with two bounding rules, never a single line", "pass": true, "why": "y20 = 884 solid at 1.25 px rgba(244,248,255,0.92) and y25 = 907 dashed; both span x 56 to 1024. The range never collapses. Column SURF 792 to FLOOR 1252, so the rules sit at exactly 20.0 and 25.0 percent of the drawn column. Honest."},
+      {"item": "The upper bound is phantom-dashed because it is an estimate", "pass": true, "why": "setLineDash([30,5,6,5,6,5]), the deck's declared phantom pattern, and the verdigris fill fades to alpha 0.42 exactly at that bound. The uncertainty is encoded twice."},
+      {"item": "The words 'hydropower', 'not of total demand' and 'estimate' all appear", "pass": true, "why": "All three present, plus 'Koplin estimates' leading the block. The unit warning is intact."},
+      {"item": "The 83 percent figure carries its year, 2025", "pass": true, "why": "'HYDRO COVERED MORE THAN 83 PERCENT OF 2025 DEMAND' with the past tense. C19's load-bearing year survives."},
+      {"item": "Label plates are knocked out of the hachure field, not floated on it", "pass": false, "why": "The three plates are rgba(6,17,21,0.90) opaque rectangles at typed constants [678,806,308,44] etc. Against the mint band at #4EA88E they read as pasted black boxes, not knockouts."},
+      {"item": "The bottom third is the water field itself, with visible glints and stroke variation", "pass": false, "why": "The 170 glint strokes are confined to y 792 to 912, above the bottom third. Below y 907 there is one uniform 0.07-alpha hachure and no glints. The lit channel bed at y 1252 to 1350 is genuinely modeled but is only 7 percent of frame height."}
+    ],
+    "checklist_results": [
+      {"item": "Range drawn as a range with two bounding rules", "pass": true},
+      {"item": "Upper bound phantom-dashed", "pass": true},
+      {"item": "hydropower / not of total demand / estimate all present", "pass": true},
+      {"item": "83 percent carries the year 2025", "pass": true},
+      {"item": "Label plates knocked out, not floated", "pass": false},
+      {"item": "Bottom third is the water field with glints and stroke variation", "pass": false},
+      {"item": "Scale rail reads FRAME 60 km at rung 3", "pass": false},
+      {"item": "Copper load path SPLIT AND SPILLED, once per slide", "pass": true},
+      {"item": "August 11 rail collapsed to a hollow gold tick", "pass": true},
+      {"item": "Gold budget respected (only the tick)", "pass": true}
+    ],
+    "bottom_third": {
+      "carries": "The dark lower water column y 907 to 1252 (a plain vertical gradient #1E3A3D to #0E2124 with a 0.07-alpha hachure), then the lit channel bed y 1252 to 1350 with 480 cobbles each carrying a light top-left highlight and a dark bottom-right shadow, plus a contact-shadow gradient at the floor line, plus the two footer knockouts.",
+      "modeled_tone": true,
+      "why": "The channel bed is real modeled tone and its cobble highlight/shadow pairs run up-left to down-right, correctly matching the 305 degree key. But it is only the bottom 98 px. The 270 px band above it (y 907 to 1176) is the emptiest region in the deck and it is precisely where the dossier put the focal point (540, 1010), which lands on nothing."
+    },
+    "contrast_worst": {
+      "where": "'HYDRO COVERED MORE THAN 83 PERCENT OF 2025 DEMAND' in #8FA6A4 on the air gradient at y 646, approximately #121F27",
+      "estimate": "6.5:1",
+      "ok": true
+    },
+    "thumb_test": {
+      "readable_at_432px": true,
+      "one_takeaway": "The words carry it. 'A fifth of it goes nowhere' plus 'LOWER BOUND 20 / UPPER BOUND 25' survive and the two rules stay 9 px apart so the range does not collapse at feed scale. What does not survive is the art's own argument: the mint band reads as light on the water, not as a measured share, so a stranger sees a headline over a seascape rather than a fraction of a flow."
+    },
+    "strengths": [
+      "The honesty encoding is genuinely right. Two rules at exactly 20.0 and 25.0 percent of a 460 px column, solid for the lower bound and phantom-dashed [30,5,6,5,6,5] for the upper, and the verdigris fill fading from alpha 0.92 to 0.42 as it approaches the uncertain bound. Do not touch any of this.",
+      "Every one of the four honesty strings is on the frame in reader-visible words: 'Koplin estimates', 'a share of hydropower', 'not of total demand', 'an estimate rather than a metered figure', and the 2025 year stamp.",
+      "The copper is real copper, #B8703C at exactly 5.5 px hero weight, with the verdigris spill at #3E7A6B. The gold budget is respected: the only #FFC72C on this slide is the hollow tick.",
+      "The channel bed's cobbles are lit up-left and shadowed down-right, obeying the deck's single 305 degree key, with a two-part contact gradient at the floor.",
+      "All DOM text sits inside x [76,1000], y [120,1219]. No glyph touches art."
+    ],
+    "strengths_do_not_break": [
+      "y20 / y25 at exactly 20.0 and 25.0 percent of the SURF-to-FLOOR column",
+      "the phantom dash on the upper bound and the alpha fade toward it",
+      "copper at #B8703C 5.5 px and the gold-tick-only budget",
+      "the cobble bed lighting direction"
+    ],
+    "issues": [
+      {
+        "severity": "hard-fail",
+        "where": "Headline block, .hl at left 76 top 120 width 600",
+        "problem": "The hand-broken headline 'A fifth of it<br>goes nowhere.' rendered as THREE lines with 'goes' orphaned alone on line 2. AK.fitText(hl,{min:84,max:96,maxLines:2}) bottomed out at its min of 84 px and 'goes nowhere.' still overflowed 600 px, so maxLines 2 was silently violated. This is exactly the failure the deck's type system claims is structurally impossible ('a headline can never silently wrap a line into the block below it'), and it leaves only about 10 px between the headline box and .body1 at top 368.",
+        "fix": "Set .hl{width:730px} (76 + 730 = 806, still inside the 1000 px text band) and change the call to AK.fitText(document.getElementById('hl'),{min:76,max:96,maxLines:2}). Re-render and confirm two lines."
+      },
+      {
+        "severity": "hard-fail",
+        "where": ".body2 at left 80 top 520, font-size 30px",
+        "problem": "The unit warning, which is the single most important sentence on this slide, is set at 30 px. That is below the global body-text minimum of 32 px and below this deck's own gate 3, which classes anything under 34 px as 'non-essential furniture whose removal does not change the takeaway'. The honesty caveat is the last thing that should be typed as furniture. The C19 fact is worse: it is 26 px Archivo caps in the drafting hand, where the dossier specified Fraunces 36 px body.",
+        "fix": "Set .body2{font-size:34px}. Convert .yr2 to a third Fraunces block: font-family:Fraunces; font-weight:400; font-size:32px; line-height:1.38; color:#9FB4B3; width:660px, with the string 'In 2025 hydropower covered more than 83 percent of the town's electrical demand. (C19)'. Reflow tops to body1 340, body2 470, body3 626 after the headline fix frees ~85 px."
+      },
+      {
+        "severity": "major",
+        "where": ".yr2 at left 80 top 646 width 640",
+        "problem": "'C19' wraps onto a line of its own, orphaning the claim-id under 'HYDRO COVERED MORE THAN 83 PERCENT OF 2025 DEMAND'. A two-line block whose second line is four characters.",
+        "fix": "Superseded if the block becomes Fraunces per the fix above; otherwise widen to width:720px and keep the &nbsp; before C19."
+      },
+      {
+        "severity": "major",
+        "where": "The three label plates, canvas rects [678,806,308,44], [678,866,270,44], [678,926,270,44]",
+        "problem": "Two defects in one element. First, they are filled rgba(6,17,21,0.90), far darker than the local ground (#4EA88E band, #2C4A4E water), so they read as black boxes floated on the art rather than #75 knockout windows, failing the dossier's own acceptance item. Second, the widths are typed constants, violating legibility gate 6, and the top plate is 2 px too narrow: the final '0' of 'THE UNUSED FRACTION  C20' sits flush on the plate's right edge at x 986 to 988.",
+        "fix": "Measure each string after document.fonts.ready with getBBox or AK.svgPlate and set the rect to bbox.width + 32 px of padding. Fill each rect with the LOCAL ground sampled at its own y (the verdigris band colour for the 806 plate, the water gradient colour for the 866 and 926 plates) at alpha 1.0 with the hachure suppressed inside the rect, keeping the existing 0.75 px rgba(201,195,174,0.30) underline."
+      },
+      {
+        "severity": "major",
+        "where": "The water column below y25 = 907, down to FLOOR 1252",
+        "problem": "The dossier's technique stack promises '#65 cross-hatch material code (dense = the used fraction, sparse = the unused)'. It is not in the code. There is exactly one AK.hachureField at alpha 0.07 across the whole column, so the used 75 percent and the unused fraction carry identical material, the fraction stops being visible as a fraction, and the result is 270 px of near-empty dark teal where the dossier put the focal point.",
+        "fix": "Add a second AK.hachureField pass over {x:0, y:y25, w:1080, h:FLOOR-y25} with cell:7, alpha:0.13, color:'#8FB8B4', crossed at 45/135, drawn before the bound rules. This is one change that fixes both the dead zone and the wordless read."
+      },
+      {
+        "severity": "major",
+        "where": "Data-in-art mapping, field 8, the hachure hue split",
+        "problem": "The dossier declares 'The hachure field's stroke population is split 83 percent in the hydro-cool hue and the remainder in a diesel-warm tint, driven by C19'. The field is a single colour, '#8FB8B4'. The mapping does not exist in the render. A declared data mapping that is not drawn is a claim the artwork does not honour.",
+        "fix": "Either implement it (pass a per-stroke colour callback so 17 percent of strokes take a diesel tint gated to OKLCH hue 45 to 60 at chroma below 0.09, keeping it clear of the verdigris band) or strike the sentence from the dossier before Phase 8 so the record does not assert an encoding that is not on the frame."
+      },
+      {
+        "severity": "major",
+        "where": "Scale rail, bottom left footer",
+        "problem": "Continuity device A specifies three parts on all nine slides: the checkerboard bar scale, the printed frame width, and 'a nine-rung ladder glyph with the current rung lit', whose descent-then-climb is supposed to state the deck's shape. Only the bar and the text shipped. The footer block is byte-identical between slides 03 and 04, so no rung is indicated anywhere. The deck's third continuity device is missing.",
+        "fix": "Add the nine-rung ladder to the footer draw on every slide: nine 4 x 10 px rungs at 14 px pitch starting x 300, y 1218, in #26333A at 0.5, with rung index (slideNo - 1) filled #C9C3AE at 1.0."
+      },
+      {
+        "severity": "polish",
+        "where": "The dimension call at x 96, y20 to y25",
+        "problem": "A 23 px span with two 9 px arrowheads pointing inward leaves 5 px of visible line, and it carries no printed value. A dimension call with no number is not a dimension call, and at 432 px it is 9 px of noise beside the left margin.",
+        "fix": "Flip the arrowheads outside per drafting practice when the span is under 3x the arrow length, and print '5 POINTS' in Archivo wdth 62 at 26 px to the left of the extension line, or delete the call and let the two labelled rules carry it."
+      },
+      {
+        "severity": "polish",
+        "where": "The section cut at FLOOR = 1252 and at SURF = 792",
+        "problem": "This is a section drawing and neither cut edge carries the deck's --w-bold 3.5 px cut-edge weight. The line voice table reserves 3.5 px for 'cut edges of any sectioned mass' and the sectioned mass here has none, so the water column reads as a gradient rather than as a cut.",
+        "fix": "Stroke y = FLOOR from x 0 to 1080 at lineWidth 3.5 in #0A1413, drawn after the bed fill and before the contact gradient."
+      },
+      {
+        "severity": "polish",
+        "where": "The copper split node at (356, 740), fill #E0A46A radius 7.5",
+        "problem": "The lightest copper in the palette, rendered as a filled bead under a 0.22 bloom, is the one warm specular point on a slide whose only authorised warm specular is the gold tick. At 432 px it reads as a small gold dot and mildly dilutes gold's single meaning.",
+        "fix": "Change the node fill to '#B8703C' and add a 1.25 px #8A4B2A outline so the split reads as a matte junction rather than a lit bead."
+      },
+      {
+        "severity": "polish",
+        "where": "Copper terminus, both branches",
+        "problem": "Continuity device B says the terminus is the argument. Here the left branch exits frame left and the right branch exits frame right, so neither branch resolves and 'one branch running to town' has no town and no lug. Only the spill has a terminus, and it stops flat at SURF + 2 rather than bleeding into the tailrace.",
+        "fix": "Terminate the right branch on a drawn lug at x 940 with the 'TO TOWN' label in Archivo 26, and carry the verdigris spill 60 px below SURF with its alpha ramping to 0 so it dissipates into the column instead of stopping."
+      },
+      {
+        "severity": "polish",
+        "where": "Source comment, line 53",
+        "problem": "'const SURF = 792, FLOOR = 1252, DEPTH = FLOOR - SURF;   // 500 px of column' — the column is 460 px, not 500. No visual effect, but the next person to derive a number from that comment will be 8 percent wrong.",
+        "fix": "Correct the comment to '460 px of column'."
+      }
+    ],
+    "fixes": [
+      {"what": "Headline wraps to 3 lines with 'goes' orphaned; fitText maxLines 2 silently violated", "where": ".hl and the AK.fitText call", "how": ".hl{width:730px} and AK.fitText(hl,{min:76,max:96,maxLines:2})", "severity": "high"},
+      {"what": "The honesty caveat is 30 px and the C19 fact is 26 px caps furniture", "where": ".body2 and .yr2", "how": ".body2{font-size:34px}; convert .yr2 to a Fraunces 32 px block reading 'In 2025 hydropower covered more than 83 percent of the town's electrical demand. (C19)'; reflow tops to 340 / 470 / 626", "severity": "high"},
+      {"what": "Label plates are floated black boxes at typed widths, and 'C20' is flush with the plate edge", "where": "canvas rects [678,806,308,44] and the two below", "how": "size from getBBox + 32 px padding; fill with the local ground colour at alpha 1.0 with the hachure suppressed inside", "severity": "high"},
+      {"what": "The used fraction has no material code, leaving 270 px of dead field and killing the wordless read", "where": "water column below y25 = 907", "how": "second AK.hachureField pass at cell:7 alpha:0.13 crossed 45/135 over y25 to FLOOR", "severity": "high"},
+      {"what": "The declared 83/17 hachure hue split is absent from the render", "where": "AK.hachureField color:'#8FB8B4'", "how": "implement the per-stroke split or strike the claim from the dossier", "severity": "medium"},
+      {"what": "The nine-rung ladder glyph of the scale rail is missing on every slide", "where": "footer draw block", "how": "nine 4 x 10 px rungs at 14 px pitch from x 300 y 1218, current rung filled #C9C3AE", "severity": "medium"},
+      {"what": "Dimension call is 23 px tall with inward arrowheads and no printed value", "where": "x 96 between y20 and y25", "how": "flip arrowheads outside, print '5 POINTS', or delete", "severity": "low"},
+      {"what": "No 3.5 px cut edge on the sectioned mass", "where": "y = FLOOR", "how": "stroke lineWidth 3.5 in #0A1413 across the full width", "severity": "low"},
+      {"what": "The #E0A46A split bead reads as a small gold dot under bloom", "where": "(356,740)", "how": "fill #B8703C with a 1.25 px #8A4B2A outline", "severity": "low"},
+      {"what": "Neither copper branch has a terminus, and the spill stops flat at the waterline", "where": "copper path", "how": "lug plus 'TO TOWN' label at x 940; carry the spill 60 px below SURF with alpha ramping to 0", "severity": "low"}
+    ],
+    "score_0_10": 5.5
+  },
+  {
+    "slide": 4,
+    "verdict": "revise",
+    "encoding_reads": "n/a as a declared 11a (slide 04's dossier states no wordless claim), but the beat it IS built to argue wordlessly, 'the copper is ABSENT and that absence is the rest', fails at 432 px, and the cause is hue plus line weight: the dimension is stroked #FFC72C at lineWidth 5.5, which is the deck's reserved hero weight in the deck's one reserved warm meaning, so a stranger sees a thick glowing warm bar exactly where the copper load path has been on every prior slide and reads presence, not absence.",
+    "transcription": [
+      "\"The server was literally 20 feet from the generators. It's designed as a super-energy-efficient deployment.\"",
+      "CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE  C22, C23",
+      "20 FT",
+      "FRAME 60 KM, OBLIQUE",
+      "04 / 09",
+      "[hollow gold triangle glyph, U+25B3, top right]"
+    ],
+    "typos": [],
+    "hard_fails": [
+      "GOLD BUDGET. #FFC72C appears twice on a slide whose own dossier palette reads 'No gold except the hollow tick. No copper.' The dimension line is strokeStyle '#FFC72C' at lineWidth 5.5 across 840 px, plus gold arrowheads and gold extension lines at alpha 0.55; and a second #FFC72C disc with a 22 px gold glow sits on the far shore at (742, 905). The deck's law is that #FFC72C carries exactly one meaning, 'what became public on August 11th', and slide 05's own acceptance item says 'The dimension is the only hero-weight gold in the deck'. Slide 04 spends that mark one slide early, at hero weight, as the largest and brightest object in the frame."
+    ],
+    "transcription_diffs": [
+      {
+        "expected": "CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE (C23)",
+        "rendered": "CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE  C22, C23",
+        "severity": "minor"
+      }
+    ],
+    "checklist": [
+      {"item": "data-breather is set on the body AND declared here", "pass": true, "why": "<body data-breather> on line 18, and declared at the head of the dossier."},
+      {"item": "The quotation is verbatim C22 including 'literally' and the second sentence", "pass": true, "why": "Character for character against C22's verbatim, both sentences, straight quotes and a straight apostrophe in \"It's\". The hyphens in 'super-energy-efficient' are hyphens, not en dashes."},
+      {"item": "The dimension measures exactly 840 px", "pass": true, "why": "X0 = 120, X1 = 960, so 840 px at the locked 42 px per foot. Measured off the PNG at approximately 1682 px against a nominal 1680 at 2x, inside my measurement error. The twenty-foot lock holds."},
+      {"item": "The water shows a lit windward face and a dark lee face, not one stroke", "pass": true, "why": "1,500 crests, each drawn twice: a windward bezier in rgba(201,217,212,...) then a lee bezier in rgba(6,16,20,...) offset by lift*0.9, with width and lift both scaling on nearness. This is genuinely modeled, not a stroke field."},
+      {"item": "A blurred foreground element bleeds off the bottom edge", "pass": false, "why": "The repoussoir shore does bleed off the bottom and its interior is soft by construction (620 low-alpha discs), but the silhouette itself is a hard cx.clip() edge. A foreground element declared 6 px out of focus with a razor-sharp outline half-delivers the depth-of-field cue."},
+      {"item": "No copper appears anywhere on this slide", "pass": true, "why": "Verified in the source. No #8A4B2A, #B8703C or #E0A46A anywhere on the slide."},
+      {"item": "The quiet zone is the SKY, not the bottom band", "pass": true, "why": "y 560 to 1180 is empty sky, about 26 percent of the frame, at the top. The bottom band carries the water, the dimension and the footer."},
+      {"item": "Dossier 4a: the attribution sits on a small lit ledge with its own two-part contact shadow", "pass": false, "why": "Not drawn. The attribution is bare type on the sky gradient. The slide contains no contact shadow of any kind and no lit modeled solid."},
+      {"item": "Dossier field 9 palette: 'No gold except the hollow tick. No copper.'", "pass": false, "why": "Two additional #FFC72C elements, one of them the dominant object in the frame."}
+    ],
+    "checklist_results": [
+      {"item": "data-breather set on body and declared", "pass": true},
+      {"item": "Quotation verbatim C22, both sentences", "pass": true},
+      {"item": "Dimension measures exactly 840 px", "pass": true},
+      {"item": "Water two-edge modeled, windward lit and lee dark", "pass": true},
+      {"item": "Blurred foreground bleeds off the bottom edge", "pass": false},
+      {"item": "No copper anywhere", "pass": true},
+      {"item": "Quiet zone is the sky", "pass": true},
+      {"item": "Attribution on a lit ledge with a two-part contact shadow", "pass": false},
+      {"item": "No gold except the hollow tick", "pass": false},
+      {"item": "Scale rail reads FRAME 60 km, OBLIQUE at rung 4", "pass": false}
+    ],
+    "bottom_third": {
+      "carries": "The near water from y 900 to 1272, drawn as 1,500 two-edge swells whose width, lift and lightness all scale with nearness, over a four-stop depth ramp #3A555B to #0C1A20; the 840 px dimension at y 1058; the wet-line gradient at y 1240 to 1290; and the repoussoir shore silhouette bleeding off the bottom edge with 620 soft rock discs inside it.",
+      "modeled_tone": true,
+      "why": "This is the most honestly modeled surface in either slide I reviewed. The parallax is real (crest scale is a function of y), the specular path is correctly biased to frame left at x = 60 + rnd*rnd*420 to match the 305 degree key, and the value ramp toward the viewer is continuous. Its one gap is that the slide has zero two-part contact shadows anywhere, because the only element that was supposed to carry one, the attribution ledge, was not built."
+    },
+    "contrast_worst": {
+      "where": "'CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE  C22, C23' in #C9C3AE on the sky gradient at y 492, approximately #182B34",
+      "estimate": "8.3:1",
+      "ok": true
+    },
+    "thumb_test": {
+      "readable_at_432px": true,
+      "one_takeaway": "'The server was literally 20 feet from the generators' reads cleanly at 18 px equivalent, and the measured line floating on empty water reads as a measurement with nothing to measure, which is the intended beat. But the first thing the eye takes is a glowing gold bar, so at feed scale this slide teaches the reader that gold means 'a measurement', which is the opposite of what slides 08 and 09 need gold to mean."
+    },
+    "strengths": [
+      "The dimension is metrically exact. X0 120 to X1 960 is 840 px, twenty feet at the deck's locked 42 px per foot, measured at about 1682 px in the 2x PNG. Do not move either endpoint.",
+      "The quotation is verbatim C22 including 'literally' and the full second sentence, in straight quotes.",
+      "The water is genuinely two-edge modeled: every crest gets a lit windward bezier and a dark lee bezier beneath it, with lift, width and alpha all keyed to nearness. This is the craft the breather was justified on and it must survive any revision.",
+      "The specular path is correctly biased to frame left (x = 60 + rnd()*rnd()*420) and the sun glow sits off frame at (150, 915), so the 305 degree key is honoured.",
+      "Three shore layers with clean value separation, a four-stop water depth ramp, and a repoussoir shore bleeding off the bottom give five working depth cues.",
+      "Copper is genuinely absent, verified in the source. The rest beat's structural premise is intact.",
+      "data-breather is really set on the body, so the frame_balance demotion is honest rather than asserted."
+    ],
+    "strengths_do_not_break": [
+      "X0 = 120 and X1 = 960 (the 840 px twenty-foot lock)",
+      "the two-edge swell loop at lines 82 to 97",
+      "the left-biased specular path and the off-frame sun glow at (150,915)",
+      "the verbatim C22 string",
+      "the total absence of copper"
+    ],
+    "issues": [
+      {
+        "severity": "hard-fail",
+        "where": "The dimension line, y 1058, x 120 to 960",
+        "problem": "strokeStyle '#FFC72C' at lineWidth 5.5, with #FFC72C arrowheads and rgba(255,199,44,0.55) extension lines, then pushed over the 0.70 bloom threshold at strength 0.32 so it glows. Two laws broken at once. Gold carries exactly one meaning in this deck and it is not 'a dimension on slide 04'; slide 04's own palette says 'No gold except the hollow tick'. And 5.5 px is --w-hero, reserved by the line voice table for 'THE COPPER LOAD PATH only', on the one slide where the copper is meant to be absent. A dimension line is --w-fine, 1.25 px, by the deck's own token table.",
+        "fix": "cx.strokeStyle='#C9C3AE'; cx.lineWidth=1.25 on line 114, fillStyle='#C9C3AE' on the arrowheads at line 118, and strokeStyle='rgba(201,195,174,0.55)' on the extension lines at line 124. Keep X0 120, X1 960, DY 1058 and the 10 x 3.3 arrowheads exactly as they are. At 1.25 px the bar drops below the bloom threshold with no other change."
+      },
+      {
+        "severity": "hard-fail",
+        "where": "The far shore town light at (742, 905), lines 67 to 71",
+        "problem": "A second #FFC72C element, a 3.6 px disc plus a 22 px rgba(255,199,44,0.42) glow, on a slide declared gold-free. It also reads as a light source on the right of the frame while the actual key glow sits off frame left at x 150, so a viewer sees two contradictory suns and no glitter path leads to the right-hand one.",
+        "fix": "Change both fills to the cool practical '#C9D9D4' at radius 3.0 with the glow at rgba(201,217,212,0.30), or delete lines 67 to 71 entirely. The dossier does not ask for a town light on this slide."
+      },
+      {
+        "severity": "major",
+        "where": "The attribution at left 88, top 492",
+        "problem": "Dossier 4a requires 'The attribution sits on a small lit ledge with its own two-part contact shadow'. There is no ledge and no shadow. Consequently the slide contains not one two-part contact shadow and not one lit modeled solid, against a deck-wide standard that asks for both on every slide.",
+        "fix": "Draw a lit ledge under the attribution before the type: a rect x 74 to 706, y 478 to 542, filled with a linear gradient #5A6E76 to #7E9299 with an 8 px chamfer and a #90A4A9 specular top edge, then the two-part shadow beneath it, tight at rgba(10,20,19,0.42) over 6 px and wide at rgba(10,20,19,0.16) over 60 px, offset down and to the right. Then switch .attrib colour to #131A20, which is what the two-value type law requires on a ground above L* 55."
+      },
+      {
+        "severity": "major",
+        "where": "Scale rail, bottom left footer",
+        "problem": "Same as slide 03: the nine-rung ladder glyph declared for all nine slides is absent, and the footer block is byte-identical to slide 03's, so nothing indicates rung 4. Continuity device A ships at two thirds of its specified form.",
+        "fix": "Add the nine-rung ladder to the shared footer draw: nine 4 x 10 px rungs at 14 px pitch from x 300, y 1218, in #26333A at 0.5 with rung 4 filled #C9C3AE."
+      },
+      {
+        "severity": "polish",
+        "where": "The '20 FT' knockout, canvas rect [482,1014,120,44], and the two footer knockouts [[74,1176,392,62],[842,1176,164,62]]",
+        "problem": "All three are typed constants, violating legibility gate 6, which says every plate is sized from the measured string via getBBox or measureText and never a typed constant. The footer plate at 392 px wide leaves visible slack to the right of 'FRAME 60 KM, OBLIQUE'.",
+        "fix": "Measure each string after document.fonts.ready and set the rect to bbox.width + 28 px padding, bbox.height + 18 px."
+      },
+      {
+        "severity": "polish",
+        "where": "The repoussoir shore silhouette, lines 133 to 148",
+        "problem": "The clip path gives the foreground rocks a razor-sharp outline while their interior is soft. A near-field element declared 'blurred 6 px' with a crisp silhouette contradicts its own depth cue, and it is the only hard edge in the bottom band.",
+        "fix": "After cx.restore(), redraw the same silhouette polyline as a stroke at lineWidth 7 in rgba(6,15,20,0.55) with cx.filter='blur(4px)', or feather the clip by drawing the silhouette twice at 3 px offsets with 0.5 alpha."
+      },
+      {
+        "severity": "polish",
+        "where": "The shore layer table at lines 53 to 55",
+        "problem": "Each layer carries a 'mix' value (0.72, 0.45, 0.18) that is never read. The declared technique is '#42 multiplane parallax, 4 layers at scale 0.72^i with atmosphere lerp (i/n)^1.4', but the render uses three layers with three hand-picked constant colours and computes no lerp. The result happens to look right, which is why it is polish and not major, but the dossier asserts a technique the code does not perform.",
+        "fix": "Either compute the fill as AK.lerpColor('#7C8C90', L.c, L.mix) so the fog hue actually drives the recession, or drop the unused 'mix' key and correct the dossier to three layers."
+      }
+    ],
+    "fixes": [
+      {"what": "The 840 px dimension is #FFC72C at hero weight 5.5 with bloom, on a slide declared gold-free, spending slide 05's one gold moment a slide early", "where": "lines 112 to 125", "how": "strokeStyle and arrowhead fill to '#C9C3AE', lineWidth 5.5 to 1.25, extension lines to rgba(201,195,174,0.55). Keep X0 120, X1 960, DY 1058 unchanged", "severity": "high"},
+      {"what": "A second #FFC72C element, the far-shore town light with a gold glow, which also implies a light source opposite the actual key", "where": "lines 67 to 71", "how": "recolour to #C9D9D4 with a rgba(201,217,212,0.30) glow, or delete", "severity": "high"},
+      {"what": "The attribution ledge and its two-part contact shadow were never built, leaving the slide with no lit solid and no contact shadow", "where": "under .attrib at 88,492", "how": "lit rect 74,478 to 706,542 in #5A6E76 to #7E9299 with an 8 px chamfer and #90A4A9 top edge, two-part shadow at 0.42/6 px and 0.16/60 px down-right, attribution colour to #131A20", "severity": "high"},
+      {"what": "The nine-rung ladder glyph of the scale rail is missing", "where": "footer draw block", "how": "nine 4 x 10 px rungs at 14 px pitch from x 300 y 1218, rung 4 filled #C9C3AE", "severity": "medium"},
+      {"what": "Three knockout plates sized as typed constants", "where": "lines 128 and 162", "how": "size from measureText plus 28 px padding", "severity": "low"},
+      {"what": "Foreground shore has a razor-sharp silhouette against a soft interior", "where": "lines 133 to 148", "how": "restroke the silhouette at 7 px in rgba(6,15,20,0.55) under a 4 px blur", "severity": "low"},
+      {"what": "The declared atmosphere lerp is not computed; the 'mix' field is dead data and there are three layers, not four", "where": "lines 53 to 64", "how": "lerp each layer toward the fog hue #7C8C90 by its mix, or correct the dossier", "severity": "low"}
+    ],
+    "score_0_10": 6.0
+  }
+]
+```

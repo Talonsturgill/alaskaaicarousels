@@ -13,6 +13,72 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-08-12/",
+      "url": "https://alaskaaihq.com/archive/2026-08-12/",
+      "title": "No Wire Leaves Cordova. So the Load Moved In.",
+      "summary": "The map with no line out, the twenty feet drawn true, and what the $725,000 buys.",
+      "content_html": "<p><em>What does Cordova do with power it can't sell and can't ship out?</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-12/og.jpg\" alt=\"No Wire Leaves Cordova. So the Load Moved In. cover slide\" width=\"1080\" height=\"1350\"></p><p>Nothing leaves Cordova by wire.</p><p>The amount landed August 11th. $725,000.</p><p>The nearest line is 56 km away.</p><p>A fifth of it goes nowhere.</p><p>Twenty feet from the turbine.</p><p>Greensparc put 170 kilowatts of computing inside the Humpback Creek run of river plant, several miles north of town. The National Laboratory of the Rockies reported it in March. (C18, C26)</p><p>The whole co-op, to scale.</p><p>Over 200 island grids. One got picked.</p><p>UAF counts over 200 remote microgrids in Alaska. Each one is a closed loop with nothing joining it to the next. Cordova is one of them. (C06)</p><p>The money is not for the data center.</p><p>On August 11th UAF published both. $725,000, AURORA-AI, Alaska Utility Resilience and Optimization using Real-time AI, with Richard Wies as principal investigator. It combines utility data, virtual replicas of the power grid and AI to forecast demand and detect abnormal operating conditions. (C01, C02, C03, C05, C07)</p><h3>Sources</h3><ul><li><a href=\"https://www.uaf.edu/news/uaf-leads-ai-project-to-strengthen-alaskas-rural-power-grids.php\">University of Alaska Fairbanks</a>, primary document</li><li><a href=\"https://www.uaf.edu/acep/news/2026/uaf-leads-ai-project-to-strengthen-alaskas-rural-power-grids.php\">Alaska Center for Energy and Power, University of Alaska Fairbanks</a>, primary document</li><li><a href=\"https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate\">U.S. Department of Energy</a>, primary document</li><li><a href=\"https://www.energy.gov/articles/energy-department-announces-293-million-funding-support-genesis-mission-national-science\">U.S. Department of Energy</a>, primary document</li><li><a href=\"https://www.nlr.gov/news/detail/program/2026/in-alaska-a-data-center-inside-a-power-plant-inside-a-microgrid\">National Laboratory of the Rockies</a>, primary document</li><li><a href=\"https://www.cordovaelectric.com/about/\">Cordova Electric Cooperative</a>, primary document</li><li><a href=\"https://www.energy.gov/cmei/articles/energy-department-renames-nrel-national-lab-rockies\">U.S. Department of Energy</a>, primary document</li><li><a href=\"https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224224\">Alaska Department of Natural Resources Division of Oil and Gas</a>, primary document</li><li><a href=\"https://www.energy.gov/sites/default/files/2026-07/GM-RFA-Awards-List.pdf\">U.S. Department of Energy</a>, primary document</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-08-12/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "Nothing leaves Cordova by wire.\n\nThe amount landed August 11th. $725,000.\n\nThe nearest line is 56 km away.\n\nA fifth of it goes nowhere.\n\nTwenty feet from the turbine.\n\nGreensparc put 170 kilowatts of computing inside the Humpback Creek run of river plant, several miles north of town. The National Laboratory of the Rockies reported it in March. (C18, C26)\n\nThe whole co-op, to scale.\n\nOver 200 island grids. One got picked.\n\nUAF counts over 200 remote microgrids in Alaska. Each one is a closed loop with nothing joining it to the next. Cordova is one of them. (C06)\n\nThe money is not for the data center.\n\nOn August 11th UAF published both. $725,000, AURORA-AI, Alaska Utility Resilience and Optimization using Real-time AI, with Richard Wies as principal investigator. It combines utility data, virtual replicas of the power grid and AI to forecast demand and detect abnormal operating conditions. (C01, C02, C03, C05, C07)",
+      "date_published": "2026-08-12T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-12/og.jpg",
+      "tags": [
+        "AlaskaEnergy",
+        "Microgrids",
+        "GridResilience"
+      ],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 35,
+        "sources": [
+          {
+            "url": "https://www.uaf.edu/news/uaf-leads-ai-project-to-strengthen-alaskas-rural-power-grids.php",
+            "outlet": "University of Alaska Fairbanks",
+            "primary": true
+          },
+          {
+            "url": "https://www.uaf.edu/acep/news/2026/uaf-leads-ai-project-to-strengthen-alaskas-rural-power-grids.php",
+            "outlet": "Alaska Center for Energy and Power, University of Alaska Fairbanks",
+            "primary": true
+          },
+          {
+            "url": "https://www.energy.gov/articles/secretary-energy-chris-wright-announces-first-genesis-mission-projects-selected-accelerate",
+            "outlet": "U.S. Department of Energy",
+            "primary": true
+          },
+          {
+            "url": "https://www.energy.gov/articles/energy-department-announces-293-million-funding-support-genesis-mission-national-science",
+            "outlet": "U.S. Department of Energy",
+            "primary": true
+          },
+          {
+            "url": "https://www.nlr.gov/news/detail/program/2026/in-alaska-a-data-center-inside-a-power-plant-inside-a-microgrid",
+            "outlet": "National Laboratory of the Rockies",
+            "primary": true
+          },
+          {
+            "url": "https://www.cordovaelectric.com/about/",
+            "outlet": "Cordova Electric Cooperative",
+            "primary": true
+          },
+          {
+            "url": "https://www.energy.gov/cmei/articles/energy-department-renames-nrel-national-lab-rockies",
+            "outlet": "U.S. Department of Energy",
+            "primary": true
+          },
+          {
+            "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224224",
+            "outlet": "Alaska Department of Natural Resources Division of Oil and Gas",
+            "primary": true
+          },
+          {
+            "url": "https://www.energy.gov/sites/default/files/2026-07/GM-RFA-Awards-List.pdf",
+            "outlet": "U.S. Department of Energy",
+            "primary": true
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-08-09/",
       "url": "https://alaskaaihq.com/archive/2026-08-09/",
       "title": "The Ladder Stops at Fifth Grade",

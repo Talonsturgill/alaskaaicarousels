@@ -1,0 +1,185 @@
+```json
+[
+  {
+    "slide": 1,
+    "verdict": "revise",
+    "score_0_10": 6.0,
+    "encoding_reads": "n/a - the SLIDE 01 dossier declares no field 11a wordless claim. Judged against field 3 instead, the 432 px takeaway (\"a cold steel grid runs down the middle of Alaska and one gold town sits off to the side of it\") only half arrives: the network reads, but at thumb the loudest gold object is the empty index RECTANGLE, not Cordova's mark, so a stranger sees a box before they see a town. Cause is scale and proportion, not hue.",
+    "transcription": [
+      "Nothing",
+      "leaves",
+      "Cordova",
+      "by wire.",
+      "The amount landed August 11th.",
+      "$725,000.",
+      "JULY 22ND  SELECTED. NO",
+      "AMOUNT PUBLISHED.",
+      "AUGUST 11TH  $725,000.",
+      "AURORA-AI.",
+      "FRAME 720 KM",
+      "01 / 09",
+      "SURFACE = DISTANCE TO NEAREST LINE AT 69 KV OR ABOVE. CONTOUR INTERVAL 25 KM. DERIVED."
+    ],
+    "typos": [],
+    "transcription_diffs": [
+      {"expected": "The amount landed August 11th. $725,000.  (dossier: Fraunces 38 px, 1 line)", "rendered": "two lines, \"The amount landed August 11th.\" / \"$725,000.\"", "severity": "minor"},
+      {"expected": "AUGUST 11TH  $725,000. AURORA-AI.  (dossier: 2 rows total)", "rendered": "four lines; \"AURORA-AI.\" wraps to a fourth line that falls outside the black rail plate", "severity": "hard-fail"},
+      {"expected": "FRAME 720 km", "rendered": "FRAME 720 KM", "severity": "minor"},
+      {"expected": "... AT 69 kV OR ABOVE. CONTOUR INTERVAL 25 km. DERIVED.", "rendered": "... AT 69 KV OR ABOVE. CONTOUR INTERVAL 25 KM. DERIVED.", "severity": "minor"},
+      {"expected": "contour labels in km along the flattest run of each isoline inside a knockout window (dossier 7, 11, and eye-path stop 3)", "rendered": "no contour label appears anywhere on the sheet", "severity": "hard-fail"}
+    ],
+    "hard_fails": [
+      "\"AURORA-AI.\" (gold, top right) sits below the lower edge of its knockout plate, on live hachured map. The AUGUST 11TH row's plate is sized for one line and the row wraps to two.",
+      "Not a single contour label is drawn. The dossier names labelled isolines twice (technique stack, anchor spec) and makes them eye-path stop 3."
+    ],
+    "checklist": [
+      {"item": "The display line reads at 432 px and is exactly `Nothing leaves Cordova by wire.`", "pass": true, "why": "Reads clean at 432 px, Unbounded, three hand-broken lines, no tofu, no fallback."},
+      {"item": "Cordova's gold mark is the ONLY gold on the sheet apart from the index box and the rail", "pass": false, "why": "The copper edge-tease arc at the right edge (slide y ~769) renders as a saturated amber that sits in the same hue and value family as #FFC72C. The dossier gates copper to OKLCH chroma <= 0.11, matte; this reads specular and high chroma. At 432 px it is a fourth gold mark."},
+      {"item": "The transmission network is STEEL, not gold. Grey for context, one accent for focus", "pass": false, "why": "Not gold, but not context either. The cased segments render as the brightest, warmest-white ink on the sheet, brighter than the coastline they should sit under. Dossier specified #59718C at 0.55 alpha; rendered value is far above that."},
+      {"item": "The 25 km contour interval is printed, and the surface's derivation is on the frame", "pass": true, "why": "The marginalia string carries both."},
+      {"item": "The copper load path exits the right edge and stops 60 px in, unresolved", "pass": true, "why": "Enters at the right edge at slide y ~769 and stops ~70 px in. Terminus is genuinely unresolved and teases slide 02."},
+      {"item": "The bottom band carries hachure with visible stroke-width variation, not flat fill", "pass": false, "why": "The hachure carries the water beautifully with real width variation, but the Kenai peninsula and the PWS island masses, which are the largest objects in the bottom band, are FLAT dark fill with no stroke at all."},
+      {"item": "The marginalia plinth casts a two-part contact shadow into a LIT pool", "pass": false, "why": "The plinth reads as a flat pale rectangle behind the FRAME plate. No tight contact darkening and no wide ambient falloff is distinguishable, and there is no lit pool beneath it. The marginalia string it was built to carry sits BELOW it on the dark map."},
+      {"item": "No text sits on a ground measuring L* 35 to 55", "pass": true, "why": "Every block is on either near-black plate or the dark map. Nothing lands in the forbidden band."},
+      {"item": "The AUGUST 11TH row is solid gold and the JULY 22ND row is phantom dashed", "pass": false, "why": "The colour split is right (grey #7E8B93 vs gold), but no phantom-dashed rule is drawn on the JULY row, so the promised SHAPE change does not exist. Solid vs hollow is currently a brightness change only, which is exactly what the dossier said would not survive thumb scale."}
+    ],
+    "bottom_third": {
+      "carries": "The Kenai and PWS coastline at full width, the gold index box, the pale plinth with the FRAME 720 KM plate and checkerboard bar scale, the counter plate, and the marginalia line.",
+      "modeled_tone": false,
+      "why": "There is plenty of INK below y 900, so the 30 percent gate passes, but the largest masses down there are flat dark fills with a hairline coastline. The one promised modeled solid, the lit plinth, renders as an untextured pale rectangle without a readable two-part shadow. The band has furniture, not tone."
+    },
+    "contrast_worst": {
+      "where": "\"JULY 22ND SELECTED. NO AMOUNT PUBLISHED.\" in #7E8B93 on the near-black rail plate; and \"AURORA-AI.\" in gold now sitting on live hachured map instead of plate.",
+      "estimate": "~6.5:1 for the JULY row, ~8:1 for AURORA-AI even on the map",
+      "ok": true
+    },
+    "thumb_test": {
+      "readable_at_432px": true,
+      "one_takeaway": "\"Nothing leaves Cordova by wire.\" over a pale wire network that runs down the middle and a yellow box off to the side. The headline does stop a scroll. Cordova's gold dot is findable inside the box but only just, at roughly 4 px, and the box out-shouts it."
+    },
+    "issues": [
+      {"severity": "hard-fail", "where": "AUGUST 11 rail, top right", "problem": "\"AURORA-AI.\" is the second line of a row whose knockout plate was sized for one line. The word sits on raw hachured map with a visible plate edge cutting above it.", "fix": "Size the row plate from the MEASURED two-line box after document.fonts.ready (AK.svgPlate on the row group bbox, not per-line), or widen the rail to ~420 px so each row fits one line. Do not use a typed constant height."},
+      {"severity": "hard-fail", "where": "Remoteness surface, whole frame", "problem": "No isoline carries a km label. Dossier field 7 promises labels 'along the flattest run of each isoline inside a knockout window', field 11 lists 'contour labels in knockout windows' as anchor furniture, and field 4 makes them eye-path stop 3. Eye path 3 currently has nothing to land on.", "fix": "Emit the d3.contours label pass: for each 25 km isoline take the flattest run inside x [120, 940], place an Archivo wdth 62 26 px value in an AK.svgPlate knockout, rotated to the local isoline tangent."},
+      {"severity": "major", "where": "Sub line, \"$725,000.\", ~slide (84, 596)", "problem": "The sub wrapped to two lines and the headline knockout window was not resized for it, so the window's bottom edge runs through the lower part of the \"$725,000.\" glyphs with effectively zero clearance. This is the plate edge behaving as a rule struck through a number.", "fix": "Compute the reserve/window rect from the union bbox of .hl and .sub measured after document.fonts.ready, then inset it OUTWARD by 24 px on all sides. That also clears the qa.py warn."},
+      {"severity": "major", "where": "Machine QA warn, ring around the headline", "problem": "SETTLED. No hachure stroke crosses a letterform of \"Nothing leaves Cordova by wire.\" I traced the top of the N: the nearest live strokes sit ~22 slide px above the cap line, and the display block interior is genuinely clean. The 4 percent at 64 percent span is the QA dilation ring poking OUTSIDE the reserve mask on every side, because the mask is barely larger than the type. It is a clearance failure, not a collision.", "fix": "Same fix as above: grow the AKHACHURE reserve rect by 24 px beyond the measured text bbox on all four sides. Nothing needs redrawing."},
+      {"severity": "major", "where": "Copper edge tease, right edge at slide y ~769", "problem": "The arc renders as a saturated specular amber that is not separable from #FFC72C at 432 px, breaking the deck's own gold law ('gold carries exactly one meaning'). The dossier gates copper to OKLCH chroma <= 0.11.", "fix": "Set the arc stroke to #B8703C (OKLCH ~0.10 chroma) with no glow or halo filter, and drop its opacity to 0.9. Do not use #E0A46A here; reserve that for the lit copper band on slide 05."},
+      {"severity": "major", "where": "Transmission network, whole frame", "problem": "The 65 segments render as the brightest ink on the sheet, warm-white and brighter than the coastline. The dossier assigns #59718C at 0.55 alpha for exactly the opposite reason: they are context.", "fix": "Set the segment stroke to #59718C at 0.55 alpha with the #79 casing in #0C1A20 at 0.6. Keep the coastline at #C9C3AE 0.75 so the coast reads ABOVE the network in the value stack."},
+      {"severity": "major", "where": "Bottom band, Kenai and PWS landmasses", "problem": "The largest masses below y 900 are flat #1E2E33 fill with no hachure, contradicting dossier 4a which calls this 'the densest akhachure remoteness field in the deck'. The distance surface is defined over land as much as water, so its absence there is also a data omission.", "fix": "Do not clip AK.hachureFromGrid to the water polygon. Run the field over the full grid extent and let the coastline cased line provide the occlusion cue instead."},
+      {"severity": "major", "where": "Marginalia plinth, bottom left", "problem": "The plinth is a flat pale rectangle. No two-part contact shadow (tight 0.42 / 6 px plus wide 0.16 / 60 px) is readable, there is no lit pool under it, and the marginalia string it exists to carry sits BELOW its lower edge on the dark map.", "fix": "Draw the lit pool FIRST (radial #5A6E76 to #7E9299 gradient centred up-left per the 305 deg key), then the plinth, then the two shadow passes down and to the right. Move the marginalia baseline up onto the plinth and extend the plinth right to x = 940 so the whole string sits on it."},
+      {"severity": "polish", "where": "Counter plate over the gold index box, bottom right", "problem": "The \"01 / 09\" plate is opaque and occludes the index box's right vertical edge. A furniture plate covering a data element reads as an accident.", "fix": "Move the counter plate down to y 1240 or shorten the index box's right edge to stop at y 1180 with a 45 degree cut terminal, so the layering is deliberate."},
+      {"severity": "polish", "where": "Quiet zone", "problem": "Dossier 4 calls the upper right the quiet zone at ~18 percent of frame. The upper right is where the hachure is densest, plus the rail plate. There is no quiet."},
+      {"severity": "polish", "where": "JULY 22ND row", "problem": "The phantom dash that makes 'superseded' a shape rather than a brightness is missing.", "fix": "Add a 1.25 px #7E8B93 rule under the JULY row with dasharray '30 5 6 5 6 5', and a solid 2.0 px #FFC72C rule under the AUGUST row."}
+    ],
+    "strengths_do_not_break": [
+      "The headline. Unbounded at display size, three lines broken by sense, near-white on dark, is the best-set cover type this deck family has shipped. Do not resize or reflow it.",
+      "The hachure field itself. The stroke-width variation under the 305 degree rake is real, and the density genuinely thins along the Railbelt corridor and thickens toward the Gulf, so the surface reads as relief and not as noise. Whatever is fixed, keep the akhachure parameters (cell 22, passes 2, sunEl 21).",
+      "The true-projection map. Coastline, island detail and the Railbelt geometry are recognisably Alaska, which is what buys the sheet its authority.",
+      "The 'Cordova sits outside the box the wires draw' composition. The gold index box is doing real work as a frame-forward device into slide 02."
+    ],
+    "fixes": [
+      {"what": "Size the AUGUST 11TH row plate from the measured two-line box", "where": "August 11 rail, top right", "how": "AK.svgPlate on the row group bbox after document.fonts.ready, or widen the rail to 420 px", "severity": "high"},
+      {"what": "Draw the 25 km contour labels", "where": "remoteness surface", "how": "flattest-run placement per isoline inside x [120, 940], Archivo wdth 62 26 px in a #75 knockout", "severity": "high"},
+      {"what": "Grow the headline reserve mask and window by 24 px on all sides from the measured .hl + .sub union bbox", "where": "headline knockout window", "how": "getBBox union after fonts.ready, then inset(-24)", "severity": "high"},
+      {"what": "Desaturate the copper edge tease to #B8703C", "where": "right edge, slide y 769", "how": "stroke #B8703C, no glow filter, opacity 0.9", "severity": "high"},
+      {"what": "Drop the transmission network to #59718C at 0.55 alpha", "where": "all 65 segments", "how": "stroke and casing recolour", "severity": "medium"},
+      {"what": "Run the hachure field over land as well as water", "where": "bottom band", "how": "remove the water-polygon clip on hachureFromGrid", "severity": "medium"},
+      {"what": "Build the plinth as lit ground first, then two-part shadow, and put the marginalia on it", "where": "bottom left", "how": "radial gradient pool, plinth x 60 to 940, shadows 0.42/6 px and 0.16/60 px down-right", "severity": "medium"},
+      {"what": "Stop the counter plate occluding the index box edge", "where": "bottom right", "how": "move plate to y 1240", "severity": "low"},
+      {"what": "Add the phantom dash rule to the JULY 22ND row", "where": "August 11 rail", "how": "dasharray 30 5 6 5 6 5 at 1.25 px #7E8B93", "severity": "low"}
+    ]
+  },
+  {
+    "slide": 2,
+    "verdict": "revise",
+    "score_0_10": 5.0,
+    "encoding_reads": "n/a - the SLIDE 02 dossier declares no field 11a wordless claim. Against field 3, the takeaway (\"a copper thread that stops, and a ring around a town that the thread does not reach\") DOES read at 432 px, and it is the strongest thing on the slide: the thread visibly terminates tangent to the ring. The only thing muddying it is hue, because the thread renders in the same amber as the gold town mark, so a stranger reads one continuous gold system rather than a stopped one and a stranded one.",
+    "transcription": [
+      "The",
+      "nearest line",
+      "is 56 km",
+      "away.",
+      "\"Cordova is not connected to the State Highway",
+      "System, and CEC is not connected by transmission",
+      "line to other communities.\"",
+      "CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE  C29",
+      "FRAME 240 KM",
+      "02 / 09",
+      "AGGREGATE. NEAREST LINE AT 69 KV OR ABOVE IN THE STATE TRANSMISSION LAYER. COMPUTED FROM 65",
+      "COMMITTED SEGMENTS. NOT A SOURCED FIGURE."
+    ],
+    "typos": [],
+    "transcription_diffs": [
+      {"expected": "ABOUT 2,600 RESIDENTS (C21)  beside Cordova's mark", "rendered": "ABSENT. No such label appears anywhere on the slide.", "severity": "hard-fail"},
+      {"expected": "CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE (C29)", "rendered": "CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE  C29", "severity": "minor"},
+      {"expected": "213 KM TO THE NEAREST PLANT OF 20 MW OR MORE  (deck header aggregate table, slide 02) plus the #25 great-circle leader to Eklutna", "rendered": "neither the leader nor the string is drawn", "severity": "hard-fail"},
+      {"expected": "Headline Unbounded 96 px, 2 lines: `The nearest line` / `is 56 km away.`", "rendered": "4 lines: \"The\" / \"nearest line\" / \"is 56 km\" / \"away.\"", "severity": "hard-fail"},
+      {"expected": "FRAME 240 km", "rendered": "FRAME 240 KM", "severity": "minor"},
+      {"expected": "... AT 69 kV OR ABOVE ...", "rendered": "... AT 69 KV OR ABOVE ...", "severity": "minor"}
+    ],
+    "hard_fails": [
+      "Headline overwrap. fitText maxLines 2 did not hold: the block ran to FOUR lines and grew ~230 px downward, so \"away.\" now lands on the coastline of the western PWS islands. The coastline stroke passes directly through the glyph band of \"away.\" and the dark landmass fill begins at its descender line. This is art touching glyphs and it is visible at 432 px.",
+      "Bottom margin violated. The second disclosure line, \"COMMITTED SEGMENTS. NOT A SOURCED FIGURE.\", has its descenders at roughly slide y 1316, about 34 px from the canvas edge. The house floor is 80 px and this deck's own gate is y <= 1270. The FRAME 240 KM bar scale also sits at ~y 1276, past the same gate.",
+      "The dimension call is missing entirely. Dossier field 7 specifies a #73 dimension from the ring to the nearest 69 kV segment with 4 px gap, 6 px overshoot and 3 to 1 filled arrowheads. Nothing is drawn. The acceptance item 'The dimension leader terminates on the transmission segment, not in void' cannot pass because there is no leader.",
+      "`ABOUT 2,600 RESIDENTS (C21)` is in the dossier copy list and is not rendered."
+    ],
+    "checklist": [
+      {"item": "The quotation is verbatim C29 including \"State Highway System\"", "pass": true, "why": "Character for character against C29: \"Cordova is not connected to the State Highway System, and CEC is not connected by transmission line to other communities.\" Straight double quotes, no em or en dash, no colon. This is the best-executed element in either slide."},
+      {"item": "The ring is a `d3.geoCircle`, verifiable by its slight north-south asymmetry", "pass": false, "why": "NOT VERIFIABLE FROM PIXELS, which is not the same as wrong. I measured the ring bounding box at 620 x 618 render px, i.e. symmetric to within my measurement error, and its centre lands exactly on Cordova's gold mark. At a 56 km radius in this conic the true asymmetry is sub-pixel, so the dossier's stated verification method does not work at this frame. I cannot confirm or contradict it from the render."},
+      {"item": "The dimension leader terminates on the transmission segment, not in void", "pass": false, "why": "No dimension leader exists on the slide. The 56 km lives only in the headline."},
+      {"item": "The aggregate disclosure names the dataset and says NOT A SOURCED FIGURE", "pass": true, "why": "Full string present: names the 69 kV threshold, the state transmission layer, the 65 committed segments, and ends 'NOT A SOURCED FIGURE.' Exactly what was asked."},
+      {"item": "The quotation is dark type on a light ledge, and the ledge has a contact shadow", "pass": false, "why": "Half passes. Dark ink on a pale ledge, comfortably above 12:1, is correct and handsome. But no two-part contact shadow is readable under the ledge's lower edge, and the ground it would be cast into is unlit dark map rather than the lit pool the dossier specifies."},
+      {"item": "The copper thread ends at a drawn lug, and nothing crosses the gap", "pass": true, "why": "Geometrically excellent. The thread runs down from the top edge, kinks realistically, and terminates at a small drawn lug that lands tangent to the 56 km ring, so the ring's radius is PROVED by the tangency without a word. Nothing crosses the gap. This is the best data-in-art moment in the pair."},
+      {"item": "Bottom third carries hachured water plus a lit modeled ledge", "pass": false, "why": "The ledge is there. The hachured water is not. Below roughly y 780 the Gulf of Alaska renders as flat dark fill with zero stroke, left and right of the ledge alike. Dossier 4a explicitly asks for the same akhachure field raked by the 305 deg key so the swell reads."}
+    ],
+    "bottom_third": {
+      "carries": "The lit ledge (x ~74 to ~945, y ~850 to ~1165) with the three-line quotation and the attribution, the FRAME 240 KM plate with checkerboard bar, the 02 / 09 counter plate, and two lines of aggregate disclosure.",
+      "modeled_tone": true,
+      "why": "Weak pass. The ledge does carry a top-to-bottom luminance gradient and a specular top edge, so it is not a flat plate. But it is significantly lighter than the specified #5A6E76 to #7E9299, its 8 px chamfer is not visible, its speckle texture reads as dust rather than concrete aggregate, and it casts no readable contact shadow into any lit ground. It is a lit surface, not yet a lit SOLID."
+    },
+    "contrast_worst": {
+      "where": "\"CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE  C29\" at 26 px, mid-slate on the ledge, over a region of the ledge carrying dark speckle; second worst is the disclosure grey on the dark map at the very bottom.",
+      "estimate": "attribution roughly 4.5:1 to 5.5:1 depending on which speckle a stem lands on, which is too close to the floor for 26 px caps; disclosure roughly 4.5:1",
+      "ok": false
+    },
+    "thumb_test": {
+      "readable_at_432px": true,
+      "one_takeaway": "A gold thread comes down from the top, stops, and a dashed circle sits below it around a gold dot it never touches. That reads instantly and it is the right takeaway. The quotation is also legible at thumb, which is rare and valuable. What breaks at thumb is the headline: \"away.\" sitting on the island shapes is unmistakably sloppy at feed scale."
+    },
+    "issues": [
+      {"severity": "hard-fail", "where": "Headline block, \"away.\" at ~slide (95, 405) to (392, 465)", "problem": "The headline set 4 lines instead of the specified 2. The type spec is internally impossible: \"The nearest line\" at Unbounded 96 px needs ~880 px and max width was 620. The overflow pushed the last line onto the western PWS coastline, whose stroke crosses the glyph band and whose dark fill starts at the descender line.", "fix": "Widen the headline max width to 860 and set AK.fitText(el,{min:72,max:96,maxLines:2}). At 2 lines the block ends near slide y 340 and clears the coast entirely. If the copy must stay at 96 px, break it as `The nearest line is` / `56 km away.` and widen to 900."},
+      {"severity": "hard-fail", "where": "Aggregate disclosure, bottom edge", "problem": "Second line descenders reach ~slide y 1316, roughly 34 px from the canvas bottom, against an 80 px house margin and this deck's own declared gate of y <= 1270. The bar scale is also past 1270.", "fix": "Raise the whole bottom stack by 60 px: ledge bottom to y 1105, FRAME plate baseline to y 1195, disclosure block baseline to y 1240 and 1266. Re-flow the disclosure to fit within x [80, 1000] at 26 px."},
+      {"severity": "hard-fail", "where": "Between the ring and the copper lug", "problem": "The dossier's #73 dimension call is absent. The beat is 'measure the gap' and the gap is not measured on the drawing; the number lives only in the headline, which is exactly the failure mode the risk flag warned about ('the 56 km dimension could read as the distance to Anchorage').", "fix": "Draw the dimension: extension lines off the ring's tangent point and the lug's own projected vertex with a 4 px gap and 6 px overshoot, a 1.25 px #C9C3AE dimension line, 3 to 1 filled arrowheads at 10 x 3.3 px, and `56 KM` in Archivo wdth 62 at 30 px in a #75 knockout at the midpoint. Declare both termini in window.__akLeaders."},
+      {"severity": "hard-fail", "where": "Beside Cordova's gold mark", "problem": "`ABOUT 2,600 RESIDENTS (C21)` is specified in the dossier copy and does not appear. C21 is the only human-scale number in the frame and it is what makes the ring mean something.", "fix": "Add the label at 26 px Archivo wdth 62 in a knockout, leadered from the gold mark to a clear patch of dark map to its lower right, ideally at ~slide (600, 700)."},
+      {"severity": "major", "where": "Copper load path, the whole thread", "problem": "The thread renders as a bright saturated amber that is not separable from the gold #FFC72C of Cordova's mark and the hollow tick at 432 px. It is the largest warm object on the slide, so it is the deck's gold law broken at the loudest possible scale. Dossier assigns #B8703C and gates copper to OKLCH chroma <= 0.11, matte.", "fix": "Set the thread stroke to #B8703C, opacity 0.95, no glow or halo filter, and keep the lug in the same value. That also lets the gold ring at Cordova become the only high-chroma warm mark in the frame, which is the point."},
+      {"severity": "major", "where": "Bottom third, Gulf of Alaska left and right of the ledge", "problem": "Flat dark fill, no hachure, no glints. Dossier 4a asks for the cover's akhachure field raked by the 305 deg key 'so the swell reads', and its own acceptance item requires hachured water in the bottom third.", "fix": "Extend AK.hachureFromGrid over the full frame including the water below y 780, at the cover's cell 22 / passes 2 / alpha 0.10, and let the ledge occlude it. Keep the ledge's contact shadow on top of the hachure so the occlusion cue survives."},
+      {"severity": "major", "where": "The ledge, x ~74 to ~945, y ~850 to ~1165", "problem": "No readable two-part contact shadow, no visible 8 px chamfer, and the ground beneath is unlit dark map rather than a lit pool. It is currently a lit plate, not a modeled solid.", "fix": "Draw a lit pool first (radial #2A3840 to #16242A centred up-left of the ledge), then the ledge with an 8 px chamfer band one step lighter on the up-left faces, then two shadows down and to the right: tight #0A1413 at 0.42 alpha / 6 px blur / 6 px offset, and wide #0A1413 at 0.16 alpha / 60 px blur / 24 px offset."},
+      {"severity": "major", "where": "Attribution line on the ledge", "problem": "At roughly 4.5:1 to 5.5:1 against a speckled ground, this 26 px caps line is at or under the body floor at its worst stem. The deck's own two-value type law says the ledge takes #131A20.", "fix": "Set the attribution fill to #131A20 (the deck's ink) at 0.8 opacity for hierarchy rather than a lighter grey, and reduce the ledge's dark speckle density by half under the text bbox."},
+      {"severity": "polish", "where": "The 56 km ring", "problem": "The ring is a pale cyan-blue at about 2 px dashed. Forget-me-not blue is declared in the palette as 'compute consumed, tiny area, slides 05 to 08', and a thin dashed line is declared as the control-path voice. A distance ring is neither.", "fix": "Recolour the ring to #C9C3AE at 0.6 with the #68 pathLength dash symmetry already in place, and set it to --w-fine 1.25. That keeps blue meaning compute when compute arrives on slide 05."},
+      {"severity": "polish", "where": "Hollow gold tick, top right", "problem": "Rendered as a bare hollow triangle. On slide 01 the same motif is a two-row text rail, so the 'solid becomes hollow' shape change has no shared silhouette to read against, and an unlabelled gold triangle reads as a warning glyph.", "fix": "Make the collapsed state the same rail rectangle at 1.25 px gold outline with no fill and no text, so 01's filled plate and 02's hollow plate are the same shape."},
+      {"severity": "polish", "where": "Attribution string", "problem": "\"ABOUT PAGE  C29\" carries a double space and drops the parentheses the dossier specifies.", "fix": "Set the string to `CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE (C29)`."},
+      {"severity": "polish", "where": "Mainland north of Prince William Sound", "problem": "The Chugach mainland carries no land fill, so the region the copper thread descends through reads as open water and the coastline reads as unclosed. On a sheet whose whole authority claim is 'a USGS quadrangle kept current', an Alaskan will see it.", "fix": "Ensure the land plate polygon is clipped to the frame rather than dropped when it exceeds the viewport, so #1E2E33 fills the mainland north and east of the Sound. Same bug is present on slide 01."}
+    ],
+    "strengths_do_not_break": [
+      "The quotation. Verbatim C29, dark Fraunces on a pale ledge, three lines broken by sense, legible at 432 px. This is the load-bearing element of the whole deck and it is right. Do not resize, re-break, or move it off the light ground.",
+      "The tangency. The copper lug terminates exactly on the 56 km ring, so the ring's radius is proved by construction rather than asserted by a label. Whatever else changes, keep the lug on the tangent point.",
+      "The aggregate disclosure. Full nearest-of phrasing, dataset named, 'NOT A SOURCED FIGURE' printed. Exemplary honesty furniture, only needs raising off the bottom edge.",
+      "The hachure in the upper half. Real stroke-width variation, genuinely reads as a remoteness field thinning toward the line and thickening away from it.",
+      "The figure-ground of the ring: a dashed circle over dark islands is instantly readable at thumb without a label."
+    ],
+    "fixes": [
+      {"what": "Refit the headline to 2 lines and lift it clear of the coast", "where": "headline block", "how": "max width 860, AK.fitText({min:72,max:96,maxLines:2})", "severity": "high"},
+      {"what": "Raise the whole bottom stack 60 px off the canvas edge", "where": "ledge, rail, counter, disclosure", "how": "disclosure baselines to y 1240 and 1266, ledge bottom to y 1105", "severity": "high"},
+      {"what": "Draw the missing 56 km dimension call", "where": "ring tangent point to copper lug", "how": "#73 with 4 px gap, 6 px overshoot, 10 x 3.3 px arrowheads, `56 KM` in a knockout at midpoint, declared in window.__akLeaders", "severity": "high"},
+      {"what": "Add `ABOUT 2,600 RESIDENTS (C21)`", "where": "beside Cordova's gold mark", "how": "Archivo wdth 62, 26 px, knockout window, leadered from the mark", "severity": "high"},
+      {"what": "Desaturate the copper thread to #B8703C", "where": "the whole load path and lug", "how": "stroke recolour, no glow filter", "severity": "high"},
+      {"what": "Hachure the Gulf of Alaska in the bottom third", "where": "left and right of the ledge, below y 780", "how": "extend hachureFromGrid over the full frame, cell 22, passes 2, alpha 0.10", "severity": "medium"},
+      {"what": "Model the ledge as a solid with a two-part shadow into a lit pool", "where": "quotation ledge", "how": "lit pool, 8 px chamfer, shadows 0.42/6 px and 0.16/60 px down-right", "severity": "medium"},
+      {"what": "Darken the attribution to #131A20 and thin the speckle under it", "where": "ledge", "how": "fill #131A20 at 0.8, halve speckle density in the text bbox", "severity": "medium"},
+      {"what": "Recolour the ring off forget-me-not blue", "where": "56 km ring", "how": "#C9C3AE at 0.6, --w-fine 1.25", "severity": "low"},
+      {"what": "Make the collapsed August 11 rail the same rectangle hollowed", "where": "top right", "how": "1.25 px gold outline of the 01 plate silhouette", "severity": "low"},
+      {"what": "Fix the attribution string spacing and parentheses", "where": "ledge", "how": "`CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE (C29)`", "severity": "low"},
+      {"what": "Fill the Chugach mainland with the land plate", "where": "north and east of the Sound, both slides", "how": "clip the land polygon to the frame instead of dropping it", "severity": "low"}
+    ]
+  }
+]
+```
