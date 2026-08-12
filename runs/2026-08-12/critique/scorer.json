@@ -1,0 +1,140 @@
+```json
+{
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "Transcribed all 71 authored strings from copy.json plus caption.txt and first_comment with fresh eyes. Every dash instance is an ASCII hyphen inside a compound: 'AURORA-AI', 'Real-time', 'super-energy-efficient', 'next-generation', 'run of river' (unhyphenated), 'co-op', 'NAT. LAB'. C20's source printed an en dash in '20%-25%' and the deck writes '20 to 25 percent' on slide 03 and in the caption, which is the correct handling."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "No emoji in caption.txt, copy.json, first_comment, or any of the nine renders. Only non-ASCII glyphs rendered are the degree/prime marks in slide 09's coordinate footer, 60 deg 33'N 145 deg 45'W."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "claims.json holds 35 claims, 34 flagged source_is_primary true (C21 alone is false, a lab feature used for population and softened to 'about 2,600' on the frame). Every on-slide number carries an id in the dossier and almost all print one. Derived figures are declared as aggregates and disclosed on the frame: slide 02 prints 'NOT A SOURCED FIGURE' under the 56 km, slide 06 prints 'AGGREGATE OF C18 AND C28'. Noted but not failing: the three plant capacities on slide 06 (ORCA DIESEL 10.8 MW, POWER CREEK HYDRO 6.0 MW, HUMPBACK HYDRO 1.25 MW) print no id on the bar labels; they resolve to C28's magnitude-check note, which lists the utility's own plant split summing to 18.05 MW."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide",
+      "status": "pass",
+      "evidence": "Transcribed every rendered string on all nine slides and diffed against copy.json. No misspelled word. One unit-casing defect I am recording but not failing on: slides 01 and 02 print '69 KV' where SI is 'kV', and the same deck correctly sets '170 kW', '18 MW' and '1 MW = 42.6 PX' in the same all-caps Archivo hand. It is an incorrectly cased symbol, not a misspelling, so it does not trip this rule, but it is the same defect class the third pass already fixed on slide 06's kW and it survived on two slides."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "No glyph is clipped or occluded anywhere. The round-1 failures are gone: slide 08's headline now carries all three lines including 'It is for the grid.', 'THE SERVER, REMOVED' sits fully inside a two-line plate, and 'AURORA-AI.' is inside its knockout window. Three near-misses that are art-on-glyphs rather than overlap: slide 03's knockout plate top edge crosses the descender band of 'metered figure.' (glyphs remain fully formed and legible); slide 06's DETAIL A circle stroke crosses the baseline of '0.17 MW' (haloed, legible); slide 01's four lower-right contour labels sit unplated on live coastline and hachure."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point",
+      "status": "pass",
+      "evidence": "Worst point I measured is slide 06's 'DETAIL A / SCALE 8 TO 1' in mid blue on a near-black plate, roughly 4.8:1. Slide 02's quotation is now dark ink on the lit ledge at high ratio, confirming the round-2 relight landed. Slide 08's round-1 failures (2.8:1 body under the glow orb, 1.7:1 'REMOVED', 2.4:1 Phase I footnote) are all resolved: the control-fan origin moved off the body into the room, both strings now sit on plates."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "Nine slides rendered, nine thumbs, counters read 01/09 through 09/09."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "machine_qa.json verdict PASS, fails 0, warns 0. assemble_report.json pdf_mode 'vector', pdf_bytes 13,556,377 (13.56 MB, inside the 2 to 25 MB band), slides 9, title 'No Wire Leaves Cordova. So the Load Moved In.'"
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "Two genuine collisions, both disclosed in selection.md and both handled. No.20 (13 days, jaccard 0.168) shares AURORA-AI, Wies, UAF, ACEP, DOE; the material new development is that UAF published the amount and the mechanism on August 11th, which is exactly the blank No.20 shipped on three slides. It is framed as an update ON the frame, not just in the record: the AUGUST 11 RAIL prints 'JULY 22ND SELECTED. NO AMOUNT PUBLISHED.' against 'AUGUST 11TH $725,000. AURORA-AI.' on slides 01, 08 and 09, and the cover sub carries it in Fraunces. No.18 (17 days, jaccard 0.052) shares Cordova and Greensparc only; different subject."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "Forbidden four are THE TRAVERSE (27), THE UNBOUNDED POPULATION (28), THE LIT APERTURE (29), THE OPEN TREAD (30). This deck is THE FALLING FRAME, and it breaks the deeper 24-to-30 family too: those seven all held scale constant under one camera, this one makes scale the variable. bespoke_check median pairwise art similarity 0.179, drawn share 100 percent. Worth logging: slide 07's ISOTYPE field is functionally deck 28's UNBOUNDED POPULATION on a single slide, but it is not this deck's hero."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "Scanned caption, first comment and all nine renders against the 74-entry list. None present. Also checked the separate hard rules: no colon anywhere in reader copy (slide 01 uses 'SURFACE =' and slide 05 '1 FT = 42 PX' rather than a colon), no 'cannot' (slide 09 sets 'can't', caption sets 'can't' twice), no first person, no sentence opening on And or But, dates month-first ordinal throughout ('August 11th', 'JULY 22ND', 'DECEMBER 1ST, 2025'). caption_report.json fails [] with one advisory warn about the question opener."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "Exactly three, all at the end: #AlaskaEnergy #Microgrids #GridResilience. No URL in the post body; all nine source URLs sit in first_comment."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "No lorem, TODO, TBD or XXX in any artifact. copy.json slide_copy_corrections is an empty array, which is a resolved state and not a stub. Every declared string appears in the render (copy_sync 71/71). Slide 05's 'GENERATOR, FORM RECONSTRUCTED' and 'SOURCED 4 / DRAWN 6' are shipped honesty labels, not placeholders."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7,
+      "weight": 0.14,
+      "notes": "'Nothing leaves Cordova by wire.' is five words, a named place and a real tension, set in Unbounded at roughly 130 px so it reads cleanly at 432. Visibly Alaskan without cliche: the ground is an isarithmic remoteness surface built from 65 committed transmission segments, not a moose. Three things hold it at 7. The focal point competes: the display block, the gold AUGUST 11 rail plate and the gold Cordova mark are three loud elements and the eye does not settle. The hachure reserve mask around the headline renders as a visible hard-edged rectangle (approx x 78 to 1440, y 190 to 700 displayed), which reads as an unintended plate rather than a reserve. And the four contour labels in the lower right (75, 100, 125, 150 KM) ship with no knockout window while 25 KM and 50 KM above them have one, so they sit on live coastline right beside the focal gold mark and go to mush at thumb. The display line also carries no number; the $725,000 is in 38 px Fraunces, about 13 px in the feed."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "The beat structure is explicit and it holds: HOOK, pay, escalate, breather, floor, data, widen, turn, close, with declared temperature shifts at 04 and 08. Slide 2 delivers instantly and in the utility's own words, which is the right use of the steepest drop in the deck. The SCALE RAIL is a genuine device, not a counter: it relabels from km to feet to megawatts to a count to dollars, so the progress fixture also states the deck's shape, and 09 closing on 01's exact 670 km frame seals it. The contact sheet reads as one composed sequence. Two things keep it off 9. Slide 07 is reorderable anywhere between 02 and 08 without loss. And the momentum sags precisely where the escalate beat should bite: 03 is a nine-line undifferentiated grey text wall and 04 is roughly 40 percent flat gradient, so the two middle frames are the softest in the deck at thumb size."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 6,
+      "weight": 0.16,
+      "notes": "The hero does climb the rendered ladder (akthree GPU PBR, snapshot ok, ACES, orthographic so no quantity is in perspective) and the line-weight hierarchy is real and legible. But the zoom test finds too much. On slide 05, the deck's hero, the generator is cropped by the right frame edge into an unreadable half-drum, the promised akengrave back wall did not land (the wall is a flat gradient), and the promised poche crosshatch slab rendered as a dark noise rectangle, leaving roughly 40 percent of the frame flat. Four discrete render artifacts I can point at: slide 03's bottom fifth is a speckled bubble strip with a hard top edge that belongs to no other slide; slide 04 carries visible chromatic-aberration fringes across its checkerboard BAR SCALE, so a precision instrument reads as a rendering error; slide 06 has an unexplained lighter grey rectangle behind the right half of the rail (approx x 685 to 1250, y 1790 to 1860 displayed); slide 07 has a hard-edged black parallelogram immediately below the Cordova pip, consistent with machine_qa's note that that leader lands 18.0 px off target. Slide 06's bars are horizontal streak noise rather than modeled material and its table is a flat black slab occupying about 22 percent of the frame. Slide 04's practical sits on the eastern ridge, contradicting the deck's declared single global key at azimuth 305. The exposure fix is real and visible (copper now separates cleanly from gold), which is why this is a 6 and not lower."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "The twenty-foot lock is the best idea in the deck and I verified it off the pixels rather than taking it. Slide 05's dimension measures approx 838 design px against the declared 840, and its extension lines rise from the cabinet's right face and the generator's near face, with all four leaders at 0.0 px in machine_qa. Slide 06's copper busbar baseline measures approx 840 design px, so the chart is literally twenty feet wide. Slide 07's ISOTYPE pitch is 42 px, one microgrid per foot, and aggregates.json asserts the 200-mark count at draw time with a 26th column cut by the frame carrying C06's word 'over'. Slide 08's money tick sits at 90.0 percent of the $500k to $750k rail, arithmetically exact for $725,000, and the phantom now registers with slide 05's cabinet, which is what makes the substitution provable. Two failures keep it off 9. Slide 03 exists to draw a range as a range and it does not read: the two bound rules are about 17 design px apart and the LOWER BOUND 20 and UPPER BOUND 25 plates are stacked below rather than aligned to the rules they name, with no leaders. And slide 04's 840 px dimension floats over water with no referent, so a stranger reads a white line, not a measurement."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 9,
+      "weight": 0.12,
+      "notes": "The strongest dimension in the package. Named throughout: Cordova, Humpback Creek, Power Creek, Orca diesel, Prince William Sound, Eklutna, Clay Koplin, Richard Wies, Cordova Electric Cooperative, 1,566 customers, 18 MW, about 2,600 residents. The load-bearing fact is the utility's own sentence off its own about page, not an inference. Geography is drawn rather than asserted: Cordova at lon -145.7575 lat 60.5428 from the committed gazetteer, the 56 km ring a true d3.geoCircle through the projection rather than a projected-pixel approximation, the coastline from committed geodata. Zero imported beats; the only Outside names (Colorado State, National Laboratory of the Rockies) are the actual partner list. This would make an Alaskan feel seen rather than marketed to. Off 10 only because the frame widths on 01, 02 and 09 were typed constants until this run and were wrong by 7 and 25 percent, which is a reminder that the cartographic authority was until today partly asserted."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.10,
+      "notes": "Factual weight is close to best-in-class: 35 claims, 34 primary, five claims killed including both North Slope scale figures the original comparison rested on, and the hedges are printed on the frame rather than buried. 'Koplin estimates', 'a share of hydropower, not of total demand', 'In 2025', 'CONSISTENT WITH THE PUBLISHED PHASE I BAND', 'GENERATOR, FORM RECONSTRUCTED', 'SOURCED 4 / DRAWN 6', 'NOT A SOURCED FIGURE'. C35 was re-verified this run rather than inherited, which caught a spine fact nobody had sourced. Density is where it loses: slide 04 carries 17 words and adds no new specific (declared breather, partly excused), and slide 03's second and third blocks are one number plus two caveats, so the escalate beat is thinner than its position demands. Slide 06's three plant capacities print no claim id where every other number on the deck does."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "notes": "All six declared axes diverge with a stated justification: hero THE FALLING FRAME against the forbidden four, atmosphere SILT HAZE ON A LIT SLAB against the forbidden three, three new continuity devices, hook archetype THE ANSWERED BLANK, palette TAILRACE SLATE AND COPPER WINDING, and a type pairing that retires JetBrains Mono as the instrument voice for the first time since No.27 with the deviation declared rather than taken quietly. Unbounded has never shipped in this series. bespoke_check median 0.179, drawn share 100 percent. Off 9 because slide 07's field is deck 28's UNBOUNDED POPULATION structure on one slide, and the black-plate-under-caps-label furniture is the same fixture this page reaches for every run."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 6,
+      "weight": 0.07,
+      "notes": "The declared attack half landed. Genuine wins: smallest type is 26 px, every takeaway is 62 px or above, no contrast failure anywhere after the round-2 relight, bottom-third mass is carried on all nine, and the thumb test survives on eight of nine. But the deck broke its own gates in four places, and this was the criterion it set out to fix. Slide 09's closing plate bottom edge sits about 24 design px from the frame bottom against the plan's declared 72 px minimum, and its coordinate line sits at roughly y 1286 against a declared y 1270 ceiling. Slide 08's footnote and counter row sits at roughly y 1283, past the same gate. Slide 03's THE UNUSED FRACTION plate runs flush to the right frame edge at about x 1077 of 1080, which reads as clipped. And art-touching-glyphs, the class the plan named as its number-three target, still ships on three slides: the four unplated contour labels on the cover, the DETAIL A circle crossing '0.17 MW' on 06, and the plate edge cutting the descender line on 03. Slide 08's bottom fifth is four stacked black plate rows that merge into a single black brick at 432 px."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8,
+      "weight": 0.05,
+      "notes": "Hook lands at 65 chars, well inside the 140 ceiling and inside the mobile fold. 844 chars, inside the 300 to 900 band though near the top. Commas 0.87 per 100 chars against a 1.05 budget, which retires the near-ceiling demerit the ledger recorded three times in nine runs. Deck summary line present. The closing question is genuinely debatable and it is a precondition audit rather than a 'what do you think': 'What has to already exist in a village before AURORA-AI does anything there?' The voice takes a position, 'It funds software that forecasts demand and flags abnormal conditions, not the server.' The showrunner's accuracy edit off 'Cordova's software' was correct and matches the killed claim. Off 9 for two soft spots: the opener is a question, which the lint itself warns tests worse than a declarative, and the third paragraph's last line, 'Alaska has over 200 remote microgrids,' is bolted on rather than argued."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 9,
+      "weight": 0.10,
+      "notes": "Nine renders, nine thumbs, contact sheet, vector PDF at 13.56 MB carrying the document title 'No Wire Leaves Cordova. So the Load Moved In.', caption at 844 chars with exactly three hashtags, a first-comment source block with nine entries each carrying a raw URL and a provenance date, a six-item aftercare checklist, and editor notes naming the three guards to hold before posting. Everything the rubric enumerates is present and nothing is rough. Held off 10 only because the one element I structurally cannot verify at scoring time is that the image and PDF URLs resolve, since they point at main and the merge has not happened yet. site_fresh FAIL is expected and correct at this phase."
+    }
+  ],
+  "calculation": "(7x0.14)+(8x0.14)+(6x0.16)+(8x0.14)+(9x0.12)+(8x0.10)+(8x0.08)+(6x0.07)+(8x0.05)+(9x0.10) = 0.98+1.12+0.96+1.12+1.08+0.80+0.64+0.42+0.40+0.90 = 8.42. No hard fail, so no 6.9 cap applied. Note the rubric's weights sum to 1.10, not 1.00, so this is Sigma(score x weight) computed literally as the rubric specifies; normalised it is a 7.65 mean against a 7.55 normalised threshold, which gives the same verdict either way.",
+  "weighted_total": 8.42,
+  "threshold": 8.3,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail (6 at the rubric's heaviest weight, 0.16, which is where 1.6 of the 1.68 points lost actually sit)",
+  "one_sentence_fix": "Pull slide 05's camera back so the generator sits whole inside the frame with the 840 px dimension intact, and make the declared akengrave back wall and poche crosshatch slab actually render, because the hero is simultaneously the deck's emptiest frame and the slide carrying its most heavily weighted criterion.",
+  "editor_notes_for_email": "SHIPS at 8.42 against 8.3, and it clears by 0.12, so this is a narrow pass and not a comfortable one. I verified the three systemic fixes off the pixels rather than taking them on report, and all three hold: slide 05's dimension measures approx 838 design px against the declared 840 with its extension lines rising from the cabinet's right face and the generator's near face, slide 06's copper baseline measures approx 840 px so the chart is genuinely twenty feet wide, slide 08's phantom now registers with slide 05's cabinet within a few pixels which is what makes the substitution provable, slide 08's money tick sits at 90.0 percent of the band which is arithmetically exact for $725,000, and slide 07's mark count is asserted at draw time with a 26th column cut by the frame. The exposure correction is visible: copper and gold now separate cleanly at thumb size. ONE DEFECT TO FIX BEFORE THE NEXT RUN, not blocking this one: slides 01 and 02 print '69 KV' where SI is 'kV', and the same deck sets '170 kW' and '1 MW' correctly in the same face, so this is the identical unit-casing class the third pass already fixed on slide 06 and it survived on two slides. It is not a misspelling so it does not trip the hard fail, but it is the cheapest correction in the package. THREE WEAKEST THINGS, in order: (1) slide 05, the rendered hero, crops the generator into an unreadable half-drum at the right frame edge and two declared surface techniques did not render, so roughly 40 percent of it is flat gradient and noise; (2) slide 03's body is a nine-line undifferentiated grey wall with the declared 32 px inter-block gap missing, and its bound labels detach from the two rules they name, so the one slide whose whole job is to draw a range as a range does not read as a range; (3) the deck broke four of its own declared legibility gates, most visibly slide 09's closing plate sitting about 24 design px from the frame bottom against its own stated 72 px minimum. LEDGER ENTRIES WORTH MAKING: the frame widths on 01, 02 and 09 are now derived from each slide's own projection at render time, which revealed the previously shipped typed constants were wrong by 7 percent on 01 and 09 and 25 percent on 02, and that belongs in instincts as a rule that any printed measurement must be computed by the thing that draws it. The deck ships as an explicit update to No.20 and corrects No.18's 150 kW to 170 kW sourced to the National Laboratory of the Rockies on March 5, 2026; record the correction rather than bury it. Hold the three guards the copywriter names: the $293 million never appears as the sum of the 278 awards, the $725,000 is only ever called consistent with the Phase I band and never asserted to be a Phase I award, and Cordova Electric Cooperative is a named partner and nothing more. One sentence to read twice before posting: the caption puts the 170 kilowatts in the present tense against a March source, which is fair and is also the first thing a Cordova reader will test."
+}
+```

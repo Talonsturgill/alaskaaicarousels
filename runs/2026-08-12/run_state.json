@@ -1,0 +1,65 @@
+{
+ "run_date": "2026-08-12",
+ "carousel_no": 31,
+ "ship": "complete",
+ "score": 8.42,
+ "threshold": 8.3,
+ "phases_complete": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14
+ ],
+ "revision_rounds": 3,
+ "scoring_cycles": 1,
+ "subagents": {
+  "scout": 6,
+  "fact_checker": 1,
+  "treatment_director": 3,
+  "caption_director": 2,
+  "caption_critic": 1,
+  "copywriter": 1,
+  "pixel_critic": 9,
+  "flow_critic": 1,
+  "scorer": 1,
+  "upgrade_engineer": 1
+ },
+ "claims": {
+  "total": 35,
+  "usable": 35,
+  "primary": 34
+ },
+ "gates": {
+  "render": "PASS 9/9",
+  "qa": "PASS 0 fails 0 warns",
+  "dossier": "PASS 9/9",
+  "claims": "PASS 35/35",
+  "copy_sync": "PASS 71/71",
+  "aggregate": "PASS 8/8",
+  "bespoke": "PASS median 0.179 drawn 100%",
+  "caption": "PASS 844 chars hook 65",
+  "assemble": "PASS vector 13.56 MB",
+  "site_fresh": "PASS",
+  "site_signoff": "PASS 74 pages 18 checks",
+  "gas_watch": "PASS read 2026-08-11",
+  "completion": "--require exit 0, --verify-pasted exit 0"
+ },
+ "post_score_correction": "69 KV and 25 KM corrected to kV and km on slides 01 and 02; re-rendered, gates re-run clean.",
+ "upgrades_commit": "810701a",
+ "upgrades_ledger_commit": "d3aae15",
+ "known_gaps": [
+  "slide 09's round-1 pixel-critic report was consumed inline and never written to disk; recorded in critique/README.md",
+  "no scan_log entry for 2026-08-09, the third silent lapse, surfaced by the Phase 12 retro"
+ ]
+}

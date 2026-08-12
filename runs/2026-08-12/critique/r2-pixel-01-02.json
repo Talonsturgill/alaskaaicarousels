@@ -1,0 +1,255 @@
+```json
+[
+  {
+    "slide": 1,
+    "verdict": "revise",
+    "encoding_reads": "no. The dossier states no field 11a, so I judge field 3 ('a cold steel grid runs down the middle of Alaska and one gold town sits off to the side of it, unreached'), and at 432 px it does not read: the cause is scale and value. The gold index box (approx slide x 496-952, y 817-1141) is roughly 500x the drawn area of Cordova's mark and reads first, so the eye lands on a bright yellow rectangle, not on an unreached town, and land and water sit at almost the same value so there is no geography for the 'off the grid' relation to live in.",
+    "transcription": [
+      "Nothing leaves",
+      "Cordova",
+      "by wire.",
+      "The amount landed August 11th.",
+      "$725,000.",
+      "JULY 22ND   SELECTED. NO",
+      "AMOUNT PUBLISHED.",
+      "AUGUST 11TH   $725,000.",
+      "AURORA-AI.",
+      "50 KM",
+      "25 KM",
+      "125 KM",
+      "[partially occluded contour label inside the rail plate footprint, approx display x 1195-1310 y 840, reads as '...50 KM', not fully legible]",
+      "[second partially occluded label, approx display x 1090-1180 y 930, digits indistinguishable]",
+      "FRAME 720 KM",
+      "01 / 09",
+      "SURFACE = DISTANCE TO NEAREST LINE AT 69 KV OR ABOVE. CONTOUR INTERVAL 25 KM. DERIVED."
+    ],
+    "typos": [],
+    "transcription_diffs": [
+      {
+        "expected": "SURFACE = DISTANCE TO NEAREST LINE AT 69 kV OR ABOVE. CONTOUR INTERVAL 25 km. DERIVED.",
+        "rendered": "SURFACE = DISTANCE TO NEAREST LINE AT 69 KV OR ABOVE. CONTOUR INTERVAL 25 KM. DERIVED.",
+        "severity": "minor"
+      },
+      {
+        "expected": "The amount landed August 11th. $725,000. (one line, Fraunces 38 px)",
+        "rendered": "two lines, 'The amount landed August 11th.' / '$725,000.'",
+        "severity": "minor"
+      },
+      {
+        "expected": "a labelled contour on every isoline of the 25 km interval",
+        "rendered": "three fully legible labels (25 KM, 50 KM, 125 KM) plus at least one clipped/colliding label inside the August 11 rail plate",
+        "severity": "hard-fail"
+      }
+    ],
+    "hard_fails": [
+      "At least one contour label collides with the AUGUST 11 rail plate (rail plate occupies approx slide x 648-1013, y 486-652; the label glyphs appear at approx slide x 807-884, y 567 and slide x 736-797, y 628) and is rendered unreadable. A rendered string that a reader cannot resolve is a hard fail regardless of whether it is decorative."
+    ],
+    "checklist": [
+      { "item": "Display line reads at 432 px and is exactly 'Nothing leaves Cordova by wire.'", "pass": true },
+      { "item": "Cordova's gold mark is the ONLY gold apart from the index box and the rail", "pass": true },
+      { "item": "Transmission network is STEEL not gold", "pass": true },
+      { "item": "The 25 km contour interval is printed and the derivation is on the frame", "pass": true },
+      { "item": "Copper load path exits the right edge and stops 60 px in, unresolved", "pass": true },
+      { "item": "Bottom band carries hachure with visible stroke-width variation, not flat fill", "pass": true },
+      { "item": "Marginalia plinth casts a two-part contact shadow into a LIT pool", "pass": false },
+      { "item": "No text sits on a ground measuring L* 35 to 55", "pass": true },
+      { "item": "AUGUST 11TH row is solid gold and JULY 22ND row is phantom dashed", "pass": true },
+      { "item": "Each 25 km contour is LABELLED on a flat run of its own isoline (round-1 fix)", "pass": false },
+      { "item": "Nine-rung ladder present with rung 1 lit", "pass": true },
+      { "item": "All DOM text inside x [80,1000], y [80,1270]", "pass": true },
+      { "item": "Progress counter reads NN / NN", "pass": true },
+      { "item": "No em/en dashes, no emojis, straight quotes", "pass": true }
+    ],
+    "bottom_third": "PASS on quantity, FAIL on quality. Below slide y 900 the frame carries the Kenai and Gulf landmass hachure, the lower half of the index box, two contour labels, the footer plates and the full-width plinth; I estimate 0.38 to 0.45 of non-background ink, clearing 0.30. But the plinth (approx slide x 59-1021, y 1210-1283) is a flat pale slab with a hard unlit top edge and no readable two-part contact shadow beneath it, so the single most modeled-looking solid in the band is not actually modeled. It is also the second-brightest object on the cover and it carries the least important string on the slide.",
+    "contrast_worst": "Marginalia #131A20 on the plinth's darkest right end (approx slide x 900, y 1250, sampling near #8FA0A6) is roughly 9:1, safe. The genuine worst case is the Fraunces sub '$725,000.' at approx slide x 88-330, y 570-620: it sits directly on the unmasked hachure field with pale strokes passing behind the glyphs; ground samples in the #1E2C32 to #35474E range against #C9C3AE give roughly 6.5:1 to 8:1, still above 4.5:1, but strokes are visibly touching glyph edges near slide (510, 555). The JULY row in phantom #7E8B93 on the near-black rail plate is roughly 6.5:1, legible, but #7E8B93 is not '#C9C3AE or lighter' and so sits outside the two-value type law as written in the deck standards.",
+    "thumb_test": "PARTIAL. The headline stops a scroll: three hand-broken Unbounded lines at that size are unambiguous at 432 px and the fix from round 1 landed cleanly. Everything below the headline fails. The map reads as undifferentiated dark mush because the coastline is a hairline and land and water sit within a few L* of one another, so there is no Alaska to see. Cordova's gold mark is a sub-pixel dot at thumb (approx thumb x 292, y 410) and is NOT findable before the gold index box, which is the loudest gold on the sheet and reads as a highlight rectangle with no meaning attached. The bright pale plinth at the bottom reads as platform chrome and pulls the eye off the art. Answering the direct question: no, the gold mark is not findable before the box, and the box is currently the third-largest gold area on a sheet where gold is supposed to mean one thing.",
+    "strengths_do_not_break": [
+      "The three-line hand-broken headline at 880 px with stems landing on slide x 80. Do not re-fit, do not re-break, do not shrink.",
+      "The akhachure remoteness field over BOTH water and land: it has genuine stroke-width variation under the 305 degree rake and it is the best craft on the slide.",
+      "The transmission network dropped to #59718C at 0.62 now sits correctly UNDER the coastline in the value stack. Keep that ordering.",
+      "The two-value type law executed on the plinth: #131A20 marginalia on a light ground is the right call and reads.",
+      "The checkerboard bar scale plus 'FRAME 720 KM' plus the '01 / 09' mono counter as a footer set.",
+      "The copper nub exiting the right edge at slide y 759-773 and stopping 64 px in. Geometry is correct to the dossier."
+    ],
+    "fixes": [
+      {
+        "what": "Contour labels collide with the August 11 rail plate and render as unreadable fragments",
+        "where": "approx slide x 807-884 y 567 and slide x 736-797 y 628, inside the rail plate box slide x 648-1013 y 486-652",
+        "how": "After the rail plate is measured, pass its getBBox rect into the contour-label placer as an exclusion rect alongside the display reserve, and drop any candidate label whose window intersects it. Re-run the flattest-run search on the remaining arc of that isoline and place the label there, or omit the label entirely rather than clip it.",
+        "severity": "hard-fail"
+      },
+      {
+        "what": "Contour labels float with no visible isoline entering or leaving them, so they read as unattached numbers rather than as contour labels",
+        "where": "'50 KM' at approx slide (719, 672), '25 KM' at (327, 1046), '125 KM' at (780, 1124)",
+        "how": "Raise the labelled isoline only to stroke #7E9299 at 0.42 alpha and 1.25 px (leave unlabelled contours at their current hairline), and knock the label window OUT of that path with a 6 px gap each side so the line visibly enters the left edge of the box and exits the right. As drawn I cannot verify from the pixels that any label sits on a flat run, because the line under it is not resolvable.",
+        "severity": "major"
+      },
+      {
+        "what": "The gold index box out-shouts Cordova's mark and inverts the stated eye path (display, mark, then furniture)",
+        "where": "index box approx slide x 496-952, y 817-1141; Cordova mark at slide (730, 1048)",
+        "how": "Drop the index box to a 1.0 px #FFC72C at 0.38 alpha with corner ticks only (12 px L-brackets at the four corners, no continuous perimeter), and raise Cordova's mark to a 16 px outer ring at 2.0 px plus a 7 px filled core with a 26 px #FFDA6E halo at 0.22. The box should read after the mark, not before it.",
+        "severity": "major"
+      },
+      {
+        "what": "Land and water sit at nearly the same value, so the geography does not read at 432 px and the cover's stated takeaway dies",
+        "where": "whole map field, most visibly slide x 100-900, y 950-1200",
+        "how": "Fill the landmass plate at #1E2E33 against the water at #0C1A20 (a 6 to 8 L* separation), and raise the coastline cased line to 2.0 px core at #C9C3AE 0.85 with a 3.5 px #071119 case. Verify by downsampling to 432 px: the Kenai and Prince William Sound silhouettes must be identifiable.",
+        "severity": "major"
+      },
+      {
+        "what": "The marginalia plinth is the second-brightest mass on the cover and carries the least important string; it also has no readable two-part contact shadow",
+        "where": "plinth approx slide x 59-1021, y 1210-1283",
+        "how": "Cut the plinth's width to slide x 60-620 as the dossier specifies (x 60 to 520 at y 1180 in the dossier text), drop its lit face from the #90A4A9 top to a #7E9299 to #5A6E76 ramp, and cast the two-part shadow explicitly: a 6 px 0.42 alpha #0A1413 contact along the bottom-right edge plus a 60 px 0.16 alpha ambient, both offset down-right per the 305 degree key, onto a lit ground pool drawn BEFORE the shadow.",
+        "severity": "major"
+      },
+      {
+        "what": "The headline reserve reads as a hard-edged raw rectangle, not as a lit slab",
+        "where": "approx slide x 54-972, y 132-472; the right and bottom edges are visible straight value steps",
+        "how": "Feather the reserve mask with a 40 px gaussian falloff on the right and bottom edges so the hachure recovers gradually, or give the slab a lit top-left edge (1.25 px #90A4A9 at 0.35) and a shadow on the down-right edges so it becomes a solid rather than a hole.",
+        "severity": "major"
+      },
+      {
+        "what": "Hachure strokes run behind the Fraunces sub with no reserve",
+        "where": "sub block approx slide x 88-640, y 520-620",
+        "how": "Add the sub's measured getBBox to the same reserve set as the display block, with a 14 px pad, inside renderReady after document.fonts.ready.",
+        "severity": "polish"
+      },
+      {
+        "what": "The nine-rung ladder is not distinguishable from the checkerboard bar scale beside it",
+        "where": "footer, approx slide x 304-419, y 1178",
+        "how": "Separate the ladder from the bar by 24 px, raise the rungs to 10 px tall at 1.25 px, and light rung 1 with a filled 4 x 12 px #C9C3AE block against #43535C unlit rungs, so the device reads as a ladder rather than as a dashed continuation of the scale bar.",
+        "severity": "polish"
+      },
+      {
+        "what": "Four type families on one slide (Unbounded, Fraunces, Archivo, JetBrains Mono) against the deck header's stated maximum of two plus the mono fixture",
+        "where": "display, sub, rail/marginalia, counter",
+        "how": "Either set the sub in Archivo wdth 62 at 34 px, or amend the deck header rule to state that the cover is the one slide permitted display plus body plus hand. Do not leave the storyboard contradicting itself; the ledger reads it.",
+        "severity": "polish"
+      }
+    ],
+    "score_0_10": 5.5
+  },
+  {
+    "slide": 2,
+    "verdict": "revise",
+    "encoding_reads": "no. No field 11a is declared, so I judge field 3 ('a copper thread that stops, and a ring around a town that the thread does not reach'), and at 432 px it does not read: the cause is proportion and occlusion. The 56 km is encoded as a RADIUS with no drawn radius dimension from Cordova's mark to the ring, so a stranger sees a line that touches the circle rather than a measured gap, and the one moment that proves it, the terminus landing on the ring, is covered by the '56 KM' plate.",
+    "transcription": [
+      "The nearest line",
+      "is 56 km away.",
+      "56 KM",
+      "ABOUT 2,600 RESIDENTS  C21",
+      "\"Cordova is not connected to the State Highway",
+      "System, and CEC is not connected by transmission",
+      "line to other communities.\"",
+      "CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE  C29",
+      "FRAME 240 KM",
+      "02 / 09",
+      "AGGREGATE. NEAREST LINE AT 69 KV OR ABOVE IN THE STATE TRANSMISSION LAYER. COMPUTED FROM 65",
+      "COMMITTED SEGMENTS. NOT A SOURCED FIGURE."
+    ],
+    "typos": [],
+    "transcription_diffs": [
+      {
+        "expected": "213 KM TO THE NEAREST PLANT OF 20 MW OR MORE (declared design aggregate for slide 02 in the storyboard's Phase 8 table)",
+        "rendered": "absent from the frame; no great-circle leader to Eklutna is drawn either",
+        "severity": "minor"
+      }
+    ],
+    "hard_fails": [],
+    "checklist": [
+      { "item": "The quotation is verbatim C29 including 'State Highway System'", "pass": true },
+      { "item": "The ring is a d3.geoCircle, verifiable by slight asymmetry (measured 409 x 405 slide px, wider than tall, consistent with conic equal area at 60.5 N)", "pass": true },
+      { "item": "The dimension leader terminates on the transmission segment, not in void", "pass": false },
+      { "item": "The aggregate disclosure names the dataset and says NOT A SOURCED FIGURE", "pass": true },
+      { "item": "The quotation is dark type on a light ledge, and the ledge has a contact shadow", "pass": false },
+      { "item": "The copper thread ends at a drawn lug, and nothing crosses the gap", "pass": false },
+      { "item": "Bottom third carries hachured water plus a lit modeled ledge", "pass": true },
+      { "item": "The 56 km dimension PRINTS its value on a measured plate (round-1 fix)", "pass": true },
+      { "item": "'ABOUT 2,600 RESIDENTS C21' is DOM text with a leader terminating on Cordova's mark (round-1 fix)", "pass": true },
+      { "item": "The ring is #C9C3AE, not forget-me-not blue (round-1 fix)", "pass": true },
+      { "item": "The terminal lug is matte #B8703C, not gold (round-1 fix)", "pass": true },
+      { "item": "Attribution is #131A20 on the light ledge (round-1 fix)", "pass": true },
+      { "item": "Disclosure ends above y 1270 (round-1 fix; last baseline measures slide y 1254, plate bottom 1272)", "pass": true },
+      { "item": "Headline no longer lands on the coastline (round-1 fix)", "pass": true },
+      { "item": "AUGUST 11 rail collapsed to a hollow gold tick at 1.25 px", "pass": true },
+      { "item": "Nine-rung ladder present with rung 2 lit", "pass": true },
+      { "item": "All DOM text inside x [80,1000], y [80,1270]", "pass": true },
+      { "item": "No em/en dashes, no emojis, straight quotes", "pass": true }
+    ],
+    "bottom_third": "PASS on quantity. Below slide y 900 sit the lit concrete ledge (approx slide x 84-945, y 830-1141), the lower ring arc, the lower coastline, the FRAME plate, the counter plate and the two-line disclosure plate; comfortably above 0.30 of non-background ink. But three flat near-black rectangles are stacked under the ledge (FRAME plate slide y 1147-1201, counter plate same band, disclosure plate y 1211-1272) and they are plates on bare ground with no lit face and no shadow, which is exactly the failure mode the standard names. The ledge's own two-part contact shadow is not visible because the FRAME plate begins 6 px below its bottom edge and swallows the pool.",
+    "contrast_worst": "Quotation #131A20 on the ledge at its darkest and most speckled region (approx slide x 700-900, y 950-1000, sampling near #9AAAB0) is roughly 8.5:1, safe. The attribution 'CORDOVA ELECTRIC COOPERATIVE, ITS OWN ABOUT PAGE C29' at approx slide x 108-770, y 1050-1075 sits over the ledge's heaviest speckle field and drops to roughly 7:1 at the worst glyph, still safe but the speckle is visibly abrading the 26 px Archivo counters. The disclosure #C9C3AE on the near-black plate is roughly 12:1. Nothing under 4.5:1.",
+    "thumb_test": "PASS on the words, FAIL on the argument. At 432 px the headline 'The nearest line is 56 km away.' is unmistakable and the quotation block reads as a quotation even where the words do not resolve, which is a real win. But the takeaway the dossier promises does not arrive: the copper thread ends at a black label box roughly a third of the way down and the dashed ring is so light that it reads as a smudge, so the reader sees a line that stops at a caption, not a town a measured distance off the network. The 'ABOUT 2,600 RESIDENTS C21' bar reads as a second, competing caption at 8 px effective and adds nothing at thumb.",
+    "strengths_do_not_break": [
+      "THE TANGENCY SURVIVED AND IT IS THE BEST THING IN THE DECK. The copper terminus at approx slide (486, 442) lies on the ring (centre approx slide (567, 631), radius approx 204 px; measured terminus radius approx 206 px). The radius is proved by construction. Do not move the thread, do not resize the ring, do not 'tidy' the terminus.",
+      "The verbatim C29 quotation, straight quotes, dark type on a lit ledge, correctly obeying the two-value type law.",
+      "The headline refit to two lines clearing the coastline. Landed. Keep it.",
+      "The ring recoloured to #C9C3AE. Blue is correctly held back for compute.",
+      "The geodesic ring's honest slight width-over-height asymmetry.",
+      "The residents leader actually starting on Cordova's mark rather than in void."
+    ],
+    "fixes": [
+      {
+        "what": "The '56 KM' plate covers the copper terminus and the ring's top arc, hiding the single moment that proves the slide",
+        "where": "plate occupies approx slide x 442-547, y 395-442; terminus at approx slide (486, 442); ring apex at approx slide (567, 429)",
+        "how": "Move the plate left and up to approx slide x 300-405, y 360-405 and run a 1.25 px #C9C3AE leader from its right edge to the terminus vertex, terminating on the copper polyline's own last coordinate (declare it in window.__akLeaders). Leave a 10 px clear radius around the terminus so the copper end and the ring arc are both visible where they meet.",
+        "severity": "major"
+      },
+      {
+        "what": "The copper load path, the deck's one hero conductor, is interrupted across the headline block and reads as two disconnected fragments",
+        "where": "visible from slide (527, 0) down to approx (608, 135), absent from y 135 to y 310, resumes at approx (593, 310) and runs to the terminus",
+        "how": "Exclude the copper path from the display reserve mask (it is the one element that must survive it), or reroute the polyline east of the headline box so it descends through x > 990 until y 470 and then cuts west to Valdez. A masked hero line is worse than a rerouted one.",
+        "severity": "major"
+      },
+      {
+        "what": "No dead-end lug is legible; the checklist item 'the copper thread ends at a drawn lug' cannot be verified from the pixels",
+        "where": "terminus approx slide (486, 442)",
+        "how": "Draw the lug as an explicit 18 x 8 px matte #B8703C block perpendicular to the conductor's final bearing, with a 3.5 px cut edge on its outboard face and a two-part contact shadow down-right, then keep the 56 KM plate off it per the fix above.",
+        "severity": "major"
+      },
+      {
+        "what": "The 56 km is not dimensioned; the dossier's #73 dimension call with extension lines, 4 px gap, 6 px overshoot and 3-to-1 filled arrowheads is not on the frame",
+        "where": "between Cordova's mark at approx slide (567, 631) and the ring",
+        "how": "Draw the radius as a real dimension: a 1.25 px #C9C3AE line from the mark to the ring on the bearing of the terminus (approx 337 degrees), 3-to-1 filled arrowheads at 10 x 3.3 px at both ends, extension line off the mark with a 4 px gap and 6 px overshoot, and hang the '56 KM' plate on its midpoint. That is what makes the quantity read at 432 px instead of only after the label is read.",
+        "severity": "major"
+      },
+      {
+        "what": "The drawn ring radius may not agree with the printed frame width",
+        "where": "ring measures approx 409 px across at slide scale; 'FRAME 240 KM' is printed at slide (90, 1170)",
+        "how": "Check the projection: 56 km at 240 km across a 1080 px frame is 252 px radius, or 224 px if the map is fit to a 960 px extent. The render measures approx 204 px. Either correct the printed frame width to the true fitExtent span or correct the geoCircle radius. Print the bar scale's own km value beside the checkerboard so the two can be reconciled on the frame.",
+        "severity": "major"
+      },
+      {
+        "what": "The lit ledge has no readable two-part contact shadow because the FRAME plate abuts it",
+        "where": "ledge bottom edge approx slide y 1141; FRAME plate top approx slide y 1147",
+        "how": "Drop the ledge's bottom edge to slide y 1120, then cast the 6 px 0.42 alpha #0A1413 contact plus the 60 px 0.16 alpha ambient down-right into the hachured water, and only then draw the footer plates. Lit ground first, shadow into it second.",
+        "severity": "major"
+      },
+      {
+        "what": "The ledge's speckle texture is too high-frequency and too high-contrast; it abrades the 26 px attribution and reads as noise rather than as concrete aggregate",
+        "where": "ledge, worst at approx slide x 500-900, y 1000-1120",
+        "how": "Halve the speckle alpha to about 0.06 and raise the grain scale so the largest aggregate dot is under 3 px, and reserve a clean band around the attribution's measured bbox with a 12 px pad.",
+        "severity": "polish"
+      },
+      {
+        "what": "The copper enters from the TOP edge although slide 01's tease cuts it at the RIGHT edge, so the handoff between the two slides breaks",
+        "where": "slide 01 copper exits at slide y 759-773 on the right edge; slide 02 copper enters at slide (527, 0)",
+        "how": "Either bring 02's thread in from the left edge in the same y band so the reader's swipe continues the line, or declare the top entry in the dossier as a deliberate bleed and change 01's tease to exit the bottom-right corner. Right now neither slide states it.",
+        "severity": "polish"
+      },
+      {
+        "what": "The 213 km Eklutna aggregate is declared in the storyboard's Phase 8 table for slide 02 but appears nowhere on the frame",
+        "where": "slide 02, whole frame",
+        "how": "Either restore the great-circle leader cut by the left frame edge with its printed string '213 KM TO THE NEAREST PLANT OF 20 MW OR MORE', or delete the row from the aggregates table so the declaration matches what shipped.",
+        "severity": "polish"
+      },
+      {
+        "what": "The hollow gold tick bears no shape relationship to slide 01's two-row rail, so the 'solid versus hollow is a shape change' motif does not connect",
+        "where": "approx slide (969, 118)",
+        "how": "Make the tick the SAME two-row silhouette as the rail, at 40 percent scale, with both rows hollow at 1.25 px: two stacked 44 x 9 px outlined bars. The reader must be able to see it is the rail, emptied.",
+        "severity": "polish"
+      }
+    ],
+    "score_0_10": 6.0
+  }
+]
+```

@@ -1,0 +1,237 @@
+```json
+[
+  {
+    "slide": 3,
+    "verdict": "revise",
+    "encoding_reads": "no — the wordless claim (a fifth of the flow is wasted) does not land at 432 px; the cause is value plus position: the unused fraction is rendered as the BRIGHTEST band and placed at the very top of the water column, which is exactly where a viewer expects sun glare on a water surface, while the used fraction below is dark with a cross-hatch that fades out entirely by mid-column, so the eye reads 'lit surface over deep water', not 'small share versus large share'. The proportion is arithmetically right (bright band approx 79 of 345 px = 23 percent) and is only decoded once the three labels are read.",
+    "transcription": [
+      "A fifth of it",
+      "goes nowhere.",
+      "Koplin estimates 20 to 25 percent of",
+      "Cordova's hydropower goes unused",
+      "every year.",
+      "That is a share of hydropower, not of total",
+      "demand, and it is an estimate rather than a",
+      "metered figure.",
+      "In 2025 hydropower covered more than 83",
+      "percent of the town's electrical demand. (C19)",
+      "THE UNUSED FRACTION  C20",
+      "LOWER BOUND 20",
+      "UPPER BOUND 25",
+      "FRAME 60 KM",
+      "03 / 09"
+    ],
+    "typos": [
+      {
+        "expected": "Koplin estimates 20 to 25 percent of Cordova's hydropower goes unused every year. (C20)",
+        "rendered": "Koplin estimates 20 to 25 percent of Cordova's hydropower goes unused every year.",
+        "severity": "minor",
+        "note": "storyboard prints (C20) on the first body block; the render carries C20 only on the band label plate. Matches copy.json, so accepted, but the estimate sentence itself now has no visible claim-id."
+      }
+    ],
+    "hard_fails": [],
+    "checklist": [
+      { "item": "The band is drawn as a RANGE with two bounding rules, never a single line", "pass": true },
+      { "item": "The upper bound is phantom-dashed because it is an estimate", "pass": true },
+      { "item": "The range never collapses to a point at 432 px", "pass": true, "note": "measured 26 px apart at full size, approx 10 px at thumb; the two rules stay distinct and the vertical dimension arrow between them survives as a mark" },
+      { "item": "The words hydropower, not of total demand and estimate all appear", "pass": true },
+      { "item": "The 83 percent figure carries its year, 2025", "pass": true },
+      { "item": "Label plates are knocked out of the hachure field, not floated on it", "pass": true },
+      { "item": "Label plates sized from the MEASURED string plus padding", "pass": false, "note": "THE UNUSED FRACTION plate runs off the right frame edge, approx 93 px of dead plate past the last glyph, against approx 13 px on the two bound plates" },
+      { "item": "Bottom third is the water field itself, with visible glints and stroke variation", "pass": false, "note": "glints live only in the 20 percent band; below the bounds the field is near-flat and the 45/135 cross-hatch fades out around y 1080, leaving a bare region to y 1200" },
+      { "item": "Cross-hatch material code makes the used fraction read as material, not light", "pass": false },
+      { "item": "COPPER LOAD PATH state SPLIT AND SPILLED is legible", "pass": false, "note": "the split node sits behind the C19 knockout plate" },
+      { "item": "Every leader terminates on its target's own coordinates", "pass": false, "note": "UPPER BOUND 25 has no leader and floats approx 27 px below the dashed rule it names" },
+      { "item": "Nine-rung ladder present, correct rung lit", "pass": true, "note": "nine ticks read in the footer, third one taller and brighter; correct for slide 03" },
+      { "item": "Checkerboard bar scale and printed frame width present", "pass": true },
+      { "item": "Body copy 32 px or larger", "pass": true },
+      { "item": "All DOM text inside x [80,1000], y [80,1270]", "pass": true },
+      { "item": "At least one modeled solid with a two-part contact shadow below y 900", "pass": false, "note": "the three plates in that band are flat knockouts with no lit face and no shadow" },
+      { "item": "Two-value type law honoured, nothing in L* 35 to 55", "pass": true },
+      { "item": "Gold budget: one hollow gold tick only", "pass": true },
+      { "item": "Copper reads matte and never as gold", "pass": true },
+      { "item": "No em/en dashes, no emojis, straight quotes, counter correct", "pass": true }
+    ],
+    "bottom_third": "Approx 0.33 of non-background ink sits below y 900 by area, so the quantity gate passes, but it is the WEAKEST band on the slide in quality: flat dark teal from y 1080 down, a cross-hatch that dies mid-column, three unshadowed flat plates, and a grey-blue speckled strip below the footer (y 1208 to 1350) that reads as raw scattered noise with a hard straight top edge and no light direction. No modeled solid, no contact shadow, no lit ground anywhere in the band.",
+    "contrast_worst": "Approx 8:1. Worst block is THE UNUSED FRACTION C20 in light teal on the near-black knockout. Body #C9C3AE on #101C22 measures roughly 12:1, headline #F4F8FF roughly 15:1. Nothing under 4.5:1.",
+    "thumb_test": "Passes on headline, fails on argument. At 432 px the reader gets 'A fifth of it goes nowhere' plus a grey eight-line wall of body copy and a lit stripe of water. The two bounding rules do survive as two distinct rules, which is the one thing the dossier most needed. The picture does not carry the claim without the labels.",
+    "strengths_do_not_break": [
+      "The two-rule range encoding survives at 432 px and does not collapse to a point. Do not thin, merge or move these.",
+      "Solid lower bound versus phantom-dashed upper bound is a SHAPE difference, not a brightness difference, exactly as the doctrine asks.",
+      "The vertical dimension arrow between the two rules at x approx 96 is a genuinely good honest-estimate mark.",
+      "Headline sets in two clean lines with no orphan of 'goes'. The round-1 fix held.",
+      "The C19 fact is now real Fraunces body on its own knockout and reads at thumb size.",
+      "One hollow gold tick, everything else cool. Gold budget is clean.",
+      "Nine-rung ladder with rung 3 lit is present and correct."
+    ],
+    "fixes": [
+      {
+        "what": "The copper split node, the slide's declared continuity argument, is hidden behind the C19 knockout plate",
+        "where": "copper path at approx y 718, split near x 375; C19 plate spans x 68 to 783, y 633 to 751",
+        "how": "Move the copper conductor down to y 790 to 800 so the whole path including the split node clears the plate's bottom edge at y 751, and move the split node to x 620 to 660 so it sits in the open right of the plate. Keep the verdigris branch dropping into the tailrace from that node. If the conductor must stay at y 718, shorten the C19 plate to end at x 520 and set the body block to max-width 440.",
+        "severity": "major"
+      },
+      {
+        "what": "THE UNUSED FRACTION plate is not sized from its measured string and bleeds off the right frame edge",
+        "where": "plate x 678 to 1080, y 819 to 854",
+        "how": "Set the plate rect width to measureText(label).width + 2 * 18 px padding, same call the LOWER BOUND and UPPER BOUND plates use. Right edge should land near x 1005, matching the 13 px right padding of the two bound plates.",
+        "severity": "major"
+      },
+      {
+        "what": "UPPER BOUND 25 floats with no connection to the dashed rule it names",
+        "where": "plate at y 935 to 969; dashed upper-bound rule at y 908",
+        "how": "Either raise the plate so its vertical centre sits on y 908 (same registration the LOWER BOUND plate has to the solid rule), or add a 1.25 px #C9C3AE leader from the plate's left edge terminating on the dashed rule's own y, declared in window.__akLeaders. Do not leave it unattached.",
+        "severity": "major"
+      },
+      {
+        "what": "The unused fraction reads as surface glare rather than as a share; the cross-hatch is texture, not a material code",
+        "where": "water column y 803 to 1148",
+        "how": "Invert the value logic. Drop the unused band from its current near-#7FD6BC brightness to a saturated flat verdigris #3E7A6B at full opacity with NO glints inside it, and move the specular glints to the used fraction below the 25 bound so the light lives where the water is working. Then run the 45/135 cross-hatch at constant 0.75 px and constant spacing over the ENTIRE used fraction from y 908 to 1148 with no alpha ramp, so the two zones differ by material and not by illumination. A stranger must be able to say which stripe is smaller and that the smaller one is the dead one.",
+        "severity": "major"
+      },
+      {
+        "what": "Three body blocks fuse into one eight-line grey wall",
+        "where": "body copy x 81 to 740, y 380 to 730",
+        "how": "Insert 32 px of space between block 1 and block 2 and 32 px between block 2 and block 3, per the dossier's own 'TWO blocks with 32 px between them'. Set block 1 to #F4F8FF and blocks 2 and 3 to #C9C3AE so the estimate reads as the claim and the caveats read as caveats.",
+        "severity": "major"
+      },
+      {
+        "what": "No modeled solid with a two-part contact shadow below y 900",
+        "where": "bottom band y 900 to 1350",
+        "how": "Give the LOWER BOUND and UPPER BOUND plates a 6 px lit top chamfer at #90A4A9 and a two-part contact shadow into the water beneath (tight 0.42 alpha 6 px, ambient 0.16 alpha 60 px, offset down and right per az 305), so at least one solid in the band is lit and grounded.",
+        "severity": "major"
+      },
+      {
+        "what": "The speckled strip below the footer reads as raw noise with a hard straight top edge",
+        "where": "y 1208 to 1350, full width",
+        "how": "Either give it a form (a foreground gravel bar with an irregular top profile, a lit face toward az 305 and a dark lee) or drop its alpha to 0.25 and let the tailrace hachure continue to the bottom edge. A flat band of scattered blobs is not a depth cue.",
+        "severity": "polish"
+      },
+      {
+        "what": "The dashed upper-bound rule runs to the frame edge while the solid lower-bound rule stops at x 1019",
+        "where": "y 882 and y 908",
+        "how": "Terminate both rules at the same x with the deck's 45 degree cut terminal.",
+        "severity": "polish"
+      },
+      {
+        "what": "The C19 knockout plate's top edge sits on the descender line of 'metered figure.'",
+        "where": "plate top y 633, body block 2 last line baseline approx y 630",
+        "how": "Push the plate top to y 648 (14 px clearance below the measured descender of the block above), or move it with the 32 px block gap fix above.",
+        "severity": "polish"
+      },
+      {
+        "what": "The copper conductor runs edge to edge at full hero weight and reads as a horizon rule",
+        "where": "y 718, x 0 to 1080",
+        "how": "Cut the left end at x 60 with the deck's 45 degree terminal so the conductor enters from the powerhouse rather than crossing the frame, and keep the right end exiting as the branch to town. One entry, one exit, one split.",
+        "severity": "polish"
+      }
+    ],
+    "score_0_10": 5.0
+  },
+  {
+    "slide": 4,
+    "verdict": "revise",
+    "encoding_reads": "no — the beat is 'a measurement with nothing to measure', and at 432 px the measurement is gone. The 1.25 px rule vanishes into the specular water hatch and all that survives is a floating '20 FT' chip with two faint end ticks, so the argument lives in the words on the chip and not in the art. The cause is scale plus value: a 1.25 px line at 0.5 px thumb width against a field of 1 px light glints of similar luminance has nothing to win with. Confirmed on the thumb, where I can find the two extension ticks but cannot trace the span between them.",
+    "transcription": [
+      "\"The server was literally 20 feet from",
+      "the generators. It's designed as a",
+      "super-energy-efficient deployment.\"",
+      "CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE",
+      "C22, C23   [CLIPPED: lower half of every glyph is sheared off by the ledge edge]",
+      "20 FT",
+      "FRAME 60 KM, OBLIQUE",
+      "04 / 09"
+    ],
+    "typos": [
+      {
+        "expected": "CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE C22, C23",
+        "rendered": "CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE / C22, C23 (second line truncated mid-glyph)",
+        "severity": "hard-fail"
+      }
+    ],
+    "hard_fails": [
+      {
+        "where": "attribution ledge, x 78 to 720, y 470 to 547",
+        "problem": "The attribution wrapped to two lines and the ledge was sized for one. The second line 'C22, C23' is sheared horizontally at the ledge's bottom edge: the top half of the glyphs sits in #131A20 on the lit ledge and the bottom half falls onto the dark shadow slab below, where dark type on dark ground is invisible. This is a clipped string AND a two-value type law violation in the same defect, and it is plainly visible at 432 px. The claim that the ledge was built from the measured string is contradicted by these pixels.",
+        "fix": "Measure the attribution with the actual two-line box after document.fonts.ready and set the ledge height to that box plus 2 * 20 px, or set the ledge to one line by shortening the string to 'CLAY KOPLIN, CEO, CORDOVA ELECTRIC COOPERATIVE  C22, C23' at Archivo wdth 62, 26 px with max-width 760 and letting AK.svgPlate size to it. No glyph may cross the ledge boundary."
+      }
+    ],
+    "checklist": [
+      { "item": "The quotation is verbatim C22 including 'literally' and the second sentence", "pass": true, "note": "character for character against C22 verbatim: 'The server was literally 20 feet from the generators. It's designed as a super-energy-efficient deployment.' Straight double quotes both ends, straight apostrophe in It's, hyphens (not en dashes) in super-energy-efficient" },
+      { "item": "The dimension measures exactly 840 px", "pass": true, "note": "measured arrow tip to arrow tip approx 834 px at full size, inside measurement error of 840" },
+      { "item": "The water shows a lit windward face and a dark lee face, not one stroke", "pass": true },
+      { "item": "A blurred foreground element bleeds off the bottom edge", "pass": true, "note": "present, though the mounds read as flat scalloped silhouettes with almost no blur gradient" },
+      { "item": "No copper and no warm mark anywhere on this slide", "pass": false, "note": "both dimension extension lines render warm peach against the cool water, so the only measurement on the deck's declared no-warm-mark slide is the warmest thing in frame after the gold tick" },
+      { "item": "The far-shore practical is cool, one light source", "pass": true, "note": "the town light is now a cool #C9D9D4 point at approx x 738, y 902. The round-1 gold defect is fixed" },
+      { "item": "The quiet zone is the SKY, not the bottom band", "pass": true, "note": "but the actual largest void is the mid band y 580 to 800, bigger than the declared 24 percent, so the composition sags in the middle" },
+      { "item": "A lit ledge with a two-part contact shadow exists", "pass": false, "note": "the ledge has a lit face and a specular top edge, but its shadow is a flat hard-edged dark rectangle with no tight/ambient split, and it is cast onto unlit ground rather than into a lit pool" },
+      { "item": "Shadow direction consistent with az 305 (down and to the right)", "pass": false, "note": "the shadow slab extends further LEFT than the ledge's left edge and its right edge barely clears the ledge, so the offset reads down-left" },
+      { "item": "The dimension carries the slide as its subject", "pass": false },
+      { "item": "Nine-rung ladder present, correct rung lit", "pass": true, "note": "nine ticks read, fourth taller and brighter; correct for slide 04" },
+      { "item": "Checkerboard bar scale and printed frame width present", "pass": true },
+      { "item": "All DOM text inside x [80,1000], y [80,1270]", "pass": true },
+      { "item": "Body copy 32 px or larger", "pass": true },
+      { "item": "Gold budget: one hollow gold tick only", "pass": true },
+      { "item": "At least one modeled solid with a two-part contact shadow below y 900", "pass": false, "note": "the only modeled solid on the slide is the ledge at y 470 to 547, in the UPPER third" },
+      { "item": "No em/en dashes, no emojis, straight quotes, counter correct", "pass": true }
+    ],
+    "bottom_third": "Approx 0.36 of non-background ink below y 900, carried by the water hatch and the foreground shore, so the quantity gate passes. Quality is mixed: the water is genuinely modeled with two-edge swell and real glints, which is the best surface in either slide. But there is no lit face and no contact shadow anywhere below y 900; the foreground shore is a flat silhouette and the dimension is a hairline. The band has tone but no solid.",
+    "contrast_worst": "Line 1 of the attribution, #131A20 on the lit ledge, is roughly 12:1. Line 2 'C22, C23' drops to effectively 1.5:1 where its clipped lower half crosses the dark shadow slab, which is the hard fail. Quotation #F4F8FF on #16242A roughly 14:1. '20 FT' on its knockout roughly 12:1.",
+    "thumb_test": "Fails twice. First, the clipped 'C22, C23' is visible as a sheared row of half-glyphs at thumb size, which is the kind of defect a reader reads as a broken export. Second, the slide's declared subject, the 840 px dimension, does not survive: the span disappears into the water and only the '20 FT' chip and two faint ticks remain. What the thumb yields is 'a quote over water', which is half of the intended takeaway.",
+    "strengths_do_not_break": [
+      "The C22 quotation is verbatim, both sentences, straight quotes, and sets in three clean sense-broken lines. Do not retype it.",
+      "The water surface is the best-modeled thing in either slide: two-edge swell with a lit windward face, dark lee and real specular glints at a consistent rake.",
+      "The far-shore town light is now cool #C9D9D4, so the one-light-source rule holds and the round-1 gold leak is genuinely fixed.",
+      "The far-shore silhouette layering with atmosphere lerp gives four readable depth planes.",
+      "The repoussoir foreground bleeding off the bottom edge is correctly placed.",
+      "Nine-rung ladder with rung 4 lit is present and correct.",
+      "The gold budget is clean: one hollow tick, nothing else warm by intent."
+    ],
+    "fixes": [
+      {
+        "what": "Clipped attribution second line",
+        "where": "ledge x 78 to 720, y 470 to 547; text line 2 at y approx 538",
+        "how": "See hard_fails. Size the ledge rect from the measured two-line getBBox plus 20 px padding top and bottom, or collapse the attribution to one line. Assert in renderReady that every glyph box is inside the ledge rect.",
+        "severity": "hard-fail"
+      },
+      {
+        "what": "The dimension at 1.25 px is too quiet to be the slide's subject. Yes, you asked directly, and the answer is yes.",
+        "where": "horizontal span y 1056, x 120 to 960",
+        "how": "Three changes together, none of which reintroduce gold or hero weight. (1) Promote the measured span itself to --w-std 2.0 px in #F4F8FF, keeping the extension lines and the arrow tails at --w-fine 1.25 px; 2.0 is 'object edges' and on this slide the dimension IS the object, which is a meaning-based promotion, not a taste one. (2) Case it: draw a 5 px #0C1A20 stroke at 0.55 alpha directly under the 2.0 px rule so it separates from the specular hatch, the same #79 casing the deck already uses on coastlines. (3) Raise the '20 FT' value from 30 px to 36 px and grow the arrowheads to 14 x 4.6 px at markerUnits strokeWidth. Do NOT go to 3.5 or 5.5 px; those weights are spoken for.",
+        "severity": "major"
+      },
+      {
+        "what": "Dimension extension lines render warm on the deck's only no-warm-mark slide",
+        "where": "vertical extension ticks at x 120 and x 960, y 1030 to 1085",
+        "how": "Force the extension lines, the rule and the arrowheads to #C9C3AE and move them OFF the akpost canvas, or mask them out of the chromatic aberration pass. The dossier says '04 is the one slide with no warm mark at all, which is what makes it rest', so the aberration must not tint the one measurement peach.",
+        "severity": "major"
+      },
+      {
+        "what": "The ledge shadow is a flat hard-edged rectangle offset down-left, against az 305",
+        "where": "x 57 to 722, y 547 to 578",
+        "how": "Replace with the deck's two-part shadow: tight contact at #0A1413 0.42 alpha, 6 px blur, offset +5 x and +5 y from the ledge's own bottom edge, plus a wide ambient at 0.16 alpha and 60 px blur. Clip the shadow so it never extends left of the ledge's left edge. Add a small lit pool under the ledge (a local +8 L* lift on the ground) so the shadow is cast INTO lit ground as the light plan requires.",
+        "severity": "major"
+      },
+      {
+        "what": "No modeled solid with a contact shadow below y 900",
+        "where": "bottom band y 900 to 1350",
+        "how": "Give the foreground repoussoir shore a lit windward face toward az 305 at #43535C with a dark lee at #0C1A20 and a two-part shadow where it meets the water line, so the bottom band carries one grounded solid. Keep the 6 px blur.",
+        "severity": "major"
+      },
+      {
+        "what": "The mid-frame void from y 580 to 800 is larger than the declared 24 percent quiet zone and drops the composition's centre out",
+        "where": "between the ledge shadow and the far mountains",
+        "how": "Drop the quotation block and the ledge by approximately 60 px and raise the horizon by approximately 40 px so the sky quiet zone reads as one bounded band at the top rather than as a hole in the middle. This is a rest beat, not an empty one.",
+        "severity": "polish"
+      },
+      {
+        "what": "The '20 FT' knockout plate breaks the dimension rule at its exact midpoint",
+        "where": "plate x 473 to 601, y 1023 to 1055",
+        "how": "Keep the break (it is correct drafting practice) but tighten the plate to measureText plus 14 px padding and centre it on the true span midpoint at x 540 so the two half-spans are visibly equal, which is what makes a reader trust a printed length.",
+        "severity": "polish"
+      }
+    ],
+    "score_0_10": 4.5
+  }
+]
+```
