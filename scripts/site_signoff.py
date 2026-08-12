@@ -32,11 +32,22 @@ WHAT IT CHECKS THAT NOTHING ELSE DOES.
   build time; this runs the same rules against what shipped, so docs/ lagging
   its own builder is visible rather than invisible.
 
-CONTRACT, the same one gaswatch_pagecheck signs. READ ONLY, it asserts and
-never repairs. Exit 0 clean, exit 2 needs attention, exit 1 ONLY if the checker
-itself broke. A site problem must never abort a carousel run, because the
-routine that runs this is also the thing that ships the day's deck and one must
-not hold the other hostage.
+IT REPORTS SO THE RUN CAN REPAIR. Every check carries its own remedy, printed
+under any failure and returned in --json as `fix`, because a checker that hands
+back a list of complaints has moved the work rather than done it. The routine's
+job in Phase 3.6 is to FIX what this finds and then report what is left, not to
+copy the complaints into an email.
+
+Two categories are marked REPORT and must not be fixed by a run: a collector
+that has stopped running, whose ledger is cron written and would be corrupted
+by a run writing into it, and a surface another repo owns. Everything else is
+presentation or a stale build, and both are a run's to repair.
+
+CONTRACT, the same one gaswatch_pagecheck signs. This SCRIPT is read only, it
+asserts and never repairs; the repairing is the routine's. Exit 0 clean, exit 2
+needs attention, exit 1 ONLY if the checker itself broke. A site problem must
+never abort a carousel run, because the routine that runs this is also the
+thing that ships the day's deck and one must not hold the other hostage.
 
 docs/videos/ IS NOT CHECKED. CLAUDE.md makes it a hard guard: the page is a
 static passthrough and the JSON beside it is owned by another repo. This
@@ -440,17 +451,88 @@ def check_site(out_dir, today=None):
     return rows, "FAIL" if fails else ("WARN" if warns else "PASS")
 
 
-def render(rows, verdict):
+# WHAT TO DO ABOUT IT, not just what is wrong.
+#
+# A checker that hands back a list of complaints puts the diagnosis on whoever
+# reads it, and the reader here is a routine at six in the morning with a deck
+# to ship. It went out reporting only, and reporting is not the job: if
+# something on the site is broken the run should FIX it, and the report should
+# be what is left over after it tried.
+#
+# So every check carries its own remedy. Almost all of them are fixable inside
+# a run, because almost all of them are presentation or a stale build. The two
+# that are not are marked REPORT, and they are the same two CLAUDE.md already
+# protects: a collector that has stopped running, and a surface another repo
+# owns. A run that "fixed" either would be writing a number it does not produce.
+FIXES = [
+    (r"^every page is on disk|^the built site",
+     "Rebuild. python3 scripts/site_build.py --date <date> --out docs"),
+    (r"rendered empty",
+     "FIX. The page's builder returned nothing. Find the function that emits "
+     "it in site_build.py and make it render, then rebuild."),
+    (r"machine spill",
+     "FIX. A value failed to render into copy. Repair the f-string or the "
+     "template call in site_build.py, then rebuild."),
+    (r"house voice",
+     "FIX. Rewrite the offending copy at its source in site_build.py, "
+     "docket_build.py or power_panel.py. The build gates the same rules, so if "
+     "the source is already clean the published directory is stale. Rebuild."),
+    (r"names itself",
+     "FIX. Give the page a title and a description in site_build.page()."),
+    (r"a reader can click",
+     "FIX. Correct the href, or restore the page it points at. A renamed URL "
+     "leaves links that were right when they were written."),
+    (r"asset a page asks for",
+     "CHECK. Assets are hand managed in docs/ and no fresh build emits them, "
+     "so this is expected against a scratch directory and real against docs/. "
+     "If it is real, restore the file."),
+    (r"sitemap entry",
+     "FIX. Either build the page or stop listing it in site_build.sitemap(). "
+     "A sitemap entry with no page is a 404 offered to a crawler."),
+    (r"reaches ",
+     "FIX BY REBUILDING. The ledger moved and the page did not. This is the "
+     "failure this checker exists for. python3 scripts/site_build.py --date "
+     "<date> --out docs, then run this again. If it still disagrees after a "
+     "rebuild, the page's builder is not reading that ledger."),
+    (r"is current",
+     "REPORT, DO NOT FIX. A collector has not run. Its ledger is cron written "
+     "and off limits to a run (CLAUDE.md, routine rule 19). Say so in the "
+     "draft and ship the deck."),
+    (r"videos passthrough",
+     "REPORT, DO NOT FIX. docs/videos/ is a hard guard owned by another repo. "
+     "Never write, reformat or regenerate it."),
+]
+
+
+def fix_for(label):
+    """The remedy for a check, or None. Kept beside the checks so a new check
+    cannot ship without someone deciding what a run should do about it."""
+    for pattern, how in FIXES:
+        if re.search(pattern, label):
+            return how
+    return None
+
+
+def render(rows, verdict, show_fixes=True):
     for status, label, detail in rows:
         print(f"  [{status}] {label}" + (f"  {detail}" if detail else ""))
     n = sum(1 for r in rows if r[0] == "PASS")
     print(f"\nsite sign-off: {verdict}  ({n} of {len(rows)} clean)")
+    trouble = [r for r in rows if r[0] != "PASS"]
+    if trouble and show_fixes:
+        print("\nwhat to do about it")
+        for status, label, detail in trouble:
+            print(f"  {label}\n    {fix_for(label) or 'FIX at the source.'}")
 
 
 def summary_line(rows, verdict, pages):
-    """The one line the routine puts in the run record and the Gmail draft."""
+    """The one line the routine puts in the run record and the Gmail draft.
+
+    It names what is UNFIXED, because by the time this line is written the run
+    was supposed to have fixed everything it could. A clean line means clean,
+    and a line with something in it means a person needs to look."""
     trouble = [f"{l}" for s, l, _ in rows if s in ("FAIL", "WARN")]
-    tail = f", {'; '.join(trouble[:3])}" if trouble else ""
+    tail = f", UNFIXED {'; '.join(trouble[:3])}" if trouble else ""
     return f"SITE SIGN-OFF: {verdict}, {pages} pages, {len(rows)} checks{tail}"
 
 
@@ -621,6 +703,23 @@ def self_test():
     else:
         print("    (no built docs/ in this checkout, skipped)")
 
+    print("every check says what to do about itself")
+    rows, _ = check_site(os.path.join(REPO, "docs")) if os.path.isdir(
+        os.path.join(REPO, "docs")) else ([], "")
+    orphan = [l for _, l, _ in rows if not fix_for(l)]
+    check("no check ships without a remedy", not orphan, "; ".join(orphan[:4]))
+    fixable = [l for _, l, _ in rows if (fix_for(l) or "").startswith(
+        ("FIX", "Rebuild", "CHECK"))]
+    guarded = [l for _, l, _ in rows if (fix_for(l) or "").startswith("REPORT")]
+    check("most of them a run can repair itself", len(fixable) > len(guarded),
+          f"{len(fixable)} fixable, {len(guarded)} report only")
+    check("a stale collector is never one a run repairs",
+          all("REPORT" in (fix_for(l) or "") for _, l, _ in rows
+              if l.endswith("is current")))
+    check("a stale page is one a run repairs, by rebuilding",
+          all("REBUILDING" in (fix_for(l) or "") for _, l, _ in rows
+              if " reaches " in l))
+
     print("it reports and never aborts")
     check("a page fault is a 2, never a 1",
           exit_code("FAIL") == 2 and exit_code("WARN") == 2
@@ -667,7 +766,8 @@ def main():
     if args.json:
         print(json.dumps({"verdict": verdict, "pages": pages,
                           "line": summary_line(rows, verdict, pages),
-                          "rows": [{"status": s, "check": l, "detail": d}
+                          "rows": [{"status": s, "check": l, "detail": d,
+                                    "fix": fix_for(l)}
                                    for s, l, d in rows]}, indent=2))
     else:
         render(rows, verdict)

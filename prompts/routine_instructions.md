@@ -458,6 +458,11 @@ Those are written by cron jobs and by deliberate human refits, and a run that
 edits them is corrupting a published time series that cannot be rebuilt. If
 one of them looks wrong, you REPORT it in the draft. You do not fix it.
 
+**YOU FIX WHAT YOU FIND. That is the phase.** The checkers below are how you
+notice; they are not the deliverable. A finding that ends up in the email
+unfixed is a finding you decided not to repair, and you have to be able to say
+why. The default is repair, and the report is what survived the repair.
+
 1. Build the site as normal, then run BOTH checkers. Each is read-only and
    neither can abort your run:
 
@@ -471,10 +476,19 @@ one of them looks wrong, you REPORT it in the draft. You do not fix it.
    leakage, no dead internal link, no dead sitemap entry, the house voice in
    the bytes that shipped, and the one thing no build gate can check, which is
    whether the CURRENT value in each cron-written ledger is actually on the
-   page that publishes it. If it reports a ledger is stale, that is a
-   collector problem you REPORT and never fix. If it reports a ledger's figure
-   is missing from its page, rebuild `docs/` first, because the usual cause is
-   a page that was never rebuilt after cron moved the number.
+   page that publishes it.
+
+   **It prints the remedy for anything it finds, under "what to do about it",
+   and returns the same string as `fix` in `--json`. Follow it.** Almost every
+   finding is presentation or a stale build and both are yours to repair. Two
+   are marked REPORT and you must not touch them:
+
+       "<ledger> is current" failing     a collector has stopped running. Its
+                                         ledger is cron written (rule 19). Say
+                                         so in the draft; never write it.
+       "videos passthrough"              another repo owns it. Never write it.
+
+   Everything else you FIX, now, in this phase.
 
 2. Then LOOK at the site, because a checker cannot judge whether a page reads
    well. Open `docs/index.html`, `docs/docket/index.html` and
@@ -497,16 +511,30 @@ one of them looks wrong, you REPORT it in the draft. You do not fix it.
    The price line on the gas watch shipped readable with a mouse and dead
    under a finger, and no checker here caught it.
 
-3. FIX only presentation. Layout, spacing, wording, a stale sentence, a
-   plural. Those live in `gaswatch_build.py`'s HTML and CSS, in
-   `site_build.py`, and in `power_panel.py` for the retail power panel. After
-   any edit:
+3. FIX, then re-run, then fix what is still there. Loop until the sign-off is
+   clean or until everything left is a REPORT case.
+
+   Presentation is always yours: layout, spacing, wording, a stale sentence, a
+   plural, a dead href, a page that rendered empty. Those live in
+   `gaswatch_build.py`'s HTML and CSS, in `site_build.py`, in
+   `docket_build.py`, and in `power_panel.py` for the retail power panel.
+
+   The most common finding is a page that fell behind its ledger, and the fix
+   for that is a rebuild, not an edit. If a figure is still missing after a
+   rebuild, the page's builder is not reading that ledger, and THAT is a code
+   fix you make here.
+
+   After any edit:
 
        python scripts/gaswatch_build.py --self-test
        python scripts/power_panel.py --self-test
        python scripts/site_build.py --date <date> --out docs
        python scripts/site_signoff.py --out docs
        python scripts/gaswatch_pagecheck.py --out docs
+
+   Do not stop at the first pass of fixes. Re-run the checkers after each
+   round, because a fix can surface the next problem behind it and because a
+   fix you did not verify is a claim rather than a repair.
 
    Every numeral on that page must come from `gaswatch_build.figures()`. If
    you find yourself typing a number into copy, you are doing it wrong, and
@@ -515,11 +543,22 @@ one of them looks wrong, you REPORT it in the draft. You do not fix it.
 4. Record TWO lines in the run record and in the Gmail draft (Phase 13), even
    when clean, so the maintainer sees the whole site was looked at:
 
-       SITE SIGN-OFF: <PASS|WARN|FAIL>, <N> pages, <M> checks<, what failed>
+       SITE SIGN-OFF: <PASS|WARN|FAIL>, <N> pages, <M> checks<, UNFIXED ...>
        GAS WATCH: PASS, read <date>, <N> days on record, chart <present|absent>
 
-   `site_signoff.py` prints its own line ready to copy. On exit 2, say what is
-   wrong and whether you fixed it or left it.
+   `site_signoff.py` prints its own line ready to copy, and it says UNFIXED
+   rather than FAILED on purpose: by the time you write that line you were
+   supposed to have repaired everything you could, so anything named there is
+   something a person has to look at.
+
+   When you fixed things, say what you fixed in one more line, so the
+   maintainer can see the machine repaired itself rather than only complained:
+
+       SITE FIXES: <what you changed and why>
+
+   Anything left UNFIXED needs a reason in the draft, and "the checker said so"
+   is not one. Either it is a REPORT case, or you could not fix it safely and
+   you say what you tried.
 
 **This phase NEVER fails the run.** CLAUDE.md keeps the collectors independent
 of this routine precisely so neither holds the other hostage. A site problem is
@@ -530,6 +569,10 @@ not fix, say so plainly in the draft and ship the deck.
 **And it never SKIPS.** A clean sign-off still gets its line, because a phase
 that only speaks when it has bad news is indistinguishable from a phase that
 did not run.
+
+**A finding is not a deliverable.** The point of noticing is repairing. A run
+that lists five problems and fixes none of them has done the easy half of this
+phase, and the site is exactly as broken as it was before the run started.
 
 ## PHASE 4 — SELECTION + DEDUPE GATE
 
@@ -1342,11 +1385,12 @@ ledger/docket.json (windows and votes within 14 days, linking the public
 tracker) and an "Automation changes this run" section rendered
 from ledger/upgrades.json (Phase 12's output) so the maintainer can
 monitor the machine's evolution from the dated emails alone and request
-a revert if a later run degrades. Carry BOTH of Phase 3.6's one-line
-verdicts in the draft too, SITE SIGN-OFF and GAS WATCH, clean or not.
-They are the only report the maintainer gets that the live site was
-looked at, and a silent pass is worth as much as a failure here, because
-silence is what a broken site would also produce. Create the draft via the Gmail MCP
+a revert if a later run degrades. Carry Phase 3.6's lines in the draft
+too, SITE SIGN-OFF and GAS WATCH clean or not, plus SITE FIXES whenever
+the run repaired something. They are the only report the maintainer gets
+that the live site was looked at, and a silent pass is worth as much as a
+failure here, because silence is what a broken site would also produce.
+Anything the sign-off names as UNFIXED needs its reason beside it. Create the draft via the Gmail MCP
 `create_draft` tool with the payload EXACTLY as the script emits it
 (subject, to, html_body).
 
