@@ -1404,21 +1404,14 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
             f'{count(f["days_of_record"], "day")} on record, which is not yet a '
             f'trend to plot. The table below is the whole series.</p>')
 
-    # The model's live scoreboard. At zero checks it says zero, because an
-    # accuracy figure nobody has earned yet is exactly the kind of claim this
-    # page refuses to make.
-    if f.get("accuracy_checks"):
-        scoreboard = (
-            f'Across {count(f["accuracy_checks"], "day")} the forecast behind it '
-            f'has been off by {f["mean_abs_hdd_error"]} degree days on average, '
-            f'about {f["mean_abs_demand_error_mmcfd"]} MMcf per day of gas.')
-        scoreboard = " " + scoreboard
-    else:
-        # Say nothing rather than narrate the site's own newness. A sentence
-        # promising that a check "lands shortly" is scaffolding on a page meant
-        # to outlive the week it launched, and the paragraph reads fine without
-        # it. The figure appears on its own once there is one to report.
-        scoreboard = ""
+    # The forecast error scoreboard lived here and shipped with the paragraph
+    # that carried it. Removed 2026-08-12 at the maintainer's call, because the
+    # page was crowded and this was the third accuracy figure on it. The two
+    # that matter are still published: how far the model misses the months it is
+    # fitted to, in "The model, in full", and how its record average compares
+    # against the published average day, in the paragraph under the backtests.
+    # CLAUDE.md requires the model be CHECKED rather than asserted, and both of
+    # those are the check.
 
     stale_note = ""
     if f.get("unverified_days"):
@@ -1436,29 +1429,24 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
         # definition, and the page was publishing 134.1 percent of it on a summer
         # injection day. The number was right and the noun was wrong.
         regime = {
-            "filling": ("It runs higher than demand because the field was "
-                        "filling that day, so some of that gas went into "
-                        "storage rather than to a burner"),
-            "drawing": ("It runs lower than demand because the field was "
-                        "draining that day, and measured storage covered the "
-                        "difference"),
+            "filling": ("It exceeds demand because the field was filling, so "
+                        "some went to storage rather than a burner"),
+            "drawing": ("It falls short of demand because the field was "
+                        "draining, and measured storage covered the difference"),
             "flat": ("It matches demand because storage neither filled nor "
                      "drained that day"),
         }[f["residual_regime"]]
         balance = f"""<h2 data-reveal>What is not measured by anyone</h2>
 <p class="prose" data-reveal>Demand equals field production plus storage
-withdrawal. Storage withdrawal is measured, and demand is modeled, so
-everything that is not CINGSA falls out by subtraction. On
-{long_date(f["balance_date"])} that residual came to
+withdrawal. Withdrawal is measured, demand is modeled, and everything not CINGSA
+falls out by subtraction. On {long_date(f["balance_date"])} that residual was
 {f["non_cingsa_supply_mmcfd"]} MMcf per day against modeled demand of
-{f["modeled_demand_mmcfd"]} MMcf per day, or
-{f["unmeasured_share_pct"]} percent of it, and all of it arrived from sources
-no public feed reports daily. {regime}. That ratio is the size of the hole in
-the public record, and it is the reason this page draws no conclusion about
-adequacy.</p>
-<p class="prose" data-reveal>Strictly, the residual is field production plus any
-Hilcorp storage movement combined. The two can't be separated from public data,
-which is why the field is named non_cingsa_supply and is never called
+{f["modeled_demand_mmcfd"]}, or {f["unmeasured_share_pct"]} percent, all from
+sources no public feed reports daily. {regime}. That ratio is the hole in the
+public record, and why this page draws no adequacy conclusion.</p>
+<p class="prose" data-reveal>Strictly it is production plus any Hilcorp
+storage movement, which public data can't separate,
+so the field is named non_cingsa_supply and never
 production.</p>"""
 
     bt_rows = ""
@@ -1491,22 +1479,18 @@ production.</p>"""
     fitted = ""
     if "fit_months" in f and "fit_mean_error_pct" in f:
         fitted = (f" Fitted by least squares to {count(f['fit_months'], 'month')}"
-                  f" of observed Alaska deliveries to homes, businesses and power"
-                  f" plants, and refitted every time another month is published."
-                  f" It misses those months by {f['fit_mean_error_pct']} percent"
-                  f" on average, measured against the same record it is fitted"
-                  f" to.")
+                  f" of observed Alaska deliveries, refit on each new one, and"
+                  f" off by {f['fit_mean_error_pct']} percent on average.")
 
     # Same shape. This whole paragraph is about the published design day, so it
     # belongs to that anchor and goes with it if the anchor is ever dropped.
     planning_gap = ""
     if "anchor_published_design_day_mmcfd" in f:
         planning_gap = f"""<p class="prose" data-reveal>It sits below the published
-planning figures, and that is expected rather than a problem. A design day of
-{f["anchor_published_design_day_mmcfd"]} MMcf per day is a peak carrying margin
-for a system operator to build against. This predicts what the region actually
-uses, which is a different question, and the gap between them is published here
-instead of tuned away.</p>"""
+planning figures, as expected. A design day of
+{f["anchor_published_design_day_mmcfd"]} MMcf per day is a margin to build
+against, not a prediction, and the gap is published rather than tuned
+away.</p>"""
 
     # The comparison against the published average day, and its magnitude and
     # direction, all come from one anchor. _comparison already declines to set
@@ -1532,12 +1516,10 @@ instead of tuned away.</p>"""
     if all(k in f for k in ("eia_ak_working_gas_bcf", "eia_storage_fields",
                             "eia_ak_capacity_bcf")):
         statewide = f"""
-<p class="prose" data-reveal>It also widens the picture. Through
-{long_month(f["eia_latest_month"])} Alaska held {f["eia_ak_working_gas_bcf"]} Bcf
-of working gas across {count(f["eia_storage_fields"], "storage field")}, against
-{f["eia_ak_capacity_bcf"]} Bcf of capacity. CINGSA is the only one that reports
-daily, and its {f["design_bcf"]} Bcf field is the one read here every morning.
-The rest surfaces monthly at best, which is why the daily record starts here.</p>"""
+<p class="prose" data-reveal>Through {long_month(f["eia_latest_month"])} Alaska
+held {f["eia_ak_working_gas_bcf"]} Bcf of working gas across
+{count(f["eia_storage_fields"], "storage field")}, against
+{f["eia_ak_capacity_bcf"]} Bcf of capacity. Only CINGSA reports daily.</p>"""
 
     if f.get("eia_months_checked"):
         not_public_note = (
@@ -1546,13 +1528,11 @@ The rest surfaces monthly at best, which is why the daily record starts here.</p
             f"no source gives is a daily regional number, and that is the gap "
             f"that matters here.")
         crosscheck = f"""<h2 data-reveal>Fitted to what Alaska burned</h2>
-<p class="prose" data-reveal>The US Energy Information Administration publishes
-Alaska gas deliveries and underground storage monthly.
-{count(f["eia_months_checked"], "month")} of those deliveries to homes,
-businesses and power plants are what the demand model is fitted to, and each new
-month refits it. So the estimate answers to measured consumption rather than to a
-design document. The figures are statewide and lag about two months, which is why
-they correct the model rather than replace anything here.</p>
+<p class="prose" data-reveal>EIA publishes Alaska gas deliveries monthly. The
+model is fitted to {count(f["eia_months_checked"], "month")} of them and refits
+on each new one, so the estimate answers to measured consumption, not a design
+document. The figures are statewide and two months behind, so they correct the
+model, not the record here.</p>
 {statewide}"""
     else:
         not_public_note = ""
@@ -1622,13 +1602,13 @@ that it is not, is using it wrong.</p>
 
 <h2 data-reveal>The model, in full</h2>
 <p class="prose" data-reveal>Regional demand in MMcf per day is
-{f["base_mmcfd"]} plus {f["slope_mmcfd_per_hdd"]} times heating degree days on a
-base of {f["hdd_base_f"]} degrees Fahrenheit. Version {f["model_version"]}.{fitted}</p>
+{f["base_mmcfd"]} plus {f["slope_mmcfd_per_hdd"]} times heating degree days,
+base {f["hdd_base_f"]} Fahrenheit. Version {f["model_version"]}.{fitted}</p>
 {planning_gap}
-<p class="prose" data-reveal>Every figure below is recomputed at build time from
-{f["hdd_record_days"]:,} days of observed Anchorage degree days covering
+<p class="prose" data-reveal>Every figure below is recomputed from
+{f["hdd_record_days"]:,} days of observed Anchorage degree days,
 {long_date(f["hdd_record_start"])} to {long_date(f["hdd_record_end"])}. Nothing
-on this page is a number somebody typed.</p>
+here is a number somebody typed.</p>
 <ol class="claims" data-reveal>{bt_rows}</ol>
 <p class="prose" data-reveal>Across that record the model averages
 {f["record_average_day_mmcfd"]} MMcf per day{against_average}. The coldest
@@ -1636,19 +1616,6 @@ day in the record is {long_date(f["record_maximum_day_date"])} at
 {f["record_maximum_day_hdd65"]:g} degree days, which models to
 {f["record_maximum_day_mmcfd"]} MMcf per day.{over_design}</p>
 
-<h2 data-reveal>This gets sharper the longer it runs</h2>
-<p class="prose" data-reveal>It launched {long_date(f["first_date"])} with a
-single day of readings, and every day adds one more. That record is the whole
-point. CINGSA publishes today's number and keeps no history at all, so the
-trend on this page exists only because it is collected daily and never thrown
-away. One day is a dot. A month shows the shape of a drawdown. A winter shows
-what a cold snap actually costs the field, and no other public source can show
-you that.</p>
-<p class="prose" data-reveal>The demand figure is an estimate, so rather than
-ask you to trust it we fit it to what Alaska actually burned and publish how far
-off it still is.{scoreboard} When the record says the estimate should move,
-we move it, and every earlier version stays on file so an old number can still
-be reproduced.</p>
 {crosscheck}
 
 <h2 data-reveal>What is not reported daily</h2>
