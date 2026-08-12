@@ -170,8 +170,12 @@ A missed day is the one irreversible failure this project has.
   internal link or sitemap entry, the house voice in the bytes that shipped,
   and above all that the CURRENT value in each cron-written ledger is on the
   page that publishes it. Exit 2 for attention and never 1, so it cannot abort
-  a run. docs/videos/ and docs/awesomeproposal/ are not this repo's to sign off
-  and are skipped, with the count of what was skipped printed), and
+  a run. Every check carries its own remedy, printed under any failure and
+  returned in --json, because Phase 3.6 exists to REPAIR what it finds and not
+  to forward complaints; only a stopped collector and another repo's surface
+  are marked report-only. docs/videos/ and docs/awesomeproposal/ are not this
+  repo's to sign off and are skipped, with the count of what was skipped
+  printed), and
   power_utility.py (what each Alaska utility charges, annually from Form EIA-861
   on .github/workflows/power-utility.yml; it exists because a state average is
   the wrong shape for "is my bill going up" when the cheapest and dearest
