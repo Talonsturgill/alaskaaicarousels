@@ -61,5 +61,15 @@
  "known_gaps": [
   "slide 09's round-1 pixel-critic report was consumed inline and never written to disk; recorded in critique/README.md",
   "no scan_log entry for 2026-08-09, the third silent lapse, surfaced by the Phase 12 retro"
+ ],
+ "gmail_draft_id": "r4616732910893507240",
+ "gmail_to": "docket@alaskaaihq.com",
+ "merged_to_main": "7cc2b266f0e5dbc3d137e1c6b41c879464f088e0",
+ "pr": 266,
+ "raw_urls_verified": [
+  "slide-01.webp 200",
+  "slide-09.webp 200",
+  "carousel.pdf 200",
+  "contact_sheet.webp 200"
  ]
 }
