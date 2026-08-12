@@ -34,6 +34,11 @@
  * data-fit-overflow="1" on the element so a human/critic can see the box is
  * genuinely too small. Returns the fit report { size, lines, fit }.
  *
+ * AND IT IS A GATE, NOT A HINT (2026-08-12): every call is recorded on
+ * window.__akFit, render.py collects it, and qa.py HARD-FAILS a slide whose
+ * block set more lines than it declared. `min` too high for the box width is
+ * the way this fails; the repair is to widen the box or lower `min`.
+ *
  * <br> line breaks are honored: a maxLines:3 headline authored with two <br>
  * is already 3 lines, so fitText only ever needs to shrink if a line ALSO
  * soft-wraps. This is exactly the run-2026-07-09 failure mode.
@@ -102,7 +107,37 @@
       el.style.fontSize = best + "px";
     }
     var fm = measure(el);
-    return { size: best, lines: fm.lines, fit: !el.hasAttribute("data-fit-overflow") };
+    var rep = { size: best, lines: fm.lines,
+                fit: !el.hasAttribute("data-fit-overflow") };
+    /* REPORT EVERY FIT (2026-08-12). data-fit-overflow has existed since this
+     * file was written and NOTHING has ever read it, so "clamps to min and
+     * marks the element" meant, in practice, that the constraint failed in
+     * silence. On run No.31 five slides (02, 03, 05, 06, 08) set more lines
+     * than they declared because `min` was authored higher than the box width
+     * could ever hold, and on slide 08 the three-line clamp swallowed "It is
+     * for the grid.", the sentence carrying the deck's whole thesis: the slide
+     * shipped stating only the negative half of its own argument, through
+     * machine QA, two pixel-critic rounds and a flow critic.
+     *
+     * The failure is AUTHORED, not a library bug -- `min` and `width` are two
+     * numbers chosen independently that have to agree -- which is exactly why
+     * it belongs to the machine. Push each call's declaration and its outcome
+     * onto window.__akFit; render.py collects it and qa.py FAILS a slide that
+     * broke a constraint it declared itself. */
+    try {
+      var reg = global.__akFit || (global.__akFit = []);
+      if (reg.length < 200) {
+        reg.push({
+          id: el.id || null,
+          tag: (el.tagName || "").toLowerCase(),
+          text: (el.textContent || "").trim().replace(/\s+/g, " ").slice(0, 60),
+          min: min, max: max, maxLines: maxLines,
+          size: best, lines: fm.lines, fit: rep.fit,
+          overflow_x: !!fm.overflowX, overflow_y: !!fm.overflowY
+        });
+      }
+    } catch (e) {}
+    return rep;
   }
 
   /* ---------------------------------------------------------------------

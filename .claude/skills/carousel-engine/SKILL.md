@@ -164,6 +164,41 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   leader stopping in void looks exactly like a leader reaching something small.
   No pixel test can settle it (the landing tick puts ink at the terminus). The
   discipline is the point: writing `at:` forces you to go find the target.
+- **A printed number and the geometry it names must be checkable against each
+  other** (2026-08-12). Any slide that sets a MEASUREMENT in type (a dimension
+  rule, a count, a frame width, a scale bar) declares the relationship and lets
+  the render decide it:
+
+  ```js
+  var FT_PX = 42;                             // one foot, solved from the lock
+  window.__akAssert = [{ what: "the 20 ft lock, printed as an 840 px rule",
+                         expect: 840,         // what the type claims
+                         actual: 20 * FT_PX,  // what the drawing computed
+                         tol: 2, unit: "px" }];
+  ```
+
+  qa.py **FAILS** when `expect` and `actual` are further apart than `tol`.
+  Opt-in, and pure arithmetic on two numbers the slide supplied, so it never
+  speaks about art it cannot understand. Run No.31's slide 05 printed an 840 px
+  dimension that was exact to the pixel over a scene whose two masses were 266 px
+  apart, so the deck's one load-bearing measurement, twenty feet, was drawn as
+  about six and every gate passed it; the same run printed two map frame widths
+  as typed constants that were wrong by 7 and 25 percent against the projections
+  that actually drew the maps. **Better than declaring it is making it
+  impossible**: solve the rig FROM the lock (one world unit is one foot, camera
+  distance computed so one foot is 42 px) so the same number produces both the
+  rule and the room. Declare the assertion anyway: it is what proves the
+  derivation survived the next edit.
+- **A text block may not set more lines than it declared** (2026-08-12).
+  `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
+  a block that ran past its own `maxLines` or bottomed out at `min` without
+  satisfying its constraint. Not opt-in: the declaration is the `maxLines`
+  argument you already wrote. The way it fails is always the same. `min` and
+  the box width are two numbers chosen independently, `min` is set higher than
+  the width can hold, the fitter clamps and overflows. And the repair is always
+  the same: widen the box or lower `min`. On run No.31 it ran past on five
+  slides and swallowed the sentence carrying the deck's whole thesis, with
+  machine QA reporting PASS, zero fails, zero warns.
 - **Text may never overprint text**: qa.py FAILS when two elements' text
   line boxes intersect (the 2026-07-08 slide-3 defect class). Deliberate
   layering (a chip on an opaque plate crossing a display line box) must be
@@ -357,6 +392,15 @@ them or every archive page goes blank.
   IGN dither -> unsharp. Call ONCE on the art canvas after drawing, before
   the grain tile (or use akpost's own grain and skip the tile). DOM text is
   never affected.
+  **`exposure` HERE IS STOPS. `AKT.setup({exposure})` ABOVE IS A MULTIPLIER.**
+  One word, two meanings, two libraries used side by side on the same slide:
+  runs No.30 and No.31 both authored `exposure: 1.02`-`1.06` meaning "about
+  three percent" and got `2^1.03` = 2.04x on eighteen consecutive slides, which
+  bloomed copper into gold and read to five critics as five unrelated faults.
+  0 is unchanged, +1 is twice as bright, -1 is half; the house grade lives in
+  -0.15 to +0.06. akpost.js now THROWS (a render hard fail) past 0.75 stops and
+  akthree console.errors a multiplier under 0.25, so the trap is closed from
+  both ends.
 - `assets/js/akcolor.js` — OKLCH engine (`AKC.*`): material ramps (chroma
   bell + warm-light/cool-shadow hue drift), OKLab gradient mixing,
   gradient-map LUT underpainting.

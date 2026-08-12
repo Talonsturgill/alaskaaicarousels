@@ -612,6 +612,59 @@ IN_PAGE_QA_JS = """
       });
     }
   } catch (e) {}
+
+  /* TEXT FITS (2026-08-12). AK.fitText records every call it was asked to make
+     -- the declared {min, max, maxLines} and what the element actually rendered
+     -- on window.__akFit. Collect it verbatim; qa.py grades it. A slide that
+     never calls fitText reports an empty list and is never judged here. */
+  out.fits = [];
+  try {
+    for (const f of (Array.isArray(window.__akFit) ? window.__akFit : []).slice(0, 200)) {
+      out.fits.push(f);
+    }
+  } catch (e) {}
+
+  /* SELF-ASSERTED MEASUREMENTS (2026-08-12). Run No.31's slide 05 printed an
+     840px dimension that was exact to the pixel over a scene whose two masses
+     were 266px apart, so the deck's one load-bearing measurement, twenty feet,
+     was drawn as about six -- and every gate passed it, because every gate here
+     judges legibility, collision, composition or a declared colour/depth
+     relationship, and none of them can know what a printed number is supposed
+     to mean. The same run printed two frame widths as typed constants that were
+     wrong by 7 and 25 percent against the projections that actually drew the
+     maps. Both are the same defect: a NUMBER IN TYPE and the GEOMETRY IT NAMES
+     computed independently, in a slide where only one of them is measurable.
+
+     The run also found the answer by accident. Slide 07 wrote its ISOTYPE count
+     to window.__akMarkCount and console.error'd on a mismatch; that caught 189,
+     then 196, before landing on an exact 200 -- but only because a human was
+     reading the console, since a console.error is a WARN here. Generalise it and
+     make it a FAIL:
+
+       window.__akAssert = [{ what: "the 20 ft lock, printed as an 840px rule",
+                              expect: 840,          // what the type/label claims
+                              actual: 20 * FT_PX,   // what the drawing computed
+                              tol: 2, unit: "px" }];
+
+     Opt-in, same as the leader and encoding contracts, and the work it does is
+     in the authoring: you cannot write `actual` without deriving it from the
+     thing that actually drew, which is the step every one of these defects
+     skipped. Pure arithmetic on two numbers the slide supplied, so it can never
+     false-positive on art the machine does not understand. */
+  out.asserts = [];
+  try {
+    const num = (v) => (typeof v === "number" && isFinite(v)) ? v : null;
+    for (const a of (Array.isArray(window.__akAssert) ? window.__akAssert : []).slice(0, 60)) {
+      out.asserts.push({
+        what: (a && typeof a.what === "string" && a.what.trim())
+          ? a.what.trim().slice(0, 90) : null,
+        expect: num(a && a.expect),
+        actual: num(a && a.actual),
+        tol: num(a && a.tol),
+        unit: (a && typeof a.unit === "string") ? a.unit.trim().slice(0, 16) : ""
+      });
+    }
+  } catch (e) {}
   return out;
 }
 """
@@ -735,6 +788,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "nondeterminism": [],
+           "fits": [], "asserts": [],
            "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
@@ -756,7 +810,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
-                                       "encodings", "contacts", "leaders")})
+                                       "encodings", "contacts", "leaders",
+                                       "fits", "asserts")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:

@@ -65,6 +65,30 @@
    */
   const NUM_OPTS = ["w", "h", "exposure", "saturation", "contrast", "vignette",
                     "aberration", "sharpen"];
+  /* EXPOSURE IS IN STOPS AND THE COMMENT SAYING SO IS NOT A GUARD (2026-08-12).
+   * Runs No.30 (2026-08-08) and No.31 (2026-08-12) each authored exposure as a
+   * MULTIPLIER on all nine slides -- 1.0 to 1.06, meaning "about three percent"
+   * -- and got 2^1.03 = 2.04x, a full stop over, on eighteen consecutive slides
+   * that nothing in the engine questioned. The root cause is a shared word with
+   * two meanings in two libraries this deck uses side by side: AKPOST.grade's
+   * exposure is STOPS, akthree's AKT.setup({exposure}) is a MULTIPLIER on
+   * three.js toneMappingExposure. On No.31 the over-exposure bloomed copper
+   * #B8703C until five independent critics could not separate it from gold
+   * #FFC72C at 432px, and each of them reported it as a different fault on a
+   * different slide, which is what a deck-wide silent defect looks like from
+   * inside a review round.
+   *
+   * The threshold is the house grade, not a guess. Every shipped AKPOST.grade
+   * call in the corpus that was AUTHORED AS STOPS sits in -0.15..+0.06; the
+   * defect band is 1.00..1.06. 0.75 stops is a 1.68x lift on an already-graded
+   * canvas, five times the largest deliberate value this studio has ever used
+   * and comfortably under every instance of the defect. Nothing in this house's
+   * register wants it, so it is refused rather than warned about: the 2026-07-26
+   * precedent in this file is that a wrong option SHAPE throws, and a wrong
+   * option UNIT that doubles the whole frame is not a milder mistake. If a slide
+   * genuinely wants a stop of lift, paint it brighter. Raising this ceiling is
+   * the maintainer's call. */
+  const EXPOSURE_MAX_STOPS = 0.75;
   const TRIPLE_OPTS = ["lift", "gain"];
   const OBJ_OPTS = { bloom: ["threshold", "strength", "radius"],
                      grain: ["amount", "size", "seed"] };
@@ -81,6 +105,22 @@
     for (const k of NUM_OPTS) {
       if (o[k] == null) continue;
       if (typeof o[k] !== "number" || !isFinite(o[k])) bad(k, o[k], "a finite number");
+    }
+    if (typeof o.exposure === "number" && isFinite(o.exposure) &&
+        Math.abs(o.exposure) > EXPOSURE_MAX_STOPS) {
+      throw new RangeError(
+        "AKPOST.grade: exposure is in STOPS, and " + o.exposure + " stops is " +
+        Math.pow(2, o.exposure).toFixed(2) + "x the whole frame, past the " +
+        EXPOSURE_MAX_STOPS + "-stop ceiling. If you meant a multiplier, you are " +
+        "thinking of akthree's AKT.setup({exposure}), which IS one; here " +
+        (o.exposure > 0.9 && o.exposure < 1.2
+           ? "a value near 1.0 is the units mistake that shipped on 2026-08-08 " +
+             "and 2026-08-12 -- for '" +
+             Math.round((o.exposure - 1) * 100) + " percent' write " +
+             (Math.log(o.exposure) / Math.LN2).toFixed(3) + ", and the house " +
+             "grade lives in -0.15..+0.06. "
+           : "") +
+        "0 is unchanged, +1 is twice as bright, -1 is half.");
     }
     for (const k of TRIPLE_OPTS) {
       if (o[k] == null) continue;

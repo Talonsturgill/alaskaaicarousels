@@ -74,6 +74,23 @@ export function init(THREE) {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    /* THE OTHER HALF OF THE 2026-08-12 UNITS TRAP. This exposure is a
+     * MULTIPLIER on three.js toneMappingExposure; AKPOST.grade's exposure is
+     * STOPS, and the two are used side by side on the same slide. akpost.js now
+     * REFUSES a multiplier passed as stops, because that mistake shipped on
+     * eighteen slides across two runs. The mirror mistake -- a stops value
+     * passed here, e.g. 0.03, which renders the scene at 3 percent and reads as
+     * a near-black canvas -- has not happened yet, so it is reported rather than
+     * refused: no threshold gets a hard fail here until a real render earns it.
+     * console.error becomes a qa.py WARN, which is enough to find it. */
+    if (opts.exposure != null && opts.exposure > 0 && opts.exposure < 0.25) {
+      try {
+        console.error("AKT.setup: exposure " + opts.exposure + " is a MULTIPLIER " +
+          "here (three.js toneMappingExposure), not stops -- this renders the " +
+          "scene at " + Math.round(opts.exposure * 100) + " percent and will " +
+          "screenshot near black. AKPOST.grade's exposure is the one in stops.");
+      } catch (e) {}
+    }
     renderer.toneMappingExposure = opts.exposure != null ? opts.exposure : 1.1;
     const scene = new THREE.Scene();
     if (opts.bg != null) scene.background = new THREE.Color(opts.bg);

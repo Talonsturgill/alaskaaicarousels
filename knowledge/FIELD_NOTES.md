@@ -3242,3 +3242,55 @@ time, which is why the cover reads 670 KM and not 720. And continuity device A,
 the nine-rung ladder, was declared in the storyboard and drawn on ZERO of nine
 slides until round 2 caught it. Nothing gates the gap between a device the deck
 header declares and a device the artwork contains.
+
+PARKED, from the 2026-08-12 frontier scan (focus: accessibility and PDF /
+document-format changes, the stalest rotation slot, last scanned 2026-07-25).
+Nothing applied: all three upgrade slots went to reactive fixes, which outrank a
+frontier improvement by Phase 12's own reactive-first rule.
+
+- **A TAGGED PDF IS ONE ARGUMENT AWAY AND WOULD NOT SURVIVE OUR MERGE.**
+  Playwright's `page.pdf()` has taken `tagged: true` and `outline: true` since
+  v1.42, both defaulting false, Chromium-headless only; we are on 1.62 and
+  `assemble.py` passes neither. Chromium has generated tagged PDFs from the
+  print path since Chrome 85, headless included. So the switch exists. It is
+  PARKED, not flipped, for two measured reasons. First, `assemble.py` prints
+  NINE single-page PDFs and merges them with `pypdf`'s `PdfWriter.add_page`, and
+  the structure tree is a DOCUMENT-level object: not merging `StructTreeRoot` is
+  an open, acknowledged limitation in pypdf, qpdf AND pymupdf alike, so we would
+  generate tags and then drop them, and ship a PDF that claims an accessibility
+  it does not have. That is worse than the honest untagged file we ship now.
+  Second, tagged output is reported as multiples larger, and our vector PDF is
+  already 12.43 MB against LinkedIn's 100 MB cap; the size has to be measured
+  before anything is promised. What would unblock it: merge at the CATALOG level
+  (or print all nine slides as one document in one `page.pdf()` call, which
+  keeps a single structure tree by construction) and then measure. Worth doing
+  for the copy that lives on alaskaaihq.com, NOT for LinkedIn, which re-renders
+  document posts as images anyway.
+  https://playwright.dev/docs/api/class-page
+  https://blog.chromium.org/2020/07/using-chrome-to-generate-more.html
+  https://github.com/qpdf/qpdf/issues/490
+- **THE FOUR-LEVEL MODEL, WHICH IS THE MISSING SHAPE FOR THE ALT-TEXT GAP THE
+  2026-08-08 SCAN PARKED.** Lundgard and Satyanarayan built it by grounded-theory
+  analysis of 2,147 sentences of visualization description: L1 enumerates
+  construction properties (marks and encodings), L2 reports statistical concepts
+  and relations (extrema, correlations), L3 identifies perceptual and cognitive
+  phenomena (complex trends and patterns), L4 elucidates domain-specific
+  insights (social and political context). Evaluated with 30 blind and 90
+  sighted readers, and the finding that matters is that the two groups **differ
+  significantly on which level they rank as most useful**, so a description
+  written by a sighted author for a sighted author is not the same artifact.
+  Why this studio should care: LinkedIn provides no per-slide alt text for
+  carousels at all, the honest options are a plain-text slide-by-slide block in
+  the first comment or nothing, and "write a summary" with no structure produces
+  L4 opinion with no L2 under it. L1-L4 is the structure. It also names what our
+  dossier `encoding_reads` field already gropes at, which is an L3 claim about a
+  picture. PARKED as a caption/first-comment brief candidate rather than a rule,
+  because it is an editorial decision about the post's shape and the maintainer
+  owns that.
+  https://arxiv.org/abs/2110.04406
+- CONTEXT, not actionable: PDF/UA-2 (ISO 14289-2:2024, aligned with PDF 2.0)
+  adds `FENote`, `Em`/`Strong` and sub-structured `Figure` tags, but PDF/UA-1
+  remains the practical 2026 target because validators and tooling still trail
+  it. The April 24th 2026 ADA Title II deadline binds public entities of 50,000
+  or more, which is not us. Recorded so the next accessibility scan does not
+  rediscover it.

@@ -57,6 +57,22 @@ Checks per slide (consuming render_report.json + the PNGs):
     and no reviewer could tell a leader reaching something small from one
     reaching nothing. A pixel test cannot answer it (the landing tick puts ink at
     the terminus); declared arithmetic can.
+  - DECLARED maxLines EXCEEDED (FAIL): AK.fitText records every call's declared
+    {min, max, maxLines} and what the element actually rendered; this FAILS a
+    block that set more lines than it declared, or that bottomed out at `min`
+    without satisfying its own constraint. Added 2026-08-12 after five slides of
+    run No.31 overran their declared line counts (`min` authored higher than the
+    box width could hold) and slide 08's three-line clamp swallowed "It is for
+    the grid.", the sentence carrying the deck's whole thesis, with machine QA
+    reporting PASS, 0 fails, 0 warns. data-fit-overflow had marked the element
+    since the helper was written and nothing had ever read it.
+  - SELF-ASSERTED MEASUREMENT DISAGREES WITH THE DRAWING (FAIL): opt-in. A slide
+    declares, in window.__akAssert, {what, expect, actual, tol} -- what its type
+    claims and what its geometry computed -- and this FAILS when the two are
+    further apart than the declared tolerance. Added 2026-08-12 after run No.31
+    printed an 840px dimension that was exact to the pixel over a scene whose two
+    masses were 266px apart (twenty feet drawn as about six) and two map frame
+    widths wrong by 7 and 25 percent, all past every gate here.
   - UNSEEDED RANDOMNESS (FAIL): consumes render.py's determinism source scan
     and FAILS a slide whose inline script calls Math.random() or the crypto
     random APIs instead of the seeded AK.rng(seed) / AK.reseed(seed) the slide
@@ -622,6 +638,116 @@ def leader_lands(ld):
     return "ok", "leader %r lands %.1fpx from its target" % (name, d)
 
 
+def fit_holds(ft):
+    """A BLOCK MUST NOT SET MORE LINES THAN IT DECLARED (2026-08-12).
+
+    AK.fitText's contract is "shrink until this fits `maxLines` line boxes with
+    no horizontal overflow"; when even `min` cannot satisfy that it clamps to
+    `min`, marks the element data-fit-overflow="1" and returns fit:false. That
+    attribute has existed since the helper was written and NOTHING has ever read
+    it, so for every run to date an explicitly declared constraint has failed in
+    silence.
+
+    Run No.31 (2026-08-12) is what it costs. Five slides -- 02, 03, 05, 06 and
+    08 -- ran past their declared line counts because `min` was authored higher
+    than the box width could ever hold, two numbers picked independently that
+    have to agree. On slide 08 the three-line clamp swallowed "It is for the
+    grid.", the sentence carrying the deck's entire thesis, and the slide shipped
+    arguing only the negative half of its own point. machine_qa returned PASS
+    with zero fails and zero warns on that deck.
+
+    This is not a taste threshold and there is nothing to tune: the slide
+    declared the number and the render disagreed with it. NOT opt-in, unlike the
+    leader/encoding/contact contracts, because the declaration is already there
+    in every fitText call the studio has ever written. False positives are
+    structurally impossible -- fit:false means the binary search bottomed out and
+    `min` itself did not satisfy the author's own constraint.
+
+    Returns (verdict, detail), verdict in "info" | "warn" | "fail".
+    """
+    if not isinstance(ft, dict):
+        return "warn", "a fit record did not parse"
+    who = ft.get("id") or ft.get("tag") or "?"
+    txt = (ft.get("text") or "").strip()
+    ml = ft.get("maxLines")
+    lines = ft.get("lines")
+    size, mn, mx = ft.get("size"), ft.get("min"), ft.get("max")
+    label = "%s '%s'" % (who, txt[:44])
+    if not isinstance(ml, (int, float)) or not isinstance(lines, (int, float)):
+        return "warn", "fit record for %s carries no line counts" % label
+    over_lines = lines > ml
+    if ft.get("fit") is False or over_lines:
+        why = ("it set %d lines against maxLines %d" % (lines, ml) if over_lines
+               else "it could not fit maxLines %d without overflowing its box" % ml)
+        # overflow_y is reported but NOT narrated: fitText only enforces height
+        # on a box the author capped (fixed height + overflow hidden/clip), and
+        # a normal auto-height block reports overflowY true as a matter of
+        # course. Saying so in a failure message would be noise that reads like
+        # a second defect.
+        extra = " and overflows the box horizontally" if ft.get("overflow_x") else ""
+        return "fail", (
+            "AK.fitText bottomed out on %s: %s%s, at %spx (min %s, max %s). "
+            "The fitter clamped to `min` rather than obeying the "
+            "declaration, which is silent by design and is what shipped the "
+            "2026-08-12 deck missing a whole sentence. `min` is authored higher "
+            "than this box width can hold: widen the box or lower `min`."
+            % (label, why, extra, size, mn, mx))
+    return "info", "%s fits %d/%s lines at %spx" % (label, lines, ml, size)
+
+
+def assert_holds(a):
+    """A SLIDE'S PRINTED NUMBER AGAINST THE GEOMETRY THAT DREW IT (2026-08-12).
+
+    Run No.31's slide 05 printed an 840px dimension rule that was exact to the
+    pixel over a scene whose two masses were 266px apart, so the deck's one
+    load-bearing measurement -- twenty feet -- was drawn as about six. Every gate
+    passed it and it took a forensic human read to catch. The same run printed
+    two map frame widths as typed constants that were wrong by 7 and 25 percent
+    against the projections that actually drew the maps. One defect in two
+    costumes: a NUMBER IN TYPE and the GEOMETRY IT NAMES, computed independently.
+
+    The repair that worked on slide 05 was structural (solve the camera FROM the
+    lock, so one number produces both the rule and the room) and structural
+    repairs cannot be gated in general. What CAN be gated is the slide stating
+    the relationship and the machine checking the slide against itself, which is
+    what slide 07 improvised for its mark count via window.__akMarkCount and
+    which caught 189 and then 196 before landing on an exact 200 -- except that
+    it console.error'd, so it was a WARN and only worked because a human was
+    watching. Here it is a FAIL.
+
+    Opt-in and pure arithmetic on two numbers the slide supplied, so it cannot
+    speak about art it does not understand, and a slide declaring nothing is not
+    judged. The real work is in the authoring: `actual` has to be derived from
+    whatever actually drew.
+
+    Returns (verdict, detail), verdict in "info" | "warn" | "fail".
+    """
+    what = a.get("what")
+    exp, act, tol = a.get("expect"), a.get("actual"), a.get("tol")
+    if not what:
+        return "warn", ("an assertion was declared with no `what`; every "
+                        "assertion names the relationship it is locking")
+    if exp is None or act is None:
+        miss = "expect" if exp is None else "actual"
+        return "warn", ("assertion %r declares no numeric `%s` (both are "
+                        "required: `expect` is what the type claims, `actual` "
+                        "is what the drawing computed)" % (what, miss))
+    if tol is None:
+        return "warn", ("assertion %r declares no `tol`; state the tolerance "
+                        "you are willing to ship, in the same unit" % what)
+    unit = (" " + a["unit"]) if a.get("unit") else ""
+    d = abs(exp - act)
+    if d > abs(tol):
+        return "fail", (
+            "%r: the slide claims %g%s and the drawing produced %g%s, %g%s "
+            "apart against a declared tolerance of %g%s. The type and the "
+            "geometry were computed independently; derive one FROM the other so "
+            "they cannot disagree."
+            % (what, exp, unit, act, unit, d, unit, abs(tol), unit))
+    return "info", ("%r holds: %g vs %g%s (within %g)"
+                    % (what, exp, act, unit, abs(tol)))
+
+
 CONTACT_FAIL_DL = 4.0
 CONTACT_WARN_DL = 8.0
 
@@ -1010,6 +1136,30 @@ def main():
                 res["warns"].append("leader declaration unusable: " + detail)
             else:
                 res.setdefault("leaders", []).append(detail)
+
+        # BLOCK SET MORE LINES THAN IT DECLARED (2026-08-12). Not opt-in: the
+        # declaration is the maxLines argument already present in every
+        # AK.fitText call. See fit_holds() for why fit:false cannot false-fail.
+        for ft in rec.get("fits", []):
+            verdict, detail = fit_holds(ft)
+            if verdict == "fail":
+                res["fails"].append("declared maxLines exceeded: " + detail)
+            elif verdict == "warn":
+                res["warns"].append("fit record unusable: " + detail)
+            else:
+                res.setdefault("fits", []).append(detail)
+
+        # PRINTED NUMBER DISAGREES WITH THE GEOMETRY (2026-08-12). Opt-in, and
+        # arithmetic on two numbers the slide itself supplied, so it can never
+        # speak about a slide that declares nothing. See assert_holds().
+        for a in rec.get("asserts", []):
+            verdict, detail = assert_holds(a)
+            if verdict == "fail":
+                res["fails"].append("self-assertion failed: " + detail)
+            elif verdict == "warn":
+                res["warns"].append("assertion declaration unusable: " + detail)
+            else:
+                res.setdefault("asserts", []).append(detail)
 
         # SVG LABEL OFF ITS OWN PLATE (2026-07-29). render.py measures every
         # SVG <text> against the <rect> painted under it. A label that spills
