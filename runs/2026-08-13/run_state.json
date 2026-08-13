@@ -15,9 +15,9 @@
   "pixel_review": "done",
   "flow_review": "done",
   "assemble": "done",
-  "scoring": "pending",
-  "ship": "pending",
-  "upgrade": "pending",
+  "scoring": "done",
+  "ship": "done",
+  "upgrade": "done",
   "gmail": "pending",
   "retro": "pending"
  },
@@ -33,6 +33,7 @@
   "caption": "out/2026-08-13/caption.txt",
   "render": "out/2026-08-13/render",
   "final": "out/2026-08-13/final",
-  "aggregates": "out/2026-08-13/aggregates.json"
+  "aggregates": "out/2026-08-13/aggregates.json",
+  "score": "out/2026-08-13/score_report.json"
  }
 }

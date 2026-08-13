@@ -117,6 +117,7 @@
         "canvas raster text '721 W 1st Ave' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text '911 W 8th Ave' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text '\"data cited in coding bootcamp research\"' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'NO STUDY. NO AUTHOR. NO YEAR. C21' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text 'FIGURE NOT REPEATED HERE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "tiny-text: 'ONE STORY, CHECKED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
       ],
@@ -138,6 +139,7 @@
         "canvas raster text 'A DESK. C13' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text 'ALASKA, NOT ENACTED. C25' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text 'MORE THAN 20. TWO READS DISAGREED. C28' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'PUBLIC CITIZEN TRACKER, AS OF AUGUST 3RD' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "tiny-text: 'WHAT WOULD HAVE STOPPED IT' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'ALASKA'S TOP FOUR PRIMARY IS AUGUST 18TH. TIMING O' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))"
       ],
@@ -158,6 +160,6 @@
     }
   ],
   "fails": 0,
-  "warns": 63,
+  "warns": 65,
   "verdict": "WARN"
 }
