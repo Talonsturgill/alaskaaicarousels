@@ -139,7 +139,7 @@
         "canvas raster text 'ALASKA, NOT ENACTED. C25' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text 'MORE THAN 20. TWO READS DISAGREED. C28' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "tiny-text: 'WHAT WOULD HAVE STOPPED IT' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'ALASKA'S TOP FOUR PRIMARY IS AUGUST 18TH. TIMING O' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))"
+        "tiny-text: 'ALASKA'S TOP FOUR PRIMARY IS AUGUST 18TH. TIMING O' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "fits": [
         "head 'Disclosure was never the load-bearing part.' fits 2/3 lines at 59.5px"

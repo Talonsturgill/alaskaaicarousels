@@ -1079,6 +1079,49 @@ def main():
                     "-- ships as a bitmap in the vector PDF (invisible to the LinkedIn "
                     "ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG")
 
+        # CANVAS TEXT THAT RUNS OFF THE FRAME (2026-08-13). Canvas has no layout
+        # engine, so a fillText string longer than the space left to it is simply
+        # clipped at the canvas edge with no error, no overflow warning and no
+        # DOM node for text_collisions to see. Run No.32 shipped exactly that on
+        # slide 08: the authored string was
+        #     "MORE THAN 20. TWO READS DISAGREED. C28"
+        # and the render printed "MORE THAN 20. TWO READS DISA", severing the
+        # claim-id and the entire uncertainty disclosure, on the one slide whose
+        # honesty device that stamp WAS. render.py, qa.py, copy_sync_check and
+        # aggregate_check all returned clean; the scorer found it by eye.
+        #
+        # This FAILS rather than warns, because a truncated string is not a taste
+        # call: the slide asked for characters the frame did not give it. Only
+        # axis-aligned, positively-scaled text is judged (skew/rotation and
+        # mirrored transforms are skipped), since those are the cases where the
+        # device-space span is exact. Text drawn inside a clip() may be
+        # intentionally cropped, which this cannot see, so the check is
+        # deliberately confined to the frame boundary itself.
+        for ct in rec.get("canvas_text", []):
+            if ct.get("skew") or ct.get("dev_right") is None:
+                continue
+            sx = ct.get("sx")
+            if not sx or sx <= 0:
+                continue
+            cw = ct.get("canvas_w") or 0
+            if not cw:
+                continue
+            s_ct = (ct.get("text") or "").strip()
+            if sum(c.isalpha() for c in s_ct) < 4:
+                continue
+            right, left = ct.get("dev_right"), ct.get("dev_left")
+            if right > cw + 0.5:
+                res["fails"].append(
+                    f"canvas text runs off the frame: '{s_ct[:44]}' ends "
+                    f"{right - cw:.0f}px past the right edge and is CLIPPED "
+                    "(canvas has no layout engine, so nothing overflows); "
+                    "move it inside the margin or shorten it")
+            elif left is not None and left < -0.5:
+                res["fails"].append(
+                    f"canvas text runs off the frame: '{s_ct[:44]}' starts "
+                    f"{-left:.0f}px left of the frame and is CLIPPED; "
+                    "move it inside the margin")
+
         for e in rec.get("page_errors", []):
             res["fails"].append(f"page error: {e}")
         for e in rec.get("console_errors", []):
