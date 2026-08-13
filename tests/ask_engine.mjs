@@ -40,7 +40,33 @@ const head = (t) => console.log('\n' + t);
 const exe = process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const b = await chromium.launch(
   (await import('node:fs')).existsSync(exe) ? { executablePath: exe } : {});
-const p = await b.newPage({ viewport: { width: 1240, height: 900 } });
+
+// THE PAGE AND THE BOX HAVE TO BE STANDING ON THE SAME DAY (2026-08-13).
+//
+// The published answers are baked at build time against an Anchorage date;
+// the box works its answers out live against whatever clock the browser is
+// wearing. E5 compares the two, and normalises day COUNTS out of both sides
+// because a page built once a day is meant to lag a live reader by a few
+// hours. What it cannot normalise is the two sides selecting DIFFERENT
+// key_dates, which is what happens when they disagree about what day it is.
+//
+// CI builds the fixture with `TZ=America/Anchorage date +%F` and then reads
+// it in a browser running on the runner's clock, which is UTC. Those name
+// different days for the eight or nine hours after Anchorage midnight, so a
+// key_date landing on the build's own "today" is still upcoming to the page
+// and already past to the box, and they answer "what happens next"
+// differently while both are correct. It went red on 2026-08-13 at 07:31 UTC
+// (Anchorage 23:31 on the 12th) the first time a ledger edge landed inside
+// that window, on a docket item whose collapse was recorded that same day.
+//
+// So the reader this suite simulates is an Alaskan, which is who the site is
+// built for and whose date the builder already uses. Both sides then resolve
+// against one calendar and the assertion means what it says. It is not
+// loosened anywhere: every answer is still compared in full, and a genuine
+// disagreement inside a single day still fails.
+const PAGE_OPTS = { viewport: { width: 1240, height: 900 },
+                    timezoneId: 'America/Anchorage' };
+const p = await b.newPage(PAGE_OPTS);
 
 // NOTHING THIRD PARTY. The engine under test answers from data already in
 // the page and never makes a request, so this suite should not either. The
@@ -556,7 +582,7 @@ for (const [q, want] of [
   ['what can I still comment on', /open to public comment/],
   ['what is this', /Alaska AI Docket/],
 ]) {
-  const p2 = await b.newPage({ viewport: { width: 1240, height: 900 } });
+  const p2 = await b.newPage(PAGE_OPTS);
   p2.on('pageerror', e => errs.push(String(e)));
   await p2.goto(URL + '?q=' + encodeURIComponent(q));
   await p2.waitForTimeout(350);
@@ -572,7 +598,7 @@ for (const [q, want] of [
 // the same treatment as anything else typed into the box.
 for (const bad of ['<script>window.__pwned=1</script>', '%%%', '%E0%A4%A',
                    'a'.repeat(900), '', 'javascript:alert(1)']) {
-  const p3 = await b.newPage();
+  const p3 = await b.newPage(PAGE_OPTS);
   p3.on('pageerror', e => errs.push(String(e)));
   let threw = false;
   try {
@@ -587,7 +613,7 @@ for (const bad of ['<script>window.__pwned=1</script>', '%%%', '%E0%A4%A',
   await p3.close();
 }
 {
-  const p4 = await b.newPage({ viewport: { width: 1240, height: 900 } });
+  const p4 = await b.newPage(PAGE_OPTS);
   p4.on('pageerror', e => errs.push(String(e)));
   await p4.goto(URL + '?q=kenai');
   await p4.waitForTimeout(300);
