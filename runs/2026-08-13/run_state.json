@@ -18,8 +18,8 @@
   "scoring": "done",
   "ship": "done",
   "upgrade": "done",
-  "gmail": "pending",
-  "retro": "pending"
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-08-13/plan.md",
@@ -34,6 +34,8 @@
   "render": "out/2026-08-13/render",
   "final": "out/2026-08-13/final",
   "aggregates": "out/2026-08-13/aggregates.json",
-  "score": "out/2026-08-13/score_report.json"
- }
+  "score": "out/2026-08-13/score_report.json",
+  "gmail_draft_id": "runs/2026-08-13/gmail_draft_id.txt"
+ },
+ "complete": true
 }
