@@ -3333,3 +3333,56 @@ reading its own doctrine.
   at build time.
   https://sunstrikestudios.com/en/blog/realistic_foliage_painting/
   https://www.tripo3d.ai/blog/explore/hd-model-alphas-brushes-and-stamps-for-micro-detail
+
+## 2026-08-13 (retro, run No.32)
+
+The deck was THE LOCKED CHASE, a letterpress composing stone, and it came out of
+the directors room by a route worth recording: two of three directors, given
+different lenses, independently arrived at the same object, because both found
+the same fact. In printing, FURNITURE is the trade's literal name for the blank
+material that fills a page and takes no ink. The selection memo had used the
+word loosely. It turns out to be a technical term that means exactly what the
+story is about, and a room converging on one object from two directions is the
+strongest signal a room can give.
+
+- **THE STANDING WEAKNESS MOVED, measurably.** Artwork craft had been the
+  weakest scored criterion in 7 of the last 10 runs at a mean of 6.0. This run
+  used `akengrave`, whose own library entry records that it was committed for
+  No.21 and then went unused for five decks while artwork craft was weakest in
+  four of them, and it targeted detail as a HIERARCHY rather than uniform
+  coverage. `bespoke_check` came back at **drawn share 99 percent, 125 drawn
+  marks against 1 blocky**, versus a 45 percent floor and the templated
+  reference deck's 23 percent, with median pairwise similarity 0.227 against a
+  0.60 fail line. Whether it reads as craft is the scorer's call, but the
+  mechanical half of the problem is no longer the problem.
+- **THE ENGRAVING LESSON, and it cost three render rounds.** The lay's
+  DIRECTION is the gradient of `form`, so the height field's shape IS the
+  drawing. `max(|dx|,|dy|)` gave concentric rectangles that read as a digital
+  artifact. High-frequency fbm gave marbling, because the gradient rotates per
+  pixel. One slow plane plus two broad smooth bumps is what produces the long
+  slowly bending parallels that read as engraving. Logged as an instinct at
+  0.95 because nothing in the library says this and the failure looks like a
+  rendering bug rather than a design mistake.
+- **A SECOND COMPOSITING LESSON from the same slide.** The first pass drew five
+  receding ranks of type at `globalAlpha` 0.30 to 0.86, and the stone's hatching
+  showed straight through solid metal. Recession is carried by COLOUR, never by
+  alpha.
+- **THE FACT-CHECKER EARNED ITS KEEP TWICE.** It killed the scouts' second leg
+  outright, a doctored image of a gubernatorial candidate said to be
+  circulating twelve days before the primary. Two searches, one returning 61
+  results in strict date order with a clean gap across the claimed publication
+  date, and it was not there. It also refused two counts that would not
+  reproduce, the sitemap (1,064 / 501 / 1,012 across three reads) and the
+  states-with-laws tracker (33 then 23), so the deck ships floors and prints the
+  non-reproducibility ON the slides rather than in a footnote.
+- **A GATE ARGUING WITH A SENTENCE IS USUALLY RIGHT ABOUT THE SENTENCE.**
+  `aggregate_check` rejected "19 days" for July 8th to July 26th, because the
+  interval is 18 and 19 is the inclusive date count. The fix was to name the two
+  dates in the copy instead, which is more precise for the reader.
+- **WHAT THIS RUN DID NOT DO, and it is the honest shortfall.** Zero
+  pixel-critic rounds and no flow-critic round. The showrunner reviewed every
+  slide at full size and the deck on the contact sheet and fixed what that
+  found, including two real text collisions on slides 5 and 7. That is the
+  degradation ladder's option (c), fewer review rounds, disclosed, and it is
+  written into the scorer's brief and the Gmail draft rather than left for
+  someone to notice.

@@ -1,0 +1,38 @@
+{
+ "run_date": "2026-08-13",
+ "carousel_no": 32,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "done",
+  "assemble": "done",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-08-13/plan.md",
+  "field_notes": "knowledge/FIELD_NOTES.md (2026-08-13 entry)",
+  "scout_merge": "out/2026-08-13/scout_merge.md",
+  "docket": "ledger/docket.json (6 items refreshed, AKLNG collapse recorded)",
+  "claims": "out/2026-08-13/claims.json (41 claims, 36 primary, gate PASS)",
+  "selection": "out/2026-08-13/selection.md",
+  "storyboard": "out/2026-08-13/storyboard.md",
+  "copy": "out/2026-08-13/copy.json",
+  "caption": "out/2026-08-13/caption.txt",
+  "render": "out/2026-08-13/render",
+  "final": "out/2026-08-13/final",
+  "aggregates": "out/2026-08-13/aggregates.json"
+ }
+}

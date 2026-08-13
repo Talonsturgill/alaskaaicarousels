@@ -1,0 +1,126 @@
+{
+  "run_date": "2026-08-13",
+  "carousel_no": 32,
+  "document_title": "The Anchorage Paper That Wrote Itself, Then Stopped",
+  "post_copy": "Daily, at a site called The Daily Anchorage, means July 8th to July 26th.\nNothing since. More than 500 stories are still live on August 13th.\n\nThe form is all there. Politics, property, schools, transport. A corrections page and legal notices. No named reporter appears anywhere.\n\nBylines go to desks. Each article checked says it \"was not reviewed by a journalist before publishing.\"\n\nThe about page promises to disclose AI involvement on every page, and it does. It asks readers to verify anything important.\n\nThe deck sets the tagline against the dates and lists the network's 18 mastheads, all Australian. Anchorage is not one.\n\nEvery part of a newsroom is here except the part that does the reporting.\n\nDoes full disclosure earn a page the word local, or does that still need a person who can be asked about the story?\n\n#AlaskaMedia #NewsDeserts #AIDisclosure",
+  "deck_summary_line": "The deck sets the tagline against the dates and lists the network's 18 mastheads, all Australian. Anchorage is not one.",
+  "caption_meta": {
+    "opening_move": "DEFINITION SUBVERSION",
+    "structure": "BRAID",
+    "closing_move": "fork",
+    "note": "Caption room ran two directors and a critic. The critic picked B and spent its one fix on the closing question, which had a single socially available answer and rested on an address no claim supports. The showrunner then trimmed 56 characters to clear the 900 ceiling and took the critic's recorded demerit by restoring 'all Australian' to the deck summary line, which is the strangest verified fact in the run and had fallen out of the caption entirely."
+  },
+  "first_comment": "Sources for today's deck. Everything below was fetched and read on August 13th, 2026.\n\nThe Daily Anchorage, homepage and tagline\nhttps://dailyanchorage.news/\n\nThe Daily Anchorage, sitemap, article dates and count\nhttps://dailyanchorage.news/sitemap.xml\n\nThe Daily Anchorage, the AI disclosure notice, verified on two separate articles\nhttps://dailyanchorage.news/article/tech-anchorage-20260715-af24428c5dda\nhttps://dailyanchorage.news/article/news-anchorage-20260724-a3d4b867ca7a\n\nThe Daily Anchorage, editorial standards, human oversight and flagged content\nhttps://dailyanchorage.news/editorial-standards\n\nThe Daily Anchorage, about page, disclosure and the request to verify\nhttps://dailyanchorage.news/about\n\nThe Daily Anchorage, ownership page\nhttps://dailyanchorage.news/ownership\n\nThe Daily Network, the parent, 18 city mastheads and the hyperscale line\nhttps://dailynetwork.news/\n\nPublic Citizen, tracker of state legislation on deepfakes in elections, last updated August 3rd, 2026\nhttps://www.citizen.org/article/tracker-legislation-on-deepfakes-in-elections/\n\nAlaska Division of Elections, the August 18th top four primary\nhttps://www.elections.alaska.gov/\n\nTwo notes on the numbers. The sitemap would not count the same way twice, so the deck prints \"more than 500\" and never an exact figure. Public Citizen's tracker read 33 enacted states once and 23 another time, so the deck prints \"more than 20\" and draws the row of states open rather than closed.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": null,
+      "headline": "was not reviewed by a journalist before publishing",
+      "body": null,
+      "strings": [
+        "THIS ARTICLE WAS WRITTEN BY AI FROMTHE LINKED SOURCES AND",
+        "was not reviewed by a journalist before publishing"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "THE DAILY ANCHORAGE",
+      "headline": "Anchorage got a daily paper on July 8th.",
+      "body": "More than 500 articles followed, July 8th to July 26th. The masthead reads \"Loca",
+      "strings": [
+        "THE DAILY ANCHORAGE",
+        "Anchorage got a daily paper on July 8th.",
+        "More than 500 articles followed, July 8th to July 26th. The masthead reads \"Loca",
+        "COUNT NOT REPRODUCIBLE. THREE READS DISAGREED. FLOOR SHOWN. C03"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "WHAT IT PROMISED, MEASURED",
+      "headline": "It told you.",
+      "body": "The standards page says articles are produced under human oversight. The about p",
+      "strings": [
+        "WHAT IT PROMISED, MEASURED",
+        "It told you.",
+        "\"A human editor reviews flagged content before publication.\"",
+        "The standards page says articles are produced under human oversight. The about p",
+        "FLAGGED, NOT ALL. 2 OF 2 ARTICLES SAMPLED. C07 C08 C09 C10 C11"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": null,
+      "headline": "Politics. Property. Schools. Transport. Things to do.",
+      "body": "Corrections. Legal notices. Every section a local paper keeps, bylined to desks ",
+      "strings": [
+        "Politics. Property. Schools. Transport. Things to do.",
+        "Corrections. Legal notices. Every section a local paper keeps, bylined to desks "
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "THE PARENT NETWORK",
+      "headline": "The paperwork thins out.",
+      "body": "No named reporter. No legal entity on the ownership page. The parent calls itsel",
+      "strings": [
+        "THE PARENT NETWORK",
+        "The paperwork thins out.",
+        "No named reporter. No legal entity on the ownership page. The parent calls itsel"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": null,
+      "headline": "Every Day.",
+      "body": "July 8th to July 26th. Eighteen days dark since, and counting. The pages are all",
+      "strings": [
+        "Every Day.",
+        "July 8th to July 26th. Eighteen days dark since, and counting. The pages are all",
+        "JUL 8 TO JUL 26. CHECKED AUGUST 13TH. C02 C04 C05"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "ONE STORY, CHECKED",
+      "headline": "A glance can't catch it.",
+      "body": "One story names the Dena'ina Convention Center and two real downtown addresses. ",
+      "strings": [
+        "ONE STORY, CHECKED",
+        "A glance can't catch it.",
+        "One story names the Dena'ina Convention Center and two real downtown addresses. ",
+        "\"Details may be imperfect, so please verify anything important.\""
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "WHAT WOULD HAVE STOPPED IT",
+      "headline": "Disclosure was never the load-bearing part.",
+      "body": "This site labeled itself on every page and it changed nothing. Alaska has no ena",
+      "strings": [
+        "WHAT WOULD HAVE STOPPED IT",
+        "Disclosure was never the load-bearing part.",
+        "This site labeled itself on every page and it changed nothing. Alaska has no ena",
+        "ALASKA'S TOP FOUR PRIMARY IS AUGUST 18TH. TIMING ONLY. NO LINK IS CLAIMED. C24"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": null,
+      "headline": "Before you trust a local page, read its last date.",
+      "body": null,
+      "strings": [
+        "Before you trust a local page, read its last date.",
+        "ALASKA.AI"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post Tuesday to Thursday, 8am to 11am Alaska time.",
+    "Paste the first comment immediately, inside the first minute, so the sources land with the post.",
+    "Reply to every comment in the first 60 to 90 minutes. Threaded author replies are the strongest reach lever this page has.",
+    "If a commenter asks whether the site is illegal, the honest answer is that it disclosed and Alaska has no law on this. That is the deck's point.",
+    "Do not name the founder in replies. The deck deliberately carries the absence of a registered legal entity instead.",
+    "Do not link the site in a comment. Describing it is enough and a link rewards it."
+  ],
+  "editor_notes_for_email": "The deck is built entirely on the publisher's own printed words, which is why it can be this direct without being an accusation. Slide 3 is the fairness beat and it is load-bearing. It credits the site for disclosing truthfully and shows, in the art, that the review it promised was for flagged content only.\n\nTwo numbers are deliberately soft and the softness is printed on the slides. The sitemap would not count the same way three times running, so the deck says more than 500. Public Citizen's tracker read 33 states once and 23 another time, so the deck says more than 20 and draws the row open. Both are floors, not estimates.\n\nThe August 18th primary appears on slide 8 as timing only, with the guard printed on the slide itself in the deck's own voice rather than hidden in a footnote. There is no evidence linking this site to the election and the deck says so out loud.\n\nOne thing the scouts offered that did NOT survive. A doctored image of a gubernatorial candidate was reported to be circulating. The fact-checker searched the outlet twice, found 61 results in strict date order with a clean gap across the claimed publication date, and could not find it. Nothing about it is in this deck."
+}
