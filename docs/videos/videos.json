@@ -3,6 +3,15 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-08-13-the-machine-nobody-wrote-down",
+      "date": "2026-08-13",
+      "title": "The Machine Nobody Wrote Down",
+      "caption": "A village diesel generator's rating plate says what it can produce and nothing about how it behaves. On August 10th the NSF put $324,995 behind letting a battery's own inverter ask the diesel that question directly, at the University of Alaska Fairbanks.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/dispatch-2026-08-13-9x16-720p.mp4",
+      "poster": "",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/dispatch-2026-08-13-1x1.mp4"
+    },
+    {
       "id": "dispatch-2026-08-12-the-smallest-door",
       "date": "2026-08-12",
       "title": "The Smallest Door",
