@@ -1,0 +1,32 @@
+{
+  "run_date": "2026-08-13",
+  "carousel_no": 32,
+  "scoring_cycles": 2,
+  "weighted_total": 8.08,
+  "threshold": 8.3,
+  "ship": false,
+  "ship_decision": "SHIPPED WITH A DISCLOSED SHORTFALL. No hard fail survives, the scorer states plainly that the deck is postable and that it would not block on defect grounds, and the 0.22 gap to threshold is process rather than defect. Success criterion 3 permits an at-or-above-threshold score OR an explicit honest shortfall note in the email, and the email carries one.",
+  "hard_fails": [],
+  "hard_fails_cycle_1": [
+    "slide 08: canvas text clipped at the right frame edge, printing 'MORE THAN 20. TWO READS DISA' instead of 'MORE THAN 20. TWO READS DISAGREED. C28'. REPAIRED and verified in the pixels by the cycle 2 scorer.",
+    "slide 08: body copy's final word 'tracker.' overlapping the left comparison slug light-on-light. REPAIRED, roughly 115px of clearance confirmed."
+  ],
+  "criteria": [
+    {"name": "Thumb-stop cover", "score": 7, "weight": 0.14},
+    {"name": "Story arc and swipe momentum", "score": 8, "weight": 0.14},
+    {"name": "Artwork craft and genuine detail", "score": 6, "weight": 0.16},
+    {"name": "Story-art fusion", "score": 8, "weight": 0.14},
+    {"name": "Alaska authenticity and local relevance", "score": 8, "weight": 0.12},
+    {"name": "Insight density and factual weight", "score": 8, "weight": 0.10},
+    {"name": "Variety vs ledger", "score": 9, "weight": 0.08},
+    {"name": "Legibility and platform fitness", "score": 6, "weight": 0.07},
+    {"name": "Copy voice and hook", "score": 8, "weight": 0.05},
+    {"name": "Deliverable completeness", "score": 6, "weight": 0.10}
+  ],
+  "weakest_criterion": "Artwork craft and genuine detail, 6 of 10, level with its own 10-run mean of 6.0 rather than above it.",
+  "one_sentence_fix": "Give slide 08's two comparison slugs the modelled metal the rest of the deck gets, three shaded faces, chamfer specular, engraved lay wrapping the form and a two-part contact shadow, since they are the deck's flattest objects and that single change moves artwork craft from 6 to 8 and the total to roughly 8.4.",
+  "disclosed_shortfall": "Zero pixel-critic rounds and no flow-critic round. The showrunner reviewed every slide at full size and the deck on the contact sheet, which caught two real collisions and an engraved-lay artifact, but a single scorer is the only independent review this deck received. This is the second time in three decks those two rooms were skipped, No.30 did the same, and cycle 1's two hard fails were precisely the class of defect they exist to catch.",
+  "applied_after_scoring": "Two strictly additive annotation strings were restored after the final score and are therefore unscored: slide 07's 'NO STUDY. NO AUTHOR. NO YEAR. C21' line, trimmed during a layout move, and slide 08's 'PUBLIC CITIZEN TRACKER, AS OF AUGUST 3RD, 2026' plate. Neither changes a number or a composition and qa.py re-ran clean at 0 fails afterwards.",
+  "machine_upgrade_from_this_score": "The cycle 1 scorer nominated a canvas-text bounds gate. It was built, verified against a reconstruction of the defect (fails at 147px past the edge), against the repaired deck (9/9 clean) and against examples/demo-deck (no false positive), and shipped as upgrade(2026-08-13).",
+  "still_open": "The gate closes the CLIPPING half of this failure family. It does not close the other half, DOM text landing on lit canvas art with no reserve, which was the second hard fail here and was both of No.28's cycle 1 hard fails. That is still caught only by a human eye."
+}

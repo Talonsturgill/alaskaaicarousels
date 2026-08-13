@@ -1,0 +1,19 @@
+{
+  "chars": 864,
+  "hook": "Daily, at a site called The Daily Anchorage, means July 8th to July 26th.",
+  "hook_len": 73,
+  "commas": 8,
+  "comma_per_100": 0.97,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaMedia",
+    "#NewsDeserts",
+    "#AIDisclosure"
+  ],
+  "deck_summary": "The deck sets the tagline against the dates and lists the network's 18 mastheads, all Australian. Anchorage is not one.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 54
+}

@@ -1,0 +1,165 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'WRITTEN BY AI FROM THE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'LINKED SOURCES AND NOT' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'REVIEWED BY A JOURNALIST' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "tiny-text: 'THIS ARTICLE WAS WRITTEN BY AI FROMTHE LINKED SOUR' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "fits": [
+        "disp 'was not reviewed by a journalist before publ' fits 3/3 lines at 131.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'ANCHORAGE TECH DESK' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "tiny-text: 'THE DAILY ANCHORAGE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'COUNT NOT REPRODUCIBLE. THREE READS DISAGREED. FLO' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "fits": [
+        "head 'Anchorage got a daily paper on July 8th.' fits 2/3 lines at 67.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'TYPE HIGH 0.918 IN' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'HUMAN REVIEW' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'FLAGGED CONTENT ONLY' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "tiny-text: 'WHAT IT PROMISED, MEASURED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'FLAGGED, NOT ALL. 2 OF 2 ARTICLES SAMPLED. C07 C08' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "leaders": [
+        "leader 'the one column that reaches the gauge' lands 0.0px from its target"
+      ],
+      "fits": [
+        "head 'It told you.' fits 1/2 lines at 67.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'POLITICS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'PROPERTY' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'SCHOOLS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'TRANSPORT' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'THINGS TO DO' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'CORRECTIONS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'PRINTS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'FURNITURE, PRINTS NOTHING' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG"
+      ],
+      "fits": [
+        "head 'Politics. Property. Schools. Transport. Thin' fits 2/3 lines at 59.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'ADELAIDE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'BRISBANE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'MELBOURNE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'PERTH' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'SYDNEY' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'DARWIN' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'CANBERRA' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'HOBART' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'NEWCASTLE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'GEELONG' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'CAIRNS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'TOWNSVILLE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'WOLLONGONG' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'BALLARAT' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'BENDIGO' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'LAUNCESTON' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'TOOWOOMBA' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'MACKAY' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'ANCHORAGE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'NO LEGAL ENTITY NAMED. C14' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '18 MASTHEADS LISTED. C17' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '\"a hyperscale phase\"' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'THE NETWORK, ON ITSELF. C19' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "tiny-text: 'THE PARENT NETWORK' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "fits": [
+        "head 'The paperwork thins out.' fits 2/2 lines at 63.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'JUL 26, THE LAST ONE PULLED' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Every Day.' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'PULLED JUL 26' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "tiny-text: 'JUL 8 TO JUL 26. CHECKED AUGUST 13TH. C02 C04 C05' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "leaders": [
+        "leader 'the gold slur in the July 26th gutter' lands 0.0px from its target"
+      ],
+      "fits": [
+        "disp 'Every Day.' fits 1/1 lines at 149.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'ANCHORAGE TECH DESK' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Dena'ina Convention Center' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '721 W 1st Ave' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '911 W 8th Ave' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '\"data cited in coding bootcamp research\"' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'NO STUDY. NO AUTHOR. NO YEAR. C21' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'FIGURE NOT REPEATED HERE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "tiny-text: 'ONE STORY, CHECKED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "leaders": [
+        "leader 'checked entry 1' lands 0.0px from its target",
+        "leader 'checked entry 2' lands 0.0px from its target",
+        "leader 'checked entry 3' lands 0.0px from its target",
+        "leader 'the unfalsifiable attribution' lands 0.0px from its target"
+      ],
+      "fits": [
+        "head 'A glance can't catch it.' fits 2/2 lines at 63.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'A PAPER WITH A NAME ON IT' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'A DESK. C13' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'ALASKA, NOT ENACTED. C25' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'MORE THAN 20. TWO READS DISAGREED. C28' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'PUBLIC CITIZEN TRACKER, AS OF AUGUST 3RD' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "tiny-text: 'WHAT WOULD HAVE STOPPED IT' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ALASKA'S TOP FOUR PRIMARY IS AUGUST 18TH. TIMING O' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "fits": [
+        "head 'Disclosure was never the load-bearing part.' fits 2/3 lines at 59.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'READ THE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'LAST DATE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG"
+      ],
+      "fits": [
+        "disp 'Before you trust a local page, read its last' fits 2/2 lines at 91.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 65,
+  "verdict": "WARN"
+}

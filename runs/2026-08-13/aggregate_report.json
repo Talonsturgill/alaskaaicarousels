@@ -1,0 +1,80 @@
+{
+  "run_dir": "out/2026-08-13",
+  "render_report": "out/2026-08-13/render/render_report.json",
+  "aggregates_file": "out/2026-08-13/aggregates.json",
+  "detected": 7,
+  "declared": 7,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "500 articles",
+      "text": "More than 500 articles followed, July 8th to July 26th. The masthead reads \"Loca",
+      "n": 500,
+      "subject": "articles"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "THREE READS",
+      "text": "COUNT NOT REPRODUCIBLE. THREE READS DISAGREED. FLOOR SHOWN. C03",
+      "n": 3,
+      "subject": "reads"
+    },
+    {
+      "slide": 3,
+      "kind": "ratio",
+      "fragment": "2 OF 2",
+      "text": "FLAGGED, NOT ALL. 2 OF 2 ARTICLES SAMPLED. C07 C08 C09 C10 C11",
+      "n": 2,
+      "of": 2
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "18 MASTHEADS",
+      "text": "18 MASTHEADS LISTED. C17",
+      "n": 18,
+      "subject": "mastheads"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "Eighteen days",
+      "text": "July 8th to July 26th. Eighteen days dark since, and counting. The pages are all",
+      "n": 18,
+      "unit": "days"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "two real downtown addresses",
+      "text": "One story names the Dena'ina Convention Center and two real downtown addresses.",
+      "n": 2,
+      "subject": "real downtown addresses"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "TWO READS",
+      "text": "MORE THAN 20. TWO READS DISAGREED. C28",
+      "n": 2,
+      "subject": "reads"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 2,
+      "text": "COUNT NOT REPRODUCIBLE. THREE READS DISAGREED. FLOOR SHOWN. C03",
+      "note": "This counts THIS RUN'S OWN verification attempts, not anything about the subject. The fact-checker read the sitemap three times and got three answers, and the slide prints that so the reader knows why no exact figure appears anywhere in the deck. It is a property of how the deck was made."
+    },
+    {
+      "slide": 8,
+      "text": "MORE THAN 20. TWO READS DISAGREED. C28",
+      "note": "This counts THIS RUN'S OWN verification attempts, not states. Two reads of Public Citizen's tracker returned 33 and 23 enacted states, so the deck draws 20 ticks as a floor and continues the row in a phantom dash rather than terminating on a count. It is a property of how the deck was made."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

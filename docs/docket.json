@@ -316,7 +316,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-09",
+      "last_updated": "2026-08-13",
       "history": [
         {
           "date": "2026-07-08",
@@ -381,6 +381,10 @@
         {
           "date": "2026-08-09",
           "note": "Checked and unchanged. No award notice has appeared on the request for lease proposals covering about 4,700 acres at Joint Base Elmendorf-Richardson, Eielson and Clear, and the Air Force has still announced no award timeline. Proposals closed June 29 and are evaluated privately, so there is no public step for a reader between now and whatever the Air Force announces. The separate Eielson mixed-use lease covering 3,967 acres reaches its proposal deadline August 10, 2026."
+        },
+        {
+          "date": "2026-08-13",
+          "note": "Checked and unchanged. The federal record for solicitation AFCEC-26-R-0006 still shows the request for lease proposals past due and archived on July 14th, with no award posted and no award timeline announced. Proposals closed June 29th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -517,6 +521,16 @@
           "kind": "milestone"
         },
         {
+          "date": "2026-08-12",
+          "label": "House Bipartisan Majority Caucus says HB 4001 lacks the votes to pass",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-20",
+          "label": "Joint Senate and House Resources Committee meeting in Anchorage on Cook Inlet energy",
+          "kind": "milestone"
+        },
+        {
           "date": "2026-08-25",
           "label": "Third special session scheduled to end",
           "kind": "milestone"
@@ -582,10 +596,15 @@
           "url": "https://www.adn.com/politics/alaska-legislature/2026/07/27/3rd-alaska-lng-special-session-starts-with-no-bill-from-governor-4-lawmakers-present/",
           "outlet": "Anchorage Daily News",
           "date": "2026-07-27"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/08/13/alaska-lng-pipeline-bill-collapses-house-majority-says-it-lacks-votes/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-08-12"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-09",
+      "last_updated": "2026-08-13",
       "history": [
         {
           "date": "2026-07-08",
@@ -674,6 +693,10 @@
         {
           "date": "2026-08-09",
           "note": "Checked and unchanged. The third special session is still running and no bill has been introduced. Alaska's News Source reported August 6, 2026 that the governor's spokesperson Jeff Turner said the legislation is still being drafted, and that Senate President Gary Stevens said he had not seen it and held a technical session in place of a Monday floor session at the governor's request. House Speaker Bryce Edgmon and Senate Majority Leader Cathy Giessel also said they had seen no bill. Nothing newer has been published."
+        },
+        {
+          "date": "2026-08-13",
+          "note": "The bill collapsed. On August 12th the House Bipartisan Majority Caucus said HB 4001 does not appear to have the support needed to pass the Alaska House, with opposition from both majority and minority members, and the Senate Bipartisan Majority Caucus said it does not plan to reconvene. Governor Dunleavy had asked lawmakers to return to Juneau on August 20th. Senate Majority Leader Cathy Giessel said getting 11 senators and 21 representatives to Juneau right now would be a challenge. A joint Senate and House Resources Committee meeting on Cook Inlet energy is planned for August 20th in Anchorage instead."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aklng-tax-bill-second-special-session/"
@@ -834,7 +857,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-12",
+      "last_updated": "2026-08-13",
       "history": [
         {
           "date": "2026-07-17",
@@ -891,6 +914,10 @@
         {
           "date": "2026-08-12",
           "note": "Re-verified against the state notice. Public comment on the roughly 19,950 acre conveyance north of Houston still closes 5 p.m. on August 19th. The Houston City Council's separate vote on a data center ban ordinance remains set for August 13th."
+        },
+        {
+          "date": "2026-08-13",
+          "note": "Re-verified against the state notice. Public comment on the roughly 19,950 acre conveyance north of Houston, ADL 234762, still closes 5 p.m. on August 19th, and only people who comment in writing during the window can appeal. The Houston City Council's separate vote on a data center ban ordinance is still set for August 13th, postponed there from July 16th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1151,7 +1178,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-12",
+      "last_updated": "2026-08-13",
       "history": [
         {
           "date": "2026-08-02",
@@ -1160,6 +1187,10 @@
         {
           "date": "2026-08-12",
           "note": "Amendment One to the request for information was published August 7th. The response deadline is unchanged, 2 p.m. on August 20th."
+        },
+        {
+          "date": "2026-08-13",
+          "note": "Checked and unchanged. Amendment One to request for information 02-101-27 is still the current posting and vendor responses are still due 2 p.m. on August 20th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1299,7 +1330,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-08-09",
+      "last_updated": "2026-08-13",
       "history": [
         {
           "date": "2026-08-05",
@@ -1308,6 +1339,10 @@
         {
           "date": "2026-08-09",
           "note": "Re-verified today against both federal listings. The AI3 Action Institute, opportunity HHS-2026-ACF-ANA-NAI-0035, is still posted for a single award with a ceiling of $3,500,000 and closes August 27, 2026. EAGLE, opportunity HHS-2026-ACF-ANA-NEG-0120, is still posted with about 31 expected awards at a ceiling of $1,000,000 each and the same August 27, 2026 close. Neither listing carries an amendment."
+        },
+        {
+          "date": "2026-08-13",
+          "note": "Checked and unchanged. The AI3 Action Institute, opportunity HHS-2026-ACF-ANA-NAI-0035, is still posted for one award with a ceiling of $3,500,000 and still closes August 27th. No amendment to the closing date has been posted."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -1682,11 +1717,15 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-08-12",
+      "last_updated": "2026-08-13",
       "history": [
         {
           "date": "2026-08-09",
           "note": "Tracked. Verified against the district's own agendas and the posted policy drafts. AR 5131.9 sits under Policy Review-Ongoing on the August 3rd committee agenda after being postponed on July 6th, and two versions are attached, one from Administration and one from board member VanBuskirk. The Administration draft makes misuse of AI tools a violation of academic honesty subject to discipline under BP 5144. A separate pair, BP 6161.5 and AR 6161.5 on high-quality instruction and purposeful use of technology, came to the same meeting as new business and caps routine instructional technology at 15 minutes a day in kindergarten and first grade, rising to 90 in fourth and fifth, while stating that routine daily technology limits are not established for secondary schools. Those two documents never mention artificial intelligence. No committee minutes for August 3rd are posted, so no outcome is recorded here."
+        },
+        {
+          "date": "2026-08-13",
+          "note": "Checked and unchanged. AR 5131.9 Academic Honesty still sits under ongoing policy review on the August 3rd committee agenda, item 10054, with no action recorded since. The first student day districtwide is August 19th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpbsd-ai-policy-package/"

@@ -72,7 +72,35 @@ CANVAS_TEXT_HOOK_JS = """
         try {
           const s = (text == null ? '' : String(text));
           if (s.trim().length && window.__akCanvasText.length < 500) {
-            window.__akCanvasText.push({ text: s.slice(0, 80), fn: fn, font: this.font || '' });
+            /* MEASURE IT WHERE IT LANDS (2026-08-13). Capturing only the
+               string let run No.32 ship a canvas label whose tail ran off the
+               right frame edge: the render printed "MORE THAN 20. TWO READS
+               DISA" and the claim-id was severed. Canvas has no layout engine,
+               so nothing overflowed and nothing warned, and qa.py, copy_sync
+               and the aggregate gate all returned clean. The scorer caught it
+               by eye. Recording x/y and the measured advance makes the bound
+               checkable; qa.py does the checking. */
+            var _e = { text: s.slice(0, 80), fn: fn, font: this.font || '' };
+            try {
+              var _t = this.getTransform ? this.getTransform() : null;
+              var _w = this.measureText(s).width;
+              _e.x = arguments[1]; _e.y = arguments[2];
+              _e.w = _w;
+              _e.align = this.textAlign || 'start';
+              _e.canvas_w = this.canvas ? this.canvas.width : 0;
+              _e.canvas_h = this.canvas ? this.canvas.height : 0;
+              if (_t) {
+                _e.sx = _t.a; _t_b = _t.b;
+                _e.skew = (_t.b || 0) !== 0 || (_t.c || 0) !== 0;
+                /* device-space span of the laid-out string */
+                var _x0 = arguments[1];
+                if (_e.align === 'center') _x0 = arguments[1] - _w / 2;
+                else if (_e.align === 'right' || _e.align === 'end') _x0 = arguments[1] - _w;
+                _e.dev_left = _t.a * _x0 + _t.e;
+                _e.dev_right = _t.a * (_x0 + _w) + _t.e;
+              }
+            } catch (e2) {}
+            window.__akCanvasText.push(_e);
           }
         } catch (e) {}
         return orig.apply(this, arguments);

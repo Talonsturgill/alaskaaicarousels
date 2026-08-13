@@ -1149,6 +1149,20 @@
       "verification": "Defect reconstruction: a slide drawing its two masses at x=300 and x=566, printing 'TWENTY FEET, 840 PX' and declaring {expect:840, actual:266, tol:4}, FAILS with 'the slide claims 840 px and the drawing produced 266 px, 574 px apart against a declared tolerance of 4 px' -- run No.31's actual numbers. Negative controls: this run's nine slides declare no assertions, report an empty list and are not judged (qa.py PASS 0/0); examples/demo-deck likewise. Unusable declarations (no `what`, non-numeric expect/actual, missing `tol`) WARN rather than FAIL, so a malformed declaration can never be read as a silent pass. Pure arithmetic on two numbers the slide supplied, so it cannot speak about art it does not understand. SKILL.md states the better answer first: derive the type FROM the geometry (slide 05's rig is now solved from the lock, one world unit is one foot at 42 px) and declare the assertion to prove the derivation survives the next edit.",
       "rollback": "git revert 810701a. Opt-in and additive; no slide in the corpus declares __akAssert, so reverting changes no existing verdict.",
       "commit": "810701ac794c4267447ab93adb2ae824d8c72ec6"
+    },
+    {
+      "run_date": "2026-08-13",
+      "kind": "fix",
+      "area": "engine, render.py and qa.py",
+      "change": "Canvas text is now measured where it lands, and qa.py FAILS a string that runs off the frame. render.py's init-script hook already recorded every fillText/strokeText string; it now also records the draw coordinates, the measured advance, textAlign, the active transform and the canvas size, and computes the string's device-space left and right edges. qa.py adds a canvas-bounds check that fails when a meaningful string (4 or more alphabetic characters) ends past the right edge or starts left of the frame.",
+      "trigger": "Run No.32 slide 08 shipped the label 'MORE THAN 20. TWO READS DISAGREED. C28' starting at x 830 with 38 characters to draw in 250px. The render printed 'MORE THAN 20. TWO READS DISA'. The severed string was the deck's uncertainty disclosure, the sentence explaining why the slide says 'more than 20' instead of a count, so its loss made the deck look like it was asserting a number it had deliberately refused to assert. Canvas has no layout engine, so nothing overflowed and nothing errored. render.py reported 0 page errors, qa.py reported 0 fails, copy_sync_check passed because it only inspects DOM, and aggregate_check passed because the authored string was correct. The scorer caught it by eye and named the gate as the fix.",
+      "files_touched": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py"
+      ],
+      "verification": "Reconstruction of the defect FAILS as designed: a fixture reproducing slide 08's original label position reports 'canvas text runs off the frame ... ends 147px past the right edge and is CLIPPED', verdict FAIL. The repaired run No.32 deck renders 9/9 with 0 fails under the new gate. examples/demo-deck renders 4/4 and stays at WARN with no bounds fails, so no false positive on the bespoke reference. Skewed, rotated and mirrored transforms are skipped by construction, which is why slide 01's mirrored relief type and slides 06/07/09's rotated proof sheets do not trip it.",
+      "rollback": "git revert the upgrade(2026-08-13) commit. The hook fields are additive and default to absent, so an older render_report still parses and the check simply skips entries without dev_right.",
+      "limits": "It sees the FRAME boundary only. Text intentionally cropped by a clip() region is invisible to it, and so is text that collides with another object without leaving the canvas. It judges only axis-aligned positively-scaled text, where the device-space span is exact."
     }
   ],
   "scan_log": [
