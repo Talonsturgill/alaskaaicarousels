@@ -1311,28 +1311,28 @@
     },
     {
       "date": "2026-08-12",
-      "collected_utc": "2026-08-12T14:45:39Z",
+      "collected_utc": "2026-08-13T06:04:58Z",
       "collector_version": "1.0",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-08-12T05:00:00",
-        "source_timestamp_utc": "2026-08-12T13:00:00Z",
-        "inventory_mcf": 6744780,
-        "inventory_delta_mcf": 33260,
+        "source_timestamp": "2026-08-12T21:05:00",
+        "source_timestamp_utc": "2026-08-13T05:05:00Z",
+        "inventory_mcf": 6783137,
+        "inventory_delta_mcf": 34946,
         "storage_design_mcf": 13000000,
-        "inventory_pct_of_design": 51.9,
+        "inventory_pct_of_design": 52.2,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_operating_mcfd": 47970,
         "withdrawal_available_mcfd": 47970,
         "withdrawal_restriction_mcfd": 111930,
         "injection_design_mcfd": 225000,
         "injection_operating_mcfd": 61896,
-        "injection_available_mcfd": 28636,
-        "injection_in_progress_mcfd": 33260,
+        "injection_available_mcfd": 26949,
+        "injection_in_progress_mcfd": 34947,
         "injection_restriction_mcfd": 144424,
         "operational_note": "Well 7 is out of service for Coil tube work. We are currently waiting on the Coil Tube unit to be available for this work. This OFO only impacts Expansion Customers. We are still working on the system to only email customers affected by expansion OFO's, this issue is still being addressed. CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
-        "source_age_hours": 1.8
+        "source_age_hours": 1.0
       },
       "forecast": [
         {
@@ -1362,29 +1362,37 @@
         {
           "date": "2026-08-16",
           "hours": 24,
-          "mean_temp_f": 61.8,
-          "min_temp_f": 54,
-          "hdd65": 3.2,
-          "modeled_demand_mmcfd": 92
+          "mean_temp_f": 61.0,
+          "min_temp_f": 56,
+          "hdd65": 4.0,
+          "modeled_demand_mmcfd": 95
         },
         {
           "date": "2026-08-17",
           "hours": 24,
-          "mean_temp_f": 60.3,
+          "mean_temp_f": 59.0,
+          "min_temp_f": 55,
+          "hdd65": 6.0,
+          "modeled_demand_mmcfd": 102
+        },
+        {
+          "date": "2026-08-18",
+          "hours": 24,
+          "mean_temp_f": 58.0,
           "min_temp_f": 54,
-          "hdd65": 4.7,
-          "modeled_demand_mmcfd": 97
+          "hdd65": 7.0,
+          "modeled_demand_mmcfd": 105
         }
       ],
-      "forecast_source_updated": "2026-08-12T10:17:49+00:00",
+      "forecast_source_updated": "2026-08-13T05:17:44+00:00",
       "derived": {
-        "peak_forecast_date": "2026-08-13",
-        "peak_forecast_hdd": 4.7,
-        "peak_modeled_demand_mmcfd": 97,
-        "forecast_window_demand_bcf": 0.46,
-        "storage_withdrawal_mmcfd": -33.3,
+        "peak_forecast_date": "2026-08-18",
+        "peak_forecast_hdd": 7.0,
+        "peak_modeled_demand_mmcfd": 105,
+        "forecast_window_demand_bcf": 0.57,
+        "storage_withdrawal_mmcfd": -34.9,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 69.5,
+        "days_cover_at_peak": 64.6,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -1430,7 +1438,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-12T14:45:39Z",
+          "fetched_utc": "2026-08-13T06:04:59Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -1439,7 +1447,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-12T14:45:39Z",
+          "fetched_utc": "2026-08-13T06:04:59Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -1448,7 +1456,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-12T14:45:39Z",
+          "fetched_utc": "2026-08-13T06:04:59Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -1456,7 +1464,8 @@
       "flags": [
         "injection_restriction_active",
         "withdrawal_restriction_active"
-      ]
+      ],
+      "supersedes_posting": "2026-08-12T05:00:00"
     }
   ]
 }
