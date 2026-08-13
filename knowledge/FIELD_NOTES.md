@@ -3294,3 +3294,42 @@ frontier improvement by Phase 12's own reactive-first rule.
   it. The April 24th 2026 ADA Title II deadline binds public entities of 50,000
   or more, which is not us. Recorded so the next accessibility scan does not
   rediscover it.
+
+## 2026-08-13 (Phase 1 craft refresh, run No.32)
+
+Timeboxed, three searches. The LinkedIn half returned nothing No.31's refresh
+did not already record one day earlier (documents at 6.60 percent engagement,
+dwell time as the primary input, slide-count guidance drifted to 5 to 15), so
+nothing is written down here about the platform. The craft half found one thing
+that matters, and it matters because it contradicts how this studio has been
+reading its own doctrine.
+
+- **DETAIL IS A HIERARCHY, NOT A DENSITY.** The concept-art and game-art
+  literature is consistent and unanimous on a four-pass model: primary forms
+  (silhouette and large shapes), secondary forms (major landmarks within the
+  silhouette), tertiary detail (medium incident), then a micro-detail pass. The
+  operative rule is the last one, and it is the opposite of what "genuine
+  detail" sounds like: **pick a couple of focal clusters for micro-detail and
+  let the rest breathe.** Detail spread evenly across a frame does not read as
+  detailed, it reads as noisy, because the eye needs the quiet regions to know
+  where the loud ones are. Tier C sourcing (studio blogs and tutorials, no
+  dataset), but the model is old, stable and taught the same way everywhere,
+  which is a different kind of evidence than a marketing statistic.
+- **WHY THIS STUDIO SHOULD CARE, AND IT IS A CORRECTION.** DESIGN_DOCTRINE
+  section 5 says "at 100% there is craft in every region", and artwork craft has
+  been the weakest scored criterion in 7 of the last 10 runs. Read literally,
+  section 5 asks for uniform coverage, and a deck built to satisfy it uniformly
+  spends its effort at a constant rate and therefore has no focal cluster
+  anywhere. That is a fair description of several recent decks: legible,
+  planned, evenly worked, and flat. The doctrine is not wrong, it is
+  under-specified, and the missing sentence is that the zoom test is a FLOOR on
+  every region and not a BUDGET for how to spend the run's drawing effort.
+  Today's plan.md was written before this search and set visual_density to 4
+  everywhere; it is amended in the storyboard to density 4 with two declared
+  focal clusters per slide and deliberate quiet elsewhere.
+- Not touching DESIGN_DOCTRINE during a run, per the standing rule. Flagged to
+  Phase 12 as an upgrade candidate, because the honest fix is a dossier field
+  (name this slide's focal clusters) rather than a prose amendment nobody reads
+  at build time.
+  https://sunstrikestudios.com/en/blog/realistic_foliage_painting/
+  https://www.tripo3d.ai/blog/explore/hd-model-alphas-brushes-and-stamps-for-micro-detail
