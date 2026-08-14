@@ -53,8 +53,7 @@ jobs:
 
       - name: Playwright and the browser it drives
         run: |
-          npm install --no-save playwright@1.49.1
-          npx playwright install --with-deps chromium
+          bash .github/workflows/browser.sh 1.49.1
 
       - name: Pillow, so the build is the real one
         run: pip install --quiet Pillow

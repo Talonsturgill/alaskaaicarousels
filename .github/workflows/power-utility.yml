@@ -78,16 +78,17 @@ jobs:
 
       - name: Playwright and the browser it drives
         run: |
-          npm install --no-save playwright@1.49.1
-          npx playwright install --with-deps chromium
+          bash .github/workflows/browser.sh 1.49.1
 
       - name: Pillow, so the build is the real one
         run: pip install --quiet Pillow
 
       # Built fresh rather than served from committed docs/, so a correct
       # builder with a stale commit is still caught.
+      # Today's date, not a date somebody typed once. The test does not read
+      # it, but a pinned date in a workflow is a thing that quietly ages.
       - name: Build the site
-        run: python3 scripts/site_build.py --date 2026-08-11 --out /tmp/site
+        run: python3 scripts/site_build.py --date "$(TZ=America/Anchorage date +%F)" --out /tmp/site
 
       - name: Drag a finger along the price line
         env:

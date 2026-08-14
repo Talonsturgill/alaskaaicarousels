@@ -50,8 +50,7 @@ jobs:
           node-version: "22"
       - name: Playwright and the browser it drives
         run: |
-          npm install --no-save playwright@1.49.1
-          npx playwright install --with-deps chromium
+          bash .github/workflows/browser.sh 1.49.1
       # site_build imports Pillow at module scope, and this gate builds the real
       # site rather than serving committed docs/, so a correct builder sitting on
       # a stale commit is still tested.
