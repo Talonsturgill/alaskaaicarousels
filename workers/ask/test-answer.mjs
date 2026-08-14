@@ -221,6 +221,107 @@ section("it fails closed, and quietly");
   check("an unreachable record is a 502", r.status === 502, r.body.error);
 }
 
+
+// ------------------------------------------------------------- the stream
+//
+// The streaming path carries the guard and the spend counter too, so both get
+// their own green and red case here. A streaming answer that forgot to count
+// is the bug that shows up as a bill.
+section("the stream");
+
+const { answerStream } = await import(UNDER_TEST);
+
+// Build an SSE body the way the API sends one, so the parser is tested against
+// the real frame shape rather than a convenient one.
+function sseFetch(chunks, { status = 200 } = {}) {
+  const calls = { api: 0 };
+  const fn = async (url) => {
+    if (String(url).includes("ask-pack.json")) return { ok: true, json: async () => PACK };
+    calls.api++;
+    if (status !== 200) return { ok: false, status, text: async () => "no" };
+    const enc = new TextEncoder();
+    const frames = chunks.map(t => `event: content_block_delta\ndata: ${JSON.stringify(
+      { type: "content_block_delta", delta: { type: "text_delta", text: t } })}\n\n`);
+    let i = 0;
+    return {
+      ok: true,
+      body: { getReader: () => ({ read: async () =>
+        i < frames.length ? { done: false, value: enc.encode(frames[i++]) } : { done: true } }) },
+    };
+  };
+  fn.calls = calls;
+  return fn;
+}
+async function drain(stream) {
+  const out = [];
+  const rd = stream.getReader(), dec = new TextDecoder();
+  let buf = "";
+  for (;;) {
+    const { done, value } = await rd.read();
+    if (done) break;
+    buf += dec.decode(value, { stream: true });
+    const lines = buf.split("\n"); buf = lines.pop() ?? "";
+    for (const l of lines) if (l.trim()) out.push(JSON.parse(l));
+  }
+  return out;
+}
+
+{
+  const e = env();
+  // Deltas deliberately split mid-sentence, which is how they actually arrive.
+  globalThis.fetch = sseFetch(["Storage held ", "6.54 Bcf. See ", "[[stak-lease]]."]);
+  const ev = await drain(await answerStream("what is in storage", e, { now: NOW }));
+  const sents = ev.filter(x => x.sentence).map(x => x.sentence);
+  check("stages are emitted before any text",
+    ev[0] && !!ev[0].stage, JSON.stringify(ev[0]));
+  check("a sentence split across deltas is reassembled",
+    sents[0] === "Storage held 6.54 Bcf.", JSON.stringify(sents[0]));
+  check("the trailing fragment is emitted too",
+    sents.join(" ").includes("[[stak-lease]]"), JSON.stringify(sents));
+  check("it finishes", ev.some(x => x.done));
+  check("the call was counted", e.ASK_KV.store.get("spend:2026-08") === "1");
+  check("a clean streamed answer is cached",
+    [...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+}
+
+{
+  // The guard, mid-stream. Everything before the bad sentence must already
+  // have been shown, and nothing after it may be.
+  const e = env();
+  globalThis.fetch = sseFetch(["Storage held 6.54 Bcf. ", "It fell to 3.11 Bcf. ", "Then more."]);
+  const ev = await drain(await answerStream("q", e, { now: NOW }));
+  const sents = ev.filter(x => x.sentence).map(x => x.sentence);
+  check("the good sentence was already streamed",
+    sents.length === 1 && sents[0] === "Storage held 6.54 Bcf.", JSON.stringify(sents));
+  check("the invented figure stopped the stream",
+    ev.some(x => x.withheld === "numeral"), JSON.stringify(ev.filter(x => x.withheld)));
+  check("nothing after it was sent", !sents.some(s => /Then more/.test(s)));
+  check("a withheld streamed answer still counts",
+    e.ASK_KV.store.get("spend:2026-08") === "1");
+  check("a withheld streamed answer is NOT cached",
+    ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+}
+
+{
+  // The ceiling must stop the stream before a request goes out.
+  const e = env({ ASK_MONTHLY_CAP: "1", ASK_KV: fakeKV({ "spend:2026-08": "5" }) });
+  globalThis.fetch = sseFetch(["anything"]);
+  const ev = await drain(await answerStream("q", e, { now: NOW }));
+  check("a capped month streams the notice, not an answer",
+    ev.some(x => x.capped === true), JSON.stringify(ev[0]));
+  check("and no request reached the model", globalThis.fetch.calls.api === 0);
+}
+
+{
+  const e = env();
+  globalThis.fetch = sseFetch(["x"], { status: 500 });
+  const ev = await drain(await answerStream("q", e, { now: NOW }));
+  check("an API failure streams an error and closes",
+    ev.some(x => x.error) && ev.some(x => x.done));
+  check("a failed stream is not counted",
+    e.ASK_KV.store.get("spend:2026-08") === undefined);
+}
+
 console.log();
 console.log(failures ? `${failures} FAILED` : "all good");
 process.exit(failures ? 1 : 0);

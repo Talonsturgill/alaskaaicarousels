@@ -1375,8 +1375,28 @@ letter-spacing:.13em;color:var(--mute);margin-bottom:8px;}
 padding:0 0 12px;border-bottom:1px solid var(--line);font-weight:500;}
 .qask::before{content:"YOU ASKED";display:block;font-family:JBMono,ui-monospace,monospace;
 font-size:10px;letter-spacing:.14em;color:var(--mute);margin-bottom:7px;font-weight:400;}
-.qans{font-size:15px;line-height:1.65;color:var(--snow);}
-.qans p{margin:0;}
+/* qreply, NOT qans. .qans is already the engine's answer card (line ~1173),
+   and redefining it here quietly restyled every one of those. Class names are
+   as global as keyframe names; the same mistake, twice in one evening. */
+.qreply{font-size:15px;line-height:1.65;color:var(--snow);}
+/* What is happening, while it happens. Each line is true rather than
+   decorative: the record really is being fetched, and every sentence really is
+   checked against it before it is allowed onto the page. */
+.qstage{font-family:JBMono,ui-monospace,monospace;font-size:11px;
+letter-spacing:.1em;text-transform:uppercase;color:var(--mute);
+display:flex;align-items:center;gap:9px;}
+.qstage::before{content:"";width:6px;height:6px;border-radius:50%;
+background:var(--gold);animation:qpulse 1.1s ease-in-out infinite;}
+@keyframes qpulse{0%,100%{opacity:.25;transform:scale(.8);}50%{opacity:1;transform:scale(1);}}
+/* Each verified sentence arrives on its own, so it fades in rather than
+   snapping. Reduced motion gets it instantly and complete. */
+.qseg{animation:qfade .32s ease both;}
+@keyframes qfade{from{opacity:0;}to{opacity:1;}}
+@media (prefers-reduced-motion:reduce){
+  .qstage::before,.qseg{animation:none;}
+  .qstage::before{opacity:1;}
+}
+.qreply p{margin:0;}
 .qagain{margin-top:16px;background:none;border:1px solid var(--line);
 color:var(--body);border-radius:999px;padding:8px 15px;cursor:pointer;
 font-family:JBMono,ui-monospace,monospace;font-size:10.5px;letter-spacing:.1em;
@@ -2838,7 +2858,7 @@ ASK_JS = r"""
       asked.className = 'qask'; asked.textContent = q;
       out.appendChild(asked);
       body = document.createElement('div');
-      body.className = 'qans'; body.textContent = 'Reading the record.';
+      body.className = 'qreply'; body.textContent = 'Reading the record.';
       out.appendChild(body);
       // The box can be well down the page by the time someone submits, and an
       // answer nobody scrolls to reads exactly like an answer that never came.
@@ -2861,35 +2881,81 @@ ASK_JS = r"""
       if (btn) { btn.disabled = false; btn.classList.remove('busy'); }
       if (TS_SITEKEY && window.turnstile) turnstile.reset();
     };
+
+    /* The answer arrives as newline delimited JSON, one event per line, and is
+       rendered as it lands. The guard checks a sentence at a time on the
+       worker, so a sentence that reaches the page has already been verified
+       against the record: nothing here is shown first and checked later. */
+    var stage = null, para = null, started = false;
+    function setStage(t){
+      if (!body) return;
+      if (!stage) { body.textContent = ''; stage = document.createElement('div');
+                    stage.className = 'qstage'; body.appendChild(stage); }
+      stage.textContent = t;
+    }
+    function addSentence(t){
+      if (!body) return;
+      if (!started) { started = true; if (stage) { stage.remove(); stage = null; }
+        var src = document.createElement('div'); src.className = 'qsrc';
+        src.textContent = 'WRITTEN FROM THE RECORD, CHECKED AGAINST IT';
+        body.appendChild(src);
+        para = document.createElement('p'); body.appendChild(para); }
+      var span = document.createElement('span');
+      span.className = 'qseg';
+      renderCites(span, (para.childNodes.length ? ' ' : '') + t);
+      para.appendChild(span);
+    }
+    function handle(ev){
+      if (ev.stage) setStage(ev.stage);
+      else if (ev.sentence) addSentence(ev.sentence);
+      else if (ev.withheld) {
+        var st = document.createElement('div'); st.className = 'qstop';
+        st.textContent = 'The rest was withheld because it could not be checked against the record.';
+        if (body) body.appendChild(st);
+      } else if (ev.error) {
+        if (stage) { stage.remove(); stage = null; }
+        if (body && !started) body.textContent = ev.error;
+      }
+    }
+
     fetch(ENDPOINT + '/answer', {method: 'POST', headers: {'content-type': 'application/json'},
       body: JSON.stringify({question: q, turnstile_token: tok || null})})
-      .then(function(r){ return r.json().then(function(d){
-        if (!r.ok) throw new Error(d.error || 'that did not work'); return d; }); })
-      .then(function(d){
-        if (!out || !body) { done(); return; }
-        body.textContent = '';
-        if (d.text) {
-          var src = document.createElement('div');
-          src.className = 'qsrc';
-          src.textContent = 'WRITTEN FROM THE RECORD, CHECKED AGAINST IT';
-          body.appendChild(src);
-          var pp = document.createElement('p');
-          renderCites(pp, d.text); body.appendChild(pp);
-          if (d.withheld) {
-            var st = document.createElement('div'); st.className = 'qstop';
-            st.textContent = 'The rest was withheld because it could not be checked against the record.';
-            body.appendChild(st);
-          }
-        } else {
-          body.textContent = d.error || 'The record does not answer that.';
+      .then(function(r){
+        if (!r.body || !r.body.getReader) {
+          /* No streaming in this browser. Read it whole and play it out. */
+          return r.text().then(function(t){
+            t.split('\n').forEach(function(l){ if (l.trim()) handle(JSON.parse(l)); });
+          });
         }
-        again();
-        done();
-      }).catch(function(e){
-        if (body) { body.textContent = (e && e.message) || 'that did not work'; again(); }
+        var reader = r.body.getReader(), dec = new TextDecoder(), buf = '';
+        return (function pump(){
+          return reader.read().then(function(res){
+            if (res.done) {
+              if (buf.trim()) { try { handle(JSON.parse(buf)); } catch (e) {} }
+              return;
+            }
+            buf += dec.decode(res.value, {stream: true});
+            var lines = buf.split('\n'); buf = lines.pop();
+            for (var i = 0; i < lines.length; i++) {
+              if (!lines[i].trim()) continue;
+              try { handle(JSON.parse(lines[i])); } catch (e) {}
+            }
+            return pump();
+          });
+        })();
+      })
+      .then(function(){
+        if (body && !started && !body.textContent) body.textContent = 'The record does not answer that.';
+        again(); done();
+      })
+      .catch(function(e){
+        if (body) { if (stage) { stage.remove(); stage = null; }
+                    if (!started) body.textContent = (e && e.message) || 'that did not work';
+                    again(); }
         done();
       });
   }
+
   function research(){
     if (deepBusy || !ENDPOINT) return;
     var q = input.value.trim(); if (!q) return;
