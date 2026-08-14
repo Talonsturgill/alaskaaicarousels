@@ -152,7 +152,11 @@ A missed day is the one irreversible failure this project has.
   ask_answers.py (the docket ask box's answer engine, built into the page so a
   question is answered in the reader's own browser with nothing sent anywhere;
   it ships the index, the entity vocabulary, the four smart views and 500 plus
-  catalogued questions, each paired with the route that answers it), and
+  catalogued questions, each paired with the route that answers it. It stays
+  the default path and the two worker lanes only ever appear under a no-match.
+  Typing sends nothing and the page says so; the buttons DO send, and the page
+  says that too, above them, before the press. Never weaken either statement
+  without changing what the code actually does), and
   power_collect.py (what Alaskans pay for electricity, monthly from EIA's
   keyless bulk file back to 2001, on .github/workflows/power.yml; it exists
   because the RCA would be the obvious source and rca.alaska.gov answers a bot
@@ -186,10 +190,12 @@ A missed day is the one irreversible failure this project has.
   a QUEUE OF CANDIDATES and never the docket itself; runs on
   .github/workflows/docket-watch.yml and not as a routine phase, for the same
   reason the gas watch does not), and
-  ask_corpus.py (the published corpus behind the archive lane in workers/ask/,
-  which fires a routine for the question the record cannot answer and is the
-  only lane left; the paid Messages API lane was removed 2026-08-09 because
-  free is a requirement and the in-page engine covers what it was for).
+  ask_corpus.py (the published corpus the ask box's worker checks answers
+  against, structured for machine checking and never for a model to read), and
+  ask_pack.py (the same record rendered as prose for the written answer lane,
+  a pure function of ask_corpus.build() so there is no second source of truth;
+  its size ceiling is a HARD build gate because every token is paid on every
+  question, and raising it is a decision and not a fix for a red build).
 - `tests/` — ask_engine.mjs, the ask box's browser suite. It asks every
   catalogued question in a real page and reads the answer back out of the DOM,
   because that engine writes prose at read time where no build-time lint can

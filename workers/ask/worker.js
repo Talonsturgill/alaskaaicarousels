@@ -27,6 +27,7 @@
 // visibly, rather than being quietly repaired.
 
 import * as deep from "./deep.js";
+import { answer } from "./answer.js";
 
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const MAX_QUESTION = 400;
@@ -94,7 +95,9 @@ export default {
       return json(out.body, out.status);
     }
 
-    if (path !== "/deep") return json({ error: "not found" }, 404);
+    if (path !== "/deep" && path !== "/answer") {
+      return json({ error: "not found" }, 404);
+    }
 
     let payload;
     try {
@@ -112,6 +115,15 @@ export default {
     const ip = request.headers.get("cf-connecting-ip") || "";
     const human = await verifyTurnstile(payload.turnstile_token, env.TURNSTILE_SECRET, ip);
     if (!human) return json({ error: "finish the human check first" }, 403);
+
+    // The written answer. Costs a metered model call, so it sits behind the
+    // same human check the archive lane does, and behind a monthly ceiling of
+    // its own inside answer(). It returns the answer directly rather than an
+    // id to poll, because it takes about two seconds rather than minutes.
+    if (path === "/answer") {
+      const out = await answer(question, env);
+      return json(out.body, out.status);
+    }
 
     // Starting a research run spends a slot from the account's daily routine
     // cap and draws on the same subscription usage the carousel spends, so it

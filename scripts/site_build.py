@@ -44,6 +44,7 @@ import feeds_build as fb   # feeds, plaintext mirrors, llms.txt
 import gaswatch_build as gw  # gas watch series, figures, chart, page components
 import power_panel as pw    # the retail power price panel and its lint authorisation
 import ask_corpus           # the answering corpus behind the docket's ask box
+import ask_pack             # the same record as prose, for the written answer lane
 import ask_answers          # the query index and smart views the page ships with
 
 REPO = Path(__file__).resolve().parents[1]
@@ -1296,6 +1297,27 @@ font-size:11.5px;letter-spacing:.09em;cursor:pointer;
 transition:background .18s ease,border-color .18s ease;}
 .qdeep:hover{background:rgba(90,200,240,.09);border-color:rgba(90,200,240,.6);}
 .qdeep[disabled]{opacity:.5;cursor:default;}
+/* The two escalations, in the order they should be tried. The written answer
+   is gold because it is the one nearly everybody wants: a couple of seconds
+   and a sentence. The archive stays blue and reads as the heavier option,
+   because it takes minutes and spends a run. */
+.qlane{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:4px;}
+.qplain{background:none;border:1px solid rgba(255,199,44,.4);color:var(--gold);
+border-radius:999px;padding:9px 17px;font-family:JBMono,ui-monospace,monospace;
+font-size:11.5px;letter-spacing:.09em;cursor:pointer;touch-action:manipulation;
+-webkit-tap-highlight-color:transparent;
+transition:background .18s ease,border-color .18s ease;}
+.qplain:hover{background:rgba(255,199,44,.09);border-color:var(--gold);}
+.qplain[disabled]{opacity:.5;cursor:default;}
+/* Says which lane wrote what is in the box below, because one of them is a
+   model writing a sentence and the reader is owed that distinction. */
+.qsrc{font-family:JBMono,ui-monospace,monospace;font-size:10px;
+letter-spacing:.13em;color:var(--mute);margin-bottom:8px;}
+/* The disclosure above the two buttons. Sized to be read, not to be technically
+   present: this is the one place on the site where a reader's own words leave
+   their browser, and they get told before it happens rather than after. */
+.qsend{font-size:12.5px;line-height:1.5;color:var(--mute);
+margin:16px auto 10px;max-width:42ch;}
 .qout{margin-top:12px;background:var(--panel);border:1px solid var(--line);
 border-radius:13px;padding:16px 18px;font-size:14.5px;line-height:1.62;
 color:var(--snow);text-align:left;}
@@ -1389,7 +1411,7 @@ ASK_JS = r"""
   var byId = {}, bi;
   for (bi = 0; bi < NALL; bi++) byId[IDX[bi].id] = IDX[bi];
 
-  var sel = -1, shown = [], deepBusy = false, lastAns = null;
+  var sel = -1, shown = [], deepBusy = false, plainBusy = false, lastAns = null;
 
   /* =================================================================
      WORDS
@@ -2445,6 +2467,8 @@ ASK_JS = r"""
     }
     panel.innerHTML = html;
     panel.hidden = false;
+    var ask = document.getElementById('qplain');
+    if (ask) ask.addEventListener('click', plain);
     var deep = document.getElementById('qdeep');
     if (deep) deep.addEventListener('click', research);
     var share = document.getElementById('qshare');
@@ -2492,8 +2516,23 @@ ASK_JS = r"""
       // and a reader who does not is not counted anyway.
       '<p class="qmiss">Looking for a decision this record does not track? ' +
       '<a href="../contact/">Tell us what it is</a> and we will go and find it.</p>' +
-      (ENDPOINT ? '<button type="button" class="qdeep" id="qdeep">SEARCH THE FULL ARCHIVE</button>' +
-                  '<div class="qout" id="qout" hidden></div>' : '') +
+      // Two escalations, cheapest first. The written answer reads the same
+      // record this page ships and comes back in a couple of seconds; the
+      // archive clones the repository and takes minutes. Neither runs on its
+      // own: firing either one on every no-match would spend on every typo,
+      // and this panel appears while a reader is still typing.
+      // The line above these buttons is not decoration. Everything else this
+      // box does happens in the reader's own browser, which is printed under
+      // the field and is the reason someone can type a project they care
+      // about without thinking twice. Pressing either of these breaks that,
+      // so the reader is told plainly, before the press, and not in a policy
+      // page they would have to go looking for.
+      (ENDPOINT ? '<p class="qsend">Both of these send your question off this page. ' +
+                  'Nothing above this line did.</p>' +
+                  '<div class="qlane">' +
+                  '<button type="button" class="qplain" id="qplain">ANSWER THIS FROM THE RECORD</button>' +
+                  '<button type="button" class="qdeep" id="qdeep">SEARCH THE FULL ARCHIVE</button>' +
+                  '</div><div class="qout" id="qout" hidden></div>' : '') +
       '</div>';
   }
   function setCount(n){
@@ -2636,6 +2675,53 @@ ASK_JS = r"""
       target.appendChild(a); at = m.index + m[0].length;
     }
     if (at < text.length) target.appendChild(document.createTextNode(text.slice(at)));
+  }
+  /* The written answer. The whole record goes into one prompt, so there is no
+     retrieval here and nothing to go stale: the file the worker reads is built
+     by the same pass that built this page. Every sentence is checked against
+     the record's own numerals before it arrives, and a sentence that fails is
+     cut rather than smoothed over, which is what the withheld note says. */
+  function plain(){
+    if (plainBusy || !ENDPOINT) return;
+    var q = input.value.trim(); if (!q) return;
+    plainBusy = true;
+    var btn = document.getElementById('qplain');
+    var out = document.getElementById('qout');
+    if (btn) { btn.disabled = true; btn.textContent = 'READING THE RECORD...'; }
+    if (out) { out.hidden = false; out.textContent = 'Reading the record.'; }
+    var tok = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || '') : '';
+    var done = function(label){
+      plainBusy = false;
+      if (btn) { btn.disabled = false; btn.textContent = label; }
+      if (TS_SITEKEY && window.turnstile) turnstile.reset();
+    };
+    fetch(ENDPOINT + '/answer', {method: 'POST', headers: {'content-type': 'application/json'},
+      body: JSON.stringify({question: q, turnstile_token: tok || null})})
+      .then(function(r){ return r.json().then(function(d){
+        if (!r.ok) throw new Error(d.error || 'that did not work'); return d; }); })
+      .then(function(d){
+        if (!out) { done('ANSWER THIS FROM THE RECORD'); return; }
+        out.textContent = '';
+        if (d.text) {
+          var src = document.createElement('div');
+          src.className = 'qsrc';
+          src.textContent = 'WRITTEN FROM THE RECORD, CHECKED AGAINST IT';
+          out.appendChild(src);
+          var p = document.createElement('p'); p.style.margin = '0';
+          renderCites(p, d.text); out.appendChild(p);
+          if (d.withheld) {
+            var st = document.createElement('div'); st.className = 'qstop';
+            st.textContent = 'The rest was withheld because it could not be checked against the record.';
+            out.appendChild(st);
+          }
+        } else {
+          out.textContent = d.error || 'The record does not answer that.';
+        }
+        done('ASK SOMETHING ELSE');
+      }).catch(function(e){
+        if (out) out.textContent = (e && e.message) || 'that did not work';
+        done('TRY AGAIN');
+      });
   }
   function research(){
     if (deepBusy || !ENDPOINT) return;
@@ -2833,7 +2919,8 @@ def ask_html(today):
 <div class="qfoot"><span><kbd>TAB</kbd> to complete</span>
 <span><kbd>UP</kbd> <kbd>DOWN</kbd> to move</span>
 <span><kbd>ENTER</kbd> to open</span><span><kbd>ESC</kbd> to clear</span>
-<span>Answered from the record inside this page, so nothing is sent anywhere.</span></div>
+<span>Typing is answered from the record inside this page and sends nothing. The two
+buttons under a no result do send your question, and say so before you press them.</span></div>
 <script type="application/json" id="qdata">{json.dumps(data, separators=(",", ":"))}</script>
 </div>"""
 
@@ -5567,6 +5654,26 @@ browser.</p></li>
 There is no Google Analytics here and no ad network. The counter runs on our own
 infrastructure, so your reading is not an asset anyone else holds.</p></li>
 </ol>
+<h2 data-reveal>The one thing you can choose to send</h2>
+<p class="prose" data-reveal>The docket's question box answers inside your own
+browser. The whole record is shipped with the page, so typing a question, and
+reading its answer, is arithmetic on your own machine and nothing about it
+leaves.</p>
+<p class="prose" data-reveal>There is one exception, and it only ever happens
+because you pressed a button that said it would. When the record has no answer,
+two buttons appear underneath. One writes an answer from the same record. The
+other reads the whole repository. Either one sends the words you typed, and
+nothing else, to our worker.</p>
+<p class="prose" data-reveal>What travels is the question. Not who asked it. No
+identifier is attached, because none exists to attach. Your IP reaches the
+worker the way it must for any web request and is used to reject automated
+traffic, exactly as it is for a page view. The written answer is produced by
+Anthropic's API, so the question reaches Anthropic too, and is retained under
+their terms rather than ours. Questions and answers are held briefly so an
+identical question does not have to be asked twice, keyed by the words
+themselves and never by the person.</p>
+<p class="prose" data-reveal>If you would rather none of that happen, don't
+press the buttons. The box works completely without them and always has.</p>
 <h2 data-reveal>Why there is no cookie banner</h2>
 <p class="prose" data-reveal>Because there is nothing to consent to. A consent
 banner exists where a site processes personal data, and nothing described above
@@ -7874,6 +7981,14 @@ def build(today, out_dir, site_url=None, domain=""):
     # means turning the ask box on is a one-line change rather than a
     # migration.
     ask_corpus.write(str(out / "ask-corpus.json"), today=today, site_url=site_url)
+    # And the answering pack, which is the same record rendered as prose for a
+    # model to read rather than as structure for a checker to walk. It is a
+    # pure function of the corpus above, built in the same pass, so there is no
+    # second source of truth and no sync step that can fall behind the site.
+    # That is the whole reason this design wants no database: site_fresh_check
+    # rebuilds everything and byte-compares it, so a stale answering record is
+    # a red build rather than a wrong answer discovered by a reader.
+    ask_pack.write(str(out / "ask-pack.json"), today=today, site_url=site_url)
     touch_icon(out)
     (out / "sitemap.xml").write_text(sitemap(site_url, runs, today, docket[0]))
     (out / "robots.txt").write_text(

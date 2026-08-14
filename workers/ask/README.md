@@ -1,11 +1,24 @@
 # The ask box
 
-Two lanes behind one box on the docket page.
+Three lanes behind one box on the docket page, in the order they are reached.
 
 | Lane | Where it runs | Answers from | Speed | Costs |
 |---|---|---|---|---|
 | **the engine** | the reader's browser | the record shipped inside the page | the same frame | nothing |
+| **the answerer** | this worker, one model call | the whole record, in one prompt | about two seconds | about two cents, capped monthly |
 | **the archive** | this worker, via a fired routine | the whole repository | minutes | a slot from the daily routine cap |
+
+**No retrieval anywhere in this.** Not vectors, not grep. The published record
+is about 21,000 tokens against a 200,000 token context, so the answerer is
+handed the whole thing on every question. Retrieval exists to work around a
+corpus that will not fit, and this one fits. Skipping it deletes the single
+largest source of wrong answers in a retrieval chatbot, which is retrieving the
+wrong passage, rather than leaving it to be tuned.
+
+The archive lane is the one place retrieval is genuinely needed, because the
+repository is about 3.5 million tokens. It is a Claude Code session with a
+shell, which is to say an agent that greps. That is the right tool at that
+size and the wrong tool at this one.
 
 **The engine is the box.** It needs no worker, no key and no network, and it
 answers almost everything, because almost every question about a docket is a
@@ -20,15 +33,27 @@ Its code is `scripts/ask_answers.py`, which builds the payload, and `ASK_JS`
 in `scripts/site_build.py`, which resolves a question against it. Its tests
 are `scripts/ask_answers.py --self-test` and `tests/ask_engine.mjs`.
 
-**This worker is the remainder.** It is a link under a no-match, for the
-open-ended question the published record has no field for. It is optional and
-the box works without it. Until `ASK_ENDPOINT` is set, the link does not
-render at all, so a half-finished deploy shows the docket exactly as it looks
+**This worker is the remainder.** Two buttons under a no-match, for the
+open-ended question the published record has no field for. Both are optional
+and the box works without either. Until `ASK_ENDPOINT` is set, neither button
+renders at all, so a half-finished deploy shows the docket exactly as it looks
 today rather than a broken form.
+
+Neither fires on its own. The no-match panel appears while a reader is still
+typing, so auto-firing would spend on every typo, and both buttons send the
+reader's words off the page. The line above them says so before the press.
 
 ```
 a question the engine cannot answer
    |
+   v
+POST /answer              the whole record in one prompt, answer returned
+   |                      Turnstile gates it, ASK_MONTHLY_CAP bounds it, and
+   |                      every sentence passes checks.js before it is
+   |                      returned. Over the cap, this steps aside and the
+   |                      reader is told, rather than being shown an error.
+   |
+   | still not it
    v
 POST /deep                fires the routine, returns a request id
    |                      Turnstile gates this, because each one spends a
@@ -43,12 +68,40 @@ POST /deliver             behind DELIVER_SECRET, verified sentence by sentence
 GET /result?id=...        the page has been polling for it
 ```
 
-## There is no API key here
+## What each lane costs, and why the bill has a ceiling
 
-The routine trigger's token is a `sk-ant-oat01-` bearer generated in one click
-at [claude.ai/code/routines](https://claude.ai/code/routines), and it draws on
-the claude.ai subscription rather than on Console credit. No card, no separate
+**The archive lane has no API key.** The routine trigger's token is a
+`sk-ant-oat01-` bearer generated in one click at
+[claude.ai/code/routines](https://claude.ai/code/routines), and it draws on the
+claude.ai subscription rather than on Console credit. No card, no separate
 account, no metered call.
+
+**The answerer does have one, and it is the only metered thing here.**
+`ANTHROPIC_API_KEY`, a Console key, at about two cents a question: roughly
+21,000 input tokens of record plus a short answer, on a dated Haiku 4.5
+snapshot. Three things keep the month bounded, in the order they apply:
+
+1. The engine answers most questions in the page for nothing, so this lane only
+   ever sees the remainder.
+2. An identical question is served from KV, keyed by the question and the pack
+   date, so a repeat costs nothing and a new pack retires yesterday's answers.
+3. `ASK_MONTHLY_CAP` counts calls that reached the model. Over it, the lane
+   steps aside and the box falls back to the engine and the archive button,
+   with the reader told why. The default is 500, so the worst case is roughly
+   twelve dollars in a month where every call is used. Set it to 0 to switch
+   the lane off without a deploy.
+
+**Prompt caching is deliberately off.** A cached read is about a tenth of base
+input, which looks free, but a cache write is 1.25x to 2x it, so caching only
+pays once a second question arrives before the cache expires. At this box's
+traffic most requests would pay a write and never see a read, and the bill
+would go up. The rules and the record already go as two separate system blocks,
+so turning it on later is one `cache_control` marker and nothing else.
+
+This reverses the call made on August 9th, 2026, when the paid Messages API
+lane was removed because free was a requirement. What makes it safe now and did
+not then is the ceiling: the bill has a maximum the operator sets, not a
+maximum the internet sets.
 
 What it costs instead is time. A fired routine starts a whole Claude Code
 session, so an answer takes minutes, and each one spends a slot from the
