@@ -158,25 +158,56 @@ font-family:JBMono,ui-monospace,monospace;}
   .gw-gauge-move-num i{display:inline;font-size:.6em;margin-top:0;}
 }
 .gw-chart{background:var(--panel);border:1px solid var(--line);border-radius:14px;
-padding:16px 12px 8px;margin:18px 0;overflow-x:auto;}
-/* THE HOVER LAYER. An HTML chart is interactive by default, and without this
+padding:16px 12px 8px;margin:18px 0;}
+/* THE READOUT LAYER. An HTML chart is interactive by default, and without this
    the only way to read a middle day was to count gridlines. The crosshair
    snaps to the nearest date so the pointer aims at a day rather than at a 2px
    line, and one readout carries every panel for that day. Everything it shows
    is also in the table below, so it enhances and never gates. */
 .gw-plot{position:relative;}
-/* A 920 wide viewBox scaled into a 342px phone card takes 11px mono down to
-   about 4px, which is a picture of a chart rather than a chart. The card is
-   already overflow-x auto, so the plot keeps a readable floor and the CARD
-   scrolls. The page itself still does not, which is the line that matters. */
-.gw-chart svg{min-width:600px;}
-.gw-hit{cursor:crosshair;}
+.gw-plot svg{display:block;width:100%;height:auto;}
+/* WHICH FRAME IS IN THE LAYOUT. Exactly one, so the other leaves the tab order
+   and the accessibility tree with it and nothing is announced twice.
+
+   The old rule floored the plot at 600px and let the CARD scroll sideways,
+   which kept the type legible and cost a phone reader the thing the picture is
+   for. At 390px they saw a little over half the series and had to swipe to
+   learn the shape of the rest. The narrow frame is drawn at phone proportions
+   instead, so the whole record fits with no scroll at any width and the type
+   is bigger than it was before. The breakpoint is where the wide frame stops
+   fitting comfortably rather than a round number, and above it the wide frame
+   renders exactly as it always has. */
+.gw-narrow{display:none;}
+@media(max-width:760px){
+  .gw-wide{display:none;}
+  .gw-narrow{display:block;}
+  /* Past about a 560px card the narrow frame is scaling type up rather than
+     showing more, so it stops growing and centres. */
+  .gw-narrow svg{max-width:560px;margin:0 auto;}
+}
+/* pan-y, not none. A drag across the chart reads it day by day, and a swipe up
+   the page still scrolls the page, which is the gesture a reader is far more
+   likely to want on a surface this tall. */
+.gw-hit{cursor:crosshair;touch-action:pan-y;}
 .gw-hit:focus{outline:none;}
 .gw-hit:focus-visible{outline:2px solid var(--halo);outline-offset:-2px;}
 .gw-tip{position:absolute;z-index:3;pointer-events:none;min-width:190px;
 background:rgba(5,11,22,.97);border:1px solid var(--line);border-radius:10px;
 padding:10px 12px;box-shadow:0 18px 40px -20px #000;
 transform:translate(-50%,0);}
+/* On the narrow frame the readout is a line of type above the plot, not a card
+   over it. A floating tooltip under a thumb covers the panel it is describing,
+   and on a 316px chart there is nowhere to move it to. */
+.gw-narrow .gw-tip{position:static;transform:none;min-width:0;z-index:auto;
+background:none;border:0;border-radius:0;box-shadow:none;padding:0 2px 10px;
+display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;}
+.gw-narrow .gw-tip-d{margin-bottom:0;width:100%;}
+.gw-narrow .gw-tip-r{margin-top:0;}
+/* An author display beats the hidden attribute, so the strip needs this or a
+   reader with no script gets an empty box holding open space under a heading.
+   The chart degrades to the picture and the table, which is the whole point of
+   the readout being an enhancement. */
+.gw-tip[hidden]{display:none;}
 .gw-tip-d{font-size:11px;letter-spacing:.09em;text-transform:uppercase;
 color:var(--mute);font-family:JBMono,ui-monospace,monospace;
 margin-bottom:7px;white-space:nowrap;}

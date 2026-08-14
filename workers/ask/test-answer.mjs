@@ -9,9 +9,14 @@
 // and the Messages API, so these run offline, cost nothing, and can assert the
 // thing that actually matters about the ceiling: that no request went out.
 
-import {
+// The module under test is configurable so the identical assertions can be run
+// against bundled.js, the flattened copy pasted into the Cloudflare dashboard.
+// A bundle that drifts from these modules would be a worker whose guard is not
+// the guard anybody tested. See test-bundle.mjs.
+const UNDER_TEST = process.env.ASK_MODULE || "./answer.js";
+const {
   answer, cacheKey, capOf, monthKey, normaliseQuestion, verify,
-} from "./answer.js";
+} = await import(UNDER_TEST);
 
 let failures = 0;
 function check(label, cond, detail = "") {
