@@ -1363,6 +1363,25 @@ transition:background .18s ease,border-color .18s ease;}
    model writing a sentence and the reader is owed that distinction. */
 .qsrc{font-family:JBMono,ui-monospace,monospace;font-size:10px;
 letter-spacing:.13em;color:var(--mute);margin-bottom:8px;}
+/* ANSWERING. Submitting a question takes the screen over. Leaving the smart
+   view cards, the try/near chips and the live result list up while an answer
+   arrived underneath them buried the answer in the middle of everything it
+   was supposed to settle, which is exactly what a chat interface gets right:
+   ask, and the starters get out of the way. */
+.qbox.answering .qviews,
+.qbox.answering .qstrips,
+.qbox.answering .qpanel{display:none;}
+.qask{font-size:15.5px;line-height:1.45;color:var(--snow);margin:0 0 14px;
+padding:0 0 12px;border-bottom:1px solid var(--line);font-weight:500;}
+.qask::before{content:"YOU ASKED";display:block;font-family:JBMono,ui-monospace,monospace;
+font-size:10px;letter-spacing:.14em;color:var(--mute);margin-bottom:7px;font-weight:400;}
+.qans{font-size:15px;line-height:1.65;color:var(--snow);}
+.qans p{margin:0;}
+.qagain{margin-top:16px;background:none;border:1px solid var(--line);
+color:var(--body);border-radius:999px;padding:8px 15px;cursor:pointer;
+font-family:JBMono,ui-monospace,monospace;font-size:10.5px;letter-spacing:.1em;
+touch-action:manipulation;transition:border-color .18s ease,color .18s ease;}
+.qagain:hover{border-color:rgba(255,199,44,.5);color:var(--snow);}
 .qout{margin-top:12px;background:var(--panel);border:1px solid var(--line);
 border-radius:13px;padding:16px 18px;font-size:14.5px;line-height:1.62;
 color:var(--snow);text-align:left;}
@@ -2645,6 +2664,19 @@ ASK_JS = r"""
     if (meter) meter.style.transform = 'scaleX(' + (NALL ? n / NALL : 0) + ')';
   }
 
+  /* Moving on from an answer. Called from run(), which is the one thing every
+     new query goes through: typing, a suggestion chip, a smart view, a
+     catalogued question. Hooking the input event instead only caught typing,
+     so clicking a chip left the old answer sitting under the new results.
+     Never while a request is in flight, or the answer being waited on would
+     disappear from under the reader. */
+  function leaveAnswer(){
+    if (plainBusy || !box.classList.contains('answering')) return;
+    box.classList.remove('answering');
+    var o = document.getElementById('qout');
+    if (o) { o.hidden = true; o.innerHTML = ''; }
+  }
+
   function empty(){
     panel.hidden = true; panel.innerHTML = ''; views.hidden = false;
     if (tries) tries.hidden = false;
@@ -2714,6 +2746,7 @@ ASK_JS = r"""
   }
 
   function run(){
+    leaveAnswer();
     var q = input.value.trim();
     share(q);
     if (!q) { empty(); return; }
@@ -2765,7 +2798,7 @@ ASK_JS = r"""
     box.dataset.ts = '1';
     var h = document.getElementById('qts');
     h.innerHTML = '<div class="cf-turnstile" data-sitekey="' + TS_SITEKEY +
-                  '" data-theme="dark" data-size="flexible"></div>';
+                  '" data-theme="dark" data-size="flexible" data-appearance="interaction-only"></div>';
     var s = document.createElement('script');
     s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
     s.async = true; s.defer = true; document.head.appendChild(s);
@@ -2794,12 +2827,33 @@ ASK_JS = r"""
     var btn = document.getElementById('qgo');
     var out = document.getElementById('qout');
     if (btn) { btn.disabled = true; btn.classList.add('busy'); }
+    /* Take the screen over: the starters, chips and live list all go, so the
+       answer is the only thing on it. */
+    box.classList.add('answering');
+    var body = null;
     if (out) {
       out.hidden = false;
-      out.textContent = 'Reading the record.';
+      out.innerHTML = '';
+      var asked = document.createElement('div');
+      asked.className = 'qask'; asked.textContent = q;
+      out.appendChild(asked);
+      body = document.createElement('div');
+      body.className = 'qans'; body.textContent = 'Reading the record.';
+      out.appendChild(body);
       // The box can be well down the page by the time someone submits, and an
       // answer nobody scrolls to reads exactly like an answer that never came.
       out.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+    /* One way back, always present once an answer is on screen. */
+    function again(){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'qagain'; b.textContent = 'ASK ANOTHER';
+      b.addEventListener('click', function(){
+        input.value = ''; out.hidden = true; out.innerHTML = '';
+        box.classList.remove('answering');
+        input.focus(); run();
+      });
+      out.appendChild(b);
     }
     var tok = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || '') : '';
     var done = function(){
@@ -2812,26 +2866,27 @@ ASK_JS = r"""
       .then(function(r){ return r.json().then(function(d){
         if (!r.ok) throw new Error(d.error || 'that did not work'); return d; }); })
       .then(function(d){
-        if (!out) { done(); return; }
-        out.textContent = '';
+        if (!out || !body) { done(); return; }
+        body.textContent = '';
         if (d.text) {
           var src = document.createElement('div');
           src.className = 'qsrc';
           src.textContent = 'WRITTEN FROM THE RECORD, CHECKED AGAINST IT';
-          out.appendChild(src);
-          var p = document.createElement('p'); p.style.margin = '0';
-          renderCites(p, d.text); out.appendChild(p);
+          body.appendChild(src);
+          var pp = document.createElement('p');
+          renderCites(pp, d.text); body.appendChild(pp);
           if (d.withheld) {
             var st = document.createElement('div'); st.className = 'qstop';
             st.textContent = 'The rest was withheld because it could not be checked against the record.';
-            out.appendChild(st);
+            body.appendChild(st);
           }
         } else {
-          out.textContent = d.error || 'The record does not answer that.';
+          body.textContent = d.error || 'The record does not answer that.';
         }
+        again();
         done();
       }).catch(function(e){
-        if (out) out.textContent = (e && e.message) || 'that did not work';
+        if (body) { body.textContent = (e && e.message) || 'that did not work'; again(); }
         done();
       });
   }
