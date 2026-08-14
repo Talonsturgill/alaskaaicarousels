@@ -642,6 +642,14 @@ def nice_bounds(lo, hi, ticks=4, min_span=0.0):
     return vals[0], vals[-1], vals
 
 
+# The label size the chart draws at, in the units of its own viewBox, and what
+# that costs in space. One JBMono character advances 0.6 of its size, and two
+# labels want a little air between them or they read as one. Both frames draw
+# at the same label size, so both measure with these.
+LABEL_SIZE = 11
+CHAR_W = LABEL_SIZE * 0.6
+LABEL_AIR = LABEL_SIZE * 1.45
+
 PANEL_SPEC = [
     # title, unit, colour, gradient id, index into a point, minimum axis span.
     ("MEASURED STORAGE", "Bcf", "#ffc72c", "gwA", 1, None),
@@ -696,13 +704,33 @@ def chart_data(series, model):
     return pts, live
 
 
-def chart_svg(series, model, w=920, panel_h=110, gap=38):
+def chart_svg(series, model, w=920, panel_h=110, gap=38, pad_l=62, mode="wide"):
     """The record so far, as small multiples on one time axis.
 
     THREE PANELS, ONE SCALE EACH. An early draft put storage and demand on one
     frame with two y scales, which is a dual axis chart. The alignment of two
     scales is arbitrary, so the reader sees a correlation the data never
     claimed. Small multiples say the same thing without inventing it.
+
+    TWO GEOMETRIES, ONE DRAWING. The same function draws a wide frame and a
+    narrow one, and CSS puts exactly one of them in the layout. This is not a
+    style preference. Text inside a viewBox scales with the frame, so a 920
+    wide chart squeezed into a 316px phone card renders 11px mono at about 4px,
+    and the fix that shipped first was to floor the plot at 600px and let the
+    CARD scroll sideways. That floor meant a phone reader never saw more than
+    half the series at once, and the shape of a trend is the one thing this
+    picture is for. A frame drawn at phone proportions needs no floor and no
+    scroll, so the whole record is on screen at a glance. Nothing about the
+    data changes between the two, only the box it is drawn in. Both read the
+    same chart_data, so the axes, the ticks and the values are identical.
+
+    The narrow frame is not the wide one shrunk. Its plot area is squarer, so
+    the same series climbs at a steeper angle, which is a property of every
+    responsive chart and worth naming. The guard against a misleading slope is
+    on the Y axis, where nice_bounds holds a minimum span tied to the thing
+    measured, and that guard is the same in both frames. The date axis carries
+    fewer labels because fewer fit, and the number is measured against the
+    frame rather than chosen.
 
     The third panel is the residual, non CINGSA supply, which is the figure no
     other public source publishes and which was in the table and missing from
@@ -724,10 +752,10 @@ def chart_svg(series, model, w=920, panel_h=110, gap=38):
     pts, live = chart_data(series, model)
     if not pts:
         return ""
-    pad_l, pad_r, pad_b = 62, 18, 34
+    pad_r, pad_b = 18, 34
     iw = w - pad_l - pad_r
     n = len(pts)
-    MONO = 'font-size="11" font-family="JBMono,monospace"'
+    MONO = f'font-size="{LABEL_SIZE}" font-family="JBMono,monospace"'
     INK, MUTE, GRID = "#f4f8ff", "#8da2be", "#152a44"
 
     def x(i):
@@ -735,9 +763,19 @@ def chart_svg(series, model, w=920, panel_h=110, gap=38):
 
     h = panel_h * len(live) + gap * (len(live) - 1) + pad_b + 22
 
-    body, tops, dots = "", {}, ""
+    # A gradient id has to be unique in the DOCUMENT, and the chart ships twice.
+    # Sharing gwA between the frames left two elements holding one id, which is
+    # invalid and resolves to whichever came first, so the narrow frame drew the
+    # wide frame's fill and only worked by looking identical.
+    def gid(pl):
+        return pl["fid"] if mode == "wide" else f'{pl["fid"]}-{mode}'
+
+    # cols is one y column per panel, every day in order, None where the panel
+    # has no value for that day. The readout moves a single marker to these, so
+    # the marker count no longer grows with the record.
+    body, tops, cols = "", {}, []
     for k, pl in enumerate(live):
-        title, unit, colour, fid = pl["title"], pl["unit"], pl["colour"], pl["fid"]
+        title, unit, colour, fid = pl["title"], pl["unit"], pl["colour"], gid(pl)
         have, lo, hi, ticks = pl["have"], pl["lo"], pl["hi"], pl["ticks"]
         top = 22 + k * (panel_h + gap)
         tops[pl["idx"]] = (top, colour)
@@ -745,11 +783,24 @@ def chart_svg(series, model, w=920, panel_h=110, gap=38):
         def y(v, top=top, lo=lo, hi=hi):
             return top + panel_h - panel_h * (v - lo) / (hi - lo)
 
+        # EVERY GRIDLINE, NOT EVERY NUMBER. nice_bounds decides the ticks from
+        # the data, and six of them in a 68 unit panel is a label every 13
+        # units for type 11 units tall, which smears into one grey band. The
+        # lines all stay, because the grid is the reference a reader measures
+        # against; the labels thin to what the panel can hold. Computed from
+        # the panel height, so a frame can be made shorter without anyone
+        # remembering to retune this.
+        every = 1
+        if len(ticks) > 1:
+            room = panel_h / (len(ticks) - 1)
+            while room * every < LABEL_AIR:
+                every += 1
         grid = "".join(
             f'<line x1="{pad_l}" y1="{y(t):.1f}" x2="{pad_l + iw}" y2="{y(t):.1f}" '
             f'stroke="{GRID}" stroke-width="1"/>'
-            f'<text x="{pad_l - 10}" y="{y(t) + 4:.1f}" text-anchor="end" '
-            f'fill="{MUTE}" {MONO}>{t:g}</text>' for t in ticks)
+            + (f'<text x="{pad_l - 10}" y="{y(t) + 4:.1f}" text-anchor="end" '
+               f'fill="{MUTE}" {MONO}>{t:g}</text>' if j % every == 0 else "")
+            for j, t in enumerate(ticks))
         d = " ".join(f'{"M" if j == 0 else "L"}{x(i):.1f},{y(v):.1f}'
                      for j, (i, v) in enumerate(have))
         area = (f'{d} L{x(have[-1][0]):.1f},{top + panel_h} '
@@ -773,79 +824,127 @@ def chart_svg(series, model, w=920, panel_h=110, gap=38):
 <text x="{pad_l + iw}" y="{top - 9}" text-anchor="end" fill="{MUTE}" {MONO}>{unit}</text>
 <text x="{x(li) - 10:.1f}" y="{lab_y:.1f}" text-anchor="end" fill="{INK}"
  {MONO}>{lv:g}</text>"""
-        # One hover dot per point per panel, placed now while the scale is in
-        # scope. Generated after the loop they all sat at cy 0.
-        dots += "".join(
-            f'<circle class="gw-mk" data-mk="{i}" cx="{x(i):.1f}" cy="{y(v):.1f}" '
-            f'r="3.5" fill="{colour}" stroke="#0a1626" stroke-width="2" '
-            f'opacity="0"/>' for i, v in have)
+        # The readout's y positions for this panel, taken now while the scale
+        # is in scope. Computed after the loop they were all zero.
+        col = [None] * n
+        for i, v in have:
+            col[i] = round(y(v), 1)
+        cols.append(col)
 
     # Ordinal dates, house style, and never more than will fit.
-    step = max(1, n // 6)
-    want = sorted({0, *range(0, n, step), n - 1})
-    # A date label is about 62px of mono. Keep the first and the last, and drop
-    # any interior mark that would land inside a neighbour.
-    marks, MINPX = [], 74
-    for i in want:
-        if i in (0, n - 1):
-            continue
-        if (x(i) - x(marks[-1] if marks else 0) >= MINPX
-                and x(n - 1) - x(i) >= MINPX):
+    #
+    # Measured against the room each label actually takes rather than against
+    # one spacing constant. The first label is start anchored, the last is end
+    # anchored and the ones between are centred, so three labels the same
+    # distance apart occupy three different spans, and a constant tuned on the
+    # wide frame printed "Aug 11th" through "Aug 13th" the first time the
+    # narrow frame drew a nine day record.
+    def label(i):
+        """(left edge, right edge, anchor) for the date mark at day i."""
+        txt = short_date(pts[i][0])
+        px = min(max(x(i), pad_l + 2), pad_l + iw - 2)
+        wide_as = len(txt) * CHAR_W
+        if i == 0:
+            return px, px + wide_as, "start"
+        if i == n - 1:
+            return px - wide_as, px, "end"
+        return px - wide_as / 2, px + wide_as / 2, "middle"
+
+    # The ends first, because they carry the range and are never dropped, then
+    # as many interior marks as clear everything already placed.
+    marks = [0] + ([n - 1] if n > 1 else [])
+    taken = [label(i) for i in marks]
+    for i in range(max(1, n // 6), n - 1, max(1, n // 6)):
+        lo_i, hi_i, _a = label(i)
+        if all(hi_i + LABEL_AIR <= t[0] or lo_i - LABEL_AIR >= t[1] for t in taken):
+            taken.append((lo_i, hi_i, "middle"))
             marks.append(i)
-    marks = [0] + marks + ([n - 1] if n > 1 else [])
     dates = "".join(
         f'<text x="{min(max(x(i), pad_l + 2), pad_l + iw - 2):.1f}" y="{h - 11}" '
-        f'text-anchor="{"start" if i == 0 else ("end" if i == n - 1 else "middle")}" '
-        f'fill="{MUTE}" {MONO}>{short_date(pts[i][0])}</text>' for i in marks)
+        f'text-anchor="{label(i)[2]}" '
+        f'fill="{MUTE}" {MONO}>{short_date(pts[i][0])}</text>' for i in sorted(marks))
 
-    # The hover layer. One crosshair snapping to the nearest date and one
+    # The readout layer. One crosshair snapping to the nearest date and one
     # readout carrying every series for it, so the pointer never has to land on
     # a 2px line. Values are written by script from a payload the numeral lint
     # does not scan, and every one of them is already in the table below, so
-    # the tooltip enhances and never gates.
+    # the readout enhances and never gates.
     #
-    # ROVING TABINDEX, one stop for the whole chart. Every day used to take
-    # tabindex="0", which reads fine at three days and becomes 365 tab presses
-    # to get PAST the chart inside a year. The series grows by one every
-    # morning, so that was a defect with a delivery date. The first day holds
-    # the only stop, arrow keys move between days, and Home and End jump to the
-    # ends. Tab leaves the chart in one press however long the record gets.
-    hit = "".join(
-        f'<rect class="gw-hit" x="{x(i) - iw / max(1, n - 1) / 2:.1f}" y="16" '
-        f'width="{iw / max(1, n - 1):.1f}" height="{h - pad_b - 16:.1f}" '
-        f'fill="transparent" data-i="{i}" tabindex="{0 if i == 0 else -1}" '
-        f'role="button" aria-label="{esc(long_date(pts[i][0]))}"/>' for i in range(n))
-    rules = "".join(
-        f'<line class="gw-cross" x1="{x(i):.1f}" y1="16" x2="{x(i):.1f}" '
-        f'y2="{h - pad_b:.1f}" stroke="{INK}" stroke-width="1" opacity="0" '
-        f'data-rule="{i}"/>' for i in range(n))
-    payload = json.dumps([
-        {"d": long_date(p[0]),
-         "v": [[pl["title"], ("%g" % p[pl["idx"]]) if p[pl["idx"]] is not None else None,
-                pl["colour"]] for pl in live]}
-        for p in pts])
+    # ONE SURFACE, NOT ONE PER DAY. This was a hit rect, a crosshair and three
+    # dots for every day in the record, which is markup that grows forever: at
+    # a year it was 374 KB of chart and each day's target was under a pixel
+    # wide on a phone, so the thing a finger was meant to aim at had become
+    # untouchable at exactly the length that most needed it. Now one rect takes
+    # the whole plot, one line and one marker per panel move to the nearest
+    # day, and the geometry travels as numbers in the payload. The markup stops
+    # growing and a thumb dragged across the chart reads it day by day.
+    #
+    # ONE TAB STOP, whatever the length. Every day used to take tabindex="0",
+    # which reads fine at three days and becomes 365 tab presses to get PAST
+    # the chart inside a year. The surface is a slider, arrow keys move a day
+    # at a time, Home and End jump to the ends, and Tab leaves in one press.
+    dx = iw / max(1, n - 1)
+    hit = (f'<rect class="gw-hit" x="0" y="16" width="{w}" '
+           f'height="{h - pad_b - 16:.1f}" fill="transparent" tabindex="0" '
+           f'role="slider" aria-label="Day by day readout, drag or use the '
+           f'arrow keys to read one day" aria-valuemin="0" '
+           f'aria-valuemax="{n - 1}" aria-valuenow="{n - 1}" '
+           f'aria-valuetext="{esc(long_date(pts[-1][0]))}"/>')
+    rules = (f'<line class="gw-cross" x1="0" y1="16" x2="0" '
+             f'y2="{h - pad_b:.1f}" stroke="{INK}" stroke-width="1" '
+             f'opacity="0"/>')
+    dots = "".join(
+        f'<circle class="gw-mk" cx="0" cy="0" r="4" fill="{pl["colour"]}" '
+        f'stroke="#0a1626" stroke-width="2" opacity="0"/>' for pl in live)
+    # Built from the panels that are live rather than typed three times, so a
+    # panel can never carry a fill in another panel's colour.
+    defs = "".join(
+        f'<linearGradient id="{gid(pl)}" x1="0" y1="0" x2="0" y2="1">'
+        f'<stop offset="0" stop-color="{pl["colour"]}" stop-opacity=".10"/>'
+        f'<stop offset="1" stop-color="{pl["colour"]}" stop-opacity="0"/>'
+        f'</linearGradient>' for pl in live)
+    payload = json.dumps({
+        "n": n, "w": w, "x0": pad_l, "dx": round(dx, 4), "m": mode,
+        "d": [long_date(p[0]) for p in pts],
+        "s": [{"t": pl["title"], "c": pl["colour"],
+               "v": [("%g" % p[pl["idx"]]) if p[pl["idx"]] is not None else None
+                     for p in pts],
+               "y": cols[k]}
+              for k, pl in enumerate(live)],
+    })
 
-    return f"""<div class="gw-plot" data-gw-plot='{esc(payload)}'>
+    return f"""<div class="gw-plot gw-{mode}" data-gw-plot='{esc(payload)}'>
+<div class="gw-tip" hidden></div>
 <svg viewBox="0 0 {w} {h}" width="100%" role="img"
  aria-label="{esc(len(live))} charts sharing one time axis, covering
  {esc(long_date(pts[0][0]))} to {esc(long_date(pts[-1][0]))}. Measured Cook Inlet
  storage in Bcf, modeled peak daily demand, and derived non CINGSA supply, both
- in MMcf per day. Every value is in the table below."
- style="max-width:100%;height:auto;display:block">
-<defs>
-<linearGradient id="gwA" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#ffc72c" stop-opacity=".10"/>
-<stop offset="1" stop-color="#ffc72c" stop-opacity="0"/></linearGradient>
-<linearGradient id="gwB" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#5ac8f0" stop-opacity=".10"/>
-<stop offset="1" stop-color="#5ac8f0" stop-opacity="0"/></linearGradient>
-<linearGradient id="gwC" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#9664e6" stop-opacity=".10"/>
-<stop offset="1" stop-color="#9664e6" stop-opacity="0"/></linearGradient>
-</defs>
+ in MMcf per day. Every value is in the table below.">
+<defs>{defs}</defs>
 {body}{dates}{rules}{dots}{hit}</svg>
-<div class="gw-tip" hidden></div>
 </div>"""
+
+
+# THE NARROW FRAME, in the units of its own viewBox. Measured against a phone
+# rather than picked. A 390px viewport leaves a 316px card once the page gutter
+# and the card padding are taken out, so a 370 wide frame renders 11 unit mono
+# at about 9px, which is read at arm's length. The plot area is 310 by 68 per
+# panel, near four and a half to one against the wide frame's seven and a half,
+# so the panels stay tall enough to carry their own gridline labels and the
+# slope does not run away from the truth.
+NARROW = {"w": 370, "panel_h": 68, "gap": 34, "pad_l": 42}
+
+
+def chart_html(series, model):
+    """Both frames of the chart. CSS puts exactly one of them in the layout.
+
+    Returns "" when the record is too short to plot, which is the caller's
+    signal to fall back to the meter and the table.
+    """
+    wide = chart_svg(series, model)
+    if not wide:
+        return ""
+    return wide + chart_svg(series, model, mode="narrow", **NARROW)
 
 
 def table_html(series, model, limit=TABLE_LIMIT):
@@ -1078,11 +1177,60 @@ def self_test():
              "derived": {}, "reconciliation": {}, "flags": []})
     long_svg = chart_svg(long_series, chart_model)
     stops = long_svg.count('tabindex="0"')
-    days = long_svg.count('class="gw-hit"')
+    surfaces = long_svg.count('class="gw-hit"')
     check("a long record still costs one tab press to skip", stops == 1,
-          f"{days} days, {stops} tab stop(s)")
-    check("and the other days stay reachable by arrow key",
+          f"{surfaces} readout surface(s), {stops} tab stop(s)")
+    check("and every day stays reachable by arrow key",
           'ArrowLeft' in GW_JS and 'ArrowRight' in GW_JS and "'End'" in GW_JS)
+
+    # THE MARKUP MUST STOP GROWING WITH THE RECORD. A hit rect, a crosshair and
+    # three dots per day is 374 KB of chart inside a year, and each day's target
+    # is under a pixel wide on a phone, so the surface a finger aims at gets
+    # untouchable at exactly the length that most needs it. One surface, one
+    # rule, one marker per panel, and the geometry travels as numbers.
+    short_svg = chart_svg(long_series[:20], chart_model)
+    fixed = all(long_svg.count(sel) == short_svg.count(sel)
+                for sel in ('class="gw-hit"', 'class="gw-cross"', 'class="gw-mk"'))
+    check("the readout layer does not grow with the record", fixed,
+          f'200 days draws {long_svg.count(chr(34) + "gw-mk" + chr(34))} marker(s), '
+          f'20 days draws {short_svg.count(chr(34) + "gw-mk" + chr(34))}')
+
+    # BOTH FRAMES, ONE READING. The page ships a wide frame and a narrow one and
+    # CSS puts exactly one in the layout. They must be the same chart, since a
+    # phone and a laptop disagreeing about a measurement is the worst failure
+    # this page has. Same days, same values, same axis, and nothing scrolls,
+    # which is the whole reason the narrow frame exists.
+    both = chart_html(long_series, chart_model)
+    wide_pl = json.loads(_html.unescape(
+        re.findall(r"data-gw-plot='([^']*)'", both)[0]))
+    narrow_pl = json.loads(_html.unescape(
+        re.findall(r"data-gw-plot='([^']*)'", both)[1]))
+    check("the two frames plot the same days and the same values",
+          wide_pl["d"] == narrow_pl["d"]
+          and [s["v"] for s in wide_pl["s"]] == [s["v"] for s in narrow_pl["s"]],
+          f'{wide_pl["n"]} day(s) either way')
+    check("and the narrow frame is a different box, not the wide one shrunk",
+          narrow_pl["w"] < wide_pl["w"] and narrow_pl["m"] == "narrow",
+          f'{wide_pl["w"]} wide against {narrow_pl["w"]}')
+    # A duplicated gradient id resolves to whichever came first, so the second
+    # frame would silently draw the first frame's fill.
+    ids = re.findall(r'<linearGradient id="([^"]+)"', both)
+    refs = re.findall(r"url\(#([^)]+)\)", both)
+    check("every gradient id is unique and every fill resolves",
+          len(ids) == len(set(ids)) and set(refs) <= set(ids),
+          f"{len(ids)} gradient(s), {len(set(refs))} referenced")
+    # THE SIDEWAYS SCROLL, which is the thing this frame exists to be rid of.
+    # The old rule floored the plot at 600px and let the card scroll, so a phone
+    # reader saw half the series and had to swipe for the rest. A minimum width
+    # on the plot, or an overflow-x on the card, brings it straight back. Scoped
+    # to the card and the plot itself and never to a thing sitting on top of
+    # one, because the readout is allowed its own widths.
+    floored = [rule for rule in GW_CSS.split("}")
+               if any(re.search(r"\.gw-(chart|plot|wide|narrow)(\s+svg)?\s*$", sel)
+                      for sel in rule.split("{")[0].split(","))
+               and re.search(r"(min-width|overflow-x)\s*:", rule.split("{")[-1])]
+    check("no floor forces the card to scroll sideways", not floored,
+          str(floored) or "the whole series fits the frame it is drawn in")
 
     # A flat record has to render flat. Fitted to the data alone, two readings
     # a hundredth apart filled the panel and read as a climb.
@@ -1388,7 +1536,7 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
     # Below two readings there is no trend, and a line through one dot is a
     # chart pretending to know something. The meter and the tiles carry the
     # page until the series can support a plot.
-    svg = chart_svg(series, model)
+    svg = chart_html(series, model)
     if svg:
         chart_block = (
             f'<div class="gw-chart" data-reveal>{svg}</div>'
@@ -1641,90 +1789,131 @@ Cook Inlet gas storage plan</a>.</p>
 
 
 
-# The chart's hover layer. Small enough to inline, and it degrades to the
+# The chart's readout layer. Small enough to inline, and it degrades to the
 # static picture plus the table if it never runs.
+#
+# It wires EVERY .gw-plot on the page, because the chart ships as two frames
+# and CSS decides which one is in the layout. The frame that is not shown gets
+# no pointer and no focus, so wiring both costs nothing and neither one has to
+# know which it is.
 GW_JS = r"""
 (function(){
-  var plot = document.querySelector('.gw-plot');
-  if (!plot) return;
-  var tip = plot.querySelector('.gw-tip');
-  var svg = plot.querySelector('svg');
-  var data;
-  try { data = JSON.parse(plot.getAttribute('data-gw-plot')); } catch (e) { return; }
-  var rules = plot.querySelectorAll('.gw-cross');
-  var marks = plot.querySelectorAll('.gw-mk');
-  var hits  = plot.querySelectorAll('.gw-hit');
+  var plots = document.querySelectorAll('.gw-plot');
+  for (var p = 0; p < plots.length; p++) wire(plots[p]);
 
-  function clear(){
-    for (var i=0;i<rules.length;i++) rules[i].setAttribute('opacity','0');
-    for (var j=0;j<marks.length;j++) marks[j].setAttribute('opacity','0');
-    tip.hidden = true;
-  }
+  function wire(plot){
+    var g;
+    try { g = JSON.parse(plot.getAttribute('data-gw-plot')); } catch (e) { return; }
+    if (!g || !g.n) return;
+    var tip   = plot.querySelector('.gw-tip');
+    var svg   = plot.querySelector('svg');
+    var hit   = plot.querySelector('.gw-hit');
+    var cross = plot.querySelector('.gw-cross');
+    var marks = plot.querySelectorAll('.gw-mk');
+    if (!tip || !svg || !hit || !cross) return;
 
-  function show(i, target){
-    var row = data[i];
-    if (!row) return;
-    for (var a=0;a<rules.length;a++)
-      rules[a].setAttribute('opacity', rules[a].getAttribute('data-rule')==String(i) ? '.5' : '0');
-    for (var b=0;b<marks.length;b++)
-      marks[b].setAttribute('opacity', marks[b].getAttribute('data-mk')==String(i) ? '1' : '0');
+    // On the narrow frame the readout is a line of type above the plot rather
+    // than a card floating over it, so it never covers the shape a phone
+    // reader is trying to see. It also stays put when the finger lifts, since
+    // a touch pointer stops existing the moment it is raised and a readout
+    // that vanishes with the thumb can never be read.
+    var kept = g.m === 'narrow';
+    var at = -1;
 
-    // textContent throughout. Series names are data, never markup.
-    tip.textContent = '';
-    var d = document.createElement('div');
-    d.className = 'gw-tip-d';
-    d.textContent = row.d;
-    tip.appendChild(d);
-    row.v.forEach(function(v){
-      if (v[1] === null) return;
-      var r = document.createElement('div'); r.className = 'gw-tip-r';
-      var k = document.createElement('span'); k.className = 'gw-tip-k';
-      k.style.background = v[2];
-      var val = document.createElement('span'); val.className = 'gw-tip-v';
-      val.textContent = v[1];
-      var nm = document.createElement('span'); nm.className = 'gw-tip-n';
-      nm.textContent = v[0];
-      r.appendChild(k); r.appendChild(val); r.appendChild(nm);
-      tip.appendChild(r);
+    function clear(){
+      if (kept) return;
+      cross.setAttribute('opacity', '0');
+      for (var i = 0; i < marks.length; i++) marks[i].setAttribute('opacity', '0');
+      tip.hidden = true;
+      at = -1;
+    }
+
+    function show(i){
+      i = i < 0 ? 0 : (i > g.n - 1 ? g.n - 1 : i);
+      if (i === at) return;
+      at = i;
+      var x = g.x0 + g.dx * i;
+      cross.setAttribute('x1', x);
+      cross.setAttribute('x2', x);
+      cross.setAttribute('opacity', '.5');
+      for (var k = 0; k < marks.length; k++){
+        var y = g.s[k] ? g.s[k].y[i] : null;
+        if (y === null || y === undefined){ marks[k].setAttribute('opacity','0'); continue; }
+        marks[k].setAttribute('cx', x);
+        marks[k].setAttribute('cy', y);
+        marks[k].setAttribute('opacity', '1');
+      }
+      hit.setAttribute('aria-valuenow', String(i));
+      hit.setAttribute('aria-valuetext', g.d[i]);
+
+      // textContent throughout. Series names are data, never markup.
+      tip.textContent = '';
+      var d = document.createElement('div');
+      d.className = 'gw-tip-d';
+      d.textContent = g.d[i];
+      tip.appendChild(d);
+      for (var s = 0; s < g.s.length; s++){
+        var v = g.s[s].v[i];
+        if (v === null || v === undefined) continue;
+        var r  = document.createElement('div');  r.className = 'gw-tip-r';
+        var ky = document.createElement('span'); ky.className = 'gw-tip-k';
+        ky.style.background = g.s[s].c;
+        var val = document.createElement('span'); val.className = 'gw-tip-v';
+        val.textContent = v;
+        var nm = document.createElement('span'); nm.className = 'gw-tip-n';
+        nm.textContent = g.s[s].t;
+        r.appendChild(ky); r.appendChild(val); r.appendChild(nm);
+        tip.appendChild(r);
+      }
+      tip.hidden = false;
+      place(x);
+    }
+
+    // The floating readout is anchored to the top of the plot rather than to
+    // the day under the pointer. The surface spans every panel, so hanging the
+    // readout above it put the whole card off the top edge. Pinned inside and
+    // clamped horizontally, it can never be clipped on any day. The kept
+    // readout sits in the flow and needs none of this.
+    function place(x){
+      if (kept) return;
+      var pr = plot.getBoundingClientRect(), sr = svg.getBoundingClientRect();
+      if (!sr.width) return;
+      var px = (sr.left - pr.left) + sr.width * x / g.w, half = tip.offsetWidth / 2;
+      tip.style.left = Math.max(half + 6, Math.min(pr.width - half - 6, px)) + 'px';
+      tip.style.top = '6px';
+    }
+
+    // Screen pixels back to the day under them, through the frame's own scale.
+    function dayAt(ev){
+      var sr = svg.getBoundingClientRect();
+      if (!sr.width || !g.dx) return 0;
+      return Math.round(((ev.clientX - sr.left) * g.w / sr.width - g.x0) / g.dx);
+    }
+
+    hit.addEventListener('pointerdown', function(ev){
+      show(dayAt(ev));
+      try { hit.setPointerCapture(ev.pointerId); } catch (e) {}
     });
-    tip.hidden = false;
+    // A mouse reads on hover. A touch pointer only exists while the finger is
+    // down, so the same handler covers the drag without a mode of its own.
+    hit.addEventListener('pointermove', function(ev){ show(dayAt(ev)); });
+    hit.addEventListener('pointerleave', clear);
+    hit.addEventListener('focus', function(){ show(at < 0 ? g.n - 1 : at); });
+    hit.addEventListener('blur', clear);
+    hit.addEventListener('keydown', function(ev){
+      var to = ev.key === 'ArrowLeft'  ? at - 1
+             : ev.key === 'ArrowRight' ? at + 1
+             : ev.key === 'Home'       ? 0
+             : ev.key === 'End'        ? g.n - 1 : null;
+      if (to === null) return;
+      ev.preventDefault();
+      show(to);
+    });
 
-    // Anchored to the top of the plot rather than to the hit rect. The rect
-    // spans every panel and starts near y=16, so hanging the readout above it
-    // put the whole tooltip off the top edge of the card. Pinned inside and
-    // clamped horizontally, it can never be clipped on any day.
-    var pr = plot.getBoundingClientRect(), tr = target.getBoundingClientRect();
-    var x = tr.left - pr.left + tr.width/2, half = tip.offsetWidth/2;
-    tip.style.left = Math.max(half + 6, Math.min(pr.width - half - 6, x)) + 'px';
-    tip.style.top = '6px';
+    // The kept readout opens on the latest day, so the strip is never an empty
+    // box waiting to be discovered and the layout does not jump when it fills.
+    if (kept) show(g.n - 1);
   }
-
-  // Move the single tab stop with the focus, so Tab always leaves the chart in
-  // one press no matter how many days the record holds.
-  function rove(i){
-    if (i < 0 || i >= hits.length) return;
-    for (var a=0;a<hits.length;a++) hits[a].setAttribute('tabindex', a===i ? '0' : '-1');
-    hits[i].focus();
-  }
-
-  for (var i=0;i<hits.length;i++){
-    (function(el){
-      var idx = parseInt(el.getAttribute('data-i'), 10);
-      el.addEventListener('pointerenter', function(){ show(idx, el); });
-      el.addEventListener('focus', function(){ show(idx, el); });
-      el.addEventListener('blur', clear);
-      el.addEventListener('keydown', function(ev){
-        var to = ev.key === 'ArrowLeft' ? idx - 1
-               : ev.key === 'ArrowRight' ? idx + 1
-               : ev.key === 'Home' ? 0
-               : ev.key === 'End' ? hits.length - 1 : null;
-        if (to === null) return;
-        ev.preventDefault();
-        rove(to);
-      });
-    })(hits[i]);
-  }
-  svg.addEventListener('pointerleave', clear);
 })();
 """
 
@@ -1859,25 +2048,56 @@ font-family:JBMono,ui-monospace,monospace;}
   .gw-gauge-move-num i{display:inline;font-size:.6em;margin-top:0;}
 }
 .gw-chart{background:var(--panel);border:1px solid var(--line);border-radius:14px;
-padding:16px 12px 8px;margin:18px 0;overflow-x:auto;}
-/* THE HOVER LAYER. An HTML chart is interactive by default, and without this
+padding:16px 12px 8px;margin:18px 0;}
+/* THE READOUT LAYER. An HTML chart is interactive by default, and without this
    the only way to read a middle day was to count gridlines. The crosshair
    snaps to the nearest date so the pointer aims at a day rather than at a 2px
    line, and one readout carries every panel for that day. Everything it shows
    is also in the table below, so it enhances and never gates. */
 .gw-plot{position:relative;}
-/* A 920 wide viewBox scaled into a 342px phone card takes 11px mono down to
-   about 4px, which is a picture of a chart rather than a chart. The card is
-   already overflow-x auto, so the plot keeps a readable floor and the CARD
-   scrolls. The page itself still does not, which is the line that matters. */
-.gw-chart svg{min-width:600px;}
-.gw-hit{cursor:crosshair;}
+.gw-plot svg{display:block;width:100%;height:auto;}
+/* WHICH FRAME IS IN THE LAYOUT. Exactly one, so the other leaves the tab order
+   and the accessibility tree with it and nothing is announced twice.
+
+   The old rule floored the plot at 600px and let the CARD scroll sideways,
+   which kept the type legible and cost a phone reader the thing the picture is
+   for. At 390px they saw a little over half the series and had to swipe to
+   learn the shape of the rest. The narrow frame is drawn at phone proportions
+   instead, so the whole record fits with no scroll at any width and the type
+   is bigger than it was before. The breakpoint is where the wide frame stops
+   fitting comfortably rather than a round number, and above it the wide frame
+   renders exactly as it always has. */
+.gw-narrow{display:none;}
+@media(max-width:760px){
+  .gw-wide{display:none;}
+  .gw-narrow{display:block;}
+  /* Past about a 560px card the narrow frame is scaling type up rather than
+     showing more, so it stops growing and centres. */
+  .gw-narrow svg{max-width:560px;margin:0 auto;}
+}
+/* pan-y, not none. A drag across the chart reads it day by day, and a swipe up
+   the page still scrolls the page, which is the gesture a reader is far more
+   likely to want on a surface this tall. */
+.gw-hit{cursor:crosshair;touch-action:pan-y;}
 .gw-hit:focus{outline:none;}
 .gw-hit:focus-visible{outline:2px solid var(--halo);outline-offset:-2px;}
 .gw-tip{position:absolute;z-index:3;pointer-events:none;min-width:190px;
 background:rgba(5,11,22,.97);border:1px solid var(--line);border-radius:10px;
 padding:10px 12px;box-shadow:0 18px 40px -20px #000;
 transform:translate(-50%,0);}
+/* On the narrow frame the readout is a line of type above the plot, not a card
+   over it. A floating tooltip under a thumb covers the panel it is describing,
+   and on a 316px chart there is nowhere to move it to. */
+.gw-narrow .gw-tip{position:static;transform:none;min-width:0;z-index:auto;
+background:none;border:0;border-radius:0;box-shadow:none;padding:0 2px 10px;
+display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;}
+.gw-narrow .gw-tip-d{margin-bottom:0;width:100%;}
+.gw-narrow .gw-tip-r{margin-top:0;}
+/* An author display beats the hidden attribute, so the strip needs this or a
+   reader with no script gets an empty box holding open space under a heading.
+   The chart degrades to the picture and the table, which is the whole point of
+   the readout being an enhancement. */
+.gw-tip[hidden]{display:none;}
 .gw-tip-d{font-size:11px;letter-spacing:.09em;text-transform:uppercase;
 color:var(--mute);font-family:JBMono,ui-monospace,monospace;
 margin-bottom:7px;white-space:nowrap;}
