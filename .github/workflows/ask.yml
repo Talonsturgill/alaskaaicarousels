@@ -122,6 +122,5 @@ jobs:
       # question is asked for real and the answer is read back out of the DOM.
       - name: Every question the box offers actually answers
         run: |
-          npm install --no-save playwright@1
-          npx playwright install --with-deps chromium
+          bash .github/workflows/browser.sh 1
           SITE=/tmp/site node tests/ask_engine.mjs
