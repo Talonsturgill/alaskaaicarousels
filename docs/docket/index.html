@@ -470,40 +470,40 @@ letter-spacing:.13em;color:var(--mute);margin-bottom:8px;}
 .qbox.answering .qviews,
 .qbox.answering .qstrips,
 .qbox.answering .qpanel{display:none;}
-.qask{font-size:15.5px;line-height:1.45;color:var(--snow);margin:0 0 14px;
-padding:0 0 12px;border-bottom:1px solid var(--line);font-weight:500;}
-.qask::before{content:"YOU ASKED";display:block;font-family:JBMono,ui-monospace,monospace;
-font-size:10px;letter-spacing:.14em;color:var(--mute);margin-bottom:7px;font-weight:400;}
-/* qreply, NOT qans. .qans is already the engine's answer card (line ~1173),
-   and redefining it here quietly restyled every one of those. Class names are
-   as global as keyframe names; the same mistake, twice in one evening. */
-.qreply{font-size:15px;line-height:1.65;color:var(--snow);}
-/* What is happening, while it happens. Each line is true rather than
-   decorative: the record really is being fetched, and every sentence really is
+/* THE ANSWER SURFACE.
+   It was a bordered card inside a bordered card, under a monospace banner in
+   caps, under the reader's own question read back to them while that question
+   was still sitting in the field an inch above. Three pieces of chrome
+   competing with the one thing anybody came for.
+   It is text on the page now. The provenance line moved below the answer and
+   stopped shouting, because it is a footnote and not a headline. */
+.qreply{font-size:16.5px;line-height:1.72;color:var(--snow);
+letter-spacing:.002em;}
+.qreply p{margin:0;}
+/* What is happening, while it happens. Both lines are true rather than
+   decorative: the record really is being fetched, and every figure really is
    checked against it before it is allowed onto the page. */
-.qstage{font-family:JBMono,ui-monospace,monospace;font-size:11px;
-letter-spacing:.1em;text-transform:uppercase;color:var(--mute);
-display:flex;align-items:center;gap:9px;}
-.qstage::before{content:"";width:6px;height:6px;border-radius:50%;
+.qstage{font-size:14px;color:var(--mute);display:flex;align-items:center;gap:10px;}
+.qstage::before{content:"";width:6px;height:6px;border-radius:50%;flex:none;
 background:var(--gold);animation:qpulse 1.1s ease-in-out infinite;}
 @keyframes qpulse{0%,100%{opacity:.25;transform:scale(.8);}50%{opacity:1;transform:scale(1);}}
-/* Each verified sentence arrives on its own, so it fades in rather than
-   snapping. Reduced motion gets it instantly and complete. */
-.qseg{animation:qfade .32s ease both;}
+/* Each verified sentence arrives on its own and fades rather than snapping. */
+.qseg{animation:qfade .3s ease both;}
 @keyframes qfade{from{opacity:0;}to{opacity:1;}}
 @media (prefers-reduced-motion:reduce){
   .qstage::before,.qseg{animation:none;}
   .qstage::before{opacity:1;}
 }
-.qreply p{margin:0;}
-.qagain{margin-top:16px;background:none;border:1px solid var(--line);
-color:var(--body);border-radius:999px;padding:8px 15px;cursor:pointer;
-font-family:JBMono,ui-monospace,monospace;font-size:10.5px;letter-spacing:.1em;
-touch-action:manipulation;transition:border-color .18s ease,color .18s ease;}
-.qagain:hover{border-color:rgba(255,199,44,.5);color:var(--snow);}
-.qout{margin-top:12px;background:var(--panel);border:1px solid var(--line);
-border-radius:13px;padding:16px 18px;font-size:14.5px;line-height:1.62;
-color:var(--snow);text-align:left;}
+/* Provenance, after the answer and quiet about it. This is the line that makes
+   the box worth trusting, so it stays; it just stops announcing itself first. */
+.qfrom{margin-top:18px;padding-top:13px;border-top:1px solid var(--line);
+font-size:12.5px;line-height:1.5;color:var(--mute);
+display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;}
+.qagain{background:none;border:0;padding:0;cursor:pointer;color:var(--gold);
+font:inherit;font-size:12.5px;border-bottom:1px solid rgba(255,199,44,.35);
+touch-action:manipulation;}
+.qagain:hover{border-bottom-color:var(--gold);}
+.qout{margin-top:22px;padding:0 2px;color:var(--snow);text-align:left;}
 .qout[hidden]{display:none;}
 .qout a.cite{color:var(--blue);text-decoration:none;
 border-bottom:1px solid rgba(90,200,240,.3);}
@@ -2846,28 +2846,36 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     if (out) {
       out.hidden = false;
       out.innerHTML = '';
-      var asked = document.createElement('div');
-      asked.className = 'qask'; asked.textContent = q;
-      out.appendChild(asked);
+      /* The question is not read back. It is still sitting in the field an
+         inch above this, so echoing it is duplication dressed as interface. */
       body = document.createElement('div');
-      body.className = 'qreply'; body.textContent = 'Reading the record.';
+      body.className = 'qreply';
       out.appendChild(body);
       // The box can be well down the page by the time someone submits, and an
       // answer nobody scrolls to reads exactly like an answer that never came.
       out.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
     /* One way back, always present once an answer is on screen. */
+    /* The footer: where this came from, and one way out. Below the answer,
+       because provenance is a footnote. */
     function again(){
+      if (!out || out.querySelector('.qfrom')) return;
+      var f = document.createElement('div'); f.className = 'qfrom';
+      if (started) {
+        var note = document.createElement('span');
+        note.textContent = 'Written from the published record. Every figure checked against it.';
+        f.appendChild(note);
+      }
       var b = document.createElement('button');
-      b.type = 'button'; b.className = 'qagain'; b.textContent = 'ASK ANOTHER';
+      b.type = 'button'; b.className = 'qagain'; b.textContent = 'Clear';
       b.addEventListener('click', function(){
         input.value = ''; out.hidden = true; out.innerHTML = '';
         box.classList.remove('answering');
         input.focus(); run();
       });
-      out.appendChild(b);
+      f.appendChild(b);
+      out.appendChild(f);
     }
-    var tok = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || '') : '';
     var done = function(){
       plainBusy = false;
       if (btn) { btn.disabled = false; btn.classList.remove('busy'); }
@@ -2888,9 +2896,6 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     function addSentence(t){
       if (!body) return;
       if (!started) { started = true; if (stage) { stage.remove(); stage = null; }
-        var src = document.createElement('div'); src.className = 'qsrc';
-        src.textContent = 'WRITTEN FROM THE RECORD, CHECKED AGAINST IT';
-        body.appendChild(src);
         para = document.createElement('p'); body.appendChild(para); }
       var span = document.createElement('span');
       span.className = 'qseg';
@@ -2910,8 +2915,30 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       }
     }
 
-    fetch(ENDPOINT + '/answer', {method: 'POST', headers: {'content-type': 'application/json'},
-      body: JSON.stringify({question: q, turnstile_token: tok || null})})
+    /* Wait for the human check rather than racing it. The widget passes on
+       its own for a real browser, but not instantly, and submitting before it
+       has a token posted without one and put the worker's refusal on screen as
+       if the reader had done something wrong. Up to eight seconds, checked ten
+       times a second, with the stage line explaining the wait. */
+    function token(){
+      if (!TS_SITEKEY || !window.turnstile) return Promise.resolve('');
+      var have = turnstile.getResponse();
+      if (have) return Promise.resolve(have);
+      setStage('Passing the human check');
+      return new Promise(function(resolve){
+        var tries = 0;
+        var t = setInterval(function(){
+          var v = window.turnstile && turnstile.getResponse();
+          if (v || ++tries > 80) { clearInterval(t); resolve(v || ''); }
+        }, 100);
+      });
+    }
+
+    token().then(function(tok){
+      setStage('Reading the record');
+      return fetch(ENDPOINT + '/answer', {method: 'POST', headers: {'content-type': 'application/json'},
+        body: JSON.stringify({question: q, turnstile_token: tok || null})});
+    })
       .then(function(r){
         if (!r.body || !r.body.getReader) {
           /* No streaming in this browser. Read it whole and play it out. */
