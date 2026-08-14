@@ -27,7 +27,7 @@
 // visibly, rather than being quietly repaired.
 
 import * as deep from "./deep.js";
-import { answer, capOf } from "./answer.js";
+import { answer, answerStream, capOf } from "./answer.js";
 
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const MAX_QUESTION = 400;
@@ -143,8 +143,21 @@ export default {
     // its own inside answer(). It returns the answer directly rather than an
     // id to poll, because it takes about two seconds rather than minutes.
     if (path === "/answer") {
-      const out = await answer(question, env);
-      return json(out.body, out.status);
+      // Streamed by default. The guard checks a sentence at a time anyway, so
+      // a verified sentence can be shown the moment it is complete rather than
+      // after the whole reply lands, which is most of why the wait feels long.
+      // A client can still ask for the whole thing at once.
+      if (payload.stream === false) {
+        const out = await answer(question, env);
+        return json(out.body, out.status);
+      }
+      return new Response(await answerStream(question, env), {
+        headers: {
+          "content-type": "application/x-ndjson; charset=utf-8",
+          "cache-control": "no-store",
+          ...CORS,
+        },
+      });
     }
 
     // Starting a research run spends a slot from the account's daily routine

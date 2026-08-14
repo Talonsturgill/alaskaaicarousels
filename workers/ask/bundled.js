@@ -469,6 +469,207 @@ export async function callModel(question, pack, env, fetchImpl = fetch) {
 }
 
 /**
+ * Stream the model's reply, calling onDelta with each text fragment.
+ *
+ * The guard already works a sentence at a time, so streaming is not a
+ * cosmetic addition here: a sentence can be checked the moment it is complete
+ * and shown immediately, and one that fails ends the answer there. Waiting for
+ * the whole reply before checking any of it was never necessary.
+ */
+export async function streamModel(question, pack, env, onDelta, fetchImpl = fetch) {
+  const r = await fetchImpl(API, {
+    method: "POST",
+    headers: {
+      "x-api-key": env.ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      model: env.ASK_MODEL || DEFAULT_MODEL,
+      max_tokens: MAX_TOKENS,
+      temperature: 0,
+      stream: true,
+      system: [
+        { type: "text", text: pack.system },
+        { type: "text", text: pack.pack },
+      ],
+      messages: [{ role: "user", content: question }],
+    }),
+  });
+  if (!r.ok || !r.body) {
+    const detail = await r.text().catch(() => "");
+    throw new Error(`messages ${r.status}: ${String(detail).slice(0, 200)}`);
+  }
+
+  const reader = r.body.getReader();
+  const dec = new TextDecoder();
+  let buf = "";
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += dec.decode(value, { stream: true });
+    // SSE frames are separated by a blank line. Anything after the last one is
+    // a partial frame and waits for more bytes.
+    const frames = buf.split("\n\n");
+    buf = frames.pop() ?? "";
+    for (const frame of frames) {
+      for (const line of frame.split("\n")) {
+        if (!line.startsWith("data:")) continue;
+        let ev;
+        try { ev = JSON.parse(line.slice(5).trim()); } catch { continue; }
+        if (ev.type === "content_block_delta" && ev.delta?.type === "text_delta") {
+          onDelta(ev.delta.text);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Everything both paths must agree on: is the lane on, is this already
+ * answered, is the month spent. Factored out because the streaming path
+ * forgetting to count a call is exactly the bug that would not show up until
+ * a bill did.
+ */
+async function preflight(question, env, now) {
+  if (!env.ANTHROPIC_API_KEY || !env.ASK_KV) {
+    return { stop: { status: 503, body: { error: "the answerer is not configured" } } };
+  }
+  const cap = capOf(env);
+  if (cap === 0) {
+    return { stop: { status: 503, body: { error: "the answerer is switched off" } } };
+  }
+
+  let pack;
+  try {
+    pack = await loadPack(env);
+  } catch {
+    return { stop: { status: 502, body: { error: "the record is unreachable" } } };
+  }
+
+  const key = await cacheKey(question, pack.generated);
+  const hit = await env.ASK_KV.get(key);
+  if (hit) return { cached: { ...JSON.parse(hit), cached: true }, pack, key };
+
+  // Read AFTER the cache, so a question already answered this month is still
+  // served once the budget is spent. Turning off new spending should not blank
+  // out answers already paid for.
+  const mk = monthKey(now || new Date().toISOString());
+  const spent = Number(await env.ASK_KV.get(mk)) || 0;
+  if (spent >= cap) {
+    return {
+      stop: {
+        status: 200,
+        body: {
+          text: "", withheld: false, capped: true,
+          error: "The written answer lane has reached this month's limit. " +
+                 "The box above still answers from the record, and the full " +
+                 "archive search below still works.",
+        },
+      },
+    };
+  }
+  return { pack, key, mk, spent };
+}
+
+/**
+ * The streaming route. Emits newline delimited JSON, one event per line, so
+ * the page can render as it arrives without a parser of its own:
+ *
+ *   {"stage":"..."}          what is happening, and each one is true
+ *   {"sentence":"..."}       one verified sentence, safe to show
+ *   {"withheld":"numeral"}   the answer stopped here and why
+ *   {"done":true}            finished
+ *   {"error":"..."}          nothing to show
+ */
+export async function answerStream(question, env, { now, fetchImpl } = {}) {
+  const pre = await preflight(question, env, now);
+  const enc = new TextEncoder();
+  const line = (o) => enc.encode(JSON.stringify(o) + "\n");
+
+  if (pre.stop) {
+    return new ReadableStream({
+      start(c) { c.enqueue(line(pre.stop.body)); c.enqueue(line({ done: true })); c.close(); },
+    });
+  }
+  if (pre.cached) {
+    // Replayed a sentence at a time, so a cached answer arrives the same way a
+    // fresh one does rather than snapping in and looking like a different
+    // feature. It is instant either way; this only keeps the shape honest.
+    const { sentences, remainder } = splitSentences(String(pre.cached.text).trim());
+    const all = remainder.trim() ? [...sentences, remainder] : sentences;
+    return new ReadableStream({
+      start(c) {
+        c.enqueue(line({ stage: "Answered this one already" }));
+        for (const s of all) c.enqueue(line({ sentence: s.trim() }));
+        c.enqueue(line({ done: true, cached: true }));
+        c.close();
+      },
+    });
+  }
+
+  const { pack, key, mk, spent } = pre;
+  const allowed = new Set(pack.authorised_numerals);
+  const slugs = new Set(pack.slugs);
+
+  return new ReadableStream({
+    async start(c) {
+      c.enqueue(line({ stage: "Reading the record" }));
+      let buf = "", kept = [], withheld = null, opened = false;
+      try {
+        await streamModel(question, pack, env, (delta) => {
+          if (!opened) {
+            opened = true;
+            c.enqueue(line({ stage: "Checking every figure against the record" }));
+          }
+          if (withheld) return;
+          buf += delta;
+          const { sentences, remainder } = splitSentences(buf);
+          buf = remainder;
+          for (const s of sentences) {
+            const v = checkSentence(s, { allowed, slugs });
+            if (!v.ok) { withheld = v.reason; return; }
+            kept.push(s.trim());
+            c.enqueue(line({ sentence: s.trim() }));
+          }
+        }, fetchImpl || fetch);
+
+        // Whatever is left over after the last sentence end.
+        if (!withheld && buf.trim()) {
+          const v = checkSentence(buf, { allowed, slugs });
+          if (!v.ok) withheld = v.reason;
+          else { kept.push(buf.trim()); c.enqueue(line({ sentence: buf.trim() })); }
+        }
+      } catch (e) {
+        console.log("answer stream failed", String(e));
+        c.enqueue(line({ error: "that answer did not come back" }));
+        c.enqueue(line({ done: true }));
+        c.close();
+        return;
+      }
+
+      // Counted whether or not the guard kept the text. A refused answer costs
+      // the same as an accepted one.
+      await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
+
+      if (withheld) {
+        c.enqueue(line({ withheld }));
+        console.log("answer withheld", JSON.stringify({ reason: withheld }));
+      } else if (kept.length) {
+        // Only a clean answer is cached, so a cut one gets another attempt
+        // rather than a stored stub.
+        await env.ASK_KV.put(key, JSON.stringify({ text: kept.join(" "), withheld: false }),
+          { expirationTtl: ANSWER_TTL });
+      } else {
+        c.enqueue(line({ error: "The record did not produce an answer to that." }));
+      }
+      c.enqueue(line({ done: true }));
+      c.close();
+    },
+  });
+}
+
+/**
  * The route. Turnstile has already been checked by the caller, because that is
  * the worker's job for every expensive path and not this module's.
  */
@@ -698,8 +899,21 @@ export default {
     // its own inside answer(). It returns the answer directly rather than an
     // id to poll, because it takes about two seconds rather than minutes.
     if (path === "/answer") {
-      const out = await answer(question, env);
-      return json(out.body, out.status);
+      // Streamed by default. The guard checks a sentence at a time anyway, so
+      // a verified sentence can be shown the moment it is complete rather than
+      // after the whole reply lands, which is most of why the wait feels long.
+      // A client can still ask for the whole thing at once.
+      if (payload.stream === false) {
+        const out = await answer(question, env);
+        return json(out.body, out.status);
+      }
+      return new Response(await answerStream(question, env), {
+        headers: {
+          "content-type": "application/x-ndjson; charset=utf-8",
+          "cache-control": "no-store",
+          ...CORS,
+        },
+      });
     }
 
     // Starting a research run spends a slot from the account's daily routine
