@@ -763,11 +763,16 @@ def v_decided(rows, today):
 
 # Order is the order they appear. Comment windows lead because participation is
 # the only thing on this record a reader can act on today.
+# The third field is the TILE LABEL, which is not the question. On a phone the
+# four tiles sit two across, and a full question truncated to fit reads "What
+# can I ..." and "What deadl...", which is four cards that all look the same and
+# say nothing. The question is still what gets typed into the box when one is
+# clicked; the label is only what the tile calls it.
 VIEWS = [
-    ("open", "What can I still comment on?", v_comment),
-    ("soon", "What deadlines are coming up?", v_deadlines),
-    ("new", "What changed this week?", v_changed),
-    ("done", "What is already decided?", v_decided),
+    ("open", "What can I still comment on?", "Open to comment", v_comment),
+    ("soon", "What deadlines are coming up?", "Deadlines ahead", v_deadlines),
+    ("new", "What changed this week?", "Changed this week", v_changed),
+    ("done", "What is already decided?", "Already decided", v_decided),
 ]
 
 
@@ -799,7 +804,7 @@ def catalogue(rows, fac, today, places=()):
             q = q.replace(label, "~")
         out.append(f"{q}|{route}")
 
-    for key, q, _fn in VIEWS:
+    for key, q, _tag, _fn in VIEWS:
         add(q, f"view:{key}")
 
     for r in rows:
@@ -1161,9 +1166,9 @@ def build(today=None):
     prune_handles(rows)
     fac = facets(rows)
     views = []
-    for key, q, fn in VIEWS:
+    for key, q, tag, fn in VIEWS:
         hits, summary = fn(rows, today)
-        views.append({"key": key, "q": q, "summary": summary,
+        views.append({"key": key, "q": q, "tag": tag, "summary": summary,
                       "ids": [r["id"] for r in hits]})
     # Proximity, worked out here rather than in the page. Forty two towns
     # against fifteen points is six hundred distances, which is nothing at

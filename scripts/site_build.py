@@ -1194,6 +1194,13 @@ background:rgba(255,199,44,.035);transform:translateY(-2px);outline:none;}
 .qview:hover::after,.qview:focus-visible::after{opacity:1;}
 .qview b{position:relative;display:block;color:var(--snow);font-size:14.5px;
 font-weight:600;margin-bottom:5px;letter-spacing:-.01em;}
+/* The short label and the short count. Only a phone shows either, and only a
+   phone hides the long forms they stand in for. Two words of chrome on a
+   180px tile is the difference between a readable label and "What can I ...",
+   which is four cards that all look the same and say nothing. */
+.qview i{display:none;font-style:normal;}
+.qview em{font-style:normal;}
+.qview u{display:none;text-decoration:none;}
 .qview span{position:relative;display:block;color:var(--mute);font-size:12px;
 font-family:JBMono,ui-monospace,monospace;letter-spacing:.05em;}
 .qtries{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:12px;}
@@ -1203,7 +1210,7 @@ font-family:JBMono,ui-monospace,monospace;letter-spacing:.05em;}
    would read as a search term. */
 .qnears{margin-top:7px;}
 .qnear{font-variant-numeric:tabular-nums;}
-@media (max-width:620px){.qviews{grid-template-columns:1fr;}}
+}
 
 /* Results. They stagger in top down, because motion here is structure. It
    tells the eye the order the record ranked them in. */
@@ -1313,11 +1320,6 @@ transition:background .18s ease,border-color .18s ease;}
    model writing a sentence and the reader is owed that distinction. */
 .qsrc{font-family:JBMono,ui-monospace,monospace;font-size:10px;
 letter-spacing:.13em;color:var(--mute);margin-bottom:8px;}
-/* The disclosure above the two buttons. Sized to be read, not to be technically
-   present: this is the one place on the site where a reader's own words leave
-   their browser, and they get told before it happens rather than after. */
-.qsend{font-size:12.5px;line-height:1.5;color:var(--mute);
-margin:16px auto 10px;max-width:42ch;}
 .qout{margin-top:12px;background:var(--panel);border:1px solid var(--line);
 border-radius:13px;padding:16px 18px;font-size:14.5px;line-height:1.62;
 color:var(--snow);text-align:left;}
@@ -1331,6 +1333,64 @@ letter-spacing:.07em;color:var(--mute);margin-top:13px;
 display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
 .qfoot kbd{border:1px solid var(--line);border-radius:5px;padding:2px 5px;
 background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
+
+/* THE COMPACT PHONE LAYOUT. On a 390px screen this box was 850px tall, which
+   is a full viewport of chrome sitting on top of the record it exists to
+   search. Every affordance is kept and none of it is a full width block any
+   more: the four views ride two by two on one line each, the two chip strips
+   scroll sideways instead of wrapping into six rows, and the keyboard legend
+   goes away on a device with no keyboard.
+
+   CSS ONLY, inside one media query. The markup and the class names are the
+   contract tests/ask_engine.mjs drives, and 254 checks should not have to be
+   rewritten because a phone needed less padding. */
+@media (max-width:620px){
+  .qbox{margin-top:10px;}
+  .qviews{grid-template-columns:1fr 1fr;gap:5px;margin-top:5px;}
+  /* One line each. The title takes the room and the count keeps its place at
+     the end, because a reader scanning these is comparing counts. */
+  .qview{display:flex;align-items:baseline;gap:7px;border-radius:10px;
+  padding:7px 10px;}
+  .qview::after{display:none;}
+  .qview b{display:none;}
+  .qview i{flex:1 1 auto;min-width:0;display:block;font-size:11.5px;
+  line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-weight:600;color:var(--snow);}
+  .qview span{flex:0 0 auto;display:block;font-size:11px;letter-spacing:.02em;
+  color:var(--gold);opacity:.85;font-variant-numeric:tabular-nums;}
+  .qview em{display:none;}
+  .qview u{display:inline;}
+  /* Sideways instead of down. Six long questions wrapped to six full width
+     rows and cost 243px; on one scrolling line they cost 32. */
+  .qtries{flex-wrap:nowrap;overflow-x:auto;gap:6px;margin-top:7px;
+  scrollbar-width:none;-ms-overflow-style:none;
+  -webkit-overflow-scrolling:touch;padding-bottom:1px;}
+  .qtries::-webkit-scrollbar{display:none;}
+  .qtries .qtry{flex:0 0 auto;font-size:11.5px;padding:5px 11px;}
+  .qtryl{flex:0 0 auto;}
+  /* ONE LINE, NOT TWO. display:contents drops both strips out of the box model
+     and lets their chips and their two labels become items of a single
+     scrolling row, so TRY and NEAR still read as different things and cost one
+     row between them instead of two. The ids and the classes are untouched,
+     because the script hides these by id and 254 browser checks address them
+     by id, and [hidden] still beats display:contents on specificity so hiding
+     one of them while typing works exactly as before. */
+  .qstrips{display:flex;flex-wrap:nowrap;overflow-x:auto;align-items:center;
+  gap:6px;margin-top:6px;scrollbar-width:none;-ms-overflow-style:none;
+  -webkit-overflow-scrolling:touch;padding-bottom:1px;}
+  .qstrips::-webkit-scrollbar{display:none;}
+  .qstrips > .qtries{display:contents;}
+  .qnears{margin-top:0;}
+  /* The field itself. A 44px tap target is the floor and it was carrying 62. */
+  .qfield{padding:10px 13px;}
+  .qbox .qinput input,.qbox .qghost{font-size:15px;}
+  /* A phone has no TAB, no arrow keys and no ESC, so every item left in this
+     row is about hardware the reader is not holding. The whole row goes. */
+  .qfoot{display:none;}
+}
+@media (max-width:620px) and (hover:hover){
+  /* A narrow window on a desktop still has the keys, so it keeps the legend. */
+  .qfoot{display:flex;margin-top:9px;}
 
 """
 
@@ -2524,12 +2584,11 @@ ASK_JS = r"""
       // The line above these buttons is not decoration. Everything else this
       // box does happens in the reader's own browser, which is printed under
       // the field and is the reason someone can type a project they care
-      // about without thinking twice. Pressing either of these breaks that,
-      // so the reader is told plainly, before the press, and not in a policy
-      // page they would have to go looking for.
-      (ENDPOINT ? '<p class="qsend">Both of these send your question off this page. ' +
-                  'Nothing above this line did.</p>' +
-                  '<div class="qlane">' +
+      // about without thinking twice. Pressing either of these sends the words
+      // typed, and only those, to the worker. What that means is set out on
+      // /privacy/ under "The one thing you can choose to send"; it is not
+      // repeated here.
+      (ENDPOINT ? '<div class="qlane">' +
                   '<button type="button" class="qplain" id="qplain">ANSWER THIS FROM THE RECORD</button>' +
                   '<button type="button" class="qdeep" id="qdeep">SEARCH THE FULL ARCHIVE</button>' +
                   '</div><div class="qout" id="qout" hidden></div>' : '') +
@@ -2880,9 +2939,11 @@ def ask_html(today):
     if not data["index"]:
         return ""
     cards = "".join(
-        '<button type="button" class="qview" data-key="%s"><b>%s</b><span>%s</span></button>'
-        % (esc(v["key"]), esc(v["q"]),
-           ("%d TRACKED" % len(v["ids"])) if v["ids"] else "NONE RIGHT NOW")
+        '<button type="button" class="qview" data-key="%s"><b>%s</b>'
+        '<i>%s</i><span><em>%s</em><u>%s</u></span></button>'
+        % (esc(v["key"]), esc(v["q"]), esc(v.get("tag") or v["q"]),
+           ("%d TRACKED" % len(v["ids"])) if v["ids"] else "NONE RIGHT NOW",
+           len(v["ids"]))
         for v in data["views"])
     tries = "".join('<button type="button" class="qtry">%s</button>' % esc(q)
                     for q in data["try"])
@@ -2912,15 +2973,19 @@ def ask_html(today):
   <kbd class="qkbd">CTRL K</kbd>
 </div><div class="qrail"><div class="qmeter" id="qmeter"></div></div></div>
 <div class="qviews" id="qviews">{cards}</div>
-<div class="qtries" id="qtries"><span class="qtryl">TRY</span>{tries}</div>
-<div class="qtries qnears" id="qnears"><span class="qtryl">NEAR</span>{hoods}</div>
+<div class="qstrips"><div class="qtries" id="qtries"><span class="qtryl">TRY</span>{tries}</div>
+<div class="qtries qnears" id="qnears"><span class="qtryl">NEAR</span>{hoods}</div></div>
 <div class="qpanel" id="qres" role="listbox" aria-label="Answer" hidden></div>
 <div id="qts"></div>
+<!-- Keyboard hints only. The privacy sentences that used to close this row
+     were dropped at the maintainer's call, along with the one that sat above
+     the two sending buttons. What the buttons do is described in full on
+     /privacy/ under "The one thing you can choose to send", so the record of
+     it is kept in the place a reader goes looking for it rather than repeated
+     across the interface. -->
 <div class="qfoot"><span><kbd>TAB</kbd> to complete</span>
 <span><kbd>UP</kbd> <kbd>DOWN</kbd> to move</span>
-<span><kbd>ENTER</kbd> to open</span><span><kbd>ESC</kbd> to clear</span>
-<span>Typing is answered from the record inside this page and sends nothing. The two
-buttons under a no result do send your question, and say so before you press them.</span></div>
+<span><kbd>ENTER</kbd> to open</span><span><kbd>ESC</kbd> to clear</span></div>
 <script type="application/json" id="qdata">{json.dumps(data, separators=(",", ":"))}</script>
 </div>"""
 
