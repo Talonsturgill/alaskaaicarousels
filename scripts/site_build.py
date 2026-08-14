@@ -706,6 +706,17 @@ transition:transform .55s ease;}
 .stat .n{font-size:clamp(26px,3.4vw,38px);font-weight:500;color:var(--snow);font-variant-numeric:tabular-nums;}
 .stat .n.g{color:var(--gold);text-shadow:0 0 22px rgba(255,199,44,.35);}
 .stat .l{font-size:11.5px;letter-spacing:.18em;color:var(--mute);margin-top:2px;}
+/* THE STAT ROW ON A PHONE. As a flex row with a 34px gap the labels are wider
+   than half a 342px screen, so DECISIONS TRACKED wrapped onto a line of its own
+   and left an empty cell beside a number, and the two that did pair sat under
+   it. Three facts took three lines and most of a screen. A two column grid with
+   the labels a shade tighter pairs the first two and drops the date underneath,
+   which is the same three facts in two rows and no hole. */
+@media (max-width:620px){
+  .statrow{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin-top:26px;}
+  .stat .l{font-size:10px;letter-spacing:.11em;}
+  .stat .n{font-size:clamp(22px,7vw,30px);}
+}
 
 /* ---------- latest deck ---------- */
 .latest{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:44px;align-items:center;}
@@ -1024,7 +1035,12 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
   .rail::before{left:5px;right:auto;top:0;bottom:0;width:1.5px;height:auto;}
   .stop{padding:0 0 0 26px;}
   .stop.now{padding:0 0 0 26px;}
-  .maphero{margin:34px -12px 0;padding:0 12px;}
+  /* 12 rather than 34. The map already opens with a band of background above
+     the coastline, because the nav is sticky and 146px tall on a phone and the
+     fit reserves that much so a pin never sits underneath it. Stacking a 34px
+     margin on top of a band that is already there just widened a gap the
+     reader reads as nothing happening. */
+  .maphero{margin:12px -12px 0;padding:0 12px;}
   .latest{grid-template-columns:1fr;}
   .flagsky{right:-4vw;top:2vh;width:70vw;opacity:.8;}
   .topnav{padding:18px 0 12px;}
@@ -3322,8 +3338,25 @@ MAP_CSS = """/* A clustered badge is a rect and its numbers are the links, so th
      and the state is a smear across the top of the screen with 5px pins. Give
      it real height and let preserveAspectRatio slice crop the sides instead;
      the opening view is fitted to the pins, so nothing that matters is cropped
-     out, and the scale roughly triples. */
-  .maphero svg{height:min(64vh,540px);}
+     out, and the scale roughly triples.
+
+     460 AND NOT 540, AND THE vh IS LEFT ALONE. The home view frames the union
+     of the coastline and the padded pins, which is a wide shape, so it is width
+     constrained and the drawing comes out 293px tall whatever the frame does. A
+     540px frame drew the same map and put the extra 80px underneath it as
+     background. Measured at 390 by 844: ink 432 by 293 at both caps, blank
+     below 40px at 540 and 0 at 460, all 33 pins fully inside either way. The
+     map did not get smaller, the empty part did.
+
+     Only the ABSOLUTE cap moves, because only the absolute cap was binding on
+     a tall phone. Cutting the vh from 64 to 54 as well took a landscape
+     handset's frame from 219px to 185, and at 185 a 71px nav is 38 percent of
+     the frame, over the 0.36 the fit is allowed to reserve. The reservation
+     clamps under the real nav height and a pin goes under the nav, which is the
+     exact failure the cap's own comment describes and which
+     tests/mobile_docket_map.js caught on iPhone 13 landscape. 64vh of 342 is
+     219 and stays 219; 64vh of 844 is 540 and the 460 cap takes it. */
+  .maphero svg{height:min(64vh,460px);}
   .lyrbar{padding-top:16px;}
   .lyrnote{font-size:12.5px;}
 }

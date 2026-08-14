@@ -41,8 +41,25 @@
      and the state is a smear across the top of the screen with 5px pins. Give
      it real height and let preserveAspectRatio slice crop the sides instead;
      the opening view is fitted to the pins, so nothing that matters is cropped
-     out, and the scale roughly triples. */
-  .maphero svg{height:min(64vh,540px);}
+     out, and the scale roughly triples.
+
+     460 AND NOT 540, AND THE vh IS LEFT ALONE. The home view frames the union
+     of the coastline and the padded pins, which is a wide shape, so it is width
+     constrained and the drawing comes out 293px tall whatever the frame does. A
+     540px frame drew the same map and put the extra 80px underneath it as
+     background. Measured at 390 by 844: ink 432 by 293 at both caps, blank
+     below 40px at 540 and 0 at 460, all 33 pins fully inside either way. The
+     map did not get smaller, the empty part did.
+
+     Only the ABSOLUTE cap moves, because only the absolute cap was binding on
+     a tall phone. Cutting the vh from 64 to 54 as well took a landscape
+     handset's frame from 219px to 185, and at 185 a 71px nav is 38 percent of
+     the frame, over the 0.36 the fit is allowed to reserve. The reservation
+     clamps under the real nav height and a pin goes under the nav, which is the
+     exact failure the cap's own comment describes and which
+     tests/mobile_docket_map.js caught on iPhone 13 landscape. 64vh of 342 is
+     219 and stays 219; 64vh of 844 is 540 and the 460 cap takes it. */
+  .maphero svg{height:min(64vh,460px);}
   .lyrbar{padding-top:16px;}
   .lyrnote{font-size:12.5px;}
 }
