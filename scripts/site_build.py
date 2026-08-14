@@ -729,6 +729,48 @@ font-family:JBMono,monospace;font-size:11px;letter-spacing:.14em;cursor:pointer;
 backdrop-filter:blur(6px);white-space:nowrap;}
 .vsound:hover{background:rgba(2,6,15,.9);}
 .vsound.on{opacity:.55;}
+/* The sound pill sits where the scrubber opens, so it steps up out of the way
+   while the video is paused rather than fighting a thumb for the same strip. */
+.vidwrap.paused .vsound{bottom:48px;}
+.vsound{transition:bottom .18s;}
+/* Same transport as the videos feed: hairline while playing, real scrubber on
+   pause. The grab area only exists when paused so it never eats a tap meant
+   for the video during playback. */
+.hvprog{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.14);
+z-index:6;touch-action:none;transition:height .16s,background-color .16s;}
+.hvprog i{display:block;height:100%;width:100%;
+background:linear-gradient(90deg,var(--gold),#ffda6e);
+transform:scaleX(0);transform-origin:0 50%;will-change:transform;}
+.hvprog::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;}
+.vidwrap.paused .hvprog::before,.vidwrap.scrubbing .hvprog::before{height:34px;}
+.vidwrap.paused .hvprog,.vidwrap.scrubbing .hvprog{height:6px;background:rgba(255,255,255,.26);}
+.hvknob{position:absolute;top:50%;left:0;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;
+border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(255,199,44,.22);
+opacity:0;pointer-events:none;transition:opacity .16s;}
+.vidwrap.paused .hvknob,.vidwrap.scrubbing .hvknob{opacity:1;}
+.hvplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.8);
+width:70px;height:70px;border-radius:50%;background:rgba(2,6,15,.55);border:1px solid var(--line);
+display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;
+transition:opacity .2s,transform .2s;z-index:5;}
+.vidwrap.paused .hvplay{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.hvplay svg{width:28px;height:28px;fill:var(--snow);margin-left:4px;}
+.hvskip{position:absolute;top:50%;transform:translateY(-50%);width:34%;z-index:5;
+pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:4px;opacity:0;
+transition:opacity .3s;font-family:JBMono,monospace;font-size:10px;letter-spacing:.1em;
+color:var(--snow);}
+.hvskip.back{left:0;} .hvskip.fwd{right:0;}
+.hvskip.on{opacity:1;transition:opacity .06s;}
+.hvskip svg{width:26px;height:26px;fill:var(--snow);}
+.hvdl{position:absolute;right:10px;bottom:14px;width:38px;height:38px;border-radius:50%;
+border:1px solid var(--line);background:rgba(2,6,15,.72);cursor:pointer;z-index:7;
+display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);
+transition:bottom .18s,border-color .12s;}
+.hvdl:hover{border-color:var(--gold);}
+.hvdl svg{width:18px;height:18px;fill:none;stroke:var(--snow);stroke-width:1.8;
+stroke-linecap:round;stroke-linejoin:round;}
+.hvdl.busy{opacity:.45;}
+.hvdl.toast svg{stroke:#3ce6b4;}
+.vidwrap.paused .hvdl{bottom:48px;}
 .latestvid h3{font-family:Fraunces,serif;font-weight:540;font-size:clamp(24px,3vw,32px);
 color:var(--snow);line-height:1.15;margin:12px 0 14px;}
 .latestvid p{font-size:16.5px;max-width:56ch;}
@@ -4625,9 +4667,18 @@ every fact. Gold means a door is open to the public right now.</p>
 <p class="sub" data-reveal>The newest video from the daily feed. Tap through for the whole
 collection.</p>
 <div class="latestvid" data-reveal>
-  <div class="vidwrap"><video id="hv" muted playsinline loop preload="none"
+  <div class="vidwrap" id="hvwrap"><video id="hv" muted playsinline loop preload="none"
   aria-label="The latest Alaska AI video"></video>
-  <button class="vsound" id="hvsound" type="button" aria-label="Toggle sound">TAP FOR SOUND</button></div>
+  <div class="hvplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+  <div class="hvskip back" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M11 6v12L2 12l9-6Zm11 0v12l-9-6 9-6Z"/></svg><span>10s</span></div>
+  <div class="hvskip fwd" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M13 6v12l9-6-9-6ZM2 6v12l9-6L2 6Z"/></svg><span>10s</span></div>
+  <button class="hvdl" id="hvdl" type="button" aria-label="Download this video">
+    <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5"/></svg>
+  </button>
+  <button class="vsound" id="hvsound" type="button" aria-label="Toggle sound">TAP FOR SOUND</button>
+  <div class="hvprog" id="hvprog" aria-hidden="true"><i></i><b class="hvknob"></b></div></div>
   <div>
     <div class="chip kind" id="hvdate"></div>
     <h3 id="hvtitle"></h3>
@@ -4669,9 +4720,13 @@ fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
     {month:'long',day:'numeric',year:'numeric'}).toUpperCase()+' \\u00b7 ON VIDEO'}
   catch(e){d.textContent=(v.date||'').toUpperCase()}
   sec.hidden=false;
+  /* Scrolling away pauses, but that is the observer's doing and not the
+     reader's, so it must not raise the scrubber. Only a deliberate pause
+     sets .paused on the wrap. */
+  var wrap=document.getElementById('hvwrap');
   var io=new IntersectionObserver(function(es){es.forEach(function(e){
     if(e.isIntersecting){if(!el.getAttribute('src'))el.src=el.dataset.src;
-      el.play().catch(function(){});}
+      if(!wrap.classList.contains('paused'))el.play().catch(function(){});}
     else el.pause();
   })},{threshold:0.3});
   io.observe(el);
@@ -4681,10 +4736,99 @@ fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
     sb.textContent=el.muted?'TAP FOR SOUND':'MUTE';
     sb.classList.toggle('on',!el.muted);
     if(!el.getAttribute('src'))el.src=el.dataset.src;
-    el.play().catch(function(){});
+    if(!wrap.classList.contains('paused'))el.play().catch(function(){});
   };
   sb.addEventListener('click',toggle);
-  el.addEventListener('click',toggle);
+
+  /* Same transport as the videos feed. Tapping the video used to toggle
+     SOUND here; it now plays and pauses, matching the feed, because a
+     scrubber that appears on pause is unreachable without a pause. The sound
+     pill right under it is the sound control and says so. */
+  var prog=document.getElementById('hvprog');
+  var knob=prog.querySelector('.hvknob');
+  var fill=prog.querySelector('i');
+  var SKIP=10;
+  var paint=function(f){fill.style.transform='scaleX('+f+')';knob.style.left=(f*100)+'%';};
+  var flash=function(dir){
+    var g=wrap.querySelector(dir>0?'.hvskip.fwd':'.hvskip.back');
+    g.classList.add('on');clearTimeout(g._t);
+    g._t=setTimeout(function(){g.classList.remove('on')},420);
+  };
+  var nudge=function(secs){
+    if(!isFinite(el.duration)||!el.duration)return;
+    el.currentTime=Math.max(0,Math.min(el.duration,el.currentTime+secs));
+    paint(el.currentTime/el.duration);flash(secs);
+  };
+  var playIt=function(){
+    wrap.classList.remove('paused');
+    if(!el.getAttribute('src'))el.src=el.dataset.src;
+    el.play().catch(function(){});
+  };
+  var pauseIt=function(){el.pause();wrap.classList.add('paused');};
+  var tapT=0,tapWasPlaying=false;
+  el.addEventListener('click',function(e){
+    var r=el.getBoundingClientRect();
+    var rel=(e.clientX-r.left)/r.width;
+    var zone=rel<0.35?-1:(rel>0.65?1:0);
+    var now=Date.now();
+    /* Second tap on the same side inside 320ms undoes the play/pause the
+       first one did, then seeks. Undoing keeps a single tap instant. */
+    if(zone&&now-tapT<320){
+      if(tapWasPlaying)playIt();else pauseIt();
+      nudge(zone*SKIP);tapT=0;return;
+    }
+    tapT=now;tapWasPlaying=!el.paused;
+    if(el.paused)playIt();else pauseIt();
+  });
+  var tick=function(){if(el.duration)paint(el.currentTime/el.duration);};
+  el.addEventListener('timeupdate',tick);
+  var seekTo=function(clientX){
+    if(!isFinite(el.duration)||!el.duration)return;
+    var r=prog.getBoundingClientRect();
+    var f=Math.min(1,Math.max(0,(clientX-r.left)/r.width));
+    el.currentTime=f*el.duration;paint(f);
+  };
+  prog.addEventListener('pointerdown',function(e){
+    wrap.classList.add('scrubbing');
+    try{prog.setPointerCapture(e.pointerId)}catch(_){}
+    seekTo(e.clientX);e.preventDefault();
+  });
+  prog.addEventListener('pointermove',function(e){
+    if(wrap.classList.contains('scrubbing'))seekTo(e.clientX);
+  });
+  var endScrub=function(e){
+    if(!wrap.classList.contains('scrubbing'))return;
+    wrap.classList.remove('scrubbing');
+    try{prog.releasePointerCapture(e.pointerId)}catch(_){}
+  };
+  prog.addEventListener('pointerup',endScrub);
+  prog.addEventListener('pointercancel',endScrub);
+
+  /* Download. Blob first, because the download attribute is ignored
+     cross-origin and a plain link would navigate to the mp4 instead of
+     saving it. Resolve before checking the scheme so a relative media_base
+     still works and javascript: still cannot reach an href. */
+  var dl=document.getElementById('hvdl');
+  dl.addEventListener('click',function(){
+    var raw=el.dataset.src;
+    if(!raw||dl.classList.contains('busy'))return;
+    var u;try{u=new URL(raw,location.href)}catch(_){return}
+    if(u.protocol!=='http:'&&u.protocol!=='https:')return;
+    var href=u.href;
+    var nm=(String(v.id||'').replace(/[^a-z0-9_-]/gi,'')||'alaska-ai-video')+'.mp4';
+    var save=function(h){
+      var a=document.createElement('a');
+      a.href=h;a.download=nm;a.rel='noopener';
+      document.body.appendChild(a);a.click();a.remove();
+    };
+    dl.classList.add('busy');
+    fetch(href).then(function(r){return r.ok?r.blob():Promise.reject(0)}).then(function(b){
+      var o=URL.createObjectURL(b);save(o);
+      setTimeout(function(){URL.revokeObjectURL(o)},60000);
+      dl.classList.remove('busy');dl.classList.add('toast');
+      setTimeout(function(){dl.classList.remove('toast')},1400);
+    }).catch(function(){dl.classList.remove('busy');save(href)});
+  });
 }).catch(function(){});
 })();
 </script>"""
