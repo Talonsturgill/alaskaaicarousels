@@ -4,6 +4,14 @@ compatibility_date = "2026-08-08"
 
 # No D1, no Durable Objects, no Vectorize. Nothing here is a database.
 #
+# That holds for the written answer lane too, and deliberately. The whole
+# published record is about 21,000 tokens against a 200,000 token context, so
+# it goes into every prompt whole: no embeddings, no vector store, no chunking,
+# no top-k. A vector store would be a second copy of the truth, and a second
+# copy needs a sync job that can fall behind the site quietly. The file the
+# worker reads is a build artifact of the same commit that publishes the page,
+# and site_fresh_check.py turns a stale one into a red build.
+#
 # KV is the one piece of storage, and only because firing a routine returns a
 # session id rather than an answer, so a finished run has to put its answer
 # somewhere the page can poll for it. The built-in Cache API cannot do that
@@ -11,6 +19,11 @@ compatibility_date = "2026-08-08"
 # the delivery and the poll could land in different places and the answer
 # would be lost. KV is part of the Workers platform and does not pause when
 # idle. Entries expire on their own, so nothing accumulates.
+#
+# The answer lane reuses the same namespace for two more things, both of which
+# expire by themselves: a cache of answers keyed by question and pack date, so
+# a repeat costs nothing, and one integer per month counting calls that reached
+# the model, so the bill has a ceiling the operator sets.
 #
 # Create it once, then paste the id below:
 #   wrangler kv namespace create ASK_KV
@@ -21,7 +34,32 @@ id = "REPLACE_WITH_THE_ID_WRANGLER_PRINTS"
 [observability]
 enabled = true
 
+# Plain variables, safe to keep in this file. Both have defaults in answer.js,
+# so the lane works without either.
+#
+#   ASK_MONTHLY_CAP  model calls per calendar month before the written answer
+#                    lane steps aside and the box falls back to the in-page
+#                    engine and the archive button. Cached repeats and engine
+#                    answers do not count. Default 500, which at today's pack
+#                    size is roughly twelve dollars of worst case in a month
+#                    where every call is used; expected spend is a few dollars
+#                    because the engine takes most questions. Set it to 0 to
+#                    switch the lane off without a deploy.
+#   ASK_MODEL        model id. Defaults to a dated Haiku 4.5 snapshot rather
+#                    than a moving alias, so an answer the guard accepted today
+#                    is produced by the same model tomorrow.
+#   ASK_PACK_URL     where to read the record. Defaults to the live site; point
+#                    it at a staging build to try a change without shipping it.
+[vars]
+ASK_MONTHLY_CAP = "500"
+
 # Secrets are set with `wrangler secret put`, never in this file:
+#   ANTHROPIC_API_KEY    a Console key, and the only metered thing in this
+#                        worker. It buys the written answer lane: about two
+#                        cents a question, bounded by ASK_MONTHLY_CAP above.
+#                        Without it /answer returns 503 and the box falls back
+#                        to the in-page engine and the archive button, which is
+#                        exactly how the site behaved before this lane existed.
 #   TURNSTILE_SECRET     optional but strongly recommended. Without it the
 #                        endpoint answers anyone who can send a POST, and every
 #                        request spends a slot from the account's daily routine
