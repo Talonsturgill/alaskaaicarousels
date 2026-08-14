@@ -629,6 +629,28 @@ export default {
 
     const path = new URL(request.url).pathname.replace(/\/+$/, "");
 
+    // A presence check. Booleans only, never a value, so this leaks nothing an
+    // error message does not already imply.
+    //
+    // It exists because "the answerer is not configured" cannot say WHICH of
+    // the three is missing without printing secrets, and the alternative is
+    // asking a person to re-read a settings page and taking their word for it.
+    // That went several rounds and got nowhere. One request answers it.
+    if (path === "/_config") {
+      return json({
+        kv_binding: !!env.ASK_KV,
+        anthropic_key: !!env.ANTHROPIC_API_KEY,
+        turnstile_secret: !!env.TURNSTILE_SECRET,
+        routine_token: !!env.ROUTINE_TOKEN,
+        monthly_cap: capOf(env),
+        model: env.ASK_MODEL || "(default)",
+        pack_url: env.ASK_PACK_URL || "(default)",
+        // Every name the worker can actually see, so a typo shows up as the
+        // wrong string rather than as a missing one.
+        visible: Object.keys(env).sort(),
+      });
+    }
+
     // Polling is a GET because it happens every few seconds for minutes and
     // has no body; everything else is a POST.
     if (path === "/result") {
