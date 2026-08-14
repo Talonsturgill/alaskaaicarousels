@@ -1127,10 +1127,25 @@ letter-spacing:-.01em;pointer-events:none;user-select:none;}
 #qq{position:relative;flex:1;min-width:0;background:none;border:0;outline:none;
 color:var(--snow);font-size:17px;line-height:1.4;font-family:inherit;letter-spacing:-.01em;}
 #qq::placeholder{color:var(--mute);opacity:.72;}
-.qkbd{flex:none;font-family:JBMono,ui-monospace,monospace;font-size:11px;
-color:var(--mute);border:1px solid var(--line);border-radius:7px;
-padding:4px 7px;letter-spacing:.06em;background:rgba(0,0,0,.25);}
-@media (hover:none){.qkbd{display:none;}}
+/* The submit button. This used to be a CTRL K hint, which told a desktop
+   reader a shortcut and told a phone reader nothing, because it hid itself on
+   touch. So the box had no visible way to submit on the device most people
+   read it from, and pressing Enter did nothing unless a result had already
+   been arrow-selected. Now there is one obvious target, always present, and
+   it does the same thing Enter does. 44px is the minimum touch target. */
+.qgo{flex:none;width:44px;height:44px;display:flex;align-items:center;
+justify-content:center;border-radius:50%;cursor:pointer;
+background:rgba(255,199,44,.1);border:1px solid rgba(255,199,44,.38);
+color:var(--gold);touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+transition:background .18s ease,border-color .18s ease,transform .12s ease;}
+.qgo svg{width:20px;height:20px;display:block;}
+.qgo:hover{background:rgba(255,199,44,.2);border-color:var(--gold);}
+.qgo:active{transform:scale(.93);}
+.qgo.busy{opacity:.5;cursor:default;}
+.qgo.busy svg{animation:qspin 1s linear infinite;}
+@keyframes qspin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){.qgo.busy svg{animation:none;}}
+.qgo:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 
 /* The live readout. It moves on every keystroke, which is the whole point.
    The reader watches twenty become three and understands that nothing was
@@ -2550,8 +2565,6 @@ ASK_JS = r"""
     }
     panel.innerHTML = html;
     panel.hidden = false;
-    var ask = document.getElementById('qplain');
-    if (ask) ask.addEventListener('click', plain);
     var deep = document.getElementById('qdeep');
     if (deep) deep.addEventListener('click', research);
     var share = document.getElementById('qshare');
@@ -2611,10 +2624,15 @@ ASK_JS = r"""
       // typed, and only those, to the worker. What that means is set out on
       // /privacy/ under "The one thing you can choose to send"; it is not
       // repeated here.
+      // The archive button lives here, because reading the whole repository
+      // only makes sense once the record itself has come up empty. The written
+      // answer does NOT live here any more: it hung off this panel, and this
+      // panel only renders when the engine matched nothing at all, which on a
+      // loose match almost never happens. The lane was reachable in principle
+      // and unreachable in practice. It is on the submit button now.
       (ENDPOINT ? '<div class="qlane">' +
-                  '<button type="button" class="qplain" id="qplain">ANSWER THIS FROM THE RECORD</button>' +
                   '<button type="button" class="qdeep" id="qdeep">SEARCH THE FULL ARCHIVE</button>' +
-                  '</div><div class="qout" id="qout" hidden></div>' : '') +
+                  '</div>' : '') +
       '</div>';
   }
   function setCount(n){
@@ -2767,14 +2785,21 @@ ASK_JS = r"""
     if (plainBusy || !ENDPOINT) return;
     var q = input.value.trim(); if (!q) return;
     plainBusy = true;
-    var btn = document.getElementById('qplain');
+    // The submit button IS the control now, so it carries the busy state.
+    var btn = document.getElementById('qgo');
     var out = document.getElementById('qout');
-    if (btn) { btn.disabled = true; btn.textContent = 'READING THE RECORD...'; }
-    if (out) { out.hidden = false; out.textContent = 'Reading the record.'; }
+    if (btn) { btn.disabled = true; btn.classList.add('busy'); }
+    if (out) {
+      out.hidden = false;
+      out.textContent = 'Reading the record.';
+      // The box can be well down the page by the time someone submits, and an
+      // answer nobody scrolls to reads exactly like an answer that never came.
+      out.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
     var tok = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || '') : '';
-    var done = function(label){
+    var done = function(){
       plainBusy = false;
-      if (btn) { btn.disabled = false; btn.textContent = label; }
+      if (btn) { btn.disabled = false; btn.classList.remove('busy'); }
       if (TS_SITEKEY && window.turnstile) turnstile.reset();
     };
     fetch(ENDPOINT + '/answer', {method: 'POST', headers: {'content-type': 'application/json'},
@@ -2782,7 +2807,7 @@ ASK_JS = r"""
       .then(function(r){ return r.json().then(function(d){
         if (!r.ok) throw new Error(d.error || 'that did not work'); return d; }); })
       .then(function(d){
-        if (!out) { done('ANSWER THIS FROM THE RECORD'); return; }
+        if (!out) { done(); return; }
         out.textContent = '';
         if (d.text) {
           var src = document.createElement('div');
@@ -2799,10 +2824,10 @@ ASK_JS = r"""
         } else {
           out.textContent = d.error || 'The record does not answer that.';
         }
-        done('ASK SOMETHING ELSE');
+        done();
       }).catch(function(e){
         if (out) out.textContent = (e && e.message) || 'that did not work';
-        done('TRY AGAIN');
+        done();
       });
   }
   function research(){
@@ -2881,6 +2906,27 @@ ASK_JS = r"""
   input.addEventListener('blur', function(){
     if (!input.value.trim()) box.classList.remove('on');
   });
+  /* One action for the arrow button and for Enter, doing whatever is most
+     obvious from what is on screen. Enter used to fire only when a result had
+     been arrow-selected, so typing a question and pressing Enter did nothing
+     at all, which is the single most natural thing to try. */
+  function submit(){
+    flush();
+    /* An arrow-selected result is a deliberate pick, so honour it. */
+    var hits = panel.querySelectorAll('.qhit');
+    if (sel >= 0 && hits[sel]) { hits[sel].click(); return; }
+    /* Otherwise submitting a question means answer the question. The live list
+       is what typing gives you and it is free; pressing this asks for a
+       sentence. Routing to the top hit instead is how the model lane ended up
+       unreachable, because the engine nearly always has SOME match and the
+       reader never got past it. */
+    if (input.value.trim() && ENDPOINT) { plain(); return; }
+    if (box.dataset.ghost) { input.value = box.dataset.ghost; run(); return; }
+    if (hits.length) hits[0].click();
+  }
+  var go = document.getElementById('qgo');
+  if (go) go.addEventListener('click', function(){ input.focus(); submit(); });
+
   input.addEventListener('keydown', function(e){
     flush();
     if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
@@ -2891,9 +2937,7 @@ ASK_JS = r"""
                input.selectionStart === input.value.length) {
       e.preventDefault(); input.value = box.dataset.ghost; run();
     } else if (e.key === 'Enter') {
-      var hits = panel.querySelectorAll('.qhit');
-      if (sel >= 0 && hits[sel]) { e.preventDefault(); hits[sel].click(); }
-      else if (box.dataset.ghost) { e.preventDefault(); input.value = box.dataset.ghost; run(); }
+      e.preventDefault(); submit();
     } else if (e.key === 'Escape') {
       if (input.value) { input.value = ''; run(); }
       else { input.blur(); box.classList.remove('on'); }
@@ -2993,22 +3037,28 @@ def ask_html(today):
            aria-expanded="false" aria-controls="qres" aria-autocomplete="list"
            placeholder="Ask anything about {n} tracked decisions">
   </div>
-  <kbd class="qkbd">CTRL K</kbd>
+  <button type="button" class="qgo" id="qgo" aria-label="Ask this question">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5 12h12M12 6l6 6-6 6"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
 </div><div class="qrail"><div class="qmeter" id="qmeter"></div></div></div>
 <div class="qviews" id="qviews">{cards}</div>
 <div class="qstrips"><div class="qtries" id="qtries"><span class="qtryl">TRY</span>{tries}</div>
 <div class="qtries qnears" id="qnears"><span class="qtryl">NEAR</span>{hoods}</div></div>
 <div class="qpanel" id="qres" role="listbox" aria-label="Answer" hidden></div>
+<!-- The written answer lands here, and this sits OUTSIDE the results panel on
+     purpose. It used to be rendered inside the no-match panel, which only
+     appears when the engine matched nothing at all. A loose match means the
+     engine nearly always returns something, so that panel nearly never
+     appeared, so the answer lane was reachable in principle and unreachable in
+     practice. Living out here it works for any question, matched or not. -->
+<div class="qout" id="qout" hidden></div>
 <div id="qts"></div>
-<!-- Keyboard hints only. The privacy sentences that used to close this row
-     were dropped at the maintainer's call, along with the one that sat above
-     the two sending buttons. What the buttons do is described in full on
-     /privacy/ under "The one thing you can choose to send", so the record of
-     it is kept in the place a reader goes looking for it rather than repeated
-     across the interface. -->
-<div class="qfoot"><span><kbd>TAB</kbd> to complete</span>
-<span><kbd>UP</kbd> <kbd>DOWN</kbd> to move</span>
-<span><kbd>ENTER</kbd> to open</span><span><kbd>ESC</kbd> to clear</span></div>
+<!-- The keyboard hint row is gone at the maintainer's call. It taught four
+     shortcuts that a phone has no keys for, on a box most people reach from a
+     phone, and it sat where the eye lands after typing. The shortcuts all
+     still work. What the two sending buttons do is described in full on
+     /privacy/ under "The one thing you can choose to send". -->
 <script type="application/json" id="qdata">{json.dumps(data, separators=(",", ":"))}</script>
 </div>"""
 
