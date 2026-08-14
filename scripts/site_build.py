@@ -740,9 +740,13 @@ backdrop-filter:blur(6px);white-space:nowrap;}
 z-index:6;touch-action:none;transition:height .16s,background-color .16s;}
 .hvprog i{display:block;height:100%;width:100%;
 background:linear-gradient(90deg,var(--gold),#ffda6e);
-transform:scaleX(0);transform-origin:0 50%;will-change:transform;}
-.hvprog::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;}
-.vidwrap.paused .hvprog::before,.vidwrap.scrubbing .hvprog::before{height:34px;}
+transform:scaleX(0);transform-origin:0 50%;will-change:transform;touch-action:none;}
+/* touch-action is NOT an inherited property, so it has to be repeated on the
+   pseudo-element and the fill. Set only on .hvprog it left the box the thumb
+   actually lands on at the default 'auto', and the browser chooses the gesture
+   at touchstart: about a centimetre of scrub, then the page took the rest. */
+.hvprog::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;touch-action:none;}
+.vidwrap.paused .hvprog::before,.vidwrap.scrubbing .hvprog::before{height:44px;}
 .vidwrap.paused .hvprog,.vidwrap.scrubbing .hvprog{height:6px;background:rgba(255,255,255,.26);}
 .hvknob{position:absolute;top:50%;left:0;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;
 border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(255,199,44,.22);
@@ -4782,27 +4786,50 @@ fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
   });
   var tick=function(){if(el.duration)paint(el.currentTime/el.duration);};
   el.addEventListener('timeupdate',tick);
-  var seekTo=function(clientX){
-    if(!isFinite(el.duration)||!el.duration)return;
+  /* The drag is held by pointer id and moves are listened for on window, so a
+     thumb that rolls off the strip keeps scrubbing instead of dropping the
+     gesture. Painting is one transform and runs on every move; assigning
+     currentTime kicks a decoder seek and pointermove fires far faster than a
+     phone serves those, so the seek is coalesced to one per frame and the
+     release lands the exact position. */
+  var dragId=null,pendingF=-1,seekRaf=0;
+  var fracAt=function(clientX){
     var r=prog.getBoundingClientRect();
-    var f=Math.min(1,Math.max(0,(clientX-r.left)/r.width));
-    el.currentTime=f*el.duration;paint(f);
+    return Math.min(1,Math.max(0,(clientX-r.left)/r.width));
+  };
+  var commitSeek=function(){
+    seekRaf=0;
+    if(dragId===null||pendingF<0)return;
+    if(!isFinite(el.duration)||!el.duration)return;
+    el.currentTime=pendingF*el.duration;
+  };
+  var scrub=function(clientX){
+    var f=fracAt(clientX);paint(f);pendingF=f;
+    if(!seekRaf)seekRaf=requestAnimationFrame(commitSeek);
   };
   prog.addEventListener('pointerdown',function(e){
+    if(dragId!==null)return;
+    dragId=e.pointerId;
     wrap.classList.add('scrubbing');
     try{prog.setPointerCapture(e.pointerId)}catch(_){}
-    seekTo(e.clientX);e.preventDefault();
+    scrub(e.clientX);e.preventDefault();
   });
-  prog.addEventListener('pointermove',function(e){
-    if(wrap.classList.contains('scrubbing'))seekTo(e.clientX);
-  });
+  window.addEventListener('pointermove',function(e){
+    if(dragId===null||e.pointerId!==dragId)return;
+    scrub(e.clientX);e.preventDefault();
+  },{passive:false});
   var endScrub=function(e){
-    if(!wrap.classList.contains('scrubbing'))return;
+    if(dragId===null||e.pointerId!==dragId)return;
+    var f=fracAt(e.clientX);
+    if(isFinite(el.duration)&&el.duration)el.currentTime=f*el.duration;
+    paint(f);
     wrap.classList.remove('scrubbing');
-    try{prog.releasePointerCapture(e.pointerId)}catch(_){}
+    try{prog.releasePointerCapture(dragId)}catch(_){}
+    if(seekRaf){cancelAnimationFrame(seekRaf);seekRaf=0}
+    dragId=null;pendingF=-1;
   };
-  prog.addEventListener('pointerup',endScrub);
-  prog.addEventListener('pointercancel',endScrub);
+  window.addEventListener('pointerup',endScrub);
+  window.addEventListener('pointercancel',endScrub);
 
   /* Download. Blob first, because the download attribute is ignored
      cross-origin and a plain link would navigate to the mp4 instead of
