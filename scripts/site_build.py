@@ -1142,8 +1142,13 @@ transition:background .18s ease,border-color .18s ease,transform .12s ease;}
 .qgo:hover{background:rgba(255,199,44,.2);border-color:var(--gold);}
 .qgo:active{transform:scale(.93);}
 .qgo.busy{opacity:.5;cursor:default;}
-.qgo.busy svg{animation:qspin 1s linear infinite;}
-@keyframes qspin{to{transform:rotate(360deg);}}
+/* qgospin, NOT qspin. @keyframes share one namespace across the document, so
+   naming this qspin redefined the search shell's rotating border above, which
+   animates a gradient angle rather than a transform. The border stopped
+   sweeping and started physically spinning. Keyframe names are global; treat
+   them like it. */
+.qgo.busy svg{animation:qgospin 1s linear infinite;}
+@keyframes qgospin{to{transform:rotate(360deg);}}
 @media (prefers-reduced-motion:reduce){.qgo.busy svg{animation:none;}}
 .qgo:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 
