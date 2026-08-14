@@ -1042,16 +1042,23 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
 }
 """
 
-# The deployed Worker behind the ARCHIVE lane, for a question the in-page
-# engine has no field for. Empty until it is deployed, and while it is empty
-# the archive link does not render at all, so a half-finished setup shows the
-# docket exactly as it looks today rather than a form that fails when someone
-# uses it. The box itself does not depend on this and never did.
+# The deployed Worker behind the two lanes under a no-match: the written
+# answer and the archive search. While this is empty neither button renders at
+# all, so a half-finished setup shows the docket exactly as it looks today
+# rather than a form that fails when someone uses it. The box itself does not
+# depend on this and never did.
 #
-# The environment wins over the constant, so turning the lane on is a deploy
-# variable rather than a commit, and a one-off build can point at a staging
-# worker without editing anything. See workers/ask/README.md.
-ASK_ENDPOINT = os.environ.get("ASK_ENDPOINT", "")
+# THE DEFAULT IS THE REAL URL, ON PURPOSE. docs/ is committed, not built in CI,
+# and the routine rebuilds and commits it every run. A deploy-time variable
+# would mean tomorrow's run rebuilt the page without it and silently took the
+# buttons back off, with nothing to say so. Living here, every build has it.
+# The environment still wins, so a one-off build can point at a staging worker
+# without editing anything. See workers/ask/README.md.
+#
+# rstrip because the dashboard hands out the URL with a trailing slash and the
+# page appends "/answer" to it.
+ASK_ENDPOINT = os.environ.get(
+    "ASK_ENDPOINT", "https://alaskaai-ask.talon-sturgill.workers.dev").rstrip("/")
 
 # The same Turnstile widget the scanner uses. A sitekey is per domain and
 # public by design, so one widget covers both forms and there is nothing to
