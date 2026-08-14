@@ -1469,88 +1469,88 @@
     },
     {
       "date": "2026-08-13",
-      "collected_utc": "2026-08-13T20:01:12Z",
+      "collected_utc": "2026-08-14T06:05:41Z",
       "collector_version": "1.0",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-08-13T09:00:00",
-        "source_timestamp_utc": "2026-08-13T17:00:00Z",
-        "inventory_mcf": 6784121,
-        "inventory_delta_mcf": 35930,
+        "source_timestamp": "2026-08-13T21:00:00",
+        "source_timestamp_utc": "2026-08-14T05:00:00Z",
+        "inventory_mcf": 6828861,
+        "inventory_delta_mcf": 41080,
         "storage_design_mcf": 13000000,
-        "inventory_pct_of_design": 52.2,
+        "inventory_pct_of_design": 52.5,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_operating_mcfd": 47970,
         "withdrawal_available_mcfd": 47970,
         "withdrawal_restriction_mcfd": 111930,
         "injection_design_mcfd": 225000,
         "injection_operating_mcfd": 61896,
-        "injection_available_mcfd": 25965,
-        "injection_in_progress_mcfd": 35931,
+        "injection_available_mcfd": 20816,
+        "injection_in_progress_mcfd": 41080,
         "injection_restriction_mcfd": 144424,
         "operational_note": "Well 7 is out of service for Coil tube work. We are currently waiting on the Coil Tube unit to be available for this work. This OFO only impacts Expansion Customers. We are still working on the system to only email customers affected by expansion OFO's, this issue is still being addressed. CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
-        "source_age_hours": 3.0
+        "source_age_hours": 1.1
       },
       "forecast": [
         {
           "date": "2026-08-14",
           "hours": 24,
-          "mean_temp_f": 63.2,
+          "mean_temp_f": 62.7,
           "min_temp_f": 54,
-          "hdd65": 1.8,
-          "modeled_demand_mmcfd": 87
+          "hdd65": 2.3,
+          "modeled_demand_mmcfd": 89
         },
         {
           "date": "2026-08-15",
           "hours": 24,
           "mean_temp_f": 62.3,
-          "min_temp_f": 54,
+          "min_temp_f": 55,
           "hdd65": 2.7,
           "modeled_demand_mmcfd": 90
         },
         {
           "date": "2026-08-16",
           "hours": 24,
-          "mean_temp_f": 59.3,
-          "min_temp_f": 54,
-          "hdd65": 5.7,
+          "mean_temp_f": 59.4,
+          "min_temp_f": 55,
+          "hdd65": 5.6,
           "modeled_demand_mmcfd": 100
         },
         {
           "date": "2026-08-17",
           "hours": 24,
-          "mean_temp_f": 58.3,
-          "min_temp_f": 53,
-          "hdd65": 6.7,
-          "modeled_demand_mmcfd": 104
+          "mean_temp_f": 57.7,
+          "min_temp_f": 54,
+          "hdd65": 7.3,
+          "modeled_demand_mmcfd": 106
         },
         {
           "date": "2026-08-18",
           "hours": 24,
-          "mean_temp_f": 57.5,
-          "min_temp_f": 52,
-          "hdd65": 7.5,
-          "modeled_demand_mmcfd": 107
+          "mean_temp_f": 56.2,
+          "min_temp_f": 53,
+          "hdd65": 8.8,
+          "modeled_demand_mmcfd": 111
         },
         {
           "date": "2026-08-19",
-          "hours": 23,
-          "mean_temp_f": 55.7,
-          "min_temp_f": 50,
-          "hdd65": 9.3,
-          "modeled_demand_mmcfd": 113
+          "hours": 24,
+          "mean_temp_f": 55.1,
+          "min_temp_f": 51,
+          "hdd65": 9.9,
+          "modeled_demand_mmcfd": 115
         }
       ],
-      "forecast_source_updated": "2026-08-13T15:42:57+00:00",
+      "forecast_source_updated": "2026-08-14T04:13:01+00:00",
       "derived": {
         "peak_forecast_date": "2026-08-19",
-        "peak_forecast_hdd": 9.3,
-        "peak_modeled_demand_mmcfd": 113,
-        "forecast_window_demand_bcf": 0.6,
-        "storage_withdrawal_mmcfd": -35.9,
+        "peak_forecast_hdd": 9.9,
+        "peak_modeled_demand_mmcfd": 115,
+        "forecast_window_demand_bcf": 0.61,
+        "storage_withdrawal_mmcfd": -41.1,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 60.0,
+        "days_cover_at_peak": 59.4,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -1596,7 +1596,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-13T20:01:12Z",
+          "fetched_utc": "2026-08-14T06:05:42Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -1605,7 +1605,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-13T20:01:12Z",
+          "fetched_utc": "2026-08-14T06:05:42Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -1614,7 +1614,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-13T20:01:13Z",
+          "fetched_utc": "2026-08-14T06:05:42Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -1622,7 +1622,8 @@
       "flags": [
         "injection_restriction_active",
         "withdrawal_restriction_active"
-      ]
+      ],
+      "supersedes_posting": "2026-08-13T09:00:00"
     }
   ]
 }
