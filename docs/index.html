@@ -363,27 +363,50 @@ fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
   });
   var tick=function(){if(el.duration)paint(el.currentTime/el.duration);};
   el.addEventListener('timeupdate',tick);
-  var seekTo=function(clientX){
-    if(!isFinite(el.duration)||!el.duration)return;
+  /* The drag is held by pointer id and moves are listened for on window, so a
+     thumb that rolls off the strip keeps scrubbing instead of dropping the
+     gesture. Painting is one transform and runs on every move; assigning
+     currentTime kicks a decoder seek and pointermove fires far faster than a
+     phone serves those, so the seek is coalesced to one per frame and the
+     release lands the exact position. */
+  var dragId=null,pendingF=-1,seekRaf=0;
+  var fracAt=function(clientX){
     var r=prog.getBoundingClientRect();
-    var f=Math.min(1,Math.max(0,(clientX-r.left)/r.width));
-    el.currentTime=f*el.duration;paint(f);
+    return Math.min(1,Math.max(0,(clientX-r.left)/r.width));
+  };
+  var commitSeek=function(){
+    seekRaf=0;
+    if(dragId===null||pendingF<0)return;
+    if(!isFinite(el.duration)||!el.duration)return;
+    el.currentTime=pendingF*el.duration;
+  };
+  var scrub=function(clientX){
+    var f=fracAt(clientX);paint(f);pendingF=f;
+    if(!seekRaf)seekRaf=requestAnimationFrame(commitSeek);
   };
   prog.addEventListener('pointerdown',function(e){
+    if(dragId!==null)return;
+    dragId=e.pointerId;
     wrap.classList.add('scrubbing');
     try{prog.setPointerCapture(e.pointerId)}catch(_){}
-    seekTo(e.clientX);e.preventDefault();
+    scrub(e.clientX);e.preventDefault();
   });
-  prog.addEventListener('pointermove',function(e){
-    if(wrap.classList.contains('scrubbing'))seekTo(e.clientX);
-  });
+  window.addEventListener('pointermove',function(e){
+    if(dragId===null||e.pointerId!==dragId)return;
+    scrub(e.clientX);e.preventDefault();
+  },{passive:false});
   var endScrub=function(e){
-    if(!wrap.classList.contains('scrubbing'))return;
+    if(dragId===null||e.pointerId!==dragId)return;
+    var f=fracAt(e.clientX);
+    if(isFinite(el.duration)&&el.duration)el.currentTime=f*el.duration;
+    paint(f);
     wrap.classList.remove('scrubbing');
-    try{prog.releasePointerCapture(e.pointerId)}catch(_){}
+    try{prog.releasePointerCapture(dragId)}catch(_){}
+    if(seekRaf){cancelAnimationFrame(seekRaf);seekRaf=0}
+    dragId=null;pendingF=-1;
   };
-  prog.addEventListener('pointerup',endScrub);
-  prog.addEventListener('pointercancel',endScrub);
+  window.addEventListener('pointerup',endScrub);
+  window.addEventListener('pointercancel',endScrub);
 
   /* Download. Blob first, because the download attribute is ignored
      cross-origin and a plain link would navigate to the mp4 instead of

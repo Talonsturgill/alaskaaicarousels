@@ -104,11 +104,16 @@ stroke-linecap:round;stroke-linejoin:round;}
 .prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.12);z-index:6;
 touch-action:none;transition:height .16s,background-color .16s;}
 .prog i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--gold),var(--halo));
-transform:scaleX(0);transform-origin:0 50%;will-change:transform;}
-/* The grab area exists ONLY while the scrubber is up. A permanent 36px strip
-   would swallow every bottom-edge tap meant for play/pause during playback. */
-.prog::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;}
-.card.paused .prog::before,.card.scrubbing .prog::before{height:36px;}
+transform:scaleX(0);transform-origin:0 50%;will-change:transform;touch-action:none;}
+/* The grab area exists ONLY while the scrubber is up. A permanent 44px strip
+   would swallow every bottom-edge tap meant for play/pause during playback.
+   touch-action is NOT an inherited property, so it has to be repeated on the
+   pseudo-element and on the fill. Setting it only on .prog left the box the
+   thumb actually lands on at the default 'auto': the browser picked the
+   gesture at touchstart, allowed about a centimetre of scrub, then decided it
+   was a scroll and handed the feed the rest. */
+.prog::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;touch-action:none;}
+.card.paused .prog::before,.card.scrubbing .prog::before{height:44px;}
 .card.paused .prog,.card.scrubbing .prog{height:6px;background:rgba(255,255,255,.24);}
 .knob{position:absolute;top:50%;left:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
 background:var(--gold);box-shadow:0 0 0 5px rgba(255,199,44,.22);opacity:0;pointer-events:none;
@@ -436,41 +441,73 @@ noscript div{padding:40vh 20px 0;text-align:center;font-family:JBMono,monospace;
     }
   });
 
-  // ---- scrub: press the bar and drag. Pointer capture keeps the drag on the
-  // bar once it starts, so a finger that wanders up the video still seeks. ----
-  function seekTo(c, clientX){
-    const vd = videoOf(c), pr = c.querySelector('.prog');
-    if(!vd || !isFinite(vd.duration) || !vd.duration) return;
-    const r = pr.getBoundingClientRect();
-    const f = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
-    vd.currentTime = f * vd.duration;
+  // ---- scrub: press the bar and drag.
+  //
+  // The drag is tracked by pointer id in `drag`, not re-derived from e.target
+  // on every move. Deriving it meant the drag ended the instant the finger
+  // wandered off the strip, which on a phone is most of the way through a
+  // normal thumb roll.
+  //
+  // Moves are listened for on window rather than on the feed for the same
+  // reason: once the finger is down, the bar owns the gesture until it lifts,
+  // wherever it travels.
+  let drag = null, pendingF = -1, seekRaf = 0;
+
+  function fracAt(c, clientX){
+    const r = c.querySelector('.prog').getBoundingClientRect();
+    return Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+  }
+  function durOf(c){
+    const vd = videoOf(c);
+    return (vd && isFinite(vd.duration) && vd.duration) ? vd : null;
+  }
+  // Painting is one transform and costs nothing, so it runs on every move and
+  // the bar tracks the thumb exactly. Assigning currentTime kicks a decoder
+  // seek, and pointermove fires far faster than a phone can serve those, so
+  // the seek is coalesced to one per frame. Setting it on every move is what
+  // made the drag feel like it was catching.
+  function commitSeek(){
+    seekRaf = 0;
+    if(!drag || pendingF < 0) return;
+    const vd = durOf(drag.card);
+    if(vd) vd.currentTime = pendingF * vd.duration;
+  }
+  function scrub(c, clientX){
+    const f = fracAt(c, clientX);
     paint(c, f);
+    pendingF = f;
+    if(!seekRaf) seekRaf = requestAnimationFrame(commitSeek);
   }
   feed.addEventListener('pointerdown', e=>{
     const pr = e.target.closest('.prog');
-    if(!pr) return;
+    if(!pr || drag) return;
     const c = pr.closest('.card');
+    drag = { card: c, id: e.pointerId, bar: pr };
     c.classList.add('scrubbing');
     try{ pr.setPointerCapture(e.pointerId); }catch(_){}
-    seekTo(c, e.clientX);
+    scrub(c, e.clientX);
     e.preventDefault();
   });
-  feed.addEventListener('pointermove', e=>{
-    const pr = e.target.closest('.prog');
-    if(!pr) return;
-    const c = pr.closest('.card');
-    if(c.classList.contains('scrubbing')) seekTo(c, e.clientX);
-  });
+  window.addEventListener('pointermove', e=>{
+    if(!drag || e.pointerId !== drag.id) return;
+    scrub(drag.card, e.clientX);
+    e.preventDefault();
+  }, { passive:false });
   function endScrub(e){
-    const pr = e.target.closest && e.target.closest('.prog');
-    if(!pr) return;
-    const c = pr.closest('.card');
-    if(!c.classList.contains('scrubbing')) return;
+    if(!drag || e.pointerId !== drag.id) return;
+    const c = drag.card;
+    // Land exactly where the finger left off. The last move may have been
+    // coalesced away by the frame budget, so the release seeks outright.
+    const vd = durOf(c), f = fracAt(c, e.clientX);
+    if(vd) vd.currentTime = f * vd.duration;
+    paint(c, f);
     c.classList.remove('scrubbing');
-    try{ pr.releasePointerCapture(e.pointerId); }catch(_){}
+    try{ drag.bar.releasePointerCapture(drag.id); }catch(_){}
+    if(seekRaf){ cancelAnimationFrame(seekRaf); seekRaf = 0; }
+    drag = null; pendingF = -1;
   }
-  feed.addEventListener('pointerup', endScrub);
-  feed.addEventListener('pointercancel', endScrub);
+  window.addEventListener('pointerup', endScrub);
+  window.addEventListener('pointercancel', endScrub);
 
   function setSound(on){
     soundOn = on;

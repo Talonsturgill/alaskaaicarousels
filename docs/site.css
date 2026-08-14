@@ -211,9 +211,13 @@ backdrop-filter:blur(6px);white-space:nowrap;}
 z-index:6;touch-action:none;transition:height .16s,background-color .16s;}
 .hvprog i{display:block;height:100%;width:100%;
 background:linear-gradient(90deg,var(--gold),#ffda6e);
-transform:scaleX(0);transform-origin:0 50%;will-change:transform;}
-.hvprog::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;}
-.vidwrap.paused .hvprog::before,.vidwrap.scrubbing .hvprog::before{height:34px;}
+transform:scaleX(0);transform-origin:0 50%;will-change:transform;touch-action:none;}
+/* touch-action is NOT an inherited property, so it has to be repeated on the
+   pseudo-element and the fill. Set only on .hvprog it left the box the thumb
+   actually lands on at the default 'auto', and the browser chooses the gesture
+   at touchstart: about a centimetre of scrub, then the page took the rest. */
+.hvprog::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;touch-action:none;}
+.vidwrap.paused .hvprog::before,.vidwrap.scrubbing .hvprog::before{height:44px;}
 .vidwrap.paused .hvprog,.vidwrap.scrubbing .hvprog{height:6px;background:rgba(255,255,255,.26);}
 .hvknob{position:absolute;top:50%;left:0;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;
 border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(255,199,44,.22);
