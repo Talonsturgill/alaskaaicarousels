@@ -1571,6 +1571,17 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
 })();
 
 (function(){
+  'use strict';
+  window.askWhyCut = function(reason){
+    return ({
+      numeral: 'it stated a figure the record does not carry',
+      citation: 'it named a decision that is not on the record',
+      verdict: 'it made a call on gas adequacy, which this record never makes'
+    })[reason] || 'it could not be checked against the record';
+  };
+})();
+
+(function(){
   var box = document.getElementById('qbox');
   if (!box) return;
   var DATA;
@@ -3016,23 +3027,10 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
      by the same pass that built this page. Every sentence is checked against
      the record's own numerals before it arrives, and a sentence that fails is
      cut rather than smoothed over, which is what the withheld note says. */
-  /* SAY WHICH CHECK STOPPED IT. Both lanes have always sent the reason,
-     numeral or citation or verdict, and both places on this page threw it away
-     and printed one sentence covering all three. That cost twice over. A
-     reader was told an answer was cut without being told what KIND of thing
-     was cut, which reads as the box being flaky rather than the box being
-     strict, and strict is the whole product. And nobody watching it could tell
-     whether the gas question was tripping the no-verdict rule, the one this
-     site cares most about, or merely reaching for a figure. The flagship
-     question was cut on every run for weeks with the reason sitting unread in
-     the payload. */
-  function whyCut(reason){
-    return ({
-      numeral: 'it stated a figure the record does not carry',
-      citation: 'it named a decision that is not on the record',
-      verdict: 'it made a call on gas adequacy, which this record never makes'
-    })[reason] || 'it could not be checked against the record';
-  }
+  /* whyCut lives in ASK_COMMON_JS, because the homepage box says the same
+     thing and two copies of a guard's wording is how two pages end up telling
+     a reader different stories about the same refusal. */
+  var whyCut = window.askWhyCut;
 
   function plain(){
     if (plainBusy || !ENDPOINT) return;
