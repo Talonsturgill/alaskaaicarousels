@@ -2818,7 +2818,7 @@ ASK_JS = r"""
     box.dataset.ts = '1';
     var h = document.getElementById('qts');
     h.innerHTML = '<div class="cf-turnstile" data-sitekey="' + TS_SITEKEY +
-                  '" data-theme="dark" data-size="flexible" data-appearance="interaction-only"></div>';
+                  '" data-theme="dark" data-size="flexible" data-appearance="interaction-only" data-execution="execute"></div>';
     var s = document.createElement('script');
     s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
     s.async = true; s.defer = true; document.head.appendChild(s);
@@ -2914,8 +2914,15 @@ ASK_JS = r"""
       if (ev.stage) setStage(ev.stage);
       else if (ev.sentence) addSentence(ev.sentence);
       else if (ev.withheld) {
+        if (stage) { stage.remove(); stage = null; }
         var st = document.createElement('div'); st.className = 'qstop';
-        st.textContent = 'The rest was withheld because it could not be checked against the record.';
+        /* Different copy when NOTHING survived, because there is no "rest".
+           Saying the rest was withheld when the whole answer was withheld
+           reads as a bug, and it was one. */
+        st.textContent = started
+          ? 'The rest was withheld because it could not be checked against the record.'
+          : 'That answer could not be checked against the record, so none of it is shown. ' +
+            'It usually means the answer needed a figure the record does not state.';
         if (body) body.appendChild(st);
       } else if (ev.error) {
         if (stage) { stage.remove(); stage = null; }
@@ -2928,16 +2935,24 @@ ASK_JS = r"""
        has a token posted without one and put the worker's refusal on screen as
        if the reader had done something wrong. Up to eight seconds, checked ten
        times a second, with the stage line explaining the wait. */
+    /* A Turnstile token is single use, so every question needs a fresh one and
+       the previous answer's reset() left the widget holding nothing. The first
+       question worked and every one after it was refused with "finish the
+       human check first", which is a confusing thing to tell someone who did
+       nothing wrong. Ask for a new one explicitly, then wait for it. */
     function token(){
       if (!TS_SITEKEY || !window.turnstile) return Promise.resolve('');
       var have = turnstile.getResponse();
       if (have) return Promise.resolve(have);
       setStage('Passing the human check');
+      try { turnstile.execute(); } catch (e) {
+        try { turnstile.reset(); } catch (e2) {}
+      }
       return new Promise(function(resolve){
         var tries = 0;
         var t = setInterval(function(){
           var v = window.turnstile && turnstile.getResponse();
-          if (v || ++tries > 80) { clearInterval(t); resolve(v || ''); }
+          if (v || ++tries > 100) { clearInterval(t); resolve(v || ''); }
         }, 100);
       });
     }
@@ -2972,6 +2987,7 @@ ASK_JS = r"""
         })();
       })
       .then(function(){
+        if (stage) { stage.remove(); stage = null; }
         if (body && !started && !body.textContent) body.textContent = 'The record does not answer that.';
         again(); done();
       })

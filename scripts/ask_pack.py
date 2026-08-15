@@ -42,6 +42,8 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "scripts"))
 
 import ask_corpus as ac  # noqa: E402
+import gaswatch_build as gw  # noqa: E402
+import gaswatch_collect as gc  # noqa: E402
 
 OUT = os.path.join(REPO, "docs", "ask-pack.json")
 
@@ -198,7 +200,33 @@ def render_reading(row, label):
     return "\n".join(lines)
 
 
-def render_gas(gas):
+def render_figures(figs):
+    """The numbers the GAS WATCH PAGE actually displays, in the page's own units.
+
+    This exists because of a real failure. A reader asked how much gas is in
+    storage. The page says "6.83 of 13.0 Bcf". The pack carried only
+    6828861 Mcf, so 6.83 was not an authorised numeral, so the answer naming
+    the figure the page publishes was cut by the guard as an invention.
+
+    The guard was right and the pack was wrong. Both come from
+    gaswatch_build.figures(), the one place every published number on that page
+    is computed, so what the answerer may say and what the page shows are now
+    the same set by construction rather than by coincidence.
+    """
+    if not figs:
+        return ""
+    keep = ("as_of", "inventory_bcf", "design_bcf", "inventory_mcf",
+            "inventory_pct_of_design", "inventory_delta_mmcf",
+            "withdrawal_operating_mmcfd", "days_cover_at_peak",
+            "peak_modeled_demand_mmcfd")
+    bits = [f"{k} {_num(figs[k])}" for k in keep if k in figs]
+    if not bits:
+        return ""
+    return ("As the page states them, in the units the page uses: "
+            + "; ".join(bits) + ".")
+
+
+def render_gas(gas, figs=None):
     """The gas watch as a position, not as a time series.
 
     A model does not need every daily row to answer questions about the gas
@@ -261,6 +289,10 @@ def render_gas(gas):
         lines.append(f"Demand model version {newest.get('version')}, effective "
                      f"{newest.get('effective')}: {esc_dashes(newest.get('reason'))}")
 
+    disp = render_figures(figs)
+    if disp:
+        lines.append(disp)
+
     if gas.get("warning"):
         lines.append("STANDING LIMIT ON THIS DATA: " + esc_dashes(gas["warning"]))
 
@@ -273,7 +305,7 @@ def render_gas(gas):
     return "\n".join(lines)
 
 
-def render(corpus):
+def render(corpus, figs=None):
     items = corpus["docket"]["items"]
     head = [
         f"THE ALASKA AI DOCKET, as published on {corpus['generated']}.",
@@ -290,7 +322,8 @@ def render(corpus):
         "",
     ]
     body = "\n\n".join(render_item(it) for it in items)
-    return "\n".join(head) + body + "\n\n" + render_gas(corpus["gas_watch"]) + "\n"
+    return ("\n".join(head) + body + "\n\n"
+            + render_gas(corpus["gas_watch"], figs) + "\n")
 
 
 # The instructions the worker sends with the pack. They live here, beside the
@@ -300,7 +333,11 @@ SYSTEM = """You answer questions about the Alaska AI docket, using ONLY the reco
 
 Hard rules, in order:
 
-1. NUMBERS. Only state a number that appears verbatim in the record. Never compute a new one, never round, never convert units, never work out an interval between two dates. If answering would require a number the record does not contain, say what the record does contain instead. Every sentence you write is checked against the record's numerals before a reader sees it, and a sentence with an unauthorised number is cut.
+1. NUMBERS. Only state a number that appears verbatim in the record. Never compute a new one, never round, never convert units, never work out a difference between two figures, and never work out an interval between two dates.
+
+This is enforced, not advisory: every sentence you write is checked against the record's numerals before a reader sees it, and a sentence containing a number the record does not state is cut. A cut sentence helps nobody, so when a question asks for a figure you would have to calculate, DO NOT attempt the calculation and then hedge. Open by saying plainly that the record does not state it, then give the figures it does state and let the reader do the arithmetic. "The record gives 6.83 Bcf on August 13th and 6.5 Bcf on August 5th; it does not state the change between them" is a good answer. Computing 0.33 is a cut one.
+
+Where the record gives the same quantity twice in different units, either is fine, so prefer the one a person would use. Storage is published as both Mcf and Bcf; say Bcf.
 
 2. CITATIONS. Refer to a tracked decision by putting its id in double brackets, like [[aidea-houston-industrial-park]]. Only ever cite an id that appears in the record.
 
@@ -316,7 +353,9 @@ THE RECORD FOLLOWS.
 
 def build(today=None, site_url="https://alaskaaihq.com"):
     corpus = ac.build(today=today, site_url=site_url)
-    text = render(corpus)
+    # The page's own display figures, from the one function that computes them.
+    figs = gw.figures(gw.load_series(), gc.load_model(gw.MODEL_CONFIG))
+    text = render(corpus, figs)
     approx = round(len(text) / CHARS_PER_TOKEN)
     return {
         "generated": corpus["generated"],
@@ -381,12 +420,24 @@ def self_test():
     # And it has to be able to refuse, or it proves nothing.
     check("a number the record does not contain is NOT authorised",
           not [t for t in ("87654321", "99999.7") if t in allowed])
-    # Tighter than the corpus set is the point of building it here.
+    # Every numeral the answerer may state has to come from something the site
+    # actually publishes. That is the corpus, PLUS the display figures on the
+    # gas watch page, which are rounded into the units a person reads and so do
+    # not appear in the corpus at all. 6.83 Bcf is the case: the page says it,
+    # the corpus holds only 6828861 Mcf, and without this the answer naming the
+    # figure the page publishes was cut as an invention.
     wide = set(corpus["authorised_numerals"])
-    check("the pack's set is a subset of the corpus set",
-          allowed <= wide,
-          f"{len(allowed)} of {len(wide)}" +
-          (f", stray {sorted(allowed - wide)[:3]}" if not allowed <= wide else ""))
+    figs = gw.figures(gw.load_series(), gc.load_model(gw.MODEL_CONFIG))
+    wide |= ac.numerals(render_figures(figs))
+    stray = sorted(allowed - wide)
+    check("every numeral the answerer may state is one the site publishes",
+          not stray, f"{len(allowed)} allowed" +
+          (f", stray {stray[:3]}" if stray else ""))
+    # And the page's own headline figure has to be sayable, which is the whole
+    # reason this pack carries the figures block.
+    check("the storage figure the page displays is sayable",
+          str(figs.get("inventory_bcf")) in allowed,
+          f"inventory_bcf {figs.get('inventory_bcf')}")
 
     print("size, which is the cost")
     check(f"under the {MAX_TOKENS} token ceiling", p["approx_tokens"] <= MAX_TOKENS,
