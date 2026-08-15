@@ -34,6 +34,7 @@ on:
       - "prompts/ASK_ROUTINE.md"
       - "tests/ask_engine.mjs"
       - "tests/home_ask.mjs"
+      - "tests/docket_ask.mjs"
       - ".github/workflows/ask.yml"
   push:
     branches: [main]
@@ -49,6 +50,7 @@ on:
       - "ledger/docket.json"
       - "tests/ask_engine.mjs"
       - "tests/home_ask.mjs"
+      - "tests/docket_ask.mjs"
       - ".github/workflows/ask.yml"
   workflow_dispatch:
 
@@ -132,3 +134,12 @@ jobs:
       # streaming, the thread memory and the guard's wording are not.
       - name: The homepage box holds a conversation
         run: SITE=/tmp/site node tests/home_ask.mjs
+
+      # The engine suite above sends nothing, which is most of what the docket
+      # box does and none of what it spends. This is the other half: the two
+      # lanes that leave the page, with the worker stubbed both answering and
+      # switched off. It also owns the rewrite from the model's closing offer
+      # to the reader's own question, which ships inside a button and would
+      # otherwise be checked by nobody.
+      - name: The docket box's outbound lanes behave
+        run: SITE=/tmp/site node tests/docket_ask.mjs

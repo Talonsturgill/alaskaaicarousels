@@ -101,6 +101,20 @@ ok('provenance appears', (await page.locator('.haskfrom').textContent()).include
 ok('the field is ready again', (await page.inputValue('#haskq')) === '');
 ok('it sent only the question the first time', seen[0].messages.length === 1, JSON.stringify(seen[0].messages));
 
+// ---- the closing offer, as one press
+ok('the offer became a chip',
+  (await page.locator('.hasknext').textContent()) === 'Yes, show me');
+await page.click('.hasknext');
+await page.waitForTimeout(120);
+ok('pressing it loads the question',
+  (await page.inputValue('#haskq')) === 'Show me the date it lands.',
+  await page.inputValue('#haskq'));
+/* Two presses on purpose. Sending is the metered call, and this page says so
+   above the button, so a chip that sent by itself would spend on a mis-tap. */
+ok('but does not send it', seen.length === 1, `${seen.length} requests`);
+ok('the chip goes once it has been taken up',
+  await page.locator('.hasknext').count() === 0);
+
 // ---- follow up
 await page.fill('#haskq', 'when');
 await page.click('#haskgo');
@@ -120,6 +134,10 @@ ok('the withheld reason is named',
   (await page.locator('.haskstop').textContent()).includes('stated a figure the record does not carry'),
   await page.locator('.haskstop').textContent());
 ok('two exchanges are on screen', (await page.locator('.haskq').count()) === 2);
+/* The offer is always the answer's last sentence, so a cut answer never has
+   one. Inventing a follow-up here would offer to answer something the record
+   never offered. */
+ok('a cut answer gets no chip', (await page.locator('.hasknext').count()) === 0);
 const grown = await page.locator('.hask').boundingBox();
 ok('the box grew with the conversation', grown.height > shellBox.height + 150,
   `${Math.round(shellBox.height)} -> ${Math.round(grown.height)}`);

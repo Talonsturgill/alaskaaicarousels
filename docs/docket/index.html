@@ -489,6 +489,10 @@ transition:background .18s ease,border-color .18s ease;}
    and a sentence. The archive stays blue and reads as the heavier option,
    because it takes minutes and spends a run. */
 .qlane{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:4px;}
+/* What the lane becomes when the worker says it is switched off. Reads as a
+   note, not as a failure, because nothing failed: it was never turned on. */
+.qlaneoff{display:block;text-align:center;font-size:12.5px;color:var(--mute);
+line-height:1.55;max-width:46ch;margin:4px auto 0;}
 .qplain{background:none;border:1px solid rgba(255,199,44,.4);color:var(--gold);
 border-radius:999px;padding:9px 17px;font-family:JBMono,ui-monospace,monospace;
 font-size:11.5px;letter-spacing:.09em;cursor:pointer;touch-action:manipulation;
@@ -537,6 +541,17 @@ background:var(--gold);animation:qpulse 1.1s ease-in-out infinite;}
   .qstage::before,.qseg{animation:none;}
   .qstage::before{opacity:1;}
 }
+/* Taking the answer up on its closing offer. Gold, because it is the one
+   thing on screen the reader is being invited to press, and a pill rather than
+   a link because it puts words in the field rather than navigating. It sits
+   under the answer that offered it and above the provenance line. */
+.qnext{display:inline-block;margin-top:16px;background:rgba(255,199,44,.07);
+border:1px solid rgba(255,199,44,.4);color:var(--gold);border-radius:999px;
+padding:9px 18px;font-family:JBMono,ui-monospace,monospace;font-size:11.5px;
+letter-spacing:.09em;cursor:pointer;touch-action:manipulation;
+-webkit-tap-highlight-color:transparent;
+transition:background .18s ease,border-color .18s ease;}
+.qnext:hover{background:rgba(255,199,44,.14);border-color:var(--gold);}
 /* Provenance, after the answer and quiet about it. This is the line that makes
    the box worth trusting, so it stays; it just stops announcing itself first. */
 .qfrom{margin-top:18px;padding-top:13px;border-top:1px solid var(--line);
@@ -1579,6 +1594,33 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       verdict: 'it made a call on gas adequacy, which this record never makes'
     })[reason] || 'it could not be checked against the record';
   };
+
+  /* Every answer closes by offering the obvious next question, written from
+     what it just said. Until now the reader had to retype that offer as their
+     own question, which is the one bit of work the box was making a person do
+     that it plainly knew how to do for them.
+     Returns the question to LOAD INTO THE FIELD, or null. It never submits:
+     pressing send is a metered model call, the page says so above the button,
+     and a feature that spends money on a mis-tap would make that sentence a
+     lie. One press fills, a second sends, and between them the reader can read
+     and edit what they are about to ask.
+     Only the shapes the system prompt actually produces are rewritten. A
+     trailing question that is not an offer, which is rare, gets no chip at
+     all, because guessing at it is how a button ends up asking something
+     nobody meant. */
+  window.askFollowUp = function(sentence){
+    var s = String(sentence || '').trim(), m;
+    if (s.length < 8 || s.length > 220 || s.charAt(s.length - 1) !== '?') return null;
+    /* "want me to" before "want": the general pattern would swallow the "me
+       to" and hand back "Show me me to break down the filings." */
+    if ((m = s.match(/^(?:and\s+|so\s+)?(?:do you\s+)?want me to\s+(.+)\?$/i)))
+      return 'Yes, ' + m[1] + '.';
+    if ((m = s.match(/^(?:and\s+|so\s+)?(?:do you\s+)?want\s+(.+)\?$/i)))
+      return 'Show me ' + m[1] + '.';
+    if ((m = s.match(/^(?:and\s+|so\s+)?(?:would you like|shall i|should i)\s+(?:me\s+)?(?:to\s+)?(.+)\?$/i)))
+      return 'Yes, ' + m[1] + '.';
+    return null;
+  };
 })();
 
 (function(){
@@ -1605,6 +1647,10 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   for (bi = 0; bi < NALL; bi++) byId[IDX[bi].id] = IDX[bi];
 
   var sel = -1, shown = [], deepBusy = false, plainBusy = false, lastAns = null;
+  /* Set when the worker says the archive lane is switched off. A door that
+     answered 503 once will answer 503 every time, so it stops being offered
+     for the rest of this visit rather than inviting a second press. */
+  var deepOff = false;
   /* The conversation. Held in the page only: nothing is stored anywhere, it
      goes when the tab does, and it is what makes "what about the other one"
      mean something. The worker keeps no session either; the thread travels
@@ -2822,7 +2868,13 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       // panel only renders when the engine matched nothing at all, which on a
       // loose match almost never happens. The lane was reachable in principle
       // and unreachable in practice. It is on the submit button now.
-      (ENDPOINT ? '<div class="qlane">' +
+      // Not offered once the worker has said the lane is off. Whether it is
+      // configured is the worker's to know and it is not knowable at build
+      // time, so the page learns it the only way that costs nothing: from the
+      // first press. Asking up front would mean a request on every page load,
+      // or a request fired by a no-match, which is a typing state, and this
+      // box promises that typing sends nothing.
+      (ENDPOINT && !deepOff ? '<div class="qlane">' +
                   '<button type="button" class="qdeep" id="qdeep">SEARCH THE FULL ARCHIVE</button>' +
                   '</div>' : '') +
       '</div>';
@@ -3049,6 +3101,10 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       out.hidden = false;
       var oldFoot = out.querySelector('.qfrom');
       if (oldFoot) oldFoot.remove();
+      /* The previous answer's offer goes with it. Left in place it would sit
+         under the new question offering the old one's follow-up. */
+      var oldNext = out.querySelector('.qnext');
+      if (oldNext) oldNext.remove();
       /* The question IS read back now, and that reverses an earlier call. In a
          one-shot box the echo was duplication, because the question sat in the
          field an inch above. In a thread it is the only record of what was
@@ -3089,6 +3145,28 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
         thread.pop();  /* nothing came back, so that question is not history */
       }
       if (!out || out.querySelector('.qfrom')) return;
+      /* The closing offer, as one press. It goes above the provenance line,
+         because it belongs to the answer and the provenance is a footnote to
+         both. Only the last VERIFIED sentence is considered: on a cut answer
+         the offer never arrived, and inventing one would be the page writing
+         a question the record never offered to answer. */
+      var nextQ = saidSoFar.length
+        ? window.askFollowUp(saidSoFar[saidSoFar.length - 1]) : null;
+      if (nextQ) {
+        var nb = document.createElement('button');
+        nb.type = 'button'; nb.className = 'qnext';
+        nb.textContent = 'Yes, show me';
+        nb.addEventListener('click', function(){
+          input.value = nextQ;
+          ghost('');
+          input.focus();
+          /* Caret at the end, so a reader who wants to add to it can type
+             straight away rather than landing in the middle of the line. */
+          try { input.setSelectionRange(nextQ.length, nextQ.length); } catch (e) {}
+          nb.remove();
+        });
+        out.appendChild(nb);
+      }
       var f = document.createElement('div'); f.className = 'qfrom';
       if (started) {
         var note = document.createElement('span');
@@ -3246,41 +3324,65 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     var btn = document.getElementById('qdeep');
     var out = document.getElementById('qout');
     if (btn) { btn.disabled = true; btn.textContent = 'READING THE ARCHIVE...'; }
-    if (out) { out.hidden = false; out.textContent =
-      'Reading every ledger and article. This takes a few minutes and the answer appears here.'; }
+    /* Its own node inside the thread, not the thread itself. Writing over
+       #qout was harmless when that element held one answer and destroys a
+       conversation now that it holds all of them: a reader with three
+       exchanges on screen who types something unmatched and presses this
+       would have watched all three vanish. */
+    var slot = document.createElement('div');
+    slot.className = 'qreply';
+    slot.textContent =
+      'Reading every ledger and article. This takes a few minutes and the answer appears here.';
+    if (out) { out.hidden = false; out.appendChild(slot); }
     var tok = tsToken;
     fetch(ENDPOINT + '/deep', {method: 'POST', headers: {'content-type': 'application/json'},
       body: JSON.stringify({question: q, turnstile_token: tok || null})})
       .then(function(r){ return r.json().then(function(d){
-        if (!r.ok) throw new Error(d.error || 'that did not work'); return d; }); })
+        if (!r.ok) { var er = new Error(d.error || 'that did not work');
+                     er.status = r.status; throw er; }
+        return d; }); })
       .then(function(d){
         var tries = 0;
         (function poll(){
-          if (++tries > 300) { if (out) out.textContent = 'The run did not finish in time.';
+          if (++tries > 300) { slot.textContent = 'The run did not finish in time.';
                                deepBusy = false; if (btn) { btn.disabled = false; btn.textContent = 'TRY AGAIN'; } return; }
           fetch(ENDPOINT + '/result?id=' + encodeURIComponent(d.id))
             .then(function(r){ return r.json(); })
             .then(function(s){
               if (s.state === 'running') { setTimeout(poll, 4000); return; }
-              if (out) {
-                out.textContent = '';
-                if (s.state === 'done' && s.text) {
-                  var p = document.createElement('p'); p.style.margin = '0';
-                  renderCites(p, s.text); out.appendChild(p);
-                  if (s.withheld) {
-                    var st = document.createElement('div'); st.className = 'qstop';
-                    st.textContent = 'The rest was withheld because ' + whyCut(s.reason) + '.';
-                    out.appendChild(st);
-                  }
-                } else { out.textContent = s.error || 'The archive run returned no answer.'; }
-              }
+              slot.textContent = '';
+              if (s.state === 'done' && s.text) {
+                var p = document.createElement('p'); p.style.margin = '0';
+                renderCites(p, s.text); slot.appendChild(p);
+                if (s.withheld) {
+                  var st = document.createElement('div'); st.className = 'qstop';
+                  st.textContent = 'The rest was withheld because ' + whyCut(s.reason) + '.';
+                  slot.appendChild(st);
+                }
+              } else { slot.textContent = s.error || 'The archive run returned no answer.'; }
               deepBusy = false;
               if (btn) { btn.disabled = false; btn.textContent = 'SEARCH THE FULL ARCHIVE'; }
               spendToken();
             }).catch(function(){ setTimeout(poll, 4000); });
         })();
       }).catch(function(e){
-        if (out) out.textContent = (e && e.message) || 'that did not work';
+        /* A 503 is the lane being switched off, not a request that went wrong.
+           TRY AGAIN there is a button that can't ever work, and "research is
+           not configured" is a sentence written for whoever deploys this and
+           not for whoever is reading it. Say what is true, put it where the
+           press was rather than over the thread, and stop offering the door. */
+        if (e && e.status === 503) {
+          deepOff = true;
+          slot.remove();
+          if (out && !out.childNodes.length) { out.hidden = true; }
+          var lane = btn && btn.parentNode;
+          if (lane) { lane.className = 'qlane qlaneoff'; lane.textContent =
+            'The archive search is not running right now. Press Enter and the ' +
+            'written answer will read the published record instead.'; }
+          deepBusy = false;
+          return;
+        }
+        slot.textContent = (e && e.message) || 'that did not work';
         deepBusy = false;
         if (btn) { btn.disabled = false; btn.textContent = 'TRY AGAIN'; }
       });
