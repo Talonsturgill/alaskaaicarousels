@@ -152,8 +152,13 @@ A missed day is the one irreversible failure this project has.
   ask_answers.py (the docket ask box's answer engine, built into the page so a
   question is answered in the reader's own browser with nothing sent anywhere;
   it ships the index, the entity vocabulary, the four smart views and 500 plus
-  catalogued questions, each paired with the route that answers it. It stays
-  the default path and the two worker lanes only ever appear under a no-match.
+  catalogued questions, each paired with the route that answers it. It answers
+  everything the live list shows while a reader TYPES, free and instant and
+  sending nothing. SUBMITTING is a different thing and costs money: pressing
+  enter or the arrow calls the model every time, on the docket page and on the
+  homepage both. That changed on 2026-08-15 because routing a submit to the
+  engine's top hit is what made the written lane unreachable, the engine having
+  SOME match nearly always. The ARCHIVE lane is still a no-match link only.
   Typing sends nothing and the page says so; the buttons DO send, and the page
   says that too, above them, before the press. Never weaken either statement
   without changing what the code actually does), and
