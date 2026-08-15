@@ -3495,3 +3495,66 @@ EACH OTHER on the one number this studio tunes every run.
   should treat this as a reason to stretch a 7 slide story.
   https://usevisuals.com/blog/how-many-slides-should-a-linkedin-carousel-be
   https://postunreel.com/blog/how-many-slides-linkedin-carousel
+
+## 2026-08-14 - Phase 12 upgrade engineer (what shipped, what is parked, the scan)
+
+Three reactive fixes shipped, all three verified by reconstruction. The frontier
+scan was the stalest rotation slot, headless Chromium and Playwright rendering
+capabilities, last scanned 2026-07-26 and nominated for this run by the
+2026-08-12 scan_log entry. It found one thing worth having and it is parked,
+because the 0 to 3 budget went to the reactive fixes, which outrank it by this
+phase's own reactive-first rule.
+
+### PARKED. A canvas string can have a real box, and ours has half of one.
+
+`ctx.measureText()` returns a full ink box, not just an advance. Along with
+`width` it carries `actualBoundingBoxAscent`, `actualBoundingBoxDescent`,
+`actualBoundingBoxLeft` and `actualBoundingBoxRight`, baseline relative and
+alignment-point relative respectively, and MDN records it as widely available
+since July 2015. PROBED IN THIS CONTAINER rather than assumed, on Chromium
+141.0.7390.37 under a `setTransform(2,0,0,2,120,300)` context at a 40 px font,
+`measureText` returned width 553.9, ascent 30, descent 1, left -2, right 551.8.
+Ascent 30 at a 40 px font is USER SPACE, so the metrics are pre-transform and
+the vertical device span is the same one line of arithmetic the horizontal span
+already uses in render.py's canvas-text hook,
+`dev_top = t.d * (y - ascent) + t.f`, `dev_bottom = t.d * (y + descent) + t.f`,
+guarded by the same skew and positive-scale test.
+
+Why it is worth doing, in two places at once. (1) The 2026-08-13 canvas-bounds
+gate checks the LEFT and RIGHT frame edges only, so a canvas string drawn off
+the top or bottom of the frame is invisible to it, and that is the same defect
+in the other axis. (2) Today's new leader-label gate has to state a limit,
+that a label found only among the canvas strings has its existence confirmed
+and its POSITION unchecked, because a canvas string is recorded with a
+horizontal span and no line box. Recording the vertical span retires the limit
+and closes the one hole a future author could walk through.
+
+Parked and not applied because it is a change to the hook that every slide's
+every fillText call passes through, it wants its own reconstruction on both
+axes, and the reactive budget was full. Unblocking condition, record
+`dev_top` and `dev_bottom` next to `dev_left` and `dev_right`, then extend
+BOTH gates in one commit so the axis is symmetric everywhere.
+https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText
+
+### The Playwright half of the slot returned nothing usable, which is worth saying.
+
+We run playwright 1.62.0 against Chromium 141.0.7390.37. The published release
+notes carry nothing past 1.62 that this studio wants, and Chrome 141's own notes
+list no new Canvas 2D, text-rendering, font, printing or SVG-filter feature at
+all, only a getComputedStyle custom-property fix and width and height as
+presentation attributes on nested svg. The one Playwright capability this
+studio has a live interest in, `page.pdf({tagged})`, is already parked from
+2026-08-12 with its unblocking condition, print all nine slides as ONE document
+so there is a single structure tree, and nothing found today changes that.
+https://developer.chrome.com/release-notes/141
+
+### The scan had no discovery step, for the second time, and for the same reason.
+
+WebSearch returned "web search budget (200 of 200 WebSearch calls)" on the first
+query, so this was four targeted WebFetches against sources already known plus
+one in-container probe, exactly as on 2026-08-01. The research phase spends the
+window and Phase 12 finds it empty. That is deviation 1 in this run's retro
+seen from the far end of the day, and it is a real coverage hole in the
+rotation, not an inconvenience: the slot was nominated two runs ago and still
+has not had a discovery pass.

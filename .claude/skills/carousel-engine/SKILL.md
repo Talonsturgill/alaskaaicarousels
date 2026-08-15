@@ -39,6 +39,14 @@ fine and nine frames sharing one drawing function is not.
 Re-render only fixed slides with `--only 3,7`. Read every report; never ship a
 FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
 
+`--only` is a sharp tool. render.py records the SHA1 of the source that made
+each PNG, prints `STALE:` for any slide whose file has changed since, and qa.py
+**FAILS** that slide, because a PNG that no longer matches its HTML sends a
+reviewer a picture that does not exist. Run No.33 applied two repairs to source
+and then re-rendered a different subset, so both were silent no-ops and the flow
+critic reviewed the pre-repair contact sheet and reported both repairs as still
+broken. The remedy is always the same, re-render the slide and re-run qa.
+
 ## Slide HTML contract
 
 - One file per slide: `slide-01.html`, `slide-02.html`, ... Design for the
@@ -151,7 +159,9 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   var SLIVER = [BX + 2, 838];                 // the feature's own coordinates
   var leader = [[168, 884], [128, 856], SLIVER];   // bends, then the target
   window.__akLeaders = [{ target: "the 2024 sliver's dimension line",
-                          at: SLIVER, to: leader[leader.length - 1] }];
+                          at: SLIVER, to: leader[leader.length - 1],
+                          from: leader[0],            // where it meets the words
+                          label: "2024 SLIVER, 41 DAYS" }];   // those words
   ```
 
   qa.py **FAILS** when `to` and `at` are more than `LEADER_LAND_PX` (24 design
@@ -164,6 +174,19 @@ FAIL. `qa.py` warnings are advisories for the pixel critics, not free passes.
   leader stopping in void looks exactly like a leader reaching something small.
   No pixel test can settle it (the landing tick puts ink at the terminus). The
   discipline is the point: writing `at:` forces you to go find the target.
+- **And it must arrive at words** (2026-08-14). `from` and `label` are
+  REQUIRED on every declared leader, and qa.py **FAILS** a leader that declares
+  neither, that names a label no rendered text reads, or whose label sits more
+  than `LEADER_LABEL_PX` (32 design px) from where the line arrives. Run No.33
+  shipped three annotation elements with no terminal value at all, S01's leader
+  running off the Rhode Island ring into bare sheet, S07's dimension call
+  printing none of the values its own dossier spec declared, and S08's stamp
+  leader descending into empty paper. Every gate passed the deck at zero fails
+  and zero warns, and the 2026-08-07 leader gate returned ok on all three,
+  because all three landed on their targets perfectly and the gate could only
+  see that one end. A leader is a sentence with two ends. Set the label as DOM
+  or SVG text: a canvas label's existence can be confirmed but its position
+  can't, so it WARNs instead of clearing the check.
 - **A printed number and the geometry it names must be checkable against each
   other** (2026-08-12). Any slide that sets a MEASUREMENT in type (a dimension
   rule, a count, a frame width, a scale bar) declares the relationship and lets

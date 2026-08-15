@@ -30,6 +30,7 @@ Writes: <out-dir>/slide-XX.png + <out-dir>/render_report.json
 
 import argparse
 import glob
+import hashlib
 import json
 import re
 import shutil
@@ -624,7 +625,21 @@ IN_PAGE_QA_JS = """
 
        window.__akLeaders = [{ target: '2024 sliver dimension line',
                                at: [BX + 2, 838],       // the FEATURE's own coords
-                               to: [BX + 2, 838] }];    // where the leader ends
+                               to: [BX + 2, 838],       // where the leader ends
+                               from: [420, 948],        // where it meets its LABEL
+                               label: 'ONE TICK PER DAY' }];  // that label, verbatim
+
+     BOTH ENDS, ADDED 2026-08-14. The 2026-08-07 contract checked the TARGET end
+     only, so a leader could land perfectly on its feature and run back into bare
+     sheet at the other end, carrying no value at all. Run No.33 shipped three of
+     them and the scorer found all three by reading, S01's leader off the Rhode
+     Island ring, S07's dimension call printing none of the values its own type
+     spec declared, and S08's stamp leader descending into nothing. Every machine
+     gate passed the deck at zero fails. A leader is a sentence with two ends,
+     a feature and the words about it, so the declaration now names both and
+     qa.py checks that the label was really drawn and really sits where the
+     leader arrives. The authoring is again the point, you can't write `label`
+     without having written the label.
   */
   out.leaders = [];
   try {
@@ -636,7 +651,10 @@ IN_PAGE_QA_JS = """
         target: (e && typeof e.target === "string" && e.target.trim())
           ? e.target.trim().slice(0, 90) : null,
         to: pt(e && e.to),
-        at: pt(e && e.at)
+        at: pt(e && e.at),
+        from: pt(e && e.from),
+        label: (e && typeof e.label === "string" && e.label.trim())
+          ? e.label.trim().replace(/\\s+/g, " ").slice(0, 90) : null
       });
     }
   } catch (e) {}
@@ -810,6 +828,21 @@ def resolve_html(src: Path, resolved_dir: Path) -> Path:
     return dst
 
 
+def source_sha1(p: Path) -> str:
+    """Fingerprint the slide SOURCE that produced a PNG (2026-08-14).
+
+    Run No.33 applied two projection-note repairs to source and then re-rendered
+    a DIFFERENT slide subset, so both edits were silent no-ops and the flow
+    critic reviewed a contact sheet that predated them and reported both repairs
+    as still broken. `--only` is a sharp tool and nothing anywhere in the
+    pipeline could tell a PNG that matched its source from one that did not.
+    Recording the source hash next to the PNG makes that answerable by
+    arithmetic, and qa.py FAILs on a mismatch, so a stale render can no longer
+    reach a reviewer wearing a fresh render's verdict.
+    """
+    return hashlib.sha1(p.read_bytes()).hexdigest()
+
+
 def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                  scale: float, timeout_ms: int) -> dict:
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
@@ -895,6 +928,7 @@ def main():
             rec = render_slide(browser, resolved, png, args.width, args.height,
                                args.scale, args.timeout)
             rec["nondeterminism"] = scan_nondeterminism(s.read_text(), s.name)
+            rec["source"] = {"path": str(s), "sha1": source_sha1(s)}
             status = "OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])
             print(f"[{status}] {s.name} -> {png.name}  {rec['render_ms']}ms"
@@ -912,6 +946,28 @@ def main():
     }
     report_path.write_text(json.dumps(report, indent=2))
     print(f"report -> {report_path}")
+
+    # STALE PNGs (2026-08-14). Every record in the merged report names the
+    # source that made it and that source's hash. Any slide whose file on disk
+    # has moved on since is a PNG that no longer shows what its HTML says, which
+    # is what a `--only` subset quietly produces after an edit lands outside the
+    # subset. Announced here so the operator sees it at once; qa.py FAILs on it
+    # so it can never reach a reviewer or a ship gate unseen.
+    stale = []
+    for r in merged:
+        src = r.get("source") or {}
+        sp, sha = src.get("path"), src.get("sha1")
+        if not sp or not sha:
+            continue
+        try:
+            if source_sha1(Path(sp)) != sha:
+                stale.append(r["file"])
+        except OSError:
+            continue
+    if stale:
+        print("STALE: %s changed since its PNG was made. Re-render "
+              "(drop --only, or add the slide to it) before any review or gate "
+              "reads these images." % ", ".join(stale), file=sys.stderr)
 
     hard_fail = any((not r["ok"]) or r["page_errors"] or r["body_overflow"] for r in results)
     if hard_fail:
