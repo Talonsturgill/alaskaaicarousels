@@ -27,7 +27,7 @@
 // visibly, rather than being quietly repaired.
 
 import * as deep from "./deep.js";
-import { answer, answerStream, capOf } from "./answer.js";
+import { answer, answerStream, capOf, effectiveModel } from "./answer.js";
 
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const MAX_QUESTION = 400;
@@ -88,7 +88,12 @@ export default {
         turnstile_secret: !!env.TURNSTILE_SECRET,
         routine_token: !!env.ROUTINE_TOKEN,
         monthly_cap: capOf(env),
-        model: env.ASK_MODEL || "(default)",
+        // The model actually in use, not the variable. Reporting the variable
+        // and calling it "(default)" when unset told a debugger nothing about
+        // which model that resolved to, which is the one question the endpoint
+        // existed to answer.
+        model: effectiveModel(env),
+        model_from: env.ASK_MODEL ? "ASK_MODEL variable" : "pinned in code",
         pack_url: env.ASK_PACK_URL || "(default)",
         // Every name the worker can actually see, so a typo shows up as the
         // wrong string rather than as a missing one.
