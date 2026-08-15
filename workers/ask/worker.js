@@ -39,7 +39,7 @@
 // visibly, rather than being quietly repaired.
 
 import * as deep from "./deep.js";
-import { answer, answerStream, capOf, effectiveModel, probe, turnsOf } from "./answer.js";
+import { answer, answerStream, capOf, effectiveModel, probe, spendOf, turnsOf } from "./answer.js";
 
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const MAX_QUESTION = 400;
@@ -100,6 +100,9 @@ export default {
         turnstile_secret: !!env.TURNSTILE_SECRET,
         routine_token: !!env.ROUTINE_TOKEN,
         monthly_cap: capOf(env),
+        // Where the month actually stands. Reported here because the only
+        // other way to learn it was a reader hitting the wall.
+        spend: await spendOf(env),
         // The model actually in use, not the variable. Reporting the variable
         // and calling it "(default)" when unset told a debugger nothing about
         // which model that resolved to, which is the one question the endpoint

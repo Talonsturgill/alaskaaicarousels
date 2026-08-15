@@ -852,6 +852,23 @@ method="post" target="_blank">
           ? 'The rest was withheld because ' + whyCut(ev.withheld) + '.'
           : 'None of that answer is shown, because ' + whyCut(ev.withheld) + '.';
         body.appendChild(st);
+      } else if (ev.capped) {
+        /* THE MONTH'S CEILING, SAID FOR THIS PAGE. The worker sends its own
+           sentence and that sentence names the engine above the field and the
+           archive button below it, because it was written when the only box
+           was the docket's. Neither of those things is on the front page, so
+           repeating it here would point a reader at two doors that are not
+           there, at the one moment the box has nothing else to give them.
+           The worker's copy is fine where it came from and this is not it. */
+        if (stage) { stage.remove(); stage = null; }
+        if (!started) {
+          body.textContent = 'That is this month\'s last written answer. ';
+          var a = document.createElement('a');
+          a.className = 'cite'; a.href = 'docket/';
+          a.textContent = 'The docket still answers every question about a tracked decision';
+          body.appendChild(a);
+          body.appendChild(document.createTextNode(', in your own browser, free.'));
+        }
       } else if (ev.error) {
         if (stage) { stage.remove(); stage = null; }
         if (!started) body.textContent = ev.error;

@@ -361,6 +361,60 @@ check("Haiku is NOT sent a thinking block it does not want",
     JSON.stringify(Object.keys(globalThis.fetch.lastBody || {})));
 }
 
+section("the record is marked cacheable");
+{
+  const { systemBlocks, spendOf } = await import(UNDER_TEST);
+  const blocks = systemBlocks(PACK);
+
+  // The marker goes on the LAST block, because a breakpoint caches everything
+  // before it. On the first block it would cache the rules and leave the
+  // 20,000 token record paying full price on every question, which is the
+  // whole cost this exists to remove, and nothing would look broken.
+  check("the rules block carries no marker", blocks[0].cache_control === undefined);
+  check("the record block is the breakpoint",
+    blocks[1].cache_control?.type === "ephemeral", JSON.stringify(blocks[1].cache_control));
+  check("five minute TTL, the default",
+    blocks[1].cache_control?.ttl === undefined, JSON.stringify(blocks[1].cache_control));
+  check("one breakpoint, not two",
+    blocks.filter((b) => b.cache_control).length === 1);
+
+  // A prefix is a BYTE match. Anything per-request above the marker makes
+  // every question a fresh write at 1.25x and the bill rises 25% silently.
+  // Two calls with the same pack must be identical.
+  check("the same pack renders the same bytes every time",
+    JSON.stringify(systemBlocks(PACK)) === JSON.stringify(systemBlocks(PACK)));
+
+  // And it has to reach the wire on BOTH paths, not just the one with a test.
+  {
+    const e = env();
+    globalThis.fetch = sseFetch(["Storage held 6.54 Bcf."]);
+    await drain(await answerStream("q", e, { now: NOW }));
+    const sent = globalThis.fetch.lastBody?.system || [];
+    check("the streamed request carries the breakpoint",
+      sent[1]?.cache_control?.type === "ephemeral", JSON.stringify(sent.map(b => !!b.cache_control)));
+  }
+}
+
+section("the month's spend is visible");
+{
+  const { spendOf } = await import(UNDER_TEST);
+  const e = env();
+  check("reports the ceiling and an untouched month",
+    (await spendOf(e, NOW)).spent === 0 && (await spendOf(e, NOW)).left === capOf(e));
+
+  await e.ASK_KV.put(monthKey(NOW), "137");
+  const s = await spendOf(e, NOW);
+  check("reads the same counter the cap gate reads", s.spent === 137, JSON.stringify(s));
+  check("and says how much is left", s.left === capOf(e) - 137, JSON.stringify(s));
+
+  // Without KV the cap cannot be enforced OR reported; say so rather than
+  // reporting a confident zero, which reads as "plenty left".
+  const noKV = { ...env(), ASK_KV: undefined };
+  const s2 = await spendOf(noKV, NOW);
+  check("no KV reports null rather than a reassuring zero",
+    s2.spent === null && !!s2.note, JSON.stringify(s2));
+}
+
 console.log();
 console.log(failures ? `${failures} FAILED` : "all good");
 process.exit(failures ? 1 : 0);
