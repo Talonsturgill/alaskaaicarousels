@@ -57,6 +57,22 @@ Checks per slide (consuming render_report.json + the PNGs):
     and no reviewer could tell a leader reaching something small from one
     reaching nothing. A pixel test cannot answer it (the landing tick puts ink at
     the terminus); declared arithmetic can.
+  - LEADER CARRIES NO LABEL (FAIL): the other end of the same declaration. The
+    leader also names `from`, where the line meets its label, and `label`, that
+    annotation text verbatim, and this FAILs when the label was never drawn or
+    is drawn more than LEADER_LABEL_PX from where the line arrives. Added
+    2026-08-14 after run No.33 shipped three annotation elements with no
+    terminal value at all (S01's leader off the Rhode Island ring into bare
+    sheet, S07's dimension call printing none of its declared values, S08's
+    stamp leader descending into empty paper) at PASS, 0 fails, 0 warns, with
+    the leader gate returning ok on all three because all three landed on their
+    targets. The gate could see one end of its own subject.
+  - STALE RENDER (FAIL): render.py records the SHA1 of the source that produced
+    each PNG, and this FAILs when that file has changed since. Added 2026-08-14
+    after run No.33 applied two repairs to source and then re-rendered a
+    different `--only` subset, so both were silent no-ops and the flow critic
+    reviewed the pre-repair contact sheet and reported both repairs as still
+    broken. Two hashes, so it can't false-fail.
   - DECLARED maxLines EXCEEDED (FAIL): AK.fitText records every call's declared
     {min, max, maxLines} and what the element actually rendered; this FAILS a
     block that set more lines than it declared, or that bottomed out at `min`
@@ -100,6 +116,7 @@ Writes <render-dir>/machine_qa.json
 """
 
 import argparse
+import hashlib
 import json
 import math
 import re
@@ -638,6 +655,90 @@ def leader_lands(ld):
     return "ok", "leader %r lands %.1fpx from its target" % (name, d)
 
 
+# A leader stops a drafting gap short of the WORDS as well as of the feature.
+# Run No.33's one correctly built leader (slide 06, "RINGS OVERLAP FROM HERE")
+# meets its label 5 design px below the label's own line box, and the three
+# broken ones missed by 150 to 506 px. 32 design px is 3 percent of the frame
+# width, several times any real gap and nowhere near any real miss. Tolerance,
+# not a threshold to tune down.
+LEADER_LABEL_PX = 32.0
+
+
+def _norm_label(s):
+    return " ".join((s or "").split()).upper()
+
+
+def _point_to_box(px, py, b):
+    dx = max(b["x"] - px, 0.0, px - (b["x"] + b["w"]))
+    dy = max(b["y"] - py, 0.0, py - (b["y"] + b["h"]))
+    return math.hypot(dx, dy)
+
+
+def leader_labelled(ld, boxes, canvas_strings):
+    """THE OTHER END OF THE LEADER, THE ONE CARRYING THE WORDS (2026-08-14).
+
+    The 2026-08-07 contract checks the TARGET end only, so a leader can land
+    exactly on its feature and still be pointing at nothing, because the end a
+    reader actually reads is the other one. Run No.33 shipped three annotation
+    elements with no terminal value at all, S01's leader running off the Rhode
+    Island ring into bare sheet, S07's dimension call printing none of the values
+    its own dossier type spec declared, and S08's correction-stamp leader
+    descending into empty paper. machine_qa returned PASS at zero fails and zero
+    warns, the leader gate returned ok on every one of them because every one of
+    them landed on its target, and the scorer found all three by reading the
+    pictures. The gate was structurally blind to half of its own subject.
+
+    A leader is a sentence with two ends, the feature and the words about it.
+    The declaration now names both. `from` is where the leader meets its label
+    and `label` is that label verbatim, and this checks the two things a reader
+    checks, that the words were really drawn, and that they are really where the
+    line arrives.
+
+    LIMIT, stated rather than hidden: position is verified against DOM and SVG
+    text boxes, which is where the studio's labels belong and where every label
+    on this run's leader slides is. A label found only among the canvas fillText
+    strings passes the existence half and WARNs on the position half, because a
+    canvas string is recorded with a horizontal span and no line box, so there
+    is no honest box to measure to.
+
+    Returns (verdict, detail), verdict in "ok" | "warn" | "fail".
+    """
+    name = ld.get("target") or "an unnamed leader"
+    frm, label = ld.get("from"), ld.get("label")
+    if not label:
+        return "fail", ("the leader for %r declares no `label`, so nothing "
+                        "states what it is pointing the reader AT. Every leader "
+                        "ends in words. Declare `label` as the annotation text "
+                        "verbatim and `from` as the point where the line meets "
+                        "it, or delete the line" % name)
+    if not frm:
+        return "fail", ("the leader for %r declares the label %r and no `from`, "
+                        "the point where the line meets that label, so its "
+                        "reading end can't be checked" % (name, label))
+    want = _norm_label(label)
+    hits = [b for b in boxes if want in b["norm"] or (b["norm"] and b["norm"] in want)]
+    if not hits:
+        if any(want in c or (c and c in want) for c in canvas_strings):
+            return "warn", ("the leader for %r carries the label %r, drawn on a "
+                            "canvas. Its existence is confirmed and its POSITION "
+                            "is not, because a canvas string has no line box. "
+                            "Set the label as DOM or SVG text to have it checked"
+                            % (name, label))
+        return "fail", ("the leader for %r declares the label %r and no text on "
+                        "the slide reads that, so the line ends in bare sheet. "
+                        "This is the run No.33 defect, three leaders shipped "
+                        "with no terminal value through a PASS at zero fails"
+                        % (name, label))
+    d = min(_point_to_box(frm[0], frm[1], b) for b in hits)
+    if d > LEADER_LABEL_PX:
+        return "fail", ("the leader for %r arrives at (%g,%g) but its label %r "
+                        "is drawn %.0f design px away (tolerance %.0f), so the "
+                        "line and the words it belongs to are not connected on "
+                        "the page" % (name, frm[0], frm[1], label, d,
+                                      LEADER_LABEL_PX))
+    return "ok", "leader %r meets its label %.1fpx away" % (name, d)
+
+
 def fit_holds(ft):
     """A BLOCK MUST NOT SET MORE LINES THAN IT DECLARED (2026-08-12).
 
@@ -979,6 +1080,32 @@ def main():
         if float(arr.std()) < 6.0:
             res["fails"].append(f"near-uniform image (std {arr.std():.1f}) — dead or empty render")
 
+        # STALE RENDER (2026-08-14). render.py records the hash of the source
+        # that made each PNG. If the file on disk has moved on since, this image
+        # is not what its HTML says and every verdict below it is about a
+        # picture that no longer exists. Run No.33 applied two repairs and then
+        # re-rendered a different `--only` subset, so both were silent no-ops
+        # and the flow critic reviewed and rejected the pre-repair sheet. Pure
+        # arithmetic on two hashes, so it can't false-fail; a report written
+        # before this field existed carries no source block and is skipped.
+        src = rec.get("source") or {}
+        sp, sha = src.get("path"), src.get("sha1")
+        if sp and sha:
+            try:
+                cur = hashlib.sha1(Path(sp).read_bytes()).hexdigest()
+            except OSError as e:
+                res["warns"].append(
+                    "stale render unverifiable, the source recorded for this PNG "
+                    f"is no longer readable at {sp} ({e.__class__.__name__}), so "
+                    "nothing here can prove the image matches its HTML")
+            else:
+                if cur != sha:
+                    res["fails"].append(
+                        f"stale render, {rec['file']} has been edited since this "
+                        "PNG was made, so every judgement on this slide is about "
+                        "a picture that no longer exists. Re-render it (drop "
+                        "--only, or add this slide to it) and re-run qa")
+
         # DETERMINISM (2026-08-01). render.py scans the slide SOURCE; this is
         # the judgement. Unseeded randomness is a FAIL because it makes the
         # slide unreproducible: a repair pass repaints the field, so the render
@@ -1179,6 +1306,26 @@ def main():
                 res["warns"].append("leader declaration unusable: " + detail)
             else:
                 res.setdefault("leaders", []).append(detail)
+
+        # THE READING END OF THE LEADER (2026-08-14). The check above proves the
+        # line reaches its feature; this one proves it reaches its WORDS, which
+        # is the end run No.33 shipped empty three times through a PASS. See
+        # leader_labelled() for the contract and for the canvas limit.
+        if rec.get("leaders"):
+            lboxes = []
+            for t in rec.get("text_nodes", []):
+                lboxes.append({"x": t["x"], "y": t["y"], "w": t["w"], "h": t["h"],
+                               "norm": _norm_label(t.get("text"))})
+            cstrings = [_norm_label(c.get("text"))
+                        for c in rec.get("canvas_text", [])]
+            for ld in rec["leaders"]:
+                verdict, detail = leader_labelled(ld, lboxes, cstrings)
+                if verdict == "fail":
+                    res["fails"].append("leader carries no label: " + detail)
+                elif verdict == "warn":
+                    res["warns"].append("leader label unverifiable: " + detail)
+                else:
+                    res.setdefault("leaders", []).append(detail)
 
         # BLOCK SET MORE LINES THAN IT DECLARED (2026-08-12). Not opt-in: the
         # declaration is the maxLines argument already present in every

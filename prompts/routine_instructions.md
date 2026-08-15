@@ -638,11 +638,23 @@ This is where the deck is actually made. Spend real effort here.
 The caption is conceived fresh per run, never a filled template. Read
 `ledger/captions.json` and `knowledge/CAPTION_CRAFT.md` first.
 
-1. THE ASSIGNMENTS. From CAPTION_CRAFT's menus, pick TWO different opening
+1. THE ASSIGNMENTS. FIRST run
+   `python scripts/caption_check.py --burns ledger/captions.json`
+   and paste its output into BOTH director assignments verbatim. It prints what
+   the divergence windows forbid today, every closing move ever shipped with its
+   dates, and the ledger's own notes that say a move is burned. Added
+   2026-08-14, after the fifth run in which a director was sent to write against
+   a burn the ledger already recorded and the caption-critic had to kill the
+   candidate. No.33's brief barred the previous run's close and missed that
+   PRICE was burned on 2026-07-30 and restated on 2026-08-06. The information
+   was never missing, it was never read.
+   Then, from CAPTION_CRAFT's menus, pick TWO different opening
    moves and structures that honor the ledger's divergence rules (opening
    move differs from the last 6 entries, structure from the last 3, closing
    phrasing from the last 1). Pick the two the STORY most rewards, then let
-   the room fight it out.
+   the room fight it out. A close named NEW: has to BE new, and the burn table
+   lists every name already spent, and step 5's gate fails a NEW: that repeats
+   one (No.33 shipped NEW:SUFFICIENCY TEST nine days after No.26 did).
 2. THE ROOM. Spawn TWO `caption-director` agents in parallel, one
    assignment each, both with the claims, the storyboard, and the recent
    ledger entries. Each returns one complete caption candidate.
@@ -719,8 +731,15 @@ existed since 2026-08-05 and would have caught every one; it simply never saw
 any text but caption.txt. `--copy` runs the same table over `document_title`,
 `post_copy`, `deck_summary_line`, `first_comment` and every slide kicker,
 headline and label. Editor-only fields (`editor_notes_for_email`, `aftercare`,
-`caption_meta`) are deliberately out of scope. Fix the dates, do not narrow
-the flag. This report is the one gate_status reads, so run it LAST.
+`caption_meta`) are deliberately out of scope for the DATE table. Fix the
+dates, do not narrow the flag. This report is the one gate_status reads, so
+run it LAST.
+`caption_meta` IS read for one other thing, added 2026-08-14. With `--copy` and
+`--ledger` both present, the room's declared opening move, structure and
+closing move are graded against the ledger's own divergence windows, and a
+closing move labelled NEW: that repeats a move already shipped is a FAIL,
+because the label is a claim of novelty and nothing had ever checked it. If it
+fires, rewrite the close or name it honestly; do not rename the field.
 
 ## PHASE 7 — ART BUILD
 

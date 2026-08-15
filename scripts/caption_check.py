@@ -659,8 +659,135 @@ def check_copy_dates(copy):
     return fails
 
 
+def _move_key(v):
+    """Normalise a declared move so 'NEW:X', 'NEW: x' and 'new x' are one thing."""
+    s = re.sub(r"^new\b[:\s]*", "", (v or "").strip().lower())
+    return re.sub(r"[^a-z0-9]+", " ", s).strip()
+
+
+def burn_table(entries):
+    """THE BURN LIST, PUT IN FRONT OF THE ASSIGNMENT (2026-08-14).
+
+    Run No.33's caption-critic killed candidate A because its price close had
+    been burned on 2026-07-30, restated on 2026-08-06, and was phrased as the
+    2026-07-24 close with the nouns swapped. That is the FIFTH run in which a
+    director was sent to write against a burn the ledger already recorded. The
+    information was never missing; it lives in these entries and in their free
+    text notes, and the assignment brief was written without reading it.
+
+    So this prints it, deterministically, in the shape the brief needs, and
+    Phase 6 step 1 now runs it before picking the two assignments. It states no
+    opinion and enforces nothing. The enforcement lives in caption_meta_hits().
+    """
+    out = []
+    n = len(entries)
+    last = entries[-1]["run_date"] if n else "no entries"
+    out.append("BURN LIST from the caption ledger, %d entries through %s." % (n, last))
+    out.append("Read this BEFORE picking the two assignments (Phase 6 step 1).")
+    out.append("")
+    out.append("FORBIDDEN RIGHT NOW, by the ledger's own divergence windows")
+    for field, win in (("opening_move", 6), ("structure", 3), ("closing_move", 1)):
+        used = []
+        for e in reversed(entries[-win:]):
+            v = e.get(field)
+            if v and v not in used:
+                used.append("%s (%s)" % (v, e["run_date"]))
+        out.append("  %-13s differs from the last %d, so not  %s"
+                   % (field + ",", win, "  /  ".join(used) or "nothing on record"))
+    fw = []
+    for e in reversed(entries[-12:]):
+        w = (e.get("first_8_words") or e.get("first_words") or "").split()
+        if w:
+            fw.append(" ".join(w[:4]))
+    out.append("  %-13s differ from the last 12, so not  %s"
+               % ("first 4 words,", "  /  ".join(fw) or "nothing on record"))
+    out.append("")
+    out.append("EVERY CLOSING MOVE EVER SHIPPED, most recently used first")
+    seen = {}
+    for e in entries:
+        k = _move_key(e.get("closing_move"))
+        if not k:
+            continue
+        seen.setdefault(k, {"label": e.get("closing_move"), "dates": []})
+        seen[k]["dates"].append(e["run_date"])
+    for k, v in sorted(seen.items(), key=lambda kv: kv[1]["dates"][-1], reverse=True):
+        out.append("  %-24s %d use%s, last %s%s"
+                   % (v["label"][:24], len(v["dates"]),
+                      "" if len(v["dates"]) == 1 else "s", v["dates"][-1],
+                      ", also " + " ".join(v["dates"][:-1][-4:])
+                      if len(v["dates"]) > 1 else ""))
+    out.append("")
+    out.append("A close named NEW: has to BE new. Every name above is spent, "
+               "whether or not it was invented as a NEW: one.")
+    said = [(e["run_date"], " ".join((e.get("note") or e.get("notes") or "").split()))
+            for e in entries]
+    said = [(d, t) for d, t in said if "burn" in t.lower()]
+    if said:
+        out.append("")
+        out.append("NOTES THAT SAY BURNED, verbatim from the ledger")
+        for d, t in said[-6:]:
+            i = t.lower().find("burn")
+            out.append("  %s  ...%s..." % (d, t[max(0, i - 120):i + 120]))
+    return out
+
+
+def caption_meta_hits(meta, entries, run_date):
+    """GRADE THE DECLARED MOVES AGAINST THE LEDGER (2026-08-14).
+
+    The ledger's `_spec` has always written the divergence windows down and
+    nothing has ever read them, so for 33 runs the only thing standing between
+    a repeated move and the feed was somebody remembering. Two checks, both
+    arithmetic on values the room itself declared in copy.json.
+
+    The second one is the one run No.33 needed. A closing move labelled NEW: is
+    a CLAIM, in the same family as a declared maxLines or a printed dimension,
+    and No.33 shipped NEW:SUFFICIENCY TEST nine days after 2026-08-05 shipped
+    NEW:SUFFICIENCY TEST. Nobody noticed, because a novel-move claim was the one
+    kind of declaration here with nothing behind it.
+
+    Today's own entry is excluded by run_date, so re-running after ship is safe.
+    """
+    hits = []
+    if not isinstance(meta, dict):
+        return hits
+    prior = [e for e in entries if e.get("run_date") != run_date]
+    for field, win in (("opening_move", 6), ("structure", 3), ("closing_move", 1)):
+        v = meta.get(field)
+        if not v:
+            hits.append("VARIETY: copy.json caption_meta declares no %s, so the "
+                        "divergence window for it can't be checked" % field)
+            continue
+        for e in prior[-win:]:
+            if _move_key(e.get(field)) == _move_key(v):
+                hits.append("VARIETY: %s %r was used on %s and the ledger's own "
+                            "rule is that it differs from the last %d entries"
+                            % (field, v, e["run_date"], win))
+                break
+    close = meta.get("closing_move") or ""
+    if re.match(r"^\s*new\b", close, re.I):
+        k = _move_key(close)
+        earlier = [e["run_date"] for e in prior if _move_key(e.get("closing_move")) == k]
+        if earlier:
+            hits.append("VARIETY: the closing move is declared NEW (%r) and the "
+                        "same move already shipped on %s, so the claim is false. "
+                        "A NEW: name is a claim of novelty and this is the run "
+                        "No.33 defect, NEW:SUFFICIENCY TEST shipped twice nine "
+                        "days apart with nothing checking it"
+                        % (close, ", ".join(earlier)))
+    return hits
+
+
 def main():
     args = [a for a in sys.argv[1:]]
+    if "--burns" in args:
+        i = args.index("--burns")
+        lp = Path(args[i + 1]) if len(args) > i + 1 else Path("ledger/captions.json")
+        if not lp.exists():
+            print("FAIL: --burns %s not found" % lp)
+            sys.exit(1)
+        for line in burn_table(json.loads(lp.read_text()).get("entries", [])):
+            print(line)
+        sys.exit(0)
     ledger_entries = None
     ledger_missing = None
     deck_summary = None
@@ -724,6 +851,15 @@ def main():
         else:
             hits = check_copy_dates(copy_obj)
             rep["copy_fields_checked"] = len(copy_prose(copy_obj))
+            # THE DECLARED MOVES, GRADED (2026-08-14). copy.json carries the
+            # room's own caption_meta and the ledger carries the windows those
+            # moves have to clear; nothing had ever put the two together. Only
+            # runs when both --copy and --ledger are given, which is what the
+            # Phase 6 ship-gate invocation passes.
+            if ledger_entries is not None:
+                hits.extend(caption_meta_hits(copy_obj.get("caption_meta"),
+                                              ledger_entries,
+                                              copy_obj.get("run_date")))
             rep["fails"].extend(hits)
             if hits:
                 rep["verdict"] = "FAIL"

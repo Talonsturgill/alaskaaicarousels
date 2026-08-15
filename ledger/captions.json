@@ -340,10 +340,10 @@
       "run_date": "2026-08-14",
       "opening_move": "MAP MOVE",
       "structure": "COLD OPEN, WARM CLOSE",
-      "closing_move": "NEW:SUFFICIENCY TEST",
+      "closing_move": "SUFFICIENCY TEST",
       "first_words": "Alaska is 570,641 square miles of land, about",
       "hook_type": "map move, the largest state's land area set against the smallest state's, with the same one-award ceiling on both",
-      "note": "The caption-critic killed candidate A for a PRICE close, which the ledger had burned on 2026-07-30 and restated on 2026-08-06, and whose phrasing was the 2026-07-24 close with the nouns swapped. That is the fifth occurrence of the same failure. The showrunner's assignment brief barred only the last run's fork and missed the standing burn, which is itself the lesson repeating. One fix was spent replacing an unsourced Anchorage with the solicitation's two eligible categories. Director B declared the close a prediction and it is not one, it forecasts nothing, so it is logged honestly as a sufficiency test."
+      "note": "The caption-critic killed candidate A for a PRICE close, which the ledger had burned on 2026-07-30 and restated on 2026-08-06, and whose phrasing was the 2026-07-24 close with the nouns swapped. That is the fifth occurrence of the same failure. The showrunner's assignment brief barred only the last run's fork and missed the standing burn, which is itself the lesson repeating. One fix was spent replacing an unsourced Anchorage with the solicitation's two eligible categories. Director B declared the close a prediction and it is not one, it forecasts nothing, so it is logged honestly as a sufficiency test. CORRECTED at Phase 12, on the same day and by the upgrade this run built. The close was logged as NEW:SUFFICIENCY TEST and it is not new, the identical move shipped on 2026-08-05, nine days earlier. The NEW: prefix is a claim of novelty and nothing had ever checked one, so this is the sixth occurrence of the caption room's standing failure rather than the fifth. The caption itself is unchanged and was never the problem; only the label was false. caption_check.py now grades a NEW: close against the ledger and fails a repeat, which is how this was found."
     }
   ]
 }
