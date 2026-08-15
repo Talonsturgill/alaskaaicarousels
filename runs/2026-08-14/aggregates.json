@@ -1,0 +1,101 @@
+{
+  "run_date": "2026-08-14",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 1,
+      "text": "One award per state. Alaska is 552 Rhode Islands.",
+      "fragment": "552 Rhode Islands",
+      "member": "C24",
+      "note": "C24's own value is about 552 times, derived in that claim as 570,641 divided by 1,034 equals 551.88. Both sides are LAND area, deliberately. The slide's qualifier line prints BY LAND AREA. U.S. CENSUS BUREAU. C23 C24 directly beneath the headline."
+    },
+    {
+      "kind": "design",
+      "slide": 2,
+      "text": "Fifty states. Fifty identical marks.",
+      "fragment": "Fifty states",
+      "note": "A property of the artwork, and re-derivable from it. The slide draws the 50 US states from assets/geo/us-states-10m.json, filtering out American Samoa, Guam, the Commonwealth of the Northern Mariana Islands, Puerto Rico, the United States Virgin Islands and the District of Columbia. The render's console prints the drawn count."
+    },
+    {
+      "kind": "design",
+      "slide": 2,
+      "text": "Fifty states. Fifty identical marks.",
+      "fragment": "Fifty identical marks",
+      "note": "One 48 px ring is drawn per state silhouette, so the mark count equals the state count by construction. Identical is the load-bearing word and the ring diameter is a single constant used for every instance in the deck."
+    },
+    {
+      "kind": "design",
+      "slide": 2,
+      "text": "50 STATES, CELLS TRANSLATED. RELATIVE AREA TRUE.",
+      "fragment": "50 STATES",
+      "note": "The projection note for the same field described above. Same 50 geometries, same filter."
+    },
+    {
+      "kind": "design",
+      "slide": 3,
+      "text": "EQUAL-AWARD. 50 CELLS. AREA NOT PRESERVED. SCALE NOT PRESERVED.",
+      "fragment": "50 CELLS",
+      "note": "A property of the artwork, and the same 50 units as slides 2, 6 and 7. The projection note names what the rule's own projection would preserve if it were drawn as a map, one cell per state, fifty of them. Nothing on this slide draws the fifty; the note describes the equal-award projection the deck has been building since slide 2, where the fifty are drawn and countable."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "Ten awards. One cycle.",
+      "fragment": "Ten awards",
+      "member": "C12",
+      "note": "C12 verbatim, The program anticipates 10 awards in each award cycle. The slide draws exactly ten rings on the casting's top face."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "10 AWARDS PER CYCLE",
+      "fragment": "10 AWARDS",
+      "member": "C12",
+      "note": "The same claim set as a label on the drawn row of ten rings, so the printed number and the countable objects are the same assertion."
+    },
+    {
+      "kind": "design",
+      "slide": 6,
+      "text": "FIFTY STATES, RANKED BY LAND AREA",
+      "fragment": "FIFTY STATES",
+      "note": "The same 50 filtered geometries as slide 2, laid on one baseline in descending order of true projected area rather than in a cellular field."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "text": "Alaska's land area. The largest of any state. About 552 times Rhode Island's 1,034.",
+      "fragment": "552 times",
+      "member": "C24",
+      "note": "C24, stated as about, never as an exact figure. The slide also prints ALASKA 570,641 SQ MI and RHODE ISLAND 1,034 SQ MI on a knockout plate, so both operands of the ratio are visible on the same frame and both are land area."
+    },
+    {
+      "kind": "design",
+      "slide": 7,
+      "text": "TWO PROJECTIONS SUPERIMPOSED.",
+      "fragment": "TWO PROJECTIONS",
+      "note": "A property of the artwork. The slide draws NSF's rationale as fifty evenly spaced ticks and, beneath it, Alaska and Rhode Island through one shared conic equal-area projection at true relative area. Two ways of laying out the same fifty units, in one frame, which is what the note names."
+    },
+    {
+      "kind": "design",
+      "slide": 7,
+      "text": "GEOGRAPHIC SPREAD. FIFTY UNITS, EVENLY SPACED.",
+      "fragment": "FIFTY UNITS",
+      "note": "The tick row on this slide is drawn as exactly 50 ticks at an even pitch of 920 divided by 49 design px, which is NSF's rationale, geographic spread, drawn honestly. A property of the artwork and countable in the render."
+    },
+    {
+      "kind": "duration",
+      "slide": 8,
+      "text": "82 days to the deadline.",
+      "fragment": "82 days",
+      "from": {
+        "claim": "C07",
+        "date": "2026-08-14"
+      },
+      "to": {
+        "claim": "C06",
+        "date": "2026-11-04"
+      },
+      "note": "C07 carries the arithmetic. August 14th to August 31st is 17 days, September is 30, October is 31, November 1st to November 4th is 4. 17 plus 30 plus 31 plus 4 equals 82. The slide also draws exactly 82 tick marks, asserted through window.__akAssert so the drawn count and the printed number cannot drift apart. This figure is correct for a run date of August 14, 2026 and goes stale if the post slips."
+    }
+  ]
+}

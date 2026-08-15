@@ -3386,3 +3386,112 @@ strongest signal a room can give.
   degradation ladder's option (c), fewer review rounds, disclosed, and it is
   written into the scorer's brief and the Gmail draft rather than left for
   someone to notice.
+
+## 2026-08-14 (Phase 1 craft refresh, run No.33)
+
+Four searches, and the honest headline is that the carousel-advice web has
+gone to seed. Nine of the ten results on every query were tool-vendor blogs
+selling a carousel generator, which is a sourcing problem rather than a
+finding, so most of what follows is recorded with its weakness attached.
+
+- **ONE NUMBER WORTH KEEPING, WITH ITS PROVENANCE.** AuthoredUp's analysis of
+  more than three million posts, March 2025 to February 2026, puts document
+  posts at 39 percent more reach and 30 percent more engagement than the
+  average LinkedIn post. It is the only figure in the whole sweep that named a
+  corpus, a window and a method. Every other engagement rate quoted (the 6.60
+  percent document-post figure, the 3.7x reach claim) traced back to a vendor
+  page with no corpus at all.
+- **THE SLIDE-COUNT ADVICE NOW CONTRADICTS ITSELF, so ignore both halves.**
+  One source says exactly 7 slides outperforms every other length by 18
+  percent. Another says 8 to 15 is optimal and below 5 the format loses its
+  swipe value. Neither cites anything. This deck's own default of 8 to 10 sits
+  inside the larger claim and is not moving on the strength of a blog post.
+  Worth remembering the next time a run is tempted to trim to 7 for a reason
+  it cannot name.
+- **DWELL TIME IS STILL THE MECHANISM EVERYONE AGREES ON.** Every source,
+  vendor or not, describes the same causal chain, that a swipe is a continued
+  engagement signal and a fully swiped deck outweighs a scrolled-past text
+  post. CAROUSEL_CRAFT already builds on this. Nothing here changes it; the
+  agreement is the point, since it is the only claim that survived four
+  different commercial incentives.
+- **CRAFT SIDE, the useful one.** Stipple and dotwork are in genuine
+  resurgence in editorial illustration, driven by the tattoo trade and a
+  broader appetite for visibly craft-intensive marks, and the 2D/3D boundary
+  is dissolving in editorial work, with modelled objects composited into flat
+  vector fields as standard practice rather than as a stunt. Both are already
+  on this engine's bench and both are unused. Run No.33 is attacking artwork
+  craft as its standing weakness and this is a direct argument for the
+  technique bench over the single technique: a hand-made-looking mark reads as
+  effort at feed scale, which is exactly what the last two decks' single
+  procedural pass did not.
+
+## 2026-08-14 (retro, run No.33)
+
+- **THE PROTOTYPE ROUND EARNED ITS KEEP AND SHOULD BECOME STANDARD.** Six scratch
+  slides were rendered and gate-tested BEFORE the storyboard was written. `qa.py`
+  failed all four map compositions for top-loaded composition, at 0, 49, 38 and 0
+  percent of average bottom-third craft density, and passed the two that carried a
+  worked lower band at zero fails and zero warns. The deck's best image and its
+  worst gate failure were the same picture. The dead lower zone has been named by
+  the scorer in six consecutive runs; this is the first run that found it before
+  the plan was written rather than after the art was built.
+- **THE FIX HAD TO BE THE STORY, NOT PADDING.** The prototype that passed put the
+  award arithmetic INTO the lower band, dividing the width into fifty lanes and
+  raising ten of them, so the field's ridges are the ten-of-fifty count. Filling a
+  band to satisfy a gate and filling it with the deck's own number are different
+  acts and only one of them survives a critic.
+- **TWO CRITICS AGREED ON A WRONG MEASUREMENT.** Both reported the deck's 48 px
+  ring as inconsistent across slides, at 78, 81 and 89 render px. Every ring is
+  `cx.arc(x,y,24,...)` on a 2x context; they were measuring anti-aliased stroke
+  edges at three different weights. Independent agreement is not verification. The
+  right response was a grep, not a rebuild, and the right permanent fix is an
+  `__akAssert` on the constant.
+- **TRUNCATING A DEVICE STRING IS AN EDIT TO THE ARGUMENT.** The projection note
+  was shortened on five slides purely to fit, which deleted "THE DEFORMATION IS
+  THE ARGUMENT" from the one slide whose job was the argument. Two critics called
+  it systemic before anyone noticed it was one lazy habit repeated.
+- **THE CAPTION CRITIC CAUGHT THE SHOWRUNNER'S OWN BRIEF.** The assignment barred
+  only the previous run's closing move, and missed that PRICE had been burned on
+  2026-07-30 and restated on 2026-08-06. Candidate A closed on a price question
+  that was the 2026-07-24 close with the nouns swapped, the fifth occurrence of
+  that exact failure. The room's job includes catching the room's instructions.
+- **A FALSE PICTURE IS WORSE THAN NO PICTURE.** Slide 06 carried a 4x detail row
+  that magnified the states but not the rings, so small states filled or overflowed
+  their own awards and the row drew the exact inverse of the slide's thesis. It
+  was cut rather than explained.
+
+### The same phase ran twice this day, and the two passes disagree about what
+### the web had to offer. Both are kept, because the disagreement is the finding.
+
+A second session searched the same question about an hour earlier and came back
+with a different haul. Neither pass is wrong. What it shows is that this refresh
+is sampling a source pool thin enough that two honest sweeps of it barely
+overlap, which is worth more than either result on its own.
+
+Timeboxed, three searches. The craft half returned nothing usable, only trend
+listicles and a Wikipedia summary of three-point lighting, so nothing is written
+down about visual craft today. The platform half turned up one thing worth
+recording, and it is worth recording because the tier C sources now CONTRADICT
+EACH OTHER on the one number this studio tunes every run.
+
+- **SLIDE COUNT, AND THE VENDOR DATA NO LONGER AGREES WITH ITSELF.** One 2026
+  vendor dataset reports median likes climbing monotonically with depth, 22 for
+  2 to 5 slides, 26 for 6 to 8, 49 for 9 to 12, 58 for 13 to 20, 60 for 21 plus,
+  and states the median shipped carousel is 8 slides. A second vendor blog, same
+  month, claims exactly 7 slides outperforms every other length by 18 percent.
+  Both are Tier C, neither publishes a sample size or a method, and they cannot
+  both be true. What survives the disagreement is the DIRECTION the stronger of
+  the two shares with vdB's reach optimum of about 12, which CAROUSEL_CRAFT
+  already records, so nothing in the doctrine changes.
+- **WHAT IT MEANS FOR THIS DECK, WHICH IS A TIE BREAK AND NOT A RULE.** The
+  house band is 8 to 10, and the machine has defaulted to 9 for most of its
+  runs. Every independent line of evidence points the same way at the top of
+  that band rather than the bottom, and none points below it. So when a story
+  supports either, build the longer one. That is the only operative change and
+  it does not touch a threshold.
+- Recorded as low confidence on purpose. Like counts are a proxy the ranker does
+  not optimise, and a page that ships 20 slide decks is a different kind of page
+  from one that ships 8, so the bucket is confounded by the account. Nobody
+  should treat this as a reason to stretch a 7 slide story.
+  https://usevisuals.com/blog/how-many-slides-should-a-linkedin-carousel-be
+  https://postunreel.com/blog/how-many-slides-linkedin-carousel

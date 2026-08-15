@@ -725,6 +725,21 @@
       "run_date": "2026-08-13",
       "confidence": 0.9,
       "instinct": "A GATE THAT REFUSES AN AGGREGATE IS USUALLY RIGHT ABOUT THE COPY, NOT WRONG ABOUT THE ARITHMETIC. aggregate_check rejected \"19 days\" for July 8th to July 26th because |to - from| is 18; 19 is the INCLUSIVE count of dates. Rather than declare around it, No.32 changed the copy to name the two dates, which is more precise for the reader and removes the ambiguity entirely. When a gate and a sentence disagree about a number, fix the sentence first."
+    },
+    {
+      "run_date": "2026-08-14",
+      "confidence": 0.9,
+      "instinct": "PROTOTYPE THE HERO THROUGH THE REAL GATES BEFORE WRITING THE DOSSIER. Run No.33 rendered six scratch slides and ran qa.py on them BEFORE the storyboard existed. The gate failed all four map compositions for top-loaded composition at 0, 49, 38 and 0 percent bottom-third craft density, and passed the two with a worked lower band at zero fails. The deck's best image and its worst gate failure were the same picture. Finding that in a scratch directory costs one render; finding it at the ship gate costs a rebuild the run cannot afford, which is why the dead lower zone has been named in six consecutive scored runs."
+    },
+    {
+      "run_date": "2026-08-14",
+      "confidence": 0.85,
+      "instinct": "A CRITIC MEASURING PIXELS CAN BE WRONG ABOUT A CONSTANT THE CODE GUARANTEES. Two pixel-critics independently measured No.33's 48 px ring at 78, 81 and 89 render px and both concluded the deck's central invariant was broken. Every ring is drawn by cx.arc(x,y,24,...) on a 2x context and a grep proved it. They were measuring the anti-aliased outer edge of strokes at three different weights. When a critic reports a geometric constant is off, CHECK THE SOURCE before rebuilding; and if the constant is load-bearing, assert it in window.__akAssert so the argument never has to happen again."
+    },
+    {
+      "run_date": "2026-08-14",
+      "confidence": 0.8,
+      "instinct": "SHORTENING A STRING TO MAKE IT FIT IS AN EDIT TO THE DECK'S ARGUMENT. No.33 trimmed the projection note on five slides purely for width, and in doing so deleted the phrase that turned the note from a label into an argument on the one slide whose job was the argument. Two critics called it systemic. When a declared string will not fit, change the type size, wrap it, or rewrite it deliberately and update the storyboard. Never silently truncate a device string."
     }
   ]
 }

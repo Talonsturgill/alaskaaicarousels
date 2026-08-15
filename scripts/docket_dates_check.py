@@ -531,6 +531,16 @@ def self_test(items, today):
         for b in rep_a.bad[:8]:
             print(f"  would fail: {b}")
 
+    # THE BREAKAGE HAS TO BE ONE THE GATE CAN SEE, and only an UPCOMING date is
+    # one of those. The resolver ignores dates that have already passed, which
+    # is correct behaviour and was silently fatal here: this used to mislabel
+    # every vote or decision on a deadline-bearing item, count it as injected,
+    # and then assert the gate caught it. The live ledger's only such date was
+    # the Houston City Council vote of August 13th on the AIDEA item, so on
+    # August 14th the injected breakage became invisible, rep_b came back empty,
+    # and the self-test announced that the gate was not watching what it claims
+    # to watch. Nothing was wrong with the gate or the ledger. The test had a
+    # date in it. Count a mislabel only when it lands in the future.
     broken = copy.deepcopy(items)
     hit = 0
     for it in broken:
@@ -538,14 +548,21 @@ def self_test(items, today):
             for d in it["key_dates"]:
                 if d["kind"] in ("vote", "decision"):
                     d["kind"] = "deadline"
-                    hit += 1
+                    if ddate.fromisoformat(d["date"]) > today:
+                        hit += 1
+    b_today = today
     if not hit:
+        # No upcoming vote or decision anywhere in the live ledger, which is the
+        # normal state of a docket between sessions. Fall back to the fixture,
+        # and judge it at the fixture anchor rather than at the live date, or
+        # the fallback rots exactly the way the ledger path just did.
         broken = copy.deepcopy([FIXTURES[0][1]])
+        b_today = TODAY
         for d in broken[0]["key_dates"]:
             if d["kind"] == "vote":
                 d["kind"] = "deadline"
     rep_b = Report()
-    check_items(rep_b, broken, today, label="mislabelled")
+    check_items(rep_b, broken, b_today, label="mislabelled")
     if not rep_b.bad:
         failures.append("a mislabelled date passed the gate")
     else:

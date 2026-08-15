@@ -1,0 +1,145 @@
+{
+  "run_dir": "out/2026-08-14",
+  "render_report": "out/2026-08-14/render/render_report.json",
+  "aggregates_file": "out/2026-08-14/aggregates.json",
+  "detected": 12,
+  "declared": 12,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "552 Rhode Islands",
+      "text": "One award per state. Alaska is 552 Rhode Islands.",
+      "n": 552,
+      "subject": "rhode islands"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Fifty states",
+      "text": "Fifty states. Fifty identical marks.",
+      "n": 50,
+      "subject": "states"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Fifty identical marks",
+      "text": "Fifty states. Fifty identical marks.",
+      "n": 50,
+      "subject": "identical marks"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "50 STATES",
+      "text": "50 STATES, CELLS TRANSLATED. RELATIVE AREA TRUE.",
+      "n": 50,
+      "subject": "states"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "50 CELLS",
+      "text": "EQUAL-AWARD. 50 CELLS. AREA AND SCALE NOT PRESERVED.",
+      "n": 50,
+      "subject": "cells"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Ten awards",
+      "text": "Ten awards.One cycle.",
+      "n": 10,
+      "subject": "awards"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "10 AWARDS",
+      "text": "10 AWARDS PER CYCLE (C12)",
+      "n": 10,
+      "subject": "awards"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "FIFTY STATES",
+      "text": "FIFTY STATES, RANKED BY LAND AREA",
+      "n": 50,
+      "subject": "states"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "552 times",
+      "text": "Alaska's land area. The largest of any state. About 552 times Rhode Island's 1,0",
+      "n": 552,
+      "subject": "times"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "TWO PROJECTIONS",
+      "text": "TWO PROJECTIONS SUPERIMPOSED. DEFORMATION IS THE ARGUMENT.",
+      "n": 2,
+      "subject": "projections"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "FIFTY UNITS",
+      "text": "GEOGRAPHIC SPREAD. FIFTY UNITS, EVENLY SPACED.",
+      "n": 50,
+      "subject": "units"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "82 days",
+      "text": "82 days to the deadline.",
+      "n": 82,
+      "unit": "days"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 2,
+      "text": "Fifty states. Fifty identical marks.",
+      "note": "A property of the artwork, and re-derivable from it. The slide draws the 50 US states from assets/geo/us-states-10m.json, filtering out American Samoa, Guam, the Commonwealth of the Northern Mariana Islands, Puerto Rico, the United States Virgin Islands and the District of Columbia. The render's console prints the drawn count."
+    },
+    {
+      "slide": 2,
+      "text": "Fifty states. Fifty identical marks.",
+      "note": "One 48 px ring is drawn per state silhouette, so the mark count equals the state count by construction. Identical is the load-bearing word and the ring diameter is a single constant used for every instance in the deck."
+    },
+    {
+      "slide": 2,
+      "text": "50 STATES, CELLS TRANSLATED. RELATIVE AREA TRUE.",
+      "note": "The projection note for the same field described above. Same 50 geometries, same filter."
+    },
+    {
+      "slide": 3,
+      "text": "EQUAL-AWARD. 50 CELLS. AREA NOT PRESERVED. SCALE NOT PRESERVED.",
+      "note": "A property of the artwork, and the same 50 units as slides 2, 6 and 7. The projection note names what the rule's own projection would preserve if it were drawn as a map, one cell per state, fifty of them. Nothing on this slide draws the fifty; the note describes the equal-award projection the deck has been building since slide 2, where the fifty are drawn and countable."
+    },
+    {
+      "slide": 6,
+      "text": "FIFTY STATES, RANKED BY LAND AREA",
+      "note": "The same 50 filtered geometries as slide 2, laid on one baseline in descending order of true projected area rather than in a cellular field."
+    },
+    {
+      "slide": 7,
+      "text": "TWO PROJECTIONS SUPERIMPOSED.",
+      "note": "A property of the artwork. The slide draws NSF's rationale as fifty evenly spaced ticks and, beneath it, Alaska and Rhode Island through one shared conic equal-area projection at true relative area. Two ways of laying out the same fifty units, in one frame, which is what the note names."
+    },
+    {
+      "slide": 7,
+      "text": "GEOGRAPHIC SPREAD. FIFTY UNITS, EVENLY SPACED.",
+      "note": "The tick row on this slide is drawn as exactly 50 ticks at an even pitch of 920 divided by 49 design px, which is NSF's rationale, geographic spread, drawn honestly. A property of the artwork and countable in the render."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

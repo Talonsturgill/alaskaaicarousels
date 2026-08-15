@@ -1,0 +1,20 @@
+{
+  "chars": 0,
+  "hook": "",
+  "hook_len": 0,
+  "commas": 0,
+  "comma_per_100": 0.0,
+  "comma_budget": 1.05,
+  "hashtags": [],
+  "deck_summary": null,
+  "brand_phrases_loaded": 74,
+  "fails": [
+    "HOOK: empty first line",
+    "LENGTH: 0 chars outside 300-900 carousel band",
+    "HASHTAGS: 0 found, need exactly 3",
+    "DECK SUMMARY: no --deck-summary given. brand.yaml requires a 1 to 2 line plain summary of what the deck covers, because a LinkedIn document has no alt text and the caption is all a screen reader gets. Write one, then pass it with --deck-summary \"<the exact line>\""
+  ],
+  "warns": [],
+  "verdict": "FAIL",
+  "copy_fields_checked": 90
+}

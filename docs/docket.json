@@ -526,6 +526,11 @@
           "kind": "milestone"
         },
         {
+          "date": "2026-08-13",
+          "label": "Governor says there is little reason to keep the third special session going",
+          "kind": "milestone"
+        },
+        {
           "date": "2026-08-20",
           "label": "Joint Senate and House Resources Committee meeting in Anchorage on Cook Inlet energy",
           "kind": "milestone"
@@ -601,10 +606,20 @@
           "url": "https://www.alaskasnewssource.com/2026/08/13/alaska-lng-pipeline-bill-collapses-house-majority-says-it-lacks-votes/",
           "outlet": "Alaska's News Source",
           "date": "2026-08-12"
+        },
+        {
+          "url": "https://alaskapublic.org/news/politics/2026-08-14/amid-widespread-opposition-alaska-governors-gasline-compromise-bill-appears-dead-on-arrival",
+          "outlet": "Alaska Beacon via Alaska Public Media",
+          "date": "2026-08-14"
+        },
+        {
+          "url": "https://www.adn.com/politics/alaska-legislature/2026/08/13/governor-says-little-reason-to-continue-special-session-on-alaska-lng-bill/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-08-13"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-13",
+      "last_updated": "2026-08-14",
       "history": [
         {
           "date": "2026-07-08",
@@ -697,6 +712,10 @@
         {
           "date": "2026-08-13",
           "note": "The bill collapsed. On August 12th the House Bipartisan Majority Caucus said HB 4001 does not appear to have the support needed to pass the Alaska House, with opposition from both majority and minority members, and the Senate Bipartisan Majority Caucus said it does not plan to reconvene. Governor Dunleavy had asked lawmakers to return to Juneau on August 20th. Senate Majority Leader Cathy Giessel said getting 11 senators and 21 representatives to Juneau right now would be a challenge. A joint Senate and House Resources Committee meeting on Cook Inlet energy is planned for August 20th in Anchorage instead."
+        },
+        {
+          "date": "2026-08-14",
+          "note": "The governor signalled the session is over. On the evening of August 13th Governor Dunleavy said that since legislative leadership had chosen not to attend the special session, there is little reason to keep the session going. He had introduced HB 4001 on August 12th, 17 days into a 30 day session, and the House Bipartisan Majority Caucus said the same day that it lacks the votes. Neither chamber expects to meet on the bill. The 35th Legislature convenes in January 2027."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aklng-tax-bill-second-special-session/"
@@ -857,7 +876,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-13",
+      "last_updated": "2026-08-14",
       "history": [
         {
           "date": "2026-07-17",
@@ -918,6 +937,10 @@
         {
           "date": "2026-08-13",
           "note": "Re-verified against the state notice. Public comment on the roughly 19,950 acre conveyance north of Houston, ADL 234762, still closes 5 p.m. on August 19th, and only people who comment in writing during the window can appeal. The Houston City Council's separate vote on a data center ban ordinance is still set for August 13th, postponed there from July 16th."
+        },
+        {
+          "date": "2026-08-14",
+          "note": "Re-verified against the state notice. Public comment on the roughly 19,950 acre conveyance north of Houston, ADL 234762, still closes 5 p.m. on August 19th, and the notice still says only people who comment in writing during the window can appeal the final decision. The Houston City Council was due to vote on its separate data center ban ordinance on August 13th. No record of what the council did has been published yet, so this entry carries no outcome for that vote."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1178,7 +1201,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-13",
+      "last_updated": "2026-08-14",
       "history": [
         {
           "date": "2026-08-02",
@@ -1191,6 +1214,10 @@
         {
           "date": "2026-08-13",
           "note": "Checked and unchanged. Amendment One to request for information 02-101-27 is still the current posting and vendor responses are still due 2 p.m. on August 20th."
+        },
+        {
+          "date": "2026-08-14",
+          "note": "Checked and unchanged. Amendment One to request for information 02-101-27 is still the current posting, vendor responses are still due 2 p.m. on August 20th, and the notice still avoids the words artificial intelligence and machine learning."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1717,7 +1744,7 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-08-13",
+      "last_updated": "2026-08-14",
       "history": [
         {
           "date": "2026-08-09",
@@ -1726,6 +1753,10 @@
         {
           "date": "2026-08-13",
           "note": "Checked and unchanged. AR 5131.9 Academic Honesty still sits under ongoing policy review on the August 3rd committee agenda, item 10054, with no action recorded since. The first student day districtwide is August 19th."
+        },
+        {
+          "date": "2026-08-14",
+          "note": "Checked and unchanged. The district's meeting list still ends at the four August 3rd meetings and nothing has been posted for a later date, so AR 5131.9 has had no recorded action since the Policy Review Committee took it up with two competing drafts. The first student day is August 19th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpbsd-ai-policy-package/"
