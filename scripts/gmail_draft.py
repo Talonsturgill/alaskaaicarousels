@@ -250,9 +250,21 @@ def main():
         f'<div>Slide {i:02d}: <a href="{runs_url}/slide-{i:02d}.{ext}">{runs_url}/slide-{i:02d}.{ext}</a></div>'
         for i in range(1, len(pngs) + 1))
 
+    # Same aliasing rule as the scorer keys below, and for the same reason. The
+    # scorer agent's brief asks for a per-criterion 'why'; this table read only
+    # 'notes', so run No.33 rendered a report card with ten scores and ten empty
+    # cells, which is the one column a reader skims to find out why a criterion
+    # lost. Nothing failed and nothing said so. Read whichever spelling is there.
+    def _why(c):
+        for k in ("notes", "why", "note", "reason"):
+            v = c.get(k)
+            if v:
+                return str(v)
+        return ""
+
     score_rows = "\n".join(
         f"<tr><td>{esc(c['name'])}</td><td>{esc(str(c['score']))}</td>"
-        f"<td>{esc(str(c['weight']))}</td><td>{esc(str(c.get('notes', '')))[:160]}</td></tr>"
+        f"<td>{esc(str(c['weight']))}</td><td>{esc(_why(c))[:160]}</td></tr>"
         for c in score.get("criteria", []))
     # Scorer-key aliasing: the scorer agent's native JSON uses 'ships',
     # 'ship_threshold', and 'weakest_criteria' (a list), while the documented

@@ -25,5 +25,9 @@
     "prototypes": "P1 hachure-in-silhouette OK; P2/P3 fifty-state equal-area packing OK; P4 relief Alaska vs Rhode Island OK; P5 type system fitText+svgPlate 0 warns; P6 hero with worked lower band 0 fails 0 warns",
     "frame_balance_finding": "qa.py FAILED all four map prototypes for top-loaded composition and passed the two with a field through the lower third. Every map dossier now writes field 4a before its hero.",
     "websearch": "session WebSearch budget exhausted at 200/200 during the scout sweep; WebFetch still available and is what the claims phase ran on"
-  }
+  },
+  "gmail_draft": "done: draft r3196615606945083548 in docket@alaskaaihq.com, subject Carousel No. 33, verified one draft with 15 resolving URLs",
+  "ship": "done: PR #269 merged to main at 3efd24e, raw URLs verified 200, live site serving the deck",
+  "upgrades": "done: PR #298 merged, 3 verified upgrades at f27d209, plus a Phase 13 fix to gmail_draft.py report-card notes",
+  "status": "complete"
 }
