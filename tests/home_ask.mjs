@@ -131,6 +131,33 @@ await page.evaluate(() => document.getElementById('hask')
 await page.waitForTimeout(300);
 await page.screenshot({ path: process.env.OUT2 || '/tmp/hask-open.png' });
 
+// ---- the month's ceiling
+// This path fires at most once a month and is therefore the one nobody sees
+// until it matters. The worker's capped body names the engine above the field
+// and the archive button below it, and the front page has neither, so what
+// must NOT happen here is the worker's sentence reaching a reader.
+await page.click('.haskagain');
+await page.waitForTimeout(150);
+await page.unroute('**/answer');
+await page.route('**/answer', async (route) => {
+  await route.fulfill({ status: 200, contentType: 'application/x-ndjson',
+    body: JSON.stringify({ text: '', withheld: false, capped: true,
+      error: 'The written answer lane has reached this month\'s limit. ' +
+             'The box above still answers from the record, and the full ' +
+             'archive search below still works.' }) + '\n' });
+});
+await page.fill('#haskq', 'anything at all');
+await page.click('#haskgo');
+await page.waitForSelector('.haskfrom', { timeout: 8000 });
+{
+  const said = await page.locator('.haska').first().textContent();
+  ok('the cap is explained', said.includes("this month's last written answer"), said);
+  ok('and NOT with the worker\'s docket-shaped copy',
+    !said.includes('box above') && !said.includes('archive search'), said);
+  ok('it points at the page that still answers free',
+    (await page.locator('.haska a').first().getAttribute('href')) === 'docket/');
+}
+
 // ---- start over
 await page.click('.haskagain');
 await page.waitForTimeout(200);

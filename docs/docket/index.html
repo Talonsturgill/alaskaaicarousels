@@ -3154,6 +3154,17 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
           ? 'The rest was withheld because ' + why + '.'
           : 'None of that answer is shown, because ' + why + '.';
         if (body) body.appendChild(st);
+      } else if (ev.capped) {
+        /* The worker's own sentence says "the box above still answers from the
+           record", which was true when the answer landed below the field.
+           The thread is above it now, so the engine is below, and the page
+           that owns the layout is the page that should say where things are. */
+        if (stage) { stage.remove(); stage = null; }
+        if (body && !started) {
+          body.textContent = 'That is this month\'s last written answer. ' +
+            'Typing still searches the whole record instantly and for nothing, ' +
+            'and the full archive search still works.';
+        }
       } else if (ev.error) {
         if (stage) { stage.remove(); stage = null; }
         if (body && !started) body.textContent = ev.error;

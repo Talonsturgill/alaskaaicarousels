@@ -1833,6 +1833,23 @@ HOMEASK_JS = r"""
           ? 'The rest was withheld because ' + whyCut(ev.withheld) + '.'
           : 'None of that answer is shown, because ' + whyCut(ev.withheld) + '.';
         body.appendChild(st);
+      } else if (ev.capped) {
+        /* THE MONTH'S CEILING, SAID FOR THIS PAGE. The worker sends its own
+           sentence and that sentence names the engine above the field and the
+           archive button below it, because it was written when the only box
+           was the docket's. Neither of those things is on the front page, so
+           repeating it here would point a reader at two doors that are not
+           there, at the one moment the box has nothing else to give them.
+           The worker's copy is fine where it came from and this is not it. */
+        if (stage) { stage.remove(); stage = null; }
+        if (!started) {
+          body.textContent = 'That is this month\'s last written answer. ';
+          var a = document.createElement('a');
+          a.className = 'cite'; a.href = 'docket/';
+          a.textContent = 'The docket still answers every question about a tracked decision';
+          body.appendChild(a);
+          body.appendChild(document.createTextNode(', in your own browser, free.'));
+        }
       } else if (ev.error) {
         if (stage) { stage.remove(); stage = null; }
         if (!started) body.textContent = ev.error;
@@ -3546,6 +3563,17 @@ ASK_JS = r"""
           ? 'The rest was withheld because ' + why + '.'
           : 'None of that answer is shown, because ' + why + '.';
         if (body) body.appendChild(st);
+      } else if (ev.capped) {
+        /* The worker's own sentence says "the box above still answers from the
+           record", which was true when the answer landed below the field.
+           The thread is above it now, so the engine is below, and the page
+           that owns the layout is the page that should say where things are. */
+        if (stage) { stage.remove(); stage = null; }
+        if (body && !started) {
+          body.textContent = 'That is this month\'s last written answer. ' +
+            'Typing still searches the whole record instantly and for nothing, ' +
+            'and the full archive search still works.';
+        }
       } else if (ev.error) {
         if (stage) { stage.remove(); stage = null; }
         if (body && !started) body.textContent = ev.error;
