@@ -33,8 +33,14 @@ const ok = (l, c, d = '') => { if (c) { pass++; return; } fail++; console.log(` 
 const page = await b.newPage({ viewport: { width: 430, height: 900 }, deviceScaleFactor: 2, timezoneId: 'America/Anchorage' });
 const errs = [];
 page.on('pageerror', e => { if (!/turnstile/i.test(String(e))) errs.push(String(e)); });
+// A file:// page cannot fetch, and the homepage's video section fetches
+// videos/videos.json on scroll. That failure is this harness, not the page:
+// on the real site it is an ordinary request to a file that is right there.
+// Same reasoning as the turnstile exclusion above, and the same list
+// tests/ask_engine.mjs keeps for the same reason.
+const HARNESS = /CORS|ERR_|URL scheme|font|turnstile|challenges\.cloudflare/i;
 page.on('console', m => {
-  if (m.type() === 'error' && !/CORS|ERR_|font|turnstile|challenges\.cloudflare/i.test(m.text())) errs.push(m.text());
+  if (m.type() === 'error' && !HARNESS.test(m.text())) errs.push(m.text());
 });
 await page.route('**://challenges.cloudflare.com/**', r => r.abort());
 
@@ -130,6 +136,13 @@ await page.click('.haskagain');
 await page.waitForTimeout(200);
 ok('start over clears the thread', await page.locator('#haskout').isHidden());
 ok('and brings the starter line back', await page.locator('.hasknote').isVisible());
+
+// Everything the page does lazily, done, before the last assertion. The
+// video section loads on scroll, so a test that never reached it was passing
+// on a page that had not finished being itself. It went red on CI and green
+// here for exactly that reason, which is a flaky test rather than a lucky one.
+await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+await page.waitForTimeout(700);
 
 ok('nothing threw', errs.length === 0, errs.join(' | '));
 console.log(`\n${fail ? fail + ' FAILED of ' : ''}${pass + fail} checks${fail ? '' : ' clean'}`);
