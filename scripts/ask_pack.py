@@ -158,6 +158,32 @@ def _num(v):
     return "not public" if v is None else json.dumps(v)
 
 
+# THE SAME QUANTITY IN THE UNIT A PERSON SAYS.
+#
+# This is NOT a conversion the model is allowed to do. Rule 1 forbids it and
+# the guard enforces it, so a figure exists for an answer only if the pack
+# states it outright.
+#
+# Which is exactly how the flagship question broke. The pack gave TODAY's
+# storage in Bcf, through render_figures, and every other reading in Mcf
+# alone, while the prompt tells the model to prefer Bcf because that is what
+# the page prints. So the sentence after "up 41.1 MMcf from the day before"
+# was the day before's reading in Bcf, the one unit it had been told to use
+# and the one number it had not been given, and it was cut on every single
+# run. The answer lost its closing offer with it, because the guard drops
+# everything after the sentence that fails.
+#
+# The rounding matches gaswatch_build.figures() exactly. The two have to
+# agree, or the page and the answer state different numbers for the same
+# measurement, which is worse than either being silent.
+def _bcf(mcf, places=2):
+    return None if mcf is None else round(mcf / 1_000_000, places)
+
+
+def _mmcf(mcf):
+    return None if mcf is None else round(abs(mcf) / 1000, 1)
+
+
 def render_reading(row, label):
     """One daily reading, as labelled prose rather than as its raw row.
 
@@ -172,17 +198,25 @@ def render_reading(row, label):
     lines = [f"{label} ({row.get('date')}), read from CINGSA at "
              f"{c.get('source_timestamp')}, fetch {c.get('fetch_status')}:"]
 
+    inv, des, dlt = (c.get("inventory_mcf"), c.get("storage_design_mcf"),
+                     c.get("inventory_delta_mcf"))
     lines.append(
-        f"  Measured storage: inventory {_num(c.get('inventory_mcf'))} Mcf, "
+        f"  Measured storage: inventory {_num(inv)} Mcf "
+        f"({_num(_bcf(inv))} Bcf), "
         f"{_num(c.get('inventory_pct_of_design'))} percent of the "
-        f"{_num(c.get('storage_design_mcf'))} Mcf design, day over day change "
-        f"{_num(c.get('inventory_delta_mcf'))} Mcf.")
+        f"{_num(des)} Mcf design ({_num(_bcf(des, 1))} Bcf), "
+        f"day over day change {_num(dlt)} Mcf ({_num(_mmcf(dlt))} MMcf).")
+    # Both units here too. Storage was not a special case, it was just the one
+    # anybody asked about. A question about injection or about design capacity
+    # had the same hole underneath it.
+    wa, wd = c.get("withdrawal_available_mcfd"), c.get("withdrawal_design_mcfd")
+    ia, idz = c.get("injection_available_mcfd"), c.get("injection_design_mcfd")
     lines.append(
         f"  Measured deliverability: withdrawal available "
-        f"{_num(c.get('withdrawal_available_mcfd'))} Mcf/d against a "
-        f"{_num(c.get('withdrawal_design_mcfd'))} Mcf/d design; injection "
-        f"available {_num(c.get('injection_available_mcfd'))} Mcf/d against "
-        f"{_num(c.get('injection_design_mcfd'))} Mcf/d.")
+        f"{_num(wa)} Mcf/d ({_num(_mmcf(wa))} MMcf/d) against a "
+        f"{_num(wd)} Mcf/d ({_num(_mmcf(wd))} MMcf/d) design. Injection "
+        f"available {_num(ia)} Mcf/d ({_num(_mmcf(ia))} MMcf/d) against "
+        f"{_num(idz)} Mcf/d ({_num(_mmcf(idz))} MMcf/d).")
     lines.append(
         f"  Derived: modeled peak demand {_num(d.get('peak_modeled_demand_mmcfd'))} "
         f"MMcf/d on {d.get('peak_forecast_date')} at "
@@ -250,9 +284,14 @@ def render_gas(gas, figs=None):
         if len(series) > 1:
             prev = series[-2]
             pc = prev.get("cingsa") or {}
+            # In BOTH units, same as the newest. This one line was the whole
+            # fault. An answer that says storage is up from the day before is
+            # asked what the day before was, and the only unit it has been
+            # told to use for storage is Bcf, which this line did not carry.
+            pinv = pc.get("inventory_mcf")
             lines.append(
                 f"Previous reading ({prev.get('date')}), for direction of travel "
-                f"only: inventory {_num(pc.get('inventory_mcf'))} Mcf, "
+                f"only. Inventory {_num(pinv)} Mcf ({_num(_bcf(pinv))} Bcf), "
                 f"{_num(pc.get('inventory_pct_of_design'))} percent of design.")
 
         m = (series[-1].get("model") or {})
@@ -446,9 +485,32 @@ def self_test():
     # not appear in the corpus at all. 6.83 Bcf is the case: the page says it,
     # the corpus holds only 6828861 Mcf, and without this the answer naming the
     # figure the page publishes was cut as an invention.
+    series = gw.load_series()
     wide = set(corpus["authorised_numerals"])
-    figs = gw.figures(gw.load_series(), gc.load_model(gw.MODEL_CONFIG))
+    figs = gw.figures(series, gc.load_model(gw.MODEL_CONFIG))
     wide |= ac.numerals(render_figures(figs))
+    # And the SERIES in the page's own units, for every reading and not only
+    # today's. A measured value restated in the unit the page prints is the
+    # same measurement, not a new claim, and the page's chart plots the whole
+    # series while ledger/gaswatch.jsonl publishes every row of it.
+    #
+    # Derived from the LEDGER rather than from the pack text, deliberately.
+    # Reading it back out of the pack would make this test agree with whatever
+    # the pack happened to say, and its actual job is catching a numeral that
+    # came from nowhere: a coordinate, a raw timestamp, an id read as a figure.
+    # That job is intact. What changed is that the page's unit for a published
+    # reading now counts as published, which it plainly is.
+    for row in series:
+        cin = row.get("cingsa") or {}
+        vals = [_bcf(cin.get("inventory_mcf")),
+                _bcf(cin.get("storage_design_mcf"), 1),
+                _mmcf(cin.get("inventory_delta_mcf"))]
+        vals += [_mmcf(cin.get(k)) for k in
+                 ("withdrawal_available_mcfd", "withdrawal_design_mcfd",
+                  "injection_available_mcfd", "injection_design_mcfd")]
+        for v in vals:
+            if v is not None:
+                wide |= ac.numerals(str(v))
     stray = sorted(allowed - wide)
     check("every numeral the answerer may state is one the site publishes",
           not stray, f"{len(allowed)} allowed" +
@@ -458,6 +520,17 @@ def self_test():
     check("the storage figure the page displays is sayable",
           str(figs.get("inventory_bcf")) in allowed,
           f"inventory_bcf {figs.get('inventory_bcf')}")
+    # EVERY reading, not just the newest. This is the check that would have
+    # caught the flagship question being cut on every run: an answer saying
+    # storage rose from the day before is asked what the day before was, and
+    # the only unit the prompt permits for storage is the one the page prints.
+    unsayable = []
+    for row in series[-2:]:
+        mcf = (row.get("cingsa") or {}).get("inventory_mcf")
+        if mcf is not None and ac.normalise(str(_bcf(mcf))) not in allowed:
+            unsayable.append(f"{row.get('date')} {_bcf(mcf)}")
+    check("every reading the pack carries is sayable in the page's unit",
+          not unsayable, ", ".join(unsayable))
 
     print("size, which is the cost")
     check(f"under the {MAX_TOKENS} token ceiling", p["approx_tokens"] <= MAX_TOKENS,

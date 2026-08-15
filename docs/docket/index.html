@@ -3094,7 +3094,14 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       var f = document.createElement('div'); f.className = 'qfrom';
       if (started) {
         var note = document.createElement('span');
-        note.textContent = 'Written from the published record. Every figure checked against it. Ask a follow-up below.';
+        /* Provenance only. "Ask a follow-up below" was chrome standing in for
+           a real offer, and it was there because the model's own closing
+           offer kept being cut: the guard drops everything after the sentence
+           that fails, and the offer is always last. With the cut fixed the
+           offer arrives on its own, written from what the answer just said,
+           and a generic instruction underneath it reads as the box not having
+           read its own reply. */
+        note.textContent = 'Written from the published record. Every figure checked against it.';
         f.appendChild(note);
       }
       var b = document.createElement('button');
