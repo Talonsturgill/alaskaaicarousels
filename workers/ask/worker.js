@@ -1,11 +1,23 @@
 // The archive lane behind alaskaaihq.com/docket.
 //
-// WHAT THIS IS FOR, AND WHAT IT IS NOT FOR. Almost every question a person
-// brings to a docket is a field read, a filter, a sort or a count, and all of
-// those are answered inside the page by the engine in scripts/ask_answers.py
-// with no request at all. This worker exists for the remainder: the
-// open-ended question the published record does not have a field for. It is a
-// link under a no-match, not the box's main path.
+// WHAT THIS IS FOR. Two lanes, and they are reached differently, which was
+// not always true and is worth stating plainly because the cost follows it.
+//
+//   /answer   the written sentence. This is what SUBMITTING a question does,
+//             on the docket page and on the homepage both. It is the box's
+//             main path now, not a fallback. It stopped being a fallback on
+//             2026-08-15: it used to hang off the no-match panel, the engine
+//             nearly always had SOME match, so the panel nearly never rendered
+//             and the lane was reachable in principle and unreachable in fact.
+//   /deep     the archive search, which reads the whole repository. Still a
+//             button under a no-match, because reading everything only makes
+//             sense once the record itself has come up empty.
+//
+// The engine in scripts/ask_answers.py has not gone anywhere and still answers
+// every field read, filter, sort and count with no request at all. That is the
+// live list under the field while a person TYPES, and it is free and instant.
+// Pressing the button is the part that asks a model, and the page says so
+// above the button, before the press.
 //
 // WHY A WORKER AND NOT A DATABASE. This endpoint holds a few secrets and
 // forwards one call. The only thing it stores is an in-flight request waiting

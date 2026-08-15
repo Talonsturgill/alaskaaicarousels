@@ -409,12 +409,27 @@ export async function result(id, env) {
 // the right model here: an answer that cannot state a number the record does
 // not contain is worth more than a cleverer answer that can.
 //
-// WHAT IT COSTS, AND WHY THAT CANNOT RUN AWAY. Roughly two cents a question at
-// Haiku 4.5 rates. Three things keep the month bounded: the engine absorbs most
-// questions before this lane is reached, identical questions are served from KV
-// for nothing, and a monthly call ceiling degrades the box back to the engine
-// and the archive button rather than spending past a number the operator set.
-// The bill has a maximum you choose, not a maximum the internet chooses.
+// WHAT IT COSTS, AND WHY THAT CANNOT RUN AWAY.
+//
+// This paragraph used to name THREE things holding the month down, and the
+// first of them stopped being true on 2026-08-15. It said the engine absorbs
+// most questions before this lane is reached. It does not any more. Submitting
+// a question on the docket page calls this lane every time, deliberately,
+// because routing a submit to the engine's top hit is exactly what made the
+// written answer unreachable: the engine nearly always has SOME match, so the
+// reader never got past it. The engine is still free and still instant, but it
+// is now what you get while TYPING, and typing is not what spends money.
+//
+// So TWO things bound the month, and both are real:
+//   identical questions are served from KV for nothing
+//   a monthly call ceiling degrades the box back to the engine and the archive
+//   button rather than spending past a number the operator set
+//
+// At Sonnet 5's introductory rate and this pack size a question is about 4.3
+// cents, so the default 500 call ceiling is about 21 dollars a month. When the
+// introductory rate ends on 2026-08-31 the same ceiling is about 32 dollars.
+// The bill has a maximum you choose, not a maximum the internet chooses, and
+// ASK_MONTHLY_CAP is where you choose it.
 
 const API = "https://api.anthropic.com/v1/messages";
 const PACK_URL = "https://alaskaaihq.com/ask-pack.json";
@@ -980,12 +995,24 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
 
 // The archive lane behind alaskaaihq.com/docket.
 //
-// WHAT THIS IS FOR, AND WHAT IT IS NOT FOR. Almost every question a person
-// brings to a docket is a field read, a filter, a sort or a count, and all of
-// those are answered inside the page by the engine in scripts/ask_answers.py
-// with no request at all. This worker exists for the remainder: the
-// open-ended question the published record does not have a field for. It is a
-// link under a no-match, not the box's main path.
+// WHAT THIS IS FOR. Two lanes, and they are reached differently, which was
+// not always true and is worth stating plainly because the cost follows it.
+//
+//   /answer   the written sentence. This is what SUBMITTING a question does,
+//             on the docket page and on the homepage both. It is the box's
+//             main path now, not a fallback. It stopped being a fallback on
+//             2026-08-15: it used to hang off the no-match panel, the engine
+//             nearly always had SOME match, so the panel nearly never rendered
+//             and the lane was reachable in principle and unreachable in fact.
+//   /deep     the archive search, which reads the whole repository. Still a
+//             button under a no-match, because reading everything only makes
+//             sense once the record itself has come up empty.
+//
+// The engine in scripts/ask_answers.py has not gone anywhere and still answers
+// every field read, filter, sort and count with no request at all. That is the
+// live list under the field while a person TYPES, and it is free and instant.
+// Pressing the button is the part that asks a model, and the page says so
+// above the button, before the press.
 //
 // WHY A WORKER AND NOT A DATABASE. This endpoint holds a few secrets and
 // forwards one call. The only thing it stores is an in-flight request waiting

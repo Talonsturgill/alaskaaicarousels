@@ -1058,11 +1058,13 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
 }
 """
 
-# The deployed Worker behind the two lanes under a no-match: the written
-# answer and the archive search. While this is empty neither button renders at
+# The deployed Worker behind the two paid lanes. The written answer, which is
+# what SUBMITTING a question does on either page, and the archive search, which
+# is still a button under a no-match. While this is empty neither renders at
 # all, so a half-finished setup shows the docket exactly as it looks today
-# rather than a form that fails when someone uses it. The box itself does not
-# depend on this and never did.
+# rather than a form that fails when someone uses it. The engine under the
+# field does not depend on this and never did, which is why typing still works
+# and still costs nothing with this unset.
 #
 # THE DEFAULT IS THE REAL URL, ON PURPOSE. docs/ is committed, not built in CI,
 # and the routine rebuilds and commits it every run. A deploy-time variable
@@ -1682,12 +1684,23 @@ border-bottom:1px solid rgba(255,199,44,.35);touch-action:manipulation;}
 # events are the worker's, one JSON object per line, and the wording comes
 # from ASK_COMMON_JS so a refusal cannot read two ways on two pages.
 #
-# EVERY QUESTION HERE IS A METERED MODEL CALL. On the docket page the engine
-# absorbs almost all of them for nothing; here there is no engine to absorb
-# them. The worker's monthly ceiling still holds the bill to a number the
-# operator set, and identical questions come back from KV for free, so the
-# exposure is repeat traffic asking NEW things. That is a cost worth knowing
-# about rather than a cost worth hiding.
+# WHAT THIS COSTS, STATED CORRECTLY THE SECOND TIME. The first version of this
+# comment said the docket page's engine absorbs almost all of its questions for
+# nothing while the homepage has no engine to absorb them. That was the old
+# architecture. Submitting a question calls the model on BOTH pages, and has
+# since the submit button was pointed at the written lane, so the two are the
+# same price per question and the difference is narrower than it sounds.
+#
+# What the docket page has that this does not is a free layer BEFORE the
+# submit: the live filtered list under the field, which answers a filter, a
+# count or a field read while you type and never sends anything. Here there is
+# no list, so there is nothing between the field and a paid call.
+#
+# The month is bounded by the worker's ceiling and by KV serving identical
+# questions for free. At the 500 call default that is roughly 21 dollars a
+# month, about 32 once Sonnet 5's introductory rate ends. Putting a box on the
+# front page raises the volume that ceiling has to absorb, and the ceiling is
+# the dial. That is a cost worth knowing about rather than one worth hiding.
 HOMEASK_JS = r"""
 (function(){
   'use strict';

@@ -26,12 +26,27 @@
 // the right model here: an answer that cannot state a number the record does
 // not contain is worth more than a cleverer answer that can.
 //
-// WHAT IT COSTS, AND WHY THAT CANNOT RUN AWAY. Roughly two cents a question at
-// Haiku 4.5 rates. Three things keep the month bounded: the engine absorbs most
-// questions before this lane is reached, identical questions are served from KV
-// for nothing, and a monthly call ceiling degrades the box back to the engine
-// and the archive button rather than spending past a number the operator set.
-// The bill has a maximum you choose, not a maximum the internet chooses.
+// WHAT IT COSTS, AND WHY THAT CANNOT RUN AWAY.
+//
+// This paragraph used to name THREE things holding the month down, and the
+// first of them stopped being true on 2026-08-15. It said the engine absorbs
+// most questions before this lane is reached. It does not any more. Submitting
+// a question on the docket page calls this lane every time, deliberately,
+// because routing a submit to the engine's top hit is exactly what made the
+// written answer unreachable: the engine nearly always has SOME match, so the
+// reader never got past it. The engine is still free and still instant, but it
+// is now what you get while TYPING, and typing is not what spends money.
+//
+// So TWO things bound the month, and both are real:
+//   identical questions are served from KV for nothing
+//   a monthly call ceiling degrades the box back to the engine and the archive
+//   button rather than spending past a number the operator set
+//
+// At Sonnet 5's introductory rate and this pack size a question is about 4.3
+// cents, so the default 500 call ceiling is about 21 dollars a month. When the
+// introductory rate ends on 2026-08-31 the same ceiling is about 32 dollars.
+// The bill has a maximum you choose, not a maximum the internet chooses, and
+// ASK_MONTHLY_CAP is where you choose it.
 
 import { checkSentence, splitSentences } from "./checks.js";
 
