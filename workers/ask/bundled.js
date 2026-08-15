@@ -411,6 +411,46 @@ export function turnsOf(payload) {
   return clean.slice(-MAX_TURNS);
 }
 
+/**
+ * Ask the API one trivial question and report what came back.
+ *
+ * This exists because "that answer did not come back" is true of a rejected
+ * model name, an unfunded key, a key from the wrong organisation, a rate limit
+ * and a network fault, and telling those apart from outside took several
+ * rounds of asking a person to change a setting and try again. One request
+ * settles it instead.
+ *
+ * Deliberately tiny: two tokens in, one token out, no record attached. It
+ * spends a hundredth of a cent, so leaving it reachable is cheaper than the
+ * time it saves. It returns the API's own status and error type, never the
+ * key and never a full response body.
+ */
+export async function probe(env, fetchImpl = fetch) {
+  if (!env.ANTHROPIC_API_KEY) return { ok: false, why: "no ANTHROPIC_API_KEY" };
+  const model = effectiveModel(env);
+  try {
+    const r = await fetchImpl(API, {
+      method: "POST",
+      headers: {
+        "x-api-key": env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ model, max_tokens: 1, messages: [{ role: "user", content: "hi" }] }),
+    });
+    const raw = await r.text().catch(() => "");
+    let type = null, message = null;
+    try {
+      const j = JSON.parse(raw);
+      type = j?.error?.type ?? null;
+      message = j?.error?.message ?? null;
+    } catch { message = raw.slice(0, 160); }
+    return { ok: r.ok, status: r.status, model, error_type: type, error_message: message };
+  } catch (e) {
+    return { ok: false, model, threw: String(e).slice(0, 200) };
+  }
+}
+
 /** The model a request will actually use. One source, so the diagnostic and
  *  the call can never disagree about it. */
 export function effectiveModel(env) {
@@ -926,6 +966,13 @@ export default {
         // wrong string rather than as a missing one.
         visible: Object.keys(env).sort(),
       });
+    }
+
+    // Does the API actually answer this worker? /_config reports what is
+    // configured; this reports whether the configuration WORKS, which is a
+    // different question and the one that matters when an answer fails.
+    if (path === "/_probe") {
+      return json(await probe(env));
     }
 
     // Polling is a GET because it happens every few seconds for minutes and
