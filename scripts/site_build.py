@@ -2813,15 +2813,49 @@ ASK_JS = r"""
   }
 
   /* ---- the archive lane, for a question the index cannot answer ---- */
+  /* THE HUMAN CHECK.
+     Rendered EXPLICITLY, holding the widget id, because every earlier shape
+     failed for its own reason and all of them failed the same way from the
+     reader's side: "finish the human check first" after doing nothing.
+       - the default widget was visible and flickered under the field
+       - interaction-only alone had no token ready when someone submitted fast
+       - adding execution=execute stopped it running at all, and
+         turnstile.execute() with no argument does nothing to a widget
+         rendered implicitly, so no token ever arrived
+     Explicit render gives a handle, so execute and reset have something to
+     act on, and the callback hands the token over instead of being polled
+     for one that may never exist. */
+  var tsId = null, tsToken = '';
   function armTurnstile(){
     if (box.dataset.ts || !TS_SITEKEY) return;
     box.dataset.ts = '1';
-    var h = document.getElementById('qts');
-    h.innerHTML = '<div class="cf-turnstile" data-sitekey="' + TS_SITEKEY +
-                  '" data-theme="dark" data-size="flexible" data-appearance="interaction-only" data-execution="execute"></div>';
+    window.qTurnstileReady = function(){
+      try {
+        tsId = turnstile.render(document.getElementById('qts'), {
+          sitekey: TS_SITEKEY,
+          theme: 'dark',
+          size: 'flexible',
+          /* Invisible unless a human is genuinely needed, and left on
+             automatic execution so a token is being earned while the reader
+             is still typing. */
+          appearance: 'interaction-only',
+          callback: function(t){ tsToken = t || ''; },
+          'error-callback': function(){ tsToken = ''; },
+          'expired-callback': function(){ tsToken = ''; }
+        });
+      } catch (e) { tsId = null; }
+    };
     var s = document.createElement('script');
-    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=qTurnstileReady';
     s.async = true; s.defer = true; document.head.appendChild(s);
+  }
+  /* A token is single use, so it is cleared after every send and the widget is
+     reset, which re-runs it automatically and has the next one ready. */
+  function spendToken(){
+    tsToken = '';
+    if (TS_SITEKEY && window.turnstile && tsId !== null) {
+      try { turnstile.reset(tsId); } catch (e) {}
+    }
   }
   function renderCites(target, text){
     var re = /\[\[([a-z0-9-]+)\]\]/g, at = 0, m;
@@ -2887,7 +2921,7 @@ ASK_JS = r"""
     var done = function(){
       plainBusy = false;
       if (btn) { btn.disabled = false; btn.classList.remove('busy'); }
-      if (TS_SITEKEY && window.turnstile) turnstile.reset();
+      spendToken();
     };
 
     /* The answer arrives as newline delimited JSON, one event per line, and is
@@ -2941,18 +2975,17 @@ ASK_JS = r"""
        human check first", which is a confusing thing to tell someone who did
        nothing wrong. Ask for a new one explicitly, then wait for it. */
     function token(){
-      if (!TS_SITEKEY || !window.turnstile) return Promise.resolve('');
-      var have = turnstile.getResponse();
-      if (have) return Promise.resolve(have);
+      if (!TS_SITEKEY) return Promise.resolve('');
+      if (tsToken) return Promise.resolve(tsToken);
       setStage('Passing the human check');
-      try { turnstile.execute(); } catch (e) {
-        try { turnstile.reset(); } catch (e2) {}
-      }
+      /* The widget runs on its own; this only waits for the callback. If the
+         script has not loaded at all yet, keep waiting rather than giving up,
+         because a slow network is not a failed check. */
       return new Promise(function(resolve){
         var tries = 0;
         var t = setInterval(function(){
-          var v = window.turnstile && turnstile.getResponse();
-          if (v || ++tries > 100) { clearInterval(t); resolve(v || ''); }
+          if (tsToken) { clearInterval(t); resolve(tsToken); return; }
+          if (++tries > 150) { clearInterval(t); resolve(''); }
         }, 100);
       });
     }
@@ -3008,7 +3041,7 @@ ASK_JS = r"""
     if (btn) { btn.disabled = true; btn.textContent = 'READING THE ARCHIVE...'; }
     if (out) { out.hidden = false; out.textContent =
       'Reading every ledger and article. This takes a few minutes and the answer appears here.'; }
-    var tok = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || '') : '';
+    var tok = tsToken;
     fetch(ENDPOINT + '/deep', {method: 'POST', headers: {'content-type': 'application/json'},
       body: JSON.stringify({question: q, turnstile_token: tok || null})})
       .then(function(r){ return r.json().then(function(d){
@@ -3036,7 +3069,7 @@ ASK_JS = r"""
               }
               deepBusy = false;
               if (btn) { btn.disabled = false; btn.textContent = 'SEARCH THE FULL ARCHIVE'; }
-              if (TS_SITEKEY && window.turnstile) turnstile.reset();
+              spendToken();
             }).catch(function(){ setTimeout(poll, 4000); });
         })();
       }).catch(function(e){
