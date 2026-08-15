@@ -189,6 +189,24 @@ border-style:solid;background:rgba(90,200,240,.07);}
    palette shape, the count that moves while you type, the meter that narrows
    under the field, and an answer that is never preceded by a loading state. */
 .qbox{max-width:820px;margin:48px auto 0;position:relative;}
+/* THE GLOW.
+   A gold bloom behind the field, so the box lifts off the page instead of
+   sitting flat on it. It is a blurred radial rather than a box-shadow because
+   a shadow traces the rectangle and reads as a border; this reads as light.
+   It sits on .qbox and not on .qshell because the shell sets isolation:isolate
+   for its rotating ring, and anything drawn inside that stacking context is
+   clipped to the shell's own box, which is exactly where a glow must NOT stop.
+   Budgeted: .13 at rest and .24 on focus, landed by looking at both. At .07
+   it was invisible and did not do the job; much past .24 and the gold stops
+   being a control lifting off the page and becomes the page shouting, which
+   brand.yaml's "appears deliberately" rules out. */
+.qbox::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+left:6%;right:6%;top:-14px;height:120px;
+background:radial-gradient(60% 100% at 50% 50%,
+  rgba(255,199,44,.42),rgba(255,199,44,.10) 55%,transparent 76%);
+filter:blur(34px);opacity:.13;transition:opacity .3s ease;}
+.qbox.on::before{opacity:.24;}
+@media (prefers-reduced-motion:reduce){.qbox::before{transition:none;}}
 
 /* The shell. A ring of light that only exists while the box has focus, so
    the resting state stays quiet and the active state is unmistakable. */
