@@ -108,11 +108,89 @@ export function checkSentence(text, { allowed, slugs }) {
   return checkVerdict(text);
 }
 
+// HOW THE HOUSE PUNCTUATES, APPLIED TO A MACHINE THAT DOES NOT.
+//
+// Em dashes, en dashes, semicolons and colons are the four marks that make a
+// sentence read as written by a language model rather than said by a person,
+// and the first two are already banned everywhere else this repo publishes
+// (CLAUDE.md, config/brand.yaml, scripts/caption_check.py). The model is told
+// all four in the prompt. This is what happens when it forgets.
+//
+// REPAIRED, NOT REJECTED, AND THAT IS A DELIBERATE LINE. The checks above cut
+// an answer at the first sentence that fails, because a wrong number and an
+// invented citation are claims about the world and a smoothed over one is
+// worse than a visible stop. A semicolon is not a claim about anything. Ending
+// an answer over a punctuation mark would punish the reader for the model's
+// typing, so this rewrites and says nothing.
+//
+// The rewrite runs BEFORE the sentence is checked and before it is sent, so
+// the text a reader sees is the exact text that passed. There is no window in
+// which a checked sentence is edited.
+//
+// Nothing here can touch a figure. Every rule below either replaces a mark
+// with another mark or lifts a letter to a capital. The one rule that goes
+// near digits, a dash between two numbers, keeps them both and leaves a
+// hyphen, because turning 2024-2025 into "2024, 2025" would change what it
+// says and this file's whole job is that nothing does.
+const FILLER = [
+  // Whole sentences that carry no content. Removed entirely.
+  /^(?:great|good|excellent|interesting)\s+question[.!]?\s*/i,
+  /^(?:certainly|absolutely|sure thing|sure|of course|indeed)[,.!]\s*/i,
+  /^i hope (?:this|that) helps[.!]?\s*/i,
+  /^happy to help[.!]?\s*/i,
+  // Throat clearing in front of a real sentence. The clause goes, what
+  // follows it is lifted to a capital and keeps its meaning intact.
+  /^(?:it'?s |it is )?(?:worth |important |also worth )?(?:noting|mentioning|pointing out) that\s+/i,
+  /^(?:please )?(?:do )?note that\s+/i,
+  /^to (?:be clear|answer your question|directly answer)[,:]?\s+/i,
+  /^in (?:conclusion|summary|short)[,:]?\s+/i,
+  /^at its core[,:]?\s+/i,
+  /^that (?:being )?said[,:]?\s+/i,
+];
+
+export function plainly(text) {
+  let t = String(text)
+    // House straight quotes, same rule the site builder enforces on itself.
+    .replace(/[‘’]/g, "'")
+    .replace(/[“”]/g, '"')
+    .replace(/…/g, "...")
+    // A range keeps its reading. This is the only rule that sees a digit.
+    .replace(/(\d)\s*[—–]\s*(\d)/g, "$1-$2")
+    // Any other dash was standing in for a comma, so it becomes one. The
+    // leading [,\s]* absorbs a comma already sitting there, which is how
+    // ", and, then" would otherwise happen.
+    .replace(/[,\s]*[—–]\s*/g, ", ")
+    // A semicolon joins two sentences that wanted to be two sentences.
+    .replace(/;\s+([a-z])/g, (_, c) => ". " + c.toUpperCase())
+    .replace(/;(?=\s)/g, ".")
+    // A colon reads as a slide heading. A comma reads as a person talking.
+    // Only when whitespace follows, which is what keeps 12:30 and https://
+    // whole, and what makes this safe to run on a half arrived stream: a
+    // colon at the end of the buffer is left until its next character lands.
+    .replace(/:(?=\s)/g, ",")
+    // Tidying after the two rules above, which can leave a comma doubled, a
+    // comma in front of a full stop, or a comma opening the answer when the
+    // model started a line with a dash.
+    .replace(/,\s*,/g, ",")
+    .replace(/,\s*([.!?])/g, "$1")
+    .replace(/^[,\s]+/, "");
+  for (const re of FILLER) {
+    const before = t;
+    t = t.replace(re, "");
+    if (t !== before) t = t.charAt(0).toUpperCase() + t.slice(1);
+  }
+  return t;
+}
+
 // Split on sentence ends only where a space follows, so decimals (6.54 Bcf)
 // and abbreviated dockets stay whole. A trailing fragment is returned as the
 // remainder for the next chunk rather than checked early.
+//
+// The house rewrite runs here rather than at the three call sites, because
+// three places to remember is three places to forget, and a sentence that
+// reached a reader unrewritten would be the one nobody noticed.
 export function splitSentences(buffer) {
-  const parts = buffer.split(/(?<=[.!?])\s+/);
+  const parts = plainly(buffer).split(/(?<=[.!?])\s+/);
   const remainder = parts.pop() ?? "";
   return { sentences: parts, remainder };
 }

@@ -1447,8 +1447,14 @@ display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;}
 font:inherit;font-size:12.5px;border-bottom:1px solid rgba(255,199,44,.35);
 touch-action:manipulation;}
 .qagain:hover{border-bottom-color:var(--gold);}
-.qout{margin-top:22px;padding:0 2px;color:var(--snow);text-align:left;}
+/* The thread. Above the field, so it carries .qbox's own width and centring
+   rather than inheriting them from a parent it no longer has. */
+.qout{max-width:820px;margin:48px auto 0;padding:0 2px;color:var(--snow);
+text-align:left;}
 .qout[hidden]{display:none;}
+/* Once there is a thread, the field is the bottom of it and not a fresh
+   element 48px down the page. */
+.qout:not([hidden]) + .qbox{margin-top:24px;}
 .qout a.cite{color:var(--blue);text-decoration:none;
 border-bottom:1px solid rgba(90,200,240,.3);}
 .qstop{border-left:2px solid var(--gold);padding-left:12px;color:var(--mute);
@@ -3048,9 +3054,18 @@ ASK_JS = r"""
       /* Emptied so the field is ready for a follow-up rather than still
          holding the question that was just answered. */
       input.value = ''; ghost('');
-      // The box can be well down the page by the time someone submits, and an
-      // answer nobody scrolls to reads exactly like an answer that never came.
-      body.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      /* The question goes to the top and the answer arrives under it, the way
+         a chat moves. Scrolling to the ANSWER instead put an empty box on
+         screen and the question off the top of it, and scrolling to the field
+         would have chased it back down as the reply pushed it along.
+         Not scrollIntoView: the nav is sticky and two rows tall on a phone, so
+         start-of-element is under it. Its height is measured rather than
+         guessed, because guessing 92px hid the question on a 430px screen. */
+      var nav = document.querySelector('.topnav');
+      window.scrollTo({
+        behavior: 'smooth',
+        top: asked.getBoundingClientRect().top + window.pageYOffset -
+             ((nav ? nav.getBoundingClientRect().height : 0) + 16)});
     }
     /* One way back, always present once an answer is on screen. */
     /* The footer: where this came from, and one way out. Below the answer,
@@ -3068,7 +3083,7 @@ ASK_JS = r"""
       var f = document.createElement('div'); f.className = 'qfrom';
       if (started) {
         var note = document.createElement('span');
-        note.textContent = 'Written from the published record. Every figure checked against it. Ask a follow-up above.';
+        note.textContent = 'Written from the published record. Every figure checked against it. Ask a follow-up below.';
         f.appendChild(note);
       }
       var b = document.createElement('button');
@@ -3390,7 +3405,15 @@ def ask_html(today):
         for p in (data.get("near", {}).get("places") or [])[:8])
     endpoint = ASK_ENDPOINT if ASK_ENDPOINT else ""
     n = len(data["index"])
-    return f"""<div class="qbox" id="qbox" data-reveal
+    # THE THREAD SITS ABOVE THE FIELD, which is where every chat worth using
+    # puts it: what was said scrolls up, and the thing you type into stays put
+    # at the bottom. It was underneath, so a second question meant reading
+    # down past an answer, then back up to the field, then down again for the
+    # reply. It is OUTSIDE .qbox rather than its first child because the
+    # counter is positioned off the box's top edge and the glow is drawn on
+    # the box, and both of those belong to the field and not to the thread.
+    return f"""<div class="qout" id="qout" hidden></div>
+<div class="qbox" id="qbox" data-reveal
      data-endpoint="{esc(endpoint)}" data-sitekey="{esc(TS_SITEKEY)}">
 <span class="qcount" id="qcount" aria-hidden="true"></span>
 <div class="qshell"><div class="qfield">
@@ -3413,13 +3436,13 @@ def ask_html(today):
 <div class="qstrips"><div class="qtries" id="qtries"><span class="qtryl">TRY</span>{tries}</div>
 <div class="qtries qnears" id="qnears"><span class="qtryl">NEAR</span>{hoods}</div></div>
 <div class="qpanel" id="qres" role="listbox" aria-label="Answer" hidden></div>
-<!-- The written answer lands here, and this sits OUTSIDE the results panel on
-     purpose. It used to be rendered inside the no-match panel, which only
-     appears when the engine matched nothing at all. A loose match means the
-     engine nearly always returns something, so that panel nearly never
-     appeared, so the answer lane was reachable in principle and unreachable in
-     practice. Living out here it works for any question, matched or not. -->
-<div class="qout" id="qout" hidden></div>
+<!-- The written answer lands in #qout, above the field. It sits OUTSIDE the
+     results panel on purpose. It used to be rendered inside the no-match
+     panel, which only appears when the engine matched nothing at all. A loose
+     match means the engine nearly always returns something, so that panel
+     nearly never appeared, so the answer lane was reachable in principle and
+     unreachable in practice. Living outside it works for any question,
+     matched or not. -->
 <div id="qts"></div>
 <!-- The keyboard hint row is gone at the maintainer's call. It taught four
      shortcuts that a phone has no keys for, on a box most people reach from a
