@@ -6,7 +6,7 @@
 
 import {
   normalise, numerals, checkVerdict, checkCitations, checkNumerals,
-  checkSentence, splitSentences,
+  checkSentence, splitSentences, plainly,
 } from "./checks.js";
 
 let failures = 0;
@@ -134,6 +134,67 @@ section("sentence splitting");
   const { sentences } = splitSentences("Storage was 6.54 Bcf on the 7th. Next. ");
   check("a decimal does not split a sentence", sentences[0] === "Storage was 6.54 Bcf on the 7th.",
     JSON.stringify(sentences[0]));
+}
+
+// ------------------------------------------------------------- house voice
+//
+// The four banned marks and the assistant tics. Unlike everything above, a hit
+// here is REWRITTEN rather than refused, so the red cases assert the repair
+// rather than a rejection. The last group is the important one: a repair that
+// could move a digit would undo the strongest control in this file.
+section("the house rewrite");
+const same = (a, b, label) => check(label, plainly(a) === b,
+  `${JSON.stringify(plainly(a))} wanted ${JSON.stringify(b)}`);
+
+same("The picture: storage held 6.54 Bcf.", "The picture, storage held 6.54 Bcf.",
+  "a colon becomes a comma");
+same("It gives 6.54 Bcf; it does not give the change.",
+  "It gives 6.54 Bcf. It does not give the change.",
+  "a semicolon becomes two sentences, second one capitalised");
+same("The Assembly votes — the date is published.",
+  "The Assembly votes, the date is published.", "an em dash becomes a comma");
+same("Two items, — and a third.", "Two items, and a third.",
+  "a dash after a comma does not double it");
+same("The window ran 2024–2025 in full.", "The window ran 2024-2025 in full.",
+  "a dash between digits keeps the range readable");
+same("It isn’t published, they said “no”.",
+  "It isn't published, they said \"no\".", "curly quotes are straightened");
+same("Great question. The Assembly decides.", "The Assembly decides.",
+  "an opener with no content is dropped");
+same("It's worth noting that the window is open.", "The window is open.",
+  "throat clearing goes and the sentence is lifted to a capital");
+same("Certainly! The Assembly decides.", "The Assembly decides.",
+  "an assistant flourish goes");
+
+// The half arrived stream. A colon at the very end of the buffer is left
+// alone, because the character after it has not landed yet and rewriting a
+// URL's colon would break the link it is part of.
+same("https://alaskaaihq.com/docket/ is the page.",
+  "https://alaskaaihq.com/docket/ is the page.", "a URL survives intact");
+same("The record says", "The record says", "a bare fragment is untouched");
+check("a colon at the end of the buffer waits for its next character",
+  plainly("The figures are:") === "The figures are:", plainly("The figures are:"));
+
+// THE ONE THING THIS MUST NEVER DO.
+{
+  const cases = [
+    "Storage held 6.83 Bcf, 52.5 percent of 13.0 Bcf, up 41.1 MMcf.",
+    "It ran 2024–2025; storage held 6.54 Bcf: that is 50 percent.",
+    "See [[enstar-cook-inlet-gas-storage]] and [[eo-14318-data-center-permitting]].",
+  ];
+  const moved = cases.filter((c) =>
+    numerals(plainly(c)).join(",") !== numerals(c).join(","));
+  check("no rewrite changes a single figure", moved.length === 0, JSON.stringify(moved));
+  check("no rewrite touches a citation",
+    plainly(cases[2]) === cases[2], plainly(cases[2]));
+}
+
+// And the rewrite has to be what the checker sees, or a reader could be shown
+// a sentence in a form nothing verified.
+{
+  const { sentences } = splitSentences("The picture: it held 6.54 Bcf. Next. ");
+  check("splitSentences hands back rewritten text",
+    sentences[0] === "The picture, it held 6.54 Bcf.", JSON.stringify(sentences[0]));
 }
 
 console.log();
