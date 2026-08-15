@@ -38,10 +38,23 @@ import { checkSentence, splitSentences } from "./checks.js";
 const API = "https://api.anthropic.com/v1/messages";
 const PACK_URL = "https://alaskaaihq.com/ask-pack.json";
 
-// Pinned to a dated snapshot rather than a moving alias, so an answer the
-// guard accepted today is produced by the same model tomorrow. Overridable for
-// a staging deploy without a code change.
-const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
+// The model, pinned here rather than left to a variable.
+//
+// ASK_MODEL still wins if it is set, but it is not how this gets changed any
+// more. Setting that variable in the Cloudflare dashboard and deploying twice
+// never made it visible to the running worker: Object.keys(env) listed the
+// other three every time and never this one. Rather than keep asking a person
+// to click Deploy again, the choice lives in code, where it is reviewable and
+// where changing it is the same one paste as any other worker change.
+//
+// Sonnet 5 while its behaviour is being compared against Haiku 4.5 on the
+// standing eval set. Haiku answered the hardest question on that set well, so
+// this is a measurement and not a conclusion. Switching back is one line.
+//
+// NOTE ON PRICE: Sonnet 5's introductory rate ends 2026-08-31, after which
+// input goes $2 to $3 per million and output $10 to $15. At this pack size
+// that moves a question from about 4.3 cents to about 6.4 cents.
+const DEFAULT_MODEL = "claude-sonnet-5";
 
 // Three or four sentences. The guard checks sentence by sentence and the page
 // shows a short answer, so a long generation is spend with nowhere to go.
