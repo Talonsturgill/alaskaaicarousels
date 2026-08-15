@@ -64,9 +64,15 @@ ITEM_FIELDS = ("id", "title", "kind", "status", "decider", "public_access",
                "first_seen", "last_updated", "history")
 
 # A numeral, in any of the shapes the record actually uses: 715.4, 50-year,
-# $57M, 4:30, 2026-07-17, 50.3 percent. Captures the digits and any decimal
-# part, and leaves the surrounding punctuation to the caller.
-NUMERAL_RE = re.compile(r"\d+(?:\.\d+)?")
+# $57M, 4:30, 2026-07-17, 50.3 percent, 4,700.
+#
+# A THOUSANDS SEPARATOR IS PART OF THE NUMBER, NOT A BREAK IN IT. This used to
+# be \d+(?:\.\d+)?, which read "4,700" as a 4 and a 700 and authorised both.
+# The pack carries 35 comma grouped figures, and splitting them admitted six
+# numerals that appear nowhere in the record on their own: 150, 300, 566, 700,
+# 950 and 967. Those are exactly the round figures a model invents, so the
+# guard was quietly licensing the most likely kind of wrong answer.
+NUMERAL_RE = re.compile(r"\d(?:[\d,]*\d)?(?:\.\d+)?")
 
 
 def normalise(tok):
@@ -77,8 +83,14 @@ def normalise(tok):
     authorise the same number written the way a person writes it, and the
     check would reject correct answers. Trailing zeros after a decimal point
     go too, so 6.50 and 6.5 agree.
+
+    Commas go, so a model shown 4,700 may write 4700 and still pass. The zero
+    in FRONT of a decimal point stays, because stripping it left .8469, which
+    NUMERAL_RE cannot match at all, so a figure written back that way would
+    have gone through this gate unchecked.
     """
-    tok = tok.lstrip("0") or "0"
+    tok = tok.replace(",", "")
+    tok = ("0" + tok.lstrip("0")) if tok.startswith("0.") else (tok.lstrip("0") or "0")
     if "." in tok:
         tok = tok.rstrip("0").rstrip(".") or "0"
     return tok
@@ -113,16 +125,45 @@ def build(today=None, site_url="https://alaskaaihq.com"):
         "gas_watch": gas,
     }
 
-    # The allow-list is derived from the finished corpus, so it can never drift
-    # from what the model was actually shown. Anything the answer may say, it
-    # can read here first.
+    # The allow-list from the corpus alone. published() widens it to cover what
+    # the pack actually renders, and that is the one the worker reads.
     corpus["authorised_numerals"] = sorted(numerals(corpus))
     corpus["slugs"] = sorted(it["id"] for it in items)
     return corpus
 
 
+def published(today=None, site_url="https://alaskaaihq.com"):
+    """The corpus as it ships, with the pack's own figures authorised.
+
+    WHY THIS IS A SECOND FUNCTION AND NOT PART OF build(). ask_pack is a pure
+    function of build(), so build() cannot read the pack without the two
+    calling each other forever. The widening happens at the publish step, where
+    both already exist.
+
+    WHY IT IS NEEDED AT ALL. The corpus is the SOURCE. The pack is what the
+    model is actually handed, and ask_pack computes on the way: a storage
+    figure in Mcf is rendered in Bcf beside it, a deliverability figure in
+    Mcf/d in MMcf/d. Those conversions appear nowhere in the corpus, so a list
+    built from the corpus alone refused figures the model had been shown one
+    line earlier. Five were live when this was measured, including the 6.83
+    Bcf in the previous-reading line, which is the shape of sentence this box
+    writes every day.
+
+    A model cannot state a number it was never given, so what it was given is
+    the honest boundary.
+    """
+    import ask_pack  # here, not at import time, because ask_pack imports this
+    corpus = build(today=today, site_url=site_url)
+    pack = ask_pack.build(today=today, site_url=site_url)["pack"]
+    corpus["authorised_numerals"] = sorted(
+        set(corpus["authorised_numerals"]) | numerals(pack))
+    return corpus
+
+
 def write(path=OUT, **kw):
-    corpus = build(**kw)
+    # published(), not build(). The file the worker reads has to authorise what the
+    # model is actually shown, and the pack renders figures the corpus never holds.
+    corpus = published(**kw)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as fh:
         json.dump(corpus, fh, separators=(",", ":"), sort_keys=True)
@@ -148,7 +189,12 @@ def self_test():
 
     print("numeral normalisation")
     for raw, want in (("07", "7"), ("0", "0"), ("6.50", "6.5"), ("715.4", "715.4"),
-                      ("2026", "2026"), ("00", "0"), ("6.00", "6")):
+                      ("2026", "2026"), ("00", "0"), ("6.00", "6"),
+                      # A thousands separator is inside the number, not a break in it.
+                      ("4,700", "4700"), ("1,781,547.9", "1781547.9"),
+                      # The leading zero of a decimal stays. Without it 0.5 became .5,
+                      # which NUMERAL_RE cannot match, so the figure went unchecked.
+                      ("0.5", "0.5"), ("0.50", "0.5")):
         check(f"{raw} normalises to {want}", normalise(raw) == want, normalise(raw))
     # The case this function exists for. A zero-padded date component in the
     # record has to authorise the same day written the way a person writes it.
@@ -184,6 +230,24 @@ def self_test():
     check("slugs are unique", len(c["slugs"]) == len(set(c["slugs"])))
     check("a slug that does not exist is not listed",
           "not-a-real-docket-item" not in c["slugs"])
+
+    print("the model may state only what it was shown")
+    import ask_pack
+    pub = published()
+    allowed_pub = set(pub["authorised_numerals"])
+    shown = numerals(ask_pack.build()["pack"])
+    # THE CHECK THAT MATTERS MOST HERE. Every figure the pack renders has to be one the
+    # guard will accept back. Eighteen were not when this was written, because the corpus
+    # tokeniser split on thousands separators and because ask_pack computes unit
+    # conversions that appear nowhere in the corpus. A reader saw an answer stop mid
+    # sentence over a number the model had been handed one line earlier.
+    check("every figure the pack shows is authorised", not (shown - allowed_pub),
+          f"{len(shown - allowed_pub)} unauthorised, e.g. {sorted(shown - allowed_pub)[:4]}")
+    # And the ghosts a split tokeniser used to invent. None of these appears in the record
+    # on its own, and every one is the kind of round figure a model reaches for.
+    ghosts = {"150", "300", "566", "700", "950", "967"} & allowed_pub
+    check("no numeral is authorised only as half of a grouped figure", not ghosts,
+          str(sorted(ghosts)))
 
     print("size")
     blob = json.dumps(c, separators=(",", ":"))

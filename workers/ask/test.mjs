@@ -28,7 +28,13 @@ function section(name) { console.log(name); }
 section("normalise agrees with the corpus builder");
 const PY = {
   "07": "7", "0": "0", "00": "0", "6.50": "6.5", "6.00": "6",
-  "715.4": "715.4", "2026": "2026", "0.5": ".5", "50": "50",
+  "715.4": "715.4", "2026": "2026", "50": "50",
+  // A thousands separator is inside the number. The record writes 4,700 and a model may
+  // write it back either way, so both spellings have to land on one token.
+  "4,700": "4700", "1,781,547.9": "1781547.9",
+  // 0.5 used to normalise to ".5", which NUMERAL_RE cannot match at all. A figure written
+  // back that way went through the gate unchecked, so the leading zero stays now.
+  "0.5": "0.5", "0.50": "0.5", "0.8469": "0.8469",
 };
 for (const [input, want] of Object.entries(PY)) {
   check(`${input} -> ${want}`, normalise(input) === want, normalise(input));
@@ -38,6 +44,17 @@ section("numerals");
 check("a decimal is one token, not two",
   JSON.stringify(numerals("Storage held 6.54 Bcf.")) === JSON.stringify(["6.54"]),
   JSON.stringify(numerals("Storage held 6.54 Bcf.")));
+check("a comma grouped figure is ONE token, not two",
+  JSON.stringify(numerals("about 4,700 customers")) === JSON.stringify(["4700"]),
+  JSON.stringify(numerals("about 4,700 customers")));
+// The regression this pins. Splitting on the separator authorised the digits either side of
+// every comma in the record, which added 150, 300, 566, 700, 950 and 967 to the allow-list.
+// Not one of them appears in the record on its own, and every one is the kind of round figure
+// a model reaches for, so the guard was licensing the most likely sort of wrong answer.
+check("neither half of a grouped figure is authorised on its own",
+  !numerals("about 4,700 customers").includes("700") &&
+  !numerals("about 4,700 customers").includes("4"),
+  JSON.stringify(numerals("about 4,700 customers")));
 check("a padded date yields its unpadded parts",
   numerals("2026-07-17").join(",") === "2026,7,17",
   numerals("2026-07-17").join(","));
