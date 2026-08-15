@@ -3016,6 +3016,24 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
      by the same pass that built this page. Every sentence is checked against
      the record's own numerals before it arrives, and a sentence that fails is
      cut rather than smoothed over, which is what the withheld note says. */
+  /* SAY WHICH CHECK STOPPED IT. Both lanes have always sent the reason,
+     numeral or citation or verdict, and both places on this page threw it away
+     and printed one sentence covering all three. That cost twice over. A
+     reader was told an answer was cut without being told what KIND of thing
+     was cut, which reads as the box being flaky rather than the box being
+     strict, and strict is the whole product. And nobody watching it could tell
+     whether the gas question was tripping the no-verdict rule, the one this
+     site cares most about, or merely reaching for a figure. The flagship
+     question was cut on every run for weeks with the reason sitting unread in
+     the payload. */
+  function whyCut(reason){
+    return ({
+      numeral: 'it stated a figure the record does not carry',
+      citation: 'it named a decision that is not on the record',
+      verdict: 'it made a call on gas adequacy, which this record never makes'
+    })[reason] || 'it could not be checked against the record';
+  }
+
   function plain(){
     if (plainBusy || !ENDPOINT) return;
     var q = input.value.trim(); if (!q) return;
@@ -3123,13 +3141,13 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       else if (ev.withheld) {
         if (stage) { stage.remove(); stage = null; }
         var st = document.createElement('div'); st.className = 'qstop';
+        var why = whyCut(ev.withheld);
         /* Different copy when NOTHING survived, because there is no "rest".
            Saying the rest was withheld when the whole answer was withheld
            reads as a bug, and it was one. */
         st.textContent = started
-          ? 'The rest was withheld because it could not be checked against the record.'
-          : 'That answer could not be checked against the record, so none of it is shown. ' +
-            'It usually means the answer needed a figure the record does not state.';
+          ? 'The rest was withheld because ' + why + '.'
+          : 'None of that answer is shown, because ' + why + '.';
         if (body) body.appendChild(st);
       } else if (ev.error) {
         if (stage) { stage.remove(); stage = null; }
@@ -3235,7 +3253,7 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
                   renderCites(p, s.text); out.appendChild(p);
                   if (s.withheld) {
                     var st = document.createElement('div'); st.className = 'qstop';
-                    st.textContent = 'The rest was withheld because it could not be checked against the record.';
+                    st.textContent = 'The rest was withheld because ' + whyCut(s.reason) + '.';
                     out.appendChild(st);
                   }
                 } else { out.textContent = s.error || 'The archive run returned no answer.'; }
