@@ -143,8 +143,13 @@ section("the route");
   check("the record and the rules went as two system blocks",
     Array.isArray(globalThis.fetch.calls.body.system) &&
     globalThis.fetch.calls.body.system.length === 2);
-  check("temperature is pinned to zero",
-    globalThis.fetch.calls.body.temperature === 0);
+  // Was "temperature is pinned to zero". That assertion encoded the belief
+  // that broke the box: temperature 0 is a 400 on every Sonnet 5 request. What
+  // matters is that the request carries what THIS model accepts.
+  check("the request carries only what this model accepts",
+    !("temperature" in globalThis.fetch.calls.body) ||
+    globalThis.fetch.calls.body.temperature === 0,
+    JSON.stringify(Object.keys(globalThis.fetch.calls.body)));
 
   // Asking again must not reach the model.
   const before = globalThis.fetch.calls.api;
@@ -235,9 +240,10 @@ const { answerStream } = await import(UNDER_TEST);
 // the real frame shape rather than a convenient one.
 function sseFetch(chunks, { status = 200 } = {}) {
   const calls = { api: 0 };
-  const fn = async (url) => {
+  const fn = async (url, opts) => {
     if (String(url).includes("ask-pack.json")) return { ok: true, json: async () => PACK };
     calls.api++;
+    fn.lastBody = JSON.parse(opts.body);
     if (status !== 200) return { ok: false, status, text: async () => "no" };
     const enc = new TextEncoder();
     const frames = chunks.map(t => `event: content_block_delta\ndata: ${JSON.stringify(
@@ -320,6 +326,39 @@ async function drain(stream) {
     ev.some(x => x.error) && ev.some(x => x.done));
   check("a failed stream is not counted",
     e.ASK_KV.store.get("spend:2026-08") === undefined);
+}
+
+
+// ------------------------------------------------- what each model accepts
+//
+// This is the bug that took the box down for an evening: temperature 0 is
+// fine on Haiku and a 400 on every single Sonnet 5 request. It is knowable
+// from the docs, so it is asserted here rather than discovered in production.
+section("request shape per model");
+const { modelParams } = await import(UNDER_TEST);
+
+check("Sonnet 5 gets NO temperature",
+  modelParams("claude-sonnet-5").temperature === undefined,
+  JSON.stringify(modelParams("claude-sonnet-5")));
+check("Opus 5 gets NO temperature",
+  modelParams("claude-opus-5").temperature === undefined);
+check("Haiku 4.5 still gets temperature 0",
+  modelParams("claude-haiku-4-5-20251001").temperature === 0);
+check("Sonnet 4.6 still gets temperature 0",
+  modelParams("claude-sonnet-4-6").temperature === 0);
+check("Sonnet 5 turns thinking off, since it is on by default",
+  modelParams("claude-sonnet-5").thinking?.type === "disabled");
+check("Haiku is NOT sent a thinking block it does not want",
+  modelParams("claude-haiku-4-5-20251001").thinking === undefined);
+
+{
+  // And the shape actually reaches the wire, on both paths.
+  const e = env();
+  globalThis.fetch = sseFetch(["Storage held 6.54 Bcf."]);
+  await drain(await answerStream("q", { ...e, ASK_MODEL: "claude-sonnet-5" }, { now: NOW }));
+  check("the streamed request omits temperature on Sonnet 5",
+    !("temperature" in (globalThis.fetch.lastBody || {})),
+    JSON.stringify(Object.keys(globalThis.fetch.lastBody || {})));
 }
 
 console.log();

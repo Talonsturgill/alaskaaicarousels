@@ -361,7 +361,42 @@ const DEFAULT_MODEL = "claude-sonnet-5";
 
 // Three or four sentences. The guard checks sentence by sentence and the page
 // shows a short answer, so a long generation is spend with nowhere to go.
-const MAX_TOKENS = 600;
+const MAX_TOKENS = 1024;
+
+/**
+ * Models that REJECT a non-default temperature, top_p or top_k with a 400 on
+ * every request, thinking or not.
+ *
+ * This is what broke the box the moment it moved off Haiku. The request sent
+ * temperature 0, which is fine on Haiku 4.5 and an instant 400 on Sonnet 5, so
+ * every answer came back as "that answer did not come back" and three rounds
+ * went into guessing at the key, the model name and the account.
+ *
+ * A list rather than a try-and-retry, because a 400 costs a round trip and
+ * this is knowable up front. From the thinking docs, sampling parameters
+ * section: Fable 5, Mythos 5, Opus 5, Opus 4.8, Opus 4.7 and Sonnet 5.
+ */
+const NO_SAMPLING = /^claude-(fable-5|mythos-5|mythos-preview|opus-5|opus-4-8|opus-4-7|sonnet-5)/;
+
+/**
+ * Models with thinking ON by default. Their thinking tokens are billed as
+ * output and count against max_tokens, which for a three sentence answer is
+ * paying to deliberate about a lookup. Turned off where the docs say it can
+ * be, left alone everywhere else.
+ */
+const THINKS_BY_DEFAULT = /^claude-(opus-5|sonnet-5|fable-5|mythos-5|mythos-preview)/;
+
+/**
+ * The parts of a request that depend on which model is answering. One place,
+ * so the streaming path and the plain one cannot drift into disagreeing about
+ * what the model will accept.
+ */
+export function modelParams(model) {
+  const out = {};
+  if (!NO_SAMPLING.test(model)) out.temperature = 0;
+  if (THINKS_BY_DEFAULT.test(model)) out.thinking = { type: "disabled" };
+  return out;
+}
 
 // The ceiling, in model calls per calendar month.
 //
@@ -436,7 +471,8 @@ export async function probe(env, fetchImpl = fetch) {
         "anthropic-version": "2023-06-01",
         "content-type": "application/json",
       },
-      body: JSON.stringify({ model, max_tokens: 1, messages: [{ role: "user", content: "hi" }] }),
+      body: JSON.stringify({ model, max_tokens: 1, ...modelParams(model),
+                             messages: [{ role: "user", content: "hi" }] }),
     });
     const raw = await r.text().catch(() => "");
     let type = null, message = null;
@@ -538,10 +574,7 @@ export async function callModel(turns, pack, env, fetchImpl = fetch) {
     body: JSON.stringify({
       model: effectiveModel(env),
       max_tokens: MAX_TOKENS,
-      // Zero, because this is a lookup rather than a piece of writing. It also
-      // makes the KV cache mean something and makes a guard failure
-      // reproducible when investigating one.
-      temperature: 0,
+      ...modelParams(effectiveModel(env)),
       // Two blocks rather than one string. The rules are stable and the record
       // changes daily, and keeping them apart is what lets a cache_control
       // marker be added to the record block later without touching anything
@@ -584,7 +617,7 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
     body: JSON.stringify({
       model: effectiveModel(env),
       max_tokens: MAX_TOKENS,
-      temperature: 0,
+      ...modelParams(effectiveModel(env)),
       stream: true,
       system: [
         { type: "text", text: pack.system },
