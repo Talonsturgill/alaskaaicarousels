@@ -381,6 +381,12 @@ const DEFAULT_CAP = 500;
 // new pack produces a different key.
 const ANSWER_TTL = 60 * 60 * 36;
 
+/** The model a request will actually use. One source, so the diagnostic and
+ *  the call can never disagree about it. */
+export function effectiveModel(env) {
+  return env.ASK_MODEL || DEFAULT_MODEL;
+}
+
 export function capOf(env) {
   const raw = env.ASK_MONTHLY_CAP;
   if (raw === undefined || raw === null || raw === "") return DEFAULT_CAP;
@@ -452,7 +458,7 @@ export async function callModel(question, pack, env, fetchImpl = fetch) {
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      model: env.ASK_MODEL || DEFAULT_MODEL,
+      model: effectiveModel(env),
       max_tokens: MAX_TOKENS,
       // Zero, because this is a lookup rather than a piece of writing. It also
       // makes the KV cache mean something and makes a guard failure
@@ -498,7 +504,7 @@ export async function streamModel(question, pack, env, onDelta, fetchImpl = fetc
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      model: env.ASK_MODEL || DEFAULT_MODEL,
+      model: effectiveModel(env),
       max_tokens: MAX_TOKENS,
       temperature: 0,
       stream: true,
@@ -857,7 +863,12 @@ export default {
         turnstile_secret: !!env.TURNSTILE_SECRET,
         routine_token: !!env.ROUTINE_TOKEN,
         monthly_cap: capOf(env),
-        model: env.ASK_MODEL || "(default)",
+        // The model actually in use, not the variable. Reporting the variable
+        // and calling it "(default)" when unset told a debugger nothing about
+        // which model that resolved to, which is the one question the endpoint
+        // existed to answer.
+        model: effectiveModel(env),
+        model_from: env.ASK_MODEL ? "ASK_MODEL variable" : "pinned in code",
         pack_url: env.ASK_PACK_URL || "(default)",
         // Every name the worker can actually see, so a typo shows up as the
         // wrong string rather than as a missing one.

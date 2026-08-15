@@ -78,6 +78,12 @@ const DEFAULT_CAP = 500;
 // new pack produces a different key.
 const ANSWER_TTL = 60 * 60 * 36;
 
+/** The model a request will actually use. One source, so the diagnostic and
+ *  the call can never disagree about it. */
+export function effectiveModel(env) {
+  return env.ASK_MODEL || DEFAULT_MODEL;
+}
+
 export function capOf(env) {
   const raw = env.ASK_MONTHLY_CAP;
   if (raw === undefined || raw === null || raw === "") return DEFAULT_CAP;
@@ -149,7 +155,7 @@ export async function callModel(question, pack, env, fetchImpl = fetch) {
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      model: env.ASK_MODEL || DEFAULT_MODEL,
+      model: effectiveModel(env),
       max_tokens: MAX_TOKENS,
       // Zero, because this is a lookup rather than a piece of writing. It also
       // makes the KV cache mean something and makes a guard failure
@@ -195,7 +201,7 @@ export async function streamModel(question, pack, env, onDelta, fetchImpl = fetc
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      model: env.ASK_MODEL || DEFAULT_MODEL,
+      model: effectiveModel(env),
       max_tokens: MAX_TOKENS,
       temperature: 0,
       stream: true,
