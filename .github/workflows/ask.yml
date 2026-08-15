@@ -33,6 +33,7 @@ on:
       - "ledger/docket.json"
       - "prompts/ASK_ROUTINE.md"
       - "tests/ask_engine.mjs"
+      - "tests/home_ask.mjs"
       - ".github/workflows/ask.yml"
   push:
     branches: [main]
@@ -47,6 +48,7 @@ on:
       - "scripts/docket_build.py"
       - "ledger/docket.json"
       - "tests/ask_engine.mjs"
+      - "tests/home_ask.mjs"
       - ".github/workflows/ask.yml"
   workflow_dispatch:
 
@@ -124,3 +126,9 @@ jobs:
         run: |
           bash .github/workflows/browser.sh 1
           SITE=/tmp/site node tests/ask_engine.mjs
+
+      # The front page carries the same lane with none of the engine, so it is
+      # its own client and it gets its own browser. The worker is stubbed; the
+      # streaming, the thread memory and the guard's wording are not.
+      - name: The homepage box holds a conversation
+        run: SITE=/tmp/site node tests/home_ask.mjs

@@ -1576,6 +1576,389 @@ transition:background .16s ease,color .16s ease,border-color .16s ease;}
 color:var(--snow);border-left-color:var(--gold);outline:none;}
 """
 
+# THE HOMEPAGE ASK BOX.
+#
+# One field and one line, and nothing else until somebody types. The docket
+# box is a whole instrument, with the index, the smart views, the chips and
+# the live count, and all of that belongs on the page a reader chose to open.
+# On the front page it would be a wall in front of somebody who has not asked
+# anything yet, so this is the door and the docket is the room.
+#
+# It GROWS rather than opening. The thread lands above the field, the field
+# stays where it is, and the starter line steps aside once there is a real
+# answer standing in its place. Same shape as the docket box, one twentieth
+# of the surface.
+HOMEASK_CSS = """
+.hask{max-width:720px;margin:40px auto 0;position:relative;text-align:left;}
+.hasklab{font-family:JBMono,ui-monospace,monospace;font-size:11px;
+letter-spacing:.15em;color:var(--mute);margin:0 0 11px;}
+/* A gold bloom only while the field has focus, so the resting state stays as
+   quiet as the rest of the hero and the active state is unmistakable. Drawn
+   behind, blurred, because a shadow traces the rectangle and reads as a
+   border while this reads as light. */
+.haskshell{position:relative;display:flex;align-items:center;gap:11px;
+border:1px solid var(--line);border-radius:15px;padding:0 7px 0 15px;
+background:rgba(255,255,255,.018);transition:border-color .25s ease;}
+.haskshell::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+left:8%;right:8%;top:-10px;bottom:-10px;border-radius:20px;
+background:radial-gradient(60% 100% at 50% 50%,
+  rgba(255,199,44,.4),rgba(255,199,44,.09) 55%,transparent 76%);
+filter:blur(28px);opacity:0;transition:opacity .3s ease;}
+.hask.on .haskshell{border-color:rgba(255,199,44,.32);}
+.hask.on .haskshell::before{opacity:.2;}
+@media (prefers-reduced-motion:reduce){.haskshell::before{transition:none;}}
+.haskicon{width:17px;height:17px;flex:none;color:var(--mute);
+transition:color .25s ease;}
+.hask.on .haskicon{color:var(--gold);}
+.haskshell input{flex:1;min-width:0;background:none;border:0;color:var(--snow);
+font:inherit;font-size:15.5px;padding:15px 0;}
+.haskshell input:focus{outline:none;}
+.haskshell input::placeholder{color:var(--mute);}
+.haskgo{flex:none;width:38px;height:38px;border-radius:50%;cursor:pointer;
+border:1px solid rgba(255,199,44,.4);background:rgba(255,199,44,.08);
+color:var(--gold);display:flex;align-items:center;justify-content:center;
+transition:background .2s ease,transform .2s ease;touch-action:manipulation;}
+.haskgo svg{width:17px;height:17px;}
+.haskgo:hover{background:rgba(255,199,44,.16);}
+.haskgo:active{transform:scale(.94);}
+.haskgo:disabled{opacity:.5;cursor:default;}
+.haskgo.busy svg{animation:haskspin .8s linear infinite;}
+@keyframes haskspin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){.haskgo.busy svg{animation:none;}}
+.haskgo:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.hasknote{font-size:12.5px;line-height:1.5;color:var(--mute);margin:11px 0 0;}
+/* Once an answer is standing there, the starter line has been replaced by
+   something better than itself. */
+.hask.answering .hasknote{display:none;}
+/* The thread. Above the field, because what was said scrolls up and the thing
+   you type into stays at the bottom. */
+.haskout{margin:0 0 18px;}
+.haskout[hidden]{display:none;}
+.haskq{font-size:14px;line-height:1.5;color:var(--mute);margin:0 0 11px;
+padding-left:12px;border-left:2px solid var(--line);}
+.haska{font-size:16px;line-height:1.7;color:var(--snow);}
+.haska + .haskq{margin-top:26px;}
+.haska p{margin:0;}
+.haska a.cite{color:var(--blue);text-decoration:none;
+border-bottom:1px solid rgba(90,200,240,.3);}
+.haskstage{font-size:13.5px;color:var(--mute);display:flex;align-items:center;gap:9px;}
+.haskstage::before{content:"";width:6px;height:6px;border-radius:50%;flex:none;
+background:var(--gold);animation:haskpulse 1.1s ease-in-out infinite;}
+/* Its own name. @keyframes share one namespace across a document, and qpulse
+   belongs to ASK_CSS, which this page does not load. Borrowing the name would
+   work here and break the day a page loads both. */
+@keyframes haskpulse{0%,100%{opacity:.25;transform:scale(.8);}50%{opacity:1;transform:scale(1);}}
+.haskseg{animation:haskfade .3s ease both;}
+@keyframes haskfade{from{opacity:0;}to{opacity:1;}}
+@media (prefers-reduced-motion:reduce){
+  .haskstage::before{animation:none;opacity:1;}
+  .haskseg{animation:none;}
+}
+.haskstop{border-left:2px solid var(--gold);padding-left:12px;color:var(--mute);
+font-size:13px;margin-top:10px;}
+.haskfrom{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);
+font-size:12px;line-height:1.5;color:var(--mute);
+display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;}
+.haskfrom a,.haskagain{color:var(--gold);font:inherit;font-size:12px;
+text-decoration:none;background:none;border:0;padding:0;cursor:pointer;
+border-bottom:1px solid rgba(255,199,44,.35);touch-action:manipulation;}
+.haskfrom a:hover,.haskagain:hover{border-bottom-color:var(--gold);}
+@media (max-width:620px){
+  .hask{margin-top:30px;}
+  .haskshell input{font-size:15px;padding:13px 0;}
+}
+"""
+
+# The homepage box's client. The written lane only, and no engine.
+#
+# WHY THIS IS NOT THE DOCKET BOX'S CLIENT. That one is welded to the index it
+# ships with: the ghost completion, the live count, the smart views, the
+# facets and the card list all read the same in-page data, and none of that
+# data is here. What is left once you take the engine out is small enough to
+# read in one sitting, and sharing it would have meant refactoring a working
+# instrument to serve a doorbell.
+#
+# What they DO share is the worker contract and the guard's wording. The
+# events are the worker's, one JSON object per line, and the wording comes
+# from ASK_COMMON_JS so a refusal cannot read two ways on two pages.
+#
+# EVERY QUESTION HERE IS A METERED MODEL CALL. On the docket page the engine
+# absorbs almost all of them for nothing; here there is no engine to absorb
+# them. The worker's monthly ceiling still holds the bill to a number the
+# operator set, and identical questions come back from KV for free, so the
+# exposure is repeat traffic asking NEW things. That is a cost worth knowing
+# about rather than a cost worth hiding.
+HOMEASK_JS = r"""
+(function(){
+  'use strict';
+  var box = document.getElementById('hask');
+  if (!box) return;
+  var ENDPOINT = box.dataset.endpoint || '';
+  var TS_SITEKEY = box.dataset.sitekey || '';
+  if (!ENDPOINT) return;
+  var input = document.getElementById('haskq');
+  var btn = document.getElementById('haskgo');
+  var out = document.getElementById('haskout');
+  var whyCut = window.askWhyCut;
+  var thread = [], busy = false;
+
+  /* THE HUMAN CHECK, rendered explicitly so reset() and the callback have a
+     widget to act on. Invisible unless a human is genuinely needed, and armed
+     on first focus rather than on load, because a reader who never asks
+     anything should not pay for a third party script. */
+  var tsId = null, tsToken = '';
+  function armTurnstile(){
+    if (box.dataset.ts || !TS_SITEKEY) return;
+    box.dataset.ts = '1';
+    window.haskTurnstileReady = function(){
+      try {
+        tsId = turnstile.render(document.getElementById('haskts'), {
+          sitekey: TS_SITEKEY, theme: 'dark', size: 'flexible',
+          appearance: 'interaction-only',
+          callback: function(t){ tsToken = t || ''; },
+          'error-callback': function(){ tsToken = ''; },
+          'expired-callback': function(){ tsToken = ''; }
+        });
+      } catch (e) { tsId = null; }
+    };
+    var s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=haskTurnstileReady';
+    s.async = true; s.defer = true; document.head.appendChild(s);
+  }
+  /* Single use. Cleared after every send and the widget reset, which re-runs
+     it and has the next one ready before the next question is finished. */
+  function spendToken(){
+    tsToken = '';
+    if (TS_SITEKEY && window.turnstile && tsId !== null) {
+      try { turnstile.reset(tsId); } catch (e) {}
+    }
+  }
+  function token(setStage){
+    if (!TS_SITEKEY) return Promise.resolve('');
+    if (tsToken) return Promise.resolve(tsToken);
+    setStage('Passing the human check');
+    return new Promise(function(resolve){
+      var tries = 0;
+      var t = setInterval(function(){
+        if (tsToken) { clearInterval(t); resolve(tsToken); return; }
+        if (++tries > 150) { clearInterval(t); resolve(''); }
+      }, 100);
+    });
+  }
+
+  /* A cited decision becomes a link into the docket. The homepage has no
+     index, so the slug is prettified rather than looked up; the docket page
+     titles the same link from data it already carries. */
+  function cites(target, text){
+    var re = /\[\[([a-z0-9-]+)\]\]/g, at = 0, m;
+    while ((m = re.exec(text)) !== null) {
+      if (m.index > at) target.appendChild(document.createTextNode(text.slice(at, m.index)));
+      var a = document.createElement('a');
+      a.className = 'cite'; a.href = 'docket/' + m[1] + '/';
+      a.textContent = m[1].replace(/-/g, ' ');
+      target.appendChild(a); at = m.index + m[0].length;
+    }
+    if (at < text.length) target.appendChild(document.createTextNode(text.slice(at)));
+  }
+
+  function reset(){
+    if (busy) return;
+    thread = [];
+    box.classList.remove('answering');
+    out.hidden = true; out.innerHTML = '';
+    input.value = ''; input.focus();
+  }
+
+  function ask(){
+    if (busy) return;
+    var q = input.value.trim(); if (!q) return;
+    busy = true;
+    btn.disabled = true; btn.classList.add('busy');
+    box.classList.add('answering');
+    thread.push({ role: 'user', content: q });
+
+    out.hidden = false;
+    var oldFoot = out.querySelector('.haskfrom');
+    if (oldFoot) oldFoot.remove();
+    var asked = document.createElement('div');
+    asked.className = 'haskq'; asked.textContent = q;
+    out.appendChild(asked);
+    var body = document.createElement('div');
+    body.className = 'haska';
+    out.appendChild(body);
+    input.value = '';
+    /* The question goes to the top and the answer arrives under it. The nav
+       is sticky and two rows tall on a phone, so its height is measured
+       rather than guessed. */
+    var nav = document.querySelector('.topnav');
+    window.scrollTo({ behavior: 'smooth',
+      top: asked.getBoundingClientRect().top + window.pageYOffset -
+           ((nav ? nav.getBoundingClientRect().height : 0) + 16)});
+
+    var stage = null, para = null, started = false, said = [];
+    function setStage(t){
+      if (!stage) { body.textContent = ''; stage = document.createElement('div');
+                    stage.className = 'haskstage'; body.appendChild(stage); }
+      stage.textContent = t;
+    }
+    function addSentence(t){
+      if (stage) { stage.remove(); stage = null; }
+      if (!started) { started = true; para = document.createElement('p'); body.appendChild(para); }
+      var span = document.createElement('span');
+      span.className = 'haskseg';
+      cites(span, (para.childNodes.length ? ' ' : '') + t);
+      para.appendChild(span);
+      said.push(t);
+    }
+    function handle(ev){
+      if (ev.stage) setStage(ev.stage);
+      else if (ev.sentence) addSentence(ev.sentence);
+      else if (ev.withheld) {
+        if (stage) { stage.remove(); stage = null; }
+        var st = document.createElement('div'); st.className = 'haskstop';
+        st.textContent = started
+          ? 'The rest was withheld because ' + whyCut(ev.withheld) + '.'
+          : 'None of that answer is shown, because ' + whyCut(ev.withheld) + '.';
+        body.appendChild(st);
+      } else if (ev.error) {
+        if (stage) { stage.remove(); stage = null; }
+        if (!started) body.textContent = ev.error;
+      }
+    }
+    function finish(){
+      /* What it said goes back into the thread so a follow-up can refer to
+         it. Only the part that survived the guard: a sentence the reader
+         never saw must not be one the model can build on either. */
+      if (said.length) thread.push({ role: 'assistant', content: said.join(' ') });
+      else thread.pop();
+      busy = false;
+      btn.disabled = false; btn.classList.remove('busy');
+      spendToken();
+      if (out.querySelector('.haskfrom')) return;
+      var f = document.createElement('div'); f.className = 'haskfrom';
+      if (started) {
+        var note = document.createElement('span');
+        note.textContent = 'Written from the tracked record. Every figure checked against it.';
+        f.appendChild(note);
+        var a = document.createElement('a');
+        a.href = 'docket/'; a.textContent = 'Open the full docket';
+        f.appendChild(a);
+      }
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'haskagain'; b.textContent = 'Start over';
+      b.addEventListener('click', reset);
+      f.appendChild(b);
+      out.appendChild(f);
+    }
+
+    token(setStage).then(function(tok){
+      setStage('Reading the record');
+      return fetch(ENDPOINT + '/answer', {
+        method: 'POST', headers: {'content-type': 'application/json'},
+        body: JSON.stringify({ messages: thread, turnstile_token: tok || null })});
+    }).then(function(r){
+      if (!r.body || !r.body.getReader) {
+        return r.text().then(function(t){
+          t.split('\n').forEach(function(l){
+            if (l.trim()) { try { handle(JSON.parse(l)); } catch (e) {} } });
+        });
+      }
+      var reader = r.body.getReader(), dec = new TextDecoder(), buf = '';
+      return (function pump(){
+        return reader.read().then(function(res){
+          if (res.done) {
+            if (buf.trim()) { try { handle(JSON.parse(buf)); } catch (e) {} }
+            return;
+          }
+          buf += dec.decode(res.value, {stream: true});
+          var lines = buf.split('\n'); buf = lines.pop();
+          for (var i = 0; i < lines.length; i++) {
+            if (!lines[i].trim()) continue;
+            try { handle(JSON.parse(lines[i])); } catch (e) {}
+          }
+          return pump();
+        });
+      })();
+    }).catch(function(){
+      if (stage) { stage.remove(); stage = null; }
+      if (!started) body.textContent = 'That answer did not come back. Try again in a moment.';
+    }).then(finish, finish);
+  }
+
+  input.addEventListener('focus', function(){ box.classList.add('on'); armTurnstile(); });
+  input.addEventListener('blur', function(){ box.classList.remove('on'); });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') { e.preventDefault(); ask(); }
+  });
+  btn.addEventListener('click', ask);
+})();
+"""
+
+
+def home_ask_html(n):
+    """The homepage ask box. Emitted only when there is an endpoint to ask.
+
+    A field that cannot answer is worse than no field, so with ASK_ENDPOINT
+    unset this renders nothing at all and the page reads exactly as it did
+    before the box existed.
+    """
+    if not ASK_ENDPOINT:
+        return ""
+    return f"""<div class="hask" id="hask" data-reveal
+     data-endpoint="{esc(ASK_ENDPOINT)}" data-sitekey="{esc(TS_SITEKEY)}">
+<p class="hasklab">ASK THE RECORD</p>
+<div class="haskout" id="haskout" hidden></div>
+<div class="haskshell">
+  <svg class="haskicon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9"
+    r="6" stroke="currentColor" stroke-width="1.7"/><path d="m13.5 13.5 4 4"
+    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+  <label class="vh" for="haskq">Ask about a tracked decision</label>
+  <input id="haskq" type="text" autocomplete="off" spellcheck="false"
+         placeholder="Who decides the Eielson microreactor?">
+  <button type="button" class="haskgo" id="haskgo" aria-label="Ask this question">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5 12h12M12 6l6 6-6 6"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+<p class="hasknote">{n} tracked decisions, answered from the published record and nothing else.
+Every figure checked before you see it. Keep asking, it remembers.</p>
+<div id="haskts"></div>
+</div>"""
+
+# WHAT BOTH ASK BOXES SHARE, WHICH IS EXACTLY ONE THING.
+#
+# The docket box and the homepage box are separate clients on purpose. The
+# docket box carries the in-page engine and its 114 KB index, which answers
+# almost everything for free and instantly; the homepage box carries none of
+# that, because tripling the front page's weight to put a search index on it
+# would be a poor trade for a reader who has not asked a question yet.
+#
+# But they say the same sentence when the guard stops an answer, and a guard's
+# wording is not a thing to keep two copies of. Two pages telling a reader
+# different stories about the same refusal is the failure this prevents.
+#
+# SAY WHICH CHECK STOPPED IT. Both lanes have always sent the reason, numeral
+# or citation or verdict, and the pages threw it away and printed one sentence
+# covering all three. That cost twice over. A reader was told an answer was cut
+# without being told what KIND of thing was cut, which reads as the box being
+# flaky rather than the box being strict, and strict is the whole product. And
+# nobody watching it could tell whether the gas question was tripping the
+# no-verdict rule, the one this site cares most about, or merely reaching for a
+# figure. The flagship question was cut on every run for weeks with the reason
+# sitting unread in the payload.
+ASK_COMMON_JS = r"""
+(function(){
+  'use strict';
+  window.askWhyCut = function(reason){
+    return ({
+      numeral: 'it stated a figure the record does not carry',
+      citation: 'it named a decision that is not on the record',
+      verdict: 'it made a call on gas adequacy, which this record never makes'
+    })[reason] || 'it could not be checked against the record';
+  };
+})();
+"""
+
 ASK_JS = r"""
 (function(){
   var box = document.getElementById('qbox');
@@ -3023,23 +3406,10 @@ ASK_JS = r"""
      by the same pass that built this page. Every sentence is checked against
      the record's own numerals before it arrives, and a sentence that fails is
      cut rather than smoothed over, which is what the withheld note says. */
-  /* SAY WHICH CHECK STOPPED IT. Both lanes have always sent the reason,
-     numeral or citation or verdict, and both places on this page threw it away
-     and printed one sentence covering all three. That cost twice over. A
-     reader was told an answer was cut without being told what KIND of thing
-     was cut, which reads as the box being flaky rather than the box being
-     strict, and strict is the whole product. And nobody watching it could tell
-     whether the gas question was tripping the no-verdict rule, the one this
-     site cares most about, or merely reaching for a figure. The flagship
-     question was cut on every run for weeks with the reason sitting unread in
-     the payload. */
-  function whyCut(reason){
-    return ({
-      numeral: 'it stated a figure the record does not carry',
-      citation: 'it named a decision that is not on the record',
-      verdict: 'it made a call on gas adequacy, which this record never makes'
-    })[reason] || 'it could not be checked against the record';
-  }
+  /* whyCut lives in ASK_COMMON_JS, because the homepage box says the same
+     thing and two copies of a guard's wording is how two pages end up telling
+     a reader different stories about the same refusal. */
+  var whyCut = window.askWhyCut;
 
   function plain(){
     if (plainBusy || !ENDPOINT) return;
@@ -5566,6 +5936,7 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
   <a class="cta ghost" href="videos/">VIDEOS</a>
 </div>
 {stats}
+{home_ask_html(len(live) + len(done))}
 </div>
 {scan_html()}
 {video_html}
@@ -5584,7 +5955,8 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
                 "Alaska's AI studio in Anchorage. Daily verified stories on Alaska and AI, "
                 "a public docket of AI infrastructure decisions, and AI consulting for "
                 "Alaska businesses.", body, "", "home", today, site_url, "",
-                ld=ld, extra_css=(gw.GW_CSS if gas_strip else ""))
+                ld=ld, extra_css=(gw.GW_CSS if gas_strip else "") + HOMEASK_CSS,
+                extra_js=ASK_COMMON_JS + HOMEASK_JS)
 
 
 def docket_page(today, site_url, docket):
@@ -5682,7 +6054,7 @@ builds for Alaska businesses.</p>
                 # page, so it needs no endpoint and no key; ASK_ENDPOINT only adds
                 # the archive lane underneath it.
                 extra_css=MAP_CSS + ASK_CSS,
-                extra_js=MAP_JS + ASK_JS)
+                extra_js=MAP_JS + ASK_COMMON_JS + ASK_JS)
 
 
 def archive_page(today, site_url, runs):
