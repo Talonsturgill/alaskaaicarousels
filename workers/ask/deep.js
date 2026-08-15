@@ -38,6 +38,20 @@ export function newId() {
 }
 
 /**
+ * Whether this lane can actually run.
+ *
+ * One function, read by the gate that turns a request away AND by /_config
+ * that reports it, so enforcement and diagnosis can never drift apart. They
+ * had drifted: /_config reported routine_token by itself, and the page decided
+ * whether to show the button from whether an endpoint existed, which is a
+ * different question. The result was a button offered on a site where the lane
+ * had never been configured, answering every press with a 503.
+ */
+export function ready(env) {
+  return !!(env.ROUTINE_TOKEN && env.ROUTINE_TRIGGER_ID && env.ASK_KV);
+}
+
+/**
  * Fire the routine. The payload carries the request id as well as the
  * question, because the routine has to know where to deliver the answer and
  * the fire text is the only channel into the run.

@@ -301,6 +301,14 @@ background:var(--gold);animation:haskpulse 1.1s ease-in-out infinite;}
 }
 .haskstop{border-left:2px solid var(--gold);padding-left:12px;color:var(--mute);
 font-size:13px;margin-top:10px;}
+/* The docket box's .qnext, at this box's smaller scale. */
+.hasknext{display:inline-block;margin-top:14px;background:rgba(255,199,44,.07);
+border:1px solid rgba(255,199,44,.4);color:var(--gold);border-radius:999px;
+padding:8px 16px;font-family:JBMono,ui-monospace,monospace;font-size:11px;
+letter-spacing:.08em;cursor:pointer;touch-action:manipulation;
+-webkit-tap-highlight-color:transparent;
+transition:background .18s ease,border-color .18s ease;}
+.hasknext:hover{background:rgba(255,199,44,.14);border-color:var(--gold);}
 .haskfrom{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);
 font-size:12px;line-height:1.5;color:var(--mute);
 display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;}
@@ -719,6 +727,33 @@ method="post" target="_blank">
       verdict: 'it made a call on gas adequacy, which this record never makes'
     })[reason] || 'it could not be checked against the record';
   };
+
+  /* Every answer closes by offering the obvious next question, written from
+     what it just said. Until now the reader had to retype that offer as their
+     own question, which is the one bit of work the box was making a person do
+     that it plainly knew how to do for them.
+     Returns the question to LOAD INTO THE FIELD, or null. It never submits:
+     pressing send is a metered model call, the page says so above the button,
+     and a feature that spends money on a mis-tap would make that sentence a
+     lie. One press fills, a second sends, and between them the reader can read
+     and edit what they are about to ask.
+     Only the shapes the system prompt actually produces are rewritten. A
+     trailing question that is not an offer, which is rare, gets no chip at
+     all, because guessing at it is how a button ends up asking something
+     nobody meant. */
+  window.askFollowUp = function(sentence){
+    var s = String(sentence || '').trim(), m;
+    if (s.length < 8 || s.length > 220 || s.charAt(s.length - 1) !== '?') return null;
+    /* "want me to" before "want": the general pattern would swallow the "me
+       to" and hand back "Show me me to break down the filings." */
+    if ((m = s.match(/^(?:and\s+|so\s+)?(?:do you\s+)?want me to\s+(.+)\?$/i)))
+      return 'Yes, ' + m[1] + '.';
+    if ((m = s.match(/^(?:and\s+|so\s+)?(?:do you\s+)?want\s+(.+)\?$/i)))
+      return 'Show me ' + m[1] + '.';
+    if ((m = s.match(/^(?:and\s+|so\s+)?(?:would you like|shall i|should i)\s+(?:me\s+)?(?:to\s+)?(.+)\?$/i)))
+      return 'Yes, ' + m[1] + '.';
+    return null;
+  };
 })();
 
 (function(){
@@ -812,6 +847,8 @@ method="post" target="_blank">
     out.hidden = false;
     var oldFoot = out.querySelector('.haskfrom');
     if (oldFoot) oldFoot.remove();
+    var oldNext = out.querySelector('.hasknext');
+    if (oldNext) oldNext.remove();
     var asked = document.createElement('div');
     asked.className = 'haskq'; asked.textContent = q;
     out.appendChild(asked);
@@ -884,6 +921,23 @@ method="post" target="_blank">
       btn.disabled = false; btn.classList.remove('busy');
       spendToken();
       if (out.querySelector('.haskfrom')) return;
+      /* The closing offer, as one press. Same rule as the docket box and the
+         same shared function, so the two pages can't decide differently about
+         what counts as an offer. Fills the field only; sending is the
+         reader's second press, because sending is what costs. */
+      var nextQ = said.length ? window.askFollowUp(said[said.length - 1]) : null;
+      if (nextQ) {
+        var nb = document.createElement('button');
+        nb.type = 'button'; nb.className = 'hasknext';
+        nb.textContent = 'Yes, show me';
+        nb.addEventListener('click', function(){
+          input.value = nextQ;
+          input.focus();
+          try { input.setSelectionRange(nextQ.length, nextQ.length); } catch (e) {}
+          nb.remove();
+        });
+        out.appendChild(nb);
+      }
       var f = document.createElement('div'); f.className = 'haskfrom';
       if (started) {
         var note = document.createElement('span');

@@ -252,6 +252,20 @@ export function newId() {
 }
 
 /**
+ * Whether this lane can actually run.
+ *
+ * One function, read by the gate that turns a request away AND by /_config
+ * that reports it, so enforcement and diagnosis can never drift apart. They
+ * had drifted: /_config reported routine_token by itself, and the page decided
+ * whether to show the button from whether an endpoint existed, which is a
+ * different question. The result was a button offered on a site where the lane
+ * had never been configured, answering every press with a 503.
+ */
+export function ready(env) {
+  return !!(env.ROUTINE_TOKEN && env.ROUTINE_TRIGGER_ID && env.ASK_KV);
+}
+
+/**
  * Fire the routine. The payload carries the request id as well as the
  * question, because the routine has to know where to deliver the answer and
  * the fire text is the only channel into the run.
@@ -1148,6 +1162,10 @@ export default {
         // Where the month actually stands. Reported here because the only
         // other way to learn it was a reader hitting the wall.
         spend: await spendOf(env),
+        // Whether the archive lane can run, from the same function the gate
+        // uses. routine_token above answers a narrower question and answering
+        // it alone once read as "nearly configured" when the lane was off.
+        research: ready(env),
         // The model actually in use, not the variable. Reporting the variable
         // and calling it "(default)" when unset told a debugger nothing about
         // which model that resolved to, which is the one question the endpoint
@@ -1239,7 +1257,10 @@ export default {
     // cap and draws on the same subscription usage the carousel spends, so it
     // sits behind a human check and returns an id the page polls rather than
     // an answer.
-    if (!env.ROUTINE_TOKEN || !env.ROUTINE_TRIGGER_ID || !env.ASK_KV) {
+    // 503 specifically, and the page reads the status rather than this string:
+    // a lane that is switched off is a permanent condition, not a request that
+    // went wrong, so it must not be offered again or answered with "try again".
+    if (!ready(env)) {
       return json({ error: "research is not configured" }, 503);
     }
     try {
