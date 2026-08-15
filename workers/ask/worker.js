@@ -27,7 +27,7 @@
 // visibly, rather than being quietly repaired.
 
 import * as deep from "./deep.js";
-import { answer, answerStream, capOf, effectiveModel, turnsOf } from "./answer.js";
+import { answer, answerStream, capOf, effectiveModel, probe, turnsOf } from "./answer.js";
 
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const MAX_QUESTION = 400;
@@ -99,6 +99,13 @@ export default {
         // wrong string rather than as a missing one.
         visible: Object.keys(env).sort(),
       });
+    }
+
+    // Does the API actually answer this worker? /_config reports what is
+    // configured; this reports whether the configuration WORKS, which is a
+    // different question and the one that matters when an answer fails.
+    if (path === "/_probe") {
+      return json(await probe(env));
     }
 
     // Polling is a GET because it happens every few seconds for minutes and
