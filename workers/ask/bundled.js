@@ -555,7 +555,9 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
   });
   if (!r.ok || !r.body) {
     const detail = await r.text().catch(() => "");
-    throw new Error(`messages ${r.status}: ${String(detail).slice(0, 200)}`);
+    const e = new Error(`messages ${r.status}: ${String(detail).slice(0, 300)}`);
+    e.status = r.status;
+    throw e;
   }
 
   const reader = r.body.getReader();
@@ -699,7 +701,19 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
         }
       } catch (e) {
         console.log("answer stream failed", String(e));
-        c.enqueue(line({ error: "that answer did not come back" }));
+        /* Say WHICH failure it was. "That answer did not come back" covers a
+           rejected model name, an unfunded key, a rate limit and a network
+           blip, and telling a reader nothing also told the person debugging
+           it nothing. The status is not sensitive; the body is never shown. */
+        const st = e && e.status;
+        c.enqueue(line({ error:
+          st === 400 ? "The model rejected that request. This is a configuration fault, not your question." :
+          st === 401 || st === 403 ? "The answer service is not authorised. Its API key needs checking." :
+          st === 404 ? "The configured model does not exist. Check ASK_MODEL." :
+          st === 429 ? "Too many questions at once. Give it a few seconds." :
+          st >= 500 ? "The model is having a moment. Try again shortly." :
+          "That answer did not come back.",
+          status: st || null }));
         c.enqueue(line({ done: true }));
         c.close();
         return;
