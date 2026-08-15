@@ -245,6 +245,30 @@ export function monthKey(nowISO) {
 }
 
 /**
+ * Where the month stands against its ceiling.
+ *
+ * The counter has always existed, because the cap is enforced by reading it.
+ * What did not exist was any way to LOOK at it. The only signal that the month
+ * was nearly spent was a reader hitting the wall, which is finding out from
+ * the person you least wanted to find out from. This reports the same number
+ * the gate reads, so it cannot disagree with enforcement.
+ *
+ * A count of model calls, not dollars. Repeats served from KV never increment
+ * it, so this is distinct questions that reached the model, which is exactly
+ * what the ceiling counts. The dollar figure is that count times the per
+ * question cost, and it is left to the reader rather than hardcoded here,
+ * because a rate that changes on 2026-08-31 would go stale in the one place
+ * nobody would think to check.
+ */
+export async function spendOf(env, nowISO) {
+  const cap = capOf(env);
+  if (!env.ASK_KV) return { cap, spent: null, left: null, note: "no KV bound" };
+  const key = monthKey(nowISO || new Date().toISOString());
+  const spent = Number(await env.ASK_KV.get(key)) || 0;
+  return { month: key.slice(6), cap, spent, left: Math.max(0, cap - spent) };
+}
+
+/**
  * Check a whole answer and return the accepted prefix.
  *
  * Nobody is waiting on a stream, so this checks the answer at once and cuts it
@@ -275,6 +299,46 @@ export async function loadPack(env) {
   return r.json();
 }
 
+/**
+ * The system blocks, with the record marked cacheable.
+ *
+ * WHY THIS IS ON NOW WHEN IT WAS DELIBERATELY OFF BEFORE. A cache write costs
+ * 1.25x a plain read, so caching LOSES money on a question that arrives alone
+ * and wins 90 percent on one that arrives behind another. At the traffic this
+ * box had when the two blocks were first split apart, alone was the normal
+ * case and turning this on would have raised the bill.
+ *
+ * What changed is not the traffic estimate, it is the SHAPE of a question.
+ * This box holds conversations now, on two pages. Every follow-up turn re-sends
+ * the same 21,800 token prefix seconds after the last one, which is inside the
+ * five minute window by construction, not by luck. A four turn conversation
+ * pays 1.25x once and 0.1x three times: about 61 percent less than four full
+ * reads.
+ *
+ * The arithmetic, so nobody has to re-derive it. Caching pays when more than
+ * (w - 1) / (w - 0.1) of questions land inside the window, w being the write
+ * multiplier. At 1.25 that is 22 percent. Follow-ups alone should clear it.
+ * The downside if they do not is 25 percent on an isolated question, which is
+ * the smaller half of a bet worth taking.
+ *
+ * ONE MARKER, ON THE SECOND BLOCK. The rules are stable and the record changes
+ * daily, and a marker on the last block caches everything before it, so this
+ * covers both. The two-block split has been sitting here waiting for exactly
+ * this line since the day it was written.
+ *
+ * Nothing per-request may ever be added above this marker. The prefix is a
+ * byte match, so one interpolated timestamp or reader id would silently make
+ * every request a fresh write, and the bill would go up 25 percent with
+ * nothing in the logs to say why. usage.cache_read_input_tokens is how you
+ * check; /_config reports the month's spend beside it.
+ */
+export function systemBlocks(pack) {
+  return [
+    { type: "text", text: pack.system },
+    { type: "text", text: pack.pack, cache_control: { type: "ephemeral" } },
+  ];
+}
+
 export async function callModel(turns, pack, env, fetchImpl = fetch) {
   const r = await fetchImpl(API, {
     method: "POST",
@@ -287,16 +351,7 @@ export async function callModel(turns, pack, env, fetchImpl = fetch) {
       model: effectiveModel(env),
       max_tokens: MAX_TOKENS,
       ...modelParams(effectiveModel(env)),
-      // Two blocks rather than one string. The rules are stable and the record
-      // changes daily, and keeping them apart is what lets a cache_control
-      // marker be added to the record block later without touching anything
-      // else. Caching is deliberately NOT on yet: a cache write costs more
-      // than a plain read, so it only pays once questions arrive in clusters,
-      // and at this traffic it would raise the bill rather than lower it.
-      system: [
-        { type: "text", text: pack.system },
-        { type: "text", text: pack.pack },
-      ],
+      system: systemBlocks(pack),
       messages: turns,
     }),
   });
@@ -331,10 +386,7 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
       max_tokens: MAX_TOKENS,
       ...modelParams(effectiveModel(env)),
       stream: true,
-      system: [
-        { type: "text", text: pack.system },
-        { type: "text", text: pack.pack },
-      ],
+      system: systemBlocks(pack),
       messages: turns,
     }),
   });
