@@ -320,29 +320,49 @@ background:rgba(255,199,44,.055);outline:none;}
    the record can answer instead of sitting there blank. Each is a saved
    query and clicking one types it, which is what makes clearing the field
    the way back. */
-.qviews{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;}
-/* display:grid beats the [hidden] attribute's default display:none, so
+/* THE SAVED VIEWS.
+   These were four tall cards in a two column grid: 15px of padding, a 14.5px
+   bold title, a count on its own line underneath, and a radial glow on hover.
+   That is a lot of furniture for four short phrases, and it pushed everything
+   worth reading below the fold on a phone.
+   They are chips now, in one wrapping row, carrying exactly the same two facts
+   in a quarter of the height. The count rides inline instead of claiming a
+   second line. The chips a few pixels below have always been this shape, so
+   this is the page agreeing with itself rather than a new idea. */
+.qviews{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+/* display:flex beats the [hidden] attribute's default display:none, so
    hiding these from script silently did nothing without this line. */
 .qviews[hidden]{display:none;}
-.qview{position:relative;text-align:left;background:var(--panel);
-border:1px solid var(--line);border-radius:14px;padding:15px 16px;cursor:pointer;
-font-family:inherit;overflow:hidden;
-transition:border-color .2s ease,background .2s ease,transform .2s ease;}
-.qview::after{content:"";position:absolute;right:-40px;bottom:-70px;
-width:170px;height:170px;pointer-events:none;opacity:0;transition:opacity .26s ease;
-background:radial-gradient(circle,rgba(255,199,44,.15),transparent 66%);}
-.qview:hover,.qview:focus-visible{border-color:rgba(255,199,44,.4);
-background:rgba(255,199,44,.035);transform:translateY(-2px);outline:none;}
-.qview:hover::after,.qview:focus-visible::after{opacity:1;}
-.qview b{position:relative;display:block;color:var(--snow);font-size:14.5px;
-font-weight:600;margin-bottom:5px;letter-spacing:-.01em;}
+.qview{position:relative;text-align:left;
+background:rgba(255,255,255,.028);border:1px solid var(--line);
+border-radius:999px;padding:6px 13px;cursor:pointer;
+font-family:inherit;font-size:12.5px;line-height:1.35;
+display:inline-flex;align-items:baseline;gap:7px;max-width:100%;
+white-space:nowrap;overflow:hidden;
+transition:border-color .18s ease,background .18s ease,color .18s ease;}
+.qview:hover,.qview:focus-visible{border-color:rgba(255,199,44,.42);
+background:rgba(255,199,44,.055);outline:none;}
+/* The SHORT label at every width, not just on a phone. It is shorter, which
+   is what gets four of these onto one row instead of two, and it is better
+   copy: "Open to comment" is the filter it actually is, while four questions
+   in a row read as an FAQ nobody wrote. The long form stays in the markup for
+   the screen reader and for anyone with CSS off. */
+.qview b{position:absolute;width:1px;height:1px;overflow:hidden;
+clip-path:inset(50%);white-space:nowrap;}
+.qview i{display:inline;font-style:normal;color:var(--body);font-size:12.5px;
+overflow:hidden;text-overflow:ellipsis;}
+.qview:hover i,.qview:focus-visible i{color:var(--snow);}
 /* The short label and the short count. Only a phone shows either, and only a
    phone hides the long forms they stand in for. Two words of chrome on a
    180px tile is the difference between a readable label and "What can I ...",
    which is four cards that all look the same and say nothing. */
-.qview i{display:none;font-style:normal;}
-.qview em{font-style:normal;}
-.qview u{display:none;text-decoration:none;}
+/* The long count goes; the bare number stays, in mono beside the label. Two
+   facts, one line, and the word TRACKED said four times in a row was never
+   carrying anything. */
+.qview em{display:none;font-style:normal;}
+.qview u{display:inline;text-decoration:none;flex:none;
+font-family:JBMono,ui-monospace,monospace;font-size:11px;color:var(--gold);
+opacity:.75;}
 .qview span{position:relative;display:block;color:var(--mute);font-size:12px;
 font-family:JBMono,ui-monospace,monospace;letter-spacing:.05em;}
 .qtries{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:12px;}
@@ -538,10 +558,8 @@ background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
   .qview{display:flex;align-items:baseline;gap:7px;border-radius:10px;
   padding:7px 10px;}
   .qview::after{display:none;}
-  .qview b{display:none;}
-  .qview i{flex:1 1 auto;min-width:0;display:block;font-size:11.5px;
-  line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  font-weight:600;color:var(--snow);}
+  .qview i{flex:1 1 auto;min-width:0;font-size:11.5px;
+  line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .qview span{flex:0 0 auto;display:block;font-size:11px;letter-spacing:.02em;
   color:var(--gold);opacity:.85;font-variant-numeric:tabular-nums;}
   .qview em{display:none;}
@@ -613,7 +631,7 @@ when it lands, and whether the public gets a say. Sources on every item.</p>
     <div class="qghost" aria-hidden="true"><span id="qgt"></span><span id="qgr"></span></div>
     <input id="qq" type="text" autocomplete="off" spellcheck="false" role="combobox"
            aria-expanded="false" aria-controls="qres" aria-autocomplete="list"
-           placeholder="Ask anything about 20 tracked decisions">
+           placeholder="Ask the record, then keep asking">
   </div>
   <button type="button" class="qgo" id="qgo" aria-label="Ask this question">
     <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5 12h12M12 6l6 6-6 6"
