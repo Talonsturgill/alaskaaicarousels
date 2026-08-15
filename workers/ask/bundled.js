@@ -45,14 +45,24 @@
 // divergence between the two would reject true figures. Pinned by a test that
 // compares both implementations over the same inputs.
 export function normalise(tok) {
-  tok = tok.replace(/^0+/, "") || "0";
+  tok = String(tok).replace(/,/g, "");
+  // Padding zeros go. The zero in FRONT of a decimal point does not: 0.8469 becoming .8469
+  // leaves a token NUMERAL_RE cannot match at all, so a figure written back that way would
+  // slip past this gate entirely.
+  tok = /^0\./.test(tok) ? "0" + tok.replace(/^0+/, "") : (tok.replace(/^0+/, "") || "0");
   if (tok.includes(".")) {
     tok = tok.replace(/0+$/, "").replace(/\.$/, "") || "0";
   }
   return tok;
 }
 
-const NUMERAL_RE = /\d+(?:\.\d+)?/g;
+// A THOUSANDS SEPARATOR IS PART OF THE NUMBER, NOT A BREAK IN IT, and this line has to agree
+// with scripts/ask_corpus.py's NUMERAL_RE exactly or the allow-list and the checker are
+// measuring different things. It used to be /\d+(?:\.\d+)?/g on both sides, which read "4,700"
+// as a 4 and a 700 and authorised both. The pack carries 35 comma grouped figures, and the
+// split admitted six numerals appearing nowhere in the record on their own: 150, 300, 566,
+// 700, 950 and 967, which are exactly the round figures a model invents.
+const NUMERAL_RE = /\d(?:[\d,]*\d)?(?:\.\d+)?/g;
 
 export function numerals(text) {
   return (text.match(NUMERAL_RE) || []).map(normalise);
