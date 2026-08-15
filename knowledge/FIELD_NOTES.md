@@ -3459,3 +3459,39 @@ finding, so most of what follows is recorded with its weakness attached.
   that magnified the states but not the rings, so small states filled or overflowed
   their own awards and the row drew the exact inverse of the slide's thesis. It
   was cut rather than explained.
+
+### The same phase ran twice this day, and the two passes disagree about what
+### the web had to offer. Both are kept, because the disagreement is the finding.
+
+A second session searched the same question about an hour earlier and came back
+with a different haul. Neither pass is wrong. What it shows is that this refresh
+is sampling a source pool thin enough that two honest sweeps of it barely
+overlap, which is worth more than either result on its own.
+
+Timeboxed, three searches. The craft half returned nothing usable, only trend
+listicles and a Wikipedia summary of three-point lighting, so nothing is written
+down about visual craft today. The platform half turned up one thing worth
+recording, and it is worth recording because the tier C sources now CONTRADICT
+EACH OTHER on the one number this studio tunes every run.
+
+- **SLIDE COUNT, AND THE VENDOR DATA NO LONGER AGREES WITH ITSELF.** One 2026
+  vendor dataset reports median likes climbing monotonically with depth, 22 for
+  2 to 5 slides, 26 for 6 to 8, 49 for 9 to 12, 58 for 13 to 20, 60 for 21 plus,
+  and states the median shipped carousel is 8 slides. A second vendor blog, same
+  month, claims exactly 7 slides outperforms every other length by 18 percent.
+  Both are Tier C, neither publishes a sample size or a method, and they cannot
+  both be true. What survives the disagreement is the DIRECTION the stronger of
+  the two shares with vdB's reach optimum of about 12, which CAROUSEL_CRAFT
+  already records, so nothing in the doctrine changes.
+- **WHAT IT MEANS FOR THIS DECK, WHICH IS A TIE BREAK AND NOT A RULE.** The
+  house band is 8 to 10, and the machine has defaulted to 9 for most of its
+  runs. Every independent line of evidence points the same way at the top of
+  that band rather than the bottom, and none points below it. So when a story
+  supports either, build the longer one. That is the only operative change and
+  it does not touch a threshold.
+- Recorded as low confidence on purpose. Like counts are a proxy the ranker does
+  not optimise, and a page that ships 20 slide decks is a different kind of page
+  from one that ships 8, so the bucket is confounded by the account. Nobody
+  should treat this as a reason to stretch a 7 slide story.
+  https://usevisuals.com/blog/how-many-slides-should-a-linkedin-carousel-be
+  https://postunreel.com/blog/how-many-slides-linkedin-carousel
