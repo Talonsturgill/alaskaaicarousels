@@ -78,6 +78,36 @@ const DEFAULT_CAP = 500;
 // new pack produces a different key.
 const ANSWER_TTL = 60 * 60 * 36;
 
+// How much of the conversation goes back with a follow-up, counted in
+// messages so four exchanges. A docket conversation that has run longer than
+// that has usually moved on to a new subject, and every turn kept is input
+// paid for again on the next question. At about 150 tokens a turn against a
+// 21,000 token record this is a rounding error either way, which is the point:
+// it is bounded on purpose rather than growing until someone notices a bill.
+const MAX_TURNS = 8;
+
+/**
+ * The conversation, cleaned. Anything the page sends is untrusted: only the
+ * two roles exist, content is a string, empty turns go, and the tail is what
+ * survives. It must end on the reader, because a model answering its own last
+ * answer is not a conversation.
+ */
+export function turnsOf(payload) {
+  const raw = Array.isArray(payload.messages) ? payload.messages : null;
+  if (!raw) {
+    const q = String(payload.question ?? "").trim();
+    return q ? [{ role: "user", content: q }] : [];
+  }
+  const clean = [];
+  for (const m of raw) {
+    const role = m && m.role === "assistant" ? "assistant" : "user";
+    const content = String((m && m.content) ?? "").trim().slice(0, 4000);
+    if (content) clean.push({ role, content });
+  }
+  while (clean.length && clean[clean.length - 1].role !== "user") clean.pop();
+  return clean.slice(-MAX_TURNS);
+}
+
 /** The model a request will actually use. One source, so the diagnostic and
  *  the call can never disagree about it. */
 export function effectiveModel(env) {
@@ -102,8 +132,16 @@ export function normaliseQuestion(q) {
     .replace(/\s+/g, " ").trim();
 }
 
-export async function cacheKey(question, packDate) {
-  const data = new TextEncoder().encode(`${packDate}\n${normaliseQuestion(question)}`);
+/**
+ * The key covers the WHOLE conversation, not the latest question. "What about
+ * the other one" means something different after every first question, so
+ * keying on the last message alone would serve one thread's answer into
+ * another's. Follow-ups mostly miss the cache and that is correct.
+ */
+export async function cacheKey(turns, packDate) {
+  const thread = (Array.isArray(turns) ? turns : [{ role: "user", content: String(turns) }])
+    .map(m => m.role + ":" + normaliseQuestion(m.content)).join("\n");
+  const data = new TextEncoder().encode(`${packDate}\n${thread}`);
   const digest = await crypto.subtle.digest("SHA-256", data);
   const hex = [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
   // The pack date rides in the key as well as in the hash so a human reading
@@ -146,7 +184,7 @@ export async function loadPack(env) {
   return r.json();
 }
 
-export async function callModel(question, pack, env, fetchImpl = fetch) {
+export async function callModel(turns, pack, env, fetchImpl = fetch) {
   const r = await fetchImpl(API, {
     method: "POST",
     headers: {
@@ -171,7 +209,7 @@ export async function callModel(question, pack, env, fetchImpl = fetch) {
         { type: "text", text: pack.system },
         { type: "text", text: pack.pack },
       ],
-      messages: [{ role: "user", content: question }],
+      messages: turns,
     }),
   });
   if (!r.ok) {
@@ -192,7 +230,7 @@ export async function callModel(question, pack, env, fetchImpl = fetch) {
  * and shown immediately, and one that fails ends the answer there. Waiting for
  * the whole reply before checking any of it was never necessary.
  */
-export async function streamModel(question, pack, env, onDelta, fetchImpl = fetch) {
+export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) {
   const r = await fetchImpl(API, {
     method: "POST",
     headers: {
@@ -209,7 +247,7 @@ export async function streamModel(question, pack, env, onDelta, fetchImpl = fetc
         { type: "text", text: pack.system },
         { type: "text", text: pack.pack },
       ],
-      messages: [{ role: "user", content: question }],
+      messages: turns,
     }),
   });
   if (!r.ok || !r.body) {
@@ -247,7 +285,7 @@ export async function streamModel(question, pack, env, onDelta, fetchImpl = fetc
  * forgetting to count a call is exactly the bug that would not show up until
  * a bill did.
  */
-async function preflight(question, env, now) {
+async function preflight(turns, env, now) {
   if (!env.ANTHROPIC_API_KEY || !env.ASK_KV) {
     return { stop: { status: 503, body: { error: "the answerer is not configured" } } };
   }
@@ -263,7 +301,7 @@ async function preflight(question, env, now) {
     return { stop: { status: 502, body: { error: "the record is unreachable" } } };
   }
 
-  const key = await cacheKey(question, pack.generated);
+  const key = await cacheKey(turns, pack.generated);
   const hit = await env.ASK_KV.get(key);
   if (hit) return { cached: { ...JSON.parse(hit), cached: true }, pack, key };
 
@@ -298,8 +336,8 @@ async function preflight(question, env, now) {
  *   {"done":true}            finished
  *   {"error":"..."}          nothing to show
  */
-export async function answerStream(question, env, { now, fetchImpl } = {}) {
-  const pre = await preflight(question, env, now);
+export async function answerStream(turns, env, { now, fetchImpl } = {}) {
+  const pre = await preflight(turns, env, now);
   const enc = new TextEncoder();
   const line = (o) => enc.encode(JSON.stringify(o) + "\n");
 
@@ -333,7 +371,7 @@ export async function answerStream(question, env, { now, fetchImpl } = {}) {
       c.enqueue(line({ stage: "Reading the record" }));
       let buf = "", kept = [], withheld = null, opened = false;
       try {
-        await streamModel(question, pack, env, (delta) => {
+        await streamModel(turns, pack, env, (delta) => {
           if (!opened) {
             opened = true;
             c.enqueue(line({ stage: "Checking every figure against the record" }));
@@ -389,7 +427,7 @@ export async function answerStream(question, env, { now, fetchImpl } = {}) {
  * The route. Turnstile has already been checked by the caller, because that is
  * the worker's job for every expensive path and not this module's.
  */
-export async function answer(question, env, { now, fetchImpl } = {}) {
+export async function answer(turns, env, { now, fetchImpl } = {}) {
   if (!env.ANTHROPIC_API_KEY || !env.ASK_KV) {
     return { status: 503, body: { error: "the answerer is not configured" } };
   }
@@ -403,7 +441,7 @@ export async function answer(question, env, { now, fetchImpl } = {}) {
     return { status: 502, body: { error: "the record is unreachable" } };
   }
 
-  const key = await cacheKey(question, pack.generated);
+  const key = await cacheKey(turns, pack.generated);
   const hit = await env.ASK_KV.get(key);
   if (hit) {
     const rec = JSON.parse(hit);
@@ -429,7 +467,7 @@ export async function answer(question, env, { now, fetchImpl } = {}) {
 
   let out;
   try {
-    out = await callModel(question, pack, env, fetchImpl || fetch);
+    out = await callModel(turns, pack, env, fetchImpl || fetch);
   } catch (e) {
     console.log("answer failed", String(e));
     return { status: 502, body: { error: "that answer did not come back" } };

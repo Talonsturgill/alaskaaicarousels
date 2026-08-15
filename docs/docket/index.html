@@ -477,6 +477,11 @@ letter-spacing:.13em;color:var(--mute);margin-bottom:8px;}
    competing with the one thing anybody came for.
    It is text on the page now. The provenance line moved below the answer and
    stopped shouting, because it is a footnote and not a headline. */
+/* One exchange. The question is quiet and the answer carries the weight,
+   which is the only hierarchy a thread needs. */
+.qturn{font-size:14.5px;line-height:1.5;color:var(--mute);margin:0 0 12px;
+padding-left:13px;border-left:2px solid var(--line);}
+.qreply + .qturn{margin-top:30px;}
 .qreply{font-size:16.5px;line-height:1.72;color:var(--snow);
 letter-spacing:.002em;}
 .qreply p{margin:0;}
@@ -1546,6 +1551,11 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   for (bi = 0; bi < NALL; bi++) byId[IDX[bi].id] = IDX[bi];
 
   var sel = -1, shown = [], deepBusy = false, plainBusy = false, lastAns = null;
+  /* The conversation. Held in the page only: nothing is stored anywhere, it
+     goes when the tab does, and it is what makes "what about the other one"
+     mean something. The worker keeps no session either; the thread travels
+     with each question. */
+  var thread = [];
 
   /* =================================================================
      WORDS
@@ -2682,8 +2692,12 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
      so clicking a chip left the old answer sitting under the new results.
      Never while a request is in flight, or the answer being waited on would
      disappear from under the reader. */
+  /* Leaving the conversation entirely. Only Clear does this now: typing used
+     to wipe the answer, which is right for a one-shot box and wrong for a
+     thread, where the reader is composing a follow-up to what is on screen. */
   function leaveAnswer(){
-    if (plainBusy || !box.classList.contains('answering')) return;
+    if (plainBusy) return;
+    thread = [];
     box.classList.remove('answering');
     var o = document.getElementById('qout');
     if (o) { o.hidden = true; o.innerHTML = ''; }
@@ -2758,7 +2772,9 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   }
 
   function run(){
-    leaveAnswer();
+    /* In a conversation the field is a chat box, so the live result list, the
+       chips and the smart views stay out of the way. Clear is the way back. */
+    if (box.classList.contains('answering')) { ghost(''); return; }
     var q = input.value.trim();
     share(q);
     if (!q) { empty(); return; }
@@ -2876,35 +2892,54 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     /* Take the screen over: the starters, chips and live list all go, so the
        answer is the only thing on it. */
     box.classList.add('answering');
+    thread.push({ role: 'user', content: q });
     var body = null;
     if (out) {
       out.hidden = false;
-      out.innerHTML = '';
-      /* The question is not read back. It is still sitting in the field an
-         inch above this, so echoing it is duplication dressed as interface. */
+      var oldFoot = out.querySelector('.qfrom');
+      if (oldFoot) oldFoot.remove();
+      /* The question IS read back now, and that reverses an earlier call. In a
+         one-shot box the echo was duplication, because the question sat in the
+         field an inch above. In a thread it is the only record of what was
+         asked three answers ago, and the field has been cleared for the next
+         one. */
+      var asked = document.createElement('div');
+      asked.className = 'qturn'; asked.textContent = q;
+      out.appendChild(asked);
       body = document.createElement('div');
       body.className = 'qreply';
       out.appendChild(body);
+      /* Emptied so the field is ready for a follow-up rather than still
+         holding the question that was just answered. */
+      input.value = ''; ghost('');
       // The box can be well down the page by the time someone submits, and an
       // answer nobody scrolls to reads exactly like an answer that never came.
-      out.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      body.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
     /* One way back, always present once an answer is on screen. */
     /* The footer: where this came from, and one way out. Below the answer,
        because provenance is a footnote. */
     function again(){
+      /* What it said goes back into the thread, so a follow-up can refer to
+         it. Only the part that survived the guard: a sentence the reader never
+         saw must not be something the model can build on either. */
+      if (saidSoFar.length) {
+        thread.push({ role: 'assistant', content: saidSoFar.join(' ') });
+      } else {
+        thread.pop();  /* nothing came back, so that question is not history */
+      }
       if (!out || out.querySelector('.qfrom')) return;
       var f = document.createElement('div'); f.className = 'qfrom';
       if (started) {
         var note = document.createElement('span');
-        note.textContent = 'Written from the published record. Every figure checked against it.';
+        note.textContent = 'Written from the published record. Every figure checked against it. Ask a follow-up above.';
         f.appendChild(note);
       }
       var b = document.createElement('button');
-      b.type = 'button'; b.className = 'qagain'; b.textContent = 'Clear';
+      b.type = 'button'; b.className = 'qagain'; b.textContent = 'Start over';
       b.addEventListener('click', function(){
-        input.value = ''; out.hidden = true; out.innerHTML = '';
-        box.classList.remove('answering');
+        input.value = '';
+        leaveAnswer();
         input.focus(); run();
       });
       f.appendChild(b);
@@ -2927,8 +2962,10 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
                     stage.className = 'qstage'; body.appendChild(stage); }
       stage.textContent = t;
     }
+    var saidSoFar = [];
     function addSentence(t){
       if (!body) return;
+      saidSoFar.push(t);
       if (!started) { started = true; if (stage) { stage.remove(); stage = null; }
         para = document.createElement('p'); body.appendChild(para); }
       var span = document.createElement('span');
@@ -2985,7 +3022,7 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     token().then(function(tok){
       setStage('Reading the record');
       return fetch(ENDPOINT + '/answer', {method: 'POST', headers: {'content-type': 'application/json'},
-        body: JSON.stringify({question: q, turnstile_token: tok || null})});
+        body: JSON.stringify({messages: thread, turnstile_token: tok || null})});
     })
       .then(function(r){
         if (!r.body || !r.body.getReader) {

@@ -27,7 +27,7 @@
 // visibly, rather than being quietly repaired.
 
 import * as deep from "./deep.js";
-import { answer, answerStream, capOf, effectiveModel } from "./answer.js";
+import { answer, answerStream, capOf, effectiveModel, turnsOf } from "./answer.js";
 
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const MAX_QUESTION = 400;
@@ -133,8 +133,11 @@ export default {
       return json({ error: "invalid JSON" }, 400);
     }
 
-    const question = String(payload.question ?? "").trim();
-    if (!question) return json({ error: "ask a question" }, 400);
+    // The conversation, not just the latest line. A follow-up like "what about
+    // the other one" only means anything with what came before it.
+    const turns = turnsOf(payload);
+    if (!turns.length) return json({ error: "ask a question" }, 400);
+    const question = turns[turns.length - 1].content;
     if (question.length > MAX_QUESTION) {
       return json({ error: `keep it under ${MAX_QUESTION} characters` }, 400);
     }
@@ -153,10 +156,10 @@ export default {
       // after the whole reply lands, which is most of why the wait feels long.
       // A client can still ask for the whole thing at once.
       if (payload.stream === false) {
-        const out = await answer(question, env);
+        const out = await answer(turns, env);
         return json(out.body, out.status);
       }
-      return new Response(await answerStream(question, env), {
+      return new Response(await answerStream(turns, env), {
         headers: {
           "content-type": "application/x-ndjson; charset=utf-8",
           "cache-control": "no-store",
