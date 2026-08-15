@@ -1436,6 +1436,40 @@
       ],
       "claims_count": 41,
       "slides": 9
+    },
+    {
+      "run_date": "2026-08-14",
+      "carousel_no": 33,
+      "title": "The Equal-Award Projection, 552 to 1",
+      "topic": "NSF opened the State and Regional AI Infrastructure Hubs program (solicitation NSF 26-513, posted July 31, 2026, announced August 4, 2026) and wrote into it a rule capping every state at one award. NSF announced it as a $100 million initiative while the solicitation puts anticipated funding at $40 million to $100 million, anticipates 10 awards per cycle against 50 states, and expects proposals to request $4 million to $12 million over 5 years. Full proposals are due November 4, 2026, 82 days from the run date, and deadlines recur on the first Wednesday in November.",
+      "angle": "THE DENOMINATOR. NSF's own stated problem is that access to AI infrastructure is highly uneven across the nation, and its remedy is distributed at a flat rate, one award per unit, where the unit is the state. A state is a shape with an area and the rule pays no attention to area, so Alaska's 570,641 square miles and Rhode Island's 1,034 carry an identical ceiling that was set before any proposal was read. Deliberately FAIR to NSF, because geographic spread is a defensible reason to cap per state, and the argument survives conceding it. The deck also refuses three things the record does not support, that NSF is spending $100 million flat, that Alaska has applied or been refused, and that a missed cycle is exclusion. Distinct from No. 20 (2026-07-30), which was retrospective about a published DOE award list where Alaska appeared once; this is prospective and about the design of an allocation nobody has answered yet.",
+      "entities": [
+        "National Science Foundation",
+        "NSF 26-513",
+        "State and Regional AI Infrastructure Hubs",
+        "Brian Stone",
+        "Michael Kratsios",
+        "U.S. Census Bureau",
+        "University of Alaska",
+        "Rhode Island",
+        "Alaska"
+      ],
+      "keywords": [
+        "one award per state",
+        "AI infrastructure hubs",
+        "research compute",
+        "allocation rule",
+        "land area",
+        "552 to 1",
+        "November 4 deadline",
+        "federal AI funding",
+        "uneven access",
+        "one proposal per institution",
+        "equal area projection",
+        "ceiling not floor"
+      ],
+      "claims_count": 28,
+      "slides": 9
     }
   ]
 }

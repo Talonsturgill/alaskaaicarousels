@@ -1,0 +1,105 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the Rhode Island chip on the lit sheet edge': shadow L* 28.7 vs ground L* 40.5, dL 11.8 at 432w"
+      ],
+      "leaders": [
+        "leader 'the Rhode Island chip at true relative scale' lands 0.0px from its target"
+      ],
+      "fits": [
+        "hl 'One award per state. Alaska is 552 Rhode Isl' fits 3/3 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hl 'Fifty states. Fifty identical marks.' fits 2/2 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "q1 'Only one award per state or multi-state regi' fits 2/3 lines at 61.5px",
+        "q2 'An institution may appear as a participant i' fits 2/3 lines at 43.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the funding casting on the lit bench': shadow L* 2.8 vs ground L* 24.6, dL 21.8 at 432w"
+      ],
+      "fits": [
+        "hl 'Ten awards.One cycle.' fits 2/2 lines at 103.5px"
+      ],
+      "asserts": [
+        "'the $100 million scribe, printed as a 460 px rule above the base' holds: 460 vs 460 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "q 'Today, access to this infrastructure is high' fits 3/3 lines at 67.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the first ring wider than the state under it' lands 0.0px from its target"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader \"Alaska's relief mass\" lands 4.0px from its target",
+        "leader 'Rhode Island at the same projection scale' lands 20.0px from its target"
+      ],
+      "fits": [
+        "hl 'Spreading it is the point.' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the correction stamp on the Alaska plate' lands 0.0px from its target"
+      ],
+      "fits": [
+        "hl '82 days to the deadline.' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'the 82 day ticks, printed as 82 in the headline' holds: 82 vs 82 ticks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the chart sheet lifted off the table': shadow L* 8.3 vs ground L* 19.0, dL 10.7 at 432w"
+      ],
+      "fits": [
+        "ask 'Save this. The deadline is November 4th.' fits 2/2 lines at 100px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

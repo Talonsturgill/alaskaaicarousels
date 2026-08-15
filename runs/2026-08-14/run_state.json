@@ -1,0 +1,29 @@
+{
+  "run_date": "2026-08-14",
+  "carousel_no": 33,
+  "phases": {
+    "wake": "done: out/2026-08-14/plan.md, run_state.json",
+    "craft_refresh": "done: knowledge/FIELD_NOTES.md 2026-08-14 entry (4 searches)",
+    "research": "done: out/2026-08-14/scout_merge.md, 6 scouts, all beats returned",
+    "claims": "done: out/2026-08-14/claims.json, 28 claims, claims_check PASS 28/28 usable 28 primary",
+    "docket": "done: ledger/docket.json, 4 worklist items refreshed, watch.json read (1 bill, 0 hearings, 31 candidates, 0 failed)",
+    "gas_watch": "done: site_signoff PASS 18/18, gaswatch_pagecheck PASS 15/15, shots in out/2026-08-14/site_shots/",
+    "selection": "done: out/2026-08-14/selection.md, dedupe soft-overlap only",
+    "directors_room": "done: 3 treatments, synthesis in selection.md, storyboard.md 9 dossiers, dossier_check PASS 9/9",
+    "copy": "done: caption.txt PASS, copy.json PASS (copy_sync 87 strings), first_comment style-lint clean",
+    "art_build": "done: 9 bespoke slides, qa.py PASS 0 fails 0 warns, bespoke_check PASS median 0.286 drawn share 66%",
+    "pixel_review": "done: 5 critics across 9 slides, all returned revise, fixes applied; qa.py PASS 0 fails 0 warns after repair",
+    "flow_review": "in-progress: flow-critic running on the contact sheet",
+    "assemble": "done: pdf vector 4.66 MB, 9 slides, 9 thumbs, contact sheet",
+    "scoring": "pending",
+    "ship": "pending",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "notes": {
+    "prototypes": "P1 hachure-in-silhouette OK; P2/P3 fifty-state equal-area packing OK; P4 relief Alaska vs Rhode Island OK; P5 type system fitText+svgPlate 0 warns; P6 hero with worked lower band 0 fails 0 warns",
+    "frame_balance_finding": "qa.py FAILED all four map prototypes for top-loaded composition and passed the two with a field through the lower third. Every map dossier now writes field 4a before its hero.",
+    "websearch": "session WebSearch budget exhausted at 200/200 during the scout sweep; WebFetch still available and is what the claims phase ran on"
+  }
+}
