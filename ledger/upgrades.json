@@ -1218,7 +1218,7 @@
       "change": "BESPOKE_CHECK CAN SEE MODULE SCRIPTS. Both of the two places bespoke_check.py extracted a slide's art code matched the literal pattern `<script>` with no attributes, so every slide that loads akthree, and therefore every deck that climbs to rung 1 of the rendered ladder, was measured on its <div> list alone with ZERO inline script read. Both regexes are now attribute-tolerant, `<script(?:\\s[^>]*)?>`; src-only tags are still stripped by HARNESS above, so a vendored library is never counted as the deck's own drawing.",
       "trigger": "This deck reported FAIL at 0.810 median pairwise similarity with a drawn share of 0 percent, 0 drawn marks against 0 blocky ones. Zero against zero is not a measurement of anything, which is the signature of a checker that cannot see rather than of a deck that is templated. The engine's own SKILL.md REQUIRES `<script type=\"module\">` for akthree, so the gate was blind to exactly the decks it most needed to read.",
       "verification": "The reference deck examples/demo-deck is unchanged by the repair: PASS, 0.071 median, max pair 0.099, drawn share 82 percent (9 drawn vs 2 blocky). This deck moved from a false FAIL at 0.810 median / 0 percent drawn to an honest WARN at 0.368 median, max pair 0.696, drawn share 72 percent (158 drawn vs 62 blocky).",
-      "commit": "PENDING",
+      "commit": "3de5986",
       "files": [
         "scripts/bespoke_check.py"
       ],
@@ -1232,7 +1232,7 @@
       "change": "A CAPTION NO LONGER COLLIDES WITH ITSELF. caption_check.py's variety engine now drops ledger rows whose run_date equals the run directory being checked, before comparing opening words and moves.",
       "trigger": "The documented ship order appends this run's row to ledger/captions.json and only THEN runs the completion gate, so from that moment caption_check compared the caption against its own row and hard-failed with 'first words repeat the 2026-08-15 caption'. It fired on the one gate the ship cannot proceed past, and it would have fired on every future run in exactly the same place.",
       "verification": "Loosens nothing: one run writes one caption, so no honest repeat can carry today's date. Verified both directions. This run's caption goes FAIL -> PASS with the ledger row present, and a regression copy of the same caption placed under a 2026-09-01 run directory still hard-fails with 'first words repeat the 2026-08-15 caption', proving a genuine cross-date repeat is still caught.",
-      "commit": "PENDING",
+      "commit": "3de5986",
       "files": [
         "scripts/caption_check.py"
       ],
