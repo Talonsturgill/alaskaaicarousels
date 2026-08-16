@@ -1252,7 +1252,7 @@
       "verification": "Verified both directions on this run's own copy.json. The repaired wording passes; restoring the original unquoted 'a coordinated, actionable plan' produces FAIL: PHRASE: banned phrase 'actionable' in copy.json slides[1].body. Running it for the first time on this run also caught three bare 'August 5/10/15, 2026' dates in first_comment that the house ordinal rule forbids and that nothing had ever checked, all three now fixed.",
       "rollback": "Revert the upgrade(2026-08-15) phrase-gate commit. copy.json's slide bodies go unscanned for banned phrases again and gate_status accepts a caption report written without --copy.",
       "limits": "It scans copy.json, not the rendered pixels, so a string that reaches a slide without passing through copy.json is still unscanned. copy_sync_check is what ties the two together, and it is a separate gate; if that one is ever weakened, this one narrows with it.",
-      "commit": "PENDING"
+      "commit": "01b2c9d"
     }
   ],
   "scan_log": [
