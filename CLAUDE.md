@@ -41,6 +41,33 @@ so it silently does not get the fix, and the ledger says the machine improved
 when it did not. Open the PR ready, merge it, and let the dated email be the
 review surface, same as a run.
 
+## A LOW SCORE IS A WORK ORDER, NOT A VERDICT (2026-08-15, owner)
+
+NO EMPTY RUNS is the oldest law here and run No.34 broke it while sounding
+responsible. It scored 7.51 against a threshold of 8.3, and the showrunner
+wrote an honest post-mortem, mailed a DO NOT POST draft, left the PR unmerged
+and stopped, with a complete nine-slide deck on disk, every machine gate green,
+and the scorer's own finite list of defects unfixed. Every artifact it produced
+was truthful. The run was still a failure, because the job is to deliver a
+carousel and it delivered a report about not delivering one.
+
+So, plainly: **a below-threshold score means go back to Phase 8 and fix the
+named defects, then re-render, re-run the gates and re-score. Repeat until it
+clears.** The scorer's weakest criterion and its one-sentence fix are the
+instructions for the next round. "It scored low" is a reason to keep working
+and is never, on its own, a reason to stop.
+
+Degradation ladder step (d), a post-mortem with no deck, is for when there is
+NOTHING TO SHIP: no story survived the claims gate, the network was gone, the
+engine would not render. **If slides rendered, it is not a (d).** Declaring one
+requires `out/<date>/NO_DECK.md` whose first line begins `BLOCKER:` and names
+something no amount of iteration fixes.
+
+Enforced by `scripts/ship_gate.py`, which is a row in `gate_status.py` and
+exits non-zero when a run tries to stop below threshold. The `score` row is a
+FAIL, not a WARN, for the same reason: a warn is something a run may ship past,
+and not shipping at all is not a warn.
+
 Three things still stop and ask, in any session:
 - work that would rewrite already-published history on `main`
 - anything that SENDS rather than drafts (these routines never send)

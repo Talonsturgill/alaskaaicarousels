@@ -515,7 +515,34 @@ def score_row(rows, run):
     detail = "%s / 10 vs threshold %s, scorer says passes=%s" % (weighted, thr, passes)
     if sc.get("cap_reason"):
         detail += " (capped: %s)" % str(sc["cap_reason"])[:80]
-    rows.add("score", "PASS" if passes else "WARN", detail)
+    # A BELOW-THRESHOLD SCORE IS A FAIL ROW, NOT A WARN (2026-08-15). This row
+    # was a WARN, and run No.34 read the warn as permission to write a
+    # post-mortem, mail a DO NOT POST draft and end the run with a complete deck
+    # sitting unshipped and a named, finite list of defects unfixed. A warn is
+    # something a run may ship past; not shipping at all is not a warn.
+    # scripts/ship_gate.py carries the full argument and the ladder rule.
+    rows.add("score", "PASS" if passes else "FAIL", detail)
+
+
+def ship_gate_row(rows, run):
+    """Refuse the move that ended run No.34: stopping on a low score."""
+    try:
+        p = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "ship_gate.py"),
+             "--run-dir", str(run), "--json"],
+            capture_output=True, text=True, timeout=60)
+        rep = json.loads(p.stdout)
+    except Exception as e:
+        rows.absent("ship_gate", "could not run (%s)" % type(e).__name__)
+        return
+    if rep.get("may_ship"):
+        rows.add("ship_gate", "PASS", rep.get("reason", "may ship"))
+    elif p.returncode == 2:
+        rows.add("ship_gate", "WARN", rep.get("reason", "declared blocker"))
+    else:
+        rows.add("ship_gate", "FAIL",
+                 "%s ITERATE, do not stop. weakest: %s"
+                 % (rep.get("reason", ""), rep.get("weakest_criterion", "?")))
 
 
 def artifacts_row(rows, run, rdir, rep):
@@ -860,6 +887,7 @@ def main():
     site_fresh_row(rows, run)
     assemble_row(rows, run, rep, fdir)
     score_row(rows, run)
+    ship_gate_row(rows, run)
     artifacts_row(rows, run, rdir, rep)
 
     fails = [r for r in rows.rows if r["status"] == "FAIL"]

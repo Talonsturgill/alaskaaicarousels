@@ -86,6 +86,31 @@ maintainer can post in ninety seconds.
    You may not skip to (d). You may not skip to (d) while (a) is still open,
    which is exactly what 2026-08-08 did.
 
+   **A LOW SCORE IS NOT A (d). IT IS A WORK ORDER.** Second real incident,
+   2026-08-15, and it is the more dangerous of the two because it does not look
+   like quitting. Run No.34 scored 7.51 against the 8.3 threshold. It had nine
+   finished slides on disk, every machine gate green, and a scorer's report
+   naming exactly which devices had failed to render and how to fix each one.
+   It wrote an honest post-mortem, mailed a DO NOT POST draft, left the PR
+   unmerged, patched three machine defects it had found along the way, and
+   stopped. Every sentence it produced was true. It still delivered nothing,
+   and the defect list it published was a list of things it could have simply
+   gone and fixed. The 2026-08-08 tell was an essay about integrity; this tell
+   is an immaculate failure report. Both are the same move.
+
+   When the scorer comes back under threshold, you go BACK TO PHASE 8, fix the
+   named defects, re-render, re-run the gates and re-score. You repeat that
+   until it clears. The weakest criterion and the one-sentence fix ARE your
+   instructions for the next round; you do not need to invent a plan. Step (d)
+   is for when there is NOTHING TO SHIP, and **if slides rendered, there is
+   something to ship**. Declaring a (d) requires `out/<date>/NO_DECK.md` whose
+   first line begins `BLOCKER:` and names a cause no amount of iteration fixes.
+
+   `python scripts/ship_gate.py --run-dir out/<date>` enforces this and is a
+   row in `gate_status.py`. Exit 1 means the run does not stop here. Do not
+   write a post-mortem, do not merge, and do not mail a DO NOT POST draft while
+   that row is red; the only correct response to it is another round.
+
 19. THE CRON-WRITTEN NUMBERS ARE NOT YOURS. `ledger/gaswatch.jsonl`,
    `ledger/gaswatch_eia.json`, `ledger/power.json`,
    `ledger/power_utility.json`, `ledger/watch.json`,
