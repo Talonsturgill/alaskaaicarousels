@@ -1,14 +1,14 @@
 {
- "generated": "2026-08-15T14:43:09Z",
- "for_date": "2026-08-15",
+ "generated": "2026-08-16T14:44:05Z",
+ "for_date": "2026-08-16",
  "session": "34",
  "counted": {
   "basis_bills": 856,
   "basis_meetings": 2845,
-  "fedreg_federal-energy-regulatory-commission": 4,
+  "fedreg_federal-energy-regulatory-commission": 3,
   "fedreg_land-management-bureau": 2,
   "fedreg_air-force-department": 0,
-  "fedreg_energy-department": 6,
+  "fedreg_energy-department": 5,
   "fedreg_army-department": 0
  },
  "bills": [
@@ -303,20 +303,6 @@
    "published": "2026-08-03",
    "comments_close_on": null,
    "url": "https://www.federalregister.gov/documents/2026/08/03/2026-15691/alaska-energy-authority-notice-of-application-for-non-capacity-amendment-of-license-accepted-for",
-   "agencies": [
-    "Energy Department",
-    "Federal Energy Regulatory Commission"
-   ]
-  },
-  {
-   "source": "federal-register",
-   "why": "FERC notice on beat, the US DOE notice on beat",
-   "doc": "2026-13271",
-   "title": "Southeast Alaska Power Agency; Notice of Intent To File License Application, Filing of Pre-Application Document, and Approving Use of the Traditional Licensing Process",
-   "type": "Notice",
-   "published": "2026-07-01",
-   "comments_close_on": null,
-   "url": "https://www.federalregister.gov/documents/2026/07/01/2026-13271/southeast-alaska-power-agency-notice-of-intent-to-file-license-application-filing-of-pre-application",
    "agencies": [
     "Energy Department",
     "Federal Energy Regulatory Commission"
