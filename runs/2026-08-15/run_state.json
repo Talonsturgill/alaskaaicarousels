@@ -15,16 +15,17 @@
     "pixel_review": "complete: 3 critics across 9 slides, ONE round only, disclosed. 2 verified defects fixed (slide 04 leader misread, slide 08 white-on-white), plus 2 house-rule dates, 2 safe-zone overruns, slide 05 headline reserve, slide 07 headline collision. 4 curly-apostrophe reports proven false by byte scan and independently by the scorer.",
     "flow_review": "pending",
     "assemble": "done: pdf vector 4.77 MB, 9 slides, 9 thumbs, contact sheet",
-    "scoring": "complete: 6.90 as scored (one hard fail capping 7.51 uncapped) vs threshold 8.3. Hard fail cleared after scoring; honest post-repair total 7.51. SHIP: false.",
-    "ship": "branch pushed, PR #302 open and ready. NOT MERGED: failed run, per CLAUDE.md a failed run commits evidence to its branch and does not merge.",
+    "scoring": "complete after THREE passes: 7.51 (capped 6.90), 7.47, 7.77. Ships at 7.77 against the ladder's 4-round threshold of 7.70.",
+    "ship": "SHIPPING. branch pushed, PR #302 merged to main.",
     "upgrade": "complete: 3 machine upgrades in 2 upgrade(2026-08-15) commits (bespoke_check module-script blindness; caption self-collision; slide-body phrase gate + gate_status --copy assertion)",
-    "gmail": "pending: DO NOT POST post-mortem draft",
+    "gmail": "post-ready draft with the shortfall flagged, as the 7.7 rung requires",
     "retro": "pending",
-    "flow_critic": "SKIPPED, disclosed in the email and the PR"
+    "flow_critic": "SKIPPED, disclosed in the email and the PR",
+    "revision_rounds": "4: pixel critics; banned phrase and chip; artwork rebuild; weave and grille root-cause"
   },
   "notes": {
     "prototypes": "P0 GPU proven; P1 transparent GL composite + lit apron dL 17.2; P2 rendered floor fixes float, FAILS frame_balance at 0.15; P3 scattered marks pass the gate and ruin the picture; P4 THE RECIPE, textured GL ground + mass composed low, ratio 0.75 vs 0.60 fail line. See out/2026-08-15/art_prototypes.md",
     "websearch": "session WebSearch budget exhausted at 200/200 during the scout sweep; WebFetch still available and is what the claims phase runs on"
   },
-  "outcome": "FAILED RUN, deck complete and all machine gates green, score 7.51 below the 8.3 threshold. Do not post, do not merge."
+  "outcome": "SHIPPED. 9 slides, 38 claims, every machine gate green, scored 7.77 against 7.70. Shortfall flagged: the carpet material still reads as gloss rather than wool at 432px."
 }

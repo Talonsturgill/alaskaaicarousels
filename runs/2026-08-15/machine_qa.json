@@ -4,7 +4,7 @@
       "file": "slide-01.html",
       "fails": [],
       "warns": [
-        "contact shadow: 'the toy on the carpet': shadow L* 14.3 vs ground L* 18.8, dL 4.5 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+        "contact shadow: 'the toy on the carpet': shadow L* 13.2 vs ground L* 17.3, dL 4.1 at 432w -- under the 8.0 L* comfort band; it reads, barely"
       ],
       "fits": [
         "hd 'The first federal answer to talking toys is ' fits 3/3 lines at 71px"
@@ -74,7 +74,7 @@
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 53% of this slide's own average craft density (top 64% / mid 18% / bottom 17% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone [data-breather]"
+        "top-loaded composition: the bottom third carries 9% of this slide's own average craft density (top 64% / mid 27% / bottom 3% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone [data-breather]"
       ],
       "fits": [
         "hd 'A plan is not a rule. A study is not a stand' fits 3/3 lines at 94px"
@@ -83,7 +83,9 @@
     {
       "file": "slide-08.html",
       "fails": [],
-      "warns": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 64% of this slide's own average craft density (top 54% / mid 21% / bottom 20% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
       "leaders": [
         "leader 'the column on the floor' lands 0.0px from its target",
         "leader 'the column on the floor' meets its label 6.0px away"
@@ -109,6 +111,6 @@
     }
   ],
   "fails": 0,
-  "warns": 2,
+  "warns": 3,
   "verdict": "WARN"
 }
