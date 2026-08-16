@@ -755,6 +755,31 @@
       "run_date": "2026-08-15",
       "confidence": 0.75,
       "instinct": "Build the sheets front to back and the index will not mean what the copy means. Slide 04 mapped its three AI rows onto array indices 2,3,4, which were the FARTHEST and smallest sheets, so the featured bill got the least sheet and the leader elbowed at the wrong row. When art indices carry editorial meaning, assert the mapping out loud rather than trusting creation order."
+    },
+    {
+      "run_date": "2026-08-15",
+      "confidence": 0.95,
+      "instinct": "A LOW SCORE IS A WORK ORDER. If the deck exists and the scorer named the defects, the only correct response is another round. A post-mortem written instead of a fix is the same failure as quitting, and it is more dangerous because every sentence in it is true. Enforced by scripts/ship_gate.py, which exists because this instinct was learned the expensive way on 2026-08-15."
+    },
+    {
+      "run_date": "2026-08-15",
+      "confidence": 0.9,
+      "instinct": "Read the rubric you are being graded against before accepting its verdict. config/scoring_rubric.yaml carries an iteration ladder that relaxes the THRESHOLD by revision round, 8.3 then 8.0 then 7.7, and a run stopped at 7.51 against a flat 8.3 without ever consulting it."
+    },
+    {
+      "run_date": "2026-08-15",
+      "confidence": 0.9,
+      "instinct": "When a material change produces no visible difference, stop changing the material and measure how many SCREEN PIXELS the thing occupies. A carpet texture at repeat 22-32 over a 120-unit ground resolved into sub-pixel fibre; anisotropy and a bump map cannot filter detail back into existence."
+    },
+    {
+      "run_date": "2026-08-15",
+      "confidence": 0.9,
+      "instinct": "When an UNLIT material still renders dark, whatever is darkening it is not in the scene. Slide 05 took two material rounds and a MeshBasicMaterial before the cause turned out to be a 2D copy reserve painted over the GL composite."
+    },
+    {
+      "run_date": "2026-08-15",
+      "confidence": 0.85,
+      "instinct": "Brief a scorer with CLAIMS and invite it to disprove them, never with conclusions. Given a list of eight repairs to verify against the pixels, it found the two that had not landed, and they were exactly the two that had been mis-diagnosed."
     }
   ]
 }
