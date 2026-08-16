@@ -12,17 +12,19 @@
     "directors_room": "done: 3 treatments, synthesis in storyboard.md, 9 dossiers, dossier_check PASS 9/9",
     "copy": "done: caption.txt PASS 877 chars hook 124, copy.json PASS, copy_sync 72 strings, first_comment style-lint clean, aggregate_check PASS 7/7",
     "art_build": "done: 9 bespoke GL slides, qa.py exit 0, bespoke_check PASS median 0.399 drawn share 74 percent after repairing the checker",
-    "pixel_review": "in-progress: 3 critics across 9 slides, ONE round only, disclosed",
+    "pixel_review": "complete: 3 critics across 9 slides, ONE round only, disclosed. 2 verified defects fixed (slide 04 leader misread, slide 08 white-on-white), plus 2 house-rule dates, 2 safe-zone overruns, slide 05 headline reserve, slide 07 headline collision. 4 curly-apostrophe reports proven false by byte scan and independently by the scorer.",
     "flow_review": "pending",
     "assemble": "done: pdf vector 4.77 MB, 9 slides, 9 thumbs, contact sheet",
-    "scoring": "pending",
-    "ship": "pending",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "scoring": "complete: 6.90 as scored (one hard fail capping 7.51 uncapped) vs threshold 8.3. Hard fail cleared after scoring; honest post-repair total 7.51. SHIP: false.",
+    "ship": "branch pushed, PR #302 open and ready. NOT MERGED: failed run, per CLAUDE.md a failed run commits evidence to its branch and does not merge.",
+    "upgrade": "complete: 3 machine upgrades in 2 upgrade(2026-08-15) commits (bespoke_check module-script blindness; caption self-collision; slide-body phrase gate + gate_status --copy assertion)",
+    "gmail": "pending: DO NOT POST post-mortem draft",
+    "retro": "pending",
+    "flow_critic": "SKIPPED, disclosed in the email and the PR"
   },
   "notes": {
     "prototypes": "P0 GPU proven; P1 transparent GL composite + lit apron dL 17.2; P2 rendered floor fixes float, FAILS frame_balance at 0.15; P3 scattered marks pass the gate and ruin the picture; P4 THE RECIPE, textured GL ground + mass composed low, ratio 0.75 vs 0.60 fail line. See out/2026-08-15/art_prototypes.md",
     "websearch": "session WebSearch budget exhausted at 200/200 during the scout sweep; WebFetch still available and is what the claims phase runs on"
-  }
+  },
+  "outcome": "FAILED RUN, deck complete and all machine gates green, score 7.51 below the 8.3 threshold. Do not post, do not merge."
 }

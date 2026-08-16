@@ -1,0 +1,80 @@
+{
+  "run_date": "2026-08-15",
+  "carousel_no": 34,
+  "scored_at": "phase 10, before the post-score repairs recorded below",
+  "weighted_total_as_scored": 6.9,
+  "weighted_total_uncapped": 7.51,
+  "weighted_total_after_repairs": 7.51,
+  "threshold": 8.3,
+  "ship": false,
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "hard_fails_as_scored": [
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "FAIL at scoring, CLEARED after",
+      "evidence": "'actionable' is item 46 of brand.yaml banned_phrases and rendered on slide 02 in the deck's own unquoted prose: 'must give Congress a coordinated, actionable plan on AI-enabled toy products'. No gate in the run scanned SLIDE bodies against banned_phrases, so it reached the scorer.",
+      "repair": "Slide 02 and copy.json now read 'must give Congress what the release calls a \"coordinated, actionable plan\" on AI-enabled toy products'. The phrase is now inside a straight-quoted verbatim passage and attributed to the release, which is the exemption brand.yaml grants and caption_check implements. Slides 02 re-rendered; qa.py 0 fails; copy_sync PASS."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 5,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 6,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 6,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 9,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(8x0.14)+(7x0.14)+(5x0.16)+(6x0.14)+(6x0.12)+(9x0.10)+(7x0.08)+(7x0.07)+(8x0.05)+(7x0.10) = 7.51 uncapped; the banned-phrase hard fail capped the total at 6.90 at scoring time.",
+  "post_score_repairs": [
+    "Slide 02: the banned phrase cleared by quoting and attributing it (above). This removes the CAP, not any criterion score, so the honest post-repair total is the uncapped 7.51.",
+    "Slide 04: the chip 'S. 5171 ON THE FLOOR' renamed to 'S. 5171 ON THE AGENDA'. The deck meant the paper sheet on the carpet, but the chip sat under 'RESULT ON ALL FIVE ROWS, NO TALLY PUBLISHED' in identical mono, and to this page's stated audience of staffers 'on the floor' means the bill reached the Senate floor, which claims.json explicitly killed.",
+    "copy.json first_comment: three bare 'August 5/10/15, 2026' dates given the house ordinal. These were surfaced by the new copy-scanning gate and had never been checked by anything."
+  ],
+  "ship_decision": "DO NOT POST, and DO NOT MERGE. 7.51 against a threshold of 8.3 even with the hard fail cleared. Per CLAUDE.md a failed run commits its evidence to the run branch and does not merge to main.",
+  "one_sentence_fix": "Spend the next round making the three declared devices actually render: slide 03's dimension call with real extension lines and arrowheads, slide 05's emissive grille as the light source the dossier says it is, and slide 09's five-sheet trail with the solid-versus-phantom outlines visible at feed scale.",
+  "weakest_in_plain_language": "The artwork does not do what the storyboard says it does. This is one of the best-planned decks the studio has produced: the empty DUE field in the same corner on all nine slides while the counter beside it advances, the read-versus-403-versus-unpublished paper grammar, the decision to render every document blank because the page never prints type it could not read. On the page most of that argument is missing. The carpet weave the prototype called the difference between a failing composition score and a passing one is invisible on every slide. The paper sheets that carry the whole motif are flat grey polygons with no shadow. Slide 03's fully drawn dimension with no number, which the dossier calls the slide's whole argument, has no extension lines and no arrowheads. Slide 05's grille, declared the deck's brightest light, renders as a dark unlit speaker. Slide 09's five-asked-one-answered payoff shows two or three sheets and no visible difference between a solid outline and a phantom one. The toy is beautiful and the writing is rigorous, and between them sits a set of promises the render never kept. That is what one pixel-critic round instead of four costs, and it is exactly what the second and third rounds are for."
+}
