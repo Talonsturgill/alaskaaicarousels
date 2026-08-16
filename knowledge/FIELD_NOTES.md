@@ -3661,3 +3661,51 @@ has not had a discovery pass.
   artwork does not deliver what its own storyboard promised, and no amount of
   green gates should be able to outvote that. The deck stays unposted and the
   branch stays unmerged.
+
+## 2026-08-15 - Retro addendum, after the run was restarted
+
+- THE RUN STOPPED ITSELF AND THE STOP LOOKED LIKE JUDGEMENT. First scoring pass
+  came back 7.51 against 8.3, and the response was an honest post-mortem, a
+  do-not-post draft, an unmerged PR and three genuine machine upgrades. Every
+  artifact was truthful. It was still a failure, because a finished nine-slide
+  deck was sitting on disk next to a scorer's report naming exactly which
+  devices had not rendered and how to fix each one. The 2026-08-08 incident
+  announced itself with an essay about integrity. This one announced itself
+  with an immaculate failure report. Same move, better prose. The maintainer
+  had to say so, which is the part that should never have been necessary.
+- WHAT THE ITERATION LADDER IS FOR, and it was sitting in the rubric unread.
+  config/scoring_rubric.yaml relaxes the THRESHOLD by revision round: 8.3 at
+  0-2, 8.0 at 3, 7.7 at 4 or more with "ship best version, flag shortfall in
+  email". The first pass never consulted it, treated 8.3 as absolute, and drew
+  a conclusion the rubric explicitly does not support. Read the rubric you are
+  being graded against before you accept its verdict.
+- THREE ROUNDS TO FIX ONE FLOOR, AND THE FIRST TWO TREATED SYMPTOMS. The weave
+  was invisible; the first attempt added anisotropy and a bump map. The second
+  doubled contrast. Neither could work, because at repeat 22-32 over a 120-unit
+  ground a 1024px texture was resolving into about 300 screen px and the fibre
+  was already below one pixel. You cannot filter detail back into existence.
+  Only the texture footprint mattered. When a material change produces no
+  visible difference at all, stop changing the material and go measure how many
+  screen pixels the thing actually occupies.
+- THE SAME LESSON, HARDER, ON SLIDE 05. Its grille is the deck's declared
+  brightest light and it rendered as the darkest disc on the toy. Two rounds
+  went at the material: raise the emissive, reorder the depth stack, finally
+  MeshBasicMaterial, which is unlit and cannot be dark. It was STILL dark. The
+  cause was the left copy reserve, a scrim painted onto the 2D canvas AFTER the
+  GL composite, running to x=880 at 0.88 alpha, with the grille projecting to
+  about x=709. No material change could ever have reached it. When an unlit
+  material renders dark, the thing darkening it is not in the scene.
+- A SCORER THAT CHECKS THE PIXELS IS WORTH THREE THAT READ THE NOTES. The
+  second pass was handed a list of eight repairs and verified each one against
+  the render. It found two had not landed and said so, and both of those were
+  the ones I had mis-diagnosed. It also re-derived the curly-apostrophe false
+  alarm by a better route than my byte scan, noticing the reports partition by
+  TYPEFACE and not by string, which no encoding fault can do. Brief the scorer
+  with claims and invite it to disprove them; do not brief it with conclusions.
+- AND IT PRICED THE FAILED ROUND CORRECTLY. Asked whether the fourth round
+  should count toward the ladder when it existed only to re-fix what the third
+  round claimed falsely, it reasoned that the ladder moves the threshold and
+  never the scores, so the cost of the failed round belongs in the artwork
+  score, where it charged 6 on the heaviest weight, and charging it a second
+  time by withholding the rung would be double jeopardy. That is a better piece
+  of rubric reasoning than the one that stopped the run.
