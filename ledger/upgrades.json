@@ -1238,6 +1238,21 @@
       ],
       "rollback": "Revert the single upgrade(2026-08-15) commit. caption_check compares against every ledger row again, including the run's own.",
       "limits": "The exclusion is keyed off the run DIRECTORY name matching YYYY-MM-DD, which is how every run directory in this repo is named. A caption checked from stdin, or from a directory not named for its date, is compared against the full ledger exactly as before, so the guard fails safe rather than silently widening."
+    },
+    {
+      "run_date": "2026-08-15",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "THE PHRASE GATE NOW READS THE SLIDES. New caption_check.check_copy_phrases() runs brand.yaml's banned_phrases over every reader-facing string in copy.json, the same fields check_copy_dates already walks, with the same straight-quoted-verbatim exemption. And gate_status's caption row now HARD FAILS on a caption_report.json written without --copy, detected by the absence of copy_fields_checked, which is written only on that path.",
+      "trigger": "The phrase gate had only ever read the CAPTION. Slide 02 printed 'a coordinated, actionable plan' in the deck's own unquoted voice and 'actionable' is item 46 of the list, so a hard fail travelled through every gate in the run and was caught by the scorer, one phase from the email. The second half matters as much as the first: gate_status only READS caption_report.json, so a run that invoked caption_check without --copy got a green caption row while the slide bodies had never been scanned at all. A gate nobody is required to point at the evidence is not a gate.",
+      "files": [
+        "scripts/caption_check.py",
+        "scripts/gate_status.py"
+      ],
+      "verification": "Verified both directions on this run's own copy.json. The repaired wording passes; restoring the original unquoted 'a coordinated, actionable plan' produces FAIL: PHRASE: banned phrase 'actionable' in copy.json slides[1].body. Running it for the first time on this run also caught three bare 'August 5/10/15, 2026' dates in first_comment that the house ordinal rule forbids and that nothing had ever checked, all three now fixed.",
+      "rollback": "Revert the upgrade(2026-08-15) phrase-gate commit. copy.json's slide bodies go unscanned for banned phrases again and gate_status accepts a caption report written without --copy.",
+      "limits": "It scans copy.json, not the rendered pixels, so a string that reaches a slide without passing through copy.json is still unscanned. copy_sync_check is what ties the two together, and it is a separate gate; if that one is ever weakened, this one narrows with it.",
+      "commit": "PENDING"
     }
   ],
   "scan_log": [

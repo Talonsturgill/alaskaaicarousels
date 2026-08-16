@@ -640,6 +640,36 @@ def copy_prose(copy):
     return out
 
 
+def check_copy_phrases(copy, brand_phrases):
+    """Run brand.yaml's banned_phrases over copy.json's reader-facing prose.
+
+    THE SLIDES WERE NEVER SCANNED (2026-08-15). The phrase gate had only ever
+    read the CAPTION, so a banned phrase set in a slide's own body shipped past
+    every gate in the run and was caught by the scorer, one phase from the
+    email. This run lost a hard fail to it: slide 02 printed 'a coordinated,
+    actionable plan' in the deck's unquoted voice, and 'actionable' is item 46
+    of the list. Same rule and same exemption as the caption, applied to the
+    same fields check_copy_dates already walks. Widens an existing gate to the
+    surface it was always meant to cover; adds no rule of its own.
+    """
+    fails = []
+    for path, s in copy_prose(copy):
+        low = s.lower()
+        spans = quoted_spans(s)
+        for phrase in (brand_phrases or []):
+            p = phrase.lower().strip()
+            if not p:
+                continue
+            for m in re.finditer(re.escape(p), low):
+                i = m.start()
+                if any(a <= i and i + len(p) <= b for a, b in spans):
+                    continue  # a source is allowed to write however it wrote
+                fails.append("PHRASE: banned phrase '%s' in copy.json %s "
+                             "(config/brand.yaml banned_phrases)" % (p, path))
+                break
+    return fails
+
+
 def check_copy_dates(copy):
     """Run the house DATE_FORMS table over copy.json's reader-facing prose.
 
@@ -864,6 +894,7 @@ def main():
             rep["verdict"] = "FAIL"
         else:
             hits = check_copy_dates(copy_obj)
+            hits.extend(check_copy_phrases(copy_obj, brand_phrases))
             rep["copy_fields_checked"] = len(copy_prose(copy_obj))
             # THE DECLARED MOVES, GRADED (2026-08-14). copy.json carries the
             # room's own caption_meta and the ledger carries the windows those
