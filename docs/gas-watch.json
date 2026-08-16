@@ -1942,15 +1942,15 @@
     },
     {
       "date": "2026-08-16",
-      "collected_utc": "2026-08-16T14:02:05Z",
+      "collected_utc": "2026-08-16T19:38:45Z",
       "collector_version": "1.0",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-08-16T04:18:00",
-        "source_timestamp_utc": "2026-08-16T12:18:00Z",
-        "inventory_mcf": 6925002,
-        "inventory_delta_mcf": 42298,
+        "source_timestamp": "2026-08-16T09:00:00",
+        "source_timestamp_utc": "2026-08-16T17:00:00Z",
+        "inventory_mcf": 6922894,
+        "inventory_delta_mcf": 40190,
         "storage_design_mcf": 13000000,
         "inventory_pct_of_design": 53.3,
         "withdrawal_design_mcfd": 215000,
@@ -1959,11 +1959,11 @@
         "withdrawal_restriction_mcfd": 111930,
         "injection_design_mcfd": 225000,
         "injection_operating_mcfd": 61896,
-        "injection_available_mcfd": 19597,
-        "injection_in_progress_mcfd": 42299,
+        "injection_available_mcfd": 21706,
+        "injection_in_progress_mcfd": 40190,
         "injection_restriction_mcfd": 144424,
         "operational_note": "Well 7 is out of service for Coil tube work. We are currently waiting on the Coil Tube unit to be available for this work. This OFO only impacts Expansion Customers. We are still working on the system to only email customers affected by expansion OFO's, this issue is still being addressed. CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
-        "source_age_hours": 1.7
+        "source_age_hours": 2.6
       },
       "forecast": [
         {
@@ -2005,15 +2005,23 @@
           "min_temp_f": 51,
           "hdd65": 9.1,
           "modeled_demand_mmcfd": 112
+        },
+        {
+          "date": "2026-08-22",
+          "hours": 23,
+          "mean_temp_f": 54.7,
+          "min_temp_f": 51,
+          "hdd65": 10.3,
+          "modeled_demand_mmcfd": 116
         }
       ],
-      "forecast_source_updated": "2026-08-16T12:12:33+00:00",
+      "forecast_source_updated": "2026-08-16T15:37:13+00:00",
       "derived": {
-        "peak_forecast_date": "2026-08-19",
-        "peak_forecast_hdd": 10.1,
+        "peak_forecast_date": "2026-08-22",
+        "peak_forecast_hdd": 10.3,
         "peak_modeled_demand_mmcfd": 116,
-        "forecast_window_demand_bcf": 0.56,
-        "storage_withdrawal_mmcfd": -42.3,
+        "forecast_window_demand_bcf": 0.68,
+        "storage_withdrawal_mmcfd": -40.2,
         "non_cingsa_supply_mmcfd": null,
         "days_cover_at_peak": 59.7,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
@@ -2061,7 +2069,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-16T14:02:05Z",
+          "fetched_utc": "2026-08-16T19:38:45Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -2070,7 +2078,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-16T14:02:06Z",
+          "fetched_utc": "2026-08-16T19:38:46Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -2079,7 +2087,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-16T14:02:06Z",
+          "fetched_utc": "2026-08-16T19:38:46Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -2087,7 +2095,8 @@
       "flags": [
         "injection_restriction_active",
         "withdrawal_restriction_active"
-      ]
+      ],
+      "supersedes_posting": "2026-08-16T04:18:00"
     }
   ]
 }
