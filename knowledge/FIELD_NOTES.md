@@ -3633,3 +3633,31 @@ has not had a discovery pass.
   satisfy the gate ruins the picture and was recorded as the wrong answer,
   which is the more valuable of the two findings and the one a run under time
   pressure would have skipped.
+- THE SCORER IS THE LAST HONEST READER AND IT EARNED ITS KEEP. It found a hard
+  fail every other gate in the run had missed: "actionable" set in the deck's
+  own unquoted voice on slide 02, item 46 of the banned list. The phrase gate
+  had only ever read the CAPTION, so a slide could print anything on the list
+  and ship. It also independently re-derived the curly-apostrophe false alarm
+  rather than taking the byte scan on trust, and it did it better than the byte
+  scan did, by noticing the reports partition by TYPEFACE and not by string,
+  which no encoding error can produce. A checker that agrees with you for a
+  better reason than yours is the one worth keeping.
+- AND IT CAUGHT AN EDITORIAL RISK MADE OF STYLING. Slide 04's chip read "S. 5171
+  ON THE FLOOR", meaning the sheet of paper on the carpet, with a leader pointing
+  at it. But it sat under "RESULT ON ALL FIVE ROWS, NO TALLY PUBLISHED" in the
+  same mono register, and to legislators and staffers "on the floor" is a status
+  claim this deck's own claims.json killed. The words were true of the picture
+  and false of the subject, and what made them false was the chip they shared a
+  typeface with. Proximity is an assertion.
+- A BANNER CAN CONTRADICT ITS OWN VERDICT. gmail_draft.py rendered
+  "Shipped below threshold" on runs where ship is false, asserting the opposite
+  of the finding in its first two words, on the single surface that decides
+  whether a human posts. The rest of the line was correct. Nobody had read the
+  first two words in the case they describe, because until today that case had
+  presumably not arisen.
+- THE RUN FAILED AND THAT IS THE CORRECT OUTCOME. 7.51 against 8.3 with every
+  machine gate green. The gates measure whether the deck is well made; the
+  scorer measures whether it is any good. This deck is well made and its
+  artwork does not deliver what its own storyboard promised, and no amount of
+  green gates should be able to outvote that. The deck stays unposted and the
+  branch stays unmerged.
