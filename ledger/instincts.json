@@ -740,6 +740,21 @@
       "run_date": "2026-08-14",
       "confidence": 0.8,
       "instinct": "SHORTENING A STRING TO MAKE IT FIT IS AN EDIT TO THE DECK'S ARGUMENT. No.33 trimmed the projection note on five slides purely for width, and in doing so deleted the phrase that turned the note from a label into an argument on the one slide whose job was the argument. Two critics called it systemic. When a declared string will not fit, change the type size, wrap it, or rewrite it deliberately and update the storyboard. Never silently truncate a device string."
+    },
+    {
+      "run_date": "2026-08-15",
+      "confidence": 0.8,
+      "instinct": "A pixel critic reading a rendered PNG will report curly apostrophes that are not in the bytes. Four critics did it on four slides in one run and a byte scan proved zero U+2019 anywhere. Manrope's straight apostrophe is slightly canted and reads as a U+2019 at any zoom. VERIFY a glyph complaint against the source before spending a fix on it, and never let one reach the ledger as a defect."
+    },
+    {
+      "run_date": "2026-08-15",
+      "confidence": 0.85,
+      "instinct": "When a checker reports an impossible reading, suspect the checker. bespoke_check reported 0 drawn marks against 0 blocky ones, which is not a measurement of anything, and the cause was a regex blind to module scripts rather than a templated deck. A gate that returns a degenerate number is making a claim about itself."
+    },
+    {
+      "run_date": "2026-08-15",
+      "confidence": 0.75,
+      "instinct": "Build the sheets front to back and the index will not mean what the copy means. Slide 04 mapped its three AI rows onto array indices 2,3,4, which were the FARTHEST and smallest sheets, so the featured bill got the least sheet and the leader elbowed at the wrong row. When art indices carry editorial meaning, assert the mapping out loud rather than trusting creation order."
     }
   ]
 }

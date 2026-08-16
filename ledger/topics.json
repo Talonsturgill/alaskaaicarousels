@@ -1470,6 +1470,46 @@
       ],
       "claims_count": 28,
       "slides": 9
+    },
+    {
+      "run_date": "2026-08-15",
+      "carousel_no": 34,
+      "title": "A Plan, a Study, and No Published Due Date",
+      "topic": "S. 5171, the Children's AI Toy Safety Act of 2026, taken up by the Senate Commerce Committee at 10:00 a.m. on August 5th, 2026 in room SR-253 on an agenda of five bills, three of which carry AI or a chatbot in the title. Duckworth's office says the bill cleared committee that day with Alaska's Lisa Murkowski as the Republican cosponsor. The release describes an FTC and CPSC coordinated plan and a National Academies study; it names no rule, no ban and no standard. The committee's own meeting page publishes the agenda with every result row blank and no tally for any of the five bills. The bill text returned 403 on August 15th, so no statutory deadline for the plan or the study could be read.",
+      "angle": "THE MISSING DUE DATE. The deck asks one narrow question the record can actually answer: when is either deliverable owed? Every slide carries an empty DUE field, and it stays empty to the last slide because no published source states a date. The thesis was REBUILT at the claims gate after the fact-checker killed 'Alaska's statute book is empty' as an unverifiable absence; what survived is the narrower, fully sourced claim that the first federal answer to machines that talk to children is a plan and a study whose timing is not on the record. Deliberately fair: a plan and a study is the normal first move on something nobody has measured, and the deck says so in the caption's close. The deck REFUSES to say that Alaska law does not cover AI toys, that the 403 proves anything about the bill's contents, that the committee vote failed, or that any count of AI toys exists behind the senator's word 'thousands'.",
+      "entities": [
+        "S. 5171",
+        "Children's AI Toy Safety Act of 2026",
+        "Senate Commerce Committee",
+        "Sen. Tammy Duckworth",
+        "Sen. Lisa Murkowski",
+        "Federal Trade Commission",
+        "Consumer Product Safety Commission",
+        "National Academies",
+        "U.S. PIRG Education Fund",
+        "Roger Kaye",
+        "Anchorage Daily News",
+        "House Bill 47",
+        "House Concurrent Resolution 3"
+      ],
+      "keywords": [
+        "AI toys",
+        "companion chatbots",
+        "child safety",
+        "Senate Commerce",
+        "executive session",
+        "cosponsor",
+        "FTC",
+        "CPSC",
+        "National Academies",
+        "deadline",
+        "403",
+        "no tally published",
+        "deepfake",
+        "Alaska delegation"
+      ],
+      "claims_count": 38,
+      "slides": 9
     }
   ]
 }

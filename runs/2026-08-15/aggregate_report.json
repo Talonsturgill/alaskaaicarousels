@@ -1,0 +1,71 @@
+{
+  "run_dir": "out/2026-08-15",
+  "render_report": "out/2026-08-15/render/render_report.json",
+  "aggregates_file": "out/2026-08-15/aggregates.json",
+  "detected": 7,
+  "declared": 7,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Two agencies",
+      "text": "Two agencies owe a plan. One academy owes a study.",
+      "n": 2,
+      "subject": "agencies"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "FIVE ROWS",
+      "text": "RESULT ON ALL FIVE ROWS, NO TALLY PUBLISHED",
+      "n": 5,
+      "subject": "rows"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Five bills",
+      "text": "Five bills that morning. Three of them AI.",
+      "n": 5,
+      "subject": "bills"
+    },
+    {
+      "slide": 4,
+      "kind": "ratio",
+      "fragment": "3 OF 5",
+      "text": "3 OF 5",
+      "n": 3,
+      "of": 5
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "47 provisions",
+      "text": "House Bill 47 provisions criminalizing AI-generated child sexual abuse material",
+      "n": 47,
+      "subject": "provisions"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "30 states",
+      "text": "Roughly 30 states have passed election-related deepfake disclosure laws.",
+      "n": 30,
+      "subject": "states"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "Five places",
+      "text": "Five places the record was asked. One answered.",
+      "n": 5,
+      "subject": "places"
+    }
+  ],
+  "not_rederived": [],
+  "fails": [],
+  "warns": [
+    "S2 'Two agencies owe a plan. One academy owes a stud' [from_claim]: the noun 'agency' does not appear in claim C15; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

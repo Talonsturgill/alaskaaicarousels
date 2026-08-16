@@ -3558,3 +3558,78 @@ window and Phase 12 finds it empty. That is deviation 1 in this run's retro
 seen from the far end of the day, and it is a real coverage hole in the
 rotation, not an inconvenience: the slot was nominated two runs ago and still
 has not had a discovery pass.
+
+## 2026-08-15 - Craft refresh (2 searches, timeboxed)
+
+- One study not yet in CAROUSEL_CRAFT's source list. Oktopost's LinkedIn
+  Benchmark, March 2026, n over 1,000 B2B company pages, puts the MEDIAN B2B
+  page at a 5.72 percent engagement rate and 826 median impressions per post,
+  against a top-decile figure of 22.45 percent, and reports that the top decile
+  posts more document and carousel content than the median. Treat the top-decile
+  number as selection rather than causation, since a page that posts documents
+  well is not the same population as a page that starts posting them. What it
+  does add is a BASELINE for a B2B page, which the existing sources give only as
+  a format-level rate.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- Socialinsider's 2026 benchmark restated its 7.00 percent native-document rate
+  and put a 14 percent year over year rise on it, over 1.3 million posts from
+  16,645 pages, January 2024 to December 2025. That is the number CAROUSEL_CRAFT
+  already carries, so nothing changes; the useful part is that the sample and
+  the window are now published, which makes it a citable figure rather than a
+  quoted one.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
+- Nothing new on the rendering side worth writing down. A scan of current
+  three.js PBR and IBL guidance returned the same practices the bench already
+  implements in akthree, PCFSoftShadowMap or VSMShadowMap for soft contact,
+  scene.environment as the IBL source, ACES on output. No capability found that
+  the engine lacks.
+
+## 2026-08-15 - Retro (No. 34, "A Plan, a Study, and No Published Due Date")
+
+- A PIXEL CRITIC READING A PNG WILL REPORT GLYPHS THAT ARE NOT IN THE BYTES.
+  Four of the run's critics independently reported curly apostrophes (U+2019)
+  on slides 02, 03, 04 and 06, each naming a specific word and calling it a
+  hard fail against the house straight-quote rule. A byte scan found zero
+  U+2019 across all nine slides. Manrope sets a straight apostrophe with a
+  slight cant, and at any zoom it reads as a curl. That is four of the round's
+  most confident findings, all false, on the one class of defect a grep settles
+  in a second. VERIFY a glyph complaint against the source before spending a
+  fix on it. The corollary is worse: had the round applied them blind, it would
+  have "fixed" four files by replacing straight quotes with straight quotes and
+  logged the house rule as enforced.
+- BUT THE SAME CRITICS WERE RIGHT ABOUT THE THINGS ONLY EYES CATCH. Slide 04's
+  leader elbowed at the S. 4199 row while its label read S. 5171, which is a
+  factual misstatement made entirely of geometry and which no gate in the
+  harness can see. Slide 08's fourth row set white on the READ sheet at about
+  1.1:1, the deck's newest and most specific claim rendered unreadable, and
+  qa.py passed it. The lesson is not that the critics are unreliable, it is
+  that their reliability is SHAPED: trust them on relationships between things
+  in the frame, check them on anything a script can measure.
+- WHEN A CHECKER RETURNS A DEGENERATE NUMBER, SUSPECT THE CHECKER. bespoke_check
+  reported this deck at 0.810 median similarity with 0 drawn marks against 0
+  blocky ones. Zero against zero is not a low score, it is the absence of a
+  measurement, and the cause was a regex blind to `<script type="module">`,
+  which the engine's own SKILL.md REQUIRES for akthree. The gate had been
+  blind to every GPU deck it most needed to read. The tell was the shape of the
+  number, not its size.
+- THE SHIP ORDER CONTAINED A GATE THAT COULD NEVER PASS. Ledger updates are a
+  ship step and the completion gate runs after them, so caption_check compared
+  the caption against the row this run had just written and hard-failed on
+  "first words repeat the 2026-08-15 caption". A tautology sitting directly in
+  front of the one gate the ship cannot proceed past. It had presumably been
+  survived before by running the gate first, which is the fragile order. Fixed
+  by dropping same-date rows, verified in both directions.
+- ART INDICES THAT CARRY EDITORIAL MEANING NEED AN ASSERTION. Slide 04 built
+  five sheets front to back and mapped its three AI rows onto indices 2, 3 and
+  4, which were the FARTHEST and smallest sheets, so the featured bill got the
+  least sheet, the three lit sheets were the three the toy's light never
+  reaches, and the leader ran the wrong way through the table. Creation order
+  is not reading order and nothing in the harness knows the difference.
+- THE PROTOTYPE PHASE PAID FOR ITSELF AGAIN. Six art prototypes ran through the
+  real gates before a single dossier was written. P2 established that a smooth
+  PBR ground cannot pass frame_balance for want of per-cell luminance spread
+  and that a procedural canvas texture on the ground material fixes it; every
+  one of the nine slides inherited that. P3 proved that scattering marks to
+  satisfy the gate ruins the picture and was recorded as the wrong answer,
+  which is the more valuable of the two findings and the one a run under time
+  pressure would have skipped.
