@@ -823,6 +823,20 @@ def main():
         src = Path(args[0])
         text = src.read_text()
         out = src.parent / "caption_report.json"
+        # A CAPTION NEVER COLLIDES WITH ITSELF (2026-08-15). The ship order
+        # appends this run's entry to ledger/captions.json and only then runs
+        # the completion gate, so from that point on the variety engine was
+        # comparing the caption against its OWN row and hard-failing every run
+        # on "first words repeat the <today> caption". It is a tautology, not a
+        # repeat, and it fired on the one gate the ship cannot proceed past.
+        # Dropping same-date rows loosens nothing: one run writes one caption,
+        # so there is no honest way for a real repeat to carry today's date.
+        # Keyed off the run directory's name, which is where the date lives.
+        if ledger_entries is not None:
+            run_date = src.parent.name
+            if re.fullmatch(r"\d{4}-\d{2}-\d{2}", run_date):
+                ledger_entries = [e for e in ledger_entries
+                                  if e.get("run_date") != run_date]
     else:
         text = sys.stdin.read()
         out = Path("caption_report.json")
