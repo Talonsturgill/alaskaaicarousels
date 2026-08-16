@@ -1269,7 +1269,7 @@
       "verification": "Four cases, all checked. A run at 7.51 vs 8.3 exits 1 and prints the four lowest criteria by weight. A run at 8.55 exits 0. A NO_DECK.md written over a nine-slide rendered deck is REFUSED with exit 1 and told to delete it and iterate. A NO_DECK.md with a real blocker and no renders exits 2 and is allowed. gate_status now shows both score and ship_gate as FAIL rows on this run, which is the correct reading of it.",
       "rollback": "Revert the upgrade(2026-08-15) ship-gate commit and delete scripts/ship_gate.py. A run may then stop below threshold again with nothing objecting.",
       "limits": "It gates STOPPING, not quality. It cannot tell a run that iterated well from one that iterated badly, and a run determined to end can still write a false BLOCKER line, though it can no longer do so with a rendered deck on disk. It also cannot fire if the scorer is never run at all; that case is caught by the existing missing-score_report row.",
-      "commit": "PENDING"
+      "commit": "06e2057"
     }
   ],
   "scan_log": [
