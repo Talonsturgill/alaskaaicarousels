@@ -1,0 +1,19 @@
+{
+  "chars": 877,
+  "hook": "At 10:00 a.m. on August 5th, a Senate committee in room SR-253 took up five bills. Three carry AI or a chatbot in the title.",
+  "hook_len": 124,
+  "commas": 3,
+  "comma_per_100": 0.36,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AIToySafety",
+    "#AlaskaDelegation",
+    "#SenateCommerce"
+  ],
+  "deck_summary": "The agenda with every result row blank, both senators in their own words, and the record as sheets stamped READ or 403.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 76
+}

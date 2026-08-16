@@ -1,0 +1,116 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the toy on the carpet': shadow L* 13.2 vs ground L* 17.3, dL 4.1 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "fits": [
+        "hd 'The first federal answer to talking toys is ' fits 3/3 lines at 71px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the far sheet, the plan' lands 0.0px from its target",
+        "leader 'the near sheet, the study' lands 0.0px from its target",
+        "leader 'the far sheet, the plan' meets its label 6.0px away",
+        "leader 'the near sheet, the study' meets its label 6.0px away"
+      ],
+      "fits": [
+        "hd 'Two agencies owe a plan. One academy owes a ' fits 3/3 lines at 75px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the bill text sheet' lands 0.0px from its target",
+        "leader 'the committee result sheet' lands 0.0px from its target",
+        "leader 'the bill text sheet' meets its label 0.0px away",
+        "leader 'the committee result sheet' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'The due date is not on the record.' fits 2/2 lines at 85px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the S. 5171 sheet' lands 0.0px from its target",
+        "leader 'the S. 5171 sheet' meets its label 13.2px away"
+      ],
+      "fits": [
+        "hd 'Five bills that morning. Three of them AI.' fits 2/2 lines at 58.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hd 'Knives, pills and matches.' fits 2/2 lines at 79.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader \"the sponsor's release on the floor\" lands 0.0px from its target",
+        "leader \"the sponsor's release on the floor\" meets its label 6.0px away"
+      ],
+      "fits": [
+        "hd 'The Alaskan on the bill is buying knowledge.' fits 2/2 lines at 64px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 9% of this slide's own average craft density (top 64% / mid 27% / bottom 3% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone [data-breather]"
+      ],
+      "fits": [
+        "hd 'A plan is not a rule. A study is not a stand' fits 3/3 lines at 94px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 64% of this slide's own average craft density (top 54% / mid 21% / bottom 20% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "leaders": [
+        "leader 'the column on the floor' lands 0.0px from its target",
+        "leader 'the column on the floor' meets its label 6.0px away"
+      ],
+      "fits": [
+        "hd 'Alaska's own record, as one column tells it.' fits 2/2 lines at 66.5px"
+      ],
+      "asserts": [
+        "'the bracket height, derived from the measured row block' holds: 520 vs 520 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader \"the sponsor's release, the one page read in full\" lands 0.0px from its target",
+        "leader \"the sponsor's release, the one page read in full\" meets its label 6.0px away"
+      ],
+      "fits": [
+        "hd 'Five places the record was asked. One answer' fits 3/3 lines at 83.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 3,
+  "verdict": "WARN"
+}

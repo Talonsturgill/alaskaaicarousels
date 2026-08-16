@@ -1,0 +1,214 @@
+{
+  "run_date": "2026-08-15",
+  "carousel_no": 34,
+  "document_title": "A Plan, a Study, and No Published Due Date",
+  "post_copy": "At 10:00 a.m. on August 5th, a Senate committee in room SR-253 took up five bills. Three carry AI or a chatbot in the title.\n\nThe first federal answer to machines that talk to children is a plan and a study.\n\nDuckworth's office says S. 5171 cleared the committee that day with Alaska's Lisa Murkowski as the Republican cosponsor.\nThe release describes an FTC and CPSC plan and a National Academies study. It names no rule and no ban.\nThe committee's page publishes no tally.\nThe bill text returned 403 on August 15th. No due date for the plan or the study is published.\n\nThe agenda with every result row blank, both senators in their own words, and the record as sheets stamped READ or 403.\n\nA plan and a study is the normal first move on something nobody has measured. How long does that stay an answer before it becomes a wait?\n\n#AIToySafety #AlaskaDelegation #SenateCommerce",
+  "deck_summary_line": "The agenda with every result row blank, both senators in their own words, and the record as sheets stamped READ or 403.",
+  "caption_meta": {
+    "opening_move": "SCENE",
+    "structure": "PUNCH THEN PROOF",
+    "closing_move": "NEW:PATIENCE WINDOW",
+    "hook_type": "scene at a clock time in a named room",
+    "first_words": "At 10:00 a.m. on August 5th, a Senate"
+  },
+  "first_comment": "SOURCES, Alaska.Ai Carousel No. 34, August 15th, 2026\n\nSenate Commerce, Executive Session 24 agenda, August 5th, 2026, five bills and three Coast Guard nomination lists\nhttps://www.commerce.senate.gov/meetings/executive-session-24-08-05-2026/\n\nOffice of Sen. Tammy Duckworth, announcement that S. 5171 passed committee, with Sen. Lisa Murkowski named as Republican cosponsor, August 5th, 2026\nhttps://www.duckworth.senate.gov/news/press-releases/duckworth-murkowski-bipartisan-bill-to-protect-children-from-dangers-of-ai-toys-passes-committee\n\nAnchorage Daily News opinion, Roger Kaye, on Alaska AI policy, published August 10th, 2026\nhttps://www.adn.com/opinions/2026/08/09/opinion-artificial-intelligence-is-moving-fast-while-alaska-policy-stands-still/\n\nU.S. Consumer Product Safety Commission news release index, read August 15th, 2026, no release on AI-enabled toys\nhttps://www.cpsc.gov/Newsroom/News-Releases\n\nU.S. Federal Trade Commission press release index, read August 15th, 2026, no release on AI toys or companion chatbots and children\nhttps://www.ftc.gov/news-events/news/press-releases\n\nBill text of S. 5171, congress.gov, returned HTTP 403 to an automated read on August 15th, 2026, so no due date for the plan or the study could be established\nhttps://www.congress.gov/bill/119th-congress/senate-bill/5171\n\nWhat this deck refuses to say. No vote margin, because the committee publishes none. No deadline, because the bill text could not be read. Nothing about what Alaska law does or does not cover on AI toys, because no source reachable this run settles it.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "SENATE COMMERCE · AUGUST 5TH, 2026",
+      "headline": "The first federal answer to talking toys is a plan and a study.",
+      "labels": [
+        "403 AUG 15 2026",
+        "DUE",
+        "01 / 09",
+        "61 13 N · 149 54 W"
+      ],
+      "claim_ids": [
+        "C15",
+        "C16",
+        "C17",
+        "C37"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "02 / 09 · WHAT THE BILL ASKS FOR",
+      "headline": "Two agencies owe a plan. One academy owes a study.",
+      "body": "Per Senator Duckworth's release, the Federal Trade Commission and the Consumer Product Safety Commission must give Congress what the release calls a \"coordinated, actionable plan\" on AI-enabled toy products. The National Academies must run a comprehensive study.",
+      "labels": [
+        "THE RELEASE DESCRIBES NO RULE, NO BAN AND NO STANDARD",
+        "FTC AND CPSC, A PLAN",
+        "NATIONAL ACADEMIES, A STUDY",
+        "READ AUG 15 2026",
+        "DUE",
+        "02 / 09"
+      ],
+      "claim_ids": [
+        "C15",
+        "C16",
+        "C17",
+        "C12"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "03 / 09 · OWED BY WHEN",
+      "headline": "The due date is not on the record.",
+      "body": "The text of S. 5171 returned a 403 on August 15th, so no deadline for the plan or for the study could be read. The committee's own meeting page carries the agenda and no tally for any of the five bills.",
+      "labels": [
+        "NO TALLY PUBLISHED",
+        "403 AUG 15 2026",
+        "NOT PUBLISHED",
+        "DUE",
+        "03 / 09"
+      ],
+      "claim_ids": [
+        "C37",
+        "C11"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "04 / 09 · EXECUTIVE SESSION 24",
+      "headline": "Five bills that morning. Three of them AI.",
+      "body": "The committee met at 10:00 a.m. on August 5th in room SR-253, entering through SR-254. Three Coast Guard nomination lists were on the same agenda. Senator Duckworth's office announced that day that S. 5171 passed.",
+      "labels": [
+        "BILL",
+        "SHORT TITLE",
+        "S. 737",
+        "SCREEN ACT",
+        "S. 1748",
+        "KIDS ONLINE SAFETY ACT",
+        "S. 4199",
+        "YOUTH AI PRIVACY ACT",
+        "S. 4407",
+        "CHATBOT ACT",
+        "S. 5171",
+        "CHILDREN'S AI TOY SAFETY ACT OF 2026",
+        "RESULT ON ALL FIVE ROWS, NO TALLY PUBLISHED",
+        "S. 5171 ON THE AGENDA",
+        "3 OF 5",
+        "DUE",
+        "04 / 09"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "05 / 09 · WHY NOW",
+      "headline": "Knives, pills and matches.",
+      "body": "\"discussing sexually explicit content and explaining where to find knives, pills and matches in the home\"",
+      "labels": [
+        "SEN. DUCKWORTH'S OFFICE, CITING U.S. PIRG EDUCATION FUND TESTING, DECEMBER 2025",
+        "\"These AI chatbots were never meant to be used by young children, yet they're being embedded inside toys by the thousands\"",
+        "SEN. TAMMY DUCKWORTH, AUGUST 5TH, 2026",
+        "THOUSANDS IS THE SENATOR'S WORD AND CARRIES NO CITED COUNT",
+        "DUE",
+        "05 / 09"
+      ],
+      "claim_ids": [
+        "C21",
+        "C24",
+        "C38"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "06 / 09 · THE ALASKAN ON THE BILL",
+      "headline": "The Alaskan on the bill is buying knowledge.",
+      "body": "Murkowski is the Republican cosponsor named in the announcement. Read fairly, the bill buys knowledge and writes no rule, which is the normal opening move for a technology nobody has measured yet. Whether that is enough is the argument.",
+      "labels": [
+        "\"It is imperative we equip policymakers and America's families with the knowledge they need to make informed choices about these devices\"",
+        "SEN. LISA MURKOWSKI, ALASKA, AUGUST 5TH, 2026",
+        "READ AUG 15 2026",
+        "DUE",
+        "06 / 09"
+      ],
+      "claim_ids": [
+        "C14",
+        "C17",
+        "C20"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "",
+      "headline": "A plan is not a rule. A study is not a standard.",
+      "labels": [
+        "DUE",
+        "07 / 09"
+      ],
+      "claim_ids": [
+        "C17"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "08 / 09 · ALASKA'S OWN RECORD",
+      "headline": "Alaska's own record, as one column tells it.",
+      "body": "House Bill 47 provisions criminalizing AI-generated child sexual abuse material and deepfake harassment became law in June.",
+      "labels": [
+        "House Concurrent Resolution 3 would have created an AI task force. That effort stalled.",
+        "Roughly 30 states have passed election-related deepfake disclosure laws.",
+        "Some states now require companion chatbots to disclose that they aren't human or therapists.",
+        "PER ADN OPINION COLUMN, ROGER KAYE, AUGUST 10TH",
+        "THIS DECK MAKES NO CLAIM ABOUT WHAT ALASKA LAW COVERS ON AI TOYS",
+        "DUE",
+        "08 / 09"
+      ],
+      "claim_ids": [
+        "C29",
+        "C30",
+        "C31",
+        "C32",
+        "C33",
+        "C34",
+        "C35"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "Five places the record was asked. One answered.",
+      "body": "Save this for the next time a talking toy shows up in your house.",
+      "labels": [
+        "SOURCES IN COMMENTS",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "THE ONE THAT ANSWERED",
+        "DUE",
+        "09 / 09"
+      ],
+      "claim_ids": [
+        "C11",
+        "C27",
+        "C28",
+        "C37",
+        "C38",
+        "C12"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post Tuesday to Thursday, 8 to 11 a.m. Alaska time. The primary is August 18th, so a Tuesday post lands on election day and a Wednesday post lands the morning after.",
+    "Paste the FIRST COMMENT block within 60 seconds of posting. The URLs must stay visible as plain text.",
+    "Reply substantively to every comment in the first 60 to 90 minutes. Threaded author replies drive up to 2.4x reach and a dead first hour is rarely recovered.",
+    "The one ask on the close is SAVE. Do not add a second ask in the comments.",
+    "If a commenter asks by when the plan is due, the honest answer is that no page reachable on August 15th said, and the bill text returned a 403.",
+    "Do not state a committee vote margin. None is published."
+  ],
+  "editor_notes_for_email": "Carousel No. 34. Nine slides, 38 claims (31 primary), every machine gate green.\n\nWHAT THIS DECK IS. S. 5171, the Children's AI Toy Safety Act of 2026, taken up by Senate Commerce at 10:00 a.m. on August 5th in room SR-253 on an agenda of five bills, three of them carrying AI or a chatbot in the title. Duckworth's office says it cleared committee that day with Alaska's Lisa Murkowski as the Republican cosponsor. The release describes an FTC and CPSC plan and a National Academies study, and names no rule and no ban. The committee's page publishes no tally. The bill text returned 403 on August 15th. The deck asks one narrow question the record can answer, when either deliverable is owed, and the empty DUE field in the corner of all nine slides is the answer.\n\nTHE THESIS WAS REBUILT AT THE CLAIMS GATE. The fact-checker killed 'Alaska's statute book is empty' as an unverifiable absence after BASIS, LegiScan and NCSL all returned 403. What shipped is the narrower claim the record carries, and selection.md keeps the account.\n\nREDUCED REVIEW, DISCLOSED. Degradation ladder step (c): fewer review rounds, not fewer slides. The pixel critics ran ONE round and no flow-critic round ran. The copywriter subagent was not spawned; the showrunner wrote copy.json under the same laws, and the caption is the caption room's winner byte for byte.\n\nWHAT THE REVISION ROUNDS ACTUALLY FIXED, because the scorer caught two of them being claimed and not delivered. The carpet weave was invisible on every slide: at repeat 22 to 28 over a 120 unit ground, a 1024px texture was resolving into about 300 screen px, so fibre authored at 2.4 texture px landed at 0.7 screen px and the mip chain averaged it flat. Anisotropy and a bump map cannot save detail already below a pixel; fewer, larger repeats can, and the weave now reads at 432px. Slide 05's grille, the deck's declared brightest light, rendered as its darkest disc through two rounds of material fixes, because the material was never the problem: the left copy reserve is painted after the GL composite, runs to x=880 at 0.88 alpha, and the grille projected to about x=709, so a scrim was multiplying the light down. The toy moved clear of it. Slide 03's dimension call had never rendered at all, its line and both arrowheads drawn under the label's own opaque plate with a span narrower than the label; it is now anchored to the sheets' outer corners with a measured gap and 3:1 arrowheads. Slide 09's trail now comes forward as four countable dashed sheets against one solid answered sheet, which is the five asked and the one that answered, matching the headline and the claim ids. The paper grammar is visible for the first time: solid outline means fetched and read, dashed means refused or never published. Contact occlusion under every sheet in the deck.\n\nEARLIER IN THE RUN. Slide 02's banned phrase 'actionable' is now quoted and attributed to the release, which is both the exemption brand.yaml grants and the more accurate credit. Slide 04's chip read 'S. 5171 ON THE FLOOR', which to staffers means the bill reached the Senate floor and which claims.json explicitly killed; it now reads 'ON THE AGENDA'. Slide 04's leader elbowed at the S. 4199 row while labelled S. 5171. Slide 08's fourth row set white on the READ sheet at about 1.1:1.\n\nA FALSE ALARM WORTH RECORDING. Four pixel critics independently reported curly apostrophes on four slides and called each a hard fail. A byte scan found zero U+2019 anywhere, and the scorer confirmed it by a better route: the reports partition by TYPEFACE and not by string, which no encoding error can do. It is Manrope's tapered quotesingle. No fix was applied and none was needed.\n\nSITE SIGN-OFF: PASS, 77 pages, 18 checks\nGAS WATCH: PASS, read 2026-08-15, 11 days on record, chart present\nSITE FIXES: none needed, both checkers clean on the first pass"
+}

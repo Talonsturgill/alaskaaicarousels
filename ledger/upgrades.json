@@ -1210,6 +1210,66 @@
       "rollback": "git revert the upgrade(2026-08-14) commit. `--burns` is a new subcommand and the caption_meta grading only runs when --copy and --ledger are both passed, so every existing invocation behaves exactly as before.",
       "limits": "It grades the DECLARED move labels, not the prose. Run No.33's candidate A was also the 2026-07-24 close with the nouns swapped, and no mechanical check here sees that; the caption-critic remains the only reader of phrasing. The burn table is a briefing, and reading it stays a human step.",
       "commit": "f27d209eeae6483a3a6b02e0b9649baa7a6d5214"
+    },
+    {
+      "run_date": "2026-08-15",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "BESPOKE_CHECK CAN SEE MODULE SCRIPTS. Both of the two places bespoke_check.py extracted a slide's art code matched the literal pattern `<script>` with no attributes, so every slide that loads akthree, and therefore every deck that climbs to rung 1 of the rendered ladder, was measured on its <div> list alone with ZERO inline script read. Both regexes are now attribute-tolerant, `<script(?:\\s[^>]*)?>`; src-only tags are still stripped by HARNESS above, so a vendored library is never counted as the deck's own drawing.",
+      "trigger": "This deck reported FAIL at 0.810 median pairwise similarity with a drawn share of 0 percent, 0 drawn marks against 0 blocky ones. Zero against zero is not a measurement of anything, which is the signature of a checker that cannot see rather than of a deck that is templated. The engine's own SKILL.md REQUIRES `<script type=\"module\">` for akthree, so the gate was blind to exactly the decks it most needed to read.",
+      "verification": "The reference deck examples/demo-deck is unchanged by the repair: PASS, 0.071 median, max pair 0.099, drawn share 82 percent (9 drawn vs 2 blocky). This deck moved from a false FAIL at 0.810 median / 0 percent drawn to an honest WARN at 0.368 median, max pair 0.696, drawn share 72 percent (158 drawn vs 62 blocky).",
+      "commit": "3de5986",
+      "files": [
+        "scripts/bespoke_check.py"
+      ],
+      "rollback": "Revert the single upgrade(2026-08-15) commit. The two regexes return to the literal `<script>` form and every akthree deck is again measured on its <div> list alone.",
+      "limits": "It fixes what the checker READS, not how it scores. The similarity thresholds (FAIL_MEDIAN 0.60, FAIL_PAIR 0.95, FAIL_DRAWN_SHARE 0.45) are untouched, and they were calibrated against decks whose art code the checker could actually see, so they have never been exercised against a module-script deck's true numbers. Watch whether 0.60 is still the right median for GPU decks over the next few runs before trusting a near-threshold pass."
+    },
+    {
+      "run_date": "2026-08-15",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "A CAPTION NO LONGER COLLIDES WITH ITSELF. caption_check.py's variety engine now drops ledger rows whose run_date equals the run directory being checked, before comparing opening words and moves.",
+      "trigger": "The documented ship order appends this run's row to ledger/captions.json and only THEN runs the completion gate, so from that moment caption_check compared the caption against its own row and hard-failed with 'first words repeat the 2026-08-15 caption'. It fired on the one gate the ship cannot proceed past, and it would have fired on every future run in exactly the same place.",
+      "verification": "Loosens nothing: one run writes one caption, so no honest repeat can carry today's date. Verified both directions. This run's caption goes FAIL -> PASS with the ledger row present, and a regression copy of the same caption placed under a 2026-09-01 run directory still hard-fails with 'first words repeat the 2026-08-15 caption', proving a genuine cross-date repeat is still caught.",
+      "commit": "3de5986",
+      "files": [
+        "scripts/caption_check.py"
+      ],
+      "rollback": "Revert the single upgrade(2026-08-15) commit. caption_check compares against every ledger row again, including the run's own.",
+      "limits": "The exclusion is keyed off the run DIRECTORY name matching YYYY-MM-DD, which is how every run directory in this repo is named. A caption checked from stdin, or from a directory not named for its date, is compared against the full ledger exactly as before, so the guard fails safe rather than silently widening."
+    },
+    {
+      "run_date": "2026-08-15",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "THE PHRASE GATE NOW READS THE SLIDES. New caption_check.check_copy_phrases() runs brand.yaml's banned_phrases over every reader-facing string in copy.json, the same fields check_copy_dates already walks, with the same straight-quoted-verbatim exemption. And gate_status's caption row now HARD FAILS on a caption_report.json written without --copy, detected by the absence of copy_fields_checked, which is written only on that path.",
+      "trigger": "The phrase gate had only ever read the CAPTION. Slide 02 printed 'a coordinated, actionable plan' in the deck's own unquoted voice and 'actionable' is item 46 of the list, so a hard fail travelled through every gate in the run and was caught by the scorer, one phase from the email. The second half matters as much as the first: gate_status only READS caption_report.json, so a run that invoked caption_check without --copy got a green caption row while the slide bodies had never been scanned at all. A gate nobody is required to point at the evidence is not a gate.",
+      "files": [
+        "scripts/caption_check.py",
+        "scripts/gate_status.py"
+      ],
+      "verification": "Verified both directions on this run's own copy.json. The repaired wording passes; restoring the original unquoted 'a coordinated, actionable plan' produces FAIL: PHRASE: banned phrase 'actionable' in copy.json slides[1].body. Running it for the first time on this run also caught three bare 'August 5/10/15, 2026' dates in first_comment that the house ordinal rule forbids and that nothing had ever checked, all three now fixed.",
+      "rollback": "Revert the upgrade(2026-08-15) phrase-gate commit. copy.json's slide bodies go unscanned for banned phrases again and gate_status accepts a caption report written without --copy.",
+      "limits": "It scans copy.json, not the rendered pixels, so a string that reaches a slide without passing through copy.json is still unscanned. copy_sync_check is what ties the two together, and it is a separate gate; if that one is ever weakened, this one narrows with it.",
+      "commit": "01b2c9d"
+    },
+    {
+      "run_date": "2026-08-15",
+      "kind": "fix",
+      "area": "scripts, prompts",
+      "change": "A RUN CANNOT STOP ON A LOW SCORE ANY MORE. New scripts/ship_gate.py exits non-zero when a run reaches the ship step with score.ship false, prints the scorer weakest criterion and one_sentence_fix as the work order for the next round, and is wired in as a gate_status row. gate_status score row changed from WARN to FAIL for the same reason. Degradation ladder step (d) now requires out/<date>/NO_DECK.md whose first line begins BLOCKER:, and the gate REFUSES that file when six or more slides rendered, because a deck that rendered is a deck. The rule is written into CLAUDE.md and prompts/routine_instructions.md beside the 2026-08-08 incident.",
+      "trigger": "This run scored 7.51 against 8.3 and the showrunner wrote an honest post-mortem, mailed a DO NOT POST draft, left the PR unmerged and stopped, with nine finished slides on disk, every machine gate green and the scorer own finite list of defects unfixed. Every artifact was truthful, which is what made it dangerous: the 2026-08-08 failure announced itself with an essay about integrity, and this one announced itself with an immaculate failure report. Nothing in the machine objected, because nothing had ever been asked to.",
+      "files": [
+        "scripts/ship_gate.py",
+        "scripts/gate_status.py",
+        "CLAUDE.md",
+        "prompts/routine_instructions.md"
+      ],
+      "verification": "Four cases, all checked. A run at 7.51 vs 8.3 exits 1 and prints the four lowest criteria by weight. A run at 8.55 exits 0. A NO_DECK.md written over a nine-slide rendered deck is REFUSED with exit 1 and told to delete it and iterate. A NO_DECK.md with a real blocker and no renders exits 2 and is allowed. gate_status now shows both score and ship_gate as FAIL rows on this run, which is the correct reading of it.",
+      "rollback": "Revert the upgrade(2026-08-15) ship-gate commit and delete scripts/ship_gate.py. A run may then stop below threshold again with nothing objecting.",
+      "limits": "It gates STOPPING, not quality. It cannot tell a run that iterated well from one that iterated badly, and a run determined to end can still write a false BLOCKER line, though it can no longer do so with a rendered deck on disk. It also cannot fire if the scorer is never run at all; that case is caught by the existing missing-score_report row.",
+      "commit": "06e2057"
     }
   ],
   "scan_log": [

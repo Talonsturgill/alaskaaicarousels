@@ -317,7 +317,11 @@ def main():
     ship_html = (
         f'<div class="ok"><b>Quality gate passed:</b> {weighted} / 10 '
         f'(threshold {threshold}).</div>' if ship else
-        f'<div class="flag"><b>Shipped below threshold.</b> '
+        # NOT "Shipped below threshold" (2026-08-15). ship=False is exactly the
+        # case where the deck does NOT ship, and the banner asserted the
+        # opposite in its first two words on the one surface that decides
+        # whether a human posts it. The rest of the line was already right.
+        f'<div class="flag"><b>Below threshold, does not ship.</b> '
         f'{weighted} / 10 vs {threshold}. '
         f'Weakest: {esc(str(weakest))}. '
         # a bare "?" in a delivered draft reads as a broken email, so say plainly

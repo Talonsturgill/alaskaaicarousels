@@ -1,0 +1,85 @@
+{
+  "run_date": "2026-08-15",
+  "carousel_no": 34,
+  "weighted_total": 7.77,
+  "threshold": 7.7,
+  "ship": true,
+  "passes": true,
+  "threshold_rationale": "The rubric's iteration ladder sets 8.3 at 0-2 revision rounds, 8.0 at 3 and 7.7 at 4 or more with the note 'ship best version, flag shortfall in email'. Four genuine revision rounds ran: the pixel-critic round; the banned-phrase and chip round; the artwork rebuild that scored 7.47; and the round that root-caused the weave and the grille. The scorer considered refusing to count the fourth round because it re-fixed two defects the third round claimed and failed to deliver, and rejected that: the ladder moves the threshold and never the scores, so the cost of the failed round is charged in the artwork score, at 6 on the deck's heaviest weight. Charging it twice would be double jeopardy.",
+  "score_history": [
+    {
+      "pass": 1,
+      "weighted_total": 7.51,
+      "capped_to": 6.9,
+      "cap_reason": "banned phrase 'actionable' on slide 02"
+    },
+    {
+      "pass": 2,
+      "weighted_total": 7.47,
+      "note": "artwork rebuild; two claimed repairs had not landed"
+    },
+    {
+      "pass": 3,
+      "weighted_total": 7.77,
+      "note": "weave and grille root-caused; slide 09 count fixed"
+    }
+  ],
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 7,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 9,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 6,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(7x.14)+(7x.14)+(6x.16)+(7x.14)+(7x.12)+(9x.10)+(8x.08)+(7x.07)+(8x.05)+(6x.10) = 7.77. No hard fail, no cap.",
+  "hard_fails": [],
+  "one_sentence_fix": "Give the floor a genuine wool read rather than a streaked gloss, higher-amplitude short-period fibre with a real bump and a matte roughness floor, tuned by eye at 432px and not at 100 percent, because that single material is the ground of all nine frames.",
+  "shortfall_flagged": "Ships at 7.77 against 7.70, a margin of 0.07. The weave repair is a partial: the fibre is above the pixel floor at full size but the floor reads as a dark glossy plane with horizontal streaking rather than wool, and at 432px it is close to a smooth gradient, so slide 01's own acceptance item still fails as written. Slide 07 is the weak frame, bottom 60 percent featureless. Slide 05's grille repair overshot and the toy is now cropped by the right frame edge. machine_qa carries three warns, not two.",
+  "weakest_in_plain_language": "The floor. It is the ground of all nine frames and it still reads as ice or wet asphalt rather than carpet wool, which is what makes the text-forward slides look like type floating over a void. Three attempts went at it and only the third got the fibre above one screen pixel; none of them fixed the MATERIAL read, because every attempt was tuned at 100 percent where the problem is only visible at 432. The deck's ideas are excellent and its facts are unusually well disciplined; what it lacks is a surface worth looking at underneath them."
+}

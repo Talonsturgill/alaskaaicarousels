@@ -1,0 +1,90 @@
+{
+  "run_date": "2026-08-15",
+  "aggregates": [
+    {
+      "kind": "count",
+      "slide": 4,
+      "text": "Five bills that morning. Three of them AI.",
+      "subject": "bills on the executive session agenda",
+      "members": [
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "kind": "ratio",
+      "slide": 4,
+      "text": "3 OF 5",
+      "members": [
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ],
+      "items": [
+        "S. 737 SCREEN Act",
+        "S. 1748 Kids Online Safety Act",
+        "S. 4199 Youth AI Privacy Act",
+        "S. 4407 CHATBOT Act",
+        "S. 5171 Children's Artificial Intelligence Toy Safety Act of 2026"
+      ],
+      "found": [
+        "S. 4199 Youth AI Privacy Act",
+        "S. 4407 CHATBOT Act",
+        "S. 5171 Children's Artificial Intelligence Toy Safety Act of 2026"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 4,
+      "text": "RESULT ON ALL FIVE ROWS, NO TALLY PUBLISHED",
+      "subject": "agenda rows with no published result",
+      "members": [
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 9,
+      "text": "Five places the record was asked. One answered.",
+      "subject": "reads that returned nothing usable",
+      "members": [
+        "C11",
+        "C37",
+        "C27",
+        "C28",
+        "C38"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "text": "House Bill 47 provisions criminalizing AI-generated child sexual abuse material and deepfake harassment became law in June.",
+      "member": "C31",
+      "fragment": "47 provisions"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "text": "Roughly 30 states have passed election-related deepfake disclosure laws.",
+      "member": "C34",
+      "fragment": "30 states"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Two agencies owe a plan. One academy owes a study.",
+      "member": "C15",
+      "fragment": "Two agencies",
+      "note": "Not an aggregate across claims. C15 is one verified claim that names BOTH the Federal Trade Commission and the Consumer Product Safety Commission as owing the coordinated plan, so the two is read off that single claim rather than counted over several."
+    }
+  ]
+}

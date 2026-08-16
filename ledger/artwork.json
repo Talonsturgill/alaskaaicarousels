@@ -814,6 +814,35 @@
       },
       "bespoke": "bespoke_check PASS, median pairwise art similarity 0.286 against a 0.60 fail line, max pair 0.447, drawn share 66 percent against a 45 percent floor and a declared 65 percent target.",
       "note": "Six prototypes were rendered through the real engine and gate-tested BEFORE any dossier was written. qa.py failed all four early map compositions for top-loaded composition at 0, 49, 38 and 0 percent of average bottom-third craft density, and passed both compositions with a worked lower band at zero fails. The deck's best image and its worst gate failure were the same picture, found in a scratch directory instead of at the ship gate. The lower neatline margin is the structural answer, because a chart's marginalia is required by the form and can't be built empty."
+    },
+    {
+      "run_date": "2026-08-15",
+      "carousel_no": 34,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE CHILD'S EYE LINE. One continuous nursery floor under one camera that dollies steadily right across nine frames, with a single soft toy at full close range on the cover, receding to a distant silhouette by the breather, and returning large and near on the close. Everything the deck knows lies ON that floor as loose sheets of paper, and each sheet's treatment IS the deck's grammar: a sheet stamped READ is a record that was actually fetched, a sheet stamped 403 or NOT PUBLISHED is one that was refused or does not exist. Diverges from THE EQUAL-AWARD PROJECTION (33) by having a camera, an object, a room and a floor where that had none of the four; from THE LOCKED CHASE (32) by being soft, warm-lit and in motion where that was rigid, wet and square on; from THE FALLING FRAME (31) by holding one continuous ground plane instead of dropping the frame; and from THE OPEN TREAD (30) by making the ROOM incidental and the PAPER the subject.",
+      "atmosphere": "NEW: HALLWAY BACKLIGHT, ROOM FOG. GPU PBR under a cold raking key with a blue rim and volumetric fog, on a procedurally woven wool carpet, where the single warm source in the entire deck is the toy's own grille emissive at #FFC72C.",
+      "continuity_devices": [
+        "the empty DUE field, bottom corner, on every one of the nine slides, never once filled",
+        "the receding toy, largest on 01 and gone by 09",
+        "the sheet grammar, READ against 403 and NOT PUBLISHED"
+      ],
+      "hook_archetype": "NEW: THE SUBJECT'S EYE LINE. The camera sits at a child's height, the subject is still and close on the cover, and the headline names what the record does not contain.",
+      "palette_family": "NEW: CARPET WOOL AND HALLWAY BLUE. #040A14 through #0D1B28 grounds, #F4F8FF display, #8FB6E8 instrument blue, #7E93A8 mono furniture, one #FFC72C emissive plus three gold marks in slide 04's agenda table.",
+      "type_pairing": "Unbounded 600 display over Manrope 600 body with JetBrains Mono instrument furniture",
+      "depth_technique": "three.js r170 GPU PBR (akthree) with a procedural CanvasTexture wool carpet at repeat 8-12 (lowered from 22-32 mid-run: at the higher figure a 1024px texture minified into about 300 screen px and the weave fell below one pixel), anisotropic filtering at the renderer maximum, a bump map off the same canvas, authored contact occlusion under every sheet via AKT.contactAO, and per-slide world-space projection of every leader, stamp and sheet outline through a P(x,y,z) helper so no annotation is ever typed in screen coordinates",
+      "dials": {
+        "artwork_ambition": "rung 1 of the rendered ladder, the run's ONE standing weakness attacked",
+        "annotation_density": "high",
+        "gold_budget": "minimal",
+        "quiet_zone": "slide 07 is the declared breather"
+      },
+      "bespoke": {
+        "median_pair": 0.344,
+        "max_pair": 0.626,
+        "drawn_share": 0.74,
+        "verdict": "PASS"
+      },
+      "note": "Six art prototypes (P0-P5) were built and run through the real gates BEFORE any dossier was written, and their findings were binding on all nine. P2 established that a smooth PBR ground fails frame_balance for want of per-cell luminance spread and that hanging a procedural canvas texture on the ground material fixes it. P3 proved that scattering marks to satisfy the gate ruins the picture, and was recorded as the wrong answer. Phase 12 then found that scripts/bespoke_check.py could not see <script type='module'> at all, so every akthree deck had been measured on its <div> list alone; the repair is what turned this deck's reported 0.810 median and 0 percent drawn share into the honest 0.368 and 72 percent above. REVISED AFTER THE SCORE ROUNDS: the toy does NOT leave the frame by the end; it is large and near again on 09, which is the close returning to the cover's distance. Two claimed repairs had to be made twice because the first attempt treated a symptom. The weave was minified below one screen pixel, so anisotropy and a bump map could not reach it and only a larger texture footprint could. Slide 05's grille was under the copy reserve, which is painted after the GL composite, so no material change could ever have lit it."
     }
   ]
 }

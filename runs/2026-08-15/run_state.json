@@ -1,0 +1,31 @@
+{
+  "run_date": "2026-08-15",
+  "carousel_no": 34,
+  "phases": {
+    "wake": "done: out/2026-08-15/plan.md, run_state.json",
+    "craft_refresh": "done: knowledge/FIELD_NOTES.md 2026-08-15 entry (2 searches, 1 new study)",
+    "research": "done: out/2026-08-15/scout_merge.md, 6 scouts, all beats returned",
+    "claims": "done: out/2026-08-15/claims.json, 38 claims, claims_check PASS 38/38 usable 31 primary",
+    "docket": "done: ledger/docket.json, 6 worklist items + HB259 observation refreshed, watch.json read (1 bill, 0 hearings, 31 candidates, 0 failed)",
+    "gas_watch": "done: site_signoff PASS 18/18, gaswatch_pagecheck PASS 15/15",
+    "selection": "done: out/2026-08-15/selection.md, dedupe_check exit 0 soft overlaps only, strongest jaccard 0.031",
+    "directors_room": "done: 3 treatments, synthesis in storyboard.md, 9 dossiers, dossier_check PASS 9/9",
+    "copy": "done: caption.txt PASS 877 chars hook 124, copy.json PASS, copy_sync 72 strings, first_comment style-lint clean, aggregate_check PASS 7/7",
+    "art_build": "done: 9 bespoke GL slides, qa.py exit 0, bespoke_check PASS median 0.399 drawn share 74 percent after repairing the checker",
+    "pixel_review": "complete: 3 critics across 9 slides, ONE round only, disclosed. 2 verified defects fixed (slide 04 leader misread, slide 08 white-on-white), plus 2 house-rule dates, 2 safe-zone overruns, slide 05 headline reserve, slide 07 headline collision. 4 curly-apostrophe reports proven false by byte scan and independently by the scorer.",
+    "flow_review": "pending",
+    "assemble": "done: pdf vector 4.77 MB, 9 slides, 9 thumbs, contact sheet",
+    "scoring": "complete after THREE passes: 7.51 (capped 6.90), 7.47, 7.77. Ships at 7.77 against the ladder's 4-round threshold of 7.70.",
+    "ship": "SHIPPING. branch pushed, PR #302 merged to main.",
+    "upgrade": "complete: 3 machine upgrades in 2 upgrade(2026-08-15) commits (bespoke_check module-script blindness; caption self-collision; slide-body phrase gate + gate_status --copy assertion)",
+    "gmail": "post-ready draft with the shortfall flagged, as the 7.7 rung requires",
+    "retro": "pending",
+    "flow_critic": "SKIPPED, disclosed in the email and the PR",
+    "revision_rounds": "4: pixel critics; banned phrase and chip; artwork rebuild; weave and grille root-cause"
+  },
+  "notes": {
+    "prototypes": "P0 GPU proven; P1 transparent GL composite + lit apron dL 17.2; P2 rendered floor fixes float, FAILS frame_balance at 0.15; P3 scattered marks pass the gate and ruin the picture; P4 THE RECIPE, textured GL ground + mass composed low, ratio 0.75 vs 0.60 fail line. See out/2026-08-15/art_prototypes.md",
+    "websearch": "session WebSearch budget exhausted at 200/200 during the scout sweep; WebFetch still available and is what the claims phase runs on"
+  },
+  "outcome": "SHIPPED. 9 slides, 38 claims, every machine gate green, scored 7.77 against 7.70. Shortfall flagged: the carpet material still reads as gloss rather than wool at 432px."
+}

@@ -108,7 +108,17 @@ def art_code(path: Path) -> str:
     h = path.read_text()
     for rx in HARNESS:
         h = rx.sub(" ", h)
-    body = "\n".join(re.findall(r"<script>(.*?)</script>", h, re.S))
+    # A SLIDE'S ART CODE CAN LIVE IN A MODULE SCRIPT (2026-08-15). The pattern
+    # was `<script>` with no attributes, so every slide that loads akthree, and
+    # therefore every deck that climbs to rung 1 of the rendered ladder, matched
+    # ZERO inline script and was compared on its <div> list alone. Such a deck
+    # measured 0.810 median with drawn share 0 percent and 0 drawn marks against
+    # 0 blocky ones, which is the signature of a checker that cannot see rather
+    # than of a deck that is templated. The engine's own SKILL.md requires
+    # `<script type="module">` for akthree, so the gate was blind to the exact
+    # decks it most needed to read. Attribute-tolerant, and src-only tags are
+    # still stripped by HARNESS above, so a vendored library is never read.
+    body = "\n".join(re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>", h, re.S))
     body += "\n" + "\n".join(re.findall(r'<(?:div|svg|text|path)[^>]*>', h))
     return re.sub(r"\s+", " ", body).strip()
 
@@ -144,7 +154,11 @@ def check(slides_dir: Path):
     # --- how much of the art is DRAWN rather than dropped ------------------
     blocky = drawn = 0
     for f in files:
-        s = "\n".join(re.findall(r"<script>(.*?)</script>", f.read_text(), re.S))
+        # same blindness as art_code() above, and it is why the drawn share of
+        # a module-script deck read 0 drawn against 0 blocky, which is not a
+        # measurement of anything.
+        s = "\n".join(re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>",
+                                 f.read_text(), re.S))
         blocky += sum(s.count(k) for k in BLOCKY)
         drawn += sum(s.count(k) for k in DRAWN)
     total = blocky + drawn
