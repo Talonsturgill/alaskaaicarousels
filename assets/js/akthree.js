@@ -218,6 +218,68 @@ export function init(THREE) {
     return g;
   };
 
+  // CONTACT AO FOR A FLAT OBJECT LYING ON THE GROUND (2026-08-15).
+  //
+  // A sheet of paper 15 mm thick lying on a floor under a near-overhead key
+  // casts a shadow map footprint of essentially zero, so the object reads as a
+  // decal pasted onto the render rather than a thing resting on a surface. Run
+  // No.34 shipped nine slides whose entire central motif was loose paper, and
+  // the scorer's verdict on all of it was "flat grey polygons with no shadow".
+  // Shadow maps cannot fix that; the darkening under a flat object is contact
+  // occlusion, not a cast shadow, and it has to be authored.
+  //
+  // Draws a soft elliptical AO decal on the ground just under `mesh`, matched
+  // to its footprint and rotation. The gradient canvas is built once per
+  // renderer and shared.
+  AKT.contactAO = function (R, mesh, o) {
+    o = o || {};
+    if (!R.__aoTex) {
+      const c = document.createElement('canvas'); c.width = c.height = 256;
+      const g = c.getContext('2d');
+      const rad = g.createRadialGradient(128, 128, 8, 128, 128, 126);
+      rad.addColorStop(0.00, 'rgba(0,0,0,0.92)');
+      rad.addColorStop(0.42, 'rgba(0,0,0,0.55)');
+      rad.addColorStop(0.74, 'rgba(0,0,0,0.16)');
+      rad.addColorStop(1.00, 'rgba(0,0,0,0)');
+      g.fillStyle = rad; g.fillRect(0, 0, 256, 256);
+      R.__aoTex = new THREE.CanvasTexture(c);
+    }
+    mesh.updateMatrixWorld(true);
+    const bb = new THREE.Box3().setFromObject(mesh);
+    const sx = (bb.max.x - bb.min.x), sz = (bb.max.z - bb.min.z);
+    const spread = o.spread != null ? o.spread : 1.34;
+    const m = new THREE.Mesh(
+      new THREE.PlaneGeometry(sx * spread, sz * spread),
+      new THREE.MeshBasicMaterial({ map: R.__aoTex, transparent: true,
+        opacity: o.opacity != null ? o.opacity : 0.72,
+        depthWrite: false, blending: THREE.NormalBlending }));
+    m.rotation.x = -Math.PI / 2;
+    m.position.set((bb.min.x + bb.max.x) / 2, (o.y != null ? o.y : 0.0035),
+                   (bb.min.z + bb.max.z) / 2);
+    m.renderOrder = -1;
+    R.scene.add(m);
+    return m;
+  };
+
+  // THE DECK'S PAPER GRAMMAR, PROJECTED (2026-08-15). Returns the four ground
+  // corners of a flat sheet in screen space so a slide can stroke its outline
+  // in SVG: SOLID for a record that was fetched and read, DASHED for one that
+  // was refused or does not exist. Rendering alone cannot carry that
+  // distinction, because two blank sheets under the same light look identical;
+  // the outline is the only thing that states it.
+  AKT.sheetOutline = function (R, mesh, project) {
+    mesh.updateMatrixWorld(true);
+    const p = mesh.geometry.parameters;
+    const hw = (p.width || 1) / 2, hd = (p.depth || p.height || 1) / 2;
+    const y = (p.height && p.depth) ? p.height / 2 : 0.01;
+    return [[-hw, y, -hd], [hw, y, -hd], [hw, y, hd], [-hw, y, hd]]
+      .map(c => {
+        const v = new THREE.Vector3(c[0], c[1], c[2]);
+        mesh.localToWorld(v);
+        return project(v.x, v.y, v.z);
+      });
+  };
+
   /* ---- geometry helpers ------------------------------------------------- */
   // Tube along a polyline (array of [x,y,z]) — pipes, routes, cables in 3D.
   AKT.tube = function (points, radius, mat, o) {
