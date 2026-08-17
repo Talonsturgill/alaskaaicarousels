@@ -15,11 +15,11 @@
   "pixel_review": "done: 2 rounds, 8 critic passes over 9 slides. Round 2 found the rail still inlined on 02 and 04, slide 05's proximity binding every bar to the wrong name, five undrawn leaders, the hero's five blocks reading as one plate, the mass casting the only shadow on open ground, a height stair that contradicted the slide's own honesty note, thirteen blue ticks breaking the semantic lock, and the gold terminus repeating the exclamation-mark construction deck-wide. All applied. qa.py PASS 0/0.",
   "flow_review": "done: 1 flow critic, sequence scored 8.0, verdict revise with a named work order on slides 04, 05, 07 and 08 plus Device C visibility. All applied in revision round 3. Falsifiers T1, T2, T3, T5 held; T4 held semantically and was BROKEN AS A BUDGET at slide 07, now fixed.",
   "assemble": "done: out/2026-08-16/final, pdf vector 7.88 MB, 9 thumbs, contact sheet rebuilt after the last render",
-  "scoring": "in progress",
-  "ship": "pending",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "scoring": "done: 8.91 / 10 vs 7.7 (also clears the unrelaxed 8.3), zero hard fails. First pass was a raw 8.52 capped to 6.90 by one hard fail, slide 06 opening with And; fixed in round 4.",
+  "ship": "done: runs/2026-08-16 committed, PR #306 opened ready and squash-merged to main as 9d0f762, docs/ rebuilt, site_signoff PASS 18/18, raw URLs verified 200",
+  "upgrade": "done: 3 upgrades (caption_check reads slide arrays + banned-opener rule, render report records every text node, qa.py axis census)",
+  "gmail": "done: draft r-1995731744526867117 in docket@alaskaaihq.com",
+  "retro": "done: instincts x7, automation_retro.md, FIELD_NOTES"
  },
  "art_prototypes": "out/2026-08-16/art_prototypes.md (P0 stipple ADOPT, P1 aksdf ADOPT, P2 composite FAILED then fixed)"
 }
