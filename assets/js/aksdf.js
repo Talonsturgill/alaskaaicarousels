@@ -126,6 +126,15 @@
     const W = opts.width || 540, H = opts.height || 675;
     const box = opts.box || [0, 0, ctx.canvas.width / 2, ctx.canvas.height / 2];
     const scene = opts.scene;
+    /* OPTIONAL SHADOW-ONLY SCENE. Some objects have to be PROVABLY unable to
+     * cast, not merely lit so the cast does not show: on No.35 slide 06 the
+     * argument was that five awards are on the record and a fourteen-award
+     * remainder is not, and the remainder was the one body in the frame with a
+     * shadow on open ground, so the picture said the opposite of the caption.
+     * Hiding it by camera angle is not a proof. Give softShadow its own SDF
+     * that omits the primitive and the object cannot cast from any camera.
+     * Defaults to the beauty scene, so every existing caller is unchanged. */
+    const shadowScene = opts.shadowScene || opts.scene;
     const MAXD = opts.maxDist || 40, MAXSTEPS = opts.maxSteps || 110, EPS = opts.eps || 0.0012;
     const deadline = performance.now() + (opts.deadlineMs || 15000);
     let doShadow = opts.shadows !== false, doAO = opts.ao !== false;
@@ -148,6 +157,7 @@
     const mats = opts.mats || { 1: { color: [0.8, 0.8, 0.8], spec: 0.3 } };
 
     function map(p) { return scene(p); }
+    function shadowMap(p) { return shadowScene(p); }
     function normal(p) { // tetrahedral gradient
       const e = 0.0015;
       const k1 = [1, -1, -1], k2 = [-1, -1, 1], k3 = [-1, 1, -1], k4 = [1, 1, 1];
@@ -161,7 +171,7 @@
     function softShadow(p, l) {
       let res = 1.0, t = 0.03;
       for (let i = 0; i < 40 && t < 12; i++) {
-        const h = map([p[0] + l[0] * t, p[1] + l[1] * t, p[2] + l[2] * t])[0];
+        const h = shadowMap([p[0] + l[0] * t, p[1] + l[1] * t, p[2] + l[2] * t])[0];
         if (h < 0.001) return 0.0;
         res = Math.min(res, 14 * h / t);
         t += S.clamp(h, 0.02, 0.4);

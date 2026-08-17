@@ -612,7 +612,17 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
 
 def copy_prose(copy):
     """Yield (field_path, string) for every reader-facing prose string in a
-    copy.json. See COPY_READER_FIELDS for the scope and the exclusions."""
+    copy.json. See COPY_READER_FIELDS for the scope and the exclusions.
+
+    A SLIDE IS NOT ALWAYS A DICT (2026-08-16). This walker skipped any slide
+    whose value was a plain LIST OF STRINGS, which is the shape the copy room
+    has been writing, so `slides` contributed nothing at all: run No.35 reported
+    copy_fields_checked 4, the four caption-side prose fields, and every string
+    set in type on the artwork went unread by the date table and the banned
+    phrase pass alike. The gate looked green because it was looking at the
+    caption. Recurse instead: a slide value may be a dict of fields, a list of
+    strings, or a nested list, and every leaf string is on-slide copy.
+    """
     out = []
     for k in COPY_READER_FIELDS:
         v = copy.get(k)
@@ -624,19 +634,22 @@ def copy_prose(copy):
         items = [("slides[%d]" % i, s) for i, s in enumerate(slides)]
     elif isinstance(slides, dict):
         items = sorted(slides.items())
+
+    def walk(node, path):
+        if isinstance(node, str):
+            if re.search(r"[A-Za-z]", node):
+                out.append((path, node))
+        elif isinstance(node, list):
+            for i, item in enumerate(node):
+                walk(item, "%s[%d]" % (path, i))
+        elif isinstance(node, dict):
+            for k, v in node.items():
+                if k in COPY_SLIDE_SKIP:
+                    continue
+                walk(v, "%s.%s" % (path, k))
+
     for key, s in items:
-        if not isinstance(s, dict):
-            continue
-        for k, v in s.items():
-            if k in COPY_SLIDE_SKIP:
-                continue
-            vals = v if isinstance(v, list) else [v]
-            for i, item in enumerate(vals):
-                if isinstance(item, str) and re.search(r"[A-Za-z]", item):
-                    path = "%s.%s" % (key, k)
-                    if isinstance(v, list):
-                        path += "[%d]" % i
-                    out.append((path, item))
+        walk(s, key)
     return out
 
 
@@ -667,6 +680,48 @@ def check_copy_phrases(copy, brand_phrases):
                 fails.append("PHRASE: banned phrase '%s' in copy.json %s "
                              "(config/brand.yaml banned_phrases)" % (p, path))
                 break
+    return fails
+
+
+def check_slide_openers(copy):
+    """brand.yaml's on-slide opener rule, run on on-slide text (2026-08-16).
+
+    "No slide string opens with 'And' or 'But'" is a maintainer rule of
+    2026-08-05, written twice in config/brand.yaml (visual.on_slide_text_rules
+    and brand.voice.dont), and it had no code anywhere. The caption has carried
+    the same rule as a hard fail since the beginning, via SENTENCE_START_CONJ
+    over the caption body, and slides were simply never asked.
+
+    Run No.35 shipped slide 06's kicker as "AND FOURTEEN MORE" past every green
+    gate. The scorer caught it by reading the pixels and capped a raw 8.52 at
+    6.90, which is the most expensive machine gap in that run by a wide margin.
+
+    SCOPE, decided deliberately and not by default. The rule as written is
+    about a slide string OPENING on the conjunction, so only the head of each
+    on-slide string is tested, not every sentence inside it: a body line that
+    runs "...decisions, and fourteen more" is ordinary English and is left
+    alone. Editor-only fields stay out of scope exactly as they are for the
+    phrase and date passes, because copy_prose is the shared scope and
+    editor_notes_for_email, aftercare and caption_meta are not in it. A quoted
+    source may open however it wrote, same exemption as everywhere else.
+    """
+    fails = []
+    for path, s in copy_prose(copy):
+        if path in COPY_READER_FIELDS:
+            continue          # caption-side prose; the caption body gate owns it
+        t = s.lstrip().lstrip('"\'(')
+        m = re.match(r"(?i)(and|but)\b", t)
+        if not m:
+            continue
+        if quoted_spans(s) and any(a == 0 for a, b in quoted_spans(s)):
+            continue          # the whole string is a quotation
+        fails.append(
+            "OPENER (copy.json %s): the slide string opens with '%s'. No slide "
+            "string opens with 'And' or 'But' (maintainer rule 2026-08-05, "
+            "config/brand.yaml visual.on_slide_text_rules and brand.voice.dont). "
+            "A slide that opens on a conjunction is leaning on the slide before "
+            "it, and a reader who lands mid-deck has nothing to lean on. Say the "
+            "noun: '%s'" % (path, m.group(1), s[:48]))
     return fails
 
 
@@ -895,6 +950,7 @@ def main():
         else:
             hits = check_copy_dates(copy_obj)
             hits.extend(check_copy_phrases(copy_obj, brand_phrases))
+            hits.extend(check_slide_openers(copy_obj))
             rep["copy_fields_checked"] = len(copy_prose(copy_obj))
             # THE DECLARED MOVES, GRADED (2026-08-14). copy.json carries the
             # room's own caption_meta and the ledger carries the windows those

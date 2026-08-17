@@ -809,6 +809,21 @@ type spec. Craft expectations:
   anywhere. A leader stopping in void looks exactly like a leader reaching
   something small, so no reviewer can catch this and no pixel test can.
 
+- EVERY MEASURED AXIS IS DECLARED, AND EVERY MARK ON IT MEANS SOMETHING.
+  If a position in the artwork carries a number (a money rail, a timeline, a
+  bar baseline, a dated span), put it on `<body data-scale>` with `from`/`to`
+  as [design px, value], the `band` the scale owns, and EVERY mark inside that
+  band listed with what it means (SKILL.md). qa.py FAILS a mark that declares
+  no meaning, a mark off its own span, and any undeclared run of ink in the
+  band as strong as your own weakest mark, printing the value its position
+  reads as. THERE IS NO DECORATIVE TICK ON A MEASURED AXIS. No.35 proved it
+  twice in one deck, through every green gate: slide 07 hung three gold place
+  ticks under a rail whose x means DOLLARS, so three REGIONS were printed at
+  three dollar amounts, and slide 02 set thirteen division ticks on a money
+  rail, implying twelve equal months over a budget period that runs ten. Both
+  were caught by a human reading the picture, which is the reviewer this
+  studio has least of. Ornament goes outside the band or it goes away.
+
 EVERY SLIDE IS WRITTEN FOR THAT SLIDE. This is the whole product and it is the
 one thing the machine can do that a person cannot do at this cadence, so it is
 now gated rather than asserted:

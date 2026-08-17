@@ -919,6 +919,250 @@ def contact_reads(img_arr, con, design_w, design_h):
     return "info", bits
 
 
+# THE AXIS CENSUS (2026-08-16). Geometry tolerances, in design px. None of
+# these is an ink threshold: the census calibrates its ink level on the marks
+# the SLIDE declares, so there is no constant here to tune down or up.
+CENSUS_PEAK_R = 4      # search radius around a declared mark for its own ink
+CENSUS_JOIN_PX = 6     # runs closer than this are one mark, not two
+CENSUS_MIN_W = 2       # a run narrower than this is an anti-aliased edge
+CENSUS_MATCH_PX = 12   # a run this close to a declared mark IS that mark
+CENSUS_TEXTURE_N = 10  # runs beyond 3x declared + this: the band is texture
+
+
+def _census_value(sc, p):
+    (p0, v0), (p1, v1) = sc["from"], sc["to"]
+    if p1 == p0:
+        return None
+    return v0 + (p - p0) * (v1 - v0) / float(p1 - p0)
+
+
+def _census_fmt(v, unit):
+    if v is None:
+        return "an unreadable value"
+    s = ("{:,.2f}".format(v) if abs(v) < 100 and v != int(v)
+         else "{:,.0f}".format(v))
+    return (s + " " + unit).strip()
+
+
+def axis_census(img_arr, sc, design_w, design_h):
+    """A MARK ON A MEASURED AXIS IS A QUANTITY, WHATEVER IT WAS DRAWN FOR.
+
+    Run No.35 shipped the same defect twice in one deck and every machine gate
+    passed both. Slide 07 set three gold place ticks under a rail whose x axis
+    means DOLLARS, so three REGIONS were printed at three dollar positions and
+    invited a dollar reading of them. Slide 02 set thirteen division ticks on a
+    money rail, implying twelve equal months across a budget period that is ten
+    months long. Two pixel critics found them by reading the pictures. Nothing
+    mechanical could, because nothing in the run had ever written down that the
+    axis was quantitative or what was sitting on it.
+
+    So a slide with a measured axis declares it (see render.py's data-scale
+    block) and enumerates the marks in its band. This checks three things:
+
+      1. ARITHMETIC. A declared mark outside its own span is a FAIL. A mark
+         with an empty `means` is a FAIL, and that is the whole point of the
+         contract: on a measured axis there is no such thing as a decorative
+         tick, so an author who cannot say what a mark means has found the
+         defect. The value each mark reads as is PRINTED, which is the second
+         forcing function -- "this tick reads as 118,000,000 dollars" is hard
+         to leave in once you have seen it.
+
+      2. THE PIXEL CENSUS. The band is sampled off the render, and any run of
+         ink in it that is not within CENSUS_MATCH_PX of a declared mark is
+         reported with the value its position reads as. This is what catches
+         the mark nobody thought to declare, which is the actual defect both
+         times.
+
+      3. Nothing else. It does not judge whether a mark is well drawn, whether
+         the scale is a good idea, or whether the axis is linear (it assumes
+         linear between `from` and `to`, and a log axis must not declare one).
+
+    THE CENSUS CALIBRATES ON THE SLIDE'S OWN INK, not on a constant, and it is
+    built to UNDER-report. Two decisions, both measured against this run's real
+    slide 04 (a rail with five $50M ticks hanging into a stippled plain, which
+    is exactly the textured band a naive census drowns in):
+
+      the profile is the MEDIAN down the band, not the mean. A tick crosses the
+      whole band and holds its median; a stipple field is mostly empty in any
+      one column and does not. Mean flagged 7 texture clusters on that slide,
+      median 4.
+      the threshold is the WEAKEST DECLARED MARK'S OWN INK, not a fraction of
+      it. Half of it flagged 4 clusters; the full value flags 1, the notch at
+      the rail's left end, which is a real mark on that axis and should be
+      declared. The reconstruction of the run No.35 defect (three undeclared
+      place ticks on a dollar rail) fails at every setting tried.
+
+    So the rule is "ink in the band at least as strong as a mark you already
+    admitted to, somewhere you did not declare". A mark fainter than your own
+    weakest is not found. That is the right direction for a hard fail: it can
+    miss, it should not invent. There is no constant here for a later run to
+    quietly lower, and the stated limit is that a scale declaring NO marks
+    cannot be calibrated and gets an info line instead of a census. Declaring
+    one mark is what buys the check, which is the right incentive.
+
+    Returns (verdict, detail), verdict in "info" | "warn" | "fail".
+    """
+    if sc.get("error"):
+        return "warn", "declaration did not parse (%s)" % sc["error"]
+    what = sc.get("what") or "a measured axis"
+    axis = (sc.get("axis") or "x").lower()[:1]
+    unit = sc.get("unit") or ""
+    frm, to, band = sc.get("from"), sc.get("to"), sc.get("band")
+    ok = (axis in ("x", "y") and isinstance(frm, list) and isinstance(to, list)
+          and len(frm) == 2 and len(to) == 2 and isinstance(band, list)
+          and len(band) == 2)
+    if ok:
+        try:
+            frm = [float(frm[0]), float(frm[1])]
+            to = [float(to[0]), float(to[1])]
+            band = [float(band[0]), float(band[1])]
+        except (TypeError, ValueError):
+            ok = False
+    if not ok or abs(to[0] - frm[0]) < 40 or band[1] - band[0] < 4:
+        return "warn", ("'%s': the scale declaration is unusable. It needs "
+                        '"axis":"x" or "y", "from":[px,value], "to":[px,value] '
+                        'at least 40px apart, and "band":[px,px], the strip '
+                        "the scale owns across the axis" % what)
+    sc = dict(sc, **{"from": frm, "to": to, "band": band})
+
+    lo, hi = min(frm[0], to[0]), max(frm[0], to[0])
+    marks, bad, nameless = [], [], []
+    for m in sc.get("marks") or []:
+        at = m.get("at")
+        if not isinstance(at, (int, float)):
+            return "warn", ("'%s': a declared mark has no numeric `at`, the "
+                            "position it is drawn at on this axis" % what)
+        if at < lo - CENSUS_MATCH_PX or at > hi + CENSUS_MATCH_PX:
+            bad.append(at)
+        if not (m.get("means") or "").strip():
+            nameless.append(at)
+        marks.append(float(at))
+
+    if nameless:
+        return "fail", (
+            "'%s': %d mark(s) on this axis declare no meaning, at %s. The axis "
+            "is measured, so every mark on it is read as a quantity: these sit "
+            "at %s. A mark that means nothing is not decoration here, it is a "
+            "number the reader will believe. Give it a meaning or draw it "
+            "outside the band."
+            % (what, len(nameless), ", ".join("%g" % p for p in nameless),
+               ", ".join(_census_fmt(_census_value(sc, p), unit)
+                         for p in nameless[:4])))
+    if bad:
+        return "fail", (
+            "'%s': %d declared mark(s) sit off the axis they are declared on "
+            "(at %s, span %g..%g). Either the mark is not on this scale or the "
+            "scale's own endpoints are wrong; both are worth knowing before a "
+            "reader measures against them."
+            % (what, len(bad), ", ".join("%g" % p for p in bad), lo, hi))
+
+    if not marks:
+        return "info", ("'%s': axis declared over %s to %s with no marks on "
+                        "it, so there is nothing to calibrate a pixel census "
+                        "against; the band is not checked"
+                        % (what, _census_fmt(frm[1], unit),
+                           _census_fmt(to[1], unit)))
+
+    # THE PIXEL CENSUS. Sample the band off the render at native resolution and
+    # profile it along the axis.
+    ns = img_arr.shape[1] / float(design_w)
+    if axis == "x":
+        r0, r1 = int(band[0] * ns), int(band[1] * ns)
+        c0, c1 = int(lo * ns), int(hi * ns)
+    else:
+        r0, r1 = int(lo * ns), int(hi * ns)
+        c0, c1 = int(band[0] * ns), int(band[1] * ns)
+    r0, c0 = max(0, r0), max(0, c0)
+    r1, c1 = min(img_arr.shape[0], r1), min(img_arr.shape[1], c1)
+    if r1 - r0 < 4 or c1 - c0 < 8:
+        return "warn", ("'%s': the declared band lies outside the frame or is "
+                        "too small to sample" % what)
+    strip = _srgb_to_lab(img_arr[r0:r1, c0:c1])[..., 0]
+    if axis == "y":
+        strip = strip.T
+    base = float(np.median(strip))
+    # MEDIAN down the band, not mean: a mark crosses the band, texture does not.
+    prof = np.median(np.abs(strip - base), axis=0)    # one value per native px
+    # to design px, then a 3px box smooth (below that it is anti-aliasing)
+    n = int(max(1, round(ns)))
+    keep = (len(prof) // n) * n
+    prof = prof[:keep].reshape(-1, n).mean(axis=1)
+    k = np.ones(3) / 3.0
+    prof = np.convolve(prof, k, mode="same")
+    origin = lo
+
+    def peak_at(p):
+        i = int(round(p - origin))
+        a, b = max(0, i - CENSUS_PEAK_R), min(len(prof), i + CENSUS_PEAK_R + 1)
+        return float(prof[a:b].max()) if b > a else 0.0
+
+    declared_ink = [peak_at(p) for p in marks]
+    w = min(declared_ink)
+    floor_ = float(np.median(prof))
+    if w <= 0.5:
+        return "warn", (
+            "'%s': the slide declares a mark at %g and there is no measurable "
+            "ink within %dpx of it in the band, so the census has nothing to "
+            "calibrate on. Either the mark did not draw, or its declared "
+            "position is not where it drew."
+            % (what, marks[int(np.argmin(declared_ink))], CENSUS_PEAK_R))
+    if w <= floor_ * 1.2:
+        return "warn", (
+            "'%s': the weakest declared mark (ink %.1f) is no stronger than the "
+            "band's own texture (%.1f), so no census can separate marks from "
+            "art here. Narrow the band to the strip the marks occupy, or draw "
+            "the marks so a reader can tell them from the ground."
+            % (what, w, floor_))
+
+    thr = w
+    runs, start = [], None
+    for i, v in enumerate(prof):
+        if v >= thr and start is None:
+            start = i
+        elif v < thr and start is not None:
+            runs.append((start, i))
+            start = None
+    if start is not None:
+        runs.append((start, len(prof)))
+    merged = []
+    for a, b in runs:
+        if merged and a - merged[-1][1] < CENSUS_JOIN_PX:
+            merged[-1] = (merged[-1][0], b)
+        else:
+            merged.append((a, b))
+    merged = [(a, b) for a, b in merged if b - a >= CENSUS_MIN_W]
+
+    if len(merged) > 3 * len(marks) + CENSUS_TEXTURE_N:
+        return "warn", (
+            "'%s': the declared band holds %d separate runs of ink against %d "
+            "declared marks, which is texture rather than a mark field. The "
+            "census cannot separate marks here; narrow the band to the strip "
+            "the marks actually occupy."
+            % (what, len(merged), len(marks)))
+
+    undeclared = []
+    for a, b in merged:
+        c = origin + (a + b) / 2.0
+        if all(abs(c - p) > CENSUS_MATCH_PX for p in marks):
+            undeclared.append(c)
+
+    span = "%s at %g to %s at %g" % (_census_fmt(frm[1], unit), frm[0],
+                                     _census_fmt(to[1], unit), to[0])
+    if undeclared:
+        listed = ", ".join(
+            "%g (reads as %s)" % (p, _census_fmt(_census_value(sc, p), unit))
+            for p in undeclared[:5])
+        more = "" if len(undeclared) <= 5 else " and %d more" % (len(undeclared) - 5)
+        return "fail", (
+            "'%s' runs %s, and the band holds %d mark(s) the slide does not "
+            "declare: %s%s. On a measured axis a mark is a quantity whether or "
+            "not it was drawn as one. Declare each with what it means, or move "
+            "it out of the band."
+            % (what, span, len(undeclared), listed, more))
+    return "info", ("'%s' runs %s; %d declared mark(s), and the band's census "
+                    "finds no others" % (what, span, len(marks)))
+
+
 def _box_down(a, k):
     h, w = a.shape[:2]
     h -= h % k
@@ -1293,6 +1537,20 @@ def main():
                 res["warns"].append("contact shadow: " + detail)
             else:
                 res.setdefault("contacts", []).append(detail)
+
+        # A MARK ON A MEASURED AXIS (2026-08-16). Opt-in like the two probes
+        # above: a slide that declares no scale is not judged here. When one IS
+        # declared, an undeclared mark in its band is a hard fail, because the
+        # reader measures it whether or not the studio meant them to. See
+        # axis_census() for the calibration and for its stated limit.
+        for sc in rec.get("scales", []):
+            verdict, detail = axis_census(arr, sc, design_w, design_h)
+            if verdict == "fail":
+                res["fails"].append("a mark on a measured axis: " + detail)
+            elif verdict == "warn":
+                res["warns"].append("axis census: " + detail)
+            else:
+                res.setdefault("scales", []).append(detail)
 
         # LEADER LANDS ON NOTHING (2026-08-07). Opt-in, and pure arithmetic on
         # two declared points, so it cannot false-positive on an undeclared

@@ -42,6 +42,15 @@ MATCHING
     string is satisfied if its needle appears in its own slide's rendered
     blob OR anywhere in the deck's rendered blob.
 
+    THE BLOB IS BUILT FROM `texts` AS WELL AS `text` (2026-08-16). An element
+    holding several lines (three fact lines separated by <br>) recorded its
+    whole content JOINED and cut at 80 characters, so any line beginning past
+    that cut was invisible here and reported missing although it was on the
+    page. Run No.35's slide 09 hit exactly that and worked around it by
+    splitting the div into three elements. render.py now also records `texts`,
+    each direct text node on its own at 200 characters, and both fields feed
+    the blob. This widens what the check can SEE; it relaxes no matching rule.
+
 EXIT CODES
     0  every authored slide string is present in the render (in sync)
     1  one or more authored slide strings are missing from the render (stale)
@@ -128,7 +137,16 @@ def build_blobs(render_report):
         idx = slide_index(s.get("file", ""))
         if idx is None:
             continue
-        blob = alnum(" ".join(n.get("text", "") for n in s.get("text_nodes", [])))
+        parts = []
+        for n in s.get("text_nodes", []):
+            # `texts` (2026-08-16) is every direct text node of the element,
+            # 200 chars each, so a multi-line block's later lines are visible
+            # here. `text` is the same content joined and cut at 80; both are
+            # added because a slide rendered before that field existed still
+            # has to check. See the truncation note in MATCHING above.
+            parts.append(n.get("text", ""))
+            parts.extend(n.get("texts", []) or [])
+        blob = alnum(" ".join(parts))
         per_slide["S%d" % idx] = blob
         deck.append(blob)
     return per_slide, "".join(deck)

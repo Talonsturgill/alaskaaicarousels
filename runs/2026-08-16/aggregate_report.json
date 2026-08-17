@@ -1,0 +1,85 @@
+{
+  "run_dir": "out/2026-08-16",
+  "render_report": "out/2026-08-16/render/render_report.json",
+  "aggregates_file": "out/2026-08-16/aggregates.json",
+  "detected": 8,
+  "declared": 9,
+  "detections": [
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "864 organizations",
+      "text": "864 organizations sent nearly 1,800 letters of interest. The Department of Healt",
+      "n": 864,
+      "subject": "organizations"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "1,800 letters",
+      "text": "864 organizations sent nearly 1,800 letters of interest. The Department of Healt",
+      "n": 1800,
+      "subject": "letters"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "FIFTEEN PIXELS",
+      "text": "AUGUST 7TH, 2026. FIFTEEN PIXELS OF NINE HUNDRED AND TWENTY.",
+      "n": 15,
+      "subject": "pixels"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "NINETEEN PROJECTS",
+      "text": "NINETEEN PROJECTS. FIVE ITEMISED.",
+      "n": 19,
+      "subject": "projects"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "FIVE AWARDS",
+      "text": "FIVE AWARDS THE RECORD ITEMISES",
+      "n": 5,
+      "subject": "awards"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "FIVE RURAL CLINICS",
+      "text": "PORTABLE X-RAY MACHINES, FIVE RURAL CLINICS",
+      "n": 5,
+      "subject": "rural clinics"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "Nineteen projects",
+      "text": "Nineteen projects were funded. Five are itemised in published reporting. The oth",
+      "n": 19,
+      "subject": "projects"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Three regions",
+      "text": "Three regions,nothing yet",
+      "n": 3,
+      "subject": "regions"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 4,
+      "text": "AUGUST 7TH, 2026. FIFTEEN PIXELS OF NINE HUNDRED AND TWENTY.",
+      "note": "The deck's printed scale constant, a property of the artwork and not of the world. The rail is welded at 920 px = $272,174,856 (C01), so $4,500,000 (C06) is 15.21 px. The number describes the drawing, and window.__akAssert on slide 05 asserts the same arithmetic against the geometry that actually drew."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "STALE declaration, no rendered string matches it: S4 'NINETEEN PROJECTS. FIVE ITEMISED.' [count]"
+  ],
+  "verdict": "PASS"
+}

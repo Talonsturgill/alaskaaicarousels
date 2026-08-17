@@ -1,0 +1,25 @@
+{
+ "run_date": "2026-08-16",
+ "carousel_no": 35,
+ "phases": {
+  "wake": "done: out/2026-08-16/plan.md, run_state.json",
+  "craft_refresh": "done: knowledge/FIELD_NOTES.md 2026-08-16 craft refresh, 3 searches",
+  "research": "done: out/2026-08-16/scout_merge.md, 6 scouts, all returned",
+  "claims": "done: out/2026-08-16/claims.json, 20 claims, claims_check PASS 20/20 usable 7 primary",
+  "docket": "done: ledger/docket.json, 9 of 17 live items re-verified and stamped 2026-08-16",
+  "gas_watch": "done: site_signoff PASS 18/18, gaswatch_pagecheck PASS 15/15, 2 presentation repairs shipped",
+  "selection": "done: out/2026-08-16/selection.md, dedupe_check exit 0 twice, soft overlaps only",
+  "directors_room": "done: 3 treatments, synthesis in selection.md; THE WELDED RAIL + contact rule + edgeless mass",
+  "copy": "done: caption room 2 directors + critic, winner B (LEDGER TALLY/ZOOM/NEW:DISCLOSURE STANDARD), caption_check PASS with --copy, copy.json written, copy_sync PASS",
+  "art_build": "done: 9 bespoke slides, qa.py PASS 0 fails 0 warns, bespoke_check PASS drawn 79% median 0.321",
+  "pixel_review": "done: 2 rounds, 8 critic passes over 9 slides. Round 2 found the rail still inlined on 02 and 04, slide 05's proximity binding every bar to the wrong name, five undrawn leaders, the hero's five blocks reading as one plate, the mass casting the only shadow on open ground, a height stair that contradicted the slide's own honesty note, thirteen blue ticks breaking the semantic lock, and the gold terminus repeating the exclamation-mark construction deck-wide. All applied. qa.py PASS 0/0.",
+  "flow_review": "done: 1 flow critic, sequence scored 8.0, verdict revise with a named work order on slides 04, 05, 07 and 08 plus Device C visibility. All applied in revision round 3. Falsifiers T1, T2, T3, T5 held; T4 held semantically and was BROKEN AS A BUDGET at slide 07, now fixed.",
+  "assemble": "done: out/2026-08-16/final, pdf vector 7.88 MB, 9 thumbs, contact sheet rebuilt after the last render",
+  "scoring": "in progress",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "art_prototypes": "out/2026-08-16/art_prototypes.md (P0 stipple ADOPT, P1 aksdf ADOPT, P2 composite FAILED then fixed)"
+}

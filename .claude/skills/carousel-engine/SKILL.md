@@ -149,6 +149,30 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   convincing, measures 8.1. Related and not gated: a silhouette stroke on a
   LIGHT object must be outside-aligned onto the dark side, because a centred
   stroke puts half its width on paper it matches.
+- **A mark on a measured axis is a quantity, whatever it was drawn for**
+  (2026-08-16). If a POSITION in the artwork carries a number (a money rail, a
+  timeline, a bar baseline, a dated span), the slide declares the scale and
+  enumerates every mark inside the strip that scale owns:
+
+  ```html
+  <body data-scale='[{"what":"the award rail","axis":"x","unit":"dollars",
+                      "from":[80,0],"to":[1000,272174856],
+                      "band":[1150,1172],
+                      "marks":[{"at":95,"means":"the first Friday, $4.5M"},
+                               {"at":249,"means":"$50M"}]}]'>
+  ```
+
+  `from`/`to` are `[design px, value]`, `band` is the strip across the axis the
+  scale owns, and every mark drawn in it is listed with what it means. qa.py
+  FAILS on a mark that declares no meaning, on a mark outside its own span, and
+  on any run of ink in the band, at least as strong as the weakest mark you
+  declared, that you did not declare, printing the VALUE its position reads as.
+  Run No.35 did this defect twice in one deck through every green gate: three
+  gold place ticks under a rail whose x means dollars (three REGIONS printed at
+  three dollar positions), and thirteen division ticks implying twelve months
+  across a ten-month budget period. Two pixel critics caught them by reading.
+  There is no such thing as a decorative tick on a measured axis: give the mark
+  a meaning, or draw it outside the band.
 - **A leader must land on the thing it points at, and say where that is**
   (2026-08-07). EVERY drafting leader, callout rule or detail-circle tail is
   authored as a **world-coordinate polyline that terminates ON the target's own

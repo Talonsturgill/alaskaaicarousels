@@ -983,14 +983,23 @@ def table_html(series, model, limit=TABLE_LIMIT):
     # it names no specific input so no arrangement of the data can falsify it.
     gap_note = (" A blank cell is a figure the model had no input for that day,"
                 " not a reading that went missing." if gaps else "")
+    # The note lives OUTSIDE the scrolling wrapper on purpose. It used to be a
+    # <caption> inside the table, which meant it took the TABLE's intrinsic
+    # width, 684 px at five columns, and on a 390 px phone the sentence was
+    # clipped mid-word with no way to read it but to drag the numbers sideways.
+    # The columns are wide because they are numbers and have to scroll; a
+    # paragraph of prose does not, so it wraps to the reader's own width and the
+    # table keeps its accessible name through aria-describedby.
     return f"""<div class="gw-table" data-reveal>
-<table>
-<caption>The most recent {count(len(rows), "verified reading")}. Storage and percent of
-design are measured. Modeled peak and non CINGSA supply are model output.{gap_note}</caption>
+<table aria-describedby="gw-tablenote">
+<caption class="gw-vh">Cook Inlet gas storage, day by day</caption>
 <thead><tr><th scope="col">Date</th><th scope="col">Storage Bcf</th>
 <th scope="col">Percent of design</th><th scope="col">Modeled peak MMcf/d</th>
 <th scope="col">Non CINGSA supply MMcf/d</th></tr></thead>
-<tbody>{body}</tbody></table></div>"""
+<tbody>{body}</tbody></table></div>
+<p class="gw-tnote" id="gw-tablenote" data-reveal>The most recent
+{count(len(rows), "verified reading")}. Storage and percent of design are
+measured. Modeled peak and non CINGSA supply are model output.{gap_note}</p>"""
 
 
 # ------------------------------------------------------------------ feed
@@ -2112,11 +2121,27 @@ margin-top:5px;}
 font-variant-numeric:proportional-nums;}
 .gw-tip-n{color:var(--mute);font-size:11px;letter-spacing:.05em;
 text-transform:uppercase;}
-.gw-table{margin:18px 0 8px;overflow-x:auto;}
+/* Five numeric columns do not fit a phone, so the wrapper scrolls. A reader
+   who cannot see that it scrolls is a reader for whom the last two columns do
+   not exist, so the edges carry the standard local-background scroll shadow.
+   background-attachment local on the covers and scroll on the shadows is what
+   makes it self-cancelling, the shadow showing only while there is more to
+   reach, with no script and nothing to keep in sync. */
+.gw-table{margin:18px 0 8px;overflow-x:auto;
+background:
+ linear-gradient(to right,var(--deep) 40%,rgba(2,6,15,0)) left center,
+ linear-gradient(to left,var(--deep) 40%,rgba(2,6,15,0)) right center,
+ radial-gradient(farthest-side at 0 50%,rgba(141,162,190,.42),rgba(141,162,190,0)) left center,
+ radial-gradient(farthest-side at 100% 50%,rgba(141,162,190,.42),rgba(141,162,190,0)) right center;
+background-repeat:no-repeat;
+background-size:26px 100%,26px 100%,16px 100%,16px 100%;
+background-attachment:local,local,scroll,scroll;}
 .gw-table table{width:100%;border-collapse:collapse;font-size:14px;
 font-variant-numeric:tabular-nums;}
-.gw-table caption{caption-side:bottom;text-align:left;color:var(--mute);
-font-size:13px;padding-top:10px;line-height:1.5;}
+.gw-vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;}
+.gw-tnote{margin:10px 0 8px;text-align:left;color:var(--mute);
+font-size:13px;line-height:1.5;}
 .gw-table th,.gw-table td{padding:9px 11px;border-bottom:1px solid var(--line);
 text-align:right;white-space:nowrap;}
 .gw-table th:first-child,.gw-table td:first-child{text-align:left;}
