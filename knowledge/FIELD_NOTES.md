@@ -3709,3 +3709,35 @@ has not had a discovery pass.
   score, where it charged 6 on the heaviest weight, and charging it a second
   time by withholding the rung would be double jeopardy. That is a better piece
   of rubric reasoning than the one that stopped the run.
+
+## 2026-08-16 - Craft refresh (3 searches, timeboxed)
+
+- SMOOTH THE DIRECTION FIELD, NOT ONLY THE HEIGHT FIELD. No.32 learned the hard
+  way that an engraved lay is the gradient of its form, so a high-frequency form
+  produces marbling, and the fix it found was to keep the form smooth. Artineering's
+  Flair hatching style documents the cheaper remedy directly, a smoothing control on
+  the vector field that ORIENTS the strokes, where higher values give less abrupt
+  changes in orientation. That decouples the two decisions. A form may carry
+  high-frequency detail for TONE while its gradient is low-pass filtered before it
+  is used for DIRECTION, which is a thing akengrave does not currently do and which
+  would have saved No.32 a rebuild. Parked as an upgrade candidate rather than
+  applied mid-run.
+  https://docs.artineering.io/flair/styles/library/hatching/
+- TONAL ART MAPS ARE THE ANSWER TO THE PROBLEM THE DECK KEEPS HITTING AT 432px.
+  Praun, Hoppe, Webb and Finkelstein, Real-Time Hatching (SIGGRAPH 2001), build
+  hatch strokes into a mip pyramid whose levels NEST, so a stroke present at one
+  scale is present at every coarser scale, and tone stays constant as the image
+  is minified. That is exactly the failure No.34 hit from the other direction,
+  where a 1024px weave minified into about 300 screen px and the fibre fell below
+  one pixel. The house rule that came out of that run was "go measure how many
+  screen pixels the thing occupies"; the nesting property is the constructive
+  version of the same rule, and it is the right shape for the feed test, where
+  every slide is judged at 432px as well as 1080.
+  https://hhoppe.com/hatching.pdf
+- One number worth adding to the platform file's stock, not yet in it.
+  Socialinsider's 2026 benchmark reports native documents generating 2.5x more
+  SHARES than video or image posts. CAROUSEL_CRAFT already prices saves at about
+  5x a like in reach value and says nothing about shares by format. Treat it as
+  supporting rather than load-bearing until the sample is published the way the
+  7.00 percent figure's now is.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
