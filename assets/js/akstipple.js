@@ -95,8 +95,14 @@
  *     ramp:   ['#33475A','#4A5F73','#61798C','#8098AB','#A6BACB','#C9DCE6'],
  *     radius: function (q) { return 0.9 + 1.4 * q; },
  *     alpha:  function (q) { return 0.30 + 0.55 * q; },
- *     clip:   function (x, y) { return true; }        // optional
+ *     clip:   function (x, y) { return true; },       // optional
+ *     box:    [0, 0, 1080, 1350]                      // optional, see below
  *   });
+ *
+ * PASS `box` WHENEVER THE REGION IS SMALL RELATIVE TO THE FRAME. The sampler
+ * throws uniformly and rejects, so an 11 px band in a 1080 px frame wins about
+ * 0.06 percent of the throws and lands a dozen dots no matter what `count` says.
+ * That is how a deck draws its smallest quantity as nothing at all.
  */
 (function (global) {
   "use strict";
@@ -217,10 +223,21 @@
     var rnd = global.AK.rng(o.seed || 1);
     var tries = 0, placed = 0, cap = want * 12;
     var n = ramp.length;
+    /* THE SAMPLING BOX, and it is why small regions came out empty. The sampler
+     * throws points uniformly across the WHOLE canvas and rejects what the
+     * height field returns zero for, so a band 11 px wide in a 1080 px frame
+     * wins about 0.06 percent of the throws and lands roughly a dozen dots
+     * whatever `count` says. No.35's slide 03 drew its smallest quantity, 19
+     * funded out of 1,800, as literally nothing; the same shape of failure
+     * emptied the Aleutian arc on slide 07. Restrict the throws to the region
+     * that can accept them and `count` means what it says. Defaults to the full
+     * frame, so every existing caller is unchanged. */
+    var bx = o.box || [0, 0, W, H];
+    var bw = bx[2] - bx[0], bh = bx[3] - bx[1];
 
     while (placed < want && tries < cap) {
       tries++;
-      var x = rnd() * W, y = rnd() * H;
+      var x = bx[0] + rnd() * bw, y = bx[1] + rnd() * bh;
       if (clip && !clip(x, y)) continue;
       var q = o.height(x, y);
       if (q <= 0) continue;

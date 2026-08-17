@@ -77,7 +77,7 @@
    cx.lineWidth=0.9;
    cx.strokeStyle=lit?'#0A1420':'#060B12';
    cx.beginPath(); cx.moveTo(x0,y+1); cx.lineTo(x0,y+h-1); cx.stroke();
-   cx.strokeStyle=lit?'#5E7488':'#22384A';
+   cx.strokeStyle=lit?'#33475A':'#22384A';
    cx.beginPath(); cx.moveTo(x0+w,y+1); cx.lineTo(x0+w,y+h-1); cx.stroke();
   };
   global.AKRAIL = R;
