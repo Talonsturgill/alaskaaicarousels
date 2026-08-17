@@ -529,6 +529,52 @@ def footer(prefix, today):
 
 
 SITE_CSS = """
+/* THE FEEDBACK DIALOG LIVES HERE, IN THE SHARED SHEET, because it is on the homepage AND
+   the docket page. It was written into the docket box's own block first, which inlines on
+   /docket/ and nowhere else, so the homepage shipped the markup with no styling at all and
+   a reader got a white browser-default form on a dark page. Anything two pages share goes
+   here, and only what one page owns goes in that page's block. */
+/* ---- the feedback dialog, on both pages that carry an ask box ------------ */
+/* A control that opens a dialog has to be a button for a keyboard and a screen reader, and it
+   sits inside a sentence, so the styling is on the class rather than the element. */
+.askfblink{font:inherit;color:var(--gold);background:none;border:0;padding:0;cursor:pointer;
+border-bottom:1px solid rgba(255,199,44,.35);touch-action:manipulation;}
+.askfblink:hover{border-bottom-color:var(--gold);}
+/* Native <dialog>, so focus trapping, escape to close and the top layer are the browser's.
+   ::backdrop is too. */
+/* Manrope by name, not inherit. --body is a COLOUR here and not a font, so the shorthand fell
+   through to the browser default and every field in this dialog rendered monospace on a page
+   that uses none. */
+.askfb{border:1px solid var(--line);border-radius:14px;background:#12100E;color:var(--snow);
+padding:0;max-width:min(94vw,32rem);width:100%;
+font-family:Manrope,system-ui,sans-serif;}
+.askfb::backdrop{background:rgba(0,0,0,.62);}
+.askfb form{display:grid;gap:9px;padding:20px 20px 16px;}
+.askfb h2{margin:0;font-family:Fraunces,Georgia,serif;font-size:19px;letter-spacing:-.01em;
+color:var(--snow);}
+.askfbnote{margin:0 0 2px;font-size:12.5px;line-height:1.5;color:var(--mute);}
+.askfbl{font-size:12px;color:var(--mute);}
+.askfb textarea,.askfb input[type="email"]{font-family:Manrope,system-ui,sans-serif;
+font-size:14px;line-height:1.5;width:100%;padding:9px 11px;border-radius:9px;
+color:var(--snow);background:#0C0A09;border:1px solid var(--line);}
+.askfb textarea{min-height:84px;resize:vertical;}
+.askfb textarea:focus,.askfb input[type="email"]:focus{outline:none;
+border-color:rgba(255,199,44,.55);box-shadow:0 0 0 3px rgba(255,199,44,.12);}
+.askfbcheck{display:flex;gap:9px;align-items:center;font-size:12.5px;color:var(--mute);
+cursor:pointer;}
+.askfbcheck input{margin-top:2px;accent-color:var(--gold);}
+/* What is about to be sent, shown before it is. Scrolls rather than pushing the dialog past
+   the viewport on a phone. */
+.askfbctx{margin:0;max-height:8rem;overflow:auto;white-space:pre-wrap;
+font-family:Manrope,system-ui,sans-serif;font-size:12.5px;line-height:1.5;color:var(--mute);
+padding:10px 12px;border-radius:8px;background:#0C0A09;border:1px solid var(--line);}
+.askfbmsg{margin:0;min-height:1.2em;font-size:12.5px;color:var(--gold);}
+.askfbrow{display:flex;gap:16px;align-items:center;margin-top:4px;}
+.askfbsend{font-family:Manrope,system-ui,sans-serif;font-size:13px;font-weight:500;
+padding:10px 22px;border:0;border-radius:999px;cursor:pointer;background:var(--gold);
+color:#12100E;touch-action:manipulation;}
+.askfbsend[disabled]{opacity:.6;cursor:default;}
+
 :root{--night:#02060f;--deep:#050b16;--panel:#0a1626;--panel2:#0e2138;--line:#1c3350;
 --snow:#f4f8ff;--body:#c3d2e6;--mute:#8da2be;--gold:#ffc72c;--halo:#ffda6e;
 --green:#3ce6b4;--amber:#f2a43a;--blue:#5ac8f0;--violet:#9664e6;}
