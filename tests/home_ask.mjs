@@ -189,6 +189,30 @@ ok('and brings the starter line back', await page.locator('.hasknote').isVisible
 await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 await page.waitForTimeout(700);
 
+// ---- feedback
+// The note under the field used to describe the box to somebody who had not used it yet. What
+// a reader can act on is that the model is still being worked on, and a way to say when it is
+// wrong. The dialog is driven from ASK_COMMON_JS and shared with the docket box, so each
+// client hands it that page's own last exchange.
+let fbSent = null;
+await page.route('**/formsubmit.co/**', async (r) => {
+  fbSent = JSON.parse(r.request().postData());
+  await r.fulfill({ status: 200, contentType: 'application/json', body: '{"success":"true"}' });
+});
+ok('the note names the model',
+  (await page.locator('.hasknote').textContent()).includes('Model in training'));
+// Start over has already run above, so the box is at rest and the note is back.
+await page.click('[data-askfb]');
+await page.waitForTimeout(250);
+ok('the dialog opens', await page.locator('#askfb').isVisible());
+await page.fill('#askfbtext', 'it missed a filing');
+await page.click('#askfbsend');
+await page.waitForTimeout(400);
+ok('feedback reaches the forwarder', fbSent && fbSent.feedback === 'it missed a filing',
+  JSON.stringify(fbSent));
+ok('and is labelled for this product', fbSent && /Alaska AI/.test(fbSent._subject),
+  fbSent && fbSent._subject);
+
 ok('nothing threw', errs.length === 0, errs.join(' | '));
 console.log(`\n${fail ? fail + ' FAILED of ' : ''}${pass + fail} checks${fail ? '' : ' clean'}`);
 await b.close();

@@ -366,10 +366,11 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
 </div>
-<p class="hasknote">20 tracked decisions, answered from the published record and nothing else.
-Every figure checked before you see it. Keep asking, it remembers.</p>
+<p class="hasknote">Model in training.
+<button type="button" class="askfblink" data-askfb>Send feedback</button></p>
 <div id="haskts"></div>
 </div>
+<dialog class="askfb" id="askfb" aria-labelledby="askfbh"><form id="askfbform" method="POST" action="https://formsubmit.co/ajax/228f72bce4f9b0e50b49d8d501374771"><h2 id="askfbh">Model in training</h2><p class="askfbnote">The search writes from the published record and is checked against it line by line. It still gets things wrong, and what it got wrong is the useful part.</p><label class="askfbl" for="askfbtext">What happened</label><textarea id="askfbtext" name="feedback" rows="4" required placeholder="The answer missed something, or read oddly, or stopped short"></textarea><label class="askfbl" for="askfbmail">Email, only if you want a reply</label><input id="askfbmail" name="email" type="email" autocomplete="email" placeholder="Optional"><label class="askfbcheck" id="askfbattachrow" hidden><input type="checkbox" id="askfbattach" checked><span>Attach the last question and answer</span></label><pre class="askfbctx" id="askfbctxview" hidden></pre><input type="hidden" name="_subject" value="Alaska AI, feedback on the search"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="exchange" id="askfbctx"><p class="askfbmsg" id="askfbmsg" role="status" aria-live="polite"></p><div class="askfbrow"><button type="submit" class="askfbsend" id="askfbsend">Send</button><button type="button" class="askfblink" id="askfbclose">Close</button></div></form></dialog>
 </div>
 <h2 data-reveal id="scan">Would AI actually help your business</h2>
 <p class="sub" data-reveal>Our scanner reads your own public pages and hands back an honest map.
@@ -720,6 +721,69 @@ method="post" target="_blank">
 <script>
 (function(){
   'use strict';
+  /* THE FEEDBACK DIALOG, DRIVEN ONCE FOR BOTH BOXES.
+     The two clients are separate on purpose and neither can see the other's thread, so each
+     one sets window.askLastExchange and this reads it. A hook rather than a shared variable,
+     because the docket box and the homepage box hold their conversations differently and
+     always will. */
+  function wireFeedback(){
+    var fb = document.getElementById('askfb');
+    if (!fb) return;
+    var form = document.getElementById('askfbform');
+    var msg = document.getElementById('askfbmsg');
+    var ctx = document.getElementById('askfbctx');
+    var view = document.getElementById('askfbctxview');
+    var row = document.getElementById('askfbattachrow');
+    var box = document.getElementById('askfbattach');
+    var go = document.getElementById('askfbsend');
+
+    function last(){
+      try { return (window.askLastExchange && window.askLastExchange()) || ''; }
+      catch (e) { return ''; }
+    }
+    window.askOpenFeedback = function(){
+      var ex = last();
+      /* No exchange, no offer to attach one. An unticked box beside an empty panel is a
+         question a reader has to work out the answer to. */
+      row.hidden = !ex; view.hidden = !ex; view.textContent = ex;
+      if (box) box.checked = !!ex;
+      msg.textContent = ''; go.disabled = false;
+      if (typeof fb.showModal === 'function') fb.showModal(); else fb.setAttribute('open','');
+      var t = document.getElementById('askfbtext'); if (t) t.focus();
+    };
+    document.getElementById('askfbclose').addEventListener('click', function(){
+      if (typeof fb.close === 'function') fb.close(); else fb.removeAttribute('open');
+    });
+    if (box) box.addEventListener('change', function(){ view.hidden = !box.checked; });
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      ctx.value = (box && box.checked) ? last() : '';
+      go.disabled = true; msg.textContent = 'Sending';
+      fetch(form.action, {method:'POST',
+        headers:{'content-type':'application/json','accept':'application/json'},
+        body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))})
+        .then(function(r){ if (!r.ok) throw new Error('bad'); 
+          msg.textContent = 'Thanks. That goes straight to a person.';
+          form.reset(); view.hidden = true;
+          setTimeout(function(){
+            if (typeof fb.close === 'function') fb.close(); else fb.removeAttribute('open');
+          }, 1600);
+        })
+        .catch(function(){
+          msg.textContent = 'That did not send. Try again in a moment.';
+          go.disabled = false;
+        });
+    });
+    /* Every control that opens it, on either page. */
+    var opens = document.querySelectorAll('[data-askfb]');
+    for (var i = 0; i < opens.length; i++) {
+      opens[i].addEventListener('click', function(){ window.askOpenFeedback(); });
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireFeedback);
+  } else { wireFeedback(); }
+
   window.askWhyCut = function(reason){
     return ({
       numeral: 'it stated a figure the record does not carry',
@@ -768,6 +832,18 @@ method="post" target="_blank">
   var out = document.getElementById('haskout');
   var whyCut = window.askWhyCut;
   var thread = [], busy = false;
+  /* The shared feedback dialog cannot see this client's conversation, so hand it over. Read
+     from the thread rather than scraped off the page, so what gets attached is exactly what
+     was said and not whatever the DOM holds after a Start over. */
+  window.askLastExchange = function(){
+    for (var i = thread.length - 1; i > 0; i--) {
+      if (thread[i].role === 'assistant') {
+        return 'Q. ' + thread[i - 1].content + '\n\nA. ' + thread[i].content;
+      }
+    }
+    return '';
+  };
+
 
   /* THE HUMAN CHECK, rendered explicitly so reset() and the callback have a
      widget to act on. Invisible unless a human is genuinely needed, and armed

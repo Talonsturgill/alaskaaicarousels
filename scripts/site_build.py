@@ -1457,6 +1457,39 @@ transition:background .18s ease,border-color .18s ease;}
 .qnext:hover{background:rgba(255,199,44,.14);border-color:var(--gold);}
 /* Provenance, after the answer and quiet about it. This is the line that makes
    the box worth trusting, so it stays; it just stops announcing itself first. */
+/* ---- the feedback dialog, on both pages that carry an ask box ------------ */
+/* A control that opens a dialog has to be a button for a keyboard and a screen reader, and it
+   sits inside a sentence, so the styling is on the class rather than the element. */
+.askfblink{font:inherit;color:var(--gold);background:none;border:0;padding:0;cursor:pointer;
+border-bottom:1px solid rgba(255,199,44,.35);touch-action:manipulation;}
+.askfblink:hover{border-bottom-color:var(--gold);}
+/* Native <dialog>, so focus trapping, escape to close and the top layer are the browser's.
+   ::backdrop is too. */
+.askfb{border:1px solid var(--line);border-radius:14px;background:#12100E;color:var(--snow);
+padding:0;max-width:min(94vw,34rem);width:100%;}
+.askfb::backdrop{background:rgba(0,0,0,.62);}
+.askfb form{display:grid;gap:10px;padding:22px 22px 18px;}
+.askfb h2{margin:0;font-size:20px;letter-spacing:-.01em;}
+.askfbnote{margin:0 0 4px;font-size:12.5px;line-height:1.55;color:var(--mute);}
+.askfbl{font-size:12.5px;color:var(--mute);}
+.askfb textarea,.askfb input[type="email"]{font:400 15px/1.5 inherit;width:100%;
+padding:9px 11px;border-radius:9px;color:var(--snow);background:#0C0A09;
+border:1px solid var(--line);}
+.askfb textarea:focus,.askfb input[type="email"]:focus{outline:none;
+border-color:rgba(255,199,44,.55);box-shadow:0 0 0 3px rgba(255,199,44,.12);}
+.askfbcheck{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--mute);
+cursor:pointer;}
+.askfbcheck input{margin-top:2px;accent-color:var(--gold);}
+/* What is about to be sent, shown before it is. Scrolls rather than pushing the dialog past
+   the viewport on a phone. */
+.askfbctx{margin:0;max-height:9rem;overflow:auto;white-space:pre-wrap;
+font:400 12.5px/1.5 inherit;color:var(--mute);padding:10px 12px;border-radius:8px;
+background:#0C0A09;border:1px solid var(--line);}
+.askfbmsg{margin:0;min-height:1.2em;font-size:12.5px;color:var(--gold);}
+.askfbrow{display:flex;gap:16px;align-items:center;margin-top:4px;}
+.askfbsend{font:400 12.5px/1 inherit;padding:10px 20px;border:0;border-radius:999px;
+cursor:pointer;background:var(--gold);color:#12100E;touch-action:manipulation;}
+.askfbsend[disabled]{opacity:.6;cursor:default;}
 .qfrom{margin-top:18px;padding-top:13px;border-top:1px solid var(--line);
 font-size:12.5px;line-height:1.5;color:var(--mute);
 display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;}
@@ -1737,6 +1770,18 @@ HOMEASK_JS = r"""
   var out = document.getElementById('haskout');
   var whyCut = window.askWhyCut;
   var thread = [], busy = false;
+  /* The shared feedback dialog cannot see this client's conversation, so hand it over. Read
+     from the thread rather than scraped off the page, so what gets attached is exactly what
+     was said and not whatever the DOM holds after a Start over. */
+  window.askLastExchange = function(){
+    for (var i = thread.length - 1; i > 0; i--) {
+      if (thread[i].role === 'assistant') {
+        return 'Q. ' + thread[i - 1].content + '\n\nA. ' + thread[i].content;
+      }
+    }
+    return '';
+  };
+
 
   /* THE HUMAN CHECK, rendered explicitly so reset() and the callback have a
      widget to act on. Invisible unless a human is genuinely needed, and armed
@@ -1992,10 +2037,11 @@ def home_ask_html(n):
       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
 </div>
-<p class="hasknote">{n} tracked decisions, answered from the published record and nothing else.
-Every figure checked before you see it. Keep asking, it remembers.</p>
+<p class="hasknote">Model in training.
+<button type="button" class="askfblink" data-askfb>Send feedback</button></p>
 <div id="haskts"></div>
-</div>"""
+</div>
+""" + feedback_dialog()
 
 # WHAT BOTH ASK BOXES SHARE, WHICH IS EXACTLY ONE THING.
 #
@@ -2018,9 +2064,123 @@ Every figure checked before you see it. Keep asking, it remembers.</p>
 # no-verdict rule, the one this site cares most about, or merely reaching for a
 # figure. The flagship question was cut on every run for weeks with the reason
 # sitting unread in the payload.
+# FEEDBACK GOES TO EMAIL WITH NO BACKEND. formsubmit.co takes the POST and
+# forwards it, so this needs no server, no secret and nothing to keep running.
+# The ajax variant returns JSON rather than redirecting, which keeps a reader on
+# the page they were reading. Same alias the services form already posts to,
+# because it is the same mailbox and it is already activated. _subject tells the
+# two apart in the inbox.
+FEEDBACK_ACTION = "https://formsubmit.co/ajax/228f72bce4f9b0e50b49d8d501374771"
+FEEDBACK_SUBJECT = "Alaska AI, feedback on the search"
+
+
+def feedback_dialog():
+    """The feedback form. Emitted on both pages that carry an ask box.
+
+    A NATIVE <dialog>, so focus trapping, escape to close, an inert background
+    and the top layer come from the browser rather than from a few hundred lines
+    that are wrong on one phone.
+
+    WHAT IT SENDS IS ON SCREEN BEFORE IT SENDS. The last exchange is the most
+    useful thing a reader can attach to "that answer was wrong", and attaching
+    it quietly would be collecting somebody's conversation without saying so.
+    """
+    return (
+        '<dialog class="askfb" id="askfb" aria-labelledby="askfbh">'
+        '<form id="askfbform" method="POST" action="%s">'
+        '<h2 id="askfbh">Model in training</h2>'
+        '<p class="askfbnote">The search writes from the published record and is '
+        'checked against it line by line. It still gets things wrong, and what it '
+        'got wrong is the useful part.</p>'
+        '<label class="askfbl" for="askfbtext">What happened</label>'
+        '<textarea id="askfbtext" name="feedback" rows="4" required '
+        'placeholder="The answer missed something, or read oddly, or stopped short">'
+        '</textarea>'
+        '<label class="askfbl" for="askfbmail">Email, only if you want a reply</label>'
+        '<input id="askfbmail" name="email" type="email" autocomplete="email" '
+        'placeholder="Optional">'
+        '<label class="askfbcheck" id="askfbattachrow" hidden>'
+        '<input type="checkbox" id="askfbattach" checked>'
+        '<span>Attach the last question and answer</span></label>'
+        '<pre class="askfbctx" id="askfbctxview" hidden></pre>'
+        '<input type="hidden" name="_subject" value="%s">'
+        '<input type="hidden" name="_captcha" value="false">'
+        '<input type="hidden" name="_template" value="table">'
+        '<input type="hidden" name="exchange" id="askfbctx">'
+        '<p class="askfbmsg" id="askfbmsg" role="status" aria-live="polite"></p>'
+        '<div class="askfbrow">'
+        '<button type="submit" class="askfbsend" id="askfbsend">Send</button>'
+        '<button type="button" class="askfblink" id="askfbclose">Close</button>'
+        '</div></form></dialog>' % (FEEDBACK_ACTION, FEEDBACK_SUBJECT)
+    )
+
+
 ASK_COMMON_JS = r"""
 (function(){
   'use strict';
+  /* THE FEEDBACK DIALOG, DRIVEN ONCE FOR BOTH BOXES.
+     The two clients are separate on purpose and neither can see the other's thread, so each
+     one sets window.askLastExchange and this reads it. A hook rather than a shared variable,
+     because the docket box and the homepage box hold their conversations differently and
+     always will. */
+  function wireFeedback(){
+    var fb = document.getElementById('askfb');
+    if (!fb) return;
+    var form = document.getElementById('askfbform');
+    var msg = document.getElementById('askfbmsg');
+    var ctx = document.getElementById('askfbctx');
+    var view = document.getElementById('askfbctxview');
+    var row = document.getElementById('askfbattachrow');
+    var box = document.getElementById('askfbattach');
+    var go = document.getElementById('askfbsend');
+
+    function last(){
+      try { return (window.askLastExchange && window.askLastExchange()) || ''; }
+      catch (e) { return ''; }
+    }
+    window.askOpenFeedback = function(){
+      var ex = last();
+      /* No exchange, no offer to attach one. An unticked box beside an empty panel is a
+         question a reader has to work out the answer to. */
+      row.hidden = !ex; view.hidden = !ex; view.textContent = ex;
+      if (box) box.checked = !!ex;
+      msg.textContent = ''; go.disabled = false;
+      if (typeof fb.showModal === 'function') fb.showModal(); else fb.setAttribute('open','');
+      var t = document.getElementById('askfbtext'); if (t) t.focus();
+    };
+    document.getElementById('askfbclose').addEventListener('click', function(){
+      if (typeof fb.close === 'function') fb.close(); else fb.removeAttribute('open');
+    });
+    if (box) box.addEventListener('change', function(){ view.hidden = !box.checked; });
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      ctx.value = (box && box.checked) ? last() : '';
+      go.disabled = true; msg.textContent = 'Sending';
+      fetch(form.action, {method:'POST',
+        headers:{'content-type':'application/json','accept':'application/json'},
+        body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))})
+        .then(function(r){ if (!r.ok) throw new Error('bad'); 
+          msg.textContent = 'Thanks. That goes straight to a person.';
+          form.reset(); view.hidden = true;
+          setTimeout(function(){
+            if (typeof fb.close === 'function') fb.close(); else fb.removeAttribute('open');
+          }, 1600);
+        })
+        .catch(function(){
+          msg.textContent = 'That did not send. Try again in a moment.';
+          go.disabled = false;
+        });
+    });
+    /* Every control that opens it, on either page. */
+    var opens = document.querySelectorAll('[data-askfb]');
+    for (var i = 0; i < opens.length; i++) {
+      opens[i].addEventListener('click', function(){ window.askOpenFeedback(); });
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireFeedback);
+  } else { wireFeedback(); }
+
   window.askWhyCut = function(reason){
     return ({
       numeral: 'it stated a figure the record does not carry',
@@ -2092,6 +2252,17 @@ ASK_JS = r"""
      mean something. The worker keeps no session either; the thread travels
      with each question. */
   var thread = [];
+  /* The shared feedback dialog cannot see this client's conversation, so hand it over. Read
+     from the thread rather than scraped off the page, so what gets attached is exactly what
+     was said and not whatever the DOM holds after a Start over. */
+  window.askLastExchange = function(){
+    for (var i = thread.length - 1; i > 0; i--) {
+      if (thread[i].role === 'assistant') {
+        return 'Q. ' + thread[i - 1].content + '\n\nA. ' + thread[i].content;
+      }
+    }
+    return '';
+  };
 
   /* =================================================================
      WORDS
@@ -3617,6 +3788,12 @@ ASK_JS = r"""
         f.appendChild(note);
       }
       var b = document.createElement('button');
+      var fbb = document.createElement('button');
+      fbb.type = 'button'; fbb.className = 'qagain'; fbb.textContent = 'Send feedback';
+      fbb.addEventListener('click', function(){
+        if (window.askOpenFeedback) window.askOpenFeedback();
+      });
+      f.appendChild(fbb);
       b.type = 'button'; b.className = 'qagain'; b.textContent = 'Start over';
       b.addEventListener('click', function(){
         input.value = '';
@@ -6193,6 +6370,7 @@ def docket_page(today, site_url, docket):
 when it lands, and whether the public gets a say. Sources on every item.</p>
 {stats}
 {ask_html(today)}
+{feedback_dialog()}
 </div>
 <div class="maphero">{layerbox}{svg}{layerbar}<div class="mapcap">{mapcap}</div></div>
 <h2>Closing soon</h2>
