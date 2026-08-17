@@ -171,8 +171,27 @@ IN_PAGE_QA_JS = """
     for (let p = el.parentElement; p; p = p.parentElement) {
       if (recorded.has(p)) anc.push(recorded.get(p));
     }
+    // EVERY TEXT NODE, NOT THE FIRST 80 CHARACTERS OF THEIR JOIN (2026-08-16).
+    // `text` above is the element's whole textContent squeezed onto one line
+    // and cut at 80 chars, which is right for a QA message and wrong as the
+    // record of what was drawn: run No.35's slide 09 set three fact lines in
+    // one div with <br>s, the third line began past character 80, and
+    // copy_sync_check could not see it at all and reported a FAIL on copy that
+    // was on the page. The run split the div into three elements to get past
+    // it. Better markup, but the reporting hole stayed open.
+    // So record each DIRECT child text node separately (a <br>-separated block
+    // is several of them), 200 chars each, 12 nodes max. Nothing downstream
+    // that reads `text` changes; readers that need the whole string read
+    // `texts`.
+    const texts = [];
+    for (const n of el.childNodes) {
+      if (n.nodeType !== 3) continue;
+      const t = n.textContent.trim().replace(/\\s+/g, " ");
+      if (t.length && texts.length < 12) texts.push(t.slice(0, 200));
+    }
     const node = {
       text: txt,
+      texts: texts,
       x: Math.round(r.x), y: Math.round(r.y),
       w: Math.round(r.width), h: Math.round(r.height),
       font_px: Math.round(fs * 10) / 10,
@@ -557,6 +576,52 @@ IN_PAGE_QA_JS = """
     out.contacts.push({ error: String(e).slice(0, 140) });
   }
 
+  /* THE AXIS CENSUS (2026-08-16). A MARK DRAWN ALONG A MEASURED AXIS IS READ
+     AS A QUANTITY, whatever the author meant by it. Run No.35 did it twice in
+     one deck and every machine gate passed both: slide 07 put three gold place
+     ticks under a rail whose x axis means DOLLARS, so three REGIONS were
+     printed at three dollar positions; slide 02 put thirteen division ticks on
+     a money rail, implying twelve equal months over a budget period that is
+     ten months long. Two pixel critics found them by reading; nothing
+     mechanical could, because nothing in the run ever wrote down that the axis
+     was quantitative or what the marks on it were.
+
+     A slide with a measured axis now says so, and enumerates what sits on it:
+
+       <body data-scale='[{"what":"the award rail","axis":"x","unit":"dollars",
+                           "from":[150,0],"to":[930,272174856],
+                           "band":[1120,1180],
+                           "marks":[{"at":312,"means":"Kodiak, $4.6M"},
+                                    {"at":688,"means":"the October close"}]}]'>
+
+     `from`/`to` are [design px, value] on that axis, `band` is the strip the
+     scale owns perpendicular to it, and every mark drawn inside that strip is
+     listed with what it means. qa.py checks the arithmetic (a mark off its own
+     span, a mark that means nothing) and takes a PIXEL CENSUS of the band,
+     calibrated on the marks the slide admits to, so a tick nobody declared is
+     found and printed with the value its position reads as. */
+  out.scales = [];
+  try {
+    const sdecl = (document.body && document.body.dataset.scale) || "";
+    const sspecs = sdecl ? JSON.parse(sdecl) : [];
+    for (const sp of sspecs) {
+      out.scales.push({
+        what: String(sp.what || "").slice(0, 90),
+        axis: String(sp.axis || "x").toLowerCase().slice(0, 1),
+        unit: String(sp.unit || "").slice(0, 40),
+        from: Array.isArray(sp.from) ? sp.from.slice(0, 2) : null,
+        to: Array.isArray(sp.to) ? sp.to.slice(0, 2) : null,
+        band: Array.isArray(sp.band) ? sp.band.slice(0, 2).map(Math.round) : null,
+        marks: (Array.isArray(sp.marks) ? sp.marks : []).slice(0, 60).map(m => ({
+          at: (m && typeof m.at === "number") ? Math.round(m.at) : null,
+          means: (m && typeof m.means === "string") ? m.means.trim().slice(0, 90) : ""
+        }))
+      });
+    }
+  } catch (e) {
+    out.scales.push({ error: String(e).slice(0, 140) });
+  }
+
   /* CANVAS TELEMETRY (2026-07-11, the rendered-3D gates): per visible canvas,
      backing resolution vs CSS size (silent-1x detector) and a downsampled
      pixel sample (dead/black-frame detector: a GL context that failed or
@@ -848,7 +913,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
-           "encodings": [], "contacts": [], "nondeterminism": [],
+           "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
            "fits": [], "asserts": [],
            "render_ms": 0, "ok": False}
     t0 = time.time()
@@ -871,7 +936,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
-                                       "encodings", "contacts", "leaders",
+                                       "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000

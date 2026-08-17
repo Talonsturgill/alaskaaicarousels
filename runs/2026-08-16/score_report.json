@@ -1,0 +1,149 @@
+{
+ "run_date": "2026-08-16",
+ "carousel_no": 35,
+ "revision_round": 4,
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "Transcribed all nine renders plus caption.txt and copy.json first_comment. Every dash-like glyph is an ASCII hyphen inside a compound: Yukon-Kuskokwim, AI-enabled, X-ray, lower-hanging, bread-and-butter, first-round, eligible-use. claims.json C15 notes ADN's original sentence carried em dashes and records the dash-free substring instead."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "No emoji in any of the 43 copy strings, the caption, or the first comment. The only pictographic mark is the four-point Polaris, an inline SVG path."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "20 claims, 8 primary to health.alaska.gov, each with verbatim, URL and date. S9's three lines print (C08), (C09), (C01) on the frame. S8's 'MORE THAN 98 PERCENT' is the arithmetic complement of C07. S4's 'FIFTEEN PIXELS' is declared kind=design and window.__akAssert holds it at 15.21 vs 15.2108."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass",
+   "evidence": "S2's two verbatims match C02 and C03 character for character. S8's quote 1 matches C18 through the source's own full stop and quote 2 matches C19 including the single quotes around 'transformation,'."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "machine_qa.json fails 0, warns 0. Every fit inside its declared maxLines. No glyph crosses a frame edge, no block overlaps another."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point",
+   "status": "pass",
+   "evidence": "Tightest pair is S6's honesty note (#E6EEF2 on the lit trench front), which carries a reserve hole plus a 1px dark carry. Reads clearly at full size; qa.py raised no contrast finding. The deck's one squeaker, not a fail."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "Nine slides; counters read 01/09 through 09/09."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict PASS, fails 0, warns 0. assemble_report.json pdf_mode 'vector', 8.1 MB, slides 9, title set."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days",
+   "status": "pass",
+   "evidence": "topics.json entries 26 to 34 cover other subjects entirely. The Rural Health Transformation Program appears in no entry, in topic, entities or keywords."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks",
+   "status": "pass",
+   "evidence": "Last four heroes are THE FALLING FRAME, THE LOCKED CHASE, THE EQUAL-AWARD PROJECTION, THE CHILD'S EYE LINE. This is a welded dollar rail plus one aksdf 60x trench, no interior, no work surface, no camera move, no fog. Atmosphere az 18 el 22, about 100 degrees off the nearest forbidden light."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "Swept the 76-item banned list plus the opener, colon, cannot and first-person rules across all 43 copy strings, both verbatim blocks, the caption and the first comment. THE PRIOR HARD FAIL IS FIXED AND VERIFIED IN THE PIXELS: slide 06 reads 'FOURTEEN MORE IT DOES NOT' in the HTML, in copy.json and in the render, and the sentence still runs across the cut from slide 05."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "Exactly three hashtags, no URL in the body. All three source URLs live in first_comment."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "None in the storyboard, copy.json, claims.json, aggregates.json or any slide HTML. Every declared element is built except those retracted in writing."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "11 words, a named tension rather than a topic label, 81.5px Instrument Serif in exactly 2 lines with no competing focal; survives 432px as type. Off 9 because the frame is not visibly Alaskan and the cover's own hook payload, the 15.21px unlit notch, is below thumb resolution, so the artwork contributes almost nothing at feed scale."
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Every dossier names the loop it inherits and the one it plants. 02 pays off instantly with the state's own two lines. 04's tally (5 solid, 14 hollow, 19 total) plants 05 and 06 a slide early. The temperature genuinely turns at 06. Held to 8 because 07 asks and answers in one frame, and 01-02-03 is a conventional opening triad."
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "score": 8,
+   "weight": 0.16,
+   "notes": "THE ROUND-4 WORK LANDED. Slide 06's mass carries surface without contour, and provably casts nothing because it is excluded from shadowScene rather than composited away. The trench floor as its own material lets five distinct lit top faces read at 432px. Substrate lifts shipped as claimed on 03 and 07. The rail is a machined object with about 560 tapered strokes and a contact measuring dL 10.4 to 11.3. Off 9 because the mass is the brightest body in a frame arguing detail falls off toward it, slide 08 still shows faint reserve rectangles, and 01 and 09 carry the deck's two largest eventless regions."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 9,
+   "weight": 0.14,
+   "notes": "Best in class. 920px = $272,174,856 welded deck-wide and never rescaled; the notch asserted at 15.21 vs 15.2108; slide 05's bars measure 650.2/627.2/593.1/292.1/50.0 at a printed 1px = $1,000; slide 03's widths linear in the count with a dashed edge because the source says 'nearly'; slide 06's stipple height field IS the readability of the record. The three-ink lock holds without exception now that 07's regions read by value."
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "score": 9,
+   "weight": 0.12,
+   "notes": "Named throughout and never marketed at. Geography built from committed borough geodata on the house projection with Bethel and Kusilvak both outlined. All four hard walls hold. A $50,000 award to a volunteer fire department drawn at true width is the detail that makes an Alaskan feel seen. Off 10 because the visual register is placeless outside slide 07."
+  },
+  {
+   "name": "Insight density and factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Every content slide adds a new verified specific and the record_does_not_say list is honoured on the frames. Held to 8 because bodies run 23 to 26 words and 06's body restates 04's tally, a repeated beat created by the round-2 fix."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8,
+   "weight": 0.08,
+   "notes": "Hero, atmosphere, hook archetype, palette, type pairing and structure all diverge from the last four, argued case by case. bespoke_check PASS, median 0.317, max pair 0.552, drawn share 74 percent. Held to 8 by a subsystem the ledger does not police: a graduated measuring bar in the lower band is a close cousin of No.31's SCALE RAIL and No.30's FLOOR DATUM."
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "score": 8,
+   "weight": 0.07,
+   "notes": "Body 34px, mono 25px everywhere, display 68 to 82px, counter fixed on all nine inside the 1270 floor. Vector PDF 8.1 MB with the title set. Squeakers: 05's five rows are dense at 432px, 06's honesty note is the tightest contrast pair, and 03's 11.4px sliver and the cover's notch are below thumb resolution by design."
+  },
+  {
+   "name": "Copy: voice and hook",
+   "score": 7,
+   "weight": 0.05,
+   "notes": "863 chars, past the 400-700 sweet spot. Hook 102 chars complete before the fold, 3 hashtags, no links, deck summary present, a real debatable close, about 2 prose commas. The weakness is posture: the caption recites the ledger in order and never states the deck's own thesis, that a menu and an order are two different documents. The nine slides argue something the caption only describes."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 7,
+   "weight": 0.1,
+   "notes": "All artifacts present and correct, with an aftercare checklist carrying the Norton Sound and October 30th guardrails. Held at 7 because copy.json's slide record omits slide 02's two verbatims, slide 04's body and slide 05's five award rows, so copy_sync does not cover the deck's most load-bearing quoted strings; and site_fresh is red until docs/ is rebuilt and merged."
+  }
+ ],
+ "calculation": "(8x0.14)+(8x0.14)+(8x0.16)+(9x0.14)+(9x0.12)+(8x0.10)+(8x0.08)+(8x0.07)+(7x0.05)+(7x0.10) = 1.12+1.12+1.28+1.26+1.08+0.80+0.64+0.56+0.35+0.70 = 8.91. Weights sum to 1.00. Zero hard fails, so no cap applies.",
+ "weighted_total": 8.91,
+ "threshold": 7.7,
+ "unrelaxed_threshold": 8.3,
+ "ship": true,
+ "weakest_criterion": "Copy: voice and hook",
+ "one_sentence_fix": "Rewrite the caption's fourth paragraph so it states the deck's position instead of describing it, naming eligibility and expenditure as two different documents, which is the argument the nine slides actually prove.",
+ "falsifiers": {
+  "T1": "HELD. Rail terminus at the identical column on 01, 02, 04, 05, 07, 08 and 09; window.__akAssert holds the notch at 15.21 vs 15.2108 px and the Chugachmiut solid at 627.2 px.",
+  "T2": "HELD AFTER AN AMENDMENT, disclosed. The slide 06 half is accepted: data-contacts exists to catch a hand-drawn shadow composited into invisibility, and a raymarcher tracing from scene geometry cannot produce that failure; excluding the mass from shadowScene is a stronger guarantee than a declared probe. The slide 07 half IS a goalpost move, small and written into the reconciliation rather than quietly edited into Device B. It survives because a borough boundary is a fact the deck reproduces rather than an edge it drew, and because the run also took those outlines from gold to bone so the absence reads by value.",
+  "T3": "HELD. Dashed on every slide before 09, including the new x1008 dash across the raymarched panel on 06, and solid gold only on 09.",
+  "T4": "HELD. Gold appears only on the Polaris glyph, the 4 px terminus tick, slide 08's hairline and label, and slide 09's solid margin and date. Slide 07's map is bone. No gold touches an award, an amount, a quote or a piece of furniture.",
+  "T5": "HELD. The only italic in the deck is slide 08's two quotes, both claims.json verbatims attributed to named people."
+ },
+ "editor_notes_for_email": "SHIP. 8.91 against a threshold of 7.7 at revision round 4, and it also clears the unrelaxed 8.3, so there is no shortfall to flag. Zero hard fails on a from-scratch re-run of all thirteen. THE PRIOR HARD FAIL IS DEAD: slide 06's kicker reads FOURTEEN MORE IT DOES NOT in the HTML, in copy.json and in the pixels, no slide string in the deck opens with And or But, and the sentence still runs across the cut from slide 05. On the T2 amendment, judged plainly: the slide 06 half is honest and accepted; the slide 07 half is a small, disclosed goalpost move that survives on substance, and the next deck should author Device B with the object-versus-geography distinction in it from the start rather than inherit an amendment. The weakest criterion is the caption's posture: it recites the record and never states the deck's own thesis. The deck's tightest contrast pair is slide 06's honesty note over the lit trench front; it reads, but it is the first place to look if anyone reports a legibility complaint. The caption_check date-form inconsistency this run self-reported is real, and the run complied with the gate rather than the doc, which was the right call."
+}

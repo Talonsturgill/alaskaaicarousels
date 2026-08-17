@@ -3741,3 +3741,65 @@ has not had a discovery pass.
   supporting rather than load-bearing until the sample is published the way the
   7.00 percent figure's now is.
   https://www.socialinsider.io/social-media-benchmarks/linkedin
+
+## 2026-08-16 - Phase 12 (machine upgrades, run No.35)
+
+- A DECORATIVE MARK ON A QUANTITATIVE AXIS IS READ AS A QUANTITY, and this deck
+  proved it twice in one build with every gate green. Slide 07 hung three gold
+  place ticks under a rail whose x means DOLLARS, so three REGIONS were printed
+  at three dollar amounts. Slide 02 set thirteen division ticks on a money rail,
+  implying twelve equal months over a period that runs ten. Both were caught by
+  a pixel critic reading the picture. Now machinery: `<body data-scale>` plus
+  qa.py's axis census, which fails an undeclared mark in the band and prints
+  the value its position reads as. The doctrine sentence to remember is the one
+  the gate enforces: ornament goes outside the band or it goes away.
+- A LIGHTING DEVICE THAT HAPPENS TO RANK-ORDER THE DATA IS AN ENCODING. Slide
+  06's five blocks were separated by a descending height stair which, by
+  descending in award order, put a Spearman of 1.00 between height and amount
+  forty pixels above a printed line reading HEIGHT ENCODES NOTHING. No gate can
+  see this: the height was a composition decision and the correlation was an
+  accident of the order the blocks were laid out in. The cheap defence is
+  procedural, not mechanical -- when a decorative dimension varies across a data
+  set, SHUFFLE it against the data order before drawing, or hold it constant.
+- A CONSTRUCTION DELETED FOR READING BADLY MUST BE DELETED EVERYWHERE. The
+  stroke-over-a-dot that read as an exclamation mark was removed from slide 07's
+  place ticks and left standing, at 2.5x the height, as the gold terminus on
+  five other slides. A revision that removes a construction for a READING reason
+  is a deck-wide instruction, and the round that makes it owes the deck a sweep
+  for the same shape elsewhere.
+- AN OBJECT CAN APPEAR TO CAST A SHADOW THE RENDERER NEVER TRACED. Slide 06's
+  mass was correctly excluded from the shadow scene and still read as casting,
+  because its belly hung below the slab's front edge where the camera saw it. A
+  shadow-only scene controls what is TRACED and not what is SEEN; if the object
+  crosses the ground plane's silhouette, the geometry is what has to move.
+- PARKED, from the frontier scan: nothing new. The scan slot was procedural art,
+  and both substantive sources on evenly-spaced streamline placement (the volzo
+  hatching writeup, Woodruff's sketchy relief) were re-read and neither publishes
+  parameters; both defer to Jobard and Lefer's paper, whose PDF does not extract
+  as text with the tooling here. The 2026-08-14 park (streamline placement as the
+  algorithm akhachure lacks) therefore stands unchanged and unstarted, and the
+  next scan in this slot should look for a readable implementation rather than
+  another overview. https://volzo.de/posts/hatching-hachures-contours/
+- A GATE CAN BE BLIND FOR A SHAPE REASON AND LOOK GREEN FOR MONTHS.
+  caption_check widened to the slides twice, on 2026-08-08 for the date table
+  and on 2026-08-15 for the banned phrases, and neither widening ever ran: its
+  walker only descended into a slide whose value was a DICT, and the copy room
+  writes LISTS OF STRINGS. The report said copy_fields_checked 4 on a nine-slide
+  deck every run since, and nobody read the 4. When a gate is widened to a new
+  surface, assert the COUNT of what it now sees, not that the code exists.
+- PARKED FOR THE NEXT RUN, built and verified and then swapped out on cost: the
+  probe-scale cross-measurement (contact and encoding probes measured a second
+  time at native resolution when a declared side is under 15 design px, so the
+  gate can say whether the shadow is missing or the declaration is unmeasurable).
+  It cost this run four render cycles. Evidence to reuse: the design-to-feed
+  int() mapping can sample a row centred 2.5 design px outside the declared band,
+  and this run's own thin probes measure 1.3 to 4.5 L* apart at the two scales,
+  against a 4.0 floor.
+- RECOMMENDATION FOR THE MAINTAINER, not applied: scripts/caption_check.py's
+  DATE_FORMS has no year exemption, so it rejects "October 30, 2026" although
+  config/brand.yaml says `with a year, "August 27, 2026"` and CAPTION_CRAFT says
+  the same. The gate and the two documents disagree. Aligning them means either
+  loosening the regex (a maintainer's call, since it is a gate) or changing both
+  documents to the always-ordinal form the gate already enforces. This run
+  complied by writing the ordinal and the caption critic flagged the
+  contradiction independently.

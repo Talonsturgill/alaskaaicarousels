@@ -1,0 +1,91 @@
+{
+ "run_date": "2026-08-16",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "864 organizations sent nearly 1,800 letters of interest.",
+   "fragment": "864 organizations",
+   "member": "C04"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "864 organizations sent nearly 1,800 letters of interest.",
+   "fragment": "1,800 letters",
+   "member": "C04"
+  },
+  {
+   "kind": "design",
+   "slide": 4,
+   "text": "AUGUST 7TH, 2026. FIFTEEN PIXELS OF NINE HUNDRED AND TWENTY.",
+   "fragment": "FIFTEEN PIXELS",
+   "note": "The deck's printed scale constant, a property of the artwork and not of the world. The rail is welded at 920 px = $272,174,856 (C01), so $4,500,000 (C06) is 15.21 px. The number describes the drawing, and window.__akAssert on slide 05 asserts the same arithmetic against the geometry that actually drew."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "NINETEEN PROJECTS. FIVE ITEMISED.",
+   "fragment": "NINETEEN PROJECTS",
+   "member": "C07"
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "NINETEEN PROJECTS. FIVE ITEMISED.",
+   "fragment": "FIVE ITEMISED",
+   "subject": "awards itemised in published reporting",
+   "members": [
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14"
+   ],
+   "n": 5
+  },
+  {
+   "kind": "count",
+   "slide": 5,
+   "text": "FIVE AWARDS THE RECORD ITEMISES",
+   "fragment": "FIVE AWARDS",
+   "subject": "awards",
+   "members": [
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "PORTABLE X-RAY MACHINES, FIVE RURAL CLINICS",
+   "fragment": "FIVE RURAL CLINICS",
+   "member": "C11"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "Nineteen projects were funded.",
+   "fragment": "Nineteen projects",
+   "member": "C07"
+  },
+  {
+   "kind": "count",
+   "slide": 7,
+   "text": "Three regions,nothing yet",
+   "fragment": "Three regions",
+   "subject": "regions",
+   "members": [
+    "C15"
+   ],
+   "items": [
+    "Kodiak",
+    "Yukon-Kuskokwim Delta",
+    "North Slope"
+   ]
+  }
+ ]
+}

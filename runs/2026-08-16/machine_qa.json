@@ -1,0 +1,177 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the lit part of the year is almost nothing': dE 38.1, AUC 0.94, visible 100%/100%, seen 48/960px at 432w"
+      ],
+      "contacts": [
+        "'the rail on the lit plain': shadow L* 13.6 vs ground L* 24.5, dL 10.9 at 432w"
+      ],
+      "leaders": [
+        "leader \"the unlit notch at the rail's left end\" lands 0.0px from its target",
+        "leader \"the unlit notch at the rail's left end\" meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'The list says drones and AI.The order says X' fits 2/2 lines at 81.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'eligibility covers the whole year, both ends alike': dE 0.5, AUC 0.51, visible 100%/100%, seen 768/768px at 432w"
+      ],
+      "contacts": [
+        "'the rail on the lit plain': shadow L* 13.3 vs ground L* 23.6, dL 10.4 at 432w"
+      ],
+      "fits": [
+        "hd 'Alaska wrotethe menu itself' fits 2/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'almost everyone who asked did not get funded': dE 4.6, AUC 0.61, visible 85%/100%, seen 3264/3840px at 432w"
+      ],
+      "contacts": [
+        "'the four funnel bands on the plain': shadow L* 9.8 vs ground L* 32.3, dL 22.6 at 432w"
+      ],
+      "leaders": [
+        "leader 'the Tanana Chiefs Conference drone plan, unresolved' lands 0.0px from its target",
+        "leader 'the Tanana Chiefs Conference drone plan, unresolved' meets its label 20.0px away"
+      ],
+      "fits": [
+        "hd 'Eight hundred andsixty four asked' fits 2/2 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the lit part is almost nothing': dE 41.2, AUC 0.98, visible 100%/100%, seen 36/720px at 432w"
+      ],
+      "contacts": [
+        "'the rail on the lit plain': shadow L* 12.2 vs ground L* 23.5, dL 11.3 at 432w"
+      ],
+      "leaders": [
+        "leader 'the lit notch, the first Friday' lands 0.0px from its target",
+        "leader 'the lit notch, the first Friday' meets its label 7.0px away"
+      ],
+      "fits": [
+        "hd '$4.5 millionof $272 million' fits 2/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'one of these is more than twelve times another': dE 45.2, AUC 0.99, visible 100%/100%, seen 864/864px at 432w"
+      ],
+      "contacts": [
+        "'the five award solids on the lit inset floor': shadow L* 14.3 vs ground L* 27.5, dL 13.1 at 432w"
+      ],
+      "leaders": [
+        "leader 'ALASKA PRIMARY CARE ASSOCIATION, 650200' lands 14.4px from its target",
+        "leader 'CHUGACHMIUT, 627200' lands 14.4px from its target",
+        "leader 'ALASKA BEHAVIORAL HEALTH, 593100' lands 14.4px from its target",
+        "leader 'NORTON SOUND HEALTH CORPORATION, 292100' lands 14.4px from its target",
+        "leader 'NENANA VOLUNTEER FIRE DEPARTMENT, 50000' lands 14.4px from its target",
+        "leader 'ALASKA PRIMARY CARE ASSOCIATION, 650200' meets its label 12.0px away",
+        "leader 'CHUGACHMIUT, 627200' meets its label 12.0px away",
+        "leader 'ALASKA BEHAVIORAL HEALTH, 593100' meets its label 12.0px away",
+        "leader 'NORTON SOUND HEALTH CORPORATION, 292100' meets its label 12.0px away",
+        "leader 'NENANA VOLUNTEER FIRE DEPARTMENT, 50000' meets its label 12.0px away"
+      ],
+      "fits": [
+        "hd 'What the first order bought' fits 1/1 lines at 67.5px"
+      ],
+      "asserts": [
+        "'the Chugachmiut solid, printed as $627,200 at 1 px = $1,000' holds: 627.2 vs 627.2 px (within 0.5)",
+        "'the notch, printed as $4,500,000 on a 920 px year' holds: 15.21 vs 15.2108 px (within 0.05)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'five of these have edges and the rest does not': dE 9.4, AUC 0.86, visible 100%/100%, seen 4864/3584px at 432w"
+      ],
+      "leaders": [
+        "leader 'the edgeless mass, the fourteen not itemised' lands 0.0px from its target",
+        "leader 'the edgeless mass, the fourteen not itemised' meets its label 11.0px away"
+      ],
+      "fits": [
+        "hd 'Fourteen are notitemised here' fits 2/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'three parts of the state have nothing in them': dE 35.9, AUC 0.96, visible 100%/100%, seen 840/960px at 432w"
+      ],
+      "leaders": [
+        "leader 'Kodiak Island borough, no first round award' lands 0.0px from its target",
+        "leader 'Bethel borough, no first round award' lands 0.0px from its target",
+        "leader 'North Slope borough, no first round award' lands 0.0px from its target",
+        "leader 'Kodiak Island borough, no first round award' meets its label 0.0px away",
+        "leader 'Bethel borough, no first round award' meets its label 0.0px away",
+        "leader 'North Slope borough, no first round award' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'Three regions,nothing yet' fits 2/2 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'almost all of it is still open': dE 42.2, AUC 0.80, visible 100%/100%, seen 12/360px at 432w"
+      ],
+      "contacts": [
+        "'the rail on the lit plain': shadow L* 14.0 vs ground L* 24.9, dL 10.9 at 432w"
+      ],
+      "leaders": [
+        "leader 'the unwritten span of the first year' lands 0.0px from its target",
+        "leader 'the unwritten span of the first year' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'The design pointed one way' fits 1/1 lines at 67.5px",
+        "q1 '\"The deep focus on technology might kind of ' fits 4/4 lines at 39.5px",
+        "q2 '\"You name a program 'transformation,' but th' fits 3/3 lines at 39.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the end of the period is a fixed point and the money before it is not': dE 29.1, AUC 0.82, visible 100%/100%, seen 112/112px at 432w"
+      ],
+      "contacts": [
+        "'the Polaris plinth on the lit plain': shadow L* 14.2 vs ground L* 44.5, dL 30.3 at 432w"
+      ],
+      "leaders": [
+        "leader 'the October margin, resolved' lands 0.0px from its target",
+        "leader 'the October margin, resolved' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'What should thenext Friday buy?' fits 2/2 lines at 81.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}
