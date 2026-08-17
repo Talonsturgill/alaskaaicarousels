@@ -1942,28 +1942,28 @@
     },
     {
       "date": "2026-08-16",
-      "collected_utc": "2026-08-16T19:38:45Z",
+      "collected_utc": "2026-08-17T05:19:38Z",
       "collector_version": "1.0",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-08-16T09:00:00",
-        "source_timestamp_utc": "2026-08-16T17:00:00Z",
-        "inventory_mcf": 6922894,
-        "inventory_delta_mcf": 40190,
+        "source_timestamp": "2026-08-16T16:00:00",
+        "source_timestamp_utc": "2026-08-17T00:00:00Z",
+        "inventory_mcf": 6958005,
+        "inventory_delta_mcf": 31135,
         "storage_design_mcf": 13000000,
-        "inventory_pct_of_design": 53.3,
+        "inventory_pct_of_design": 53.5,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_operating_mcfd": 47970,
         "withdrawal_available_mcfd": 47970,
         "withdrawal_restriction_mcfd": 111930,
         "injection_design_mcfd": 225000,
         "injection_operating_mcfd": 61896,
-        "injection_available_mcfd": 21706,
-        "injection_in_progress_mcfd": 40190,
+        "injection_available_mcfd": 30761,
+        "injection_in_progress_mcfd": 31135,
         "injection_restriction_mcfd": 144424,
         "operational_note": "Well 7 is out of service for Coil tube work. We are currently waiting on the Coil Tube unit to be available for this work. This OFO only impacts Expansion Customers. We are still working on the system to only email customers affected by expansion OFO's, this issue is still being addressed. CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
-        "source_age_hours": 2.6
+        "source_age_hours": 5.3
       },
       "forecast": [
         {
@@ -2008,22 +2008,22 @@
         },
         {
           "date": "2026-08-22",
-          "hours": 23,
+          "hours": 24,
           "mean_temp_f": 54.7,
           "min_temp_f": 51,
           "hdd65": 10.3,
           "modeled_demand_mmcfd": 116
         }
       ],
-      "forecast_source_updated": "2026-08-16T15:37:13+00:00",
+      "forecast_source_updated": "2026-08-17T02:16:22+00:00",
       "derived": {
         "peak_forecast_date": "2026-08-22",
         "peak_forecast_hdd": 10.3,
         "peak_modeled_demand_mmcfd": 116,
         "forecast_window_demand_bcf": 0.68,
-        "storage_withdrawal_mmcfd": -40.2,
+        "storage_withdrawal_mmcfd": -31.1,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 59.7,
+        "days_cover_at_peak": 60.0,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -2069,7 +2069,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-16T19:38:45Z",
+          "fetched_utc": "2026-08-17T05:19:39Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -2078,7 +2078,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-16T19:38:46Z",
+          "fetched_utc": "2026-08-17T05:19:39Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -2087,7 +2087,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-16T19:38:46Z",
+          "fetched_utc": "2026-08-17T05:19:39Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -2096,7 +2096,7 @@
         "injection_restriction_active",
         "withdrawal_restriction_active"
       ],
-      "supersedes_posting": "2026-08-16T04:18:00"
+      "supersedes_posting": "2026-08-16T09:00:00"
     }
   ]
 }
