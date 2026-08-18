@@ -306,7 +306,7 @@
     }
    ],
    "first_seen": "2026-07-08",
-   "last_updated": "2026-08-13",
+   "last_updated": "2026-08-18",
    "history": [
     {
      "date": "2026-07-08",
@@ -375,6 +375,10 @@
     {
      "date": "2026-08-13",
      "note": "Checked and unchanged. The federal record for solicitation AFCEC-26-R-0006 still shows the request for lease proposals past due and archived on July 14th, with no award posted and no award timeline announced. Proposals closed June 29th."
+    },
+    {
+     "date": "2026-08-18",
+     "note": "Checked and unchanged. No lease award has been announced, and the Air Force record still shows only the solicitation phase for the roughly 4,700 acres across the three installations."
     }
    ]
   },
@@ -417,7 +421,7 @@
     }
    ],
    "first_seen": "2026-07-08",
-   "last_updated": "2026-08-12",
+   "last_updated": "2026-08-18",
    "history": [
     {
      "date": "2026-07-08",
@@ -470,6 +474,10 @@
     {
      "date": "2026-08-07",
      "note": "Checked and unchanged. No board vote on the LM6000 purchase appears in Fairbanks reporting or in the utility's public filings, so the decision remains outstanding."
+    },
+    {
+     "date": "2026-08-18",
+     "note": "Re-verified. A special board meeting was scheduled for August 13th, and no decision on the roughly $120 million LM6000 purchase has surfaced in public reporting."
     }
    ]
   },
@@ -872,7 +880,7 @@
     }
    ],
    "first_seen": "2026-07-17",
-   "last_updated": "2026-08-16",
+   "last_updated": "2026-08-18",
    "history": [
     {
      "date": "2026-07-17",
@@ -945,6 +953,10 @@
     {
      "date": "2026-08-16",
      "note": "Re-verified against the state notice. Comment on the roughly 19,950 acre conveyance north of Houston, ADL 234762, closes 5 p.m. on August 19th, three days out. The notice states that only persons from whom the division receives timely written comment during the period will be eligible to appeal the final finding and decision."
+    },
+    {
+     "date": "2026-08-18",
+     "note": "Re-verified against the state notice. The public comment window still closes 5 p.m. August 19th, and the AIDEA board meets August 26th, its first meeting after comments close."
     }
    ]
   },
@@ -1150,8 +1162,8 @@
      "kind": "milestone"
     },
     {
-     "date": "2026-08-24",
-     "label": "Vendor proposals due, 9:30 a.m.",
+     "date": "2026-08-28",
+     "label": "Vendor proposals due, 3:30 p.m. Alaska time",
      "kind": "milestone"
     }
    ],
@@ -1163,7 +1175,7 @@
     }
    ],
    "first_seen": "2026-08-02",
-   "last_updated": "2026-08-12",
+   "last_updated": "2026-08-18",
    "history": [
     {
      "date": "2026-08-02",
@@ -1176,6 +1188,10 @@
     {
      "date": "2026-08-12",
      "note": "Re-verified against the state notice. Proposals for RFP 2026-0200-0064 are still due 9:30 a.m. Alaska Daylight Time on August 24th, with no addenda posted."
+    },
+    {
+     "date": "2026-08-18",
+     "note": "Amendment 1 moved the deadline. Vendor proposals for RFP 2026-0200-0064 are now due 3:30 p.m. Alaska time August 28th, extended from August 24th, per the state notice."
     }
    ]
   },
@@ -1489,11 +1505,15 @@
     }
    ],
    "first_seen": "2026-08-06",
-   "last_updated": "2026-08-12",
+   "last_updated": "2026-08-18",
    "history": [
     {
      "date": "2026-08-06",
      "note": "Tracked. Fort Wainwright is one of nine sites the Army named, alongside Fort Benning, Fort Bragg, Fort Campbell, Fort Drum, Fort Hood, Holston Army Ammunition Plant, Joint Base Lewis McChord and Redstone Arsenal. The Army says the sites were chosen on mission criticality, existing energy shortfalls, grid resilience and environmental and technical constraints. The program answers Executive Order 14299 on deploying advanced nuclear reactor technologies for national security, and the Army's stated goal is an operational demonstration plant on a military installation by 2030. No vendor selection for Fort Wainwright has been made public."
+    },
+    {
+     "date": "2026-08-18",
+     "note": "Re-verified. Fort Wainwright remains one of nine Army posts named for a possible microreactor by 2030, and no down selection has been reported since."
     }
    ]
   },
@@ -1588,11 +1608,15 @@
     }
    ],
    "first_seen": "2026-08-06",
-   "last_updated": "2026-08-12",
+   "last_updated": "2026-08-18",
    "history": [
     {
      "date": "2026-08-06",
      "note": "Tracked, with the number corrected. A reader asked for Executive Order 14314; that order is Making America Beautiful Again by Improving Our National Parks, and it raises national park entry fees for foreign visitors. The order that governs data center permitting is 14318, signed July 23rd, 2025. Its Alaska relevance is direct, because it instructs the Defense Department that it may competitively lease military land for qualifying projects, which is the authority underneath the Air Force offer of about 4,700 acres at Joint Base Elmendorf Richardson, Eielson and Clear that this docket already tracks. A categorical exclusion means a project is presumed to have no significant environmental effect and skips the study that would otherwise be written, so the order's practical effect in Alaska is fewer published environmental findings on the largest power users the state has ever considered."
+    },
+    {
+     "date": "2026-08-18",
+     "note": "Re-verified. Executive Order 14318 stands as published, with no amendment or revocation on the record."
     }
    ]
   },
