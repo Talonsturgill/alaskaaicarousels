@@ -3803,3 +3803,19 @@ has not had a discovery pass.
   documents to the always-ordinal form the gate already enforces. This run
   complied by writing the ordinal and the caption critic flagged the
   contradiction independently.
+
+## 2026-08-18 (craft refresh, Phase 1)
+- LinkedIn document posts in 2026: SAVES are named the highest-value signal
+  (industry guides cite ~1.8x more saves than text posts and 2.5 to 3.1x
+  engagement), and dwell of 35 to 55 seconds is the algorithm read the format
+  is optimised for. Design the close for the SAVE, not only the follow: a
+  keepable data slide plus the single ask is worth more than a CTA flourish.
+- Editorial dataviz guidance is converging on "designed, not generated, a
+  point of view not a chart dump" and on tactile depth (paper grain plus
+  sculptural 3D). This is exactly the rendered-ladder + grain-tile house
+  bet; nothing to change, but it confirms the direction against the standing
+  artwork-craft weakness.
+- One number worth watching: several 2026 guides now advise keeping the
+  uploaded PDF under ~3 MB to avoid LinkedIn recompression artifacts. Our
+  shrink_pdfs.py already resamples the art layer; keep an eye on final
+  pdf_mb and prefer the smaller clean file where the PSNR floor allows.
