@@ -13,6 +13,43 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-08-18/",
+      "url": "https://alaskaaihq.com/archive/2026-08-18/",
+      "title": "The Proving Sky",
+      "summary": "Slides map the 875 million dollar award, the SMART and FMDS scope, the fall 2026 date and the 2021 Alaska deployment.",
+      "content_html": "<p><em>In 2021 one Alaska airline let a machine pick its routes. In 2026 the FAA bought that machine for the whole country.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-18/og.jpg\" alt=\"The Proving Sky cover slide\" width=\"1080\" height=\"1350\"></p><p>Alaska's hardest skies trained the AI the FAA just bought.</p><p>The FAA is buying a brain for the nation's airspace.</p><p>the FAA award to Air Space Intelligence A reported 12 year award. First deployment reported for fall 2026.</p><p>It learned to fly here first.</p><p>In 2021 Alaska Airlines became the first airline to let Air Space Intelligence's Flyways choose its routes, over terrain and weather that punish a straight line.</p><p>This is the antagonist.</p><p>One flew the storm. One flew ahead of it.</p><p>It reads three things, then it asks.</p><p>Flyways anticipates what a flight will hit before it happens, then hands a dispatcher and a pilot a route that is safe, ATC compliant and shorter. A human still says yes. It never flies the plane.</p><p>What the proving ground saved.</p><p>gallons of fuel a year flights on a typical day tens of thousands of flight hours a year Alaska says Flyways saves it about this much. 1 drop = 50,000 gallons</p><p>The hard place made the tool. The country bought it.</p><p>Alaska did not get this AI. Alaska proved it. The line that started over one state now runs under a national system, SMART and FMDS, on a reported 12 year award.</p><p>The toughest place keeps proving the nation's tools. Who should own what it de-risks?</p><p>Sources in comments.</p><h3>Sources</h3><ul><li><a href=\"https://airspace-intelligence.com/\">Air Space Intelligence</a>, primary document</li><li><a href=\"https://news.alaskaair.com/technology/how-ai-is-helping-alaska-airlines-plan-better-flight-routes-and-lower-emissions/\">Alaska Airlines Newsroom</a>, primary document</li><li><a href=\"https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways\">NPR</a>, report</li><li><a href=\"https://www.executivebiz.com/articles/faa-awards-asi-875m-air-traffic-modernization-contract\">ExecutiveBiz</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-08-18/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "Alaska's hardest skies trained the AI the FAA just bought.\n\nThe FAA is buying a brain for the nation's airspace.\n\nthe FAA award to Air Space Intelligence A reported 12 year award. First deployment reported for fall 2026.\n\nIt learned to fly here first.\n\nIn 2021 Alaska Airlines became the first airline to let Air Space Intelligence's Flyways choose its routes, over terrain and weather that punish a straight line.\n\nThis is the antagonist.\n\nOne flew the storm. One flew ahead of it.\n\nIt reads three things, then it asks.\n\nFlyways anticipates what a flight will hit before it happens, then hands a dispatcher and a pilot a route that is safe, ATC compliant and shorter. A human still says yes. It never flies the plane.\n\nWhat the proving ground saved.\n\ngallons of fuel a year flights on a typical day tens of thousands of flight hours a year Alaska says Flyways saves it about this much. 1 drop = 50,000 gallons\n\nThe hard place made the tool. The country bought it.\n\nAlaska did not get this AI. Alaska proved it. The line that started over one state now runs under a national system, SMART and FMDS, on a reported 12 year award.\n\nThe toughest place keeps proving the nation's tools. Who should own what it de-risks?\n\nSources in comments.",
+      "date_published": "2026-08-18T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-18/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 13,
+        "sources": [
+          {
+            "url": "https://airspace-intelligence.com/",
+            "outlet": "Air Space Intelligence",
+            "primary": true
+          },
+          {
+            "url": "https://news.alaskaair.com/technology/how-ai-is-helping-alaska-airlines-plan-better-flight-routes-and-lower-emissions/",
+            "outlet": "Alaska Airlines Newsroom",
+            "primary": true
+          },
+          {
+            "url": "https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways",
+            "outlet": "NPR",
+            "primary": false
+          },
+          {
+            "url": "https://www.executivebiz.com/articles/faa-awards-asi-875m-air-traffic-modernization-contract",
+            "outlet": "ExecutiveBiz",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-08-16/",
       "url": "https://alaskaaihq.com/archive/2026-08-16/",
       "title": "The Menu and the First Friday",

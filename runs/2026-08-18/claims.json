@@ -1,0 +1,156 @@
+{
+  "run_date": "2026-08-18",
+  "carousel_no": 36,
+  "story": "Alaska Airlines was the first airline to adopt Air Space Intelligence's Flyways machine-learning route-optimization tool, and that Alaska deployment became the demonstration case behind the FAA's $875 million contract with the same company to build SMART, a predictive system to modernize the national airspace",
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "The FAA awarded Air Space Intelligence an $875 million contract to modernize the national airspace system",
+      "source_url": "https://airspace-intelligence.com/",
+      "source_outlet": "Air Space Intelligence",
+      "source_is_primary": true,
+      "date_of_source": "2026-06-23",
+      "evidence": "ASI Awarded $875m FAA contract to modernize the National Airspace System",
+      "confidence": 0.95,
+      "id": "c1"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "The FAA contract with Air Space Intelligence is worth $875 million",
+      "source_url": "https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways",
+      "source_outlet": "NPR",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-10",
+      "evidence": "The FAA is so convinced that it recently announced an $875 million contract with Air Space Intelligence to modernize the nation's airspace.",
+      "confidence": 0.97,
+      "id": "c2"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "The FAA award to Air Space Intelligence is a 12 year contract",
+      "source_url": "https://www.executivebiz.com/articles/faa-awards-asi-875m-air-traffic-modernization-contract",
+      "source_outlet": "ExecutiveBiz",
+      "source_is_primary": false,
+      "date_of_source": "2026-06-23",
+      "evidence": "The 12-year award covers deployment",
+      "confidence": 0.85,
+      "id": "c3"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "The new FAA system is named SMART for Strategic Management of Airspace, Routes, and Trajectories",
+      "source_url": "https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways",
+      "source_outlet": "NPR",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-10",
+      "evidence": "SMART system, short for Strategic Management of Airspace, Routes, and Trajectories",
+      "confidence": 0.92,
+      "id": "c4"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "The contract also covers the Flow Management Data and Services platform known as FMDS",
+      "source_url": "https://www.executivebiz.com/articles/faa-awards-asi-875m-air-traffic-modernization-contract",
+      "source_outlet": "ExecutiveBiz",
+      "source_is_primary": false,
+      "date_of_source": "2026-06-23",
+      "evidence": "Flow Management Data and Services, or FMDS, platform",
+      "confidence": 0.85,
+      "id": "c5"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "The FAA targeted an initial operational deployment of SMART in fall 2026",
+      "source_url": "https://www.executivebiz.com/articles/faa-awards-asi-875m-air-traffic-modernization-contract",
+      "source_outlet": "ExecutiveBiz",
+      "source_is_primary": false,
+      "date_of_source": "2026-06-23",
+      "evidence": "The FAA has targeted an initial operational deployment of SMART in fall 2026.",
+      "confidence": 0.88,
+      "id": "c6"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "Alaska Airlines was the first airline to start using the Flyways system in 2021",
+      "source_url": "https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways",
+      "source_outlet": "NPR",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-10",
+      "evidence": "Alaska was the first airline to start using the Flyways system back in 2021",
+      "confidence": 0.9,
+      "id": "c7"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "Alaska Airlines operates roughly 1,500 flights on a typical day",
+      "source_url": "https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways",
+      "source_outlet": "NPR",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-10",
+      "evidence": "On a typical day, Alaska Airlines operates roughly 1,500 flights",
+      "confidence": 0.93,
+      "id": "c8"
+    },
+    {
+      "claim_id": "c9",
+      "claim": "Alaska Airlines says Flyways saves it roughly a million gallons of fuel per year",
+      "source_url": "https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways",
+      "source_outlet": "NPR",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-10",
+      "evidence": "Alaska says it's saving tens of thousands of hours in the air and roughly a million gallons of fuel per year because of Flyways.",
+      "confidence": 0.9,
+      "id": "c9"
+    },
+    {
+      "claim_id": "c10",
+      "claim": "Alaska Airlines says Flyways saves it tens of thousands of hours in the air",
+      "source_url": "https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways",
+      "source_outlet": "NPR",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-10",
+      "evidence": "Alaska says it's saving tens of thousands of hours in the air and roughly a million gallons of fuel per year because of Flyways.",
+      "confidence": 0.9,
+      "id": "c10"
+    },
+    {
+      "claim_id": "c11",
+      "claim": "Alaska Airlines reported that optimized routes using Flyways saved over 1.2 million gallons of fuel equivalent to 11,958 metric tons of CO2",
+      "source_url": "https://news.alaskaair.com/technology/how-ai-is-helping-alaska-airlines-plan-better-flight-routes-and-lower-emissions/",
+      "source_outlet": "Alaska Airlines Newsroom",
+      "source_is_primary": true,
+      "date_of_source": "2024-08-09",
+      "evidence": "Optimized routes using Flyways saved over 1.2 million gallons of fuel, equivalent to 11,958 metric tons of CO2 emissions.",
+      "confidence": 0.85,
+      "id": "c11"
+    },
+    {
+      "claim_id": "c12",
+      "claim": "Flyways generates optimized route recommendations for dispatchers and pilots that are safe, ATC compliant, minimize fuel, reduce flight time, and avoid congested airspace",
+      "source_url": "https://news.alaskaair.com/technology/how-ai-is-helping-alaska-airlines-plan-better-flight-routes-and-lower-emissions/",
+      "source_outlet": "Alaska Airlines Newsroom",
+      "source_is_primary": true,
+      "date_of_source": "2024-08-09",
+      "evidence": "Flyways AI then generates optimized route recommendations for dispatchers and pilots that are safe, ATC compliant, minimize fuel consumption, reduce flight time and avoid potentially congested airspace.",
+      "confidence": 0.92,
+      "id": "c12"
+    },
+    {
+      "claim_id": "c13",
+      "claim": "Flyways analyzes air traffic, wind, weather and other factors to anticipate what will happen during flight before it does",
+      "source_url": "https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways",
+      "source_outlet": "NPR",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-10",
+      "evidence": "analyzing air traffic, wind, weather and other factors to anticipate what is going to happen during flight before it does",
+      "confidence": 0.88,
+      "id": "c13"
+    }
+  ],
+  "record_does_not_say": [
+    "The record does not state the exact date the FAA award was signed. No fetched page gives a signing date; ExecutiveBiz published the award on June 23, 2026, which is why the sources carry that date.",
+    "The record does not confirm the 12 year contract term or the fall 2026 initial deployment against a primary FAA document. Both rest on ExecutiveBiz alone and are reported rather than verified against the government record.",
+    "The record does not verify the award through a federal government document. SAM.gov and USAspending.gov were not reachable this run; the $875 million figure is corroborated across NPR, ExecutiveBiz and Air Space Intelligence's own site.",
+    "The 1.2 million gallon figure is from Alaska Airlines' 2024 newsroom and covers an unspecified period, so it is background, not the in-window number. The current figure the deck uses is NPR's roughly one million gallons per year, attributed to Alaska Airlines."
+  ]
+}

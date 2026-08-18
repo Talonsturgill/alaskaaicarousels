@@ -362,6 +362,15 @@
    "first_words": "864 organizations sent nearly",
    "hook_type": "a count of applicants against the size of the fund they applied to",
    "note": "The caption-critic took candidate B over A and required one fix. It also flagged, independently of the showrunner, that caption_check's DATE table has no year exemption and so rejects the plain 'October 30, 2026' form that brand.yaml and CAPTION_CRAFT both allow."
+  },
+  {
+   "run_date": "2026-08-18",
+   "opening_move": "TIMELINE COLLAPSE",
+   "structure": "INVERTED PYRAMID",
+   "closing_move": "NEW:PROVING CREDIT",
+   "first_words": "In 2021 one Alaska airline let a machine",
+   "hook_type": "causation inversion",
+   "note": "NEW:PROVING CREDIT is an ownership/credit close (who owns what the frontier de-risks, the carrier that flew the risk or the vendor banking the contract). Distinct from who-decides (a vote) and PRICE. Both caption directors independently converged on this close; the critic trimmed candidate B from 1065 to 867 chars to clear the 900 band."
   }
  ]
 }

@@ -1,0 +1,19 @@
+{
+  "chars": 867,
+  "hook": "In 2021 one Alaska airline let a machine pick its routes. In 2026 the FAA bought that machine for the whole country.",
+  "hook_len": 116,
+  "commas": 6,
+  "comma_per_100": 0.73,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaAI",
+    "#AviationAI",
+    "#AirspaceModernization"
+  ],
+  "deck_summary": "Slides map the 875 million dollar award, the SMART and FMDS scope, the fall 2026 date and the 2021 Alaska deployment.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 43
+}
