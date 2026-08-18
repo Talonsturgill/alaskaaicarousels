@@ -1,0 +1,26 @@
+{
+  "run_date": "2026-08-18",
+  "carousel_no": 36,
+  "weighted_total": 8.33,
+  "threshold": 8.3,
+  "ship": true,
+  "verdict": "ship",
+  "revision_rounds": 2,
+  "hard_fails": [],
+  "criteria": [
+    {"name": "Thumb-stop cover", "score": 7, "weight": 0.14, "why": "Specific inversion claim in 9 words at huge Fraunces, visibly Alaskan ridgeline, works at thumb, but the terrain floor is murky and the gold seed competes with the type mass."},
+    {"name": "Story arc and swipe momentum", "score": 8, "weight": 0.14, "why": "Clean hook to deliver to proving ground to antagonist to wordless turn to mechanism to receipts to synthesis to close; Foresight Line motif and night-to-gold palette arc read as one composed sequence."},
+    {"name": "Artwork craft and genuine detail", "score": 7, "weight": 0.16, "why": "S8 golden-hour terrain is a strong rendered hero and S5/S6 carry bespoke drawn fields, but the S4 aksdf antagonist reads as a soft blob more than a storm and S1's terrain floor is muddy."},
+    {"name": "Story-art fusion", "score": 8, "weight": 0.14, "why": "Numbers encoded in the art: 12-segment award timeline, 20-drop ISOTYPE for 1M gallons, read-ahead vs buried encoding foresight at dE 8.1."},
+    {"name": "Alaska authenticity and local relevance", "score": 8, "weight": 0.12, "why": "Real projected Alaska geography, Anchorage hub coords, Gulf of Alaska, Alaska Airlines as first adopter; the thesis centers Alaska as the prover."},
+    {"name": "Insight density and factual weight", "score": 8, "weight": 0.10, "why": "Each content slide adds a new verified specific, all honestly hedged reported or Alaska says; S4 is a deliberate breather."},
+    {"name": "Variety vs ledger", "score": 8, "weight": 0.08, "why": "Composition, atmosphere, palette, type pairing and structure all diverge from decks 32-35 with dossier justification."},
+    {"name": "Legibility and platform fitness", "score": 7, "weight": 0.07, "why": "Floors met, readable at 432px, vector PDF with counters; S9 Sources-in-comments dips to exactly 4.5 worst-point."},
+    {"name": "Copy voice and hook", "score": 8, "weight": 0.05, "why": "Hook lands at 116 chars, timeline-collapse open, analytical inversion voice, deck-summary present, and a real debatable close."},
+    {"name": "Deliverable completeness", "score": 7, "weight": 0.10, "why": "All paste blocks present, but site_fresh is still red pending the Phase 11 docs/ rebuild."}
+  ],
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "one_sentence_fix": "Re-render the S4 aksdf hero so the antagonist reads as a dimensional supercell with a lit core and soft self-shadow, and lift the S1 terrain-floor relief out of the murk.",
+  "editor_notes_for_email": "The deck clears the 8.3 threshold at 8.33 with zero rubric hard fails, so it ships. Two notes for the human: the public docs/ site must be rebuilt at 2026-08-18 before merge (handled in the ship phase); and the S4 storm hero plus the S1 cover terrain are the visibly weakest artwork and are the first things to strengthen next. Contract term (12 year), fall-2026 deployment and FMDS are single-sourced to ExecutiveBiz and labelled reported throughout; the 1M gallons is attributed Alaska says; 1,500 is captioned as total daily flights, not simultaneously optimized.",
+  "notes": "Margin over threshold is thin (0.03). Two revision rounds (1 pixel-critic, 1 flow-critic) keep the ladder at threshold 8.3. site_fresh is a gate_status row, not a rubric hard fail; it is resolved by the Phase 11 site rebuild before merge."
+}

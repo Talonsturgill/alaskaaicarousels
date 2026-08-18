@@ -1,0 +1,93 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hd 'Alaska's hardest skies trained the AI the FA' fits 3/3 lines at 119.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the Anchorage origin pulse' lands 0.0px from its target",
+        "leader 'the Anchorage origin pulse' meets its label 0.0px away"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the lit corridor was found before the plane reached the weather': dE 8.1, AUC 0.97, visible 100%/100%, seen 9792/10320px at 432w"
+      ],
+      "leaders": [
+        "leader 'the foresight corridor apex' lands 0.0px from its target",
+        "leader 'the buried reactive line' lands 0.0px from its target",
+        "leader 'the foresight corridor apex' meets its label 0.0px away",
+        "leader 'the buried reactive line' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'One flew the storm. One flew ahead of it.' fits 2/2 lines at 77.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'AIR TRAFFIC band' lands 0.0px from its target",
+        "leader 'WIND band' lands 0.0px from its target",
+        "leader 'WEATHER band' lands 0.0px from its target",
+        "leader 'the accept gate' lands 0.0px from its target",
+        "leader 'AIR TRAFFIC band' meets its label 0.0px away",
+        "leader 'WIND band' meets its label 0.5px away",
+        "leader 'WEATHER band' meets its label 0.0px away",
+        "leader 'the accept gate' meets its label 0.0px away"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the fall 2026 node' lands 0.0px from its target",
+        "leader 'the fall 2026 node' meets its label 0.0px away"
+      ],
+      "asserts": [
+        "'the 12-segment timeline span' holds: 350 vs 350 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 4.5 on 'Sources in comments.' (box mean 6.7) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "fits": [
+        "hd 'The toughest place keeps proving the nation'' fits 3/3 lines at 77.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN"
+}

@@ -3819,3 +3819,29 @@ has not had a discovery pass.
   uploaded PDF under ~3 MB to avoid LinkedIn recompression artifacts. Our
   shrink_pdfs.py already resamples the art layer; keep an eye on final
   pdf_mb and prefer the smaller clean file where the PSNR floor allows.
+
+## 2026-08-18 (run No. 36 retro, "The Proving Sky")
+- STORY DEDUPE saved the run. The two strongest raw leads (UAF AURORA-AI and the
+  Cook Inlet gas emergency) were both DEAD on arrival: AURORA-AI shipped twice
+  already (No.20, No.31, six days prior), and the gas-vs-compute thesis was
+  No.27's argument from twelve days back. Aviation AI (Alaska Airlines' Flyways
+  becoming the FAA's $875M SMART) was the clean, uncovered, in-window angle. Run
+  dedupe_check on EVERY candidate before committing, not just the front-runner.
+- TWO RENDERED HEROES, separated. aksdf storm (S4) + software-3D golden-hour
+  terrain (S8). akthree's snapshot sentinel read the mostly-sky S8 frame as dead
+  and fell back to the AK3D bench; the fallback, framed to fill the lower frame,
+  was the stronger result anyway. When a GPU hero fills only part of the frame
+  over dark sky, expect the snapshot to fail and design the fallback to carry it.
+- The recurring top-loaded-composition defect is beaten by CONSTRUCTION, not a
+  repair pass: a continuous terrain/cloud-deck floor in every lower third means
+  the frame-balance check passes by design. Two quiet slides (S5, S9) still
+  warned until a foreground cloud bank was added; qa's "craft density" wants
+  textured EDGES in the band, not just a filled gradient.
+- The flow critic caught the Foresight Line motif DROPPING OUT on S7 (the data
+  slide had no line). Reinstating it as a fuel baseline the ISOTYPE drops hang
+  from restored the continuity and made the receipts slide a stop on the line's
+  journey rather than a standalone card. Continuity is a per-slide obligation.
+- Score 8.33 over 8.3, thinnest possible margin, on the standing weakness
+  (artwork craft, 7). The named residual is the S4 storm reading soft. aksdf
+  cloud heroes are the hardest thing this engine draws; budget extra rounds or
+  pick an object hero when the concept allows.

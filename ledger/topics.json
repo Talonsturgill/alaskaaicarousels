@@ -1532,6 +1532,37 @@
    "angle": "A menu and an order are two different documents. The state wrote what the money MAY buy; the first order bought X-ray machines, a hydroponic farm and a scheduling system. Fourteen of nineteen awards are not itemised in published reporting and the deck says so at full weight.",
    "claims": 20,
    "note": "The briefed headline, that the fund bought no autonomy, was killed by the fact-checker: the state publishes the nineteen-project list only as an unparseable spreadsheet. The Alaska Native Language Center candidate was killed outright as a manufactured AI link."
+  },
+  {
+   "run_date": "2026-08-18",
+   "carousel_no": 36,
+   "title": "The Proving Sky",
+   "topic": "Alaska Airlines was the first airline to adopt Air Space Intelligence's Flyways machine learning route-optimization tool in 2021, and that Alaska deployment became the demonstration case behind the FAA's $875 million contract with the same company to build SMART, a predictive national airspace system, plus the FMDS flow platform.",
+   "entities": [
+    "Alaska Airlines",
+    "Air Space Intelligence",
+    "FAA",
+    "Flyways",
+    "SMART",
+    "FMDS",
+    "Anchorage"
+   ],
+   "angle": "The inversion. For a month this page showed Alaska as a site AI is done TO (data centers sited, land leased, power drawn). This deck flips it: Alaska's terrain and weather PROVED the tool the whole country is now buying. Direction of causation runs Alaska to nation.",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "c12",
+    "c13"
+   ],
+   "note": "Aviation AI, a fresh uncovered beat. AURORA-AI (No.20, No.31) and the Cook Inlet gas story (adjacent to No.27) were rejected as duplicates at dedupe. Score 8.33 over 8.3."
   }
  ]
 }

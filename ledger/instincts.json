@@ -815,6 +815,21 @@
    "run_date": "2026-08-16",
    "confidence": 0.86,
    "instinct": "An object can appear to cast a shadow the renderer never traced. No.35's edgeless mass was correctly excluded from the shadow scene and still read as casting, because its belly hung below the slab's front edge where the camera saw it. A material exclusion is a claim about light and says nothing about silhouette."
+  },
+  {
+   "run_date": "2026-08-18",
+   "confidence": 0.9,
+   "instinct": "cx.filter='blur(...)' applied INSIDE a per-pixel fillRect loop blurs every single draw op and is pathologically slow (a full-deck render was SIGTERM-killed on it). Compute the shading into a SMALL offscreen canvas once, then drawImage it upscaled with imageSmoothingEnabled=true for a smooth hillshade at trivial cost."
+  },
+  {
+   "run_date": "2026-08-18",
+   "confidence": 0.85,
+   "instinct": "A gold accent or terminus marker placed at a catmull/bezier line's off-frame control endpoint renders off-canvas and reads as ABSENT (a pixel critic flagged 'no gold anywhere'). For an edge-tease terminus, scan back to the line's last ON-FRAME point (x <= canvas width) and place the marker there."
+  },
+  {
+   "run_date": "2026-08-18",
+   "confidence": 0.9,
+   "instinct": "aggregate_check.py keys claims by the 'id' field, but the fact-checker and claims_check use 'claim_id'. Mirror claim_id into 'id' on every claim in claims.json, or every aggregate member/from_claim lookup fails ('member not in claims.json') while claims_check still passes green."
   }
  ]
 }

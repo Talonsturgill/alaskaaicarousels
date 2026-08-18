@@ -883,6 +883,53 @@
     "C THE OCTOBER MARGIN"
    ],
    "note": "Three-ink semantic lock: BONE is the record, STATE BLUE is the state's own words and nothing else, GOLD is what is still open. Gold appears at full strength only on 08 and 09."
+  },
+  {
+   "run_date": "2026-08-18",
+   "carousel_no": 36,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE FORESIGHT LINE OVER THE PROVING SKY. A single teal protagonist route read AHEAD of the weather, staged over a continuous terrain/cloud-deck floor, under a camera that CLIMBS from ground to orbit to a golden-hour aerial. Diverges from THE LOCKED CHASE (32) interior object, THE EQUAL-AWARD PROJECTION (33) static chart sheet, THE CHILD'S EYE LINE (34) horizontal nursery dolly, and THE WELDED RAIL (35) measurement rail: this is a vertical climb over open sky and real geography with an evolving protagonist line.",
+   "atmosphere": "NEW: COLD DAWN AT ALTITUDE. Open-sky volumetric cloud decks and a faint radar-sweep register under a low dawn key, warming across the deck. Not interior room fog (34), not near-edge plate lamp (33), not the rail atmosphere (35).",
+   "hook_archetype": "NEW: THE REVERSED ARROW. A causation inversion stated flat: the hard place made the tool, the country bought it.",
+   "palette": "NEW: TROPOPAUSE DUSK TO DAWN",
+   "palette_family": "NEW: TROPOPAUSE DUSK TO DAWN",
+   "palette_hexes": [
+    "#02060F",
+    "#081426",
+    "#0E2138",
+    "#24384F",
+    "#35506E",
+    "#3CE6B4",
+    "#5AC8F0",
+    "#7C8DA6",
+    "#9BC4E0",
+    "#F2A65A",
+    "#F4F8FF",
+    "#FFC72C"
+   ],
+   "type": [
+    "Fraunces",
+    "Space Grotesk",
+    "JetBrains Mono"
+   ],
+   "type_pairing": "FLIGHT-DECK EDITORIAL (Fraunces display argument + Space Grotesk cool labels + JetBrains Mono telemetry)",
+   "techniques": [
+    "aksdf CPU raymarched storm hero, rung 2 of the rendered ladder",
+    "AK3D software-3D golden-hour terrain hero (akthree fell back to AK3D in headless)",
+    "noise flow-field jet stream and reactive-vs-foreseen route splines",
+    "offscreen-upscaled hillshade over d3.geoConicEqualArea parallels 55/65 rotate 154",
+    "ISOTYPE fuel field (20 drops = 1,000,000 gallons)",
+    "12-segment award meter/timeline",
+    "world-coordinate leaders with landing ticks",
+    "wordless-claim data-encodes (dE 8.1)"
+   ],
+   "continuity_devices": [
+    "A TERRAIN FLOOR panorama spine (globalX)",
+    "B THE FORESIGHT LINE motif evolution",
+    "C CAMERA CLIMB",
+    "D PALETTE ARC night to dawn to gold"
+   ],
+   "note": "Gold budget: Polaris seed at the line head (S1), the human accept gate (S6), the FALL 2026 node (S8), the sealed Polaris (S9). Standing weakness attacked: artwork craft, scored 7 (still weakest but improved); two rendered heroes separated across the deck; every lower third carries modeled tone."
   }
  ]
 }

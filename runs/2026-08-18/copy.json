@@ -1,0 +1,84 @@
+{
+  "run_date": "2026-08-18",
+  "carousel_no": 36,
+  "document_title": "The Proving Sky",
+  "post_copy": "In 2021 one Alaska airline let a machine pick its routes. In 2026 the FAA bought that machine for the whole country.\n\nThe FAA award to Air Space Intelligence runs 875 million dollars over a reported 12 years. It funds SMART and the FMDS flow platform for the national airspace.\n\nThe machine is Flyways. It reads traffic, wind and weather and flags what a flight will hit, then recommends a route a dispatcher or pilot accepts. It never flies the plane.\n\nAlaska runs it across roughly 1,500 flights a day and says it saves about 1 million gallons of fuel and tens of thousands of flight hours a year.\n\nSlides map the 875 million dollar award, the SMART and FMDS scope, the fall 2026 date and the 2021 Alaska deployment.\n\nWho owns that credit now, the carrier that flew the risk or the vendor banking the national contract?\n\n#AlaskaAI #AviationAI #AirspaceModernization",
+  "deck_summary_line": "Slides map the 875 million dollar award, the SMART and FMDS scope, the fall 2026 date and the 2021 Alaska deployment.",
+  "first_comment": "What the deck draws on, in order.\n\nAir Space Intelligence announced the 875 million dollar FAA award on its own site. https://airspace-intelligence.com/\n\nNPR reported the award, the SMART system and Alaska Airlines' Flyways results on August 10th. https://www.npr.org/2026/08/10/nx-s1-5872752/airspace-reboot-alaska-airlines-flyways\n\nExecutiveBiz reported the 12 year term, the FMDS flow platform and the fall 2026 deployment target. https://www.executivebiz.com/articles/faa-awards-asi-875m-air-traffic-modernization-contract\n\nAlaska Airlines describes how Flyways plans routes and the fuel it saves. https://news.alaskaair.com/technology/how-ai-is-helping-alaska-airlines-plan-better-flight-routes-and-lower-emissions/",
+  "caption_meta": {
+    "opening_move": "TIMELINE COLLAPSE",
+    "structure": "INVERTED PYRAMID",
+    "closing_move": "NEW:PROVING CREDIT"
+  },
+  "slides": {
+    "S1": [
+      "ROUTE INTELLIGENCE",
+      "Alaska's hardest skies trained the AI the FAA just bought."
+    ],
+    "S2": [
+      "THE BUY",
+      "The FAA is buying a brain for the nation's airspace.",
+      "$875,000,000",
+      "the FAA award to Air Space Intelligence",
+      "12 YEAR TERM",
+      "SMART",
+      "FMDS",
+      "A reported 12 year award. First deployment reported for fall 2026."
+    ],
+    "S3": [
+      "2021",
+      "It learned to fly here first.",
+      "In 2021 Alaska Airlines became the first airline to let Air Space Intelligence's Flyways choose its routes, over terrain and weather that punish a straight line.",
+      "FIRST ADOPTER, 2021"
+    ],
+    "S4": [
+      "THE WEATHER IT READS",
+      "This is the antagonist."
+    ],
+    "S5": [
+      "One flew the storm. One flew ahead of it.",
+      "READ AHEAD",
+      "REACTED"
+    ],
+    "S6": [
+      "HOW IT WORKS",
+      "It reads three things, then it asks.",
+      "Flyways anticipates what a flight will hit before it happens, then hands a dispatcher and a pilot a route that is safe, ATC compliant and shorter. A human still says yes. It never flies the plane.",
+      "AIR TRAFFIC",
+      "WIND",
+      "WEATHER",
+      "A HUMAN ACCEPTS"
+    ],
+    "S7": [
+      "THE RECEIPTS",
+      "What the proving ground saved.",
+      "1,000,000",
+      "gallons of fuel a year",
+      "1,500",
+      "flights on a typical day",
+      "tens of thousands",
+      "of flight hours a year",
+      "Alaska says Flyways saves it about this much.",
+      "1 drop = 50,000 gallons"
+    ],
+    "S8": [
+      "THE DIRECTION",
+      "The hard place made the tool. The country bought it.",
+      "Alaska did not get this AI. Alaska proved it. The line that started over one state now runs under a national system, SMART and FMDS, on a reported 12 year award.",
+      "FALL 2026, REPORTED"
+    ],
+    "S9": [
+      "The toughest place keeps proving the nation's tools. Who should own what it de-risks?",
+      "Sources in comments.",
+      "ALASKA.AI"
+    ]
+  },
+  "aftercare": [
+    "Post as a document (PDF) so LinkedIn renders all nine pages, not as nine images.",
+    "Paste the first comment right after posting, so the source links land with the deck.",
+    "Reply to the first three or four comments in the first hour, since early replies lift distribution.",
+    "The closing slide asks a real question. Pin a comment that invites the ownership-versus-credit debate.",
+    "Do not add sources or links in the post itself. They live in the first comment only."
+  ],
+  "editor_notes_for_email": "Story cleared dedupe as a fresh, uncovered angle (aviation AI); AURORA-AI and the Cook Inlet gas story were both rejected as duplicates of recent decks. Two rendered heroes, S4 (aksdf raymarched storm) and S8 (software-3D golden-hour terrain; akthree fell back to the AK3D bench in headless, still a dimensional rendered hero). The wordless-turn slide (S5) measures dE 8.1 for its read-ahead-versus-buried claim. Contract term (12 year) and fall-2026 deployment are single-sourced to ExecutiveBiz and are labelled reported throughout."
+}
