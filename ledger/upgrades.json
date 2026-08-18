@@ -1330,7 +1330,7 @@
    "verification": "(1) RECONSTRUCTION of the exact defect: this run's real aggregates.json + render_report.json with a claims.json stripped to claim_id only (the pre-workaround state). HEAD aggregate_check FAILS -- S3 member 'c7' not in claims.json, S6 member c13 not in claims.json, plus three cascading 'item not in the text of the declared claim(s)' fails. Fixed aggregate_check on identical inputs PASSES, 3 detected / 3 declared. (2) BACKWARD COMPAT: same run with claim_id stripped (id only) PASSES. (3) REAL SHIPPED RUN out/2026-08-18 (both fields present) PASSES 3/3, unchanged from ship. (4) NEGATIVE CONTROL (gate not weakened): a real member id renamed to a bogus 'cZZ' still FAILS and names 'member c7 is not in claims.json', so a genuinely missing member is still caught. (5) py_compile clean.",
    "rollback": "Revert the upgrade(2026-08-18) commit. The lookup falls back to keying by id alone; a claims.json that carries id (the current fact-checker output does, after this run's workaround) is unaffected.",
    "limits": "Populates the lookup more completely only; it does not reconcile a claim that carries id and claim_id with DIFFERENT values (setdefault keeps the first registered under each distinct key, so both names point at their own claim object -- the intended behavior). It does not change what the fact-checker emits; a separate normalization at claims-emit time remains a cleaner long-term shape and is out of this phase's scope.",
-   "commit": "PENDING upgrade(2026-08-18)"
+   "commit": "74654893c1d8bdb976fb341cd046fa5f4ac636a8"
   }
  ],
  "scan_log": [
