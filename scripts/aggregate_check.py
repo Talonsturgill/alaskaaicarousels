@@ -644,7 +644,17 @@ def run(run_dir, render_report_path=None, aggregates_path=None, claims_path=None
         try:
             cj = json.loads(cl_path.read_text())
             for c in cj.get("claims", []):
-                claims[str(c.get("id"))] = c
+                # Key by BOTH the fact-checker's "claim_id" and the shorter
+                # "id" some emitters use, so a member id resolves whichever
+                # field the claim was written with. A run whose claims.json
+                # carried only "claim_id" (no "id") silently keyed every claim
+                # under "None" and every member/from_claim lookup missed while
+                # claims_check stayed green (2026-08-18). Register every name a
+                # claim answers to; do not overwrite an already-registered key.
+                for key in (c.get("id"), c.get("claim_id")):
+                    if key is None:
+                        continue
+                    claims.setdefault(str(key), c)
         except ValueError as e:
             return 2, {"error": "cannot read %s: %s" % (cl_path, e)}
 

@@ -3845,3 +3845,50 @@ has not had a discovery pass.
   (artwork craft, 7). The named residual is the S4 storm reading soft. aksdf
   cloud heroes are the hardest thing this engine draws; budget extra rounds or
   pick an object hero when the concept allows.
+
+## 2026-08-18 - Phase 12 upgrade engineer (what shipped, what is parked, the scan)
+
+SHIPPED this run: one reactive fix, aggregate_check.py now keys claims by BOTH
+`id` and `claim_id` (see ledger/upgrades.json 2026-08-18). No frontier
+improvement applied; the single upgrade slot went reactive-first.
+
+Frontier scan focus (b) editorial dataviz / cartography technique, chosen
+because trend_check names "Artwork craft and genuine detail" the weakest
+criterion in 7 of the last 10 runs (last worked 2026-08-07, 8 runs stale) and
+this rotation slot is the shelf that stocks it; last scanned 2026-08-02, and
+distinct from the last three logged foci (procedural art 08-16, headless
+rendering 08-14, accessibility/PDF 08-12). 6 searches, 3 reads.
+
+PARKED, two portable craft principles, neither safely boundable into machinery
+this run because both sources are explicitly non-parametric:
+
+- ADDITIVE beats OBSERVATIONAL annotation (Lundgard-lineage survey, "A Survey
+  on Annotations in Information Visualization", arXiv 2410.05579). Empirical
+  finding: annotations that ADD external context a reader can't get from the
+  chart itself (a background event, an outside benchmark, a "why") measurably
+  improve comprehension; OBSERVATIONAL annotations that merely restate a trend
+  the picture already shows ("sales rising") do NOT beat an unannotated
+  baseline. The house lesson: a callout label on our decks earns its ink only
+  when it says something the artwork can't. A caption that narrates the shape
+  the reader is already looking at is dead weight. This is an editorial-room
+  and copywriter instinct, not a gate: the survey itself concludes "no
+  reproducible mechanical checks or named parameters" exist for annotation
+  placement yet, and cartographic label-placement rules "remain unadapted for
+  data visualization." https://arxiv.org/html/2410.05579v1
+- TEXT-HALO / CASING for labels over busy imagery (ESRI "Polishing Your Halo";
+  figure-ground cartography). The one hard number is WCAG 4.5:1 text-to-
+  background contrast, which a halo is a legitimate way to reach when type sits
+  over artwork; but every width/opacity rule in the source is explicitly
+  iterative ("nudge until it stops working, then back off"), best halo color is
+  "match the background, not contrast it," and 50% opacity mutes it. Relevant to
+  our recurring "art touching glyphs" (3 runs) and "tiny-text" (3 runs) warns:
+  a same-hue, ~1x-stroke, half-opacity halo or a knockout casing is the craft
+  move when a glyph must sit on texture, rather than moving the glyph. Parked as
+  a DESIGN_DOCTRINE candidate, not a gate, because there is no non-arbitrary
+  threshold to enforce and qa already flags the collisions it would prevent.
+  https://www.esri.com/about/newsroom/arcuser/polishing-your-halo
+
+Most of the Observable annotation piece (pointer-driven marks, continuous /
+cross-facet crosshairs, grouped tips) is INTERACTIVE and does not port to a
+static PDF slide, so it is noted-and-dropped rather than parked.
+https://observablehq.com/blog/five-techniques-to-improve-chart-annotations
