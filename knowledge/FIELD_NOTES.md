@@ -3983,3 +3983,86 @@ https://observablehq.com/blog/five-techniques-to-improve-chart-annotations
   density grid and perpendicular seeding on both sides. It is the first time
   this deck's line density has carried a number rather than a texture. The
   parameters are worth keeping as a house preset.
+
+## 2026-08-19 - Phase 12 upgrade engineer (what shipped, what is parked, the scan)
+
+SHIPPED this run: three reactive fixes, no frontier improvement applied. Two in
+`scripts/dossier_check.py` (the field-4a pattern now tolerates `**4a. ...`, and
+a contact shadow promised in a dossier must be declared as `data-contacts` in
+the slide markup) and one spec line in `prompts/routine_instructions.md` (if
+`runs/<today>/` is taken, take the next date). See `ledger/upgrades.json`
+2026-08-19 and `out/2026-08-19/automation_retro.md`.
+
+THE STANDING OFFENDER WAS WORKED ON ITS SECOND CLAUSE. "Artwork craft and
+genuine detail" is now the weakest criterion in 8 of 11 runs. The scorer's fix
+had two halves; the contact-shadow half is machinery as of this run. The proof
+worth remembering: slides 03 and 06 DREW two-part contact shadows in their own
+canvas code and never wrote `data-contacts`, so qa.py's fitted contact gate,
+which is opt-in, reported nothing on five of nine slides. Declaring slide 03's
+shadow and re-running the UNCHANGED qa.py yields `shadow L* 3.2 vs ground
+L* 9.4, dL 6.2 at 432w, under the 8.0 comfort band`. That warning was in the
+shipped pixels and no artifact in the run ever printed it. General lesson, and
+it is the third time this studio has learned it: AN OPT-IN CONTRACT IS A GATE
+YOU CAN DECLINE. Silence reads as clean, and the run with the most to hide is
+the run that writes the fewest declarations.
+
+PARKED, three items.
+
+- THE FEED-RESOLUTION PROBE for line fields that dissolve at 432px. Design is
+  1080 wide and the feed is 432, so one feed pixel is 2.5 design px and the
+  finest cycle the feed can carry is 5 design px; the fraction of a region's
+  ink structure above that limit is a pure Nyquist split with nothing fitted.
+  Measured on this run's own PNGs: the 605-stroke comb at 1.4px pitch puts
+  0.71 of its structure above the limit, against 0.10 to 0.15 for every piece
+  of art in the deck the scorer praised (S08 registers 0.10, S07 feather wash
+  0.11, S01 streamlines 0.13, S02 roll call 0.11, S09 count bar 0.15, S06
+  column band 0.11), grain-only plate 0.27 and DOM text 0.17. Clean separation
+  at REGION level. NOT SHIPPED because it needs a region to point at: run blind
+  over 90px tiles, the only form that could fire without a declaration, it
+  flags two tiles on `examples/demo-deck` slide 03 and three on this deck's
+  slide 08, both reference-quality art. It also sees only ONE of the three
+  fields the scorer named: slide 04's hachure reads as fuzz for a tonal reason
+  and slide 05's runs are uncountable for an arithmetic one (5.7px per point on
+  the axis), and neither is spectral. Next attempt should take the arithmetic
+  subset first, which needs no fitting at all: a slide declaring N countable
+  marks in a band must give them at least 2N feed pixels of span, and 605 marks
+  across 339 feed pixels is provably uncountable before a pixel is read.
+- ORACLE ANCHORING, and it is the best-named description of this studio's
+  review loop that has turned up in any scan. "A test oracle that obtains its
+  expected value from the system it is judging cannot fail: if a fault moves
+  measurement and expectation together the comparison cancels exactly."
+  SPECIFICATION-ANCHORED expectations come from values fixed outside the thing
+  under test; STATE-ANCHORED ones flow from it. Measured on a deployed air
+  traffic simulator: re-anchoring one oracle on published procedure, with no
+  production change, recovered 8 of 46 missed mutants; state-anchoring a
+  healthy one cost 4 of 19. `dossier_check.py`'s 2026-07-26 docstring already
+  described the mechanism without the word: "the pixel critics grade each slide
+  against its OWN dossier, so a slide that executed a bad plan passes its
+  acceptance checklist." Run No.37 gave two clean instances: Device B promised
+  to cut a data object with the right frame edge when the plate ends at x1040
+  and the frame at x1080, and Device C, a title block declared FIXED, shipped
+  at eight different heights. The parked machinery: a GEOMETRY ORACLE, with
+  frame, plate and safe-zone extents in one committed constants file, a
+  plan-time check of stated dossier coordinates against it, and a FIXED device
+  stating its box once and being held to it on every sheet. Both defects die at
+  plan time from values no run authored.
+  https://arxiv.org/abs/2608.17214
+- CONTRACT-FIRST GENERATION, the supporting result. Making an agent document
+  pre-conditions, post-conditions and undefined behaviour BEFORE generating
+  tests improved bug detection by 9.8 points (p = 0.0352) and branch coverage
+  by 2.5 points (p = 0.0034), beating human-authored tests 56.7 percent of the
+  time. This is the pattern the contact-promise fix uses: declare the contract,
+  then measure against it. Worth remembering the next time a new qa contract is
+  proposed, because it says the declaration itself carries value even before
+  anything measures it. https://arxiv.org/abs/2608.17177
+
+SCAN CONDITIONS. Focus (f), agent and automation workflow patterns, the stalest
+rotation slot at 14 days and distinct from the last three logged foci
+(2026-08-18 editorial dataviz, 2026-08-16 procedural art, 2026-08-14 headless
+rendering). WEBSEARCH WAS UNAVAILABLE for the third time in six runs: the
+session had spent its entire 200-call budget before Phase 12, the same failure
+as 2026-08-14 and 2026-08-16, and the research phase is where it goes. There
+was no discovery step; the scan ran on WebFetch alone against two indexes,
+which is a narrower instrument and found more than the last two blocked scans
+did, mostly by luck of the arXiv listing. The pattern is now stable enough to
+name: if Phase 12 needs the frontier, the budget has to be reserved in Phase 2.

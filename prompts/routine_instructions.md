@@ -168,6 +168,16 @@ maintainer can post in ninety seconds.
 - All run artifacts live in `out/<YYYY-MM-DD>/` during the run and are
   committed to `runs/<YYYY-MM-DD>/` at ship time.
 - Today = America/Anchorage date. Research window = last 10 days.
+- IF THAT DATE IS ALREADY TAKEN, TAKE THE NEXT ONE (2026-08-19). A run that
+  wakes late in the Anchorage evening can find `runs/<today>/` already holding
+  a shipped deck, because the previous run took the same calendar day. That
+  happened on run No.37, which woke at 23:15 on August 18th with No.36's
+  artifacts already on `main`. Overwriting shipped run artifacts is forbidden
+  and there is no version of this the run may improvise: the run date becomes
+  the first date with no `runs/<date>/` directory, which at that hour is the
+  date Anchorage rolls into anyway, and the reason goes in `run_state.json`
+  under `date_note`. Never write into an existing `runs/<date>/`, never
+  renumber a shipped carousel, and don't ask: this is the answer.
 - CADENCE: the trigger fires DAILY. Every window stated in runs
   (variety: last 4 decks; instincts: 8 runs; light decks: 1 per 8 runs)
   is RUN-based, not calendar-based. The 30-day topic dedupe IS

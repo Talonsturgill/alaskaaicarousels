@@ -26,6 +26,18 @@ Also cross-checks the breather escape hatch in both directions, so
 a slide whose body carries the attribute must be declared a breather in its
 dossier, and a dossier that declares a breather must carry the attribute.
 
+And (2026-08-19) it cross-checks the CONTACT-SHADOW PROMISE. qa.py has a
+fitted contact gate -- known-bad dL 1.24, known-good dL 8.1, FAIL under 4.0 --
+and it is OPT-IN, so a slide that never writes `data-contacts` is not judged
+rather than judged clean. Run No.37 promised a contact shadow in writing in all
+nine dossiers, declared it on four slides, and machine_qa reported no contacts
+at all on the other five. Two of those five (03 and 06) had the shadow DRAWN in
+their own canvas code and simply never declared it; the scorer then marked the
+deck down for bare-plate bands and floating objects, and artwork craft was the
+weakest criterion for the eighth time in eleven runs. A gate nobody is required
+to point at the evidence is not a gate: if the plan promises a contact shadow,
+the slide must declare where it is, so the measurement actually runs.
+
 Usage:
   python scripts/dossier_check.py --run-dir out/2026-07-26
   python scripts/dossier_check.py --run-dir out/2026-07-26 --json
@@ -71,9 +83,64 @@ FLAT_ONLY = ("plate", "hairline", "rule", "caption", "footer", "fixture",
 THIN_PLAN_CHARS = 200
 
 HEAD_RE = re.compile(r"^##\s+SLIDE\s+(\d+)\b(.*)$", re.I | re.M)
+# THE EMPHASIS MAY OPEN BEFORE THE NUMBER (2026-08-19). The pattern demanded the
+# "4a" sit OUTSIDE the bold, i.e. `4a. **Lower-third treatment.**`, and run No.37
+# wrote all nine dossiers as `**4a. Lower-third treatment.**`, which is the same
+# field with the asterisks one word earlier and is what SLIDE_DOSSIER_SPEC's own
+# line 34 looks like when an author bolds the whole label. Every dossier failed
+# with "no field 4a", the least informative failure this gate can produce, and it
+# cost a full authoring pass to re-format nine paragraphs that were already
+# correct. Leading `**` or `__` is now consumed before the number. This does not
+# soften anything: a field the gate cannot FIND is a blanket fail, and finding it
+# is what subjects it to the thinness and modeled-tone tests that are the actual
+# gate.
 F4A_RE = re.compile(
-    r"^\s*4a[.)]?\s*\*{0,2}\s*Lower[- ]third treatment\s*[.:-]?\s*\*{0,2}\s*[.:-]?\s*(.*)$",
+    r"^\s*(?:\*{1,2}|_{1,2})?\s*4a[.)]?\s*\*{0,2}\s*Lower[- ]third treatment"
+    r"\s*[.:-]?\s*\*{0,2}\s*[.:-]?\s*(.*)$",
     re.I | re.M)
+
+
+# A CONTACT SHADOW PROMISED IN WRITING MUST BE DECLARED IN THE MARKUP.
+# Matched on the dossier body only (the deck-level preamble above "## SLIDE 01"
+# is never read), so a header sentence about the deck's depth language does not
+# put nine slides on the hook.
+CONTACT_PROMISE_RE = re.compile(r"contact[- ]shadow|two[- ]part shadow", re.I)
+BODY_TAG_RE = re.compile(r"<body\b[^>]*>", re.I | re.S)
+DATA_CONTACTS_RE = re.compile(r"data-contacts\s*=\s*(['\"])(.*?)\1", re.I | re.S)
+
+DECLARE_HOWTO = (
+    "Declare it so qa.py's fitted contact gate can measure it: "
+    "<body data-contacts='[{\"what\":\"<the object standing on the plate>\","
+    "\"shadow\":[[x,y,w,h]],\"ground\":[[x,y,w,h]]}]'>, rects in design px, "
+    "the ground rect on the SAME plate a little clear of the shadow. If the "
+    "slide has no object standing on anything, strike the promise from the "
+    "dossier instead -- but do not leave the plan saying one thing and the "
+    "markup saying nothing, which is how five of run No.37's nine slides "
+    "skipped the check entirely")
+
+
+def contacts_declared(src):
+    """How many contact regions a slide's <body> declares. None if it declares
+    no attribute at all; -1 if the attribute is there but carries no shadow."""
+    b = BODY_TAG_RE.search(src)
+    if not b:
+        return None
+    m = DATA_CONTACTS_RE.search(b.group(0))
+    if not m:
+        return None
+    raw = m.group(2)
+    try:
+        val = json.loads(raw)
+    except Exception:
+        # unparseable is not clean: count the shadow keys so a malformed but
+        # populated declaration is not read as an empty one.
+        return len(re.findall(r'"shadow"', raw)) or -1
+    if isinstance(val, dict):
+        val = [val]
+    if not isinstance(val, list) or not val:
+        return -1
+    n = sum(1 for e in val if isinstance(e, dict) and e.get("shadow"))
+    return n or -1
 
 
 def slide_sections(text):
@@ -120,7 +187,7 @@ def field_4a(body):
     return " ".join(x for x in lines if x).strip(), first
 
 
-def check_slide(no, heading, body, breather_attr):
+def check_slide(no, heading, body, breather_attr, contacts=None, built=False):
     fails, warns = [], []
     declared_breather = False
     text, first = field_4a(body)
@@ -165,6 +232,23 @@ def check_slide(no, heading, body, breather_attr):
             warns.append(
                 f"slide {no:02d}: dossier declares a BREATHER but the slide body has "
                 "no data-breather, so qa.py will FAIL it on frame balance")
+
+    # THE CONTACT-SHADOW PROMISE. One-directional on purpose: data-breather
+    # DISABLES a gate, so it is policed both ways, while data-contacts ENABLES
+    # one, so declaring a shadow the dossier never mentioned is a gain and is
+    # not flagged. Only checked once the slide sources exist; before the build
+    # there is nothing to point at.
+    if built and CONTACT_PROMISE_RE.search(body):
+        if contacts is None:
+            fails.append(
+                f"slide {no:02d}: the dossier promises a contact shadow and the "
+                "slide body declares no data-contacts, so qa.py's contact gate "
+                f"never looks at this slide and reports nothing. {DECLARE_HOWTO}")
+        elif contacts == -1:
+            fails.append(
+                f"slide {no:02d}: the slide body carries data-contacts with no "
+                "shadow region in it, which measures nothing. "
+                f"{DECLARE_HOWTO}")
     return fails, warns
 
 
@@ -187,17 +271,23 @@ def main():
     # slide sources are optional: this gate is meant to run BEFORE they exist
     sdir = rdir / "slides"
     attrs = {}
+    contacts = {}
+    built = set()
     if sdir.is_dir():
         for p in sdir.glob("slide-*.html"):
             m = re.search(r"slide-(\d+)", p.name)
             if m:
                 src = p.read_text(errors="replace")
-                b = re.search(r"<body\b[^>]*>", src, re.I)
-                attrs[int(m.group(1))] = bool(b and "data-breather" in b.group(0))
+                b = BODY_TAG_RE.search(src)
+                n = int(m.group(1))
+                attrs[n] = bool(b and "data-breather" in b.group(0))
+                contacts[n] = contacts_declared(src)
+                built.add(n)
 
     out = {"slides": [], "fails": 0, "warns": 0}
     for no, heading, body in sections:
-        f, w = check_slide(no, heading, body, attrs.get(no))
+        f, w = check_slide(no, heading, body, attrs.get(no),
+                           contacts.get(no), no in built)
         out["slides"].append({"slide": no, "fails": f, "warns": w})
         out["fails"] += len(f)
         out["warns"] += len(w)
