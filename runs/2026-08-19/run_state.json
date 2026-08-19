@@ -17,9 +17,9 @@
     "flow_review": "done",
     "assemble": "done",
     "scoring": "done (8.07 vs 8.0)",
-    "ship": "in progress",
-    "upgrade": "pending",
-    "gmail": "pending",
+    "ship": "done (PR 311 merged, 815dfd4)",
+    "upgrade": "done (3 fixes, 227b3e1)",
+    "gmail": "in progress",
     "retro": "pending"
   },
   "artifacts": {
