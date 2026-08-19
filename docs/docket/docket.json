@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-08-18",
+  "updated": "2026-08-19",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -631,7 +631,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-15",
+      "last_updated": "2026-08-19",
       "history": [
         {
           "date": "2026-07-08",
@@ -732,6 +732,10 @@
         {
           "date": "2026-08-15",
           "note": "Checked. Nothing has moved. The governor said on August 13th that there is little reason to keep the third special session going, no bill has passed either body, and no fourth session has been called. Senate Minority Leader Mike Cronk told Alaska's News Source that handing the project to the next administration is the real expectation. Glenfarne had pointed to December 2026 for the start of construction."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. Nothing has moved since the governor said on the evening of August 13th that there is little reason to keep the third special session going, and the House Bipartisan Majority Caucus said the day before that HB 4001 lacks the votes. Neither chamber has met on the bill. Two dates remain on the calendar, a joint Senate and House Resources Committee meeting in Anchorage on Cook Inlet energy tomorrow, August 20th, and the scheduled end of the session on August 25th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aklng-tax-bill-second-special-session/"
@@ -800,7 +804,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-08-16",
+      "last_updated": "2026-08-19",
       "history": [
         {
           "date": "2026-07-11",
@@ -825,6 +829,10 @@
         {
           "date": "2026-08-16",
           "note": "Re-verified through Alaska Public Media's account of the filing. Enstar's 31 page petition for reconsideration is still before the commission, which has thirty days to act, after which the petition is denied without an order. That falls in the week of August 22nd."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. Enstar's 31 page petition for reconsideration, filed July 23rd, is still before the Regulatory Commission of Alaska with no action reported. The commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project remains the operative decision. Thirty days from filing falls on or about August 22nd, three days out, after which the petition is denied by operation of law."
         }
       ],
       "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/",
@@ -848,7 +856,7 @@
         },
         {
           "date": "2026-08-13",
-          "label": "Houston City Council vote on a data-center ban ordinance (postponed from July 16)",
+          "label": "Houston City Council rejects a data-center ban 4 to 2 and passes two resolutions objecting to the transfer process",
           "kind": "vote"
         },
         {
@@ -859,6 +867,11 @@
         {
           "date": "2026-08-26",
           "label": "AIDEA board meeting, the first after comment closes",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-01",
+          "label": "AIDEA asked to attend a Houston City Council meeting in September, no date set",
           "kind": "milestone"
         }
       ],
@@ -897,10 +910,15 @@
           "url": "https://www.aidea.org/About/Board-Members/Board-Meeting-Schedule",
           "outlet": "Alaska Industrial Development and Export Authority",
           "date": "2026-08-06"
+        },
+        {
+          "url": "https://www.matsusentinel.com/zero-transparency-houston-officials-oppose-land-transfer-process-linked-to-data-centers/",
+          "outlet": "Mat-Su Sentinel",
+          "date": "2026-08-18"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-18",
+      "last_updated": "2026-08-19",
       "history": [
         {
           "date": "2026-07-17",
@@ -977,6 +995,10 @@
         {
           "date": "2026-08-18",
           "note": "Re-verified against the state notice. The public comment window still closes 5 p.m. August 19th, and the AIDEA board meets August 26th, its first meeting after comments close."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Houston's council answered on August 13th, and it answered about process rather than about data centers. Two resolutions passed unanimously objecting to how the state ran the transfer, one aimed at the AIDEA conveyance and one at an unrelated parcel bound for the state housing finance corporation. Council member Jeffrey Brasel said \"There was zero transparency. They had made preliminary decisions before we even had a decision to make.\" The separate ordinance that would have banned data centers inside city limits FAILED 4 to 2 the same night, with Callie Courtney and Lisa Johansen voting for it. The city has asked AIDEA to come to a council meeting in September. Re-verified against the state notice as well. Comment on the roughly 19,950 acre conveyance, ADL 234762, closes 5 p.m. today, August 19th, and only people from whom the division receives timely written comment during the window will be eligible to appeal the final finding and decision."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1007,14 +1029,28 @@
           "url": "https://www.adn.com/alaska-news/anchorage/2026/03/27/anchorage-assembly-preemptively-adopts-data-center-regulations/",
           "outlet": "Anchorage Daily News",
           "date": "2026-03-27"
+        },
+        {
+          "url": "https://www.dwt.com/blogs/energy--environmental-law-blog/2026/04/anchorage-adopts-data-center-framework",
+          "outlet": "Davis Wright Tremaine",
+          "date": "2026-04-01"
+        },
+        {
+          "url": "https://www.muni.org/Departments/Assembly/Documents/AO%202026-27.pdf",
+          "outlet": "Municipality of Anchorage",
+          "date": "2026-03-27"
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-07-18",
+      "last_updated": "2026-08-19",
       "history": [
         {
           "date": "2026-07-18",
           "note": "Tracked from this run. Anchorage adopted the data center land use framework 10 to 2 on March 27, the first local guardrail of its kind in the state. Sponsored by Anna Brawley and Daniel Volland. Added because Carousel No. 10 turns on whether a Railbelt data center helps or hurts ratepayers, and this ordinance is the one enacted local guardrail while the state bill stalls."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. AO 2026-27 stands as adopted on March 27th, 2026 by a 10 to 2 vote, amending Title 21 to create a data center land use category, subject those facilities to conditional use review and use-specific performance standards, and require utility statements on system capacity before a project proceeds. It remains the only enacted local framework of its kind in Alaska. The ordinance also directs further regulatory work on energy-intensive uses, so the framework is expected to keep developing."
         }
       ],
       "url": "https://alaskaaihq.com/docket/anchorage-ao-2026-27-data-center-zoning/"
@@ -1249,7 +1285,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-16",
+      "last_updated": "2026-08-19",
       "history": [
         {
           "date": "2026-08-02",
@@ -1274,6 +1310,10 @@
         {
           "date": "2026-08-16",
           "note": "Re-verified against the state notice. Amendment One to request for information 02-101-27 remains the current posting, responses are due 2 p.m. on August 20th, and the notice still prints neither artificial intelligence nor machine learning."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Re-verified against the state notice. Amendment One to request for information 02-101-27, Automatic Compliance and Data Integration CDL, is still the current posting and vendor responses are due tomorrow, August 20th. The notice still prints neither artificial intelligence nor machine learning."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1337,7 +1377,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-08-15",
+      "last_updated": "2026-08-19",
       "history": [
         {
           "date": "2026-08-04",
@@ -1354,6 +1394,10 @@
         {
           "date": "2026-08-15",
           "note": "Re-verified against the FERC notice. Comments, motions to intervene and protests are still due 5 p.m. Eastern on August 28th in docket P-8221-124. The amendment would raise the normal maximum operating pool about 16 feet and add a 0.3 megawatt micro-hydro turbine, moving installed capacity from 119.7 to 120.0 megawatts."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Re-verified against the FERC notice. Comments, motions to intervene and protests are still due 5 p.m. Eastern on August 28th in docket P-8221-124. The amendment would raise the normal maximum operating pool about 16 feet, add a 0.3 megawatt turbine in one of the dam's fishwater release valves, and take the project from 119.7 to 120.0 megawatts. Nine days remain."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
@@ -1417,7 +1461,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-08-13",
+      "last_updated": "2026-08-19",
       "history": [
         {
           "date": "2026-08-05",
@@ -1430,6 +1474,10 @@
         {
           "date": "2026-08-13",
           "note": "Checked and unchanged. The AI3 Action Institute, opportunity HHS-2026-ACF-ANA-NAI-0035, is still posted for one award with a ceiling of $3,500,000 and still closes August 27th. No amendment to the closing date has been posted."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Re-verified against the federal listing. The AI3 Action Institute, opportunity HHS-2026-ACF-ANA-NAI-0035, is still posted for a single award with a ceiling of $3,500,000, is still open, and still closes August 27th, 2026 at 11:59 p.m. Eastern. No amendment is shown. Eight days remain."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -1824,7 +1872,7 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-08-16",
+      "last_updated": "2026-08-19",
       "history": [
         {
           "date": "2026-08-09",
@@ -1845,6 +1893,10 @@
         {
           "date": "2026-08-16",
           "note": "Checked and unchanged. The district's posted meeting list still ends at August 3rd, where BP 5131.9 Academic Honesty came up for first reading on the consent agenda, and no later meeting carries the AI regulation."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged, on the day it matters most. The district's posted meeting list still ends at the four August 3rd meetings, so AR 5131.9 Academic Honesty has had no recorded action since the Policy Review Committee took it up with two competing drafts. Today, August 19th, is the first student day of the 2026-27 year across all 39 schools, and the next regular board meeting is September 14th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpbsd-ai-policy-package/"

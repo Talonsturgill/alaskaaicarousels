@@ -1,0 +1,19 @@
+{
+  "chars": 893,
+  "hook": "73 percent of Alaska likely voters back pausing new data centers until the state passes a law. Houston in the Mat-Su voted a ban down.",
+  "hook_len": 134,
+  "commas": 8,
+  "comma_per_100": 0.94,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#DataCenterSiting",
+    "#MatSu",
+    "#AlaskaLandUse"
+  ],
+  "deck_summary": "The poll's methods and missing question wording, the Houston roll call, and what Anchorage adopted instead.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 100
+}

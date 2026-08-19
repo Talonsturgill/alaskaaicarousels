@@ -1,0 +1,229 @@
+{
+  "run_date": "2026-08-19",
+  "carousel_no": 37,
+  "document_title": "A Poll Is Not a Ballot",
+  "post_copy": "73 percent of Alaska likely voters back pausing new data centers until the state passes a law. Houston in the Mat-Su voted a ban down.\n\nData for Progress polled 605 likely voters from July 28th to August 4th. 63 percent of Republicans said pause too.\n\nOn August 13th the ban failed 4 to 2, per the Mat-Su Sentinel. The same council unanimously passed two objections to the state's land transfer process.\n\nA poll covers a whole state. The ban covered one city, and only a small section of the land in question sits inside it. Anchorage adopted a permitting framework instead, a conditional use permit that regulates how and not whether.\n\nThe poll's methods and missing question wording, the Houston roll call, and what Anchorage adopted instead.\n\nWhich instrument should a 73 percent preference get, a city ban, a permit with conditions, or a state law?\n\n#DataCenterSiting #MatSu #AlaskaLandUse",
+  "deck_summary_line": "The poll's methods and missing question wording, the Houston roll call, and what Anchorage adopted instead.",
+  "caption_meta": {
+    "opening_move": "CONTRADICTION",
+    "structure": "BRAID",
+    "closing_move": "NEW:INSTRUMENT CHOICE",
+    "hook_type": "two true facts in collision"
+  },
+  "first_comment": "Sources, primary first\n\nData for Progress, survey of 605 Alaska likely voters fielded July 28th to August 4th and published August 17th, source of the 73 percent pause figure, the 63 percent Republican figure, the plus or minus 4 margin, and the affordability numbers on slides 5 and 6, https://www.dataforprogress.org/blog/2026/8/17/as-alaskas-affordability-crisis-deepens-peltola-leads-in-senate-race\n\nData for Progress, the organisation's own description of its work, quoted on slide 3 so readers can weigh who ran the poll, https://www.dataforprogress.org/\n\nThe question wording for the data center item is not in that published post, and the linked toplines file would not decode on August 19th, so slide 3 says the wording is unpublished rather than guessing at it.\n\nMat-Su Sentinel, reporting by Amy Bushatz on the Houston city council meeting, the ordinance failing 4 to 2, the two resolutions passing unanimously, and the quotes on slides 2 and 4, https://www.matsusentinel.com/zero-transparency-houston-officials-oppose-land-transfer-process-linked-to-data-centers/\n\nThe Houston vote is single sourced to the Mat-Su Sentinel. Alaska Public Media and the Anchorage Daily News carry the same text as republication with permission, which is syndication and not independent confirmation. The August 13th meeting date comes from that same report.\n\nDavis Wright Tremaine, client alert on Anchorage Ordinance AO 2026-27 adopted March 27th, 2026, source for the conditional use permit framework on slide 8, https://www.dwt.com/blogs/energy--environmental-law-blog/2026/04/anchorage-adopts-data-center-framework\n\nThat Anchorage citation is a law firm write up, not the municipal record. The muni PDF would not decode, so the ordinance text itself remains unread here.\n\nPublic Citizen, tracker of election deepfake legislation, updated August 3rd, showing no enacted Alaska law and SB 64 passing the House with its election deepfake provision removed, https://www.citizen.org/article/tracker-legislation-on-deepfakes-in-elections/\n\nAlaska Public Media, early governor primary results of August 18th with about 70 percent of precincts reporting, https://alaskapublic.org/news/politics/elections/2026-08-18/kreiss-tomkins-begich-wilson-and-bronson-lead-in-early-governor-primary-results\n\nAnchorage Daily News, the same early count plus the top four rule and the certification date, August 18th, https://www.adn.com/politics/2026/08/18/democrats-lead-alaska-governors-race-in-early-primary-election-vote-counts/\n\nSlide 9 is preliminary. Counting continues, ballots may arrive until August 28th, and officials plan to certify on August 31st, so the 21.8 percent will move.\n\nEvery decision tracked here, with live deadlines, sits at https://alaskaaihq.com\n\nCorrections and context are welcome. Anyone holding the full Houston roll call, the meeting audio, or the poll's exact question wording, post it below.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "ALASKA.AI / No. 37",
+      "headline": "73 PERCENT SAID PAUSE.",
+      "body": "The one council that voted said no.",
+      "labels": [
+        "A POLL. A ROLL CALL. AUGUST 2026.",
+        "SOURCES IN COMMENTS",
+        "PLATE 01 / TWO INSTRUMENTS"
+      ],
+      "claim_ids": [
+        "C01",
+        "C20",
+        "C22"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "AUGUST 13TH, HOUSTON, IN THE MAT-SU",
+      "headline": "The ban lost,",
+      "body": "An ordinance to block data center construction inside Houston city limits failed on a 4 to 2 vote. The same night the council unanimously approved two resolutions objecting to the state's land transfer process.",
+      "labels": [
+        "\"If we don't take that action now, we may never get that chance again.\"",
+        "Against the ban",
+        "For the ban",
+        "Two resolutions.",
+        "SINGLE SOURCED",
+        "MAT-SU SENTINEL / BUSHATZ"
+      ],
+      "claim_ids": [
+        "C20",
+        "C21",
+        "C22",
+        "C23",
+        "C25"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "JULY 28TH TO AUGUST 4TH / 605 LIKELY VOTERS",
+      "headline": "73 percent said pause. 63 percent of Republicans agreed.",
+      "body": "The poll reached 605 likely voters by text message and web panel, in English, weighted to look like the electorate. The margin is plus or minus 4 points on the whole sample.",
+      "labels": [
+        "\"Data for Progress equips the progressive movement with the data and insights it needs to win.\"",
+        "Data for Progress, on its own site",
+        "The question wording is not in the published post.",
+        "Subgroup n not published",
+        "605 RESPONDENTS / OUTER 24 EACH END = THE MARGIN",
+        "SELF PUBLISHED / PROGRESSIVE",
+        "N 605 / PLUS OR MINUS 4"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "THE REACH OF A CITY ORDINANCE",
+      "headline": "The ban reached almost none of the land.",
+      "body": "The transfer at issue covers about 30 square miles. Only a small section of it crosses into Houston city limits, so a city ban could only ever have reached that section.",
+      "labels": [
+        "\"If our zoning laws are such that nobody can come in and just do whatever they want, then that solves a problem in the future for multiple industries.\"",
+        "Kent Mitchell, quoted in the Mat-Su Sentinel",
+        "About 30 square miles",
+        "Houston city limits",
+        "Inside. A ban reaches here.",
+        "Outside. It does not.",
+        "SINGLE SOURCED",
+        "MAT-SU SENTINEL"
+      ],
+      "claim_ids": [
+        "C26",
+        "C29",
+        "C30"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "WHAT ALASKANS GOT MORE WORRIED ABOUT",
+      "headline": "Utilities moved most.",
+      "body": "Worry about affording monthly utilities rose from 54 to 66 percent. Groceries went 61 to 66, healthcare 57 to 66, and housing 43 to 53.",
+      "labels": [
+        "The same poll asked what Alaskans can't afford.",
+        "Utilities",
+        "54 to 66",
+        "Housing",
+        "43 to 53",
+        "Healthcare",
+        "57 to 66",
+        "Groceries",
+        "61 to 66",
+        "SELF PUBLISHED / PROGRESSIVE",
+        "N 605",
+        "SURFACE = FOUR MEASURES (C10, C11, C12)"
+      ],
+      "claim_ids": [
+        "C01",
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "ONE QUESTION. TWO RANKINGS.",
+      "headline": "Almost everyone puts energy near the top. Almost nobody puts it first.",
+      "body": "Asked where an extra 100 million dollars should go, energy affordability leads on first or second choice combined. On first choice alone it runs third.",
+      "labels": [
+        "First choice",
+        "First or second, combined",
+        "PFD 26",
+        "K-12 22",
+        "Energy 17",
+        "Energy 39",
+        "PFD 35",
+        "K-12 33",
+        "SHARES OF RESPONDENTS NAMING A CHOICE",
+        "NOT A REBASED TOTAL"
+      ],
+      "claim_ids": [
+        "C13",
+        "C14"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "THREE BOROUGHS, ONE SMALL SAMPLE",
+      "headline": "These three overlap. Don't rank them.",
+      "body": "Energy affordability tops the combined first and second choice list in Fairbanks North Star, on the Kenai Peninsula and in the Mat-Su. The subgroup sizes are not published, so the gaps can't be read as real.",
+      "labels": [
+        "Fairbanks North Star",
+        "Kenai Peninsula",
+        "Mat-Su",
+        "Houston sits in the lowest of the three.",
+        "SUBGROUP N NOT PUBLISHED",
+        "DO NOT RANK"
+      ],
+      "claim_ids": [
+        "C05",
+        "C15",
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "WHAT ALASKA ACTUALLY HAS",
+      "headline": "Two instruments exist. Neither one is a pause.",
+      "body": "Anchorage, March 27th, 2026. A data center land use category. A conditional use permit and a discretionary review. Applicants must show electrical, water and wastewater capacity.",
+      "labels": [
+        "Height encodes enactment state, not magnitude.",
+        "Adopted",
+        "Failed",
+        "Houston's ban, August 13th, 2026. 4 to 2.",
+        "Not enacted",
+        "No Alaska election deepfake law is enacted on Public Citizen's tracker. Senate Bill 64 passed the House with its election deepfake provision removed.",
+        "It regulates how, not whether.",
+        "SECONDARY / LAW FIRM ALERT",
+        "TRACKER TALLY / HEDGED"
+      ],
+      "claim_ids": [
+        "C20",
+        "C31",
+        "C32",
+        "C34",
+        "C35",
+        "C36",
+        "C37",
+        "C38"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "STILL COUNTING",
+      "headline": "The next instrument is still being counted.",
+      "body": "In early returns from the August 18th primary the leading candidate, who has called for a moratorium on data center development until the state regulates it, had 21.8 percent. About 70 percent of precincts had reported.",
+      "labels": [
+        "21.8 percent",
+        "Top four advance to a general election in November.",
+        "Which should Alaska build first, a statewide pause or a statewide permitting standard?",
+        "Sources in comments.",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "PRELIMINARY",
+        "ABOUT 70 PERCENT OF PRECINCTS"
+      ],
+      "claim_ids": [
+        "C39",
+        "C40",
+        "C42",
+        "C43",
+        "C44"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post Tuesday through Thursday between 8 and 11am AKT if the draft is sitting on a weekend, otherwise send it out as soon as it reads clean, since the primary count is moving and this deck ages fast.",
+    "Paste the sources comment as the first comment within 60 seconds of posting, then check that every URL rendered as visible plain text and not as a stripped hyperlink.",
+    "Stay on the post for the first 90 minutes and reply substantively to every comment, no one word thanks, since the golden hour reply rate is what carries this into second degree feeds.",
+    "If a commenter posts newer primary numbers, thank them, name the figure, and say plainly that slide 9 was built on the August 18th preliminary count with about 70 percent of precincts in and certification set for August 31st.",
+    "Expect pushback on the pollster. Point at slide 3, which prints Data for Progress's own self description, the 605 sample, the plus or minus 4, the English only fielding, and the fact that the question wording is unpublished.",
+    "Expect pushback on the Houston vote. Say it is single sourced to Amy Bushatz at the Mat-Su Sentinel, and that Alaska Public Media and ADN republished rather than confirmed it.",
+    "Do not rank the three borough numbers on slide 7 in any reply. Subgroup sample sizes are unpublished, so the gaps between 55, 51 and 46 can't be called meaningful.",
+    "Note saves, comments and the ratio between them at 48 hours, and log whether the poll versus ballot frame or the Houston roll call drew the sharper thread."
+  ],
+  "editor_notes_for_email": "Three soft spots, in order of how likely they are to be hit. First, the Houston vote is single sourced to the Mat-Su Sentinel and the meeting date is the weakest surviving claim in the file, so if a hostile reader asks for the roll call or the minutes the honest answer is that the deck rests on Amy Bushatz's report, and the republications in Alaska Public Media and the Anchorage Daily News are the same text with permission rather than independent confirmation. Second, the poll's exact question wording for the data center item is not in the published post and the linked toplines file would not decode, which is why slide 3 draws a 90px hole in its own axis rather than paraphrasing a question nobody has read. Third, slide 9 is a live count, about 70 percent of precincts, certifying August 31st, so the 21.8 percent will move and the deck says so twice.\n\nOn the build. Three pixel-critic rounds and one flow-critic round, and machine QA finished at 0 fails and 0 warns on all nine slides, which is the first clean sheet this deck has had. Two systemic defects came out of round 1 and are now written into FIELD_NOTES. The encoding gate measures a MEDIAN, so four slides read 0 dE on differences that are obvious to a human eye until the fields were redrawn as mass. And every cast shadow in the deck was a fillRect, which welds into a hard black plinth whenever objects are pitched closer than twice the shadow width and states a light direction that contradicts the object's own shading; they are all skewed ellipses now.\n\nOne promise in the storyboard could not be built and was rewritten rather than faked. The continuity device said a data object would be cut by the right frame edge on five junctions. The plate ends 40px inside the frame, so any mark that leaves the frame has walked off the sheet it stands on. The device is drawn furniture now and the dossier says why.\n\nThe standing weakness this run attacked is artwork craft and genuine detail, weakest in 7 of the last 10 scored runs. The whole line system was the attack. Every large area is a stroke field rather than a fill, every object that sits has a lit pool and a two-part contact shadow, and slide 08's two register faces were re-ruled after a critic caught them shipping as flat fills on the one slide whose own law forbids them."
+}

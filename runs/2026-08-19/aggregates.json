@@ -1,0 +1,158 @@
+{
+  "run_date": "2026-08-19",
+  "aggregates": [
+    {
+      "kind": "design",
+      "slide": 1,
+      "fragment": "TWO INSTRUMENTS",
+      "text": "PLATE 01 / TWO INSTRUMENTS",
+      "note": "The plate's own name for what it holds, a measured field and a decided roll call. A property of the artwork's title block, not a count of anything in the world."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "4 to 2",
+      "text": "The ban lost,4 to 2.",
+      "member": "C20"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "Two resolutions",
+      "text": "Two resolutions.No roll call published.",
+      "member": "C23"
+    },
+    {
+      "kind": "design",
+      "slide": 2,
+      "fragment": "THREE VOTES",
+      "text": "SURFACE = ONE NIGHT, THREE VOTES (C20, C23)",
+      "note": "Describes the engraved plate's own form, a three-step plateau cut to match the three votes the room took that night. It names the artwork's surface, which is why the string begins SURFACE equals."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "fragment": "605 LIKELY VOTERS",
+      "text": "JULY 28TH TO AUGUST 4TH / 605 LIKELY VOTERS",
+      "member": "C03"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "fragment": "605 likely voters",
+      "text": "The poll reached 605 likely voters by text message and web panel",
+      "member": "C03"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "fragment": "605 RESPONDENTS",
+      "text": "605 RESPONDENTS / OUTER 24 EACH END = THE MARGIN",
+      "member": "C03"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "fragment": "63 percent of Republicans",
+      "text": "73 percent said pause. 63 percent of Republicans agreed.",
+      "member": "C02"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "fragment": "30 square miles",
+      "text": "About 30 square miles",
+      "member": "C29"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "fragment": "54 to 66",
+      "text": "54 to 66 plus 12",
+      "member": "C10"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "fragment": "43 to 53",
+      "text": "43 to 53 plus 10",
+      "member": "C12"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "fragment": "57 to 66",
+      "text": "57 to 66 plus 9",
+      "member": "C12"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "fragment": "61 to 66",
+      "text": "61 to 66 plus 5",
+      "member": "C11"
+    },
+    {
+      "kind": "count",
+      "slide": 6,
+      "fragment": "TWO RANKINGS",
+      "text": "ONE QUESTION. TWO RANKINGS.",
+      "subject": "rankings",
+      "members": [
+        "C13",
+        "C14"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "fragment": "100 million dollars",
+      "text": "Asked where an extra 100 million dollars should go",
+      "member": "C13"
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "fragment": "THREE BOROUGHS",
+      "text": "THREE BOROUGHS, ONE SMALL SAMPLE",
+      "subject": "boroughs",
+      "members": [
+        "C15",
+        "C16",
+        "C17"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "fragment": "Two instruments",
+      "text": "Two instruments exist. Neither one is a pause.",
+      "subject": "drawn instruments",
+      "members": [
+        "C38",
+        "C20"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "4 to 2",
+      "text": "Houston's ban, August 13th, 2026. 4 to 2.",
+      "member": "C20"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 9,
+      "fragment": "70 PERCENT OF PRECINCTS",
+      "text": "ABOUT 70 PERCENT OF PRECINCTS",
+      "member": "C39"
+    },
+    {
+      "kind": "design",
+      "slide": 5,
+      "fragment": "FOUR MEASURES",
+      "text": "SURFACE = FOUR MEASURES (C10, C11, C12)",
+      "note": "Describes the engraved plate's own form, a four-terrace ground cut to match the four affordability measures the slide rules. It names the artwork's surface, which is why the string begins SURFACE equals, and the four measures themselves are each carried by C10, C11 and C12."
+    }
+  ]
+}

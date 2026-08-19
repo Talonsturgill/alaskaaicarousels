@@ -1,0 +1,149 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the streamline field is denser left of the 73 mark than right of it': dE 13.2, AUC 0.67, visible 100%/100%, seen 8448/7040px at 432w"
+      ],
+      "contacts": [
+        "'the six roll-call marks on the plate': shadow L* 3.7 vs ground L* 16.3, dL 12.6 at 432w"
+      ],
+      "scales": [
+        "'the percentage axis' runs 0 percent at 80 to 100 percent at 1000; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hook '73 PERCENTSAID PAUSE.' fits 2/2 lines at 114.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the roll call is drawn as countable marks while the unanimous resolutions carry no tally a': dE 66.8, AUC 0.79, visible 100%/100%, seen 4352/5280px at 432w"
+      ],
+      "contacts": [
+        "'the six roll-call marks standing on the plate': shadow L* 5.0 vs ground L* 14.9, dL 9.9 at 432w"
+      ],
+      "leaders": [
+        "leader 'the second resolution bar' lands 0.0px from its target",
+        "leader 'the second resolution bar' meets its label 6.0px away"
+      ],
+      "fits": [
+        "hd 'The ban lost,4 to 2.' fits 2/2 lines at 83.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the measured bar has a definite extent and then dissolves into bare plate': dE 53.3, AUC 0.97, visible 100%/85%, seen 2688/1071px at 432w"
+      ],
+      "leaders": [
+        "leader 'the gap in the axis where the question wording would be' lands 0.0px from its target",
+        "leader 'the gap in the axis where the question wording would be' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd '73 percent said pause.63 percent of Republic' fits 2/2 lines at 57.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the field inside the city limits is about three times denser than the field outside': dE 22.4, AUC 0.90, visible 100%/78%, seen 3712/7238px at 432w"
+      ],
+      "leaders": [
+        "leader 'the field inside the city limits' lands 0.0px from its target",
+        "leader 'the field outside the city limits' lands 0.0px from its target",
+        "leader 'the city-limit boundary' lands 0.0px from its target",
+        "leader 'the field inside the city limits' meets its label 4.0px away",
+        "leader 'the field outside the city limits' meets its label 4.0px away",
+        "leader 'the city-limit boundary' meets its label 4.0px away"
+      ],
+      "fits": [
+        "hd 'The ban reached almost none of the land.' fits 2/2 lines at 67.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the utilities lit run has a definite extent and then stops': dE 56.4, AUC 1.00, visible 100%/100%, seen 288/384px at 432w"
+      ],
+      "fits": [
+        "hd 'Utilities moved most.' fits 1/1 lines at 71px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the energy column is sparse at 17 on first choice and dense at 39 combined': dE 56.2, AUC 0.79, visible 100%/100%, seen 1176/1204px at 432w"
+      ],
+      "leaders": [
+        "leader 'the crossing of the energy and PFD slopes' lands 0.0px from its target",
+        "leader 'the crossing of the energy and PFD slopes' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'Almost everyone puts energy near the top. Al' fits 2/2 lines at 56px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the three feathers composite into one continuous wash that is tellable from bare plate': dE 21.6, AUC 0.99, visible 98%/100%, seen 7056/5760px at 432w"
+      ],
+      "fits": [
+        "hd 'These three overlap. Don't rank them.' fits 2/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the adopted register is a raised lit solid and the not-enacted one is a recessed empty sea': dE 59.6, AUC 1.00, visible 100%/100%, seen 1440/1440px at 432w"
+      ],
+      "contacts": [
+        "'the adopted register sitting on the plate': shadow L* 2.3 vs ground L* 26.6, dL 24.3 at 432w"
+      ],
+      "leaders": [
+        "leader 'the middle gate tick on the adopted register' lands 0.0px from its target",
+        "leader 'the middle gate tick on the adopted register' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'Two instruments exist. Neither one is a paus' fits 2/2 lines at 73.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the counted run of the bar is inked and its unreported trailing share is phantom': dE 49.6, AUC 0.89, visible 100%/100%, seen 966/399px at 432w"
+      ],
+      "contacts": [
+        "'the count bar standing on the plate': shadow L* 0.3 vs ground L* 26.3, dL 26.1 at 432w"
+      ],
+      "leaders": [
+        "leader 'the certification hard cap' lands 0.0px from its target",
+        "leader 'the certification hard cap' meets its label 6.0px away"
+      ],
+      "fits": [
+        "hd 'The next instrument is still being counted.' fits 2/2 lines at 70.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}
