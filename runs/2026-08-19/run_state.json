@@ -19,8 +19,8 @@
     "scoring": "done (8.07 vs 8.0)",
     "ship": "done (PR 311 merged, 815dfd4)",
     "upgrade": "done (3 fixes, 227b3e1)",
-    "gmail": "in progress",
-    "retro": "pending"
+    "gmail": "done (draft r-4469230653546640195)",
+    "retro": "done"
   },
   "artifacts": {
     "plan": "out/2026-08-19/plan.md",
@@ -28,5 +28,24 @@
     "site_signoff": "SITE SIGN-OFF: PASS, 79 pages, 18 checks",
     "gas_watch_line": "GAS WATCH: PASS, read 2026-08-18, 14 days on record, chart present",
     "site_fixes": "ask-box placeholder truncated mid-word on phones (docket #qq and homepage .haskshell input); text-overflow ellipsis added in scripts/site_build.py"
-  }
+  },
+  "outcome": {
+    "score": 8.07,
+    "threshold": 8.0,
+    "shipped": true,
+    "pr": "https://github.com/Talonsturgill/alaskaaicarousels/pull/311",
+    "merge_sha": "815dfd4",
+    "upgrade_sha": "227b3e1",
+    "machine_qa": "PASS, 0 fails, 0 warns on all nine",
+    "gates": "15 of 15 green at ship",
+    "weakest": "Artwork craft and genuine detail, 6.5",
+    "live": "https://alaskaaihq.com/archive/2026-08-19/"
+  },
+  "retro": [
+    "The line grammar was the right attack and it landed. A feather means measured and a butt cap means decided, and five encodings are verifiable off the render without reading a label. Keep the grammar; it is reusable and it is what carried story-art fusion to 8.",
+    "The line FIELDS are where the same attack failed, and the run's own bespoke_check said so in a number the run did not act on. Drawn share 54 percent against a declared 72 percent target was visible from the first gate sync and was read as a PASS row rather than as a miss. Read the numbers a warn row carries, not just its colour.",
+    "Three systemic defects each cost a whole render round because they were authored nine times before anything looked at one. Cast shadows as fillRect, flat fills where the deck's own law forbids them, and a continuity device that geometry forbids. All three were decidable at dossier time from the plan alone.",
+    "The scorer and the flow critic found things three pixel critics did not, and both were structural rather than local. The close did not seal because the feather and the hard cap sat on different baselines, and the deck lost pressure at 04 to 05 because nothing joined them. Per-slide review cannot see either.",
+    "Honest gates are worth more than green ones. The contact gate is opt-in, so five slides that promised a shadow in writing were never measured and the deck read as clean. Phase 12 closed that. Look for what a gate is NOT looking at."
+  ]
 }
