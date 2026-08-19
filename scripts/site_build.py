@@ -1191,8 +1191,12 @@ letter-spacing:-.01em;pointer-events:none;user-select:none;}
 #qgt{color:transparent;}
 #qgr{color:var(--mute);opacity:.5;}
 #qq{position:relative;flex:1;min-width:0;background:none;border:0;outline:none;
-color:var(--snow);font-size:17px;line-height:1.4;font-family:inherit;letter-spacing:-.01em;}
-#qq::placeholder{color:var(--mute);opacity:.72;}
+color:var(--snow);font-size:17px;line-height:1.4;font-family:inherit;letter-spacing:-.01em;
+text-overflow:ellipsis;}
+/* A placeholder longer than the field is cut at whatever character the box
+   ends on, which on a 390px phone read "Ask the record, then keep ask". An
+   ellipsis makes the truncation legible instead of looking like broken copy. */
+#qq::placeholder{color:var(--mute);opacity:.72;text-overflow:ellipsis;}
 /* The submit button. This used to be a CTRL K hint, which told a desktop
    reader a shortcut and told a phone reader nothing, because it hid itself on
    touch. So the box had no visible way to submit on the device most people
@@ -1707,9 +1711,11 @@ filter:blur(28px);opacity:0;transition:opacity .3s ease;}
 transition:color .25s ease;}
 .hask.on .haskicon{color:var(--gold);}
 .haskshell input{flex:1;min-width:0;background:none;border:0;color:var(--snow);
-font:inherit;font-size:15.5px;padding:15px 0;}
+font:inherit;font-size:15.5px;padding:15px 0;text-overflow:ellipsis;}
 .haskshell input:focus{outline:none;}
-.haskshell input::placeholder{color:var(--mute);}
+/* Same reason as #qq. On a phone this one read "Who decides the Eielson
+   microreac" with the word snapped in half. */
+.haskshell input::placeholder{color:var(--mute);text-overflow:ellipsis;}
 .haskgo{flex:none;width:38px;height:38px;border-radius:50%;cursor:pointer;
 border:1px solid rgba(255,199,44,.4);background:rgba(255,199,44,.08);
 color:var(--gold);display:flex;align-items:center;justify-content:center;

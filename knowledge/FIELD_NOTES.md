@@ -3892,3 +3892,33 @@ Most of the Observable annotation piece (pointer-driven marks, continuous /
 cross-facet crosshairs, grouped tips) is INTERACTIVE and does not port to a
 static PDF slide, so it is noted-and-dropped rather than parked.
 https://observablehq.com/blog/five-techniques-to-improve-chart-annotations
+
+## 2026-08-19 (craft refresh, Phase 1)
+- THE PARKED STREAMLINE ITEM IS UNPARKED. Two 2026-08-16 and 2026-08-18 scans
+  looked for a readable, parameterised account of Jobard and Lefer's
+  evenly-spaced streamline placement and found only overviews that defer to the
+  1997 paper. There is one, and it publishes numbers. Pedro Faria's walkthrough
+  and its C/C++/Rust reference implementation name the whole parameter set:
+  d_sep is the minimum distance any point on one curve may come to any point on
+  another; STEP_LENGTH is the integration step, recommended at 0.1 to 1 percent
+  of the field width (its own example uses 0.01 x width); N_STEPS is the curve
+  length cap, "around 30 to 40 steps is a good range"; MIN_STEPS_ALLOWED, shown
+  at 2 and 5, discards stubs. The speed trick is a density grid whose cells are
+  exactly d_sep wide, DENSITY_GRID_WIDTH = field width / d_sep, so a candidate
+  point tests against its own cell plus the 8 around it and nothing else. Seeds
+  are taken perpendicular to an accepted curve at d_sep on both sides and queued.
+  https://pedro-faria.netlify.app/posts/2024/2024-02-19-flow-even/en/
+  https://github.com/pedropark99/Jobard-Lefer-Algorithm
+  Why it matters here: d_sep is a DATA CHANNEL. Vary d_sep across the frame by a
+  story quantity and the drawing's line density carries the number, which is
+  exactly the story-art fusion the rubric asks for and the thing our flow fields
+  have never done. A JS port also exists (gugray/adaptive-streamlines, after
+  Kashcha), so a house akstream helper is now a bounded build rather than a
+  research project. Phase 12 candidate.
+- One genuinely new LinkedIn number, and it is about the SAVE rather than the
+  swipe: documents are 12.92 percent of everything saved on LinkedIn, about 2.6x
+  their share of posts, on a format-wide engagement rate cited near 6.6 percent.
+  The 2026-08-18 note already said design the close for the save. This puts a
+  size on it, so the keepable data slide is the highest-leverage slide in the
+  deck and should not be the one that gets cut when a deck runs long.
+  https://usevisuals.com/blog/linkedin-carousel-engagement-statistics-2026
