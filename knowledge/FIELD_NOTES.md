@@ -3892,3 +3892,94 @@ Most of the Observable annotation piece (pointer-driven marks, continuous /
 cross-facet crosshairs, grouped tips) is INTERACTIVE and does not port to a
 static PDF slide, so it is noted-and-dropped rather than parked.
 https://observablehq.com/blog/five-techniques-to-improve-chart-annotations
+
+## 2026-08-19 (craft refresh, Phase 1)
+- THE PARKED STREAMLINE ITEM IS UNPARKED. Two 2026-08-16 and 2026-08-18 scans
+  looked for a readable, parameterised account of Jobard and Lefer's
+  evenly-spaced streamline placement and found only overviews that defer to the
+  1997 paper. There is one, and it publishes numbers. Pedro Faria's walkthrough
+  and its C/C++/Rust reference implementation name the whole parameter set:
+  d_sep is the minimum distance any point on one curve may come to any point on
+  another; STEP_LENGTH is the integration step, recommended at 0.1 to 1 percent
+  of the field width (its own example uses 0.01 x width); N_STEPS is the curve
+  length cap, "around 30 to 40 steps is a good range"; MIN_STEPS_ALLOWED, shown
+  at 2 and 5, discards stubs. The speed trick is a density grid whose cells are
+  exactly d_sep wide, DENSITY_GRID_WIDTH = field width / d_sep, so a candidate
+  point tests against its own cell plus the 8 around it and nothing else. Seeds
+  are taken perpendicular to an accepted curve at d_sep on both sides and queued.
+  https://pedro-faria.netlify.app/posts/2024/2024-02-19-flow-even/en/
+  https://github.com/pedropark99/Jobard-Lefer-Algorithm
+  Why it matters here: d_sep is a DATA CHANNEL. Vary d_sep across the frame by a
+  story quantity and the drawing's line density carries the number, which is
+  exactly the story-art fusion the rubric asks for and the thing our flow fields
+  have never done. A JS port also exists (gugray/adaptive-streamlines, after
+  Kashcha), so a house akstream helper is now a bounded build rather than a
+  research project. Phase 12 candidate.
+- One genuinely new LinkedIn number, and it is about the SAVE rather than the
+  swipe: documents are 12.92 percent of everything saved on LinkedIn, about 2.6x
+  their share of posts, on a format-wide engagement rate cited near 6.6 percent.
+  The 2026-08-18 note already said design the close for the save. This puts a
+  size on it, so the keepable data slide is the highest-leverage slide in the
+  deck and should not be the one that gets cut when a deck runs long.
+  https://usevisuals.com/blog/linkedin-carousel-engagement-statistics-2026
+
+## 2026-08-19 (run No.37, "A Poll Is Not a Ballot")
+
+- THE ENCODING GATE MEASURES A MEDIAN, WHICH IS NOT WHAT THE EYE MEASURES.
+  `qa.py`'s `encoding_reads` samples each declared region's MEDIAN CIELAB at
+  432px. A stroke field at 36 percent ink has a median of bare plate, so two
+  regions that differ obviously to a human can measure 0.0 dE. Four slides
+  failed this way in round 1 of this run before the cause was found. The rule
+  that falls out of it. A differ-kind declaration needs ONE region that is
+  MAJORITY INK, which at a 5.5px pitch means strokes wider than 2.75px. The
+  practical consequence is that a field carrying an encoding is drawn as a MASS
+  and a field carrying only texture is drawn as lines, and the dossier has to
+  say which it is. Probe the render with a median sampler before tuning the art;
+  guessing costs a render round each time.
+
+- A CAST SHADOW DRAWN AS A RECTANGLE IS A PLINTH. Six marks at a 52px pitch,
+  each with a `fillRect(x-26, base, 52, 22)` ambient, weld into one hard-edged
+  black bar under the whole row. It also states a light direction, straight
+  down, that contradicts whatever the object's own shading says. On both slides
+  01 and 02 the marks were lit from the left and their shadows were symmetric.
+  The fix that worked, and is now house practice, is a skewed flattened radial
+  gradient offset to the lee side (translate to x + 0.6w, `transform(1,0,-0.32,
+  1,0,0)`, `scale(1,0.30)`, radial falloff to zero), with a short TAPERED core
+  band under the object for the `data-contacts` measurement to find. Never a
+  bare rect, and never symmetric about the object.
+
+- AN EDGE-TEASE DEVICE CANNOT CUT A DATA OBJECT. The continuity system promised
+  that the sixth roll-call mark, the 73 bar's feather and the adopted register's
+  top face would each be cut by the right frame edge and resume on the next
+  sheet. None of them can be. The plate stops at x1040 and the frame is at 1080,
+  so a mark that leaves the frame has walked off the sheet it is standing on, and
+  a tally mark standing on the bed is telling the reader it stands on nothing.
+  The device only works as drawn FURNITURE living in the outer margin. Decide
+  that at dossier time; a pixel critic finding it costs a whole render round and
+  a rewritten continuity section.
+
+- THE DECK'S OWN LAW HAS TO BE ENFORCED ON THE HERO, NOT JUST THE GROUND. The
+  line system says the only large fills are the plate base and the outer
+  vignette. Slide 08's two register front faces shipped round 2 as flat fills of
+  about 2 percent of the frame each, on the deck's one dimensional hero, on the
+  slide where the palette rule also says oxide is for small areas only. Ruling
+  them (a 0.60 ground plus a 45 degree hatch at 0.42 and a 135 degree counter at
+  0.26) kept the value ladder and turned a swatch into drawn material. When a
+  deck writes a law about fills, the first place to check it is the biggest
+  shape, which is exactly the shape most likely to have been filled.
+
+- A PARTIAL RULER MUST STOP WHERE ITS SERVICE STOPS. Slide 09 gained a ghost of
+  the shared 0-to-100 axis under its count bar so 21.8 percent could be checked
+  where it is drawn. Run the full width, that ruler put a graduated percentage
+  scale under a DATED certification cap at x880, which is the 87 mark, so a date
+  became readable as a percentage. Truncating the ruler at 30 with a 45 degree
+  cut terminal and one numeral fixed it. Any auxiliary scale added for one
+  object has to end at that object's own interval, or it silently measures its
+  neighbours.
+
+- CONFIRMED, THE JOBARD AND LEFER ITEM SHIPPED. The unparked algorithm ran on
+  slide 01 with d_sep stepping 5.5px to 22.0px exactly at the 73 mark, STEP 4.6
+  (0.5 percent of the 920px field), N_STEPS 34, MIN_STEPS 4, a d_sep-wide
+  density grid and perpendicular seeding on both sides. It is the first time
+  this deck's line density has carried a number rather than a texture. The
+  parameters are worth keeping as a house preset.

@@ -1,0 +1,205 @@
+{
+  "run_dir": "out/2026-08-19",
+  "render_report": "out/2026-08-19/render/render_report.json",
+  "aggregates_file": "out/2026-08-19/aggregates.json",
+  "detected": 22,
+  "declared": 20,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "TWO INSTRUMENTS",
+      "text": "PLATE 01 / TWO INSTRUMENTS",
+      "n": 2,
+      "subject": "instruments"
+    },
+    {
+      "slide": 2,
+      "kind": "span",
+      "fragment": "4 to 2",
+      "text": "The ban lost,4 to 2.",
+      "from_n": 4,
+      "to_n": 2
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Two resolutions",
+      "text": "Two resolutions.No roll call published.",
+      "n": 2,
+      "subject": "resolutions"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "THREE VOTES",
+      "text": "SURFACE = ONE NIGHT, THREE VOTES (C20, C23)",
+      "n": 3,
+      "subject": "votes"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "605 LIKELY VOTERS",
+      "text": "JULY 28TH TO AUGUST 4TH / 605 LIKELY VOTERS",
+      "n": 605,
+      "subject": "likely voters"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "63 percent of Republicans",
+      "text": "73 percent said pause.63 percent of Republicans agreed.",
+      "n": 63,
+      "subject": "percent of republicans"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "605 likely voters",
+      "text": "The poll reached 605 likely voters by text message and web panel, in English, we",
+      "n": 605,
+      "subject": "likely voters"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "605 RESPONDENTS",
+      "text": "605 RESPONDENTS / OUTER 24 EACH END = THE MARGIN",
+      "n": 605,
+      "subject": "respondents"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "30 square miles",
+      "text": "About 30 square miles",
+      "n": 30,
+      "subject": "square miles"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "30 square miles",
+      "text": "The transfer at issue covers about 30 square miles. Only a small section of it c",
+      "n": 30,
+      "subject": "square miles"
+    },
+    {
+      "slide": 5,
+      "kind": "span",
+      "fragment": "54 to 66",
+      "text": "54 to 66 plus 12",
+      "from_n": 54,
+      "to_n": 66
+    },
+    {
+      "slide": 5,
+      "kind": "span",
+      "fragment": "43 to 53",
+      "text": "43 to 53 plus 10",
+      "from_n": 43,
+      "to_n": 53
+    },
+    {
+      "slide": 5,
+      "kind": "span",
+      "fragment": "57 to 66",
+      "text": "57 to 66 plus 9",
+      "from_n": 57,
+      "to_n": 66
+    },
+    {
+      "slide": 5,
+      "kind": "span",
+      "fragment": "61 to 66",
+      "text": "61 to 66 plus 5",
+      "from_n": 61,
+      "to_n": 66
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "FOUR MEASURES",
+      "text": "SURFACE = FOUR MEASURES (C10, C11, C12)",
+      "n": 4,
+      "subject": "measures"
+    },
+    {
+      "slide": 5,
+      "kind": "span",
+      "fragment": "54 to 66",
+      "text": "Worry about affording monthly utilities rose from 54 to 66 percent. Groceries we",
+      "from_n": 54,
+      "to_n": 66
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "TWO RANKINGS",
+      "text": "ONE QUESTION. TWO RANKINGS.",
+      "n": 2,
+      "subject": "rankings"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "100 million dollars",
+      "text": "Asked where an extra 100 million dollars should go, energy affordability leads o",
+      "n": 100,
+      "subject": "million dollars"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "THREE BOROUGHS",
+      "text": "THREE BOROUGHS, ONE SMALL SAMPLE",
+      "n": 3,
+      "subject": "boroughs"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "Two instruments",
+      "text": "Two instruments exist. Neither one is a pause.",
+      "n": 2,
+      "subject": "instruments"
+    },
+    {
+      "slide": 8,
+      "kind": "span",
+      "fragment": "4 to 2",
+      "text": "Houston's ban, August 13th, 2026. 4 to 2.",
+      "from_n": 4,
+      "to_n": 2
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "70 PERCENT OF PRECINCTS",
+      "text": "ABOUT 70 PERCENT OF PRECINCTS",
+      "n": 70,
+      "subject": "percent of precincts"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 1,
+      "text": "PLATE 01 / TWO INSTRUMENTS",
+      "note": "The plate's own name for what it holds, a measured field and a decided roll call. A property of the artwork's title block, not a count of anything in the world."
+    },
+    {
+      "slide": 2,
+      "text": "SURFACE = ONE NIGHT, THREE VOTES (C20, C23)",
+      "note": "Describes the engraved plate's own form, a three-step plateau cut to match the three votes the room took that night. It names the artwork's surface, which is why the string begins SURFACE equals."
+    },
+    {
+      "slide": 5,
+      "text": "SURFACE = FOUR MEASURES (C10, C11, C12)",
+      "note": "Describes the engraved plate's own form, a four-terrace ground cut to match the four affordability measures the slide rules. It names the artwork's surface, which is why the string begins SURFACE equals, and the four measures themselves are each carried by C10, C11 and C12."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

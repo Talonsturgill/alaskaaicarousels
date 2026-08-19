@@ -1,0 +1,83 @@
+{
+  "run_date": "2026-08-19",
+  "carousel_no": 37,
+  "title": "A Poll Is Not a Ballot",
+  "revision_rounds": 3,
+  "threshold": 8.0,
+  "threshold_note": "Three pixel-critic rounds plus one flow-critic round. The rubric's iteration ladder puts the threshold at 8.0 for 3 rounds.",
+  "weighted_total": 8.07,
+  "ship": true,
+  "hard_fail": null,
+  "hard_fails_checked": 13,
+  "hard_fails_cleared": 13,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7,
+      "weight": 0.14,
+      "note": "11 words, a specific number and a named tension, legible at 432px, but the streamline field is semantically opaque at thumb size while the six roll-call marks that make it a collision are small and cornered, and the only Alaska signal is the kicker."
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "note": "Every slide plants or pays, the terminus motif evolves in shape rather than decoration, and the contact sheet reads as one composed sequence. Slide 05 is a graft, joined by a bridge line rather than a hinge, and is the one slide reorderable without loss."
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6.5,
+      "weight": 0.16,
+      "note": "WEAKEST. The grammar and the depth work landed (the cover's density step at exactly 73 percent, dE 13.2; slide 07's merged wash; slide 08's three modelled solids at dL 24.3) but three line fields dissolved in the render, and bespoke_check puts drawn share at 54 percent against the storyboard's declared 72 percent target."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "note": "The drawing convention IS the thesis and five encodings are verifiable off the render. Held down because the master line law encodes nothing visible on slide 03, and slide 09 places a date as a gold mark near the 87 position of a percent axis."
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 7,
+      "weight": 0.12,
+      "note": "Named and dated throughout, and the PFD-versus-energy trade-off is a question no imported story has. No Alaska geography in nine slides, and the one map-shaped slide draws an authored curve labelled HOUSTON CITY LIMITS in a repo that ships true geodata."
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "note": "Nearly every content slide adds a new verified specific, bodies run 22 to 37 words with no filler, and the tolerance stamp naming each sheet's weakest source is honesty as furniture."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7,
+      "weight": 0.08,
+      "note": "Hero structure, hook archetype and all three continuity devices are new, and Space Grotesk is retired. The palette diverged by NAME and not by pigment: the grounds sit almost on No.35's and the dominant art ink is the same hex."
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 8,
+      "weight": 0.07,
+      "note": "All floors met with margin, 0 overflow warnings, contrast 5.1 to 9.1, vector PDF at 4.35 MB. Slide 03's comb and slide 05's stroke runs carry declared meaning at a size that thins in the feed."
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 8,
+      "weight": 0.05,
+      "note": "Hook 134, total 893, three hashtags, no link in body, 0.94 commas per 100 words against a 1.05 budget. Paragraph four does three jobs at once and the hook names no pollster."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 6.5,
+      "weight": 0.1,
+      "note": "The first-comment block is unusually honest and the aftercare list is operational. Marked down for the PDF title defect and the red site_fresh row the scorer saw; BOTH ARE NOW RESOLVED, see resolved_after_scoring."
+    }
+  ],
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "one_sentence_fix": "Re-cut the three line fields that dissolved in the render, slide 03's 605-stroke respondent comb, slide 05's 12/10/9/5 stroke runs and slide 04's hachure territory, as fewer, larger, individually modelled marks under a spacing floor that survives the 432px downsample, and fill the bare-plate bands on 03, 05, 06 and 07 with the engraved relief those dossiers already promise in writing.",
+  "resolved_after_scoring": [
+    "PDF EMBEDDED TITLE. The scorer read an assemble_report from before the final assemble pass. The shipped carousel.pdf carries /Title (A Poll Is Not a Ballot), verified by reading the file's own trailer, and assemble_report.json records the same. No action outstanding.",
+    "site_fresh. Red at scoring time because runs/2026-08-19/ did not exist yet and docs/ therefore could not match a build that includes this run. Phase 11 stages the run, rebuilds the site and re-runs the check before merge."
+  ],
+  "rubric_weight_note": "The rubric's ten weights sum to 1.10 rather than 1.00, so the literal weighted sum runs about 10 percent hot and the normalised figure would be 7.34. The literal sum is reported because that is what config/scoring_rubric.yaml instructs and it is the figure every prior run is comparable against. Raised for the maintainer rather than silently corrected, and logged as a Phase 12 candidate.",
+  "standing_weakness": "Artwork craft and genuine detail was the weakest criterion in 7 of the last 10 scored runs at a mean of 6.6. It scored 6.5 here, so it is still weakest. The line grammar is a real and reusable gain; the line FIELDS are where the attack failed, and the run's own bespoke_check names the gap as a number."
+}
