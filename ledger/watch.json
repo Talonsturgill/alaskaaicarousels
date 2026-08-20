@@ -1,15 +1,11 @@
 {
- "generated": "2026-08-19T14:57:39Z",
- "for_date": "2026-08-19",
+ "generated": "2026-08-20T14:59:58Z",
+ "for_date": "2026-08-20",
  "session": "34",
  "counted": {
   "basis_bills": 856,
   "basis_meetings": 2847,
-  "fedreg_federal-energy-regulatory-commission": 3,
-  "fedreg_land-management-bureau": 2,
-  "fedreg_air-force-department": 0,
-  "fedreg_energy-department": 5,
-  "fedreg_army-department": 0
+  "fedreg_air-force-department": 0
  },
  "bills": [
   {
@@ -293,49 +289,25 @@
    "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=SJR11",
    "source": "basis",
    "why": "bill on beat"
-  },
-  {
-   "source": "federal-register",
-   "why": "FERC notice on beat, the US DOE notice on beat",
-   "doc": "2026-15691",
-   "title": "Alaska Energy Authority; Notice of Application for Non-Capacity Amendment of License Accepted for Filing, Soliciting Comments, Motions To Intervene, and Protests",
-   "type": "Notice",
-   "published": "2026-08-03",
-   "comments_close_on": null,
-   "url": "https://www.federalregister.gov/documents/2026/08/03/2026-15691/alaska-energy-authority-notice-of-application-for-non-capacity-amendment-of-license-accepted-for",
-   "agencies": [
-    "Energy Department",
-    "Federal Energy Regulatory Commission"
-   ]
-  },
-  {
-   "source": "federal-register",
-   "why": "the US DOE notice on beat",
-   "doc": "2026-14333",
-   "title": "Financial Assistance Regulations-Conflict of Interest and Conflict of Commitment Policy Requirements",
-   "type": "Rule",
-   "published": "2026-07-16",
-   "comments_close_on": null,
-   "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14333/financial-assistance-regulations-conflict-of-interest-and-conflict-of-commitment-policy-requirements",
-   "agencies": [
-    "Energy Department"
-   ]
-  },
-  {
-   "source": "federal-register",
-   "why": "the US DOE notice on beat",
-   "doc": "2026-13986",
-   "title": "Agency Information Collection Extension",
-   "type": "Notice",
-   "published": "2026-07-10",
-   "comments_close_on": "2026-09-08",
-   "url": "https://www.federalregister.gov/documents/2026/07/10/2026-13986/agency-information-collection-extension",
-   "agencies": [
-    "Energy Department",
-    "Energy Information Administration"
-   ]
   }
  ],
- "failed": [],
+ "failed": [
+  {
+   "source": "fedreg-federal-energy-regulatory-commission",
+   "error": "HTTP Error 503: Service Temporarily Unavailable"
+  },
+  {
+   "source": "fedreg-land-management-bureau",
+   "error": "HTTP Error 503: Service Temporarily Unavailable"
+  },
+  {
+   "source": "fedreg-energy-department",
+   "error": "HTTP Error 503: Service Temporarily Unavailable"
+  },
+  {
+   "source": "fedreg-army-department",
+   "error": "HTTP Error 503: Service Temporarily Unavailable"
+  }
+ ],
  "note_hearings": "No upcoming hearing for a committee holding a tracked bill. The feed carried 2847 meetings and 6 of them are still ahead, so this is the Legislature being out of session rather than the sweep failing."
 }
