@@ -7,6 +7,61 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-08-20 - run retro (Carousel No. 38, "Alaska Bought American. The Tariff Found a Seam.", 8.39)
+
+Four revision rounds: 7.62, 7.99, then 8.39 CAPPED TO 6.9 by one overlap, then
+8.39 clean. Machine QA finished at PASS with zero fails AND zero warns on all
+nine slides, the first clean pass of the run and the first in some time.
+
+WHAT THIS RUN IS ACTUALLY ABOUT, for the next showrunner. Round 1's nine pixel
+critics returned a mean of 4.28 while every machine gate was green or WARN.
+That gap is the lesson. The gates check that a declaration EXISTS and is
+internally consistent. They cannot check that it landed on the thing it names.
+Every serious defect this run was that one shape:
+
+- contours hardcoded in screen space naming parts placed by a 3D camera
+- a declared inspection window sitting under its own snow cap
+- contact shadows composited AFTER their objects, painted across their faces
+- rate bars standing on a rail whose x is a declared DATE axis
+- a citation plate attributing 91 FR 53699 to C01 when it is C03
+- a headline counting three rates over four drawn bars
+
+THE THREE RULES THAT CAME OUT OF IT, now in instincts.json:
+1. Anything positioned in screen space that names something positioned by a
+   camera must be DERIVED from that thing's projected bounding box.
+2. Every data-encodes / data-contacts rect is MEASURED off the rendered PNG,
+   and re-measured whenever the object moves. This run re-measured four.
+3. Shadows go down on the ground BEFORE the object is drawn over them.
+
+THE REUSABLE TECHNIQUE: THE SURFACE PASS. The scorer's round-1 weakest-criterion
+fix was that akthree objects were shipping as untextured primitives. The fix
+generalises: draw the finish on its own canvas, mask it to the object's OWN
+alpha with `destination-in`, composite in `overlay` with mid grey as the null
+value so only deviations read. Character is per-material (orange peel, bead
+blast, milled tool marks). It took artwork craft from 5 to 6 across four slides
+in one edit and needs no texture files.
+
+FIXING A COLLISION BY MOVING ONE ELEMENT MOVES THE COLLISION. Slide 03 lost its
+axis label to the scope flag, then lost the flag's LAST WORD to the 40x bracket
+after a re-break, which is what capped round 3 at 6.9, then broke the leader
+gate when the label moved clear. Three elements in one band needs the band
+re-laid with disjoint boxes and every declaration pointing into it re-checked.
+
+PLAN-VERSUS-PIXEL DRIFT showed up in all three scoring rounds and is the one
+defect class this run never got ahead of: the claims index kept assigning ids to
+slides that never printed them, a dossier field still said five marks after
+three shipped, and aggregates.json still quoted a mono note the render had
+stopped printing. Worth a Phase 12 gate rather than more attention.
+
+STANDING WEAKNESS, carried forward. Artwork craft is still the weakest criterion
+at 6, and slide 06 is the named frame: its exploded assembly does not read as an
+airframe at any size, so the deck's crux is carried by the caption rather than
+the art. Slide 07's dashed PLANNED rows also collapse at 432px, which kills the
+22-versus-35 comparison at feed size, and slide 07's third sentence repeats
+slide 02's second body line almost verbatim.
+
+---
+
 ## 2026-08-20 - ENGINE DEFECT, AK.reliefShade silently discards `mix` (No.38)
 
 Two slides in one run rendered their largest region in the wrong material

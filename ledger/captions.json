@@ -380,6 +380,15 @@
       "first_words": "73 percent of Alaska likely voters back",
       "hook_type": "unattached majority",
       "note": "NEW:INSTRUMENT CHOICE closes by asking which INSTRUMENT a measured preference should get, not what the reader thinks of the outcome. Distinct from who-decides (a vote), PRICE, and NEW:PROVING CREDIT (No.36). The caption room's critic rejected both first candidates for opening on the council rather than on the number."
+    },
+    {
+      "run_date": "2026-08-20",
+      "opening_move": "QUOTE FIRST",
+      "structure": "BRAID",
+      "closing_move": "NEW:CLASSIFICATION QUESTION",
+      "first_words": "\"Search and rescue\" appears once in Proclamation 11055",
+      "hook_type": "single mention against a silence",
+      "note": "The caption critic killed both first-round candidates for closing on a procurement fork wearing a NEW: label. The reassigned round opened on the proclamation's own sentence and closed on a CLASSIFICATION question, which asks which tariff band a thing falls in rather than what the reader thinks of the outcome. Distinct from NEW:INSTRUMENT CHOICE (37), NEW:PROVING CREDIT (36) and PRICE."
     }
   ]
 }

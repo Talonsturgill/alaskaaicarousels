@@ -978,6 +978,51 @@
         "C THE TOLERANCE STAMP, a fixed 76px drafting title block at y1192 on all nine"
       ],
       "note": "Standing weakness attacked: artwork craft and genuine detail, weakest in 7 of the last 10 runs. The whole line system was the attack: every large area is a stroke field rather than a fill, every object that sits has a lit pool and a two-part contact shadow, and both flat-fill front faces on S08 were re-ruled. Weakest this run: Artwork craft and genuine detail. Gold budget: one mark per plate plus the footer Polaris."
+    },
+    {
+      "run_date": "2026-08-20",
+      "carousel_no": 38,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE LOCKED LENS, THE SUBSTITUTED GROUND. One camera bolted for the whole deck (height 0.85 m, base contact 2.5616 m, pitch 4.75 deg down, horizon y 560) while the FLOOR under it is swapped four times: a wet gravel village pad, a stainless customs bench, a plywood crate with a die-cut foam tray, and February snow. The argument is carried by what the ground becomes, not by what the camera does. Diverges from 37's re-inked press plate, 36's foresight line over a panorama, 35's measurement rail and 60X trench, and 34's child's eye line.",
+      "atmosphere": "THE WET CEILING. A hemispheric overcast with no key direction, so form is carried by specular wetness rather than by a modelled light. No fog volume, no emissive accent, no god rays.",
+      "hook_archetype": "PURCHASE HELD AGAINST ITS OWN INSTRUMENT",
+      "palette": "WET GRAVEL AND ANODIZED GREEN",
+      "palette_family": "cold maritime industrial",
+      "palette_hexes": [
+        "#0A1014",
+        "#131E25",
+        "#2A3E48",
+        "#5B7A87",
+        "#8FA6A9",
+        "#C6D3D2",
+        "#F4F8FF",
+        "#2E6B57",
+        "#3CE6B4",
+        "#B4402F",
+        "#FFC72C",
+        "#6EA5FF",
+        "#1E2E38"
+      ],
+      "type": "Instrument Serif display, Manrope body, JetBrains Mono instrument",
+      "type_pairing": "Instrument Serif + Manrope + JetBrains Mono",
+      "techniques": [
+        "cabinet extrusion (39)",
+        "scotch rules (70)",
+        "terminal ticks (71)",
+        "phantom dash contours",
+        "AK.hachureField from a data grid",
+        "layered ridge stack with atmospheric perspective",
+        "masked surface pass in overlay through the object's own alpha",
+        "orthographic shelf section",
+        "dimension line with broken label"
+      ],
+      "continuity_devices": [
+        "A the seam, nine declared states",
+        "B the stencil, one per slide sprayed on the object's own flank",
+        "C edge tease",
+        "D the palette calendar, August overcast to February snow"
+      ],
+      "note": "bespoke_check median pairwise art similarity 0.087 against a 0.60 fail, the best structural figure in the ledger's recent history, from nine benches with no shared drawing function. Drawn share landed at 54 to 59 percent against the plan's own 70 percent target, which is the honest gap. THE SURFACE PASS is the reusable technique from this run: draw the finish on its own canvas, mask it to the object's alpha with destination-in, composite in overlay with mid grey as the null value."
     }
   ]
 }

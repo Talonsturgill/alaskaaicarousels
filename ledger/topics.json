@@ -1602,6 +1602,31 @@
         "C37"
       ],
       "note": "Score 8.07. Dedupe returned 2 likely matches at fingerprint level; the semantic call was NOT a duplicate, with a binding build constraint that the deck must not re-tell No.14's AIDEA parcel conveyance. The fact-check killed the original thesis half (no pause anywhere in Alaska) as an unbounded negative and supplied the Public Citizen tracker replacement."
+    },
+    {
+      "run_date": "2026-08-20",
+      "carousel_no": 38,
+      "title": "Alaska Bought American. The Tariff Found a Seam.",
+      "topic": "Proclamation 11055, signed August 13th, 2026 and published August 19th at 91 FR 53699, imposes a 100 percent ad valorem duty on imported uncrewed aircraft over 25 kilograms, on imported aircraft carrying thermal imagers and on imported docking stations, effective 12:01 a.m. eastern September 3rd, 2026, with 25 percent on aircraft of 25 kilograms or less. The duty attaches to goods ENTERED FOR CONSUMPTION, so it is triggered by an import event and not by where a machine was built. Alaska's $12.4 million SOAR initiative bought drones, docking stations and Starlink for communities off the road system, and its phase one aircraft were Skydio X10s that Skydio says are assembled in the United States, so September 3rd does not reach them. The exposure is the second tranche: 25 percent on the Annex III components list, effective February 9th, 2027, which is also 180 days from signing.",
+      "entities": [
+        "Proclamation 11055",
+        "Section 232",
+        "Alaska DOT and PF",
+        "Ryan Marlow",
+        "SOAR initiative",
+        "ARROW",
+        "Skydio X10",
+        "Baranof Island",
+        "Port Armstrong",
+        "KCAW",
+        "Federal Register",
+        "Annex I",
+        "Annex II",
+        "Annex III"
+      ],
+      "angle": "A federal trade instrument priced an Alaska search tool without ever naming Alaska. The deck reads the proclamation for what it says rather than for what it was aimed at: the word Alaska appears zero times, search and rescue appears once at the end of a list of federal uses, and the date that reaches Alaska's fleet is not the one in the headlines.",
+      "claims": 37,
+      "note": "Scored 8.39 at revision round 4 after 7.62, 7.99 and a round-3 result of 8.39 capped to 6.9 by one overlap. NOT a repeat of any drone or trade topic in the ledger; the nearest drone entry is No.2, 42 days back and a salmon-counting story."
     }
   ]
 }

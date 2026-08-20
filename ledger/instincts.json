@@ -845,6 +845,26 @@
       "run_date": "2026-08-19",
       "confidence": 0.8,
       "instinct": "A continuity device that promises to cut a DATA OBJECT with the frame edge cannot be built: the plate stops 40px inside the frame, so a mark that leaves the frame has left the sheet it is supposed to stand on. Edge-tease devices must be drawn FURNITURE living in the outer margin, and the dossier should say so before the build, not after a pixel critic finds a tally mark standing on the bed."
+    },
+    {
+      "run_date": "2026-08-20",
+      "confidence": 0.9,
+      "instinct": "A library call that silently ignores an unknown option will ship the wrong material through every gate. AK.reliefShade writes ImageData and has no blend option, so the `mix` two slides were passing did nothing and the shading OVERWROTE the printed detail beneath it; its ramp also defaults to a warm stone, so an unset ramp is not neutral. Before using any art helper, check its documented option list rather than assuming the option you want exists."
+    },
+    {
+      "run_date": "2026-08-20",
+      "confidence": 0.9,
+      "instinct": "The gates check what a declaration SAYS, never whether it landed on the thing it names. data-scale checks ink inside its band and has no opinion about what stands on it; data-encodes and data-contacts check rects the author typed. Every rect must be MEASURED off the rendered PNG, and re-measured whenever the object moves. Anything positioned in screen space that names something positioned by a camera must be DERIVED from that thing's projected bounding box, not typed."
+    },
+    {
+      "run_date": "2026-08-20",
+      "confidence": 0.85,
+      "instinct": "Fixing a collision by moving one element usually moves the collision. Slide 03 lost its axis label to the scope flag, then lost the flag's last word to the 40x bracket after a re-break, then broke the leader gate when the label moved. When three elements share a band, re-lay the whole band with disjoint boxes and re-check every declaration that pointed into it."
+    },
+    {
+      "run_date": "2026-08-20",
+      "confidence": 0.85,
+      "instinct": "A shadow composited AFTER the object it belongs to is painted across that object's own faces. It happened twice in one run, on the closed dock and on the paper stacks, and it makes a solid read as glass. Contact shadows go down on the ground BEFORE the object is drawn over them."
     }
   ]
 }
