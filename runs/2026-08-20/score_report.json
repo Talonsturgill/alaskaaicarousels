@@ -1,25 +1,79 @@
 {
   "run_date": "2026-08-20",
-  "carousel_no": 38,
-  "revision_round": 4,
-  "weighted_total": 8.39,
+  "carousel_no": "38",
+  "title": "Alaska Bought American. The Tariff Found a Seam.",
+  "revision_rounds": 4,
   "threshold": 7.7,
-  "unrelaxed_threshold": 8.3,
+  "threshold_note": "Four revision rounds. The rubric's iteration ladder puts round 4 at 7.7, but the deck also clears the unrelaxed 8.3, so nothing here was banked on the relaxation.",
+  "weighted_total": 8.39,
   "ship": true,
-  "passes": true,
-  "hard_fails": [],
-  "criteria": {
-    "Thumb-stop cover": 7,
-    "Story arc & swipe momentum": 8,
-    "Artwork craft & genuine detail": 6,
-    "Story-art fusion": 8,
-    "Alaska authenticity & local relevance": 9,
-    "Insight density & factual weight": 8,
-    "Variety vs ledger": 8,
-    "Legibility & platform fitness": 7,
-    "Copy: voice & hook": 8,
-    "Deliverable completeness": 8
-  },
+  "hard_fail": null,
+  "hard_fails_checked": 13,
+  "hard_fails_cleared": 13,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7,
+      "weight": 0.14,
+      "note": "Eight words, a named tension, no topic label, and it sets 3 of 3 lines at 101.5px and holds at 432px. Held at 7 because the focal object competes: the dock is small and low-contrast in the lower half, and nothing in frame is recognisably Alaskan except the word in the headline."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "note": "Real beat structure that survives the contact sheet: 02 pays the cover's loop in one line, 05's absence sets up 06's turn, 07's empty brackets are earned by 06, and 09 rhymes with 01 on the same ground in February. Docked because 02, 05, 06, 07 and 08 share one layout skeleton so the middle reads templated, and 05 and 07 are swappable."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 6,
+      "weight": 0.16,
+      "note": "The standing weakness. 09 is excellent and 04 is now real terrain, but slide 06 is the named miss: the exploded assembly does not read as an airframe at any size, so the deck's crux is carried by the caption rather than the art. Drawn share landed at 54 percent against the plan's own 70 percent target."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "note": "The 40x bracket IS the finding, a coincidence too small to draw, drawn. Slide 07 draws a number that does not exist as an empty dashed bracket stamped NOT PUBLIC. Slide 08's February tick lands on the 180-day arithmetic to within 1px and the two axes now refuse to touch. Held at 8 by slide 06's crux and by 04 encoding nothing."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 9,
+      "weight": 0.12,
+      "note": "Baranof Island, Port Armstrong, KCAW, Alaska DOT and PF, Ryan Marlow, the $12.4 million SOAR initiative, ARROW kept separate from SOAR and SMART, communities off the road system. The restraint is the strength: no bridge is drawn between the Baranof search and any state program, and the hiker is not named."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "note": "Every content slide adds a new verified specific and word counts sit in the 25 to 50 band. Docked one point for a repeated beat: slide 07's third sentence is slide 02's second body line almost word for word."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "note": "All axes diverge from decks 34 to 37 with dials argued in the dossier. bespoke_check median pairwise art similarity 0.087 against a 0.60 fail across nine benches. Docked because the 40x magnification bracket rhymes with No.35's 60X trench and drawn share sits closer to the floor than to the plan."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7,
+      "weight": 0.07,
+      "note": "All floors met with room, zero tiny-text warnings, vector PDF with title, counters on all nine. Three squeakers: slide 07's dashed PLANNED rows collapse at 432px so the 22 versus 35 comparison does not survive the feed, the 40x label is marginal at thumb size, and slide 06's last body line runs close to the crate edge."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8,
+      "weight": 0.05,
+      "note": "Hook 131 chars, complete before the fold, opening on the proclamation's own sentence. 897 chars in band. The close is a genuinely debatable classification question. One soft paragraph reads staccato against the rest."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1,
+      "note": "Post copy, exactly 3 hashtags, nine-line first comment with seven raw URLs primary-first, document title, vector PDF, contact sheet, 9 thumbs, 7 aftercare items and honest editor notes. Docked for the artifact drift that Phase 12's new gate later caught and CORRECTIONS.md records."
+    }
+  ],
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Rebuild slide 06's exploded stack from recognisable X10 parts and put visible birch grain on the crate lid and real closed-cell structure in the foam, so the deck's crux slide reads as an aircraft coming apart rather than as four anonymous tiles on a grey slab.",
   "score_history": [
     {
       "round": 1,
@@ -44,13 +98,10 @@
       "threshold": 7.7
     }
   ],
-  "weakest_criterion": "Artwork craft & genuine detail",
-  "one_sentence_fix": "Rebuild slide 06's exploded stack from recognisable X10 parts and put visible birch grain on the crate lid and real closed-cell structure in the foam, so the deck's crux slide reads as an aircraft coming apart rather than as four anonymous tiles on a grey slab.",
-  "known_shortfalls_for_the_email": [
-    "Slide 06 is the deck's weakest frame: the exploded assembly does not read as an airframe at any size, so the crux is carried by the caption rather than the art.",
-    "Slide 07's third sentence duplicates slide 02's second body line almost word for word.",
-    "Slide 01's gold hatch seam is fully contained rather than cut by the right edge, so the cover's edge-tease into slide 02 does not exist.",
-    "At 432px slide 07's dashed PLANNED rows read as noise, so the 22 versus 35 comparison does not survive the feed test.",
-    "The caption is 897 characters against a 900 ceiling, so no in-box edit may add text."
-  ]
+  "resolved_after_scoring": [
+    "Three AK.reliefShade options on slides 05 and 07 that were never applied (light, light, mix) were removed. Zero pixel change: they were silently ignored and the library defaults are what shipped and what was scored.",
+    "Slide 05's data-encodes rects were re-measured off the render after the gold marker was realigned in round 2. Metadata only.",
+    "Seven plan-versus-build drifts in the storyboard were reconciled. The shipped storyboard.md is untouched; the reconciled copy is added as storyboard.corrected.md and CORRECTIONS.md records all of it."
+  ],
+  "standing_weakness": "Artwork craft and genuine detail is the weakest criterion again. Slide 06 is the named frame and the one-sentence fix above is the instruction for No.39."
 }
