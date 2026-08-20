@@ -1,0 +1,19 @@
+{
+  "chars": 897,
+  "hook": "\"Search and rescue\" appears once in Proclamation 11055, at the end of a list of federal drone uses. The document never says Alaska.",
+  "hook_len": 131,
+  "commas": 6,
+  "comma_per_100": 0.7,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#Section232",
+    "#DroneTariffs",
+    "#RuralAlaska"
+  ],
+  "deck_summary": "The four duty bands as the proclamation words them, both effective dates, zero mentions of Alaska, and two blanks in Alaska's fleet record.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 68
+}

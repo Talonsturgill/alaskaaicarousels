@@ -1,0 +1,245 @@
+{
+  "run_date": "2026-08-20",
+  "carousel_no": 38,
+  "document_title": "Alaska Bought American. The Tariff Found a Seam.",
+  "post_copy": "\"Search and rescue\" appears once in Proclamation 11055, at the end of a list of federal drone uses. The document never says Alaska.\n\nRyan Marlow of Alaska DOT and PF calls the technology \"crucial aerial support for search and rescue\". Alaska's $12.4 million SOAR initiative funds drones and docking stations for rural Alaska.\n\nThe duty is charged at the border. Phase one flew Skydio X10s. Skydio says the X10 is assembled in the U.S. A maker's statement is not a customs ruling. The 25 percent components duty lands February 9th, 2027.\n\nThe four duty bands as the proclamation words them, both effective dates, zero mentions of Alaska, and two blanks in Alaska's fleet record.\n\nOn paper, thermal imagers get their own 100 percent band with no weight limit. The X10 weighs 2.1 kilograms and takes a thermal camera. Which band does the tariff line put it in?\n\n#Section232 #DroneTariffs #RuralAlaska",
+  "hook_chars": 131,
+  "total_chars": 897,
+  "hashtags": [
+    "#Section232",
+    "#DroneTariffs",
+    "#RuralAlaska"
+  ],
+  "deck_summary_line": "The four duty bands as the proclamation words them, both effective dates, zero mentions of Alaska, and two blanks in Alaska's fleet record.",
+  "caption_meta": {
+    "opening_move": "QUOTE FIRST",
+    "structure": "BRAID",
+    "closing_move": "NEW:CLASSIFICATION QUESTION"
+  },
+  "first_comment": "Sources, primary first\n\nU.S. Government Publishing Office, Federal Register, Proclamation 11055, \"Adjusting Imports of Unmanned Aircraft Systems and Unmanned Aircraft Systems Components Into the United States\", https://www.govinfo.gov/content/pkg/FR-2026-08-19/html/2026-16979.htm\nFederal Register, full text of the same proclamation, 91 FR 53699, published August 19th, 2026, https://www.federalregister.gov/documents/full_text/html/2026/08/19/2026-16979.html\nAlaska Department of Transportation and Public Facilities, press release 24-0010, ARROW and the 300 mile Kuskokwim ice road, https://dot.alaska.gov/comm/pressbox/arch2024/PR24-0010.shtml\nU.S. Government Publishing Office, 14 CFR Part 107, \"Small unmanned aircraft means an unmanned aircraft weighing less than 55 pounds on takeoff\", https://www.govinfo.gov/content/pkg/CFR-2024-title14-vol2/xml/CFR-2024-title14-vol2-part107.xml\nAlaska Business Magazine, grant funding for rural drones and Seward Highway avalanche mitigation, the $12.4 million SOAR initiative, https://www.akbizmag.com/featured/dotpf-awarded-grant-funding-for-rural-drones-seward-highway-avalanche-mitigation/\nSkydio, X10 product page, \"Designed, assembled, and supported in the U.S.\", https://www.skydio.com/x10\nKCAW Raven Radio Sitka, state troopers search for a missing hiker in Port Armstrong, https://www.kcaw.org/2026/08/13/state-troopers-search-for-missing-hiker-in-port-armstrong/\n\nThe full Alaska AI Docket, with the live deadline on every item, sits at https://alaskaaihq.com\nCorrections and context are welcome, especially from anyone who has imported hardware for an Alaska agency.",
+  "slides": [
+    {
+      "slide": 1,
+      "headline": "Alaska bought American. The tariff found another door.",
+      "mono_subline": "PROCLAMATION 11055 / SIGNED AUGUST 13, 2026",
+      "counter": "01 / 09",
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C24"
+      ],
+      "stencil_lines": [
+        "PHASE 1 AIRCRAFT",
+        "US MADE PER ALASKA",
+        "BUSINESS MAGAZINE / C24"
+      ]
+    },
+    {
+      "slide": 2,
+      "headline": "The duty is charged at the border, not at the factory.",
+      "body": "Proclamation 11055 sets 100 percent on imported drones over 25 kilograms, on imported drones with thermal imagers, and on imported docking stations. It attaches to goods entered for consumption from 12:01 a.m. eastern, September 3rd.",
+      "body_second": "Alaska's grant bought drones, docking stations and Starlink for communities off the road system.",
+      "leader_label": "ENTERED FOR CONSUMPTION",
+      "counter": "02 / 09",
+      "claim_ids": [
+        "C01",
+        "C04",
+        "C09",
+        "C10",
+        "C25"
+      ]
+    },
+    {
+      "slide": 3,
+      "headline": "What the border charges, by shape.",
+      "direct_labels": [
+        "OVER 25 KG",
+        "C05",
+        "THERMAL IMAGER",
+        "C06",
+        "DOCKING STATION",
+        "C07",
+        "25 KG OR LESS",
+        "C08"
+      ],
+      "scope_flag": "ANNEX I SETS THE ACTUAL SCOPE BY TARIFF LINE. THIS DECK DOES NOT QUOTE IT.",
+      "footnote": "25 kilograms sits within a hair of the FAA's 55 pound small aircraft ceiling. The two lines coincide.",
+      "counter": "03 / 09",
+      "claim_ids": [
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C33",
+        "C37"
+      ]
+    },
+    {
+      "slide": 4,
+      "headline": "August 11th to 13th, on Baranof Island.",
+      "body": "A thermal drone team joined the search near Port Armstrong for a missing hiker, per KCAW. The proclamation was signed on the 13th.",
+      "stencil": "AUG 11 TO 13, 2026 / KCAW / C36",
+      "counter": "04 / 09",
+      "claim_ids": [
+        "C02",
+        "C36"
+      ]
+    },
+    {
+      "slide": 5,
+      "headline": "The word Alaska is not in it.",
+      "body": "The proclamation names search and rescue once, in a list of what federal agencies use drones for. Alaska, rural, public safety and firefighting don't appear at all. Alaska DOT and PF's Ryan Marlow calls the technology \"crucial aerial support for search and rescue\".",
+      "stencil": "91 FR 53699 / PUBLISHED AUG 19, 2026 / C03",
+      "counter": "05 / 09",
+      "claim_ids": [
+        "C03",
+        "C18",
+        "C19",
+        "C28",
+        "C30"
+      ],
+      "tally_lines": [
+        "ALASKA 0",
+        "RURAL 0",
+        "PUBLIC SAFETY 0",
+        "FIREFIGHTING 0"
+      ]
+    },
+    {
+      "slide": 6,
+      "headline": "The seam is inside the airframe.",
+      "body": "Skydio says the X10 is designed, assembled and supported in the U.S. through \"trusted manufacturing partners\". That is a maker's statement, not a customs ruling. A second tranche puts 25 percent on imported components from February 9th, 2027.",
+      "contour_label": "ORIGIN NOT ESTABLISHED HERE",
+      "card_gimbal": "THERMAL PAYLOAD, LISTED AT 640 x 512 PX / C34",
+      "card_airframe": "UNDER 4.7 LB, ABOUT 2.1 KG / C33",
+      "stencil": "COMPONENTS 25% / FEB 9, 2027 / C11 C12",
+      "counter": "06 / 09",
+      "claim_ids": [
+        "C11",
+        "C12",
+        "C32",
+        "C33",
+        "C34"
+      ]
+    },
+    {
+      "slide": 7,
+      "headline": "Two things about this box aren't public.",
+      "body": "No source says where the docking station is assembled. No public number says how many imported drones Alaska agencies fly. The grant bought drones, docking stations and Starlink for communities off the road system.",
+      "isotype_labels": [
+        "22 STATIONED, EARLY 2025",
+        "C22",
+        "35 PLANNED, PHASE TWO",
+        "C23",
+        "IMPORTED IN ALASKA AGENCY HANDS"
+      ],
+      "stamp": "NOT PUBLIC",
+      "counter": "07 / 09",
+      "claim_ids": [
+        "C20",
+        "C21",
+        "C22",
+        "C23",
+        "C25",
+        "C35"
+      ],
+      "stencil_lines": [
+        "ORIGIN [ ]",
+        "QTY IMPORTED [ ]",
+        "NOT PUBLIC"
+      ]
+    },
+    {
+      "slide": 8,
+      "headline": "Four rates, two effective dates.",
+      "end_labels": [
+        "AUG 13 SIGNED / C02",
+        "SEP 3, 12:01 A.M. EASTERN / C09",
+        "FEB 9, 2027",
+        "COMPONENTS 25%",
+        "C11 C12"
+      ],
+      "cap_blocks": [
+        {
+          "label": "15% CAP",
+          "condition": "Japan, Korea, Taiwan, Switzerland, Liechtenstein, EU. Only with certified critical component origin."
+        },
+        {
+          "label": "10% CAP",
+          "condition": "United Kingdom. Same certification."
+        }
+      ],
+      "stencil": "180 DAYS FROM SIGNING / C14",
+      "mono_note": "THE DELAY CLAUSE READS 180 DAYS FROM THE DATE OF THE PROCLAMATION. IT PRINTS NO DATE. 180 DAYS AFTER AUGUST 13, 2026 IS FEBRUARY 9, 2027, WHICH IS ARITHMETIC.",
+      "counter": "08 / 09",
+      "claim_ids": [
+        "C02",
+        "C04",
+        "C08",
+        "C09",
+        "C11",
+        "C12",
+        "C14",
+        "C15",
+        "C16"
+      ]
+    },
+    {
+      "slide": 9,
+      "ask": "Should a search tool be priced like a trade good?",
+      "stencil": "FEB 9, 2027 / 25% / COMPONENTS",
+      "wordmark": "ALASKA.AI",
+      "site_fixture": "alaskaaihq.com",
+      "source_note": "sources in comments",
+      "counter": "09 / 09",
+      "claim_ids": [
+        "C11",
+        "C12"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post Tuesday through Thursday, 8 to 11am Alaska time. August 20th, 2026 is a Thursday, so this draft can go up inside today's window, and holding it to next Tuesday costs nothing but freshness on a proclamation published August 19th, 2026.",
+    "Paste the first comment source block within 60 seconds of posting, before the first reader lands. The close slide promises sources in comments and an empty comment field breaks that promise in public.",
+    "Reply to every comment in the first 90 minutes. That window is where reach is decided, and this topic will draw operators and procurement people who expect an answer.",
+    "Expect the classification question back. Answer with what the text says, that thermal imagers are listed as their own 100 percent category with no weight condition, and that Annex I sets the actual scope by tariff line. Do not offer a customs opinion.",
+    "If someone asks whether Skydio is on the Blue UAS Cleared List, say the list was not reachable during the run and the deck deliberately does not rely on it. Do not confirm or deny listing from memory.",
+    "If anyone connects the Baranof search to the state program, correct it. The KCAW report names neither the operator nor the aircraft, and the deck draws no line between them.",
+    "At 48 hours, note saves, comments and the save to impression ratio, and log whether the classification question or the components date drew the most replies."
+  ],
+  "editor_notes_for_email": "The caption is carried byte for byte from the Phase 6 room, hashtag line included, after the caption critic killed both first-round candidates for closing on a procurement fork wearing a NEW: label. The reassigned round opened on the proclamation's own sentence and closed on a classification question, which is a genuinely new move. Two things worth knowing before posting. First, the caption's phrase \"funds drones and docking stations\" reads present tense while Alaska Business Magazine's sentence is future tense. That is a tense shade and not a wrong fact, and if a reader pushes, the honest reply is that the January 17th, 2025 article describes what the funding will buy. Second, the standing accuracy guardrails held across every string. The components tranche is 25 percent and never 100, the proclamation exempts nobody and its duty is triggered by importation, Skydio says is the framing on U.S. assembly, no claim is made about which X10 parts are imported, SOAR and SMART and ARROW stay three separate names, the missing hiker on Baranof is not named and is not connected to DOT and PF or SOAR or Skydio, and the 25 kilogram line and the FAA 55 pound ceiling are said to coincide and never that one adopted the other. The sources block is nine lines, seven of them raw URLs in plain text, primary documents first. No credits block is needed, the deck ships no music or produced media.",
+  "claims_used": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C14",
+    "C15",
+    "C16",
+    "C18",
+    "C19",
+    "C20",
+    "C21",
+    "C22",
+    "C23",
+    "C24",
+    "C25",
+    "C28",
+    "C30",
+    "C32",
+    "C33",
+    "C34",
+    "C35",
+    "C36",
+    "C37"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "run_dir": "out/2026-08-20",
+  "render_report": "out/2026-08-20/render/render_report.json",
+  "aggregates_file": "out/2026-08-20/aggregates.json",
+  "detected": 9,
+  "declared": 8,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "11055 sets",
+      "text": "Proclamation 11055 sets 100 percent on imported drones over 25 kilograms, on imp",
+      "n": 11055,
+      "subject": "sets"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "25 kilograms",
+      "text": "Proclamation 11055 sets 100 percent on imported drones over 25 kilograms, on imp",
+      "n": 25,
+      "subject": "kilograms"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "25 kilograms sits",
+      "text": "25 kilograms sits within a hair of the FAA's 55 pound small aircraft ceiling. Th",
+      "n": 25,
+      "subject": "kilograms sits"
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "11 TO 13",
+      "text": "AUG 11 TO 13, 2026",
+      "from_n": 11,
+      "to_n": 13
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "Four rates",
+      "text": "Four rates, two effective dates.",
+      "n": 4,
+      "subject": "rates"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "two effective dates",
+      "text": "Four rates, two effective dates.",
+      "n": 2,
+      "subject": "effective dates"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "180 DAYS",
+      "text": "180 DAYS FROM SIGNING / C14",
+      "n": 180,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "180 DAYS",
+      "text": "THE DELAY CLAUSE READS 180 DAYS FROM THE DATE OF THE",
+      "n": 180,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "180 DAYS",
+      "text": "PROCLAMATION. IT PRINTS NO DATE. 180 DAYS AFTER AUGUST",
+      "n": 180,
+      "unit": "days"
+    }
+  ],
+  "not_rederived": [],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

@@ -1,0 +1,95 @@
+{
+  "run_date": "2026-08-20",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Proclamation 11055 sets 100 percent on imported drones over 25 kilograms",
+      "number": 11055,
+      "claim": "C01",
+      "note": "The detector reads the proclamation NUMBER as a count. It is not an aggregate at all, it is the document's own identifier, quoted from C01 where the title prints Proclamation 11055."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "imported drones over 25 kilograms",
+      "number": 25,
+      "claim": "C05",
+      "note": "Quoted straight from C05, whose verbatim reads UAS with a maximum take-off weight of more than 25 kilograms. Not derived."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "25 kilograms sits within a hair of the FAA's 55 pound small aircraft ceiling. The two lines coincide.",
+      "number": 25,
+      "claim": "C05",
+      "note": "The 25 is C05's own threshold. The 55 pound comparison is C37, whose verbatim reads weighing less than 55 pounds on takeoff. The slide says the two lines COINCIDE and never that one adopted the other, because no source establishes that."
+    },
+    {
+      "kind": "span",
+      "slide": 4,
+      "text": "AUG 11 TO 13, 2026 / KCAW / C36",
+      "from": {
+        "claim": "C36",
+        "date": "2026-08-11"
+      },
+      "to": {
+        "claim": "C36",
+        "date": "2026-08-13"
+      }
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "text": "Four rates, two effective dates.",
+      "fragment": "Four rates",
+      "subject": "rates",
+      "members": [
+        "C04",
+        "C08",
+        "C15",
+        "C16"
+      ],
+      "note": "One printed string carries two counts, so each declaration names the FRAGMENT it answers for and re-derives against its own number. The four rates are the four bars the bench actually plots: 100 percent (C04), 25 percent (C08), the 15 percent allied cap (C15) and the 10 percent United Kingdom cap (C16). All four are duty rates the proclamation sets, and the two caps are printed with their certification condition in the cap blocks below."
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "text": "Four rates, two effective dates.",
+      "fragment": "two effective dates",
+      "subject": "effective dates",
+      "members": [
+        "C09",
+        "C12"
+      ],
+      "note": "September 3rd, 2026 (C09) and February 9th, 2027 (C12). The rail prints a THIRD date label, August 13th, and the subject says effective on purpose: August 13th is the signing, which the rail labels SIGNED and the mono note separates from effect. The headline read 'Two dates, three rates.' until this gate made each half answer for itself, and both numbers were wrong against the slide's own ink."
+    },
+    {
+      "kind": "duration",
+      "slide": 8,
+      "text": "180 DAYS FROM SIGNING / C14",
+      "from": {
+        "claim": "C02",
+        "date": "2026-08-13"
+      },
+      "to": {
+        "claim": "C12",
+        "date": "2027-02-09"
+      }
+    },
+    {
+      "kind": "duration",
+      "slide": 8,
+      "text": "THE DELAY CLAUSE READS 180 DAYS FROM THE DATE OF THE PROCLAMATION. IT PRINTS NO DATE. 180 DAYS AFTER AUGUST 13, 2026 IS FEBRUARY 9, 2027, WHICH IS ARITHMETIC.",
+      "from": {
+        "claim": "C02",
+        "date": "2026-08-13"
+      },
+      "to": {
+        "claim": "C12",
+        "date": "2027-02-09"
+      }
+    }
+  ],
+  "note": "The two 180 day declarations are the same arithmetic printed twice on slide 08, once as the rail's stencil and once as the note that explains it. C14's clause says 180 days from the date of this proclamation and prints NO date. C12 prints February 9, 2027 for the Annex III components tranche. August 13th, 2026 plus 180 days is February 9th, 2027, so the two converge by construction rather than by coincidence, and the slide says exactly that. The deck never quotes C14 as if it printed the date."
+}

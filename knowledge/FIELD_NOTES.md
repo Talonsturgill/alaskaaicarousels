@@ -7,6 +7,123 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-08-20 - run retro (Carousel No. 38, "Alaska Bought American. The Tariff Found a Seam.", 8.39)
+
+Four revision rounds: 7.62, 7.99, then 8.39 CAPPED TO 6.9 by one overlap, then
+8.39 clean. Machine QA finished at PASS with zero fails AND zero warns on all
+nine slides, the first clean pass of the run and the first in some time.
+
+WHAT THIS RUN IS ACTUALLY ABOUT, for the next showrunner. Round 1's nine pixel
+critics returned a mean of 4.28 while every machine gate was green or WARN.
+That gap is the lesson. The gates check that a declaration EXISTS and is
+internally consistent. They cannot check that it landed on the thing it names.
+Every serious defect this run was that one shape:
+
+- contours hardcoded in screen space naming parts placed by a 3D camera
+- a declared inspection window sitting under its own snow cap
+- contact shadows composited AFTER their objects, painted across their faces
+- rate bars standing on a rail whose x is a declared DATE axis
+- a citation plate attributing 91 FR 53699 to C01 when it is C03
+- a headline counting three rates over four drawn bars
+
+THE THREE RULES THAT CAME OUT OF IT, now in instincts.json:
+1. Anything positioned in screen space that names something positioned by a
+   camera must be DERIVED from that thing's projected bounding box.
+2. Every data-encodes / data-contacts rect is MEASURED off the rendered PNG,
+   and re-measured whenever the object moves. This run re-measured four.
+3. Shadows go down on the ground BEFORE the object is drawn over them.
+
+THE REUSABLE TECHNIQUE: THE SURFACE PASS. The scorer's round-1 weakest-criterion
+fix was that akthree objects were shipping as untextured primitives. The fix
+generalises: draw the finish on its own canvas, mask it to the object's OWN
+alpha with `destination-in`, composite in `overlay` with mid grey as the null
+value so only deviations read. Character is per-material (orange peel, bead
+blast, milled tool marks). It took artwork craft from 5 to 6 across four slides
+in one edit and needs no texture files.
+
+FIXING A COLLISION BY MOVING ONE ELEMENT MOVES THE COLLISION. Slide 03 lost its
+axis label to the scope flag, then lost the flag's LAST WORD to the 40x bracket
+after a re-break, which is what capped round 3 at 6.9, then broke the leader
+gate when the label moved clear. Three elements in one band needs the band
+re-laid with disjoint boxes and every declaration pointing into it re-checked.
+
+PLAN-VERSUS-PIXEL DRIFT showed up in all three scoring rounds and is the one
+defect class this run never got ahead of: the claims index kept assigning ids to
+slides that never printed them, a dossier field still said five marks after
+three shipped, and aggregates.json still quoted a mono note the render had
+stopped printing. Worth a Phase 12 gate rather than more attention.
+
+STANDING WEAKNESS, carried forward. Artwork craft is still the weakest criterion
+at 6, and slide 06 is the named frame: its exploded assembly does not read as an
+airframe at any size, so the deck's crux is carried by the caption rather than
+the art. Slide 07's dashed PLANNED rows also collapse at 432px, which kills the
+22-versus-35 comparison at feed size, and slide 07's third sentence repeats
+slide 02's second body line almost verbatim.
+
+---
+
+## 2026-08-20 - ENGINE DEFECT, AK.reliefShade silently discards `mix` (No.38)
+
+Two slides in one run rendered their largest region in the wrong material
+because of one library contract, and neither the render gate, the machine QA
+gate, nor the style lint could see it. Slide 05's cold white bond printed as
+kraft with every printed line on both sheets ERASED, so the gold marker that
+highlights exactly one clause of the proclamation was highlighting a blank
+sheet. Slide 07's bead-blasted type III anodize printed as a cardboard carton.
+
+Two separate causes, both in the same call:
+
+1. `AK.reliefShade` writes ImageData straight into its region. It REPLACES
+   what is underneath. It has no blend, alpha, opacity or composite option at
+   all. Both slides were passing `mix: 0.30` / `mix: 0.34`, which is not in the
+   options list and was therefore silently ignored, so what the author intended
+   as a 30 percent form-shading finish was a 100 percent overwrite of the
+   printed detail beneath it.
+2. Its `low`/`high` ramp defaults to A WARM STONE (`#241d15` to `#e6d2a6`).
+   An unset ramp is not neutral. On a deck whose palette reserves the entire
+   warm channel for `#FFC72C`, an unset ramp puts the largest region in frame
+   outside the palette.
+
+THE RULE, for any future slide that calls it: reliefShade is the SUBSTRATE and
+is laid down FIRST, before any printed detail, and its `low`/`high` are always
+named from the slide's own palette. Never pass `mix`. If a finish rather than a
+substrate is wanted, render it to an offscreen canvas and composite that with
+an explicit `globalAlpha`.
+
+Worth a Phase 12 upgrade: make `reliefShade` throw on an unknown option key.
+A silently ignored option is how both of these shipped through every gate.
+
+## 2026-08-20 - the gates cannot see an object that is not there (No.38)
+
+The round-1 pixel critics returned a mean of 4.28 against a 8.3 threshold on a
+deck where machine QA was WARN with zero fails. Every defect they found was
+invisible to the machine, and they fell into one shape: A DECLARATION POINTING
+AT NOTHING.
+
+- S06's four dashed gold origin contours, the deck's most carefully reasoned
+  accuracy device, were HARDCODED SCREEN ELLIPSES while the parts they name
+  were projected from a 3D camera. Every one of them enclosed bare foam. The
+  fix is the general one: derive the contour from the part's own projected
+  bounding box, so it cannot drift from what it bounds.
+- S09's inspection window sat on the lid at y BH+0.032 with the snow cap on
+  top of it at BH+0.040. The declared feature was under its own snow.
+- S09's contact shadow was composited in MULTIPLY after the 3D snapshot, so it
+  was painted across the object's own faces and the shell read as green glass
+  with a dark disc floating inside it. Shadows go down BEFORE the object.
+  S05 had the identical bug against its paper stacks.
+- S08's rate bars stood ON the calendar rail whose x is a DECLARED date axis.
+  Nothing encoding a rate may touch anything encoding a day.
+- S02 published `91 FR 53699 / C01`. That figure is C03 and belongs to slide
+  05, so the deck was attributing a document to a claim that does not cover it.
+
+`data-scale` checks what is INSIDE its band; it has no opinion about what
+stands on it. `data-encodes` and `data-contacts` check rects the author typed;
+they have no opinion about whether the rect landed on the feature. Every one
+of those rects has to be MEASURED off the rendered PNG, and this run had to
+re-measure four of them after moving objects.
+
+---
+
 ## 2026-07-22 - site change (maintainer session, not a run)
 
 - THE SITE NOW CARRIES THE BOTTLENECK SCANNER. site_build.py gained scan_html()
@@ -4066,3 +4183,31 @@ was no discovery step; the scan ran on WebFetch alone against two indexes,
 which is a narrower instrument and found more than the last two blocked scans
 did, mostly by luck of the arXiv listing. The pattern is now stable enough to
 name: if Phase 12 needs the frontier, the budget has to be reserved in Phase 2.
+
+## 2026-08-20 — craft refresh (Phase 1, No.38)
+
+- SOCIALINSIDER'S 2026 FIGURE FOR NATIVE DOCUMENTS IS NOW 7.00 PERCENT, up 14
+  percent year over year, against an all-format average of 5.20 percent.
+  Ordering below it: multi-image 6.45, video 6.00, image 5.30, text 4.50, poll
+  4.20, link 3.25. Sample is 1.3 million posts from 16,645 pages over January
+  2024 to December 2025. CAROUSEL_CRAFT already carries 7.00 versus 6.00 for
+  video, so nothing in the doctrine moves. What is new is that documents GREW
+  their lead while every other format also grew, which is the more durable
+  signal: the format's advantage is not an artifact of one weak year.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
+- A CLAIM TO NOT PICK UP. Several secondary blogs this month report that
+  "personal profile carousels see 63 percent higher engagement than company
+  page carousels", attributing it to the Metricool 2026 study. Socialinsider's
+  page, fetched today, states plainly that its benchmark set is business pages
+  only and offers no personal-profile comparison, so the figure is not from the
+  study most of those posts cite. Recorded here so a future craft refresh does
+  not launder it into the doctrine. If the profile-versus-page question ever
+  matters to this publication it needs a primary source, not a round of blogs
+  quoting each other.
+- The frontier searches on procedural substrate and on PBR material realism
+  returned nothing the TECHNIQUE_LIBRARY does not already hold. OpenPBR's
+  uber-shader parameter set (metalness, glossy-diffuse, subsurface, coat, fuzz,
+  emission) is worth keeping in view as a naming vocabulary for akthree
+  material specs, since dossiers currently describe materials in prose and a
+  shared parameter vocabulary would make a material spec checkable.
+  https://www.khronos.org/gltf/pbr/

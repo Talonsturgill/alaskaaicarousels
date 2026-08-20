@@ -1,0 +1,81 @@
+{
+  "run_date": "2026-08-20",
+  "carousel_no": 38,
+  "date_note": "Woke 23:15 AKDT on August 19th with runs/2026-08-19/ already holding No.37's shipped artifacts. Per the routine's date rule the run takes the next free date, 2026-08-20, which is the date Anchorage rolls into within the hour.",
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": "done",
+    "selection": "done",
+    "directors_room": "pending",
+    "copy": "done",
+    "art_build": "pending",
+    "pixel_review": "pending",
+    "flow_review": "pending",
+    "assemble": "done",
+    "scoring": "pending",
+    "ship": "pending",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending",
+    "storyboard": "done",
+    "render": "done",
+    "gates": "done",
+    "pixel_review_round_1": "done",
+    "fix_pass_round_1": "done",
+    "score": "round_2_pending"
+  },
+  "artifacts": {
+    "wake": [
+      "out/2026-08-20/plan.md",
+      "out/2026-08-20/run_state.json"
+    ],
+    "craft_refresh": [
+      "knowledge/FIELD_NOTES.md (2026-08-20 entry)"
+    ],
+    "docket": [
+      "ledger/docket.json (10 items refreshed, AIDEA moved to pending-decision)"
+    ],
+    "gas_watch": [
+      "out/2026-08-20/siteshots/",
+      "SITE SIGN-OFF: PASS, 80 pages, 18 checks",
+      "GAS WATCH: PASS, read 2026-08-19, 15 days on record, chart present",
+      "SITE FIXES: sticky nav scrim raised from .78 to .92 with an opaque @supports fallback"
+    ],
+    "research": [
+      "out/2026-08-20/scout_merge.md",
+      "6 scouts complete"
+    ],
+    "selection": [
+      "out/2026-08-20/selection.md",
+      "prompts/NEXT_RUN.md (DeepGreen queued)"
+    ],
+    "claims": [
+      "out/2026-08-20/claims.json",
+      "claims_check PASS 37/37 usable, 28 primary"
+    ]
+  },
+  "revision_rounds": 4,
+  "round_1_pixel_scores": {
+    "S1": 3.5,
+    "S2": 4.0,
+    "S3": 5.0,
+    "S4": 6.0,
+    "S5": 4.0,
+    "S6": 2.5,
+    "S7": 4.0,
+    "S8": 5.0,
+    "S9": 4.5
+  },
+  "round_1_note": "Nine pixel critics, mean 4.28, against machine QA at WARN with zero fails. Every defect they found was invisible to the machine and most were one shape: a declaration pointing at nothing. Fix pass touched all nine slides; see knowledge/FIELD_NOTES.md 2026-08-20.",
+  "round_1_score": 7.62,
+  "round_2_score": 7.99,
+  "round_3_score": {
+    "raw": 8.39,
+    "capped": 6.9,
+    "cap_reason": "overlapping text on slide 03: the 40x bracket label sat on the scope flag last word"
+  }
+}

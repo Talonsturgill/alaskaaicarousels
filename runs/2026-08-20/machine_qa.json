@@ -1,0 +1,157 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the machine is closed except in one place': dE 79.1, AUC 0.94, visible 100%/100%, seen 192/224px at 432w"
+      ],
+      "contacts": [
+        "'the dock standing on the wet gravel pad': shadow L* 1.8 vs ground L* 11.3, dL 9.5 at 432w"
+      ],
+      "fits": [
+        "hl 'Alaska bought American. The tariff found ano' fits 3/3 lines at 101.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the aircraft standing on the stainless bench': shadow L* 2.8 vs ground L* 65.0, dL 62.2 at 432w"
+      ],
+      "leaders": [
+        "leader 'the painted red line where the bench is crossed' lands 0.0px from its target",
+        "leader 'the painted red line where the bench is crossed' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hl 'The duty is charged at the border, not at th' fits 2/2 lines at 86.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the fourth rate bar is a quarter of the others': dE 88.1, AUC 1.00, visible 97%/70%, seen 794/403px at 432w"
+      ],
+      "contacts": [
+        "'the docking station standing on its row rule': shadow L* 1.4 vs ground L* 26.7, dL 25.3 at 432w"
+      ],
+      "scales": [
+        "'the weight rail' runs 0 kilograms at 168 to 30 kilograms at 912; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the 25 kg tick on the weight rail' lands 0.0px from its target",
+        "leader 'the 25 kg tick on the weight rail' meets its label 8.0px away"
+      ],
+      "fits": [
+        "hl 'What the border charges, by shape.' fits 1/1 lines at 74px"
+      ],
+      "asserts": [
+        "'the 25 kg and 55 lb marks are within a hair of each other' holds: 1.29 vs 1.2896 px (within 0.2)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hl 'August 11th to 13th, on Baranof Island.' fits 2/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the two documents are marked in different colours because the voices differ': dE 12.3, AUC 0.82, visible 100%/100%, seen 288/288px at 432w"
+      ],
+      "contacts": [
+        "'the federal printout resting on the bench': shadow L* 29.2 vs ground L* 74.8, dL 45.6 at 432w"
+      ],
+      "fits": [
+        "hl 'The word Alaska is not in it.' fits 1/1 lines at 85px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the outer shell and the interior parts are marked differently': dE 56.6, AUC 1.00, visible 100%/100%, seen 1440/1440px at 432w"
+      ],
+      "contacts": [
+        "'the three subassemblies still resting in the foam': shadow L* 1.6 vs ground L* 46.3, dL 44.7 at 432w"
+      ],
+      "leaders": [
+        "leader 'the lowest dashed origin contour' lands 0.0px from its target",
+        "leader 'the lowest dashed origin contour' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hl 'The seam is inside the airframe.' fits 2/2 lines at 85px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'one row of glyphs is filled and the next is not': dE 26.6, AUC 0.73, visible 100%/100%, seen 1044/928px at 432w"
+      ],
+      "contacts": [
+        "'the docking station standing on the wet pad': shadow L* 1.6 vs ground L* 38.9, dL 37.2 at 432w"
+      ],
+      "leaders": [
+        "leader \"the dock's own data placard line\" lands 0.0px from its target",
+        "leader \"the dock's own data placard line\" meets its label 9.0px away"
+      ],
+      "fits": [
+        "hl 'Two things about this box aren't public.' fits 2/2 lines at 74.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the 100 percent bar is four times the 25 percent bar, so it is still solid at a height whe': dE 81.4, AUC 1.00, visible 100%/100%, seen 672/672px at 432w"
+      ],
+      "contacts": [
+        "'the rail bolt flanges standing on the silt': shadow L* 4.4 vs ground L* 13.2, dL 8.7 at 432w"
+      ],
+      "scales": [
+        "'the calendar rail bolted through the pad' runs 0 days from signing at 140 to 180 days from signing at 1080; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the day 0 mark, August 13 signing' lands 4.0px from its target",
+        "leader 'the day 21 mark, first tranche effective' lands 4.0px from its target",
+        "leader 'the day 180 mark, components tranche effective' lands 22.8px from its target",
+        "leader 'the day 0 mark, August 13 signing' meets its label 0.0px away",
+        "leader 'the day 21 mark, first tranche effective' meets its label 0.0px away",
+        "leader 'the day 180 mark, components tranche effective' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hl 'Four rates, two effective dates.' fits 2/2 lines at 87.5px"
+      ],
+      "asserts": [
+        "'the printed February 9 tick and the 180-day computation land together' holds: 1080 vs 1080 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the closed dock standing on February snow': shadow L* 72.2 vs ground L* 81.8, dL 9.6 at 432w"
+      ],
+      "fits": [
+        "hl 'Should a search tool be priced like a trade ' fits 2/2 lines at 88.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

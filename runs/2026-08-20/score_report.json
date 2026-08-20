@@ -1,0 +1,56 @@
+{
+  "run_date": "2026-08-20",
+  "carousel_no": 38,
+  "revision_round": 4,
+  "weighted_total": 8.39,
+  "threshold": 7.7,
+  "unrelaxed_threshold": 8.3,
+  "ship": true,
+  "passes": true,
+  "hard_fails": [],
+  "criteria": {
+    "Thumb-stop cover": 7,
+    "Story arc & swipe momentum": 8,
+    "Artwork craft & genuine detail": 6,
+    "Story-art fusion": 8,
+    "Alaska authenticity & local relevance": 9,
+    "Insight density & factual weight": 8,
+    "Variety vs ledger": 8,
+    "Legibility & platform fitness": 7,
+    "Copy: voice & hook": 8,
+    "Deliverable completeness": 8
+  },
+  "score_history": [
+    {
+      "round": 1,
+      "score": 7.62,
+      "threshold": 8.3
+    },
+    {
+      "round": 2,
+      "score": 7.99,
+      "threshold": 8.3
+    },
+    {
+      "round": 3,
+      "raw": 8.39,
+      "capped": 6.9,
+      "threshold": 8.0,
+      "cap_reason": "overlapping text on slide 03: the 40x bracket label sat on the scope flag's last word"
+    },
+    {
+      "round": 4,
+      "score": 8.39,
+      "threshold": 7.7
+    }
+  ],
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Rebuild slide 06's exploded stack from recognisable X10 parts and put visible birch grain on the crate lid and real closed-cell structure in the foam, so the deck's crux slide reads as an aircraft coming apart rather than as four anonymous tiles on a grey slab.",
+  "known_shortfalls_for_the_email": [
+    "Slide 06 is the deck's weakest frame: the exploded assembly does not read as an airframe at any size, so the crux is carried by the caption rather than the art.",
+    "Slide 07's third sentence duplicates slide 02's second body line almost word for word.",
+    "Slide 01's gold hatch seam is fully contained rather than cut by the right edge, so the cover's edge-tease into slide 02 does not exist.",
+    "At 432px slide 07's dashed PLANNED rows read as noise, so the 22 versus 35 comparison does not survive the feed test.",
+    "The caption is 897 characters against a 900 ceiling, so no in-box edit may add text."
+  ]
+}
