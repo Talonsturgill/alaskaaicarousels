@@ -106,7 +106,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-16",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-07-08",
@@ -199,6 +199,10 @@
         {
           "date": "2026-08-16",
           "note": "Re-verified against the state notice. No final finding and decision has been issued on the 715.4 acre, 50-year lease offer, thirty days after comment closed."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "Re-verified against the state notice. Thirty four days after comment closed on July 17th, the Division of Oil and Gas has issued no final finding and decision on the 715.4 acre, 50 year lease offer. The notice still tells commenters they will have a right to appeal that decision once it exists."
         }
       ]
     },
@@ -615,7 +619,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-19",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-07-08",
@@ -720,6 +724,10 @@
         {
           "date": "2026-08-19",
           "note": "Checked and unchanged. Nothing has moved since the governor said on the evening of August 13th that there is little reason to keep the third special session going, and the House Bipartisan Majority Caucus said the day before that HB 4001 lacks the votes. Neither chamber has met on the bill. Two dates remain on the calendar, a joint Senate and House Resources Committee meeting in Anchorage on Cook Inlet energy tomorrow, August 20th, and the scheduled end of the session on August 25th."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The joint Senate and House Resources Committee meeting on immediate Cook Inlet energy needs is set for today in Anchorage, and no outcome is published yet. Nothing has moved on the tax bill itself since the governor said on August 13th that there is little reason to keep the third special session going. The session is scheduled to end August 25th."
         }
       ]
     },
@@ -787,7 +795,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-08-19",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-07-11",
@@ -816,6 +824,10 @@
         {
           "date": "2026-08-19",
           "note": "Checked and unchanged. Enstar's 31 page petition for reconsideration, filed July 23rd, is still before the Regulatory Commission of Alaska with no action reported. The commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project remains the operative decision. Thirty days from filing falls on or about August 22nd, three days out, after which the petition is denied by operation of law."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "Checked and unchanged. Enstar's July 23rd petition for reconsideration is still before the Regulatory Commission of Alaska with no order reported. The commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project stands. Thirty days from the filing falls on August 22nd, which is the date already on this entry."
         }
       ]
     },
@@ -823,11 +835,11 @@
       "id": "aidea-houston-industrial-park",
       "title": "AIDEA's free state land for a Mat-Su data center park",
       "kind": "state-land-lease",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "Alaska DNR, Commissioner John Crowther",
-      "public_access": "open",
-      "access_note": "Anyone can comment on the DNR preliminary decision to transfer the land to AIDEA through 5 p.m. August 19, 2026, on the DNR website. Commenting also buys standing, because the notice says only people from whom the division receives timely written comment during this window will be eligible to appeal the Final Finding and Decision. This is the one open comment room among the tracked decisions.",
-      "summary": "A DNR preliminary decision would transfer about 20,000 acres, roughly 30 square miles, of state land just north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that includes scalable data centers and a logistics hub about 60 road miles north of Anchorage. Public comment runs through August 19.",
+      "public_access": "indirect",
+      "access_note": "The comment room on this transfer is shut. Written comment closed at 5 p.m. on August 19th, 2026, and the notice said only people from whom the division received timely written comment during that window would be eligible to appeal the Final Finding and Decision. What is left is adjacent. AIDEA's board meets in public on August 26th, the first board date after the close, and Houston's city council has asked AIDEA to come to a September meeting for which no date is set.",
+      "summary": "A DNR preliminary decision would transfer about 20,000 acres, roughly 30 square miles, of state land just north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that includes scalable data centers and a logistics hub about 60 road miles north of Anchorage. Public comment closed on August 19th and the decision now sits with DNR.",
       "key_dates": [
         {
           "date": "2026-07-13",
@@ -898,7 +910,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-19",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-07-17",
@@ -979,6 +991,10 @@
         {
           "date": "2026-08-19",
           "note": "Houston's council answered on August 13th, and it answered about process rather than about data centers. Two resolutions passed unanimously objecting to how the state ran the transfer, one aimed at the AIDEA conveyance and one at an unrelated parcel bound for the state housing finance corporation. Council member Jeffrey Brasel said \"There was zero transparency. They had made preliminary decisions before we even had a decision to make.\" The separate ordinance that would have banned data centers inside city limits FAILED 4 to 2 the same night, with Callie Courtney and Lisa Johansen voting for it. The city has asked AIDEA to come to a council meeting in September. Re-verified against the state notice as well. Comment on the roughly 19,950 acre conveyance, ADL 234762, closes 5 p.m. today, August 19th, and only people from whom the division receives timely written comment during the window will be eligible to appeal the final finding and decision."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The comment window closed at 5 p.m. on Wednesday, August 19th, 2026, exactly as the state notice printed it. The proposed conveyance of about 19,950 acres near Houston now sits with the Department of Natural Resources for a final decision, and no final finding has been published. AIDEA's board meets on August 26th, the first board date after the close."
         }
       ]
     },
@@ -1162,7 +1178,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-08-16",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-07-26",
@@ -1179,6 +1195,10 @@
         {
           "date": "2026-08-16",
           "note": "Re-checked against the White House page, which now publishes signatories as counts rather than names, 282 cooperatives and utilities together with 38 data center developers and 7 AI companies. Cordova Electric Cooperative's signature, recorded here on July 26th, stands as this entry's last verified Alaska fact."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "Re-checked against the White House page, which today publishes named signatories in a searchable directory rather than counts alone. Cordova Electric Cooperative is on that list and remains the only Alaska utility this entry has found on it. The page prints 282 cooperatives, 176 utilities, 38 data center developers and 7 hyperscalers and AI companies, under a headline of more than 300 organizations."
         }
       ]
     },
@@ -1260,7 +1280,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-19",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-08-02",
@@ -1289,6 +1309,10 @@
         {
           "date": "2026-08-19",
           "note": "Re-verified against the state notice. Amendment One to request for information 02-101-27, Automatic Compliance and Data Integration CDL, is still the current posting and vendor responses are due tomorrow, August 20th. The notice still prints neither artificial intelligence nor machine learning."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "Re-verified against the state notice. Amendment One to request for information 02-101-27, Automatic Compliance and Data Integration CDL, is still the current posting, and vendor responses are due today, August 20th, at 2 p.m. Alaska time. The notice still prints neither artificial intelligence nor machine learning."
         }
       ]
     },
@@ -1434,7 +1458,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-08-19",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-08-05",
@@ -1451,6 +1475,10 @@
         {
           "date": "2026-08-19",
           "note": "Re-verified against the federal listing. The AI3 Action Institute, opportunity HHS-2026-ACF-ANA-NAI-0035, is still posted for a single award with a ceiling of $3,500,000, is still open, and still closes August 27th, 2026 at 11:59 p.m. Eastern. No amendment is shown. Eight days remain."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "Re-verified against the federal listing, last updated July 30th, which still shows the AI3 Action Institute open and closing August 27th, 2026 at 11:59 p.m. Eastern. One award, ceiling $3,500,000, with Alaska Native villages among the eligible applicants. Seven days remain."
         }
       ]
     },
@@ -1498,7 +1526,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-16",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-08-06",
@@ -1511,6 +1539,10 @@
         {
           "date": "2026-08-16",
           "note": "Re-verified against the Air Force's own announcement. No contract has been awarded. The notice of intent to award opened negotiation toward a thirty year firm fixed price contract, contingent on the company completing Nuclear Regulatory Commission licensing, and the Department of the Air Force and the commission are preparing an environmental analysis as the next step."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "Re-verified against the base's own microreactor page. The notice of intent to award to Oklo, issued in May 2025, still has not become a contract, and the page ties any award to the company completing Nuclear Regulatory Commission licensing. The page sizes the plant at up to 5 megawatts delivered to base infrastructure. Its most recent quarterly newsletter is dated June 2026."
         }
       ]
     },
@@ -1702,7 +1734,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-16",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-08-06",
@@ -1715,6 +1747,10 @@
         {
           "date": "2026-08-16",
           "note": "Re-verified against the Anchorage Daily News account of the selection. The $89 million is for engineering and design of a 1,250 megawatt coal fired plant with integrated carbon capture west of Skwentna, matched dollar for dollar by the developer. No design is finalized, no coal mine is permitted, no utility has signed a power purchase agreement, and the site sits more than sixty miles from the nearest transmission line."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The Department of Energy's Alaska funding awards page is no longer resolving, so this check fell back to the published account of the June 4th selection and found nothing new since. The $89 million is for engineering and design of a 1,250 megawatt coal fired plant with integrated carbon capture west of Skwentna, matched dollar for dollar by the developer. No coal mine is permitted and no utility has signed a power purchase agreement."
         }
       ]
     },
@@ -1757,7 +1793,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-16",
+      "last_updated": "2026-08-20",
       "history": [
         {
           "date": "2026-08-06",
@@ -1766,6 +1802,10 @@
         {
           "date": "2026-08-16",
           "note": "Re-checked against the trade record. The commission held its May 14th hearing on its intention to seek Class VI primary enforcement authority for carbon dioxide storage wells, and no grant or denial by the Environmental Protection Agency has been reported since."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The commission's carbon capture page refused a request today, so this check ran against the trade record instead. The May 14th hearing on seeking Class VI primary enforcement authority for carbon dioxide storage wells remains the last event on the application, and the Environmental Protection Agency has neither granted nor denied it."
         }
       ]
     },

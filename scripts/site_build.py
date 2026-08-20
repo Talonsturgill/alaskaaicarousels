@@ -672,9 +672,18 @@ radial-gradient(1px 1px at 5% 10%,rgba(244,248,255,.5),transparent 60%);}
 padding:26px 0 14px;flex-wrap:wrap;}
 .topnav::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;
 margin-left:-50vw;z-index:-1;opacity:0;
-background:rgba(2,6,15,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+background:rgba(2,6,15,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
 border-bottom:1px solid rgba(28,51,80,.7);transition:opacity .35s;}
 .topnav.scrolled::before{opacity:1;}
+/* The scrim carries the nav on its own and the blur is a finish on top of it.
+   It used to sit at .78, which is a glass value that only works when the blur
+   actually composites. Where it does not, and that includes a headless render
+   and any machine where the compositor has the filter switched off, .78 left
+   gold h2s and body copy legible straight through the bar at phone width. A
+   reader cannot tell a design from a fault, so the scrim now stands alone and
+   goes fully opaque where the filter is declared unsupported. */
+@supports not ((backdrop-filter:blur(14px)) or (-webkit-backdrop-filter:blur(14px))){
+.topnav::before{background:rgba(2,6,15,.985);}}
 .wordmark{display:flex;align-items:center;gap:11px;font-family:JBMono,monospace;
 font-size:15px;letter-spacing:.24em;color:var(--snow);text-decoration:none;font-weight:500;}
 .wordmark .polaris{width:17px;height:17px;transition:transform .5s;}

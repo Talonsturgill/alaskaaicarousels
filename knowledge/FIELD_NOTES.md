@@ -4066,3 +4066,31 @@ was no discovery step; the scan ran on WebFetch alone against two indexes,
 which is a narrower instrument and found more than the last two blocked scans
 did, mostly by luck of the arXiv listing. The pattern is now stable enough to
 name: if Phase 12 needs the frontier, the budget has to be reserved in Phase 2.
+
+## 2026-08-20 — craft refresh (Phase 1, No.38)
+
+- SOCIALINSIDER'S 2026 FIGURE FOR NATIVE DOCUMENTS IS NOW 7.00 PERCENT, up 14
+  percent year over year, against an all-format average of 5.20 percent.
+  Ordering below it: multi-image 6.45, video 6.00, image 5.30, text 4.50, poll
+  4.20, link 3.25. Sample is 1.3 million posts from 16,645 pages over January
+  2024 to December 2025. CAROUSEL_CRAFT already carries 7.00 versus 6.00 for
+  video, so nothing in the doctrine moves. What is new is that documents GREW
+  their lead while every other format also grew, which is the more durable
+  signal: the format's advantage is not an artifact of one weak year.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
+- A CLAIM TO NOT PICK UP. Several secondary blogs this month report that
+  "personal profile carousels see 63 percent higher engagement than company
+  page carousels", attributing it to the Metricool 2026 study. Socialinsider's
+  page, fetched today, states plainly that its benchmark set is business pages
+  only and offers no personal-profile comparison, so the figure is not from the
+  study most of those posts cite. Recorded here so a future craft refresh does
+  not launder it into the doctrine. If the profile-versus-page question ever
+  matters to this publication it needs a primary source, not a round of blogs
+  quoting each other.
+- The frontier searches on procedural substrate and on PBR material realism
+  returned nothing the TECHNIQUE_LIBRARY does not already hold. OpenPBR's
+  uber-shader parameter set (metalness, glossy-diffuse, subsurface, coat, fuzz,
+  emission) is worth keeping in view as a naming vocabulary for akthree
+  material specs, since dossiers currently describe materials in prose and a
+  shared parameter vocabulary would make a material spec checkable.
+  https://www.khronos.org/gltf/pbr/
