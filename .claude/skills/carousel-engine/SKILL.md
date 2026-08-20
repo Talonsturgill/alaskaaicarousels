@@ -368,6 +368,16 @@ them or every archive page goes blank.
   putImageData (REPLACES pixels incl. alpha), so shade onto its own layer/before
   compositing other art. Shades ART only; text stays DOM/SVG; never encode
   quantity in the relief.
+  THE OPTION CONTRACT (2026-08-20): `low`/`high` are REQUIRED and named from the
+  slide's palette, and ANY key it does not know THROWS after a console.error
+  tagged `AK CONTRACT:` (which qa.py FAILs on, so a slide-side try/catch can't
+  swallow it). Run No.38 shipped two slides in the wrong material because
+  `mix: 0.30` and `light: [x,y,z]` are not options here and were silently
+  dropped: there is no blend of any kind (lay the substrate down FIRST, or
+  composite a finish yourself with an explicit globalAlpha), the option is
+  `lights: [{az,el,w}]`, and the old default ramp was a warm stone. Copy the
+  same guard (`AK.optionContract(name, opts, allowed, notes)`) into any helper
+  that grows an option list.
 - `assets/js/akgeo.js` — Alaska projection + regional zoom (`AKGeo.*`).
   NEVER fitExtent to a small lon/lat bbox (renders a giant fill disc);
   use `AKGeo.zoomTo(proj, geo, lonlat, targetXY, zoom)` and draw the
@@ -431,6 +441,18 @@ them or every archive page goes blank.
   by hand. Tune `intensity` up for marquee heroes and verify the edge visually
   (the RENDERED LADDER pixel gate still applies). `AKT.fitHeight(group,h)` is
   the standalone scale helper.
+  SCREEN-SPACE ANNOTATION IS DERIVED, NEVER TYPED (2026-08-20):
+  `AKT.screenBox(R, meshOrGroupOrArray, {pad, padX, padY, w, h})` returns
+  `{x,y,w,h,cx,cy,rx,ry,corners,behind,offscreen}` in DESIGN px (not the 2x
+  backing store) from the target's OWN local bounding boxes through its
+  matrixWorld and the live camera, so a contour, bracket, callout or
+  `data-encodes` rect that names a 3D part is computed from where that part
+  actually drew. Run No.38's slide 06 hardcoded four screen ellipses for parts
+  placed by a camera and every one of them enclosed bare foam; nine pixel
+  critics found it and no gate could. `behind`/`offscreen` console.error with
+  the `AK CONTRACT:` prefix (a qa.py FAIL) because both states return a
+  reasonable-looking rectangle that encloses nothing. `AKT.projectPoint(R,x,y,z)`
+  is the single-point form for a leader terminus.
 - `assets/js/aksdf.js` — CPU SDF raymarcher (`AKSDF.*`): organic sculpted
   heroes, soft shadows + 5-tap AO + smin blends; render 480x720 internal into
   a box, ~5-15s; `deadlineMs` degrades gracefully.

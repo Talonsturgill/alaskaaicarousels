@@ -280,6 +280,126 @@ export function init(THREE) {
       });
   };
 
+  /* ---- screen-space annotation ----------------------------------------- */
+  /* A DECLARATION POINTING AT NOTHING (2026-08-20, run No.38). Slide 06's four
+   * dashed gold origin contours were the deck's most carefully reasoned
+   * accuracy device and its worst defect: they were HARDCODED SCREEN ELLIPSES
+   * while the parts they name were placed by a 3D camera. Every one of them
+   * enclosed bare foam. Nine pixel critics scored that deck 4.28 while machine
+   * QA was WARN with zero fails, because no gate can see that a circle drawn at
+   * (540, 700) is not around the thing the label says it is around.
+   *
+   * The repair is arithmetic, not vigilance: ANYTHING POSITIONED IN SCREEN
+   * SPACE THAT NAMES SOMETHING POSITIONED BY A CAMERA IS DERIVED FROM THAT
+   * THING'S PROJECTED BOUNDING BOX. This is that derivation, committed once so
+   * the next slide reaches for it instead of typing coordinates.
+   *
+   *   const b = AKT.screenBox(R, part);        // one mesh, a group, or an array
+   *   cx.ellipse(b.cx, b.cy, b.rx + 20, b.ry + 16, 0, 0, Math.PI * 2);
+   *   AK.canvasLabel(cx, b.x + b.w + 12, b.cy, "ORIGIN NOT ESTABLISHED HERE");
+   *
+   * Returns { x, y, w, h, cx, cy, rx, ry, corners, offscreen, behind } in
+   * DESIGN px (the slide's CSS pixel grid, 1080x1350 by default -- NOT the 2x
+   * backing store), so the rect drops straight into canvas 2D after the
+   * customary cx.scale(2,2), into SVG, or into a data-encodes declaration.
+   *
+   * WHY THE 8 GEOMETRY CORNERS AND NOT Box3.setFromObject: a world-space AABB
+   * projected corner by corner is the AABB of a box that has already been
+   * axis-aligned in WORLD space, so a part rotated 40 degrees gets a screen
+   * box noticeably larger than its silhouette. Each mesh's OWN local bounding
+   * box is transformed by its own matrixWorld, which is the tightest thing
+   * available without reading every vertex.
+   *
+   * `behind` is true when any corner sits behind the camera, where the
+   * perspective divide flips sign and a projected point is meaningless. The
+   * box is still returned (clamped nowhere) but a slide must not annotate off
+   * it; move the camera or the part instead. `offscreen` is true when the box
+   * lies entirely outside the frame, which is the other silent way an
+   * annotation ends up pointing at nothing.
+   */
+  AKT.screenBox = function (R, target, o) {
+    o = o || {};
+    const W = o.w || R.w || 1080, H = o.h || R.h || 1350;
+    const padX = o.padX != null ? o.padX : (o.pad || 0);
+    const padY = o.padY != null ? o.padY : (o.pad || 0);
+    // The camera and every world matrix must be current or this silently
+    // projects against last frame's pose.
+    R.scene.updateMatrixWorld(true);
+    R.camera.updateMatrixWorld(true);
+    R.camera.updateProjectionMatrix();
+
+    const meshes = [];
+    const collect = (t) => {
+      if (!t) return;
+      if (Array.isArray(t)) { t.forEach(collect); return; }
+      if (t.isMesh && t.geometry) meshes.push(t);
+      else if (t.traverse) t.traverse(m => { if (m.isMesh && m.geometry) meshes.push(m); });
+    };
+    collect(target);
+    if (!meshes.length) {
+      throw new Error("AK CONTRACT: AKT.screenBox: nothing to bound -- the "
+        + "target holds no mesh with geometry, so any annotation derived from "
+        + "it would point at nothing (which is the defect this exists to stop)");
+    }
+
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    let behind = false;
+    const corners = [];
+    const v = new THREE.Vector3();
+    for (const m of meshes) {
+      if (!m.geometry.boundingBox) m.geometry.computeBoundingBox();
+      const b = m.geometry.boundingBox;
+      for (const px of [b.min.x, b.max.x])
+        for (const py of [b.min.y, b.max.y])
+          for (const pz of [b.min.z, b.max.z]) {
+            v.set(px, py, pz).applyMatrix4(m.matrixWorld);
+            const cam = v.clone().applyMatrix4(R.camera.matrixWorldInverse);
+            if (cam.z > -R.camera.near) behind = true;   // behind the lens
+            v.project(R.camera);
+            const sx = (v.x * 0.5 + 0.5) * W, sy = (-v.y * 0.5 + 0.5) * H;
+            corners.push([sx, sy]);
+            if (sx < x0) x0 = sx;
+            if (sy < y0) y0 = sy;
+            if (sx > x1) x1 = sx;
+            if (sy > y1) y1 = sy;
+          }
+    }
+    x0 -= padX; x1 += padX; y0 -= padY; y1 += padY;
+    const box = {
+      x: x0, y: y0, w: x1 - x0, h: y1 - y0,
+      cx: (x0 + x1) / 2, cy: (y0 + y1) / 2,
+      rx: (x1 - x0) / 2, ry: (y1 - y0) / 2,
+      corners: corners, behind: behind,
+      offscreen: (x1 < 0 || y1 < 0 || x0 > W || y0 > H)
+    };
+    if (behind || box.offscreen) {
+      // Loud, because both states produce a rectangle that looks perfectly
+      // reasonable in the source and encloses nothing in the render. qa.py
+      // FAILS on the AK CONTRACT prefix.
+      try {
+        console.error("AK CONTRACT: AKT.screenBox: the target is "
+          + (behind ? "partly BEHIND the camera" : "entirely OFF the frame")
+          + " (box " + [box.x, box.y, box.w, box.h].map(Math.round).join(", ")
+          + " in " + W + "x" + H + "), so anything drawn from this box points "
+          + "at nothing. Move the camera or the part, do not annotate it.");
+      } catch (e) {}
+    }
+    return box;
+  };
+
+  // The single point form, same units: world -> design px.
+  AKT.projectPoint = function (R, x, y, z, o) {
+    o = o || {};
+    const W = o.w || R.w || 1080, H = o.h || R.h || 1350;
+    R.camera.updateMatrixWorld(true);
+    R.camera.updateProjectionMatrix();
+    const v = new THREE.Vector3(x, y, z);
+    const cam = v.clone().applyMatrix4(R.camera.matrixWorldInverse);
+    v.project(R.camera);
+    return { x: (v.x * 0.5 + 0.5) * W, y: (-v.y * 0.5 + 0.5) * H,
+             behind: cam.z > -R.camera.near };
+  };
+
   /* ---- geometry helpers ------------------------------------------------- */
   // Tube along a polyline (array of [x,y,z]) — pipes, routes, cables in 3D.
   AKT.tube = function (points, radius, mat, o) {

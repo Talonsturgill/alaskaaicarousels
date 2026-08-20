@@ -1370,6 +1370,50 @@
    "verification": "Spec change, no code path. The added text is a restatement of what run No.37 actually did, so it is consistent with the shipped record. House rules checked on it: no em or en dashes, no 'cannot', ordinal date form. No script reads this passage, and the full gate suite was re-run for the other two upgrades with no change in behaviour.",
    "rollback": "revert the upgrade(2026-08-19) commit",
    "commit": "pending: upgrade(2026-08-19)"
+  },
+  {
+   "run_date": "2026-08-20",
+   "kind": "fix",
+   "area": "assets, engine",
+   "change": "AN ART HELPER NOW REFUSES AN OPTION IT DOES NOT KNOW. AK.reliefShade validates its option list, console.errors with an 'AK CONTRACT:' prefix and then THROWS on any unknown key (naming the remedy per key: `mix` -> there is no blend at all, lay the substrate down first or composite a finish yourself with an explicit globalAlpha; `light` -> the option is `lights: [{az,el,w}]`; anything else gets a nearest-key suggestion), and its `low`/`high` ramp is now REQUIRED instead of defaulting to a warm stone. qa.py promotes any console error carrying that prefix from WARN to FAIL, because slide code legitimately wraps art calls in try/catch and a swallowed throw is the same silent no-op. AK.optionContract is exported so other helpers can adopt the same rule.",
+   "trigger": "Run No.38 deviation 2. Two slides passed `mix: 0.30` / `mix: 0.34` to a function that writes ImageData and REPLACES its region, so a 30 percent form-shading finish was a 100 percent overwrite: slide 05's cold white bond printed as kraft with every printed line on both sheets erased under a gold marker highlighting a blank sheet, and slide 07's bead-blasted anodize printed as a cardboard carton. Nine pixel critics scored the round at a mean of 4.28 while machine QA was WARN with zero fails. Found during this retro and not previously recorded: the SHIPPED deck still passes `mix: 0.20` on slide 07 and `light: [x,y,z]` on both, so three silently ignored options survived four revision rounds, every gate and the merge.",
+   "files": [
+    "assets/js/akrelief.js",
+    ".claude/skills/carousel-engine/qa.py",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "Reconstruction A (this run's exact shape: mix + light inside the author's own try/catch) renders OK and qa.py FAILS it with 'library contract: AK CONTRACT: AK.reliefShade: unknown options `light` ... `mix` ...'. Reconstruction B (ramp unset, throw uncaught) is a render.py HARD FAIL. The control slide (correct call) renders clean at 0 fails 0 warns. Re-rendering the SHIPPED nine slides now FAILS exactly slides 05 and 07, on the real defect they carry, with the other seven at 0/0; note the refusal also removes their relief, which drops slide 05's declared encoding to dE 1.9 and fails the encoding gate too, i.e. the deck can't ship until the call is corrected. examples/demo-deck is identical before and after (WARN, 0 fails, 11 warns).",
+   "rollback": "revert the upgrade(2026-08-20) commit",
+   "commit": "upgrade(2026-08-20) on tsturg/wonderful-maxwell-xfzxpi"
+  },
+  {
+   "run_date": "2026-08-20",
+   "kind": "fix",
+   "area": "scripts, prompts",
+   "change": "THE PLAN AND THE BUILD NOW HAVE TO AGREE ABOUT THE BUILD. New scripts/plan_drift_check.py cross-checks the storyboard's claims index against copy.json's per-slide claim_ids in BOTH directions (a claim marked NOT USED must appear on no slide; an unknown-shaped index or a copy.json with no claim_ids at all is CANNOT LOOK, exit 2, like copy_sync_check's zero-strings rule), and checks every '<N> declared marks / leaders / measured axes / encodings / contact shadows' sentence in a dossier against what the slide body actually declares in the render report. Claim tags printed in the render are reported as evidence of which artifact drifted, never as a source of pass or fail. New gate_status.py row `plan_drift` and step 7 of Phase 8.",
+   "trigger": "Run No.38 deviation 3: plan-versus-pixel drift was flagged by the scorer in all three scoring rounds and was the one defect class the run never got ahead of (claim ids assigned to slides that never printed them, a dossier still saying five marks after three shipped, aggregates.json quoting a mono note the render had stopped printing). Each was caught by a human-equivalent reader, never by a gate. The storyboard that SHIPPED still over-assigns C03, C07, C10 and C24 and still says FIVE declared marks and TWO DECLARED MEASURED AXES against three and one in the build.",
+   "files": [
+    "scripts/plan_drift_check.py",
+    "scripts/gate_status.py",
+    "prompts/routine_instructions.md"
+   ],
+   "verification": "`python scripts/plan_drift_check.py --self-test` passes 11 hermetic checks, including both No.38 defect shapes as reconstructions (an id indexed to a slide copy.json does not carry FAILS; 'FIVE declared marks' against 3 in the build FAILS) and the set-aliasing bug found while building it (one row's slide set was shared by every claim on that row, which reported 33 drifts on runs/2026-08-09, none of them real). On out/2026-08-20 it reports all seven real drifts and exits 1; the gate_status row renders FAIL with the first drift named and gate_status --self-test still passes 16 checks. Swept over all 27 shipped runs carrying both artifacts: 1 to 10 drifts each on the 11 that have claim_ids, CANNOT LOOK on the rest, and the three sampled by hand (2026-08-06, 08-09, 08-19) were true positives verified against the artifacts.",
+   "rollback": "revert the upgrade(2026-08-20) commit",
+   "commit": "upgrade(2026-08-20) on tsturg/wonderful-maxwell-xfzxpi"
+  },
+  {
+   "run_date": "2026-08-20",
+   "kind": "fix",
+   "area": "assets",
+   "change": "SCREEN-SPACE ANNOTATION IS DERIVED FROM THE CAMERA, NEVER TYPED. New AKT.screenBox(R, meshOrGroupOrArray, {pad,padX,padY,w,h}) returns {x,y,w,h,cx,cy,rx,ry,corners,behind,offscreen} in DESIGN px, computed from each mesh's OWN local bounding box through its matrixWorld and the live camera (tighter than a world-space Box3, which axis-aligns before projecting), plus AKT.projectPoint for a leader terminus. `behind` and `offscreen` console.error under the AK CONTRACT prefix, which qa.py now FAILs, because both states return a reasonable-looking rectangle that encloses nothing.",
+   "trigger": "Run No.38 deviation 1, the run's dominant defect shape: slide 06's four dashed gold origin contours, the deck's central accuracy device, were HARDCODED SCREEN ELLIPSES while the parts they name were placed by a 3D camera, so every contour enclosed bare foam. Nine pixel critics returned a mean of 4.28 and machine QA was WARN with zero fails. The in-run repair was written inline in the slide; this commits it once so the next slide reaches for it instead of typing coordinates.",
+   "files": [
+    "assets/js/akthree.js",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "Measured against pixels, not asserted: a rotated 1.2x0.6x0.9 box at a known pose reported BOX 361.2 522.0 370.6 322.2 in design px, and the object's ink bbox measured off the rendered PNG is 361.0 522.0 371.0 322.5 -- inside half a design pixel on every edge. Aiming the camera away from the part produces the AK CONTRACT console error and a qa.py FAIL ('the target is partly BEHIND the camera') instead of a plausible box. examples/demo-deck and this run's nine slides re-render with no change attributable to this addition (it adds functions only).",
+   "rollback": "revert the upgrade(2026-08-20) commit",
+   "commit": "upgrade(2026-08-20) on tsturg/wonderful-maxwell-xfzxpi"
   }
  ],
  "scan_log": [
@@ -1583,6 +1627,13 @@
    "blocked": "ATTEMPTED-BUT-BLOCKED for the third time in six runs, and for the same reason as 2026-08-14 and 2026-08-16: WebSearch returned 'web search budget (200 of 200 WebSearch calls)' on the first query, so there was NO discovery step. The scan ran on WebFetch alone against two indexes (Anthropic's engineering blog, the arXiv cs.SE recent listing) plus two paper reads. 0 searches, 4 fetches, 2 papers read. The pattern is stable enough to name: if Phase 12 needs the frontier, the budget has to be reserved in Phase 2.",
    "found": "ORACLE ANCHORING (arXiv:2608.17214, 'Oracles That Cannot Fail'). A test oracle that takes its expected value from the system it judges can't fail, because a fault moves measurement and expectation together and the comparison cancels. Specification-anchored expectations come from values fixed outside the thing under test; state-anchored ones flow from it. Measured on a deployed air traffic simulator: re-anchoring one oracle on published procedure, changing no production code, recovered 8 of 46 missed mutants, and state-anchoring a healthy one cost 4 of 19. This names this studio's oldest review defect better than the studio has: dossier_check.py's own docstring says 'the pixel critics grade each slide against its OWN dossier, so a slide that executed a bad plan passes its acceptance checklist', which is a state-anchored oracle, and run No.37 produced two textbook instances (Device B promised to cut a data object with the right frame edge when the plate ends at x1040 and the frame at x1080; Device C, declared a FIXED title block, shipped at eight different heights). Supporting result: arXiv:2608.17177 measures that making an agent write pre- and post-conditions BEFORE generating tests improves bug detection 9.8 points (p 0.0352), which is the declare-then-measure pattern this run's contact-shadow fix uses.",
    "outcome": "parked (knowledge/FIELD_NOTES.md 2026-08-19): a GEOMETRY ORACLE with frame, plate and safe-zone extents in one committed constants file, dossier coordinates checked against it at plan time, and a device declared FIXED stating its box once and held to it on every sheet. Both Device B and Device C die at plan time from values no run authored. Not applied because the whole 0-3 budget went reactive-first to three run deviations, and a new constants module plus a plan-time checker is not boundable and verifiable in what was left."
+  },
+  {
+   "run_date": "2026-08-20",
+   "focus": "(d) typography and layout craft, aimed at this run's collision whack-a-mole (slide 03 lost its axis label to the scope flag, then the flag's last word to the 40x bracket, then broke the leader gate). The stalest legal slot, last scanned 2026-08-07 (13 days), and distinct from the last three logged foci: 2026-08-19 self-improving pipelines, 2026-08-18 editorial dataviz, 2026-08-16 procedural art.",
+   "searches": 3,
+   "found": "3 searches, 4 fetches, 3 read; WebSearch was available this run. (1) THE FINDING WORTH HAVING, and it is the machinery the collision defect actually wants: 'Legible Label Layout for Data Visualization' (arXiv 2405.10953) places labels against an OCCUPANCY BITMAP of already-placed ink using the 8-POSITION candidate model (four corners, four sides) in a single greedy pass, with padding past the chart area as a parameter, row update frequency keyed to labelHeight_min, and a binary search for the largest same-aspect rectangle when a label must sit INSIDE an area; measured 22 percent faster than particle-based labeling on a 3,320 airport map for 0.8 to 3.2 percent fewer labels placed. kevinschaul/avoid-overlap is the readable news-graphics implementation of the same problem (simulated annealing, defaults 10,000 iterations / temperature 100 / cooling 0.995) and contributes the vocabulary: per-element nudge with allowed directions and max distance, choices, fixed obstacles, and quadratic priority weighting so the headline wins and the tick label yields. https://arxiv.org/html/2405.10953v1 , https://github.com/kevinschaul/avoid-overlap (2) RECONFIRMED NULL: CSS text-wrap balance (Chromium 114+, capped at six lines) and pretty (117+, orphans only, never widows) still give no line-count and no overflow guarantee, so AK.fitText's binary-search fit-to-box remains the headline mechanism, unchanged since 2026-07-09. https://developer.chrome.com/blog/css-text-wrap-pretty , https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap-style (3) NULL RESULT worth recording: a search for 2026 editorial/news-graphics typography craft returned SEO listicles with no parameter in them; the next scan in this slot should go at a named desk's published methodology rather than the topic.",
+   "outcome": "parked (knowledge/FIELD_NOTES.md 2026-08-20 Phase 12 block: the occupancy-bitmap plus 8-position placement technique with its parameters, the avoid-overlap vocabulary, both source URLs, and an unblocking condition -- AK.placeBand in ~100 lines of vanilla JS verified by reconstructing slide 03's three-element band). NOTHING APPLIED FROM THE SCAN: all three upgrade slots went to reactive fixes, which outrank a frontier improvement by this phase's own reactive-first rule, and a placement engine is not a corner of somebody else's commit."
   }
  ]
 }

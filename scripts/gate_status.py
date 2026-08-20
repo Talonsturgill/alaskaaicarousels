@@ -259,6 +259,40 @@ def copy_sync_row(rows, run, rdir):
     rows.add("copy_sync", "PASS" if p.returncode == 0 else "FAIL", line[:140])
 
 
+def plan_drift_row(rows, run, rdir):
+    """THE PLAN AND THE BUILD HAVE TO AGREE ABOUT THE BUILD (2026-08-20).
+    Run No.38's scorer flagged plan-versus-pixel drift in all three scoring
+    rounds and no gate could see any of it: the claims index kept assigning
+    ids to slides that never printed them, and a dossier still said FIVE
+    declared marks after three shipped. Exit 2 means the check could not
+    look, which is a FAIL like its siblings."""
+    script = REPO / "scripts" / "plan_drift_check.py"
+    if not script.exists():
+        rows.absent("plan_drift", "scripts/plan_drift_check.py missing")
+        return
+    if not (run / "storyboard.md").exists():
+        rows.absent("plan_drift", "storyboard.md missing")
+        return
+    cmd = [sys.executable, str(script), "--run-dir", str(run)]
+    if (rdir / "render_report.json").exists():
+        cmd += ["--render-report", str(rdir / "render_report.json")]
+    try:
+        p = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    except Exception as e:
+        rows.absent("plan_drift", "could not run plan_drift_check (%s)"
+                    % type(e).__name__)
+        return
+    out = (p.stdout + p.stderr).strip().splitlines() or [""]
+    if p.returncode == 2:
+        rows.add("plan_drift", "FAIL", "check could not look: %s" % out[0][:120])
+        return
+    if p.returncode == 0:
+        rows.add("plan_drift", "PASS", out[-1][:140])
+        return
+    first = next((l.strip() for l in out if l.strip().startswith("FAIL:")), out[0])
+    rows.add("plan_drift", "FAIL", "%s (%s)" % (out[-1][:80], first[:90]))
+
+
 def aggregate_row(rows, run, rdir):
     """Every number a slide DERIVES from claims (a count, a span, a duration, a
     ratio) is a fresh factual assertion that claims_check and copy_sync_check
@@ -880,6 +914,7 @@ def main():
     caption_row(rows, run)
     copy_sync_row(rows, run, rdir)
     aggregate_row(rows, run, rdir)
+    plan_drift_row(rows, run, rdir)
     bespoke_row(rows, run)
     scanner_sync_row(rows)
     docket_dates_row(rows)
