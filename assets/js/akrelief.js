@@ -45,10 +45,36 @@
  *     seed: 20260722,
  *     noiseScale: 0.010, octaves: 5, warp: 0.6, // heightfield character
  *     strength: 3,                              // relief exaggeration (bigger = taller)
- *     low:  '#241d15', high: '#e6d2a6',         // shadow -> lit ramp (a warm stone)
+ *     low:  '#241d15', high: '#e6d2a6',         // shadow -> lit ramp, REQUIRED,
+ *                                               // from the slide's own palette
  *     ambient: 0.22, diffuse: 0.95,
  *     mask: AK.reliefDome                       // optional silhouette (a raised dome)
  *   });
+ *
+ * THE OPTION CONTRACT (2026-08-20, run No.38). An option this function does not
+ * know is now a THROW plus a console.error, never a silent no-op, and the ramp
+ * is REQUIRED. Both halves were bought with a whole deck. Two slides passed
+ * `mix: 0.30` / `mix: 0.34`, which is not an option here and was dropped on the
+ * floor: reliefShade writes ImageData with putImageData, so it REPLACES the
+ * region it covers and there is no blend, alpha, opacity or composite operation
+ * in it at all. What the author intended as a 30 percent form-shading finish was
+ * a 100 percent overwrite. Slide 05's cold white bond printed as kraft with
+ * every printed line on both sheets erased, so the gold marker highlighting one
+ * clause of a proclamation was highlighting a blank sheet; slide 07's bead-
+ * blasted anodize printed as a cardboard carton. Both also passed `light: [x,y,z]`
+ * (the option is `lights: [{az,el,w}]`), so the lighting they wrote was ignored
+ * too. Nine pixel critics found the result; the render gate, machine QA and the
+ * style lint could not, because a silently ignored option leaves no trace.
+ * The ramp is required for the same reason at one remove: `low`/`high` used to
+ * default to a WARM STONE, and an unset ramp is not neutral. On a deck whose
+ * palette reserves the entire warm channel for one token, the default put the
+ * largest region in frame outside the palette.
+ *
+ * SO: reliefShade is the SUBSTRATE. Lay it down FIRST, before any printed
+ * detail, and name `low`/`high` from the slide's own palette. If you want a
+ * FINISH rather than a substrate, render it to an offscreen canvas and
+ * composite that yourself with an explicit globalAlpha (the surface pass,
+ * knowledge/FIELD_NOTES.md 2026-08-20).
  *
  * NOTES
  * - Deterministic: uses AK.reseed(seed) + the noise.js field, never Math.random.
@@ -62,6 +88,57 @@
 (function (global) {
   "use strict";
   var AK = global.AK || (global.AK = {});
+
+  /* THE OPTION CONTRACT. A helper that accepts an option it has never heard of
+   * is a helper that ships the wrong material through every gate (see the block
+   * at the top of this file). optionContract() is exported so any other AK
+   * helper can adopt the same rule; it deliberately has no dependencies, so
+   * copying these lines into a helper that loads on its own is also fine.
+   *
+   * It does BOTH things on purpose: console.error, then throw. The throw is the
+   * loud half, but real slide code wraps art calls in try/catch ("form shading
+   * is a finish, never the structure"), and a swallowed throw is a silent no-op
+   * again. The console.error survives the catch, render.py records it, and
+   * qa.py FAILS on the "AK CONTRACT:" prefix rather than warning.
+   */
+  var CONTRACT_TAG = "AK CONTRACT: ";
+
+  function nearest(key, allowed) {
+    // cheap edit distance, only to say "did you mean" -- never to accept a key
+    var best = null, bestD = 1e9, lk = String(key).toLowerCase(), i;
+    for (i = 0; i < allowed.length; i++) {
+      var a = allowed[i].toLowerCase(), m = [], j, k;
+      for (j = 0; j <= lk.length; j++) m[j] = [j];
+      for (k = 0; k <= a.length; k++) m[0][k] = k;
+      for (j = 1; j <= lk.length; j++)
+        for (k = 1; k <= a.length; k++)
+          m[j][k] = Math.min(m[j - 1][k] + 1, m[j][k - 1] + 1,
+                             m[j - 1][k - 1] + (lk[j - 1] === a[k - 1] ? 0 : 1));
+      var d = m[lk.length][a.length];
+      if (d < bestD) { bestD = d; best = allowed[i]; }
+    }
+    return (bestD <= Math.max(2, Math.ceil(lk.length / 3))) ? best : null;
+  }
+
+  function optionContract(fnName, opts, allowed, notes) {
+    var o = opts || {}, bad = [], k;
+    for (k in o) {
+      if (!Object.prototype.hasOwnProperty.call(o, k)) continue;
+      if (allowed.indexOf(k) < 0) bad.push(k);
+    }
+    if (!bad.length) return;
+    var msg = CONTRACT_TAG + fnName + ": unknown option" + (bad.length > 1 ? "s " : " ")
+      + bad.map(function (b) {
+          var n = (notes && notes[b]) ? " -- " + notes[b] : "";
+          var guess = nearest(b, allowed);
+          if (!n && guess) n = " -- did you mean `" + guess + "`?";
+          return "`" + b + "`" + n;
+        }).join("; ")
+      + ". This option is NOT applied and never was; it is refused rather than "
+      + "ignored so it can't ship. Known options: " + allowed.join(", ") + ".";
+    try { console.error(msg); } catch (e) {}
+    throw new Error(msg);
+  }
 
   function hexToRGB(s) {
     var m = String(s).match(/^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
@@ -106,12 +183,40 @@
    *   lights         [{az,el,w}] override; else single NW key or MDOW set.
    *   multidirectional  use the 4-azimuth MDOW light set (default false).
    *   ambient,diffuse   Lambert terms (default 0.22, 0.95).
-   *   low,high       shadow->lit ramp hex (default warm stone).
+   *   low,high       shadow->lit ramp hex. REQUIRED, both of them, named from
+   *                  the slide's own palette (see THE OPTION CONTRACT above).
    *   gamma          shade gamma (default 1.0).
    *   mask(u,v)      silhouette alpha 0..1; default full opaque rect.
+   *
+   * Any other key THROWS. There is no blend/alpha/mix: this REPLACES its region.
    */
+  var RELIEF_OPTS = ["x", "y", "w", "h", "scale", "seed", "height", "noiseScale",
+                     "octaves", "warp", "strength", "lights", "multidirectional",
+                     "ambient", "diffuse", "low", "high", "gamma", "mask"];
+  var NO_BLEND = "reliefShade writes ImageData and REPLACES the region it "
+    + "covers; it has no blend, alpha or composite of any kind. Lay it down as "
+    + "the SUBSTRATE first, before the printed detail, or render the finish to "
+    + "an offscreen canvas and composite that with an explicit globalAlpha";
+  var RELIEF_NOTES = {
+    mix: NO_BLEND, alpha: NO_BLEND, opacity: NO_BLEND, blend: NO_BLEND,
+    composite: NO_BLEND, globalAlpha: NO_BLEND, globalCompositeOperation: NO_BLEND,
+    light: "the option is `lights`, an ARRAY of {az, el, w} compass lights "
+      + "(azimuth degrees clockwise from north, elevation degrees), not a "
+      + "direction vector; or pass `multidirectional: true` for the MDOW set"
+  };
+
   function reliefShade(cx, opts) {
     var o = opts || {};
+    optionContract("AK.reliefShade", o, RELIEF_OPTS, RELIEF_NOTES);
+    if (!o.low || !o.high) {
+      var m = CONTRACT_TAG + "AK.reliefShade: `low` and `high` are REQUIRED and "
+        + "must be named from this slide's own palette. The ramp used to default "
+        + "to a warm stone (#241d15 -> #e6d2a6), which is how a cold white bond "
+        + "printed as kraft and an anodized shell printed as cardboard; an unset "
+        + "ramp is not neutral, it is a decision nobody made.";
+      try { console.error(m); } catch (e) {}
+      throw new Error(m);
+    }
     var scale = o.scale || 2;
     var cv = cx.canvas;
     var X = Math.round((o.x || 0) * scale);
@@ -177,8 +282,8 @@
     var ambient = (o.ambient != null) ? o.ambient : 0.22;
     var diffuse = (o.diffuse != null) ? o.diffuse : 0.95;
     var gamma = o.gamma || 1.0;
-    var low = hexToRGB(o.low || "#241d15");
-    var high = hexToRGB(o.high || "#e6d2a6");
+    var low = hexToRGB(o.low);
+    var high = hexToRGB(o.high);
     var mask = (typeof o.mask === "function") ? o.mask : null;
 
     // 3+4) Sobel normal -> Lambert -> ramp -> ImageData
@@ -230,6 +335,7 @@
   }
 
   AK.reliefShade = reliefShade;
+  AK.optionContract = optionContract;
   AK.reliefLightVec = lightVec;
   AK.reliefDome = reliefDome;
   AK.reliefRect = reliefRect;

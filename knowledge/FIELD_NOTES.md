@@ -7,6 +7,53 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-08-20 - Phase 12 PARK: place the whole band against a bitmap, not one
+## element at a time (frontier scan, focus (d) typography and layout)
+
+The scan slot was aimed at this run's collision whack-a-mole: slide 03 lost its
+axis label to the scope flag, then lost the flag's last word to the 40x bracket
+after a re-break (the cap that cost round 3 a 6.9), then broke the leader gate
+when the label moved clear. Moving one element moves the collision. There IS a
+published algorithm for the other way of doing it, with parameters, and it is
+portable to offline vanilla JS.
+
+- **Occupancy bitmap + the 8-position candidate model.** "Legible Label Layout
+  for Data Visualization, Algorithm and Integration into Vega-Lite"
+  (arXiv 2405.10953): mark every already-placed element's pixels occupied in a
+  coarse bitmap, generate candidates for the next label at the four corners and
+  four sides of its anchor, take the first that lands on unoccupied pixels,
+  single greedy pass. Padding (how far a label may extend past the chart area)
+  is a parameter; row update frequency keys off `labelHeight_min`; for placing
+  a label INSIDE an area it binary-searches the largest rectangle with the
+  label's own aspect ratio. Measured against particle-based labeling on a 3,320
+  airport map: 22 percent less time for 0.8 to 3.2 percent fewer labels placed.
+  https://arxiv.org/html/2405.10953v1
+- **The readable news-graphics implementation** is kevinschaul/avoid-overlap
+  (simulated annealing, defaults 10,000 iterations / temperature 100 / cooling
+  0.995) and its vocabulary is the useful part: per-element technique `nudge`
+  (with allowed directions and a max distance), `choices` (candidate positions)
+  or `fixed` (an immovable obstacle), plus a per-label PRIORITY with quadratic
+  weighting so the headline wins and the tick label yields.
+  https://github.com/kevinschaul/avoid-overlap
+- WHY PARKED, not applied: the whole 0-3 budget went reactive-first to three
+  run deviations, and a placement engine is not a corner of somebody else's
+  commit. UNBLOCKING CONDITION: implement it as `AK.placeBand(elements, opts)`
+  in a new committed helper with `fixed` obstacles, 8 candidates per element and
+  a priority order, in ~100 lines with no dependency, and verify it by
+  reconstructing slide 03's three-element band and showing the pre-fix
+  arrangement is refused. render.py already records every text node's line
+  rects, so the bitmap can be seeded from the DOM the slide already has.
+- RECONFIRMED NULL (no change): CSS `text-wrap: balance` (Chromium 114+, capped
+  at six lines) and `pretty` (117+, orphans only, never widows) still guarantee
+  no line count and no overflow, so `AK.fitText` remains the headline mechanism.
+  https://developer.chrome.com/blog/css-text-wrap-pretty ,
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap-style
+- NULL RESULT: a search for 2026 editorial/news-graphics typography craft
+  returned SEO listicles only, nothing carrying a parameter. Next scan in this
+  slot should go at a specific desk's published methodology, not the topic.
+
+---
+
 ## 2026-08-20 - run retro (Carousel No. 38, "Alaska Bought American. The Tariff Found a Seam.", 8.39)
 
 Four revision rounds: 7.62, 7.99, then 8.39 CAPPED TO 6.9 by one overlap, then

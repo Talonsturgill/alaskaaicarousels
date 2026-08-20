@@ -1496,7 +1496,19 @@ def main():
         for e in rec.get("page_errors", []):
             res["fails"].append(f"page error: {e}")
         for e in rec.get("console_errors", []):
-            res["warns"].append(f"console error: {e}")
+            # A LIBRARY CONTRACT BREACH IS A FAIL, NOT A WARN (2026-08-20).
+            # An AK helper that is handed an option it does not know now
+            # console.errors with this prefix and then throws. The throw alone
+            # is not enough: slide code legitimately wraps art calls in
+            # try/catch ("form shading is a finish, never the structure"), and
+            # a swallowed throw is the same silent no-op that shipped run
+            # No.38's slide 05 as kraft paper and slide 07 as a cardboard
+            # carton through every green gate. The message outlives the catch;
+            # this is what makes it un-ignorable.
+            if str(e).startswith("AK CONTRACT:"):
+                res["fails"].append(f"library contract: {e}")
+            else:
+                res["warns"].append(f"console error: {e}")
         for f in rec.get("fonts_missing", []):
             sty = f.get("style", "normal")
             styd = "" if sty in ("normal", None) else f" {sty}"

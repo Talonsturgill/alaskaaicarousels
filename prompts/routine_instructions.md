@@ -966,6 +966,23 @@ python .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slides
    render report. A declaration is a claim about
    arithmetic: if you cannot name the members, the slide cannot print the
    number. This is a ship gate (`gate_status.py` row `aggregate`).
+7. PLAN-VERSUS-PIXEL pre-flight (added 2026-08-20). The fix passes move the
+   deck and leave the storyboard describing the deck you started with. Run
+   No.38's scorer flagged that drift in ALL THREE scoring rounds and no gate
+   could see any of it: the claims index kept assigning ids to slides that
+   never printed them (four were still wrong in the storyboard that shipped),
+   and slide 08's dossier still said FIVE declared marks after three shipped
+   and TWO DECLARED MEASURED AXES with one declared in the markup. Run
+   `python scripts/plan_drift_check.py --run-dir out/<date>`
+   after the last re-render and reconcile every FAIL. It checks two things:
+   the storyboard's claims index against copy.json's per-slide `claim_ids`
+   in both directions (a claim marked NOT USED must appear nowhere), and
+   every "<N> declared marks / leaders / measured axes / encodings / contact
+   shadows" sentence in a dossier against what the slide body actually
+   declares. Fix the STALE artifact, never the sentence that disagrees: if
+   the plan was right, the declaration is missing from the markup and a
+   qa.py gate is switched off on that slide. This is a ship gate
+   (`gate_status.py` row `plan_drift`).
 
 ## PHASE 9 — FINAL ASSEMBLY
 
