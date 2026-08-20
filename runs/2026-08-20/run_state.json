@@ -17,16 +17,18 @@
     "flow_review": "pending",
     "assemble": "done",
     "scoring": "pending",
-    "ship": "pending",
+    "ship": "done",
     "upgrade": "pending",
     "gmail": "pending",
-    "retro": "pending",
+    "retro": "done",
     "storyboard": "done",
     "render": "done",
     "gates": "done",
     "pixel_review_round_1": "done",
     "fix_pass_round_1": "done",
-    "score": "round_2_pending"
+    "score": "done",
+    "upgrades": "done",
+    "gmail_draft": "done"
   },
   "artifacts": {
     "wake": [
@@ -77,5 +79,12 @@
     "raw": 8.39,
     "capped": 6.9,
     "cap_reason": "overlapping text on slide 03: the 40x bracket label sat on the scope flag last word"
-  }
+  },
+  "final_score": 8.39,
+  "gmail_draft_id": "r2672174354860230722",
+  "merged_prs": [
+    312,
+    313
+  ],
+  "complete": true
 }
