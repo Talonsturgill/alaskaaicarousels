@@ -7,6 +7,68 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-08-20 - ENGINE DEFECT, AK.reliefShade silently discards `mix` (No.38)
+
+Two slides in one run rendered their largest region in the wrong material
+because of one library contract, and neither the render gate, the machine QA
+gate, nor the style lint could see it. Slide 05's cold white bond printed as
+kraft with every printed line on both sheets ERASED, so the gold marker that
+highlights exactly one clause of the proclamation was highlighting a blank
+sheet. Slide 07's bead-blasted type III anodize printed as a cardboard carton.
+
+Two separate causes, both in the same call:
+
+1. `AK.reliefShade` writes ImageData straight into its region. It REPLACES
+   what is underneath. It has no blend, alpha, opacity or composite option at
+   all. Both slides were passing `mix: 0.30` / `mix: 0.34`, which is not in the
+   options list and was therefore silently ignored, so what the author intended
+   as a 30 percent form-shading finish was a 100 percent overwrite of the
+   printed detail beneath it.
+2. Its `low`/`high` ramp defaults to A WARM STONE (`#241d15` to `#e6d2a6`).
+   An unset ramp is not neutral. On a deck whose palette reserves the entire
+   warm channel for `#FFC72C`, an unset ramp puts the largest region in frame
+   outside the palette.
+
+THE RULE, for any future slide that calls it: reliefShade is the SUBSTRATE and
+is laid down FIRST, before any printed detail, and its `low`/`high` are always
+named from the slide's own palette. Never pass `mix`. If a finish rather than a
+substrate is wanted, render it to an offscreen canvas and composite that with
+an explicit `globalAlpha`.
+
+Worth a Phase 12 upgrade: make `reliefShade` throw on an unknown option key.
+A silently ignored option is how both of these shipped through every gate.
+
+## 2026-08-20 - the gates cannot see an object that is not there (No.38)
+
+The round-1 pixel critics returned a mean of 4.28 against a 8.3 threshold on a
+deck where machine QA was WARN with zero fails. Every defect they found was
+invisible to the machine, and they fell into one shape: A DECLARATION POINTING
+AT NOTHING.
+
+- S06's four dashed gold origin contours, the deck's most carefully reasoned
+  accuracy device, were HARDCODED SCREEN ELLIPSES while the parts they name
+  were projected from a 3D camera. Every one of them enclosed bare foam. The
+  fix is the general one: derive the contour from the part's own projected
+  bounding box, so it cannot drift from what it bounds.
+- S09's inspection window sat on the lid at y BH+0.032 with the snow cap on
+  top of it at BH+0.040. The declared feature was under its own snow.
+- S09's contact shadow was composited in MULTIPLY after the 3D snapshot, so it
+  was painted across the object's own faces and the shell read as green glass
+  with a dark disc floating inside it. Shadows go down BEFORE the object.
+  S05 had the identical bug against its paper stacks.
+- S08's rate bars stood ON the calendar rail whose x is a DECLARED date axis.
+  Nothing encoding a rate may touch anything encoding a day.
+- S02 published `91 FR 53699 / C01`. That figure is C03 and belongs to slide
+  05, so the deck was attributing a document to a claim that does not cover it.
+
+`data-scale` checks what is INSIDE its band; it has no opinion about what
+stands on it. `data-encodes` and `data-contacts` check rects the author typed;
+they have no opinion about whether the rect landed on the feature. Every one
+of those rects has to be MEASURED off the rendered PNG, and this run had to
+re-measure four of them after moving objects.
+
+---
+
 ## 2026-07-22 - site change (maintainer session, not a run)
 
 - THE SITE NOW CARRIES THE BOTTLENECK SCANNER. site_build.py gained scan_html()
