@@ -16,10 +16,11 @@
   "pixel_review": "done: 2 full rounds, 5 critics each, mean 4.5 -> 5.7, every finding applied",
   "flow_review": "done: flow-critic 7.2 as a sequence; survey-grid, Maine tint, slide 02 warmth and rail ink, slide 03 notches and body cut, slide 06 arms, slide 07 caret, slide 09 ghost all applied",
   "assemble": "done: vector PDF 3.56 MB, 9 slides, 9 thumbs, contact sheet",
-  "scoring": "scorer running",
-  "ship": "pending",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
- }
+  "scoring": "done: round 1 raw 7.80 capped 6.9 by one hard fail, round 2 8.54 vs threshold 8.3, ship_gate PASS",
+  "ship": "done: runs/2026-08-21 committed, branch claude/carousel-2026-08-21 pushed, PR #315 opened ready and MERGED to main at b5376f1, both raw URLs verified HTTP 200",
+  "upgrade": "done: 2 verified upgrades (type-nobody-sized hard fail in qa.py; reconciled gate row in gate_status.py), PR #316 merged to main at a902cfd",
+  "gmail": "done: draft r1528631467575505699 in docket@alaskaaihq.com",
+  "retro": "done"
+ },
+ "complete": true
 }
