@@ -89,6 +89,17 @@ Checks per slide (consuming render_report.json + the PNGs):
     printed an 840px dimension that was exact to the pixel over a scene whose two
     masses were 266px apart (twenty feet drawn as about six) and two map frame
     widths wrong by 7 and 25 percent, all past every gate here.
+  - TYPE NOBODY SIZED (FAIL): consumes render.py's per-element check for an
+    author font-size anywhere on a text element's ancestor chain (inline style,
+    SVG presentation attribute, or a matching CSS rule) and FAILS when there is
+    none, because the browser's user-agent stylesheet then chose the size.
+    Added 2026-08-21 after run No.39's slide 07 set its display headline in an
+    <h2> with no font-size on a page that never loaded aktype.js, so AK.fitText
+    was never called and the deck's hook line typeset at the UA default 24px,
+    the size of the mono labels beside it. It passed render, qa.py,
+    dossier_check and copy_sync and reached a pixel critic before a human saw
+    it: 24px clears the mobile floor exactly, collides with nothing, and a
+    slide that never calls fitText declares no fit record to grade.
   - UNSEEDED RANDOMNESS (FAIL): consumes render.py's determinism source scan
     and FAILS a slide whose inline script calls Math.random() or the crypto
     random APIs instead of the seeded AK.rng(seed) / AK.reseed(seed) the slide
@@ -1672,10 +1683,46 @@ def main():
             else:
                 res["fails"].append(msg)
 
+        # TYPE NOBODY SIZED (2026-08-21). render.py reports, per text element,
+        # whether ANY author font-size applies anywhere on its ancestor chain
+        # (inline style, SVG presentation attribute, or a matching rule in a
+        # readable stylesheet). When none does, Chromium's user-agent stylesheet
+        # and the 16px initial value chose the size, which is never a decision
+        # anyone in this studio made. It is a FAIL rather than a warn for the
+        # same reason declared maxLines is: the author's own file says nothing,
+        # and there is no number here to tune. See the render.py block for the
+        # run No.39 defect it exists for. When a stylesheet could not be read,
+        # an author rule could be hiding in it, so the finding drops to a WARN
+        # and says which half of the check went blind rather than passing
+        # quietly.
+        blind = int(rec.get("css_unreadable") or 0)
+        if blind:
+            res["warns"].append(
+                "%d stylesheet(s) on this slide could not be read, so the "
+                "unsized-type check is partially blind: an author font-size "
+                "rule may exist that this can't see" % blind)
+
         for node in rec.get("text_nodes", []):
             if node.get("decorative"):
                 continue
             primary = node["font_px"] >= 30
+            if node.get("unsized"):
+                msg = (
+                    "type nobody sized: <%s> '%s' renders at %gpx and NO author "
+                    "font-size applies anywhere on its ancestor chain, so the "
+                    "browser's own stylesheet picked that size (an unstyled "
+                    "root is 16px; a heading is a multiple of it). This is the "
+                    "run No.39 slide 07 defect, a display headline typeset at "
+                    "the UA default 24px that cleared every gate here because "
+                    "24px collides with nothing and reads fine at full size, "
+                    "and dissolved at the 432px feed width. Set the size in "
+                    "CSS, or call AK.fitText on it and make sure the slide "
+                    "actually loads aktype.js"
+                    % (node.get("tag") or "?", node["text"][:40], node["font_px"]))
+                if blind:
+                    res["warns"].append(msg + " [unverifiable: unreadable stylesheet]")
+                else:
+                    res["fails"].append(msg)
             if (node["x"] < args.safe_margin - 8 or node["y"] < args.safe_margin - 8 or
                     node["x"] + node["w"] > design_w - args.safe_margin + 8 or
                     node["y"] + node["h"] > design_h - args.safe_margin + 8):

@@ -125,6 +125,64 @@ IN_PAGE_QA_JS = """
       (b && (b.scrollWidth > W + 1 || b.scrollHeight > H + 1))) {
     out.body_overflow = true;
   }
+  /* TYPE NOBODY SIZED (2026-08-21). Run No.39's slide 07 set its headline in an
+     <h2> that carried position, width, family, weight, tracking and colour and
+     NO font-size, on a page that never loaded aktype.js, so AK.fitText was never
+     called on it and Chromium's own user-agent rule typeset the deck's display
+     line at 1.5em of an unstyled 16px root: 24 px, the same size as the mono
+     labels beside it, dissolved to 9.6 px at the 432 px feed width. It passed
+     render, qa.py, dossier_check and copy_sync and reached a pixel critic before
+     a human noticed. Every existing gate here measures a RENDERED value against
+     a threshold or a declaration, and 24 px trips none of them: it clears the
+     24 px mobile floor exactly, it collides with nothing, its contrast is
+     excellent, and a slide that never calls fitText declares no fit record to
+     grade.
+     The defect is not the number, it is that NOBODY CHOSE IT. So this records,
+     per text element, whether any author font-size applies anywhere on its
+     ancestor chain: an inline style (which is what AK.fitText writes), an SVG
+     presentation attribute, or any CSS rule in a readable stylesheet whose
+     selector matches. When none does, the size came from the UA stylesheet and
+     the 16 px initial value alone, and the browser picked the type size for a
+     slide in a hand-built deck. qa.py grades it; unreadable stylesheets are
+     counted rather than assumed innocent, so the check reports that it could
+     not look instead of passing quietly. */
+  const _SVG_NS = "http://www.w3.org/2000/svg";
+  const _sizedSel = [];
+  out.css_unreadable = 0;
+  (() => {
+    const visit = (rules) => {
+      for (const r of rules) {
+        if (r.selectorText !== undefined && r.style) {
+          try {
+            if (r.style.getPropertyValue("font-size")) _sizedSel.push(r.selectorText);
+          } catch (e) {}
+        }
+        let inner = null;
+        try { inner = r.cssRules; } catch (e) { inner = null; }
+        if (inner) visit(inner);
+      }
+    };
+    for (const sh of Array.from(document.styleSheets)) {
+      let rules = null;
+      try { rules = sh.cssRules; } catch (e) { rules = null; }
+      if (!rules) { out.css_unreadable++; continue; }
+      try { visit(rules); } catch (e) { out.css_unreadable++; }
+    }
+  })();
+  const _authorSized = (e) => {
+    try { if (e.style && e.style.fontSize) return true; } catch (e2) {}
+    if (e.namespaceURI === _SVG_NS && e.hasAttribute && e.hasAttribute("font-size")) return true;
+    for (const sel of _sizedSel) {
+      try { if (e.matches(sel)) return true; } catch (e2) {}
+    }
+    return false;
+  };
+  const _sizedChain = (e) => {
+    for (let p = e; p; p = p.parentElement) {
+      if (_authorSized(p)) return true;
+    }
+    return false;
+  };
   const seenFam = new Set();
   const recorded = new Map();   // element -> index in out.text_nodes (for ancestry)
   const walk = document.createTreeWalker(document.body || de, NodeFilter.SHOW_ELEMENT);
@@ -192,6 +250,11 @@ IN_PAGE_QA_JS = """
     const node = {
       text: txt,
       texts: texts,
+      tag: (el.tagName || "").toLowerCase(),
+      // TYPE NOBODY SIZED (2026-08-21): true when no author font-size applies
+      // anywhere on this element's ancestor chain, so the UA stylesheet chose
+      // the size. See the _sizedChain block above.
+      unsized: !_sizedChain(el),
       x: Math.round(r.x), y: Math.round(r.y),
       w: Math.round(r.width), h: Math.round(r.height),
       font_px: Math.round(fs * 10) / 10,
@@ -914,7 +977,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
-           "fits": [], "asserts": [],
+           "fits": [], "asserts": [], "css_unreadable": 0,
            "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
@@ -937,7 +1000,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
                                        "encodings", "contacts", "scales", "leaders",
-                                       "fits", "asserts")})
+                                       "fits", "asserts", "css_unreadable")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:

@@ -205,6 +205,72 @@ def dossier_row(rows, run):
                  rep.get("fails", "?"), rep.get("warns", "?")))
 
 
+RECON_HEAD_RE = re.compile(r"^\s{0,3}#{1,4}\s*BUILD\s+RECONCILIATION\b", re.I)
+ANY_HEAD_RE = re.compile(r"^\s{0,3}#{1,4}\s+\S")
+RECON_MIN_CHARS = 40
+
+
+def reconciliation_section(text):
+    """Return the BUILD RECONCILIATION section's body lines, or None if the
+    storyboard has no such heading. Reads the LAST one, same as parse_pasted:
+    a revision round that appends a second section means the second is current.
+    """
+    lines = text.splitlines()
+    starts = [i for i, ln in enumerate(lines) if RECON_HEAD_RE.match(ln)]
+    if not starts:
+        return None
+    body = []
+    for ln in lines[starts[-1] + 1:]:
+        if ANY_HEAD_RE.match(ln):
+            break
+        body.append(ln)
+    return body
+
+
+def reconciled_row(rows, run):
+    """THE STORYBOARD HAS TO SAY WHERE THE BUILD LEFT THE PLAN (2026-08-21).
+
+    Phase 8 step 1b has required a BUILD RECONCILIATION section since
+    2026-07-25, for a measured reason: run 2026-07-25 spawned its pixel critics
+    against superseded dossier numbers and roughly a third of their findings
+    were about a deck that no longer existed. Nothing has ever checked that the
+    section is there. Run No.39's first scoring round was capped 0.9 for exactly
+    that, a storyboard with no reconciliation section and a gate block staled
+    under it, which cost a whole scoring cycle on a deck whose pixels were
+    already fine.
+
+    Every neighbouring gate here reads a report; this one reads the run record,
+    because the run record is the artifact the scorer prices. Deliberately the
+    weakest possible test of CONTENT (a heading and something under it), since
+    the failure that actually happens is total absence and a stricter test would
+    only teach a run to pad. Staleness of the section is not checked and is not
+    claimed to be: `--sync` owns the gate block, and a human reads the prose.
+    """
+    sb = run / "storyboard.md"
+    if not sb.exists():
+        rows.absent("reconciled", "storyboard.md missing")
+        return
+    body = reconciliation_section(sb.read_text())
+    if body is None:
+        rows.add("reconciled", "FAIL" if rows.require else "WARN",
+                 "storyboard.md carries no BUILD RECONCILIATION section; "
+                 "Phase 8 step 1b requires one BEFORE the pixel critics, and "
+                 "the scorer prices its absence")
+        return
+    filled = [ln for ln in body if ln.strip()]
+    chars = sum(len(ln.strip()) for ln in filled)
+    if not filled or chars < RECON_MIN_CHARS:
+        rows.add("reconciled", "FAIL" if rows.require else "WARN",
+                 "the BUILD RECONCILIATION section is empty (%d char(s) under "
+                 "the heading); say what the build changed, or say plainly that "
+                 "nothing diverged" % chars)
+        return
+    table = sum(1 for ln in filled if ln.lstrip().startswith("|"))
+    how = "%d table row(s)" % max(0, table - 2) if table >= 3 else "%d line(s)" % len(filled)
+    rows.add("reconciled", "PASS",
+             "BUILD RECONCILIATION present, %s, %d chars" % (how, chars))
+
+
 def caption_row(rows, run):
     cap, note = load_json(run / "caption_report.json")
     if cap is None:
@@ -868,6 +934,45 @@ def self_test():
         missing, note = sync_block(Path(td) / "nope.md", run, rows)
         check("a missing target is reported, not created", missing is None, note)
 
+        # THE RECONCILIATION ROW (2026-08-21). Reconstructs run No.39's
+        # round-1 cap: a storyboard with dossiers and a gate block and no
+        # BUILD RECONCILIATION section at all.
+        def recon(text, require=False):
+            d = Path(td) / "recon"
+            d.mkdir(exist_ok=True)
+            (d / "storyboard.md").write_text(text)
+            r = Rows(require)
+            reconciled_row(r, d)
+            return r.rows[0]
+
+        dossiers = "# STORYBOARD\n\n## SLIDE 01\n\nprose\n\n"
+        gateblk = "\n## GATE STATUS\n\n```\n" + "\n".join(block_lines(run, rows)) + "\n```\n"
+        r = recon(dossiers + gateblk)
+        check("the No.39 defect (no reconciliation section) is caught",
+              r["status"] == "WARN", r["detail"][:80])
+        r = recon(dossiers + gateblk, require=True)
+        check("  and is a FAIL at the ship gate", r["status"] == "FAIL")
+        r = recon(dossiers + "## BUILD RECONCILIATION\n\n" + gateblk, require=True)
+        check("  an empty section is caught too", r["status"] == "FAIL",
+              r["detail"][:80])
+        real = ("## BUILD RECONCILIATION\n\n"
+                "| slide | the dossier said | the render does | which was stale |\n"
+                "|---|---|---|---|\n"
+                "| 01 | a coordinate footer | absent | THE PLAN, it carried no claim id |\n")
+        r = recon(dossiers + real + gateblk, require=True)
+        check("a real section passes", r["status"] == "PASS", r["detail"][:80])
+        check("  and it counts the table rows", "1 table row" in r["detail"],
+              r["detail"][:80])
+        r = recon(dossiers + "## BUILD RECONCILIATION\n\nNothing diverged from "
+                  "the nine dossiers; the build is the plan.\n" + gateblk,
+                  require=True)
+        check("  a prose 'nothing diverged' passes", r["status"] == "PASS",
+              r["detail"][:80])
+        r = recon(dossiers + real + gateblk + "\n## BUILD RECONCILIATION\n\n",
+                  require=True)
+        check("  a later EMPTY section wins over an earlier full one",
+              r["status"] == "FAIL", r["detail"][:80])
+
     print("SELF-TEST: %d check(s), %d failure(s)" % (len(ran), len(fails)))
     return 1 if fails else 0
 
@@ -911,6 +1016,7 @@ def main():
     rep = render_row(rows, rdir)
     qa_row(rows, rdir)
     dossier_row(rows, run)
+    reconciled_row(rows, run)
     caption_row(rows, run)
     copy_sync_row(rows, run, rdir)
     aggregate_row(rows, run, rdir)

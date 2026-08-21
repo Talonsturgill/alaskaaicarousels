@@ -904,6 +904,15 @@ python .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slides
    machine_qa.json on disk said WARN with 5, and only the scorer caught the
    contradiction.)
 
+   THE SECTION ITSELF IS NOW A ROW (2026-08-21, `gate_status.py` row
+   `reconciled`). This ordering had been prose since 2026-07-25 and nothing
+   checked it, so run No.39 reached the scorer with no reconciliation section
+   at all and had its first round capped 0.9 for it, which cost a whole
+   scoring cycle on a deck whose pixels were already fine. The row WARNs mid
+   run and FAILs under `--require`, and it tests only that the heading exists
+   with something under it: if genuinely nothing diverged, write that sentence
+   rather than padding a table.
+
    RE-SYNC AFTER EVERY ROUND THAT CHANGES AN ARTIFACT, NOT ONCE (2026-08-05,
    2026-08-07). The block goes stale the moment another render, re-assemble or
    site rebuild happens under it. No.26 pasted once, rendered four more times,

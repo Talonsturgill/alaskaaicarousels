@@ -4345,3 +4345,79 @@ density argument, which was never about the values, and cost the sheet some
 richness. Both the flow critic and the first scorer asked for the numerals back.
 The answer to a picture that does not argue is a different KIND of mark, not an
 invented value.
+
+## 2026-08-21 - Phase 12 upgrade engineer (what shipped, what is parked, the scan)
+
+WHAT SHIPPED, two upgrades, both reactive.
+
+**Type nobody sized is now a hard fail.** Slide 07's headline reached a pixel
+critic set at 24 px because the `<h2>` rule carried everything except a
+`font-size` and the file never loaded `aktype.js`, so `AK.fitText` was never
+called on it and Chromium's own stylesheet chose 1.5em of an unstyled 16 px
+root. The interesting part is why nothing here could see it. Every gate in
+qa.py measures a rendered value against a threshold or against a declaration,
+and 24 px trips none of them: it clears the 24 px mobile floor exactly, it
+collides with nothing, its contrast is 16:1, and a slide that never calls
+fitText declares no fit record for the maxLines gate to grade. The defect is
+not the number, it is that nobody chose it, and that IS mechanically
+detectable: render.py now reports, per text element, whether any author
+`font-size` applies anywhere on its ancestor chain (CSS rule, SVG presentation
+attribute, or inline style, which is what fitText writes), and qa.py FAILs when
+none does. Nothing to tune, and it can't false-fire on a size you actually
+authored, however you authored it.
+
+**The BUILD RECONCILIATION section is now a gate_status row.** Phase 8 step 1b
+has demanded that section since 2026-07-25 and nothing checked it, so this run
+handed the scorer a storyboard without one and lost 0.9 on a deck whose pixels
+were already fine.
+
+## 2026-08-21 - Phase 12 PARK: an assertion that can't fail is worse than no
+## assertion (from this run's own two)
+
+Both of these shipped, both reported PASS, and neither checked anything:
+
+    expect: Math.round(R)   vs   actual: Math.round(Math.min(CLY+CLH, TOP+R) - TOP)
+      with CLY = TOP-16 and CLH = R+26, so the min clamps to exactly TOP+R
+
+    expect: 820             vs   actual: Math.round(DAYS*DAY_PX)
+      with DAY_PX = 820/180, so the product is 820 by construction
+
+The trap is that the assert gate's own advice is right and still leads here.
+"Derive one FROM the other so they can't disagree" means derive the DRAWING
+from the printed number, so that one number produces both the rule and the
+room. What empties the assertion is deriving `actual` from that same constant
+again instead of from the value the drawing call actually received. Rule of
+thumb for the next author: `actual` should be read back from geometry, or at
+minimum be the exact expression handed to the draw call, so that editing the
+draw call breaks the assert. If both sides mention the same `const`, stop.
+
+Parked rather than gated because the honest test is constant propagation over
+the slide's own declarations, and the cheap approximation (require `expect` to
+be a numeric literal) catches one of these two and false-fails the legitimate
+case where the printed number lives in a named constant. Unblocking condition:
+a small expression reducer tested over every `__akAssert` in the shipped
+corpus, with these two as the known-bad and No.31's dimension lock as the
+known-good.
+
+## 2026-08-21 - Phase 12 PARK: LinkedIn format benchmarks refreshed, nothing to
+## change (frontier scan, focus (a) platform and algorithm)
+
+Socialinsider's 2026 benchmark set now reads: native documents first at 7.00%
+engagement and up 14% year over year, multi-image SECOND at 6.45%, video third
+at 6.00% with video views down 36% year over year, against a platform average
+of 5.20% (up 8%). knowledge/CAROUSEL_CRAFT.md already carries the 7.00% figure
+and the format ranking, so the only new fact is multi-image passing video,
+which changes nothing for a studio that ships documents. Buffer's algorithm
+page restates relevance, expertise, engagement, dwell as the ranking signal and
+hook-first, all already hard rules here. No source read today reports
+slide-count effects, aspect-ratio effects, or any change to how LinkedIn
+renders a document that would move an engine parameter.
+https://www.socialinsider.io/social-media-benchmarks/linkedin ,
+https://buffer.com/resources/linkedin-algorithm/
+Worth re-reading when CAROUSEL_CRAFT is next revised; not worth a code change.
+
+Scan conditions, recorded because they bound the finding: this session's
+WebSearch budget was already exhausted by the run itself (200 of 200), so the
+scan was eight direct WebFetch reads of known sources instead of a search
+sweep, and four 404'd. A future Phase 12 that finds the same wall should say so
+rather than reporting a thin scan as a complete one.
