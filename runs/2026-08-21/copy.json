@@ -1,0 +1,238 @@
+{
+ "caption": "DeepGreen's filing names a Universal Docking Cradle. FERC's June letter said much of the underwater hardware lacked dimensions.\n\nChecked August 21st, the Federal Register holds zero DeepGreen documents and seven for Cook Inlet hydrokinetic. FERC says comment comes after staff find a file complete.\n\nThis month Eastport, Maine voted unanimously for a 180 day moratorium on the same company's proposed underwater AI data center. It had already dropped from 51 megawatts to a maximum of 15.\n\nFebruary's filing asked for 1,650 acres of Cook Inlet seabed and up to four years of priority to study it. Its parent had formed in January.\n\nThe deck sets 1,650 acres against Maine's 400, the empty Federal Register row, and Curtis Thayer of the Alaska Energy Authority saying nobody called.\n\nWhen the comment window opens on Cook Inlet, what would you want measured first?\n\n#CookInlet #FERC #SubseaDataCenters",
+ "post_copy": "DeepGreen's filing names a Universal Docking Cradle. FERC's June letter said much of the underwater hardware lacked dimensions.\n\nChecked August 21st, the Federal Register holds zero DeepGreen documents and seven for Cook Inlet hydrokinetic. FERC says comment comes after staff find a file complete.\n\nThis month Eastport, Maine voted unanimously for a 180 day moratorium on the same company's proposed underwater AI data center. It had already dropped from 51 megawatts to a maximum of 15.\n\nFebruary's filing asked for 1,650 acres of Cook Inlet seabed and up to four years of priority to study it. Its parent had formed in January.\n\nThe deck sets 1,650 acres against Maine's 400, the empty Federal Register row, and Curtis Thayer of the Alaska Energy Authority saying nobody called.\n\nWhen the comment window opens on Cook Inlet, what would you want measured first?\n\n#CookInlet #FERC #SubseaDataCenters",
+ "first_comment": "Sources, primary first\n\nFederal Register API, Office of the Federal Register, full text search for \"DeepGreen\" returns 0 documents, checked 2026-08-21, https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=DeepGreen&per_page=50&order=newest\n\nFederal Register API, the control search, \"Cook Inlet hydrokinetic\" returns 7 documents, checked 2026-08-21, https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=Cook%20Inlet%20hydrokinetic&per_page=20&order=newest\n\nFERC via Federal Register, Ocean Renewable Power Company, Notice of Preliminary Permit Application Accepted for Filing and Soliciting Comments, Project No. 15116-000, 2021-05-11, https://www.federalregister.gov/api/v1/documents/2021-09927.json\n\nFERC via Federal Register, ORPC Notice of Intent to File License Application, Project No. 15116-001, 2025-04-08, https://www.federalregister.gov/api/v1/documents/2025-06016.json\n\nAlaska Energy Authority, Cook Inlet PowerLink Project, $142 million, 38 mile subsea cable, up to 200 megawatts, status In Development, fetched 2026-08-21, https://akenergyauthority.org/What-We-Do/Railbelt-Energy/Cook-Inlet-PowerLink-Project\n\nAnchorage Daily News, Bella Biondini, Underwater data center proposed for Alaska's Cook Inlet by East Coast company, 2026-08-19, https://www.adn.com/business-economy/2026/08/19/underwater-data-center-proposed-for-alaskas-cook-inlet-by-east-coast-company/\n\nFERC, Northwest Branch, Division of Hydropower Licensing, the June 18th deficiency letter on the Cook Inlet application, not posted to a public page, quoted in the Anchorage Daily News report above\n\nThe Maine Monitor, Eastport adopts moratorium on underwater data center proposal, 2026-08-13, https://themainemonitor.org/eastport-adopts-moratorium-underwater-data-center-proposal/\n\nThe Quoddy Tides, Edward French, Proposed tidal project would power underwater AI data center, 2026-02-27, https://www.quoddytides.com/proposed-tidal-project-would-power-underwater-ai-data-center/\n\nEvery filing this page tracks, with the live deadlines beside it, sits at https://alaskaaihq.com\n\nAnyone holding a document, a correction or local knowledge of these waters, add it below and it gets checked against the record.",
+ "document_title": "1,650 Acres of Priority to Study",
+ "aftercare": [
+  "Post Tuesday through Thursday, 8 to 11 a.m. Alaska time, which is the strongest slot this page has.",
+  "Paste the sources comment within 60 seconds of publishing, then pin it. Split it after the Quoddy Tides line if LinkedIn truncates at its comment ceiling.",
+  "Reply to every comment in the first 90 minutes. That window is where a carousel either gains reach or stalls.",
+  "Watch for anyone reading the zero result as proof the application does not exist. It proves no notice has published, which is the step that opens comment, and that correction should go out fast and plainly.",
+  "Watch for a commenter quoting the $400 million PowerLink figure as settled. AEA's own page says $142 million, both numbers are on slide 08, and neither one is settled.",
+  "Watch for a 94 percent claim about the Maine cut. The verified reductions are capacity, 51 megawatts to a maximum of 15, and turbines, about 170 down to 16 in a first phase. There is no verified area percentage.",
+  "Watch for readers in Nikiski and Kenai and from the tribes and Native corporations FERC said were not identified. Ask them what they would want measured, since that is the answer this post exists to collect.",
+  "Note saves and comments at 48 hours against the run ledger. Saves are the signal a keepable deck is built for."
+ ],
+ "caption_meta": {
+  "opening_move": "NEW:OBJECT FIRST",
+  "structure": "REVERSE CHRONOLOGY",
+  "closing_move": "NEW:WHAT WOULD YOU MEASURE FIRST",
+  "hook_chars": 127,
+  "total_chars": 900,
+  "commas_per_100_words": 5.0,
+  "hashtags": [
+   "#CookInlet",
+   "#FERC",
+   "#SubseaDataCenters"
+  ],
+  "claim_ids": [
+   "C01",
+   "C02",
+   "C12",
+   "C13",
+   "C15",
+   "C16",
+   "C20",
+   "C23",
+   "C24",
+   "C34",
+   "C35",
+   "C41",
+   "C45"
+  ]
+ },
+ "slides": {
+  "S1": {
+   "strings": [
+    "0 AC",
+    "400 AC, MAINE",
+    "1,650 AC",
+    "FERC PRELIMINARY PERMIT, PENDING \u00b7 NO NOTICE YET",
+    "1,650 acresof Cook Inlet.Nobody asked Alaska.",
+    "UNIVERSAL DOCKING CRADLE, AS FILED",
+    "01 / 09"
+   ],
+   "claim_ids": [
+    "C01",
+    "C10",
+    "C13"
+   ]
+  },
+  "S2": {
+   "strings": [
+    "NOT PROVIDED",
+    "FERC, JUNE 18TH LETTER, NORTHWEST BRANCH",
+    "WHAT WAS ACTUALLY ASKED",
+    "A permit to study.Not a permit to build.",
+    "A preliminary permit gives priority to study one named site for up to four years",
+    "02 / 09"
+   ],
+   "claim_ids": [
+    "C20",
+    "C21",
+    "C22",
+    "C45",
+    "C46"
+   ]
+  },
+  "S3": {
+   "strings": [
+    "$4.5 MILLION OF STUDIES,",
+    "EXPECTED TO TAKE FOUR YEARS",
+    "0 YEARS",
+    "4 YEARS, THE MAXIMUM TERM",
+    "THE APPLICANT AND THE CLOCK",
+    "A parent one month old.Four years of priority.",
+    "DeepGreen Holdings formed in January, one month before the application went to F",
+    "03 / 09"
+   ],
+   "claim_ids": [
+    "C15",
+    "C16",
+    "C17",
+    "C18"
+   ]
+  },
+  "S4": {
+   "strings": [
+    "ALASKA, 1,650 ACRE ENVELOPE",
+    "AREA SCALE, TRUE",
+    "MAINE, 400 ACRE ENVELOPE",
+    "MAINE, ABOUT 27 ACRES ACTIVE",
+    "ALASKA ACTIVE, NOT PROVIDED",
+    "0",
+    "1,000",
+    "2,000 M",
+    "ONE SCALE. THREE CLAIMS.",
+    "04 / 09"
+   ],
+   "claim_ids": [
+    "C13",
+    "C34",
+    "C40"
+   ]
+  },
+  "S5": {
+   "strings": [
+    "66 HIVES OF AI SERVERS",
+    "WATER 45 TO 166 FEET DEEP",
+    "SILT PROTECTION SCOUR SKIRTS, AS FILED",
+    "AS DESCRIBED",
+    "Nine of more than three hundred. None of them measured.",
+    "05 / 09"
+   ],
+   "claim_ids": [
+    "C11",
+    "C12",
+    "C14",
+    "C19"
+   ]
+  },
+  "S6": {
+   "strings": [
+    "ALASKA HAS NOT BEEN INDICATED AS SCALED DOWN",
+    "THE MAINE MONITOR, AUGUST 13, 2026",
+    "DAY 0, THE VOTE",
+    "180 DAYS, THE MORATORIUM",
+    "THE SAME COMPANY, MAINE",
+    "Eastport was asked.The project shrank.",
+    "Eastport's council voted unanimously for a 180 day moratorium covering data cent",
+    "06 / 09"
+   ],
+   "claim_ids": [
+    "C32",
+    "C33",
+    "C35",
+    "C36",
+    "C37",
+    "C38",
+    "C39",
+    "C41",
+    "C42",
+    "C43",
+    "C44"
+   ]
+  },
+  "S7": {
+   "strings": [
+    "FEDERAL REGISTER, CHECKED AUGUST 21, 2026",
+    "Seven documents for these waters.This one has none.",
+    "NOTICE",
+    "DATE",
+    "IN THE RECORD",
+    "ORPC, PRELIM PERMIT ACCEPTED",
+    "MAY 11, 2021",
+    "P-15116-000",
+    "ORPC, INTENT TO FILE LICENSE",
+    "APRIL 8, 2025",
+    "P-15116-001",
+    "LITTORAL POWER, ACCEPTED",
+    "SEPTEMBER 12, 2023",
+    "NOT VERIFIED",
+    "ALL COOK INLET HYDROKINETIC",
+    "TO AUGUST 21, 2026",
+    "7 DOCUMENTS",
+    "DEEPGREEN, ANY DOCUMENT",
+    "0 DOCUMENTS",
+    "ORPC ASKED FOR NO MORE THAN 5 MW AT THIS SAME STAGE",
+    "COMPLETE",
+    "COMMENTS",
+    "FERC requests comments from the public after staff determine the application is",
+    "07 / 09"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C23"
+   ]
+  },
+  "S8": {
+   "strings": [
+    "CURTIS THAYER, ALASKA ENERGY AUTHORITY",
+    "IN DEVELOPMENT",
+    "THE CABLE HAS TWO COST FIGURES, NEITHER SETTLED",
+    "$142 MILLION ON AEA'S PAGE, $400 MILLION REPORTED",
+    "100 MW ASKED",
+    "COOK INLET RECORD, 1.98 AND 5 MW",
+    "200 MW RATED, BIDIRECTIONAL",
+    "THE INTERCONNECTION",
+    "It plans into a cablethat is not built.",
+    "\"It's extremely disappointing that they would send something to FERC without con",
+    "08 / 09"
+   ],
+   "claim_ids": [
+    "C10",
+    "C24",
+    "C25",
+    "C26",
+    "C27",
+    "C28",
+    "C29",
+    "C30",
+    "C31"
+   ]
+  },
+  "S9": {
+   "strings": [
+    "0 AC",
+    "1,650 AC",
+    "The comment window openswhen FERC calls the file complete.",
+    "SAVE THIS FOR THAT DAY",
+    "SOURCES IN COMMENTS",
+    "ALASKA.AI",
+    "alaskaaihq.com",
+    "09 / 09"
+   ],
+   "claim_ids": [
+    "C01"
+   ]
+  }
+ }
+}

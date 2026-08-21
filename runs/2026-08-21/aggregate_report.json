@@ -1,0 +1,119 @@
+{
+  "run_dir": "out/2026-08-21",
+  "render_report": "out/2026-08-21/render/render_report.json",
+  "aggregates_file": "out/2026-08-21/aggregates.json",
+  "detected": 13,
+  "declared": 13,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "four years",
+      "text": "A preliminary permit gives priority to study one named site for up to four years",
+      "n": 4,
+      "subject": "years"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "5 MILLION OF STUDIES",
+      "text": "$4.5 MILLION OF STUDIES,",
+      "n": 5,
+      "subject": "million of studies"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "FOUR YEARS",
+      "text": "EXPECTED TO TAKE FOUR YEARS",
+      "n": 4,
+      "subject": "years"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "4 YEARS",
+      "text": "4 YEARS, THE MAXIMUM TERM",
+      "n": 4,
+      "subject": "years"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "Four years",
+      "text": "A parent one month old.Four years of priority.",
+      "n": 4,
+      "subject": "years"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "27 ACRES",
+      "text": "MAINE, ABOUT 27 ACRES ACTIVE",
+      "n": 27,
+      "subject": "acres"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "THREE CLAIMS",
+      "text": "ONE SCALE. THREE CLAIMS.",
+      "n": 3,
+      "subject": "claims"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "66 HIVES",
+      "text": "66 HIVES OF AI SERVERS",
+      "n": 66,
+      "subject": "hives"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "180 DAYS",
+      "text": "180 DAYS, THE MORATORIUM",
+      "n": 180,
+      "unit": "days"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "180 day",
+      "text": "Eastport's council voted unanimously for a 180 day moratorium covering data cent",
+      "n": 180,
+      "unit": "day"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Seven documents",
+      "text": "Seven documents for these waters.This one has none.",
+      "n": 7,
+      "subject": "documents"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "7 DOCUMENTS",
+      "text": "7 DOCUMENTS",
+      "n": 7,
+      "subject": "documents"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "TWO COST FIGURES",
+      "text": "THE CABLE HAS TWO COST FIGURES, NEITHER SETTLED",
+      "n": 2,
+      "subject": "cost figures"
+    }
+  ],
+  "not_rederived": [],
+  "fails": [],
+  "warns": [
+    "S3 '$4.5 MILLION OF STUDIES,' [from_claim]: the noun 'study' does not appear in claim C15; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

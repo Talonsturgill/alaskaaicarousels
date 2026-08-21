@@ -531,6 +531,11 @@
           "kind": "milestone"
         },
         {
+          "date": "2026-08-19",
+          "label": "Glenfarne says it is evaluating alternative paths after the tax effort fails",
+          "kind": "milestone"
+        },
+        {
           "date": "2026-08-20",
           "label": "Joint Senate and House Resources Committee meeting in Anchorage on Cook Inlet energy",
           "kind": "milestone"
@@ -616,10 +621,15 @@
           "url": "https://www.adn.com/politics/alaska-legislature/2026/08/13/governor-says-little-reason-to-continue-special-session-on-alaska-lng-bill/",
           "outlet": "Anchorage Daily News",
           "date": "2026-08-13"
+        },
+        {
+          "url": "https://www.adn.com/business-economy/energy/2026/08/19/alaska-lng-developer-looks-for-alternative-paths-after-effort-to-secure-multibillion-dollar-tax-cut-fails/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-08-19"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-20",
+      "last_updated": "2026-08-21",
       "history": [
         {
           "date": "2026-07-08",
@@ -728,6 +738,10 @@
         {
           "date": "2026-08-20",
           "note": "The joint Senate and House Resources Committee meeting on immediate Cook Inlet energy needs is set for today in Anchorage, and no outcome is published yet. Nothing has moved on the tax bill itself since the governor said on August 13th that there is little reason to keep the third special session going. The session is scheduled to end August 25th."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Glenfarne answered, and the answer is a schedule. The Alaska LNG developer said on August 19th that it is disappointed the Legislature has stated it will not take final action on property tax legislation, that the outcome \"will cause schedule delay and cost increase on the gas line\", and that it is \"evaluating alternative paths forward while continuing to advance the commercial, engineering and financing work required to deliver the full Alaska LNG project, including the LNG export terminal\". Neither chamber met on the bill. The third special session is still scheduled to end August 25th, and legislative leaders have pointed to the regular session convening in January, under a new governor, as the next vehicle."
         }
       ]
     },
@@ -795,7 +809,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-08-20",
+      "last_updated": "2026-08-21",
       "history": [
         {
           "date": "2026-07-11",
@@ -828,6 +842,10 @@
         {
           "date": "2026-08-20",
           "note": "Checked and unchanged. Enstar's July 23rd petition for reconsideration is still before the Regulatory Commission of Alaska with no order reported. The commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project stands. Thirty days from the filing falls on August 22nd, which is the date already on this entry."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. Enstar's petition for reconsideration, filed July 23rd, is still before the Regulatory Commission of Alaska with no reported action. Thirty days from filing falls on or about August 22nd, one day out, after which the petition is denied by operation of law. The commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project remains the operative decision."
         }
       ]
     },
@@ -835,11 +853,11 @@
       "id": "aidea-houston-industrial-park",
       "title": "AIDEA's free state land for a Mat-Su data center park",
       "kind": "state-land-lease",
-      "status": "pending-decision",
+      "status": "open-for-comment",
       "decider": "Alaska DNR, Commissioner John Crowther",
-      "public_access": "indirect",
-      "access_note": "The comment room on this transfer is shut. Written comment closed at 5 p.m. on August 19th, 2026, and the notice said only people from whom the division received timely written comment during that window would be eligible to appeal the Final Finding and Decision. What is left is adjacent. AIDEA's board meets in public on August 26th, the first board date after the close, and Houston's city council has asked AIDEA to come to a September meeting for which no date is set.",
-      "summary": "A DNR preliminary decision would transfer about 20,000 acres, roughly 30 square miles, of state land just north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that includes scalable data centers and a logistics hub about 60 road miles north of Anchorage. Public comment closed on August 19th and the decision now sits with DNR.",
+      "public_access": "open",
+      "access_note": "The comment room is open again. DNR extended written comment on ADL 234762 to 5 p.m. Monday, September 14, 2026, and the division's notice ties appeal standing on the Final Finding and Decision to having filed timely written comment during the window. Comments go to Daniel Jenkins at the Division of Mining, Land and Water, 550 W. 7th Ave. Suite 1050, Anchorage. AIDEA's board also meets in public on August 26th, and Houston's city council has asked AIDEA to a September meeting for which no date is set.",
+      "summary": "A DNR preliminary decision would transfer about 19,950 acres, roughly 31 square miles, of state land about two miles north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that AIDEA's own development plan describes as including scalable data centers, advanced manufacturing pads and a logistics hub on the Parks Highway and the Alaska Railroad, about 60 road miles north of Anchorage. Written public comment was to close August 19th and DNR extended it to September 14th.",
       "key_dates": [
         {
           "date": "2026-07-13",
@@ -853,18 +871,23 @@
         },
         {
           "date": "2026-08-19",
-          "label": "Public comment closes",
-          "kind": "deadline"
+          "label": "Original public comment period ends",
+          "kind": "milestone"
         },
         {
           "date": "2026-08-26",
-          "label": "AIDEA board meeting, the first after comment closes",
+          "label": "AIDEA board meeting, 9:00 a.m., Anchorage",
           "kind": "milestone"
         },
         {
           "date": "2026-09-01",
           "label": "AIDEA asked to attend a Houston City Council meeting in September, no date set",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-09-14",
+          "label": "Extended public comment period ends, 5:00 p.m.",
+          "kind": "deadline"
         }
       ],
       "location": {
@@ -907,10 +930,20 @@
           "url": "https://www.matsusentinel.com/zero-transparency-houston-officials-oppose-land-transfer-process-linked-to-data-centers/",
           "outlet": "Mat-Su Sentinel",
           "date": "2026-08-18"
+        },
+        {
+          "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
+          "outlet": "Alaska Online Public Notices, Department of Natural Resources",
+          "date": "2026-08-19"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/mat-su/2026/08/18/zero-transparency-houston-officials-oppose-land-transfer-process-linked-to-data-centers/",
+          "outlet": "Anchorage Daily News and Mat-Su Sentinel",
+          "date": "2026-08-18"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-20",
+      "last_updated": "2026-08-21",
       "history": [
         {
           "date": "2026-07-17",
@@ -995,6 +1028,10 @@
         {
           "date": "2026-08-20",
           "note": "The comment window closed at 5 p.m. on Wednesday, August 19th, 2026, exactly as the state notice printed it. The proposed conveyance of about 19,950 acres near Houston now sits with the Department of Natural Resources for a final decision, and no final finding has been published. AIDEA's board meets on August 26th, the first board date after the close."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "The comment window did NOT close. It reopened. DNR published an extension on August 19th, the day the original period was to end, and written comment on the proposed conveyance of about 19,950 acres near Houston to the Alaska Industrial Development and Export Authority now runs to 5 p.m. Monday, September 14, 2026, per the state notice for ADL 234762. Anyone who thought the chance had passed has 24 days. AIDEA published its own case for the conveyance on July 30th and its board meets in public on August 26th."
         }
       ]
     },
@@ -1231,7 +1268,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-18",
+      "last_updated": "2026-08-21",
       "history": [
         {
           "date": "2026-08-02",
@@ -1248,6 +1285,10 @@
         {
           "date": "2026-08-18",
           "note": "Amendment 1 moved the deadline. Vendor proposals for RFP 2026-0200-0064 are now due 3:30 p.m. Alaska time August 28th, extended from August 24th, per the state notice."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Re-verified against the state notice. Proposals for RFP 2026-0200-0064 are still due 3:30 p.m. Alaska Daylight Time on Friday, August 28th, extended from August 24th by Amendment 1, which posted August 17th. No further amendment is listed."
         }
       ]
     },
@@ -1375,7 +1416,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-08-19",
+      "last_updated": "2026-08-21",
       "history": [
         {
           "date": "2026-08-04",
@@ -1396,6 +1437,10 @@
         {
           "date": "2026-08-19",
           "note": "Re-verified against the FERC notice. Comments, motions to intervene and protests are still due 5 p.m. Eastern on August 28th in docket P-8221-124. The amendment would raise the normal maximum operating pool about 16 feet, add a 0.3 megawatt turbine in one of the dam's fishwater release valves, and take the project from 119.7 to 120.0 megawatts. Nine days remain."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Re-verified against the FERC notice. Comments, motions to intervene and protests in docket P-8221-124 are still due 5 p.m. Eastern on August 28th. The amendment would divert Dixon Glacier meltwater and surface runoff into Bradley Lake, raise the normal maximum operating pool about 16 feet and add a 0.3 megawatt micro-hydro turbine. Seven days remain."
         }
       ]
     },
@@ -1458,7 +1503,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-08-20",
+      "last_updated": "2026-08-21",
       "history": [
         {
           "date": "2026-08-05",
@@ -1479,6 +1524,10 @@
         {
           "date": "2026-08-20",
           "note": "Re-verified against the federal listing, last updated July 30th, which still shows the AI3 Action Institute open and closing August 27th, 2026 at 11:59 p.m. Eastern. One award, ceiling $3,500,000, with Alaska Native villages among the eligible applicants. Seven days remain."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Re-verified against the federal listing. The AI3 Action Institute, opportunity HHS-2026-ACF-ANA-NAI-0035, is still posted for a single award between $2,500,000 and $3,500,000 and still closes August 27, 2026 at 11:59 p.m. Eastern. The listing shows no amendment and was last updated July 30th. Six days remain."
         }
       ]
     },
@@ -1905,6 +1954,68 @@
           "note": "Checked and unchanged, on the day it matters most. The district's posted meeting list still ends at the four August 3rd meetings, so AR 5131.9 Academic Honesty has had no recorded action since the Policy Review Committee took it up with two competing drafts. Today, August 19th, is the first student day of the 2026-27 year across all 39 schools, and the next regular board meeting is September 14th."
         }
       ]
+    },
+    {
+      "id": "deepgreen-cook-inlet-subsea-data-center",
+      "title": "DeepGreen's underwater data center in Cook Inlet",
+      "kind": "regulatory-docket",
+      "status": "pending-decision",
+      "decider": "Federal Energy Regulatory Commission",
+      "public_access": "closed",
+      "access_note": "There is no way to comment on this yet, and that is the whole state of it. FERC's spokesperson says the commission will request comments from the public after staff determine the application is complete, and a Federal Register search for DeepGreen on August 21st, 2026 returns nothing, so that step has not happened. The Federal Register is where the notice will appear when it does. The City of Kenai was told late, because FERC found the company had not notified it, and the Kenai city manager raised the proposal with councilors at their August meeting.",
+      "summary": "DeepGreen Cook Inlet SPV LLC, a Delaware company whose parent formed in January 2026, applied to FERC in February for a preliminary permit over an initial operational envelope of 1,650 acres of Cook Inlet seabed west of Nikiski, proposing a 100 megawatt data center of 66 hives of AI servers powered and cooled by approximately 330 to 350 tidal turbines in water 45 to 166 feet deep. A preliminary permit authorizes study rather than construction, for up to four years, and FERC's Northwest branch found the application incomplete in a June 18th letter.",
+      "key_dates": [
+        {
+          "date": "2026-06-18",
+          "label": "FERC's Northwest branch finds the application incomplete",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-19",
+          "label": "First Alaska reporting on the filing",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Cook Inlet, west of Nikiski",
+        "lon": -151.45,
+        "lat": 60.7
+      },
+      "sources": [
+        {
+          "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=DeepGreen&per_page=50&order=newest",
+          "outlet": "Federal Register, Office of the Federal Register",
+          "date": "2026-08-21"
+        },
+        {
+          "url": "https://www.adn.com/business-economy/2026/08/19/underwater-data-center-proposed-for-alaskas-cook-inlet-by-east-coast-company/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-08-19"
+        },
+        {
+          "url": "https://themainemonitor.org/eastport-adopts-moratorium-underwater-data-center-proposal/",
+          "outlet": "The Maine Monitor",
+          "date": "2026-08-13"
+        },
+        {
+          "url": "https://themainemonitor.org/deepgreen-preliminary-permit-application-deficient/",
+          "outlet": "The Maine Monitor",
+          "date": "2026-07-23"
+        },
+        {
+          "url": "https://akenergyauthority.org/What-We-Do/Railbelt-Energy/Cook-Inlet-PowerLink-Project",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-08-21"
+        }
+      ],
+      "history": [
+        {
+          "date": "2026-08-21",
+          "note": "Tracked from today. The applicant told FERC the project would tie into the Alaska Energy Authority's Cook Inlet PowerLink, a 38 mile subsea cable rated for up to 200 megawatts of bidirectional transfer that AEA lists as In Development and not yet built. AEA chief executive Curtis Thayer says the authority had never heard of DeepGreen and was never contacted, and that the company's letter to FERC has some of the project's facts \"dead wrong\". FERC also found the company had not identified all tribes and Alaska Native corporations that may be affected. The same company's Maine project at Eastport has been cut from 51 megawatts to a maximum of 15 and from about 170 turbines to 16 in a first phase, and Eastport's council voted unanimously on August 12th for a 180 day moratorium on any data center approval. The Maine Monitor reports the Alaska proposal has not been indicated as scaled down."
+        }
+      ],
+      "first_seen": "2026-08-21",
+      "last_updated": "2026-08-21"
     }
   ]
 }

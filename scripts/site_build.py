@@ -707,7 +707,15 @@ background:var(--gold);transition:right .25s ease;}
    doubled to 121px, which buried four docket map pins under it in a map
    frame only 219px tall. Compact keeps it to one row there. The wrap is the
    backstop for real phone widths, where it splits to two rows cleanly. */
-@media (max-width:900px){.navlinks{gap:13px;row-gap:9px;font-size:10.5px;flex-wrap:wrap;}}
+@media (max-width:900px){.navlinks{gap:13px;row-gap:9px;font-size:10.5px;flex-wrap:wrap;}
+/* The compact row leaves each link a 28px tall box, which reads fine with a
+   mouse and is small under a thumb. This grows the HIT area to 36px without
+   moving a pixel of the layout, so the sticky nav does not get taller and the
+   docket map frame below it does not move. The inset is held to 4px vertical
+   and 5px horizontal because the rows sit 9px apart and the columns 13px, so
+   expanded targets stay disjoint. Overlapping targets would trade a dead tap
+   for a wrong one, which is worse. */
+.navlinks a::before{content:"";position:absolute;left:-5px;right:-5px;top:-4px;bottom:-4px;}}
 
 /* ---------- type ---------- */
 h1{font-family:Fraunces,serif;font-weight:580;font-size:clamp(44px,7.4vw,92px);line-height:1.0;
