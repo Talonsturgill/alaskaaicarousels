@@ -1428,7 +1428,7 @@
    ],
    "verification": "TRUE POSITIVE, on a reconstruction of the defect itself: out/2026-08-21/slides/slide-07.html with the aktype.js script tag and the AK.fitText call removed renders the h2 at 24px and qa.py now exits 1 with 'type nobody sized: <h2> ... renders at 24px'. SECOND true positive on a synthetic unsized div at 16px. NO FALSE POSITIVES on 13 real slides (this run's nine plus examples/demo-deck's four, css_unreadable 0 on every one) or on a 16-element fixture exercising every legitimate sizing path: class rule, font shorthand, custom property in clamp(), inheritance from a sized wrapper, a table rule with unsized cells, a rule inside @media, em relative to a sized parent, an attribute selector, SVG font-size attribute on the text and on its parent <g>, SVG sized by CSS class and by inline style, and a size written by script the way AK.fitText writes it; the one deliberately unsized div in that fixture is the only element flagged. REGRESSION: re-rendered and re-QA'd this run's nine slides and examples/demo-deck against the pre-change engine, and machine_qa is identical on both (0 fails, 11 warns per deck, per-slide fails and warns equal row for row).",
    "rollback": "revert the upgrade(2026-08-21) commit",
-   "commit": "upgrade(2026-08-21)"
+   "commit": "upgrade(2026-08-21) fc7e83f on main"
   },
   {
    "run_date": "2026-08-21",
@@ -1442,7 +1442,7 @@
    ],
    "verification": "gate_status.py --self-test now runs 23 hermetic checks, 0 failures, 7 of them new and 3 of those a reconstruction of the No.39 defect: a storyboard with dossiers and a gate block and no reconciliation section WARNs mid-run and FAILs under --require, an empty section FAILs, a real table section PASSes and its row count is reported, a prose 'nothing diverged' PASSes, and a later empty section overrides an earlier full one. On the live run, `gate_status.py --run-dir out/2026-08-21` reports [PASS] reconciled 'BUILD RECONCILIATION present, 17 table row(s), 6459 chars' and the other 17 rows are unchanged, 0 FAIL rows.",
    "rollback": "revert the upgrade(2026-08-21) commit",
-   "commit": "upgrade(2026-08-21)"
+   "commit": "upgrade(2026-08-21) fc7e83f on main"
   }
  ],
  "scan_log": [
