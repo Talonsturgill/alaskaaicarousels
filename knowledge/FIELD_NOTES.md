@@ -7,6 +7,50 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-08-21 - Phase 1 craft refresh (No.39)
+
+Timeboxed study pass. The LinkedIn half returned nothing this file does not
+already carry: the 2026 aggregators restate Socialinsider's 7.00 percent
+document engagement rate and the 1080x1350 portrait recommendation, and the one
+number that looked new, a 6.60 percent carousel rate, traces to a secondary
+aggregator rather than a named study, so CAROUSEL_CRAFT stands unchanged. The
+visual half returned three things worth keeping.
+
+- **BEER-LAMBERT PER-CHANNEL EXTINCTION, as a data-in-art device.** Light in
+  water falls off exponentially with path length, I = I0 * e^(-a*l), and the
+  attenuation coefficient is WAVELENGTH DEPENDENT, so red dies first and blue
+  and green carry deepest. That means a depth figure from a story can drive
+  colour honestly rather than decoratively: run three separate coefficients for
+  R, G and B against the depth in metres and the palette shifts by itself, with
+  the shift MEANING the depth. A deck carrying a stated depth band gets a free,
+  physically true encoding out of it, and the dossier can state the coefficients
+  as load-bearing parameters like any other seed. Cheap in Canvas, no
+  dependency. https://www.nukepedia.com/tools/gizmos/other/beer-lambert-attenuation/
+- **U.S. CHART No. 1 IS THE ANNOTATION GRAMMAR FOR ANY MARINE DECK.** NOAA
+  publishes the full IHO INT 1 symbol set free, and it is exactly the "diagram,
+  do not decorate" vocabulary DESIGN_DOCTRINE section 6 asks for, already
+  standardised and already legible to anyone who has read a chart: the kelp-like
+  submarine cable symbol, seabed material abbreviations (S sand, M mud, Cy clay,
+  Rk rock), isobath conventions, and the sounding-numeral treatment. Borrow the
+  symbols rather than inventing furniture.
+  https://nauticalcharts.noaa.gov/publications/us-chart-1.html
+- **A SEE-THROUGH COOK INLET WOULD BE A LIE.** Glacial rock flour and strong
+  tidal flux keep upper Cook Inlet, north of the East and West Forelands,
+  extremely turbid and close to opaque. Nikiski sits at the East Foreland. So
+  any deck that draws a clear-water view of that seabed is drawing a place that
+  does not exist, and the honest picture of a seabed project there is one where
+  you CANNOT SEE the seabed. That is a gift rather than a problem, since the
+  story of a project nobody can inspect wants exactly that treatment.
+  https://www.fondriest.com/environmental-measurements/parameters/water-quality/turbidity-total-suspended-solids-water-clarity/
+- **PRECEDENT TO DIVERGE FROM, not a new find.** This series has already built a
+  continuous underwater Cook Inlet depth-world with a descending camera and a
+  mono depth readout as the progress motif, on the beluga acoustic deck. It is
+  outside the four-deck hard window, so it is legal, and it is still the obvious
+  move, which is the reason not to make it. Any new Cook Inlet subsea deck
+  should reach for a different chassis than a camera going down.
+
+---
+
 ## 2026-08-20 - Phase 12 PARK: place the whole band against a bitmap, not one
 ## element at a time (frontier scan, focus (d) typography and layout)
 
@@ -4258,3 +4302,46 @@ name: if Phase 12 needs the frontier, the budget has to be reserved in Phase 2.
   material specs, since dossiers currently describe materials in prose and a
   shared parameter vocabulary would make a material spec checkable.
   https://www.khronos.org/gltf/pbr/
+
+
+## 2026-08-21, run No.39, what the two review rounds actually taught
+
+The run scored 7.80 raw on the first card, capped to 6.9 by a single hard fail,
+and 8.54 on the second. Nothing about the deck's ideas changed between those two
+numbers. What changed was craft and bookkeeping, and it is worth writing down
+which was which.
+
+**The cap was bookkeeping.** storyboard.md shipped with a stale generated gate
+block telling its own reader to re-run a check that had already been re-run, and
+with no BUILD RECONCILIATION section at all. Sixteen places where the render had
+diverged from the dossier were therefore recorded nowhere. Writing that table is
+maybe twenty minutes and it moved the score 0.9 on its own, because a deliverable
+whose status page says the run failed is not a complete deliverable. Sync the
+gate block LAST, after the final score, every time.
+
+**The craft was the surface pass and the material split.** Four slides drew the
+same hero as a large grey fill with three hairlines. The fix on each was the same
+three things, all of which the dossiers already specified: machining chatter on
+its own canvas masked to the object's own alpha and composited in overlay, a form
+shadow down the face so it is not one flat ramp, and a value break between the
+anti-fouling coat and the steel so one silhouette reads as two substances.
+Artwork craft went 5 to 7. It is the deck's weakest criterion for the twentieth
+time and the remedy is never novelty, it is finishing the surfaces.
+
+**Two critic findings were wrong and measuring settled it.** The scorer reported
+that slide 04's survey grid leaked inside the gold limit and that the three
+squares were four percent taller than wide on a slide captioned AREA SCALE, TRUE.
+Both were artifacts of how the region was sampled: the dark area was the label's
+own opaque knockout, and the gold bounding box was catching the gold label and
+leader above the square. Measured density was 0.27 outside the limit and 0.00
+inside, and the drawn side was 783 px against a specified 780 plus a 4 px stroke.
+A critic is a reader, and a reader can misread. Measure before you rebuild.
+
+**The honesty call that cost texture and was still right.** Slides 01 and 04
+originally printed about two thousand per-point depth soundings generated from a
+noise field, on a deck whose thesis is that nothing here has been measured. The
+record holds one depth fact. Replacing them with survey cross ticks kept the
+density argument, which was never about the values, and cost the sheet some
+richness. Both the flow critic and the first scorer asked for the numerals back.
+The answer to a picture that does not argue is a different KIND of mark, not an
+invented value.

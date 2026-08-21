@@ -13,6 +13,93 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-08-21/",
+      "url": "https://alaskaaihq.com/archive/2026-08-21/",
+      "title": "1,650 Acres of Priority to Study",
+      "summary": "DeepGreen's filing names a Universal Docking Cradle. FERC's June letter said much of the underwater hardware lacked dimensions.",
+      "content_html": "<p><em>DeepGreen's filing names a Universal Docking Cradle. FERC's June letter said much of the underwater hardware lacked dimensions.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-21/og.jpg\" alt=\"1,650 Acres of Priority to Study cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=DeepGreen&amp;per_page=50&amp;order=newest\">Federal Register API, Office of the Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=Cook%20Inlet%20hydrokinetic&amp;per_page=20&amp;order=newest\">Federal Register API, Office of the Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/api/v1/documents/2021-09927.json\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/api/v1/documents/2025-06016.json\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=%22East%20Foreland%22&amp;per_page=20&amp;order=newest\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/documents/full_text/text/2021/05/11/2021-09927.txt\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/documents/full_text/text/2025/04/08/2025-06016.txt\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://akenergyauthority.org/What-We-Do/Railbelt-Energy/Cook-Inlet-PowerLink-Project\">Alaska Energy Authority</a>, primary document</li><li><a href=\"https://www.peninsulaclarion.com/news/marine-energy-developer-pursues-cook-inlet-tidal-project/\">Peninsula Clarion and Homer News, Delcenia Cosman</a>, report</li><li><a href=\"https://www.adn.com/business-economy/2026/08/19/underwater-data-center-proposed-for-alaskas-cook-inlet-by-east-coast-company/\">Anchorage Daily News, Bella Biondini</a>, report</li><li><a href=\"https://themainemonitor.org/eastport-adopts-moratorium-underwater-data-center-proposal/\">The Maine Monitor, Melissa S. Razdrih</a>, report</li><li><a href=\"https://www.quoddytides.com/proposed-tidal-project-would-power-underwater-ai-data-center/\">The Quoddy Tides, Edward French</a>, report</li><li><a href=\"https://themainemonitor.org/deepgreen-preliminary-permit-application-deficient/\">The Maine Monitor, Melissa S. Razdrih</a>, report</li><li><a href=\"https://www.northeastoceandata.org/ferc-data-on-marine-hydrokinetic-projects/\">Northeast Ocean Data Portal</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-08-21/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "",
+      "date_published": "2026-08-21T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-21/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 47,
+        "sources": [
+          {
+            "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=DeepGreen&per_page=50&order=newest",
+            "outlet": "Federal Register API, Office of the Federal Register",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=Cook%20Inlet%20hydrokinetic&per_page=20&order=newest",
+            "outlet": "Federal Register API, Office of the Federal Register",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/api/v1/documents/2021-09927.json",
+            "outlet": "Federal Energy Regulatory Commission via Federal Register",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/api/v1/documents/2025-06016.json",
+            "outlet": "Federal Energy Regulatory Commission via Federal Register",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=%22East%20Foreland%22&per_page=20&order=newest",
+            "outlet": "Federal Energy Regulatory Commission via Federal Register",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/documents/full_text/text/2021/05/11/2021-09927.txt",
+            "outlet": "Federal Energy Regulatory Commission via Federal Register",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/documents/full_text/text/2025/04/08/2025-06016.txt",
+            "outlet": "Federal Energy Regulatory Commission via Federal Register",
+            "primary": true
+          },
+          {
+            "url": "https://akenergyauthority.org/What-We-Do/Railbelt-Energy/Cook-Inlet-PowerLink-Project",
+            "outlet": "Alaska Energy Authority",
+            "primary": true
+          },
+          {
+            "url": "https://www.peninsulaclarion.com/news/marine-energy-developer-pursues-cook-inlet-tidal-project/",
+            "outlet": "Peninsula Clarion and Homer News, Delcenia Cosman",
+            "primary": false
+          },
+          {
+            "url": "https://www.adn.com/business-economy/2026/08/19/underwater-data-center-proposed-for-alaskas-cook-inlet-by-east-coast-company/",
+            "outlet": "Anchorage Daily News, Bella Biondini",
+            "primary": false
+          },
+          {
+            "url": "https://themainemonitor.org/eastport-adopts-moratorium-underwater-data-center-proposal/",
+            "outlet": "The Maine Monitor, Melissa S. Razdrih",
+            "primary": false
+          },
+          {
+            "url": "https://www.quoddytides.com/proposed-tidal-project-would-power-underwater-ai-data-center/",
+            "outlet": "The Quoddy Tides, Edward French",
+            "primary": false
+          },
+          {
+            "url": "https://themainemonitor.org/deepgreen-preliminary-permit-application-deficient/",
+            "outlet": "The Maine Monitor, Melissa S. Razdrih",
+            "primary": false
+          },
+          {
+            "url": "https://www.northeastoceandata.org/ferc-data-on-marine-hydrokinetic-projects/",
+            "outlet": "Northeast Ocean Data Portal",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-08-20/",
       "url": "https://alaskaaihq.com/archive/2026-08-20/",
       "title": "Alaska Bought American. The Tariff Found a Seam.",

@@ -1,0 +1,166 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath '01 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the docking cradle standing on the lit inspection sheet': shadow L* 19.5 vs ground L* 51.2, dL 31.8 at 432w"
+      ],
+      "scales": [
+        "'the acre claim rule' runs 0 acres at 80 to 1,650 acres at 1000; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the near jaw's milled seat face\" lands 0.0px from its target",
+        "leader \"the near jaw's milled seat face\" meets its label 1.0px away"
+      ],
+      "fits": [
+        "hl '1,650 acresof Cook Inlet.Nobody asked Alaska' fits 3/3 lines at 107.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath '02 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the cradle and its pad standing on the lit bench': shadow L* 8.5 vs ground L* 42.3, dL 33.8 at 432w"
+      ],
+      "leaders": [
+        "leader \"the base pad's milled step\" lands 0.0px from its target",
+        "leader \"the base pad's milled step\" meets its label 0.0px away"
+      ],
+      "fits": [
+        "hl 'A permit to study.Not a permit to build.' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "'the dimension rule against the phantom outline it names' holds: 264 vs 264 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath '03 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "scales": [
+        "'the years claim rule' runs 0 years at 80 to 4 years at 900; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the fourth annual notch' lands 0.0px from its target",
+        "leader 'the fourth annual notch' meets its label 3.0px away"
+      ],
+      "fits": [
+        "hl 'A parent one month old.Four years of priorit' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "'the four year budget bar' holds: 820 vs 820 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath '04 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "encodings": [
+        "'Alaska's envelope is bare where Maine's active footprint is filled': dE 17.8, AUC 1.00, visible 100%/100%, seen 4096/1600px at 432w"
+      ],
+      "scales": [
+        "'the metres area scale' runs 0 metres at 150 to 2,584 metres at 930; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the open dimension bracket's right end\" lands 0.0px from its target",
+        "leader \"the open dimension bracket's right end\" meets its label 11.0px away"
+      ],
+      "asserts": [
+        "'the Alaska side against the Maine side at one scale' holds: 780 vs 780 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath '05 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "fits": [
+        "hl 'Nine of more than three hundred. None of the' fits 3/3 lines at 61.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath '06 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the fixture standing on the lit bench': shadow L* 2.7 vs ground L* 22.3, dL 19.7 at 432w"
+      ],
+      "scales": [
+        "'the days claim rule' runs 0 days at 80 to 180 days at 900; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the moratorium bar's near end face\" lands 0.0px from its target",
+        "leader \"the moratorium bar's near end face\" meets its label 18.0px away"
+      ],
+      "fits": [
+        "hl 'Eastport was asked.The project shrank.' fits 2/2 lines at 69px"
+      ],
+      "asserts": [
+        "'the clamp bar covering the whole depth of the seat' holds: 96 vs 96 px (within 2)",
+        "'the rail bar against its own 180 day span' holds: 820 vs 820 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath '07 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "fits": [
+        "hl 'Seven documents for these waters.This one ha' fits 2/2 lines at 71px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath '08 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "scales": [
+        "'the megawatt claim rule' runs 0 megawatts at 80 to 200 megawatts at 920; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'It plans into a cablethat is not built.' fits 2/2 lines at 73.5px",
+        "q '\"It's extremely disappointing that they woul' fits 3/4 lines at 45.5px"
+      ],
+      "asserts": [
+        "\"the 100 MW mark's position on the rail\" holds: 420 vs 420 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath '0 AC' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath '1,650 AC' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath '09 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the cradle and its silt skirt standing on the lit bench': shadow L* 15.6 vs ground L* 33.8, dL 18.2 at 432w"
+      ],
+      "scales": [
+        "'the acre claim rule, ghosted, closing the loop from slide 01' runs 0 acres at 80 to 1,650 acres at 1000; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'The comment window openswhen FERC calls the ' fits 2/2 lines at 65.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 11,
+  "verdict": "WARN"
+}

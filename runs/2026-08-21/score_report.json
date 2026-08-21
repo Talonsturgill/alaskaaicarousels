@@ -1,0 +1,91 @@
+{
+ "run_date": "2026-08-21",
+ "carousel_no": 39,
+ "scored_at_round": 2,
+ "threshold": 8.3,
+ "raw_weighted": 8.54,
+ "weighted_total": 8.54,
+ "ship": true,
+ "cap_reason": null,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "score": 7,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "score": 8,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density and factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "score": 7,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy voice and hook",
+   "score": 9,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "weakest_criterion": "Artwork craft and genuine detail",
+ "one_sentence_fix": "Make slide 06's clamp bar actually cross the black bite so the jaw visibly closes in the drawing instead of only in the assertion, and give slide 03's slab a form shadow and a composed reason to be cropped.",
+ "showrunner_disposition": "Round 1 scored 7.80 raw, capped to 6.9 by one hard fail. Per CLAUDE.md a low score is a work order: every named defect was fixed and the deck re-scored at 8.54. The scorer independently re-tested both round 1 findings the showrunner had rejected with measurements and confirmed the showrunner on both.",
+ "showrunner_findings_rejected": [
+  {
+   "finding": "slide 04's cross tick field leaks inside the gold limit, about 55px",
+   "verdict": "NOT REPRODUCED. Measured off the render: mark density 0.27 outside the limit, 0.00 inside, at every band sampled. The dark region the scorer read as a leak is the ALASKA, 1,650 ACRE ENVELOPE label's own opaque knockout, which sits inside the square by design."
+  },
+  {
+   "finding": "the three squares are drawn about 4 percent taller than wide on a slide captioned AREA SCALE, TRUE",
+   "verdict": "NOT REPRODUCED. The gold bounding box measures 1566 by 1656 render px only because the scan catches the gold LABEL and the gold LEADER above the square. sideOf() returns one number used for both axes and strokeRect is square; the drawn side is 783 render px against AK_SIDE 780 plus a 4px stroke."
+  }
+ ],
+ "machine_state_at_scoring": {
+  "qa": "WARN, 0 fails, 11 warns",
+  "dossier_check": "PASS 9/9",
+  "copy_sync": "PASS 77 strings",
+  "aggregate": "PASS 13/13",
+  "plan_drift": "PASS 46 claims, 0 drift",
+  "bespoke": "median pairwise 0.139, max pair 0.253, drawn share 57%",
+  "caption_check": "PASS 900 chars, hook 127, 80 copy fields",
+  "assemble": "vector, 3.59 MB, 9 slides"
+ },
+ "round_1": {
+  "raw_weighted": 7.8,
+  "weighted_total": 6.9,
+  "cap": "one hard fail, unfinished artifact"
+ },
+ "applied_after_round_2": "Slide 03's 'Its managing member' was the one line the scorer said a well-informed reader could fairly correct: C17 says Louis Wolfson is A managing member for DeepGreen COOK INLET, the SPV, not THE managing member of the Holdings parent. Rewritten to 'A managing member of its Cook Inlet entity'."
+}

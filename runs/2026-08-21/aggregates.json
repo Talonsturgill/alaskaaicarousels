@@ -1,0 +1,114 @@
+{
+ "run_date": "2026-08-21",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "A preliminary permit gives priority to study one named site for up to four years",
+   "member": "C45",
+   "fragment": "four years",
+   "derivation": "the maximum term of a FERC preliminary permit"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "$4.5 MILLION OF STUDIES,",
+   "member": "C15",
+   "fragment": "5 MILLION OF STUDIES",
+   "derivation": "DeepGreen's own estimate for the preliminary engineering studies"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "EXPECTED TO TAKE FOUR YEARS",
+   "member": "C15",
+   "fragment": "FOUR YEARS",
+   "derivation": "DeepGreen's own expected duration for those studies"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "4 YEARS, THE MAXIMUM TERM",
+   "member": "C45",
+   "fragment": "4 YEARS",
+   "derivation": "the maximum term of a FERC preliminary permit"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "A parent one month old.Four years of priority.",
+   "member": "C45",
+   "fragment": "Four years",
+   "derivation": "the maximum term of a FERC preliminary permit"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "MAINE, ABOUT 27 ACRES ACTIVE",
+   "member": "C34",
+   "fragment": "27 ACRES",
+   "derivation": "the active infrastructure footprint in the original Maine filing"
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "ONE SCALE. THREE CLAIMS.",
+   "subject": "areas drawn to one scale on this slide",
+   "members": [
+    "C13",
+    "C40",
+    "C34"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "66 HIVES OF AI SERVERS",
+   "member": "C11",
+   "fragment": "66 HIVES",
+   "derivation": "the hive count in the proposal"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "180 DAYS, UNANIMOUS",
+   "member": "C41",
+   "fragment": "180 DAYS",
+   "derivation": "the length of the Eastport moratorium"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "Eastport's council voted unanimously for a 180 day moratorium covering data cent",
+   "member": "C41",
+   "fragment": "180 day",
+   "derivation": "the length of the Eastport moratorium"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "Seven documents for these waters.This one has none.",
+   "member": "C02",
+   "fragment": "Seven documents",
+   "derivation": "the Federal Register control search for Cook Inlet hydrokinetic, counted as documents because documents is what that search returns"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "7 DOCUMENTS",
+   "member": "C02",
+   "fragment": "7 DOCUMENTS",
+   "derivation": "the Federal Register control search for Cook Inlet hydrokinetic"
+  },
+  {
+   "kind": "count",
+   "slide": 8,
+   "text": "THE CABLE HAS TWO COST FIGURES, NEITHER SETTLED",
+   "subject": "published cost figures for the Cook Inlet PowerLink, AEA's own page against the figure ADN reported",
+   "members": [
+    "C29",
+    "C28"
+   ]
+  }
+ ]
+}
