@@ -246,6 +246,17 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   the same: widen the box or lower `min`. On run No.31 it ran past on five
   slides and swallowed the sentence carrying the deck's whole thesis, with
   machine QA reporting PASS, zero fails, zero warns.
+- **Every text element's size is CHOSEN, never left to the browser**
+  (2026-08-21). qa.py **FAILS** any non-decorative text element with no author
+  `font-size` anywhere on its ancestor chain: a CSS rule, an SVG presentation
+  attribute, or an inline style (which is what `AK.fitText` writes). Run No.39's
+  slide 07 styled its `<h2>` headline with position, width, family, weight,
+  tracking and colour, set no size, and never loaded `aktype.js`, so `AK.fitText`
+  was never called and Chromium's user-agent rule typeset the deck's hook line at
+  1.5em of an unstyled 16px root, 24px, the same size as the mono labels beside
+  it. Not opt-in and nothing to tune: the author's own file states no size. If a
+  headline is fitted, load `aktype.js` AND call the fitter, and check the fit
+  record shows up in `render_report.json`.
 - **Text may never overprint text**: qa.py FAILS when two elements' text
   line boxes intersect (the 2026-07-08 slide-3 defect class). Deliberate
   layering (a chip on an opaque plate crossing a display line box) must be
