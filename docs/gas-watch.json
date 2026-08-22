@@ -2890,15 +2890,15 @@
     },
     {
       "date": "2026-08-22",
-      "collected_utc": "2026-08-22T14:00:45Z",
+      "collected_utc": "2026-08-22T19:41:06Z",
       "collector_version": "1.0",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-08-22T00:12:00",
-        "source_timestamp_utc": "2026-08-22T08:12:00Z",
-        "inventory_mcf": 7136996,
-        "inventory_delta_mcf": 37059,
+        "source_timestamp": "2026-08-22T09:00:00",
+        "source_timestamp_utc": "2026-08-22T17:00:00Z",
+        "inventory_mcf": 7140370,
+        "inventory_delta_mcf": 40433,
         "storage_design_mcf": 13000000,
         "inventory_pct_of_design": 54.9,
         "withdrawal_design_mcfd": 215000,
@@ -2907,11 +2907,11 @@
         "withdrawal_restriction_mcfd": 111930,
         "injection_design_mcfd": 225000,
         "injection_operating_mcfd": 61896,
-        "injection_available_mcfd": 24837,
-        "injection_in_progress_mcfd": 37059,
+        "injection_available_mcfd": 21463,
+        "injection_in_progress_mcfd": 40433,
         "injection_restriction_mcfd": 144424,
         "operational_note": "Well 7 is out of service for Coil tube work. We are currently waiting on the Coil Tube unit to be available for this work. This OFO only impacts Expansion Customers. We are still working on the system to only email customers affected by expansion OFO's, this issue is still being addressed. Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only. CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
-        "source_age_hours": 5.8
+        "source_age_hours": 2.7
       },
       "forecast": [
         {
@@ -2953,17 +2953,25 @@
           "min_temp_f": 49,
           "hdd65": 10.6,
           "modeled_demand_mmcfd": 117
+        },
+        {
+          "date": "2026-08-28",
+          "hours": 23,
+          "mean_temp_f": 53.7,
+          "min_temp_f": 50,
+          "hdd65": 11.3,
+          "modeled_demand_mmcfd": 120
         }
       ],
       "forecast_source_updated": "2026-08-22T09:22:56+00:00",
       "derived": {
-        "peak_forecast_date": "2026-08-27",
-        "peak_forecast_hdd": 10.6,
-        "peak_modeled_demand_mmcfd": 117,
-        "forecast_window_demand_bcf": 0.56,
-        "storage_withdrawal_mmcfd": -37.1,
+        "peak_forecast_date": "2026-08-28",
+        "peak_forecast_hdd": 11.3,
+        "peak_modeled_demand_mmcfd": 120,
+        "forecast_window_demand_bcf": 0.68,
+        "storage_withdrawal_mmcfd": -40.4,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 61.0,
+        "days_cover_at_peak": 59.5,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -3009,7 +3017,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-22T14:00:45Z",
+          "fetched_utc": "2026-08-22T19:41:06Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -3018,7 +3026,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-22T14:00:45Z",
+          "fetched_utc": "2026-08-22T19:41:07Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -3027,7 +3035,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-22T14:00:46Z",
+          "fetched_utc": "2026-08-22T19:41:07Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -3035,7 +3043,8 @@
       "flags": [
         "injection_restriction_active",
         "withdrawal_restriction_active"
-      ]
+      ],
+      "supersedes_posting": "2026-08-22T00:12:00"
     }
   ]
 }
