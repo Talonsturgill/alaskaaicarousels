@@ -2050,6 +2050,73 @@
    ],
    "first_seen": "2026-08-21",
    "last_updated": "2026-08-21"
+  },
+  {
+   "id": "anchorage-surveillance-ai-ordinance",
+   "title": "Anchorage's surveillance ordinance and its gate on police AI",
+   "kind": "legislation",
+   "status": "open-for-comment",
+   "decider": "Anchorage Assembly",
+   "public_access": "open",
+   "access_note": "A public hearing is scheduled for the Assembly's September 1st meeting, which is the point at which an Anchorage resident can testify on the ordinance. The Assembly takes up funding for the Real-Time Crime Center at the same meeting, so both the rules and the money are heard on one night.",
+   "summary": "Assembly members Keith McCormick, Sydney Scout and Vice Chair Daniel Volland introduced a surveillance and privacy ordinance on Tuesday, August 18th, 2026. It would bar the Anchorage Police Department from adding artificial intelligence with human-feature recognition capabilities into its camera network without Assembly permission, with that technology subject to a period of temporary approval and to annual reporting. It would also require a case number for each surveillance data search, erase individuals' data after two weeks unless police are using it as evidence in an active investigation, and stop the city sharing footage with out-of-state or federal agencies without a warrant. The department's Real-Time Crime Center is on Elmore Road in East Anchorage and the Assembly approved $11.8 million last year for a system designed to stream up to 750 camera feeds. When the center launched in September it ran with one employee and about 15 cameras. Police Chief Sean Case says the department's technology does not use facial recognition and that it has some capability with object recognition, adding that \"We haven't even tested it.\"",
+   "key_dates": [
+    {
+     "date": "2026-08-04",
+     "label": "Assembly member Keith McCormick raises the gap in Anchorage code at an Assembly meeting",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-08-18",
+     "label": "Three Assembly members introduce the surveillance and privacy ordinance",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-08-21",
+     "label": "Assembly worksession on AM 524-2026, Real Time Crime Center, with an APD technology presentation",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-09-01",
+     "label": "Public hearing on the ordinance at the Assembly meeting, the point at which a resident can testify",
+     "kind": "deadline"
+    }
+   ],
+   "location": {
+    "name": "Anchorage",
+    "lon": -149.9003,
+    "lat": 61.2181
+   },
+   "sources": [
+    {
+     "url": "https://www.adn.com/alaska-news/anchorage/2026/08/20/anchorage-police-may-expand-surveillance-capabilities-some-assembly-members-want-privacy-protections-first/",
+     "outlet": "Anchorage Daily News",
+     "date": "2026-08-20"
+    },
+    {
+     "url": "https://alaskapublic.org/news/anchorage/2026-08-21/as-anchorage-assembly-weighs-police-surveillance-upgrade-some-members-want-privacy-protections-first",
+     "outlet": "Alaska Public Media",
+     "date": "2026-08-21"
+    },
+    {
+     "url": "https://www.muni.org/Departments/Assembly/Pages/Meetings-Worksessions.aspx",
+     "outlet": "Municipality of Anchorage Assembly",
+     "date": "2026-08-21"
+    },
+    {
+     "url": "https://www.anchoragepolice.com/safe",
+     "outlet": "Anchorage Police Department",
+     "date": "2026-08-22"
+    }
+   ],
+   "first_seen": "2026-08-22",
+   "last_updated": "2026-08-22",
+   "history": [
+    {
+     "date": "2026-08-22",
+     "note": "Added. The Assembly's own worksession listing names AM 524-2026 as the Real Time Crime Center item and dates the worksession August 21st, 2026, alongside an APD technology presentation. No fetched page joins that item number to a vendor or an amount, so the roughly $600,000 contract with ThunderCat that two outlets report is recorded here as a separate fact. No ordinance number is public yet, because the ordinance is introduced rather than approved. The Anchorage Police Department's own page says its technology does not use facial recognition, describes the center as human-operated, and says municipal use of facial recognition was banned by the Assembly in 2023, where the Anchorage Daily News says the Assembly placed strict limits that year."
+    }
+   ]
   }
  ]
 }
