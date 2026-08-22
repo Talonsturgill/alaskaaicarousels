@@ -2554,7 +2554,7 @@ Slides and the deck PDF are linked from the canonical page.
 
 # The Alaska AI Docket
 
-Every AI infrastructure decision tracked in Alaska, 21 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
+Every AI infrastructure decision tracked in Alaska, 22 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
 
 ---
 
@@ -2611,6 +2611,35 @@ Canonical: https://alaskaaihq.com/docket/aidea-houston-industrial-park/
 **2026-08-19** Houston's council answered on August 13th, and it answered about process rather than about data centers. Two resolutions passed unanimously objecting to how the state ran the transfer, one aimed at the AIDEA conveyance and one at an unrelated parcel bound for the state housing finance corporation. Council member Jeffrey Brasel said "There was zero transparency. They had made preliminary decisions before we even had a decision to make." The separate ordinance that would have banned data centers inside city limits FAILED 4 to 2 the same night, with Callie Courtney and Lisa Johansen voting for it. The city has asked AIDEA to come to a council meeting in September. Re-verified against the state notice as well. Comment on the roughly 19,950 acre conveyance, ADL 234762, closes 5 p.m. today, August 19th, and only people from whom the division receives timely written comment during the window will be eligible to appeal the final finding and decision.
 **2026-08-20** The comment window closed at 5 p.m. on Wednesday, August 19th, 2026, exactly as the state notice printed it. The proposed conveyance of about 19,950 acres near Houston now sits with the Department of Natural Resources for a final decision, and no final finding has been published. AIDEA's board meets on August 26th, the first board date after the close.
 **2026-08-21** The comment window did NOT close. It reopened. DNR published an extension on August 19th, the day the original period was to end, and written comment on the proposed conveyance of about 19,950 acres near Houston to the Alaska Industrial Development and Export Authority now runs to 5 p.m. Monday, September 14, 2026, per the state notice for ADL 234762. Anyone who thought the chance had passed has 24 days. AIDEA published its own case for the conveyance on July 30th and its board meets in public on August 26th.
+
+
+---
+
+# Anchorage's surveillance ordinance and its gate on police AI
+
+> Assembly members Keith McCormick, Sydney Scout and Vice Chair Daniel Volland introduced a surveillance and privacy ordinance on Tuesday, August 18th, 2026. It would bar the Anchorage Police Department from adding artificial intelligence with human-feature recognition capabilities into its camera network without Assembly permission, with that technology subject to a period of temporary approval and to annual reporting. It would also require a case number for each surveillance data search, erase individuals' data after two weeks unless police are using it as evidence in an active investigation, and stop the city sharing footage with out-of-state or federal agencies without a warrant. The department's Real-Time Crime Center is on Elmore Road in East Anchorage and the Assembly approved $11.8 million last year for a system designed to stream up to 750 camera feeds. When the center launched in September it ran with one employee and about 15 cameras. Police Chief Sean Case says the department's technology does not use facial recognition and that it has some capability with object recognition, adding that "We haven't even tested it."
+
+Status: open for comment. Decided by Anchorage Assembly.
+Public access: open to you. A public hearing is scheduled for the Assembly's September 1st meeting, which is the point at which an Anchorage resident can testify on the ordinance. The Assembly takes up funding for the Real-Time Crime Center at the same meeting, so both the rules and the money are heard on one night.
+Canonical: https://alaskaaihq.com/docket/anchorage-surveillance-ai-ordinance/
+
+## Dates
+
+- 2026-08-04, Assembly member Keith McCormick raises the gap in Anchorage code at an Assembly meeting (milestone)
+- 2026-08-18, Three Assembly members introduce the surveillance and privacy ordinance (milestone)
+- 2026-08-21, Assembly worksession on AM 524-2026, Real Time Crime Center, with an APD technology presentation (milestone)
+- 2026-09-01, Public hearing on the ordinance at the Assembly meeting, the point at which a resident can testify (deadline)
+
+## Sources
+
+- [Anchorage Daily News](https://www.adn.com/alaska-news/anchorage/2026/08/20/anchorage-police-may-expand-surveillance-capabilities-some-assembly-members-want-privacy-protections-first/), 2026-08-20
+- [Alaska Public Media](https://alaskapublic.org/news/anchorage/2026-08-21/as-anchorage-assembly-weighs-police-surveillance-upgrade-some-members-want-privacy-protections-first), 2026-08-21
+- [Municipality of Anchorage Assembly](https://www.muni.org/Departments/Assembly/Pages/Meetings-Worksessions.aspx), 2026-08-21
+- [Anchorage Police Department](https://www.anchoragepolice.com/safe), 2026-08-22
+
+## How this decision moved
+
+**2026-08-22** Added. The Assembly's own worksession listing names AM 524-2026 as the Real Time Crime Center item and dates the worksession August 21st, 2026, alongside an APD technology presentation. No fetched page joins that item number to a vendor or an amount, so the roughly $600,000 contract with ThunderCat that two outlets report is recorded here as a separate fact. No ordinance number is public yet, because the ordinance is introduced rather than approved. The Anchorage Police Department's own page says its technology does not use facial recognition, describes the center as human-operated, and says municipal use of facial recognition was banned by the Assembly in 2023, where the Anchorage Daily News says the Assembly placed strict limits that year.
 
 
 ---
@@ -2752,6 +2781,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 **2026-08-09** Checked and unchanged. No award notice has appeared on the request for lease proposals covering about 4,700 acres at Joint Base Elmendorf-Richardson, Eielson and Clear, and the Air Force has still announced no award timeline. Proposals closed June 29 and are evaluated privately, so there is no public step for a reader between now and whatever the Air Force announces. The separate Eielson mixed-use lease covering 3,967 acres reaches its proposal deadline August 10, 2026.
 **2026-08-13** Checked and unchanged. The federal record for solicitation AFCEC-26-R-0006 still shows the request for lease proposals past due and archived on July 14th, with no award posted and no award timeline announced. Proposals closed June 29th.
 **2026-08-18** Checked and unchanged. No lease award has been announced, and the Air Force record still shows only the solicitation phase for the roughly 4,700 acres across the three installations.
+**2026-08-22** Checked and unchanged against the federal solicitation record. Request for lease proposals AFCEC-26-R-0006 is still archived as of July 14th, 2026 with zero awards recorded and no award timeline announced. Proposals closed June 29th after an extension from May 29th. Nothing has been posted about the roughly 4,700 acres at Joint Base Elmendorf Richardson, Eielson and Clear since.
 
 
 ---
@@ -2825,6 +2855,7 @@ Canonical: https://alaskaaihq.com/docket/aklng-tax-bill-second-special-session/
 **2026-08-19** Checked and unchanged. Nothing has moved since the governor said on the evening of August 13th that there is little reason to keep the third special session going, and the House Bipartisan Majority Caucus said the day before that HB 4001 lacks the votes. Neither chamber has met on the bill. Two dates remain on the calendar, a joint Senate and House Resources Committee meeting in Anchorage on Cook Inlet energy tomorrow, August 20th, and the scheduled end of the session on August 25th.
 **2026-08-20** The joint Senate and House Resources Committee meeting on immediate Cook Inlet energy needs is set for today in Anchorage, and no outcome is published yet. Nothing has moved on the tax bill itself since the governor said on August 13th that there is little reason to keep the third special session going. The session is scheduled to end August 25th.
 **2026-08-21** Glenfarne answered, and the answer is a schedule. The Alaska LNG developer said on August 19th that it is disappointed the Legislature has stated it will not take final action on property tax legislation, that the outcome "will cause schedule delay and cost increase on the gas line", and that it is "evaluating alternative paths forward while continuing to advance the commercial, engineering and financing work required to deliver the full Alaska LNG project, including the LNG export terminal". Neither chamber met on the bill. The third special session is still scheduled to end August 25th, and legislative leaders have pointed to the regular session convening in January, under a new governor, as the next vehicle.
+**2026-08-22** Checked and unchanged. Nothing has moved since Glenfarne said on August 19th that it is looking at alternative paths. The third special session is scheduled to end August 25th, three days out, and no vote on a property tax bill has been scheduled or reported.
 
 
 ---
@@ -2942,6 +2973,7 @@ Canonical: https://alaskaaihq.com/docket/army-janus-fort-wainwright/
 
 **2026-08-06** Tracked. Fort Wainwright is one of nine sites the Army named, alongside Fort Benning, Fort Bragg, Fort Campbell, Fort Drum, Fort Hood, Holston Army Ammunition Plant, Joint Base Lewis McChord and Redstone Arsenal. The Army says the sites were chosen on mission criticality, existing energy shortfalls, grid resilience and environmental and technical constraints. The program answers Executive Order 14299 on deploying advanced nuclear reactor technologies for national security, and the Army's stated goal is an operational demonstration plant on a military installation by 2030. No vendor selection for Fort Wainwright has been made public.
 **2026-08-18** Re-verified. Fort Wainwright remains one of nine Army posts named for a possible microreactor by 2030, and no down selection has been reported since.
+**2026-08-22** Checked and unchanged. Nuclear industry trade coverage through August 2026 carries nothing further on the Army's Janus program, and no vendor has been named for Fort Wainwright. The nine named installations stand as announced.
 
 
 ---
@@ -3037,6 +3069,7 @@ Canonical: https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/
 **2026-08-19** Checked and unchanged. Enstar's 31 page petition for reconsideration, filed July 23rd, is still before the Regulatory Commission of Alaska with no action reported. The commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project remains the operative decision. Thirty days from filing falls on or about August 22nd, three days out, after which the petition is denied by operation of law.
 **2026-08-20** Checked and unchanged. Enstar's July 23rd petition for reconsideration is still before the Regulatory Commission of Alaska with no order reported. The commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project stands. Thirty days from the filing falls on August 22nd, which is the date already on this entry.
 **2026-08-21** Checked and unchanged. Enstar's petition for reconsideration, filed July 23rd, is still before the Regulatory Commission of Alaska with no reported action. Thirty days from filing falls on or about August 22nd, one day out, after which the petition is denied by operation of law. The commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project remains the operative decision.
+**2026-08-22** Checked and unchanged, on the day the clock runs out. Enstar's petition for reconsideration, filed July 23rd, is 30 days old today and no order from the Regulatory Commission of Alaska has been reported. Alaska Public Media's energy and economy coverage carries nothing on the petition after August 14th, and the commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project still stands.
 
 
 ---
@@ -3052,12 +3085,14 @@ Canonical: https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/
 ## Dates
 
 - 2026-07-13, Board weighs the purchase in executive session (vote)
+- 2026-07-28, Staff proposal for a second LM6000 goes to the GVEA board (vote)
 
 ## Sources
 
 - [Fairbanks Daily News-Miner](https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html), 2026-06-28
 - [KUAC](https://fm.kuac.org/energy-and-the-environment/2026-05-28/gvea-plans-extraordinarily-large-increase-in-co-op-fuel-charge), 2026-05-28
 - [Fairbanks Daily News-Miner](https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html), 2026-07-06
+- [Fairbanks Daily News-Miner](https://www.newsminer.com/news/local_news/north-pole-turbine-proposal-sparks-clean-air-concerns/article_3f748ab1-f3cf-4a61-bae0-ec5f4f75949e.html), 2026-07-13
 
 ## How this decision moved
 
@@ -3075,6 +3110,7 @@ Canonical: https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/
 **2026-08-01** Carried forward unchanged. The utility's newsroom could not be reached today and no report of a board decision on the turbine purchase was found.
 **2026-08-07** Checked and unchanged. No board vote on the LM6000 purchase appears in Fairbanks reporting or in the utility's public filings, so the decision remains outstanding.
 **2026-08-18** Re-verified. A special board meeting was scheduled for August 13th, and no decision on the roughly $120 million LM6000 purchase has surfaced in public reporting.
+**2026-08-22** Two things the record now shows. Golden Valley Electric Association staff took the second LM6000 to the board on July 28th, and the Fairbanks Daily News-Miner reported on July 13th that a new unit could cost at least $90 million and would add about 45 megawatts, running on naphtha rather than diesel, with Petro Star confirming enough naphtha to feed it. No vote result has been published. The siting is now contested on air quality. Clean air advocate Patrice Lee objected to putting the unit at the North Pole Power Plant given a proposed split of the fine particulate nonattainment area, arguing the pollution carries heart attack, stroke, cancer and respiratory risk, and suggested alternatives such as ground near the Kinross Fort Knox mine. That makes this a permitting question as well as a purchase.
 
 
 ---
@@ -3196,6 +3232,7 @@ Canonical: https://alaskaaihq.com/docket/eo-14318-data-center-permitting/
 
 **2026-08-06** Tracked, with the number corrected. A reader asked for Executive Order 14314; that order is Making America Beautiful Again by Improving Our National Parks, and it raises national park entry fees for foreign visitors. The order that governs data center permitting is 14318, signed July 23rd, 2025. Its Alaska relevance is direct, because it instructs the Defense Department that it may competitively lease military land for qualifying projects, which is the authority underneath the Air Force offer of about 4,700 acres at Joint Base Elmendorf Richardson, Eielson and Clear that this docket already tracks. A categorical exclusion means a project is presumed to have no significant environmental effect and skips the study that would otherwise be written, so the order's practical effect in Alaska is fewer published environmental findings on the largest power users the state has ever considered.
 **2026-08-18** Re-verified. Executive Order 14318 stands as published, with no amendment or revocation on the record.
+**2026-08-22** Checked and unchanged against the Federal Register record. Executive Order 14318 remains in force at 90 FR 35385, published July 28th, 2025, carrying its original disposition, which revokes Executive Order 14141. No amendment or revocation is recorded against it.
 
 
 ---

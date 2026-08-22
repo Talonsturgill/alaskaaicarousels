@@ -6,22 +6,62 @@
 <atom:link href="https://alaskaaihq.com/docket/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Every AI infrastructure decision tracked in Alaska, as it moves. Comment windows, deadlines, votes and filings.</description>
 <language>en-us</language>
-<lastBuildDate>Fri, 21 Aug 2026 17:00:00 +0000</lastBuildDate>
+<lastBuildDate>Sat, 22 Aug 2026 17:00:00 +0000</lastBuildDate>
+<item>
+<title>Air Force land leases for AI data centers at JBER, Eielson and Clear</title>
+<link>https://alaskaaihq.com/docket/#air-force-eul-ai-data-centers</link>
+<guid isPermaLink="false">alaska-ai-docket-air-force-eul-ai-data-centers-2026-08-22</guid>
+<pubDate>Sat, 22 Aug 2026 17:00:00 +0000</pubDate>
+<category>federal-lease</category>
+<description>The Air Force offered about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson AFB and Clear Space Force Station for privately financed AI data centers. Residents near the five Eielson-area parcels raised noise, permafrost and grid concerns, including one parcel less than a mile from North Pole Middle School. Proposals closed June 29 and are evaluated privately. No public comment period exists; no award timeline has been announced. Status, pending-decision.</description>
+</item>
+<item>
+<title>GVEA's $120 million turbine decision</title>
+<link>https://alaskaaihq.com/docket/#gvea-lm6000-turbine-purchase</link>
+<guid isPermaLink="false">alaska-ai-docket-gvea-lm6000-turbine-purchase-2026-08-22</guid>
+<pubDate>Sat, 22 Aug 2026 17:00:00 +0000</pubDate>
+<category>utility-decision</category>
+<description>GVEA's board weighs buying a GE LM6000 combined-cycle turbine, roughly $120 million for 45 to 58 MW, while data center demand has pushed gas turbine plant costs up 195 percent since 2019 and order waitlists into the early 2030s, per a Bloomberg report cited by the News-Miner. The board reserved an order slot in April for $50,000. A member-owned co-op board decides, in executive session. GVEA members reach it through board elections and member comment periods at regular meetings. Status, pending-decision.</description>
+</item>
 <item>
 <title>The AKLNG gas line tax bill</title>
 <link>https://alaskaaihq.com/docket/#aklng-tax-bill-second-special-session</link>
-<guid isPermaLink="false">alaska-ai-docket-aklng-tax-bill-second-special-session-2026-08-21</guid>
-<pubDate>Fri, 21 Aug 2026 17:00:00 +0000</pubDate>
+<guid isPermaLink="false">alaska-ai-docket-aklng-tax-bill-second-special-session-2026-08-22</guid>
+<pubDate>Sat, 22 Aug 2026 17:00:00 +0000</pubDate>
 <category>legislation</category>
 <description>A conference committee compromise unveiled July 2 would swap the state property tax on the Glenfarne-led Alaska LNG project for a volumetric tax after five years of operation or 500 MMcf per day, and extend the completion deadline to the end of 2034. The House deadlocked 19 to 19 on July 16 over an expanded S corporation income tax, the governor rejected that provision, and a third special session convened July 27 with no bill from the governor and almost no legislators in the room. Legislators decide; constituents reach them directly. The gas line would feed the grid most Alaska compute would ride on. Status, pending-decision.</description>
 </item>
 <item>
 <title>Enstar's Cook Inlet gas storage plan (Kenai Loop Pool)</title>
 <link>https://alaskaaihq.com/docket/#enstar-cook-inlet-gas-storage</link>
-<guid isPermaLink="false">alaska-ai-docket-enstar-cook-inlet-gas-storage-2026-08-21</guid>
-<pubDate>Fri, 21 Aug 2026 17:00:00 +0000</pubDate>
+<guid isPermaLink="false">alaska-ai-docket-enstar-cook-inlet-gas-storage-2026-08-22</guid>
+<pubDate>Sat, 22 Aug 2026 17:00:00 +0000</pubDate>
 <category>regulatory-docket</category>
 <description>On July 10, 2026 the Anchorage Daily News reported the RCA issued a 17-page order denying Enstar's request for an advance determination that its proposed Cook Inlet gas storage project was prudent, saying the utility lacked basic information. The $240 million project would have bought the depleted Kenai Loop Pool reservoir from AIX Energy to hold 25 billion cubic feet of gas, close to half Enstar's annual demand, adding up to $12 a month to the average bill. Enstar and Hilcorp have competing DNR lease applications for the same pool, and DNR has not confirmed it is technically capable of storing gas. Without approval, Enstar president John Sims said the company suspended the project. Enstar reopened the question on July 23, 2026 with a 31-page petition for reconsideration, arguing the order was erroneous and suffers from a lack of true understanding of the nature of the problem, and calling the Kenai Loop Pool the only viable commercial storage option in Cook Inlet. Alaska Public Media reports the commission has thirty days to respond and that inaction is an automatic denial. The RCA is a governor-appointed, legislature-confirmed commission, and the public reaches its dockets through formal comment and intervention. The prudency question is open again on Enstar's petition for reconsideration. The underlying DNR storage-lease question is also still open. Status, pending-decision.</description>
+</item>
+<item>
+<title>The Army's Janus microreactor program at Fort Wainwright</title>
+<link>https://alaskaaihq.com/docket/#army-janus-fort-wainwright</link>
+<guid isPermaLink="false">alaska-ai-docket-army-janus-fort-wainwright-2026-08-22</guid>
+<pubDate>Sat, 22 Aug 2026 17:00:00 +0000</pubDate>
+<category>procurement</category>
+<description>The Army named Fort Wainwright in Fairbanks as one of nine installations that could host a microreactor under its Janus program. Fort Wainwright once exported power from an on site coal plant and is now a net importer, in a region with high energy costs and little spare generation. Industry submissions were taken through the Defense Innovation Unit and are evaluated privately. No public comment period exists at this stage, and no vendor has been named for Fort Wainwright. Status, pending-decision.</description>
+</item>
+<item>
+<title>The executive order that lets big data centers skip the usual federal review</title>
+<link>https://alaskaaihq.com/docket/#eo-14318-data-center-permitting</link>
+<guid isPermaLink="false">alaska-ai-docket-eo-14318-data-center-permitting-2026-08-22</guid>
+<pubDate>Sat, 22 Aug 2026 17:00:00 +0000</pubDate>
+<category>other</category>
+<description>Executive Order 14318, Accelerating Federal Permitting of Data Center Infrastructure, directs federal agencies to speed approvals for data centers adding more than 100 megawatts of load or costing at least 500 million dollars. It tells agencies to find and create categorical exclusions under the National Environmental Policy Act, and directs Interior and Energy to offer federal sites while Defense may competitively lease military land. An executive order takes no public comment. Its effect is to remove review steps that would otherwise have carried one, so the room this closes is the environmental review a project would have had. Status, watching.</description>
+</item>
+<item>
+<title>Anchorage's surveillance ordinance and its gate on police AI</title>
+<link>https://alaskaaihq.com/docket/#anchorage-surveillance-ai-ordinance</link>
+<guid isPermaLink="false">alaska-ai-docket-anchorage-surveillance-ai-ordinance-2026-08-22</guid>
+<pubDate>Sat, 22 Aug 2026 17:00:00 +0000</pubDate>
+<category>legislation</category>
+<description>Assembly members Keith McCormick, Sydney Scout and Vice Chair Daniel Volland introduced a surveillance and privacy ordinance on Tuesday, August 18th, 2026. It would bar the Anchorage Police Department from adding artificial intelligence with human-feature recognition capabilities into its camera network without Assembly permission, with that technology subject to a period of temporary approval and to annual reporting. It would also require a case number for each surveillance data search, erase individuals' data after two weeks unless police are using it as evidence in an active investigation, and stop the city sharing footage with out-of-state or federal agencies without a warrant. The department's Real-Time Crime Center is on Elmore Road in East Anchorage and the Assembly approved $11.8 million last year for a system designed to stream up to 750 camera feeds. When the center launched in September it ran with one employee and about 15 cameras. Police Chief Sean Case says the department's technology does not use facial recognition and that it has some capability with object recognition, adding that &quot;We haven't even tested it.&quot; A public hearing is scheduled for the Assembly's September 1st meeting, which is the point at which an Anchorage resident can testify on the ordinance. The Assembly takes up funding for the Real-Time Crime Center at the same meeting, so both the rules and the money are heard on one night. Status, open-for-comment.</description>
 </item>
 <item>
 <title>AIDEA's free state land for a Mat-Su data center park</title>
@@ -126,38 +166,6 @@
 <pubDate>Wed, 19 Aug 2026 17:00:00 +0000</pubDate>
 <category>other</category>
 <description>The Kenai Peninsula Borough School District is writing the rules for artificial intelligence in its 39 schools while the school year starts. Its Policy Review Committee took up AR 5131.9 Academic Honesty, a new administrative regulation the district says was brought forward in relation to the inclusion of AI, on August 3, 2026, with two competing drafts posted, one from Administration and one from board member Mica VanBuskirk. That same evening the full board took first readings on three more documents the district describes as revised for AI-related policy shifts, AR 5125 Student Records, BP 1114 Communication Using Electronic Media and BP 5131.9 Academic Honesty, plus AR 6161.4 Acceptable Use. Nothing in the package is adopted. The district told KBBI in July that it has spent 8,300 dollars to date on a three year MagicSchool subscription for students and staff, so the classroom AI tool was bought before the rulebook was finished. Upstream sits Alaska's Strategic Framework, Artificial Intelligence for K-12, issued by the Department of Education and Early Development, which means what Kenai adopts previews what other Alaska districts face. An elected school board decides, and its regular meetings carry a public comment period. There is no formal comment window on these documents and no published date for a final vote, so an Alaskan reaches this one through a board member or from the podium at a meeting. Status, pending-decision.</description>
-</item>
-<item>
-<title>Air Force land leases for AI data centers at JBER, Eielson and Clear</title>
-<link>https://alaskaaihq.com/docket/#air-force-eul-ai-data-centers</link>
-<guid isPermaLink="false">alaska-ai-docket-air-force-eul-ai-data-centers-2026-08-18</guid>
-<pubDate>Tue, 18 Aug 2026 17:00:00 +0000</pubDate>
-<category>federal-lease</category>
-<description>The Air Force offered about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson AFB and Clear Space Force Station for privately financed AI data centers. Residents near the five Eielson-area parcels raised noise, permafrost and grid concerns, including one parcel less than a mile from North Pole Middle School. Proposals closed June 29 and are evaluated privately. No public comment period exists; no award timeline has been announced. Status, pending-decision.</description>
-</item>
-<item>
-<title>GVEA's $120 million turbine decision</title>
-<link>https://alaskaaihq.com/docket/#gvea-lm6000-turbine-purchase</link>
-<guid isPermaLink="false">alaska-ai-docket-gvea-lm6000-turbine-purchase-2026-08-18</guid>
-<pubDate>Tue, 18 Aug 2026 17:00:00 +0000</pubDate>
-<category>utility-decision</category>
-<description>GVEA's board weighs buying a GE LM6000 combined-cycle turbine, roughly $120 million for 45 to 58 MW, while data center demand has pushed gas turbine plant costs up 195 percent since 2019 and order waitlists into the early 2030s, per a Bloomberg report cited by the News-Miner. The board reserved an order slot in April for $50,000. A member-owned co-op board decides, in executive session. GVEA members reach it through board elections and member comment periods at regular meetings. Status, pending-decision.</description>
-</item>
-<item>
-<title>The Army's Janus microreactor program at Fort Wainwright</title>
-<link>https://alaskaaihq.com/docket/#army-janus-fort-wainwright</link>
-<guid isPermaLink="false">alaska-ai-docket-army-janus-fort-wainwright-2026-08-18</guid>
-<pubDate>Tue, 18 Aug 2026 17:00:00 +0000</pubDate>
-<category>procurement</category>
-<description>The Army named Fort Wainwright in Fairbanks as one of nine installations that could host a microreactor under its Janus program. Fort Wainwright once exported power from an on site coal plant and is now a net importer, in a region with high energy costs and little spare generation. Industry submissions were taken through the Defense Innovation Unit and are evaluated privately. No public comment period exists at this stage, and no vendor has been named for Fort Wainwright. Status, pending-decision.</description>
-</item>
-<item>
-<title>The executive order that lets big data centers skip the usual federal review</title>
-<link>https://alaskaaihq.com/docket/#eo-14318-data-center-permitting</link>
-<guid isPermaLink="false">alaska-ai-docket-eo-14318-data-center-permitting-2026-08-18</guid>
-<pubDate>Tue, 18 Aug 2026 17:00:00 +0000</pubDate>
-<category>other</category>
-<description>Executive Order 14318, Accelerating Federal Permitting of Data Center Infrastructure, directs federal agencies to speed approvals for data centers adding more than 100 megawatts of load or costing at least 500 million dollars. It tells agencies to find and create categorical exclusions under the National Environmental Policy Act, and directs Interior and Energy to offer federal sites while Defense may competitively lease military land. An executive order takes no public comment. Its effect is to remove review steps that would otherwise have carried one, so the room this closes is the environmental review a project would have had. Status, watching.</description>
 </item>
 <item>
 <title>HB 259, state utility standards for large data centers</title>

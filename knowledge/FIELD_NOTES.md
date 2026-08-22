@@ -4421,3 +4421,35 @@ WebSearch budget was already exhausted by the run itself (200 of 200), so the
 scan was eight direct WebFetch reads of known sources instead of a search
 sweep, and four 404'd. A future Phase 12 that finds the same wall should say so
 rather than reporting a thin scan as a complete one.
+
+## 2026-08-22 - Phase 1 craft refresh - a second carousel benchmark set, and the
+## MDOW hillshade caveat
+
+- Oktopost published a LinkedIn benchmark in March 2026 over 1,000 plus B2B
+  company pages, and it is a DIFFERENT sample from the ones CAROUSEL_CRAFT
+  already cites. Median B2B page engagement rate 5.72 percent, median 826
+  impressions and 51 engagements per post, top decile at 22.45 percent. The
+  spread is the useful part. A four times gap between the median page and the
+  top decile, on the same platform in the same quarter, says format choice is
+  not what separates them, because both deciles post documents. It supports
+  what this studio already does, which is to compete on the artifact rather
+  than on the format.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- The same page recommends 5 to 15 slides. That is LOOSER than the house rule
+  of 8 to 10 with a floor of 6, and it does not override it, because the house
+  number comes from completion data rather than from an engagement average and
+  the two measure different things. Recorded so a future run does not read the
+  wider band as permission to pad.
+- Relief craft, for the decks that draw terrain. Multidirectional oblique
+  weighted hillshade (MDOW) composites several hillshades at different
+  illumination azimuths, which kills the single-azimuth artifact where slopes
+  facing away from the light get exaggerated and lit slopes lose their detail.
+  The caveat is the part worth having. Published comparisons of relief shading
+  applied to real landforms find MDOW and texture shading deliver TOO MUCH
+  detail for most landform types, and that a clear sky model reads best on
+  mountain and valley terrain, which is most of Alaska. So the house default
+  for an Alaska relief pass stays a single motivated key with a soft sky
+  ambient, and MDOW is the tool for a flat or low relief subject where one
+  azimuth leaves half the frame dead.
+  https://www.ijsrtjournal.com/article/Automating-MultiDirectional-Oblique-Weighted-Hillshade-in-QGIS-with-the-Graphical-Modeler ,
+  https://www.researchgate.net/publication/340843133_Comparison_of_Relief_Shading_Techniques_Applied_to_Landforms
