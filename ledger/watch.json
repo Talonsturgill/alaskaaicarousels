@@ -1,6 +1,6 @@
 {
- "generated": "2026-08-24T15:05:36Z",
- "for_date": "2026-08-24",
+ "generated": "2026-08-25T15:10:47Z",
+ "for_date": "2026-08-25",
  "session": "34",
  "counted": {
   "basis_bills": 856,
@@ -8,7 +8,7 @@
   "fedreg_federal-energy-regulatory-commission": 3,
   "fedreg_land-management-bureau": 2,
   "fedreg_air-force-department": 0,
-  "fedreg_energy-department": 5,
+  "fedreg_energy-department": 4,
   "fedreg_army-department": 0
  },
  "bills": [
@@ -319,20 +319,6 @@
    "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14333/financial-assistance-regulations-conflict-of-interest-and-conflict-of-commitment-policy-requirements",
    "agencies": [
     "Energy Department"
-   ]
-  },
-  {
-   "source": "federal-register",
-   "why": "the US DOE notice on beat",
-   "doc": "2026-13986",
-   "title": "Agency Information Collection Extension",
-   "type": "Notice",
-   "published": "2026-07-10",
-   "comments_close_on": "2026-09-08",
-   "url": "https://www.federalregister.gov/documents/2026/07/10/2026-13986/agency-information-collection-extension",
-   "agencies": [
-    "Energy Department",
-    "Energy Information Administration"
    ]
   }
  ],
