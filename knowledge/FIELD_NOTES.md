@@ -4421,3 +4421,210 @@ WebSearch budget was already exhausted by the run itself (200 of 200), so the
 scan was eight direct WebFetch reads of known sources instead of a search
 sweep, and four 404'd. A future Phase 12 that finds the same wall should say so
 rather than reporting a thin scan as a complete one.
+## 2026-08-25 - No.40, the run that attacked artwork craft at the CHASSIS
+
+Draft. Score and critic findings folded in before this is appended.
+
+**THE DIAGNOSIS THAT MADE THE DIFFERENCE, and it was not a missing technique.**
+Phase 1 went looking for craft this brain did not have and found none. Imhof's
+aerial perspective, multidirectional hillshade at 4 to 8 azimuths, tonal art
+maps, density-ramp hatching, the slope-and-aspect hachure field, the engraver's
+bench: all already written down, several already shipped as helpers. Artwork
+craft has still been the weakest criterion in 8 of the last 10 scored runs at a
+mean of 6.45. A bench that full and a score that low is not a tooling problem.
+
+Read against `ledger/artwork.json`, the mechanism is the CHASSIS. Decks 36
+through 39 were all ONE STAGED OBJECT RE-PHOTOGRAPHED. That chassis puts most of
+the frame's area into GROUND, ground is not the subject, so ground gets filled
+with the cheapest thing that passes a checklist, and DESIGN_DOCTRINE 5's zoom
+test then fails in exactly the regions no dossier was ever written about. It
+survives per-slide acceptance checklists because each slide executed its own
+plan; only the scorer, looking at whole frames, ever names it.
+
+**SO THE FIX WAS A RULE ABOUT WHAT THE HERO STRUCTURE MAY BE, not a new
+technique.** Two mandates, both binding on the directors room, both restated in
+the storyboard header so the critics and the scorer could grade against them.
+
+1. THE FIELD IS THE SUBJECT, not the ground behind a subject. The hero must be a
+   continuous data-bearing field occupying the full frame, so no region of any
+   slide is background. A staged object on a bench was out of bounds.
+2. A DECLARED DETAIL BUDGET PER SLIDE, three texture octaves at three spatial
+   frequencies, each naming what it ENCODES. An octave that encodes nothing is
+   ornament and gets cut.
+
+**THE TRAP THAT COMES WITH MANDATE 1, and it fired exactly as predicted.** A
+count-as-chassis wants to be drawn as a grid, and a grid drawn nine times is the
+No.26 failure `bespoke_check` exists to catch. It was named in the brief to all
+three directors and in the storyboard, and the first complete deck still FAILED
+the gate: drawn share 29 percent against the 45 floor, 68 axis-aligned rectangle
+calls against 28 drawn marks. Median similarity was 0.124, so the deck was
+genuinely bespoke and genuinely rectangle-heavy at the same time, which is
+precisely the split that metric was built to separate. Naming a trap in a brief
+does not disarm it.
+
+**THE REPAIR IS THE LESSON WORTH KEEPING.** Clearing the gate and improving the
+art turned out to be the same edit, because the rectangles were lies about the
+objects. A machined mounting boss does not have square corners, so lids became
+paths with `arcTo` chamfers. A milled channel lip is not a mathematically
+straight line, so both lips of every cut on slide 06 are walked with `fbm2`. A
+field of 735 identical dark lids reads as one grey wash, so each lid's tone is
+modulated by `fbm2` on its own grid coordinates. Drawn share went 29 to 65
+percent and the frames got better. **When `bespoke_check` fails on drawn share,
+the question to ask is not how to satisfy the metric, it is which rectangle is
+lying about the thing it draws.**
+
+**A SECOND CHANNEL FOR AN ACCURACY CLAIM.** This deck's worst available error was
+implying the Real Time Crime Center already runs AI identification of people. It
+does not; it reads plates. The directors room produced two independent devices
+and taking BOTH was right. A colour key (gold means in force, blue means
+proposed) and a dash grammar (solid means in force, phantom means not yet). Hue
+can be lost at a 432px thumb; dash survives it. Either one alone is a claim, and
+the pair is checkable by a critic from the render with no text read at all.
+
+**THE SYSTEMS-ILLUSTRATOR'S BEST IDEA WAS A NEGATIVE SPACE.** Its treatment lost
+on the literal-anchor floor, and one organ of it was worth more than the rest of
+the pitch: draw a capability the system does not have as a VOID, never as a dark
+version of a lit thing. On slide 04 the UNKNOWN column is a phantom outline over
+nothing. That makes the deck's worst possible error something the drawing
+vocabulary cannot express, which beats forbidding it in prose.
+
+**THE COLOUR KEY WAS THE THING THE CRITICS ACTUALLY CAUGHT, and it caught three
+slides.** The pair of devices worked exactly as designed as a CHECKING
+instrument, which is the part worth writing down. Five parallel pixel critics
+returned revise on all nine slides, and three of the five hard fails were the
+same class: a current fact drawn in proposed-blue (slide 02's console screen),
+a stateless measurement drawn in proposed-blue (slide 07's fourteen day
+dimension call), and gold spent on a scheduled future event instead of on money
+already appropriated (slide 08's September 1st plinth). None of those is a
+drawing error. Each is a CLAIM, made in colour, that no writer would have signed
+in prose. A deck without a printed key cannot produce that finding, because a
+critic has nothing to check the colour against.
+
+**AND THE FIX FOR THE WORST OF THEM MADE THE SLIDE TRUER.** Slide 08 had one
+gold element and it was on the hearing. Moving gold onto the $11.8 million that
+the Assembly actually approved, and putting the $600,000 still under
+consideration into proposed-blue inside the same paragraph, turned a decorative
+accent into the sentence's own argument: one of these numbers is real and the
+other is a question. The key stopped being a legend and started being the
+content.
+
+**A HOOK THAT IS A COUNT MUST SURVIVE BEING COUNTED.** The cover's headline is
+"750 feeds funded" and the field is 30 columns by 25 rows. Row 0's centre sat at
+y=1370 on a 1350px canvas, so the nearest row fell off the bottom edge and a
+reader counting what was drawn got 720. Every gate passed. `qa.py` measures
+declared contacts, axis censuses, leader landings and fit overflow, and none of
+those can ask whether the drawing contains as many things as the sentence says
+it does. The pixel critic counted the rows by hand and found it. WORTH A GATE:
+when a slide's `data-encodes` or headline names a count, the slide could declare
+the count and the geometry it comes from, and a check could re-derive it, the
+way `aggregate_check` already re-derives a printed duration from its two
+endpoint claims.
+
+**TWO REPAIRS THAT ARE REALLY THE SAME REPAIR, and both were one line.** The lit
+ground pool on slides 01 and 09 had a hard elliptical rim, because the gradient
+was circular and the shape it filled was squashed: at the ellipse's top edge the
+gradient was still at 0.18 of its radius and had not begun to fall off. Drawing
+a CIRCLE inside a scaled transform fixes it exactly. Slide 09's boundary chamfer
+ran to the top-left corner at one value and printed a stray diagonal across the
+headline; a gradient stroke that fades with distance fixes that exactly. Both are
+the same mistake: a property that should vary with the drawing was held constant.
+
+**THE ROOM BELOW THE FOLD IS WHERE COMPOSITION WARNINGS COME FROM.** Making
+slide 04's engraved lay full-bleed removed its four hard edges and immediately
+tripped `qa.py`'s top-loaded composition warn, because the falloff was symmetric
+about y=700 and thinned the bottom third. A one-sided falloff, fading upward
+only, cleared it. The lesson is small and general: an atmospheric ramp on a
+frame with furniture at the bottom should never take tone away from the bottom.
+
+
+## 2026-08-25 - Phase 12 upgrade engineer (what shipped, what is parked, the scan)
+
+WHAT SHIPPED, two upgrades, both reactive, both with a defect reconstruction
+that goes red: `tests/motif_survives_verify.py` and
+`tests/count_assert_verify.py`.
+
+**DOM PAINTS OVER CANVAS, and now the slide has to prove otherwise.** This run
+lost three motifs on three slides and every gate was green on all three: the
+continuity cell covered by the `.lane` plate on 07 (`background:#0A121C`),
+covered by the `.guard` plate on 03, and painted out by the channel's own void
+fill on 06. A DOM element with a solid `background` is above every canvas pixel
+under it whatever order the drawing code ran in, and qa.py's two occlusion
+checks both look at TEXT. A slide now declares the features that carry meaning,
+`window.__akMotifs = [{what, rect}]`, and the gate answers the question with
+two instruments: an `elementsFromPoint` census of the rect (which is exact, and
+which is what catches a plate), and the region's ink in the composited PNG
+against the same region read back out of the canvas itself (which is what
+catches a rect that ended up flat). The measured reconstruction on this run's
+OWN slide 07, motif moved back to y=358 under the lane plate: FAIL, "only 0% of
+the rect it declares is clear of opaque DOM (div.lane)". The shipped repair, at
+y=296: canvas 12.7 dE, page 59.2 dE, clean.
+
+Two things learned while calibrating it, both worth keeping:
+- p95 reads a real motif as ABSENT. The 0016 rule is a 1.5px line inside a
+  920x20 band, under 3 percent of the rect, so p95 lands on bare plate at 2.9
+  dE while p99 lands on the rule at 58.7. A motif is by definition a small
+  bright thing inside a rect the author drew around it, so the statistic is the
+  MEAN OF THE TOP 1 PERCENT, floored at four pixels.
+- Never compare a canvas readback against a SMOOTHED resize of the PNG. An area
+  filter cost the same rule 40 percent of its spread while the canvas side paid
+  no such tax, which put a perfectly visible motif within a point of the
+  survival floor. The page side is now read at full resolution with an integer
+  stride, which keeps it the optimistic side: the ratio can under-report a
+  burial and can never invent one.
+
+**A hook that is a count declares its marks.** `window.__akAssert` takes
+`points`, the array of mark centres the drawing loop used; `actual` becomes the
+number of those centres inside the frame and `tol` defaults to 0. The cover
+printed 750 and painted 720 because row 0's centre sat past the bottom edge, and
+an `actual` derived from the loop bound would have agreed with the type and
+disagreed with the picture. Note for the next build: this run's nine slides
+declared ZERO `__akAssert` entries, on a deck whose hook is a number.
+
+## 2026-08-25 - Phase 12 PARK: the draw-time snapshot, for the motif a later
+## canvas operation paints out
+
+The motif gate above catches a burial under DOM and a rect that ends up flat.
+It does NOT catch slide 06's shape, measured and recorded here so nobody claims
+otherwise: the void fill wiped the cell and the channel's own gradient and lit
+lip were drawn into the same region afterwards, so the rect still measures 62.9
+dE with no motif in it, and both the defect and the repair pass the gate at
+almost identical numbers (26.6 vs 33.7 dE canvas side).
+
+The honest instrument is a SNAPSHOT AT DRAW TIME: a hook defined before the
+slide's scripts run, called immediately after the motif is drawn, that captures
+that rect's pixels then and compares the structure (not the level) against the
+same rect in the finished canvas. Parked because it needs a new authoring call,
+a stored snapshot per motif, and a correlation statistic whose threshold has to
+be fitted over the shipped corpus before it can be a FAIL, which is a redesign
+and not a bounded upgrade. Unblocking condition: a labelled set of at least six
+washed-but-visible motifs and six painted-out ones from `runs/`, since the
+distinction is exactly the one a threshold has to make. Until then the written
+rule stands: draw the motif AFTER whatever fills its region, and declare it
+anyway, because the declaration is what turns a repair note from a claim into a
+measurement.
+
+## 2026-08-25 - Phase 12 scan, focus (e) headless Chromium and Playwright
+## rendering capability: no platform API answers this question, so we built one
+
+Five searches and one fetch, hunting for a browser-native way to ask "did this
+canvas-drawn feature survive to the composited page". There isn't one, and the
+negative result is what made today's upgrade the right shape:
+
+- IntersectionObserver v2 `isVisible` is the closest thing and it is unusable
+  here on two counts. It observes DOM ELEMENTS, so it cannot see a feature
+  drawn inside a canvas, and it returns false for any effective opacity under
+  1.0, any filter at all and any transform beyond a 2D translate, which
+  describes most of this studio's artwork. Chromium only; Firefox and Safari
+  decline. https://web.dev/articles/intersectionobserver-v2
+- `Element.checkVisibility()` is widely available since March 2024 and
+  explicitly does NOT detect occlusion; it answers CSS-visibility questions
+  only. https://developer.mozilla.org/en-US/docs/Web/API/Element/checkVisibility
+- The standing industry technique for canvas verification is exactly what we
+  now do: read the canvas back with `getImageData` / `toDataURL` and compare
+  against the composited screenshot. Nobody has a shortcut.
+  https://qxf2.com/blog/selenium-html5-canvas-verify-what-was-drawn/
+- Worth knowing for any future pixel threshold: headless Chromium without GPU
+  drivers falls back to SwiftShader, which is correct but byte-different from
+  hardware GL. Our comparison is between two measurements of the SAME render,
+  so it is immune; a stored-baseline comparison would not be.
+  https://playwright.dev/docs/test-snapshots

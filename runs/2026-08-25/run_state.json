@@ -1,0 +1,128 @@
+{
+ "run_date": "2026-08-25",
+ "carousel_no": 40,
+ "date_note": "runs/2026-08-25/ did not exist at wake; today's Anchorage date was free. Latest shipped run on disk was 2026-08-21.",
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done (nothing new; FIELD_NOTES deliberately unchanged)",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done (pre-ship pass; re-run after Phase 11 rebuild)",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "round 3 + flow review in flight",
+  "flow_review": "pending",
+  "assemble": "re-run after fix round 1",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-08-25/plan.md",
+  "sitecheck_shots": "out/2026-08-25/sitecheck/",
+  "scout_merge": "out/2026-08-25/scout_merge.md",
+  "selection": "out/2026-08-25/selection.md",
+  "claims": "out/2026-08-25/claims.json",
+  "storyboard": "out/2026-08-25/storyboard.md",
+  "caption": "out/2026-08-25/caption.txt",
+  "caption_report": "out/2026-08-25/caption_report.json",
+  "copy": "out/2026-08-25/copy.json",
+  "aggregates": "out/2026-08-25/aggregates.json",
+  "slides": "out/2026-08-25/slides/ (9)",
+  "render": "out/2026-08-25/render/",
+  "final": "out/2026-08-25/final/"
+ },
+ "incidents": [
+  {
+   "phase": "research",
+   "what": "WebSearch session budget (200 calls) exhausted by the six parallel scouts. WebFetch unaffected; all later verification done by direct fetch against known primary URLs. Beats B, D, E and F each reported hitting it.",
+   "impact": "none on the deck; docket refresh worked from primary URLs instead of search"
+  },
+  {
+   "phase": "research",
+   "what": "Recurring 403 to automated fetch from alaskabeacon.com, newsminer.com, rca.alaska.gov, sam.gov, gvea.com, miningnewsnorth.com, muni.org and anchorage.legistar.com.",
+   "impact": "Alaska Public Media republication is the reliable route around the Beacon block; the Anchorage ordinance number could not be obtained from any municipal system"
+  }
+ ],
+ "site_signoff": {
+  "line": "SITE SIGN-OFF: PASS, 83 pages, 18 checks",
+  "gas_watch_line": "GAS WATCH: PASS, read 2026-08-25, 21 days on record, chart present",
+  "eye_check": "home, docket and gas watch read at 390px and 1440px. Meter reads instantly, 55.8 percent agrees with 7.25 of 13.0 Bcf, ordinal dates throughout, no clipping or overlap, no safety verdict.",
+  "fixes": "Fixed a wrong call to action on the docket. The gold button's verb was the constant COMMENT NOW and its date word the constant CLOSES, hardcoded twice, in docket_build.py and again in site_build.py. That was right while every open item was a written comment window and wrong the moment one was not: the Anchorage crime-center ordinance's open room is a public hearing where a person speaks, and the page was telling readers to file a written comment before September 1st, which no source supports. The verb is now data on the item, from closed sets validated at build time, both surfaces render it through one implementation in docket_build.cta_html, and docket_dates_check's regex was widened to read the date behind either verb so the gate lost no strength. Verified: the two real comment windows still render COMMENT NOW, CLOSES AUG 28 and CLOSES SEP 14 unchanged, the new item renders TESTIFY, ON SEP 1, and docket_dates_check passes 291 assertions over 6 fixtures and 22 ledger items."
+ },
+ "claims_gate": "PASS 36/36 usable, 3 primary, 36 with outlet",
+ "docket_note": "18 live items on the worklist at raised budget (12 had been deferred, 4 rotten after no run since 08-21). 8 refreshed against primary sources this run, 1 new item added (anchorage-rtcc-surveillance-ordinance). New AIDEA public meetings found and added, August 27th and September 2nd, from DNR notice 224930 published August 24th.",
+ "dossier_gate": "PASS 9 dossiers, 0 fails, 0 warns",
+ "contacts_required_on": [
+  1,
+  2,
+  8,
+  9
+ ],
+ "caption_room": {
+  "winner": "A",
+  "opening_move": "COLD NUMBER",
+  "structure": "COUNTDOWN",
+  "closing_move": "NEW:UNBUILT DEFAULT",
+  "critic_fix_applied": "an Assembly vote -> Assembly approval, per C17 wording",
+  "critic_demerits_for_the_ledger": "both candidates opened the deck summary on the word Inside, barred 2026-08-02 and now a third occurrence; no human being is named in the caption, recorded four times before"
+ },
+ "fix_rounds": [
+  {
+   "round": 1,
+   "slides_touched": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "hard_fails_cleared": [
+    "S02 console screen was periwinkle blue on the slide's most current fact; now neutral, carries no state",
+    "S03 headline and body columns overlapped by 34px and printed glyphs on each other; 60px gutter now",
+    "S07 dimension call was drawn proposed-blue over a span that is also a current quantity; now neutral",
+    "S08 gold was spent on a future hearing; the whole gold budget now sits on the $11.8M already appropriated, and the $600,000 under consideration reads proposed-blue",
+    "S01 drew 24 rows against a hook that is a count of 750; row 0 had fallen off the bottom edge, now 25 rows"
+   ],
+   "gates_after": "render 9/9 clean, qa PASS 0 fails 0 warns, bespoke PASS 72% drawn 0.085 median, copy_sync PASS 76 strings, aggregate PASS 13 detected 12 declared, plan_drift PASS 28 claims"
+  },
+  {
+   "round": 2,
+   "slides_touched": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "hard_fails_cleared": [
+    "S01+S02 the lit ground pools were BLUE, which under this deck's key means PROPOSED, cast around the fifteen feeds that ARE running. Two critics caught it independently. Both pools are now built from declared palette hexes (#6E7E78 core, #33424E mid), which is also the only hue a gold emitter under a grey-green illuminator can throw.",
+    "S04 the UNKNOWN column's cap was a SOLID stroke in phantom ink, 700px above the slide's own printed legend SOLID, IN FORCE TODAY. DASHED, NOT YET. Now 5px and dashed, matching the other two caps.",
+    "S06 the attribution had dropped the co-sponsor's first name; the editor note and the dossier both promise Sydney Scout and the word appeared nowhere on the slide.",
+    "S02 the body set in 7 lines with a one-word widow against a 6-line acceptance ceiling",
+    "S03 and S07 each drew a continuity motif that was then entirely covered by a DOM plate, so cell 0016 appeared nowhere on either slide"
+   ],
+   "notable": "S06 carried 142px of the most saturated blue on the slide welded to the right end of every row, because the channels ran to x=1000 while their label plates stopped at 858. It encoded nothing and invited a quantity read no number backs. Channels are now 800 wide. S06 also had two opposed light directions in one frame: the plate and the bosses lit from the upper left, every channel's inner gradient lighting its LOWER lip. Both now agree with the deck's declared key at azimuth 214.",
+   "storyboard_reconciled": "Five dossier lines were wrong where the render was right, and the dossier is what changed: S08's acceptance line and field 6 conflated the $600,000 still under consideration with the $11.8 million already appropriated; S06 field 8 claimed a channel-length mapping to slide 07's day scale that the render does not implement and should not, because a provision has no duration; S01 fields 4 and 10 specified a 620px measure and a 92px floor that the headline cannot set in.",
+   "gates_after": "render 9/9 clean, qa PASS 0/0, bespoke PASS 68% drawn 0.083 median, copy_sync PASS 77, aggregate PASS 13/12, plan_drift PASS 28, dossier PASS 9/9, site_fresh OK"
+  }
+ ],
+ "ci": {
+  "pr": 318,
+  "state": "all six checks green at 05ac661",
+  "note": "Two checks were red on the FIRST push and both were pre-existing failures on origin/main, verified by running each self-test in a clean worktree of the base branch. Both were the same defect class as the docket call-to-action this run had already fixed: a check asserting a frozen conclusion instead of measuring the property it means to assert. ask_corpus's ghost-numeral list carried its premise in a comment and failed once a docket item picked up the phrase 'more than 300 organizations'; ask_engine counted only the rendered cards against a list capped at 20 while the page honestly prints 'N more on the record below', so it went red the day the docket passed twenty items; and it expected a hardcoded /20 decisions/. All three now derive from the record."
+ }
+}

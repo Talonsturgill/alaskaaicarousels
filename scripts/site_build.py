@@ -6713,13 +6713,11 @@ def decision_page(today, site_url, it, runs, beats=()):
     canonical = f"{site_url}/docket/{it['id']}/"
 
     chip = db.chip_html(r)
-    act = ""
-    if r["cta"]:
-        when = (f' &middot; CLOSES {db.mon_day(r["deadline"]["date"]).upper()}'
-                if r["deadline"] else "")
-        act = (f'<div class="ctarow act"><a class="cta gold" '
-               f'href="{esc(it["sources"][0]["url"])}" rel="noopener">'
-               f'COMMENT NOW{when}</a></div>')
+    # Rule 6 (2026-08-25): the verb and the date word come from the item, via
+    # the one implementation in docket_build. This string used to be written
+    # out twice, here and there, so "COMMENT NOW" was wrong in two files at
+    # once for the item whose open room is a hearing rather than a comment box.
+    act = db.cta_html(it, r, esc, db.mon_day, "gold")
 
     # Sources, all of them, with the primary ones marked. The docket page shows
     # outlet names inline; this page is the record, so it shows the documents.
@@ -9083,6 +9081,15 @@ def contraction_gate(rel, html):
     however it wrote. The exemption follows the CARD rather than the page, so a
     topic page is still gated on the prose it writes itself while the excerpts
     beneath it are left alone.
+
+    A URL IS AN ADDRESS, NOT PROSE (2026-08-25). The sources page prints each
+    citation's URL as visible text, and on this run one of them was the ADN's
+    own slug for an op-ed titled "public safety cannot come at the expense of
+    civil liberties". The gate read the slug as house copy and failed the build
+    on a string this repo cannot change: rewriting it would break the citation,
+    and the whole point of printing the URL is that a reader can go and check.
+    Only http(s) runs are skipped, so every sentence anyone here actually wrote
+    is still gated, including the prose that surrounds the link.
     """
     import re as _re
     if _re.fullmatch(r"archive/\d{4}-\d{2}-\d{2}/index\.html", rel):
@@ -9091,6 +9098,7 @@ def contraction_gate(rel, html):
     txt = _re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", txt)
     txt = _re.sub(r"(?s)<!--.*?-->", " ", txt)
     txt = __import__("html").unescape(_re.sub(r"<[^>]+>", " ", txt))
+    txt = _re.sub(r"https?://\S+", " ", txt)
     for m in _re.finditer(r"\bcannot\b", txt, _re.I):
         near = _re.sub(r"\s+", " ", txt[max(0, m.start() - 45):m.end() + 45]).strip()
         db.fail(f"'cannot' in visible copy on {rel}. House style writes "

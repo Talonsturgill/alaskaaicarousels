@@ -1,0 +1,32 @@
+{
+  "run_date": "2026-08-25",
+  "carousel_no": 40,
+  "weighted_total": 8.66,
+  "threshold": 7.7,
+  "ship": true,
+  "hard_fails": [],
+  "hard_fail_rules_checked": 13,
+  "criteria": [
+    {"name": "Thumb-stop cover", "score": 8, "weight": 0.14},
+    {"name": "Story arc and swipe momentum", "score": 8, "weight": 0.14},
+    {"name": "Artwork craft and genuine detail", "score": 7, "weight": 0.16},
+    {"name": "Story-art fusion", "score": 8, "weight": 0.14},
+    {"name": "Alaska authenticity and local relevance", "score": 8, "weight": 0.12},
+    {"name": "Insight density and factual weight", "score": 8, "weight": 0.10},
+    {"name": "Variety vs ledger", "score": 7, "weight": 0.08},
+    {"name": "Legibility and platform fitness", "score": 8, "weight": 0.07},
+    {"name": "Copy: voice and hook", "score": 8, "weight": 0.05},
+    {"name": "Deliverable completeness", "score": 9, "weight": 0.10}
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(7x0.08)+(8x0.07)+(8x0.05)+(9x0.10) = 8.66",
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "one_sentence_fix": "Carry the apron field to all four edges at the amplitude it already has on slides 01 and 02 across slides 05, 07 and 09, so that no frame in the deck contains a region where the field simply stops, which is the only remaining place the field-is-the-subject mandate is still being lost.",
+  "revision_rounds": 4,
+  "standing_weakness_verdict": "PARTLY LANDED. Artwork craft rose from a 6.45 ten-run mean to 7 and is still the weakest criterion. The staged-object chassis is genuinely gone and slides 01, 02 and 06 deliver the field-is-the-subject mandate. Slide 05's top 40 percent, slide 07's bottom quarter and slide 09's margins are still inert, and slide 09 at thumbnail reads as one object on ground. The DECLARED DETAIL BUDGET was asserted in the deck header and NOT executed: no dossier declares three named texture octaves with what each encodes. Do not log this run as having landed the detail budget.",
+  "open_notes": [
+    "Slide 04 renders UNKNOWN in blue and phantom dash, but blue is declared to mean PROPOSED and phantom to mean NOT YET, and an unmeasured capability is neither. The on-slide legend was amended to DASHED, NOT YET OR UNKNOWN, which repairs the dash channel and leaves the hue doing undeclared double duty. Fix in the next deck that reuses this grammar.",
+    "The claim tag (C34) is set in proposed-blue on slide 06 for a completed event.",
+    "Slide 09 seats the gold Polaris on cell 0016, an unlit feed. The deck header pre-exempts it as a brand fixture.",
+    "Slide 03's unit slip was closed after scoring: the 216 band now prints RESIDENTS, NOT CAMERAS beneath it, because C09 counts residents while the scale key reads 1 MARK = 1 CAMERA."
+  ]
+}

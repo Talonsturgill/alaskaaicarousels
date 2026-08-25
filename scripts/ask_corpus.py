@@ -103,6 +103,21 @@ def numerals(blob):
     return {normalise(m) for m in NUMERAL_RE.findall(blob)}
 
 
+def standalone_numeral(tok, blob):
+    """True when `tok` occurs in `blob` as a WHOLE figure rather than as a
+    fragment of a larger grouped or decimal one: 300 is standalone in "more
+    than 300 organizations" and is not in "8,300" or "1300" or "300.5".
+
+    Deliberately built on its own regex and NOT on NUMERAL_RE. This is the
+    thing that checks the corpus tokeniser, so borrowing that tokeniser would
+    make the check agree with whatever it does today.
+    """
+    if not isinstance(blob, str):
+        blob = json.dumps(blob, sort_keys=True)
+    pattern = (r"(?<!\d)(?<!\d,)(?<!\d\.)" + re.escape(tok) + r"(?!\d)(?![.,]\d)")
+    return re.search(pattern, blob) is not None
+
+
 def docket_items(path=DOCKET):
     raw = json.loads(open(path).read())
     items = raw["items"] if isinstance(raw, dict) and "items" in raw else raw
@@ -243,11 +258,36 @@ def self_test():
     # sentence over a number the model had been handed one line earlier.
     check("every figure the pack shows is authorised", not (shown - allowed_pub),
           f"{len(shown - allowed_pub)} unauthorised, e.g. {sorted(shown - allowed_pub)[:4]}")
-    # And the ghosts a split tokeniser used to invent. None of these appears in the record
-    # on its own, and every one is the kind of round figure a model reaches for.
-    ghosts = {"150", "300", "566", "700", "950", "967"} & allowed_pub
+    # And the ghosts a split tokeniser used to invent: round figures authorised
+    # although the record only ever holds them as half of a larger grouped one,
+    # "300" out of "8,300". The candidates below are the ones that bug actually
+    # produced, and every one is the kind of round figure a model reaches for.
+    #
+    # WHETHER A CANDIDATE IS A GHOST IS DERIVED NOW, NOT FROZEN (2026-08-25).
+    # This check used to carry its own premise in a comment, "none of these
+    # appears in the record on its own", and assert the frozen conclusion. The
+    # premise stopped being true the day a docket item picked up the phrase
+    # "more than 300 organizations", and from then on the check failed main on
+    # correct behaviour: 300 IS in the record, standing alone, and authorising
+    # it is right. A hardcoded list cannot tell a tokeniser bug from the record
+    # having changed under it, which is the same shape as the docket call to
+    # action whose verb was a constant that was true until it wasn't.
+    #
+    # So the premise is measured against the record on every run. A real ghost
+    # still fails, because a figure that only ever appears inside a grouped
+    # number has no standalone occurrence to find.
+    record = json.dumps([c["docket"], c["gas_watch"]], sort_keys=True)
+    ghosts = sorted(t for t in {"150", "300", "566", "700", "950", "967"} & allowed_pub
+                    if not standalone_numeral(t, record))
     check("no numeral is authorised only as half of a grouped figure", not ghosts,
-          str(sorted(ghosts)))
+          str(ghosts))
+    # A derived premise that cannot say no is worth no more than the frozen one
+    # it replaced, so prove it rejects a fragment of a grouped figure and
+    # accepts the same digits standing on their own.
+    grouped = '{"note":"it has spent 8,300 dollars to date"}'
+    alone = '{"note":"under a headline of more than 300 organizations"}'
+    check("the ghost test can still go red",
+          not standalone_numeral("300", grouped) and standalone_numeral("300", alone))
 
     print("size")
     blob = json.dumps(c, separators=(",", ":"))

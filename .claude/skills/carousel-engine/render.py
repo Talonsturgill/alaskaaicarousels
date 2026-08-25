@@ -825,20 +825,204 @@ IN_PAGE_QA_JS = """
      thing that actually drew, which is the step every one of these defects
      skipped. Pure arithmetic on two numbers the slide supplied, so it can never
      false-positive on art the machine does not understand. */
+  /* A HOOK THAT IS A COUNT MUST SURVIVE BEING COUNTED (2026-08-25). Run No.40's
+     cover printed 750 and drew 24 rows of 30, because row 0's centre sat 20px
+     past the bottom edge of the canvas and never painted. Every machine gate
+     passed the slide; a pixel critic counted the rows by hand. The 2026-08-12
+     assertion contract could not see it either, since a slide that derives
+     `actual` from its own loop bound gets 750 from arithmetic that never asks
+     where the marks landed.
+
+     So an assertion whose subject is a COUNT declares the marks themselves,
+     and the frame does the counting:
+
+       window.__akAssert = [{ what: "750 funded devices, one mark each",
+                              expect: 750, points: pts, unit: "marks" }];
+
+     `points` is the array of mark centres IN DESIGN PX that the drawing loop
+     actually used (pass the same array to the drawing code; deriving both from
+     one list is the whole point). `actual` becomes the number of those centres
+     inside the frame, `tol` defaults to 0 because a count is exact, and any
+     hand-written `actual` is ignored and reported so the author sees it. */
   out.asserts = [];
   try {
     const num = (v) => (typeof v === "number" && isFinite(v)) ? v : null;
     for (const a of (Array.isArray(window.__akAssert) ? window.__akAssert : []).slice(0, 60)) {
-      out.asserts.push({
+      const rec = {
         what: (a && typeof a.what === "string" && a.what.trim())
           ? a.what.trim().slice(0, 90) : null,
         expect: num(a && a.expect),
         actual: num(a && a.actual),
         tol: num(a && a.tol),
         unit: (a && typeof a.unit === "string") ? a.unit.trim().slice(0, 16) : ""
-      });
+      };
+      const pts = (a && Array.isArray(a.points)) ? a.points.slice(0, 20000) : null;
+      if (pts) {
+        let inside = 0, n = 0, bad = 0;
+        for (const p of pts) {
+          const x = Array.isArray(p) ? +p[0] : (p && typeof p === "object" ? +p.x : NaN);
+          const y = Array.isArray(p) ? +p[1] : (p && typeof p === "object" ? +p.y : NaN);
+          if (!isFinite(x) || !isFinite(y)) { bad++; continue; }
+          n++;
+          if (x >= 0 && x <= W && y >= 0 && y <= H) inside++;
+        }
+        rec.points_n = n;
+        rec.points_bad = bad;
+        rec.offframe = n - inside;
+        rec.actual_declared = rec.actual;
+        rec.actual = inside;
+        if (rec.tol === null) rec.tol = 0;
+      }
+      out.asserts.push(rec);
     }
   } catch (e) {}
+
+  /* DOM PAINTS OVER CANVAS (2026-08-25). Run No.40 lost THREE declared motifs
+     across three slides and every machine gate stayed green on all three: the
+     continuity cell was drawn correctly on slide 07 and then covered by a
+     `.lane` plate, drawn on slide 03 and covered by a `.guard` plate, and on
+     slide 06 painted out by the channel's own void fill on the very next
+     drawing operation. Each time the CODE was right and the PICTURE was empty,
+     and twice a repair note claimed the element was visible when nothing was
+     on the slide at all. qa.py's "text under an opaque plate" and "label
+     crossed by art" checks both look at TEXT; nothing looked at declared ART
+     that a plate had buried.
+
+     A slide names a drawn feature and the rect it occupies:
+
+       window.__akMotifs = [{ what: "cell 0016, the continuity stencil",
+                              rect: [812, 214, 96, 96] }];   // design px
+                              // optional: canvas: "canvas.plate"
+
+     What is recorded here is the evidence, not the verdict. For each motif:
+       - `grid`, a small RGB grid read back OUT OF THE CANVAS ITSELF at that
+         rect (the ink the slide's own drawing code actually left behind), and
+       - `visible_frac` / `blocker`, an elementsFromPoint census of the same
+         rect naming the topmost opaque DOM element standing on it.
+     qa.py samples the SAME rect out of the composited PNG and compares: ink in
+     the canvas and none on the page is a burial, and no ink in the canvas at
+     all is a motif that was painted out or never drawn. The comparison is a
+     RATIO between two measurements of one slide, so it needs no absolute ink
+     threshold and no knowledge of what the motif depicts.
+
+     LIMIT: the canvas readback is mapped through the element's bounding box,
+     so a CSS-ROTATED canvas reports the wrong region (the axis-aligned bbox).
+     Declare `canvas` explicitly or leave the motif undeclared in that case;
+     the DOM census and the PNG side stay valid either way. */
+  out.motifs = [];
+  try {
+    const MOTIF_CELL = 2;      // design px per grid cell, before clamping
+    const MOTIF_GRID_MAX = 30; // cells per side (bounds the report size)
+    const decl = (Array.isArray(window.__akMotifs) ? window.__akMotifs : []).slice(0, 8);
+    const label = (el) => {
+      if (!el || !el.tagName) return null;
+      const t = el.tagName.toLowerCase();
+      const id = el.id ? "#" + el.id : "";
+      const cl = (typeof el.className === "string" && el.className.trim())
+        ? "." + el.className.trim().split(/\\s+/)[0] : "";
+      return (t + id + cl).slice(0, 60);
+    };
+    for (const m of decl) {
+      const r = (m && Array.isArray(m.rect) && m.rect.length === 4 &&
+                 m.rect.every((n) => typeof n === "number" && isFinite(n)))
+        ? m.rect.map(Number) : null;
+      const e = {
+        what: (m && typeof m.what === "string" && m.what.trim())
+          ? m.what.trim().slice(0, 90) : null,
+        rect: r ? r.map(Math.round) : null,
+        canvas: null, grid: null, gw: 0, gh: 0,
+        visible_frac: null, blocker: null
+      };
+      if (!e.what || !r || r[2] < 3 || r[3] < 3) {
+        e.error = "a motif declares {what, rect:[x,y,w,h]} in design px, w/h >= 3";
+        out.motifs.push(e);
+        continue;
+      }
+      const [mx, my, mw, mh] = r;
+      /* the canvas the motif was drawn on: an explicit selector, else the
+         LAST canvas in document order whose box contains the rect (last =
+         painted on top of its siblings) */
+      let cv = null;
+      if (m.canvas && typeof m.canvas === "string") {
+        cv = document.querySelector(m.canvas);
+      } else {
+        for (const c of document.querySelectorAll("canvas")) {
+          const b2 = c.getBoundingClientRect();
+          if (b2.width < 8 || b2.height < 8) continue;
+          if (mx >= b2.x - 1 && my >= b2.y - 1 &&
+              mx + mw <= b2.x + b2.width + 1 && my + mh <= b2.y + b2.height + 1) cv = c;
+        }
+      }
+      /* THE DOM CENSUS: what stands on this rect, and how much of it */
+      let hit = 0, n = 0;
+      const blockers = {};
+      const cols = Math.max(3, Math.min(16, Math.round(mw / 6)));
+      const rows = Math.max(3, Math.min(16, Math.round(mh / 6)));
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          const px = mx + (mw * (i + 0.5)) / cols;
+          const py = my + (mh * (j + 0.5)) / rows;
+          if (px < 0 || px > W || py < 0 || py > H) continue;
+          n++;
+          let blocked = null;
+          for (const el of document.elementsFromPoint(px, py)) {
+            if (cv && el === cv) break;
+            const tag = el.tagName.toLowerCase();
+            if (!cv && (tag === "canvas" || tag === "svg")) break;
+            if (tag === "body" || tag === "html") break;
+            if (el.namespaceURI === "http://www.w3.org/2000/svg") {
+              const f = (el.getAttribute("fill") || "").trim();
+              const mm0 = f.match(/rgba?\\(([^)]+)\\)/);
+              const al = mm0 ? (parseFloat(mm0[1].split(",")[3]) || 1)
+                             : (f && f !== "none" ? 1 : 0);
+              if (al >= 0.5 && tag === "rect") { blocked = el; break; }
+              continue;
+            }
+            const cs3 = getComputedStyle(el);
+            const mm = (cs3.backgroundColor || "").match(/rgba?\\(([^)]+)\\)/);
+            const a2 = mm ? (parseFloat(mm[1].split(",")[3]) || 1) : 0;
+            if (a2 >= 0.5 && parseFloat(cs3.opacity || "1") >= 0.5) { blocked = el; break; }
+          }
+          if (blocked) {
+            const k = label(blocked) || "?";
+            blockers[k] = (blockers[k] || 0) + 1;
+          } else hit++;
+        }
+      }
+      if (n) {
+        e.visible_frac = Math.round((hit / n) * 100) / 100;
+        let best = null;
+        for (const k in blockers) if (!best || blockers[k] > blockers[best]) best = k;
+        e.blocker = best;
+      }
+      /* THE CANVAS READBACK: the ink the drawing code actually left */
+      if (cv) {
+        e.canvas = label(cv);
+        try {
+          const b3 = cv.getBoundingClientRect();
+          const kx = cv.width / Math.max(1, b3.width), ky = cv.height / Math.max(1, b3.height);
+          const sx = (mx - b3.x) * kx, sy = (my - b3.y) * ky;
+          const sw = mw * kx, sh = mh * ky;
+          const gw = Math.max(3, Math.min(MOTIF_GRID_MAX, Math.round(mw / MOTIF_CELL)));
+          const gh = Math.max(3, Math.min(MOTIF_GRID_MAX, Math.round(mh / MOTIF_CELL)));
+          const t = document.createElement("canvas");
+          t.width = gw; t.height = gh;
+          const tc = t.getContext("2d", { willReadFrequently: true });
+          tc.imageSmoothingEnabled = true;
+          tc.drawImage(cv, sx, sy, sw, sh, 0, 0, gw, gh);
+          const px2 = tc.getImageData(0, 0, gw, gh).data;
+          const g = [];
+          for (let i = 0; i < px2.length; i += 4) g.push(px2[i], px2[i + 1], px2[i + 2]);
+          e.grid = g; e.gw = gw; e.gh = gh;
+        } catch (e2) {
+          e.error = "canvas readback failed (" + String(e2).slice(0, 60) + ")";
+        }
+      }
+      out.motifs.push(e);
+    }
+  } catch (e) {
+    out.motifs.push({ error: String(e).slice(0, 140) });
+  }
   return out;
 }
 """
@@ -977,7 +1161,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
-           "fits": [], "asserts": [], "css_unreadable": 0,
+           "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
@@ -1000,7 +1184,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
                                        "encodings", "contacts", "scales", "leaders",
-                                       "fits", "asserts", "css_unreadable")})
+                                       "fits", "asserts", "motifs", "css_unreadable")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:

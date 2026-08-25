@@ -1,0 +1,107 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the lit cluster of 15 running feeds on the apron': shadow L* 2.3 vs ground L* 28.4, dL 26.1 at 432w"
+      ],
+      "fits": [
+        "h1 '750 feeds funded. About 15 running. Hearing ' fits 3/3 lines at 72.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the near lit plinth row at 1:1 on the deck plate': shadow L* 7.4 vs ground L* 33.0, dL 25.5 at 432w"
+      ],
+      "leaders": [
+        "leader \"the crime center console, the room's single employee at launch\" lands 0.0px from its target",
+        "leader \"the crime center console, the room's single employee at launch\" meets its label 8.0px away"
+      ],
+      "fits": [
+        "h2 'One employee. About 15 cameras.' fits 2/2 lines at 57.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h2 'Most of the cameras already exist.' fits 2/2 lines at 79.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h2 'The AI in this system reads plates.' fits 2/2 lines at 60px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "q '\"Let's put this into code now, so that when ' fits 6/6 lines at 53.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h2 'Four rules, none of them law yet.' fits 2/2 lines at 77.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the retention day axis' runs 0 days at 80 to 21 days at 1000; 22 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'The clock barely changes. Who can change it ' fits 2/2 lines at 52px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the September 1st plinth standing on the lit deck': shadow L* 3.6 vs ground L* 35.0, dL 31.4 at 432w"
+      ],
+      "scales": [
+        "'the August 4th to September 1st date axis' runs 0 days at 120 to 28 days at 910; 7 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the September 1st plinth' lands 0.0px from its target",
+        "leader 'the September 1st plinth, from the contract block' lands 14.4px from its target",
+        "leader 'the September 1st plinth' meets its label 8.0px away",
+        "leader 'the September 1st plinth, from the contract block' meets its label 0.0px away"
+      ],
+      "fits": [
+        "h2 'The money and the rule arrive on the same da' fits 3/3 lines at 50px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the closed near boundary lip of the apron on the lit deck': shadow L* 2.9 vs ground L* 29.5, dL 26.5 at 432w"
+      ],
+      "fits": [
+        "h2 'The rule is still cheap to write.' fits 2/2 lines at 86.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

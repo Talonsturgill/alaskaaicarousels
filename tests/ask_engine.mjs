@@ -112,7 +112,20 @@ const ask = (q) => p.evaluate((q) => {
   const a = document.querySelector('.qhit');
   return {
     kick: kickText(), lead: t('.qbig'), sub: t('.qsub'), fix: t('.qfix'),
-    hits: document.querySelectorAll('.qhit').length,
+    // CARDS PLUS THE REMAINDER THE PAGE ITSELF DECLARES. The list is capped at
+    // MAXCARDS (20) and, when it truncates, the page prints "N more on the
+    // record below." So a reader is told the true total and the page is
+    // honest; counting only .qhit measured the cap, not the answer, and the
+    // count check went red the moment the docket passed twenty items. It
+    // failed on main from that day, on correct behaviour, and would have gone
+    // red again at every later item.
+    hits: document.querySelectorAll('.qhit').length +
+          (function () {
+            const e = document.querySelector('.qmore');
+            const m = e && e.textContent.match(/(\d+)\s+more/);
+            return m ? +m[1] : 0;
+          })(),
+    shownCards: document.querySelectorAll('.qhit').length,
     top: a ? a.getAttribute('href') : '',
     none: !!document.querySelector('.qnone'),
     count: t('#qcount'),
@@ -286,7 +299,12 @@ const Q = [
   ['what changed lately', { min: 3 }],
 
   // aggregates and superlatives
-  ['how many decisions are tracked', { lead: /20 decisions/ }],
+  // DERIVED FROM THE RECORD, NOT FROZEN. This read /20 decisions/, which was
+  // true on the day it was written and became a lie the moment the docket
+  // took its twenty-first item. A count assertion that hardcodes the count
+  // tests the day it was authored.
+  ['how many decisions are tracked',
+   { lead: new RegExp('\\b' + DATA.index.length + ' decisions\\b') }],
   ['what is the nearest deadline', { kick: /NEAREST DATE|PUBLISHED DATES/ }],
   ['which agency has the most decisions', { kick: /DNR/ }],
   ['what was added most recently', { kick: /RECENTLY ADDED/ }],

@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2026-09-14",
-  "count": 21,
+  "count": 22,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -324,7 +324,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-18",
+      "last_updated": "2026-08-25",
       "history": [
         {
           "date": "2026-07-08",
@@ -397,6 +397,10 @@
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. No lease award has been announced, and the Air Force record still shows only the solicitation phase for the roughly 4,700 acres across the three installations."
+        },
+        {
+          "date": "2026-08-25",
+          "note": "Re-verified against the Air Force's own announcement. The department's request for lease proposals covers roughly 4,700 acres across JBER, Eielson and Clear, and the announcement carries no award, no selected developer and no decision. The record stands where it stood."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -876,7 +880,7 @@
       "status": "open-for-comment",
       "decider": "Alaska DNR, Commissioner John Crowther",
       "public_access": "open",
-      "access_note": "The comment room is open again. DNR extended written comment on ADL 234762 to 5 p.m. Monday, September 14, 2026, and the division's notice ties appeal standing on the Final Finding and Decision to having filed timely written comment during the window. Comments go to Daniel Jenkins at the Division of Mining, Land and Water, 550 W. 7th Ave. Suite 1050, Anchorage. AIDEA's board also meets in public on August 26th, and Houston's city council has asked AIDEA to a September meeting for which no date is set.",
+      "access_note": "The comment room is open and there are now two meetings to speak at. DNR noticed public meetings on Zoom for August 27th, 2026 at 6:00 p.m. and September 2nd, 2026 at 11:30 a.m. Written comment on ADL 234762 runs to 5 p.m. Monday, September 14, 2026, and the division's notice ties appeal standing on the Final Finding and Decision to having filed timely written comment during the window. Comments go to Daniel Jenkins at the Division of Mining, Land and Water, 550 W. 7th Ave. Suite 1050, Anchorage. AIDEA's board also meets in public on August 26th, and Houston's city council has asked AIDEA to a September meeting for which no date is set.",
       "summary": "A DNR preliminary decision would transfer about 19,950 acres, roughly 31 square miles, of state land about two miles north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that AIDEA's own development plan describes as including scalable data centers, advanced manufacturing pads and a logistics hub on the Parks Highway and the Alaska Railroad, about 60 road miles north of Anchorage. Written public comment was to close August 19th and DNR extended it to September 14th.",
       "key_dates": [
         {
@@ -900,8 +904,18 @@
           "kind": "milestone"
         },
         {
+          "date": "2026-08-27",
+          "label": "Public meeting on the conveyance, 6:00 p.m., on Zoom",
+          "kind": "milestone"
+        },
+        {
           "date": "2026-09-01",
           "label": "AIDEA asked to attend a Houston City Council meeting in September, no date set",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-02",
+          "label": "Second public meeting on the conveyance, 11:30 a.m., on Zoom",
           "kind": "milestone"
         },
         {
@@ -960,10 +974,15 @@
           "url": "https://www.adn.com/alaska-news/mat-su/2026/08/18/zero-transparency-houston-officials-oppose-land-transfer-process-linked-to-data-centers/",
           "outlet": "Anchorage Daily News and Mat-Su Sentinel",
           "date": "2026-08-18"
+        },
+        {
+          "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224930",
+          "outlet": "Alaska Online Public Notices, Department of Natural Resources",
+          "date": "2026-08-24"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-21",
+      "last_updated": "2026-08-25",
       "history": [
         {
           "date": "2026-07-17",
@@ -1052,6 +1071,10 @@
         {
           "date": "2026-08-21",
           "note": "The comment window did NOT close. It reopened. DNR published an extension on August 19th, the day the original period was to end, and written comment on the proposed conveyance of about 19,950 acres near Houston to the Alaska Industrial Development and Export Authority now runs to 5 p.m. Monday, September 14, 2026, per the state notice for ADL 234762. Anyone who thought the chance had passed has 24 days. AIDEA published its own case for the conveyance on July 30th and its board meets in public on August 26th."
+        },
+        {
+          "date": "2026-08-25",
+          "note": "DNR added two public meetings. Both run on Zoom, the first on August 27th, 2026 at 6:00 p.m. and the second on September 2nd, 2026 at 11:30 a.m., per the department's notice published August 24th, which also restates that written comment stays open from July 10th through September 14th. The extension itself was re-verified against the state notice published August 19th, which prints the close as 5:00PM, MONDAY, SEPTEMBER 14, 2026. Anyone who wanted to say something out loud rather than in writing now has two dates to do it, and the first is two days away."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1292,7 +1315,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-21",
+      "last_updated": "2026-08-25",
       "history": [
         {
           "date": "2026-08-02",
@@ -1313,6 +1336,10 @@
         {
           "date": "2026-08-21",
           "note": "Re-verified against the state notice. Proposals for RFP 2026-0200-0064 are still due 3:30 p.m. Alaska Daylight Time on Friday, August 28th, extended from August 24th by Amendment 1, which posted August 17th. No further amendment is listed."
+        },
+        {
+          "date": "2026-08-25",
+          "note": "Re-verified against the state notice. Proposals on solicitation 2026-0200-0064, Statewide Transcription Services, are due at 3:30 p.m. Alaska Daylight Time on Friday, August 28th, 2026. Amendment One moved that date out from Monday, August 24th and carried answers to questions raised at the pre-proposal conference."
         }
       ],
       "url": "https://alaskaaihq.com/docket/alaska-statewide-transcription-rfp/"
@@ -1346,7 +1373,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-20",
+      "last_updated": "2026-08-25",
       "history": [
         {
           "date": "2026-08-02",
@@ -1379,6 +1406,10 @@
         {
           "date": "2026-08-20",
           "note": "Re-verified against the state notice. Amendment One to request for information 02-101-27, Automatic Compliance and Data Integration CDL, is still the current posting, and vendor responses are due today, August 20th, at 2 p.m. Alaska time. The notice still prints neither artificial intelligence nor machine learning."
+        },
+        {
+          "date": "2026-08-25",
+          "note": "The response window has closed. Vendor responses on RFI 02-101-27, Automatic Compliance and Data Integration CDL, were due at 2:00 p.m. on August 20th, 2026, per the state notice, which shows Amendment One and no further extension. Nothing has been published since, so this entry records the close and carries no outcome."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1442,7 +1473,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-08-21",
+      "last_updated": "2026-08-25",
       "history": [
         {
           "date": "2026-08-04",
@@ -1467,6 +1498,10 @@
         {
           "date": "2026-08-21",
           "note": "Re-verified against the FERC notice. Comments, motions to intervene and protests in docket P-8221-124 are still due 5 p.m. Eastern on August 28th. The amendment would divert Dixon Glacier meltwater and surface runoff into Bradley Lake, raise the normal maximum operating pool about 16 feet and add a 0.3 megawatt micro-hydro turbine. Seven days remain."
+        },
+        {
+          "date": "2026-08-25",
+          "note": "Re-verified against the Federal Register notice for docket P-8221-124. Comments, motions to intervene and protests are due August 28th, 2026 at 5:00 p.m. Eastern Time, three days out, and the date is unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
@@ -1530,7 +1565,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-08-21",
+      "last_updated": "2026-08-25",
       "history": [
         {
           "date": "2026-08-05",
@@ -1555,6 +1590,10 @@
         {
           "date": "2026-08-21",
           "note": "Re-verified against the federal listing. The AI3 Action Institute, opportunity HHS-2026-ACF-ANA-NAI-0035, is still posted for a single award between $2,500,000 and $3,500,000 and still closes August 27, 2026 at 11:59 p.m. Eastern. The listing shows no amendment and was last updated July 30th. Six days remain."
+        },
+        {
+          "date": "2026-08-25",
+          "note": "Re-verified against the published opportunity. The AI3 Action Institute, HHS-2026-ACF-ANA-NAI-0035, closes to applications on August 27th, 2026, two days out. It is still one award with a ceiling of $3,500,000."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -1603,7 +1642,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-20",
+      "last_updated": "2026-08-25",
       "history": [
         {
           "date": "2026-08-06",
@@ -1620,6 +1659,10 @@
         {
           "date": "2026-08-20",
           "note": "Re-verified against the base's own microreactor page. The notice of intent to award to Oklo, issued in May 2025, still has not become a contract, and the page ties any award to the company completing Nuclear Regulatory Commission licensing. The page sizes the plant at up to 5 megawatts delivered to base infrastructure. Its most recent quarterly newsletter is dated June 2026."
+        },
+        {
+          "date": "2026-08-25",
+          "note": "Re-verified against the base's own microreactor page. The notice of intent to award to Oklo is still not a contract. The page says it begins negotiation toward a possible award, and that any award depends on the company completing Nuclear Regulatory Commission licensing, so the pilot remains pre-award."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -2047,11 +2090,85 @@
         {
           "date": "2026-08-21",
           "note": "Tracked from today. The applicant told FERC the project would tie into the Alaska Energy Authority's Cook Inlet PowerLink, a 38 mile subsea cable rated for up to 200 megawatts of bidirectional transfer that AEA lists as In Development and not yet built. AEA chief executive Curtis Thayer says the authority had never heard of DeepGreen and was never contacted, and that the company's letter to FERC has some of the project's facts \"dead wrong\". FERC also found the company had not identified all tribes and Alaska Native corporations that may be affected. The same company's Maine project at Eastport has been cut from 51 megawatts to a maximum of 15 and from about 170 turbines to 16 in a first phase, and Eastport's council voted unanimously on August 12th for a 180 day moratorium on any data center approval. The Maine Monitor reports the Alaska proposal has not been indicated as scaled down."
+        },
+        {
+          "date": "2026-08-25",
+          "note": "Checked the Federal Register for anything filed under this company. It carries exactly one DeepGreen notice, published August 25th, 2026, and that notice is for the Western Passage project in the Bay of Fundy near Eastport, Maine. It is not the Cook Inlet application. So the commission has now noticed the company's Maine filing and has not noticed the Alaska one."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-08-21",
+      "last_updated": "2026-08-25",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
+    },
+    {
+      "id": "anchorage-rtcc-surveillance-ordinance",
+      "title": "Anchorage's surveillance rules for its police crime center",
+      "kind": "legislation",
+      "status": "open-for-comment",
+      "decider": "Anchorage Assembly",
+      "public_access": "open",
+      "access_note": "A public hearing is set for the Assembly's September 1st meeting, which is where a member of the public can speak to this before the Assembly acts. The ordinance text and its AO number were not published anywhere reachable as of August 25th, so anyone planning to testify is working from press accounts and from the sponsor's own description rather than from the statutory language.",
+      "summary": "Three Anchorage Assembly members, Keith McCormick, Sydney Scout and Vice Chair Daniel Volland, introduced an ordinance on August 18th that would write surveillance rules into Anchorage code, among them a case number for every search of surveillance data, deletion of individuals' data after two weeks unless it is evidence in an active investigation, a warrant before footage goes to out of state or federal agencies, limits on automatic license plate readers, and, in co-sponsor Scout's own words, Assembly approval before adding new surveillance capabilities including AI powered tracking or identification technology. It moves alongside a roughly $600,000 contract with ThunderCat Technology for equipment at the Real Time Crime Center, the system the Assembly funded with $11.8 million last year and which is designed to stream up to 750 camera feeds. The center opened in September 2025 with one employee and about 15 cameras.",
+      "key_dates": [
+        {
+          "date": "2026-08-04",
+          "label": "McCormick asks the Assembly to postpone approval of the equipment contract, Scout agrees",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-18",
+          "label": "Ordinance introduced by McCormick, Scout and Volland",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-21",
+          "label": "Assembly work session on the Real Time Crime Center, 10:40 a.m.",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-01",
+          "label": "Public hearing at the Assembly meeting, the point at which the public can speak to it",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Anchorage",
+        "lon": -149.9,
+        "lat": 61.22
+      },
+      "sources": [
+        {
+          "url": "https://www.adn.com/alaska-news/anchorage/2026/08/20/anchorage-police-may-expand-surveillance-capabilities-some-assembly-members-want-privacy-protections-first/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-08-20"
+        },
+        {
+          "url": "https://www.adn.com/opinions/2026/08/20/opinion-public-safety-cannot-come-at-the-expense-of-civil-liberties/",
+          "outlet": "Anchorage Daily News opinion, by Assembly member Sydney Scout",
+          "date": "2026-08-20"
+        },
+        {
+          "url": "https://alaskapublic.org/news/anchorage/2026-08-21/as-anchorage-assembly-weighs-police-surveillance-upgrade-some-members-want-privacy-protections-first",
+          "outlet": "Alaska Public Media",
+          "date": "2026-08-21"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/08/05/anchorage-police-seeking-upgrades-real-time-crime-monitoring/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-08-05"
+        }
+      ],
+      "first_seen": "2026-08-25",
+      "last_updated": "2026-08-25",
+      "history": [
+        {
+          "date": "2026-08-25",
+          "note": "Tracked, and selected as this run's carousel. The ordinance would put four rules in code before the camera network they govern is finished being built. What exists today is smaller than what is funded. The Assembly approved $11.8 million last year for a system designed to stream up to 750 camera feeds, and the center opened in September 2025 with one employee and about 15 cameras at police properties and Town Square Park. Police Chief Sean Case says the department uses object recognition for license plate readers, does not use facial recognition, and does not know whether object recognition data can even be transmitted through the system, so this is a rule arriving ahead of the capability rather than after it. One caution belongs on the record. Three published accounts word the AI provision three different ways and the ordinance text was not reachable, so the wording used here is the co-sponsor's own from her signed opinion piece."
+        }
+      ],
+      "cta_label": "TESTIFY",
+      "cta_when": "ON",
+      "url": "https://alaskaaihq.com/docket/anchorage-rtcc-surveillance-ordinance/"
     }
   ]
 }
