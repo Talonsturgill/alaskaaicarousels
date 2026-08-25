@@ -4536,3 +4536,95 @@ about y=700 and thinned the bottom third. A one-sided falloff, fading upward
 only, cleared it. The lesson is small and general: an atmospheric ramp on a
 frame with furniture at the bottom should never take tone away from the bottom.
 
+
+## 2026-08-25 - Phase 12 upgrade engineer (what shipped, what is parked, the scan)
+
+WHAT SHIPPED, two upgrades, both reactive, both with a defect reconstruction
+that goes red: `tests/motif_survives_verify.py` and
+`tests/count_assert_verify.py`.
+
+**DOM PAINTS OVER CANVAS, and now the slide has to prove otherwise.** This run
+lost three motifs on three slides and every gate was green on all three: the
+continuity cell covered by the `.lane` plate on 07 (`background:#0A121C`),
+covered by the `.guard` plate on 03, and painted out by the channel's own void
+fill on 06. A DOM element with a solid `background` is above every canvas pixel
+under it whatever order the drawing code ran in, and qa.py's two occlusion
+checks both look at TEXT. A slide now declares the features that carry meaning,
+`window.__akMotifs = [{what, rect}]`, and the gate answers the question with
+two instruments: an `elementsFromPoint` census of the rect (which is exact, and
+which is what catches a plate), and the region's ink in the composited PNG
+against the same region read back out of the canvas itself (which is what
+catches a rect that ended up flat). The measured reconstruction on this run's
+OWN slide 07, motif moved back to y=358 under the lane plate: FAIL, "only 0% of
+the rect it declares is clear of opaque DOM (div.lane)". The shipped repair, at
+y=296: canvas 12.7 dE, page 59.2 dE, clean.
+
+Two things learned while calibrating it, both worth keeping:
+- p95 reads a real motif as ABSENT. The 0016 rule is a 1.5px line inside a
+  920x20 band, under 3 percent of the rect, so p95 lands on bare plate at 2.9
+  dE while p99 lands on the rule at 58.7. A motif is by definition a small
+  bright thing inside a rect the author drew around it, so the statistic is the
+  MEAN OF THE TOP 1 PERCENT, floored at four pixels.
+- Never compare a canvas readback against a SMOOTHED resize of the PNG. An area
+  filter cost the same rule 40 percent of its spread while the canvas side paid
+  no such tax, which put a perfectly visible motif within a point of the
+  survival floor. The page side is now read at full resolution with an integer
+  stride, which keeps it the optimistic side: the ratio can under-report a
+  burial and can never invent one.
+
+**A hook that is a count declares its marks.** `window.__akAssert` takes
+`points`, the array of mark centres the drawing loop used; `actual` becomes the
+number of those centres inside the frame and `tol` defaults to 0. The cover
+printed 750 and painted 720 because row 0's centre sat past the bottom edge, and
+an `actual` derived from the loop bound would have agreed with the type and
+disagreed with the picture. Note for the next build: this run's nine slides
+declared ZERO `__akAssert` entries, on a deck whose hook is a number.
+
+## 2026-08-25 - Phase 12 PARK: the draw-time snapshot, for the motif a later
+## canvas operation paints out
+
+The motif gate above catches a burial under DOM and a rect that ends up flat.
+It does NOT catch slide 06's shape, measured and recorded here so nobody claims
+otherwise: the void fill wiped the cell and the channel's own gradient and lit
+lip were drawn into the same region afterwards, so the rect still measures 62.9
+dE with no motif in it, and both the defect and the repair pass the gate at
+almost identical numbers (26.6 vs 33.7 dE canvas side).
+
+The honest instrument is a SNAPSHOT AT DRAW TIME: a hook defined before the
+slide's scripts run, called immediately after the motif is drawn, that captures
+that rect's pixels then and compares the structure (not the level) against the
+same rect in the finished canvas. Parked because it needs a new authoring call,
+a stored snapshot per motif, and a correlation statistic whose threshold has to
+be fitted over the shipped corpus before it can be a FAIL, which is a redesign
+and not a bounded upgrade. Unblocking condition: a labelled set of at least six
+washed-but-visible motifs and six painted-out ones from `runs/`, since the
+distinction is exactly the one a threshold has to make. Until then the written
+rule stands: draw the motif AFTER whatever fills its region, and declare it
+anyway, because the declaration is what turns a repair note from a claim into a
+measurement.
+
+## 2026-08-25 - Phase 12 scan, focus (e) headless Chromium and Playwright
+## rendering capability: no platform API answers this question, so we built one
+
+Five searches and one fetch, hunting for a browser-native way to ask "did this
+canvas-drawn feature survive to the composited page". There isn't one, and the
+negative result is what made today's upgrade the right shape:
+
+- IntersectionObserver v2 `isVisible` is the closest thing and it is unusable
+  here on two counts. It observes DOM ELEMENTS, so it cannot see a feature
+  drawn inside a canvas, and it returns false for any effective opacity under
+  1.0, any filter at all and any transform beyond a 2D translate, which
+  describes most of this studio's artwork. Chromium only; Firefox and Safari
+  decline. https://web.dev/articles/intersectionobserver-v2
+- `Element.checkVisibility()` is widely available since March 2024 and
+  explicitly does NOT detect occlusion; it answers CSS-visibility questions
+  only. https://developer.mozilla.org/en-US/docs/Web/API/Element/checkVisibility
+- The standing industry technique for canvas verification is exactly what we
+  now do: read the canvas back with `getImageData` / `toDataURL` and compare
+  against the composited screenshot. Nobody has a shortcut.
+  https://qxf2.com/blog/selenium-html5-canvas-verify-what-was-drawn/
+- Worth knowing for any future pixel threshold: headless Chromium without GPU
+  drivers falls back to SwiftShader, which is correct but byte-different from
+  hardware GL. Our comparison is between two measurements of the SAME render,
+  so it is immune; a stored-baseline comparison would not be.
+  https://playwright.dev/docs/test-snapshots

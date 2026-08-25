@@ -289,6 +289,31 @@ notes, and its beat:
   (r/alaska, r/anchorage, HN, local commentary) about tech/AI — angles
   and salience only, not sole sourcing.
 
+THE SEARCH BUDGET IS A REAL CEILING AND IT IS SPENT HERE. A session has 200
+WebSearch calls; six uncapped scouts take all of them, and the wall is silent
+from the showrunner's side because a scout that hits it simply returns thinner
+findings. GIVE EVERY SCOUT A CAP IN ITS BRIEF: **at most 25 WebSearch calls,
+then work by WebFetch against the URLs already in hand**, and say in the brief
+that the cap exists so later phases can still search. That leaves ~50 for the
+rest of the day, which is what Phase 3 (a new notice nobody has on file), Phase
+3.5 (a docket item with no primary URL yet) and Phase 12's frontier scan need.
+Evidence, dated: run No.40's six scouts exhausted the budget outright and its
+docket refresh ran entirely off URLs already in `ledger/docket.json`, and the
+Phase 12 scan_log records ZERO searches available on 2026-08-14, 2026-08-16,
+2026-08-19 and 2026-08-21, four runs in which the machine could not look at the
+frontier at all. WebFetch is unaffected by this ceiling; when it bites, say so
+in `dead_ends` and keep working.
+
+RUN PHASE 1 BEFORE PHASE 2, ALWAYS, for the same reason: the craft refresh also
+searches, and No.40 got its craft refresh only by luck of ordering.
+
+`config/sources.yaml` carries a dated `refuses_automated_fetch` block: eight
+hosts that answer a bot with 403, each with the route around it where one is
+known (the Beacon syndicates under Creative Commons and alaskapublic.org
+republishes most of it). It is a record, not a ban list, so try the source
+anyway; do not spend the run rediscovering the workaround, which two scouts did
+independently on the same day.
+
 ## PHASE 3 — CLAIMS
 
 Merge scout outputs. Spawn `fact-checker` with the merged findings. The
@@ -833,6 +858,28 @@ type spec. Craft expectations:
   rail, implying twelve equal months over a budget period that runs ten. Both
   were caught by a human reading the picture, which is the reviewer this
   studio has least of. Ornament goes outside the band or it goes away.
+
+- EVERY DRAWN FEATURE THAT CARRIES MEANING DECLARES ITS RECT, on
+  `window.__akMotifs` as `{what, rect:[x,y,w,h]}` in design px (SKILL.md).
+  qa.py reads that rect back out of the canvas, censuses what stands on it and
+  samples the same rect out of the render, and FAILS a motif that is buried
+  under opaque DOM, that is one flat colour in the render, or that keeps under
+  a quarter of its own canvas ink. DOM PAINTS OVER CANVAS: No.40 drew the
+  deck's continuity cell correctly on three slides and shipped none of them,
+  twice under a solid `background` plate (`.lane`, `.guard`) and once painted
+  out by a channel's own void fill, with every gate green all three times, and
+  TWICE a repair note recorded the element as visible when nothing was on the
+  slide at all. If the dossier names a motif, the slide declares it, and the
+  declaration is also how a repair note stops being a claim and starts being a
+  measurement.
+
+- A HOOK THAT IS A COUNT DECLARES ITS MARKS, not a total. `window.__akAssert`
+  takes `points`, the array of mark centres the drawing loop actually used, and
+  the FRAME does the counting (SKILL.md). No.40's cover printed 750 and painted
+  720 because row 0's centre sat 20px past the canvas edge; a pixel critic
+  counted the rows by hand. An `actual` derived from the loop bound agrees with
+  the type and disagrees with the picture, which is the one disagreement that
+  matters.
 
 EVERY SLIDE IS WRITTEN FOR THAT SLIDE. This is the whole product and it is the
 one thing the machine can do that a person cannot do at this cadence, so it is

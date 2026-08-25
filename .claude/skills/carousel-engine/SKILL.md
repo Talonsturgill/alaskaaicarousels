@@ -236,6 +236,55 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   distance computed so one foot is 42 px) so the same number produces both the
   rule and the room. Declare the assertion anyway: it is what proves the
   derivation survived the next edit.
+- **A hook that is a count must survive being counted** (2026-08-25). When the
+  number in type is a COUNT of drawn marks, the assertion declares the MARKS,
+  not a total, and the frame does the counting:
+
+  ```js
+  var pts = [];                                  // the centres, in design px
+  for (var r = 0; r < 25; r++) for (var c = 0; c < 30; c++) pts.push([54 + c * 33, 24 + r * 44]);
+  pts.forEach(function (p) { cx.fillRect(p[0] - 5, p[1] - 5, 10, 10); });  // drawn FROM the array
+  window.__akAssert = [{ what: "750 funded devices, one mark each",
+                         expect: 750, points: pts, unit: "marks" }];
+  ```
+
+  `actual` becomes the number of centres INSIDE the frame, `tol` defaults to 0
+  because a count is exact, and a hand-written `actual` is ignored and said so.
+  Run No.40's cover printed 750 and painted 720: row 0's centre sat 20 px past
+  the canvas edge, so the loop bound and the picture disagreed by a whole row.
+  Every machine gate passed it and a pixel critic counted the rows by hand.
+  Deriving `actual` from the loop bound cannot catch this; only the frame can.
+  Reconstruction: `python tests/count_assert_verify.py`.
+- **Declared artwork has to reach the slide** (2026-08-25). A slide names the
+  drawn features that carry meaning and the rect each one occupies:
+
+  ```js
+  window.__akMotifs = [{ what: "cell 0016, the continuity stencil",
+                         rect: [80, 286, 920, 20] }];   // design px
+                         // optional: canvas: "canvas#art"
+  ```
+
+  render.py reads that rect back OUT OF THE CANVAS the motif was drawn on and
+  takes an `elementsFromPoint` census of what stands on it; qa.py samples the
+  same rect out of the composited PNG. **FAILS** when 15% or less of the rect is
+  clear of opaque DOM, when the rect is one flat colour in the render, or when
+  under 25% of the ink the canvas holds survives to the page. Run No.40 lost
+  THREE motifs on three slides through green gates: the continuity cell drawn
+  and then covered by the `.lane` plate on 07, drawn and covered by the `.guard`
+  plate on 03, and painted out by the channel's own void fill on 06. The code
+  was right and the picture was empty every time, and twice a repair note
+  recorded the element as visible when nothing was on the slide. DOM PAINTS OVER
+  CANVAS: a plate with a solid `background` is above every canvas pixel under
+  it, whatever order the drawing code ran in.
+  KNOWN LIMIT, measured: a motif painted out by a later canvas operation is
+  caught only when what replaces it is FLAT. Slide 06's void fill was followed
+  by the channel's own gradient and lip, so the rect still measured 62.9 dE with
+  no motif in it, and this gate passes that slide. Draw the motif AFTER whatever
+  fills its region and declare it anyway; the census and the flat test are what
+  catch the other two shapes. Second limit, same spirit: the census reads an
+  element's background COLOUR, so a plate whose fill is only a background-image
+  over a transparent colour is not counted as blocking. Reconstruction:
+  `python tests/motif_survives_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without

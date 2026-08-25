@@ -1487,6 +1487,56 @@
       "verification": "verified the gate still fires on prose, still fires on prose sitting beside a URL, and is silent on the URL alone; site_signoff --self-test clean, which owns the red cases for this rule; site sign-off PASS 18 of 18",
       "rollback": "revert the two visible()/contraction_gate hunks",
       "commit": "pending"
+    },
+    {
+      "run_date": "2026-08-25",
+      "kind": "fix",
+      "area": "engine",
+      "change": "DECLARED ARTWORK NOW HAS TO REACH THE SLIDE. A slide names the drawn features that carry meaning, window.__akMotifs = [{what, rect:[x,y,w,h]}] in design px; render.py reads that rect back out of the canvas the motif was drawn on and takes an elementsFromPoint census of what stands on it, and qa.py samples the same rect out of the composited PNG. FAILS when 15 percent or less of the rect is clear of opaque DOM, when the rect is one flat colour in the render, or when under 25 percent of the ink the canvas holds survives to the page. Opt-in like every other declaration contract, so a slide that declares nothing is not judged, and every FAIL is the slide contradicting itself. Two calibration facts are in the code: the ink statistic is the mean of the top 1 percent of dE from the region's own median (p95 reads a 1.5px rule in a 920x20 band as ABSENT at 2.9 dE while p99 finds it at 58.7), and the page side is read at full resolution with an integer stride rather than through a smoothing resize, which would cost a thin mark 40 percent of its spread and put a visible motif within a point of the survival floor.",
+      "trigger": "Run No.40 lost three declared motifs on three slides through green gates: cell 0016 covered by the .lane plate on slide 07, covered by the .guard plate on slide 03, painted out by the channel's own void fill on slide 06. Twice a repair note recorded the element as visible when nothing was on the slide at all. qa.py's two occlusion checks both look at TEXT.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "prompts/routine_instructions.md",
+        "tests/motif_survives_verify.py",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "tests/motif_survives_verify.py HOLDS over four fixtures: motif clear passes, motif under an opaque DOM plate FAILS naming div.plate, motif painted out by the next canvas op FAILS on both sides flat, motif under a 45 percent scrim passes (the false-positive guard). Reconstructed on this run's OWN slide 07 as well: with the 0016 rule moved back to y=358 under the lane plate it FAILS with 'only 0% of the rect it declares is clear of opaque DOM (div.lane)', and the shipped repair at y=296 reports canvas 12.7 dE, page 59.2 dE, clean. Regression: this run's nine slides and examples/demo-deck re-rendered and re-QA'd, and HEAD's qa.py run against the same render dirs returns byte-identical message sets (run 0 fails 0 warns, demo 0 fails 11 warns). KNOWN LIMIT, measured and written into SKILL.md: a motif painted out and then covered by a NON-flat wash is not caught (slide 06 measures 62.9 dE at the rect either way); the draw-time snapshot that would close it is parked in FIELD_NOTES.",
+      "rollback": "revert the upgrade(2026-08-25) commit, or drop the out.motifs block in render.py and the motif_survives call site in qa.py; nothing else reads either",
+      "commit": "pending"
+    },
+    {
+      "run_date": "2026-08-25",
+      "kind": "fix",
+      "area": "engine",
+      "change": "A HOOK THAT IS A COUNT IS NOW COUNTED IN THE FRAME. window.__akAssert takes `points`, the array of mark centres the drawing loop actually used; render.py sets `actual` to the number of those centres inside the canvas, records how many fell outside it, defaults `tol` to 0 because a count is exact, and reports any hand-written `actual` it ignored. qa.py's failure message names the off-frame marks. The 2026-08-12 assertion contract is otherwise untouched and every existing expect/actual assertion behaves exactly as before.",
+      "trigger": "Run No.40's cover printed the hook 750 and drew 24 rows of 30, because row 0's centre sat 20px past the bottom edge of the canvas. Every machine gate passed, including the assertion gate, since an `actual` derived from the loop bound agrees with the type and disagrees with the picture. A pixel critic counted the rows by hand.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "prompts/routine_instructions.md",
+        "tests/count_assert_verify.py",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "tests/count_assert_verify.py HOLDS over three fixtures built from one array of 750 centres: all inside the frame holds at 750 vs 750; row 0 at y=-20 FAILS with '720 marks, counted over 750 declared marks of which 30 fall outside the frame'; the same defect with actual hand-written as 750 still FAILS, which is the point. The test asserts the failure REASON, not just the failure. Regression: this run's nine slides and examples/demo-deck are byte-identical against HEAD's qa.py. Recorded while verifying: this run's nine slides declared zero __akAssert entries on a deck whose hook is a number.",
+      "rollback": "revert the upgrade(2026-08-25) commit, or drop the `points` branch in render.py's asserts block and the `counted` string in assert_holds",
+      "commit": "pending"
+    },
+    {
+      "run_date": "2026-08-25",
+      "kind": "fix",
+      "area": "knowledge",
+      "change": "THE RESEARCH PHASE'S TWO STANDING TAXES ARE NOW WRITTEN WHERE THE SCOUTS READ THEM. (1) A SEARCH CAP: Phase 2 now says to give every scout a cap of 25 WebSearch calls in its brief, and to say in the brief why, so the six of them cannot spend a 200-call session budget before Phase 3, Phase 3.5 or Phase 12 has looked at anything. The same paragraph pins Phase 1 ahead of Phase 2, which No.40 got right by luck of ordering rather than by rule. (2) THE 403 RECORD: config/sources.yaml gains a dated `refuses_automated_fetch` block, the eight hosts that refused this run, each with the route around it where one is known, the Beacon's Creative Commons republication at alaskapublic.org being the one that matters. It is explicitly a record of observations and not a ban list, so a scout still tries the source. No threshold moves and no gate changes; this is prompt and data, and is logged as such.",
+      "trigger": "Run No.40's six parallel scouts consumed the entire 200-call WebSearch budget, leaving zero for every later phase, and the Phase 12 scan_log records the same wall with zero searches available on 2026-08-14, 2026-08-16, 2026-08-19 and 2026-08-21. Separately, two of the six scouts found the Alaska Public Media route around a blocked alaskabeacon.com independently in the same run, and muni.org plus anchorage.legistar.com cost the deck the Anchorage ordinance's own text and its AO number, which shipped as an explicit caveat.",
+      "files": [
+        "prompts/routine_instructions.md",
+        "config/sources.yaml"
+      ],
+      "verification": "yaml.safe_load parses sources.yaml and returns the four expected top-level keys with 8 hosts in the new block; the Phase 2 text was read back in place with the beat list intact. Thin by nature and said so: a live check of a 403 list would need network inside a gate and would go red for reasons that are not this repo's, and a search cap is an instruction to an agent, which no test in this tree can hold to account. The evidence for both is the dated scan_log and this run's incident notes, not a green check.",
+      "rollback": "revert the upgrade(2026-08-25) commit, or delete the refuses_automated_fetch block and the search-budget paragraph in Phase 2; nothing parses either programmatically",
+      "commit": "pending"
     }
   ],
   "scan_log": [
@@ -1714,6 +1764,13 @@
       "searches": 0,
       "found": "0 searches and 8 direct WebFetch reads, 4 of which 404'd, because this session's WebSearch budget was already exhausted by the run itself (200 of 200) before Phase 12 started; the scan was therefore a read of known sources rather than a frontier sweep and is recorded as such. (1) NOTHING NEW ENOUGH TO APPLY. Socialinsider's 2026 benchmarks put native documents first at 7.00% engagement, up 14% year over year, multi-image SECOND at 6.45%, video third at 6.00% with video VIEWS down 36% year over year, on a platform average of 5.20% (up 8%). knowledge/CAROUSEL_CRAFT.md already carries the 7.00% figure and the format ranking as tier [B] evidence, so the only genuinely new fact is multi-image passing video, which changes nothing for a studio that ships documents. https://www.socialinsider.io/social-media-benchmarks/linkedin (2) Buffer's algorithm page restates relevance, expertise and engagement as the ranking signals, dwell as the thing swipes buy, and hook-first, all of which are already hard rules in CAROUSEL_CRAFT and the scorer's rubric. https://buffer.com/resources/linkedin-algorithm/ (3) NOT FOUND, and worth recording as a hole rather than a result: no source read today reports slide-count effects, aspect-ratio effects, per-slide alt text for documents, or any change to how LinkedIn renders a document in the feed, which is where an engine parameter would have to move. The 432px feed-width review and the 24px type floor stand on the same evidence they stood on.",
       "outcome": "parked (knowledge/FIELD_NOTES.md 2026-08-21 Phase 12 block: the refreshed benchmark set with its source URLs, plus the scan conditions). No frontier improvement applied; both of this run's upgrade slots went to reactive fixes, which is the intended order."
+    },
+    {
+      "run_date": "2026-08-25",
+      "focus": "(e) headless Chromium and Playwright rendering capabilities. Distinct from the last three logged foci (2026-08-21 LinkedIn platform, 2026-08-20 typography and layout, 2026-08-19 agent workflows) and chosen over the marginally staler (g) accessibility/PDF slot because this run's largest defect class was three motifs that were drawn and never seen, and this is the slot that stocks the shelf for measuring what actually painted.",
+      "searches": 5,
+      "found": "5 searches, 1 fetch, WebSearch available this run. THE FINDING IS NEGATIVE AND IT IS WHAT MADE TODAY'S UPGRADE THE RIGHT SHAPE: no browser API answers 'did this canvas-drawn feature survive to the composited page'. (1) IntersectionObserver v2's isVisible is the closest and is unusable twice over: it observes DOM ELEMENTS so it cannot see inside a canvas, and it returns false for any effective opacity under 1.0, any filter and any transform past a 2D translate, which describes most of this studio's artwork; Chromium only. https://web.dev/articles/intersectionobserver-v2 (2) Element.checkVisibility(), widely available since March 2024, explicitly does NOT detect occlusion; it answers CSS-visibility questions only. https://developer.mozilla.org/en-US/docs/Web/API/Element/checkVisibility (3) The standing technique for canvas verification is exactly getImageData/toDataURL readback compared against the composited screenshot, which is what the upgrade implements. https://qxf2.com/blog/selenium-html5-canvas-verify-what-was-drawn/ (4) Kept for any future pixel threshold: headless Chromium without GPU drivers falls back to SwiftShader, correct but byte-different from hardware GL, so a STORED-baseline pixel comparison would drift while a comparison between two measurements of the same render is immune. https://playwright.dev/docs/test-snapshots (5) Playwright is at 1.62 and its 2026 work is agents, MCP and reporting, nothing that changes this engine's render path.",
+      "outcome": "applied (the motif survival gate, entry 1 of 2026-08-25's Phase 12 set); the draw-time snapshot that would close the remaining case is PARKED in knowledge/FIELD_NOTES.md with its unblocking condition"
     }
   ]
 }

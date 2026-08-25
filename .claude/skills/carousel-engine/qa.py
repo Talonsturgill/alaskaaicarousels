@@ -849,15 +849,36 @@ def assert_holds(a):
                         "you are willing to ship, in the same unit" % what)
     unit = (" " + a["unit"]) if a.get("unit") else ""
     d = abs(exp - act)
+
+    # A COUNT IS COUNTED IN THE FRAME (2026-08-25). When the assertion declares
+    # `points`, render.py has replaced `actual` with the number of mark centres
+    # that landed INSIDE the canvas, so a row drawn past the edge is missing
+    # from it, which is the arithmetic run No.40's cover skipped: it printed 750
+    # and painted 720, and only a pixel critic counting rows by hand found it.
+    off = a.get("offframe")
+    npts = a.get("points_n")
+    counted = ""
+    if npts is not None:
+        counted = ", counted over %d declared mark%s" % (npts, "" if npts == 1 else "s")
+        if off:
+            counted += (" of which %d fall outside the frame (their centres are "
+                        "off the canvas, so they paint nothing a reader can "
+                        "count)" % off)
+        if a.get("points_bad"):
+            counted += ", %d unreadable" % a["points_bad"]
+        if a.get("actual_declared") is not None and a["actual_declared"] != act:
+            counted += (", and the hand-written actual of %g was ignored in "
+                        "favour of the marks" % a["actual_declared"])
+
     if d > abs(tol):
         return "fail", (
-            "%r: the slide claims %g%s and the drawing produced %g%s, %g%s "
+            "%r: the slide claims %g%s and the drawing produced %g%s%s, %g%s "
             "apart against a declared tolerance of %g%s. The type and the "
             "geometry were computed independently; derive one FROM the other so "
             "they cannot disagree."
-            % (what, exp, unit, act, unit, d, unit, abs(tol), unit))
-    return "info", ("%r holds: %g vs %g%s (within %g)"
-                    % (what, exp, act, unit, abs(tol)))
+            % (what, exp, unit, act, unit, counted, d, unit, abs(tol), unit))
+    return "info", ("%r holds: %g vs %g%s%s (within %g)"
+                    % (what, exp, act, unit, counted, abs(tol)))
 
 
 CONTACT_FAIL_DL = 4.0
@@ -927,6 +948,178 @@ def contact_reads(img_arr, con, design_w, design_h):
     if d < CONTACT_WARN_DL:
         return "warn", bits + (" -- under the %.1f L* comfort band; it reads, "
                                "barely" % CONTACT_WARN_DL)
+    return "info", bits
+
+
+# DOM PAINTS OVER CANVAS (2026-08-25). The thresholds that decide a burial.
+# Only MOTIF_FLAT_DE is an absolute ink level, and it is a floor on EXISTENCE:
+# below it the region is one flat colour and there is nothing in it at all. The
+# rest are ratios between two measurements of the same slide (what the canvas
+# holds at the declared rect, and what the composited PNG holds at the same
+# rect), so a faint motif on a faint ground is judged on whether it SURVIVED
+# and never on how loud it is.
+MOTIF_FLAT_DE = 1.5        # _ink_spread below this: the region carries no mark
+MOTIF_SURVIVE_FRAC = 0.25  # of its own canvas ink a motif must keep on the page
+MOTIF_WARN_FRAC = 0.55     # ... and below this it is being smothered
+MOTIF_BURIED_FRAC = 0.15   # visible share of the rect under opaque DOM: a FAIL
+MOTIF_COVER_WARN = 0.50
+
+
+def _ink_spread(rgb):
+    """How much ink a region carries: the mean CIE76 dE of its top 1 percent of
+    pixels from the region's own median colour.
+
+    A flat plate, a solid void fill and an empty sheet all score ~0 whatever
+    their colour; any drawn mark scores well above it. In dE, which is the unit
+    every other pixel threshold in this file is stated in.
+
+    THE TOP SLICE, NOT A PERCENTILE, and the reason is calibration. p95 was
+    tried first and it reads a real motif as absent: run No.40's own 0016 rule
+    is a 1.5px line declared inside a 920x20 band, so under 3 percent of that
+    rect is ink and p95 lands on bare plate (2.9 dE) while p99 lands on the
+    rule (58.7). A motif is by definition a small bright thing in a rect the
+    author drew around it. Averaging the top slice rather than taking the max
+    keeps one stray antialiased pixel from certifying a buried motif as
+    present; the floor of 4 pixels keeps it meaningful on a coarse grid.
+    """
+    a = np.asarray(rgb, dtype=np.float64).reshape(-1, 3)
+    if a.shape[0] < 4:
+        return 0.0
+    lab = _srgb_to_lab(a)
+    med = np.median(lab, axis=0)
+    d = np.sqrt(((lab - med) ** 2).sum(-1))
+    k = max(4, d.shape[0] // 100)
+    return float(np.mean(np.sort(d)[-k:]))
+
+
+def motif_survives(img_arr, mo, design_w, design_h):
+    """DID THE DECLARED ARTWORK REACH THE SLIDE.
+
+    Built 2026-08-25 after run No.40 lost three declared motifs on three
+    slides through green gates: the continuity cell drawn and then covered by
+    a `.lane` plate on slide 07, drawn and covered by a `.guard` plate on
+    slide 03, and painted out by the channel's own void fill on slide 06. The
+    code was right and the picture was empty every time, and twice a repair
+    note recorded the element as visible when nothing was on the slide.
+
+    qa.py had a text-under-a-plate check and a label-crossed-by-art check, and
+    both look at TEXT. Nothing asked whether declared ART survived compositing,
+    which is the same hole the 2026-08-05 contact-shadow gate closed for depth
+    cues, in the same shape: the slide states the claim, the machine measures
+    it, and a FAIL is the slide contradicting itself.
+
+    Two independent instruments, because one misses half the defect:
+      INK. render.py reads the motif's rect back out of the canvas it was drawn
+        on; this samples the same rect out of the composited PNG. A rect that
+        is FLAT in the render has no motif in it, whatever the canvas holds,
+        and that one condition is the verdict. The canvas side then says which
+        repair to make, and carries the smothering ratio.
+      COVER, a census of what stands on the rect, from elementsFromPoint. It
+        catches the burial the ink test cannot: a plate with texture over it
+        keeps the region's spread up while showing none of the motif.
+
+    TWO LIMITS, both measured rather than assumed, both written into SKILL.md:
+      * A motif painted out by a later CANVAS operation is caught only when
+        what replaces it is flat. Run No.40's slide 06 filled the void and then
+        drew the channel's own gradient and lit lip into the same region, so
+        the rect measures 62.9 dE with the motif and 62.9 dE without it. The
+        instrument that would close it (a snapshot taken at draw time) is
+        parked in FIELD_NOTES with its unblocking condition.
+      * The cover census reads an element's background COLOUR, like the
+        encoding probe it borrows from. A plate whose fill is only a
+        background-image over a transparent colour is not counted as blocking.
+
+    Returns (verdict, detail), verdict in "info" | "warn" | "fail".
+    """
+    if mo.get("error"):
+        return "warn", "declaration did not parse (%s)" % mo["error"]
+    what, rect = mo.get("what"), mo.get("rect")
+    if not what or not rect or len(rect) != 4:
+        return "warn", "declaration names no {what, rect}"
+
+    x, y, w, h = [float(v) for v in rect]
+    if w < 3 or h < 3 or x + w <= 0 or y + h <= 0 or x >= design_w or y >= design_h:
+        return "warn", "'%s': rect %s is off the canvas or too small to measure" % (
+            what, [int(v) for v in rect])
+
+    s = img_arr.shape[1] / float(design_w)
+    x0, y0 = max(0, int(round(x * s))), max(0, int(round(y * s)))
+    x1 = min(img_arr.shape[1], int(round((x + w) * s)))
+    y1 = min(img_arr.shape[0], int(round((y + h) * s)))
+    if x1 - x0 < 2 or y1 - y0 < 2:
+        return "warn", "'%s': rect is smaller than 2px in the render" % what
+
+    gw = int(mo.get("gw") or 0)
+    gh = int(mo.get("gh") or 0)
+    # The page side is read at FULL resolution, decimated by an integer stride
+    # when the rect is large. Never through a smoothing resize: an area filter
+    # costs a thin mark 20 to 40 percent of its spread, and since the canvas
+    # readback does not pay the same tax, that alone would put a perfectly
+    # visible motif near the survival floor. Striding keeps the page side the
+    # OPTIMISTIC one, so the ratio can under-report a burial and can never
+    # invent one.
+    crop = img_arr[y0:y1, x0:x1]
+    step = max(1, int(np.ceil(np.sqrt((crop.shape[0] * crop.shape[1]) / 120000.0))))
+    page_de = _ink_spread(crop[::step, ::step])
+
+    vf = mo.get("visible_frac")
+    blk = mo.get("blocker")
+    cover = ""
+    if vf is not None:
+        cover = ", %d%% of its rect is clear of opaque DOM" % round(vf * 100)
+        if blk:
+            cover += " (%s stands on the rest)" % blk
+
+    # COVER first: this is the instrument that survives a textured plate.
+    if vf is not None and vf <= MOTIF_BURIED_FRAC:
+        return "fail", (
+            "'%s' is buried: only %d%% of the rect it declares is clear of "
+            "opaque DOM%s. The art is drawn and the reader never sees it. Move "
+            "the motif out from under the plate, or move the plate, or draw "
+            "the motif in the DOM layer above it"
+            % (what, round(vf * 100), (" (%s)" % blk) if blk else ""))
+
+    grid = mo.get("grid")
+    canv_de = None
+    if grid and gw >= 3 and gh >= 3:
+        canv_de = _ink_spread(np.asarray(grid, dtype=np.float64).reshape(gh, gw, 3))
+    canv_bits = ("canvas %.1f dE, " % canv_de) if canv_de is not None else ""
+    bits = "'%s': %spage %.1f dE%s" % (what, canv_bits, page_de, cover)
+
+    # THE PAGE IS THE VERDICT. Whatever the canvas holds, a rect that is one
+    # flat colour in the render has no motif in it, and that single condition
+    # is what caught all three of run No.40's losses. The canvas readback only
+    # says WHICH repair to make.
+    if page_de < MOTIF_FLAT_DE:
+        if canv_de is not None and canv_de >= MOTIF_FLAT_DE:
+            return "fail", (
+                bits + " -- the canvas holds the motif and the render does not, "
+                "so something is painted on top of it. Move the motif out from "
+                "under the plate, move the plate, or draw the motif above it")
+        return "fail", (
+            bits + " -- the rect is one flat colour in BOTH the canvas and the "
+            "render (floor %.1f dE), so the motif was painted out by a later "
+            "drawing operation (a void fill, a clearRect, a full-bleed "
+            "gradient) or was never drawn there at all. Draw it AFTER whatever "
+            "fills that region, and check the rect you declared" % MOTIF_FLAT_DE)
+
+    # THE RATIO, second, for the motif that is being smothered rather than
+    # buried. The page side is measured at full resolution and the canvas side
+    # on a coarse grid, so this ratio runs OPTIMISTIC by construction: it can
+    # miss a partial burial and it cannot invent one.
+    if canv_de is not None and canv_de >= MOTIF_FLAT_DE:
+        keep = page_de / canv_de
+        if page_de < canv_de * MOTIF_SURVIVE_FRAC:
+            return "fail", (
+                bits + " -- %d%% of the ink the canvas holds survives to the "
+                "render, under the %d%% floor. The slide drew it and the "
+                "composite hid it"
+                % (round(keep * 100), round(MOTIF_SURVIVE_FRAC * 100)))
+        if page_de < canv_de * MOTIF_WARN_FRAC:
+            return "warn", (bits + " -- %d%% of its canvas ink survives; it is "
+                            "being smothered" % round(keep * 100))
+    if vf is not None and vf < MOTIF_COVER_WARN:
+        return "warn", bits + " -- most of its rect is under opaque DOM"
     return "info", bits
 
 
@@ -1560,6 +1753,20 @@ def main():
                 res["warns"].append("contact shadow: " + detail)
             else:
                 res.setdefault("contacts", []).append(detail)
+
+        # DECLARED ART THAT NEVER REACHED THE SLIDE (2026-08-25). Opt-in like
+        # the contracts above, and like them the FAIL is the slide
+        # contradicting its own declaration: it says it drew a feature at a
+        # rect, and the render says the rect is flat or buried. See
+        # motif_survives() for the two instruments and their limits.
+        for mo in rec.get("motifs", []):
+            verdict, detail = motif_survives(arr, mo, design_w, design_h)
+            if verdict == "fail":
+                res["fails"].append("declared motif does not reach the slide: " + detail)
+            elif verdict == "warn":
+                res["warns"].append("motif: " + detail)
+            else:
+                res.setdefault("motifs", []).append(detail)
 
         # A MARK ON A MEASURED AXIS (2026-08-16). Opt-in like the two probes
         # above: a slide that declares no scale is not judged here. When one IS

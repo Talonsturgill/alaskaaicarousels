@@ -53,6 +53,24 @@ seed_sources:
     - {url: "https://www.reddit.com/r/anchorage",     outlet: "r/anchorage",                          credibility: "signal-only"}
     - {url: "https://news.ycombinator.com",           outlet: "Hacker News",                          credibility: "signal-only"}
 
+# WHAT REFUSES AN AUTOMATED FETCH, and the route around it where one is known.
+# A RECORD OF OBSERVATIONS, NOT A BAN LIST: try the source anyway, and when it
+# answers 403 do not spend the run rediscovering the workaround. Two scouts
+# found the Alaska Public Media route to the Beacon independently on the same
+# day, which is the cost this block exists to stop paying. Update the date when
+# a run confirms or clears one.
+refuses_automated_fetch:
+  observed: "2026-08-25 (run No.40); several of these have refused since 2026-07"
+  hosts:
+    - {host: "alaskabeacon.com",        route: "Alaska Beacon syndicates under Creative Commons and alaskapublic.org republishes most of it; search the headline there and cite the republication with the Beacon as the byline"}
+    - {host: "newsminer.com",           route: "none known; the Fairbanks story is usually also at KUAC or Alaska Public Media"}
+    - {host: "rca.alaska.gov",          route: "none known, and it is why power_collect.py reads EIA's bulk file instead. Docket filings are sometimes summarised by the utility's own newsroom"}
+    - {host: "sam.gov",                 route: "none known; a federal solicitation is normally also announced by the awarding agency's newsroom"}
+    - {host: "gvea.com",                route: "none known; board actions are reported by newsminer or KUAC"}
+    - {host: "miningnewsnorth.com",     route: "none known"}
+    - {host: "muni.org",                route: "NONE KNOWN, and this one is expensive: an Anchorage ordinance's own text and its AO number were unobtainable for No.40, which had to ship an explicit caveat instead. Assembly coverage in ADN or Alaska Public Media is the only route, and it does not carry AO numbers reliably"}
+    - {host: "anchorage.legistar.com",  route: "none known; same hole as muni.org, same caveat"}
+
 discover:
   enabled: true
   guidance: |
