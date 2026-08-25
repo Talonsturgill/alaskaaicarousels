@@ -9081,6 +9081,15 @@ def contraction_gate(rel, html):
     however it wrote. The exemption follows the CARD rather than the page, so a
     topic page is still gated on the prose it writes itself while the excerpts
     beneath it are left alone.
+
+    A URL IS AN ADDRESS, NOT PROSE (2026-08-25). The sources page prints each
+    citation's URL as visible text, and on this run one of them was the ADN's
+    own slug for an op-ed titled "public safety cannot come at the expense of
+    civil liberties". The gate read the slug as house copy and failed the build
+    on a string this repo cannot change: rewriting it would break the citation,
+    and the whole point of printing the URL is that a reader can go and check.
+    Only http(s) runs are skipped, so every sentence anyone here actually wrote
+    is still gated, including the prose that surrounds the link.
     """
     import re as _re
     if _re.fullmatch(r"archive/\d{4}-\d{2}-\d{2}/index\.html", rel):
@@ -9089,6 +9098,7 @@ def contraction_gate(rel, html):
     txt = _re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", txt)
     txt = _re.sub(r"(?s)<!--.*?-->", " ", txt)
     txt = __import__("html").unescape(_re.sub(r"<[^>]+>", " ", txt))
+    txt = _re.sub(r"https?://\S+", " ", txt)
     for m in _re.finditer(r"\bcannot\b", txt, _re.I):
         near = _re.sub(r"\s+", " ", txt[max(0, m.start() - 45):m.end() + 45]).strip()
         db.fail(f"'cannot' in visible copy on {rel}. House style writes "

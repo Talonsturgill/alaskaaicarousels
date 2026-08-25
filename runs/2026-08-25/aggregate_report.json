@@ -1,0 +1,123 @@
+{
+  "run_dir": "out/2026-08-25",
+  "render_report": "out/2026-08-25/render/render_report.json",
+  "aggregates_file": "out/2026-08-25/aggregates.json",
+  "detected": 13,
+  "declared": 12,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "750 feeds",
+      "text": "750 feeds funded. About 15 running. Hearing September 1st.",
+      "n": 750,
+      "subject": "feeds"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "15 cameras",
+      "text": "One employee. About 15 cameras.",
+      "n": 15,
+      "subject": "cameras"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "Four rules",
+      "text": "Four rules, none of them law yet.",
+      "n": 4,
+      "subject": "rules"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "two weeks",
+      "text": "Deletion after two weeks, unless it is evidence in an active investigation.",
+      "n": 2,
+      "unit": "weeks"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "THREE PUBLISHED ACCOUNTS",
+      "text": "THREE PUBLISHED ACCOUNTS WORD THIS PROVISION THREE WAYS. THE ORDINANCE TEXT IS N",
+      "n": 3,
+      "subject": "published accounts"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "THREE WAYS",
+      "text": "THREE PUBLISHED ACCOUNTS WORD THIS PROVISION THREE WAYS. THE ORDINANCE TEXT IS N",
+      "n": 3,
+      "subject": "ways"
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "5 DAYS",
+      "text": "TRAFFIC FOOTAGE \u00b7 OVERWRITTEN, 3 TO 5 DAYS \u00b7 PRACTICE (C13)",
+      "n": 5,
+      "unit": "days"
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "14 DAYS",
+      "text": "PLATE RECORDS \u00b7 DESTROYED, 14 DAYS \u00b7 PRACTICE (C12)",
+      "n": 14,
+      "unit": "days"
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "TWO WEEKS",
+      "text": "PROPOSED IN CODE \u00b7 DELETED, TWO WEEKS \u00b7 NOT IN FORCE (C15)",
+      "n": 2,
+      "unit": "weeks"
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "14 DAYS",
+      "text": "14 DAYS",
+      "n": 14,
+      "unit": "days"
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "1 DAY",
+      "text": "07 / 091 TICK = 1 DAY",
+      "n": 1,
+      "unit": "day"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "Four dates",
+      "text": "Four dates, one table",
+      "n": 4,
+      "subject": "dates"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "28 DAYS",
+      "text": "28 DAYS",
+      "n": 28,
+      "unit": "days"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 7,
+      "text": "1 TICK = 1 DAY",
+      "note": "The slide's printed scale constant, a property of the artwork rather than of the story. The axis runs 0 to 21 days across 920 design px, so one day is 43.81 px, and every mark inside the declared band is one of those days."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

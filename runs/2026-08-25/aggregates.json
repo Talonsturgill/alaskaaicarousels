@@ -1,0 +1,131 @@
+{
+  "run_date": "2026-08-25",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 1,
+      "fragment": "750 feeds",
+      "text": "750 feeds funded. About 15 running. Hearing September 1st.",
+      "member": "C07",
+      "note": "Not an aggregate. C07 states the system is designed to stream up to 750 camera feeds; the slide prints that figure straight."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "15 cameras",
+      "text": "One employee. About 15 cameras.",
+      "member": "C11",
+      "note": "Not an aggregate. C11 states about 15 cameras at launch; the slide prints that figure straight, with the word about kept."
+    },
+    {
+      "kind": "count",
+      "slide": 6,
+      "fragment": "Four rules",
+      "text": "Four rules, none of them law yet.",
+      "subject": "proposed ordinance rules",
+      "members": [
+        "C14",
+        "C15",
+        "C16",
+        "C31"
+      ],
+      "note": "The four numbered channels on the slide. The fifth channel, the Assembly approval requirement at C17, is deliberately set apart by a scotch rule and is NOT counted in the four, which is why the headline says four and the slide shows five bands."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "fragment": "two weeks",
+      "text": "Deletion after two weeks, unless it is evidence in an active investigation.",
+      "member": "C15",
+      "note": "C15's own words. Two weeks is the ordinance's stated period, not a conversion of the 14 days at C12."
+    },
+    {
+      "kind": "count",
+      "slide": 6,
+      "fragment": "THREE PUBLISHED ACCOUNTS",
+      "text": "THREE PUBLISHED ACCOUNTS WORD THIS PROVISION THREE WAYS. THE ORDINANCE TEXT IS NOT PUBLIC. (C20)",
+      "subject": "published accounts of the AI provision",
+      "members": [
+        "C17",
+        "C18",
+        "C19"
+      ],
+      "note": "Three named accounts, each a separate verified claim. C17 is the sponsor's op-ed, C18 is Alaska Public Media, C19 is the Anchorage Daily News. C20 records that they differ and that the ordinance text was not reachable."
+    },
+    {
+      "kind": "count",
+      "slide": 6,
+      "fragment": "THREE WAYS",
+      "text": "THREE PUBLISHED ACCOUNTS WORD THIS PROVISION THREE WAYS. THE ORDINANCE TEXT IS NOT PUBLIC. (C20)",
+      "subject": "wordings of the AI provision",
+      "members": [
+        "C17",
+        "C18",
+        "C19"
+      ],
+      "note": "The same three members counted as wordings rather than as outlets. One account per outlet, so the two counts agree at three by construction and do not contradict each other."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "5 DAYS",
+      "text": "TRAFFIC FOOTAGE, OVERWRITTEN, 3 TO 5 DAYS, PRACTICE",
+      "member": "C13",
+      "note": "C13 states traffic camera footage is overwritten every three to five days. The slide prints the range as a range and draws the extinction as a band across it, never as a single day."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "14 DAYS",
+      "text": "PLATE RECORDS, DESTROYED, 14 DAYS, PRACTICE",
+      "member": "C12",
+      "note": "C12 states plate records are destroyed after 14 days unless attached to a criminal case. Current department practice, labelled PRACTICE on the slide."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "TWO WEEKS",
+      "text": "PROPOSED IN CODE, DELETED, TWO WEEKS, NOT IN FORCE",
+      "member": "C15",
+      "note": "C15's own words for the proposed rule. Drawn phantom and labelled NOT IN FORCE so it is never read as the current 14 day practice at C12, even though the two periods coincide. That coincidence is the slide's whole argument."
+    },
+    {
+      "kind": "design",
+      "slide": 7,
+      "fragment": "1 DAY",
+      "text": "1 TICK = 1 DAY",
+      "note": "The slide's printed scale constant, a property of the artwork rather than of the story. The axis runs 0 to 21 days across 920 design px, so one day is 43.81 px, and every mark inside the declared band is one of those days."
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "fragment": "Four dates",
+      "text": "Four dates, one table",
+      "subject": "dated events on the Anchorage timeline",
+      "members": [
+        "C35",
+        "C34",
+        "C36",
+        "C01"
+      ],
+      "note": "August 4th the postponement request (C35), August 18th the ordinance introduced (C34), August 21st the work session (C36), September 1st the public hearing (C01). Four plinths on the slide, one per member."
+    },
+    {
+      "kind": "duration",
+      "slide": 8,
+      "fragment": "28 DAYS",
+      "text": "28 DAYS",
+      "n": 28,
+      "unit": "days",
+      "from": {
+        "claim": "C35",
+        "date": "2026-08-04"
+      },
+      "to": {
+        "claim": "C01",
+        "date": "2026-09-01"
+      },
+      "note": "The printed length of the slide's own date axis. August 4th, the postponement request (C35), to September 1st, the public hearing (C01). It is the measurement the span rule makes, not a fact about the ordinance, and it re-derives from the two endpoint claims."
+    }
+  ]
+}

@@ -142,12 +142,26 @@ DECK_PAGE = re.compile(r"archive/\d{4}-\d{2}-\d{2}/index\.html$")
 
 
 def visible(page_html, drop_svg=True):
+    """The visible PROSE of a page.
+
+    A URL IS AN ADDRESS, NOT PROSE (2026-08-25). The sources page prints each
+    citation's URL as visible text, and one of them is the ADN's own slug for
+    an op-ed titled "public safety cannot come at the expense of civil
+    liberties". Read as house copy it fails the voice rule on a string this
+    repo cannot change: rewriting a third party's URL breaks the citation, and
+    printing it is the whole point, because a reader can go and check. Only
+    http(s) runs are dropped, so every sentence anyone here wrote is still
+    read, including the prose either side of the link. site_build.py's
+    contraction_gate carries the same exclusion for the same reason; these two
+    are meant to agree, and that is why the rule is spelled out in both.
+    """
     txt = DECK_CARD.sub(" ", page_html)
     txt = re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", txt)
     if drop_svg:
         txt = re.sub(r"(?s)<svg.*?</svg>", " ", txt)
     txt = re.sub(r"(?s)<!--.*?-->", " ", txt)
-    return _html.unescape(re.sub(r"<[^>]+>", " ", txt))
+    txt = _html.unescape(re.sub(r"<[^>]+>", " ", txt))
+    return re.sub(r"https?://\S+", " ", txt)
 
 
 # ------------------------------------------------------- the published numbers

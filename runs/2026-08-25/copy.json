@@ -1,0 +1,213 @@
+{
+  "document_title": "750 Funded. About 15 Running. One Hearing.",
+  "post_copy": "750 camera feeds is the ceiling Anchorage funded for its police crime center.\n\nIt opened last September with about 15 cameras and one employee.\n\nSeven days left. Three members introduced surveillance rules on August 18th. On September 1st they share a table with a roughly $600,000 equipment contract.\n\nThe AI in the center today reads plates. The chief says police don't use facial recognition. The rule would require Assembly approval before AI powered tracking or identification is added.\n\nInside, the launch state, the four proposed rules and the retention clocks that are practice and not code.\n\nA rule is cheap to write while the machine is small. If the money passes and the rules don't, what should happen to the feeds nobody has switched on?\n\n#AnchorageAssembly #PolicingTech #AKPolitics",
+  "deck_summary_line": "Inside, the launch state, the four proposed rules and the retention clocks that are practice and not code.",
+  "caption_meta": {
+    "opening_move": "COLD NUMBER",
+    "structure": "COUNTDOWN",
+    "closing_move": "NEW:UNBUILT DEFAULT"
+  },
+  "first_comment": "Sources, primary first.\n\nAnchorage Daily News opinion by Assembly member Sydney Scout, ordinance co-sponsor, on public safety and civil liberties, August 20th. https://www.adn.com/opinions/2026/08/20/opinion-public-safety-cannot-come-at-the-expense-of-civil-liberties/\n\nAnchorage Daily News, on the proposed surveillance expansion and the members who want privacy protections first, August 20th. https://www.adn.com/alaska-news/anchorage/2026/08/20/anchorage-police-may-expand-surveillance-capabilities-some-assembly-members-want-privacy-protections-first/\n\nAlaska Public Media, on the Assembly weighing the police surveillance upgrade, August 21st. https://alaskapublic.org/news/anchorage/2026-08-21/as-anchorage-assembly-weighs-police-surveillance-upgrade-some-members-want-privacy-protections-first\n\nAlaska's News Source, on the police request to upgrade real time crime monitoring, August 5th. https://www.alaskasnewssource.com/2026/08/05/anchorage-police-seeking-upgrades-real-time-crime-monitoring/\n\nOne caveat, stated plainly. The ordinance text and its AO number were not publicly reachable while this deck was built, so every description of the ordinance here comes from a reporter or from its co-sponsor, never from statute. Slide 06 uses the co-sponsor's own wording for the AI provision and says so on the slide.\n\nEvery Alaska AI decision this page tracks, with its live deadline, sits at https://alaskaaihq.com\n\nIf you have read the ordinance itself or sat in the August 21st work session, add what is missing here.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "Anchorage Assembly · Public hearing September 1st",
+      "headline": "750 feeds funded. About 15 running. Hearing September 1st.",
+      "body": "",
+      "labels": [
+        "750 IS DESIGNED FEED CAPACITY (C07). ABOUT 15 IS THE CAMERA COUNT AT LAUNCH (C11). DIFFERENT UNITS.",
+        "1 PAD = 1 FUNDED FEED"
+      ],
+      "claim_ids": [
+        "C01",
+        "C07",
+        "C11"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "September 2025 · What opened",
+      "headline": "One employee. About 15 cameras.",
+      "body": "The Real Time Crime Center opened at police properties and Town Square Park. The Assembly had already approved $11.8 million for a system designed to stream up to 750 feeds. The room was one person.",
+      "labels": [
+        "ONE EMPLOYEE",
+        "CELL 0016, NOT LIT",
+        "1 PAD = 1 FUNDED FEED, 1:1"
+      ],
+      "claim_ids": [
+        "C05",
+        "C07",
+        "C11"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "The published inventory",
+      "headline": "Most of the cameras already exist.",
+      "body": "The center is separate from dispatch. It is used once a call comes in, to help officers respond, the police chief says. (C33)",
+      "labels": [
+        "MORE THAN 250 · CITY TRAFFIC CAMERAS (C08)",
+        "ROUGHLY 216 · RESIDENTS REGISTERED THEIRS (C09)",
+        "GIVEN, NOT TAKEN · RESIDENTS, NOT CAMERAS (C10)",
+        "ABOUT 15 · RUNNING AT LAUNCH (C11)",
+        "OFFICER-WORN, DRONES, PLATE READERS",
+        "NO PUBLISHED COUNT",
+        "THESE DO NOT ADD TO 750. DIFFERENT UNITS, NO SUM. (C07)",
+        "1 MARK = 1 CAMERA"
+      ],
+      "claim_ids": [
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C33"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "What the system does today",
+      "headline": "The AI in this system reads plates.",
+      "body": "",
+      "labels": [
+        "IN USE",
+        "Object recognition on the license plate readers, the police chief says.",
+        "CURRENT PRACTICE (C24)",
+        "NOT USED",
+        "Facial recognition. The department does not use it, the chief says.",
+        "THE ASSEMBLY PLACED STRICT LIMITS ON IT IN 2023 (C21, C26)",
+        "UNKNOWN",
+        "Whether object recognition data can be transmitted through the system at all.",
+        "THE CHIEF SAYS THAT IS UNKNOWN (C25)",
+        "1 PAD, CELL 0016",
+        "SOLID, IN FORCE. DASHED, NOT YET OR UNKNOWN.",
+        "STATE, NOT SIZE. COLUMNS ARE EQUAL.",
+        "STATE, NOT SIZE"
+      ],
+      "claim_ids": [
+        "C21",
+        "C24",
+        "C25",
+        "C26"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "Sydney Scout · Ordinance co-sponsor",
+      "headline": "",
+      "body": "\"Let's put this into code now, so that when power changes, when the political winds shift, as they always do, we have protections for the people, no matter who is overseeing and implementing the system.\"",
+      "labels": [
+        "TO ALASKA PUBLIC MEDIA, AUGUST 21ST (C32)",
+        "1 SENTENCE"
+      ],
+      "claim_ids": [
+        "C32"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "Introduced August 18th · Not in force",
+      "headline": "Four rules, none of them law yet.",
+      "body": "",
+      "labels": [
+        "A case number for every search of surveillance data.",
+        "Deletion after two weeks, unless it is evidence in an active investigation.",
+        "No footage to out of state or federal agencies without a warrant.",
+        "Plate readers only for traffic enforcement and justifiable tracking, like missing kids or stolen vehicles.",
+        "Assembly approval before adding new surveillance capabilities, including AI powered tracking or identification technology.",
+        "CO-SPONSOR SYDNEY SCOUT'S OWN DESCRIPTION, NOT THE TEXT",
+        "THREE PUBLISHED ACCOUNTS WORD THIS PROVISION THREE WAYS. THE ORDINANCE TEXT IS NOT PUBLIC. (C20)",
+        "INTRODUCED BY · McCORMICK · SCOUT · VOLLAND (C34)",
+        "1 CHANNEL = 1 PROVISION"
+      ],
+      "claim_ids": [
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C20",
+        "C31",
+        "C34"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "How long things are kept",
+      "headline": "The clock barely changes. Who can change it does.",
+      "body": "\"When my constituents ask, 'What are we collecting? Who can see it? How long do we keep it?' Anchorage code can't answer any of those questions.\"",
+      "labels": [
+        "TRAFFIC FOOTAGE · OVERWRITTEN, 3 TO 5 DAYS · PRACTICE (C13)",
+        "PLATE RECORDS · DESTROYED, 14 DAYS · PRACTICE (C12)",
+        "PROPOSED IN CODE · DELETED, TWO WEEKS · NOT IN FORCE (C15)",
+        "14 DAYS",
+        "TODAY THESE ARE DEPARTMENT PRACTICE, NOT CODE.",
+        "KEITH McCORMICK, ASSEMBLY MEMBER (C29)",
+        "1 TICK = 1 DAY"
+      ],
+      "claim_ids": [
+        "C12",
+        "C13",
+        "C15",
+        "C29"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "Four dates, one table",
+      "headline": "The money and the rule arrive on the same day.",
+      "body": "Roughly $600,000 to ThunderCat Technology for video displays, sound equipment and video processing technology, from fine and forfeiture funds. The system it upgrades was approved at $11.8 million (C05).",
+      "labels": [
+        "03",
+        "02",
+        "01",
+        "01 · AUGUST 4TH · POSTPONEMENT ASKED (C35)",
+        "02 · AUGUST 18TH · ORDINANCE INTRODUCED (C34)",
+        "03 · AUGUST 21ST · WORK SESSION (C36)",
+        "04 · SEPTEMBER 1ST · PUBLIC HEARING (C01)",
+        "ON THE TABLE SEPTEMBER 1ST (C02, C03, C04)",
+        "HEIGHT IS SEQUENCE, NOT SIZE.",
+        "28 DAYS",
+        "1 PLINTH = 1 DATED EVENT"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C34",
+        "C35",
+        "C36"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "The rule is still cheap to write.",
+      "body": "Ask your Assembly member which of the four they will vote for on September 1st.",
+      "labels": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "SOURCES IN COMMENTS",
+        "ALASKAAIHQ.COM",
+        "1 PAD = 1 FUNDED FEED"
+      ],
+      "claim_ids": [
+        "C01",
+        "C07"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post it today if the morning allows. Tuesday through Thursday, 8 to 11am Alaska time, is the strongest window, and the caption says seven days left, which is only true on August 25th. If it slips to Wednesday, the caption's count line has to move with it.",
+    "Paste the sources comment within 60 seconds of posting, before the first reader lands. It carries the caveat that the ordinance text was not publicly reachable, and that caveat should never arrive after a reader has already asked.",
+    "Reply to every comment in the first 60 to 90 minutes. That window decides how far the deck travels, and this topic will pull both police supporters and privacy readers.",
+    "If a commenter says the crime center already runs facial recognition, correct it with the chief's own words. The AI in the system today reads plates, the department says it does not use facial recognition, and the chief says it is unknown whether object recognition data can move through the system at all.",
+    "If someone asks for the ordinance's exact wording, say plainly that the text was not public when this was built and that slide 06 quotes the co-sponsor's description. Do not paraphrase it into something firmer.",
+    "Watch the Assembly agenda for September 1st once it posts. A postponement, an amendment or an AO number is the follow up post, and it is also the docket update.",
+    "Note saves and comments at 48 hours. This is the first deck built on a countdown structure with a cold number opener, so the number matters to the caption ledger."
+  ],
+  "editor_notes_for_email": "The ordinance text and its AO number were never publicly reachable during this run. anchorage.legistar.com returned an invalid parameters error and muni.org carried no September 1st agenda, so no AO number appears in the deck, the caption or the first comment. Every description of the ordinance in this deck is a description by a reporter or by its co-sponsor, never statutory language, and nothing about the ordinance is set in quotation marks as the ordinance's own words. Slide 06 prints Assembly member Sydney Scout's wording for the AI provision, taken from her signed op-ed, with her attribution directly beneath it and the C20 footnote on the same slide saying three published accounts word the provision three ways. The phrase 'human feature recognition' is the ADN reporter's sentence rather than the ordinance's, so it appears nowhere in the deck, the caption or the sources comment, deliberately."
+}
