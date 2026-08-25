@@ -8,19 +8,19 @@
   "research": "done",
   "claims": "done",
   "docket": "done",
-  "gas_watch": "done (pre-ship pass; re-run after Phase 11 rebuild)",
+  "gas_watch": "done (pre-ship pass and post-rebuild re-read; page check PASS, read only, nothing written)",
   "selection": "done",
   "directors_room": "done",
   "copy": "done",
   "art_build": "done",
-  "pixel_review": "round 3 + flow review in flight",
-  "flow_review": "pending",
-  "assemble": "re-run after fix round 1",
-  "scoring": "pending",
-  "ship": "pending",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "pixel_review": "done (3 fix rounds, all hard fails cleared)",
+  "flow_review": "done",
+  "assemble": "done (vector PDF, contact sheet, 432px thumbs)",
+  "scoring": "done: 8.66 against threshold 7.7, zero hard fails, weakest criterion artwork craft at 7",
+  "ship": "done: PR #318 merged to main as 2c26f86; ledger correction e5dc9ef",
+  "upgrade": "done: window.__akMotifs artwork-survival gate and points count assertions, both with red-case verifiers",
+  "gmail": "done: draft r7728256822257551599 in docket@alaskaaihq.com",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-08-25/plan.md",
@@ -124,5 +124,14 @@
   "pr": 318,
   "state": "all six checks green at 05ac661",
   "note": "Two checks were red on the FIRST push and both were pre-existing failures on origin/main, verified by running each self-test in a clean worktree of the base branch. Both were the same defect class as the docket call-to-action this run had already fixed: a check asserting a frozen conclusion instead of measuring the property it means to assert. ask_corpus's ghost-numeral list carried its premise in a comment and failed once a docket item picked up the phrase 'more than 300 organizations'; ask_engine counted only the rendered cards against a list capped at 20 while the page honestly prints 'N more on the record below', so it went red the day the docket passed twenty items; and it expected a hardcoded /20 decisions/. All three now derive from the record."
+ },
+ "delivery": {
+  "merge_commit": "2c26f86",
+  "followup_commit": "e5dc9ef",
+  "gmail_draft_id": "r7728256822257551599",
+  "gmail_message_id": "1a03aaf27a8d3661",
+  "raw_urls_verified": "slide-01.webp 200/281698, slide-09.webp 200/222450, carousel.pdf 200/4325819",
+  "subscriber_email": "one Buttondown send this run: '2 Alaska AI decisions land in the next few days' (ANA AI3 deadline August 27th, Anchorage hearing September 1st). Logged in ledger/alerts.json; the no-repeat ledger holds.",
+  "caption_date_binding": "the caption's 'Seven days left' is true on August 25th only. Posting later needs that line recounted against the September 1st hearing."
  }
 }
