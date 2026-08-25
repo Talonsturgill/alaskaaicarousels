@@ -1485,8 +1485,8 @@
         "scripts/site_signoff.py"
       ],
       "verification": "verified the gate still fires on prose, still fires on prose sitting beside a URL, and is silent on the URL alone; site_signoff --self-test clean, which owns the red cases for this rule; site sign-off PASS 18 of 18",
-      "rollback": "revert the two visible()/contraction_gate hunks",
-      "commit": "pending"
+      "rollback": "git revert c22096c touches the whole run; to drop just this, revert the contraction_gate hunk in scripts/site_build.py and the visible() hunk in scripts/site_signoff.py. Both carry the same comment and are meant to agree.",
+      "commit": "c22096c"
     },
     {
       "run_date": "2026-08-25",
