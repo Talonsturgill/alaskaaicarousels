@@ -205,6 +205,16 @@ def validate(items):
             parse_date(d["date"], i)
             if d.get("kind") not in DATE_KINDS:
                 fail(f"{i}: key_date kind {d.get('kind')!r}")
+        # Rule 6: the call to action's verb is data, and a closed set. This is
+        # a gold button on a public tracker telling a person how to take part,
+        # so an unrecognised verb is a build failure and never a page that
+        # improvises one.
+        if "cta_label" in it and it["cta_label"] not in CTA_LABELS:
+            fail(f"{i}: cta_label {it['cta_label']!r}, "
+                 f"want one of {sorted(CTA_LABELS)}")
+        if "cta_when" in it and it["cta_when"] not in CTA_WHENS:
+            fail(f"{i}: cta_when {it['cta_when']!r}, "
+                 f"want one of {sorted(CTA_WHENS)}")
         why = fake_location(it.get("location"))
         if why:
             fail(f"{i}: {why}.")
@@ -287,6 +297,49 @@ def next_event(it, today):
 # body's vote behind a COMMENT NOW button. Kept as an alias so nothing breaks,
 # but new code should say which of the two it means.
 next_date = next_event
+
+
+# ---------- the call to action names the action ----------
+#
+# Rule 6, added 2026-08-25. The button's VERB was a constant, "COMMENT NOW",
+# and its date word was a constant, "CLOSES". Every item whose access is open
+# got both, because until now every open item really was a written comment
+# window. The Anchorage crime-center ordinance is not: what is open there is a
+# public hearing on September 1st, where a person SPEAKS. Rendering that as
+# COMMENT NOW, CLOSES SEP 1 tells a reader to file something in writing before
+# a date, which is not what the record supports and is the same class of error
+# as the August 13th button, a confident sentence about how to participate that
+# the item's own sources do not say.
+#
+# So the verb is data. An item may name its own, and anything that does not is
+# byte-identical to what it rendered before. Both halves are closed sets, not
+# free text, because this string is read back by scripts/docket_dates_check.py
+# and reader copy on a public tracker is not a place for improvisation.
+CTA_LABELS = {"COMMENT NOW", "TESTIFY"}
+CTA_WHENS = {"CLOSES", "ON"}
+CTA_LABEL_DEFAULT = "COMMENT NOW"
+CTA_WHEN_DEFAULT = "CLOSES"
+
+
+def cta_words(it):
+    """The verb and the date word for this item's call to action."""
+    label = it.get("cta_label") or CTA_LABEL_DEFAULT
+    when = it.get("cta_when") or CTA_WHEN_DEFAULT
+    return label, when
+
+
+def cta_html(it, r, esc, mon_day, cls):
+    """The call to action, one implementation for both surfaces. site_build.py
+    had its own copy of this string, which is how the verb came to be wrong in
+    two files at once."""
+    if not r["cta"]:
+        return ""
+    label, when = cta_words(it)
+    tail = (f' &middot; {when} {mon_day(r["deadline"]["date"]).upper()}'
+            if r["deadline"] else "")
+    return (f'<div class="ctarow act"><a class="cta {cls}" '
+            f'href="{esc(it["sources"][0]["url"])}" rel="noopener">'
+            f'{label}{tail}</a></div>')
 
 
 def action_deadline(it, today):
@@ -842,15 +895,12 @@ def item_html(it, today, num, prefix=""):
         f'<a href="{esc(s["url"])}" rel="noopener">{esc(s["outlet"])}</a>' for s in it["sources"])
     hist = it["history"][-1] if it["history"] else None
     hist_html = (f'<div class="hist">{esc(hist["date"])} &middot; {esc(hist["note"])}</div>' if hist else "")
-    act = ""
-    if r["cta"]:
-        # Rule 2: this label reads its own action's deadline and nothing else.
-        # Rule 3: no deadline, no date. A call to action with no date is fine;
-        # one with a confident wrong date is the thing being fixed here.
-        when = (f' &middot; CLOSES {mon_day(r["deadline"]["date"]).upper()}'
-                if r["deadline"] else "")
-        act = (f'<div class="ctarow act"><a class="cta gold sm" href="{esc(it["sources"][0]["url"])}" '
-               f'rel="noopener">COMMENT NOW{when}</a></div>')
+    # Rule 2: this label reads its own action's deadline and nothing else.
+    # Rule 3: no deadline, no date. A call to action with no date is fine;
+    # one with a confident wrong date is the thing being fixed here.
+    # Rule 6: the verb comes from the item, because not every open room is a
+    # written comment window.
+    act = cta_html(it, r, esc, mon_day, "gold sm")
     return f"""<article class="item a-{r["access"]}" id="{esc(it["id"])}" data-reveal>
   <div class="doorcol">{door_svg(r["access"])}<span class="num">{num:02d}</span></div>
   <div class="body">

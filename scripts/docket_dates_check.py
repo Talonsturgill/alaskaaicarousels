@@ -57,7 +57,16 @@ MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July",
 # a prose sentence that omits the year still matches.
 PROSE_DATE = re.compile(
     r"\b(" + "|".join(m[:3] for m in MONTH_NAMES) + r")[a-z]*\.?\s+(\d{1,2})\b")
-CTA_RE = re.compile(r"COMMENT NOW(?:\s*&middot;\s*CLOSES\s+([A-Z]{3}\s+\d{1,2}))?")
+# The call to action's VERB became data on 2026-08-25 (docket_build rule 6), so
+# this matches either label and either date word. Both halves are closed sets in
+# docket_build.CTA_LABELS / CTA_WHENS, and they are spelled out here rather than
+# imported so the check keeps its own independent idea of what may render. The
+# capture group is still, and only, the DATE, so every assertion below is
+# unchanged in strength: what is checked is that the button shows this item's
+# own action deadline and no other.
+CTA_RE = re.compile(
+    r"(?:COMMENT NOW|TESTIFY)"
+    r"(?:\s*&middot;\s*(?:CLOSES|ON)\s+([A-Z]{3}\s+\d{1,2}))?")
 CHIP_RE = re.compile(r'<span class="chip days" data-date="(\d{4}-\d{2}-\d{2})">'
                      r'([a-z]+)\s+([A-Z]{3}\s+\d{1,2})</span>')
 

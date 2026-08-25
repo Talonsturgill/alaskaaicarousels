@@ -6713,13 +6713,11 @@ def decision_page(today, site_url, it, runs, beats=()):
     canonical = f"{site_url}/docket/{it['id']}/"
 
     chip = db.chip_html(r)
-    act = ""
-    if r["cta"]:
-        when = (f' &middot; CLOSES {db.mon_day(r["deadline"]["date"]).upper()}'
-                if r["deadline"] else "")
-        act = (f'<div class="ctarow act"><a class="cta gold" '
-               f'href="{esc(it["sources"][0]["url"])}" rel="noopener">'
-               f'COMMENT NOW{when}</a></div>')
+    # Rule 6 (2026-08-25): the verb and the date word come from the item, via
+    # the one implementation in docket_build. This string used to be written
+    # out twice, here and there, so "COMMENT NOW" was wrong in two files at
+    # once for the item whose open room is a hearing rather than a comment box.
+    act = db.cta_html(it, r, esc, db.mon_day, "gold")
 
     # Sources, all of them, with the primary ones marked. The docket page shows
     # outlet names inline; this page is the record, so it shows the documents.
