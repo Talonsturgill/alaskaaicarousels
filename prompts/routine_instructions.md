@@ -833,6 +833,24 @@ type spec. Craft expectations:
   under where the object sits, cast into afterwards. Same class of error on
   the silhouette: a light stroke centred on a light object's boundary puts
   half its width on paper it matches, so outside-align it onto the dark side.
+  **MEASURE THE PAIR, NEVER COMPUTE IT** (2026-08-26). Run No.41 wrote five of
+  nine declarations off camera arithmetic and got them wrong the same way: the
+  ground rect directly BELOW the shadow rect, which lands it on the lit pool's
+  dark edge while the shadow sits near the pool's bright centre, three of them
+  measuring NEGATIVE separation, one of them 118px from where the marker
+  actually drew. Render the slide first, then run
+  `python3 scripts/contact_probe.py --render-dir <render> --slide N --base cx,cy`
+  with the object's own base point; it profiles that line, finds the cast
+  trough and the pool peak, and prints the `data-contacts` entry to paste. Use
+  `--slides-dir <slides> --verify` to read back every declaration a built deck
+  already carries. It reports in qa.py's own colour space at qa.py's own feed
+  width, so its number IS the gate's number.
+  **AND THE FLOOR IS NOT A TARGET.** The same run answered a failing 4.0 L*
+  floor by widening pools and deepening casts until they measured plus thirty,
+  and five critics read the result as a detached black hole inside a spotlight
+  with no light source. If a contact reads, stop. The probe prints how far the
+  cast sits from the object's base for exactly this reason: a contact shadow is
+  ATTACHED, and a gap is what reads as a hole.
 
 - EVERY DRAFTING LEADER IS A WORLD-COORDINATE POLYLINE THAT ENDS ON ITS
   TARGET'S OWN COORDINATES, declared in `window.__akLeaders` as

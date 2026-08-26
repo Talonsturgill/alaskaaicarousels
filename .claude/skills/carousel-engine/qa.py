@@ -1754,6 +1754,35 @@ def main():
             else:
                 res.setdefault("contacts", []).append(detail)
 
+        # A CIRCULAR RAMP POURED INTO AN ELLIPSE (2026-08-26). Not a
+        # declaration check: nothing is opted into here, the drawing itself is
+        # observed as it happens (render.py's GRADIENT_CLIP_HOOK_JS, which
+        # states the three conditions and the two thresholds). A WARN rather
+        # than a FAIL because the reading is geometric and an author may want a
+        # hard edge; what is not defensible is wanting one by ACCIDENT, six
+        # slides at a time, which is what run No.41 shipped into an editing
+        # round. The remedy is one line and is printed with the finding.
+        for gc in rec.get("gradient_clips", []):
+            try:
+                res["warns"].append(
+                    "circular gradient poured into an ellipse at (%d,%d): the ramp "
+                    "runs to r=%g and the ellipse is %gx%g, so the paint stops on "
+                    "the short axis while the ramp still carries alpha %.2f "
+                    "(alpha %.2f at the long axis) and leaves a hard arc%s. "
+                    "Canvas has no elliptical gradient: draw a CIRCLE inside a "
+                    "transform instead -- save(); translate(%d,%d); "
+                    "scale(%.3f,%.3f); build the ramp on r=%g about (0,0) and "
+                    "arc(0,0,%g,0,2*PI); restore()."
+                    % (gc["cx"], gc["cy"], gc["r1"], gc["rx"], gc["ry"],
+                       gc["a_short"], gc["a_long"],
+                       "" if gc.get("n", 1) < 2 else " (%d fills like this)" % gc["n"],
+                       gc["cx"], gc["cy"],
+                       gc["rx"] / max(gc["rx"], gc["ry"]),
+                       gc["ry"] / max(gc["rx"], gc["ry"]),
+                       max(gc["rx"], gc["ry"]), max(gc["rx"], gc["ry"])))
+            except Exception as e:  # a malformed record must never stop QA
+                res["warns"].append("gradient-clip record unreadable (%s)" % e)
+
         # DECLARED ART THAT NEVER REACHED THE SLIDE (2026-08-25). Opt-in like
         # the contracts above, and like them the FAIL is the slide
         # contradicting its own declaration: it says it drew a feature at a

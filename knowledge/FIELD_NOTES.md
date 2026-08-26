@@ -4701,3 +4701,65 @@ abstract writes "machine-learning" hyphenated, and NSF files the award under
 its Artificial Intelligence program. The fact-checker reversed it. The deck is
 five projects across six awards and 18,647,929 obligated, not four and
 17,059,782.
+
+---
+
+## 2026-08-26 - Phase 12 (No.41): three of the run's four scars now have machinery
+
+Each of the three lessons above got a check or a tool, so the next run does not
+pay for them again. Under a five round cap an upgrade is only worth its slot if
+it makes the FIRST build correct.
+
+- **The circular-ramp-in-an-ellipse defect is now caught while the slide
+  draws.** render.py wraps `createRadialGradient`, `addColorStop`, `ellipse`
+  and `fill`, and qa.py WARNs with the exact `scale()` to write instead. It
+  fires only when the fill is one ellipse, the ramp's last stop is transparent
+  (a fade was intended) and the alpha at the short axis is materially above the
+  alpha at the long axis, so a deliberately hard-edged ellipse stays silent.
+  Run its reconstruction with `python tests/gradient_clip_verify.py`.
+  **It found two live instances in No.41's own shipped slide 08** that the run
+  believed it had fixed everywhere. This idiom is more common than anyone
+  thought; assume you have written it somewhere.
+- **A contact declaration is now MEASURED, by `scripts/contact_probe.py`.**
+  Point it at the render and the object's base point and it profiles that line
+  at qa.py's feed width in qa.py's colour space, finds the cast trough and the
+  lit-pool peak, and prints the entry to paste. `--verify` reads back a built
+  deck's declarations. Its numbers are the gate's numbers by construction (it
+  imports qa.py), which the test holds to 0.1 L*. It also prints how far the
+  cast sits from the object's base, because the "detached black hole" defect is
+  a STRUCTURAL one that no single dL threshold can see: on this run's own
+  slides a good contact measured anywhere from 11.5 to 43.8 dL, so there is no
+  honest ceiling to gate on, only a shape to look at.
+- **A dossier now ends where the deck starts talking again.** dossier_check's
+  splitter bounds the last slide's section at the next top-level heading that
+  is not a slide, so a BUILD RECONCILIATION or GATE STATUS section at the foot
+  of the storyboard is deck prose again and not slide 09's plan. Write deck
+  sections wherever they read best.
+
+### PARKED, from the frontier scan (focus (c), procedural art)
+
+Neither is applied; both are bounded and cheap if a future run wants them.
+
+- **The second domain warp.** `assets/js/noise.js` `warp2()` implements exactly
+  stage two of Inigo Quilez's recipe, `fbm(p + 4*q)` with the canonical offsets
+  (5.2, 1.3). The article's stage three, `r = [fbm(p + 4q + (1.7,9.2)),
+  fbm(p + 4q + (8.3,2.8))]` then `fbm(p + 4r)`, is six more lines of the same
+  arithmetic and is what produces the marbled, current-like structure that
+  reads as a natural process rather than as noise. Parked rather than applied
+  because it changes what every existing `warp2` caller draws unless it lands
+  as a separate `warp3`, and that is a variety-engine decision, not a Phase 12
+  one. https://iquilezles.org/articles/warp/
+- **`shadowBlur` is not affected by the current transformation matrix**, unlike
+  every path coordinate around it. A slide that scales the context and then
+  sets `shadowBlur` gets a blur radius in the wrong units, which is a plausible
+  cause of a soft edge that looks right at one scale and wrong at another. Not
+  yet observed in a shipped slide here, so nothing was built; worth suspecting
+  first if a shadow's softness ever refuses to track its object.
+  https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur
+- Also confirmed rather than learned: the scrim (an elliptical gradient behind
+  type) is the standard answer to text over illustration, and the standard
+  implementation of an elliptical gradient on Canvas is a rescaled circle,
+  because the platform has no other. Two independent sources say the same thing
+  the run learned the expensive way.
+  https://www.smashingmagazine.com/2023/08/designing-accessible-text-over-images-part2/
+  http://rectangleworld.com/blog/archives/169

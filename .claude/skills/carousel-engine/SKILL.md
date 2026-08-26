@@ -134,6 +134,13 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
                          "ground":[[236,1248,608,30]]}]'>
   ```
 
+  Do not compute those rects off camera arithmetic; MEASURE them off the
+  render with `scripts/contact_probe.py` (2026-08-26). It profiles the object's
+  own base line at qa.py's feed width in qa.py's colour space, finds the cast
+  trough and the lit-pool peak, and prints the entry to paste:
+  `--render-dir <render> --slide N --base cx,cy` to propose one,
+  `--slides-dir <slides> --verify` to read back what a built deck declares.
+
   Same rect grammar as `data-encodes`. qa.py takes the median CIELAB L* of
   each region AT 432px WIDE and **FAILS below 4.0 L\* of separation**, WARNs
   below 8.0. OPT-IN like the encoding contract, but unlike it this one is a
@@ -285,6 +292,21 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   element's background COLOUR, so a plate whose fill is only a background-image
   over a transparent colour is not counted as blocking. Reconstruction:
   `python tests/motif_survives_verify.py`.
+- **Canvas has no elliptical gradient** (2026-08-26), so do not write one.
+  `createRadialGradient` is a CIRCLE; pour it into `ctx.ellipse(cx,cy,rx,ry)`
+  with `rx != ry` and the paint stops on the short axis while the ramp is still
+  carrying alpha, which draws a hard arc across the ground. Run No.41 added a
+  type reserve to six slides that way and four pixel critics called the arc the
+  most conspicuous thing in the frame. The idiom is a circle inside a
+  transform, which this deck's lit pools already use:
+  `save(); translate(cx,cy); scale(rx/R, ry/R);` build the ramp on `R` about
+  the origin, `arc(0,0,R,0,2*Math.PI)`, `fill(); restore()`.
+  render.py watches the drawing happen and qa.py **WARNs** with the exact
+  `scale()` to write, when the fill is one ellipse, the ramp's last stop is
+  transparent (so a fade was intended) and the alpha standing at the short axis
+  is materially above the alpha at the long axis. A deliberately hard-edged
+  ellipse is clipped equally on both axes and is not reported. Reconstruction:
+  `python tests/gradient_clip_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without
