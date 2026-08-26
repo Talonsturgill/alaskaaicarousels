@@ -1,0 +1,49 @@
+{
+  "run_date": "2026-08-26",
+  "carousel_no": 41,
+  "date_note": "Woke 07:20 UTC on 2026-08-26, which is 23:20 AKDT on August 25th. runs/2026-08-25/ already holds run No.40's shipped artifacts, so per the routine's date rule this run takes the first date with no runs/<date>/ directory, 2026-08-26, which is the date Anchorage rolls into within the hour.",
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done (showrunner read the contact sheet in place of a flow-critic round, per the five round cap)",
+    "assemble": "done",
+    "scoring": "in_progress",
+    "ship": "in_progress",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "plan": "out/2026-08-26/plan.md",
+    "field_notes": "knowledge/FIELD_NOTES.md (2026-08-26 craft refresh entry)",
+    "site_signoff": "PASS, 85 pages, 18 checks (checkers run against published docs/)",
+    "gaswatch_pagecheck": "PASS, read 2026-08-25, 21 days on record, chart present",
+    "docket_refresh": "ledger/docket.json, 16 items re-verified, worklist empty",
+    "scout_merge": "out/2026-08-26/scout_merge.md",
+    "selection": "out/2026-08-26/selection.md",
+    "claims": "out/2026-08-26/claims.json (48 claims, 47 primary, claims_check PASS)",
+    "storyboard": "out/2026-08-26/storyboard.md (9 dossiers PASS, BUILD RECONCILIATION above SLIDE 01)",
+    "slides": "out/2026-08-26/slides/slide-01..09.html",
+    "render": "9/9 OK, 0 page errors",
+    "machine_qa": "PASS, 0 fails on all nine slides (12 fails cleared this phase)",
+    "bespoke": "PASS, median pairwise art similarity 0.174, drawn share 74%",
+    "aggregates": "out/2026-08-26/aggregates.json, aggregate_check PASS, 16 detected 16 declared",
+    "assemble": "out/2026-08-26/final, vector pdf 13.54 MB, contact sheet, 9 thumbs"
+  },
+  "notes": {
+    "fact_checker_reversal": "The showrunner killed NSF award 2536745 (FIRE-WUI) after a regex over its abstract found no AI terms. The regex searched for the two-word form and the abstract writes machine-learning hyphenated, and NSF files the award under its Artificial Intelligence (AI) program with progRefCode 075Z. The fact-checker reversed the kill. Deck is five projects across six awards and 18,647,929 obligated dollars, not four and 17,059,782. No slide may state that an award was examined and excluded.",
+    "c46_enumeration": "C46 was enriched during the art build with the fifteen UAF headlines and their dates. Slide 08 draws one square per headline at its TRUE date on a declared measured axis, so the dates became load-bearing and had to be in the record. The showrunner re-fetched the same primary URL and got exactly fifteen headlines across August 9th to August 21st, with the August 11th AI headline matching C47's verbatim character for character. Count and conclusion unchanged; only the supporting detail is now written down.",
+    "dossier_check_limit": "dossier_check runs the LAST slide's section to end of file, so any deck-level section placed after SLIDE 09 is parsed as part of SLIDE 09's dossier. The BUILD RECONCILIATION section's description of the contact-shadow fixes made slide 09 fail a promise it never made. Worked around by putting the section above SLIDE 01. For Phase 12.",
+    "five_round_cap": "Owner capped editing at five rounds after the first render, mid-run, and named the reason: judges were becoming a token burning crutch masking inefficiencies. Written into prompts/routine_instructions.md at the head of Phase 8 as authoritative. Round 5 was the contrast fix; the flow-critic round was replaced by the showrunner reading the contact sheet, which is how slide 07's rust-red ramp regression was caught.",
+    "subscriber_email_sent": "scripts/docket_alerts.py SENT one Buttondown subscriber email during Phase 11: 'The Dixon Glacier diversion into Bradley Lake, deadline in 2 days', key bradley-lake-dixon-diversion/near/2026-08-28. The API key is provisioned under the env var 'Buttondown', not 'BUTTONDOWN_API_KEY', so a check of the documented name alone reads as unset and the step looks like a SKIP when it is a live send. Flagged to the owner. For Phase 12: the script should print which env var it found and name the list before sending."
+  }
+}

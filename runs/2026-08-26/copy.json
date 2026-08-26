@@ -1,0 +1,615 @@
+{
+  "run_date": "2026-08-26",
+  "document_title": "Five Surfaces",
+  "caption": "Alaska's coastlines, rivers and lakes get their depth read out of satellite imagery starting September 1st.\n\nThe air above them gets a model for the weather windows safe enough for a prescribed burn. The ground under them gets one that forecasts landslides. Coal refuse and ash get read for critical minerals. Concealed rock gets searched for ore nobody has found.\n\nSix National Science Foundation awards to University of Alaska campuses obligate $18,647,929 down that column.\n\nEach award's obligated dollars beside its end date, what the five models read, and the fifteen UAF headlines from August 9th to August 21st that name none of the six.\n\nErin Trochim's water award ends August 31st, 2027. The rock award runs to July 31st, 2036. Who pays to keep a model running after its award ends?\n\n#AlaskaResearch #CriticalMinerals #Geohazards",
+  "post_copy": "Alaska's coastlines, rivers and lakes get their depth read out of satellite imagery starting September 1st.\n\nThe air above them gets a model for the weather windows safe enough for a prescribed burn. The ground under them gets one that forecasts landslides. Coal refuse and ash get read for critical minerals. Concealed rock gets searched for ore nobody has found.\n\nSix National Science Foundation awards to University of Alaska campuses obligate $18,647,929 down that column.\n\nEach award's obligated dollars beside its end date, what the five models read, and the fifteen UAF headlines from August 9th to August 21st that name none of the six.\n\nErin Trochim's water award ends August 31st, 2027. The rock award runs to July 31st, 2036. Who pays to keep a model running after its award ends?\n\n#AlaskaResearch #CriticalMinerals #Geohazards",
+  "deck_summary_line": "Each award's obligated dollars beside its end date, what the five models read, and the fifteen UAF headlines from August 9th to August 21st that name none of the six.",
+  "caption_meta": {
+    "opening_move": "MAP MOVE",
+    "structure": "ZOOM",
+    "closing_move": "NEW:AFTER THE CLOCK",
+    "hook_chars": 107,
+    "total_chars": 838
+  },
+  "hashtags": [
+    "#AlaskaResearch",
+    "#CriticalMinerals",
+    "#Geohazards"
+  ],
+  "first_comment": "Sources, primary first. Every dollar figure below is OBLIGATED money from the National Science Foundation award record and not total project value.\n\nNSF award 2630206. Satellite derived bathymetry and river profiles. 50,000 obligated. https://www.nsf.gov/awardsearch/showAward?AWD_ID=2630206\n\nNSF award 2536745. A fire weather toolkit for controlled burning in Alaska. 1,588,147 obligated. https://www.nsf.gov/awardsearch/showAward?AWD_ID=2536745\n\nNSF award 2614749. Critical mineral recovery from coal refuse and ash at Anchorage. 3,824,575 obligated. https://www.nsf.gov/awardsearch/showAward?AWD_ID=2614749\n\nNSF award 2614751. The same project at Fairbanks. 913,037 obligated. https://www.nsf.gov/awardsearch/showAward?AWD_ID=2614751\n\nNSF award 2608510. GAIA, geophysical AI driven integration and assimilation. 1,772,170 obligated. https://www.nsf.gov/awardsearch/showAward?AWD_ID=2608510\n\nNSF award 2532372. The NSF Critical Mineral Accelerator Engine in Alaska. 10,500,000 obligated of a 15,000,000 estimated total on a ten year cooperative agreement. https://www.nsf.gov/awardsearch/showAward?AWD_ID=2532372\n\nSix awards and 18,647,929 obligated. Five projects, because 2614749 and 2614751 carry one title across two campuses. Three of the projects are collaborative and this total is the University of Alaska share.\n\nUniversity of Alaska Fairbanks news index. Fifteen headlines dated August 9th to August 21st and none names these six awards. The same index carried a separate AI headline on August 11th about rural power grids. https://www.uaf.edu/news/index.php\n\nEvery Alaska AI decision this page tracks sits at https://alaskaaihq.com with its live deadline beside it.\n\nAnyone working on these six is welcome to add what the record leaves out.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "Obligated, six NSF awards",
+      "headline": "$50,000",
+      "body": "",
+      "labels": [
+        "$10,500,000",
+        "to read the water.",
+        "to read the rock.",
+        "ALASKA.AI",
+        "SEPTEMBER 1ST",
+        "Five projects. Six awards.Five Alaska surfaces.",
+        "01 / 09",
+        "64°51'N 147°43'W"
+      ],
+      "claims": [
+        {
+          "text": "$50,000 to read the water.",
+          "claim_ids": [
+            "C02"
+          ]
+        },
+        {
+          "text": "$10,500,000 to read the rock.",
+          "claim_ids": [
+            "C29"
+          ]
+        },
+        {
+          "text": "SEPTEMBER 1ST",
+          "claim_ids": [
+            "C38"
+          ]
+        },
+        {
+          "text": "Five projects. Six awards.Five Alaska surfaces.",
+          "claim_ids": [
+            "C11",
+            "C37"
+          ]
+        }
+      ],
+      "claim_ids": [
+        "C02",
+        "C29",
+        "C38",
+        "C11",
+        "C37"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "NSF, six awards, five projects",
+      "headline": "Five surfaces Alaskans already argue about.",
+      "body": "Six awards to University of Alaska campuses. Each project teaches a model to read one physical surface. Obligated dollars total 18,647,929.",
+      "labels": [
+        "THE WATER",
+        "Depth in coastlines, rivers and lakes",
+        "THE WASTE",
+        "Critical minerals in coal refuse and ash",
+        "THE BURNING WEATHER",
+        "Windows safe enough to light a fire",
+        "THE MOVING GROUND",
+        "Landslides, tested in Alaska",
+        "THE CONCEALED ROCK",
+        "Ore bodies nobody has found",
+        "FAIRBANKS",
+        "ANCHORAGE",
+        "Surfaces drawn as types. NSF's records name no field sites. Conic equal area, 55/65, rot 154.",
+        "02 / 09",
+        "64°51'N 147°43'W"
+      ],
+      "claims": [
+        {
+          "text": "Six awards to University of Alaska campuses. Each project teaches a model to read one physical surface. Obligated dollars total 18,647,929.",
+          "claim_ids": [
+            "C11",
+            "C37"
+          ]
+        },
+        {
+          "text": "Depth in coastlines, rivers and lakes",
+          "claim_ids": [
+            "C06"
+          ]
+        },
+        {
+          "text": "Critical minerals in coal refuse and ash",
+          "claim_ids": [
+            "C19"
+          ]
+        },
+        {
+          "text": "Windows safe enough to light a fire",
+          "claim_ids": [
+            "C43"
+          ]
+        },
+        {
+          "text": "Landslides, tested in Alaska",
+          "claim_ids": [
+            "C26"
+          ]
+        },
+        {
+          "text": "Ore bodies nobody has found",
+          "claim_ids": [
+            "C33"
+          ]
+        },
+        {
+          "text": "FAIRBANKS",
+          "claim_ids": [
+            "C10"
+          ]
+        },
+        {
+          "text": "ANCHORAGE",
+          "claim_ids": [
+            "C09"
+          ]
+        }
+      ],
+      "claim_ids": [
+        "C11",
+        "C37",
+        "C06",
+        "C19",
+        "C43",
+        "C26",
+        "C33",
+        "C10",
+        "C09"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "Award 2630206, I-Corps",
+      "headline": "The water, read from orbit.",
+      "body": "Explainable AI that turns satellite imagery into high resolution maps of underwater depth for coastlines, rivers and lakes. NSF obligated 50,000 dollars.",
+      "labels": [
+        "Erin Trochim, University of Alaska Fairbanks",
+        "Physics informed neural networks",
+        "September 1st, 2026 to August 31st, 2027",
+        "Section, vertical exaggeration x4",
+        "SOUNDING",
+        "MODELLED ISOBATH",
+        "WATERLINE",
+        "BED",
+        "03 / 09",
+        "64°51'N 147°43'W"
+      ],
+      "claims": [
+        {
+          "text": "Award 2630206, I-Corps",
+          "claim_ids": [
+            "C01"
+          ]
+        },
+        {
+          "text": "Explainable AI that turns satellite imagery into high resolution maps of underwater depth for coastlines, rivers and lakes. NSF obligated 50,000 dollars.",
+          "claim_ids": [
+            "C06",
+            "C02"
+          ]
+        },
+        {
+          "text": "Erin Trochim, University of Alaska Fairbanks",
+          "claim_ids": [
+            "C05"
+          ]
+        },
+        {
+          "text": "Physics informed neural networks",
+          "claim_ids": [
+            "C07"
+          ]
+        },
+        {
+          "text": "September 1st, 2026 to August 31st, 2027",
+          "claim_ids": [
+            "C04"
+          ]
+        }
+      ],
+      "claim_ids": [
+        "C01",
+        "C06",
+        "C02",
+        "C05",
+        "C07",
+        "C04"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "Award 2536745, FIRE-WUI",
+      "headline": "The weather that decides a burn.",
+      "body": "Weather reanalysis read with machine learning, to find the windows safe enough for a controlled burn.",
+      "labels": [
+        "Christine Waigl, University of Alaska Fairbanks",
+        "1,588,147 obligated dollars, four years",
+        "NSF files it under Artificial Intelligence",
+        "STATION",
+        "MODELLED WINDOW",
+        "04 / 09",
+        "64°51'N 147°43'W"
+      ],
+      "claims": [
+        {
+          "text": "Weather reanalysis read with machine learning, to find the windows safe enough for a controlled burn.",
+          "claim_ids": [
+            "C43"
+          ]
+        },
+        {
+          "text": "Christine Waigl, University of Alaska Fairbanks",
+          "claim_ids": [
+            "C45"
+          ]
+        },
+        {
+          "text": "1,588,147 obligated dollars, four years",
+          "claim_ids": [
+            "C45"
+          ]
+        },
+        {
+          "text": "NSF files it under Artificial Intelligence",
+          "claim_ids": [
+            "C44"
+          ]
+        }
+      ],
+      "claim_ids": [
+        "C43",
+        "C45",
+        "C44"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "Award 2608510, GAIA",
+      "headline": "The ground that is already moving.",
+      "body": "Surrogate models fed live observations, producing real time digital twins that forecast geohazards.",
+      "labels": [
+        "Carl Tape, with three co-investigators",
+        "1,772,170 obligated dollars, through July 31st, 2032",
+        "Tested on landslides in Alaska",
+        "STATION",
+        "SURROGATE FIELD",
+        "05 / 09",
+        "64°51'N 147°43'W"
+      ],
+      "claims": [
+        {
+          "text": "Award 2608510, GAIA",
+          "claim_ids": [
+            "C20"
+          ]
+        },
+        {
+          "text": "Surrogate models fed live observations, producing real time digital twins that forecast geohazards.",
+          "claim_ids": [
+            "C25"
+          ]
+        },
+        {
+          "text": "Carl Tape, with three co-investigators",
+          "claim_ids": [
+            "C23",
+            "C24"
+          ]
+        },
+        {
+          "text": "1,772,170 obligated dollars, through July 31st, 2032",
+          "claim_ids": [
+            "C21",
+            "C22"
+          ]
+        },
+        {
+          "text": "Tested on landslides in Alaska",
+          "claim_ids": [
+            "C26"
+          ]
+        }
+      ],
+      "claim_ids": [
+        "C20",
+        "C25",
+        "C23",
+        "C24",
+        "C21",
+        "C22",
+        "C26"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "Awards 2614749, 2614751, 2532372",
+      "headline": "The same rock, from both ends.",
+      "body": "Critical minerals recovered from coal refuse and ash, through 2030. An Engine hunting ore nobody has found, through 2036.",
+      "labels": [
+        "4,737,612 obligated, Anchorage and Fairbanks. Anchorage holds about four times Fairbanks.",
+        "10,500,000 obligated of a 15,000,000 estimated total. Cooperative agreement.",
+        "The abstract names Alaska Native Corporations among partners",
+        "ASSAY",
+        "CONCEALED BODY, MODELLED",
+        "WORKING FACE",
+        "06 / 09",
+        "64°51'N 147°43'W"
+      ],
+      "claims": [
+        {
+          "text": "Awards 2614749, 2614751, 2532372",
+          "claim_ids": [
+            "C09",
+            "C10",
+            "C11",
+            "C27"
+          ]
+        },
+        {
+          "text": "Critical minerals recovered from coal refuse and ash, through 2030. An Engine hunting ore nobody has found, through 2036.",
+          "claim_ids": [
+            "C19",
+            "C16",
+            "C33",
+            "C30"
+          ]
+        },
+        {
+          "text": "4,737,612 obligated, Anchorage and Fairbanks. Anchorage holds about four times Fairbanks.",
+          "claim_ids": [
+            "C12",
+            "C09",
+            "C10",
+            "C13"
+          ]
+        },
+        {
+          "text": "10,500,000 obligated of a 15,000,000 estimated total. Cooperative agreement.",
+          "claim_ids": [
+            "C29",
+            "C28",
+            "C31"
+          ]
+        },
+        {
+          "text": "The abstract names Alaska Native Corporations among partners",
+          "claim_ids": [
+            "C36"
+          ]
+        }
+      ],
+      "claim_ids": [
+        "C09",
+        "C10",
+        "C11",
+        "C27",
+        "C19",
+        "C16",
+        "C33",
+        "C30",
+        "C12",
+        "C13",
+        "C29",
+        "C28",
+        "C31",
+        "C36"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "NSF award API, fetched August 26th, 2026",
+      "headline": "Six awards, one page.",
+      "body": "",
+      "labels": [
+        "AWARD",
+        "SURFACE",
+        "OBLIGATED",
+        "STARTS",
+        "ENDS",
+        "2630206",
+        "WATER",
+        "50,000",
+        "SEP 1 2026",
+        "AUG 31 2027",
+        "2536745",
+        "BURNING WEATHER",
+        "1,588,147",
+        "SEP 1 2026",
+        "AUG 31 2030",
+        "2614749",
+        "WASTE, ANCHORAGE",
+        "3,824,575",
+        "SEP 1 2026",
+        "AUG 31 2030",
+        "2614751",
+        "WASTE, FAIRBANKS",
+        "913,037",
+        "SEP 1 2026",
+        "AUG 31 2030",
+        "2608510",
+        "MOVING GROUND",
+        "1,772,170",
+        "AUG 1 2026",
+        "JUL 31 2032",
+        "2532372",
+        "CONCEALED ROCK",
+        "10,500,000",
+        "AUG 1 2026",
+        "JUL 31 2036",
+        "TOTAL OBLIGATED 18,647,929",
+        "10,500,000 OBLIGATED",
+        "15,000,000 ESTIMATED TOTAL",
+        "Obligated dollars, not project value. The Engine's 15,000,000 is an estimated total on a ten year cooperative agreement.",
+        "Ground relief on every slide is scaled from that award's obligated dollars and its performance period. On this page the height field is log scaled, so the 50,000 award stays visible beside the 10,500,000 one.",
+        "07 / 09",
+        "64°51'N 147°43'W"
+      ],
+      "claims": [
+        {
+          "text": "2630206",
+          "claim_ids": [
+            "C02",
+            "C04"
+          ]
+        },
+        {
+          "text": "2536745",
+          "claim_ids": [
+            "C45"
+          ]
+        },
+        {
+          "text": "2614749",
+          "claim_ids": [
+            "C09",
+            "C16"
+          ]
+        },
+        {
+          "text": "2614751",
+          "claim_ids": [
+            "C10",
+            "C16"
+          ]
+        },
+        {
+          "text": "2608510",
+          "claim_ids": [
+            "C21",
+            "C22"
+          ]
+        },
+        {
+          "text": "2532372",
+          "claim_ids": [
+            "C29",
+            "C30"
+          ]
+        },
+        {
+          "text": "TOTAL OBLIGATED 18,647,929",
+          "claim_ids": [
+            "C37",
+            "C38",
+            "C39"
+          ]
+        },
+        {
+          "text": "10,500,000 OBLIGATED",
+          "claim_ids": [
+            "C29"
+          ]
+        },
+        {
+          "text": "15,000,000 ESTIMATED TOTAL",
+          "claim_ids": [
+            "C28",
+            "C31"
+          ]
+        },
+        {
+          "text": "Obligated dollars, not project value. The Engine's 15,000,000 is an estimated total on a ten year cooperative agreement.",
+          "claim_ids": [
+            "C28",
+            "C29",
+            "C31",
+            "C37"
+          ]
+        }
+      ],
+      "claim_ids": [
+        "C02",
+        "C04",
+        "C45",
+        "C09",
+        "C16",
+        "C10",
+        "C21",
+        "C22",
+        "C29",
+        "C30",
+        "C37",
+        "C38",
+        "C39",
+        "C28",
+        "C31"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "UAF news index, read August 26th, 2026",
+      "headline": "Fifteen headlines, none of these six.",
+      "body": "Fifteen UAF headlines, August 9th to August 21st. None names these six awards.",
+      "labels": [
+        "One index page, read once, on August 26th. The index paginates.",
+        "AUG 9",
+        "AUG 21",
+        "SEP 1",
+        "AUGUST 11TH, RURAL POWER GRIDS",
+        "08 / 09",
+        "64°51'N 147°43'W"
+      ],
+      "claims": [
+        {
+          "text": "Fifteen UAF headlines, August 9th to August 21st. None names these six awards.",
+          "claim_ids": [
+            "C46"
+          ]
+        },
+        {
+          "text": "One index page, read once, on August 26th. The index paginates.",
+          "claim_ids": [
+            "C46"
+          ]
+        },
+        {
+          "text": "AUGUST 11TH, RURAL POWER GRIDS",
+          "claim_ids": [
+            "C47"
+          ]
+        },
+        {
+          "text": "SEP 1",
+          "claim_ids": [
+            "C38"
+          ]
+        }
+      ],
+      "claim_ids": [
+        "C46",
+        "C47",
+        "C38"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "Which surface should Alaska know best in 2036?",
+      "body": "Four clocks started September 1st. Two started August 1st. The last one runs to July 31st, 2036.",
+      "labels": [
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "Sources in comments",
+        "09 / 09",
+        "64°51'N 147°43'W"
+      ],
+      "claims": [
+        {
+          "text": "Four clocks started September 1st. Two started August 1st. The last one runs to July 31st, 2036.",
+          "claim_ids": [
+            "C38",
+            "C39",
+            "C30"
+          ]
+        }
+      ],
+      "claim_ids": [
+        "C38",
+        "C39",
+        "C30"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post this one on a Tuesday, Wednesday or Thursday between 8 and 11 a.m. Alaska time. Drafts land daily and the cadence is yours, so hold it for the next strong slot rather than posting into a Friday afternoon.",
+    "Paste the first comment block within 60 seconds of publishing. Keep every URL as plain text, because a hyperlink pasted without its raw address loses the link on LinkedIn.",
+    "Reply to every comment in the first 90 minutes. If someone reads the Engine as a 15 million dollar award, the correction is that 10,500,000 is obligated and 15,000,000 is an estimated total over ten years.",
+    "Check saves and comments at 48 hours and log both. Saves are the signal that matters on a document post, and this deck was built to be kept as a ledger."
+  ]
+}

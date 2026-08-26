@@ -1107,6 +1107,29 @@
         "lit ground pools laid FIRST, then two-part contacts cast into them"
       ],
       "note": "Artwork craft scored 7, up from a 6.45 ten-run mean and still the weakest criterion. The staged-object chassis is gone and slides 01, 02 and 06 deliver the field-is-the-subject mandate, but 05's top 40 percent, 07's bottom quarter and 09's margins remain inert, and 09 at thumbnail still reads as one object on ground. THE DECLARED DETAIL BUDGET WAS ASSERTED AND NOT EXECUTED: no dossier declares three named texture octaves with what each encodes. Do not log this run as having landed it."
+    },
+    {
+      "run_date": "2026-08-26",
+      "carousel_no": 41,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE HORIZON LADDER. Every surface slide is a real Alaska landscape whose HORIZON HEIGHT is set by that award's end year, horizonY = 560 - 20 * (endYear - 2027), so the deck's five frames form a ladder a reader climbs from 2027 to 2036 and slide 06 shows two rungs at once as its only two-horizon frame. Deliberate genre-level break from the four staged-object decks before it (37 press plate, 38 floor, 39 cradle, 40 apron): there is no manufactured object to stage, no single modelled key lamp and no dark bench anywhere in the deck. The ladder is a COMPOSITION device and is explicitly NOT declared as a measured axis, because a year read off horizon height would assert a precision the picture cannot carry.",
+      "atmosphere": "NEW: THE TRAVELLING DAY. One late-August Alaska day swept across nine frames, azimuth 32 to 306 and elevation -4.5 up to +34.5 and back to -6, so no two slides share a shadow direction. Pre-dawn on the cover, solar noon on slide 05, late afternoon on the hero, dusk on 08, past sunset on the close. Aerial perspective is authored per frame rather than as a global haze.",
+      "continuity_device": "GOLD IS MEASURED, BLUE IS MODELLED, held on every slide: gold marks a thing a person actually measured (a clock tick, a sounding, an anemometer, a buried seismic station, an assay, the September 1st tick) and forget-me-not marks a thing a model produced (an isobath, a burn window, a surrogate displacement field, a concealed ore body). Blue is ABSENT from slides 07 and 09, and that absence is the resolution.",
+      "hook_archetype": "TWO FIGURES, ONE SCALE. 50,000 against 10,500,000 set in the same face at the same size, so a 210 to 1 ratio reads as pure glyph-run length before a word is read.",
+      "palette_family": "LOW SUN, YELLOW BIRCH",
+      "type_pairing": "Fraunces cold cut display, Space Grotesk body, JetBrains Mono instrument",
+      "techniques": [
+        "AK.reliefShade multidirectional over a bilinear-sampled obligation grid",
+        "AK.hachureField height driven by the funding-by-year surface",
+        "AK.hachureFromGrid",
+        "Beer-Lambert water column extinction",
+        "Bayer 4x4 ordered dither on coal refuse",
+        "phantom dash kit #67 for the unobserved ore body",
+        "en-echelon bench as a presence-noise break",
+        "unit-square stacking on a declared date axis",
+        "three-layer neon Polaris"
+      ],
+      "note": "The two grounds that bracket the deck are the SAME terrain: slide 09 reuses the cover's seed 20260826 and samples the cover's own coordinates with the row offset subtracted, so every row the two frames share is bit-identical and only the light has moved. Slide 06's Anchorage to Fairbanks mass split drives BOTH the hachure stroke widths and the crest silhouette, measured at meanWidth 1.925 against 0.976 (ratio 1.972 inside a prediction of 1.7 to 2.3 declared before the field was built) and meanSlope 2.8 times larger on the larger lobe. bespoke_check: median pairwise art similarity 0.167 against a 0.60 ceiling, drawn share 76 percent."
     }
   ]
 }

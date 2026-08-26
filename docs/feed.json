@@ -13,6 +13,72 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-08-26/",
+      "url": "https://alaskaaihq.com/archive/2026-08-26/",
+      "title": "Five Surfaces",
+      "summary": "Each award's obligated dollars beside its end date, what the five models read, and the fifteen UAF headlines from August 9th to August 21st that name none of the six.",
+      "content_html": "<p><em>Alaska's coastlines, rivers and lakes get their depth read out of satellite imagery starting September 1st.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-26/og.jpg\" alt=\"Five Surfaces cover slide\" width=\"1080\" height=\"1350\"></p><p>$50,000</p><p>Five surfaces Alaskans already argue about.</p><p>Six awards to University of Alaska campuses. Each project teaches a model to read one physical surface. Obligated dollars total 18,647,929.</p><p>The water, read from orbit.</p><p>Explainable AI that turns satellite imagery into high resolution maps of underwater depth for coastlines, rivers and lakes. NSF obligated 50,000 dollars.</p><p>The weather that decides a burn.</p><p>Weather reanalysis read with machine learning, to find the windows safe enough for a controlled burn.</p><p>The ground that is already moving.</p><p>Surrogate models fed live observations, producing real time digital twins that forecast geohazards.</p><p>The same rock, from both ends.</p><p>Critical minerals recovered from coal refuse and ash, through 2030. An Engine hunting ore nobody has found, through 2036.</p><p>Six awards, one page.</p><p>Fifteen headlines, none of these six.</p><p>Fifteen UAF headlines, August 9th to August 21st. None names these six awards.</p><p>Which surface should Alaska know best in 2036?</p><p>Four clocks started September 1st. Two started August 1st. The last one runs to July 31st, 2036.</p><h3>Sources</h3><ul><li><a href=\"https://api.nsf.gov/services/v1/awards/2630206.json\">National Science Foundation Award API</a>, primary document</li><li><a href=\"https://api.nsf.gov/services/v1/awards/2614749.json\">National Science Foundation Award API</a>, primary document</li><li><a href=\"https://api.nsf.gov/services/v1/awards/2614751.json\">National Science Foundation Award API</a>, primary document</li><li><a href=\"https://api.nsf.gov/services/v1/awards/2608510.json\">National Science Foundation Award API</a>, primary document</li><li><a href=\"https://api.nsf.gov/services/v1/awards/2532372.json\">National Science Foundation Award API</a>, primary document</li><li><a href=\"https://api.nsf.gov/services/v1/awards.json?awardeeStateCode=AK&amp;dateStart=08/16/2026&amp;dateEnd=08/26/2026&amp;rpp=50\">National Science Foundation Award API</a>, primary document</li><li><a href=\"https://api.nsf.gov/services/v1/awards/2536745.json\">National Science Foundation Award API</a>, primary document</li><li><a href=\"https://www.uaf.edu/news/index.php\">University of Alaska Fairbanks news</a>, primary document</li><li><a href=\"https://alaskapublic.org/news/public-safety/2026-08-21/low-alaska-wildfire-season-punctuated-by-serious-interior-blaze\">Alaska Beacon via Alaska Public Media</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-08-26/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "$50,000\n\nFive surfaces Alaskans already argue about.\n\nSix awards to University of Alaska campuses. Each project teaches a model to read one physical surface. Obligated dollars total 18,647,929.\n\nThe water, read from orbit.\n\nExplainable AI that turns satellite imagery into high resolution maps of underwater depth for coastlines, rivers and lakes. NSF obligated 50,000 dollars.\n\nThe weather that decides a burn.\n\nWeather reanalysis read with machine learning, to find the windows safe enough for a controlled burn.\n\nThe ground that is already moving.\n\nSurrogate models fed live observations, producing real time digital twins that forecast geohazards.\n\nThe same rock, from both ends.\n\nCritical minerals recovered from coal refuse and ash, through 2030. An Engine hunting ore nobody has found, through 2036.\n\nSix awards, one page.\n\nFifteen headlines, none of these six.\n\nFifteen UAF headlines, August 9th to August 21st. None names these six awards.\n\nWhich surface should Alaska know best in 2036?\n\nFour clocks started September 1st. Two started August 1st. The last one runs to July 31st, 2036.",
+      "date_published": "2026-08-26T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-26/og.jpg",
+      "tags": [
+        "AlaskaResearch",
+        "CriticalMinerals",
+        "Geohazards"
+      ],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 48,
+        "sources": [
+          {
+            "url": "https://api.nsf.gov/services/v1/awards/2630206.json",
+            "outlet": "National Science Foundation Award API",
+            "primary": true
+          },
+          {
+            "url": "https://api.nsf.gov/services/v1/awards/2614749.json",
+            "outlet": "National Science Foundation Award API",
+            "primary": true
+          },
+          {
+            "url": "https://api.nsf.gov/services/v1/awards/2614751.json",
+            "outlet": "National Science Foundation Award API",
+            "primary": true
+          },
+          {
+            "url": "https://api.nsf.gov/services/v1/awards/2608510.json",
+            "outlet": "National Science Foundation Award API",
+            "primary": true
+          },
+          {
+            "url": "https://api.nsf.gov/services/v1/awards/2532372.json",
+            "outlet": "National Science Foundation Award API",
+            "primary": true
+          },
+          {
+            "url": "https://api.nsf.gov/services/v1/awards.json?awardeeStateCode=AK&dateStart=08/16/2026&dateEnd=08/26/2026&rpp=50",
+            "outlet": "National Science Foundation Award API",
+            "primary": true
+          },
+          {
+            "url": "https://api.nsf.gov/services/v1/awards/2536745.json",
+            "outlet": "National Science Foundation Award API",
+            "primary": true
+          },
+          {
+            "url": "https://www.uaf.edu/news/index.php",
+            "outlet": "University of Alaska Fairbanks news",
+            "primary": true
+          },
+          {
+            "url": "https://alaskapublic.org/news/public-safety/2026-08-21/low-alaska-wildfire-season-punctuated-by-serious-interior-blaze",
+            "outlet": "Alaska Beacon via Alaska Public Media",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-08-25/",
       "url": "https://alaskaaihq.com/archive/2026-08-25/",
       "title": "750 Funded. About 15 Running. One Hearing.",

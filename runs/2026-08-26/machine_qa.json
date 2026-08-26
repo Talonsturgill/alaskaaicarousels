@@ -1,0 +1,259 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SEPTEMBER 1ST' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Five projects. Six awards.Five Alaska surfaces.' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.06) beneath 'Obligated, six NSF awards' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'ALASKA.AI' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'to read the water.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath 'to read the rock.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (20% of the ring around 'to read the rock.', spanning 15%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.07) beneath 'Five projects. Six awards.Five Alaska su' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the September 1st clock tick standing on the near ground': shadow L* 16.8 vs ground L* 42.6, dL 25.8 at 432w"
+      ],
+      "motifs": [
+        "'the September 1st clock tick, the deck's only measured mark': canvas 88.8 dE, page 88.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the near ground duff at 1:1 hand scale': canvas 35.8 dE, page 65.0 dE, 76% of its rect is clear of opaque DOM (div.footer stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the September 1st clock tick' lands 0.0px from its target",
+        "leader 'the September 1st clock tick' meets its label 10.0px away"
+      ],
+      "fits": [
+        "f1 '$50,000' fits 1/1 lines at 117.5px",
+        "f2 '$10,500,000' fits 1/1 lines at 117.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 77% of this slide's own average craft density (top 40% / mid 39% / bottom 27% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "tiny-text: '01' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '02' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '03' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '04' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '05' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Surfaces drawn as types. NSF's records name no fie' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.06) beneath 'NSF, six awards, five projects' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath '01' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Depth in coastlines, rivers and lakes' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath '02' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'Critical minerals in coal refuse and ash' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath '03' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Windows safe enough to light a fire' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath '04' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'Landslides, tested in Alaska' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath '05' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'Ore bodies nobody has found' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'FAIRBANKS' at 870,795 156x31 (margin 80px)",
+        "outside safe zone: 'ANCHORAGE' at 857,902 156x31 (margin 80px)",
+        "busy art under text (bg edge density 0.07) beneath 'Surfaces drawn as types. NSF's records n' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the Fairbanks campus pin standing on the mapped ground': shadow L* 42.2 vs ground L* 64.7, dL 22.5 at 432w"
+      ],
+      "motifs": [
+        "'the Alaska coastline at the canonical conic projection': canvas 87.8 dE, page 104.6 dE, 73% of its rect is clear of opaque DOM (div.row stands on the rest)",
+        "'the boreal interior mass field': canvas 86.4 dE, page 116.5 dE, 73% of its rect is clear of opaque DOM (div.row stands on the rest)"
+      ],
+      "fits": [
+        "hd 'Five surfaces Alaskans already argue about.' fits 2/2 lines at 73.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'SOUNDING' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'MODELLED ISOBATH' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'Award 2630206, I-Corps' at 80,70 380x31 (margin 80px)",
+        "busy art under text (bg edge density 0.06) beneath 'Award 2630206, I-Corps' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'WATERLINE' at 62,668 147x31 (margin 80px)",
+        "busy art under text (bg edge density 0.07) beneath 'WATERLINE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'BED' at 62,1160 49x31 (margin 80px)",
+        "busy art under text (bg edge density 0.07) beneath 'BED' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the sounding marker resting on the channel bed': shadow L* 51.4 vs ground L* 66.7, dL 15.3 at 432w"
+      ],
+      "motifs": [
+        "'the gold sounding marker on the channel bed': canvas 94.7 dE, page 94.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the modelled isobath crossing the channel': canvas 24.4 dE, page 67.7 dE, 97% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the gold sounding marker' lands 0.0px from its target",
+        "leader 'the gold sounding marker' meets its label 10.0px away"
+      ],
+      "fits": [
+        "hd 'The water, read from orbit.' fits 1/2 lines at 69.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'STATION' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'MODELLED WINDOW' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'Award 2536745, FIRE-WUI' at 80,70 397x31 (margin 80px)",
+        "busy art under text (bg edge density 0.05) beneath 'Award 2536745, FIRE-WUI' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'Christine Waigl, University of Alaska Fa' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the anemometer mast standing on the burn unit': shadow L* 51.0 vs ground L* 62.5, dL 11.5 at 432w"
+      ],
+      "motifs": [
+        "'the gold anemometer mast on the burn unit': canvas 61.8 dE, page 61.7 dE, 100% of its rect is clear of opaque DOM",
+        "'the dozed burn unit boundary': canvas 24.4 dE, page 26.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the modelled burn window over the unit': canvas 74.5 dE, page 74.1 dE, 90% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the gold anemometer mast' lands 0.0px from its target",
+        "leader 'the gold anemometer mast' meets its label 8.0px away"
+      ],
+      "fits": [
+        "hd 'The weather thatdecides a burn.' fits 2/2 lines at 69.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'STATION' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SURROGATE FIELD' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'Award 2608510, GAIA' at 80,70 328x31 (margin 80px)",
+        "busy art under text (bg edge density 0.06) beneath 'Award 2608510, GAIA' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'Carl Tape, with three co-investigators1,' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the seismic station plate seated in the scree': shadow L* 40.3 vs ground L* 84.0, dL 43.8 at 432w"
+      ],
+      "motifs": [
+        "'the gold seismic station plate at grade': canvas 82.5 dE, page 82.0 dE, 100% of its rect is clear of opaque DOM",
+        "'the modelled surrogate displacement field': canvas 46.8 dE, page 60.6 dE, 98% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the gold seismic station plate' lands 0.0px from its target",
+        "leader 'the gold seismic station plate' meets its label 10.0px away"
+      ],
+      "fits": [
+        "hd 'The ground that is already moving.' fits 2/2 lines at 69.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 42% / mid 96% / bottom 41% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "tiny-text: 'ASSAY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CONCEALED BODY, MODELLED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WORKING FACE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'Awards 2614749, 2614751, 2532372' at 80,70 553x31 (margin 80px)",
+        "busy art under text (bg edge density 0.06) beneath 'Awards 2614749, 2614751, 2532372' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath '4,737,612 obligated, Anchorage and Fairb' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath '10,500,000 obligated of a 15,000,000 est' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'The abstract names Alaska Native Corpora' at 104,1236 600x75 (margin 80px)",
+        "busy art under text (bg edge density 0.07) beneath 'The abstract names Alaska Native Corpora' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'WORKING FACE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "encodings": [
+        "'The near, cheap, four year surface is a pile somebody already dug; the far, expensive, ten': dE 48.1, AUC 0.96, visible 98%/100%, seen 50803/25920px at 432w"
+      ],
+      "contacts": [
+        "'the gold assay marker seated on the refuse working face': shadow L* 28.1 vs ground L* 41.8, dL 13.7 at 432w"
+      ],
+      "motifs": [
+        "'the gold assay marker on the refuse working face': canvas 103.0 dE, page 102.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the modelled concealed body under the far range': canvas 28.5 dE, page 29.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the gold assay marker' lands 0.0px from its target",
+        "leader 'the modelled concealed body' lands 0.0px from its target",
+        "leader 'the gold assay marker' meets its label 10.0px away",
+        "leader 'the modelled concealed body' meets its label 10.0px away"
+      ],
+      "fits": [
+        "hd 'The same rock, from both ends.' fits 2/2 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 53% / mid 30% / bottom 27% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "tiny-text: '10,500,000 OBLIGATED' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '15,000,000 ESTIMATED TOTAL' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Ground relief on every slide is scaled from that a' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'NSF award API, fetched August 26th, 2026' at 72,70 672x31 (margin 80px)",
+        "busy art under text (bg edge density 0.05) beneath 'NSF award API, fetched August 26th, 2026' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'Six awards, one page.' at 70,112 900x73 (margin 80px)",
+        "busy art under text (bg edge density 0.08) beneath 'AWARD' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'SURFACE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'OBLIGATED' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'STARTS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'ENDS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath '10,500,000 OBLIGATED' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath '15,000,000 ESTIMATED TOTAL' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Obligated dollars, not project value. Th' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Ground relief on every slide is scaled f' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "fits": [
+        "hd 'Six awards, one page.' fits 1/1 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'One index page, read once, on August 26th. The ind' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AUG 9' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AUG 21' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SEP 1' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AUGUST 11TH, RURAL POWER GRIDS' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'UAF news index, read August 26th, 2026' at 80,70 657x31 (margin 80px)",
+        "busy art under text (bg edge density 0.06) beneath 'UAF news index, read August 26th, 2026' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'One index page, read once, on August 26t' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'AUG 9' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'AUG 21' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'SEP 1' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'AUGUST 11TH, RURAL POWER GRIDS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the September 1st tick standing on the lit rail ground': shadow L* 5.9 vs ground L* 27.4, dL 21.6 at 432w"
+      ],
+      "scales": [
+        "'the headline date rail' runs 0 days after August 9th, 2026 at 100 to 23 days after August 9th, 2026 at 960; 16 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the August 11th headline tick' lands 0.0px from its target",
+        "leader 'the August 11th headline tick' meets its label 10.0px away"
+      ],
+      "fits": [
+        "hd 'Fifteen headlines,none of these six.' fits 2/2 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'alaskaaihq.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.07) beneath 'Four clocks started September 1st. Two s' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'alaskaaihq.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'Sources in comments' at 644,1229 360x51 (margin 80px)",
+        "busy art under text (bg edge density 0.07) beneath 'Sources in comments' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "fits": [
+        "hd 'Which surface should Alaska know best in 203' fits 2/2 lines at 83.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 92,
+  "verdict": "WARN"
+}
