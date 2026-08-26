@@ -4657,3 +4657,47 @@ negative result is what made today's upgrade the right shape:
   and it arrives with the same conclusion, which is that detail has to be
   declared per scale with a job, or it is noise.
   https://research-repository.rmit.edu.au/articles/journal_contribution/Improving_the_representation_of_major_landforms_in_analytical_relief_shading/27487434
+
+
+## 2026-08-26 - Run No.41, and the five round cap
+
+The owner capped editing at five rounds after the first render, and named the
+reason: judges were becoming a token burning crutch masking inefficiencies.
+Written into prompts/routine_instructions.md at the head of Phase 8. Three
+lessons from the run that produced the cap.
+
+**A fix idiom that is wrong is wrong everywhere at once.** The type reserve
+added to six slides was a radial gradient of radius r filled into an ELLIPSE of
+rx r and ry under r. Vertically the fill stops where the gradient still carries
+alpha, so every one of those six slides got a visible conic arc across its
+ground, and four independent critics reported it as the most conspicuous thing
+in the frame. One line of geometry, six slides, a whole round to undo. Draw a
+soft elliptical falloff as a scaled circle inside a transform, the way the lit
+pools already did.
+
+**A gate floor is not a target.** Contact declarations were failing at under
+4.0 L*, so the pools were widened and the casts deepened until they passed at
+plus thirty. Five critics then read the result as a detached black hole sitting
+inside a spotlight with no light source. Clearing a floor by eight times is not
+eight times better, it is a different defect.
+
+**Measure the declared rect off the render, every time, and re-measure after
+any change to the art under it.** Four of five contact declarations had the
+ground rect directly BELOW the shadow rect, which put it at the lit pool's dark
+edge while the shadow sat near the pool's bright centre, and three of the five
+measured NEGATIVE separation. Slide 03's pair was 118px from where the marker
+actually drew. The pairs belong side by side at the same y, both inside the
+pool.
+
+**dossier_check runs the LAST slide's section to end of file.** Any deck-level
+section placed after SLIDE 09 is parsed as part of SLIDE 09's dossier, so the
+BUILD RECONCILIATION section's description of the contact-shadow work made
+slide 09 fail a promise it never made. Put deck-level sections above SLIDE 01.
+Logged for Phase 12.
+
+**A tool that answers "no" is not a fact, restated.** The showrunner killed NSF
+award 2536745 on a regex that searched for "machine learning" while the
+abstract writes "machine-learning" hyphenated, and NSF files the award under
+its Artificial Intelligence program. The fact-checker reversed it. The deck is
+five projects across six awards and 18,647,929 obligated, not four and
+17,059,782.
