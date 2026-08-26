@@ -111,6 +111,166 @@ CANVAS_TEXT_HOOK_JS = """
 })();
 """
 
+# A CIRCULAR GRADIENT POURED INTO AN ELLIPSE (2026-08-26). Canvas has no
+# elliptical gradient. The only way to get one is to scale a circle inside a
+# transform (translate, scale(1, ry/r), arc), which is what this deck's lit
+# pools already do. Run No.41 added a type reserve to six slides written the
+# other way -- createRadialGradient(0,0,24, 0,0,r) filled into
+# ctx.ellipse(cx,cy,r,ry) with ry well under r -- so the ramp was CIRCULAR and
+# the fill was ELLIPTICAL, and vertically the paint stopped while the ramp was
+# still carrying about 0.30 alpha. Every one of the six slides got a hard arc
+# across its ground. Four independent pixel critics reported that arc as the
+# most conspicuous thing in the frame, one bug in one idiom cost a full editing
+# round to put back, and no machine gate saw it: the render succeeded, nothing
+# overflowed, contrast improved, and the arc is a legitimate shape as far as
+# every existing measurement is concerned.
+#
+# This reads the two numbers that make it a defect. It records a fill only when
+# ALL of the following hold, which is why it is quiet on honest drawing:
+#   * the path is exactly one ellipse and nothing else,
+#   * the fill style is a radial gradient whose LAST stop is transparent, so
+#     the author's declared intent was a fade to nothing,
+#   * the alpha still standing where the ellipse's SHORT axis cuts the ramp is
+#     materially higher than the alpha at the long axis. A fill clipped equally
+#     on both axes is a deliberate hard-edged blob and is not reported.
+# Everything is measured in user space, where both the path and the gradient
+# live, so the current transform distorts them together and cancels out.
+# The wrapper only observes and forwards; it never alters the drawn frame.
+GRADIENT_CLIP_HOOK_JS = """
+(() => {
+  try {
+    window.__akGradientClip = [];
+    const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
+    const gproto = window.CanvasGradient && window.CanvasGradient.prototype;
+    if (!proto || !gproto) return;
+    const meta = new WeakMap();
+    const ALPHA_GAP = 0.03;   /* ~8/255: the step a hard edge needs to be seen */
+    const TAIL_ALPHA = 0.02;  /* below this the author meant "fade to nothing" */
+
+    const origRad = proto.createRadialGradient;
+    if (typeof origRad === 'function') {
+      proto.createRadialGradient = function (x0, y0, r0, x1, y1, r1) {
+        const g = origRad.apply(this, arguments);
+        try { meta.set(g, { x1: x1, y1: y1, r0: r0, r1: r1, stops: [] }); } catch (e) {}
+        return g;
+      };
+    }
+    const origStop = gproto.addColorStop;
+    if (typeof origStop === 'function') {
+      gproto.addColorStop = function (off, col) {
+        try {
+          const m = meta.get(this);
+          if (m && m.stops.length < 32) m.stops.push([Number(off), String(col)]);
+        } catch (e) {}
+        return origStop.apply(this, arguments);
+      };
+    }
+
+    /* Alpha of a colour string. Anything we cannot read is treated as opaque,
+       which can only make the check QUIETER (an opaque tail is not a fade). */
+    const alphaOf = (c) => {
+      c = (c || '').trim().toLowerCase();
+      if (c === 'transparent') return 0;
+      let m = c.match(/^rgba?\\(([^)]+)\\)$/);
+      if (m) {
+        const p = m[1].split(/[,\\/\\s]+/).filter((s) => s.length);
+        return p.length >= 4 ? Math.max(0, Math.min(1, parseFloat(p[3]))) : 1;
+      }
+      m = c.match(/^#([0-9a-f]{8})$/);
+      if (m) return parseInt(m[1].slice(6), 16) / 255;
+      m = c.match(/^#([0-9a-f]{4})$/);
+      if (m) return parseInt(m[1].slice(3) + m[1].slice(3), 16) / 255;
+      return 1;
+    };
+    /* Alpha the ramp is carrying at offset t, linearly between its stops. */
+    const alphaAt = (stops, t) => {
+      if (!stops.length) return 1;
+      const s = stops.slice().sort((a, b) => a[0] - b[0]);
+      if (t <= s[0][0]) return alphaOf(s[0][1]);
+      if (t >= s[s.length - 1][0]) return alphaOf(s[s.length - 1][1]);
+      for (let i = 1; i < s.length; i++) {
+        if (t <= s[i][0]) {
+          const span = s[i][0] - s[i - 1][0];
+          const f = span <= 0 ? 1 : (t - s[i - 1][0]) / span;
+          return alphaOf(s[i - 1][1]) * (1 - f) + alphaOf(s[i][1]) * f;
+        }
+      }
+      return alphaOf(s[s.length - 1][1]);
+    };
+
+    const path = (ctx) => {
+      if (!ctx.__akPath) ctx.__akPath = { ell: [], other: 0 };
+      return ctx.__akPath;
+    };
+    const origBegin = proto.beginPath;
+    proto.beginPath = function () {
+      try { this.__akPath = { ell: [], other: 0 }; } catch (e) {}
+      return origBegin.apply(this, arguments);
+    };
+    const origEllipse = proto.ellipse;
+    if (typeof origEllipse === 'function') {
+      proto.ellipse = function (x, y, rx, ry) {
+        try { path(this).ell.push({ x: x, y: y, rx: Math.abs(rx), ry: Math.abs(ry) }); } catch (e) {}
+        return origEllipse.apply(this, arguments);
+      };
+    }
+    for (const fn of ['arc', 'arcTo', 'rect', 'roundRect', 'moveTo', 'lineTo',
+                      'quadraticCurveTo', 'bezierCurveTo']) {
+      const orig = proto[fn];
+      if (typeof orig !== 'function') continue;
+      proto[fn] = function () {
+        try { path(this).other++; } catch (e) {}
+        return orig.apply(this, arguments);
+      };
+    }
+
+    const origFill = proto.fill;
+    proto.fill = function () {
+      try {
+        if (!(arguments.length && arguments[0] && typeof arguments[0] === 'object')) {
+          const p = path(this);
+          if (p.ell.length === 1 && p.other === 0 &&
+              window.__akGradientClip.length < 40) {
+            const e = p.ell[0], m = meta.get(this.fillStyle);
+            if (m && m.r1 > 0 && Math.abs(e.rx - e.ry) > 0.5 && m.stops.length) {
+              const tail = alphaAt(m.stops, 1);
+              if (tail <= TAIL_ALPHA) {
+                /* Where each axis of the ellipse cuts the ramp, as an offset
+                   along the ramp measured from the ramp's own outer centre. */
+                const tOf = (px, py) =>
+                  Math.hypot(px - m.x1, py - m.y1) / m.r1;
+                const tShort = Math.min(
+                  e.rx <= e.ry ? tOf(e.x - e.rx, e.y) : tOf(e.x, e.y - e.ry),
+                  e.rx <= e.ry ? tOf(e.x + e.rx, e.y) : tOf(e.x, e.y + e.ry));
+                const tLong = Math.min(
+                  e.rx > e.ry ? tOf(e.x - e.rx, e.y) : tOf(e.x, e.y - e.ry),
+                  e.rx > e.ry ? tOf(e.x + e.rx, e.y) : tOf(e.x, e.y + e.ry));
+                const aShort = alphaAt(m.stops, tShort), aLong = alphaAt(m.stops, tLong);
+                if (aShort - aLong >= ALPHA_GAP) {
+                  const key = [e.rx, e.ry, m.r1].map((v) => Math.round(v)).join('|');
+                  const hit = window.__akGradientClip.find((z) => z.key === key);
+                  if (hit) { hit.n++; } else {
+                    window.__akGradientClip.push({
+                      key: key, n: 1,
+                      rx: +e.rx.toFixed(1), ry: +e.ry.toFixed(1),
+                      r1: +m.r1.toFixed(1),
+                      t_short: +tShort.toFixed(3), t_long: +tLong.toFixed(3),
+                      a_short: +aShort.toFixed(3), a_long: +aLong.toFixed(3),
+                      cx: Math.round(e.x), cy: Math.round(e.y)
+                    });
+                  }
+                }
+              }
+            }
+          }
+        }
+      } catch (e) {}
+      return origFill.apply(this, arguments);
+    };
+  } catch (e) {}
+})();
+"""
+
 IN_PAGE_QA_JS = """
 () => {
   const W = window.innerWidth, H = window.innerHeight;
@@ -1023,6 +1183,10 @@ IN_PAGE_QA_JS = """
   } catch (e) {
     out.motifs.push({ error: String(e).slice(0, 140) });
   }
+  /* Circular ramps poured into ellipses, collected by GRADIENT_CLIP_HOOK_JS
+     while the slide drew. qa.py grades them. */
+  out.gradient_clips = (Array.isArray(window.__akGradientClip)
+                        ? window.__akGradientClip : []).slice(0, 40);
   return out;
 }
 """
@@ -1162,11 +1326,12 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
-           "render_ms": 0, "ok": False}
+           "gradient_clips": [], "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
                             device_scale_factor=scale)
     page.add_init_script(CANVAS_TEXT_HOOK_JS)
+    page.add_init_script(GRADIENT_CLIP_HOOK_JS)
     page.on("console", lambda m: rec["console_errors"].append(m.text)
             if m.type in ("error",) else None)
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
@@ -1184,7 +1349,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
                                        "encodings", "contacts", "scales", "leaders",
-                                       "fits", "asserts", "motifs", "css_unreadable")})
+                                       "fits", "asserts", "motifs", "css_unreadable",
+                                       "gradient_clips")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:

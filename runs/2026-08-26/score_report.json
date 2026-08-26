@@ -66,6 +66,7 @@
   "weakest_score": 6,
   "one_sentence_fix": "Stop buying contrast with opaque rectangles: design each slide's type reserve INTO the art at dossier time as a real sky, shadowed slope or snowfield the words sit inside, so no render ever needs a plate laid over the near ground that the treatment's own argument depends on.",
   "known_shortfalls": [
+    "Slide 08's gold tick still pours a CIRCULAR radial gradient into an ELLIPSE for both parts of its contact shadow at (963,1015). The Phase 12 detector built this run found it after the deck had merged, on the one idiom the run believed it had fixed on all six slides it touched. It is a WARN and it ships: the five round cap says log the remainder rather than keep editing. The remedy is printed by qa.py verbatim, save/translate(963,1015)/scale(1,0.312)/arc on r=16.",
     "Slide 04's cumulus band renders as overlapping pale ellipses with hard edges and its spruce are stamped triangles at near-identical scale.",
     "Slide 07's relief is nearly value-flat, so the log-scaled height field its own on-slide note advertises is unreadable in the frame.",
     "Slide 06's opaque copy plate covers the lower left and buries the near-ground micro octave the treatment argues from.",
@@ -73,5 +74,5 @@
     "Slide 05's 'moving.' descender is tangent to the top edge of its body plate. Legible, cosmetic.",
     "Slides 04 and 05 share one layout skeleton and are reorderable without loss."
   ],
-  "editor_notes": "SHIPS at 8.51, zero hard fails, round five of a five round cap. Acted on the scorer's one flagged item: the first comment now reconciles this deck's 10,500,000 obligated of a 15,000,000 estimated total against the 15 million and up to 160 million this page printed for the same award 2532372 on July 15th. MODELLED carries the British double L on four slides, consistent and deliberate. The only unfetched claim, C48, is used nowhere."
+  "editor_notes_for_email": "SHIPS at 8.51, zero hard fails, round five of a five round cap. Acted on the scorer's one flagged item: the first comment now reconciles this deck's 10,500,000 obligated of a 15,000,000 estimated total against the 15 million and up to 160 million this page printed for the same award 2532372 on July 15th. MODELLED carries the British double L on four slides, consistent and deliberate. The only unfetched claim, C48, is used nowhere. POST-SHIP, worth knowing: the Phase 12 gradient detector caught two live instances of the elliptical-gradient arc on slide 08's gold tick shadow, which this run thought it had fixed everywhere. Logged as a known shortfall rather than fixed, per the five round cap. Also: docket_alerts.py DID send a subscriber email this run and its key lives under the env var 'Buttondown', not the documented BUTTONDOWN_API_KEY, so 'BUTTONDOWN_API_KEY not set' must not be read as 'will skip'."
 }

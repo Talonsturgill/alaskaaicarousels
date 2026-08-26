@@ -83,6 +83,9 @@ FLAT_ONLY = ("plate", "hairline", "rule", "caption", "footer", "fixture",
 THIN_PLAN_CHARS = 200
 
 HEAD_RE = re.compile(r"^##\s+SLIDE\s+(\d+)\b(.*)$", re.I | re.M)
+# Any top-level heading (# or ##, never ###+). A dossier's own fields are ###
+# and deeper, so this only ever finds where the DECK starts talking again.
+TOP_HEAD_RE = re.compile(r"^#{1,2}(?!#)[ \t]+\S.*$", re.M)
 # THE EMPHASIS MAY OPEN BEFORE THE NUMBER (2026-08-19). The pattern demanded the
 # "4a" sit OUTSIDE the bold, i.e. `4a. **Lower-third treatment.**`, and run No.37
 # wrote all nine dossiers as `**4a. Lower-third treatment.**`, which is the same
@@ -144,11 +147,31 @@ def contacts_declared(src):
 
 
 def slide_sections(text):
-    """Split the storyboard into (slide_no, heading, body) dossier sections."""
+    """Split the storyboard into (slide_no, heading, body) dossier sections.
+
+    THE LAST DOSSIER ENDS WHERE THE DECK RESUMES (2026-08-26). Every section but
+    the last was bounded by the next "## SLIDE NN"; the last one ran to end of
+    file, so ANY deck-level section written after the final slide was read as
+    part of that slide's dossier. Run No.41 put a BUILD RECONCILIATION section
+    at the foot of its storyboard, describing the contact-shadow repairs made
+    across the deck, and slide 09 failed for promising a contact shadow it never
+    promised: the gate was reading the deck's prose as slide 09's plan. The
+    showrunner worked around it by moving the section above "## SLIDE 01",
+    which fixes the symptom by rearranging the author's document.
+    A dossier now also ends at the next TOP-LEVEL heading that is not a slide,
+    so the tail of a storyboard belongs to the deck again. This tightens the
+    gate rather than loosening it: less text is attributed to a slide, and text
+    that is genuinely inside a dossier (### and #### subheadings, which is how
+    the dossier spec's own fields are written) is untouched.
+    """
     heads = list(HEAD_RE.finditer(text))
     out = []
     for i, m in enumerate(heads):
         end = heads[i + 1].start() if i + 1 < len(heads) else len(text)
+        for t in TOP_HEAD_RE.finditer(text, m.end(), end):
+            if not HEAD_RE.match(t.group(0)):
+                end = t.start()
+                break
         out.append((int(m.group(1)), m.group(2).strip(), text[m.end():end]))
     return out
 
