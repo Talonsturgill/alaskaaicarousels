@@ -935,6 +935,30 @@
       "run_date": "2026-08-25",
       "confidence": "medium",
       "instinct": "WHEN bespoke_check FAILS ON DRAWN SHARE, ASK WHICH RECTANGLE IS LYING. The first complete deck came in at 29 percent drawn against a 45 floor while median similarity was 0.124, so it was genuinely bespoke and genuinely rectangle-heavy at once. Clearing the gate and improving the art turned out to be the same edit: a machined boss has no square corners, a milled lip is not a straight line. Drawn share went to 67 percent and the frames got better."
+    },
+    {
+      "id": "soft-falloff-as-scaled-circle",
+      "learned": "2026-08-26",
+      "instinct": "Draw any soft elliptical falloff as a scaled circle inside a transform, never as an ellipse filled with a circular gradient.",
+      "evidence": "Run No.41 added a type reserve to six slides as createRadialGradient(radius r) filled into an ellipse with rx r and ry under r. Vertically the fill stops where the gradient still carries alpha, so all six slides got a visible conic arc across the ground and four independent pixel critics reported it as the most conspicuous thing in the frame. One line of geometry, six slides, a whole editing round to undo.",
+      "confidence": 0.9,
+      "runs_confirmed": 1
+    },
+    {
+      "id": "a-gate-floor-is-not-a-target",
+      "learned": "2026-08-26",
+      "instinct": "Clear a measured gate by a comfortable margin and stop; pushing a passing number far past its floor is how a fix becomes the next defect.",
+      "evidence": "Run No.41's contact declarations were failing under 4.0 L*, so the lit pools were widened and the casts deepened until they measured plus thirty. Five pixel critics then read the result as a detached black hole sitting inside a spotlight with no light source, on five different slides. Clearing a floor by eight times was not eight times better, it was a different defect that cost another round.",
+      "confidence": 0.85,
+      "runs_confirmed": 1
+    },
+    {
+      "id": "declared-rects-are-measured-not-derived",
+      "learned": "2026-08-26",
+      "instinct": "Measure every declared rect off the rendered PNG, place the shadow and ground pair side by side at the same y inside the lit pool, and re-measure after any change to the art beneath it.",
+      "evidence": "Run No.41 shipped four of five contact declarations with the ground rect directly BELOW the shadow rect, which put it at the lit pool's dark edge while the shadow sat near the pool's bright centre; three measured NEGATIVE separation. Slide 03's declared pair was 118px from where the marker actually drew, so the gate was measuring open water. Every pair had to be refitted from a horizontal profile through the object's own base line.",
+      "confidence": 0.9,
+      "runs_confirmed": 1
     }
   ]
 }

@@ -932,6 +932,45 @@ and their designed Canvas fallback.
 
 ## PHASE 8 — PIXEL REVIEW (the taste gate)
 
+### THE FIVE ROUND CAP (2026-08-26, owner, AUTHORITATIVE)
+
+**A run gets FIVE editing rounds after the first render. On the fifth, it ships
+as-is.** A round is one pass of fixes across the deck, whatever prompted it.
+
+The owner's words: judges are becoming a token burning crutch masking
+inefficiencies. That is the diagnosis to take seriously. Run No.41 spawned five
+pixel critics, got a mean of 6.1, and then spent more of the run reacting to
+their lists than it had spent building the deck in the first place. Several of
+the defects the critics found were regressions the showrunner had introduced
+one round earlier while fixing something else: a type reserve drawn as an
+ellipse filled with a circular gradient, so its falloff was cut off vertically
+and left a visible arc across six slides; contact pools widened until every
+marker sat in a spotlight with a detached black hole beside it. Both cost a
+full round to put back.
+
+So the cap is not only a budget, it is a design instruction:
+
+- **Get it right on the first build.** Before rendering a slide, check it
+  against the failure list already written down in FIELD_NOTES and in this
+  file. Text over a graded ground needs its reserve designed in, not added
+  after a gate fails. A contact shadow needs a lit ground and an attached core
+  from the start. A declared rect is measured off a render, never off camera
+  arithmetic.
+- **Critics diagnose, they do not drive.** Read every finding, fix what is
+  genuinely a defect, and do not treat a critic's list as a queue to be emptied. A
+  finding that costs a round and moves the score a tenth is not worth the round.
+- **Fix the cause, not the instance.** When the same defect appears on six
+  slides it is one bug in one idiom. Fix the idiom once.
+- **Never let a fix ship unverified.** Re-render and re-read the frame you
+  changed before moving to the next. A blind fix is how a round becomes two.
+
+When the cap is reached, ship what is on disk, score it honestly, and put the
+remaining defects in the ledger and in the email as known shortfalls. Do not
+keep editing. Do not stop without shipping either: NO EMPTY RUNS still binds,
+and a capped run is a shipping run.
+
+
+
 1. Build review assets:
 ```
 python .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slides \

@@ -1,0 +1,260 @@
+{
+  "run_date": "2026-08-26",
+  "note": "Every on-slide string that turns verified claims into a NEW number. Six awards are C02 (2630206), C45 (2536745), C09 (2614749), C10 (2614751), C21 (2608510), C29 (2532372). Five projects collapse the two collaborative critical mineral awards into one project. Five surfaces are the water, the burning weather, the waste, the moving ground and the concealed rock.",
+  "aggregates": [
+    {
+      "kind": "count",
+      "slide": 1,
+      "text": "Obligated, six NSF awards",
+      "fragment": "six NSF awards",
+      "subject": "NSF awards",
+      "members": [
+        "C02",
+        "C45",
+        "C09",
+        "C10",
+        "C21",
+        "C29"
+      ],
+      "n": 6
+    },
+    {
+      "kind": "count",
+      "slide": 1,
+      "text": "Five projects. Six awards.Five Alaska surfaces.",
+      "fragment": "Five projects",
+      "subject": "projects",
+      "members": [
+        "C01",
+        "C43",
+        "C11",
+        "C20",
+        "C27"
+      ],
+      "n": 5
+    },
+    {
+      "kind": "count",
+      "slide": 1,
+      "text": "Five projects. Six awards.Five Alaska surfaces.",
+      "fragment": "Six awards",
+      "subject": "awards",
+      "members": [
+        "C02",
+        "C45",
+        "C09",
+        "C10",
+        "C21",
+        "C29"
+      ],
+      "n": 6
+    },
+    {
+      "kind": "count",
+      "slide": 1,
+      "text": "Five projects. Six awards.Five Alaska surfaces.",
+      "fragment": "Five Alaska surfaces",
+      "subject": "Alaska surfaces",
+      "members": [
+        "C06",
+        "C43",
+        "C19",
+        "C25",
+        "C33"
+      ],
+      "n": 5
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "text": "NSF, six awards, five projects",
+      "fragment": "six awards",
+      "subject": "awards",
+      "members": [
+        "C02",
+        "C45",
+        "C09",
+        "C10",
+        "C21",
+        "C29"
+      ],
+      "n": 6
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "text": "NSF, six awards, five projects",
+      "fragment": "five projects",
+      "subject": "projects",
+      "members": [
+        "C01",
+        "C43",
+        "C11",
+        "C20",
+        "C27"
+      ],
+      "n": 5
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "text": "Five surfaces Alaskans already argue about.",
+      "fragment": "Five surfaces Alaskans",
+      "subject": "surfaces",
+      "members": [
+        "C06",
+        "C43",
+        "C19",
+        "C25",
+        "C33"
+      ],
+      "n": 5
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "text": "Six awards to University of Alaska campuses. Each project teaches a model to read one physical surface. Obligated dollars total 18,647,929.",
+      "fragment": "Six awards",
+      "subject": "awards",
+      "members": [
+        "C02",
+        "C45",
+        "C09",
+        "C10",
+        "C21",
+        "C29"
+      ],
+      "n": 6
+    },
+    {
+      "kind": "design",
+      "slide": 3,
+      "text": "Award 2630206, I-Corps",
+      "fragment": "2630206, I-Corps",
+      "note": "not an aggregate. 2630206 is an NSF award identifier quoted from C01, and the digits are an accession number rather than a quantity of anything."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "Christine Waigl, University of Alaska Fairbanks1,588,147 obligated dollars, four years",
+      "fragment": "588,147 obligated dollars",
+      "member": "C45"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "text": "Carl Tape, with three co-investigators1,772,170 obligated dollars, through July 31st, 2032",
+      "fragment": "772,170 obligated dollars",
+      "member": "C21"
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "text": "Six awards, one page.",
+      "fragment": "Six awards",
+      "subject": "awards",
+      "members": [
+        "C02",
+        "C45",
+        "C09",
+        "C10",
+        "C21",
+        "C29"
+      ],
+      "n": 6
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "text": "Fifteen headlines, none of these six.",
+      "fragment": "Fifteen headlines",
+      "subject": "headlines",
+      "members": [
+        "C46"
+      ],
+      "items": [
+        "Veteran journalist and author joins UAF as Snedden chair",
+        "Alaska Defense Forum 2026 focuses on community-military ties",
+        "Uncorking the secrets of a tiny bottle of volcanic ash",
+        "Shapes of Western Alaska bays influence local flood danger",
+        "Expanded UAF, military partnership looks north",
+        "Faudree, Sikes, Shallcross named 2026 Usibelli Award winners",
+        "Time capsule: Looking for a few good wood frogs",
+        "Accelerated rates of warming in the Arctic continue",
+        "100,000 dollar planetarium gift celebrates alumni association centennial",
+        "Festival will satisfy currant curiosity",
+        "UAF leads AI project to strengthen Alaska's rural power grids",
+        "How do Alaska animals sleep in the summer?",
+        "New instrument will aid environmental science and industry",
+        "Tickets available for UAF Business Leader of the Year event",
+        "Week's events: Robert Hannon, sleep, Alaska Native language archive, string band"
+      ],
+      "n": 15
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "text": "Fifteen UAF headlines, August 9th to August 21st. None names these six awards.",
+      "fragment": "Fifteen UAF headlines",
+      "subject": "UAF headlines",
+      "members": [
+        "C46"
+      ],
+      "items": [
+        "Veteran journalist and author joins UAF as Snedden chair",
+        "Alaska Defense Forum 2026 focuses on community-military ties",
+        "Uncorking the secrets of a tiny bottle of volcanic ash",
+        "Shapes of Western Alaska bays influence local flood danger",
+        "Expanded UAF, military partnership looks north",
+        "Faudree, Sikes, Shallcross named 2026 Usibelli Award winners",
+        "Time capsule: Looking for a few good wood frogs",
+        "Accelerated rates of warming in the Arctic continue",
+        "100,000 dollar planetarium gift celebrates alumni association centennial",
+        "Festival will satisfy currant curiosity",
+        "UAF leads AI project to strengthen Alaska's rural power grids",
+        "How do Alaska animals sleep in the summer?",
+        "New instrument will aid environmental science and industry",
+        "Tickets available for UAF Business Leader of the Year event",
+        "Week's events: Robert Hannon, sleep, Alaska Native language archive, string band"
+      ],
+      "n": 15
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "text": "Fifteen UAF headlines, August 9th to August 21st. None names these six awards.",
+      "fragment": "six awards",
+      "subject": "awards",
+      "members": [
+        "C02",
+        "C45",
+        "C09",
+        "C10",
+        "C21",
+        "C29"
+      ],
+      "n": 6
+    },
+    {
+      "kind": "count",
+      "slide": 9,
+      "text": "Four clocks started September 1st. Two started August 1st. The last one runs to July 31st, 2036.",
+      "fragment": "Four clocks",
+      "subject": "clocks starting September 1st",
+      "members": [
+        "C04",
+        "C45",
+        "C09",
+        "C10"
+      ],
+      "n": 4
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "text": "4,737,612 obligated, Anchorage and Fairbanks. Anchorage holds about four times Fairbanks.",
+      "fragment": "four times",
+      "member": "C13"
+    }
+  ]
+}
