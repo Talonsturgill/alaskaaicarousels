@@ -4628,3 +4628,32 @@ negative result is what made today's upgrade the right shape:
   hardware GL. Our comparison is between two measurements of the SAME render,
   so it is immune; a stored-baseline comparison would not be.
   https://playwright.dev/docs/test-snapshots
+
+## 2026-08-26 - Phase 1 craft refresh (four searches, one fetch)
+
+- Documents held the top spot in the 2026 benchmark set at a 7.00 percent
+  engagement rate, a 14 percent year over year rise, ahead of multi-image at
+  6.45 and video at 6.00. The number we already had is not stale, it grew. The
+  new figure worth carrying is the SPREAD between pages rather than between
+  formats: Oktopost's 1,000-plus B2B page panel puts the top decile at 22.45
+  percent against a 5.72 percent median, which is a four times gap inside the
+  same format. Format choice is table stakes; craft is the variable.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- The same panel puts most high performing B2B decks at 5 to 15 slides, which
+  is wider than our 8 to 10 default and does not contradict it. Our own floor
+  of 6 and the never-below-5 rule are both inside their band.
+- MULTIDIRECTIONAL HILLSHADE, portable to offline Canvas and worth a technique
+  entry the next time a deck goes cartographic. Rather than one key azimuth,
+  four shades are computed at different directions, coloured and weighted
+  independently, then combined into one layer. The editorial gain is that a
+  single low key buries every slope facing away from it in one flat black,
+  while four weighted directions keep tone in the shadow side and let the
+  landform read. https://www.maptiler.com/news/2026/02/multidirectional-hillshades-and-terrain-color-ramps-for-web-maps/
+- Related, and the reason it matters for THIS run's standing weakness: the
+  analytical relief literature's fix for a noisy DEM is to shade a GENERALISED
+  surface for the landform and add a fine octave back at low weight for
+  texture. That is the three octave detail budget stated in cartographic terms,
+  and it arrives with the same conclusion, which is that detail has to be
+  declared per scale with a job, or it is noise.
+  https://research-repository.rmit.edu.au/articles/journal_contribution/Improving_the_representation_of_major_landforms_in_analytical_relief_shading/27487434
