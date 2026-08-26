@@ -16,8 +16,8 @@
     "pixel_review": "done",
     "flow_review": "done (showrunner read the contact sheet in place of a flow-critic round, per the five round cap)",
     "assemble": "done",
-    "scoring": "in_progress",
-    "ship": "in_progress",
+    "scoring": "done",
+    "ship": "done",
     "upgrade": "pending",
     "gmail": "pending",
     "retro": "pending"
@@ -37,7 +37,8 @@
     "machine_qa": "PASS, 0 fails on all nine slides (12 fails cleared this phase)",
     "bespoke": "PASS, median pairwise art similarity 0.174, drawn share 74%",
     "aggregates": "out/2026-08-26/aggregates.json, aggregate_check PASS, 16 detected 16 declared",
-    "assemble": "out/2026-08-26/final, vector pdf 13.54 MB, contact sheet, 9 thumbs"
+    "assemble": "out/2026-08-26/final, vector pdf 13.54 MB, contact sheet, 9 thumbs",
+    "score": "8.51 / 10 against a round-5 threshold of 7.7 (base 8.3), zero hard fails, weakest criterion artwork craft at 6"
   },
   "notes": {
     "fact_checker_reversal": "The showrunner killed NSF award 2536745 (FIRE-WUI) after a regex over its abstract found no AI terms. The regex searched for the two-word form and the abstract writes machine-learning hyphenated, and NSF files the award under its Artificial Intelligence (AI) program with progRefCode 075Z. The fact-checker reversed the kill. Deck is five projects across six awards and 18,647,929 obligated dollars, not four and 17,059,782. No slide may state that an award was examined and excluded.",

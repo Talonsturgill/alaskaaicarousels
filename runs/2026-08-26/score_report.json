@@ -1,0 +1,77 @@
+{
+  "run_date": "2026-08-26",
+  "carousel_no": 41,
+  "title": "Five Surfaces",
+  "cycle": 2,
+  "revision_rounds": 5,
+  "weighted_total": 8.51,
+  "threshold": 7.7,
+  "base_threshold": 8.3,
+  "ship": true,
+  "hard_fails": [],
+  "note": "Cycle 1 scored 8.24 raw capped to 6.9 by one hard fail, primary text contrast under 4.5:1 on slides 03, 05 and 06. Round five fixed the whole named defect class: the three type reserves were deepened, every load-bearing 18 to 22px label came up to the 24px mobile floor, and slide 07's relief ramp was restored from a rust-red string-substitution regression to the declared blue. machine_qa now carries zero contrast warnings and zero contrast fails across all nine slides. 8.51 clears the round-5 ladder threshold of 7.7 and also the base 8.3.",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 9,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "weakest_score": 6,
+  "one_sentence_fix": "Stop buying contrast with opaque rectangles: design each slide's type reserve INTO the art at dossier time as a real sky, shadowed slope or snowfield the words sit inside, so no render ever needs a plate laid over the near ground that the treatment's own argument depends on.",
+  "known_shortfalls": [
+    "Slide 04's cumulus band renders as overlapping pale ellipses with hard edges and its spruce are stamped triangles at near-identical scale.",
+    "Slide 07's relief is nearly value-flat, so the log-scaled height field its own on-slide note advertises is unreadable in the frame.",
+    "Slide 06's opaque copy plate covers the lower left and buries the near-ground micro octave the treatment argues from.",
+    "Slide 06's last copy line sits 39px from the frame edge against an 80px safe margin, a side effect of lifting that plate to 24px.",
+    "Slide 05's 'moving.' descender is tangent to the top edge of its body plate. Legible, cosmetic.",
+    "Slides 04 and 05 share one layout skeleton and are reorderable without loss."
+  ],
+  "editor_notes": "SHIPS at 8.51, zero hard fails, round five of a five round cap. Acted on the scorer's one flagged item: the first comment now reconciles this deck's 10,500,000 obligated of a 15,000,000 estimated total against the 15 million and up to 160 million this page printed for the same award 2532372 on July 15th. MODELLED carries the British double L on four slides, consistent and deliberate. The only unfetched claim, C48, is used nowhere."
+}
