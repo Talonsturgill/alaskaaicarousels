@@ -725,6 +725,87 @@ def check_slide_openers(copy):
     return fails
 
 
+# NO FIRST PERSON ON A SLIDE EITHER (maintainer rule, 2026-08-05, enforced
+# here from 2026-08-27). config/brand.yaml's visual.on_slide_text_rules has
+# carried this rule since run No.26 shipped "not on any page we could reach" in
+# type, and until now the only code behind it read the CAPTION. Run No.42 set
+# "OUR ARITHMETIC" on slide 07, walked it through every machine gate green, and
+# the scorer capped an honest 8.32 at 6.9 for it: one rule, one surface, a
+# whole scoring pass and a whole editing round.
+#
+# THE CAPTION'S OWN REGEX CANNOT BE REUSED AS IT STANDS, and that is the crux.
+# It skips any ALL-CAPS match longer than one character so "the US Air Force"
+# is not read as "us" -- and slide type is set in caps, so on this surface that
+# carve-out would skip nearly every real hit and the gate would report nothing.
+# The same shape of defect this run's other upgrade is about. So the caps-
+# ambiguous tokens are dropped from the pattern instead of the matches:
+#
+#   OUT  bare "I"  -- "ANNEX I", "PHASE I", "I-Corps" are all shipped copy
+#   OUT  "us"/"US" when capitalised -- the United States, on a mining beat
+#   IN   we, our, ours, ourselves, my, me, let's, I'm, I've, I'd, I'll
+#
+# Precision over recall, deliberately: the tokens kept are unambiguous in caps
+# and are the ones the defect actually wears. Measured over all 42 shipped
+# decks' copy.json, this fires on 7 strings and every one of them is the
+# construction the rule bans, "Our arithmetic, not AEA's." (2026-08-04) and
+# "not on any page we could reach" (2026-08-05) among them.
+SLIDE_FIRST_PERSON = re.compile(
+    r"(?<![A-Za-z'])(I'm|I've|I'd|I'll|we|we're|we've|we'd|we'll|us|our|ours|"
+    r"ourselves|my|me|let's)(?![A-Za-z'])", re.I)
+
+
+def _quotation_spans(s):
+    """quoted_spans, plus the unclosed opening quote.
+
+    A slide string that OPENS on a straight double quote is a quotation whether
+    or not the closing quote survived into copy.json, and often it has not:
+    historic copy.json labels were pasted from render_report's 80-character
+    `text` field and are cut mid-sentence. Balanced quotes are handled by
+    quoted_spans; an odd count with a leading quote is read as quoted to the
+    end of the string, which is what the author wrote.
+    """
+    spans = quoted_spans(s)
+    if spans:
+        return spans
+    t = s.lstrip()
+    if t.startswith('"'):
+        return [(s.index('"'), len(s))]
+    return []
+
+
+def check_slide_first_person(copy):
+    """brand.yaml's on-slide first-person rule, run on on-slide text.
+
+    Same scope, same exemptions and same shape as check_slide_openers: the
+    caption-side fields are skipped because the caption body gate owns them, a
+    quoted source may speak in first person because a source is allowed to
+    write however it wrote, and a field whose own key says `quote` is a
+    quotation even when the display quote marks live in the artwork.
+    """
+    fails = []
+    for path, s in copy_prose(copy):
+        if path in COPY_READER_FIELDS:
+            continue          # caption-side prose; the caption body gate owns it
+        if re.search(r"(?i)quote", path):
+            continue          # a pull quote is a source speaking, not the studio
+        spans = _quotation_spans(s)
+        for m in SLIDE_FIRST_PERSON.finditer(s):
+            if any(a <= m.start() < b for a, b in spans):
+                continue
+            w = m.group(1)
+            if w.isupper() and w.lower() in ("us", "me"):
+                continue      # "US MADE PER ALASKA", not "us"
+            fails.append(
+                "FIRST PERSON (copy.json %s): '%s' is set in type on a slide. "
+                "No first person on a slide, ever (maintainer rule 2026-08-05, "
+                "config/brand.yaml visual.on_slide_text_rules, after No.26's "
+                "'not on any page we could reach'). The deck describes the "
+                "record, it never narrates its own work. Say what is true of "
+                "the record instead: '%s'" % (path, w, s[:60]))
+            break             # one report per string; fix the sentence, not the word
+    return fails
+
+
 def check_copy_dates(copy):
     """Run the house DATE_FORMS table over copy.json's reader-facing prose.
 
@@ -951,6 +1032,7 @@ def main():
             hits = check_copy_dates(copy_obj)
             hits.extend(check_copy_phrases(copy_obj, brand_phrases))
             hits.extend(check_slide_openers(copy_obj))
+            hits.extend(check_slide_first_person(copy_obj))
             rep["copy_fields_checked"] = len(copy_prose(copy_obj))
             # THE DECLARED MOVES, GRADED (2026-08-14). copy.json carries the
             # room's own caption_meta and the ledger carries the windows those

@@ -75,6 +75,12 @@ DOCKET = os.path.join(REPO, "ledger", "docket.json")
 RECENT_DAYS = 7
 SUMMARY_CHARS = 190
 HOWTO_CHARS = 260
+# The empty box's starter chips are one line each. A question longer than this
+# wraps and the strip stops reading as six offers. ONE constant, because the
+# picker and the self test used to hold this number separately, the picker
+# holding it as "the shortest title" and the test as a length in characters,
+# and the two disagreed the first time a short title carried a long question.
+CHIP_MAX = 58
 
 # A history note that records a NON event. The docket writes an entry every
 # time an item is checked, so most entries say a version of "looked, nothing
@@ -937,6 +943,17 @@ def catalogue(rows, fac, today, places=()):
 # ------------------------------------------------------------------- build
 
 
+def questions_for(route, cat, by_id, fac):
+    """Every catalogued phrasing of one route, each written out in full.
+
+    A route carries several wordings on purpose, so a reader who types any of
+    them lands in the same place. That also means a caller who needs one of
+    them to FIT somewhere has a choice to make rather than a first match to
+    accept.
+    """
+    return [expand(e, by_id, fac) for e in cat if e.split("|", 1)[1] == route]
+
+
 def starters(rows, fac, cat, by_id):
     """Six questions the empty box offers, one per shape of answer.
 
@@ -946,12 +963,45 @@ def starters(rows, fac, cat, by_id):
     shapes teaches the range in one glance, where six variations on one shape
     teaches that the box does one thing.
     """
-    # Shortest title among the dated ones. These render as chips and a
-    # seventy character question wraps to two lines on its own.
-    dated = sorted((r for r in rows if r["on"]), key=lambda r: len(r["title"]))
+    # THE FIELD READ. One dated decision, asked in the most useful way that
+    # still fits a chip.
+    #
+    # "Can I comment on ~?" is the phrasing this docket most wants to offer,
+    # because the whole point of the record is telling a reader when they can
+    # act, so it is tried first and across every dated item before anything
+    # else is considered. It is also the LONGEST wrapper of the per-item
+    # shapes, and a title has to come in at 40 characters or under to survive
+    # it. Two of the twenty two titles on the docket do, so whether that
+    # phrasing fits has always depended on which items happen to be dated this
+    # week, and on 2026-08-27 neither short title was dated and the self test
+    # went red on a record that was otherwise correct.
+    #
+    # So the shape degrades rather than the chip breaking. Status, timing,
+    # decider, subject and place are all field reads of the same decision, in
+    # descending order of how much a docket reader gets from one, and each
+    # wrapper is shorter than the last. The old code took the shortest TITLE
+    # and then the catalogue's FIRST phrasing of it, which are two proxies for
+    # the thing that has to fit and neither is what the gate below measures.
+    lead = None
+    for kind in ("how", "stat", "when", "who", "what", "where"):
+        fits = [q
+                for r in rows if r["on"]
+                for q in questions_for(f"{kind}:{r['id']}", cat, by_id, fac)
+                if len(q) <= CHIP_MAX]
+        if fits:
+            lead = min(fits, key=len)
+            break
+    if lead is None:
+        # Nothing on the docket fits under any shape. Offer the shortest
+        # anyway rather than dropping the field read out of the strip, and
+        # leave the gate red, which is the right outcome: six shapes is the
+        # contract and a chip that wraps is a real defect.
+        every = [q
+                 for r in rows if r["on"]
+                 for q in questions_for(f"how:{r['id']}", cat, by_id, fac)]
+        lead = min(every, key=len) if every else None
+
     want = []
-    if dated:
-        want.append(f"how:{dated[0]['id']}")
     for group in ("agency", "place", "topic"):
         # The first entry with a name of its own. Statewide leads the place
         # list on count and teaches a reader nothing about what this holds.
@@ -960,13 +1010,11 @@ def starters(rows, fac, cat, by_id):
                 want.append(f"fac:{group}/{e['key']}")
                 break
     want += ["cnt:open", "meta:where"]
-    out = []
+    out = [lead] if lead else []
     for route in want:
-        for entry in cat:
-            q, r = entry.split("|", 1)
-            if r == route:
-                out.append(expand(entry, by_id, fac))
-                break
+        qs = questions_for(route, cat, by_id, fac)
+        if qs:
+            out.append(qs[0])
     return out[:6]
 
 
@@ -1365,8 +1413,8 @@ def self_test():
           all(q in full for q in out["try"]),
           str([q for q in out["try"] if q not in full][:2]))
     check("no starter is too long to sit in a chip",
-          all(len(q) <= 58 for q in out["try"]),
-          str([q for q in out["try"] if len(q) > 58][:2]))
+          all(len(q) <= CHIP_MAX for q in out["try"]),
+          str([q for q in out["try"] if len(q) > CHIP_MAX][:2]))
     check("the catalogue spans every route type", len(types) >= 10,
           " ".join(f"{k}={v}" for k, v in sorted(types.items())))
     # Every item must be reachable by name, or the catalogue is a list of the

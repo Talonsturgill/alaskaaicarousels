@@ -42,6 +42,14 @@ MATCHING
     string is satisfied if its needle appears in its own slide's rendered
     blob OR anywhere in the deck's rendered blob.
 
+    A MATCH IS AGAINST ONE ELEMENT'S OWN STRING (2026-08-27). See build_nodes:
+    the per-slide blob used to be the alnum-join of every node's `text` and
+    every entry of its `texts`, which manufactured strings no element carried
+    and passed four shredded labels in one round. Each candidate string is now
+    searched whole. Presence still cannot see a TRUNCATED string, because a
+    truncated string is present, so the 80-character paste is caught by its own
+    signature instead; see the truncation block in check().
+
     THE BLOB IS BUILT FROM `texts` AS WELL AS `text` (2026-08-16). An element
     holding several lines (three fact lines separated by <br>) recorded its
     whole content JOINED and cut at 80 characters, so any line beginning past
@@ -129,46 +137,85 @@ def slide_index(fname):
     return int(m.group(1)) if m else None
 
 
-def build_blobs(render_report):
-    """Return (per_slide_blob_by_Skey, whole_deck_blob)."""
+def node_strings(n):
+    """Every string this ONE element can honestly be said to carry.
+
+    `full` (2026-08-27) is the element's whole one-line textContent at 400
+    characters, spans included, and it is the one that is actually what a
+    reader sees. `text` is the same thing cut at 80 and `texts` is its DIRECT
+    text children only, so a <span> wrapping a unit is missing from every entry
+    of it. Both are still offered as candidates, because a report written
+    before `full` existed has to keep checking.
+    """
+    out = [n.get("full") or "", n.get("text") or ""]
+    out.extend(n.get("texts") or [])
+    return [t for t in out if t]
+
+
+def build_nodes(render_report):
+    """Return (per_slide_candidates_by_Skey, whole_deck_candidates).
+
+    ONE NODE AT A TIME, NOT ONE BLOB PER SLIDE (2026-08-27). This used to
+    alnum-join every node's `text` AND every entry of its `texts` into a single
+    per-slide string and search that. Joining is what made the gate blind to a
+    SHREDDED string: run No.42 rebuilt copy.json out of `texts`, which dropped
+    the <span> holding a unit, and the label "1 DOT = 0.1 g OF SILVER IODIDE"
+    became "1 DOT = 0.1OF SILVER IODIDE" -- a string that was never on the page
+    and that the gate nonetheless found, because the space-join of the same two
+    `texts` entries it came from was sitting in the blob. Four labels shipped
+    that way through a PASS. A candidate list keeps each string whole, so a
+    match now means one element really carries those words.
+    """
     per_slide = {}
     deck = []
     for s in render_report.get("slides", []):
         idx = slide_index(s.get("file", ""))
         if idx is None:
             continue
-        parts = []
+        cands = []
         for n in s.get("text_nodes", []):
-            # `texts` (2026-08-16) is every direct text node of the element,
-            # 200 chars each, so a multi-line block's later lines are visible
-            # here. `text` is the same content joined and cut at 80; both are
-            # added because a slide rendered before that field existed still
-            # has to check. See the truncation note in MATCHING above.
-            parts.append(n.get("text", ""))
-            parts.extend(n.get("texts", []) or [])
-        blob = alnum(" ".join(parts))
-        per_slide["S%d" % idx] = blob
-        deck.append(blob)
-    return per_slide, "".join(deck)
+            cands.extend(node_strings(n))
+        per_slide["S%d" % idx] = cands
+        deck.extend(cands)
+    return per_slide, deck
+
+
+def _find(needle, cands):
+    """The first candidate string containing `needle`, or None."""
+    for c in cands:
+        if needle in alnum(c):
+            return c
+    return None
 
 
 def check(copy, render_report, window=WINDOW):
-    per_slide, deck = build_blobs(render_report)
+    per_slide, deck = build_nodes(render_report)
     misses = []
+    truncated = []
     checked = 0
     slides = normalize_slides(copy.get("slides", {}))
     for skey, sval in slides.items():
-        blob = per_slide.get(skey, "")
+        cands = per_slide.get(skey, [])
         for path, s in collect(sval, ""):
             a = alnum(s)
             if not a:
                 continue
             checked += 1
             needle = a if len(a) <= window else a[:window]
-            if needle in blob or needle in deck:
+            hit = _find(needle, cands) or _find(needle, deck)
+            if hit is None:
+                misses.append((skey, path, s))
                 continue
-            misses.append((skey, path, s))
-    return checked, misses, set(per_slide.keys()), deck
+            # THE 80-CHARACTER PASTE (2026-08-27). A truncated string IS
+            # present in the render, so presence can never catch it: run No.42
+            # pasted four bodies straight out of render_report's `text` field,
+            # which is cut at 80, and this gate passed all four. The signature
+            # is exact and cannot be anything else -- an authored string at the
+            # 80-character cut whose own element carries more words after it.
+            raw = " ".join(s.split())
+            if len(raw) >= 78 and alnum(hit).startswith(a) and len(alnum(hit)) > len(a):
+                truncated.append((skey, path, raw, " ".join(hit.split())))
+    return checked, misses, set(per_slide.keys()), deck, truncated
 
 
 def main():
@@ -194,14 +241,15 @@ def main():
         print("copy_sync_check: copy.json has no 'slides' object", file=sys.stderr)
         return 2
 
-    checked, misses, rendered_keys, deck = check(copy, rr, args.window)
+    checked, misses, rendered_keys, deck, truncated = check(copy, rr, args.window)
+    deck_text = "".join(deck)
 
     # Zero authored strings compared is not agreement, it is nothing to compare.
     # An empty slides list, or slides under a key this reader does not know,
     # normalizes to {} and the miss list is then trivially empty, which used to
     # read as PASS. If the render carries text, the copy that produced it cannot
     # legitimately have contributed nothing to check.
-    if checked == 0 and deck.strip():
+    if checked == 0 and deck_text.strip():
         print("copy_sync_check: FAIL -- copy.json contributed no slide strings to "
               "compare, but the render carries text. The slides are empty or under "
               "a key this check does not read.", file=sys.stderr)
@@ -214,14 +262,26 @@ def main():
     for o in orphan:
         print("copy_sync_check: WARN slide %s in copy.json has no rendered slide" % o, file=sys.stderr)
 
-    if not misses:
+    if not misses and not truncated:
         print("copy_sync_check: PASS -- %d authored slide strings all present in the render" % checked)
         return 0
 
-    print("copy_sync_check: FAIL -- %d authored slide string(s) not found in the render:" % len(misses))
-    for skey, path, s in misses:
-        shown = s if len(s) <= 70 else s[:67] + "..."
-        print("  %s  %s  -> %r" % (skey, path, shown))
+    if misses:
+        print("copy_sync_check: FAIL -- %d authored slide string(s) not found in the render:" % len(misses))
+        for skey, path, s in misses:
+            shown = s if len(s) <= 70 else s[:67] + "..."
+            print("  %s  %s  -> %r" % (skey, path, shown))
+    if truncated:
+        print("copy_sync_check: FAIL -- %d authored slide string(s) stop at the "
+              "80-character cut of render_report's `text` field, and the element "
+              "carries more words after it:" % len(truncated))
+        for skey, path, raw, hit in truncated:
+            print("  %s  %s" % (skey, path))
+            print("     copy.json says -> %r (%d chars)" % (raw, len(raw)))
+            print("     the render says -> %r" % (hit if len(hit) <= 200 else hit[:197] + "..."))
+        print("Copy the WHOLE string. render_report's text_nodes[].full is the "
+              "one to paste from; `text` is cut at 80 and `texts` drops span "
+              "children, and a string built from either reads as present here.")
     print("Reconcile copy.json to the shipped render (or fix the render) before ship.")
     return 1
 

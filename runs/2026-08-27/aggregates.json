@@ -1,0 +1,202 @@
+{
+  "run_date": "2026-08-27",
+  "note": "Every aggregate number printed on a slide in this deck, declared against the claim it is derived from or quoted from. Most of this deck's on-slide numbers are single figures quoted from one primary document, so they are kind 'from_claim'. Three are genuine aggregations across claims and carry members. One is a printed scale of the artwork.",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 1,
+      "text": "Nineteen flares burned over the Kenai. Alaska got one number.",
+      "fragment": "Nineteen flares",
+      "member": "C03"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Two drones. Seven missions. Nineteen flares.",
+      "fragment": "Two drones",
+      "member": "C04"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Two drones. Seven missions. Nineteen flares.",
+      "fragment": "Seven missions",
+      "member": "C02"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Two drones. Seven missions. Nineteen flares.",
+      "fragment": "Nineteen flares",
+      "member": "C03"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Rainmaker says drones EL-151 and EL-153 released 19 silver iodide flares over the Kenai on August 23rd, between 06:38:18 and 09:33:41 UTC. Missions 4 through 7 were flown by EL-151 alone.",
+      "fragment": "19 silver iodide flares",
+      "member": "C03"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "A SECOND POST, SAME DAY, SAYS 10 FLIGHTS (C18)",
+      "fragment": "10 FLIGHTS",
+      "member": "C18"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "374.3 grams of silver iodide, over a modelled 249.53 square kilometres.",
+      "fragment": "3 grams",
+      "member": "C05"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "374.3 grams of silver iodide, over a modelled 249.53 square kilometres.",
+      "fragment": "53 square kilometres",
+      "member": "C09"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "Each flare dispersed about 19.7 grams over a nominal 3.5 minute burn. The company puts the wet area at 249.53 square kilometres, about 0.6 percent of the borough's land.",
+      "fragment": "7 grams",
+      "member": "C05"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "Silver iodide only works between minus 5 and minus 15.",
+      "fragment": "5 and minus",
+      "member": "C07"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "text": "The radar looks from 1,800 metres up.",
+      "fragment": "1,800 metres",
+      "member": "C15"
+    },
+    {
+      "kind": "design",
+      "slide": 6,
+      "text": "VERTICAL SECTION, 0 TO 4,300 m",
+      "fragment": "0 TO 4",
+      "note": "The printed extent of this slide's altitude axis, a property of the artwork and not of the world. The column chassis maps 0 to 4,300 m onto 1,150 px, so the legend states the drawn range so a reader can measure the beam floor off the frame."
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "text": "ONE FIGURE, THREE WIDTHS",
+      "fragment": "THREE WIDTHS",
+      "subject": "widths",
+      "members": [
+        "C14",
+        "C17",
+        "C16"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "THE TECHNICAL REPORT, 41.70 TO 89.35 ACRE FEET",
+      "fragment": "70 TO 89",
+      "member": "C14"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "THE SUMMARY POST, 45 TO 65 ACRE FEET",
+      "fragment": "45 TO 65",
+      "member": "C17"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "THE HEADLINE, ABOUT 19 MILLION GALLONS",
+      "fragment": "19 MILLION GALLONS",
+      "member": "C16"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "THE SPREAD IS 27 REFLECTIVITY RELATIONSHIPS (C12)",
+      "fragment": "27 REFLECTIVITY RELATIONSHIPS",
+      "member": "C12"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "text": "NOAA REPORTING RULE, TEN DAYS PRIOR (C33)",
+      "fragment": "TEN DAYS",
+      "member": "C33"
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "text": "FOUR NAMED ALASKA OUTLETS, NO COVERAGE IN THEM",
+      "fragment": "FOUR NAMED ALASKA OUTLETS",
+      "subject": "named alaska outlets",
+      "members": [
+        "C37"
+      ],
+      "items": [
+        "Anchorage Daily News",
+        "Peninsula Clarion",
+        "Alaska Public Media",
+        "KDLL Kenai"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 9,
+      "text": "Two documents. Read the one with the band in it.",
+      "fragment": "Two documents",
+      "subject": "documents",
+      "members": [
+        "C14",
+        "C16"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "THE ENDPOINTS ARE PUBLISHED. THE 19 TIMES ARE NOT (C03, C06)",
+      "fragment": "19 TIMES",
+      "member": "C03"
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "text": "FOUR LEGAL SOURCES RETURNED 403 AND WENT UNCHECKED (C35)",
+      "fragment": "FOUR LEGAL SOURCES",
+      "subject": "legal sources",
+      "members": [
+        "C35"
+      ],
+      "items": [
+        "akleg.gov",
+        "dec.alaska.gov",
+        "law.justia.com",
+        "ncsl.org"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "text": "Six things were checked. Three came back.",
+      "fragment": "Six things",
+      "subject": "things checked",
+      "members": [
+        "C30",
+        "C32",
+        "C33",
+        "C34",
+        "C35",
+        "C37"
+      ]
+    }
+  ]
+}

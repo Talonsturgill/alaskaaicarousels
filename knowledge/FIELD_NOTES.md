@@ -4763,3 +4763,132 @@ Neither is applied; both are bounded and cheap if a future run wants them.
   the run learned the expensive way.
   https://www.smashingmagazine.com/2023/08/designing-accessible-text-over-images-part2/
   http://rectangleworld.com/blog/archives/169
+
+## 2026-08-27 (run No. 42) — craft refresh
+
+- Native documents are still the top LinkedIn format and the gap widened rather
+  than closed. Socialinsider's 2026 organic benchmark puts documents at about
+  7.00 percent engagement against multi-image at 6.45 and video at 6.00, and
+  calls documents up about 14 percent year over year. Nothing in CAROUSEL_CRAFT
+  needs changing; the format bet is holding.
+- The new number worth keeping is a distribution one. Oktopost's read of 1,000
+  plus B2B company pages says top-decile pages run about 22.45 percent
+  engagement against a median of about 5.72, and that the top decile posts MORE
+  document and carousel content than the median page does. That is the first
+  source seen here that ties the format choice to the gap between good pages and
+  average ones rather than to the format's own average.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- Slide-count guidance in the 2026 write-ups has widened to 5 to 15, which is
+  looser than this house's 8 to 10 default and its floor of 6. Keep the house
+  numbers. The reasoning behind them (completion data, the measured minus 35
+  percent below five slides) is stronger than a range quoted without a study.
+- On the craft side, 2026 editorial illustration is moving toward grain, visible
+  stroke, riso texture, pencil overlay and paper tooth, and explicitly away from
+  the clean generated look. Several trend reads converge on the same thing, that
+  the tell of a machine-made image in 2026 is a smooth one. That is direct
+  support for this run's standing-weakness attack, which is surface density,
+  drawn per mark rather than per region, with no large fill shipping flat.
+
+## 2026-08-27, Carousel No. 42, the sounding column
+
+Shipped at 8.67 after five editing rounds, the cap. Four scoring passes.
+
+**The gate that was switched off.** Three slides declared a measured axis as
+`window.__akScale`, generalising from `__akAssert`, `__akMotifs` and
+`__akLeaders`, which ARE window globals. `data-scale` is a body attribute.
+qa.py's pixel census therefore never ran on those three frames, and it reported
+nothing rather than failing, which is the worst thing a gate can do. Converting
+the three declarations found two undeclared marks on the hero's altitude band
+inside a minute, one of them a terrain crest drawn fifty metres above the 0 m
+datum it was measured from. A gate you have silently disabled is worse than a
+gate you never wrote, because the row still says PASS.
+
+**The deck stripped its own hedge.** Four slide 02 labels had been shortened to
+fit their boxes and each lost its attribution. The AI line, the only one in the
+deck, went from what the company SAYS about its platform to a statement of
+fact, on a deck arguing that every retelling of a number stripped a qualifier.
+No machine gate can catch this: the string is still true-ish, still fits, still
+syncs. A pixel critic reading the rendered words caught all four.
+
+**Three rounds on one object.** The hero was the standing weakness in person.
+Round 3 gave the aksdf mass shell displacement and it became a rock. Round 4
+dropped its key light and dissolved its edge and it stayed a rock, and the
+scorer said so twice with the same words. The diagnosis, when it came, was
+arithmetic: a 30,000 mark surface pass was painting near white at 0.38 alpha
+across the lit face while the dissolve marks outside sat at 0.05. Softening the
+lighting could not win against a brighter pass drawn after it. Round 5
+extinguished the render with a scrim before drawing anything and kept the
+raymarch only as a density field. That worked. Artwork craft 7.0, this
+criterion's best in the recorded run against a mean of 6.65.
+
+The lesson is not about aksdf. If a hero has to be darkened, softened and then
+painted over to match the atmosphere the deck declared, the atmosphere was
+never what built it.
+
+**What shipped known-imperfect.** The hero has texture without internal form:
+near isotropic grain, no cell structure, no shear along the northeasterly flow
+the deck names two slides earlier. Device C, the edge tease, is declared on
+seven junctions and drawn on two. The caption names no human being for the
+sixth time. All three are in the score report rather than in a drawer.
+
+## 2026-08-27 - Phase 12 (No.42): three silent gates, closed
+
+The pattern in all three of this run's expensive scars is the same one and it
+is worth naming before the fixes: **a check that reports nothing is not a check
+that found nothing.** An axis census that never ran, a first-person rule with
+no code on the surface it names, and a sync check that finds a truncated string
+because a truncated string really is present, all printed PASS.
+
+- **A declaration on the wrong surface is now a hard FAIL.** Half of the slide
+  contracts live on `<body>` (`data-contacts`, `data-scale`, `data-encodes`)
+  and half on `window` (`__akAssert`, `__akMotifs`, `__akLeaders`, `__akFit`).
+  There is no principle behind the split, only history, so the engine now
+  enumerates the near misses in BOTH directions and names the contract you
+  meant. The table is in the engine's SKILL.md; read it before writing a
+  declaration rather than generalising from the one above it.
+- **The first-person rule now runs on slide text**, from copy.json, where
+  brand.yaml always said it applied. Note for anyone widening a caption rule to
+  the slide surface: the caption's regex skips ALL-CAPS matches so "the US Air
+  Force" is not read as "us", and slide type is set in caps, so reusing it
+  verbatim would have produced another silent gate. Bare "I" and capitalised
+  "US" are out of the slide pattern instead (ANNEX I, PHASE I, I-Corps, US MADE
+  PER ALASKA are all real shipped copy); we, our, my, me and let's are in.
+- **copy.json is built from `text_nodes[].full`, and only from `full`.** The
+  new field is the element's whole one-line textContent at 400 characters,
+  spans included. `text` is cut at 80 and `texts` drops span children; this run
+  lost four bodies to the first and four labels to the second. copy_sync_check
+  now matches against one element's own string instead of a per-slide join, and
+  reports an authored string that stops at the 80-character cut when its
+  element carries more words. `python tests/copy_sync_shred_verify.py`.
+
+### PARKED, from the frontier scan (focus (g), accessibility and PDF)
+
+**The tagged PDF.** Playwright 1.62 accepts `page.pdf(tagged=True)` and it
+works on this studio's own slides: `/MarkInfo` and `/StructTreeRoot` both
+appear, for +5.9 KB on a 4.47 MB page. `assemble.py` does not pass it and
+`runs/2026-08-27/carousel.pdf` has neither. The blocker is the MERGE, measured
+here: pypdf 6.16.2 drops both keys through `PdfWriter.add_page` (what
+assemble.py uses) and also through `PdfWriter.append`. So the unblocking
+condition is a merge that carries a structure tree across nine pages, verified
+by reading `/StructTreeRoot` back out of the assembled file, with the vector
+text gates and the JPEG recompression step still green and the file still
+inside LinkedIn's limits.
+
+Worth knowing before anyone spends a slot on it: on LinkedIn the payoff is
+small. Intopia's NVDA testing of the document viewer found announcement order
+that does not follow the PDF's reading order, heading levels partly picked up,
+list tags ignored, and alt text acknowledged but never spoken. The gain is on
+OUR archive pages, every one of which offers the PDF for download, and for
+anyone who saves the file. That is a real reader, just not the feed.
+https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels/
+https://blog.chromium.org/2020/07/using-chrome-to-generate-more.html
+
+### NOT DONE, on purpose
+
+The scoring rubric's ten weights sum to 1.10, not 1.00. The rubric instructs a
+literal weighted sum, every score in the ledger was computed that way, and the
+thresholds were calibrated against it, so the comparison is sound and NOTHING
+was rescaled. It is simply undocumented, and two scoring passes this run spent
+time rediscovering it. Whether to write the convention down or normalise is the
+maintainer's call, and it is in the dated email as a recommendation.

@@ -1748,6 +1748,73 @@
         "C47"
       ],
       "note": "Dedupe read in full against No.33 (2026-08-14, the NSF State and Regional AI Infrastructure Hubs SOLICITATION and its one-award-per-state cap, prospective and about an allocation rule), No.20 (2026-07-30, the Department of Energy Genesis Mission list, 278 federal AI projects and Alaska has one) and No.31 (2026-08-12, AURORA-AI's 725,000 and Richard Wies). Different agency, different programs, awards already made. The deck carries the earlier DOE number rather than pretending this page never printed it, and it is NOT framed as an update because nothing about the DOE story changed."
+    },
+    {
+      "run_date": "2026-08-27",
+      "carousel_no": 42,
+      "title": "Nineteen Flares Over the Kenai, and One Number",
+      "topic": "Rainmaker Technology Corporation, an El Segundo company operating on the Kenai Peninsula since June, flew drone based glaciogenic cloud seeding over the Kenai on August 23rd, 2026. Two drones, EL-151 and EL-153, released 19 silver iodide flares across seven coordinated missions between 06:38:18 and 09:33:41 UTC, dispersing about 374.3 grams of silver iodide in total. Its own validation report puts the precipitation attributed to seeding at a mean of 57.62 acre feet with a 5th to 95th percentile range of 41.70 to 89.35 acre feet, over a modelled wet area of 249.53 square kilometres. Stratus, the company's forecasting and nowcasting platform, is described as identifying the seeding windows.",
+      "angle": "An operation that was precise to the second produced a number that is a range, and every retelling made the range narrower, starting with the company's own. The technical report gives 41.70 to 89.35 acre feet; the same day's summary post gives an interquartile 45 to 65; the only Alaska coverage headlines a single figure, approximately 19 million gallons. The company's own report says its range does not cover what happens to precipitation between the lowest radar beam, near 1,800 to 2,200 metres, and the ground.",
+      "entities": [
+        "Rainmaker Technology Corporation",
+        "Kenai Peninsula Borough",
+        "EL-151",
+        "EL-153",
+        "Stratus",
+        "PAHG NEXRAD",
+        "NOAA Central Library",
+        "Federal Aviation Administration",
+        "Alaska Watchman",
+        "El Segundo"
+      ],
+      "keywords": [
+        "cloud seeding",
+        "weather modification",
+        "silver iodide",
+        "glaciogenic",
+        "acre feet",
+        "radar beam",
+        "freezing level",
+        "Kenai Peninsula",
+        "drone",
+        "precipitation",
+        "docket FAA-2025-1630",
+        "Title 46"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C22",
+        "C29",
+        "C30",
+        "C32",
+        "C33",
+        "C34",
+        "C35",
+        "C36",
+        "C37",
+        "C38",
+        "C39"
+      ],
+      "note": "First weather modification topic in the ledger. No Alaska newsroom but the Alaska Watchman had covered it when the run selected it, which is part of why it was selected. The deck names no client and asserts no rainfall total; the killed list refuses both."
     }
   ]
 }

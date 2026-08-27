@@ -89,6 +89,15 @@ Checks per slide (consuming render_report.json + the PNGs):
     printed an 840px dimension that was exact to the pixel over a scene whose two
     masses were 266px apart (twenty feet drawn as about six) and two map frame
     widths wrong by 7 and 25 percent, all past every gate here.
+  - A DECLARATION ON THE WRONG SURFACE (FAIL): consumes render.py's scan for a
+    body-attribute contract written as a window global (window.__akScale for
+    data-scale) or the reverse (data-motifs for window.__akMotifs), and FAILS
+    naming the contract the slide meant. Added 2026-08-27 after run No.42 wrote
+    three measured axes as window.__akScale: every opt-in gate here reads "no
+    declaration" and "nothing to judge" as the same thing, so the axis census
+    never ran on three slides and all three rows printed PASS. The same check
+    also FAILS a report that carries no declaration_misses field at all while
+    its text nodes carry `full`, because the first cut of this gate was inert.
   - TYPE NOBODY SIZED (FAIL): consumes render.py's per-element check for an
     author font-size anywhere on a text element's ancestor chain (inline style,
     SVG presentation attribute, or a matching CSS rule) and FAILS when there is
@@ -1796,6 +1805,39 @@ def main():
                 res["warns"].append("motif: " + detail)
             else:
                 res.setdefault("motifs", []).append(detail)
+
+        # A DECLARATION ON THE WRONG SURFACE (2026-08-27). render.py enumerates
+        # the near misses: a body-attribute contract written as a window global
+        # or the reverse. This is a FAIL and not a warn because the damage it
+        # does is INVISIBLE. Every opt-in gate above reads "no declaration" and
+        # "nothing to judge" as the same thing, so a slide that declares on the
+        # wrong surface switches its own gate off and the row still prints PASS.
+        # Run No.42 shipped three slides that way and only found out by hand.
+        # AND THE SAME CHECK, RUN ON ITSELF. The first cut of this gate was
+        # INERT: render.py copies the in-page result into the report through an
+        # explicit key list, the new field was not on it, and qa.py read an
+        # empty default forever. So a report that is otherwise from this engine
+        # (its text nodes carry `full`, added the same day) and yet carries no
+        # declaration_misses key at all has lost the field in transit, and that
+        # is reported rather than passed.
+        if rec.get("declaration_misses") is None and \
+                any("full" in t for t in rec.get("text_nodes", [])):
+            res["fails"].append(
+                "the declaration-surface scan is missing from this render "
+                "report, so nothing checked whether this slide declared on the "
+                "surface the engine reads. Re-render with a current render.py")
+        for dm in rec.get("declaration_misses", []):
+            if dm.get("error"):
+                res["warns"].append(
+                    "declaration-surface scan failed to run (%s), so a "
+                    "declaration on the wrong surface would not be seen here"
+                    % dm["error"])
+                continue
+            res["fails"].append(
+                "declaration on the wrong surface: this slide sets %s, and the "
+                "engine never reads it. The contract is %s (%s), so the gate it "
+                "feeds ran on nothing and reported nothing. Move the declaration."
+                % (dm.get("found"), dm.get("want"), dm.get("how")))
 
         # A MARK ON A MEASURED AXIS (2026-08-16). Opt-in like the two probes
         # above: a slide that declares no scale is not judged here. When one IS

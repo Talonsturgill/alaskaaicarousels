@@ -1130,7 +1130,7 @@ The scorer also has NO Write tool by design; it returns the report card as
 JSON in its final message, which YOU persist to
 `out/<date>/score_report.json`.
 
-## PHASE 11 — SHIP (commit + merge; authoritative policy in CLAUDE.md)
+## PHASE 11 — SHIP (commit + push + open the PR; the MERGE is Phase 12 step 5)
 
 1. Copy the shippable artifacts to `runs/<date>/`:
    slide-NN.png (renders), carousel.pdf, contact_sheet.png, thumbs/,
@@ -1463,15 +1463,24 @@ JSON in its final message, which YOU persist to
    and read what changed; never edit the block by hand.
 6. Branch `claude/carousel-<date>`; commit everything (runs/, ledger/,
    docs/, knowledge/ changes); push with retries (2s/4s/8s/16s backoff).
-7. Open a PR (ready, not draft) and MERGE IT TO MAIN in the same run —
-   this repo's CLAUDE.md policy overrides any draft-PR default. The raw
-   URLs in the email point at main; the merge must land before the email.
-8. Verify two spot URLs resolve (WebFetch a slide raw URL + the PDF URL on
-   main). The shipped slides are `.webp`, not `.png`: ship_images.py
-   converts them in Phase 11 and reclaims the PNGs, so a `.png` URL here
-   is a 404 and means the draft's image links are all broken. If raw URLs
-   404, wait 30s and retry once; if still broken, fall back to
-   branch-pinned URLs and note it.
+7. Open a PR (ready, not draft) and leave it OPEN. Do not merge here.
+
+   THE MERGE MOVED TO THE FOOT OF PHASE 12 (2026-08-27). It used to happen
+   here, and that made Phase 12's upgrade commit land on a branch whose PR
+   was already merged. A merged PR cannot carry new work, so the upgrade
+   had nowhere to go and this file said "(or main post-merge)", which means
+   pushing the one commit that edits the automation itself straight to main
+   with no PR and no branch CI. The commit that changes the gates was the
+   only commit skipping them.
+
+   Everything that belongs to the run now lands on the branch before the
+   merge: the artifacts, the ledgers, the rebuilt docs/, the automation
+   retro, the upgrades and their SHA follow-up. One PR, one merge, one
+   revert if the maintainer sees degradation in a later dated email.
+
+   CLAUDE.md's delivery policy is unchanged and still binding: the run
+   merges to main in the same run, ready and not draft, with no human
+   review gate. Only the phase it merges in changed.
 
 ## PHASE 12 — AUTOMATION RETRO + UPGRADE (the machine gets better every run)
 
@@ -1487,9 +1496,12 @@ numeral lint, the no-verdict assertions and the overclaim guard.
 
 
 The editorial retro (Phase 14) improves the CONTENT brain; this phase
-improves the MACHINE. It runs after the merge and BEFORE the Gmail draft
-so every upgrade appears in that dated email, giving the maintainer a
-daily-monitorable, rollback-able trail.
+improves the MACHINE. It runs BEFORE THE MERGE and before the Gmail draft,
+so every upgrade rides the same PR as the run that motivated it, passes the
+same branch CI, appears in that dated email, and reverts as one commit.
+
+The merge itself is the last two steps of this phase, 5 and 6, because
+nothing else in the run produces a commit after them.
 
 Division of labor: mid-run breakage is fixed by the showrunner in the
 moment (FAILURE PROTOCOL); this phase turns those scars into PERMANENT
@@ -1560,10 +1572,12 @@ the showrunner's.
    the file): run_date, kind ("fix" | "improvement"), area, change,
    trigger (the deviation it fixes, or the source URL for a frontier
    improvement), files touched, verification evidence, rollback hint.
-4. **Commit the upgrades as their own commit** on the run branch (or main
-   post-merge), message prefixed `upgrade(<date>):`, separate from the
-   run-artifacts commit, so any single upgrade set can be reverted
-   cleanly if the maintainer sees degradation in a later dated email.
+4. **Commit the upgrades as their own commit** on the RUN BRANCH, message
+   prefixed `upgrade(<date>):`, separate from the run-artifacts commit, so
+   any single upgrade set can be reverted cleanly if the maintainer sees
+   degradation in a later dated email. Never push this commit to main
+   directly: it is the one commit that edits the automation itself, so it
+   is the last commit that should skip branch CI.
    Record the commit SHA back into the ledger entries with a FOLLOW-UP
    commit, then push. Not an amend: writing the SHA changes the tree, which
    changes the SHA, so an amended commit can never carry its own hash. Run
@@ -1571,6 +1585,18 @@ the showrunner's.
    A follow-up commit is the only self-consistent option, and the ledger
    entry then points at the commit that carries the code, which is what a
    rollback needs.
+5. **Wait for branch CI, then MERGE THE PR TO MAIN.** Ready, not draft, no
+   human review gate; this repo's CLAUDE.md policy overrides any draft-PR
+   default. Everything the run produced is on the branch by now, so this is
+   the run's single merge. If CI is red, fix it and re-push; a red run does
+   not merge (FAILURE PROTOCOL).
+6. **Verify two spot URLs resolve** (WebFetch a slide raw URL + the PDF URL
+   on main). The raw URLs in the email point at main, so this is the check
+   that the email's images will not be broken. The shipped slides are
+   `.webp`, not `.png`: ship_images.py converts them in Phase 11 and
+   reclaims the PNGs, so a `.png` URL here is a 404 and means the draft's
+   image links are all broken. If raw URLs 404, wait 30s and retry once; if
+   still broken, fall back to branch-pinned URLs and note it in the draft.
 
 ## PHASE 13 — GMAIL DRAFT
 
@@ -1615,8 +1641,8 @@ cannot be passed through a single `create_draft` call. Add
 `--preview-mode remote` (the script's own documented affordance for exactly
 this) and the body drops to about 17 KB with the contact sheet and every
 slide sourced from its raw URL on main. Those URLs are live by this phase
-because Phase 11 already merged. Use `remote` by default; `contact` is the
-middle option if one inline image is wanted.
+because Phase 12 merged and verified them at its step 6. Use `remote` by
+default; `contact` is the middle option if one inline image is wanted.
 
 THE MAILBOX, set 2026-07-26. The connector authenticates as
 `docket@alaskaaihq.com`, a Google Workspace mailbox on our own domain. That
@@ -1626,7 +1652,9 @@ From-address or send-as step in this phase: the draft is already from the
 right address, and changing it would be wrong. Nothing here sends; this
 routine drafts only.
 Save the returned draft id to
-`runs/<date>/gmail_draft_id.txt` (amend-commit to main is fine).
+`runs/<date>/gmail_draft_id.txt`. This is the ONE file written after the
+merge, because the draft id does not exist until the draft does; a small
+direct commit to main is fine for it and for nothing else.
 FALLBACK if Gmail MCP is unavailable: commit gmail_payload.json under
 runs/<date>/ and make the run summary VERY loud about where the payload
 lives and what to do with it.
