@@ -354,18 +354,44 @@ def main():
     # tomorrow, and the run's own Gas Watch verdict, caption-room record and
     # sourcing caveat. Read both sources and print both, in that order, because
     # the scorer's note is the one that can stop a post.
+    # 2026-08-27: the note arrives as a LIST as often as a string, and `str(v)`
+    # on a list is its Python repr. Run No.42's editor note reached the draft as
+    #   ["The argument is that one operation produced...", 'The deck never...']
+    # brackets, quotes, commas and all, in the one section the maintainer reads
+    # before deciding whether to post. Not a lost note like the five spelling
+    # bugs above, but the same class: the agent's natural shape drifts from the
+    # reader's, and nothing downstream looks. Both the scorer's brief and the
+    # copywriter's ask for `editor_notes_for_email` as an array of sentences,
+    # so the list is the EXPECTED shape and the string is the fallback.
     def _note_from(src):
         for k in ("editor_notes_for_email", "notes_for_the_email",
                   "notes_for_email", "editor_note",
                   "shortfall_note_for_email", "shortfall_note",
                   "honest_note_for_the_email", "honest_note"):
             v = src.get(k)
-            if v is not None and v != "":
-                return str(v)
-        return ""
+            if v is None or v == "":
+                continue
+            if isinstance(v, (list, tuple)):
+                items = [str(x).strip() for x in v if str(x).strip()]
+                if items:
+                    return items
+                continue
+            s = str(v).strip()
+            if s:
+                return s
+        return None
 
-    _parts = [p for p in (_note_from(score), _note_from(copy)) if p.strip()]
-    notes = "<br><br>".join(esc(p).replace("\n", "<br>") for p in _parts) or "None."
+    def _note_html(v):
+        """A list becomes real bullets; a string keeps its line breaks."""
+        if isinstance(v, list):
+            return ('<ul class="check">'
+                    + "".join("<li>%s</li>" % esc(x).replace("\n", "<br>")
+                              for x in v)
+                    + "</ul>")
+        return esc(v).replace("\n", "<br>")
+
+    _parts = [p for p in (_note_from(score), _note_from(copy)) if p]
+    notes = "<br>".join(_note_html(p) for p in _parts) or "None."
 
     # post_copy -> caption fallback: the copywriter/Phase 6 emit 'caption' and
     # often no 'post_copy'; without this the paste-ready post block renders empty
