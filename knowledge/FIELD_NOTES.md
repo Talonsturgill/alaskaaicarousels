@@ -4763,3 +4763,29 @@ Neither is applied; both are bounded and cheap if a future run wants them.
   the run learned the expensive way.
   https://www.smashingmagazine.com/2023/08/designing-accessible-text-over-images-part2/
   http://rectangleworld.com/blog/archives/169
+
+## 2026-08-27 (run No. 42) — craft refresh
+
+- Native documents are still the top LinkedIn format and the gap widened rather
+  than closed. Socialinsider's 2026 organic benchmark puts documents at about
+  7.00 percent engagement against multi-image at 6.45 and video at 6.00, and
+  calls documents up about 14 percent year over year. Nothing in CAROUSEL_CRAFT
+  needs changing; the format bet is holding.
+- The new number worth keeping is a distribution one. Oktopost's read of 1,000
+  plus B2B company pages says top-decile pages run about 22.45 percent
+  engagement against a median of about 5.72, and that the top decile posts MORE
+  document and carousel content than the median page does. That is the first
+  source seen here that ties the format choice to the gap between good pages and
+  average ones rather than to the format's own average.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- Slide-count guidance in the 2026 write-ups has widened to 5 to 15, which is
+  looser than this house's 8 to 10 default and its floor of 6. Keep the house
+  numbers. The reasoning behind them (completion data, the measured minus 35
+  percent below five slides) is stronger than a range quoted without a study.
+- On the craft side, 2026 editorial illustration is moving toward grain, visible
+  stroke, riso texture, pencil overlay and paper tooth, and explicitly away from
+  the clean generated look. Several trend reads converge on the same thing, that
+  the tell of a machine-made image in 2026 is a smooth one. That is direct
+  support for this run's standing-weakness attack, which is surface density,
+  drawn per mark rather than per region, with no large fill shipping flat.
