@@ -1599,8 +1599,8 @@
         ".claude/skills/carousel-engine/SKILL.md"
       ],
       "verification": "RED CASE 1, the run's own defect reconstructed: out/2026-08-27/slides/slide-07.html with `document.body.dataset.scale = JSON.stringify([{` put back to `window.__akScale = ([{`. qa FAILs that slide alone, 'declaration on the wrong surface: this slide sets window.__akScale ... The contract is data-scale', and the other eight slides in the same fixture stay exactly at their shipped verdicts. RED CASE 2, the same defect on slide 02, same result. RED CASE 3, the reverse direction: demo slide-04 with a data-motifs attribute FAILs with 'The contract is window.__akMotifs'. RED CASE 4, the inert-gate guard: strip declaration_misses out of a current render report and all four demo slides FAIL 'the declaration-surface scan is missing from this render report'. GREEN: render+qa on this run's nine slides and on examples/demo-deck, both before and after, are IDENTICAL per slide (run 0 fails / 13 warns, demo 0 fails / 11 warns), and runs/2026-08-12's archived render report, written before this field existed, does not trip the missing-scan guard. Full board: gate_status.py --run-dir out/2026-08-27 reports 0 FAIL rows.",
-      "rollback": "git revert the upgrade(2026-08-27) commit; both halves are additive (a new report field, a new FAIL branch) so removing them restores the previous behaviour exactly",
-      "commit": "PENDING"
+      "rollback": "git revert 992e50c; both halves are additive (a new report field, a new FAIL branch) so removing them restores the previous behaviour exactly",
+      "commit": "992e50c"
     },
     {
       "run_date": "2026-08-27",
@@ -1612,8 +1612,8 @@
         "scripts/caption_check.py"
       ],
       "verification": "RED CASE: this run's shipped copy.json with 'STUDIO CONVERSION' put back to 'OUR ARITHMETIC' FAILs, naming slides[6].labels[18] and printing the string. GREEN: the shipped copy.json passes the whole caption gate (PASS, 896 chars), as do runs/2026-08-26 and runs/2026-08-25 end to end with the new check active. FALSE-POSITIVE SWEEP over all 43 shipped copy.json files: 8 hits, and every one is the construction the rule bans, including 2026-08-04's 'Our arithmetic, not AEA's.' (the same sentence as this run's), 2026-08-05's 'not on any page we could reach' (the No.26 case the rule cites) and 2026-07-24's 'WE READ THEM'. Zero hits on the last twenty runs and zero on this one. THE CAPS TRAP, handled deliberately: the caption's regex skips ALL-CAPS matches so 'the US Air Force' is not read as 'us', and slide type is set in caps, so reusing it verbatim would have produced another silent gate; bare 'I' and capitalised 'US' are dropped from the slide pattern instead (ANNEX I, PHASE I, I-Corps and US MADE PER ALASKA are all shipped copy) and we/our/my/me/let's/I'm/I've/I'd/I'll are kept.",
-      "rollback": "git revert the upgrade(2026-08-27) commit; the check is one function plus one line in main(), so removing it restores the previous verdict on every artifact",
-      "commit": "PENDING"
+      "rollback": "git revert 992e50c; the check is one function plus one line in main(), so removing it restores the previous verdict on every artifact",
+      "commit": "992e50c"
     },
     {
       "run_date": "2026-08-27",
@@ -1628,8 +1628,8 @@
         ".claude/skills/carousel-engine/SKILL.md"
       ],
       "verification": "tests/copy_sync_shred_verify.py HOLDS. It reconstructs the PRE-FIX matcher verbatim (the per-slide blob join) and proves both red cases actually red under it: the shredded label passes the old matcher and is reported missing by the new one, against the render's own '1 DOT = 0.1 g OF SILVER IODIDE (C05)' with its real texts split; the 80-character paste passes the old matcher and is reported as a truncation, NOT as a miss, by the new one. GREEN in the same test: the same two strings written whole pass, and a <br>-separated block authored as one string still matches through `full`, so 2026-08-16's fix is not undone. NO FALSE POSITIVES on shipped work: this run's copy.json passes against BOTH the shipped render report (86 strings, no `full`) and a fresh one (86 strings, with `full`), and runs/2026-08-12's archived copy/render pair passes at 71 strings. Engine unchanged elsewhere: render+qa on this run's nine slides and on examples/demo-deck give per-slide verdicts identical to the pre-change baseline, and gate_status.py --run-dir out/2026-08-27 reports 0 FAIL rows with copy_sync PASS.",
-      "rollback": "git revert the upgrade(2026-08-27) commit; `full` is an added report field nothing else reads, and the matcher reverts to the blob join",
-      "commit": "PENDING"
+      "rollback": "git revert 992e50c; `full` is an added report field nothing else reads, and the matcher reverts to the blob join",
+      "commit": "992e50c"
     }
   ],
   "scan_log": [
