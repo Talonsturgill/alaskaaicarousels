@@ -407,9 +407,21 @@ IN_PAGE_QA_JS = """
       const t = n.textContent.trim().replace(/\\s+/g, " ");
       if (t.length && texts.length < 12) texts.push(t.slice(0, 200));
     }
+    // THE WHOLE STRING, ONCE, WITH ITS SPANS IN IT (2026-08-27). Neither field
+    // above is the string a reader sees. `text` is the whole node cut at 80
+    // characters and `texts` is the DIRECT text children only, so a <span>
+    // wrapping a unit is dropped from it. Run No.42 built copy.json off this
+    // record twice and lost both ways: four bodies pasted in at exactly 80
+    // characters, then four labels rebuilt from `texts` as "1 DOT = 0.1OF
+    // SILVER IODIDE", the gram gone with its span. copy_sync_check passed both
+    // times, because a truncated string IS present in the render and the
+    // shredded one matched the space-join of the same `texts` it came from.
+    // `full` is the element's whole one-line textContent at 400 characters:
+    // the string to copy, and the string a sync check can compare against.
     const node = {
       text: txt,
       texts: texts,
+      full: el.textContent.trim().replace(/\\s+/g, " ").slice(0, 400),
       tag: (el.tagName || "").toLowerCase(),
       // TYPE NOBODY SIZED (2026-08-21): true when no author font-size applies
       // anywhere on this element's ancestor chain, so the UA stylesheet chose
@@ -843,6 +855,54 @@ IN_PAGE_QA_JS = """
     }
   } catch (e) {
     out.scales.push({ error: String(e).slice(0, 140) });
+  }
+
+  /* A DECLARATION ON THE WRONG SURFACE (2026-08-27). The engine reads some
+     declarations off the BODY as data attributes (data-scale, data-contacts,
+     data-encodes) and others off WINDOW GLOBALS (__akAssert, __akMotifs,
+     __akLeaders, __akFit). Nothing enforced which was which, so run No.42
+     declared three measured axes as `window.__akScale`, generalising from the
+     three globals beside it. The axis pixel census never ran on slides 02, 06
+     and 07 and the row still read PASS, because an absent declaration is
+     indistinguishable from a slide that has no axis. Converting the three
+     immediately surfaced two undeclared marks on the hero, one of them a
+     terrain crest drawn fifty metres above the datum it was measured from.
+     A gate that is silently off is worse than one never written.
+
+     So the near misses are enumerated on both surfaces, in both directions,
+     with the singular/plural variant of each name. This looks only for the
+     names the engine ALREADY OWNS on the OTHER surface: an unrelated global
+     (a slide's own __akHero, __akProbes, __akStats) is not the machine's
+     business and is never reported. qa.py FAILs on anything found here. */
+  out.declaration_misses = [];
+  try {
+    const BODY_CONTRACTS = { contacts: "data-contacts", scale: "data-scale",
+                             encodes: "data-encodes" };
+    const GLOBAL_CONTRACTS = ["__akAssert", "__akMotifs", "__akLeaders", "__akFit"];
+    const variants = (s) => (s.slice(-1) === "s" ? [s, s.slice(0, -1)] : [s, s + "s"]);
+    const ds = (document.body && document.body.dataset) || {};
+    for (const key of Object.keys(BODY_CONTRACTS)) {
+      const pascal = "__ak" + key.charAt(0).toUpperCase() + key.slice(1);
+      for (const g of variants(pascal)) {
+        if (typeof window[g] !== "undefined" && window[g] !== null) {
+          out.declaration_misses.push({
+            found: "window." + g, want: BODY_CONTRACTS[key],
+            how: "a body attribute, JSON in single quotes on <body>" });
+        }
+      }
+    }
+    for (const g of GLOBAL_CONTRACTS) {
+      const key = g.slice(4, 5).toLowerCase() + g.slice(5);
+      for (const k of variants(key)) {
+        if (typeof ds[k] !== "undefined") {
+          out.declaration_misses.push({
+            found: "data-" + k.toLowerCase(), want: "window." + g,
+            how: "a window global, assigned in the slide's own script" });
+        }
+      }
+    }
+  } catch (e) {
+    out.declaration_misses.push({ error: String(e).slice(0, 140) });
   }
 
   /* CANVAS TELEMETRY (2026-07-11, the rendered-3D gates): per visible canvas,
@@ -1351,7 +1411,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
-           "gradient_clips": [], "render_ms": 0, "ok": False}
+           "gradient_clips": [], "declaration_misses": [],
+           "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
                             device_scale_factor=scale)
@@ -1375,7 +1436,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "canvas_text", "breather", "svg_plates",
                                        "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts", "motifs", "css_unreadable",
-                                       "gradient_clips")})
+                                       "gradient_clips", "declaration_misses")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:

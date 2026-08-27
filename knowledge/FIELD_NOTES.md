@@ -4831,3 +4831,64 @@ near isotropic grain, no cell structure, no shear along the northeasterly flow
 the deck names two slides earlier. Device C, the edge tease, is declared on
 seven junctions and drawn on two. The caption names no human being for the
 sixth time. All three are in the score report rather than in a drawer.
+
+## 2026-08-27 - Phase 12 (No.42): three silent gates, closed
+
+The pattern in all three of this run's expensive scars is the same one and it
+is worth naming before the fixes: **a check that reports nothing is not a check
+that found nothing.** An axis census that never ran, a first-person rule with
+no code on the surface it names, and a sync check that finds a truncated string
+because a truncated string really is present, all printed PASS.
+
+- **A declaration on the wrong surface is now a hard FAIL.** Half of the slide
+  contracts live on `<body>` (`data-contacts`, `data-scale`, `data-encodes`)
+  and half on `window` (`__akAssert`, `__akMotifs`, `__akLeaders`, `__akFit`).
+  There is no principle behind the split, only history, so the engine now
+  enumerates the near misses in BOTH directions and names the contract you
+  meant. The table is in the engine's SKILL.md; read it before writing a
+  declaration rather than generalising from the one above it.
+- **The first-person rule now runs on slide text**, from copy.json, where
+  brand.yaml always said it applied. Note for anyone widening a caption rule to
+  the slide surface: the caption's regex skips ALL-CAPS matches so "the US Air
+  Force" is not read as "us", and slide type is set in caps, so reusing it
+  verbatim would have produced another silent gate. Bare "I" and capitalised
+  "US" are out of the slide pattern instead (ANNEX I, PHASE I, I-Corps, US MADE
+  PER ALASKA are all real shipped copy); we, our, my, me and let's are in.
+- **copy.json is built from `text_nodes[].full`, and only from `full`.** The
+  new field is the element's whole one-line textContent at 400 characters,
+  spans included. `text` is cut at 80 and `texts` drops span children; this run
+  lost four bodies to the first and four labels to the second. copy_sync_check
+  now matches against one element's own string instead of a per-slide join, and
+  reports an authored string that stops at the 80-character cut when its
+  element carries more words. `python tests/copy_sync_shred_verify.py`.
+
+### PARKED, from the frontier scan (focus (g), accessibility and PDF)
+
+**The tagged PDF.** Playwright 1.62 accepts `page.pdf(tagged=True)` and it
+works on this studio's own slides: `/MarkInfo` and `/StructTreeRoot` both
+appear, for +5.9 KB on a 4.47 MB page. `assemble.py` does not pass it and
+`runs/2026-08-27/carousel.pdf` has neither. The blocker is the MERGE, measured
+here: pypdf 6.16.2 drops both keys through `PdfWriter.add_page` (what
+assemble.py uses) and also through `PdfWriter.append`. So the unblocking
+condition is a merge that carries a structure tree across nine pages, verified
+by reading `/StructTreeRoot` back out of the assembled file, with the vector
+text gates and the JPEG recompression step still green and the file still
+inside LinkedIn's limits.
+
+Worth knowing before anyone spends a slot on it: on LinkedIn the payoff is
+small. Intopia's NVDA testing of the document viewer found announcement order
+that does not follow the PDF's reading order, heading levels partly picked up,
+list tags ignored, and alt text acknowledged but never spoken. The gain is on
+OUR archive pages, every one of which offers the PDF for download, and for
+anyone who saves the file. That is a real reader, just not the feed.
+https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels/
+https://blog.chromium.org/2020/07/using-chrome-to-generate-more.html
+
+### NOT DONE, on purpose
+
+The scoring rubric's ten weights sum to 1.10, not 1.00. The rubric instructs a
+literal weighted sum, every score in the ledger was computed that way, and the
+thresholds were calibrated against it, so the comparison is sound and NOTHING
+was rescaled. It is simply undocumented, and two scoring passes this run spent
+time rediscovering it. Whether to write the convention down or normalise is the
+maintainer's call, and it is in the dated email as a recommendation.

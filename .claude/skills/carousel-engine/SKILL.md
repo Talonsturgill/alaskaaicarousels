@@ -180,6 +180,24 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   across a ten-month budget period. Two pixel critics caught them by reading.
   There is no such thing as a decorative tick on a measured axis: give the mark
   a meaning, or draw it outside the band.
+- **EACH DECLARATION HAS ONE SURFACE AND THE ENGINE READS ONLY THAT ONE**
+  (2026-08-27). Half of these contracts are BODY ATTRIBUTES and half are WINDOW
+  GLOBALS, for historical reasons and for no better one, so check this table
+  before writing one:
+
+  | on `<body>` as an attribute | on `window` as a global |
+  |---|---|
+  | `data-contacts`, `data-scale`, `data-encodes` | `__akAssert`, `__akMotifs`, `__akLeaders`, `__akFit` |
+
+  A declaration on the wrong surface is not an error and does not throw. It is
+  SILENCE: the gate it feeds reads "no declaration" and "nothing to judge" as
+  the same thing, and the QA row still prints PASS. Run No.42 wrote three
+  measured axes as `window.__akScale`, generalising from the three globals
+  beside it, and the axis census never ran on three slides. Converting them
+  immediately found two undeclared marks on the hero, one of them a terrain
+  crest drawn fifty metres above the datum it was measured from. render.py now
+  enumerates the near misses in both directions and qa.py **FAILS** on each,
+  naming the contract the slide meant.
 - **A leader must land on the thing it points at, and say where that is**
   (2026-08-07). EVERY drafting leader, callout rule or detail-circle tail is
   authored as a **world-coordinate polyline that terminates ON the target's own
@@ -328,6 +346,16 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   it. Not opt-in and nothing to tune: the author's own file states no size. If a
   headline is fitted, load `aktype.js` AND call the fitter, and check the fit
   record shows up in `render_report.json`.
+- **COPY THE WHOLE STRING OUT OF `full`, NEVER OUT OF `text` OR `texts`**
+  (2026-08-27). When copy.json is built from `render_report.json`, read
+  `text_nodes[].full`: it is the element's whole one-line textContent at 400
+  characters, spans included. `text` is the same string cut at 80 characters
+  and `texts` is the DIRECT text children only, so a `<span>` holding a unit is
+  absent from every entry of it. Run No.42 lost four bodies to the first and
+  four labels to the second ("1 DOT = 0.1 g OF SILVER IODIDE" came back without
+  its gram), and copy_sync_check passed both rounds, because a truncated string
+  IS present in the render and a shredded one matched the join of the `texts`
+  it was built from. Both are caught now; do not make the gate earn its keep.
 - **Text may never overprint text**: qa.py FAILS when two elements' text
   line boxes intersect (the 2026-07-08 slide-3 defect class). Deliberate
   layering (a chip on an opaque plate crossing a display line box) must be
