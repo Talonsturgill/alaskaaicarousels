@@ -1130,6 +1130,31 @@
         "three-layer neon Polaris"
       ],
       "note": "The two grounds that bracket the deck are the SAME terrain: slide 09 reuses the cover's seed 20260826 and samples the cover's own coordinates with the row offset subtracted, so every row the two frames share is bit-identical and only the light has moved. Slide 06's Anchorage to Fairbanks mass split drives BOTH the hachure stroke widths and the crest silhouette, measured at meanWidth 1.925 against 0.976 (ratio 1.972 inside a prediction of 1.7 to 2.3 declared before the field was built) and meanSlope 2.8 times larger on the larger lobe. bespoke_check: median pairwise art similarity 0.167 against a 0.60 ceiling, drawn share 76 percent."
+    },
+    {
+      "run_date": "2026-08-27",
+      "carousel_no": 42,
+      "slide_count": 9,
+      "hero_structure": "THE SOUNDING COLUMN. A to-scale vertical section of one night's atmosphere, 0 to 4,300 m mapped onto 1,150 px by a committed chassis (assets/js/akcolumn.js), with the camera inside the medium and descending through it across the deck. Four named physical surfaces: the release band, the lowest radar beam, the measured freezing level, the ground.",
+      "atmosphere": "Supercooled cloud interior at night. Not one specular highlight and not one lit surface in nine slides; form is carried by mark density and stroke swell alone. The hero's raymarch survives only as a DENSITY FIELD sampled off its own render, with its lit face extinguished before any mark is drawn.",
+      "continuity_device": "INK IS RECORDED, VOID IS MODELED. A texture level distinction, the deliberate replacement for No.41's colour level GOLD IS MEASURED, BLUE IS MODELLED, which this story would have burned. Three states, legend printed once on slide 02. Carried by Device A, an altimeter tape at x 940 to 1000 whose head holds the NN / 09 counter.",
+      "hook_archetype": "THE COUNT AGAINST THE SINGULAR. A specific plural of drawn things set against one abstract figure, resolved only at slide 07.",
+      "palette_family": "Cold droplet blues on near black, derived from the source string 19 red flares. One warm accent descending: scattered #7A3A46 on 01 to 03, gone by 05, gold #FFC72C the only warm thing from 06.",
+      "type_pairing": "Instrument Serif display over JetBrains Mono instrument register. Two families only.",
+      "techniques": [
+        "akstipple weighted field, three function rule",
+        "aksdf CPU raymarch used as a density source only",
+        "akengrave swelled lay",
+        "akhachure driven by distance to a real coastline",
+        "d3 geoConicEqualArea at true projection",
+        "Bayer 4x4 ordered dither voids",
+        "phantom dash 30 5 6 5 6 5",
+        "hatch knockout windows",
+        "drafting dimension calls",
+        "data-scale pixel census",
+        "__akAssert in frame counting"
+      ],
+      "note": "Median pairwise art similarity 0.127, max pair 0.290, drawn share 66 percent. Artwork craft scored 7.0, the criterion's best in the recorded run against a mean of 6.65, after five editing rounds of which three were spent on the hero. The remaining defect is named: the hero has texture without internal form, near isotropic grain with no cell structure and no shear along the flow the deck names on slide 05."
     }
   ]
 }

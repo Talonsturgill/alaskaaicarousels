@@ -4789,3 +4789,45 @@ Neither is applied; both are bounded and cheap if a future run wants them.
   the tell of a machine-made image in 2026 is a smooth one. That is direct
   support for this run's standing-weakness attack, which is surface density,
   drawn per mark rather than per region, with no large fill shipping flat.
+
+## 2026-08-27, Carousel No. 42, the sounding column
+
+Shipped at 8.67 after five editing rounds, the cap. Four scoring passes.
+
+**The gate that was switched off.** Three slides declared a measured axis as
+`window.__akScale`, generalising from `__akAssert`, `__akMotifs` and
+`__akLeaders`, which ARE window globals. `data-scale` is a body attribute.
+qa.py's pixel census therefore never ran on those three frames, and it reported
+nothing rather than failing, which is the worst thing a gate can do. Converting
+the three declarations found two undeclared marks on the hero's altitude band
+inside a minute, one of them a terrain crest drawn fifty metres above the 0 m
+datum it was measured from. A gate you have silently disabled is worse than a
+gate you never wrote, because the row still says PASS.
+
+**The deck stripped its own hedge.** Four slide 02 labels had been shortened to
+fit their boxes and each lost its attribution. The AI line, the only one in the
+deck, went from what the company SAYS about its platform to a statement of
+fact, on a deck arguing that every retelling of a number stripped a qualifier.
+No machine gate can catch this: the string is still true-ish, still fits, still
+syncs. A pixel critic reading the rendered words caught all four.
+
+**Three rounds on one object.** The hero was the standing weakness in person.
+Round 3 gave the aksdf mass shell displacement and it became a rock. Round 4
+dropped its key light and dissolved its edge and it stayed a rock, and the
+scorer said so twice with the same words. The diagnosis, when it came, was
+arithmetic: a 30,000 mark surface pass was painting near white at 0.38 alpha
+across the lit face while the dissolve marks outside sat at 0.05. Softening the
+lighting could not win against a brighter pass drawn after it. Round 5
+extinguished the render with a scrim before drawing anything and kept the
+raymarch only as a density field. That worked. Artwork craft 7.0, this
+criterion's best in the recorded run against a mean of 6.65.
+
+The lesson is not about aksdf. If a hero has to be darkened, softened and then
+painted over to match the atmosphere the deck declared, the atmosphere was
+never what built it.
+
+**What shipped known-imperfect.** The hero has texture without internal form:
+near isotropic grain, no cell structure, no shear along the northeasterly flow
+the deck names two slides earlier. Device C, the edge tease, is declared on
+seven junctions and drawn on two. The caption names no human being for the
+sixth time. All three are in the score report rather than in a drawer.

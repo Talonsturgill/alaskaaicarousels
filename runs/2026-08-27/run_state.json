@@ -1,0 +1,25 @@
+{
+  "run_date": "2026-08-27",
+  "carousel_no": 42,
+  "date_note": "Woke at 23:18 AKDT on 2026-08-26 with runs/2026-08-26/ already shipped by No.41. Per the routine date rule the run takes the first free date, 2026-08-27, which is the date Anchorage rolls into within the hour.",
+  "phases": {
+    "wake": "done: out/2026-08-27/plan.md, out/2026-08-27/run_state.json",
+    "craft_refresh": "done: knowledge/FIELD_NOTES.md dated 2026-08-27 entry (2 searches)",
+    "research": "done: out/2026-08-27/scout_merge.md, out/2026-08-27/scouts/beat-A.md (6 scouts, ~158 WebSearch calls, 3 overran the 25 cap)",
+    "claims": "done: out/2026-08-27/claims.json (40 claims, 36 primary, claims_check PASS)",
+    "docket": "done: ledger/docket.json, 5 worklist items re-verified 2026-08-27, watch.json read (1 bill matching, 0 hearings, 29 candidates all dead-session, 0 failed)",
+    "gas_watch": "done: out/2026-08-27/site_signoff.md (SITE SIGN-OFF PASS 86 pages 18 checks; GAS WATCH PASS 22 days)",
+    "selection": "done: out/2026-08-27/selection.md (dedupe_check exit 0, 1 LIKELY DUPLICATE read in full and cleared as a place-name collision)",
+    "directors_room": "pending",
+    "copy": "pending",
+    "art_build": "pending",
+    "pixel_review": "pending",
+    "flow_review": "pending",
+    "assemble": "pending",
+    "scoring": "pending",
+    "ship": "pending",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  }
+}

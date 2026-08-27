@@ -1,0 +1,165 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the flare core, the deck's only warm mark': canvas 87.9 dE, page 88.1 dE, 100% of its rect is clear of opaque DOM",
+        "'the drone silhouette': canvas 47.0 dE, page 45.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hook 'Nineteen flares burned over the Kenai. Alask' fits 3/3 lines at 100px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'THE ENDPOINTS ARE PUBLISHED. THE 19 TIME' at 80,614 940x35 (margin 80px)",
+        "outside safe zone: 'SAME COMPANY, SAME DAY, A SECOND POST SA' at 80,952 940x35 (margin 80px)",
+        "outside safe zone: 'EL SEGUNDO, CALIFORNIA. ON THE KENAI SIN' at 80,1194 940x35 (margin 80px)",
+        "outside safe zone: 'THE COMPANY SAYS ITS SOFTWARE PICKS THE ' at 80,1238 940x35 (margin 80px)"
+      ],
+      "motifs": [
+        "'the two drone lanes and their nineteen bars': canvas 97.7 dE, page 97.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the operational window, first flare to last' runs 0 seconds from 06:38:18 UTC at 200 to 10,523 seconds from 06:38:18 UTC at 960; 13 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd 'Two drones. Seven missions. Nineteen flares.' fits 2/2 lines at 87.5px"
+      ],
+      "asserts": [
+        "'nineteen flare bars, one per released flare (C03)' holds: 19 vs 19 marks, counted over 19 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '249.53 SQ KM AGAINST 41,485.21 SQ KM OF ' at 80,1226 940x35 (margin 80px)"
+      ],
+      "motifs": [
+        "'the modelled wet area, cut as a void in the borough's hachure': canvas 88.2 dE, page 82.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the silver iodide plume, 3,743 marks': canvas 87.9 dE, page 88.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the modelled wet area on the borough' lands 0.0px from its target",
+        "leader 'the modelled wet area on the borough' meets its label 8.0px away"
+      ],
+      "fits": [
+        "hd '374.3 grams of silver iodide, over a modelle' fits 3/3 lines at 83.5px"
+      ],
+      "asserts": [
+        "'3,743 marks, one per 0.1 g of the 374.3 g released (C05)' holds: 3743 vs 3743 marks, counted over 3743 declared marks (within 0)",
+        "'the modelled wet area drawn at its published share of the borough (C09, C36)' holds: 0.601 vs 0.601491 percent of the s (within 0.06)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the activation window ribbon, the only region carrying crystals': canvas 84.2 dE, page 84.9 dE, 84% of its rect is clear of opaque DOM (div#labwin.abs stands on the rest)",
+        "'the measured freezing level rule': canvas 71.7 dE, page 75.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Silver iodide only works between minus 5 and' fits 2/2 lines at 88px"
+      ],
+      "asserts": [
+        "'the 1,874 m freezing level drawn on the deck column (C08)' holds: 739 vs 739 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.03) beneath 'A low in the Gulf. Northeasterly flow. N' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the three coastal ridge planes at atmospheric perspective': canvas 31.5 dE, page 84.6 dE, 87% of its rect is clear of opaque DOM (h2#hd stands on the rest)"
+      ],
+      "fits": [
+        "hd 'A low in the Gulf. Northeasterly flow. Nobod' fits 3/3 lines at 102.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (5% of the ring around '1,874 m', spanning 21%) -- pixel critic verify the label is not crossed",
+        "outside safe zone: '1,800 m' at 912,765 118x35 (margin 80px)",
+        "outside safe zone: 'PAHG NEXRAD (C10)' at 744,1236 276x35 (margin 80px)"
+      ],
+      "motifs": [
+        "'the 1,800 m void the radar never saw': canvas 21.8 dE, page 84.7 dE, 96% of its rect is clear of opaque DOM (div#a1800.abs stands on the rest)",
+        "'the raymarched cloud mass at the column's head': canvas 85.9 dE, page 85.0 dE, 93% of its rect is clear of opaque DOM (div#a3500.abs stands on the rest)"
+      ],
+      "scales": [
+        "'the altitude section, ground to 4,300 m' runs 0 metres at 1240 to 4,300 metres at 90; 7 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd 'The radar looks from 1,800 metres up.' fits 3/3 lines at 95.5px"
+      ],
+      "asserts": [
+        "'the 1,800 m blind zone drawn as a 481 px void (C15)' holds: 481 vs 481 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.03) beneath 'The report says estimates.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: '58.31 ACRE FEET IS THAT HEADLINE, STUDIO' at 80,1216 940x35 (margin 80px)"
+      ],
+      "motifs": [
+        "'row 1, the technical report's band as a void': canvas 15.6 dE, page 91.6 dE, 100% of its rect is clear of opaque DOM",
+        "'row 2, the summary post's band as a void': canvas 23.1 dE, page 91.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the acre foot axis every row is drawn on' runs 35 acre feet at 120 to 108 acre feet at 996; 14 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd 'Every retelling was narrower than the one be' fits 2/2 lines at 89px"
+      ],
+      "asserts": [
+        "\"row 1 drawn at 571.8 px, the report's 41.70 to 89.35 band (C14)\" holds: 571.8 vs 571.8 px (within 1)",
+        "\"row 2 drawn at 240.0 px, the summary post's 45 to 65 band (C17)\" holds: 240 vs 240 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 69% / mid 59% / bottom 42% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "outside safe zone: 'UNREADABLE IS NOT EMPTY' at 80,1222 708x58 (margin 80px)"
+      ],
+      "motifs": [
+        "'the three sourced rows, hachured': canvas 27.0 dE, page 44.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the three rows that came back empty, dithered voids': canvas 10.5 dE, page 18.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'A gap in the record is not a finding.' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the ground profile the column finally reaches': canvas 82.9 dE, page 92.7 dE, 100% of its rect is clear of opaque DOM",
+        "'the distant plane behind it, at atmospheric perspective': canvas 32.5 dE, page 31.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Two documents. Read the one with the band in' fits 2/2 lines at 76.5px"
+      ],
+      "asserts": [
+        "'no terrain rises through the 0 m datum the column measures from' holds: 0 vs 0 points above the (within 0)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 13,
+  "verdict": "WARN"
+}

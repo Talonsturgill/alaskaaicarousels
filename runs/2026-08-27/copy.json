@@ -1,0 +1,273 @@
+{
+  "post_copy": "Two drones released 374.3 grams of silver iodide over the Kenai Peninsula on August 23rd, about the mass of a can of soup.\n\nRainmaker's report puts the precipitation attributed to seeding at a mean of 57.62 acre feet, in a 5th to 95th percentile range of 41.70 to 89.35.\n\nThe flare releases ran between 06:38 and 09:33 UTC. Soundings put the average freezing level near 1,874 metres.\n\nA summary post the same day says \"approximately 19 million gallons\".\n\nThe lowest radar beam sits near 1,800 to 2,200 metres. Rainmaker says its range doesn't cover what happens below that beam.\n\nAn operation measured to the gram produced a number that spans a factor of two.\n\nThe deck carries the operations log as published, the beam floor drawn to scale and one figure at three widths.\n\nSame company, same day. Which of those two numbers earns the headline?\n\n#CloudSeeding #KenaiPeninsula #WeatherModification",
+  "hook_chars": 122,
+  "total_chars": 895,
+  "hashtags": [
+    "#CloudSeeding",
+    "#KenaiPeninsula",
+    "#WeatherModification"
+  ],
+  "first_comment": "Sources, primary first\nRainmaker Technology Corporation, Alaska validation report, the 41.70 to 89.35 acre feet band https://www.rainmaker.com/blog/alaska-validation-report\nRainmaker Technology Corporation, summary post, \"approximately 19 million gallons\" https://www.rainmaker.com/blog/rainmaker-alaska-results\nFederal Register, Petition for Exemption, Rainmaker Technology Corporation, docket FAA-2025-1630 https://www.federalregister.gov/documents/2025/07/29/2025-14285/petition-for-exemption-summary-of-petition-received-rainmaker-technology-corporation\nNOAA Central Library, weather modification project reports and the ten day reporting rule https://library.noaa.gov/weather-climate/weather-modification-project-reports\nUS Census Bureau 2023 Gazetteer, Kenai Peninsula Borough land area https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2023_Gazetteer/2023_gaz_counties_02.txt\nAlaska Watchman, \"Chemically seeded clouds over Alaska results in 19-million-gallon rainfall in 3 hours\" https://alaskawatchman.com/2026/08/25/chemically-seeded-clouds-over-alaska-results-in-19-million-gallon-rainfall-in-3-hours/\nLive deadlines and the whole Alaska AI decision record sit at https://alaskaaihq.com\nAnyone with Kenai Peninsula context, or a NOAA project list that actually loads, add it below.",
+  "document_title": "Nineteen Flares Over the Kenai, and One Number",
+  "deck_summary_line": "The deck carries the operations log as published, the beam floor drawn to scale and one figure at three widths.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "KENAI PENINSULA, AUGUST 23RD, 2026 UTC",
+      "headline": "Nineteen flares burned over the Kenai. Alaska got one number.",
+      "labels": [
+        "01 / 09",
+        "3,500 TO 4,200 m (C18)",
+        "06:38:18 UTC, FIRST RELEASE (C06)",
+        "THE EVENING OF AUGUST 22ND IN ALASKA (C39)"
+      ],
+      "claim_ids": [
+        "C01",
+        "C03",
+        "C06",
+        "C16",
+        "C18",
+        "C39"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "THE OPERATION, AS PUBLISHED",
+      "headline": "Two drones. Seven missions. Nineteen flares.",
+      "body": "Rainmaker says drones EL-151 and EL-153 released 19 silver iodide flares over the Kenai on August 23rd, between 06:38:18 and 09:33:41 UTC. Missions 4 through 7 were flown by EL-151 alone.",
+      "labels": [
+        "02 / 09",
+        "THE ENDPOINTS ARE PUBLISHED. THE 19 TIMES ARE NOT (C03, C06)",
+        "06:38:18",
+        "09:33:41",
+        "EL-151",
+        "EL-153",
+        "SAME COMPANY, SAME DAY, A SECOND POST SAYS 10 FLIGHTS (C18)",
+        "INK, RECORDED",
+        "VOID, NOT MEASURED",
+        "THINNING, TYPE RESERVE",
+        "EL SEGUNDO, CALIFORNIA. ON THE KENAI SINCE JUNE (C19, C29)",
+        "THE COMPANY SAYS ITS SOFTWARE PICKS THE SEEDING WINDOW (C22)"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C06",
+        "C18",
+        "C19",
+        "C22",
+        "C29"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "WHAT WAS RELEASED",
+      "headline": "374.3 grams of silver iodide, over a modelled 249.53 square kilometres.",
+      "body": "Each flare dispersed about 19.7 grams over a nominal 3.5 minute burn. The company puts the wet area at 249.53 square kilometres, about 0.6 percent of the borough's land.",
+      "labels": [
+        "03 / 09",
+        "1 DOT = 0.1 g OF SILVER IODIDE (C05)",
+        "KENAI PENINSULA BOROUGH",
+        "WET AREA IS A MODELLED",
+        "THRESHOLD, 0.01 mm (C09)",
+        "249.53 SQ KM AGAINST 41,485.21 SQ KM OF LAND (C09, C36)"
+      ],
+      "claim_ids": [
+        "C05",
+        "C09",
+        "C36"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "THE ONE THING THAT HAD TO BE RIGHT",
+      "headline": "Silver iodide only works between minus 5 and minus 15.",
+      "body": "Every median release temperature landed inside that window. Soundings launched from the site put the average freezing level at 1,874 metres, and that sounding is the night's one direct measurement.",
+      "labels": [
+        "04 / 09",
+        "ACTIVATION WINDOW (C07)",
+        "MINUS 15 C",
+        "MINUS 5 C",
+        "FREEZING LEVEL, 1,874 m MSL (C08)",
+        "TWO SCALES ON THIS FRAME, NOT ONE SUM"
+      ],
+      "claim_ids": [
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "n": 5,
+      "headline": "A low in the Gulf. Northeasterly flow. Nobody watching.",
+      "labels": [
+        "05 / 09",
+        "CHUGACH AND KENAI COASTAL RANGES (C20)",
+        "60 33 N, 151 15 W"
+      ],
+      "claim_ids": [
+        "C02",
+        "C20"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "WHAT AN INSTRUMENT COULD SEE",
+      "headline": "The radar looks from 1,800 metres up.",
+      "body": "The company says its range does not cover what happens to precipitation between the lowest radar beam and the ground.",
+      "labels": [
+        "4,200 m",
+        "06 / 09",
+        "3,500 m",
+        "2,200 m",
+        "1,874 m",
+        "1,800 m",
+        "1,800 m",
+        "THE BAND DOES NOT COVER THIS AIR (C15)",
+        "VERTICAL SECTION, 0 TO 4,300 m",
+        "PAHG NEXRAD (C10)"
+      ],
+      "claim_ids": [
+        "C08",
+        "C10",
+        "C15",
+        "C18"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "ONE FIGURE, THREE WIDTHS",
+      "headline": "Every retelling was narrower than the one before.",
+      "labels": [
+        "07 / 09",
+        "MEAN 57.62 (C14)",
+        "THE TECHNICAL REPORT, 41.70 TO 89.35 ACRE FEET",
+        "(C14)",
+        "THE SUMMARY POST, 45 TO 65 ACRE FEET",
+        "(C17)",
+        "THE HEADLINE, ABOUT 19 MILLION GALLONS",
+        "(C16, C38)",
+        "WIDTH 0",
+        "ACRE FEET",
+        "55",
+        "75",
+        "85",
+        "95",
+        "105",
+        "THE FIRST TWO, SAME DAY, SAME COMPANY (C14, C17)",
+        "5 dBZ WAS SUBTRACTED FROM EVERY RADAR GATE (C11)",
+        "THE SPREAD IS 27 REFLECTIVITY RELATIONSHIPS (C12)",
+        "58.31 ACRE FEET IS THAT HEADLINE, STUDIO CONVERSION (C16)"
+      ],
+      "claim_ids": [
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C16",
+        "C17",
+        "C38"
+      ],
+      "body": "The report says estimates."
+    },
+    {
+      "n": 8,
+      "kicker": "WHAT WAS CHECKED, AND WHAT CAME BACK",
+      "headline": "A gap in the record is not a finding.",
+      "body": "Six things were checked. Three came back.",
+      "labels": [
+        "08 / 09",
+        "FAA PETITION, PUBLISHED JULY 29TH, 2025",
+        "(C30)",
+        "A DECISION ON IT, NOT IN THE FEDERAL REGISTER",
+        "(C32)",
+        "NOAA REPORTING RULE, TEN DAYS PRIOR",
+        "(C33)",
+        "NOAA PROJECT LIST, WOULD NOT LOAD",
+        "(C34)",
+        "ALASKA TITLE 46, NO WEATHER MODIFICATION CHAPTER",
+        "(C35)",
+        "FOUR NAMED ALASKA OUTLETS, NO COVERAGE IN THEM",
+        "(C37)",
+        "FOUR LEGAL SOURCES RETURNED 403 AND WENT UNCHECKED (C35)",
+        "UNREADABLE IS NOT EMPTY"
+      ],
+      "claim_ids": [
+        "C30",
+        "C32",
+        "C33",
+        "C34",
+        "C35",
+        "C37"
+      ]
+    },
+    {
+      "n": 9,
+      "headline": "Two documents. Read the one with the band in it.",
+      "labels": [
+        "09 / 09",
+        "Save this, and ask the next water number for its range.",
+        "Sources in comments",
+        "ALASKA.AI",
+        "alaskaaihq.com"
+      ],
+      "claim_ids": []
+    }
+  ],
+  "editor_notes_for_email": [
+    "The argument is that one operation produced three published widths of the same figure, and each retelling was narrower than the last, starting with the company's own summary post.",
+    "The deck never says 19 million gallons of rain fell. Slide 07 labels that figure as a headline and converts it to 58.31 acre feet so it sits on the same axis as the company's own band.",
+    "The deck never says Rainmaker skipped a NOAA filing. The project list would not load, slide 08 says exactly that, and the refusal is printed in four words.",
+    "Title 46 is stated narrowly. Slide 08 says the title carries no weather modification chapter, which is what was confirmed, and says nothing about Alaska law as a whole.",
+    "No client, contract or motive appears anywhere. Both company posts describe flight testing and validation research and name no customer.",
+    "Slide 05 is a deliberate breather, three lines and two readouts, under the usual word floor by design."
+  ],
+  "aftercare": [
+    "Post Tuesday through Thursday, 8 to 11am AKT, for the strongest slot. Drafts arrive daily, so holding this one a day costs nothing.",
+    "Paste the sources comment within 60 seconds of posting, before the first reader lands.",
+    "Reply to every comment in the first 90 minutes. That window decides the reach.",
+    "This deck's specific risk is a reader arriving for a chemtrail story. Make the first reply arithmetic and not argument. 374.3 grams, a modelled background, and a band that spans a factor of two.",
+    "If someone states that 19 million gallons fell, point at slide 07 and the company's own 41.70 to 89.35 acre feet, then stop there.",
+    "If someone states that Rainmaker broke the NOAA rule, say the project list would not load and that unreadable is not empty.",
+    "Check saves and comments at 48 hours, and note which of the two numbers readers argued about."
+  ],
+  "caption_meta": {
+    "opening_move": "THE ABSURD DETAIL",
+    "structure": "BRAID",
+    "closing_move": "NEW:HEADLINE RIGHTS"
+  },
+  "claims_used": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C15",
+    "C16",
+    "C17",
+    "C18",
+    "C19",
+    "C20",
+    "C22",
+    "C29",
+    "C30",
+    "C32",
+    "C33",
+    "C34",
+    "C35",
+    "C36",
+    "C37",
+    "C38",
+    "C39"
+  ]
+}

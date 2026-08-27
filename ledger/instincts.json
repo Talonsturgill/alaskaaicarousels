@@ -959,6 +959,30 @@
       "evidence": "Run No.41 shipped four of five contact declarations with the ground rect directly BELOW the shadow rect, which put it at the lit pool's dark edge while the shadow sat near the pool's bright centre; three measured NEGATIVE separation. Slide 03's declared pair was 118px from where the marker actually drew, so the gate was measuring open water. Every pair had to be refitted from a horizontal profile through the object's own base line.",
       "confidence": 0.9,
       "runs_confirmed": 1
+    },
+    {
+      "id": "a-declaration-contract-is-not-a-convention",
+      "learned": "2026-08-27",
+      "instinct": "Look up how the engine READS each declaration before writing one; a contract that is a body attribute cannot be satisfied by a window global, and a gate you have silently switched off reports nothing rather than reporting a problem.",
+      "evidence": "Run No.42 declared three measured axes as window.__akScale, because __akAssert, __akMotifs and __akLeaders are window globals and it generalised. data-scale is a BODY ATTRIBUTE. qa.py's pixel census therefore never ran on slides 02, 06 or 07, and reported nothing rather than failing. Converting the three declarations immediately surfaced two undeclared marks on the hero's altitude band, one of which was a terrain crest drawn fifty metres ABOVE the 0 m datum it was measured from.",
+      "confidence": 0.9,
+      "runs_confirmed": 1
+    },
+    {
+      "id": "shorten-a-string-and-you-may-drop-its-hedge",
+      "learned": "2026-08-27",
+      "instinct": "When a label is cut to fit its box, diff the new string against the dossier's for ATTRIBUTION and QUALIFIERS, not just for meaning; the words that get cut first are the ones that make a sentence defensible.",
+      "evidence": "Run No.42 shortened four slide 02 labels to fit and lost four hedges. 'THE COMPANY SAYS ITS SOFTWARE PICKS THE SEEDING WINDOW' became 'THE SOFTWARE PICKS THE SEEDING WINDOW', stating as fact what C22 records as the company's own description of an unnamed platform. On a deck whose entire thesis is that each retelling stripped a hedge, the deck stripped its own. No gate caught any of the four; a pixel critic reading the render did.",
+      "confidence": 0.9,
+      "runs_confirmed": 1
+    },
+    {
+      "id": "an-object-that-needs-extinguishing-was-the-wrong-object",
+      "learned": "2026-08-27",
+      "instinct": "If a hero has to be darkened, softened and then painted over to match the deck's declared atmosphere, the atmosphere was never what built it; generate it from the medium in the first place rather than repairing a lit solid into a cloud.",
+      "evidence": "Run No.42 spent three of its five editing rounds on one aksdf mass. Round 3 added shell displacement, round 4 dropped the key light and dissolved the edge, and the scorer twice returned the same verdict, because a 30,000 mark surface pass was painting near white at 0.38 alpha across the lit face while the dissolve whispered at 0.05. Only round 5 worked, and only by extinguishing the render entirely with a scrim and keeping the raymarch as a density field. Artwork craft went 6.5 to 7.0, its best in the recorded run, at a cost of three rounds and one point of drawn share.",
+      "confidence": 0.85,
+      "runs_confirmed": 1
     }
   ]
 }

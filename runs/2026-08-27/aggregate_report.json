@@ -1,0 +1,205 @@
+{
+  "run_dir": "out/2026-08-27",
+  "render_report": "out/2026-08-27/render/render_report.json",
+  "aggregates_file": "out/2026-08-27/aggregates.json",
+  "detected": 23,
+  "declared": 23,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "Nineteen flares",
+      "text": "Nineteen flares burned over the Kenai. Alaska got one number.",
+      "n": 19,
+      "subject": "flares"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Two drones",
+      "text": "Two drones. Seven missions. Nineteen flares.",
+      "n": 2,
+      "subject": "drones"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Seven missions",
+      "text": "Two drones. Seven missions. Nineteen flares.",
+      "n": 7,
+      "subject": "missions"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Nineteen flares",
+      "text": "Two drones. Seven missions. Nineteen flares.",
+      "n": 19,
+      "subject": "flares"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "19 silver iodide flares",
+      "text": "Rainmaker says drones EL-151 and EL-153 released 19 silver iodide flares over th",
+      "n": 19,
+      "subject": "silver iodide flares"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "19 TIMES",
+      "text": "THE ENDPOINTS ARE PUBLISHED. THE 19 TIMES ARE NOT (C03, C06)",
+      "n": 19,
+      "subject": "times"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "10 FLIGHTS",
+      "text": "SAME COMPANY, SAME DAY, A SECOND POST SAYS 10 FLIGHTS (C18)",
+      "n": 10,
+      "subject": "flights"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "3 grams",
+      "text": "374.3 grams of silver iodide, over a modelled 249.53 square kilometres.",
+      "n": 3,
+      "subject": "grams"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "53 square kilometres",
+      "text": "374.3 grams of silver iodide, over a modelled 249.53 square kilometres.",
+      "n": 53,
+      "subject": "square kilometres"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "7 grams",
+      "text": "Each flare dispersed about 19.7 grams over a nominal 3.5 minute burn. The compan",
+      "n": 7,
+      "subject": "grams"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "5 and minus",
+      "text": "Silver iodide only works between minus 5 and minus 15.",
+      "n": 5,
+      "subject": "and minus"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "1,800 metres",
+      "text": "The radar looks from 1,800 metres up.",
+      "n": 1800,
+      "subject": "metres"
+    },
+    {
+      "slide": 6,
+      "kind": "span",
+      "fragment": "0 TO 4",
+      "text": "VERTICAL SECTION, 0 TO 4,300 m",
+      "from_n": 0,
+      "to_n": 4
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "THREE WIDTHS",
+      "text": "ONE FIGURE, THREE WIDTHS",
+      "n": 3,
+      "subject": "widths"
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "70 TO 89",
+      "text": "THE TECHNICAL REPORT, 41.70 TO 89.35 ACRE FEET",
+      "from_n": 70,
+      "to_n": 89
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "45 TO 65",
+      "text": "THE SUMMARY POST, 45 TO 65 ACRE FEET",
+      "from_n": 45,
+      "to_n": 65
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "19 MILLION GALLONS",
+      "text": "THE HEADLINE, ABOUT 19 MILLION GALLONS",
+      "n": 19,
+      "subject": "million gallons"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "27 REFLECTIVITY RELATIONSHIPS",
+      "text": "THE SPREAD IS 27 REFLECTIVITY RELATIONSHIPS (C12)",
+      "n": 27,
+      "subject": "reflectivity relationships"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "Six things",
+      "text": "Six things were checked. Three came back.",
+      "n": 6,
+      "subject": "things"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "TEN DAYS",
+      "text": "NOAA REPORTING RULE, TEN DAYS PRIOR",
+      "n": 10,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "FOUR NAMED ALASKA OUTLETS",
+      "text": "FOUR NAMED ALASKA OUTLETS, NO COVERAGE IN THEM",
+      "n": 4,
+      "subject": "named alaska outlets"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "FOUR LEGAL SOURCES",
+      "text": "FOUR LEGAL SOURCES RETURNED 403 AND WENT UNCHECKED (C35)",
+      "n": 4,
+      "subject": "legal sources"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "Two documents",
+      "text": "Two documents. Read the one with the band in it.",
+      "n": 2,
+      "subject": "documents"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 6,
+      "text": "VERTICAL SECTION, 0 TO 4,300 m",
+      "note": "The printed extent of this slide's altitude axis, a property of the artwork and not of the world. The column chassis maps 0 to 4,300 m onto 1,150 px, so the legend states the drawn range so a reader can measure the beam floor off the frame."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "S2 'THE ENDPOINTS ARE PUBLISHED. THE 19 TIMES ARE NO' [from_claim]: the noun 'time' does not appear in claim C03; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}
