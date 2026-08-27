@@ -1193,19 +1193,44 @@ IN_PAGE_QA_JS = """
 
 
 def launch_chromium(p):
-    """Launch chromium, falling back to the pre-installed browser binary."""
+    """Launch chromium, preferring the FULL browser over the headless shell.
+
+    THE FULL BINARY FIRST, AND THE ORDER IS THE WHOLE FIX (2026-08-27).
+    Playwright's default channel is `chrome-headless-shell`, and a recent shell
+    (151.0.7922.34, pulled into this container as chromium_headless_shell-1234)
+    refuses `fetch()` of a `file://` URL even with
+    `--allow-file-access-from-files`, which the full Chromium still honours.
+    Measured side by side on the same machine, same flags, same target file:
+    full chromium returned the 29 borough features, the shell returned
+    "Failed to fetch".
+
+    That single difference silently breaks every slide that reads committed
+    geodata, which is the house's own signature move: the SKILL contract
+    documents `fetch("@@ASSETS@@/geo/alaska-state.geo.json")` as the way to get
+    a map onto a slide, and examples/demo-deck/slide-02 does exactly that. On
+    run No.42 the demo deck itself failed to render for this reason, so the
+    reference deck the engine ships as its own proof was broken by a browser
+    upgrade nothing in the repo asked for.
+
+    The old code tried the default first and only fell back on a launch
+    EXCEPTION, so a shell that launches perfectly well and then quietly cannot
+    read the disk was never reached by the fallback. Preferring the full binary
+    costs nothing when both are present and keeps working when only one is.
+    """
+    candidates = sorted(glob.glob("/opt/pw-browsers/chromium-*/chrome-linux/chrome"))
+    candidates += ["/opt/pw-browsers/chromium/chrome-linux/chrome", "/opt/pw-browsers/chromium"]
+    for c in candidates:
+        if Path(c).exists():
+            try:
+                return p.chromium.launch(executable_path=c, args=CHROMIUM_ARGS)
+            except Exception:
+                continue
     try:
         return p.chromium.launch(args=CHROMIUM_ARGS)
-    except Exception:
-        candidates = sorted(glob.glob("/opt/pw-browsers/chromium-*/chrome-linux/chrome"))
-        candidates += ["/opt/pw-browsers/chromium/chrome-linux/chrome", "/opt/pw-browsers/chromium"]
-        for c in candidates:
-            if Path(c).exists():
-                try:
-                    return p.chromium.launch(executable_path=c, args=CHROMIUM_ARGS)
-                except Exception:
-                    continue
-        raise RuntimeError("No launchable Chromium found (tried default + /opt/pw-browsers)")
+    except Exception as exc:
+        raise RuntimeError(
+            "No launchable Chromium found (tried /opt/pw-browsers then the "
+            "playwright default)") from exc
 
 
 # --- DETERMINISM SOURCE SCAN (2026-08-01) -----------------------------------
