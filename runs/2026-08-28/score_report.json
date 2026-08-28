@@ -1,0 +1,82 @@
+{
+ "run_date": "2026-08-28",
+ "carousel_no": 43,
+ "weighted_total": 7.93,
+ "raw_weighted_total": 7.93,
+ "threshold_applied": 7.7,
+ "standing_threshold": 8.3,
+ "ships": true,
+ "hard_fails": [],
+ "revision_rounds": "4 or more",
+ "weakest_criterion": "Story arc and swipe momentum",
+ "one_sentence_fix": "Rebuild slide 06 so the gold Polaris actually sits ON the crown of a visibly closed, unbroken strandline hoop instead of floating detached in the dead middle of the frame, because that single unpaid beat is both the deck's failed resolution and the reason its bottom third reads top-loaded.",
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "weight": 0.14,
+   "score": 7
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "weight": 0.14,
+   "score": 6
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "weight": 0.16,
+   "score": 6.5
+  },
+  {
+   "name": "Story-art fusion",
+   "weight": 0.14,
+   "score": 7.5
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "weight": 0.12,
+   "score": 7
+  },
+  {
+   "name": "Insight density and factual weight",
+   "weight": 0.1,
+   "score": 8
+  },
+  {
+   "name": "Variety vs ledger",
+   "weight": 0.08,
+   "score": 8
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "weight": 0.07,
+   "score": 7
+  },
+  {
+   "name": "Copy, voice and hook",
+   "weight": 0.05,
+   "score": 7
+  },
+  {
+   "name": "Deliverable completeness",
+   "weight": 0.1,
+   "score": 9
+  }
+ ],
+ "calculation": "(7 x 0.14) + (6 x 0.14) + (6.5 x 0.16) + (7.5 x 0.14) + (7 x 0.12) + (8 x 0.10) + (8 x 0.08) + (7 x 0.07) + (7 x 0.05) + (9 x 0.10) = 7.93. Weights sum to 1.10 per this studio's standing convention. No hard fail survives, so the 6.9 cap does not apply.",
+ "first_pass": {
+  "raw": 7.71,
+  "capped": 6.9,
+  "hard_fail": "slide 05's ghost block overran its knockout window, two lines landed on bare ground and the dashed container border was struck through the words GOOGLE.ORG SUPPORT IS. Fixed and re-verified on the render."
+ },
+ "known_defects_shipped": [
+  "Slide 06's close does not resolve. The gold Polaris floats detached in the middle of the frame rather than sealing the top of the chalk hoop, and the hoop still reads open, so Device A is never visibly closed.",
+  "Slide 04's promised 4 px gold rule under ALMOST 200 was never drawn.",
+  "Slide 03 carries a visible rectangular tonal seam in its bottom right where the engrave layer stops.",
+  "Slide 02's thirty stakes are declared and machine counted at thirty against thirty but are not countable by eye.",
+  "Slide 05's ghost plate now reads as a solid black card, which is the opposite of the routed knockout the dossier argued for. That is the price of clearing the hard fail and it was a fair trade.",
+  "The cover display shipped at 60.5 px against its own declared fitText floor of 96 px.",
+  "The per slide gold flagging budget was built on two of six slides rather than all six.",
+  "SHIPPED AT SIX SLIDES against a planned nine. The cuts cost the August 13th news peg on slide, the 140 Alaska communities figure on slide, and the setup for the close. All three survive in the caption and first comment."
+ ],
+ "notes": "Re-scored after one targeted repair round. The hard fail is genuinely gone and was re-measured on the render rather than taken on trust. Raw moved 7.71 to 7.93, a deliberately modest gain, because clearing a defect is not the same as building something. 7.93 clears the relaxed 7.7 that applies after four or more revision rounds and does NOT clear the standing 8.3, which the email says plainly."
+}

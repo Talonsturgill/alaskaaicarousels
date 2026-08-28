@@ -1,0 +1,35 @@
+{
+  "run_date": "2026-08-28",
+  "aggregates": [
+    {"kind": "from_claim", "slide": 2,
+     "text": "30 STAKES, ONE PER FLAGGED LAKE. AFFECTED BY DRAINAGE, NOT FULLY DRAINED. POSITIONS ILLUSTRATIVE.",
+     "member": "C01",
+     "note": "Not an aggregate of several claims. One claim states the figure and the slide draws one stake per lake at it, keeping the source's hedges, around and affected by drainage. The thirty mark centres are declared in window.__akAssert so the FRAME counts them rather than the loop bound, and the slide prints POSITIONS ILLUSTRATIVE because the source publishes no coordinates."},
+
+    {"kind": "from_claim", "slide": 2,
+     "text": "Winter 2025 to 26 was on the cold side for Alaska and the region kept losing lake area. Researchers found around 30 more lakes affected by drainage in June and July 2026.",
+     "member": "C01",
+     "note": "Printed with the source's own hedges intact."},
+
+    {"kind": "from_claim", "slide": 4,
+     "text": "4,600 DOTS. 196 MARKED. EQUAL SIZE,SO THE MARKED AREA IS THE MARKED SHARE.",
+     "member": "C05",
+     "note": "One claim carries both figures. 4,600 dots at constant radius with 196 drawn as open rings, and all 4,600 centres declared in window.__akAssert. The type elsewhere on the slide reads ALMOST 200 because the source says almost 200; drawing exactly 200 under an almost would harden a hedge."},
+
+    {"kind": "from_claim", "slide": 4,
+     "text": "of about 4,600 lakes in the region lost more than a quarter of their area in summer 2018 alone.",
+     "member": "C05",
+     "note": "Both figures come from one sentence in the source and keep its hedges."},
+
+    {"kind": "count", "slide": 5,
+     "text": "Two things the picture can't settle.",
+     "subject": "limits the authors state on their own method",
+     "members": ["C12", "C04"],
+     "n": 2,
+     "note": "The two are named in the body beneath it. First, not all lake change is caused by permafrost thaw (C12). Second, the authors say the drainage SUGGESTS evidence of thaw rather than showing it (C04). The count is exactly the number of limits the slide then states."},
+
+    {"kind": "design", "slide": 4,
+     "text": "DIFFERENT AREAS. NOT ONE SUM.",
+     "note": "Not a number. A printed guard against the one arithmetic error these two claims invite. C07 is Arctic wide and C08 is Alaska tundra only, so they have different footprints and may never be added. The separation is also physical, a 12 mm channel routed into the board between the two plates."}
+  ]
+}

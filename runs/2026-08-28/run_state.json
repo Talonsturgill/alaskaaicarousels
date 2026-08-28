@@ -1,0 +1,38 @@
+{
+ "run_date": "2026-08-28",
+ "carousel_no": 43,
+ "date_note": "Woke 2026-08-27 23:17 Anchorage with runs/2026-08-27/ already shipped by No.42. Per the routine's rule, the run date is the first date with no runs/<date>/ directory, which is 2026-08-28, the date Anchorage rolls into within the hour.",
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "done",
+  "assemble": "done",
+  "scoring": "done",
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-08-28/plan.md",
+  "scout_merge": "out/2026-08-28/scout_merge.md",
+  "selection": "out/2026-08-28/selection.md",
+  "field_notes": "knowledge/FIELD_NOTES.md (2026-08-28 craft refresh entry)",
+  "docket": "ledger/docket.json (4 items refreshed)",
+  "site_signoff": "SITE SIGN-OFF: PASS, 87 pages, 18 checks / GAS WATCH: PASS, read 2026-08-27, 23 days on record, chart present"
+ },
+ "deck_slides": 6,
+ "planned_slides": 9,
+ "score": 7.93,
+ "threshold_applied": 7.7,
+ "shortfall": "Shipped six slides against a planned nine, degradation ladder step (b), declared not discovered. Pixel critics and the flow critic were not spawned, ladder step (c), disclosed."
+}

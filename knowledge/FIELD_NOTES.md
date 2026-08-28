@@ -4892,3 +4892,73 @@ thresholds were calibrated against it, so the comparison is sound and NOTHING
 was rescaled. It is simply undocumented, and two scoring passes this run spent
 time rediscovering it. Whether to write the convention down or normalise is the
 maintainer's call, and it is in the dated email as a recommendation.
+
+## 2026-08-28 - Phase 1 craft refresh (No.43)
+
+- **Document posts still lead the format table, and the reason is dwell.** The
+  current round of 2026 algorithm write-ups puts document posts near the top of
+  the engagement table and credits the swipe itself, since dwell time is the
+  distribution signal the ranker actually reads. Nothing here changes what this
+  studio builds; it confirms the 9-slide document is the right object.
+- **8 to 12 slides is the performing band.** Under five slides does not justify
+  the swipe and past twelve the drop-off eats the completion rate. This deck's
+  default of 8 to 10 sits inside it. No change.
+- **The first-comment LINK workaround is reportedly penalised now.** Reporting
+  on the March 2026 Authenticity Update says the ranker reads a link parked in
+  the first comment as bridge behavior and applies the post-body link penalty to
+  it. Read the scope carefully before anyone acts on this. Our first comment
+  carries SOURCE CITATIONS for claims made on the slides, which is a
+  verification record and not a click target, and the post body carries no link
+  at all. So the contract is unchanged. What it does rule out, permanently, is
+  ever moving a call to action or a site link into that comment to dodge the
+  body rule. If a future run wants traffic, it earns it in the post, not in a
+  bridge.
+  https://www.socialpilot.co/blog/linkedin-algorithm
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+
+## 2026-08-28 - Phase 12 (No.43): three engine traps a landscape deck pays for
+
+All three cost render rounds on one slide before the cause was found, and all
+three are invisible from the report, because the render exits 0 and the picture
+is simply wrong.
+
+- **`AKT.setup` builds its camera with `far = 200`.** This deck's basin is 250 m
+  in radius and the camera stood 470 m out, so the ENTIRE terrain sat beyond the
+  far plane and clipped to the clear colour. Three rounds went into relighting a
+  scene that was not being drawn. The symptom is a frame that looks like a sky
+  with a hard straight "horizon" exactly where the far plane cuts, and it is
+  indistinguishable from an underlit ground. Any slide whose world is bigger
+  than about 150 units must set `R.camera.far` and call
+  `updateProjectionMatrix()` before framing. Worth a helper.
+- **A 14 degree key on near flat ground is a black picture, and it is correct.**
+  cos(incidence) on a horizontal surface at 14 degrees elevation is about 0.24,
+  and against tundra albedos in the 0.10 to 0.14 range that is nothing. The
+  dossier asked for a low raking key because low light carves relief, which is
+  true for RELIEF and false for the flat bed between the relief. The fix that
+  worked was elevation 26, which is still a low July sun at this latitude and is
+  the same elevation akengrave's lay already wanted. If a deck's ground is
+  mostly flat, price the key off the flat part.
+- **A cast shadow spanning an object's whole width has no horizontal contrast,
+  so the contact gate measures dL 0 whatever the alpha.** Four attempts went
+  into deepening a shadow that could never read, because `contact_probe` samples
+  a horizontal line and both rects landed inside one uniform dark band. The
+  shape that works is directional: the key is at azimuth 318, so the cast falls
+  to the right and the lit pool survives on the left, and the probe then finds a
+  trough and a peak on the same line. Two other ways to waste a round on this
+  gate, both paid here: declaring the pair off camera arithmetic instead of the
+  render (the pool ended up 200 px below the object it belonged to), and probing
+  at a y that lands on the object's own bright face rather than on the ground.
+
+### The caption room's oldest failure, now at seven
+
+The critic killed both round-one candidates and the second kill is the one to
+remember. `NEW:NEGATIVE MAP` was a sufficiency test wearing a new label, and
+sufficiency has been burned since 2026-08-05. The critic's phrasing is worth
+keeping: the NEW: prefix names the setup sentence, not the question. Also
+burned going forward, the openers "Winter 2025 to 26" and "Walk out onto the",
+both spent on candidates that never shipped.
+
+The more useful catch was scope. Candidate A wrote a technically clean
+permafrost caption with NO AI IN IT AT ALL, on an Alaska plus AI page, and sold
+a deck the run had not built. A caption that passes every mechanical gate can
+still be about the wrong subject, and nothing in caption_check can see that.

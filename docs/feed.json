@@ -13,6 +13,48 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-08-28/",
+      "url": "https://alaskaaihq.com/archive/2026-08-28/",
+      "title": "Thirty Lake Beds After a Cold Alaska Winter",
+      "summary": "The 2026 drainage count with its hedges, the mechanism at the breach, the 2018 tally of almost 200 lakes out of about 4,600, and the two limits the authors name.",
+      "content_html": "<p><em>A browser and an internet connection are all you need to open the Permafrost Discovery Gateway, per NCEAS.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-28/og.jpg\" alt=\"Thirty Lake Beds After a Cold Alaska Winter cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://theconversation.com/disappearing-lakes-and-ai-are-helping-scientists-map-arctic-permafrost-thaw-in-near-real-time-290238\">The Conversation</a>, primary document</li><li><a href=\"https://www.woodwellclimate.org/project/permafrost-discovery-gateway/\">Woodwell Climate Research Center</a>, primary document</li><li><a href=\"https://www.nceas.ucsb.edu/news/beneath-frozen-surface-how-ai-uncovering-secrets-permafrost\">National Center for Ecological Analysis and Synthesis, UC Santa Barbara</a>, report</li><li><a href=\"https://alaskabeacon.com/feed/\">Alaska Beacon</a>, report</li><li><a href=\"https://phys.org/news/2026-08-lakes-photos-ai-scientists-arctic.html\">Phys.org</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-08-28/\">Read the full deck with all 6 slides</a></p>",
+      "content_text": "",
+      "date_published": "2026-08-28T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-28/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 6,
+        "claims_verified": 32,
+        "sources": [
+          {
+            "url": "https://theconversation.com/disappearing-lakes-and-ai-are-helping-scientists-map-arctic-permafrost-thaw-in-near-real-time-290238",
+            "outlet": "The Conversation",
+            "primary": true
+          },
+          {
+            "url": "https://www.woodwellclimate.org/project/permafrost-discovery-gateway/",
+            "outlet": "Woodwell Climate Research Center",
+            "primary": true
+          },
+          {
+            "url": "https://www.nceas.ucsb.edu/news/beneath-frozen-surface-how-ai-uncovering-secrets-permafrost",
+            "outlet": "National Center for Ecological Analysis and Synthesis, UC Santa Barbara",
+            "primary": false
+          },
+          {
+            "url": "https://alaskabeacon.com/feed/",
+            "outlet": "Alaska Beacon",
+            "primary": false
+          },
+          {
+            "url": "https://phys.org/news/2026-08-lakes-photos-ai-scientists-arctic.html",
+            "outlet": "Phys.org",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-08-27/",
       "url": "https://alaskaaihq.com/archive/2026-08-27/",
       "title": "Nineteen Flares Over the Kenai, and One Number",

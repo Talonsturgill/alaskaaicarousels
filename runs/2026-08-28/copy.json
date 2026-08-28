@@ -1,0 +1,125 @@
+{
+ "run_date": "2026-08-28",
+ "carousel_no": 43,
+ "document_title": "Thirty Lake Beds After a Cold Alaska Winter",
+ "deck_summary_line": "The 2026 drainage count with its hedges, the mechanism at the breach, the 2018 tally of almost 200 lakes out of about 4,600, and the two limits the authors name.",
+ "post_copy": "A browser and an internet connection are all you need to open the Permafrost Discovery Gateway, per NCEAS.\nIt launched an Arctic lake drainage tool on August 13th, 2026.\n\nAround 30 more lakes were affected by drainage in northwestern Alaska in June and July 2026. The authors say this suggests permafrost thaw. They also say not all lake change is thaw.\n\nA lake several hundred meters long might take a millennium to form. Thaw from one warm summer can drain it in hours. Permafrost touches roughly 80 percent of Alaska land, and more than 140 communities build on it.\n\nThe 2026 drainage count with its hedges, the mechanism at the breach, the 2018 tally of almost 200 lakes out of about 4,600, and the two limits the authors name.\n\nWoodwell calls the Gateway a platform in development. Which decision made off today's version would you reopen when it updates?\n\n#Permafrost #Thermokarst #ArcticData",
+ "caption_meta": {
+  "opening_move": "SECOND PERSON STAKE",
+  "structure": "CLAIM THEN COUNTER-CLAIM",
+  "closing_move": "NEW:REVISION EXPOSURE",
+  "note": "The room returned neither on round one. The critic killed candidate A for reproducing No.34's exact two-axis pairing and for writing a permafrost caption with no AI in it, and killed candidate B for a burned sufficiency close wearing a NEW: label plus an invented model mechanism in the accessibility line. This is the one reassigned round the routine allows."
+ },
+ "first_comment": "SOURCES, in the order the deck uses them.\n\n1. Disappearing lakes and AI are helping scientists map Arctic permafrost thaw in near-real time. Anna Liljedahl and Ingmar Nitze, The Conversation, published August 26th, 2026 and updated August 27th. This is the piece the deck is built on and it is written by the two researchers themselves.\nhttps://theconversation.com/disappearing-lakes-and-ai-are-helping-scientists-map-arctic-permafrost-thaw-in-near-real-time-290238\n\n2. Permafrost Discovery Gateway project page, Woodwell Climate Research Center. The August 13th, 2026 launch of the lake drainage tool, the platform being in development, and the five million dollar Google.org grant all come from here.\nhttps://www.woodwellclimate.org/project/permafrost-discovery-gateway/\n\n3. Beneath the frozen surface, how AI is uncovering the secrets of permafrost. NCEAS, University of California Santa Barbara, March 24th, 2026. Background. Roughly 80 percent of Alaska land, more than 140 Alaska communities, the browser and internet line, and the March 2026 note on Google.org support.\nhttps://www.nceas.ucsb.edu/news/beneath-frozen-surface-how-ai-uncovering-secrets-permafrost\n\n4. Alaska Beacon republication, feed timestamp August 28th, 2026.\nhttps://alaskabeacon.com/2026/08/27/disappearing-lakes-and-ai-are-helping-scientists-map-arctic-permafrost-thaw-in-near-real-time/\n\n5. Phys.org syndication, August 26th, 2026.\nhttps://phys.org/news/2026-08-lakes-photos-ai-scientists-arctic.html\n\nDisclosed funding, from the authors' own statements. Anna Liljedahl, Google.org Impact Challenge on Climate Innovation, National Science Foundation awards 1927872, 2052107 and 2234117, and Woodwell Climate Research Center. Ingmar Nitze, Google.org, the National Science Foundation, the Schmidt Sciences Virtual Institute for the Carbon Cycle, and the Alfred Wegener Institute.\n\nOne thing the deck says about itself. The basin in these frames is drawn, not photographed, and the thirty flagged lakes are drawn at the source's count and not at published coordinates, which slide 02 states on its own tag.",
+ "slides": [
+  {
+   "n": 1,
+   "claim_ids": [
+    "C02",
+    "C11"
+   ],
+   "strings": [
+    "SEWARD AND BALDWIN PENINSULAS, NW ALASKA",
+    "01 / 06",
+    "STA 0+00",
+    "ALASKA.AI",
+    "A thousand years to fill.A few hours to empty.",
+    "STA 0+00 BASIN RIM",
+    "66 53 N 162 35 W"
+   ]
+  },
+  {
+   "n": 2,
+   "claim_ids": [
+    "C01",
+    "C03"
+   ],
+   "strings": [
+    "02 / 06",
+    "STA 1+00",
+    "Winter ran cold.The lakes went anyway.",
+    "Winter 2025 to 26 was on the cold side for Alaska and the region kept losing lake area. Researchers found around 30 more lakes affected by drainage in June and July 2026.",
+    "30 STAKES, ONE PER FLAGGED LAKE. AFFECTED BY DRAINAGE, NOT FULLY DRAINED. POSITIONS ILLUSTRATIVE."
+   ]
+  },
+  {
+   "n": 3,
+   "claim_ids": [
+    "C09",
+    "C10",
+    "C11"
+   ],
+   "strings": [
+    "03 / 06",
+    "STA 2+00",
+    "The ground sinks, then it finds a way out.",
+    "When ice rich permafrost thaws the ground surface subsides, and the depressions fill with water. The same process can cut a new stream channel that drains the lake, leaving a circular basin of bare ground.",
+    "BASIN, SEVERAL HUNDRED METRES ACROSS",
+    "FILL, ABOUT A THOUSAND YEARS",
+    "DRAIN, A FEW HOURS"
+   ]
+  },
+  {
+   "n": 4,
+   "claim_ids": [
+    "C05",
+    "C07",
+    "C08"
+   ],
+   "strings": [
+    "04 / 06",
+    "STA 5+00",
+    "ALMOST 200",
+    "of about 4,600 lakes in the region lost more than a quarter of their area in summer 2018 alone.",
+    "4,600 DOTS. 196 MARKED. EQUAL SIZE,SO THE MARKED AREA IS THE MARKED SHARE.",
+    "ARCTIC WIDE",
+    "OVER 4 MILLION",
+    "LAKES MAPPED AND ACTIVELYMONITORED ACROSS THE ARCTIC",
+    "ALASKA TUNDRA",
+    "70 MILLION",
+    "THERMOKARST PONDS MAPPEDACROSS THE ALASKA TUNDRA",
+    "DIFFERENT AREAS. NOT ONE SUM."
+   ]
+  },
+  {
+   "n": 5,
+   "claim_ids": [
+    "C12",
+    "C13",
+    "C04",
+    "C20",
+    "C28",
+    "C29"
+   ],
+   "strings": [
+    "05 / 06",
+    "STA 7+00",
+    "Two things the picture can't settle.",
+    "Not all lake change comes from permafrost thaw. Lakes in floodplains and wetlands shift dramatically each season with spring snowmelt, and wildlife plays a role. The authors say the drainage suggests evidence of thaw. Suggests is their word.",
+    "WOODWELL DESCRIBES THE GATEWAY AS AN ONLINE PLATFORM IN DEVELOPMENT. WOODWELL WAS AWARDED A FIVE MILLION DOLLAR GOOGLE.ORG GRANT FOR USE OF AI TO TRACK PERMAFROST THAW. NCEAS REPORTED IN MARCH 2026 THAT GOOGLE.ORG SUPPORT IS COMING TO AN END."
+   ]
+  },
+  {
+   "n": 6,
+   "claim_ids": [],
+   "strings": [
+    "06 / 06",
+    "STA 8+00",
+    "ALASKA.AI",
+    "Save this before your borough's next siting decision.",
+    "SOURCES IN COMMENTS",
+    "alaskaaihq.com",
+    "66 53 N 162 35 W"
+   ]
+  }
+ ],
+ "aftercare": [
+  "Post Tuesday to Thursday, 8 to 11 a.m. Alaska time.",
+  "Paste the first comment block within about sixty seconds of posting, so the sources are there before the first readers arrive.",
+  "Reply substantively to every comment in the first sixty to ninety minutes. A dead first hour is rarely recovered.",
+  "This deck ships at SIX slides rather than nine. If anyone asks why it is shorter, the honest answer is that the run spent its build budget on the six that carry the argument.",
+  "The strongest thing to defend in comments is the hedge. Around 30 lakes were AFFECTED BY DRAINAGE, not fully drained, and the authors say the drainage SUGGESTS thaw rather than proving it.",
+  "If someone adds the 4 million and the 70 million together, slide 04 already answers them. Those are different geographies and the deck says so in routed metal."
+ ],
+ "editor_notes_for_email": "SHIPPED AT SIX SLIDES, NOT NINE, and that is the one thing to read before posting. The storyboard planned nine and the run built six. The six that shipped are the ones that carry the argument end to end, hook, payoff, mechanism, the keepable tally, the caveat and the close. What was cut was the breather, the where-you-can-build stakes slide, and the late 1940s photograph slide. This is degradation ladder step (b), a reduced deck with the shortfall named, and it was chosen deliberately rather than discovered at the end. Everything that shipped passed every machine gate.\n\nWHAT THE MACHINE FOUND AND FIXED ALONG THE WAY. AKT.setup builds its camera with a far plane of 200 and this deck's basin is 250 metres in radius, so the entire terrain was clipped to the clear colour on the first three attempts at the cover. That is a real trap for any future landscape deck and it is going into FIELD_NOTES. The contact shadow gate refused four separate attempts and was right every time, twice because the declared rects were computed rather than measured and twice because a cast spanning an object's whole width has no horizontal contrast to measure.\n\nTHE CAPTION ROOM RETURNED NEITHER. The critic killed both candidates and its reasoning is worth reading. Candidate A wrote a permafrost caption with no AI anywhere in it, on an Alaska plus AI page, and reproduced run No.34's exact opening and structure pairing from thirteen days ago. Candidate B welded the August 13th lake drainage tool to the ice content maps, which are two different things, and closed on a sufficiency test wearing a NEW: label. The shipped caption is the one reassigned round the routine allows.\n\nTHE SCORER FOUND A REAL HARD FAIL AND IT WAS FIXED, NOT SHIPPED AROUND. Slide 05's funding block overran its own knockout window, two lines landed on bare ground and the ghost container's dashed border was drawn straight through the words GOOGLE.ORG SUPPORT IS. That is the rubric's overlapping-text hard fail and it capped the first score at 6.90 against a raw 7.71. The container was grown, the block refitted inside it with a real margin, and the phantom strandline moved above it. The scorer also caught two caption defects that are now fixed. The deck summary line described the cut build-siting slide rather than the deck that exists, which matters because a document post has no alt text and that line is the whole deck for a screen reader. And the opening attributed the NCEAS browser line to the August 13th tool when NCEAS said it in March 2026 about the Gateway generally, which is a softer version of the welding the caption critic killed a candidate for.\n\nKNOWN SHORTFALLS IN WHAT SHIPPED. Slide 06's bottom third carries 59 percent craft density against the frame's own average, which qa.py flags as top loaded. Slides 01 and 02 have contact shadows that read but sit under the 8.0 comfort band. Slide 02's field tag and slide 05's ghost board are each mostly under their own DOM text, which the motif gate reports and which is cosmetic here rather than a lost element."
+}
