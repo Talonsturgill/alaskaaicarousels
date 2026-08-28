@@ -19,8 +19,8 @@
   "scoring": "done",
   "ship": "done",
   "upgrade": "done",
-  "gmail": "pending",
-  "retro": "pending"
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-08-28/plan.md",
@@ -34,5 +34,7 @@
  "planned_slides": 9,
  "score": 7.93,
  "threshold_applied": 7.7,
- "shortfall": "Shipped six slides against a planned nine, degradation ladder step (b), declared not discovered. Pixel critics and the flow critic were not spawned, ladder step (c), disclosed."
+ "shortfall": "Shipped six slides against a planned nine, degradation ladder step (b), declared not discovered. Pixel critics and the flow critic were not spawned, ladder step (c), disclosed.",
+ "gmail_draft_id": "r-2079453242777879773",
+ "complete": true
 }
