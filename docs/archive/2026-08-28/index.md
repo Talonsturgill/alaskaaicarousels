@@ -1,6 +1,6 @@
 # Thirty Lake Beds After a Cold Alaska Winter
 
-> A browser and internet is all you need to open the Arctic lake drainage tool, per NCEAS.
+> A browser and an internet connection are all you need to open the Permafrost Discovery Gateway, per NCEAS.
 
 Published 2026-08-28 by Alaska AI. 6 slides.
 Canonical: https://alaskaaihq.com/archive/2026-08-28/
