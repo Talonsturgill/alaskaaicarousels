@@ -4892,3 +4892,26 @@ thresholds were calibrated against it, so the comparison is sound and NOTHING
 was rescaled. It is simply undocumented, and two scoring passes this run spent
 time rediscovering it. Whether to write the convention down or normalise is the
 maintainer's call, and it is in the dated email as a recommendation.
+
+## 2026-08-28 - Phase 1 craft refresh (No.43)
+
+- **Document posts still lead the format table, and the reason is dwell.** The
+  current round of 2026 algorithm write-ups puts document posts near the top of
+  the engagement table and credits the swipe itself, since dwell time is the
+  distribution signal the ranker actually reads. Nothing here changes what this
+  studio builds; it confirms the 9-slide document is the right object.
+- **8 to 12 slides is the performing band.** Under five slides does not justify
+  the swipe and past twelve the drop-off eats the completion rate. This deck's
+  default of 8 to 10 sits inside it. No change.
+- **The first-comment LINK workaround is reportedly penalised now.** Reporting
+  on the March 2026 Authenticity Update says the ranker reads a link parked in
+  the first comment as bridge behavior and applies the post-body link penalty to
+  it. Read the scope carefully before anyone acts on this. Our first comment
+  carries SOURCE CITATIONS for claims made on the slides, which is a
+  verification record and not a click target, and the post body carries no link
+  at all. So the contract is unchanged. What it does rule out, permanently, is
+  ever moving a call to action or a site link into that comment to dodge the
+  body rule. If a future run wants traffic, it earns it in the post, not in a
+  bridge.
+  https://www.socialpilot.co/blog/linkedin-algorithm
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
