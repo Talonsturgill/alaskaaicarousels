@@ -4915,3 +4915,50 @@ maintainer's call, and it is in the dated email as a recommendation.
   bridge.
   https://www.socialpilot.co/blog/linkedin-algorithm
   https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+
+## 2026-08-28 - Phase 12 (No.43): three engine traps a landscape deck pays for
+
+All three cost render rounds on one slide before the cause was found, and all
+three are invisible from the report, because the render exits 0 and the picture
+is simply wrong.
+
+- **`AKT.setup` builds its camera with `far = 200`.** This deck's basin is 250 m
+  in radius and the camera stood 470 m out, so the ENTIRE terrain sat beyond the
+  far plane and clipped to the clear colour. Three rounds went into relighting a
+  scene that was not being drawn. The symptom is a frame that looks like a sky
+  with a hard straight "horizon" exactly where the far plane cuts, and it is
+  indistinguishable from an underlit ground. Any slide whose world is bigger
+  than about 150 units must set `R.camera.far` and call
+  `updateProjectionMatrix()` before framing. Worth a helper.
+- **A 14 degree key on near flat ground is a black picture, and it is correct.**
+  cos(incidence) on a horizontal surface at 14 degrees elevation is about 0.24,
+  and against tundra albedos in the 0.10 to 0.14 range that is nothing. The
+  dossier asked for a low raking key because low light carves relief, which is
+  true for RELIEF and false for the flat bed between the relief. The fix that
+  worked was elevation 26, which is still a low July sun at this latitude and is
+  the same elevation akengrave's lay already wanted. If a deck's ground is
+  mostly flat, price the key off the flat part.
+- **A cast shadow spanning an object's whole width has no horizontal contrast,
+  so the contact gate measures dL 0 whatever the alpha.** Four attempts went
+  into deepening a shadow that could never read, because `contact_probe` samples
+  a horizontal line and both rects landed inside one uniform dark band. The
+  shape that works is directional: the key is at azimuth 318, so the cast falls
+  to the right and the lit pool survives on the left, and the probe then finds a
+  trough and a peak on the same line. Two other ways to waste a round on this
+  gate, both paid here: declaring the pair off camera arithmetic instead of the
+  render (the pool ended up 200 px below the object it belonged to), and probing
+  at a y that lands on the object's own bright face rather than on the ground.
+
+### The caption room's oldest failure, now at seven
+
+The critic killed both round-one candidates and the second kill is the one to
+remember. `NEW:NEGATIVE MAP` was a sufficiency test wearing a new label, and
+sufficiency has been burned since 2026-08-05. The critic's phrasing is worth
+keeping: the NEW: prefix names the setup sentence, not the question. Also
+burned going forward, the openers "Winter 2025 to 26" and "Walk out onto the",
+both spent on candidates that never shipped.
+
+The more useful catch was scope. Candidate A wrote a technically clean
+permafrost caption with NO AI IN IT AT ALL, on an Alaska plus AI page, and sold
+a deck the run had not built. A caption that passes every mechanical gate can
+still be about the wrong subject, and nothing in caption_check can see that.
