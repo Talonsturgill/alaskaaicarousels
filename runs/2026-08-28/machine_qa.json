@@ -1,0 +1,105 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the datum board leaning on the near bank': shadow L* 1.8 vs ground L* 6.4, dL 4.6 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'device A, the chalk strandline hoop on the far rim': canvas 62.0 dE, page 51.3 dE, 99% of its rect is clear of opaque DOM (div.scalelegend stands on the rest)",
+        "'the datum board's lit lower margin and its 12 mm edge': canvas 72.5 dE, page 72.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hook 'A thousand years to fill.A few hours to empt' fits 3/3 lines at 60.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the datum board standing on two spruce stakes': shadow L* 5.1 vs ground L* 10.4, dL 5.4 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "motif: 'the aluminium field tag carrying the hedges': canvas 78.8 dE, page 77.5 dE, 29% of its rect is clear of opaque DOM (div.tagtype stands on the rest) -- most of its rect is under opaque DOM"
+      ],
+      "motifs": [
+        "'device A, the strandline with its rime crust': canvas 46.5 dE, page 45.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Winter ran cold.The lakes went anyway.' fits 3/3 lines at 61.5px"
+      ],
+      "asserts": [
+        "'thirty stakes, one per flagged lake' holds: 30 vs 30 marks, counted over 30 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the datum board propped on the notch shoulder': shadow L* 0.8 vs ground L* 10.9, dL 10.1 at 432w"
+      ],
+      "motifs": [
+        "'device A, the strandline cut open at the notch': canvas 42.1 dE, page 46.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the top strandline on the far inner face' lands 0.0px from its target",
+        "leader 'the channel mouth where the outlet leaves the basin' lands 0.0px from its target",
+        "leader 'the top strandline on the far inner face' meets its label 0.0px away",
+        "leader 'the channel mouth where the outlet leaves the basin' meets its label 22.0px away"
+      ],
+      "fits": [
+        "hd 'The ground sinks, then it finds a way out.' fits 3/3 lines at 49.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the tally board driven into the bed on four stakes': shadow L* 11.4 vs ground L* 30.1, dL 18.7 at 432w"
+      ],
+      "motifs": [
+        "'the 4,600 dot field with 196 marked as open rings': canvas 64.2 dE, page 64.0 dE, 100% of its rect is clear of opaque DOM",
+        "'device A, the strandline flattened behind the board': canvas 78.5 dE, page 79.7 dE, 74% of its rect is clear of opaque DOM (div.hero stands on the rest)"
+      ],
+      "asserts": [
+        "'4,600 lakes in the region, one dot each' holds: 4600 vs 4600 marks, counted over 4600 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "motif: 'the ghost board, a dashed container with no solid face': canvas 25.4 dE, page 75.2 dE, 23% of its rect is clear of opaque DOM (div.ghost stands on the rest) -- most of its rect is under opaque DOM"
+      ],
+      "contacts": [
+        "'the solid board with one screw missing': shadow L* 2.4 vs ground L* 20.1, dL 17.6 at 432w"
+      ],
+      "motifs": [
+        "'device A going phantom dashed behind the ghost board': canvas 58.3 dE, page 58.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Two things the picture can't settle.' fits 2/3 lines at 55.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 93% / mid 85% / bottom 59% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "contacts": [
+        "'the freshly stencilled board on the rim crest': shadow L* 2.6 vs ground L* 11.9, dL 9.3 at 432w"
+      ],
+      "motifs": [
+        "'device A resolved, the strandline as a closed unbroken hoop': canvas 3.2 dE, page 31.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "ask 'Save this before your borough's next siting ' fits 3/3 lines at 55.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 5,
+  "verdict": "WARN"
+}
