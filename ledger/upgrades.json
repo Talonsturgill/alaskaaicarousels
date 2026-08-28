@@ -1641,7 +1641,8 @@
     "knowledge/FIELD_NOTES.md"
    ],
    "verification": "Each trap was diagnosed by fixing it and watching the render change. The far plane fix turned an empty frame into a visible basin in one round. The key elevation change from 14 to 26 lifted the ground out of black. The directional cast took contact_probe from dL 0.0 to dL 17.6 on slide 05 and dL 9.3 on slide 06 with no change in alpha.",
-   "rollback": "git revert the run's FIELD_NOTES hunk. Documentation only, no code path changes."
+   "rollback": "git revert the run's FIELD_NOTES hunk. Documentation only, no code path changes.",
+   "commit": "0126d24a12050906a48b8971a0b1928aaa42405c"
   },
   {
    "run_date": "2026-08-28",
@@ -1654,7 +1655,8 @@
     "ledger/captions.json"
    ],
    "verification": "The caption ledger entry for this run carries both kills and names the two openers now spent, so the next run's burn report surfaces them.",
-   "rollback": "git revert the run's FIELD_NOTES and captions.json hunks."
+   "rollback": "git revert the run's FIELD_NOTES and captions.json hunks.",
+   "commit": "0126d24a12050906a48b8971a0b1928aaa42405c"
   }
  ],
  "scan_log": [
