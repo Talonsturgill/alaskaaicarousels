@@ -211,11 +211,22 @@ ok('the sheet is modal and the covered Docket is inert', await page.evaluate(() 
 }));
 ok('the conversation owns exactly the dynamic viewport height',
   await page.locator('#qagent').evaluate(el => Math.abs(el.getBoundingClientRect().height - innerHeight) < 2));
-ok('the thread scrolls while the composer remains pinned', await page.evaluate(() => {
+/* The sheet enters over 250ms. The stub can finish before that animation does,
+   so wait for the settled layout instead of sampling a composer that is still
+   translated a few pixels below the viewport. */
+await page.waitForFunction(() => {
+  const composer = document.getElementById('qbox');
+  return composer && composer.getBoundingClientRect().bottom <= innerHeight + 1;
+});
+const mobileLayout = await page.evaluate(() => {
   const out = document.getElementById('qout'), composer = document.getElementById('qbox');
   const s = getComputedStyle(out), r = composer.getBoundingClientRect();
-  return /auto|scroll/.test(s.overflowY) && r.bottom <= innerHeight + 1 && r.bottom > innerHeight - 120;
-}));
+  return { ok: /auto|scroll/.test(s.overflowY) && r.bottom <= innerHeight + 1 &&
+      r.bottom > innerHeight - 120,
+    overflowY: s.overflowY, composerBottom: Math.round(r.bottom), viewportHeight: innerHeight };
+});
+ok('the thread scrolls while the composer remains pinned', mobileLayout.ok,
+  JSON.stringify(mobileLayout));
 ok('the trace completes all three real stages', await page.evaluate(() => {
   const trace = document.querySelector('.qtrace.done');
   return !!trace && trace.querySelectorAll('.qsteps i.on').length === 3 &&

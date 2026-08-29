@@ -20,18 +20,17 @@
 // above the button, before the press.
 //
 // WHY A WORKER AND NOT A DATABASE. This endpoint holds a few secrets and
-// forwards one call. The only thing it stores is an in-flight request waiting
-// for its answer, which expires by itself. There is no schema to migrate, no
-// project to pause, and no row that can go stale. Cloudflare is already a
-// dependency for Turnstile and a workers.dev URL needs no DNS change, so this
-// adds a file rather than a vendor.
+// forwards model or routine calls. KV stores short-lived archive requests,
+// answer-cache entries keyed to a dated pack, and the monthly model-call
+// counter. There is no application schema or second copy of the published
+// record to migrate or synchronize. Cloudflare is already a dependency for
+// Turnstile and a workers.dev URL needs no DNS change.
 //
-// WHY IT COSTS NOTHING NEW. Firing a routine spends a slot from the account's
-// daily run cap and draws on the claude.ai subscription already being paid
-// for. There is no Console key here and no metered API call. What it costs
-// instead is time, because a fired routine starts a whole Claude Code session,
-// so an answer takes minutes rather than a second. That trade is the reason
-// the page treats this as an archive search and says so.
+// WHY THE TWO REMOTE LANES DIFFER. /answer uses the metered Messages API and
+// returns verified sentences in seconds; KV reuse and ASK_MONTHLY_CAP put a
+// hard ceiling on it. /deep starts a Claude Code routine on the subscription,
+// spends a daily routine slot, and takes minutes. That trade is why the page
+// treats /deep as an explicit archive escalation rather than the default.
 //
 // WHAT MAKES IT HONEST. Nothing the routine writes reaches a reader unchecked.
 // Every sentence of a delivered answer passes checks.js against the published
