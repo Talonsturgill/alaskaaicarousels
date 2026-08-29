@@ -463,7 +463,12 @@ def nav(prefix, active):
         for href, key in links)
     return f"""<nav class="topnav">
   <a class="wordmark" href="{prefix}./">{ak_mark()}<span>ALASKA.AI</span></a>
-  <div class="navlinks">{a}</div>
+  <button class="navtoggle" type="button" aria-expanded="false"
+  aria-controls="site-nav-links" aria-label="Open site menu">
+    <span class="navtoggle-copy" aria-hidden="true"><span>MENU</span><b>CLOSE</b></span>
+    <span class="navtoggle-icon" aria-hidden="true"><i></i><i></i></span>
+  </button>
+  <div class="navlinks" id="site-nav-links">{a}</div>
 </nav>"""
 
 
@@ -590,7 +595,11 @@ color:#12100E;touch-action:manipulation;}
    feels broken to the person tapping it, least of all on a rural connection.
 */
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;overflow-x:clip;}
+html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:86px;}
+/* scroll-padding handles the sticky bar; this small target margin is the
+   breathing room between the bar and an anchored heading, not a second full
+   header offset. */
+.hero[id],section[id],h1[id],h2[id],h3[id],form[id],details[id]{scroll-margin-top:18px;}
 body{background:var(--night);color:var(--body);font-family:Manrope,system-ui,sans-serif;
 line-height:1.55;overflow-x:clip;scrollbar-color:#1c3350 transparent;}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;
@@ -700,6 +709,7 @@ background:var(--gold);transition:right .25s ease;}
 .navlinks a:hover::after{right:0;background:var(--blue);}
 .navlinks a.on{color:var(--gold);}
 .navlinks a.on::after{right:0;}
+.navtoggle{display:none;}
 /* Seven items need a compact row sooner than the rest of the mobile layout
    does, so this breakpoint is deliberately wider than the 720px block below.
    A phone in landscape is wide enough to miss that block and too narrow to
@@ -886,6 +896,41 @@ transition:transform .25s,border-color .25s,box-shadow .25s;}
 .deck .meta{padding:18px 20px 20px;}
 .deck .meta h3{font-family:Fraunces,serif;font-weight:540;font-size:19px;color:var(--snow);line-height:1.25;}
 .deck .meta .who{margin-top:10px;}
+
+/* ---------- find in long collections ---------- */
+/* Articles and sources run for tens of thousands of pixels on a phone. This
+   stays under the site header while the reader searches, then filters the
+   already-public markup locally: no request, tracking call or database. */
+.collection-filter{position:relative;}
+.findbar{position:sticky;top:86px;z-index:45;display:grid;
+grid-template-columns:auto minmax(180px,1fr) auto;align-items:center;gap:12px;
+margin:32px 0 22px;padding:10px 12px;border:1px solid rgba(44,88,118,.72);
+border-radius:16px;background:rgba(5,11,22,.9);box-shadow:0 14px 38px rgba(0,0,0,.35);
+backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+.findlabel{font-family:JBMono,ui-monospace,monospace;font-size:10px;letter-spacing:.15em;
+color:var(--gold);white-space:nowrap;}
+.findfield{min-width:0;position:relative;display:flex;align-items:center;}
+.findfield::before{content:"";position:absolute;left:14px;width:10px;height:10px;
+border:1.5px solid var(--mute);border-radius:50%;pointer-events:none;}
+.findfield::after{content:"";position:absolute;left:24px;top:23px;width:5px;height:1.5px;
+background:var(--mute);transform:rotate(45deg);transform-origin:left;pointer-events:none;}
+.findfield input{width:100%;height:44px;padding:0 48px 0 36px;border:1px solid var(--line);
+border-radius:11px;background:rgba(255,255,255,.035);color:var(--snow);
+font:400 16px/1.2 Manrope,system-ui,sans-serif;transition:border-color .2s,background .2s;}
+.findfield input::placeholder{color:#728aad;}
+.findfield input:focus{outline:none;border-color:rgba(255,199,44,.65);
+background:rgba(255,255,255,.052);}
+.findfield input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;}
+.findclear{position:absolute;right:2px;display:grid;place-items:center;width:40px;height:40px;
+border:0;background:none;color:var(--mute);font:500 16px/1 JBMono,monospace;
+cursor:pointer;border-radius:9px;touch-action:manipulation;}
+.findclear:hover{color:var(--gold);}
+.findclear[hidden]{display:none;}
+.findstatus{font:400 10px/1.3 JBMono,ui-monospace,monospace;letter-spacing:.1em;
+color:var(--mute);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.findempty{padding:54px 18px;margin:20px 0;border:1px dashed var(--line);border-radius:14px;
+text-align:center;color:var(--mute);font-size:15px;}
+.findempty[hidden],[data-filter-item][hidden]{display:none;}
 
 /* ---------- docket items ---------- */
 .item{display:flex;gap:26px;background:linear-gradient(170deg,var(--panel) 0%,var(--deep) 88%);
@@ -1091,6 +1136,7 @@ html.js [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7
 html.js [data-reveal].in{opacity:1;transform:none;}
 html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
 @media (max-width:720px){
+  html{scroll-padding-top:76px;}
   .item{flex-direction:column;gap:16px;padding:24px 20px;}
   .doorcol{flex-direction:row;}
   .rail{flex-direction:column;gap:14px;}
@@ -1098,18 +1144,65 @@ html.reveal-fallback [data-reveal]{opacity:1;transform:none;}
   .rail::before{left:5px;right:auto;top:0;bottom:0;width:1.5px;height:auto;}
   .stop{padding:0 0 0 26px;}
   .stop.now{padding:0 0 0 26px;}
-  /* 12 rather than 34. The map already opens with a band of background above
-     the coastline, because the nav is sticky and 146px tall on a phone and the
-     fit reserves that much so a pin never sits underneath it. Stacking a 34px
-     margin on top of a band that is already there just widened a gap the
-     reader reads as nothing happening. */
+  /* The compact phone header leaves the map almost twice as much vertical
+     room as the former two-row, 146px nav. Keep this margin intentionally
+     small so the state starts where the reader expects it. */
   .maphero{margin:12px -12px 0;padding:0 12px;}
   .latest{grid-template-columns:1fr;}
+  .findbar{top:72px;grid-template-columns:minmax(0,1fr) auto;gap:8px;
+  margin:24px -3px 18px;padding:8px;border-radius:14px;}
+  .findlabel{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+  .findstatus{font-size:9px;letter-spacing:.06em;}
   .flagsky{right:-4vw;top:2vh;width:70vw;opacity:.8;}
-  .topnav{padding:18px 0 12px;}
+  .topnav{min-height:64px;padding:9px 0;flex-wrap:nowrap;gap:12px;}
+  .topnav::before{opacity:1;background:rgba(2,6,15,.965);}
+  .wordmark{font-size:14px;letter-spacing:.2em;}
+  .wordmark .akmark{width:28px;height:28px;}
+  html.js .navtoggle{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;
+  gap:9px;min-width:78px;height:46px;padding:0 12px;border:1px solid var(--line);
+  border-radius:999px;background:rgba(255,255,255,.035);color:var(--snow);
+  font:500 10px/1 JBMono,monospace;letter-spacing:.12em;cursor:pointer;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transition:border-color .2s,background .2s,transform .15s;}
+  html.js .navtoggle:active{transform:scale(.97);}
+  html.js .navtoggle:focus-visible{outline-offset:1px;}
+  .navtoggle-copy b{display:none;font:inherit;}
+  .navtoggle-icon{position:relative;width:15px;height:12px;display:block;}
+  .navtoggle-icon i{position:absolute;left:0;width:15px;height:1.5px;border-radius:2px;
+  background:var(--gold);transform-origin:center;transition:top .22s,transform .22s;}
+  .navtoggle-icon i:first-child{top:2px;}
+  .navtoggle-icon i:last-child{top:9px;}
+  .topnav.menuopen .navtoggle{border-color:rgba(255,199,44,.55);
+  background:rgba(255,199,44,.08);}
+  .topnav.menuopen .navtoggle-copy span{display:none;}
+  .topnav.menuopen .navtoggle-copy b{display:inline;}
+  .topnav.menuopen .navtoggle-icon i:first-child,
+  .topnav.menuopen .navtoggle-icon i:last-child{top:5px;transform:rotate(45deg);}
+  .topnav.menuopen .navtoggle-icon i:last-child{transform:rotate(-45deg);}
+  html.js .navlinks{position:absolute;top:100%;left:50%;width:100vw;margin:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:10px 12px 14px;
+  background:rgba(2,6,15,.985);border-bottom:1px solid var(--line);
+  box-shadow:0 24px 54px rgba(0,0,0,.5);opacity:0;visibility:hidden;
+  pointer-events:none;clip-path:inset(0 0 100% 0);transform:translate(-50%,-8px);
+  transition:opacity .2s,transform .24s cubic-bezier(.22,1,.36,1),
+  clip-path .24s cubic-bezier(.22,1,.36,1),visibility 0s linear .24s;}
+  html.js .topnav.menuopen .navlinks{opacity:1;visibility:visible;pointer-events:auto;
+  clip-path:inset(0);transform:translate(-50%,0);transition-delay:0s;}
+  html.js .navlinks a{display:flex;align-items:center;min-height:46px;padding:0 13px;
+  border:1px solid rgba(28,51,80,.78);border-radius:11px;background:rgba(255,255,255,.022);
+  font-size:11px;letter-spacing:.12em;}
+  html.js .navlinks a::before{display:none;}
+  html.js .navlinks a::after{left:13px;right:calc(100% - 13px);bottom:8px;}
+  html.js .navlinks a.on{border-color:rgba(255,199,44,.35);
+  background:linear-gradient(135deg,rgba(255,199,44,.09),rgba(255,255,255,.018));}
+  html.js .navlinks a.on::after{right:13px;}
   .lightbox .lbprev{left:8px;}
   .lightbox .lbnext{right:8px;}
-  .foot-links{margin-left:0;flex-wrap:wrap;}
+  .leadform input[type=text],.leadform input[type=email],.leadform textarea,
+  .leadform select,.subscribe input[type=email],.subscribe input[type=text]{font-size:16px;}
+  .foot-links{margin-left:0;flex-wrap:wrap;gap:4px 16px;}
+  .foot-links a{display:inline-flex;align-items:center;min-height:44px;}
+  .socials a{width:44px;height:44px;}
 }
 @media (prefers-reduced-motion:reduce){
   .veil,.fstar,.curtain,.meteor,.daylight::after,.stop.now .dot{animation:none;}
@@ -1623,15 +1716,28 @@ background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
    rewritten because a phone needed less padding. */
 @media (max-width:620px){
   .qbox{margin-top:10px;}
-  /* On a phone this is an agent, not a live filter UI. The deterministic
-     engine continues to classify the query and provide the budget fallback,
-     but its cards never compete with the submitted conversation. */
-  .qagent:not(.chatting) .qpanel{display:none;}
+  /* Typing is the free, instant answer lane at every width. Hiding this panel
+     on phones left the field visibly doing nothing even though the engine had
+     already classified the question and built the answer. A submitted model
+     conversation still owns its dedicated sheet below; before submission,
+     the truthful deterministic answer stays on screen. */
+  .qagent:not(.chatting) .qpanel{display:block;margin-top:10px;}
+  .qagent:not(.chatting) .qpanel[hidden]{display:none;}
+  .qans{padding:16px 16px 15px;margin-bottom:9px;border-radius:14px;}
+  .qkick{font-size:9.5px;margin-bottom:8px;}
+  .qbig{font-size:19px;line-height:1.34;}
+  .qsub{font-size:13px;line-height:1.52;margin-top:8px;}
+  .qalso{margin-bottom:9px;gap:6px;}
+  .qhit{margin-bottom:6px;}
+  /* The answer above already states the relevant record field. Keep the two
+     matching records as useful destinations without repeating two long
+     excerpts that turn one phone answer into a thousand-pixel detour. */
+  .qhit .qsum{display:none;}
   .qviews{grid-template-columns:1fr 1fr;gap:5px;margin-top:5px;}
   /* One line each. The title takes the room and the count keeps its place at
      the end, because a reader scanning these is comparing counts. */
-  .qview{display:flex;align-items:baseline;gap:7px;border-radius:10px;
-  padding:7px 10px;}
+  .qview{display:flex;align-items:center;gap:7px;border-radius:10px;
+  padding:7px 10px;min-height:44px;}
   .qview::after{display:none;}
   .qview i{flex:1 1 auto;min-width:0;font-size:11.5px;
   line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -1643,9 +1749,12 @@ background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
      rows and cost 243px; on one scrolling line they cost 32. */
   .qtries{flex-wrap:nowrap;overflow-x:auto;gap:6px;margin-top:7px;
   scrollbar-width:none;-ms-overflow-style:none;
-  -webkit-overflow-scrolling:touch;padding-bottom:1px;}
+  -webkit-overflow-scrolling:touch;padding:0 28px 1px 0;scroll-snap-type:x proximity;
+  mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent);
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent);}
   .qtries::-webkit-scrollbar{display:none;}
-  .qtries .qtry{flex:0 0 auto;font-size:11.5px;padding:5px 11px;}
+  .qtries .qtry{flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;
+  font-size:11.5px;padding:7px 11px;scroll-snap-align:start;}
   .qtryl{flex:0 0 auto;}
   /* ONE LINE, NOT TWO. display:contents drops both strips out of the box model
      and lets their chips and their two labels become items of a single
@@ -1656,13 +1765,15 @@ background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
      one of them while typing works exactly as before. */
   .qstrips{display:flex;flex-wrap:nowrap;overflow-x:auto;align-items:center;
   gap:6px;margin-top:6px;scrollbar-width:none;-ms-overflow-style:none;
-  -webkit-overflow-scrolling:touch;padding-bottom:1px;}
+  -webkit-overflow-scrolling:touch;padding:0 28px 1px 0;scroll-snap-type:x proximity;
+  mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent);
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 28px),transparent);}
   .qstrips::-webkit-scrollbar{display:none;}
   .qstrips > .qtries{display:contents;}
   .qnears{margin-top:0;}
   /* The field itself. A 44px tap target is the floor and it was carrying 62. */
   .qfield{padding:10px 13px;}
-  .qbox .qinput input,.qbox .qghost{font-size:15px;}
+  .qbox .qinput input,.qbox .qghost{font-size:16px;}
   /* A phone has no TAB, no arrow keys and no ESC, so every item left in this
      row is about hardware the reader is not holding. The whole row goes. */
   .qfoot{display:none;}
@@ -5127,7 +5238,86 @@ JS = """
   if (nav) {
     var onScroll = function(){ nav.classList.toggle('scrolled', scrollY > 30); };
     addEventListener('scroll', onScroll, {passive: true}); onScroll();
+
+    /* Phones get one calm 64px bar and a real, labelled menu. The old seven
+       links wrapped into a 146px sticky wall on every page. Keep the direct
+       desktop navigation, and keep the uncollapsed links as the no-JS
+       fallback: only html.js opts into this disclosure control. */
+    var navToggle = nav.querySelector('.navtoggle');
+    var navLinks = nav.querySelector('.navlinks');
+    var setMenu = function(open, returnFocus){
+      if (!navToggle || !navLinks) return;
+      nav.classList.toggle('menuopen', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Close site menu' : 'Open site menu');
+      if (!open && returnFocus) navToggle.focus();
+    };
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', function(){
+        setMenu(navToggle.getAttribute('aria-expanded') !== 'true');
+      });
+      navLinks.addEventListener('click', function(e){
+        if (e.target.closest('a')) setMenu(false);
+      });
+      document.addEventListener('pointerdown', function(e){
+        if (nav.classList.contains('menuopen') && !nav.contains(e.target)) setMenu(false);
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && nav.classList.contains('menuopen')) setMenu(false, true);
+      });
+      addEventListener('resize', function(){
+        if (innerWidth > 720 && nav.classList.contains('menuopen')) setMenu(false);
+      }, {passive:true});
+    }
   }
+
+  /* Long public collections filter in place. Search text is derived from the
+     rendered card or source row, so the visible record and the searchable
+     record cannot drift apart. Nothing leaves the browser. */
+  document.querySelectorAll('[data-filter-root]').forEach(function(root){
+    var input = root.querySelector('[data-filter-input]');
+    var clear = root.querySelector('[data-filter-clear]');
+    var status = root.querySelector('[data-filter-status]');
+    var empty = root.querySelector('[data-filter-empty]');
+    var items = Array.prototype.slice.call(root.querySelectorAll('[data-filter-item]'));
+    if (!input || !status || !items.length) return;
+    var singular = root.getAttribute('data-filter-singular') || 'ITEM';
+    var plural = root.getAttribute('data-filter-plural') || singular + 'S';
+    var clean = function(value){
+      var s = String(value || '').toLowerCase();
+      if (s.normalize) s = s.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
+      return s.replace(/[^a-z0-9]+/g, ' ').trim();
+    };
+    items.forEach(function(item){ item.__filterText = clean(item.textContent); });
+    var applyFilter = function(){
+      var query = clean(input.value);
+      var terms = query ? query.split(/\\s+/) : [];
+      var shown = 0;
+      items.forEach(function(item){
+        var match = !terms.length || terms.every(function(term){
+          return item.__filterText.indexOf(term) !== -1;
+        });
+        item.hidden = !match;
+        if (match) shown++;
+      });
+      var unit = items.length === 1 ? singular : plural;
+      status.textContent = terms.length ? shown + ' OF ' + items.length + ' ' + unit
+                                        : items.length + ' ' + unit;
+      if (clear) clear.hidden = !terms.length;
+      if (empty) empty.hidden = shown !== 0;
+      root.classList.toggle('filtering', !!terms.length);
+    };
+    input.addEventListener('input', applyFilter);
+    input.addEventListener('keydown', function(e){
+      if (e.key !== 'Escape') return;
+      if (input.value) { input.value = ''; applyFilter(); }
+      else input.blur();
+    });
+    if (clear) clear.addEventListener('click', function(){
+      input.value = ''; applyFilter(); input.focus();
+    });
+    applyFilter();
+  });
 
   /* reveals */
   if ('IntersectionObserver' in window) {
@@ -6286,7 +6476,7 @@ def sources_page(today, site_url, runs):
             f'target="_blank">{esc(u[:110])}{"..." if len(u) > 110 else ""}</a></li>'
             for u in sorted(e["urls"], key=lambda u: -e["urls"][u]))
         rows.append(
-            f'<li><p><strong>{esc(name)}</strong></p><div class="cmeta">'
+            f'<li data-filter-item><p><strong>{esc(name)}</strong></p><div class="cmeta">'
             f'<span class="k{" p" if e["primary"] else ""}">'
             f'{e["primary"]} PRIMARY</span>'
             f'<span class="k">{e["claims"]} CLAIMS</span>'
@@ -6304,7 +6494,19 @@ claims rest on it. {prim} of {total} claims are sourced to a primary document.</
 </div>
 <h2>By outlet</h2>
 <p class="galhint">SORTED BY HOW MUCH OF THE RECORD RESTS ON THEM</p>
-<ol class="claims">{"".join(rows)}</ol>"""
+<div class="collection-filter" data-filter-root data-filter-singular="OUTLET"
+data-filter-plural="OUTLETS">
+  <div class="findbar">
+    <label class="findlabel" for="source-find">FIND A SOURCE</label>
+    <div class="findfield"><input id="source-find" type="search" data-filter-input
+    aria-controls="source-list" autocomplete="off" spellcheck="false"
+    placeholder="Outlet, agency, or URL"><button class="findclear" type="button"
+    data-filter-clear aria-label="Clear source search" hidden>&times;</button></div>
+    <p class="findstatus" data-filter-status aria-live="polite">{len(order)} OUTLETS</p>
+  </div>
+  <p class="findempty" data-filter-empty hidden>No source in the published record matches that search.</p>
+  <ol class="claims" id="source-list">{"".join(rows)}</ol>
+</div>"""
     ld = {"@context": "https://schema.org", "@type": "CollectionPage",
           "name": "The source archive", "url": f"{site_url}/sources/",
           "isPartOf": {"@id": org_id(site_url)}}
@@ -6754,7 +6956,7 @@ builds for Alaska businesses.</p>
 
 def archive_page(today, site_url, runs):
     decks = "".join(
-        f"""<a class="deck" href="{r['date']}/" data-reveal>
+        f"""<a class="deck" href="{r['date']}/" data-reveal data-filter-item>
   <img src="{RAW}/runs/{r['date']}/slide-01.webp" width="1080" height="1350" alt="{esc(r['title'])} cover" loading="lazy">
   <div class="meta"><h3>{esc(r['title'])}</h3>
   <div class="who">{esc(pretty_date(r['date'])).upper()} &middot; {r['slides']} SLIDES</div></div>
@@ -6764,7 +6966,19 @@ def archive_page(today, site_url, runs):
 <p class="tag">One verified Alaska and AI story at a time. Newest first.</p>
 </div>
 <h2 class="vh">Every deck</h2>
-<div class="deckgrid" style="margin-top:44px">{decks}</div>
+<div class="collection-filter" data-filter-root data-filter-singular="ARTICLE"
+data-filter-plural="ARTICLES">
+  <div class="findbar" style="margin-top:44px">
+    <label class="findlabel" for="article-find">FIND AN ARTICLE</label>
+    <div class="findfield"><input id="article-find" type="search" data-filter-input
+    aria-controls="article-list" autocomplete="off" spellcheck="false"
+    placeholder="Title, subject, or date"><button class="findclear" type="button"
+    data-filter-clear aria-label="Clear article search" hidden>&times;</button></div>
+    <p class="findstatus" data-filter-status aria-live="polite">{len(runs)} ARTICLES</p>
+  </div>
+  <p class="findempty" data-filter-empty hidden>No published article matches that search.</p>
+  <div class="deckgrid" id="article-list">{decks}</div>
+</div>
 <div class="about-line" data-reveal><p>Every article here is researched, drawn and
 shipped by the studio's own autonomous system. It builds the same kind of thing for
 Alaska businesses.</p>

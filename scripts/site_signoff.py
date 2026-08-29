@@ -251,7 +251,12 @@ def page_files(out_dir):
             dirs[:] = [d for d in dirs if d not in FOREIGN]
         for f in files:
             if f.endswith(".html"):
-                out.append(os.path.relpath(os.path.join(root, f), out_dir))
+                # Page ids are URL-shaped throughout this checker. Windows'
+                # relpath returns backslashes, which made deck exemptions miss
+                # and made `gas-watch/index.html` look absent even while it was
+                # on disk. Normalize once at the filesystem boundary.
+                out.append(os.path.relpath(os.path.join(root, f), out_dir)
+                           .replace(os.sep, "/"))
     return sorted(out), skipped
 
 

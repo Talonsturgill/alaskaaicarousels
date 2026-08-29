@@ -176,6 +176,43 @@ async function run(browser, label, profile) {
         geom.tinyChips ? geom.tinyChips + ' are too small' : 'all of them do');
   check(label, 'the page does not scroll sideways', geom.overflowX <= 0,
         geom.overflowX > 0 ? geom.overflowX + 'px of horizontal overflow' : 'no overflow');
+  check(label, 'the sticky header leaves the phone page visible', geom.navH <= 80,
+        geom.navH + 'px tall');
+
+  /* At phone width, navigation is a disclosure with honest 44px controls.
+     The old seven-link wrap occupied 146px before a reader reached the page
+     and still gave every link a sub-44px hit area. Open the actual menu, not
+     just its CSS, then make Escape prove it remains keyboard-operable. */
+  if (profile.viewport && profile.viewport.width <= 720) {
+    await page.tap('.navtoggle');
+    await page.waitForTimeout(280);
+    const menu = await page.evaluate(() => {
+      const toggle = document.querySelector('.navtoggle');
+      const links = [...document.querySelectorAll('.navlinks a')].filter(a => {
+        const b = a.getBoundingClientRect();
+        return b.width > 0 && b.height > 0 && getComputedStyle(a).visibility === 'visible';
+      });
+      const tb = toggle.getBoundingClientRect();
+      return {
+        expanded: toggle.getAttribute('aria-expanded') === 'true',
+        toggleH: Math.round(tb.height),
+        linkCount: links.length,
+        smallest: Math.round(Math.min(...links.map(a => a.getBoundingClientRect().height))),
+      };
+    });
+    check(label, 'the phone menu opens with every destination',
+          menu.expanded && menu.linkCount === 7,
+          menu.linkCount + ' links, expanded=' + menu.expanded);
+    check(label, 'the menu button clears a 44px touch target', menu.toggleH >= 44,
+          menu.toggleH + 'px tall');
+    check(label, 'every menu destination clears a 44px touch target', menu.smallest >= 44,
+          menu.smallest + 'px smallest link');
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(280);
+    const closed = await page.locator('.navtoggle').getAttribute('aria-expanded');
+    check(label, 'Escape closes the phone menu', closed === 'false',
+          'aria-expanded=' + closed);
+  }
 
   /* The home view must show Alaska, not whatever corner the decisions happen
      to cluster in. Measured against the coastline itself rather than the

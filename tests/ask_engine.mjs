@@ -22,8 +22,10 @@
  *   python3 scripts/site_build.py --out /tmp/site && SITE=/tmp/site node tests/ask_engine.mjs
  */
 import { chromium } from 'playwright';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-const URL = 'file://' + (process.env.SITE || '') + '/docket/index.html';
+const URL = pathToFileURL(resolve(process.env.SITE || '', 'docket', 'index.html')).href;
 if (!process.env.SITE) {
   console.error('set SITE to a built site directory');
   process.exit(2);

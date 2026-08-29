@@ -198,8 +198,11 @@ await page.evaluate(() => {
 });
 await page.waitForTimeout(60);
 await type('who decides the eielson microreactor');
-ok('mobile composition does not expose deterministic result cards',
-  await page.locator('#qres').isHidden());
+ok('mobile composition shows the free instant answer while typing',
+  await page.locator('#qres').isVisible());
+ok('the mobile instant answer contains an answer card and a record result',
+  await page.locator('#qres .qans').count() === 1 &&
+  await page.locator('#qres .qhit').count() >= 1);
 await page.click('#qgo');
 await page.waitForSelector('.qnext', { timeout: 8000 });
 ok('a fast submit restarts the human check instead of posting an empty token',

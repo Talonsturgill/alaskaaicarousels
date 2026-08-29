@@ -901,6 +901,8 @@ def item_html(it, today, num, prefix=""):
     # Rule 6: the verb comes from the item, because not every open room is a
     # written comment window.
     act = cta_html(it, r, esc, mon_day, "gold sm")
+    act_line = f"    {act}\n" if act else ""
+    hist_line = f"    {hist_html}\n" if hist_html else ""
     return f"""<article class="item a-{r["access"]}" id="{esc(it["id"])}" data-reveal>
   <div class="doorcol">{door_svg(r["access"])}<span class="num">{num:02d}</span></div>
   <div class="body">
@@ -914,10 +916,8 @@ def item_html(it, today, num, prefix=""):
     <p>{esc(it["summary"])}</p>
     <div class="access">{esc(it["access_note"])}</div>
     {rail_html(it, today)}
-    {act}
-    <div class="srcs">Sources &middot; {srcs}</div>
-    {hist_html}
-    <div class="ctarow"><a class="cta ghost sm" href="{prefix}{esc(it["id"])}/">
+{act_line}    <div class="srcs">Sources &middot; {srcs}</div>
+{hist_line}    <div class="ctarow"><a class="cta ghost sm" href="{prefix}{esc(it["id"])}/">
       THE FULL RECORD ON THIS DECISION</a></div>
   </div>
 </article>"""

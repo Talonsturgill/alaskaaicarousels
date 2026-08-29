@@ -45,7 +45,20 @@ font-family:JBMono,monospace;font-size:13px;letter-spacing:.14em;color:var(--sno
 .navlinks a{text-decoration:none;color:var(--mute);padding:6px 2px;}
 .navlinks a:hover{color:var(--snow);}
 .navlinks a.on{color:var(--gold);}
-@media(max-width:560px){.navlinks a.hidesm{display:none;}}
+@media(max-width:560px){
+  .topbar{padding:calc(8px + env(safe-area-inset-top)) 10px 8px;
+  background:linear-gradient(180deg,rgba(2,6,15,.96),rgba(2,6,15,.72) 72%,transparent);}
+  .wordmark{min-height:44px;font-size:11.5px;letter-spacing:.11em;}
+  .navlinks{gap:3px;}
+  .navlinks a{display:flex;align-items:center;min-height:44px;padding:0 8px;}
+  .navlinks a.hidesm{display:none;}
+}
+@media(hover:none) and (pointer:coarse){
+  /* A landscape phone is wider than the portrait breakpoint but still has a
+     thumb, not a mouse. Preserve real targets when the device rotates. */
+  .wordmark{min-height:44px;}
+  .navlinks a{display:flex;align-items:center;min-height:44px;}
+}
 
 /* ---------- feed ---------- */
 .feed{height:100dvh;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none;}
@@ -86,6 +99,20 @@ line-height:1.15;color:var(--snow);margin-bottom:7px;text-wrap:balance;}
 display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer;}
 .cap.open{-webkit-line-clamp:unset;}
 
+/* The videos carry their own open captions. On a phone, a second title and
+   description over the same bottom band printed two different passages
+   through each other. Playback now owns the picture completely; pausing
+   reveals the metadata as a deliberate opaque information sheet instead of
+   translucent text competing with the frozen caption underneath. */
+@media(max-width:699px),(hover:none) and (pointer:coarse){
+  .meta{z-index:7;right:0;opacity:1;transform:none;
+  transition:opacity .18s ease,transform .22s cubic-bezier(.22,1,.36,1);}
+  .card:not(.paused) .meta{opacity:0;transform:translateY(18px);pointer-events:none;}
+  .card.paused .meta{padding:18px 66px calc(20px + env(safe-area-inset-bottom)) 16px;
+  background:linear-gradient(0deg,rgba(2,6,15,.99),rgba(5,11,22,.97));
+  border-top:1px solid rgba(28,51,80,.9);box-shadow:0 -18px 42px rgba(0,0,0,.42);}
+}
+
 /* right-rail actions */
 .rail{position:absolute;right:8px;bottom:calc(86px + env(safe-area-inset-bottom));z-index:5;
 display:flex;flex-direction:column;gap:16px;align-items:center;}
@@ -96,6 +123,11 @@ transition:transform .12s,border-color .12s;backdrop-filter:blur(6px);}
 .rbtn svg{width:21px;height:21px;fill:none;stroke:var(--snow);stroke-width:1.8;
 stroke-linecap:round;stroke-linejoin:round;}
 .rbtn.toast svg{stroke:var(--green);}
+@media(max-width:699px),(hover:none) and (pointer:coarse){
+  /* Current Dispatch captions occupy the lower quarter of the vertical cut.
+     Keep all three actions in the upper-right reach zone, clear of that band. */
+  .rail{top:calc(116px + env(safe-area-inset-top));bottom:auto;gap:12px;}
+}
 
 /* progress hairline (scaleX only, never layout). On pause it becomes a real
    scrubber: the track thickens, a knob appears and a thumb-sized grab area
