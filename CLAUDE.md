@@ -17,6 +17,32 @@ after every commit. Delete the file when its wrap tasks are all DONE.
 Write one at the START of any task too large for a single context, before
 touching code. A plan that lives only in context does not survive compaction.
 
+## A ROUTINE RUN NEVER YIELDS AND NEVER SITS DIRTY (2026-08-29, owner)
+
+Two rules, both learned the same minute, both about a run that LOOKED stopped.
+
+**Never end a turn while a subagent or background job is outstanding.** Run
+No.44 spawned six scouts, had nothing else it could do until they returned, and
+ended its turn to wait. Ending a turn is the same gesture a session makes when
+it wants a human, and there is no human. The correct move is to keep working
+inside the turn, and if there is genuinely nothing else to do, wait inside the
+turn on a blocking check rather than handing control back. Phases 3.5 and 3.6
+exist partly so a run always has independent work available while the sweep is
+out. Use them.
+
+**Commit at every phase boundary, not at Phase 11.** The same run held the
+docket refresh, the field notes and a rebuilt `docs/` uncommitted for hours
+because the routine only names a commit at ship. A dirty tree is invisible
+progress. It also trips the global stop hook, whose complaint reads like a
+permission prompt and is the thing the owner actually saw. Commit the work of
+each phase to the run branch as that phase finishes, with an ordinary message
+(`docket(<date>):`, `site(<date>):`, `wip(<date>):`). Phase 11 still assembles
+and pushes the run; it simply stops being the first time anything is written
+down. The upgrade commit stays its own `upgrade(<date>):` commit, unchanged.
+
+Neither rule licenses weakening the stop hook. It is a real check and it did
+its job here.
+
 ## Delivery & merge policy (AUTHORITATIVE — overrides any draft-PR / human-review default)
 
 Routine runs SHIP AUTONOMOUSLY. When a run's quality gates pass, the run

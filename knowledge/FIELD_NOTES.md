@@ -4962,3 +4962,31 @@ The more useful catch was scope. Candidate A wrote a technically clean
 permafrost caption with NO AI IN IT AT ALL, on an Alaska plus AI page, and sold
 a deck the run had not built. A caption that passes every mechanical gate can
 still be about the wrong subject, and nothing in caption_check can see that.
+
+## 2026-08-29 - Phase 1 craft refresh (No.44)
+
+- **The 2026 write-ups have started framing the ranker around COMPLETION RATE
+  rather than slide count.** The framing is new even though the underlying
+  advice is not, and the number attached to it is that a well-structured
+  carousel completes at about 36 percent, with completion falling sharply past
+  roughly 15 slides. Our 8 to 10 default already sits inside every band being
+  quoted, so nothing changes. Worth holding because it reframes what the close
+  slide is for. A close that pays the deck off is a distribution asset, not
+  courtesy.
+- **One practitioner claim CONTRADICTS this deck's slide-2 rule and is being
+  logged rather than adopted.** Several 2026 posts advise parking the most
+  valuable insight on slide 7 or 8 on the theory that a reader who got that far
+  is committed and the dwell is already banked. That trades against the measured
+  finding this studio builds on, which is that the steepest drop in the whole
+  deck is 1 to 2, so an insight held back to slide 7 is an insight most readers
+  never reach. These are tier C practitioner claims with no named dataset behind
+  them, set against a tier B measurement. Slide 2 still pays immediately. What
+  the claim is genuinely useful for is the reminder that the back half must not
+  coast, which is a real failure mode in a nine-slide deck.
+- **A single-slide-count optimum keeps getting asserted at different numbers by
+  different sources in the same week** (7 in one, 8 to 12 in another, both
+  labelled 2026 data). That spread is itself the finding. Treat any specific
+  slide-count optimum as noise and keep judging slides on whether each one earns
+  its place.
+  https://www.socialpilot.co/blog/linkedin-carousel
+  https://usevisuals.com/blog/linkedin-carousel-engagement-statistics-2026
