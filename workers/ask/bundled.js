@@ -632,13 +632,13 @@ export function normaliseQuestion(q) {
  * keying on the last message alone would serve one thread's answer into
  * another's. Follow-ups mostly miss the cache and that is correct.
  */
-export async function cacheKey(turns, packDate, promptRevision = "") {
+export async function cacheKey(turns, packDate, packRevision = "") {
   const thread = (Array.isArray(turns) ? turns : [{ role: "user", content: String(turns) }])
     .map(m => m.role + ":" + normaliseQuestion(m.content)).join("\n");
-  // A rules-only deployment can happen more than once on the same published
+  // Rules and record data can both change more than once on the same published
   // date. Include those bytes so KV cannot replay an answer written under the
-  // previous behavior after the prompt has changed.
-  const data = new TextEncoder().encode(`${packDate}\n${promptRevision}\n${thread}`);
+  // previous behavior or an earlier same-day Gas Watch/Docket build.
+  const data = new TextEncoder().encode(`${packDate}\n${packRevision}\n${thread}`);
   const digest = await crypto.subtle.digest("SHA-256", data);
   const hex = [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
   // The pack date rides in the key as well as in the hash so a human reading
@@ -849,7 +849,7 @@ async function preflight(turns, env, now) {
     return { stop: { status: 502, body: { error: "the record is unreachable" } } };
   }
 
-  const key = await cacheKey(turns, pack.generated, pack.system);
+  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack);
   const hit = await env.ASK_KV.get(key);
   if (hit) return { cached: { ...JSON.parse(hit), cached: true }, pack, key };
 
@@ -1010,7 +1010,7 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
     return { status: 502, body: { error: "the record is unreachable" } };
   }
 
-  const key = await cacheKey(turns, pack.generated, pack.system);
+  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack);
   const hit = await env.ASK_KV.get(key);
   if (hit) {
     const rec = JSON.parse(hit);
