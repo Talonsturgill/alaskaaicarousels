@@ -186,12 +186,14 @@ await page.focus('#qq');
    is never coming, which is a stub bug that reads exactly like a page bug. */
 await page.evaluate(() => {
   if (!document.getElementById('qbox').getAttribute('data-sitekey')) return;
-  let cb = null;
+  let cb = null, resets = 0;
   window.turnstile = {
-    render: (el, opt) => { cb = opt.callback;
-      setTimeout(() => cb('test-token'), 5); return 1; },
-    reset: () => { setTimeout(() => cb && cb('test-token'), 5); },
+    /* A fast first submit arrives before the automatic callback. Production
+       must restart the ready widget itself instead of posting an empty token. */
+    render: (el, opt) => { cb = opt.callback; return 1; },
+    reset: () => { resets++; setTimeout(() => cb && cb('test-token'), 5); },
   };
+  window.__testTurnstileResets = () => resets;
   window.qTurnstileReady();
 });
 await page.waitForTimeout(60);
@@ -200,6 +202,8 @@ ok('mobile composition does not expose deterministic result cards',
   await page.locator('#qres').isHidden());
 await page.click('#qgo');
 await page.waitForSelector('.qnext', { timeout: 8000 });
+ok('a fast submit restarts the human check instead of posting an empty token',
+  await page.evaluate(() => window.__testTurnstileResets() >= 1));
 
 ok('mobile submit opens the dedicated conversation sheet',
   await page.locator('#qagent').evaluate(el => getComputedStyle(el).position === 'fixed'));

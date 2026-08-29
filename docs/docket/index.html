@@ -3652,9 +3652,8 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
 
     /* Wait for the human check rather than racing it. The widget passes on
        its own for a real browser, but not instantly, and submitting before it
-       has a token posted without one and put the worker's refusal on screen as
-       if the reader had done something wrong. Up to eight seconds, checked ten
-       times a second, with the stage line explaining the wait. */
+       has a token must never post an empty one and put the Worker's refusal on
+       screen as if the reader had done something wrong. */
     /* A Turnstile token is single use, so every question needs a fresh one and
        the previous answer's reset() left the widget holding nothing. The first
        question worked and every one after it was refused with "finish the
@@ -3667,11 +3666,24 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       /* The widget runs on its own; this only waits for the callback. If the
          script has not loaded at all yet, keep waiting rather than giving up,
          because a slow network is not a failed check. */
-      return new Promise(function(resolve){
-        var tries = 0;
+      return new Promise(function(resolve, reject){
+        var tries = 0, restarted = false;
         var t = setInterval(function(){
           if (tsToken) { clearInterval(t); resolve(tsToken); return; }
-          if (++tries > 150) { clearInterval(t); resolve(''); }
+          tries += 1;
+          /* A very fast submit can arrive while the newly rendered widget is
+             still between loading and execution. Once its handle exists, one
+             reset gives that stalled first run a clean start. Normal readers
+             already have a token and never take this branch. */
+          if (!restarted && tries > 5 && window.turnstile && tsId !== null) {
+            restarted = true;
+            setStage('Finishing the human check', {progress: 0});
+            try { turnstile.reset(tsId); } catch (e) {}
+          }
+          if (tries > 150) {
+            clearInterval(t);
+            reject(new Error('The human check didn\'t finish. Tap send to try again.'));
+          }
         }, 100);
       });
     }
