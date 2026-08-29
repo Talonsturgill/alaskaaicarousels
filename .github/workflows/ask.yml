@@ -73,7 +73,9 @@ jobs:
       # has stopped matching anything fails the build instead of quietly
       # returning nothing to a reader.
       - name: The answer engine agrees with the record it reads
-        run: python3 scripts/ask_answers.py --self-test
+        run: |
+          python3 scripts/ask_answers.py --self-test
+          python3 tests/ask_json_embed.py
 
       # Builds the corpus from the live ledger and proves the allow-list
       # covers its own source. An allow-list that did not would refuse true

@@ -249,7 +249,6 @@ export function splitSentences(buffer) {
 // and the answer would simply vanish. KV is the smallest durable thing that
 // works, it is part of the Workers platform rather than a separate service,
 // and it does not pause when idle.
-
 const FIRE = "https://api.anthropic.com/v1/claude_code/routines";
 const BETA = "experimental-cc-routine-2026-04-01";
 
@@ -454,7 +453,6 @@ export async function result(id, env) {
 // introductory rate ends on 2026-08-31 the same ceiling is about 32 dollars.
 // The bill has a maximum you choose, not a maximum the internet chooses, and
 // ASK_MONTHLY_CAP is where you choose it.
-
 const API = "https://api.anthropic.com/v1/messages";
 const PACK_URL = "https://alaskaaihq.com/ask-pack.json";
 
@@ -877,10 +875,11 @@ async function preflight(turns, env, now) {
  * The streaming route. Emits newline delimited JSON, one event per line, so
  * the page can render as it arrives without a parser of its own:
  *
- *   {"stage":"..."}          what is happening, and each one is true
+ *   {"stage":"...", "step":"record", "progress":1, "total":3}
+ *                              what is happening, and each one is true
  *   {"sentence":"..."}       one verified sentence, safe to show
  *   {"withheld":"numeral"}   the answer stopped here and why
- *   {"done":true}            finished
+ *   {"done":true,"verified":3} finished, with the released sentence count
  *   {"error":"..."}          nothing to show
  */
 export async function answerStream(turns, env, { now, fetchImpl } = {}) {
@@ -890,20 +889,20 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
 
   if (pre.stop) {
     return new ReadableStream({
-      start(c) { c.enqueue(line(pre.stop.body)); c.enqueue(line({ done: true })); c.close(); },
+      start(c) { c.enqueue(line(pre.stop.body)); c.enqueue(line({ done: true, verified: 0 })); c.close(); },
     });
   }
   if (pre.cached) {
     // Replayed a sentence at a time, so a cached answer arrives the same way a
     // fresh one does rather than snapping in and looking like a different
-    // feature. It is instant either way; this only keeps the shape honest.
+    // feature. Cache is an implementation detail: the reader gets the same
+    // answer protocol without a stage that announces storage machinery.
     const { sentences, remainder } = splitSentences(String(pre.cached.text).trim());
     const all = remainder.trim() ? [...sentences, remainder] : sentences;
     return new ReadableStream({
       start(c) {
-        c.enqueue(line({ stage: "Answered this one already" }));
         for (const s of all) c.enqueue(line({ sentence: s.trim() }));
-        c.enqueue(line({ done: true, cached: true }));
+        c.enqueue(line({ done: true, cached: true, verified: all.length }));
         c.close();
       },
     });
@@ -915,18 +914,22 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
 
   return new ReadableStream({
     async start(c) {
-      c.enqueue(line({ stage: "Reading the record" }));
-      let buf = "", kept = [], withheld = null, opened = false;
+      c.enqueue(line({ stage: "Opening today's published record", step: "record", progress: 1, total: 3 }));
+      let buf = "", kept = [], withheld = null, opened = false, verifying = false;
       try {
         await streamModel(turns, pack, env, (delta) => {
           if (!opened) {
             opened = true;
-            c.enqueue(line({ stage: "Checking every figure against the record" }));
+            c.enqueue(line({ stage: "Drafting only from the published record", step: "draft", progress: 2, total: 3 }));
           }
           if (withheld) return;
           buf += delta;
           const { sentences, remainder } = splitSentences(buf);
           buf = remainder;
+          if (sentences.length && !verifying) {
+            verifying = true;
+            c.enqueue(line({ stage: "Verifying figures and source links", step: "verify", progress: 3, total: 3 }));
+          }
           for (const s of sentences) {
             const v = checkSentence(s, { allowed, slugs });
             if (!v.ok) { withheld = v.reason; return; }
@@ -937,6 +940,10 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
 
         // Whatever is left over after the last sentence end.
         if (!withheld && buf.trim()) {
+          if (!verifying) {
+            verifying = true;
+            c.enqueue(line({ stage: "Verifying figures and source links", step: "verify", progress: 3, total: 3 }));
+          }
           const v = checkSentence(buf, { allowed, slugs });
           if (!v.ok) withheld = v.reason;
           else { kept.push(buf.trim()); c.enqueue(line({ sentence: buf.trim() })); }
@@ -956,7 +963,7 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
           st >= 500 ? "The model is having a moment. Try again shortly." :
           "That answer did not come back.",
           status: st || null }));
-        c.enqueue(line({ done: true }));
+        c.enqueue(line({ done: true, verified: kept.length }));
         c.close();
         return;
       }
@@ -976,7 +983,7 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
       } else {
         c.enqueue(line({ error: "The record did not produce an answer to that." }));
       }
-      c.enqueue(line({ done: true }));
+      c.enqueue(line({ done: true, verified: kept.length }));
       c.close();
     },
   });
@@ -1091,25 +1098,22 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
 // above the button, before the press.
 //
 // WHY A WORKER AND NOT A DATABASE. This endpoint holds a few secrets and
-// forwards one call. The only thing it stores is an in-flight request waiting
-// for its answer, which expires by itself. There is no schema to migrate, no
-// project to pause, and no row that can go stale. Cloudflare is already a
-// dependency for Turnstile and a workers.dev URL needs no DNS change, so this
-// adds a file rather than a vendor.
+// forwards model or routine calls. KV stores short-lived archive requests,
+// answer-cache entries keyed to a dated pack, and the monthly model-call
+// counter. There is no application schema or second copy of the published
+// record to migrate or synchronize. Cloudflare is already a dependency for
+// Turnstile and a workers.dev URL needs no DNS change.
 //
-// WHY IT COSTS NOTHING NEW. Firing a routine spends a slot from the account's
-// daily run cap and draws on the claude.ai subscription already being paid
-// for. There is no Console key here and no metered API call. What it costs
-// instead is time, because a fired routine starts a whole Claude Code session,
-// so an answer takes minutes rather than a second. That trade is the reason
-// the page treats this as an archive search and says so.
+// WHY THE TWO REMOTE LANES DIFFER. /answer uses the metered Messages API and
+// returns verified sentences in seconds; KV reuse and ASK_MONTHLY_CAP put a
+// hard ceiling on it. /deep starts a Claude Code routine on the subscription,
+// spends a daily routine slot, and takes minutes. That trade is why the page
+// treats /deep as an explicit archive escalation rather than the default.
 //
 // WHAT MAKES IT HONEST. Nothing the routine writes reaches a reader unchecked.
 // Every sentence of a delivered answer passes checks.js against the published
 // corpus before it is stored, and a sentence that fails ends the answer there,
 // visibly, rather than being quietly repaired.
-
-
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const MAX_QUESTION = 400;
 
@@ -1127,17 +1131,22 @@ function json(body, status = 200) {
   });
 }
 
-async function verifyTurnstile(token, secret, ip) {
-  if (!secret) return true; // not configured; the deploy notes call this out
+export async function verifyTurnstile(token, secret, ip) {
+  // Both halves are required. Failing open when the secret is absent turns a
+  // deployment mistake into a public way to spend the monthly model budget.
+  if (!secret) return false;
   if (!token) return false;
   const body = new FormData();
   body.append("secret", secret);
   body.append("response", token);
   if (ip) body.append("remoteip", ip);
-  const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify",
-    { method: "POST", body });
-  const out = await r.json().catch(() => ({ success: false }));
-  return out.success === true;
+  try {
+    const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      { method: "POST", body });
+    if (!r.ok) return false;
+    const out = await r.json().catch(() => ({ success: false }));
+    return out.success === true;
+  } catch (_) { return false; }
 }
 
 async function loadCorpus() {

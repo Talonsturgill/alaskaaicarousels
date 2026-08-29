@@ -280,14 +280,27 @@ async function drain(stream) {
   const sents = ev.filter(x => x.sentence).map(x => x.sentence);
   check("stages are emitted before any text",
     ev[0] && !!ev[0].stage, JSON.stringify(ev[0]));
+  const stages = ev.filter(x => x.stage);
+  check("truthful progress advances record, draft, verify",
+    stages.map(x => x.step).join(",") === "record,draft,verify" &&
+    stages.map(x => x.progress).join(",") === "1,2,3", JSON.stringify(stages));
   check("a sentence split across deltas is reassembled",
     sents[0] === "Storage held 6.54 Bcf.", JSON.stringify(sents[0]));
   check("the trailing fragment is emitted too",
     sents.join(" ").includes("[[stak-lease]]"), JSON.stringify(sents));
-  check("it finishes", ev.some(x => x.done));
+  check("it finishes with the released sentence count",
+    ev.some(x => x.done && x.verified === sents.length), JSON.stringify(ev.at(-1)));
   check("the call was counted", e.ASK_KV.store.get("spend:2026-08") === "1");
   check("a clean streamed answer is cached",
     [...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+
+  const replay = await drain(await answerStream("what is in storage", e, { now: NOW }));
+  check("a cached stream does not expose cache machinery",
+    replay[0] && !!replay[0].sentence && !replay.some(x => x.stage || x.step === "cache"),
+    JSON.stringify(replay));
+  check("a cached stream keeps the same sentence and terminal protocol",
+    replay.some(x => x.done && x.cached === true && x.verified === sents.length),
+    JSON.stringify(replay.at(-1)));
 }
 
 {
@@ -413,6 +426,22 @@ section("the month's spend is visible");
   const s2 = await spendOf(noKV, NOW);
   check("no KV reports null rather than a reassuring zero",
     s2.spent === null && !!s2.note, JSON.stringify(s2));
+}
+
+section("the human check fails closed");
+{
+  const { verifyTurnstile } = await import("./worker.js");
+  let called = 0;
+  globalThis.fetch = async () => { called++; return { ok: true, json: async () => ({ success: true }) }; };
+  check("a missing Turnstile secret is refused without a request",
+    await verifyTurnstile("token", "", "127.0.0.1") === false && called === 0);
+  check("a missing browser token is refused without a request",
+    await verifyTurnstile("", "secret", "127.0.0.1") === false && called === 0);
+  check("Cloudflare's verified token passes",
+    await verifyTurnstile("token", "secret", "127.0.0.1") === true && called === 1);
+  globalThis.fetch = async () => { throw new Error("network down"); };
+  check("a verification outage refuses rather than spending",
+    await verifyTurnstile("token", "secret", "127.0.0.1") === false);
 }
 
 console.log();

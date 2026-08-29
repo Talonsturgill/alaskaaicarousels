@@ -1144,7 +1144,7 @@ ASK_ENDPOINT = os.environ.get(
 # The same Turnstile widget the scanner uses. A sitekey is per domain and
 # public by design, so one widget covers both forms and there is nothing to
 # keep in sync. The matching secret goes to the worker, not here.
-TS_SITEKEY = "0x4AAAAAAD7e1lYKOUSxa5sV"
+TS_SITEKEY = os.environ.get("TS_SITEKEY", "0x4AAAAAAD7e1lYKOUSxa5sV")
 
 ASK_CSS = """
 /* THE ASK BOX.
@@ -1154,6 +1154,8 @@ ASK_CSS = """
    thinks something is being sent somewhere waits for it. Hence the command
    palette shape, the count that moves while you type, the meter that narrows
    under the field, and an answer that is never preceded by a loading state. */
+.qagent{position:relative;}
+.qagentbar{display:none;}
 .qbox{max-width:820px;margin:48px auto 0;position:relative;}
 /* THE GLOW.
    A gold bloom behind the field, so the box lifts off the page instead of
@@ -1360,7 +1362,6 @@ font-family:JBMono,ui-monospace,monospace;letter-spacing:.05em;}
    would read as a search term. */
 .qnears{margin-top:7px;}
 .qnear{font-variant-numeric:tabular-nums;}
-}
 
 /* Results. They stagger in top down, because motion here is structure. It
    tells the eye the order the record ranked them in. */
@@ -1500,16 +1501,44 @@ letter-spacing:.002em;}
 /* What is happening, while it happens. Both lines are true rather than
    decorative: the record really is being fetched, and every figure really is
    checked against it before it is allowed onto the page. */
-.qstage{font-size:14px;color:var(--mute);display:flex;align-items:center;gap:10px;}
+.qtrace{position:relative;overflow:hidden;margin:0 0 17px;padding:13px 15px 12px;
+border:1px solid rgba(255,199,44,.19);border-radius:13px;
+background:linear-gradient(112deg,rgba(255,199,44,.055),rgba(90,200,240,.025));}
+/* A visible beam, not fake reasoning. It marks a real request that is still
+   moving through the named stages supplied by the Worker. */
+.qtrace::after{content:"";position:absolute;inset:-60% auto -60% -35%;width:38%;
+pointer-events:none;transform:skewX(-18deg);
+background:linear-gradient(90deg,transparent,rgba(255,240,178,.12),
+rgba(90,200,240,.2),transparent);filter:blur(5px);
+animation:qbeam 2.15s cubic-bezier(.45,0,.55,1) infinite;}
+.qtrace.done::after,.qtrace.error::after{display:none;}
+@keyframes qbeam{0%{left:-42%;opacity:0;}16%{opacity:1;}75%{opacity:.8;}100%{left:112%;opacity:0;}}
+.qtracehead{position:relative;z-index:1;display:flex;justify-content:space-between;
+align-items:center;gap:12px;margin-bottom:7px;font-family:JBMono,ui-monospace,monospace;
+font-size:9.5px;letter-spacing:.16em;color:var(--gold);}
+.qtracecount{color:var(--mute);letter-spacing:.08em;font-variant-numeric:tabular-nums;}
+.qstage{position:relative;z-index:1;font-size:13px;color:var(--body);
+display:flex;align-items:center;gap:9px;min-height:20px;}
 .qstage::before{content:"";width:6px;height:6px;border-radius:50%;flex:none;
-background:var(--gold);animation:qpulse 1.1s ease-in-out infinite;}
-@keyframes qpulse{0%,100%{opacity:.25;transform:scale(.8);}50%{opacity:1;transform:scale(1);}}
+background:var(--gold);box-shadow:0 0 14px rgba(255,199,44,.8);
+animation:qpulse 1.1s ease-in-out infinite;}
+.qtrace.done .qstage::before{background:#74d7ba;box-shadow:0 0 12px rgba(116,215,186,.55);
+animation:none;}
+.qtrace.error .qstage::before{background:var(--mute);box-shadow:none;animation:none;}
+.qsteps{position:relative;z-index:1;display:flex;gap:5px;margin-top:10px;}
+.qsteps i{height:2px;flex:1;border-radius:999px;background:rgba(255,255,255,.08);
+overflow:hidden;position:relative;}
+.qsteps i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,
+var(--gold),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .35s ease;}
+.qsteps i.on::after{transform:scaleX(1);}
+@keyframes qpulse{0%,100%{opacity:.28;transform:scale(.8);}50%{opacity:1;transform:scale(1);}}
 /* Each verified sentence arrives on its own and fades rather than snapping. */
 .qseg{animation:qfade .3s ease both;}
 @keyframes qfade{from{opacity:0;}to{opacity:1;}}
 @media (prefers-reduced-motion:reduce){
-  .qstage::before,.qseg{animation:none;}
+  .qtrace::after,.qstage::before,.qseg{animation:none;}
   .qstage::before{opacity:1;}
+  .qsteps i::after{transition:none;}
 }
 /* Taking the answer up on its closing offer. Gold, because it is the one
    thing on screen the reader is being invited to press, and a pill rather than
@@ -1594,6 +1623,10 @@ background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
    rewritten because a phone needed less padding. */
 @media (max-width:620px){
   .qbox{margin-top:10px;}
+  /* On a phone this is an agent, not a live filter UI. The deterministic
+     engine continues to classify the query and provide the budget fallback,
+     but its cards never compete with the submitted conversation. */
+  .qagent:not(.chatting) .qpanel{display:none;}
   .qviews{grid-template-columns:1fr 1fr;gap:5px;margin-top:5px;}
   /* One line each. The title takes the room and the count keeps its place at
      the end, because a reader scanning these is comparing counts. */
@@ -1633,10 +1666,52 @@ background:rgba(0,0,0,.25);font-family:inherit;font-size:10px;}
   /* A phone has no TAB, no arrow keys and no ESC, so every item left in this
      row is about hardware the reader is not holding. The whole row goes. */
   .qfoot{display:none;}
+  /* A submitted question becomes a focused conversation, not another card in
+     a long page. Dynamic viewport units keep the composer above mobile browser
+     chrome; safe-area padding keeps it clear of a home indicator. */
+  html.qchatopen,html.qchatopen body{overflow:hidden;overscroll-behavior:none;}
+  .qagent.chatting{position:fixed;inset:0;z-index:1200;height:100dvh;
+  display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:#0b0a09;
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  animation:qsheet .25s cubic-bezier(.22,1,.36,1) both;}
+  .qagent.chatting::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(90% 40% at 50% 0,rgba(255,199,44,.08),transparent 68%);}
+  .qagent.chatting .qagentbar{position:relative;z-index:2;display:flex;align-items:center;
+  gap:11px;padding:11px 14px;border-bottom:1px solid var(--line);
+  background:rgba(11,10,9,.88);backdrop-filter:blur(14px);}
+  .qagentmark{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;
+  color:#0b0a09;background:linear-gradient(135deg,var(--gold),#fff0ad);
+  font:700 13px/1 JBMono,ui-monospace,monospace;box-shadow:0 0 24px rgba(255,199,44,.17);}
+  .qagentname{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px;}
+  .qagentname b{font-size:13px;color:var(--snow);font-weight:600;}
+  .qagentname span{font:400 9px/1.25 JBMono,ui-monospace,monospace;
+  letter-spacing:.09em;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .qagentreset{border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.025);
+  color:var(--body);padding:7px 10px;font:400 10px/1 JBMono,ui-monospace,monospace;
+  letter-spacing:.07em;cursor:pointer;touch-action:manipulation;}
+  .qagentreset[disabled]{opacity:.38;cursor:default;}
+  .qagent.chatting .qout{position:relative;z-index:1;max-width:none;width:100%;height:100%;
+  min-height:0;overflow-y:auto;overscroll-behavior:contain;margin:0;padding:22px 17px 30px;
+  scroll-behavior:smooth;}
+  .qagent.chatting .qbox{position:relative;z-index:2;width:100%;max-width:none;margin:0;
+  padding:9px 11px 10px;background:linear-gradient(180deg,rgba(11,10,9,.82),#0b0a09 35%);
+  border-top:1px solid var(--line);}
+  .qagent.chatting .qbox::before{display:none;}
+  .qagent.chatting .qshell{border-radius:18px;background:#151310;}
+  .qagent.chatting .qshell::before{border-radius:19px;}
+  .qagent.chatting .qcount{display:none;}
+  .qagent.chatting .qfield{padding:8px 9px 8px 13px;}
+  .qagent.chatting .qturn{font-size:13.5px;margin-left:24px;padding:10px 12px;
+  border:0;border-radius:14px 14px 3px 14px;background:rgba(255,255,255,.055);color:var(--body);}
+  .qagent.chatting .qreply{font-size:16px;line-height:1.68;}
+  .qagent.chatting .qreply + .qturn{margin-top:28px;}
+  .qagent.chatting .qfrom{padding-bottom:8px;}
+  @keyframes qsheet{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 }
 @media (max-width:620px) and (hover:hover){
   /* A narrow window on a desktop still has the keys, so it keeps the legend. */
   .qfoot{display:flex;margin-top:9px;}
+}
 
 """
 
@@ -2290,6 +2365,9 @@ ASK_JS = r"""
 (function(){
   var box = document.getElementById('qbox');
   if (!box) return;
+  var agentBox = document.getElementById('qagent');
+  var agentReset = document.getElementById('qagentreset');
+  var chatMedia = window.matchMedia('(max-width:620px)');
   var DATA;
   try { DATA = JSON.parse(document.getElementById('qdata').textContent); }
   catch (e) { return; }
@@ -3371,6 +3449,27 @@ ASK_JS = r"""
       if (!CATMAP[n]) CATMAP[n] = route;
     }
   })();
+
+  /* The classifier is a gate, not an answer engine. Texas taught the useful
+     product lesson here: a list assembled in the browser may be fast, but it
+     does not feel like the agent a reader deliberately submitted a question
+     to. Every first-turn question that touches this record therefore goes to
+     the written lane. Only an obviously off-record first turn is stopped
+     locally, before a model call can spend money or confidently improvise.
+
+     Follow-ups always pass. "Are you sure?" carries no docket vocabulary on
+     its own; its subject lives in the preceding exchange. */
+  window.__askClassify = function(q, depth){
+    if (depth > 0) return {bucket: 'written', reason: 'follow-up'};
+    var p = plan(q);
+    if (!p) return {bucket: 'refuse', reason: 'empty'};
+    if (p.meta || p.near || p.view || p.ids || p.win || p.sup ||
+        (p.facets && p.facets.length) || (p.toks && p.toks.length) ||
+        (p.qt && (!p.raw || !p.raw.length))) {
+      return {bucket: 'written', reason: 'record'};
+    }
+    return {bucket: 'refuse', reason: 'off-record'};
+  };
   function related(route, n){
     var c = route.indexOf(':'), target = route.slice(c + 1), out = [], seen = {};
     seen[route.slice(0, c)] = 1;
@@ -3568,13 +3667,56 @@ ASK_JS = r"""
   /* Leaving the conversation entirely. Only Clear does this now: typing used
      to wipe the answer, which is right for a one-shot box and wrong for a
      thread, where the reader is composing a follow-up to what is on screen. */
+  function setChatMode(on){
+    if (!agentBox) return;
+    agentBox.classList.toggle('chatting', on);
+    var modal = on && chatMedia.matches;
+    document.documentElement.classList.toggle('qchatopen', modal);
+    if (modal) {
+      agentBox.setAttribute('role', 'dialog');
+      agentBox.setAttribute('aria-modal', 'true');
+      agentBox.setAttribute('aria-label', 'Docket agent conversation');
+      /* The sheet visually covers the Docket. Make the accessibility tree
+         agree instead of leaving hundreds of links behind the conversation.
+         Only nodes this function changed are restored on exit. */
+      var branch = agentBox;
+      while (branch && branch !== document.body) {
+        var parent = branch.parentElement;
+        if (!parent) break;
+        var siblings = parent.children;
+        for (var i = 0; i < siblings.length; i++) {
+          var n = siblings[i];
+          if (n === branch || n.contains(agentBox)) continue;
+          if (!n.inert) { n.inert = true; n.setAttribute('data-qchat-inert', ''); }
+        }
+        branch = parent;
+      }
+    } else {
+      agentBox.removeAttribute('role');
+      agentBox.removeAttribute('aria-modal');
+      agentBox.removeAttribute('aria-label');
+      var held = document.querySelectorAll('[data-qchat-inert]');
+      for (var j = 0; j < held.length; j++) {
+        held[j].inert = false; held[j].removeAttribute('data-qchat-inert');
+      }
+    }
+  }
+  function syncChatMode(){
+    if (agentBox && agentBox.classList.contains('chatting')) setChatMode(true);
+  }
+  if (chatMedia.addEventListener) chatMedia.addEventListener('change', syncChatMode);
+  else if (chatMedia.addListener) chatMedia.addListener(syncChatMode);
   function leaveAnswer(){
-    if (plainBusy) return;
+    if (plainBusy || deepBusy) return;
     thread = [];
     box.classList.remove('answering');
+    setChatMode(false);
     var o = document.getElementById('qout');
     if (o) { o.hidden = true; o.innerHTML = ''; }
   }
+  if (agentReset) agentReset.addEventListener('click', function(){
+    input.value = ''; ghost(''); leaveAnswer(); input.focus(); run();
+  });
 
   function empty(){
     panel.hidden = true; panel.innerHTML = ''; views.hidden = false;
@@ -3749,6 +3891,47 @@ ASK_JS = r"""
     }
     if (at < text.length) target.appendChild(document.createTextNode(text.slice(at)));
   }
+
+  /* An off-record first turn never leaves the browser. It still uses the
+     conversation surface because a refusal that drops the reader back into a
+     search-results layout feels like a routing failure rather than a clear
+     boundary. The next turn is treated as a follow-up and reaches the agent,
+     just as it does on the Texas sister docket. */
+  function refuseLocally(q){
+    var out = document.getElementById('qout');
+    box.classList.add('answering'); setChatMode(true);
+    thread.push({role: 'user', content: q});
+    var reply = 'I can only answer questions supported by the Alaska AI Docket\'s ' +
+      'published record. Ask about a tracked decision, agency, deadline, public-comment ' +
+      'opportunity, or Alaska location.';
+    thread.push({role: 'assistant', content: reply});
+    if (!out) return;
+    out.hidden = false;
+    var oldFoot = out.querySelector('.qfrom'); if (oldFoot) oldFoot.remove();
+    var oldNext = out.querySelector('.qnext'); if (oldNext) oldNext.remove();
+    var asked = document.createElement('div'); asked.className = 'qturn'; asked.textContent = q;
+    var body = document.createElement('div'); body.className = 'qreply'; body.textContent = reply;
+    out.appendChild(asked); out.appendChild(body);
+    input.value = ''; ghost('');
+    var foot = document.createElement('div'); foot.className = 'qfrom';
+    var note = document.createElement('span');
+    note.textContent = 'Checked locally against the published record. Nothing was sent.';
+    foot.appendChild(note);
+    var feedback = document.createElement('button');
+    feedback.type = 'button'; feedback.className = 'qagain'; feedback.textContent = 'Send feedback';
+    feedback.addEventListener('click', function(){
+      if (window.askOpenFeedback) window.askOpenFeedback();
+    });
+    foot.appendChild(feedback);
+    var reset = document.createElement('button');
+    reset.type = 'button'; reset.className = 'qagain'; reset.textContent = 'Start over';
+    reset.addEventListener('click', function(){
+      input.value = ''; leaveAnswer(); input.focus(); run();
+    });
+    foot.appendChild(reset); out.appendChild(foot);
+    if (agentReset) agentReset.disabled = false;
+    requestAnimationFrame(function(){ out.scrollTop = out.scrollHeight; input.focus(); });
+  }
   /* The written answer. The whole record goes into one prompt, so there is no
      retrieval here and nothing to go stale: the file the worker reads is built
      by the same pass that built this page. Every sentence is checked against
@@ -3762,6 +3945,12 @@ ASK_JS = r"""
   function plain(){
     if (plainBusy || !ENDPOINT) return;
     var q = input.value.trim(); if (!q) return;
+    var classification = window.__askClassify(q, thread.length);
+    if (classification.bucket === 'refuse') { refuseLocally(q); return; }
+    /* Captured before the field clears. This deterministic answer is never
+       the primary submitted experience; it is the no-cost safety net if the
+       Worker's monthly written-answer budget has actually been exhausted. */
+    var localFallback = lastAns;
     plainBusy = true;
     // The submit button IS the control now, so it carries the busy state.
     var btn = document.getElementById('qgo');
@@ -3770,6 +3959,8 @@ ASK_JS = r"""
     /* Take the screen over: the starters, chips and live list all go, so the
        answer is the only thing on it. */
     box.classList.add('answering');
+    setChatMode(true);
+    if (agentReset) agentReset.disabled = true;
     thread.push({ role: 'user', content: q });
     var body = null;
     if (out) {
@@ -3810,6 +4001,7 @@ ASK_JS = r"""
     /* One way back, always present once an answer is on screen. */
     /* The footer: where this came from, and one way out. Below the answer,
        because provenance is a footnote. */
+    var provenance = 'Written from the published record. Every figure checked against it.';
     function again(){
       /* What it said goes back into the thread, so a follow-up can refer to
          it. Only the part that survived the guard: a sentence the reader never
@@ -3852,7 +4044,7 @@ ASK_JS = r"""
            offer arrives on its own, written from what the answer just said,
            and a generic instruction underneath it reads as the box not having
            read its own reply. */
-        note.textContent = 'Written from the published record. Every figure checked against it.';
+        note.textContent = provenance;
         f.appendChild(note);
       }
       var b = document.createElement('button');
@@ -3874,6 +4066,7 @@ ASK_JS = r"""
     var done = function(){
       plainBusy = false;
       if (btn) { btn.disabled = false; btn.classList.remove('busy'); }
+      if (agentReset) agentReset.disabled = false;
       spendToken();
     };
 
@@ -3881,26 +4074,61 @@ ASK_JS = r"""
        rendered as it lands. The guard checks a sentence at a time on the
        worker, so a sentence that reaches the page has already been verified
        against the record: nothing here is shown first and checked later. */
-    var stage = null, para = null, started = false;
-    function setStage(t){
+    var stage = null, stageText = null, stageCount = null, para = null, started = false;
+    var verifiedCount = 0;
+    function setStage(t, ev){
       if (!body) return;
-      if (!stage) { body.textContent = ''; stage = document.createElement('div');
-                    stage.className = 'qstage'; body.appendChild(stage); }
-      stage.textContent = t;
+      ev = ev || {};
+      if (!stage) {
+        body.textContent = ''; stage = document.createElement('div');
+        stage.className = 'qtrace'; stage.setAttribute('role', 'status');
+        stage.setAttribute('aria-live', 'polite');
+        var head = document.createElement('div'); head.className = 'qtracehead';
+        var name = document.createElement('span'); name.textContent = 'DOCKET AGENT';
+        stageCount = document.createElement('span'); stageCount.className = 'qtracecount';
+        head.appendChild(name); head.appendChild(stageCount); stage.appendChild(head);
+        stageText = document.createElement('div'); stageText.className = 'qstage';
+        stage.appendChild(stageText);
+        var steps = document.createElement('div'); steps.className = 'qsteps';
+        steps.setAttribute('aria-hidden', 'true');
+        for (var si = 0; si < 3; si++) steps.appendChild(document.createElement('i'));
+        stage.appendChild(steps); body.appendChild(stage);
+      }
+      stage.classList.remove('done', 'error');
+      stageText.textContent = t;
+      var progress = Math.max(0, Math.min(3, Number(ev.progress || 0)));
+      stageCount.textContent = progress ? progress + ' / 3' : 'LIVE';
+      var bars = stage.querySelectorAll('.qsteps i');
+      for (var i = 0; i < bars.length; i++) bars[i].classList.toggle('on', i < progress);
+    }
+    function finishStage(ev){
+      if (!stage) return;
+      verifiedCount = Number((ev && ev.verified) || verifiedCount || 0);
+      if (started) {
+        stage.classList.add('done');
+        stageText.textContent = 'Verified against today\'s published record';
+        stageCount.textContent = verifiedCount + (verifiedCount === 1 ? ' SENTENCE' : ' SENTENCES');
+        var bars = stage.querySelectorAll('.qsteps i');
+        for (var i = 0; i < bars.length; i++) bars[i].classList.add('on');
+      } else { stage.remove(); stage = null; }
     }
     var saidSoFar = [];
     function addSentence(t){
       if (!body) return;
       saidSoFar.push(t);
-      if (!started) { started = true; if (stage) { stage.remove(); stage = null; }
+      if (!started) { started = true;
         para = document.createElement('p'); body.appendChild(para); }
       var span = document.createElement('span');
       span.className = 'qseg';
       renderCites(span, (para.childNodes.length ? ' ' : '') + t);
       para.appendChild(span);
+      verifiedCount += 1;
+      if (out && out.scrollHeight - out.scrollTop - out.clientHeight < 180) {
+        requestAnimationFrame(function(){ out.scrollTop = out.scrollHeight; });
+      }
     }
     function handle(ev){
-      if (ev.stage) setStage(ev.stage);
+      if (ev.stage) setStage(ev.stage, ev);
       else if (ev.sentence) addSentence(ev.sentence);
       else if (ev.withheld) {
         if (stage) { stage.remove(); stage = null; }
@@ -3914,19 +4142,24 @@ ASK_JS = r"""
           : 'None of that answer is shown, because ' + why + '.';
         if (body) body.appendChild(st);
       } else if (ev.capped) {
-        /* The worker's own sentence says "the box above still answers from the
-           record", which was true when the answer landed below the field.
-           The thread is above it now, so the engine is below, and the page
-           that owns the layout is the page that should say where things are. */
+        /* Keep the deterministic engine as an operational fallback, not a
+           second UI. The reader still gets a direct answer in the same thread
+           instead of being sent back to a list when the model budget is full. */
         if (stage) { stage.remove(); stage = null; }
         if (body && !started) {
-          body.textContent = 'That is this month\'s last written answer. ' +
-            'Typing still searches the whole record instantly and for nothing, ' +
-            'and the full archive search still works.';
+          provenance = 'Answered locally from the published record; the monthly written-answer limit was reached.';
+          if (localFallback && localFallback.lead) {
+            addSentence(localFallback.lead);
+            if (localFallback.sub) addSentence(localFallback.sub);
+          } else {
+            addSentence('The written-answer limit has been reached for this month, and the published record does not carry a direct local answer to that question.');
+          }
         }
       } else if (ev.error) {
         if (stage) { stage.remove(); stage = null; }
         if (body && !started) body.textContent = ev.error;
+      } else if (ev.done) {
+        finishStage(ev);
       }
     }
 
@@ -3943,7 +4176,7 @@ ASK_JS = r"""
     function token(){
       if (!TS_SITEKEY) return Promise.resolve('');
       if (tsToken) return Promise.resolve(tsToken);
-      setStage('Passing the human check');
+      setStage('Passing the human check', {progress: 0});
       /* The widget runs on its own; this only waits for the callback. If the
          script has not loaded at all yet, keep waiting rather than giving up,
          because a slow network is not a failed check. */
@@ -3957,7 +4190,7 @@ ASK_JS = r"""
     }
 
     token().then(function(tok){
-      setStage('Reading the record');
+      setStage('Opening today\'s published record', {progress: 1});
       return fetch(ENDPOINT + '/answer', {method: 'POST', headers: {'content-type': 'application/json'},
         body: JSON.stringify({messages: thread, turnstile_token: tok || null})});
     })
@@ -3986,7 +4219,7 @@ ASK_JS = r"""
         })();
       })
       .then(function(){
-        if (stage) { stage.remove(); stage = null; }
+        if (stage && !stage.classList.contains('done')) finishStage({verified: verifiedCount});
         if (body && !started && !body.textContent) body.textContent = 'The record does not answer that.';
         again(); done();
       })
@@ -4005,16 +4238,27 @@ ASK_JS = r"""
     var btn = document.getElementById('qdeep');
     var out = document.getElementById('qout');
     if (btn) { btn.disabled = true; btn.textContent = 'READING THE ARCHIVE...'; }
+    box.classList.add('answering'); setChatMode(true);
+    if (agentReset) agentReset.disabled = true;
     /* Its own node inside the thread, not the thread itself. Writing over
        #qout was harmless when that element held one answer and destroys a
        conversation now that it holds all of them: a reader with three
        exchanges on screen who types something unmatched and presses this
        would have watched all three vanish. */
-    var slot = document.createElement('div');
-    slot.className = 'qreply';
-    slot.textContent =
-      'Reading every ledger and article. This takes a few minutes and the answer appears here.';
-    if (out) { out.hidden = false; out.appendChild(slot); }
+    var asked = document.createElement('div');
+    asked.className = 'qturn'; asked.textContent = q;
+    var slot = document.createElement('div'); slot.className = 'qreply';
+    var trace = document.createElement('div'); trace.className = 'qtrace';
+    trace.setAttribute('role', 'status'); trace.setAttribute('aria-live', 'polite');
+    var head = document.createElement('div'); head.className = 'qtracehead';
+    var hn = document.createElement('span'); hn.textContent = 'FULL ARCHIVE';
+    var hc = document.createElement('span'); hc.className = 'qtracecount'; hc.textContent = 'LIVE';
+    head.appendChild(hn); head.appendChild(hc); trace.appendChild(head);
+    var status = document.createElement('div'); status.className = 'qstage';
+    status.textContent = 'Archive run started; waiting for its verified answer';
+    trace.appendChild(status); slot.appendChild(trace);
+    var deepStarted = Date.now();
+    if (out) { out.hidden = false; out.appendChild(asked); out.appendChild(slot); }
     var tok = tsToken;
     fetch(ENDPOINT + '/deep', {method: 'POST', headers: {'content-type': 'application/json'},
       body: JSON.stringify({question: q, turnstile_token: tok || null})})
@@ -4023,10 +4267,14 @@ ASK_JS = r"""
                      er.status = r.status; throw er; }
         return d; }); })
       .then(function(d){
+        input.value = ''; ghost('');
         var tries = 0;
         (function poll(){
           if (++tries > 300) { slot.textContent = 'The run did not finish in time.';
-                               deepBusy = false; if (btn) { btn.disabled = false; btn.textContent = 'TRY AGAIN'; } return; }
+                               deepBusy = false; if (agentReset) agentReset.disabled = false;
+                               if (btn) { btn.disabled = false; btn.textContent = 'TRY AGAIN'; } return; }
+          status.textContent = 'Archive run active / ' +
+            Math.max(1, Math.round((Date.now() - deepStarted) / 1000)) + ' seconds elapsed';
           fetch(ENDPOINT + '/result?id=' + encodeURIComponent(d.id))
             .then(function(r){ return r.json(); })
             .then(function(s){
@@ -4042,6 +4290,7 @@ ASK_JS = r"""
                 }
               } else { slot.textContent = s.error || 'The archive run returned no answer.'; }
               deepBusy = false;
+              if (agentReset) agentReset.disabled = false;
               if (btn) { btn.disabled = false; btn.textContent = 'SEARCH THE FULL ARCHIVE'; }
               spendToken();
             }).catch(function(){ setTimeout(poll, 4000); });
@@ -4054,17 +4303,20 @@ ASK_JS = r"""
            press was rather than over the thread, and stop offering the door. */
         if (e && e.status === 503) {
           deepOff = true;
-          slot.remove();
+          slot.remove(); asked.remove();
           if (out && !out.childNodes.length) { out.hidden = true; }
+          box.classList.remove('answering'); setChatMode(false);
           var lane = btn && btn.parentNode;
           if (lane) { lane.className = 'qlane qlaneoff'; lane.textContent =
             'The archive search is not running right now. Press Enter and the ' +
             'written answer will read the published record instead.'; }
           deepBusy = false;
+          if (agentReset) agentReset.disabled = false;
           return;
         }
         slot.textContent = (e && e.message) || 'that did not work';
         deepBusy = false;
+        if (agentReset) agentReset.disabled = false;
         if (btn) { btn.disabled = false; btn.textContent = 'TRY AGAIN'; }
       });
   }
@@ -4131,7 +4383,9 @@ ASK_JS = r"""
     } else if (e.key === 'Enter') {
       e.preventDefault(); submit();
     } else if (e.key === 'Escape') {
-      if (input.value) { input.value = ''; run(); }
+      if (agentBox && agentBox.classList.contains('chatting') && !plainBusy && !deepBusy) {
+        input.value = ''; leaveAnswer(); run();
+      } else if (input.value) { input.value = ''; run(); }
       else { input.blur(); box.classList.remove('on'); }
     }
   });
@@ -4222,7 +4476,13 @@ def ask_html(today):
     # reply. It is OUTSIDE .qbox rather than its first child because the
     # counter is positioned off the box's top edge and the glow is drawn on
     # the box, and both of those belong to the field and not to the thread.
-    return f"""<div class="qout" id="qout" hidden></div>
+    return f"""<div class="qagent" id="qagent">
+<div class="qagentbar" aria-label="Docket agent conversation">
+  <span class="qagentmark" aria-hidden="true">AK</span>
+  <span class="qagentname"><b>Docket agent</b><span>PUBLISHED RECORD / VERIFIED SENTENCES</span></span>
+  <button type="button" class="qagentreset" id="qagentreset">START OVER</button>
+</div>
+<div class="qout" id="qout" role="log" aria-live="polite" aria-relevant="additions" hidden></div>
 <div class="qbox" id="qbox" data-reveal
      data-endpoint="{esc(endpoint)}" data-sitekey="{esc(TS_SITEKEY)}">
 <span class="qcount" id="qcount" aria-hidden="true"></span>
@@ -4233,7 +4493,8 @@ def ask_html(today):
   <label class="vh" for="qq">Ask the docket</label>
   <div class="qinput">
     <div class="qghost" aria-hidden="true"><span id="qgt"></span><span id="qgr"></span></div>
-    <input id="qq" type="text" autocomplete="off" spellcheck="false" role="combobox"
+    <input id="qq" type="text" autocomplete="off" spellcheck="true" enterkeyhint="send"
+           autocapitalize="sentences" role="combobox"
            aria-expanded="false" aria-controls="qres" aria-autocomplete="list"
            placeholder="Ask the record, then keep asking">
   </div>
@@ -4259,8 +4520,8 @@ def ask_html(today):
      phone, and it sat where the eye lands after typing. The shortcuts all
      still work. What the two sending buttons do is described in full on
      /privacy/ under "The one thing you can choose to send". -->
-<script type="application/json" id="qdata">{json.dumps(data, separators=(",", ":"))}</script>
-</div>"""
+<script type="application/json" id="qdata">{ld_json(data)}</script>
+</div></div>"""
 
 MAP_JS = """
 (function(){

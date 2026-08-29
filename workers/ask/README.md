@@ -5,11 +5,12 @@ Three lanes behind one box on the docket page, in the order they are reached.
 | Lane | Where it runs | Answers from | Speed | Costs |
 |---|---|---|---|---|
 | **the engine** | the reader's browser | the record shipped inside the page | the same frame | nothing |
-| **the answerer** | this worker, one model call | the whole record, in one prompt | about two seconds | about two cents, capped monthly |
+| **the answerer** | this worker, one model call | the whole record, in one prompt | seconds, streamed | model tokens, cached and capped monthly |
 | **the archive** | this worker, via a fired routine | the whole repository | minutes | a slot from the daily routine cap |
 
-**No retrieval anywhere in this.** Not vectors, not grep. The published record
-is about 21,000 tokens against a 200,000 token context, so the answerer is
+**No retrieval anywhere in this.** Not vectors, not grep. The August 28th
+self-test estimates the published record at about 68,000 rough tokens against
+a 200,000 token context, so the answerer is
 handed the whole thing on every question. Retrieval exists to work around a
 corpus that will not fit, and this one fits. Skipping it deletes the single
 largest source of wrong answers in a retrieval chatbot, which is retrieving the
@@ -20,38 +21,41 @@ repository is about 3.5 million tokens. It is a Claude Code session with a
 shell, which is to say an agent that greps. That is the right tool at that
 size and the wrong tool at this one.
 
-**The engine is the box.** It needs no worker, no key and no network, and it
-answers almost everything, because almost every question about a docket is a
-filter, a field read, a sort or a count rather than an act of reasoning. Who
-decides the STAK lease is a field. What can I comment on is a filter. How many
-does DNR have is a count. Answering those in the page is not a cheaper
-approximation of a model answer, it is a better one, because nothing is
-generated so nothing can be invented, and it is rebuilt from the ledger on
-every build so it is exactly current.
+**The engine is the classifier and safety net.** It needs no worker, no key and
+no network. On a first turn it recognizes record vocabulary, entities, date
+windows and Docket-level questions; an obvious off-record question is refused
+locally before it can spend or improvise. Follow-ups always pass because their
+subject may live in the earlier exchange. On phones the engine's live result
+cards are hidden. A deliberate on-record submit is therefore always answered
+by the written agent, while the deterministic answer remains available as the
+same-thread fallback if the monthly model ceiling has been reached.
 
 Its code is `scripts/ask_answers.py`, which builds the payload, and `ASK_JS`
 in `scripts/site_build.py`, which resolves a question against it. Its tests
 are `scripts/ask_answers.py --self-test` and `tests/ask_engine.mjs`.
 
-**This worker is the remainder.** Two buttons under a no-match, for the
-open-ended question the published record has no field for. Both are optional
-and the box works without either. Until `ASK_ENDPOINT` is set, neither button
-renders at all, so a half-finished deploy shows the docket exactly as it looks
-today rather than a broken form.
+**This worker writes the submitted answer.** Typing stays in the free browser
+engine; pressing Enter or the arrow classifies the first turn, then sends an
+on-record conversation to `/answer` for a short written response. The
+full-archive button remains the heavier escalation
+shown on a no-match. Both remote lanes are optional and the box works without
+them. Until `ASK_ENDPOINT` is set, submitting falls back to the local engine.
 
-Neither fires on its own. The no-match panel appears while a reader is still
-typing, so auto-firing would spend on every typo, and both buttons send the
-reader's words off the page. The line above them says so before the press.
+Neither fires on its own. Typing never sends or spends; a deliberate submit or
+archive press does. On phones, a submit opens a full-height conversation sheet
+with a pinned composer. The progress trace is fed by real Worker events
+(`record`, `draft`, `verify`), and reports verified sentence counts. It never
+simulates private model reasoning.
 
 ```
-a question the engine cannot answer
+a submitted question
    |
    v
 POST /answer              the whole record in one prompt, answer returned
    |                      Turnstile gates it, ASK_MONTHLY_CAP bounds it, and
    |                      every sentence passes checks.js before it is
    |                      returned. Over the cap, this steps aside and the
-   |                      reader is told, rather than being shown an error.
+   |                      deterministic answer is rendered in the same thread.
    |
    | still not it
    v
@@ -77,26 +81,26 @@ claude.ai subscription rather than on Console credit. No card, no separate
 account, no metered call.
 
 **The answerer does have one, and it is the only metered thing here.**
-`ANTHROPIC_API_KEY`, a Console key, at about two cents a question: roughly
-21,000 input tokens of record plus a short answer, on a dated Haiku 4.5
-snapshot. Three things keep the month bounded, in the order they apply:
+`ANTHROPIC_API_KEY`, a Console key. The default model is pinned in `answer.js`;
+the current value is Sonnet 5. The August 28th corpus self-test estimates a
+request carries roughly 68,000 input tokens of
+record plus a short answer. Two things keep the month bounded, in this order:
 
-1. The engine answers most questions in the page for nothing, so this lane only
-   ever sees the remainder.
-2. An identical question is served from KV, keyed by the question and the pack
+1. An identical question is served from KV, keyed by the question and the pack
    date, so a repeat costs nothing and a new pack retires yesterday's answers.
-3. `ASK_MONTHLY_CAP` counts calls that reached the model. Over it, the lane
+   This is never announced in the UI; cached and fresh replies share the same
+   sentence protocol and provenance surface.
+2. `ASK_MONTHLY_CAP` counts calls that reached the model. Over it, the lane
    steps aside and the box falls back to the engine and the archive button,
-   with the reader told why. The default is 500, so the worst case is roughly
-   twelve dollars in a month where every call is used. Set it to 0 to switch
-   the lane off without a deploy.
+   with the reader told why. The default is 500. Set it to 0 to switch the lane
+   off without a deploy. Recalculate the maximum from current model pricing
+   before changing either the model or cap.
 
-**Prompt caching is deliberately off.** A cached read is about a tenth of base
-input, which looks free, but a cache write is 1.25x to 2x it, so caching only
-pays once a second question arrives before the cache expires. At this box's
-traffic most requests would pay a write and never see a read, and the bill
-would go up. The rules and the record already go as two separate system blocks,
-so turning it on later is one `cache_control` marker and nothing else.
+**The record block is prompt-cacheable.** This is Anthropic prompt caching,
+separate from the KV answer cache above. The stable record is a separate
+system block marked with one ephemeral cache breakpoint; per-question rules
+remain above it. Tests assert the byte-stable prefix and the single marker so a
+request-specific value cannot silently destroy cache reuse.
 
 This reverses the call made on August 9th, 2026, when the paid Messages API
 lane was removed because free was a requirement. What makes it safe now and did
@@ -109,14 +113,14 @@ account's daily run cap that the daily carousel also draws on. That trade is
 the reason the page calls this searching the archive and says how long it
 takes.
 
-A paid Messages API lane used to sit in front of this one. It was removed on
-2026-08-09, because free was a hard requirement and it could never be turned
-on, and because the in-page engine that shipped the same day answers what it
-was actually for. `checks.js` survived it and now guards this lane.
+The in-page engine and both remote lanes share the same published record and
+sentence guard. `checks.js` is the release boundary for every model-written
+sentence, whether it came from the seconds-long answerer or the minutes-long
+archive run.
 
 ## Why there is no vector database here
 
-The record is about 29,000 tokens. Retrieval, embeddings, reranking and a
+The current record is about 68,000 rough tokens. Retrieval, embeddings, reranking and a
 vector index exist to choose what to show a model that cannot see everything.
 Anything reading this record can see all of it, so that machinery would add
 latency, cost, and a class of failure the corpus size otherwise deletes: a
@@ -124,8 +128,8 @@ retriever that fetches the wrong passage answers confidently from the wrong
 source, and no reranker recovers that.
 
 The published guidance for 2026 puts the crossover at roughly 500,000 tokens.
-This record is about six percent of that, and it would have to grow by a factor
-of seventeen before retrieval started paying for itself.
+This record is about fourteen percent of that, and it would have to grow by a factor
+of roughly seven before retrieval started paying for itself.
 
 ## Setting it up
 
@@ -189,10 +193,9 @@ The secret belongs to the same widget whose sitekey is already in
 <https://dash.cloudflare.com> under **Turnstile**, the widget's **Settings**,
 then **Secret key**.
 
-If `TURNSTILE_SECRET` is unset the worker still runs and skips verification.
-That is convenient for a first deploy and wrong to leave in place: every
-request spends a routine run, and an unprotected endpoint is a daily cap
-someone else can exhaust.
+If `TURNSTILE_SECRET` is unset, the Worker fails closed. A missing secret,
+missing browser token, failed verification request, or negative Cloudflare
+response is refused before either paid lane runs.
 
 ## Watching it
 
@@ -215,6 +218,8 @@ off.
 ```bash
 node test.mjs                                     # the answer checks
 node test-deep.mjs                                # delivery auth and the poll state machine
+node test-answer.mjs                              # answer protocol, cache, cap and human gate
+node test-bundle.mjs                              # deployed bundle equals its modules
 python3 ../../scripts/ask_corpus.py --self-test   # the corpus and its allow-list
 ```
 

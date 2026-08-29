@@ -1,11 +1,14 @@
 name = "alaskaai-ask"
 main = "worker.js"
-compatibility_date = "2026-08-08"
+compatibility_date = "2026-08-28"
+# Production uses the stable workers.dev route. Per-version preview hostnames
+# add a second public surface this single-environment Worker does not need.
+preview_urls = false
 
 # No D1, no Durable Objects, no Vectorize. Nothing here is a database.
 #
 # That holds for the written answer lane too, and deliberately. The whole
-# published record is about 21,000 tokens against a 200,000 token context, so
+# published record is about 68,000 rough tokens against a 200,000 token context, so
 # it goes into every prompt whole: no embeddings, no vector store, no chunking,
 # no top-k. A vector store would be a second copy of the truth, and a second
 # copy needs a sync job that can fall behind the site quietly. The file the
@@ -25,11 +28,11 @@ compatibility_date = "2026-08-08"
 # a repeat costs nothing, and one integer per month counting calls that reached
 # the model, so the bill has a ceiling the operator sets.
 #
-# Create it once, then paste the id below:
-#   wrangler kv namespace create ASK_KV
+# Production namespace. Keep this binding in source control so a dashboard
+# edit cannot silently point the answer cache and monthly counter elsewhere.
 [[kv_namespaces]]
 binding = "ASK_KV"
-id = "REPLACE_WITH_THE_ID_WRANGLER_PRINTS"
+id = "1cb8187d37574ee8923efa6f02f935f8"
 
 [observability]
 enabled = true
@@ -43,15 +46,15 @@ enabled = true
 #                    answers do not count. Default 500, which at today's pack
 #                    size is roughly twelve dollars of worst case in a month
 #                    where every call is used; expected spend is a few dollars
-#                    because the engine takes most questions. Set it to 0 to
+#                    after prompt-cache reuse. Set it to 0 to
 #                    switch the lane off without a deploy.
-#   ASK_MODEL        model id. Defaults to a dated Haiku 4.5 snapshot rather
-#                    than a moving alias, so an answer the guard accepted today
-#                    is produced by the same model tomorrow.
+#   ASK_MODEL        model id. Production pins Sonnet 5 here so a dashboard
+#                    variable cannot silently switch the answerer's behavior.
 #   ASK_PACK_URL     where to read the record. Defaults to the live site; point
 #                    it at a staging build to try a change without shipping it.
 [vars]
 ASK_MONTHLY_CAP = "500"
+ASK_MODEL = "claude-sonnet-5"
 
 # Secrets are set with `wrangler secret put`, never in this file:
 #   ANTHROPIC_API_KEY    a Console key, and the only metered thing in this
@@ -60,13 +63,9 @@ ASK_MONTHLY_CAP = "500"
 #                        Without it /answer returns 503 and the box falls back
 #                        to the in-page engine and the archive button, which is
 #                        exactly how the site behaved before this lane existed.
-#   TURNSTILE_SECRET     optional but strongly recommended. Without it the
-#                        endpoint answers anyone who can send a POST, and every
-#                        request spends a slot from the account's daily routine
-#                        run cap, shared with the carousel. The worker skips
-#                        verification when it is unset rather than failing
-#                        closed, so a first deploy works and is simply
-#                        unprotected.
+#   TURNSTILE_SECRET     required for both remote lanes. A missing secret,
+#                        missing token, failed verification request, or negative
+#                        Cloudflare response fails closed before any paid work.
 #   ROUTINE_TOKEN        The sk-ant-oat01- bearer generated on the routine's
 #                        API trigger. Draws on the claude.ai subscription, so
 #                        there is no Console key anywhere in this worker.
