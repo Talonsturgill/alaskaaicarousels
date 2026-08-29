@@ -38,6 +38,17 @@ weakest criterion for the eighth time in eleven runs. A gate nobody is required
 to point at the evidence is not a gate: if the plan promises a contact shadow,
 the slide must declare where it is, so the measurement actually runs.
 
+And (2026-08-29) it FAILS any <body> JSON declaration that does not parse:
+data-contacts, data-scale, data-encodes. Run No.44's slide 05 wrote
+`data-scale='[... "means":"2011, the method's publication (C22)" ...]'`, and
+because the attribute is single-quote delimited the apostrophe closed it at
+character 154 and truncated the JSON. qa.py logged the SyntaxError and warned,
+this gate's contacts probe fell back to counting `"shadow"` substrings, and that
+slide's two declared axes went unaudited for the entire run until a human read a
+log. A gate a slide OPTS INTO and that then silently does not run is worse than
+no gate: the record claims a check happened that did not. Caught here, it costs
+a keystroke; caught after a render, it costs a round.
+
 Usage:
   python scripts/dossier_check.py --run-dir out/2026-07-26
   python scripts/dossier_check.py --run-dir out/2026-07-26 --json
@@ -111,6 +122,52 @@ CONTACT_PROMISE_RE = re.compile(r"contact[- ]shadow|two[- ]part shadow", re.I)
 BODY_TAG_RE = re.compile(r"<body\b[^>]*>", re.I | re.S)
 DATA_CONTACTS_RE = re.compile(r"data-contacts\s*=\s*(['\"])(.*?)\1", re.I | re.S)
 
+# EVERY JSON DECLARATION ON <body>, NOT JUST THE ONE THIS GATE GREW UP AROUND
+# (2026-08-29). qa.py fails an unparseable declaration, but only after a render,
+# and run No.44 paid three revision rounds on a deck whose slide 05 carried
+#   data-scale='[... "means":"2011, the method's publication (C22)" ...]'
+# The attribute is single-quote delimited, so the apostrophe closed it at
+# character 154 and truncated the JSON; the axis census never ran on that slide
+# all run. This gate already reads the built slide sources, so it can say so
+# before a render round is spent. The regex ends an attribute at its own
+# delimiter exactly as an HTML parser does, so it sees the same truncated text
+# the browser sees.
+BODY_JSON_ATTRS = ("data-contacts", "data-scale", "data-encodes")
+
+
+def attr_raw(body_tag, attr):
+    """The raw text of a body attribute, or None if it is not there."""
+    m = re.search(r"%s\s*=\s*(['\"])(.*?)\1" % re.escape(attr),
+                  body_tag, re.I | re.S)
+    return m.group(2) if m else None
+
+
+def declaration_parse_fails(no, src):
+    """FAIL lines for any <body> JSON declaration on this slide that does not
+    parse. A declaration a slide OPTS INTO and that then silently does not run
+    is worse than no declaration, because the record claims a check happened."""
+    out = []
+    b = BODY_TAG_RE.search(src)
+    if not b:
+        return out
+    for attr in BODY_JSON_ATTRS:
+        raw = attr_raw(b.group(0), attr)
+        if raw is None:
+            continue
+        try:
+            json.loads(raw)
+        except Exception as e:
+            out.append(
+                f"slide {no:02d}: {attr} does not parse as JSON ({e}), so the "
+                "gate it feeds runs on nothing and reports nothing while the "
+                f"slide's row still prints. The attribute reads {raw[-40:]!r} "
+                "at its end. The usual cause is an apostrophe inside a "
+                "single-quoted attribute (\"the method's publication\"), which "
+                "ends the attribute early and truncates the JSON: write it as "
+                "&#39; or spell the prose without it. Fix the declaration or "
+                "delete it, but do not leave a check that only looks like it ran")
+    return out
+
 DECLARE_HOWTO = (
     "Declare it so qa.py's fitted contact gate can measure it: "
     "<body data-contacts='[{\"what\":\"<the object standing on the plate>\","
@@ -124,7 +181,8 @@ DECLARE_HOWTO = (
 
 def contacts_declared(src):
     """How many contact regions a slide's <body> declares. None if it declares
-    no attribute at all; -1 if the attribute is there but carries no shadow."""
+    no attribute at all; -1 if the attribute is there but carries no shadow;
+    -2 if the attribute is there and does not parse."""
     b = BODY_TAG_RE.search(src)
     if not b:
         return None
@@ -135,9 +193,12 @@ def contacts_declared(src):
     try:
         val = json.loads(raw)
     except Exception:
-        # unparseable is not clean: count the shadow keys so a malformed but
-        # populated declaration is not read as an empty one.
-        return len(re.findall(r'"shadow"', raw)) or -1
+        # WAS A SUBSTRING COUNT UNTIL 2026-08-29, and that was the same silent
+        # skip this file exists to prevent: counting `"shadow"` in truncated
+        # text let a malformed declaration satisfy the promise check, so the
+        # dossier's promise was "kept" by markup no measurement could read.
+        # -2 is its own fail, raised by declaration_parse_fails().
+        return -2
     if isinstance(val, dict):
         val = [val]
     if not isinstance(val, list) or not val:
@@ -272,6 +333,8 @@ def check_slide(no, heading, body, breather_attr, contacts=None, built=False):
                 f"slide {no:02d}: the slide body carries data-contacts with no "
                 "shadow region in it, which measures nothing. "
                 f"{DECLARE_HOWTO}")
+        # contacts == -2 (the declaration does not parse) is reported once, by
+        # declaration_parse_fails(), with the byte the parser stopped on.
     return fails, warns
 
 
@@ -295,6 +358,7 @@ def main():
     sdir = rdir / "slides"
     attrs = {}
     contacts = {}
+    parse_fails = {}
     built = set()
     if sdir.is_dir():
         for p in sdir.glob("slide-*.html"):
@@ -305,15 +369,27 @@ def main():
                 n = int(m.group(1))
                 attrs[n] = bool(b and "data-breather" in b.group(0))
                 contacts[n] = contacts_declared(src)
+                parse_fails[n] = declaration_parse_fails(n, src)
                 built.add(n)
 
     out = {"slides": [], "fails": 0, "warns": 0}
+    seen = set()
     for no, heading, body in sections:
+        seen.add(no)
         f, w = check_slide(no, heading, body, attrs.get(no),
                            contacts.get(no), no in built)
+        # An unparseable declaration is a fail whether or not the dossier
+        # promised anything, so it is merged in outside check_slide().
+        f = parse_fails.get(no, []) + f
         out["slides"].append({"slide": no, "fails": f, "warns": w})
         out["fails"] += len(f)
         out["warns"] += len(w)
+    # A BUILT SLIDE WITH NO DOSSIER STILL GETS ITS DECLARATIONS READ, so a
+    # numbering mismatch can't hide a truncated attribute.
+    for n in sorted(built - seen):
+        if parse_fails.get(n):
+            out["slides"].append({"slide": n, "fails": parse_fails[n], "warns": []})
+            out["fails"] += len(parse_fails[n])
     out["verdict"] = "FAIL" if out["fails"] else ("WARN" if out["warns"] else "PASS")
 
     if args.json:

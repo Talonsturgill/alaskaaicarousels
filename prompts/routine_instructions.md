@@ -286,8 +286,25 @@ notes, and its beat:
 - **Beat E — Robotics & national-with-AK-teeth:** robotics deployments;
   national/global AI stories whose CONCRETE Alaska impact is provable.
 - **Beat F — Community signal:** what Alaskans are actually discussing
-  (r/alaska, r/anchorage, HN, local commentary) about tech/AI — angles
-  and salience only, not sole sourcing.
+  about tech/AI — angles and salience only, not sole sourcing.
+  REDDIT IS NOT REACHABLE FROM THIS ENVIRONMENT and this beat used to be
+  specified around it, which guaranteed one of six scouts returned nothing
+  every run. Measured twice on 2026-08-29: WebFetch refuses www.reddit.com
+  and old.reddit.com outright ("unable to fetch from"), and a
+  `site:reddit.com` WebSearch returns results from everywhere except
+  Reddit. The reachable routes, in order:
+  (1) Hacker News through the Algolia API, which WebFetch reads fine and
+  which searches COMMENTS as well as stories:
+  `https://hn.algolia.com/api/v1/search_by_date?query=Alaska&tags=(story,comment)&hitsPerPage=20`
+  (swap `query` for the entity you are chasing; `search` instead of
+  `search_by_date` ranks by points).
+  (2) Letters, op-eds and comment threads at ADN, Alaska Beacon (via the
+  alaskapublic.org republication, see sources.yaml), Alaska Landmine, Must
+  Read Alaska, and the utility and borough newsletters.
+  (3) Public meeting testimony, which is the highest-quality community
+  signal this beat can get and is minuted: assembly, RCA and legislative
+  hearings carry named Alaskans saying what they think on the record.
+  If a route is dead, say so in `dead_ends` and move to the next one.
 
 THE SEARCH BUDGET IS A REAL CEILING AND IT IS SPENT HERE. A session has 200
 WebSearch calls; six uncapped scouts take all of them, and the wall is silent

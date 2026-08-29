@@ -5035,3 +5035,61 @@ The common thread is that all three passed something. The lesson is not to
 distrust the gates, which caught plenty, but that a gate reporting PASS on an
 input it could not read is indistinguishable from a gate reporting PASS on work
 that is right, and only one of those is worth having.
+
+## 2026-08-29 - Phase 12 (No.44): parked from the frontier scan, editorial cartography
+
+Focus (b), editorial dataviz and cartography technique. The stalest rotation
+slot (last scanned 2026-08-18) and the one aimed at the standing repeat
+offender: artwork craft has been the weakest criterion in 8 of the last 10
+scored runs at a mean of 6.75. Six searches, four fetches, three substantive
+reads. Nothing applied, because all three upgrade slots went to reactive fixes,
+which is this phase's reactive-first rule working as written.
+
+- **AERIAL PERSPECTIVE FOR SHADED RELIEF, the finding worth having, PARKED.**
+  Computer-generated hillshade gives a lowland ridge the same graphic weight as
+  a summit, which is why our terrain heroes read flat and busy at the bottom of
+  the frame. The cartographic fix is elevation-dependent contrast: high terrain
+  carries strong luminance contrast, low terrain carries little, which is what
+  atmospheric haze does to a real landscape. Tom Patterson's recipe is four
+  steps and every one of them has a Canvas equivalent: duplicate the relief
+  layer, mask it with the normalized DEM so the copy fades out over lowland,
+  set the copy to MULTIPLY, and put a curve on the mask to control the
+  elevation at which the effect starts and how fast it fades. In our engine
+  that is a second `globalCompositeOperation='multiply'` pass over the same
+  hillshade with per-pixel alpha `pow(normalized_elevation, gamma)`, about
+  fifteen lines beside TECHNIQUE_LIBRARY 33 (the PIL hillshade) and AK3D's
+  Lambert term. PARKED, not applied: 33 is a shared helper and changing its
+  output changes every past caller's picture, which is a variety-engine
+  decision and not a Phase 12 one. UNBLOCKING CONDITION: land it as a NEW
+  named technique (33b, "Aerial-Perspective Relief") with its own gamma and
+  start-elevation parameters, on a run whose hero is actually terrain, and
+  prove it by measuring frame_balance and the bottom-third craft density
+  before and after. Restraint is the stated point of the technique: the
+  reader's reaction should be "of course that is a mountain", never "wow".
+  https://www.shadedrelief.com/shading/Swiss.html ,
+  https://en.wikipedia.org/wiki/Terrain_cartography
+- **The locator inset is a rule, not a flourish.** Datawrapper's stated
+  practice: the moment a map is CROPPED to the part that has data, the reader
+  loses the answer to "where am I", so a cropped map ships with a miniature of
+  the full basemap highlighting the visible region, positioned to leave the
+  annotation and legend space intact, with a padding parameter that shows a
+  little of the surroundings. This matters here more than at most desks: an
+  Alaska deck crops to a village, a lease block or a single inlet nearly every
+  week, and the state is big enough that the crop is unrecognisable. Recorded
+  rather than parked, because it is a planning habit for the treatment room,
+  not code. https://www.datawrapper.de/blog/cropped-view-inset-maps
+- **Bin choice is an honesty question with a number on it.** On the same
+  unemployment data, a min/max linear ramp puts 3 percent of counties in the
+  upper half of the scale while a min/median/max ramp puts 50 percent there,
+  and a chosen scheme can render counties 13.8 points apart in near-identical
+  colour while making counties 5.3 points apart look drastically different.
+  Quartiles are the recommended compromise. Worth having on file for the day a
+  deck fills Alaska boroughs by value, which it has not yet done.
+  https://www.datawrapper.de/blog/how-to-choose-a-color-palette-for-choropleth-maps
+- **Null result, second time in this slot.** A general search for 2026 news
+  graphics methodology returns SEO listicles with no parameter in them, and
+  Malofiej has been paused since 2021. The 2026-08-20 scan already wrote down
+  the lesson (go at a named desk's published methodology, not at the topic) and
+  this run confirms it: everything above came from a named practitioner's own
+  page. The next scan in this slot should start at shadedrelief.com,
+  datawrapper.de/blog, the Pudding and Reuters Graphics directly.

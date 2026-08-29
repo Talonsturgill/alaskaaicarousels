@@ -47,6 +47,10 @@ Checks per slide (consuming render_report.json + the PNGs):
     four pixel critics said was floating while machine QA reported 0 fails. A
     shadow is a subtraction and needs something to subtract from; nothing here
     had ever asked whether a declared depth cue survived compositing.
+    Since 2026-08-29 a failing or warning shadow also gets a DIAGNOSIS: the
+    darkest horizontal run over the object's own x span, printed next to the
+    band the slide declared, so "the shadow is too faint" and "the band is
+    aimed off the cast" stop looking alike. No threshold moved.
   - LEADER LANDS ON NOTHING (FAIL): opt-in. A slide declares each drafting
     leader in window.__akLeaders as {target, at:[x,y], to:[x,y]} -- the feature's
     own coordinates and where the leader ends -- and this FAILs when the two are
@@ -98,6 +102,15 @@ Checks per slide (consuming render_report.json + the PNGs):
     never ran on three slides and all three rows printed PASS. The same check
     also FAILS a report that carries no declaration_misses field at all while
     its text nodes carry `full`, because the first cut of this gate was inert.
+  - A DECLARATION THAT DOES NOT PARSE (FAIL): the same defect by the other
+    route. Each opt-in probe reports {error} when its JSON will not parse, and
+    every consumer of that used to WARN. Added 2026-08-29 after run No.44's
+    slide 05 wrote data-scale in a SINGLE-QUOTED attribute whose prose held an
+    apostrophe ("the method's publication"), which closed the attribute at
+    character 154 and truncated the JSON: the axis census never ran on that
+    slide's two declared axes all run, past three revision rounds and two
+    scoring cycles, and a human found it by reading a log. See
+    declaration_unparsed().
   - TYPE NOBODY SIZED (FAIL): consumes render.py's per-element check for an
     author font-size anywhere on a text element's ancestor chain (inline style,
     SVG presentation attribute, or a matching CSS rule) and FAILS when there is
@@ -528,7 +541,7 @@ def encoding_reads(img_arr, enc, design_w, design_h):
     Returns (verdict, detail) where verdict is "info", "warn" or "fail".
     """
     if enc.get("error"):
-        return "warn", f"declaration did not parse ({enc['error']})"
+        return "fail", declaration_unparsed("data-encodes", enc["error"])
     ra, rb = enc.get("a") or [], enc.get("b") or []
     if not ra or not rb:
         return "warn", "declaration names no regions"
@@ -890,8 +903,155 @@ def assert_holds(a):
                     % (what, exp, act, unit, counted, abs(tol)))
 
 
+# A DECLARATION THAT DOES NOT PARSE IS A FAIL (2026-08-29). Every opt-in probe
+# above wraps its JSON.parse in a try/catch and reports {error}; every consumer
+# of that error treated it as a WARN, and a warn is something a run ships past.
+# Run No.44's slide 05 shipped
+#   data-scale='[... "means":"2011, the method's publication (C22)" ...]'
+# The attribute is SINGLE-QUOTE delimited, so the apostrophe in "method's"
+# closed it at character 154 and truncated the JSON. render.py reported
+# {error: "SyntaxError: Unterminated string in JSON at position 154"}, qa.py
+# warned, and that slide's two declared axes were never censused for the whole
+# run: three revision rounds and two scoring cycles later a human found it by
+# reading a log. A gate a slide OPTS INTO and that then silently does not run
+# is worse than no gate at all, because the record then claims a check happened
+# that did not. So an unparseable declaration is now the same class of failure
+# as a declaration on the wrong surface, which is the same defect by a
+# different route and has been a hard fail since 2026-08-27.
+def declaration_unparsed(attr, err):
+    """The one message every unparseable declaration gets. `attr` names the
+    surface (data-scale, window.__akMotifs) so the fix has an address."""
+    hint = ""
+    if str(attr).startswith("data-"):
+        hint = (" The usual cause is an apostrophe inside a single-quoted "
+                "attribute (\"the method's publication\"), which ends the "
+                "attribute early and truncates the JSON: write it as &#39; or "
+                "spell the prose without it.")
+    return ("%s did not parse (%s), so the gate it feeds ran on nothing and "
+            "reported nothing while this slide's row still printed. Fix the "
+            "declaration or delete it; a declaration that does not parse is "
+            "worse than none, because the record says the check happened.%s"
+            % (attr, err, hint))
+
+
 CONTACT_FAIL_DL = 4.0
 CONTACT_WARN_DL = 8.0
+
+# WHERE THE CAST ACTUALLY IS (2026-08-29). None of these is a threshold on
+# whether a shadow reads: the verdict is decided by the two constants above and
+# is untouched. They bound a DIAGNOSTIC search that runs only once a shadow has
+# already failed or warned, and answers the question the dL number can't:
+# is this shadow too faint, or is the declaration pointed at the wrong band?
+#
+# Run No.44 spent two of its three revision rounds on that ambiguity. Slides 02,
+# 04 and 07 declared shadow bands their cast never reached (S04 declared 728-748
+# while the cast ran 714-726), so the probe sampled lit glass and reported "it
+# reads, barely" at dL 4.6 to 5.9. The natural reading of "too faint" is "make
+# it darker", which is the wrong fix and the one the run tried first: it ran the
+# cast down onto a near-black ground at 1.8:1 and crossed the axis numerals,
+# then over-corrected to dL 70, which the scorer called a black bar.
+CONTACT_HUNT_MULT = 3.0    # search this many band heights above and below
+CONTACT_HUNT_MIN = 60.0    # design px, floor on that window
+CONTACT_HUNT_MAX = 260.0   # ... and ceiling, so it stays a local question
+CONTACT_HUNT_DEPTH = 2.0   # L* below the local baseline before a row is "dark"
+CONTACT_HUNT_GAIN = 2.0    # ... and how much better than the declared dL the
+                           # found band must read before it is worth saying
+CONTACT_HUNT_FILL = 0.8    # a "dark run" covering this much of the window is
+                           # not local structure and the search means nothing
+
+
+def _dark_runs_near(feed, s, rs):
+    """Every horizontal run of rows darker than the local ground, over a
+    declared shadow's own x span, within a bounded window above and below it.
+
+    Each run is reported as its DARK CORE (the rows within half its own depth
+    of its darkest row) rather than its full extent, because a soft cast fades
+    for tens of pixels and its full extent is not the band an author would
+    declare. Measured on run No.44's slide 06: the cast reads 60 to 76 L* over
+    y 706-770 against a 90.5 baseline, and the core is y 714-740, which is the
+    shadow a reader sees.
+
+    Returns [(y0_design, y1_design, L*_median)] and the window's baseline L*.
+    Pure measurement: it reports where the dark rows are and decides nothing.
+    """
+    xs0 = min(r[0] for r in rs)
+    xs1 = max(r[0] + r[2] for r in rs)
+    ys0 = min(r[1] for r in rs)
+    ys1 = max(r[1] + r[3] for r in rs)
+    bh = max(1.0, ys1 - ys0)
+    win = min(CONTACT_HUNT_MAX, max(CONTACT_HUNT_MIN, CONTACT_HUNT_MULT * bh))
+
+    fx0, fx1 = max(0, int(xs0 * s)), min(feed.shape[1], int(xs1 * s))
+    fy0 = max(0, int((ys0 - win) * s))
+    fy1 = min(feed.shape[0], int((ys1 + win) * s))
+    if fx1 - fx0 < 4 or fy1 - fy0 < 6:
+        return [], 0.0
+
+    strip = feed[fy0:fy1, fx0:fx1]
+    lab = _srgb_to_lab(strip.reshape(-1, 3))[..., 0].reshape(strip.shape[:2])
+    rows = np.median(lab, axis=1)
+    baseline = float(np.percentile(rows, 75))
+    cut = baseline - CONTACT_HUNT_DEPTH
+
+    runs, a = [], None
+    for i in range(rows.shape[0] + 1):
+        dark = i < rows.shape[0] and rows[i] <= cut
+        if dark and a is None:
+            a = i
+        elif not dark and a is not None:
+            if (i - a) < CONTACT_HUNT_FILL * rows.shape[0]:
+                seg = rows[a:i]
+                k = a + int(np.argmin(seg))
+                core = baseline - 0.5 * (baseline - float(rows[k]))
+                c0, c1 = k, k
+                while c0 > a and rows[c0 - 1] <= core:
+                    c0 -= 1
+                while c1 + 1 < i and rows[c1 + 1] <= core:
+                    c1 += 1
+                runs.append(((fy0 + c0) / s, (fy0 + c1 + 1) / s,
+                             float(np.median(rows[c0:c1 + 1]))))
+            a = None
+    return runs, baseline
+
+
+def _contact_aim(feed, s, rs, lg, d):
+    """The diagnostic sentence, or "" when the declaration is already on the
+    cast and the shadow is simply faint.
+
+    THE NEAREST DARK BAND, NOT THE DARKEST (2026-08-29, second cut). The first
+    cut took the darkest run in the window and mis-diagnosed run No.44's own
+    slide 08, whose declaration is CORRECT: the darkest rows over that x span
+    are the pencil itself at y 1086-1105 (L* 56.9), while its soft cast is the
+    shallow dip at 1114-1146 that the band is sitting on. An object is darker
+    than its own shadow, so "darkest" finds the object. The nearest dark band
+    to the declaration is the cast, and when the declaration OVERLAPS it there
+    is nothing to report: the band is aimed right and the shadow is just faint.
+
+    Only ever appended to a verdict already decided by CONTACT_FAIL_DL /
+    CONTACT_WARN_DL, so it can neither pass nor fail a slide.
+    """
+    ds0 = min(r[1] for r in rs)
+    ds1 = max(r[1] + r[3] for r in rs)
+    runs, _ = _dark_runs_near(feed, s, rs)
+    if not runs:
+        return ""
+
+    def gap(r):
+        return max(0.0, max(r[0] - ds1, ds0 - r[1]))
+
+    y0, y1, lrun = min(runs, key=gap)
+    if gap((y0, y1, lrun)) <= 0.0:
+        return ""                       # the declaration is on the cast
+    if (lg - lrun) - d < CONTACT_HUNT_GAIN:
+        return ""                       # no better band to point at
+    return (" -- and the declaration is aimed off the cast: the nearest band "
+            "of dark rows over this object's own x span is y %d-%d (L* %.1f, "
+            "dL %.1f against the same ground) while the declaration points at "
+            "y %d-%d, which is %d px clear of it. Move the band onto the cast, "
+            "or move the cast under the object; darkening the shadow is the "
+            "wrong fix here and it ends in a black bar"
+            % (round(y0), round(y1), lrun, lg - lrun, round(ds0), round(ds1),
+               round(gap((y0, y1, lrun)))))
 
 
 def contact_reads(img_arr, con, design_w, design_h):
@@ -912,7 +1072,7 @@ def contact_reads(img_arr, con, design_w, design_h):
     Returns (verdict, detail), verdict in "info" | "warn" | "fail".
     """
     if con.get("error"):
-        return "warn", "declaration did not parse (%s)" % con["error"]
+        return "fail", declaration_unparsed("data-contacts", con["error"])
     rs, rg = con.get("shadow") or [], con.get("ground") or []
     if not rs or not rg:
         return "warn", "declaration names no shadow/ground region"
@@ -945,9 +1105,11 @@ def contact_reads(img_arr, con, design_w, design_h):
         what, ls, lg, d, FEED_W)
 
     if d < CONTACT_FAIL_DL:
-        extra = ""
+        extra = _contact_aim(feed, s, rs, lg, d)
         if lg < 12.0:
             # The exact shape of the No.26 defect, named so the fix is obvious.
+            # It outranks the aim diagnosis: on a near-black ground there is
+            # nothing to subtract wherever the band is pointed.
             extra = (" -- the ground is already near black (L* %.1f), so there "
                      "is nothing left to subtract; light the ground first "
                      "(a warm pool under the object), then cast the shadow"
@@ -956,7 +1118,8 @@ def contact_reads(img_arr, con, design_w, design_h):
                                % CONTACT_FAIL_DL) + extra
     if d < CONTACT_WARN_DL:
         return "warn", bits + (" -- under the %.1f L* comfort band; it reads, "
-                               "barely" % CONTACT_WARN_DL)
+                               "barely" % CONTACT_WARN_DL) + \
+            _contact_aim(feed, s, rs, lg, d)
     return "info", bits
 
 
@@ -1041,7 +1204,7 @@ def motif_survives(img_arr, mo, design_w, design_h):
     Returns (verdict, detail), verdict in "info" | "warn" | "fail".
     """
     if mo.get("error"):
-        return "warn", "declaration did not parse (%s)" % mo["error"]
+        return "fail", declaration_unparsed("window.__akMotifs", mo["error"])
     what, rect = mo.get("what"), mo.get("rect")
     if not what or not rect or len(rect) != 4:
         return "warn", "declaration names no {what, rect}"
@@ -1216,7 +1379,7 @@ def axis_census(img_arr, sc, design_w, design_h):
     Returns (verdict, detail), verdict in "info" | "warn" | "fail".
     """
     if sc.get("error"):
-        return "warn", "declaration did not parse (%s)" % sc["error"]
+        return "fail", declaration_unparsed("data-scale", sc["error"])
     what = sc.get("what") or "a measured axis"
     axis = (sc.get("axis") or "x").lower()[:1]
     unit = sc.get("unit") or ""
@@ -1736,6 +1899,13 @@ def main():
         # declares nothing is not judged here, so this can never block a deck
         # that has not adopted the contract.
         for enc in rec.get("encodings", []):
+            # AN UNPARSEABLE DECLARATION IS ITS OWN FAILURE (2026-08-29), and it
+            # is reported without a prefix because the gate below never ran: see
+            # declaration_unparsed().
+            if enc.get("error"):
+                res["fails"].append(
+                    declaration_unparsed("data-encodes", enc["error"]))
+                continue
             verdict, detail = encoding_reads(arr, enc, design_w, design_h)
             if verdict == "fail":
                 # THE DIRECTION CONTRACT (2026-08-08). Still not a judgment of
@@ -1755,6 +1925,10 @@ def main():
         # encoding contract, so a deck that declares nothing is not judged
         # here. When a slide DOES declare one, the measurement is a hard gate.
         for con in rec.get("contacts", []):
+            if con.get("error"):
+                res["fails"].append(
+                    declaration_unparsed("data-contacts", con["error"]))
+                continue
             verdict, detail = contact_reads(arr, con, design_w, design_h)
             if verdict == "fail":
                 res["fails"].append("contact shadow does not read: " + detail)
@@ -1798,6 +1972,10 @@ def main():
         # rect, and the render says the rect is flat or buried. See
         # motif_survives() for the two instruments and their limits.
         for mo in rec.get("motifs", []):
+            if mo.get("error"):
+                res["fails"].append(
+                    declaration_unparsed("window.__akMotifs", mo["error"]))
+                continue
             verdict, detail = motif_survives(arr, mo, design_w, design_h)
             if verdict == "fail":
                 res["fails"].append("declared motif does not reach the slide: " + detail)
@@ -1828,10 +2006,9 @@ def main():
                 "surface the engine reads. Re-render with a current render.py")
         for dm in rec.get("declaration_misses", []):
             if dm.get("error"):
-                res["warns"].append(
-                    "declaration-surface scan failed to run (%s), so a "
-                    "declaration on the wrong surface would not be seen here"
-                    % dm["error"])
+                res["fails"].append(
+                    declaration_unparsed("the declaration-surface scan",
+                                         dm["error"]))
                 continue
             res["fails"].append(
                 "declaration on the wrong surface: this slide sets %s, and the "
@@ -1845,6 +2022,10 @@ def main():
         # reader measures it whether or not the studio meant them to. See
         # axis_census() for the calibration and for its stated limit.
         for sc in rec.get("scales", []):
+            if sc.get("error"):
+                res["fails"].append(
+                    declaration_unparsed("data-scale", sc["error"]))
+                continue
             verdict, detail = axis_census(arr, sc, design_w, design_h)
             if verdict == "fail":
                 res["fails"].append("a mark on a measured axis: " + detail)
