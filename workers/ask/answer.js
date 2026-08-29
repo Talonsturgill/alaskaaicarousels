@@ -472,10 +472,11 @@ async function preflight(turns, env, now) {
  * The streaming route. Emits newline delimited JSON, one event per line, so
  * the page can render as it arrives without a parser of its own:
  *
- *   {"stage":"..."}          what is happening, and each one is true
+ *   {"stage":"...", "step":"record", "progress":1, "total":3}
+ *                              what is happening, and each one is true
  *   {"sentence":"..."}       one verified sentence, safe to show
  *   {"withheld":"numeral"}   the answer stopped here and why
- *   {"done":true}            finished
+ *   {"done":true,"verified":3} finished, with the released sentence count
  *   {"error":"..."}          nothing to show
  */
 export async function answerStream(turns, env, { now, fetchImpl } = {}) {
@@ -485,20 +486,20 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
 
   if (pre.stop) {
     return new ReadableStream({
-      start(c) { c.enqueue(line(pre.stop.body)); c.enqueue(line({ done: true })); c.close(); },
+      start(c) { c.enqueue(line(pre.stop.body)); c.enqueue(line({ done: true, verified: 0 })); c.close(); },
     });
   }
   if (pre.cached) {
     // Replayed a sentence at a time, so a cached answer arrives the same way a
     // fresh one does rather than snapping in and looking like a different
-    // feature. It is instant either way; this only keeps the shape honest.
+    // feature. Cache is an implementation detail: the reader gets the same
+    // answer protocol without a stage that announces storage machinery.
     const { sentences, remainder } = splitSentences(String(pre.cached.text).trim());
     const all = remainder.trim() ? [...sentences, remainder] : sentences;
     return new ReadableStream({
       start(c) {
-        c.enqueue(line({ stage: "Answered this one already" }));
         for (const s of all) c.enqueue(line({ sentence: s.trim() }));
-        c.enqueue(line({ done: true, cached: true }));
+        c.enqueue(line({ done: true, cached: true, verified: all.length }));
         c.close();
       },
     });
@@ -510,18 +511,22 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
 
   return new ReadableStream({
     async start(c) {
-      c.enqueue(line({ stage: "Reading the record" }));
-      let buf = "", kept = [], withheld = null, opened = false;
+      c.enqueue(line({ stage: "Opening today's published record", step: "record", progress: 1, total: 3 }));
+      let buf = "", kept = [], withheld = null, opened = false, verifying = false;
       try {
         await streamModel(turns, pack, env, (delta) => {
           if (!opened) {
             opened = true;
-            c.enqueue(line({ stage: "Checking every figure against the record" }));
+            c.enqueue(line({ stage: "Drafting only from the published record", step: "draft", progress: 2, total: 3 }));
           }
           if (withheld) return;
           buf += delta;
           const { sentences, remainder } = splitSentences(buf);
           buf = remainder;
+          if (sentences.length && !verifying) {
+            verifying = true;
+            c.enqueue(line({ stage: "Verifying figures and source links", step: "verify", progress: 3, total: 3 }));
+          }
           for (const s of sentences) {
             const v = checkSentence(s, { allowed, slugs });
             if (!v.ok) { withheld = v.reason; return; }
@@ -532,6 +537,10 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
 
         // Whatever is left over after the last sentence end.
         if (!withheld && buf.trim()) {
+          if (!verifying) {
+            verifying = true;
+            c.enqueue(line({ stage: "Verifying figures and source links", step: "verify", progress: 3, total: 3 }));
+          }
           const v = checkSentence(buf, { allowed, slugs });
           if (!v.ok) withheld = v.reason;
           else { kept.push(buf.trim()); c.enqueue(line({ sentence: buf.trim() })); }
@@ -551,7 +560,7 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
           st >= 500 ? "The model is having a moment. Try again shortly." :
           "That answer did not come back.",
           status: st || null }));
-        c.enqueue(line({ done: true }));
+        c.enqueue(line({ done: true, verified: kept.length }));
         c.close();
         return;
       }
@@ -571,7 +580,7 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
       } else {
         c.enqueue(line({ error: "The record did not produce an answer to that." }));
       }
-      c.enqueue(line({ done: true }));
+      c.enqueue(line({ done: true, verified: kept.length }));
       c.close();
     },
   });

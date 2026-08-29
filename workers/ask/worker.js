@@ -58,17 +58,22 @@ function json(body, status = 200) {
   });
 }
 
-async function verifyTurnstile(token, secret, ip) {
-  if (!secret) return true; // not configured; the deploy notes call this out
+export async function verifyTurnstile(token, secret, ip) {
+  // Both halves are required. Failing open when the secret is absent turns a
+  // deployment mistake into a public way to spend the monthly model budget.
+  if (!secret) return false;
   if (!token) return false;
   const body = new FormData();
   body.append("secret", secret);
   body.append("response", token);
   if (ip) body.append("remoteip", ip);
-  const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify",
-    { method: "POST", body });
-  const out = await r.json().catch(() => ({ success: false }));
-  return out.success === true;
+  try {
+    const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      { method: "POST", body });
+    if (!r.ok) return false;
+    const out = await r.json().catch(() => ({ success: false }));
+    return out.success === true;
+  } catch (_) { return false; }
 }
 
 async function loadCorpus() {

@@ -50,15 +50,24 @@ await page.route('**/deep', async (route) => {
    guard before any offer arrives. */
 let answers = [];
 await page.route('**/answer', async (route) => {
-  answers.push(JSON.parse(route.request().postData()));
-  const lines = answers.length === 1
-    ? [{ stage: 'Reading the record' },
+  const request = JSON.parse(route.request().postData());
+  answers.push(request);
+  const latest = request.messages.at(-1)?.content || '';
+  const lines = /what is open right now/i.test(latest)
+    ? [{ capped: true }, { done: true, verified: 0 }]
+    : answers.length === 1
+    ? [{ stage: "Opening today's published record", step: 'record', progress: 1, total: 3 },
+       { stage: 'Drafting only from the published record', step: 'draft', progress: 2, total: 3 },
+       { stage: 'Verifying figures and source links', step: 'verify', progress: 3, total: 3 },
        { sentence: 'The Air Force decides it, with Defense Logistics Agency Energy.' },
        { sentence: 'Want the note on why the schedule moved?' },
-       { done: true }]
-    : [{ stage: 'Reading the record' },
+       { done: true, verified: 2 }]
+    : [{ stage: "Opening today's published record", step: 'record', progress: 1, total: 3 },
+       { stage: 'Drafting only from the published record', step: 'draft', progress: 2, total: 3 },
+       { stage: 'Verifying figures and source links', step: 'verify', progress: 3, total: 3 },
        { sentence: 'No date is published for it yet.' },
-       { withheld: 'numeral' }];
+       { withheld: 'numeral' },
+       { done: true, verified: 1 }];
   await route.fulfill({ status: 200, contentType: 'application/x-ndjson',
     body: lines.map(l => JSON.stringify(l)).join('\n') + '\n' });
 });
@@ -115,8 +124,28 @@ for (const [input, got] of shapes) {
   ok(`"${input.slice(0, 42)}"`, got === want[input], `got ${JSON.stringify(got)}`);
 }
 
-// ------------------------------------------------------------- B. archive off
-head('B. the archive lane, switched off');
+head('B. classifier keeps the agent on the record');
+const buckets = await page.evaluate(() => [
+  window.__askClassify('how do I bake sourdough', 0),
+  window.__askClassify('who decides the eielson microreactor', 0),
+  window.__askClassify('are you sure?', 2),
+]);
+ok('an obviously off-record first turn is refused', buckets[0].bucket === 'refuse', JSON.stringify(buckets[0]));
+ok('an Alaska record question goes to the written agent', buckets[1].bucket === 'written', JSON.stringify(buckets[1]));
+ok('a vocabulary-light follow-up stays with the written agent', buckets[2].bucket === 'written', JSON.stringify(buckets[2]));
+
+await type('how do I bake sourdough');
+await page.click('#qgo');
+await page.waitForSelector('.qreply');
+ok('the off-record boundary is rendered inside the conversation',
+  (await page.locator('.qreply').textContent()).includes('published record'));
+ok('the local refusal spends no Worker request', answers.length === 0, `${answers.length} requests`);
+ok('the refusal explains that nothing was sent',
+  (await page.locator('.qfrom').textContent()).includes('Nothing was sent'));
+await page.getByRole('button', { name: 'Start over' }).click();
+
+// ------------------------------------------------------------- C. archive off
+head('C. the archive lane, switched off');
 await type('zzqqxvwk');
 await page.waitForTimeout(120);
 ok('gibberish reaches the no-match panel', await page.locator('.qnone').count() === 1);
@@ -133,6 +162,9 @@ ok('the button is gone rather than saying TRY AGAIN',
   await page.locator('#qdeep').count() === 0);
 ok('the thread was not opened to hold an error',
   await page.locator('#qout').isHidden());
+ok('the unavailable archive lane restores the page around it', await page.evaluate(() =>
+  !document.getElementById('qagent').classList.contains('chatting') &&
+  !document.querySelector('nav').inert && !document.querySelector('[data-qchat-inert]')));
 
 await type('qqzzvvwwx');
 await page.waitForTimeout(150);
@@ -141,8 +173,9 @@ ok('but the dead door is not offered again',
   await page.locator('#qdeep').count() === 0);
 ok('and it was pressed exactly once', deepHits === 1, String(deepHits));
 
-// ---------------------------------------------------------------- C. the chip
-head('C. the closing offer, as one press');
+// ---------------------------------------------------------------- D. the chip
+head('D. the closing offer, as one press');
+await page.setViewportSize({ width: 390, height: 844 });
 /* The widget the way Cloudflare drives it, with the network taken out. The
    box arms on focus and only then hands render() a callback, so focusing
    first is not incidental: without it there is no qTurnstileReady to call. */
@@ -152,6 +185,7 @@ await page.focus('#qq');
    a no-op leaves the second question waiting fifteen seconds for a token that
    is never coming, which is a stub bug that reads exactly like a page bug. */
 await page.evaluate(() => {
+  if (!document.getElementById('qbox').getAttribute('data-sitekey')) return;
   let cb = null;
   window.turnstile = {
     render: (el, opt) => { cb = opt.callback;
@@ -162,8 +196,34 @@ await page.evaluate(() => {
 });
 await page.waitForTimeout(60);
 await type('who decides the eielson microreactor');
+ok('mobile composition does not expose deterministic result cards',
+  await page.locator('#qres').isHidden());
 await page.click('#qgo');
 await page.waitForSelector('.qnext', { timeout: 8000 });
+
+ok('mobile submit opens the dedicated conversation sheet',
+  await page.locator('#qagent').evaluate(el => getComputedStyle(el).position === 'fixed'));
+ok('the sheet is modal and the covered Docket is inert', await page.evaluate(() => {
+  const a = document.getElementById('qagent');
+  return a.getAttribute('role') === 'dialog' && a.getAttribute('aria-modal') === 'true' &&
+    document.querySelector('nav').inert &&
+    Array.from(a.parentElement.children).filter(el => el !== a).every(el => el.inert);
+}));
+ok('the conversation owns exactly the dynamic viewport height',
+  await page.locator('#qagent').evaluate(el => Math.abs(el.getBoundingClientRect().height - innerHeight) < 2));
+ok('the thread scrolls while the composer remains pinned', await page.evaluate(() => {
+  const out = document.getElementById('qout'), composer = document.getElementById('qbox');
+  const s = getComputedStyle(out), r = composer.getBoundingClientRect();
+  return /auto|scroll/.test(s.overflowY) && r.bottom <= innerHeight + 1 && r.bottom > innerHeight - 120;
+}));
+ok('the trace completes all three real stages', await page.evaluate(() => {
+  const trace = document.querySelector('.qtrace.done');
+  return !!trace && trace.querySelectorAll('.qsteps i.on').length === 3 &&
+    trace.textContent.includes('2 SENTENCES') &&
+    trace.textContent.includes("Verified against today's published record");
+}));
+ok('the mobile header exposes one explicit way to reset',
+  await page.locator('#qagentreset').isVisible());
 
 ok('the chip carries a label, not the whole offer',
   (await page.locator('.qnext').textContent()) === 'Yes, show me');
@@ -194,8 +254,8 @@ ok('the caret is at the end so it can be added to',
 ok('the chip goes once it has been taken up',
   await page.locator('.qnext').count() === 0);
 
-// ------------------------------------------------------------ D. a cut answer
-head('D. an answer the guard cut');
+// ------------------------------------------------------------ E. a cut answer
+head('E. an answer the guard cut');
 await page.click('#qgo');
 await page.waitForSelector('.qstop', { timeout: 8000 });
 ok('the second question was sent', answers.length === 2);
@@ -206,8 +266,28 @@ ok('the cut is explained', (await page.locator('.qstop').textContent())
    the record never offered. */
 ok('no chip is invented for it', await page.locator('.qnext').count() === 0);
 ok('both exchanges are on screen', await page.locator('.qturn').count() === 2);
+await page.click('#qagentreset');
+ok('start over restores the Docket and accessibility tree', await page.evaluate(() => {
+  const a = document.getElementById('qagent');
+  return !a.classList.contains('chatting') && !a.hasAttribute('role') &&
+    !document.querySelector('nav').inert && document.getElementById('qout').hidden &&
+    !document.querySelector('[data-qchat-inert]');
+}));
 
-head('E. nothing threw across any of that');
+head('F. monthly cap falls back inside the same conversation');
+await type('what is open right now?');
+await page.click('#qgo');
+await page.waitForFunction(() => document.querySelector('.qreply')?.textContent.includes('open to public comment'));
+ok('the deterministic fallback answers directly in the thread',
+  (await page.locator('.qreply').textContent()).includes('open to public comment'));
+ok('the fallback provenance names the limit without calling it a cache', await page.evaluate(() => {
+  const text = document.querySelector('.qfrom')?.textContent || '';
+  return text.includes('monthly written-answer limit') && !/cache|cached/i.test(text);
+}));
+ok('the fallback leaves no fake Worker progress receipt', await page.locator('.qtrace').count() === 0);
+await page.click('#qagentreset');
+
+head('G. nothing threw across any of that');
 ok('clean console', errs.length === 0, errs.join(' | '));
 
 console.log('');
