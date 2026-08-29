@@ -109,7 +109,86 @@
   if (nav) {
     var onScroll = function(){ nav.classList.toggle('scrolled', scrollY > 30); };
     addEventListener('scroll', onScroll, {passive: true}); onScroll();
+
+    /* Phones get one calm 64px bar and a real, labelled menu. The old seven
+       links wrapped into a 146px sticky wall on every page. Keep the direct
+       desktop navigation, and keep the uncollapsed links as the no-JS
+       fallback: only html.js opts into this disclosure control. */
+    var navToggle = nav.querySelector('.navtoggle');
+    var navLinks = nav.querySelector('.navlinks');
+    var setMenu = function(open, returnFocus){
+      if (!navToggle || !navLinks) return;
+      nav.classList.toggle('menuopen', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Close site menu' : 'Open site menu');
+      if (!open && returnFocus) navToggle.focus();
+    };
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', function(){
+        setMenu(navToggle.getAttribute('aria-expanded') !== 'true');
+      });
+      navLinks.addEventListener('click', function(e){
+        if (e.target.closest('a')) setMenu(false);
+      });
+      document.addEventListener('pointerdown', function(e){
+        if (nav.classList.contains('menuopen') && !nav.contains(e.target)) setMenu(false);
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && nav.classList.contains('menuopen')) setMenu(false, true);
+      });
+      addEventListener('resize', function(){
+        if (innerWidth > 720 && nav.classList.contains('menuopen')) setMenu(false);
+      }, {passive:true});
+    }
   }
+
+  /* Long public collections filter in place. Search text is derived from the
+     rendered card or source row, so the visible record and the searchable
+     record cannot drift apart. Nothing leaves the browser. */
+  document.querySelectorAll('[data-filter-root]').forEach(function(root){
+    var input = root.querySelector('[data-filter-input]');
+    var clear = root.querySelector('[data-filter-clear]');
+    var status = root.querySelector('[data-filter-status]');
+    var empty = root.querySelector('[data-filter-empty]');
+    var items = Array.prototype.slice.call(root.querySelectorAll('[data-filter-item]'));
+    if (!input || !status || !items.length) return;
+    var singular = root.getAttribute('data-filter-singular') || 'ITEM';
+    var plural = root.getAttribute('data-filter-plural') || singular + 'S';
+    var clean = function(value){
+      var s = String(value || '').toLowerCase();
+      if (s.normalize) s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return s.replace(/[^a-z0-9]+/g, ' ').trim();
+    };
+    items.forEach(function(item){ item.__filterText = clean(item.textContent); });
+    var applyFilter = function(){
+      var query = clean(input.value);
+      var terms = query ? query.split(/\s+/) : [];
+      var shown = 0;
+      items.forEach(function(item){
+        var match = !terms.length || terms.every(function(term){
+          return item.__filterText.indexOf(term) !== -1;
+        });
+        item.hidden = !match;
+        if (match) shown++;
+      });
+      var unit = items.length === 1 ? singular : plural;
+      status.textContent = terms.length ? shown + ' OF ' + items.length + ' ' + unit
+                                        : items.length + ' ' + unit;
+      if (clear) clear.hidden = !terms.length;
+      if (empty) empty.hidden = shown !== 0;
+      root.classList.toggle('filtering', !!terms.length);
+    };
+    input.addEventListener('input', applyFilter);
+    input.addEventListener('keydown', function(e){
+      if (e.key !== 'Escape') return;
+      if (input.value) { input.value = ''; applyFilter(); }
+      else input.blur();
+    });
+    if (clear) clear.addEventListener('click', function(){
+      input.value = ''; applyFilter(); input.focus();
+    });
+    applyFilter();
+  });
 
   /* reveals */
   if ('IntersectionObserver' in window) {
