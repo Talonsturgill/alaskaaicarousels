@@ -87,9 +87,11 @@ const k1 = await cacheKey("What is the STAK lease?", "2026-08-14");
 const k2 = await cacheKey("what is the stak lease", "2026-08-14");
 const k3 = await cacheKey("What is the STAK lease?", "2026-08-15");
 const k4 = await cacheKey("what is the enstar filing", "2026-08-14");
+const k5 = await cacheKey("What is the STAK lease?", "2026-08-14", "rules v2");
 check("the same question on the same pack is one key", k1 === k2);
 check("a new pack retires yesterday's answers", k1 !== k3);
 check("a different question is a different key", k1 !== k4);
+check("new rules retire answers written under old behavior", k1 !== k5);
 check("the key carries the pack date, readable in a KV listing",
   k1.startsWith("a:2026-08-14:"), k1);
 
@@ -189,7 +191,7 @@ section("the ceiling actually stops spending");
   // An answer already paid for this month is still served after the cap, so
   // turning off new spending does not blank out answers already bought.
   const e = env({ ASK_MONTHLY_CAP: "1", ASK_KV: fakeKV({ "spend:2026-08": "9" }) });
-  const key = await cacheKey("what is in storage", PACK.generated);
+  const key = await cacheKey("what is in storage", PACK.generated, PACK.system);
   e.ASK_KV.store.set(key, JSON.stringify({ text: "Storage held 6.54 Bcf.", withheld: false }));
   globalThis.fetch = stubFetch();
   const r = await answer("what is in storage", e, { now: NOW });
