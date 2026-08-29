@@ -1,0 +1,232 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 62% of this slide's own average craft density (top 81% / mid 33% / bottom 29% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "tiny-text: 'WOODS HOLE \u00b7 OREGON STATE \u00b7 UAF' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'WOODS HOLE \u00b7 OREGON STATE \u00b7 UAF' at 80,1304 412x25 (margin 80px)",
+        "busy art under text (bg edge density 0.15) beneath 'WOODS HOLE \u00b7 OREGON STATE \u00b7 UAF' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the forward cradle block standing on the lit bench': shadow L* 48.5 vs ground L* 70.8, dL 22.2 at 432w"
+      ],
+      "fits": [
+        "h1 'The list was writtenbefore the gliderwent in' fits 3/3 lines at 108.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '\"Other indicates all calls/sounds not found in the' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the sheet lying on the lit glass': shadow L* 53.3 vs ground L* 91.1, dL 37.8 at 432w"
+      ],
+      "motifs": [
+        "'the Other channel, left open at its base because it is defined as what the library lacks (': canvas 1.5 dE, page 61.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h2 'Eight headings. Six animals,one Air gun, one' fits 2/2 lines at 68.5px"
+      ],
+      "asserts": [
+        "'8 ruled class channels, one per heading on the project page (C03)' holds: 8 vs 8 marks, counted over 8 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'SUBSISTENCE HARVEST PER NOAA FISHERIES' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOAA' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOAA' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOAA' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AIR GUN' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "encodings": [
+        "'three columns are lit and the air gun column beside them is not': dE 9.0, AUC 0.97, visible 100%/100%, seen 10368/3456px at 432w"
+      ],
+      "contacts": [
+        "'the sheet lying on the lit glass': shadow L* 78.7 vs ground L* 89.4, dL 10.6 at 432w"
+      ],
+      "motifs": [
+        "'the three warm-lit sourced subsistence channels (C40, C41, C42)': canvas 28.2 dE, page 62.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'Beluga whale channel' lands 2.0px from its target",
+        "leader 'Bearded seal channel' lands 2.0px from its target",
+        "leader 'Bowhead whale channel' lands 2.0px from its target",
+        "leader 'the Air gun channel' lands 2.0px from its target",
+        "leader 'Beluga whale channel' meets its label 1.0px away",
+        "leader 'Bearded seal channel' meets its label 1.0px away",
+        "leader 'Bowhead whale channel' meets its label 1.0px away",
+        "leader 'the Air gun channel' meets its label 1.0px away"
+      ],
+      "fits": [
+        "h2 'Three of these columnsare food. One is Air g' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "\"8 ruled class channels, the page's own headings (C03)\" holds: 8 vs 8 marks, counted over 8 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'DECIBELS ABOVE BACKGROUND' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'MAHALANOBIS DISTANCE' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'EVERY 15 MINUTES' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '8 KB PER HOUR' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOT EVERY CALL IS SENT' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '\u00b7' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '\u00b7' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "worst-point contrast 4.4 on '11' (box mean 5.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "outside safe zone: 'MAHALANOBIS DISTANCE' at 64,344 26x272 (margin 80px)"
+      ],
+      "encodings": [
+        "'the region the machine may count is a small lit corner of a large dark card': dE 5.7, AUC 0.97, visible 100%/100%, seen 4160/4160px at 432w"
+      ],
+      "contacts": [
+        "'the acceptance card lying on the lit glass': shadow L* 67.3 vs ground L* 89.6, dL 22.4 at 432w"
+      ],
+      "scales": [
+        "'decibels above background' runs 0 dB at 200 to 20 dB at 900; 6 declared mark(s), and the band's census finds no others",
+        "'Mahalanobis distance' runs 0 distance at 660 to 6 distance at 300; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'Two thresholds decidewhat it may count.' fits 2/2 lines at 87.5px"
+      ],
+      "asserts": [
+        "'the 11 dB boundary, printed and drawn from one solved rig (C09)' holds: 585 vs 585 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'JULY 24TH' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AUGUST 28TH' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '36 DATED RECORDS' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'METHOD PUBLISHED' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'HULL PROCURED' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: '2026' at 937,597 86x45 (margin 80px)",
+        "outside safe zone: 'METHOD PUBLISHED' at 71,464 218x26 (margin 80px)"
+      ],
+      "contacts": [
+        "'the steel rule lying on the lit glass': shadow L* 81.5 vs ground L* 89.6, dL 8.2 at 432w"
+      ],
+      "scales": [
+        "'the engraved year rule' runs 2,011 year at 180 to 2,026 year at 980; 3 declared mark(s), and the band's census finds no others",
+        "'the deployment bracket' runs 0 days past July 1, 2026 at 180 to 62 days past July 1, 2026 at 980; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'A 2016 hull. A 2011 method.A library closed ' fits 2/2 lines at 73px"
+      ],
+      "asserts": [
+        "'36 dated records, July 24th to August 28th (C14)' holds: 36 vs 36 marks, counted over 36 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'THE BOX' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '68.61 TO 68.67 N' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '166.83 TO 166.92 W' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '20 KM' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NORTHWEST ALASKA' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "contact shadow: 'the transparency lying on the lit glass': shadow L* 60.8 vs ground L* 67.2, dL 6.4 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "outside safe zone: '166.83 TO 166.92 W' at 758,427 259x29 (margin 80px)"
+      ],
+      "fits": [
+        "h2 'The August 28th recordssit in one small box.' fits 2/2 lines at 79px"
+      ],
+      "asserts": [
+        "'the position box, 0.09 degrees of longitude wide (C28)' holds: 5 vs 7 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Fin whale' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Beluga whale' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Killer whale' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Bearded seal' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Bowhead whale' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Walrus' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Air gun' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Other' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Fin whale' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Beluga whale' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Bearded seal' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Bowhead whale' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Walrus' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Air gun' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Other' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'PROJECT PAGE, 8' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'LIVE TABLE, 7' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NO KILLER WHALE COLUMN' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "encodings": [
+        "'the live table has a channel with nothing printed in it and the project page does not': dE 23.3, AUC 0.71, visible 100%/100%, seen 1760/1760px at 432w"
+      ],
+      "contacts": [
+        "'the two sheets lying on the lit glass': shadow L* 39.5 vs ground L* 87.8, dL 48.3 at 432w"
+      ],
+      "motifs": [
+        "'the empty channel where Killer whale is not (C04, C05)': canvas 49.6 dE, page 61.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the absent Killer whale channel' lands 0.0px from its target",
+        "leader 'the absent Killer whale channel' meets its label 0.0px away"
+      ],
+      "fits": [
+        "h2 'Eight columns on one page.Seven in the live ' fits 2/2 lines at 73.5px"
+      ],
+      "asserts": [
+        "'8 ruled channels, project page grid (C03)' holds: 8 vs 8 marks, counted over 8 declared marks (within 0)",
+        "'7 ruled channels, live detection table (C05)' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '\"odd PTs. Not walrus. A bit high for KWs but perha' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '19:39' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '20:24' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '45 MIN' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AUGUST 27TH, 2026, AKDT' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "contact shadow: 'the pencil lying in the near band': shadow L* 77.5 vs ground L* 85.1, dL 7.5 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the gold margin rule, the edge of what the list can hold': canvas 79.7 dE, page 79.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the note timeline' runs 0 minutes past 19:00 AKDT at 200 to 120 minutes past 19:00 AKDT at 960; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'Where the record can'thold it, a person writ' fits 2/2 lines at 87.5px"
+      ],
+      "asserts": [
+        "'the 45 minute gap, printed and drawn from one solved rig (C33, C34)' holds: 45 vs 45 min (within 2)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 60% of this slide's own average craft density (top 80% / mid 79% / bottom 39% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "fits": [
+        "h2 'A classifier reports whatit was taught to na' fits 2/2 lines at 83.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 58,
+  "verdict": "WARN"
+}

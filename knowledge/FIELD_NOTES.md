@@ -4962,3 +4962,134 @@ The more useful catch was scope. Candidate A wrote a technically clean
 permafrost caption with NO AI IN IT AT ALL, on an Alaska plus AI page, and sold
 a deck the run had not built. A caption that passes every mechanical gate can
 still be about the wrong subject, and nothing in caption_check can see that.
+
+## 2026-08-29 - Phase 1 craft refresh (No.44)
+
+- **The 2026 write-ups have started framing the ranker around COMPLETION RATE
+  rather than slide count.** The framing is new even though the underlying
+  advice is not, and the number attached to it is that a well-structured
+  carousel completes at about 36 percent, with completion falling sharply past
+  roughly 15 slides. Our 8 to 10 default already sits inside every band being
+  quoted, so nothing changes. Worth holding because it reframes what the close
+  slide is for. A close that pays the deck off is a distribution asset, not
+  courtesy.
+- **One practitioner claim CONTRADICTS this deck's slide-2 rule and is being
+  logged rather than adopted.** Several 2026 posts advise parking the most
+  valuable insight on slide 7 or 8 on the theory that a reader who got that far
+  is committed and the dwell is already banked. That trades against the measured
+  finding this studio builds on, which is that the steepest drop in the whole
+  deck is 1 to 2, so an insight held back to slide 7 is an insight most readers
+  never reach. These are tier C practitioner claims with no named dataset behind
+  them, set against a tier B measurement. Slide 2 still pays immediately. What
+  the claim is genuinely useful for is the reminder that the back half must not
+  coast, which is a real failure mode in a nine-slide deck.
+- **A single-slide-count optimum keeps getting asserted at different numbers by
+  different sources in the same week** (7 in one, 8 to 12 in another, both
+  labelled 2026 data). That spread is itself the finding. Treat any specific
+  slide-count optimum as noise and keep judging slides on whether each one earns
+  its place.
+  https://www.socialpilot.co/blog/linkedin-carousel
+  https://usevisuals.com/blog/linkedin-carousel-engagement-statistics-2026
+
+## 2026-08-29 - Phase 14 (No.44): three ways a check can be green and wrong
+
+Run No.44 scored 7.79, then 8.03 capped to 6.9 by a hard fail, then 8.51. Every
+one of the three rounds was spent on the same class of defect: a gate that
+reported something other than what was on the page.
+
+- **A declaration attribute that does not parse is a gate that did not run.**
+  Slide 05 shipped `data-scale='[... "2011, the method's publication" ...]'`.
+  The attribute is single-quote delimited, so the apostrophe closed it at char
+  154 and truncated the JSON. That slide's two declared axes were never audited,
+  and nothing failed: `dossier_check` only inspects `data-contacts`, and even
+  there it falls back to counting `"shadow"` substrings when the JSON will not
+  parse; `qa.py` logged `SyntaxError: Unterminated string` and carried on; the
+  synced gate block then reported the slide as checked. A human scorer reading a
+  log found it. Reading a log is not a check. Never put prose with an apostrophe
+  inside a single-quoted declaration, and treat the silent skip itself as the
+  bug: it is logged as this run's top machine-upgrade candidate.
+
+- **Declare the band the ink is actually in.** Slides 02, 04 and 07 each pointed
+  `data-contacts` at a shadow band 14 to 34px BELOW the cast that was drawn, so
+  the probe sampled lit glass and reported dL 4.6 to 5.9, "it reads, barely".
+  The obvious reading of that warn is "make the shadow darker", and it is wrong.
+  Running the cast down to meet the declared band put machine ink on a near
+  black ground at 1.8:1 and crossed the axis numerals; then over-correcting the
+  opacity produced dL 70, which the scorer called a black bar ruled under the
+  card and the deck's most visible artifact at thumbnail. The band was authored
+  from layout arithmetic. It has to be measured off a render.
+
+- **When a layout fix grows an "if there is room" branch, the branch is the
+  bug.** Slide 04's footer strip collided three times. First from guessed
+  coordinates, with a middot printed inside a right-anchored string. Then from a
+  measured layout whose separator was skipped when the gap came out under a
+  threshold, which silently abutted two cells into `8 KB PER HOURNOT EVERY
+  DETECTED CALL IS SENT` and cost a hard fail and a whole scoring cycle, on the
+  one item the previous cycle had been told was fixed. The version that held
+  computes all three cells from measured advance widths, divides the slack
+  equally between them, and THROWS at render time if the slack goes negative.
+  Degrading quietly into the frame is the failure mode; failing loudly at build
+  time is the fix.
+
+The common thread is that all three passed something. The lesson is not to
+distrust the gates, which caught plenty, but that a gate reporting PASS on an
+input it could not read is indistinguishable from a gate reporting PASS on work
+that is right, and only one of those is worth having.
+
+## 2026-08-29 - Phase 12 (No.44): parked from the frontier scan, editorial cartography
+
+Focus (b), editorial dataviz and cartography technique. The stalest rotation
+slot (last scanned 2026-08-18) and the one aimed at the standing repeat
+offender: artwork craft has been the weakest criterion in 8 of the last 10
+scored runs at a mean of 6.75. Six searches, four fetches, three substantive
+reads. Nothing applied, because all three upgrade slots went to reactive fixes,
+which is this phase's reactive-first rule working as written.
+
+- **AERIAL PERSPECTIVE FOR SHADED RELIEF, the finding worth having, PARKED.**
+  Computer-generated hillshade gives a lowland ridge the same graphic weight as
+  a summit, which is why our terrain heroes read flat and busy at the bottom of
+  the frame. The cartographic fix is elevation-dependent contrast: high terrain
+  carries strong luminance contrast, low terrain carries little, which is what
+  atmospheric haze does to a real landscape. Tom Patterson's recipe is four
+  steps and every one of them has a Canvas equivalent: duplicate the relief
+  layer, mask it with the normalized DEM so the copy fades out over lowland,
+  set the copy to MULTIPLY, and put a curve on the mask to control the
+  elevation at which the effect starts and how fast it fades. In our engine
+  that is a second `globalCompositeOperation='multiply'` pass over the same
+  hillshade with per-pixel alpha `pow(normalized_elevation, gamma)`, about
+  fifteen lines beside TECHNIQUE_LIBRARY 33 (the PIL hillshade) and AK3D's
+  Lambert term. PARKED, not applied: 33 is a shared helper and changing its
+  output changes every past caller's picture, which is a variety-engine
+  decision and not a Phase 12 one. UNBLOCKING CONDITION: land it as a NEW
+  named technique (33b, "Aerial-Perspective Relief") with its own gamma and
+  start-elevation parameters, on a run whose hero is actually terrain, and
+  prove it by measuring frame_balance and the bottom-third craft density
+  before and after. Restraint is the stated point of the technique: the
+  reader's reaction should be "of course that is a mountain", never "wow".
+  https://www.shadedrelief.com/shading/Swiss.html ,
+  https://en.wikipedia.org/wiki/Terrain_cartography
+- **The locator inset is a rule, not a flourish.** Datawrapper's stated
+  practice: the moment a map is CROPPED to the part that has data, the reader
+  loses the answer to "where am I", so a cropped map ships with a miniature of
+  the full basemap highlighting the visible region, positioned to leave the
+  annotation and legend space intact, with a padding parameter that shows a
+  little of the surroundings. This matters here more than at most desks: an
+  Alaska deck crops to a village, a lease block or a single inlet nearly every
+  week, and the state is big enough that the crop is unrecognisable. Recorded
+  rather than parked, because it is a planning habit for the treatment room,
+  not code. https://www.datawrapper.de/blog/cropped-view-inset-maps
+- **Bin choice is an honesty question with a number on it.** On the same
+  unemployment data, a min/max linear ramp puts 3 percent of counties in the
+  upper half of the scale while a min/median/max ramp puts 50 percent there,
+  and a chosen scheme can render counties 13.8 points apart in near-identical
+  colour while making counties 5.3 points apart look drastically different.
+  Quartiles are the recommended compromise. Worth having on file for the day a
+  deck fills Alaska boroughs by value, which it has not yet done.
+  https://www.datawrapper.de/blog/how-to-choose-a-color-palette-for-choropleth-maps
+- **Null result, second time in this slot.** A general search for 2026 news
+  graphics methodology returns SEO listicles with no parameter in them, and
+  Malofiej has been paused since 2021. The 2026-08-20 scan already wrote down
+  the lesson (go at a named desk's published methodology, not at the topic) and
+  this run confirms it: everything above came from a named practitioner's own
+  page. The next scan in this slot should start at shadedrelief.com,
+  datawrapper.de/blog, the Pudding and Reuters Graphics directly.

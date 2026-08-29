@@ -1,0 +1,278 @@
+{
+  "run_date": "2026-08-29",
+  "carousel_no": 44,
+  "document_title": "Written Before the Water",
+  "deck_summary_line": "The eight headings, the live table's seven, the thresholds a call must clear, and the notes in the margin.",
+  "post_copy": "The 19:39 note on a Chukchi Sea glider's record for August 27th reads \"likely mn\". The 20:24 note reads \"Mn\".\n\n45 minutes separate them. No published column carries that code.\n\nWhat is listening? A Slocum glider deployed off northwest Alaska on July 24th, 2026. It sorts calls by discriminant function analysis published in 2011 against a library fixed before deployment.\n\nWhy does Alaska care? Bowhead, beluga and bearded seal each get a column. NOAA Fisheries describes subsistence harvest of all three. Air gun is a column in the same table.\n\nWho reviewed the results? The page names Kate Stafford.\n\nThe eight headings, the live table's seven, the thresholds a call must clear, and the notes in the margin.\n\nOther means every sound the library never held. What has gone into it since July that no column will ever report?\n\n#PassiveAcoustics #MarineMammalMonitoring #ArcticResearch",
+  "caption_meta": {
+    "opening_move": "TIMELINE COLLAPSE",
+    "structure": "Q AND A",
+    "closing_move": "NEW:UNNAMEABLE RESIDUE",
+    "note": "The room returned neither on round one. The critic killed candidate A for reproducing the 2026-07-23 two-axis pairing with the nouns swapped, and killed candidate B for a close that was NEW:HEADLINE RIGHTS from two runs earlier renamed, and who-decides in document clothing. This is the one reassigned round the routine allows. The reassignment also required naming Kate Stafford, which retires a no-human demerit standing at about seven runs, and carrying the 2011 discriminant function analysis so the caption is visibly about a machine classifying sound."
+  },
+  "first_comment": "SOURCES, in the order the deck uses them.\n\n1. The deployment page for Slocum glider unit 595, Chukchi Sea. Woods Hole Oceanographic Institution. Read August 28th, 2026. The eight class headings, the July 24th deployment date, the operating institutions and the named reviewer all come from here.\nhttps://dcs.whoi.edu/chukchi2607/chukchi2607_unit_595.shtml\n\n2. The near real time detection table for the same deployment. This is the surface that carries seven class columns and no Killer whale column, plus the 15 minute cadence, the 11 dB threshold, the Mahalanobis gate and the 8 KB per hour satellite budget.\nhttps://dcs.whoi.edu/chukchi2607/chukchi2607_unit_595_html/chukchi2607_unit_595_summary.html\n\n3. How the system works, Woods Hole Oceanographic Institution. The DMON, the low frequency detection and classification system, the discriminant function analysis published in 2011, and the call library defined before deployment.\nhttps://robots4whales.whoi.edu/how-it-works/\n\n4. The analyst notes for the deployment. Every quoted note on slide 08 is verbatim from this page, including the lower case in \"likely mn\" at 19:39 and the capital in \"Mn\" at 20:24 on August 27th.\nhttps://dcs.whoi.edu/chukchi2607/chukchi2607_unit_595_html/chukchi2607_unit_595_allnotes.html\n\n5. Bowhead whale, NOAA Fisheries. Subsistence harvest.\nhttps://www.fisheries.noaa.gov/species/bowhead-whale\n\n6. Beluga whale, NOAA Fisheries. Subsistence harvest.\nhttps://www.fisheries.noaa.gov/species/beluga-whale\n\n7. Bearded seal, NOAA Fisheries. Subsistence harvest, in some parts of the species range.\nhttps://www.fisheries.noaa.gov/species/bearded-seal\n\nMn is the code the analyst wrote. No page on the deployment defines it, so this deck prints the code and names no species.",
+  "slides": [
+    {
+      "n": 1,
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C18",
+        "C24",
+        "C27"
+      ],
+      "strings": [
+        "The list was writtenbefore the gliderwent in the water.",
+        "CHUKCHI SEA · UNIT 595 · JULY 24TH, 2026",
+        "WOODS HOLE · OREGON STATE · UAF",
+        "01 / 09",
+        "68°37'N · 166°55'W"
+      ]
+    },
+    {
+      "n": 2,
+      "claim_ids": [
+        "C03",
+        "C06",
+        "C07",
+        "C24"
+      ],
+      "strings": [
+        "Fin whale",
+        "Beluga whale",
+        "Killer whale",
+        "Bearded seal",
+        "Bowhead whale",
+        "Walrus",
+        "Air gun",
+        "Other",
+        "\"Other indicates all calls/sounds not found in the call library\"",
+        "Eight headings. Six animals,one Air gun, one Other.",
+        "Those are the columns, in the page's own order. The library they compare against is defined before the instrument goes in the water.",
+        "THE PROJECT PAGE, DAILY GRID",
+        "02 / 09",
+        "68°37'N · 166°55'W"
+      ]
+    },
+    {
+      "n": 3,
+      "claim_ids": [
+        "C03",
+        "C06",
+        "C40",
+        "C41",
+        "C42"
+      ],
+      "strings": [
+        "Fin whale",
+        "Beluga whale",
+        "Killer whale",
+        "Bearded seal",
+        "Bowhead whale",
+        "Walrus",
+        "Air gun",
+        "Other",
+        "SUBSISTENCE HARVEST PER NOAA FISHERIES",
+        "NOAA",
+        "NOAA",
+        "NOAA",
+        "AIR GUN",
+        "Three of these columnsare food. One is Air gun.",
+        "NOAA Fisheries describes subsistence harvest of bowhead whales, beluga whales and bearded seals by Alaska Native communities. All three are class columns here. Air gun is a column in the same table.",
+        "THE SAME TABLE",
+        "03 / 09",
+        "68°37'N · 166°55'W"
+      ]
+    },
+    {
+      "n": 4,
+      "claim_ids": [
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C25"
+      ],
+      "strings": [
+        "0",
+        "5",
+        "11",
+        "15",
+        "20",
+        "DECIBELS ABOVE BACKGROUND",
+        "0",
+        "3",
+        "6",
+        "MAHALANOBIS DISTANCE",
+        "EVERY 15 MINUTES",
+        "8 KB PER HOUR",
+        "NOT EVERY CALL IS SENT",
+        "·",
+        "·",
+        "TALLIED",
+        "Two thresholds decidewhat it may count.",
+        "Only calls averaging 11 dB above background or higher are tallied. Only calls with a Mahalanobis distance under 3 are tallied. Anything quieter, or further from the library's shape, is not tallied at all.",
+        "THE ACCEPTANCE REGION",
+        "04 / 09",
+        "68°37'N · 166°55'W"
+      ]
+    },
+    {
+      "n": 5,
+      "claim_ids": [
+        "C01",
+        "C14",
+        "C15",
+        "C20",
+        "C22",
+        "C23",
+        "C24"
+      ],
+      "strings": [
+        "2011",
+        "2016",
+        "2026",
+        "JULY 24TH",
+        "AUGUST 28TH",
+        "36 DATED RECORDS",
+        "METHOD PUBLISHED",
+        "HULL PROCURED",
+        "A 2016 hull. A 2011 method.A library closed at launch.",
+        "The system extracts simple statistics from each pitch track and sorts each call by discriminant function analysis, published in 2011. The glider was procured in 2016. The call library is defined prior to deployment.",
+        "FIXED BEFORE THE WATER",
+        "05 / 09",
+        "68°37'N · 166°55'W"
+      ]
+    },
+    {
+      "n": 6,
+      "claim_ids": [
+        "C15",
+        "C27",
+        "C28"
+      ],
+      "strings": [
+        "THE BOX",
+        "68.61 TO 68.67 N",
+        "166.83 TO 166.92 W",
+        "20 KM",
+        "NORTHWEST ALASKA",
+        "The August 28th recordssit in one small box.",
+        "Across those records the position stayed inside roughly 68.61 to 68.67 north and 166.83 to 166.92 west, off northwest Alaska.",
+        "WHERE",
+        "06 / 09",
+        "68°37'N · 166°55'W"
+      ]
+    },
+    {
+      "n": 7,
+      "claim_ids": [
+        "C03",
+        "C04",
+        "C05"
+      ],
+      "strings": [
+        "Fin whale",
+        "Beluga whale",
+        "Killer whale",
+        "Bearded seal",
+        "Bowhead whale",
+        "Walrus",
+        "Air gun",
+        "Other",
+        "Fin whale",
+        "Beluga whale",
+        "Bearded seal",
+        "Bowhead whale",
+        "Walrus",
+        "Air gun",
+        "Other",
+        "PROJECT PAGE, 8",
+        "LIVE TABLE, 7",
+        "NO KILLER WHALE COLUMN",
+        "Eight columns on one page.Seven in the live table.",
+        "The deployment page's daily grid carries eight class headings, including Killer whale. The near real time detection table carries seven, with no Killer whale column at all. Both were read on repeated fetches.",
+        "TWO PUBLISHED SURFACES",
+        "07 / 09",
+        "68°37'N · 166°55'W"
+      ]
+    },
+    {
+      "n": 8,
+      "claim_ids": [
+        "C13",
+        "C16",
+        "C30",
+        "C33",
+        "C34",
+        "C36",
+        "C37",
+        "C38",
+        "C39"
+      ],
+      "strings": [
+        "JULY 24TH",
+        "\"check p13-16\"",
+        "AUGUST 6TH",
+        "\"poss single fin whale pulse p3\"",
+        "AUGUST 10TH",
+        "\"odd PTs. Not walrus. A bit high for KWs but perhaps\"",
+        "AUGUST 14TH",
+        "\"Can't be sure of species\"",
+        "\"likely mn\"",
+        "19:39",
+        "\"Mn\"",
+        "20:24",
+        "45 MIN",
+        "PRINTED",
+        "WRITTEN",
+        "19:00",
+        "19:39",
+        "20:24",
+        "21:00",
+        "AUGUST 27TH, 2026, AKDT",
+        "Where the record can'thold it, a person writes.",
+        "An analyst note logged at 19:39 reads \"likely mn\", lower case. The note 45 minutes later reads \"Mn\". Neither published surface carries a column of that name.",
+        "THE ANALYST'S NOTES",
+        "08 / 09",
+        "68°37'N · 166°55'W"
+      ]
+    },
+    {
+      "n": 9,
+      "claim_ids": [
+        "C14",
+        "C16",
+        "C21",
+        "C24"
+      ],
+      "strings": [
+        "Fin whale",
+        "Beluga whale",
+        "Killer whale",
+        "Bearded seal",
+        "Bowhead whale",
+        "Walrus",
+        "Air gun",
+        "Other",
+        "A classifier reports whatit was taught to name.",
+        "36 dated records run from July 24th to August 28th, reviewed by an experienced analyst. Every one sorts the Chukchi into columns set before the glider went in.",
+        "09 / 09",
+        "SOURCES IN COMMENTS",
+        "WHO GETS TO ADD A COLUMN?",
+        "ALASKA.AI",
+        "alaskaaihq.com"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post the sources comment within about sixty seconds of publishing. It is plain text and every URL has to stay visible.",
+    "Reply substantively to every comment in the first sixty to ninety minutes. Threaded author replies are what move reach.",
+    "If anyone asks what Mn means, say the deck deliberately did not name a species because no published page for this deployment defines the code. Let the field answer it.",
+    "Same for Air gun. The deck prints the column name the project prints and adds nothing.",
+    "Walrus is one of the eight columns and is deliberately absent from the subsistence sentence, because the source for it could not be verified. Do not add it in a reply.",
+    "Best window is Tuesday to Thursday, 8 to 11 a.m. Alaska time."
+  ],
+  "editor_notes_for_email": "SHIPS at 8.51 against 8.3 with no hard fail. The cycle-2 blocker, slide 04's clipped footer strip reading '8 KB PER HOURNOT EVERY DETECTED CALL IS SENT', is verifiably fixed in the pixels; the strip is now laid out from measured advance widths and throws at render time if the slack goes negative. machine_qa is 0 fails and 58 warns, pdf_mode vector at 6.08MB. Two things worth knowing. (1) Slide 04's axis numeral '11' measures 4.4:1 at its worst pixel against a 5.0 box mean; it is a 30px bold data label well inside the WCAG large-text floor and it reads, but it is the one contrast reading in the deck under 4.5. (2) Slide 05's data-scale declaration was silently truncated all run by an apostrophe inside a single-quoted HTML attribute, so that slide's two declared axes were never audited until this round; the text was rewritten and both now parse. Nothing in the pipeline failed on it, which is logged as the run's top machine-upgrade candidate. On the post itself, honour the aftercare list: the deck deliberately refuses to name a species for the code Mn, refuses to gloss Air gun, and deliberately leaves walrus out of the subsistence sentence because the fact-checker could not source it. Do not fill any of those three gaps in a comment reply."
+}

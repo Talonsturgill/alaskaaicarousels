@@ -70,6 +70,7 @@ refuses_automated_fetch:
     - {host: "miningnewsnorth.com",     route: "none known"}
     - {host: "muni.org",                route: "NONE KNOWN, and this one is expensive: an Anchorage ordinance's own text and its AO number were unobtainable for No.40, which had to ship an explicit caveat instead. Assembly coverage in ADN or Alaska Public Media is the only route, and it does not carry AO numbers reliably"}
     - {host: "anchorage.legistar.com",  route: "none known; same hole as muni.org, same caveat"}
+    - {host: "reddit.com",              route: "NONE, and it is worse than a 403: WebFetch refuses www.reddit.com and old.reddit.com before any request is made, and a site:reddit.com WebSearch returns results from everywhere except Reddit, so a scout can spend a beat on it and read the absence as 'nothing being discussed'. Measured 2026-08-29 (run No.44). Community signal comes from Hacker News through hn.algolia.com/api/v1/search_by_date (comments included, and it fetches fine), from letters and op-ed threads at ADN and the Landmine, and from minuted public testimony. See Beat F in the routine instructions"}
 
 discover:
   enabled: true
