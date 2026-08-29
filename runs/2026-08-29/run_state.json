@@ -1,0 +1,25 @@
+{
+ "run_date": "2026-08-29",
+ "carousel_no": 44,
+ "date_note": "Woke 2026-08-28 23:09 AKDT with runs/2026-08-28/ already shipped by No.43. Per the routine's date rule the run takes the first date with no runs/<date>/ directory, which is 2026-08-29, the date Anchorage rolls into within the hour.",
+ "phases": {
+  "wake": "done: out/2026-08-29/plan.md",
+  "craft_refresh": "done: knowledge/FIELD_NOTES.md 2026-08-29 entry, 3 searches",
+  "research": "done: 6 scouts, out/2026-08-29/scout_merge.md + scouts/",
+  "claims": "done: out/2026-08-29/claims.json, 53 claims all primary, claims_check PASS",
+  "docket": "partial: watch.json triaged (1 bill agrees, 0 hearings = out of session, 0 failed, 29 candidates all dead vehicles or off-beat), 6 worklist items re-verified against primary sources and last_updated set. Step 1 (new items from this run claims) pending claims.",
+  "gas_watch": "done: site_signoff PASS 18/18, gaswatch_pagecheck PASS, visual read clean at 1280 and 390, no fixes needed",
+  "selection": "done: out/2026-08-29/selection.md, dedupe exit 0",
+  "directors_room": "in-progress: 3 treatment-directors (cinematographer, systems-illustrator, data-journalist)",
+  "copy": "pending",
+  "art_build": "pending",
+  "pixel_review": "pending",
+  "flow_review": "pending",
+  "assemble": "pending",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ }
+}

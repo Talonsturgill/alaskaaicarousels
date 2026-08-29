@@ -1,0 +1,127 @@
+{
+  "run_dir": "out/2026-08-29",
+  "render_report": "out/2026-08-29/render/render_report.json",
+  "aggregates_file": "out/2026-08-29/aggregates.json",
+  "detected": 12,
+  "declared": 12,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Eight headings",
+      "text": "Eight headings. Six animals,one Air gun, one Other.",
+      "n": 8,
+      "subject": "headings"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Six animals",
+      "text": "Eight headings. Six animals,one Air gun, one Other.",
+      "n": 6,
+      "subject": "animals"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "15 MINUTES",
+      "text": "EVERY 15 MINUTES",
+      "n": 15,
+      "subject": "minutes"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Two thresholds",
+      "text": "Two thresholds decidewhat it may count.",
+      "n": 2,
+      "subject": "thresholds"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "36 DATED RECORDS",
+      "text": "36 DATED RECORDS",
+      "n": 36,
+      "subject": "dated records"
+    },
+    {
+      "slide": 6,
+      "kind": "span",
+      "fragment": "61 TO 68",
+      "text": "68.61 TO 68.67 N",
+      "from_n": 61,
+      "to_n": 68
+    },
+    {
+      "slide": 6,
+      "kind": "span",
+      "fragment": "61 to 68",
+      "text": "Across those records the position stayed inside roughly 68.61 to 68.67 north and",
+      "from_n": 61,
+      "to_n": 68
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Eight columns",
+      "text": "Eight columns on one page.Seven in the live table.",
+      "n": 8,
+      "subject": "columns"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "eight class headings",
+      "text": "The deployment page's daily grid carries eight class headings, including Killer",
+      "n": 8,
+      "subject": "class headings"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "TWO PUBLISHED SURFACES",
+      "text": "TWO PUBLISHED SURFACES",
+      "n": 2,
+      "subject": "published surfaces"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "39 reads",
+      "text": "An analyst note logged at 19:39 reads \"likely mn\", lower case. The note 45 minut",
+      "n": 39,
+      "subject": "reads"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "36 dated records",
+      "text": "36 dated records run from July 24th to August 28th, reviewed by an experienced a",
+      "n": 36,
+      "subject": "dated records"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 6,
+      "text": "68.61 TO 68.67 N",
+      "note": "Not a count. These are the latitude bounds of the rounded position band in C28, printed as coordinates. The detector reads the decimal parts as a span."
+    },
+    {
+      "slide": 6,
+      "text": "Across those records the position stayed inside roughly 68.61 to 68.67 north and",
+      "note": "The same coordinate pair from C28 in prose, not an aggregation."
+    },
+    {
+      "slide": 8,
+      "text": "An analyst note logged at 19:39 reads \"likely mn\", lower case. The note 45 minut",
+      "note": "Not a count. 19:39 is a clock time from C33 and the detector has read its minutes as a quantity."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "S7 'Eight columns on one page.Seven in the live tabl' [from_claim]: the noun 'column' does not appear in claim C03; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

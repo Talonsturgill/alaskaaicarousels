@@ -4990,3 +4990,48 @@ still be about the wrong subject, and nothing in caption_check can see that.
   its place.
   https://www.socialpilot.co/blog/linkedin-carousel
   https://usevisuals.com/blog/linkedin-carousel-engagement-statistics-2026
+
+## 2026-08-29 - Phase 14 (No.44): three ways a check can be green and wrong
+
+Run No.44 scored 7.79, then 8.03 capped to 6.9 by a hard fail, then 8.51. Every
+one of the three rounds was spent on the same class of defect: a gate that
+reported something other than what was on the page.
+
+- **A declaration attribute that does not parse is a gate that did not run.**
+  Slide 05 shipped `data-scale='[... "2011, the method's publication" ...]'`.
+  The attribute is single-quote delimited, so the apostrophe closed it at char
+  154 and truncated the JSON. That slide's two declared axes were never audited,
+  and nothing failed: `dossier_check` only inspects `data-contacts`, and even
+  there it falls back to counting `"shadow"` substrings when the JSON will not
+  parse; `qa.py` logged `SyntaxError: Unterminated string` and carried on; the
+  synced gate block then reported the slide as checked. A human scorer reading a
+  log found it. Reading a log is not a check. Never put prose with an apostrophe
+  inside a single-quoted declaration, and treat the silent skip itself as the
+  bug: it is logged as this run's top machine-upgrade candidate.
+
+- **Declare the band the ink is actually in.** Slides 02, 04 and 07 each pointed
+  `data-contacts` at a shadow band 14 to 34px BELOW the cast that was drawn, so
+  the probe sampled lit glass and reported dL 4.6 to 5.9, "it reads, barely".
+  The obvious reading of that warn is "make the shadow darker", and it is wrong.
+  Running the cast down to meet the declared band put machine ink on a near
+  black ground at 1.8:1 and crossed the axis numerals; then over-correcting the
+  opacity produced dL 70, which the scorer called a black bar ruled under the
+  card and the deck's most visible artifact at thumbnail. The band was authored
+  from layout arithmetic. It has to be measured off a render.
+
+- **When a layout fix grows an "if there is room" branch, the branch is the
+  bug.** Slide 04's footer strip collided three times. First from guessed
+  coordinates, with a middot printed inside a right-anchored string. Then from a
+  measured layout whose separator was skipped when the gap came out under a
+  threshold, which silently abutted two cells into `8 KB PER HOURNOT EVERY
+  DETECTED CALL IS SENT` and cost a hard fail and a whole scoring cycle, on the
+  one item the previous cycle had been told was fixed. The version that held
+  computes all three cells from measured advance widths, divides the slack
+  equally between them, and THROWS at render time if the slack goes negative.
+  Degrading quietly into the frame is the failure mode; failing loudly at build
+  time is the fix.
+
+The common thread is that all three passed something. The lesson is not to
+distrust the gates, which caught plenty, but that a gate reporting PASS on an
+input it could not read is indistinguishable from a gate reporting PASS on work
+that is right, and only one of those is worth having.

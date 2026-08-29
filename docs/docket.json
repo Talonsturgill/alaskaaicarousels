@@ -328,7 +328,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-25",
+      "last_updated": "2026-08-29",
       "history": [
         {
           "date": "2026-07-08",
@@ -405,6 +405,10 @@
         {
           "date": "2026-08-25",
           "note": "Re-verified against the Air Force's own announcement. The department's request for lease proposals covers roughly 4,700 acres across JBER, Eielson and Clear, and the announcement carries no award, no selected developer and no decision. The record stands where it stood."
+        },
+        {
+          "date": "2026-08-29",
+          "note": "Re-verified against the Eielson announcement. The Air Force identified four sites totaling 3,967 acres under solicitation AFCEC-26-R-0009, with proposals due August 10th, 2026 at 5 p.m. Central. The announcement says the opportunity will be awarded through a competitive source selection process, and it names no developer and no award. The record stands where it stood."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -998,7 +1002,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-28",
+      "last_updated": "2026-08-29",
       "history": [
         {
           "date": "2026-07-17",
@@ -1103,6 +1107,10 @@
         {
           "date": "2026-08-28",
           "note": "Re-verified against the state notice published August 19th for ADL 234762, which prints the written comment close as 5:00 PM, MONDAY, SEPTEMBER 14. The first of the two public meetings on the conveyance was held last night on Zoom. The second stands at 11:30 a.m. on September 2nd, 2026. Seventeen days remain to write in on the roughly 19,950 acres."
+        },
+        {
+          "date": "2026-08-29",
+          "note": "Re-verified against the state notice published August 24th, 2026 for ADL 234762. The written comment period stays open from July 10th through September 14th, and the department still lists two public meetings on the conveyance. The first was held August 27th, 2026 and the second is September 2nd, 2026 at 11:30 a.m. on Zoom. Nothing moved."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1421,7 +1429,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-25",
+      "last_updated": "2026-08-29",
       "history": [
         {
           "date": "2026-08-02",
@@ -1458,6 +1466,10 @@
         {
           "date": "2026-08-25",
           "note": "The response window has closed. Vendor responses on RFI 02-101-27, Automatic Compliance and Data Integration CDL, were due at 2:00 p.m. on August 20th, 2026, per the state notice, which shows Amendment One and no further extension. Nothing has been published since, so this entry records the close and carries no outcome."
+        },
+        {
+          "date": "2026-08-29",
+          "note": "Re-verified against the state notice. Request for information 02-101-27, Automatic Compliance and Data Integration CDL, still shows Amendment One as the current posting and no further amendment. Vendor responses were due August 20th, 2026 at 2 p.m. Alaska time, so that window stays closed. The notice still prints neither artificial intelligence nor machine learning."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1710,7 +1722,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-25",
+      "last_updated": "2026-08-29",
       "history": [
         {
           "date": "2026-08-06",
@@ -1731,6 +1743,10 @@
         {
           "date": "2026-08-25",
           "note": "Re-verified against the base's own microreactor page. The notice of intent to award to Oklo is still not a contract. The page says it begins negotiation toward a possible award, and that any award depends on the company completing Nuclear Regulatory Commission licensing, so the pilot remains pre-award."
+        },
+        {
+          "date": "2026-08-29",
+          "note": "Re-verified against the base's own microreactor page. The notice of intent to award to Oklo is still not a contract. The page says the notice starts a negotiation to potentially award, pending the company completing Nuclear Regulatory Commission licensing, and it sizes the plant at up to 5 megawatts delivered to the base's critical infrastructure. The most recent quarterly newsletter is still dated June 2026."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -2172,6 +2188,11 @@
           "url": "https://akenergyauthority.org/What-We-Do/Railbelt-Energy/Cook-Inlet-PowerLink-Project",
           "outlet": "Alaska Energy Authority",
           "date": "2026-08-21"
+        },
+        {
+          "url": "https://www.federalregister.gov/documents/2026/08/25/2026-17254/deepgreen-western-passage-spv-llc-notice-of-preliminary-permit-application-accepted-for-filing-and",
+          "outlet": "Federal Register",
+          "date": "2026-08-25"
         }
       ],
       "history": [
@@ -2182,10 +2203,14 @@
         {
           "date": "2026-08-25",
           "note": "Checked the Federal Register for anything filed under this company. It carries exactly one DeepGreen notice, published August 25th, 2026, and that notice is for the Western Passage project in the Bay of Fundy near Eastport, Maine. It is not the Cook Inlet application. So the commission has now noticed the company's Maine filing and has not noticed the Alaska one."
+        },
+        {
+          "date": "2026-08-29",
+          "note": "The same developer's Maine application advanced and the Cook Inlet proposal did not. FERC accepted DeepGreen Western Passage SPV LLC's preliminary permit application for project P-15424-000, in the Western Passage of the Bay of Fundy near Eastport, Maine, and published the notice on August 25th, 2026. Comments, motions to intervene and competing applications on that project are due by 5:00 p.m. Eastern on October 19th, 2026. That notice does not mention Alaska or Cook Inlet, and no equivalent notice has published for the Cook Inlet proposal, whose last recorded federal action remains the June 18th, 2026 finding that the filing was incomplete."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-08-25",
+      "last_updated": "2026-08-29",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -2247,7 +2272,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-08-28",
+      "last_updated": "2026-08-29",
       "history": [
         {
           "date": "2026-08-25",
@@ -2264,6 +2289,10 @@
         {
           "date": "2026-08-28",
           "note": "Re-verified against the Anchorage Daily News account of August 20th. The public hearing stands at the Assembly's September 1st meeting, four days out. The ordinance as reported would require Assembly permission before the police department adds artificial intelligence with human-feature recognition to the camera network, and it moves alongside a roughly $600,000 equipment contract with ThunderCat Technology for the Real Time Crime Center. About 216 residents have registered home security cameras with the program so far. No ordinance number has been published anywhere reachable."
+        },
+        {
+          "date": "2026-08-29",
+          "note": "Re-verified against Alaska Public Media's August 21st account. The public hearing on the ordinance from Keith McCormick, Daniel Volland and Sydney Scout stands on September 1st, 2026, three days out, at the same meeting that takes up the roughly $600,000 ThunderCat equipment contract. Staff would connect to up to 750 cameras, more than 250 of them city traffic cameras. Nothing moved."
         }
       ],
       "cta_label": "TESTIFY",

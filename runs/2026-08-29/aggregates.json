@@ -1,0 +1,104 @@
+{
+  "run_date": "2026-08-29",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Eight headings. Six animals,one Air gun, one Other.",
+      "fragment": "Eight headings",
+      "claim": "C03",
+      "note": "C03 states the grid carries eight sound classes and lists them."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Eight headings. Six animals,one Air gun, one Other.",
+      "fragment": "Six animals",
+      "claim": "C03",
+      "note": "C03's own correction reads six animal categories plus Air gun plus Other."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "EVERY 15 MINUTES",
+      "fragment": "15 MINUTES",
+      "claim": "C08",
+      "note": "Tallies are reported by the DMON every 15 minutes."
+    },
+    {
+      "kind": "count",
+      "slide": 4,
+      "text": "Two thresholds decidewhat it may count.",
+      "fragment": "Two thresholds",
+      "subject": "thresholds",
+      "members": [
+        "C09",
+        "C10"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "text": "36 DATED RECORDS",
+      "fragment": "36 DATED RECORDS",
+      "claim": "C14",
+      "note": "C14 states 36 dated daily analyst review records."
+    },
+    {
+      "kind": "design",
+      "slide": 6,
+      "text": "68.61 TO 68.67 N",
+      "fragment": "61 TO 68",
+      "note": "Not a count. These are the latitude bounds of the rounded position band in C28, printed as coordinates. The detector reads the decimal parts as a span."
+    },
+    {
+      "kind": "design",
+      "slide": 6,
+      "text": "Across those records the position stayed inside roughly 68.61 to 68.67 north and",
+      "fragment": "61 to 68",
+      "note": "The same coordinate pair from C28 in prose, not an aggregation."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "Eight columns on one page.Seven in the live table.",
+      "fragment": "Eight columns",
+      "claim": "C03",
+      "note": "Eight class headings on the project page's daily grid."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "The deployment page's daily grid carries eight class headings, including Killer",
+      "fragment": "eight class headings",
+      "claim": "C03",
+      "note": "Same figure, in prose."
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "text": "TWO PUBLISHED SURFACES",
+      "fragment": "TWO PUBLISHED SURFACES",
+      "subject": "published surfaces",
+      "members": [
+        "C03",
+        "C05"
+      ]
+    },
+    {
+      "kind": "design",
+      "slide": 8,
+      "text": "An analyst note logged at 19:39 reads \"likely mn\", lower case. The note 45 minut",
+      "fragment": "39 reads",
+      "note": "Not a count. 19:39 is a clock time from C33 and the detector has read its minutes as a quantity."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 9,
+      "text": "36 dated records run from July 24th to August 28th, reviewed by an experi",
+      "fragment": "36 dated records",
+      "claim": "C14",
+      "note": "C14 states 36 dated daily analyst review records."
+    }
+  ]
+}
