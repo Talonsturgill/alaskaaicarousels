@@ -4238,6 +4238,12 @@ ASK_JS = r"""
       .catch(function(e){
         if (body) { if (stage) { stage.remove(); stage = null; }
                     if (!started) body.textContent = (e && e.message) || 'that did not work';
+                    /* A failed background check spent no request and removed
+                       this question from thread history. Put it back in the
+                       composer so the promised one-tap retry is a real one. */
+                    if (!started && e && /human check/i.test(e.message || '')) {
+                      input.value = q; ghost(input.value);
+                    }
                     again(); }
         done();
       });
