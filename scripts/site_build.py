@@ -902,6 +902,11 @@ transition:transform .25s,border-color .25s,box-shadow .25s;}
    stays under the site header while the reader searches, then filters the
    already-public markup locally: no request, tracking call or database. */
 .collection-filter{position:relative;}
+.collection-filter ol.claims li{min-width:0;}
+/* Source URLs are evidence, so keep the complete address visible. At the
+   320px phone floor, long path segments must wrap instead of widening the
+   whole archive hundreds of pixels beyond the viewport. */
+.collection-filter ol.claims a.proselink{overflow-wrap:anywhere;word-break:break-word;}
 .findbar{position:sticky;top:86px;z-index:45;display:grid;
 grid-template-columns:auto minmax(180px,1fr) auto;align-items:center;gap:12px;
 margin:32px 0 22px;padding:10px 12px;border:1px solid rgba(44,88,118,.72);
@@ -1033,7 +1038,7 @@ justify-content:center;gap:18px;font-family:JBMono,monospace;color:var(--mute);}
 /* ---------- how it works ---------- */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
 .step{background:linear-gradient(165deg,var(--panel) 0%,var(--deep) 100%);
-border:1px solid var(--line);border-radius:12px;padding:24px 26px;}
+border:1px solid var(--line);border-radius:12px;padding:24px 26px;min-width:0;}
 .step .k{font-family:JBMono,monospace;font-size:12px;letter-spacing:.16em;color:var(--gold);}
 .step h3{font-family:Fraunces,serif;font-weight:540;font-size:21px;color:var(--snow);margin:10px 0 8px;}
 .step p{font-size:14.5px;color:var(--mute);}
@@ -7960,7 +7965,7 @@ def services_page(today, site_url):
     range_steps = """<h2 data-reveal>From one task to a full digital crew</h2>
 <p class="sub" data-reveal>Whatever the work is, if it happens on a screen it can probably be
 built. Bring us a specific ask or let the Field Study find the highest payers.</p>
-<div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+<div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))">
   <div class="step" data-reveal><div class="k">01 &middot; ANSWER</div><h3>Voice and chat agents</h3>
   <p>Every call answered and every job booked, at 2 am in January and in the July rush.
   A front desk that never calls in sick.</p></div>
