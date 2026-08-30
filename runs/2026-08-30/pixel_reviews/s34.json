@@ -1,0 +1,144 @@
+```json
+[
+  {
+    "slide": 3,
+    "verdict": "revise",
+    "encoding_reads": "n/a for a declared 11a (slide 03 has no wordless-claim field), but the implicit claim (four pieces have been cut out of this archipelago and lifted) does read at 432px from the gold cut faces plus the offset gray shadow mass.",
+    "transcription": "THE SECOND LARGEST AWARD OF ALL 185 | $6,518,029 | The biggest / machine is a / handle. | PeaceHealth Ketchikan Medical Center takes it for the first robotic assisted minimally invasive surgery in Southern Southeast, serving four boroughs across water. A surgeon drives it. | PETERSBURG | WRANGELL | KETCHIKAN GATEWAY | PRINCE OF WALES-HYDER | MONEY AND SUBSTANCE CORROBORATED IN / PRESS. | AWARDEE NAME PER THE STATE SPREADSHEET. | 60 MI | 03 / 09 | 55\u00b020'N 131\u00b038'W",
+    "transcription_diffs": [
+      {"expected": "The biggest machine / is a handle. (maxLines 2)", "rendered": "The biggest / machine is a / handle. (3 lines)", "severity": "minor"},
+      {"expected": "MONEY AND SUBSTANCE IN TWO OUTLETS. NAME PER THE STATE SPREADSHEET.", "rendered": "MONEY AND SUBSTANCE CORROBORATED IN PRESS. AWARDEE NAME PER THE STATE SPREADSHEET.", "severity": "minor"},
+      {"expected": "body sentence 'The awardee name comes from the state's own award spreadsheet.'", "rendered": "absent from body, its meaning relocated to the mono provenance fixture", "severity": "minor"}
+    ],
+    "three_scales": {
+      "thumb": "One heavy black number, a three line serif headline, a nine line paragraph in the left half; in the right half a pale archipelago carrying a scatter of small yellow flecks and a soft gray offset mass, with four white label chips reading as bright rectangles. The takeaway (a very large number bought something in a named place) lands.",
+      "full": "The four borough names become readable and each attaches to a landmass; the gold reads as edge faces on one consistent side rather than as dots; the two part shadow separates into core and skirt; the plate crop at x 500 resolves as a deliberate cut line rather than a rule; the provenance and coordinates fixtures become legible.",
+      "zoom": "Genuine fjord intricacy at full coastline resolution (the deck's promised free detail, and it is really there), per edge cabinet side quads with lit #FFC72C and lee #B8862A on separate faces, the 1.6px ink outline against the graphite context rules, and the paper tooth speckle in the bare water.",
+      "aggregation_holds": true
+    },
+    "lower_third": "PARTIAL. The band (design y 900 to 1350) is occupied by modelled tone only in its top ~130px: the southern archipelago's extruded tiles, gold cut faces and two part shadows run down to about design y 1026. Below that, from design y ~1030 to the constant bar at ~1300, the right half of the frame (design x 520 to 1000) is bare grained paper with nothing in it. Field 4a promised Prince of Wales-Hyder's mass and cast shadow would occupy the bottom band; they occupy the top quarter of it. Grain alone is texture, not modelled tone.",
+    "strengths_do_not_break": [
+      "The full resolution coastline. The fjord intricacy at zoom is the best drawn detail in the run and no simplification should ever be applied here.",
+      "The $6,518,029 figure: tabular, correctly kerned, and unambiguously legible at 432px. Do not shrink it.",
+      "The bare paper copy column created by cropping the plate at x 500. The type reserve is physical and a reader can name why that region is blank.",
+      "One consistent cut direction across every gold face and one consistent shadow direction; the cabinet extrusion never self intersects on the fjords.",
+      "Gold budget is clean: cut faces plus the 4px bar terminal, nothing else, no glyph on gold.",
+      "The two tone gold (lit #FFC72C, lee #B8862A) actually differentiates on the render, which is what makes the tiles read as solids and not stickers."
+    ],
+    "defects": [
+      {
+        "what": "Dead lower right. Below the archipelago the region roughly design x 520-1000, y 1030-1290 is bare paper carrying only grain, about 20 percent of the frame height across the right half. The declared quiet zone was cols 1 to 3 row 10 (bottom LEFT); the actual hole is bottom right and bottom centre, so the frame's weight sits high right and the composition tips.",
+        "where": "520,1030 to 1000,1290 design px",
+        "severity": "medium",
+        "fix": "Extend the zoom so the southern tiles and their ambient skirts reach design y ~1180: change the AKGeo.zoomTo centre from [758, 786] to about [758, 720] and raise the scale from 6.2 to about 6.8, letting the southern islands bleed off the bottom of the plate crop. This is the same change that fixes the missing edge tease below."
+      },
+      {
+        "what": "Device C edge tease is absent. The continuity system and dossier field 6 both state the Wrangell tile crosses the right margin and completes at the left edge of slide 04. Nothing crosses; all art stops cleanly at the plate mark at design x 1000 and the 80px right margin is bare.",
+        "where": "1000,600 to 1080,1100 design px",
+        "severity": "medium",
+        "fix": "Let the eastern tiles clip against the FRAME edge (x 1080) instead of the plate mark: extend the map clip rect right edge from 1000 to 1080 and re-run the crop so at least one lifted tile with its gold face is sliced by the frame."
+      },
+      {
+        "what": "The four label knockout plates are opaque and wide, and they sit ON the coastline they are supposed to name, occluding the slide's best detail. KETCHIKAN GATEWAY is about 390 design px wide and blanks the fjords around Revillagigedo; WRANGELL blanks a channel; PETERSBURG covers the strait north of it. Acceptance item 'every one of the four labels sits on water and touches no ink' is satisfied only by occlusion, not by placement.",
+        "where": "labels at approx 720,845 / 750,673 / 725,838 and 590,935 design px",
+        "severity": "medium",
+        "fix": "Shrink each knockout to the glyph box plus 6px and drop its fill to 92 percent alpha, then nudge each label off its centroid onto the nearest bare water with a 12px clear radius: move KETCHIKAN GATEWAY left and down to sit in Behm Canal, move WRANGELL up into Frederick Sound, keep PRINCE OF WALES-HYDER where it is (it is already on water)."
+      },
+      {
+        "what": "Bad line break with an orphan in the provenance fixture: 'MONEY AND SUBSTANCE CORROBORATED IN' / 'PRESS.' leaves a single five character word on its own line directly above a full second line.",
+        "where": "80,1160 to 450,1215 design px",
+        "severity": "low",
+        "fix": "Widen the provenance block max-width from ~380 to 460px so the first sentence sets on one line, or shorten to 'MONEY AND SUBSTANCE CORROBORATED IN PRESS.' on line one and 'AWARDEE NAME PER THE STATE SPREADSHEET.' on line two."
+      },
+      {
+        "what": "The plate crop edge at design x 500 renders as a single flat hairline, not the 'bevelled cut edge' the reconciliation declares. There is no lit and lee edge pair, so the sheet does not read as having thickness where it was cut.",
+        "where": "500,150 to 500,1240 design px",
+        "severity": "low",
+        "fix": "Draw the crop as a two pixel pair: a 1px #FBF7EE lit edge at x 499 and a 1px #8D9AAA lee edge at x 501, matching the plate mark bite treatment used at the safe margin."
+      },
+      {
+        "what": "Provenance mono is 16px graphite (#93A0A8 family) on sheet, about 2.4:1. The deck's own palette rule says graphite is used only for non text rules and for labels at 20px and above, never for body. This line carries a sourcing claim, not decoration.",
+        "where": "80,1160 design px",
+        "severity": "low",
+        "fix": "Darken the provenance fill from graphite to #6B7680 (about 4.6:1 on #F4EFE4) and leave the size at 16px so it stays a fixture."
+      },
+      {
+        "what": "Headline sets on three lines against a declared maxLines 2, and the body measure runs about 20 to 24 characters against the deck standard of 30 to 38, giving a nine line ragged column.",
+        "where": "80,300 to 480,1050 design px",
+        "severity": "low",
+        "fix": "Raise the headline fitText box from 420 to 500px so 'The biggest machine / is a handle.' fits on two lines, and raise the body max-width from 400 to 470px to bring the measure to about 30 characters."
+      }
+    ],
+    "score_0_10": 8.0
+  },
+  {
+    "slide": 4,
+    "verdict": "revise",
+    "encoding_reads": "no. A stranger at 432px sees a headline, a paragraph, a dashed rule and a ghost of Alaska; the 'misregistered second press pass' argument is invisible and the slide's claim is carried entirely by the words. Cause is VALUE and SCALE: the screen at #6EA5FF 15 percent over #F4EFE4 reads as neutral paper texture rather than as a second colour, the 6px/4px misregister is smaller than one thumbnail pixel, and the only decoder (a registration cross) is a single 40px artifact at design x ~955.",
+    "transcription": "THREE OF THE EIGHT HAVE NO ADDRESS TO CUT | Statewide means / nobody can point. | The Alaska Stroke Coalition takes $3,156,626 for an AI imaging network across 21 acute care hospitals, running on existing systems with no new imaging hardware. The state publishes no list of which 21. | 21 ACUTE CARE HOSPITALS, SITES NOT PUBLISHED | 400 MI | 04 / 09 | SECOND PASS, OUT OF REGISTER",
+    "transcription_diffs": [
+      {"expected": "MapHabit and the Statewide Independent Living Council are statewide too.", "rendered": "absent from the frame entirely", "severity": "hard-fail"}
+    ],
+    "three_scales": {
+      "thumb": "Kicker, a two line serif headline, a seven line paragraph, one 20px caps caption, a short row of tiny dark dashes, a barely visible beige silhouette of Alaska filling the bottom 45 percent, and a warm horizontal strip at the very bottom. No colour, no depth, no countable quantity. The entire takeaway is read off the type.",
+      "full": "The single registration cross resolves at design x ~955 y ~726 as a dark cross offset from a blue ring; the dashed rule resolves into crosshair glyphs; the state's 29 borough rules appear at very low contrast; the bottom strip resolves as a paper curl with a lit crown, a warm graded inside face and a cool cast shadow; 'SECOND PASS, OUT OF REGISTER' becomes readable.",
+      "zoom": "The dot screen resolves into discrete dots at about 5.5px pitch running over the plate mark and into the margins, which is correct and is the one real reward. The curl's gradient is smooth with no banding. The screen's compression across the curl is not observable.",
+      "aggregation_holds": false
+    },
+    "lower_third": "SATISFIED, and it is the best thing on the slide. The bottom band carries the state plate's Southeast lobe down to about design y 1180, then a genuinely modelled paper curl from about design y 1185 to 1253: a lit crown line with a real undulation across its width, a warm graded inside face, and a cool cast shadow beneath it before the frame margin. This is modelled tone, not a plate or a caption, and it is the only three dimensional object in the frame exactly as field 4a claims.",
+    "strengths_do_not_break": [
+      "The paper curl. Lit crown, graded inside face, cast shadow, subtle non uniform undulation, no banding in the gradient. It is the only thing keeping this frame from being flat and it must survive any rebuild.",
+      "The dot screen is drawn as a real dot grid, not a fill, and it genuinely runs over the plate mark and into all four margins, which is the correct physical behaviour for a press pass.",
+      "The one registration cross that is present is well drawn: a dark cross with a blue ring offset by the declared amount.",
+      "Body copy is high contrast ink and the screen passes under it, so no glyph is degraded.",
+      "Gold budget is clean: only the 4px bar terminal tick at design x 80.",
+      "Nothing is lifted anywhere in the frame, which is the semantic point and is correctly executed."
+    ],
+    "defects": [
+      {
+        "what": "The kicker asserts 'THREE OF THE EIGHT HAVE NO ADDRESS TO CUT' and the frame names ONE. The dossier's body sentence 'MapHabit and the Statewide Independent Living Council are statewide too.' (C33, claims-indexed to this slide) is missing and the BUILD RECONCILIATION says 'Everything else is as planned', so this is an unexplained drop. The slide promises a count it does not substantiate.",
+        "where": "body block, ending at approx 80,660 design px",
+        "severity": "high",
+        "fix": "Restore the sentence verbatim as the body's final sentence. The block currently sets 7 lines at 34px in a 520px measure; at 44 words it will set 9 lines and still clear the ISOTYPE caption at y 726, so no other geometry changes."
+      },
+      {
+        "what": "Only one of the three declared registration crosses is legible. Acceptance item 'all three registration crosses are present and show the same offset' fails. Whatever exists at the far left edge (around design x 0 to 15, design y ~1140 and ~1185) is clipped by the frame and unreadable at any scale. With one cross, the misregister has no witness and the metaphor is undecodable, which is precisely the mitigation the dossier's own risk flag depended on.",
+        "where": "left margin, design x 0-40, y 1140 and 1185; right margin cross at 955,726",
+        "severity": "high",
+        "fix": "Place all three crosses fully inside the frame at design (40, 130), (955, 726) and (40, 1120), each at 40px, and increase the offset ring's alpha so the 6px/4px displacement is visible: raise the blue ring to #2E5FA3 at 70 percent instead of screen blue at 15 percent, since a registration mark is a solid ink mark and not a tint."
+      },
+      {
+        "what": "The screen does not read as blue and does not read as misregistered. At #6EA5FF 15 percent over #F4EFE4 the field is a neutral texture; the second colour never announces itself, so the 'second press pass' reading is impossible without the caption. Acceptance item 'the screen visibly overshoots the coastline on at least two edges' also fails: because the state fill is nearly the same value as the sheet, there is no visible fringe anywhere along the coastline.",
+        "where": "whole sheet; coastline edges around 640,900 and 900,1080 design px",
+        "severity": "high",
+        "fix": "Two changes. Raise the screen to #6EA5FF at 26 percent with dot radius 1.3px so it reads as a cool second ink at 432px. Then draw the state plate's coastline TWICE: once in ink at register and once as a screen-blue stroke offset +6x/+4y, so the misregister is legible on the largest shape in the frame instead of only on three small crosses. That single addition is what turns the metaphor from a caption into a picture."
+      },
+      {
+        "what": "Top loaded composition, which is the defect class this run's storyboard named as present in 4 of 10 prior runs. All ink mass (kicker, 84px headline, 9 body lines, caption) sits above design y 760. Below it the state plate at graphite 0.4 opacity is so low in contrast that the bottom 45 percent of the frame carries almost no visual weight and at 432px reads as an empty beige field.",
+        "where": "map region approx 300,830 to 900,1180 design px",
+        "severity": "high",
+        "fix": "Raise the context plate from 0.4 to 0.62 opacity on the borough rules and darken the state fill from the sheet-adjacent tone to the flat tile fill #E7E0D0, so the plate reads as a printed object at thumb. Keep it context tier (no ink outline, no lift) so the CUT/SCREEN/PHANTOM system is not violated."
+      },
+      {
+        "what": "The screen's compression across the curl is not observable. Field 4a calls this 'the physical proof that the screen is a layer on the sheet rather than a tint on the image', and on the render the curl band appears smooth with no visible dot rhythm bending across it.",
+        "where": "1185 to 1253 design px, full width",
+        "severity": "medium",
+        "fix": "Redraw the screen over the curl band with the row pitch compressed from 5.5px to 2.8px at the crown and easing back to 5.5px at the curl's base, and keep the dots at the raised 26 percent alpha so the change is visible. The compression must be drawn per-dot, not simulated with a mask."
+      },
+      {
+        "what": "The 21 crosshair ISOTYPE strip is not countable at any scale a reader will use and reads as a dashed rule at 432px. Its quantity claim is therefore carried by the caption above it, not by the marks, which defeats the point of an ISOTYPE.",
+        "where": "strip at approx 86,790 to 611,790 design px",
+        "severity": "medium",
+        "fix": "Group the 21 glyphs into three blocks of 7 with a 24px gutter between blocks so the count is readable by grouping, and increase glyph size from about 14px to 20px. Keep every glyph identical in size, which the current build correctly does."
+      },
+      {
+        "what": "Slide 04 is genuinely the thinnest frame in the deck as rendered, exactly as the treatment's own critique predicted. It is NOT thin enough to cut: the beat carries the SCREEN state of the deck's semantic system, it sets up slide 06's screened statewide rows and slide 07's blue swatch, and cutting it strands both. It is thin because three of the four things meant to make it decodable (blue that reads blue, three crosses, screen compression on the curl) are effectively absent from the pixels, and all three are cheap to restore.",
+        "where": "whole frame",
+        "severity": "high",
+        "fix": "Do not cut. Apply the four fixes above (restore the C33 sentence, three visible crosses, a screen that reads as a second ink with a doubled coastline, a plate at 0.62 opacity) and re-render. If after that a flow critic still reads it thin, the fallback is to merge it into slide 06's statewide rows, not to delete C23."
+      }
+    ],
+    "score_0_10": 5.6
+  }
+]
+```

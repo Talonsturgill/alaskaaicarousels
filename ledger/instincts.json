@@ -1024,6 +1024,48 @@
       "confidence": "0.93",
       "learned": "2026-08-29",
       "run_date": "2026-08-29"
+    },
+    {
+      "id": "a-fix-is-a-change-and-has-to-be-measured",
+      "instinct": "A CHANGE MADE TO ANSWER A CRITIC IS A CHANGE LIKE ANY OTHER. Round 3 of No.45 opened with two hard fails and BOTH were introduced by round 2's own fixes: a phantom cell drawn outside the slip's rotation transform landed two rows up in the wrong column, and a punchline moved 'below the table' shared a baseline with a dimension call and printed the false sentence ABOUT $25,500 BOUGHT A PLANNING YEAR. Re-render and re-read every frame a fix touched, and where the fix has a geometric premise, assert the premise at render time.",
+      "confidence": "0.97",
+      "learned": "2026-08-30"
+    },
+    {
+      "id": "canvas-coordinates-are-not-design-coordinates",
+      "instinct": "WHEN A SLIDE DRAWS INSIDE A TRANSFORM, EVERY LATER DRAW CALL HAS TO SAY WHICH FRAME IT IS IN. No.45's slide 06 rotates a pasted slip 1.2 degrees; canvas marks written after the ctx.restore() used slip coordinates in design space and landed 90px away, and DOM type rotated about its own origin while laid out on an unrotated grid, so the rules moved with the paper and not one glyph did. Compute the DOM position through the same rotation the canvas uses, or set the canvas rotation to zero and rotate only the paper.",
+      "confidence": "0.95",
+      "learned": "2026-08-30"
+    },
+    {
+      "id": "fitextent-fits-the-smaller-dimension",
+      "instinct": "d3's fitExtent PRESERVES ASPECT, so fitting to a box one pixel tall fits the HEIGHT and destroys the x extent. No.45's slide 08 declared a full width grazing seam and rendered a 27px sliver from `.fitExtent([[110,0],[980,1]])`. A projection onto ONE axis has to have its extent set on that axis: fit normally, then remap the axis you care about explicitly.",
+      "confidence": "0.99",
+      "learned": "2026-08-30"
+    },
+    {
+      "id": "a-declared-device-that-rounds-its-own-number-is-not-honest",
+      "instinct": "A SCALE BAR THAT EXISTS TO MAKE ZOOM HONEST CANNOT ITSELF BE ROUNDED BY HAND. No.45 shipped a 260px constant bar on nine frames with hand-chosen labels, and the flow critic measured three whole state frames disagreeing by up to 30 percent about the size of the same object. Compute the label from that frame's own projection at render time, and print NO distance on a frame with no cartography for one to govern rather than printing a true but useless number.",
+      "confidence": "0.96",
+      "learned": "2026-08-30"
+    },
+    {
+      "id": "a-heuristic-can-be-right-and-still-be-wrong-here",
+      "instinct": "site_signoff's machine-spill check reads a leading 'None ' in published copy as a Python None. No.45's claim C35 legitimately began 'None of the eight machine awards were notified...' and failed the site sign-off on a true sentence. The run reworded the claim rather than the checker, which was right for the run, but the heuristic needs a word-boundary and context test. Phase 12 candidate.",
+      "confidence": "0.88",
+      "learned": "2026-08-30"
+    },
+    {
+      "id": "akengrave-needs-akcolor-loaded-first",
+      "instinct": "assets/js/akengrave.js throws 'AKC is not defined' unless akcolor.js is loaded before it, and nothing in SKILL.md says so. Cost a prototype cycle on No.45. Load akcolor.js first, always.",
+      "confidence": "0.99",
+      "learned": "2026-08-30"
+    },
+    {
+      "id": "form-comes-from-ink-on-a-white-ground",
+      "instinct": "ON A PAPER WHITE GROUND, RELIGHTING CANNOT CARRY FORM. Measured on No.45's prototypes: AK.reliefShade over the sheet gave a luminance stddev of 16.8 and never went below 170 of 255, while drawn engraving gave 62.1 and reached 30. A high key deck has to model with ink density, hatching and cast shadow, not with a light.",
+      "confidence": "0.94",
+      "learned": "2026-08-30"
     }
   ]
 }

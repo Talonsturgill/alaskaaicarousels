@@ -1,0 +1,135 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the twelve cut tiles lifted off the plate': shadow L* 77.1 vs ground L* 96.8, dL 19.7 at 432w"
+      ],
+      "motifs": [
+        "'the twelve cut and lifted tiles': canvas 72.6 dE, page 83.7 dE, 88% of its rect is clear of opaque DOM (div#head.t stands on the rest)"
+      ],
+      "fits": [
+        "head 'The robot is in Ketchikan. The stroke reader' fits 3/3 lines at 76px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the four Friday comb': canvas 32.9 dE, page 69.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head '185 awards. Eight machines.' fits 2/2 lines at 69.5px"
+      ],
+      "asserts": [
+        "'185 award entry rules, one per announced award' holds: 185 vs 185 marks, counted over 185 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the four Southern Southeast tiles at full lift': shadow L* 73.9 vs ground L* 97.3, dL 23.4 at 432w"
+      ],
+      "motifs": [
+        "'the four lifted Southern Southeast tiles': canvas 83.6 dE, page 83.8 dE, 88% of its rect is clear of opaque DOM (div.t stands on the rest)"
+      ],
+      "fits": [
+        "head 'The biggest machine is a handle.' fits 2/2 lines at 62px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the misregistered statewide screen': canvas 65.3 dE, page 67.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Statewide means nobody can point.' fits 2/2 lines at 87.5px"
+      ],
+      "asserts": [
+        "'21 acute care hospitals, one identical mark each' holds: 21 vs 21 marks, counted over 21 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the hachured Interior service region': canvas 46.1 dE, page 68.1 dE, 92% of its rect is clear of opaque DOM (div.t stands on the rest)"
+      ],
+      "fits": [
+        "head 'A planning yearbuys a map.' fits 2/2 lines at 61.5px"
+      ],
+      "asserts": [
+        "'42 Interior villages, one identical square each, in the margin' holds: 42 vs 42 marks, counted over 42 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the empty ACTS ALONE channel': canvas 25.2 dE, page 82.8 dE, 88% of its rect is clear of opaque DOM (div.t stands on the rest)"
+      ],
+      "asserts": [
+        "'clear paper between the ASSISTS and ACTS ALONE column heads' holds: 24 vs 36 px (within 24)",
+        "'the Kodiak tick drawn at its own scale length, not floored' holds: 2 vs 2 px (within 1)",
+        "'the phantom cell sits on the row whose verdict is PLANS' holds: 1 vs 1 row (within 0)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the four hatched round bars and the fifth left bare': canvas 36.4 dE, page 84.8 dE, 51% of its rect is clear of opaque DOM (div.t stands on the rest)"
+      ],
+      "asserts": [
+        "'hatch pitch falls monotonically as the round grows' holds: 1 vs 1 monotonic (within 0)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the gold seam of twelve tiles seen grazing': shadow L* 78.4 vs ground L* 89.8, dL 11.4 at 432w"
+      ],
+      "motifs": [
+        "'the gold seam of twelve lifted tiles': canvas 81.7 dE, page 81.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'The first Friday had none of them.' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "'twelve tiles in the seam, one per borough cut' holds: 12 vs 12 tiles (within 0)",
+        "'every register tick sits on its own tile mid point' holds: 0 vs 0 mismatches (within 0)",
+        "'eight blue strikes drawn, the eight machine awards' holds: 8 vs 8 strikes (within 0)",
+        "'the strikes fall 0 / 2 / 5 / 1 across the four rounds' holds: 1 vs 1 pattern (within 0)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the engraved compass rose and its Polaris': canvas 57.7 dE, page 65.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "ask 'Which of the eight would you fund at scale n' fits 3/3 lines at 87.5px"
+      ],
+      "asserts": [
+        "'twelve kerfs, one per tile cut and set back down' holds: 12 vs 12 kerfs (within 0)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

@@ -70,6 +70,29 @@ CHARS_PER_TOKEN = 4.0
 # build went red is not.
 MAX_TOKENS = 32_000
 
+# HOW MUCH OF AN ITEM'S HISTORY THE PACK CARRIES.
+#
+# The note above says that when the record genuinely outgrows the ceiling, the
+# move is to trim each item's history to its most recent notes. It outgrew it on
+# 2026-08-30, so this is that move rather than a nudge to MAX_TOKENS.
+#
+# The arithmetic is the reason. History notes were 90,503 of the pack's 131,645
+# characters, 69 percent of everything the model reads, and the daily refresh
+# appends a note to roughly a dozen items whether or not anything changed,
+# because "checked and unchanged" is itself a fact worth recording. That is
+# about 1,500 tokens a day of pure growth, so the pack was going to cross any
+# fixed ceiling within days no matter where the ceiling sat. A cap on entries
+# stops the growth instead of buying a week.
+#
+# The window keeps the FIRST note, which is how the item entered the record and
+# is the one piece of history a reader asks for by name, then the most recent
+# RECENT_HISTORY notes, which are what "what is happening with this" means. The
+# elided middle is replaced by a line stating how many notes are not shown, so
+# the model can see the record is longer than what it holds and can say so
+# rather than implying the list is complete. Every note is still on the item's
+# own page, which is where the citation already points.
+RECENT_HISTORY = 6
+
 
 def esc_dashes(text):
     """House rule. No em or en dashes anywhere, including in what a model reads.
@@ -108,6 +131,19 @@ def wrap_fields(it):
     return " | ".join(bits)
 
 
+def window_history(hist):
+    """The first note, the most recent RECENT_HISTORY, and a hole between them.
+
+    Returns (entries, elided). A None inside entries marks where the elision
+    line goes. A history short enough to fit comes back whole with elided 0, so
+    an item nobody has had to revisit reads exactly as it always did.
+    """
+    if len(hist) <= RECENT_HISTORY + 1:
+        return list(hist), 0
+    elided = len(hist) - RECENT_HISTORY - 1
+    return [hist[0], None] + list(hist[-RECENT_HISTORY:]), elided
+
+
 def render_item(it):
     lines = [f"--- {it['id']} ---", f"Title: {esc_dashes(it.get('title'))}"]
 
@@ -133,9 +169,15 @@ def render_item(it):
         for d in it["key_dates"]:
             lines.append(f"  {d.get('date', '')}  {esc_dashes(d.get('label'))}")
 
-    if it.get("history"):
+    hist = it.get("history") or []
+    if hist:
         lines.append("History, oldest first:")
-        for h in it["history"]:
+        shown, elided = window_history(hist)
+        for h in shown:
+            if h is None:
+                lines.append(f"  ... {elided} earlier note(s) not shown here. "
+                             f"The item's own page carries the full history.")
+                continue
             lines.append(f"  {h.get('date', '')}  {esc_dashes(h.get('note'))}")
 
     # Outlets, not URLs. A reader who wants the document follows the citation to

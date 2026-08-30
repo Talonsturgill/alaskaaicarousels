@@ -1,0 +1,168 @@
+```json
+[
+  {
+    "slide": 1,
+    "verdict": "revise",
+    "encoding_reads": "yes at the coarse level, no at the declared level: at 432px a stranger sees that a bright white mass has been physically removed from a tan sheet (value contrast carries it), but the number twelve does not read, because the lifted boroughs are mutually adjacent so their shared cut edges are interior and never extruded, leaving one merged white continent instead of twelve pieces. Cause is occlusion/adjacency, not colour.",
+    "transcription": [
+      "ALASKA'S RURAL HEALTH AWARD LIST, READ TO THE END",
+      "The robot is in",
+      "Ketchikan. The stroke",
+      "reader is everywhere.",
+      "NORTH SLOPE",
+      "TWELVE BOROUGHS CUT OUT",
+      "OF ONE STATE SHEET",
+      "KETCHIKAN GATEWAY",
+      "STATE II . REVISED AUGUST 28TH . SUPERSEDES AUGUST 7TH",
+      "400 MI",
+      "01 / 09",
+      "55\u00b020'N 131\u00b038'W"
+    ],
+    "three_scales": {
+      "thumb": "A cream sheet with a hairline frame. Upper left, a four-block dark serif type mass. Centre, a pale white continent-shape sitting on a tan ghost of the rest of Alaska, with a slate-blue line under its southern edge. Lower right, a small gold-flecked cluster (Southeast); lower centre-left, a second smaller gold-flecked cluster (Kodiak). Two short grey word-marks. A hairline rule bottom left. The bottom fifth is empty cream.",
+      "full": "New at 1080: the white mass is subdivided by black tile outlines into separate boroughs; the graphite context rules inside the tan south; the gold sun-side cut faces and darker away-side faces along the west and south perimeters; the two-part shadows (tight core plus wide skirt) all raking down-right; the ghost Aleutian chain bleeding off the left edge with a double-slash break mark; the STATE II revision line; both region labels.",
+      "zoom": "The Southeast archipelago rewards it specifically: every small island carries its own stitched side quad, so the cluster resolves into a comb of individual gold ticks each with its own contact shadow, no self-intersection on the fjords. Kodiak's group does the same on its southwest side. The paper tooth is real mottle, not feTurbulence wash, and the 1.4px black lifted-tile outline is visibly heavier than the graphite context rules.",
+      "aggregation_holds": true
+    },
+    "lower_third": "PARTIAL FAIL. The band design y 900 to 1350 opens well (Kodiak and the Southeast cluster with gold faces and two-part shadows occupy roughly y 900 to 950), but from y 960 down it carries only hairline Aleutian ghosts, two type blocks, and then roughly 150px of uniform cream (y 1100 to 1255) before the mono title block and the bar. Field 4a promised the Gulf of Alaska as 'the most modeled region of the frame' with the Southeast shadows exiting the bottom right corner; the bottom right corner (design 800-1000 x, 1100-1250 y) is bare paper. Grain alone is not modelled tone. This is the named defect class and it is still present.",
+    "strengths_do_not_break": [
+      "One light direction throughout: every cast shadow rakes down-right, one gold hue on sun faces, one shadow colour ramp. Nothing here is inconsistent.",
+      "The Southeast and Kodiak per-island side quads are the best craft in the frame and survive to the thumb as gold flecks. Do not simplify that coastline.",
+      "The thumb is a true aggregation, not a shrunken copy: white-removed vs tan-printed reads instantly and does not scatter into twelve competing marks. The risk flag the treatment raised did not land.",
+      "High-key paper white register is genuinely arresting after nine dark decks. Do not add a dark panel to fix the empty band.",
+      "Headline line breaks match the dossier exactly and no headline glyph touches a tile or a rule."
+    ],
+    "defects": [
+      {
+        "what": "The region label 'NORTH SLOPE' sits immediately right of the headline's last line and on the same optical baseline. At 432px it reads as a continuation of the sentence: 'reader is everywhere. NORTH SLOPE'. It is also roughly 80 design px above the region it names, with no leader, so the reader attaches it to the type block instead of the map.",
+        "where": "label at design 641-817 x, 337-358 y; headline final glyph ends at design x 624, y 358",
+        "severity": "high",
+        "fix": "Move the label to design x 730, y 480, left aligned (bare paper off the region's northeast shoulder, clear of the plate mark). Enforce a minimum 60px clear radius between any Space Grotesk region label and any Fraunces display glyph."
+      },
+      {
+        "what": "Dead lower band. Roughly 22 percent of the frame (design y 960 to 1255, full width) carries no modelled tone at all, which contradicts field 4a and is the same 'dead bottom band' the dossier itself said it had proven out.",
+        "where": "design 80-1000 x, 960-1255 y, worst at 800-1000 x, 1100-1250 y",
+        "severity": "high",
+        "fix": "Move the plate down 70 to 90px and up-size it (fitExtent bottom from 1128 to about 1215) so Kodiak, the Southeast cluster and their two-part shadows occupy design y 1060 to 1220, and reflow the subhead to design y 1245 in the left column. If the plate must stay, draw the declared Gulf emboss (directional tooth under the 32 degree key) across design y 980 to 1250 and extend the Southeast ambient skirt so real cast tone reaches the bottom right corner."
+      },
+      {
+        "what": "Hierarchy inversion: the cover headline sets at 69.5px (per reconciliation) while slide 02's headline sets visibly larger. The cover, the one frame whose whole job is stopping a scroll, has the smaller display type in the deck.",
+        "where": "headline block design 80-624 x, 200-395 y",
+        "severity": "medium",
+        "fix": "Freed by the plate move above: widen the headline reserve to design x 80-700 and refit at min 84, maxLines 4. If the plate cannot move, instead drop slide 02's headline to 64px so the cover keeps primacy."
+      },
+      {
+        "what": "The Aleutian break mark is present but unlabelled, failing its own acceptance item. An unlabelled double-slash is a convention most feed readers will not decode, and the chain simply looks like it was clipped by accident.",
+        "where": "break mark at design 108, 1005; ghost chain design 0-405 x, 972-1060 y",
+        "severity": "medium",
+        "fix": "Add 'ALEUTIAN CHAIN CONTINUES WEST' in Space Grotesk 500, 20px, #93A0A8, tracked +9%, at design x 200, y 1012, left aligned. It also puts one mark into the currently empty band."
+      },
+      {
+        "what": "The mono title block, which the dossier calls the UPDATE marker, is set at 16px in the same low-contrast grey tier as the decorative footer and counter. Estimated contrast against the sheet is near 2.5 to 1 and it is invisible at 432px, so the deck's update signal has the lowest hierarchy on the frame.",
+        "where": "design 640-1000 x, 1258-1275 y",
+        "severity": "medium",
+        "fix": "Set the title block to JetBrains Mono 18px at #6B7885 (about 4.8 to 1) and leave the coordinates and counter in the lighter tier, so the update line separates from the furniture."
+      },
+      {
+        "what": "Every right-aligned string terminates exactly on the plate mark's vertical rule at design x 1000, and the kicker starts exactly on the left rule at x 80, so glyph edges kiss the frame on both sides.",
+        "where": "kicker at design x 80; title block right edge at design x 1000; KETCHIKAN GATEWAY right edge design x 980",
+        "severity": "low",
+        "fix": "Inset DOM type 24px from the plate mark: left align at design x 104, right align at design x 976. The plate mark stays at 80."
+      },
+      {
+        "what": "The bar's 4px gold terminal sits under the lower-left of the '4' in '400 MI', so the one gold fixture on the slide is optically touching a glyph. The deck's own rule is that gold never carries a glyph.",
+        "where": "design 80, 1329 (terminal) against '400 MI' baseline at design y 1322",
+        "severity": "low",
+        "fix": "Raise the '400 MI' label to baseline design y 1300, or start the label at design x 100, so there is 10px of clear paper between the gold tick and any glyph."
+      },
+      {
+        "what": "Not worth a rebuild, recording it only: I cannot resolve exactly twelve lifted tiles at either scale. I count between eleven and thirteen distinct black-outlined white regions because the northern boroughs abut and read as one mass. Geometrically correct (shared edges are interior and correctly not extruded), but it means roughly half the twelve show no gold cut face at all and the count lives entirely in the subhead.",
+        "where": "northern white mass, design 405-720 x, 440-760 y",
+        "severity": "low",
+        "fix": "No change required for shipping. If a later slide needs the count to read, insert a 2px kerf gap between adjacent lifted tiles so each keeps its own cased edge."
+      }
+    ],
+    "score_0_10": 7.2
+  },
+  {
+    "slide": 2,
+    "verdict": "revise",
+    "encoding_reads": "n/a as declared (no field 11a on this dossier), but the undeclared argument does read: at 432px the comb's tiny dense clot at the far left against the long fence to its right says 'the first Friday was almost nothing and the third was enormous' before any label is read, carried by width and ink density.",
+    "transcription": [
+      "THE STATE POSTS THE LIST ITSELF, EVERY FRIDAY",
+      "ANNOUNCED SO FAR",
+      "185 AWARDS",
+      "WORTH",
+      "$181.9 MILLION",
+      "THE MACHINE SHARE",
+      "1 DOLLAR IN 15",
+      "185 awards. Eight",
+      "machines.",
+      "Announced on four Fridays since August 7th,",
+      "across all 30 boroughs and census areas.",
+      "Eight of them buy a machine that reads,",
+      "decides or flies.",
+      "AUG 7TH",
+      "AUG 14TH",
+      "AUG 21ST",
+      "AUG 28TH",
+      "400 MI",
+      "02 / 09",
+      "AK DEPT OF HEALTH, NOTICE OF INTENT TO AWARD"
+    ],
+    "three_scales": {
+      "thumb": "A small pale map top left. Three right-aligned dark figure lines top right, each with a tiny grey cap above it. A large serif headline on two lines mid-left. Four lines of serif body under it. Across the bottom, a dark barcode band with a black clot at its left end, thinning as it runs right, with a handful of taller blue verticals standing out of it.",
+      "full": "New at 1080: the three figures resolve exactly ('185 AWARDS', '$181.9 MILLION', '1 DOLLAR IN 15'); the body reads; the four AUG labels appear staggered on two rows with hairline leaders dropping to their block boundaries at design x 103, 172, 913; the 185 individual rules separate; the eight blue strikes become countable and locatable; the soft ambient skirt under the comb becomes visible.",
+      "zoom": "The blue strikes are genuinely double-stroked with hand-ink roughness, not a single crisp vector line, and they sit at true positions rather than on the block grid. The comb's left clot resolves into 19 rules crammed into 23px rather than a filled rectangle, which is the single best craft detail on the slide. Paper tooth runs unbroken beneath.",
+      "aggregation_holds": true
+    },
+    "lower_third": "PASS, and it is the best lower third in the two slides reviewed. The band carries the comb, a genuinely drawn quantity with real ink-density variation left to right, and a soft ambient skirt cast onto the margin beneath it (visible as a grey falloff across the full comb width). No type sits on the comb; the nearest glyphs ('decides or flies.' and the AUG labels) clear it by roughly 85 and 40 design px respectively. Removing the bar and the footer would still leave modelled tone. This satisfies field 4a as written.",
+    "strengths_do_not_break": [
+      "The block proportions are drawn honestly and verify: comb spans design x 80 to 1000, boundaries land at 103, 172 and 913, matching 4.59 / 30.13 / 130.29 / 16.86 normalised to 920px. The August 7th block is the promised 23px sliver.",
+      "The eight blue strikes are exactly eight and their distribution is correct: zero in the August 7th block, two in August 14th, five in August 21st, one in August 28th. That is C35 drawn rather than asserted, on a slide that never claims it in words. Do not touch the strike positions.",
+      "Zero type touches the comb. The 'busy art under text' class the run set out to kill is genuinely absent here.",
+      "The three figures are tabular, right aligned, and their right edges agree within 2px.",
+      "The headline plus figure block gives one takeaway at 432px in under a second. The feed test passes."
+    ],
+    "defects": [
+      {
+        "what": "The third figure renders 'THE MACHINE SHARE' / '1 DOLLAR IN 15'. Dossier copy is 'ABOUT ONE DOLLAR IN FIFTEEN' and C18 is hedged ('about 6.6 percent'). The true ratio is 1 in 15.14, so the render states a rounded figure as exact, in the deck's largest type tier, on a deck whose slide 07 exists to disclose that its numbers are preliminary. The reconciliation does not mention this change.",
+        "where": "design 720-1000 x, 545-600 y",
+        "severity": "high",
+        "fix": "Set the small cap line to 'THE MACHINE SHARE, ABOUT' and leave the figure as '1 DOLLAR IN 15'. Do not put 'ABOUT' inside the tabular figure line, it breaks the right-aligned digit rhythm."
+      },
+      {
+        "what": "The reduced plate at upper left carries no visible gold cut face and no two-part shadow at full size. It reads as a flat two-tone choropleth, white against tan. The continuity state table says slide 02 is 'twelve lifted', and this is the first frame after the cover, so the deck's central physical metaphor goes missing exactly where it should be reinforced.",
+        "where": "design 130-460 x, 250-520 y",
+        "severity": "high",
+        "fix": "On this plate only, keep the lift at the full 14px rather than scaling it with the plate, and floor the gold side-quad width at 2px so the cut faces survive the 62 percent reduction. Add the contact core shadow at 2px offset; the ambient skirt can be dropped at this size."
+      },
+      {
+        "what": "The 185 comb rules vary in height by roughly 2.4 to 1 with nothing encoded. In a band whose widths ARE a declared quantity, a varying second dimension invites the reader to read magnitude off rule height, and the tallest marks are the blue strikes, which implies the eight are the largest awards when they are 6.6 percent of the dollars.",
+        "where": "comb, design 80-1000 x, 1118-1189 y",
+        "severity": "medium",
+        "fix": "Either set all 183 unstruck rules to a single height (62px) and the strikes to 96px, so only x position and block width carry information; or, better, map rule height to each award's own dollars on a declared linear scale and print that scale, which turns an unencoded jitter into real data-in-art."
+      },
+      {
+        "what": "All four right-aligned strings in the figure block terminate exactly on the plate mark's vertical rule at design x 1000, so heavy 52px bold numerals kiss the frame line. At full size 'AWARDS' and 'MILLION' appear to run into the rule.",
+        "where": "design x 1000, y 300-600",
+        "severity": "medium",
+        "fix": "Right align the whole figure block to design x 976, giving 24px inside the plate mark. Same inset on the kicker's left edge (design x 104)."
+      },
+      {
+        "what": "Footer renders 'AK DEPT OF HEALTH, NOTICE OF INTENT TO AWARD'. Dossier copy is 'ALASKA DEPT OF HEALTH, NOTICE OF INTENT TO AWARD, AUGUST 28TH 2026'. The abbreviation is fine, the dropped date is a small provenance loss on the slide that carries C03 and C04.",
+        "where": "design 545-1000 x, 1305-1322 y",
+        "severity": "low",
+        "fix": "Restore the date: 'AK DEPT OF HEALTH, NOTICE OF INTENT TO AWARD, AUGUST 28TH 2026'. It fits at 16px within the 455px run if the block right-aligns to 976."
+      },
+      {
+        "what": "A roughly 530 by 430 design px void sits centre-right (design 470-1000 x, 560-990 y) between the figure block and the comb, so the frame reads as two separate posters stacked with a diagonal hole between them rather than one page. Not a rebuild item, and the deck's high-key register earns some of it.",
+        "where": "design 470-1000 x, 560-990 y",
+        "severity": "low",
+        "fix": "Optional: raise the comb 40px and let the four AUG labels sit at design y 960, or extend the body measure from 4 lines to the full 560px width so the left column reaches further right. Do not fill it with a graphic."
+      }
+    ],
+    "score_0_10": 7.8
+  }
+]
+```

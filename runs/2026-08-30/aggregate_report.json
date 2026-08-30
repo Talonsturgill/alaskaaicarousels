@@ -1,0 +1,144 @@
+{
+  "run_dir": "out/2026-08-30",
+  "render_report": "out/2026-08-30/render/render_report.json",
+  "aggregates_file": "out/2026-08-30/aggregates.json",
+  "detected": 16,
+  "declared": 16,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "TWELVE BOROUGHS",
+      "text": "TWELVE BOROUGHS CUT OUT OF ONE STATE SHEET",
+      "n": 12,
+      "subject": "boroughs"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "185 awards",
+      "text": "185 awards. Eight machines.",
+      "n": 185,
+      "subject": "awards"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Eight machines",
+      "text": "185 awards. Eight machines.",
+      "n": 8,
+      "subject": "machines"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "four Fridays",
+      "text": "Announced on four Fridays since August 7th, across all 30 boroughs and census ar",
+      "n": 4,
+      "subject": "fridays"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "185 AWARDS",
+      "text": "185 AWARDS",
+      "n": 185,
+      "subject": "awards"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "21 ACUTE CARE HOSPITALS",
+      "text": "21 ACUTE CARE HOSPITALS, SITES NOT PUBLISHED",
+      "n": 21,
+      "subject": "acute care hospitals"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "42 VILLAGES",
+      "text": "42 VILLAGES, NOT NAMED IN THE AWARD RECORD",
+      "n": 42,
+      "subject": "villages"
+    },
+    {
+      "slide": 5,
+      "kind": "duration",
+      "fragment": "14 DAYS",
+      "text": "5 TO 14 DAYS, WINTER",
+      "n": 14,
+      "unit": "days"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "FOUR ROUNDS",
+      "text": "THE FOUR ROUNDS, AND THE FIFTH",
+      "n": 4,
+      "subject": "rounds"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "19 PROJECTS",
+      "text": "AUG 7TH, 19 PROJECTS, $4.5M",
+      "n": 19,
+      "subject": "projects"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "37 PROJECTS",
+      "text": "AUG 14TH, 37 PROJECTS, $30.1M",
+      "n": 37,
+      "subject": "projects"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "105 PROJECTS",
+      "text": "AUG 21ST, 105 PROJECTS, $130M",
+      "n": 105,
+      "subject": "projects"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "24 PROJECTS",
+      "text": "AUG 28TH, 24 PROJECTS, $16.9M",
+      "n": 24,
+      "subject": "projects"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "FOUR FRIDAYS",
+      "text": "FOUR FRIDAYS, AT TRUE WIDTH",
+      "n": 4,
+      "subject": "fridays"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "19 projects",
+      "text": "August 7th moved $4.5 million across 19 projects and not one of the eight was in",
+      "n": 19,
+      "subject": "projects"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "TWELVE KERFS",
+      "text": "TWELVE KERFS",
+      "n": 12,
+      "subject": "kerfs"
+    }
+  ],
+  "not_rederived": [],
+  "fails": [],
+  "warns": [
+    "S2 '185 awards. Eight machines.' [from_claim]: the noun 'machine' does not appear in claim C17; check that the number is being attached to what the claim actually counts.",
+    "S9 'TWELVE KERFS' [from_claim]: the noun 'kerf' does not appear in claim C36; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

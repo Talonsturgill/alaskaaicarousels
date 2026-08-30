@@ -5093,3 +5093,30 @@ which is this phase's reactive-first rule working as written.
   this run confirms it: everything above came from a named practitioner's own
   page. The next scan in this slot should start at shadedrelief.com,
   datawrapper.de/blog, the Pudding and Reuters Graphics directly.
+
+## 2026-08-30 - Phase 1 craft refresh (No.45)
+
+- **The thumb must be a true aggregation of the full frame, not a smaller copy
+  of it.** Munzner's multiscale design space names this "information
+  consistency across scales", and its operational form is a prohibition rather
+  than a suggestion: what a reader understands at the coarse scale must not be
+  contradicted by what appears at the fine one. Translated to a carousel, the
+  432px thumb and the 1080 render and the zoom are three scales of one picture,
+  and a slide fails this test whenever the thumb reads as one shape that turns
+  out, on stopping, to be six unrelated marks. That is the mechanism behind
+  "artwork craft" scoring 6.75 across ten runs while every machine gate stayed
+  green, because no gate here reads the thumb against the render for AGREEMENT,
+  only for legibility. https://arxiv.org/pdf/2404.01485
+- **Density management belongs at the coarse scale, detail at the fine one.**
+  The same paper separates the two jobs: reduce clutter at broad scales,
+  preserve detail at fine scales. This deck's recurring pair of warnings, busy
+  art under text (4 of 10 runs) and top-loaded composition (4 of 10), is what it
+  looks like when a run does the opposite and pushes fine-scale detail up into
+  the frame's coarse reading. Density 2 with a high drawn share is the
+  correction, and it is this run's declared attack on the standing weakness.
+- **LinkedIn document posts remain the highest-engagement organic format**, at
+  a reported 6.60 percent against a 5.72 percent median for B2B pages, with 5 to
+  15 slides the working band. Nothing here changes the house standard of 8 to 10
+  and it is recorded only because it is the first 2026 figure this deck has on
+  file for the format it actually ships.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/

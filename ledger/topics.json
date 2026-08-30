@@ -1891,6 +1891,37 @@
         "glider"
       ],
       "sources_lead": "the project's own deployment page and near real time detection table, read on repeated fetches 2026-08-29"
+    },
+    {
+      "run_date": "2026-08-30",
+      "carousel_no": 45,
+      "topic": "Alaska's Rural Health Transformation Program award list at 185 projects and $181,871,366, parsed out of the state's own Notice of Intent to Award spreadsheet, and the eight awards inside it whose titles or summaries name AI, robotics or drones, totalling $12,012,936",
+      "angle": "SEVEN OF THE EIGHT HAND THE DECISION BACK TO A PERSON. THE ONE THAT WOULD ACT ALONE GOT A PLANNING YEAR INSTEAD OF AN AIRCRAFT.",
+      "headline": "Eight Machines, One Sheet",
+      "entities": [
+        "Alaska Department of Health",
+        "PeaceHealth Ketchikan Medical Center",
+        "Alaska Stroke Coalition",
+        "MapHabit",
+        "Maniilaq Association",
+        "Mat-Su Regional Medical Center",
+        "Tanana Chiefs Conference",
+        "Statewide Independent Living Council",
+        "Kodiak Community Health Center",
+        "ACUASI",
+        "University of Alaska Fairbanks"
+      ],
+      "keywords": [
+        "rural health transformation program",
+        "rhtp",
+        "notice of intent to award",
+        "robotic surgery",
+        "stroke imaging",
+        "drone pharmacy",
+        "planning award",
+        "clinical documentation"
+      ],
+      "note": "An explicit UPDATE to No.35 (2026-08-16), which covered the first Friday round and said the state published its list only as an unparseable spreadsheet. This run opened the file. The parse ships as rhtp_awards.csv and rhtp_parsed.json so a reader can repeat the count. Scored 8.79 against a threshold of 7.7 after five rounds."
     }
   ]
 }
