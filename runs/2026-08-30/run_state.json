@@ -1,0 +1,52 @@
+{
+  "run_date": "2026-08-30",
+  "carousel_no": 45,
+  "date_note": "runs/2026-08-30/ did not exist at wake; the calendar date was free.",
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "done"
+  },
+  "artifacts": {
+    "plan": "out/2026-08-30/plan.md",
+    "scout_merge": "out/2026-08-30/scout_merge.md",
+    "selection": "out/2026-08-30/selection.md",
+    "rhtp_awards_csv": "out/2026-08-30/rhtp_awards.csv",
+    "rhtp_parsed": "out/2026-08-30/rhtp_parsed.json",
+    "field_notes": "knowledge/FIELD_NOTES.md (2026-08-30 craft refresh)",
+    "docket": "ledger/docket.json (12 items refreshed)",
+    "site_signoff": "PASS 18/18, 89 pages; gaswatch PASS",
+    "claims": "out/2026-08-30/claims.json (34 claims, 27 primary)",
+    "storyboard": "out/2026-08-30/storyboard.md (9 dossiers + build reconciliation + round 1 pixel fixes)",
+    "copy": "out/2026-08-30/copy.json",
+    "caption": "out/2026-08-30/caption.txt (897 chars, hook 130)",
+    "aggregates": "out/2026-08-30/aggregates.json (12 declared)",
+    "render": "out/2026-08-30/render (qa PASS 9/9, 0 fails, 0 warns)",
+    "final": "out/2026-08-30/final (vector pdf 5.1 MB, contact sheet, 9 thumbs)",
+    "pixel_round_1": "out/2026-08-30/pixel_r1/ (mean 6.2, three hard fails, all acted on)"
+  },
+  "result": {
+    "score": 8.79,
+    "threshold": 7.7,
+    "rounds": 5,
+    "shipped": true,
+    "run_pr": 332,
+    "upgrade_pr": 333,
+    "gmail_draft_id": "r-5395539928205913502"
+  }
+}
