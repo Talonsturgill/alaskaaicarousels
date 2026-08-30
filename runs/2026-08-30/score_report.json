@@ -1,0 +1,141 @@
+{
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "Transcribed all 117 authored slide strings from out/2026-08-30/copy.json and read all nine renders at full size. The only dashes present are hyphens inside proper nouns: 'PRINCE OF WALES-HYDER' (slides 03, 06 silhouette set), 'Mat-Su Regional Medical Center' (slide 06). post_copy, caption.txt and first_comment contain no U+2013 or U+2014; the only long-run punctuation is the period separator on slide 01's title block, 'STATE II . REVISED AUGUST 28TH . SUPERSEDES AUGUST 7TH'."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "No pictographic glyph in any of the nine renders, in caption.txt, in first_comment, or in the six editor notes and six aftercare lines. The only non-ASCII characters are the degree and prime marks in the coordinate stamps (55\u00b020'N 131\u00b038'W, 64\u00b013'N 149\u00b052'W, 64\u00b050'N 147\u00b043'W, 55\u00b042'N 132\u00b024'W) and the curly apostrophe in 'ALASKA'S' and 'FAA'S'."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "The round-4 defect is repaired at the artifact. Slide 03's kicker now reads THE LARGEST OF THE EIGHT in the render and in copy.json slide 3 kicker; C21's own record states 'Largest of the eight and 54 percent of the machine money'. The unsourced rank-against-185 string is gone from both surfaces. All 24 ids in claims_used resolve in claims.json. claims_check PASS 34/34 with 27 primary; aggregate_check PASS with 16 detected against 16 declared and an empty not_rederived list; the two aggregate warns are noun-matching advisories ('machine' not in C17, 'kerf' not in C36), not unsourced figures. Slide 06's eight rows match claims.json row for row including the $141,703 SILC and $1,241,086 MapHabit figures from C33."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+      "status": "pass",
+      "evidence": "Transcribed every rendered string on all nine slides against copy.json and claims.json. Organisation names all correct: PeaceHealth Ketchikan Medical Center, Alaska Stroke Coalition, MapHabit, Maniilaq Association, Mat-Su Regional Medical Center, Tanana Chiefs Conference, Statewide Independent Living Council, Kodiak Community Health Center. Place names correct: Ketchikan Gateway, Petersburg, Prince of Wales-Hyder, Wrangell, North Slope, Fairbanks. Acronyms correct: ACUASI, UAF, FAA, BEYOND, TBA, PACS (not printed). copy_sync PASS on 117 strings confirms no render-side drift from the authored copy."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "Both round-4 canvas-over-DOM collisions are repaired and verified by eye, not by the gate. Slide 04's third registration cross now sits in the top-right margin, measured in the render at displayed (1418, 258) on a 1600px view of a 1080px design = design (957, 174), matching the declared (958, 176) and well clear of the 'Statewide means nobody can point.' reserve. Slide 08's body sets five lines ending 'month, not at the start.' with bare paper between it and the twelve register ticks, confirmed at 1080 and again in final/thumbs/slide-08-thumb.png where the gap survives the 0.4 downscale. Slide 06's type layer now rotates through the same transform as the slip, so no glyph crosses a table rule or the ACTS ALONE channel. machine_qa verdict PASS, 9/9, fails 0, warns 0; all fit reports show heads at declared line counts (76px/3, 69.5px/2, 62px/2, 87.5px/2, 61.5px/2, 75.5px/2, 87.5px/3)."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+      "status": "pass",
+      "evidence": "Every headline, body block and figure is ink #16212E on sheet #F4EFE4, which I computed at 14.2:1. Sub-4.5:1 tone exists only in the deck's declared instrument tier and never carries primary text: graphite #93A0A8 at about 2.4:1 on scale labels and the 'BAR LENGTH LINEAR. ONE PIXEL IS $14,000.' note, and #6B7885 which I computed at 3.94:1 on the slide 01 title block. The storyboard palette section declares this tier explicitly and forbids it for body. No cap, but it is the main deduction under Legibility and is called out in the editor notes."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "Nine slides, rationale argued in the storyboard's SLIDE COUNT RATIONALE. assemble_report.json 'slides': 9, nine thumbs listed, counters read 01 / 09 through 09 / 09 on the renders."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "out/2026-08-30/render/machine_qa.json: 'fails': 0, 'warns': 0, 'verdict': 'PASS'. out/2026-08-30/final/assemble_report.json: 'pdf_mode': 'vector', 'pdf_bytes': 5139396, 'pdf_mb': 5.14, title 'Eight Machines, One Sheet'. Thirteen render-time assertions all hold, including the two that answer round 4: 'every register tick sits on its own tile mid point' 0 vs 0 mismatches, and 'twelve tiles in the seam' 12 vs 12."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "ledger/topics.json No.35, 2026-08-16, 14 days back, is the same Rural Health Transformation Program. Material new development is substantial and inside the window: three further Friday rounds taking the record from $4.5M/19 projects to $181.9M/185, plus the spreadsheet parse that itemises every awardee, which No.35's own ledger note records as impossible at the time ('the state publishes the nineteen-project list only as an unparseable spreadsheet'). Framed as an update ON THE FRAME, not only in the record: slide 01's title block reads 'STATE II . REVISED AUGUST 28TH . SUPERSEDES AUGUST 7TH', and slide 08 answers No.35 directly through C35. selection.md documents the dedupe run (jaccard 0.057, 2 shared entities) and the rejections of AURORA-AI, the AIDEA conveyance and Cook Inlet gas."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "Last four in ledger/artwork.json are No.41 the horizon ladder, No.42 the sounding column, No.43 the drain scar and datum board, No.44 the underlit bench. THE CUT PLATE is a sheet of cotton rag with borough polygons excised and lifted on per-edge cabinet extrusions. No landscape, no vertical section, no staged object under a modelled lamp. Atmosphere (north window, ten a.m., late August) diverges from the last three; continuity CUT/SCREEN/PHANTOM diverges from GOLD IS MEASURED and INK IS RECORDED; palette, hook archetype and type pairing all diverge per plan.md's forbidden lists. bespoke_check PASS, median pairwise similarity 0.250 against a 0.60 fail, max pair 0.463."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "caption_check loaded 74 brand phrases and returned fails [] and warns [] over 121 copy fields. Re-read the caption and every slide string by hand against the banned list and found none. Also clear on the adjacent house rules I checked separately: no colon in any slide string or in post_copy (slide 05 uses 'SURFACE = MILES FROM THE FAIRBANKS HUB', not a colon; the only colons are inside https:// in the first comment), no 'cannot', no first person, no sentence opening on 'And' or 'But', commas at 0.82 per 100 chars against a 1.05 budget."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "Exactly three, all at the very end: #RuralHealthAlaska #ClinicalAI #AlaskaPolicy. post_copy contains no URL and no bare domain; all seven source links plus the alaskaaihq.com line live in first_comment. caption_report confirms 3 hashtags, 897 chars, hook 130."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "No placeholder in any rendered slide, in copy.json, in claims.json, in caption.txt or in the PDF; every dossier acceptance checklist item corresponds to a shipped mark. The regenerated GATE STATUS block in storyboard.md does still print '[n/a ] score  score_report.json missing' and '[FAIL] ship_gate ... weakest: ?', but that is a truthful current-state report generated before this score existed, not an unfinished editorial element, and the block's own header instructs regeneration. Passing on that reading, and flagging it as a mandatory pre-commit re-sync in the editor notes."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "'The robot is in Ketchikan. The stroke reader is everywhere.' is 10 words, a real named tension, set at 76px Fraunces in ink at 14.2:1, and it fits 3/3 lines. The high-key cotton-rag register is the first white deck in nine runs and will genuinely stop a scroll in a feed of dark decks. Held off 9: there is no number anywhere on the cover, the subhead band 'TWELVE BOROUGHS CUT OUT OF ONE STATE SHEET' reads as a second text mass at 432px, and the twelve lifted tiles resolve at thumb scale as a scatter of small gold ticks rather than one gesture, which is exactly the risk the cartographer's own dossier flagged at item 13. The bottom fifth of the frame is near-uniform paper; the Gulf emboss is present but at very low amplitude."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Clean beat structure and slide 02 pays instantly with 185 / eight / $181.9M / 1 DOLLAR IN 15. Loops are planted and paid: 'which eight' opens on 01 and closes on 06; 'what does a placeless award look like' opens on 03 and pays on 04; slide 07 carries an explicit forward hook, 'Next, the four at true width.' The contact sheet reads as one composed sequence in one register. Held off 9 because 06 and 07 are two consecutive reference/meta frames and momentum sags across them, and because the argument's punchline ('THE ONE THAT WOULD ACT ALONE BOUGHT A PLANNING YEAR.') lands on 06, which leaves 08's turn as a second, quieter climax about timing. Slide 04 remains the thinnest beat and is reorderable with 05 without much loss."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7,
+      "weight": 0.16,
+      "notes": "Real strengths: per-edge cabinet extrusion of true projected polygons with outward-facing tests, full-resolution fjords on slide 03 that survive the zoom test beautifully, 185 individually drawn comb rules asserted at render time, the radial aspect hachure on 05, the engraved rose and bezel on 09, deckle and cockle on 06, 64 percent drawn share and 0.250 median pairwise similarity. The dossier ARGUES flat deliberately and measures it (AK.reliefShade stddev 16.8 and never below 170/255 against AKENGRAVE.surface at 62.1 reaching 30), so the rendered-ladder clause is satisfied by argument rather than dodged. But descriptor 7's 'one slide leans on a default or has dead zones' is met by three: slide 08's seam, after four rebuilds, still reads at 1080 as a row of flat yellow rectangles with white tops over a grey smear, with no visible per-tile thickness variation and roughly eight readable blocks where twelve are asserted; slide 07's 'density ramp hatching inside each round bar' shipped as a hatched picture-frame around a knockout plate, so the quantity it encodes is barely legible and the four bars read as four identical boxes at thumb; slides 01 and 03 still carry large near-uniform paper regions in their lower bands. Slide 09's twelve-kerf count block is an ISOTYPE caption, not a modelled object. Consistent physics and line-weight hierarchy are genuinely good; 'zero flat-lazy regions' is not met."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14,
+      "notes": "The best criterion in the deck and machine-verified rather than asserted. Comb block widths on 02 and 08 are proportional to the four rounds' dollars; 185 rules counted by assertion, not by loop bound; eight blue strikes at true notification positions with the 0/2/5/1 distribution held by assertion, which makes C35 a DRAWN fact rather than a stated one; slide 06's bars are strictly linear at one pixel per $14,000 so Kodiak is a real 2px tick against Ketchikan's long bar and the 256-to-1 range IS the argument; the empty third column is a milled physical channel; the misregistered second press pass on 04 is the statewide claim as a picture, with both passes now stroked from one decimated Path2D so it is a displacement and not a different outline; the phantom dash on 05 is the planning award. One literal anchor per composition throughout. Held off 10 because slides 01, 04 and 09 are guessable as 'some regions are marked' rather than as this story, and because the cut-and-lift metaphor equates 'named in a service area' with 'a machine landed here', an elision the copy has to correct."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8,
+      "weight": 0.12,
+      "notes": "Named orgs, places and numbers throughout: PeaceHealth Ketchikan, Alaska Stroke Coalition, Maniilaq, Mat-Su Regional, Tanana Chiefs, SILC, Kodiak Community Health Center, MapHabit, ACUASI at UAF. Geography is accurate from assets/geo/alaska-boroughs.geo.json at true projection, the Aleutian bleed is labelled 'ALEUTIAN CHAIN CONTINUES WEST' rather than silently cropped, and the deck refuses to dot 42 villages it has no coordinates for, putting them in an ISOTYPE reserve instead. The 5-to-14-day winter medication delay and the four-boroughs-across-water framing are things an Alaskan recognises. Held off 9 because there is no person anywhere in the deck, no voice from a clinic, no single Alaskan whose day changes; it is an accurate catalogue of a spreadsheet, which lands closer to 'would make an Alaskan feel accurately recorded' than 'feel seen'. Slide 05's '5 TO 14 DAYS, WINTER' dimension call also sits over the Southeast panhandle on an Interior slide."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Every content slide adds new verified specifics: 03 gives $6,518,029 plus the four-borough service area plus 'A surgeon drives it'; 04 gives $3,156,626, 21 hospitals, existing PACS with no new hardware, no published site list, and two further statewide awardees; 05 gives $250,000, 42 villages, 94,000 square miles, one of 19 planning awards, ACUASI/BEYOND, 'No aircraft is bought'; 07 gives the four round counts and dollars plus the TBA fifth; 08 gives the 0-in-round-one fact. Honesty beats are load-bearing, not decorative. Held off 9 because slide 02's body was cut to 23 words in the build, below the descriptor's 25-to-50 band, and because slide 04's second half states statewide-ness three ways in one paragraph."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 9,
+      "weight": 0.08,
+      "notes": "All six axes diverge and each divergence is argued in the storyboard's VARIETY LEDGER CHECK against the named forbidden lists in plan.md. Hero NEW (cut plate) against 41/42/43/44. Atmosphere NEW (north window, ten a.m., late August), the first high-key daylight register in at least nine runs. Continuity CUT/SCREEN/PHANTOM, deliberately a fabrication distinction rather than the colour distinctions of 41 and 42. Hook archetype THE ADDRESS. Palette NOTICE OF INTENT, ON COTTON RAG. Type Fraunces + Space Grotesk, neither of the two forbidden pairings. Dials 5/2/3 chosen with reasons. Held off 10 only because Device B (constant bar, gold terminal, NN / 09 counter, coordinates footer) is the house constellation subsystem carried forward, and Fraunces is the studio's most-used display face returning just outside its window."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7,
+      "weight": 0.07,
+      "notes": "Vector PDF at 5.14 MB inside the 2 to 25 MB band with a 24-character title; nine slides; NN / 09 counters on all nine; qa.py 0 fails and 0 warns including its size and safe-zone checks; every fitted head lands at its declared line count. But this is more than one squeaker. On a white ground the deck's instrument tier is far weaker than the same tier was on the dark decks: graphite #93A0A8 sits at about 2.4:1 and #6B7885 at 3.94:1, and that tier carries information a reader is meant to be able to check, including slide 03's two-line provenance ('MONEY AND SUBSTANCE CORROBORATED IN PRESS. / AWARDEE NAME PER THE STATE SPREADSHEET.'), slide 05's 'SURFACE = MILES FROM THE FAIRBANKS HUB' and slide 06's 'BAR LENGTH LINEAR. ONE PIXEL IS $14,000.' At 432px those are effectively invisible. Slide 04's body also sits below the 32px body floor at 28px, and slide 02's kicker breaks with an orphaned 'FRIDAY' on its own line."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8,
+      "weight": 0.05,
+      "notes": "Hook lands at 130 chars, inside the 140 fold, on a real definition subversion: data centers and gigawatts against a note taker for about $25,500. 897 chars, inside the 300 to 900 band. Deck summary line present. The close is a genuinely debatable question about an unsupervised task rather than a polite prompt. The voice takes a position ('Seven of the eight hand the decision back to a person. The one that would fly alone got a planning year.') and then discloses its own method twice. Commas at 0.82 per 100 chars against a 1.05 budget, grade 8 to 10. Held off 9 because the fourth paragraph is four short declaratives stacked as disclosure rather than argument, and because the caption never names the August 16th deck it is updating, which is the one callback a returning reader would want."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "In hand and complete: post copy with exactly 3 hashtags, a first-comment block with seven sources primary-first plus the docket line and an invitation to add a clinic, document title 'Eight Machines, One Sheet', vector PDF, nine renders, nine 432px thumbs, contact sheet, six editor notes and six aftercare items, and all machine reports green. The image and PDF URLs cannot be verified at scoring time because they point at main and the merge is downstream. One convenience element is rough enough to dock a point: storyboard.md's GATE STATUS block will ship reporting '[FAIL] ship_gate' and 'weakest: ?' unless it is re-synced after score_report.json is written, which would put a false FAIL row into the run's permanent record for the second round running."
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(9x0.14)+(8x0.12)+(8x0.10)+(9x0.08)+(7x0.07)+(8x0.05)+(8x0.10) = 1.12+1.12+1.12+1.26+0.96+0.80+0.72+0.49+0.40+0.80 = 8.79. Weights sum to 1.00. No hard fail, so no 6.9 cap is applied.",
+  "weighted_total": 8.79,
+  "threshold": 7.7,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Rebuild slide 08's seam once more so each of the twelve tiles shows a distinguishable top face, a thin cut face and its own contact core at full 1080 rather than reading as roughly eight flat yellow blocks on a grey smear, because it is the deck's declared strongest image and is currently its weakest drawn object.",
+  "editor_notes_for_email": "1) BEFORE THE COMMIT, re-run scripts/gate_status.py --sync now that score_report.json exists. As it stands storyboard.md still prints '[n/a ] score score_report.json missing' and '[FAIL] ship_gate ... weakest: ?', which is truthful for the moment it was generated but will otherwise ship a false FAIL row and a literal '?' into the run's permanent record for the second round running. 2) CONTRAST, know before posting: primary text is ink at 14.2:1 everywhere, so no gate is breached, but on this white ground the graphite and mono instrument tier measures roughly 2.4:1 to 3.9:1, and slide 03's provenance pair, slide 05's SURFACE line and slide 06's ONE PIXEL IS $14,000 scale note are effectively unreadable at feed scale. If anyone asks where a figure came from, point them at slide 07 and the first comment, not at the small print. 3) SOURCING: five of the eight awardee names rest on the state spreadsheet parse alone (C22, C24, C31, C32, C33). Only the robotic surgery award, the stroke imaging network and the drone planning award are doubly corroborated in press. If a name is disputed, the answer is the Notice of Intent to Award spreadsheet, not a news story. 4) The count of eight is this page's own keyword search of award titles and summaries, not a state category, and the seven-and-one split is an editorial reading. Both are on slide 07 and in the caption; do not defend either as a state finding. 5) This is an explicit update to No.35 (August 16th). The update marker is the cover's 'STATE II . REVISED AUGUST 28TH . SUPERSEDES AUGUST 7TH', which is a cartographic metaphor rather than plain language, and the caption never names the earlier deck. If a returning reader connects them, the payoff is slide 08. 6) STORYBOARD DRIFT, harmless but worth one pass: slide 01's dossier text still says the bar reads 400 MI and slide 04's motif table still says 700 MI, while the renders read the measured 550 MI and 650 MI. The renders are right; two lines of dossier prose are stale. 7) The first comment writes dates as 'August 28th, 2026' (ordinal plus year) where brand.yaml prefers 'August 28, 2026' when a year follows. caption_check passed, so this is a preference and not a gate, but it recurs five times in one block. 8) Every dollar is preliminary, the state allows minor adjustments, and a fifth Friday round is still marked TBA, so both the 185 and the eight are a snapshot. If next Friday moves them, answer in a reply rather than editing the post.",
+  "run_date": "2026-08-30",
+  "carousel_no": 45,
+  "rounds": 5
+}

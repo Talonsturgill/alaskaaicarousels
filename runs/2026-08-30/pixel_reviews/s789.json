@@ -1,0 +1,225 @@
+```json
+[
+  {
+    "slide": 7,
+    "verdict": "revise",
+    "encoding_reads": "n/a, no field 11a wordless claim declared for slide 07; the de facto claim (one round dwarfs the rest) does read at 432px because the AUG 21ST bar goes near solid while the others stay open, but only the bar stack carries it, not the cartouche.",
+    "transcription": "HOW TO READ THIS PLATE | THE FOUR ROUNDS, AND THE FIFTH | CUT AND LIFTED, GOLD EDGE | A PLACE SPECIFIC AWARD. THE SERVICE AREA AS FILED. | PHANTOM OUTLINE, NOT LIFTED | A PLANNING AWARD. A ROADMAP, NOT AN AIRCRAFT. | BLUE SCREEN | STATEWIDE. NO SITE LIST PUBLISHED. | BLANK, UNENGRAVED | WEEKS FIVE AND BEYOND. THE STATE MARKS THEM TBA. | The count of eight is a keyword search of the state's own award titles and summaries. It is not a state category. Every dollar here is preliminary and the state says minor adjustments may occur. | AUG 7TH, 19 | AUG 14TH, 37 | AUG 21ST, 105 | AUG 28TH, 24 | TBA | 07 / 09 | LEGEND",
+    "transcription_diffs": [],
+    "three_scales": {
+      "thumb": "One tall pale panel on the left two thirds with four small icon-plus-caption rows stacked at even intervals and a block of serif text under them; a column of five outlined rectangles down the right, the third rectangle visibly darker/filled and the fifth one dashed and empty. Shape read is 'a key, plus a five step stack with one heavy step and one blank one.'",
+      "full": "Adds the four legend headings and bodies as read text, the four round dates with their project counts, the word TBA, and the disclosure paragraph as fully legible copy. The gold cut edge under swatch one becomes identifiable as gold, the phantom dash pattern becomes a dash pattern rather than a grey edge, and the four-way ordering of hatch density (7th light, 14th medium, 21st near solid, 28th light) becomes a comparison rather than one outlier.",
+      "zoom": "The cartouche's plate-bite emboss resolves as a lit inner bevel and a shadowed outer one; the swatch one chip shows a white top face, a gold sun edge and a grey contact shadow; the BLUE SCREEN swatch shows its misregistered dotted ghost offset down and left of the main dot field; the hatch inside each round bar resolves as individually drawn 45 degree strokes at genuinely different pitches rather than a tone; the paper tooth is visible as discrete grain across the sheet, no banding.",
+      "aggregation_holds": true
+    },
+    "lower_third": "PASS, marginally. The band (design y 900 to 1350) is occupied by the cartouche's lower half, which is a modeled object, not a plate: its right and bottom borders carry the plate-bite emboss and it throws a visible ambient skirt onto the sheet below its bottom edge (design y ~1215 to 1240). The fifth round bar, bare paper inside a phantom dash, sits to its right at design (694 to 954, 1128 to 1215), and the sheet grain runs unbroken beneath both. What weakens it is that roughly 70 percent of the band's area is the serif disclosure block sitting on flat unmodulated paper, so the modeled tone is concentrated in the panel edge and the shadow rather than distributed across the band as the dossier promises.",
+    "strengths_do_not_break": [
+      "Hatch density genuinely differs between AUG 7TH (open, wide pitch) and AUG 21ST (near solid) and the ordering is monotonic with dollars; this is the acceptance item that matters most and it landed",
+      "The fifth bar is unambiguously bare paper inside a phantom dashed outline labelled TBA, and it reads as a ROUND left blank rather than a region",
+      "No numeral sits on hatching anywhere; every round label is fully clear of its bar",
+      "The disclosure is set in Fraunces 34px and is visibly the largest string on the frame, which is exactly the mitigation the dossier promised against a legend being swiped past",
+      "Gold appears once only, on the cut edge of swatch one, and carries no glyph",
+      "The BLUE SCREEN swatch's misregistration is genuinely drawn as an offset ghost dot field, which is a real drawing operation and not a described one",
+      "Progress counter reads 07 / 09 correctly; no dashes, no emojis, straight apostrophe in 'state's'"
+    ],
+    "defects": [
+      {
+        "what": "The right column heading THE FOUR ROUNDS, AND THE FIFTH runs UNDER the cartouche and the cartouche's right border rule passes vertically through the middle of the word ROUNDS, between the N and the D. The first three words also sit on the cartouche's lighter fill while the rest sit on the sheet, so there is a visible tonal step mid-string. This is the deck's own 'no glyph overlaps any rule' rule broken, and it makes it ambiguous which column the heading labels.",
+        "where": "heading spans design x 550 to 998 at baseline y 196; the cartouche right border is the vertical at design x 655",
+        "severity": "high",
+        "fix": "Move the right-column heading's left edge to design x 694 (the left edge of the round bars) so it starts clear of the cartouche border at x 655, and right-align it to x 954 (the bars' right edge) rather than to x 998. If it will not fit at 22px in 260px, break it to two lines at 'THE FOUR ROUNDS,' / 'AND THE FIFTH' with 26px leading."
+      },
+      {
+        "what": "The scotch rule that is supposed to set entry five apart is missing. Dossier field 2 item 5 says the disclosure is 'Set apart under a scotch rule' and field 11 lists the scotch rule as furniture. The only double rule on the frame is the one under HOW TO READ THIS PLATE. Between the BLANK, UNENGRAVED entry and the disclosure there is 140 design px of undifferentiated blank paper doing the separating instead.",
+        "where": "design x 128 to 620, y 810 to 950",
+        "severity": "medium",
+        "fix": "Draw the same double scotch rule used at design y 222 (thick 2px over hair 0.75px, 4px apart) at design y 880, spanning x 128 to 620, in #16212E. Reduce the gap above it to 48px and below it to 40px so the disclosure moves up ~50px and gains bottom clearance."
+      },
+      {
+        "what": "The disclosure's last line 'may occur.' sits almost on the cartouche's bottom border; the descender of the y in 'may' is within a few pixels of the rule. The block has ~600px of clear space above it and effectively none below, which reads as an overflow rather than a setting.",
+        "where": "last line bottom at design y ~1212, cartouche bottom border at design y ~1215",
+        "severity": "medium",
+        "fix": "Raise the disclosure block's top by 50px (paired with the scotch rule fix above) so its last baseline lands at design y 1160, giving 55px of clear paper inside the cartouche below the final descender."
+      },
+      {
+        "what": "The swatch labelled BLUE SCREEN does not read as blue. Its dot field renders as a neutral warm grey against the cream and only the offset ghost outline shows any hue at all. The dossier requires each swatch be drawn 'at its TRUE treatment' and the treatment is #6EA5FF; a swatch whose caption names a colour it does not show is the one thing a legend cannot do.",
+        "where": "design x 128 to 182, y 570 to 624",
+        "severity": "medium",
+        "fix": "Raise the swatch's dot opacity from the 15 percent deck value to 30 percent for the swatch instance only (the on-map screen stays at 15), and drop the swatch's underlying grey fill so the dots sit directly on #F4EFE4. The swatch is 54px square and shows the hue at true pitch, so the opacity lift is a legibility affordance, not a data change."
+      },
+      {
+        "what": "Both AUG 7TH ($4.5M) and AUG 28TH ($16.9M) render at visually indistinguishable hatch pitch despite a 3.75x dollar difference. The ramp is doing its job at the top end and collapsing at the bottom, so three of the four bars read as one tier.",
+        "where": "AUG 7TH bar design x 694 to 973, y 286 to 418; AUG 28TH bar same x, y 928 to 1060",
+        "severity": "low",
+        "fix": "Change the density ramp from linear on dollars to sqrt on dollars across the declared 4px to 12px spacing range, which lifts AUG 28TH to roughly 8.2px pitch against AUG 7TH's 12px while leaving AUG 21ST at 4px. Update the aggregate assertion to match."
+      },
+      {
+        "what": "The heading and the LEGEND fixture both terminate at design x 998, two pixels inside the 1000px safe margin and hard against the plate mark. Nothing is clipped, but there is no optical margin at all on that edge.",
+        "where": "design x 998, y 196 and y 1290",
+        "severity": "low",
+        "fix": "Right-align both to design x 954 to match the round bars' right edge, which also gives the frame one consistent right rag."
+      },
+      {
+        "what": "The four legend entry bodies are set at 20px, below the deck's 24px text floor, and they carry meaning (they are the definitions of the whole continuity system) rather than being decorative. At full size they are the least comfortable read on the frame and at 432px they are gone entirely.",
+        "where": "design x 195 to 620, four blocks between y 275 and y 800",
+        "severity": "low",
+        "fix": "Raise entry bodies from 20px to 24px and reduce the inter-entry gap from ~90px to 66px to absorb the added height; the cartouche has the vertical room since the disclosure is moving up anyway."
+      }
+    ],
+    "score_0_10": 6.5
+  },
+  {
+    "slide": 8,
+    "verdict": "revise",
+    "encoding_reads": "n/a, no field 11a declared. The de facto argument (the first Friday holds none of the eight) does NOT read without labels: the AUG 7TH block is a solid dark sliver whose darkness reads as MORE ink, not less, so a stranger at 432px reads the leftmost block as the heaviest until they read the copy. Cause is value inversion plus scale, the block being too narrow to resolve its own rules.",
+    "transcription": "FOUR FRIDAYS, AT TRUE WIDTH | AUG 7TH | AUG 14TH | AUG 21ST | AUG 28TH | The first Friday had none of them. | August 7th moved $4.5 million across 19 projects and not one of the eight was in it. August 21st moved $130 million across 105 projects and five of the eight were. | $12.0M OF $181.9M | ABOUT ONE DOLLAR IN FIFTEEN | 400 MI | 08 / 09 | GRAZING VIEW, PARALLEL PROJECTION",
+    "transcription_diffs": [
+      {
+        "expected": "August 7th moved $4.5 million across 19 projects and not one of the eight was in it. August 21st moved $130 million across 105 projects and five of the eight were. The machines arrived in the middle of the month, not at the start.",
+        "rendered": "August 7th moved $4.5 million across 19 projects and not one of the eight was in it. August 21st moved $130 million across 105 projects and five of the eight were.",
+        "severity": "minor"
+      },
+      {
+        "expected": "August 7th moved $4.5 million across 19 projects",
+        "rendered": "August 7th moved $4.5 milli[on] -- the word 'million' is overprinted and its last three glyphs are illegible under the $12.0M ratio call",
+        "severity": "hard-fail"
+      }
+    ],
+    "three_scales": {
+      "thumb": "A wide horizontal striped band across the top third with evenly spaced blue ticks and one narrow dark block at its far left; a large two line serif headline mid frame; a paragraph with a heavy sans figure crashed on top of it; and a large empty pale bottom half with one tiny coloured speck near the centre. Shape read is 'a striped ledger, a headline, and a broken caption.'",
+      "full": "Adds the readable headline and body, the four round dates, the ratio figures, and the ability to count blue strikes per block (0 / 2 / 5 / 1). Also fully exposes the two hard failures: the ratio call sitting on the body copy, and the fact that the promised gold seam is a 27px wide speck rather than a full width object.",
+      "zoom": "The entry comb resolves as individually drawn hairline rules at genuinely different per block pitch, and the blue strikes resolve as double stroke hand ink with roughness. The paper tooth is present and unbanded. The one seam element that did render shows a white top face, a gold sun face and a blue grey two part shadow, so the drawing code is correct and only its x extent failed.",
+      "aggregation_holds": false
+    },
+    "lower_third": "FAIL. Dossier field 4a promises the deck's single strongest image in this band: twelve lifted tiles at a grazing angle collapsing into one gold seam running the FULL WIDTH with every tile's thickness visible and every shadow raking the same way. What rendered is a single 27 design px wide sliver at design x 540 to 567, y 1067 to 1148, with a small blue grey shadow beside it, and nothing else. The rest of the band, design x 82 to 1000 and y 900 to 1350, is flat cream with one warm horizontal near-edge line at y ~1210 and one thin warm rule at y ~1265. This is the dead bottom band the storyboard's rule 4 was written specifically to prevent, and the fixture GRAZING VIEW, PARALLEL PROJECTION is labelling an object that is not there.",
+    "strengths_do_not_break": [
+      "The blue strike distribution is exactly right and is the deck's sharpest fact drawn rather than asserted: AUG 7TH block carries ZERO strikes, AUG 21ST carries exactly five, AUG 14TH two and AUG 28TH one, summing to eight",
+      "The four block widths are honestly proportional to dollars; AUG 7TH is a genuine 19px sliver and AUG 21ST occupies roughly two thirds of the band",
+      "The entry comb is a real generated system with per block spacing, not a texture, and it survives zoom",
+      "The headline 'The first Friday had none of them.' is the strongest single line in the deck and sits clean on bare paper with no collision",
+      "Round labels are staggered on two rows and clamped inside the safe margin exactly as the reconciliation describes, so AUG 7TH and AUG 14TH do not collide",
+      "No quantity is drawn in perspective anywhere on the frame"
+    ],
+    "defects": [
+      {
+        "what": "HARD FAIL, the exact collision the task asked me to check. $12.0M OF $181.9M is overprinted on the body copy. It sits on top of the word 'million' in body line 1 and its descenders cross body line 2 'across 19 projects and not one of the'. ABOUT ONE DOLLAR IN FIFTEEN also overlaps line 2. Two ink-weight strings occupy the same pixels and the body sentence cannot be read.",
+        "where": "ratio call design x 496 to 1001, y 810 to 884; body line 1 baseline design y 827, body line 2 baseline design y 872; body block right edge design x 645",
+        "severity": "high",
+        "fix": "Move the ratio call out of the body's column entirely. Set its block to design x 620 to 1000, top y 1000, right aligned, so it occupies the empty right half of the lower band instead of the copy column, and reduce the ratio call from 52px to 44px so $12.0M OF $181.9M measures under 380px. Set ABOUT ONE DOLLAR IN FIFTEEN beneath it at design y 1064. Verify the body block's max width is clamped to 560px per the type spec."
+      },
+      {
+        "what": "HARD FAIL, the gold seam did not render. Field 4a's 'twelve lifted tiles seen at a low grazing angle so they collapse into one thin gold seam running across a pale plain' rendered as a single 27px wide element at frame centre. There is no seam across the width, no per tile thickness anywhere, no raking shadow row, and no scale gradient as the tiles recede. The slide's declared anchor ('The seam is the anchor') is absent, which also voids the depth plan's occlusion, cast shadow and edge thickness cues and leaves the whole bottom half flat.",
+        "where": "seam element at design x 540 to 567, y 1067 to 1148; the band that should be occupied is design x 82 to 1000, y 1050 to 1160",
+        "severity": "high",
+        "fix": "The grazing projection's x extent has collapsed. The twelve tiles' projected x range is being mapped through the shallow cabinet transform without being refitted to the frame, so all twelve land within ~27px. Refit the grazing row's x domain to design [110, 970] before applying the shallow cabinet offset, keep the 40px seam thickness and the y 1074 baseline from the reconciliation, and re-run the contact probe at the corrected y 1115 declared rect. Confirm twelve discrete top faces and twelve shadows are countable at 100 percent."
+      },
+      {
+        "what": "The constant bar's rule strikes through the 400 MI label. The horizontal rule and the glyph x-height occupy the same band, so the numerals read as struck out. This is a house furniture defect and it repeats on slide 09.",
+        "where": "label design x 82 to 145, glyph band y 1272 to 1288; bar rule at design y ~1283 running x 82 to 334",
+        "severity": "medium",
+        "fix": "Move the 400 MI label above the bar: set its baseline to design y 1262 and start the bar rule at y 1276. Keep the gold 4px terminal at x 82 and let the label's left edge align to x 82 so the label sits over the terminal rather than through the rule."
+      },
+      {
+        "what": "The AUG 7TH block reads darker than every other block. At 19px wide with 19 rules the hairlines merge into a solid grey mass with a grey tail extending below the comb baseline, so the smallest, lightest round renders as the heaviest ink on the band. That is a value inversion against the slide's own argument.",
+        "where": "design x 82 to 101, y 263 to 483, with a grey overhang to y 483",
+        "severity": "medium",
+        "fix": "Drop the AUG 7TH block's rules to 0.5px at 40 percent opacity so its collapsed mass sits lighter than the AUG 21ST block's, and clip the block's fill to the comb's own top and bottom (design y 263 to 470) to remove the tail. Do not change its width, which is honest."
+      },
+      {
+        "what": "Field 11 specifies 'four block labels with their dates and dollars'. Only the dates rendered. The dollars are the quantity the widths encode and their absence means the widths carry no readable value.",
+        "where": "labels at design x 86, 108, 262 and 877, y 202 and 236",
+        "severity": "medium",
+        "fix": "Append the dollars to each label in Space Grotesk 500 20px on a second line under each date: $4.5M, $30.1M, $130M, $16.9M. Keep the two row stagger. If AUG 7TH's $4.5M will not clear the AUG 14TH label, set it flush left at design x 82 on the upper row with the date."
+      },
+      {
+        "what": "The ratio call and ABOUT ONE DOLLAR IN FIFTEEN both terminate at design x 1001, one pixel outside the 1000px safe margin and visually touching the plate mark rule.",
+        "where": "design x 1001, y 884 and y 916",
+        "severity": "medium",
+        "fix": "Handled by the ratio call reposition above; clamp its right edge to design x 970 so there is 30px of paper between the figure and the plate mark."
+      },
+      {
+        "what": "ABOUT ONE DOLLAR IN FIFTEEN is set in a light grey that measures roughly 2.8:1 against the sheet. It carries claim C18 and is therefore load bearing copy, not a Tufte-tier label, so it is under the 4.5:1 floor.",
+        "where": "design x 604 to 1001, y 900 to 916",
+        "severity": "medium",
+        "fix": "Set it in #16212E at 60 percent, or in #2E5FA3, either of which clears 4.5:1 on #F4EFE4. Do not use #93A0A8 here; the deck's own palette note forbids graphite for anything load bearing."
+      },
+      {
+        "what": "The body dropped its final sentence 'The machines arrived in the middle of the month, not at the start.' The dossier copy is 43 words and the render is 34. That sentence is the takeaway restated and its loss is why the copy column ends abruptly at 'five of the eight were.'",
+        "where": "body block design x 82 to 645, last baseline design y 1010",
+        "severity": "medium",
+        "fix": "Restore the final sentence. With the ratio call moved right there is room for two more lines at 34px/1.38 before the seam at y 1050. If it will not fit, cut 'across 105 projects' rather than the closing sentence."
+      },
+      {
+        "what": "Large dead zone between the comb band and the headline, roughly 125 design px tall and full width, with nothing in it. Combined with the failed seam it means over half the frame's area carries no mark at all.",
+        "where": "design x 82 to 1000, y 483 to 608",
+        "severity": "low",
+        "fix": "Largely resolved by the seam fix and the copy restore. If it persists, raise the headline block's top to design y 560 and let the comb's ambient skirt fall into the gap."
+      }
+    ],
+    "score_0_10": 3.5
+  },
+  {
+    "slide": 9,
+    "verdict": "revise",
+    "encoding_reads": "n/a, no field 11a declared. The de facto residue claim (twelve regions were cut and set back down) does read at 432px as a connected gold network across the north and one gold blob at the far right, so a stranger sees 'these regions are marked and those are not' before reading anything. It reads by hue and by connectedness, not by value.",
+    "transcription": "Which of the eight would you fund at scale next year? | ALASKA.AI | alaskaaihq.com | SOURCES IN COMMENTS | 400 MI | 09 / 09",
+    "transcription_diffs": [],
+    "three_scales": {
+      "thumb": "A pale Alaska sitting in the upper half with a connected network of thin gold outlines across its northern and interior regions and one gold cluster at the far right tip; a three line serif question filling the lower left; a small circle with a gold point at lower right; a wordmark below the question. Shape read is 'a map with parts outlined in gold, and a question.'",
+      "full": "Adds the question as read text, the ALASKA.AI wordmark, alaskaaihq.com, SOURCES IN COMMENTS, and the ability to see that the gold marks are boundary hairlines on flush tiles rather than filled regions. The compass rose resolves as a 32 point engraved rose with a raised bezel and its own cast shadow, and the Polaris resolves as a four point gold star at the north point.",
+      "zoom": "The kerf hairlines resolve as cased gold with a darker lee edge, and the fjord detail in the Southeast kerfs is genuinely intricate full resolution coastline, not simplified. The rose's bezel resolves as a lit inner ring and a shaded outer one with a soft grey skirt to the lower right. The paper tooth is present as discrete grain with no banding. The Aleutian chain bleeds off the left edge with its individual islands drawn.",
+      "aggregation_holds": true
+    },
+    "lower_third": "PASS. The band's occupant is the engraved compass rose at design x 797 to 925, y 908 to 1094, and it is a genuinely modeled object rather than a plate: it has a raised bezel with a lit inner face, 32 engraved radial ticks, a gold Polaris inlay at the north point, and a real soft cast shadow falling down and right consistent with the deck's 315 azimuth key. The margin's plate bite gives the band a bevelled edge and the sheet grain runs through it. The weakness is coverage: the dossier also promised 'the gold seams running left from it' in this band, and every one of the twelve kerfs is up in the map between design y 200 and 750, so the rose is a 128px object alone in a 900px wide band. The field is satisfied, thinly.",
+    "strengths_do_not_break": [
+      "No tile is lifted anywhere; every tile is flush and the kerfs are the only residue, which is exactly the close the deck earned",
+      "The compass rose is the best modeled object in the three slides reviewed: real bezel, real 32 point engraving, real cast shadow in the deck's one light direction, gold Polaris inlaid flush at true north",
+      "The ask is a single question with no second call to action anywhere on the frame",
+      "The question sits entirely on bare water with the Aleutian chain clearing its cap line",
+      "Gold budget is respected exactly as dossier 09 declares: kerfs, Polaris, bar terminal, nothing else",
+      "alaskaaihq.com is in the mono face at small size under the ALASKA.AI mark, and SOURCES IN COMMENTS is present",
+      "Progress counter reads 09 / 09; no dashes, no emojis, no colons in prose",
+      "The Aleutian bleed off the left edge is deliberate and matches the deck header's stated framing"
+    ],
+    "defects": [
+      {
+        "what": "The constant bar's rule strikes through the 400 MI label, same defect as slide 08 and therefore deck wide. The horizontal rule passes through the numerals' x-height so 400 MI reads as struck out.",
+        "where": "label design x 82 to 145, glyph band y 1272 to 1288; bar rule at design y ~1283 running x 82 to 334",
+        "severity": "medium",
+        "fix": "Move the 400 MI label above the bar: baseline design y 1262, bar rule at y 1276. Fix in the shared constant bar component so all nine slides inherit it."
+      },
+      {
+        "what": "SOURCES IN COMMENTS terminates at design x 999 and visually touches the plate mark rule at x 1000. There is no optical margin on that edge and the fixture appears to be resting on the frame.",
+        "where": "design x 690 to 999, y 1152 to 1170",
+        "severity": "medium",
+        "fix": "Right-align it to design x 954 to match the compass rose's right edge, giving 46px of paper between the last S and the plate mark."
+      },
+      {
+        "what": "A large unoccupied region sits between the Southeast kerf cluster and the compass rose, roughly 325 by 225 design px of flat cream with no mark, texture variation or shadow. Combined with the second void below the wordmark it leaves the right half of the lower two fifths reading as leftover space rather than quiet space.",
+        "where": "design x 675 to 1000, y 675 to 900",
+        "severity": "medium",
+        "fix": "Raise the compass rose to design y 800 to 986 so it closes the gap under the Southeast cluster and sits opposite the second line of the ask rather than the third, and add its ambient skirt at 18px so tone reaches into the void. Alternatively bring one kerf hairline down as a leader from the Southeast cluster toward the rose's north point, which is on-metaphor for a rose."
+      },
+      {
+        "what": "The twelve kerfs cannot be independently counted from the render. In the mainland I can trace roughly eight to nine discrete gold-outlined regions, and the four Southeast boroughs merge into one continuous gold blob at this scale, so the acceptance item 'twelve kerfs are visible as hairlines' is visible but not verifiable. A reader cannot arrive at twelve.",
+        "where": "Southeast cluster design x 870 to 970, y 570 to 665; mainland kerfs design x 355 to 730, y 200 to 500",
+        "severity": "low",
+        "fix": "Add a single Space Grotesk 500 20px count on bare water beside the Southeast cluster reading TWELVE KERFS, or place a small twelve-square ISOTYPE block in the right margin at design (940, 700). Either makes the count assertable without a second call to action."
+      },
+      {
+        "what": "The gold kerf network is the largest area of gold in the deck and it is the sole encoding of the slide's data, at roughly 1.7:1 against the sheet. The deck header states gold 'never carries a load bearing hairline anywhere in this deck'; dossier 09 overrides that, but the render shows the consequence, which is that at 432px the kerfs are near the limit of visibility.",
+        "where": "all kerf paths, design x 355 to 970, y 200 to 665",
+        "severity": "low",
+        "fix": "Keep the gold but strengthen the casing: raise the #B08A22 cased edge from 1px to 1.25px on the lee side only. That lifts the kerf network's edge contrast to roughly 3.2:1 without adding gold area or introducing a second gold value."
+      },
+      {
+        "what": "alaskaaihq.com is set BELOW the ALASKA.AI mark rather than beside it as the dossier's type spec states ('Site JetBrains Mono 18px beside the mark, per CAROUSEL_CRAFT'). The stack is clean and legible, so this is a plan deviation rather than a craft fault, but it is undeclared in the reconciliation, which says slide 09 was 'built as planned.'",
+        "where": "mark at design x 82 to 315, baseline y 1112; site at design x 82 to 245, baseline y 1150",
+        "severity": "low",
+        "fix": "Either set the site at design x 335, baseline y 1112, optically aligned to the mark's baseline, or add a line to the BUILD RECONCILIATION for slide 09 recording the stack as the shipped choice. Do not leave the plan and the render disagreeing silently."
+      }
+    ],
+    "score_0_10": 7.3
+  }
+]
+```

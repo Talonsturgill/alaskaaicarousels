@@ -1,0 +1,136 @@
+{
+  "run_date": "2026-08-30",
+  "note": "Every number a slide derives from the claims record, declared so the arithmetic can be re-run. The count of twelve boroughs is the only genuinely new aggregate the deck computes; the rest are figures a claim already states, declared as from_claim so the gate can confirm the slide is not inventing them.",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 1,
+      "fragment": "TWELVE BOROUGHS",
+      "text": "TWELVE BOROUGHS CUT OUT OF ONE STATE SHEET",
+      "member": "C36"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "185 awards",
+      "text": "185 awards. Eight machines.",
+      "member": "C03"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "Eight machines",
+      "text": "185 awards. Eight machines.",
+      "member": "C17"
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "fragment": "four Fridays",
+      "text": "Announced on four Fridays since August 7th, across all 30 boroughs and census areas. Eight of them buy a machine that reads, decides or flies.",
+      "subject": "fridays",
+      "members": [
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "185 AWARDS",
+      "text": "185 AWARDS",
+      "member": "C03"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "fragment": "21 ACUTE CARE HOSPITALS",
+      "text": "21 ACUTE CARE HOSPITALS, SITES NOT PUBLISHED",
+      "member": "C23"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "fragment": "42 VILLAGES",
+      "text": "42 VILLAGES, NOT NAMED IN THE AWARD RECORD",
+      "member": "C26"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "fragment": "14 DAYS",
+      "text": "5 TO 14 DAYS, WINTER",
+      "member": "C26"
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "fragment": "FOUR ROUNDS",
+      "text": "THE FOUR ROUNDS, AND THE FIFTH",
+      "subject": "rounds",
+      "members": [
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "fragment": "FOUR FRIDAYS",
+      "text": "FOUR FRIDAYS, AT TRUE WIDTH",
+      "subject": "fridays",
+      "members": [
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "19 projects",
+      "text": "August 7th moved $4.5 million across 19 projects and not one of the eight was in it. August 21st moved $130 million across 105 projects and five of the eight were.",
+      "member": "C05"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 9,
+      "fragment": "TWELVE KERFS",
+      "text": "TWELVE KERFS",
+      "member": "C36"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "19 PROJECTS",
+      "text": "AUG 7TH, 19 PROJECTS, $4.5M",
+      "member": "C05"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "37 PROJECTS",
+      "text": "AUG 14TH, 37 PROJECTS, $30.1M",
+      "member": "C06"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "105 PROJECTS",
+      "text": "AUG 21ST, 105 PROJECTS, $130M",
+      "member": "C07"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "24 PROJECTS",
+      "text": "AUG 28TH, 24 PROJECTS, $16.9M",
+      "member": "C08"
+    }
+  ]
+}

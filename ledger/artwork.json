@@ -1251,6 +1251,28 @@
         "no-data hatch as the drafting convention for an absent field"
       ],
       "note": "Three revision rounds. The craft defect that cost the most was one bug in one shared idiom: the bench material pass stroked WHITE at low alpha, invisible on lit glass and visible only over the dark room band, where four critics read it as lens dirt. Fixed once in benchMaterial() for all nine slides. The second most expensive was declaring contact bands the cast never physically reached, which made every contact read as 'barely' until the declarations were moved to where the ink actually is."
+    },
+    {
+      "run_date": "2026-08-30",
+      "carousel_no": 45,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE CUT PLATE. One sheet of cotton rag on a table, printed with an engraved plate of Alaska ruled in graphite. The twelve boroughs named in a machine award's service area are CUT OUT of the sheet and lifted on per-edge cabinet extrusions, each throwing a two part shadow with its exposed cut edge showing gold. The seventeen untouched lie flat and printed. Water is bare unprinted paper, which is where every block of copy sits, so the type reserve is a physical fact rather than a layout habit.",
+      "atmosphere": "NORTH WINDOW, TEN A.M., LATE AUGUST. The first high key paper white register in at least nine runs, after three consecutive dark decks. Chosen because all three treatment directors converged on it independently, which was treated as a finding rather than a coincidence.",
+      "continuity_device": "CUT IS A PLACE, SCREEN IS EVERYWHERE, PHANTOM IS A PLAN. A FABRICATION distinction rather than a colour one, deliberately diverging from No.41's GOLD IS MEASURED / BLUE IS MODELLED and No.42's INK IS RECORDED / VOID IS MODELED. A place specific award is excised and raised; a statewide award can only be a misregistered second press pass because it has no address; a planning award is an outline because nothing has been bought yet.",
+      "palette": "NOTICE OF INTENT, ON COTTON RAG. Sheet #F4EFE4, flat tile #E7E0D0, lifted top #FBF7EE, ink #16212E, graphite #93A0A8, registrar blue #2E5FA3, screen blue #6EA5FF, gold #FFC72C with #B8862A on lee faces.",
+      "type_pairing": "Fraunces (display and body) + Space Grotesk (labels and figures), JetBrains Mono restricted to brand fixtures",
+      "techniques": [
+        "per-edge cabinet extrusion with outward-facing tests and painter order by edge midpoint y",
+        "true-lon/lat d3.geoConicEqualArea at parallels 55/65 rotate 154",
+        "offscreen destination-out union outline so five adjacent boroughs read as one phantom region",
+        "a real dot screen misregistered 6px x and 4px y, with the coastline stroked twice from ONE decimated Path2D",
+        "radial aspect hachure field whose height surface is miles from a named hub",
+        "a 185 rule entry comb at four true proportional block widths with eight hand struck double strokes",
+        "a grazing seam of twelve tiles at 18 to 30px section by projected latitude",
+        "blind Gulf emboss with a crown, a warm fall and directional tooth",
+        "engraved 32 point compass rose with a graduated minute ring and a flush gold Polaris"
+      ],
+      "note": "Five review rounds. bespoke_check PASS at 64 percent drawn share, 0.250 median pairwise similarity, max pair 0.463. Thirteen render time assertions, including two written specifically to stop a fix from drifting: the phantom cell's row index is tied to the row whose verdict is PLANS, and every seam register tick is held to within half a pixel of its own tile's mid point."
     }
   ]
 }

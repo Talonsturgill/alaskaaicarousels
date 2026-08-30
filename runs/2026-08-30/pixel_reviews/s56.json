@@ -1,0 +1,238 @@
+```json
+[
+  {
+    "slide": 5,
+    "verdict": "revise",
+    "encoding_reads": "n/a as declared (BUILD RECONCILIATION states no data-encodes was shipped on 05), but judged anyway: NO. At 432px a stranger sees a hatched region inside a dashed outline sitting among flat neighbours and cannot see that this region is NOT lifted, because no lifted tile exists anywhere in frame to compare against. Cause is context/absence of a counterpart, not hue: the argument 'nothing has been built here' is only legible to a reader who already saw slides 01 and 03.",
+    "transcription": [
+      "A planning year buys a",
+      "map.",
+      "42 VILLAGES, NOT",
+      "NAMED IN THE AWARD",
+      "RECORD",
+      "Tanana Chiefs Conference takes $250,000 to plan drone pharmacy from a Fairbanks hub to 42 Interior villages across 94,000 square miles. It is one of 19 planning awards. No aircraft is bought.",
+      "WITH ACUASI AT UAF, A LEAD PARTICIPANT IN THE FAA'S BEYOND PROGRAM",
+      "5 TO 14 DAYS, WINTER",
+      "SURFACE = MILES FROM THE FAIRBANKS HUB",
+      "300 MI",
+      "05 / 09",
+      "64\u00b050'N 147\u00b043'W"
+    ],
+    "transcription_diffs": [
+      {
+        "expected": "42 VILLAGES, NOT NAMED IN THE AWARD RECORD (legible)",
+        "rendered": "lines 2 and 3, 'NAMED IN THE AWARD' and 'RECORD', are struck through by the 42-square ISOTYPE block; several glyphs are broken into fragments and 'RECORD' is only partly readable at full size and unreadable at 432px",
+        "severity": "hard-fail"
+      },
+      {
+        "expected": "A planning year / buys a map.  (dossier field 2, 'broken by sense')",
+        "rendered": "A planning year buys a / map.",
+        "severity": "minor"
+      }
+    ],
+    "three_scales": {
+      "thumb": "A dark serif headline block top left, a five-line grey paragraph under it, a pale hatched region low centre with a dashed border, a small two-line grey caption right, an arrowed dimension line bottom right, and a grey smudge of dots-plus-broken-text in the top right corner. Shapes read: text mass upper left, drawn mass lower centre.",
+      "full": "The merged five-borough phantom outline resolves as a dashed boundary; the hachure field resolves as a radial stroke system fanning from a single ringed hub dot; the Southcentral, Peninsula and Southeast context tiles resolve as flat printed shapes with graphite borough rules; the caption and annotation become readable except where the ISOTYPE block sits on them; the dimension call resolves extension lines, overshoots and filled arrowheads.",
+      "zoom": "Individual hachure strokes show varying length and weight with distance and aspect from the hub; the paper tooth is present as real grain, not a flat fill; the phantom dash pattern lands on full dashes; the constant bar's gold left terminal is a drawn cap rather than a filled rect; borough rules inside the merged region are visibly hairline against the outline's heavier phantom weight.",
+      "aggregation_holds": false
+    },
+    "lower_third": "PARTIAL PASS, weaker than field 4a promised. The dossier said the band carries the hachure field's lower lobe. In the shipped frame the type went up and the map went down, so the hachure lobe only clips the very top of the band (design y ~900 to ~965) and the dominant occupant of the lower third is flat #E7E0D0 context tile fill for the Peninsula, Kodiak and Southeast with graphite borough rules, plus the drafting dimension call and the constant bar. It is genuinely drawn and it is not dead, but it is FLAT fill rather than modelled tone, and it is the only band in the deck where the promised modelled object migrated out of frame. The dimension call is a fixture and does not satisfy the field on its own.",
+    "checklist_results": [
+      {"item": "outline is phantom dashed and NOT lifted, no gold on it", "pass": true},
+      {"item": "hachure strokes visibly vary in width across the field", "pass": true},
+      {"item": "ISOTYPE block is exactly 42 identical squares, in the margin not on the map", "pass": false},
+      {"item": "no dot anywhere on the map claims to be a village", "pass": false},
+      {"item": "SURFACE = provenance line present", "pass": true},
+      {"item": "the words 'no aircraft' appear on the frame", "pass": true},
+      {"item": "constant bar at x 80 with gold terminal, reads 300 MI, counter 05 / 09", "pass": true},
+      {"item": "no em/en dash, no emoji, no colon in prose", "pass": true},
+      {"item": "text floor 24px except decorative fixtures", "pass": true},
+      {"item": "safe margin 80px respected by all type", "pass": true}
+    ],
+    "strengths_do_not_break": [
+      "The radial hachure field about the Fairbanks hub is the best drawn surface in the deck: real stroke-weight and length variation with distance and aspect, continuous tone at every zoom, and only one mark system doing it. Do not replace it with a fill or a relight.",
+      "PHANTOM IS A PLAN reads correctly: the merged five-borough outline is dashed, flat, and carries zero gold, and the contrast against the flat printed neighbours is exactly the fabrication distinction the deck promised.",
+      "The drafting dimension call at bottom right (extension lines, 6px overshoots, 3:1 filled arrowheads) carrying '5 TO 14 DAYS, WINTER' is a genuine drafting object and lands the number where it belongs.",
+      "Type reserve is honest: the entire upper band is bare unprinted sheet and the body sits on nothing. 14:1 ink on sheet, no art under any word except the top-right collision.",
+      "The annotation 'WITH ACUASI AT UAF...' clears the Interior outline by a comfortable margin. Do not let a re-layout push it down onto the map."
+    ],
+    "defects": [
+      {
+        "what": "HARD FAIL, art on text. The 42-square ISOTYPE block is drawn straight through the caption '42 VILLAGES, NOT NAMED IN THE AWARD RECORD'. Lines 2 and 3 are cut into fragments; 'RECORD' is a broken word at full size and pure noise at 432px. This is the exact 'busy art under text' class the deck header says this run exists to eliminate, on the one slide declared a breather.",
+        "where": "design 631,176 to 999,270 (render 935,260 to 1480,400 at the 1600px preview)",
+        "severity": "high",
+        "fix": "Separate them vertically. Move the caption block to its own reserve above the squares: set the caption's top to y 150 and right-align at x 1000, and move the ISOTYPE block down to top y 232. Then lay the squares as a strict 6 columns x 7 rows grid (42), 14px square on a 26px pitch, block width 158px, right edge pinned to x 1000, so the block occupies design 842,232 to 1000,414. Nothing else lives there. Verify the count with a __akAssert point, not the loop bound."
+      },
+      {
+        "what": "The 42 squares cannot be counted as rendered. The three visible rows have three DIFFERENT right-hand extents (they end near design x 871, 908 and 979), so the block is either ragged or its right end is being read as square pixels where it is actually caption glyph pixels. The acceptance checklist requires exactly 42 identical squares and this render cannot demonstrate it.",
+        "where": "design 631,205 to 999,265",
+        "severity": "high",
+        "fix": "Same rectangular 6x7 grid as above so all rows share an identical extent and a reader can count a row and a column. Add __akAssert('isotype42', n) and gate on n === 42."
+      },
+      {
+        "what": "The only dot on the map is unlabelled. On a frame whose body says '42 Interior villages', a single ringed dot with no name attached invites exactly the reading the acceptance checklist forbids, that a dot is a village. The 'SURFACE = MILES FROM THE FAIRBANKS HUB' line names the hub but sits 500px away in the opposite corner with no connection to the mark.",
+        "where": "hub dot at design 570,868 (render 845,1286)",
+        "severity": "medium",
+        "fix": "Add a direct label 'FAIRBANKS HUB' in Space Grotesk 500, 20px, #16212E, caps, tracked +9%, placed on bare paper to the right of the dot at design 592,860 with a 12px clear radius, no leader line. If it will not fit clear of the hachure, place it left at 470,860 with a knockout plate in sheet #F4EFE4."
+      },
+      {
+        "what": "Headline break is not the dossier's sense break. Rendered as 'A planning year buys a / map.' which orphans 'map.' as a two-word second line under a full-width first line. The dossier specified 'A planning year / buys a map.'",
+        "where": "design 84,155 to 620,285",
+        "severity": "medium",
+        "fix": "Insert an explicit <br> after 'year' and drop AK.fitText's max from 68 to 60 so the forced break fits without shrinking below min 48."
+      },
+      {
+        "what": "The lower third lost its promised modelled object. Field 4a said the band carries the hachure field's lower lobe; the reconciliation moved the map down but the hachured region's lowest extent is design y ~965 while the band runs 900 to 1350, so roughly 85 percent of the band is flat #E7E0D0 tile fill.",
+        "where": "design 0,965 to 1080,1350",
+        "severity": "medium",
+        "fix": "Extend the hachure clip southward, or drop the whole map group 40px and scale it 1.06 so the merged region's lower lobe reaches design y 1090. Alternatively add a real modelled element to the band, an emboss on the sheet's near edge with a lit crown and a 3px contact core, consistent with the 315 azimuth key used everywhere else."
+      },
+      {
+        "what": "'SURFACE = MILES FROM THE FAIRBANKS HUB' is set in graphite mono at 16px, which measures roughly 2.4:1 against the sheet. It is a required provenance disclosure and it is close to invisible at full size and entirely gone at 432px.",
+        "where": "design 84,1157 (render 124,1714)",
+        "severity": "low",
+        "fix": "Change the fill from #93A0A8 to #6E7C86 and lift to 18px. That reads about 4.3:1, which is acceptable for a non-body fixture and keeps it below the display tier."
+      },
+      {
+        "what": "'THE FAA'S' appears to render a typographic right single quote rather than the house straight quote.",
+        "where": "design 990,672, end of annotation line 2",
+        "severity": "low",
+        "fix": "Confirm the source string uses U+0027 and that no smart-quote transform runs on Space Grotesk label strings. If the face is substituting, set font-feature-settings to disable the quote alternate."
+      }
+    ],
+    "score_0_10": 4.5
+  },
+  {
+    "slide": 6,
+    "verdict": "revise",
+    "encoding_reads": "No wordless claim was declared in the dossier for 06, so n/a as a formal gate. Judged anyway against the slide's own argument, 'not one of the eight acts alone': NO at 432px. Cause is occlusion plus value. The Ketchikan bar is drawn straight through the milled-empty third column and terminates at its right edge, so the column does not read as empty, and 'NONE OF THE EIGHT' is set in low-value graphite at 20px wrapped over three lines, so the one string that names the emptiness is the faintest thing on the frame.",
+    "transcription": [
+      "THE EIGHT, AND WHAT EACH ONE HANDS OVER",
+      "HOLDS",
+      "ASSISTSACTS ALONE",
+      "$6,518,029",
+      "PeaceHealth Ketchikan Medical Center",
+      "ASSISTS",
+      "$3,156,626",
+      "Alaska Stroke Coalition",
+      "ASSISTS",
+      "$1,241,086",
+      "MapHabit",
+      "ASSISTS",
+      "$430,000",
+      "Maniilaq Association",
+      "ASSISTS",
+      "$250,000",
+      "Mat-Su Regional Medical Center",
+      "ASSISTS",
+      "NONE OF THE EIGHT",
+      "$250,000",
+      "Tanana Chiefs Conference",
+      "PLANS",
+      "$141,703",
+      "Statewide Independent Living Council",
+      "ASSISTS",
+      "ABOUT $25,500",
+      "Kodiak Community Health Center",
+      "ASSISTS",
+      "BAR LENGTH LINEAR. ONE PIXEL IS $9,000.",
+      "200 MI",
+      "06 / 09",
+      "AK DEPT OF HEALTH, AUGUST 28TH 2026"
+    ],
+    "transcription_diffs": [
+      {
+        "expected": "ASSISTS   ACTS ALONE  (two separate column heads)",
+        "rendered": "ASSISTSACTS ALONE  (the terminal S of ASSISTS is overlapped by the A of ACTS; the two heads are set as one collided string)",
+        "severity": "hard-fail"
+      },
+      {
+        "expected": "eight organisation names, dollars and service areas per dossier field 2",
+        "rendered": "service area line correctly cut per BUILD RECONCILIATION; all eight names and figures present and correct, summing to $12,012,944 against C17's $12,012,936, the 8 dollar delta explained by the disclosed 'ABOUT' on Kodiak",
+        "severity": "minor"
+      }
+    ],
+    "three_scales": {
+      "thumb": "A pale slip pasted on paper, tilted, with a torn bottom edge and a soft drop shadow. Eight ruled rows. A staircase of blue bars collapsing from full width to a dot. A repeated blue word down the right of the data column. A flat grey band at the far right holding almost nothing. Shapes read: one very long bar, seven short ones, one column that is empty.",
+      "full": "The eight organisation names and eight exact dollar figures become readable; the small Alaska silhouette per row resolves, with the three statewide rows filled screen blue across the whole state and the five place rows grey with only their service area inked; 'PLANS' distinguishes itself from the seven 'ASSISTS'; 'NONE OF THE EIGHT' resolves in the third column; the deckle edge resolves as a genuine torn contour with a two-part shadow; the scale note reads.",
+      "zoom": "The 1.2 degree rotation is measurable on the table rules; the deckle is a real per-pixel torn contour with no repeated period; the cockle shows as a low frequency luminance undulation across the slip; the borough boundaries inside each 90px silhouette are hair weight and correct; the two $250,000 bars measure identically and Kodiak's tick is a genuine 3px mark on the same axis; the hairline table rules hold 0.75px without aliasing to 1px.",
+      "aggregation_holds": true
+    },
+    "lower_third": "PASS, and it is the strongest lower third of the two slides. The band holds rows 7 and 8, the two smallest bars including the 3px Kodiak tick, and then a genuinely modelled object: the slip's deckle, drawn as a real torn contour with a soft cockle undulation and a two-part cast shadow with a tight contact core at the tear and an ambient skirt spreading below it onto the plate. That is a modelled edge with one consistent light direction, not a plate and not a caption. The scale note and the constant bar ride on top and are correctly not what satisfies the field. One shortfall against 4a: the promise of 'three stacked material layers' does not fully deliver because the plate's printed tiles are almost entirely hidden, only faint ghost islands survive at far left around design 0,975 to 74,1035, so the layer under the slip reads as bare sheet rather than as the plate.",
+    "checklist_results": [
+      {"item": "exactly eight rows, every organisation name matches claims", "pass": true},
+      {"item": "the two $250,000 bars are drawn to the identical pixel", "pass": true},
+      {"item": "Kodiak's bar is a tick WITH A DIMENSION CALL reading about $25,500", "pass": false},
+      {"item": "the printed scale is present and states one pixel is $9,000", "pass": true},
+      {"item": "column three is visibly empty and labelled ACTS ALONE", "pass": false},
+      {"item": "the three statewide rows are screened and the five place rows are not", "pass": true},
+      {"item": "every dollar figure is tabular AND right aligned on its digits", "pass": false},
+      {"item": "at 432px this reads as a reference chart worth saving", "pass": true},
+      {"item": "Device C edge tease, the slip crosses the right margin", "pass": false},
+      {"item": "constant bar at x 80 with gold terminal, reads 200 MI, counter 06 / 09", "pass": true},
+      {"item": "gold only on cut faces and the bar terminal, never on a glyph", "pass": true},
+      {"item": "no em/en dash, no emoji, straight quotes, no colon in prose", "pass": true},
+      {"item": "text floor 24px except decorative fixtures", "pass": true}
+    ],
+    "strengths_do_not_break": [
+      "The thumb is a TRUE aggregation and this is the best thing in either slide. At 432px the reader gets one enormous bar, a staircase collapsing to a dot, and a blank column, with zero words required. This is a saveable chart at feed size and it is exactly what the slide exists to do.",
+      "The 256:1 bar range drawn honestly on one shared linear axis with a printed scale. Ketchikan measures 722 design px against the declared 724 and Kodiak survives as a real 3px tick rather than being floored to a minimum length. Do not add a minimum bar width for legibility, the tick IS the argument.",
+      "The eight silhouettes carry the semantic system at row level without a legend: statewide rows filled screen blue edge to edge, place rows grey with only their own service area inked. Maniilaq's northwest mass and Tanana's Interior mass are immediately distinguishable from Ketchikan's and Kodiak's specks.",
+      "The deckle plus cockle plus two-part cast shadow is genuine modelled paper with one light direction, and the 1.2 degree rotation is present and restrained.",
+      "'PLANS' as the one verdict that is not 'ASSISTS' silently ties row 6 back to slide 05's phantom state. Keep it.",
+      "The figures are correct and honest: the eight sum to $12,012,944 against C17's $12,012,936, the difference fully explained by the disclosed 'ABOUT' on Kodiak."
+    ],
+    "defects": [
+      {
+        "what": "HARD FAIL, collided column heads. The two heads render as one string, 'ASSISTSACTS ALONE'. The terminal S of ASSISTS sits underneath the A of ACTS. These are the two labels that carry the deck's entire argument and they are unreadable as two things at every scale.",
+        "where": "design 736,189 to 999,206 (render 1090,280 to 1478,305)",
+        "severity": "high",
+        "fix": "Drop the column heads from 700 26px to 700 22px tracked +6%, left-align ASSISTS at x 660 (over its own column, whose rule is at x 709) and RIGHT-align ACTS ALONE to x 990. At 22px +6% 'ACTS ALONE' measures about 141px so it runs 849 to 990, leaving a 48px gutter from ASSISTS's right edge at ~801. Verify with a __akAssert on the two measured text extents, not by eye."
+      },
+      {
+        "what": "MAJOR. The Ketchikan bar runs straight through the milled-empty third column and terminates flush at its right edge. The single best idea in the room, an ACTS ALONE column with nothing in it, is contradicted by a 722px blue rule crossing it. At 432px the column does not read as empty, it reads as a column with a bar in it.",
+        "where": "bar spans design 236,318 to 958,318; the milled column occupies design 867,205 to 958,1140",
+        "severity": "high",
+        "fix": "Move the shared bar axis origin left and cap the plot region. Set every bar's x0 to 120 instead of 236, keeping 1px per $9,000 exactly, so Ketchikan runs 120 to 844 and terminates 23px clear of the milled column's left edge at 867. Nothing else moves. Do not shorten the bar or change the scale."
+      },
+      {
+        "what": "MAJOR. 'NONE OF THE EIGHT' is the payoff string of the slide and is the weakest mark on the frame: graphite at 20px, wrapped ragged over three lines ('NONE / OF THE / EIGHT'), sitting on a screened grey column, and it estimates below 4.5:1 against that fill. At 432px it is a faint smudge. The empty column is therefore an unexplained grey band rather than a stated verdict.",
+        "where": "design 872,715 to 950,805 (render 1292,1060 to 1408,1192)",
+        "severity": "high",
+        "fix": "Set fill to ink #16212E, size to 700 26px tracked +9%, and break it deliberately as two lines 'NONE OF / THE EIGHT' centred in the column at design 912. Widen the milled column from 91px to 140px (left edge 810 instead of 867) so the string sits without a third ragged line. That is compatible with the bar-origin fix above, which frees the space."
+      },
+      {
+        "what": "Dollar figures are LEFT aligned on the dollar sign, not right aligned on their digits, and 'ABOUT $25,500' is the longest string in the column. At 432px the smallest award in the table presents the widest block of type of any row, which is the one place this slide argues against its own honest bar.",
+        "where": "figures column, all eight rows, left edge design 232, y 246 to 1076",
+        "severity": "medium",
+        "fix": "Right-align the figure column on a common right edge at design x 470, tabular-nums lining-nums as specced. Move 'ABOUT' out of the figure and set it as a separate Space Grotesk 500 20px #93A0A8 prefix at x 232 on the same baseline, so the numeral column stays a clean stack of digits."
+      },
+      {
+        "what": "Kodiak has no dimension call. The acceptance checklist requires the 3px tick to carry a drafting dimension call reading about $25,500 so a reader can see why a 3px mark is a real quantity, and field 4a names it as a lower-third occupant. Only the typeset figure is present.",
+        "where": "Kodiak tick at design 223,1128 (render 330,1670)",
+        "severity": "medium",
+        "fix": "Add the same drafting dimension call used on slide 05: two extension lines from the tick's ends with 6px overshoots, a dimension line with 3:1 filled arrowheads pointing inward, and 'ABOUT $25,500' in Space Grotesk 500 20px #16212E above it. Place the call below the tick at y 1148 so it sits in the band rather than on the row rule at 1140."
+      },
+      {
+        "what": "Device C edge tease is broken. The continuity system states a cut element crosses the right frame edge on 01, 03 and 06 and completes at the left edge of the next slide. The slip's right edge stops at design x ~1006, 74px inside the 1080 frame, with bare sheet and a full drop shadow beyond it. Slide 07 therefore has nothing arriving at its left edge.",
+        "where": "slip right edge, design 1006,110 to 1006,1160",
+        "severity": "medium",
+        "fix": "Extend the slip's right edge to design x 1104 so it bleeds 24px past the frame, and clip its cast shadow at the frame boundary. The table rules and the milled column stay where they are, only the slip's paper geometry and deckle extend."
+      },
+      {
+        "what": "Field 4a's 'three stacked material layers' is only two. The plate's printed tiles are almost completely hidden by the slip, surviving only as faint ghost islands at the far left, so the material under the slip reads as bare sheet rather than as the engraved plate.",
+        "where": "design 0,975 to 74,1035 and 14,88 to 61,128 are the only visible plate remnants",
+        "severity": "low",
+        "fix": "Push the plate's printed tile group 60px left and 40px down so a legible run of borough outlines shows in the left gutter between design x 0 and 100, y 300 to 1100, at graphite 0.35 opacity so it stays under the slip in the value hierarchy."
+      },
+      {
+        "what": "The slip's top edge sits at design y ~110 and 'THE EIGHT, AND WHAT EACH ONE HANDS OVER' at y ~150, which puts the slip's own top edge inside the 80px safe margin's outer band with no plate mark visible anywhere on this slide. The global geometry says a plate mark is embossed at the 80px margin on every slide.",
+        "where": "frame perimeter, design 80,80 to 1000,1270",
+        "severity": "low",
+        "fix": "Draw the plate mark arcTo bite as on the other slides and let the slip occlude it where it crosses. It should remain visible in the bottom band between y 1180 and 1270 and in the left gutter."
+      }
+    ],
+    "score_0_10": 5.5
+  }
+]
+```

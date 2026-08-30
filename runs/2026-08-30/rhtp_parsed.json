@@ -1,0 +1,183 @@
+{
+  "source_url": "https://health.alaska.gov/media/tcvker5a/ak_rhtp_awardsnotice_2026.xlsx",
+  "source_outlet": "Alaska Department of Health, Notice of Intent to Award",
+  "downloaded": "2026-08-30",
+  "sheet": "Notice of Intent to Award",
+  "total_rows": 185,
+  "total_award": 181871366.36,
+  "machine_rows": 8,
+  "machine_award": 12012935.55,
+  "machine_share_pct": 6.61,
+  "one_dollar_in": 15.1,
+  "by_date": {
+    "2026-08-07": {
+      "projects": 19,
+      "amount": 4591813.12
+    },
+    "2026-08-14": {
+      "projects": 37,
+      "amount": 30125609.71
+    },
+    "2026-08-21": {
+      "projects": 105,
+      "amount": 130291439.47
+    },
+    "2026-08-28": {
+      "projects": 24,
+      "amount": 16862504.06
+    }
+  },
+  "by_initiative": {
+    "Health Care Access": {
+      "projects": 68,
+      "amount": 68432699.85
+    },
+    "Spark Technology and Innovation": {
+      "projects": 36,
+      "amount": 32600760.59
+    },
+    "Pay for Value": {
+      "projects": 12,
+      "amount": 29974658.0
+    },
+    "Strengthen Workforce": {
+      "projects": 31,
+      "amount": 24771163.51
+    },
+    "Healthy Beginnings": {
+      "projects": 18,
+      "amount": 15144332.51
+    },
+    "Healthy Communities": {
+      "projects": 19,
+      "amount": 10698098.38
+    },
+    "Spark Technology & Innovation": {
+      "projects": 1,
+      "amount": 249653.52
+    }
+  },
+  "machine_awards": [
+    {
+      "app_id": "BP1-IA-254",
+      "org": "PeaceHealth Ketchikan Medical Center",
+      "title": "Rural Surgical Transformation: Expanding Access and Modernizing Care",
+      "amount": 6518028.8,
+      "initiative": "Health Care Access",
+      "service_area": "Ketchikan Gateway Borough;Petersburg Borough;Prince of Wales-Hyder Census Area;Wrangell (City and Borough)",
+      "notified": "2026-08-21",
+      "project_type": "Implementation",
+      "summary": "PeaceHealth Ketchikan Medical Center proposes introducing the first robotic assisted minimally invasive surgeries in orthopedic, gastroenterology, urology, gynecology, and general surgery to Southern Southeast Alaska. This evidence-supported solution will expand local specialty capacity, reduce out-of-area referrals, and improve outcomes by overcoming longstanding access barriers.  By enabling high-quality procedures close to home, the project transforms healthcare in the region and works to reduce health disparities.",
+      "boroughs_geojson": [
+        "Ketchikan Gateway",
+        "Petersburg",
+        "Prince of Wales-Hyder",
+        "Wrangell"
+      ]
+    },
+    {
+      "app_id": "BP1-IA-042",
+      "org": "Alaska Stroke Coalition",
+      "title": "Statewide Deployment of Clinical AI Decision Support Network Across Alaska Hospitals",
+      "amount": 3156626.0,
+      "initiative": "Spark Technology and Innovation",
+      "service_area": "Statewide",
+      "notified": "2026-08-21",
+      "project_type": "Implementation",
+      "summary": "Alaska Stroke Coalition proposes a statewide AI imaging network across 21 acute care hospitals that pairs broad multi-pathology triage with advanced stroke imaging, so every site \u2014 urban or rural \u2014 receives the same rapid interpretation support for time-critical findings: stroke, hemorrhage, pulmonary embolism, aortic and spinal injury. Utilizing two complementary, cloud-based platforms that run on existing PACS without new imaging hardware \u2014 diagnostic breadth everywhere, plus the stroke depth needed to treat and transfer faster, while surfacing incidental findings for earlier intervention.",
+      "boroughs_geojson": [
+        "STATEWIDE"
+      ]
+    },
+    {
+      "app_id": "BP1-IA-200",
+      "org": "MAPHABIT INC",
+      "title": "ANCHOR: Aging & Neurodivergent Care through Health, Outreach, and Remote Support",
+      "amount": 1241085.55,
+      "initiative": "Health Care Access",
+      "service_area": "Statewide",
+      "notified": "2026-08-21",
+      "project_type": "Implementation",
+      "summary": "MapHabit proposes ANCHOR, a statewide partner-led model delivering two evidence-based home- and community-based supports. MapHabit delivers AI-powered visual maps for people with intellectual and developmental disabilities, traumatic brain injury, and Alzheimer's-related dementias. Vivo delivers virtual strength programming for adults 55+ or at risk of falls. ANCHOR targets rural, remote, and frontier health access, caregiver, and workforce gaps statewide with an initial focus on the Matanuska-Susitna and Kenai Peninsula Boroughs.",
+      "boroughs_geojson": [
+        "STATEWIDE"
+      ]
+    },
+    {
+      "app_id": "BP1-IA-194",
+      "org": "Maniilaq Association",
+      "title": "Maniilaq Association Behavioral Health AI Clinical Documentation",
+      "amount": 430000.0,
+      "initiative": "Spark Technology and Innovation",
+      "service_area": "North Slope Borough;Northwest Arctic Borough",
+      "notified": "2026-08-14",
+      "project_type": "Implementation",
+      "summary": "Maniilaq Association Behavioral Health AI Clinical Documentation project proposes the adoption of an AI-enabled integrated behavioral technology platform that will reduce administrative documentation burdens and improve services and efficiency of their provision for the people in the Maniilaq Service Area, a remote roadless area in northwest Alaska. Most notably, the documentation burden has been cited as a driver of therapist turnover.",
+      "boroughs_geojson": [
+        "North Slope",
+        "Northwest Arctic"
+      ]
+    },
+    {
+      "app_id": "BP1-IA-202",
+      "org": "Mat-Su Regional Medical Center",
+      "title": "AI-Assisted EEG: Bridging the Neurological Assessment Gap with AI",
+      "amount": 250000.0,
+      "initiative": "Spark Technology and Innovation",
+      "service_area": "Matanuska-Susitna Borough",
+      "notified": "2026-08-28",
+      "project_type": "Implementation",
+      "summary": "Mat-Su Regional Medical Center (MSRMC) proposes acquiring and implementing an AI-supported platform with a single-use, eight-lead headband, which a nurse can rapidly apply. This system will then enable physicians to quickly determine if a patient is experiencing status epilepticus. This rapid identification is crucial for making emergent treatment decisions, prompting appropriate local care and potentially avoiding the need for a costly, time-sensitive transfer away from the Mat-Su into Anchorage.",
+      "boroughs_geojson": [
+        "Matanuska-Susitna"
+      ]
+    },
+    {
+      "app_id": "BP1-PL-026",
+      "org": "Tanana Chiefs Conference",
+      "title": "Pharmaceutical and Medical Supplies Drone Transportation System For Interior Alaska Villages",
+      "amount": 250000.0,
+      "initiative": "Spark Technology and Innovation",
+      "service_area": "Denali Borough;Fairbanks North Star Borough;North Slope Borough;Southeast Fairbanks Census Area;Yukon-Koyukuk Census Area",
+      "notified": "2026-08-14",
+      "project_type": "Planning",
+      "summary": "Tanana Chiefs Conference proposes a concept formation and planning year to develop the regulatory, technical, and community engagement framework for a drone-based pharmaceutical delivery system connecting TCC's Fairbanks hub to 42 Interior Alaska villages across 94,000 square miles, where medication delivery delays of 5\u201314 days are common during winter. The project will partner with UAF's Alaska Center for Unmanned Aircraft Systems Integration (ACUASI) to address FAA BVLOS waiver requirements, chain-of-custody and DEA compliance, temperature maintenance, and tribal community readiness. Year 1 deliverables include a regulatory roadmap, safety and compliance framework, initial short-distance flight testing, and a 5-year phased implementation timeline.",
+      "boroughs_geojson": [
+        "Denali",
+        "Fairbanks North Star",
+        "North Slope",
+        "Southeast Fairbanks",
+        "Yukon-Koyukuk"
+      ]
+    },
+    {
+      "app_id": "BP1-IA-319",
+      "org": "Statewide Independent Living Council",
+      "title": "AI Assistive Technology Needs Assessment Tool",
+      "amount": 141702.7,
+      "initiative": "Spark Technology and Innovation",
+      "service_area": "Statewide",
+      "notified": "2026-08-21",
+      "project_type": "Implementation",
+      "summary": "The Statewide Independent Living Council of Alaska proposes to develop an artificial-intelligence assistive technology needs assessment tool that matches people to devices based on their functional needs, preferences, and home environment, connects users to additional resources including possible funding pathways, and addresses a shortage of qualified assessors that leaves rural Alaskans with disabilities, chronic conditions, and aging-related needs unable to obtain technology suited to their lives across rural, remote, and frontier communities statewide.",
+      "boroughs_geojson": [
+        "STATEWIDE"
+      ]
+    },
+    {
+      "app_id": "BP1-IA-187",
+      "org": "Kodiak Community Health Center",
+      "title": "Reducing Provider Documentation Burden Through AI-Supported Clinical Documentation",
+      "amount": 25492.5,
+      "initiative": "Spark Technology and Innovation",
+      "service_area": "Kodiak Island Borough",
+      "notified": "2026-08-21",
+      "project_type": "Implementation",
+      "summary": "Kodiak Community Health Center (KCHC) proposes expanding the use of an AI-supported clinical documentation platform to reduce provider documentation burden and improve workflow efficiency, addressing workforce capacity constraints and access to care challenges in the Kodiak community.",
+      "boroughs_geojson": [
+        "Kodiak Island"
+      ]
+    }
+  ],
+  "geo_note": "Every service area resolves to a named polygon in assets/geo/alaska-boroughs.geo.json (29 features, property 'name'). Twelve distinct named boroughs or census areas are touched, plus three statewide awards."
+}
