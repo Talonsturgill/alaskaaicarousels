@@ -434,7 +434,14 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
 
 ## In this directory
 
-- `render.py` — HTML -> PNG at 2x + in-page QA extraction (`render_report.json`)
+- `render.py` — HTML -> PNG at 2x + in-page QA extraction (`render_report.json`).
+  Also writes `slide-NN.canvas.png`, the CANVAS LAYER on its own: every visible
+  canvas re-composited at design size with nothing from the DOM on top of it
+  (2026-08-30). qa.py needs it because every other check that can see canvas ink
+  reads the composited screenshot, where the art is half hidden under the type
+  that is the whole question. Skipped, and said to be skipped, when a canvas
+  carries a CSS rotation, filter or blend mode, because a bounding box cannot
+  re-composite those faithfully and a misregistered layer is worse than none.
 - `qa.py` — machine gate over PNGs + report (`machine_qa.json`, exit 1 on FAIL)
 - `assemble.py` — vector PDF (Chromium print + pypdf merge), contact sheet,
   432px feed thumbs (`assemble_report.json`)
@@ -492,6 +499,17 @@ them or every archive page goes blank.
   NEVER fitExtent to a small lon/lat bbox (renders a giant fill disc);
   use `AKGeo.zoomTo(proj, geo, lonlat, targetXY, zoom)` and draw the
   coastline STROKE-ONLY at zoom > ~2.
+  NEVER fitExtent to a box with a flat dimension either. d3 PRESERVES ASPECT
+  and fits the SMALLER side, so `.fitExtent([[110,0],[980,1]], geo)` asks for a
+  full-width band and renders a sliver, silently (2026-08-30, one hard fail and
+  one review round). For a projection onto ONE axis, a seam or a strip map or a
+  grazing section, use `AKGeo.fitAxis(proj, geo, [a0, a1], 'x'|'y', {at})`,
+  which spans that axis EXACTLY and lets the other fall where it falls; `at`
+  places the other axis's centre. `AKGeo.bounds(proj, geo)` reads the result.
+  Rescaling the output coordinates by hand afterwards is the thing to avoid:
+  it leaves the projection and the drawing disagreeing about where things are.
+  render.py scans slide source for a literal fit box under 8px on either side
+  and qa.py FAILS it.
 - `assets/js/aktype.js` (display-headline fit-to-box `AK.fitText`, and
   measured SVG knockout plates `AK.svgPlate` / `AK.svgPlateAll`). Call both
   inside renderReady after `await document.fonts.ready`.
