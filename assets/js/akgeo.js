@@ -56,5 +56,49 @@
     return proj;
   }
 
-  global.AKGeo = { alaskaProjection: alaskaProjection, zoomTo: zoomTo };
+  /* Projected bounds of `geo` under `proj`, as [[x0,y0],[x1,y1]]. */
+  function bounds(proj, geo) {
+    if (typeof d3 === "undefined") throw new Error("AKGeo requires d3");
+    return d3.geoPath(proj).bounds(feature(geo));
+  }
+
+  /* Fit ONE axis exactly and let the other fall where it falls (2026-08-30).
+   *
+   * d3's fitExtent/fitSize preserve aspect: they fit the SMALLER dimension of
+   * the box and centre on the other. So the natural way to ask for a full width
+   * band -- fitExtent([[110, 0], [980, 1]], geo) -- scales on the 1 and renders
+   * a sliver, silently. Run 2026-08-30 lost a hard fail and a review round to
+   * exactly that call. A projection onto one axis is a legitimate thing to want
+   * (a seam, a strip map, a grazing section), and this is how to ask for it.
+   *
+   *   AKGeo.fitAxis(proj, geo, [110, 980], 'x')            // span x exactly
+   *   AKGeo.fitAxis(proj, geo, [110, 980], 'x', {at: 1108}) // ... centred on y=1108
+   *
+   * `span` is [a0, a1] on `axis` ('x' or 'y'). opts.at, when given, is where the
+   * OTHER axis's centre lands. Mutates and returns `proj`, so d3.geoPath(proj)
+   * keeps working and every derived coordinate stays in one place -- which is
+   * the point, because rescaling the OUTPUT coordinates by hand afterwards
+   * leaves the projection and the drawing disagreeing about where things are.
+   */
+  function fitAxis(proj, geo, span, axis, opts) {
+    if (typeof d3 === "undefined") throw new Error("AKGeo requires d3");
+    var f = feature(geo), o = opts || {};
+    var a0 = Math.min(span[0], span[1]), a1 = Math.max(span[0], span[1]);
+    if (!(a1 - a0 > 0)) throw new Error("AKGeo.fitAxis: span has no length");
+    var i = (axis === "y") ? 1 : 0, j = 1 - i;
+    // a generous square baseline, so the measured extent is well conditioned
+    proj.fitExtent([[0, 0], [1000, 1000]], f);
+    var b = bounds(proj, f), len = b[1][i] - b[0][i];
+    if (!(len > 0)) throw new Error("AKGeo.fitAxis: no extent on " + axis);
+    proj.scale(proj.scale() * (a1 - a0) / len);
+    b = bounds(proj, f);
+    var t = proj.translate(), d = [0, 0];
+    d[i] = a0 - b[0][i];
+    d[j] = (o.at === undefined) ? 0 : o.at - (b[0][j] + b[1][j]) / 2;
+    proj.translate([t[0] + d[0], t[1] + d[1]]);
+    return proj;
+  }
+
+  global.AKGeo = { alaskaProjection: alaskaProjection, zoomTo: zoomTo,
+                   fitAxis: fitAxis, bounds: bounds };
 })(typeof window !== "undefined" ? window : globalThis);

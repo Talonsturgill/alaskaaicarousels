@@ -29,6 +29,7 @@ Writes: <out-dir>/slide-XX.png + <out-dir>/render_report.json
 """
 
 import argparse
+import base64
 import glob
 import hashlib
 import json
@@ -1379,6 +1380,62 @@ def scan_nondeterminism(html: str, name: str) -> list:
     return hits
 
 
+# --- A PROJECTION FITTED TO A COLLAPSED BOX (2026-08-30) --------------------
+# d3's fitExtent/fitSize PRESERVE ASPECT: they fit the SMALLER of the two
+# dimensions and centre on the other. So fitting to a box one pixel tall does
+# not produce a full-width band, it produces a one-pixel-tall picture, and the
+# call succeeds silently. On run No.45 slide 08 declared a full-width grazing
+# seam with .fitExtent([[110,0],[980,1]], mainland) and rendered a 27px sliver.
+# It cost a hard fail and a whole review round, and nothing in the machine could
+# see it: the render is not blank, the projection is valid, and the defect only
+# exists relative to an intent that lives in the dossier.
+#
+# A literal box with a dimension under 8px is never what anyone meant -- there
+# is no map, chart or inset that small -- so this is decidable from the source
+# alone, with no threshold on taste. Only fully LITERAL boxes are read, so a box
+# built from variables is not guessed at; that trades false negatives for the
+# certainty that a hit is real. AKGeo.fitAxis() is the supported way to say
+# "span this axis exactly and let the other fall where it falls", which is what
+# a one-axis projection actually wants.
+COLLAPSE_MIN = 8.0
+_NUM = r"(-?\d+(?:\.\d+)?)"
+FIT_EXTENT_RE = re.compile(
+    r"\bfitExtent\s*\(\s*\[\s*\[\s*" + _NUM + r"\s*,\s*" + _NUM +
+    r"\s*\]\s*,\s*\[\s*" + _NUM + r"\s*,\s*" + _NUM + r"\s*\]\s*\]")
+FIT_SIZE_RE = re.compile(
+    r"\bfitSize\s*\(\s*\[\s*" + _NUM + r"\s*,\s*" + _NUM + r"\s*\]")
+
+
+def scan_collapsed_fit(html: str, name: str) -> list:
+    """Report projections fitted to a box with a degenerate dimension."""
+    hits = []
+    for m in SCRIPT_RE.finditer(html):
+        attrs, body = m.group(1), m.group(2)
+        if re.search(r"\bsrc\s*=", attrs, re.I):
+            continue
+        tm = re.search(r"""\btype\s*=\s*["']?([^"'\s>]*)""", attrs, re.I)
+        if tm and tm.group(1).strip().lower() not in JS_TYPE_OK:
+            continue
+        body_start = m.start(2)
+        clean = _strip_js_comments(body)
+        for api, rx in (("fitExtent", FIT_EXTENT_RE), ("fitSize", FIT_SIZE_RE)):
+            for hit in rx.finditer(clean):
+                g = [float(v) for v in hit.groups()]
+                w, h = (abs(g[2] - g[0]), abs(g[3] - g[1])) if len(g) == 4 else (abs(g[0]), abs(g[1]))
+                if min(w, h) >= COLLAPSE_MIN:
+                    continue
+                off = body_start + hit.start()
+                line = html.count("\n", 0, off) + 1
+                hits.append({"api": api, "line": line, "w": round(w, 1),
+                             "h": round(h, 1), "axis": "height" if h < w else "width",
+                             "snippet": html.splitlines()[line - 1].strip()[:120]})
+    hits.sort(key=lambda h: h["line"])
+    if hits:
+        print(f"    [projection] {name}: "
+              + ", ".join(f"{h['api']} box {h['w']}x{h['h']} line {h['line']}" for h in hits))
+    return hits
+
+
 def resolve_html(src: Path, resolved_dir: Path) -> Path:
     html = src.read_text()
     if re.search(r'src\s*=\s*["\']https?://|href\s*=\s*["\']https?://|url\(\s*["\']?https?://', html):
@@ -1404,14 +1461,85 @@ def source_sha1(p: Path) -> str:
     return hashlib.sha1(p.read_bytes()).hexdigest()
 
 
+# --- THE CANVAS LAYER, ON ITS OWN (2026-08-30) ------------------------------
+# Every collision check in qa.py that can see canvas ink reads the COMPOSITED
+# screenshot, where the DOM text is painted on top of the art. That forces each
+# of them to mask the glyph ink off before it can say anything about the art,
+# and masking is lossy: it eats the pixels immediately around every stroke,
+# which is exactly where a mark crossing a line of type lives. On 2026-08-30 a
+# registration crosshair sat on top of slide 04's display headline and a row of
+# register ticks ran through the last line of slide 08's body copy; machine QA
+# reported 9/9 PASS with zero warns on both, and a human critic caught them.
+#
+# This exports the canvas layer BY ITSELF: every visible canvas composited, in
+# DOM order, at its own place in the design frame, with nothing from the DOM on
+# top. qa.py then measures a text line box against art that is not hiding under
+# type, which is a measurement the composited PNG structurally cannot offer.
+#
+# Exported at DESIGN resolution, not the 2x backing store: the smallest mark
+# this is meant to catch is a hairline rule, which is >= 1px in design space,
+# and a 1080x1350 layer of mostly flat paper costs a few hundred KB instead of
+# a few MB. Alpha is preserved, so "no canvas ink here" stays distinguishable
+# from "canvas ink the colour of paper".
+#
+# Honesty over coverage: a canvas under a CSS rotation, a CSS filter or a blend
+# mode cannot be re-composited faithfully from its bounding box, so the layer
+# is marked approximate and qa.py declines to judge it rather than measuring a
+# misregistered picture and calling the answer a FAIL.
+CANVAS_LAYER_JS = r"""
+(dim) => {
+  const W = dim[0], H = dim[1];
+  const t = document.createElement('canvas');
+  t.width = W; t.height = H;
+  const tc = t.getContext('2d', { willReadFrequently: true });
+  let n = 0, approx = [];
+  for (const cv of document.querySelectorAll('canvas')) {
+    const cs = getComputedStyle(cv);
+    if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+    const op = parseFloat(cs.opacity);
+    if (!(op > 0.02)) continue;
+    const r = cv.getBoundingClientRect();
+    if (r.width < 8 || r.height < 8) continue;
+    // A bounding box only reproduces the canvas's real placement when the
+    // element is un-rotated, un-skewed, un-filtered and normally blended.
+    const tr = cs.transform || 'none';
+    if (tr !== 'none') {
+      const m = tr.match(/^matrix\(([^)]*)\)$/);
+      const p = m ? m[1].split(',').map(Number) : null;
+      if (!p || Math.abs(p[1]) > 1e-3 || Math.abs(p[2]) > 1e-3) approx.push('transform');
+    }
+    if ((cs.filter || 'none') !== 'none') approx.push('filter');
+    const bl = cs.mixBlendMode || 'normal';
+    if (bl !== 'normal') approx.push('mix-blend-mode');
+    try {
+      tc.save();
+      tc.globalAlpha = isFinite(op) ? op : 1;
+      tc.drawImage(cv, r.x, r.y, r.width, r.height);
+      tc.restore();
+      n++;
+    } catch (e) {
+      return { ok: false, canvases: n, error: String(e).slice(0, 140) };
+    }
+  }
+  if (!n) return { ok: true, canvases: 0, data: null };
+  let data = null;
+  try { data = t.toDataURL('image/png'); }
+  catch (e) { return { ok: false, canvases: n, error: String(e).slice(0, 140) }; }
+  return { ok: true, canvases: n, approx: Array.from(new Set(approx)), data: data };
+}
+"""
+
+
 def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                  scale: float, timeout_ms: int) -> dict:
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
+           "collapsed_fits": [],
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "declaration_misses": [],
+           "canvas_layer": {"ok": False, "reason": "not attempted"},
            "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
@@ -1439,6 +1567,28 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "gradient_clips", "declaration_misses")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
+        # the canvas layer on its own, for qa.py's canvas-over-text check
+        try:
+            cl = page.evaluate(CANVAS_LAYER_JS, [width, height])
+            if not cl.get("ok"):
+                rec["canvas_layer"] = {"ok": False, "reason": cl.get("error", "export failed")}
+            elif not cl.get("canvases"):
+                rec["canvas_layer"] = {"ok": True, "canvases": 0, "file": None}
+            else:
+                lay = out_png.with_suffix("")
+                lay = lay.with_name(lay.name + ".canvas.png")
+                head, _, b64 = (cl.get("data") or "").partition(",")
+                if not b64 or "image/png" not in head:
+                    rec["canvas_layer"] = {"ok": False, "reason": "no png payload"}
+                else:
+                    lay.write_bytes(base64.b64decode(b64))
+                    rec["canvas_layer"] = {
+                        "ok": True, "canvases": cl["canvases"], "file": lay.name,
+                        "approx": cl.get("approx") or [],
+                        "w": width, "h": height,
+                    }
+        except Exception as e:
+            rec["canvas_layer"] = {"ok": False, "reason": f"exception: {e}"[:160]}
         if not rec["ok"]:
             rec["page_errors"].append("screenshot missing or suspiciously small")
     except Exception as e:
@@ -1492,6 +1642,7 @@ def main():
             rec = render_slide(browser, resolved, png, args.width, args.height,
                                args.scale, args.timeout)
             rec["nondeterminism"] = scan_nondeterminism(s.read_text(), s.name)
+            rec["collapsed_fits"] = scan_collapsed_fit(s.read_text(), s.name)
             rec["source"] = {"path": str(s), "sha1": source_sha1(s)}
             status = "OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])

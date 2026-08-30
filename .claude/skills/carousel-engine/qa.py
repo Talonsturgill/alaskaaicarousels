@@ -20,6 +20,17 @@ Checks per slide (consuming render_report.json + the PNGs):
     through the text). Knockout plates and halos leave that ring clean.
     Added 2026-07-25 after four slides shipped art-band labels crossed by
     canvas-drawn geometry through two scoring cycles of PASS with zero warns.
+  - A CANVAS MARK INSIDE A RESERVED TEXT BLOCK (FAIL): the two checks above
+    read the COMPOSITED png, so both must mask the glyph ink off first and both
+    average over a whole line box, which dilutes a LOCAL mark on a long line to
+    nothing. This reads render.py's canvas-layer export instead -- the canvas
+    with no DOM on top of it -- and measures the densest 40px window rather than
+    the mean. It FAILS only where the slide's own layout proves the paper was
+    reserved: a text block of 2+ lines whose other lines are clean paper, one of
+    which carries a hard-edged local mark. A single-line label on a map has no
+    sibling to prove intent, so this abstains there. Added 2026-08-30 after a
+    registration crosshair on a display headline and a row of register ticks
+    through body copy both shipped past a 9/9 PASS with zero warns.
   - TEXT UNDER AN OPAQUE PLATE (FAIL): consumes render.py's occlusion probe
     (paint-order-confirmed intersections of each line box with foreign opaque
     element boxes) and FAILS when a plate covers >=20x6px of a non-decorative
@@ -389,6 +400,111 @@ def glyph_ink_contamination(img_arr, node, scale):
         if worst is None or frac > worst[0]:
             worst = (frac, extent)
     return worst
+
+
+# --- A CANVAS MARK INSIDE A RESERVED TEXT BLOCK (2026-08-30) ----------------
+# The defect this exists for: on run No.45 slide 04 drew a registration
+# crosshair on top of the display headline and slide 08 drew a row of register
+# ticks through the last line of the body copy. Both were hard fails found by a
+# human critic AFTER machine QA reported 9/9 PASS with zero warns, and the run's
+# own instinct 5 predicts the class at confidence 0.99.
+#
+# Why the two checks above missed them. busy_art_under_text() and
+# glyph_ink_contamination() both read the COMPOSITED screenshot, so they have to
+# mask the glyph ink off before they can say anything about the art, and they
+# then average over the WHOLE line box. A crosshair sitting on two letters of a
+# 549px headline is a rounding error in either average: it measured a background
+# edge density of 0.003 against a 0.03 warn line. The statistic was diluted by
+# the very thing that made the defect local.
+#
+# What is different here. render.py now exports the canvas layer BY ITSELF
+# (slide-NN.canvas.png), so this measures art that is not hiding under type, and
+# it measures LOCALLY -- the densest 40x40 window in the box, not the box mean.
+#
+# The hard part is that this house sets type over art on purpose all the time: a
+# place label on a coastline, a headline over a flow field. Density alone cannot
+# tell trespass from design, and thresholding it would fail ordinary cartography.
+# The discriminator that needs no taste is the SLIDE'S OWN LAYOUT: a text block
+# of two or more lines whose OTHER lines sit on clean paper has demonstrated that
+# its author reserved that paper. A mark in one line of such a block is a
+# trespass by the slide's own evidence. A single-line label floating on a map has
+# no sibling to prove anything, so this abstains and leaves it to the pixel
+# critics -- which is the right place for a judgement that needs taste.
+#
+# Calibrated on 122 multi-line boxes (this run's 9 shipped slides + the 4
+# demo-deck slides) against reconstructions of both defects:
+#     reconstructed slide 04 crosshair : area 378 px^2, peak 0.227
+#     reconstructed slide 08 ticks     : area 213 px^2, peak 0.065
+#     worst clean box in the whole set : area  83 px^2, peak 0.029
+# Both conditions must hold, so the worst clean box misses on both counts.
+# data-overlap-ok demotes the FAIL to a WARN, as it does for the label check.
+CM_TONE = 40.0        # luminance distance from the box's own paper value
+CM_EDGE = 18.0        # neighbour luminance step: a hard edge, not a soft grade
+CM_WIN = 40           # px side of the sliding window the peak is taken over
+CM_RESERVE = 0.004    # sibling-line mark density under which the paper is clean
+CM_AREA_FAIL = 150    # design px^2 of hard mark in the line
+CM_PEAK_FAIL = 0.045  # densest window's mark fraction
+CM_AREA_WARN = 60
+CM_PEAK_WARN = 0.020
+
+
+def _canvas_mark(layer, box):
+    """Hard-edged canvas ink inside one design-space line box.
+
+    Returns {area, peak, base} or None when the box is not measurable (too
+    small, or mostly outside what the canvas layer actually covers).
+    """
+    x0, y0, w, h = [int(round(v)) for v in box]
+    H, W = layer.shape[:2]
+    xa, ya = max(0, x0), max(0, y0)
+    xb, yb = min(W, x0 + w), min(H, y0 + h)
+    if xb - xa < 12 or yb - ya < 8:
+        return None
+    crop = layer[ya:yb, xa:xb].astype(float)
+    lum = 0.2126 * crop[..., 0] + 0.7152 * crop[..., 1] + 0.0722 * crop[..., 2]
+    on = crop[..., 3] > 8            # alpha: where the canvas layer paints at all
+    if on.mean() < 0.5:
+        return None
+    paper = float(np.median(lum[on]))
+    gx = np.zeros_like(lum); gy = np.zeros_like(lum)
+    gx[:, :-1] = np.abs(lum[:, 1:] - lum[:, :-1])
+    gy[:-1, :] = np.abs(lum[1:, :] - lum[:-1, :])
+    mark = ((np.abs(lum - paper) > CM_TONE) &
+            (np.maximum(gx, gy) > CM_EDGE) & on).astype(float)
+    bh, bw = mark.shape
+    ww, wh = min(bw, CM_WIN), min(bh, CM_WIN)
+    peak = 0.0
+    for ys in range(0, max(1, bh - wh + 1), 8):
+        for xs in range(0, max(1, bw - ww + 1), 8):
+            d = float(mark[ys:ys + wh, xs:xs + ww].mean())
+            if d > peak:
+                peak = d
+    return {"area": int(mark.sum()), "peak": peak, "base": float(mark.mean())}
+
+
+def canvas_mark_in_reserve(layer, node):
+    """Lines of a multi-line block that a canvas mark has broken into.
+
+    Yields (line_index, measurement, reserve) for every line whose siblings are
+    clean paper and which itself carries a hard local mark.
+    """
+    lines = node.get("lines") or []
+    if len(lines) < 2:
+        return []
+    ms = [(i, _canvas_mark(layer, ln)) for i, ln in enumerate(lines)]
+    ms = [(i, m) for i, m in ms if m]
+    if len(ms) < 2:
+        return []
+    out = []
+    for i, m in ms:
+        others = sorted(o["base"] for j, o in ms if j != i)
+        reserve = others[len(others) // 2] if len(others) % 2 else \
+            0.5 * (others[len(others) // 2 - 1] + others[len(others) // 2])
+        if reserve > CM_RESERVE:
+            continue                      # the block sits on a field, by design
+        if m["area"] >= CM_AREA_WARN and m["peak"] >= CM_PEAK_WARN:
+            out.append((i, m, reserve))
+    return out
 
 
 FB_DOWN = 6          # box-downsample factor: kills film grain, keeps structure
@@ -1693,6 +1809,30 @@ def main():
             res["fails"].append("png missing")
             out["slides"].append(res)
             continue
+        # The canvas layer on its own, for canvas_mark_in_reserve() below.
+        # Absent on reports written before 2026-08-30, and deliberately absent
+        # when render.py could not re-composite the canvases faithfully; either
+        # way the check abstains rather than measuring the wrong picture.
+        clayer, clayer_skip = None, None
+        cl = rec.get("canvas_layer")
+        if cl is None:
+            clayer_skip = "report predates the canvas-layer export"
+        elif not cl.get("ok"):
+            clayer_skip = f"canvas layer not exported ({cl.get('reason', 'unknown')})"
+        elif not cl.get("canvases"):
+            clayer_skip = None            # no canvas on this slide; nothing to check
+        elif cl.get("approx"):
+            clayer_skip = ("canvas layer is approximate ("
+                           + ", ".join(cl["approx"]) + "), not measured")
+        else:
+            lp = rdir / cl["file"]
+            if lp.exists():
+                clayer = np.asarray(Image.open(lp).convert("RGBA"))
+            else:
+                clayer_skip = f"canvas layer file missing ({cl['file']})"
+        if clayer_skip:
+            res["warns"].append(f"canvas-over-text check skipped: {clayer_skip}")
+
         im = Image.open(png).convert("RGB")
         if im.size != (exp_w, exp_h):
             res["fails"].append(f"size {im.size} != expected {(exp_w, exp_h)}")
@@ -1746,6 +1886,23 @@ def main():
                     f"clock read in slide script: {nd['api']} ({where}) -- if it "
                     f"feeds the artwork the slide is not reproducible; pin it to "
                     f"a constant or a seeded value")
+
+        # A PROJECTION FITTED TO A COLLAPSED BOX (2026-08-30). render.py scans
+        # the source; this is the judgement. d3's fitExtent/fitSize preserve
+        # aspect and fit the SMALLER dimension, so a box one pixel tall renders
+        # a one-pixel-tall map and returns success. Run No.45 lost a hard fail
+        # and a whole round to .fitExtent([[110,0],[980,1]], mainland), which
+        # was meant to be a full-width band and came out a 27px sliver. A FAIL
+        # rather than a WARN because the call cannot be doing what it says.
+        for cf in rec.get("collapsed_fits", []):
+            res["fails"].append(
+                f"projection fitted to a collapsed box: {cf['api']} "
+                f"{cf['w']}x{cf['h']} px at line {cf['line']} ({cf['snippet']}) "
+                f"-- d3 preserves aspect and fits the SMALLER dimension, so this "
+                f"scales on the {cf['axis']} and collapses the picture instead of "
+                f"spanning the frame. If this is a projection onto ONE axis, use "
+                f"AKGeo.fitAxis(proj, geo, [a0, a1], 'x'|'y'); if it is a map, "
+                f"give the box both dimensions")
 
         # FRAME BALANCE / DEAD LOWER ZONE (2026-07-26). The series' longest-
         # running craft defect, and the first gate here that judges COMPOSITION
@@ -2278,6 +2435,32 @@ def main():
                         f"art touching glyphs ({gfrac:.0%} of the ring around "
                         f"'{node['text'][:40]}', spanning {gext:.0%}) -- pixel critic "
                         f"verify the label is not crossed")
+
+            # A CANVAS MARK INSIDE A RESERVED TEXT BLOCK (2026-08-30). Measured
+            # on the canvas layer alone and locally, which is what the two checks
+            # above structurally cannot do. See canvas_mark_in_reserve().
+            if clayer is not None:
+                for li, m, reserve in canvas_mark_in_reserve(clayer, node):
+                    ln = (node.get("lines") or [])[li]
+                    where = (f"line {li + 1} of {len(node['lines'])} at "
+                             f"({int(ln[0])},{int(ln[1])})")
+                    hard = m["area"] >= CM_AREA_FAIL and m["peak"] >= CM_PEAK_FAIL
+                    msg = (f"canvas mark inside reserved text: {where} of "
+                           f"'{node['text'][:40]}' carries {m['area']} px^2 of "
+                           f"hard-edged canvas ink (densest {CM_WIN}px window "
+                           f"{m['peak']:.1%}) while this block's other lines sit "
+                           f"on clean paper ({reserve:.1%}) -- the art is crossing "
+                           f"type the layout reserved space for; move the mark, "
+                           f"move the line, or mark the element data-overlap-ok "
+                           f"if the overlap is intended")
+                    if not hard:
+                        res["warns"].append(
+                            msg.replace("canvas mark inside reserved text",
+                                        "canvas mark near reserved text"))
+                    elif node.get("overlap_ok"):
+                        res["warns"].append(msg + " [marked data-overlap-ok]")
+                    else:
+                        res["fails"].append(msg)
 
         out["fails"] += len(res["fails"])
         out["warns"] += len(res["warns"])

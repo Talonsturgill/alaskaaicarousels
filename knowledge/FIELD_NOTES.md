@@ -5120,3 +5120,53 @@ which is this phase's reactive-first rule working as written.
   and it is recorded only because it is the first 2026 figure this deck has on
   file for the format it actually ships.
   https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+
+## 2026-08-30 - Phase 12 upgrade scan (No.45), PARKED candidates
+
+Found and deliberately NOT built this run. Each is here with the reason it was
+parked, so the next Phase 12 can pick it up without rediscovering it.
+
+- **A COMMITTED DEFECT CORPUS, so a fix that is proved once stays proved.** The
+  postmortem-to-regression-test loop is the one durable idea in the current
+  agent-workflow literature: every incident becomes a permanent case, the fix
+  must FAIL that case before it passes, and the corpus is re-run on every later
+  change. This studio already does the fail-first half, and did it three times
+  today, but it does it in scratch. Both reconstructions built this run (slide
+  04's crosshair on the headline, slide 08's ticks through the body copy) proved
+  the new gate and then evaporated with the session, so the NEXT change to
+  qa.py's thresholds will be checked against that run's defects and not against
+  this one's. PARKED rather than built because the obvious shape, a
+  `tests/defects/` of minimal slides each naming the check it must trip, needs
+  slide SOURCES to build on, and `runs/` archives exactly one deck's slides
+  (2026-08-08) which no longer renders in place: nine `renderReady` timeouts.
+  The prerequisite is therefore archiving `slides/` with every shipped run, which
+  is a change to the ship phase and not to the engine, and is the thing to
+  decide first. https://postsyntax.substack.com/p/the-agent-improvement-loop-turning
+- **THE BAR A DEFAULT-ON CHECK HAS TO CLEAR, with a number.** Google's Tricorder
+  requires under 10 percent effective false positives for any check that is on
+  by default, requires the message to be actionable and to say how to fix the
+  thing, and graduates checks to default only after they earn trust as opt-in.
+  The named failure is FindBugs, switched off because false positives cost
+  developer confidence. Worth promoting into the engine doctrine as the standing
+  test for every new gate this studio adds, since the failure mode it describes
+  is precisely a run learning to work around its own machine.
+  https://abseil.io/resources/swe-book/html/ch20.html
+- **`gate_status.py --check`.** Run No.45 carried a stale generated GATE STATUS
+  block into storyboard.md, reporting three FAIL rows, a missing copy.json, a
+  literal `?` and the wrong PDF size, all false, into the run's permanent record;
+  the scorer caught it. A `--check` mode that recomputes and exits non-zero on
+  drift is the fix. Parked because the block's format has to be pinned before it
+  can be diffed, and pinning it is the larger half of the job.
+- **`akengrave.js` throws `AKC is not defined` unless `akcolor.js` loads first.**
+  Verified: `AKC.mixOklab` at lines 204 and 378, no guard, nothing in SKILL.md's
+  script table says so. Cost a prototype cycle on No.45, instinct at 0.99. The
+  better repair is making the file load-order independent rather than documenting
+  the trap. First candidate for the next run's budget; it only missed this one
+  because three larger defects were ahead of it.
+- **`barLabel` is house furniture living in six copies.** The constant scale
+  bar's printed distance has to be measured from that frame's own projection at
+  render time, and No.45 hand-wrote it into six slides. It belongs in a helper.
+  Parked because the scale-bar contract wants designing properly, including the
+  rule that a frame with no cartography prints NO distance rather than a true but
+  useless one, and a function extracted in a hurry would fix the copying and
+  leave the contract implicit.

@@ -93,17 +93,56 @@ SPILL = [
 # words that were supposed to surround the value, which is a difference this can
 # actually test: what sits before it. After a full stop it is English; after a
 # letter, a digit or an opening bracket it is a value that failed to render.
-LEAK_BEFORE = re.compile(r"[A-Za-z0-9,(/\-]$")
+#
+# THAT TEST NEEDED THE TAGS BACK (2026-08-30). visible() turns every tag into a
+# space, so "what sits before it" was read straight across element boundaries:
+# the word before a list item is the last word of the PREVIOUS list item, and it
+# is a letter or a digit about half the time. Run No.45's claim C35 opened "None
+# of the eight machine awards were notified", the claim above it ended
+# "2026-08-21", and the site sign-off failed a true sentence. The run reworded
+# the claim, which is the wrong repair: a checker that makes honest prose get
+# rewritten is worse than no checker. The docstring's own example, "None are
+# open for public comment", fails the same way whenever its neighbour happens to
+# end in a letter.
+#
+# So the spill check now reads a copy where every tag is a LINE BREAK, and the
+# two positions are judged differently, with no loss of reach:
+#   mid run  ("cadence None", "the total is None and rising") -> a value, as before
+#   run start -> decided on what FOLLOWS. "None of/are/is/were..." is the English
+#     pronoun doing subject work. "None Bcf", "None day(s)", a bare "None" in a
+#     cell: nothing English continues that way, so it is still a value. That last
+#     group used to be caught only by the accident of a neighbouring word, and is
+#     now caught on purpose.
+LEAK_BEFORE = re.compile(r"[A-Za-z0-9,(/\-]\Z")
+
+# What can follow "None" when it is the English pronoun subject. Deliberately
+# narrow: verbs and "of", never prepositions like "at"/"in"/"on"/"to", which are
+# exactly what a template puts around a value ("Updated None at 10:00").
+NONE_PRONOUN = re.compile(
+    r"\s+(?:of|are|is|was|were|have|has|had|will|would|should|could|can|may|"
+    r"must|remain|remains|remained|appear|appears|appeared|apply|applies|"
+    r"exist|exists|seem|seems|yet|so far|since|other than|but)\b")
 
 
 def leaked_none(text):
-    """Occurrences of None that are values rather than the English word."""
+    """Occurrences of None that are values rather than the English word.
+
+    `text` should be the tag-as-line-break rendering, i.e. visible(html, sep="\\n"),
+    so that the start of an element's own text is distinguishable from the middle
+    of a sentence. Passing the space-joined rendering still works, but every None
+    then looks mid-run and honest prose can be flagged.
+    """
     out = []
     for m in re.finditer(r"\bNone\b", text):
-        before = text[:m.start()].rstrip()
-        if before and LEAK_BEFORE.search(before):
-            out.append(re.sub(r"\s+", " ", text[max(0, m.start() - 40):
-                                               m.end() + 20]).strip())
+        before = text[:m.start()].rstrip(" \t")
+        at_start = (not before) or before.endswith("\n")
+        if at_start:
+            if NONE_PRONOUN.match(text[m.end():]):
+                continue                  # "None of the eight...", "None are set"
+        elif not LEAK_BEFORE.search(before):
+            continue                      # after a full stop: English
+        out.append(re.sub(r"\s+", " ", text[max(0, m.start() - 40):
+                                            m.end() + 20]).strip())
     return out
 
 # House voice, checked against what SHIPPED rather than what was built. The
@@ -141,7 +180,7 @@ DECK_CARD = re.compile(r'(?s)<a class="deck".*?</a>')
 DECK_PAGE = re.compile(r"archive/\d{4}-\d{2}-\d{2}/index\.html$")
 
 
-def visible(page_html, drop_svg=True):
+def visible(page_html, drop_svg=True, sep=" "):
     """The visible PROSE of a page.
 
     A URL IS AN ADDRESS, NOT PROSE (2026-08-25). The sources page prints each
@@ -160,7 +199,7 @@ def visible(page_html, drop_svg=True):
     if drop_svg:
         txt = re.sub(r"(?s)<svg.*?</svg>", " ", txt)
     txt = re.sub(r"(?s)<!--.*?-->", " ", txt)
-    txt = _html.unescape(re.sub(r"<[^>]+>", " ", txt))
+    txt = _html.unescape(re.sub(r"<[^>]+>", sep, txt))
     return re.sub(r"https?://\S+", " ", txt)
 
 
@@ -337,7 +376,9 @@ def check_site(out_dir, today=None):
         for pat, why in SPILL:
             if re.search(pat, text):
                 spilled.append(f"{rel}: {why}")
-        for hit in leaked_none(text)[:1]:
+        # element boundaries preserved, so "None" at the start of a claim, a cell
+        # or a list item is not read as the tail of whatever preceded it
+        for hit in leaked_none(visible(html, sep="\n"))[:1]:
             spilled.append(f"{rel}: a Python None ({hit})")
     (ok if not spilled else bad)("no machine spill in visible copy",
                                  "; ".join(spilled[:4]) or "clean")
@@ -650,6 +691,20 @@ def self_test():
         v, _ = verdict_of(about=sentence)
         check("the English word None is left alone", v == "PASS",
               f"{v}: {sentence[3:44]}")
+
+    # Run No.45's claim C35, in the markup that failed it: the word before it is
+    # the last word of the PREVIOUS list item, across a tag boundary. The run
+    # reworded a true claim to get past this. It must never have to again.
+    v, _ = verdict_of(about=(
+        '<ol><li><p>A claim dated 2026-08-21</p></li>'
+        '<li><p>None of the eight machine awards were notified in the first '
+        'round on August 7th, 2026.</p></li></ol>'))
+    check("None opening an element is not the tail of the one before it",
+          v == "PASS", v)
+    # ... and the reach that used to depend on that accident is kept on purpose:
+    # a value at the START of a cell has no English continuation after it.
+    v, _ = verdict_of(about='<table><tr><td>Storage</td><td>None Bcf</td></tr></table>')
+    check("goes red on a None opening a table cell", v == "FAIL", v)
 
     root = _fake_site(tempfile.mkdtemp())
     # Shipped run copy keeps its own words, on the deck page and in the card.
