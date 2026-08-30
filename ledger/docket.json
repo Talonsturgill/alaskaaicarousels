@@ -106,7 +106,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-07-08",
@@ -207,6 +207,10 @@
         {
           "date": "2026-08-26",
           "note": "Checked and unchanged against the state notice. The Division of Oil and Gas has issued a preliminary decision to offer STAK Energy Corporation a 50 year lease on 715.4 acres, comment closed at 4:30 p.m. on July 17th, and no final finding and decision has been published. The notice says the final finding goes to everyone who commented, with the appeal process attached, so the people who wrote in will learn of it before the public notice system does."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Checked and unchanged against the state notice. The Division of Oil and Gas still shows a preliminary decision to offer STAK Energy Corporation a 50 year lease on 715.4 acres, comment closed at 4:30 p.m. on July 17th, and no final finding and decision has been published. The notice still states that a copy of the final finding and decision will be sent to any person who commented on the preliminary decision."
         }
       ]
     },
@@ -400,17 +404,22 @@
     },
     {
       "id": "gvea-lm6000-turbine-purchase",
-      "title": "GVEA's $120 million turbine decision",
+      "title": "GVEA's $80 million turbine decision",
       "kind": "utility-decision",
       "status": "pending-decision",
       "decider": "Golden Valley Electric Association board of directors",
       "public_access": "indirect",
       "access_note": "A member-owned co-op board decides, in executive session. GVEA members reach it through board elections and member comment periods at regular meetings.",
-      "summary": "GVEA's board weighs buying a GE LM6000 combined-cycle turbine, roughly $120 million for 45 to 58 MW, while data center demand has pushed gas turbine plant costs up 195 percent since 2019 and order waitlists into the early 2030s, per a Bloomberg report cited by the News-Miner. The board reserved an order slot in April for $50,000.",
+      "summary": "Golden Valley Electric Association is weighing a 60 megawatt naphtha fueled turbine estimated at $80 million, to be installed beside an existing LM6000 at the co-op's North Pole Expansion plant. Its board voted on August 25th, 2026 to keep the purchase alive and to keep studying the risks and the alternatives.",
       "key_dates": [
         {
           "date": "2026-07-13",
           "label": "Board weighs the purchase in executive session",
+          "kind": "vote"
+        },
+        {
+          "date": "2026-08-25",
+          "label": "Board votes 4 to 3 in Delta Junction to move ahead on a possible purchase and to keep studying alternatives",
           "kind": "vote"
         }
       ],
@@ -434,10 +443,15 @@
           "url": "https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html",
           "outlet": "Fairbanks Daily News-Miner",
           "date": "2026-07-06"
+        },
+        {
+          "url": "https://fm.kuac.org/2026-08-27/gvea-board-oks-continued-study-on-80-million-generator-purchase",
+          "outlet": "KUAC",
+          "date": "2026-08-27"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-07-08",
@@ -498,6 +512,10 @@
         {
           "date": "2026-08-26",
           "note": "Checked and unchanged. No decision on the roughly $120 million LM6000 purchase has surfaced in public reporting since the special board meeting of August 13th, and KUAC's energy coverage still carries nothing on Golden Valley Electric Association later than the May 28th fuel charge story. The board's own site refuses an automated read, so the cooperative's decision, when it comes, will most likely be reported before it is posted."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "The board acted. Meeting in Delta Junction on August 25th, 2026, the Golden Valley Electric Association board voted 4 to 3 on a motion by director Rick Solie to move ahead on a possible purchase, and agreed the same evening to keep studying the risks and the alternatives, wind among them. The unit is a 60 megawatt naphtha fueled turbine estimated at $80 million, and it would sit next to the older LM6000 at the North Pole Expansion plant. Board chair Dave Messier said the co-op wants to \"make sure that we have turned over every stone and evaluated every alternative\". This entry carried $120 million from earlier reporting on the same purchase, and $80 million is the figure the co-op's own board discussion now carries."
         }
       ]
     },
@@ -786,6 +804,11 @@
           "kind": "milestone"
         },
         {
+          "date": "2026-08-21",
+          "label": "RCA denies reconsideration 3 to 2, with a written order to follow",
+          "kind": "decision"
+        },
+        {
           "date": "2026-08-22",
           "label": "RCA acts on Enstar's petition for reconsideration, or the petition is denied automatically",
           "kind": "decision"
@@ -826,10 +849,15 @@
           "url": "https://www.petroleumnews.com/story/2026/08/02/utilities/a-need-for-gas-storage/50284.html",
           "outlet": "Petroleum News",
           "date": "2026-08-02"
+        },
+        {
+          "url": "https://www.petroleumnews.com/story/2026/08/30/utilities/rca-no-reconsideration/50328.html",
+          "outlet": "Petroleum News",
+          "date": "2026-08-30"
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-07-11",
@@ -870,6 +898,10 @@
         {
           "date": "2026-08-26",
           "note": "The thirty days ran. Enstar filed its 31 page petition for reconsideration on July 23rd, and Alaska Public Media's account of the rule is that the commission has thirty days to respond and that inaction is an automatic denial. Thirty days fell on August 22nd, which has now passed with no order reported anywhere this entry can reach. The Regulatory Commission of Alaska's own site refuses an automated read, so the absence of a published order is not proof that none exists, and this entry says only what can be checked. The July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project is still the operative decision, and Enstar has said the project is suspended without it."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Reconsideration was denied. In a notice dated August 21st, 2026 and posted August 24th, the Regulatory Commission of Alaska voted 3 to 2 against Enstar's request to reconsider the July 8th order, which had refused an advance determination of prudency for a roughly $240 million gas storage investment at the Kenai Loop gas field. Commissioners DeVries, Johnston and Springsteen were in the majority, with Espindola and Vogler dissenting. The commission said it wanted \"to further explain the basis for that denial in a written order\" but had no time to prepare one before the August 22nd statutory deadline, so that order is still to come."
         }
       ]
     },
@@ -967,7 +999,7 @@
         },
         {
           "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
-          "outlet": "Alaska Online Public Notices, Department of Natural Resources",
+          "outlet": "Alaska DNR Online Public Notices",
           "date": "2026-08-19"
         },
         {
@@ -977,12 +1009,12 @@
         },
         {
           "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224930",
-          "outlet": "Alaska Online Public Notices, Department of Natural Resources",
+          "outlet": "Alaska DNR Online Public Notices",
           "date": "2026-08-24"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-29",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-07-17",
@@ -1091,6 +1123,10 @@
         {
           "date": "2026-08-29",
           "note": "Re-verified against the state notice published August 24th, 2026 for ADL 234762. The written comment period stays open from July 10th through September 14th, and the department still lists two public meetings on the conveyance. The first was held August 27th, 2026 and the second is September 2nd, 2026 at 11:30 a.m. on Zoom. Nothing moved."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Re-verified against the state's own notices for ADL 234762. The extension notice published August 19th, 2026 sets the deadline for public comment at 5:00 p.m. on Monday, September 14th. The meeting notice published August 24th lists two sessions on Zoom, August 27th at 6:00 p.m. and September 2nd at 11:30 a.m., and says both are informational only and that comments are not taken during them. The parcel is about 19,950 acres, roughly two miles north of Houston in the Matanuska-Susitna Borough."
         }
       ]
     },
@@ -1199,7 +1235,7 @@
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-07-18",
@@ -1216,6 +1252,10 @@
         {
           "date": "2026-08-26",
           "note": "Checked against the Legislature's own record, which still carries HB 259 in the House Energy Committee with the referral of January 20th as its last status. That matches what this entry says. The bill died in that committee at sine die on May 20th and nothing has replaced it."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Checked against the Legislature's own record, which still carries HB 259 in the House Energy Committee with the referral of January 20th, 2026 as its last recorded status. The bill died in that committee when the 34th Legislature adjourned sine die on May 20th, 2026, and nothing has replaced it."
         }
       ]
     },
@@ -1242,6 +1282,11 @@
         {
           "date": "2026-07-26",
           "label": "Signatory list read at 281, one Alaska entity on it",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-30",
+          "label": "Signatory list read at more than 300 organizations, one Alaska entity on it",
           "kind": "milestone"
         }
       ],
@@ -1278,7 +1323,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-07-26",
@@ -1303,6 +1348,10 @@
         {
           "date": "2026-08-26",
           "note": "Re-checked against the White House page, which now reads more than 300 organizations in total and prints 282 cooperatives, 176 utilities, 69 data center developers and a set of AI companies. Cordova Electric Cooperative, recorded here on July 26th, is still the only Alaska signature this entry has found, and no Railbelt utility has joined it. Chugach Electric, Golden Valley Electric, Matanuska Electric and Homer Electric are the four that would carry a large Railbelt data center load, and none of them appears."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Re-checked against the White House page, which reads more than 300 organizations and prints 283 cooperatives, 176 utilities, 39 data center developers and seven AI companies. Cordova Electric Cooperative is still the only Alaska entity on the list, and no Railbelt cooperative has joined it."
         }
       ]
     },
@@ -1726,11 +1775,11 @@
       "id": "army-janus-fort-wainwright",
       "title": "The Army's Janus microreactor program at Fort Wainwright",
       "kind": "procurement",
-      "status": "pending-decision",
+      "status": "decided",
       "decider": "Department of the Army, running its solicitation through the Defense Innovation Unit",
       "public_access": "closed",
       "access_note": "Industry submissions were taken through the Defense Innovation Unit and are evaluated privately. No public comment period exists at this stage, and no vendor has been named for Fort Wainwright.",
-      "summary": "The Army named Fort Wainwright in Fairbanks as one of nine installations that could host a microreactor under its Janus program. Fort Wainwright once exported power from an on site coal plant and is now a net importer, in a region with high energy costs and little spare generation.",
+      "summary": "Fort Wainwright was one of nine Army posts short listed for a microreactor under the Janus program. On August 26th, 2026 the Army named the first five installations and their vendors, and Fort Wainwright was not among them.",
       "key_dates": [
         {
           "date": "2025-11-18",
@@ -1741,6 +1790,11 @@
           "date": "2025-12-15",
           "label": "Industry submissions due",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-08-26",
+          "label": "Army names its first five Janus installations and vendors; Fort Wainwright is not selected",
+          "kind": "decision"
         }
       ],
       "location": {
@@ -1758,10 +1812,20 @@
           "url": "https://www.world-nuclear-news.org/articles/us-army-names-potential-microreactor-sites",
           "outlet": "World Nuclear News",
           "date": "2025-11-19"
+        },
+        {
+          "url": "https://defensescoop.com/2026/08/26/army-annouces-initiial-bases-to-host-nuclear-microreactors/",
+          "outlet": "DefenseScoop",
+          "date": "2026-08-26"
+        },
+        {
+          "url": "https://www.army.mil/article/294891/army_reaches_agreement_with_private_industry_for_nuclear_micro_reactors",
+          "outlet": "U.S. Army",
+          "date": "2026-08-26"
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-08-06",
@@ -1774,6 +1838,10 @@
         {
           "date": "2026-08-26",
           "note": "Checked and unchanged. Fort Wainwright is still one of nine Army posts named for a possible microreactor under the Janus program, and no vendor down select has been announced since industry submissions closed on December 15th, 2025. The Army's stated goal is an operating demonstration plant by 2030."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Decided, and Fort Wainwright is not in it. The Army named its first five Janus installations on August 26th, 2026, Fort Bragg with Antares Nuclear, Fort Campbell with BWXT Advanced Technologies, Fort Hood with General Atomics Electromagnetic Systems, Fort Benning with Radiant Industries and Fort Drum with Westinghouse Government Services, against roughly $2.2 billion running across fiscal years 2027 through 2031 on milestone based payments. Fort Wainwright was short listed and not chosen, alongside Holston Army Ammunition Plant, Joint Base Lewis-McChord and Redstone Arsenal. The program itself continues, so a later round could still reach Alaska, and nothing published says it will."
         }
       ]
     },
@@ -1868,7 +1936,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-08-06",
@@ -1880,6 +1948,10 @@
         },
         {
           "date": "2026-08-26",
+          "note": "Checked and unchanged against the government's own publication record, which carries Executive Order 14318 as signed July 23rd, 2025 and published July 28th, 2025, with no amendment, revocation or superseding order recorded."
+        },
+        {
+          "date": "2026-08-30",
           "note": "Checked and unchanged against the government's own publication record, which carries Executive Order 14318 as signed July 23rd, 2025 and published July 28th, 2025, with no amendment, revocation or superseding order recorded."
         }
       ]
@@ -1915,10 +1987,15 @@
           "url": "https://www.energy.gov/arctic/alaska-funding-awards",
           "outlet": "U.S. Department of Energy",
           "date": "2026-08-06"
+        },
+        {
+          "url": "https://www.energy.gov/hgeo/project-selections-broad-agency-announcement-de-foa-0003605-restoring-reliability-coal-0",
+          "outlet": "U.S. Department of Energy",
+          "date": "2026-08-30"
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-08-06",
@@ -1939,6 +2016,10 @@
         {
           "date": "2026-08-26",
           "note": "Checked and unchanged. The $89 million Department of Energy selection under the Restoring Reliability Coal program stands as reported on June 4th, for feasibility work on the proposed 1,250 megawatt Terra Energy Center west of Skwentna, with a 60 mile pipeline to Beluga for carbon injection. Terra Energy Center Corp. has to match the federal money. The project still has no finalized design, no permitted coal mine and no signed agreement with a utility to buy the power. The department's own Alaska awards page returned nothing today, so the June reporting remains the operative record."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Re-verified against the Department of Energy's own selection record. Terra Energy Center Corporation of Anchorage holds an $89,000,000 federal award inside a project the department values at $190,375,155, with $101,375,155 in non federal cost share, for engineering and design of a 1,250 megawatt coal fired plant built as five 250 megawatt circulating fluidized bed trains with carbon capture on better than 90 percent of emissions. The record targets FEL-3 engineering completion in 2027 and an operating facility in 2031. No permit application has been filed."
         }
       ]
     },
@@ -1981,7 +2062,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-08-06",
@@ -1998,6 +2079,10 @@
         {
           "date": "2026-08-26",
           "note": "Checked and unchanged. The Alaska Oil and Gas Conservation Commission's bid for Class VI primary enforcement authority is still with the Environmental Protection Agency, and nothing has been reported since the state hearing of May 14th closed written and oral comment. The commission's own carbon storage page refuses an automated read, so trade reporting carries this entry for now."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Checked and unchanged. Alaska's bid for Class VI primary enforcement authority is still with the Environmental Protection Agency, and nothing has been published since the state hearing of May 14th, 2026 closed written and oral comment. Alaska's underground injection program holds primacy for Class II wells only, and every other class is run directly by the federal agency."
         }
       ]
     },
@@ -2070,7 +2155,7 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-08-09",
@@ -2099,6 +2184,10 @@
         {
           "date": "2026-08-26",
           "note": "Checked and unchanged against the district's own agendas. AR 5131.9 Academic Honesty is still where the Policy Review Committee left it on August 3rd, and the same evening's business meeting carried BP 5131.9 on first reading and AR 6161.4 Acceptable Use and Internet Safety on first reading and action. No later meeting is posted and no vote is recorded. Students have been back since August 19th, so the rules are being applied before they are finished. The next regular board meeting is September 14th."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Checked and unchanged against the district's own agendas. BP 5131.9 Academic Honesty stands revised on first reading and AR 6161.4 Acceptable Use and Internet Safety Policy stands on first reading and action, both from the meeting of August 3rd, 2026, and nothing later has been posted. The next regular board meeting is September 14th, 2026."
         }
       ]
     },
@@ -2236,7 +2325,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-08-29",
+      "last_updated": "2026-08-30",
       "history": [
         {
           "date": "2026-08-25",
@@ -2257,6 +2346,10 @@
         {
           "date": "2026-08-29",
           "note": "Re-verified against Alaska Public Media's August 21st account. The public hearing on the ordinance from Keith McCormick, Daniel Volland and Sydney Scout stands on September 1st, 2026, three days out, at the same meeting that takes up the roughly $600,000 ThunderCat equipment contract. Staff would connect to up to 750 cameras, more than 250 of them city traffic cameras. Nothing moved."
+        },
+        {
+          "date": "2026-08-30",
+          "note": "Re-verified two days out. The public hearing on the ordinance from Keith McCormick, Daniel Volland and Sydney Scout stands for the Assembly meeting of September 1st, 2026, the same meeting that takes up the roughly $600,000 ThunderCat equipment purchase. As introduced the ordinance would erase captured footage after two weeks unless it is evidence in an active investigation, hold license plate readers to traffic enforcement and named categories such as missing children and stolen vehicles, bar sharing with federal agencies without a warrant, and require Assembly approval before artificial intelligence is used on the system. Police chief Sean Case has described the center as able to reach about 750 cameras."
         }
       ],
       "cta_label": "TESTIFY",
