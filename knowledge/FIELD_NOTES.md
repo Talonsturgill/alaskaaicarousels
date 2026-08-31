@@ -5170,3 +5170,44 @@ parked, so the next Phase 12 can pick it up without rediscovering it.
   rule that a frame with no cartography prints NO distance rather than a true but
   useless one, and a function extracted in a hurry would fix the copying and
   leave the contract implicit.
+
+## 2026-08-31 - Phase 1 craft refresh (No.46)
+
+- **THE NOTAN RULES, and they are a prohibition rather than a suggestion.** The
+  value-mass discipline has four operative rules and every one of them is
+  checkable. One value predominates and covers MORE THAN HALF the frame. The
+  remaining values are NOT divided evenly, one of them takes more area than the
+  other. The darks are welded into one connected shape rather than scattered as
+  separate marks of similar weight, which is what Whistler did and what makes
+  the design hold. And the killer, quoted: "Be careful not to lose your
+  structure as you add detail. This is the single most common reason for a weak
+  structure." That sentence is a description of this deck's own recurring warn,
+  busy art under text, present in 4 of the last 10 runs, and of its twin,
+  top-loaded composition, also 4 of 10. Detail belongs INSIDE a mass. A slide
+  whose type sits on the dominant mass keeps that mass unbroken and spends its
+  detail budget there on tone and material, not on marks.
+  https://www.virtualartacademy.com/notan/
+- **Gradients have to stay inside their mass too.** Same source, and it is the
+  rule this studio breaks most often without noticing: if a region uses smooth
+  gradation, keep the values within a narrow range so the gradation does not
+  cross a mass boundary and dissolve the structure. A graded ground that runs
+  from the dark mass into the light one has quietly deleted the notan the frame
+  was built on.
+- **The measurable form is a posterize.** Reducing a render to three or four
+  value levels is the standard evaluation move and it is exactly what this
+  engine can do to its own PNGs for free. Area fraction per level plus a
+  connected-component count on the dark level tests all three structural rules
+  at once, at feed scale, on the bytes that actually shipped. Nothing here
+  reads the thumb for STRUCTURE today, only for legibility, which is the gap
+  that let artwork craft sit weakest for 9 of 10 runs with every machine gate
+  green. Candidate for a Phase 12 gate if this run's use of it earns it.
+  https://www.sessions.edu/notes-on-design/looking-at-light-value-structures-2/
+- **Null result on the LinkedIn half, third consecutive time.** Searching 2026
+  carousel performance returns aggregator posts restating Socialinsider and the
+  Oktopost 6.60 percent figure already recorded on 2026-08-30. One number
+  looked new, "carousels with exactly 7 slides perform 18 percent better", and
+  it traces to no named study, so it is NOT adopted and CAROUSEL_CRAFT's 8 to
+  10 band stands. The standing lesson from the Phase 12 scans applies to this
+  half as well now: go at a named desk's or a named study's own publication,
+  not at the topic. Next refresh should skip generic carousel queries entirely
+  and go straight at LinkedIn engineering, Socialinsider and Metricool.
