@@ -5211,3 +5211,166 @@ parked, so the next Phase 12 can pick it up without rediscovering it.
   half as well now: go at a named desk's or a named study's own publication,
   not at the topic. Next refresh should skip generic carousel queries entirely
   and go straight at LinkedIn engineering, Socialinsider and Metricool.
+
+## 2026-08-31 - Phase 8 (No.46): a contact shadow fails in four different costumes
+
+Four of nine `data-contacts` declarations failed or measured wrong on this deck.
+Every diagnosis went the same wrong way first, because `qa.py` reports the
+SYMPTOM honestly and the symptom points at the cast. It is almost never the
+cast. All four turned out to be the same defect: THE CAST WAS NOT LANDING ON
+LIT GROUND. Four different reasons why.
+
+1. THE CAST WAS WIDER THAN THE POOL (slides 02, 05). A radial cast at
+   `arc(0,0,w*0.85)` under a 404px block, inside a lit ledge only a little
+   wider, puts the ENTIRE ledge in shadow. There is then no un-shadowed ground
+   anywhere on the frame to pair against, and the declaration measures the
+   pool's own falloff, which is a couple of L* either way. Deepening the cast
+   makes this WORSE, because the darker the cast the darker the ground rect too.
+   The fix is to shrink the cast to roughly the object's own footprint. A
+   contact shadow that is three times as wide as the thing casting it is not a
+   contact shadow, it is a bruise.
+
+2. THE TYPE RESERVE ATE IT (slide 03). The `RES()` evenodd clip keeps canvas
+   art off measured type boxes. The block's cast sat at y 1098, which is inside
+   the bottom tag's reserve box, so the clip erased the whole shadow and left
+   the bare lit board to measure. There is no error and no warning for this:
+   the art simply is not there. GROUND-LEVEL ART BELONGS OUTSIDE THE RESERVE,
+   drawn with the pool it falls on, before `//__RES__`. A dark cast behind
+   light type raises the contrast anyway.
+
+3. DRAW ORDER BURIED IT (slide 09). Thirty volumes each drew a small cast, and
+   then "the full lit board" was painted afterwards, straight over all thirty.
+   The base row measured as one smooth gradient, dL 1.1. This is the doctrine's
+   own sentence read as a sequence and not just as advice: LIGHT THE GROUND
+   FIRST, THEN CAST INTO IT. Moving one `save/restore` block above the loop
+   fixed it with no other change.
+
+4. THE DECLARATION POINTED AT THE FALLOFF, NOT THE CAST (slide 09 again). Once
+   the casts were visible, the lateral profile at the base row was still almost
+   flat, because thirty casts at one pitch merge into a band. The honest pair
+   was VERTICAL: the cast band right under the volumes against the board's lit
+   front 16px below. Same x, different y. The probe's docstring warns against
+   putting the ground rect below the shadow, and it is right about the usual
+   case, but the rule is not "never below", it is "never on the pool's dark
+   outer edge". Measure before assuming which way is brighter.
+
+A related trap worth naming. `qa.py`'s off-the-cast remedy on slide 09 said the
+nearest dark band was at y 922-948, and moving the declaration there turned a
+6.5 WARN into a 1.1 FAIL, because that band was the board's dark top, not a
+cast. The gate's remedies are good diagnostics and are not always the fix; they
+describe pixels, not intent. `scripts/contact_probe.py --verify` plus a hand
+profile at four candidate rows settled all four cases in one round.
+
+Round cost: this deck used 7 editing rounds against the 5-round cap, and rounds
+6 and 7 were entirely contact shadows.
+
+## 2026-08-31 - Phase 8 (No.46): the type reserve is an invisible eraser
+
+The `RES()` evenodd clip keeps canvas art off measured type boxes, which is
+right, and it fails SILENTLY. Art drawn into a reserved rectangle is not
+dimmed, not warned about, not logged. It is simply not there, and every
+downstream gate then measures the thing that remains as if it were the
+intended picture. Three separate defects on this deck were one instance of
+that each.
+
+- Slide 03's cast shadow sat under the bottom tag's box. The clip erased the
+  whole shadow. `qa.py` then measured the bare lit board and reported a
+  contact that did not read, which pointed at the cast, which was fine.
+- Slide 03 ALSO lost two of its eight proud leaves behind the body copy's
+  box. The slide declares eight marks for a claim about eight consecutive
+  questions and `__akAssert` reported 8 of 8, because the assert checks the
+  DECLARED points array and not whether the ink survived. A reader counting
+  the picture got six. Nothing in the machine could see it. It was found by
+  cropping the render and counting by hand.
+- Slide 09 and slide 04 lost their contact shadows to a different eraser with
+  the same signature: a lit board painted AFTER the objects, covering thirty
+  casts on 09 and twenty nine on 04.
+
+The general rule, and it is worth a gate: WHAT A SLIDE DECLARES AND WHAT A
+SLIDE DREW ARE DIFFERENT FACTS. `__akAssert` proves the author computed the
+right number of points. It does not prove the reader can see them. The engine
+already writes `slide-NN.canvas.png`, the art layer with no DOM on top, and a
+check that samples each declared point on the COMPOSITED frame and confirms
+the mark is still distinguishable from its background would have caught the
+missing leaves in the first render pass. Logged as a Phase 12 candidate.
+
+The cheap habit in the meantime: after any round that moves type, crop the
+render around every declared mark cluster and count it by eye. It took two
+minutes and it caught the deck's worst defect.
+
+## 2026-08-31 - Phase 9 (No.46): a recession read as a claim
+
+Two slides drew a run of bound volumes receding to frame right with a scale
+exponent per volume. On 04 that exponent was 0.945, which takes the far end to
+a fifth of the near height across twenty nine volumes, and the headline above
+it ended "SINCE 1997". The flow critic's read was immediate and correct: a row
+of evenly spaced verticals of monotonically decreasing height, sitting on a
+gold rule, under a date, is a BAR CHART OF SOMETHING DECLINING SINCE 1997.
+The deck makes no such claim and the record does not support one.
+
+Nothing measured this. `aggregate_check` only judges declared counts, and
+these volumes are declared as a drawing convention that encodes nothing, which
+is exactly the declaration that made the frame legal and the picture wrong.
+
+Three things had to change together, and each alone was insufficient: the
+scale exponent (recession carried mostly by haze now), the height sequence
+(seeded wobble instead of a monotonic march), and the gold rule under the
+bases (an axis at 0.55 alpha and full width, now a board edge at 0.24 and
+short of the frame). The gold rule was doing more of the work than the heights.
+
+The rule to carry forward: WHEN A DRAWING CONVENTION HAPPENS TO SHARE A
+SILHOUETTE WITH A CHART, IT IS A CHART TO THE READER. Declaring it decorative
+protects the gate and not the reader. Either break the silhouette or encode
+something real.
+
+## 2026-08-31 - Phase 10 (No.46): softening a plate is not one decision
+
+Both critics named the same craft tell: the type reserve leaves a hard-cornered
+rectangle of bare ground wherever type sits over modeled art, and every
+dossier's own 4a section promises the opposite. The obvious cure, a blurred
+scrim painted over each reserve box after the art, took THREE attempts and each
+failure taught something the doctrine had not written down.
+
+1. A FIXED BLUR IS WRONG BECAUSE BOXES ARE NOT ONE SIZE. At 17px the scrim
+   never reached full strength over a 26px mono label, because a blurred rect
+   only reaches full alpha more than one blur radius inside its own edge. So
+   the feather vanished on exactly the thin labels that needed it, and qa.py
+   failed three of slide 05's mono lines for art running through the
+   letterforms.
+2. EXPANDING THE SCRIB OUTWARD MAKES IT WORSE, NOT BETTER. qa.py's check
+   measures the RING AROUND a label, so the instinct is to push the scrim past
+   the box edge. Do that on a stack of five labels 40px apart and the plates
+   bleed into each other, which puts a value step in every label's ring. Same
+   three failures, opposite cause.
+3. THE ANSWER WAS THAT THE TELL ONLY EXISTS ON BIG BOXES. What the critics
+   actually saw were the BODY and DISPLAY plates, tall enough that a hard corner
+   reads as a UI chip laid on the picture. A caption strip on a knockout is
+   correct typography and is the thing qa.py's check is defending. The shipped
+   rule is one line: skip any reserve box under 64px tall.
+
+A gate that fails you in both directions is telling you the fix is not on that
+axis at all.
+
+## 2026-08-31 - Phase 10 (No.46): bespoke_check reads the shared preamble
+
+Adding featherReserve() to the build's shared JS preamble moved
+bespoke_check's median pairwise art similarity from 0.517 to 0.591, against a
+0.60 fail line, without changing one line of any slide's own art. The cause is
+plain once seen: `art_code()` strips the house harness (font links, library
+tags, the counter and footer fixtures) but it reads EVERY inline script, and a
+per-deck preamble ships identically in all nine slides, so each shared line
+raises similarity across all thirty six pairs at once.
+
+Comments count. Moving four comment blocks out of the emitted JS and into
+build.py's own Python source took the median back to 0.538 and cost nothing but
+one copy of the explanation instead of nine.
+
+Two rules from this. First, EXPLAIN SHARED MACHINERY IN THE BUILD SCRIPT, NOT
+IN THE EMITTED SLIDE. The knowledge is worth more where a maintainer reads it
+and it is a liability where a gate counts it. Second, and more important: do
+not reach for the gate. The honest read here is that bespoke_check is measuring
+something slightly wider than it means to, and a per-deck preamble arguably
+belongs on the HARNESS strip list beside the counter fixture. That may be a
+real upgrade and it is a Phase 12 decision made on its own merits, not a thing
+to do at midnight because it would make this deck's number look better. Fix the
+artifact, not the sentence.
