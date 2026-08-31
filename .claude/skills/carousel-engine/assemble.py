@@ -178,7 +178,17 @@ def main():
     render_dir = Path(args.render_dir).resolve()
     out_dir = Path(args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
-    pngs = sorted(glob.glob(str(render_dir / "slide-*.png")))
+    # SKIP THE CANVAS LAYERS (2026-08-31). render.py started writing
+    # slide-NN.canvas.png on 2026-08-30, the art layer alone with no DOM on top,
+    # so qa.py can see canvas ink that the composited screenshot hides under
+    # type. It is a diagnostic, not a frame. This glob was never taught the
+    # difference, so the first deck rendered after that change assembled EIGHTEEN
+    # pages: nine slides interleaved with nine debug layers, in the contact sheet
+    # the flow critic reads, in the thumbs the pixel critics read, and in
+    # assemble_report's slide count. The PDF itself was fine, which is why
+    # nothing else caught it. Found by gate_status's assemble row on run No.46.
+    pngs = sorted(p for p in glob.glob(str(render_dir / "slide-*.png"))
+                  if not p.endswith(".canvas.png"))
     if not pngs:
         print("FAIL: no rendered slide-*.png found", file=sys.stderr)
         sys.exit(1)
