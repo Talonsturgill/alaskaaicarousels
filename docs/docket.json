@@ -10,8 +10,8 @@
   "attribution": "Alaska AI, https://alaskaaihq.com",
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
-  "temporal_coverage": "2022-02-02/2026-09-26",
-  "count": 22,
+  "temporal_coverage": "2022-02-02/2026-10-30",
+  "count": 23,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -2411,6 +2411,69 @@
       "cta_label": "TESTIFY",
       "cta_when": "ON",
       "url": "https://alaskaaihq.com/docket/anchorage-rtcc-surveillance-ordinance/"
+    },
+    {
+      "id": "fcc-usf-ai-administration",
+      "title": "The FCC asks whether AI should help run the Universal Service Fund",
+      "kind": "regulatory-docket",
+      "status": "open-for-comment",
+      "decider": "Federal Communications Commission",
+      "public_access": "open",
+      "access_note": "Anyone may file. Comments are due on or before September 30th, 2026 and reply comments on or before October 30th, 2026, in WC Docket No. 26-173, through the Commission's electronic filing system under 47 CFR 1.415 and 1.419. The notice gives Alaska no separate deadline and no separate route, so an Alaska clinic, school district, library or carrier files on the same clock as everyone else.",
+      "summary": "The FCC published a notice on August 31st, 2026 seeking comment on how the Universal Service Fund is administered, and nine of its sentences name artificial intelligence. It asks whether AI tools used to review applications, audits and appeal review processes would reduce delays while maintaining accurate results, and whether the fund's administrator should expand use of AI in document review for audits and program compliance. One paragraph poses eight consecutive questions about AI. The Commission is asking rather than proposing, and every AI sentence in the notice is phrased as a question. The same notice seeks comment on cutting the administrator's board from 20 members to 13. Alaska is not named anywhere in it. Alaska's stake is in a companion notice published the same day, WC Docket No. 17-310, which reports that only 34 of 340 approved Telecom Program requests in Alaska in funding year 2025 relied on the Commission's preferred Methods 1 or 2, so the great majority of Alaska's rural health connectivity requests are justified the longer way. That is the paperwork an automated reviewer would read.",
+      "key_dates": [
+        {
+          "date": "2026-08-06",
+          "label": "Adopted by the Commission",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-07",
+          "label": "Released",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-31",
+          "label": "Published in the Federal Register at 91 FR 55826",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-30",
+          "label": "Comments due, WC Docket No. 26-173",
+          "kind": "deadline"
+        },
+        {
+          "date": "2026-10-30",
+          "label": "Reply comments due",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Washington, D.C. (national proceeding, Alaska filers welcome)",
+        "lon": -77.0369,
+        "lat": 38.9072
+      },
+      "sources": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17761.htm",
+          "outlet": "Federal Communications Commission via govinfo.gov",
+          "date": "2026-08-31"
+        },
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17767.htm",
+          "outlet": "Federal Communications Commission via govinfo.gov",
+          "date": "2026-08-31"
+        }
+      ],
+      "first_seen": "2026-08-31",
+      "last_updated": "2026-08-31",
+      "history": [
+        {
+          "date": "2026-08-31",
+          "note": "Added on the day of publication. Both Federal Register texts were fetched and read. The notice raising the artificial intelligence questions is WC Docket No. 26-173, FCC 26-52, at 91 FR 55826 to 55835. The notice naming Alaska is a separate proceeding, WC Docket No. 17-310, FCC 26-54, at 91 FR 55816 to 55825, and it contains no reference to artificial intelligence. Both were adopted August 6th, 2026, released August 7th, and published in the same Federal Register issue with the same comment and reply deadlines."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
     }
   ]
 }
