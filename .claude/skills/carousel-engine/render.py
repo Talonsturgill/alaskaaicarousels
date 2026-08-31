@@ -1065,6 +1065,22 @@ IN_PAGE_QA_JS = """
      one list is the whole point). `actual` becomes the number of those centres
      inside the frame, `tol` defaults to 0 because a count is exact, and any
      hand-written `actual` is ignored and reported so the author sees it. */
+  /* ... AND COUNTED IN THE PICTURE, NOT ONLY IN THE ARRAY (2026-08-31). Run
+     No.46's slide 03 declared eight proud leaves for the FCC's eight
+     consecutive AI questions, drew eight, and SHIPPED SIX: the body copy's
+     type reserve is applied as an evenodd clip, so the two leftmost leaves
+     were never painted. The count above reported 8 of 8 the whole time,
+     because "inside the frame" is arithmetic on the declared array and a
+     clip erases ink without moving a coordinate. Every machine gate stayed
+     green; a human found it by cropping the render and counting by eye.
+
+     So the centres themselves are carried out to qa.py, which samples each
+     one on the COMPOSITED png and asks whether a mark is still there. Only
+     the centres are exported (the measuring lives in qa.py beside every other
+     pixel instrument, on one implementation of _ink_spread rather than a
+     second one written in JS), capped and evenly strided so a 750-mark
+     census costs a bounded amount of report. */
+  const MARK_PROBE_MAX = 240;
   out.asserts = [];
   try {
     const num = (v) => (typeof v === "number" && isFinite(v)) ? v : null;
@@ -1080,12 +1096,16 @@ IN_PAGE_QA_JS = """
       const pts = (a && Array.isArray(a.points)) ? a.points.slice(0, 20000) : null;
       if (pts) {
         let inside = 0, n = 0, bad = 0;
+        const xy = [];
         for (const p of pts) {
           const x = Array.isArray(p) ? +p[0] : (p && typeof p === "object" ? +p.x : NaN);
           const y = Array.isArray(p) ? +p[1] : (p && typeof p === "object" ? +p.y : NaN);
           if (!isFinite(x) || !isFinite(y)) { bad++; continue; }
           n++;
-          if (x >= 0 && x <= W && y >= 0 && y <= H) inside++;
+          if (x >= 0 && x <= W && y >= 0 && y <= H) {
+            inside++;
+            xy.push([Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
+          }
         }
         rec.points_n = n;
         rec.points_bad = bad;
@@ -1093,6 +1113,19 @@ IN_PAGE_QA_JS = """
         rec.actual_declared = rec.actual;
         rec.actual = inside;
         if (rec.tol === null) rec.tol = 0;
+        /* the centres qa.py will probe: every one when there are few, and an
+           even stride through them when there are many, so the sample stays
+           spread over the whole field rather than over its first corner. */
+        if (xy.length <= MARK_PROBE_MAX) {
+          rec.points_xy = xy;
+          rec.points_xy_stride = 1;
+        } else {
+          const step = Math.ceil(xy.length / MARK_PROBE_MAX);
+          const s = [];
+          for (let i = 0; i < xy.length; i += step) s.push(xy[i]);
+          rec.points_xy = s;
+          rec.points_xy_stride = step;
+        }
       }
       out.asserts.push(rec);
     }

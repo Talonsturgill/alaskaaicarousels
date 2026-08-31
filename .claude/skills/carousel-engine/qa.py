@@ -1411,6 +1411,141 @@ def motif_survives(img_arr, mo, design_w, design_h):
     return "info", bits
 
 
+# A DECLARED MARK THAT NEVER PAINTED (2026-08-31). Thresholds for the probe
+# below. MARK_LOST_FRAC is not an absolute ink level: it is a share of THIS
+# assertion's OWN cohort median, so a cohort of faint hairlines is judged
+# against faint hairlines and a cohort of ivory leaves against ivory leaves.
+# MARK_COHORT_FLAT is the one absolute, and it is a floor on being able to
+# measure at all, borrowed from MOTIF_FLAT_DE.
+#
+# 0.30 IS FITTED, NOT GUESSED, and there is deliberately no second, softer
+# band above it. Measured over run No.46's three real cohorts (74 marks, every
+# one of them verified present by a human who counted them in the render), the
+# ratio of a mark's ink to its cohort median runs: median 1.00, p10 0.96 to
+# 0.99, worst single mark 0.56. The defect reconstruction that motivated the
+# check puts its two erased leaves at 0.078 and 0.074. A "being smothered"
+# warn band at 0.55 was written first and then removed: the worst known-good
+# mark lands on it, and nothing in the corpus says a ratio between 0.3 and 0.6
+# means anything at all. This check asks exactly one question -- did the mark
+# paint -- and the gap between 0.56 and 0.30 is the margin it has to be wrong.
+MARK_LOST_FRAC = 0.30      # of the cohort median: nothing is there
+MARK_COHORT_MIN = 5        # fewer probes than this and there is no cohort
+MARK_COHORT_FLAT = MOTIF_FLAT_DE
+MARK_R_MIN, MARK_R_MAX = 4.0, 14.0   # probe half-width, design px
+MARK_EDGE_KEEP = 0.6       # of the probe box must be on-frame to be measured
+
+
+def _mark_probe_r(pts):
+    """Probe half-width for one cohort: half the median nearest-neighbour
+    distance, clamped. A census packed at 2.5px per mark gets a small box and a
+    row of leaves 54px apart gets a large one, so the probe is always about the
+    size of the thing it is looking for."""
+    n = len(pts)
+    if n < 2:
+        return MARK_R_MAX
+    a = np.asarray(pts, dtype=np.float64)
+    # O(n^2) on at most MARK_PROBE_MAX (240) points: 57,600 distances.
+    d = np.sqrt(((a[:, None, :] - a[None, :, :]) ** 2).sum(-1))
+    np.fill_diagonal(d, np.inf)
+    nn = float(np.median(d.min(axis=1)))
+    return float(min(MARK_R_MAX, max(MARK_R_MIN, nn * 0.5)))
+
+
+def marks_reach_frame(img_arr, a, design_w, design_h):
+    """DID THE MARKS THE SLIDE COUNTED ACTUALLY PAINT.
+
+    Built 2026-08-31 after run No.46's slide 03, whose printed claim is that
+    the FCC asked EIGHT consecutive questions about AI, declared eight proud
+    leaves, drew eight, and shipped SIX. The type reserve is applied as an
+    evenodd clip, so the two leftmost leaves were erased at draw time. The
+    2026-08-25 count contract reported 8 of 8 for the whole run, because it
+    counts CENTRES INSIDE THE FRAME and a clip removes ink without moving a
+    coordinate. Every gate was green; a human found it by cropping the render.
+
+    So this is the pixel half of that contract, in the same shape as
+    motif_survives(): the slide states the claim, the frame is measured, and a
+    FAIL is the slide contradicting itself. What is new is that a count
+    assertion supplies its own control group -- every mark in one assertion is
+    by construction the same kind of mark -- so the verdict is a RATIO against
+    the cohort's own median ink and needs no absolute threshold and no idea of
+    what the mark depicts. A faint census of hairlines and a row of ivory
+    leaves are each judged against themselves.
+
+    Measured on run No.46's own three cohorts (74 marks) the present marks all
+    read 77 to 84 dE against a smooth ground at 5 to 6 dE, and the defect
+    reconstruction puts the two clipped leaves at 6.2 and 5.8 against a cohort
+    median of 78.8, a ratio of 0.08 against a 0.30 line.
+
+    THREE LIMITS, all of them false NEGATIVES, which is the safe direction:
+      * It asks whether ANYTHING is at the centre, not whether the mark is.
+        A glyph or a plate edge landing on a lost mark's centre hides the loss.
+      * It resolves at the mark pitch. Where marks are packed tighter than the
+        probe box, a neighbour's ink fills the box, so only a RUN of lost marks
+        moves the measurement.
+      * A cohort whose median is itself flat is reported as unmeasurable
+        (a WARN), never as 100 percent lost: nothing distinguishes "every mark
+        was erased" from "these marks are drawn in the DOM, not on canvas".
+    A census larger than render.py's export cap is strided, which inflates the
+    apparent pitch and so the probe box; MARK_R_MAX bounds that, and a box that
+    is too large only ever makes the check more forgiving.
+
+    Returns (verdict, detail) with verdict in "info" | "warn" | "fail", or
+    None when the assertion declares no probeable centres.
+    """
+    pts = a.get("points_xy")
+    if not pts:
+        return None
+    what = a.get("what") or "an unnamed count"
+    stride = int(a.get("points_xy_stride") or 1)
+
+    sx = img_arr.shape[1] / float(design_w)
+    sy = img_arr.shape[0] / float(design_h)
+    R = _mark_probe_r(pts)
+    box_area = (2.0 * R * sx) * (2.0 * R * sy)
+    vals = []
+    for px, py in pts:
+        x0, y0 = int(round((px - R) * sx)), int(round((py - R) * sy))
+        x1, y1 = int(round((px + R) * sx)), int(round((py + R) * sy))
+        cx0, cy0 = max(0, x0), max(0, y0)
+        cx1 = min(img_arr.shape[1], x1)
+        cy1 = min(img_arr.shape[0], y1)
+        if (cx1 - cx0) < 3 or (cy1 - cy0) < 3 or \
+                (cx1 - cx0) * (cy1 - cy0) < box_area * MARK_EDGE_KEEP:
+            continue              # a centre at the very edge: box is half off
+        vals.append((px, py, _ink_spread(img_arr[cy0:cy1, cx0:cx1])))
+
+    sampled = ", sampled every %d marks" % stride if stride > 1 else ""
+    if len(vals) < MARK_COHORT_MIN:
+        return None               # no cohort, no baseline; say nothing at all
+
+    med = float(np.median([v for _, _, v in vals]))
+    head = "'%s': %d mark centres probed at r=%.0fpx%s, cohort median %.1f dE" % (
+        what, len(vals), R, sampled, med)
+    if med < MARK_COHORT_FLAT:
+        return "warn", (
+            head + " -- the whole cohort is under the %.1f dE existence floor, "
+            "so the probe cannot establish a baseline and says nothing about "
+            "these marks. If they are drawn in the DOM rather than on the "
+            "canvas that is expected; if they are canvas art, none of them "
+            "painted." % MARK_COHORT_FLAT)
+
+    lost = [(x, y, v) for x, y, v in vals if v < med * MARK_LOST_FRAC]
+    if lost:
+        where = ", ".join("(%g,%g) %.1f dE" % r for r in lost[:6]) + \
+            (" and %d more" % (len(lost) - 6) if len(lost) > 6 else "")
+        return "fail", (
+            head + " -- %d of them carry no mark at all, under %d%% of the "
+            "cohort (%s). The slide says it drew %s and the composited frame "
+            "shows %d. Something erased them after they were declared: a "
+            "type-reserve clip, a plate drawn over them, or a later fill over "
+            "that region. Check the reserve boxes and the drawing order, then "
+            "re-render and count them in the picture."
+            % (len(lost), round(MARK_LOST_FRAC * 100), where, what,
+               len(vals) - len(lost)))
+    return "info", head + ", all present (weakest %.1f dE)" % min(
+        v for _, _, v in vals)
+
+
 # THE AXIS CENSUS (2026-08-16). Geometry tolerances, in design px. None of
 # these is an ink threshold: the census calibrates its ink level on the marks
 # the SLIDE declares, so there is no constant here to tune down or up.
@@ -2247,6 +2382,24 @@ def main():
                 res["warns"].append("assertion declaration unusable: " + detail)
             else:
                 res.setdefault("asserts", []).append(detail)
+
+            # A DECLARED MARK THAT NEVER PAINTED (2026-08-31). The arithmetic
+            # above counts centres inside the frame; this counts INK at those
+            # centres in the composited png, which is the half run No.46's
+            # slide 03 shipped six of eight through. Returns None and says
+            # nothing at all unless the assertion carried probeable centres.
+            # See marks_reach_frame() for the cohort-relative calibration and
+            # for the three ways it can miss (all false negatives).
+            mv = marks_reach_frame(arr, a, design_w, design_h)
+            if mv:
+                verdict, detail = mv
+                if verdict == "fail":
+                    res["fails"].append("declared marks missing from the frame: "
+                                        + detail)
+                elif verdict == "warn":
+                    res["warns"].append("declared marks: " + detail)
+                else:
+                    res.setdefault("asserts", []).append(detail)
 
         # SVG LABEL OFF ITS OWN PLATE (2026-07-29). render.py measures every
         # SVG <text> against the <rect> painted under it. A label that spills

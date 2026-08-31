@@ -280,6 +280,22 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   Every machine gate passed it and a pixel critic counted the rows by hand.
   Deriving `actual` from the loop bound cannot catch this; only the frame can.
   Reconstruction: `python tests/count_assert_verify.py`.
+
+  **And counted in the picture, not only in the array** (2026-08-31). Those
+  same centres are now probed on the COMPOSITED png: qa.py measures the ink at
+  each one and **FAILS** when any of them falls under 30 percent of the
+  cohort's own median. Nothing extra to declare, it rides on `points`. Run
+  No.46's slide 03 declared eight proud leaves for the FCC's eight consecutive
+  AI questions, drew eight, and shipped SIX, because the type reserve is an
+  evenodd clip and erased the two leftmost; the count above reported 8 of 8 for
+  the whole run, since a clip removes ink without moving a coordinate. The
+  verdict is a ratio inside one cohort, so faint marks are judged against faint
+  marks and a scrim over half the field is not a defect. **Three ways it can
+  miss**, all of them false negatives: it asks whether ANYTHING is at the
+  centre and not whether the mark is; it resolves at the mark pitch, so where
+  marks are packed tighter than the probe box only a RUN of losses shows; and a
+  cohort that is flat everywhere is reported unmeasurable rather than lost,
+  because marks drawn in the DOM look the same from here.
 - **Declared artwork has to reach the slide** (2026-08-25). A slide names the
   drawn features that carry meaning and the rect each one occupies:
 

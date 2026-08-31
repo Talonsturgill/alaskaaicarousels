@@ -5374,3 +5374,68 @@ belongs on the HARNESS strip list beside the counter fixture. That may be a
 real upgrade and it is a Phase 12 decision made on its own merits, not a thing
 to do at midnight because it would make this deck's number look better. Fix the
 artifact, not the sentence.
+
+## 2026-08-31 - Phase 12 (No.46): the type box is 120px tall and its ink is 39
+
+PARKED, with the measurement, because the fix is a layout redesign and not a
+bounded upgrade. Frontier scan focus (d), typography and layout craft.
+
+The engine renders in Chromium 141, and that browser supports `text-box-trim`
+and `text-box-edge` (Chrome 133+, February 2025). Measured in the engine's own
+launcher on a 60px/2 serif line: `getBoundingClientRect().height` is 120.0px
+and the same element trimmed to `text-box: trim-both cap alphabetic` is
+39.3px. Eighty pixels of that box is half-leading, split above and below, and
+it belongs to nobody.
+
+This matters here because `measureReserve()` builds the type reserve out of
+`getBoundingClientRect()` plus a 12/8 pad, and the reserve is applied as an
+evenodd CLIP, so every pixel of half-leading is a pixel of artwork the slide
+is forbidden to draw. Run No.46 spent rounds 1 to 7 on contact shadows and
+type reflow, and its worst shipped defect was a reserve erasing two of eight
+declared leaves. The reserve being taller and wider than the ink it protects
+is not the whole of that, but it is a standing tax on every frame.
+
+Why parked and not applied: trimming the boxes moves every flowed element on
+every slide at once (`flow()` positions each block off the previous block's
+bottom edge, and those gaps are hand-tuned against the untrimmed box). That is
+a redesign of the layout contract, with a full re-render and re-review, which
+is not a Phase 12 change. UNBLOCKING CONDITION: land it on a run whose deck is
+being rebuilt anyway, one slide first, and prove it by measuring reserve area
+against rendered glyph area before and after.
+https://developer.chrome.com/blog/css-text-box-trim
+
+Two smaller results from the same scan, both worth not rediscovering:
+- `hanging-punctuation` is NOT supported in Chromium 141 (`CSS.supports` says
+  false; it is a Safari-only property). The deck's opening quotation marks on
+  a flush-left edge need a manual negative text-indent, there is no property
+  to reach for. `text-wrap: pretty` and `text-spacing-trim` both ARE supported.
+- `text-wrap: pretty` in Chromium only prevents last-line orphans; Safari's
+  implementation improves the whole rag. DESIGN_DOCTRINE is already right that
+  it gives no line-count guarantee and can't replace `AK.fitText`, but it is
+  free and additive on the free-flowing `.bd` body blocks, which are not
+  fitText'd today. https://webkit.org/blog/16547/better-typography-with-text-wrap-pretty/
+
+## 2026-08-31 - Phase 12 (No.46): do NOT strip the preamble from bespoke_check
+
+Answering the question Phase 10 left for this phase, on the merits, with a
+measurement: NO. The per-deck preamble stays inside what bespoke_check reads.
+
+Measured on this deck: the block before `window.renderReady` is 39 to 56
+percent of each slide's art code. Strip it and the median pairwise similarity
+falls from 0.538 to 0.110 and the worst pair from 0.641 to 0.226.
+
+That second number is the reason to refuse. It says a strip list for "the
+shared preamble" would hide half of every slide from the gate, and run No.26,
+the defect this gate was built for, was exactly one build script in which
+every frame called the same six drawing functions with different arguments. A
+deck like that would pass at 0.110 by moving its six functions above
+`renderReady`. The strip list can only hold things that are FIXED house
+furniture, which the counter and the footer are and a per-deck preamble is not.
+
+The honest half of Phase 10's complaint is real and has a cheaper answer that
+weakens nothing: 0.538 with a 0.110 tail means this deck's own art IS bespoke
+by the gate's own reference standard, and the number that would have said so
+is a diagnostic, not a threshold. If a future run wants it, print both figures
+and gate on the existing one. The finding under all of it stands on its own and
+costs nothing: keep explanations of shared machinery in build.py, where a
+maintainer reads them once, and out of the JS that ships nine times.
