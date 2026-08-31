@@ -52,8 +52,18 @@ craft, its best in ten runs. The first version of this script flagged 9 of 9,
 which is a 100 percent false positive rate and would have taught a run to work
 around its own machine. After the squint step it flags 1 of 9, and that one is
 slide 06, whose composition the instinct ledger already records as having gone
-wrong. That is the evidence for keeping it, and it is one deck of evidence,
-which is why this reports and does not gate.
+wrong.
+
+A second calibration deck, examples/demo-deck, the bespoke reference that
+measures 0.049 on bespoke_check and is the house's own proof of good practice,
+and which is DARK where No.45 was high key. It passes 3 of 4, and the one flag
+is slide 04, whose dominant mass reaches only 17 percent of the bottom third,
+which is top-loaded composition measured rather than argued.
+
+So across 13 known-good frames in two opposite value registers, this flags 2,
+and both flags point at something real. That is roughly a 15 percent rate on
+good work, which is close to the Tricorder bar and not under it, and it is why
+this REPORTS and does not gate.
 
 USAGE
     python scripts/value_structure.py --render-dir out/<date>/render
@@ -240,7 +250,8 @@ def main():
     a = ap.parse_args()
 
     pat = "slide-%02d.png" % a.slide if a.slide else "slide-*.png"
-    files = sorted(glob.glob(os.path.join(a.render_dir, pat)))
+    files = [f for f in sorted(glob.glob(os.path.join(a.render_dir, pat)))
+             if not os.path.basename(f).endswith(".canvas.png")]  # engine intermediates, not slides
     if not files:
         print("value_structure: no renders matched %s in %s" % (pat, a.render_dir), file=sys.stderr)
         return 1
