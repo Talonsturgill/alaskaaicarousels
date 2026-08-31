@@ -144,6 +144,14 @@ AGENCY_RULES = [
     (r"\bDNR\b|Department of Natural Resources", "Alaska DNR",
      ("dnr", "natural resources", "state land office", "division of oil and gas")),
     (r"Federal Energy Regulatory", "FERC", ("ferc", "federal energy regulatory")),
+    # Ordered BEFORE the bare-word rules below and after FERC, because
+    # "Federal Communications Commission" and "Federal Energy Regulatory" share
+    # a first word and only one of them may own the phrase (see the note above
+    # this table). Added 2026-08-31 with the first FCC item on the docket, the
+    # universal service AI proceeding; the self-test caught it as an item with
+    # no recognised agency the same hour the item landed.
+    (r"Federal Communications Commission|\bFCC\b", "the FCC",
+     ("fcc", "federal communications", "federal communications commission")),
     (r"Air Force", "the Air Force", ("air force", "usaf", "afb")),
     (r"\bArmy\b", "the Army", ("army", "us army")),
     (r"Nuclear Regulatory Commission", "the NRC", ("nrc", "nuclear regulatory")),

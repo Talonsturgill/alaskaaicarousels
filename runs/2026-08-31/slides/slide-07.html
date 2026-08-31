@@ -1,0 +1,213 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#03070E}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.lyr{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Instrument Serif";font-weight:400;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:.98}
+.qt{position:absolute;margin:0;font-family:"Instrument Serif";font-style:italic;
+    font-weight:400;color:#F4F8FF;letter-spacing:-.01em;line-height:1.18}
+.bd{position:absolute;margin:0;font-family:"Manrope";font-weight:500;font-size:32px;
+    line-height:1.38;color:#C6D2DE}
+.sub{position:absolute;margin:0;font-family:"Manrope";font-weight:700;font-size:26px;
+    line-height:1.3;color:#C6D2DE}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#A6BBD2;
+    font-variant-numeric:tabular-nums lining-nums}
+.sm{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#A6BBD2;
+    font-variant-numeric:tabular-nums lining-nums}
+.ct{position:absolute;left:80px;bottom:116px;font-family:"JetBrains Mono";font-weight:500;
+    font-size:22px;letter-spacing:.12em;color:#6E7F92;font-variant-numeric:tabular-nums}
+.rl{position:absolute;left:80px;bottom:84px;font-family:"JetBrains Mono";font-weight:500;
+    font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#55697C}
+.tag{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:21px;
+    letter-spacing:.12em;text-transform:uppercase;color:#6EA5FF}
+
+</style></head><body data-contacts='[{"what": "the WC 26-173 block on the lower ledge", "shadow": [[258, 1000, 26, 10]], "ground": [[163, 1000, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<h2 class="hd" id="h7" style="left:80px;top:112px;width:720px;font-size:112px;line-height:1.0">NOBODY AT THE FCC DREW THIS LINE.</h2>
+<p class="bd" id="b7" style="left:80px;top:452px;width:580px;font-size:30px">The notice that asks about artificial intelligence never names Alaska. The notice that names Alaska never says artificial intelligence. They were adopted the same day, released the same day and printed in the same issue. (C26, C27, C01, C03, C04, C06)</p>
+<div class="sm" style="left:80px;top:1056px;opacity:.78">TWO FULL TEXT EXTRACTIONS EACH . ZERO OCCURRENCES (C26, C27)</div>
+<div class="tag" style="left:80px;top:1100px">ALASKA.AI READING, NOT AN FCC POSITION</div>
+<div class="sm" id="l7" style="left:236px;top:896px">WC 26-173 (C02)</div>
+<div class="sm" id="r7" style="left:616px;top:800px">WC 17-310 (C05)</div>
+<svg class="lyr" viewBox="0 0 1080 1350" aria-hidden="true">
+  <line x1="393" y1="884" x2="607" y2="838" stroke="#6EA5FF" stroke-width="1.6"
+        stroke-dasharray="9 7" stroke-linecap="butt"/>
+  <circle cx="393" cy="884" r="3.2" fill="#6EA5FF"/>
+  <circle cx="607" cy="838" r="3.2" fill="#6EA5FF"/>
+</svg>
+<div class="ct" data-decorative>07 / 09</div><div class="rl" data-decorative style="left:640px">SEQUENCE, NOT TO SCALE</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+var V='#03070E',D='#0A1420',CL='#16303A',CK='#24505C',OX='#6E2A22',PA='#C9BFA8',
+    FM='#6EA5FF',SN='#F4F8FF',GD='#FFC72C',GH='#FFDA6E',RU='#3E5468';
+AK.reseed(20260838);
+var RND=AK.rng(20260838);
+function nrm(r){var u=1-r(),v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(6.283185307*v);}
+/* HOUSE FIXTURE. The accession rule, the deck's panorama spine. Ticks after the
+   current slide are never drawn, because this deck may not write the future. */
+var RULE_DATES=['1997','2019','FY2024','FY2025','AUG 6','AUG 7','AUG 31','SEP 30','OCT 30'];
+function accession(cx,n){
+  var y=1214, x0=80, x1=1000, span=x1-x0;
+  var gg=cx.createLinearGradient(x0,y-8,x1,y+8);
+  gg.addColorStop(0,'#2A3D4E'); gg.addColorStop(.34,'#6B5A2E'); gg.addColorStop(1,'#1B2A38');
+  cx.strokeStyle=gg; cx.lineWidth=3; cx.lineCap='butt';
+  var cut=x0+span*((n-0.5)/9);
+  cx.beginPath(); cx.moveTo(x0,y); cx.lineTo(cut,y); cx.stroke();
+  cx.strokeStyle='#26313C'; cx.lineWidth=1.5;
+  cx.beginPath(); cx.moveTo(cut,y); cx.lineTo(cut+34,y-9); cx.stroke();
+  for(var i=0;i<n;i++){
+    var tx=x0+span*((i+0.5)/9), last=(i===n-1);
+    cx.strokeStyle=last?GD:RU; cx.lineWidth=last?2.2:1.2;
+    cx.beginPath(); cx.moveTo(tx,y-11); cx.lineTo(tx,y+ (last?13:8)); cx.stroke();
+    if(last){cx.fillStyle=GD; cx.beginPath(); cx.arc(tx,y-15,2.4,0,6.2832); cx.fill();}
+  }
+}
+function grain(cx,a){
+  var g=cx.createRadialGradient(540,1000,10,540,1000,900);
+  g.addColorStop(0,'rgba(255,255,255,0)'); g.addColorStop(1,'rgba(0,0,0,'+a+')');
+  cx.fillStyle=g; cx.beginPath(); cx.arc(540,1000,900,0,6.2832); cx.fill();
+}
+var GRADE={w:1080,h:1350,exposure:-0.04,saturation:1.02,contrast:1.08,filmic:true,
+  lift:[0.010,0.014,0.024],gain:[1.015,1.0,0.975],vignette:0.18,
+  bloom:{threshold:0.74,strength:0.12,radius:14},
+  grain:{amount:0.055,size:2,seed:20260838},aberration:0,dither:true,sharpen:0.32};
+</script>
+<script>
+/* THE TYPE RESERVE. Measured off the laid-out DOM, never guessed, and applied as
+   a clip so the art never generates a mark under a glyph in the first place.
+   featherReserve() then softens the LARGE plates only. See build.py's own notes. */
+var RESB=[];
+function measureReserve(){
+  RESB=[];
+  var els=document.querySelectorAll('.hd,.qt,.bd,.sub,.mn,.sm,.tag,.ct,.rl');
+  for(var i=0;i<els.length;i++){
+    var r=els[i].getBoundingClientRect();
+    if(r.width<2||r.height<2) continue;
+    RESB.push([r.left-12, r.top-8, r.width+24, r.height+16]);
+  }
+}
+function flow(pairs){
+  var prev=null;
+  for(var i=0;i<pairs.length;i++){
+    var el=document.getElementById(pairs[i][0]); if(!el) continue;
+    if(prev){
+      var r=prev.getBoundingClientRect();
+      el.style.top=Math.round(r.bottom+pairs[i][1])+'px';
+    }
+    prev=el;
+  }
+}
+function ground(cx){
+  var g=cx.createLinearGradient(240,0,940,1350);
+  g.addColorStop(0,'#050B14'); g.addColorStop(.46,'#0B1A28'); g.addColorStop(1,'#04080F');
+  cx.fillStyle=g; cx.fillRect(0,0,1080,1350);
+  cx.save(); cx.translate(560,1010); cx.scale(1.35,0.52);
+  var h=cx.createRadialGradient(0,0,20,0,0,760);
+  h.addColorStop(0,'#16303F'); h.addColorStop(.55,'#0C1B27'); h.addColorStop(1,'rgba(4,8,15,0)');
+  cx.fillStyle=h; cx.beginPath(); cx.arc(0,0,760,0,6.2832); cx.fill(); cx.restore();
+}
+function RES(fn){
+  CX.save();
+  CX.beginPath();
+  CX.rect(0,0,1080,1350);
+  for(var i=0;i<RESB.length;i++){
+    var b=RESB[i];
+    CX.moveTo(b[0],b[1]); CX.lineTo(b[0],b[1]+b[3]);
+    CX.lineTo(b[0]+b[2],b[1]+b[3]); CX.lineTo(b[0]+b[2],b[1]); CX.closePath();
+  }
+  CX.clip('evenodd');
+  fn();
+  CX.restore();
+  featherReserve();
+}
+function featherReserve(){
+  if(!RESB.length) return;
+  CX.save();
+  CX.fillStyle='rgba(7,15,24,0.74)';
+  for(var i=0;i<RESB.length;i++){
+    var b=RESB[i];
+    if(b[3]<64) continue;
+    var r=Math.min(20,b[3]/5);
+    CX.filter='blur('+r.toFixed(1)+'px)';
+    CX.fillRect(b[0]+r*0.6,b[1]+r*0.5,b[2]-r*1.2,b[3]-r);
+  }
+  CX.restore();
+}
+window.renderReady=(async function(){
+await document.fonts.ready;
+
+
+measureReserve();
+
+ground(CX);
+// a modeled falloff between and beneath the two ledges, never a flat fill
+CX.save(); CX.translate(540,1180); CX.scale(1.3,0.42);
+var fall=CX.createRadialGradient(0,0,20,0,0,760);
+fall.addColorStop(0,'#122536'); fall.addColorStop(.55,'#0A1420'); fall.addColorStop(1,V);
+CX.fillStyle=fall; CX.beginPath(); CX.arc(0,0,760,0,6.2832); CX.fill(); CX.restore();
+
+RES(function(){
+
+// TWO LEDGES AT DIFFERENT HEIGHTS, each with its own block, 214px apart
+function shelf(lx,lw,ly,blockW,rows,dim){
+  CX.save(); CX.translate(lx+lw*0.5,ly); CX.scale(1,0.12);
+  var lp=CX.createRadialGradient(0,0,8,0,0,lw*0.75);
+  lp.addColorStop(0, dim?'#254A57':'#31606E'); lp.addColorStop(.6,'#16303A');
+  lp.addColorStop(1,V);
+  CX.fillStyle=lp; CX.beginPath(); CX.arc(0,0,lw*0.75,0,6.2832); CX.fill(); CX.restore();
+  CX.strokeStyle=GD; CX.lineWidth=2; CX.globalAlpha=dim?0.45:0.7;
+  CX.beginPath(); CX.moveTo(lx-40,ly+6); CX.quadraticCurveTo(lx+lw*0.5,ly+3,lx+lw+40,ly+7);
+  CX.stroke(); CX.globalAlpha=1;
+  var bx=lx+(lw-blockW)*0.5;
+  CX.save(); CX.translate(bx+blockW*0.5,ly-1); CX.scale(1,0.16);
+  var cs=CX.createRadialGradient(0,0,4,0,0,blockW*0.8);
+  cs.addColorStop(0,'rgba(4,10,17,0.94)'); cs.addColorStop(.4,'rgba(4,10,17,0.48)');
+  cs.addColorStop(1,'rgba(4,10,17,0)');
+  CX.fillStyle=cs; CX.beginPath(); CX.arc(0,0,blockW*0.8,0,6.2832); CX.fill(); CX.restore();
+  for(var i=0;i<rows;i++){
+    var y=ly-4-i*1.95, ph=AK.fbm2(i*0.15+lx*0.002,7.8,{octaves:4});
+    var k=(0.24+0.66*Math.abs(ph))*(dim?0.74:1);
+    CX.strokeStyle='rgba('+Math.round(192*k+14)+','+Math.round(182*k+16)+','+Math.round(160*k+20)+',1)';
+    CX.lineWidth=1.8;
+    CX.beginPath(); CX.moveTo(bx,y);
+    CX.bezierCurveTo(bx+blockW*0.34,y-0.5, bx+blockW*0.66,y+0.5, bx+blockW,y);
+    CX.stroke();
+  }
+  return [bx+blockW, ly-rows*1.0];
+}
+var A=shelf(120,300,1000,246,116,false);
+var B=shelf(578,290,930,232,104,true);   // right block's left edge lands 214px from the left block's right edge
+// foreground plane closing the frame
+for(var f=0;f<6;f++){
+  CX.strokeStyle='rgba(10,22,32,'+(0.12+0.06*f)+')'; CX.lineWidth=11-f;
+  CX.beginPath(); CX.moveTo(0,1306+f*2); CX.quadraticCurveTo(540,1300+f*2,1080,1308+f*2); CX.stroke();
+}
+accession(CX,7);
+
+});
+
+grain(CX,0.24);
+
+AKPOST.grade(CX,GRADE);
+
+window.__akLeaders=[
+  {target:"the fore edge of WC 26-173",at:[393,884],to:[393,884],from:[280,904],
+   label:"WC 26-173 (C02)"},
+  {target:"the fore edge of WC 17-310",at:[607,838],to:[607,838],from:[660,812],
+   label:"WC 17-310 (C05)"}];
+window.__akMotifs=[{what:'the 214px separation the FCC never crossed',rect:[393,838,214,50]}];
+
+})();
+</script></body></html>

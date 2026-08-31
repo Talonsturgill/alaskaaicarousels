@@ -1,0 +1,226 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#03070E}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.lyr{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Instrument Serif";font-weight:400;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:.98}
+.qt{position:absolute;margin:0;font-family:"Instrument Serif";font-style:italic;
+    font-weight:400;color:#F4F8FF;letter-spacing:-.01em;line-height:1.18}
+.bd{position:absolute;margin:0;font-family:"Manrope";font-weight:500;font-size:32px;
+    line-height:1.38;color:#C6D2DE}
+.sub{position:absolute;margin:0;font-family:"Manrope";font-weight:700;font-size:26px;
+    line-height:1.3;color:#C6D2DE}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#A6BBD2;
+    font-variant-numeric:tabular-nums lining-nums}
+.sm{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#A6BBD2;
+    font-variant-numeric:tabular-nums lining-nums}
+.ct{position:absolute;left:80px;bottom:116px;font-family:"JetBrains Mono";font-weight:500;
+    font-size:22px;letter-spacing:.12em;color:#6E7F92;font-variant-numeric:tabular-nums}
+.rl{position:absolute;left:80px;bottom:84px;font-family:"JetBrains Mono";font-weight:500;
+    font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#55697C}
+.tag{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:21px;
+    letter-spacing:.12em;text-transform:uppercase;color:#6EA5FF}
+
+</style></head><body data-contacts='[{"what": "the rotated block standing on its lit board", "shadow": [[751, 1094, 26, 10]], "ground": [[470, 1094, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" style="left:80px;top:98px">ONE PARAGRAPH, EIGHT CONSECUTIVE QUESTIONS (C24)</div>
+<p class="qt" id="q3" style="left:80px;top:170px;width:780px;font-size:56px">"Would using artificial intelligence (AI) tools to review applications, audits, and appeal review processes help reduce delays while maintaining accurate results?"</p>
+<div class="sm" id="a3" style="left:80px;top:560px">WC 26-173 . 91 FR 55826 (C17)</div>
+<p class="bd" id="b3" style="left:80px;top:636px;width:436px;font-size:30px">Nine sentences in that notice name artificial intelligence. They ask about cost, about safeguards for data integrity and governance, about privacy, and whether the administrator should expand its use in document review. Every one of them ends in a question mark. (C23, C20, C21, C22, C18, C25)</p>
+<div class="tag" id="t3" style="left:80px;top:1074px;color:#A6BBD2">THE COMMISSION ASKS. IT DOES NOT PROPOSE. (C25)</div>
+<div class="ct" data-decorative>03 / 09</div><div class="rl" data-decorative style="left:640px">SEQUENCE, NOT TO SCALE</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+var V='#03070E',D='#0A1420',CL='#16303A',CK='#24505C',OX='#6E2A22',PA='#C9BFA8',
+    FM='#6EA5FF',SN='#F4F8FF',GD='#FFC72C',GH='#FFDA6E',RU='#3E5468';
+AK.reseed(20260834);
+var RND=AK.rng(20260834);
+function nrm(r){var u=1-r(),v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(6.283185307*v);}
+/* HOUSE FIXTURE. The accession rule, the deck's panorama spine. Ticks after the
+   current slide are never drawn, because this deck may not write the future. */
+var RULE_DATES=['1997','2019','FY2024','FY2025','AUG 6','AUG 7','AUG 31','SEP 30','OCT 30'];
+function accession(cx,n){
+  var y=1214, x0=80, x1=1000, span=x1-x0;
+  var gg=cx.createLinearGradient(x0,y-8,x1,y+8);
+  gg.addColorStop(0,'#2A3D4E'); gg.addColorStop(.34,'#6B5A2E'); gg.addColorStop(1,'#1B2A38');
+  cx.strokeStyle=gg; cx.lineWidth=3; cx.lineCap='butt';
+  var cut=x0+span*((n-0.5)/9);
+  cx.beginPath(); cx.moveTo(x0,y); cx.lineTo(cut,y); cx.stroke();
+  cx.strokeStyle='#26313C'; cx.lineWidth=1.5;
+  cx.beginPath(); cx.moveTo(cut,y); cx.lineTo(cut+34,y-9); cx.stroke();
+  for(var i=0;i<n;i++){
+    var tx=x0+span*((i+0.5)/9), last=(i===n-1);
+    cx.strokeStyle=last?GD:RU; cx.lineWidth=last?2.2:1.2;
+    cx.beginPath(); cx.moveTo(tx,y-11); cx.lineTo(tx,y+ (last?13:8)); cx.stroke();
+    if(last){cx.fillStyle=GD; cx.beginPath(); cx.arc(tx,y-15,2.4,0,6.2832); cx.fill();}
+  }
+}
+function grain(cx,a){
+  var g=cx.createRadialGradient(540,1000,10,540,1000,900);
+  g.addColorStop(0,'rgba(255,255,255,0)'); g.addColorStop(1,'rgba(0,0,0,'+a+')');
+  cx.fillStyle=g; cx.beginPath(); cx.arc(540,1000,900,0,6.2832); cx.fill();
+}
+var GRADE={w:1080,h:1350,exposure:-0.04,saturation:1.02,contrast:1.08,filmic:true,
+  lift:[0.010,0.014,0.024],gain:[1.015,1.0,0.975],vignette:0.18,
+  bloom:{threshold:0.74,strength:0.12,radius:14},
+  grain:{amount:0.055,size:2,seed:20260834},aberration:0,dither:true,sharpen:0.32};
+</script>
+<script>
+/* THE TYPE RESERVE. Measured off the laid-out DOM, never guessed, and applied as
+   a clip so the art never generates a mark under a glyph in the first place.
+   featherReserve() then softens the LARGE plates only. See build.py's own notes. */
+var RESB=[];
+function measureReserve(){
+  RESB=[];
+  var els=document.querySelectorAll('.hd,.qt,.bd,.sub,.mn,.sm,.tag,.ct,.rl');
+  for(var i=0;i<els.length;i++){
+    var r=els[i].getBoundingClientRect();
+    if(r.width<2||r.height<2) continue;
+    RESB.push([r.left-12, r.top-8, r.width+24, r.height+16]);
+  }
+}
+function flow(pairs){
+  var prev=null;
+  for(var i=0;i<pairs.length;i++){
+    var el=document.getElementById(pairs[i][0]); if(!el) continue;
+    if(prev){
+      var r=prev.getBoundingClientRect();
+      el.style.top=Math.round(r.bottom+pairs[i][1])+'px';
+    }
+    prev=el;
+  }
+}
+function ground(cx){
+  var g=cx.createLinearGradient(240,0,940,1350);
+  g.addColorStop(0,'#050B14'); g.addColorStop(.46,'#0B1A28'); g.addColorStop(1,'#04080F');
+  cx.fillStyle=g; cx.fillRect(0,0,1080,1350);
+  cx.save(); cx.translate(560,1010); cx.scale(1.35,0.52);
+  var h=cx.createRadialGradient(0,0,20,0,0,760);
+  h.addColorStop(0,'#16303F'); h.addColorStop(.55,'#0C1B27'); h.addColorStop(1,'rgba(4,8,15,0)');
+  cx.fillStyle=h; cx.beginPath(); cx.arc(0,0,760,0,6.2832); cx.fill(); cx.restore();
+}
+function RES(fn){
+  CX.save();
+  CX.beginPath();
+  CX.rect(0,0,1080,1350);
+  for(var i=0;i<RESB.length;i++){
+    var b=RESB[i];
+    CX.moveTo(b[0],b[1]); CX.lineTo(b[0],b[1]+b[3]);
+    CX.lineTo(b[0]+b[2],b[1]+b[3]); CX.lineTo(b[0]+b[2],b[1]); CX.closePath();
+  }
+  CX.clip('evenodd');
+  fn();
+  CX.restore();
+  featherReserve();
+}
+function featherReserve(){
+  if(!RESB.length) return;
+  CX.save();
+  CX.fillStyle='rgba(7,15,24,0.74)';
+  for(var i=0;i<RESB.length;i++){
+    var b=RESB[i];
+    if(b[3]<64) continue;
+    var r=Math.min(20,b[3]/5);
+    CX.filter='blur('+r.toFixed(1)+'px)';
+    CX.fillRect(b[0]+r*0.6,b[1]+r*0.5,b[2]-r*1.2,b[3]-r);
+  }
+  CX.restore();
+}
+window.renderReady=(async function(){
+await document.fonts.ready;
+
+AK.fitText(document.getElementById('q3'),{min:40,max:62,maxLines:6});
+
+
+flow([['q3',0],['a3',30],['b3',34],['t3',40]]);
+
+measureReserve();
+
+ground(CX);
+var bg=CX.createLinearGradient(1080,300,300,1350);
+bg.addColorStop(0,'#132635'); bg.addColorStop(1,V); CX.fillStyle=bg; CX.fillRect(0,0,1080,1350);
+// lit board for the block to stand on, so the cast shadow has ground to subtract from
+CX.save(); CX.translate(700,1128); CX.scale(1,0.15);
+var bp=CX.createRadialGradient(0,0,10,0,0,560);
+bp.addColorStop(0,'#3E7181'); bp.addColorStop(.62,'#20404E'); bp.addColorStop(1,V);
+CX.fillStyle=bp; CX.beginPath(); CX.arc(0,0,560,0,6.2832); CX.fill(); CX.restore();
+// the block's attached cast, drawn HERE with the board and not inside the type
+// reserve. It sits at y 1098, which is under the tag's reserve box, so the
+// clip was erasing the whole shadow and leaving a bare lit board to measure.
+CX.save(); CX.translate(763.6,1098.3); CX.rotate(-0.1396); CX.scale(1,0.16);
+var cs3=CX.createRadialGradient(0,0,5,0,0,175);
+cs3.addColorStop(0,'rgba(3,8,14,0.92)'); cs3.addColorStop(.38,'rgba(3,8,14,0.56)');
+cs3.addColorStop(1,'rgba(3,8,14,0)');
+CX.fillStyle=cs3; CX.beginPath(); CX.arc(0,0,200,0,6.2832); CX.fill(); CX.restore();
+
+RES(function(){
+
+// THE BLOCK, rotated 8 degrees, with EIGHT leaves standing proud of its top edge.
+var LEAF=[];
+CX.save(); CX.translate(766,900); CX.rotate(-0.1396);
+// (the cast is drawn above, with the lit board, outside the type reserve)
+// cloth cheek, engraved by hand with a swelled lay
+CX.beginPath(); CX.moveTo(-260,192); CX.lineTo(-260,-96);
+CX.quadraticCurveTo(0,-118,262,-96); CX.lineTo(262,192); CX.closePath();
+CX.fillStyle=CL; CX.fill();
+CX.save(); CX.clip();
+for(var l=0;l<150;l++){
+  var yy=-118+l*2.4, sw=AK.fbm2(l*0.11,3.3,{octaves:4});
+  CX.strokeStyle='rgba(36,80,92,'+(0.16+0.5*Math.abs(sw))+')';
+  CX.lineWidth=0.5+1.7*Math.abs(sw);
+  CX.beginPath(); CX.moveTo(-262,yy);
+  CX.bezierCurveTo(-90,yy+3*sw, 90,yy-3*sw, 262,yy); CX.stroke();
+}
+CX.restore();
+// the eight proud leaves, drawn FROM an explicit array of centres
+for(var e=0;e<8;e++){
+  var lx=-189+e*54, hgt=78+16*Math.sin(e*1.1), ty=-104-hgt;
+  LEAF.push([lx,ty]);
+  CX.beginPath(); CX.moveTo(lx-11,-88);
+  CX.quadraticCurveTo(lx-14,ty+8, lx-2,ty);
+  CX.quadraticCurveTo(lx+9,ty+6, lx+11,-88); CX.closePath();
+  var alt=(e%2===0)?1.0:0.86;
+  CX.fillStyle='rgba('+Math.round(201*alt)+','+Math.round(191*alt)+','+Math.round(168*alt)+',1)';
+  CX.fill();
+  CX.strokeStyle='rgba(228,220,200,'+(0.5+0.4*alt)+')'; CX.lineWidth=1.1;
+  CX.beginPath(); CX.moveTo(lx-2,ty); CX.quadraticCurveTo(lx+7,ty+40,lx+10,-88); CX.stroke();
+}
+CX.restore();
+// the eight centres in DESIGN space, recomputed after restore, never in block space
+var PTS=LEAF.map(function(p){
+  var c=Math.cos(-0.1396), s=Math.sin(-0.1396);
+  return [766+p[0]*c-p[1]*s, 900+p[0]*s+p[1]*c];
+});
+window.__PTS=PTS;
+// the declared leader, kicker to the third leaf
+var TGT=PTS[2];
+CX.strokeStyle=RU; CX.lineWidth=1.3;
+CX.beginPath(); CX.moveTo(452,132); CX.lineTo(TGT[0]-58,132); CX.lineTo(TGT[0],TGT[1]); CX.stroke();
+CX.fillStyle=RU; CX.beginPath(); CX.arc(TGT[0],TGT[1],3,0,6.2832); CX.fill();
+accession(CX,3);
+
+});
+
+grain(CX,0.24);
+
+AKPOST.grade(CX,GRADE);
+
+window.__akAssert=[{what:'eight consecutive AI questions, one proud leaf each',
+                    expect:8, points:window.__PTS, unit:'marks'}];
+window.__akLeaders=[{target:'the third proud leaf',at:window.__PTS[2],to:window.__PTS[2],
+                     from:[452,132],label:'ONE PARAGRAPH, EIGHT CONSECUTIVE QUESTIONS (C24)'}];
+
+})();
+</script></body></html>

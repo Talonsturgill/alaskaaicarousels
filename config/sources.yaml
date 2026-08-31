@@ -31,6 +31,13 @@ seed_sources:
     - {url: "https://www.muni.org",                   outlet: "Muni of Anchorage",                    credibility: "primary"}
     - {url: "https://www.energy.gov/arctic",          outlet: "DOE Arctic Energy Office",             credibility: "primary"}
     - {url: "https://www.nsf.gov/news",               outlet: "NSF",                                  credibility: "primary"}
+    # Added 2026-08-31 (No.46). All three are keyless, fetch cleanly, and between
+    # them answer "did anything federal land on Alaska this week" without a single
+    # WebSearch call. The first two replace federalregister.gov, which now redirects.
+    - {url: "https://www.federalregister.gov/api/v1/documents.json", outlet: "Federal Register API",  credibility: "primary", note: "conditions[term]=Alaska plus conditions[publication_date][gte] sweeps a window; returns titles, agencies, dates, comment close dates"}
+    - {url: "https://www.govinfo.gov/content/pkg/",   outlet: "GPO govinfo (FR full text)",           credibility: "primary", note: "FR-YYYY-MM-DD/html/<docnumber>.htm is the readable full text of any Federal Register document"}
+    - {url: "https://api.nsf.gov/services/v1/awards.json", outlet: "NSF Award API",                   credibility: "primary", note: "awardeeStateCode=AK with a date range returns every NSF award to an Alaska institution, with full abstracts and exact dollars"}
+    - {url: "https://www.highergov.com",              outlet: "HigherGov",                            credibility: "medium", note: "the SAM.gov mirror that works; solicitation status, amendment history, response deadlines"}
 
   utilities_infra:
     - {url: "https://www.chugachelectric.com",        outlet: "Chugach Electric",                     credibility: "primary"}
@@ -49,9 +56,21 @@ seed_sources:
   community_signal:
     # engagement-weighted "what people are actually saying" beat — keyless
     # sources only; used for angle-finding, never as sole factual sourcing.
-    - {url: "https://www.reddit.com/r/alaska",        outlet: "r/alaska",                             credibility: "signal-only"}
-    - {url: "https://www.reddit.com/r/anchorage",     outlet: "r/anchorage",                          credibility: "signal-only"}
-    - {url: "https://news.ycombinator.com",           outlet: "Hacker News",                          credibility: "signal-only"}
+    #
+    # 2026-08-31 (No.46) MEASURED HACKER NEWS AND IT IS EMPTY FOR THIS BEAT.
+    # Five scouts queried hn.algolia.com independently, four of them with
+    # multiple query terms, and none found an Alaska AI, energy or data center
+    # conversation inside the window. The top-ranked Alaska data center story of
+    # all time on Hacker News carries 6 points and 2 comments. The API fetches
+    # perfectly, so this is an absence of Alaska, not an absence of access. It
+    # stays listed because a national AI thread can still supply a framing, but
+    # a scout should spend at most one query on it and move to the routes below.
+    - {url: "https://news.ycombinator.com",           outlet: "Hacker News",                          credibility: "signal-only", note: "measured empty for Alaska 2026-08-31; one query maximum"}
+    - {url: "https://www.adn.com/opinions",           outlet: "ADN letters and op-eds",               credibility: "signal-only"}
+    - {url: "https://alaskalandmine.com",             outlet: "Alaska Landmine",                      credibility: "signal-only"}
+    # Minuted public testimony is the highest-quality community signal available
+    # here, and CivicClerk is the first primary route into it that works.
+    - {url: "https://fnsb.api.civicclerk.com/v1/Events", outlet: "FNSB agendas and packets (CivicClerk API)", credibility: "primary", note: "GetMeetingFileStream(fileId=NNNNN,plainText=true) returns full packet text; found 2026-08-31"}
 
 # WHAT REFUSES AN AUTOMATED FETCH, and the route around it where one is known.
 # A RECORD OF OBSERVATIONS, NOT A BAN LIST: try the source anyway, and when it
@@ -60,17 +79,20 @@ seed_sources:
 # day, which is the cost this block exists to stop paying. Update the date when
 # a run confirms or clears one.
 refuses_automated_fetch:
-  observed: "2026-08-25 (run No.40); several of these have refused since 2026-07"
+  observed: "2026-08-31 (run No.46); several of these have refused since 2026-07"
   hosts:
     - {host: "alaskabeacon.com",        route: "Alaska Beacon syndicates under Creative Commons and alaskapublic.org republishes most of it; search the headline there and cite the republication with the Beacon as the byline"}
-    - {host: "newsminer.com",           route: "none known; the Fairbanks story is usually also at KUAC or Alaska Public Media"}
     - {host: "rca.alaska.gov",          route: "none known, and it is why power_collect.py reads EIA's bulk file instead. Docket filings are sometimes summarised by the utility's own newsroom"}
     - {host: "sam.gov",                 route: "none known; a federal solicitation is normally also announced by the awarding agency's newsroom"}
     - {host: "gvea.com",                route: "none known; board actions are reported by newsminer or KUAC"}
     - {host: "miningnewsnorth.com",     route: "none known"}
     - {host: "muni.org",                route: "NONE KNOWN, and this one is expensive: an Anchorage ordinance's own text and its AO number were unobtainable for No.40, which had to ship an explicit caveat instead. Assembly coverage in ADN or Alaska Public Media is the only route, and it does not carry AO numbers reliably"}
     - {host: "anchorage.legistar.com",  route: "none known; same hole as muni.org, same caveat"}
-    - {host: "reddit.com",              route: "NONE, and it is worse than a 403: WebFetch refuses www.reddit.com and old.reddit.com before any request is made, and a site:reddit.com WebSearch returns results from everywhere except Reddit, so a scout can spend a beat on it and read the absence as 'nothing being discussed'. Measured 2026-08-29 (run No.44). Community signal comes from Hacker News through hn.algolia.com/api/v1/search_by_date (comments included, and it fetches fine), from letters and op-ed threads at ADN and the Landmine, and from minuted public testimony. See Beat F in the routine instructions"}
+    - {host: "reddit.com",              route: "NONE, and it is worse than a 403: WebFetch refuses www.reddit.com and old.reddit.com before any request is made, and a site:reddit.com WebSearch returns results from everywhere except Reddit, so a scout can spend a beat on it and read the absence as 'nothing being discussed'. Measured 2026-08-29 (run No.44), and the briefs since have simply told scouts to skip it, which costs nothing. Community signal comes from letters and op-ed threads at ADN and the Landmine, and above all from minuted public testimony. See Beat F in the routine instructions"}
+    - {host: "federalregister.gov",     route: "NEW 2026-08-31 (No.46): the HTML document pages and the /documents/full_text/text/ endpoints now 302 to unblock.federalregister.gov and will not fetch. Two routes still work and both are keyless. Search and metadata through the JSON API at federalregister.gov/api/v1/documents.json, and FULL TEXT at https://www.govinfo.gov/content/pkg/FR-YYYY-MM-DD/html/<docnumber>.htm. Every Federal Register quotation in run No.46 came through govinfo"}
+    - {host: "cms.gov",                 route: "403 (observed 2026-08-31). The Alaska half of a CMS award is normally also published by the Alaska Department of Health, and community papers such as the Kodiak Daily Mirror carry the per-awardee dollar figures the national release omits"}
+    - {host: "govtribe.com",            route: "403 (observed 2026-08-31). highergov.com fetches and carries solicitation status, amendment history and response deadlines, so it is the SAM.gov mirror of record"}
+    - {host: "datacenterdynamics.com",  route: "403 plus a bot interstitial (observed 2026-08-31). No route known"}
 
 discover:
   enabled: true

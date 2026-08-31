@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-08-30",
+  "updated": "2026-08-31",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -10,8 +10,8 @@
   "attribution": "Alaska AI, https://alaskaaihq.com",
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
-  "temporal_coverage": "2022-02-02/2026-09-14",
-  "count": 22,
+  "temporal_coverage": "2022-02-02/2026-10-30",
+  "count": 23,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -1034,7 +1034,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-30",
+      "last_updated": "2026-08-31",
       "history": [
         {
           "date": "2026-07-17",
@@ -1147,6 +1147,10 @@
         {
           "date": "2026-08-30",
           "note": "Re-verified against the state's own notices for ADL 234762. The extension notice published August 19th, 2026 sets the deadline for public comment at 5:00 p.m. on Monday, September 14th. The meeting notice published August 24th lists two sessions on Zoom, August 27th at 6:00 p.m. and September 2nd at 11:30 a.m., and says both are informational only and that comments are not taken during them. The parcel is about 19,950 acres, roughly two miles north of Houston in the Matanuska-Susitna Borough."
+        },
+        {
+          "date": "2026-08-31",
+          "note": "Re-verified against the state's own notice for ADL 234762. Written comment closes at 5:00 p.m. on Monday, September 14th, 2026, and the second of the two informational meetings on the conveyance is set for September 2nd, 2026 at 11:30 a.m. on Zoom, where the department explains the review and takes no testimony. The Northern Alaska Environmental Center reported on August 25th, 2026 that more than 2,000 written comments had been submitted. That count comes from an advocacy group and not from the department, which publishes no running total. Fourteen days remain to write in on the roughly 19,950 acres."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1257,7 +1261,7 @@
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-08-30",
+      "last_updated": "2026-08-31",
       "history": [
         {
           "date": "2026-07-18",
@@ -1278,6 +1282,10 @@
         {
           "date": "2026-08-30",
           "note": "Checked against the Legislature's own record, which still carries HB 259 in the House Energy Committee with the referral of January 20th, 2026 as its last recorded status. The bill died in that committee when the 34th Legislature adjourned sine die on May 20th, 2026, and nothing has replaced it."
+        },
+        {
+          "date": "2026-08-31",
+          "note": "Checked against the Legislature's own record for HB 259, which still shows the bill in House Energy with no action recorded after February 3rd, 2026. Nothing has moved and nothing can, because the bill died with the 34th Legislature at sine die on May 20th, 2026. Alaska still has no statewide rule on how a large data center load is billed against other ratepayers."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hb-259-data-center-utility-standards/"
@@ -1522,10 +1530,10 @@
       "id": "bradley-lake-dixon-diversion",
       "title": "The Dixon Glacier diversion into Bradley Lake",
       "kind": "regulatory-docket",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "Federal Energy Regulatory Commission",
-      "public_access": "open",
-      "access_note": "Anyone may file a comment, a motion to intervene or a protest with FERC in docket P-8221-124 until 5:00 p.m. Eastern on August 28, which is 1:00 p.m. Alaska time. FERC's eFiling system takes filings online and the notice also gives a mailing address.",
+      "public_access": "closed",
+      "access_note": "The comment window has closed. Anyone could file a comment, a motion to intervene or a protest in docket P-8221-124 until 5:00 p.m. Eastern on August 28th, 2026, which was 1:00 p.m. Alaska time, and that hour has passed. FERC now weighs the application and has published no decision date. The docket itself stays readable through FERC's eLibrary, so an Alaskan can follow what was filed without being able to add to it.",
       "summary": "The Alaska Energy Authority has asked FERC to amend the license for the Bradley Lake Hydroelectric Project, the largest in Alaska, so it can build a new dam diverting meltwater and surface runoff from the Dixon Glacier into Bradley Lake, raise the lake's normal maximum operating pool by about 16 feet, and install a 0.3 megawatt micro-hydro turbine in one of the dam's fishwater release valves. The application projects about 38 percent more average annual generation while installed capacity rises from 119.7 to 120.0 megawatts, because the gain comes from water rather than from turbines. AEA estimates construction at about $400 million and about three years of study and permitting followed by three years of construction. FERC accepting the application for filing is a procedural step and not an approval.",
       "key_dates": [
         {
@@ -1577,7 +1585,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-08-28",
+      "last_updated": "2026-08-31",
       "history": [
         {
           "date": "2026-08-04",
@@ -1618,6 +1626,10 @@
         {
           "date": "2026-08-28",
           "note": "The comment window closes today. FERC's notice in docket P-8221-124, re-verified today against the Federal Register text published August 3rd, sets comments, motions to intervene and protests at 5:00 p.m. Eastern on August 28, 2026, which is 1:00 p.m. Alaska time. The amendment as noticed is unchanged, a new diversion dam on Dixon Glacier meltwater, a pool raise of about 16 feet, and a 0.3 megawatt turbine in a fishwater release valve, taking installed capacity from 119.7 to 120.0 megawatts for about 38 percent more average annual generation."
+        },
+        {
+          "date": "2026-08-31",
+          "note": "The window closed. FERC's notice in docket P-8221-124 set comments, motions to intervene and protests at 5:00 p.m. Eastern on August 28th, 2026, and that hour has passed, so this is no longer something an Alaskan can write in on. Re-verified today against the Federal Register text published August 3rd, 2026, which is unchanged. What was noticed remains a new diversion dam on Dixon Glacier meltwater, a pool raise of about 16 feet, and a 0.3 megawatt micro-hydro turbine in a fishwater release valve, with installed capacity rising from 119.7 to 120.0 megawatts. FERC has published no date for its decision."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
@@ -1629,7 +1641,7 @@
       "status": "pending-decision",
       "decider": "Administration for Native Americans, HHS Administration for Children and Families",
       "public_access": "indirect",
-      "access_note": "Only eligible applicants reach this one, so an Alaskan reaches it through a tribe, an ANCSA village or a Native nonprofit that files by August 27. Applications are evaluated privately and no public comment path remains open.",
+      "access_note": "Only eligible applicants reached this one, and applications closed on August 27th, 2026, so no public path remains. An Alaskan reached it through a tribe, an ANCSA village or a Native nonprofit that filed in time. Applications are evaluated privately and no awardee has been named.",
       "summary": "The Administration for Native Americans published its final Fiscal Year 2026 program policies on July 28, 2026, standing up three funding opportunities and leaving out SEDS-AK, the Alaska-specific economic development program that ran alongside SEDS for decades. Two days later it posted the AI3 Action Institute, a single national award of up to $3,500,000 to build an artificial intelligence resource center for Native communities, with Alaska Native villages under ANCSA and nonprofit village consortia named as eligible applicants.",
       "key_dates": [
         {
@@ -1651,6 +1663,11 @@
           "date": "2026-08-27",
           "label": "Applications close on both EAGLE and the AI3 Action Institute",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-09-26",
+          "label": "The posted opportunity is archived",
+          "kind": "milestone"
         }
       ],
       "sources": [
@@ -1681,7 +1698,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-08-27",
+      "last_updated": "2026-08-31",
       "history": [
         {
           "date": "2026-08-05",
@@ -1718,6 +1735,10 @@
         {
           "date": "2026-08-27",
           "note": "Checked against the posted opportunity. The AI3 Action Institute, HHS-2026-ACF-ANA-NAI-0035, closes to applications today, August 27th, 2026, at 11:59 p.m. Eastern, which is 7:59 p.m. in Anchorage. It is still one award with a ceiling of $3,500,000. After tonight the national institute is decided and no Alaska-specific lane replaces it."
+        },
+        {
+          "date": "2026-08-31",
+          "note": "Re-read the posted opportunity four days after it closed. HHS-2026-ACF-ANA-NAI-0035 shows as closed on August 27th, 2026 with no award and no awardee named. It is still one award, with a floor of $2,500,000, a ceiling of $3,500,000 and a cost share required whose percentage the listing does not state. The listing carries an archive date of September 26th, 2026. No Alaska-specific lane replaced SEDS-AK."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -2304,7 +2325,7 @@
       "status": "open-for-comment",
       "decider": "Anchorage Assembly",
       "public_access": "open",
-      "access_note": "A public hearing is set for the Assembly's September 1st meeting, which is where a member of the public can speak to this before the Assembly acts. The ordinance text and its AO number were not published anywhere reachable as of August 25th, so anyone planning to testify is working from press accounts and from the sponsor's own description rather than from the statutory language.",
+      "access_note": "A public hearing is set for the Assembly's September 1st meeting, which is where a member of the public can speak to this before the Assembly acts. The ordinance text and its AO number were still not published anywhere reachable as of August 31st, so anyone planning to testify is working from press accounts and from the sponsors' own descriptions rather than from the statutory language.",
       "summary": "Three Anchorage Assembly members, Keith McCormick, Sydney Scout and Vice Chair Daniel Volland, introduced an ordinance on August 18th that would write surveillance rules into Anchorage code, among them a case number for every search of surveillance data, deletion of individuals' data after two weeks unless it is evidence in an active investigation, a warrant before footage goes to out of state or federal agencies, limits on automatic license plate readers, and, in co-sponsor Scout's own words, Assembly approval before adding new surveillance capabilities including AI powered tracking or identification technology. It moves alongside a roughly $600,000 contract with ThunderCat Technology for equipment at the Real Time Crime Center, the system the Assembly funded with $11.8 million last year and which is designed to stream up to 750 camera feeds. The center opened in September 2025 with one employee and about 15 cameras.",
       "key_dates": [
         {
@@ -2356,7 +2377,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-08-30",
+      "last_updated": "2026-08-31",
       "history": [
         {
           "date": "2026-08-25",
@@ -2381,11 +2402,73 @@
         {
           "date": "2026-08-30",
           "note": "Re-verified two days out. The public hearing on the ordinance from Keith McCormick, Daniel Volland and Sydney Scout stands for the Assembly meeting of September 1st, 2026, the same meeting that takes up the roughly $600,000 ThunderCat equipment purchase. As introduced the ordinance would erase captured footage after two weeks unless it is evidence in an active investigation, hold license plate readers to traffic enforcement and named categories such as missing children and stolen vehicles, bar sharing with federal agencies without a warrant, and require Assembly approval before artificial intelligence is used on the system. Police chief Sean Case has described the center as able to reach about 750 cameras."
+        },
+        {
+          "date": "2026-08-31",
+          "note": "Re-verified the day before the hearing. The public hearing on the surveillance ordinance from Keith McCormick, Daniel Volland and Sydney Scout stands for the Assembly meeting of September 1st, 2026, the same meeting that takes up the roughly $600,000 ThunderCat Technology purchase. Alaska Public Media reports the ordinance would require that the crime center's use of artificial intelligence be approved by the Assembly, and puts the system at about 750 cameras including more than 250 city traffic cameras. The ordinance's own AO number is still unpublished, so a resident preparing testimony has no statutory text to read."
         }
       ],
       "cta_label": "TESTIFY",
       "cta_when": "ON",
       "url": "https://alaskaaihq.com/docket/anchorage-rtcc-surveillance-ordinance/"
+    },
+    {
+      "id": "fcc-usf-ai-administration",
+      "title": "The FCC asks whether AI should help run the Universal Service Fund",
+      "kind": "regulatory-docket",
+      "status": "open-for-comment",
+      "decider": "Federal Communications Commission",
+      "public_access": "open",
+      "access_note": "Anyone may file. Comments are due on or before September 30th, 2026 and reply comments on or before October 30th, 2026, in WC Docket No. 26-173, through the Commission's electronic filing system under 47 CFR 1.415 and 1.419. The notice gives Alaska no separate deadline and no separate route, so an Alaska clinic, school district, library or carrier files on the same clock as everyone else.",
+      "summary": "The FCC published a notice on August 31st, 2026 seeking comment on how the Universal Service Fund is administered, and nine of its sentences name artificial intelligence. It asks whether AI tools used to review applications, audits and appeal review processes would reduce delays while maintaining accurate results, and whether the fund's administrator should expand use of AI in document review for audits and program compliance. One paragraph poses eight consecutive questions about AI. The Commission is asking rather than proposing, and every AI sentence in the notice is phrased as a question. The same notice seeks comment on cutting the administrator's board from 20 members to 13. Alaska is not named anywhere in it. Alaska's stake is in a companion notice published the same day, WC Docket No. 17-310, which reports that only 34 of 340 approved Telecom Program requests in Alaska in funding year 2025 relied on the Commission's preferred Methods 1 or 2, so the great majority of Alaska's rural health connectivity requests are justified the longer way. That is the paperwork an automated reviewer would read.",
+      "key_dates": [
+        {
+          "date": "2026-08-06",
+          "label": "Adopted by the Commission",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-07",
+          "label": "Released",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-31",
+          "label": "Published in the Federal Register at 91 FR 55826",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-30",
+          "label": "Comments due, WC Docket No. 26-173",
+          "kind": "deadline"
+        },
+        {
+          "date": "2026-10-30",
+          "label": "Reply comments due",
+          "kind": "milestone"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17761.htm",
+          "outlet": "Federal Communications Commission via govinfo.gov",
+          "date": "2026-08-31"
+        },
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17767.htm",
+          "outlet": "Federal Communications Commission via govinfo.gov",
+          "date": "2026-08-31"
+        }
+      ],
+      "first_seen": "2026-08-31",
+      "last_updated": "2026-08-31",
+      "history": [
+        {
+          "date": "2026-08-31",
+          "note": "Added on the day of publication. Both Federal Register texts were fetched and read. The notice raising the artificial intelligence questions is WC Docket No. 26-173, FCC 26-52, at 91 FR 55826 to 55835. The notice naming Alaska is a separate proceeding, WC Docket No. 17-310, FCC 26-54, at 91 FR 55816 to 55825, and it contains no reference to artificial intelligence. Both were adopted August 6th, 2026, released August 7th, and published in the same Federal Register issue with the same comment and reply deadlines."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
     }
   ]
 }

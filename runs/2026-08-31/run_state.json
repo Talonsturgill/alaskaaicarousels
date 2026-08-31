@@ -1,0 +1,36 @@
+{
+ "run_date": "2026-08-31",
+ "carousel_no": 46,
+ "date_note": "Anchorage local time at wake was 2026-08-30 23:19 AKDT, but runs/2026-08-30/ already holds No.45's shipped artifacts. Per the routine's date rule, this run takes the first date with no runs/<date>/ directory, which is 2026-08-31, and which Anchorage rolled into 41 minutes after wake anyway. No shipped artifacts were touched.",
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "done",
+  "assemble": "done",
+  "scoring": "done",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-08-31/plan.md",
+  "scout_merge": "out/2026-08-31/scout_merge.md",
+  "claims": "out/2026-08-31/claims.json",
+  "selection": "out/2026-08-31/selection.md",
+  "site_signoff": "SITE SIGN-OFF: PASS, 91 pages, 18 checks",
+  "gas_watch": "GAS WATCH: PASS, read 2026-08-30, 26 days on record, chart present",
+  "storyboard": "out/2026-08-31/storyboard.md",
+  "dossier_check": "PASS, 9 dossiers, 0 fails, 0 warns"
+ },
+ "rounds_note": "Editing rounds far exceeded the five-round cap. Rounds 1 to 7 were contact shadows and type reflow; round 8 was the two critics' consolidated findings; rounds 9 and 10 were the scorer's work order. Disclosed in the email."
+}

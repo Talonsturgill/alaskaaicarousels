@@ -13,6 +13,33 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-08-31/",
+      "url": "https://alaskaaihq.com/archive/2026-08-31/",
+      "title": "The Unsewn Volume",
+      "summary": "The deck holds the FCC's AI question as written, both Alaska funding years drawn at one scale, and what neither notice says.",
+      "content_html": "<p><em>A subsidy that has paid Alaska's rural to urban rate gap since 1997 now shares a Federal Register issue with the FCC's AI questions.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-31/og.jpg\" alt=\"The Unsewn Volume cover slide\" width=\"1080\" height=\"1350\"></p><p>ONE NOTICE ASKS ABOUT AI. THE OTHER COUNTS ALASKA. SAME DAY.</p><p>SAME ISSUE. SAME DATES. DIFFERENT DOCKETS.</p><p>&quot;Would using artificial intelligence (AI) tools to review applications, audits, and appeal review processes help reduce delays while maintaining accurate results?&quot;</p><p>THE PROGRAM HAS PAID THE RURAL URBAN GAP SINCE 1997.</p><p>34 OF 340</p><p>THE METHOD SETS THE RATE. THE RATE SETS THE SUBSIDY.</p><p>NOBODY AT THE FCC DREW THIS LINE.</p><p>A REVIEWER LEARNS THE ORDINARY CASE. ALASKA IS THE OTHER ONE.</p><p>FILE A COMMENT BEFORE SEPTEMBER 30TH.</p><h3>Sources</h3><ul><li><a href=\"https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17761.htm\">Federal Communications Commission via govinfo.gov</a>, primary document</li><li><a href=\"https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17767.htm\">Federal Communications Commission via govinfo.gov</a>, primary document</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-08-31/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "ONE NOTICE ASKS ABOUT AI. THE OTHER COUNTS ALASKA. SAME DAY.\n\nSAME ISSUE. SAME DATES. DIFFERENT DOCKETS.\n\n\"Would using artificial intelligence (AI) tools to review applications, audits, and appeal review processes help reduce delays while maintaining accurate results?\"\n\nTHE PROGRAM HAS PAID THE RURAL URBAN GAP SINCE 1997.\n\n34 OF 340\n\nTHE METHOD SETS THE RATE. THE RATE SETS THE SUBSIDY.\n\nNOBODY AT THE FCC DREW THIS LINE.\n\nA REVIEWER LEARNS THE ORDINARY CASE. ALASKA IS THE OTHER ONE.\n\nFILE A COMMENT BEFORE SEPTEMBER 30TH.",
+      "date_published": "2026-08-31T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-31/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 35,
+        "sources": [
+          {
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17761.htm",
+            "outlet": "Federal Communications Commission via govinfo.gov",
+            "primary": true
+          },
+          {
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17767.htm",
+            "outlet": "Federal Communications Commission via govinfo.gov",
+            "primary": true
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-08-30/",
       "url": "https://alaskaaihq.com/archive/2026-08-30/",
       "title": "Eight Machines, One Sheet",

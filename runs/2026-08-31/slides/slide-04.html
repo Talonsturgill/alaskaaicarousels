@@ -1,0 +1,264 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#03070E}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.lyr{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Instrument Serif";font-weight:400;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:.98}
+.qt{position:absolute;margin:0;font-family:"Instrument Serif";font-style:italic;
+    font-weight:400;color:#F4F8FF;letter-spacing:-.01em;line-height:1.18}
+.bd{position:absolute;margin:0;font-family:"Manrope";font-weight:500;font-size:32px;
+    line-height:1.38;color:#C6D2DE}
+.sub{position:absolute;margin:0;font-family:"Manrope";font-weight:700;font-size:26px;
+    line-height:1.3;color:#C6D2DE}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#A6BBD2;
+    font-variant-numeric:tabular-nums lining-nums}
+.sm{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#A6BBD2;
+    font-variant-numeric:tabular-nums lining-nums}
+.ct{position:absolute;left:80px;bottom:116px;font-family:"JetBrains Mono";font-weight:500;
+    font-size:22px;letter-spacing:.12em;color:#6E7F92;font-variant-numeric:tabular-nums}
+.rl{position:absolute;left:80px;bottom:84px;font-family:"JetBrains Mono";font-weight:500;
+    font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#55697C}
+.tag{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:21px;
+    letter-spacing:.12em;text-transform:uppercase;color:#6EA5FF}
+
+</style></head><body data-breather data-contacts='[{"what": "the 1997 volume standing on the shelf board", "shadow": [[113, 1004, 26, 10]], "ground": [[56, 1004, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<h2 class="hd" id="h4" style="left:536px;top:112px;width:466px;font-size:68px;line-height:1.02">THE PROGRAM HAS PAID THE RURAL URBAN GAP SINCE 1997.</h2>
+<p class="bd" id="b4" style="left:536px;top:552px;width:466px;font-size:32px;line-height:1.38">It pays the difference between what a rural health provider is charged and what comparable urban service costs in the same state. (C15, C16)</p>
+<div class="sm" style="left:120px;top:1016px">1997 . PROGRAM ESTABLISHED (C16)</div>
+<div class="mn" style="left:80px;top:112px">THE OTHER DOCKET . WC 17-310</div>
+<div class="sm" style="left:80px;top:1140px;opacity:.72">THE ALASKA COUNT IS IN THIS DOCKET (C10)</div>
+<div class="ct" data-decorative>04 / 09</div><div class="rl" data-decorative style="left:640px">SEQUENCE, NOT TO SCALE</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+var V='#03070E',D='#0A1420',CL='#16303A',CK='#24505C',OX='#6E2A22',PA='#C9BFA8',
+    FM='#6EA5FF',SN='#F4F8FF',GD='#FFC72C',GH='#FFDA6E',RU='#3E5468';
+AK.reseed(20260835);
+var RND=AK.rng(20260835);
+function nrm(r){var u=1-r(),v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(6.283185307*v);}
+/* HOUSE FIXTURE. The accession rule, the deck's panorama spine. Ticks after the
+   current slide are never drawn, because this deck may not write the future. */
+var RULE_DATES=['1997','2019','FY2024','FY2025','AUG 6','AUG 7','AUG 31','SEP 30','OCT 30'];
+function accession(cx,n){
+  var y=1214, x0=80, x1=1000, span=x1-x0;
+  var gg=cx.createLinearGradient(x0,y-8,x1,y+8);
+  gg.addColorStop(0,'#2A3D4E'); gg.addColorStop(.34,'#6B5A2E'); gg.addColorStop(1,'#1B2A38');
+  cx.strokeStyle=gg; cx.lineWidth=3; cx.lineCap='butt';
+  var cut=x0+span*((n-0.5)/9);
+  cx.beginPath(); cx.moveTo(x0,y); cx.lineTo(cut,y); cx.stroke();
+  cx.strokeStyle='#26313C'; cx.lineWidth=1.5;
+  cx.beginPath(); cx.moveTo(cut,y); cx.lineTo(cut+34,y-9); cx.stroke();
+  for(var i=0;i<n;i++){
+    var tx=x0+span*((i+0.5)/9), last=(i===n-1);
+    cx.strokeStyle=last?GD:RU; cx.lineWidth=last?2.2:1.2;
+    cx.beginPath(); cx.moveTo(tx,y-11); cx.lineTo(tx,y+ (last?13:8)); cx.stroke();
+    if(last){cx.fillStyle=GD; cx.beginPath(); cx.arc(tx,y-15,2.4,0,6.2832); cx.fill();}
+  }
+}
+function grain(cx,a){
+  var g=cx.createRadialGradient(540,1000,10,540,1000,900);
+  g.addColorStop(0,'rgba(255,255,255,0)'); g.addColorStop(1,'rgba(0,0,0,'+a+')');
+  cx.fillStyle=g; cx.beginPath(); cx.arc(540,1000,900,0,6.2832); cx.fill();
+}
+var GRADE={w:1080,h:1350,exposure:-0.04,saturation:1.02,contrast:1.08,filmic:true,
+  lift:[0.010,0.014,0.024],gain:[1.015,1.0,0.975],vignette:0.18,
+  bloom:{threshold:0.74,strength:0.12,radius:14},
+  grain:{amount:0.055,size:2,seed:20260835},aberration:0,dither:true,sharpen:0.32};
+</script>
+<script>
+/* THE TYPE RESERVE. Measured off the laid-out DOM, never guessed, and applied as
+   a clip so the art never generates a mark under a glyph in the first place.
+   featherReserve() then softens the LARGE plates only. See build.py's own notes. */
+var RESB=[];
+function measureReserve(){
+  RESB=[];
+  var els=document.querySelectorAll('.hd,.qt,.bd,.sub,.mn,.sm,.tag,.ct,.rl');
+  for(var i=0;i<els.length;i++){
+    var r=els[i].getBoundingClientRect();
+    if(r.width<2||r.height<2) continue;
+    RESB.push([r.left-12, r.top-8, r.width+24, r.height+16]);
+  }
+}
+function flow(pairs){
+  var prev=null;
+  for(var i=0;i<pairs.length;i++){
+    var el=document.getElementById(pairs[i][0]); if(!el) continue;
+    if(prev){
+      var r=prev.getBoundingClientRect();
+      el.style.top=Math.round(r.bottom+pairs[i][1])+'px';
+    }
+    prev=el;
+  }
+}
+function ground(cx){
+  var g=cx.createLinearGradient(240,0,940,1350);
+  g.addColorStop(0,'#050B14'); g.addColorStop(.46,'#0B1A28'); g.addColorStop(1,'#04080F');
+  cx.fillStyle=g; cx.fillRect(0,0,1080,1350);
+  cx.save(); cx.translate(560,1010); cx.scale(1.35,0.52);
+  var h=cx.createRadialGradient(0,0,20,0,0,760);
+  h.addColorStop(0,'#16303F'); h.addColorStop(.55,'#0C1B27'); h.addColorStop(1,'rgba(4,8,15,0)');
+  cx.fillStyle=h; cx.beginPath(); cx.arc(0,0,760,0,6.2832); cx.fill(); cx.restore();
+}
+function RES(fn){
+  CX.save();
+  CX.beginPath();
+  CX.rect(0,0,1080,1350);
+  for(var i=0;i<RESB.length;i++){
+    var b=RESB[i];
+    CX.moveTo(b[0],b[1]); CX.lineTo(b[0],b[1]+b[3]);
+    CX.lineTo(b[0]+b[2],b[1]+b[3]); CX.lineTo(b[0]+b[2],b[1]); CX.closePath();
+  }
+  CX.clip('evenodd');
+  fn();
+  CX.restore();
+  featherReserve();
+}
+function featherReserve(){
+  if(!RESB.length) return;
+  CX.save();
+  CX.fillStyle='rgba(7,15,24,0.74)';
+  for(var i=0;i<RESB.length;i++){
+    var b=RESB[i];
+    if(b[3]<64) continue;
+    var r=Math.min(20,b[3]/5);
+    CX.filter='blur('+r.toFixed(1)+'px)';
+    CX.fillRect(b[0]+r*0.6,b[1]+r*0.5,b[2]-r*1.2,b[3]-r);
+  }
+  CX.restore();
+}
+window.renderReady=(async function(){
+await document.fonts.ready;
+
+AK.fitText(document.getElementById('h4'),{min:52,max:72,maxLines:4});
+
+
+flow([['h4',0],['b4',40]]);
+
+measureReserve();
+
+ground(CX);
+
+RES(function(){
+
+// THE RUN RECEDING. twenty nine volumes, each a rounded spine with raised cords,
+// hazed toward frame right by an aerial-perspective exponent.
+// the lit board FIRST, and a horizon behind the run, so this reads as a shelf
+CX.save(); CX.translate(300,1020); CX.scale(1,0.10);
+var bd=CX.createRadialGradient(0,0,8,0,0,760);
+bd.addColorStop(0,'#2E5B69'); bd.addColorStop(.6,'#183440'); bd.addColorStop(1,V);
+CX.fillStyle=bd; CX.beginPath(); CX.arc(0,0,760,0,6.2832); CX.fill(); CX.restore();
+CX.strokeStyle='rgba(46,91,105,0.30)'; CX.lineWidth=1.4;
+CX.beginPath(); CX.moveTo(0,896); CX.quadraticCurveTo(540,892,1080,900); CX.stroke();
+var N=29, x=104, base=1004;   // the run is drawn until it is clipped by the frame
+for(var i=0;i<N;i++){
+  var t=i/(N-1), sc=Math.pow(0.963,i);
+  var jt=AK.fbm2(i*0.83, 12.7, {octaves:3});
+  var w=(40+30*Math.abs(AK.fbm2(i*2.9,4.4,{octaves:2})))*sc;
+  var h=(392+17*jt)*Math.pow(0.986,i), top=base-h, haze=Math.pow(t,1.0);
+  if(w<2) break;
+  // contact shadow onto the lit board, attached
+  CX.save(); CX.translate(x+w*0.5,base+1); CX.scale(1,0.13);
+  var cg=CX.createRadialGradient(0,0,3,0,0,w*1.25);
+  cg.addColorStop(0,'rgba(6,14,22,'+(0.8-0.55*haze)+')'); cg.addColorStop(1,'rgba(6,14,22,0)');
+  CX.fillStyle=cg; CX.beginPath(); CX.arc(0,0,w*1.25,0,6.2832); CX.fill(); CX.restore();
+  // the spine, a panel with a small round at head and tail
+  var lit=1-0.62*haze, r=Math.min(w*0.16, 3.4*sc);
+  CX.beginPath();
+  CX.moveTo(x, base-r);
+  CX.quadraticCurveTo(x, base, x+r, base);
+  CX.lineTo(x+w-r, base);
+  CX.quadraticCurveTo(x+w, base, x+w, base-r);
+  CX.lineTo(x+w, top+r);
+  CX.quadraticCurveTo(x+w, top, x+w-r, top);
+  CX.lineTo(x+r, top);
+  CX.quadraticCurveTo(x, top, x, top+r);
+  CX.closePath();
+  var sg=CX.createLinearGradient(x,0,x+w,0);
+  sg.addColorStop(0, AKC.mixOklab('#16303A','#4A8A96',0.66*lit));
+  sg.addColorStop(0.62, AKC.mixOklab('#16303A','#2E6B78',0.30*lit));
+  sg.addColorStop(1, AKC.mixOklab('#0A1420','#143840',0.42*lit));
+  CX.fillStyle=sg; CX.fill();
+  // five raised cords, each a band with a lit crown and a shadow under it
+  for(var c=0;c<5;c++){
+    var cy=top+h*(0.13+0.175*c);
+    CX.strokeStyle='rgba(6,14,22,'+(0.34*lit)+')';
+    CX.lineWidth=Math.max(0.5,1.5*sc);
+    CX.beginPath(); CX.moveTo(x+1.5,cy+1.6*sc);
+    CX.quadraticCurveTo(x+w*0.5,cy+2.2*sc,x+w-1.5,cy+1.6*sc); CX.stroke();
+    CX.strokeStyle='rgba('+Math.round(96*lit+16)+','+Math.round(118*lit+20)+','+Math.round(120*lit+24)+',0.44)';
+    CX.lineWidth=Math.max(0.4,1.1*sc);
+    CX.beginPath(); CX.moveTo(x+1.5,cy);
+    CX.quadraticCurveTo(x+w*0.5,cy-0.7*sc,x+w-1.5,cy); CX.stroke();
+  }
+  // head cap and the headband, the detail that says book at 100 percent
+  if(sc>0.5){
+    CX.strokeStyle='rgba('+Math.round(150*lit+30)+','+Math.round(140*lit+28)+','+Math.round(120*lit+24)+',0.8)';
+    CX.lineWidth=Math.max(0.6,1.6*sc);
+    CX.beginPath(); CX.moveTo(x+2,top+4.5*sc);
+    CX.quadraticCurveTo(x+w*0.5,top+2.4*sc,x+w-2,top+4.5*sc); CX.stroke();
+  }
+  // oxblood label patch, only while it can still be read
+  if(sc>0.55){
+    var ly=top+h*0.49, lh2=h*0.105, lx0=x+w*0.24, lw2=w*0.52, lr=2.0*sc;
+    CX.beginPath();
+    CX.moveTo(lx0,ly+lr); CX.quadraticCurveTo(lx0,ly,lx0+lr,ly);
+    CX.lineTo(lx0+lw2-lr,ly); CX.quadraticCurveTo(lx0+lw2,ly,lx0+lw2,ly+lr);
+    CX.lineTo(lx0+lw2,ly+lh2-lr); CX.quadraticCurveTo(lx0+lw2,ly+lh2,lx0+lw2-lr,ly+lh2);
+    CX.lineTo(lx0+lr,ly+lh2); CX.quadraticCurveTo(lx0,ly+lh2,lx0,ly+lh2-lr);
+    CX.closePath();
+    CX.fillStyle=AKC.mixOklab(OX,'#16303A',0.34+haze*0.42); CX.fill();
+    CX.save(); CX.clip(); CX.fillStyle=sg; CX.globalAlpha=0.34;
+    CX.fillRect(x,top,w,h); CX.globalAlpha=1; CX.restore();
+    CX.strokeStyle='rgba('+Math.round(150*lit+26)+','+Math.round(130*lit+22)+','+Math.round(104*lit+18)+',0.55)';
+    CX.lineWidth=Math.max(0.4,0.9*sc); CX.stroke();
+  }
+  // fog wash over the far half
+  if(haze>0.02){
+    CX.fillStyle='rgba(30,62,74,'+(haze*0.66)+')';
+    CX.beginPath(); CX.moveTo(x,base-r); CX.quadraticCurveTo(x,base,x+r,base);
+    CX.lineTo(x+w-r,base); CX.quadraticCurveTo(x+w,base,x+w,base-r);
+    CX.lineTo(x+w,top+r); CX.quadraticCurveTo(x+w,top,x+w-r,top);
+    CX.lineTo(x+r,top); CX.quadraticCurveTo(x,top,x,top+r);
+    CX.closePath(); CX.fill();
+  }
+  x+=w+2.4*sc;
+}
+// THE BOARD PLANE, drawn IN FRONT of the run so it crosses the volumes' feet.
+// A row of verticals ending on a line is a chart; a row of verticals whose feet
+// are hidden behind a nearer surface is a shelf.
+var fp=CX.createLinearGradient(0,996,0,1064);
+fp.addColorStop(0,'rgba(20,44,55,0.0)'); fp.addColorStop(.30,'rgba(20,44,55,0.92)');
+fp.addColorStop(1,'rgba(8,18,26,1)');
+CX.fillStyle=fp; CX.fillRect(0,996,1080,68);
+CX.strokeStyle=GD; CX.lineWidth=1.4; CX.globalAlpha=.24;
+CX.beginPath(); CX.moveTo(0,1032); CX.quadraticCurveTo(420,1029,760,1035); CX.stroke();
+CX.globalAlpha=1;
+// foreground board nose, blurred by drawing it soft rather than with a filter
+for(var b2=0;b2<7;b2++){
+  CX.strokeStyle='rgba(12,26,36,'+(0.10+0.05*b2)+')'; CX.lineWidth=10-b2;
+  CX.beginPath(); CX.moveTo(0,1300+b2*2); CX.quadraticCurveTo(540,1294+b2*2,1080,1302+b2*2); CX.stroke();
+}
+accession(CX,4);
+
+});
+
+grain(CX,0.26);
+
+AKPOST.grade(CX,GRADE);
+
+window.__akMotifs=[{what:'the 1997 volume, where the run starts',rect:[104,650,64,352]}];
+
+})();
+</script></body></html>
