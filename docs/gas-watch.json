@@ -4315,15 +4315,15 @@
     },
     {
       "date": "2026-08-31",
-      "collected_utc": "2026-08-31T15:11:02Z",
+      "collected_utc": "2026-08-31T19:42:41Z",
       "collector_version": "1.0",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-08-31T05:00:00",
-        "source_timestamp_utc": "2026-08-31T13:00:00Z",
-        "inventory_mcf": 7453069,
-        "inventory_delta_mcf": 21671,
+        "source_timestamp": "2026-08-31T09:00:00",
+        "source_timestamp_utc": "2026-08-31T17:00:00Z",
+        "inventory_mcf": 7454381,
+        "inventory_delta_mcf": 22983,
         "storage_design_mcf": 13000000,
         "inventory_pct_of_design": 57.3,
         "withdrawal_design_mcfd": 215000,
@@ -4332,11 +4332,11 @@
         "withdrawal_restriction_mcfd": 11200,
         "injection_design_mcfd": 225000,
         "injection_operating_mcfd": 88160,
-        "injection_available_mcfd": 66490,
-        "injection_in_progress_mcfd": 21670,
+        "injection_available_mcfd": 65178,
+        "injection_in_progress_mcfd": 22982,
         "injection_restriction_mcfd": 118160,
         "operational_note": "Well 7 is out of service for Coil tube work. We are currently waiting on the Coil Tube unit to be available for this work. This OFO only impacts Expansion Customers. We are still working on the system to only email customers affected by expansion OFO's, this issue is still being addressed. Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only. CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
-        "source_age_hours": 2.2
+        "source_age_hours": 2.7
       },
       "forecast": [
         {
@@ -4378,15 +4378,23 @@
           "min_temp_f": 51,
           "hdd65": 10.2,
           "modeled_demand_mmcfd": 116
+        },
+        {
+          "date": "2026-09-06",
+          "hours": 23,
+          "mean_temp_f": 54.5,
+          "min_temp_f": 50,
+          "hdd65": 10.5,
+          "modeled_demand_mmcfd": 117
         }
       ],
-      "forecast_source_updated": "2026-08-31T13:56:21+00:00",
+      "forecast_source_updated": "2026-08-31T18:07:41+00:00",
       "derived": {
         "peak_forecast_date": "2026-09-01",
         "peak_forecast_hdd": 16.1,
         "peak_modeled_demand_mmcfd": 136,
-        "forecast_window_demand_bcf": 0.63,
-        "storage_withdrawal_mmcfd": -21.7,
+        "forecast_window_demand_bcf": 0.75,
+        "storage_withdrawal_mmcfd": -23.0,
         "non_cingsa_supply_mmcfd": null,
         "days_cover_at_peak": 54.8,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
@@ -4435,7 +4443,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-31T15:11:02Z",
+          "fetched_utc": "2026-08-31T19:42:42Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -4444,7 +4452,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-31T15:11:03Z",
+          "fetched_utc": "2026-08-31T19:42:42Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -4453,7 +4461,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-08-31T15:11:03Z",
+          "fetched_utc": "2026-08-31T19:42:43Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -4463,7 +4471,7 @@
         "injection_restriction_active",
         "withdrawal_restriction_active"
       ],
-      "supersedes_posting": "2026-08-31T01:29:00"
+      "supersedes_posting": "2026-08-31T05:00:00"
     }
   ]
 }
