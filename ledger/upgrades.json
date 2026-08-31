@@ -1743,6 +1743,30 @@
    "verification": "DEFECT RECONSTRUCTION: put C35's original wording back into the real built docs/archive/2026-08-30/index.html. Before: FLAGGED ('...Award spreadsheet 2026-08-21 None of the eight machin'). After: clean. NO LOSS OF REACH, checked case by case: all of 'cadence None', '<td>None Bcf</td>', 'Updated None, next reading None', 'the total is None and rising' stay caught, and TWO leaks that previously escaped are now caught on purpose, a bare '<td>None</td>' and 'Updated None at 10:00'. The one pre-existing miss, 'value: None', is unchanged (':' is not in LEAK_BEFORE) and was not in scope. All six true-English cases clean, including both docstring examples and C35. site_signoff.py --self-test: clean, with its four existing None cases still behaving (2 red on leaks, 2 quiet on English) and 2 new cases added -- 'None opening an element is not the tail of the one before it' PASS, and 'goes red on a None opening a table cell' FAIL. Full site sign-off against the real built site: PASS 18 of 18 over 90 pages, unchanged.",
    "rollback": "git revert the upgrade(2026-08-30) commit. visible() gained an optional sep argument defaulting to the old behaviour, so every other caller is byte-identical.",
    "commit": "upgrade(2026-08-30)"
+  },
+  {
+   "run_date": "2026-08-31",
+   "kind": "improvement",
+   "area": "scripts",
+   "change": "NEW scripts/value_structure.py, measures a slide's value structure, the notan, off the rendered pixels. Reads at qa.py's own 432px feed width in qa.py's own CIELAB L*, clusters into three masses with seeded 1D k-means so a dark deck and a light deck are each judged against their own values, then checks four craft rules: one mass over half the frame, the two lesser masses deliberately unequal, the darks welded into one shape after a SQUINT pass, and the dominant mass actually reaching the bottom third.",
+   "trigger": "Artwork craft has been the weakest scored criterion in 9 of the last 10 runs at a mean of 6.65 while every other criterion sat above 8, and the two defects that keep shipping inside a green machine_qa, busy art under text and top-loaded composition, are one problem seen twice. Nothing in the repo could see it, because every existing check reads the thumb for LEGIBILITY and none reads it for STRUCTURE. Craft refresh of 2026-08-31, https://www.virtualartacademy.com/notan/",
+   "files": [
+    "scripts/value_structure.py"
+   ],
+   "verification": "Calibrated on two known-good decks in opposite value registers before use. The first version counted connected components on raw dark pixels and flagged 9 of 9 slides on runs/2026-08-30, a deck that scored 8.79 with its best artwork craft mark in ten runs, which is a 100 percent false positive rate. Adding the squint pass, a box blur and re-threshold before counting, took it to 1 of 9 there and 3 of 4 on examples/demo-deck, and both remaining flags point at something real. 2 flags across 13 known-good frames, about 15 percent, which is close to the Tricorder bar for a default-on check and not under it. That is why it REPORTS and is deliberately NOT wired into gate_status.py. This run's own deck measures 9 of 9 holding.",
+   "rollback": "git revert the commit; nothing else reads this file."
+  },
+  {
+   "run_date": "2026-08-31",
+   "kind": "fix",
+   "area": "engine",
+   "change": "assemble.py now excludes slide-NN.canvas.png from the slide glob, so the canvas diagnostic layers stop being assembled as frames.",
+   "trigger": "render.py started writing slide-NN.canvas.png on 2026-08-30, the art layer with no DOM on top, so qa.py can see canvas ink the composited screenshot hides under type. assemble.py's glob was never taught the difference. Run No.46, the first deck rendered after that change, assembled EIGHTEEN pages, nine slides interleaved with nine debug layers, into the contact sheet the flow critic reads, the thumbs the pixel critics read, and assemble_report's slide count. The PDF itself came out at nine pages, which is why nothing louder caught it. gate_status's assemble row found it on the words 'slide count != render's 9'.",
+   "files": [
+    ".claude/skills/carousel-engine/assemble.py"
+   ],
+   "verification": "Three ways. This run's deck now reports 9 slides, 9 thumbs and a 9 page vector PDF where it reported 18. examples/demo-deck reports 4 and 4, unchanged. And the defect reconstructs, the old glob picks 18 paths from this render directory where the new one picks 9.",
+   "rollback": "git revert the commit; assemble returns to globbing every slide-*.png."
   }
  ],
  "scan_log": [

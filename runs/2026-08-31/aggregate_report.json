@@ -1,0 +1,123 @@
+{
+  "run_dir": "out/2026-08-31",
+  "render_report": "out/2026-08-31/render/render_report.json",
+  "aggregates_file": "out/2026-08-31/aggregates.json",
+  "detected": 9,
+  "declared": 14,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "TWO PROCEEDINGS",
+      "text": "TWO PROCEEDINGS, NOT ONE",
+      "n": 2,
+      "subject": "proceedings"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "EIGHT CONSECUTIVE QUESTIONS",
+      "text": "ONE PARAGRAPH, EIGHT CONSECUTIVE QUESTIONS (C24)",
+      "n": 8,
+      "subject": "consecutive questions"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "Nine sentences",
+      "text": "Nine sentences in that notice name artificial intelligence. They ask about cost,",
+      "n": 9,
+      "subject": "sentences"
+    },
+    {
+      "slide": 5,
+      "kind": "ratio",
+      "fragment": "34 OF 340",
+      "text": "34 OF 340",
+      "n": 34,
+      "of": 340
+    },
+    {
+      "slide": 5,
+      "kind": "ratio",
+      "fragment": "306 OF 340",
+      "text": "306 OF 340 DID NOT RELY ON METHODS 1 OR 2 . 90.0 PERCENT (C11)",
+      "n": 306,
+      "of": 340
+    },
+    {
+      "slide": 5,
+      "kind": "ratio",
+      "fragment": "285 OF 317",
+      "text": "285 OF 317 . 89.9 PERCENT (C12)",
+      "n": 285,
+      "of": 317
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "340 LEAVES",
+      "text": "340 LEAVES",
+      "n": 340,
+      "subject": "leaves"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "317 LEAVES",
+      "text": "317 LEAVES",
+      "n": 317,
+      "subject": "leaves"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "TWO FULL TEXT EXTRACTIONS",
+      "text": "TWO FULL TEXT EXTRACTIONS EACH . ZERO OCCURRENCES (C26, C27)",
+      "n": 2,
+      "subject": "full text extractions"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 7,
+      "text": "TWO FULL TEXT EXTRACTIONS OF EACH NOTICE . ZERO OCCURRENCES (C26, C27)",
+      "note": "a count of THIS RUN'S OWN verification passes, not a figure from either notice. C26 and C27 are absence claims and each was established by two independent full text extractions of the notice named, which returned zero occurrences of the searched string. Declared as design because the number describes the method rather than the record."
+    },
+    {
+      "slide": 5,
+      "text": "1 LEAF = 1 APPROVED REQUEST . PARALLEL PROJECTION . POSITIONS ARBITRARY",
+      "note": "the deck's printed scale constant, 2.4706 design px per approved request, held identical across both funding year bands so 317 leaves draw narrower than 340 rather than being rescaled. A property of the artwork, not a claim about the record."
+    },
+    {
+      "slide": 5,
+      "text": "340 LEAVES",
+      "note": "the dimension call's own value, printed from the same nLeaves parameter that drew the band, so the rule and the drawing can't disagree"
+    },
+    {
+      "slide": 5,
+      "text": "317 LEAVES",
+      "note": "as above for the funding year 2024 band"
+    },
+    {
+      "slide": 4,
+      "text": "1997 . PROGRAM ESTABLISHED (C16)",
+      "note": "the leftmost volume in the drawn run is labelled with the year the Telecom Program was established. The run of twenty nine volumes is a drawing convention for the years 1997 through 2025 and asserts no funding year count."
+    },
+    {
+      "slide": 1,
+      "text": "SEQUENCE, NOT TO SCALE",
+      "note": "the accession rule's own declaration. Its nine tick positions are ordinal, one per slide, and carry no measured duration, which is why the strip prints this on every frame."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "STALE declaration, no rendered string matches it: S4 'The Telecom Program is one of the two halves of th' [from_claim]",
+    "STALE declaration, no rendered string matches it: S6 'IN 2019 SIMILAR SERVICES MEANT SPEEDS 30 PERCENT A' [from_claim]",
+    "STALE declaration, no rendered string matches it: S5 '1 LEAF = 1 APPROVED REQUEST . PARALLEL PROJECTION ' [design]",
+    "STALE declaration, no rendered string matches it: S4 '1997 . PROGRAM ESTABLISHED (C16)' [design]",
+    "STALE declaration, no rendered string matches it: S1 'SEQUENCE, NOT TO SCALE' [design]",
+    "S4 'The Telecom Program is one of the two halves of ' [from_claim]: the noun 'halve' does not appear in claim C15; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

@@ -1,0 +1,181 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'FEDERAL REGISTER VOL 91 NO 167 . AUGUST 31, 2026 (' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WC 26-173 (C02)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '91 FR 55826' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WC 17-310 (C05)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '91 FR 55816' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the left unsewn block standing on the brass ledge': shadow L* 16.8 vs ground L* 33.4, dL 16.6 at 432w"
+      ],
+      "motifs": [
+        "'the 2026 slot, dark between the two blocks': canvas 87.5 dE, page 96.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h1 'ONE NOTICE ASKS ABOUT AI. THE OTHER COUNTS A' fits 4/4 lines at 131.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'TWO PROCEEDINGS, NOT ONE' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WC 26-173 . FCC 26-52' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '91 FR 55826 (C02)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WC 17-310 . FCC 26-54' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '91 FR 55816 (C05)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'USAC ADMINISTERS. THE COMMISSION OVERSEES. (C28)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.07) beneath 'USAC ADMINISTERS. THE COMMISSION OVERSEE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the WC 26-173 block standing on the ledge': shadow L* 25.1 vs ground L* 48.0, dL 22.9 at 432w"
+      ],
+      "motifs": [
+        "'the 214px gap that separates the two proceedings': canvas 31.8 dE, page 32.3 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ONE PARAGRAPH, EIGHT CONSECUTIVE QUESTIONS (C24)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WC 26-173 . 91 FR 55826 (C17)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE COMMISSION ASKS. IT DOES NOT PROPOSE. (C25)' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "worst-point contrast 4.5 on 'THE COMMISSION ASKS. IT DOES NOT PROPOSE' (box mean 9.3) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "contacts": [
+        "'the rotated block standing on its lit board': shadow L* 6.6 vs ground L* 29.8, dL 23.2 at 432w"
+      ],
+      "leaders": [
+        "leader 'the third proud leaf' lands 0.0px from its target",
+        "leader 'the third proud leaf' meets its label 8.0px away"
+      ],
+      "fits": [
+        "q3 '\"Would using artificial intelligence (AI) to' fits 5/6 lines at 61.5px"
+      ],
+      "asserts": [
+        "'eight consecutive AI questions, one proud leaf each' holds: 8 vs 8 marks, counted over 8 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '1997 . PROGRAM ESTABLISHED (C16)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE OTHER DOCKET . WC 17-310' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE ALASKA COUNT IS IN THIS DOCKET (C10)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.06) beneath 'THE ALASKA COUNT IS IN THIS DOCKET (C10)' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the 1997 volume standing on the shelf board': shadow L* 12.6 vs ground L* 20.9, dL 8.3 at 432w"
+      ],
+      "motifs": [
+        "'the 1997 volume, where the run starts': canvas 30.7 dE, page 33.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h4 'THE PROGRAM HAS PAID THE RURAL URBAN GAP SIN' fits 4/4 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 64% / mid 86% / bottom 52% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "tiny-text: 'FY2025 . 340 APPROVED . 34 RELIED (C10)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'FY2024 . 317 APPROVED . 32 RELIED (C09)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '306 OF 340 DID NOT RELY ON METHODS 1 OR 2 . 90.0 P' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '285 OF 317 . 89.9 PERCENT (C12)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '1 LEAF = 1 APPROVED REQUEST . PARALLEL PROJECTION' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE 34 ARE GROUPED TO BE COUNTABLE . POSITION CARR' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE RECORD DOES NOT SAY WHICH METHOD THEY USED INS' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '340 LEAVES' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '317 LEAVES' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "axis census: 'the funding year 2025 fore edge': the weakest declared mark (ink 22.0) is no stronger than the band's own texture (22.2), so no census can separate marks from art here. Narrow the band to the strip the marks occupy, or draw the marks so a reader can tell them from the ground."
+      ],
+      "contacts": [
+        "'the funding year 2025 fore edge standing on its lit shelf strip': shadow L* 9.0 vs ground L* 34.8, dL 25.9 at 432w"
+      ],
+      "asserts": [
+        "'34 gilt leaves, the FY2025 requests that relied on Methods 1 or 2' holds: 34 vs 34 marks, counted over 34 declared marks (within 0)",
+        "'32 gilt leaves, the FY2024 requests that relied on Methods 1 or 2' holds: 32 vs 32 marks, counted over 32 declared marks (within 0)",
+        "'the FY2025 band, 340 leaves at 2.4706 px each' holds: 840 vs 840 px (within 2)",
+        "'the FY2024 band, 317 leaves at the same pixels per leaf' holds: 783 vs 783 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'SIMILAR SERVICES, 2019 . SPEEDS 30 PERCENT EITHER ' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "contact shadow: 'the block corner standing on the lit board': shadow L* 8.8 vs ground L* 15.6, dL 6.9 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "worst-point contrast 4.5 on 'SIMILAR SERVICES, 2019 . SPEEDS 30 PERCE' (box mean 8.4) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "leaders": [
+        "leader 'the third pierced sewing station' lands 0.0px from its target",
+        "leader 'the third pierced sewing station' meets its label 0.0px away"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'TWO FULL TEXT EXTRACTIONS EACH . ZERO OCCURRENCES ' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ALASKA.AI READING, NOT AN FCC POSITION' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WC 26-173 (C02)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WC 17-310 (C05)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.06) beneath 'TWO FULL TEXT EXTRACTIONS EACH . ZERO OC' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the WC 26-173 block on the lower ledge': shadow L* 12.3 vs ground L* 21.1, dL 8.8 at 432w"
+      ],
+      "motifs": [
+        "'the 214px separation the FCC never crossed': canvas 10.5 dE, page 75.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the fore edge of WC 26-173' lands 0.0px from its target",
+        "leader 'the fore edge of WC 17-310' lands 0.0px from its target",
+        "leader 'the fore edge of WC 26-173' meets its label 0.0px away",
+        "leader 'the fore edge of WC 17-310' meets its label 0.0px away"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI READING, NOT AN FCC POSITION' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the threaded block standing on the lit board': shadow L* 10.2 vs ground L* 18.9, dL 8.6 at 432w"
+      ],
+      "motifs": [
+        "'the 2026 slot block, one station threaded and four open': canvas 31.9 dE, page 35.9 dE, 80% of its rect is clear of opaque DOM (p#b8.bd stands on the rest)"
+      ],
+      "fits": [
+        "h8 'A REVIEWER LEARNS THE ORDINARY CASE. ALASKA ' fits 5/5 lines at 100px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'WC 26-173 . WC 17-310 (C02, C05)' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SOURCES IN COMMENTS' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'alaskaaihq.com' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the run of volumes standing on the full shelf board': shadow L* 25.0 vs ground L* 44.0, dL 19.0 at 432w"
+      ],
+      "motifs": [
+        "'the 2026 slot at the close, still unsewn': canvas 85.9 dE, page 71.0 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 43,
+  "verdict": "WARN"
+}

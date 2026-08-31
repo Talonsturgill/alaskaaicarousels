@@ -1,0 +1,93 @@
+{
+ "run_date": "2026-08-31",
+ "aggregates": [
+  {
+   "kind": "count",
+   "slide": 2,
+   "text": "TWO PROCEEDINGS, NOT ONE",
+   "subject": "FCC proceedings",
+   "members": [
+    "C02",
+    "C05"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "The Telecom Program is one of the two halves of the Rural Health Care Program.",
+   "member": "C15"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "34 OF 340",
+   "member": "C10"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "IN 2019 SIMILAR SERVICES MEANT SPEEDS 30 PERCENT ABOVE OR BELOW (C34)",
+   "member": "C34"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "ONE PARAGRAPH, EIGHT CONSECUTIVE QUESTIONS (C24)",
+   "member": "C24"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "Nine sentences in that notice name artificial intelligence.",
+   "member": "C23"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "306 OF 340 DID NOT RELY ON METHODS 1 OR 2 . 90.0 PERCENT (C11)",
+   "member": "C11"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "285 OF 317 . 89.9 PERCENT (C12)",
+   "member": "C12"
+  },
+  {
+   "kind": "design",
+   "slide": 7,
+   "text": "TWO FULL TEXT EXTRACTIONS OF EACH NOTICE . ZERO OCCURRENCES (C26, C27)",
+   "note": "a count of THIS RUN'S OWN verification passes, not a figure from either notice. C26 and C27 are absence claims and each was established by two independent full text extractions of the notice named, which returned zero occurrences of the searched string. Declared as design because the number describes the method rather than the record."
+  },
+  {
+   "kind": "design",
+   "slide": 5,
+   "text": "1 LEAF = 1 APPROVED REQUEST . PARALLEL PROJECTION . POSITIONS ARBITRARY",
+   "note": "the deck's printed scale constant, 2.4706 design px per approved request, held identical across both funding year bands so 317 leaves draw narrower than 340 rather than being rescaled. A property of the artwork, not a claim about the record."
+  },
+  {
+   "kind": "design",
+   "slide": 5,
+   "text": "340 LEAVES",
+   "note": "the dimension call's own value, printed from the same nLeaves parameter that drew the band, so the rule and the drawing can't disagree"
+  },
+  {
+   "kind": "design",
+   "slide": 5,
+   "text": "317 LEAVES",
+   "note": "as above for the funding year 2024 band"
+  },
+  {
+   "kind": "design",
+   "slide": 4,
+   "text": "1997 . PROGRAM ESTABLISHED (C16)",
+   "note": "the leftmost volume in the drawn run is labelled with the year the Telecom Program was established. The run of twenty nine volumes is a drawing convention for the years 1997 through 2025 and asserts no funding year count."
+  },
+  {
+   "kind": "design",
+   "slide": 1,
+   "text": "SEQUENCE, NOT TO SCALE",
+   "note": "the accession rule's own declaration. Its nine tick positions are ordinal, one per slide, and carry no measured duration, which is why the strip prints this on every frame."
+  }
+ ]
+}
