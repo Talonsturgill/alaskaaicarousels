@@ -156,7 +156,16 @@ def main():
     copy = json.loads((run / "copy.json").read_text())
     score = json.loads((run / "score_report.json").read_text())
     asm = json.loads((run / "final" / "assemble_report.json").read_text())
-    pngs = sorted(glob.glob(str(run / "render" / "slide-*.png")))
+    # SKIP THE CANVAS LAYERS (2026-08-31). render.py started writing
+    # slide-NN.canvas.png on 2026-08-30, the art layer alone with no DOM on top,
+    # so qa.py can see canvas ink the composited screenshot hides under type. It
+    # is a diagnostic, not a frame. assemble.py's glob was taught the difference
+    # earlier in this run, after it assembled EIGHTEEN pages; this one was not,
+    # so run No.46's draft opened with "18 slides" in its own header and told the
+    # contact sheet's alt text the same. Every other number in the email was
+    # right, which is exactly why a wrong one at the top is worth catching.
+    pngs = sorted(p for p in glob.glob(str(run / "render" / "slide-*.png"))
+                  if not p.endswith(".canvas.png"))
 
     # The size quoted next to the download link must be the size of the file
     # that link actually serves. assemble_report records the PDF as Chromium

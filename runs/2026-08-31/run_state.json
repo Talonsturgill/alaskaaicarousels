@@ -17,10 +17,10 @@
   "flow_review": "done",
   "assemble": "done",
   "scoring": "done",
-  "ship": "pending",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-08-31/plan.md",
@@ -30,7 +30,12 @@
   "site_signoff": "SITE SIGN-OFF: PASS, 91 pages, 18 checks",
   "gas_watch": "GAS WATCH: PASS, read 2026-08-30, 26 days on record, chart present",
   "storyboard": "out/2026-08-31/storyboard.md",
-  "dossier_check": "PASS, 9 dossiers, 0 fails, 0 warns"
+  "dossier_check": "PASS, 9 dossiers, 0 fails, 0 warns",
+  "automation_retro": "out/2026-08-31/automation_retro.md",
+  "upgrade": "1 upgrade in the remaining slot (2 were spent inside the run): the declared-mark visibility check, qa.py FAILs when a declared mark carries no ink in the composited frame. Scan focus (d) typography and layout; nothing applied from it, text-box-trim parked."
  },
- "rounds_note": "Editing rounds far exceeded the five-round cap. Rounds 1 to 7 were contact shadows and type reflow; round 8 was the two critics' consolidated findings; rounds 9 and 10 were the scorer's work order. Disclosed in the email."
+ "rounds_note": "Editing rounds far exceeded the five-round cap. Rounds 1 to 7 were contact shadows and type reflow; round 8 was the two critics' consolidated findings; rounds 9 and 10 were the scorer's work order. Disclosed in the email.",
+ "gmail_draft_id": "r-9023616080275292408",
+ "merged_to_main": "d3ecdbf1052729ab52a12bfeef18c94daf1b2587 (PR #334)",
+ "followup_pr": "#335, the Phase 12 upgrade, opened after the run merged"
 }
