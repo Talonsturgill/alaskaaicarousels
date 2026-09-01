@@ -195,6 +195,17 @@ FOUR FIELDS, ALL REQUIRED.
   dense without turning a counter into a lie.
 - `note`, the line itself.
 
+THIS SECTION IS A CONTRACT WITH A DOWNSTREAM CONSUMER. The live wait page at
+alaskaaihq.com/scan/, emitted from the carousels repo, vendors a snapshot of
+this section and guards it with a sync check that executes its counter block
+against probe feeds. That guard only re-reads the snapshot when someone
+re-vendors it, so a change made here does NOT reach it on its own. Anyone
+editing this section, and especially the `kind` vocabulary above, owes the
+carousels repo a heads up so the snapshot is re-vendored and the check re-run.
+Adding a kind that no tile answers to is designed to fail their build, and
+renaming or removing one is worse, because a stale consumer stops counting
+silently instead of failing. See docs/PROGRESS_FEED_CONSUMERS.md.
+
 WHAT EARNS A NOTE (minimums, exceed them freely)
 
 - S0 claim, 2 to 3. Claimed, domain verified, starting the footprint.
@@ -458,9 +469,11 @@ from research is never used here. No notify_email, no send, no exceptions.
 ### S7. THE LEAD DRAFT (after S5 or S6, the capture step)
 
 Every finished scan, done or degraded, ends with ONE Gmail DRAFT to the
-maintainer so the lead is captured the moment it exists. DRAFT ONLY. The one
-law does not bend here, nothing is sent, and the draft is addressed to the
-maintainer, never to the requester or the business.
+maintainer mailbox, docket@alaskaaihq.com, so the lead is captured the moment
+it exists. DRAFT ONLY. The one law does not bend here, nothing is sent, and the
+draft is addressed to the maintainer mailbox, never to the requester or the
+business. The draft lands in that mailbox, which is where a human goes to read
+it.
 
 1. Query the ledger from the scanner schema only:
    - Totals, count of scans by status, how many have notify_email, how many
@@ -468,7 +481,10 @@ maintainer, never to the requester or the business.
    - The last 10 scans, domain, status, America/Anchorage date, whether
      notify_email or consent_email is set, in_pipeline.
 2. Create ONE Gmail draft:
-   - To: Talon.sturgill@gmail.com
+   - To: docket@alaskaaihq.com (the maintainer mailbox, a Workspace account on
+     our own domain). Do NOT set a sender, a From address, or a send-as alias.
+     The Gmail connector already authenticates as that mailbox, so the draft is
+     created in it and already carries the right address.
    - Subject: Scanner lead, <domain>, <America/Anchorage date>
    - Body, plain text, house voice, four parts:
      a. THE SCAN. Domain, company, status, the headline, tag counts (would_help,

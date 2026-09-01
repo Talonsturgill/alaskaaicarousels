@@ -17,10 +17,10 @@ THE PROGRESS FEED section.
 | --- | --- |
 | repo | `Talonsturgill/alaska-ai-scanner` |
 | path | `prompts/scan_routine.md` |
-| last changed at | `c60a5e3b851ec92bc312c6cc28fa969975918f8d` (branch `main`) |
-| landed by | PR #10, "make the live feed dense, and fix the two bugs that would have hidden it" |
-| sha256 | `7c7b548693b1c14d0fa28f99823476b2132b7b03aaa9417c44b08cf73fb192bf` |
-| bytes | 29323 |
+| last changed at | `24d68b185a7bfabfb6857731b52f0a048f1d9151` (branch `main`) |
+| landed by | PR #11, "docket mailbox for the lead draft, and the progress feed contract with its consumers" |
+| sha256 | `3a5eb084784475f2258a328d449e8c581aa6b6cea3691cf2b0e1ab24abdc13d9` |
+| bytes | 30446 |
 
 The commit row is the commit that last CHANGED the file, not whatever main
 happens to be at. The two files move independently, and pinning both to the
@@ -38,9 +38,10 @@ on a slow run, and a two hour net for a hung one), the counters (decided per
 note, so a mixed feed does not drop its kind-less half), the null and non array
 guards on `progress`, the dropped-request guard, and the modal teardown. PR #13
 added the `since` cursor to both sides, so each asks scan-result only for notes
-it does not already hold. The feed freeze at note six was fixed upstream in PR
-#10 before this file was ever vendored. None of that needs re-fixing on either
-side.
+it does not already hold. PR #14 made the gatekeeper the only captcha authority,
+so a missing browser token reaches the server instead of stranding the form.
+The feed freeze at note six was fixed upstream in PR #10 before this file was
+ever vendored. None of that needs re-fixing on either side.
 
 What still differs is small and cosmetic. Escape closes the modal here and not
 there. Our reduced-motion block covers more. The finished-with-no-html message
@@ -63,10 +64,10 @@ home in that repo, and the check reads nothing else from it.
 | --- | --- |
 | repo | `Talonsturgill/alaska-ai-scanner` |
 | path | `web/scan.html` |
-| last changed at | `fb273788c8a15102ca3ab64c2a8e27b1cc1908ec` (branch `main`) |
-| landed by | PR #13, "send only what is new, so a long watch stops resending the feed" |
-| sha256 | `052a8bfd8f6fd62991be640f914a2ac166dacfb326efdf3e9f5504db3dda7a82` |
-| bytes | 41382 |
+| last changed at | `5165678575a21a15d88f62cf1164449bdee29866` (branch `main`) |
+| landed by | PR #14, "let the gatekeeper rule on the captcha, the form was blocking itself" |
+| sha256 | `e2766402b25565b4baf0c781ad1bd2945a1874b196f6f587ee9534cfc6146543` |
+| bytes | 42125 |
 
 Those sha256 rows are not decoration. The check recomputes both and fails if
 either file has been edited here, because a vendored snapshot nobody can trust
