@@ -43,6 +43,8 @@ WHAT IT CHECKS, AND AGAINST WHAT
     wrong still reaches a visitor broken
       every phase has a ring percentage, in a non decreasing order
       no agent watches for a phase the routine never writes
+      the browser never blocks a request only because its captcha token is empty
+      every committed inline JavaScript block parses before Pages serves it
 
     the vendored copies themselves
       each file still hashes to the sha256 recorded in vendor/scanner/README.md
@@ -81,6 +83,7 @@ REF_HTML = REPO / "vendor" / "scanner" / "scan.html"
 REF_SPEC = REPO / "vendor" / "scanner" / "scan_routine.md"
 REF_README = REPO / "vendor" / "scanner" / "README.md"
 LIVE = REPO / "scripts" / "site_build.py"
+BUILT_SCAN = REPO / "docs" / "scan" / "index.html"
 
 HTML_LABEL = "vendor/scanner/scan.html"
 SPEC_LABEL = "vendor/scanner/scan_routine.md"
@@ -168,6 +171,26 @@ def counter_block(text):
     return m.group(1) if m else None
 
 
+def check_captcha_authority(text, problems):
+    """Keep captcha enforcement in the gatekeeper, where configuration lives.
+
+    The browser may collect a Turnstile token, but it must still call
+    scan-request when the widget is blocked, unavailable, or returns no token.
+    The server is the one place that can coherently decide whether a token is
+    required and return an actionable rejection.
+    """
+    if re.search(r"if\s*\(\s*TS_SITEKEY\s*&&\s*!tsToken", text):
+        problems.append(
+            "The live page blocks submission when the Turnstile token is empty.\n"
+            "    Captcha configuration is server-side, so the browser must send "
+            "the token it has and let scan-request rule on it.")
+    if "turnstile_token: tsToken" not in text:
+        problems.append(
+            "The live page no longer sends the Turnstile token to scan-request.\n"
+            "    Collect the token when available, include it in the request, "
+            "and keep enforcement in the gatekeeper.")
+
+
 def scan_page_src(text):
     """Slice site_build.py down to scan_page(), so a stray match elsewhere in
     the builder can never satisfy or break the check."""
@@ -251,6 +274,33 @@ process.stdout.write(JSON.stringify(out));
 """
 
 
+INLINE_SCRIPT_HARNESS = r"""
+'use strict';
+const fs = require('node:fs');
+const vm = require('node:vm');
+const file = process.argv[2];
+const html = fs.readFileSync(file, 'utf8');
+const scriptRe = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
+let match;
+let seen = 0;
+let checked = 0;
+const failures = [];
+while ((match = scriptRe.exec(html)) !== null) {
+  seen += 1;
+  const attrs = match[1];
+  const code = match[2];
+  if (/\bsrc\s*=/i.test(attrs)) continue;
+  const typeMatch = attrs.match(/\btype\s*=\s*(["'])(.*?)\1/i);
+  const type = typeMatch ? typeMatch[2].trim().toLowerCase() : 'text/javascript';
+  if (type !== 'text/javascript' && type !== 'application/javascript') continue;
+  checked += 1;
+  try { new vm.Script(code, { filename: file + ':inline-script-' + seen }); }
+  catch (error) { failures.push(String(error.stack || error)); }
+}
+process.stdout.write(JSON.stringify({ checked: checked, failures: failures }));
+"""
+
+
 def run_counters(block, probes):
     """Run the page's own counter block over each probe. Returns (results, err)."""
     node = shutil.which("node") or shutil.which("nodejs")
@@ -285,6 +335,35 @@ def run_counters(block, probes):
                       "    This is a naming contract, not a bug in the counting."
                       % ", ".join(missing))
     return results, None
+
+
+def run_inline_scripts():
+    """Compile the JavaScript Pages will serve from the committed scan page."""
+    node = shutil.which("node") or shutil.which("nodejs")
+    if not node:
+        return None, "no node on PATH, so the scanner JavaScript cannot be parsed"
+    if not BUILT_SCAN.exists():
+        return None, "%s is missing" % BUILT_SCAN.relative_to(REPO)
+    with tempfile.TemporaryDirectory() as td:
+        js = Path(td) / "inline-scripts.js"
+        js.write_text(INLINE_SCRIPT_HARNESS)
+        try:
+            p = subprocess.run([node, str(js), str(BUILT_SCAN)],
+                               capture_output=True, text=True, timeout=60)
+        except Exception as e:
+            return None, "could not run node: %s" % e
+    if p.returncode != 0:
+        return None, "the JavaScript parser did not run: %s" % (
+            (p.stderr.strip().splitlines() or ["?"])[0])
+    try:
+        result = json.loads(p.stdout)
+    except Exception:
+        return None, "the JavaScript parser returned nothing readable: %r" % p.stdout[:200]
+    if not result.get("checked"):
+        return None, "no classic inline JavaScript was found in the committed scan page"
+    if result.get("failures"):
+        return None, result["failures"][0]
+    return result["checked"], None
 
 
 # ---------- comparisons ----------
@@ -581,6 +660,7 @@ def main():
     phases, spec_ph = live_phases(live_txt), spec_phases(spec_txt)
     check_phases(spec_ph, phases, problems)
     check_wiring(phases, live_phase_pct(live_txt), live_agent_phases(live_txt), problems)
+    check_captcha_authority(live_txt, problems)
 
     kinds_ref = spec_kinds(spec_txt)
     if kinds_ref is None:
@@ -594,6 +674,13 @@ def main():
         print("scanner_sync_check: %s" % err, file=sys.stderr)
         return 2
     check_counters(probes, results, problems)
+
+    script_count, err = run_inline_scripts()
+    if err:
+        problems.append(
+            "The committed scanner JavaScript does not parse.\n    %s\n"
+            "    Pages serves docs/scan/index.html directly, so one syntax error "
+            "disables the whole form." % err)
 
     check_vendored(problems)
     if args.fetch:
@@ -612,6 +699,7 @@ def main():
         print("  ignored (%d)         %s" % (len(IGNORED_KINDS), ", ".join(sorted(IGNORED_KINDS))))
         print("  counter probes (%d)  run against the page's own block, all true"
               % len(probes))
+        print("  inline scripts (%d)  parsed from docs/scan/index.html" % script_count)
         for n in notes:
             print("  note        %s" % n)
         print("  markup, CSS and copy are NOT compared, the two pages are "

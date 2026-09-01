@@ -458,7 +458,7 @@ every observation.</p>
         '<div class="sw-headtx"><h1 class="sw-h1">Deep scan running</h1>' +
         '<p>Four specialist agents are on this one. They read your own public pages, hunt ' +
         'published results in your industry anywhere in the world, ladder every pocket to its ' +
-        'lowest honest rung, then try to kill anything they can't source.</p>' +
+        'lowest honest rung, then try to kill anything they can\'t source.</p>' +
         '<div class="sw-clock" id="sw-clock"></div></div>' +
       '</div>' +
       '<p class="sw-lab">THE CREW ON YOUR SCAN</p>' +
@@ -903,8 +903,14 @@ every observation.</p>
     document.getElementById("scanform").addEventListener("submit", function(e){
       e.preventDefault();
       var btn = document.getElementById("f-go"), err = document.getElementById("f-err");
-      var tsToken = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || "") : "";
-      if (TS_SITEKEY && !tsToken) { err.textContent = "finish the human check above first"; return; }
+      // The gatekeeper is the only captcha authority. It fails closed when
+      // captcha_required is true, so the browser sends whatever the widget
+      // produced and lets the server decide. A blocked or failed widget must
+      // not strand the form before the request can reach that decision.
+      var tsToken = "";
+      try {
+        if (TS_SITEKEY && window.turnstile) { tsToken = turnstile.getResponse() || ""; }
+      } catch (e) { tsToken = ""; }
       err.textContent = ""; btn.disabled = true; btn.textContent = "STARTING...";
       var early = document.getElementById("f-notify").value || null;
       fetch(FN + "/scan-request", { method: "POST", headers: HEADERS, body: JSON.stringify({

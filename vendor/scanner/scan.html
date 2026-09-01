@@ -269,8 +269,20 @@ function renderForm(){
     const btn = document.getElementById("go"), err = document.getElementById("err");
     err.textContent = ""; btn.disabled = true; btn.textContent = "Starting...";
     try {
-      const tsToken = (TS_SITEKEY && window.turnstile) ? (turnstile.getResponse() || "") : "";
-      if (TS_SITEKEY && !tsToken) throw new Error("finish the human check above first");
+      // The GATEKEEPER is the only authority on the captcha. It already fails
+      // closed, a missing secret while captcha_required refuses the request
+      // server-side, so there is nothing for the browser to enforce. Blocking
+      // here as well meant the two sides could disagree, and they did: a
+      // sitekey shipped with no matching secret server-side left a form that
+      // demanded a token nothing would ever verify. A widget that failed to
+      // load, got blocked, or did not match the serving domain then produced
+      // an empty token, and the submit threw before the fetch, so the site
+      // could not start a scan at all with no way for the visitor to recover.
+      // Send whatever the widget gave us and let the server rule on it.
+      let tsToken = "";
+      try {
+        if (TS_SITEKEY && window.turnstile) tsToken = turnstile.getResponse() || "";
+      } catch (e) { tsToken = ""; }
       const email = document.getElementById("notify").value || null;
       const r = await fetch(FN + "/scan-request", { method:"POST", headers:HEADERS, body: JSON.stringify({
         url: document.getElementById("url").value,
