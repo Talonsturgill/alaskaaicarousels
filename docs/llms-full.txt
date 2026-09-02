@@ -3335,7 +3335,6 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 
 - 2026-04-10, Program announced (milestone)
 - 2026-05-29, Developer proposals due, 5 p.m. Eastern (deadline)
-- 2026-06-05, Request for lease proposals released (milestone)
 - 2026-06-13, Solicitation record archived with no award posted (milestone)
 - 2026-07-22, U.S. House passes FY2027 NDAA carrying a data center lease restriction (vote)
 - 2026-07-23, Bill introduced in the U.S. House to ban AI data centers on federal land (milestone)
@@ -3378,6 +3377,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 **2026-08-25** Re-verified against the Air Force's own announcement. The department's request for lease proposals covers roughly 4,700 acres across JBER, Eielson and Clear, and the announcement carries no award, no selected developer and no decision. The record stands where it stood.
 **2026-08-29** Re-verified against the Eielson announcement. The Air Force identified four sites totaling 3,967 acres under solicitation AFCEC-26-R-0009, with proposals due August 10th, 2026 at 5 p.m. Central. The announcement says the opportunity will be awarded through a competitive source selection process, and it names no developer and no award. The record stands where it stood.
 **2026-09-01** Correction. Entries here from July 25th onward said proposals closed June 29, 2026 after an extension from May 29, and that the record archived July 14. The government's own record does not say that. Read again today through the SAM.gov opportunity API for solicitation AFCEC-26-R-0006, the posted date is April 10, 2026, the response deadline is 5 p.m. Eastern on May 29, 2026, the archive date is June 13, 2026, and the award record is empty. The June 29 date appears to have come from a third party mirror rather than from the solicitation. The substance is unchanged, no lessee has been announced for any of the twelve parcels.
+**2026-09-02** Timeline corrected again, and this one was the first correction's own fault. With the response deadline put back to May 29, 2026 the milestone reading "Request for lease proposals released" on June 5 left the public timeline saying developers' proposals were due a week before the request for them existed. The government's record gives one release date and it is the posted date, April 10, 2026, which the timeline already carries as "Program announced". The June 5 entry is removed rather than relabelled, because nothing in the solicitation supports a second release. Checked once more today against the SAM.gov opportunity API, which returns version 2 of the record, modified July 15, 2026, with the response deadline at 5 p.m. Eastern on May 29, 2026 and the archive date June 13, 2026. Those two dates settle the earlier disagreement on their own, since a solicitation can't archive on June 13 and take responses until June 29.
 
 
 ---
