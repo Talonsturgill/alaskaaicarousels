@@ -5469,3 +5469,66 @@ points, the labels belong outside the mark field, in the reserve, and the field
 itself carries only its own encoding. That is the same defect the machine gate
 keeps warning about as "busy art under text", stated as a positive rule.
 https://venngage.com/blog/chart-design/
+
+## 2026-09-01, run No.47, the shipped lessons
+
+Nine slides, score 8.89 against a threshold of 8.3, two full pixel-critic
+rounds and two flow rounds. What is worth keeping is not the score, it is the
+shape of what went wrong, because three of the four defects were the SAME
+mistake wearing different clothes: the code computed the honest answer and
+then did not use it.
+
+**Slide 07 computed a shadow tip and threw it away.** The clip test asked
+whether each cast point was left of a surveyed cut and broke at s=0 for every
+marker, so nine analytic shadows drew zero length and the slide's declared
+focal point was never in the picture. The clip was not the bug. The bug was
+that the boundary descended in the SAME BEARING the sun throws shadows, so it
+overtook its own shadows within ten pixels of the marker bases and the near
+side was a shrinking wedge. WHEN A FRAME CARRIES BOTH A SOLVED SUN AND A DRAWN
+BOUNDARY, CHECK THEIR BEARINGS AGAINST EACH OTHER BEFORE WRITING THE CLIP.
+
+**Slide 09 computed a shadow tip and drew a different one.** It assigned tx and
+ty from the deck's own solve, never read them again, and painted a 254 px wedge
+to the frame edge where the sun gives 36 px. It looked better. It was the one
+lie a reader of this particular deck would be entitled to be angry about, since
+the entire mechanic is that these shadows are computed. The solved 36 px cast
+ships and the reserve is carried by graded ground, crowns and fog. If a frame
+needs a long shadow, MOVE THE CAMERA, do not fabricate the geometry.
+
+**Slide 08 argued that two things were identical and then drew them twice.**
+Two stamped tags built separately in 3D came out with nine rows and eight rows
+at different insets, so the picture said the opposite of the caption. One plate
+rendered once and one stamp face built once, both blitted into two rects, now
+measure 14 of 255 maximum per-pixel difference, which is grain and vignette.
+IDENTITY IS A CONSTRUCTION, NEVER A TOLERANCE.
+
+**And one that is purely about process.** A round 1 repair reached slide 01 and
+not slide 02, which shares its declared stance, so the sun bloom stayed sliced
+flat at the horizon on one of the twins and twelve markers slid 24 px sideways
+on the deck's FIRST swipe under a camera the header calls unchanged. When two
+slides share a stance, every repair to one is a repair to both. Grep for the
+twin before re-rendering.
+
+**On legends.** Seven labels 218 to 489 px wide against a 32 px tightest date
+gap cannot be joined to their marks by leaders without crossings, because the
+longest label is four times the tightest gap. Slide 03 had already settled the
+case with a numbered key; slide 06 now uses the same grammar. Two slides using
+one device reads as a house idiom. Seven crossing hairlines reads as noise at
+432 px. The flow critic was asked directly and agreed.
+
+**On the deck's standing weakest criterion, artwork craft.** It scored 7 again,
+for the eleventh consecutive run, but for new reasons rather than old ones. The
+named dead zones this time are slide 05's inert top 40 percent, slide 04's
+left-third defocused row that reads as a smear rather than as a row, and slide
+03's empty right-centre quadrant. The instruction that follows is the same one
+the last four runs have been circling: FILL A DEAD ZONE WITH THE DECK'S OWN
+VOCABULARY, not with more quiet. A quiet zone answers a balance gate; it does
+not answer a craft score.
+
+**A machine defect found by disagreement, not by a gate.** config/brand.yaml
+gives two answers for a date carrying a year. Its voice line and its style key
+both say "with a year use the plain form, August 27, 2026", while its own
+date_format block lists "August 10" among the bad forms. scripts/caption_check.py
+hard-fails the plain form, so the ordinal is what ships, and the scorer read two
+correct slides as house-rule misses on the strength of the other half. The
+enforced gate is the tiebreak until the file is reconciled.

@@ -1,0 +1,121 @@
+{
+  "run_date": "2026-09-01",
+  "aggregates": [
+    {
+      "kind": "count",
+      "slide": 1,
+      "text": "TWO MARKERS, ONE STATION",
+      "fragment": "TWO MARKERS",
+      "subject": "markers",
+      "members": [
+        "C12"
+      ],
+      "items": [
+        "state",
+        "federal"
+      ],
+      "note": "Two drawn markers at one station because C12 establishes the item appears on both the state and the federal halves. The count is of appearances in the document, not of objects in the world."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 1,
+      "text": "25 priorities.One written twice.",
+      "fragment": "25 priorities",
+      "member": "C11"
+    },
+    {
+      "kind": "design",
+      "slide": 2,
+      "text": "THE 2027 LEGISLATIVE PRIORITIES",
+      "fragment": "2027 LEGISLATIVE PRIORITIES",
+      "note": "2027 is the calendar year the priorities are addressed to, not a count of anything. The detector reads any numeral before a plural noun as a count, and this is the one place in the deck where that reading is wrong."
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "text": "The same line wentto two governments.",
+      "fragment": "two governments",
+      "subject": "governments",
+      "members": [
+        "C09",
+        "C10"
+      ],
+      "items": [
+        "The state half of the resolution",
+        "The federal half of the resolution"
+      ],
+      "note": "Two governments because the adopted list has a state half and a federal half, C09 and C10, and the moratorium heading stands in both."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Twenty five items, 21 state and 4 federal. Only one heading appears under both, word for word. Garrett Armstrong moved it in on August 6th.",
+      "fragment": "Twenty five items",
+      "member": "C11"
+    },
+    {
+      "kind": "count",
+      "slide": 3,
+      "text": "SEVEN STANDARDS",
+      "fragment": "SEVEN STANDARDS",
+      "subject": "standards",
+      "members": [
+        "C07"
+      ],
+      "items": [
+        "electrical demand",
+        "water consumption",
+        "shortages",
+        "environmental impacts",
+        "noise",
+        "air quality",
+        "land use pollution"
+      ],
+      "note": "The seven are enumerated inside C07's own verbatim text and each one is set as its own legend row on the slide."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "Twelve parcels werealready on offer.",
+      "fragment": "Twelve parcels",
+      "member": "C29"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "TWELVE PARCELS, SHAPES NOT DRAWN",
+      "fragment": "TWELVE PARCELS",
+      "member": "C29"
+    },
+    {
+      "kind": "count",
+      "slide": 5,
+      "text": "Three installations.One is in this borough.",
+      "fragment": "Three installations",
+      "subject": "installations",
+      "members": [
+        "C24"
+      ],
+      "items": [
+        "Joint Base Elmendorf Richardson",
+        "Eielson Air Force Base",
+        "Clear Space Force Station"
+      ],
+      "note": "The three are named in the solicitation's own title, C24, and each is drawn at its true projected position."
+    },
+    {
+      "kind": "duration",
+      "slide": 6,
+      "text": "90 DAYS",
+      "fragment": "90 DAYS",
+      "from": {
+        "claim": "C25",
+        "date": "2026-05-29"
+      },
+      "to": {
+        "claim": "C02",
+        "date": "2026-08-27"
+      }
+    }
+  ]
+}

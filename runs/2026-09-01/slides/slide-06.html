@@ -1,0 +1,299 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Archivo";font-variation-settings:"wdth" 78,"wght" 750;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:1.02}
+.bd{position:absolute;margin:0;font-family:"Fraunces";font-variation-settings:"opsz" 14,"wght" 420;
+    font-size:32px;line-height:1.40;letter-spacing:.005em;color:#D7E2E8}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.80;
+    font-variant-numeric:tabular-nums lining-nums}
+.gd{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:700;font-size:28px;
+    letter-spacing:.12em;color:#FFC72C;font-variant-numeric:tabular-nums lining-nums;font-size:24px}
+svg text.dt{font-family:"JetBrains Mono";font-weight:500;font-size:24px;letter-spacing:.06em;fill:#CFE0F5}
+svg text.rn{font-family:"JetBrains Mono";font-weight:700;font-size:24px;fill:#6EA5FF}
+</style></head><body data-scale='[{"what": "the day rail, April 10th to August 27th, running on past the vote", "axis": "x", "unit": "days", "from": [112, 0], "to": [996, 139], "band": [838, 906], "marks": [{"at": 112.0, "means": "APRIL 10TH POSTED"}, {"at": 194.7, "means": "APRIL 23RD INDUSTRY DAY"}, {"at": 226.5, "means": "APRIL 28TH TO 30TH SITE VISITS"}, {"at": 423.6, "means": "MAY 29TH RESPONSES DUE"}, {"at": 519.0, "means": "JUNE 13TH ARCHIVED, NO AWARD"}, {"at": 862.4, "means": "AUGUST 6TH WORK SESSION"}, {"at": 996.0, "means": "AUGUST 27TH ADOPTED"}]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" style="left:80px;top:96px;width:760px">THE FEDERAL CLOCK AND THE BOROUGH CLOCK</div>
+<div class="mn" style="left:840px;top:96px;text-align:right;width:160px" data-decorative>06 / 09</div>
+<div class="gd" id="sp" style="left:600px;top:786px">90 DAYS</div>
+<h2 class="hd" id="h6" style="left:80px;top:206px;width:900px;font-size:88px">The window shut in spring.<br>The vote came in August.</h2>
+<p class="bd" id="b6" style="left:80px;top:400px;width:820px">The federal window opened and closed before the Assembly took the item up. The land it opened is federal.</p>
+
+<svg id="ann" style="position:absolute;left:0;top:0;width:1080px;height:1350px" viewBox="0 0 1080 1350"></svg>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var F=2208, CXP=540, HZ=470, CAMH=0.72;
+function GY(Z){ return HZ + F*(CAMH/Z); }
+function TY(Z,h){ return HZ + F*((CAMH-h)/Z); }
+function SX(X,Z){ return CXP + F*(X/Z); }
+function WX(x,Z){ return (x-CXP)*Z/F; }
+var ZR=3.70, MH=0.45, ROD=0.014;
+var SUNX=0.06769, SUNY=0.24192, SUNZ=0.96793, TSH=MH/SUNY;
+var V='#050A12', LID='#0E1A28', FAR='#20313A', NEAR='#0D1418',
+    SPC='#D7E2E8', GOLD='#FFC72C', FMN='#6EA5FF';
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260901);
+/* THE ONE MEASURED AXIS IN THE DECK. 139 days from April 10th to August 27th,
+   over 884 px, which is 6.36 px per day. Every mark inside the band declares
+   what it means, and no bracket, cap or bracket shadow is drawn inside it. */
+var X0=112, X1=996, DAYS=139, PPD=(X1-X0)/DAYS;
+function dx(d){ return X0 + d*PPD; }
+var MARKS=[
+  {d:0,   label:'APRIL 10TH POSTED'},
+  {d:13,  label:'APRIL 23RD INDUSTRY DAY'},
+  {d:18,  label:'APRIL 28TH TO 30TH SITE VISITS'},
+  {d:49,  label:'MAY 29TH RESPONSES DUE'},
+  {d:64,  label:'JUNE 13TH ARCHIVED, NO AWARD'},
+  {d:118, label:'AUGUST 6TH WORK SESSION'},
+  {d:139, label:'AUGUST 27TH ADOPTED'}
+];
+var GRADE={w:1080,h:1350,exposure:-0.08,saturation:1.02,contrast:1.06,filmic:true,
+  lift:[0.006,0.010,0.018],gain:[1.012,1.0,0.984],vignette:0.16,
+  bloom:{threshold:0.78,strength:0.10,radius:12},
+  grain:{amount:0.050,size:2,seed:20260906},aberration:0,dither:true,sharpen:0.30};
+</script>
+<script type="module">
+/* ================= SLIDE 06, THE CALENDAR =================
+   The same ground, the same light, the same camera, and the row RE-STAKED. It
+   now carries seven markers standing at their true dated positions on a rail
+   whose x means days. The copy sits at the TOP on this slide alone, because a
+   measured axis and its labels need the whole lower half, and the reserve is
+   still the shadow field the markers themselves throw.
+   ========================================================= */
+const A='@@ASSETS@@';
+
+function sky(){
+  var g=CX.createLinearGradient(0,0,0,HZ+40);
+  g.addColorStop(0,V); g.addColorStop(.60,'#0a1421'); g.addColorStop(1,LID);
+  CX.fillStyle=g; CX.fillRect(0,0,1080,HZ+40);
+  CX.save(); CX.globalCompositeOperation='screen';
+  CX.translate(1012,452); CX.scale(1.0,0.62);
+  var b=CX.createRadialGradient(0,0,6,0,0,190);
+  b.addColorStop(0,'rgba(240,192,137,0.28)'); b.addColorStop(.45,'rgba(224,165,102,0.10)');
+  b.addColorStop(1,'rgba(224,165,102,0)');
+  CX.fillStyle=b; CX.beginPath(); CX.arc(0,0,190,0,6.2832); CX.fill(); CX.restore();
+}
+function ground(){
+  var g=CX.createLinearGradient(0,HZ,0,1350);
+  g.addColorStop(0,'#16232e'); g.addColorStop(.10,'#1d2b30');
+  g.addColorStop(.34,'#2a3630'); g.addColorStop(.58,'#232e2a'); g.addColorStop(1,NEAR);
+  CX.fillStyle=g; CX.fillRect(0,HZ,1080,1350-HZ);
+  var f=CX.createLinearGradient(0,HZ-14,0,HZ+210);
+  f.addColorStop(0,'rgba(14,26,40,0.98)'); f.addColorStop(1,'rgba(14,26,40,0)');
+  CX.fillStyle=f; CX.fillRect(0,HZ-14,1080,224);
+}
+/* The 25 item row survives at nine metres, out of focus, ABOVE and BEHIND the
+   day band, so a reader can see it is the same place. It sits entirely outside
+   the declared band, which is what stops it polluting the scale contract. */
+function ghostRow(){
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  var ZG=9.0, top=TY(ZG,MH), base=GY(ZG), w=F*ROD/ZG;
+  for(var i=0;i<25;i++){
+    var x=250+i*13.2 + (i>20?26:0);
+    o.fillStyle='rgba(150,172,190,0.55)'; o.fillRect(x-w/2,top,w,base-top);
+    o.fillStyle='rgba(178,196,210,0.5)'; o.fillRect(x-w*1.6,top,w*3.2,w*3.6);
+  }
+  /* feathered to zero on all four sides. A defocused object has no straight
+     edges, and this one had four of them, which read as a smear rather than as
+     a row standing further off. */
+  var mx=o.createLinearGradient(230,0,610,0);
+  mx.addColorStop(0,'rgba(0,0,0,0)'); mx.addColorStop(.14,'rgba(0,0,0,1)');
+  mx.addColorStop(.86,'rgba(0,0,0,1)'); mx.addColorStop(1,'rgba(0,0,0,0)');
+  var my=o.createLinearGradient(0,516,0,668);
+  my.addColorStop(0,'rgba(0,0,0,0)'); my.addColorStop(.18,'rgba(0,0,0,1)');
+  my.addColorStop(.82,'rgba(0,0,0,1)'); my.addColorStop(1,'rgba(0,0,0,0)');
+  o.globalCompositeOperation='destination-in';
+  o.fillStyle=mx; o.fillRect(0,0,1080,1350);
+  o.fillStyle=my; o.fillRect(0,0,1080,1350);
+  o.globalCompositeOperation='source-over';
+  CX.save(); CX.filter='blur(11px)'; CX.globalAlpha=0.55;
+  CX.drawImage(off,0,0,2160,2700,0,0,1080,1350);
+  CX.restore(); CX.filter='none'; CX.globalAlpha=1;
+}
+function shadowField(){
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  MARKS.forEach(function(m,i){
+    var x=dx(m.d), X=WX(x,ZR), z2=ZR-SUNZ*TSH;
+    var tx=SX(X-SUNX*TSH,z2), ty=GY(z2);
+    var wb=F*ROD/ZR, wt=F*ROD/z2;
+    var g=o.createLinearGradient(x,GY(ZR),tx,ty);
+    g.addColorStop(0,'rgba(5,10,18,0.92)'); g.addColorStop(.42,'rgba(5,10,18,0.62)');
+    g.addColorStop(1,'rgba(5,10,18,0.16)');
+    o.fillStyle=g; o.beginPath();
+    /* the polygon starts at the band's own lower bound, because this slide's
+       rule is that nothing but the marks is drawn inside y 838 to 906 */
+    o.moveTo(x-wb/2,906); o.lineTo(x+wb/2,906);
+    o.lineTo(tx+wt/2,ty); o.lineTo(tx-wt/2,ty); o.closePath(); o.fill();
+  });
+  [[898,962,0],[962,1046,9],[1046,1350,24]].forEach(function(b){
+    CX.save(); CX.beginPath(); CX.rect(0,b[0],1080,b[1]-b[0]); CX.clip();
+    CX.filter=b[2]?('blur('+b[2]+'px)'):'none';
+    CX.drawImage(off,0,0,2160,2700,0,0,1080,1350); CX.restore();
+  });
+  CX.filter='none';
+  CX.save(); CX.translate(830,1252); CX.scale(1,0.16);
+  var fg=CX.createRadialGradient(0,0,4,0,0,340);
+  fg.addColorStop(0,'rgba(122,150,178,0.08)'); fg.addColorStop(1,'rgba(122,150,178,0)');
+  CX.fillStyle=fg; CX.beginPath(); CX.arc(0,0,340,0,6.2832); CX.fill(); CX.restore();
+}
+/* ---- THE DAY RAIL. Every mark in the band means a date. ---- */
+function rail(){
+  var y0=838, y1=906, mid=(y0+y1)/2;
+  /* the rail itself, a machined flat with a lit top edge */
+  /* INK, NOT STEEL. A calendar axis is not in the world, and the deck's line
+     voice rule names this rail as one of the six drafted things that are not
+     physically present. Drawn as a lit machined flat with a specular top edge
+     it told a reader the day axis exists. The dossier's own palette line for
+     this slide reads 'Rail and marks forget-me-not.' */
+  var rg=CX.createLinearGradient(0,mid-5,0,mid+5);
+  rg.addColorStop(0,'rgba(110,165,255,0.62)'); rg.addColorStop(.5,'rgba(78,124,196,0.46)');
+  rg.addColorStop(1,'rgba(30,54,96,0.55)');
+  CX.fillStyle=rg; CX.fillRect(X0,mid-3.5,X1-X0,7);
+  /* the gold span, May 29th to August 27th, 572 px because 90 days is 572 px */
+  var a=dx(49), b=dx(139);
+  CX.fillStyle='rgba(255,199,44,0.20)'; CX.fillRect(a,mid-13,b-a,26);
+  CX.strokeStyle=GOLD; CX.lineWidth=2.4;
+  CX.beginPath(); CX.moveTo(a,mid); CX.lineTo(b,mid); CX.stroke();
+  [a,b].forEach(function(x){
+    CX.beginPath(); CX.moveTo(x,mid-15); CX.lineTo(x,mid+15); CX.stroke();
+  });
+  /* the marks, one per dated event, drawn FROM the declared array */
+  MARKS.forEach(function(m){
+    var x=dx(m.d), last=(m.d===139);
+    CX.strokeStyle= last?GOLD : 'rgba(110,165,255,0.92)';
+    CX.lineWidth= last?2.6:1.8;
+    CX.beginPath(); CX.moveTo(x,y0+6); CX.lineTo(x,y1-6); CX.stroke();
+  });
+  /* THE RAIL RUNS OFF THE EDGE. Every element on this frame terminated inside
+     it, so the swipe into the deck's turn had no pull at all and both flow
+     passes named this slide as the bail point. The axis does not end at the
+     vote, so it is not drawn ending there. The last DATED MARK stays at x 996,
+     which is what the scale contract fixes; this is the same rail continuing,
+     unterminated and carrying nothing. */
+  CX.save();
+  CX.setLineDash([12,7]); CX.lineWidth=3.0;
+  CX.strokeStyle='rgba(110,165,255,0.44)';
+  CX.beginPath(); CX.moveTo(X1+14,mid); CX.lineTo(1080,mid); CX.stroke();
+  CX.setLineDash([]); CX.restore();
+}
+async function glRow(){
+  const THREE=await import(A+'/js/three.module.min.js');
+  const {init}=await import(A+'/js/akthree.js');
+  const AKT=init(THREE);
+  if(!AKT.webglOK()) return null;
+  const gl=document.createElement('canvas'); gl.width=2160; gl.height=2700;
+  const R=AKT.setup(gl,{w:1080,h:1350,fov:34,exposure:1.15});
+  R.renderer.setClearAlpha(0);
+  AKT.environment(R,{intensity:0.55});
+  AKT.rig(R,{ key:{color:0xF0C089,i:4.2,pos:[SUNX*18,SUNY*18,-SUNZ*18],radius:6,shadowSize:4},
+              rim:{color:0xA9BECB,i:0.75,pos:[-4,3,6]},
+              fill:{color:0x3B4A5E,i:0.55,pos:[-2,4,7]},
+              ambient:{color:0x2A3038,i:1.2} });
+  AKT.frame(R,{fov:34,from:[0,CAMH,0],look:[0,CAMH-ZR*Math.tan(5.3*Math.PI/180),-ZR]});
+  const steel=AKT.mat.steel({roughness:0.34,metalness:0.62,color:0xBCC6CC});
+  const gold=new THREE.MeshStandardMaterial({color:0xFFC72C,metalness:0.30,roughness:0.42,
+                                             emissive:0xFFC72C,emissiveIntensity:0.55});
+  const grp=new THREE.Group();
+  MARKS.forEach(function(m){
+    const X=WX(dx(m.d),ZR), isGold=(m.d===139);
+    const rod=new THREE.Mesh(new THREE.CylinderGeometry(ROD/2,ROD/2,MH,10),steel);
+    rod.position.set(X,MH/2,-ZR); grp.add(rod);
+    const tag=new THREE.Mesh(new THREE.BoxGeometry(0.033,0.037,0.004), steel);
+    tag.position.set(X,MH-0.037/2+0.003,-ZR+0.010); grp.add(tag);
+  });
+  AKT.add(R,grp,{cast:false,receive:false});
+  AKT.objectHero(R,grp,{toward:[SUNX,SUNY,-SUNZ],keyColor:'#F0C089',intensity:1.45});
+  R.renderer.render(R.scene,R.camera);
+  const snap=await AKT.snapshot(R,{litFloor:0.06,litMin:80});
+  if(!snap||!snap.ok) return null;
+  return gl;
+}
+function canvasRow(){
+  MARKS.forEach(function(m){
+    var x=dx(m.d), top=TY(ZR,MH), base=GY(ZR), w=F*ROD/ZR, isGold=(m.d===139);
+    var g=CX.createLinearGradient(x-w/2,0,x+w/2,0);
+    g.addColorStop(0,'rgba(32,49,58,0.95)');
+    g.addColorStop(.62,AKC.mixOklab(FAR,'#BCC6CC',0.42)); g.addColorStop(1,SPC);
+    CX.fillStyle=g; CX.fillRect(x-w/2,top,w,base-top);
+    var tw=F*0.033/ZR, th=F*0.037/ZR;
+    CX.fillStyle=AKC.mixOklab(FAR,'#BCC6CC',0.55);
+    CX.fillRect(x-tw/2,top,tw,th);
+  });
+}
+/* the labels live in the reserve, staggered on two levels, each on its own
+   leader climbing out of the shadow field to its own dated mark */
+function labels(){
+  var svg=document.getElementById('ann'), NS='http://www.w3.org/2000/svg';
+  var lead=[];
+  /* ONE LEVEL PER MARK, and each label staggered to sit under its own mark.
+     Four cycling levels put APRIL 28TH TO 30TH SITE VISITS and AUGUST 27TH
+     ADOPTED on the same line and ran them into each other. Seven levels with a
+     monotone x also means no two leaders cross, which is the other half of
+     making a legend readable. */
+  /* A NUMBERED LEGEND, NOT SEVEN LEADERS, and that is a decision. Seven marks
+     spread across 884 px against seven labels 218 to 489 px wide cannot be
+     joined by hairlines without crossings: the longest labels are four times
+     the tightest date gap, so any leader long enough to reach its own mark
+     runs over two of its neighbours' plates on the way. Slide 03 already
+     settled this case for the deck, so the deck answers it the same way twice.
+     Every numeral on the rail is repeated against its own row. */
+  MARKS.forEach(function(m,i){
+    var x=dx(m.d);
+    var n=document.createElementNS(NS,'text');
+    n.setAttribute('class','rn'); n.setAttribute('x',x); n.setAttribute('y',822);
+    n.setAttribute('text-anchor','middle'); n.textContent=String(i+1);
+    svg.appendChild(n);
+    var ly=950+44*i;
+    var q=document.createElementNS(NS,'text');
+    q.setAttribute('class','rn'); q.setAttribute('x',84); q.setAttribute('y',ly);
+    q.textContent=String(i+1); svg.appendChild(q);
+    var t=document.createElementNS(NS,'text');
+    t.setAttribute('class','dt'); t.setAttribute('x',122); t.setAttribute('y',ly);
+    t.textContent=m.label; svg.appendChild(t);
+  });
+  window.__akLeaders=lead;
+}
+window.renderReady=(async function(){
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h6'),{min:56,max:88,maxLines:2});
+
+  sky(); ground(); ghostRow(); shadowField();
+
+  var gl=null;
+  try{ gl=await glRow(); }catch(e){ gl=null; }
+  if(gl){ CX.drawImage(gl,0,0,2160,2700,0,0,1080,1350); } else { canvasRow(); }
+
+  rail(); labels();
+  AK.svgPlateAll('#ann text.dt',{padX:9,padY:5,fill:'#0A1420',stroke:'#2C4358',
+                                 strokeWidth:1,rx:3,opacity:0.95});
+  AK.svgPlateAll('#ann text.rn',{padX:6,padY:3,fill:'#08121C',stroke:'#274055',
+                                 strokeWidth:1,rx:3,opacity:0.92});
+  /* THE SPAN LABEL IS CENTRED ON THE SPAN, from the same variables that draw
+     it, never from a typed x. It sat 42 px left of the midpoint. */
+  var _sp=document.getElementById('sp');
+  _sp.style.left=((dx(49)+dx(139))/2)+'px';
+  _sp.style.transform='translateX(-50%)';
+
+
+  window.__akAssert=[{what:"90 days from May 29th to August 27th, drawn as a 572 px span",
+                      expect:+( (139-49)*PPD ).toFixed(2),
+                      actual:+( dx(139)-dx(49) ).toFixed(2), tol:1.5, unit:"px"},
+                     {what:"seven dated marks on the rail",
+                      expect:7, points:MARKS.map(function(m){return [dx(m.d),872];}),
+                      unit:"marks"}];
+  window.__akMotifs=[{what:"the gold span, the borough's ninety days",
+                      rect:[dx(49),825,dx(139)-dx(49),26]}];
+  AKPOST.grade(CX,GRADE);
+})();
+</script></body></html>

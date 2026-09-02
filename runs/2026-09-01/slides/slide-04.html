@@ -1,0 +1,253 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Archivo";font-variation-settings:"wdth" 78,"wght" 750;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:1.02}
+.bd{position:absolute;margin:0;font-family:"Fraunces";font-variation-settings:"opsz" 14,"wght" 420;
+    font-size:32px;line-height:1.40;letter-spacing:.005em;color:#D7E2E8}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.80;
+    font-variant-numeric:tabular-nums lining-nums}
+.sm{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.55;
+    font-variant-numeric:tabular-nums lining-nums}
+svg text.pl{font-family:"JetBrains Mono";font-weight:500;font-size:24px;letter-spacing:.08em;fill:#CFE0F5}
+</style></head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" style="left:80px;top:96px;width:800px">WHAT PROMPTED IT</div>
+<div class="mn" style="left:80px;top:134px;width:800px;opacity:.74">AFCEC-26-R-0006 . POSTED APRIL 10TH, 2026</div>
+<div class="mn" style="left:840px;top:96px;text-align:right;width:160px" data-decorative>04 / 09</div>
+<h2 class="hd" id="h4" style="left:80px;top:892px;width:900px;font-size:92px">Twelve parcels were<br>already on offer.</h2>
+<p class="bd" id="b4" style="left:80px;top:1084px;width:880px">KUAC reported the request follows an Air Force solicitation at three Alaska installations. Air and Space Forces Magazine put it at twelve parcels and roughly 4,700 acres.</p>
+<div class="sm" style="left:80px;top:176px;opacity:.70" data-decorative>SAM.GOV RECORD . PER INSTALLATION SPLIT NOT PUBLISHED</div>
+
+<svg id="ann" style="position:absolute;left:0;top:0;width:1080px;height:1350px" viewBox="0 0 1080 1350"></svg>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var F=2208, CXP=540, HZ=470, CAMH=0.72;
+function GY(Z){ return HZ + F*(CAMH/Z); }
+function TY(Z,h){ return HZ + F*((CAMH-h)/Z); }
+function SX(X,Z){ return CXP + F*(X/Z); }
+function WX(x,Z){ return (x-CXP)*Z/F; }
+var ZR=3.70, ZP=9.0, MH=0.45, ROD=0.014;
+var SUNX=0.06769, SUNY=0.24192, SUNZ=0.96793, TSH=MH/SUNY;
+var V='#050A12', LID='#0E1A28', FAR='#20313A', NEAR='#0D1418',
+    SPC='#D7E2E8', GOLD='#FFC72C', FMN='#6EA5FF';
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260901);
+var GRADE={w:1080,h:1350,exposure:-0.08,saturation:1.02,contrast:1.06,filmic:true,
+  lift:[0.006,0.010,0.018],gain:[1.012,1.0,0.984],vignette:0.17,
+  bloom:{threshold:0.78,strength:0.09,radius:12},
+  grain:{amount:0.050,size:2,seed:20260904},aberration:0,dither:true,sharpen:0.30};
+</script>
+<script type="module">
+/* ================= SLIDE 04, WHAT PROMPTED IT =================
+   The deck's one focus pull. The camera has tracked right and the focal plane
+   has moved OFF the steel row and onto a run of twelve parcel pins at 9 m, so
+   the subject of the frame is now ink rather than material. The pins are
+   forget-me-not and dashed, because nothing has been leased and a claim is
+   drawn, never lit. They are deliberately NOT grouped by installation and the
+   mono stamp under the copy says why.
+   ============================================================= */
+const A='@@ASSETS@@';
+
+/* twelve parcel centres, generated once from a seeded jitter on a loose run.
+   Drawn FROM this array, so the frame counts what the loop drew. */
+const PIN=(function(){
+  var out=[], r=AK.rng(4120077);
+  for(var i=0;i<12;i++){
+    var t=i/11;
+    var Z=ZP - 2.4*t + 0.7*(r()-0.5);              // the run walks toward the lens
+    var x=596 + 396*t + 26*(r()-0.5);              // chosen in screen px, always inside
+    out.push([x, GY(Z), Z]);
+  }
+  /* TWELVE HAS TO COUNT AS TWELVE IN THE THUMB. The seeded jitter fused four
+     pairs at full size, which at 432 px gave a reader eight or nine marks on a
+     slide whose whole subject is a count. A 34 px floor between neighbours is
+     the smallest separation that survives the downscale, and the run stays
+     ungrouped and irregular above it, because the irregularity is the honest
+     part: the solicitation never published a per-installation split. */
+  out.sort(function(a,b){ return a[0]-b[0]; });
+  for(var i=1;i<12;i++){ if(out[i][0]-out[i-1][0]<34) out[i][0]=out[i-1][0]+34; }
+  /* the leading pin is cut by the frame, so the run reads as continuing */
+  out[11][0]=1074;
+  for(var j=10;j>=0;j--){ if(out[j+1][0]-out[j][0]<34) out[j][0]=out[j+1][0]-34; }
+  return out;
+})();
+
+function sky(){
+  var g=CX.createLinearGradient(0,0,0,HZ+40);
+  g.addColorStop(0,V); g.addColorStop(.60,'#0a1421'); g.addColorStop(1,LID);
+  CX.fillStyle=g; CX.fillRect(0,0,1080,HZ+40);
+  for(var c=0;c<6;c++){
+    var r=AK.rng(88300+c), y=132+c*56+r()*24, hh=20+18*r(), a=0.026+0.030*r();
+    var cg=CX.createLinearGradient(0,y,0,y+hh);
+    cg.addColorStop(0,'rgba(126,151,174,0)');
+    cg.addColorStop(.5,'rgba(126,151,174,'+a.toFixed(3)+')');
+    cg.addColorStop(1,'rgba(126,151,174,0)');
+    CX.fillStyle=cg; CX.fillRect(-40,y,1160,hh);
+  }
+}
+/* THE BLOOM IS LAID AFTER THE GROUND, not before it. Drawn into the sky it was
+   sliced off square at y 470 by the far ground's own top edge, which put a hard
+   tonal step across the brightest region in the frame. The sun does not stop at
+   the horizon and neither does its glow. */
+function bloom(){
+  CX.save(); CX.globalCompositeOperation='screen';
+  CX.translate(870,448); CX.scale(1.0,0.60);
+  var b=CX.createRadialGradient(0,0,6,0,0,210);
+  b.addColorStop(0,'rgba(240,192,137,0.30)'); b.addColorStop(.5,'rgba(232,178,120,0.12)');
+  b.addColorStop(1,'rgba(224,165,102,0)');
+  CX.fillStyle=b; CX.beginPath(); CX.arc(0,0,210,0,6.2832); CX.fill(); CX.restore();
+}
+/* the far ground is shaded, not filled, because the pins have to stand on
+   something that reads as terrain at nine metres */
+function farGround(){
+  var g=CX.createLinearGradient(0,HZ,0,1350);
+  g.addColorStop(0,'#16232e'); g.addColorStop(.10,'#1e2c31');
+  g.addColorStop(.36,'#2b3731'); g.addColorStop(.60,'#232e2a'); g.addColorStop(1,NEAR);
+  CX.fillStyle=g; CX.fillRect(0,HZ,1080,1350-HZ);
+  var lay=document.createElement('canvas'); lay.width=2160; lay.height=2700;
+  var lc=lay.getContext('2d');
+  /* NO ctx.scale here. reliefShade writes ImageData with putImageData, which is
+     not affected by the transform, so a scaled context silently puts the shading
+     in the wrong quarter of the canvas at half size. Device coordinates, and the
+     noise scale halved to match. */
+  AK.reliefShade(lc,{x:0,y:HZ*2,w:2160,h:600,low:'#20313A',high:'#33402F',
+                     strength:70,scale:0.00275,octaves:3,seed:20260904,
+                     lights:[{az:62,el:14,w:1}]});
+  CX.save(); CX.globalAlpha=0.58; CX.filter='blur(3px)';
+  CX.drawImage(lay,0,0,2160,2700,0,0,1080,1350);
+  CX.restore(); CX.filter='none'; CX.globalAlpha=1;
+  var f=CX.createLinearGradient(0,HZ-14,0,HZ+200);
+  f.addColorStop(0,'rgba(14,26,40,0.96)'); f.addColorStop(1,'rgba(14,26,40,0)');
+  CX.fillStyle=f; CX.fillRect(0,HZ-14,1080,214);
+}
+/* THE STEEL ROW, HELD LEFT AND SOFT. The focal plane has left it, so it is a
+   value note. Its CoC is capped at 18 px so it stays a legible row. */
+function softRow(){
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  var top=TY(ZR,MH), base=GY(ZR), w=F*ROD/ZR;
+  for(var i=0;i<15;i++){
+    var x=-24+i*31.5;
+    var g=o.createLinearGradient(x-w/2,0,x+w/2,0);
+    g.addColorStop(0,'rgba(30,46,56,0.92)'); g.addColorStop(.64,'rgba(140,160,174,0.92)');
+    g.addColorStop(1,'rgba(206,220,230,0.95)');
+    o.fillStyle=g; o.fillRect(x-w/2,top,w,base-top);
+    var tw=F*0.033/ZR, th=F*0.037/ZR;
+    o.fillStyle=(i===12)?'rgba(255,199,44,0.95)':'rgba(150,170,184,0.92)';
+    o.fillRect(x-tw/2,top,tw,th);
+    /* their long shadows, still leaving the frame toward the reader */
+    var X=WX(x,ZR), z2=ZR-SUNZ*TSH;
+    var tx=SX(X-SUNX*TSH,z2), ty=GY(z2);
+    var sg=o.createLinearGradient(x,base,tx,ty);
+    /* the cast holds a floor rather than fading to nothing, so the reserve is
+       modelled ground down to the frame edge instead of a stub over a plate */
+    sg.addColorStop(0,'rgba(5,10,18,0.88)'); sg.addColorStop(.45,'rgba(5,10,18,0.52)');
+    sg.addColorStop(1,'rgba(5,10,18,0.20)');
+    o.fillStyle=sg; o.beginPath();
+    o.moveTo(x-w/2,base); o.lineTo(x+w/2,base);
+    o.lineTo(tx+w,ty); o.lineTo(tx-w,ty); o.closePath(); o.fill();
+  }
+  /* THE ROW IS NOT A SPRITE. The first pass blurred an unpadded layer and
+     composited it whole, so the run ended at a vertical line in open ground and
+     every post was sliced flat at its base. Two things fix it: the CoC opens
+     with depth in bands rather than being one flat 18 px, and the layer's right
+     edge is feathered to zero over its last 60 px so the row dissolves into the
+     field instead of stopping at an edge. */
+  var fade=o.createLinearGradient(365,0,425,0);
+  fade.addColorStop(0,'rgba(0,0,0,1)'); fade.addColorStop(1,'rgba(0,0,0,0)');
+  o.globalCompositeOperation='destination-in';
+  o.fillStyle=fade; o.fillRect(0,0,1080,1350);
+  o.globalCompositeOperation='source-over';
+  [[0,700,9],[700,900,14],[900,1000,18],[1000,1120,24],[1120,1350,30]].forEach(function(b){
+    CX.save(); CX.beginPath(); CX.rect(0,b[0],1080,b[1]-b[0]); CX.clip();
+    CX.filter='blur('+b[2]+'px)';
+    CX.drawImage(off,0,0,2160,2700,0,0,1080,1350); CX.restore();
+  });
+  CX.filter='none';
+}
+/* THE RESERVE. On this slide it is two shadow populations meeting, the row's
+   long near casts on the left and the pins' short far casts above them, so the
+   band carries a real depth reading rather than one uniform ramp. */
+function nearField(){
+  /* The ramp used to reach 0.93 and it painted out the very shadows the
+     dossier's lower-third argument is made of. It is a settling of the value,
+     not a lid. The body copy still clears twelve to one on what is left. */
+  var g=CX.createLinearGradient(0,880,0,1350);
+  g.addColorStop(0,'rgba(5,10,18,0.08)'); g.addColorStop(.22,'rgba(5,10,18,0.30)');
+  g.addColorStop(.52,'rgba(5,10,18,0.42)'); g.addColorStop(1,'rgba(5,10,18,0.46)');
+  CX.fillStyle=g; CX.fillRect(0,880,1080,470);
+  CX.save(); CX.translate(830,1268); CX.scale(1,0.15);
+  var f2=CX.createRadialGradient(0,0,4,0,0,330);
+  f2.addColorStop(0,'rgba(122,150,178,0.075)'); f2.addColorStop(1,'rgba(122,150,178,0)');
+  CX.fillStyle=f2; CX.beginPath(); CX.arc(0,0,330,0,6.2832); CX.fill(); CX.restore();
+  CX.save(); CX.translate(240,1200); CX.scale(1,0.17);
+  var fg=CX.createRadialGradient(0,0,4,0,0,330);
+  fg.addColorStop(0,'rgba(122,150,178,0.085)'); fg.addColorStop(1,'rgba(122,150,178,0)');
+  CX.fillStyle=fg; CX.beginPath(); CX.arc(0,0,330,0,6.2832); CX.fill(); CX.restore();
+}
+/* the twelve pins. Stem plus open head, no fill, drafting weight. */
+function pins(){
+  PIN.forEach(function(p,i){
+    var h=F*0.30/p[2];                       // a 30 cm lath, so they shrink with depth
+    var a=0.62+0.34*(ZP/p[2]-0.72);
+    /* the short far cast, laid before the stem so the stem sits on it */
+    var sc=CX.createLinearGradient(p[0],p[1],p[0]-h*0.34,p[1]+h*0.20);
+    sc.addColorStop(0,'rgba(5,10,18,0.52)'); sc.addColorStop(1,'rgba(5,10,18,0)');
+    CX.fillStyle=sc;
+    CX.beginPath(); CX.moveTo(p[0]-2,p[1]); CX.lineTo(p[0]+2,p[1]);
+    CX.lineTo(p[0]-h*0.30,p[1]+h*0.20); CX.lineTo(p[0]-h*0.36,p[1]+h*0.18);
+    CX.closePath(); CX.fill();
+    CX.save();
+    CX.strokeStyle='rgba(110,165,255,'+a.toFixed(3)+')'; CX.lineWidth=1.4;
+    CX.setLineDash([9,5]);
+    CX.beginPath(); CX.moveTo(p[0],p[1]); CX.lineTo(p[0],p[1]-h); CX.stroke();
+    CX.setLineDash([]);
+    CX.lineWidth=1.8;
+    CX.beginPath(); CX.arc(p[0],p[1]-h-7,7.0,0,6.2832); CX.stroke();
+    CX.restore();
+  });
+}
+function annotate(){
+  var svg=document.getElementById('ann'), NS='http://www.w3.org/2000/svg';
+  var near=PIN[0];
+  var t=document.createElementNS(NS,'text');
+  t.setAttribute('class','pl'); t.setAttribute('x',462); t.setAttribute('y',556);
+  t.textContent='TWELVE PARCELS, SHAPES NOT DRAWN';
+  svg.appendChild(t);
+  CX.strokeStyle=FMN; CX.lineWidth=1.25;
+  CX.beginPath(); CX.moveTo(472,548); CX.lineTo(500,600); CX.lineTo(near[0],near[1]-F*0.30/near[2]-12); CX.stroke();
+  CX.fillStyle=FMN;
+  CX.beginPath(); CX.arc(near[0],near[1]-F*0.30/near[2]-12,2.4,0,6.2832); CX.fill();
+  window.__akLeaders=[{target:"the nearest parcel pin's head",
+    at:[near[0],near[1]-F*0.30/near[2]-12], to:[near[0],near[1]-F*0.30/near[2]-12],
+    from:[472,548], label:"TWELVE PARCELS, SHAPES NOT DRAWN"}];
+}
+
+window.renderReady=(async function(){
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h4'),{min:62,max:92,maxLines:2});
+
+  sky(); farGround(); bloom(); softRow(); pins(); nearField(); annotate();
+  AK.svgPlateAll('#ann text.pl',{padX:9,padY:5,fill:'#0B1622',stroke:'#2C4358',
+                                 strokeWidth:1,rx:3,opacity:0.94});
+
+  window.__akAssert=[{what:"twelve parcel pins, one per parcel on offer",
+                      expect:12, points:PIN.map(function(p){return [p[0],p[1]-F*0.30/p[2]-7];}),
+                      unit:"marks"}];
+  window.__akMotifs=[{what:"the run of twelve parcel pins",
+                      rect:[590,600,440,190]}];
+  AKPOST.grade(CX,GRADE);
+})();
+</script></body></html>

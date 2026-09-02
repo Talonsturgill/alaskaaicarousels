@@ -1,0 +1,101 @@
+{
+  "run_dir": "out/2026-09-01",
+  "render_report": "out/2026-09-01/render/render_report.json",
+  "aggregates_file": "out/2026-09-01/aggregates.json",
+  "detected": 10,
+  "declared": 10,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "TWO MARKERS",
+      "text": "TWO MARKERS, ONE STATION",
+      "n": 2,
+      "subject": "markers"
+    },
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "25 priorities",
+      "text": "25 priorities.One written twice.",
+      "n": 25,
+      "subject": "priorities"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "2027 LEGISLATIVE PRIORITIES",
+      "text": "THE 2027 LEGISLATIVE PRIORITIES",
+      "n": 2027,
+      "subject": "legislative priorities"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "two governments",
+      "text": "The same line wentto two governments.",
+      "n": 2,
+      "subject": "governments"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Twenty five items",
+      "text": "Twenty five items, 21 state and 4 federal. Only one heading appears under both,",
+      "n": 20,
+      "subject": "five items"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "SEVEN STANDARDS",
+      "text": "SEVEN STANDARDS",
+      "n": 7,
+      "subject": "standards"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Twelve parcels",
+      "text": "Twelve parcels werealready on offer.",
+      "n": 12,
+      "subject": "parcels"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "TWELVE PARCELS",
+      "text": "TWELVE PARCELS, SHAPES NOT DRAWN",
+      "n": 12,
+      "subject": "parcels"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "Three installations",
+      "text": "Three installations.One is in this borough.",
+      "n": 3,
+      "subject": "installations"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "90 DAYS",
+      "text": "90 DAYS",
+      "n": 90,
+      "unit": "days"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 2,
+      "text": "THE 2027 LEGISLATIVE PRIORITIES",
+      "note": "2027 is the calendar year the priorities are addressed to, not a count of anything. The detector reads any numeral before a plural noun as a count, and this is the one place in the deck where that reading is wrong."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "S1 '25 priorities.One written twice.' [from_claim]: the noun 'priority' does not appear in claim C11; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

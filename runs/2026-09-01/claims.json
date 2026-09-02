@@ -1,0 +1,534 @@
+{
+ "run_date": "2026-09-01",
+ "story": "Fairbanks North Star Borough Assembly puts a commercial data center moratorium on both halves of its 2027 legislative priorities, the only item duplicated across the state and federal lists",
+ "claims": [
+  {
+   "id": "C01",
+   "claim": "The Fairbanks North Star Borough Assembly adopted Resolution No. 2026-25, A Resolution Identifying And Supporting Legislative Priorities.",
+   "value": "Resolution No. 2026-25",
+   "verbatim": "RESOLUTION NO. 2026-25. A Resolution Identifying And Supporting Legislative Priorities.",
+   "source_url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)",
+   "source_outlet": "Fairbanks North Star Borough Clerk's Office, Action Memorandum",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.99,
+   "notes": "Primary. Borough clerk's official action memorandum, retrieved through the borough's CivicClerk API for event id 5655. No news outlet reported the resolution number."
+  },
+  {
+   "id": "C02",
+   "claim": "The Assembly adopted the resolution at its Regular Assembly Meeting on August 27th.",
+   "value": "August 27, 2026",
+   "verbatim": "ACTION OF THE REGULAR ASSEMBLY MEETING OF AUGUST 27, 2026",
+   "source_url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)",
+   "source_outlet": "Fairbanks North Star Borough Clerk's Office, Action Memorandum",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.99,
+   "notes": "Resolves the date dispute in the scout material. August 29, 2026 is a Saturday. August 27, 2026 is a Thursday, which agrees with both outlets, each of which wrote only Thursday and never a numeral."
+  },
+  {
+   "id": "C03",
+   "claim": "The borough's public calendar lists one Regular Assembly Meeting in August 2026 and it falls on August 27th.",
+   "value": "August 27, 2026",
+   "verbatim": "Regular Assembly Meeting\n\nAugust 27, 2026, 6:00 PM - 7:00 PM",
+   "source_url": "https://www.fnsb.gov/Calendar.aspx?EID=&month=8&year=2026&day=27&CID=14",
+   "source_outlet": "Fairbanks North Star Borough",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-02",
+   "fetched": true,
+   "confidence": 0.96,
+   "notes": "Second independent primary confirmation of the date, from a different borough system than the clerk's memo. A third confirmation is the CivicClerk event record, event id 5655, startDateTime 2026-08-27T18:00:00Z."
+  },
+  {
+   "id": "C04",
+   "claim": "The sponsor of record for the legislative priorities resolution is the Assembly Committee of the Whole.",
+   "value": "Assembly Committee of the Whole",
+   "verbatim": "(Sponsor: Assembly Committee of the Whole)",
+   "source_url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)",
+   "source_outlet": "Fairbanks North Star Borough Clerk's Office, Action Memorandum",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.98,
+   "notes": "Armstrong moved the moratorium into the list but is not the sponsor of the resolution. A slide saying Armstrong sponsored the resolution would be wrong."
+  },
+  {
+   "id": "C05",
+   "claim": "The action memorandum recording the adoption was written by Borough Clerk April Trickey and addressed to Mayor Grier Hopkins.",
+   "value": "April Trickey, MMC, Borough Clerk",
+   "verbatim": "TO: Grier Hopkins, Mayor, Fairbanks North Star Borough\nFROM: April Trickey, MMC, Borough Clerk",
+   "source_url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)",
+   "source_outlet": "Fairbanks North Star Borough Clerk's Office, Action Memorandum",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.99,
+   "notes": "Confirms the spelling Grier Hopkins as the borough itself prints it."
+  },
+  {
+   "id": "C06",
+   "claim": "The resolution asks for a moratorium on the permitting, leasing or construction of new commercial data centers on state-owned or municipal lands in Alaska.",
+   "value": "state-owned or municipal lands",
+   "verbatim": "a moratorium on the permitting, leasing, or construction of new commercial data centers on state-owned or municipal lands in Alaska",
+   "source_url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)",
+   "source_outlet": "Fairbanks North Star Borough, Resolution 2026-25 in the August 27, 2026 Assembly agenda packet",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-20",
+   "fetched": true,
+   "confidence": 0.94,
+   "notes": "CAUTION. The resolution reads state-owned OR municipal lands. Both outlets printed AND inside quotation marks. Quote the resolution's own word, or, and never put and inside quotation marks attributed to the resolution."
+  },
+  {
+   "id": "C07",
+   "claim": "The moratorium would run until the State of Alaska and local governments adopt standards addressing electrical demand, water consumption and shortages, environmental impacts, noise, air quality and land use pollution.",
+   "value": "seven named impact categories",
+   "verbatim": "standards addressing electrical demand, water consumption and shortages, environmental impacts, noise, air quality, and land use pollution, and other public interest considerations",
+   "source_url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)",
+   "source_outlet": "Fairbanks North Star Borough, Resolution 2026-25 in the August 27, 2026 Assembly agenda packet",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-20",
+   "fetched": true,
+   "confidence": 0.93,
+   "notes": "The resolution names more categories than the news coverage did. KUAC listed four. The document also names shortages, noise and land use pollution."
+  },
+  {
+   "id": "C08",
+   "claim": "The item is titled Moratorium on Data Center Development in Alaska in the resolution.",
+   "value": "Moratorium on Data Center Development in Alaska",
+   "verbatim": "Moratorium on Data Center Development in Alaska",
+   "source_url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)",
+   "source_outlet": "Fairbanks North Star Borough, Resolution 2026-25 in the August 27, 2026 Assembly agenda packet",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-20",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "This exact heading appears twice in the document, once in the state list and once in the federal list, with identical body language beneath each."
+  },
+  {
+   "id": "C09",
+   "claim": "The state half of the resolution carries 21 legislative priorities.",
+   "value": "21 state priorities",
+   "verbatim": "Moratorium on Data Center Development in Alaska",
+   "source_url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)",
+   "source_outlet": "Fairbanks North Star Borough, Resolution 2026-25 in the August 27, 2026 Assembly agenda packet",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-20",
+   "fetched": true,
+   "confidence": 0.82,
+   "notes": "Counted from the enumerated state list in the primary document, which prints no total line. Items run PERS contribution rates, Base Student Allocation, a natural gas pipeline to Fairbanks, Missing and Murdered Indigenous Persons, school bond debt reimbursement, community revenue sharing, animal adopter records, the Alaska Long Trail, a Roads and Highways Advisory Board, Next Generation 911, real property tax revenue reimbursement, statewide spay and neuter, the data center moratorium, a permanency planning citizen review panel, Tanana Valley State Forest expansion, the Ruth Barnette Sport Fish Hatchery, upriver salmon returns, forward funding for education, National Board Certification reimbursement, equitable school testing, and 2028 Arctic Winter Games funding.",
+   "needs_softening": true
+  },
+  {
+   "id": "C10",
+   "claim": "The federal half of the resolution carries 4 legislative priorities.",
+   "value": "4 federal priorities",
+   "verbatim": "Moratorium on Data Center Development in Alaska",
+   "source_url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)",
+   "source_outlet": "Fairbanks North Star Borough, Resolution 2026-25 in the August 27, 2026 Assembly agenda packet",
+   "source_is_primary": true,
+   "date_of_source": "2026-08-20",
+   "fetched": true,
+   "confidence": 0.82,
+   "notes": "The four federal items are an EPA request to exempt vehicle emissions from PM2.5 control strategy requirements, the data center moratorium, ratification of the Equal Rights Amendment, and opposition to harmful tariffs. Counted from the primary document, which prints no total line.",
+   "needs_softening": true
+  },
+  {
+   "id": "C11",
+   "claim": "The Assembly's 2027 legislative priorities list totals 25 items across the state and federal sections.",
+   "value": "25 priorities",
+   "verbatim": "The Assembly's list is split between the state and federal levels, totaling 25 priorities.",
+   "source_url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+   "source_outlet": "KUAC",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "KUAC states 25 explicitly and the primary resolution independently yields 21 state plus 4 federal. Two routes agree, so this is the safest of the count claims."
+  },
+  {
+   "id": "C12",
+   "claim": "The data center moratorium is the only item that appears on both the state and the federal halves of the list.",
+   "value": "1 of 25 items duplicated",
+   "verbatim": "Notably, only one item appears on both the state and federal sections: a request to temporarily halt development of large commercial data centers in Alaska.",
+   "source_url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+   "source_outlet": "KUAC",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.93,
+   "notes": "The spine of the deck, checked twice. KUAC asserts it, and of the four federal items read out of the primary resolution only the moratorium also appears among the 21 state items."
+  },
+  {
+   "id": "C13",
+   "claim": "Assemblymember Garrett Armstrong proposed adding the moratorium as a state legislative priority at an August 6th work session, and an amendment then replicated it as a federal priority.",
+   "value": "August 6th work session",
+   "verbatim": "Assemblymember Garret Armstrong proposed adding the moratorium as a state legislative priority at an Aug. 6 work session, and a successful amendment replicated it as a federal priority, too.",
+   "source_url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+   "source_outlet": "KUAC",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "SPELLING. KUAC prints Garret with one t. The borough's own roster prints Garrett with two. Use the borough spelling in deck copy and keep KUAC's spelling only inside the quoted string. The August 6th work session is confirmed by the CivicClerk event record, a Committee of the Whole Worksession at 2026-08-06T17:35:00Z, event id 5668."
+  },
+  {
+   "id": "C14",
+   "claim": "Garrett Armstrong holds Assembly seat C and serves as Finance Vice Chair.",
+   "value": "Seat C",
+   "verbatim": "Garrett Armstrong",
+   "source_url": "https://www.fnsb.gov/172/Assemblymembers",
+   "source_outlet": "Fairbanks North Star Borough",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-02",
+   "fetched": true,
+   "confidence": 0.94,
+   "notes": "Primary, and the authority for the two-t spelling. The roster lists him at seat C with the title Finance Vice Chair."
+  },
+  {
+   "id": "C15",
+   "claim": "Scott Crass is the Presiding Officer of the Fairbanks North Star Borough Assembly and holds seat H.",
+   "value": "Seat H, Presiding Officer",
+   "verbatim": "Scott Crass",
+   "source_url": "https://www.fnsb.gov/172/Assemblymembers",
+   "source_outlet": "Fairbanks North Star Borough",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-02",
+   "fetched": true,
+   "confidence": 0.94,
+   "notes": "Primary confirmation of both the title and the spelling. The clerk's action memorandum corroborates the surname."
+  },
+  {
+   "id": "C16",
+   "claim": "The resolution as written extends the requested moratorium only to state-owned and municipal lands, but Presiding Officer Scott Crass said by phone that federal lands were intended too.",
+   "value": "federal lands intended",
+   "verbatim": "The resolution, as written, only extends the requested moratorium to \"state-owned and municipal lands,\" but Assembly Presiding Officer Scott Crass said by phone Sunday that it was intended to include federal lands, as well.",
+   "source_url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+   "source_outlet": "KUAC",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Single-sourced to KUAC, which reached Crass by phone on Sunday, August 30th. Attribute it in the deck as according to KUAC and keep the said by phone framing.",
+   "needs_softening": true
+  },
+  {
+   "id": "C17",
+   "claim": "Armstrong told the Assembly that a moratorium is not a novel idea.",
+   "value": "not a novel idea",
+   "verbatim": "A lot of city councils, county councils, even state legislatures have proposed moratoriums or bans. This is not a novel idea what I'm proposing here",
+   "source_url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+   "source_outlet": "KUAC",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.92,
+   "notes": "Quote truncated at a clean word boundary because the full published sentence continues past an en dash, which house rules bar. Truncating does not change the meaning."
+  },
+  {
+   "id": "C18",
+   "claim": "Sarah Hollister told the Assembly that strict regulations should be established before tech conglomerates come knocking.",
+   "value": "before tech conglomerates come knocking at our door",
+   "verbatim": "We need to establish strict regulations before tech conglomerates come knocking at our door. If we put protections in place now, we set the terms and the rules.",
+   "source_url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+   "source_outlet": "KUAC",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.92,
+   "notes": "Verified verbatim on a second targeted fetch demanding character-for-character reproduction. Hollister is described by Alaska's News Source as a Fairbanks resident."
+  },
+  {
+   "id": "C19",
+   "claim": "Sarah Hollister said the borough needs to work out how to protect the community until there is a statewide moratorium.",
+   "value": "until there is a statewide moratorium",
+   "verbatim": "What the borough needs to do now is figure out how we can protect our community until this becomes, until there is a statewide moratorium. How can we protect the borough from these things?",
+   "source_url": "https://www.alaskasnewssource.com/2026/09/02/fairbanks-borough-weighs-data-center-regulations-seeks-state-moratorium/",
+   "source_outlet": "Alaska's News Source",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-01",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Second independent outlet quoting the same resident. The page's byline reads Published Sep. 1, 2026 at 6:34 PM AKDT even though the URL path contains 09/02, so the date follows the printed byline. Byline Adrian Peterson."
+  },
+  {
+   "id": "C20",
+   "claim": "Mayor Grier Hopkins said the community wants to know how data centers can best be regulated and where if anywhere they should go.",
+   "value": "where, if anywhere, should we put them",
+   "verbatim": "We heard loud and clear from the community...They want to make sure that we're able to figure out how we can regulate them best, what are going to be the long-term impact, and where, if anywhere, should we put them in our community",
+   "source_url": "https://www.alaskasnewssource.com/2026/09/02/fairbanks-borough-weighs-data-center-regulations-seeks-state-moratorium/",
+   "source_outlet": "Alaska's News Source",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-01",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "The ellipsis is the outlet's own, present in the published text. Hopkins is confirmed as mayor by the borough clerk's action memorandum."
+  },
+  {
+   "id": "C21",
+   "claim": "The Fairbanks Daily News-Miner reported the Assembly adopted its 2027 state and federal legislative priorities on Thursday.",
+   "value": "Thursday",
+   "verbatim": "The Fairbanks North Star Borough Assembly adopted an exhaustive list of 2027 state and federal legislative priorities on Thursday",
+   "source_url": "https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-30",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Byline Jack Barnwell. The outlet writes Thursday and never a numeral, which is how the August 29 error entered the scout material. This claim documents the second outlet's agreement, not the date itself."
+  },
+  {
+   "id": "C22",
+   "claim": "The News-Miner described the moratorium as a hold on permitting, leasing or construction of such facilities on state-owned and municipal lands.",
+   "value": "state-owned and municipal lands",
+   "verbatim": "The data center moratorium asks for a hold on permitting, leasing or construction of such facilities on state-owned and municipal lands until the state adopts standards addressing impacts on electricity, water consumption and environmental considerations.",
+   "source_url": "https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-30",
+   "fetched": true,
+   "confidence": 0.88,
+   "notes": "Independent corroboration that the land limitation is real and was noticed by two outlets. Both outlets write and where the resolution writes or. The News-Miner also reports the Committee of the Whole took this up on Aug. 20, which the CivicClerk record supports with a Special Assembly Meeting at 2026-08-20T17:30:00Z."
+  },
+  {
+   "id": "C23",
+   "claim": "The Air Force solicitation for AI data center development on the three Alaska installations carries the number AFCEC-26-R-0006.",
+   "value": "AFCEC-26-R-0006",
+   "verbatim": "AFCEC-26-R-0006",
+   "source_url": "https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695",
+   "source_outlet": "SAM.gov, Department of the Air Force",
+   "source_is_primary": true,
+   "date_of_source": "2026-04-10",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Primary. The sam.gov web page is a JavaScript shell that WebFetch reads as an empty frame, but the underlying JSON API returns the full opportunity record. Air and Space Forces Magazine does NOT print the solicitation number, so it must be cited from here."
+  },
+  {
+   "id": "C24",
+   "claim": "The solicitation is titled RFLP Artificial Intelligence AI Data Center Development at Joint Base Elmendorf Richardson, Eielson Air Force Base, and Clear Space Force Station.",
+   "value": "3 installations",
+   "verbatim": "RFLP Artificial Intelligence (AI) Data Center Development at Joint Base Elmendorf Richardson, Eielson Air Force Base, and Clear Space Force Station",
+   "source_url": "https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695",
+   "source_outlet": "SAM.gov, Department of the Air Force",
+   "source_is_primary": true,
+   "date_of_source": "2026-04-10",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Primary. The government's own title names all three installations, which settles the location question without relying on news coverage."
+  },
+  {
+   "id": "C25",
+   "claim": "The Air Force posted the request for lease proposals on April 10th, set a response deadline of May 29th, and the record was archived on June 13th with no award recorded.",
+   "value": "posted April 10, 2026, response due May 29, 2026, archived June 13, 2026",
+   "verbatim": "postedDate 2026-04-10T18:01:22.623+00:00 . solicitation.deadlines.response 2026-05-29T17:00:00-04:00 . archive.date 2026-06-13",
+   "source_url": "https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695",
+   "source_outlet": "SAM.gov, Department of the Air Force",
+   "source_is_primary": true,
+   "date_of_source": "2026-04-10",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Re-read directly by the showrunner against the sam.gov JSON record, because ledger/docket.json's own history from 2026-07-25 says the deadline was June 29 extended from May 29 and that the record archived July 14. The record as it stands today says none of that. Its response deadline field reads 2026-05-29T17:00:00-04:00, its archive date reads 2026-06-13, its modifiedDate reads 2026-07-15T03:55:46 and its award object is empty. The earlier note appears to have come from a third party mirror. The deck uses the government's own record and prefers the spring framing over a single day wherever one day is not load bearing, and the docket carries a dated correction.",
+   "needs_softening": true
+  },
+  {
+   "id": "C26",
+   "claim": "The Air Force said it would evaluate all proposals received to select one or more offerors as potential lessees with whom to enter lease negotiations.",
+   "value": "one or more Offerors",
+   "verbatim": "the Government will evaluate all proposals received to select one or more Offerors as potential lessee(s) with whom to enter into lease negotiations",
+   "source_url": "https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695",
+   "source_outlet": "SAM.gov, Department of the Air Force",
+   "source_is_primary": true,
+   "date_of_source": "2026-04-10",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Primary. Shows no award has been announced, only an intent to negotiate. The deck must not say a lease has been signed."
+  },
+  {
+   "id": "C27",
+   "claim": "The solicitation lets a bidder propose a project at one installation rather than all three.",
+   "value": "one or more installations",
+   "verbatim": "Offerors are not required to submit development proposals for all Installations but instead can choose to submit proposals for Installations in which the Offeror feels a Project is commercially viable",
+   "source_url": "https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695",
+   "source_outlet": "SAM.gov, Department of the Air Force",
+   "source_is_primary": true,
+   "date_of_source": "2026-04-10",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Primary. Relevant to the borough's exposure, because a bidder could pick Eielson alone."
+  },
+  {
+   "id": "C28",
+   "claim": "The Air Force offered roughly 4,700 acres across Air Force and Space Force installations in Alaska for AI data center development.",
+   "value": "4,700 acres",
+   "verbatim": "4,700 acres located across Air Force and Space Force installations in Alaska",
+   "source_url": "https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/",
+   "source_outlet": "Air and Space Forces Magazine",
+   "source_is_primary": false,
+   "date_of_source": "2026-04-11",
+   "fetched": true,
+   "confidence": 0.87,
+   "notes": "Byline Matthew Cox. Single-sourced for the acreage. The sam.gov record refers acreage to Appendix A-1 through A-3, attachments the API response does not include. Attribute the figure or write roughly 4,700 acres.",
+   "needs_softening": true
+  },
+  {
+   "id": "C29",
+   "claim": "Twelve parcels were identified for potential data center development across the three Alaska installations.",
+   "value": "12 parcels",
+   "verbatim": "Twelve parcels have been identified for potential development",
+   "source_url": "https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/",
+   "source_outlet": "Air and Space Forces Magazine",
+   "source_is_primary": false,
+   "date_of_source": "2026-04-11",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "Single-sourced, same caveat as C28. The parcel count is not in the sam.gov description text retrieved.",
+   "needs_softening": true
+  },
+  {
+   "id": "C30",
+   "claim": "The Air Force held an industry day on April 23rd and offered site visits at Elmendorf Richardson, Clear and Eielson on April 28th to April 30th.",
+   "value": "April 28 to April 30",
+   "verbatim": "interested companies may participate in site visits at Elmendorf Richardson on April 28, Clear on April 29, and Eielson on April 30",
+   "source_url": "https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/",
+   "source_outlet": "Air and Space Forces Magazine",
+   "source_is_primary": false,
+   "date_of_source": "2026-04-11",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "The industry day date is separately quoted on the same page. Useful for a timeline showing the federal process ran in spring while the borough acted in late August."
+  },
+  {
+   "id": "C31",
+   "claim": "KUAC reported the moratorium request follows a federal request for proposals to lease land at Eielson Air Force Base, Clear Space Force Station and Joint Base Elmendorf-Richardson for data center development.",
+   "value": "3 installations",
+   "verbatim": "The federal government this year released a request for proposals to lease land at Eielson Air Force Base, Clear Space Force Station and Joint Base Elmendorf-Richardson for data center development.",
+   "source_url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+   "source_outlet": "KUAC",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "The link between the borough action and the Air Force solicitation. The resolution text itself contains no whereas clause about data centers and never names the Air Force, so the deck may say the moratorium follows the solicitation and must not say the resolution cites it.",
+   "needs_softening": true
+  },
+  {
+   "id": "C32",
+   "claim": "KUAC reported early-stage plans for data centers on state land on the North Slope and near Houston in the Mat-Su Borough.",
+   "value": "2 additional state land sites",
+   "verbatim": "There are also early-stage plans for constructing data centers on state land on the North Slope and near Houston, in the Mat-Su Borough.",
+   "source_url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+   "source_outlet": "KUAC",
+   "source_is_primary": false,
+   "date_of_source": "2026-08-31",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "Single-sourced and explicitly early-stage. Explains why the resolution reaches state-owned lands and not only federal ones.",
+   "needs_softening": true
+  },
+  {
+   "id": "C33",
+   "claim": "The Fairbanks North Star Borough had an estimated population of 97,083 in 2025.",
+   "value": "97,083 people",
+   "verbatim": "Fairbanks North Star Borough | 97,083",
+   "source_url": "https://live.laborstats.alaska.gov/pop/index.cfm",
+   "source_outlet": "Alaska Department of Labor and Workforce Development, Research and Analysis",
+   "source_is_primary": true,
+   "date_of_source": "2026-07-01",
+   "fetched": true,
+   "confidence": 0.88,
+   "notes": "Background scale claim, primary state agency estimate. The column is labelled 2025 and the estimates were last updated 07/01/2026. Write it as an estimate, not a count."
+  },
+  {
+   "id": "C34",
+   "claim": "Eielson Air Force Base sits about 26 miles southeast of Fairbanks and lies within the Fairbanks North Star Borough.",
+   "value": "26 miles southeast of Fairbanks",
+   "verbatim": "It is located within Fairbanks North Star Borough, Alaska",
+   "source_url": "https://en.wikipedia.org/wiki/Eielson_Air_Force_Base",
+   "source_outlet": "Wikipedia",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-02",
+   "fetched": true,
+   "confidence": 0.72,
+   "notes": "Tertiary source and the weakest sourcing in this file. The Air Force fact sheet URL redirects to an unrelated article and the wing fact sheet carries no distance figure. Prefer wording that does not lean on the exact mileage.",
+   "needs_softening": true
+  },
+  {
+   "id": "C35",
+   "claim": "Clear Space Force Station lies within the city limits of Anderson, which is in the Denali Borough and not the Fairbanks North Star Borough.",
+   "value": "Denali Borough",
+   "verbatim": "Anderson is a city in the Denali Borough, Alaska, United States, and the borough's only incorporated community.",
+   "source_url": "https://en.wikipedia.org/wiki/Anderson,_Alaska",
+   "source_outlet": "Wikipedia",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-02",
+   "fetched": true,
+   "confidence": 0.75,
+   "notes": "IMPORTANT NEGATIVE FINDING. Of the three installations in the solicitation, only Eielson is inside the Fairbanks North Star Borough. Tertiary sourcing, so hedge, but the deck must NOT say the borough's moratorium covers all three sites or that Clear is in the Fairbanks North Star Borough.",
+   "needs_softening": true
+  }
+ ],
+ "stories_surviving": [
+  "Fairbanks North Star Borough Assembly adopts Resolution 2026-25 on August 27th and makes a commercial data center moratorium the only item on both its state and federal 2027 legislative priority lists",
+  "The Air Force solicitation AFCEC-26-R-0006 offered land at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station for AI data center development, with proposals due May 29th, months before the borough acted",
+  "The adopted resolution reaches only state-owned or municipal lands while the Assembly's presiding officer says federal land was intended"
+ ],
+ "killed": [
+  {
+   "claim": "The Assembly adopted the 2027 legislative priorities on Thursday, August 29th.",
+   "why": "Internally impossible and contradicted by primary records. August 29, 2026 is a Saturday. The clerk's action memorandum is subject-lined ACTION OF THE REGULAR ASSEMBLY MEETING OF AUGUST 27, 2026, the borough calendar prints August 27, 2026, and the CivicClerk event record gives 2026-08-27T18:00:00Z."
+  },
+  {
+   "claim": "This is the second consecutive year the borough has requested a data center moratorium.",
+   "why": "Could not be proved and was actively tested. The adopted resolution carries no NEW or CONTINUED label and no reference to a prior year resolution. The prior priorities resolution was 2025-19 and its text could not be retrieved. The Air Force solicitation KUAC identifies as the trigger was not posted until April 10, 2026, which makes a 2025 request less likely rather than more. The deck may not say second year."
+  },
+  {
+   "claim": "The solicitation sets a minimum capital investment per project.",
+   "why": "No dollar figure appears anywhere readable. The sam.gov record contains no minimum investment and the magazine does not mention one."
+  },
+  {
+   "claim": "The solicitation sets a minimum electrical load or megawatt requirement per project.",
+   "why": "No megawatt figure in the sam.gov record and none in the magazine article. There is no verified number anywhere in this file for what these data centers would draw, so no slide may state or imply a load."
+  },
+  {
+   "claim": "The land leases run up to 50 years.",
+   "why": "The only support was a four word fragment stitched into a summarizing sentence rather than reproduced as a published sentence. The sam.gov record states no lease term."
+  },
+  {
+   "claim": "An Air Force official said making this land available supports the growing demands of the AI industry.",
+   "why": "The quotation appears on the magazine page but the speaker could not be established. A quote with no attributable speaker can't go on a slide."
+  },
+  {
+   "claim": "Clear Space Force Station is in the Fairbanks North Star Borough.",
+   "why": "False on the evidence read. Clear sits within the city limits of Anderson, in the Denali Borough, about 81 miles southwest of Fairbanks. Only Eielson of the three installations is inside the Fairbanks North Star Borough."
+  },
+  {
+   "claim": "Sarah Hollister is a Salcha resident whose family home is near Eielson.",
+   "why": "The Salcha and family home details came from a first pass that paraphrased the page. On a second fetch demanding character-for-character reproduction, those words did not appear. Alaska's News Source identifies her as a Fairbanks resident."
+  },
+  {
+   "claim": "The resolution cites the Air Force request for lease proposals.",
+   "why": "The primary document contains no whereas clauses about data centers and never names the Air Force. KUAC presents the solicitation as context that the request follows, which is the outlet's framing and not the resolution's text. The deck may say follows, never cites."
+  },
+  {
+   "claim": "The resolution limits the moratorium to state-owned and municipal lands.",
+   "why": "Killed as a quoted string, kept as a paraphrase in C06. Both outlets print and, but the resolution's own text reads state-owned OR municipal lands. Nothing inside quotation marks attributed to the resolution may use and."
+  },
+  {
+   "claim": "Air and Space Forces Magazine reported the solicitation number AFCEC-26-R-0006.",
+   "why": "Misattribution. The magazine prints no solicitation number, only a link to the sam.gov opportunity. The number is verified in C23 against the sam.gov record itself."
+  },
+  {
+   "claim": "The News-Miner reported the priorities list contains 25 items.",
+   "why": "The News-Miner prints no total. The 25 figure comes from KUAC and is confirmed by counting the primary resolution."
+  },
+  {
+   "claim": "Golden Valley Electric Association load or member figures give scale to the Interior grid.",
+   "why": "gvea.com returned HTTP 403 and no figure could be read. No slide may state the Interior's generating capacity or peak load."
+  },
+  {
+   "claim": "Eielson Air Force Base acreage or current personnel strength.",
+   "why": "No usable figure. The Eielson fact sheet URL redirects to an unrelated article and the only acreage available is a 1944 historical figure that would badly mislead."
+  }
+ ]
+}

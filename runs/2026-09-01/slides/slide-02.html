@@ -1,0 +1,336 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Archivo";font-variation-settings:"wdth" 78,"wght" 750;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:1.02}
+.bd{position:absolute;margin:0;font-family:"Fraunces";font-variation-settings:"opsz" 14,"wght" 420;
+    font-size:34px;line-height:1.38;letter-spacing:.005em;color:#D7E2E8}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.80;
+    font-variant-numeric:tabular-nums lining-nums}
+.sm{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.55;
+    font-variant-numeric:tabular-nums lining-nums}
+.br{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:700;font-size:26px;
+    letter-spacing:.12em;text-transform:uppercase;color:#6EA5FF;
+    font-variant-numeric:tabular-nums lining-nums}
+</style></head><body data-contacts='[{"what": "the gold marker in the block of 21 standing on the lit ground", "shadow": [[456, 898, 12, 8]], "ground": [[500, 898, 20, 8]]}, {"what": "the gold marker in the block of 4 standing on the lit ground", "shadow": [[860, 898, 12, 8]], "ground": [[812, 898, 20, 8]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" style="left:80px;top:96px;width:660px">THE 2027 LEGISLATIVE PRIORITIES</div>
+<div class="mn" style="left:840px;top:96px;text-align:right;width:160px" data-decorative>02 / 09</div>
+<div class="br" id="bl1" style="left:96px;top:352px;width:654px;text-align:center">21 STATE</div>
+<div class="br" id="bl2" style="left:814px;top:352px;width:190px;text-align:center">4 FEDERAL</div>
+<div class="mn" id="il" style="left:250px;top:462px;width:330px;line-height:1.34;opacity:1;color:#6EA5FF">MORATORIUM ON DATA CENTER DEVELOPMENT IN ALASKA</div>
+<h2 class="hd" id="h2" style="left:80px;top:902px;width:900px;font-size:94px">The same line went<br>to two governments.</h2>
+<p class="bd" id="b2" style="left:80px;top:1100px;width:900px;font-size:30px">Twenty five items, 21 state and 4 federal. Only one heading appears under both, word for word. The Committee of the Whole sponsored it and Garrett Armstrong moved it in on August 6th.</p>
+<div class="sm" style="left:80px;top:1266px;opacity:.88" data-decorative>A BOROUGH OF ABOUT 97,083 PEOPLE, 2025 STATE ESTIMATE</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var F=2208, CXP=540, HZ=470, CAMH=0.72;
+function GY(Z){ return HZ + F*(CAMH/Z); }
+function TY(Z,h){ return HZ + F*((CAMH-h)/Z); }
+function SX(X,Z){ return CXP + F*(X/Z); }
+function WX(x,Z){ return (x-CXP)*Z/F; }
+var ZR=3.70, MH=0.45, ROD=0.014;
+var STATE=[], FED=[];
+/* THE CAMERA DID NOT MOVE, so the row must not either. Slide 01 opened the gap
+   after the doubled station by stepping stations 14 through 21 and the whole
+   federal block right by 24 px. This slide is declared as the same stance and
+   the same second, so it carries the identical offset; without it twelve
+   markers slide 24 px sideways on the deck's first swipe, under a camera the
+   header says is unchanged, which is the point. */
+var SHIFT=24;
+for (var i=0;i<21;i++) STATE.push(96+31.5*i + (i>=13?SHIFT:0));
+for (var j=0;j<4;j++)  FED.push(822+31.5*j + SHIFT);
+var SUNX=0.06769, SUNY=0.24192, SUNZ=0.96793, TSH=MH/SUNY;
+function shadowTip(X,Z){ var z2=Z-SUNZ*TSH; return [SX(X-SUNX*TSH,z2), GY(z2)]; }
+var V='#050A12', LID='#0E1A28', FAR='#20313A', LIT='#33402F', NEAR='#0D1418',
+    SPC='#D7E2E8', GOLD='#FFC72C', FMN='#6EA5FF';
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260901);
+var GRADE={w:1080,h:1350,exposure:-0.08,saturation:1.02,contrast:1.06,filmic:true,
+  lift:[0.006,0.010,0.018],gain:[1.012,1.0,0.984],vignette:0.16,
+  bloom:{threshold:0.78,strength:0.10,radius:12},
+  grain:{amount:0.050,size:2,seed:20260902},aberration:0,dither:true,sharpen:0.30};
+</script>
+<script type="module">
+/* ================= SLIDE 02, THE DOUBLED LINE =================
+   Same stance as the cover, deliberately, so the reader recognises the place
+   in the first quarter second and reads the CHANGE rather than a new picture.
+   The pair has separated. One stands in the block of 21 and one in the block
+   of 4, and a gold arc joins the two cap centres. The 96 px separator between
+   the blocks now produces a visible break in the shadow field, which is the
+   split made large enough to see without counting.
+   ============================================================= */
+const A='@@ASSETS@@';
+const GOLD_STATE_X = 474;          // state station 12
+const GOLD_FED_X   = 877.5;        // federal station 1
+
+function sky(){
+  var g=CX.createLinearGradient(0,0,0,HZ+40);
+  g.addColorStop(0,V); g.addColorStop(.62,'#0a1421'); g.addColorStop(1,LID);
+  CX.fillStyle=g; CX.fillRect(0,0,1080,HZ+40);
+  for(var c=0;c<6;c++){
+    var r=AK.rng(66120+c), y=120+c*58+r()*22, hh=18+20*r(), a=0.028+0.030*r();
+    var cg=CX.createLinearGradient(0,y,0,y+hh);
+    cg.addColorStop(0,'rgba(126,151,174,0)');
+    cg.addColorStop(.5,'rgba(126,151,174,'+a.toFixed(3)+')');
+    cg.addColorStop(1,'rgba(126,151,174,0)');
+    CX.fillStyle=cg; CX.fillRect(-40,y,1160,hh);
+  }
+}
+/* laid AFTER the ground, or the ground fill slices the frame's brightest region
+   off flat at y 470. Slide 01 carries this fix and this one did not, which is
+   how one round 1 repair reached one of two identical slides. */
+function bloom(){
+  CX.save(); CX.globalCompositeOperation='screen';
+  CX.translate(1012,452); CX.scale(1.0,0.62);
+  var b=CX.createRadialGradient(0,0,6,0,0,190);
+  b.addColorStop(0,'rgba(240,192,137,0.28)'); b.addColorStop(.45,'rgba(224,165,102,0.10)');
+  b.addColorStop(1,'rgba(224,165,102,0)');
+  CX.fillStyle=b; CX.beginPath(); CX.arc(0,0,190,0,6.2832); CX.fill(); CX.restore();
+}
+function skyDither(){
+  var d=CX.getImageData(0,0,2160,950), a=d.data;
+  for(var y=0;y<950;y++){
+    for(var x=0;x<2160;x++){
+      var n=((x*0.06711056+y*0.00583715)%1)*52.9829189;
+      var v=((n-Math.floor(n))-0.5)*3.0;
+      var i=(y*2160+x)*4;
+      a[i]+=v; a[i+1]+=v; a[i+2]+=v;
+    }
+  }
+  CX.putImageData(d,0,0);
+}
+function treeline(){
+  for(var k=0;k<52;k++){
+    var r=AK.rng(20441+k), x=-30+r()*1160, h=22+30*r(), w=5+5*r();
+    CX.fillStyle='rgba(28,42,44,'+(0.32+0.28*r()).toFixed(3)+')';
+    CX.beginPath(); CX.moveTo(x,HZ+2); CX.lineTo(x+w*0.5,HZ+2-h); CX.lineTo(x+w,HZ+2);
+    CX.closePath(); CX.fill();
+  }
+}
+function ground(){
+  var g=CX.createLinearGradient(0,HZ,0,1350);
+  g.addColorStop(0,'#16232e'); g.addColorStop(.10,'#1d2b30');
+  g.addColorStop(.34,'#2a3630'); g.addColorStop(.58,'#232e2a'); g.addColorStop(1,NEAR);
+  CX.fillStyle=g; CX.fillRect(0,HZ,1080,1350-HZ);
+  var f=CX.createLinearGradient(0,HZ-14,0,HZ+210);
+  f.addColorStop(0,'rgba(14,26,40,0.98)'); f.addColorStop(1,'rgba(14,26,40,0)');
+  CX.fillStyle=f; CX.fillRect(0,HZ-14,1080,224);
+}
+/* the separator is bare ground, so it is drawn as bare ground, with the tussock
+   population deliberately thinned inside it. The gap is a fact about the list. */
+function tussock(){
+  for(var k=0;k<70;k++){
+    var r=AK.rng(70115+k), t=r();
+    var Z=1.6+(ZR+2.4-1.6)*Math.pow(t,0.44);
+    var X=(r()*2-1)*(0.95*Z/ZR+0.5);
+    var x=SX(X,Z), y=GY(Z);
+    if(x<-70||x>1150) continue;
+    /* One isolated lozenge in an otherwise empty near black field does not read
+       as terrain, it reads as a smudge on the print. The run stops at y 1120 and
+       the band below it is given a real value ramp instead. */
+    if(y>980) continue;
+    var w=F*(0.075+0.11*r())/Z, h=w*(0.16+0.11*r());
+    var lit=Math.max(0,Math.min(1,(Z-1.4)/3.4));
+    CX.save(); CX.translate(x,y); CX.scale(1,0.42);
+    var cg=CX.createRadialGradient(0,0,1,0,0,w*0.72);
+    cg.addColorStop(0,'rgba(6,12,20,'+(0.19*lit+0.07).toFixed(3)+')');
+    cg.addColorStop(1,'rgba(6,12,20,0)');
+    CX.fillStyle=cg; CX.beginPath(); CX.arc(0,0,w*0.72,0,6.2832); CX.fill(); CX.restore();
+    var cap=CX.createLinearGradient(x,y-h,x,y);
+    cap.addColorStop(0,AKC.mixOklab('#2a3630','#5d6552',0.16+0.22*lit));
+    cap.addColorStop(1,AKC.mixOklab('#2a3630','#141c20',0.42));
+    CX.fillStyle=cap;
+    CX.beginPath(); CX.ellipse(x,y-h*0.42,w*0.5,h*0.62,0,0,6.2832); CX.fill();
+  }
+}
+function shadowField(){
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  function cast(x,gold){
+    var X=WX(x,ZR), tip=shadowTip(X,ZR);
+    var wb=F*ROD/ZR, wt=F*ROD/(ZR-SUNZ*TSH);
+    var g=o.createLinearGradient(x,GY(ZR),tip[0],tip[1]);
+    var a0=gold?0.96:0.90, a1=gold?0.70:0.60;
+    g.addColorStop(0,'rgba(5,10,18,'+a0+')');
+    g.addColorStop(.42,'rgba(5,10,18,'+a1+')');
+    g.addColorStop(1,'rgba(5,10,18,0)');
+    o.fillStyle=g; o.beginPath();
+    o.moveTo(x-wb/2,GY(ZR)); o.lineTo(x+wb/2,GY(ZR));
+    o.lineTo(tip[0]+wt/2,tip[1]); o.lineTo(tip[0]-wt/2,tip[1]);
+    o.closePath(); o.fill();
+  }
+  STATE.forEach(function(x){ cast(x, x===GOLD_STATE_X); });
+  FED.forEach(function(x){ cast(x, x===GOLD_FED_X); });
+  [[898,930,0],[930,986,8],[986,1046,16],[1046,1350,24]].forEach(function(b){
+    CX.save(); CX.beginPath(); CX.rect(0,b[0],1080,b[1]-b[0]); CX.clip();
+    CX.filter=b[2]?('blur('+b[2]+'px)'):'none';
+    CX.drawImage(off,0,0,2160,2700,0,0,1080,1350); CX.restore();
+  });
+  CX.filter='none';
+}
+function litPools(){
+  [[GOLD_STATE_X,900,84],[GOLD_FED_X,900,84]].forEach(function(p){
+    CX.save(); CX.translate(p[0],p[1]); CX.scale(1,0.30);
+    var g=CX.createRadialGradient(0,0,3,0,0,p[2]);
+    g.addColorStop(0,'rgba(140,164,116,0.42)'); g.addColorStop(.42,'rgba(100,124,88,0.22)');
+    g.addColorStop(1,'rgba(70,92,72,0)');
+    CX.fillStyle=g; CX.beginPath(); CX.arc(0,0,p[2],0,6.2832); CX.fill(); CX.restore();
+  });
+}
+function contacts(){
+  [[GOLD_STATE_X,901,26],[GOLD_FED_X,901,26]].forEach(function(p){
+    CX.save(); CX.translate(p[0],p[1]); CX.scale(1,0.34);
+    var g=CX.createRadialGradient(0,0,1,0,0,p[2]);
+    g.addColorStop(0,'rgba(4,8,14,0.96)'); g.addColorStop(.45,'rgba(4,8,14,0.78)');
+    g.addColorStop(.75,'rgba(4,8,14,0.32)'); g.addColorStop(1,'rgba(4,8,14,0)');
+    CX.fillStyle=g; CX.beginPath(); CX.arc(0,0,p[2],0,6.2832); CX.fill(); CX.restore();
+  });
+}
+async function glRow(){
+  const THREE=await import(A+'/js/three.module.min.js');
+  const {init}=await import(A+'/js/akthree.js');
+  const AKT=init(THREE);
+  if(!AKT.webglOK()) return null;
+  const gl=document.createElement('canvas'); gl.width=2160; gl.height=2700;
+  const R=AKT.setup(gl,{w:1080,h:1350,fov:34,exposure:1.15});
+  R.renderer.setClearAlpha(0);
+  AKT.environment(R,{intensity:0.55});
+  AKT.rig(R,{ key:{color:0xF0C089,i:4.2,pos:[SUNX*18,SUNY*18,-SUNZ*18],radius:6,shadowSize:4},
+              rim:{color:0xA9BECB,i:0.75,pos:[-4,3,6]},
+              fill:{color:0x3B4A5E,i:0.55,pos:[-2,4,7]},
+              ambient:{color:0x2A3038,i:1.2} });
+  AKT.frame(R,{fov:34,from:[0,CAMH,0],look:[0,CAMH-ZR*Math.tan(5.3*Math.PI/180),-ZR]});
+  const steel=AKT.mat.steel({roughness:0.34,metalness:0.62,color:0xBCC6CC});
+  const gold=new THREE.MeshStandardMaterial({color:0xFFC72C,metalness:0.30,roughness:0.42,
+                                             emissive:0xFFC72C,emissiveIntensity:0.55});
+  const grp=new THREE.Group();
+  function marker(X,isGold){
+    const g=new THREE.Group();
+    const rod=new THREE.Mesh(new THREE.CylinderGeometry(ROD/2,ROD/2,MH,10),steel);
+    rod.position.set(X,MH/2,-ZR); g.add(rod);
+    const tw=0.033, th=0.037;
+    const tag=new THREE.Mesh(new THREE.BoxGeometry(tw,th,0.004), isGold?gold:steel);
+    tag.position.set(X,MH-th/2+0.003,-ZR+0.010); g.add(tag);
+    return g;
+  }
+  STATE.forEach(function(x){ grp.add(marker(WX(x,ZR), x===GOLD_STATE_X)); });
+  FED.forEach(function(x){ grp.add(marker(WX(x,ZR), x===GOLD_FED_X)); });
+  AKT.add(R,grp,{cast:false,receive:false});
+  AKT.objectHero(R,grp,{toward:[SUNX,SUNY,-SUNZ],keyColor:'#F0C089',intensity:1.45});
+  R.renderer.render(R.scene,R.camera);
+  const snap=await AKT.snapshot(R,{litFloor:0.06,litMin:120});
+  if(!snap||!snap.ok) return null;
+  return gl;
+}
+function canvasRow(){
+  function marker(x,isGold){
+    var top=TY(ZR,MH), base=GY(ZR), w=F*ROD/ZR;
+    var g=CX.createLinearGradient(x-w/2,0,x+w/2,0);
+    g.addColorStop(0,'rgba(32,49,58,0.95)');
+    g.addColorStop(.62,AKC.mixOklab(FAR,'#BCC6CC',0.42));
+    g.addColorStop(1,SPC);
+    CX.fillStyle=g; CX.fillRect(x-w/2,top,w,base-top);
+    var tw=F*0.033/ZR, th=F*0.037/ZR;
+    CX.fillStyle=isGold?GOLD:AKC.mixOklab(FAR,'#BCC6CC',0.55);
+    CX.fillRect(x-tw/2,top,tw,th);
+  }
+  STATE.forEach(function(x){ marker(x, x===GOLD_STATE_X); });
+  FED.forEach(function(x){ marker(x, x===GOLD_FED_X); });
+}
+
+/* ---- the two dimension brackets. Drafting ink, so they mark a claim. ---- */
+function brackets(){
+  function bracket(x0,x1,y){
+    CX.strokeStyle=FMN; CX.lineWidth=1.6; CX.lineCap='butt';
+    CX.beginPath(); CX.moveTo(x0,y); CX.lineTo(x1,y); CX.stroke();
+    CX.lineWidth=1.6;
+    [x0,x1].forEach(function(x){
+      CX.beginPath(); CX.moveTo(x,y-9); CX.lineTo(x,y+9); CX.stroke();
+    });
+    CX.strokeStyle='rgba(110,165,255,0.42)'; CX.lineWidth=1.0;
+    [x0,x1].forEach(function(x){
+      CX.beginPath(); CX.moveTo(x,y+11); CX.lineTo(x,TY(ZR,MH)-6); CX.stroke();
+    });
+  }
+  bracket(96,750,396);
+  bracket(846,940.5,396);
+}
+/* ---- the gold arc, from one cap centre to the other ---- */
+function arc(){
+  var a=[GOLD_STATE_X, TY(ZR,MH)+8], b=[GOLD_FED_X, TY(ZR,MH)+8];
+  var mx=(a[0]+b[0])/2, my=530;
+  CX.strokeStyle='rgba(5,10,18,0.8)'; CX.lineWidth=4.0;
+  CX.beginPath(); CX.moveTo(a[0],a[1]); CX.quadraticCurveTo(mx,my,b[0],b[1]); CX.stroke();
+  CX.strokeStyle=GOLD; CX.lineWidth=2.2;
+  CX.beginPath(); CX.moveTo(a[0],a[1]); CX.quadraticCurveTo(mx,my,b[0],b[1]); CX.stroke();
+  CX.fillStyle=GOLD;
+  [a,b].forEach(function(p){ CX.beginPath(); CX.arc(p[0],p[1],3.0,0,6.2832); CX.fill(); });
+  var apex=[mx*0.5+ (a[0]+b[0])*0.25, (a[1]+my)/2];
+  apex=[0.25*a[0]+0.5*mx+0.25*b[0], 0.25*a[1]+0.5*my+0.25*b[1]];
+  CX.strokeStyle=FMN; CX.lineWidth=1.25;
+  /* THE LABEL MOVED, and so did this. Set at (612,500) it guaranteed its own
+     collision: the 21 bracket's right extension line stands at x 726 from y 395
+     to y 625 and ran straight through ON DATA and DEVELOPMENT, and the leader
+     itself crossed CENTER and ALASKA. The empty left sky was the only genuinely
+     dead region in the frame, so the label is there now and the leader reads
+     left to right into the arc, clear of every extension line. */
+  CX.beginPath(); CX.moveTo(apex[0],apex[1]); CX.lineTo(628,542);
+  CX.lineTo(588,500); CX.stroke();
+  CX.fillStyle=FMN; CX.beginPath(); CX.arc(apex[0],apex[1],2.2,0,6.2832); CX.fill();
+  window.__akLeaders=[{target:"the apex of the arc joining the two gold caps",
+    at:apex, to:apex, from:[588,500], label:"MORATORIUM ON DATA CENTER DEVELOPMENT IN ALASKA"}];
+}
+
+window.renderReady=(async function(){
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h2'),{min:62,max:92,maxLines:2});
+
+  sky(); treeline(); ground(); bloom(); skyDither(); tussock();
+  litPools(); shadowField(); contacts();
+  /* the deep reserve, given the ramp the dossier promised it. It measured as
+     near uniform #0C1214 with no fog, no ramp and no grain, which is the one
+     place either of the first two frames went flat. */
+  (function(){
+    var rg=CX.createLinearGradient(0,1130,0,1350);
+    rg.addColorStop(0,'rgba(32,49,58,0.16)'); rg.addColorStop(1,'rgba(13,20,24,0.10)');
+    CX.fillStyle=rg; CX.fillRect(0,1130,1080,220);
+    CX.save(); CX.translate(430,1256); CX.scale(1,0.13);
+    var fg=CX.createRadialGradient(0,0,4,0,0,420);
+    fg.addColorStop(0,'rgba(122,150,178,0.075)'); fg.addColorStop(1,'rgba(122,150,178,0)');
+    CX.fillStyle=fg; CX.beginPath(); CX.arc(0,0,420,0,6.2832); CX.fill(); CX.restore();
+  })();
+
+  var gl=null;
+  try{ gl=await glRow(); }catch(e){ gl=null; }
+  if(gl){ CX.drawImage(gl,0,0,2160,2700,0,0,1080,1350); } else { canvasRow(); }
+
+  brackets(); arc();
+
+  var pts=[];
+  STATE.forEach(function(x){ pts.push([x,GY(ZR)-6]); });
+  FED.forEach(function(x){ pts.push([x,GY(ZR)-6]); });
+  window.__akAssert=[{what:"21 state stations and 4 federal stations, 25 in all",
+                      expect:25, points:pts, unit:"marks"},
+                     {what:"the 21 bracket reaches the first state station to the last",
+                      expect:654, actual:750-96, tol:1, unit:"px"},
+                     {what:"the 4 bracket spans exactly 3 station pitches",
+                      expect:94.5, actual:940.5-846, tol:1, unit:"px"}];
+  window.__akMotifs=[{what:"the two gold tags, one in each block",
+                      rect:[458,616,50,44]},
+                     {what:"the second gold tag, in the block of four",
+                      rect:[838,616,50,44]}];
+
+  AKPOST.grade(CX,GRADE);
+})();
+</script></body></html>
