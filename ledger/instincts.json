@@ -1166,6 +1166,27 @@
       "confidence": 0.85,
       "born": "2026-09-01",
       "evidence": "run 2026-09-01, carousel No.47, two pixel-critic rounds and two flow-critic rounds"
+    },
+    {
+      "id": "a-correction-can-create-a-contradiction-elsewhere",
+      "instinct": "AFTER CHANGING ONE DATE IN A RECORD, READ THE WHOLE TIMELINE BACK. Run No.47 corrected the Air Force response deadline from June 29 to May 29 and left a sibling milestone reading 'Request for lease proposals released' on June 5, so the published docket said proposals were due a week before the request for them existed. A review bot found it, not a gate. A correction is an edit to a SET of dates, and the set has to stay orderable.",
+      "confidence": 0.92,
+      "born": "2026-09-02",
+      "evidence": "review-bot findings on PR #337, resolved in #339"
+    },
+    {
+      "id": "internal-consistency-beats-adjudicating-sources",
+      "instinct": "WHEN TWO RUNS DISAGREE ON A DATE, LOOK FOR A SECOND FIELD IN THE SAME RECORD THAT SETTLES IT. Run No.47's docket said the Air Force deadline was June 29 after an extension from May 29; this run's read of the SAM.gov API said May 29. What settled it was not deciding which source was better, it was the archive date in the same record, June 13: a solicitation can't archive two weeks before it stops taking responses. Prefer an internal impossibility over a judgement about authority.",
+      "confidence": 0.9,
+      "born": "2026-09-02",
+      "evidence": "review-bot findings on PR #337, resolved in #339"
+    },
+    {
+      "id": "the-site-is-built-at-the-run-date-not-today",
+      "instinct": "docket_build.resolve() FLIPS AN ITEM CLOSED THE MORNING ITS WINDOW SHUTS, BUT ONLY IF THE SITE IS BUILT AT TODAY'S DATE. site_build takes --date and the routine passes the RUN date. Run No.47 woke at 23:13 on September 1st and published on September 2nd, so an Anchorage hearing held on the 1st still showed OPEN TO YOU. The ledger and the resolver were both right. This is an upgrade candidate, and never a reason to hand-edit an item to fight the resolver.",
+      "confidence": 0.88,
+      "born": "2026-09-02",
+      "evidence": "review-bot findings on PR #337, resolved in #339"
     }
   ]
 }

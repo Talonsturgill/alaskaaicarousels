@@ -5590,3 +5590,37 @@ post on dwell time plus the 2026-08-08 feed-ranking post, both already cited
 there. The 2026-08-21 hole is also still a hole: no source read on 2026-09-01
 reports per-slide alt text for documents, a slide-count effect measured rather
 than asserted, or any change in how a document is rendered in the feed.
+
+## 2026-09-02, after No.47 merged: what a review bot caught that no gate did
+
+Three findings landed on the run's PR after it merged. One was already fixed,
+one was a real defect the run itself created, and one was not a defect at all.
+The useful part is that none of the three was reachable by any gate this repo
+has.
+
+**The run's own correction created a contradiction.** Correcting the Air Force
+response deadline from June 29th back to May 29th left a sibling milestone
+saying the request for lease proposals was released on June 5th, so the public
+docket showed developers' proposals due a week before the request for them
+existed. docket_dates_check validates each date's role and each item's stamp; it
+does not ask whether an item's dates can be put in an order that makes sense.
+AFTER CHANGING ONE DATE IN A RECORD, READ THE WHOLE TIMELINE BACK.
+
+**Two runs disagreed about a date and a third field settled it.** The item's own
+July 25th note said the deadline was June 29th after an extension from May 29th,
+which would have made this run's correction the error and the shipped deck
+wrong. What resolved it was not deciding which source was more authoritative. It
+was the archive date sitting in the same SAM.gov record, June 13th: a
+solicitation can't archive two weeks before it stops taking responses. When
+sources conflict, look for an internal impossibility before you weigh
+provenance.
+
+**And one finding that was not a defect.** The Anchorage RTCC item still showed
+OPEN TO YOU on the published page after its September 1st hearing.
+docket_build.resolve() already flips an item to closed and pending-decision the
+moment its action deadline is in the past, and it is documented to do exactly
+that. The page was a day behind because site_build takes --date and the routine
+passes the RUN date, and this run woke at 23:13 on September 1st and published
+on September 2nd. Hand-editing the ledger would have fought a correct resolver.
+The real fix is which date site_build is given, which is an upgrade and not a
+data edit.
