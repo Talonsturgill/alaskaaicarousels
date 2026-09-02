@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "ua-ai-engaged-draft",
+      "date": "2026-09-02",
+      "title": "The Diploma Still Has to Be Earned",
+      "caption": "A University of Alaska draft says AI may assist, but a UA credential should still certify competence a student earned. The proposal would keep curriculum judgment on campus and require documented evaluation and meaningful human oversight for consequential AI uses.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-02-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-02-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-02-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-02-poster_thumb.jpg"
+    },
+    {
       "id": "2026-09-01-ceiling-in-the-measurement",
       "date": "2026-09-01",
       "title": "The Ceiling Was in the Measurement",
