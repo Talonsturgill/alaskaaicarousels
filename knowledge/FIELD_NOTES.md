@@ -5439,3 +5439,33 @@ is a diagnostic, not a threshold. If a future run wants it, print both figures
 and gate on the existing one. The finding under all of it stands on its own and
 costs nothing: keep explanations of shared machinery in build.py, where a
 maintainer reads them once, and out of the JS that ships nine times.
+
+## 2026-09-01 - Phase 1 craft refresh (No.47)
+
+Platform intel, all of it about what the feed now REWARDS rather than what it
+tolerates. Sources are marketing-side reads of Socialinsider's 2026 report, so
+treat the absolute figures as soft and the direction as firm:
+
+- Document carousels are the only format whose engagement is climbing in
+  absolute terms while every other format on the platform contracts. Reported
+  at 6.6 to 7.0 percent mean engagement, up about 14 percent year over year,
+  against views down roughly half platform-wide.
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now
+- SAVES AND SENDS now outrank likes as ranking signals. That is a direct design
+  instruction for this deck, not a marketing note. A save is what a keepable
+  data slide earns and a send is what a slide someone forwards to a coworker
+  earns, which is criterion 4 of Phase 4's selection test already. It argues
+  for at least one frame that is worth having on a phone after the swipe, with
+  its numbers legible at thumb size.
+  https://melaniegoodmanlinkedinconsultant.substack.com/p/linkedin-algorithm-2026-reach-topic-authority
+- Polls are down to about 0.07 percent engagement after the March 2026
+  authenticity update, which also targeted engagement bait. Nothing here uses
+  polls; the note is that a closing question has to read as a real question and
+  not as a solicitation, which is what the house close already asks for.
+
+One craft note worth keeping, against this deck's standing weakest criterion:
+high-density marks should not be labelled in place. Where a frame carries many
+points, the labels belong outside the mark field, in the reserve, and the field
+itself carries only its own encoding. That is the same defect the machine gate
+keeps warning about as "busy art under text", stated as a positive rule.
+https://venngage.com/blog/chart-design/
