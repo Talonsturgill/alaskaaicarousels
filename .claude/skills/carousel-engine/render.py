@@ -272,6 +272,125 @@ GRADIENT_CLIP_HOOK_JS = """
 })();
 """
 
+# --- A DRAWING ROUTINE THAT PAINTED NOTHING (2026-09-01) ---------------------
+# Run No.47's slide 07 solved nine analytic shadow tips and drew none of them.
+# A clip test asked whether each cast point was left of a surveyed cut and broke
+# at s = 0 for every marker, so every wedge was built base-to-base, filled at
+# zero length, and the slide's declared focal point was never in the picture.
+# render.py, qa.py, dossier_check and bespoke_check all passed it; a pixel critic
+# caught it a full review round after it shipped into the first render. It is the
+# same family as the 2026-08-25 buried motif and the 2026-08-31 clipped marks:
+# the code is right, the picture is wrong, and every instrument was pointed at
+# the code. Those two ask whether declared ink SURVIVED. This asks the cheaper,
+# earlier question nothing was asking: did the canvas ever have anything to
+# survive?
+#
+# So every fill() is measured. The wrapper accumulates the current path's
+# bounding box from the path-building calls, and on fill() records, PER CALL
+# SITE, how many fills that site made and how many of them enclosed nothing.
+# Degeneracy is affine invariant, so the box is kept in user space and the
+# current transform never has to be unwound.
+#
+# ALL of it in one line: an isolated degenerate fill is ordinary (a mesh
+# triangle seen edge on, a bar whose value is zero), and it is a call site whose
+# fills ALL painted nothing that means a routine ran for nothing. Measured over
+# 22 known-good slides from three decks (out/2026-09-01, runs/2026-08-31,
+# examples/demo-deck), 10,999 fills across 155 call sites: exactly ONE
+# degenerate fill anywhere, ak3d.js's triangle rasteriser at 1 of 9,216 at that
+# site, a ratio of 0.0001 against the 0.8 the gate needs and 1 against the 3.
+# The reconstruction of slide 07 hits 9 of 9. qa.py sets the two thresholds.
+#
+# COST, measured on the 9,386-fill stress slide (examples/demo-deck/slide-04):
+# 60 ms of a 280 ms render, all of it the per-fill stack. Error.stackTraceLimit
+# is deliberately left alone, because lowering it to 4 saved nothing measurable
+# and it would have truncated the page-error stacks this same run collects.
+PAINT_HOOK_JS = """
+(() => {
+  try {
+    const rep = window.__akPaint = { fills: 0, sites: {}, site_cap: false };
+    const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
+    if (!proto) return;
+    const SITE_MAX = 400;
+    const FLAT = 0.35;              /* under a third of a pixel encloses nothing */
+    const boxes = new WeakMap();
+    const box = (c) => {
+      let b = boxes.get(c);
+      if (!b) { b = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity, n: 0 }; boxes.set(c, b); }
+      return b;
+    };
+    const pt = (c, x, y) => {
+      if (!isFinite(x) || !isFinite(y)) return;
+      const b = box(c);
+      b.n++;
+      if (x < b.x0) b.x0 = x;
+      if (x > b.x1) b.x1 = x;
+      if (y < b.y0) b.y0 = y;
+      if (y > b.y1) b.y1 = y;
+    };
+    const wrap = (name, fn) => {
+      const orig = proto[name];
+      if (typeof orig !== 'function') return;
+      proto[name] = function () {
+        try { fn(this, arguments); } catch (e) {}
+        return orig.apply(this, arguments);
+      };
+    };
+    const origBegin = proto.beginPath;
+    if (typeof origBegin === 'function') {
+      proto.beginPath = function () {
+        try { const b = box(this); b.x0 = Infinity; b.y0 = Infinity; b.x1 = -Infinity; b.y1 = -Infinity; b.n = 0; } catch (e) {}
+        return origBegin.apply(this, arguments);
+      };
+    }
+    wrap('moveTo', (c, a) => pt(c, a[0], a[1]));
+    wrap('lineTo', (c, a) => pt(c, a[0], a[1]));
+    wrap('quadraticCurveTo', (c, a) => { pt(c, a[0], a[1]); pt(c, a[2], a[3]); });
+    wrap('bezierCurveTo', (c, a) => { pt(c, a[0], a[1]); pt(c, a[2], a[3]); pt(c, a[4], a[5]); });
+    wrap('arcTo', (c, a) => { pt(c, a[0], a[1]); pt(c, a[2], a[3]); });
+    wrap('rect', (c, a) => { pt(c, a[0], a[1]); pt(c, a[0] + a[2], a[1] + a[3]); });
+    wrap('roundRect', (c, a) => { pt(c, a[0], a[1]); pt(c, a[0] + a[2], a[1] + a[3]); });
+    wrap('arc', (c, a) => { pt(c, a[0] - a[2], a[1] - a[2]); pt(c, a[0] + a[2], a[1] + a[2]); });
+    wrap('ellipse', (c, a) => {
+      const r = Math.max(Math.abs(a[2]), Math.abs(a[3]));
+      pt(c, a[0] - r, a[1] - r); pt(c, a[0] + r, a[1] + r);
+    });
+    const origFill = proto.fill;
+    if (typeof origFill !== 'function') return;
+    proto.fill = function () {
+      try {
+        rep.fills++;
+        /* fill(path2d) draws a path this hook never saw; only the context's
+           own current path is measurable here. A string argument is a fill
+           rule and is fine. */
+        const arg = arguments[0];
+        const foreign = (arg && typeof arg === 'object');
+        const b = box(this);
+        if (!foreign && b.n > 0) {
+          let site = '?';
+          try { site = ((new Error()).stack.split('\\n')[2] || '?').trim(); } catch (e) {}
+          site = site.replace(/^at\\s+/, '').replace(/file:\\/\\/\\S*?([^\\/]+:\\d+:\\d+)/, '$1').slice(0, 160);
+          let s = rep.sites[site];
+          if (!s) {
+            if (Object.keys(rep.sites).length >= SITE_MAX) { rep.site_cap = true; s = null; }
+            else s = rep.sites[site] = { n: 0, bad: 0, w: 0, h: 0 };
+          }
+          if (s) {
+            s.n++;
+            const w = b.x1 - b.x0, h = b.y1 - b.y0;
+            if (Math.min(w, h) < FLAT) {
+              s.bad++;
+              s.w = Math.round(w * 100) / 100;
+              s.h = Math.round(h * 100) / 100;
+            }
+          }
+        }
+      } catch (e) {}
+      return origFill.apply(this, arguments);
+    };
+  } catch (e) {}
+})();
+"""
+
 IN_PAGE_QA_JS = """
 () => {
   const W = window.innerWidth, H = window.innerHeight;
@@ -959,6 +1078,26 @@ IN_PAGE_QA_JS = """
       out.canvas_text.push(e);
     }
   } catch (e) {}
+  /* EMPTY PAINTS (2026-09-01): the call sites whose fill() calls enclosed
+     nothing, collected from PAINT_HOOK_JS. Only sites with at least one
+     degenerate fill are carried out, capped, worst ratio first; qa.py holds the
+     thresholds and does the judging. */
+  out.paint = { fills: 0, sites: 0, site_cap: false, empty: [] };
+  try {
+    const pr = window.__akPaint;
+    if (pr && pr.sites) {
+      const names = Object.keys(pr.sites);
+      out.paint.fills = pr.fills;
+      out.paint.sites = names.length;
+      out.paint.site_cap = !!pr.site_cap;
+      out.paint.empty = names.filter((k) => pr.sites[k].bad > 0)
+        .map((k) => ({ site: k, n: pr.sites[k].n, bad: pr.sites[k].bad,
+                       w: pr.sites[k].w, h: pr.sites[k].h }))
+        .sort((a, b) => (b.bad / b.n) - (a.bad / a.n) || b.bad - a.bad)
+        .slice(0, 12);
+    }
+  } catch (e) {}
+
   /* ANNOTATION LEADERS (2026-08-07). A leader line that stops in open field
      looks exactly like a leader reaching something small, which is why run
      No.28's slide 06 shipped two detail-circle leaders pointing at void through
@@ -1469,6 +1608,146 @@ def scan_collapsed_fit(html: str, name: str) -> list:
     return hits
 
 
+# --- AN ASSERTION THAT CANNOT FAIL (2026-09-01) -----------------------------
+# The 2026-08-12 __akAssert contract exists so a number printed in type and the
+# geometry it names are compared by the machine instead of by eye, and its whole
+# value is in the AUTHORING: "you cannot write `actual` without deriving it from
+# the thing that actually drew". Nothing enforced that half. Run No.47's slide 08
+# printed that two stamped tags carry the same seven struck rows, built the two
+# tags SEPARATELY in 3D, shipped nine rows on one and eight on the other at
+# different insets, and declared
+#
+#     window.__akAssert=[{what:"both tags carry the same seven struck rows",
+#                         expect:7, actual:7, tol:0, unit:"rows"}];
+#
+# which passes for any picture whatsoever. The same run's slide 05 wrote
+# `expect:+sidePx.toFixed(2), actual:+sidePx.toFixed(2)`, the same variable on
+# both sides. Both read as green in render_report and in machine_qa; a pixel
+# critic found the tags by reading the source beside the render.
+#
+# Two shapes, both decidable from the source with no threshold and no taste:
+#   - `actual` is textually IDENTICAL to `expect` (same literal, same variable,
+#     same call). x == x is not a measurement.
+#   - `actual` is a bare numeric literal. A literal was typed by the author, so
+#     it cannot have come from the drawing, which is the one thing this contract
+#     asks of it.
+# An assertion carrying `points` (the 2026-08-25 count contract) has its `actual`
+# computed by the frame and is never read here.
+#
+# Measured before it was wired in, over the 16 assertions in the four slide sets
+# on disk (out/2026-09-01, runs/2026-08-31, runs/2026-08-08, examples/demo-deck):
+# 7 carry a hand-written `actual`, 5 of them derived (750-96, dx(139)-dx(49),
+# Math.round(window.__G[2]) ...) and silent here, and exactly the 2 above fire.
+# Deliberately NOT flagged, and left as SKILL.md guidance instead: an `actual`
+# folded out of literals (`actual:750-96`), which is weak but does at least name
+# the drawing's own numbers, and which fires on 2 of 7 known-good assertions.
+VACUOUS_NUM_RE = re.compile(r"^[+-]?\s*(?:\d+(?:\.\d+)?(?:[eE][+-]?\d+)?|\.\d+)$")
+
+
+def _js_obj_spans(clean: str, start: int):
+    """Yield (s, e) for each top-level {...} in the array literal after `start`."""
+    i = clean.find("[", start)
+    if i < 0:
+        return
+    depth, obj_start, j, n = 0, None, 0, len(clean)
+    j = i
+    while j < n:
+        c = clean[j]
+        if c in "\"'`":
+            q = c
+            j += 1
+            while j < n and clean[j] != q:
+                if clean[j] == "\\":
+                    j += 1
+                j += 1
+        elif c == "{":
+            if depth == 0:
+                obj_start = j
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0 and obj_start is not None:
+                yield obj_start, j + 1
+                obj_start = None
+        elif c == "]" and depth == 0:
+            return
+        j += 1
+
+
+def _js_obj_value(obj: str, key: str):
+    """The SOURCE TEXT of `key`'s value in one object literal, whitespace
+    normalised, or None when the key is absent."""
+    m = re.search(r"[{,]\s*%s\s*:" % key, obj)
+    if not m:
+        return None
+    j, n, depth, out = m.end(), len(obj), 0, []
+    while j < n:
+        c = obj[j]
+        if c in "\"'`":
+            q = c
+            out.append(c)
+            j += 1
+            while j < n and obj[j] != q:
+                out.append(obj[j])
+                if obj[j] == "\\":
+                    j += 1
+                    out.append(obj[j])
+                j += 1
+            out.append(q)
+        elif c in "([{":
+            depth += 1
+            out.append(c)
+        elif c in ")]}":
+            if depth == 0:
+                break
+            depth -= 1
+            out.append(c)
+        elif c == "," and depth == 0:
+            break
+        else:
+            out.append(c)
+        j += 1
+    return " ".join("".join(out).split())
+
+
+def scan_vacuous_asserts(html: str, name: str) -> list:
+    """Report __akAssert entries whose `actual` cannot disagree with `expect`."""
+    hits = []
+    for m in SCRIPT_RE.finditer(html):
+        attrs, body = m.group(1), m.group(2)
+        if re.search(r"\bsrc\s*=", attrs, re.I):
+            continue
+        tm = re.search(r"""\btype\s*=\s*["']?([^"'\s>]*)""", attrs, re.I)
+        if tm and tm.group(1).strip().lower() not in JS_TYPE_OK:
+            continue
+        body_start = m.start(2)
+        clean = _strip_js_comments(body)
+        for am in re.finditer(r"__akAssert\s*=", clean):
+            for s, e in _js_obj_spans(clean, am.end()):
+                obj = clean[s:e]
+                if _js_obj_value(obj, "points") is not None:
+                    continue          # the frame computes `actual` for a count
+                actual = _js_obj_value(obj, "actual")
+                if actual is None:
+                    continue
+                expect = _js_obj_value(obj, "expect")
+                if expect is not None and actual == expect:
+                    why = "same expression on both sides"
+                elif VACUOUS_NUM_RE.match(actual):
+                    why = "`actual` is a typed literal, not a measurement"
+                else:
+                    continue
+                what = _js_obj_value(obj, "what") or ""
+                hits.append({"why": why, "what": what.strip("\"'")[:90],
+                             "expect": (expect or "")[:60], "actual": actual[:60],
+                             "line": html.count("\n", 0, body_start + s) + 1})
+    hits.sort(key=lambda h: h["line"])
+    if hits:
+        print(f"    [assert] {name}: "
+              + ", ".join(f"vacuous at line {h['line']} ({h['why']})" for h in hits))
+    return hits
+
+
 def resolve_html(src: Path, resolved_dir: Path) -> Path:
     html = src.read_text()
     if re.search(r'src\s*=\s*["\']https?://|href\s*=\s*["\']https?://|url\(\s*["\']?https?://', html):
@@ -1569,7 +1848,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
-           "collapsed_fits": [],
+           "collapsed_fits": [], "vacuous_asserts": [],
+           "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "declaration_misses": [],
            "canvas_layer": {"ok": False, "reason": "not attempted"},
@@ -1579,6 +1859,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                             device_scale_factor=scale)
     page.add_init_script(CANVAS_TEXT_HOOK_JS)
     page.add_init_script(GRADIENT_CLIP_HOOK_JS)
+    page.add_init_script(PAINT_HOOK_JS)
     page.on("console", lambda m: rec["console_errors"].append(m.text)
             if m.type in ("error",) else None)
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
@@ -1597,7 +1878,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "canvas_text", "breather", "svg_plates",
                                        "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts", "motifs", "css_unreadable",
-                                       "gradient_clips", "declaration_misses")})
+                                       "gradient_clips", "declaration_misses",
+                                       "paint")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         # the canvas layer on its own, for qa.py's canvas-over-text check
@@ -1676,6 +1958,7 @@ def main():
                                args.scale, args.timeout)
             rec["nondeterminism"] = scan_nondeterminism(s.read_text(), s.name)
             rec["collapsed_fits"] = scan_collapsed_fit(s.read_text(), s.name)
+            rec["vacuous_asserts"] = scan_vacuous_asserts(s.read_text(), s.name)
             rec["source"] = {"path": str(s), "sha1": source_sha1(s)}
             status = "OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])

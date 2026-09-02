@@ -515,6 +515,14 @@ FB_MARGIN = 3        # cells of the 80px safe-margin ring excluded from the band
 FB_FAIL = 0.60       # bottom-band craft density / frame craft density = top-loaded
 FB_WARN = 0.80
 
+# A DRAWING ROUTINE THAT PAINTED NOTHING (2026-09-01). Fitted against 22
+# known-good slides from three decks: 10,999 fill() calls at 155 call sites,
+# carrying exactly ONE degenerate fill (ak3d.js's triangle rasteriser, 1 of
+# 9,216 at that site). Both thresholds have to clear before anything is said,
+# and the corpus's worst site misses each of them by orders of magnitude.
+EMPTY_PAINT_MIN = 3      # fewer than three is an edge-on triangle, not a routine
+EMPTY_PAINT_RATIO = 0.8  # the site has to have painted nothing nearly every time
+
 
 FEED_W = 432          # the thumb width the doctrine's legibility test uses
 
@@ -2038,6 +2046,51 @@ def main():
                 f"spanning the frame. If this is a projection onto ONE axis, use "
                 f"AKGeo.fitAxis(proj, geo, [a0, a1], 'x'|'y'); if it is a map, "
                 f"give the box both dimensions")
+
+        # A DRAWING ROUTINE THAT PAINTED NOTHING (2026-09-01). render.py's
+        # PAINT_HOOK_JS measures every fill()'s own path box; this is the
+        # judgement. Run No.47's slide 07 solved nine analytic shadow tips and
+        # drew none of them, every wedge built base to base by a clip test that
+        # broke at s = 0, and four gates passed the slide.
+        #
+        # An isolated degenerate fill is ordinary drawing (an edge-on mesh
+        # triangle, a bar whose value is zero), so the verdict is on the CALL
+        # SITE: a site whose fills ALL enclosed nothing is a routine that ran
+        # for nothing. Calibrated over 22 known-good slides, 10,999 fills at
+        # 155 sites: one degenerate fill in the corpus, at a ratio of 0.0001
+        # and a count of 1. The reconstruction is 9 of 9.
+        paint = rec.get("paint") or {}
+        for ep in (paint.get("empty") or []):
+            n, bad = ep.get("n") or 0, ep.get("bad") or 0
+            if bad < EMPTY_PAINT_MIN or not n or bad / n < EMPTY_PAINT_RATIO:
+                continue
+            res["fails"].append(
+                f"a drawing routine that painted nothing: {bad} of {n} fills at "
+                f"{ep.get('site', '?')} enclosed no area (last one measured "
+                f"{ep.get('w')} x {ep.get('h')} px), so this routine ran and the "
+                f"frame got nothing from it. Something upstream is collapsing the "
+                f"geometry, usually a solved length that came out zero, a clip or "
+                f"break that fires on the first step, or two points that are the "
+                f"same point. Fix the arithmetic; do not widen the shape")
+
+        # AN ASSERTION THAT CANNOT FAIL (2026-09-01). render.py scans the
+        # source; this is the judgement. Run No.47's slide 08 declared "both
+        # tags carry the same seven struck rows" as expect:7, actual:7 and
+        # shipped nine rows against eight, and slide 05 put the same variable
+        # on both sides of its scale assertion. A green row on an assertion
+        # that is x == x is worse than no assertion, because the deck's own
+        # report cites it as proof. A FAIL rather than a WARN for the same
+        # reason the collapsed-box check is: the declaration cannot be doing
+        # what it says it does.
+        for va in rec.get("vacuous_asserts", []):
+            res["fails"].append(
+                f"an assertion that cannot fail: __akAssert \"{va['what']}\" at "
+                f"line {va['line']} declares expect {va['expect']!r} against "
+                f"actual {va['actual']!r} -- {va['why']}, so this passes for any "
+                f"picture whatsoever. `actual` must be DERIVED from the code that "
+                f"actually drew (the variable the drawing loop used, the measured "
+                f"span, the projected point); if the subject is a count, declare "
+                f"`points:` and let the frame do the counting")
 
         # FRAME BALANCE / DEAD LOWER ZONE (2026-07-26). The series' longest-
         # running craft defect, and the first gate here that judges COMPOSITION

@@ -5532,3 +5532,61 @@ date_format block lists "August 10" among the bad forms. scripts/caption_check.p
 hard-fails the plain form, so the ordinal is what ships, and the scorer read two
 correct slides as house-rule misses on the strength of the other half. The
 enforced gate is the tiebreak until the file is reconciled.
+
+## 2026-09-01 - Phase 12 (No.47): the declared cast, PARKED with its shape
+
+The run's biggest defect class was geometry that was solved and then not drawn.
+Slide 07 solved nine shadow tips and drew none of them; slide 09 solved its cast
+tip, never read the variable again, and painted a wedge thirty two times the
+solved length to the frame edge. Upgrade 1 of this run's set catches the first
+shape, a routine that ran and painted NOTHING, off the pixels with no authoring
+at all. It cannot catch the second, because slide 09's routine painted plenty.
+
+The contract that would, written down here rather than built, because it is a
+new authoring contract in the family of `__akLeaders` and `__akMotifs` and
+landing it beside two other engine changes in one slot is how a gate gets
+shipped uncalibrated:
+
+    window.__akCast = [{ what: 'the nine cast shadows at the solved length',
+                         from: [x, base],      // where the drawing STARTS
+                         to:   [tx, ty] }];    // the point the SOLVE gives
+
+qa.py would then check two things and neither of them needs taste. That every
+declared segment has non-zero length, which is slide 07's defect stated as
+arithmetic. And that the ink along the ray STOPS near `to`: probe the composited
+frame at 1.0, 1.5, 2.5 and 4.0 times the declared length and fail when the far
+samples carry as much of the near sample's contrast as the midpoint does, which
+is slide 09's 32x wedge and nothing else.
+
+UNBLOCKING CONDITION: it needs a calibration corpus, and the shipped decks with
+their slide sources still on disk are three (2026-08-08, which no longer
+renders, 2026-08-31 and 2026-09-01). Land it on a run whose hero frame already
+carries a solved cast, declare the casts on that deck first, and fit the
+contrast ratio on those segments before the check says anything. Same discipline
+as the 2026-08-31 mark probe, which was calibrated on 74 human-verified marks
+before its 0.30 line was drawn.
+
+## 2026-09-01 - Phase 12 (No.47): the "Long Dwell percentile" claim is retracted
+
+Frontier scan focus (a), LinkedIn platform. NEGATIVE RESULT, recorded so no
+future scan in this slot spends its budget re-deriving it.
+
+Several 2026 LinkedIn-algorithm writeups now assert that feed ranking carries a
+"Long Dwell" classifier, a binary label predicting whether a post's dwell time
+exceeds a CONTEXT-DEPENDENT PERCENTILE, and cite LinkedIn's own LiGR paper for
+it. That paper has been WITHDRAWN by its authors: "We found discrepancies in the
+claims of the paper upon further investigation and therefore request to withdraw
+this submission from arXiv", v3, February 2026, and no PDF is served.
+https://arxiv.org/abs/2502.03417
+
+The other paper the same writeups cite, LiRank, carries no dwell-label
+description in its abstract at all; it is an architecture and productionisation
+paper (Residual DCN, dense gating, quantisation).
+https://arxiv.org/abs/2402.06859
+
+So nothing goes into CAROUSEL_CRAFT from it. The dwell evidence this studio
+actually stands on is unchanged and is still LinkedIn's own 2024 engineering
+post on dwell time plus the 2026-08-08 feed-ranking post, both already cited
+there. The 2026-08-21 hole is also still a hole: no source read on 2026-09-01
+reports per-slide alt text for documents, a slide-count effect measured rather
+than asserted, or any change in how a document is rendered in the feed.
