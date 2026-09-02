@@ -10,8 +10,8 @@
   "attribution": "Alaska AI, https://alaskaaihq.com",
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
-  "temporal_coverage": "2022-02-02/2026-10-30",
-  "count": 23,
+  "temporal_coverage": "2022-02-02/2027-01-19",
+  "count": 24,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -235,7 +235,7 @@
       "status": "pending-decision",
       "decider": "Department of the Air Force, Enhanced Use Lease program",
       "public_access": "closed",
-      "access_note": "Proposals closed June 29 and are evaluated privately. No public comment period exists; no award timeline has been announced.",
+      "access_note": "Proposals closed in the spring and are evaluated privately. No public comment period exists and no award timeline has been announced. The solicitation record is public and carries no awardee.",
       "summary": "The Air Force offered about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson AFB and Clear Space Force Station for privately financed AI data centers. Residents near the five Eielson-area parcels raised noise, permafrost and grid concerns, including one parcel less than a mile from North Pole Middle School.",
       "key_dates": [
         {
@@ -244,18 +244,18 @@
           "kind": "milestone"
         },
         {
+          "date": "2026-05-29",
+          "label": "Developer proposals due, 5 p.m. Eastern",
+          "kind": "deadline"
+        },
+        {
           "date": "2026-06-05",
           "label": "Request for lease proposals released",
           "kind": "milestone"
         },
         {
-          "date": "2026-06-29",
-          "label": "Developer proposals due",
-          "kind": "deadline"
-        },
-        {
-          "date": "2026-07-14",
-          "label": "Solicitation AFCEC-26-R-0006 archived with no award posted",
+          "date": "2026-06-13",
+          "label": "Solicitation record archived with no award posted",
           "kind": "milestone"
         },
         {
@@ -329,10 +329,15 @@
           "url": "https://www.adn.com/alaska-news/military/2026/05/05/the-military-wants-to-host-data-centers-in-alaska-raising-questions-about-whether-theres-enough-gas-to-power-them/",
           "outlet": "Anchorage Daily News",
           "date": "2026-05-05"
+        },
+        {
+          "url": "https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695",
+          "outlet": "SAM.gov, Department of the Air Force",
+          "date": "2026-04-10"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-29",
+      "last_updated": "2026-09-01",
       "history": [
         {
           "date": "2026-07-08",
@@ -413,6 +418,10 @@
         {
           "date": "2026-08-29",
           "note": "Re-verified against the Eielson announcement. The Air Force identified four sites totaling 3,967 acres under solicitation AFCEC-26-R-0009, with proposals due August 10th, 2026 at 5 p.m. Central. The announcement says the opportunity will be awarded through a competitive source selection process, and it names no developer and no award. The record stands where it stood."
+        },
+        {
+          "date": "2026-09-01",
+          "note": "Correction. Entries here from July 25th onward said proposals closed June 29, 2026 after an extension from May 29, and that the record archived July 14. The government's own record does not say that. Read again today through the SAM.gov opportunity API for solicitation AFCEC-26-R-0006, the posted date is April 10, 2026, the response deadline is 5 p.m. Eastern on May 29, 2026, the archive date is June 13, 2026, and the award record is empty. The June 29 date appears to have come from a third party mirror rather than from the solicitation. The substance is unchanged, no lessee has been announced for any of the twelve parcels."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -2481,6 +2490,84 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
+    },
+    {
+      "id": "fnsb-2027-data-center-moratorium-request",
+      "title": "Fairbanks asks Juneau and Congress to pause data centers",
+      "kind": "legislation",
+      "status": "pending-decision",
+      "decider": "Alaska Legislature and the Alaska congressional delegation",
+      "public_access": "indirect",
+      "access_note": "The borough has already voted, so the room that was open is closed. What the resolution does is hand the question to two bodies that have not acted on it. A reader who wants the moratorium considered asks a legislator to carry it when the Legislature convenes in January 2027, or asks the congressional delegation to take up the federal half. The resolution itself, its full text and the meeting record are public through the borough clerk.",
+      "summary": "On August 27, 2026 the Fairbanks North Star Borough Assembly adopted Resolution 2026-25, its list of 2027 state and federal legislative priorities, sponsored by the Assembly Committee of the Whole. The list carries 25 items, 21 state and 4 federal, and one item appears on both halves. It asks for a moratorium on the permitting, leasing or construction of new commercial data centers on state-owned or municipal lands in Alaska until standards exist for electrical demand, water consumption and shortages, environmental impacts, noise, air quality and land use pollution. Assemblymember Garrett Armstrong moved it onto the state list at an August 6th work session and an amendment replicated it onto the federal list. The request follows the Air Force offer of about 4,700 acres across twelve parcels at three Alaska installations, one of which, Eielson, is inside this borough. The adopted text reaches state and municipal land, not federal land, and KUAC reports Presiding Officer Scott Crass said by phone that federal land was intended too.",
+      "key_dates": [
+        {
+          "date": "2026-08-06",
+          "label": "Armstrong moves the moratorium onto the state list at a Committee of the Whole work session",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-20",
+          "label": "Committee of the Whole takes up the priorities list",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-08-27",
+          "label": "Assembly adopts Resolution 2026-25",
+          "kind": "vote"
+        },
+        {
+          "date": "2027-01-19",
+          "label": "The 35th Alaska Legislature convenes, the earliest the state half can be taken up",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Fairbanks",
+        "lon": -147.7164,
+        "lat": 64.8378
+      },
+      "sources": [
+        {
+          "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)",
+          "outlet": "Fairbanks North Star Borough Clerk's Office, Action Memorandum",
+          "date": "2026-08-31"
+        },
+        {
+          "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)",
+          "outlet": "Fairbanks North Star Borough, Resolution 2026-25 in the August 27, 2026 agenda packet",
+          "date": "2026-08-20"
+        },
+        {
+          "url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+          "outlet": "KUAC",
+          "date": "2026-08-31"
+        },
+        {
+          "url": "https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html",
+          "outlet": "Fairbanks Daily News-Miner",
+          "date": "2026-08-30"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/09/02/fairbanks-borough-weighs-data-center-regulations-seeks-state-moratorium/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-09-01"
+        },
+        {
+          "url": "https://www.fnsb.gov/172/Assemblymembers",
+          "outlet": "Fairbanks North Star Borough",
+          "date": "2026-09-02"
+        }
+      ],
+      "first_seen": "2026-09-01",
+      "last_updated": "2026-09-01",
+      "history": [
+        {
+          "date": "2026-09-01",
+          "note": "Tracked. Resolution 2026-25 adopted August 27, 2026, verified against the borough clerk's action memorandum and the resolution text in the agenda packet, both retrieved through the borough's own meeting system. The moratorium item is titled Moratorium on Data Center Development in Alaska and appears identically under the state and the federal headings. The resolution's own words are state-owned or municipal lands. Two outlets printed and in place of or, so the record here follows the document. Nothing establishes that the borough asked for this in a prior year, so nothing here says it did."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-request/"
     }
   ]
 }

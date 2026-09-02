@@ -3083,7 +3083,7 @@ Slides and the deck PDF are linked from the canonical page.
 
 # The Alaska AI Docket
 
-Every AI infrastructure decision tracked in Alaska, 23 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
+Every AI infrastructure decision tracked in Alaska, 24 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
 
 ---
 
@@ -3278,15 +3278,15 @@ Canonical: https://alaskaaihq.com/docket/adl-422741-stak-north-slope-lease/
 > The Air Force offered about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson AFB and Clear Space Force Station for privately financed AI data centers. Residents near the five Eielson-area parcels raised noise, permafrost and grid concerns, including one parcel less than a mile from North Pole Middle School.
 
 Status: pending decision. Decided by Department of the Air Force, Enhanced Use Lease program.
-Public access: closed. Proposals closed June 29 and are evaluated privately. No public comment period exists; no award timeline has been announced.
+Public access: closed. Proposals closed in the spring and are evaluated privately. No public comment period exists and no award timeline has been announced. The solicitation record is public and carries no awardee.
 Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 
 ## Dates
 
 - 2026-04-10, Program announced (milestone)
+- 2026-05-29, Developer proposals due, 5 p.m. Eastern (deadline)
 - 2026-06-05, Request for lease proposals released (milestone)
-- 2026-06-29, Developer proposals due (deadline)
-- 2026-07-14, Solicitation AFCEC-26-R-0006 archived with no award posted (milestone)
+- 2026-06-13, Solicitation record archived with no award posted (milestone)
 - 2026-07-22, U.S. House passes FY2027 NDAA carrying a data center lease restriction (vote)
 - 2026-07-23, Bill introduced in the U.S. House to ban AI data centers on federal land (milestone)
 - 2026-08-10, Proposals due on a separate Eielson mixed-use lease covering 3,967 acres (milestone)
@@ -3303,6 +3303,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 - [Office of Rep. Rashida Tlaib, U.S. House](https://tlaib.house.gov/posts/rep-tlaib-introduces-a-bill-to-ban-ai-data-centers-on-federal-lands), 2026-07-23
 - [Eielson Air Force Base](https://www.eielson.af.mil/News/Display/Article/4550770/air-force-to-host-virtual-industry-day-for-eielson-air-force-base/), 2026-07-20
 - [Anchorage Daily News](https://www.adn.com/alaska-news/military/2026/05/05/the-military-wants-to-host-data-centers-in-alaska-raising-questions-about-whether-theres-enough-gas-to-power-them/), 2026-05-05
+- [SAM.gov, Department of the Air Force](https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695), 2026-04-10
 
 ## How this decision moved
 
@@ -3326,6 +3327,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 **2026-08-18** Checked and unchanged. No lease award has been announced, and the Air Force record still shows only the solicitation phase for the roughly 4,700 acres across the three installations.
 **2026-08-25** Re-verified against the Air Force's own announcement. The department's request for lease proposals covers roughly 4,700 acres across JBER, Eielson and Clear, and the announcement carries no award, no selected developer and no decision. The record stands where it stood.
 **2026-08-29** Re-verified against the Eielson announcement. The Air Force identified four sites totaling 3,967 acres under solicitation AFCEC-26-R-0009, with proposals due August 10th, 2026 at 5 p.m. Central. The announcement says the opportunity will be awarded through a competitive source selection process, and it names no developer and no award. The record stands where it stood.
+**2026-09-01** Correction. Entries here from July 25th onward said proposals closed June 29, 2026 after an extension from May 29, and that the record archived July 14. The government's own record does not say that. Read again today through the SAM.gov opportunity API for solicitation AFCEC-26-R-0006, the posted date is April 10, 2026, the response deadline is 5 p.m. Eastern on May 29, 2026, the archive date is June 13, 2026, and the award record is empty. The June 29 date appears to have come from a third party mirror rather than from the solicitation. The substance is unchanged, no lessee has been announced for any of the twelve parcels.
 
 
 ---
@@ -3572,6 +3574,37 @@ Canonical: https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/
 **2026-08-21** Checked and unchanged. Enstar's petition for reconsideration, filed July 23rd, is still before the Regulatory Commission of Alaska with no reported action. Thirty days from filing falls on or about August 22nd, one day out, after which the petition is denied by operation of law. The commission's July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project remains the operative decision.
 **2026-08-26** The thirty days ran. Enstar filed its 31 page petition for reconsideration on July 23rd, and Alaska Public Media's account of the rule is that the commission has thirty days to respond and that inaction is an automatic denial. Thirty days fell on August 22nd, which has now passed with no order reported anywhere this entry can reach. The Regulatory Commission of Alaska's own site refuses an automated read, so the absence of a published order is not proof that none exists, and this entry says only what can be checked. The July 8th order denying an advance determination of decisional prudence for the $240 million Kenai Loop project is still the operative decision, and Enstar has said the project is suspended without it.
 **2026-08-30** Reconsideration was denied. In a notice dated August 21st, 2026 and posted August 24th, the Regulatory Commission of Alaska voted 3 to 2 against Enstar's request to reconsider the July 8th order, which had refused an advance determination of prudency for a roughly $240 million gas storage investment at the Kenai Loop gas field. Commissioners DeVries, Johnston and Springsteen were in the majority, with Espindola and Vogler dissenting. The commission said it wanted "to further explain the basis for that denial in a written order" but had no time to prepare one before the August 22nd statutory deadline, so that order is still to come.
+
+
+---
+
+# Fairbanks asks Juneau and Congress to pause data centers
+
+> On August 27, 2026 the Fairbanks North Star Borough Assembly adopted Resolution 2026-25, its list of 2027 state and federal legislative priorities, sponsored by the Assembly Committee of the Whole. The list carries 25 items, 21 state and 4 federal, and one item appears on both halves. It asks for a moratorium on the permitting, leasing or construction of new commercial data centers on state-owned or municipal lands in Alaska until standards exist for electrical demand, water consumption and shortages, environmental impacts, noise, air quality and land use pollution. Assemblymember Garrett Armstrong moved it onto the state list at an August 6th work session and an amendment replicated it onto the federal list. The request follows the Air Force offer of about 4,700 acres across twelve parcels at three Alaska installations, one of which, Eielson, is inside this borough. The adopted text reaches state and municipal land, not federal land, and KUAC reports Presiding Officer Scott Crass said by phone that federal land was intended too.
+
+Status: pending decision. Decided by Alaska Legislature and the Alaska congressional delegation.
+Public access: indirect. The borough has already voted, so the room that was open is closed. What the resolution does is hand the question to two bodies that have not acted on it. A reader who wants the moratorium considered asks a legislator to carry it when the Legislature convenes in January 2027, or asks the congressional delegation to take up the federal half. The resolution itself, its full text and the meeting record are public through the borough clerk.
+Canonical: https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-request/
+
+## Dates
+
+- 2026-08-06, Armstrong moves the moratorium onto the state list at a Committee of the Whole work session (milestone)
+- 2026-08-20, Committee of the Whole takes up the priorities list (milestone)
+- 2026-08-27, Assembly adopts Resolution 2026-25 (vote)
+- 2027-01-19, The 35th Alaska Legislature convenes, the earliest the state half can be taken up (milestone)
+
+## Sources
+
+- [Fairbanks North Star Borough Clerk's Office, Action Memorandum](https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)), 2026-08-31
+- [Fairbanks North Star Borough, Resolution 2026-25 in the August 27, 2026 agenda packet](https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)), 2026-08-20
+- [KUAC](https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request), 2026-08-31
+- [Fairbanks Daily News-Miner](https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html), 2026-08-30
+- [Alaska's News Source](https://www.alaskasnewssource.com/2026/09/02/fairbanks-borough-weighs-data-center-regulations-seeks-state-moratorium/), 2026-09-01
+- [Fairbanks North Star Borough](https://www.fnsb.gov/172/Assemblymembers), 2026-09-02
+
+## How this decision moved
+
+**2026-09-01** Tracked. Resolution 2026-25 adopted August 27, 2026, verified against the borough clerk's action memorandum and the resolution text in the agenda packet, both retrieved through the borough's own meeting system. The moratorium item is titled Moratorium on Data Center Development in Alaska and appears identically under the state and the federal headings. The resolution's own words are state-owned or municipal lands. Two outlets printed and in place of or, so the record here follows the document. Nothing establishes that the borough asked for this in a prior year, so nothing here says it did.
 
 
 ---
