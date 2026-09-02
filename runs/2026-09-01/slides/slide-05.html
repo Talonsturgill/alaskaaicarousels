@@ -255,8 +255,11 @@ window.renderReady=(async function(){
   const sideKm=Math.sqrt(4700*0.00404686);                  // 4,700 acres, km on a side
   const sidePx=sideKm/kmPerPx;
   const SQ=[620, 1046];
+  /* the side the drawing loop actually uses, held in its own const so a future
+     edit to one and not the other trips the tolerance */
+  const drawnSide=sidePx;
   CX.strokeStyle=SPC; CX.lineWidth=1.4;
-  CX.strokeRect(SQ[0],SQ[1],sidePx,sidePx);
+  CX.strokeRect(SQ[0],SQ[1],drawnSide,drawnSide);
   /* A TWO PIXEL SQUARE HAS NO EDGE at feed size, so it gets one drawn around
      it. The outline is ink and the square inside it is the measurement. */
   CX.strokeStyle=FMN; CX.lineWidth=1.25;
@@ -304,8 +307,17 @@ window.renderReady=(async function(){
   CX.fillStyle=GOLD; CX.fillRect(992,88,8,8);
 
   window.__akLeaders=lead;
+  /* EXPECT IS RE-DERIVED, from a SECOND, independent pair of reference points
+     on the same projection, so the two sides of this assertion cannot be the
+     same expression and the check can actually fail. The first build declared
+     expect and actual as the identical variable, which proved nothing about the
+     one number this slide asks a reader to trust. */
+  const kmPerPx2=(function(){
+    const a=proj([-149.5,63.0]), b=proj([-148.5,63.0]);
+    return (1.0*111.320*Math.cos(63.0*Math.PI/180))/Math.hypot(b[0]-a[0],b[1]-a[1]);
+  })();
   window.__akAssert=[{what:"the 4,700 acre square drawn at the map's own scale",
-                      expect:+sidePx.toFixed(2), actual:+sidePx.toFixed(2),
+                      expect:+(sideKm/kmPerPx2).toFixed(2), actual:+drawnSide.toFixed(2),
                       tol:0.5, unit:"px"}];
   window.__akMotifs=[{what:"the Fairbanks North Star Borough outline, the only lit boundary",
                       rect:[PLATE[0]+34,PLATE[1]+40,PLATE[2]-68,PLATE[3]-160]}];

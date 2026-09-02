@@ -177,6 +177,7 @@ function contacts(){
    resolution names. Struck relief, not rust: a bright lip above each mark, a
    dark one below, on darkened gold. */
 const FW=300, FH=236, ROWS=7;
+var ROWS_DRAWN=0;                 // counted by the loop that paints them
 function stampFace(){
   var off=document.createElement('canvas'); off.width=FW*2; off.height=FH*2;
   var o=off.getContext('2d'); o.scale(2,2);
@@ -185,6 +186,7 @@ function stampFace(){
   o.textAlign='center'; o.textBaseline='alphabetic';
   o.font='500 15px "JetBrains Mono", monospace';
   for(var i=0;i<ROWS;i++){
+    ROWS_DRAWN++;
     var y=top+i*pitch;
     if(i<2){
       o.fillStyle='#4A3608'; o.fillText(lines[i],FW/2,y+1);
@@ -301,8 +303,12 @@ window.renderReady=(async function(){
   AK.svgPlateAll('#ann text.ph2',{padX:8,padY:4,fill:'#0B1622',stroke:'#2C4358',
                                   strokeWidth:1,rx:3,opacity:0.95});
 
+  /* EXPECT is the story number, the seven impact standards the resolution
+     names. ACTUAL is counted by the loop that painted the face. The first build
+     declared 7 against 7, which passed for any picture whatsoever, on the one
+     slide whose whole argument is that two things carry the same content. */
   window.__akAssert=[{what:"both tags carry the same seven struck rows",
-                      expect:7, actual:7, tol:0, unit:"rows"}];
+                      expect:7, actual:ROWS_DRAWN, tol:0, unit:"rows"}];
   window.__akMotifs=[{what:"the two identical stamped tags, side by side",
                       rect:[T1[0]+10,T1[1]+14,T2[0]+T2[2]-T1[0]-24,T1[3]-30]}];
   AKPOST.grade(CX,GRADE);

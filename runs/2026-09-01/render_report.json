@@ -221,6 +221,13 @@
       "scales": [],
       "nondeterminism": [],
       "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 229,
+        "sites": 11,
+        "site_cap": false,
+        "empty": []
+      },
       "fits": [
         {
           "id": "h1",
@@ -1708,7 +1715,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 5434,
+      "render_ms": 5605,
       "ok": true,
       "canvases": [
         {
@@ -2066,6 +2073,13 @@
       "scales": [],
       "nondeterminism": [],
       "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 174,
+        "sites": 10,
+        "site_cap": false,
+        "empty": []
+      },
       "fits": [
         {
           "id": "h2",
@@ -5556,7 +5570,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 5132,
+      "render_ms": 5310,
       "ok": true,
       "canvases": [
         {
@@ -6556,6 +6570,13 @@
       "scales": [],
       "nondeterminism": [],
       "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 31,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
       "fits": [
         {
           "id": "h3",
@@ -9344,7 +9365,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 5307,
+      "render_ms": 5066,
       "ok": true,
       "canvases": [
         {
@@ -9606,6 +9627,13 @@
       "scales": [],
       "nondeterminism": [],
       "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 31,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
       "fits": [
         {
           "id": "h4",
@@ -12414,7 +12442,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3525,
+      "render_ms": 3689,
       "ok": true,
       "canvases": [
         {
@@ -12875,6 +12903,13 @@
       "scales": [],
       "nondeterminism": [],
       "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 83,
+        "sites": 8,
+        "site_cap": false,
+        "empty": []
+      },
       "fits": [
         {
           "id": "h5",
@@ -15628,7 +15663,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3479,
+      "render_ms": 3628,
       "ok": true,
       "canvases": [
         {
@@ -15698,7 +15733,7 @@
       ],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-01/slides/slide-05.html",
-        "sha1": "4b597364a29a1562bc5d9ba92d0125673a348273"
+        "sha1": "8021927478a46b64ea1ce5a391b3202ac45dbf7f"
       }
     },
     {
@@ -16513,6 +16548,13 @@
       ],
       "nondeterminism": [],
       "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 9,
+        "sites": 3,
+        "site_cap": false,
+        "empty": []
+      },
       "fits": [
         {
           "id": "h6",
@@ -17778,7 +17820,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4981,
+      "render_ms": 5122,
       "ok": true,
       "canvases": [
         {
@@ -18111,6 +18153,13 @@
       "scales": [],
       "nondeterminism": [],
       "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 364,
+        "sites": 10,
+        "site_cap": false,
+        "empty": []
+      },
       "fits": [
         {
           "id": "h7",
@@ -20919,7 +20968,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3569,
+      "render_ms": 3593,
       "ok": true,
       "canvases": [
         {
@@ -21318,6 +21367,13 @@
       "scales": [],
       "nondeterminism": [],
       "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 35,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
       "fits": [
         {
           "id": "h8",
@@ -24084,7 +24140,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4998,
+      "render_ms": 5227,
       "ok": true,
       "canvases": [
         {
@@ -24122,7 +24178,7 @@
       ],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-01/slides/slide-08.html",
-        "sha1": "cc8b6f47ea24f91299c4b8b7996c492a2f7eb2e3"
+        "sha1": "541f0d00b5cb2444396bf03a409aadd2170f148f"
       }
     },
     {
@@ -24451,6 +24507,13 @@
       "scales": [],
       "nondeterminism": [],
       "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 101,
+        "sites": 11,
+        "site_cap": false,
+        "empty": []
+      },
       "fits": [
         {
           "id": "h9",
@@ -25961,7 +26024,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3555,
+      "render_ms": 3594,
       "ok": true,
       "canvases": [
         {
