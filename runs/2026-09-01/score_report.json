@@ -1,0 +1,142 @@
+{
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "Transcribed all 74 on-slide strings from copy.json, caption.txt, document_title and first_comment myself, including slide 06's replaced body 'The federal window opened and closed before the Assembly took the item up. The land it opened is federal.' Only ASCII hyphens appear, and every one is inside a compound or an identifier: 'RESOLUTION 2026-25', 'AFCEC-26-R-0006', 'state-owned', 'Elmendorf-Richardson', 'News-Miner', and hyphens inside URLs. Zero U+2013/U+2014. claims.json C17 mentions an en dash but only in a note explaining why a source quote was truncated before one; that string is not shipped."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "None in caption.txt, copy.json slide strings, first_comment, aftercare, or any of the nine renders read at full size, slide 06 re-read after the change."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "Every slide object in copy.json carries claim_ids and the storyboard CLAIMS INDEX maps the set to slides. Slide 06's new second sentence, 'The land it opened is federal', is covered by the two claims added to its claim_ids: C24, the solicitation's own title naming Joint Base Elmendorf Richardson, Eielson AFB and Clear Space Force Station, and C29, the twelve parcels identified across those three installations. Its dropped dates are still claim-carried through the chip row (C25, C26, C30, C13, C02). Spot-checked the rest: 25 -> C11, 21/4 -> C09/C10, 12 parcels -> C29, 4,700 acres -> C28 attributed on slide 04, AFCEC-26-R-0006 -> C23, 97,083 -> C33, seven standards -> C07, August 27th -> C02 with C03 and the CivicClerk record as second and third confirmations. '90 DAYS' is derived, and May 29th to August 27th is exactly 90 days."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+      "status": "pass",
+      "evidence": "Transcribed all nine renders and diffed against copy.json, re-transcribing slide 06 in full after the change. No misspellings. The two spelling traps the claims file flagged are handled correctly: 'Garrett Armstrong' uses the borough roster's two-t spelling on slide 02 rather than KUAC's 'Garret', and 'Grier Hopkins' on slide 09 matches the clerk's memorandum. Slide 08's quote is character-for-character identical to C18's verbatim, and slide 09's Hopkins quote matches C20 including internal comma placement."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "render_report 0 overflow warnings on the re-run; machine_qa reports every 'fits' assertion passing. Read at full size, no glyph is cut and no two text objects intersect. Slide 06's shortened body sets three full lines inside its measure with no collision against the marker row below it. The one squeaker is machine_qa's slide-07 warn placing the body block exactly ON the 80px margin rather than past it. Graphic elements cut by the frame (slide 04's leading pin, slide 08's dashed phantom rectangle, and now slide 06's day-rail stub) are declared edge-teases and carry no type."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+      "status": "pass",
+      "evidence": "All primary type is #F4F8FF on the graded reserve. Storyboard reports measured worst cases of 11.4:1 (#F4F8FF on #20313A) and 9.6:1 (on lit muskeg #33402F). Verified by eye at the riskiest points: slide 07's headline over the fanned shadow bands, slide 05's body over the rolling left bank, and slide 06's shortened body, which now sits over a darker and quieter patch of sky than the four-line version did."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "9 slides. assemble_report 'slides': 9, nine renders, nine thumbs, counters read 01/09 through 09/09."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "Re-run after the change to identical totals: machine_qa fails 0, verdict WARN, 18 warns. assemble_report pdf_mode 'vector', 13.0 MB, inside the 2 to 25 MB band, title 'Fairbanks Wrote One Line Twice'. Slide 06's scale contract survives the edit intact: 'the day rail, April 10th to August 27th runs 0 days at 112 to 139 days at 996; 7 declared mark(s), and the band's census finds no others', and '90 days from May 29th to August 27th, drawn as a 572 px span holds: 572.37 vs 572.37 px'."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "Read every topics.json entry in the window. The two nearest are No.37 (2026-08-19, 13 days back) on a Data for Progress poll showing 73 percent support for pausing data center development plus Houston's council vote, and No.39 (2026-08-21) on DeepGreen's Cook Inlet subsea filing. Neither is this story: this is a discrete instrument (Resolution 2026-25) adopted by a different body on a date eight days AFTER No.37 published, with a different cast and a different argument. Not the same underlying story, so update framing is not required. Flagged under Variety and in editor notes because it is nonetheless the third data-center-siting deck in fourteen days and neither predecessor is acknowledged anywhere."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "bespoke_check PASS on the re-run, median pairwise art similarity 0.164 against a 0.60 ceiling, max pair 0.494, drawn share 62 percent. Ledger entries 43 to 46 are the drain scar and datum board, the underlit bench in plan view, the cut cotton-rag plate, and the spine wall with no surface. This deck is a horizontal exterior ground plane grazed at 5.3 degrees with a contre-jour key at azimuth 062 elevation 14, argued against each of the four on stated axes."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "caption_check PASS across 78 copy fields against 74 loaded brand phrases. Re-scanned slide 06's new body by hand: no banned phrase, no colon, no 'cannot', no first person, and it does not open on And or But. Across the deck, no 'leverage', 'harness', 'at its core', 'the truth is', 'worth noting', 'when it comes to', 'in terms of', 'stands as', 'serves as'. First person appears only inside the two straight-quoted sources on slides 08 and 09, which brand.yaml exempts."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "Exactly three, at the very end: #DataCenterSiting #AlaskaLegislature #InteriorAlaska. Zero URLs in post_copy; all nine source links live in first_comment. The caption was not touched by this change and still measures 876 chars with a 130-char hook."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "copy.json, claims.json, aggregate_report.json, machine_qa.json and assemble_report.json all parse and are fully populated. copy_sync PASS at 74 strings after the edit, confirming the replaced body string is present in the render and nothing was orphaned. No lorem, no TODO, no empty field. Noted separately: several storyboard dossiers remain stale against the shipped render (S05 declares 'DETAIL 4x' where the render prints 'DETAIL 18x'; S02, S03 and S04 body copy differs from copy.json). plan_drift PASSED and copy.json is the copy of record, so this is documentation freshness, not an unfinished artifact."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "'25 priorities. One written twice.' is six words, a real counting tension, set at 131px filling the bottom third, with one focal point carried by a leader to 'TWO MARKERS, ONE STATION'. Visibly Interior Alaska (muskeg tussocks, galvanized survey markers, low late-August sun) with no aurora, no bear, no pipeline. Held back from 9 by the thumb test: the deck's whole claim is that ONE station carries TWO markers, and at 432px the twin (18px shorter, offset 21px) merges into a single gold blob while the row reads as a picket fence, exactly the risk the dossier flagged. The headline is doing all the stopping and the art is supporting texture. 'Priorities' is also a bureaucratic cover noun, and aggregate_check itself warned that the word does not appear in C11. Unaffected by the slide 06 change."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 9,
+      "weight": 0.14,
+      "notes": "RAISED FROM 8 on the slide 06 rebuild, which I verified rather than took on trust. Both flow passes named 06 as the predicted bail point for two specific reasons and both are now answered. The body no longer restates its own chip row: five dates and the no-award fact moved out of prose and stay printed in chips 1, 4, 5, 6 and 7, so the slide keeps every claim (C25, C26, C30, C13, C02) and sheds the duplication that made it the density peak. And the frame now has an outgoing loop it did not have, because 'The land it opened is federal' is the sentence slide 07 pays with 'The twelve parcels are on federal installations', which is why C24 and C29 were added to 06's claim_ids. The dashed rail stub running off the right edge is the deck's second delivered edge tease and it points out of the frame in the direction of the swipe, into the deck's turn. With that fixed, every one of the nine slides now plants or pays an open loop against the storyboard's own table, the payoff still lands instantly on 02, and the contact sheet reads as one composed sequence under one camera and one sun. Short of 10 because 05 remains a genuine pace dip, the deck's only register change and its emptiest upper half, and because 09 closes on the same 'no standard exists yet for any of the seven' beat that 03 already delivered."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7,
+      "weight": 0.16,
+      "notes": "Real achievements, verified. The hero climbs the rendered ladder: akthree GPU PBR on 01, 02, 03 and 08 with declared Canvas fallbacks, and 09 argues flat in its own dossier. Physics is consistent because one solved camera and one solved sun drive every frame, and the review rounds fixed the two places it was not: slide 03's GL rig was keying from in front and now keys at 062/14 like everything else, so the deck holds one sun. Slide 07's shadow field now exists and the surveyed cut descends to the lower right with the marker row moved 320px to meet it, so 'The markers stop at a property line' is true of the picture, with machine_qa confirming the last marker's contact at dL 30.4 and all twelve pins past the cut. Slide 08's two stamps are identical BY CONSTRUCTION at 14/255 max per-pixel difference. Slide 09's 36px cast is the honest one, and the honesty is worth the lost apron: a deck whose entire mechanic is computed shadows cannot invent one on its close. Against that, and unchanged by this edit: VISUAL_DENSITY 2 costs the zoom test; slide 05's top 40 percent is inert and qa.py names it; slide 04's left third is an 18px-CoC smear that fails its own acceptance line, 'legible as a row, not as a smear'; slide 03's right-centre quadrant is a large blurred rectangle of nothing; slide 08 ships its two tag headings as canvas fillText raster; and the muskeg tussock is one stamped ellipse repeated at three scales on all nine slides. Slide 06's edit is craft-neutral: the stub is an honest, well-judged tease, but the shortened body leaves 'federal.' alone on its third line, a one-word runt on the slide that was just re-edited, and it opens a looser gap above the rail that only the defocused far slab keeps from reading as bare."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14,
+      "notes": "Art parameters encode story numbers throughout, and render-time assertions prove it: 25 stations for 25 items with 26 marks counted, the 21 bracket spanning 654px of exactly 20 station pitches and the 4 bracket exactly 3, the gold arc's endpoints on the two cap centres of the duplicated heading, 12 pins for 12 parcels on both 04 and 07, the 90-day gold span still measured at 572.37px on a declared day rail after the edit, and seven phantom stakes that cast nothing because a thing that is not there casts no shadow. One literal anchor per composition holds. A stranger could guess the story from the art alone on 01, 02, 07 and 08. Short of 10 because slide 09 encodes nothing by declaration, and slide 05's one encoded quantity, the 4,700-acre square at true map scale, is 2.29px and needs an 18x detail circle to be visible at all, so the honest drawing is one a reader cannot read."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 9,
+      "weight": 0.12,
+      "notes": "Named entities everywhere and correctly: Fairbanks North Star Borough, Resolution 2026-25, Eielson AFB, Clear SFS near Anderson in the Denali Borough, JBER in Anchorage, Garrett Armstrong at the August 6th work session, Presiding Officer Scott Crass, Sarah Hollister, Mayor Grier Hopkins, KUAC, 97,083 people. Geography is a true d3 conic projection with all three marks placed by the projection rather than typed, and the deck refuses the obvious error: the killed list shows 'Clear Space Force Station is in the Fairbanks North Star Borough' was actively tested and rejected, and slide 05 exists to say only Eielson is inside the borough that asked. Held at 9 rather than 10 because the deck never reaches the reader outside the Interior: a Mat-Su or Anchorage reader gets no line saying why an FNSB resolution touches them, and the page's own No.37 (73 percent of Alaska likely voters back a pause) was verified context that would have done it."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Nearly every content slide adds a new verified specific: 02 the sponsor of record and the mover and the date, 03 the seven named impact categories read out of the primary document where KUAC listed four, 04 the solicitation number the magazine never printed, 05 the negative finding plus the clause letting a bidder pick one installation, 06 seven dated federal and borough marks plus 'no award recorded', 07 the or-versus-and distinction, 08 the phone correction after the vote. The claims file is unusually strong, with 14 claims killed and a documented correction to the docket's own June 29th deadline. The slide 06 edit cuts pure duplication, which the descriptor rewards, and adds one genuinely new load-bearing fact, but it leaves the body at 18 words against the 25-50 band the 10-descriptor names, so the gain and the loss cancel. Also docked because 09 restates 03's 'no standard exists yet for any of the seven', 05's fourth sentence is the only new fact on a slide that otherwise re-lists three names, and C09/C10 carry needs_softening at confidence 0.82 while slide 02 prints '21 state and 4 federal' as flat counts."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7,
+      "weight": 0.08,
+      "notes": "Composition system, atmosphere, continuity device, hook archetype and palette all clear their windows and are argued against named predecessors; bespoke_check median 0.164, max pair 0.494. Caption opening (CONTRADICTION, last shipped 08-07, outside the 6-entry window), structure (BRAID, outside the last 3) and first four words all clear, and the caption names a human, retiring a demerit recorded six times. Three real deductions. Fraunces returns as the body face one run after carrying No.45's display, so the pairing clears the last-2 rule while reusing a family from yesterday. Drawn share 62 percent is the low end of the recent band (76, 66, 64). And the topic lane is the weak axis: third data-center-siting deck in fourteen days after No.37 and No.39, with neither acknowledged in the deck or the caption. The closing move logged 'NEW: WHICH COPY IS OPERATIVE' is, in form, a two-horn fork joined by 'or', and fork was declared burned on 2026-08-13."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7,
+      "weight": 0.07,
+      "notes": "All floors met (Fraunces body 34px, mono instrument 20 to 22px, Archivo display fitted 55 to 131px), 9/9 fit assertions pass, progress counters on every slide, vector PDF 13.0 MB with a document title, contact sheet and nine 432px thumbs present. Squeakers: slide 07's body sits exactly ON the 80px margin and qa.py calls it outside the safe zone; slide 08's two tag headings ship as canvas raster, invisible to the ranker, to copy extraction and to accessibility; slide 05's map labels and 'DETAIL 18x' chip are the deck's hardest strings at 432px; slide 09's coordinate footer prints '64 50 N 147 43 W' with the degree and minute glyphs dropped; and slide 06's rebuilt body now ends on a one-word line. 13.0 MB is over half the ceiling for nine slides."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8,
+      "weight": 0.05,
+      "notes": "Hook 130 chars, complete before the mobile fold, carrying the deck's whole argument in two sentences with the contradiction inside them. 876 chars, inside the band. Analytical and position-taking with no hedging; names Crass; attributes 'told KUAC by phone'; keeps the resolution's own 'or' rather than the 'and' both outlets printed inside quotation marks, which is precisely the trap C06 flagged. Deck-summary line present and it avoids the 'The deck...' and 'Inside,' constructions the ledger burned. Commas 0.61 per 100 chars against a 1.05 budget. Docked for the close, which is a fork wearing a NEW: label, and for 'Which copy does the work', which asks a reader to parse 'copy' as a duplicate of a document at the exact moment they will first read it as advertising copy. The caption was not touched by the slide 06 change, and slide 06's new prose is on-voice and plainer than what it replaced."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Post copy, exactly three hashtags, a primary-first first-comment block with nine sources and a real invitation to correct, document title, nine renders, nine thumbs, contact sheet, vector PDF, editor notes and an eight-item aftercare checklist all present and populated. Two things keep it off 9. The image and PDF URLs cannot be verified as resolving from here because the merge has not landed and the email's URLs point at main. And the first-comment block carries two civicclerk URLs containing parentheses and an internal comma, a known paste hazard the editor notes flag but do not remove. Worth noting the editor_notes_for_email field in copy.json still describes slide 06 by its pre-edit content and should be refreshed before the draft goes out."
+    }
+  ],
+  "calculation": "(8x0.14)+(9x0.14)+(7x0.16)+(9x0.14)+(9x0.12)+(8x0.10)+(7x0.08)+(7x0.07)+(8x0.05)+(8x0.10) = 1.12+1.26+1.12+1.26+1.08+0.80+0.56+0.49+0.40+0.80 = 8.89. Weights sum to 1.00. Zero hard fails, so no 6.9 cap applied.",
+  "weighted_total": 8.89,
+  "threshold": 8.3,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Fill the three named dead zones with the deck's own vocabulary rather than with more quiet, running the annotation furniture and a genuine third texture octave down into slide 05's inert top 40 percent, capping slide 04's left-third CoC so the steel row reads as a row instead of a smear, and giving slide 03's empty right-centre quadrant something the seven phantom stakes stand in.",
+  "editor_notes_for_email": "1) DO NOT SEND BEFORE THE MERGE. site_fresh and ship_gate were the only FAIL rows at scoring time and both are Phase 10 and 11 steps that follow it, but the Gmail draft's image and PDF URLs point at main, so the merge must land first or every preview 404s. 2) BEAT FATIGUE, disclosed. This is the third data-center-siting deck in fourteen days after No.37 (Aug 19th, the 73 percent poll and the Houston council vote) and No.39 (Aug 21st, DeepGreen). It is NOT a dedupe failure, since this is a different body, a different instrument and a decision dated August 27th, but neither predecessor is acknowledged in the deck or the caption, and a regular reader will notice the lane before the distinction. 3) DATE FORM, correction to my earlier note, which was wrong. I flagged slide 01's 'AUGUST 27TH, 2026' and slide 04's 'APRIL 10TH, 2026' as house-rule misses on brand.yaml's 'with a year use the plain form' line. The enforced gate is the tiebreak and it says the opposite: caption_check.py hard-failed this run on a plain 'August 27, 2026' in the first comment and passed once it took the ordinal. The slides are correct as shipped and cost the deck nothing. What is defective is brand.yaml itself, whose voice line and style key contradict its own date_format block, and that belongs with the upgrade engineer so a future run does not re-litigate it. 4) Slide 08's two tag headings are canvas raster text, so they are invisible to the LinkedIn ranker, to copy extraction and to screen readers even though the PDF is vector. 5) The May 29th response deadline is the likeliest correction request. The docket's own July 25th history says June 29th; this run re-read the sam.gov record directly and it gives 2026-05-29T17:00:00-04:00, archive 2026-06-13 and an empty award object. Keep the dated docket correction to hand. Note that after the slide 06 edit this date now appears on the slide only in chip 4, 'MAY 29TH RESPONSES DUE', so if a reader challenges it the answer is in the chip row and in the caption, not in the body. 6) Read the pasted first comment back. The two civicclerk URLs carry parentheses and an internal comma and a mangled paste kills the primary document. 7) Two documentation artifacts are now stale against the shipped deck and should be refreshed before archiving: copy.json's editor_notes_for_email still describes slide 06's pre-edit body, and several storyboard dossiers disagree with the render (S05 declares 'DETAIL 4x' where the render prints 'DETAIL 18x'; S02, S03 and S04 body copy differs from copy.json). plan_drift passed and copy.json is the copy of record, so nothing shipping is wrong, but the plan no longer records what was built.",
+  "run_date": "2026-09-01",
+  "carousel_no": 47,
+  "review_rounds": 2,
+  "scored_at": "2026-09-01"
+}

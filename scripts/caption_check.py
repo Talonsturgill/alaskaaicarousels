@@ -243,6 +243,121 @@ COPY_SLIDE_SKIP = {"n", "claim_ids", "claim_id", "note", "beat", "words",
 _URLISH_STRIP = re.compile(r"https?://\S+|www\.\S+")
 
 
+# THE CONFIG MUST NOT CONTRADICT THE ENFORCER (2026-09-01).
+#
+# config/brand.yaml gave two answers for a date carrying a year. Its voice line
+# and its style key both said "with a year use the plain form, 'August 27, 2026'",
+# while its own date_format block listed "August 10" among the bad forms and said
+# never a bare month-day, and DATE_FORMS above hard-fails the plain form on the
+# caption and on every reader-facing string in copy.json. The gate was right and
+# the prose beside it was wrong for 27 days. Run No.47's scorer read two
+# correctly-set slides as house-rule misses because it followed the wrong half of
+# the file, and no gate anywhere could see the disagreement, because nothing had
+# ever pointed a check at the config itself.
+#
+# So brand.yaml's own date examples are now EXECUTABLE against DATE_FORMS: every
+# `good` example must be clean, every `bad` example must be caught, and no other
+# line in the file may prescribe a form the table rejects. The date_format block's
+# `rule:` line and its comments are exempt, because quoting the banned forms is
+# what they are for; the `bad:` list is exempt for the same reason and is instead
+# required to trip. Read case-insensitively so the uppercase on-slide guidance is
+# covered by the same pass.
+#
+# Text-parsed, deliberately, matching load_banned_phrases below: this gate keeps
+# no dependency of its own.
+BRAND_DATE_FORMS =[(re.compile(rx.pattern, rx.flags | re.I), what, fix)
+                    for rx, what, fix in DATE_FORMS]
+_YAML_INLINE_LIST = re.compile(r"^\s*(good|bad)\s*:\s*\[(.*)\]\s*$")
+
+
+BRAND_NEGATION_CUE = re.compile(
+    r"\b(never|not|avoid|avoids|banned|bans|wrong|don't|do not|instead of|"
+    r"rather than|bad)\b", re.I)
+
+
+def _date_hits(text, table=None, positions=False):
+    """Every DATE_FORMS hit in one string, as (form, matched_text[, offset])."""
+    out = []
+    for rx, what, _fix in (table or DATE_FORMS):
+        for m in rx.finditer(text):
+            out.append((what, m.group(0), m.start()) if positions
+                       else (what, m.group(0)))
+    return out
+
+
+def brand_date_contradictions(path=None):
+    """Check config/brand.yaml's date guidance against DATE_FORMS. Returns a
+    list of failure strings; empty when the file and the enforcer agree."""
+    p = Path(path) if path else BRAND_DEFAULT
+    try:
+        raw = p.read_text()
+    except OSError as e:
+        return ["BRAND DATE: cannot read %s (%s), so the config could not be "
+                "checked against the date table it claims to be enforced by"
+                % (p, e.__class__.__name__)]
+    lines = raw.splitlines()
+    # the date_format block: from its key to the next line at the same or lower
+    # indent that is not blank, a comment, or one of its own children.
+    start = None
+    for i, line in enumerate(lines):
+        if re.match(r"^\s*date_format\s*:\s*$", line):
+            start = i
+            break
+    if start is None:
+        return ["BRAND DATE: %s has no date_format: block, so the house date "
+                "rule has no written form to check the enforcer against" % p]
+    indent = len(lines[start]) - len(lines[start].lstrip())
+    end = len(lines)
+    for i in range(start + 1, len(lines)):
+        s = lines[i]
+        if not s.strip():
+            continue
+        if len(s) - len(s.lstrip()) <= indent:
+            end = i
+            break
+    block, rest = lines[start:end], lines[:start] + lines[end:]
+
+    fails, good, bad = [], [], []
+    for line in block:
+        m = _YAML_INLINE_LIST.match(line)
+        if not m:
+            continue
+        items = [x.strip().strip('"').strip("'")
+                 for x in re.findall(r'"[^"]*"|\'[^\']*\'', m.group(2))]
+        (good if m.group(1) == "good" else bad).extend(items)
+    if not good or not bad:
+        fails.append("BRAND DATE: %s date_format has no inline good:/bad: example "
+                     "lists, so there is nothing to hold the enforcer to" % p)
+    for ex in good:
+        hits = _date_hits(ex)
+        if hits:
+            fails.append("BRAND DATE: %s offers %r as a GOOD date form and "
+                         "caption_check's DATE_FORMS calls it the %s form. The "
+                         "config and the gate disagree; the gate is what ships."
+                         % (p, ex, hits[0][0]))
+    for ex in bad:
+        if not _date_hits(ex):
+            fails.append("BRAND DATE: %s lists %r as a BAD date form and "
+                         "caption_check's DATE_FORMS lets it through, so the rule "
+                         "is written down and unenforced." % (p, ex))
+    for line in rest:
+        text = _URLISH_STRIP.sub(" ", line)
+        for what, hit, at in _date_hits(text, BRAND_DATE_FORMS, positions=True):
+            # A style file has to be able to QUOTE the forms it bans. A hit
+            # introduced by a negation is the file doing its job; a hit
+            # introduced by nothing is the file prescribing it. This is the
+            # exact line that shipped the 2026-09-01 contradiction, "with a
+            # year use the plain form, 'August 27, 2026'", and it carries no cue.
+            if BRAND_NEGATION_CUE.search(text[max(0, at - 70):at]):
+                continue
+            fails.append("BRAND DATE: %s writes %r outside its date_format block, "
+                         "which caption_check's DATE_FORMS hard-fails as the %s "
+                         "form. A config that prescribes what the gate rejects "
+                         "sends every reader of it, human or model, the wrong way."
+                         % (p, hit, what))
+    return fails
+
+
 def load_banned_phrases(path=None):
     """Read brand.yaml's banned_phrases. Returns (phrases, error_or_None).
 
@@ -943,8 +1058,72 @@ def caption_meta_hits(meta, entries, run_date):
     return hits
 
 
+BRAND_SELFTEST_STUB = """\
+voice:
+  do:
+    - "DATES ARE MONTH FIRST. %s"
+  date_format:
+    rule: "Month name first, day as an ordinal. Never '10 August', never a bare 'August 10'."
+    good: [%s]
+    bad: [%s]
+"""
+
+
+def brand_date_self_test():
+    """Fail-first reconstruction of the 2026-09-01 config contradiction, so the
+    calibration survives the session that made it. Hermetic, writes nothing."""
+    import tempfile
+
+    ok_good = '"August 10th", "August 27th, 2026"'
+    ok_bad = '"10 August", "August 10", "August 27, 2026"'
+    cases = [
+        # (name, the do: line, good list, bad list, must_fail)
+        ("the shipped contradiction: prescribes the plain form",
+         "Use the ordinal when no year follows; with a year use the plain form, "
+         "'August 27, 2026', which is what the source documents print.",
+         ok_good, ok_bad, True),
+        ("a good example the gate rejects",
+         "Write 'August 10th', never '10 August'.",
+         '"August 10th", "August 27, 2026"', ok_bad, True),
+        ("a bad example the gate lets through",
+         "Write 'August 10th', never '10 August'.",
+         ok_good, '"10 August", "August 10", "the 10th of August"', False),
+        ("quoting a banned form under a negation is not a contradiction",
+         "Write 'August 10th', never '10 August' and never a bare 'August 10'. "
+         "A year does not change it, write 'August 27th, 2026'.",
+         ok_good, ok_bad, False),
+    ]
+    # case 3's bad list is legal; make it illegal by naming a form DATE_FORMS
+    # cannot see, which is what "written down and unenforced" looks like.
+    cases[2] = (cases[2][0], cases[2][1], ok_good,
+                '"10 August", "August 10", "the tenth of August"', True)
+    bad_count = 0
+    with tempfile.TemporaryDirectory() as td:
+        for name, do_line, good, bad, must_fail in cases:
+            p = Path(td) / "brand.yaml"
+            p.write_text(BRAND_SELFTEST_STUB % (do_line, good, bad))
+            hits = brand_date_contradictions(p)
+            got = bool(hits)
+            mark = "ok " if got == must_fail else "BAD"
+            if got != must_fail:
+                bad_count += 1
+            print("%s %-62s expected %s, got %d fail(s)"
+                  % (mark, name[:62], "FAIL" if must_fail else "clean", len(hits)))
+        live = brand_date_contradictions()
+        mark = "ok " if not live else "BAD"
+        if live:
+            bad_count += 1
+        print("%s %-62s %d fail(s)" % (mark, "the committed config/brand.yaml", len(live)))
+        for f in live:
+            print("     ", f)
+    print("brand date self-test: %s" % ("PASS" if not bad_count else "FAIL"))
+    return 1 if bad_count else 0
+
+
 def main():
     args = [a for a in sys.argv[1:]]
+    if "--self-test" in args:
+        sys.exit(brand_date_self_test())
     if "--burns" in args:
         i = args.index("--burns")
         lp = Path(args[i + 1]) if len(args) > i + 1 else Path("ledger/captions.json")
@@ -1013,6 +1192,14 @@ def main():
         # pass. brand.yaml is committed, so this only fires on a real breakage.
         rep["fails"].append("BRAND: %s, so the banned_phrases half of the phrase "
                             "gate could not run" % brand_err)
+        rep["verdict"] = "FAIL"
+    # THE CONFIG MUST NOT CONTRADICT THE ENFORCER (2026-09-01). Cheap, and it
+    # runs on every invocation rather than behind a flag, because the failure it
+    # catches is silent by construction: the file reads fine, the gate works
+    # fine, and only a reader who follows the file into a caption ever finds out.
+    brand_date_fails = brand_date_contradictions(brand_path)
+    if brand_date_fails:
+        rep["fails"].extend(brand_date_fails)
         rep["verdict"] = "FAIL"
     if ledger_missing:
         rep["fails"].append("VARIETY: --ledger %s not found, the caption variety "

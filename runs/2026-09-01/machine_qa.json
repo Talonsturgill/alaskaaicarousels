@@ -1,0 +1,222 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath 'FAIRBANKS NORTH STAR BOROUGH' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'RESOLUTION 2026-25 . ADOPTED AUGUST 27TH' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the front marker of the doubled station standing on the lit ground': shadow L* 5.7 vs ground L* 15.6, dL 9.9 at 432w"
+      ],
+      "motifs": [
+        "'the doubled station, two gold tags at one station': canvas 91.4 dE, page 94.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"the twin marker's cap at station 13\" lands 0.0px from its target",
+        "leader \"the twin marker's cap at station 13\" meets its label 6.0px away"
+      ],
+      "fits": [
+        "h1 '25 priorities.One written twice.' fits 2/2 lines at 131px"
+      ],
+      "asserts": [
+        "'25 stations carrying 26 markers, one per item and one extra for the duplicated heading' holds: 26 vs 26 marks, counted over 26 declared marks (within 0)",
+        "'25 stations carrying 26 markers, one per item and one extra for the duplicated heading': 26 mark centres probed at r=14px, cohort median 26.8 dE, all present (weakest 23.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'THE 2027 LEGISLATIVE PRIORITIES' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the gold marker in the block of 21 standing on the lit ground': shadow L* 7.4 vs ground L* 22.6, dL 15.2 at 432w",
+        "'the gold marker in the block of 4 standing on the lit ground': shadow L* 6.1 vs ground L* 17.2, dL 11.1 at 432w"
+      ],
+      "motifs": [
+        "'the two gold tags, one in each block': canvas 114.9 dE, page 115.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the second gold tag, in the block of four': canvas 113.1 dE, page 114.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the apex of the arc joining the two gold caps' lands 0.0px from its target",
+        "leader 'the apex of the arc joining the two gold caps' meets its label 8.0px away"
+      ],
+      "fits": [
+        "h2 'The same line wentto two governments.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'21 state stations and 4 federal stations, 25 in all' holds: 25 vs 25 marks, counted over 25 declared marks (within 0)",
+        "'21 state stations and 4 federal stations, 25 in all': 25 mark centres probed at r=14px, cohort median 27.9 dE, all present (weakest 22.8 dE)",
+        "'the 21 bracket reaches the first state station to the last' holds: 654 vs 654 px (within 1)",
+        "'the 4 bracket spans exactly 3 station pitches' holds: 94.5 vs 94.5 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'WHAT THE PAUSE WAITS FOR' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the marker post standing in its own lit pool': shadow L* 3.8 vs ground L* 20.0, dL 16.2 at 432w"
+      ],
+      "motifs": [
+        "'the seven struck rows on the tag face': canvas 63.8 dE, page 66.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h3 'The hold runs untilthe standards exist.' fits 2/2 lines at 67.5px"
+      ],
+      "asserts": [
+        "'seven phantom stakes, one per named standard' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'seven phantom stakes, one per named standard': 7 mark centres probed at r=14px, cohort median 55.4 dE, all present (weakest 54.2 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'WHAT PROMPTED IT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'AFCEC-26-R-0006 . POSTED APRIL 10TH, 202' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the run of twelve parcel pins': canvas 55.0 dE, page 57.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"the nearest parcel pin's head\" lands 0.0px from its target",
+        "leader \"the nearest parcel pin's head\" meets its label 0.0px away"
+      ],
+      "fits": [
+        "h4 'Twelve parcels werealready on offer.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'twelve parcel pins, one per parcel on offer' holds: 12 vs 12 marks, counted over 12 declared marks (within 0)",
+        "'twelve parcel pins, one per parcel on offer': 12 mark centres probed at r=14px, cohort median 63.2 dE, all present (weakest 62.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 83% / mid 76% / bottom 52% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone [data-breather]",
+        "busy art under text (bg edge density 0.06) beneath 'REGISTER LIFT . TRUE PROJECTION' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the Fairbanks North Star Borough outline, the only lit boundary': canvas 58.0 dE, page 76.9 dE, 91% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'EIELSON AFB at its projected position' lands 0.0px from its target",
+        "leader 'CLEAR SFS at its projected position' lands 0.0px from its target",
+        "leader 'JBER at its projected position' lands 0.0px from its target",
+        "leader 'EIELSON AFB at its projected position' meets its label 16.2px away",
+        "leader 'CLEAR SFS at its projected position' meets its label 4.0px away",
+        "leader 'JBER at its projected position' meets its label 13.0px away"
+      ],
+      "fits": [
+        "h5 'Three installations.One is in this borough.' fits 3/3 lines at 55px"
+      ],
+      "asserts": [
+        "\"the 4,700 acre square drawn at the map's own scale\" holds: 2.29 vs 2.29 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'THE FEDERAL CLOCK AND THE BOROUGH CLOCK' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the gold span, the borough's ninety days': canvas 20.2 dE, page 39.2 dE, 97% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "scales": [
+        "'the day rail, April 10th to August 27th, running on past the vote' runs 0 days at 112 to 139 days at 996; 7 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h6 'The window shut in spring.The vote came in A' fits 2/2 lines at 87.5px"
+      ],
+      "asserts": [
+        "'90 days from May 29th to August 27th, drawn as a 572 px span' holds: 572.37 vs 572.37 px (within 1.5)",
+        "'seven dated marks on the rail' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'seven dated marks on the rail': 7 mark centres probed at r=14px, cohort median 74.7 dE, all present (weakest 60.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath 'WHERE THE WORDS STOP' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'The adopted text reaches new commercial ' at 80,1116 720x168 (margin 80px)"
+      ],
+      "encodings": [
+        "'twelve parcel pins stand on ground carrying no steel': dE 16.9, AUC 0.79, visible 100%/100%, seen 6480/6060px at 432w"
+      ],
+      "contacts": [
+        "'the last marker of the row standing on the near side of the cut': shadow L* 9.2 vs ground L* 39.6, dL 30.4 at 432w"
+      ],
+      "motifs": [
+        "'the surveyed cut, the boundary the words stop at': canvas 84.0 dE, page 88.1 dE, 98% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the surveyed cut at the point the label names' lands 0.0px from its target",
+        "leader 'the nearest of the twelve federal parcel pins' lands 0.0px from its target",
+        "leader 'the surveyed cut at the point the label names' meets its label 12.4px away",
+        "leader 'the nearest of the twelve federal parcel pins' meets its label 0.0px away"
+      ],
+      "fits": [
+        "h7 'The markers stop ata property line.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'twelve parcel pins, all of them past the cut' holds: 12 vs 12 marks, counted over 12 declared marks (within 0)",
+        "'twelve parcel pins, all of them past the cut': 12 mark centres probed at r=12px, cohort median 63.0 dE, all present (weakest 60.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'MORATORIUM ON DATA CENTER' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'DEVELOPMENT IN ALASKA' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "busy art under text (bg edge density 0.06) beneath 'AFTER THE VOTE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'SARAH HOLLISTER, TO THE ASSEMBLY, PER KU' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the first tag post standing on the lit ground': shadow L* 1.8 vs ground L* 22.6, dL 20.8 at 432w",
+        "'the second tag post standing on the lit ground': shadow L* 1.5 vs ground L* 22.3, dL 20.8 at 432w"
+      ],
+      "motifs": [
+        "'the two identical stamped tags, side by side': canvas 88.2 dE, page 88.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the phantom third tag, unhung and unstamped' lands 0.0px from its target",
+        "leader 'the phantom third tag, unhung and unstamped' meets its label 0.0px away"
+      ],
+      "fits": [
+        "h8 'The words say state land.The intent was wide' fits 2/2 lines at 87.5px",
+        "q8 '\"We need to establish strict regulations bef' fits 2/5 lines at 37.5px"
+      ],
+      "asserts": [
+        "'both tags carry the same seven struck rows' holds: 7 vs 7 rows (within 0)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the single marker at twelve metres standing in its lit pool': region too small to measure at feed scale (8/15 px at 432w)",
+        "busy art under text (bg edge density 0.07) beneath 'WHAT A BOROUGH CAN DO' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'alaskaaihq.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the Polaris, standing where the twin's cap stood on the cover': canvas 90.3 dE, page 91.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h9 'An ask is the wholepower a borough has here.' fits 2/2 lines at 75.5px",
+        "ask 'Which of the seven should Alaska write a sta' fits 2/2 lines at 45.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 18,
+  "verdict": "WARN"
+}

@@ -1,0 +1,279 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Archivo";font-variation-settings:"wdth" 78,"wght" 750;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:1.03}
+.bd{position:absolute;margin:0;font-family:"Fraunces";font-variation-settings:"opsz" 14,"wght" 420;
+    font-size:32px;line-height:1.40;letter-spacing:.005em;color:#D7E2E8}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.80;
+    font-variant-numeric:tabular-nums lining-nums}
+.wm{position:absolute;margin:0;font-family:"Archivo";font-variation-settings:"wdth" 78,"wght" 750;
+    font-size:32px;letter-spacing:.16em;color:#F4F8FF}
+.st{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;
+    letter-spacing:.06em;color:#D7E2E8;opacity:.80}
+.co{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:18px;
+    letter-spacing:.12em;color:#55697C;font-variant-numeric:tabular-nums}
+</style></head><body data-contacts='[{"what": "the single marker at twelve metres standing in its lit pool", "shadow": [[525, 608, 12, 6]], "ground": [[560, 602, 14, 6]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" style="left:80px;top:96px;width:700px">WHAT A BOROUGH CAN DO</div>
+<div class="mn" style="left:840px;top:96px;text-align:right;width:160px" data-decorative>09 / 09</div>
+<h2 class="hd" id="h9" style="left:80px;top:640px;width:880px;font-size:76px">An ask is the whole<br>power a borough has here.</h2>
+<p class="bd" id="b9" style="left:80px;top:830px;width:720px;font-size:30px">Mayor Grier Hopkins said the community wants to know how data centers can best be regulated and "where, if anywhere, should we put them in our community." No standard exists yet for any of the seven.</p>
+<h3 class="hd" id="ask" style="left:80px;top:1078px;width:880px;font-size:46px;font-variation-settings:'wdth' 78,'wght' 620">Which of the seven should Alaska write a standard for first?</h3>
+<div class="mn" style="left:80px;top:1200px;opacity:.92">SOURCES IN COMMENTS</div>
+<div class="wm" style="left:762px;top:1186px">ALASKA.AI</div>
+<div class="st" style="left:762px;top:1240px">alaskaaihq.com</div>
+<div class="co" style="left:80px;top:1300px" data-decorative>64 50 N 147 43 W</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var F=2208, CXP=540, HZ=470, CAMH=0.72;
+function GY(Z){ return HZ + F*(CAMH/Z); }
+function TY(Z,h){ return HZ + F*((CAMH-h)/Z); }
+function SX(X,Z){ return CXP + F*(X/Z); }
+/* THE PULL IS TO TWELVE METRES, not twenty six. At 26 m a 0.45 m marker
+   draws 38 px and sits glued to the horizon, which is invisible at 432 px on
+   the one frame a reader is most likely to meet alone. Twelve metres puts the
+   base at y 602 and gives the marker 83 px of height, and the camera solve
+   still does all the work. */
+var ZC=12.0, MH=0.45, ROD=0.014;
+var SUNX=0.06769, SUNY=0.24192, SUNZ=0.96793, TSH=MH/SUNY;
+var V='#050A12', LID='#0E1A28', FAR='#20313A', NEAR='#0D1418',
+    SPC='#D7E2E8', GOLD='#FFC72C', FMN='#6EA5FF';
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260901);
+var GRADE={w:1080,h:1350,exposure:-0.06,saturation:1.02,contrast:1.05,filmic:true,
+  lift:[0.008,0.012,0.020],gain:[1.012,1.0,0.982],vignette:0.22,
+  bloom:{threshold:0.72,strength:0.14,radius:16},
+  grain:{amount:0.048,size:2,seed:20260909},aberration:0,dither:true,sharpen:0.28};
+</script>
+<script type="module">
+/* ================= SLIDE 09, THE CLOSE =================
+   The camera has pulled to twelve metres. One marker stands at design y 523 to
+   602, 83 px tall, and the Polaris is the deck's seal. FLAT BY ARGUMENT: a GPU
+   pass on 83 px of steel is craft spent where no reader can see it, so the
+   frame's work is done by the sky, which is the deck's largest object, and by
+   the modelled near ground.
+   AND THE SHADOW IS THE SOLVED ONE. The first build drew a 254 px wedge to the
+   bottom edge. At twelve metres this deck's own sun gives a 36 px cast, and a
+   deck whose entire honesty mechanic is that its shadows are computed does not
+   get to invent a six hundred pixel one on its last frame. The reserve is
+   carried by the crowns and the fog, which is what they are for.
+   ======================================================= */
+const A='@@ASSETS@@';
+const MX=540, POLARIS=[636,470];
+
+/* THE SKY IS THE FRAME'S LARGEST OBJECT and the only thing a reader's eye has
+   to do here, so it gets built properly. Two endpoint stops through the grade
+   produced about eight hard horizontal steps edge to edge, which are eight bit
+   quantisation and not cloud strata. Twenty four stops interpolated in OKLCH,
+   then an interleaved gradient noise pass at about one and a half LSB laid
+   BEFORE the grain tile, which is what actually breaks a band. */
+function sky(){
+  var g=CX.createLinearGradient(0,0,0,HZ+30);
+  var A0=V, A1='#07111c', A2='#0c1a28', A3=LID;
+  for(var i=0;i<=24;i++){
+    var t=i/24, c;
+    if(t<0.42)      c=AKC.mixOklab(A0,A1,t/0.42);
+    else if(t<0.78) c=AKC.mixOklab(A1,A2,(t-0.42)/0.36);
+    else            c=AKC.mixOklab(A2,A3,(t-0.78)/0.22);
+    g.addColorStop(t,c);
+  }
+  CX.fillStyle=g; CX.fillRect(0,0,1080,HZ+30);
+  /* the last band on the horizon, the key having very nearly gone. It fades out
+     ABOVE the horizon rather than being sliced off by the ground fill. */
+  var h=CX.createLinearGradient(0,HZ-110,0,HZ);
+  h.addColorStop(0,'rgba(224,165,102,0)'); h.addColorStop(.55,'rgba(224,165,102,0.10)');
+  h.addColorStop(.86,'rgba(224,165,102,0.24)'); h.addColorStop(1,'rgba(224,165,102,0.20)');
+  CX.fillStyle=h; CX.fillRect(0,HZ-110,1080,110);
+  for(var c=0;c<9;c++){
+    var r=AK.rng(20909+c), y=70+c*44+r()*54, hh=14+18*r(), a=0.024+0.030*r();
+    var cg=CX.createLinearGradient(0,y,0,y+hh);
+    cg.addColorStop(0,'rgba(126,151,174,0)');
+    cg.addColorStop(.5,'rgba(126,151,174,'+a.toFixed(3)+')');
+    cg.addColorStop(1,'rgba(126,151,174,0)');
+    CX.fillStyle=cg;
+    CX.beginPath(); CX.moveTo(-40,y+hh*0.5);
+    CX.bezierCurveTo(300,y-34+68*r(),740,y+34-68*r(),1120,y+hh*0.5);
+    CX.lineTo(1120,y+hh); CX.lineTo(-40,y+hh); CX.closePath(); CX.fill();
+  }
+}
+/* FIVE POINTS, NOT FOUR. A four point star with a soft warm halo sitting above
+   a horizon is the generic sparkle shape, and above this particular horizon it
+   reads as a rising sun, which collides with the deck's own rule that the sun is
+   not gold. The Alaska flag's Polaris has five, the halo comes in from 64 px to
+   30 so it stops touching the treeline, and the core is a hard 4 px. */
+function polaris(){
+  var x=POLARIS[0], y=POLARIS[1]-26, R=13, r=5.2;
+  CX.save(); CX.globalCompositeOperation='screen';
+  var g=CX.createRadialGradient(x,y,1,x,y,30);
+  g.addColorStop(0,'rgba(255,220,140,0.46)'); g.addColorStop(.5,'rgba(255,210,110,0.14)');
+  g.addColorStop(1,'rgba(255,199,44,0)');
+  CX.fillStyle=g; CX.beginPath(); CX.arc(x,y,30,0,6.2832); CX.fill();
+  CX.restore();
+  CX.fillStyle=GOLD; CX.beginPath();
+  for(var i=0;i<10;i++){
+    var rad=(i%2?r:R), a=-Math.PI/2 + i*Math.PI/5;
+    var px=x+rad*Math.cos(a), py=y+rad*Math.sin(a);
+    if(i===0) CX.moveTo(px,py); else CX.lineTo(px,py);
+  }
+  CX.closePath(); CX.fill();
+  CX.fillStyle='#FFF3CE';
+  CX.beginPath(); CX.arc(x,y,2.0,0,6.2832); CX.fill();
+}
+function treeline(){
+  for(var k=0;k<58;k++){
+    var r=AK.rng(74210+k), x=-30+r()*1160, h=16+22*r(), w=4+5*r();
+    CX.fillStyle='rgba(22,34,38,'+(0.42+0.30*r()).toFixed(3)+')';
+    CX.beginPath(); CX.moveTo(x,HZ+2); CX.lineTo(x+w*0.5,HZ+2-h); CX.lineTo(x+w,HZ+2);
+    CX.closePath(); CX.fill();
+  }
+}
+function ground(){
+  var g=CX.createLinearGradient(0,HZ,0,1350);
+  g.addColorStop(0,'#18252f'); g.addColorStop(.12,'#1c2a2e');
+  g.addColorStop(.40,'#232e29'); g.addColorStop(1,'#080e14');
+  CX.fillStyle=g; CX.fillRect(0,HZ,1080,1350-HZ);
+  var f=CX.createLinearGradient(0,HZ-10,0,HZ+240);
+  f.addColorStop(0,'rgba(14,26,40,0.96)'); f.addColorStop(1,'rgba(14,26,40,0)');
+  CX.fillStyle=f; CX.fillRect(0,HZ-10,1080,250);
+  /* atmospheric perspective wants the far ground to be the LIGHTEST part of the
+     ground. It was inverting in one pixel at the horizon, so a hard seam ran the
+     full width. Forty pixels of wedge brings the ground up to meet the sky from
+     the light side. */
+  var w=CX.createLinearGradient(0,HZ,0,HZ+40);
+  w.addColorStop(0,'rgba(32,49,58,0.70)'); w.addColorStop(1,'rgba(32,49,58,0)');
+  CX.fillStyle=w; CX.fillRect(0,HZ,1080,40);
+}
+/* the dither pass, in device pixels because putImageData ignores the transform */
+function skyDither(){
+  var d=CX.getImageData(0,0,2160,1010), a=d.data;
+  for(var y=0;y<1010;y++){
+    for(var x=0;x<2160;x++){
+      var n=((x*0.06711056+y*0.00583715)%1)*52.9829189;
+      var v=((n-Math.floor(n))-0.5)*3.2;
+      var i=(y*2160+x)*4;
+      a[i]+=v; a[i+1]+=v; a[i+2]+=v;
+    }
+  }
+  CX.putImageData(d,0,0);
+}
+/* THE ONE SHADOW. It leaves the marker's base and runs the whole apron to the
+   bottom edge, softening as it comes. The deck's calmest lower band and still
+   fully modelled. */
+function oneShadow(){
+  var base=GY(ZC), z2=ZC-SUNZ*TSH;
+  var tx=SX((MX-CXP)*ZC/F - SUNX*TSH, z2), ty=GY(z2);
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  /* THE SOLVED CAST, and only the solved cast. tx and ty are what the deck's
+     own sun gives for a 0.45 m marker at twelve metres, and they are what gets
+     drawn. The wedge the first build ran to the bottom edge was thirty two
+     times this length. */
+  var g=o.createLinearGradient(MX,base,tx,ty);
+  g.addColorStop(0,'rgba(5,10,18,0.86)'); g.addColorStop(.55,'rgba(5,10,18,0.52)');
+  g.addColorStop(1,'rgba(5,10,18,0.16)');
+  o.fillStyle=g; o.beginPath();
+  o.moveTo(MX-4,base); o.lineTo(MX+4,base);
+  o.lineTo(tx+7,ty); o.lineTo(tx-7,ty); o.closePath(); o.fill();
+  CX.save(); CX.filter='blur(3px)';
+  CX.drawImage(off,0,0,2160,2700,0,0,1080,1350);
+  CX.restore(); CX.filter='none';
+  /* the reserve is a graded ground under the type, which is what it has always
+     been on this frame; it is not, and never was, one marker's shadow. */
+  var rf=CX.createLinearGradient(0,900,0,1350);
+  rf.addColorStop(0,'rgba(5,10,18,0.0)'); rf.addColorStop(.34,'rgba(5,10,18,0.26)');
+  rf.addColorStop(1,'rgba(5,10,18,0.44)');
+  CX.fillStyle=rf; CX.fillRect(0,900,1080,450);
+  /* the fog now covers the near tussock entirely, which it does at this hour */
+  CX.save(); CX.translate(470,1188); CX.scale(1,0.14);
+  var fg=CX.createRadialGradient(0,0,6,0,0,540);
+  fg.addColorStop(0,'rgba(122,150,178,0.11)'); fg.addColorStop(1,'rgba(122,150,178,0)');
+  CX.fillStyle=fg; CX.beginPath(); CX.arc(0,0,540,0,6.2832); CX.fill(); CX.restore();
+  /* the Polaris's own faint pool on that fog, the frame's only second warm note */
+  CX.save(); CX.globalCompositeOperation='screen';
+  CX.translate(600,1206); CX.scale(1,0.10);
+  var pg=CX.createRadialGradient(0,0,4,0,0,300);
+  pg.addColorStop(0,'rgba(255,199,44,0.09)'); pg.addColorStop(1,'rgba(255,199,44,0)');
+  CX.fillStyle=pg; CX.beginPath(); CX.arc(0,0,300,0,6.2832); CX.fill(); CX.restore();
+}
+function marker(){
+  var top=TY(ZC,MH), base=GY(ZC), w=Math.max(2.6,F*ROD/ZC);
+  /* LIGHT THE GROUND FIRST, then cast into it. A contact shadow is a
+     subtraction and needs something to subtract from, and at twenty six metres
+     the pool has to be generous or the marker reads as floating. */
+  /* PROPORTION. The rod draws 2.6 px wide. A 168 px pool and a 60 px contact
+     around it read as a bright ring on a black hole with a stick in it. */
+  CX.save(); CX.translate(MX+3,base); CX.scale(1,0.34);
+  var lp=CX.createRadialGradient(0,0,2,0,0,34);
+  lp.addColorStop(0,'rgba(150,170,124,0.52)'); lp.addColorStop(.45,'rgba(112,132,98,0.28)');
+  lp.addColorStop(1,'rgba(84,102,78,0)');
+  CX.fillStyle=lp; CX.beginPath(); CX.arc(0,0,34,0,6.2832); CX.fill(); CX.restore();
+  var g=CX.createLinearGradient(MX-w/2,0,MX+w/2,0);
+  g.addColorStop(0,'rgba(24,36,46,0.96)'); g.addColorStop(.70,'rgba(92,112,128,0.96)');
+  g.addColorStop(1,'rgba(206,220,230,0.98)');
+  CX.fillStyle=g; CX.fillRect(MX-w/2,top,w,base-top);
+  /* contre-jour: a dark cap with a hot rim on the far edge only, never a
+     specular that makes the marker look like it is emitting */
+  var tw=Math.max(5,F*0.033/ZC), th=Math.max(5.6,F*0.037/ZC);
+  CX.fillStyle='rgba(74,92,106,0.95)'; CX.fillRect(MX-tw/2,top,tw,th);
+  CX.fillStyle='rgba(215,226,232,0.90)'; CX.fillRect(MX+tw/2-1.6,top,1.6,th);
+  /* the contact sits UNDER the base, symmetrically. Offset six pixels left of a
+     pool offset sixteen right, it read as a detached ellipse beside the post. */
+  CX.save(); CX.translate(MX,base+0.5); CX.scale(1,0.34);
+  var ct=CX.createRadialGradient(0,0,0.5,0,0,9);
+  ct.addColorStop(0,'rgba(3,6,11,0.90)'); ct.addColorStop(.44,'rgba(3,6,11,0.54)');
+  ct.addColorStop(1,'rgba(3,6,11,0)');
+  CX.fillStyle=ct; CX.beginPath(); CX.arc(0,0,9,0,6.2832); CX.fill(); CX.restore();
+  CX.fillStyle='rgba(3,6,11,0.92)'; CX.fillRect(MX-4,base-2,8,2);
+}
+
+
+/* NEAR-GROUND CROWNS. The bottom band is a modelled ground, not a quiet zone,
+   and the frame-balance gate is right to ask for craft there. These are the
+   near tussock, large and low contrast, drawn in the margins and between the
+   type lines, at a value separation small enough that the display type keeps
+   its whole contrast range and big enough that the ground reads as ground. */
+function nearCrowns(){
+  for(var k=0;k<26;k++){
+    var r=AK.rng(41337+k);
+    var y=1010+r()*330, x=-60+r()*1200;
+    var w=110+210*r(), h=w*(0.10+0.09*r());
+    var a=0.055+0.075*r();
+    var cg=CX.createLinearGradient(x,y-h,x,y+h);
+    cg.addColorStop(0,'rgba(126,146,158,'+(a*0.9).toFixed(3)+')');
+    cg.addColorStop(.55,'rgba(52,66,78,'+(a*0.5).toFixed(3)+')');
+    cg.addColorStop(1,'rgba(4,9,15,'+(a*1.1).toFixed(3)+')');
+    CX.fillStyle=cg;
+    CX.beginPath(); CX.ellipse(x,y,w*0.5,h,0,0,6.2832); CX.fill();
+  }
+}
+
+window.renderReady=(async function(){
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h9'),{min:52,max:76,maxLines:2});
+  AK.fitText(document.getElementById('ask'),{min:38,max:46,maxLines:2});
+
+  sky(); skyDither(); polaris(); treeline(); ground(); oneShadow(); nearCrowns(); marker();
+
+  /* the one drafting mark on the close, spent on the ask */
+  /* dashed, because a solid rule in forget-me-not is typographic furniture in
+     the drafting voice, and the palette says that ink is drafting voice only.
+     Dashed it is the deck's last phantom, a thing asked for and not got. */
+  CX.strokeStyle=FMN; CX.lineWidth=1.25; CX.setLineDash([9,5]);
+  CX.beginPath(); CX.moveTo(80,1058); CX.lineTo(300,1058); CX.stroke();
+  CX.setLineDash([]);
+
+  window.__akMotifs=[{what:"the Polaris, standing where the twin's cap stood on the cover",
+                      rect:[614,422,44,44]}];
+  AKPOST.grade(CX,GRADE);
+})();
+</script></body></html>

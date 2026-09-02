@@ -1,0 +1,34 @@
+{
+ "run_date": "2026-09-01",
+ "carousel_no": 47,
+ "date_note": "Woke 23:13 AKDT on September 1st. runs/2026-09-01/ was free, so the Anchorage calendar date is the run date.",
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done",
+  "selection": "done",
+  "directors_room": "pending",
+  "copy": "pending",
+  "art_build": "pending",
+  "pixel_review": "pending",
+  "flow_review": "pending",
+  "assemble": "pending",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "wake": "out/2026-09-01/plan.md",
+  "craft_refresh": "knowledge/FIELD_NOTES.md",
+  "research": "out/2026-09-01/scout_merge.md",
+  "claims": "out/2026-09-01/claims.json",
+  "docket": "ledger/docket.json",
+  "gas_watch": "SITE SIGN-OFF PASS 93 pages 18 checks; GAS WATCH PASS 28 days",
+  "selection": "out/2026-09-01/selection.md"
+ }
+}

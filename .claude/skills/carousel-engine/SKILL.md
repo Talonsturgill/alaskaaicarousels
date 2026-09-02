@@ -281,6 +281,20 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   Deriving `actual` from the loop bound cannot catch this; only the frame can.
   Reconstruction: `python tests/count_assert_verify.py`.
 
+  **And `actual` has to be able to disagree** (2026-09-01). qa.py **FAILS**
+  any assertion whose `actual` is textually identical to its `expect`, or is a
+  bare numeric literal. Both are `x == x`: they pass for any picture, and the
+  deck then cites them as proof. Run No.47's slide 08 argued in type that two
+  stamped tags carry the same seven struck rows, built the two tags separately
+  in 3D, shipped nine rows against eight at different insets, and declared
+  `expect:7, actual:7, tol:0`; slide 05 wrote `+sidePx.toFixed(2)` on both
+  sides. Derive `actual` from the code that actually drew, and where the claim
+  is that two things are IDENTICAL, do not assert a tolerance at all: render
+  one and blit it twice, so identity is a construction rather than a number.
+  An `actual` folded out of typed literals (`actual: 750 - 96`) clears this
+  check and is still weak; name the drawing's own variables instead.
+  Reconstruction: `python tests/assert_vacuous_verify.py`.
+
   **And counted in the picture, not only in the array** (2026-08-31). Those
   same centres are now probed on the COMPOSITED png: qa.py measures the ink at
   each one and **FAILS** when any of them falls under 30 percent of the

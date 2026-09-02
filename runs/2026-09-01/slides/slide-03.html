@@ -1,0 +1,337 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Archivo";font-variation-settings:"wdth" 78,"wght" 750;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:1.02}
+.bd{position:absolute;margin:0;font-family:"Fraunces";font-variation-settings:"opsz" 14,"wght" 420;
+    font-size:34px;line-height:1.38;letter-spacing:.005em;color:#D7E2E8}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.80;
+    font-variant-numeric:tabular-nums lining-nums}
+.sm{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.55}
+svg text.stk{font-family:"JetBrains Mono";font-weight:500;font-size:25px;letter-spacing:.08em;fill:#CFE0F5}
+svg text.lgn{font-family:"JetBrains Mono";font-weight:700;font-size:25px;fill:#6EA5FF}
+svg text.lgh{font-family:"JetBrains Mono";font-weight:700;font-size:24px;letter-spacing:.12em;fill:#8FA6B8}
+svg text.num{font-family:"JetBrains Mono";font-weight:700;font-size:24px;fill:#6EA5FF}
+</style></head><body data-contacts='[{"what": "the marker post standing in its own lit pool", "shadow": [[218, 926, 26, 10]], "ground": [[300, 920, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" style="left:80px;top:96px;width:660px">WHAT THE PAUSE WAITS FOR</div>
+<div class="mn" style="left:840px;top:96px;text-align:right;width:160px" data-decorative>03 / 09</div>
+<h2 class="hd" id="h3" style="left:80px;top:962px;width:500px;font-size:70px">The hold runs until<br>the standards exist.</h2>
+<p class="bd" id="b3" style="left:80px;top:1096px;width:500px;font-size:30px;line-height:1.38">The hold would stay until the state and local governments adopt standards for the seven impacts the resolution names.</p>
+
+<svg id="ann" style="position:absolute;left:0;top:0;width:1080px;height:1350px" viewBox="0 0 1080 1350"></svg>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var V='#050A12', LID='#0E1A28', FAR='#20313A', NEAR='#0D1418',
+    SPC='#D7E2E8', GOLD='#FFC72C', FMN='#6EA5FF';
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260901);
+var STANDARDS=['ELECTRICAL DEMAND','WATER CONSUMPTION','WATER SHORTAGES',
+               'ENVIRONMENTAL IMPACTS','NOISE','AIR QUALITY','LAND USE POLLUTION'];
+var GRADE={w:1080,h:1350,exposure:-0.08,saturation:1.02,contrast:1.06,filmic:true,
+  lift:[0.006,0.010,0.018],gain:[1.012,1.0,0.984],vignette:0.18,
+  bloom:{threshold:0.80,strength:0.08,radius:10},
+  grain:{amount:0.048,size:2,seed:20260903},aberration:0,dither:true,sharpen:0.34};
+</script>
+<script type="module">
+/* ================= SLIDE 03, WHAT THE PAUSE WAITS FOR =================
+   The deck's one macro, and the only frame where material resolution is spent
+   on a surface rather than on a population. A die-struck aluminium tag fills
+   the left at 0.26 m, seven rows stamped into it. Behind it, in the softened
+   field, stand seven survey laths that are NOT THERE. They are drawn in
+   forget-me-not dash and they cast NO shadow, while the one real marker casts a
+   long one, which is the slide's argument and it is an absence.
+   ==================================================================== */
+const A='@@ASSETS@@';
+const TAGX=150, TAGY=372, TAGW=208, TAGH=234;      // the tag's screen rect
+/* THE POST HAS A FOOT. It ran 404 px past the tag and off under the display
+   block, so the slide declared a contact shadow for an object with no visible
+   base and the machine gate aimed the sample straight at the post's own lit
+   edge. It now ends at y 900 inside its own pool, at the plate's centre x,
+   which is where the GPU path puts it too. */
+const POSTX=TAGX+TAGW/2, BASEY=900;
+/* Seven laths standing in a shallow run, each carrying its own numeral. There
+   are no leader lines on this slide and that is a decision. Seven leaders into
+   a 400 px field cross each other, and a crossing leader is worse than a
+   numbered legend, which is the drafting grammar for exactly this case. */
+const STAKE=[[566,636],[632,624],[698,640],[764,622],[830,638],[896,620],[962,634]];
+
+function backdrop(){
+  /* the wide field, thrown out of focus by the macro. One graded wash, one fog
+     bank, no described features, because at f/2.8 there are none to describe. */
+  var g=CX.createLinearGradient(0,0,0,1350);
+  g.addColorStop(0,V); g.addColorStop(.22,'#0b1520'); g.addColorStop(.40,LID);
+  g.addColorStop(.56,'#22303a'); g.addColorStop(.74,'#2c3a33'); g.addColorStop(1,NEAR);
+  CX.fillStyle=g; CX.fillRect(0,0,1080,1350);
+  CX.save(); CX.globalCompositeOperation='screen';
+  CX.translate(922,486); CX.scale(1.0,0.52);
+  var b=CX.createRadialGradient(0,0,8,0,0,290);
+  b.addColorStop(0,'rgba(240,192,137,0.26)'); b.addColorStop(1,'rgba(224,165,102,0)');
+  CX.fillStyle=b; CX.beginPath(); CX.arc(0,0,290,0,6.2832); CX.fill(); CX.restore();
+  var f=CX.createLinearGradient(0,520,0,760);
+  f.addColorStop(0,'rgba(20,34,50,0.55)'); f.addColorStop(1,'rgba(20,34,50,0)');
+  CX.fillStyle=f; CX.fillRect(0,520,1080,240);
+}
+/* the far row, present but dissolved, so the reader knows where they are */
+function softRow(){
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  /* HOLD THE ASPECT. Slides 01 and 02 draw this row at a 31.5 px pitch and
+     269 px tall. Drawn here at nearly the same pitch and less than half the
+     height it read squat, which is a camera move no lens makes. Pitch scales
+     with height, and the values come down so the row stops competing with the
+     tag it is meant to stand behind. */
+  for(var i=0;i<36;i++){
+    var x=498+i*13.8, r=AK.rng(4400+i);
+    var h=118+18*r();
+    var g=o.createLinearGradient(x-4,0,x+4,0);
+    g.addColorStop(0,'rgba(30,44,54,0.80)'); g.addColorStop(.66,'rgba(96,114,128,0.62)');
+    g.addColorStop(1,'rgba(150,168,182,0.55)');
+    o.fillStyle=g; o.fillRect(x-4,762-h,8,h);
+    o.fillStyle='rgba(130,148,162,0.45)'; o.fillRect(x-7,762-h,14,11);
+  }
+  CX.save(); CX.filter='blur(22px)';
+  CX.drawImage(off,0,0,2160,2700,0,0,1080,1350);
+  CX.restore(); CX.filter='none';
+}
+/* THE ONE REAL CAST SHADOW, arriving at the reader out of the macro's foot.
+   There is exactly one now. The first pass also floated a hard black
+   quadrilateral above the ground line to stand for the tag's own cast, drawn
+   leaning the other way, so the frame held two suns. Both masses come off the
+   same base and the same azimuth, and the tag's contribution is a widening of
+   the one shadow rather than a second object. */
+function realShadow(){
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  var g=o.createLinearGradient(282,BASEY,120,1350);
+  g.addColorStop(0,'rgba(13,20,24,0.86)'); g.addColorStop(.45,'rgba(13,20,24,0.58)');
+  g.addColorStop(1,'rgba(13,20,24,0.18)');
+  o.fillStyle=g;
+  o.beginPath();
+  o.moveTo(226,BASEY); o.lineTo(282,BASEY); o.lineTo(150,1350); o.lineTo(-60,1350);
+  o.closePath(); o.fill();
+  /* the wider band the tag itself throws, same base, same direction */
+  var t=o.createLinearGradient(290,BASEY,150,1240);
+  t.addColorStop(0,'rgba(13,20,24,0.52)'); t.addColorStop(1,'rgba(13,20,24,0)');
+  o.fillStyle=t;
+  o.beginPath();
+  o.moveTo(200,BASEY+4); o.lineTo(308,BASEY+4); o.lineTo(96,1240); o.lineTo(-70,1240);
+  o.closePath(); o.fill();
+  [[BASEY-40,912,2],[912,980,7],[980,1060,14],[1060,1350,26]].forEach(function(b){
+    CX.save(); CX.beginPath(); CX.rect(0,b[0],1080,b[1]-b[0]); CX.clip();
+    CX.filter=b[2]?('blur('+b[2]+'px)'):'none';
+    CX.drawImage(off,0,0,2160,2700,0,0,1080,1350); CX.restore();
+  });
+  CX.filter='none';
+}
+function litPool(){
+  CX.save(); CX.translate(POSTX+18,BASEY+2); CX.scale(1,0.24);
+  var g=CX.createRadialGradient(0,0,4,0,0,150);
+  g.addColorStop(0,'rgba(126,148,108,0.34)'); g.addColorStop(.40,'rgba(102,124,90,0.20)');
+  g.addColorStop(.72,'rgba(84,104,80,0.13)'); g.addColorStop(1,'rgba(84,104,80,0)');
+  CX.fillStyle=g; CX.beginPath(); CX.arc(0,0,150,0,6.2832); CX.fill(); CX.restore();
+}
+function contact(){
+  CX.save(); CX.translate(POSTX,BASEY); CX.scale(1,0.30);
+  var g=CX.createRadialGradient(0,0,2,0,0,54);
+  g.addColorStop(0,'rgba(3,6,11,0.96)'); g.addColorStop(.42,'rgba(3,6,11,0.54)');
+  g.addColorStop(1,'rgba(3,6,11,0)');
+  CX.fillStyle=g; CX.beginPath(); CX.arc(0,0,54,0,6.2832); CX.fill(); CX.restore();
+  CX.fillStyle='rgba(3,6,11,0.90)'; CX.fillRect(POSTX-32,BASEY-3,64,3);
+}
+
+/* ---- the tag, GPU PBR, die-struck ---- */
+async function glTag(){
+  const THREE=await import(A+'/js/three.module.min.js');
+  const {init}=await import(A+'/js/akthree.js');
+  const AKT=init(THREE);
+  if(!AKT.webglOK()) return null;
+  const gl=document.createElement('canvas'); gl.width=2160; gl.height=2700;
+  const R=AKT.setup(gl,{w:1080,h:1350,fov:34,exposure:1.2});
+  R.renderer.setClearAlpha(0);
+  AKT.environment(R,{intensity:0.95});
+  /* ONE DECK, ONE SUN. This rig keyed from [1.2, 2.2, 2.6], in front of and
+     above the subject at about 30 degrees, while every other frame in the deck
+     keys from behind the row at azimuth 062 elevation 14. The post rendered
+     broadly front lit where every other marker is a dark vertical with a hot far
+     edge, so the deck held two suns and this was the frame that broke it. The
+     key vector below is the deck's own solved sun, scaled out. */
+  AKT.rig(R,{ key:{color:0xF0C089,i:3.9,pos:[0.88,3.15,-12.58],radius:5,shadowSize:1.2},
+              rim:{color:0xA9BECB,i:1.0,pos:[-1.6,0.8,1.6]},
+              fill:{color:0x3B4A5E,i:0.9,pos:[-0.9,1.0,2.2]},
+              ambient:{color:0x2E3540,i:1.9} });
+  /* subject distance solved so the tag's 0.037 m height draws 286 px */
+  const d = 2208*0.037/TAGH;
+  const cxw = (TAGX+TAGW/2 - 540)*d/2208;
+  const cyw = -(TAGY+TAGH/2 - 675)*d/2208;
+  AKT.frame(R,{fov:34,from:[0,0,d],look:[0,0,0]});
+  R.camera.position.set(-cxw,-cyw,d); R.camera.lookAt(-cxw,-cyw,0);
+  const alu=new THREE.MeshStandardMaterial({color:0xE8B22A,metalness:0.42,roughness:0.34,
+                                            emissive:0xFFC72C,emissiveIntensity:0.05});
+  const dark=new THREE.MeshStandardMaterial({color:0x6b5210,metalness:0.26,roughness:0.72});
+  const grp=new THREE.Group();
+  const plate=new THREE.Mesh(new THREE.BoxGeometry(0.033,0.037,0.0016),alu);
+  grp.add(plate);
+  /* seven struck rows, real geometry so the upper edge catches the key and the
+     lower edge holds fill, which is how a stamped plate actually reads */
+  /* Each row's width follows the length of the standard it stands for, so the
+     block reads as SET TEXT with a ragged right rather than as seven identical
+     bars. Seven equal bars at this scale is a barcode, and this is the one slide
+     in nine where material detail is budgeted. */
+  for(let i=0;i<7;i++){
+    const y=0.0138-i*0.00400;
+    const w=0.0236*(STANDARDS[i].length/21);
+    const cx0=-0.0010-(0.0236-w)/2;
+    const row=new THREE.Mesh(new THREE.BoxGeometry(w,0.00150,0.00090),dark);
+    row.position.set(cx0,y,0.00095); grp.add(row);              // proud of the face
+    const lip=new THREE.Mesh(new THREE.BoxGeometry(w,0.00030,0.00090),
+      new THREE.MeshStandardMaterial({color:0xFFE9A8,metalness:0.36,roughness:0.30}));
+    lip.position.set(cx0,y+0.00090,0.00098); grp.add(lip);       // the struck lip
+  }
+  /* THE POST SITS BEHIND THE PLATE, and the arithmetic has to say so. A 0.0052
+     radius cylinder centred at z -0.0040 reaches z +0.0012, which is in front of
+     the plate's own front face at +0.0008, so its cap surfaced inside the tag
+     and its body ate rows four through seven. Pushed to -0.0080 the whole
+     cylinder clears the face. */
+  const PLEN=0.0465;                       // tag bottom to the ground at y 900
+  const post=new THREE.Mesh(new THREE.CylinderGeometry(0.0052,0.0052,PLEN,12),
+    new THREE.MeshStandardMaterial({color:0x8894A0,metalness:0.46,roughness:0.56}));
+  post.position.set(0,-0.0417,-0.0080); grp.add(post);
+  AKT.add(R,grp,{cast:false,receive:false});
+  AKT.objectHero(R,grp,{toward:[0.06769,0.24192,-0.96793],keyColor:'#F0C089',intensity:1.2});
+  R.renderer.render(R.scene,R.camera);
+  /* a back key drops the lit pixel count, so the sentinel comes down with it */
+  const snap=await AKT.snapshot(R,{litFloor:0.06,litMin:60});
+  if(!snap||!snap.ok) return null;
+  return gl;
+}
+/* THE RASTER FALLBACK, rebuilt as struck metal rather than as printed bars.
+   The post is painted FIRST and clipped at the tag's top edge, so it can never
+   climb over the face. Each row carries a lit upper lip along the key vector
+   (0.068, 0.242) and a dark lower one, and a horizontal brush streak runs the
+   whole face, because a die-struck plate is anisotropic and a printed one is
+   not. The only warm value on the post is a rim on its right edge, per
+   azimuth 062. */
+function canvasTag(){
+  var px=POSTX-32, pw=64;
+  var pg=CX.createLinearGradient(px,0,px+pw,0);
+  pg.addColorStop(0,'#28323c'); pg.addColorStop(.62,'#7d8b96'); pg.addColorStop(1,'#A9B7C0');
+  CX.fillStyle=pg; CX.fillRect(px,TAGY,pw,BASEY-TAGY);
+  CX.fillStyle='rgba(240,192,137,0.55)'; CX.fillRect(px+pw-3,TAGY,3,BASEY-TAGY);
+
+  var g=CX.createLinearGradient(TAGX,TAGY,TAGX+TAGW,TAGY+TAGH);
+  g.addColorStop(0,'#FFE49A'); g.addColorStop(.42,GOLD); g.addColorStop(1,'#B98A19');
+  CX.fillStyle=g; CX.fillRect(TAGX,TAGY,TAGW,TAGH);
+  CX.fillStyle='#FFF0C0'; CX.fillRect(TAGX+TAGW-2,TAGY,2,TAGH);
+  CX.fillStyle='rgba(96,66,10,0.55)'; CX.fillRect(TAGX,TAGY,2,TAGH);
+  for(var i=0;i<7;i++){
+    var y=TAGY+34+i*30, x0=TAGX+22, bw=(TAGW-52)*(STANDARDS[i].length/21);
+    CX.fillStyle='#FFE9A8'; CX.fillRect(x0,y-2,bw,2);
+    CX.fillStyle='#7A5A0F'; CX.fillRect(x0,y,bw,10);
+    CX.fillStyle='#4A3608'; CX.fillRect(x0,y+10,bw,1);
+  }
+  for(var k=0;k<90;k++){
+    var r=AK.rng(30300+k), yy=TAGY+r()*TAGH;
+    CX.fillStyle='rgba(255,238,190,'+(0.010+0.026*r()).toFixed(3)+')';
+    CX.fillRect(TAGX,yy,TAGW,0.8);
+  }
+}
+
+/* ---- the seven phantom stakes. Ink, so they mark a claim. NO SHADOWS. ---- */
+function phantoms(){
+  CX.save();
+  CX.setLineDash([26,5,6,5,6,5]); CX.lineWidth=1.4; CX.strokeStyle=FMN;
+  STAKE.forEach(function(p){
+    CX.beginPath(); CX.moveTo(p[0],p[1]); CX.lineTo(p[0],p[1]+168); CX.stroke();
+    CX.beginPath(); CX.moveTo(p[0]-14,p[1]+7); CX.lineTo(p[0]+14,p[1]+7); CX.stroke();
+  });
+  CX.setLineDash([]);
+  /* a hairline datum the laths stand on, so the run reads as a set and the
+     eye is told where the ground would be if any of them were driven */
+  CX.strokeStyle='rgba(110,165,255,0.30)'; CX.lineWidth=1.0;
+  CX.beginPath(); CX.moveTo(540,806); CX.lineTo(1000,796); CX.stroke();
+  CX.restore();
+  window.__akAssert=[{what:"seven phantom stakes, one per named standard",
+                      expect:7, points:STAKE.map(function(p){return [p[0],p[1]+84];}),
+                      unit:"marks"}];
+}
+function annotate(){
+  var svg=document.getElementById('ann'), NS='http://www.w3.org/2000/svg';
+  /* the numeral above each lath */
+  STAKE.forEach(function(p,i){
+    var t=document.createElementNS(NS,'text');
+    t.setAttribute('class','num'); t.setAttribute('x',p[0]);
+    t.setAttribute('y',p[1]-16); t.setAttribute('text-anchor','middle');
+    t.textContent=String(i+1); svg.appendChild(t);
+  });
+  /* the legend, one row per standard, numbered to match */
+  STANDARDS.forEach(function(nm,i){
+    var y=904+i*40;
+    var n=document.createElementNS(NS,'text');
+    n.setAttribute('class','lgn'); n.setAttribute('x',604); n.setAttribute('y',y);
+    n.textContent=String(i+1); svg.appendChild(n);
+    var t=document.createElementNS(NS,'text');
+    t.setAttribute('class','stk'); t.setAttribute('x',644); t.setAttribute('y',y);
+    t.textContent=nm; svg.appendChild(t);
+  });
+  var h=document.createElementNS(NS,'text');
+  h.setAttribute('class','lgh'); h.setAttribute('x',604); h.setAttribute('y',860);
+  h.textContent='SEVEN STANDARDS'; svg.appendChild(h);
+}
+
+/* NEAR-GROUND CROWNS. The bottom band is a modelled ground, not a quiet zone,
+   and the frame-balance gate is right to ask for craft there. These are the
+   near tussock, large and low contrast, drawn in the margins and between the
+   type lines, at a value separation small enough that the display type keeps
+   its whole contrast range and big enough that the ground reads as ground. */
+function nearCrowns(){
+  for(var k=0;k<26;k++){
+    var r=AK.rng(41337+k);
+    var y=1010+r()*330, x=-60+r()*1200;
+    var w=110+210*r(), h=w*(0.10+0.09*r());
+    var a=0.055+0.075*r();
+    var cg=CX.createLinearGradient(x,y-h,x,y+h);
+    cg.addColorStop(0,'rgba(126,146,158,'+(a*0.9).toFixed(3)+')');
+    cg.addColorStop(.55,'rgba(52,66,78,'+(a*0.5).toFixed(3)+')');
+    cg.addColorStop(1,'rgba(4,9,15,'+(a*1.1).toFixed(3)+')');
+    CX.fillStyle=cg;
+    CX.beginPath(); CX.ellipse(x,y,w*0.5,h,0,0,6.2832); CX.fill();
+  }
+}
+
+window.renderReady=(async function(){
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h3'),{min:48,max:72,maxLines:2});
+
+  backdrop(); softRow(); litPool(); realShadow(); contact();
+
+  var gl=null;
+  try{ gl=await glTag(); }catch(e){ gl=null; }
+  if(gl){ CX.drawImage(gl,0,0,2160,2700,0,0,1080,1350); } else { canvasTag(); }
+
+  nearCrowns();
+  phantoms(); annotate();
+  AK.svgPlateAll('#ann text.stk',{padX:9,padY:5,fill:'#0B1622',stroke:'#2C4358',
+                                  strokeWidth:1,rx:3,opacity:0.94});
+  AK.svgPlateAll('#ann text.lgh',{padX:9,padY:5,fill:'#0B1622',stroke:'#2C4358',
+                                  strokeWidth:1,rx:3,opacity:0.94});
+  AK.svgPlateAll('#ann text.num',{padX:6,padY:3,fill:'#08121C',stroke:'#274055',
+                                  strokeWidth:1,rx:3,opacity:0.92});
+  AK.svgPlateAll('#ann text.lgn',{padX:6,padY:3,fill:'#08121C',stroke:'#274055',
+                                  strokeWidth:1,rx:3,opacity:0.92});
+
+  window.__akMotifs=[{what:"the seven struck rows on the tag face",
+                      rect:[TAGX+12,TAGY+16,TAGW-30,200]}];
+  AKPOST.grade(CX,GRADE);
+})();
+</script></body></html>

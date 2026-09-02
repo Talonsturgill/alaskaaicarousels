@@ -1,0 +1,326 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Archivo";font-variation-settings:"wdth" 78,"wght" 750;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:1.04}
+.bd{position:absolute;margin:0;font-family:"Fraunces";font-variation-settings:"opsz" 14,"wght" 420;
+    font-size:28px;line-height:1.42;letter-spacing:.005em;color:#D7E2E8}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.80;
+    font-variant-numeric:tabular-nums lining-nums}
+.sm{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.55;
+    font-variant-numeric:tabular-nums lining-nums}
+svg text.pm{font-family:"JetBrains Mono";font-weight:500;font-size:24px;letter-spacing:.08em;fill:#CFE0F5}
+svg text.pi{font-family:"JetBrains Mono";font-weight:700;font-size:24px;letter-spacing:.08em;fill:#6EA5FF}
+svg text.sc{font-family:"JetBrains Mono";font-weight:500;font-size:24px;letter-spacing:.08em;fill:#B9C9D6}
+</style></head><body data-breather>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" style="left:80px;top:96px;width:700px">REGISTER LIFT . TRUE PROJECTION</div>
+<div class="mn" style="left:840px;top:96px;text-align:right;width:160px" data-decorative>05 / 09</div>
+<h2 class="hd" id="h5" style="left:80px;top:560px;width:400px;font-size:58px">Three installations.<br>One is in this borough.</h2>
+<p class="bd" id="b5" style="left:80px;top:850px;width:400px">Eielson Air Force Base is inside the Fairbanks North Star Borough. Public records place Clear Space Force Station near Anderson, in the Denali Borough. Joint Base Elmendorf-Richardson is in Anchorage. A bidder could have proposed one and skipped the others.</p>
+<div class="sm" style="left:80px;top:1296px" data-decorative>2025 STATE ESTIMATE . ALASKA DEPT OF LABOR</div>
+
+<svg id="map" style="position:absolute;left:0;top:0;width:1080px;height:1350px" viewBox="0 0 1080 1350"></svg>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var V='#050A12', LID='#0E1A28', FAR='#20313A', NEAR='#0D1418',
+    SPC='#D7E2E8', GOLD='#FFC72C', FMN='#6EA5FF';
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260901);
+var GRADE={w:1080,h:1350,exposure:-0.06,saturation:1.02,contrast:1.05,filmic:true,
+  lift:[0.006,0.010,0.018],gain:[1.010,1.0,0.986],vignette:0.20,
+  bloom:{threshold:0.86,strength:0.04,radius:8},
+  grain:{amount:0.046,size:2,seed:20260905},aberration:0,dither:true,sharpen:0.28};
+</script>
+<script type="module">
+/* ================= SLIDE 05, THE REGISTER LIFT =================
+   The deck's one declared change of register, and its breather. The reserve
+   ROTATES from the bottom band into a full LEFT COLUMN, which is the near
+   ground rolling up frame-left carrying the same graded tone, so the move is
+   motivated rather than arbitrary. The map is FLAT BY ARGUMENT. Quantities
+   belong in parallel projection, and a perspective map of an area figure would
+   be a doctrine violation, so this frame gives up the deck's depth on purpose.
+   ============================================================== */
+const A='@@ASSETS@@';
+const PLATE=[490,556,510,624];                     // x, y, w, h
+const PLACES={ 'EIELSON AFB':[-147.1017,64.6658],
+               'CLEAR SFS'  :[-149.1875,64.2903],
+               'JBER'       :[-149.7500,61.2500] };
+
+function bed(){
+  var g=CX.createLinearGradient(0,0,0,1350);
+  g.addColorStop(0,V); g.addColorStop(.30,'#0a1420'); g.addColorStop(.62,'#11202c');
+  g.addColorStop(1,NEAR);
+  CX.fillStyle=g; CX.fillRect(0,0,1080,1350);
+}
+/* THE LEFT COLUMN. The reserve, rotated. A foreground bank running the full
+   height, graded, with the same fog and the same value floor as every other
+   slide's bottom band, so the deck's one register change still reads as one
+   place. It is modelled tone, and the acceptance checklist says so. */
+function bank(){
+  var g=CX.createLinearGradient(0,0,452,1350);
+  g.addColorStop(0,'rgba(5,10,18,0.0)'); g.addColorStop(.16,'rgba(5,10,18,0.34)');
+  g.addColorStop(1,'rgba(5,10,18,0.0)');
+  /* NO HARD RIGHT EDGE. The first pass filled a rectangle to x 470 with a
+     gradient that still carried 0.30 alpha at that edge, so the column ended in
+     a straight vertical step down the middle of the frame and the whole reserve
+     read as a black bar rather than as ground. The ramp now runs to zero at
+     x 540 and the fill goes with it. */
+  var b=CX.createLinearGradient(0,0,540,0);
+  b.addColorStop(0,'rgba(4,8,14,0.90)'); b.addColorStop(.32,'rgba(10,19,28,0.74)');
+  b.addColorStop(.70,'rgba(20,34,46,0.46)'); b.addColorStop(.88,'rgba(24,40,54,0.16)');
+  b.addColorStop(1,'rgba(24,40,54,0)');
+  CX.fillStyle=b; CX.fillRect(0,0,540,1350);
+  /* the bank's crest, an irregular hand-authored edge, never a rectangle */
+  CX.beginPath(); CX.moveTo(470,0);
+  for(var y=0;y<=1350;y+=45){
+    var n=AK.fbm2(y*0.0022,7.3,{octaves:3});
+    CX.lineTo(470+28*n, y);
+  }
+  CX.lineTo(0,1350); CX.lineTo(0,0); CX.closePath();
+  var cg=CX.createLinearGradient(240,0,500,0);
+  cg.addColorStop(0,'rgba(38,56,68,0.05)'); cg.addColorStop(.55,'rgba(20,34,46,0.24)');
+  cg.addColorStop(1,'rgba(6,12,20,0.66)');
+  CX.fillStyle=cg; CX.fill();
+  /* a raking value ramp down the bank, so the column reads as a lit slope
+     falling away from the reader rather than as a plate */
+  var rk=CX.createLinearGradient(0,520,470,1180);
+  rk.addColorStop(0,'rgba(96,120,142,0.045)'); rk.addColorStop(.5,'rgba(60,80,98,0.05)');
+  rk.addColorStop(1,'rgba(6,12,20,0.30)');
+  CX.fillStyle=rk; CX.fill();
+  /* A SCATTERED FIELD, not a single file down the crest. Seventeen ellipses in
+     one vertical line is a decoration on a plate; a field that thins and shrinks
+     as it recedes up frame is ground. Scale falls with height, which is the only
+     depth cue this frame is allowed to keep. */
+  for(var k=0;k<52;k++){
+    var r=AK.rng(60900+k), yy=30+r()*1320, t=yy/1350;
+    var w=(22+64*r())*(0.42+0.72*t);
+    var xx=20+r()*410*(0.55+0.60*t);
+    var a=0.14+0.24*t;
+    var cap=CX.createLinearGradient(0,yy-w*0.3,0,yy+w*0.3);
+    cap.addColorStop(0,'rgba(96,112,102,'+(a).toFixed(3)+')');
+    cap.addColorStop(1,'rgba(10,18,24,'+(a*1.15).toFixed(3)+')');
+    CX.fillStyle=cap;
+    CX.beginPath(); CX.ellipse(xx,yy,w*0.62,w*0.16,0,0,6.2832); CX.fill();
+  }
+  /* two hollows of ground fog, so the column has depth as well as tone */
+  [[176,430,300],[236,1096,360]].forEach(function(h){
+    CX.save(); CX.translate(h[0],h[1]); CX.scale(1,0.15);
+    var hg=CX.createRadialGradient(0,0,4,0,0,h[2]);
+    hg.addColorStop(0,'rgba(122,150,178,0.075)'); hg.addColorStop(1,'rgba(122,150,178,0)');
+    CX.fillStyle=hg; CX.beginPath(); CX.arc(0,0,h[2],0,6.2832); CX.fill(); CX.restore();
+  });
+  CX.save(); CX.translate(210,1150); CX.scale(1,0.16);
+  var fg=CX.createRadialGradient(0,0,4,0,0,340);
+  fg.addColorStop(0,'rgba(122,150,178,0.09)'); fg.addColorStop(1,'rgba(122,150,178,0)');
+  CX.fillStyle=fg; CX.beginPath(); CX.arc(0,0,340,0,6.2832); CX.fill(); CX.restore();
+}
+/* THE BOTTOM BAND IS GROUND TOO. The frame balance gate reads this frame's
+   lower third at about half the craft density of its upper two, which on a
+   breather is tolerated and is still the wrong answer. A low contrast crown
+   field runs the full width beneath the plate, at a value separation small
+   enough that the plate keeps its whole range. */
+function nearBand(){
+  for(var k=0;k<22;k++){
+    var r=AK.rng(51840+k);
+    var y=1176+r()*168, x=10+r()*1060;
+    var w=120+220*r(), h=w*(0.10+0.09*r());
+    var a=0.048+0.070*r();
+    var cg=CX.createLinearGradient(x,y-h,x,y+h);
+    cg.addColorStop(0,'rgba(126,146,158,'+(a*0.9).toFixed(3)+')');
+    cg.addColorStop(.55,'rgba(52,66,78,'+(a*0.5).toFixed(3)+')');
+    cg.addColorStop(1,'rgba(4,9,15,'+(a*1.1).toFixed(3)+')');
+    CX.fillStyle=cg;
+    CX.beginPath(); CX.ellipse(x,y,w*0.5,h,0,0,6.2832); CX.fill();
+    CX.strokeStyle='rgba(150,172,188,'+(a*0.5).toFixed(3)+')'; CX.lineWidth=1.1;
+    CX.beginPath(); CX.ellipse(x,y-h*0.16,w*0.44,h*0.72,0,3.34,6.08); CX.stroke();
+  }
+}
+/* the plate the map is drawn on, laid ON the ground with one elevation shadow
+   sharing the deck's global light direction, so it is a thing and not a hole */
+function plate(){
+  CX.save(); CX.filter='blur(14px)';
+  CX.fillStyle='rgba(3,7,12,0.72)';
+  CX.fillRect(PLATE[0]-6,PLATE[1]+10,PLATE[2]+18,PLATE[3]+16);
+  CX.restore(); CX.filter='none';
+  var g=CX.createLinearGradient(PLATE[0],PLATE[1],PLATE[0]+PLATE[2],PLATE[1]+PLATE[3]);
+  g.addColorStop(0,'#15263a'); g.addColorStop(.55,'#101d2c'); g.addColorStop(1,'#0a1420');
+  CX.fillStyle=g; CX.fillRect(PLATE[0],PLATE[1],PLATE[2],PLATE[3]);
+  CX.strokeStyle='rgba(110,165,255,0.26)'; CX.lineWidth=1.2;
+  CX.strokeRect(PLATE[0]+0.5,PLATE[1]+0.5,PLATE[2]-1,PLATE[3]-1);
+  CX.strokeStyle='rgba(215,226,232,0.16)'; CX.lineWidth=1.0;
+  CX.beginPath(); CX.moveTo(PLATE[0],PLATE[1]); CX.lineTo(PLATE[0]+PLATE[2],PLATE[1]); CX.stroke();
+}
+
+window.renderReady=(async function(){
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h5'),{min:40,max:58,maxLines:3});
+
+  bed(); bank(); nearBand(); plate();
+
+  const boroughs=await (await fetch(A+'/geo/alaska-boroughs.geo.json')).json();
+  const fnsb=boroughs.features.filter(f=>f.properties.name==='Fairbanks North Star');
+  /* A REGIONAL inset, not the whole state. Fitting the full borough set puts the
+     Aleutian chain in the x extent and shrinks the Interior to a sliver of the
+     plate, which is the same failure mode as fitting a flat box, arriving by a
+     different road. The region drawn is the ground the three installations sit
+     on and the boroughs between them. */
+  /* Yukon-Koyukuk and Kenai Peninsula are out of the fit. They are real
+     neighbours and they are also enormous, and keeping them drove the scale
+     down until the borough this slide's headline is about drew 92 px by 58 and
+     the mark that has to sit outside it cleared the boundary by eight. The fit
+     also leaves a column of plate free on the right, because a leader that has
+     to be read is worth more here than a fuller map. */
+  const REGION=['Fairbanks North Star','Denali','Anchorage','Matanuska-Susitna',
+                'Southeast Fairbanks'];
+  const region={type:'FeatureCollection',
+                features:boroughs.features.filter(f=>REGION.indexOf(f.properties.name)>=0)};
+  const proj=d3.geoConicEqualArea().parallels([55,65]).rotate([154,0]);
+  AKGeo.fitAxis(proj, region, [PLATE[0]+44, PLATE[0]+372], 'x',
+                {at: PLATE[1]+286});
+  const path=d3.geoPath(proj).context(CX);
+
+  CX.save();
+  CX.beginPath(); CX.rect(PLATE[0],PLATE[1],PLATE[2],PLATE[3]); CX.clip();
+  /* every borough as a hairline, one of them lit */
+  CX.strokeStyle='rgba(168,192,214,0.34)'; CX.lineWidth=1.1;
+  CX.beginPath(); path(region); CX.stroke();
+  CX.fillStyle='rgba(110,165,255,0.22)';
+  CX.beginPath(); path({type:'FeatureCollection',features:fnsb}); CX.fill();
+  CX.strokeStyle=FMN; CX.lineWidth=2.6;
+  CX.beginPath(); path({type:'FeatureCollection',features:fnsb}); CX.stroke();
+  CX.restore();
+
+  /* THE THREE MARKS, placed BY the projection and never typed. The two outside
+     the borough carry a cross tick as well as a dot, because a plain dot and a
+     ringed dot are the same three pixels once the deck is 432 px wide, and the
+     ringed-versus-unringed distinction is the slide's entire claim. */
+  const svg=document.getElementById('map'), NS='http://www.w3.org/2000/svg';
+  const lead=[], marks={};
+  /* every label placed in the plate's free ground, and every leader started on
+     a point OUTSIDE its own knockout plate, which is why the Eielson leader was
+     invisible: it ran from the plate's own left edge to a mark underneath it. */
+  const label={'EIELSON AFB':{x:770,y:700, from:[764,722]},
+               'CLEAR SFS'  :{x:500,y:866, from:[600,838]},
+               'JBER'       :{x:700,y:984, from:[688,996]}};
+  Object.keys(PLACES).forEach(function(nm){
+    const p=proj(PLACES[nm]); marks[nm]=p;
+    const inside = (nm==='EIELSON AFB');
+    CX.strokeStyle= inside ? FMN : 'rgba(215,226,232,0.88)';
+    CX.fillStyle  = inside ? FMN : 'rgba(215,226,232,0.88)';
+    CX.lineWidth=1.8;
+    CX.beginPath(); CX.arc(p[0],p[1],3.4,0,6.2832); CX.fill();
+    if(inside){ CX.beginPath(); CX.arc(p[0],p[1],10.5,0,6.2832); CX.stroke(); }
+    else{
+      CX.lineWidth=1.25;
+      CX.beginPath(); CX.moveTo(p[0]-9,p[1]); CX.lineTo(p[0]+9,p[1]);
+      CX.moveTo(p[0],p[1]-9); CX.lineTo(p[0],p[1]+9); CX.stroke();
+    }
+  });
+  Object.keys(PLACES).forEach(function(nm){
+    const p=marks[nm], L=label[nm];
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('class', nm==='EIELSON AFB'?'pi':'pm');
+    t.setAttribute('x',L.x); t.setAttribute('y',L.y); t.textContent=nm;
+    svg.appendChild(t);
+    const mx=p[0]+(L.from[0]>p[0]?14:-14), my=p[1]+(L.from[1]>p[1]?12:-12);
+    CX.strokeStyle= nm==='EIELSON AFB' ? FMN : 'rgba(215,226,232,0.66)';
+    CX.lineWidth=1.25;
+    CX.beginPath(); CX.moveTo(L.from[0],L.from[1]); CX.lineTo(mx,my);
+    CX.lineTo(p[0],p[1]); CX.stroke();
+    lead.push({target:nm+' at its projected position',
+               at:p, to:p, from:L.from, label:nm});
+  });
+
+  /* the offered acreage, drawn at TRUE map scale beside a scale bar, with a 4x
+     detail circle so the mark survives the 432 px feed test. The side is solved
+     from the projection, never typed. */
+  const kmPerPx=(function(){
+    const a=proj([-148.0,64.5]), b=proj([-147.0,64.5]);
+    const dx=Math.hypot(b[0]-a[0],b[1]-a[1]);
+    return (1.0*111.320*Math.cos(64.5*Math.PI/180))/dx;    // km per px
+  })();
+  const sideKm=Math.sqrt(4700*0.00404686);                  // 4,700 acres, km on a side
+  const sidePx=sideKm/kmPerPx;
+  const SQ=[620, 1046];
+  /* the side the drawing loop actually uses, held in its own const so a future
+     edit to one and not the other trips the tolerance */
+  const drawnSide=sidePx;
+  CX.strokeStyle=SPC; CX.lineWidth=1.4;
+  CX.strokeRect(SQ[0],SQ[1],drawnSide,drawnSide);
+  /* A TWO PIXEL SQUARE HAS NO EDGE at feed size, so it gets one drawn around
+     it. The outline is ink and the square inside it is the measurement. */
+  CX.strokeStyle=FMN; CX.lineWidth=1.25;
+  CX.strokeRect(SQ[0]-7+sidePx/2, SQ[1]-7+sidePx/2, 14, 14);
+  const DC=[850, 1070], DR=42, DM=18;
+  CX.strokeStyle='rgba(215,226,232,0.7)'; CX.lineWidth=1.25;
+  CX.beginPath(); CX.arc(DC[0],DC[1],DR,0,6.2832); CX.stroke();
+  CX.save(); CX.beginPath(); CX.arc(DC[0],DC[1],DR-1,0,6.2832); CX.clip();
+  CX.strokeStyle=SPC; CX.lineWidth=1.8;
+  CX.strokeRect(DC[0]-sidePx*DM/2, DC[1]-sidePx*DM/2, sidePx*DM, sidePx*DM);
+  CX.restore();
+  /* an elbow, and dashed, so it cannot be mistaken for the scale bar 38 px
+     below it. A 192 px near horizontal rule beside a 54 px one is two
+     instruments reading as one broken one. */
+  CX.strokeStyle='rgba(215,226,232,0.6)'; CX.lineWidth=1.25; CX.setLineDash([5,4]);
+  CX.beginPath(); CX.moveTo(SQ[0]+sidePx/2,SQ[1]-14+sidePx/2); CX.lineTo(SQ[0]+sidePx/2,1004);
+  CX.lineTo(DC[0]-DR*0.72,1004); CX.lineTo(DC[0]-DR*0.72,DC[1]-DR*0.72); CX.stroke();
+  CX.setLineDash([]);
+  /* the scale bar, one clean 100 km run under the square */
+  const bar=200/kmPerPx;   // 200 km, so the bar is not a third of its own label
+  CX.strokeStyle=SPC; CX.lineWidth=2.0;
+  CX.beginPath(); CX.moveTo(SQ[0],SQ[1]+sidePx+30); CX.lineTo(SQ[0]+bar,SQ[1]+sidePx+30); CX.stroke();
+  CX.lineWidth=1.4;
+  [0,bar].forEach(function(d){
+    CX.beginPath(); CX.moveTo(SQ[0]+d,SQ[1]+sidePx+24); CX.lineTo(SQ[0]+d,SQ[1]+sidePx+36); CX.stroke();
+  });
+  /* the bar's own label sits under the bar, left edges aligned. It was 150 px
+     away with a dangling hairline between them, which read as one broken
+     instrument rather than two working ones. */
+  [['0 TO 200 KM', SQ[0]-6, SQ[1]+sidePx+62],
+   ['4,700 ACRES AT THIS SCALE', PLATE[0]+6, PLATE[1]+PLATE[3]+42],
+   ['DETAIL 18x', DC[0]-48, DC[1]+DR+34],
+   ['FNSB, ABOUT 97,083 PEOPLE', PLATE[0]+6, PLATE[1]+PLATE[3]+80]
+  ].forEach(function(r){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('class','sc'); t.setAttribute('x',r[1]); t.setAttribute('y',r[2]);
+    t.textContent=r[0]; svg.appendChild(t);
+  });
+
+  AK.svgPlateAll('#map text.pm',{padX:8,padY:5,fill:'#0B1622',stroke:'#2C4358',strokeWidth:1,rx:3,opacity:0.95});
+  AK.svgPlateAll('#map text.pi',{padX:8,padY:5,fill:'#0B1622',stroke:'#2C4358',strokeWidth:1,rx:3,opacity:0.95});
+  AK.svgPlateAll('#map text.sc',{padX:7,padY:4,fill:'#08121C',stroke:'#22384A',strokeWidth:1,rx:3,opacity:0.92});
+
+  /* the deck's motif rests here, one gold tick and nothing else */
+  CX.fillStyle=GOLD; CX.fillRect(992,88,8,8);
+
+  window.__akLeaders=lead;
+  /* EXPECT IS RE-DERIVED, from a SECOND, independent pair of reference points
+     on the same projection, so the two sides of this assertion cannot be the
+     same expression and the check can actually fail. The first build declared
+     expect and actual as the identical variable, which proved nothing about the
+     one number this slide asks a reader to trust. */
+  const kmPerPx2=(function(){
+    const a=proj([-149.5,63.0]), b=proj([-148.5,63.0]);
+    return (1.0*111.320*Math.cos(63.0*Math.PI/180))/Math.hypot(b[0]-a[0],b[1]-a[1]);
+  })();
+  window.__akAssert=[{what:"the 4,700 acre square drawn at the map's own scale",
+                      expect:+(sideKm/kmPerPx2).toFixed(2), actual:+drawnSide.toFixed(2),
+                      tol:0.5, unit:"px"}];
+  window.__akMotifs=[{what:"the Fairbanks North Star Borough outline, the only lit boundary",
+                      rect:[PLATE[0]+34,PLATE[1]+40,PLATE[2]-68,PLATE[3]-160]}];
+  AKPOST.grade(CX,GRADE);
+})();
+</script></body></html>

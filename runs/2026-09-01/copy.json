@@ -1,0 +1,243 @@
+{
+  "document_title": "Fairbanks Wrote One Line Twice",
+  "post_copy": "The Air Force offered federal land for AI data centers. The pause Fairbanks North Star Borough asked for can't reach a foot of it.\n\nResolution 2026-25 sets 25 priorities, 21 state and 4 federal. One heading appears on both lists. It asks for a moratorium on new commercial data centers on state-owned or municipal lands.\n\nTwelve parcels were on offer at three installations. Only Eielson is in this borough. Responses closed May 29th.\n\nPresiding Officer Scott Crass told KUAC by phone that federal land was intended too. The text adopted on August 27th says state or municipal lands.\n\nThe heading printed twice, the seven standards it waits on, the twelve parcels and the property line between them.\n\nOne sentence, two governments. Which copy does the work, the one whose words fit its target or the one whose intent does?\n\n#DataCenterSiting #AlaskaLegislature #InteriorAlaska",
+  "deck_summary_line": "The heading printed twice, the seven standards it waits on, the twelve parcels and the property line between them.",
+  "caption_meta": {
+    "opening_move": "CONTRADICTION",
+    "structure": "BRAID",
+    "closing_move": "NEW: WHICH COPY IS OPERATIVE"
+  },
+  "first_comment": "Sources, primary first\nBorough clerk, action memorandum, August 27th, 2026 assembly meeting, https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)\nResolution 2026-25 text, agenda packet, https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)\nSAM.gov, Air Force solicitation AFCEC-26-R-0006, https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695\nBorough assemblymember roster, https://www.fnsb.gov/172/Assemblymembers\nAlaska Department of Labor, population estimates, https://live.laborstats.alaska.gov/pop/index.cfm\nKUAC, assembly doubles up on data center moratorium request, https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request\nFairbanks Daily News-Miner, moratorium sparks assembly discussion, https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html\nAlaska's News Source, borough weighs data center regulations, https://www.alaskasnewssource.com/2026/09/02/fairbanks-borough-weighs-data-center-regulations-seeks-state-moratorium/\nAir and Space Forces Magazine, land offered at three Alaska bases, https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/\nEvery decision this deck tracks, with live deadlines, sits on the docket at https://alaskaaihq.com\nIf you read the packet or sat in that meeting, add what is missing here.",
+  "slides": [
+    {
+      "n": 1,
+      "strings": [
+        "FAIRBANKS NORTH STAR BOROUGH",
+        "RESOLUTION 2026-25 . ADOPTED AUGUST 27TH, 2026",
+        "01 / 09",
+        "TWO MARKERS, ONE STATION",
+        "25 priorities.One written twice.",
+        "DIAGRAM. ONE MARKER PER ITEM IN RESOLUTION 2026-25."
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "n": 2,
+      "strings": [
+        "THE 2027 LEGISLATIVE PRIORITIES",
+        "02 / 09",
+        "21 STATE",
+        "4 FEDERAL",
+        "MORATORIUM ON DATA CENTER DEVELOPMENT IN ALASKA",
+        "The same line wentto two governments.",
+        "Twenty five items, 21 state and 4 federal. Only one heading appears under both, word for word. The Committee of the Whole sponsored it and Garrett Armstrong moved it in on August 6th.",
+        "A BOROUGH OF ABOUT 97,083 PEOPLE, 2025 STATE ESTIMATE"
+      ],
+      "claim_ids": [
+        "C01",
+        "C04",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C33"
+      ]
+    },
+    {
+      "n": 3,
+      "strings": [
+        "WHAT THE PAUSE WAITS FOR",
+        "03 / 09",
+        "The hold runs untilthe standards exist.",
+        "The hold would stay until the state and local governments adopt standards for the seven impacts the resolution names.",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "1",
+        "ELECTRICAL DEMAND",
+        "2",
+        "WATER CONSUMPTION",
+        "3",
+        "WATER SHORTAGES",
+        "4",
+        "ENVIRONMENTAL IMPACTS",
+        "5",
+        "NOISE",
+        "6",
+        "AIR QUALITY",
+        "7",
+        "LAND USE POLLUTION",
+        "SEVEN STANDARDS"
+      ],
+      "claim_ids": [
+        "C07"
+      ]
+    },
+    {
+      "n": 4,
+      "strings": [
+        "WHAT PROMPTED IT",
+        "AFCEC-26-R-0006 . POSTED APRIL 10TH, 2026",
+        "04 / 09",
+        "Twelve parcels werealready on offer.",
+        "KUAC reported the request follows an Air Force solicitation at three Alaska installations. Air and Space Forces Magazine put it at twelve parcels and roughly 4,700 acres.",
+        "SAM.GOV RECORD . PER INSTALLATION SPLIT NOT PUBLISHED",
+        "TWELVE PARCELS, SHAPES NOT DRAWN"
+      ],
+      "claim_ids": [
+        "C23",
+        "C24",
+        "C25",
+        "C28",
+        "C29",
+        "C31"
+      ]
+    },
+    {
+      "n": 5,
+      "strings": [
+        "REGISTER LIFT . TRUE PROJECTION",
+        "05 / 09",
+        "Three installations.One is in this borough.",
+        "Eielson Air Force Base is inside the Fairbanks North Star Borough. Public records place Clear Space Force Station near Anderson, in the Denali Borough. Joint Base Elmendorf-Richardson is in Anchorage. A bidder could have proposed one and skipped the others.",
+        "2025 STATE ESTIMATE . ALASKA DEPT OF LABOR",
+        "EIELSON AFB",
+        "CLEAR SFS",
+        "JBER",
+        "0 TO 200 KM",
+        "4,700 ACRES AT THIS SCALE",
+        "DETAIL 18x",
+        "FNSB, ABOUT 97,083 PEOPLE"
+      ],
+      "claim_ids": [
+        "C24",
+        "C28",
+        "C33",
+        "C34",
+        "C35",
+        "C27"
+      ]
+    },
+    {
+      "n": 6,
+      "strings": [
+        "THE FEDERAL CLOCK AND THE BOROUGH CLOCK",
+        "06 / 09",
+        "90 DAYS",
+        "The window shut in spring.The vote came in August.",
+        "The federal window opened and closed before the Assembly took the item up. The land it opened is federal.",
+        "APRIL 10TH POSTED",
+        "APRIL 23RD INDUSTRY DAY",
+        "APRIL 28TH TO 30TH SITE VISITS",
+        "MAY 29TH RESPONSES DUE",
+        "JUNE 13TH ARCHIVED, NO AWARD",
+        "AUGUST 6TH WORK SESSION",
+        "AUGUST 27TH ADOPTED",
+        "1",
+        "1",
+        "2",
+        "2",
+        "3",
+        "3",
+        "4",
+        "4",
+        "5",
+        "5",
+        "6",
+        "6",
+        "7",
+        "7"
+      ],
+      "claim_ids": [
+        "C02",
+        "C13",
+        "C25",
+        "C26",
+        "C30",
+        "C29",
+        "C24"
+      ]
+    },
+    {
+      "n": 7,
+      "strings": [
+        "WHERE THE WORDS STOP",
+        "07 / 09",
+        "The markers stop ata property line.",
+        "The adopted text reaches new commercial data centers on state-owned or municipal lands in Alaska. The twelve parcels are on federal installations.",
+        "DIAGRAM. ONE MARKER PER ITEM IN RESOLUTION 2026-25.",
+        "NO SHADOW CROSSES THE LINE",
+        "STATE OR MUNICIPAL",
+        "FEDERAL"
+      ],
+      "claim_ids": [
+        "C06",
+        "C29"
+      ]
+    },
+    {
+      "n": 8,
+      "strings": [
+        "AFTER THE VOTE",
+        "08 / 09",
+        "\"We need to establish strict regulations before tech conglomerates come knocking at our door.\"",
+        "MORATORIUM ON DATA CENTER DEVELOPMENT IN ALASKA",
+        "SARAH HOLLISTER, TO THE ASSEMBLY, PER KUAC",
+        "The words say state land.The intent was wider.",
+        "Presiding Officer Scott Crass told KUAC by phone that federal land was meant to be included too. The text adopted on August 27th doesn't say that, and both lists carry the same words.",
+        "INTENDED, PER KUAC",
+        "SAME WORDS, BOTH LISTS"
+      ],
+      "claim_ids": [
+        "C02",
+        "C15",
+        "C16",
+        "C18",
+        "C12",
+        "C08"
+      ]
+    },
+    {
+      "n": 9,
+      "strings": [
+        "WHAT A BOROUGH CAN DO",
+        "09 / 09",
+        "An ask is the wholepower a borough has here.",
+        "Mayor Grier Hopkins said the community wants to know how data centers can best be regulated and \"where, if anywhere, should we put them in our community.\" No standard exists yet for any of the seven.",
+        "Which of the seven should Alaska write a standard for first?",
+        "SOURCES IN COMMENTS",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "64 50 N 147 43 W"
+      ],
+      "claim_ids": [
+        "C05",
+        "C07",
+        "C20"
+      ]
+    }
+  ],
+  "editor_notes_for_email": "The caption ships byte for byte from the room and no factual error was found in it, so nothing was touched. The deck's central object is a constructed diagram of survey markers, one per item on the adopted list, and slides 1 and 7 say exactly that in a mono legend, because a reader who takes it for a photograph of a real site is this deck's main misreading risk. If the post underperforms, watch the swipe from slide 1 to slide 2, since the cover poses a counting question and the payoff sits entirely on the second card. Slide 6 was rebuilt late in the run: its body used to reprint the five dates its own numbered chips carry, which made it the deck's heaviest frame and, in two independent flow reads, the place a reader stops. It now carries two sentences and hands the turn forward, and the day rail runs off the right edge unterminated so the swipe into slide 7 has somewhere to go. The likeliest correction request is the May 29th response deadline, because a third party mirror and an older docket entry say June 29th, and the sam.gov record itself reads 2026-05-29 with an archive date of June 13th and an empty award object. Second likeliest is the land wording, since both outlets printed state-owned AND municipal while the resolution's own text reads OR, which is why slide 7 and the caption both write or. All three claims that were dropped in the first build are now carried. C04, the sponsor line, is back in slide 2's body. C27, the single installation bid clause, is back in slide 5's body. C08, the stamped heading, is struck into both tag faces on slide 8, which is also what makes that slide's two stamps provably the same object. Before pasting, read the first comment back once, because the two borough clerk links carry parentheses and a comma inside the URL and a mangled paste kills the primary document.",
+  "aftercare": [
+    "Post this in a Tuesday to Thursday window, 8 to 11am Alaska time, one slot only. Drafts land daily and the cadence is yours.",
+    "Paste the sources comment within 60 seconds of posting, before the first impressions land.",
+    "Read the pasted comment back once and confirm the two civicclerk links survived with their parentheses and commas intact.",
+    "Stay in the thread for the first 90 minutes and reply to every comment, including the one word ones.",
+    "Answer the deck's own question first with a real pick from the seven, which is what makes the ask read as open rather than rhetorical.",
+    "Corrections outrank everything. If a reader says the federal deadline moved, the sam.gov record as read this run says responses closed May 29th, 2026 and the docket carries the dated correction.",
+    "Leave the post alone after the first hour. An edit resets distribution and buys nothing.",
+    "Note saves, comments and swipe depth at 48 hours and write them into the run record."
+  ]
+}

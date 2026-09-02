@@ -1,0 +1,344 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Archivo";font-variation-settings:"wdth" 78,"wght" 750;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:1.02}
+.bd{position:absolute;margin:0;font-family:"Fraunces";font-variation-settings:"opsz" 14,"wght" 420;
+    font-size:32px;line-height:1.40;letter-spacing:.005em;color:#D7E2E8}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.80;
+    font-variant-numeric:tabular-nums lining-nums}
+.sm{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:20px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.55}
+svg text.sd{font-family:"JetBrains Mono";font-weight:500;font-size:24px;letter-spacing:.08em;fill:#CFE0F5}
+svg text.sz{font-family:"JetBrains Mono";font-weight:700;font-size:24px;letter-spacing:.10em;fill:#8FA6B8}
+</style></head><body data-contacts='[{"what": "the last marker of the row standing on the near side of the cut", "shadow": [[646, 896, 16, 8]], "ground": [[612, 896, 18, 8]]}]' data-encodes='[{"claim": "twelve parcel pins stand on ground carrying no steel", "reads": "differ", "a": [[740, 556, 270, 150]], "b": [[416, 620, 252, 150]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" style="left:80px;top:96px;width:700px">WHERE THE WORDS STOP</div>
+<div class="mn" style="left:840px;top:96px;text-align:right;width:160px" data-decorative>07 / 09</div>
+<h2 class="hd" id="h7" style="left:80px;top:916px;width:900px;font-size:92px">The markers stop at<br>a property line.</h2>
+<p class="bd" id="b7" style="left:80px;top:1116px;width:720px;font-size:30px">The adopted text reaches new commercial data centers on state-owned or municipal lands in Alaska. The twelve parcels are on federal installations.</p>
+<div class="sm" style="left:80px;top:1300px" data-decorative>DIAGRAM. ONE MARKER PER ITEM IN RESOLUTION 2026-25.</div>
+
+<svg id="ann" style="position:absolute;left:0;top:0;width:1080px;height:1350px" viewBox="0 0 1080 1350"></svg>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var F=2208, CXP=540, HZ=470, CAMH=0.72;
+function GY(Z){ return HZ + F*(CAMH/Z); }
+function TY(Z,h){ return HZ + F*((CAMH-h)/Z); }
+function SX(X,Z){ return CXP + F*(X/Z); }
+function WX(x,Z){ return (x-CXP)*Z/F; }
+var ZR=3.70, MH=0.45, ROD=0.014;
+var SUNX=0.06769, SUNY=0.24192, SUNZ=0.96793, TSH=MH/SUNY;
+var V='#050A12', LID='#0E1A28', FAR='#20313A', NEAR='#0D1418',
+    SPC='#D7E2E8', GOLD='#FFC72C', FMN='#6EA5FF';
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260901);
+var GRADE={w:1080,h:1350,exposure:-0.09,saturation:1.02,contrast:1.08,filmic:true,
+  lift:[0.006,0.010,0.018],gain:[1.012,1.0,0.984],vignette:0.19,
+  bloom:{threshold:0.80,strength:0.08,radius:11},
+  grain:{amount:0.050,size:2,seed:20260907},aberration:0,dither:true,sharpen:0.32};
+</script>
+<script type="module">
+/* ================= SLIDE 07, THE BOUNDARY =================
+   The turn, and the deck's wordless claim. The camera has tracked to the end of
+   the row. A surveyed cutline runs from the horizon down to the lower right and
+   divides the frame. Every steel marker stands on the near side, and so does
+   every shadow they throw. Every parcel pin stands across the line. Nothing
+   crosses either way, and no number is printed inside the picture.
+   THE CUT IS A VALUE BREAK, NOT A STROKE, because the line-voice rule says ink
+   marks a claim and light marks the world, and a property line is in the world.
+   ========================================================= */
+const A='@@ASSETS@@';
+/* THE CUT, as a screen-space polyline from the horizon down to the lower right.
+   It descends AWAY from the row because the near side has to be the near side.
+   The sun sits at azimuth 062, so every shadow in this deck runs down and to the
+   LEFT. A boundary that also ran down-left would overtake its own shadows within
+   ten pixels of the marker bases, which is what the first pass did: the whole
+   near field collapsed to nothing and the slide's declared subject was never
+   drawn. Descending right instead puts the borough's ground in the lower two
+   thirds where the camera says near ground belongs, hands the shadow fan a full
+   400 px of run, and leaves the twelve federal parcels in the lit wedge across
+   the line. Nothing crosses, and now that is visible rather than asserted. */
+const CUT=[[672,470],[684,556],[700,660],[726,780],[772,900],[840,1040],[928,1190],[1010,1300],[1046,1350]];
+function cutXat(y){
+  for(var i=0;i<CUT.length-1;i++){
+    var a=CUT[i], b=CUT[i+1];
+    if(y>=a[1]&&y<=b[1]) return a[0]+(b[0]-a[0])*(y-a[1])/(b[1]-a[1]);
+  }
+  return y<CUT[0][1]?CUT[0][0]:CUT[CUT.length-1][0];
+}
+/* THE ROW STANDS AT THE LINE. Reversing the cut fixed the shadow bug and left
+   the subject and the boundary in different arguments: the last marker's base
+   sat at x 348 while the cut at the same y sat at x 772, so 424 px of empty
+   ground stood between the steel and the thing the headline says it stops at.
+   The tail steps right 320 px. The gold marker's tag now clears the lip by
+   22 px at the cap and its base by 104 px, and all nine casts still solve to
+   y 1307, sweeping down and left ACROSS the borough's own ground and away
+   from a line the reader can now see them leaving. */
+const MK=[416,447.5,479,510.5,542,573.5,605,636.5,668];     // the row's tail
+const GOLDX=668;
+const PIN=(function(){
+  var out=[], r=AK.rng(770313);
+  for(var i=0;i<12;i++){
+    var t=i/11;
+    var Z=8.6-2.0*t+0.6*(r()-0.5);
+    var x=742+282*t+22*(r()-0.5);
+    out.push([x, GY(Z), Z]);
+  }
+  return out;
+})();
+
+function sky(){
+  var g=CX.createLinearGradient(0,0,0,HZ+40);
+  g.addColorStop(0,V); g.addColorStop(.60,'#0a1421'); g.addColorStop(1,LID);
+  CX.fillStyle=g; CX.fillRect(0,0,1080,HZ+40);
+  CX.save(); CX.globalCompositeOperation='screen';
+  CX.translate(842,446); CX.scale(1.0,0.58);
+  var b=CX.createRadialGradient(0,0,6,0,0,220);
+  b.addColorStop(0,'rgba(240,192,137,0.30)'); b.addColorStop(1,'rgba(224,165,102,0)');
+  CX.fillStyle=b; CX.beginPath(); CX.arc(0,0,220,0,6.2832); CX.fill(); CX.restore();
+  for(var k=0;k<44;k++){
+    var r=AK.rng(31900+k), x=-30+r()*1160, h=20+28*r(), w=5+5*r();
+    CX.fillStyle='rgba(28,42,44,'+(0.30+0.28*r()).toFixed(3)+')';
+    CX.beginPath(); CX.moveTo(x,HZ+2); CX.lineTo(x+w*0.5,HZ+2-h); CX.lineTo(x+w,HZ+2);
+    CX.closePath(); CX.fill();
+  }
+}
+/* TWO GROUNDS, ONE BOUNDARY, AND THE VALUE BREAK IS THE ARGUMENT.
+   Painted as explicit ramps rather than shaded off a height field, because this
+   frame's whole claim is a MEASURED difference between the two sides and a
+   relief pass is a texture, not a value guarantee. The near side is the
+   borough's and it lies in the treeline's shadow. The far side holds the low
+   sun. The cut between them is a lit lip over a dark wall, never a stroked
+   line, because ink marks a claim and a property line is in the world. */
+function grounds(){
+  function side(near){
+    var g=CX.createLinearGradient(0,HZ,0,1350);
+    if(near){
+      /* the floor is lifted off black on purpose. A cast shadow can only read as
+         a shadow if the ground it lies on has somewhere darker to go. */
+      g.addColorStop(0,'#1c2934'); g.addColorStop(.18,'#192531');
+      g.addColorStop(.55,'#16212a'); g.addColorStop(1,'#121b23');
+    }else{
+      g.addColorStop(0,'#28332c'); g.addColorStop(.20,'#333e31');
+      g.addColorStop(.55,'#3b4634'); g.addColorStop(1,'#30392c');
+    }
+    CX.fillStyle=g; CX.fillRect(0,HZ,1080,1350-HZ);
+    /* tussock tone, few and large, brighter on the lit side */
+    for(var k=0;k<64;k++){
+      var r=AK.rng((near?5100:6100)+k), t=r();
+      var Z=1.9+(9.6-1.9)*Math.pow(t,0.5);
+      var x=(near? -40+r()*1160 : 560+r()*560), y=GY(Z);
+      var w=F*(0.10+0.16*r())/Z, h=w*(0.16+0.12*r());
+      var cap=CX.createLinearGradient(x,y-h,x,y);
+      if(near){
+        cap.addColorStop(0,'rgba(64,80,90,0.22)'); cap.addColorStop(1,'rgba(10,18,26,0.30)');
+      }else{
+        cap.addColorStop(0,'rgba(112,122,90,0.36)'); cap.addColorStop(1,'rgba(26,34,24,0.42)');
+      }
+      CX.fillStyle=cap;
+      CX.beginPath(); CX.ellipse(x,y-h*0.42,w*0.5,h*0.66,0,0,6.2832); CX.fill();
+    }
+  }
+  function nearPath(){
+    CX.beginPath(); CX.moveTo(0,HZ);
+    CUT.forEach(function(p){ CX.lineTo(p[0],p[1]); });
+    CX.lineTo(0,1350); CX.closePath();
+  }
+  function farPath(){
+    CX.beginPath(); CX.moveTo(1080,HZ);
+    CUT.forEach(function(p){ CX.lineTo(p[0],p[1]); });
+    CX.lineTo(1080,1350); CX.closePath();
+  }
+  CX.save(); nearPath(); CX.clip(); side(true);  CX.restore();
+  CX.save(); farPath();  CX.clip(); side(false); CX.restore();
+  /* THE CUT IS NOT DRAWN. There is no stroke on this boundary anywhere in the
+     frame, because the line-voice rule says ink marks a claim and a property
+     line is a thing in the world. What is drawn instead is what a survey cut
+     does to light: a soft wall of shade falling on the borough's side, and a
+     lip on the federal side where the low sun rakes the raised edge. The lip
+     grows from a hairline at the horizon to about eight pixels at the bottom,
+     which is the perspective, and the near fog eats it before it reaches the
+     corner. */
+  CX.save(); nearPath(); CX.clip();
+  CX.filter='blur(8px)'; CX.lineJoin='round'; CX.lineCap='round';
+  CX.beginPath(); CX.moveTo(CUT[0][0],CUT[0][1]);
+  CUT.forEach(function(p){ CX.lineTo(p[0],p[1]); });
+  CX.lineWidth=20; CX.strokeStyle='rgba(4,9,14,0.62)'; CX.stroke();
+  CX.filter='none'; CX.restore();
+  CX.save(); farPath(); CX.clip();
+  for(var i=0;i<CUT.length-1;i++){
+    var a=CUT[i], b=CUT[i+1];
+    var n=Math.max(2,Math.round((b[1]-a[1])/6));
+    for(var j=0;j<n;j++){
+      var s0=j/n, s1=(j+1)/n;
+      var x0=a[0]+(b[0]-a[0])*s0, y0=a[1]+(b[1]-a[1])*s0;
+      var x1=a[0]+(b[0]-a[0])*s1, y1=a[1]+(b[1]-a[1])*s1;
+      var dx=x1-x0, dy=y1-y0, L=Math.hypot(dx,dy)||1;
+      var px=dy/L, py=-dx/L;                       /* normal into the lit side */
+      var d=Math.max(0,Math.min(1,(y0-HZ)/880));
+      /* a stroke is what this must never be, so the lip is at its thinnest and
+         faintest at the horizon and comes up where the sun genuinely rakes */
+      var w=3.0+9.0*d;
+      var al=0.06+0.40*Math.sin(Math.PI*Math.min(1,d*1.55));
+      CX.fillStyle='rgba(158,170,124,'+al.toFixed(3)+')';
+      CX.beginPath(); CX.moveTo(x0,y0); CX.lineTo(x1,y1);
+      CX.lineTo(x1+px*w,y1+py*w); CX.lineTo(x0+px*w,y0+py*w);
+      CX.closePath(); CX.fill();
+    }
+  }
+  CX.restore();
+  var f=CX.createLinearGradient(0,HZ-14,0,HZ+190);
+  f.addColorStop(0,'rgba(14,26,40,0.94)'); f.addColorStop(1,'rgba(14,26,40,0)');
+  CX.fillStyle=f; CX.fillRect(0,HZ-14,1080,204);
+}
+/* the row's tail, and every shadow terminating BEFORE the line */
+function tail(){
+  var top=TY(ZR,MH), base=GY(ZR), w=F*ROD/ZR;
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  /* Nine casts, each run to the tip the deck header solves for: y 1307, at
+     x = 540 + 1162.4*X - 146.3. Every one of them lands on the borough's own
+     ground and not one reaches the line. The fan IS the type reserve. */
+  MK.forEach(function(x){
+    var X=WX(x,ZR), z2=ZR-SUNZ*TSH;
+    var ex=SX(X-SUNX*TSH,z2), ey=GY(z2);
+    var g=o.createLinearGradient(x,base,ex,ey);
+    g.addColorStop(0,'rgba(5,10,18,0.92)'); g.addColorStop(.55,'rgba(5,10,18,0.62)');
+    g.addColorStop(1,'rgba(5,10,18,0.22)');
+    o.fillStyle=g; o.beginPath();
+    o.moveTo(x-w/2,base); o.lineTo(x+w/2,base);
+    o.lineTo(ex+w*1.9,ey); o.lineTo(ex-w*1.9,ey); o.closePath(); o.fill();
+  });
+  [[898,960,0],[960,1030,7],[1030,1120,15],[1120,1350,24]].forEach(function(b){
+    CX.save(); CX.beginPath(); CX.rect(0,b[0],1080,b[1]-b[0]); CX.clip();
+    CX.filter=b[2]?('blur('+b[2]+'px)'):'none';
+    CX.drawImage(off,0,0,2160,2700,0,0,1080,1350); CX.restore();
+  });
+  CX.filter='none';
+  /* the lit pool under the gold marker, laid before the contact is cast */
+  /* the pool has to do real work here: the borough's ground is the dark side
+     of the cut by construction, and a contact shadow is a subtraction that
+     needs something to subtract from. */
+  CX.save(); CX.translate(GOLDX-36,906); CX.scale(1,0.32);
+  var lp=CX.createRadialGradient(0,0,3,0,0,110);
+  lp.addColorStop(0,'rgba(126,152,110,0.62)'); lp.addColorStop(.40,'rgba(106,130,96,0.36)');
+  lp.addColorStop(.74,'rgba(88,110,84,0.16)'); lp.addColorStop(1,'rgba(70,92,72,0)');
+  CX.fillStyle=lp; CX.beginPath(); CX.arc(0,0,110,0,6.2832); CX.fill(); CX.restore();
+  MK.forEach(function(x){
+    if(x!==GOLDX){
+      CX.save(); CX.translate(x-8,904); CX.scale(1,0.30);
+      var op=CX.createRadialGradient(0,0,3,0,0,64);
+      op.addColorStop(0,'rgba(112,136,100,0.16)'); op.addColorStop(1,'rgba(88,110,84,0)');
+      CX.fillStyle=op; CX.beginPath(); CX.arc(0,0,64,0,6.2832); CX.fill(); CX.restore();
+    }
+    var isG=(x===GOLDX);
+    var g=CX.createLinearGradient(x-w/2,0,x+w/2,0);
+    g.addColorStop(0,'rgba(30,46,56,0.96)');
+    g.addColorStop(.62,AKC.mixOklab(FAR,'#BCC6CC',0.44)); g.addColorStop(1,SPC);
+    CX.fillStyle=g; CX.fillRect(x-w/2,top,w,base-top);
+    var tw=F*0.033/ZR, th=F*0.037/ZR;
+    CX.fillStyle=isG?GOLD:AKC.mixOklab(FAR,'#BCC6CC',0.55);
+    CX.fillRect(x-tw/2,top,tw,th);
+    if(isG){ CX.strokeStyle='#FFE08A'; CX.lineWidth=1.2;
+      CX.beginPath(); CX.moveTo(x+tw/2,top); CX.lineTo(x+tw/2,top+th); CX.stroke(); }
+  });
+  CX.save(); CX.translate(GOLDX,901); CX.scale(1,0.32);
+  var ct=CX.createRadialGradient(0,0,1,0,0,30);
+  ct.addColorStop(0,'rgba(4,8,14,0.96)'); ct.addColorStop(.45,'rgba(4,8,14,0.78)');
+  ct.addColorStop(.75,'rgba(4,8,14,0.32)'); ct.addColorStop(1,'rgba(4,8,14,0)');
+  CX.fillStyle=ct; CX.beginPath(); CX.arc(0,0,30,0,6.2832); CX.fill(); CX.restore();
+  CX.fillStyle='rgba(4,8,14,0.92)'; CX.fillRect(GOLDX-16,899,32,3);
+}
+function pins(){
+  PIN.forEach(function(p){
+    var h=F*0.30/p[2];
+    CX.save();
+    CX.strokeStyle='rgba(110,165,255,0.80)'; CX.lineWidth=1.4;
+    CX.setLineDash([9,5]);
+    CX.beginPath(); CX.moveTo(p[0],p[1]); CX.lineTo(p[0],p[1]-h); CX.stroke();
+    CX.setLineDash([]); CX.lineWidth=1.8;
+    CX.beginPath(); CX.arc(p[0],p[1]-h-7,5.4,0,6.2832); CX.stroke();
+    CX.restore();
+  });
+}
+function annotate(){
+  var svg=document.getElementById('ann'), NS='http://www.w3.org/2000/svg';
+  /* The one label sits in the upper near ground, well clear of the markers, of
+     the pin stems and of the reserve, and its leader lands ON the line at
+     y 660, which is the thing it is talking about. */
+  var tipY=600, tipX=cutXat(tipY);
+  var t=document.createElementNS(NS,'text');
+  t.setAttribute('class','sd'); t.setAttribute('x',120); t.setAttribute('y',530);
+  t.textContent='NO SHADOW CROSSES THE LINE'; svg.appendChild(t);
+  CX.strokeStyle=FMN; CX.lineWidth=1.25;
+  CX.beginPath(); CX.moveTo(556,540); CX.lineTo(632,566); CX.lineTo(tipX,tipY); CX.stroke();
+  CX.fillStyle=FMN; CX.beginPath(); CX.arc(tipX,tipY,2.4,0,6.2832); CX.fill();
+  [['STATE OR MUNICIPAL',120,858],['FEDERAL',854,772]].forEach(function(z0){
+    var z=document.createElementNS(NS,'text');
+    z.setAttribute('class','sz');
+    z.setAttribute('x', z0[1]); z.setAttribute('y', z0[2]);
+    z.textContent=z0[0]; svg.appendChild(z);
+  });
+  /* the federal plate stands clear of the twelve stems and reaches back to the
+     nearest pin with a hairline instead of sitting on top of the population */
+  CX.strokeStyle=FMN; CX.lineWidth=1.25;
+  CX.beginPath(); CX.moveTo(880,758); CX.lineTo(880,724); CX.lineTo(PIN[6][0],PIN[6][1]+2); CX.stroke();
+  window.__akLeaders=[{target:"the surveyed cut at the point the label names",
+    at:[tipX,tipY], to:[tipX,tipY], from:[556,540], label:"NO SHADOW CROSSES THE LINE"},
+    {target:"the nearest of the twelve federal parcel pins",
+    at:[PIN[6][0],PIN[6][1]], to:[PIN[6][0],PIN[6][1]], from:[880,758], label:"FEDERAL"}];
+}
+
+
+/* NEAR-GROUND CROWNS. The bottom band is a modelled ground, not a quiet zone,
+   and the frame-balance gate is right to ask for craft there. These are the
+   near tussock, large and low contrast, drawn in the margins and between the
+   type lines, at a value separation small enough that the display type keeps
+   its whole contrast range and big enough that the ground reads as ground. */
+function nearCrowns(){
+  for(var k=0;k<26;k++){
+    var r=AK.rng(41337+k);
+    var y=1010+r()*330, x=-60+r()*1200;
+    var w=110+210*r(), h=w*(0.10+0.09*r());
+    var a=0.055+0.075*r();
+    var cg=CX.createLinearGradient(x,y-h,x,y+h);
+    cg.addColorStop(0,'rgba(126,146,158,'+(a*0.9).toFixed(3)+')');
+    cg.addColorStop(.55,'rgba(52,66,78,'+(a*0.5).toFixed(3)+')');
+    cg.addColorStop(1,'rgba(4,9,15,'+(a*1.1).toFixed(3)+')');
+    CX.fillStyle=cg;
+    CX.beginPath(); CX.ellipse(x,y,w*0.5,h,0,0,6.2832); CX.fill();
+  }
+}
+
+window.renderReady=(async function(){
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h7'),{min:60,max:92,maxLines:2});
+
+  sky(); grounds(); tail(); nearCrowns(); pins(); annotate();
+  AK.svgPlateAll('#ann text.sd',{padX:9,padY:5,fill:'#0B1622',stroke:'#2C4358',strokeWidth:1,rx:3,opacity:0.95});
+  AK.svgPlateAll('#ann text.sz',{padX:8,padY:5,fill:'#08121C',stroke:'#22384A',strokeWidth:1,rx:3,opacity:0.9});
+
+  /* THE WORDLESS CLAIM. Region a brackets the twelve pin heads, whose y range
+     was read off the render at 571 to 604, and their stems. Region b brackets
+     the nine rod bodies at their measured x span. The provisional rects that
+     shipped in the first build put region a entirely BELOW the pin heads, so
+     the pair was proving the ground gradient and not the claim. */
+
+  window.__akAssert=[{what:"twelve parcel pins, all of them past the cut",
+                      expect:12, points:PIN.map(function(p){return [p[0],p[1]-F*0.30/p[2]-7];}),
+                      unit:"marks"}];
+  window.__akMotifs=[{what:"the surveyed cut, the boundary the words stop at",
+                      rect:[300,600,420,320]}];
+  AKPOST.grade(CX,GRADE);
+})();
+</script></body></html>

@@ -13,6 +13,83 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-09-01/",
+      "url": "https://alaskaaihq.com/archive/2026-09-01/",
+      "title": "Fairbanks Wrote One Line Twice",
+      "summary": "The heading printed twice, the seven standards it waits on, the twelve parcels and the property line between them.",
+      "content_html": "<p><em>The Air Force offered federal land for AI data centers. The pause Fairbanks North Star Borough asked for can't reach a foot of it.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-01/og.jpg\" alt=\"Fairbanks Wrote One Line Twice cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)\">Fairbanks North Star Borough Clerk's Office, Action Memorandum</a>, primary document</li><li><a href=\"https://www.fnsb.gov/Calendar.aspx?EID=&amp;month=8&amp;year=2026&amp;day=27&amp;CID=14\">Fairbanks North Star Borough</a>, primary document</li><li><a href=\"https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)\">Fairbanks North Star Borough, Resolution 2026-25 in the August 27, 2026 Assembly agenda packet</a>, primary document</li><li><a href=\"https://www.fnsb.gov/172/Assemblymembers\">Fairbanks North Star Borough</a>, primary document</li><li><a href=\"https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695\">SAM.gov, Department of the Air Force</a>, primary document</li><li><a href=\"https://live.laborstats.alaska.gov/pop/index.cfm\">Alaska Department of Labor and Workforce Development, Research and Analysis</a>, primary document</li><li><a href=\"https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request\">KUAC</a>, report</li><li><a href=\"https://www.alaskasnewssource.com/2026/09/02/fairbanks-borough-weighs-data-center-regulations-seeks-state-moratorium/\">Alaska's News Source</a>, report</li><li><a href=\"https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html\">Fairbanks Daily News-Miner</a>, report</li><li><a href=\"https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/\">Air and Space Forces Magazine</a>, report</li><li><a href=\"https://en.wikipedia.org/wiki/Eielson_Air_Force_Base\">Wikipedia</a>, report</li><li><a href=\"https://en.wikipedia.org/wiki/Anderson,_Alaska\">Wikipedia</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-09-01/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "",
+      "date_published": "2026-09-01T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-01/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 35,
+        "sources": [
+          {
+            "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)",
+            "outlet": "Fairbanks North Star Borough Clerk's Office, Action Memorandum",
+            "primary": true
+          },
+          {
+            "url": "https://www.fnsb.gov/Calendar.aspx?EID=&month=8&year=2026&day=27&CID=14",
+            "outlet": "Fairbanks North Star Borough",
+            "primary": true
+          },
+          {
+            "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)",
+            "outlet": "Fairbanks North Star Borough, Resolution 2026-25 in the August 27, 2026 Assembly agenda packet",
+            "primary": true
+          },
+          {
+            "url": "https://www.fnsb.gov/172/Assemblymembers",
+            "outlet": "Fairbanks North Star Borough",
+            "primary": true
+          },
+          {
+            "url": "https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695",
+            "outlet": "SAM.gov, Department of the Air Force",
+            "primary": true
+          },
+          {
+            "url": "https://live.laborstats.alaska.gov/pop/index.cfm",
+            "outlet": "Alaska Department of Labor and Workforce Development, Research and Analysis",
+            "primary": true
+          },
+          {
+            "url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+            "outlet": "KUAC",
+            "primary": false
+          },
+          {
+            "url": "https://www.alaskasnewssource.com/2026/09/02/fairbanks-borough-weighs-data-center-regulations-seeks-state-moratorium/",
+            "outlet": "Alaska's News Source",
+            "primary": false
+          },
+          {
+            "url": "https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html",
+            "outlet": "Fairbanks Daily News-Miner",
+            "primary": false
+          },
+          {
+            "url": "https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/",
+            "outlet": "Air and Space Forces Magazine",
+            "primary": false
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Eielson_Air_Force_Base",
+            "outlet": "Wikipedia",
+            "primary": false
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Anderson,_Alaska",
+            "outlet": "Wikipedia",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-08-31/",
       "url": "https://alaskaaihq.com/archive/2026-08-31/",
       "title": "The Unsewn Volume",

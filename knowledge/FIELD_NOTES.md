@@ -5439,3 +5439,154 @@ is a diagnostic, not a threshold. If a future run wants it, print both figures
 and gate on the existing one. The finding under all of it stands on its own and
 costs nothing: keep explanations of shared machinery in build.py, where a
 maintainer reads them once, and out of the JS that ships nine times.
+
+## 2026-09-01 - Phase 1 craft refresh (No.47)
+
+Platform intel, all of it about what the feed now REWARDS rather than what it
+tolerates. Sources are marketing-side reads of Socialinsider's 2026 report, so
+treat the absolute figures as soft and the direction as firm:
+
+- Document carousels are the only format whose engagement is climbing in
+  absolute terms while every other format on the platform contracts. Reported
+  at 6.6 to 7.0 percent mean engagement, up about 14 percent year over year,
+  against views down roughly half platform-wide.
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now
+- SAVES AND SENDS now outrank likes as ranking signals. That is a direct design
+  instruction for this deck, not a marketing note. A save is what a keepable
+  data slide earns and a send is what a slide someone forwards to a coworker
+  earns, which is criterion 4 of Phase 4's selection test already. It argues
+  for at least one frame that is worth having on a phone after the swipe, with
+  its numbers legible at thumb size.
+  https://melaniegoodmanlinkedinconsultant.substack.com/p/linkedin-algorithm-2026-reach-topic-authority
+- Polls are down to about 0.07 percent engagement after the March 2026
+  authenticity update, which also targeted engagement bait. Nothing here uses
+  polls; the note is that a closing question has to read as a real question and
+  not as a solicitation, which is what the house close already asks for.
+
+One craft note worth keeping, against this deck's standing weakest criterion:
+high-density marks should not be labelled in place. Where a frame carries many
+points, the labels belong outside the mark field, in the reserve, and the field
+itself carries only its own encoding. That is the same defect the machine gate
+keeps warning about as "busy art under text", stated as a positive rule.
+https://venngage.com/blog/chart-design/
+
+## 2026-09-01, run No.47, the shipped lessons
+
+Nine slides, score 8.89 against a threshold of 8.3, two full pixel-critic
+rounds and two flow rounds. What is worth keeping is not the score, it is the
+shape of what went wrong, because three of the four defects were the SAME
+mistake wearing different clothes: the code computed the honest answer and
+then did not use it.
+
+**Slide 07 computed a shadow tip and threw it away.** The clip test asked
+whether each cast point was left of a surveyed cut and broke at s=0 for every
+marker, so nine analytic shadows drew zero length and the slide's declared
+focal point was never in the picture. The clip was not the bug. The bug was
+that the boundary descended in the SAME BEARING the sun throws shadows, so it
+overtook its own shadows within ten pixels of the marker bases and the near
+side was a shrinking wedge. WHEN A FRAME CARRIES BOTH A SOLVED SUN AND A DRAWN
+BOUNDARY, CHECK THEIR BEARINGS AGAINST EACH OTHER BEFORE WRITING THE CLIP.
+
+**Slide 09 computed a shadow tip and drew a different one.** It assigned tx and
+ty from the deck's own solve, never read them again, and painted a 254 px wedge
+to the frame edge where the sun gives 36 px. It looked better. It was the one
+lie a reader of this particular deck would be entitled to be angry about, since
+the entire mechanic is that these shadows are computed. The solved 36 px cast
+ships and the reserve is carried by graded ground, crowns and fog. If a frame
+needs a long shadow, MOVE THE CAMERA, do not fabricate the geometry.
+
+**Slide 08 argued that two things were identical and then drew them twice.**
+Two stamped tags built separately in 3D came out with nine rows and eight rows
+at different insets, so the picture said the opposite of the caption. One plate
+rendered once and one stamp face built once, both blitted into two rects, now
+measure 14 of 255 maximum per-pixel difference, which is grain and vignette.
+IDENTITY IS A CONSTRUCTION, NEVER A TOLERANCE.
+
+**And one that is purely about process.** A round 1 repair reached slide 01 and
+not slide 02, which shares its declared stance, so the sun bloom stayed sliced
+flat at the horizon on one of the twins and twelve markers slid 24 px sideways
+on the deck's FIRST swipe under a camera the header calls unchanged. When two
+slides share a stance, every repair to one is a repair to both. Grep for the
+twin before re-rendering.
+
+**On legends.** Seven labels 218 to 489 px wide against a 32 px tightest date
+gap cannot be joined to their marks by leaders without crossings, because the
+longest label is four times the tightest gap. Slide 03 had already settled the
+case with a numbered key; slide 06 now uses the same grammar. Two slides using
+one device reads as a house idiom. Seven crossing hairlines reads as noise at
+432 px. The flow critic was asked directly and agreed.
+
+**On the deck's standing weakest criterion, artwork craft.** It scored 7 again,
+for the eleventh consecutive run, but for new reasons rather than old ones. The
+named dead zones this time are slide 05's inert top 40 percent, slide 04's
+left-third defocused row that reads as a smear rather than as a row, and slide
+03's empty right-centre quadrant. The instruction that follows is the same one
+the last four runs have been circling: FILL A DEAD ZONE WITH THE DECK'S OWN
+VOCABULARY, not with more quiet. A quiet zone answers a balance gate; it does
+not answer a craft score.
+
+**A machine defect found by disagreement, not by a gate.** config/brand.yaml
+gives two answers for a date carrying a year. Its voice line and its style key
+both say "with a year use the plain form, August 27, 2026", while its own
+date_format block lists "August 10" among the bad forms. scripts/caption_check.py
+hard-fails the plain form, so the ordinal is what ships, and the scorer read two
+correct slides as house-rule misses on the strength of the other half. The
+enforced gate is the tiebreak until the file is reconciled.
+
+## 2026-09-01 - Phase 12 (No.47): the declared cast, PARKED with its shape
+
+The run's biggest defect class was geometry that was solved and then not drawn.
+Slide 07 solved nine shadow tips and drew none of them; slide 09 solved its cast
+tip, never read the variable again, and painted a wedge thirty two times the
+solved length to the frame edge. Upgrade 1 of this run's set catches the first
+shape, a routine that ran and painted NOTHING, off the pixels with no authoring
+at all. It cannot catch the second, because slide 09's routine painted plenty.
+
+The contract that would, written down here rather than built, because it is a
+new authoring contract in the family of `__akLeaders` and `__akMotifs` and
+landing it beside two other engine changes in one slot is how a gate gets
+shipped uncalibrated:
+
+    window.__akCast = [{ what: 'the nine cast shadows at the solved length',
+                         from: [x, base],      // where the drawing STARTS
+                         to:   [tx, ty] }];    // the point the SOLVE gives
+
+qa.py would then check two things and neither of them needs taste. That every
+declared segment has non-zero length, which is slide 07's defect stated as
+arithmetic. And that the ink along the ray STOPS near `to`: probe the composited
+frame at 1.0, 1.5, 2.5 and 4.0 times the declared length and fail when the far
+samples carry as much of the near sample's contrast as the midpoint does, which
+is slide 09's 32x wedge and nothing else.
+
+UNBLOCKING CONDITION: it needs a calibration corpus, and the shipped decks with
+their slide sources still on disk are three (2026-08-08, which no longer
+renders, 2026-08-31 and 2026-09-01). Land it on a run whose hero frame already
+carries a solved cast, declare the casts on that deck first, and fit the
+contrast ratio on those segments before the check says anything. Same discipline
+as the 2026-08-31 mark probe, which was calibrated on 74 human-verified marks
+before its 0.30 line was drawn.
+
+## 2026-09-01 - Phase 12 (No.47): the "Long Dwell percentile" claim is retracted
+
+Frontier scan focus (a), LinkedIn platform. NEGATIVE RESULT, recorded so no
+future scan in this slot spends its budget re-deriving it.
+
+Several 2026 LinkedIn-algorithm writeups now assert that feed ranking carries a
+"Long Dwell" classifier, a binary label predicting whether a post's dwell time
+exceeds a CONTEXT-DEPENDENT PERCENTILE, and cite LinkedIn's own LiGR paper for
+it. That paper has been WITHDRAWN by its authors: "We found discrepancies in the
+claims of the paper upon further investigation and therefore request to withdraw
+this submission from arXiv", v3, February 2026, and no PDF is served.
+https://arxiv.org/abs/2502.03417
+
+The other paper the same writeups cite, LiRank, carries no dwell-label
+description in its abstract at all; it is an architecture and productionisation
+paper (Residual DCN, dense gating, quantisation).
+https://arxiv.org/abs/2402.06859
+
+So nothing goes into CAROUSEL_CRAFT from it. The dwell evidence this studio
+actually stands on is unchanged and is still LinkedIn's own 2024 engineering
+post on dwell time plus the 2026-08-08 feed-ranking post, both already cited
+there. The 2026-08-21 hole is also still a hole: no source read on 2026-09-01
+reports per-slide alt text for documents, a slide-count effect measured rather
+than asserted, or any change in how a document is rendered in the feed.

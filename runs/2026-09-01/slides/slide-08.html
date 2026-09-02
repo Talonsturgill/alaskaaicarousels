@@ -1,0 +1,316 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Archivo";font-variation-settings:"wdth" 78,"wght" 750;
+    color:#F4F8FF;letter-spacing:-.02em;line-height:1.02}
+.bd{position:absolute;margin:0;font-family:"Fraunces";font-variation-settings:"opsz" 14,"wght" 420;
+    font-size:32px;line-height:1.40;letter-spacing:.005em;color:#D7E2E8}
+.qt{position:absolute;margin:0;font-family:"Fraunces";font-style:italic;
+    font-variation-settings:"opsz" 96,"wght" 320;font-size:34px;line-height:1.30;color:#EAF1F7}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;
+    letter-spacing:.10em;text-transform:uppercase;color:#D7E2E8;opacity:.80;
+    font-variant-numeric:tabular-nums lining-nums}
+svg text.ph{font-family:"JetBrains Mono";font-weight:500;font-size:24px;letter-spacing:.08em;fill:#CFE0F5}
+svg text.ph2{font-family:"JetBrains Mono";font-weight:500;font-size:18px;letter-spacing:.08em;fill:#CFE0F5}
+</style></head><body data-contacts='[{"what": "the first tag post standing on the lit ground", "shadow": [[256, 912, 26, 10]], "ground": [[330, 908, 26, 10]]}, {"what": "the second tag post standing on the lit ground", "shadow": [[598, 904, 26, 10]], "ground": [[672, 900, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" style="left:80px;top:96px;width:700px">AFTER THE VOTE</div>
+<div class="mn" style="left:840px;top:96px;text-align:right;width:160px" data-decorative>08 / 09</div>
+<p class="qt" id="q8" style="left:80px;top:180px;width:640px">"We need to establish strict regulations before tech conglomerates come knocking at our door."</p>
+<div class="mn" id="at8" style="left:80px;top:348px;width:800px;opacity:.78">SARAH HOLLISTER, TO THE ASSEMBLY, PER KUAC</div>
+<h2 class="hd" id="h8" style="left:80px;top:900px;width:900px;font-size:88px">The words say state land.<br>The intent was wider.</h2>
+<p class="bd" id="b8" style="left:80px;top:1098px;width:720px;font-size:30px">Presiding Officer Scott Crass told KUAC by phone that federal land was meant to be included too. The text adopted on August 27th doesn't say that, and both lists carry the same words.</p>
+
+<svg id="ann" style="position:absolute;left:0;top:0;width:1080px;height:1350px" viewBox="0 0 1080 1350"></svg>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+var V='#050A12', LID='#0E1A28', FAR='#20313A', NEAR='#0D1418',
+    SPC='#D7E2E8', GOLD='#FFC72C', FMN='#6EA5FF';
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260901);
+var HEAD='MORATORIUM ON DATA CENTER DEVELOPMENT IN ALASKA';
+var GRADE={w:1080,h:1350,exposure:-0.08,saturation:1.02,contrast:1.06,filmic:true,
+  lift:[0.006,0.010,0.018],gain:[1.012,1.0,0.984],vignette:0.18,
+  bloom:{threshold:0.80,strength:0.08,radius:10},
+  grain:{amount:0.048,size:2,seed:20260908},aberration:0,dither:true,sharpen:0.34};
+</script>
+<script type="module">
+/* ================= SLIDE 08, WHAT WAS INTENDED =================
+   Two tags side by side at 0.95 m, stamped with the identical heading, because
+   the resolution prints identical language under both. A third tag is drawn in
+   forget-me-not phantom dash, unhung and unstamped, cut by the right edge. It
+   is what the presiding officer says was intended, so it is drawn and never
+   lit, per the deck's line-voice rule.
+   =============================================================== */
+const A='@@ASSETS@@';
+const T1=[128,470,300,236], T2=[470,462,300,236];       // x, y, w, h
+const T3=[812,452,300,236];                              // the phantom, cut right
+const P1=[278,900], P2=[620,894];                        // where each post meets the ground
+
+function bed(){
+  var g=CX.createLinearGradient(0,0,0,1350);
+  g.addColorStop(0,V); g.addColorStop(.24,'#0a1420'); g.addColorStop(.44,LID);
+  g.addColorStop(.62,'#22303a'); g.addColorStop(.78,'#2b3931'); g.addColorStop(1,NEAR);
+  CX.fillStyle=g; CX.fillRect(0,0,1080,1350);
+  CX.save(); CX.globalCompositeOperation='screen';
+  CX.translate(986,392); CX.scale(1.0,0.55);
+  var b=CX.createRadialGradient(0,0,8,0,0,150);
+  b.addColorStop(0,'rgba(240,192,137,0.13)'); b.addColorStop(1,'rgba(224,165,102,0)');
+  CX.fillStyle=b; CX.beginPath(); CX.arc(0,0,150,0,6.2832); CX.fill(); CX.restore();
+}
+/* THE ROW BEHIND, at 3.70 m, defocused to a 20 px CoC so the place holds.
+   Contre-jour, which is the deck's declared register: each marker is a dark
+   vertical with a hot rim on its far edge alone. The first pass filled them
+   with a bright core and the row read as a floodlit fence, which is neither the
+   light this deck has agreed on nor the hour it says it is. */
+function backRow(){
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  for(var i=0;i<22;i++){
+    var x=40+i*47, r=AK.rng(88800+i), h=196+22*r();
+    o.fillStyle='rgba(22,34,44,0.86)'; o.fillRect(x-8,796-h,16,h);
+    o.fillStyle='rgba(215,226,232,0.80)'; o.fillRect(x+6,796-h,2,h);
+    o.fillStyle='rgba(28,42,52,0.80)'; o.fillRect(x-13,796-h,26,28);
+    o.fillStyle='rgba(215,226,232,0.70)'; o.fillRect(x+11,796-h,2,28);
+  }
+  CX.save(); CX.filter='blur(20px)'; CX.globalAlpha=0.80;
+  CX.drawImage(off,0,0,2160,2700,0,0,1080,1350);
+  CX.restore(); CX.filter='none'; CX.globalAlpha=1;
+}
+/* the lit ground pool FIRST, then the two casts into it, then the contacts */
+/* A circle inside a scale() with a four stop falloff, never a radial gradient
+   drawn into an ellipse, which is the No.41 defect and shows as a hard arc on
+   the pool's lower rim. The outer stop ends at zero alpha, not at a colour. */
+function litGround(){
+  [[P1[0]-10,P1[1]-4,200],[P2[0]-10,P2[1]-6,200]].forEach(function(p){
+    CX.save(); CX.translate(p[0],p[1]); CX.scale(1,0.22);
+    var g=CX.createRadialGradient(0,0,4,0,0,p[2]);
+    g.addColorStop(0,'rgba(126,148,106,0.54)'); g.addColorStop(.34,'rgba(104,126,92,0.34)');
+    g.addColorStop(.66,'rgba(86,106,82,0.15)'); g.addColorStop(1,'rgba(86,106,82,0)');
+    CX.fillStyle=g; CX.beginPath(); CX.arc(0,0,p[2],0,6.2832); CX.fill(); CX.restore();
+  });
+}
+/* Each cast is re-origined on the base of the post that throws it, and carries
+   a penumbra: 2 px of blur at the apex opening to 30 by y 1150, alpha gone by
+   1240, so the two wedges merge into one graded field under the type instead of
+   ending as two hard triangles. */
+function casts(){
+  var off=document.createElement('canvas'); off.width=2160; off.height=2700;
+  var o=off.getContext('2d'); o.scale(2,2);
+  [P1,P2].forEach(function(p){
+    var g=o.createLinearGradient(p[0],p[1],p[0]-140,1260);
+    g.addColorStop(0,'rgba(4,8,14,0.92)'); g.addColorStop(.42,'rgba(4,8,14,0.58)');
+    g.addColorStop(.78,'rgba(4,8,14,0.18)'); g.addColorStop(1,'rgba(4,8,14,0)');
+    o.fillStyle=g; o.beginPath();
+    o.moveTo(p[0]-24,p[1]); o.lineTo(p[0]+24,p[1]);
+    o.lineTo(p[0]-96,1250); o.lineTo(p[0]-206,1250); o.closePath(); o.fill();
+  });
+  [[880,946,2],[946,1020,9],[1020,1090,18],[1090,1350,30]].forEach(function(b){
+    CX.save(); CX.beginPath(); CX.rect(0,b[0],1080,b[1]-b[0]); CX.clip();
+    CX.filter='blur('+b[2]+'px)';
+    CX.drawImage(off,0,0,2160,2700,0,0,1080,1350); CX.restore();
+  });
+  CX.filter='none';
+}
+function reserveFloor(){
+  var g=CX.createLinearGradient(0,960,0,1350);
+  g.addColorStop(0,'rgba(5,10,18,0.0)'); g.addColorStop(.26,'rgba(5,10,18,0.38)');
+  g.addColorStop(.58,'rgba(5,10,18,0.46)'); g.addColorStop(1,'rgba(5,10,18,0.52)');
+  CX.fillStyle=g; CX.fillRect(0,960,1080,390);
+}
+/* the bottom band is a modelled ground and not a plate, which is the deck's
+   own words. Slide 09's crowns and fog, at the same seed, on the same ground. */
+function nearCrowns(){
+  for(var k=0;k<26;k++){
+    var r=AK.rng(41337+k);
+    var y=1010+r()*330, x=-60+r()*1200;
+    var w=110+210*r(), h=w*(0.10+0.09*r());
+    var a=0.055+0.075*r();
+    var cg=CX.createLinearGradient(x,y-h,x,y+h);
+    cg.addColorStop(0,'rgba(126,146,158,'+(a*0.9).toFixed(3)+')');
+    cg.addColorStop(.55,'rgba(52,66,78,'+(a*0.5).toFixed(3)+')');
+    cg.addColorStop(1,'rgba(4,9,15,'+(a*1.1).toFixed(3)+')');
+    CX.fillStyle=cg;
+    CX.beginPath(); CX.ellipse(x,y,w*0.5,h,0,0,6.2832); CX.fill();
+  }
+  CX.save(); CX.translate(430,1250); CX.scale(1,0.12);
+  var fg=CX.createRadialGradient(0,0,4,0,0,420);
+  fg.addColorStop(0,'rgba(122,150,178,0.09)'); fg.addColorStop(1,'rgba(122,150,178,0)');
+  CX.fillStyle=fg; CX.beginPath(); CX.arc(0,0,420,0,6.2832); CX.fill(); CX.restore();
+}
+/* THE POSTS. They end inside their own lit pools, which is the whole reason
+   this slide gets to say anything about attachment at all. */
+function posts(){
+  [[T1,P1],[T2,P2]].forEach(function(pair){
+    var t=pair[0], p=pair[1], w=23;
+    var pg=CX.createLinearGradient(p[0]-w,0,p[0]+w,0);
+    pg.addColorStop(0,'#2c3844'); pg.addColorStop(.58,'#7f909c'); pg.addColorStop(1,'#C3D0D8');
+    CX.fillStyle=pg; CX.fillRect(p[0]-w,t[1]+t[3]-12,w*2,p[1]-(t[1]+t[3]-12));
+  });
+}
+function contacts(){
+  [P1,P2].forEach(function(p){
+    CX.save(); CX.translate(p[0],p[1]); CX.scale(1,0.30);
+    var g=CX.createRadialGradient(0,0,2,0,0,26);
+    g.addColorStop(0,'rgba(5,10,18,0.90)'); g.addColorStop(.46,'rgba(5,10,18,0.52)');
+    g.addColorStop(1,'rgba(5,10,18,0)');
+    CX.fillStyle=g; CX.beginPath(); CX.arc(0,0,26,0,6.2832); CX.fill(); CX.restore();
+    CX.fillStyle='rgba(3,6,11,0.92)';
+    CX.fillRect(p[0]-24,p[1]-3,48,3);
+  });
+}
+/* THE STAMP, BUILT ONCE.
+   The first pass built each tag in its own place, so the left face came out with
+   nine rows and the right with eight and the picture argued the opposite of the
+   caption. One face is drawn here, once, and the same pixels are laid down in
+   both places. Rows one and two carry the heading itself, because greeked bars
+   cannot carry the word SAME, and the five below them stand for the rest of the
+   plate. Seven rows in all, which is also the number of impact standards the
+   resolution names. Struck relief, not rust: a bright lip above each mark, a
+   dark one below, on darkened gold. */
+const FW=300, FH=236, ROWS=7;
+var ROWS_DRAWN=0;                 // counted by the loop that paints them
+function stampFace(){
+  var off=document.createElement('canvas'); off.width=FW*2; off.height=FH*2;
+  var o=off.getContext('2d'); o.scale(2,2);
+  var lines=['MORATORIUM ON DATA CENTER','DEVELOPMENT IN ALASKA'];
+  var pitch=26, top=44, inset=FW*0.12;
+  o.textAlign='center'; o.textBaseline='alphabetic';
+  o.font='500 15px "JetBrains Mono", monospace';
+  for(var i=0;i<ROWS;i++){
+    ROWS_DRAWN++;
+    var y=top+i*pitch;
+    if(i<2){
+      o.fillStyle='#4A3608'; o.fillText(lines[i],FW/2,y+1);
+      o.fillStyle='#FFDA6A'; o.fillText(lines[i],FW/2,y-1);
+      o.fillStyle='#5C4008'; o.fillText(lines[i],FW/2,y);
+    }else{
+      var bw=FW-inset*2;
+      o.fillStyle='#FFDA6A'; o.fillRect(inset,y-11,bw,1);
+      o.fillStyle='#5C4008'; o.fillRect(inset,y-10,bw,9);
+      o.fillStyle='#4A3608'; o.fillRect(inset,y-1,bw,1);
+    }
+  }
+  /* an anisotropic brush streak across the face, 4 percent, horizontal only */
+  for(var k=0;k<70;k++){
+    var r=AK.rng(60600+k), yy=r()*FH;
+    o.fillStyle='rgba(255,238,190,'+(0.012+0.030*r()).toFixed(3)+')';
+    o.fillRect(0,yy,FW,0.8);
+  }
+  return off;
+}
+async function glTags(){
+  const THREE=await import(A+'/js/three.module.min.js');
+  const {init}=await import(A+'/js/akthree.js');
+  const AKT=init(THREE);
+  if(!AKT.webglOK()) return null;
+  const gl=document.createElement('canvas'); gl.width=2160; gl.height=2700;
+  const R=AKT.setup(gl,{w:1080,h:1350,fov:34,exposure:1.18});
+  R.renderer.setClearAlpha(0);
+  AKT.environment(R,{intensity:1.1});
+  AKT.rig(R,{ key:{color:0xF0C089,i:3.2,pos:[1.4,2.0,2.8],radius:5,shadowSize:1.5},
+              rim:{color:0xA9BECB,i:1.0,pos:[-1.8,0.9,-1.6]},
+              fill:{color:0x3B4A5E,i:0.7,pos:[-1.0,1.1,2.0]},
+              ambient:{color:0x2E3540,i:1.5} });
+  const F0=2208;
+  const d=F0*0.037/T1[3];                       // subject distance from the tag height
+  AKT.frame(R,{fov:34,from:[0,0,d],look:[0,0,0]});
+  const alu=new THREE.MeshStandardMaterial({color:0xE8B22A,metalness:0.62,roughness:0.24});
+  const bev=new THREE.MeshStandardMaterial({color:0xFFE9A8,metalness:0.50,roughness:0.26});
+  /* ONE plate, centred, no tilt. The stamped content is laid over the blit in
+     two dimensions so that both copies are the same bytes. */
+  const grp=new THREE.Group();
+  const plate=new THREE.Mesh(new THREE.BoxGeometry(0.047,0.037,0.0016),alu);
+  grp.add(plate);
+  const edge=new THREE.Mesh(new THREE.BoxGeometry(0.0008,0.037,0.0020),bev);
+  edge.position.set(0.0235,0,0.0004); grp.add(edge);
+  AKT.add(R,grp,{cast:false,receive:false});
+  AKT.objectHero(R,grp,{toward:[0.42,0.48,0.77],keyColor:'#F0C089',intensity:1.2});
+  R.renderer.render(R.scene,R.camera);
+  const snap=await AKT.snapshot(R,{litFloor:0.06,litMin:120});
+  if(!snap||!snap.ok) return null;
+  return gl;
+}
+/* the raster fallback plate, drawn once into an offscreen for the same reason */
+function canvasPlate(){
+  var off=document.createElement('canvas'); off.width=FW*2; off.height=FH*2;
+  var o=off.getContext('2d'); o.scale(2,2);
+  var g=o.createLinearGradient(0,0,FW,FH);
+  g.addColorStop(0,'#FFE49A'); g.addColorStop(.42,GOLD); g.addColorStop(1,'#B98A19');
+  o.fillStyle=g; o.fillRect(0,0,FW,FH);
+  o.fillStyle='#FFE9A8'; o.fillRect(FW-2,0,2,FH);
+  return off;
+}
+/* THE THIRD TAG. Unhung, unstamped, never gold, and now genuinely unstamped:
+   the seven dashed rows inside it were a stamped tag drawn in ink, which is the
+   one thing this deck spends nine slides teaching a reader not to read. */
+function phantom(){
+  CX.save();
+  CX.setLineDash([26,5,6,5,6,5]); CX.lineWidth=1.6; CX.strokeStyle=FMN;
+  CX.strokeRect(T3[0],T3[1],T3[2],T3[3]);
+  CX.setLineDash([]);
+  CX.restore();
+}
+function annotate(){
+  var svg=document.getElementById('ann'), NS='http://www.w3.org/2000/svg';
+  var at=[T3[0]+T3[2]/2, T3[1]+T3[3]/2];
+  var t=document.createElementNS(NS,'text');
+  t.setAttribute('class','ph'); t.setAttribute('x',712); t.setAttribute('y',768);
+  t.textContent='INTENDED, PER KUAC'; svg.appendChild(t);
+  CX.strokeStyle=FMN; CX.lineWidth=1.25;
+  CX.beginPath(); CX.moveTo(768,760); CX.lineTo(962,760); CX.lineTo(at[0],at[1]); CX.stroke();
+  CX.fillStyle=FMN; CX.beginPath(); CX.arc(at[0],at[1],2.6,0,6.2832); CX.fill();
+  /* moved into the reserve with its own hairline to the left post's base. It
+     sat across the left post from x 116 to 494 and cut a physically present
+     object in half, which is the same defect round 1 fixed on slide 07. */
+  var s=document.createElementNS(NS,'text');
+  /* at 24 px, and directly above the two faces it names, which is the only
+     place in the frame wide enough for it that crosses neither post. */
+  s.setAttribute('class','ph'); s.setAttribute('x',200); s.setAttribute('y',424);
+  s.textContent='SAME WORDS, BOTH LISTS'; svg.appendChild(s);
+  window.__akLeaders=[{target:"the phantom third tag, unhung and unstamped",
+    at:at, to:at, from:[768,760], label:"INTENDED, PER KUAC"}];
+}
+
+window.renderReady=(async function(){
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h8'),{min:56,max:88,maxLines:2});
+  AK.fitText(document.getElementById('q8'),{min:28,max:38,maxLines:5});
+
+  bed(); backRow(); litGround(); casts(); contacts(); posts();
+
+  var gl=null;
+  try{ gl=await glTags(); }catch(e){ gl=null; }
+  var face=stampFace();
+  [T1,T2].forEach(function(t){
+    if(gl){ CX.drawImage(gl,780,1114,600,472,t[0],t[1],t[2],t[3]); }
+    else   { CX.drawImage(canvasPlate(),0,0,FW*2,FH*2,t[0],t[1],t[2],t[3]); }
+    CX.drawImage(face,0,0,FW*2,FH*2,t[0],t[1],t[2],t[3]);
+  });
+
+  reserveFloor(); nearCrowns();
+  phantom(); annotate();
+  AK.svgPlateAll('#ann text.ph',{padX:9,padY:5,fill:'#0B1622',stroke:'#2C4358',
+                                 strokeWidth:1,rx:3,opacity:0.95});
+  AK.svgPlateAll('#ann text.ph2',{padX:8,padY:4,fill:'#0B1622',stroke:'#2C4358',
+                                  strokeWidth:1,rx:3,opacity:0.95});
+
+  /* EXPECT is the story number, the seven impact standards the resolution
+     names. ACTUAL is counted by the loop that painted the face. The first build
+     declared 7 against 7, which passed for any picture whatsoever, on the one
+     slide whose whole argument is that two things carry the same content. */
+  window.__akAssert=[{what:"both tags carry the same seven struck rows",
+                      expect:7, actual:ROWS_DRAWN, tol:0, unit:"rows"}];
+  window.__akMotifs=[{what:"the two identical stamped tags, side by side",
+                      rect:[T1[0]+10,T1[1]+14,T2[0]+T2[2]-T1[0]-24,T1[3]-30]}];
+  AKPOST.grade(CX,GRADE);
+})();
+</script></body></html>
