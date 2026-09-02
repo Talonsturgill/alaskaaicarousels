@@ -695,9 +695,19 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
         else:
             groups.append((x, y, [(n, it)]))
 
-    # Label placement. Width comes from how many numbers the badge carries.
+    # Label placement. Width comes from how many numbers the badge carries AND
+    # how wide the widest of them is. The slot used to be a flat 15.0 px, which
+    # is narrower than two digits of the face the badge actually sets: .pinnum is
+    # JBMono at 13.5px and JetBrains Mono advances 0.6em, so a two-digit number
+    # measures 16.2 px and two of them abutted with no gap at all. On the phone
+    # map that rendered items 13 and 15 as the single number 1315. A slot has to
+    # be at least as wide as the thing standing in it.
+    PIN_CH = 8.1        # JBMono advance at the 13.5px set in .pinnum
+    PIN_GAP = 5.0       # visible air between neighbouring numbers
+    def slot_w(g):
+        return PIN_CH * max(len(str(n)) for n, _ in g[2]) + PIN_GAP
     def badge_w(g):
-        return 28.0 if len(g[2]) == 1 else 20.0 + 15.0 * len(g[2])
+        return 28.0 if len(g[2]) == 1 else 20.0 + slot_w(g) * len(g[2])
     # A displaced label has to clear its own dot, or the badge covers the dot and
     # the tether it is meant to disclose, and the reader is back to trusting a
     # badge that has quietly moved. LEAD_MIN is measured from the dot, so at a
@@ -796,8 +806,9 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
                      # the build's colon gate, and a title can carry a colon of its own.
                      f'<title>{len(members)} decisions at '
                      f'{esc(first["location"]["name"])}</title>']
+            sw = slot_w(g)
             for i, (n, it) in enumerate(members):
-                tx = x0 + 10.0 + 15.0 * i + 7.5
+                tx = x0 + 10.0 + sw * i + sw / 2.0
                 parts.append(
                     f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
                     f'<text x="{tx:.0f}" y="{oy + 5:.0f}" text-anchor="middle" class="pinnum" '

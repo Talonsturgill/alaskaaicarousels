@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-09-01",
+  "updated": "2026-08-31",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -932,7 +932,7 @@
       "status": "open-for-comment",
       "decider": "Alaska DNR, Commissioner John Crowther",
       "public_access": "open",
-      "access_note": "The comment room is open and there are now two meetings to speak at. DNR noticed public meetings on Zoom for August 27th, 2026 at 6:00 p.m. and September 2nd, 2026 at 11:30 a.m. Written comment on ADL 234762 runs to 5 p.m. Monday, September 14, 2026, and the division's notice ties appeal standing on the Final Finding and Decision to having filed timely written comment during the window. Comments go to Daniel Jenkins at the Division of Mining, Land and Water, 550 W. 7th Ave. Suite 1050, Anchorage. AIDEA's board also meets in public on August 26th, and Houston's city council has asked AIDEA to a September meeting for which no date is set.",
+      "access_note": "The comment room is open and a second meeting is still ahead. DNR noticed public meetings on Zoom for August 27th, 2026 at 6:00 p.m. and September 2nd, 2026 at 11:30 a.m., both informational only, with no comment taken during the sessions. Written comment on ADL 234762 runs to 5 p.m. Monday, September 14, 2026, and the division's notice ties appeal standing on the Final Finding and Decision to having filed timely written comment during the window. DNR says more than 2,000 written comments have arrived so far. Comments go to Dan Jenkins at the Division of Mining, Land and Water, 550 W. 7th Ave. Suite 1050, Anchorage. Houston's city council has asked AIDEA to a September meeting for which no date is set.",
       "summary": "A DNR preliminary decision would transfer about 19,950 acres, roughly 31 square miles, of state land about two miles north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that AIDEA's own development plan describes as including scalable data centers, advanced manufacturing pads and a logistics hub on the Parks Highway and the Alaska Railroad, about 60 road miles north of Anchorage. Written public comment was to close August 19th and DNR extended it to September 14th.",
       "key_dates": [
         {
@@ -1034,7 +1034,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-08-31",
+      "last_updated": "2026-09-01",
       "history": [
         {
           "date": "2026-07-17",
@@ -1151,6 +1151,10 @@
         {
           "date": "2026-08-31",
           "note": "Re-verified against the state's own notice for ADL 234762. Written comment closes at 5:00 p.m. on Monday, September 14th, 2026, and the second of the two informational meetings on the conveyance is set for September 2nd, 2026 at 11:30 a.m. on Zoom, where the department explains the review and takes no testimony. The Northern Alaska Environmental Center reported on August 25th, 2026 that more than 2,000 written comments had been submitted. That count comes from an advocacy group and not from the department, which publishes no running total. Fourteen days remain to write in on the roughly 19,950 acres."
+        },
+        {
+          "date": "2026-09-01",
+          "note": "Re-verified against the state's own meeting notice for ADL 234762, published August 24, 2026. Written public comment closes September 14, 2026, and the second informational meeting is set for September 2nd at 11:30 a.m. on Zoom. The notice says more than 2,000 written comments have been received to date, and that the meetings are informational only with no comment taken during the sessions."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1389,7 +1393,7 @@
       "status": "pending-decision",
       "decider": "Alaska Department of Administration, Office of Procurement and Property Management",
       "public_access": "closed",
-      "access_note": "A vendor solicitation, not a rulemaking, so no public comment period exists. Proposals are evaluated privately. The notice and the named procurement officer are public.",
+      "access_note": "A vendor solicitation, not a rulemaking, so no public comment period exists. Proposals closed August 28th and are evaluated privately. The notice and the named procurement officer are public, though the notice's own archive date has now passed. No award has been posted.",
       "summary": "Alaska is soliciting one statewide contract to convert speech, live or recorded, into written text for general, medical and legal records. The notice says every state governmental entity may use the resulting contract, naming the Legislative Branch, the Court System, the University of Alaska, boards and commissions, cities, boroughs, school districts and federally recognized tribes. The public notice does not use the terms artificial intelligence, machine learning or automated speech recognition.",
       "key_dates": [
         {
@@ -1411,7 +1415,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-08-28",
+      "last_updated": "2026-09-01",
       "history": [
         {
           "date": "2026-08-02",
@@ -1448,6 +1452,10 @@
         {
           "date": "2026-08-28",
           "note": "Proposals are due today. The state notice for RFP 2026-0200-0064, id 224684, prints the deadline as 3:30 P.M. Alaska Daylight Time on Friday, August 28, 2026, extended from Monday, August 24, 2026 by Amendment 1. Re-verified against the notice today, which was last modified August 17th and carries no award and no cancellation. The procurement officer is Joshua Hartman."
+        },
+        {
+          "date": "2026-09-01",
+          "note": "Re-verified against the state notice, id 224684. Proposals for RFP 2026-0200-0064 were due at 3:30 p.m. Alaska Daylight Time on August 28th, and that deadline has passed with no award or intent to award posted. The notice carries an archive date of August 31, 2026, so it may stop being reachable at that address."
         }
       ],
       "url": "https://alaskaaihq.com/docket/alaska-statewide-transcription-rfp/"
@@ -2325,7 +2333,7 @@
       "status": "open-for-comment",
       "decider": "Anchorage Assembly",
       "public_access": "open",
-      "access_note": "A public hearing is set for the Assembly's September 1st meeting, which is where a member of the public can speak to this before the Assembly acts. The ordinance text and its AO number were still not published anywhere reachable as of August 31st, so anyone planning to testify is working from press accounts and from the sponsors' own descriptions rather than from the statutory language.",
+      "access_note": "The public hearing was set for the Assembly's September 1st meeting, which is where a member of the public could speak to this before the Assembly acts, and that meeting has now been held. The ordinance text and its AO number were still not published anywhere reachable as of September 1st, so anyone following it is working from press accounts and from the sponsors' own descriptions rather than from the statutory language, and the ordinance's disposition is not yet on the record here.",
       "summary": "Three Anchorage Assembly members, Keith McCormick, Sydney Scout and Vice Chair Daniel Volland, introduced an ordinance on August 18th that would write surveillance rules into Anchorage code, among them a case number for every search of surveillance data, deletion of individuals' data after two weeks unless it is evidence in an active investigation, a warrant before footage goes to out of state or federal agencies, limits on automatic license plate readers, and, in co-sponsor Scout's own words, Assembly approval before adding new surveillance capabilities including AI powered tracking or identification technology. It moves alongside a roughly $600,000 contract with ThunderCat Technology for equipment at the Real Time Crime Center, the system the Assembly funded with $11.8 million last year and which is designed to stream up to 750 camera feeds. The center opened in September 2025 with one employee and about 15 cameras.",
       "key_dates": [
         {
@@ -2377,7 +2385,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-08-31",
+      "last_updated": "2026-09-01",
       "history": [
         {
           "date": "2026-08-25",
@@ -2406,6 +2414,10 @@
         {
           "date": "2026-08-31",
           "note": "Re-verified the day before the hearing. The public hearing on the surveillance ordinance from Keith McCormick, Daniel Volland and Sydney Scout stands for the Assembly meeting of September 1st, 2026, the same meeting that takes up the roughly $600,000 ThunderCat Technology purchase. Alaska Public Media reports the ordinance would require that the crime center's use of artificial intelligence be approved by the Assembly, and puts the system at about 750 cameras including more than 250 city traffic cameras. The ordinance's own AO number is still unpublished, so a resident preparing testimony has no statutory text to read."
+        },
+        {
+          "date": "2026-09-01",
+          "note": "Re-verified on the day of the public hearing. The Assembly took up the Real Time Crime Center at its September 1st meeting and authorized spending not to exceed $598,998.10 on the center, per Alaska's News Source the following morning. The surveillance ordinance's own disposition was not published anywhere reachable at the time of this check, so nothing here records a vote on it."
         }
       ],
       "cta_label": "TESTIFY",
