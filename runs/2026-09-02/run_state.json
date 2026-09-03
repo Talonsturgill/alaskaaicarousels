@@ -20,10 +20,10 @@
   "flow_review": "done",
   "assemble": "done",
   "scoring": "done",
-  "ship": "running",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "wake": "out/2026-09-02/plan.md",
@@ -36,10 +36,19 @@
   "spike_notes": "out/2026-09-02/spike_notes.md",
   "score": "runs/2026-09-02/score_report.json",
   "engine_upgrade": "assets/js/akseam.js",
-  "site": "SITE SIGN-OFF PASS 95 pages 18 checks; GAS WATCH PASS 29 days"
+  "site": "SITE SIGN-OFF PASS 95 pages 18 checks; GAS WATCH PASS 29 days",
+  "gmail": "runs/2026-09-02/gmail_payload.json"
  },
  "review_rounds": 6,
  "threshold": 7.7,
  "score": 8.52,
- "ship": true
+ "ship": true,
+ "pr": "https://github.com/Talonsturgill/alaskaaicarousels/pull/341",
+ "merged_sha": "a4f7753da5aaaaf0de592765ecb8da58dacc5159",
+ "gmail_draft_id": "r875792011495241983",
+ "upgrades": [
+  "build-order source hashes",
+  "wrap-drift detection",
+  "file:// capability probe"
+ ]
 }
