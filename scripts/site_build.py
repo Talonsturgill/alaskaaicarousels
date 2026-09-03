@@ -6138,9 +6138,18 @@ TOPICS = [
              "that are the only door most Alaskans get into an AI land decision.",
      "blurb": "State land leases, gravel, permafrost and the public comment "
               "windows that are the only door most Alaskans get.",
+     # A BEAT TERM HAS TO MEAN THE BEAT (2026-09-02). This list carried the bare
+     # word "borough", which in Alaska appears in almost any municipal story and
+     # in this ledger's entity lists constantly. Seven decks were filed here on
+     # that word alone, among them a ballot-measure story and a school-reading
+     # story with no land or permitting content between them, and each one's
+     # article page reciprocally claimed the beat in its hasPart metadata. A
+     # borough belongs on this beat when it is DOING land or permitting, so the
+     # term now has to say so.
      "terms": ("state land lease", "dnr", "permit", "gravel", "permafrost",
                "roadless", "public comment", "aidea", "best interest finding",
-               "right of way", "borough")},
+               "right of way", "borough land", "zoning", "rezone", "platting",
+               "conditional use", "land use", "subdivision", "easement")},
     {"slug": "defense-and-federal", "title": "Defense and federal",
      "h1": "Defense and federal AI in Alaska",
      "seo": "Alaska defense and federal AI decisions - Alaska AI",
