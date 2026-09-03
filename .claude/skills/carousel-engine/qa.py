@@ -2009,6 +2009,39 @@ def main():
                         "a picture that no longer exists. Re-render it (drop "
                         "--only, or add this slide to it) and re-run qa")
 
+        # WRAP DRIFT (2026-09-02). render.py measures both counts on the laid
+        # out page; this is the judgement. Writing <br> DECLARES a block's line
+        # structure, and canvas furniture routinely counts rows off that
+        # declaration. Run No.48's slide 07 stamped four fields into a 330px
+        # plate and placed its four field markers at py + 42 + f*39; the stamp
+        # wrapped to five rendered lines, every marker slid up one row, and the
+        # field deliberately left UNSTRUCK -- which is how the deck draws "the
+        # ordinance carries no fiscal analysis" [C06, C31] rather than asserting
+        # it -- came to rest on AMENDABLE . NO. The slide shipped a picture
+        # arguing the inverse of its own claims, through a render, a qa pass and
+        # four gates, because nothing compared the authored count to the
+        # rendered one. The two-part fix was white-space:nowrap plus marker y
+        # values read off getBoundingClientRect at render time; this warn is
+        # what would have named the drift in round one.
+        #
+        # A WARN, not a fail: a block may legitimately wrap past its <br>s when
+        # nothing is counted off it. Measured before it was wired in, over the
+        # 20 <br>-authored blocks in run No.48's shipped deck and the 0 in
+        # examples/demo-deck: one drift, slide 04's DETAIL A callout at 3
+        # authored against 4 rendered, and it is real. Zero false positives.
+        for nd in rec.get("text_nodes", []):
+            w = nd.get("wrap")
+            if not w or w.get("authored") == w.get("rendered"):
+                continue
+            res["warns"].append(
+                f"wrap drift: '{nd.get('text', '')[:44]}' declares "
+                f"{w['authored']} line(s) (<br> or preserved newline) and rendered "
+                f"{w['rendered']}. Anything positioned by counting rows off this "
+                f"block (canvas markers, struck fields, a leader's row) is now "
+                f"one or more rows out. Fix by giving the block the width its "
+                f"longest line needs, or white-space:nowrap, and read mark "
+                f"positions off getBoundingClientRect rather than a fixed pitch")
+
         # DETERMINISM (2026-08-01). render.py scans the slide SOURCE; this is
         # the judgement. Unseeded randomness is a FAIL because it makes the
         # slide unreproducible: a repair pass repaints the field, so the render

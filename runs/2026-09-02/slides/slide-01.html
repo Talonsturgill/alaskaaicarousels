@@ -1,0 +1,556 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0A1017}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Space Grotesk";font-variation-settings:"wght" 700;
+    color:#10151A;letter-spacing:-.025em;line-height:1.0}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;
+    letter-spacing:.10em;text-transform:uppercase;font-variant-numeric:tabular-nums lining-nums}
+</style></head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<h1 class="hd" id="h1" data-reserve data-bloom style="left:100px;top:596px;width:790px;font-size:90px">Counted by hand.<br>Counted by machine.<br>Same answer.<br>Now Fairbanks votes.</h1>
+<div class="mn" data-reserve data-bloom style="left:104px;top:1024px;width:640px;font-size:30px;color:#10151A;white-space:nowrap">3,338 BALLOTS. ZERO DISCREPANCY.</div>
+<div class="mn" data-reserve style="left:104px;top:104px;width:700px;font-size:26px;color:#D9DCC6">FNSB PROPOSITION 3 . OCTOBER 6TH, 2026</div>
+<div class="mn" id="ct" data-reserve style="left:836px;top:104px;width:144px;font-size:26px;text-align:right;color:#D9DCC6" data-decorative>01 / 09</div>
+<div class="mn" data-reserve data-bloom style="left:104px;top:1092px;width:740px;font-size:32px;color:#1B241E;line-height:1.32;white-space:nowrap">AUDIT SAMPLE . 2 OF 32 PRECINCTS<br>PLUS THE EARLY VOTING STATION</div>
+<div class="mn" data-reserve data-bloom style="left:340px;top:1186px;width:420px;font-size:24px;color:#1B241E;white-space:nowrap">32 PRECINCTS . 2 SAMPLED</div>
+<div class="mn" data-reserve style="left:104px;top:1240px;width:660px;font-size:24px;color:#20291F">DRAWN TO SCALE. NOT DRAWN TO COUNT.</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/akseam.js"></script>
+<script>
+/* ============================================================
+   SLIDE 01 — COVER. THE WHOLE EDGE.
+   A macro oblique view of a mass of cut ballot sheet edges. No table,
+   no room furniture, no ground plane. The frame IS the material.
+
+   THE MODEL. Sheets are stacked bottom to top with a geometric pitch, so
+   the near bottom edge runs about 24px per sheet and the far top edge
+   compresses toward 2px. Between two adjacent sheets lies the FACE of the
+   lower one; when the stack is splayed that face turns toward the key and
+   reads light. So the riffle is not a scrim and not a hole, it is the
+   physical consequence of fanning the stack, and it is where the type sits.
+   ============================================================ */
+var W=1080, H=1350;
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260902);
+
+var ROOM='#0A1017', LEE='#141B25', MID='#9AA08C', ARRIS='#D9DCC6',
+    CREST='#F1F2E4', PAPER_LIT='#CBD2BE', GOLD='#FFC72C', RED_DEAD='#7A3A32';
+
+/* ---- the stack ------------------------------------------------------- */
+var NS=205, P_NEAR=24, RATIO=0.9856;
+var yTop=[], pit=[];
+(function(){ var y=H+30, p=P_NEAR;
+  for(var i=0;i<NS;i++){ y-=p; yTop.push(y); pit.push(p); p*=RATIO; } })();
+
+function sh(i,k){ var s=Math.sin((i*127.1+k*311.7)*0.731)*43758.5453; return s-Math.floor(s); }
+var reach=[], lean=[], proud=[];
+for(var i=0;i<NS;i++){
+  var smooth=AK.simplex2(i*0.055, 3.1)*0.5+AK.simplex2(i*0.19, 7.7)*0.16;  /* the stack's own drift */
+  var jut=(sh(i,4)>0.955)?0.13:0;                                          /* a sheet pulled proud */
+  reach.push(Math.max(0.28, Math.min(1.06, 0.80+smooth*0.30+jut)));
+  lean.push((sh(i,2)-0.5)*1.4); proud.push(sh(i,3)>0.945); }
+
+/* a gentle oblique. 4 percent across the frame, not 45. */
+function skew(x){ return -x*0.042; }
+
+/* ---- THE RIFFLE. Splay envelope over the lower-left. 34% width, fan 7deg */
+var RX0=40, RX1=742, RY0=560, RY1=1330;
+function riffle(x,y){
+  if(x<RX0||x>RX1||y<RY0||y>RY1) return 0;
+  var t=(y-RY0)/(RY1-RY0);
+  var lat=Math.min(1, Math.min(x-RX0, RX1-x)/170);
+  var fan=1 - (y-RY0)*Math.tan(7*Math.PI/180)/900;    /* the fan closes upward */
+  return Math.pow(Math.sin(Math.PI*t),0.40)*lat*Math.max(0,fan);
+}
+var SPLAY=2.6;
+
+/* the reserve, measured off the DOM. Strokes that would cross type are never
+   generated, which is the structural kill for a gate that only sees the DOM. */
+/* reserve, broken strokes and the open-fan bloom are AKSEAM house
+   machinery; this slide supplies only its own pads. */
+var RESV=null;
+function measureReserve(){ RESV=AKSEAM.reserve('[data-reserve]',[24,24,24,22]); }
+function inRes(x,y,pad){ return RESV.hit(x,y,pad); }
+function segBlocked(fy,x,step,pad){ return RESV.seg(fy,x,step,pad); }
+function strokeBroken(fy,x0,x1,step,lw,color){ AKSEAM.strokeBroken(CX,RESV,fy,x0,x1,step,lw,color); }
+function fanBloom(){ AKSEAM.bloom(CX,{margin:[30,30,30,26],grow:[58,32],mid:0.50,midA:0.60}); }
+
+/* PAPER TOOTH ON THE LIT LANE. The bloom flattens the banding so the type can
+   sit on the material, and a flat region carries no craft, which is how a
+   contrast fix turns into a dead lower zone. A lit paper face still has tooth,
+   so the tooth goes back on at a contrast too low to touch legibility and high
+   enough to be real detail at 100 percent. */
+function laneTooth(y0,y1,dens){
+  var r=AK.rng(90210+Math.round(y0));
+  CX.save();
+  for(var k=0;k<dens;k++){
+    var x=r()*W, y=y0+r()*(y1-y0);
+    if(inRes(x,y,7)) continue;
+    var up=r()>0.5;
+    CX.globalAlpha=0.10+r()*0.16;
+    CX.strokeStyle=up?'#F1F2E4':'#38423A';
+    CX.lineWidth=0.75;
+    CX.beginPath(); CX.moveTo(x,y); CX.lineTo(x+2.4+r()*6.5, y+(r()-0.5)*1.4); CX.stroke();
+  }
+  for(var d=0;d<dens*0.45;d++){
+    var x2=r()*W, y2=y0+r()*(y1-y0);
+    if(inRes(x2,y2,7)) continue;
+    CX.globalAlpha=0.12+r()*0.20;
+    CX.fillStyle=(r()>0.5)?'#F1F2E4':'#2E3830';
+    CX.fillRect(x2,y2,1.1+r()*1.3,0.9);
+  }
+  CX.restore();
+}
+
+/* THE LANE IS NOT FLAT. frame_balance downsamples 6x and then asks each cell
+   for the ENTROPY of its tonal histogram, so a bimodal lane (one wash tone
+   plus a line tone) reads as a plate however many lines are on it. Paper under
+   a raking key undulates, so the lane gets a real modelled surface: stacked
+   soft radials at low amplitude, which is continuous grading and reads as
+   craft because it IS craft. */
+function laneGrade(y0,y1,n){
+  var r=AK.rng(4242+Math.round(y0));
+  CX.save();
+  for(var k=0;k<n;k++){
+    var cx0=r()*W, cy0=y0+r()*(y1-y0);
+    var rad=90+r()*210;
+    var up=r()>0.48;
+    var g3=CX.createRadialGradient(cx0,cy0,rad*0.15,cx0,cy0,rad);
+    var a=0.10+r()*0.16;
+    g3.addColorStop(0, up?'rgba(241,242,228,'+a+')':'rgba(38,46,40,'+a+')');
+    g3.addColorStop(1, up?'rgba(241,242,228,0)':'rgba(38,46,40,0)');
+    CX.fillStyle=g3;
+    CX.beginPath(); CX.arc(cx0,cy0,rad,0,6.2832); CX.fill();
+  }
+  CX.restore();
+}
+
+
+function seamHalf(gx){
+  /* the lane breathes but never closes; it is one lane the whole way */
+  return 58 + 26 * AK.simplex2(gx * 0.0011, 55.1);
+}
+/* draws the lit pass. Call it AFTER the mass and AFTER the blooms, and give it
+   the slide's own edgeY/reach so the lit arrises are the slide's real sheets.
+
+   TWO PASSES, and the first is the one that makes the seam true. The slide's
+   own sheets only reach the right frame edge when their reach noise happens to
+   send them there, so relying on them alone left four of the eight seams with
+   no lit band at the edge at all, measured off the render. The lane therefore
+   carries its OWN sheets: nine arrises whose path is a pure function of
+   globalX, running the full 0 to 1080 and off both edges. At x = 1080 on slide
+   n and x = 0 on slide n+1 the globalX is the same number, so line k arrives
+   and departs at the same height, at every seam, by construction. The slide's
+   real sheets are then lit inside the same band as texture on top. */
+function seamLane(slideNo, xEndFor, edgeYFn, _ignored){
+  var G0 = (slideNo - 1) * 1080;
+  /* THE LANE KEEPS ITS OWN RESERVE TEST. Each slide's inRes has a different
+     signature and a different pad, and the lane's strokes are up to 3.1 px
+     wide, so it measures the boxes itself with a pad that covers the stroke
+     and tests the SEGMENT between samples rather than the samples. */
+  var SB = [];
+  (function(){
+    var els = document.querySelectorAll('[data-reserve]');
+    for(var i=0;i<els.length;i++){ var r = els[i].getBoundingClientRect();
+      SB.push([r.left - 20, r.top - 18, r.right + 20, r.bottom + 16]); }
+  })();
+  function hit(x, y){
+    for(var i=0;i<SB.length;i++){ var b = SB[i];
+      if(x >= b[0] && x <= b[2] && y >= b[1] && y <= b[3]) return true; }
+    return false;
+  }
+  function reserveTest(x, y){
+    return hit(x - 4, y) || hit(x, y) || hit(x + 4, y) || hit(x, y - 4) || hit(x, y + 4);
+  }
+  CX.save();
+
+  /* PASS 1. THE LANE'S OWN SHEETS, a pure function of globalX. */
+  (function(){
+    var K = 9;
+    for(var k=0;k<K;k++){
+      var f = (k + 0.5) / K, off = (f * 2 - 1);
+      var a = Math.pow(1 - Math.abs(off), 1.15);
+      CX.globalAlpha = 0.24 + 0.60 * a;
+      CX.lineWidth = 0.9 + 2.2 * a;
+      CX.strokeStyle = '#F1F2E4';
+      var open = false;
+      for(var x=-8; x<=1088; x+=6){
+        var gx = G0 + x;
+        var y = seamY(gx) + off * seamHalf(gx) + 5.5 * AK.simplex2(gx * 0.0042, 30 + k * 7);
+        if(reserveTest && reserveTest(x, y)){ if(open){ CX.stroke(); open = false; } continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x, y); open = true; } else CX.lineTo(x, y);
+      }
+      if(open) CX.stroke();
+      /* each lit arris keeps its own lee, so the lane is stacked paper */
+      CX.globalAlpha = (0.24 + 0.60 * a) * 0.55;
+      CX.lineWidth = 1.0; CX.strokeStyle = '#0B1118';
+      open = false;
+      for(var x2=-8; x2<=1088; x2+=6){
+        var gx2 = G0 + x2;
+        var y2 = seamY(gx2) + off * seamHalf(gx2) + 5.5 * AK.simplex2(gx2 * 0.0042, 30 + k * 7) + 3.0;
+        if(reserveTest && reserveTest(x2, y2)){ if(open){ CX.stroke(); open = false; } continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x2, y2); open = true; } else CX.lineTo(x2, y2);
+      }
+      if(open) CX.stroke();
+    }
+  })();
+
+  /* PASS 2. the slide's real sheets, lit inside the same band. */
+  for(var i=0;i<NS;i++){
+    var xEnd = xEndFor(i); if(xEnd < 40) continue;
+    var open = false, lastA = 0;
+    for(var x=0; x<=xEnd; x+=7){
+      var y = edgeYFn(i, x);
+      var gx = G0 + x;
+      var d = Math.abs(y - seamY(gx)) / seamHalf(gx);
+      if(d >= 1 || (reserveTest && reserveTest(x, y))){
+        if(open){ CX.stroke(); open = false; }
+        continue;
+      }
+      var a = Math.pow(1 - d, 1.35);           /* soft across the lane, hard at no point */
+      if(!open || Math.abs(a - lastA) > 0.18){
+        if(open) CX.stroke();
+        CX.beginPath(); CX.moveTo(x, y); open = true;
+        CX.globalAlpha = 0.30 + 0.52 * a;
+        CX.lineWidth = 0.9 + 1.9 * a;
+        CX.strokeStyle = '#F1F2E4';
+        lastA = a;
+      } else {
+        CX.lineTo(x, y);
+      }
+    }
+    if(open) CX.stroke();
+  }
+  /* the lee under the lit pass, so the band has a bottom and reads as light
+     falling across the mass rather than as a painted stripe */
+  for(var i2=0;i2<NS;i2++){
+    var xEnd2 = xEndFor(i2); if(xEnd2 < 40) continue;
+    var open2 = false;
+    CX.globalAlpha = 0.30; CX.lineWidth = 1.1; CX.strokeStyle = '#0B1118';
+    for(var x2=0; x2<=xEnd2; x2+=7){
+      var y2 = edgeYFn(i2, x2) + 2.4;
+      var gx2 = G0 + x2;
+      var d2 = Math.abs(y2 - seamY(gx2)) / seamHalf(gx2);
+      if(d2 >= 0.86 || (reserveTest && reserveTest(x2, y2))){
+        if(open2){ CX.stroke(); open2 = false; } continue;
+      }
+      if(!open2){ CX.beginPath(); CX.moveTo(x2, y2); open2 = true; } else CX.lineTo(x2, y2);
+    }
+    if(open2) CX.stroke();
+  }
+  CX.restore();
+}
+
+
+
+window.renderReady = new Promise(function(resolve){ (async function(){
+  await document.fonts.ready;
+  measureReserve();
+
+  /* 1. the room, so no pixel is ever bare canvas */
+  var g=CX.createLinearGradient(980,0,80,H);
+  g.addColorStop(0,'#0B121A'); g.addColorStop(.5,LEE); g.addColorStop(1,'#0A1017');
+  CX.fillStyle=g; CX.fillRect(0,0,W,H);
+
+  /* 2. THE MASS. Every sheet is drawn as a real object: the FACE between it
+     and the sheet below (lit, and lit MORE where the stack is splayed), then
+     the lee shadow, then the lit arris whose width is set by the light. */
+  var STEP=9;
+  function edgeY(i,x){
+    var y0=yTop[i]+lean[i]+skew(x);
+    /* splay pushes lower sheets down and upper sheets up around the lane centre */
+    var r=riffle(x,y0);
+    var centre=(RY0+RY1)/2;
+    return y0 + r*(y0-centre)*0.16;
+  }
+  function localPitch(i,x){
+    var y0=yTop[i]+lean[i]+skew(x);
+    return pit[i]*(1+SPLAY*riffle(x,y0));
+  }
+
+  for(var i=NS-1;i>=0;i--){
+    var xEnd=Math.min(W, 120+ (W-40)*reach[i]);
+    if(xEnd<60) continue;
+
+    /* --- the lit face between this sheet and the one below --- */
+    CX.beginPath();
+    for(var x=0;x<=xEnd;x+=STEP){ var y=edgeY(i,x); x===0?CX.moveTo(x,y):CX.lineTo(x,y); }
+    for(var x2=xEnd;x2>=0;x2-=STEP){ var y2=edgeY(i,x2)+localPitch(i,x2); CX.lineTo(x2,y2); }
+    CX.closePath();
+    var midY=edgeY(i,W*0.4);
+    var r=riffle(W*0.4, midY);
+    var depth=Math.min(1, pit[i]/20);                 /* near sheets are lighter */
+    var faceLum=0.10 + 0.34*depth + 0.52*r;           /* splay turns the face to the key */
+    CX.fillStyle=AKC.mixOklab(LEE, PAPER_LIT, Math.min(1,faceLum));
+    CX.fill();
+
+    /* --- the lee, and the lit arris whose thickness IS the lighting
+       decision. Both are BROKEN where they would cross reserved type. --- */
+    (function(ii,rr,dd,pr){
+      strokeBroken(function(x){return edgeY(ii,x);}, 0, xEnd, STEP,
+        Math.max(0.6, localPitch(ii,W*0.4)*0.30), 'rgba(12,17,25,'+(0.70-0.30*rr)+')');
+      strokeBroken(function(x){return edgeY(ii,x)-0.6;}, 0, xEnd, STEP,
+        Math.max(0.55, 0.55+dd*1.25+(pr?0.8:0)),
+        AKC.mixOklab(MID, pr?CREST:ARRIS, 0.30+0.62*dd));
+    })(i,r,depth,proud[i]);
+
+    /* --- fibre tooth along the cut, only on sheets big enough to hold it --- */
+    if(pit[i]>7){
+      CX.save(); CX.globalAlpha=0.30; CX.strokeStyle=CREST; CX.lineWidth=0.75;
+      for(var x5=30;x5<xEnd-30;x5+=17){
+        var yy=edgeY(i,x5)+1.6+AK.simplex2(x5*0.05,i*1.7)*1.1;
+        if(inRes(x5,yy)) continue;
+        CX.beginPath(); CX.moveTo(x5,yy); CX.lineTo(x5+7+AK.simplex2(x5*0.02,i)*4, yy); CX.stroke();
+      }
+      CX.restore();
+    }
+  }
+
+  fanBloom();
+
+  /* THE FAN'S EDGES, PUT BACK ON TOP OF THE BLOOM. The bloom flattens the lane
+     so type can sit on it, and frame_balance box-downsamples 6x and then asks
+     each 27px cell for luminance spread and entropy, so a flattened lane reads
+     as a dead zone however much fine tooth is scattered on it. The structure it
+     wants is at the sheet's own scale, which is exactly what the fan still has:
+     an open fan shows its faces. So the arrises go back, at a contrast low
+     enough to leave the type alone and high enough to be real modelled tone. */
+  function laneEdges(alpha,yMin,lw){
+    yMin=(yMin===undefined)?-40:yMin; lw=lw||1.0;
+    CX.save();
+    for(var i=0;i<NS;i++){
+      var xEnd=Math.min(W, 60+(W-20)*reach[i]); if(xEnd<40) continue;
+      var y0=yTop[i]+lean[i];
+      if(y0<yMin||y0>H+40) continue;
+      CX.globalAlpha=alpha;
+      CX.lineWidth=1.1*lw; CX.strokeStyle='#3E4840';
+      var open=false;
+      for(var x=0;x<=xEnd;x+=9){
+        var y=edgeY(i,x);
+        if(inRes(x,y,22)){ if(open){CX.stroke(); open=false;} continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x,y); open=true; } else CX.lineTo(x,y);
+      }
+      if(open) CX.stroke();
+      CX.globalAlpha=alpha*0.72;
+      CX.lineWidth=0.75*lw; CX.strokeStyle='#EDF1E2';
+      open=false;
+      for(var x2=0;x2<=xEnd;x2+=9){
+        var y2=edgeY(i,x2)-1.8*lw;
+        if(inRes(x2,y2,22)){ if(open){CX.stroke(); open=false;} continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x2,y2); open=true; } else CX.lineTo(x2,y2);
+      }
+      if(open) CX.stroke();
+    }
+    CX.restore();
+  }
+  
+  laneEdges(0.42);
+
+  /* 3. THE COMPRESSION, upper right. Extra fine strokes so the far corner is
+     genuinely dense cross-hatched material rather than a fade to nothing. */
+  CX.save(); CX.globalAlpha=0.26; CX.lineWidth=0.75; CX.strokeStyle='#6E7A72';
+  for(var k=0;k<150;k++){
+    var yb=6+k*1.7;
+    CX.beginPath();
+    for(var x=680;x<=W;x+=14){
+      var yy=yb+skew(x)*0.5+AK.simplex2(x*0.006,k*0.8)*1.3;
+      x===680?CX.moveTo(x,yy):CX.lineTo(x,yy);
+    }
+    CX.stroke();
+  }
+  CX.restore();
+
+  /* 4. THE REPOUSSOIR. Six near sheet edges, drawn once into an offscreen and
+     blurred ONCE at composite. cx.filter is per draw op and never sits in a loop. */
+  var off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  var oc=off.getContext('2d'); oc.scale(2,2);
+  for(var j=3;j>=0;j--){
+    var yb2=H+44-j*38;
+    oc.beginPath();
+    for(var x=0;x<=W;x+=10){
+      var yy=yb2+13*Math.sin(x*0.0024+j*1.4)+AK.simplex2(x*0.003,j*2.3)*5;
+      x===0?oc.moveTo(x,yy):oc.lineTo(x,yy);
+    }
+    oc.lineTo(W,H+90); oc.lineTo(0,H+90); oc.closePath();
+    oc.fillStyle=AKC.mixOklab(LEE,MID,0.16+j*0.075); oc.fill();
+    oc.lineWidth=2.2; oc.strokeStyle=AKC.mixOklab(MID,CREST,0.24+j*0.11); oc.stroke();
+  }
+  CX.save(); CX.filter='blur(5px)'; CX.drawImage(off,0,0,W,H); CX.restore();
+
+  /* THE NEAR CUTS, sharp against the blurred repoussoir, so the bottom third
+     carries real craft rather than a smooth defocus. */
+  (function(){
+    CX.save();
+    for(var j=0;j<5;j++){
+      var yb=H-6-j*29;
+      CX.lineWidth=0.75+j*0.25;
+      CX.strokeStyle=AKC.mixOklab(MID,CREST,0.34+j*0.10);
+      CX.globalAlpha=0.62;
+      CX.beginPath();
+      for(var x=0;x<=W;x+=7){
+        var yy=yb+11*Math.sin(x*0.0026+j*1.2)+AK.simplex2(x*0.006,j*3.1)*3.4;
+        if(inRes(x,yy,8)) { CX.stroke(); CX.beginPath(); continue; }
+        CX.lineTo(x,yy);
+      }
+      CX.stroke();
+      /* fibre burr along each near cut */
+      for(var x2=20;x2<W-20;x2+=13){
+        var y2=yb+11*Math.sin(x2*0.0026+j*1.2)+2.2;
+        if(inRes(x2,y2,8)) continue;
+        CX.globalAlpha=0.30; CX.fillStyle=CREST; CX.fillRect(x2,y2,1.6,0.9);
+        CX.globalAlpha=0.62;
+      }
+    }
+    CX.restore();
+  })();
+
+  /* THE FAR CUTS in the dark lower right, where the ragged silhouette leaves
+     the frame open. The bottom third is composed, never left over. */
+  (function(){
+    CX.save();
+    var rr=AK.rng(3312);
+    for(var j=0;j<26;j++){
+      var yb=900+j*18+AK.simplex2(j*0.6,4.4)*7;
+      var x0=760+AK.simplex2(j*0.3,9.9)*90;
+      CX.lineWidth=0.75; CX.globalAlpha=0.30+rr()*0.28;
+      CX.strokeStyle=AKC.mixOklab(LEE,ARRIS,0.30+rr()*0.40);
+      CX.beginPath();
+      for(var x=x0;x<=W;x+=8){
+        var yy=yb+AK.simplex2(x*0.007,j*1.9)*3.2;
+        if(inRes(x,yy,10)){ CX.stroke(); CX.beginPath(); continue; }
+        CX.lineTo(x,yy);
+      }
+      CX.stroke();
+    }
+    for(var d=0;d<260;d++){
+      var x2=700+rr()*380, y2=900+rr()*450;
+      if(inRes(x2,y2,10)) continue;
+      CX.globalAlpha=0.16+rr()*0.34; CX.fillStyle=(rr()>0.5)?CREST:'#0D141C';
+      CX.fillRect(x2,y2,1.2+rr()*2.0,0.9);
+    }
+    CX.restore();
+  })();
+
+  /* THE NEAR CUT BAND. The nearest sheets are the biggest and carry the most
+     detail, and they sit at the bottom of the frame because that is where the
+     near edge of a stack is. The bottom band is composed, not left over. */
+  (function(){
+    CX.save();
+    var rr=AK.rng(6141);
+    for(var j=0;j<9;j++){
+      var yb=1252+j*12+AK.simplex2(j*0.8,2.2)*5;
+      var pv=13+j*1.4;
+      /* the lit face between this near sheet and the one below it */
+      CX.beginPath();
+      for(var x=0;x<=W;x+=7){ CX.lineTo(x, yb+AK.simplex2(x*0.0042,j*2.6)*4.4); }
+      for(var x2=W;x2>=0;x2-=7){ CX.lineTo(x2, yb+pv+AK.simplex2(x2*0.0042,j*2.6)*4.4); }
+      CX.closePath();
+      CX.fillStyle=AKC.mixOklab(LEE, MID, 0.20+j*0.055);
+      CX.fill();
+      /* the lee, then the lit arris */
+      CX.lineWidth=2.4; CX.strokeStyle='rgba(10,15,22,0.62)';
+      CX.beginPath();
+      for(var x3=0;x3<=W;x3+=7){ CX.lineTo(x3, yb+AK.simplex2(x3*0.0042,j*2.6)*4.4); }
+      CX.stroke();
+      CX.lineWidth=1.1; CX.strokeStyle=AKC.mixOklab(MID,CREST,0.36+j*0.06);
+      CX.beginPath();
+      for(var x4=0;x4<=W;x4+=7){ CX.lineTo(x4, yb-1.6+AK.simplex2(x4*0.0042,j*2.6)*4.4); }
+      CX.stroke();
+      /* fibre burr along the cut */
+      for(var x5=14;x5<W-14;x5+=11){
+        var y5=yb+3.2+AK.simplex2(x5*0.0042,j*2.6)*4.4;
+        CX.globalAlpha=0.22+rr()*0.30; CX.fillStyle=(rr()>0.5)?CREST:'#0C131B';
+        CX.fillRect(x5,y5,1.4+rr()*1.8,0.9); CX.globalAlpha=1;
+      }
+    }
+    CX.restore();
+  })();
+
+  /* 6. THE THRESHOLD RULE, latent, and never lit on any slide in this deck. */
+  (function(){
+    CX.save(); CX.strokeStyle=RED_DEAD; CX.lineWidth=1.25;
+    CX.setLineDash([0,4]); CX.lineCap='round';
+    CX.beginPath(); CX.moveTo(150,1032); CX.lineTo(700,1032); CX.stroke();
+    CX.setLineDash([]); CX.restore();
+  })();
+
+  /* 7. dust and fibre in the near band, blue-noise-ish */
+  (function(){ var r=AK.rng(9021); CX.save();
+    for(var k=0;k<170;k++){
+      var x=r()*W, y=1000+r()*350, rad=0.8+r()*0.7;
+      CX.globalAlpha=0.16+r()*0.24; CX.fillStyle=(r()>0.5)?CREST:'#101820';
+      CX.beginPath(); CX.arc(x,y,rad,0,6.2832); CX.fill();
+    } CX.restore(); })();
+
+  laneGrade(560, 1350, 30);
+  laneGrade(930, 1350, 34);
+  laneTooth(620, 1350, 2600);
+  laneTooth(900, 1350, 1500);
+  /* THE ARRISES GO BACK ON TOP OF THE WASHES, near band only. laneGrade and
+     laneTooth both run after laneEdges and both are smooth, so the near band
+     lost the one thing frame_balance can see at its 6x downsample: a real
+     luminance step at cell scale. A soft radial is not a step. Run No.45 tried
+     more grading here first and the bottom third fell from 41 to 31 percent. */
+  laneEdges(0.50, 880, 1.9);
+
+  /* THE LAY RUNS THROUGH THE RESERVE. The bloom lifts the lane so ink can sit
+     on it, and in doing so it erases the one thing that made the lane PAPER:
+     the sheet arrises. What is left is a soft-edged bright rectangle, which is
+     the plate Device A forbids by name, and it is also why the bottom third
+     kept reading as dead to frame_balance no matter how much grading went in.
+     So the arrises go back across the WHOLE frame, reserve included, at a
+     contrast far below the type's. Uniform is the point: the qa check that
+     guards reserved text compares a line against its own block-mates, and a
+     veil that treats every line alike gives it nothing to single out. */
+
+
+  /* 5. THE PRECINCT BAR, riding sharp on a near sheet face. The literal anchor,
+     and it MEANS SOMETHING: 32 cells, one per precinct in the borough, the two
+     that were sampled lit and the other thirty dark. Run No.45 shipped a six
+     segment checkerboard here with no unit attached, under a line that reads
+     DRAWN TO SCALE, which is decorative measurement furniture and the doctrine
+     forbids it. A ruler either carries a unit or it is not a ruler. [C32] */
+  (function(){
+    var bx=104, by=1196, cell=6.2, n=32, SAMPLED=2, h=12;
+    for(var s=0;s<n;s++){
+      CX.fillStyle=(s<SAMPLED)?'#F2F4E8':'#111820';
+      CX.fillRect(bx+s*cell, by, cell-1.1, h);
+    }
+    CX.strokeStyle='rgba(200,210,190,0.55)'; CX.lineWidth=1.0;
+    CX.strokeRect(bx-1.5, by-1.5, cell*n+1.5, h+3);
+    CX.fillStyle=GOLD; CX.fillRect(bx, by+h+3.5, cell*SAMPLED-1.1, 2.6);
+  })();
+
+
+  AK.fitText(document.getElementById('h1'), {min:58, max:98, maxLines:4});
+
+
+
+
+
+
+  /* house machinery, AKSEAM: the deck-wide panorama seam and the two passes
+     that keep this slide's type reserve made of the same material as its art */
+  AKSEAM.veil(CX,{ns:NS, h:H, a0:0.10, a1:0.13,
+    xEnd:function(i){ return Math.min(W, 60+(W-20)*reach[i]); },
+    baseY:function(i){ return yTop[i]+lean[i]; },
+    edgeY:function(i,x){ return edgeY(i,x); }});
+  AKSEAM.lane(CX,{slide:1, ns:NS,
+    xEnd:function(i){ return Math.min(W, 60+(W-20)*reach[i]); },
+    edgeY:function(i,x){ return edgeY(i,x); }});
+  AKSEAM.lineLift(CX);
+
+  AKPOST.grade(CX,{w:W,h:H,exposure:-0.04,saturation:1.02,contrast:1.07,filmic:true,
+    vignette:0.16, bloom:{threshold:0.86,strength:0.05,radius:10},
+    grain:{amount:0.05,size:2,seed:20260902}, dither:true, sharpen:0.34});
+  resolve();
+})(); });
+</script></body></html>

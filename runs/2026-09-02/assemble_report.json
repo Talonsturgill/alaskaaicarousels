@@ -1,0 +1,116 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-02/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9000775,
+  "pdf_mb": 9.0,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-02/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-02/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-02/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-02/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-02/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-02/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-02/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-02/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-02/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-02/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Counted Twice. Fairbanks Votes on the Machines.",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "ab5547a648bdbea6f924ecd28fb64f242d2015461ef84fa685f8de774cd8ecb8",
+        "bytes": 7634142
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "3e4e1e9890dee163c81af62e1a762e090c97c0e62794dfa597d6ef5a691f98e6",
+        "bytes": 6903100
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "87f834bf4151070c7bacd21563a831edbaf5376bb21ddd00e79ba836b3ab8365",
+        "bytes": 6557290
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "90cad2612860b8e5d9b05a1f3e9904d08159bf2a3a0d67a5caa5306c8d718200",
+        "bytes": 6226364
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "afb1b69627c0973decd5d9dc686daa306367033656e7b190e8d2cbd3585ed826",
+        "bytes": 6012952
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "15454e2b47e7ae4f0d4f7ade97b073db3709ddcd9cbb23bde466083d18a88b06",
+        "bytes": 6828813
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "b81570c225f5735cbc878e68c4be690c0babc51a140372e4aa0fbb3f3d99d52c",
+        "bytes": 7402591
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "09e33409046e6acfea4f323fbf572e5488951c1cd85cab7caea44c42371e1e75",
+        "bytes": 6151052
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "e9c9a961e1c6ce887e05dd4e762aa079c3df614140598f5e6fafac2dff8be9a9",
+        "bytes": 6152950
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "20f51e25d665937fae57978dbd86214b4809859df3c769230a192da306098b57",
+        "bytes": 24533
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "db9f9020be84ba8749c4951940d4f09829cb382d3ad8d7c59ba3d54caa151055",
+        "bytes": 15004
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "f62c94558592677aa1fde44f7f91f6784d80fd2b4adf4abfc1cf24a74fdc116b",
+        "bytes": 19093
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "a32813760e2dcb0f25cba1d52b67f28d1d8b9bc47969e6b906682d73fdb7ae6a",
+        "bytes": 19152
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "10834140c7b2362e6d365589f0a3ed332df24ba92d4a90a76c1cbd3b6effc35a",
+        "bytes": 14145
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "bc483210ab680db1203be7d4926d5a2dae7949a67860ed0511de60ae06952e74",
+        "bytes": 12783
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "5bcf9f9741694838df4f64c9d85e1cc6a9c47c6821be92769f42b5eabc99eb09",
+        "bytes": 26365
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "3553d64f7a83db9393d3124a33fa971e7355fc43403e411c99a9f6b63b7d42d4",
+        "bytes": 16981
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "b9c6abb5fb9b7187d263a66639a66366d4c380c28610291e00daa048ded07fc7",
+        "bytes": 14607
+      }
+    ]
+  }
+}

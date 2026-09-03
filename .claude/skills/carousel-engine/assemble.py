@@ -21,6 +21,7 @@ Exit 0 on success. Writes assemble_report.json with sizes + mode used.
 
 import argparse
 import glob
+import hashlib
 import io
 import json
 import re
@@ -165,6 +166,42 @@ def thumbnails(pngs, thumbs_dir: Path, width=432):
     return outs
 
 
+def sha256(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def source_record(pngs, slides_dir: Path):
+    """WHAT THIS BUILD CONSUMED (2026-09-02).
+
+    Run No.48 shipped slide 03's 432px thumb and its full-size PNG from two
+    DIFFERENT builds: a fix round edited the slide, re-ran render.py, and never
+    re-ran assemble.py. The thumbs, the contact sheet and the PDF therefore
+    described the previous render while render/ described the current one, and
+    a pixel critic found it by transcribing both. Every machine gate was green,
+    because nothing anywhere recorded WHICH renders a build was made from.
+
+    So assemble_report.json now carries the sha256 of every input it actually
+    read: the slide-NN.png files that became the thumbs and the contact sheet,
+    and the slide-NN.html files the vector PDF was printed from. Re-hash them
+    later and any divergence is arithmetic, not a judgement call. gate_status's
+    `assemble` row does exactly that and FAILs. mtimes are deliberately NOT the
+    test: a git checkout or a file copy rewrites them and proves nothing.
+    """
+    out = {"render_pngs": [], "slide_html": []}
+    for p in pngs:
+        p = Path(p)
+        out["render_pngs"].append(
+            {"name": p.name, "sha256": sha256(p), "bytes": p.stat().st_size})
+    for s in sorted(Path(slides_dir).glob("slide-*.html")):
+        out["slide_html"].append(
+            {"name": s.name, "sha256": sha256(s), "bytes": s.stat().st_size})
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slides-dir", required=True, help="dir of slide-*.html (for vector pdf)")
@@ -211,6 +248,7 @@ def main():
         "contact_sheet": str(sheet_path),
         "thumbs": thumbs,
         "title": args.title,
+        "sources": source_record(pngs, Path(args.slides_dir).resolve()),
     }
     (out_dir / "assemble_report.json").write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))

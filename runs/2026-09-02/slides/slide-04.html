@@ -1,0 +1,383 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0A1017}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Space Grotesk";font-variation-settings:"wght" 700;
+    color:#10151A;letter-spacing:-.025em;line-height:1.02}
+.bd{position:absolute;margin:0;font-family:"Space Grotesk";font-variation-settings:"wght" 400;
+    font-size:32px;line-height:1.38;color:#1B241E}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;
+    letter-spacing:.10em;text-transform:uppercase;font-variant-numeric:tabular-nums lining-nums}
+</style></head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" data-reserve style="left:96px;top:96px;width:660px;font-size:26px;color:#D9DCC6">THE THRESHOLD THAT NEVER FIRED</div>
+<div class="mn" id="ct" data-reserve style="left:836px;top:96px;width:148px;font-size:26px;text-align:right;color:#D9DCC6" data-decorative>04 / 09</div>
+
+<h1 class="hd" id="h1" data-reserve data-bloom style="left:96px;top:222px;width:672px;font-size:72px;height:250px">The tolerance was 33 ballots wide. The gap was zero.</h1>
+
+<div class="mn" id="callout" data-reserve data-bloom style="left:664px;top:1010px;width:360px;font-size:24px;color:#1B241E;line-height:1.5;white-space:nowrap">DETAIL A . 12 TO 1<br>1 PERCENT OF 3,338<br>= 33 BALLOTS<br>OBSERVED SEPARATION 0</div>
+
+<p class="bd" data-reserve data-bloom style="left:96px;top:986px;width:556px;font-size:29px">The 2025 ordinance defined failure in advance, a discrepancy greater than 1 percent between the hand count and the machine tabulation. On the sampled ballots the machines came back 100 percent accurate, so the trip point was never approached.</p>
+
+<div class="mn" data-reserve data-bloom style="left:96px;top:1256px;width:660px;font-size:24px;color:#20291F">DRAWN TO SCALE. NOT DRAWN TO COUNT.</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/akseam.js"></script>
+<script>
+/* ============================================================
+   SLIDE 04 — HERO. THE TOLERANCE AND THE GAP.
+   Stage B, the closest camera in the deck, sheet pitch about 6px at the
+   focal plane. The main section runs at 1 px = 6 ballots, so the 3,338
+   sample is 556 px and 1 percent is 5.6 px, which is deliberately too fine
+   to read. DETAIL A lifts that span to 12:1, where 5.6 px becomes 67 px and
+   the hand mark and the machine mark land on ONE COINCIDENT EDGE.
+   ============================================================ */
+var W=1080, H=1350;
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260902);
+
+var LEE='#141B25', MID='#9AA08C', ARRIS='#D9DCC6', CREST='#F1F2E4',
+    PAPER_LIT='#CBD2BE', RED='#D8422F', GOLD='#FFC72C', FMN='#6EA5FF';
+
+/* ---- the measured rig, solved once. Everything drawn derives from it ---- */
+var SAMPLE = 3338;                 /* the audit's own count */
+var BALLOTS_PER_PX = 6;
+var SEC_W = SAMPLE / BALLOTS_PER_PX;          /* 556.33 px */
+var SEC_X = 120, SEC_Y = 596, SEC_H = 108;
+var ONE_PCT_PX = SEC_W * 0.01;                /* 5.563 px */
+var MAG = 12;
+var DET_CX = 838, DET_CY = 700, DET_R = 158;
+var SPAN = ONE_PCT_PX * MAG;                  /* 66.76 px inside DETAIL A */
+
+/* ---- the stack, stage B: fewer, bigger sheets than any other slide ---- */
+var NS=118, P_NEAR=30, RATIO=0.9836;
+var yTop=[], pit=[];
+(function(){ var y=H+30,p=P_NEAR; for(var i=0;i<NS;i++){ y-=p; yTop.push(y); pit.push(p); p*=RATIO; } })();
+function sh(i,k){ var s=Math.sin((i*73.9+k*157.1)*0.929)*31415.926; return s-Math.floor(s); }
+var reach=[], lean=[], shear=[];
+for(var i=0;i<NS;i++){
+  reach.push(Math.max(0.30, Math.min(1.05, 0.82+AK.simplex2(i*0.062,5.9)*0.28+((sh(i,7)>0.95)?0.12:0))));
+  lean.push((sh(i,2)-0.5)*1.8);
+  /* THREE COMPRESSION SHEAR FAULTS. Real discontinuities where the mass slumped */
+  shear.push((i>28&&i<31)?9:((i>62&&i<65)?7:((i>92&&i<95)?6:0)));
+}
+function skew(x){ return -x*0.030; }
+
+/* THE RIFFLE SPLITS INTO TWO LANES here, which is the composition echoing the
+   two channels. 18 percent and 14 percent, fan 9 degrees. */
+function riffle(x,y){
+  var a=0,b=0;
+  if(x>=44&&x<=240&&y>=150&&y<=1300) a=Math.min(1,Math.min(x-44,240-x)/70);
+  if(x>=64&&x<=700&&y>=940&&y<=1330)
+    b=Math.min(1,Math.min(x-64,700-x)/160)*Math.pow(Math.sin(Math.PI*(y-940)/390),0.30);
+  if(x>=64&&x<=700&&y>=150&&y<=470)
+    b=Math.max(b, Math.min(1,Math.min(x-64,700-x)/160)*Math.pow(Math.sin(Math.PI*(y-150)/320),0.34));
+  if(x>=640&&x<=1050&&y>=980&&y<=1300)
+    b=Math.max(b, Math.min(1,Math.min(x-640,1050-x)/120)*Math.pow(Math.sin(Math.PI*(y-980)/320),0.34));
+  return Math.max(a,b);
+}
+var SPLAY=2.4;
+
+/* the reserve, measured off the DOM. Strokes that would cross type are never
+   generated, which is the structural kill for a gate that only sees the DOM. */
+/* reserve, broken strokes and the open-fan bloom are AKSEAM house
+   machinery; this slide supplies only its own pads. */
+var RESV=null;
+function measureReserve(){ RESV=AKSEAM.reserve('[data-reserve]',[24,24,24,22]); }
+function inRes(x,y,pad){ return RESV.hit(x,y,pad); }
+function segBlocked(fy,x,step,pad){ return RESV.seg(fy,x,step,pad); }
+function strokeBroken(fy,x0,x1,step,lw,color){ AKSEAM.strokeBroken(CX,RESV,fy,x0,x1,step,lw,color); }
+function fanBloom(){ AKSEAM.bloom(CX,{margin:[30,30,30,26],grow:[86,74],mid:0.66,midA:0.56}); }
+
+
+function seamHalf(gx){
+  /* the lane breathes but never closes; it is one lane the whole way */
+  return 58 + 26 * AK.simplex2(gx * 0.0011, 55.1);
+}
+/* draws the lit pass. Call it AFTER the mass and AFTER the blooms, and give it
+   the slide's own edgeY/reach so the lit arrises are the slide's real sheets.
+
+   TWO PASSES, and the first is the one that makes the seam true. The slide's
+   own sheets only reach the right frame edge when their reach noise happens to
+   send them there, so relying on them alone left four of the eight seams with
+   no lit band at the edge at all, measured off the render. The lane therefore
+   carries its OWN sheets: nine arrises whose path is a pure function of
+   globalX, running the full 0 to 1080 and off both edges. At x = 1080 on slide
+   n and x = 0 on slide n+1 the globalX is the same number, so line k arrives
+   and departs at the same height, at every seam, by construction. The slide's
+   real sheets are then lit inside the same band as texture on top. */
+function seamLane(slideNo, xEndFor, edgeYFn, _ignored){
+  var G0 = (slideNo - 1) * 1080;
+  /* THE LANE KEEPS ITS OWN RESERVE TEST. Each slide's inRes has a different
+     signature and a different pad, and the lane's strokes are up to 3.1 px
+     wide, so it measures the boxes itself with a pad that covers the stroke
+     and tests the SEGMENT between samples rather than the samples. */
+  var SB = [];
+  (function(){
+    var els = document.querySelectorAll('[data-reserve]');
+    for(var i=0;i<els.length;i++){ var r = els[i].getBoundingClientRect();
+      SB.push([r.left - 20, r.top - 18, r.right + 20, r.bottom + 16]); }
+  })();
+  function hit(x, y){
+    for(var i=0;i<SB.length;i++){ var b = SB[i];
+      if(x >= b[0] && x <= b[2] && y >= b[1] && y <= b[3]) return true; }
+    return false;
+  }
+  function reserveTest(x, y){
+    return hit(x - 4, y) || hit(x, y) || hit(x + 4, y) || hit(x, y - 4) || hit(x, y + 4);
+  }
+  CX.save();
+
+  /* PASS 1. THE LANE'S OWN SHEETS, a pure function of globalX. */
+  (function(){
+    var K = 9;
+    for(var k=0;k<K;k++){
+      var f = (k + 0.5) / K, off = (f * 2 - 1);
+      var a = Math.pow(1 - Math.abs(off), 1.15);
+      CX.globalAlpha = 0.24 + 0.60 * a;
+      CX.lineWidth = 0.9 + 2.2 * a;
+      CX.strokeStyle = '#F1F2E4';
+      var open = false;
+      for(var x=-8; x<=1088; x+=6){
+        var gx = G0 + x;
+        var y = seamY(gx) + off * seamHalf(gx) + 5.5 * AK.simplex2(gx * 0.0042, 30 + k * 7);
+        if(reserveTest && reserveTest(x, y)){ if(open){ CX.stroke(); open = false; } continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x, y); open = true; } else CX.lineTo(x, y);
+      }
+      if(open) CX.stroke();
+      /* each lit arris keeps its own lee, so the lane is stacked paper */
+      CX.globalAlpha = (0.24 + 0.60 * a) * 0.55;
+      CX.lineWidth = 1.0; CX.strokeStyle = '#0B1118';
+      open = false;
+      for(var x2=-8; x2<=1088; x2+=6){
+        var gx2 = G0 + x2;
+        var y2 = seamY(gx2) + off * seamHalf(gx2) + 5.5 * AK.simplex2(gx2 * 0.0042, 30 + k * 7) + 3.0;
+        if(reserveTest && reserveTest(x2, y2)){ if(open){ CX.stroke(); open = false; } continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x2, y2); open = true; } else CX.lineTo(x2, y2);
+      }
+      if(open) CX.stroke();
+    }
+  })();
+
+  /* PASS 2. the slide's real sheets, lit inside the same band. */
+  for(var i=0;i<NS;i++){
+    var xEnd = xEndFor(i); if(xEnd < 40) continue;
+    var open = false, lastA = 0;
+    for(var x=0; x<=xEnd; x+=7){
+      var y = edgeYFn(i, x);
+      var gx = G0 + x;
+      var d = Math.abs(y - seamY(gx)) / seamHalf(gx);
+      if(d >= 1 || (reserveTest && reserveTest(x, y))){
+        if(open){ CX.stroke(); open = false; }
+        continue;
+      }
+      var a = Math.pow(1 - d, 1.35);           /* soft across the lane, hard at no point */
+      if(!open || Math.abs(a - lastA) > 0.18){
+        if(open) CX.stroke();
+        CX.beginPath(); CX.moveTo(x, y); open = true;
+        CX.globalAlpha = 0.30 + 0.52 * a;
+        CX.lineWidth = 0.9 + 1.9 * a;
+        CX.strokeStyle = '#F1F2E4';
+        lastA = a;
+      } else {
+        CX.lineTo(x, y);
+      }
+    }
+    if(open) CX.stroke();
+  }
+  /* the lee under the lit pass, so the band has a bottom and reads as light
+     falling across the mass rather than as a painted stripe */
+  for(var i2=0;i2<NS;i2++){
+    var xEnd2 = xEndFor(i2); if(xEnd2 < 40) continue;
+    var open2 = false;
+    CX.globalAlpha = 0.30; CX.lineWidth = 1.1; CX.strokeStyle = '#0B1118';
+    for(var x2=0; x2<=xEnd2; x2+=7){
+      var y2 = edgeYFn(i2, x2) + 2.4;
+      var gx2 = G0 + x2;
+      var d2 = Math.abs(y2 - seamY(gx2)) / seamHalf(gx2);
+      if(d2 >= 0.86 || (reserveTest && reserveTest(x2, y2))){
+        if(open2){ CX.stroke(); open2 = false; } continue;
+      }
+      if(!open2){ CX.beginPath(); CX.moveTo(x2, y2); open2 = true; } else CX.lineTo(x2, y2);
+    }
+    if(open2) CX.stroke();
+  }
+  CX.restore();
+}
+
+
+
+window.renderReady = new Promise(function(resolve){ (async function(){
+  await document.fonts.ready;
+  measureReserve();
+
+  var g=CX.createLinearGradient(1010,60,70,1290);
+  g.addColorStop(0,'#0B121A'); g.addColorStop(.55,LEE); g.addColorStop(1,'#090F16');
+  CX.fillStyle=g; CX.fillRect(0,0,W,H);
+
+  var STEP=8;
+  function edgeY(i,x){ var y0=yTop[i]+lean[i]+shear[i]+skew(x);
+    return y0 + riffle(x,y0)*(y0-680)*0.11; }
+  function lp(i,x){ var y0=yTop[i]+lean[i]+shear[i]+skew(x);
+    return pit[i]*(1+SPLAY*riffle(x,y0)); }
+
+  for(var i=NS-1;i>=0;i--){
+    var xEnd=Math.min(W, 60+(W-20)*reach[i]); if(xEnd<40) continue;
+    CX.beginPath();
+    for(var x=0;x<=xEnd;x+=STEP){ CX.lineTo(x, edgeY(i,x)); }
+    for(var x2=xEnd;x2>=0;x2-=STEP){ CX.lineTo(x2, edgeY(i,x2)+lp(i,x2)); }
+    CX.closePath();
+    var yM=edgeY(i,300), r=riffle(300,yM), depth=Math.min(1,pit[i]/26);
+    CX.fillStyle=AKC.mixOklab(LEE, PAPER_LIT, Math.min(1, 0.08+0.22*depth+0.62*r));
+    CX.fill();
+    (function(ii,rr,dd){
+      strokeBroken(function(x){return edgeY(ii,x);},0,xEnd,STEP,
+        Math.max(0.6, lp(ii,300)*0.24), 'rgba(10,15,22,'+(0.74-0.36*rr)+')');
+      CX.lineCap='butt';
+      strokeBroken(function(x){return edgeY(ii,x)-0.6;},0,xEnd,STEP,
+        Math.max(0.6,0.55+dd*1.5), AKC.mixOklab(MID, ARRIS, 0.24+0.62*dd));
+    })(i,r,depth);
+    /* interdot fibre, gated so the detail budget says "not here" somewhere */
+    if(pit[i]>13 && depth>0.5){
+      CX.save(); CX.globalAlpha=0.26; CX.fillStyle=CREST;
+      for(var x6=40;x6<xEnd-30;x6+=23){
+        var yy=edgeY(i,x6)+lp(i,x6)*0.55;
+        if(inRes(x6,yy,10)) continue;
+        CX.fillRect(x6, yy, 1.4, 1.0);
+      }
+      CX.restore();
+    }
+  }
+
+  fanBloom();
+
+  /* ---- THE MAIN SECTION. 1 px = 6 ballots. 1 percent is 5.6 px and is
+     deliberately too fine to read, which is why DETAIL A exists. ---- */
+  CX.save();
+  CX.fillStyle=AKC.mixOklab(LEE,PAPER_LIT,0.52);
+  CX.fillRect(SEC_X, SEC_Y, SEC_W, SEC_H);
+  /* the section is PAPER, not a box: its own sheet edges, at the section's
+     own pitch, with a lit arris and a lee on every one */
+  CX.save(); CX.beginPath(); CX.rect(SEC_X,SEC_Y,SEC_W,SEC_H); CX.clip();
+  for(var q=0;q<13;q++){
+    var qy=SEC_Y+4+q*8.2 + AK.simplex2(q*1.7, 2.2)*0.9;
+    CX.lineWidth=1.4; CX.strokeStyle='rgba(22,30,24,0.42)';
+    CX.beginPath(); CX.moveTo(SEC_X,qy); CX.lineTo(SEC_X+SEC_W,qy); CX.stroke();
+    CX.lineWidth=0.75; CX.strokeStyle='rgba(236,242,226,0.42)';
+    CX.beginPath(); CX.moveTo(SEC_X,qy-1.3); CX.lineTo(SEC_X+SEC_W,qy-1.3); CX.stroke();
+  }
+  CX.restore();
+  CX.lineWidth=3.5; CX.strokeStyle=CREST;                 /* the cut edge */
+  CX.beginPath(); CX.moveTo(SEC_X,SEC_Y); CX.lineTo(SEC_X+SEC_W,SEC_Y); CX.stroke();
+  CX.lineWidth=2.0; CX.strokeStyle='#2A342B'; CX.strokeRect(SEC_X,SEC_Y,SEC_W,SEC_H);
+  /* the coincident pair at 1:1, unreadably fine, exactly as designed */
+  var MARK_X = SEC_X + SEC_W*0.62;
+  CX.lineWidth=1.25; CX.strokeStyle=GOLD;
+  CX.beginPath(); CX.moveTo(MARK_X, SEC_Y+6); CX.lineTo(MARK_X, SEC_Y+SEC_H-6); CX.stroke();
+  CX.lineWidth=1.25; CX.strokeStyle=FMN; CX.setLineDash([4,3]);
+  CX.beginPath(); CX.moveTo(MARK_X, SEC_Y+6); CX.lineTo(MARK_X, SEC_Y+SEC_H-6); CX.stroke();
+  CX.setLineDash([]);
+  /* the 1 percent trip marks at 1:1, in the signal red, NEVER lit */
+  CX.lineWidth=1.25; CX.strokeStyle=RED;
+  CX.beginPath(); CX.moveTo(MARK_X-ONE_PCT_PX/2, SEC_Y-12); CX.lineTo(MARK_X-ONE_PCT_PX/2, SEC_Y+SEC_H+12); CX.stroke();
+  CX.beginPath(); CX.moveTo(MARK_X+ONE_PCT_PX/2, SEC_Y-12); CX.lineTo(MARK_X+ONE_PCT_PX/2, SEC_Y+SEC_H+12); CX.stroke();
+  CX.restore();
+
+  /* ---- DETAIL A. A real magnifier at 12:1 with a lit bevel and a gold ring */
+  CX.save();
+  CX.beginPath(); CX.arc(DET_CX,DET_CY,DET_R,0,6.2832); CX.clip();
+  /* the magnified paper inside the lens */
+  var lg=CX.createLinearGradient(DET_CX-DET_R,DET_CY-DET_R,DET_CX+DET_R,DET_CY+DET_R);
+  lg.addColorStop(0,AKC.mixOklab(LEE,PAPER_LIT,0.50));
+  lg.addColorStop(1,AKC.mixOklab(LEE,PAPER_LIT,0.72));
+  CX.fillStyle=lg; CX.fillRect(DET_CX-DET_R,DET_CY-DET_R,DET_R*2,DET_R*2);
+  /* magnified sheet edges, 12x the section's own pitch */
+  CX.lineWidth=1.25;
+  for(var m=-9;m<=9;m++){
+    var my=DET_CY+m*17;
+    CX.strokeStyle='rgba(24,32,26,0.42)';
+    CX.beginPath(); CX.moveTo(DET_CX-DET_R,my); CX.lineTo(DET_CX+DET_R,my); CX.stroke();
+    CX.strokeStyle='rgba(232,238,222,0.30)';
+    CX.beginPath(); CX.moveTo(DET_CX-DET_R,my-1.4); CX.lineTo(DET_CX+DET_R,my-1.4); CX.stroke();
+  }
+  /* THE TWO TRIP MARKS, 67 px apart, never touched by the key */
+  CX.lineWidth=2.0; CX.strokeStyle=RED; CX.setLineDash([6,5]);
+  CX.beginPath(); CX.moveTo(DET_CX-SPAN/2, DET_CY-118); CX.lineTo(DET_CX-SPAN/2, DET_CY+118); CX.stroke();
+  CX.beginPath(); CX.moveTo(DET_CX+SPAN/2, DET_CY-118); CX.lineTo(DET_CX+SPAN/2, DET_CY+118); CX.stroke();
+  CX.setLineDash([]);
+  /* THE COINCIDENT EDGE. Machine and hand land on the SAME line, equal weight */
+  CX.lineWidth=3.5; CX.strokeStyle=GOLD;
+  CX.beginPath(); CX.moveTo(DET_CX, DET_CY-96); CX.lineTo(DET_CX, DET_CY+96); CX.stroke();
+  CX.lineWidth=3.5; CX.strokeStyle=FMN; CX.setLineDash([9,9]);
+  CX.beginPath(); CX.moveTo(DET_CX, DET_CY-96); CX.lineTo(DET_CX, DET_CY+96); CX.stroke();
+  CX.setLineDash([]);
+  /* the dimension call across the 67 px span */
+  CX.lineWidth=1.25; CX.strokeStyle='#C4CFC6';
+  CX.beginPath(); CX.moveTo(DET_CX-SPAN/2, DET_CY+132); CX.lineTo(DET_CX+SPAN/2, DET_CY+132); CX.stroke();
+  CX.beginPath(); CX.moveTo(DET_CX-SPAN/2, DET_CY+126); CX.lineTo(DET_CX-SPAN/2, DET_CY+138); CX.stroke();
+  CX.beginPath(); CX.moveTo(DET_CX+SPAN/2, DET_CY+126); CX.lineTo(DET_CX+SPAN/2, DET_CY+138); CX.stroke();
+  CX.restore();
+  /* the ring, with a lit bevel */
+  CX.lineWidth=7; CX.strokeStyle='rgba(8,12,10,0.6)';
+  CX.beginPath(); CX.arc(DET_CX,DET_CY+3,DET_R+2,0,6.2832); CX.stroke();
+  CX.lineWidth=4.5; CX.strokeStyle=GOLD;
+  CX.beginPath(); CX.arc(DET_CX,DET_CY,DET_R,0,6.2832); CX.stroke();
+  CX.lineWidth=1.25; CX.strokeStyle='rgba(255,236,180,0.85)';
+  CX.beginPath(); CX.arc(DET_CX,DET_CY,DET_R-3.4,3.6,5.4); CX.stroke();
+
+  /* ---- ONE LEADER, from the callout words to the ring's own coordinates ---- */
+  var AT=[DET_CX-DET_R*0.707, DET_CY+DET_R*0.707];
+  var FROM=[700, 1000];
+  CX.lineWidth=1.25; CX.strokeStyle='#C4CFC6';
+  CX.beginPath(); CX.moveTo(FROM[0],FROM[1]); CX.lineTo(AT[0]-34,AT[1]+34); CX.lineTo(AT[0],AT[1]); CX.stroke();
+  CX.beginPath(); CX.arc(AT[0],AT[1],3,0,6.2832); CX.fillStyle='#C4CFC6'; CX.fill();
+  window.__akLeaders=[{target:"the DETAIL A magnifier ring", at:AT, to:AT, from:FROM,
+                       label:"DETAIL A . 12 TO 1"}];
+
+  /* the arithmetic the type claims, derived from the drawing's own constant */
+  window.__akAssert=[{ what:"1 percent of the audited sample, printed as 33 ballots",
+                       expect:33, actual:Math.round(SAMPLE*0.01), tol:0, unit:"ballots" }];
+
+  AK.fitText(document.getElementById('h1'), {min:54, max:78, maxLines:3});
+
+
+  /* THE LAY RUNS THROUGH THE RESERVE (2026-09-02, three critics independently).
+     The bloom lifts the lane so ink can sit on it, and in doing so it erases
+     the one thing that made the lane PAPER: the sheet arrises. What is left is
+     a soft-edged bright rectangle, which is the plate Device A forbids by name,
+     and it is also why the near band kept reading as dead to frame_balance no
+     matter how much grading went into it. So the arrises go back across the
+     WHOLE frame, reserve included, at a contrast far below the type's. Uniform
+     is the point: the qa check that guards reserved text compares a line
+     against its own block-mates, and a veil that treats every line alike gives
+     it nothing to single out. */
+
+
+
+
+
+
+
+  /* house machinery, AKSEAM: the deck-wide panorama seam and the two passes
+     that keep this slide's type reserve made of the same material as its art */
+  AKSEAM.veil(CX,{ns:NS, h:H, a0:0.08, a1:0.11,
+    xEnd:function(i){ return Math.min(W, 60+(W-20)*reach[i]); },
+    baseY:function(i){ return yTop[i]+lean[i]; },
+    edgeY:function(i,x){ return edgeY(i,x); }});
+  AKSEAM.lane(CX,{slide:4, ns:NS,
+    xEnd:function(i){ return Math.min(W, 60+(W-20)*reach[i]); },
+    edgeY:function(i,x){ return edgeY(i,x); }});
+  AKSEAM.lineLift(CX);
+
+  AKPOST.grade(CX,{w:W,h:H,exposure:-0.04,saturation:1.02,contrast:1.08,filmic:true,
+    vignette:0.16, bloom:{threshold:0.86,strength:0.06,radius:10},
+    grain:{amount:0.05,size:2,seed:20260902}, dither:true, sharpen:0.34});
+  resolve();
+})(); });
+</script></body></html>

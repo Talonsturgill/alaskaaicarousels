@@ -36,6 +36,7 @@ import json
 import re
 import shutil
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -502,8 +503,53 @@ IN_PAGE_QA_JS = """
         }
       } catch (e) {}
     }
+    const linesMeasured = lines.length > 0;
     if (!lines.length) lines = [[Math.round(r.x), Math.round(r.y),
                                  Math.round(r.width), Math.round(r.height)]];
+    // WRAP DRIFT (2026-09-02). An author who writes <br> has DECLARED the line
+    // structure of a block, and canvas furniture is routinely counted off that
+    // declaration. Run No.48's slide 07 stamped four fields into a 330px plate
+    // and placed four markers at py + 42 + f*39; the stamp then wrapped to five
+    // rendered lines, every marker slid up one row, and the field deliberately
+    // left unstruck (which is how the deck DRAWS "the ordinance carries no
+    // fiscal analysis", C06/C31) landed on AMENDABLE . NO. The slide argued the
+    // inverse of its own claims and every machine gate passed it, because
+    // nothing anywhere compared the authored line count to the rendered one.
+    // Record both. Only when the element's element-children are ALL <br> (a
+    // <span> would not be reached by the Range walk above, so its lines would
+    // undercount and the comparison would be meaningless), and only when the
+    // per-line rects were genuinely measured rather than falling back to bbox.
+    // A line break is DECLARED two ways in this house: a <br>, or a real
+    // newline under a white-space that preserves it (slide 07's spec plate is
+    // white-space:pre). Both are counted; anything else (a <span>, an inline
+    // <b>) makes the Range walk above undercount, so the block is skipped
+    // rather than measured wrong.
+    let wrap = null;
+    {
+      let brs = 0, otherKids = 0;
+      for (const k of el.children) {
+        if ((k.tagName || "").toUpperCase() === "BR") brs++; else otherKids++;
+      }
+      const keepsNL = ["pre", "pre-wrap", "pre-line", "break-spaces"]
+                        .includes(cs.whiteSpace);
+      let authored = 0, cur = "";
+      const flush = () => { if (cur.trim().length) authored++; cur = ""; };
+      for (const n of el.childNodes) {
+        if (n.nodeType === 1 && (n.tagName || "").toUpperCase() === "BR") {
+          flush();
+        } else if (n.nodeType === 3 && keepsNL) {
+          const parts = (n.textContent || "").split("\\n");
+          cur += parts[0];
+          for (let q = 1; q < parts.length; q++) { flush(); cur = parts[q]; }
+        } else {
+          cur += n.textContent || "";
+        }
+      }
+      flush();
+      if (otherKids === 0 && linesMeasured && authored > 1) {
+        wrap = { authored: authored, rendered: lines.length };
+      }
+    }
     // recorded ancestors, so nested text elements are never compared
     const anc = [];
     for (let p = el.parentElement; p; p = p.parentElement) {
@@ -558,6 +604,7 @@ IN_PAGE_QA_JS = """
       overlap_ok: el.hasAttribute("data-overlap-ok") ||
                   (el.closest && !!el.closest("[data-overlap-ok]")),
       lines: lines,
+      wrap: wrap,
       anc: anc
     };
     recorded.set(el, out.text_nodes.length);
@@ -1425,6 +1472,45 @@ IN_PAGE_QA_JS = """
 """
 
 
+def _can_read_disk(browser):
+    """Can this browser fetch() a committed asset over file://?
+
+    The one capability the slide contract depends on and the one a headless
+    shell silently lacks. Returns (ok, why). Any error at all is a "no": the
+    point is to prefer a browser that demonstrably works, and a probe that
+    cannot answer has not demonstrated anything.
+    """
+    target = REPO_ROOT / "assets" / "geo" / "alaska-state.geo.json"
+    if not target.exists():
+        cands = sorted((REPO_ROOT / "assets" / "geo").glob("*.json"))
+        if not cands:
+            return True, "no committed geodata to probe with"
+        target = cands[0]
+    page = None
+    tmp = None
+    try:
+        tmp = Path(tempfile.mkdtemp(prefix="ak-fileprobe-"))
+        probe = tmp / "probe.html"
+        probe.write_text(
+            "<!doctype html><meta charset=utf-8><script>window.__akProbe="
+            "fetch(%r).then(r=>r.ok?'ok':'http '+r.status)"
+            ".catch(e=>'fetch blocked: '+e.message);</script>" % target.as_uri())
+        page = browser.new_page()
+        page.goto(probe.as_uri(), wait_until="load", timeout=15000)
+        verdict = page.evaluate("() => window.__akProbe")
+        return (verdict == "ok"), str(verdict)
+    except Exception as e:
+        return False, "%s: %s" % (type(e).__name__, str(e)[:120])
+    finally:
+        try:
+            if page is not None:
+                page.close()
+        except Exception:
+            pass
+        if tmp is not None:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+
 def launch_chromium(p):
     """Launch chromium, preferring the FULL browser over the headless shell.
 
@@ -1449,21 +1535,72 @@ def launch_chromium(p):
     EXCEPTION, so a shell that launches perfectly well and then quietly cannot
     read the disk was never reached by the fallback. Preferring the full binary
     costs nothing when both are present and keeps working when only one is.
+
+    THE ORDER IS NOT ENOUGH ON ITS OWN; PROBE THE CAPABILITY (2026-09-02).
+    Playwright 1.57 stopped shipping Chromium and now manages Chrome for
+    Testing, headed as `chrome` and headless as `chrome-headless-shell`
+    (playwright.dev/docs/release-notes). Two things follow for this repo. The
+    binary layout changes, so a glob written for `chromium-*/chrome-linux` can
+    stop matching after a container refresh; and when it stops matching, the
+    fallback below hands back whatever the default channel is, which since 1.57
+    is the shell -- the exact binary that cannot read the disk. That failure is
+    SILENT: the browser launches, the page loads, every gate is green, and only
+    the geodata is missing.
+
+    Measured on this machine, same flags, same target, 2026-09-02:
+      chromium-1194 141.0.7390.37 chrome-linux/chrome         -> fetch OK
+      chromium_headless_shell-1194 141.0.7390.37 headless_shell -> Failed to fetch
+
+    So a candidate is not accepted because it launched. It is accepted because
+    it launched AND fetched a real committed asset over file://. One extra page
+    load per render invocation, roughly 200 ms, once. If NOTHING passes the
+    probe the first launchable browser is used anyway with a loud warning,
+    because a deck missing one map still beats no deck at all; the run is told
+    what it is getting either way.
     """
-    candidates = sorted(glob.glob("/opt/pw-browsers/chromium-*/chrome-linux/chrome"))
+    pats = ["/opt/pw-browsers/chromium-*/chrome-linux/chrome",
+            # Chrome for Testing layouts, for after the 1.57 rename lands here
+            "/opt/pw-browsers/chrome-*/chrome-linux64/chrome",
+            "/opt/pw-browsers/chrome-*/chrome-linux/chrome"]
+    candidates = []
+    for pat in pats:
+        candidates += sorted(glob.glob(pat))
     candidates += ["/opt/pw-browsers/chromium/chrome-linux/chrome", "/opt/pw-browsers/chromium"]
+    fallback = None
     for c in candidates:
-        if Path(c).exists():
-            try:
-                return p.chromium.launch(executable_path=c, args=CHROMIUM_ARGS)
-            except Exception:
-                continue
+        if not Path(c).exists():
+            continue
+        try:
+            b = p.chromium.launch(executable_path=c, args=CHROMIUM_ARGS)
+        except Exception:
+            continue
+        ok, why = _can_read_disk(b)
+        if ok:
+            return b
+        if fallback is None:
+            fallback = (b, c, why)
+        else:
+            b.close()
+    if fallback is not None:
+        b, c, why = fallback
+        print("WARN: %s launches but cannot fetch() a file:// asset (%s). Slides "
+              "that read committed geodata will render without their maps. Using "
+              "it anyway because a deck beats no deck; if a map is missing, this "
+              "is why." % (c, why), file=sys.stderr)
+        return b
     try:
-        return p.chromium.launch(args=CHROMIUM_ARGS)
+        b = p.chromium.launch(args=CHROMIUM_ARGS)
     except Exception as exc:
         raise RuntimeError(
             "No launchable Chromium found (tried /opt/pw-browsers then the "
             "playwright default)") from exc
+    ok, why = _can_read_disk(b)
+    if not ok:
+        print("WARN: the playwright default channel cannot fetch() a file:// "
+              "asset (%s), which is what chrome-headless-shell does. Slides that "
+              "read committed geodata will render without their maps." % why,
+              file=sys.stderr)
+    return b
 
 
 # --- DETERMINISM SOURCE SCAN (2026-08-01) -----------------------------------

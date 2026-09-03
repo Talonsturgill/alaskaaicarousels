@@ -1,0 +1,3361 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Counted by hand.Counted by machine.Same answer.Now Fairbanks votes.",
+          "texts": [
+            "Counted by hand.",
+            "Counted by machine.",
+            "Same answer.",
+            "Now Fairbanks votes."
+          ],
+          "full": "Counted by hand.Counted by machine.Same answer.Now Fairbanks votes.",
+          "tag": "h1",
+          "unsized": false,
+          "x": 100,
+          "y": 596,
+          "w": 790,
+          "h": 322,
+          "font_px": 80.5,
+          "weight": "700",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              100,
+              584,
+              663,
+              103
+            ],
+            [
+              100,
+              665,
+              788,
+              103
+            ],
+            [
+              100,
+              745,
+              504,
+              103
+            ],
+            [
+              100,
+              826,
+              782,
+              103
+            ]
+          ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
+          "anc": []
+        },
+        {
+          "text": "3,338 BALLOTS. ZERO DISCREPANCY.",
+          "texts": [
+            "3,338 BALLOTS. ZERO DISCREPANCY."
+          ],
+          "full": "3,338 BALLOTS. ZERO DISCREPANCY.",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1024,
+          "w": 640,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1024,
+              672,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "FNSB PROPOSITION 3 . OCTOBER 6TH, 2026",
+          "texts": [
+            "FNSB PROPOSITION 3 . OCTOBER 6TH, 2026"
+          ],
+          "full": "FNSB PROPOSITION 3 . OCTOBER 6TH, 2026",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 104,
+          "w": 700,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              104,
+              692,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "texts": [
+            "01 / 09"
+          ],
+          "full": "01 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 836,
+          "y": 104,
+          "w": 144,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              853,
+              104,
+              127,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AUDIT SAMPLE . 2 OF 32 PRECINCTSPLUS THE EARLY VOTING STATION",
+          "texts": [
+            "AUDIT SAMPLE . 2 OF 32 PRECINCTS",
+            "PLUS THE EARLY VOTING STATION"
+          ],
+          "full": "AUDIT SAMPLE . 2 OF 32 PRECINCTSPLUS THE EARLY VOTING STATION",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1092,
+          "w": 740,
+          "h": 84,
+          "font_px": 32,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1091,
+              717,
+              43
+            ],
+            [
+              104,
+              1133,
+              650,
+              43
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "32 PRECINCTS . 2 SAMPLED",
+          "texts": [
+            "32 PRECINCTS . 2 SAMPLED"
+          ],
+          "full": "32 PRECINCTS . 2 SAMPLED",
+          "tag": "div",
+          "unsized": false,
+          "x": 340,
+          "y": 1186,
+          "w": 420,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              340,
+              1186,
+              403,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "DRAWN TO SCALE. NOT DRAWN TO COUNT.",
+          "texts": [
+            "DRAWN TO SCALE. NOT DRAWN TO COUNT."
+          ],
+          "full": "DRAWN TO SCALE. NOT DRAWN TO COUNT.",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1240,
+          "w": 660,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1240,
+              588,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 456,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h1",
+          "tag": "h1",
+          "text": "Counted by hand.Counted by machine.Same answer.Now Fairbanks",
+          "min": 58,
+          "max": 98,
+          "maxLines": 4,
+          "size": 80.5,
+          "lines": 4,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-01.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 5120,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 126.1,
+          "variance": 4671.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-01.html",
+        "sha1": "50b57ef204f8d2b67b903900429535d2f5d1bf70"
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "PROPOSITION 3, THE CLERK'S OWN BALLOT TITLE",
+          "texts": [
+            "PROPOSITION 3, THE CLERK'S OWN BALLOT TITLE"
+          ],
+          "full": "PROPOSITION 3, THE CLERK'S OWN BALLOT TITLE",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 100,
+          "w": 640,
+          "h": 70,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              100,
+              546,
+              35
+            ],
+            [
+              96,
+              135,
+              218,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "texts": [
+            "02 / 09"
+          ],
+          "full": "02 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 836,
+          "y": 100,
+          "w": 148,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              857,
+              100,
+              127,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Requiring all ballots to be hand counted and prohibiting electronic tabulation",
+          "texts": [
+            "Requiring all ballots to be hand counted and prohibiting electronic tabulation"
+          ],
+          "full": "Requiring all ballots to be hand counted and prohibiting electronic tabulation",
+          "tag": "h1",
+          "unsized": false,
+          "x": 96,
+          "y": 330,
+          "w": 640,
+          "h": 275,
+          "font_px": 66,
+          "weight": "700",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              322,
+              598,
+              84
+            ],
+            [
+              96,
+              391,
+              600,
+              84
+            ],
+            [
+              96,
+              459,
+              469,
+              84
+            ],
+            [
+              96,
+              528,
+              639,
+              84
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Only registered borough voters would conduct the counts, and official results wo",
+          "texts": [
+            "Only registered borough voters would conduct the counts, and official results would come solely from manual hand counts. The petition was submitted with 2,706 signatures against a requirement of 2,391"
+          ],
+          "full": "Only registered borough voters would conduct the counts, and official results would come solely from manual hand counts. The petition was submitted with 2,706 signatures against a requirement of 2,391, and the clerk recertified it on August 5th, 2026.",
+          "tag": "p",
+          "unsized": false,
+          "x": 96,
+          "y": 706,
+          "w": 600,
+          "h": 375,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              707,
+              512,
+              43
+            ],
+            [
+              96,
+              754,
+              517,
+              43
+            ],
+            [
+              96,
+              801,
+              544,
+              43
+            ],
+            [
+              96,
+              848,
+              497,
+              43
+            ],
+            [
+              96,
+              895,
+              559,
+              43
+            ],
+            [
+              96,
+              942,
+              588,
+              43
+            ],
+            [
+              96,
+              988,
+              583,
+              43
+            ],
+            [
+              96,
+              1035,
+              292,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "1 . THE ASSEMBLY ADOPTED THE VOTERINFORMATION 6 TO 1. THE ONE NO VOTECALLED IT L",
+          "texts": [
+            "1 . THE ASSEMBLY ADOPTED THE VOTER",
+            "INFORMATION 6 TO 1. THE ONE NO VOTE",
+            "CALLED IT LEADING."
+          ],
+          "full": "1 . THE ASSEMBLY ADOPTED THE VOTERINFORMATION 6 TO 1. THE ONE NO VOTECALLED IT LEADING.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1084,
+          "w": 880,
+          "h": 104,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(34, 44, 36)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1085,
+              571,
+              31
+            ],
+            [
+              96,
+              1120,
+              588,
+              31
+            ],
+            [
+              96,
+              1154,
+              302,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "2 . ONE MEMBER WAS RULED TO HAVE A CONFLICT AS ALEAD SPONSOR, PER THE NEWS-MINER",
+          "texts": [
+            "2 . ONE MEMBER WAS RULED TO HAVE A CONFLICT AS A",
+            "LEAD SPONSOR, PER THE NEWS-MINER."
+          ],
+          "full": "2 . ONE MEMBER WAS RULED TO HAVE A CONFLICT AS ALEAD SPONSOR, PER THE NEWS-MINER.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1206,
+          "w": 880,
+          "h": 69,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 52, 43)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1207,
+              806,
+              31
+            ],
+            [
+              96,
+              1242,
+              554,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 444,
+        "sites": 3,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h1",
+          "tag": "h1",
+          "text": "Requiring all ballots to be hand counted and prohibiting ele",
+          "min": 52,
+          "max": 80,
+          "maxLines": 4,
+          "size": 66,
+          "lines": 4,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-02.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4195,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 146.1,
+          "variance": 5323.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-02.html",
+        "sha1": "2f40b8e9c6c5072875b2bbf49c0620851a7a85f3"
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE 2025 HAND COUNT AUDIT",
+          "texts": [
+            "THE 2025 HAND COUNT AUDIT"
+          ],
+          "full": "THE 2025 HAND COUNT AUDIT",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 96,
+          "w": 520,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              96,
+              455,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "texts": [
+            "03 / 09"
+          ],
+          "full": "03 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 836,
+          "y": 96,
+          "w": 148,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              857,
+              96,
+              127,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "3,338 ballots,checked by hand.",
+          "texts": [
+            "3,338 ballots,",
+            "checked by hand."
+          ],
+          "full": "3,338 ballots,checked by hand.",
+          "tag": "h1",
+          "unsized": false,
+          "x": 96,
+          "y": 200,
+          "w": 640,
+          "h": 155,
+          "font_px": 77.5,
+          "weight": "700",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              189,
+              484,
+              99
+            ],
+            [
+              96,
+              267,
+              637,
+              99
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "1 . EARLY VOTING STATION, 2,846",
+          "texts": [
+            "1 . EARLY VOTING STATION, 2,846"
+          ],
+          "full": "1 . EARLY VOTING STATION, 2,846",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 908,
+          "w": 700,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              908,
+              521,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "2 . GOLDSTREAM No. 2 AND MOOSE CREEK, 492",
+          "texts": [
+            "2 . GOLDSTREAM No. 2 AND MOOSE CREEK, 492"
+          ],
+          "full": "2 . GOLDSTREAM No. 2 AND MOOSE CREEK, 492",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 950,
+          "w": 700,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              950,
+              689,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "3 . NOT SAMPLED, THE REST OF THE BOROUGH",
+          "texts": [
+            "3 . NOT SAMPLED, THE REST OF THE BOROUGH"
+          ],
+          "full": "3 . NOT SAMPLED, THE REST OF THE BOROUGH",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 992,
+          "w": 700,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 80, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              992,
+              672,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "A 2025 ordinance created the audit and passed 5 to 4. A canvass board hand verif",
+          "texts": [
+            "A 2025 ordinance created the audit and passed 5 to 4. A canvass board hand verified the votes on 3,338 ballots, two precincts out of 32 plus the early voting station."
+          ],
+          "full": "A 2025 ordinance created the audit and passed 5 to 4. A canvass board hand verified the votes on 3,338 ballots, two precincts out of 32 plus the early voting station.",
+          "tag": "p",
+          "unsized": false,
+          "x": 96,
+          "y": 1036,
+          "w": 880,
+          "h": 120,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1037,
+              787,
+              37
+            ],
+            [
+              96,
+              1077,
+              835,
+              37
+            ],
+            [
+              96,
+              1117,
+              681,
+              37
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "MARCH 2025 . THE ASSEMBLY DEADLOCKED 4 TO 4ON A 219,489 DOLLAR MACHINE CONTRACT.",
+          "texts": [
+            "MARCH 2025 . THE ASSEMBLY DEADLOCKED 4 TO 4",
+            "ON A 219,489 DOLLAR MACHINE CONTRACT."
+          ],
+          "full": "MARCH 2025 . THE ASSEMBLY DEADLOCKED 4 TO 4ON A 219,489 DOLLAR MACHINE CONTRACT.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1168,
+          "w": 880,
+          "h": 68,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1169,
+              722,
+              31
+            ],
+            [
+              96,
+              1203,
+              622,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "BALLOT TOTALSNOT DRAWN.NO VERIFIEDFIGURE.",
+          "texts": [
+            "BALLOT TOTALS",
+            "NOT DRAWN.",
+            "NO VERIFIED",
+            "FIGURE."
+          ],
+          "full": "BALLOT TOTALSNOT DRAWN.NO VERIFIEDFIGURE.",
+          "tag": "div",
+          "unsized": false,
+          "x": 778,
+          "y": 552,
+          "w": 230,
+          "h": 136,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              778,
+              553,
+              218,
+              31
+            ],
+            [
+              778,
+              587,
+              168,
+              31
+            ],
+            [
+              778,
+              621,
+              185,
+              31
+            ],
+            [
+              778,
+              655,
+              118,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
+          "anc": []
+        },
+        {
+          "text": "0",
+          "texts": [
+            "0"
+          ],
+          "full": "0",
+          "tag": "div",
+          "unsized": false,
+          "x": 118,
+          "y": 858,
+          "w": 70,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              858,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "3,000 BALLOTS",
+          "texts": [
+            "3,000 BALLOTS"
+          ],
+          "full": "3,000 BALLOTS",
+          "tag": "div",
+          "unsized": false,
+          "x": 590,
+          "y": 858,
+          "w": 290,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              590,
+              858,
+              218,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "DRAWN TO SCALE. NOT DRAWN TO COUNT.",
+          "texts": [
+            "DRAWN TO SCALE. NOT DRAWN TO COUNT."
+          ],
+          "full": "DRAWN TO SCALE. NOT DRAWN TO COUNT.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1258,
+          "w": 660,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1258,
+              588,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the 2846 lane standing on the lit mass",
+          "shadow": [
+            [
+              140,
+              838,
+              520,
+              16
+            ]
+          ],
+          "ground": [
+            [
+              140,
+              920,
+              520,
+              16
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 276,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h1",
+          "tag": "h1",
+          "text": "3,338 ballots,checked by hand.",
+          "min": 72,
+          "max": 100,
+          "maxLines": 2,
+          "size": 77.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-03.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4182,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 144.8,
+          "variance": 4552.6
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the early voting station lane",
+          "to": [
+            433.1,
+            795
+          ],
+          "at": [
+            433.1,
+            795
+          ],
+          "from": [
+            300,
+            926
+          ],
+          "label": "1 . EARLY VOTING STATION, 2,846"
+        },
+        {
+          "target": "the two precinct lane",
+          "to": [
+            800.2,
+            795
+          ],
+          "at": [
+            800.2,
+            795
+          ],
+          "from": [
+            430,
+            968
+          ],
+          "label": "2 . GOLDSTREAM No. 2 AND MOOSE CREEK, 492"
+        }
+      ],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-03.html",
+        "sha1": "ed3b771adcf3e4ca6265f31b7754d868c80728a8"
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE THRESHOLD THAT NEVER FIRED",
+          "texts": [
+            "THE THRESHOLD THAT NEVER FIRED"
+          ],
+          "full": "THE THRESHOLD THAT NEVER FIRED",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 96,
+          "w": 660,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              96,
+              546,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "texts": [
+            "04 / 09"
+          ],
+          "full": "04 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 836,
+          "y": 96,
+          "w": 148,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              857,
+              96,
+              127,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The tolerance was 33 ballots wide. The gap was zero.",
+          "texts": [
+            "The tolerance was 33 ballots wide. The gap was zero."
+          ],
+          "full": "The tolerance was 33 ballots wide. The gap was zero.",
+          "tag": "h1",
+          "unsized": false,
+          "x": 96,
+          "y": 222,
+          "w": 672,
+          "h": 250,
+          "font_px": 77.5,
+          "weight": "700",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              212,
+              649,
+              99
+            ],
+            [
+              96,
+              291,
+              556,
+              99
+            ],
+            [
+              96,
+              370,
+              637,
+              99
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "DETAIL A . 12 TO 11 PERCENT OF 3,338= 33 BALLOTSOBSERVED SEPARATION 0",
+          "texts": [
+            "DETAIL A . 12 TO 1",
+            "1 PERCENT OF 3,338",
+            "= 33 BALLOTS",
+            "OBSERVED SEPARATION 0"
+          ],
+          "full": "DETAIL A . 12 TO 11 PERCENT OF 3,338= 33 BALLOTSOBSERVED SEPARATION 0",
+          "tag": "div",
+          "unsized": false,
+          "x": 664,
+          "y": 1010,
+          "w": 360,
+          "h": 144,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              664,
+              1012,
+              302,
+              31
+            ],
+            [
+              664,
+              1048,
+              302,
+              31
+            ],
+            [
+              664,
+              1084,
+              202,
+              31
+            ],
+            [
+              664,
+              1120,
+              353,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
+          "anc": []
+        },
+        {
+          "text": "The 2025 ordinance defined failure in advance, a discrepancy greater than 1 perc",
+          "texts": [
+            "The 2025 ordinance defined failure in advance, a discrepancy greater than 1 percent between the hand count and the machine tabulation. On the sampled ballots the machines came back 100 percent accurat"
+          ],
+          "full": "The 2025 ordinance defined failure in advance, a discrepancy greater than 1 percent between the hand count and the machine tabulation. On the sampled ballots the machines came back 100 percent accurate, so the trip point was never approached.",
+          "tag": "p",
+          "unsized": false,
+          "x": 96,
+          "y": 986,
+          "w": 556,
+          "h": 280,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              987,
+              523,
+              37
+            ],
+            [
+              96,
+              1027,
+              534,
+              37
+            ],
+            [
+              96,
+              1067,
+              528,
+              37
+            ],
+            [
+              96,
+              1107,
+              434,
+              37
+            ],
+            [
+              96,
+              1147,
+              502,
+              37
+            ],
+            [
+              96,
+              1187,
+              536,
+              37
+            ],
+            [
+              96,
+              1227,
+              406,
+              37
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "DRAWN TO SCALE. NOT DRAWN TO COUNT.",
+          "texts": [
+            "DRAWN TO SCALE. NOT DRAWN TO COUNT."
+          ],
+          "full": "DRAWN TO SCALE. NOT DRAWN TO COUNT.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1256,
+          "w": 660,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1256,
+              588,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 123,
+        "sites": 3,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h1",
+          "tag": "h1",
+          "text": "The tolerance was 33 ballots wide. The gap was zero.",
+          "min": 54,
+          "max": 78,
+          "maxLines": 3,
+          "size": 77.5,
+          "lines": 3,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [
+        {
+          "what": "1 percent of the audited sample, printed as 33 ballots",
+          "expect": 33,
+          "actual": 33,
+          "tol": 0,
+          "unit": "ballots"
+        }
+      ],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-04.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3988,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 125.9,
+          "variance": 5451.7
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the DETAIL A magnifier ring",
+          "to": [
+            726.3,
+            811.7
+          ],
+          "at": [
+            726.3,
+            811.7
+          ],
+          "from": [
+            700,
+            1000
+          ],
+          "label": "DETAIL A . 12 TO 1"
+        }
+      ],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-04.html",
+        "sha1": "db1601b6037db2c821d67d7e92ce3fe2273e07ad"
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE CASE FOR PROPOSITION 3",
+          "texts": [
+            "THE CASE FOR PROPOSITION 3"
+          ],
+          "full": "THE CASE FOR PROPOSITION 3",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 96,
+          "w": 600,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              96,
+              473,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "texts": [
+            "05 / 09"
+          ],
+          "full": "05 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 836,
+          "y": 96,
+          "w": 148,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              857,
+              96,
+              127,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"If the hand count is to check on the machines, then why do we have the machines",
+          "texts": [
+            "\"If the hand count is to check on the machines, then why do we have the machines?\""
+          ],
+          "full": "\"If the hand count is to check on the machines, then why do we have the machines?\"",
+          "tag": "h1",
+          "unsized": false,
+          "x": 96,
+          "y": 250,
+          "w": 700,
+          "h": 520,
+          "font_px": 81.5,
+          "weight": "700",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              241,
+              700,
+              104
+            ],
+            [
+              96,
+              327,
+              677,
+              104
+            ],
+            [
+              96,
+              414,
+              579,
+              104
+            ],
+            [
+              96,
+              500,
+              601,
+              104
+            ],
+            [
+              96,
+              587,
+              597,
+              104
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "BARBARA HANEY, FORMER ASSEMBLY MEMBER,INITIATIVE SPONSOR",
+          "texts": [
+            "BARBARA HANEY, FORMER ASSEMBLY MEMBER,",
+            "INITIATIVE SPONSOR"
+          ],
+          "full": "BARBARA HANEY, FORMER ASSEMBLY MEMBER,INITIATIVE SPONSOR",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 772,
+          "w": 720,
+          "h": 75,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              773,
+              692,
+              35
+            ],
+            [
+              96,
+              810,
+              328,
+              35
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Haney was one of four who voted against creating that audit, per KUAC. Tammie Wi",
+          "texts": [
+            "Haney was one of four who voted against creating that audit, per KUAC. Tammie Wilson and Brett Rotermund were two of the other three."
+          ],
+          "full": "Haney was one of four who voted against creating that audit, per KUAC. Tammie Wilson and Brett Rotermund were two of the other three.",
+          "tag": "p",
+          "unsized": false,
+          "x": 96,
+          "y": 878,
+          "w": 820,
+          "h": 128,
+          "font_px": 31,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              879,
+              756,
+              40
+            ],
+            [
+              96,
+              922,
+              680,
+              40
+            ],
+            [
+              96,
+              965,
+              599,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"THE REST OF US WILL HAVE SOMESATISFACTION IN THINKING THAT, 'OKAY,THE MACHINES ",
+          "texts": [
+            "\"THE REST OF US WILL HAVE SOME",
+            "SATISFACTION IN THINKING THAT, 'OKAY,",
+            "THE MACHINES ARE COUNTING CORRECTLY.'\"",
+            "DAVID GUTTENBERG, WHO SPONSORED",
+            "THE AUDIT ORDINANCE"
+          ],
+          "full": "\"THE REST OF US WILL HAVE SOMESATISFACTION IN THINKING THAT, 'OKAY,THE MACHINES ARE COUNTING CORRECTLY.'\"DAVID GUTTENBERG, WHO SPONSOREDTHE AUDIT ORDINANCE",
+          "tag": "div",
+          "unsized": false,
+          "x": 388,
+          "y": 1076,
+          "w": 620,
+          "h": 170,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              388,
+              1077,
+              504,
+              31
+            ],
+            [
+              388,
+              1111,
+              622,
+              31
+            ],
+            [
+              388,
+              1145,
+              638,
+              31
+            ],
+            [
+              388,
+              1179,
+              521,
+              31
+            ],
+            [
+              388,
+              1213,
+              319,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 5,
+            "rendered": 5
+          },
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 136,
+        "sites": 2,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h1",
+          "tag": "h1",
+          "text": "\"If the hand count is to check on the machines, then why do ",
+          "min": 66,
+          "max": 92,
+          "maxLines": 5,
+          "size": 81.5,
+          "lines": 5,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-05.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3903,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 141,
+          "variance": 6053.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-05.html",
+        "sha1": "400bd241c3474567ac29882355dfcef7e05908c3"
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "WHAT THE AUDIT DID NOT COVER",
+          "texts": [
+            "WHAT THE AUDIT DID NOT COVER"
+          ],
+          "full": "WHAT THE AUDIT DID NOT COVER",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 96,
+          "w": 620,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(196, 207, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              96,
+              510,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "texts": [
+            "06 / 09"
+          ],
+          "full": "06 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 836,
+          "y": 96,
+          "w": 148,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(196, 207, 198)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              857,
+              96,
+              127,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Two of 32 precincts were sampled. Thirty were not, and were never claimed.",
+          "texts": [
+            "Two of 32 precincts were sampled. Thirty were not, and were never claimed."
+          ],
+          "full": "Two of 32 precincts were sampled. Thirty were not, and were never claimed.",
+          "tag": "p",
+          "unsized": false,
+          "x": 180,
+          "y": 600,
+          "w": 730,
+          "h": 169,
+          "font_px": 42,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              180,
+              601,
+              695,
+              53
+            ],
+            [
+              180,
+              657,
+              634,
+              53
+            ],
+            [
+              180,
+              714,
+              167,
+              53
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 177,
+        "sites": 2,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-06.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3452,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 75.7,
+          "variance": 5462
+        }
+      ],
+      "breather": true,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-06.html",
+        "sha1": "6226303c03e2a478714d9f228d78985e8e8a8e53"
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "WHAT A YES DECIDES",
+          "texts": [
+            "WHAT A YES DECIDES"
+          ],
+          "full": "WHAT A YES DECIDES",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 96,
+          "w": 520,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 242, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              96,
+              328,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "texts": [
+            "07 / 09"
+          ],
+          "full": "07 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 836,
+          "y": 96,
+          "w": 148,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              857,
+              96,
+              127,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Two years.No estimate.",
+          "texts": [
+            "Two years.",
+            "No estimate."
+          ],
+          "full": "Two years.No estimate.",
+          "tag": "h1",
+          "unsized": false,
+          "x": 96,
+          "y": 186,
+          "w": 512,
+          "h": 230,
+          "font_px": 79.5,
+          "weight": "700",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              175,
+              389,
+              101
+            ],
+            [
+              96,
+              255,
+              457,
+              101
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "EFFECTIVE . 2027 CYCLE TERM . TWO YEARS AMENDABLE . NO COST .",
+          "texts": [
+            "EFFECTIVE . 2027 CYCLE TERM . TWO YEARS AMENDABLE . NO COST ."
+          ],
+          "full": "EFFECTIVE . 2027 CYCLE TERM . TWO YEARS AMENDABLE . NO COST .",
+          "tag": "div",
+          "unsized": false,
+          "x": 656,
+          "y": 196,
+          "w": 342,
+          "h": 156,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 208, 218)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              656,
+              199,
+              370,
+              31
+            ],
+            [
+              656,
+              238,
+              353,
+              31
+            ],
+            [
+              656,
+              277,
+              235,
+              31
+            ],
+            [
+              656,
+              316,
+              202,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
+          "anc": []
+        },
+        {
+          "text": "NO PUBLISHED ESTIMATE",
+          "texts": [
+            "NO PUBLISHED ESTIMATE"
+          ],
+          "full": "NO PUBLISHED ESTIMATE",
+          "tag": "div",
+          "unsized": false,
+          "x": 656,
+          "y": 424,
+          "w": 342,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 208, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              656,
+              424,
+              353,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Hand counting would start with the 2027 cycle, so October 6th is still machine t",
+          "texts": [
+            "Hand counting would start with the 2027 cycle, so October 6th is still machine tabulated. If Proposition 3 passes, the ordinance is law for two years and neither the Assembly nor the voters can repeal"
+          ],
+          "full": "Hand counting would start with the 2027 cycle, so October 6th is still machine tabulated. If Proposition 3 passes, the ordinance is law for two years and neither the Assembly nor the voters can repeal, modify or negate it. The ordinance carries no fiscal analysis.",
+          "tag": "p",
+          "unsized": false,
+          "x": 96,
+          "y": 820,
+          "w": 780,
+          "h": 257,
+          "font_px": 31,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              821,
+              757,
+              40
+            ],
+            [
+              96,
+              864,
+              601,
+              40
+            ],
+            [
+              96,
+              907,
+              744,
+              40
+            ],
+            [
+              96,
+              949,
+              758,
+              40
+            ],
+            [
+              96,
+              992,
+              735,
+              40
+            ],
+            [
+              96,
+              1035,
+              264,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE MAYOR SAYS IT WILL COST MORE.THAT IS HIS POSITION, NOT A FINDING.",
+          "texts": [
+            "THE MAYOR SAYS IT WILL COST MORE.",
+            "THAT IS HIS POSITION, NOT A FINDING."
+          ],
+          "full": "THE MAYOR SAYS IT WILL COST MORE.THAT IS HIS POSITION, NOT A FINDING.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1074,
+          "w": 880,
+          "h": 70,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1076,
+              554,
+              31
+            ],
+            [
+              96,
+              1111,
+              605,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "THE ASSEMBLY NARROWED THE DELAY CLAIMTO UNOFFICIAL RESULTS.",
+          "texts": [
+            "THE ASSEMBLY NARROWED THE DELAY CLAIM",
+            "TO UNOFFICIAL RESULTS."
+          ],
+          "full": "THE ASSEMBLY NARROWED THE DELAY CLAIMTO UNOFFICIAL RESULTS.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1170,
+          "w": 880,
+          "h": 68,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 60, 49)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1171,
+              622,
+              31
+            ],
+            [
+              96,
+              1205,
+              370,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the two year lock bar standing on the lit sheets",
+          "shadow": [
+            [
+              300,
+              556,
+              420,
+              18
+            ]
+          ],
+          "ground": [
+            [
+              300,
+              626,
+              420,
+              18
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 294,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h1",
+          "tag": "h1",
+          "text": "Two years.No estimate.",
+          "min": 70,
+          "max": 80,
+          "maxLines": 2,
+          "size": 79.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [
+        {
+          "what": "one milled notch per month of the two year term",
+          "expect": 24,
+          "actual": 24,
+          "tol": 0,
+          "unit": "months"
+        }
+      ],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-07.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4362,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 126.6,
+          "variance": 4434.1
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the unstruck cost field on the spec plate",
+          "to": [
+            911,
+            332.1
+          ],
+          "at": [
+            911,
+            332.1
+          ],
+          "from": [
+            911,
+            415
+          ],
+          "label": "NO PUBLISHED ESTIMATE"
+        }
+      ],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-07.html",
+        "sha1": "3d0f767a4dc784a983229c686a8633476392efb5"
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE DATES THAT ARE STILL OPEN",
+          "texts": [
+            "THE DATES THAT ARE STILL OPEN"
+          ],
+          "full": "THE DATES THAT ARE STILL OPEN",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 96,
+          "w": 560,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 242, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              96,
+              528,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "texts": [
+            "08 / 09"
+          ],
+          "full": "08 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 836,
+          "y": 96,
+          "w": 148,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 220, 198)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              857,
+              96,
+              127,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Register by September 6th.",
+          "texts": [
+            "Register by September 6th."
+          ],
+          "full": "Register by September 6th.",
+          "tag": "h1",
+          "unsized": false,
+          "x": 96,
+          "y": 190,
+          "w": 820,
+          "h": 120,
+          "font_px": 64.5,
+          "weight": "700",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              181,
+              818,
+              82
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 6TH . VOTER REGISTRATION CLOSES",
+          "texts": [
+            "SEPTEMBER 6TH . VOTER REGISTRATION CLOSES"
+          ],
+          "full": "SEPTEMBER 6TH . VOTER REGISTRATION CLOSES",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 378,
+          "w": 850,
+          "h": 31,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 28, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              376,
+              714,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 21ST TO OCTOBER 1ST . EARLY VOTING,NOEL WIEN LIBRARY, 1215 COWLES STRE",
+          "texts": [
+            "SEPTEMBER 21ST TO OCTOBER 1ST . EARLY VOTING,",
+            "NOEL WIEN LIBRARY, 1215 COWLES STREET"
+          ],
+          "full": "SEPTEMBER 21ST TO OCTOBER 1ST . EARLY VOTING,NOEL WIEN LIBRARY, 1215 COWLES STREET",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 470,
+          "w": 850,
+          "h": 62,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 28, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              468,
+              784,
+              35
+            ],
+            [
+              150,
+              499,
+              645,
+              35
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 29TH, 5:00 P.M. . ABSENTEE BY MAILAPPLICATIONS DUE",
+          "texts": [
+            "SEPTEMBER 29TH, 5:00 P.M. . ABSENTEE BY MAIL",
+            "APPLICATIONS DUE"
+          ],
+          "full": "SEPTEMBER 29TH, 5:00 P.M. . ABSENTEE BY MAILAPPLICATIONS DUE",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 604,
+          "w": 850,
+          "h": 62,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 28, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              602,
+              766,
+              35
+            ],
+            [
+              150,
+              633,
+              279,
+              35
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "OCTOBER 5TH, NOON . ELECTRONIC ABSENTEEAPPLICATIONS CLOSE",
+          "texts": [
+            "OCTOBER 5TH, NOON . ELECTRONIC ABSENTEE",
+            "APPLICATIONS CLOSE"
+          ],
+          "full": "OCTOBER 5TH, NOON . ELECTRONIC ABSENTEEAPPLICATIONS CLOSE",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 696,
+          "w": 850,
+          "h": 62,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 28, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              694,
+              679,
+              35
+            ],
+            [
+              150,
+              725,
+              314,
+              35
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "OCTOBER 6TH, 7:00 A.M. TO 8:00 P.M. .ELECTION DAY",
+          "texts": [
+            "OCTOBER 6TH, 7:00 A.M. TO 8:00 P.M. .",
+            "ELECTION DAY"
+          ],
+          "full": "OCTOBER 6TH, 7:00 A.M. TO 8:00 P.M. .ELECTION DAY",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 788,
+          "w": 850,
+          "h": 62,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 28, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              786,
+              645,
+              35
+            ],
+            [
+              150,
+              817,
+              209,
+              35
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "THREE PROPOSITIONS, ALL CITIZENS' INITIATIVES.1 TAX REVENUE CAP. 2 ELECTION DATE",
+          "texts": [
+            "THREE PROPOSITIONS, ALL CITIZENS' INITIATIVES.",
+            "1 TAX REVENUE CAP. 2 ELECTION DATE. 3 HAND COUNT."
+          ],
+          "full": "THREE PROPOSITIONS, ALL CITIZENS' INITIATIVES.1 TAX REVENUE CAP. 2 ELECTION DATE. 3 HAND COUNT.",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 892,
+          "w": 850,
+          "h": 70,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              894,
+              773,
+              31
+            ],
+            [
+              150,
+              929,
+              823,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "TURNOUT HAS RUN 20 TO 25 PERCENT",
+          "texts": [
+            "TURNOUT HAS RUN 20 TO 25 PERCENT"
+          ],
+          "full": "TURNOUT HAS RUN 20 TO 25 PERCENT",
+          "tag": "div",
+          "unsized": false,
+          "x": 470,
+          "y": 988,
+          "w": 530,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              470,
+              988,
+              538,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "DRAWN TO SCALE. NOT DRAWN TO COUNT.",
+          "texts": [
+            "DRAWN TO SCALE. NOT DRAWN TO COUNT."
+          ],
+          "full": "DRAWN TO SCALE. NOT DRAWN TO COUNT.",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 1258,
+          "w": 660,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              1258,
+              588,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "SEP 6",
+          "fn": "fillText",
+          "font": "500 18px \"JetBrains Mono\"",
+          "x": 150,
+          "y": 1104,
+          "w": 53.9996337890625,
+          "align": "left",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "sx": 2,
+          "skew": false,
+          "dev_left": 300,
+          "dev_right": 407.999267578125
+        },
+        {
+          "text": "OCT 6",
+          "fn": "fillText",
+          "font": "500 18px \"JetBrains Mono\"",
+          "x": 930,
+          "y": 1104,
+          "w": 53.9996337890625,
+          "align": "right",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "sx": 2,
+          "skew": false,
+          "dev_left": 1752.000732421875,
+          "dev_right": 1860
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the laid register standing on the lit sheets",
+          "shadow": [
+            [
+              150,
+              1090,
+              700,
+              16
+            ]
+          ],
+          "ground": [
+            [
+              150,
+              1168,
+              700,
+              16
+            ]
+          ]
+        }
+      ],
+      "scales": [
+        {
+          "what": "the election calendar rail, day scale",
+          "axis": "x",
+          "unit": "days from September 6th",
+          "from": [
+            150,
+            0
+          ],
+          "to": [
+            930,
+            30
+          ],
+          "band": [
+            1046,
+            1062
+          ],
+          "marks": [
+            {
+              "at": 150,
+              "means": "September 6th, voter registration closes"
+            },
+            {
+              "at": 540,
+              "means": "September 21st, early voting opens"
+            },
+            {
+              "at": 748,
+              "means": "September 29th, absentee by mail applications due"
+            },
+            {
+              "at": 904,
+              "means": "October 5th, electronic absentee closes"
+            },
+            {
+              "at": 930,
+              "means": "October 6th, election day"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 263,
+        "sites": 3,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h1",
+          "tag": "h1",
+          "text": "Register by September 6th.",
+          "min": 62,
+          "max": 88,
+          "maxLines": 1,
+          "size": 64.5,
+          "lines": 1,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-08.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4294,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 155.3,
+          "variance": 4065.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-08.html",
+        "sha1": "37bdb91c8e242f7b2d96f6f85572c9d2a6622fc0"
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "alaskaaihq.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "09 / 09",
+          "texts": [
+            "09 / 09"
+          ],
+          "full": "09 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 836,
+          "y": 96,
+          "w": 148,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(196, 207, 198)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              857,
+              96,
+              127,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "A test can settlea measurement.It can't settlewhat a count is for.",
+          "texts": [
+            "A test can settle",
+            "a measurement.",
+            "It can't settle",
+            "what a count is for."
+          ],
+          "full": "A test can settlea measurement.It can't settlewhat a count is for.",
+          "tag": "h1",
+          "unsized": false,
+          "x": 96,
+          "y": 290,
+          "w": 640,
+          "h": 300,
+          "font_px": 65.5,
+          "weight": "700",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              283,
+              487,
+              83
+            ],
+            [
+              96,
+              352,
+              483,
+              83
+            ],
+            [
+              96,
+              422,
+              399,
+              83
+            ],
+            [
+              96,
+              491,
+              576,
+              83
+            ]
+          ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
+          "anc": []
+        },
+        {
+          "text": "What result would have changed your mind?",
+          "texts": [
+            "What result would have changed your mind?"
+          ],
+          "full": "What result would have changed your mind?",
+          "tag": "p",
+          "unsized": false,
+          "x": 96,
+          "y": 648,
+          "w": 600,
+          "h": 109,
+          "font_px": 42,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              648,
+              472,
+              53
+            ],
+            [
+              96,
+              703,
+              418,
+              53
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "PROPOSITION 3 LOCKS FOR TWO YEARS ONCE IT PASSES.OCTOBER 6TH, 2026.",
+          "texts": [
+            "PROPOSITION 3 LOCKS FOR TWO YEARS ONCE IT PASSES.",
+            "OCTOBER 6TH, 2026."
+          ],
+          "full": "PROPOSITION 3 LOCKS FOR TWO YEARS ONCE IT PASSES.OCTOBER 6TH, 2026.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 838,
+          "w": 880,
+          "h": 70,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(32, 41, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              840,
+              823,
+              31
+            ],
+            [
+              96,
+              875,
+              302,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1150,
+          "w": 420,
+          "h": 51,
+          "font_px": 40,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(16, 21, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1150,
+              216,
+              51
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1208,
+          "w": 420,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 52, 43)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1208,
+              216,
+              29
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SOURCES IN COMMENTS",
+          "texts": [
+            "SOURCES IN COMMENTS"
+          ],
+          "full": "SOURCES IN COMMENTS",
+          "tag": "div",
+          "unsized": false,
+          "x": 640,
+          "y": 1156,
+          "w": 360,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(27, 36, 30)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              681,
+              1156,
+              319,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "64\u00b050'N . 147\u00b043'W",
+          "texts": [
+            "64\u00b050'N . 147\u00b043'W"
+          ],
+          "full": "64\u00b050'N . 147\u00b043'W",
+          "tag": "div",
+          "unsized": false,
+          "x": 640,
+          "y": 1208,
+          "w": 360,
+          "h": 26,
+          "font_px": 20,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 80, 63)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              748,
+              1208,
+              252,
+              26
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 215,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h1",
+          "tag": "h1",
+          "text": "A test can settlea measurement.It can't settlewhat a count i",
+          "min": 52,
+          "max": 66,
+          "maxLines": 4,
+          "size": 65.5,
+          "lines": 4,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-09.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4095,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 140.1,
+          "variance": 5253.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-09.html",
+        "sha1": "c73f2919565bd612a9b83b0fb44fa6a51e6b2ee4"
+      }
+    }
+  ]
+}

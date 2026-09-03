@@ -1,0 +1,349 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0A1017}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Space Grotesk";font-variation-settings:"wght" 700;
+    color:#10151A;letter-spacing:-.025em;line-height:1.0}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;
+    letter-spacing:.10em;text-transform:uppercase;font-variant-numeric:tabular-nums lining-nums}
+.reg{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;font-size:26px;
+    letter-spacing:.07em;text-transform:uppercase;color:#141C16;
+    font-variant-numeric:tabular-nums lining-nums;line-height:1.2}
+</style></head><body data-contacts='[{"what":"the laid register standing on the lit sheets","shadow":[[150,1090,700,16]],"ground":[[150,1168,700,16]]}]'
+ data-scale='[{"what":"the election calendar rail, day scale","axis":"x","unit":"days from September 6th",
+ "from":[150,0],"to":[930,30],"band":[1046,1062],
+ "marks":[{"at":150,"means":"September 6th, voter registration closes"},
+          {"at":540,"means":"September 21st, early voting opens"},
+          {"at":748,"means":"September 29th, absentee by mail applications due"},
+          {"at":904,"means":"October 5th, electronic absentee closes"},
+          {"at":930,"means":"October 6th, election day"}]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" data-reserve style="left:96px;top:96px;width:560px;font-size:26px;color:#EFF2E6">THE DATES THAT ARE STILL OPEN</div>
+<div class="mn" id="ct" data-reserve style="left:836px;top:96px;width:148px;font-size:26px;text-align:right;color:#D9DCC6" data-decorative>08 / 09</div>
+
+<h1 class="hd" id="h1" data-reserve data-bloom style="left:96px;top:190px;width:820px;height:120px;font-size:84px">Register by September 6th.</h1>
+
+<div class="reg" data-reserve data-bloom style="left:150px;top:378px;width:850px">SEPTEMBER 6TH . VOTER REGISTRATION CLOSES</div>
+<div class="reg" data-reserve data-bloom style="left:150px;top:470px;width:850px">SEPTEMBER 21ST TO OCTOBER 1ST . EARLY VOTING,<br>NOEL WIEN LIBRARY, 1215 COWLES STREET</div>
+<div class="reg" data-reserve data-bloom style="left:150px;top:604px;width:850px">SEPTEMBER 29TH, 5:00 P.M. . ABSENTEE BY MAIL<br>APPLICATIONS DUE</div>
+<div class="reg" data-reserve data-bloom style="left:150px;top:696px;width:850px">OCTOBER 5TH, NOON . ELECTRONIC ABSENTEE<br>APPLICATIONS CLOSE</div>
+<div class="reg" data-reserve data-bloom style="left:150px;top:788px;width:850px">OCTOBER 6TH, 7:00 A.M. TO 8:00 P.M. .<br>ELECTION DAY</div>
+
+<div class="mn" data-reserve data-bloom style="left:150px;top:892px;width:850px;font-size:24px;color:#20291F;line-height:1.46">THREE PROPOSITIONS, ALL CITIZENS' INITIATIVES.<br>1 TAX REVENUE CAP. 2 ELECTION DATE. 3 HAND COUNT.</div>
+
+<div class="mn" data-reserve data-bloom style="left:470px;top:988px;width:530px;font-size:24px;color:#20291F;text-align:right;white-space:nowrap">TURNOUT HAS RUN 20 TO 25 PERCENT</div>
+<div class="mn" data-reserve data-bloom style="left:150px;top:1258px;width:660px;font-size:24px;color:#20291F">DRAWN TO SCALE. NOT DRAWN TO COUNT.</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/akseam.js"></script>
+<script>
+/* ============================================================
+   SLIDE 08 — KEEPABLE. THE REGISTER.
+   Stage C. The riffle opens FLAT to 52 percent, fan 0, so the paper is laid
+   down as a printed register and the type sits on it as ink. Below it the
+   sheet surface recedes to a vanishing point off the bottom-left corner,
+   drawn as converging lines rather than parallel ones, which is also the
+   moire kill at this camera stage.
+
+   THE DAY RAIL is a MEASURED AXIS. Tick position is proportional to real days
+   from September 6th, the band is declared on <body data-scale>, and every
+   mark inside that band is enumerated with what it means. There is no
+   decorative tick anywhere in the band. Turnout is deliberately NOT encoded.
+   THE REGISTER ABOVE IT IS A TABLE ON A FIXED 92 PX BLOCK GRID AND ENCODES
+   NOTHING. Proportional rows would put a 460 px void between September 6th and
+   September 21st and destroy the one thing this slide is for, which is being
+   screenshotted. An earlier comment here claimed the rows were proportional.
+   They never were, and a slide about a measurement kept honestly cannot carry
+   a false description of its own scale.
+   ============================================================ */
+var W=1080, H=1350;
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260902);
+
+var LEE='#141B25', MID='#9AA08C', ARRIS='#D9DCC6', CREST='#F1F2E4',
+    PAPER_LIT='#CBD2BE', RED='#D8422F', FMN='#6EA5FF';
+
+/* the day rail, solved from real dates. Day 0 is September 6th. */
+var RAIL_X0=150, RAIL_X1=930, RAIL_Y=1054, DAYS=30;
+function dayX(d){ return RAIL_X0 + (RAIL_X1-RAIL_X0)*(d/DAYS); }
+var MARKS=[{d:0,label:'SEP 6'},{d:15,label:'SEP 21'},{d:23,label:'SEP 29'},
+           {d:29,label:'OCT 5'},{d:30,label:'OCT 6'}];
+
+var NS=232, P_NEAR=16, RATIO=0.9896;
+var yTop=[], pit=[];
+(function(){ var y=H+30,p=P_NEAR; for(var i=0;i<NS;i++){ y-=p; yTop.push(y); pit.push(p); p*=RATIO; } })();
+function sh(i,k){ var s=Math.sin((i*97.1+k*53.7)*0.833)*17320.508; return s-Math.floor(s); }
+var reach=[], lean=[];
+for(var i=0;i<NS;i++){
+  reach.push(Math.max(0.34, Math.min(1.05, 0.90+AK.simplex2(i*0.033,43.1)*0.18)));
+  lean.push((sh(i,2)-0.5)*0.8);
+}
+function skew(x){ return -x*0.014; }
+
+/* THE RIFFLE OPENS FLAT. 52 percent, fan 0. */
+function riffle(x,y){
+  if(x<60||x>1030||y<330||y<0) return 0;
+  if(y>960) return 0;
+  var lat=Math.min(1,Math.min(x-60,1030-x)/170);
+  return lat*Math.pow(Math.sin(Math.PI*(y-330)/630),0.22);
+}
+var SPLAY=3.2;
+
+/* reserve, broken strokes and the open-fan bloom are AKSEAM house
+   machinery; this slide supplies only its own pads. */
+var RESV=null;
+function measureReserve(){ RESV=AKSEAM.reserve('[data-reserve]',[24,24,24,22]); }
+function inRes(x,y,pad){ return RESV.hit(x,y,pad); }
+function segBlocked(fy,x,step,pad){ return RESV.seg(fy,x,step,pad); }
+function strokeBroken(fy,x0,x1,step,lw,color){ AKSEAM.strokeBroken(CX,RESV,fy,x0,x1,step,lw,color); }
+function fanBloom(){ AKSEAM.bloom(CX,{margin:[30,30,30,26],grow:[86,74],mid:0.66,midA:0.56}); }
+
+
+function seamHalf(gx){
+  /* the lane breathes but never closes; it is one lane the whole way */
+  return 58 + 26 * AK.simplex2(gx * 0.0011, 55.1);
+}
+/* draws the lit pass. Call it AFTER the mass and AFTER the blooms, and give it
+   the slide's own edgeY/reach so the lit arrises are the slide's real sheets.
+
+   TWO PASSES, and the first is the one that makes the seam true. The slide's
+   own sheets only reach the right frame edge when their reach noise happens to
+   send them there, so relying on them alone left four of the eight seams with
+   no lit band at the edge at all, measured off the render. The lane therefore
+   carries its OWN sheets: nine arrises whose path is a pure function of
+   globalX, running the full 0 to 1080 and off both edges. At x = 1080 on slide
+   n and x = 0 on slide n+1 the globalX is the same number, so line k arrives
+   and departs at the same height, at every seam, by construction. The slide's
+   real sheets are then lit inside the same band as texture on top. */
+function seamLane(slideNo, xEndFor, edgeYFn, _ignored){
+  var G0 = (slideNo - 1) * 1080;
+  /* THE LANE KEEPS ITS OWN RESERVE TEST. Each slide's inRes has a different
+     signature and a different pad, and the lane's strokes are up to 3.1 px
+     wide, so it measures the boxes itself with a pad that covers the stroke
+     and tests the SEGMENT between samples rather than the samples. */
+  var SB = [];
+  (function(){
+    var els = document.querySelectorAll('[data-reserve]');
+    for(var i=0;i<els.length;i++){ var r = els[i].getBoundingClientRect();
+      SB.push([r.left - 20, r.top - 18, r.right + 20, r.bottom + 16]); }
+  })();
+  function hit(x, y){
+    for(var i=0;i<SB.length;i++){ var b = SB[i];
+      if(x >= b[0] && x <= b[2] && y >= b[1] && y <= b[3]) return true; }
+    return false;
+  }
+  function reserveTest(x, y){
+    return hit(x - 4, y) || hit(x, y) || hit(x + 4, y) || hit(x, y - 4) || hit(x, y + 4);
+  }
+  CX.save();
+
+  /* PASS 1. THE LANE'S OWN SHEETS, a pure function of globalX. */
+  (function(){
+    var K = 9;
+    for(var k=0;k<K;k++){
+      var f = (k + 0.5) / K, off = (f * 2 - 1);
+      var a = Math.pow(1 - Math.abs(off), 1.15);
+      CX.globalAlpha = 0.24 + 0.60 * a;
+      CX.lineWidth = 0.9 + 2.2 * a;
+      CX.strokeStyle = '#F1F2E4';
+      var open = false;
+      for(var x=-8; x<=1088; x+=6){
+        var gx = G0 + x;
+        var y = seamY(gx) + off * seamHalf(gx) + 5.5 * AK.simplex2(gx * 0.0042, 30 + k * 7);
+        if(reserveTest && reserveTest(x, y)){ if(open){ CX.stroke(); open = false; } continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x, y); open = true; } else CX.lineTo(x, y);
+      }
+      if(open) CX.stroke();
+      /* each lit arris keeps its own lee, so the lane is stacked paper */
+      CX.globalAlpha = (0.24 + 0.60 * a) * 0.55;
+      CX.lineWidth = 1.0; CX.strokeStyle = '#0B1118';
+      open = false;
+      for(var x2=-8; x2<=1088; x2+=6){
+        var gx2 = G0 + x2;
+        var y2 = seamY(gx2) + off * seamHalf(gx2) + 5.5 * AK.simplex2(gx2 * 0.0042, 30 + k * 7) + 3.0;
+        if(reserveTest && reserveTest(x2, y2)){ if(open){ CX.stroke(); open = false; } continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x2, y2); open = true; } else CX.lineTo(x2, y2);
+      }
+      if(open) CX.stroke();
+    }
+  })();
+
+  /* PASS 2. the slide's real sheets, lit inside the same band. */
+  for(var i=0;i<NS;i++){
+    var xEnd = xEndFor(i); if(xEnd < 40) continue;
+    var open = false, lastA = 0;
+    for(var x=0; x<=xEnd; x+=7){
+      var y = edgeYFn(i, x);
+      var gx = G0 + x;
+      var d = Math.abs(y - seamY(gx)) / seamHalf(gx);
+      if(d >= 1 || (reserveTest && reserveTest(x, y))){
+        if(open){ CX.stroke(); open = false; }
+        continue;
+      }
+      var a = Math.pow(1 - d, 1.35);           /* soft across the lane, hard at no point */
+      if(!open || Math.abs(a - lastA) > 0.18){
+        if(open) CX.stroke();
+        CX.beginPath(); CX.moveTo(x, y); open = true;
+        CX.globalAlpha = 0.30 + 0.52 * a;
+        CX.lineWidth = 0.9 + 1.9 * a;
+        CX.strokeStyle = '#F1F2E4';
+        lastA = a;
+      } else {
+        CX.lineTo(x, y);
+      }
+    }
+    if(open) CX.stroke();
+  }
+  /* the lee under the lit pass, so the band has a bottom and reads as light
+     falling across the mass rather than as a painted stripe */
+  for(var i2=0;i2<NS;i2++){
+    var xEnd2 = xEndFor(i2); if(xEnd2 < 40) continue;
+    var open2 = false;
+    CX.globalAlpha = 0.30; CX.lineWidth = 1.1; CX.strokeStyle = '#0B1118';
+    for(var x2=0; x2<=xEnd2; x2+=7){
+      var y2 = edgeYFn(i2, x2) + 2.4;
+      var gx2 = G0 + x2;
+      var d2 = Math.abs(y2 - seamY(gx2)) / seamHalf(gx2);
+      if(d2 >= 0.86 || (reserveTest && reserveTest(x2, y2))){
+        if(open2){ CX.stroke(); open2 = false; } continue;
+      }
+      if(!open2){ CX.beginPath(); CX.moveTo(x2, y2); open2 = true; } else CX.lineTo(x2, y2);
+    }
+    if(open2) CX.stroke();
+  }
+  CX.restore();
+}
+
+
+
+window.renderReady = new Promise(function(resolve){ (async function(){
+  await document.fonts.ready;
+  measureReserve();
+
+  var g=CX.createLinearGradient(1000,0,80,H);
+  g.addColorStop(0,'#0C131C'); g.addColorStop(.5,LEE); g.addColorStop(1,'#090F16');
+  CX.fillStyle=g; CX.fillRect(0,0,W,H);
+
+  var STEP=9;
+  function edgeY(i,x){ var y0=yTop[i]+lean[i]+skew(x);
+    return y0 + riffle(x,y0)*(y0-645)*0.10; }
+  function lp(i,x){ var y0=yTop[i]+lean[i]+skew(x);
+    return pit[i]*(1+SPLAY*riffle(x,y0)); }
+
+  for(var i=NS-1;i>=0;i--){
+    var xEnd=Math.min(W, 40+(W)*reach[i]); if(xEnd<40) continue;
+    var yM=edgeY(i,500);
+    /* the sheets under the register are LIT FIRST so the cast has a ground */
+    var lit=(yM>1080 && yM<1230)?0.30:0;
+    CX.beginPath();
+    for(var x=0;x<=xEnd;x+=STEP){ CX.lineTo(x, edgeY(i,x)); }
+    for(var x2=xEnd;x2>=0;x2-=STEP){ CX.lineTo(x2, edgeY(i,x2)+lp(i,x2)); }
+    CX.closePath();
+    var r=riffle(500,yM), depth=Math.min(1,pit[i]/14);
+    CX.fillStyle=AKC.mixOklab(LEE, PAPER_LIT, Math.min(1, 0.09+0.20*depth+0.66*r+lit));
+    CX.fill();
+    (function(ii,rr,dd,ll){
+      strokeBroken(function(x){return edgeY(ii,x);},0,xEnd,STEP,
+        Math.max(0.55, lp(ii,500)*0.25), 'rgba(10,15,22,'+(0.70-0.36*rr)+')');
+      CX.lineCap='butt';
+      strokeBroken(function(x){return edgeY(ii,x)-0.5;},0,xEnd,STEP,
+        Math.max(0.55,0.5+dd*1.0), AKC.mixOklab(MID, ARRIS, 0.22+0.62*dd+ll*0.5));
+    })(i,r,depth,lit);
+  }
+
+  fanBloom();
+
+  /* ---- THE RECEDING SURFACE below the register: converging lines to a VP
+     off the bottom-left corner. Convergence rather than parallelism is what
+     kills moire at this camera stage. ---- */
+  (function(){
+    var VPX=-460, VPY=1560;
+    CX.save(); CX.globalAlpha=0.30; CX.lineWidth=0.75;
+    for(var k=0;k<90;k++){
+      var sx=120+k*13;
+      CX.strokeStyle=AKC.mixOklab(MID,CREST,0.20+ (k/90)*0.30);
+      CX.beginPath(); CX.moveTo(sx,1112); CX.lineTo(VPX+(sx-VPX)*0.32, VPY); CX.stroke();
+    }
+    CX.restore();
+    /* fibre and dust with real speculars, blue-noise-ish */
+    var rr=AK.rng(8801); CX.save();
+    for(var d=0;d<40;d++){
+      var x=100+rr()*880, y=1120+rr()*200;
+      if(inRes(x,y,10)) continue;
+      CX.globalAlpha=0.30+rr()*0.35; CX.fillStyle=CREST;
+      CX.beginPath(); CX.arc(x,y,0.8+rr()*0.7,0,6.2832); CX.fill();
+    } CX.restore();
+  })();
+
+  /* ---- the register's own two part contact shadow, cast into lit sheets --- */
+  (function(){
+    var amb=CX.createLinearGradient(0,1082,0,1160);
+    amb.addColorStop(0,'rgba(9,13,19,0.40)'); amb.addColorStop(1,'rgba(9,13,19,0)');
+    CX.fillStyle=amb; CX.fillRect(100,1082,900,78);
+    var con=CX.createLinearGradient(0,1082,0,1108);
+    con.addColorStop(0,'rgba(6,9,14,0.86)'); con.addColorStop(1,'rgba(6,9,14,0)');
+    CX.fillStyle=con; CX.fillRect(132,1082,760,26);
+  })();
+
+  /* ---- THE DAY RAIL. Every mark in the band means one date. No ornament. -- */
+  (function(){
+    /* A SCORED GUTTER. The rail runs in a channel pressed into the paper, so
+       the only ink inside the declared band is the marks this slide declares.
+       An undeclared run of ink on a measured axis is a value nobody meant. */
+    var gg=CX.createLinearGradient(0,RAIL_Y-14,0,RAIL_Y+14);
+    gg.addColorStop(0,'rgba(12,17,24,0.30)');
+    gg.addColorStop(0.5,'rgba(12,17,24,0.92)');
+    gg.addColorStop(1,'rgba(12,17,24,0.30)');
+    CX.fillStyle=gg; CX.fillRect(RAIL_X0,RAIL_Y-14,(RAIL_X1-RAIL_X0),28);
+    CX.lineWidth=1.25; CX.strokeStyle='#B7C1B2';
+    CX.beginPath(); CX.moveTo(RAIL_X0,RAIL_Y); CX.lineTo(RAIL_X1,RAIL_Y); CX.stroke();
+    /* the early voting SPAN. It is drawn BELOW the declared band, because a
+       run of ink inside a measured band has to be a declared mark and a span
+       is not one. Its two ends are the declared September 21st and 29th marks. */
+    CX.lineWidth=5.5; CX.strokeStyle=FMN; CX.globalAlpha=0.55;
+    CX.beginPath(); CX.moveTo(dayX(15),RAIL_Y+22); CX.lineTo(dayX(25),RAIL_Y+22); CX.stroke();
+    CX.globalAlpha=1;
+    for(var m=0;m<MARKS.length;m++){
+      var mx=dayX(MARKS[m].d);
+      var isElection=(MARKS[m].d===30);
+      CX.lineWidth=isElection?3.5:2.0;
+      CX.strokeStyle=isElection?RED:FMN;
+      CX.beginPath(); CX.moveTo(mx,RAIL_Y-8); CX.lineTo(mx,RAIL_Y+8); CX.stroke();
+    }
+    /* the axis terminals, set BELOW the declared band so they are labels and
+       never marks. An axis a reader cannot read is not a scale, and this slide
+       prints DRAWN TO SCALE two rows under it. */
+    CX.font='500 18px "JetBrains Mono"';
+    CX.fillStyle='#C3CCC0'; CX.textAlign='left';
+    CX.fillText('SEP 6', RAIL_X0, 1104);
+    CX.fillStyle='#E0837A'; CX.textAlign='right';
+    CX.fillText('OCT 6', RAIL_X1, 1104);
+    CX.textAlign='left';
+  })();
+
+  AK.fitText(document.getElementById('h1'), {min:62, max:88, maxLines:1});
+
+
+
+
+
+
+  /* house machinery, AKSEAM: the deck-wide panorama seam and the two passes
+     that keep this slide's type reserve made of the same material as its art */
+  AKSEAM.lane(CX,{slide:8, ns:NS,
+    xEnd:function(i){ return Math.min(W, 40+(W)*reach[i]); },
+    edgeY:function(i,x){ return edgeY(i,x); }});
+  AKSEAM.lineLift(CX);
+
+  AKPOST.grade(CX,{w:W,h:H,exposure:-0.04,saturation:1.02,contrast:1.07,filmic:true,
+    vignette:0.15, bloom:{threshold:0.86,strength:0.05,radius:10},
+    grain:{amount:0.05,size:2,seed:20260902}, dither:true, sharpen:0.34});
+  resolve();
+})(); });
+</script></body></html>

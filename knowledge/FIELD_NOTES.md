@@ -5624,3 +5624,111 @@ passes the RUN date, and this run woke at 23:13 on September 1st and published
 on September 2nd. Hand-editing the ledger would have fought a correct resolver.
 The real fix is which date site_build is given, which is an upgrade and not a
 data edit.
+
+## 2026-09-02, run No.48, Phase 1 craft refresh
+
+Two searches. One item worth carrying, and it is a design instruction rather
+than a statistic, so it is recorded with its sourcing weakness attached.
+
+- Several 2026 carousel writeups now claim LinkedIn re-serves a document post
+  STARTING FROM SLIDE TWO to a reader who scrolled past it without engaging.
+  Treat the mechanism as unconfirmed, because the claim traces to marketing
+  blogs and not to LinkedIn engineering or help documentation, and this studio
+  retracted a similarly sourced "Long Dwell percentile" claim on 2026-09-01 for
+  exactly this reason. What survives regardless of whether the mechanism is
+  real is the design consequence, and it happens to agree with a rule the house
+  already keeps for a different reason. Slide 2 has to stand on its own as a
+  second cover, not merely pay off slide 1. CAROUSEL_CRAFT already says slide 2
+  pays off immediately because the steepest drop is 1 to 2; the addition is
+  that slide 2 should also make sense to a reader who never saw slide 1.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- The same sources put stat hooks at a 1.67x lift against 1.45x for direct
+  hooks. Same sourcing caveat, same direction as the house rule, no change.
+
+Nothing goes into the doctrine files from this. Recorded so the next run's
+craft refresh does not re-derive it, and so the slide-2 rule has a reason
+attached that is honest about its own evidence.
+
+## 2026-09-02 (run No.48) — THREE LESSONS FROM ONE FAILURE MODE
+
+Round 3 of this run shipped a slide that argued the inverse of its own claims,
+two deadline rows missing the one word that made them true, and a leader
+pointing at nothing. All three were the same mistake: **an artifact that
+describes type was written from arithmetic instead of measured off the type.**
+
+**Never count a canvas mark off a rectangle when it means a line of type.**
+Slide 07's spec plate has four fields and the fourth is deliberately unstamped,
+which is how the deck draws "no fiscal analysis" instead of asserting it. The
+markers were placed at `py + 42 + f*39`. The stamp text wrapped to five lines
+inside its box, everything slid one row, and the unstruck field landed on
+`AMENDABLE . NO`. Every machine gate passed, because no gate knows what a
+rectangle means. Two fixes and you need both: `white-space:nowrap` so the line
+count cannot drift, and marker positions read from `getBoundingClientRect()` at
+render time so a copy edit cannot move the argument.
+
+**A leader has to arrive at WORDS as well as at a feature.** qa.py's tolerance
+is 32 design px to the label's own box. A leader whose declared label is a
+concatenation of some element's innerText is true of nothing, and the gate can
+only check the geometry it was handed.
+
+**frame_balance sees luminance STEPS, not gradients, and the dead lower zone is
+usually COVERED rather than empty.** Slide 01's bottom third failed at 60
+percent of its own average craft density. Adding 34 soft radials of `laneGrade`
+to the near band took it DOWN to 31, because the metric box-downsamples 6x
+before it looks and a soft radial is the precise opposite of what survives that.
+Heavier arrises did not move it either, at 41 percent for both 1.1 px and 2.9 px
+strokes, because they were drawn under a bloom that then covered them. What
+worked was subtraction: the text bloom's padding was `half-width + 72`, which on
+an 880 px block is a 542 px radius, a flat pale lane 1084 px wide across the
+lower frame. Cutting it to `+58 / +32`, moving the feather stop from 0.66 to
+0.50, and narrowing the block to the width its longest line actually needs took
+the band from 41 to 46 and the ratio from 60 to 65.
+
+The general form: **when a contrast fix and a craft metric disagree, look for
+the thing the contrast fix PAINTED, not for something else to add.**
+
+## 2026-09-02 (run No.48, round 6) — A CONTINUITY DEVICE HAS TO BE A FUNCTION
+
+The artwork ledger let this deck declare `panorama` as its primary continuity
+device for six rounds while the pixels carried nothing of the kind. The flow
+room and the scorer found it independently, in the same words: no two adjacent
+frames shared a continuing edge, and no right edge carried anything cut.
+
+**A panorama cannot be an intention. It has to be a FUNCTION OF GLOBAL X.**
+`seamY(globalX)` with `globalX = (n-1)*W + x` makes the seam true by
+construction: every slide draws the same curve over its own window, so the
+lane's height and slope at x = W on slide n are the same number as at x = 0 on
+slide n+1, without any slide knowing anything about its neighbours. Nobody is
+ever going to butt nine 1080 px frames together and check by eye, which is
+exactly why the eye is the wrong instrument for this.
+
+**And then measure it off the shipped PNGs.** Read the expected lane height at
+each seam out of the browser, then search the last 30 px of slide n and the
+first 30 px of slide n+1 for a luminance peak near it. That check is what caught
+the first version: relying on the slide's own sheets to carry the lane left 4 of
+8 seams dark at the frame edge, because a sheet only reaches x = 1080 when its
+reach noise happens to send it there. The lane had to carry sheets of its own.
+After: 8 of 8, offsets 4 to 20 design px.
+
+**A FILLED polygon is not covered by breaking its strokes.** Every slide broke
+its arris strokes around reserved type and none of them broke the face fills, so
+where one sheet face ended mid-block its tonal step ran straight through the
+letterforms. Slide 02 shipped a hard rule through the middle of a mono chip,
+ending at x 675 because that is where that sheet's reach ended, and it read as a
+strike-through. The fix is a per-line lift at the very end of the art: run the
+lay BETWEEN the lines, then lift each line's own box back to the lit value.
+Per LINE, never per block: an element rect is a rectangle the size of the whole
+block, which is the plate this was trying to kill in the first place.
+
+**bespoke_check is right when it catches your new helper.** Pasting the three
+seam functions into all nine slides took median pairwise art similarity from
+0.458 to 0.674 and failed the gate, correctly. Shared machinery belongs in
+`assets/js/`, and moving the five reserve helpers every slide had been carrying
+a verbatim copy of went with it. Do not answer that gate by rewording code.
+
+**And the oldest lesson, arrived at from the other direction.** A bespoke spring
+clamp was drafted for slide 02 to break its flatness. It rendered as a metal
+plate floating in the right column and read as a screen, because this deck's art
+direction is ONE CONTINUOUS MEDIUM and never objects on a stage. Same finding as
+round 2's spike, reached six rounds later by a different route: a medium stops
+being a medium the moment you put an object on it.

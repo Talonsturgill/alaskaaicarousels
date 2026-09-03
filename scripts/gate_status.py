@@ -43,6 +43,7 @@ given). Stdlib only. Exit 0 when no gate row is FAIL (WARN rows are fine),
 """
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -570,7 +571,51 @@ def site_fresh_row(rows, run):
     rows.add("site_fresh", "PASS" if p.returncode == 0 else "FAIL", out[-1 if p.returncode == 0 else 0][:140])
 
 
-def assemble_row(rows, run, rep, fdir):
+def _sha256(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def assemble_sources_stale(asm, rdir, sdir):
+    """Did anything assemble.py READ change after it ran? (2026-09-02)
+
+    Run No.48 edited slide 03, re-ran render.py, and did not re-run
+    assemble.py. The 432px thumb and the full-size PNG then came from two
+    different builds and shipped that way; a pixel critic caught it by
+    transcribing both, and no gate could see it because nothing recorded which
+    renders a build was made from. assemble.py now writes the sha256 of every
+    PNG and slide HTML it consumed, so this is a hash comparison and not a
+    guess. Reports:
+        None  -> no source record (a report written before 2026-09-02)
+        []    -> everything assemble read is still byte-identical
+        [...] -> the named inputs changed, were deleted, or appeared
+    """
+    src = asm.get("sources")
+    if not isinstance(src, dict):
+        return None
+    bad = []
+    for key, d in (("render_pngs", rdir), ("slide_html", sdir)):
+        recorded = src.get(key) or []
+        if not recorded:
+            continue
+        for item in recorded:
+            p = d / str(item.get("name", ""))
+            if not p.exists():
+                bad.append("%s deleted since assemble" % item.get("name"))
+                continue
+            if _sha256(p) != item.get("sha256"):
+                bad.append("%s changed since assemble" % item.get("name"))
+        pat = "slide-*.png" if key == "render_pngs" else "slide-*.html"
+        now = {p.name for p in d.glob(pat) if not p.name.endswith(".canvas.png")}
+        for extra in sorted(now - {str(i.get("name")) for i in recorded}):
+            bad.append("%s is new since assemble" % extra)
+    return bad
+
+
+def assemble_row(rows, run, rep, fdir, rdir=None, sdir=None):
     asm, note = load_json(fdir / "assemble_report.json")
     if asm is None:
         rows.absent("assemble", "assemble_report.json %s" % note)
@@ -596,6 +641,22 @@ def assemble_row(rows, run, rep, fdir):
     if not ok:
         status = "FAIL"
         detail += " (carousel.pdf %s)" % bnote
+    # BUILD ORDER: are the deliverables made of the renders on disk right now?
+    if rdir is not None and sdir is not None:
+        try:
+            stale = assemble_sources_stale(asm, rdir, sdir)
+        except Exception as e:
+            stale = None
+            detail += " (source check skipped: %s)" % type(e).__name__
+        if stale is None:
+            detail += ", no source record (pre-2026-09-02 build)"
+        elif stale:
+            status = "FAIL"
+            detail += " (STALE BUILD: %s -- re-run assemble.py)" % "; ".join(stale[:4])
+            if len(stale) > 4:
+                detail += " +%d more" % (len(stale) - 4)
+        else:
+            detail += ", sources verified"
     rows.add("assemble", status, detail)
 
 
@@ -1026,7 +1087,8 @@ def main():
     docket_dates_row(rows)
     gas_watch_row(rows)
     site_fresh_row(rows, run)
-    assemble_row(rows, run, rep, fdir)
+    sdir = run / "slides" if (run / "slides").is_dir() else run
+    assemble_row(rows, run, rep, fdir, rdir, sdir)
     score_row(rows, run)
     ship_gate_row(rows, run)
     artifacts_row(rows, run, rdir, rep)

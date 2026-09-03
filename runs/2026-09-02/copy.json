@@ -1,0 +1,194 @@
+{
+ "run_date": "2026-09-02",
+ "carousel_no": 48,
+ "document_title": "Counted Twice. Fairbanks Votes on the Machines.",
+ "post_copy": "\"If the hand count is to check on the machines, then why do we have the machines?\" Barbara Haney sponsored Fairbanks Proposition 3.\n\nDid anyone check them? Yes. In 2025 a canvass board hand verified 3,338 ballots, two precincts of 32 plus early voting. The machines came back 100 percent accurate on that sample.\n\nWhat counted as failure? The ordinance said so up front. A discrepancy over 1 percent. About 33 ballots. The gap was zero.\n\nWhat does a yes do? Hand counting starts in 2027, so October 6th is still machine tabulated. The ordinance carries no fiscal analysis. A yes locks it for two years, past the Assembly and the voters.\n\nThe clerk's ballot title, the tolerance beside the measured gap, Haney's case in full and the five dates still open.\n\nName the result that would have changed your vote. If none would, what was the audit for?\n\n#FairbanksBorough #AlaskaElections #HandCountAudit",
+ "deck_summary_line": "The clerk's ballot title, the tolerance beside the measured gap, Haney's case in full and the five dates still open.",
+ "caption_meta": {
+  "opening_move": "QUOTE FIRST",
+  "structure": "Q AND A",
+  "closing_move": "NEW: THE DISCONFIRMING RESULT",
+  "critic_verdict": "B, with one fix to the deck summary line",
+  "showrunner_fix": "restored the Assembly half of C07 in the two year lock sentence"
+ },
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "FNSB PROPOSITION 3 . OCTOBER 6TH, 2026",
+   "headline": "Counted by hand. Counted by machine. Same answer. Now Fairbanks votes.",
+   "labels": [
+    "3,338 BALLOTS. ZERO DISCREPANCY.",
+    "AUDIT SAMPLE . 2 OF 32 PRECINCTS PLUS THE EARLY VOTING STATION",
+    "32 PRECINCTS . 2 SAMPLED",
+    "DRAWN TO SCALE. NOT DRAWN TO COUNT."
+   ],
+   "claim_ids": [
+    "C05",
+    "C02",
+    "C32",
+    "C03"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "PROPOSITION 3, THE CLERK'S OWN BALLOT TITLE",
+   "headline": "Requiring all ballots to be hand counted and prohibiting electronic tabulation",
+   "body": "Only registered borough voters would conduct the counts, and official results would come solely from manual hand counts. The petition was submitted with 2,706 signatures against a requirement of 2,391, and the clerk recertified it on August 5th, 2026.",
+   "labels": [
+    "1 . THE ASSEMBLY ADOPTED THE VOTER INFORMATION 6 TO 1. THE ONE NO VOTE CALLED IT LEADING.",
+    "2 . ONE MEMBER WAS RULED TO HAVE A CONFLICT AS A LEAD SPONSOR, PER THE NEWS-MINER."
+   ],
+   "claim_ids": [
+    "C01",
+    "C34",
+    "C20",
+    "C21",
+    "C09",
+    "C10",
+    "C11",
+    "C08"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "THE 2025 HAND COUNT AUDIT",
+   "headline": "3,338 ballots, checked by hand.",
+   "body": "A 2025 ordinance created the audit and passed 5 to 4. A canvass board hand verified the votes on 3,338 ballots, two precincts out of 32 plus the early voting station.",
+   "labels": [
+    "1 . EARLY VOTING STATION, 2,846",
+    "2 . GOLDSTREAM No. 2 AND MOOSE CREEK, 492",
+    "3 . NOT SAMPLED, THE REST OF THE BOROUGH",
+    "MARCH 2025 . THE ASSEMBLY DEADLOCKED 4 TO 4 ON A 219,489 DOLLAR MACHINE CONTRACT.",
+    "BALLOT TOTALS NOT DRAWN. NO VERIFIED FIGURE.",
+    "0",
+    "3,000 BALLOTS",
+    "DRAWN TO SCALE. NOT DRAWN TO COUNT."
+   ],
+   "claim_ids": [
+    "C03",
+    "C04",
+    "C32",
+    "C24",
+    "C22",
+    "C23"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "THE THRESHOLD THAT NEVER FIRED",
+   "headline": "The tolerance was 33 ballots wide. The gap was zero.",
+   "body": "The 2025 ordinance defined failure in advance, a discrepancy greater than 1 percent between the hand count and the machine tabulation. On the sampled ballots the machines came back 100 percent accurate, so the trip point was never approached.",
+   "labels": [
+    "DETAIL A . 12 TO 1",
+    "1 PERCENT OF 3,338 = 33 BALLOTS",
+    "OBSERVED SEPARATION 0",
+    "DRAWN TO SCALE. NOT DRAWN TO COUNT."
+   ],
+   "claim_ids": [
+    "C35",
+    "C05",
+    "C03"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "THE CASE FOR PROPOSITION 3",
+   "headline": "\"If the hand count is to check on the machines, then why do we have the machines?\"",
+   "body": "Haney was one of four who voted against creating that audit, per KUAC. Tammie Wilson and Brett Rotermund were two of the other three.",
+   "labels": [
+    "BARBARA HANEY, FORMER ASSEMBLY MEMBER, INITIATIVE SPONSOR",
+    "\"THE REST OF US WILL HAVE SOME SATISFACTION IN THINKING THAT, 'OKAY, THE MACHINES ARE COUNTING CORRECTLY.'\" DAVID GUTTENBERG, WHO SPONSORED THE AUDIT ORDINANCE"
+   ],
+   "claim_ids": [
+    "C27",
+    "C26",
+    "C25",
+    "C29",
+    "C24"
+   ]
+  },
+  {
+   "n": 6,
+   "headline": "Two of 32 precincts were sampled. Thirty were not, and were never claimed.",
+   "labels": [
+    "WHAT THE AUDIT DID NOT COVER"
+   ],
+   "claim_ids": [
+    "C32"
+   ],
+   "breather": true
+  },
+  {
+   "n": 7,
+   "kicker": "WHAT A YES DECIDES",
+   "headline": "Two years. No estimate.",
+   "body": "Hand counting would start with the 2027 cycle, so October 6th is still machine tabulated. If Proposition 3 passes, the ordinance is law for two years and neither the Assembly nor the voters can repeal, modify or negate it. The ordinance carries no fiscal analysis.",
+   "labels": [
+    "EFFECTIVE . 2027 CYCLE TERM . TWO YEARS AMENDABLE . NO COST .",
+    "NO PUBLISHED ESTIMATE",
+    "THE MAYOR SAYS IT WILL COST MORE. THAT IS HIS POSITION, NOT A FINDING.",
+    "THE ASSEMBLY NARROWED THE DELAY CLAIM TO UNOFFICIAL RESULTS."
+   ],
+   "claim_ids": [
+    "C33",
+    "C07",
+    "C06",
+    "C31",
+    "C28",
+    "C13",
+    "C12"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "THE DATES THAT ARE STILL OPEN",
+   "headline": "Register by September 6th.",
+   "labels": [
+    "SEPTEMBER 6TH . VOTER REGISTRATION CLOSES",
+    "SEPTEMBER 21ST TO OCTOBER 1ST . EARLY VOTING, NOEL WIEN LIBRARY, 1215 COWLES STREET",
+    "SEPTEMBER 29TH, 5:00 P.M. . ABSENTEE BY MAIL APPLICATIONS DUE",
+    "OCTOBER 5TH, NOON . ELECTRONIC ABSENTEE APPLICATIONS CLOSE",
+    "OCTOBER 6TH, 7:00 A.M. TO 8:00 P.M. . ELECTION DAY",
+    "THREE PROPOSITIONS, ALL CITIZENS' INITIATIVES. 1 TAX REVENUE CAP. 2 ELECTION DATE. 3 HAND COUNT.",
+    "TURNOUT HAS RUN 20 TO 25 PERCENT",
+    "DRAWN TO SCALE. NOT DRAWN TO COUNT."
+   ],
+   "claim_ids": [
+    "C16",
+    "C17",
+    "C18",
+    "C19",
+    "C02",
+    "C14",
+    "C15",
+    "C01",
+    "C30"
+   ]
+  },
+  {
+   "n": 9,
+   "headline": "A test can settle a measurement. It can't settle what a count is for.",
+   "body": "What result would have changed your mind?",
+   "labels": [
+    "PROPOSITION 3 LOCKS FOR TWO YEARS ONCE IT PASSES. OCTOBER 6TH, 2026.",
+    "ALASKA.AI",
+    "alaskaaihq.com",
+    "SOURCES IN COMMENTS"
+   ],
+   "claim_ids": [
+    "C07",
+    "C02"
+   ]
+  }
+ ],
+ "first_comment": "Sources for today's deck, all primary where one exists.\n\nFairbanks North Star Borough Clerk, Election Information, the ballot titles and every deadline\nhttps://www.fnsb.gov/269/Election-Information\n\nFNSB Assembly, Special Meeting Agenda Packet, August 20th, 2026, the adopted voter information including the no fiscal analysis line and the two year lock\nhttps://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13091,plainText=true)\n\nFNSB Assembly, Special Meeting Agenda, August 20th, 2026, Resolution No. 2026-26\nhttps://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13090,plainText=true)\n\nKUAC, October 17th, 2025, the hand count audit and the 3,338 ballots\nhttps://fm.kuac.org/2025-10-17/new-fairbanks-north-star-borough-election-hand-count-audit-aligns-100-with-machine-tabulations\n\nKUAC, May 4th, 2025, the ordinance that created the audit and the 5 to 4 roll call\nhttps://fm.kuac.org/elections/2025-05-04/fnsb-elections-will-have-hand-count-auditing\n\nKUAC, August 11th, 2026, turnout and the mayor's position\nhttps://fm.kuac.org/2026-08-11/fairbanks-borough-voters-to-consider-hand-count-date-change-in-october-municipal-election\n\nFairbanks Daily News-Miner, August 25th, 2026, the 6 to 1 vote on the ballot language\nhttps://www.newsminer.com/news/local_news/assembly-sets-election-language-for-hand-count-proposition/article_123aa473-6b9d-4331-9cc7-80a97be93438.html\n\nFairbanks Daily News-Miner, July 24th, 2026, the petition and Barbara Haney's case\nhttps://www.newsminer.com/news/local_news/haney-submits-hand-count-initiative-with-surplus-signatures/article_39d02213-2504-4cd6-bd17-0e976010a28a.html",
+ "aftercare": [
+  "Post Tuesday to Thursday, 8 to 11 a.m. Alaska time.",
+  "Paste the first comment within 60 seconds of posting.",
+  "Reply substantively to every comment in the first 60 to 90 minutes.",
+  "If a Fairbanks voter asks what the audit did not cover, the answer is on slide 6 and it is two precincts of 32 plus early voting.",
+  "If someone asks what hand counting would cost, the honest answer is that nobody has published an estimate.",
+  "Do not let a commenter turn this into an AI story. It is not one. The deck never says what the machines are, so answer from the selection rationale, which is that this is the same question one layer down, what evidence would persuade a community to let a machine do a public job."
+ ],
+ "editor_notes_for_email": "This deck is NOT an artificial intelligence story and it does not claim to be. It runs on this page because it is the same question one layer down, what evidence would persuade a community to let a machine do a public job, and Fairbanks is asking it out loud with a complete record on the table. That framing is written into selection.md. It is NOT stated on slide 2, which carries the clerk's ballot title and nothing about the tabulators, so do not lean on slide 2 in a comment thread. The scorer will ask about it first, so it is flagged here.\n\nThree honesty guards are drawn rather than asserted. The audit's sample scale travels with the 3,338 figure everywhere it appears. The unsampled precincts are drawn behind a drafting break line labelled BALLOT TOTALS NOT DRAWN, NO VERIFIED FIGURE, because the denominator failed verification. The missing cost estimate is an unstruck field on a spec plate with no number, bar or arrow near it.\n\nThe fact-checker killed three claims from the original brief, and the copy reflects that. All four turnout figures were unverifiable and were replaced with KUAC's sourced 20 to 25 percent range. An amendment I had briefed as conceding parity does not exist and runs the other way. The 2,706 signatures are a submission total after an earlier petition fell short, not a clean surplus, so no surplus framing appears anywhere.\n\nSIX BUILD ROUNDS, AND WHAT ROUND 3 NEARLY SHIPPED. Three hard fails were\ncaught by the review rooms and fixed. Slide 08 dropped the word APPLICATIONS\nfrom two absentee deadline rows, on the one slide a voter acts from, which\nchanged what both rows meant. Slide 07's spec plate placed its field markers\nby arithmetic off a rectangle instead of measuring the type, the stamp text\nwrapped to five lines, and the never-struck field landed on AMENDABLE . NO, so\nthe slide argued the inverse of the two claims it was built from. Slide 03's\nshipped thumbnail and its full-size render came from two different builds,\nbecause round 3 re-ran render.py and never re-ran assemble.py. All three are\nfixed and verified in the pixels.\n\nTHE PANORAMA IS NOW REAL, AND IT WAS NOT BEFORE. The artwork ledger declared a\npanorama as this deck's continuity device for six rounds while the pixels\ncarried nothing of the kind, and both the flow room and the scorer found it\nindependently. Round 6 made it a function rather than an intention, one\ncontinuous curve across all 9720 px of the deck, so the lit lane's height and\nslope at the right edge of each slide equal its height and slope at the left\nedge of the next, by construction. Verified off the shipped PNGs rather than\nby eye, seam by seam. 3 of 8 seams carried a matching lit band before, 8 of 8\nnow, with peak offsets of 4 to 20 design px. It also gives every right edge the\nswipe cue the deck had nowhere, and it gives the four flattest frames the one\ncompositional event they lacked.\n\nKNOWN SHORTFALLS THAT STILL SHIP. The threshold rule, the red 1 percent line,\nis below thumb visibility on several slides, so a reader can't track it as one\nobject across the deck. Slide 07's lock bar was not dropped or widened, and\nslide 03 still has no drafting break symbol at its bar terminal. A bespoke\nobject was drafted for slide 02 to break its flatness and was REVERTED, because\nit read as a metal plate floating on a stage and this deck's art direction is\none continuous medium; that reversion is recorded in the storyboard rather than\nquietly dropped. These are the first work of the next run.\n\nSCORED 8.52 AGAINST A THRESHOLD OF 7.7, and it clears the unrelaxed 8.3 as\nwell. No hard fail. One contrast number is worth your eye before you post.\nSlide 08's kicker, THE DATES THAT ARE STILL OPEN, measures 3.6 to 1 at its\nworst point, where the dark band lightens under the last two words. Round 6\nraised both kickers to a brighter cream and on slide 08 it did not fully take.\nThe scorer ruled it a narrow pass, because a kicker is a repeated eyebrow and\nnot primary text, the 64.5 px headline and the 28 px date register on the same\nslide are both well clear, and qa.py grades it a warn. A stricter reader could\nrule the other way. It is a one line plate fix if you want it.\n\nOTHER THINGS THE SCORER NAMED AND I AGREE WITH. Body type is 29 px on slides 03\nand 04, under the 32 px floor. alaskaaihq.com is 22 px on slide 09, under the\n24 px floor. DRAWN TO SCALE sits 63 px from the bottom edge on slides 03, 04\nand 08, inside LinkedIn's page counter zone. Slide 04's last body line and the\nstanding fixture touch. None of these blocks the post and all of them are the\nnext run's first work.\n\nIF SOMEONE PUSHES BACK. The cover reads ZERO DISCREPANCY with the sample scale\non the line directly under it. If anyone takes it for a full recount, the\nanswer is slides 03 and 06, two precincts of 32 plus the early voting station.\nNote that slide 06 prints Thirty were not while slide 03 deliberately refuses\nto print a precinct count for the remainder. Both are defensible, the first is\n32 minus 2, but do not let the two be argued against each other."
+}
