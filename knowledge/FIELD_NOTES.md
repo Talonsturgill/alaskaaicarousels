@@ -5686,3 +5686,49 @@ the band from 41 to 46 and the ratio from 60 to 65.
 
 The general form: **when a contrast fix and a craft metric disagree, look for
 the thing the contrast fix PAINTED, not for something else to add.**
+
+## 2026-09-02 (run No.48, round 6) — A CONTINUITY DEVICE HAS TO BE A FUNCTION
+
+The artwork ledger let this deck declare `panorama` as its primary continuity
+device for six rounds while the pixels carried nothing of the kind. The flow
+room and the scorer found it independently, in the same words: no two adjacent
+frames shared a continuing edge, and no right edge carried anything cut.
+
+**A panorama cannot be an intention. It has to be a FUNCTION OF GLOBAL X.**
+`seamY(globalX)` with `globalX = (n-1)*W + x` makes the seam true by
+construction: every slide draws the same curve over its own window, so the
+lane's height and slope at x = W on slide n are the same number as at x = 0 on
+slide n+1, without any slide knowing anything about its neighbours. Nobody is
+ever going to butt nine 1080 px frames together and check by eye, which is
+exactly why the eye is the wrong instrument for this.
+
+**And then measure it off the shipped PNGs.** Read the expected lane height at
+each seam out of the browser, then search the last 30 px of slide n and the
+first 30 px of slide n+1 for a luminance peak near it. That check is what caught
+the first version: relying on the slide's own sheets to carry the lane left 4 of
+8 seams dark at the frame edge, because a sheet only reaches x = 1080 when its
+reach noise happens to send it there. The lane had to carry sheets of its own.
+After: 8 of 8, offsets 4 to 20 design px.
+
+**A FILLED polygon is not covered by breaking its strokes.** Every slide broke
+its arris strokes around reserved type and none of them broke the face fills, so
+where one sheet face ended mid-block its tonal step ran straight through the
+letterforms. Slide 02 shipped a hard rule through the middle of a mono chip,
+ending at x 675 because that is where that sheet's reach ended, and it read as a
+strike-through. The fix is a per-line lift at the very end of the art: run the
+lay BETWEEN the lines, then lift each line's own box back to the lit value.
+Per LINE, never per block: an element rect is a rectangle the size of the whole
+block, which is the plate this was trying to kill in the first place.
+
+**bespoke_check is right when it catches your new helper.** Pasting the three
+seam functions into all nine slides took median pairwise art similarity from
+0.458 to 0.674 and failed the gate, correctly. Shared machinery belongs in
+`assets/js/`, and moving the five reserve helpers every slide had been carrying
+a verbatim copy of went with it. Do not answer that gate by rewording code.
+
+**And the oldest lesson, arrived at from the other direction.** A bespoke spring
+clamp was drafted for slide 02 to break its flatness. It rendered as a metal
+plate floating in the right column and read as a screen, because this deck's art
+direction is ONE CONTINUOUS MEDIUM and never objects on a stage. Same finding as
+round 2's spike, reached six rounds later by a different route: a medium stops
+being a medium the moment you put an object on it.
