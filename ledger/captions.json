@@ -1,480 +1,490 @@
 {
-  "_spec": {
-    "purpose": "Caption variety-engine ledger. The caption room MUST read this before writing and the showrunner MUST append after delivery. Divergence rules (hard constraints): opening_move must differ from the last 6 entries; structure from the last 3; closing_move phrasing from the last 1; the caption's first 4 words must not match any of the last 12 entries (caption_check --ledger enforces mechanically). Novel moves are encouraged, name them NEW:<name> and add them to CAPTION_CRAFT.md.",
-    "entry_schema": {
-      "run_date": "YYYY-MM-DD",
-      "opening_move": "from CAPTION_CRAFT.md",
-      "structure": "from CAPTION_CRAFT.md",
-      "closing_move": "fork|stake|prediction|who-decides|price|NEW:...",
-      "first_words": "first 8 words of the shipped caption",
-      "hook_type": "free text"
-    }
+ "_spec": {
+  "purpose": "Caption variety-engine ledger. The caption room MUST read this before writing and the showrunner MUST append after delivery. Divergence rules (hard constraints): opening_move must differ from the last 6 entries; structure from the last 3; closing_move phrasing from the last 1; the caption's first 4 words must not match any of the last 12 entries (caption_check --ledger enforces mechanically). Novel moves are encouraged, name them NEW:<name> and add them to CAPTION_CRAFT.md.",
+  "entry_schema": {
+   "run_date": "YYYY-MM-DD",
+   "opening_move": "from CAPTION_CRAFT.md",
+   "structure": "from CAPTION_CRAFT.md",
+   "closing_move": "fork|stake|prediction|who-decides|price|NEW:...",
+   "first_words": "first 8 words of the shipped caption",
+   "hook_type": "free text"
+  }
+ },
+ "entries": [
+  {
+   "run_date": "2026-07-08",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "Alaska got more than 500 public comments on",
+   "hook_type": "statement",
+   "furniture": true,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
   },
-  "entries": [
-    {
-      "run_date": "2026-07-08",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "Alaska got more than 500 public comments on",
-      "hook_type": "statement",
-      "furniture": true,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-09",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "A hand-clicker on a Bristol Bay tower has",
-      "hook_type": "statement",
-      "furniture": false,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-10",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "Three Alaska volcanoes are on elevated alert at",
-      "hook_type": "statement",
-      "furniture": true,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-11",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "On July 10, state regulators rejected Alaska's plan",
-      "hook_type": "statement",
-      "furniture": true,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-12",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "Five teams are racing across 1,000 square kilometers",
-      "hook_type": "statement",
-      "furniture": false,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-13",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "Golden Valley Electric's board weighs $120 million in",
-      "hook_type": "statement",
-      "furniture": false,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-14",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "An Alaska Native-owned firm just won a $24.96M",
-      "hook_type": "statement",
-      "furniture": false,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-15",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "Alaska just won a decade-scale federal bet to",
-      "hook_type": "statement",
-      "furniture": false,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-17",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "Quinhagak has no road out, so the roadless",
-      "hook_type": "statement",
-      "furniture": true,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-18",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "A data center on the North Slope cannot",
-      "hook_type": "statement",
-      "furniture": true,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-19",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "Under one road in Utqiagvik, the northernmost US",
-      "hook_type": "statement",
-      "furniture": true,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-20",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "A Kenai school district bought an $8,300 AI",
-      "hook_type": "statement",
-      "furniture": true,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-21",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "Cook Inlet has about 331 belugas left, and",
-      "hook_type": "statement",
-      "furniture": true,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-22",
-      "opening_move": "LEGACY STANDARD",
-      "structure": "hook-context-deckpointer-question",
-      "closing_move": "bolted question",
-      "first_words": "Alaska is moving to hand 31 square miles",
-      "hook_type": "statement",
-      "furniture": true,
-      "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
-    },
-    {
-      "run_date": "2026-07-23",
-      "opening_move": "DEFINITION SUBVERSION",
-      "structure": "PUNCH THEN PROOF",
-      "closing_move": "who-decides",
-      "first_words": "Data sovereignty is not a privacy",
-      "hook_type": "definition-subversion statement",
-      "furniture": "none",
-      "note": "Broke the long LEGACY STANDARD / hook-context-deckpointer-question / bolted-question streak. Hook 42 chars, 847 total, who-decides close (the Tribe that owns it vs the vendor that ships the model)."
-    },
-    {
-      "run_date": "2026-07-24",
-      "opening_move": "LEDGER TALLY",
-      "structure": "INVERTED PYRAMID",
-      "closing_move": "PRICE",
-      "first_words": "More than 500 comments landed on a",
-      "hook_type": "ledger-tally statement",
-      "furniture": "none",
-      "note": "Caption room: 2 directors (LEDGER TALLY/INVERTED PYRAMID/PRICE vs CONTRADICTION/COLD-OPEN-WARM-CLOSE/FORK), critic picked A with one fix (dropped the verbatim cover phrase 'one office holds the pen' and the '500 to 12' overstatement, replaced with 'ran better than 40 to 1 against, and one state agency still holds the signature'). Hook 96 chars, 898 total (near the 900 ceiling), price close 'what is that public land honestly worth to lease away for half a century?'."
-    },
-    {
-      "run_date": "2026-07-25",
-      "opening_move": "COLD NUMBER",
-      "structure": "COUNTDOWN",
-      "closing_move": "stake",
-      "first_words": "24 days. Then Alaska's primary narrows a field",
-      "hook_type": "bare-interval cold number, 8 chars, numeral-first",
-      "furniture": "none",
-      "note": "Caption room ran 2 directors (CONTRADICTION/BRAID/who-decides vs COLD NUMBER/COUNTDOWN/stake). Critic shipped B with one fix, replacing a closing question that overstated a single June survey non-response about named individuals ('will not say a word about AI') with 'left June's AI questions blank', plus a one-word date correction from 'last week' to 'this week' to agree with slide 01. RECORDED DEMERITS on the winner: COUNTDOWN was executed as bumpers around an inverted-pyramid body rather than time pressure inside the argument, and 'compelled by law' echoes the slide 06 bay label. Two consecutive runs have now opened on a number (07-24 LEDGER TALLY, 07-25 COLD NUMBER), so a third numeric opening is barred on sight. The losing candidate's best line, 'One list exists because a law demanded it. The other because a reporter asked.', is worth grafting in a future run."
-    },
-    {
-      "run_date": "2026-07-26",
-      "opening_move": "MAP MOVE",
-      "structure": "BRAID",
-      "closing_move": "FORK",
-      "first_words": "Cordova sits on Prince William Sound",
-      "hook_type": "map-move locator, place plus a topological fact",
-      "notes": "Two directors. Candidate A (THE ABSURD DETAIL / ZOOM / WHO DECIDES) was killed by the critic for echoing the 07-17 entry's no-road-out sentence frame with the town swapped, and for delivering MAP MOVE while claiming THE ABSURD DETAIL. Winner B took one fix installing the Railbelt absence line. Recorded demerits, the fork's second horn is a dead bill, and both directors opened on the word Cordova."
-    },
-    {
-      "run_date": "2026-07-29",
-      "opening_move": "SCENE",
-      "structure": "ZOOM",
-      "closing_move": "who-decides",
-      "first_words": "On a Cook Inlet salmon boat this month,",
-      "hook_type": "scene, one fish entering a machine, physical open with no number in the first sentence",
-      "furniture": "none",
-      "notes": "Two directors (SCENE/ZOOM/who-decides vs CONTRADICTION/COLD-OPEN-WARM-CLOSE/stake). The critic killed B for a deck-does-X pointer sitting in the same breath as the closing question, for misdescribing the deck, for putting NERA in El Segundo when it is piloted at the Tacoma plant, and for an opening absolute that tips into the grievance frame the brief bans. Winner A took the critic's one fix, replacing an invented boat count. The showrunner then made two ACCURACY corrections the copywriter flagged, both of which the slides already hedged and the caption did not: 'drift boat' to 'salmon boat' (C03 says Cook Inlet salmon boats, not drift), 'a box the size of a refrigerator' to 'a steel box on deck' (C09 describes the EARLIER PSDN unit, not the Alaska PSDN-S), and 'sells at an undisclosed premium' to 'reportedly sells at a premium' (C29 is the weakest source in the set). RECORDED DEMERITS: 'Zoom out.' named the structure instead of performing it and was cut; the hook still opens on the words Cook Inlet, eight days after the 07-21 caption opened on them; who-decides is the second who-decides in seven runs and is no longer fresh. The losing candidate's best line, 'Those hours are the product.', is worth grafting."
-    },
-    {
-      "run_date": "2026-07-30",
-      "opening_move": "CONTRADICTION",
-      "structure": "PUNCH THEN PROOF",
-      "closing_move": "PRICE",
-      "first_words": "Enstar is warning about rolling blackouts and",
-      "hook_type": "contradiction inside one company, the same utility warning about blackouts and fielding data center interest",
-      "furniture": "none",
-      "notes": "Two directors (CONTRADICTION/PUNCH THEN PROOF/PRICE vs THE ABSURD DETAIL/INVERTED PYRAMID/FORK). Critic shipped A with one fix. It killed A's original close, 'what is one row honestly worth to a grid whose operators are warning about the winter?', as the 07-24 PRICE close with the nouns swapped, and replaced it with 'So what would Alaska's one row have to be worth, in dollars, before it counts as a federal answer to this winter?'. It killed B for claiming THE ABSURD DETAIL and delivering a thesis summary, for a fork whose second horn ('a footnote the state should stop counting as a win') presupposes an unverified Alaskan reaction, and for dropping C14, the only sentence welding AI load to the energy crunch. RECORDED DEMERITS on the winner: the room produced a PRICE close that was a noun-swap of 07-24's and only the critic caught it, so the room is reading the ledger for move LABELS and not for PHRASING, and PRICE should be treated as burned for several runs. Richard Wies is never named in the caption though C10 and C11 exist. UAF is never expanded, for an audience that includes Outside federal readers. Enstar is never glossed as a gas utility despite being the first word. The showrunner reflowed the opening onto two lines so the hook completes inside the 140 fold, because caption_check measures the whole first LINE and the single-paragraph version measured 168. THIRD CONSECUTIVE RUN with no deck-summary line despite brand.yaml requiring one; the scorer capped Copy at 6.0 for it. Losing candidate's best line, worth grafting once it has evidence behind it, 'Federal AI money reaching Alaska usually means AI coming for Alaska's power.'"
-    },
-    {
-      "run_date": "2026-07-31",
-      "opening_move": "THE ABSURD DETAIL",
-      "structure": "Q AND A",
-      "closing_move": "prediction",
-      "first_words": "Alaska's statute, as codified, still prints a",
-      "hook_type": "absurd detail, a live statute printing a number that stopped being law four years ago",
-      "notes": "Two directors (THE ABSURD DETAIL/Q AND A/prediction vs TIMELINE COLLAPSE/INVERTED PYRAMID/stake). Critic shipped A with one fix, replacing 'Six of its employees gave personally' with 'Six of its employees gave $372,000, not the company', the same 90 characters, because the original left 'its' with an ambiguous antecedent and let a reader retro-fit the six onto the $100,000 sentence 300 characters above. Q AND A had never shipped in twenty runs. The critic killed B for opening its close on 'So what' one run after 07-30's close opened on 'So what', for declaring INVERTED PYRAMID and writing plain chronology, for declaring a stake close and writing a fork, for a declared deck-summary line saying 'the 2026 returns' when the returns are 2006 and the 2026 returns do not exist, and for a hook claiming 'no cap at all' when the court upheld the party-to-candidate limit. RECORDED DEMERITS on the winner: no fairness counterweight in the caption at all, which offloads the whole promise onto slide 04's four totals at one scale, so the deck has to keep it and does; the close rhymes with an interior question; not one human being is named; 'Measure 1's sponsors are buying no ads' states ADN's characterization as flat fact; the second-deck-in-seven-days line is on the cover but not in the caption; #AKleg is a legislature tag on a ballot-measure deck; and 894 of 900 chars leaves no room for a late correction, the second time in eight runs the winner shipped within six characters of the ceiling. FIRST RUN WITH THE DECK-SUMMARY LINE RESTORED after three consecutive lapses."
-    },
-    {
-      "run_date": "2026-08-01",
-      "opening_move": "SECOND PERSON STAKE",
-      "structure": "BRAID",
-      "closing_move": "fork",
-      "first_words": "If a state letter about your",
-      "hook_type": "second-person stake, literally true because silence defaults to inactive",
-      "furniture": "none",
-      "notes": "Two directors (QUOTE FIRST/COUNTDOWN/who-decides vs SECOND PERSON STAKE/BRAID/fork). Critic killed A because its COUNTDOWN was delivered as bumpers rather than time pressure inside the argument, and because its who-decides was the third in nine runs. B shipped with one fix, replacing 'You can still vote a questioned ballot.' with 'The state's answer is a questioned ballot.', so the house voice stopped promising an outcome no source describes adjudicating. 889 chars, hook 101."
-    },
-    {
-      "run_date": "2026-08-02",
-      "opening_move": "QUOTE FIRST",
-      "structure": "COUNTDOWN",
-      "closing_move": "stake",
-      "first_words": "Leverage technology, such as artificial intelligence,",
-      "hook_type": "quote first, the state's own order naming the thing its notices never name",
-      "furniture": "none",
-      "notes": "Two directors (QUOTE FIRST/COUNTDOWN/stake vs DEFINITION SUBVERSION/ZOOM/prediction). Critic shipped A with one fix, replacing a close that implied a machine IS doing the transcribing (no verified claim says so) and that attached the BIDDERS' 24 August deadline to boroughs and tribes, who are contract users and not bidders. FIRST COUNTDOWN IN THREE ATTEMPTS THAT ESCAPED THE BUMPER FAILURE, per the critic, because the clock is load-bearing inside the argument sentences rather than bracketing them; it should still sit out several runs. The showrunner then made one ACCURACY correction the critic flagged but had no fix left to spend, 'Alaska has 22 days to bid' to 'Vendors have 22 days to bid', because Alaska is buying and vendors bid. RECORDED DEMERITS: the caption's first word is 'Leverage', a brand.yaml banned verb, surviving only because it is the State's own verb inside a verbatim quotation of C13; the scorer ruled it clean on the merits and noted that caption_check.py never scans for it, so no machine cleared it. 'the one order that prints the word' leaves 'the word' with three antecedents. Joshua Hartman is on slide 02 and nowhere in the caption, the second time in three runs the post copy names not one human being. Eielson, 3,967 acres and the 10 August federal window are absent from the caption entirely, two full slides sold by nothing. BOTH directors independently opened their deck-summary line with the word 'Inside', one run after the line was restored from a three-run lapse, so it is already calcifying; the next run must not open its summary on 'Inside'. Losing candidate's best line, worth grafting: 'So may a borough. So may the courts and federally recognized tribes.'"
-    },
-    {
-      "run_date": "2026-08-03",
-      "opening_move": "DEFINITION SUBVERSION",
-      "structure": "ZOOM",
-      "closing_move": "who-decides",
-      "first_8_words": "AI supply chain here means one item on",
-      "hook_type": "definition subversion",
-      "chars": 898,
-      "demerits": "The critic's ruling was applied (the closing line was replaced to kill an unsupported 'village bodies on record' assertion, and the summary's 'Inside,' opener was deleted per the 08-02 ledger note). The scorer then recorded three standing demerits repeated anyway: who-decides is now the FOURTH in twelve runs and should be treated as burned for six; 898 of 900 chars is the third time in nine runs the caption shipped within six characters of the ceiling; and not one human being is named though the deck owns two quotable speakers."
-    },
-    {
-      "run_date": "2026-08-04",
-      "opening_move": "LEDGER TALLY",
-      "structure": "INVERTED PYRAMID",
-      "closing_move": "fork",
-      "first_words": "One column tallies 119.7 megawatts becoming 120.0.",
-      "hook_type": "ledger tally, two columns posted and then refused a common unit in the same breath",
-      "note": "The showrunner's brief contained TWO errors and the room caught both. Director B was wrongly told LEDGER TALLY had never shipped (it ran 2026-07-24 with INVERTED PYRAMID and a PRICE close) and reported that unprompted, against its own interest, rotating the close to FORK. The critic then killed candidate A, whose assigned DEFINITION SUBVERSION plus PUNCH THEN PROOF was an exact two-axis repeat of 2026-07-23 with an opening move only ONE run old, inside its six-entry window. Assigning a move one run after it shipped was a showrunner mistake, not a judgement call."
-    },
-    {
-      "run_date": "2026-08-05",
-      "opening_move": "LETTER FRAME",
-      "structure": "COLD OPEN, WARM CLOSE",
-      "closing_move": "NEW:SUFFICIENCY TEST",
-      "first_words": "To the Administration for Native Americans. You stood",
-      "first_8_words": "To the Administration for Native Americans. You stood",
-      "hook_type": "letter frame, addressed to the agency, with the absence stated in the third sentence",
-      "chars": 879,
-      "notes": "Two directors. Candidate A (COLD NUMBER / PUNCH THEN PROOF / PRICE) was killed by the critic under the anti-template law. Its close reproduced the 2026-07-24 PRICE close in CAPTION_CRAFT's own menu wording, a noun-swap the 07-30 critic had already killed once, and its numeric opening sat one run after 08-04's. It also mis-sourced the five project areas to the Federal Register.",
-      "demerits": "THE SHOWRUNNER'S BRIEFS MISSED THREE STANDING LEDGER INSTRUCTIONS and the critic caught all three. PRICE was declared burned on 07-30, who-decides was declared burned for six runs on 08-03, and 08-02 barred a deck summary from opening on the word Inside. BOTH directors opened theirs on Inside, which makes it a room-level habit and the second consecutive run it had to be caught by hand. The lesson is the one 08-04 already recorded, that a brief asserting a ledger fact should QUOTE the ledger rather than paraphrase it, and this run proves paraphrase is not the only failure mode, because these instructions were not in the fields the brief read at all."
-    },
-    {
-      "run_date": "2026-08-06",
-      "opening_move": "TIMELINE COLLAPSE",
-      "structure": "Q AND A",
-      "closing_move": "NEW:CONDITION WRITE-IN",
-      "first_words": "April 10th, the Air Force offered about 4,700 acres",
-      "first_8_words": "April 10th, the Air Force offered about 4,700",
-      "chars": 759,
-      "hook_type": "timeline collapse, two beats four months apart with the same blank in both documents",
-      "furniture": "none",
-      "notes": "THE CRITIC KILLED BOTH FIRST CANDIDATES AND WAS RIGHT. Candidate A (CONTRADICTION/PUNCH THEN PROOF/prediction) closed on 'What shows up first, a committed tenant or a supplier with gas to sell?', which is CAPTION_CRAFT's own prediction example with one verb swapped and the noun 'tenant' RETAINED, the THIRD occurrence of this exact failure after 07-30 and 08-05. Its shape was also an exact paragraph-architecture repeat of 2026-07-30 on the same beat with the same cast. Candidate B (MAP MOVE/BRAID/stake) closed on 'Would you offer 19,950 acres before a power source is committed?', a noun-swap of the stake example AND a hard discipline fail, because a rhetorical question with one socially available answer is an adequacy verdict wearing a question mark, aimed at the one signed primary source arguing the opposite. B's MAP MOVE was also a place-name list in which geography never argued. THE SHOWRUNNER'S BRIEF MISSED FIVE STANDING INSTRUCTIONS and the critic caught all five: name a human being (a demerit recorded 07-30, 08-02 and 08-03, and both candidates reduced Brandon Brefczynski to a job title while quoting his list); name the agency the reader must write to (neither named DNR, whose window IS the ask); gloss Enstar as a gas utility (07-30 demerit); these are a LEASE offer and a PRELIMINARY DECISION, not sales; and the seven items belong to the PROJECT, not to the acreage. The shipped caption is a third reassigned round. TIMELINE COLLAPSE had never shipped in 27 runs. The close was INVENTED rather than selected because the menu examples are demonstrably the template directors fill. BURNED going forward: PRICE (07-30), who-decides (08-03, six runs), and now both the prediction and stake MENU EXAMPLES as literal source text.",
-      "demerits": "A documentation conflict the critic surfaced and the maintainer should resolve. brand.yaml comma_discipline and CLAUDE.md set the budget at 6.2 commas per 100 WORDS; brand.yaml linkedin_post.comma_per_100_chars and CAPTION_CRAFT set it at 1.05 per 100 CHARACTERS. Nothing turned on it this run (3 commas, passes both) but it will."
-    },
-    {
-      "run_date": "2026-08-07",
-      "opening_move": "CONTRADICTION",
-      "structure": "PUNCH THEN PROOF",
-      "closing_move": "NEW:MEASUREMENT READ",
-      "first_words": "Alaska's elections director told lawmakers more than 600 citizens",
-      "first_8_words": "Alaska's elections director told lawmakers more than 600",
-      "chars": 869,
-      "hook_type": "contradiction inside one signed document, 600 citizens came off the list and the official who says so won't restore them herself",
-      "furniture": "none",
-      "notes": "THE CRITIC KILLED BOTH FIRST CANDIDATES FOR THE SAME FACTUAL ERROR and was right both times. Each had invented a mechanism the record does not describe, that the more than 600 were found BECAUSE they wrote back ('every one of them wrote back'), when C01's own note says plainly that 600 is NOT the count who contacted the Division. Two independent directors reached for the same false causal bridge because the story is more satisfying with it, which is the tell. The shipped caption is a third reassigned round and it never explains how the 600 were identified, because no source does. The close was INVENTED rather than selected: MEASUREMENT READ asks what a number is a measure of ('Against 580,000 records compared, what is more than 600 a measure of?') rather than forecasting, taking a stake or asking who decides, all three of which are burned. One soft line survives, paragraph 2's 'Both sit in one August 6th letter' leans on a referent the single-sentence lead only half establishes.",
-      "demerits": "A single-sentence lead paragraph makes 'Both sit in' work harder than it should. Next CONTRADICTION opening should name both halves inside the lead."
-    },
-    {
-      "run_date": "2026-08-08",
-      "opening_move": "THE ABSURD DETAIL",
-      "structure": "INVERTED PYRAMID",
-      "closing_move": "NEW:ELIGIBILITY TEST",
-      "first_8_words": "Solar panels and a Starlink system on a",
-      "hook_type": "absurd detail, consumer hardware on a lake float doing statutory fish counting"
-    },
-    {
-      "run_date": "2026-08-09",
-      "opening_move": "COLD NUMBER",
-      "structure": "COUNTDOWN",
-      "closing_move": "fork",
-      "first_words": "15 minutes a day. That is the routine",
-      "hook_type": "statement",
-      "note": "Carries the update disclosure in the caption body, which two scoring rounds asked for."
-    },
-    {
-      "run_date": "2026-08-12",
-      "opening_move": "QUESTION FIRST",
-      "structure": "ZOOM",
-      "closing_move": "NEW: PRECONDITION AUDIT",
-      "first_words": "What does Cordova do with power it",
-      "hook_type": "question",
-      "chars": 844,
-      "hook_chars": 65,
-      "note": "Commas 0.87 per 100 chars against the 1.05 budget, which retires the near-ceiling demerit the ledger recorded three times in nine runs. The lint's one advisory stands: it opens on a question and declarative openers test better. The flow critic argued the caption's closing precondition question competes with slide 09's own ask at the same moment; kept the room's winner and recorded the objection rather than overriding it after the gate had passed."
-    },
-    {
-      "run_date": "2026-08-13",
-      "opening_move": "DEFINITION SUBVERSION",
-      "structure": "BRAID",
-      "closing_move": "fork",
-      "first_words": "Daily, at a site called The Daily Anchorage,",
-      "first_8_words": "Daily, at a site called The Daily Anchorage,",
-      "chars": 864,
-      "hook_chars": 73,
-      "hook_type": "definition subversion, the word daily defined as a nineteen day range",
-      "note": "Critic picked B over A and spent its one fix on the closing question, which had a single socially available answer and rested on an Anchorage address no claim supports. Recorded demerits from the critic, all real: fork is now the fourth closing fork in thirteen runs and should be treated as burned alongside PRICE and who-decides; both directors independently chose the identical three hashtags; 'Each article checked' is pronoun-free self-narration that survived only because C07's two-article hedge requires it. The showrunner trimmed 56 characters to clear the 900 ceiling and used the trim to restore 'all Australian' to the deck summary line, which the critic had flagged as the run's strangest verified fact falling out of the caption entirely."
-    },
-    {
-      "run_date": "2026-08-14",
-      "opening_move": "MAP MOVE",
-      "structure": "COLD OPEN, WARM CLOSE",
-      "closing_move": "SUFFICIENCY TEST",
-      "first_words": "Alaska is 570,641 square miles of land, about",
-      "hook_type": "map move, the largest state's land area set against the smallest state's, with the same one-award ceiling on both",
-      "note": "The caption-critic killed candidate A for a PRICE close, which the ledger had burned on 2026-07-30 and restated on 2026-08-06, and whose phrasing was the 2026-07-24 close with the nouns swapped. That is the fifth occurrence of the same failure. The showrunner's assignment brief barred only the last run's fork and missed the standing burn, which is itself the lesson repeating. One fix was spent replacing an unsourced Anchorage with the solicitation's two eligible categories. Director B declared the close a prediction and it is not one, it forecasts nothing, so it is logged honestly as a sufficiency test. CORRECTED at Phase 12, on the same day and by the upgrade this run built. The close was logged as NEW:SUFFICIENCY TEST and it is not new, the identical move shipped on 2026-08-05, nine days earlier. The NEW: prefix is a claim of novelty and nothing had ever checked one, so this is the sixth occurrence of the caption room's standing failure rather than the fifth. The caption itself is unchanged and was never the problem; only the label was false. caption_check.py now grades a NEW: close against the ledger and fails a repeat, which is how this was found."
-    },
-    {
-      "run_date": "2026-08-15",
-      "opening_move": "SCENE",
-      "structure": "PUNCH THEN PROOF",
-      "closing_move": "NEW:PATIENCE WINDOW",
-      "first_words": "At 10:00 a.m. on August 5th,",
-      "hook_type": "scene, a room number and a clock, then the count of AI bills on that morning's agenda",
-      "note": "The caption-critic rejected candidate B for repeating the LEDGER TALLY + INVERTED PYRAMID pairing shipped 2026-07-24 and 2026-08-04, and for deriving an absence from a 403, which the deck refuses to do. The winner opens on the room and the clock and closes by conceding that a plan and a study is the normal first move, then asking how long that stays an answer. The closing move is logged NEW:PATIENCE WINDOW and the prefix was CHECKED against the ledger this time rather than asserted, which is the correction the 2026-08-14 entry asked for."
-    },
-    {
-      "run_date": "2026-08-16",
-      "opening_move": "LEDGER TALLY",
-      "structure": "ZOOM",
-      "closing_move": "NEW:DISCLOSURE STANDARD",
-      "first_words": "864 organizations sent nearly",
-      "hook_type": "a count of applicants against the size of the fund they applied to",
-      "note": "The caption-critic took candidate B over A and required one fix. It also flagged, independently of the showrunner, that caption_check's DATE table has no year exemption and so rejects the plain 'October 30, 2026' form that brand.yaml and CAPTION_CRAFT both allow."
-    },
-    {
-      "run_date": "2026-08-18",
-      "opening_move": "TIMELINE COLLAPSE",
-      "structure": "INVERTED PYRAMID",
-      "closing_move": "NEW:PROVING CREDIT",
-      "first_words": "In 2021 one Alaska airline let a machine",
-      "hook_type": "causation inversion",
-      "note": "NEW:PROVING CREDIT is an ownership/credit close (who owns what the frontier de-risks, the carrier that flew the risk or the vendor banking the contract). Distinct from who-decides (a vote) and PRICE. Both caption directors independently converged on this close; the critic trimmed candidate B from 1065 to 867 chars to clear the 900 band."
-    },
-    {
-      "run_date": "2026-08-19",
-      "opening_move": "MEASURED SHARE, THEN THE ROOM",
-      "structure": "CLAIM THEN COUNTER-CLAIM",
-      "closing_move": "NEW:INSTRUMENT CHOICE",
-      "first_words": "73 percent of Alaska likely voters back",
-      "hook_type": "unattached majority",
-      "note": "NEW:INSTRUMENT CHOICE closes by asking which INSTRUMENT a measured preference should get, not what the reader thinks of the outcome. Distinct from who-decides (a vote), PRICE, and NEW:PROVING CREDIT (No.36). The caption room's critic rejected both first candidates for opening on the council rather than on the number."
-    },
-    {
-      "run_date": "2026-08-20",
-      "opening_move": "QUOTE FIRST",
-      "structure": "BRAID",
-      "closing_move": "NEW:CLASSIFICATION QUESTION",
-      "first_words": "\"Search and rescue\" appears once in Proclamation 11055",
-      "hook_type": "single mention against a silence",
-      "note": "The caption critic killed both first-round candidates for closing on a procurement fork wearing a NEW: label. The reassigned round opened on the proclamation's own sentence and closed on a CLASSIFICATION question, which asks which tariff band a thing falls in rather than what the reader thinks of the outcome. Distinct from NEW:INSTRUMENT CHOICE (37), NEW:PROVING CREDIT (36) and PRICE."
-    },
-    {
-      "run_date": "2026-08-21",
-      "opening_move": "NEW:OBJECT FIRST",
-      "structure": "REVERSE CHRONOLOGY",
-      "closing_move": "NEW:WHAT WOULD YOU MEASURE FIRST",
-      "first_words": "DeepGreen's filing names a Universal Docking Cradle",
-      "hook_type": "a named component of the applicant's own filing, paired with the measurement it is missing",
-      "note": "The caption critic killed candidate A outright for reproducing the 2026-08-09 hook frame, <figure>. That is the <noun phrase>, with the noun swapped, and for being the third count-first opening in six runs. It also caught the winner attributing a FERC finding to the wrong object and dating a Maine reduction to a month the claim does not carry. Both fixed. It recorded that BOTH directors opened the deck summary with the identical three words, The deck sets, and that both chose the same three hashtags, so bar that opener from the next run. The assigned close was a threshold test, which is a sufficiency test with a size variable and was already burned; it was replaced with a question the deck can actually collect answers to."
-    },
-    {
-      "run_date": "2026-08-25",
-      "opening_move": "COLD NUMBER",
-      "structure": "COUNTDOWN",
-      "closing_move": "NEW:UNBUILT DEFAULT",
-      "first_words": "750 camera feeds is the ceiling Anchorage funded",
-      "hook_type": "cold verified number, 77 chars",
-      "note": "0.53 commas per 100 words against a 6.2 house ceiling. Two critic demerits recorded: both candidates opened the deck summary on the word Inside, barred 2026-08-02 and now a third occurrence; and no human being is named in the caption, the fifth time. The 'Seven days left' line is true only on August 25th and is a maintenance liability if the post slips."
-    },
-    {
-      "run_date": "2026-08-26",
-      "opening_move": "MAP MOVE",
-      "structure": "ZOOM",
-      "closing_move": "NEW:AFTER THE CLOCK",
-      "first_words": "Alaska's coastlines, rivers and lakes get",
-      "hook_type": "place-first sentence naming the surface and its start date, 107 chars",
-      "note": "838 chars, three hashtags, comma rate well inside the 6.2 per 100 words house ceiling. The closing move asks who pays to keep a model running after its award ends, which is the one question the award record cannot answer and every reader with a grant can. Erin Trochim is named, which answers the standing note from No.40 that no human being had appeared in a caption for five runs."
-    },
-    {
-      "run_date": "2026-08-27",
-      "opening_move": "THE ABSURD DETAIL",
-      "structure": "BRAID",
-      "closing_move": "NEW:HEADLINE RIGHTS",
-      "first_words": "Two drones released 374.3 grams",
-      "hook_type": "a mass comparison that makes the quantity absurd before the argument starts",
-      "note": "896 chars, hook 122. NEW:HEADLINE RIGHTS is a first for the ledger, asking which of two figures published by the same company on the same day earns the headline. Standing demerit recurs for the sixth time: no human being is named in the caption."
-    },
-    {
-      "run_date": "2026-08-28",
-      "carousel_no": 43,
-      "opening_move": "SECOND PERSON STAKE",
-      "structure": "CLAIM THEN COUNTER-CLAIM",
-      "closing_move": "NEW:REVISION EXPOSURE",
-      "first_words": "A browser and internet",
-      "hook_type": "the reader can open the thing today, and its makers call it unfinished",
-      "note": "THE ROOM RETURNED NEITHER ON ROUND ONE and the critique is worth keeping. Candidate A, SCENE plus PUNCH THEN PROOF, was killed for reproducing No.34's exact two axis pairing from thirteen days earlier AND for writing a permafrost caption with no AI anywhere in it on an Alaska plus AI page. Candidate B, CONTRADICTION plus INVERTED PYRAMID, wrote the better sentences and then welded C18's lake drainage tool to C16's ice content maps, which are two different things, and closed on a sufficiency test wearing a NEW: label. SUFFICIENCY IS STILL BURNED and a NEW: prefix over a repeat is now the room's oldest failure at seven occurrences. The shipped caption is the single reassigned round the routine allows. Also burned going forward: the openers 'Winter 2025 to 26' and 'Walk out onto the', both spent in this room on candidates that never shipped."
-    },
-    {
-      "run_date": "2026-08-29",
-      "carousel_no": 44,
-      "opening_move": "TIMESTAMPED VERBATIM PAIR",
-      "structure": "SPECIFICATION THEN THE GAP IN IT",
-      "closing_move": "WHO GETS TO ADD A COLUMN",
-      "first_words": "The 19:39 note",
-      "hook_type": "two notes 45 minutes apart, one lower case and one capital, and the deck never says what the code means because no fetched page defines it",
-      "note": "Hook 109 chars, 883 total, 0.61 commas per 100 words against a 6.2 ceiling. Names a human (Kate Stafford). The scorer's standing critique was that three consecutive question headers in the middle made the strongest analytical passage read like a briefing form."
-    },
-    {
-      "run_date": "2026-08-30",
-      "carousel_no": 45,
-      "opening_move": "DEFINITION SUBVERSION",
-      "structure": "PUNCH THEN PROOF",
-      "closing_move": "NEW: THE UNSUPERVISED TASK",
-      "first_words": "AI in Alaska",
-      "hook_type": "the category the reader expects (data centers and gigawatts) set against the cheapest thing on the list, a note taker for about $25,500",
-      "note": "Hook 130 chars, 897 total, 0.82 commas per 100 words against a 6.2 ceiling. Discloses its own method inside the caption ('Eight is a keyword search of award titles and summaries. The seven and one split is a reading, not a state finding.'). The scorer's standing critique is that the fourth paragraph stacks four short declaratives as disclosure rather than argument, and that the caption never names the August 16th deck it updates."
-    },
-    {
-      "run_date": "2026-08-31",
-      "carousel_no": 46,
-      "opening_move": "TIMELINE COLLAPSE",
-      "structure": "ZOOM",
-      "closing_move": "PRECONDITION AUDIT",
-      "first_words": "A subsidy that has paid Alaska's",
-      "hook_type": "then and now in one sentence, with the AI half above the fold",
-      "note": "Candidate B won. The critic killed candidate A on a FALSE PREMISE rather than on mechanics, its close asked the reader to say the answer to the eight questions is yes and the eight are not yes or no questions, one of them being In what ways should it be used. A's close was also a sufficiency test wearing a NEW: label, which is this room's oldest failure. B's one fix was its hook, which carried no AI at all on an Alaska plus AI page, the exact failure the 2026-08-28 entry recorded; the replacement puts AI above the fold and keeps the 1997 to now collapse in one sentence. THE CLOSING MOVE IS LOGGED WITHOUT A NEW: PREFIX ON THE CRITIC'S RULING. It asks what input a process lacks, which is the same operation as NEW:PRECONDITION AUDIT of 2026-08-12, so this is that move's second occurrence and not a new one. Both directors again produced deck summary lines that were one sentence with synonyms swapped, The deck carries and The deck holds. BURN BOTH OPENERS for the next run."
-    },
-    {
-      "run_date": "2026-09-01",
-      "carousel_no": 47,
-      "opening_move": "CONTRADICTION",
-      "structure": "BRAID",
-      "closing_move": "NEW: WHICH COPY IS OPERATIVE",
-      "first_words": "The Air Force offered federal",
-      "hook_type": "the offer and the limit of the answer, in two sentences, with the contradiction complete above the fold",
-      "note": "Candidate B won with one critic fix. TWO THINGS TO BURN FOR THE NEXT RUN, both found by the caption critic rather than by a gate. First, LEDGER TALLY plus INVERTED PYRAMID is an unchecked PAIR repeat: the variety engine checks opening move and structure independently, so the combination reached its third submission and its second kill without any check seeing it. Second, both directors independently produced the same three-item-inventory deck summary formula and both chose two of the same three hashtags, which says the assignment brief is steering harder than it means to. THE CLOSING MOVE IS LOGGED WITH A CAVEAT: the scorer reads 'WHICH COPY IS OPERATIVE' as a two-horn fork joined by 'or', and fork was declared burned on 2026-08-13. Treat it as burned. The scorer also flagged that 'copy' is read as advertising copy before it is read as a duplicate of a document, at the exact moment a reader meets the post's last sentence."
-    }
-  ]
+  {
+   "run_date": "2026-07-09",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "A hand-clicker on a Bristol Bay tower has",
+   "hook_type": "statement",
+   "furniture": false,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-10",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "Three Alaska volcanoes are on elevated alert at",
+   "hook_type": "statement",
+   "furniture": true,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-11",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "On July 10, state regulators rejected Alaska's plan",
+   "hook_type": "statement",
+   "furniture": true,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-12",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "Five teams are racing across 1,000 square kilometers",
+   "hook_type": "statement",
+   "furniture": false,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-13",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "Golden Valley Electric's board weighs $120 million in",
+   "hook_type": "statement",
+   "furniture": false,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-14",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "An Alaska Native-owned firm just won a $24.96M",
+   "hook_type": "statement",
+   "furniture": false,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-15",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "Alaska just won a decade-scale federal bet to",
+   "hook_type": "statement",
+   "furniture": false,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-17",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "Quinhagak has no road out, so the roadless",
+   "hook_type": "statement",
+   "furniture": true,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-18",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "A data center on the North Slope cannot",
+   "hook_type": "statement",
+   "furniture": true,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-19",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "Under one road in Utqiagvik, the northernmost US",
+   "hook_type": "statement",
+   "furniture": true,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-20",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "A Kenai school district bought an $8,300 AI",
+   "hook_type": "statement",
+   "furniture": true,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-21",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "Cook Inlet has about 331 belugas left, and",
+   "hook_type": "statement",
+   "furniture": true,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-22",
+   "opening_move": "LEGACY STANDARD",
+   "structure": "hook-context-deckpointer-question",
+   "closing_move": "bolted question",
+   "first_words": "Alaska is moving to hand 31 square miles",
+   "hook_type": "statement",
+   "furniture": true,
+   "note": "seeded from history 2026-07-22; the shape the variety engine exists to retire"
+  },
+  {
+   "run_date": "2026-07-23",
+   "opening_move": "DEFINITION SUBVERSION",
+   "structure": "PUNCH THEN PROOF",
+   "closing_move": "who-decides",
+   "first_words": "Data sovereignty is not a privacy",
+   "hook_type": "definition-subversion statement",
+   "furniture": "none",
+   "note": "Broke the long LEGACY STANDARD / hook-context-deckpointer-question / bolted-question streak. Hook 42 chars, 847 total, who-decides close (the Tribe that owns it vs the vendor that ships the model)."
+  },
+  {
+   "run_date": "2026-07-24",
+   "opening_move": "LEDGER TALLY",
+   "structure": "INVERTED PYRAMID",
+   "closing_move": "PRICE",
+   "first_words": "More than 500 comments landed on a",
+   "hook_type": "ledger-tally statement",
+   "furniture": "none",
+   "note": "Caption room: 2 directors (LEDGER TALLY/INVERTED PYRAMID/PRICE vs CONTRADICTION/COLD-OPEN-WARM-CLOSE/FORK), critic picked A with one fix (dropped the verbatim cover phrase 'one office holds the pen' and the '500 to 12' overstatement, replaced with 'ran better than 40 to 1 against, and one state agency still holds the signature'). Hook 96 chars, 898 total (near the 900 ceiling), price close 'what is that public land honestly worth to lease away for half a century?'."
+  },
+  {
+   "run_date": "2026-07-25",
+   "opening_move": "COLD NUMBER",
+   "structure": "COUNTDOWN",
+   "closing_move": "stake",
+   "first_words": "24 days. Then Alaska's primary narrows a field",
+   "hook_type": "bare-interval cold number, 8 chars, numeral-first",
+   "furniture": "none",
+   "note": "Caption room ran 2 directors (CONTRADICTION/BRAID/who-decides vs COLD NUMBER/COUNTDOWN/stake). Critic shipped B with one fix, replacing a closing question that overstated a single June survey non-response about named individuals ('will not say a word about AI') with 'left June's AI questions blank', plus a one-word date correction from 'last week' to 'this week' to agree with slide 01. RECORDED DEMERITS on the winner: COUNTDOWN was executed as bumpers around an inverted-pyramid body rather than time pressure inside the argument, and 'compelled by law' echoes the slide 06 bay label. Two consecutive runs have now opened on a number (07-24 LEDGER TALLY, 07-25 COLD NUMBER), so a third numeric opening is barred on sight. The losing candidate's best line, 'One list exists because a law demanded it. The other because a reporter asked.', is worth grafting in a future run."
+  },
+  {
+   "run_date": "2026-07-26",
+   "opening_move": "MAP MOVE",
+   "structure": "BRAID",
+   "closing_move": "FORK",
+   "first_words": "Cordova sits on Prince William Sound",
+   "hook_type": "map-move locator, place plus a topological fact",
+   "notes": "Two directors. Candidate A (THE ABSURD DETAIL / ZOOM / WHO DECIDES) was killed by the critic for echoing the 07-17 entry's no-road-out sentence frame with the town swapped, and for delivering MAP MOVE while claiming THE ABSURD DETAIL. Winner B took one fix installing the Railbelt absence line. Recorded demerits, the fork's second horn is a dead bill, and both directors opened on the word Cordova."
+  },
+  {
+   "run_date": "2026-07-29",
+   "opening_move": "SCENE",
+   "structure": "ZOOM",
+   "closing_move": "who-decides",
+   "first_words": "On a Cook Inlet salmon boat this month,",
+   "hook_type": "scene, one fish entering a machine, physical open with no number in the first sentence",
+   "furniture": "none",
+   "notes": "Two directors (SCENE/ZOOM/who-decides vs CONTRADICTION/COLD-OPEN-WARM-CLOSE/stake). The critic killed B for a deck-does-X pointer sitting in the same breath as the closing question, for misdescribing the deck, for putting NERA in El Segundo when it is piloted at the Tacoma plant, and for an opening absolute that tips into the grievance frame the brief bans. Winner A took the critic's one fix, replacing an invented boat count. The showrunner then made two ACCURACY corrections the copywriter flagged, both of which the slides already hedged and the caption did not: 'drift boat' to 'salmon boat' (C03 says Cook Inlet salmon boats, not drift), 'a box the size of a refrigerator' to 'a steel box on deck' (C09 describes the EARLIER PSDN unit, not the Alaska PSDN-S), and 'sells at an undisclosed premium' to 'reportedly sells at a premium' (C29 is the weakest source in the set). RECORDED DEMERITS: 'Zoom out.' named the structure instead of performing it and was cut; the hook still opens on the words Cook Inlet, eight days after the 07-21 caption opened on them; who-decides is the second who-decides in seven runs and is no longer fresh. The losing candidate's best line, 'Those hours are the product.', is worth grafting."
+  },
+  {
+   "run_date": "2026-07-30",
+   "opening_move": "CONTRADICTION",
+   "structure": "PUNCH THEN PROOF",
+   "closing_move": "PRICE",
+   "first_words": "Enstar is warning about rolling blackouts and",
+   "hook_type": "contradiction inside one company, the same utility warning about blackouts and fielding data center interest",
+   "furniture": "none",
+   "notes": "Two directors (CONTRADICTION/PUNCH THEN PROOF/PRICE vs THE ABSURD DETAIL/INVERTED PYRAMID/FORK). Critic shipped A with one fix. It killed A's original close, 'what is one row honestly worth to a grid whose operators are warning about the winter?', as the 07-24 PRICE close with the nouns swapped, and replaced it with 'So what would Alaska's one row have to be worth, in dollars, before it counts as a federal answer to this winter?'. It killed B for claiming THE ABSURD DETAIL and delivering a thesis summary, for a fork whose second horn ('a footnote the state should stop counting as a win') presupposes an unverified Alaskan reaction, and for dropping C14, the only sentence welding AI load to the energy crunch. RECORDED DEMERITS on the winner: the room produced a PRICE close that was a noun-swap of 07-24's and only the critic caught it, so the room is reading the ledger for move LABELS and not for PHRASING, and PRICE should be treated as burned for several runs. Richard Wies is never named in the caption though C10 and C11 exist. UAF is never expanded, for an audience that includes Outside federal readers. Enstar is never glossed as a gas utility despite being the first word. The showrunner reflowed the opening onto two lines so the hook completes inside the 140 fold, because caption_check measures the whole first LINE and the single-paragraph version measured 168. THIRD CONSECUTIVE RUN with no deck-summary line despite brand.yaml requiring one; the scorer capped Copy at 6.0 for it. Losing candidate's best line, worth grafting once it has evidence behind it, 'Federal AI money reaching Alaska usually means AI coming for Alaska's power.'"
+  },
+  {
+   "run_date": "2026-07-31",
+   "opening_move": "THE ABSURD DETAIL",
+   "structure": "Q AND A",
+   "closing_move": "prediction",
+   "first_words": "Alaska's statute, as codified, still prints a",
+   "hook_type": "absurd detail, a live statute printing a number that stopped being law four years ago",
+   "notes": "Two directors (THE ABSURD DETAIL/Q AND A/prediction vs TIMELINE COLLAPSE/INVERTED PYRAMID/stake). Critic shipped A with one fix, replacing 'Six of its employees gave personally' with 'Six of its employees gave $372,000, not the company', the same 90 characters, because the original left 'its' with an ambiguous antecedent and let a reader retro-fit the six onto the $100,000 sentence 300 characters above. Q AND A had never shipped in twenty runs. The critic killed B for opening its close on 'So what' one run after 07-30's close opened on 'So what', for declaring INVERTED PYRAMID and writing plain chronology, for declaring a stake close and writing a fork, for a declared deck-summary line saying 'the 2026 returns' when the returns are 2006 and the 2026 returns do not exist, and for a hook claiming 'no cap at all' when the court upheld the party-to-candidate limit. RECORDED DEMERITS on the winner: no fairness counterweight in the caption at all, which offloads the whole promise onto slide 04's four totals at one scale, so the deck has to keep it and does; the close rhymes with an interior question; not one human being is named; 'Measure 1's sponsors are buying no ads' states ADN's characterization as flat fact; the second-deck-in-seven-days line is on the cover but not in the caption; #AKleg is a legislature tag on a ballot-measure deck; and 894 of 900 chars leaves no room for a late correction, the second time in eight runs the winner shipped within six characters of the ceiling. FIRST RUN WITH THE DECK-SUMMARY LINE RESTORED after three consecutive lapses."
+  },
+  {
+   "run_date": "2026-08-01",
+   "opening_move": "SECOND PERSON STAKE",
+   "structure": "BRAID",
+   "closing_move": "fork",
+   "first_words": "If a state letter about your",
+   "hook_type": "second-person stake, literally true because silence defaults to inactive",
+   "furniture": "none",
+   "notes": "Two directors (QUOTE FIRST/COUNTDOWN/who-decides vs SECOND PERSON STAKE/BRAID/fork). Critic killed A because its COUNTDOWN was delivered as bumpers rather than time pressure inside the argument, and because its who-decides was the third in nine runs. B shipped with one fix, replacing 'You can still vote a questioned ballot.' with 'The state's answer is a questioned ballot.', so the house voice stopped promising an outcome no source describes adjudicating. 889 chars, hook 101."
+  },
+  {
+   "run_date": "2026-08-02",
+   "opening_move": "QUOTE FIRST",
+   "structure": "COUNTDOWN",
+   "closing_move": "stake",
+   "first_words": "Leverage technology, such as artificial intelligence,",
+   "hook_type": "quote first, the state's own order naming the thing its notices never name",
+   "furniture": "none",
+   "notes": "Two directors (QUOTE FIRST/COUNTDOWN/stake vs DEFINITION SUBVERSION/ZOOM/prediction). Critic shipped A with one fix, replacing a close that implied a machine IS doing the transcribing (no verified claim says so) and that attached the BIDDERS' 24 August deadline to boroughs and tribes, who are contract users and not bidders. FIRST COUNTDOWN IN THREE ATTEMPTS THAT ESCAPED THE BUMPER FAILURE, per the critic, because the clock is load-bearing inside the argument sentences rather than bracketing them; it should still sit out several runs. The showrunner then made one ACCURACY correction the critic flagged but had no fix left to spend, 'Alaska has 22 days to bid' to 'Vendors have 22 days to bid', because Alaska is buying and vendors bid. RECORDED DEMERITS: the caption's first word is 'Leverage', a brand.yaml banned verb, surviving only because it is the State's own verb inside a verbatim quotation of C13; the scorer ruled it clean on the merits and noted that caption_check.py never scans for it, so no machine cleared it. 'the one order that prints the word' leaves 'the word' with three antecedents. Joshua Hartman is on slide 02 and nowhere in the caption, the second time in three runs the post copy names not one human being. Eielson, 3,967 acres and the 10 August federal window are absent from the caption entirely, two full slides sold by nothing. BOTH directors independently opened their deck-summary line with the word 'Inside', one run after the line was restored from a three-run lapse, so it is already calcifying; the next run must not open its summary on 'Inside'. Losing candidate's best line, worth grafting: 'So may a borough. So may the courts and federally recognized tribes.'"
+  },
+  {
+   "run_date": "2026-08-03",
+   "opening_move": "DEFINITION SUBVERSION",
+   "structure": "ZOOM",
+   "closing_move": "who-decides",
+   "first_8_words": "AI supply chain here means one item on",
+   "hook_type": "definition subversion",
+   "chars": 898,
+   "demerits": "The critic's ruling was applied (the closing line was replaced to kill an unsupported 'village bodies on record' assertion, and the summary's 'Inside,' opener was deleted per the 08-02 ledger note). The scorer then recorded three standing demerits repeated anyway: who-decides is now the FOURTH in twelve runs and should be treated as burned for six; 898 of 900 chars is the third time in nine runs the caption shipped within six characters of the ceiling; and not one human being is named though the deck owns two quotable speakers."
+  },
+  {
+   "run_date": "2026-08-04",
+   "opening_move": "LEDGER TALLY",
+   "structure": "INVERTED PYRAMID",
+   "closing_move": "fork",
+   "first_words": "One column tallies 119.7 megawatts becoming 120.0.",
+   "hook_type": "ledger tally, two columns posted and then refused a common unit in the same breath",
+   "note": "The showrunner's brief contained TWO errors and the room caught both. Director B was wrongly told LEDGER TALLY had never shipped (it ran 2026-07-24 with INVERTED PYRAMID and a PRICE close) and reported that unprompted, against its own interest, rotating the close to FORK. The critic then killed candidate A, whose assigned DEFINITION SUBVERSION plus PUNCH THEN PROOF was an exact two-axis repeat of 2026-07-23 with an opening move only ONE run old, inside its six-entry window. Assigning a move one run after it shipped was a showrunner mistake, not a judgement call."
+  },
+  {
+   "run_date": "2026-08-05",
+   "opening_move": "LETTER FRAME",
+   "structure": "COLD OPEN, WARM CLOSE",
+   "closing_move": "NEW:SUFFICIENCY TEST",
+   "first_words": "To the Administration for Native Americans. You stood",
+   "first_8_words": "To the Administration for Native Americans. You stood",
+   "hook_type": "letter frame, addressed to the agency, with the absence stated in the third sentence",
+   "chars": 879,
+   "notes": "Two directors. Candidate A (COLD NUMBER / PUNCH THEN PROOF / PRICE) was killed by the critic under the anti-template law. Its close reproduced the 2026-07-24 PRICE close in CAPTION_CRAFT's own menu wording, a noun-swap the 07-30 critic had already killed once, and its numeric opening sat one run after 08-04's. It also mis-sourced the five project areas to the Federal Register.",
+   "demerits": "THE SHOWRUNNER'S BRIEFS MISSED THREE STANDING LEDGER INSTRUCTIONS and the critic caught all three. PRICE was declared burned on 07-30, who-decides was declared burned for six runs on 08-03, and 08-02 barred a deck summary from opening on the word Inside. BOTH directors opened theirs on Inside, which makes it a room-level habit and the second consecutive run it had to be caught by hand. The lesson is the one 08-04 already recorded, that a brief asserting a ledger fact should QUOTE the ledger rather than paraphrase it, and this run proves paraphrase is not the only failure mode, because these instructions were not in the fields the brief read at all."
+  },
+  {
+   "run_date": "2026-08-06",
+   "opening_move": "TIMELINE COLLAPSE",
+   "structure": "Q AND A",
+   "closing_move": "NEW:CONDITION WRITE-IN",
+   "first_words": "April 10th, the Air Force offered about 4,700 acres",
+   "first_8_words": "April 10th, the Air Force offered about 4,700",
+   "chars": 759,
+   "hook_type": "timeline collapse, two beats four months apart with the same blank in both documents",
+   "furniture": "none",
+   "notes": "THE CRITIC KILLED BOTH FIRST CANDIDATES AND WAS RIGHT. Candidate A (CONTRADICTION/PUNCH THEN PROOF/prediction) closed on 'What shows up first, a committed tenant or a supplier with gas to sell?', which is CAPTION_CRAFT's own prediction example with one verb swapped and the noun 'tenant' RETAINED, the THIRD occurrence of this exact failure after 07-30 and 08-05. Its shape was also an exact paragraph-architecture repeat of 2026-07-30 on the same beat with the same cast. Candidate B (MAP MOVE/BRAID/stake) closed on 'Would you offer 19,950 acres before a power source is committed?', a noun-swap of the stake example AND a hard discipline fail, because a rhetorical question with one socially available answer is an adequacy verdict wearing a question mark, aimed at the one signed primary source arguing the opposite. B's MAP MOVE was also a place-name list in which geography never argued. THE SHOWRUNNER'S BRIEF MISSED FIVE STANDING INSTRUCTIONS and the critic caught all five: name a human being (a demerit recorded 07-30, 08-02 and 08-03, and both candidates reduced Brandon Brefczynski to a job title while quoting his list); name the agency the reader must write to (neither named DNR, whose window IS the ask); gloss Enstar as a gas utility (07-30 demerit); these are a LEASE offer and a PRELIMINARY DECISION, not sales; and the seven items belong to the PROJECT, not to the acreage. The shipped caption is a third reassigned round. TIMELINE COLLAPSE had never shipped in 27 runs. The close was INVENTED rather than selected because the menu examples are demonstrably the template directors fill. BURNED going forward: PRICE (07-30), who-decides (08-03, six runs), and now both the prediction and stake MENU EXAMPLES as literal source text.",
+   "demerits": "A documentation conflict the critic surfaced and the maintainer should resolve. brand.yaml comma_discipline and CLAUDE.md set the budget at 6.2 commas per 100 WORDS; brand.yaml linkedin_post.comma_per_100_chars and CAPTION_CRAFT set it at 1.05 per 100 CHARACTERS. Nothing turned on it this run (3 commas, passes both) but it will."
+  },
+  {
+   "run_date": "2026-08-07",
+   "opening_move": "CONTRADICTION",
+   "structure": "PUNCH THEN PROOF",
+   "closing_move": "NEW:MEASUREMENT READ",
+   "first_words": "Alaska's elections director told lawmakers more than 600 citizens",
+   "first_8_words": "Alaska's elections director told lawmakers more than 600",
+   "chars": 869,
+   "hook_type": "contradiction inside one signed document, 600 citizens came off the list and the official who says so won't restore them herself",
+   "furniture": "none",
+   "notes": "THE CRITIC KILLED BOTH FIRST CANDIDATES FOR THE SAME FACTUAL ERROR and was right both times. Each had invented a mechanism the record does not describe, that the more than 600 were found BECAUSE they wrote back ('every one of them wrote back'), when C01's own note says plainly that 600 is NOT the count who contacted the Division. Two independent directors reached for the same false causal bridge because the story is more satisfying with it, which is the tell. The shipped caption is a third reassigned round and it never explains how the 600 were identified, because no source does. The close was INVENTED rather than selected: MEASUREMENT READ asks what a number is a measure of ('Against 580,000 records compared, what is more than 600 a measure of?') rather than forecasting, taking a stake or asking who decides, all three of which are burned. One soft line survives, paragraph 2's 'Both sit in one August 6th letter' leans on a referent the single-sentence lead only half establishes.",
+   "demerits": "A single-sentence lead paragraph makes 'Both sit in' work harder than it should. Next CONTRADICTION opening should name both halves inside the lead."
+  },
+  {
+   "run_date": "2026-08-08",
+   "opening_move": "THE ABSURD DETAIL",
+   "structure": "INVERTED PYRAMID",
+   "closing_move": "NEW:ELIGIBILITY TEST",
+   "first_8_words": "Solar panels and a Starlink system on a",
+   "hook_type": "absurd detail, consumer hardware on a lake float doing statutory fish counting"
+  },
+  {
+   "run_date": "2026-08-09",
+   "opening_move": "COLD NUMBER",
+   "structure": "COUNTDOWN",
+   "closing_move": "fork",
+   "first_words": "15 minutes a day. That is the routine",
+   "hook_type": "statement",
+   "note": "Carries the update disclosure in the caption body, which two scoring rounds asked for."
+  },
+  {
+   "run_date": "2026-08-12",
+   "opening_move": "QUESTION FIRST",
+   "structure": "ZOOM",
+   "closing_move": "NEW: PRECONDITION AUDIT",
+   "first_words": "What does Cordova do with power it",
+   "hook_type": "question",
+   "chars": 844,
+   "hook_chars": 65,
+   "note": "Commas 0.87 per 100 chars against the 1.05 budget, which retires the near-ceiling demerit the ledger recorded three times in nine runs. The lint's one advisory stands: it opens on a question and declarative openers test better. The flow critic argued the caption's closing precondition question competes with slide 09's own ask at the same moment; kept the room's winner and recorded the objection rather than overriding it after the gate had passed."
+  },
+  {
+   "run_date": "2026-08-13",
+   "opening_move": "DEFINITION SUBVERSION",
+   "structure": "BRAID",
+   "closing_move": "fork",
+   "first_words": "Daily, at a site called The Daily Anchorage,",
+   "first_8_words": "Daily, at a site called The Daily Anchorage,",
+   "chars": 864,
+   "hook_chars": 73,
+   "hook_type": "definition subversion, the word daily defined as a nineteen day range",
+   "note": "Critic picked B over A and spent its one fix on the closing question, which had a single socially available answer and rested on an Anchorage address no claim supports. Recorded demerits from the critic, all real: fork is now the fourth closing fork in thirteen runs and should be treated as burned alongside PRICE and who-decides; both directors independently chose the identical three hashtags; 'Each article checked' is pronoun-free self-narration that survived only because C07's two-article hedge requires it. The showrunner trimmed 56 characters to clear the 900 ceiling and used the trim to restore 'all Australian' to the deck summary line, which the critic had flagged as the run's strangest verified fact falling out of the caption entirely."
+  },
+  {
+   "run_date": "2026-08-14",
+   "opening_move": "MAP MOVE",
+   "structure": "COLD OPEN, WARM CLOSE",
+   "closing_move": "SUFFICIENCY TEST",
+   "first_words": "Alaska is 570,641 square miles of land, about",
+   "hook_type": "map move, the largest state's land area set against the smallest state's, with the same one-award ceiling on both",
+   "note": "The caption-critic killed candidate A for a PRICE close, which the ledger had burned on 2026-07-30 and restated on 2026-08-06, and whose phrasing was the 2026-07-24 close with the nouns swapped. That is the fifth occurrence of the same failure. The showrunner's assignment brief barred only the last run's fork and missed the standing burn, which is itself the lesson repeating. One fix was spent replacing an unsourced Anchorage with the solicitation's two eligible categories. Director B declared the close a prediction and it is not one, it forecasts nothing, so it is logged honestly as a sufficiency test. CORRECTED at Phase 12, on the same day and by the upgrade this run built. The close was logged as NEW:SUFFICIENCY TEST and it is not new, the identical move shipped on 2026-08-05, nine days earlier. The NEW: prefix is a claim of novelty and nothing had ever checked one, so this is the sixth occurrence of the caption room's standing failure rather than the fifth. The caption itself is unchanged and was never the problem; only the label was false. caption_check.py now grades a NEW: close against the ledger and fails a repeat, which is how this was found."
+  },
+  {
+   "run_date": "2026-08-15",
+   "opening_move": "SCENE",
+   "structure": "PUNCH THEN PROOF",
+   "closing_move": "NEW:PATIENCE WINDOW",
+   "first_words": "At 10:00 a.m. on August 5th,",
+   "hook_type": "scene, a room number and a clock, then the count of AI bills on that morning's agenda",
+   "note": "The caption-critic rejected candidate B for repeating the LEDGER TALLY + INVERTED PYRAMID pairing shipped 2026-07-24 and 2026-08-04, and for deriving an absence from a 403, which the deck refuses to do. The winner opens on the room and the clock and closes by conceding that a plan and a study is the normal first move, then asking how long that stays an answer. The closing move is logged NEW:PATIENCE WINDOW and the prefix was CHECKED against the ledger this time rather than asserted, which is the correction the 2026-08-14 entry asked for."
+  },
+  {
+   "run_date": "2026-08-16",
+   "opening_move": "LEDGER TALLY",
+   "structure": "ZOOM",
+   "closing_move": "NEW:DISCLOSURE STANDARD",
+   "first_words": "864 organizations sent nearly",
+   "hook_type": "a count of applicants against the size of the fund they applied to",
+   "note": "The caption-critic took candidate B over A and required one fix. It also flagged, independently of the showrunner, that caption_check's DATE table has no year exemption and so rejects the plain 'October 30, 2026' form that brand.yaml and CAPTION_CRAFT both allow."
+  },
+  {
+   "run_date": "2026-08-18",
+   "opening_move": "TIMELINE COLLAPSE",
+   "structure": "INVERTED PYRAMID",
+   "closing_move": "NEW:PROVING CREDIT",
+   "first_words": "In 2021 one Alaska airline let a machine",
+   "hook_type": "causation inversion",
+   "note": "NEW:PROVING CREDIT is an ownership/credit close (who owns what the frontier de-risks, the carrier that flew the risk or the vendor banking the contract). Distinct from who-decides (a vote) and PRICE. Both caption directors independently converged on this close; the critic trimmed candidate B from 1065 to 867 chars to clear the 900 band."
+  },
+  {
+   "run_date": "2026-08-19",
+   "opening_move": "MEASURED SHARE, THEN THE ROOM",
+   "structure": "CLAIM THEN COUNTER-CLAIM",
+   "closing_move": "NEW:INSTRUMENT CHOICE",
+   "first_words": "73 percent of Alaska likely voters back",
+   "hook_type": "unattached majority",
+   "note": "NEW:INSTRUMENT CHOICE closes by asking which INSTRUMENT a measured preference should get, not what the reader thinks of the outcome. Distinct from who-decides (a vote), PRICE, and NEW:PROVING CREDIT (No.36). The caption room's critic rejected both first candidates for opening on the council rather than on the number."
+  },
+  {
+   "run_date": "2026-08-20",
+   "opening_move": "QUOTE FIRST",
+   "structure": "BRAID",
+   "closing_move": "NEW:CLASSIFICATION QUESTION",
+   "first_words": "\"Search and rescue\" appears once in Proclamation 11055",
+   "hook_type": "single mention against a silence",
+   "note": "The caption critic killed both first-round candidates for closing on a procurement fork wearing a NEW: label. The reassigned round opened on the proclamation's own sentence and closed on a CLASSIFICATION question, which asks which tariff band a thing falls in rather than what the reader thinks of the outcome. Distinct from NEW:INSTRUMENT CHOICE (37), NEW:PROVING CREDIT (36) and PRICE."
+  },
+  {
+   "run_date": "2026-08-21",
+   "opening_move": "NEW:OBJECT FIRST",
+   "structure": "REVERSE CHRONOLOGY",
+   "closing_move": "NEW:WHAT WOULD YOU MEASURE FIRST",
+   "first_words": "DeepGreen's filing names a Universal Docking Cradle",
+   "hook_type": "a named component of the applicant's own filing, paired with the measurement it is missing",
+   "note": "The caption critic killed candidate A outright for reproducing the 2026-08-09 hook frame, <figure>. That is the <noun phrase>, with the noun swapped, and for being the third count-first opening in six runs. It also caught the winner attributing a FERC finding to the wrong object and dating a Maine reduction to a month the claim does not carry. Both fixed. It recorded that BOTH directors opened the deck summary with the identical three words, The deck sets, and that both chose the same three hashtags, so bar that opener from the next run. The assigned close was a threshold test, which is a sufficiency test with a size variable and was already burned; it was replaced with a question the deck can actually collect answers to."
+  },
+  {
+   "run_date": "2026-08-25",
+   "opening_move": "COLD NUMBER",
+   "structure": "COUNTDOWN",
+   "closing_move": "NEW:UNBUILT DEFAULT",
+   "first_words": "750 camera feeds is the ceiling Anchorage funded",
+   "hook_type": "cold verified number, 77 chars",
+   "note": "0.53 commas per 100 words against a 6.2 house ceiling. Two critic demerits recorded: both candidates opened the deck summary on the word Inside, barred 2026-08-02 and now a third occurrence; and no human being is named in the caption, the fifth time. The 'Seven days left' line is true only on August 25th and is a maintenance liability if the post slips."
+  },
+  {
+   "run_date": "2026-08-26",
+   "opening_move": "MAP MOVE",
+   "structure": "ZOOM",
+   "closing_move": "NEW:AFTER THE CLOCK",
+   "first_words": "Alaska's coastlines, rivers and lakes get",
+   "hook_type": "place-first sentence naming the surface and its start date, 107 chars",
+   "note": "838 chars, three hashtags, comma rate well inside the 6.2 per 100 words house ceiling. The closing move asks who pays to keep a model running after its award ends, which is the one question the award record cannot answer and every reader with a grant can. Erin Trochim is named, which answers the standing note from No.40 that no human being had appeared in a caption for five runs."
+  },
+  {
+   "run_date": "2026-08-27",
+   "opening_move": "THE ABSURD DETAIL",
+   "structure": "BRAID",
+   "closing_move": "NEW:HEADLINE RIGHTS",
+   "first_words": "Two drones released 374.3 grams",
+   "hook_type": "a mass comparison that makes the quantity absurd before the argument starts",
+   "note": "896 chars, hook 122. NEW:HEADLINE RIGHTS is a first for the ledger, asking which of two figures published by the same company on the same day earns the headline. Standing demerit recurs for the sixth time: no human being is named in the caption."
+  },
+  {
+   "run_date": "2026-08-28",
+   "carousel_no": 43,
+   "opening_move": "SECOND PERSON STAKE",
+   "structure": "CLAIM THEN COUNTER-CLAIM",
+   "closing_move": "NEW:REVISION EXPOSURE",
+   "first_words": "A browser and internet",
+   "hook_type": "the reader can open the thing today, and its makers call it unfinished",
+   "note": "THE ROOM RETURNED NEITHER ON ROUND ONE and the critique is worth keeping. Candidate A, SCENE plus PUNCH THEN PROOF, was killed for reproducing No.34's exact two axis pairing from thirteen days earlier AND for writing a permafrost caption with no AI anywhere in it on an Alaska plus AI page. Candidate B, CONTRADICTION plus INVERTED PYRAMID, wrote the better sentences and then welded C18's lake drainage tool to C16's ice content maps, which are two different things, and closed on a sufficiency test wearing a NEW: label. SUFFICIENCY IS STILL BURNED and a NEW: prefix over a repeat is now the room's oldest failure at seven occurrences. The shipped caption is the single reassigned round the routine allows. Also burned going forward: the openers 'Winter 2025 to 26' and 'Walk out onto the', both spent in this room on candidates that never shipped."
+  },
+  {
+   "run_date": "2026-08-29",
+   "carousel_no": 44,
+   "opening_move": "TIMESTAMPED VERBATIM PAIR",
+   "structure": "SPECIFICATION THEN THE GAP IN IT",
+   "closing_move": "WHO GETS TO ADD A COLUMN",
+   "first_words": "The 19:39 note",
+   "hook_type": "two notes 45 minutes apart, one lower case and one capital, and the deck never says what the code means because no fetched page defines it",
+   "note": "Hook 109 chars, 883 total, 0.61 commas per 100 words against a 6.2 ceiling. Names a human (Kate Stafford). The scorer's standing critique was that three consecutive question headers in the middle made the strongest analytical passage read like a briefing form."
+  },
+  {
+   "run_date": "2026-08-30",
+   "carousel_no": 45,
+   "opening_move": "DEFINITION SUBVERSION",
+   "structure": "PUNCH THEN PROOF",
+   "closing_move": "NEW: THE UNSUPERVISED TASK",
+   "first_words": "AI in Alaska",
+   "hook_type": "the category the reader expects (data centers and gigawatts) set against the cheapest thing on the list, a note taker for about $25,500",
+   "note": "Hook 130 chars, 897 total, 0.82 commas per 100 words against a 6.2 ceiling. Discloses its own method inside the caption ('Eight is a keyword search of award titles and summaries. The seven and one split is a reading, not a state finding.'). The scorer's standing critique is that the fourth paragraph stacks four short declaratives as disclosure rather than argument, and that the caption never names the August 16th deck it updates."
+  },
+  {
+   "run_date": "2026-08-31",
+   "carousel_no": 46,
+   "opening_move": "TIMELINE COLLAPSE",
+   "structure": "ZOOM",
+   "closing_move": "PRECONDITION AUDIT",
+   "first_words": "A subsidy that has paid Alaska's",
+   "hook_type": "then and now in one sentence, with the AI half above the fold",
+   "note": "Candidate B won. The critic killed candidate A on a FALSE PREMISE rather than on mechanics, its close asked the reader to say the answer to the eight questions is yes and the eight are not yes or no questions, one of them being In what ways should it be used. A's close was also a sufficiency test wearing a NEW: label, which is this room's oldest failure. B's one fix was its hook, which carried no AI at all on an Alaska plus AI page, the exact failure the 2026-08-28 entry recorded; the replacement puts AI above the fold and keeps the 1997 to now collapse in one sentence. THE CLOSING MOVE IS LOGGED WITHOUT A NEW: PREFIX ON THE CRITIC'S RULING. It asks what input a process lacks, which is the same operation as NEW:PRECONDITION AUDIT of 2026-08-12, so this is that move's second occurrence and not a new one. Both directors again produced deck summary lines that were one sentence with synonyms swapped, The deck carries and The deck holds. BURN BOTH OPENERS for the next run."
+  },
+  {
+   "run_date": "2026-09-01",
+   "carousel_no": 47,
+   "opening_move": "CONTRADICTION",
+   "structure": "BRAID",
+   "closing_move": "NEW: WHICH COPY IS OPERATIVE",
+   "first_words": "The Air Force offered federal",
+   "hook_type": "the offer and the limit of the answer, in two sentences, with the contradiction complete above the fold",
+   "note": "Candidate B won with one critic fix. TWO THINGS TO BURN FOR THE NEXT RUN, both found by the caption critic rather than by a gate. First, LEDGER TALLY plus INVERTED PYRAMID is an unchecked PAIR repeat: the variety engine checks opening move and structure independently, so the combination reached its third submission and its second kill without any check seeing it. Second, both directors independently produced the same three-item-inventory deck summary formula and both chose two of the same three hashtags, which says the assignment brief is steering harder than it means to. THE CLOSING MOVE IS LOGGED WITH A CAVEAT: the scorer reads 'WHICH COPY IS OPERATIVE' as a two-horn fork joined by 'or', and fork was declared burned on 2026-08-13. Treat it as burned. The scorer also flagged that 'copy' is read as advertising copy before it is read as a duplicate of a document, at the exact moment a reader meets the post's last sentence."
+  },
+  {
+   "run_date": "2026-09-02",
+   "carousel_no": 48,
+   "opening_move": "QUOTE FIRST",
+   "structure": "Q AND A",
+   "closing_move": "NEW: THE DISCONFIRMING RESULT",
+   "first_words": "\"If the hand count is to check on",
+   "hook_type": "the proponent's own sharpest sentence, set first and unanswered, so the deck's opening move is to hand the other side the microphone",
+   "note": "Candidate B won with the critic's deck-summary fix and one C07 accuracy correction of mine. 897 chars, 8 commas, hook 131. TWO THINGS TO BURN FOR THE NEXT RUN: (1) the pointer-opener family for deck summary lines, Inside / The deck carries / The deck holds, which has now furnished four summaries in a row; (2) COLD NUMBER + COUNTDOWN as a paired opening move, for six runs. And PERMANENTLY: the hook frame '<figure>. That is the <noun phrase>.' which has appeared in some form in five of the last nine decks and is now house furniture rather than writing."
+  }
+ ]
 }

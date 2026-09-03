@@ -5648,3 +5648,41 @@ than a statistic, so it is recorded with its sourcing weakness attached.
 Nothing goes into the doctrine files from this. Recorded so the next run's
 craft refresh does not re-derive it, and so the slide-2 rule has a reason
 attached that is honest about its own evidence.
+
+## 2026-09-02 (run No.48) — THREE LESSONS FROM ONE FAILURE MODE
+
+Round 3 of this run shipped a slide that argued the inverse of its own claims,
+two deadline rows missing the one word that made them true, and a leader
+pointing at nothing. All three were the same mistake: **an artifact that
+describes type was written from arithmetic instead of measured off the type.**
+
+**Never count a canvas mark off a rectangle when it means a line of type.**
+Slide 07's spec plate has four fields and the fourth is deliberately unstamped,
+which is how the deck draws "no fiscal analysis" instead of asserting it. The
+markers were placed at `py + 42 + f*39`. The stamp text wrapped to five lines
+inside its box, everything slid one row, and the unstruck field landed on
+`AMENDABLE . NO`. Every machine gate passed, because no gate knows what a
+rectangle means. Two fixes and you need both: `white-space:nowrap` so the line
+count cannot drift, and marker positions read from `getBoundingClientRect()` at
+render time so a copy edit cannot move the argument.
+
+**A leader has to arrive at WORDS as well as at a feature.** qa.py's tolerance
+is 32 design px to the label's own box. A leader whose declared label is a
+concatenation of some element's innerText is true of nothing, and the gate can
+only check the geometry it was handed.
+
+**frame_balance sees luminance STEPS, not gradients, and the dead lower zone is
+usually COVERED rather than empty.** Slide 01's bottom third failed at 60
+percent of its own average craft density. Adding 34 soft radials of `laneGrade`
+to the near band took it DOWN to 31, because the metric box-downsamples 6x
+before it looks and a soft radial is the precise opposite of what survives that.
+Heavier arrises did not move it either, at 41 percent for both 1.1 px and 2.9 px
+strokes, because they were drawn under a bloom that then covered them. What
+worked was subtraction: the text bloom's padding was `half-width + 72`, which on
+an 880 px block is a 542 px radius, a flat pale lane 1084 px wide across the
+lower frame. Cutting it to `+58 / +32`, moving the feather stop from 0.66 to
+0.50, and narrowing the block to the width its longest line actually needs took
+the band from 41 to 46 and the ratio from 60 to 65.
+
+The general form: **when a contrast fix and a craft metric disagree, look for
+the thing the contrast fix PAINTED, not for something else to add.**
