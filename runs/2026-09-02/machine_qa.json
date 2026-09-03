@@ -42,7 +42,7 @@
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "outside safe zone: 'DETAIL A . 12 TO 11 PERCENT OF 3,338 = 3' at 664,1010 360x144 (margin 80px)",
+        "outside safe zone: 'DETAIL A . 12 TO 11 PERCENT OF 3,338= 33' at 664,1010 360x144 (margin 80px)",
         "outside safe zone: 'DRAWN TO SCALE. NOT DRAWN TO COUNT.' at 96,1256 660x31 (margin 80px)"
       ],
       "leaders": [

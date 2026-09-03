@@ -64,6 +64,10 @@
               103
             ]
           ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
           "anc": []
         },
         {
@@ -92,6 +96,7 @@
               40
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -120,6 +125,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -148,6 +154,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -183,6 +190,10 @@
               43
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -211,6 +222,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -239,6 +251,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         }
       ],
@@ -285,7 +298,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4740,
+      "render_ms": 5120,
       "ok": true,
       "canvases": [
         {
@@ -349,6 +362,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -377,6 +391,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -423,6 +438,7 @@
               84
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -493,6 +509,7 @@
               43
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -535,6 +552,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
           "anc": []
         },
         {
@@ -570,6 +591,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         }
       ],
@@ -616,7 +641,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4179,
+      "render_ms": 4195,
       "ok": true,
       "canvases": [
         {
@@ -674,6 +699,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -702,6 +728,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -737,6 +764,10 @@
               99
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -765,6 +796,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -793,6 +825,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -821,6 +854,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -861,6 +895,7 @@
               37
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -896,6 +931,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -945,6 +984,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
           "anc": []
         },
         {
@@ -973,6 +1016,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1001,6 +1045,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1029,6 +1074,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         }
       ],
@@ -1095,7 +1141,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4217,
+      "render_ms": 4182,
       "ok": true,
       "canvases": [
         {
@@ -1186,6 +1232,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1214,6 +1261,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1254,16 +1302,18 @@
               99
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
-          "text": "DETAIL A . 12 TO 11 PERCENT OF 3,338 = 33 BALLOTSOBSERVED SEPARATION 0",
+          "text": "DETAIL A . 12 TO 11 PERCENT OF 3,338= 33 BALLOTSOBSERVED SEPARATION 0",
           "texts": [
             "DETAIL A . 12 TO 1",
-            "1 PERCENT OF 3,338 = 33 BALLOTS",
+            "1 PERCENT OF 3,338",
+            "= 33 BALLOTS",
             "OBSERVED SEPARATION 0"
           ],
-          "full": "DETAIL A . 12 TO 11 PERCENT OF 3,338 = 33 BALLOTSOBSERVED SEPARATION 0",
+          "full": "DETAIL A . 12 TO 11 PERCENT OF 3,338= 33 BALLOTSOBSERVED SEPARATION 0",
           "tag": "div",
           "unsized": false,
           "x": 664,
@@ -1286,13 +1336,13 @@
             [
               664,
               1048,
-              336,
+              302,
               31
             ],
             [
               664,
               1084,
-              168,
+              202,
               31
             ],
             [
@@ -1302,6 +1352,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
           "anc": []
         },
         {
@@ -1366,6 +1420,7 @@
               37
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1394,6 +1449,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         }
       ],
@@ -1448,7 +1504,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4159,
+      "render_ms": 3988,
       "ok": true,
       "canvases": [
         {
@@ -1462,7 +1518,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 125.9,
-          "variance": 5451.8
+          "variance": 5451.7
         }
       ],
       "breather": false,
@@ -1486,7 +1542,7 @@
       ],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-02/slides/slide-04.html",
-        "sha1": "1d14ef762e6a173571f1e8e71e545b7ea32c5cdd"
+        "sha1": "db1601b6037db2c821d67d7e92ce3fe2273e07ad"
       }
     },
     {
@@ -1523,6 +1579,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1551,6 +1608,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1603,6 +1661,7 @@
               104
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1638,6 +1697,10 @@
               35
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -1678,6 +1741,7 @@
               40
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1734,6 +1798,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 5,
+            "rendered": 5
+          },
           "anc": []
         }
       ],
@@ -1780,7 +1848,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3875,
+      "render_ms": 3903,
       "ok": true,
       "canvases": [
         {
@@ -1838,6 +1906,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1866,6 +1935,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -1906,6 +1976,7 @@
               53
             ]
           ],
+          "wrap": null,
           "anc": []
         }
       ],
@@ -1938,7 +2009,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3347,
+      "render_ms": 3452,
       "ok": true,
       "canvases": [
         {
@@ -1996,6 +2067,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2024,6 +2096,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2059,6 +2132,10 @@
               101
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -2105,6 +2182,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
           "anc": []
         },
         {
@@ -2133,6 +2214,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2191,6 +2273,7 @@
               40
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2226,6 +2309,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -2261,6 +2348,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         }
       ],
@@ -2335,7 +2426,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4298,
+      "render_ms": 4362,
       "ok": true,
       "canvases": [
         {
@@ -2410,6 +2501,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2438,6 +2530,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2466,6 +2559,7 @@
               82
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2494,6 +2588,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2529,6 +2624,10 @@
               35
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -2564,6 +2663,10 @@
               35
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -2599,6 +2702,10 @@
               35
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -2634,6 +2741,10 @@
               35
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -2669,6 +2780,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -2697,6 +2812,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2725,6 +2841,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         }
       ],
@@ -2862,7 +2979,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3975,
+      "render_ms": 4294,
       "ok": true,
       "canvases": [
         {
@@ -2926,6 +3043,7 @@
               35
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -2975,6 +3093,10 @@
               83
             ]
           ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
           "anc": []
         },
         {
@@ -3009,6 +3131,7 @@
               53
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -3044,6 +3167,10 @@
               31
             ]
           ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
           "anc": []
         },
         {
@@ -3072,6 +3199,7 @@
               51
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -3100,6 +3228,7 @@
               29
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -3128,6 +3257,7 @@
               31
             ]
           ],
+          "wrap": null,
           "anc": []
         },
         {
@@ -3156,6 +3286,7 @@
               26
             ]
           ],
+          "wrap": null,
           "anc": []
         }
       ],
@@ -3202,7 +3333,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4122,
+      "render_ms": 4095,
       "ok": true,
       "canvases": [
         {
