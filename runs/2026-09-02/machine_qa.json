@@ -1,0 +1,125 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h1 'Counted by hand.Counted by machine.Same answ' fits 4/4 lines at 80.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 1 of 2 at (96,1207) of '2 . ONE MEMBER WAS RULED TO HAVE A CONFL' carries 149 px^2 of hard-edged canvas ink (densest 40px window 3.2%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "fits": [
+        "h1 'Requiring all ballots to be hand counted and' fits 4/4 lines at 66px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 67% of this slide's own average craft density (top 63% / mid 85% / bottom 42% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "outside safe zone: 'DRAWN TO SCALE. NOT DRAWN TO COUNT.' at 96,1258 660x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the 2846 lane standing on the lit mass': shadow L* 44.3 vs ground L* 84.1, dL 39.8 at 432w"
+      ],
+      "leaders": [
+        "leader 'the early voting station lane' lands 0.0px from its target",
+        "leader 'the two precinct lane' lands 0.0px from its target",
+        "leader 'the early voting station lane' meets its label 0.0px away",
+        "leader 'the two precinct lane' meets its label 0.0px away"
+      ],
+      "fits": [
+        "h1 '3,338 ballots,checked by hand.' fits 2/2 lines at 77.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'DETAIL A . 12 TO 11 PERCENT OF 3,338 = 3' at 664,1010 360x144 (margin 80px)",
+        "outside safe zone: 'DRAWN TO SCALE. NOT DRAWN TO COUNT.' at 96,1256 660x31 (margin 80px)"
+      ],
+      "leaders": [
+        "leader 'the DETAIL A magnifier ring' lands 0.0px from its target",
+        "leader 'the DETAIL A magnifier ring' meets its label 10.0px away"
+      ],
+      "fits": [
+        "h1 'The tolerance was 33 ballots wide. The gap w' fits 3/3 lines at 77.5px"
+      ],
+      "asserts": [
+        "'1 percent of the audited sample, printed as 33 ballots' holds: 33 vs 33 ballots (within 0)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h1 '\"If the hand count is to check on the machin' fits 5/5 lines at 81.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 76% of this slide's own average craft density (top 59% / mid 95% / bottom 52% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "label crossed by art (11% of the ring around 'EFFECTIVE . 2027 CYCLE TERM . TWO YEARS ' is ink of the glyphs' own value, spanning 66% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]",
+        "canvas mark near reserved text: line 4 of 4 at (656,316) of 'EFFECTIVE . 2027 CYCLE TERM . TWO YEARS ' carries 82 px^2 of hard-edged canvas ink (densest 40px window 6.5%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "contacts": [
+        "'the two year lock bar standing on the lit sheets': shadow L* 8.2 vs ground L* 53.2, dL 45.0 at 432w"
+      ],
+      "leaders": [
+        "leader 'the unstruck cost field on the spec plate' lands 0.0px from its target",
+        "leader 'the unstruck cost field on the spec plate' meets its label 9.0px away"
+      ],
+      "fits": [
+        "h1 'Two years.No estimate.' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'one milled notch per month of the two year term' holds: 24 vs 24 months (within 0)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 3.6 on 'THE DATES THAT ARE STILL OPEN' (box mean 13.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "outside safe zone: 'DRAWN TO SCALE. NOT DRAWN TO COUNT.' at 150,1258 660x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the laid register standing on the lit sheets': shadow L* 23.5 vs ground L* 65.9, dL 42.3 at 432w"
+      ],
+      "scales": [
+        "'the election calendar rail, day scale' runs 0 days from September 6th at 150 to 30 days from September 6th at 930; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h1 'Register by September 6th.' fits 1/1 lines at 64.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'alaskaaihq.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "fits": [
+        "h1 'A test can settlea measurement.It can't sett' fits 4/4 lines at 65.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 11,
+  "verdict": "WARN"
+}

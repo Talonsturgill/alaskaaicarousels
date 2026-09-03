@@ -1,0 +1,390 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0A1017}
+#art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.hd{position:absolute;margin:0;font-family:"Space Grotesk";font-variation-settings:"wght" 700;
+    color:#10151A;letter-spacing:-.025em;line-height:1.0}
+.bd{position:absolute;margin:0;font-family:"Space Grotesk";font-variation-settings:"wght" 400;
+    font-size:34px;line-height:1.38;color:#1B241E}
+.mn{position:absolute;margin:0;font-family:"JetBrains Mono";font-weight:500;
+    letter-spacing:.10em;text-transform:uppercase;font-variant-numeric:tabular-nums lining-nums}
+</style></head><body data-contacts='[{"what":"the 2846 lane standing on the lit mass","shadow":[[140,838,520,16]],"ground":[[140,920,520,16]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="mn" data-reserve style="left:96px;top:96px;width:520px;font-size:26px;color:#D9DCC6">THE 2025 HAND COUNT AUDIT</div>
+<div class="mn" id="ct" data-reserve style="left:836px;top:96px;width:148px;font-size:26px;text-align:right;color:#D9DCC6" data-decorative>03 / 09</div>
+
+<h1 class="hd" id="h1" data-reserve data-bloom style="left:96px;top:200px;width:640px;font-size:92px">3,338 ballots,<br>checked by hand.</h1>
+
+<div class="mn" id="k1" data-reserve data-bloom style="left:96px;top:908px;width:700px;font-size:24px;color:#20291F">1 . EARLY VOTING STATION, 2,846</div>
+<div class="mn" id="k2" data-reserve data-bloom style="left:96px;top:950px;width:700px;font-size:24px;color:#20291F">2 . GOLDSTREAM No. 2 AND MOOSE CREEK, 492</div>
+<div class="mn" data-reserve data-bloom style="left:96px;top:992px;width:700px;font-size:24px;color:#4A5048">3 . NOT SAMPLED, THE REST OF THE BOROUGH</div>
+
+<p class="bd" data-reserve data-bloom style="left:96px;top:1036px;width:880px;font-size:29px">A 2025 ordinance created the audit and passed 5 to 4. A canvass board hand verified the votes on 3,338 ballots, two precincts out of 32 plus the early voting station.</p>
+<div class="mn" data-reserve data-bloom style="left:96px;top:1168px;width:880px;font-size:24px;color:#20291F;line-height:1.42;white-space:nowrap">MARCH 2025 . THE ASSEMBLY DEADLOCKED 4 TO 4<br>ON A 219,489 DOLLAR MACHINE CONTRACT.</div>
+
+<div class="mn" data-reserve data-bloom style="left:778px;top:552px;width:230px;font-size:24px;color:#1B241E;line-height:1.42;white-space:nowrap">BALLOT TOTALS<br>NOT DRAWN.<br>NO VERIFIED<br>FIGURE.</div>
+<div class="mn" data-reserve data-bloom style="left:118px;top:858px;width:70px;font-size:24px;color:#1B241E">0</div>
+<div class="mn" data-reserve data-bloom style="left:590px;top:858px;width:290px;font-size:24px;color:#1B241E">3,000 BALLOTS</div>
+<div class="mn" data-reserve data-bloom style="left:96px;top:1258px;width:660px;font-size:24px;color:#20291F">DRAWN TO SCALE. NOT DRAWN TO COUNT.</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/akseam.js"></script>
+<script>
+/* ============================================================
+   SLIDE 03 — THE TEST THE BOROUGH BUILT.
+   Stage A, the lay level again. The event on this slide is not the mass,
+   it is the two SAMPLED LANES lifted out of it in cabinet oblique with a
+   printed scale, and the drafting BREAK LINE past which the thirty
+   unsampled precincts run off frame and are deliberately not sized.
+   1 ballot = 0.22 design px. 2,846 -> 626.1px. 492 -> 108.2px.
+   ============================================================ */
+var W=1080, H=1350;
+var CV=document.getElementById('art'), CX=CV.getContext('2d');
+CX.scale(2,2);
+AK.reseed(20260902);
+
+var LEE='#141B25', MID='#9AA08C', ARRIS='#D9DCC6', CREST='#F1F2E4',
+    PAPER_LIT='#CBD2BE', UNSAMP='#5E6660', RED='#D8422F', GOLD='#FFC72C';
+
+/* --- the scale is declared once and everything measured derives from it --- */
+var PX_PER_BALLOT = 0.22;
+var N_EARLY = 2846, N_PREC = 492;
+var LANE_Y = 758, LANE_H = 74, LANE_X = 120;
+var W_EARLY = N_EARLY*PX_PER_BALLOT;      /* 626.12 */
+var W_PREC  = N_PREC *PX_PER_BALLOT;      /* 108.24 */
+var DEPTH = 26;                            /* cabinet oblique depth, 45 deg */
+
+var NS=260, P_NEAR=17, RATIO=0.9894;
+var yTop=[], pit=[];
+(function(){ var y=H+40,p=P_NEAR; for(var i=0;i<NS;i++){ y-=p; yTop.push(y); pit.push(p); p*=RATIO; } })();
+function sh(i,k){ var s=Math.sin((i*57.3+k*199.7)*0.887)*27182.818; return s-Math.floor(s); }
+var reach=[], lean=[];
+for(var i=0;i<NS;i++){
+  reach.push(Math.max(0.32, Math.min(1.04, 0.86+AK.simplex2(i*0.048,21.7)*0.24+((sh(i,6)>0.968)?0.10:0))));
+  lean.push((sh(i,2)-0.5)*1.0);
+}
+function skew(x){ return -x*0.020; }
+
+/* the riffle is upper-left, horizontal and short, holding kicker and headline */
+/* TWO LOBES. The stack is thumbed open at the top, where the headline sits,
+   and again low down across the near sheets, where the key and the body sit.
+   Both are the same physical event, a fan, at two heights of the same stack. */
+function riffle(x,y){
+  var a=0,b=0;
+  if(x>=40&&x<=780&&y>=150&&y<=560){
+    a=Math.min(1,Math.min(x-40,780-x)/150)*Math.pow(Math.sin(Math.PI*(y-150)/410),0.40);
+  }
+  if(x>=40&&x<=1020&&y>=930&&y<=1345){
+    b=Math.min(1,Math.min(x-40,1020-x)/170)*Math.pow(Math.sin(Math.PI*(y-930)/415),0.32);
+  }
+  return Math.max(a,b);
+}
+var SPLAY=2.7;
+
+/* THE RESERVE, and it is a structural kill rather than a plate. qa.py's
+   collision walk is DOM-only, so a stroke laid against canvas geometry can
+   cross a glyph and still pass. Here the strokes that would cross reserved
+   type are NEVER GENERATED. Physically this is the fan opened far enough that
+   only the lit faces show and the cut arrises fall away, which is what the
+   riffle already claims to be. */
+/* reserve, broken strokes and the open-fan bloom are AKSEAM house
+   machinery; this slide supplies only its own pads. */
+var RESV=null;
+function measureReserve(){ RESV=AKSEAM.reserve('[data-reserve]',[24,24,24,22]); }
+function inRes(x,y,pad){ return RESV.hit(x,y,pad); }
+function segBlocked(fy,x,step,pad){ return RESV.seg(fy,x,step,pad); }
+function strokeBroken(fy,x0,x1,step,lw,color){ AKSEAM.strokeBroken(CX,RESV,fy,x0,x1,step,lw,color); }
+function fanBloom(){ AKSEAM.bloom(CX,{margin:[30,30,30,26],grow:[86,74],mid:0.66,midA:0.56}); }
+
+
+function seamHalf(gx){
+  /* the lane breathes but never closes; it is one lane the whole way */
+  return 58 + 26 * AK.simplex2(gx * 0.0011, 55.1);
+}
+/* draws the lit pass. Call it AFTER the mass and AFTER the blooms, and give it
+   the slide's own edgeY/reach so the lit arrises are the slide's real sheets.
+
+   TWO PASSES, and the first is the one that makes the seam true. The slide's
+   own sheets only reach the right frame edge when their reach noise happens to
+   send them there, so relying on them alone left four of the eight seams with
+   no lit band at the edge at all, measured off the render. The lane therefore
+   carries its OWN sheets: nine arrises whose path is a pure function of
+   globalX, running the full 0 to 1080 and off both edges. At x = 1080 on slide
+   n and x = 0 on slide n+1 the globalX is the same number, so line k arrives
+   and departs at the same height, at every seam, by construction. The slide's
+   real sheets are then lit inside the same band as texture on top. */
+function seamLane(slideNo, xEndFor, edgeYFn, _ignored){
+  var G0 = (slideNo - 1) * 1080;
+  /* THE LANE KEEPS ITS OWN RESERVE TEST. Each slide's inRes has a different
+     signature and a different pad, and the lane's strokes are up to 3.1 px
+     wide, so it measures the boxes itself with a pad that covers the stroke
+     and tests the SEGMENT between samples rather than the samples. */
+  var SB = [];
+  (function(){
+    var els = document.querySelectorAll('[data-reserve]');
+    for(var i=0;i<els.length;i++){ var r = els[i].getBoundingClientRect();
+      SB.push([r.left - 20, r.top - 18, r.right + 20, r.bottom + 16]); }
+  })();
+  function hit(x, y){
+    for(var i=0;i<SB.length;i++){ var b = SB[i];
+      if(x >= b[0] && x <= b[2] && y >= b[1] && y <= b[3]) return true; }
+    return false;
+  }
+  function reserveTest(x, y){
+    return hit(x - 4, y) || hit(x, y) || hit(x + 4, y) || hit(x, y - 4) || hit(x, y + 4);
+  }
+  CX.save();
+
+  /* PASS 1. THE LANE'S OWN SHEETS, a pure function of globalX. */
+  (function(){
+    var K = 9;
+    for(var k=0;k<K;k++){
+      var f = (k + 0.5) / K, off = (f * 2 - 1);
+      var a = Math.pow(1 - Math.abs(off), 1.15);
+      CX.globalAlpha = 0.24 + 0.60 * a;
+      CX.lineWidth = 0.9 + 2.2 * a;
+      CX.strokeStyle = '#F1F2E4';
+      var open = false;
+      for(var x=-8; x<=1088; x+=6){
+        var gx = G0 + x;
+        var y = seamY(gx) + off * seamHalf(gx) + 5.5 * AK.simplex2(gx * 0.0042, 30 + k * 7);
+        if(reserveTest && reserveTest(x, y)){ if(open){ CX.stroke(); open = false; } continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x, y); open = true; } else CX.lineTo(x, y);
+      }
+      if(open) CX.stroke();
+      /* each lit arris keeps its own lee, so the lane is stacked paper */
+      CX.globalAlpha = (0.24 + 0.60 * a) * 0.55;
+      CX.lineWidth = 1.0; CX.strokeStyle = '#0B1118';
+      open = false;
+      for(var x2=-8; x2<=1088; x2+=6){
+        var gx2 = G0 + x2;
+        var y2 = seamY(gx2) + off * seamHalf(gx2) + 5.5 * AK.simplex2(gx2 * 0.0042, 30 + k * 7) + 3.0;
+        if(reserveTest && reserveTest(x2, y2)){ if(open){ CX.stroke(); open = false; } continue; }
+        if(!open){ CX.beginPath(); CX.moveTo(x2, y2); open = true; } else CX.lineTo(x2, y2);
+      }
+      if(open) CX.stroke();
+    }
+  })();
+
+  /* PASS 2. the slide's real sheets, lit inside the same band. */
+  for(var i=0;i<NS;i++){
+    var xEnd = xEndFor(i); if(xEnd < 40) continue;
+    var open = false, lastA = 0;
+    for(var x=0; x<=xEnd; x+=7){
+      var y = edgeYFn(i, x);
+      var gx = G0 + x;
+      var d = Math.abs(y - seamY(gx)) / seamHalf(gx);
+      if(d >= 1 || (reserveTest && reserveTest(x, y))){
+        if(open){ CX.stroke(); open = false; }
+        continue;
+      }
+      var a = Math.pow(1 - d, 1.35);           /* soft across the lane, hard at no point */
+      if(!open || Math.abs(a - lastA) > 0.18){
+        if(open) CX.stroke();
+        CX.beginPath(); CX.moveTo(x, y); open = true;
+        CX.globalAlpha = 0.30 + 0.52 * a;
+        CX.lineWidth = 0.9 + 1.9 * a;
+        CX.strokeStyle = '#F1F2E4';
+        lastA = a;
+      } else {
+        CX.lineTo(x, y);
+      }
+    }
+    if(open) CX.stroke();
+  }
+  /* the lee under the lit pass, so the band has a bottom and reads as light
+     falling across the mass rather than as a painted stripe */
+  for(var i2=0;i2<NS;i2++){
+    var xEnd2 = xEndFor(i2); if(xEnd2 < 40) continue;
+    var open2 = false;
+    CX.globalAlpha = 0.30; CX.lineWidth = 1.1; CX.strokeStyle = '#0B1118';
+    for(var x2=0; x2<=xEnd2; x2+=7){
+      var y2 = edgeYFn(i2, x2) + 2.4;
+      var gx2 = G0 + x2;
+      var d2 = Math.abs(y2 - seamY(gx2)) / seamHalf(gx2);
+      if(d2 >= 0.86 || (reserveTest && reserveTest(x2, y2))){
+        if(open2){ CX.stroke(); open2 = false; } continue;
+      }
+      if(!open2){ CX.beginPath(); CX.moveTo(x2, y2); open2 = true; } else CX.lineTo(x2, y2);
+    }
+    if(open2) CX.stroke();
+  }
+  CX.restore();
+}
+
+
+
+window.renderReady = new Promise(function(resolve){ (async function(){
+  await document.fonts.ready;
+  measureReserve();
+
+  var g=CX.createLinearGradient(1000,0,80,H);
+  g.addColorStop(0,'#0B121A'); g.addColorStop(.58,LEE); g.addColorStop(1,'#0A1017');
+  CX.fillStyle=g; CX.fillRect(0,0,W,H);
+
+  var STEP=10;
+  function edgeY(i,x){ var y0=yTop[i]+lean[i]+skew(x); return y0 + riffle(x,y0)*(y0-355)*0.15; }
+  function lp(i,x){ var y0=yTop[i]+lean[i]+skew(x); return pit[i]*(1+SPLAY*riffle(x,y0)); }
+
+  for(var i=NS-1;i>=0;i--){
+    var xEnd=Math.min(W, 70+(W-30)*reach[i]); if(xEnd<40) continue;
+    var yMid=edgeY(i,400);
+    /* the mass under the lanes is LIT so a contact shadow has something to
+       subtract from. Everything below the break line stays unsampled-dark. */
+    var lit = (yMid>LANE_Y-40 && yMid<LANE_Y+180) ? 0.30 : 0;
+    CX.beginPath();
+    for(var x=0;x<=xEnd;x+=STEP){ CX.lineTo(x, edgeY(i,x)); }
+    for(var x2=xEnd;x2>=0;x2-=STEP){ CX.lineTo(x2, edgeY(i,x2)+lp(i,x2)); }
+    CX.closePath();
+    var r=riffle(400,yMid), depth=Math.min(1,pit[i]/15);
+    CX.fillStyle=AKC.mixOklab(LEE, PAPER_LIT, Math.min(1, 0.09+0.24*depth+0.58*r+lit));
+    CX.fill();
+    (function(ii,rr,dd,ll){
+      strokeBroken(function(x){return edgeY(ii,x);}, 0, xEnd, STEP,
+        Math.max(0.55, lp(ii,400)*0.27), 'rgba(12,17,25,'+(0.70-0.32*rr)+')');
+      CX.lineCap='butt';
+      strokeBroken(function(x){return edgeY(ii,x)-0.55;}, 0, xEnd, STEP,
+        Math.max(0.55,0.5+dd*1.1), AKC.mixOklab(MID, ARRIS, 0.26+0.60*dd+ll*0.6));
+    })(i,r,depth,lit);
+  }
+
+  fanBloom();
+
+  /* ---------- the CONTACT SHADOW, cast into the lit mass ---------- */
+  (function(){
+    var sg=CX.createLinearGradient(0,LANE_Y+LANE_H,0,LANE_Y+LANE_H+58);
+    sg.addColorStop(0,'rgba(8,11,16,0.86)');
+    sg.addColorStop(0.34,'rgba(8,11,16,0.34)');
+    sg.addColorStop(1,'rgba(8,11,16,0)');
+    CX.fillStyle=sg;
+    CX.fillRect(LANE_X-6, LANE_Y+LANE_H, W_EARLY+W_PREC+12, 58);
+  })();
+
+  /* ---------- LANE 1, the early voting station, dense crosshatch ---------- */
+  function lane(x0,w,fill){
+    /* the oblique top face */
+    CX.beginPath();
+    CX.moveTo(x0,LANE_Y); CX.lineTo(x0+w,LANE_Y);
+    CX.lineTo(x0+w+DEPTH,LANE_Y-DEPTH); CX.lineTo(x0+DEPTH,LANE_Y-DEPTH); CX.closePath();
+    CX.fillStyle=AKC.mixOklab(MID,CREST,0.52); CX.fill();
+    CX.lineWidth=1.25; CX.strokeStyle='#2A342B'; CX.stroke();
+    /* the front face, material coded */
+    CX.beginPath(); CX.rect(x0,LANE_Y,w,LANE_H);
+    CX.fillStyle=AKC.mixOklab(LEE,PAPER_LIT,0.62); CX.fill();
+    CX.save(); CX.clip();
+    CX.strokeStyle='rgba(26,34,28,0.55)';
+    if(fill==='dense'){
+      CX.lineWidth=0.75;
+      for(var d=-LANE_H;d<w+LANE_H;d+=5){ CX.beginPath(); CX.moveTo(x0+d,LANE_Y); CX.lineTo(x0+d+LANE_H,LANE_Y+LANE_H); CX.stroke(); }
+      for(var d2=-LANE_H;d2<w+LANE_H;d2+=5){ CX.beginPath(); CX.moveTo(x0+d2+LANE_H,LANE_Y); CX.lineTo(x0+d2,LANE_Y+LANE_H); CX.stroke(); }
+    } else {
+      CX.lineWidth=0.75;
+      for(var d3=-LANE_H;d3<w+LANE_H;d3+=13){ CX.beginPath(); CX.moveTo(x0+d3,LANE_Y); CX.lineTo(x0+d3+LANE_H,LANE_Y+LANE_H); CX.stroke(); }
+    }
+    CX.restore();
+    /* the cut edge, 3.5px bold: the plane passes through it */
+    CX.lineWidth=3.5; CX.strokeStyle='#E4E9D8';
+    CX.beginPath(); CX.moveTo(x0,LANE_Y); CX.lineTo(x0+w,LANE_Y); CX.stroke();
+    CX.lineWidth=2.0; CX.strokeStyle='#2A342B'; CX.strokeRect(x0,LANE_Y,w,LANE_H);
+  }
+  lane(LANE_X, W_EARLY, 'dense');
+  lane(LANE_X+W_EARLY, W_PREC, 'sparse');
+
+  /* ---------- the printed scale under the lanes ---------- */
+  (function(){
+    var sy=LANE_Y+LANE_H+64, unit=500*PX_PER_BALLOT;   /* 110 px per 500 ballots */
+    CX.strokeStyle='#9AA69B'; CX.lineWidth=1.25;
+    CX.beginPath(); CX.moveTo(LANE_X,sy); CX.lineTo(LANE_X+unit*6,sy); CX.stroke();
+    for(var t=0;t<=6;t++){
+      CX.beginPath(); CX.moveTo(LANE_X+unit*t,sy-6); CX.lineTo(LANE_X+unit*t,sy+6); CX.stroke();
+    }
+    /* the gold goes on the MEASURED terminal, 3,338, and never on a round
+       axis number. One meaning for gold in this deck: what was counted. */
+    CX.strokeStyle='#9AA69B';
+    CX.beginPath(); CX.moveTo(LANE_X+unit*6,sy); CX.lineTo(LANE_X+W_EARLY+W_PREC,sy); CX.stroke();
+    CX.fillStyle=GOLD; CX.fillRect(LANE_X+W_EARLY+W_PREC-1.5, sy-9, 4, 18);
+  })();
+
+  /* ---------- the DRAFTING BREAK LINE. Past it the 30 unsampled precincts
+       run off frame and are NOT sized, because no verified denominator exists */
+  (function(){
+    var bx=LANE_X+W_EARLY+W_PREC+52;
+    CX.strokeStyle='#C4CFC6'; CX.lineWidth=1.25;
+    CX.beginPath();
+    var y=LANE_Y-DEPTH-14;
+    CX.moveTo(bx,y);
+    for(var s=0;s<7;s++){
+      CX.lineTo(bx+((s%2)?18:-18), y+16);
+      y+=16;
+    }
+    CX.lineTo(bx,y+14);
+    CX.stroke();
+  })();
+
+  /* ---------- TWO LEADERS, each terminating on its lane's own coordinates -- */
+  var AT1=[LANE_X+W_EARLY*0.5, LANE_Y+LANE_H*0.5];
+  var AT2=[LANE_X+W_EARLY+W_PREC*0.5, LANE_Y+LANE_H*0.5];
+  var FROM1=[300, 926];
+  var FROM2=[430, 968];
+  (function(){
+    CX.strokeStyle='#3A4438'; CX.lineWidth=1.4; CX.lineCap='butt';
+    CX.beginPath(); CX.moveTo(FROM1[0],FROM1[1]); CX.lineTo(AT1[0],FROM1[1]-46); CX.lineTo(AT1[0],AT1[1]); CX.stroke();
+    CX.beginPath(); CX.arc(AT1[0],AT1[1],3.4,0,6.2832); CX.fillStyle='#3A4438'; CX.fill();
+    CX.beginPath(); CX.moveTo(FROM2[0],FROM2[1]); CX.lineTo(AT2[0],FROM2[1]-70); CX.lineTo(AT2[0],AT2[1]); CX.stroke();
+    CX.beginPath(); CX.arc(AT2[0],AT2[1],3.4,0,6.2832); CX.fill();
+  })();
+  window.__akLeaders=[
+    {target:"the early voting station lane", at:AT1, to:AT1, from:FROM1, label:"1 . EARLY VOTING STATION, 2,846"},
+    {target:"the two precinct lane", at:AT2, to:AT2, from:FROM2, label:"2 . GOLDSTREAM No. 2 AND MOOSE CREEK, 492"}
+  ];
+
+
+  /* THE THRESHOLD RULE anchors here, on the 2,846 lane's right edge. Never lit. */
+  (function(){
+    CX.save(); CX.strokeStyle=RED; CX.lineWidth=1.25;
+    CX.beginPath(); CX.moveTo(LANE_X+W_EARLY, LANE_Y-DEPTH-30); CX.lineTo(LANE_X+W_EARLY, LANE_Y+LANE_H+34); CX.stroke();
+    CX.restore();
+  })();
+
+  AK.fitText(document.getElementById('h1'), {min:72, max:100, maxLines:2});
+
+
+  /* THE LAY RUNS THROUGH THE RESERVE (2026-09-02, three critics independently).
+     The bloom lifts the lane so ink can sit on it, and in doing so it erases
+     the one thing that made the lane PAPER: the sheet arrises. What is left is
+     a soft-edged bright rectangle, which is the plate Device A forbids by name,
+     and it is also why the near band kept reading as dead to frame_balance no
+     matter how much grading went into it. So the arrises go back across the
+     WHOLE frame, reserve included, at a contrast far below the type's. Uniform
+     is the point: the qa check that guards reserved text compares a line
+     against its own block-mates, and a veil that treats every line alike gives
+     it nothing to single out. */
+
+
+
+
+
+
+
+  /* house machinery, AKSEAM: the deck-wide panorama seam and the two passes
+     that keep this slide's type reserve made of the same material as its art */
+  AKSEAM.veil(CX,{ns:NS, h:H, a0:0.09, a1:0.12,
+    xEnd:function(i){ return Math.min(W, 70+(W-30)*reach[i]); },
+    baseY:function(i){ return yTop[i]+lean[i]; },
+    edgeY:function(i,x){ return edgeY(i,x); }});
+  AKSEAM.lane(CX,{slide:3, ns:NS,
+    xEnd:function(i){ return Math.min(W, 70+(W-30)*reach[i]); },
+    edgeY:function(i,x){ return edgeY(i,x); }});
+  AKSEAM.lineLift(CX);
+
+  AKPOST.grade(CX,{w:W,h:H,exposure:-0.04,saturation:1.02,contrast:1.07,filmic:true,
+    vignette:0.16, bloom:{threshold:0.86,strength:0.05,radius:10},
+    grain:{amount:0.05,size:2,seed:20260902}, dither:true, sharpen:0.34});
+  resolve();
+})(); });
+</script></body></html>

@@ -1,0 +1,167 @@
+{
+  "run_dir": "out/2026-09-02",
+  "render_report": "out/2026-09-02/render/render_report.json",
+  "aggregates_file": "out/2026-09-02/aggregates.json",
+  "detected": 17,
+  "declared": 17,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "3,338 BALLOTS",
+      "text": "3,338 BALLOTS. ZERO DISCREPANCY.",
+      "n": 3338,
+      "subject": "ballots"
+    },
+    {
+      "slide": 1,
+      "kind": "ratio",
+      "fragment": "2 OF 32",
+      "text": "AUDIT SAMPLE . 2 OF 32 PRECINCTSPLUS THE EARLY VOTING STATION",
+      "n": 2,
+      "of": 32
+    },
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "32 PRECINCTS",
+      "text": "32 PRECINCTS . 2 SAMPLED",
+      "n": 32,
+      "subject": "precincts"
+    },
+    {
+      "slide": 2,
+      "kind": "span",
+      "fragment": "6 TO 1",
+      "text": "1 . THE ASSEMBLY ADOPTED THE VOTERINFORMATION 6 TO 1. THE ONE NO VOTECALLED IT L",
+      "from_n": 6,
+      "to_n": 1
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "3,338 ballots",
+      "text": "3,338 ballots,checked by hand.",
+      "n": 3338,
+      "subject": "ballots"
+    },
+    {
+      "slide": 3,
+      "kind": "span",
+      "fragment": "5 to 4",
+      "text": "A 2025 ordinance created the audit and passed 5 to 4. A canvass board hand verif",
+      "from_n": 5,
+      "to_n": 4
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "3,000 BALLOTS",
+      "text": "3,000 BALLOTS",
+      "n": 3000,
+      "subject": "ballots"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "33 ballots",
+      "text": "The tolerance was 33 ballots wide. The gap was zero.",
+      "n": 33,
+      "subject": "ballots"
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "12 TO 11",
+      "text": "DETAIL A . 12 TO 11 PERCENT OF 3,338 = 33 BALLOTSOBSERVED SEPARATION 0",
+      "from_n": 12,
+      "to_n": 11
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "32 precincts",
+      "text": "Two of 32 precincts were sampled. Thirty were not, and were never claimed.",
+      "n": 32,
+      "subject": "precincts"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Two years",
+      "text": "Two years.No estimate.",
+      "n": 2,
+      "subject": "years"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "TWO YEARS",
+      "text": "EFFECTIVE . 2027 CYCLE TERM . TWO YEARS AMENDABLE . NO COST .",
+      "n": 2,
+      "subject": "years"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "1215 COWLES",
+      "text": "SEPTEMBER 21ST TO OCTOBER 1ST . EARLY VOTING,NOEL WIEN LIBRARY, 1215 COWLES STRE",
+      "n": 1215,
+      "subject": "cowles"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "THREE PROPOSITIONS",
+      "text": "THREE PROPOSITIONS, ALL CITIZENS' INITIATIVES.1 TAX REVENUE CAP. 2 ELECTION DATE",
+      "n": 3,
+      "subject": "propositions"
+    },
+    {
+      "slide": 8,
+      "kind": "span",
+      "fragment": "20 TO 25",
+      "text": "TURNOUT HAS RUN 20 TO 25 PERCENT",
+      "from_n": 20,
+      "to_n": 25
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "3 LOCKS",
+      "text": "PROPOSITION 3 LOCKS FOR TWO YEARS ONCE IT PASSES.OCTOBER 6TH, 2026.",
+      "n": 3,
+      "subject": "locks"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "TWO YEARS",
+      "text": "PROPOSITION 3 LOCKS FOR TWO YEARS ONCE IT PASSES.OCTOBER 6TH, 2026.",
+      "n": 2,
+      "subject": "years"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 3,
+      "text": "3,000 BALLOTS",
+      "note": "The printed terminal label on the slide's own scale bar. It is a property of the drawing's scale, 1 ballot = 0.22 design px, and not a count of anything in the world. The bar is six 500 ballot segments, so its end reads 3,000."
+    },
+    {
+      "slide": 4,
+      "text": "The tolerance was 33 ballots wide. The gap was zero.",
+      "note": "The width of the ordinance's 1 percent tolerance expressed in ballots of the audited sample, 1 percent of 3,338 (C35 with C03) which is 33.38 and prints as 33. The slide sets the arithmetic out in full inside DETAIL A, and the frame re-derives it at render time in window.__akAssert with actual computed from the drawing's own SAMPLE constant rather than typed, so the number is proven by the picture that carries it. It is declared here rather than as a count because no claim states 33 and the gate's count kind wants one member per unit."
+    },
+    {
+      "slide": 4,
+      "text": "DETAIL A . 12 TO 1 1 PERCENT OF 3,338 = 33 BALLOTS",
+      "note": "Not a span. This is the magnifier's own optical ratio, DETAIL A at 12 to 1, running straight into the next line's 1 PERCENT when the render flattens the block to one string. The 12 is a property of the artwork, the enlargement that makes a 5.6 px tolerance readable at 67 px."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "S9 'PROPOSITION 3 LOCKS FOR TWO YEARS ONCE IT PASSES' [from_claim]: the noun 'lock' does not appear in claim C01; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

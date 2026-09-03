@@ -1,0 +1,142 @@
+{
+ "run_date": "2026-09-02",
+ "carousel_no": 48,
+ "review_rounds": 5,
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "Transcribed all 58 slide strings from copy.json, caption.txt and the first_comment block. Zero U+2013/U+2014. Every range is written X to Y. Only hyphens present are inside proper nouns (NEWS-MINER) and inside source URLs."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "None in copy.json, caption.txt or first_comment. The gold four-point mark on slide 09 is the house Polaris seal drawn as vector geometry with photometric spike lengths, not a glyph."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "claims.json carries C01 to C35, the storyboard's claims index maps every one to at least one slide and marks none unused. aggregate_check PASS, 17 detected and 17 declared. plan_drift_check PASS, 35 claims indexed, 0 drifts. Three claims were killed with reasons recorded and four are logged as unverified rather than printed."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "Transcribed all nine renders against copy.json. GOLDSTREAM No. 2 keeps mixed case deliberately inside an all-caps line because it is a precinct's proper name. Slide 04's flattened DETAIL A string is a line-concatenation artifact of the reporter, declared in aggregates.json; the render shows the two lines correctly separated. No misspelling found."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "qa.py reports 0 fails across nine slides; render_report shows 0 console errors, 0 page errors, 0 body_overflow, no fonts missing. Two near-misses checked in the pixels: slide 04's body last line box and the standing fixture have 8 px of line-box overlap, and slide 07's body and its first chip overlap by 1 px. In both renders the glyphs do not collide, the leading absorbs it. Not a fail, but it is the deck's ugliest spacing and it is scored under Legibility."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "NARROW PASS, and the human is shown the number. machine_qa measures worst-point 3.6 on slide 08's kicker THE DATES THAT ARE STILL OPEN (box mean 13.0) where the dark band lightens under the last two words. Ruled pass because the kicker is a repeated navigational eyebrow, not primary text: slide 08's primary text is the 64.5 px headline and the 28 px date register, both well above 4.5, and at 26 px the eyebrow clears the WCAG large-text 3:1 line. qa.py grades it WARN and not FAIL. A stricter reader could rule the other way, so it is flagged in the editor notes."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "Nine slides, counters render 01/09 through 09/09, assemble_report confirms 9."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict WARN, fails 0, warns 11, down from 19 the previous round. assemble_report.json pdf_mode vector, 9.0 MB, inside the 2 to 25 MB band, title 'Counted Twice. Fairbanks Votes on the Machines.' which now matches copy.json's document_title rather than the treatment name."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "No FNSB election, hand-count or ballot-tabulation topic appears in the four most recent artwork ledger entries, and the storyboard argues divergence against each by name."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "Hero is THE MEASURED SECTION, a macro oblique view of a continuous mass of cut sheet edges with no ground plane, table or horizon. The storyboard rebuts all four predecessors individually. bespoke_check median pairwise art similarity 0.527 against a 0.60 fail line."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "Scanned all 76 banned phrases against post copy, caption.txt, first_comment and every slide string. None present. Also checked the adjacent hard rules: no colon outside clock times; no cannot anywhere, slide 09 sets can't; no first person outside the straight-quoted Haney and Guttenberg passages; no sentence opens with And or But; every prose date is month-first ordinal."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "Exactly three at the very end. No URL in post_copy; all eight source links sit in first_comment. caption_check PASS, 897 chars, hook 131."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "No placeholder, lorem or TODO string in any artifact. The one stale artifact the scorer found, copy.json's editor_notes_for_email still describing five rounds and an absent panorama, was rewritten after this pass and before ship."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "The number arrived and it earns its place. 3,338 BALLOTS. ZERO DISCREPANCY. at 30 px sits under an 80.5 px headline of 11 words, and both read cleanly off the 432 px thumb along with AUDIT SAMPLE . 2 OF 32 PRECINCTS. Alaskan without a cliche, no aurora and no mountain. Held at 8 because the focal point competes: a four-line headline plate, a number line, a two-line sample caption, a precinct bar and a standing fixture is five stacked text events, and the riffle's opening edge that the dossier names as the focal point loses to them. The 32-cell precinct bar reads as an undifferentiated dark dash at thumb size."
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Beat structure is real, not a list: the clerk's own ballot title pays the cover instantly on 02, the test is built on 03, the hero relation lands on 04, and 05 hands the microphone to the proponent at the largest type in the deck before 06 declares the concession unprompted. The panorama is now genuinely present, a lit lane crosses and exits both frame edges on every slide, which was not true last round. It does not yet read as ONE CAMERA MOVE on the contact sheet, because the frame-level value structure jumps too hard and the fan-angle progression is not perceptible independent of the lane. 07 and 08 remain swappable."
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "score": 7,
+   "weight": 0.16,
+   "notes": "Four frames are excellent and survive the zoom test. Slide 04's DETAIL A is an instrument, not an ornament: a 12 to 1 magnifier with a lit bevel and its own cast shadow, the two red trip marks at the ends of a 67 px span, the coincident hand and machine marks at equal weight between them, and an assertion re-deriving 33 from the drawing's own constant rather than a typed literal. Slide 03 draws 1 ballot = 0.22 px with two material-coded lanes, both leaders landing 0.0 px on target, and a probe-measured contact shadow. Slide 06 is the most beautiful frame in the deck. Slide 07's lock bar carries 24 milled notches asserted against 24 months. Against that, four of nine frames are still a large light rectangle with type plus a ragged edge and the lane, which is 44 percent of the deck leaning on a default; the storyboard records the slide 02 bespoke object being drafted and reverted for good doctrinal reason, which is honest but does not change what ships."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "The best fusion in several runs. On 04 the art parameter and the story reason are the same object: 1 px = 6 ballots makes 1 percent 5.6 px, deliberately too fine to read, which is WHY the magnifier exists. On 03 the two lanes sum to 3,338 at a printed scale and the unsampled remainder runs off behind a drafting break labelled BALLOT TOTALS NOT DRAWN, NO VERIFIED FIGURE, so a failed denominator is drawn as an absence instead of guessed. On 07 the missing cost estimate is an unstruck field with no number, bar or arrow near it. Held at 8 because 02, 05 and 09 encode nothing, and the threshold rule that is supposed to carry a nine-state argument is below thumb visibility on several slides."
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "score": 9,
+   "weight": 0.12,
+   "notes": "Goldstream No. 2 and Moose Creek by name, the Noel Wien Library at 1215 Cowles Street, Haney, Wilson, Rotermund and Guttenberg with their actual roll-call positions, Mayor Hopkins quoted as a position and explicitly not as a finding, KUAC and the News-Miner attributed on the slide that uses them. The registration deadline is four days after the run date and slide 08 is genuinely screenshot-able by a Fairbanks voter. No imported national beat anywhere."
+  },
+  {
+   "name": "Insight density and factual weight",
+   "score": 9,
+   "weight": 0.1,
+   "notes": "Every content slide adds a new verified specific and the word counts sit in band. The refusals are as strong as the assertions: 2,706 signatures carries no surplus framing because the petition had fallen 108 short, a zero discrepancies quotation was killed and survives only as C05's substance, four unverifiable turnout figures were replaced with KUAC's sourced range, and slide 03's key line 3 says THE REST OF THE BOROUGH rather than printing a precinct count nobody verified."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8,
+   "weight": 0.08,
+   "notes": "Composition system, atmosphere, continuity device, hook archetype, palette family and type pairing are each argued against decks 44 to 47 one by one and concretely: no serif anywhere is itself the divergence given both forbidden pairings led with a serif display. bespoke_check median 0.527 against a 0.60 fail line, helped by round 6 lifting the three seam functions and five reserve helpers into assets/js/akseam.js. Held at 8 by a max pair of 0.802, which is the four flat frames resembling each other."
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "score": 6,
+   "weight": 0.07,
+   "notes": "The weakest technical surface and it is a pile of squeakers, not one. Body type runs 29 px on slides 03 and 04 and 31 px on 05 and 07, under the doctrine's 32 px body floor. alaskaaihq.com is 22 px on slide 09. Safe zone breached four times, including DRAWN TO SCALE sitting 63 px from the bottom on slides 03, 04 and 08, inside LinkedIn's page-counter zone. Slide 08's kicker measures 3.6 at worst point. Credit where due: vector PDF at 9.0 MB with the correct document title, counters on all nine frames, and the 432 px thumbs genuinely read, including slide 08's full date register."
+  },
+  {
+   "name": "Copy: voice and hook",
+   "score": 8,
+   "weight": 0.05,
+   "notes": "caption_check PASS at 897 chars with a 131 char hook that is a source quote doing real work. The Q and A structure is fresh against the caption ledger and the close is the best line in the run because it asks for a disconfirming result rather than an opinion. Held at 8 because 897 of a 900 char ceiling leaves no headroom and the fourth paragraph carries four separate facts in four sentences."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 6,
+   "weight": 0.1,
+   "notes": "Everything is present: nine renders, nine thumbs within 1.6 mean absolute levels of their own downsampled renders, contact sheet, vector PDF titled correctly, an eight-source first comment with correct ordinal dates now carrying the comma before the year, exactly three hashtags, and an aftercare list corrected so it no longer falsely claims slide 2 says what the machines are. Marked down for one correctness defect in the human-facing note: editor_notes_for_email still opened FIVE BUILD ROUNDS and told the human the panorama was not perceptible at any seam, which round 6 rebuilt and measured at 8 of 8. That note was rewritten after this pass and before ship."
+  }
+ ],
+ "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(8x0.14)+(9x0.12)+(9x0.10)+(8x0.08)+(6x0.07)+(8x0.05)+(6x0.10) = 1.12+1.12+1.12+1.12+1.08+0.90+0.64+0.42+0.40+0.60 = 8.52. Weights sum to 1.00; no hard fail, so no 6.9 cap applied.",
+ "weighted_total": 8.52,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Deliverable completeness (6, weight 0.10). Legibility and platform fitness ties on raw score at 6 with less weight; Artwork craft and genuine detail at 7 remains the weakest of the heavy creative criteria and is where the next run's effort belongs.",
+ "one_sentence_fix": "Rewrite copy.json's editor_notes_for_email to describe the build that actually ships, replacing FIVE BUILD ROUNDS and the two now-false sentences about the panorama being imperceptible and no right edge carrying a cut element with round 6's measured result of 8 of 8 seams and the four flat frames as the standing shortfall, because that note is the only artifact in the run that would actively misinform the human before they post. DONE before ship.",
+ "editor_notes_for_email": "SCORE 8.52 against a threshold of 7.7 (six revision rounds). Clears the unrelaxed 8.3 as well. No hard fail. Ship. The scorer's one-sentence fix, a stale editor note that still described five rounds and an absent panorama, was applied before ship. One contrast number to see: slide 08's kicker measures 3.6 to 1 at its worst point where the dark band lightens under the last two words; ruled a narrow pass because a kicker is a repeated eyebrow and not primary text and qa.py grades it a warn, but a stricter reader could rule the other way and it is a one line plate fix. Still shipping broken: four frames are a large light rectangle with type plus the new lane, body type is 29 px on slides 03 and 04 against a 32 px floor, alaskaaihq.com is 22 px on slide 09, the standing fixture sits inside LinkedIn's page counter zone on three slides, and the threshold rule is below thumb visibility on several. Best things in it: slide 04's magnifier, where the art parameter and the story reason are the same object; slide 06; the closing question, which asks for a disconfirming result rather than an opinion; and assets/js/akseam.js, which should outlive this deck.",
+ "scored_at": "2026-09-03"
+}
