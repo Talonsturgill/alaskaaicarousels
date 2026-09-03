@@ -5624,3 +5624,27 @@ passes the RUN date, and this run woke at 23:13 on September 1st and published
 on September 2nd. Hand-editing the ledger would have fought a correct resolver.
 The real fix is which date site_build is given, which is an upgrade and not a
 data edit.
+
+## 2026-09-02, run No.48, Phase 1 craft refresh
+
+Two searches. One item worth carrying, and it is a design instruction rather
+than a statistic, so it is recorded with its sourcing weakness attached.
+
+- Several 2026 carousel writeups now claim LinkedIn re-serves a document post
+  STARTING FROM SLIDE TWO to a reader who scrolled past it without engaging.
+  Treat the mechanism as unconfirmed, because the claim traces to marketing
+  blogs and not to LinkedIn engineering or help documentation, and this studio
+  retracted a similarly sourced "Long Dwell percentile" claim on 2026-09-01 for
+  exactly this reason. What survives regardless of whether the mechanism is
+  real is the design consequence, and it happens to agree with a rule the house
+  already keeps for a different reason. Slide 2 has to stand on its own as a
+  second cover, not merely pay off slide 1. CAROUSEL_CRAFT already says slide 2
+  pays off immediately because the steepest drop is 1 to 2; the addition is
+  that slide 2 should also make sense to a reader who never saw slide 1.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- The same sources put stat hooks at a 1.67x lift against 1.45x for direct
+  hooks. Same sourcing caveat, same direction as the house rule, no change.
+
+Nothing goes into the doctrine files from this. Recorded so the next run's
+craft refresh does not re-derive it, and so the slide-2 rule has a reason
+attached that is honest about its own evidence.
