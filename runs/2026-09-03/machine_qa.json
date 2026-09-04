@@ -78,7 +78,9 @@
     {
       "file": "slide-05.html",
       "fails": [],
-      "warns": [],
+      "warns": [
+        "console error: AK ENGRAVE: the main lay over region [52,920,552,430] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 118 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone."
+      ],
       "contacts": [
         "'the island chart lying on the wet dock boards': shadow L* 5.5 vs ground L* 25.4, dL 19.9 at 432w"
       ],
@@ -122,7 +124,10 @@
     {
       "file": "slide-08.html",
       "fails": [],
-      "warns": [],
+      "warns": [
+        "console error: AK ENGRAVE: the main lay over region [458,640,210,710] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 170 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone.",
+        "console error: AK ENGRAVE: the cross lay over region [458,640,210,710] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 117 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone."
+      ],
       "contacts": [
         "'the stamped left plate standing proud of the pole': shadow L* 19.3 vs ground L* 36.8, dL 17.5 at 432w"
       ],
@@ -143,6 +148,6 @@
     }
   ],
   "fails": 0,
-  "warns": 3,
+  "warns": 6,
   "verdict": "WARN"
 }

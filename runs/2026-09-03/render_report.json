@@ -3118,7 +3118,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 8782,
+      "render_ms": 6898,
       "ok": true,
       "canvases": [
         {
@@ -3171,7 +3171,7 @@
         }
       ],
       "source": {
-        "path": "/tmp/rw/out/2026-09-03/slides/slide-01.html",
+        "path": "/home/user/alaskaaicarousels/out/2026-09-03/slides/slide-01.html",
         "sha1": "b514453d80339cb86c04c76e6fcb9063f6709c62"
       }
     },
@@ -6221,7 +6221,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4881,
+      "render_ms": 4218,
       "ok": true,
       "canvases": [
         {
@@ -6274,7 +6274,7 @@
         }
       ],
       "source": {
-        "path": "/tmp/rw/out/2026-09-03/slides/slide-02.html",
+        "path": "/home/user/alaskaaicarousels/out/2026-09-03/slides/slide-02.html",
         "sha1": "36f49225e56389e1d228b82191d00c36f1e10083"
       }
     },
@@ -9462,7 +9462,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 5907,
+      "render_ms": 5174,
       "ok": true,
       "canvases": [
         {
@@ -9482,7 +9482,7 @@
       "breather": false,
       "leaders": [],
       "source": {
-        "path": "/tmp/rw/out/2026-09-03/slides/slide-03.html",
+        "path": "/home/user/alaskaaicarousels/out/2026-09-03/slides/slide-03.html",
         "sha1": "8b742655fab0d6a8db512a27728e56ab3d454460"
       }
     },
@@ -11832,7 +11832,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4102,
+      "render_ms": 3874,
       "ok": true,
       "canvases": [
         {
@@ -11869,14 +11869,16 @@
         }
       ],
       "source": {
-        "path": "/tmp/rw/out/2026-09-03/slides/slide-04.html",
+        "path": "/home/user/alaskaaicarousels/out/2026-09-03/slides/slide-04.html",
         "sha1": "55775d303a27a5c320af52afef193517e4adbf91"
       }
     },
     {
       "file": "slide-05.html",
       "png": "slide-05.png",
-      "console_errors": [],
+      "console_errors": [
+        "AK ENGRAVE: the main lay over region [52,920,552,430] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 118 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone."
+      ],
       "page_errors": [],
       "overflow_warnings": [],
       "fonts_missing": [],
@@ -14883,7 +14885,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4322,
+      "render_ms": 3893,
       "ok": true,
       "canvases": [
         {
@@ -14903,7 +14905,7 @@
       "breather": true,
       "leaders": [],
       "source": {
-        "path": "/tmp/rw/out/2026-09-03/slides/slide-05.html",
+        "path": "/home/user/alaskaaicarousels/out/2026-09-03/slides/slide-05.html",
         "sha1": "06758ec66de923c0d1932b3220b782026774cf24"
       }
     },
@@ -17590,7 +17592,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4546,
+      "render_ms": 4336,
       "ok": true,
       "canvases": [
         {
@@ -17610,7 +17612,7 @@
       "breather": false,
       "leaders": [],
       "source": {
-        "path": "/tmp/rw/out/2026-09-03/slides/slide-06.html",
+        "path": "/home/user/alaskaaicarousels/out/2026-09-03/slides/slide-06.html",
         "sha1": "dca5b8caca693857e6d3e26693e2e4978d917bdc"
       }
     },
@@ -20718,7 +20720,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 6036,
+      "render_ms": 6015,
       "ok": true,
       "canvases": [
         {
@@ -20771,14 +20773,17 @@
         }
       ],
       "source": {
-        "path": "/tmp/rw/out/2026-09-03/slides/slide-07.html",
+        "path": "/home/user/alaskaaicarousels/out/2026-09-03/slides/slide-07.html",
         "sha1": "ba64f8dfc76d55d633e7a85ce69dd7ece52ef9d8"
       }
     },
     {
       "file": "slide-08.html",
       "png": "slide-08.png",
-      "console_errors": [],
+      "console_errors": [
+        "AK ENGRAVE: the main lay over region [458,640,210,710] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 170 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone.",
+        "AK ENGRAVE: the cross lay over region [458,640,210,710] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 117 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone."
+      ],
       "page_errors": [],
       "overflow_warnings": [],
       "fonts_missing": [],
@@ -24003,7 +24008,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4355,
+      "render_ms": 4390,
       "ok": true,
       "canvases": [
         {
@@ -24023,7 +24028,7 @@
       "breather": false,
       "leaders": [],
       "source": {
-        "path": "/tmp/rw/out/2026-09-03/slides/slide-08.html",
+        "path": "/home/user/alaskaaicarousels/out/2026-09-03/slides/slide-08.html",
         "sha1": "2dbf6b291b32375fdd3f9ceb6639814430e87686"
       }
     },
@@ -27117,7 +27122,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3738,
+      "render_ms": 3737,
       "ok": true,
       "canvases": [
         {
@@ -27137,7 +27142,7 @@
       "breather": false,
       "leaders": [],
       "source": {
-        "path": "/tmp/rw/out/2026-09-03/slides/slide-09.html",
+        "path": "/home/user/alaskaaicarousels/out/2026-09-03/slides/slide-09.html",
         "sha1": "c973843031203655b68623f946184c521e8880ca"
       }
     }
