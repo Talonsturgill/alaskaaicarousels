@@ -2,7 +2,7 @@
   "name": "Cook Inlet Gas Watch",
   "description": "A daily numeric record of Southcentral Alaska's natural gas position. Measured storage inventory and deliverability from the CINGSA public dashboard, modeled regional demand from Anchorage degree days, and the derived non CINGSA supply that falls out of the mass balance. It publishes no safety verdict of any kind.",
   "version": "1.0",
-  "updated": "2026-09-03",
+  "updated": "2026-09-04",
   "canonical": "https://alaskaaihq.com/gas-watch.json",
   "documentation": "https://alaskaaihq.com/gas-watch/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -4791,28 +4791,28 @@
     },
     {
       "date": "2026-09-03",
-      "collected_utc": "2026-09-03T17:17:29Z",
+      "collected_utc": "2026-09-04T09:02:35Z",
       "collector_version": "1.0",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-09-03T09:00:00",
-        "source_timestamp_utc": "2026-09-03T17:00:00Z",
-        "inventory_mcf": 7486294,
-        "inventory_delta_mcf": 12055,
+        "source_timestamp": "2026-09-03T21:04:00",
+        "source_timestamp_utc": "2026-09-04T05:04:00Z",
+        "inventory_mcf": 7504127,
+        "inventory_delta_mcf": 17833,
         "storage_design_mcf": 13000000,
-        "inventory_pct_of_design": 57.6,
+        "inventory_pct_of_design": 57.7,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_operating_mcfd": 154800,
-        "withdrawal_available_mcfd": 150800,
+        "withdrawal_available_mcfd": 153528,
         "withdrawal_restriction_mcfd": 11200,
         "injection_design_mcfd": 225000,
         "injection_operating_mcfd": 88160,
-        "injection_available_mcfd": 72104,
-        "injection_in_progress_mcfd": 16056,
+        "injection_available_mcfd": 69056,
+        "injection_in_progress_mcfd": 19104,
         "injection_restriction_mcfd": 118160,
         "operational_note": "Well 7 is out of service for Coil tube work. We are currently waiting on the Coil Tube unit to be available for this work. This OFO only impacts Expansion Customers. We are still working on the system to only email customers affected by expansion OFO's, this issue is still being addressed. Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only. CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
-        "source_age_hours": 0.3
+        "source_age_hours": 4.0
       },
       "forecast": [
         {
@@ -4834,45 +4834,45 @@
         {
           "date": "2026-09-06",
           "hours": 24,
-          "mean_temp_f": 54.5,
-          "min_temp_f": 48,
-          "hdd65": 10.5,
-          "modeled_demand_mmcfd": 117
+          "mean_temp_f": 54.3,
+          "min_temp_f": 49,
+          "hdd65": 10.7,
+          "modeled_demand_mmcfd": 118
         },
         {
           "date": "2026-09-07",
           "hours": 24,
-          "mean_temp_f": 54.2,
-          "min_temp_f": 49,
-          "hdd65": 10.8,
-          "modeled_demand_mmcfd": 118
+          "mean_temp_f": 54.6,
+          "min_temp_f": 50,
+          "hdd65": 10.4,
+          "modeled_demand_mmcfd": 117
         },
         {
           "date": "2026-09-08",
           "hours": 24,
           "mean_temp_f": 53.6,
-          "min_temp_f": 49,
+          "min_temp_f": 50,
           "hdd65": 11.4,
           "modeled_demand_mmcfd": 120
         },
         {
           "date": "2026-09-09",
-          "hours": 21,
-          "mean_temp_f": 53.0,
-          "min_temp_f": 48,
-          "hdd65": 12.0,
-          "modeled_demand_mmcfd": 122
+          "hours": 24,
+          "mean_temp_f": 52.4,
+          "min_temp_f": 47,
+          "hdd65": 12.6,
+          "modeled_demand_mmcfd": 124
         }
       ],
-      "forecast_source_updated": "2026-09-03T14:44:14+00:00",
+      "forecast_source_updated": "2026-09-04T04:28:44+00:00",
       "derived": {
         "peak_forecast_date": "2026-09-09",
-        "peak_forecast_hdd": 12.0,
-        "peak_modeled_demand_mmcfd": 122,
+        "peak_forecast_hdd": 12.6,
+        "peak_modeled_demand_mmcfd": 124,
         "forecast_window_demand_bcf": 0.7,
-        "storage_withdrawal_mmcfd": -12.1,
+        "storage_withdrawal_mmcfd": -17.8,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 61.4,
+        "days_cover_at_peak": 60.5,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -4918,7 +4918,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-03T17:17:29Z",
+          "fetched_utc": "2026-09-04T09:02:36Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -4927,7 +4927,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-03T17:17:30Z",
+          "fetched_utc": "2026-09-04T09:02:36Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -4936,7 +4936,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-03T17:17:30Z",
+          "fetched_utc": "2026-09-04T09:02:36Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -4945,7 +4945,7 @@
         "injection_restriction_active",
         "withdrawal_restriction_active"
       ],
-      "supersedes_posting": "2026-09-03T01:16:00"
+      "supersedes_posting": "2026-09-03T09:00:00"
     }
   ]
 }
