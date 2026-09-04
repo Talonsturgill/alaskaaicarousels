@@ -161,10 +161,21 @@ Every change was run before it counted.
   pair. With `data-overlap-ok` added to the same slide, back to two WARNs and 0
   fails, so the escape hatch still works.
 - `render.py` + `qa.py` on THIS RUN'S nine slides: 9/9 rendered, 0 errors, 0
-  fails. All 18 PNGs (9 slides + 9 canvas layers) are byte-identical by md5 to
-  the run's own pre-change render, which is the proof that upgrade 2 changes no
-  pixels. QA now adds 3 WARNs, all of them the new lay probe naming slides 05
-  and 08.
+  fails, and all 18 PNGs (9 slides + 9 canvas layers) byte-identical by md5 to
+  the run's own pre-change render.
+- PIXEL NEUTRALITY, PROVED A/B RATHER THAN BY MEMORY. Midway through this phase
+  the same nine slides started rendering differently between two runs of
+  identical code, and the cause was the tree moving underneath: the showrunner
+  was still editing `out/2026-09-03/slides/` (slide-04.html changed during one
+  of the renders, which briefly reported a motif FAIL on a half-saved file). So
+  the check was redone properly, against drift: the nine slides were FROZEN to a
+  snapshot, rendered once with the new `akengrave.js` and once with
+  `git show HEAD:assets/js/akengrave.js`, with the snapshot's md5s verified
+  unchanged across both. **18 of 18 PNGs identical.** Upgrade 2 changes no
+  pixels, and that is measured rather than argued.
+- On that same frozen snapshot: 0 fails under both the old and the new qa.py,
+  and warns go from 3 to 6, the three new ones being the lay probe naming slide
+  05's main lay and slide 08's main and cross lays, all at alignment 1.00.
 - `render.py` + `qa.py` on `examples/demo-deck`: 4/4 rendered, 0 errors, 0 fails,
   warns unchanged from the pre-change baseline (the demo deck does not load
   akengrave and carries no text collisions).

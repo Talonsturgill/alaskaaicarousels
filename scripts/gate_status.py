@@ -210,6 +210,28 @@ RECON_HEAD_RE = re.compile(r"^\s{0,3}#{1,4}\s*BUILD\s+RECONCILIATION\b", re.I)
 ANY_HEAD_RE = re.compile(r"^\s{0,3}#{1,4}\s+\S")
 RECON_MIN_CHARS = 40
 
+# A GATE THAT COUNTS THE INSTRUCTION AS THE ANSWER (2026-09-03, run No.49).
+# The char floor below is a test of PRESENCE, and No.49's first scoring round
+# was hard-failed with this row reading PASS: the section held nothing but the
+# template's own two-line instruction to write it, 3 lines and 228 chars, which
+# cleared a 40-char floor comfortably. The floor cannot tell prose about THIS
+# build from prose about the act of writing one.
+#
+# The cheapest signal that separates them, and the one that does not teach a
+# run to pad: a real reconciliation is SPECIFIC. It either names a slide, or
+# lays out a table with at least one data row, or says outright that nothing
+# diverged. Boilerplate does none of the three, and no honest section fails to
+# do at least one. Staleness is still not checked and still not claimed.
+RECON_SLIDE_RE = re.compile(r"\b(?:slide|frame|panel)s?\s*#?\s*0?\d{1,2}\b"
+                            r"|\bS0\d\b", re.I)
+RECON_NODIVERGE_RE = re.compile(
+    r"\bnothing\s+(?:diverged|changed|drifted)\b"
+    r"|\bno\s+(?:divergence|drift|deviation)s?\b"
+    # deliberately NOT a bare "the build is": the boilerplate itself opens
+    # "The build is the record", and that is the string this exists to catch
+    r"|\bthe\s+build\s+(?:matches|followed|holds?\s+to|is\s+the\s+plan)\b"
+    r"|\bbuilt\s+as\s+(?:planned|drawn|dossiered)\b", re.I)
+
 
 def reconciliation_section(text):
     """Return the BUILD RECONCILIATION section's body lines, or None if the
@@ -268,6 +290,18 @@ def reconciled_row(rows, run):
         return
     table = sum(1 for ln in filled if ln.lstrip().startswith("|"))
     how = "%d table row(s)" % max(0, table - 2) if table >= 3 else "%d line(s)" % len(filled)
+    body_txt = "\n".join(filled)
+    specific = (table >= 3 or RECON_SLIDE_RE.search(body_txt) is not None
+                or RECON_NODIVERGE_RE.search(body_txt) is not None)
+    if not specific:
+        rows.add("reconciled", "FAIL" if rows.require else "WARN",
+                 "the BUILD RECONCILIATION section (%s, %d chars) never gets "
+                 "specific: it names no slide, lays out no table row, and never "
+                 "says that nothing diverged, which is what the template's own "
+                 "instruction to write one looks like. Say per slide where the "
+                 "build left the plan, or say plainly that nothing did"
+                 % (how, chars))
+        return
     rows.add("reconciled", "PASS",
              "BUILD RECONCILIATION present, %s, %d chars" % (how, chars))
 
@@ -1029,6 +1063,21 @@ def self_test():
                   require=True)
         check("  a prose 'nothing diverged' passes", r["status"] == "PASS",
               r["detail"][:80])
+        # THE No.49 DEFECT (2026-09-03): the section holds the template's own
+        # instruction to write it and nothing else, 228 chars over a 40-char
+        # floor. This row used to read PASS while the scorer hard-failed the run.
+        boiler = ("## BUILD RECONCILIATION\n\n"
+                  "Where the BUILD diverges from the plan above, and why. The "
+                  "build is the record;\nthese dossiers are what the build was "
+                  "aimed at.\n")
+        r = recon(dossiers + boiler + gateblk, require=True)
+        check("  the No.49 defect (the template's instruction, unanswered) fails",
+              r["status"] == "FAIL", r["detail"][:80])
+        r = recon(dossiers + boiler + "\n**Slide 03.** the rotor smear was "
+                  "planned at 26 blades and built at 12.\n" + gateblk,
+                  require=True)
+        check("  and one real slide note under the same boilerplate passes",
+              r["status"] == "PASS", r["detail"][:80])
         r = recon(dossiers + real + gateblk + "\n## BUILD RECONCILIATION\n\n",
                   require=True)
         check("  a later EMPTY section wins over an earlier full one",

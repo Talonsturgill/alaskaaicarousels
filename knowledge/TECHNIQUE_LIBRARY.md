@@ -633,7 +633,7 @@ annotation is the strongest pair):
     `AKENGRAVE.create({seed, light:{azDeg, elDeg}})`, then
     `await document.fonts.ready`, then `eng.reserve(AKENGRAVE.boxesFor(sel))`,
     then `eng.surface(cx, {region, form, tone, budget, inkLo, inkHi, wMax,
-    crossDeg, step, feather})`.
+    crossDeg, seedDeg, step, feather})`.
     FOUR RULES IT IMPLEMENTS: the lay wraps the form (direction is the modelling,
     before any value); THE SWELLED LINE (a stroke tapers at both ends and widens
     in the middle, drawn as a filled tapered polygon, never a stroked path);
@@ -666,7 +666,22 @@ annotation is the strongest pair):
     over #060B14 and three contact shadows measured under 2.0 L* of separation
     before the pools were rebuilt brighter. Light the ground, THEN cast, and cast
     AFTER `eng.surface` or the lay paints over the shadow and it samples brighter
-    than the ground it is supposed to darken. D3
+    than the ground it is supposed to darken.
+    A FORM THAT FALLS IN ONE AXIS ONLY DRAWS ONE STROKE, N TIMES (2026-09-03,
+    No.49). Every stroke is seeded on a raster line through the region's centre
+    and then walks the direction field. A one-axis form has parallel iso-lines,
+    and when they run along that raster every seed sits on the SAME iso-line:
+    ~170 swelled strokes retrace one curve and the region prints as a knotted
+    ribbon. No.49 diagnosed it four separate times in one deck (slides 01, 06,
+    08, 09) before naming the cause, and two of the nine shipped slides still
+    measure at the full 1.00. `angOff` CANNOT fix it, because the raster is
+    `angOff + 90deg` and the walk is `isoAngle + angOff`, so both rotate
+    together and the alignment is invariant. The two fixes are to give `form`
+    variation in the other axis (which curves the lay, so watch that it does
+    not read as a contour map) or to pass the new `seedDeg`, which turns the
+    seeding raster alone and leaves the modelling untouched. `_layCheck` now
+    measures the alignment before every pass and console.errors above 0.90,
+    which qa.py records as a WARN; healthy passes in No.49 read 0.00 to 0.51. D3
 
 94. **The Night Apron (aknight)** — `assets/js/aknight.js`. Added 2026-09-03 for
     No.49. The shared population bench for a wet night deck, so nine frames of

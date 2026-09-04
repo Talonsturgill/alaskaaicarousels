@@ -5819,3 +5819,65 @@ populations of similar area are the subject and not clutter. Brightening the
 crests swapped the two masses and left the ratio unchanged at 1.11, which is the
 proof that the pair is structural. The gate's own advice is to record a
 deliberate exception rather than tune it away, and that is what it is for.
+
+## 2026-09-03, No.49 (Phase 12) — the knot has a sharper cause than "closed iso-lines", and it is now measured
+
+The note above blames closed iso-lines where the gradient vanishes. That is not
+what the geometry says. Simulating akengrave's own `_layPass` and `_walk` off
+the file, with a form that falls along x only:
+
+```
+seed 540 291  len 114  mid (540, 597)      form varies in X only
+seed 540 411  len 114  mid (540, 597)      <- every seed
+seed 540 531  len 114  mid (540, 597)      <- walks the same
+seed 540 651  len 114  mid (540, 597)      <- curve
+```
+
+Every stroke is seeded on a raster line through the region's centre and then
+walks the direction field. A one-axis form has PARALLEL iso-lines, and for a
+fall along x those iso-lines run vertically, which is the direction the seed
+raster runs. So all ~170 seeds sit on ONE iso-line and the pass draws one
+swelled ribbon 170 times. Nothing has to close for the knot to appear. With the
+same form but a fall along y, the same code lays 8 evenly separated strokes.
+
+Two consequences worth keeping. First, `angOff` can't rescue it: the raster is
+`angOff + 90deg` and the walk is `isoAngle + angOff`, so both rotate together
+and the alignment is invariant, which is exactly why slide 08's crossline pass
+collapsed alongside its mainline. Second, the defect is now MEASURED rather than
+described: `_layCheck` probes the mean |cos| between walk direction and seed
+raster over a 12x12 grid and console.errors above 0.90, which qa.py records as a
+WARN. Healthy passes in this deck read 0.00 to 0.51; slides 05 and 08 shipped at
+1.00, so this deck still carries two of them. The escape that leaves the
+modelling alone is the new `seedDeg`, which turns the seeding raster only.
+
+## 2026-09-03, No.49 (Phase 12) — PARKED: hatching as evenly-spaced streamlines
+
+Frontier scan (c), procedural art portable to offline Canvas. Two sources say
+the same thing about the bench's weakest joint, and both are parked rather than
+applied because either one is a redesign of the drawing core and would change
+the pixels of every engraving already shipped.
+
+- **A Primitive for Manual Hatching**, Philbrick and Kaplan, ACM TOG 2022.
+  https://cs.uwaterloo.ca/~csk/publications/Papers/philbrick_kaplan_2022.pdf
+  A hatching shape is a mask plus THREE FIELDS, width, spacing and direction,
+  plus barrier curves that marks may not cross; marks are placed by streamline
+  advection. akengrave has the mask (`reserve`), the width field (per-stroke,
+  from the light) and the direction field (the form's gradient). Its SPACING is
+  not a field at all, it is one scalar `gap` on a fixed raster, and it has no
+  barrier curves. That missing third field is precisely where the collapse
+  above lives.
+- **Creating Evenly-Spaced Streamlines of Arbitrary Density**, Jobard and Lefer
+  1997, and the JS implementation at https://github.com/anvaka/streamlines
+  (MIT, `dSep` / `dTest` / RK4). Seed each new line at `dSep` from the lines
+  already accepted, integrate, and stop when it comes within `dTest` of one,
+  with a uniform grid sized `dSep` for the distance query. Under that rule the
+  degenerate case can't happen: the second seed on a shared iso-line is
+  rejected before it draws. It also fixes the milder version of the same fault,
+  the uneven density where iso-lines converge.
+
+WHAT WOULD HAVE TO BE TRUE TO APPLY IT. A spacing FIELD and a separation test
+replace `_layPass`'s raster seeding outright, so every deck that used the bench
+would re-render differently, and the change can't be verified by pixel
+identity the way today's probe was. It wants its own session with a before and
+after contact sheet, and probably a `place: "even"` option so the old path stays
+reachable for a run that needs to reproduce a shipped frame.
