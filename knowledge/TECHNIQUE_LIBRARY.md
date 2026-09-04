@@ -667,3 +667,70 @@ annotation is the strongest pair):
     before the pools were rebuilt brighter. Light the ground, THEN cast, and cast
     AFTER `eng.surface` or the lay paints over the shadow and it samples brighter
     than the ground it is supposed to darken. D3
+
+94. **The Night Apron (aknight)** — `assets/js/aknight.js`. Added 2026-09-03 for
+    No.49. The shared population bench for a wet night deck, so nine frames of
+    the same weather are one module rather than nine private copies.
+    `reserve(selector)` returns type-reserve rects PER LINE BOX via a Range and
+    `getClientRects`, so a ragged block reserves unequal rects and the hole
+    follows the rag; measuring the block instead reserves the bounding rectangle
+    of the paragraph, which is the plate this whole idiom exists to avoid.
+    `rain` draws tapered filled quads never strokes, gated by an `inCone` test so
+    a frame's unlit band contains none. `chips` is the runoff mirror, a
+    population of hard-edged specular quads placed by rejection sampling against
+    the story's own quantity, and it exists because a graded wash in the lower
+    third reads as NOTHING after the 6x box downsample while a population of
+    discrete steps survives it. `conductor` is one cased catenary with rain
+    beads. D3
+
+94a. **The Anchor Seam** — `AKNIGHT.contact`. THE PAIR IN THE ONLY ORDER THAT
+    MEASURES, plus the mark that makes it read as touching. Light the ground with
+    `litPool` FIRST, then cast, because a correctly drawn shadow on ground that is
+    already near black measures zero separation. Two numbers matter and both were
+    learned the hard way. The pool's ramp must HOLD before it falls: a pool spent
+    at half radius lights only the strip the cast then covers, and the pair
+    measures nothing. And the pool must be WIDER than the cast's own wide ambient
+    term, or the only ground left to pair against is ground that term has already
+    darkened.
+    THE SEAM IS THE THIRD TERM AND IT IS WHAT SAYS ATTACHED. A directional cast
+    keeps its darkest point downlight of the object, which is physically right and
+    also measures 34 to 46 design px off the object's foot: the reading five
+    critics filed as a detached hole in a spotlight. Where an object MEETS the
+    ground there is a hard, narrow, almost unblurred line of occlusion, and
+    drawing it last puts the trough back on the base.
+    A CONTACT IS THE FOOT, NOT THE SILHOUETTE. Passing the object's full width as
+    `w` spreads the tight cast to half that again and leaves no lit ground inside
+    the window a reading is taken in; `scripts/contact_probe.py` searches 48px for
+    the cast and 96px for the ground, so `w` belongs in the 70 to 110 range
+    whatever the object's width.
+    AND THE FLOOR IS NOT A TARGET. Tuned until they measured dL 35 to 45 against a
+    4.0 floor and a known-good of 8.1, the pools read as stage spotlights. MEASURE
+    THE PAIR, NEVER COMPUTE IT, and then look at the picture. D2
+
+94b. **The Measured Veil** — `AKNIGHT.veil`. Type defended by SUBTRACTION rather
+    than by a plate: the slide's base value run back over each reserved line box,
+    so the art is removed where the type sits instead of covered. Three things are
+    load-bearing and each replaced a wrong version that shipped.
+    THE RAMPS MULTIPLY. Two crossed linear ramps drawn as two fills do not make a
+    feathered rect: each varies on one axis and is hard cut on the other, and
+    their SUM has four findable edges. Build the mask offscreen and composite each
+    ramp into its alpha with `destination-in`.
+    AN ELLIPSE IS THE WRONG SHAPE. It was tried first and the corners of a long
+    thin line box fall outside it, so the first line of each block came out veiled
+    and its ends did not.
+    AND IT ONLY VEILS WHAT NEEDS VEILING. Strength follows a MEASURED reading of
+    the ink actually under each box, the fraction of pixels far from the box's own
+    median, so a claim tag on quiet sky is left alone. Use a fraction and not a
+    spread: one 2px conductor across an 800px box moves a standard deviation by
+    almost nothing and is exactly the mark that has to go. `avoid` names surfaces
+    the veil must never touch, because an object with its own value, a gauge board
+    say, needs no help and a veil over it erases the marks the slide is about. D2
+
+94c. **The Chained Wire** — a continuity device is only a device if it chains.
+    No.49 authored a catenary per slide and the deck misaligned at seven of eight
+    junctions, by 490 design px at the worst, so the one thing meant to carry the
+    swipe read as a different object in a different scene. Declare the height
+    chain ONCE, as a list where every exit IS the next entry, and let each slide
+    choose only its sag to route around its own copy. Exactly one frame in the
+    deck may dead-end, and it is the last one; any earlier frame that terminates
+    spends the payoff. D1

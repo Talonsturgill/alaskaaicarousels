@@ -1187,6 +1187,27 @@
       "confidence": 0.88,
       "born": "2026-09-02",
       "evidence": "review-bot findings on PR #337, resolved in #339"
+    },
+    {
+      "id": "two-crossed-ramps-are-not-a-feathered-rect",
+      "instinct": "A FEATHERED RECTANGLE IS NOT TWO CROSSED LINEAR RAMPS DRAWN AS TWO FILLS. Each ramp varies on ONE axis and is hard cut on the other, so the vertical one ends on straight verticals and the horizontal one on straight horizontals, and their SUM is a rectangle with four findable edges. AKNIGHT.veil carried a comment describing a product the code never computed, and it printed the exact flat plate it existed to prevent on six of nine slides for a whole render cycle. Alpha ramps must MULTIPLY, which on canvas means building the mask offscreen and compositing each ramp with destination-in. Whenever a comment describes a product, check the operator.",
+      "confidence": 0.95,
+      "born": "2026-09-03",
+      "evidence": "five pixel critics on No.49 reported plates; one diagnosed the operator, and the multiplicative mask cleared every report at once"
+    },
+    {
+      "id": "a-call-site-override-silences-a-module-fix",
+      "instinct": "A DEFAULT YOU TUNE IN A MODULE REACHES NOTHING IF EVERY CALL SITE PASSES THE OLD VALUE. No.49 softened veil()'s alpha and made its feather proportional, and all nine slides kept passing alpha 0.74 with a fixed 26px feather, so three successive repairs to the module changed not one pixel. After changing a default, grep the call sites before re-rendering, and prefer deleting the argument at the call site over threading a new one through.",
+      "confidence": 0.92,
+      "born": "2026-09-03",
+      "evidence": "No.49, three veil revisions with no visible change until the nine call sites were emptied"
+    },
+    {
+      "id": "an-iso-line-that-can-close-will-knot",
+      "instinct": "AN ENGRAVE FORM THAT VARIES IN ONLY ONE DIRECTION HAS CLOSED ISO-LINES WHEREVER ITS GRADIENT REACHES ZERO, and the swelled line follows them round. It shows up as a tangled ribbon over a fluted pole, as a topographic map over a road, as marbled endpaper over enamel. The cure is never smoothing: give the form a term that cannot vanish along the direction the lay should run, or make every term a function of the ONE axis whose iso-lines you want. No.49 hit this four times in one run, on slides 01, 06, 08 and 09, which makes it the deck's most repeatable art defect.",
+      "confidence": 0.9,
+      "born": "2026-09-03",
+      "evidence": "No.49 slides 01, 06, 08 and 09, four independent instances of one cause"
     }
   ]
 }

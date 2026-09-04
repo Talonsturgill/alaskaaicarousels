@@ -5758,3 +5758,64 @@ writing down so it stops being re-derived.
 
 Nothing enters the doctrine files. Recorded so run No.50's craft refresh spends
 its searches somewhere else.
+
+## 2026-09-03, No.49 — a comment described a product the code never computed
+
+The deck's five pixel critics all filed the same defect and none of them could
+have fixed it, because it was not on their slides. AKNIGHT.veil defends type by
+subtracting art where a line box sits, and it did that by drawing two crossed
+linear ramps as two fills. Each ramp varies on ONE axis and is HARD CUT on the
+other, so their sum is a rectangle with four findable edges: the exact flat
+plate the function exists to prevent, printed behind the type on six of nine
+slides. The comment above it said "feathers are a fraction of each side", which
+describes a product. Nothing multiplied. Alpha ramps compose by multiplication,
+which on canvas means building the mask offscreen and compositing each ramp
+with destination-in.
+
+Three things generalise, and the third is the expensive one.
+
+WHEN A COMMENT DESCRIBES A PRODUCT, CHECK THE OPERATOR. The prose was right
+about the intent and silent about the arithmetic, and it read as verification
+for a whole render cycle.
+
+A MODULE DEFAULT REACHES NOTHING IF EVERY CALL SITE OVERRIDES IT. The veil was
+softened three times and all nine slides kept passing the old alpha and a fixed
+feather, so three repairs changed not one pixel. After changing a default,
+grep the call sites before re-rendering.
+
+AND A GATE FLOOR IS NOT A TARGET. Repairing the contact shadows pushed the
+lit pools to a measured dL of 35 to 45 against a 4.0 floor and a known-good of
+8.1, and read as six stage spotlights on a night road. The floor said the
+objects no longer floated; it could not say they now glowed. The number went
+back down and the pools were built to what wet ground under a lamp actually
+looks like, which still clears the floor several times over.
+
+## 2026-09-03, No.49 — an iso-line that can close will knot
+
+Four slides in one run produced the same artefact from the same cause. An
+engrave form that varies in only one direction has CLOSED iso-lines wherever
+its gradient reaches zero, and the swelled line follows them round: a tangled
+ribbon over slide 08's fluted pole, a topographic map over slide 09's road,
+marbled endpaper over slide 06's enamel, and slide 01 had already hit it on its
+second pass. The cure is never smoothing. Either give the form a term that
+cannot vanish along the direction the lay should run, or make every term a
+function of the ONE axis whose iso-lines you want. Answering it with a fall in
+the OTHER axis is not a fix; on slide 08 that traded the knot for a contour map,
+which is a different wrong picture.
+
+The lay's direction is a material decision and belongs in the dossier: along a
+pole, across a road toward its vanishing point, brushed flat on enamel.
+
+## 2026-09-03, No.49 — the lower-half attack landed, and measurably
+
+The standing weakness across many runs is top-loaded composition. This deck put
+subject mass in the lower half with a quiet zone at top and used hard luminance
+steps instead of washes. value_structure holds 8 of 9 frames with bottom-third
+weight between 53 and 91 percent, which is the first run where that reading is
+uniform rather than incidental. Slide 04 is the single exception and it is a
+DECLARED one, recorded in its dossier field 4 with the measurement: a corrugated
+door is a repeating pair of a lit crest and a dark lee flank, so two mid
+populations of similar area are the subject and not clutter. Brightening the
+crests swapped the two masses and left the ratio unchanged at 1.11, which is the
+proof that the pair is structural. The gate's own advice is to record a
+deliberate exception rather than tune it away, and that is what it is for.
