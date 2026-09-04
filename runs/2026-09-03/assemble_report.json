@@ -1,43 +1,43 @@
 {
-  "pdf": "/home/user/alaskaaicarousels/out/2026-09-03/final/carousel.pdf",
+  "pdf": "/tmp/rw/out/2026-09-03/final/carousel.pdf",
   "pdf_mode": "vector",
-  "pdf_bytes": 8448793,
-  "pdf_mb": 8.45,
+  "pdf_bytes": 8441144,
+  "pdf_mb": 8.44,
   "slides": 9,
-  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-03/final/contact_sheet.png",
+  "contact_sheet": "/tmp/rw/out/2026-09-03/final/contact_sheet.png",
   "thumbs": [
-    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-01-thumb.png",
-    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-02-thumb.png",
-    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-03-thumb.png",
-    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-04-thumb.png",
-    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-05-thumb.png",
-    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-06-thumb.png",
-    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-07-thumb.png",
-    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-08-thumb.png",
-    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-09-thumb.png"
+    "/tmp/rw/out/2026-09-03/final/thumbs/slide-01-thumb.png",
+    "/tmp/rw/out/2026-09-03/final/thumbs/slide-02-thumb.png",
+    "/tmp/rw/out/2026-09-03/final/thumbs/slide-03-thumb.png",
+    "/tmp/rw/out/2026-09-03/final/thumbs/slide-04-thumb.png",
+    "/tmp/rw/out/2026-09-03/final/thumbs/slide-05-thumb.png",
+    "/tmp/rw/out/2026-09-03/final/thumbs/slide-06-thumb.png",
+    "/tmp/rw/out/2026-09-03/final/thumbs/slide-07-thumb.png",
+    "/tmp/rw/out/2026-09-03/final/thumbs/slide-08-thumb.png",
+    "/tmp/rw/out/2026-09-03/final/thumbs/slide-09-thumb.png"
   ],
   "title": "Five Turning, One Still, and a Load With No Number",
   "sources": {
     "render_pngs": [
       {
         "name": "slide-01.png",
-        "sha256": "03452b27a07b420648313b4eba561f511f47b89623f01b3c4e4eb5d22d7cb3b3",
-        "bytes": 2779712
+        "sha256": "89db5bec641bcf821d650087889c740acb2bb168001f5f0609603c35bec17c6d",
+        "bytes": 2778811
       },
       {
         "name": "slide-02.png",
-        "sha256": "1f0901c639f53850282a5fa3c0f2cc6c13780799fe8fd4469be7c9792a099712",
-        "bytes": 2988565
+        "sha256": "614805fab22111384174eba6d01f04ffb0e0bdd9a53321c9b96f85387cfb6ab2",
+        "bytes": 2985803
       },
       {
         "name": "slide-03.png",
-        "sha256": "401c36203d35e88877fab4d1e4817623c2b9235285de32c44d84ced417f468c3",
-        "bytes": 2219829
+        "sha256": "ddafecdc1415ad8dd15635b90df53f9cd07c0ce5e38f12644e13fc8f9b3c99be",
+        "bytes": 2216474
       },
       {
         "name": "slide-04.png",
-        "sha256": "9d6b0a2091293759a12c9e3df69744b032716d25318568fb656be65b6645544c",
-        "bytes": 2335488
+        "sha256": "788323285e6b5206c8e002ef4fc6f7f1fc14e22a3d5b4b4aa2cb70ad98227f2e",
+        "bytes": 2331184
       },
       {
         "name": "slide-05.png",
@@ -46,13 +46,13 @@
       },
       {
         "name": "slide-06.png",
-        "sha256": "22edc678c95770d89d183cb216cb906fe3a2e85f5f3ea06f15a0c83fe18ed2f1",
-        "bytes": 3470467
+        "sha256": "de4d4477bae71503268bd50c1359c0e19fb5ae979101a5d68caae63e56d82d07",
+        "bytes": 3467103
       },
       {
         "name": "slide-07.png",
-        "sha256": "e53cd85c65fd71873cde3b7a9ff8dff55a3e3ea0f0291efb70df4ad7827025b0",
-        "bytes": 2961433
+        "sha256": "1e25d3325379d870173cdcdf928ed99fe1d9cf7881729c6b6caf15e1890069b4",
+        "bytes": 2958551
       },
       {
         "name": "slide-08.png",
@@ -83,8 +83,8 @@
       },
       {
         "name": "slide-04.html",
-        "sha256": "b6fe65b3d8dfa8f6d95936fa1b70f56e64cdda4c4abf3509ac10e10734c92381",
-        "bytes": 15052
+        "sha256": "07f19e8f5af6d4958ae3a3a5b16adab736f8e557181b74e8e3556c6a8a3a1cdc",
+        "bytes": 16580
       },
       {
         "name": "slide-05.html",

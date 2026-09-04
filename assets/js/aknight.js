@@ -141,6 +141,15 @@
       var jit = ((rnd() + rnd() + rnd()) / 3 - 0.5) * 0.16;
       var s = Math.sin(ang + jit), c = Math.cos(ang + jit);
       var ex = x + s * len, ey = y + c * len;
+      /* THE WHOLE STREAK IS THE MARK, NOT ITS HEAD. Testing only the origin
+       * lets a streak beginning one pixel outside a hard exclusion lay its
+       * tail straight through it, which on a declared flat band is the band
+       * being repainted by the one population that was told to stay out.
+       * Both ends are tested, and the tail is drawn only where it belongs.
+       * The rejection happens AFTER every draw from `rnd`, so a streak that
+       * fails here costs the stream nothing and the population upfield of
+       * the exclusion is bit for bit what it was. */
+      if (!cone(ex, ey)) continue;
       /* a tapered quad: wide at the head, closing to a point at the tail */
       cx.globalAlpha = (o.alpha == null ? 0.30 : o.alpha) * (1.05 - z * 0.75);
       cx.beginPath();

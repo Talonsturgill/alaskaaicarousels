@@ -267,9 +267,40 @@ window.renderReady = new Promise(function (resolve) {
        NONE inside the door gap. */
     /* THE UNLIT BAND, RE-LAID. It is declared the deck's narrowest and deepest
        step and four later passes were painting over it. Nothing that runs
-       after this line may enter it. */
-    cx.fillStyle = '#04070E';
+       after this line may enter it.
+       AN UNLIT GAP IS NOT AN EVEN ONE. Laid flat, the band survived the motif
+       gate only because rain was leaking into it, which is the exact trespass
+       this line forbids; close the leak and a flat fill is a dead rect that
+       reaches the render carrying nothing. The gap has its own two facts and
+       they are drawn instead of borrowed. It is deepest hard under the door
+       and lifts a little at the sill, where the threshold bounces what the
+       pool throws at it. And it is a gap under a CORRUGATED door, so the rib
+       pitch continues through it as a row of shallow arches, darkest on the
+       two struck ribs, exactly as the door above states them. */
+    var gg = cx.createLinearGradient(0, GAP_Y, 0, GAP_Y + GAP_H);
+    gg.addColorStop(0, '#02040A');
+    gg.addColorStop(0.62, '#04070E');
+    gg.addColorStop(1, '#0A111D');
+    cx.fillStyle = gg;
     cx.fillRect(0, GAP_Y, 1080, GAP_H);
+    (function ribShadow() {
+      var n = 28, pitch = DOOR.w / n, gr = AK.rng(SEED + 41);
+      cx.save();
+      cx.beginPath(); cx.rect(DOOR.x, GAP_Y, DOOR.w, GAP_H); cx.clip();
+      for (var i = 0; i < n; i++) {
+        var dent = Math.pow(gr(), 1.5);
+        var struck = (i === 9 || i === 20);
+        var x = DOOR.x + i * pitch;
+        cx.globalAlpha = (struck ? 0.50 : 0.20) + dent * 0.16;
+        cx.fillStyle = '#010307';
+        cx.beginPath();
+        cx.ellipse(x + pitch * 0.5, GAP_Y + GAP_H * 0.18,
+                   pitch * 0.34, GAP_H * (0.50 + dent * 0.30), 0, 0, 6.283185);
+        cx.fill();
+      }
+      cx.restore();
+      cx.globalAlpha = 1;
+    }());
 
     AKNIGHT.rain(cx, {
       count: 3100, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
