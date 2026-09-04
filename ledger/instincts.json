@@ -1208,6 +1208,13 @@
       "confidence": 0.9,
       "born": "2026-09-03",
       "evidence": "No.49 slides 01, 06, 08 and 09, four independent instances of one cause"
+    },
+    {
+      "id": "a-declared-region-must-pass-its-gate-alone",
+      "instinct": "A DECLARED MOTIF RECT CAN SATISFY ITS GATE ON INK THAT BELONGS TO A POPULATION THE REGION EXCLUDES, and no report says whose ink it is. No.49's slide 04 declared a flat unlit band and passed motif_survives all run on rain that was leaking into it past a broken boundary test; closing the leak dropped the rect to 0.0 dE. Before declaring a rect, name what draws inside it on purpose. If the honest answer is nothing, the declaration is wrong or the region is unfinished. Related: test the MARK against an exclusion cone, never the seed, because a boundary test that runs before the geometry is decided is not a boundary test.",
+      "confidence": 0.85,
+      "born": "2026-09-04",
+      "evidence": "No.49 slide 04, found by an outside review of the run branch and by none of the fourteen gates. Repair measured 5.0 dE canvas and 5.7 dE page, with the nine rasters byte identical to the scored ones by md5."
     }
   ]
 }

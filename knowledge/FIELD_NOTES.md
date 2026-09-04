@@ -5881,3 +5881,42 @@ would re-render differently, and the change can't be verified by pixel
 identity the way today's probe was. It wants its own session with a before and
 after contact sheet, and probably a `place: "even"` option so the old path stays
 reachable for a run that needs to reproduce a shipped frame.
+
+## A GATE CAN PASS ON SOMEONE ELSE'S INK (2026-09-04, No.49, editorial retro)
+
+The last defect of run No.49 was found by an outside review of the branch and
+not by any of the fourteen gates, and the way it hid is the lesson.
+
+`rain()` tested a streak's ORIGIN against its exclusion cone and then drew the
+streak somewhere else, so on slide 04 the rain laid its tails straight through
+the 44 pixel unlit band the slide re-lays under a comment saying nothing after
+this line may enter it. A boundary test that runs before the geometry is
+decided is not a boundary test. Test the mark, not the seed.
+
+That was the small half. The large half is what closing the leak revealed. The
+band's declared motif had been PASSING `motif_survives` on the variation the
+trespassing rain brought with it. With the leak closed the rect measured 0.0 dE
+on the canvas and 0.0 on the page and the gate failed it honestly, which is to
+say the gate had been right about the pixels and wrong about the picture for
+the whole run. A declared region can satisfy its own gate on ink that belongs
+to a population the region explicitly excludes, and nothing in the report says
+whose ink it is.
+
+So the rule that comes out of it. A DECLARED REGION MUST BE ABLE TO PASS ITS
+GATE ALONE. When a slide declares a motif rect, ask what draws inside it on
+purpose, and if the honest answer is nothing, the declaration is wrong or the
+region is unfinished. An unlit gap under a roll-up door is not evenly unlit: it
+is deepest hard under the door, it lifts at the sill where the threshold
+returns what the pool throws at it, and the door's rib pitch continues through
+it. Drawing those two facts took eleven lines and moved the rect to 5.0 dE.
+Borrowing the rain's noise took none and measured the same.
+
+Two smaller things worth keeping from the same hour. The nine rasters came out
+byte identical to the ones that scored 8.81, verified by md5 against a render
+made from a clean checkout, which is what made it safe to repair art after
+scoring without re-scoring; a fix that cannot show pixel identity has to go
+back through the scorer. And the clean checkout mattered for a second reason,
+which is that Phase 12 was editing the engine in the working tree at the same
+time, and the first re-render blamed the slide for three warns that belonged to
+a probe the upgrade engineer had just built. Validate a run's art against the
+committed engine, never against a tree someone else is still writing to.

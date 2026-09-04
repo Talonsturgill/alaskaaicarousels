@@ -749,3 +749,15 @@ annotation is the strongest pair):
     choose only its sag to route around its own copy. Exactly one frame in the
     deck may dead-end, and it is the last one; any earlier frame that terminates
     spends the payoff. D1
+
+94d. **The Region That Pays Its Own Way** — a declared region must be able to
+    pass its gate ALONE. No.49's slide 04 declared the deck's narrowest unlit
+    band and laid it as one flat fill; it satisfied motif_survives for the whole
+    run on variation the rain was leaking into it, in defiance of the slide's own
+    comment forbidding entry. With the leak closed the rect read 0.0 dE and the
+    gate failed it honestly. Before declaring a rect, name what draws inside it
+    ON PURPOSE, and if the answer is nothing, either the declaration is wrong or
+    the region is unfinished. An unlit gap under a roll-up door is deepest hard
+    under the door, lifts at the sill where the threshold returns what the pool
+    throws at it, and carries the door's rib pitch through it as shallow arches.
+    Eleven lines, 5.0 dE, and the reading is now the slide's own. D1
