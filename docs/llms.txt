@@ -30,7 +30,7 @@ Alaska AI with a link to the page is requested. No crawler is blocked.
 
 - [The data, schema, license and how to use it](https://alaskaaihq.com/data/) start here if you want to build on or quote the docket
 - [The docket as open JSON](https://alaskaaihq.com/docket.json) versioned, CC BY 4.0, field documentation travels with the data
-- [Cook Inlet Gas Watch as open JSON](https://alaskaaihq.com/gas-watch.json) one object per day, CC BY 4.0, every record carries the model that produced it and the provenance of every fetch behind it. 30 days on record, 2026-08-05 to 2026-09-03
+- [Cook Inlet Gas Watch as open JSON](https://alaskaaihq.com/gas-watch.json) one object per day, CC BY 4.0, every record carries the model that produced it and the provenance of every fetch behind it. 31 days on record, 2026-08-05 to 2026-09-04
 - [Every article as plain Markdown, one fetch](https://alaskaaihq.com/llms-full.txt)
 - [The source archive, every document a claim was verified against](https://alaskaaihq.com/sources/)
 
