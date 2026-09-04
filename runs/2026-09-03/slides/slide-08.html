@@ -1,0 +1,279 @@
+<!doctype html>
+<!-- SLIDE 08 — THE HONESTY BEAT, technique 58e built as HARDWARE rather than as
+     paper. Two steel plates bolted to one wet pole, 45mm, camera 1.2m, W.
+     LEFT is stamped and carries a gold SOURCED stamp. RIGHT is a milled blank,
+     four bolt holes and nothing struck in the field, and it takes NO gold
+     anywhere, which is the gold law doing the argument's work. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Instrument Serif", serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.09; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  .kicker { position: absolute; left: 80px; top: 92px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #7FA8B8; }
+  h2 { position: absolute; left: 80px; top: 214px; width: 900px;
+       font-weight: 400; font-size: 74px; line-height: 1.0; color: #F4F8FF; }
+  .body { position: absolute; left: 80px; top: 420px; width: 700px;
+          font-family: "Archivo", sans-serif; font-variation-settings: "wdth" 88;
+          font-weight: 400; font-size: 34px; line-height: 1.38; color: #F4F8FF; }
+  /* THE RIGHT PLATE ran five lines at this size and its last one printed
+     straight over the Sullivan quote below it. One step down clears it. */
+  /* THIS TEXT IS THE DISCLOSURE. At 20px it is 8px at feed width, so the
+     one thing a sourcing challenge is answered with could not be read. */
+  .pl { position: absolute; font-family: "JetBrains Mono", monospace;
+        font-size: 24px; letter-spacing: 0.05em; line-height: 1.32; }
+  .pl.L { left: 80px; top: 776px; width: 384px; color: #F4F8FF; }
+  .pl.R { left: 494px; top: 764px; width: 384px; color: #B9CBD8; }
+  .stamp { position: absolute; font-family: "JetBrains Mono", monospace;
+           font-weight: 700; font-size: 30px; letter-spacing: 0.16em; }
+  .stamp.L { left: 80px; top: 720px; color: #FFC72C; }
+  .stamp.R { left: 490px; top: 708px; color: #7FA8B8; }
+  /* THE COUNTER WAS PRINTING THROUGH THE ATTRIBUTION. The right column ran
+     past the safe zone and the attribution's measure reached under the page
+     counter, so the quote steps down one size and the attribution is set to a
+     measure that stops clear of it. */
+  .sq { position: absolute; left: 80px; top: 1056px; width: 640px;
+        font-style: italic; font-weight: 400; font-size: 30px; line-height: 1.14;
+        color: #D8E8EE; }
+  .sa { position: absolute; left: 80px; top: 1180px; width: 640px;
+        font-family: "JetBrains Mono", monospace; font-size: 20px;
+        letter-spacing: 0.05em; line-height: 1.32; color: #7FA8B8; }
+  .slug { position: absolute; left: 80px; bottom: 80px;
+          font-family: "JetBrains Mono", monospace; font-size: 11px;
+          letter-spacing: 0.14em; color: rgba(127,168,184,0.55); }
+  /* THE FEED CROPS AND THE VIEWER CHROME SITS AT THE BOTTOM. Deck furniture
+     was riding 34px off the edge, inside the 80px safe zone on every slide. */
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .counter i { color: #FFC72C; font-style: normal; }
+</style>
+</head>
+<body data-contacts='[{"what":"the stamped left plate standing proud of the pole","shadow":[[261,1072,26,10]],"ground":[[213,1072,26,10]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+  <div class="kicker" data-reserve>WHAT IS ESTABLISHED</div>
+  <h2 data-reserve>A denial is not a finding. A rumor is not either.</h2>
+  <div class="body" data-reserve>The Navy says the building is not a data center, by email to KMXT on August 14th and separately to Sen. Sullivan's office. Neither that nor the island's rumor is established here.</div>
+  <div class="stamp L" data-reserve>SOURCED</div>
+  <div class="pl L" data-reserve data-decorative>KODIAKELECTRIC.COM, READ SEPTEMBER 4TH, 2026. ISOLATED GRID. 85 PERCENT TERROR LAKE. SIX TURBINES. A 98 PERCENT AIM. (C08 C09 C10 C22)</div>
+  <div class="stamp R" data-reserve>ONE NEWSROOM</div>
+  <div class="pl R" data-reserve data-decorative>KMXT, SEPTEMBER 3RD, 2026. EVERY EVENT, QUOTE AND MEGAWATT FIGURE OUTSIDE THE CO-OP'S OWN SITE. (C01 to C06, C11 to C18)</div>
+  <div class="sq" data-reserve>"I've never heard of this. I think it's a rumor, but if it's true, I think it's a bad idea, and I will work to stop it,"</div>
+  <div class="sa" data-reserve data-decorative>SEN. DAN SULLIVAN TO THE KODIAK DAILY MIRROR, AUGUST 11TH, VIA KMXT (C14)</div>
+  <div class="slug" data-reserve data-decorative>POLE OFF THE YARD ROAD / 45MM / 1.2M / W</div>
+  <div class="counter" data-reserve>08 <i data-decorative>/</i> 09</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aknight.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260911;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var falloff = AKNIGHT.falloff(-40, 950, 880);
+
+  var PL = { x: 62, y: 700, w: 424, h: 372 };     /* stamped */
+  var PR = { x: 472, y: 688, w: 424, h: 372 };    /* milled blank, in front */
+
+  function backdrop() {
+    cx.fillStyle = '#070C14'; cx.fillRect(0, 0, 1080, 1350);
+    var g = cx.createLinearGradient(0, 0, 0, 700);
+    g.addColorStop(0, '#04070E'); g.addColorStop(1, '#0A1320');
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, 700);
+    /* soft background fence, out of focus */
+    cx.save();
+    cx.globalAlpha = 0.42; cx.strokeStyle = '#1E3546'; cx.lineWidth = 2.2;
+    for (var i = -6; i < 26; i++) {
+      cx.beginPath(); cx.moveTo(i * 52, 640); cx.lineTo(i * 52 + 130, 1350); cx.stroke();
+    }
+    cx.restore();
+  }
+
+  /* THE POLE. Its engraved form has ONE DEEP FLUTE and FOUR SHALLOW ones,
+     which is one newsroom against four primary lines, carved into the wood. */
+  function pole(eng, reserve) {
+    cx.fillStyle = '#101A26';
+    cx.beginPath();
+    cx.moveTo(474, 640); cx.lineTo(654, 640);
+    cx.lineTo(668, 1350); cx.lineTo(458, 1350);
+    cx.closePath(); cx.fill();
+    cx.save(); cx.clip();
+    eng.surface(cx, {
+      region: [458, 640, 210, 710],
+      form: function (x, y) {
+        var u = (x - 458) / 210;
+        var flutes = [0.12, 0.32, 0.5, 0.68, 0.86];
+        var depth = [26, 6, 6, 6, 6];   /* ONE deep, FOUR shallow */
+        /* THE LAY RUNS THE LENGTH OF THE POLE, so the form must not vary
+           down it at all. The noise term carried y, which closed the
+           iso-lines wherever the flute gradient reached zero and drew the
+           swelled line round into a tangled ribbon (slide 01 hit the same
+           defect on its second pass). Answering it with a fall in y only
+           traded the knot for a topographic map. Every term is a function of
+           x now: iso-lines are vertical by construction and cannot close.
+           Distance is carried by tone, which is where it belongs. */
+        var h = 40;
+        for (var i = 0; i < 5; i++) {
+          var d = (u - flutes[i]) / 0.07;
+          h -= depth[i] * Math.exp(-d * d);
+        }
+        return h + AK.fbm2(x * 0.004, 0.5, 3) * 3;
+      },
+      tone: function (x, y) { return (1 - falloff(x, y) * 0.85) * (1 - (y - 700) / 1300); },
+      budget: { main: 4.4, cross: 6.4, dots: true },
+      inkLo: '#16263a', inkHi: '#B9CBD8', wMax: 2.6, step: 6
+    });
+    cx.restore();
+  }
+
+  function plate(P, stamped) {
+    /* the plate body, a raised solid with a lit top edge and a dark face */
+    cx.fillStyle = stamped ? '#2E4A5C' : '#1B2E3E';
+    cx.fillRect(P.x, P.y, P.w, P.h);
+    cx.fillStyle = '#D8E8EE'; cx.fillRect(P.x, P.y, P.w, 2.6);
+    var gg = cx.createLinearGradient(0, P.y, 0, P.y + P.h);
+    gg.addColorStop(0, 'rgba(216,232,238,' + (stamped ? 0.10 : 0.16) + ')');
+    gg.addColorStop(1, 'rgba(4,7,14,0.40)');
+    cx.fillStyle = gg; cx.fillRect(P.x, P.y, P.w, P.h);
+    if (!stamped) {
+      /* THE MILLED BLANK. Concentric fly-cutter arcs, and it is deliberately
+         the least detailed surface in the deck. */
+      cx.save();
+      cx.beginPath(); cx.rect(P.x + 16, P.y + 158, P.w - 32, P.h - 188); cx.clip();
+      cx.strokeStyle = 'rgba(216,232,238,0.10)'; cx.lineWidth = 1;
+      for (var a = 0; a < 22; a++) {
+        cx.beginPath();
+        cx.arc(P.x - 120, P.y + 380, 190 + a * 17, -0.9, 0.9); cx.stroke();
+      }
+      cx.restore();
+      cx.setLineDash([30, 5, 6, 5, 6, 5]);
+      cx.strokeStyle = 'rgba(127,168,184,0.75)'; cx.lineWidth = 1.6;
+      cx.strokeRect(P.x, P.y, P.w, P.h);
+      cx.setLineDash([]);
+    }
+    if (stamped) {
+      /* THE STRUCK FIELD. The record the co-op publishes itself is the dense
+         surface in this pair, and it has to be dense in the DRAWING or the
+         picture argues against the headline. */
+      cx.save();
+      cx.beginPath(); cx.rect(P.x + 16, P.y + 160, P.w - 32, P.h - 190); cx.clip();
+      var sr = AK.rng(SEED + 31);
+      for (var q = 0; q < 26; q++) {
+        var qy = P.y + 168 + q * 8;
+        cx.strokeStyle = 'rgba(4,7,14,' + (0.30 + sr() * 0.34).toFixed(2) + ')';
+        cx.lineWidth = 2.2;
+        cx.beginPath();
+        cx.moveTo(P.x + 22 + sr() * 30, qy);
+        cx.lineTo(P.x + P.w - 22 - sr() * 40, qy + (sr() - 0.5) * 2);
+        cx.stroke();
+        cx.strokeStyle = 'rgba(216,232,238,' + (0.16 + sr() * 0.20).toFixed(2) + ')';
+        cx.lineWidth = 1.1;
+        cx.beginPath();
+        cx.moveTo(P.x + 22 + sr() * 30, qy + 1.6);
+        cx.lineTo(P.x + P.w - 22 - sr() * 40, qy + 1.6);
+        cx.stroke();
+      }
+      cx.restore();
+    }
+
+    /* four bolt heads, cast micro shadows and corrosion blooms */
+    var BH = [[P.x + 26, P.y + 26], [P.x + P.w - 26, P.y + 26],
+              [P.x + 26, P.y + P.h - 26], [P.x + P.w - 26, P.y + P.h - 26]];
+    for (var b = 0; b < 4; b++) {
+      cx.fillStyle = 'rgba(4,7,14,0.65)';
+      cx.beginPath(); cx.arc(BH[b][0] + 2.4, BH[b][1] + 2.4, 10, 0, 6.283185); cx.fill();
+      if (stamped) {
+        cx.fillStyle = '#8FA6B8';
+        cx.beginPath(); cx.arc(BH[b][0], BH[b][1], 9, 0, 6.283185); cx.fill();
+        cx.strokeStyle = '#0A121C'; cx.lineWidth = 2;
+        cx.beginPath(); cx.moveTo(BH[b][0] - 5, BH[b][1]); cx.lineTo(BH[b][0] + 5, BH[b][1]); cx.stroke();
+      } else {
+        /* a HOLE, not a bolt. Nothing is fastening this plate down. */
+        cx.fillStyle = '#04070E';
+        cx.beginPath(); cx.arc(BH[b][0], BH[b][1], 9, 0, 6.283185); cx.fill();
+        cx.strokeStyle = 'rgba(216,232,238,0.35)'; cx.lineWidth = 1.2;
+        cx.beginPath(); cx.arc(BH[b][0], BH[b][1], 9, 3.6, 5.9); cx.stroke();
+      }
+      cx.fillStyle = 'rgba(110,42,18,0.5)';
+      cx.fillRect(BH[b][0] - 3.5, BH[b][1] + 8, 7, 14 + (b % 3) * 11);
+    }
+  }
+
+  (async function () {
+    await document.fonts.ready;
+    var reserve = AKNIGHT.reserve('[data-reserve]');
+    backdrop();
+
+    var eng = AKENGRAVE.create({ seed: SEED, light: { azDeg: 292, elDeg: 24 } });
+    eng.reserve(reserve);
+    pole(eng, reserve);
+
+    /* A CONTACT IS THE FOOT, NOT THE SILHOUETTE. w was the object's full
+       width here, which spreads the tight cast to half that again and
+       leaves no lit ground inside the window a reading is taken in. The
+       pool stays wide; the cast narrows onto the object's own base. */
+    AKNIGHT.contact(cx, { x: PL.x + PL.w / 2, y: PL.y + PL.h, w: 100,
+                          poolRx: 220, poolRy: 58, color: '#0A1320' });
+    AKNIGHT.contact(cx, { x: PR.x + PR.w / 2, y: PR.y + PR.h, w: 100,
+                          poolRx: 220, poolRy: 58, color: '#0A1320' });
+    plate(PL, true);
+    /* PR stands proud of PL and therefore casts onto it */
+    cx.save();
+    cx.filter = 'blur(7px)';
+    cx.fillStyle = 'rgba(4,7,14,0.62)';
+    cx.fillRect(PR.x - 22, PR.y + 6, 26, PR.h);
+    cx.restore();
+    plate(PR, false);
+
+    AKNIGHT.chips(cx, {
+      seed: SEED + 3, count: 460, region: [0, 1240, 1080, 110], reserve: reserve,
+      density: function (x, y) { return falloff(x, y) * 1.1; },
+      color: '#D8E8EE', colorDim: '#7FA8B8', sizeMin: 1.1, sizeMax: 5.0
+    });
+    AKNIGHT.conductor(cx, {
+      x0: -40, y0: 400, x1: 1120, y1: 420, sag: 18,
+      color: '#3E5A6B', casing: '#04070E', width: 2.0, seed: SEED + 7
+    });
+    AKNIGHT.rain(cx, {
+      count: 1600, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.18,
+      inCone: function (x, y) { return falloff(x, y) > 0.14; }
+    });
+
+    /* subtract the art inside the type reserve, so the slide own geometry
+       cannot run through the letterforms */
+    /* THE CALL SITES WERE OVERRIDING THE MODULE. veil()'s defaults were softened
+       and its feather made proportional after the plates were measured, and every
+       slide was still passing the old alpha 0.74 with a fixed 26px feather, so
+       none of that reached the picture. Five critics read flat plates behind the
+       type on six slides. The module owns these numbers now. */
+    AKNIGHT.veil(cx, reserve);
+
+    AKPOST.grade(cx, {
+      exposure: -0.04, saturation: 0.95, contrast: 1.06, dither: true,
+      bloom: { threshold: 0.78, strength: 0.20, radius: 8 }
+    });
+    document.getElementById('grain').style.backgroundImage =
+      'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+    /* the flutes read ABOVE the plates now that the pole is a pole; the old
+       rect sat where div.pl stands */
+    window.__akMotifs = [{ what: 'the deep pole flute above the plates, one newsroom against four primary lines',
+                           rect: [462, 646, 202, 124] }];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

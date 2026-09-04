@@ -1,0 +1,29 @@
+{
+  "run_dir": "out/2026-09-03",
+  "render_report": "out/2026-09-03/render/render_report.json",
+  "aggregates_file": "out/2026-09-03/aggregates.json",
+  "detected": 2,
+  "declared": 2,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "TWO SENTENCES",
+      "text": "THE TWO SENTENCES",
+      "n": 2,
+      "subject": "sentences"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "FOUR PLACES",
+      "text": "FOUR PLACES / 50MM / 2.1M / ONE NIGHT",
+      "n": 4,
+      "subject": "places"
+    }
+  ],
+  "not_rederived": [],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

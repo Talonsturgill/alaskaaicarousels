@@ -1,0 +1,295 @@
+<!doctype html>
+<!-- SLIDE 07 — SPRUCE CAPE. The site as it is, at night, from the road edge,
+     85mm, camera 1.8m, NE. NO excavator, NO crane, NO site lighting and NO
+     activity, because none of that is in the record (C18). The building is a
+     phantom-dash footprint with ZERO modelled tone inside it, so the drawing
+     literally has a hole where the description should be. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Instrument Serif", serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.09; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  .kicker { position: absolute; left: 80px; top: 92px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #7FA8B8; }
+  /* and the subject beat is the quietest */
+  h2 { position: absolute; left: 80px; top: 214px; width: 820px;
+       font-weight: 400; font-size: 64px; line-height: 1.04; color: #F4F8FF; }
+  .body { position: absolute; left: 80px; top: 440px; width: 660px;
+          font-family: "Archivo", sans-serif; font-variation-settings: "wdth" 88;
+          font-weight: 400; font-size: 34px; line-height: 1.38; color: #F4F8FF; }
+  .strip { position: absolute; left: 80px; top: 700px; width: 900px;
+           font-family: "JetBrains Mono", monospace; font-weight: 500;
+           font-size: 24px; letter-spacing: 0.07em; line-height: 1.26;
+           color: #8FA6B8; }
+  .tag { position: absolute; font-family: "JetBrains Mono", monospace;
+         font-size: 20px; letter-spacing: 0.10em; color: #7FA8B8; }
+  .tag.a { left: 232px; top: 796px; }
+  .tag.b { left: 872px; top: 1148px; }
+  .slug { position: absolute; left: 80px; bottom: 80px;
+          font-family: "JetBrains Mono", monospace; font-size: 11px;
+          letter-spacing: 0.14em; color: rgba(127,168,184,0.55); }
+  /* THE FEED CROPS AND THE VIEWER CHROME SITS AT THE BOTTOM. Deck furniture
+     was riding 34px off the edge, inside the 80px safe zone on every slide. */
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .counter i { color: #FFC72C; font-style: normal; }
+</style>
+</head>
+<body data-contacts='[{"what":"the chain link posts standing on the gravel apron","shadow":[[538,1214,26,10]],"ground":[[611,1214,26,10]]}]'
+      data-encodes='[{"claim":"the deck can describe the ground and can&#39;t describe the building, so the drawing has a hole where the building is","reads":"differ","a":[[420,940,180,120]],"b":[[200,1120,180,120]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+  <div class="kicker" data-reserve>SPRUCE CAPE</div>
+  <h2 data-reserve>A footprint, and no purpose visible from the road.</h2>
+  <div class="body" data-reserve>The Navy calls it a multi-mission support building. Its spokesperson describes site preparation, paving, and construction including electrical and mechanical subsystems. It is unclear when that work will begin.</div>
+  <div class="strip" data-reserve>POWERED FROM THE EXISTING GRID, WITH BACK-UP GENERATORS (C03)</div>
+  <div class="tag a" data-reserve data-decorative>C01 C17</div>
+  <div class="tag b" data-reserve data-decorative>C18</div>
+  <div class="slug" data-reserve data-decorative>ROAD EDGE, SPRUCE CAPE / 85MM / 1.8M / NE</div>
+  <div class="counter" data-reserve>07 <i data-decorative>/</i> 09</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/aknight.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260910;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var falloff = AKNIGHT.falloff(-60, 1120, 820);
+
+  /* THE FOOTPRINT, in ground perspective. Its interior is the Unlit Band. */
+  var FP = [[300, 900], [790, 872], [860, 1096], [232, 1140]];
+
+  function ground() {
+    cx.fillStyle = '#070C14'; cx.fillRect(0, 0, 1080, 1350);
+    /* compressed treeline, dark, 85mm flattens it into a band */
+    cx.fillStyle = '#0A121C';
+    cx.beginPath(); cx.moveTo(0, 860);
+    for (var x = 0; x <= 1080; x += 7) {
+      var h = 742 + AK.fbm2(x * 0.03, 2.5, 4) * 44;
+      cx.lineTo(x, h);
+      cx.lineTo(x + 3.5, h - 16 - AK.fbm2(x * 0.09, 7, 2) * 22);
+    }
+    cx.lineTo(1080, 860); cx.closePath(); cx.fill();
+    /* the apron */
+    var g = cx.createLinearGradient(0, 860, 0, 1350);
+    /* THE APRON HAS TO BE LIT for the footprint to read as tone REMOVED from
+       the ground rather than as a solid laid on it. At #0B131D it was within
+       two value steps of both the interior and the sky, so a stranger saw a
+       building, which is the one thing nobody has described. */
+    g.addColorStop(0, '#16283A'); g.addColorStop(1, '#24394B');
+    cx.fillStyle = g; cx.fillRect(0, 860, 1080, 490);
+  }
+
+  function fence() {
+    cx.save();
+    cx.strokeStyle = 'rgba(62,90,107,0.5)'; cx.lineWidth = 1.1;
+    for (var i = -10; i < 40; i++) {
+      cx.beginPath(); cx.moveTo(i * 34, 820); cx.lineTo(i * 34 + 110, 1010); cx.stroke();
+      cx.beginPath(); cx.moveTo(i * 34, 1010); cx.lineTo(i * 34 + 110, 820); cx.stroke();
+    }
+    cx.restore();
+    /* posts, real objects with lit windward edges */
+    for (var p = 0; p < 5; p++) {
+      var px = 86 + p * 250;
+      cx.fillStyle = '#0A121C'; cx.fillRect(px, 812, 13, 402);
+      cx.fillStyle = AKC.mixOklab('#1E3546', '#8FA6B8', falloff(px, 1000));
+      cx.fillRect(px, 812, 3.4, 402);
+      AKNIGHT.contact(cx, { x: px + 6, y: 1214, w: 46, color: '#0A1320' });
+    }
+  }
+
+  function ruts() {
+    /* tire ruts, hard-edged troughs holding standing water */
+    for (var r = 0; r < 2; r++) {
+      cx.save();
+      cx.beginPath();
+      cx.moveTo(120 + r * 300, 1350);
+      cx.bezierCurveTo(210 + r * 300, 1230, 300 + r * 280, 1160, 420 + r * 240, 1120);
+      cx.lineTo(462 + r * 240, 1132);
+      cx.bezierCurveTo(340 + r * 280, 1176, 254 + r * 300, 1246, 176 + r * 300, 1350);
+      cx.closePath();
+      cx.fillStyle = '#050B14'; cx.fill();
+      cx.clip();
+      cx.fillStyle = '#D8E8EE';
+      var rn = AK.rng(SEED + 30 + r);
+      for (var k = 0; k < 90; k++) {
+        cx.globalAlpha = 0.25 + rn() * 0.6;
+        cx.fillRect(120 + r * 300 + rn() * 340, 1110 + rn() * 240, 1 + rn() * 7, 1 + rn() * 2.4);
+      }
+      cx.globalAlpha = 1;
+      cx.restore();
+    }
+  }
+
+  (async function () {
+    await document.fonts.ready;
+    var reserve = AKNIGHT.reserve('[data-reserve]');
+    ground();
+    fence();
+
+    /* THE APRON, engraved. form is a plateau MULTIPLIED BY A PHANTOM MASK
+       returning zero inside the footprint, so the region has modelled tone
+       everywhere except inside the thing this deck cannot describe. */
+    function inFootprint(x, y) {
+      var c = false;
+      for (var i = 0, j = FP.length - 1; i < FP.length; j = i++) {
+        var xi = FP[i][0], yi = FP[i][1], xj = FP[j][0], yj = FP[j][1];
+        if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) c = !c;
+      }
+      return c;
+    }
+    var eng = AKENGRAVE.create({ seed: SEED, light: { azDeg: 292, elDeg: 24 } });
+    eng.reserve(reserve);
+    eng.surface(cx, {
+      region: [0, 866, 1080, 484],
+      form: function (x, y) {
+        if (inFootprint(x, y)) return 0;
+        return (y - 866) * 0.24 + AK.fbm2(x * 0.006, y * 0.008, 3) * 6;
+      },
+      tone: function (x, y) {
+        if (inFootprint(x, y)) return 1;
+        return 1 - falloff(x, y) * 0.9;
+      },
+      budget: { main: 3.8, cross: 5.8, dots: true },
+      inkLo: '#16263a', inkHi: '#B9CBD8', wMax: 2.8, step: 6
+    });
+
+    AK.hachureField(cx, {
+      x: 0, y: 1180, w: 1080, h: 170, seed: SEED + 2,
+      height: function (u, v) { return AK.fbm2(u * 9, v * 6, 4) * 0.75 + 0.12; },
+      cell: 10, passes: 3, sunAz: 292, sunEl: 24,
+      color: '#3E5A6B', alpha: 0.5, minWidth: 0.6, maxWidth: 2.4
+    });
+
+    ruts();
+
+    /* THE UNLIT BAND, now the building's interior. Outline only. */
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(FP[0][0], FP[0][1]);
+    for (var i = 1; i < FP.length; i++) cx.lineTo(FP[i][0], FP[i][1]);
+    cx.closePath();
+    cx.fillStyle = '#04070E'; cx.fill();
+    cx.setLineDash([30, 5, 6, 5, 6, 5]);
+    cx.strokeStyle = 'rgba(127,168,184,0.55)'; cx.lineWidth = 1.6;
+    cx.stroke();
+    cx.restore();
+
+    /* THE SITE AROUND THE HOLE. Nothing goes INSIDE the footprint: the empty
+       interior is the slide's whole claim. What a graded pad actually carries
+       is at its perimeter, and drawing it is what stops the shape reading as
+       a cut-out rather than as ground somebody has already worked.
+       Four survey hubs with lath and flagging, and the berm where the cut
+       meets the apron. */
+    cx.save();
+    var hn = AK.rng(SEED + 21);
+    for (var c = 0; c < FP.length; c++) {
+      var hx = FP[c][0], hy = FP[c][1];
+      var lit = falloff(hx, hy);
+      /* the hub itself, a driven stake seen end on */
+      cx.fillStyle = AKC.mixOklab('#16283a', '#8FA6B8', lit);
+      cx.beginPath(); cx.arc(hx, hy, 7, 0, 6.283185); cx.fill();
+      cx.strokeStyle = 'rgba(4,7,14,0.85)'; cx.lineWidth = 1.1;
+      cx.beginPath(); cx.arc(hx, hy, 7, 0, 6.283185); cx.stroke();
+      /* the lath, leaning, with flagging tape bent by the same wind that
+         carries the rain */
+      var lean = (hn() - 0.5) * 16, top = hy - 42 - hn() * 16;
+      cx.strokeStyle = AKC.mixOklab('#1E3546', '#B9CBD8', lit * 0.9);
+      cx.lineWidth = 3.4; cx.lineCap = 'round';
+      cx.beginPath(); cx.moveTo(hx, hy); cx.lineTo(hx + lean, top); cx.stroke();
+      cx.strokeStyle = 'rgba(180,71,31,0.85)'; cx.lineWidth = 4.2;
+      cx.beginPath();
+      cx.moveTo(hx + lean, top + 4);
+      cx.quadraticCurveTo(hx + lean + 13, top + 7, hx + lean + 21, top + 15);
+      cx.stroke();
+    }
+    /* the berm, one graded lip along the near edge, catching the lamp on its
+       windward face and falling away behind */
+    cx.strokeStyle = 'rgba(143,166,184,0.34)'; cx.lineWidth = 2.4;
+    cx.beginPath();
+    cx.moveTo(FP[3][0] - 26, FP[3][1] + 12);
+    cx.bezierCurveTo(FP[3][0] + 180, FP[3][1] + 26, FP[2][0] - 190, FP[2][1] + 30,
+                     FP[2][0] + 24, FP[2][1] + 10);
+    cx.stroke();
+    cx.strokeStyle = 'rgba(4,7,14,0.8)'; cx.lineWidth = 3.2;
+    cx.beginPath();
+    cx.moveTo(FP[3][0] - 26, FP[3][1] + 18);
+    cx.bezierCurveTo(FP[3][0] + 180, FP[3][1] + 33, FP[2][0] - 190, FP[2][1] + 37,
+                     FP[2][0] + 24, FP[2][1] + 16);
+    cx.stroke();
+    cx.restore();
+
+    /* ONE dimension call, on the footprint's own corners. Extent only, never
+       purpose, and never a measurement, because none is sourced. Run below the
+       polygon and carrying no numeral it stated nothing at all. */
+    cx.save();
+    cx.strokeStyle = '#3E5A6B'; cx.lineWidth = 1.25; cx.lineCap = 'butt';
+    cx.beginPath(); cx.moveTo(232, 1140); cx.lineTo(232, 1186); cx.stroke();
+    cx.beginPath(); cx.moveTo(860, 1096); cx.lineTo(860, 1142); cx.stroke();
+    cx.beginPath(); cx.moveTo(232, 1174); cx.lineTo(860, 1130); cx.stroke();
+    cx.restore();
+
+    AKNIGHT.chips(cx, {
+      seed: SEED + 3, count: 600, region: [96, 1160, 888, 190], reserve: reserve,
+      density: function (x, y) { return Math.min(falloff(x, y) * 1.25, 0.6); },
+      color: '#D8E8EE', colorDim: '#7FA8B8', sizeMin: 1.2, sizeMax: 6.5
+    });
+
+    /* the conductor runs toward the site and disappears into the band */
+    AKNIGHT.conductor(cx, {
+      x0: -40, y0: 390, x1: 1120, y1: 400, sag: 22,
+      color: '#3E5A6B', casing: '#04070E', width: 2.0, seed: SEED + 7
+    });
+
+    AKNIGHT.rain(cx, {
+      count: 1600, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.20,
+      inCone: function (x, y) {
+        if (inFootprint(x, y)) return false;
+        return falloff(x, y) > 0.12;
+      }
+    });
+
+    /* subtract the art inside the type reserve, so the slide own geometry
+       cannot run through the letterforms */
+    /* THE CALL SITES WERE OVERRIDING THE MODULE. veil()'s defaults were softened
+       and its feather made proportional after the plates were measured, and every
+       slide was still passing the old alpha 0.74 with a fixed 26px feather, so
+       none of that reached the picture. Five critics read flat plates behind the
+       type on six slides. The module owns these numbers now. */
+    AKNIGHT.veil(cx, reserve);
+
+    AKPOST.grade(cx, {
+      exposure: -0.06, saturation: 0.94, contrast: 1.06, dither: true,
+      bloom: { threshold: 0.78, strength: 0.20, radius: 8 }
+    });
+    document.getElementById('grain').style.backgroundImage =
+      'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+    window.__akMotifs = [{ what: 'the phantom footprint, the deck unlit band as subject',
+                           rect: [232, 872, 628, 268] }];
+    window.__akLeaders = [
+      { target: 'the footprint outline', at: [300, 900], to: [300, 900],
+        from: [268, 810], label: 'C01 C17' },
+      { target: 'the empty apron beyond the footprint', at: [906, 1176],
+        to: [906, 1176], from: [906, 1176], label: 'C18' }
+    ];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

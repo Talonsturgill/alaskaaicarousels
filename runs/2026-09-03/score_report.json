@@ -1,0 +1,101 @@
+{
+  "run_date": "2026-09-03",
+  "carousel_no": 49,
+  "scored_by": "scorer subagent, fourth scoring round after three revision rounds",
+  "weighted_total": 8.81,
+  "threshold": 8.3,
+  "rubric_threshold_field": 8.0,
+  "ship": true,
+  "hard_fails": [],
+  "hard_fails_checked": 13,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 7,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 9,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(9x0.14)+(8x0.12)+(8x0.10)+(8x0.08)+(7x0.07)+(8x0.05)+(9x0.10) = 8.81",
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "one_sentence_fix": "Give slides 01, 07 and 09 three genuinely different ground materials in the engrave pass (loose gravel grit, rutted hardpack, wet asphalt sheen) instead of the same swelled-contour lay at three scales, because one texture repeated three times is what makes a bespoke deck read as a filter.",
+  "scoring_history": [
+    {
+      "round": 1,
+      "raw": 7.96,
+      "capped": 6.9,
+      "hard_fails": [
+        "slide 02 restated the KILLED claim that Kodiak's grid cannot import power",
+        "BUILD RECONCILIATION contained only the template's instruction to write it"
+      ]
+    },
+    {
+      "round": 2,
+      "raw": 8.27,
+      "capped": 6.9,
+      "hard_fails": [
+        "slide 06, 39 percent text overprint between the gold estimate label and the shot log"
+      ]
+    },
+    {
+      "round": 3,
+      "raw": 8.33,
+      "capped": 6.9,
+      "hard_fails": [
+        "slide 05, the shot log overran the page counter on a shared baseline"
+      ]
+    },
+    {
+      "round": 4,
+      "raw": 8.81,
+      "capped": null,
+      "hard_fails": []
+    }
+  ],
+  "after_scoring": "The scorer's one cheap remaining item was taken: slides 04 and 09 carried data-decorative on the shot log WITHOUT data-reserve, so the art drew through those glyphs and the reconciliation's claim that the counter and shot log gained reserves was false on two slides. Both now carry it, slide 04's contact was re-probed and re-declared from the render because the new reserve landed on its lit ground, and slide 09's dossier prose was corrected to the C06 C05 tag the build actually prints.",
+  "editor_notes_for_email": "SHIPS AT 8.81 AGAINST 8.3, on the fourth scoring after three revision rounds. All thirteen hard fails checked one by one and all thirteen pass. Every warn machine_qa still carries is the same class, a contact shadow reading inside the comfort band rather than cleanly, and there are three of them.\n\nTHE SOURCING, WHICH IS THE THING TO KNOW BEFORE POSTING. Outside kodiakelectric.com the entire Kodiak story rests on ONE newsroom, KMXT, and a single September 3rd, 2026 report. Slide 08 makes that the subject rather than a footnote, a struck SOURCED plate against an unstruck ONE NEWSROOM plate, with the right plate naming the exact claim range that outlet covers. If anyone pushes on sourcing, the answer is slide 08 and it is already published. What holds the package up is that the ARGUMENT rests on the shape of the grid, and that half is primary in the cooperative's own words at C08, C09, C10 and C22.\n\nDO NOT FIX THE TWO TERMINAL COMMAS inside the closing quote marks on slides 04 and 08. Both reproduce the source exactly.\n\nTHE DATE STAMP IS NOT A SLIP. Slide 08's left plate reads READ SEPTEMBER 4TH, 2026 on a deck datelined September 3rd. The run crossed midnight and claims.json records the co-op page as read on the 4th. The news date and the read date are different things and the deck prints both.\n\nFOUR NUMBERS THAT MUST NOT DRIFT IN A REPLY. The March peak carries NO YEAR because the source states none. The two megawatts is always up to an additional two megawatts and never a flat 2 MW, because it is the co-op's own ceiling estimate and the Navy supplied no figure. One turbine is offline, not two. The 450-homes figure is all six turbines together and is deliberately on no slide.\n\nWHAT THE MACHINE SAYS ABOUT THE ART. Five of the six defect classes trend_check reports as chronically shipping are absent from this deck: top-loaded composition (7 of the last 10 runs), busy art under text (6), outside safe zone (5), tiny-text (4) and art touching glyphs (2). The value structure gate holds eight of nine frames with bottom-third weight from 70 to 91 percent, which is the direct answer to the studio's standing top-loading weakness, and the one exception is declared in its dossier with the measurement behind it."
+}

@@ -1,0 +1,116 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-03/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 8448793,
+  "pdf_mb": 8.45,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-03/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-03/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Five Turning, One Still, and a Load With No Number",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "03452b27a07b420648313b4eba561f511f47b89623f01b3c4e4eb5d22d7cb3b3",
+        "bytes": 2779712
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "1f0901c639f53850282a5fa3c0f2cc6c13780799fe8fd4469be7c9792a099712",
+        "bytes": 2988565
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "401c36203d35e88877fab4d1e4817623c2b9235285de32c44d84ced417f468c3",
+        "bytes": 2219829
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "9d6b0a2091293759a12c9e3df69744b032716d25318568fb656be65b6645544c",
+        "bytes": 2335488
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "9c20aeac2fa83ee10a81163623f81353e68d6d200e6a3b741025eee37fb0399c",
+        "bytes": 2443412
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "22edc678c95770d89d183cb216cb906fe3a2e85f5f3ea06f15a0c83fe18ed2f1",
+        "bytes": 3470467
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "e53cd85c65fd71873cde3b7a9ff8dff55a3e3ea0f0291efb70df4ad7827025b0",
+        "bytes": 2961433
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "6cb8214d7b7ffd17b8a4106ffa6789d7016882ce6e7af44e0d082197fea9be43",
+        "bytes": 1919303
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "914c1374aaf4cba2e117de3a09a601be0919675d533ad3007cb4b6cc25606089",
+        "bytes": 2569297
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "c13d1bb7d42ede73d59256249399a95fdb916e0a89d5bb44a7908080e1e4e414",
+        "bytes": 17161
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "24d23eae7ee7aaf3a510c4f920ea4f69fcd136ab37681187f405e6c6ccf4007a",
+        "bytes": 14016
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "09f7c302fb800c08adc42e72ee298dc4e33e6ac005472d095b6d35f2688cfd6c",
+        "bytes": 16108
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "b6fe65b3d8dfa8f6d95936fa1b70f56e64cdda4c4abf3509ac10e10734c92381",
+        "bytes": 15052
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "76dcfe97cb1aa5c49bbc0842b04ff018b5a5a4b9e7ec8cac35a0da5ed83a7d31",
+        "bytes": 11596
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "4cf37004fe0ffeef1e7c45c2d089c6e49531d505b8643f318a8d717cbb7c5fe3",
+        "bytes": 16119
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "aaedfd201c48e262a4d87252fc495600dfb1d615136011604e062155da2a83ef",
+        "bytes": 13758
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "998b7f6c0f8b0e73cd48b4492ffaaef2e53a8573d5831bc51f4ddf67d28a99f4",
+        "bytes": 14130
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "99740705a62ecd3e12c88df54331eaea446874a3eea2d9ddfc990292987e1de6",
+        "bytes": 15067
+      }
+    ]
+  }
+}

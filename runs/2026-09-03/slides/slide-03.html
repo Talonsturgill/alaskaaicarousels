@@ -1,0 +1,328 @@
+<!doctype html>
+<!-- SLIDE 03 — THE INVENTORY. Four places, one night, cut as WINDOWS into the
+     dark with wet asphalt continuing between and behind them. Not cards, not
+     paper: no borders, no drop shadows, no rounded corners. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Instrument Serif", serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.09; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  .kicker { position: absolute; left: 80px; top: 92px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #7FA8B8; }
+  h2 { position: absolute; left: 80px; top: 300px; width: 900px;
+       font-weight: 400; font-size: 74px; line-height: 1.0; color: #F4F8FF; }
+  .quote { position: absolute; left: 80px; top: 430px; width: 920px;
+           font-family: "JetBrains Mono", monospace; font-weight: 500;
+           font-size: 26px; letter-spacing: 0.06em; color: #F4F8FF; }
+  /* THE QUOTE RUNS TO TWO LINES at this measure and the rule sat at the height
+     of the second one, striking through (C08). The rule clears both lines. */
+  .goldrule { position: absolute; left: 80px; top: 518px; width: 920px;
+              height: 2px; background: #FFC72C; }
+  /* THE CAPTIONS MOVED INSIDE THE WINDOWS. Read off the render they were
+     lying on the engraved asphalt band, which is the densest population on the
+     slide, and not one of the four could be read at feed scale. Each now sits
+     on its own panel's dark interior, which is what a label on a window is. */
+  .slugs { position: absolute; left: 80px; top: 1064px; width: 920px; }
+  /* the gold rule under each caption: these four are the cooperative's own
+     published record, which is what gold means in this deck */
+  /* GOLD IS THE COOPERATIVE'S OWN RECORD. Three rules, not four: caption
+     two carries C11 and C12, which are KMXT-reported, and gold may not
+     touch a reported figure. */
+  .slrule { position: absolute; height: 3px; width: 174px; background: #FFC72C; }
+  .sl { position: absolute; font-family: "Archivo", sans-serif;
+        font-variation-settings: "wdth" 62; font-weight: 600; font-size: 20px;
+        letter-spacing: 0.06em; color: #C6D8E4; width: 198px; line-height: 1.30; }
+  .guard { position: absolute; left: 80px; top: 566px;
+           font-family: "JetBrains Mono", monospace; font-size: 24px;
+           letter-spacing: 0.08em; color: #8FA6B8; }
+  /* THE FEED CROPS AND THE VIEWER CHROME SITS AT THE BOTTOM. Deck furniture
+     was riding 34px off the edge, inside the 80px safe zone on every slide. */
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .counter i { color: #FFC72C; font-style: normal; }
+  .slug { position: absolute; left: 80px; bottom: 80px;
+          font-family: "JetBrains Mono", monospace; font-size: 11px;
+          letter-spacing: 0.14em; color: rgba(127,168,184,0.55); }
+</style>
+</head>
+<body data-contacts='[{"what":"the aperture row standing on the wet asphalt","shadow":[[411,1188,26,10]],"ground":[[358,1188,26,10]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+  <div class="kicker" data-reserve>WHAT THE ISLAND HAS</div>
+  <h2 data-reserve>What the island runs on.</h2>
+  <div class="quote" data-reserve>"KEA owns, operates, and maintains an isolated grid." (C08)</div>
+  <div class="goldrule"></div>
+  <div class="slugs">
+    <div class="sl" data-decorative data-reserve style="left:10px">TERROR LAKE / ABOUT 85 PCT OF GENERATION (C09)</div>
+    <div class="sl" data-decorative data-reserve style="left:244px">PILLAR MOUNTAIN / SIX AT 1.5 MW (C11) / ONE OFFLINE (C12)</div>
+    <div class="sl" data-decorative data-reserve style="left:478px">FLYWHEELS AND BATTERY / TWO AND ONE (C10)</div>
+    <div class="sl" data-decorative data-reserve style="left:712px">DIESEL / BACK UP (C10)</div>
+    <div class="slrule" style="left:10px;top:-14px"></div>
+    <div class="slrule" style="left:478px;top:-14px"></div>
+    <div class="slrule" style="left:712px;top:-14px"></div>
+  </div>
+  <div class="guard" data-reserve>DIFFERENT THINGS, NOT ONE SUM.</div>
+  <div class="slug" data-reserve data-decorative>FOUR PLACES / 50MM / 2.1M / ONE NIGHT</div>
+  <div class="counter" data-reserve>03 <i data-decorative>/</i> 09</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/aknight.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260906;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var falloff = AKNIGHT.falloff(-60, 1000, 900);
+
+  var AP = [];
+  for (var i = 0; i < 4; i++) AP.push({ x: 80 + i * 234, y: 700, w: 218, h: 488 });
+
+  /* THE CUT, as a path. Each window is worked out of the asphalt, so its edge
+     wanders by a couple of pixels along its length instead of ruling straight.
+     Used for the clip and for the cut edge, so the two agree exactly. */
+  function cutPath(a, seed) {
+    var n = AK.rng(seed);
+    var j = [];
+    for (var k = 0; k < 4; k++) j.push((n() - 0.5) * 5);
+    cx.beginPath();
+    cx.moveTo(a.x + j[0], a.y + j[1]);
+    cx.quadraticCurveTo(a.x + a.w * 0.5, a.y + j[2] * 1.4, a.x + a.w + j[1], a.y + j[3]);
+    cx.quadraticCurveTo(a.x + a.w + j[2] * 1.2, a.y + a.h * 0.5,
+                        a.x + a.w + j[3], a.y + a.h + j[0]);
+    cx.quadraticCurveTo(a.x + a.w * 0.5, a.y + a.h + j[1] * 1.4,
+                        a.x + j[2], a.y + a.h + j[3]);
+    cx.quadraticCurveTo(a.x + j[3] * 1.2, a.y + a.h * 0.5, a.x + j[0], a.y + j[1]);
+    cx.closePath();
+  }
+
+  function asphalt() {
+    var g = cx.createLinearGradient(0, 560, 0, 1350);
+    g.addColorStop(0, '#070C14'); g.addColorStop(1, '#0E1823');
+    cx.fillStyle = g; cx.fillRect(0, 560, 1080, 790);
+    var sky = cx.createLinearGradient(0, 0, 0, 560);
+    sky.addColorStop(0, '#04070E'); sky.addColorStop(1, '#0A1320');
+    cx.fillStyle = sky; cx.fillRect(0, 0, 1080, 560);
+  }
+
+  /* PANEL 1 — TERROR LAKE. One dominant gaussian carrying 85 percent of the
+     panel set's form integral, so the modelling itself is the share. */
+  function terrorLake(a) {
+    cx.save(); cutPath(a, SEED + 11); cx.clip();
+    /* the valley walls */
+    cx.fillStyle = '#111F2C';
+    cx.beginPath(); cx.moveTo(a.x, a.y + a.h);
+    for (var x = a.x; x <= a.x + a.w; x += 6) {
+      var t = (x - a.x) / a.w;
+      cx.lineTo(x, a.y + 78 + Math.abs(t - 0.5) * 260 - AK.fbm2(x * 0.02, 3, 3) * 26);
+    }
+    cx.lineTo(a.x + a.w, a.y + a.h); cx.closePath(); cx.fill();
+    /* the impoundment, a hard-edged bright plateau */
+    cx.fillStyle = '#24384A';
+    cx.fillRect(a.x, a.y + 214, a.w, 78);
+    cx.strokeStyle = '#8FA6B8'; cx.lineWidth = 2;
+    cx.beginPath(); cx.moveTo(a.x, a.y + 214); cx.lineTo(a.x + a.w, a.y + 214); cx.stroke();
+    /* penstock running down to a powerhouse block */
+    cx.strokeStyle = '#3E5A6B'; cx.lineWidth = 9; cx.lineCap = 'round';
+    cx.beginPath(); cx.moveTo(a.x + 132, a.y + 222); cx.lineTo(a.x + 96, a.y + 320); cx.stroke();
+    cx.fillStyle = '#0A121C'; cx.fillRect(a.x + 62, a.y + 318, 76, 46);
+    cx.fillStyle = '#8FA6B8'; cx.fillRect(a.x + 62, a.y + 318, 76, 3);
+    cx.fillStyle = '#D8E8EE'; cx.fillRect(a.x + 74, a.y + 332, 9, 7);
+    cx.restore();
+  }
+
+  /* PANEL 2 — PILLAR MOUNTAIN. Six pips at EQUAL size, ISOTYPE discipline,
+     one drawn dark with a hairline outline. Countable at 432px. */
+  function pillar(a) {
+    cx.save(); cutPath(a, SEED + 12); cx.clip();
+    cx.fillStyle = '#101D29';
+    cx.beginPath(); cx.moveTo(a.x, a.y + a.h);
+    for (var x = a.x; x <= a.x + a.w; x += 6) {
+      cx.lineTo(x, a.y + 236 + AK.fbm2(x * 0.014, 8, 3) * 40);
+    }
+    cx.lineTo(a.x + a.w, a.y + a.h); cx.closePath(); cx.fill();
+    for (var k = 0; k < 6; k++) {
+      var px = a.x + 26 + k * 33, py = a.y + 214 - k * 4;
+      var off = (k === 5);
+      cx.strokeStyle = off ? '#3E5A6B' : '#8FA6B8';
+      cx.lineWidth = off ? 1.2 : 2.6;
+      cx.beginPath(); cx.moveTo(px, py); cx.lineTo(px, py + 74); cx.stroke();
+      cx.fillStyle = off ? '#0A1622' : '#8FA6B8';
+      cx.beginPath(); cx.arc(px, py, 6.4, 0, 6.283185); cx.fill();
+      if (off) {
+        cx.strokeStyle = '#B4471F'; cx.lineWidth = 1.6;
+        cx.beginPath(); cx.arc(px, py, 6.4, 0, 6.283185); cx.stroke();
+      }
+    }
+    cx.restore();
+  }
+
+  /* PANEL 3 — FLYWHEELS AND BATTERY. Exactly two drums and one cabinet. */
+  function storage(a) {
+    cx.save(); cutPath(a, SEED + 13); cx.clip();
+    cx.fillStyle = '#0E1926'; cx.fillRect(a.x, a.y + 252, a.w, a.h - 252);
+    for (var d = 0; d < 2; d++) {
+      var dx = a.x + 46 + d * 74, dy = a.y + 214;
+      cx.fillStyle = '#16283a'; cx.fillRect(dx - 22, dy, 44, 96);
+      cx.fillStyle = '#3E5A6B'; cx.fillRect(dx - 22, dy, 8, 96);
+      cx.fillStyle = '#24384A';
+      cx.beginPath(); cx.ellipse(dx, dy, 22, 8, 0, 0, 6.283185); cx.fill();
+      cx.strokeStyle = '#8FA6B8'; cx.lineWidth = 1.4;
+      cx.beginPath(); cx.ellipse(dx, dy, 22, 8, 0, 0, 6.283185); cx.stroke();
+    }
+    cx.fillStyle = '#101E2C'; cx.fillRect(a.x + 128, a.y + 238, 62, 72);
+    cx.fillStyle = '#3E5A6B'; cx.fillRect(a.x + 128, a.y + 238, 62, 4);
+    cx.fillStyle = '#D8E8EE'; cx.fillRect(a.x + 136, a.y + 254, 7, 5);
+    /* the door light, the panel's and the slide's focal point */
+    cx.fillStyle = '#D8E8EE'; cx.fillRect(a.x + 96, a.y + 96, 12, 18);
+    cx.globalAlpha = 0.20; cx.fillStyle = '#7FA8B8';
+    cx.beginPath(); cx.moveTo(a.x + 96, a.y + 114); cx.lineTo(a.x + 40, a.y + 316);
+    cx.lineTo(a.x + 168, a.y + 316); cx.closePath(); cx.fill();
+    cx.globalAlpha = 1;
+    cx.restore();
+  }
+
+  /* PANEL 4 — DIESEL. Unlit inside. The hardest luminance step in the row. */
+  function diesel(a) {
+    cx.save(); cutPath(a, SEED + 14); cx.clip();
+    cx.fillStyle = '#04070E'; cx.fillRect(a.x, a.y, a.w, a.h);
+    cx.strokeStyle = '#1E3546'; cx.lineWidth = 2;
+    cx.strokeRect(a.x + 30, a.y + 128, 158, 180);
+    cx.fillStyle = '#6E2A12';
+    cx.fillRect(a.x + 30, a.y + 298, 158, 8);
+    cx.fillStyle = '#12202E';
+    for (var s = 0; s < 5; s++) cx.fillRect(a.x + 38, a.y + 144 + s * 32, 142, 12);
+    cx.restore();
+  }
+
+  (async function () {
+    await document.fonts.ready;
+    var reserve = AKNIGHT.reserve('[data-reserve]');
+    asphalt();
+
+    /* WET ASPHALT between and behind the apertures, engraved, so the panels
+       are windows cut into a continuous surface rather than objects on it. */
+    var eng = AKENGRAVE.create({ seed: SEED, light: { azDeg: 292, elDeg: 24 } });
+    eng.reserve(reserve);
+    eng.surface(cx, {
+      region: [0, 1188, 1080, 162],
+      form: function (x, y) { return (y - 1188) * 0.42 + AK.fbm2(x * 0.006, y * 0.01, 3) * 5; },
+      tone: function (x, y) { return 1 - falloff(x, y) * 0.85; },
+      budget: { main: 5.2, cross: 7.4, dots: false },
+      inkLo: '#101d2c', inkHi: '#6E8A9C', wMax: 1.9, step: 7
+    });
+
+    /* THE INTERIORS ARE MODELLED, NOT FILLED. Each window was a flat plate with
+       a vector glyph on it, which is a pictogram and not a place. A slope-shaded
+       hachure ground goes into the three lit panels first, each with its own
+       terrain and its own light, so the glyph stands on something. Panel 4 is
+       deliberately excluded: it is the row's hardest step and its interior is
+       the deck's unlit band. */
+    var TERR = [
+      function (x, y) { return 0.62 - Math.abs(x - 0.5) * 0.7 + AK.fbm2(x * 5, y * 5, 3) * 0.16; },
+      function (x, y) { return 0.30 + (1 - y) * 0.55 + AK.fbm2(x * 7, y * 4, 3) * 0.2; },
+      function (x, y) { return 0.34 + AK.fbm2(x * 9, y * 9, 3) * 0.22; }
+    ];
+    for (var t = 0; t < 3; t++) {
+      var a = AP[t];
+      cx.save(); cutPath(a, SEED + 11 + t); cx.clip();
+      cx.fillStyle = '#101E2B'; cx.fillRect(a.x, a.y, a.w, a.h);
+      (function (fn, aa) {
+        AK.hachureField(cx, {
+          x: aa.x, y: aa.y, w: aa.w, h: aa.h, seed: SEED + 40 + t,
+          height: function (u, v) { return fn(u, v); },
+          cell: 9, passes: 2, sunAz: 292, sunEl: 24,
+          color: '#22394C', alpha: 0.6, minWidth: 0.5, maxWidth: 2.4
+        });
+      })(TERR[t], a);
+      cx.restore();
+    }
+
+    terrorLake(AP[0]); pillar(AP[1]); storage(AP[2]); diesel(AP[3]);
+
+    /* the cut edges, which is what makes them windows rather than cards */
+    for (var i = 0; i < 4; i++) {
+      cutPath(AP[i], SEED + 11 + i);
+      cx.strokeStyle = 'rgba(4,7,14,0.9)'; cx.lineWidth = 3; cx.stroke();
+      /* THE LIT LIP IS WINDWARD ONLY. Traced round the whole path it is a
+         keyline, and four keylined rectangles in a row are the bordered cards
+         this slide's dossier forbids by name. Light comes from az 292, so only
+         the top and left edges of a cut catch it. */
+      cx.save();
+      cx.strokeStyle = 'rgba(143,166,184,0.34)'; cx.lineWidth = 2.4;
+      cx.beginPath();
+      cx.moveTo(AP[i].x, AP[i].y + AP[i].h);
+      cx.lineTo(AP[i].x, AP[i].y);
+      cx.lineTo(AP[i].x + AP[i].w, AP[i].y);
+      cx.stroke();
+      cx.restore();
+      AKNIGHT.contact(cx, {
+        x: AP[i].x + AP[i].w / 2, y: AP[i].y + AP[i].h, w: 120,
+        poolRx: 206 - i * 26, poolRy: 30, poolDy: 24, color: '#0A1320',
+        poolColor: 'rgba(150,174,192,' + (0.34 - i * 0.06) + ')'
+      });
+    }
+
+    AKNIGHT.chips(cx, {
+      seed: SEED + 3, count: 420, region: [0, 1188, 1080, 162], reserve: reserve,
+      density: function (x, y) { return falloff(x, y) * 0.9; },
+      color: '#B9CBD8', colorDim: '#3E5A6B', sizeMin: 1.0, sizeMax: 4.2
+    });
+
+    AKNIGHT.conductor(cx, {
+      x0: -40, y0: 620, x1: 1120, y1: 600, sag: 40,
+      color: '#3E5A6B', casing: '#04070E', width: 2.0, seed: SEED + 7
+    });
+    AKNIGHT.rain(cx, {
+      count: 1600, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.20,
+      inCone: function (x, y) {
+        /* the declared Unlit Band is the diesel bay's interior */
+        if (x > 776 && x < 1006 && y > 694 && y < 1194) return false;
+        return y > 560 && falloff(x, y) > 0.12;
+      }
+    });
+
+    /* subtract the art inside the type reserve, so the slide own geometry
+       cannot run through the letterforms */
+    /* THE CALL SITES WERE OVERRIDING THE MODULE. veil()'s defaults were softened
+       and its feather made proportional after the plates were measured, and every
+       slide was still passing the old alpha 0.74 with a fixed 26px feather, so
+       none of that reached the picture. Five critics read flat plates behind the
+       type on six slides. The module owns these numbers now. */
+    AKNIGHT.veil(cx, reserve);
+
+    AKPOST.grade(cx, {
+      exposure: -0.04, saturation: 0.95, contrast: 1.05, dither: true,
+      bloom: { threshold: 0.78, strength: 0.20, radius: 7 }
+    });
+    document.getElementById('grain').style.backgroundImage =
+      'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+    window.__akAssert = [{
+      what: 'six turbine pips on Pillar Mountain, one of them dark',
+      expect: 6,
+      points: [[AP[1].x + 26, AP[1].y + 214], [AP[1].x + 59, AP[1].y + 210],
+               [AP[1].x + 92, AP[1].y + 206], [AP[1].x + 125, AP[1].y + 202],
+               [AP[1].x + 158, AP[1].y + 198], [AP[1].x + 191, AP[1].y + 194]],
+      unit: 'marks'
+    }];
+    window.__akMotifs = [{ what: 'the unlit diesel bay, the row hardest step',
+                           rect: [AP[3].x, AP[3].y, AP[3].w, AP[3].h] }];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

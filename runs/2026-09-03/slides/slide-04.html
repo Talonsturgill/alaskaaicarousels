@@ -1,0 +1,310 @@
+<!doctype html>
+<!-- SLIDE 04 — THE CEILING. The diesel plant roll-up door, shut, 50mm, camera
+     1.6m, bearing north. The wordless claim is the UNDISTURBED puddle under
+     the door. They did not run. Type sits on the Unlit Band here and only
+     here, because that band is a declared flat region and contrast is a
+     computed constant against it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Instrument Serif", serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.09; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  .kicker { position: absolute; left: 120px; top: 92px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #7FA8B8; }
+  /* the ceiling is the loudest interior frame in the deck */
+  h2 { position: absolute; left: 120px; top: 208px; width: 720px;
+       font-weight: 400; font-size: 88px; line-height: 1.0; color: #F4F8FF; }
+  .q { position: absolute; left: 120px; top: 420px; width: 812px;
+       font-weight: 400; font-size: 52px; line-height: 1.12; color: #F4F8FF; }
+  .attrib { position: absolute; left: 120px; top: 700px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 24px; letter-spacing: 0.10em; color: #7FA8B8; }
+  .tag { position: absolute; font-family: "JetBrains Mono", monospace;
+         font-size: 20px; letter-spacing: 0.10em; color: #7FA8B8; }
+  .tag.a { left: 700px; top: 1120px; }
+  .slug { position: absolute; left: 80px; bottom: 80px;
+          font-family: "JetBrains Mono", monospace; font-size: 11px;
+          letter-spacing: 0.14em; color: rgba(127,168,184,0.55); }
+  /* THE FEED CROPS AND THE VIEWER CHROME SITS AT THE BOTTOM. Deck furniture
+     was riding 34px off the edge, inside the 80px safe zone on every slide. */
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .counter i { color: #FFC72C; font-style: normal; }
+</style>
+</head>
+<body data-contacts='[{"what":"the roll-up door frame standing on the threshold","shadow":[[298,1234,26,10]],"ground":[[426,1234,26,10]]}]'
+      data-encodes='[{"claim":"the diesels did not run, and the still puddle under a shut door says so","reads":"differ","a":[[480,1240,240,68]],"b":[[46,1240,270,68]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+  <div class="kicker" data-reserve>THE CEILING</div>
+  <h2 data-reserve>In March the peak hit<br>just over 31 MW.</h2>
+  <div class="q" data-reserve>"We didn't have to turn diesels on,<br>but as the load continues to grow,<br>that could certainly become a potential,"</div>
+  <div class="attrib" data-reserve>DAN MENTH, KODIAK ELECTRIC ASSOCIATION (C13)</div>
+  <div class="tag a" data-reserve data-decorative>C06</div>
+  <div class="slug" data-reserve data-decorative>DIESEL PLANT DOOR / 50MM / 1.6M / N</div>
+  <div class="counter" data-reserve>04 <i data-decorative>/</i> 09</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aknight.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260907;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var falloff = AKNIGHT.falloff(-40, 900, 780);
+
+  var DOOR = { x: 360, y: 180, w: 720, h: 1006 };   /* fills the right 2/3 */
+  var GAP_Y = 1186, GAP_H = 44;
+
+  function wall() {
+    cx.fillStyle = '#070C14'; cx.fillRect(0, 0, 1080, 1350);
+    cx.fillStyle = '#0A1320'; cx.fillRect(0, 0, 1080, 180);
+  }
+
+  /* 42 CORRUGATIONS, each a lit windward crest and a dark lee flank, which is
+     the aksnow idiom applied to metal. A repeating hard-edged ramp that a 6x
+     downsample cannot smooth. */
+  function corrugations() {
+    var n = 28, pitch = DOOR.w / n;   /* 25.7px, clear of the moire */
+    /* A DOOR THAT HAS BEEN USED IS NOT 28 IDENTICAL STRIPS. Drawn uniformly it
+       was an even mark distribution, which is this studio's standing weakness in
+       a new costume: the eye finds no event anywhere on the largest object in
+       the frame. Every corrugation now carries its own dent depth, its own crest
+       break and its own wear, all seeded, so the population is modelled rather
+       than repeated. Two ribs are visibly struck, which is what a roll-up door
+       at a diesel plant actually looks like. */
+    var dr = AK.rng(SEED + 41);
+    for (var i = 0; i < n; i++) {
+      var x = DOOR.x + i * pitch;
+      var lit = falloff(x, DOOR.y + DOOR.h * 0.6);
+      /* a per-rib dent: shallow almost everywhere, deep on two */
+      var dent = Math.pow(dr(), 1.5);
+      var struck = (i === 9 || i === 20);
+      var wear = 0.82 + dr() * 0.36;
+      var crestW = pitch * (0.26 - dent * 0.10) * (struck ? 0.45 : 1);
+      /* lee flank */
+      cx.fillStyle = AKC.mixOklab('#0A121C', '#1E3546', lit * 0.55 * (1 - dent * 0.5));
+      cx.fillRect(x, DOOR.y, pitch * 0.58, DOOR.h);
+      /* lit crest, its value carrying the rib's own wear and dent */
+      cx.fillStyle = AKC.mixOklab('#35586B', '#D8E8EE',
+                                  Math.min(1, lit * 1.05 * wear * (1 - dent * 0.62)));
+      cx.fillRect(x + pitch * 0.58, DOOR.y, crestW, DOOR.h);
+      /* the specular strip BREAKS where the rib is dented, because a bent
+         surface stops returning the lamp along its whole length */
+      cx.globalAlpha = (0.5 + lit * 0.4) * (1 - dent * 0.7);
+      cx.fillStyle = '#D8E8EE';
+      if (struck) {
+        var bt = DOOR.y + (0.24 + dr() * 0.3) * DOOR.h;
+        cx.fillRect(x + pitch * 0.60, DOOR.y, 2.6, bt - DOOR.y);
+        cx.fillRect(x + pitch * 0.60, bt + 90 + dr() * 120, 2.6,
+                    DOOR.y + DOOR.h - (bt + 90));
+      } else {
+        cx.fillRect(x + pitch * 0.60, DOOR.y, 2.6 * (1 - dent * 0.4), DOOR.h);
+      }
+      cx.globalAlpha = 1;
+      /* a run of corrosion out of the dent, down the lee flank */
+      if (dent > 0.42) {
+        cx.globalAlpha = 0.16 + dent * 0.4;
+        cx.fillStyle = '#6E2A12';
+        var ry0 = DOOR.y + dr() * DOOR.h * 0.7;
+        cx.fillRect(x + pitch * 0.2, ry0, pitch * 0.3, 40 + dr() * 220);
+        /* and a second run out of the bottom rail, where water actually
+           collects on a door that meets a wet threshold */
+        cx.fillRect(x + pitch * 0.5, DOOR.y + DOOR.h - 150 - dr() * 90,
+                    pitch * 0.22, 90 + dr() * 70);
+        cx.globalAlpha = 1;
+      }
+    }
+    /* horizontal section rails, so the door reads as sectional and not as
+       a striped rectangle */
+    for (var s = 1; s < 6; s++) {
+      var y = DOOR.y + (DOOR.h / 6) * s;
+      cx.fillStyle = 'rgba(4,7,14,0.85)'; cx.fillRect(DOOR.x, y, DOOR.w, 7);
+      cx.fillStyle = 'rgba(185,203,216,0.28)'; cx.fillRect(DOOR.x, y + 7, DOOR.w, 1.6);
+    }
+    /* bottom rail and its rust bleed */
+    cx.fillStyle = '#0A121C'; cx.fillRect(DOOR.x, DOOR.y + DOOR.h - 22, DOOR.w, 22);
+    cx.fillStyle = '#6E2A12';
+    var r = AK.rng(SEED + 9);
+    for (var k = 0; k < 26; k++) {
+      var bx = DOOR.x + r() * DOOR.w;
+      cx.globalAlpha = 0.20 + r() * 0.4;
+      cx.fillRect(bx, DOOR.y + DOOR.h, 2 + r() * 5, 10 + r() * 44);
+    }
+    cx.globalAlpha = 1;
+  }
+
+  function frame() {
+    cx.fillStyle = '#12202E';
+    cx.fillRect(DOOR.x - 26, DOOR.y - 20, 26, DOOR.h + 40);
+    cx.fillStyle = '#3E5A6B';
+    cx.fillRect(DOOR.x - 26, DOOR.y - 20, 5, DOOR.h + 40);
+  }
+
+  (async function () {
+    await document.fonts.ready;
+    var reserve = AKNIGHT.reserve('[data-reserve]');
+
+    wall();
+    corrugations();
+    frame();
+
+    /* THE UNLIT BAND. 44px, the narrowest and deepest in the deck, pure
+       #04070E, and the only place in the deck type sits on it. */
+    cx.fillStyle = '#04070E';
+    cx.fillRect(0, GAP_Y, 1080, GAP_H);
+
+    /* THE THRESHOLD, engraved. form is a single ramp whose crest sits at
+       31 of 32 of the field height, which is C06 carved into the concrete. */
+    var eng = AKENGRAVE.create({ seed: SEED, light: { azDeg: 292, elDeg: 24 } });
+    eng.reserve(reserve);
+    eng.surface(cx, {
+      region: [0, GAP_Y + GAP_H, 1080, 1350 - GAP_Y - GAP_H],
+      form: function (x, y) {
+        var t = (y - (GAP_Y + GAP_H)) / (1350 - GAP_Y - GAP_H);
+        return Math.pow(31 / 32, 1) * 44 * (1 - t) + AK.fbm2(x * 0.006, y * 0.012, 3) * 4;
+      },
+      tone: function (x, y) { return 1 - falloff(x, y) * 0.88; },
+      budget: { main: 3.6, cross: 5.6, dots: true },
+      inkLo: '#16263a', inkHi: '#B9CBD8', wMax: 2.6, step: 5
+    });
+
+    /* EXPOSED AGGREGATE. A poured threshold is stone in cement, and a lamp
+       this low finds every piece of it. Each grain is placed by the noise
+       field and lit on its windward side, so the population is a set of hard
+       little steps rather than a texture laid over the top. */
+    (function () {
+      var ag = AK.rng(SEED + 21);
+      for (var i = 0; i < 620; i++) {
+        var gx = ag() * 1080, gy = GAP_Y + GAP_H + ag() * (1350 - GAP_Y - GAP_H);
+        var n = AK.simplex2(gx * 0.02, gy * 0.02);
+        if (n < 0.05) continue;
+        var lit = falloff(gx, gy);
+        if (lit < 0.06) continue;
+        var r = 1.1 + n * 2.6;
+        cx.fillStyle = AKC.mixOklab('#101d2c', '#7FA8B8', Math.min(1, lit * n * 1.15));
+        cx.beginPath(); cx.arc(gx, gy, r, 0, 6.283185); cx.fill();
+        cx.fillStyle = 'rgba(4,7,14,0.55)';
+        cx.beginPath(); cx.arc(gx + r * 0.7, gy + r * 0.5, r * 0.7, 0, 6.283185); cx.fill();
+      }
+    })();
+
+    /* THE UNDISTURBED PUDDLE, drawn as what still water actually is: a MIRROR.
+       It returns the whole lit door, corrugation for corrugation, as an
+       unbroken field. Two hairlines were not the claim, they were a detail on
+       top of the claim, and a median through them read as plain wet ground.
+       Nothing ran, so nothing broke the reflection. */
+    cx.save();
+    cx.beginPath(); cx.ellipse(610, 1274, 190, 40, 0, 0, 6.283185);
+    cx.fillStyle = '#0E1B27'; cx.fill(); cx.clip();
+    var pn = 28, ppitch = DOOR.w / pn;
+    for (var pi = 0; pi < pn; pi++) {
+      var pxx = DOOR.x + pi * ppitch;
+      if (pxx < 400 || pxx > 810) continue;
+      var plit = falloff(pxx, DOOR.y + DOOR.h * 0.6);
+      /* the returned lee flank, then the returned crest, at mirror value */
+      cx.fillStyle = AKC.mixOklab('#0C1721', '#20364A', plit * 0.7);
+      cx.fillRect(pxx, 1238, ppitch * 0.58, 92);
+      cx.fillStyle = AKC.mixOklab('#5E7E92', '#DDEAF2', Math.min(1, plit * 1.1));
+      cx.fillRect(pxx + ppitch * 0.58, 1238, ppitch * 0.42, 92);
+    }
+    /* the bottom rail, returned as the one continuous bright line: the single
+       most legible statement that the surface is not moving */
+    /* one return, not two: the second strip read as a doubling artefact */
+    cx.fillStyle = '#EAF3F8';
+    for (var q = 0; q < 24; q++) {
+      cx.fillRect(430 + q * 15, 1266 + AK.fbm2(q * 0.4, 0, 2) * 1.8, 15, 5);
+    }
+    cx.restore();
+
+    /* the LEFT ground, rain-ringed and broken, which is the b-region of the
+       wordless claim: water that IS being disturbed */
+    var r = AK.rng(SEED + 4);
+    for (var i = 0; i < 26; i++) {
+      var rx = 40 + r() * 280, ry = 1242 + r() * 86, rr = 14 + r() * 30;
+      /* THE DISTURBED WATER IS HALF THE ARGUMENT and it was 1px strokes at a
+         tenth alpha, which is nothing after the downsample, so the wordless
+         claim measured as one bright bar against plain dark ground. */
+      cx.strokeStyle = 'rgba(143,166,184,' + (0.30 + r() * 0.26).toFixed(3) + ')';
+      cx.lineWidth = 2.6;
+      cx.beginPath(); cx.ellipse(rx, ry, rr, rr * 0.34, 0, 0, 6.283185); cx.stroke();
+    }
+
+    /* The frame stands on the CONCRETE, below the gap, not on the gap itself.
+       The pool is held to a low ellipse so it lights the threshold without
+       climbing into the unlit band, which is this slide's deepest step and the
+       one thing that must not be washed. */
+    AKNIGHT.contact(cx, {
+      x: 347, y: GAP_Y + GAP_H + 8, w: 190, color: '#0A1320',
+      poolRx: 290, poolRy: 30, poolDy: 12
+    });
+
+    AKNIGHT.chips(cx, {
+      seed: SEED + 3, count: 520, region: [0, 1234, 1080, 116], reserve: reserve,
+      /* the left ground is the DISTURBED half of the wordless claim and must
+         not carry the same specular population as the still puddle */
+      density: function (x, y) { return x < 340 ? 0 : falloff(x, y) * 1.2; },
+      color: '#D8E8EE', colorDim: '#7FA8B8', sizeMin: 1.1, sizeMax: 5.5
+    });
+
+    AKNIGHT.conductor(cx, {
+      x0: -40, y0: 600, x1: 1120, y1: 560, sag: 210,
+      color: '#3E5A6B', casing: '#04070E', width: 2.0, seed: SEED + 7
+    });
+
+    /* 3,100 streaks, one hundred per megawatt of the March peak (C06), and
+       NONE inside the door gap. */
+    /* THE UNLIT BAND, RE-LAID. It is declared the deck's narrowest and deepest
+       step and four later passes were painting over it. Nothing that runs
+       after this line may enter it. */
+    cx.fillStyle = '#04070E';
+    cx.fillRect(0, GAP_Y, 1080, GAP_H);
+
+    AKNIGHT.rain(cx, {
+      count: 3100, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.20,
+      inCone: function (x, y) {
+        if (y > GAP_Y && y < GAP_Y + GAP_H) return false;
+        return falloff(x, y) > 0.10;
+      }
+    });
+
+    /* subtract the art inside the type reserve, so the slide own geometry
+       cannot run through the letterforms */
+    /* THE CALL SITES WERE OVERRIDING THE MODULE. veil()'s defaults were softened
+       and its feather made proportional after the plates were measured, and every
+       slide was still passing the old alpha 0.74 with a fixed 26px feather, so
+       none of that reached the picture. Five critics read flat plates behind the
+       type on six slides. The module owns these numbers now. */
+    AKNIGHT.veil(cx, reserve, { alpha: 0.72 });
+
+    AKPOST.grade(cx, {
+      exposure: -0.05, saturation: 0.94, contrast: 1.07, dither: true,
+      bloom: { threshold: 0.74, strength: 0.24, radius: 8 }
+    });
+    document.getElementById('grain').style.backgroundImage =
+      'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+    window.__akMotifs = [{ what: 'the shut door gap, the deck narrowest unlit band',
+                           rect: [0, GAP_Y, 1080, GAP_H] }];
+    window.__akLeaders = [
+      { target: 'the door bottom seal and its still puddle', at: [610, 1244],
+        to: [610, 1244], from: [716, 1136], label: 'C06' }
+    ];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

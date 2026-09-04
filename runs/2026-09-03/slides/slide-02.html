@@ -1,0 +1,315 @@
+<!doctype html>
+<!-- SLIDE 02 — THE TWO SENTENCES. Ground level at a padmount transformer on a
+     wet concrete pad, 35mm, camera 0.9m, bearing east. The Unlit Band opens
+     into a wedge to the RIGHT of the cabinet, wider at the bottom, so the
+     ground the new load will stand on is the part that can't be seen. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Instrument Serif", serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.09; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  .kicker { position: absolute; left: 80px; top: 92px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #7FA8B8; }
+  h2 { position: absolute; left: 80px; top: 300px; width: 880px;
+       font-weight: 400; font-size: 74px; line-height: 1.0;
+       letter-spacing: -0.02em; color: #F4F8FF; }
+  .body { position: absolute; left: 80px; top: 520px; width: 640px;
+          font-family: "Archivo", sans-serif; font-variation-settings: "wdth" 88;
+          font-weight: 400; font-size: 34px; line-height: 1.38; color: #F4F8FF; }
+  .tag { position: absolute; font-family: "JetBrains Mono", monospace;
+         font-size: 20px; letter-spacing: 0.10em; color: #7FA8B8; }
+  .tag.a { left: 214px; top: 852px; }
+  .tag.b { left: 806px; top: 1108px; }
+  .slug { position: absolute; left: 80px; bottom: 80px;
+          font-family: "JetBrains Mono", monospace; font-size: 11px;
+          letter-spacing: 0.14em; color: rgba(127,168,184,0.55); }
+  /* THE FEED CROPS AND THE VIEWER CHROME SITS AT THE BOTTOM. Deck furniture
+     was riding 34px off the edge, inside the 80px safe zone on every slide. */
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .counter i { color: #FFC72C; font-style: normal; }
+</style>
+</head>
+<body data-contacts='[{"what":"the padmount cabinet standing on the concrete pad","shadow":[[286,1046,26,10]],"ground":[[361,1046,26,10]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+  <div class="kicker" data-reserve>THE TWO SENTENCES</div>
+  <h2 data-reserve>The Navy says the building runs off the existing grid.</h2>
+  <div class="body" data-reserve>The cooperative says the Navy has not told it how much power the building will use. Both sentences are true at once. The second one is the planning problem, because the utility has to size for a load nobody has given it a figure for.</div>
+  <div class="tag a" data-reserve data-decorative>C03</div>
+  <div class="tag b" data-reserve data-decorative>C04</div>
+  <div class="slug" data-reserve data-decorative>YARD PAD OFF REZANOF / 35MM / 0.9M / E</div>
+  <div class="counter" data-reserve>02 <i data-decorative>/</i> 09</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/aknight.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260905;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var falloff = AKNIGHT.falloff(-40, 700, 700);
+
+  /* THE CABINET. A padmount transformer, seen from the ground so it stands
+     above the horizon of the pad. Lit lid, dark front, hasp, vent louvre. */
+  var CAB = { x: 300, y: 700, w: 190, h: 346 };
+
+  function nightSky() {
+    var g = cx.createLinearGradient(0, 0, 0, 620);
+    g.addColorStop(0, '#04070E'); g.addColorStop(1, '#0A1320');
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, 640);
+  }
+
+  /* THE WEDGE. The Unlit Band, opening to the right of the cabinet and wider
+     at the bottom. Drawn with a measurable falloff edge, never a hard cut. */
+  function wedge() {
+    var oc = document.createElement('canvas');
+    oc.width = 2160; oc.height = 2700;
+    var ox = oc.getContext('2d'); ox.scale(2, 2);
+    ox.fillStyle = '#04070E';
+    ox.beginPath();
+    ox.moveTo(700, 640); ox.lineTo(1080, 640);
+    ox.lineTo(1080, 1350); ox.lineTo(560, 1350);
+    ox.closePath(); ox.fill();
+    cx.save(); cx.filter = 'blur(22px)';
+    cx.drawImage(oc, 0, 0, 1080, 1350); cx.restore();
+  }
+
+  function pad() {
+    /* the concrete pad, one hard-edged plateau */
+    cx.fillStyle = '#101C28';
+    cx.beginPath();
+    cx.moveTo(150, 1030); cx.lineTo(660, 1014);
+    cx.lineTo(780, 1210); cx.lineTo(60, 1244);
+    cx.closePath(); cx.fill();
+    /* its lit leading arris, one hairline of real light */
+    cx.strokeStyle = '#8FA6B8'; cx.lineWidth = 2.2;
+    cx.beginPath(); cx.moveTo(150, 1030); cx.lineTo(660, 1014); cx.stroke();
+  }
+
+  function cabinet() {
+    var lit = falloff(CAB.x, CAB.y + 100);
+    /* dark front face */
+    cx.fillStyle = '#0A121C';
+    cx.fillRect(CAB.x - CAB.w / 2, CAB.y, CAB.w, CAB.h);
+    /* left, lamp-facing side, a genuinely lighter plane */
+    cx.fillStyle = AKC.mixOklab('#1E3546', '#8FA6B8', Math.min(1, lit * 1.1));
+    cx.beginPath();
+    cx.moveTo(CAB.x - CAB.w / 2, CAB.y);
+    cx.lineTo(CAB.x - CAB.w / 2 - 46, CAB.y + 34);
+    cx.lineTo(CAB.x - CAB.w / 2 - 46, CAB.y + CAB.h + 12);
+    cx.lineTo(CAB.x - CAB.w / 2, CAB.y + CAB.h);
+    cx.closePath(); cx.fill();
+    /* the LID, the brightest plane in the frame and the focal point */
+    cx.fillStyle = '#35586B';
+    cx.beginPath();
+    cx.moveTo(CAB.x - CAB.w / 2 - 46, CAB.y + 34);
+    cx.lineTo(CAB.x - CAB.w / 2, CAB.y);
+    cx.lineTo(CAB.x + CAB.w / 2, CAB.y);
+    cx.lineTo(CAB.x + CAB.w / 2 - 30, CAB.y + 30);
+    cx.closePath(); cx.fill();
+    cx.strokeStyle = '#D8E8EE'; cx.lineWidth = 2.6;
+    cx.beginPath();
+    cx.moveTo(CAB.x - CAB.w / 2 - 46, CAB.y + 34);
+    cx.lineTo(CAB.x - CAB.w / 2, CAB.y);
+    cx.lineTo(CAB.x + CAB.w / 2, CAB.y);
+    cx.stroke();
+    /* vent louvres, drawn as separate lit and lee pairs so each is a step */
+    for (var v = 0; v < 7; v++) {
+      var y = CAB.y + 92 + v * 26;
+      cx.fillStyle = '#16283a'; cx.fillRect(CAB.x - 68, y, 138, 9);
+      cx.fillStyle = 'rgba(143,166,184,0.42)'; cx.fillRect(CAB.x - 68, y, 138, 2);
+    }
+    /* hasp */
+    cx.fillStyle = '#3E5A6B'; cx.fillRect(CAB.x + 52, CAB.y + 168, 16, 46);
+    cx.fillStyle = '#0A121C'; cx.fillRect(CAB.x + 56, CAB.y + 180, 8, 22);
+    /* the warning label, an unreadable smudge of marine primer */
+    cx.globalAlpha = 0.85; cx.fillStyle = '#B4471F';
+    cx.fillRect(CAB.x - 58, CAB.y + 280, 62, 34);
+    cx.globalAlpha = 0.35; cx.fillStyle = '#6E2A12';
+    cx.fillRect(CAB.x - 58, CAB.y + 300, 62, 14);
+    cx.globalAlpha = 1;
+    /* base flange corrosion */
+    cx.fillStyle = '#6E2A12';
+    cx.fillRect(CAB.x - CAB.w / 2, CAB.y + CAB.h - 16, CAB.w, 16);
+  }
+
+  /* CHAIN LINK and its shadow raking one direction across the pad. A repeating
+     high-frequency luminance step no downsample can blur away. */
+  function fence() {
+    cx.save();
+    cx.strokeStyle = 'rgba(62,90,107,0.55)'; cx.lineWidth = 1.1;
+    for (var i = -30; i < 60; i++) {
+      cx.beginPath(); cx.moveTo(i * 26, 620); cx.lineTo(i * 26 + 150, 1000); cx.stroke();
+      cx.beginPath(); cx.moveTo(i * 26, 1000); cx.lineTo(i * 26 + 150, 620); cx.stroke();
+    }
+    cx.restore();
+  }
+
+  /* THE RAKE, LIFTED OUT OF fence(). It was drawn inside fence(), which runs
+     before the pad is filled, and clipped to a pad quad that no longer ships,
+     so two later fills covered it completely: the slide's one guaranteed
+     hard-edged, downsample-proof luminance step did not exist in the output.
+     It is its own pass now, run after the engrave, clipped to the pad that is
+     actually on the slide. */
+  function padShadow(shape) {
+    cx.save();
+    shape(); cx.clip();
+    cx.strokeStyle = 'rgba(4,7,14,0.85)'; cx.lineWidth = 5.0;
+    for (var k = -20; k < 50; k++) {
+      cx.beginPath(); cx.moveTo(k * 34, 990); cx.lineTo(k * 34 + 130, 1300); cx.stroke();
+    }
+    cx.restore();
+  }
+
+  (async function () {
+    await document.fonts.ready;
+    var reserve = AKNIGHT.reserve('[data-reserve]');
+
+    nightSky();
+    /* the far yard, dark */
+    cx.fillStyle = '#080F19'; cx.fillRect(0, 620, 1080, 420);
+    fence();
+    wedge();
+
+    /* THE PAD, engraved. form is a PLATEAU PUNCHED BY A HOLE at the
+       transformer's footing, so the lay runs to an edge and stops. C04. */
+    var eng = AKENGRAVE.create({ seed: SEED, light: { azDeg: 292, elDeg: 24 } });
+    eng.reserve(reserve);
+    /* THE PAD HAS AN EDGE. Read off the render the engraved lay simply stopped
+       at x 800 on a straight vertical, because that is where the region ended,
+       and a surface that ends in mid air is the one thing a poured pad never
+       does. The lay is clipped to the pad's own shape now: a slab in
+       perspective, its corners worked by a float, with a lit chamfer on the
+       windward side and a dark riser falling away below. */
+    function padShape() {
+      cx.beginPath();
+      /* worked corners, not rounded ones: a float leaves a few pixels of
+         radius on a poured edge, not a lozenge */
+      cx.moveTo(38, 1030);
+      cx.quadraticCurveTo(44, 1017, 62, 1016);
+      cx.lineTo(872, 1016);
+      cx.quadraticCurveTo(890, 1017, 895, 1030);
+      cx.lineTo(946, 1258);
+      cx.quadraticCurveTo(948, 1272, 930, 1274);
+      cx.lineTo(56, 1274);
+      cx.quadraticCurveTo(36, 1273, 33, 1258);
+      cx.closePath();
+    }
+    cx.save();
+    padShape();
+    cx.fillStyle = '#0B141F'; cx.fill();
+    cx.clip();
+    eng.surface(cx, {
+      region: [24, 1010, 900, 268],
+      form: function (x, y) {
+        var dx = (x - CAB.x) / 150, dy = (y - 1120) / 90;
+        var hole = Math.exp(-(dx * dx + dy * dy)) * 34;
+        return (y - 1010) * 0.26 - hole + AK.fbm2(x * 0.005, y * 0.006, 3) * 3;
+      },
+      tone: function (x, y) { return 1 - falloff(x, y) * 0.9; },
+      budget: { main: 4.0, cross: 6.2, dots: true },
+      inkLo: '#16263a', inkHi: '#B9CBD8', wMax: 2.6, crossDeg: 78, step: 6
+    });
+    cx.restore();
+    padShadow(padShape);
+    /* the chamfer, lit, and the riser under it */
+    cx.save();
+    /* WINDWARD EDGES ONLY. A light keyline traced right round a rounded
+       rectangle is a card, whatever is drawn inside it. Light comes from
+       az 292, so the top and the left arris catch it and the other two edges
+       are left to the riser and the wedge. */
+    cx.strokeStyle = 'rgba(185,203,216,0.42)'; cx.lineWidth = 2.6;
+    cx.beginPath();
+    cx.moveTo(33, 1258);
+    cx.quadraticCurveTo(36, 1017, 62, 1016);
+    cx.lineTo(872, 1016);
+    cx.stroke();
+    cx.strokeStyle = 'rgba(4,7,14,0.9)'; cx.lineWidth = 4;
+    cx.beginPath();
+    cx.moveTo(33, 1260);
+    cx.quadraticCurveTo(37, 1281, 58, 1282);
+    cx.lineTo(930, 1282);
+    cx.quadraticCurveTo(950, 1281, 948, 1262);
+    cx.stroke();
+    cx.restore();
+
+    /* RIPRAP below the pad edge, shaded by local slope rather than a gradient */
+    AK.hachureField(cx, {
+      x: 0, y: 1190, w: 1080, h: 160, seed: SEED + 2,
+      height: function (u, v) {
+        return AK.fbm2(u * 7.5, v * 5.5, 4) * 0.8 + 0.1;
+      },
+      cell: 11, passes: 3, sunAz: 292, sunEl: 24,
+      color: '#3E5A6B', alpha: 0.55, minWidth: 0.6, maxWidth: 2.6
+    });
+
+    cabinet();
+    /* the cabinet's FOOT at its own centre line, not its left edge: x was
+       CAB.x, which put the pool a half cabinet off the object it lights */
+    AKNIGHT.contact(cx, { x: CAB.x, y: CAB.y + CAB.h, w: 100,
+                          poolRx: 220, poolRy: 58, color: '#0A1320' });
+
+    /* standing water at the pad's low corner */
+    AKNIGHT.chips(cx, {
+      seed: SEED + 3, count: 620, region: [40, 1080, 700, 200], reserve: reserve,
+      density: function (x, y) {
+        var d = Math.hypot((x - 250) / 230, (y - 1210) / 80);
+        return Math.exp(-d * d) * falloff(x, y) * 1.5;
+      },
+      color: '#D8E8EE', colorDim: '#7FA8B8', sizeMin: 1.3, sizeMax: 8.5
+    });
+
+    AKNIGHT.conductor(cx, {
+      x0: -40, y0: 560, x1: 1120, y1: 620, sag: 150,
+      color: '#3E5A6B', casing: '#04070E', width: 2.2, seed: SEED + 7
+    });
+
+    AKNIGHT.rain(cx, {
+      count: 1600, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.24,
+      inCone: function (x, y) { return falloff(x, y) > 0.15; }
+    });
+
+    /* subtract the art inside the type reserve, so the slide own geometry
+       cannot run through the letterforms */
+    /* THE CALL SITES WERE OVERRIDING THE MODULE. veil()'s defaults were softened
+       and its feather made proportional after the plates were measured, and every
+       slide was still passing the old alpha 0.74 with a fixed 26px feather, so
+       none of that reached the picture. Five critics read flat plates behind the
+       type on six slides. The module owns these numbers now. */
+    AKNIGHT.veil(cx, reserve);
+
+    AKPOST.grade(cx, {
+      exposure: -0.05, saturation: 0.95, contrast: 1.06, dither: true,
+      bloom: { threshold: 0.76, strength: 0.22, radius: 8 }
+    });
+    document.getElementById('grain').style.backgroundImage =
+      'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+    window.__akMotifs = [{ what: 'the cabinet vent louvres, the lit focal object',
+                           rect: [230, 900, 150, 130] }];
+    window.__akLeaders = [
+      { target: 'the cabinet lid', at: [270, 716], to: [270, 716],
+        from: [244, 862], label: 'C03' },
+      { target: 'the unlit ground right of the cabinet', at: [860, 1160],
+        to: [860, 1160], from: [836, 1118], label: 'C04' }
+    ];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>
