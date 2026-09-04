@@ -5732,3 +5732,29 @@ plate floating in the right column and read as a screen, because this deck's art
 direction is ONE CONTINUOUS MEDIUM and never objects on a stage. Same finding as
 round 2's spike, reached six rounds later by a different route: a medium stops
 being a medium the moment you put an object on it.
+
+## 2026-09-03, run No.49, Phase 1 craft refresh
+
+Two searches, no doctrine change, and the finding is a negative one worth
+writing down so it stops being re-derived.
+
+- The practitioner tier now publishes MUTUALLY CONTRADICTORY slide-count optima
+  inside a single search result page. One source says exactly 7 slides performs
+  18 percent better than any other length, another says the sweet spot is 8 to
+  12, another says 7 to 10, and a fourth says 10 slides reach 22 percent further
+  than 3. Those cannot all be measurements of the same thing. They are the same
+  advice reworded, each with a number attached to make it sound measured. The
+  house band stays 8 to 10 with a floor of 6, because that band comes from
+  completion data in CAROUSEL_CRAFT's tier B sources rather than from this tier.
+  https://carousels-generator.com/blog/linkedin-carousel-statistics-2026
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- The same pages carry engagement rates (1.92 percent for carousels against 1.2
+  for video) that disagree with Socialinsider's 7.00 against 6.00 by a factor of
+  roughly four. Different denominators, undeclared. Do not mix the two tiers'
+  numbers in one sentence anywhere.
+- The rule this leaves standing, unchanged and now with a second reason: judge
+  decks against THIS page's own trailing median, which is the only denominator
+  this studio controls.
+
+Nothing enters the doctrine files. Recorded so run No.50's craft refresh spends
+its searches somewhere else.
