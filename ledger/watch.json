@@ -1,17 +1,31 @@
 {
- "generated": "2026-09-03T17:54:43Z",
- "for_date": "2026-09-03",
+ "generated": "2026-09-04T17:40:11Z",
+ "for_date": "2026-09-04",
  "session": "34",
  "counted": {
-  "fedreg_federal-energy-regulatory-commission": 5,
+  "fedreg_federal-energy-regulatory-commission": 7,
   "fedreg_land-management-bureau": 0,
   "fedreg_air-force-department": 0,
-  "fedreg_energy-department": 5,
+  "fedreg_energy-department": 7,
   "fedreg_army-department": 0
  },
  "bills": [],
  "hearings": [],
  "candidates": [
+  {
+   "source": "federal-register",
+   "why": "FERC notice on beat, the US DOE notice on beat",
+   "doc": "2026-18150",
+   "title": "Juneau Hydropower, Inc.; Notice of Request for Extension of Time To Commence and Complete Construction Accepted for Filing, Soliciting Comments, Motions To Intervene, and Protests",
+   "type": "Notice",
+   "published": "2026-09-04",
+   "comments_close_on": null,
+   "url": "https://www.federalregister.gov/documents/2026/09/04/2026-18150/juneau-hydropower-inc-notice-of-request-for-extension-of-time-to-commence-and-complete-construction",
+   "agencies": [
+    "Energy Department",
+    "Federal Energy Regulatory Commission"
+   ]
+  },
   {
    "source": "federal-register",
    "why": "FERC notice on beat, the US DOE notice on beat",
