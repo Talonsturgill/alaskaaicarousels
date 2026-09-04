@@ -2350,10 +2350,10 @@
    "id": "anchorage-rtcc-surveillance-ordinance",
    "title": "Anchorage's surveillance rules for its police crime center",
    "kind": "legislation",
-   "status": "open-for-comment",
+   "status": "pending-decision",
    "decider": "Anchorage Assembly",
-   "public_access": "open",
-   "access_note": "The public hearing was set for the Assembly's September 1st meeting, which is where a member of the public could speak to this before the Assembly acts, and that meeting has now been held. The ordinance text and its AO number were still not published anywhere reachable as of September 1st, so anyone following it is working from press accounts and from the sponsors' own descriptions rather than from the statutory language, and the ordinance's disposition is not yet on the record here.",
+   "public_access": "indirect",
+   "access_note": "The public hearing set for the Assembly's September 1st meeting has been held, and the ordinance was postponed rather than decided, so there is no open comment window on it right now. Its sponsors say they will bring a refined version back on September 15th, 2026, and a new hearing would be set with it. Until then the way in is to write to an Assembly member. The ordinance text and its AO number are still not published anywhere reachable, so anyone following this is working from press accounts and the sponsors' own descriptions rather than from the statutory language.",
    "summary": "Three Anchorage Assembly members, Keith McCormick, Sydney Scout and Vice Chair Daniel Volland, introduced an ordinance on August 18th that would write surveillance rules into Anchorage code, among them a case number for every search of surveillance data, deletion of individuals' data after two weeks unless it is evidence in an active investigation, a warrant before footage goes to out of state or federal agencies, limits on automatic license plate readers, and, in co-sponsor Scout's own words, Assembly approval before adding new surveillance capabilities including AI powered tracking or identification technology. It moves alongside a roughly $600,000 contract with ThunderCat Technology for equipment at the Real Time Crime Center, the system the Assembly funded with $11.8 million last year and which is designed to stream up to 750 camera feeds. The center opened in September 2025 with one employee and about 15 cameras.",
    "key_dates": [
     {
@@ -2375,6 +2375,11 @@
      "date": "2026-09-01",
      "label": "Public hearing at the Assembly meeting, the point at which the public can speak to it",
      "kind": "deadline"
+    },
+    {
+     "date": "2026-09-15",
+     "label": "Sponsors plan to bring the surveillance rules back to the Assembly",
+     "kind": "milestone"
     }
    ],
    "location": {
@@ -2402,10 +2407,15 @@
      "url": "https://www.alaskasnewssource.com/2026/08/05/anchorage-police-seeking-upgrades-real-time-crime-monitoring/",
      "outlet": "Alaska's News Source",
      "date": "2026-08-05"
+    },
+    {
+     "url": "https://alaskapublic.org/news/public-safety/2026-09-03/anchorage-assembly-approves-600k-police-crime-center-upgrade-holds-off-on-updating-privacy-protections",
+     "outlet": "Alaska Public Media",
+     "date": "2026-09-03"
     }
    ],
    "first_seen": "2026-08-25",
-   "last_updated": "2026-09-01",
+   "last_updated": "2026-09-03",
    "history": [
     {
      "date": "2026-08-25",
@@ -2438,6 +2448,10 @@
     {
      "date": "2026-09-01",
      "note": "Re-verified on the day of the public hearing. The Assembly took up the Real Time Crime Center at its September 1st meeting and authorized spending not to exceed $598,998.10 on the center, per Alaska's News Source the following morning. The surveillance ordinance's own disposition was not published anywhere reachable at the time of this check, so nothing here records a vote on it."
+    },
+    {
+     "date": "2026-09-03",
+     "note": "The money passed and the rules did not. At its September 1st meeting the Anchorage Assembly voted 8 to 4 to approve about $600,000 for the Real Time Crime Center upgrade, after nearly an hour of debate. The ordinance that would set rules for the data the upgrade collects was postponed, and its sponsors said they would refine it with the mayor's administration and bring it back on September 15th, 2026. Keith McCormick, Daniel Volland, Sydney Scout and George Martinez voted against the spending. Jared Goecker and Kameron Perez-Verdia voted for it. Police Chief Sean Case spoke to the upgrade. The questions the sponsors say remain unanswered in code are who can reach the data, whether it can be sold to third parties, when it has to be deleted, and how it is stored."
     }
    ],
    "cta_label": "TESTIFY",
