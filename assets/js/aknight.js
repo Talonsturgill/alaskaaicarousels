@@ -376,29 +376,65 @@
          is a crossing rule, an engraved lay or hard geometry and takes the
          whole veil. A single 2px conductor over a wide line box is already
          about 3 percent, which is why BUSY sits where it does. */
-      var QUIET = o.quiet == null ? 0.002 : o.quiet;
+      var QUIET = o.quiet == null ? 0.006 : o.quiet;
       var BUSY = o.busy == null ? 0.020 : o.busy;
       var k = Math.max(0, Math.min(1, (inkFrac(x0, y0, w, h) - QUIET) / (BUSY - QUIET)));
       if (k <= 0.02) continue;
       var a = aFull * k;
-      var fx = Math.max(f, w * 0.22), fy = Math.max(f * 0.6, h * 0.34);
+      /* THE RAMPS HAVE TO MULTIPLY, AND ADDING THEM WAS THE WHOLE BUG.
+       * Two crossed linear ramps drawn as two fillRects do not make a feathered
+       * rect. Each one ramps on ONE axis and is HARD CUT on the other, so the
+       * vertical ramp ends on straight verticals at X0 and X0+W, the horizontal
+       * ramp ends on straight horizontals at Y0 and Y0+H, and their sum is a
+       * rectangle with four findable edges: precisely the flat plate this
+       * function exists to avoid, which is what five pixel critics read behind
+       * the type on six of nine slides. The comment above described a product
+       * the code never computed.
+       *
+       * So compute it. The veil is built once on an offscreen canvas as a solid
+       * fill, then both ramps are composited into its ALPHA with
+       * destination-in, which multiplies rather than adds. Alpha then reaches
+       * zero at every edge AND at every corner, and there is no boundary left
+       * to find. The spread is also clamped, because a fraction of a 628px line
+       * box was putting a 138px shoulder on a caption. */
+      var fx = Math.min(Math.max(f, w * 0.22), 90);
+      var fy = Math.min(Math.max(f * 0.6, h * 0.34), 40);
       var px = Math.min(0.46, fx / (w + fx * 2));
       var py = Math.min(0.46, fy / (h + fy * 2));
       var X0 = x0 - fx, Y0 = y0 - fy, W = w + fx * 2, H = h + fy * 2;
-      var g = cx.createLinearGradient(0, Y0, 0, Y0 + H);
-      g.addColorStop(0, 'rgba(' + col + ',0)');
-      g.addColorStop(py, 'rgba(' + col + ',' + a + ')');
-      g.addColorStop(1 - py, 'rgba(' + col + ',' + a + ')');
-      g.addColorStop(1, 'rgba(' + col + ',0)');
-      cx.fillStyle = g;
-      cx.fillRect(X0, Y0, W, H);
-      var g2 = cx.createLinearGradient(X0, 0, X0 + W, 0);
-      g2.addColorStop(0, 'rgba(' + col + ',0)');
-      g2.addColorStop(px, 'rgba(' + col + ',' + (a * 0.5) + ')');
-      g2.addColorStop(1 - px, 'rgba(' + col + ',' + (a * 0.5) + ')');
-      g2.addColorStop(1, 'rgba(' + col + ',0)');
-      cx.fillStyle = g2;
-      cx.fillRect(X0, Y0, W, H);
+      if (W < 2 || H < 2) continue;
+
+      var vc = document.createElement('canvas');
+      vc.width = Math.ceil(W); vc.height = Math.ceil(H);
+      var vx = vc.getContext('2d');
+      vx.fillStyle = 'rgba(' + col + ',' + a + ')';
+      vx.fillRect(0, 0, vc.width, vc.height);
+      vx.globalCompositeOperation = 'destination-in';
+      var g = vx.createLinearGradient(0, 0, 0, vc.height);
+      g.addColorStop(0, 'rgba(255,255,255,0)');
+      g.addColorStop(py, 'rgba(255,255,255,1)');
+      g.addColorStop(1 - py, 'rgba(255,255,255,1)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      vx.fillStyle = g; vx.fillRect(0, 0, vc.width, vc.height);
+      var g2 = vx.createLinearGradient(0, 0, vc.width, 0);
+      g2.addColorStop(0, 'rgba(255,255,255,0)');
+      g2.addColorStop(px, 'rgba(255,255,255,1)');
+      g2.addColorStop(1 - px, 'rgba(255,255,255,1)');
+      g2.addColorStop(1, 'rgba(255,255,255,0)');
+      vx.fillStyle = g2; vx.fillRect(0, 0, vc.width, vc.height);
+
+      /* o.avoid names surfaces the veil must never touch: an object with its
+       * own value, like a gauge board, needs no help and a veil over it erases
+       * the very marks the slide is about. */
+      if (o.avoid) {
+        vx.globalCompositeOperation = 'destination-out';
+        vx.fillStyle = '#fff';
+        for (var q = 0; q < o.avoid.length; q++) {
+          var av = o.avoid[q];
+          vx.fillRect(av[0] - X0, av[1] - Y0, av[2], av[3]);
+        }
+      }
+      cx.drawImage(vc, X0, Y0, W, H);
     }
     cx.restore();
   };
