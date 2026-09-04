@@ -1,0 +1,393 @@
+<!doctype html>
+<!-- SLIDE 01 — COVER. "Five turning. One still."
+     Pillar Mountain access road, 28mm, camera 1.4m, SE and tilted down.
+     The STILL turbine is NEAREST and largest at x 398, and the five turning
+     ones recede to the right at 0.78^i, so the scale gradient carries depth and
+     the frame's sharpest, biggest silhouette is the machine that is stopped. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative;
+         font-family: "Instrument Serif", serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.09;
+           mix-blend-mode: overlay; background-repeat: repeat; }
+
+  .kicker { position: absolute; left: 80px; top: 92px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #7FA8B8; }
+  h1 { position: absolute; left: 80px; top: 214px; width: 800px;
+       font-weight: 400; font-size: 128px; line-height: 0.97;
+       letter-spacing: -0.02em; color: #F4F8FF; }
+  .tag { position: absolute; font-family: "JetBrains Mono", monospace;
+         font-weight: 400; font-size: 20px; letter-spacing: 0.10em;
+         color: #7FA8B8; }
+  .tag.a { left: 300px; top: 1206px; }
+  .tag.b { left: 800px; top: 742px; }
+  .slug { position: absolute; left: 80px; bottom: 80px;
+          font-family: "JetBrains Mono", monospace; font-size: 11px;
+          letter-spacing: 0.14em; color: rgba(127,168,184,0.55); }
+  /* THE FEED CROPS AND THE VIEWER CHROME SITS AT THE BOTTOM. Deck furniture
+     was riding 34px off the edge, inside the 80px safe zone on every slide. */
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .counter i { color: #FFC72C; font-style: normal; }
+  .coords { position: absolute; right: 80px; top: 96px;
+            font-family: "JetBrains Mono", monospace; font-size: 20px;
+            letter-spacing: 0.10em; color: rgba(127,168,184,0.5); }
+</style>
+</head>
+<body data-contacts='[{"what":"the near still mast standing on the road cut","shadow":[[386,1198,26,10]],"ground":[[461,1198,26,10]]}]'
+      data-encodes='[{"claim":"five of the six machines are running and one is not","reads":"differ","a":[[330,930,140,150]],"b":[[640,980,110,110]]}]'>
+
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+
+  <div class="kicker" data-reserve>KODIAK, SEPTEMBER 3RD, 2026</div>
+  <h1 data-reserve>Five turning. One still.<br>A new load with no<br>number on it.</h1>
+  <div class="tag a" data-reserve data-decorative>C11 C12</div>
+  <div class="tag b" data-reserve data-decorative>C08</div>
+  <div class="slug" data-reserve data-decorative>PILLAR MOUNTAIN ACCESS RD / 28MM / 1.4M / SE</div>
+  <div class="counter" data-reserve>01 <i data-decorative>/</i> 09</div>
+  <div class="coords" data-decorative>57&deg;47'N 152&deg;24'W</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aknight.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260904;
+  var cv = document.getElementById('art');
+  var cx = cv.getContext('2d');
+  cx.scale(2, 2);
+
+  /* ONE LAMP, off frame left and low, so the ground falls away to the right
+     and the near band carries a real six-stop falloff rather than a wash. */
+  var LAMP_X = -80, LAMP_Y = 880, REACH = 700;
+  var falloff = AKNIGHT.falloff(LAMP_X, LAMP_Y, REACH);
+
+  /* THE SIX MACHINES, near to far. Index 0 is the STILL one and it is nearest,
+     largest and sharpest. The other five recede at 0.78^i. */
+  var M = [];
+  var baseX = 398, baseY = 1198, scale = 1.0;
+  for (var i = 0; i < 6; i++) {
+    M.push({
+      x: baseX + i * (128 - i * 6),
+      base: baseY - i * 58,
+      s: scale,
+      still: i === 0
+    });
+    scale *= 0.90;   /* 0.78 put the sixth machine at 0.29 and it vanished */
+  }
+  var hubs = M.map(function (m) { return [m.x, m.base - 300 * m.s]; });
+
+  function sky() {
+    var g = cx.createLinearGradient(0, 0, 0, 470);
+    g.addColorStop(0, '#04070E');
+    g.addColorStop(0.62, '#0A1320');
+    g.addColorStop(1, '#0E1A28');
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, 620);
+    var r = AK.rng(SEED + 11);
+    cx.save(); cx.strokeStyle = '#1E3546'; cx.lineCap = 'round';
+    for (var i = 0; i < 300; i++) {
+      var x = r() * 1180 - 60, y = r() * 580, L = 30 + r() * 90;
+      cx.globalAlpha = 0.04 + r() * 0.05;
+      cx.lineWidth = 0.6 + r() * 1.0;
+      cx.beginPath(); cx.moveTo(x, y);
+      cx.lineTo(x + Math.sin(0.35) * L, y + Math.cos(0.35) * L); cx.stroke();
+    }
+    cx.restore();
+  }
+
+  /* THE TOWN, a narrow lit band under the horizon. Kept dim so the machines
+     read against it as silhouettes rather than competing with it. */
+  function town() {
+    cx.fillStyle = '#080F19'; cx.fillRect(0, 620, 1080, 84);
+    var r = AK.rng(SEED + 21);
+    for (var i = 0; i < 620; i++) {
+      var x = r() * 1080, y = 626 + r() * 70;
+      cx.globalAlpha = 0.20 + r() * 0.55;
+      cx.fillStyle = r() > 0.88 ? '#D8E8EE' : '#2A4457';
+      cx.fillRect(x, y, 1 + r() * 3.2, 1 + r() * 2.0);
+    }
+    cx.globalAlpha = 1;
+    cx.fillStyle = '#050A12'; cx.fillRect(0, 696, 1080, 26);
+  }
+
+  /* THE HILLSIDE. DARK by construction, so the engraved lay and the lamp's
+     lit edges are what the eye sees, not a mid-blue plane. */
+  function hillside() {
+    cx.fillStyle = '#0B131D';
+    cx.beginPath(); cx.moveTo(-20, 1350);
+    for (var x = -20; x <= 1100; x += 10) {
+      cx.lineTo(x, 722 + AK.fbm2(x * 0.0026, 4.2, 4) * 34);
+    }
+    cx.lineTo(1100, 1350); cx.closePath(); cx.fill();
+    /* a second, nearer mass with its own crest, one hard luminance step */
+    cx.fillStyle = '#0E1823';
+    cx.beginPath(); cx.moveTo(-20, 1350);
+    for (var x2 = -20; x2 <= 1100; x2 += 10) {
+      cx.lineTo(x2, 892 + AK.fbm2(x2 * 0.0034 + 11, 9.1, 4) * 48);
+    }
+    cx.lineTo(1100, 1350); cx.closePath(); cx.fill();
+  }
+
+  /* A TUBULAR TOWER with a real taper, a lit windward arris and a dark lee
+     face, plus a nacelle box and a spinner. Not a flagpole. */
+  function tower(m) {
+    var topY = m.base - 300 * m.s;
+    var wB = 26 * m.s, wT = 11 * m.s;
+    var lit = falloff(m.x, m.base - 150 * m.s);
+    /* lee face */
+    cx.fillStyle = '#070C14';
+    cx.beginPath();
+    cx.moveTo(m.x - wT / 2, topY); cx.lineTo(m.x + wT / 2, topY);
+    cx.lineTo(m.x + wB / 2, m.base); cx.lineTo(m.x - wB / 2, m.base);
+    cx.closePath(); cx.fill();
+    /* lit windward strip, a real arris rather than an outline */
+    cx.fillStyle = AKC.mixOklab('#1E3546', '#8FA6B8', Math.min(1, lit * 1.15));
+    cx.beginPath();
+    cx.moveTo(m.x - wT / 2, topY);
+    cx.lineTo(m.x - wT / 2 + 3.2 * m.s, topY);
+    cx.lineTo(m.x - wB / 2 + 6.5 * m.s, m.base);
+    cx.lineTo(m.x - wB / 2, m.base);
+    cx.closePath(); cx.fill();
+    /* flange rings, so the tower has drawn detail down its length */
+    for (var f = 1; f <= 4; f++) {
+      var t = f / 5, yy = topY + (m.base - topY) * t;
+      var w = wT + (wB - wT) * t;
+      cx.fillStyle = 'rgba(143,166,184,0.30)';
+      cx.fillRect(m.x - w / 2, yy, w, 1.4 * m.s);
+    }
+    /* nacelle, a box with a lit top face and a dark front */
+    var nx = m.x, ny = topY;
+    cx.fillStyle = '#0A121C';
+    cx.fillRect(nx - 30 * m.s, ny - 13 * m.s, 62 * m.s, 26 * m.s);
+    cx.fillStyle = AKC.mixOklab('#24384A', '#8FA6B8', lit);
+    cx.fillRect(nx - 30 * m.s, ny - 13 * m.s, 62 * m.s, 5 * m.s);
+    cx.fillStyle = m.still ? '#B4471F' : '#3E5A6B';
+    cx.beginPath();
+    cx.arc(nx + 32 * m.s, ny, 7.5 * m.s, 0, 6.283185); cx.fill();
+  }
+
+  /* A TURNING ROTOR drawn as a FAN OF BLADE POSITIONS, which is what motion
+     actually looks like on a long exposure. Not a ring. */
+  function turning(m, idx) {
+    var hx = m.x + 32 * m.s, hy = m.base - 300 * m.s;
+    var R = 168 * m.s;
+    var r = AK.rng(SEED + 60 + idx);
+    var phase = r() * 6.283185;
+    /* THE SMEAR WAS INVISIBLE. 26 positions at 5.5 to 11 percent opacity over a
+       near black hillside average to nothing at full size and to literally
+       nothing after the 6x downsample, so the deck's hook, five turning against
+       one still, did not read at all: five of the six machines came out as
+       lamp posts. Twelve positions separate instead of merging, the ramp runs
+       an order of magnitude higher, and each turning rotor now ends in ONE
+       OPAQUE LEADING BLADE so it has a hard silhouette edge the way the still
+       one does. Motion is a blade you can see plus a smear behind it. */
+    var N = 12;
+    function blade(a, wRoot, wTip, alpha, col) {
+      var nx = -Math.sin(a), ny = Math.cos(a) * 0.5;
+      var tipx = hx + Math.cos(a) * R, tipy = hy + Math.sin(a) * R * 0.5;
+      cx.globalAlpha = alpha;
+      cx.fillStyle = col;
+      cx.beginPath();
+      cx.moveTo(hx + nx * wRoot * m.s, hy + ny * wRoot * m.s);
+      cx.lineTo(hx - nx * wRoot * m.s, hy - ny * wRoot * m.s);
+      cx.lineTo(tipx - nx * wTip * m.s, tipy - ny * wTip * m.s);
+      cx.lineTo(tipx + nx * wTip * m.s, tipy + ny * wTip * m.s);
+      cx.closePath(); cx.fill();
+    }
+    for (var k = 0; k < N; k++) {
+      var a0 = phase + (k / N) * 2.0944;   /* one third turn of smear */
+      for (var b = 0; b < 3; b++) {
+        blade(a0 + b * 2.0944, 4.5, 0.9, 0.11 + 0.14 * (k / N), '#7FA8B8');
+      }
+    }
+    /* the leading blade, opaque, at the head of the smear */
+    for (var b2 = 0; b2 < 3; b2++) {
+      blade(phase + 2.0944 + b2 * 2.0944, 5.4, 1.6, 0.82, '#8FA6B8');
+    }
+    cx.globalAlpha = 1;
+  }
+
+  /* THE STILL ROTOR. Three blades locked in a Y, dead sharp, hero weight,
+     with a lit windward arris on each. The biggest silhouette in the frame. */
+  function still(m) {
+    var hx = m.x + 32 * m.s, hy = m.base - 300 * m.s;
+    /* larger than the turning fan at 168, because this one is nearest and
+       is the frame's hero silhouette */
+    var R = 196 * m.s;
+    var A = [-Math.PI / 2, -Math.PI / 2 + 2.0944, -Math.PI / 2 + 4.1888];
+    for (var b = 0; b < 3; b++) {
+      var a = A[b];
+      var nx = -Math.sin(a), ny = Math.cos(a) * 0.5;
+      var tipx = hx + Math.cos(a) * R, tipy = hy + Math.sin(a) * R * 0.5;
+      cx.fillStyle = '#04070E';
+      cx.beginPath();
+      cx.moveTo(hx + nx * 9, hy + ny * 9);
+      cx.lineTo(hx - nx * 9, hy - ny * 9);
+      cx.lineTo(tipx - nx * 1.6, tipy - ny * 1.6);
+      cx.lineTo(tipx + nx * 1.6, tipy + ny * 1.6);
+      cx.closePath(); cx.fill();
+      cx.strokeStyle = '#EAF3F8'; cx.lineWidth = 3.0;
+      cx.beginPath();
+      cx.moveTo(hx + nx * 9, hy + ny * 9);
+      cx.lineTo(tipx + nx * 1.6, tipy + ny * 1.6);
+      cx.stroke();
+    }
+    cx.fillStyle = '#0A121C';
+    cx.beginPath(); cx.arc(hx, hy, 13, 0, 6.283185); cx.fill();
+    cx.fillStyle = '#B4471F';
+    cx.beginPath(); cx.arc(hx, hy, 7.5, 0, 6.283185); cx.fill();
+  }
+
+  function repoussoir() {
+    var oc = document.createElement('canvas');
+    oc.width = 2160; oc.height = 2700;
+    var ox = oc.getContext('2d'); ox.scale(2, 2);
+    ox.fillStyle = '#04070E';
+    ox.beginPath(); ox.moveTo(-40, 1350);
+    ox.bezierCurveTo(20, 1180, 140, 1140, 236, 1198);
+    ox.bezierCurveTo(312, 1244, 288, 1310, 326, 1350);
+    ox.closePath(); ox.fill();
+    cx.save(); cx.filter = 'blur(7px)';
+    cx.drawImage(oc, 0, 0, 1080, 1350); cx.restore();
+  }
+
+  (async function () {
+    await document.fonts.ready;
+    var reserve = AKNIGHT.reserve('[data-reserve]');
+
+    sky(); town(); hillside();
+
+    /* THE ROAD CUT, engraved. form is the six machines as lobes, the nearest
+       lobe at ZERO amplitude, so C12 is carved into the ground itself. */
+    var eng = AKENGRAVE.create({ seed: SEED, light: { azDeg: 292, elDeg: 24 } });
+    eng.reserve(reserve);
+    var GW = 181, GH = 64, GX0 = 0, GY0 = 986, GS = 6;
+    var grid = new Float32Array(GW * GH);
+    for (var gy = 0; gy < GH; gy++) {
+      for (var gx = 0; gx < GW; gx++) {
+        var wx = GX0 + gx * GS, wy = GY0 + gy * GS;
+        /* A SMOOTH RAKED CUT. The dominant term is the slope falling away
+           from the road's crown, so the lay runs as long raking strokes across
+           the band instead of closing into contour loops. */
+        var h = (wy - GY0) * 0.30 + Math.pow((wx - 240) / 900, 2) * 22;
+        /* the six machines survive as a GENTLE modulation, amplitude 7, so
+           C12 is still carved into the ground without taking it over */
+        for (var L = 0; L < 6; L++) {
+          var d = (wx - M[L].x) / (150 * M[L].s);
+          h += (M[L].still ? 0 : 7 * M[L].s) * Math.exp(-d * d);
+        }
+        h += AK.fbm2(wx * 0.004, wy * 0.006, 3) * 3.5;
+        grid[gy * GW + gx] = h;
+      }
+    }
+    function form(x, y) {
+      var fx = (x - GX0) / GS, fy = (y - GY0) / GS;
+      if (fx < 0) fx = 0; if (fy < 0) fy = 0;
+      if (fx > GW - 2) fx = GW - 2; if (fy > GH - 2) fy = GH - 2;
+      var ix = fx | 0, iy = fy | 0, tx = fx - ix, ty = fy - iy;
+      var a = grid[iy * GW + ix], b = grid[iy * GW + ix + 1];
+      var c = grid[(iy + 1) * GW + ix], d2 = grid[(iy + 1) * GW + ix + 1];
+      return (a * (1 - tx) + b * tx) * (1 - ty) + (c * (1 - tx) + d2 * tx) * ty;
+    }
+    eng.surface(cx, {
+      region: [0, 986, 1080, 364],
+      form: form,
+      tone: function (x, y) { return 1 - falloff(x, y) * 0.92; },
+      budget: { main: 3.8, cross: 5.8, dots: true },
+      inkLo: '#16263a', inkHi: '#B9CBD8', wMax: 2.8, crossDeg: 78, step: 6
+    });
+
+    /* THE RUNOFF CHANNEL, hard-edged specular chips. The lower third's
+       structure, and a population rather than a wash on purpose. */
+    AKNIGHT.chips(cx, {
+      seed: SEED + 3, count: 1400, region: [0, 940, 1080, 410], reserve: reserve,
+      density: function (x, y) {
+        var t = (y - 940) / 410;
+        var cxr = 700 - t * 640;
+        var d = Math.abs(x - cxr) / 120;
+        return Math.exp(-d * d) * falloff(x, y) * 1.35;
+      },
+      color: '#D8E8EE', colorDim: '#7FA8B8', sizeMin: 1.4, sizeMax: 9.0
+    });
+
+    /* far to near, so the row occludes itself correctly */
+    for (var i = 5; i >= 0; i--) {
+      if (!M[i].still) turning(M[i], i);
+      tower(M[i]);
+      AKNIGHT.contact(cx, {
+        x: M[i].x, y: M[i].base, w: 90 * M[i].s, color: '#0A1320'
+      });
+    }
+    still(M[0]);
+
+    /* THE WIRE IS ONE WIRE. Every frame authored its own catenary and the
+       device misaligned at seven of eight junctions, by as much as 490px
+       between 03 and 04, so the one thing meant to carry the swipe read as a
+       different object in a different scene. The chain below is declared once
+       and every exit IS the next entry, by construction:
+         01 500>560  02 560>620  03 620>600  04 600>560  05 560>470
+         06 470>390  07 390>400  08 400>420  09 420>DEAD END
+       Only 09 dead-ends. That is the payoff and no earlier frame may spend it. */
+    AKNIGHT.conductor(cx, {
+      x0: -40, y0: 500, x1: 1120, y1: 560, sag: 54,
+      color: '#3E5A6B', casing: '#04070E', width: 2.2, seed: SEED + 7
+    });
+
+    AKNIGHT.rain(cx, {
+      count: 1600, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.24,
+      inCone: function (x, y) { return falloff(x, y) > 0.12; }
+    });
+
+    repoussoir();
+
+    /* subtract the art inside the type reserve, so the slide own geometry
+       cannot run through the letterforms */
+    /* THE CALL SITES WERE OVERRIDING THE MODULE. veil()'s defaults were softened
+       and its feather made proportional after the plates were measured, and every
+       slide was still passing the old alpha 0.74 with a fixed 26px feather, so
+       none of that reached the picture. Five critics read flat plates behind the
+       type on six slides. The module owns these numbers now. */
+    AKNIGHT.veil(cx, reserve);
+
+    AKPOST.grade(cx, {
+      exposure: -0.05, saturation: 0.95, contrast: 1.06, dither: true,
+      bloom: { threshold: 0.76, strength: 0.22, radius: 8 }
+    });
+
+    document.getElementById('grain').style.backgroundImage =
+      'url(' + AK.grainTile(280, 52, SEED) + ')';
+    AK.fitText(document.querySelector('h1'), { min: 96, max: 128, maxLines: 3 });
+
+    window.__akAssert = [{
+      what: 'six machines on Pillar Mountain, one of them stopped',
+      expect: 6, points: hubs, unit: 'marks'
+    }];
+    window.__akMotifs = [{
+      what: 'the still rotor, the deck hook', rect: [280, 850, 240, 230]
+    }];
+    window.__akLeaders = [
+      { target: 'the still rotor hub', at: hubs[0], to: hubs[0],
+        from: [330, 1216], label: 'C11 C12' },
+      { target: 'the town light band', at: [860, 664], to: [860, 664],
+        from: [830, 754], label: 'C08' }
+    ];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

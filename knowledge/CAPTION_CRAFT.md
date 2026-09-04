@@ -109,14 +109,25 @@ holds in the caption, in the first comment and on every slide. "Cannot" is the
 register of a press release; the house voice is a person talking.
 `caption_check.py` fails it.
 
-**DATES ARE MONTH FIRST.** "August 10th", never "10 August" (maintainer rule,
-2026-08-05). The day-then-month form reads as a dateline or a filing header,
-and this page is a person talking. Use the ordinal when no year follows. With
-a year, use the plain form, "August 27, 2026", which is also what the federal
-documents this page quotes actually print, so a quoted date and our own date
-look like the same language. Eleven of the first 26 shipped captions broke
-this. `caption_check.py` fails both the day-first form and a bare "August 27"
-with no ordinal and no year.
+**DATES ARE MONTH FIRST AND ALWAYS ORDINAL.** "August 10th", never "10 August"
+(maintainer rule, 2026-08-05). The day-then-month form reads as a dateline or a
+filing header, and this page is a person talking. **A YEAR DOES NOT SUSPEND THE
+ORDINAL. Write "August 27th, 2026".** Eleven of the first 26 shipped captions
+broke this. `caption_check.py` fails the day-first form, the of-form, an
+abbreviated month, and any bare "August 27" with no ordinal, whether or not a
+year follows it.
+
+CORRECTED 2026-09-03, and the correction is the lesson. Until today these lines
+said that with a year you use the plain form "August 27, 2026", on the reasoning
+that the federal documents this page quotes print it that way. `DATE_FORMS` in
+`caption_check.py` has never agreed. Its "no ordinal" rule fires on any month
+name followed by a bare number, and a trailing year is not an exemption, so this
+file was instructing the caption room to write the exact string the gate rejects.
+brand.yaml carried the same wrong instruction until 2026-09-01, where it cost a
+scorer two correctly written slides. A craft file that disagrees with a hard gate
+is worse than a silent one, because the room follows it and then loses a round to
+a failure it was told to produce. When a house rule is enforced by a script, the
+script is the rule and the prose describes it.
 
 **THE HOOK STANDS ALONE** (maintainer rule, 2026-08-05, "ur last two captions
 have been trash"). Sentence one is read cold, by a stranger scrolling, with no

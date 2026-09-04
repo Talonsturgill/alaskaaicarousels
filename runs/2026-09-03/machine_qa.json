@@ -1,0 +1,153 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'five of the six machines are running and one is not': dE 19.8, AUC 0.69, visible 0%/0%, seen 0/0px at 432w"
+      ],
+      "contacts": [
+        "'the near still mast standing on the road cut': shadow L* 0.8 vs ground L* 29.1, dL 28.3 at 432w"
+      ],
+      "motifs": [
+        "'the still rotor, the deck hook': canvas 89.1 dE, page 88.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the still rotor hub' lands 0.0px from its target",
+        "leader 'the town light band' lands 0.0px from its target",
+        "leader 'the still rotor hub' meets its label 0.0px away",
+        "leader 'the town light band' meets its label 0.0px away"
+      ],
+      "fits": [
+        "h1 'Five turning. One still.A new load with nonu' fits 3/3 lines at 114px"
+      ],
+      "asserts": [
+        "'six machines on Pillar Mountain, one of them stopped' holds: 6 vs 6 marks, counted over 6 declared marks (within 0)",
+        "'six machines on Pillar Mountain, one of them stopped': 6 mark centres probed at r=14px, cohort median 61.8 dE, all present (weakest 41.1 dE)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the padmount cabinet standing on the concrete pad': shadow L* 1.4 vs ground L* 20.0, dL 18.6 at 432w"
+      ],
+      "motifs": [
+        "'the cabinet vent louvres, the lit focal object': canvas 80.9 dE, page 81.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the cabinet lid' lands 0.0px from its target",
+        "leader 'the unlit ground right of the cabinet' lands 0.0px from its target",
+        "leader 'the cabinet lid' meets its label 0.0px away",
+        "leader 'the unlit ground right of the cabinet' meets its label 0.0px away"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the aperture row standing on the wet asphalt': shadow L* 0.6 vs ground L* 8.2, dL 7.6 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the unlit diesel bay, the row hardest step': canvas 60.1 dE, page 99.0 dE, 89% of its rect is clear of opaque DOM (div.sl stands on the rest)"
+      ],
+      "asserts": [
+        "'six turbine pips on Pillar Mountain, one of them dark' holds: 6 vs 6 marks, counted over 6 declared marks (within 0)",
+        "'six turbine pips on Pillar Mountain, one of them dark': 6 mark centres probed at r=14px, cohort median 70.6 dE, all present (weakest 69.2 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the roll-up door frame standing on the threshold': shadow L* 0.1 vs ground L* 5.0, dL 4.9 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "encodings": [
+        "'the diesels did not run, and the still puddle under a shut door says so': dE 39.8, AUC 0.87, visible 0%/0%, seen 0/0px at 432w"
+      ],
+      "motifs": [
+        "'the shut door gap, the deck narrowest unlit band': canvas 5.0 dE, page 5.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the door bottom seal and its still puddle' lands 0.0px from its target",
+        "leader 'the door bottom seal and its still puddle' meets its label 0.0px away"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: AK ENGRAVE: the main lay over region [52,920,552,430] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 118 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone."
+      ],
+      "contacts": [
+        "'the island chart lying on the wet dock boards': shadow L* 5.5 vs ground L* 25.4, dL 19.9 at 432w"
+      ],
+      "motifs": [
+        "'the island drawn as one closed curve, C08': canvas 84.6 dE, page 84.7 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the enamel gauge board standing proud of the fence': shadow L* 2.0 vs ground L* 6.2, dL 4.2 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the phantom estimate bracket, open topped': canvas 89.5 dE, page 88.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the gauge board megawatt scale' runs 0 megawatts at 1240 to 32 megawatts at 728; 9 declared mark(s), and the band's census finds no others"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the deck can describe the ground and can't describe the building, so the drawing has a hol': dE 22.8, AUC 0.94, visible 0%/0%, seen 0/0px at 432w"
+      ],
+      "contacts": [
+        "'the chain link posts standing on the gravel apron': shadow L* 0.7 vs ground L* 32.7, dL 32.1 at 432w"
+      ],
+      "motifs": [
+        "'the phantom footprint, the deck unlit band as subject': canvas 67.6 dE, page 72.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the footprint outline' lands 0.0px from its target",
+        "leader 'the empty apron beyond the footprint' lands 0.0px from its target",
+        "leader 'the footprint outline' meets its label 0.0px away",
+        "leader 'the empty apron beyond the footprint' meets its label 2.0px away"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: AK ENGRAVE: the main lay over region [458,640,210,710] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 170 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone.",
+        "console error: AK ENGRAVE: the cross lay over region [458,640,210,710] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 117 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone."
+      ],
+      "contacts": [
+        "'the stamped left plate standing proud of the pole': shadow L* 19.3 vs ground L* 36.8, dL 17.5 at 432w"
+      ],
+      "motifs": [
+        "'the deep pole flute above the plates, one newsroom against four primary lines': canvas 54.8 dE, page 64.1 dE, 67% of its rect is clear of opaque DOM (div.stamp stands on the rest)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the dead-end pole standing where the road runs out': shadow L* 2.6 vs ground L* 16.5, dL 13.9 at 432w"
+      ],
+      "motifs": [
+        "'the closing slit where the road runs out': canvas 47.7 dE, page 51.9 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 6,
+  "verdict": "WARN"
+}

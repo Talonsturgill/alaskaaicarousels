@@ -81,6 +81,12 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   type used as texture) with `data-decorative` so QA doesn't flag it:
   `<div data-decorative class="coords">61°13'N</div>`
   Both `data-decorative` and `data-overlap-ok` inherit to descendants.
+  `data-decorative` exempts type from the SIZE, CONTRAST and unsized-type
+  floors. Since 2026-09-03 it does NOT exempt it from the text-collision
+  gate: a decorative slug printed through a page counter is the same
+  overprint the scoring rubric hard-fails, and run No.49 lost two scoring
+  rounds to that disagreement. Deliberate layering is `data-overlap-ok`,
+  which is a different attribute and still demotes the FAIL to a WARN.
 - **Plates are sized from the MEASURED string, never a guessed constant**
   (2026-07-29): JetBrains Mono at 24px with 0.10em tracking advances exactly
   16.8px per character; hand-sizing at the eye's estimate of ~14 loses about

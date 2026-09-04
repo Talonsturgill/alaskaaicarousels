@@ -5,10 +5,12 @@ loop; the subjective half is the pixel-critic agents reading the PNGs.
 Checks per slide (consuming render_report.json + the PNGs):
   - PNG exists, exact expected pixel size
   - not blank / not near-uniform (dead render detector)
-  - TEXT COLLISIONS: no two text elements' line boxes may overprint
-    (FAIL when both are primary text, WARN when either is decorative).
-    Added 2026-07-08 after a body-copy-over-bar-label collision passed
-    every other gate and had to be caught by the scorer's eyes.
+  - TEXT COLLISIONS: no two text elements' line boxes may overprint (FAIL;
+    WARN only when a party carries data-overlap-ok, which is the attribute
+    for deliberate layering). Added 2026-07-08 after a body-copy-over-bar-label
+    collision passed every other gate and had to be caught by the scorer's
+    eyes; data-decorative stopped demoting it to a WARN on 2026-09-03, after
+    run No.49 lost two scoring rounds to overprints this gate had passed.
   - BUSY ART UNDER TEXT (WARN only): samples the PNG under each primary text
     line box, masks the glyph ink, and warns when the background carries
     high-contrast structured edges (a canvas/bitmap arc or texture the DOM
@@ -2525,17 +2527,40 @@ def main():
         # data-overlap-ok marks DELIBERATE layering (e.g., a chip on an
         # opaque plate crossing a display line box): demoted to WARN so the
         # pixel critics still judge it.
+        #
+        # DECORATIVE IS NOT A LICENCE TO OVERPRINT (2026-09-03, run No.49).
+        # data-decorative used to demote a collision to a WARN as well, and
+        # No.49 spent two scoring rounds on that gap: slide 06's estimate label
+        # under a decorative shot log at 39% overprint, then slide 05's shot log
+        # printed on the page counter's own baseline. Both times this gate said
+        # WARN, both times the run shipped a round on a green machine gate, and
+        # both times the scorer capped the score, because the RUBRIC's hard fail
+        # for overlapping text has no decorative exemption. Two instruments
+        # disagreeing about the same pixels is a blind spot, not a tolerance,
+        # and the rubric is the one that stops a ship.
+        #
+        # What data-decorative actually means is "do not judge this as primary
+        # copy" -- it exempts a slug from the 24px floor and the contrast and
+        # unsized-type checks above, and it should. It has never meant "this
+        # type may be printed through other type". The attribute for deliberate
+        # layering already exists, is a different attribute, and still demotes:
+        # data-overlap-ok. So a decorative party is now reported in the message
+        # and changes nothing about the verdict.
         tnodes = rec.get("text_nodes", [])
         for i, j, ratio in text_collisions(tnodes):
             a, b = tnodes[i], tnodes[j]
+            dec = [n["text"][:24] for n in (a, b) if n.get("decorative")]
             msg = (f"text collision ({ratio:.0%} overprint): "
                    f"'{a['text'][:36]}' x '{b['text'][:36]}' "
                    f"near {max(a['x'], b['x'])},{max(a['y'], b['y'])}")
             if a.get("overlap_ok") or b.get("overlap_ok"):
                 res["warns"].append(msg + " [marked data-overlap-ok]")
-            elif a.get("decorative") or b.get("decorative"):
-                res["warns"].append(msg + " [decorative involved]")
             else:
+                if dec:
+                    msg += (" [data-decorative on %d of the pair, which exempts "
+                            "it from the type floors and NOT from this: mark "
+                            "data-overlap-ok if the layering is deliberate]"
+                            % len(dec))
                 res["fails"].append(msg)
 
         # TYPE NOBODY SIZED (2026-08-21). render.py reports, per text element,

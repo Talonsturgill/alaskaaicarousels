@@ -50,7 +50,8 @@
  *     form:  (x, y) => <height in px>,
  *     tone:  (x, y) => <0..1 darkness target>,
  *     budget:{main: 5.0, cross: 7.0, dots: true},
- *     inkLo: "#6E8378", inkHi: "#BFD0C4", alpha: 1.0
+ *     inkLo: "#6E8378", inkHi: "#BFD0C4", alpha: 1.0,
+ *     seedDeg: 0            // OPTIONAL, see LAY_ALIGN_WARN below
  *   });
  *
  * PERFORMANCE, THE LESSON THAT WILL BITE OTHERWISE. `cx.filter` applies PER DRAW
@@ -101,6 +102,33 @@
     return s - Math.floor(s);
   }
 
+  /* THE LAY THAT COLLAPSES ONTO ONE ISO-LINE (2026-09-03, run No.49).
+   * Every stroke of a pass is seeded on a raster line through the region's
+   * centre and then WALKS the direction field. When that raster runs PARALLEL
+   * to the field, every seed sits on the SAME iso-line and all ~200 strokes
+   * retrace one curve: the region prints as a single knotted swelled ribbon
+   * with nothing modelled around it. Run No.49 shipped four independent
+   * instances of it in one deck (slides 01, 06, 08, 09) and diagnosed them
+   * four separate times, because nothing in this file says a word about it.
+   *
+   * A form that varies in ONE AXIS ONLY is the way in. Its gradient is
+   * parallel everywhere, so its iso-lines are parallel straight lines, and
+   * for a fall along x those lines are vertical, which is exactly the
+   * direction the seed raster runs. Note that `angOff` cannot rescue it:
+   * the raster is angOff + 90deg and the walk is isoAngle + angOff, so both
+   * rotate together and the alignment is INVARIANT under angOff. The
+   * crossline pass collapses with the mainline for the same reason. The two
+   * real answers are to give the form variation in the other axis, or to turn
+   * the seed raster alone with the `seedDeg` option added below.
+   *
+   * LAY_ALIGN_WARN is the mean |cos| between the walk direction and the seed
+   * raster over a 12x12 probe of the region. Measured: 1.00 for a one-axis
+   * fall, 0.66 for a form falling in both, 0.00 for a fall along y or a flat
+   * region, and 0.00 to 0.51 across the seven healthy passes of No.49's nine
+   * shipped slides (the other two measured 1.00 and shipped anyway). */
+  var LAY_ALIGN_WARN = 0.90;
+  var LAY_PROBE_N = 12;
+
   function Engraver(opts) {
     opts = opts || {};
     this.seed = opts.seed == null ? 20260731 : opts.seed;
@@ -110,7 +138,7 @@
     /* World light vector. Rule 4 hangs off this and nothing else. */
     this.L = [Math.cos(az) * Math.cos(el), Math.sin(az) * Math.cos(el), Math.sin(el)];
     this.reserved = [];
-    this.stats = {main: 0, cross: 0, dots: 0, widths: []};
+    this.stats = {main: 0, cross: 0, dots: 0, widths: [], lay: []};
   }
 
   /* ------------------------------------------------------------------ reserve
@@ -194,6 +222,11 @@
     var wMax = o.wMax == null ? 3.5 : o.wMax;
     var crossDeg = o.crossDeg == null ? 78 : o.crossDeg;   /* off-90 on purpose */
     var step = o.step == null ? 6 : o.step;                /* polygon sample, px */
+    /* seedDeg (2026-09-03): the ABSOLUTE angle of the seeding raster, in
+     * degrees, for forms whose iso-lines run along the default raster. Null
+     * keeps the historical angOff + 90deg, so every deck built before this
+     * option renders identically. See LAY_ALIGN_WARN above. */
+    var seedAng = o.seedDeg == null ? null : o.seedDeg * Math.PI / 180;
     var self = this;
 
     var x0 = region[0], y0 = region[1], rw = region[2], rh = region[3];
@@ -213,7 +246,7 @@
     this._layPass(cx, {
       x0: x0, y0: y0, rw: rw, rh: rh, diag: diag, gap: gapMain, angOff: 0,
       form: form, tone: tone, wMax: wMax, step: step, feather: feather,
-      ink: ink, toneGate: 1.1, channel: "main"
+      ink: ink, toneGate: 1.1, channel: "main", seedAng: seedAng
     });
 
     /* ---- channel 2, the CROSSLINE. Only in the darks. ------------------ */
@@ -222,7 +255,7 @@
         x0: x0, y0: y0, rw: rw, rh: rh, diag: diag, gap: gapCross,
         angOff: crossDeg * Math.PI / 180,
         form: form, tone: tone, wMax: wMax * 0.6, step: step, feather: feather,
-        ink: ink, toneGate: 0.45, channel: "cross"
+        ink: ink, toneGate: 0.45, channel: "cross", seedAng: seedAng
       });
     }
 
@@ -258,9 +291,11 @@
     var cxm = p.x0 + p.rw / 2, cym = p.y0 + p.rh / 2;
     var nLines = Math.ceil(p.diag / p.gap);
     var half = p.diag / 2;
-    /* base raster angle, rotated by the pass's own offset */
-    var baseAng = p.angOff + Math.PI / 2;
+    /* base raster angle, rotated by the pass's own offset (or set outright by
+     * the caller's seedDeg, which is the escape from the collapse below) */
+    var baseAng = p.seedAng == null ? p.angOff + Math.PI / 2 : p.seedAng;
     var ca = Math.cos(baseAng), sa = Math.sin(baseAng);
+    this._layCheck(p, ca, sa, nLines);
 
     for (var i = 0; i <= nLines; i++) {
       var off = -half + i * p.gap;
@@ -274,6 +309,47 @@
       this._ribbon(cx, poly, p);
       this.stats[p.channel]++;
     }
+  };
+
+  /* --------------------------------------------------------------- _layCheck
+   * Measure the pass BEFORE it draws: mean |cos| between the walk direction
+   * and the seeding raster over a LAY_PROBE_N square probe of the region.
+   * At 1.0 every seed lies on the same iso-line and the pass draws one curve
+   * nLines times. This never changes a pixel; it console.errors, which qa.py
+   * records as a WARN, so the defect is named once by the machine instead of
+   * being re-diagnosed slide by slide. See LAY_ALIGN_WARN.
+   */
+  Engraver.prototype._layCheck = function (p, ca, sa, nLines) {
+    var tot = 0, cnt = 0;
+    for (var i = 0; i < LAY_PROBE_N; i++) {
+      for (var j = 0; j < LAY_PROBE_N; j++) {
+        var x = p.x0 + p.rw * (i + 0.5) / LAY_PROBE_N;
+        var y = p.y0 + p.rh * (j + 0.5) / LAY_PROBE_N;
+        var n = this.normalAt(p.form, x, y);
+        var gx = -n[0], gy = -n[1];
+        var gl = Math.sqrt(gx * gx + gy * gy);
+        var ang = gl < 1e-4 ? p.angOff : Math.atan2(gx, -gy) + p.angOff;
+        tot += Math.abs(Math.cos(ang) * ca + Math.sin(ang) * sa);
+        cnt++;
+      }
+    }
+    var align = cnt ? tot / cnt : 0;
+    this.stats.lay.push({channel: p.channel, align: Math.round(align * 100) / 100,
+                         region: [p.x0, p.y0, p.rw, p.rh]});
+    if (align < LAY_ALIGN_WARN) return align;
+    try {
+      console.error(
+        "AK ENGRAVE: the " + p.channel + " lay over region [" +
+        [p.x0, p.y0, p.rw, p.rh].join(",") + "] is seeded PARALLEL to its own " +
+        "direction field (alignment " + align.toFixed(2) + " of 1.00, warn at " +
+        LAY_ALIGN_WARN.toFixed(2) + "), so all " + (nLines + 1) + " strokes " +
+        "retrace one iso-line and the region prints as a single knotted " +
+        "ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot " +
+        "fix it (the raster and the walk rotate together); give the form " +
+        "variation in the other axis, or pass seedDeg to turn the seeding " +
+        "raster alone.");
+    } catch (e) {}
+    return align;
   };
 
   /* Walk the direction field from a seed, producing a centreline. */

@@ -13,6 +13,48 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-09-03/",
+      "url": "https://alaskaaihq.com/archive/2026-09-03/",
+      "title": "Five Turning, One Still, and a Load With No Number",
+      "summary": "The cooperative's published numbers, the Navy's denial that it is a data center, and the estimate the co-op had to make itself.",
+      "content_html": "<p><em>Terror Lake carries about 85 percent of the generation on the grid Kodiak Electric Association calls isolated.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-03/og.jpg\" alt=\"Five Turning, One Still, and a Load With No Number cover slide\" width=\"1080\" height=\"1350\"></p><p>Five turning. One still. A new load with no number on it.</p><p>The Navy says the building runs off the existing grid.</p><p>What the island runs on.</p><p>In March the peak hit just over 31 MW.</p><p>The utility's own word for this grid is isolated.</p><p>The only number on this load came from the co-op.</p><p>A footprint, and no purpose visible from the road.</p><p>A denial is not a finding. A rumor is not either.</p><p>One number here was measured. The other one the co-op had to estimate.</p><h3>Sources</h3><ul><li><a href=\"https://www.kodiakelectric.com/\">Kodiak Electric Association</a>, primary document</li><li><a href=\"https://www.kodiakelectric.com/about-us\">Kodiak Electric Association</a>, primary document</li><li><a href=\"https://www.kmxt.org/news/2026-09-03/navy-says-new-facility-being-built-in-kodiak-is-not-a-data-center\">KMXT Public Radio</a>, report</li><li><a href=\"https://www.kmxt.org/news/2025-08-22/infrastructure-improvements-ongoing-at-navy-detachment-kodiak\">KMXT Public Radio</a>, report</li><li><a href=\"https://www.kmxt.org/news/2025-03-14/two-pillar-mountain-wind-turbines-temporarily-not-spinning-kodiak-electric-working-on-repairs\">KMXT Public Radio</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-09-03/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "Five turning. One still. A new load with no number on it.\n\nThe Navy says the building runs off the existing grid.\n\nWhat the island runs on.\n\nIn March the peak hit just over 31 MW.\n\nThe utility's own word for this grid is isolated.\n\nThe only number on this load came from the co-op.\n\nA footprint, and no purpose visible from the road.\n\nA denial is not a finding. A rumor is not either.\n\nOne number here was measured. The other one the co-op had to estimate.",
+      "date_published": "2026-09-03T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-03/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 29,
+        "sources": [
+          {
+            "url": "https://www.kodiakelectric.com/",
+            "outlet": "Kodiak Electric Association",
+            "primary": true
+          },
+          {
+            "url": "https://www.kodiakelectric.com/about-us",
+            "outlet": "Kodiak Electric Association",
+            "primary": true
+          },
+          {
+            "url": "https://www.kmxt.org/news/2026-09-03/navy-says-new-facility-being-built-in-kodiak-is-not-a-data-center",
+            "outlet": "KMXT Public Radio",
+            "primary": false
+          },
+          {
+            "url": "https://www.kmxt.org/news/2025-08-22/infrastructure-improvements-ongoing-at-navy-detachment-kodiak",
+            "outlet": "KMXT Public Radio",
+            "primary": false
+          },
+          {
+            "url": "https://www.kmxt.org/news/2025-03-14/two-pillar-mountain-wind-turbines-temporarily-not-spinning-kodiak-electric-working-on-repairs",
+            "outlet": "KMXT Public Radio",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-09-02/",
       "url": "https://alaskaaihq.com/archive/2026-09-02/",
       "title": "Counted Twice. Fairbanks Votes on the Machines.",

@@ -1,0 +1,192 @@
+{
+  "run_date": "2026-09-03",
+  "carousel_no": 49,
+  "document_title": "Five Turning, One Still, and a Load With No Number",
+  "post_copy": "Terror Lake carries about 85 percent of the generation on the grid Kodiak Electric Association calls isolated.\n\nPillar Mountain supplies most of the rest. One of its six turbines is stopped. In March the peak hit just over 31 MW and the diesels nearly ran.\n\nAt Spruce Cape the Navy is building what it calls a multi-mission support building and says it will run off the existing grid. The cooperative says the Navy has not told it how much power that will take. The only number on that load is the co-op's own estimate, up to an additional two megawatts.\n\nThe cooperative's published numbers, the Navy's denial that it is a data center, and the estimate the co-op had to make itself.\n\nCEO Dan Menth says the diesels could become a possibility as the load grows. Who owes the number on a new load, the customer adding it or the utility planning around it?\n\n#IslandGrid #AlaskaEnergy #UtilityPlanning",
+  "deck_summary_line": "The cooperative's published numbers, the Navy's denial that it is a data center, and the estimate the co-op had to make itself.",
+  "caption_meta": {
+    "opening_move": "MAP MOVE",
+    "structure": "COLD OPEN, WARM CLOSE",
+    "closing_move": "DISCLOSURE STANDARD, WHO OWES THE NUMBER. Second use of the disclosure-standard family, so it carries no NEW label.",
+    "critic_verdict": "PASS. The room ran it against the burn table before it shipped, and caption_check clears it at 898 characters with a 110 character hook and exactly 3 hashtags.",
+    "showrunner_fix": "None. The caption ships byte for byte as the room wrote it, and post_copy is a straight copy of out/2026-09-03/caption.txt including the hashtag line."
+  },
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "KODIAK, SEPTEMBER 3RD, 2026",
+      "headline": "Five turning. One still. A new load with no number on it.",
+      "labels": [
+        "C11 C12",
+        "C08",
+        "PILLAR MOUNTAIN ACCESS RD / 28MM / 1.4M / SE",
+        "57°47'N 152°24'W"
+      ],
+      "claim_ids": [
+        "C11",
+        "C12",
+        "C08"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "THE TWO SENTENCES",
+      "headline": "The Navy says the building runs off the existing grid.",
+      "labels": [
+        "The cooperative says the Navy has not told it how much power the building will use. Both sentences are true at once. The second one is the planning problem, because the utility has to size for a load nobody has given it a figure for.",
+        "C03",
+        "C04",
+        "YARD PAD OFF REZANOF / 35MM / 0.9M / E"
+      ],
+      "claim_ids": [
+        "C03",
+        "C04"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "WHAT THE ISLAND HAS",
+      "headline": "What the island runs on.",
+      "labels": [
+        "\"KEA owns, operates, and maintains an isolated grid.\" (C08)",
+        "TERROR LAKE / ABOUT 85 PCT OF GENERATION (C09)",
+        "PILLAR MOUNTAIN / SIX AT 1.5 MW (C11) / ONE OFFLINE (C12)",
+        "FLYWHEELS AND BATTERY / TWO AND ONE (C10)",
+        "DIESEL / BACK UP (C10)",
+        "DIFFERENT THINGS, NOT ONE SUM.",
+        "FOUR PLACES / 50MM / 2.1M / ONE NIGHT"
+      ],
+      "claim_ids": [
+        "C08",
+        "C09",
+        "C11",
+        "C12",
+        "C10"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "THE CEILING",
+      "headline": "In March the peak hit just over 31 MW.",
+      "labels": [
+        "\"We didn't have to turn diesels on, but as the load continues to grow, that could certainly become a potential,\"",
+        "DAN MENTH, KODIAK ELECTRIC ASSOCIATION (C13)",
+        "C06",
+        "DIESEL PLANT DOOR / 50MM / 1.6M / N"
+      ],
+      "claim_ids": [
+        "C13",
+        "C06"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "",
+      "headline": "The utility's own word for this grid is isolated.",
+      "labels": [
+        "KODIAK ELECTRIC ASSOCIATION (C08)",
+        "TERROR LAKE, 1985 (C26). PILLAR MOUNTAIN, 2009 (C27). UPPER HIDDEN BASIN, 2019 (C28).",
+        "KODIAK ISLAND, PRINCIPAL ISLAND ONLY",
+        "ST HERMAN HARBOR / 24MM / 2.6M / SW"
+      ],
+      "claim_ids": [
+        "C08",
+        "C26",
+        "C27",
+        "C28"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "THE ONLY NUMBER",
+      "headline": "The only number on this load came from the co-op.",
+      "labels": [
+        "COULD BE UP TO AN ADDITIONAL 2 MW (C05)",
+        "MARCH PEAK, JUST OVER 31 MW (C06)",
+        "PILLAR MOUNTAIN, 6 x 1.5 MW (C11)",
+        "DIFFERENT THINGS, NOT ONE SUM.",
+        "THE TICKS KEEP GOING. NOTHING LABELS THE TOP.",
+        "An estimate the cooperative made itself. The Navy supplied no figure.",
+        "YARD FENCE / 65MM / 1.1M / NE"
+      ],
+      "claim_ids": [
+        "C05",
+        "C06",
+        "C11"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "SPRUCE CAPE",
+      "headline": "A footprint, and no purpose visible from the road.",
+      "labels": [
+        "The Navy calls it a multi-mission support building. Its spokesperson describes site preparation, paving, and construction including electrical and mechanical subsystems. It is unclear when that work will begin.",
+        "POWERED FROM THE EXISTING GRID, WITH BACK-UP GENERATORS (C03)",
+        "C01 C17",
+        "C18",
+        "ROAD EDGE, SPRUCE CAPE / 85MM / 1.8M / NE"
+      ],
+      "claim_ids": [
+        "C03",
+        "C01",
+        "C17",
+        "C18"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "WHAT IS ESTABLISHED",
+      "headline": "A denial is not a finding. A rumor is not either.",
+      "labels": [
+        "The Navy says the building is not a data center, by email to KMXT on August 14th and separately to Sen. Sullivan's office. Neither that nor the island's rumor is established here.",
+        "SOURCED",
+        "KODIAKELECTRIC.COM, READ SEPTEMBER 4TH, 2026. ISOLATED GRID. 85 PERCENT TERROR LAKE. SIX TURBINES. A 98 PERCENT AIM. (C08 C09 C10 C22)",
+        "ONE NEWSROOM",
+        "KMXT, SEPTEMBER 3RD, 2026. EVERY EVENT, QUOTE AND MEGAWATT FIGURE OUTSIDE THE CO-OP'S OWN SITE. (C01 to C06, C11 to C18)",
+        "\"I've never heard of this. I think it's a rumor, but if it's true, I think it's a bad idea, and I will work to stop it,\"",
+        "SEN. DAN SULLIVAN TO THE KODIAK DAILY MIRROR, AUGUST 11TH, VIA KMXT (C14)",
+        "POLE OFF THE YARD ROAD / 45MM / 1.2M / W"
+      ],
+      "claim_ids": [
+        "C08",
+        "C09",
+        "C10",
+        "C22",
+        "C01",
+        "C06",
+        "C11",
+        "C18",
+        "C14",
+        "C02"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "One number here was measured. The other one the co-op had to estimate.",
+      "labels": [
+        "Who should have to publish the number, the new load or the co-op that plans for it?",
+        "C06 C05",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "sources in comments",
+        "57°47'N 152°24'W",
+        "WET ROAD BACK TO TOWN / 24MM / 0.55M / SW"
+      ],
+      "claim_ids": [
+        "C06",
+        "C05"
+      ]
+    }
+  ],
+  "first_comment": "Sources, primary first\n\nKodiak Electric Association, the cooperative's own front page, KEA owns operates and maintains an isolated grid, Terror Lake at approximately 85 percent of generation, six wind turbines with two flywheels and a battery, diesel held as back up\nhttps://www.kodiakelectric.com/\n\nKodiak Electric Association, About Us, the 98 percent renewable aim and the dated build sequence of 1985, 2009 and 2019\nhttps://www.kodiakelectric.com/about-us\n\nKMXT Public Radio, September 3rd, 2026, Navy says new facility being built in Kodiak is not a data center, the denial, the co-op's up to two megawatt estimate, the March peak just over 31 MW and the stopped Pillar Mountain turbine\nhttps://www.kmxt.org/news/2026-09-03/navy-says-new-facility-being-built-in-kodiak-is-not-a-data-center\n\nThe Sen. Dan Sullivan quote on slide 08 was given to the Kodiak Daily Mirror on August 11th and reaches this deck through the KMXT report above, which is why the slide attributes it that way.\n\nEvery decision this page tracks, with the deadlines still live, sits at https://alaskaaihq.com\n\nCorrections and local context are welcome here, especially from Kodiak members who read their own load numbers.",
+  "aftercare": [
+    "Post Tuesday to Thursday, 8 to 11 a.m. Alaska time. Drafts arrive daily, so the cadence is the human's call and an unposted draft costs nothing.",
+    "Paste the first comment block within 60 seconds of posting, with the full raw URLs as plain text.",
+    "Reply to every comment in the first 90 minutes, in substance rather than in thanks.",
+    "Note saves and comments after 48 hours and write the numbers into the ledger.",
+    "If someone asks whether it is a data center, the answer is that the Navy denies it, the island rumor is a rumor, and neither is established. That is slide 08 and it is already on the deck's face.",
+    "If someone asks where the two megawatt figure came from, it is the cooperative's own ceiling estimate out of a planning document nobody outside the co-op has read, and the Navy supplied no figure at all."
+  ],
+  "editor_notes_for_email": "THE SOURCING NOTE THAT MATTERS MOST, AND IT IS ON THE DECK RATHER THAN IN THIS EMAIL. Outside the cooperative's own website, the whole Kodiak story rests on ONE newsroom, KMXT. Every event, every quote and every megawatt figure that is not on kodiakelectric.com comes from a single September 3rd, 2026 report. No second outlet could be reached. DVIDS, HigherGov, sullivan.senate.gov and Alaska Public Media carry nothing on this facility, the Alaska Beacon returned 403, and the Kodiak Daily Mirror returned HTTP 429 on four attempts. The deck does not bury that. Slide 08 makes it the subject, a stamped SOURCED plate against an unstruck ONE NEWSROOM plate, and the right plate names the claim range that single outlet covers, C01 to C06 and C11 to C18. What holds the package up is that the argument rests on the shape of the grid rather than on the news, and that half is PRIMARY in the cooperative's own words at C08, C09, C10 and C22. If anyone pushes on sourcing, the answer is slide 08 and it is already published.\n\nTHE SULLIVAN QUOTE IS SECOND HAND. Sen. Dan Sullivan said it to the Kodiak Daily Mirror on August 11th during a Kodiak visit, and it reaches this deck through KMXT (C14). The originating outlet could not be fetched at any point in the run. Slide 08 attributes it exactly that way and sets it in the deck's only italic, which is a deliberate mark for second hand testimony. Its terminal comma is reproduced inside the closing quote mark because the quoted string ends on a comma in the source. The Menth quote on slide 04 (C13) ends on a comma for the same reason. Neither is a typographic error, so please do not fix them.\n\nFOUR NUMBERS THAT MUST NOT DRIFT IN A COMMENT THREAD. The March peak of just over 31 MW carries NO YEAR, because the page never states one, so the caption and slides 04 and 06 write in March and stop (C06). The two megawatt figure is the cooperative's own ceiling estimate from a planning document nobody outside the co-op has read, and the Navy gave the utility no figure at all, so it is always up to an additional two megawatts and never a flat 2 MW (C04, C05). One of the six Pillar Mountain turbines has been offline since March of 2025 (C12), which is one machine, not two. The roughly 450 homes figure from the March 14th, 2025 KMXT report is ALL SIX turbines together (C24) and it is deliberately absent from every slide, so do not introduce it in a reply.\n\nWHAT THE DECK DOES NOT CLAIM. The Navy's denial is a denial and not a finding, and the rumor is a rumor and not a finding. Slide 08 says that in its headline. No start date appears anywhere, because the record says it is unclear when work will begin (C18), and no equipment or activity is drawn on slide 07 for the same reason. The Coast Guard expansion (C16) is on no slide, because it survives only inside a paraphrase of a document nobody outside the cooperative has read. Terror Lake's distance from town is excluded everywhere, because no fetched page carries it.\n\nONE COPY ITEM RECORDED RATHER THAN LEFT TO BE FOUND. Slide 03's first slug reads ABOUT 85 PCT OF GENERATION, where every other string in the deck spells the word out. That is a deliberate tightening for legibility at feed scale, taken when the four captions moved inside the aperture windows because they could not be read on the engraved band below. The cooperative's dated build sequence went with them and is printed on slide 05 instead, 1985, 2009 and 2019, all three primary. The 98 percent aim (C22) appears only on slide 08's left plate, which is where the sourcing disclosure lives anyway.\n\nWHAT THE MACHINE SAYS ABOUT THE ART. Every contact shadow in the deck is measured off the render rather than computed, and all nine read. The value structure gate holds eight of nine frames, with bottom third weight between 70 and 91 percent, which is the direct answer to the standing weakness that decks were top loaded. Slide 04 is the one frame it flags, for two lesser masses of near equal size, and that is a DECLARED exception recorded in its dossier: a corrugated door is a repeating pair of a lit crest and a dark lee flank, so two mid populations of similar area are the subject and not clutter. Brightening the crests swapped the two masses and left the ratio unchanged, which is the proof that the pair is structural.\n\nONE CONTINUOUS INTEGRATION CHECK IS RED AND IT IS RED ON MAIN TOO. The checks job runs scripts/ask_corpus.py --self-test and fails on one line, no numeral is authorised only as half of a grouped figure, naming 150. It fails identically on a clean worktree of the branch this run started from, so it did not arrive with the carousel. The cause is not bad data. The ghost test asks whether a candidate figure ever stands alone in the record, and 150 stands in the gas watch series as non_cingsa_supply_mmcfd 150.0, which the authorisation accepts as the same quantity written without its trailing zero. The lookahead that correctly rejects 300 out of 8,300 can't tell a comma group from a decimal. The patch is written out in full on the pull request, and it belongs in an ask box change rather than in a carousel run, which is why it was not made here.\n\nA REVIEW OF THE RUN BRANCH CAUGHT A REAL DEFECT AND IT IS FIXED. The night rain was testing only a streak's origin against its exclusion cone before extending the streak, so on slide 04 the rain was laying its tails through the 44 pixel unlit band the slide re-lays under a comment forbidding exactly that. Closing the leak exposed the larger fault. The band's declared motif had been passing its gate on the trespassing rain's own variation, and with the leak closed the rect measured flat and the gate failed it honestly. The gap is drawn with its own two facts now, deepest under the door and lifting at the sill where the threshold returns what the pool throws at it, with the door's rib pitch continuing through it as a row of shallow arches. It measures 5.0 dE on the canvas and 5.7 on the page. The nine rasters are byte identical to the ones scored, verified by checksum.\n\nTHE ART GATE FOUND SOMETHING AFTER SCORING AND IT IS RECORDED RATHER THAN QUIETLY FIXED. Phase 12 added a probe that measures whether an engraved region's strokes are seeded parallel to the direction field they walk, which is the mechanism behind the knotted ribbon this run fought on four slides. Pointed at the shipped deck it immediately found two regions still fully collapsed, slide 05's main lay and slide 08's main and cross lay, all three at an alignment of 1.00 out of 1.00. They are warns, the deck ships, and they are the first work order for the next run. The repair is the probe's own seedDeg, which turns the seeding raster without turning the walk.\n\nTHREE THINGS ARE DEFERRED AND ONE OF THEM IS A JUDGEMENT ONLY THE MAINTAINER MAKES. Phase 12 recommends a comfort CEILING on contact shadows, since the floor proved the objects had stopped floating and could not say whether they had started glowing, with a warn somewhere above roughly 20 dL as the opening suggestion. A lint for module defaults that no call site can reach needs JavaScript call graph analysis and is parked. Evenly spaced streamline placement would make the lay collapse impossible by construction and is parked with its sources in the field notes, because it is a redesign of the drawing core that would re-render every past deck and can't be proved safe by the pixel identity check that made today's change safe.\n\nTHE PUBLISHED SITE AND THE GAS WATCH WERE BOTH READ TODAY. Site sign off is PASS over 96 pages and 18 of 18 checks, including that the current value in every cron written ledger reaches the page that publishes it. The gas watch holds 31 days on record with no gaps, latest September 4th, 2026, and the demand model misses observed EIA deliveries by 6.82 percent. The legislature's bill sweep returned HTTP 503 on the BASIS endpoint, which is recorded in the watch queue as an unverified sweep carrying no number forward. CINGSA's semiannual shut in is proposed for September 14th through 21st, which is a maintainer's call and not this run's."
+}

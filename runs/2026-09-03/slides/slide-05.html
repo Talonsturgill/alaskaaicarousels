@@ -1,0 +1,240 @@
+<!doctype html>
+<!-- SLIDE 05 — DECLARED BREATHER. The harbour, wide, 24mm, camera 2.6m, SW.
+     The deck's one cartographic moment: Kodiak Island's real coastline as ONE
+     unbroken closed curve, lying on the wet dock boards as a physical object.
+     POLYGON INDEX 4 ONLY. Polygon 0 is the borough's mainland administrative
+     strip and drawing it would put straight political edges on a coastline. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Instrument Serif", serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.09; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  /* the headline's second line sat on the horizon's town band; it clears it */
+  h2 { position: absolute; left: 80px; top: 236px; width: 820px;
+       font-weight: 400; font-size: 96px; line-height: 1.02;
+       letter-spacing: -0.015em; color: #F4F8FF; }
+  .attrib { position: absolute; left: 80px; top: 618px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #F4F8FF; }
+  .goldrule { position: absolute; left: 80px; top: 660px; width: 462px;
+              height: 2px; background: #FFC72C; }
+  /* it was lying across the island's own lower third */
+  .built { position: absolute; left: 80px; top: 700px; width: 520px;
+           font-family: "JetBrains Mono", monospace; font-size: 24px;
+           letter-spacing: 0.08em; line-height: 1.42; color: #8FA6B8; }
+  .loccap { position: absolute; left: 80px; top: 884px;
+            font-family: "JetBrains Mono", monospace; font-size: 24px;
+            letter-spacing: 0.08em; color: #7FA8B8; }
+  /* THE FEED CROPS AND THE VIEWER CHROME SITS AT THE BOTTOM. Deck furniture
+     was riding 34px off the edge, inside the 80px safe zone on every slide. */
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .counter i { color: #FFC72C; font-style: normal; }
+  .polaris { position: absolute; right: 84px; top: 96px; }
+  .slug { position: absolute; left: 80px; bottom: 80px;
+          font-family: "JetBrains Mono", monospace; font-size: 11px;
+          letter-spacing: 0.14em; color: rgba(127,168,184,0.55); }
+</style>
+</head>
+<body data-breather
+      data-contacts='[{"what":"the island chart lying on the wet dock boards","shadow":[[288,1200,26,10]],"ground":[[253,1200,26,10]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+  <h2 data-reserve>The utility's own word for this grid is isolated.</h2>
+  <div class="attrib" data-reserve>KODIAK ELECTRIC ASSOCIATION (C08)</div>
+  <div class="goldrule"></div>
+  <div class="built" data-reserve>TERROR LAKE, 1985 (C26).<br>PILLAR MOUNTAIN, 2009 (C27).<br>UPPER HIDDEN BASIN, 2019 (C28).</div>
+  <div class="loccap" data-reserve>KODIAK ISLAND, PRINCIPAL ISLAND ONLY</div>
+  <svg class="polaris" width="34" height="34" viewBox="0 0 34 34">
+    <path d="M17 0 L20 14 L34 17 L20 20 L17 34 L14 20 L0 17 L14 14 Z" fill="#FFC72C"/>
+  </svg>
+  <div class="slug" data-reserve data-decorative>ST HERMAN HARBOR / 24MM / 2.6M / SW</div>
+  <div class="counter" data-reserve>05 <i data-decorative>/</i> 09</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aknight.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260908;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var falloff = AKNIGHT.falloff(-40, 1180, 820);
+
+  function sky() {
+    var g = cx.createLinearGradient(0, 0, 0, 480);
+    g.addColorStop(0, '#04070E'); g.addColorStop(1, '#0A1320');
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, 490);
+  }
+  function townBand() {
+    cx.fillStyle = '#070D16'; cx.fillRect(0, 448, 1080, 42);
+    var r = AK.rng(SEED + 2);
+    for (var i = 0; i < 380; i++) {
+      cx.globalAlpha = 0.2 + r() * 0.6;
+      cx.fillStyle = r() > 0.9 ? '#D8E8EE' : '#2A4457';
+      cx.fillRect(r() * 1080, 452 + r() * 34, 1 + r() * 2.6, 1 + r() * 1.6);
+    }
+    cx.globalAlpha = 1;
+  }
+
+  (async function () {
+    await document.fonts.ready;
+    var reserve = AKNIGHT.reserve('[data-reserve]');
+
+    sky(); townBand();
+
+    /* BLACK WATER, running back. The Unlit Band has INVERTED here and swallowed
+       the frame; one lit chop field survives inside it. */
+    var g = cx.createLinearGradient(0, 490, 0, 1350);
+    g.addColorStop(0, '#050A12'); g.addColorStop(1, '#0A141E');
+    cx.fillStyle = g; cx.fillRect(0, 490, 1080, 860);
+
+    /* THE CHOP. aksnow draws lit windward crests with dark lee flanks and
+       specular glints, which is hundreds of discrete steps, not a gradient.
+       Drawn offscreen and composited once, never blurred inside the loop. */
+    var oc = document.createElement('canvas');
+    oc.width = 2160; oc.height = 2700;
+    var ox = oc.getContext('2d'); ox.scale(2, 2);
+    AKSNOW.surface(ox, {
+      top: function (x) { return 560 + AK.fbm2(x * 0.004, 2.2, 3) * 26; },
+      x0: 0, x1: 1080, bottom: 1350,
+      lit: '#4E6E80', shadow: '#08101A',
+      seed: SEED, lightDeg: 292, windDeg: 143
+    });
+    cx.drawImage(oc, 0, 0, 1080, 1350);
+
+    /* rain rings on the water, concentric hard marks */
+    var r = AK.rng(SEED + 4);
+    for (var i = 0; i < 120; i++) {
+      var rx = r() * 1080, ry = 620 + r() * 640, rr = 4 + r() * 26;
+      cx.strokeStyle = 'rgba(216,232,238,' + (0.06 + r() * 0.16).toFixed(3) + ')';
+      cx.lineWidth = 0.9;
+      cx.beginPath(); cx.ellipse(rx, ry, rr, rr * 0.30, 0, 0, 6.283185); cx.stroke();
+    }
+
+    /* THE DOCK BOARDS, lower left. The deck's ONLY FLAT engrave form, which is
+       why this slide reads as rest without reading as empty. */
+    var eng = AKENGRAVE.create({ seed: SEED + 1, light: { azDeg: 292, elDeg: 24 } });
+    eng.reserve(reserve);
+    cx.save();
+    cx.beginPath(); cx.moveTo(52, 1350); cx.lineTo(92, 920);
+    cx.lineTo(556, 920); cx.lineTo(604, 1350); cx.closePath();
+    cx.fillStyle = '#16232F'; cx.fill(); cx.clip();
+    eng.surface(cx, {
+      region: [52, 920, 552, 430],
+      /* the lay runs ALONG the planks. A form falling only in y put the main
+         lay across them and the seams the other way, which is a lattice and
+         reads as a wire screen rather than as boards. */
+      form: function (x, y) {
+        var t = (y - 920) / 430;
+        return ((x - (92 - 40 * t)) / (464 + 88 * t)) * 46;
+      },
+      tone: function (x, y) { return 1 - falloff(x, y) * 0.8; },
+      budget: { main: 6.0, cross: 0, dots: false },
+      inkLo: '#16263a', inkHi: '#9FB6C4', wMax: 2.2, step: 6
+    });
+    /* plank seams, hard-edged */
+    for (var b = 0; b < 5; b++) {
+      var t = b / 5;
+      cx.strokeStyle = 'rgba(4,7,14,0.8)'; cx.lineWidth = 3;
+      cx.beginPath();
+      cx.moveTo(92 + t * 464, 920); cx.lineTo(52 + t * 552, 1350); cx.stroke();
+      cx.strokeStyle = 'rgba(216,232,238,0.16)'; cx.lineWidth = 1;
+      cx.beginPath();
+      cx.moveTo(95 + t * 464, 920); cx.lineTo(55 + t * 552, 1350); cx.stroke();
+    }
+    cx.restore();
+
+    /* THE ISLAND. Polygon index 4 only, the ring containing the town.
+       One unbroken closed curve at hero weight, no fill, no site plotted,
+       no scale bar and no distance. */
+    var geo = await fetch("@@ASSETS@@/geo/alaska-boroughs.geo.json").then(function (x) { return x.json(); });
+    var feat = geo.features.filter(function (f) {
+      var p = f.properties; return (p.NAME || p.name) === 'Kodiak Island';
+    })[0];
+    var island = { type: 'Feature', properties: {},
+      geometry: { type: 'MultiPolygon', coordinates: [feat.geometry.coordinates[4]] } };
+    var proj = d3.geoConicEqualArea().parallels([55, 65]).rotate([154, 0]);
+    proj.fitExtent([[112, 916], [508, 1196]], island);
+    var path = d3.geoPath(proj, cx);
+    /* A CONTACT IS THE FOOT, NOT THE SILHOUETTE. w was the object's full
+       width here, which spreads the tight cast to half that again and
+       leaves no lit ground inside the window a reading is taken in. The
+       pool stays wide; the cast narrows onto the object's own base. */
+    AKNIGHT.contact(cx, { x: 310, y: 1200, w: 90,
+                          poolRx: 230, poolRy: 44, color: '#0A1320' });
+    /* IT HAS TO OCCLUDE THE BOARDS TO BE LYING ON THEM. Drawn as a stroke
+       alone, the engraved lay and all six plank seams ran straight through the
+       island's interior, so nothing was behind anything and the coastline read
+       as a glowing overlay floating above the frame. Filling the path first is
+       what makes the seams stop at the coast. */
+    cx.save();
+    cx.beginPath(); path(island);
+    cx.fillStyle = 'rgba(19,32,47,0.94)'; cx.fill();
+    cx.restore();
+    /* its own cast, down light, before the hero stroke */
+    cx.save();
+    cx.translate(3, 4);
+    cx.strokeStyle = 'rgba(4,7,14,0.7)'; cx.lineWidth = 6;
+    cx.lineJoin = 'round'; cx.lineCap = 'round';
+    cx.beginPath(); path(island); cx.stroke();
+    cx.restore();
+    cx.save();
+    cx.strokeStyle = '#D8E8EE'; cx.lineWidth = 5.5;
+    cx.lineJoin = 'round'; cx.lineCap = 'round';
+    cx.beginPath(); path(island); cx.stroke();
+    cx.restore();
+
+    /* the deck contract bans a graded wash below y 900, and the harbour's lower
+       right was exactly that: one smooth ramp with nothing in it after the box
+       downsample, and no counterweight to the locator in the lower left */
+    AKNIGHT.chips(cx, {
+      seed: SEED + 9, count: 820, region: [560, 900, 520, 450], reserve: reserve,
+      density: function (x, y) { return falloff(x, y) * 1.05; },
+      color: '#D8E8EE', colorDim: '#7FA8B8', sizeMin: 1.4, sizeMax: 6.0
+    });
+
+    AKNIGHT.conductor(cx, {
+      x0: -40, y0: 560, x1: 1120, y1: 470, sag: 96,
+      color: '#3E5A6B', casing: '#04070E', width: 2.0, seed: SEED + 7
+    });
+    AKNIGHT.rain(cx, {
+      count: 1600, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.18,
+      inCone: function (x, y) { return y > 470; }
+    });
+
+    /* subtract the art inside the type reserve, so the slide own geometry
+       cannot run through the letterforms */
+    /* THE CALL SITES WERE OVERRIDING THE MODULE. veil()'s defaults were softened
+       and its feather made proportional after the plates were measured, and every
+       slide was still passing the old alpha 0.74 with a fixed 26px feather, so
+       none of that reached the picture. Five critics read flat plates behind the
+       type on six slides. The module owns these numbers now. */
+    AKNIGHT.veil(cx, reserve);
+
+    AKPOST.grade(cx, {
+      exposure: -0.12, saturation: 0.92, contrast: 1.06, dither: true,
+      bloom: { threshold: 0.80, strength: 0.18, radius: 7 }
+    });
+    document.getElementById('grain').style.backgroundImage =
+      'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+    window.__akMotifs = [{ what: 'the island drawn as one closed curve, C08',
+                           rect: [112, 916, 396, 280] }];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

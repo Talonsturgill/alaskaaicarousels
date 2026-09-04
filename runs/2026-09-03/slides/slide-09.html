@@ -1,0 +1,311 @@
+<!doctype html>
+<!-- SLIDE 09 — CLOSE. Low on the wet road looking back at the town, 24mm,
+     camera 0.55m, SW. ONE ask. The conductor dead-ends at an insulator with
+     nothing beyond it, and the Unlit Band closes to a 12px slit where the road
+     runs out. Sealed, not resolved, because the number still does not exist. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Instrument Serif", serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.09; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  h2 { position: absolute; left: 80px; top: 300px; width: 860px;
+       font-weight: 400; font-size: 66px; line-height: 1.02; color: #F4F8FF; }
+  /* HAND BROKEN. Set to the box it wrapped to three lines with 'it?' alone
+     on the third, which is a two character orphan on the one sentence the
+     whole carousel exists to ask. */
+  .ask { position: absolute; left: 80px; top: 624px; width: 908px;
+         font-weight: 400; font-size: 52px; line-height: 1.10; color: #F4F8FF; }
+  .mark { position: absolute; left: 80px; bottom: 158px;
+          font-weight: 700; font-size: 40px; letter-spacing: 0.02em; color: #F4F8FF; }
+  .site { position: absolute; left: 336px; bottom: 166px;
+          font-family: "JetBrains Mono", monospace; font-size: 24px;
+          letter-spacing: 0.10em; color: #7FA8B8; }
+  .tagline { position: absolute; left: 80px; top: 470px;
+             font-family: "JetBrains Mono", monospace; font-size: 20px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .src { position: absolute; left: 80px; bottom: 112px;
+         font-family: "JetBrains Mono", monospace; font-size: 24px;
+         letter-spacing: 0.10em; color: #7FA8B8; }
+  /* THE FEED CROPS AND THE VIEWER CHROME SITS AT THE BOTTOM. Deck furniture
+     was riding 34px off the edge, inside the 80px safe zone on every slide. */
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .counter i { color: #FFC72C; font-style: normal; }
+  .slug { position: absolute; left: 80px; bottom: 80px;
+          font-family: "JetBrains Mono", monospace; font-size: 11px;
+          letter-spacing: 0.14em; color: rgba(127,168,184,0.55); }
+  .coords { position: absolute; right: 80px; top: 96px;
+            font-family: "JetBrains Mono", monospace; font-size: 20px;
+            letter-spacing: 0.10em; color: rgba(127,168,184,0.5); }
+  /* the checklist puts it directly above the closing slit; it was 169px
+     below the slit's bottom edge, alone in an empty quadrant */
+  .polaris { position: absolute; left: 859px; top: 796px; }
+</style>
+</head>
+<body data-contacts='[{"what":"the dead-end pole standing where the road runs out","shadow":[[928,906,26,10]],"ground":[[856,906,26,10]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+  <h2 data-reserve>One number here was measured. The other one the co-op had to estimate.</h2>
+  <div class="ask" data-reserve>Who should have to publish the number,<br>the new load or the co-op that plans for it?</div>
+  <svg class="polaris" width="42" height="42" viewBox="0 0 42 42">
+    <path d="M21 0 L24.5 17.5 L42 21 L24.5 24.5 L21 42 L17.5 24.5 L0 21 L17.5 17.5 Z" fill="#FFC72C"/>
+  </svg>
+  <div class="mark" data-reserve>ALASKA.AI</div>
+  <div class="site" data-reserve data-decorative>alaskaaihq.com</div>
+  <div class="tagline" data-reserve data-decorative>C06 C05</div>
+  <div class="src" data-reserve>sources in comments</div>
+  <div class="coords" data-decorative>57&deg;47'N 152&deg;24'W</div>
+  <div class="slug" data-reserve data-decorative>WET ROAD BACK TO TOWN / 24MM / 0.55M / SW</div>
+  <div class="counter" data-reserve>09 <i data-decorative>/</i> 09</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aknight.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260912;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var falloff = AKNIGHT.falloff(-40, 1240, 760);
+  var VP = [880, 900];   /* the vanishing point where the road runs out */
+
+  function scene() {
+    var g = cx.createLinearGradient(0, 0, 0, 900);
+    g.addColorStop(0, '#04070E'); g.addColorStop(1, '#0A1320');
+    cx.fillStyle = g; cx.fillRect(0, 0, 1080, 900);
+    /* a very small distant town glow, low on the horizon */
+    cx.globalAlpha = 0.8;
+    var tg = cx.createRadialGradient(300, 892, 4, 300, 892, 240);
+    tg.addColorStop(0, '#2E4457'); tg.addColorStop(1, 'rgba(10,19,32,0)');
+    cx.fillStyle = tg; cx.fillRect(50, 776, 520, 136);
+    cx.globalAlpha = 1;
+    /* the town itself, as hard steps. A glow is not a town, and the beat is
+       looking BACK at one. */
+    var tr = AK.rng(SEED + 11);
+    for (var w = 0; w < 26; w++) {
+      cx.globalAlpha = 0.45 + tr() * 0.5;
+      cx.fillStyle = tr() > 0.78 ? '#D8E8EE' : '#7FA8B8';
+      cx.fillRect(118 + tr() * 442, 882 + tr() * 13, 2 + tr() * 3.4, 1.5 + tr() * 1.6);
+    }
+    cx.globalAlpha = 1;
+    /* the road, running back to the vanishing point */
+    cx.fillStyle = '#0C141E';
+    cx.beginPath();
+    cx.moveTo(-200, 1350); cx.lineTo(VP[0] - 26, VP[1]);
+    cx.lineTo(VP[0] + 26, VP[1]); cx.lineTo(1320, 1350);
+    cx.closePath(); cx.fill();
+    /* verges, darker, so the road is a distinct plateau */
+    cx.fillStyle = '#070C14';
+    cx.fillRect(0, 900, 1080, 40);
+  }
+
+  function centreline() {
+    /* painted fragments, hard-edged bright marks, with broken reflections */
+    for (var i = 0; i < 9; i++) {
+      var t = Math.pow(i / 9, 1.8);
+      var y = VP[1] + (1350 - VP[1]) * t;
+      var x = VP[0] + (300 - VP[0]) * t;
+      var w = 5 + 46 * t, h = 3 + 22 * t;
+      /* PAINT IN PERSPECTIVE IS A TRAPEZOID, not a rectangle: the far end of
+         each mark is narrower than the near end by the same ratio the road
+         is. Drawn as one, with the wet halo the film of water puts around a
+         bright mark, and then the broken reflection under it. */
+      var wf = w * 0.72;
+      cx.fillStyle = '#7FA8B8';
+      cx.beginPath();
+      cx.moveTo(x - wf / 2, y); cx.lineTo(x + wf / 2, y);
+      cx.lineTo(x + w / 2, y + h); cx.lineTo(x - w / 2, y + h);
+      cx.closePath(); cx.fill();
+      /* the wet halo, as a CIRCLE inside a transform. createRadialGradient is
+         circular, so pouring one into an ellipse stops the paint on the short
+         axis while the ramp still carries alpha and leaves a hard arc: the
+         same trap litPool carries a note about. */
+      cx.save();
+      cx.translate(x, y + h * 0.6);
+      cx.scale(1, (h * 1.3) / (w * 1.5));
+      var halo = cx.createRadialGradient(0, 0, 1, 0, 0, w * 1.5);
+      halo.addColorStop(0, 'rgba(216,232,238,0.26)');
+      halo.addColorStop(1, 'rgba(216,232,238,0)');
+      cx.fillStyle = halo;
+      cx.beginPath(); cx.arc(0, 0, w * 1.5, 0, 6.283185); cx.fill();
+      cx.restore();
+      /* the broken reflection beneath it, discrete chips never a blur */
+      var rn = AK.rng(SEED + 50 + i);
+      for (var k = 0; k < 14; k++) {
+        cx.globalAlpha = 0.10 + rn() * 0.4;
+        cx.fillStyle = '#D8E8EE';
+        cx.fillRect(x - w / 2 + rn() * w, y + h + rn() * h * 2.4,
+                    2 + rn() * w * 0.4, 1 + rn() * 2.2);
+      }
+      cx.globalAlpha = 1;
+    }
+  }
+
+  function insulator() {
+    /* THE LAST LAMP. The pole carries the final luminaire on the line, which
+       is what puts a lit patch of road at the pole's foot 900px from the
+       camera's own light. The pair is drawn before the pole so the pole stands
+       in front of its own pool. */
+    cx.fillStyle = '#12202E'; cx.fillRect(918, 654, 34, 7);
+    cx.fillStyle = '#FFE9B0';
+    cx.globalAlpha = 0.92; cx.fillRect(920, 660, 30, 5.5); cx.globalAlpha = 1;
+    AKNIGHT.contact(cx, {
+      x: 946, y: 906, w: 104, color: '#0A1320',
+      poolColor: 'rgba(168,180,178,0.50)', poolMid: 'rgba(140,156,158,0.38)',
+      poolOut: 'rgba(112,132,140,0.16)'
+    });
+    /* the pole and its dead-end crossarm, with nothing beyond it */
+    cx.fillStyle = '#0A121C'; cx.fillRect(946, 640, 16, 268);
+    cx.fillStyle = AKC.mixOklab('#1E3546', '#8FA6B8', falloff(870, 780));
+    cx.fillRect(946, 640, 4, 268);
+    cx.fillStyle = '#12202E'; cx.fillRect(892, 646, 124, 12);
+    cx.fillStyle = '#3E5A6B'; cx.fillRect(892, 646, 124, 3);
+    for (var i = 0; i < 3; i++) {
+      cx.fillStyle = '#8FA6B8';
+      cx.beginPath(); cx.arc(910 + i * 44, 640, 6, 0, 6.283185); cx.fill();
+      cx.fillStyle = '#04070E';
+      cx.beginPath(); cx.arc(910 + i * 44, 638, 3, 0, 6.283185); cx.fill();
+    }
+  }
+
+  (async function () {
+    await document.fonts.ready;
+    var reserve = AKNIGHT.reserve('[data-reserve]');
+    scene();
+
+    /* THE ROAD, engraved. A SEALED DOME form, so the lay curves with the
+       camber and the crown catches the lamp while both gutters fall away. */
+    var eng = AKENGRAVE.create({ seed: SEED, light: { azDeg: 292, elDeg: 24 } });
+    eng.reserve(reserve);
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(-200, 1350); cx.lineTo(VP[0] - 26, VP[1]);
+    cx.lineTo(VP[0] + 26, VP[1]); cx.lineTo(1320, 1350);
+    cx.closePath(); cx.clip();
+    eng.surface(cx, {
+      region: [0, 920, 1080, 430],
+      form: function (x, y) {
+        /* A SEALED DOME HAS ZERO GRADIENT AT ITS CROWN, so the swelled line
+           closes into contour blobs there and the road read as a topographic
+           map rather than as asphalt. The cross fall carries the form now and
+           the camber only modulates it, which keeps every iso-line open and
+           running along the road to the vanishing point, which is also the
+           direction a wet surface actually returns a light. */
+        var t = (y - 920) / 430;
+        var crown = 300 + (VP[0] - 300) * (1 - t);
+        var d = (x - crown) / (280 + 420 * t);
+        return 34 * d + 9 * Math.exp(-d * d) + AK.fbm2(x * 0.005, 0.7, 3) * 4;
+      },
+      /* THE LAY IS BRIGHTEST WHERE THE LAMP IS. Inverted, the marks piled up
+         where the light is not and the near left, which is the lamp's own
+         ground, came out as the darkest part of the road. */
+      tone: function (x, y) { return 0.22 + falloff(x, y) * 0.78; },
+      budget: { main: 4.0, cross: 6.0, dots: false },
+      inkLo: '#12202E', inkHi: '#7FA8B8', wMax: 2.8, step: 6
+    });
+    cx.restore();
+
+    /* THE SHEEN RUNS TO THE VANISHING POINT. Without it the engraved lay is
+       the only structure on the road and it runs across the frame, so nothing
+       points anywhere and the surface reads as terrain. A wet road returns the
+       light in broken streaks along the direction of travel. */
+    (function () {
+      var sr = AK.rng(SEED + 21);
+      for (var i = 0; i < 26; i++) {
+        var bx = -200 + (i / 25) * 1520;
+        var segs = 3 + Math.floor(sr() * 4);
+        for (var g2 = 0; g2 < segs; g2++) {
+          var t0 = (g2 + sr() * 0.35) / segs, t1 = t0 + (0.55 / segs) * (0.5 + sr());
+          if (t1 > 1) t1 = 1;
+          var x0 = bx + (VP[0] - bx) * t0, y0s = 1350 + (VP[1] - 1350) * t0;
+          var x1 = bx + (VP[0] - bx) * t1, y1s = 1350 + (VP[1] - 1350) * t1;
+          cx.strokeStyle = AKC.mixOklab('#35586B', '#7FA8B8', falloff(x0, y0s));
+          cx.globalAlpha = 0.10 + sr() * 0.24;
+          cx.lineWidth = 3.6 * (1 - t0) + 0.35;
+          cx.beginPath(); cx.moveTo(x0, y0s); cx.lineTo(x1, y1s); cx.stroke();
+        }
+      }
+      cx.globalAlpha = 1;
+    })();
+
+    centreline();
+
+    /* rain rings in the gutter puddles */
+    var r = AK.rng(SEED + 4);
+    for (var i = 0; i < 70; i++) {
+      var rx = 120 + r() * 900, ry = 1150 + r() * 200, rr = 5 + r() * 24;
+      cx.strokeStyle = 'rgba(216,232,238,' + (0.07 + r() * 0.18).toFixed(3) + ')';
+      cx.lineWidth = 1.0;
+      cx.beginPath(); cx.ellipse(rx, ry, rr, rr * 0.30, 0, 0, 6.283185); cx.stroke();
+    }
+
+    /* THE SPECULAR BELONGS TO THE ROAD. Unclipped, the chip field lit the
+       verge brighter than the asphalt and the frame's brightest mass ended up
+       off the surface the slide is about. */
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(-200, 1350); cx.lineTo(VP[0] - 26, VP[1]);
+    cx.lineTo(VP[0] + 26, VP[1]); cx.lineTo(1320, 1350);
+    cx.closePath(); cx.clip();
+    AKNIGHT.chips(cx, {
+      seed: SEED + 3, count: 700, region: [0, 940, 1080, 410], reserve: reserve,
+      /* the near left gutter is where the wordmark block sits, and a gutter
+         falls away from the crown anyway, so it carries no specular */
+      density: function (x, y) { return falloff(x, y) * 1.1; },
+      color: '#D8E8EE', colorDim: '#7FA8B8', sizeMin: 1.1, sizeMax: 4.6
+    });
+    cx.restore();
+
+    /* THE CONDUCTOR TERMINATES. Nothing past the insulator. */
+    AKNIGHT.conductor(cx, {
+      x0: -40, y0: 420, x1: 952, y1: 640, sag: 24,   /* lands ON the caps */
+      color: '#3E5A6B', casing: '#04070E', width: 2.2, seed: SEED + 7
+    });
+    insulator();
+
+    /* THE CLOSING SLIT. 12px, the smallest the Unlit Band has been. */
+    cx.fillStyle = '#04070E';
+    cx.fillRect(VP[0] - 6, VP[1] - 40, 12, 120);
+
+    AKNIGHT.rain(cx, {
+      count: 1600, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.20,
+      inCone: function (x, y) { return falloff(x, y) > 0.12; }
+    });
+
+    /* subtract the art inside the type reserve, so the slide own geometry
+       cannot run through the letterforms */
+    /* THE CALL SITES WERE OVERRIDING THE MODULE. veil()'s defaults were softened
+       and its feather made proportional after the plates were measured, and every
+       slide was still passing the old alpha 0.74 with a fixed 26px feather, so
+       none of that reached the picture. Five critics read flat plates behind the
+       type on six slides. The module owns these numbers now. */
+    AKNIGHT.veil(cx, reserve);
+
+    AKPOST.grade(cx, {
+      exposure: -0.10, saturation: 0.93, contrast: 1.06, dither: true,
+      bloom: { threshold: 0.78, strength: 0.20, radius: 8 }
+    });
+    document.getElementById('grain').style.backgroundImage =
+      'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+    /* THE MOTIF IS THE STEP, NOT THE FILL. A rect holding only the slit's
+       own black is one flat colour and cannot be evidence of itself; the
+       thing that reads is the edge against the lit road either side. */
+    window.__akMotifs = [{ what: 'the closing slit where the road runs out',
+                           rect: [VP[0] - 34, VP[1] - 40, 68, 120] }];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

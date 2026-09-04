@@ -1,0 +1,31 @@
+{
+  "run_date": "2026-09-03",
+  "aggregates": [
+    {
+      "kind": "count",
+      "slide": 2,
+      "fragment": "TWO SENTENCES",
+      "text": "THE TWO SENTENCES",
+      "n": 2,
+      "subject": "sentences",
+      "members": ["C03", "C04"],
+      "note": "The slide's whole structure is that two sentences are true at once and both are sourced. C03 is the Navy's, through its spokesperson, that the facility will be powered from the existing grid with back-up generators. C04 is the cooperative's, through its CEO, that the Navy has not told the utility how much power it will use. Two sentences, two claims, one per sentence."
+    },
+    {
+      "kind": "count",
+      "slide": 3,
+      "fragment": "FOUR PLACES",
+      "text": "FOUR PLACES / 50MM / 2.1M / ONE NIGHT",
+      "n": 4,
+      "subject": "places",
+      "members": ["C09", "C10", "C11"],
+      "items": [
+        "Terror Lake Hydroelectric plant",
+        "six wind turbines",
+        "two flywheels and a battery energy storage system",
+        "diesel generation kept as back up"
+      ],
+      "note": "The four apertures are the four things Kodiak Electric Association's own generation is made of, and each is read out of a member claim rather than counted off the drawing. Terror Lake comes from C09 at approximately 85 percent. The remaining three are enumerated inside C10, which names six wind turbines, two flywheels and a battery, and diesel kept as back up; C11 carries the turbines' own six at 1.5 MW. The slide's guard line says DIFFERENT THINGS, NOT ONE SUM for exactly this reason: four places is a count of places, never an addition of their capacities."
+    }
+  ]
+}

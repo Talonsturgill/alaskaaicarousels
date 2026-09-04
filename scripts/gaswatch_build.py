@@ -1455,7 +1455,7 @@ def gauge(f):
     if "inventory_delta_mmcf" in f and "inventory_delta_direction" in f:
         moved = f"""
   <div class="gw-gauge-move">
-    <span class="gw-gauge-of-lab">On the day</span>
+    <span class="gw-gauge-of-lab">Since the last reading</span>
     <span class="gw-gauge-move-num">{f["inventory_delta_mmcf"]}
       <i>MMcf {f["inventory_delta_direction"]}</i></span>
   </div>"""
@@ -1717,7 +1717,7 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 
 <div class="gw-stats" data-reveal>
 {stat("MMcf/d withdrawal capacity", f["withdrawal_operating_mmcfd"], "measured")}
-{stat("MMcf/d going in today", f["injection_in_progress_mmcfd"], "measured")}
+{stat("MMcf/d injection rate now", f["injection_in_progress_mmcfd"], "measured")}
 {stat("MMcf/d modeled peak ahead", f.get("peak_modeled_demand_mmcfd", "n/a"),
       "model output", "blue")}
 {stat(noun(f["days_of_record"], "day") + " on record", f["days_of_record"],

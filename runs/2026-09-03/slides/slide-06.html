@@ -1,0 +1,309 @@
+<!doctype html>
+<!-- SLIDE 06 — THE DATA BEAT. A chipped enamel gauge board bolted to the yard
+     fence, 65mm, camera 1.1m. ONE measured axis, declared in data-scale with
+     every mark inside the band enumerated. The graduations keep climbing past
+     the last numeral with NOTHING labelling the top, which is the deck's
+     thesis compressed into one detail. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Instrument Serif", serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.09; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  .kicker { position: absolute; left: 80px; top: 92px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #7FA8B8; }
+  h2 { position: absolute; left: 80px; top: 214px; width: 900px;
+       font-weight: 400; font-size: 74px; line-height: 1.0; color: #F4F8FF; }
+  /* WITH NO MEASURE these wrapped at the frame edge, which put their right
+     side on x 1080 with nothing between the last glyph and the crop. */
+  .lab { position: absolute; font-family: "JetBrains Mono", monospace;
+         font-weight: 500; font-size: 24px; letter-spacing: 0.08em;
+         line-height: 1.26; width: 336px;
+         font-variant-numeric: tabular-nums lining-nums; }
+  /* est runs to three lines at this measure, so it starts higher; the two
+     labels keep the vertical order of the marks they point at. */
+  .lab.est  { left: 648px; top: 1178px; width: 336px; color: #FFC72C; }
+  .lab.peak { left: 648px; top: 672px; color: #F4F8FF; }
+  .lab.wind { left: 648px; top: 902px; color: #F4F8FF; }
+  .lab.note { left: 150px; top: 560px; width: 800px; color: #8FA6B8; }
+  .guard { position: absolute; left: 616px; top: 916px; width: 380px;
+           font-family: "JetBrains Mono", monospace; font-size: 24px;
+           letter-spacing: 0.08em; color: #8FA6B8; }
+  .guard { position: absolute; left: 80px; top: 452px;
+           font-family: "JetBrains Mono", monospace; font-size: 24px;
+           letter-spacing: 0.08em; color: #8FA6B8; }
+  .cold { position: absolute; left: 648px; top: 752px; width: 356px;
+          font-family: "Archivo", sans-serif; font-variation-settings: "wdth" 88;
+          font-weight: 400; font-size: 30px; line-height: 1.28; color: #F4F8FF; }
+  /* THE FEED CROPS AND THE VIEWER CHROME SITS AT THE BOTTOM. Deck furniture
+     was riding 34px off the edge, inside the 80px safe zone on every slide. */
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: #7FA8B8; }
+  .counter i { color: #FFC72C; font-style: normal; }
+  .slug { position: absolute; left: 80px; bottom: 80px;
+          font-family: "JetBrains Mono", monospace; font-size: 11px;
+          letter-spacing: 0.14em; color: rgba(127,168,184,0.55); }
+</style>
+</head>
+<body data-contacts='[{"what":"the enamel gauge board standing proud of the fence","shadow":[[326,1260,26,10]],"ground":[[253,1260,26,10]]}]' data-scale='[{"what":"the gauge board megawatt scale","axis":"y","unit":"megawatts","from":[1240,0],"to":[728,32],"band":[404,415],"marks":[{"at":1240,"means":"0 MW, the board zero"},{"at":1160,"means":"5 MW"},{"at":1096,"means":"9 MW, six turbines at 1.5 MW nameplate (C11)"},{"at":1080,"means":"10 MW"},{"at":1000,"means":"15 MW"},{"at":920,"means":"20 MW"},{"at":840,"means":"25 MW"},{"at":760,"means":"30 MW"},{"at":741,"means":"just over 31 MW, the March peak (C06)"}]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+  <div class="kicker" data-reserve>THE ONLY NUMBER</div>
+  <h2 data-reserve>The only number on this load came from the co-op.</h2>
+  <div class="lab est" data-reserve>COULD BE UP TO AN ADDITIONAL 2 MW (C05)</div>
+  <div class="lab peak" data-reserve>MARCH PEAK, JUST OVER 31 MW (C06)</div>
+  <div class="lab wind" data-reserve>PILLAR MOUNTAIN, 6 x 1.5 MW (C11)</div>
+  <div class="lab note" data-reserve>THE TICKS KEEP GOING. NOTHING LABELS THE TOP.</div>
+  <div class="guard" data-reserve>DIFFERENT THINGS, NOT ONE SUM.</div>
+  <div class="cold" data-reserve>An estimate the cooperative made itself. The Navy supplied no figure.</div>
+  <div class="slug" data-reserve data-decorative>YARD FENCE / 65MM / 1.1M / NE</div>
+  <div class="counter" data-reserve>06 <i data-decorative>/</i> 09</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/aknight.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260909;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var falloff = AKNIGHT.falloff(-20, 900, 900);
+
+  var B = { x: 130, y: 620, w: 400, h: 640 };
+  var Y0 = 1240, PXMW = (1240 - 728) / 32;      /* exactly 16 px per MW */
+  var RAIL = B.x + 300;
+
+  function fenceMesh() {
+    cx.fillStyle = '#070C14'; cx.fillRect(0, 0, 1080, 1350);
+    AK.hachureField(cx, {
+      x: 0, y: 560, w: 1080, h: 790, seed: SEED + 2,
+      height: AK.hachureFromGrid([1.5, 1.5, 1.5, 1.5, 1.5, 0], 6, 1),
+      cell: 13, passes: 3, sunAz: 292, sunEl: 24,
+      color: '#3E5A6B', alpha: 0.5, minWidth: 0.6, maxWidth: 2.8
+    });
+    cx.save();
+    cx.strokeStyle = 'rgba(30,53,70,0.62)'; cx.lineWidth = 1.2;
+    for (var i = -20; i < 60; i++) {
+      cx.beginPath(); cx.moveTo(i * 30, 500); cx.lineTo(i * 30 + 200, 1350); cx.stroke();
+      cx.beginPath(); cx.moveTo(i * 30, 1350); cx.lineTo(i * 30 + 200, 500); cx.stroke();
+    }
+    cx.restore();
+  }
+
+  function board() {
+    cx.fillStyle = '#2A4658'; cx.fillRect(B.x, B.y, B.w, B.h);
+    /* THE SCALE STRIP IS KEPT CLEAN. Chipping and speckle run over the whole
+       board except the graduation lane, because a gauge whose ticks compete
+       with its own rust is a gauge nobody can read, and the pixel census says
+       so in numbers: the weakest mark measured no stronger than the ground. */
+    var CLEAN = [RAIL - 40, RAIL + 10];
+    var r = AK.rng(SEED + 6);
+    for (var c = 0; c < 90; c++) {
+      var cxp = B.x + r() * B.w, cyp = B.y + r() * B.h;
+      var cw = 3 + r() * 16, ch = 3 + r() * 12;
+      cx.fillStyle = r() > 0.45 ? '#B4471F' : '#6E2A12';
+      cx.globalAlpha = 0.32 + r() * 0.5;
+      if (cxp + cw < CLEAN[0] || cxp > CLEAN[1]) cx.fillRect(cxp, cyp, cw, ch);
+    }
+    cx.globalAlpha = 1;
+    cx.fillStyle = '#D8E8EE'; cx.fillRect(B.x, B.y, B.w, 3);
+    var gg = cx.createLinearGradient(0, B.y, 0, B.y + B.h);
+    gg.addColorStop(0, 'rgba(216,232,238,0.10)');
+    gg.addColorStop(1, 'rgba(4,7,14,0.42)');
+    cx.fillStyle = gg; cx.fillRect(B.x, B.y, B.w, B.h);
+    var SC = [[B.x + 22, B.y + 22], [B.x + B.w - 22, B.y + 22],
+              [B.x + 22, B.y + B.h / 2], [B.x + B.w - 22, B.y + B.h / 2],
+              [B.x + 22, B.y + B.h - 22], [B.x + B.w - 22, B.y + B.h - 22]];
+    for (var s = 0; s < SC.length; s++) {
+      cx.fillStyle = 'rgba(4,7,14,0.6)';
+      cx.beginPath(); cx.arc(SC[s][0] + 2, SC[s][1] + 2, 7, 0, 6.283185); cx.fill();
+      cx.fillStyle = '#8FA6B8';
+      cx.beginPath(); cx.arc(SC[s][0], SC[s][1], 6.5, 0, 6.283185); cx.fill();
+      cx.strokeStyle = '#0A121C'; cx.lineWidth = 1.6;
+      cx.beginPath(); cx.moveTo(SC[s][0] - 4, SC[s][1]);
+      cx.lineTo(SC[s][0] + 4, SC[s][1]); cx.stroke();
+      cx.fillStyle = 'rgba(110,42,18,0.5)';
+      cx.fillRect(SC[s][0] - 3, SC[s][1] + 6, 6, 16 + (s % 3) * 9);
+    }
+    var r2 = AK.rng(SEED + 8);
+    for (var d = 0; d < 130; d++) {
+      var dx2 = B.x + r2() * B.w, dy2 = B.y + B.h * 0.45 + r2() * B.h * 0.55;
+      var dw2 = 1 + r2() * 2.2, dh2 = 1 + r2() * 1.6;
+      cx.globalAlpha = 0.22 + r2() * 0.5;
+      cx.fillStyle = '#D8E8EE';
+      if (dx2 + dw2 < CLEAN[0] || dx2 > CLEAN[1]) cx.fillRect(dx2, dy2, dw2, dh2);
+    }
+    cx.globalAlpha = 1;
+  }
+
+  function scale() {
+    /* minor graduations are deliberately far weaker than any declared mark,
+       so nothing undeclared reads as a mark inside the band */
+    for (var mw = 0; mw <= 38; mw++) {
+      var y = Y0 - mw * PXMW;
+      if (y < B.y + 6) break;
+      var major = (mw % 5 === 0);
+      /* ABOVE THE LAST NUMERAL the graduations are the slide's whole thesis,
+         so they are the strongest tick cluster on the board rather than the
+         faintest. Drawn at 0.8px and 0.30 alpha they were 0.3px at feed width
+         and the printed note about them was an assertion the picture did not
+         support. */
+      var unlabelled = mw > 30;
+      cx.strokeStyle = unlabelled ? '#B9CBD8' : '#8FA6B8';
+      cx.lineWidth = unlabelled ? 2.2 : (major ? 2.2 : 1.4);
+      cx.globalAlpha = unlabelled ? 1 : (major ? 1 : 0.55);
+      cx.beginPath();
+      cx.moveTo(RAIL - (unlabelled ? 26 : (major ? 26 : 12)), y); cx.lineTo(RAIL, y); cx.stroke();
+      if (major && mw <= 30) {
+        cx.globalAlpha = 1;
+        cx.font = '500 24px "JetBrains Mono", monospace';
+        cx.fillStyle = '#E4EEF4'; cx.textAlign = 'right';
+        cx.fillText(String(mw), RAIL - 36, y + 8);
+      }
+    }
+    cx.globalAlpha = 1;
+    cx.strokeStyle = '#B9CBD8'; cx.lineWidth = 2.2;
+    cx.beginPath(); cx.moveTo(RAIL, Y0); cx.lineTo(RAIL, B.y + 6); cx.stroke();
+
+    var yPeak = 741, yWind = 1096, yTop = 709;
+    cx.strokeStyle = '#F4F8FF'; cx.lineWidth = 4.5;
+    cx.beginPath(); cx.moveTo(RAIL - 96, yPeak); cx.lineTo(RAIL + 150, yPeak); cx.stroke();
+    cx.strokeStyle = '#04070E'; cx.lineWidth = 7;
+    cx.beginPath(); cx.moveTo(RAIL - 60, yWind); cx.lineTo(RAIL + 150, yWind); cx.stroke();
+    cx.strokeStyle = '#B9CBD8'; cx.lineWidth = 4;
+    cx.beginPath(); cx.moveTo(RAIL - 60, yWind); cx.lineTo(RAIL + 150, yWind); cx.stroke();
+    /* THE ESTIMATE IS AN EXTENT, NOT A TOTAL. Anchored to the peak rail and
+       climbing 32px from it, the gold bracket drew 31.2 plus 2 equals 33.2 and
+       stacked an estimate on a measurement, which is the exact sum the printed
+       guard line says the slide never makes. It is re-sited as a 2 MW extent
+       measured off the BOARD ZERO, with its lower end fading to nothing so the
+       origin reads as undefined: as much as two more, from nowhere in
+       particular. It never touches the 31. */
+    var yEstLo = Y0, yEstHi = Y0 - 2 * PXMW;
+    cx.save();
+    var eg = cx.createLinearGradient(0, yEstLo + 14, 0, yEstHi);
+    eg.addColorStop(0, 'rgba(255,199,44,0)');
+    eg.addColorStop(1, 'rgba(255,199,44,0.95)');
+    cx.strokeStyle = eg; cx.lineWidth = 3;
+    cx.setLineDash([18, 5, 6, 5]);
+    cx.beginPath();
+    cx.moveTo(RAIL + 150, yEstLo + 14); cx.lineTo(RAIL + 150, yEstHi); cx.stroke();
+    cx.setLineDash([]);
+    cx.strokeStyle = '#FFC72C';
+    cx.beginPath(); cx.moveTo(RAIL + 118, yEstHi); cx.lineTo(RAIL + 186, yEstHi); cx.stroke();
+    cx.lineCap = 'round';
+    cx.beginPath();
+    cx.moveTo(RAIL + 139, yEstHi + 12); cx.lineTo(RAIL + 150, yEstHi - 2);
+    cx.lineTo(RAIL + 161, yEstHi + 12); cx.stroke();
+    cx.restore();
+  }
+
+  (async function () {
+    await document.fonts.ready;
+    var reserve = AKNIGHT.reserve('[data-reserve]');
+    fenceMesh();
+
+    /* THE UNLIT BAND STANDS EMPTY. With a label on it a designed absence
+       reads as a plate behind type, which is the one thing the deck bans. */
+    cx.fillStyle = '#04070E'; cx.fillRect(618, 992, 402, 118);
+    cx.strokeStyle = '#3E5A6B'; cx.lineWidth = 1.25;
+    cx.beginPath(); cx.moveTo(618, 1118); cx.lineTo(618, 1134); cx.stroke();
+    cx.beginPath(); cx.moveTo(1020, 1118); cx.lineTo(1020, 1134); cx.stroke();
+    cx.beginPath(); cx.moveTo(618, 1126); cx.lineTo(1020, 1126); cx.stroke();
+
+    /* THE PAIR GOES BEHIND THE BOARD. Drawn after it, the pool's upper edge
+       ran across the enamel and the axis census read that edge as a mark at
+       1.9 megawatts. The board stands in front of the light at its foot, so
+       the board is what occludes the pool, not the other way round. */
+    AKNIGHT.contact(cx, { x: B.x + B.w / 2, y: B.y + B.h, w: 90,
+                          poolRx: 215, poolRy: 58, color: '#0A1320',
+                          poolColor: 'rgba(150,174,192,0.52)',
+                          poolMid: 'rgba(134,160,178,0.38)',
+                          poolOut: 'rgba(110,140,160,0.16)' });
+
+    board();
+
+    var eng = AKENGRAVE.create({ seed: SEED, light: { azDeg: 292, elDeg: 24 } });
+    eng.reserve(reserve);
+    cx.save();
+    /* the engraved lay runs over the enamel but NOT over the graduation lane,
+       for the same reason the chipping does not: the census measured the
+       weakest tick as no stronger than the lay it was lying in */
+    cx.beginPath();
+    cx.rect(B.x, B.y, (RAIL - 40) - B.x, B.h);
+    cx.rect(RAIL + 10, B.y, B.x + B.w - (RAIL + 10), B.h);
+    cx.clip();
+    eng.surface(cx, {
+      region: [B.x, B.y, B.w, B.h],
+      /* A NEAR FLAT FIELD WHOSE ONLY STRUCTURE IS NOISE gives a lay that
+         follows noise contours, and the enamel came out as marbled endpaper or
+         a river delta. Neither is a gauge board, and on a deck that bans paper
+         from its material world it is an active misread. Enamel is brushed, so
+         the form is a plain fall down the board and the crosshatch is off. */
+      form: function (x, y) { return (y - B.y) * 0.06; },
+      tone: function (x, y) { return 0.42 + (y - B.y) / B.h * 0.4; },
+      budget: { main: 5.4, cross: 0, dots: true },
+      inkLo: '#16263a', inkHi: '#D8E8EE', wMax: 2.2, step: 7
+    });
+    cx.restore();
+
+    scale();
+    /* A CONTACT IS THE FOOT, NOT THE SILHOUETTE. w was the object's full
+       width here, which spreads the tight cast to half that again and
+       leaves no lit ground inside the window a reading is taken in. The
+       pool stays wide; the cast narrows onto the object's own base. */
+
+    AKNIGHT.chips(cx, {
+      seed: SEED + 3, count: 420, region: [0, 1240, 1080, 110], reserve: reserve,
+      density: function (x, y) { return falloff(x, y) * 1.1; },
+      color: '#D8E8EE', colorDim: '#7FA8B8', sizeMin: 1.1, sizeMax: 5.0
+    });
+    AKNIGHT.conductor(cx, {
+      x0: -40, y0: 470, x1: 1120, y1: 390, sag: 44,
+      color: '#3E5A6B', casing: '#04070E', width: 2.0, seed: SEED + 7
+    });
+    AKNIGHT.rain(cx, {
+      count: 3100, seed: SEED + 5, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.15,
+      inCone: function (x, y) { return x < 680 && falloff(x, y) > 0.12; }
+    });
+    AKNIGHT.rain(cx, {
+      count: 200, seed: SEED + 15, bearingDeg: 17, reserve: reserve,
+      color: '#D8E8EE', alpha: 0.15,
+      inCone: function (x, y) { return x >= 680 && y < 940; }
+    });
+
+    /* subtract the art inside the type reserve, so the slide own geometry
+       cannot run through the letterforms */
+    /* THE CALL SITES WERE OVERRIDING THE MODULE. veil()'s defaults were softened
+       and its feather made proportional after the plates were measured, and every
+       slide was still passing the old alpha 0.74 with a fixed 26px feather, so
+       none of that reached the picture. Five critics read flat plates behind the
+       type on six slides. The module owns these numbers now. */
+    AKNIGHT.veil(cx, reserve, { avoid: [[B.x, B.y, B.w, B.h]] });
+
+    AKPOST.grade(cx, {
+      exposure: -0.04, saturation: 0.96, contrast: 1.06, dither: true,
+      bloom: { threshold: 0.76, strength: 0.22, radius: 8 }
+    });
+    document.getElementById('grain').style.backgroundImage =
+      'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+    window.__akMotifs = [{ what: 'the phantom estimate bracket, open topped',
+                           rect: [RAIL + 40, 700, 160, 46] }];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

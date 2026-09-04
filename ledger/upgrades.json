@@ -1871,6 +1871,48 @@
    "verification": "BOTH HALVES MEASURED ON THIS MACHINE, same flags, same target file. /opt/pw-browsers/chromium-1194/chrome-linux/chrome (141.0.7390.37) fetches assets/geo/alaska-state.geo.json over file:// and returns ok; /opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell, the SAME Chromium version, returns 'fetch blocked: Failed to fetch'. tests/chromium_fileread_verify.py asserts the control, the defect and the wiring (launch_chromium returns a browser that passes the probe) and exits 0. End to end after the change: examples/demo-deck renders 4/4 OK with 0 errors and qa.py is byte-for-byte the same verdict as before, WARN 0 fails / 11 warns, and assembles to a 7.31 MB vector PDF. Cost is one extra page load per render invocation, about 200 ms, once. If NOTHING passes the probe the first launchable browser is used anyway with a loud stderr warning, so this can never turn a renderable run into a dead one.",
    "rollback": "git revert the upgrade(2026-09-02) commit. launch_chromium returns to accepting the first candidate that launches.",
    "commit": "the upgrade(2026-09-02) commit on claude/carousel-2026-09-02 (PR #341)"
+  },
+  {
+   "run_date": "2026-09-03",
+   "kind": "fix",
+   "area": "engine",
+   "change": "qa.py's text-collision gate no longer demotes an overprint to a WARN because a party carries data-decorative; only data-overlap-ok, the attribute that means deliberate layering, still demotes. The message now names which of the pair is decorative and says what to mark instead.",
+   "trigger": "Run No.49 lost two scoring rounds to overprints this gate had already looked at and passed: slide 06's gold estimate label under the decorative shot log at 39% (round 2), then slide 05's shot log printed on the page counter's own baseline (round 3). Both times machine QA reported fails=0 and both times the scorer capped the score, because config/scoring_rubric.yaml's hard fail for overlapping text grants no decorative exemption. Two instruments disagreeing about the same pixels is a blind spot and not a tolerance, and the one that stops a ship was right twice. data-decorative exempts type from the 24px floor, the contrast check and the unsized-type check, which is what it is for; it has never meant that type may be printed through other type.",
+   "files": [
+    ".claude/skills/carousel-engine/qa.py",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "DEFECT RECONSTRUCTION: slide 05 rebuilt with its decorative shot log slid under the page counter (.slug left:80px -> 680px), rendered fresh. OLD code: 2 x 'warn: text collision (45% overprint) ... [decorative involved]', verdict WARN, exit 0. NEW code: 2 x FAIL, verdict FAIL, exit 1, and one of the two is a decorative-on-decorative pair the old branch also passed. Same slide with data-overlap-ok added to the slug: back to 2 WARNs, fails=0, so the deliberate-layering escape hatch is intact. REGRESSION: render+qa on this run's nine slides = 9/9, 0 errors, 0 fails; render+qa on examples/demo-deck = 4/4, 0 errors, 0 fails, warns unchanged. Strictly a tightening: no WARN became a PASS.",
+   "rollback": "revert the upgrade(2026-09-03) commit; the gate returns to demoting decorative collisions to WARN",
+   "commit": ""
+  },
+  {
+   "run_date": "2026-09-03",
+   "kind": "fix",
+   "area": "assets",
+   "change": "akengrave measures every lay pass before it draws it: _layCheck probes the mean |cos| between the walk direction and the seeding raster over a 12x12 grid of the region and console.errors above 0.90 (qa.py records that as a WARN), and a new optional seedDeg turns the seeding raster alone so a one-axis form can be laid without touching its modelling.",
+   "trigger": "Run No.49 produced the same artwork defect four times from one cause (slides 01, 06, 08, 09: a tangled ribbon on a fluted pole, a topographic map on a road, marbled endpaper on enamel) and diagnosed it four separate times. Artwork craft is also the standing repeat offender in scripts/trend_check.py, weakest in 8 of the last 10 runs at a mean of 6.7. Simulating the module's own _layPass/_walk off the file found the mechanism the run's prose had wrong: with a form that falls along x only, every one of the ~170 seeds sits on the SAME iso-line and the pass draws one swelled ribbon 170 times. angOff cannot rescue it, since the raster is angOff+90 and the walk is isoAngle+angOff and both rotate together, which is why slide 08's crossline collapsed with its mainline.",
+   "files": [
+    "assets/js/akengrave.js",
+    "knowledge/TECHNIQUE_LIBRARY.md",
+    "knowledge/FIELD_NOTES.md"
+   ],
+   "verification": "PIXEL IDENTITY PROVED A/B ON A FROZEN SNAPSHOT. The run's nine slides were copied out of out/2026-09-03/slides (which the showrunner was still editing during this phase, so two renders of identical code disagreed until the inputs were frozen), then rendered twice: once with the changed module and once with `git show HEAD:assets/js/akengrave.js`, with the snapshot's md5s checked unchanged across both. 18 of 18 PNGs (9 slides + 9 canvas layers) byte-identical, so the probe and the seedDeg default change nothing already shipped. An earlier render against the run's own pre-change output also matched 18 of 18. THRESHOLD CALIBRATED ON MEASUREMENTS: 1.00 for a one-axis fall, 0.66 for a form falling in both axes, 0.00 for a fall along the other axis or a flat region, and 0.00/0.11/0.11/0.11/0.19/0.21/0.51 across the seven healthy passes of this deck; warn set at 0.90. LIVE CATCH: on the frozen snapshot qa.py reports 0 fails under both the old and the new code and warns 3 -> 6, the three new ones naming slide 05's main lay and slide 08's main and cross lays at alignment 1.00, which are two of the four regions the pixel critics diagnosed by eye. examples/demo-deck re-rendered 4/4, 0 errors, 0 fails (it does not load akengrave).",
+   "rollback": "revert the upgrade(2026-09-03) commit; drawing behaviour is unaffected either way, only the diagnostic and the seedDeg option go",
+   "commit": ""
+  },
+  {
+   "run_date": "2026-09-03",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "gate_status.py's reconciled row now also requires the BUILD RECONCILIATION section to be SPECIFIC: it must name a slide, or lay out a table with at least one data row, or say outright that nothing diverged. The 40-char presence floor stays.",
+   "trigger": "Run No.49's first scoring round was hard-failed on a BUILD RECONCILIATION section that held nothing but the template's own two-line instruction to write one, while this row read PASS: 3 lines and 228 chars cleared a 40-char floor comfortably. A gate that counts bytes of a placeholder cannot tell prose about THIS build from prose about the act of writing one, and it cost a whole scoring cycle.",
+   "files": [
+    "scripts/gate_status.py"
+   ],
+   "verification": "--self-test: 25 checks, 0 failures, with two NEW reconstructions added. The No.49 defect (the exact boilerplate, alone under the heading) now FAILS at the ship gate where it used to PASS; the same boilerplate with one real slide note under it PASSES. Every older reconstruction still behaves: no section = WARN/FAIL, empty section = FAIL, a table section = PASS counting its rows, a prose 'nothing diverged' = PASS, a later empty section beating an earlier full one = FAIL. The nodiverge pattern is deliberately not a bare 'the build is', because the boilerplate itself opens 'The build is the record'. --run out/2026-09-03 on this run's real storyboard: [PASS] reconciled, 117 line(s), 8692 chars, 0 FAIL rows, so the tightening does not retroactively break the run that motivated it.",
+   "rollback": "revert the upgrade(2026-09-03) commit; the row returns to a presence-only test",
+   "commit": ""
   }
  ],
  "scan_log": [
@@ -2154,6 +2196,13 @@
    "searches": 6,
    "found": "6 searches, 2 substantive reads, 2 local experiments run in the engine's own browser rather than claims taken on trust. (1) THE FINDING, and it is a live risk in this repo rather than a curiosity: Playwright 1.57 stopped shipping Chromium and now manages Chrome for Testing, headless as chrome-headless-shell. This container runs playwright 1.62 against browsers at revision 1194 and launch_chromium finds them with a chromium-* glob; when that glob stops matching, the 2026-08-27 ordering fix has nothing to order and the fallback hands back the shell. Measured here, same flags and same target: the full browser fetches a file:// asset, headless_shell 141.0.7390.37 returns 'Failed to fetch'. Every geodata slide would render mapless with all gates green. APPLIED. (2) Range.getClientRects is confirmed by MDN and bennadel.com/blog/4310 as the standard way to read rendered line boxes, with the caveat that it is meaningless on mixed content; this corroborated the wrap-drift check's mechanism and is why that check skips any block with element children other than <br>. (3) A SUBTRACTION: --font-render-hinting=none and --disable-lcd-text, surfaced as the standard determinism flags for reproducible headless screenshots, are already in CHROMIUM_ARGS. Nothing to do. (4) NOTHING USABLE: CSS scroll-state container queries (Chrome 133/144) can query an 'overflowing' state from CSS with no JS, which sounds adjacent to the wrap-drift problem and is not, because a slide is a fixed 1080x1350 frame with no scroller.",
    "outcome": "applied (the file:// capability probe, entry 3 of this run's three). Parked: a seam-continuity check measured off the shipped PNGs, in knowledge/FIELD_NOTES.md, because the measurement says the shipped deck does not pass it."
+  },
+  {
+   "run_date": "2026-09-03",
+   "focus": "(c) generative/procedural art technique portable to offline Canvas/SVG. The stalest legal slot, last scanned 2026-08-26 (8 days), and distinct from the last three logged foci: 2026-09-02 headless Chromium/Playwright, 2026-09-01 LinkedIn platform, 2026-08-31 typography and layout. Relevant as well as stale: artwork craft is the weakest criterion in 8 of the last 10 scored runs at a mean of 6.7, and this run's largest artwork defect was a hatching bench laying one stroke a hundred and seventy times.",
+   "searches": 8,
+   "found": "8 searches, 3 fetch attempts, 2 substantive reads and one local simulation of the engine's own code. Two sources land on the same joint of akengrave from opposite directions. (1) Philbrick and Kaplan, A Primitive for Manual Hatching, ACM TOG 2022 (https://cs.uwaterloo.ca/~csk/publications/Papers/philbrick_kaplan_2022.pdf): a hatching shape is a mask plus THREE FIELDS, width, spacing and direction, plus barrier curves marks may not cross, with marks placed by streamline advection. akengrave has the mask (reserve), the width field (per stroke, from the light) and the direction field (the form's gradient); its spacing is one scalar gap on a fixed raster and it has no barriers, which is exactly where this run's collapse lives. (2) Jobard and Lefer 1997, Creating Evenly-Spaced Streamlines of Arbitrary Density, with an MIT JS implementation at https://github.com/anvaka/streamlines (dSep, dTest, RK4): seed each new line at dSep from the accepted set, integrate, stop within dTest of a neighbour, query through a uniform grid sized dSep. Under that rule this run's degenerate case is impossible by construction, because the second seed on a shared iso-line is rejected before it draws. Both are a redesign of the drawing core rather than an addition to it: every deck that used the bench would re-render differently and the change could not be verified by the pixel-identity check that made this run's engine change safe. A third strand, the 2020 image-based portrait engraving paper, was already logged in FIELD_NOTES on 2026-07-31 and was not re-read.",
+   "outcome": "parked (knowledge/FIELD_NOTES.md, 2026-09-03, with both source URLs and the conditions under which it becomes applyable). No frontier improvement was applied: the 0-3 budget filled with three reactive fixes, which outrank one by rule, and the parked item needs its own session with a before/after contact sheet plus a place:'even' option so the old path stays reachable."
   }
  ]
 }
