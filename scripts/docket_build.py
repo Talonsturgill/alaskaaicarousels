@@ -661,11 +661,6 @@ def generation_marks(T):
 
 
 def map_svg(ordered_items, today=None, w=1000, h=620):
-    # Numbered AFTER filtering, so the pins read 1..n with no holes. Numbering
-    # first and filtering second left the map counting 1, 2, 3, 5, 8 once
-    # statewide items stopped being pinned, and nothing anywhere on the page is
-    # item 4. These numbers are labels for the map's own legend, not positions
-    # in the docket, so a gap points at nothing.
     located = [(n, it) for n, it
                in enumerate((i for i in ordered_items if i.get("location")), 1)]
     coast = alaska_paths()

@@ -4759,11 +4759,16 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
       xs.push(+marks[i].getAttribute('data-x'));
       ys.push(+marks[i].getAttribute('data-y'));
     }
-    /* The bbox is of ANCHORS, but a badge sits up to LEAD_MIN from its anchor
-       and is drawn at mark scale, so the ink reaches about 27 plus a 16 radius
-       beyond it, all scaled. Padding by less fits the anchors and leaves a
-       badge hanging off the edge. */
-    var pad = 45 * mscale;
+    /* A badge sits up to LEAD_MIN from its anchor and is drawn at MARK scale,
+       so its ink reaches about 27 plus a 16 radius beyond the anchor and stays
+       that size at every zoom, because marks are repositioned and never
+       resized. That allowance therefore CANNOT be carried as padding on these
+       bounds: the bounds get multiplied by k, so at k = 0.4 the allowance
+       shrinks to 40 percent of the ink it is standing in for, and an anchor
+       that clears the sticky nav by arithmetic still puts its badge behind it.
+       It is carried in the SCALE SOLVE below instead, in screen units, where
+       it does not shrink. Bounds here are the anchors themselves. */
+    var INK = 45 * mscale, pad = 45 * mscale;
     var x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
     if (xs.length) {
       x0 = Math.min.apply(null, xs) - pad; x1 = Math.max.apply(null, xs) + pad;
@@ -4825,11 +4830,54 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
        almost every viewport. Getting it back means shrinking past the point of
        filling the frame, and a map with a little empty background beside it is
        far better than one with the Aleutians cut off. */
-    k = Math.min(8, Math.max(0.28, Math.min(v.w / (x1 - x0), uh / (y1 - y0))));
+    /* The bounds above already carry one badge allowance, but in UNZOOMED
+       units, so at k below 1 it is worth only k of the ink it stands for. The
+       shortfall is the same allowance again in SCREEN units, taken off the
+       vertical only (the top edge is the one with a sticky nav behind it) and
+       capped at 8 percent of the usable height. Uncapped it is a large share
+       of a 219px landscape frame, and taking all of it shrank Alaska from 32
+       by 65 percent of its frame to 23 by 48, which trades a hidden pin for a
+       map nobody can read. The measured shortfall was under two units. */
+    k = Math.min(8, Math.max(0.28,
+        Math.min(v.w / (x1 - x0),
+                 Math.max(40, uh - Math.min(INK, uh * 0.08)) / (y1 - y0))));
     minK = Math.min(1, k);
     tx = (v.x0 + v.x1) / 2 - ((x0 + x1) / 2) * k;
     ty = (uy0 + v.y1) / 2 - ((y0 + y1) / 2) * k;
     clampT();
+    /* THE PAD SHRINKS WITH THE ZOOM AND THE INK DOES NOT (2026-09-04).
+       The bounds above are padded by 45 * mscale for the badge a mark can throw
+       beyond its anchor, in UNZOOMED units, and then multiplied by k. But a
+       mark is repositioned rather than resized, so its ink stays 45 * mscale
+       across at any k. Zoomed out to k = 0.4 the allowance is 40 percent of
+       what the mark actually occupies, so an anchor that clears the nav band by
+       arithmetic can still put its badge inside it. That is how the
+       northernmost pin came to sit six tenths of a pixel behind a 70px nav on
+       one landscape phone, and how correct data (four more open comment
+       windows, each earning a taller mark) tipped it over.
+       So measure what the fit actually produced and push it down if it is
+       short. One pass is enough: the nudge moves ty and nothing it depends on. */
+    var MARK_UP = 45 * mscale, worst = 1e9;
+    for (var q = 0; q < marks.length; q++) {
+      if (!/pinmk/.test(marks[q].getAttribute('class') || '')) continue;
+      worst = Math.min(worst, (+marks[q].getAttribute('data-y')) * k + ty - MARK_UP);
+    }
+    if (worst < 1e9) {
+      var want = v.y0 + inset, lowest = -1e9;
+      for (var q2 = 0; q2 < marks.length; q2++) {
+        if (!/pinmk/.test(marks[q2].getAttribute('class') || '')) continue;
+        lowest = Math.max(lowest, (+marks[q2].getAttribute('data-y')) * k + ty + MARK_UP);
+      }
+      /* Only take the slack that exists. Pushing further than the bottom
+         allows trades a pin behind the nav for pins off the foot of the map,
+         which is what the first attempt at this did.
+         AND DO NOT RE-CLAMP. clampT() re-centres ty whenever the drawing is
+         shorter than the usable band, which is exactly this case, so calling
+         it here threw the correction away and the pin stayed behind the nav
+         through three rounds of tuning the scale. */
+      var room = Math.max(0, v.y1 - lowest);
+      if (worst < want) { ty += Math.min(want - worst, room); }
+    }
     home = { k: k, tx: tx, ty: ty };
   }
 
@@ -7205,6 +7253,31 @@ def decision_qa(it, today):
     return html, ld
 
 
+def window_open_date(it):
+    """The date the comment record actually OPENED, or None when the ledger
+    never named one.
+
+    A docket item's `first_seen` is the day this tracker started watching a
+    decision, which is not the day anybody could comment on it. Publishing it
+    as an Event's startDate told structured-data consumers that DeepGreen's
+    comment period began on August 21st, when FERC did not open the record
+    until its September 4th notice: fourteen days of window that never existed.
+
+    The opening is a milestone in the item's own key_dates, and the honest one
+    is the LATEST milestone at or before the deadline that reads as an opening,
+    because an item accumulates milestones and only one of them starts a clock.
+    Returns None rather than guessing, and the caller falls back to first_seen,
+    which is at least a date the record vouches for.
+    """
+    OPENS = re.compile(r"\b(accept\w*|open\w*|publish\w*|notice|issued?)\b", re.I)
+    ends = [d["date"] for d in it.get("key_dates", []) if d["kind"] in ("deadline", "vote")]
+    cut = min(ends) if ends else None
+    cands = [d["date"] for d in it.get("key_dates", [])
+             if d["kind"] == "milestone" and OPENS.search(d.get("label", ""))
+             and (cut is None or d["date"] <= cut)]
+    return max(cands) if cands else None
+
+
 def decision_page(today, site_url, it, runs, beats=()):
     """One canonical page per tracked decision.
 
@@ -7332,7 +7405,15 @@ JSON</a>, item id <code>{esc(it["id"])}</code>.</p>
             "@type": "Event",
             "name": f"Public comment period, {it['title']}",
             "description": it["access_note"],
-            "startDate": it["first_seen"],
+            # THE WINDOW OPENED WHEN IT OPENED, not when we noticed (2026-09-04).
+            # This was first_seen, which is the date this tracker started
+            # watching the decision, and for DeepGreen that published a comment
+            # period starting August 21st when FERC did not open the record
+            # until its September 4th notice, telling every structured-data
+            # consumer the window ran fourteen days longer than it did. The
+            # milestone that opens the record is the honest start; first_seen
+            # only stands in when the record never named one.
+            "startDate": window_open_date(it) or it["first_seen"],
             "endDate": r["deadline"]["date"],
             "eventStatus": "https://schema.org/EventScheduled",
             "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",

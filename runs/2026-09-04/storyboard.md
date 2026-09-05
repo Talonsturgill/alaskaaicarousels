@@ -390,6 +390,7 @@ cheaper than a pixel critic round.
 | C16 Houston City Council unanimous August 13th, 2026 | 07 |
 | C17 about 70 residents attended | 07 |
 | C18 Brasel, zero transparency | 07 |
+| C19 a survey township is 36 sections of one square mile (BLM) | 08 |
 | NOT USED | none |
 
 Every claim is used. No claim is marked unused, so `plan_drift_check` has
@@ -819,7 +820,7 @@ and takes the frame. Pays the loop from 03, which of the two lasts.
 **2. Copy, final.**
 - kicker, `THE HALF THAT LASTS` (19)
 - headline, `Three quarters of it` / `changes what it is for.` (43, 8 words)
-- body (43 words), `About 15,100 acres now designated Forestry, Habitat and Water Resources would be reclassified as Settlement. That is 76 percent of the parcel. A tenant can arrive or never arrive. A classification stays until somebody changes it back.` (C12, C01)
+- body (30 words), `About 15,100 acres now designated Forestry, Habitat and Water Resources would be reclassified as Settlement. A tenant can arrive or never arrive. A classification stays until somebody changes it back.` (C12, C01)
 - attribution, mono 19px, `15,100 ACRES PER COOK INLETKEEPER AND THE NORTHERN ALASKA ENVIRONMENTAL CENTER (C12)`
 - ratio label, mono 24px, `RULED AREA = 75.7% OF FRAME = 15,100 OF 19,950 ACRES`
 - counter, `05 / 09`
@@ -1499,6 +1500,61 @@ sections of one square mile, fetched and quoted. Slide 08 prints the 36 and the
 deck derives 72 sections and 31.2 sections from it, and an undeclared
 arithmetic base is exactly what the aggregate gate exists to refuse.
 
+**ROUND THREE, after the scorer (8.48) and the flow critic (7.5).** The deck
+had already cleared the threshold, so this round was optional and was spent
+only on findings both reviewers reached independently, all of them value or
+density work rather than new drawing.
+
+**Slide 09, and it was the highest leverage change available.** The closing
+frame's declared job is to return the cover's exact frame with the colour
+drained and one gold mark on it. It was not firing. The tree line WAS being
+drawn, at `#1B322B`, and then extinguished into the sky by `AKPARCEL.band` at
+depth 0.92, so the two frames read as the same COUNTRY and never as the same
+FRAME. It is now the cover's own silhouette, same spire and club geometry,
+same dimensions, same lit rim, at a value that survives its own extinction.
+What is drained is the amber and the chroma, never the form.
+
+**Slide 05.** The hero thesis is a legal category laid over real country, and
+on the turn slide the ground under the ruled field was effectively black, so
+the grid floated on void and the picture the whole deck is built to make was
+not made. The far extinction target moved off `#0B1524`, and because lifting
+the ground also lifted the ink around the body copy, the section grid is now
+knocked out of every reserved type line box at a 22 px margin. One machine warn
+survives, art touching glyphs at 4 percent of the ring. Inspected at full size:
+every grid line is interrupted around each line box, the residual hairlines
+cross only the interline gaps, and no glyph is crossed. Carried knowingly,
+because the trade bought the deck its own thesis on its loudest frame.
+
+**Slide 06.** WATER RESOURCES was a few pale hairlines and read as blank at
+432 px, so the beat landed as two frames with content and two empty and the
+argument lost its contrast. Its water lining is raised to FORESTRY's ink
+coverage, which is the same repair round two made to HABITAT and did not carry
+across.
+
+**Slide 03 was the predicted bail point**, and not for its own sake: it was the
+third consecutive frame with one skeleton, mono kicker top left, Bricolage
+headline, Manrope body on the same left rail. Its layout is mirrored, argument
+right and annotation left. A reader who clears 03 finishes, so one junction
+decides this deck's completion.
+
+**Slide 08.** The lit cells were the highest luminance mass in the deck and the
+frame read as pasted from another one. The stipple ramp tops out at `#6F7F85`
+rather than `#8A9A94` and the alpha ceiling dropped, which keeps the doubled
+density read inside the deck's value range. The scatter builder, the count
+assertion and the three dispersion conditions were NOT touched; that logic is
+the expensive part and it is what took the slide off 2.5. The Polaris went to
+house size, because gold dropping out of the deck's most deviant frame is
+exactly the frame that most needs a family mark.
+
+**Slide 07.** Four rail ticks fall inside 188 px and a mono readout is 135 px
+wide, so four plates cannot each sit over their own tick, and evenly spaced
+plates above unevenly spaced marks is a misregistration on the one frame that
+asks to be read as a measurement. Each plate now names its tick with a declared
+leader in `window.__akLeaders`, which qa.py measures at both ends.
+
+**Bookkeeping.** C19 is in the CLAIMS INDEX and in slide 08's claim_ids, so
+plan_drift sees 19 rather than 18.
+
 **Deck wide.** Nineteen labels planned at 19 to 22 px were raised to 24 px or
 marked decorative, after the tiny text gate. Four contact declarations were
 re measured off the render with `contact_probe.py` rather than computed, and
@@ -1510,22 +1566,22 @@ what the probe's own diagnosis asked for.
 ```
 GATE STATUS -- generated by scripts/gate_status.py from the artifacts in out/2026-09-04. Do not hand-write these lines.
 [PASS] render         9/9 slides OK, 0 page errors, 0 overflow warnings
-[PASS] qa.py          PASS, 0 fails, 0 warns
+[WARN] qa.py          WARN, 0 fails, 1 warns
 [PASS] dossier_check  PASS, 9 dossiers, 0 fails, 0 warns
-[PASS] reconciled     BUILD RECONCILIATION present, 159 line(s), 11247 chars
+[PASS] reconciled     BUILD RECONCILIATION present, 206 line(s), 14561 chars
 [PASS] caption_check  PASS, 888 chars, hook 124, 3 hashtags
 [PASS] copy_sync      copy_sync_check: PASS -- 58 authored slide strings all present in the render
 [PASS] aggregate      aggregate_check: PASS -- 11 aggregate assertion(s) detected, 11 declared -> out/2026-09-04/aggregate_report.json
-[PASS] plan_drift     plan_drift_check: PASS -- 18 claims indexed, 0 declared counts checked, 0 drift(s)
-[PASS] bespoke        bespoke_check: PASS -- 9 slides, median pairwise art similarity 0.159 (fail at 0.60), max pair 0.386, drawn share 79% (123 drawn vs 32 block
+[PASS] plan_drift     plan_drift_check: PASS -- 19 claims indexed, 0 declared counts checked, 0 drift(s)
+[PASS] bespoke        bespoke_check: PASS -- 9 slides, median pairwise art similarity 0.136 (fail at 0.60), max pair 0.392, drawn share 80% (124 drawn vs 32 block
 [PASS] scanner_sync   the live scan page still matches the routine contract
 [PASS] docket_dates   docket dates clean at 2026-09-04: 301 assertions over 6 fixtures and 24 ledger items
-[PASS] gas_watch      31 day(s) on record, 31 verified, no gaps, latest 2026-09-04, EIA through 202605 over 131 months, model misses by 6.82%
-[FAIL] site_fresh     FAIL: docs/ is not what site_build.py builds from the committed data at --date 2026-09-04.
-[PASS] assemble       9 slides, pdf vector 25.49 MB, 9 thumbs, sources verified
-[n/a ] score          score_report.json missing
-[FAIL] ship_gate      score_report.json missing. The run cannot ship or stop until it has been scored. ITERATE, do not stop. weakest: ?
+[PASS] gas_watch      32 day(s) on record, 31 verified, no gaps, latest 2026-09-04, EIA through 202605 over 131 months, model misses by 6.82%
+[PASS] site_fresh     OK: docs/ is exactly a fresh build at --date 2026-09-04 (169 generated files)
+[PASS] assemble       9 slides, pdf vector 25.46 MB, 9 thumbs, sources verified
+[PASS] score          8.48 / 10 vs threshold 8.3, scorer says passes=True
+[PASS] ship_gate      scored 8.48 against a threshold of 8.30
 [PASS] artifacts      every named artifact present, JSON parses, 9 slides valid
->> 2 FAIL row(s). Fix the artifact, not the sentence.
+>> 0 FAIL row(s). Paste this block verbatim into the run record.
 ```
 
