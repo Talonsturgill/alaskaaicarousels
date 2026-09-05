@@ -19,7 +19,7 @@
     "scoring": "done: out/2026-09-04/score_report.json, 8.76 against a threshold of 8.3 (8.48 before round 3)",
     "ship": "done: runs/2026-09-04/, ship_images 4.1x, site rebuilt, PR 343",
     "upgrade": "done: ba33e42, 3 upgrades, out/2026-09-04/automation_retro.md",
-    "gmail": "pending",
-    "retro": "pending"
+    "gmail": "done: draft r918880971479808318 in docket@alaskaaihq.com, payload runs/2026-09-04/gmail_payload.json, body read in full before creation",
+    "retro": "done: out/2026-09-04/automation_retro.md, ledger/upgrades.json +6, knowledge/FIELD_NOTES.md, ledger/instincts.json +7"
   }
 }
