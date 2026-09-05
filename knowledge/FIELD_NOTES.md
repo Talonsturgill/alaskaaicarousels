@@ -5920,3 +5920,40 @@ which is that Phase 12 was editing the engine in the working tree at the same
 time, and the first re-render blamed the slide for three warns that belonged to
 a probe the upgrade engineer had just built. Validate a run's art against the
 committed engine, never against a tree someone else is still writing to.
+
+## 2026-09-04 - Phase 1 craft refresh (No.50)
+
+Timeboxed pass, 3 searches and 1 fetch. Two things worth keeping and one
+correction to how this file reads the 2026 aggregators.
+
+- **A NEW NAMED BENCHMARK, and it is a page-level one rather than a
+  format-level one.** The Oktopost LinkedIn Benchmark, March 2026, n over
+  1,000 B2B company pages, reports a median engagement rate of 5.72 percent,
+  a top decile of 22.45 percent, a median of 826 impressions and 51
+  engagements per post. That is the first study in this file that measures
+  PAGES rather than POSTS, and the finding attached to it is that top decile
+  pages post noticeably more document and carousel content than median pages.
+  It does not move any CAROUSEL_CRAFT number; Socialinsider's 7.00 percent
+  document rate still stands as the format figure. It is useful as the
+  realistic denominator when the maintainer judges a deck.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- **PERSONAL PROFILE CAROUSELS BEAT COMPANY PAGE CAROUSELS BY 63 PERCENT**,
+  per Metricool's 2026 study of 673,658 posts, cited in the same piece. This
+  is a distribution decision the machine does not own and the maintainer does,
+  so it is recorded here rather than acted on. It is the strongest single
+  lever in this refresh and it has nothing to do with the deck.
+- **THE 6.60 PERCENT FIGURE IS STILL SECONDARY.** No.39's refresh traced it to
+  an aggregator rather than a named study and it is still circulating in the
+  same form a run later. Do not promote it.
+- **AERIAL PERSPECTIVE SAYS THE MIDDLE DISTANCE LOSES CONTRAST, NOT DETAIL,
+  and that distinction is this run's whole design brief.** The physics is the
+  Beer-Lambert extinction already in this file from 08-21: transmittance falls
+  exponentially with path length and the coefficient is per channel, so with
+  distance a surface loses TONAL RANGE and cools. What it does not lose is
+  incident, because a mid-ground stand of spruce at reduced contrast still has
+  every trunk in it. The recurring failure this file keeps describing as a flat
+  middle distance is a painter's error rather than a physical one: the run
+  applied the attenuation and then skipped the drawing under it. Draw the
+  middle ground fully, THEN compress its range toward the far value. Doing it
+  in the other order produces exactly the thin zone the scorer keeps naming.
+  https://www.artyfactory.com/aerial-perspective/aerial-perspective-1.html
