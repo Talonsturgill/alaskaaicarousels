@@ -5957,3 +5957,70 @@ correction to how this file reads the 2026 aggregators.
   middle ground fully, THEN compress its range toward the far value. Doing it
   in the other order produces exactly the thin zone the scorer keeps naming.
   https://www.artyfactory.com/aerial-perspective/aerial-perspective-1.html
+
+## 2026-09-04, No. 50. Seven lessons, and five of them are one lesson.
+
+**A seeded shuffle is not a scatter.** Slide 08's honesty architecture rests on
+31 lit cells reading as extent and never as a shape. The build shuffled 72
+cells with a seeded Fisher Yates, took the first 31, and asserted that it had
+drawn 31 of them. It had. They landed edge to edge in one township and the
+frame drew a parcel with holes in it, seventy pixels under a label reading
+EXTENT ONLY. NO BOUNDARY IS DRAWN. Every machine gate was green, because the
+gate asked how many and the failure was about where.
+
+Rejection sampling could not fix it either: at 31 of 72, which is 43 percent,
+600 shuffles produced no set with a connected run under four cells. Above
+roughly 40 percent density a dispersed set is rare enough that you cannot find
+one by asking. So the set is now BUILT: cells are offered in seeded random
+order and accepted only while every connected run stays inside a cap, and the
+cap escalates only when the tighter one cannot reach the count. Three
+conditions are asserted on the page, largest run, per-township balance, and
+per-row and per-column share, so a contiguous mass cannot ship green again.
+
+**Screen the light. Attach the cast.** This deck shipped two idioms for the
+same thing side by side and the comparison is unusually clean. Four slides
+painted an opaque radial pool centred on the object's own base and dropped a
+dark ellipse inside it. Two screened a wide low wash offset up-light and cast
+an attached tapered subtraction into it. Five critics working independently
+called all four painted ones a lit pod, a light leak, or a detached blob beside
+a flare, and called both screened ones genuinely fixed. Screening is what lets
+the surface modelling read THROUGH the light instead of being replaced by it,
+which is the whole difference between lit ground and a lamp.
+
+**Ground texture takes world depth, not screen y.** Slide 01's near band had
+been rebuilt three times, each time by changing what was drawn or how dark it
+was, and it still read as a topographic plate rather than as country. The
+defect was neither. A ground plane seen from eye height has world depth going
+as 1 over the screen distance below the horizon, and the form was written as a
+function of screen y, so the hummock lattice carried the same pitch at the
+horizon and at the frame foot. Six lines changing u and v did what four rounds
+of tuning ink could not. When a texture reads wrong and the values are right,
+check the coordinates before you touch the palette.
+
+**An ImageData helper needs the canvas backing scale.** `AK.reliefShade` writes
+with putImageData, which ignores the context transform. Called with `scale: 1`
+on a `cx.scale(2,2)` canvas it paints the top left quarter of the frame and
+leaves two pin sharp straight edges across the art. The option was valid, so
+the option contract passed it; the render gate passed it; qa.py passed it. A
+pixel critic found it by measuring where the edges were and noticing they were
+exactly half the frame.
+
+**Copy cut to fit is invisible to every gate.** Three slides shipped body copy
+shortened to make it fit the box, one of them losing the single sentence its
+own attribution qualified, which left a claim with no on-slide referent.
+`copy_sync_check` compares copy.json to the RENDER, so a build that cut a
+sentence and a copy.json written from that build agree perfectly. The only
+thing that catches this is the dossier's declared word count, read by a human
+or a critic. That is worth knowing before trusting a green copy row.
+
+**A gate block can feed itself its own failure.** `plan_drift_check` reads the
+whole storyboard, GATE STATUS block included, so a failure message quoting a
+sentence gets rewritten into the record by `gate_status --sync` and re-detected
+on the next pass. Rewording the offending sentence did not clear it. The row
+had to be cleared by hand before the check would agree with reality.
+
+**A countdown anchors to the date, never to the count.** The run woke at 23:09
+Anchorage time and wrote a caption opening on ten days left. By the time the
+copy chamber ran it was the following day. `caption_check` has no clock and
+never will; the copywriter caught it. Anchor to the closing date and the copy
+stays true whenever it is read.

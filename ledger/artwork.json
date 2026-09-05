@@ -1453,6 +1453,60 @@
         "AK.simplex2 placed aggregate on poured concrete",
         "cut-as-path apertures (quadratic wander, windward lit lip only)"
       ]
+    },
+    {
+      "run_date": "2026-09-04",
+      "carousel_no": 50,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE RULED WORLD AND THE UNRULED ONE. The hero is not an object, it is a VOCABULARY RULE enforced on every slide: the ground carries no strokes anywhere and every straight line in nine slides belongs to the document. The land is modelled tone, the instrument is ruled line, and a reader tells them apart at 432 px with no words. It makes the parcel boundary and the data centre physically undrawable rather than merely avoided, because a boundary needs a closed polygon and the ground has no strokes to build one from.",
+      "atmosphere": "NEW: LOW RAKING LIGHT ON FROZEN MUSKEG, FIRST WEEK OF SEPTEMBER. Key azimuth 318, elevation 9, key to fill 6:1. Every lit ground in the deck is SCREENED over the surface rather than painted on it, so the modelling reads through the light, and every cast is an attached subtraction from that lit ground thrown southeast.",
+      "depth_technique": "akengrave modelled surface over per-slide two-axis form functions, with AKPARCEL.band applying per-channel extinction ONCE after each band is drawn at full contrast. Slide 01's form is parameterised by world depth (1 over the screen distance below the horizon) rather than screen y, so the ground plane genuinely foreshortens.",
+      "line_voice": "engrave",
+      "continuity_device": "NEW: THE CAMERA THAT PULLS UP. 1.5 m, 1.5 m, 4 m, 9 m, 20 m, 2 m, 1.2 m, 620 m, 1.5 m, with the paper geometry's share of frame running 0.1, 1, 6, 0.2, 76, 9, 14, 78, 0.4 percent. The cover's exact frame returns on 09 with the colour drained and one gold mark on it.",
+      "hook_archetype": "NEW: THE HALF NOBODY IS ARGUING ABOUT",
+      "palette_family": "cold boreal night, one warm token",
+      "palette": "near black base, cold blues through peat and spruce, tussock grey, lichen olive, a draining amber horizon, survey chalk, forget-me-not for the civic voice only, gold for the open window only",
+      "palette_hexes": [
+        "#04070E",
+        "#0B1524",
+        "#16283C",
+        "#22423A",
+        "#3C5C46",
+        "#6F7F85",
+        "#9AA98C",
+        "#8A6438",
+        "#C2CBBA",
+        "#E8EEF5",
+        "#6EA5FF",
+        "#FFC72C"
+      ],
+      "type": "Bricolage Grotesque 700 display, Manrope 400 body, JetBrains Mono instrument",
+      "type_pairing": "Bricolage Grotesque + Manrope + JetBrains Mono",
+      "narrative_structure": "hook, delivery, structure, breather, turn, empty frame, record, synthesis, close",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 2
+      },
+      "new_techniques_logged": [
+        "THE GOLD RULE, INVERTED. Gold means the window that is still open and never touches ground, which is the deliberate inverse of No.14's gold parcel polygon on relief six weeks earlier.",
+        "A CONSTRAINED SCATTER, ASSERTED. A seeded shuffle is not a scatter. At 43 percent density the lit set is BUILT under a connectivity cap rather than drawn, and three dispersion conditions are asserted on the page so a contiguous mass cannot ship green.",
+        "SCREENED LIGHT, ATTACHED CAST. Lit ground is composited with screen so the surface modelling reads through it; the cast is a subtraction from that lit ground, attached at the object's own base and thrown down-light. A painted radial pool centred on the base is the hole in a spotlight and this deck now has none.",
+        "THE ANNULUS AS A STATE. An unlit mark on a measured axis is drawn as a filled annulus at the same extent as a lit one, so the difference is a hole and not a tint, which survives the 432 px downsample and still carries enough ink for the axis census."
+      ],
+      "techniques": [
+        "AKENGRAVE.surface",
+        "AK.hachureField",
+        "AKSTIPPLE.field",
+        "AK.reliefShade",
+        "AKPARCEL.band",
+        "AKPARCEL.stroke",
+        "AKPARCEL.reserve",
+        "AKPARCEL.clearance",
+        "AKPOST.grade",
+        "AK.fitText",
+        "AK.grainTile"
+      ]
     }
   ]
 }

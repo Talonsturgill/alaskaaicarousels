@@ -2081,6 +2081,39 @@
       ],
       "sources_lead": "KMXT Public Radio, September 3rd, 2026, plus kodiakelectric.com read September 4th, 2026",
       "note": "SINGLE OUTLET. Outside the cooperative's own website the whole story is one KMXT report. DVIDS, HigherGov, sullivan.senate.gov and Alaska Public Media carry nothing on the facility, the Alaska Beacon returned 403 and the Kodiak Daily Mirror returned 429 on four attempts. The deck ships anyway because the ARGUMENT rests on the shape of the grid, which is primary in the co-op's own words at C08, C09, C10 and C22, and because slide 08 makes the dependency the subject rather than a footnote. If Kodiak returns, a second outlet is the first thing to find."
+    },
+    {
+      "run_date": "2026-09-04",
+      "carousel_no": 50,
+      "headline": "The state's own words go this far and stop.",
+      "topic": "Alaska DNR proposes to convey about 19,950 acres of state land two miles north of Houston in the Mat-Su Borough to AIDEA under a noncompetitive public and charitable use conveyance, case ADL 234762. Riding the same comment deadline is Draft Land Classification Order SC-08-001A04, which two conservation groups report would move about 15,100 of those acres out of Forestry, Habitat and Water Resources into Settlement. None of the three state notices contains the phrase data center. Comment closes 5:00 p.m. Monday September 14th, 2026, more than 2,000 written comments had arrived by August 24th by the department's own count, and two informational meetings took no testimony.",
+      "angle": "THE HALF NOBODY IS ARGUING ABOUT. The loud fight is over whether this is a data centre project, and the deck refuses that fight on the record: the phrase appears in no state notice and AIDEA's own plan calls data centres a possibility rather than a commitment. The argument is that the conveyance is the smaller of two decisions closing on the same day, and the classification order underneath it outlives any tenant.",
+      "entities": [
+        "Alaska Department of Natural Resources",
+        "Division of Mining, Land and Water",
+        "AIDEA",
+        "City of Houston",
+        "Matanuska-Susitna Borough",
+        "Cook Inletkeeper",
+        "Northern Alaska Environmental Center",
+        "Mat-Su Sentinel",
+        "Jeffrey Brasel"
+      ],
+      "keywords": [
+        "ADL 234762",
+        "land classification order",
+        "SC-08-001A04",
+        "noncompetitive conveyance",
+        "public and charitable use",
+        "Settlement classification",
+        "comment period",
+        "Houston Alaska",
+        "Seward Meridian",
+        "T18N",
+        "T19N"
+      ],
+      "sources_lead": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
+      "note": "Six weeks after No.14 covered the same case file (2026-07-22, The Giveaway Surveyed, 8.86). Dedupe passed at 44 days and the divergence is deliberate and total: No.14 drew a gold parcel polygon on relief, this deck draws no boundary at all and inverts gold to mean the open comment window. The angle is different too, No.14 was the conveyance and this is the classification order riding under it."
     }
   ]
 }

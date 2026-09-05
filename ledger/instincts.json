@@ -1215,6 +1215,55 @@
       "confidence": 0.85,
       "born": "2026-09-04",
       "evidence": "No.49 slide 04, found by an outside review of the run branch and by none of the fourteen gates. Repair measured 5.0 dE canvas and 5.7 dE page, with the nine rasters byte identical to the scored ones by md5."
+    },
+    {
+      "id": "a-seeded-shuffle-is-not-a-scatter",
+      "instinct": "A SEEDED SHUFFLE IS NOT A SCATTER. When a drawing's honesty depends on a set reading as dispersed, a Fisher Yates pick can and will hand you a contiguous mass, and above about 40 percent density rejection sampling cannot find a dispersed one either. BUILD the set under a connectivity cap instead of drawing it, and assert the dispersion on the page so the failure cannot ship green.",
+      "confidence": 0.97,
+      "born": "2026-09-04",
+      "evidence": "No.50 slide 08 scored 2.5. Its 31 of 72 lit cells landed edge to edge in one township and the frame drew a parcel with holes in it, seventy pixels under a label reading EXTENT ONLY. NO BOUNDARY IS DRAWN. Every machine gate was green: __akAssert counted 31 of 31, which was true and beside the point. 600 rejection shuffles then found no set with a component under four."
+    },
+    {
+      "id": "imagedata-helpers-need-the-backing-scale",
+      "instinct": "An AK helper that writes ImageData (reliefShade) ignores the context transform entirely, so its `scale` option MUST be the canvas backing scale. Passing 1 on a cx.scale(2,2) canvas paints the top left QUARTER of the frame and leaves two pin sharp straight edges across the art. Nothing warns, because the option is valid and merely wrong.",
+      "confidence": 0.99,
+      "born": "2026-09-04",
+      "evidence": "No.50 slide 08. A pixel critic reported a hard edged rectangular relief patch with edges at design x 543 and y 682, which are exactly half the frame. The render gate, qa.py and the option contract all passed it."
+    },
+    {
+      "id": "screen-the-light-attach-the-cast",
+      "instinct": "A lit ground must be SCREENED over the surface, never painted on it, and the cast must be an ATTACHED subtraction from that lit ground thrown down-light. A painted radial pool centred on an object's own base puts the frame's brightest and darkest values concentrically, which is the hole in a spotlight, now named by critics across three runs.",
+      "confidence": 0.98,
+      "born": "2026-09-04",
+      "evidence": "No.50 shipped the painted idiom on four of nine slides and the screened idiom on two. The two screened ones were the only contacts a critic called genuinely fixed; the four painted ones were each independently reported as a lit pod, a light leak or a detached blob beside a flare. After conversion all six measured dL 10.8 to 36.2."
+    },
+    {
+      "id": "ground-texture-takes-world-depth-not-screen-y",
+      "instinct": "Parameterise ground texture by WORLD DEPTH, not by screen y. A ground plane seen from eye height has depth going as 1 over the screen distance below the horizon, so a form written as f(x, y minus horizon) carries the same pitch at the horizon and at the frame foot and the near band reads as an unforeshortened sheet. It is a coordinate change, not a texture change, and no amount of tuning ink or alpha substitutes for it.",
+      "confidence": 0.94,
+      "born": "2026-09-04",
+      "evidence": "No.50 slide 01. Four rounds of tuning the near ground (domes, then engraving, then ink narrowing, then alpha) never fixed the read; a critic diagnosed it as position and scale rather than value, and the fix was six lines changing u and v."
+    },
+    {
+      "id": "a-countdown-anchors-to-the-date-not-the-count",
+      "instinct": "A run that crosses midnight invalidates every day count in its copy. Anchor a countdown to the CLOSING DATE, never to a number of days remaining, because the draft is read the following morning at the earliest.",
+      "confidence": 0.92,
+      "born": "2026-09-04",
+      "evidence": "No.50 woke at 23:09 AKDT on September 4th and wrote a caption opening 'Ten days are left'. By the time the copy chamber ran it was already the 5th. The copywriter caught it, not caption_check, which has no clock."
+    },
+    {
+      "id": "a-gate-block-can-feed-itself-its-own-failure",
+      "instinct": "plan_drift_check reads the WHOLE storyboard, including the generated GATE STATUS block, so its own quoted failure text is re-detected as a plan declaration on the next run and the failure sustains itself. Clear the stale row before re-deriving, and fix the check to skip the block it is itself told not to hand-write.",
+      "confidence": 0.9,
+      "born": "2026-09-04",
+      "evidence": "No.50. A reconciliation sentence reading 'the six declared contacts read at dL ...' was parsed as a per-slide count for slide 09. Rewording it left the failure standing, because gate_status had already written the quoted text back into the record."
+    },
+    {
+      "id": "copy-cut-to-fit-is-invisible-to-every-gate",
+      "instinct": "Body copy silently shortened to fit is invisible to every gate that exists. copy_sync compares copy.json to the RENDER, so a build that cut a sentence and a copy.json written from that build agree perfectly. Only the dossier's declared word count catches it, and only if a human or a critic reads it.",
+      "confidence": 0.93,
+      "born": "2026-09-04",
+      "evidence": "No.50 shipped three slides with body copy cut to fit: 34 words against a declared 46 on slide 03, 23 against 43 on slide 05, 36 against 47 on slide 07. Slide 03's cut removed the one sentence its own attribution qualifies, leaving claim C15 with no on-slide referent. All three were found by pixel critics reading the dossier, never by a gate."
     }
   ]
 }
