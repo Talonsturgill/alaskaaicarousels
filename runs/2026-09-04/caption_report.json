@@ -1,0 +1,19 @@
+{
+  "chars": 888,
+  "hook": "The state held two public meetings on a proposed 19,950 acre transfer to AIDEA near Houston and took no testimony at either.",
+  "hook_len": 124,
+  "commas": 7,
+  "comma_per_100": 0.82,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaLandUse",
+    "#MatSuBorough",
+    "#AIDEA"
+  ],
+  "deck_summary": "The state's own words on use, the classification order beneath them and the comment count.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 62
+}

@@ -1,0 +1,109 @@
+{
+  "run_date": "2026-09-04",
+  "note": "Every aggregate printed on a slide, with the claims it re-derives from. The three notices are named one claim each, one per notice id, so a count of three is a count of three documents and not of three facts.",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 1,
+      "fragment": "19,950 acres",
+      "text": "19,950 acres.Three state notices.None says data center.",
+      "member": "C01"
+    },
+    {
+      "kind": "count",
+      "slide": 1,
+      "fragment": "Three state notices",
+      "text": "19,950 acres.Three state notices.None says data center.",
+      "subject": "state notices",
+      "n": 3,
+      "members": [
+        "C05",
+        "C03",
+        "C08"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "fragment": "Three notices",
+      "text": "Three notices govern the conveyance. July 10th, August 19th and August 24th, 2026.",
+      "subject": "state notices",
+      "n": 3,
+      "members": [
+        "C05",
+        "C03",
+        "C08"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 3,
+      "fragment": "TWO DECISIONS",
+      "text": "TWO DECISIONS, ONE DEADLINE",
+      "subject": "state decisions",
+      "n": 2,
+      "members": [
+        "C02",
+        "C07"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "fragment": "19,950 acres",
+      "text": "About 19,950 acres would go to AIDEA under a noncompetitive public and charitable use conveyance, case ADL 234762.",
+      "member": "C01"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "text": "RULED AREA = 75.7% OF FRAME = 15,100 OF 19,950 ACRES",
+      "member": "C01",
+      "note": "The detector reads '15,100 OF 19,950' as a ratio 100 OF 19. It is neither; the string prints two acreages, 15,100 from C12 and 19,950 from C01, and the percentage between them. The 19,950 is what this entry answers for; the 15,100 is declared separately on the same slide."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "fragment": "15,100 acres",
+      "text": "About 15,100 acres now designated Forestry, Habitat and Water Resources would be reclassified as Settlement.",
+      "member": "C12"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "fragment": "15,100 ACRES",
+      "text": "15,100 ACRES PER COOK INLETKEEPER AND THENORTHERN ALASKA ENVIRONMENTAL CENTER",
+      "member": "C12"
+    },
+    {
+      "kind": "count",
+      "slide": 6,
+      "fragment": "Three named uses",
+      "text": "Three named uses,and one with nothing in it.",
+      "subject": "named uses",
+      "n": 3,
+      "members": [
+        "C12"
+      ],
+      "items": [
+        "Forestry",
+        "Habitat",
+        "Water Resources"
+      ]
+    },
+    {
+      "kind": "design",
+      "slide": 7,
+      "fragment": "100 COMMENTS",
+      "text": "1 MARK = 100 COMMENTS. THE 21ST IS OPEN FOR \"MORE THAN\".",
+      "note": "The deck's own printed mark rate, a property of the ARTWORK and not of the world. The comment total it encodes is C10 and is re-derivable there; this number is the scale constant the slide chose so that 21 marks fit the frame, exactly like a printed bar length or a grid pitch."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "36 sections",
+      "text": "A survey township is 36 sections of one square mile.",
+      "member": "C19"
+    }
+  ]
+}

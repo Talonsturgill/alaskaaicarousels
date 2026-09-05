@@ -1,0 +1,107 @@
+{
+  "run_dir": "out/2026-09-04",
+  "render_report": "out/2026-09-04/render/render_report.json",
+  "aggregates_file": "out/2026-09-04/aggregates.json",
+  "detected": 11,
+  "declared": 11,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "19,950 acres",
+      "text": "19,950 acres.Three state notices.None says data center.",
+      "n": 19950,
+      "subject": "acres"
+    },
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "Three state notices",
+      "text": "19,950 acres.Three state notices.None says data center.",
+      "n": 3,
+      "subject": "state notices"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Three notices",
+      "text": "Three notices govern the conveyance. July 10th, August 19th and August 24th, 202",
+      "n": 3,
+      "subject": "notices"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "TWO DECISIONS",
+      "text": "TWO DECISIONS, ONE DEADLINE",
+      "n": 2,
+      "subject": "decisions"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "19,950 acres",
+      "text": "About 19,950 acres would go to AIDEA under a noncompetitive public and charitabl",
+      "n": 19950,
+      "subject": "acres"
+    },
+    {
+      "slide": 5,
+      "kind": "ratio",
+      "fragment": "100 OF 19",
+      "text": "RULED AREA = 75.7% OF FRAME = 15,100 OF 19,950 ACRES",
+      "n": 100,
+      "of": 19
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "15,100 acres",
+      "text": "About 15,100 acres now designated Forestry, Habitat and Water Resources would be",
+      "n": 15100,
+      "subject": "acres"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "15,100 ACRES",
+      "text": "15,100 ACRES PER COOK INLETKEEPER AND THENORTHERN ALASKA ENVIRONMENTAL CENTER",
+      "n": 15100,
+      "subject": "acres"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "Three named uses",
+      "text": "Three named uses,and one with nothing in it.",
+      "n": 3,
+      "subject": "named uses"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "100 COMMENTS",
+      "text": "1 MARK = 100 COMMENTS. THE 21ST IS OPEN FOR \"MORE THAN\".THE RAIL RUNS IN DAYS. T",
+      "n": 100,
+      "subject": "comments"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "36 sections",
+      "text": "A survey township is 36 sections of one square mile. The conveyance is about 19,",
+      "n": 36,
+      "subject": "sections"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 7,
+      "text": "1 MARK = 100 COMMENTS. THE 21ST IS OPEN FOR \"MORE THAN\".",
+      "note": "The deck's own printed mark rate, a property of the ARTWORK and not of the world. The comment total it encodes is C10 and is re-derivable there; this number is the scale constant the slide chose so that 21 marks fit the frame, exactly like a printed bar length or a grid pitch."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

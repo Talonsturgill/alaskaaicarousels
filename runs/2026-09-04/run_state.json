@@ -1,0 +1,26 @@
+{
+  "run_date": "2026-09-04",
+  "carousel_no": 50,
+  "date_note": "Anchorage local date at wake was 2026-09-04 23:09 AKDT. runs/2026-09-04/ did not exist, so the run takes its own Anchorage date.",
+  "phases": {
+    "wake": "done: out/2026-09-04/plan.md, out/2026-09-04/run_state.json",
+    "craft_refresh": "done: knowledge/FIELD_NOTES.md 2026-09-04 entry",
+    "research": "done: out/2026-09-04/scout_merge.md, 6 scouts, 143 searches",
+    "claims": "done: out/2026-09-04/claims.json, 18 claims 11 primary, claims_check PASS",
+    "docket": "done: ledger/docket.json, 2 staleness refreshes plus aidea-houston and deepgreen updated from this run, docket_dates_check clean",
+    "gas_watch": "done: site_signoff PASS 96 pages 18 checks, gaswatch_pagecheck PASS, mobile nav tap verified",
+    "selection": "done: out/2026-09-04/selection.md, dedupe_check exit 0",
+    "directors_room": "done: out/2026-09-04/storyboard.md, 3 lenses synthesized, dossier_check PASS 9/9",
+    "copy": "done: out/2026-09-04/copy.json, caption_check PASS 888 chars with --copy, style_lint clean, copy_sync PASS",
+    "art_build": "done: 9/9 render clean, qa.py PASS 0 fails 0 warns, all six contacts clear of the comfort band",
+    "pixel_review": "round 1 done: 5 critics in parallel, deck mean 5.38; round 2 fixed causes deck wide (contact idiom, engrave ink, slide 01 perspective, slide 08 rebuild, slide 04 ridges, slide 06 empty frame, restored copy on 03/05/07)",
+    "flow_review": "pending",
+    "assemble": "done: 9 slides, vector pdf 25.49 MB, 9 thumbs",
+    "scoring": "in progress",
+    "ship": "in progress",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "claims": "done: out/2026-09-04/claims.json, 19 claims 12 primary (C19 the BLM township definition added in round two), claims_check PASS"
+}

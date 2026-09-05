@@ -1,0 +1,116 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-04/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 25489261,
+  "pdf_mb": 25.49,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-04/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-04/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-04/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-04/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-04/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-04/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-04/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-04/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-04/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-04/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "The Half That Lasts. Alaska's quiet land decision.",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "950b996b24e5ba4cf7a215852b9200fc8c8e617a3f985de3fe0201bfe5591d0a",
+        "bytes": 7161948
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "59ecf97ac6e035611bc1c0b306882baea31f5d3e0b74248ee242c7091888001b",
+        "bytes": 6323003
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "0252872c9262a88c8e731cf76710e88807847f0b38199a3366c06c2e7e806ea0",
+        "bytes": 6513557
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "ef2502f7af964663584c6c027e3d5190b12be1fe3bfa42590d3407cab02e6509",
+        "bytes": 6682146
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "42bd4c3b39cc2a8dd63b4435998ceb92b9dd9cf5f4a6bdcde20666ddddd889ae",
+        "bytes": 6767686
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "5eaa0671960754f849c0acc4f9a1ef06b1e6f358051f51f857463f4f6b48e3c2",
+        "bytes": 9000271
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "dff94fe3783f6bdfc1f67eed44072efd8f971fd6881a81e4371a1f72e81df8a5",
+        "bytes": 7985126
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "31841b89aa21fe2fd34713c92019befd6d5a5e41f09f5e1cb165affec51ee5e2",
+        "bytes": 10379856
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "ee3099e45e65c1a1fc203ae088111593dff305fa4a1769f26a081d9bd49dbaf6",
+        "bytes": 6796338
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "7908edb7d9c7ebc5cacab8235ccdedb1721f7ec179f62dcdc9f8f7cd1ab9c80f",
+        "bytes": 23163
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "5f517c225aa89643a3f878775f08e68f9e6ab01045fcc28626c966251ee6632d",
+        "bytes": 14777
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "005bfe4a4eb328487f8a934d5d2d7d7db8b0a5fc5587ac5c2e923039cf8e7c21",
+        "bytes": 14136
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "f698ba9b1aefdb4a87c218f49276836760fcefbbb4337c4a49f1ae7d4f1bbf7a",
+        "bytes": 15034
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "6e8e94fb94633777a646ce4da148289cd5ccd9185fb940099ba564123d9f5bd9",
+        "bytes": 15331
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "73f6654499c2c0e2cadfad95777955a8cba35362b8b832e896f69742da6bf50c",
+        "bytes": 14472
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "398fd7db40dd9796a0ae106434c65840f52c792c5cdca27524f8df179a4e61d7",
+        "bytes": 15754
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "ef0ba87e995b61cd608d390f7e1962884ad3a2754c7d743a66f6a540adc632ae",
+        "bytes": 16565
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "c8ec6e5f905bd9d0d7a94faa982f7a196f8505b8fdef5ff97a7ba755309d44f5",
+        "bytes": 10947
+      }
+    ]
+  }
+}

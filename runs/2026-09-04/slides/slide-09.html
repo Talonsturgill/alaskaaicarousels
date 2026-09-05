@@ -1,0 +1,248 @@
+<!doctype html>
+<!-- SLIDE 09, CLOSE. Camera 1.5 m, 48 mm, level. The cover's frame returned at
+     a different bearing with the colour drained and ONE gold mark on it. The
+     paper geometry recedes to 0.4 percent. One ask, nothing stacked on it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Manrope", sans-serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.06; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  h2 { position: absolute; left: 96px; top: 148px; width: 800px; height: 220px;
+       font-family: "Bricolage Grotesque", sans-serif; font-weight: 700;
+       font-size: 84px; line-height: 0.98; letter-spacing: -0.02em; color: #E8EEF5; }
+  .ask { position: absolute; left: 96px; top: 420px; width: 680px;
+         font-size: 38px; font-weight: 600; line-height: 1.24; color: #C2CBBA; }
+  .src { position: absolute; left: 96px; bottom: 154px;
+         font-family: "JetBrains Mono", monospace; font-weight: 500;
+         font-size: 24px; letter-spacing: 0.10em; color: #9AA98C; }
+  .mark { position: absolute; left: 96px; font-family: "Bricolage Grotesque", sans-serif;
+          font-weight: 700; font-size: 34px; letter-spacing: 0.06em;
+          color: #E8EEF5; bottom: 96px; }
+  .site { position: absolute; left: 340px; bottom: 104px;
+          font-family: "JetBrains Mono", monospace; font-weight: 400;
+          font-size: 20px; letter-spacing: 0.10em; color: #9AA98C; }
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-weight: 500;
+             font-size: 24px; letter-spacing: 0.10em; color: #9AA98C; }
+  .counter i { color: #FFC72C; font-style: normal; }
+  .polaris { position: absolute; right: 84px; bottom: 148px; width: 26px; height: 26px; }
+</style>
+</head>
+<body data-contacts='[{"what":"the deadline mark standing on the near peat","shadow":[[1006,998,26,10]],"ground":[[886,998,26,10]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+
+  <h2 data-reserve>Comment closes 5:00 p.m.<br>Monday, September 14th, 2026.</h2>
+  <div class="ask" data-reserve>Written comment on ADL 234762 and on the classification order goes to DNR's Division of Mining, Land and Water.</div>
+  <div class="src" data-reserve>SOURCES IN COMMENTS</div>
+  <div class="mark" data-reserve>ALASKA.AI</div>
+  <div class="site" data-reserve data-decorative>alaskaaihq.com</div>
+  <div class="counter" data-reserve>09 <i data-decorative>/</i> 09</div>
+  <svg class="polaris" viewBox="0 0 26 26" aria-hidden="true">
+    <path d="M13 0 L15.1 10.9 L26 13 L15.1 15.1 L13 26 L10.9 15.1 L0 13 L10.9 10.9 Z" fill="#FFC72C"/>
+  </svg>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+
+  var SEED = 20260990;
+  var W = 1080, H = 1350;
+  var HORIZON = 624;                 /* the cover's frame returned */
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var FAR = '#0B1524';
+
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), { min: 54, max: 84, maxLines: 2 });
+  AKPARCEL.reserve('[data-reserve]');
+
+  /* ---------- sky. The colour has drained. No amber band at all. ---------- */
+  function sky() {
+    var g = cx.createLinearGradient(0, 0, 0, HORIZON);
+    g.addColorStop(0, '#04070E'); g.addColorStop(0.7, '#070E1B'); g.addColorStop(1, '#0A1320');
+    cx.fillStyle = g; cx.fillRect(0, 0, W, HORIZON);
+  }
+
+  /* ---------- the far tree line at a DIFFERENT BEARING from the cover ----- */
+  function treeLine(bx) {
+    var r = AK.rng(SEED + 5);
+    var base = HORIZON + 3;
+    for (var x = -20; x < W + 20; ) {
+      var h = 20 + r() * 38, w = 6 + r() * 7;
+      bx.fillStyle = '#1B322B';
+      bx.beginPath();
+      bx.moveTo(x, base); bx.lineTo(x + w * 0.5, base - h); bx.lineTo(x + w, base);
+      bx.closePath(); bx.fill();
+      bx.beginPath();
+      bx.ellipse(x + w * 0.5, base - h * 0.76, w * 0.6, h * 0.19, 0, 0, Math.PI * 2);
+      bx.fill();
+      x += w * 0.66 + r() * 4;
+    }
+  }
+
+  /* ---------- THE MIDDLE DISTANCE, depth 0.42. A WILLOW THICKET ----------- */
+  /* About 180 stems, which is a different population from the cover's scrub
+     and a different bearing on the same country, so the deck closes on the
+     ground it opened on without repeating the frame. */
+  function thicket(bx) {
+    var r = AK.rng(SEED + 13);
+    var top = HORIZON + 40, bot = HORIZON + 250;
+    var sg = bx.createLinearGradient(0, top - 20, 0, bot + 60);
+    sg.addColorStop(0, '#132335'); sg.addColorStop(1, '#0E1D2B');
+    bx.fillStyle = sg;
+    bx.beginPath(); bx.moveTo(-10, bot + 90);
+    for (var gx = -10; gx <= W + 10; gx += 7) bx.lineTo(gx, top + 18 - 18 * AK.fbm2(gx * 0.0044, 6.1, 3));
+    bx.lineTo(W + 10, bot + 90); bx.closePath(); bx.fill();
+
+    for (var i = 0; i < 180; i++) {
+      var x = -20 + r() * (W + 40);
+      var yb = top + 26 + Math.pow(r(), 0.6) * (bot - top);
+      var h = 20 + r() * 52;
+      var bend = (r() - 0.5) * 20;
+      bx.strokeStyle = '#25402F'; bx.lineWidth = 1.25;
+      bx.beginPath(); bx.moveTo(x, yb);
+      bx.quadraticCurveTo(x + bend * 0.5, yb - h * 0.6, x + bend, yb - h);
+      bx.stroke();
+      bx.strokeStyle = '#4E6B52'; bx.lineWidth = 0.75; bx.globalAlpha = 0.66;
+      bx.beginPath(); bx.moveTo(x - 1, yb);
+      bx.quadraticCurveTo(x + bend * 0.5 - 1, yb - h * 0.6, x + bend - 1, yb - h);
+      bx.stroke(); bx.globalAlpha = 1;
+    }
+  }
+
+  /* ---------- the near ground, the cover's material at a new bearing ------ */
+  function nearGround(bx) {
+    var pg = bx.createLinearGradient(0, HORIZON, 0, H);
+    pg.addColorStop(0.00, '#111F2D');
+    pg.addColorStop(0.45, '#152538');
+    pg.addColorStop(1.00, '#0E1A27');
+    bx.fillStyle = pg; bx.fillRect(0, HORIZON, W, H - HORIZON);
+
+    function form(x, y) {
+      var u = x * 0.0064, v = (y - HORIZON) * 0.0094;
+      return 28 * AK.fbm2(u * 1.20, v * 1.40, 2)
+           - 21 * Math.abs(AK.fbm2(u * 0.66 + 8.3, v * 0.80 + 6.9, 2) - 0.5)
+           + (y - HORIZON) * 0.017;
+    }
+
+    AK.hachureField(bx, {
+      x: 0, y: HORIZON, w: W, h: H - HORIZON, scale: 1, seed: SEED + 17,
+      height: function (u, v) {
+        return 0.5 + 0.5 * Math.tanh(form(u * W, HORIZON + v * (H - HORIZON)) / 40);
+      },
+      cell: 11, lenScale: 1.8, passes: 4,
+      sunAz: 318, sunEl: 9, sunJitter: 12,
+      color: '#2C4860', alpha: 0.28, minWidth: 0.45, maxWidth: 3.5
+    });
+
+    var eng = AKENGRAVE.create({ seed: SEED + 23, light: { azDeg: 318, elDeg: 22 } });
+    eng.reserve(AKENGRAVE.boxesFor('[data-reserve]'));
+    eng.surface(bx, {
+      region: [0, HORIZON + 6, W, H - HORIZON - 6],
+      form: form,
+      tone: function (x, y) {
+        return Math.max(0.06, Math.min(0.95,
+          0.32 + 0.40 * ((y - HORIZON) / (H - HORIZON)) + 0.20 * AK.fbm2(x * 0.0041, y * 0.0041, 3)));
+      },
+      budget: { main: 6.4, cross: 8.6, dots: true },
+      inkLo: '#18293A', inkHi: '#3B4E5E', alpha: 0.28,
+      seedDeg: 37
+    });
+
+    AKSTIPPLE.field(bx, {
+      seed: SEED + 29, count: 26000, w: W, h: H,
+      height: function (x, y) {
+        if (y < HORIZON + 10) return 0;
+        return Math.max(0, Math.min(1, 0.5 + form(x, y) / 64));
+      },
+      ramp: ['#16273A', '#213347', '#2C4256', '#3B5364', '#516771', '#7D8C79'],
+      radius: function (q) { return 0.8 + 1.1 * q; },
+      alpha: function (q) { return 0.14 + 0.30 * q; },
+      box: [0, HORIZON, W, H - HORIZON]
+    });
+  }
+
+  sky();
+  AKPARCEL.band(cx, { draw: treeLine,   depth: 0.92, sky: FAR, w: W, h: H });
+  AKPARCEL.band(cx, { draw: thicket,    depth: 0.42, sky: FAR, w: W, h: H });
+  AKPARCEL.band(cx, { draw: nearGround, depth: 0.07, sky: FAR, w: W, h: H });
+
+  /* ---------- THE PAPER GEOMETRY, 0.4 percent. ONE GOLD MARK ------------- */
+  /* The warm returns at exactly one place in the deck, and it is the ask.
+     The mark stands on the ground and casts into a pool laid first. */
+  var MX = 940, MTOP = 856, MBOT = 998;
+  /* The lit ground is SCREENED and sits up light of the mark, so the peat's
+     own modelling reads through it. A painted pool centred on the mark's base
+     with a dark ellipse inside it reads as a hole punched in the ground with a
+     rim light, which is the deck's most-reported defect and was on its closing
+     frame. */
+  cx.save();
+  var R = 100;
+  cx.globalCompositeOperation = 'screen';
+  cx.translate(MX - 44, MBOT + 8); cx.scale(150 / R, 26 / R);
+  var lp = cx.createRadialGradient(0, 0, 4, 0, 0, R);
+  lp.addColorStop(0.00, 'rgba(126,150,160,0.52)');
+  lp.addColorStop(0.42, 'rgba(78,104,118,0.34)');
+  lp.addColorStop(1.00, 'rgba(46,66,78,0)');
+  cx.fillStyle = lp; cx.beginPath(); cx.arc(0, 0, R, 0, Math.PI * 2); cx.fill();
+  cx.restore();
+
+  /* the cast, ATTACHED at the mark's foot and thrown southeast */
+  cx.save();
+  var mg = cx.createLinearGradient(MX, MBOT, MX + 104, MBOT + 20);
+  mg.addColorStop(0.00, 'rgba(3,7,12,0.90)');
+  mg.addColorStop(0.45, 'rgba(3,7,12,0.50)');
+  mg.addColorStop(1.00, 'rgba(3,7,12,0)');
+  cx.fillStyle = mg;
+  cx.beginPath();
+  cx.moveTo(MX - 6, MBOT - 2);
+  cx.lineTo(MX + 6, MBOT - 2);
+  cx.lineTo(MX + 112, MBOT + 16);
+  cx.lineTo(MX + 98, MBOT + 21);
+  cx.closePath(); cx.fill();
+  cx.globalAlpha = 0.9; cx.fillStyle = '#010307';
+  cx.beginPath(); cx.ellipse(MX + 3, MBOT, 13, 3.4, 0.1, 0, Math.PI * 2); cx.fill();
+  cx.globalAlpha = 1;
+  cx.restore();
+
+  cx.save();
+  AKPARCEL.stroke(cx, 'solid', '#FFC72C');
+  cx.lineWidth = 3.5;
+  cx.beginPath(); cx.moveTo(MX, MTOP); cx.lineTo(MX, MBOT); cx.stroke();
+  cx.lineWidth = 2.0;
+  cx.beginPath(); cx.moveTo(MX - 11, MBOT); cx.lineTo(MX + 11, MBOT); cx.stroke();
+  cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H, exposure: -0.07, saturation: 0.98, contrast: 1.11, filmic: true,
+    lift: [0.010, 0.014, 0.026], gain: [1.010, 1.0, 0.980], vignette: 0.20,
+    bloom: { threshold: 0.76, strength: 0.24, radius: 8 },
+    grain: { amount: 0.045, size: 2, seed: SEED }, dither: true, sharpen: 0.30
+  });
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED + 7) + ')';
+
+  resolve();
+  })().catch(function (e) {
+    console.error('SLIDE 09 FAILED', e && (e.stack || e.message || e));
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

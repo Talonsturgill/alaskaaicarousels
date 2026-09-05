@@ -1,0 +1,322 @@
+<!doctype html>
+<!-- SLIDE 04, BREATHER. Camera 9 m, 35 mm, minus 10 degrees, over a kettle
+     pond. The deck's one near wordless frame. Fourteen pressure ridges, each a
+     lit windward edge over a dark lee flank, plus thermal contraction cracks.
+     data-breather is declared, and the lower band is genuinely modelled rather
+     than leaning on the demotion. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Manrope", sans-serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.06; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  h2 { position: absolute; left: 96px; top: 128px; width: 700px; height: 200px;
+       font-family: "Bricolage Grotesque", sans-serif; font-weight: 700;
+       font-size: 88px; line-height: 0.98; letter-spacing: -0.02em; color: #E8EEF5; }
+  .tick { position: absolute; left: 96px; top: 352px;
+          font-family: "JetBrains Mono", monospace; font-weight: 500;
+          font-size: 24px; letter-spacing: 0.10em; color: #9AA98C; }
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-weight: 500;
+             font-size: 24px; letter-spacing: 0.10em; color: #9AA98C; }
+  .counter i { color: #FFC72C; font-style: normal; }
+</style>
+</head>
+<body data-breather>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+
+  <h2 data-reserve>The ground was here<br>before the file number.</h2>
+  <div class="tick" data-reserve>T18N AND T19N, SEWARD MERIDIAN</div>
+  <div class="counter" data-reserve>04 <i data-decorative>/</i> 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+
+  var SEED = 20260940;
+  var W = 1080, H = 1350;
+  var HORIZON = 470;                 /* 9 m up, minus 10 degrees */
+  var SHORE  = 590;                  /* the pond's far shore */
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var FAR = '#0B1524';
+
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), { min: 58, max: 88, maxLines: 2 });
+  AKPARCEL.reserve('[data-reserve]');
+
+  function sky() {
+    var g = cx.createLinearGradient(0, 0, 0, HORIZON);
+    g.addColorStop(0, '#04070E'); g.addColorStop(0.72, '#091320'); g.addColorStop(1, '#0D1826');
+    cx.fillStyle = g; cx.fillRect(0, 0, W, HORIZON);
+    /* the amber band is nearly gone by 04, the palette arc draining */
+    var ag = cx.createLinearGradient(0, HORIZON - 44, 0, HORIZON);
+    ag.addColorStop(0, 'rgba(138,100,56,0)'); ag.addColorStop(1, 'rgba(138,100,56,0.18)');
+    cx.fillStyle = ag; cx.fillRect(0, HORIZON - 44, W, 44);
+  }
+
+  /* THE SHORE IS A CURVE. The first build filled the bank to a constant y and
+     the ice from the same constant, so the pond's edge was a dead level rule
+     running the full width: a straight line on the ground, which this deck
+     forbids, and it also meant nothing distinctive was cut by the right edge
+     for 05 to complete. */
+  function shoreY(x) {
+    return SHORE - 34 + 68 * AK.fbm2(x * 0.0042 + 2.7, 9.4, 3)
+         + 30 * Math.max(0, 1 - Math.abs(x - 380) / 170);   /* one bay */
+  }
+
+  /* ---------- the far bank, depth 0.86 ----------------------------------- */
+  function farBank(bx) {
+    var r = AK.rng(SEED + 3);
+    bx.fillStyle = '#16302A';
+    bx.beginPath();
+    for (var x = -10; x <= W + 10; x += 4) {
+      var t = 12 + 26 * Math.abs(AK.fbm2(x * 0.010, 3.3, 3) - 0.45);
+      bx.lineTo(x, HORIZON + 6 - t);
+    }
+    for (var xb0 = W + 10; xb0 >= -10; xb0 -= 4) bx.lineTo(xb0, shoreY(xb0) + 14);
+    bx.closePath(); bx.fill();
+
+    /* THE BANK IS COUNTRY, not a wash. Ten individuated objects at depth 0.85,
+       drawn at FULL incident detail and only then attenuated, because distance
+       costs tonal RANGE and never the count of what is there. */
+    for (var q = 0; q < 10; q++) {
+      var qx = 40 + r() * (W - 80);
+      var qy = HORIZON + 24 + r() * (shoreY(qx) - HORIZON - 40);
+      if (q < 2) {
+        /* a leaning black spruce, whorled, so the bank has a silhouette */
+        var lean = (r() - 0.5) * 0.30, ht = 46 + r() * 26;
+        bx.strokeStyle = '#22423A'; bx.lineWidth = 2.0;
+        bx.beginPath(); bx.moveTo(qx, qy);
+        bx.lineTo(qx + Math.sin(lean) * ht, qy - ht); bx.stroke();
+        for (var wl = 0; wl < 7; wl++) {
+          var wt = 0.24 + (wl / 7) * 0.72;
+          var wy = qy - ht * wt, wx = qx + Math.sin(lean) * ht * wt;
+          var ww = (1 - wt) * 13 + 3;
+          bx.strokeStyle = wl % 2 ? '#3C5C46' : '#22423A';
+          bx.lineWidth = 1.25;
+          bx.beginPath(); bx.moveTo(wx - ww, wy + ww * 0.42);
+          bx.lineTo(wx, wy - ww * 0.30); bx.lineTo(wx + ww, wy + ww * 0.42);
+          bx.stroke();
+        }
+      } else {
+        /* a tussock crown, a lit northwest cap over a dark socket */
+        var cr = 6 + r() * 7;
+        bx.fillStyle = '#0D1A18';
+        bx.save(); bx.translate(qx + cr * 0.5, qy + cr * 0.22); bx.scale(1, 0.34);
+        bx.beginPath(); bx.arc(0, 0, cr * 1.15, 0, Math.PI * 2); bx.fill(); bx.restore();
+        bx.save(); bx.translate(qx, qy); bx.scale(1, 0.46);
+        var cg2 = bx.createRadialGradient(-cr * 0.44, -cr * 0.48, cr * 0.06, 0, 0, cr);
+        cg2.addColorStop(0, '#8A9A94'); cg2.addColorStop(0.46, '#3C5C46');
+        cg2.addColorStop(1, '#16283C');
+        bx.fillStyle = cg2; bx.beginPath(); bx.arc(0, 0, cr, 0, Math.PI * 2); bx.fill();
+        bx.restore();
+      }
+    }
+    /* a thin lit rim on the bank's crest from the key at 318 */
+    bx.strokeStyle = '#48685A'; bx.lineWidth = 1.25; bx.globalAlpha = 0.55;
+    bx.beginPath();
+    for (var gx = 0; gx <= W; gx += 5) {
+      bx.lineTo(gx, HORIZON + 6 - (12 + 26 * Math.abs(AK.fbm2(gx * 0.010, 3.3, 3) - 0.45)));
+    }
+    bx.stroke(); bx.globalAlpha = 1;
+    /* the crust where the bank meets the ice, a modelled two value edge that
+       follows the shore curve rather than a fill boundary */
+    bx.globalAlpha = 0.42; bx.strokeStyle = '#C2CBBA'; bx.lineWidth = 2.0;
+    bx.beginPath();
+    for (var sx2 = -6; sx2 <= W + 6; sx2 += 5) bx.lineTo(sx2, shoreY(sx2) + 3);
+    bx.stroke();
+    bx.globalAlpha = 0.55; bx.strokeStyle = '#0B1524'; bx.lineWidth = 3.0;
+    bx.beginPath();
+    for (var sx3 = -6; sx3 <= W + 6; sx3 += 5) bx.lineTo(sx3, shoreY(sx3) + 8);
+    bx.stroke(); bx.globalAlpha = 1;
+  }
+
+  /* ---------- THE POND ICE, the deck's one specular surface -------------- */
+  /* Fourteen pressure ridges, each a LIT WINDWARD EDGE over a DARK LEE FLANK,
+     which is the aksnow idiom applied to lake ice. Thermal contraction cracks
+     between them, drawn as real fractures with lit shoulders. This is the
+     middle distance population for this slide, and it is a scale band rather
+     than a depth band, which the dossier declares. */
+  function pondIce(bx) {
+    var r = AK.rng(SEED + 7);
+    var ig = bx.createLinearGradient(0, SHORE, 0, H);
+    ig.addColorStop(0.00, '#22384A');
+    ig.addColorStop(0.42, '#2C4658');
+    ig.addColorStop(1.00, '#16283C');
+    bx.beginPath();
+    for (var sxa = -10; sxa <= W + 10; sxa += 4) bx.lineTo(sxa, shoreY(sxa));
+    bx.lineTo(W + 10, H + 10); bx.lineTo(-10, H + 10); bx.closePath();
+    bx.fillStyle = ig; bx.fill();
+
+    /* the ice's own sheet texture, hachure driven by a real thickness field */
+    function thick(x, y) {
+      var u = x * 0.0048, v = (y - SHORE) * 0.0090;
+      return 22 * AK.fbm2(u * 1.2, v * 1.4, 2) - 16 * Math.abs(AK.fbm2(u * 0.8 + 5.5, v * 0.6 + 2.2, 2) - 0.5);
+    }
+    AK.hachureField(bx, {
+      x: 0, y: 550, w: W, h: H - 550, scale: 1, seed: SEED + 13,
+      height: function (u, v) {
+        return 0.5 + 0.5 * Math.tanh(thick(u * W, SHORE + v * (H - SHORE)) / 30);
+      },
+      cell: 13, lenScale: 1.5, passes: 3,
+      sunAz: 318, sunEl: 9, sunJitter: 9,
+      color: '#3E5F78', alpha: 0.22, minWidth: 0.45, maxWidth: 2.8
+    });
+
+    /* THERMAL CONTRACTION CRACKS, real fractures with a lit shoulder, drawn
+       before the ridges so the ridges override where they cross */
+    for (var c = 0; c < 11; c++) {
+      var sx = r() * W, sy = SHORE + 20 + r() * (H - SHORE - 40);
+      var ang = r() * Math.PI * 2, len = 120 + r() * 320;
+      var px = sx, py = sy;
+      bx.strokeStyle = '#0E1E2C'; bx.lineWidth = 1.25;
+      bx.beginPath(); bx.moveTo(px, py);
+      var pts = [[px, py]];
+      for (var k = 0; k < 18; k++) {
+        ang += (r() - 0.5) * 0.42;
+        px += Math.cos(ang) * (len / 18); py += Math.sin(ang) * (len / 18) * 0.5;
+        bx.lineTo(px, py); pts.push([px, py]);
+      }
+      bx.stroke();
+      /* the lit shoulder, offset to the key side */
+      bx.strokeStyle = '#6E8894'; bx.lineWidth = 0.75; bx.globalAlpha = 0.55;
+      bx.beginPath();
+      pts.forEach(function (p, i2) { i2 ? bx.lineTo(p[0] - 1.4, p[1] - 1.4) : bx.moveTo(p[0] - 1.4, p[1] - 1.4); });
+      bx.stroke(); bx.globalAlpha = 1;
+    }
+
+    /* THE FOURTEEN PRESSURE RIDGES.
+       Round one drew each one as a long dark slab with a lit top, and fourteen
+       of those read as torn paper strips laid on the ice rather than as ridges
+       IN it. A pressure ridge is a low WEDGE, so each one is now a rubble crest
+       of individually drawn blocks over a short lee flank, and the crest line
+       is broken rather than continuous, which is what ice actually does. */
+    /* ROUND TWO. The rebuilt blocks were right and their ARRANGEMENT was not:
+       fourteen crests at near identical headings, near identical thickness and
+       an even ladder of y values read at 432 px as fourteen lines of text, or
+       as redacted document lines, which is the one thing this deck can never
+       have on ground. Ice does not lie in parallel horizontals. Each crest now
+       takes its own heading off the pond's flow axis, wanders along its length,
+       runs its own length, and the near ones cross and override the far ones,
+       which is the cheapest depth cue available and was going unused. */
+    var RIDGES = 14, FLOW = 0.11;
+    for (var i = 0; i < RIDGES; i++) {
+      var t = i / (RIDGES - 1);
+      var ry = SHORE + 30 + Math.pow(t, 1.18) * (H - SHORE - 60) + (r() - 0.5) * 54;
+      var amp = 2 + Math.pow(t, 0.85) * 15;         /* 0.72 per rank, near to far */
+      var x0 = -140 + r() * (W * 0.86);
+      var x1 = x0 + 140 + r() * 520;                /* 140 to 660, never uniform */
+      var tilt = FLOW + (r() - 0.5) * 0.33;         /* about plus or minus 9 deg */
+      var wob = 10 + r() * 9;
+
+      function crestAt(x) {
+        return ry + tilt * (x - x0)
+             - amp * (0.6 + 0.8 * AK.fbm2(x * 0.013, i * 3.1, 3))
+             + wob * (AK.fbm2(x * 0.0055, i * 5.7 + 1.3, 2) - 0.5) * 2;
+      }
+
+      /* the short lee flank, a thin wedge directly under the crest */
+      bx.fillStyle = '#0F1E2E'; bx.globalAlpha = 0.85;
+      bx.beginPath();
+      for (var xa = x0; xa <= x1; xa += 6) bx.lineTo(xa, crestAt(xa));
+      for (var xb = x1; xb >= x0; xb -= 6) bx.lineTo(xb, crestAt(xb) + amp * 1.5 + 2);
+      bx.closePath(); bx.fill(); bx.globalAlpha = 1;
+
+      /* THE RUBBLE. Individually drawn blocks along the crest, each with a lit
+         windward face and a dark side, so the ridge has centimetre scale. */
+      var blocks = Math.round((x1 - x0) / (7 + t * 9));
+      for (var b = 0; b < blocks; b++) {
+        var bxp = x0 + (b / blocks) * (x1 - x0) + (r() - 0.5) * 4;
+        if (r() < 0.18) continue;                    /* a broken crest, not a wall */
+        var by = crestAt(bxp);
+        var bw2 = (2 + t * 13) * (0.7 + r() * 0.8);
+        var bh2 = (1.8 + t * 11) * (0.6 + r() * 0.9);
+        bx.fillStyle = '#7E9096'; bx.globalAlpha = 0.50 + t * 0.34;
+        bx.beginPath();
+        bx.moveTo(bxp - bw2, by + bh2 * 0.4);
+        bx.lineTo(bxp - bw2 * 0.3, by - bh2);
+        bx.lineTo(bxp + bw2 * 0.7, by - bh2 * 0.5);
+        bx.lineTo(bxp + bw2, by + bh2 * 0.5);
+        bx.closePath(); bx.fill();
+        bx.fillStyle = '#22384A'; bx.globalAlpha = 0.70;
+        bx.beginPath();
+        bx.moveTo(bxp + bw2 * 0.7, by - bh2 * 0.5);
+        bx.lineTo(bxp + bw2, by + bh2 * 0.5);
+        bx.lineTo(bxp + bw2 * 0.2, by + bh2 * 0.7);
+        bx.closePath(); bx.fill();
+        bx.globalAlpha = 1;
+      }
+    }
+
+    /* SNOW CRYSTAL GLITTER, discrete hard edged facets in the specular
+       direction only. A graded sheen dies at 432 px, a population of steps
+       survives it. */
+    var gr = AK.rng(SEED + 19);
+    for (var f = 0; f < 175; f++) {
+      var fx = gr() * W, fy = SHORE + 30 + Math.pow(gr(), 0.7) * (H - SHORE - 50);
+      var s = 2.0 + gr() * 2.6;
+      bx.fillStyle = '#E8EEF5'; bx.globalAlpha = 0.44 + gr() * 0.50;
+      bx.save(); bx.translate(fx, fy); bx.rotate(-0.72);
+      bx.fillRect(-s, -s * 0.32, s * 2, s * 0.64);
+      bx.restore();
+    }
+    bx.globalAlpha = 1;
+
+    /* the near shore's frozen crust, the lower band's own modelled material */
+    AKSTIPPLE.field(bx, {
+      seed: SEED + 23, count: 16000, w: W, h: H,
+      height: function (x, y) {
+        if (y < H - 250) return 0;
+        return Math.max(0, Math.min(1, (y - (H - 250)) / 250));
+      },
+      ramp: ['#1A2C3C', '#25394A', '#334A59', '#455C69', '#5D717A', '#8A9A94'],
+      radius: function (q) { return 0.8 + 1.3 * q; },
+      alpha: function (q) { return 0.16 + 0.34 * q; },
+      box: [0, H - 250, W, 250]
+    });
+  }
+
+  sky();
+  AKPARCEL.band(cx, { draw: farBank, depth: 0.86, sky: FAR, w: W, h: H });
+  AKPARCEL.band(cx, { draw: pondIce, depth: 0.16, sky: FAR, w: W, h: H });
+
+  /* ---------- THE PAPER GEOMETRY, 0.2 percent. One tick. ------------------ */
+  cx.save();
+  AKPARCEL.stroke(cx, 'solid', '#9AA98C');
+  cx.lineWidth = 1.25;
+  cx.beginPath(); cx.moveTo(96, 338); cx.lineTo(96, 322); cx.stroke();
+  cx.beginPath(); cx.moveTo(88, 322); cx.lineTo(104, 322); cx.stroke();
+  cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H, exposure: -0.04, saturation: 1.02, contrast: 1.12, filmic: true,
+    lift: [0.012, 0.016, 0.026], gain: [1.010, 1.0, 0.982], vignette: 0.20,
+    bloom: { threshold: 0.72, strength: 0.30, radius: 9 },
+    grain: { amount: 0.045, size: 2, seed: SEED }, dither: true, sharpen: 0.34
+  });
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED + 5) + ')';
+
+  resolve();
+  })().catch(function (e) {
+    console.error('SLIDE 04 FAILED', e && (e.stack || e.message || e));
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

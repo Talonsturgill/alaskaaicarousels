@@ -1,0 +1,320 @@
+{
+  "run_date": "2026-09-04",
+  "story": "Alaska DNR proposes conveying about 19,950 acres near Houston to AIDEA under a noncompetitive public and charitable use conveyance, with a Draft Land Classification Order alongside it, and written comment closes 5:00 p.m. Monday September 14th, 2026",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "Alaska DNR proposes to convey approximately 19,950 acres of state owned land in the Matanuska-Susitna Borough to the Alaska Industrial Development and Export Authority.",
+      "value": "19,950 acres",
+      "verbatim": "The State of Alaska (State), Department of Natural Resources (DNR), Division of Mining, Land and Water (DMLW) proposes to convey approximately 19,950 acres (subject parcel)",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-19",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "Primary. Corroborated by Cook Inletkeeper and the Northern Alaska Environmental Center, both printing 19,950."
+    },
+    {
+      "id": "C02",
+      "claim": "The proposed conveyance carries the case file number ADL 234762 and is a noncompetitive sale to a public and charitable use applicant.",
+      "value": "ADL 234762",
+      "verbatim": "ADL 234762: Proposed Noncompetitive Sale to Public and Charitable Use Applicant",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-19",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": "The legal mechanism in the state's own words."
+    },
+    {
+      "id": "C03",
+      "claim": "The extended public comment period on the conveyance ends at 5:00 p.m. on Monday September 14th, 2026.",
+      "value": "5:00 p.m. Monday September 14th, 2026",
+      "verbatim": "EXTENDED COMMENT PERIOD ENDS 5:00PM, MONDAY, SEPTEMBER14, 2026",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-19",
+      "fetched": true,
+      "confidence": 0.96,
+      "notes": "The missing space after SEPTEMBER is in the source. September 14th, 2026 is a Monday, which checks. Live on the run date."
+    },
+    {
+      "id": "C04",
+      "claim": "The Department of Natural Resources began its scoping process on the proposed conveyance on July 10th, 2026.",
+      "value": "July 10th, 2026",
+      "verbatim": "On July 10, 2026, the Department of Natural Resources began a scoping process to request public input on a proposed conveyance of approximately 19,950 acres of State-owned land (subject parcel) in the Matanuska-Susitna Borough to the Alaska Industrial Development and Export Authority (AIDEA) through a noncompetitive public and charitable use conveyance.",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-19",
+      "fetched": true,
+      "confidence": 0.95,
+      "notes": ""
+    },
+    {
+      "id": "C05",
+      "claim": "The original public comment deadline on the conveyance was 5:00 p.m. on Wednesday August 19th, 2026.",
+      "value": "5:00 p.m. Wednesday August 19th, 2026",
+      "verbatim": "5:00PM, Wednesday, August 19, 2026",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-10",
+      "fetched": true,
+      "confidence": 0.93,
+      "notes": "The original notice still prints the superseded close, which is why the extension notice is the governing one."
+    },
+    {
+      "id": "C06",
+      "claim": "The parcel sits approximately two miles north of Houston in the Matanuska-Susitna Borough, within Township 18 North and Township 19 North, Seward Meridian.",
+      "value": "two miles north of Houston",
+      "verbatim": "approximately two miles north of Houston in the Matanuska-Susitna Borough, within Township 18 North, and Township 19 North, all Seward Meridian",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-07-10",
+      "fetched": true,
+      "confidence": 0.93,
+      "notes": "A survey township is six miles square, so the legal description places the parcel inside 72 sections of the Public Land Survey System."
+    },
+    {
+      "id": "C07",
+      "claim": "The extension notice names Land Classification Order NO SC-08-001A04 and sets the same September 14th deadline for comment on the Draft Land Classification Order.",
+      "value": "SC-08-001A04",
+      "verbatim": "Land Classification Order NO SC-08-001A04",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-19",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "The classification order is a second decision riding the same comment window as the conveyance."
+    },
+    {
+      "id": "C08",
+      "claim": "None of the three state public notices for ADL 234762 contains the phrase data center, and the furthest the state goes on intended use is a multi-use industrial and energy development district.",
+      "value": "no mention of data center",
+      "verbatim": "to create a multi-use industrial and energy development district",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224930",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-24",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "Absence verified by targeted search of all three notices, id 224431 published July 10th, id 224879 published August 19th and id 224930 published August 24th, and independently confirmed by this run's fact-checker on id 224879. The July notice states no intended use at all."
+    },
+    {
+      "id": "C09",
+      "claim": "The state describes the purpose of the conveyance as creating a multi-use industrial and energy development district.",
+      "value": "multi-use industrial and energy development district",
+      "verbatim": "to create a multi-use industrial and energy development district",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224930",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-24",
+      "fetched": true,
+      "confidence": 0.92,
+      "notes": ""
+    },
+    {
+      "id": "C10",
+      "claim": "The state reported that more than 2,000 written comments had been received to date as of August 24th, 2026.",
+      "value": "more than 2,000",
+      "verbatim": "More than 2,000 written comments have been received to date",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224930",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-24",
+      "fetched": true,
+      "confidence": 0.92,
+      "notes": "This is the department's own count, not an advocacy group's."
+    },
+    {
+      "id": "C11",
+      "claim": "The department held two informational public meetings on the conveyance, on August 27th, 2026 at 6:00 pm and on September 2nd, 2026 at 11:30 am.",
+      "value": "two meetings",
+      "verbatim": "August 27, 2026 at 6:00 pm",
+      "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224930",
+      "source_outlet": "Alaska DNR Division of Mining, Land and Water, Online Public Notices",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-24",
+      "fetched": true,
+      "confidence": 0.9,
+      "notes": "The second meeting time, September 2, 2026 at 11:30 am, is printed on the same notice. Both were informational with no comment taken during the sessions."
+    },
+    {
+      "id": "C12",
+      "claim": "About 15,100 acres now designated for Forestry, Habitat and Water Resources would be reclassified as Settlement.",
+      "value": "15,100 acres",
+      "verbatim": "approximately 15,100 acres currently designated for Forestry, Habitat and Water Resources as Settlement",
+      "source_url": "https://inletkeeper.org/speaking-up-works-aidea-land-transfer-comment-period-extended",
+      "source_outlet": "Cook Inletkeeper",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-26",
+      "fetched": true,
+      "confidence": 0.75,
+      "notes": "Reported figure, corroborated independently by the Northern Alaska Environmental Center, which prints about 15,100 acres reclassified as Settlement. Both are advocacy organisations and the DNR notice text does not carry the number. Magnitude checks, 15,100 is 76 percent of 19,950. Attribute on any slide that uses it."
+    },
+    {
+      "id": "C13",
+      "claim": "AIDEA's development plan identifies possibilities rather than commitments and lists data centers among them.",
+      "value": "possibilities, not commitments",
+      "verbatim": "AIDEA's development plan identifies possibilities, not commitments: rail-served logistics, shared utility corridors, advanced manufacturing, local material production, energy infrastructure, workforce housing and, potentially, data centers.",
+      "source_url": "https://www.matsusentinel.com/zero-transparency-houston-officials-oppose-land-transfer-process-linked-to-data-centers/",
+      "source_outlet": "Mat-Su Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "fetched": true,
+      "confidence": 0.82,
+      "notes": "The hedge is the story. Cook Inletkeeper independently reports the same phrase, potentially, data centers. Never write that the state is giving AIDEA 19,950 acres for data centres."
+    },
+    {
+      "id": "C14",
+      "claim": "AIDEA has not identified specific tenants, firm job numbers, energy needs, water use, or a detailed buildout plan.",
+      "value": "no tenant, no jobs, no energy, no water",
+      "verbatim": "AIDEA has not identified specific tenants, firm job numbers, energy needs, water use, or a detailed buildout plan",
+      "source_url": "https://northern.org/news/state-proposes-giving-nearly-20000-acres-near-houston-to-aidea/",
+      "source_outlet": "Northern Alaska Environmental Center",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.8,
+      "notes": "Reported by an advocacy organisation. Consistent with the state notices, which state no tenant and no use beyond the district description in C09."
+    },
+    {
+      "id": "C15",
+      "claim": "The land would be transferred to AIDEA at no cost, according to the Northern Alaska Environmental Center.",
+      "value": "at no cost",
+      "verbatim": "19,950 acres of state land near Houston to AIDEA at no cost",
+      "source_url": "https://northern.org/news/state-proposes-giving-nearly-20000-acres-near-houston-to-aidea/",
+      "source_outlet": "Northern Alaska Environmental Center",
+      "source_is_primary": false,
+      "date_of_source": "2026-07-22",
+      "fetched": true,
+      "confidence": 0.7,
+      "notes": "NOT confirmed by the state notice, which carries no cost language. Attribute explicitly wherever used. The safer verified framing is the state's own phrase in C02."
+    },
+    {
+      "id": "C16",
+      "claim": "The Houston City Council voted unanimously on August 13th, 2026 to oppose the land transfer process.",
+      "value": "unanimous",
+      "verbatim": "The Houston City Council voted unanimously on August 13, 2026, to oppose the land transfer process.",
+      "source_url": "https://www.matsusentinel.com/zero-transparency-houston-officials-oppose-land-transfer-process-linked-to-data-centers/",
+      "source_outlet": "Mat-Su Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "fetched": true,
+      "confidence": 0.8,
+      "notes": "The council opposed the PROCESS. No vote count is printed, only that it was unanimous. Single sourced."
+    },
+    {
+      "id": "C17",
+      "claim": "About 70 residents attended the Houston City Council meeting on the land transfer.",
+      "value": "about 70 residents",
+      "verbatim": "Approximately 70 residents attended the meeting.",
+      "source_url": "https://www.matsusentinel.com/zero-transparency-houston-officials-oppose-land-transfer-process-linked-to-data-centers/",
+      "source_outlet": "Mat-Su Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "fetched": true,
+      "confidence": 0.75,
+      "notes": "Single sourced and approximate."
+    },
+    {
+      "id": "C18",
+      "claim": "Houston council member Jeffrey Brasel said there was zero transparency and that preliminary decisions had been made before the city had a decision to make.",
+      "value": "zero transparency",
+      "verbatim": "There was zero transparency. They had made preliminary decisions before we made or even had a decision to make.",
+      "source_url": "https://www.matsusentinel.com/zero-transparency-houston-officials-oppose-land-transfer-process-linked-to-data-centers/",
+      "source_outlet": "Mat-Su Sentinel",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "fetched": true,
+      "confidence": 0.8,
+      "notes": "Single sourced to the Mat-Su Sentinel. Attribute to the outlet on any slide."
+    },
+    {
+      "id": "C19",
+      "claim": "A Public Land Survey System township is divided into 36 sections, each usually 640 acres, which is one square mile.",
+      "value": "36 sections",
+      "verbatim": "Each township is broken down into 36 sections; each section is usually 640 acres.",
+      "source_url": "https://www.blm.gov/or/landrecords/legaldescrip.php",
+      "source_outlet": "Bureau of Land Management, Land Legal Descriptions",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-04",
+      "fetched": true,
+      "confidence": 0.99,
+      "notes": "A standing definition of the survey grid, not a fact about this conveyance. Added 2026-09-04 because slide 08 prints the 36 and the deck derives 72 sections and 31.2 sections from it, and an undeclared arithmetic base is exactly what the aggregate gate exists to refuse. Fetched and quoted."
+    }
+  ],
+  "derived": [
+    {
+      "what": "19,950 acres in square miles",
+      "value": "31.2",
+      "how": "19950 / 640 acres per square mile = 31.17",
+      "from": [
+        "C01"
+      ]
+    },
+    {
+      "what": "share of the parcel that would be reclassified",
+      "value": "76 percent",
+      "how": "15100 / 19950 = 0.757",
+      "from": [
+        "C01",
+        "C12"
+      ]
+    },
+    {
+      "what": "acres conveyed that are not in the reclassification figure",
+      "value": "4,850",
+      "how": "19950 - 15100",
+      "from": [
+        "C01",
+        "C12"
+      ]
+    },
+    {
+      "what": "sections of the Public Land Survey System equivalent to the parcel",
+      "value": "31.2 of the 72 in two townships",
+      "how": "19950 / 640 = 31.17 sections; a township is 36 sections, so two townships are 72",
+      "from": [
+        "C01",
+        "C06"
+      ]
+    },
+    {
+      "what": "days from the run date to the comment close",
+      "value": "10",
+      "how": "September 4th to September 14th, 2026",
+      "from": [
+        "C03"
+      ]
+    }
+  ],
+  "killed": [
+    {
+      "claim": "The proposed conveyance is for data centres.",
+      "why": "Overstated. The only sourced language is AIDEA's plan identifying possibilities, not commitments, listing potentially, data centers among nine uses. The state notices contain no mention of data centers at all."
+    },
+    {
+      "claim": "An analysis of DNR records found 94 percent of previous transactions were for parcels smaller than 100 acres.",
+      "why": "Cook Inletkeeper states it plainly but it is the group's own derived statistic, the underlying analysis is not published or linked, the population of previous transactions is undefined, and no independent source repeats it. Confidence 0.45. Cut rather than attributed."
+    },
+    {
+      "claim": "The AIDEA parcel is 30 square miles.",
+      "why": "The Mat-Su Sentinel prints 30 square miles but 19,950 acres is 31.2. The rounding is the outlet's and the acreage is the primary figure."
+    },
+    {
+      "claim": "The Houston City Council rejected a data centre ban 4 to 2 at the same meeting.",
+      "why": "Reported by scouts and carried on this project's own docket, but the fact-checker's verbatim pass returned only the unanimous vote to oppose the process. Not used on any slide without a second verbatim."
+    },
+    {
+      "claim": "The parcel is larger than the City of Houston, which covers 25.25 square miles.",
+      "why": "Two fetched sources disagree on the city's own area. Wikipedia prints a total area of 25.25 square miles and a DCRA derived profile prints 22.4 square miles of land plus 1.16 of water, which is 23.56. The comparison holds under either figure, but a deck cannot print a number two sources contradict, and no primary route answered. census.gov returned 403 and dcced.alaska.gov did not resolve. The township comparison in the derived block replaces it and is built entirely from the primary legal description."
+    }
+  ]
+}

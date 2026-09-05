@@ -78,7 +78,7 @@
    * drawing, so the deck borrows a convention instead of inventing one. */
   AKP.LINE = {
     solid:   { dash: [],                 width: AKP.W.std,  cap: "butt"  },
-    phantom: { dash: [30, 5, 6, 5, 6, 5], width: AKP.W.fine, cap: "butt" },
+    phantom: { dash: [36, 8, 5, 8, 5, 8], width: AKP.W.fine, cap: "butt" },
     hidden:  { dash: [7, 4],             width: AKP.W.fine, cap: "butt"  },
     centre:  { dash: [24, 5, 5, 5],      width: AKP.W.hair, cap: "butt"  }
   };
