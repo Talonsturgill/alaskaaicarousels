@@ -108,13 +108,25 @@ def standalone_numeral(tok, blob):
     fragment of a larger grouped or decimal one: 300 is standalone in "more
     than 300 organizations" and is not in "8,300" or "1300" or "300.5".
 
+    A TRAILING ZERO DECIMAL IS THE SAME NUMBER, NOT A LARGER ONE (2026-09-04).
+    normalise() strips trailing zeros after the point, so it reads 150.0 as
+    the number 150 and authorises it, while this function used to read the
+    same text as a fragment and call 150 a ghost. The two disagreed, and since
+    this is the check that polices the tokeniser, the disagreement failed the
+    build on correct behaviour rather than catching anything: it went red on
+    main on 2026-09-03, the day the gas watch model first wrote
+    non_cingsa_supply_mmcfd as 150.0, and stayed red until a pull request
+    happened to touch a path that runs this suite. 300.5 is still not 300,
+    and 300.0 is, which is exactly what normalise() already says.
+
     Deliberately built on its own regex and NOT on NUMERAL_RE. This is the
     thing that checks the corpus tokeniser, so borrowing that tokeniser would
     make the check agree with whatever it does today.
     """
     if not isinstance(blob, str):
         blob = json.dumps(blob, sort_keys=True)
-    pattern = (r"(?<!\d)(?<!\d,)(?<!\d\.)" + re.escape(tok) + r"(?!\d)(?![.,]\d)")
+    pattern = (r"(?<!\d)(?<!\d,)(?<!\d\.)" + re.escape(tok)
+               + r"(?!\d)(?!,\d)(?!\.\d*[1-9])")
     return re.search(pattern, blob) is not None
 
 
@@ -288,6 +300,16 @@ def self_test():
     alone = '{"note":"under a headline of more than 300 organizations"}'
     check("the ghost test can still go red",
           not standalone_numeral("300", grouped) and standalone_numeral("300", alone))
+    # And the trailing-zero decimal the 2026-09-04 repair turned on, guarded in
+    # BOTH directions so a future loosening of the pattern shows up here: a
+    # trailing zero is the same number, a real fraction is a different one, and
+    # a comma group is still a fragment.
+    check("a trailing zero decimal is the same number, a real fraction is not",
+          standalone_numeral("150", '{"supply":150.0}')
+          and standalone_numeral("150", '{"supply":150.00}')
+          and not standalone_numeral("150", '{"lon":-150.87}')
+          and not standalone_numeral("150", '{"customers":"150,000"}')
+          and not standalone_numeral("300", '{"n":300.5}'))
 
     print("size")
     blob = json.dumps(c, separators=(",", ":"))

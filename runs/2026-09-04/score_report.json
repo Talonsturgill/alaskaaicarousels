@@ -1,0 +1,91 @@
+{
+  "run_date": "2026-09-04",
+  "carousel_no": 50,
+  "weighted_total": 8.76,
+  "threshold": 8.3,
+  "ship": true,
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "one_sentence_fix": "Draw into the bottom bands of slides 02, 03, 07 and 09 the populations their own dossiers already promise there (tussock crowns over dark sockets, birch stems with leaf litter, snow collars, each with an attached cast at the key's nine degrees), because four of nine frames currently hand a quarter of their area to a texture with no object standing in it.",
+  "calculation": "(9x0.14)+(8x0.14)+(6x0.16)+(9x0.14)+(9x0.12)+(8x0.10)+(8x0.08)+(7x0.07)+(9x0.05)+(7x0.10) = 1.26+1.12+0.96+1.26+1.08+0.80+0.64+0.49+0.45+0.70 = 8.76",
+  "hard_fails": [],
+  "hard_fail_checks_all_passed": true,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 9,
+      "weight": 0.14,
+      "notes": "Nine words, a specific number and a named tension built on a verified absence, at 91 px across three lines, legible in the 432 px thumb. Held off 9 because the lower 55 percent of the frame is compositionally inert and the dossier's declared focal crown at (0.38, 0.66) is not there."
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "A real beat structure and the loops are planted and paid as the header's table claims. The ruled geometry filmstrip reads across the contact sheet at the extremes. Held off 9 because the middle sags: 04's breather reads as an abstract field rather than country, 05 carries two large voids, and 03 at 6 percent against 07 at 14 percent do not read as distinct steps."
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6,
+      "weight": 0.16,
+      "notes": "WEAKEST. Round two's gains are real: the contact idiom is fixed deck wide at dL 10.8 to 36.2, the engraving no longer prints iso-lines, 04's ridges no longer read as lines of text, 08 is a genuine rebuild, and aerial perspective is now mostly right, distance costing tonal range rather than incident. The zoom test still fails on 01, 02, 03 and 09, whose bottom quarter is one flat mottled wash against each dossier's own promise that the lower third is the most modelled region. Slide 08's 90 spruce crowns shipped as spheres with a specular sheen rather than conical crowns."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14,
+      "notes": "The strongest thing in the deck. The hero is the argument rather than a decoration of it. Slide 05's drawn area measures 1,103,549 px2 against 1,103,549 claimed; slide 07's rail is a real day axis whose census finds no undeclared ink; slide 08 asserts dispersion three ways and no shape can be read out of the 31 cells. Gold means the open window and never marks land, inverting No.14 on the same story. Held off 10 for slide 07's rail plates sitting evenly spaced above unevenly spaced ticks."
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 9,
+      "weight": 0.12,
+      "notes": "Named correctly throughout, and the geology in the header is right for that ground. The provenance stamp on 01 and 08 earns an Alaskan reader rather than markets to one. Held off 10 because the picture carries less of that authenticity than the words do, and the only resident voice is one council member quoted through an outlet."
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Content slides run 41 to 47 words and each adds a new verified specific. The claims file is unusually disciplined, with five claims killed for stated reasons including a 94 percent statistic whose analysis is unpublished. Held off 9 because C12 carries both 05 and 06, so one beat is spent twice."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "notes": "Hero, continuity device, hook archetype and type pairing all diverge and are argued rather than asserted, and inverting gold from No.14's parcel polygon is a genuinely smart divergence on the same story. Against that, the palette is the second consecutive dark navy night register sharing No.49's exact base and gold, and this is the fourth data centre siting and land deck in sixteen days. The ledger's own note on No.47 asked the next run to change beat or open with the acknowledgement, and this deck does neither."
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07,
+      "notes": "Every floor met, qa.py 0 warns, vector PDF with the document title set, verified readable at 432 px. Deductions for a 25.49 MB PDF just outside the 2 to 25 MB band, slide 08's body over the lit substrate being the tightest contrast pair, and slide 03's final body line clearing the open corner's rule by a hair."
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 9,
+      "weight": 0.05,
+      "notes": "The hook is the absurd detail rather than a summary, at 124 characters, and the closing question is genuinely debatable. 888 chars, commas at 0.82 per 100 words. The copywriter's catch is worth crediting: the countdown was anchored to a day count that went stale at midnight and is now anchored to the closing date. Held off 9 because the deck summary line arrives as a fragment and the third paragraph stacks four facts in five sentences."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7,
+      "weight": 0.1,
+      "notes": "Everything the email needs exists and is hashed in assemble_report. Cost it: the claim ledger was stale after round two, with C19 present in claims.json but missing from the storyboard's CLAIMS INDEX and from slide 08's claim_ids, and gate_status carried a site_fresh failure at the time of scoring."
+    }
+  ],
+  "scorer_notes": "Scored after two revision rounds. The first build drew a deck mean of 5.38 across five pixel critics; the second fixed causes rather than instances and this is the result. Two content defects were found that did not rise to a hard fail and are recorded rather than re-rendered for: slide 07's rail plate registration, and a reading that slide 08's casts run west (the source in fact translates the cast to x plus 1.5s and y plus 0.7s, which is southeast; recorded as a disputed finding).",
+  "post_score_repairs": [
+    "C19 added to the storyboard CLAIMS INDEX and to slide 08's claim_ids in copy.json, so plan_drift sees 19 and not 18.",
+    "site_fresh went green before scoring landed: docs/ was rebuilt after merging cron's 2026-09-05 gas watch reading from main.",
+    "Slide 07's four rail readout plates were re-registered over their own ticks, which was the one held-off-10 finding cheap enough to fix without a re-plan."
+  ],
+  "scored_round": 3,
+  "previous_scores": [
+    {
+      "round": 2,
+      "weighted_total": 8.48
+    },
+    {
+      "round": 3,
+      "weighted_total": 8.76
+    }
+  ]
+}

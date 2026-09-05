@@ -1021,7 +1021,14 @@ def feed(series, model, site_url, today, meta, figs=None):
                         "derived non CINGSA supply that falls out of the mass "
                         "balance. It publishes no safety verdict of any kind."),
         "version": SCHEMA_VERSION,
-        "updated": today.isoformat(),
+        # NEVER OLDER THAN THE NEWEST RECORD (2026-09-04). This was the build
+        # date alone, and a carousel run rebuilding the site at its own run date
+        # over a collection cron had already written could move `updated`
+        # BACKWARD: on 2026-09-05 the series ended on the 5th while the envelope
+        # said the 4th. Consumers use this as a sync or cache marker, so a date
+        # that walks backward is a dataset telling them to skip a record it is
+        # holding. The collector's own newest day is the floor.
+        "updated": max(today.isoformat(), series[-1]["date"]) if series else today.isoformat(),
         "canonical": f"{site_url}/gas-watch.json",
         "documentation": f"{site_url}/gas-watch/",
         "license": meta["license"],

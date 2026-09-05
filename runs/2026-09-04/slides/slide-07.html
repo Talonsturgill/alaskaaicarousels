@@ -1,0 +1,315 @@
+<!doctype html>
+<!-- SLIDE 07, THE RECORD. Camera 1.2 m, 60 mm, minus 35 degrees.
+     The keepable slide. A measured date rail in DAYS from July 10th, declared
+     as data-scale on the BODY with every mark enumerated, plus a comment field
+     of 20 filled marks at 1 per 100 and a 21st drawn open for "more than". The
+     two meeting marks are drawn UNLIT because neither took testimony, which is
+     a state and not a tint. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Manrope", sans-serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.06; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  .kicker { position: absolute; left: 96px; top: 88px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #9AA98C; }
+  h2 { position: absolute; left: 96px; top: 150px; width: 760px; height: 190px;
+       font-family: "Bricolage Grotesque", sans-serif; font-weight: 700;
+       font-size: 74px; line-height: 0.98; letter-spacing: -0.02em; color: #E8EEF5; }
+  .body { position: absolute; left: 96px; top: 366px; width: 700px;
+          font-size: 30px; font-weight: 400; line-height: 1.32; color: #C2CBBA; }
+  .quote { position: absolute; left: 96px; top: 730px; width: 700px;
+           font-size: 42px; font-weight: 600; line-height: 1.16; color: #E8EEF5; }
+  .attrib { position: absolute; left: 96px; top: 812px; width: 900px;
+            font-family: "JetBrains Mono", monospace; font-weight: 400;
+            font-size: 24px; letter-spacing: 0.04em; line-height: 1.34; color: #9AA98C; }
+  .mk { position: absolute; left: 96px; top: 946px; width: 900px;
+        font-family: "JetBrains Mono", monospace; font-weight: 400;
+        font-size: 24px; letter-spacing: 0.04em; line-height: 1.34; color: #9AA98C; }
+  .rl { position: absolute; font-family: "JetBrains Mono", monospace;
+        font-weight: 500; font-size: 24px; letter-spacing: 0.05em; color: #E8EEF5;
+        background: #060C15; padding: 5px 8px; white-space: nowrap; }
+  .rl.g { color: #FFC72C; }
+  .stamp { position: absolute; font-family: "JetBrains Mono", monospace;
+           font-weight: 700; font-size: 24px; letter-spacing: 0.10em;
+           background: #060C15; padding: 4px 8px; }
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-weight: 500;
+             font-size: 24px; letter-spacing: 0.10em; color: #9AA98C; }
+  .counter i { color: #FFC72C; font-style: normal; }
+</style>
+</head>
+<body data-scale='[{"what":"the date rail, days from July 10th 2026","axis":"x","unit":"days","from":[96,0],"to":[984,66],"band":[1132,1148],"marks":[{"at":96,"means":"July 10th, 2026, scoping opens (C04)"},{"at":634,"means":"August 19th, 2026, the superseded close (C05)"},{"at":701,"means":"August 24th, 2026, more than 2,000 comments counted (C10)"},{"at":742,"means":"August 27th, 2026, informational meeting, no testimony (C11)"},{"at":822,"means":"September 2nd, 2026, informational meeting, no testimony (C11)"},{"at":984,"means":"September 14th, 2026, comment closes 5:00 p.m. (C03)"}]}]'
+      data-contacts='[{"what":"the date rail and its bed, standing on the ground it measures","shadow":[[250,1152,200,14]],"ground":[[250,1102,200,16]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+
+  <div class="kicker" data-reserve>THE RECORD SO FAR</div>
+  <h2 data-reserve>More than 2,000 people<br>have already written in.</h2>
+  <div class="body" data-reserve>Scoping opened July 10th, 2026 and the original close was August 19th. More than 2,000 written comments had arrived by August 24th, by the department's own count. Two informational meetings were held and neither took testimony. Houston's council voted unanimously against the process.</div>
+  <div class="quote" data-reserve>"There was zero transparency."</div>
+  <div class="attrib" data-reserve>JEFFREY BRASEL, HOUSTON CITY COUNCIL,<br>PER THE MAT-SU SENTINEL, AUGUST 13TH, 2026.</div>
+  <div class="mk" data-reserve>1 MARK = 100 COMMENTS. THE 21ST IS OPEN FOR "MORE THAN".<br>THE RAIL RUNS IN DAYS. TWO HOLLOW MARKS TOOK NO TESTIMONY.</div>
+
+  <div class="rl" data-reserve style="left:96px;  top:1040px;">JUL 10TH</div>
+  <div class="rl" data-reserve style="left:299px; top:1040px;">AUG 19TH</div>
+  <div class="rl" data-reserve style="left:502px; top:1040px;">AUG 24TH</div>
+  <div class="rl" data-reserve style="left:705px; top:1040px;">AUG 27TH &amp; SEP 2ND</div>
+  <div class="rl g" data-reserve style="left:660px; top:1180px;">SEP 14TH, 5:00 P.M.</div>
+
+  <div class="stamp" data-reserve style="left:96px;  top:1180px; color:#9AA98C;">SOURCED &middot; STATE NOTICES</div>
+  <div class="stamp" data-reserve style="left:96px;  top:1224px; color:#7D8C79;">REPORTED &middot; MAT-SU SENTINEL</div>
+  <div class="counter" data-reserve>07 <i data-decorative>/</i> 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+
+  var SEED = 20260970;
+  var W = 1080, H = 1350;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), { min: 50, max: 74, maxLines: 2 });
+  AKPARCEL.reserve('[data-reserve]');
+
+  /* ---------- the ground, seen steeply, darkest behind the rail ----------- */
+  function ground(bx) {
+    var g = bx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0.00, '#0A1420');
+    g.addColorStop(0.58, '#142434');
+    g.addColorStop(0.86, '#0B1622');      /* darkest exactly behind the rail */
+    g.addColorStop(1.00, '#101D2B');
+    bx.fillStyle = g; bx.fillRect(0, 0, W, H);
+
+    function form(x, y) {
+      var u = x * 0.0052, v = y * 0.0040;
+      return 28 * AK.fbm2(u * 1.18, v * 1.30, 2)
+           - 19 * Math.abs(AK.fbm2(u * 0.70 + 4.4, v * 0.86 + 2.7, 2) - 0.5);
+    }
+
+    AK.hachureField(bx, {
+      x: 0, y: 240, w: W, h: H - 240, scale: 1, seed: SEED + 7,
+      height: function (u, v) { return 0.5 + 0.5 * Math.tanh(form(u * W, 240 + v * (H - 240)) / 40); },
+      cell: 11, lenScale: 1.8, passes: 4,
+      sunAz: 318, sunEl: 9, sunJitter: 12,
+      color: '#31506C', alpha: 0.26, minWidth: 0.45, maxWidth: 3.4
+    });
+
+    var eng = AKENGRAVE.create({ seed: SEED + 13, light: { azDeg: 318, elDeg: 22 } });
+    eng.reserve(AKENGRAVE.boxesFor('[data-reserve]'));
+    eng.surface(bx, {
+      region: [0, 300, W, H - 300],
+      form: form,
+      tone: function (x, y) {
+        return Math.max(0.06, Math.min(0.95,
+          0.32 + 0.34 * (y / H) + 0.20 * AK.fbm2(x * 0.0043, y * 0.0043, 3)));
+      },
+      budget: { main: 6.4, cross: 8.6, dots: true },
+      inkLo: '#1B2E3E', inkHi: '#3E5163', alpha: 0.30,
+      seedDeg: 33
+    });
+
+    /* THE MIDDLE DISTANCE. About 60 tussock heads at full count and full
+       incident detail, then compressed. None of them is a silhouette. */
+    var r = AK.rng(SEED + 19);
+    for (var i = 0; i < 60; i++) {
+      /* RESAMPLED, never skipped, so the count stays 60 while no head lands
+         under a reserved line box. A lit crown is hard edged ink and a label
+         plate lying over one is the art crossing type the layout reserved. */
+      var tx, ty, tries = 0;
+      do {
+        tx = -20 + r() * (W + 40); ty = 880 + Math.pow(r(), 0.9) * 300;
+      } while (AKPARCEL.clearance(tx, ty) < 0.62 && ++tries < 24);
+      var ts = 9 + Math.pow((ty - 880) / 300, 1.3) * 15;
+      bx.fillStyle = '#081321'; bx.globalAlpha = 0.72;
+      bx.save(); bx.translate(tx + ts * 0.8, ty + ts * 0.2); bx.scale(1, 0.3);
+      bx.beginPath(); bx.arc(0, 0, ts * 1.1, 0, Math.PI * 2); bx.fill(); bx.restore();
+      bx.globalAlpha = 1;
+      var R = 100;
+      bx.save(); bx.translate(tx, ty); bx.scale(ts / R, ts * 0.44 / R);
+      var tg = bx.createRadialGradient(-R * 0.48, -R * 0.52, R * 0.04, 0, 0, R);
+      tg.addColorStop(0, '#61717A'); tg.addColorStop(0.44, '#2C3C48'); tg.addColorStop(1, '#111C27');
+      bx.fillStyle = tg; bx.beginPath(); bx.arc(0, 0, R, 0, Math.PI * 2); bx.fill();
+      bx.restore();
+      /* the head's own sedge, four to nine blades, the centimetre scale */
+      var nb = 4 + Math.floor(r() * 6);
+      bx.strokeStyle = '#7D8C79'; bx.lineWidth = 0.75;
+      for (var b = 0; b < nb; b++) {
+        var a2 = -Math.PI * 0.9 + (b / nb) * Math.PI * 1.8;
+        bx.globalAlpha = 0.16 + 0.30 * Math.pow(Math.max(0, Math.cos(a2 - 2.36)), 2);
+        bx.beginPath();
+        bx.moveTo(tx + Math.cos(a2) * ts * 0.5, ty + Math.sin(a2) * ts * 0.3);
+        bx.lineTo(tx + Math.cos(a2) * ts * 0.9, ty - ts * (0.8 + r() * 0.8));
+        bx.stroke();
+      }
+      bx.globalAlpha = 1;
+    }
+
+    AKSTIPPLE.field(bx, {
+      seed: SEED + 23, count: 20000, w: W, h: H,
+      height: function (x, y) {
+        if (y < 300) return 0;
+        return Math.max(0, Math.min(1, 0.5 + form(x, y) / 60));
+      },
+      ramp: ['#152434', '#203344', '#2C4353', '#3B5261', '#516771', '#7D8C79'],
+      radius: function (q) { return 0.8 + 1.0 * q; },
+      alpha: function (q) { return 0.12 + 0.26 * q; },
+      box: [0, 300, W, H - 300]
+    });
+  }
+
+  ground(cx);
+
+  /* ---------- THE COMMENT FIELD, 20 filled marks plus one drawn open ------- */
+  /* One mark per hundred comments, and the key prints the rate so no reader
+     can mistake 20 marks for 20 people. More than 2,000 is a FLOOR, so the
+     twenty first mark is an open outline rather than a filled one. */
+  var CM = [], ci;
+  for (ci = 0; ci < 21; ci++) {
+    CM.push([112 + ci * 42, 916]);
+  }
+  cx.save();
+  CM.forEach(function (p, i) {
+    var open = (i === 20);
+    cx.lineWidth = 2.0;
+    cx.strokeStyle = '#6EA5FF';
+    cx.beginPath();
+    /* a forget me not is five lobes, and the civic voice is the only place
+       this hue appears anywhere in the deck */
+    for (var l = 0; l < 5; l++) {
+      var a = -Math.PI / 2 + l * (Math.PI * 2 / 5);
+      cx.moveTo(p[0], p[1]);
+      cx.arc(p[0] + Math.cos(a) * 7, p[1] + Math.sin(a) * 7, 6.5, 0, Math.PI * 2);
+    }
+    if (open) { cx.stroke(); }
+    else { cx.fillStyle = 'rgba(110,165,255,0.42)'; cx.fill(); cx.stroke(); }
+  });
+  cx.restore();
+
+  /* ---------- THE PAPER GEOMETRY, 14 percent. THE DATE RAIL --------------- */
+  var RAIL_Y = 1140, X0 = 96, X1 = 984, D1 = 66;
+  function dayX(d) { return X0 + (d / D1) * (X1 - X0); }
+  var MARKS = [
+    { d: 0,  gold: false, lit: true  },   /* July 10th, scoping opens */
+    { d: 40, gold: false, lit: true  },   /* August 19th, superseded close */
+    { d: 45, gold: false, lit: true  },   /* August 24th, the count */
+    { d: 48, gold: false, lit: false },   /* August 27th meeting, no testimony */
+    { d: 54, gold: false, lit: false },   /* September 2nd meeting, no testimony */
+    { d: 66, gold: true,  lit: true  }    /* September 14th, the close */
+  ];
+
+  /* THE LIT GROUND, on the UP-LIGHT side of the rail. Key az 318, el 9 puts
+     the light in from the upper left, so the ground above the bed takes it
+     and the ground below the bed is where the bed's own cast falls. The pool
+     is held between the two reserved label boxes on this row, which is why it
+     is a patch and not a band: raking light on muskeg is patchy anyway. */
+  cx.save();
+  cx.globalCompositeOperation = 'screen';
+  var WY0 = 1100, WH = 28, WMID = WY0 + WH * 0.5;
+  for (var wx = 0; wx < W; wx += 4) {
+    /* the wash is SCREENED so the peat's modelling reads through it, and its
+       amplitude rides AKPARCEL.clearance so it dims toward the label plates
+       instead of stopping at a hard edge or landing inside reserved type */
+    var cl = Math.min(AKPARCEL.clearance(wx + 2, WY0),
+                      AKPARCEL.clearance(wx + 2, WMID),
+                      AKPARCEL.clearance(wx + 2, WY0 + WH));
+    if (cl <= 0.18) continue;
+    var f = Math.max(0, 1 - Math.pow(Math.abs((wx + 2) - 430) / 470, 1.8));
+    var a = 0.52 * cl * f;
+    if (a <= 0.012) continue;
+    var wg = cx.createLinearGradient(0, WY0, 0, WY0 + WH);
+    wg.addColorStop(0.0, 'rgba(46,66,78,0)');
+    wg.addColorStop(0.5, 'rgba(122,146,157,' + a.toFixed(3) + ')');
+    wg.addColorStop(1.0, 'rgba(46,66,78,0)');
+    cx.fillStyle = wg; cx.fillRect(wx, WY0, 4, WH);
+  }
+  cx.restore();
+
+  /* THE RAIL BED. A measured axis may hold only marks the slide declares, and
+     modelled ground under it puts undeclared ink in the band. The bed is a
+     drafting convention and it makes the declaration true. */
+  cx.save();
+  cx.fillStyle = '#050B14';
+  cx.fillRect(X0 - 14, 1130, (X1 - X0) + 28, 20);
+  cx.restore();
+
+  /* the bed's cast, ATTACHED at the bed's own base line and thrown down-light.
+     It stops short of the stamp row, which is reserved. */
+  cx.save();
+  var bg = cx.createLinearGradient(0, 1150, 0, 1168);
+  bg.addColorStop(0, 'rgba(2,4,8,0.94)');
+  bg.addColorStop(0.5, 'rgba(2,4,8,0.60)');
+  bg.addColorStop(1, 'rgba(2,4,8,0)');
+  cx.fillStyle = bg; cx.fillRect(X0 - 14, 1150, (X1 - X0) + 28, 18);
+  cx.restore();
+
+  cx.save();
+  AKPARCEL.stroke(cx, 'solid', '#E8EEF5');
+  cx.lineWidth = 2.0;
+  cx.beginPath(); cx.moveTo(X0, RAIL_Y); cx.lineTo(X1, RAIL_Y); cx.stroke();
+  MARKS.forEach(function (m) {
+    var x = dayX(m.d);
+    cx.strokeStyle = m.gold ? '#FFC72C' : '#E8EEF5';
+    if (m.lit) {
+      cx.lineWidth = m.gold ? 3.5 : 2.0;
+      cx.beginPath(); cx.moveTo(x, RAIL_Y - 18); cx.lineTo(x, RAIL_Y + 18); cx.stroke();
+    } else {
+      /* UNLIT IS A STATE, NOT A TINT, and a dimmer bar is only ever a tint. A
+         meeting that took no testimony is drawn as an OPEN RING straddling the
+         rail at the same overall extent as a lit mark, so the only difference
+         is fill. A ring downsamples to a hole at 432 px; a dim bar downsamples
+         to nothing at all. */
+      /* a FILLED annulus, not a hairline ring: the mark has to carry as much
+         ink through the declared axis band as a lit bar does, or the band's
+         own texture is as strong as the mark and no census can tell them
+         apart. The hole is the state; the ink is what makes the hole visible. */
+      cx.fillStyle = '#E8EEF5';
+      cx.beginPath(); cx.arc(x, RAIL_Y, 13, 0, Math.PI * 2); cx.fill();
+      cx.fillStyle = '#050B14';
+      cx.beginPath(); cx.arc(x, RAIL_Y, 6.5, 0, Math.PI * 2); cx.fill();
+    }
+    cx.globalAlpha = 1;
+  });
+  cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H, exposure: -0.05, saturation: 1.05, contrast: 1.10, filmic: true,
+    lift: [0.010, 0.014, 0.024], gain: [1.015, 1.0, 0.975], vignette: 0.18,
+    bloom: { threshold: 0.78, strength: 0.20, radius: 8 },
+    grain: { amount: 0.045, size: 2, seed: SEED }, dither: true, sharpen: 0.30
+  });
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED + 5) + ')';
+
+  window.__akAssert = [{
+    what: '20 marks at 100 comments each plus one drawn open for more than',
+    expect: 21,
+    points: CM,
+    unit: 'marks'
+  }];
+
+  resolve();
+  })().catch(function (e) {
+    console.error('SLIDE 07 FAILED', e && (e.stack || e.message || e));
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

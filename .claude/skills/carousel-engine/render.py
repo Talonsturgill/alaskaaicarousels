@@ -1266,6 +1266,24 @@ IN_PAGE_QA_JS = """
      pixel instrument, on one implementation of _ink_spread rather than a
      second one written in JS), capped and evenly strided so a 750-mark
      census costs a bounded amount of report. */
+  /* ... AND A COUNT THAT MEANS EXTENT SAYS SO (2026-09-04). Run No.50's slide
+     08 lit 31 of 72 grid cells to stand for 31 sections of two townships whose
+     LOCATION is not public, under a label reading EXTENT ONLY. NO BOUNDARY IS
+     DRAWN. The build shuffled the 72 cells and took the first 31; they landed
+     edge to edge in one township, so the frame drew a parcel with holes in it
+     seventy pixels under that label. The count contract reported 31 of 31 and
+     every gate was green, because the gate asked HOW MANY and the failure was
+     about WHERE. Five pixel critics scored the slide 2.5.
+
+       window.__akAssert = [{ what: "31 of 72 sections, extent only",
+                              expect: 31, points: pts, dispersed: true,
+                              unit: "marks" }];
+
+     `dispersed: true` is the slide stating that these marks are a scatter
+     standing for an extent rather than a drawn shape, and qa.py measures it on
+     the same centres (marks_disperse). Opt-in, like everything else here: a
+     rank, a row of tally marks and a bar are all legitimately contiguous and
+     never carry the flag. */
   const MARK_PROBE_MAX = 240;
   out.asserts = [];
   try {
@@ -1277,7 +1295,12 @@ IN_PAGE_QA_JS = """
         expect: num(a && a.expect),
         actual: num(a && a.actual),
         tol: num(a && a.tol),
-        unit: (a && typeof a.unit === "string") ? a.unit.trim().slice(0, 16) : ""
+        unit: (a && typeof a.unit === "string") ? a.unit.trim().slice(0, 16) : "",
+        /* A COUNT THAT CLAIMS EXTENT DECLARES IT (2026-09-04). `dispersed:true`
+           on a `points` assertion says the marks are a SCATTER standing for an
+           extent, not a drawn shape, and qa.py measures that off the same
+           centres. See marks_disperse() there for why counting cannot see it. */
+        dispersed: !!(a && a.dispersed === true)
       };
       const pts = (a && Array.isArray(a.points)) ? a.points.slice(0, 20000) : null;
       if (pts) {

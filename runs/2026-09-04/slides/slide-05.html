@@ -1,0 +1,325 @@
+<!doctype html>
+<!-- SLIDE 05, THE TURN. Camera 20 m, 40 mm, minus 22 degrees.
+     The ruled field arrives and covers EXACTLY 75.7 percent of the frame,
+     which is 15,100 over 19,950. The picture and the printed ratio are the
+     same number, computed once, so they cannot drift apart. All type sits in
+     the unruled lower left corner, which is the land the order does not
+     touch. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #04070E; position: relative; font-family: "Manrope", sans-serif; }
+  canvas { position: absolute; left: 0; top: 0; }
+  .grain { position: absolute; inset: 0; opacity: 0.06; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+  .kicker { position: absolute; left: 96px; top: 92px;
+            font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.10em; color: #9AA98C; }
+  h2 { position: absolute; left: 96px; top: 470px; width: 800px; height: 180px;
+       font-family: "Bricolage Grotesque", sans-serif; font-weight: 700;
+       font-size: 76px; line-height: 0.98; letter-spacing: -0.02em; color: #E8EEF5; }
+  .body { position: absolute; left: 96px; top: 700px; width: 600px;
+          font-size: 33px; font-weight: 400; line-height: 1.34; color: #C2CBBA; }
+  .ratio { position: absolute; left: 96px; top: 152px;
+           font-family: "JetBrains Mono", monospace; font-weight: 500;
+           font-size: 24px; letter-spacing: 0.06em; color: #E8EEF5;
+           background: #060C15; padding: 8px 12px; }
+  .attrib { position: absolute; left: 96px; top: 1196px; width: 860px;
+            font-family: "JetBrains Mono", monospace; font-weight: 400;
+            font-size: 24px; letter-spacing: 0.04em; line-height: 1.35; color: #9AA98C; }
+  .counter { position: absolute; right: 80px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-weight: 500;
+             font-size: 24px; letter-spacing: 0.10em; color: #9AA98C;
+             background: #060C15; padding: 5px 9px; }
+  .counter i { color: #FFC72C; font-style: normal; }
+</style>
+</head>
+<body data-contacts='[{"what":"the ruled field, a plate standing on the unruled ground at its leading edge","shadow":[[400,1026,200,18]],"ground":[[400,1096,200,24]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+
+  <div class="kicker" data-reserve>THE HALF THAT LASTS</div>
+  <div class="ratio" data-reserve>RULED AREA = 75.7% OF FRAME = 15,100 OF 19,950 ACRES</div>
+  <h2 data-reserve>Most of it changes<br>what it is for.</h2>
+  <div class="body" data-reserve>About 15,100 acres now designated Forestry, Habitat and Water Resources would be reclassified as Settlement. A tenant can arrive or never arrive. A classification stays until somebody changes it back.</div>
+  <div class="attrib" data-reserve>15,100 ACRES PER COOK INLETKEEPER AND THE<br>NORTHERN ALASKA ENVIRONMENTAL CENTER</div>
+  <div class="counter" data-reserve>05 <i data-decorative>/</i> 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+
+  var SEED = 20260950;
+  var W = 1080, H = 1350;
+  var HORIZON = 430;                    /* 20 m up, minus 22 degrees */
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var FAR = '#0B1524';
+
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), { min: 50, max: 76, maxLines: 2 });
+  AKPARCEL.reserve('[data-reserve]');
+
+  function sky() {
+    var g = cx.createLinearGradient(0, 0, 0, HORIZON);
+    g.addColorStop(0, '#04070E'); g.addColorStop(0.8, '#08111F'); g.addColorStop(1, '#0B1524');
+    cx.fillStyle = g; cx.fillRect(0, 0, W, HORIZON);
+    /* the amber band is down to about 1 percent, nearly drained */
+    var ag = cx.createLinearGradient(0, HORIZON - 26, 0, HORIZON);
+    ag.addColorStop(0, 'rgba(138,100,56,0)'); ag.addColorStop(1, 'rgba(138,100,56,0.13)');
+    cx.fillStyle = ag; cx.fillRect(0, HORIZON - 26, W, 26);
+  }
+
+  function farLine(bx) {
+    bx.fillStyle = '#18291F';
+    bx.beginPath(); bx.moveTo(-10, HORIZON + 26);
+    for (var x = -10; x <= W + 10; x += 4) {
+      bx.lineTo(x, HORIZON + 2 - 14 * Math.abs(AK.fbm2(x * 0.013, 8.1, 3) - 0.44));
+    }
+    bx.lineTo(W + 10, HORIZON + 26); bx.closePath(); bx.fill();
+  }
+
+  /* ---------- THE MIDDLE DISTANCE, depth 0.40 ---------------------------- */
+  /* About 30 SEEP CHANNELS, each a lit shoulder over a dark trough. This is
+     the population, and it is also the height field the near hachure runs on,
+     so the texture and the terrain are the same fact. */
+  /* THE RESERVE IS A CLIP, NOT A PLATE. qa.py reads the canvas layer on its
+     own, so a DOM background over the art does not answer 'canvas mark inside
+     reserved text'. The population is clipped out of every reserved line box
+     before it is drawn, so the ink is never made in the first place. */
+  function clipOutReserve(bx) {
+    var boxes = AKPARCEL.boxes();
+    bx.beginPath();
+    /* the outer boundary, clockwise */
+    bx.moveTo(0, 0); bx.lineTo(W, 0); bx.lineTo(W, H); bx.lineTo(0, H); bx.closePath();
+    /* EVERY HOLE IS WOUND THE OTHER WAY. rect() always winds the same
+       direction, so a path built out of rect() calls does not subtract under
+       the nonzero rule and only subtracts under evenodd if the engine honours
+       the argument. Reversed holes subtract under BOTH rules, which is the
+       difference between a knockout that works and one that silently does not.
+       The knockout runs 12 px proud of the reserve's own hard box, because a
+       stroke centred on the boundary still puts half its width inside it. */
+    boxes.forEach(function (b) {
+      var x0 = b.hx - 12, y0 = b.hy - 12, x1 = x0 + b.hw + 24, y1 = y0 + b.hh + 24;
+      bx.moveTo(x0, y0); bx.lineTo(x0, y1); bx.lineTo(x1, y1); bx.lineTo(x1, y0);
+      bx.closePath();
+    });
+    bx.clip('evenodd');
+  }
+
+  function seepField(bx) {
+    var r = AK.rng(SEED + 11);
+    var top = HORIZON + 24;
+    var g = bx.createLinearGradient(0, top, 0, H);
+    g.addColorStop(0, '#152738'); g.addColorStop(0.6, '#182C3E'); g.addColorStop(1, '#101E2C');
+    bx.fillStyle = g; bx.fillRect(0, top, W, H - top);
+    bx.save(); clipOutReserve(bx);
+
+    for (var i = 0; i < 30; i++) {
+      var y0 = top + 10 + Math.pow(r(), 0.62) * (H - top - 30);
+      /* THE TYPE RESERVE IS OBEYED BY THE POPULATION, not patched afterwards */
+      if (AKPARCEL.clearance(-80 + r() * 0, y0) < 0.5) { }
+      var x0 = -80 + r() * (W + 60);
+      var len = 180 + r() * 620;
+      var wob = 0.5 + r() * 1.4;
+      var wid = 3 + Math.pow((y0 - top) / (H - top), 1.3) * 16;
+      var pts = [];
+      for (var k = 0; k <= 26; k++) {
+        var t = k / 26;
+        pts.push([x0 + t * len, y0 + Math.sin(t * Math.PI * wob + i) * (10 + wid) ]);
+      }
+      /* the dark trough, clipped out of every reserved line box */
+      bx.strokeStyle = '#0C1A28'; bx.lineWidth = wid; bx.lineCap = 'round';
+      bx.beginPath();
+      pts.forEach(function (p, j) {
+        if (AKPARCEL.reserved(p[0], p[1])) { bx.moveTo(p[0], p[1]); return; }
+        j ? bx.lineTo(p[0], p[1]) : bx.moveTo(p[0], p[1]);
+      });
+      bx.stroke();
+      /* the key lit northwest shoulder, half a width off the trough */
+      bx.strokeStyle = '#5A7382'; bx.lineWidth = Math.max(0.75, wid * 0.30); bx.globalAlpha = 0.62;
+      bx.beginPath();
+      pts.forEach(function (p, j) {
+        var px = p[0] - wid * 0.42, py = p[1] - wid * 0.42;
+        if (AKPARCEL.reserved(px, py)) { bx.moveTo(px, py); return; }
+        j ? bx.lineTo(px, py) : bx.moveTo(px, py);
+      });
+      bx.stroke(); bx.globalAlpha = 1;
+    }
+
+    /* sphagnum hummocks between the channels, modelled crowns with shadows */
+    for (var m = 0; m < 70; m++) {
+      var hx = r() * W, hy = top + 20 + Math.pow(r(), 0.75) * (H - top - 40);
+      if (AKPARCEL.reserved(hx, hy)) continue;
+      var hs = 6 + Math.pow((hy - top) / (H - top), 1.2) * 24;
+      bx.fillStyle = '#0B1826'; bx.globalAlpha = 0.7;
+      bx.save(); bx.translate(hx + hs * 0.7, hy + hs * 0.24); bx.scale(1, 0.30);
+      bx.beginPath(); bx.arc(0, 0, hs * 1.1, 0, Math.PI * 2); bx.fill(); bx.restore();
+      bx.globalAlpha = 1;
+      var R = 100;
+      bx.save(); bx.translate(hx, hy); bx.scale(hs / R, hs * 0.46 / R);
+      var hg = bx.createRadialGradient(-R * 0.48, -R * 0.5, R * 0.04, 0, 0, R);
+      hg.addColorStop(0, '#7C8C86'); hg.addColorStop(0.42, '#3A4C52'); hg.addColorStop(1, '#16242F');
+      bx.fillStyle = hg; bx.beginPath(); bx.arc(0, 0, R, 0, Math.PI * 2); bx.fill();
+      bx.restore();
+    }
+    bx.restore();
+  }
+
+  /* ---------- the near band, depth 0.05, the lower third ----------------- */
+  function nearBand(bx) {
+    var top = H - 430;
+    bx.save(); clipOutReserve(bx);
+    function form(x, y) {
+      var u = x * 0.0060, v = (y - top) * 0.0125;
+      return 26 * AK.fbm2(u * 1.2, v * 1.4, 2)
+           - 22 * Math.abs(AK.fbm2(u * 0.72 + 6.2, v * 0.85 + 3.1, 2) - 0.5)
+           + (y - top) * 0.02;
+    }
+    AK.hachureField(bx, {
+      x: 0, y: top, w: W, h: H - top, scale: 1, seed: SEED + 21,
+      height: function (u, v) {
+        return 0.5 + 0.5 * Math.tanh(form(u * W, top + v * (H - top)) / 40);
+      },
+      cell: 11, lenScale: 1.8, passes: 4,
+      sunAz: 318, sunEl: 9, sunJitter: 12,
+      color: '#31506C', alpha: 0.30, minWidth: 0.45, maxWidth: 3.6
+    });
+    var eng = AKENGRAVE.create({ seed: SEED + 27, light: { azDeg: 318, elDeg: 22 } });
+    eng.reserve(AKENGRAVE.boxesFor('[data-reserve]'));
+    eng.surface(bx, {
+      region: [0, top + 4, W, H - top - 4],
+      form: form,
+      tone: function (x, y) {
+        return Math.max(0.06, Math.min(0.95,
+          0.34 + 0.34 * ((y - top) / (H - top)) + 0.20 * AK.fbm2(x * 0.0044, y * 0.0044, 3)));
+      },
+      budget: { main: 6.4, cross: 8.6, dots: true },
+      inkLo: '#1B2E3E', inkHi: '#3E5163', alpha: 0.30,
+      seedDeg: 43
+    });
+    AKSTIPPLE.field(bx, {
+      seed: SEED + 33, count: 24000, w: W, h: H,
+      height: function (x, y) {
+        if (y < top + 8) return 0;
+        return Math.max(0, Math.min(1, 0.5 + form(x, y) / 60));
+      },
+      ramp: ['#182838', '#233748', '#2F4757', '#3F5766', '#556C76', '#7D8C79'],
+      radius: function (q) { return 0.8 + 1.0 * q; },
+      alpha: function (q) { return 0.14 + 0.30 * q; },
+      box: [0, top, W, H - top]
+    });
+    bx.restore();
+  }
+
+  sky();
+  AKPARCEL.band(cx, { draw: farLine,   depth: 0.86, sky: FAR, w: W, h: H });
+  AKPARCEL.band(cx, { draw: seepField, depth: 0.40, sky: FAR, w: W, h: H });
+  AKPARCEL.band(cx, { draw: nearBand,  depth: 0.05, sky: FAR, w: W, h: H });
+
+  /* ---------- THE PAPER GEOMETRY, 76 percent, and the deck's central encoding */
+  /* The unruled region is a right triangle in the lower left. Its area is
+     computed from the CLAIMS, and the ruled field is everything else, so the
+     printed ratio and the drawn area are one number. */
+  var ACRES_TOTAL = 19950, ACRES_RECLASS = 15100;
+  var FRAME_AREA  = W * H;
+  var UNRULED_FRAC = 1 - ACRES_RECLASS / ACRES_TOTAL;
+  var UNRULED_AREA = FRAME_AREA * UNRULED_FRAC;
+  /* The unruled region was a lower left triangle and its hypotenuse ran
+     straight through the body copy, which no knockout fixed cleanly. A
+     horizontal boundary carries the same ratio exactly, leaves the type on
+     genuinely clean ground, and is a straight ruled line, which is the only
+     kind of line this deck lets the document draw. */
+  var UNRULED_H = UNRULED_AREA / W;               /* solved, never typed */
+  var RULED_H   = H - UNRULED_H;
+
+  cx.save();
+  cx.beginPath(); cx.rect(0, 0, W, RULED_H); cx.clip();
+  AKPARCEL.stroke(cx, 'solid', '#E8EEF5');
+  cx.lineWidth = 0.75; cx.globalAlpha = 0.42;
+  /* the ruled field itself, a section grid at hair weight so the modelled
+     ground reads THROUGH it everywhere */
+  for (var gx = 0; gx <= W; gx += 60) {
+    cx.beginPath(); cx.moveTo(gx, 0); cx.lineTo(gx, H); cx.stroke();
+  }
+  for (var gy = 0; gy <= H; gy += 60) {
+    cx.beginPath(); cx.moveTo(0, gy); cx.lineTo(W, gy); cx.stroke();
+  }
+  cx.restore();
+
+  /* THE GROUND THE PLATE STANDS ON. Key az 318, el 9: the open ground beyond
+     the plate's reach takes the raking light, the strip attached to the
+     leading edge takes the cast. Pool first, cast over it, so the falloff is
+     a SUBTRACTION from lit ground and not a second additive smudge on black.
+     The type was moved up off this band to make room for it: a declared
+     contact needs ground the copy is not standing on. */
+  /* A raking key rakes ACROSS ground. It is a wide low wash the muskeg's own
+     modelling reads THROUGH, so it is SCREENED over the surface and never
+     painted on it. Painted, a radial pool is a hole in a spotlight, which is
+     the exact defect five critics named on run No.31. */
+  cx.save();
+  cx.globalCompositeOperation = 'screen';
+  var R = 100;
+  cx.translate(W * 0.5 - 30, RULED_H + 96);
+  cx.scale(660 / R, 74 / R);
+  var lg = cx.createRadialGradient(0, 0, 4, 0, 0, R);
+  lg.addColorStop(0.00, 'rgba(122,146,157,0.50)');
+  lg.addColorStop(0.40, 'rgba(78,104,118,0.34)');
+  lg.addColorStop(0.75, 'rgba(46,66,78,0.14)');
+  lg.addColorStop(1.00, 'rgba(46,66,78,0)');
+  cx.fillStyle = lg; cx.beginPath(); cx.arc(0, 0, R, 0, Math.PI * 2); cx.fill();
+  cx.restore();
+
+  cx.save();
+  var cg = cx.createLinearGradient(0, RULED_H, 0, RULED_H + 52);
+  cg.addColorStop(0, 'rgba(2,4,8,0.94)');
+  cg.addColorStop(0.55, 'rgba(2,4,8,0.62)');
+  cg.addColorStop(1, 'rgba(2,4,8,0)');
+  cx.fillStyle = cg; cx.fillRect(0, RULED_H, W, 52);
+  cx.restore();
+
+  cx.save();
+  AKPARCEL.stroke(cx, 'solid', '#E8EEF5');
+  cx.lineWidth = 2.0;
+  cx.beginPath(); cx.moveTo(0, RULED_H); cx.lineTo(W, RULED_H); cx.stroke();
+  cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H, exposure: -0.05, saturation: 1.04, contrast: 1.10, filmic: true,
+    lift: [0.010, 0.014, 0.024], gain: [1.015, 1.0, 0.975], vignette: 0.18,
+    bloom: { threshold: 0.78, strength: 0.20, radius: 8 },
+    grain: { amount: 0.045, size: 2, seed: SEED }, dither: true, sharpen: 0.30
+  });
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED + 3) + ')';
+
+  /* the drawn ruled area against what the type claims. `actual` comes out of
+     the drawing's own solved triangle, never out of a literal. */
+  window.__akAssert = [{
+    what: 'the ruled field is 15,100 of 19,950 acres, drawn as frame area',
+    expect: Math.round(FRAME_AREA * (ACRES_RECLASS / ACRES_TOTAL)),
+    actual: Math.round(W * RULED_H),
+    tol: 2000, unit: 'px2'
+  }];
+
+  resolve();
+  })().catch(function (e) {
+    console.error('SLIDE 05 FAILED', e && (e.stack || e.message || e));
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

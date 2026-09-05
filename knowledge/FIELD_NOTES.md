@@ -5920,3 +5920,185 @@ which is that Phase 12 was editing the engine in the working tree at the same
 time, and the first re-render blamed the slide for three warns that belonged to
 a probe the upgrade engineer had just built. Validate a run's art against the
 committed engine, never against a tree someone else is still writing to.
+
+## 2026-09-04 - Phase 1 craft refresh (No.50)
+
+Timeboxed pass, 3 searches and 1 fetch. Two things worth keeping and one
+correction to how this file reads the 2026 aggregators.
+
+- **A NEW NAMED BENCHMARK, and it is a page-level one rather than a
+  format-level one.** The Oktopost LinkedIn Benchmark, March 2026, n over
+  1,000 B2B company pages, reports a median engagement rate of 5.72 percent,
+  a top decile of 22.45 percent, a median of 826 impressions and 51
+  engagements per post. That is the first study in this file that measures
+  PAGES rather than POSTS, and the finding attached to it is that top decile
+  pages post noticeably more document and carousel content than median pages.
+  It does not move any CAROUSEL_CRAFT number; Socialinsider's 7.00 percent
+  document rate still stands as the format figure. It is useful as the
+  realistic denominator when the maintainer judges a deck.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- **PERSONAL PROFILE CAROUSELS BEAT COMPANY PAGE CAROUSELS BY 63 PERCENT**,
+  per Metricool's 2026 study of 673,658 posts, cited in the same piece. This
+  is a distribution decision the machine does not own and the maintainer does,
+  so it is recorded here rather than acted on. It is the strongest single
+  lever in this refresh and it has nothing to do with the deck.
+- **THE 6.60 PERCENT FIGURE IS STILL SECONDARY.** No.39's refresh traced it to
+  an aggregator rather than a named study and it is still circulating in the
+  same form a run later. Do not promote it.
+- **AERIAL PERSPECTIVE SAYS THE MIDDLE DISTANCE LOSES CONTRAST, NOT DETAIL,
+  and that distinction is this run's whole design brief.** The physics is the
+  Beer-Lambert extinction already in this file from 08-21: transmittance falls
+  exponentially with path length and the coefficient is per channel, so with
+  distance a surface loses TONAL RANGE and cools. What it does not lose is
+  incident, because a mid-ground stand of spruce at reduced contrast still has
+  every trunk in it. The recurring failure this file keeps describing as a flat
+  middle distance is a painter's error rather than a physical one: the run
+  applied the attenuation and then skipped the drawing under it. Draw the
+  middle ground fully, THEN compress its range toward the far value. Doing it
+  in the other order produces exactly the thin zone the scorer keeps naming.
+  https://www.artyfactory.com/aerial-perspective/aerial-perspective-1.html
+
+## 2026-09-04, No. 50. Seven lessons, and five of them are one lesson.
+
+**A seeded shuffle is not a scatter.** Slide 08's honesty architecture rests on
+31 lit cells reading as extent and never as a shape. The build shuffled 72
+cells with a seeded Fisher Yates, took the first 31, and asserted that it had
+drawn 31 of them. It had. They landed edge to edge in one township and the
+frame drew a parcel with holes in it, seventy pixels under a label reading
+EXTENT ONLY. NO BOUNDARY IS DRAWN. Every machine gate was green, because the
+gate asked how many and the failure was about where.
+
+Rejection sampling could not fix it either: at 31 of 72, which is 43 percent,
+600 shuffles produced no set with a connected run under four cells. Above
+roughly 40 percent density a dispersed set is rare enough that you cannot find
+one by asking. So the set is now BUILT: cells are offered in seeded random
+order and accepted only while every connected run stays inside a cap, and the
+cap escalates only when the tighter one cannot reach the count. Three
+conditions are asserted on the page, largest run, per-township balance, and
+per-row and per-column share, so a contiguous mass cannot ship green again.
+
+**Screen the light. Attach the cast.** This deck shipped two idioms for the
+same thing side by side and the comparison is unusually clean. Four slides
+painted an opaque radial pool centred on the object's own base and dropped a
+dark ellipse inside it. Two screened a wide low wash offset up-light and cast
+an attached tapered subtraction into it. Five critics working independently
+called all four painted ones a lit pod, a light leak, or a detached blob beside
+a flare, and called both screened ones genuinely fixed. Screening is what lets
+the surface modelling read THROUGH the light instead of being replaced by it,
+which is the whole difference between lit ground and a lamp.
+
+**Ground texture takes world depth, not screen y.** Slide 01's near band had
+been rebuilt three times, each time by changing what was drawn or how dark it
+was, and it still read as a topographic plate rather than as country. The
+defect was neither. A ground plane seen from eye height has world depth going
+as 1 over the screen distance below the horizon, and the form was written as a
+function of screen y, so the hummock lattice carried the same pitch at the
+horizon and at the frame foot. Six lines changing u and v did what four rounds
+of tuning ink could not. When a texture reads wrong and the values are right,
+check the coordinates before you touch the palette.
+
+**An ImageData helper needs the canvas backing scale.** `AK.reliefShade` writes
+with putImageData, which ignores the context transform. Called with `scale: 1`
+on a `cx.scale(2,2)` canvas it paints the top left quarter of the frame and
+leaves two pin sharp straight edges across the art. The option was valid, so
+the option contract passed it; the render gate passed it; qa.py passed it. A
+pixel critic found it by measuring where the edges were and noticing they were
+exactly half the frame.
+
+**Copy cut to fit is invisible to every gate.** Three slides shipped body copy
+shortened to make it fit the box, one of them losing the single sentence its
+own attribution qualified, which left a claim with no on-slide referent.
+`copy_sync_check` compares copy.json to the RENDER, so a build that cut a
+sentence and a copy.json written from that build agree perfectly. The only
+thing that catches this is the dossier's declared word count, read by a human
+or a critic. That is worth knowing before trusting a green copy row.
+
+**A gate block can feed itself its own failure.** `plan_drift_check` reads the
+whole storyboard, GATE STATUS block included, so a failure message quoting a
+sentence gets rewritten into the record by `gate_status --sync` and re-detected
+on the next pass. Rewording the offending sentence did not clear it. The row
+had to be cleared by hand before the check would agree with reality.
+
+**A countdown anchors to the date, never to the count.** The run woke at 23:09
+Anchorage time and wrote a caption opening on ten days left. By the time the
+copy chamber ran it was the following day. `caption_check` has no clock and
+never will; the copywriter caught it. Anchor to the closing date and the copy
+stays true whenever it is read.
+
+## 2026-09-04, Phase 12 frontier scan (g): accessibility and the PDF we ship. PARKED.
+
+Two candidates, both measured in this engine rather than taken on trust, both
+parked rather than applied because neither is safely boundable in one run.
+
+- **A TAGGED PDF IS ONE PARAMETER AND THE MERGE THROWS IT AWAY.** Playwright's
+  `page.pdf()` here takes `tagged=True`, and it works: printed against this
+  run's slides 01 and 02 the per-page files carry a real `/StructTreeRoot` for
+  about 2 KB a page, 0.03 percent of the file. `assemble.vector_pdf` then
+  merges the pages with `pypdf.PdfWriter.add_page`, and the merged document has
+  no `/StructTreeRoot` at all. `PdfWriter.append()` drops it too (pypdf 6.17).
+  This is not a local bug: pypdf, PyMuPDF and qpdf all lose the structure tree
+  on merge, and the open issues say so.
+  https://github.com/pymupdf/PyMuPDF/issues/2469 ,
+  https://github.com/qpdf/qpdf/issues/490
+  So tags would need the nine slides printed as ONE Chromium document, which
+  means print CSS, page breaks and the resolved-asset path all changing at
+  once, in the step that produces the deliverable. That is a redesign, not an
+  upgrade. PARKED with the numbers so the next attempt starts from measurement.
+- **AND TAGS WOULD BUY LESS THAN THEY LOOK LIKE, because our own type does not
+  extract.** 34 percent of the shipped PDF's extractable words (266 of 778)
+  come out as runs of single letters: page 1 reads "A D L 2 3 4 7 6 2 · M A T A
+  N U S K A - S U S I T N A B O R O U G H". That is the house's tracked mono
+  kickers and labels; Chromium emits each glyph positioned, and every extractor
+  inserts spaces at the gaps. The BODY copy and headlines extract perfectly and
+  in the right reading order, kicker to counter, which is the good news.
+  It matters because LinkedIn converts a document post to images and its
+  Accessibility Mode reads back from the uploaded PDF's own content order,
+  ignoring heading and list tags and never surfacing alt text (Intopia, the
+  substantive practitioner write-up on this).
+  https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels/
+  So the deck's accessibility rests on two things we already control: the
+  caption's deck-summary line, which is a hard gate here, and the PDF's reading
+  ORDER, which is currently correct. Tracking is a design decision and the
+  maintainer's call, not a gate; recorded here so the next scan does not
+  rediscover it. LinkedIn's own limits, re-verified in passing: 300 pages,
+  100 MB, PPT/DOC/PDF, all served as PDF.
+  https://www.linkedin.com/help/linkedin/answer/a518909
+
+### Later the same run: three more, all from CI and a reviewer.
+
+**A check that polices a tokeniser must agree with the tokeniser.** The ask
+corpus normalises `150.0` to `150` and authorises it. Its ghost check, written
+to catch `300` authorised out of `8,300`, read the same text as a fragment and
+called `150` a ghost. The two disagreed about what a number is, so the build
+went red on correct behaviour and stayed red on main for two days, unnoticed
+because that suite only runs on pull requests touching its paths. When a check
+and the thing it checks are built on separate regexes on purpose, the cases
+where they may differ have to be enumerated, or the check eventually fails the
+build instead of the code.
+
+**An allowance in pre-zoom units is not an allowance.** The docket map pads its
+pin bounds by the distance a badge can throw beyond its anchor, then multiplies
+those bounds by the zoom. But a mark is repositioned rather than resized, so its
+ink is the same size at every zoom and at k = 0.4 the allowance is worth 40
+percent of what it stands for. The northernmost pin had been clearing a sticky
+nav by six tenths of a pixel, and it stopped clearing the day a routine run
+opened four more comment windows, because an open decision earns a pulse ring
+and a pulse ring makes its mark taller. Correct data walked into a layout with
+no margin in it.
+
+Three plausible fixes were tried and all three were wrong, which is worth more
+than the one that worked. Raising the fit's pad shrinks the scale, so the
+southern pins left the frame and one failure became three. Giving the viewBox
+more height does nothing useful under `preserveAspectRatio="slice"`, which
+CROPS: the top marks ended up closer to the edge, not further. And the correct
+nudge, applied and then followed by the existing `clampT()`, was silently
+discarded, because clampT recentres whenever the drawing is shorter than its
+band. That last one cost three rounds of tuning a scale that was never the
+problem. When a correction has no effect, check whether something downstream
+is recomputing the thing you corrected.
+
+**A date that walks backward is a dataset telling consumers to skip a record.**
+`gas-watch.json` stamped `updated` with the build date, and a carousel run
+rebuilding at its own run date over a collection cron that had already written
+could set it EARLIER than the newest row in the same file. Floor a dataset's
+updated stamp at its own latest record, always.

@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-09-05",
+  "updated": "2026-09-04",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -1054,7 +1054,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-09-02",
+      "last_updated": "2026-09-04",
       "history": [
         {
           "date": "2026-07-17",
@@ -1179,6 +1179,10 @@
         {
           "date": "2026-09-02",
           "note": "Re-verified today against the state's own notices. Written comment closes at 5:00 p.m. on Monday, September 14th, 2026. That deadline lives on a second notice, the extension posted August 19th, 2026, and the original notice still prints the superseded August 19th close, so both are listed as sources here now. The extension says the department intended to hold two virtual meetings during the extended period and would announce the details separately."
+        },
+        {
+          "date": "2026-09-04",
+          "note": "Re-verified today against all three state notices for ADL 234762. Written comment closes at 5:00 p.m. on Monday, September 14th, 2026, ten days out. The department's own meeting notice of August 24th, 2026 records that more than 2,000 written comments have been received to date, and describes the purpose as creating a multi-use industrial and energy development district. Worth stating plainly for anyone writing in. None of the three notices contains the phrase data center. The original notice of July 10th, 2026 states no intended use at all, and the extension of August 19th, 2026 names Land Classification Order NO SC-08-001A04, so the classification order takes comment on the same deadline as the conveyance."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1625,7 +1629,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-08-31",
+      "last_updated": "2026-09-04",
       "history": [
         {
           "date": "2026-08-04",
@@ -1670,6 +1674,10 @@
         {
           "date": "2026-08-31",
           "note": "The window closed. FERC's notice in docket P-8221-124 set comments, motions to intervene and protests at 5:00 p.m. Eastern on August 28th, 2026, and that hour has passed, so this is no longer something an Alaskan can write in on. Re-verified today against the Federal Register text published August 3rd, 2026, which is unchanged. What was noticed remains a new diversion dam on Dixon Glacier meltwater, a pool raise of about 16 feet, and a 0.3 megawatt micro-hydro turbine in a fishwater release valve, with installed capacity rising from 119.7 to 120.0 megawatts. FERC has published no date for its decision."
+        },
+        {
+          "date": "2026-09-04",
+          "note": "Checked and unchanged. The Alaska Energy Authority's own project page still records the June 30th filing as the most recent action, puts construction at approximately $400 million, and describes three years of study and permitting followed by three years of construction. The comment window closed August 28th and FERC has published no decision date."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
@@ -1738,7 +1746,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-08-31",
+      "last_updated": "2026-09-04",
       "history": [
         {
           "date": "2026-08-05",
@@ -1779,6 +1787,10 @@
         {
           "date": "2026-08-31",
           "note": "Re-read the posted opportunity four days after it closed. HHS-2026-ACF-ANA-NAI-0035 shows as closed on August 27th, 2026 with no award and no awardee named. It is still one award, with a floor of $2,500,000, a ceiling of $3,500,000 and a cost share required whose percentage the listing does not state. The listing carries an archive date of September 26th, 2026. No Alaska-specific lane replaced SEDS-AK."
+        },
+        {
+          "date": "2026-09-04",
+          "note": "Checked and unchanged. The federal listing still shows a single award with a ceiling of $3,500,000, records applications as closed on August 27th, and names no awardee. The listing is due to be archived September 26th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -2306,10 +2318,10 @@
       "id": "deepgreen-cook-inlet-subsea-data-center",
       "title": "DeepGreen's underwater data center in Cook Inlet",
       "kind": "regulatory-docket",
-      "status": "pending-decision",
+      "status": "open-for-comment",
       "decider": "Federal Energy Regulatory Commission",
-      "public_access": "closed",
-      "access_note": "There is no way to comment on this yet, and that is the whole state of it. FERC's spokesperson says the commission will request comments from the public after staff determine the application is complete, and a Federal Register search for DeepGreen on August 21st, 2026 returns nothing, so that step has not happened. The Federal Register is where the notice will appear when it does. The City of Kenai was told late, because FERC found the company had not notified it, and the Kenai city manager raised the proposal with councilors at their August meeting.",
+      "public_access": "open",
+      "access_note": "The comment room is open. FERC accepted DeepGreen Cook Inlet SPV, LLC's preliminary permit application for filing and published notice in the Federal Register on September 4th, 2026, opening the record on Project No. P-15423-000. Comments, motions to intervene, competing applications and notices of intent to file competing applications are due by 5:00 p.m. Eastern Time on November 2nd, 2026, which is 1:00 p.m. Alaska time. Filing runs through FERC's eFiling system and the docket is readable through eLibrary. A preliminary permit grants study and site priority rather than authority to build, so what is open here is the record on whether the applicant gets up to four years of priority to study the site.",
       "summary": "DeepGreen Cook Inlet SPV LLC, a Delaware company whose parent formed in January 2026, applied to FERC in February for a preliminary permit over an initial operational envelope of 1,650 acres of Cook Inlet seabed west of Nikiski, proposing a 100 megawatt data center of 66 hives of AI servers powered and cooled by approximately 330 to 350 tidal turbines in water 45 to 166 feet deep. A preliminary permit authorizes study rather than construction, for up to four years, and FERC's Northwest branch found the application incomplete in a June 18th letter.",
       "key_dates": [
         {
@@ -2321,6 +2333,26 @@
           "date": "2026-08-19",
           "label": "First Alaska reporting on the filing",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-02-11",
+          "label": "Preliminary permit application filed with FERC",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-06-26",
+          "label": "Application supplemented",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-04",
+          "label": "FERC accepts the application for filing and publishes notice in the Federal Register",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-02",
+          "label": "Comments, motions to intervene and competing applications due, 5:00 p.m. Eastern",
+          "kind": "deadline"
         }
       ],
       "location": {
@@ -2330,9 +2362,14 @@
       },
       "sources": [
         {
-          "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=DeepGreen&per_page=50&order=newest",
-          "outlet": "Federal Register, Office of the Federal Register",
-          "date": "2026-08-21"
+          "url": "https://ferconline.ferc.gov/QuickComment.aspx",
+          "outlet": "Federal Energy Regulatory Commission, eComment",
+          "date": "2026-09-04"
+        },
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm",
+          "outlet": "Federal Energy Regulatory Commission, via govinfo.gov",
+          "date": "2026-09-04"
         },
         {
           "url": "https://www.adn.com/business-economy/2026/08/19/underwater-data-center-proposed-for-alaskas-cook-inlet-by-east-coast-company/",
@@ -2376,10 +2413,14 @@
         {
           "date": "2026-09-02",
           "note": "Checked and unchanged. The Federal Register still carries exactly one DeepGreen notice, published August 25th, 2026, and it belongs to the company's Western Passage project in the Bay of Fundy near Eastport, Maine, project number 15424-000. The Cook Inlet application still has not been noticed."
+        },
+        {
+          "date": "2026-09-04",
+          "note": "FERC accepted the application for filing and opened the record. The notice published in the Federal Register on September 4th, 2026 carries Project No. P-15423-000 and sets a deadline of 5:00 p.m. Eastern Time on November 2nd, 2026 for comments, motions to intervene, competing applications and notices of intent to file competing applications. The notice describes approximately 330 to 350 marine hydrokinetic turbines and 66 modular subsea-compute hives, called data center pods in the notice's own parenthetical, integrated within the turbine array, plus an approximately 3.5 mile long 115 kV hybrid power and fiber optic armored subsea cable. It states the estimated annual generation would be 100 megawatts. The project would sit in the Upper Cook Inlet, East Foreland Corridor, Kenai Peninsula Borough. A preliminary permit is a study and priority instrument and authorises no construction."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-02",
+      "last_updated": "2026-09-04",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {

@@ -1,0 +1,120 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h1 '19,950 acres.Three state notices.None says d' fits 3/3 lines at 91px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the three notice ticks standing on the peat': shadow L* 37.1 vs ground L* 48.2, dL 11.1 at 432w"
+      ],
+      "fits": [
+        "h2 'The state's own wordsgo this far and stop.' fits 2/2 lines at 65.5px"
+      ],
+      "asserts": [
+        "'three state notices, one ruled tick each' holds: 3 vs 3 marks, counted over 3 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the horizontal rule of the open corner meeting the shoulder': shadow L* 4.9 vs ground L* 22.9, dL 18.0 at 432w"
+      ],
+      "fits": [
+        "h2 'One window is carryingtwo decisions.' fits 2/2 lines at 68px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h2 'The ground was herebefore the file number.' fits 2/2 lines at 71px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the ruled field, a plate standing on the unruled ground at its leading edge': shadow L* 2.1 vs ground L* 38.3, dL 36.2 at 432w"
+      ],
+      "fits": [
+        "h2 'Most of it changeswhat it is for.' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "'the ruled field is 15,100 of 19,950 acres, drawn as frame area' holds: 1.10355e+06 vs 1.10355e+06 px2 (within 2000)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the four ruled classification frames lying on the peat': shadow L* 5.6 vs ground L* 16.5, dL 10.8 at 432w"
+      ],
+      "fits": [
+        "h2 'Three named uses,and one with nothing in it.' fits 2/2 lines at 70px"
+      ],
+      "asserts": [
+        "'four classifications, one ruled frame each' holds: 4 vs 4 marks, counted over 4 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the date rail and its bed, standing on the ground it measures': shadow L* 2.3 vs ground L* 18.4, dL 16.0 at 432w"
+      ],
+      "scales": [
+        "'the date rail, days from July 10th 2026' runs 0 days at 96 to 66 days at 984; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'More than 2,000 peoplehave already written i' fits 2/2 lines at 73.5px"
+      ],
+      "asserts": [
+        "'20 marks at 100 comments each plus one drawn open for more than' holds: 21 vs 21 marks, counted over 21 declared marks (within 0)",
+        "'20 marks at 100 comments each plus one drawn open for more than': 21 mark centres probed at r=14px, cohort median 48.6 dE, all present (weakest 45.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h2 'The acres are known.The place is not.' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "'31 of 72 sections by area, drawn as doubled density cells' holds: 31 vs 31 marks, counted over 31 declared marks (within 0)",
+        "'31 of 72 sections by area, drawn as doubled density cells': 31 mark centres probed at r=14px, cohort median 60.1 dE, all present (weakest 44.3 dE)",
+        "'the lit set is DISPERSED, largest edge connected run at most 6 cells' holds: 1 vs 1 bool (within 0)",
+        "'both townships carry 12 to 19 lit sections, so no tier is empty' holds: 1 vs 1 bool (within 0)",
+        "'no grid row or column is more than 70 percent lit' holds: 1 vs 1 bool (within 0)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the deadline mark standing on the near peat': shadow L* 11.3 vs ground L* 38.8, dL 27.5 at 432w"
+      ],
+      "fits": [
+        "h2 'Comment closes 5:00 p.m.Monday, September 14' fits 2/2 lines at 57.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

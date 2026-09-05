@@ -1,0 +1,3940 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ADL 234762 \u00b7 MATANUSKA-SUSITNA BOROUGH",
+          "texts": [
+            "ADL 234762 \u00b7 MATANUSKA-SUSITNA BOROUGH"
+          ],
+          "full": "ADL 234762 \u00b7 MATANUSKA-SUSITNA BOROUGH",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 92,
+          "w": 692,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              92,
+              692,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "19,950 acres.Three state notices.None says data center.",
+          "texts": [
+            "19,950 acres.",
+            "Three state notices.",
+            "None says data center."
+          ],
+          "full": "19,950 acres.Three state notices.None says data center.",
+          "tag": "h1",
+          "unsized": false,
+          "x": 96,
+          "y": 178,
+          "w": 880,
+          "h": 330,
+          "font_px": 91,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              167,
+              498,
+              110
+            ],
+            [
+              96,
+              256,
+              757,
+              110
+            ],
+            [
+              96,
+              345,
+              879,
+              110
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "GROUND DRAWN FROM THE NOTICE'S TOWNSHIP DESCRIPTION. NOT A SURVEY.",
+          "texts": [
+            "GROUND DRAWN FROM THE NOTICE'S TOWNSHIP DESCRIPTION. NOT A SURVEY."
+          ],
+          "full": "GROUND DRAWN FROM THE NOTICE'S TOWNSHIP DESCRIPTION. NOT A SURVEY.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1224,
+          "w": 560,
+          "h": 48,
+          "font_px": 16,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgba(154, 169, 140, 0.5)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1225,
+              456,
+              21
+            ],
+            [
+              96,
+              1249,
+              304,
+              21
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "texts": [
+            "01",
+            "09"
+          ],
+          "full": "01 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 882,
+          "y": 1239,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1239,
+              50,
+              31
+            ],
+            [
+              950,
+              1239,
+              50,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "/",
+          "texts": [
+            "/"
+          ],
+          "full": "/",
+          "tag": "i",
+          "unsized": false,
+          "x": 933,
+          "y": 1239,
+          "w": 17,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              933,
+              1239,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            3
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 30974,
+        "sites": 16,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h1",
+          "text": "19,950 acres.Three state notices.None says data center.",
+          "min": 58,
+          "max": 92,
+          "maxLines": 3,
+          "size": 91,
+          "lines": 3,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-01.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 5405,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 21.7,
+          "variance": 139.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-04/slides/slide-01.html",
+        "sha1": "53dece3be4071e2cd597375e3879d7c032b78478"
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "WHAT THE RECORD SAYS",
+          "texts": [
+            "WHAT THE RECORD SAYS"
+          ],
+          "full": "WHAT THE RECORD SAYS",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 92,
+          "w": 364,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              92,
+              364,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The state's own wordsgo this far and stop.",
+          "texts": [
+            "The state's own words",
+            "go this far and stop."
+          ],
+          "full": "The state's own wordsgo this far and stop.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 170,
+          "w": 640,
+          "h": 220,
+          "font_px": 65.5,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              162,
+              639,
+              79
+            ],
+            [
+              96,
+              226,
+              565,
+              79
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Three notices govern the conveyance. July 10th, August 19th and August 24th, 202",
+          "texts": [
+            "Three notices govern the conveyance. July 10th, August 19th and August 24th, 2026. The furthest any of them goes on use is \"to create a multi-use industrial and energy development district\". The July "
+          ],
+          "full": "Three notices govern the conveyance. July 10th, August 19th and August 24th, 2026. The furthest any of them goes on use is \"to create a multi-use industrial and energy development district\". The July notice states no intended use at all.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 412,
+          "w": 500,
+          "h": 422,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(194, 203, 186)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              412,
+              392,
+              46
+            ],
+            [
+              96,
+              459,
+              470,
+              46
+            ],
+            [
+              96,
+              506,
+              439,
+              46
+            ],
+            [
+              96,
+              553,
+              472,
+              46
+            ],
+            [
+              96,
+              600,
+              483,
+              46
+            ],
+            [
+              96,
+              647,
+              329,
+              46
+            ],
+            [
+              96,
+              693,
+              475,
+              46
+            ],
+            [
+              96,
+              740,
+              467,
+              46
+            ],
+            [
+              96,
+              787,
+              83,
+              46
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "JUL 10TH \u00b7 0",
+          "texts": [
+            "JUL 10TH \u00b7 0"
+          ],
+          "full": "JUL 10TH \u00b7 0",
+          "tag": "div",
+          "unsized": false,
+          "x": 640,
+          "y": 612,
+          "w": 234,
+          "h": 48,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              652,
+              619,
+              210,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AUG 19TH \u00b7 0",
+          "texts": [
+            "AUG 19TH \u00b7 0"
+          ],
+          "full": "AUG 19TH \u00b7 0",
+          "tag": "div",
+          "unsized": false,
+          "x": 772,
+          "y": 700,
+          "w": 234,
+          "h": 48,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              784,
+              707,
+              210,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AUG 24TH \u00b7 0",
+          "texts": [
+            "AUG 24TH \u00b7 0"
+          ],
+          "full": "AUG 24TH \u00b7 0",
+          "tag": "div",
+          "unsized": false,
+          "x": 758,
+          "y": 786,
+          "w": 234,
+          "h": 48,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              770,
+              793,
+              210,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "COUNT OF THE PHRASE DATA CENTER,PER NOTICE (C08)",
+          "texts": [
+            "COUNT OF THE PHRASE DATA CENTER,",
+            "PER NOTICE (C08)"
+          ],
+          "full": "COUNT OF THE PHRASE DATA CENTER,PER NOTICE (C08)",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1188,
+          "w": 620,
+          "h": 70,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1189,
+              522,
+              31
+            ],
+            [
+              96,
+              1224,
+              261,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "texts": [
+            "02",
+            "09"
+          ],
+          "full": "02 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 882,
+          "y": 1239,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1239,
+              50,
+              31
+            ],
+            [
+              950,
+              1239,
+              50,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "/",
+          "texts": [
+            "/"
+          ],
+          "full": "/",
+          "tag": "i",
+          "unsized": false,
+          "x": 933,
+          "y": 1239,
+          "w": 17,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              933,
+              1239,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            7
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the three notice ticks standing on the peat",
+          "shadow": [
+            [
+              878,
+              998,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              836,
+              998,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 846,
+        "sites": 11,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "The state's own wordsgo this far and stop.",
+          "min": 54,
+          "max": 82,
+          "maxLines": 2,
+          "size": 65.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [
+        {
+          "what": "three state notices, one ruled tick each",
+          "expect": 3,
+          "actual": 3,
+          "tol": 0,
+          "unit": "marks",
+          "points_n": 3,
+          "points_bad": 0,
+          "offframe": 0,
+          "actual_declared": null,
+          "points_xy": [
+            [
+              727,
+              998
+            ],
+            [
+              859,
+              998
+            ],
+            [
+              949,
+              998
+            ]
+          ],
+          "points_xy_stride": 1
+        }
+      ],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-02.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4147,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 15.7,
+          "variance": 89.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-04/slides/slide-02.html",
+        "sha1": "80bfaa8ef5be66d49518e1005ff00e105713896e"
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TWO DECISIONS, ONE DEADLINE",
+          "texts": [
+            "TWO DECISIONS, ONE DEADLINE"
+          ],
+          "full": "TWO DECISIONS, ONE DEADLINE",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 92,
+          "w": 491,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              92,
+              491,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "One window is carryingtwo decisions.",
+          "texts": [
+            "One window is carrying",
+            "two decisions."
+          ],
+          "full": "One window is carryingtwo decisions.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 168,
+          "w": 700,
+          "h": 220,
+          "font_px": 68,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              160,
+              696,
+              81
+            ],
+            [
+              96,
+              227,
+              428,
+              81
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "About 19,950 acres would go to AIDEA under a noncompetitive public and charitabl",
+          "texts": [
+            "About 19,950 acres would go to AIDEA under a noncompetitive public and charitable use conveyance, case",
+            ". A Draft Land Classification Order,",
+            ", rides the same window. The land is reported to transfer at no cost. Both close on the same date."
+          ],
+          "full": "About 19,950 acres would go to AIDEA under a noncompetitive public and charitable use conveyance, case ADL 234762. A Draft Land Classification Order, SC-08-001A04, rides the same window. The land is reported to transfer at no cost. Both close on the same date.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 404,
+          "w": 560,
+          "h": 422,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(194, 203, 186)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              404,
+              488,
+              46
+            ],
+            [
+              96,
+              451,
+              472,
+              46
+            ],
+            [
+              96,
+              498,
+              391,
+              46
+            ],
+            [
+              96,
+              545,
+              286,
+              46
+            ],
+            [
+              565,
+              545,
+              37,
+              46
+            ],
+            [
+              96,
+              592,
+              486,
+              46
+            ],
+            [
+              327,
+              639,
+              247,
+              46
+            ],
+            [
+              96,
+              685,
+              483,
+              46
+            ],
+            [
+              96,
+              732,
+              516,
+              46
+            ],
+            [
+              96,
+              779,
+              232,
+              46
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ADL 234762",
+          "texts": [
+            "ADL 234762"
+          ],
+          "full": "ADL 234762",
+          "tag": "span",
+          "unsized": false,
+          "x": 382,
+          "y": 545,
+          "w": 183,
+          "h": 46,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(194, 203, 186)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              382,
+              545,
+              183,
+              46
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "SC-08-001A04",
+          "texts": [
+            "SC-08-001A04"
+          ],
+          "full": "SC-08-001A04",
+          "tag": "span",
+          "unsized": false,
+          "x": 96,
+          "y": 639,
+          "w": 231,
+          "h": 46,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(194, 203, 186)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              639,
+              231,
+              46
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "ADL 234762THE CONVEYANCE",
+          "texts": [
+            "ADL 234762",
+            "THE CONVEYANCE"
+          ],
+          "full": "ADL 234762THE CONVEYANCE",
+          "tag": "div",
+          "unsized": false,
+          "x": 690,
+          "y": 722,
+          "w": 252,
+          "h": 81,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              702,
+              730,
+              163,
+              31
+            ],
+            [
+              702,
+              762,
+              228,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "SC-08-001A04THE CLASSIFICATION",
+          "texts": [
+            "SC-08-001A04",
+            "THE CLASSIFICATION"
+          ],
+          "full": "SC-08-001A04THE CLASSIFICATION",
+          "tag": "div",
+          "unsized": false,
+          "x": 690,
+          "y": 466,
+          "w": 318,
+          "h": 81,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              702,
+              474,
+              196,
+              31
+            ],
+            [
+              702,
+              506,
+              294,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "AT NO COST PER THE NORTHERN ALASKAENVIRONMENTAL CENTER. NOT STATED IN THE NOTICE",
+          "texts": [
+            "AT NO COST PER THE NORTHERN ALASKA",
+            "ENVIRONMENTAL CENTER. NOT STATED IN THE NOTICE."
+          ],
+          "full": "AT NO COST PER THE NORTHERN ALASKAENVIRONMENTAL CENTER. NOT STATED IN THE NOTICE.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1176,
+          "w": 900,
+          "h": 68,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1177,
+              539,
+              31
+            ],
+            [
+              96,
+              1211,
+              744,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "texts": [
+            "03",
+            "09"
+          ],
+          "full": "03 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 882,
+          "y": 1239,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1239,
+              50,
+              31
+            ],
+            [
+              950,
+              1239,
+              50,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "/",
+          "texts": [
+            "/"
+          ],
+          "full": "/",
+          "tag": "i",
+          "unsized": false,
+          "x": 933,
+          "y": 1239,
+          "w": 17,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              933,
+              1239,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            8
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the horizontal rule of the open corner meeting the shoulder",
+          "shadow": [
+            [
+              300,
+              834,
+              120,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              300,
+              878,
+              120,
+              14
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 445,
+        "sites": 8,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "One window is carryingtwo decisions.",
+          "min": 54,
+          "max": 84,
+          "maxLines": 2,
+          "size": 68,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-03.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3645,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 17.5,
+          "variance": 97.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-04/slides/slide-03.html",
+        "sha1": "4d0f269e5ea7ae2b8a582505ff8439d25e903434"
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The ground was herebefore the file number.",
+          "texts": [
+            "The ground was here",
+            "before the file number."
+          ],
+          "full": "The ground was herebefore the file number.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 128,
+          "w": 700,
+          "h": 200,
+          "font_px": 71,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              120,
+              647,
+              85
+            ],
+            [
+              96,
+              190,
+              696,
+              85
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "T18N AND T19N, SEWARD MERIDIAN",
+          "texts": [
+            "T18N AND T19N, SEWARD MERIDIAN"
+          ],
+          "full": "T18N AND T19N, SEWARD MERIDIAN",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 352,
+          "w": 504,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              352,
+              504,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "texts": [
+            "04",
+            "09"
+          ],
+          "full": "04 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 882,
+          "y": 1239,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1239,
+              50,
+              31
+            ],
+            [
+              950,
+              1239,
+              50,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "/",
+          "texts": [
+            "/"
+          ],
+          "full": "/",
+          "tag": "i",
+          "unsized": false,
+          "x": 933,
+          "y": 1239,
+          "w": 17,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              933,
+              1239,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            2
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 812,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "The ground was herebefore the file number.",
+          "min": 58,
+          "max": 88,
+          "maxLines": 2,
+          "size": 71,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-04.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4638,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 29.6,
+          "variance": 374.5
+        }
+      ],
+      "breather": true,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-04/slides/slide-04.html",
+        "sha1": "c676423b6fe16eeafff806169c99cf1f9a4c12d4"
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE HALF THAT LASTS",
+          "texts": [
+            "THE HALF THAT LASTS"
+          ],
+          "full": "THE HALF THAT LASTS",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 92,
+          "w": 346,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              92,
+              346,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RULED AREA = 75.7% OF FRAME = 15,100 OF 19,950 ACRES",
+          "texts": [
+            "RULED AREA = 75.7% OF FRAME = 15,100 OF 19,950 ACRES"
+          ],
+          "full": "RULED AREA = 75.7% OF FRAME = 15,100 OF 19,950 ACRES",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 152,
+          "w": 848,
+          "h": 47,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              160,
+              824,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Most of it changeswhat it is for.",
+          "texts": [
+            "Most of it changes",
+            "what it is for."
+          ],
+          "full": "Most of it changeswhat it is for.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 470,
+          "w": 800,
+          "h": 180,
+          "font_px": 75.5,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              462,
+              602,
+              90
+            ],
+            [
+              96,
+              536,
+              413,
+              90
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "About 15,100 acres now designated Forestry, Habitat and Water Resources would be",
+          "texts": [
+            "About 15,100 acres now designated Forestry, Habitat and Water Resources would be reclassified as Settlement. A tenant can arrive or never arrive. A classification stays until somebody changes it back."
+          ],
+          "full": "About 15,100 acres now designated Forestry, Habitat and Water Resources would be reclassified as Settlement. A tenant can arrive or never arrive. A classification stays until somebody changes it back.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 700,
+          "w": 600,
+          "h": 265,
+          "font_px": 33,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(194, 203, 186)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              699,
+              530,
+              45
+            ],
+            [
+              96,
+              743,
+              583,
+              45
+            ],
+            [
+              96,
+              787,
+              574,
+              45
+            ],
+            [
+              96,
+              832,
+              514,
+              45
+            ],
+            [
+              96,
+              876,
+              533,
+              45
+            ],
+            [
+              96,
+              920,
+              247,
+              45
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "15,100 ACRES PER COOK INLETKEEPER AND THENORTHERN ALASKA ENVIRONMENTAL CENTER",
+          "texts": [
+            "15,100 ACRES PER COOK INLETKEEPER AND THE",
+            "NORTHERN ALASKA ENVIRONMENTAL CENTER"
+          ],
+          "full": "15,100 ACRES PER COOK INLETKEEPER AND THENORTHERN ALASKA ENVIRONMENTAL CENTER",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1196,
+          "w": 860,
+          "h": 65,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1196,
+              630,
+              31
+            ],
+            [
+              96,
+              1228,
+              553,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "texts": [
+            "05",
+            "09"
+          ],
+          "full": "05 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 864,
+          "y": 1229,
+          "w": 136,
+          "h": 41,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              873,
+              1234,
+              50,
+              31
+            ],
+            [
+              941,
+              1234,
+              50,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "/",
+          "texts": [
+            "/"
+          ],
+          "full": "/",
+          "tag": "i",
+          "unsized": false,
+          "x": 924,
+          "y": 1234,
+          "w": 17,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              924,
+              1234,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            5
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the ruled field, a plate standing on the unruled ground at its leading edge",
+          "shadow": [
+            [
+              400,
+              1026,
+              200,
+              18
+            ]
+          ],
+          "ground": [
+            [
+              400,
+              1096,
+              200,
+              24
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 225,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "Most of it changeswhat it is for.",
+          "min": 50,
+          "max": 76,
+          "maxLines": 2,
+          "size": 75.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [
+        {
+          "what": "the ruled field is 15,100 of 19,950 acres, drawn as frame area",
+          "expect": 1103549,
+          "actual": 1103549,
+          "tol": 2000,
+          "unit": "px2"
+        }
+      ],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-05.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4394,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 20.9,
+          "variance": 161.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-04/slides/slide-05.html",
+        "sha1": "897475bc2687b9bbcf11c13b7bf0b1a57b81c51b"
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "WHAT REPLACES WHAT",
+          "texts": [
+            "WHAT REPLACES WHAT"
+          ],
+          "full": "WHAT REPLACES WHAT",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 92,
+          "w": 328,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              92,
+              328,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Three named uses,and one with nothing in it.",
+          "texts": [
+            "Three named uses,",
+            "and one with nothing in it."
+          ],
+          "full": "Three named uses,and one with nothing in it.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 158,
+          "w": 780,
+          "h": 200,
+          "font_px": 70,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              150,
+              573,
+              84
+            ],
+            [
+              96,
+              219,
+              777,
+              84
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Forestry, Habitat and Water Resources are what this ground is classified for tod",
+          "texts": [
+            "Forestry, Habitat and Water Resources are what this ground is classified for today. Settlement is what the order proposes. AIDEA's plan lists possibilities and not commitments, data centers among them"
+          ],
+          "full": "Forestry, Habitat and Water Resources are what this ground is classified for today. Settlement is what the order proposes. AIDEA's plan lists possibilities and not commitments, data centers among them. No tenant, job number, energy need or water use has been named.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 384,
+          "w": 700,
+          "h": 310,
+          "font_px": 33,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(194, 203, 186)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              383,
+              639,
+              45
+            ],
+            [
+              96,
+              427,
+              588,
+              45
+            ],
+            [
+              96,
+              471,
+              590,
+              45
+            ],
+            [
+              96,
+              516,
+              562,
+              45
+            ],
+            [
+              96,
+              560,
+              674,
+              45
+            ],
+            [
+              96,
+              604,
+              686,
+              45
+            ],
+            [
+              96,
+              648,
+              259,
+              45
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "FORESTRY",
+          "texts": [
+            "FORESTRY"
+          ],
+          "full": "FORESTRY",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1010,
+          "w": 143,
+          "h": 43,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              105,
+              1016,
+              125,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "HABITAT",
+          "texts": [
+            "HABITAT"
+          ],
+          "full": "HABITAT",
+          "tag": "div",
+          "unsized": false,
+          "x": 322,
+          "y": 1010,
+          "w": 127,
+          "h": 43,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              331,
+              1016,
+              109,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "WATERRESOURCES",
+          "texts": [
+            "WATER",
+            "RESOURCES"
+          ],
+          "full": "WATERRESOURCES",
+          "tag": "div",
+          "unsized": false,
+          "x": 548,
+          "y": 1010,
+          "w": 158,
+          "h": 74,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              557,
+              1016,
+              78,
+              31
+            ],
+            [
+              557,
+              1047,
+              140,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "SETTLEMENT",
+          "texts": [
+            "SETTLEMENT"
+          ],
+          "full": "SETTLEMENT",
+          "tag": "div",
+          "unsized": false,
+          "x": 822,
+          "y": 1010,
+          "w": 174,
+          "h": 43,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              831,
+              1016,
+              156,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "NO USE STATED INANY STATE NOTICE",
+          "texts": [
+            "NO USE STATED IN",
+            "ANY STATE NOTICE"
+          ],
+          "full": "NO USE STATED INANY STATE NOTICE",
+          "tag": "div",
+          "unsized": false,
+          "x": 752,
+          "y": 1096,
+          "w": 250,
+          "h": 63,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              752,
+              1096,
+              246,
+              31
+            ],
+            [
+              752,
+              1128,
+              246,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "texts": [
+            "06",
+            "09"
+          ],
+          "full": "06 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 882,
+          "y": 1239,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1239,
+              50,
+              31
+            ],
+            [
+              950,
+              1239,
+              50,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "/",
+          "texts": [
+            "/"
+          ],
+          "full": "/",
+          "tag": "i",
+          "unsized": false,
+          "x": 933,
+          "y": 1239,
+          "w": 17,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              933,
+              1239,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            8
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the four ruled classification frames lying on the peat",
+          "shadow": [
+            [
+              513,
+              990,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              541,
+              990,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 26403,
+        "sites": 9,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "Three named uses,and one with nothing in it.",
+          "min": 52,
+          "max": 78,
+          "maxLines": 2,
+          "size": 70,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [
+        {
+          "what": "four classifications, one ruled frame each",
+          "expect": 4,
+          "actual": 4,
+          "tol": 0,
+          "unit": "marks",
+          "points_n": 4,
+          "points_bad": 0,
+          "offframe": 0,
+          "actual_declared": null,
+          "points_xy": [
+            [
+              196,
+              872
+            ],
+            [
+              422,
+              872
+            ],
+            [
+              648,
+              872
+            ],
+            [
+              922,
+              872
+            ]
+          ],
+          "points_xy_stride": 1
+        }
+      ],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-06.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 5091,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 34.2,
+          "variance": 645.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-04/slides/slide-06.html",
+        "sha1": "231df22caf217f7b6afb24dae5bd9f9b137d74c9"
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE RECORD SO FAR",
+          "texts": [
+            "THE RECORD SO FAR"
+          ],
+          "full": "THE RECORD SO FAR",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 88,
+          "w": 309,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              88,
+              309,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "More than 2,000 peoplehave already written in.",
+          "texts": [
+            "More than 2,000 people",
+            "have already written in."
+          ],
+          "full": "More than 2,000 peoplehave already written in.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 150,
+          "w": 760,
+          "h": 190,
+          "font_px": 73.5,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              142,
+              755,
+              88
+            ],
+            [
+              96,
+              214,
+              739,
+              88
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Scoping opened July 10th, 2026 and the original close was August 19th. More than",
+          "texts": [
+            "Scoping opened July 10th, 2026 and the original close was August 19th. More than 2,000 written comments had arrived by August 24th, by the department's own count. Two informational meetings were held "
+          ],
+          "full": "Scoping opened July 10th, 2026 and the original close was August 19th. More than 2,000 written comments had arrived by August 24th, by the department's own count. Two informational meetings were held and neither took testimony. Houston's council voted unanimously against the process.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 366,
+          "w": 700,
+          "h": 277,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(194, 203, 186)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              365,
+              655,
+              41
+            ],
+            [
+              96,
+              405,
+              652,
+              41
+            ],
+            [
+              96,
+              444,
+              622,
+              41
+            ],
+            [
+              96,
+              484,
+              596,
+              41
+            ],
+            [
+              96,
+              523,
+              654,
+              41
+            ],
+            [
+              96,
+              563,
+              674,
+              41
+            ],
+            [
+              96,
+              603,
+              119,
+              41
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"There was zero transparency.\"",
+          "texts": [
+            "\"There was zero transparency.\""
+          ],
+          "full": "\"There was zero transparency.\"",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 730,
+          "w": 700,
+          "h": 49,
+          "font_px": 42,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              725,
+              621,
+              58
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "JEFFREY BRASEL, HOUSTON CITY COUNCIL,PER THE MAT-SU SENTINEL, AUGUST 13TH, 2026.",
+          "texts": [
+            "JEFFREY BRASEL, HOUSTON CITY COUNCIL,",
+            "PER THE MAT-SU SENTINEL, AUGUST 13TH, 2026."
+          ],
+          "full": "JEFFREY BRASEL, HOUSTON CITY COUNCIL,PER THE MAT-SU SENTINEL, AUGUST 13TH, 2026.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 812,
+          "w": 900,
+          "h": 64,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              812,
+              568,
+              31
+            ],
+            [
+              96,
+              844,
+              660,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "1 MARK = 100 COMMENTS. THE 21ST IS OPEN FOR \"MORE THAN\".THE RAIL RUNS IN DAYS. T",
+          "texts": [
+            "1 MARK = 100 COMMENTS. THE 21ST IS OPEN FOR \"MORE THAN\".",
+            "THE RAIL RUNS IN DAYS. TWO HOLLOW MARKS TOOK NO TESTIMONY."
+          ],
+          "full": "1 MARK = 100 COMMENTS. THE 21ST IS OPEN FOR \"MORE THAN\".THE RAIL RUNS IN DAYS. TWO HOLLOW MARKS TOOK NO TESTIMONY.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 946,
+          "w": 900,
+          "h": 64,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              946,
+              860,
+              31
+            ],
+            [
+              96,
+              978,
+              891,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "JUL 10TH",
+          "texts": [
+            "JUL 10TH"
+          ],
+          "full": "JUL 10TH",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1040,
+          "w": 141,
+          "h": 41,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1045,
+              125,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AUG 19TH",
+          "texts": [
+            "AUG 19TH"
+          ],
+          "full": "AUG 19TH",
+          "tag": "div",
+          "unsized": false,
+          "x": 299,
+          "y": 1040,
+          "w": 141,
+          "h": 41,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              307,
+              1045,
+              125,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AUG 24TH",
+          "texts": [
+            "AUG 24TH"
+          ],
+          "full": "AUG 24TH",
+          "tag": "div",
+          "unsized": false,
+          "x": 502,
+          "y": 1040,
+          "w": 141,
+          "h": 41,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              510,
+              1045,
+              125,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AUG 27TH & SEP 2ND",
+          "texts": [
+            "AUG 27TH & SEP 2ND"
+          ],
+          "full": "AUG 27TH & SEP 2ND",
+          "tag": "div",
+          "unsized": false,
+          "x": 705,
+          "y": 1040,
+          "w": 297,
+          "h": 41,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              713,
+              1045,
+              281,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SEP 14TH, 5:00 P.M.",
+          "texts": [
+            "SEP 14TH, 5:00 P.M."
+          ],
+          "full": "SEP 14TH, 5:00 P.M.",
+          "tag": "div",
+          "unsized": false,
+          "x": 660,
+          "y": 1180,
+          "w": 312,
+          "h": 41,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              668,
+              1185,
+              296,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SOURCED \u00b7 STATE NOTICES",
+          "texts": [
+            "SOURCED \u00b7 STATE NOTICES"
+          ],
+          "full": "SOURCED \u00b7 STATE NOTICES",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1180,
+          "w": 402,
+          "h": 39,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1184,
+              386,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "REPORTED \u00b7 MAT-SU SENTINEL",
+          "texts": [
+            "REPORTED \u00b7 MAT-SU SENTINEL"
+          ],
+          "full": "REPORTED \u00b7 MAT-SU SENTINEL",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1224,
+          "w": 453,
+          "h": 39,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(125, 140, 121)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1228,
+              437,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "texts": [
+            "07",
+            "09"
+          ],
+          "full": "07 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 882,
+          "y": 1239,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1239,
+              50,
+              31
+            ],
+            [
+              950,
+              1239,
+              50,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "/",
+          "texts": [
+            "/"
+          ],
+          "full": "/",
+          "tag": "i",
+          "unsized": false,
+          "x": 933,
+          "y": 1239,
+          "w": 17,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              933,
+              1239,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            13
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the date rail and its bed, standing on the ground it measures",
+          "shadow": [
+            [
+              250,
+              1152,
+              200,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              250,
+              1102,
+              200,
+              16
+            ]
+          ]
+        }
+      ],
+      "scales": [
+        {
+          "what": "the date rail, days from July 10th 2026",
+          "axis": "x",
+          "unit": "days",
+          "from": [
+            96,
+            0
+          ],
+          "to": [
+            984,
+            66
+          ],
+          "band": [
+            1132,
+            1148
+          ],
+          "marks": [
+            {
+              "at": 96,
+              "means": "July 10th, 2026, scoping opens (C04)"
+            },
+            {
+              "at": 634,
+              "means": "August 19th, 2026, the superseded close (C05)"
+            },
+            {
+              "at": 701,
+              "means": "August 24th, 2026, more than 2,000 comments counted (C10)"
+            },
+            {
+              "at": 742,
+              "means": "August 27th, 2026, informational meeting, no testimony (C11)"
+            },
+            {
+              "at": 822,
+              "means": "September 2nd, 2026, informational meeting, no testimony (C11)"
+            },
+            {
+              "at": 984,
+              "means": "September 14th, 2026, comment closes 5:00 p.m. (C03)"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 20392,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "More than 2,000 peoplehave already written in.",
+          "min": 50,
+          "max": 74,
+          "maxLines": 2,
+          "size": 73.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [
+        {
+          "what": "20 marks at 100 comments each plus one drawn open for more than",
+          "expect": 21,
+          "actual": 21,
+          "tol": 0,
+          "unit": "marks",
+          "points_n": 21,
+          "points_bad": 0,
+          "offframe": 0,
+          "actual_declared": null,
+          "points_xy": [
+            [
+              112,
+              916
+            ],
+            [
+              154,
+              916
+            ],
+            [
+              196,
+              916
+            ],
+            [
+              238,
+              916
+            ],
+            [
+              280,
+              916
+            ],
+            [
+              322,
+              916
+            ],
+            [
+              364,
+              916
+            ],
+            [
+              406,
+              916
+            ],
+            [
+              448,
+              916
+            ],
+            [
+              490,
+              916
+            ],
+            [
+              532,
+              916
+            ],
+            [
+              574,
+              916
+            ],
+            [
+              616,
+              916
+            ],
+            [
+              658,
+              916
+            ],
+            [
+              700,
+              916
+            ],
+            [
+              742,
+              916
+            ],
+            [
+              784,
+              916
+            ],
+            [
+              826,
+              916
+            ],
+            [
+              868,
+              916
+            ],
+            [
+              910,
+              916
+            ],
+            [
+              952,
+              916
+            ]
+          ],
+          "points_xy_stride": 1
+        }
+      ],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-07.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4630,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24.9,
+          "variance": 251.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-04/slides/slide-07.html",
+        "sha1": "fde5592b07380e60dea6b98c97811d057e02a62a"
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "EXTENT, NOT BOUNDARY",
+          "texts": [
+            "EXTENT, NOT BOUNDARY"
+          ],
+          "full": "EXTENT, NOT BOUNDARY",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 84,
+          "w": 364,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              84,
+              364,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The acres are known.The place is not.",
+          "texts": [
+            "The acres are known.",
+            "The place is not."
+          ],
+          "full": "The acres are known.The place is not.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 142,
+          "w": 800,
+          "h": 180,
+          "font_px": 75.5,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              134,
+              693,
+              90
+            ],
+            [
+              96,
+              208,
+              521,
+              90
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "EXTENT ONLY. NO BOUNDARY IS DRAWN.",
+          "texts": [
+            "EXTENT ONLY. NO BOUNDARY IS DRAWN."
+          ],
+          "full": "EXTENT ONLY. NO BOUNDARY IS DRAWN.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 352,
+          "w": 701,
+          "h": 60,
+          "font_px": 30,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              110,
+              362,
+              673,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "A survey township is 36 sections of one square mile. The conveyance is about 19,",
+          "texts": [
+            "A survey township is 36 sections of one square mile. The conveyance is about 19,950 acres, which is 31.2 sections of the 72 in Township 18 North and Township 19 North. Where those acres sit has not be"
+          ],
+          "full": "A survey township is 36 sections of one square mile. The conveyance is about 19,950 acres, which is 31.2 sections of the 72 in Township 18 North and Township 19 North. Where those acres sit has not been published.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 566,
+          "w": 440,
+          "h": 322,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(194, 203, 186)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              565,
+              321,
+              41
+            ],
+            [
+              96,
+              605,
+              386,
+              41
+            ],
+            [
+              96,
+              645,
+              343,
+              41
+            ],
+            [
+              96,
+              686,
+              358,
+              41
+            ],
+            [
+              96,
+              726,
+              415,
+              41
+            ],
+            [
+              96,
+              766,
+              439,
+              41
+            ],
+            [
+              96,
+              806,
+              412,
+              41
+            ],
+            [
+              96,
+              846,
+              220,
+              41
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "T19N",
+          "texts": [
+            "T19N"
+          ],
+          "full": "T19N",
+          "tag": "div",
+          "unsized": false,
+          "x": 508,
+          "y": 404,
+          "w": 79,
+          "h": 39,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              516,
+              408,
+              63,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "T18N",
+          "texts": [
+            "T18N"
+          ],
+          "full": "T18N",
+          "tag": "div",
+          "unsized": false,
+          "x": 508,
+          "y": 1132,
+          "w": 79,
+          "h": 39,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              516,
+              1136,
+              63,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "GROUND DRAWN FROM THE NOTICE'S TOWNSHIP DESCRIPTION. NOT A SURVEY.",
+          "texts": [
+            "GROUND DRAWN FROM THE NOTICE'S TOWNSHIP DESCRIPTION. NOT A SURVEY."
+          ],
+          "full": "GROUND DRAWN FROM THE NOTICE'S TOWNSHIP DESCRIPTION. NOT A SURVEY.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1214,
+          "w": 460,
+          "h": 51,
+          "font_px": 17,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgba(154, 169, 140, 0.52)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1215,
+              367,
+              22
+            ],
+            [
+              96,
+              1241,
+              428,
+              22
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "texts": [
+            "08",
+            "09"
+          ],
+          "full": "08 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 864,
+          "y": 1229,
+          "w": 136,
+          "h": 41,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              873,
+              1234,
+              50,
+              31
+            ],
+            [
+              941,
+              1234,
+              50,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "/",
+          "texts": [
+            "/"
+          ],
+          "full": "/",
+          "tag": "i",
+          "unsized": false,
+          "x": 924,
+          "y": 1234,
+          "w": 17,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              924,
+              1234,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            7
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 64465,
+        "sites": 9,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "The acres are known.The place is not.",
+          "min": 52,
+          "max": 76,
+          "maxLines": 2,
+          "size": 75.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [
+        {
+          "what": "31 of 72 sections by area, drawn as doubled density cells",
+          "expect": 31,
+          "actual": 31,
+          "tol": 0,
+          "unit": "marks",
+          "points_n": 31,
+          "points_bad": 0,
+          "offframe": 0,
+          "actual_declared": null,
+          "points_xy": [
+            [
+              631,
+              427
+            ],
+            [
+              817,
+              427
+            ],
+            [
+              879,
+              427
+            ],
+            [
+              693,
+              489
+            ],
+            [
+              755,
+              489
+            ],
+            [
+              941,
+              489
+            ],
+            [
+              631,
+              551
+            ],
+            [
+              817,
+              551
+            ],
+            [
+              631,
+              613
+            ],
+            [
+              817,
+              613
+            ],
+            [
+              755,
+              675
+            ],
+            [
+              941,
+              675
+            ],
+            [
+              631,
+              737
+            ],
+            [
+              693,
+              737
+            ],
+            [
+              817,
+              737
+            ],
+            [
+              941,
+              737
+            ],
+            [
+              755,
+              799
+            ],
+            [
+              879,
+              799
+            ],
+            [
+              817,
+              861
+            ],
+            [
+              941,
+              861
+            ],
+            [
+              631,
+              923
+            ],
+            [
+              755,
+              923
+            ],
+            [
+              693,
+              985
+            ],
+            [
+              817,
+              985
+            ],
+            [
+              879,
+              985
+            ],
+            [
+              693,
+              1047
+            ],
+            [
+              941,
+              1047
+            ],
+            [
+              631,
+              1109
+            ],
+            [
+              755,
+              1109
+            ],
+            [
+              817,
+              1109
+            ],
+            [
+              941,
+              1109
+            ]
+          ],
+          "points_xy_stride": 1
+        },
+        {
+          "what": "the lit set is DISPERSED, largest edge connected run at most 6 cells",
+          "expect": 1,
+          "actual": 1,
+          "tol": 0,
+          "unit": "bool"
+        },
+        {
+          "what": "both townships carry 12 to 19 lit sections, so no tier is empty",
+          "expect": 1,
+          "actual": 1,
+          "tol": 0,
+          "unit": "bool"
+        },
+        {
+          "what": "no grid row or column is more than 70 percent lit",
+          "expect": 1,
+          "actual": 1,
+          "tol": 0,
+          "unit": "bool"
+        }
+      ],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-08.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 7921,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 46.6,
+          "variance": 1175.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-04/slides/slide-08.html",
+        "sha1": "69005e2cea7e189b3cd0bf204876d6985f456968"
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Comment closes 5:00 p.m.Monday, September 14th, 2026.",
+          "texts": [
+            "Comment closes 5:00 p.m.",
+            "Monday, September 14th, 2026."
+          ],
+          "full": "Comment closes 5:00 p.m.Monday, September 14th, 2026.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 148,
+          "w": 800,
+          "h": 220,
+          "font_px": 57.5,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              141,
+              675,
+              69
+            ],
+            [
+              96,
+              197,
+              797,
+              69
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Written comment on ADL 234762 and on the classification order goes to DNR's Divi",
+          "texts": [
+            "Written comment on ADL 234762 and on the classification order goes to DNR's Division of Mining, Land and Water."
+          ],
+          "full": "Written comment on ADL 234762 and on the classification order goes to DNR's Division of Mining, Land and Water.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 420,
+          "w": 680,
+          "h": 188,
+          "font_px": 38,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(194, 203, 186)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              417,
+              664,
+              52
+            ],
+            [
+              96,
+              464,
+              616,
+              52
+            ],
+            [
+              96,
+              511,
+              613,
+              52
+            ],
+            [
+              96,
+              558,
+              117,
+              52
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SOURCES IN COMMENTS",
+          "texts": [
+            "SOURCES IN COMMENTS"
+          ],
+          "full": "SOURCES IN COMMENTS",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1165,
+          "w": 319,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1165,
+              319,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1213,
+          "w": 192,
+          "h": 41,
+          "font_px": 34,
+          "weight": "700",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(232, 238, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1213,
+              192,
+              41
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 340,
+          "y": 1220,
+          "w": 196,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              340,
+              1220,
+              196,
+              26
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "texts": [
+            "09",
+            "09"
+          ],
+          "full": "09 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 882,
+          "y": 1239,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 169, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1239,
+              50,
+              31
+            ],
+            [
+              950,
+              1239,
+              50,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "/",
+          "texts": [
+            "/"
+          ],
+          "full": "/",
+          "tag": "i",
+          "unsized": false,
+          "x": 933,
+          "y": 1239,
+          "w": 17,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              933,
+              1239,
+              17,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            5
+          ]
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the deadline mark standing on the near peat",
+          "shadow": [
+            [
+              1006,
+              998,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              886,
+              998,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "paint": {
+        "fills": 26536,
+        "sites": 8,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "Comment closes 5:00 p.m.Monday, September 14th, 2026.",
+          "min": 54,
+          "max": 84,
+          "maxLines": 2,
+          "size": 57.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-09.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4841,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 18.8,
+          "variance": 109.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-04/slides/slide-09.html",
+        "sha1": "ed729d8998f334ebdfc8c3a880e5cda202fe1934"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "run_date": "2026-09-04",
+  "carousel_no": 50,
+  "date_note": "Anchorage local date at wake was 2026-09-04 23:09 AKDT. runs/2026-09-04/ did not exist, so the run takes its own Anchorage date.",
+  "phases": {
+    "wake": "done: out/2026-09-04/plan.md, out/2026-09-04/run_state.json",
+    "craft_refresh": "done: knowledge/FIELD_NOTES.md 2026-09-04 entry",
+    "research": "done: out/2026-09-04/scout_merge.md, 6 scouts, 143 searches",
+    "claims": "done: out/2026-09-04/claims.json, 19 claims 12 primary, claims_check PASS",
+    "docket": "done: ledger/docket.json, 2 staleness refreshes plus aidea-houston and deepgreen updated from this run, docket_dates_check clean",
+    "gas_watch": "done: site_signoff PASS 96 pages 18 checks, gaswatch_pagecheck PASS, mobile nav tap verified",
+    "selection": "done: out/2026-09-04/selection.md, dedupe_check exit 0",
+    "directors_room": "done: out/2026-09-04/storyboard.md, 3 lenses synthesized, dossier_check PASS 9/9",
+    "copy": "done: out/2026-09-04/copy.json, caption_check PASS 888 chars with --copy, style_lint clean, copy_sync PASS 58 strings",
+    "art_build": "done: 9/9 render clean, qa.py 0 fails 1 warn (slide 05 art touching glyphs 4%, inspected, no glyph crossed)",
+    "pixel_review": "done: 3 rounds. 5 critics returned a deck mean of 5.38; round 2 fixed causes deck wide; round 3 took the findings the scorer and the flow critic reached independently",
+    "flow_review": "done: flow-critic 7.5, five findings taken in round 3, out/2026-09-04/storyboard.md BUILD RECONCILIATION",
+    "assemble": "done: out/2026-09-04/final, 9 slides, vector pdf, 9 thumbs, contact sheet",
+    "scoring": "done: out/2026-09-04/score_report.json, 8.76 against a threshold of 8.3 (8.48 before round 3)",
+    "ship": "done: runs/2026-09-04/, ship_images 4.1x, site rebuilt, PR 343",
+    "upgrade": "done: ba33e42, 3 upgrades, out/2026-09-04/automation_retro.md",
+    "gmail": "pending",
+    "retro": "pending"
+  }
+}
