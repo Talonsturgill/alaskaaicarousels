@@ -6063,3 +6063,42 @@ parked rather than applied because neither is safely boundable in one run.
   rediscover it. LinkedIn's own limits, re-verified in passing: 300 pages,
   100 MB, PPT/DOC/PDF, all served as PDF.
   https://www.linkedin.com/help/linkedin/answer/a518909
+
+### Later the same run: three more, all from CI and a reviewer.
+
+**A check that polices a tokeniser must agree with the tokeniser.** The ask
+corpus normalises `150.0` to `150` and authorises it. Its ghost check, written
+to catch `300` authorised out of `8,300`, read the same text as a fragment and
+called `150` a ghost. The two disagreed about what a number is, so the build
+went red on correct behaviour and stayed red on main for two days, unnoticed
+because that suite only runs on pull requests touching its paths. When a check
+and the thing it checks are built on separate regexes on purpose, the cases
+where they may differ have to be enumerated, or the check eventually fails the
+build instead of the code.
+
+**An allowance in pre-zoom units is not an allowance.** The docket map pads its
+pin bounds by the distance a badge can throw beyond its anchor, then multiplies
+those bounds by the zoom. But a mark is repositioned rather than resized, so its
+ink is the same size at every zoom and at k = 0.4 the allowance is worth 40
+percent of what it stands for. The northernmost pin had been clearing a sticky
+nav by six tenths of a pixel, and it stopped clearing the day a routine run
+opened four more comment windows, because an open decision earns a pulse ring
+and a pulse ring makes its mark taller. Correct data walked into a layout with
+no margin in it.
+
+Three plausible fixes were tried and all three were wrong, which is worth more
+than the one that worked. Raising the fit's pad shrinks the scale, so the
+southern pins left the frame and one failure became three. Giving the viewBox
+more height does nothing useful under `preserveAspectRatio="slice"`, which
+CROPS: the top marks ended up closer to the edge, not further. And the correct
+nudge, applied and then followed by the existing `clampT()`, was silently
+discarded, because clampT recentres whenever the drawing is shorter than its
+band. That last one cost three rounds of tuning a scale that was never the
+problem. When a correction has no effect, check whether something downstream
+is recomputing the thing you corrected.
+
+**A date that walks backward is a dataset telling consumers to skip a record.**
+`gas-watch.json` stamped `updated` with the build date, and a carousel run
+rebuilding at its own run date over a collection cron that had already written
+could set it EARLIER than the newest row in the same file. Floor a dataset's
+updated stamp at its own latest record, always.
