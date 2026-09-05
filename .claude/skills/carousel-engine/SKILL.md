@@ -316,6 +316,31 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   marks are packed tighter than the probe box only a RUN of losses shows; and a
   cohort that is flat everywhere is reported unmeasurable rather than lost,
   because marks drawn in the DOM look the same from here.
+
+  **And a count that means EXTENT says so** (2026-09-04). When the marks stand
+  for how MUCH and deliberately not for where, add one key:
+
+  ```js
+  window.__akAssert = [{ what: "31 of 72 sections, extent only",
+                         expect: 31, points: pts, dispersed: true,
+                         unit: "marks" }];
+  ```
+
+  qa.py then measures where the centres landed and **FAILS** when more than 75
+  percent of them sit in ONE touching mass (marks within 1.25x the cohort's own
+  median nearest-neighbour distance), because a mass that size is a form a
+  reader traces. Run No.50's slide 08 lit 31 of 72 township cells under a label
+  reading EXTENT ONLY. NO BOUNDARY IS DRAWN, shuffled the cells and took the
+  first 31, and drew a solid parcel with holes in it; the count said 31 of 31,
+  the pixel probe said all 31 painted, both were right, and five pixel critics
+  scored the slide 2.5. **Opt-in and it must stay opt-in**: a rank, a tally
+  row, a bar and a timeline are all legitimately contiguous. Building the set
+  is the authoring work, and shuffle-then-take-the-first-N is not it: offer
+  positions in seeded random order and accept one only while every touching run
+  stays under a cap, because above about 40 percent density rejection sampling
+  will not find a dispersed set for you. Under 12 marks, or a census large
+  enough that render.py strides the export, it says unmeasurable rather than
+  guessing. Reconstruction: `python tests/mark_spread_verify.py`.
 - **Declared artwork has to reach the slide** (2026-08-25). A slide names the
   drawn features that carry meaning and the rect each one occupies:
 

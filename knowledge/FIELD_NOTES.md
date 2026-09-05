@@ -6024,3 +6024,42 @@ Anchorage time and wrote a caption opening on ten days left. By the time the
 copy chamber ran it was the following day. `caption_check` has no clock and
 never will; the copywriter caught it. Anchor to the closing date and the copy
 stays true whenever it is read.
+
+## 2026-09-04, Phase 12 frontier scan (g): accessibility and the PDF we ship. PARKED.
+
+Two candidates, both measured in this engine rather than taken on trust, both
+parked rather than applied because neither is safely boundable in one run.
+
+- **A TAGGED PDF IS ONE PARAMETER AND THE MERGE THROWS IT AWAY.** Playwright's
+  `page.pdf()` here takes `tagged=True`, and it works: printed against this
+  run's slides 01 and 02 the per-page files carry a real `/StructTreeRoot` for
+  about 2 KB a page, 0.03 percent of the file. `assemble.vector_pdf` then
+  merges the pages with `pypdf.PdfWriter.add_page`, and the merged document has
+  no `/StructTreeRoot` at all. `PdfWriter.append()` drops it too (pypdf 6.17).
+  This is not a local bug: pypdf, PyMuPDF and qpdf all lose the structure tree
+  on merge, and the open issues say so.
+  https://github.com/pymupdf/PyMuPDF/issues/2469 ,
+  https://github.com/qpdf/qpdf/issues/490
+  So tags would need the nine slides printed as ONE Chromium document, which
+  means print CSS, page breaks and the resolved-asset path all changing at
+  once, in the step that produces the deliverable. That is a redesign, not an
+  upgrade. PARKED with the numbers so the next attempt starts from measurement.
+- **AND TAGS WOULD BUY LESS THAN THEY LOOK LIKE, because our own type does not
+  extract.** 34 percent of the shipped PDF's extractable words (266 of 778)
+  come out as runs of single letters: page 1 reads "A D L 2 3 4 7 6 2 · M A T A
+  N U S K A - S U S I T N A B O R O U G H". That is the house's tracked mono
+  kickers and labels; Chromium emits each glyph positioned, and every extractor
+  inserts spaces at the gaps. The BODY copy and headlines extract perfectly and
+  in the right reading order, kicker to counter, which is the good news.
+  It matters because LinkedIn converts a document post to images and its
+  Accessibility Mode reads back from the uploaded PDF's own content order,
+  ignoring heading and list tags and never surfacing alt text (Intopia, the
+  substantive practitioner write-up on this).
+  https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels/
+  So the deck's accessibility rests on two things we already control: the
+  caption's deck-summary line, which is a hard gate here, and the PDF's reading
+  ORDER, which is currently correct. Tracking is a design decision and the
+  maintainer's call, not a gate; recorded here so the next scan does not
+  rediscover it. LinkedIn's own limits, re-verified in passing: 300 pages,
+  100 MB, PPT/DOC/PDF, all served as PDF.
+  https://www.linkedin.com/help/linkedin/answer/a518909

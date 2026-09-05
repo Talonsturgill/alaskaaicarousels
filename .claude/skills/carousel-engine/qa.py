@@ -1556,6 +1556,148 @@ def marks_reach_frame(img_arr, a, design_w, design_h):
         v for _, _, v in vals)
 
 
+# A SCATTER THAT IS SECRETLY A SHAPE (2026-09-04). Thresholds for the measure
+# below, all three fitted rather than guessed, on 4,000 simulated scatters per
+# count over four field aspect ratios plus the two real cohorts run No.50
+# shipped.
+#
+# DISPERSE_LINK is a multiple of the cohort's OWN median nearest-neighbour
+# distance, so there is no design-px constant here and a 62px grid and a 6px
+# stipple are judged the same way. It has to sit above 1.0 (a lattice's own
+# pitch, plus jitter and rounding) and below sqrt(2) (its diagonal, which is
+# not a shared edge). Anywhere in 1.05 to 1.35 gives the identical answer on a
+# lattice; 1.25 is the middle of that plateau.
+#
+# DISPERSE_MASS is the share of the marks allowed to sit in ONE touching mass.
+# Under a random scatter of n marks the largest mass runs: n=12 median 0.33,
+# p99 0.75; n=20 median 0.20, p99 0.55; n=31 median 0.16, p99 0.39; n=50
+# median 0.12, p99 0.28. Run No.50's shipped set, built under a connectivity
+# cap, measures 0.06. The defect measures 1.00. The line is 0.75, which is
+# beyond the 99th percentile of chance at every count this speaks about and
+# leaves the known defect a factor of 1.3 clear of it.
+#
+# DISPERSE_MIN_N is where chance stops being able to look like a shape: at
+# n under 12 a random scatter reaches a single chain often enough (1 in 100 at
+# 12, 1 in 20 at 8, 1 in 6 at 6) that a fail would be a coin toss.
+DISPERSE_LINK = 1.25       # of the cohort's median nearest-neighbour distance
+DISPERSE_MASS = 0.75       # of the marks in one touching mass: a shape
+DISPERSE_MIN_N = 12        # fewer marks than this and chance is indistinguishable
+
+
+def _largest_mass(pts, link):
+    """(size of the largest touching mass, the link distance used).
+
+    Two marks touch when they are within `link` x the cohort's own median
+    nearest-neighbour distance. Union-find over at most MARK_PROBE_MAX points.
+    """
+    a = np.asarray(pts, dtype=np.float64)
+    n = len(a)
+    d = np.sqrt(((a[:, None, :] - a[None, :, :]) ** 2).sum(-1))
+    np.fill_diagonal(d, np.inf)
+    t = float(np.median(d.min(axis=1))) * link
+    par = list(range(n))
+
+    def find(x):
+        while par[x] != x:
+            par[x] = par[par[x]]
+            x = par[x]
+        return x
+
+    for i in range(n):
+        for j in np.nonzero(d[i] <= t)[0]:
+            ri, rj = find(i), find(int(j))
+            if ri != rj:
+                par[ri] = rj
+    sizes = {}
+    for i in range(n):
+        r = find(i)
+        sizes[r] = sizes.get(r, 0) + 1
+    return max(sizes.values()), t
+
+
+def marks_disperse(a):
+    """DID THE MARKS THAT CLAIM AN EXTENT DRAW A SHAPE INSTEAD.
+
+    Built 2026-09-04 after run No.50's slide 08. The deck's honesty
+    architecture rests on 31 of 72 grid cells reading as EXTENT and never as a
+    traceable parcel: the label seventy pixels under them reads EXTENT ONLY. NO
+    BOUNDARY IS DRAWN, because where those acres sit has not been published.
+    The build shuffled the 72 cells and took the first 31, which put them edge
+    to edge in one township, and the frame drew a parcel with holes in it. The
+    2026-08-25 count contract reported 31 of 31 and the 2026-08-31 pixel probe
+    reported every one of them painted, and both were right: the assertion was
+    about HOW MANY and the defect was about WHERE. Five pixel critics scored
+    the slide 2.5 and the run rebuilt it.
+
+    Counting cannot see this and neither can any threshold on ink, so the slide
+    states the claim instead -- `dispersed: true` beside `points` -- and this
+    measures the one thing that claim forbids: a single touching mass of marks
+    large enough to read as a drawn form. The measure is scale free (every
+    distance is a multiple of the cohort's own median nearest-neighbour
+    distance) and it needs no idea of what the marks depict.
+
+    OPT-IN, and it must stay that way. A rank, a tally row, a bar and a
+    timeline are all legitimately one contiguous run of marks; only a slide
+    whose ARGUMENT is extent-without-location declares the flag.
+
+    THREE LIMITS, and all three are false NEGATIVES:
+      * It measures the DECLARED centres, not the ink. Marks erased after they
+        were declared are marks_reach_frame's question, not this one.
+      * It sees one mass, not two. A set that reads as two solid blocks passes
+        at 0.5 each, and nothing in the corpus says where between 0.5 and 0.75
+        a second mass starts mattering.
+      * A census bigger than render.py's export cap is strided, and a strided
+        sample of a scatter is not the scatter. Those are reported as
+        unmeasurable rather than judged.
+
+    Returns (verdict, detail) with verdict in "info" | "warn" | "fail", or None
+    when the assertion never claimed dispersion.
+    """
+    if not a.get("dispersed"):
+        return None
+    what = a.get("what") or "an unnamed count"
+    pts = a.get("points_xy")
+    if not pts:
+        return "warn", (
+            "'%s' declares `dispersed: true` and no `points`, so nothing was "
+            "measured. Dispersion is measured on the mark centres the drawing "
+            "loop used; pass them as `points` or drop the flag, because a "
+            "declaration that cannot run is worse than none." % what)
+    stride = int(a.get("points_xy_stride") or 1)
+    if stride > 1:
+        return "warn", (
+            "'%s' declares `dispersed: true` over %d marks, more than the %d "
+            "the frame exports, so the centres are sampled every %d and a "
+            "sample of a scatter is not the scatter. Not measured."
+            % (what, a.get("points_n") or len(pts), MARK_PROBE_MAX, stride))
+    if len(pts) < DISPERSE_MIN_N:
+        return "warn", (
+            "'%s' declares `dispersed: true` over %d marks; under %d, a random "
+            "scatter forms one chain often enough that this measure would be a "
+            "coin toss, so it was not measured. Say what you mean about these "
+            "marks in the dossier instead."
+            % (what, len(pts), DISPERSE_MIN_N))
+
+    n = len(pts)
+    mass, link = _largest_mass(pts, DISPERSE_LINK)
+    frac = mass / float(n)
+    head = ("'%s': %d declared marks, largest touching mass %d of them (%.0f%%) "
+            "at a %.0fpx link" % (what, n, mass, frac * 100, link))
+    if frac >= DISPERSE_MASS:
+        return "fail", (
+            head + " -- these marks are not a scatter, they are one connected "
+            "form, and a reader traces its outline. The slide declared "
+            "`dispersed: true`, which is the claim that their POSITIONS carry "
+            "no information beyond extent; a mass this size draws a shape the "
+            "data does not support. Do not shuffle and take the first N: build "
+            "the set by offering positions in seeded random order and accepting "
+            "one only while every touching run stays under a cap (above about "
+            "40 percent density, rejection sampling will not find a dispersed "
+            "set for you). The line is %.0f%%."
+            % (DISPERSE_MASS * 100))
+    return "info", head + " (a shape starts at %.0f%%)" % (DISPERSE_MASS * 100)
+
+
 # THE AXIS CENSUS (2026-08-16). Geometry tolerances, in design px. None of
 # these is an ink threshold: the census calibrates its ink level on the marks
 # the SLIDE declares, so there is no constant here to tune down or up.
@@ -2486,6 +2628,21 @@ def main():
                                         + detail)
                 elif verdict == "warn":
                     res["warns"].append("declared marks: " + detail)
+                else:
+                    res.setdefault("asserts", []).append(detail)
+
+            # A SCATTER THAT IS SECRETLY A SHAPE (2026-09-04). The two checks
+            # above ask how many marks there are and whether they painted. This
+            # asks WHERE they landed, and only of a slide that declared
+            # `dispersed: true`, which is the claim that their positions carry
+            # nothing but extent. See marks_disperse() for the calibration.
+            dv = marks_disperse(a)
+            if dv:
+                verdict, detail = dv
+                if verdict == "fail":
+                    res["fails"].append("declared scatter drew a shape: " + detail)
+                elif verdict == "warn":
+                    res["warns"].append("declared scatter: " + detail)
                 else:
                     res.setdefault("asserts", []).append(detail)
 
