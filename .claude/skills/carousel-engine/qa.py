@@ -2269,6 +2269,25 @@ def main():
                 f"span, the projected point); if the subject is a count, declare "
                 f"`points:` and let the frame do the counting")
 
+        # TWO LIGHT DIRECTIONS IN ONE FRAME (2026-09-05). render.py resolves
+        # every declared relief azimuth into the direction akrelief.js actually
+        # produces from it, and reads the slide's own comments for a direction
+        # that disagrees. A WARN and never a FAIL: the claim side is prose, so
+        # this can be wrong in a way the arithmetic gates around it can't, and
+        # the durable half of the check is the resolution line render.py prints
+        # for every azimuth whether or not anything disagrees. See
+        # scan_light_direction() for the corpus it was measured against and for
+        # the interior surfaces it abstains on.
+        for lc in rec.get("light_conflicts", []):
+            res["warns"].append(
+                "two light directions: line %d says the %s is %s, and `az %g` "
+                "resolves through akrelief.lightVec to put it at %s. az is a "
+                "compass bearing for where the light IS, clockwise from up, so "
+                "az 25 lights from the upper right and az 205 from the lower "
+                "left. Move the azimuth or the shading, and say in the "
+                "reconciliation which one was wrong"
+                % (lc["line"], lc["sense"], lc["says"], lc["az"], lc["resolves"]))
+
         # FRAME BALANCE / DEAD LOWER ZONE (2026-07-26). The series' longest-
         # running craft defect, and the first gate here that judges COMPOSITION
         # rather than legibility. See frame_balance() for why the measurement is
@@ -2493,16 +2512,27 @@ def main():
         # contradicting its own declaration: it says it drew a feature at a
         # rect, and the render says the rect is flat or buried. See
         # motif_survives() for the two instruments and their limits.
+        # A MARK'S SIZE IS NOT ITS VISIBILITY (2026-09-05). render.py turns an
+        # assertion's `at` into the same evidence record a motif produces, so
+        # the two instruments below judge both. The only difference is what the
+        # message calls the thing, because the repair is a different one: a
+        # buried motif usually wants the plate moved, and a buried assertion
+        # subject usually wants the MARK moved to rag it can be seen on.
         for mo in rec.get("motifs", []):
+            from_assert = bool(mo.get("from_assert"))
+            surface = "an assertion's `at`" if from_assert else "window.__akMotifs"
             if mo.get("error"):
-                res["fails"].append(
-                    declaration_unparsed("window.__akMotifs", mo["error"]))
+                res["fails"].append(declaration_unparsed(surface, mo["error"]))
                 continue
             verdict, detail = motif_survives(arr, mo, design_w, design_h)
             if verdict == "fail":
-                res["fails"].append("declared motif does not reach the slide: " + detail)
+                res["fails"].append(
+                    ("the mark an assertion declares does not reach the slide: "
+                     if from_assert else
+                     "declared motif does not reach the slide: ") + detail)
             elif verdict == "warn":
-                res["warns"].append("motif: " + detail)
+                res["warns"].append(("assert clearance: " if from_assert
+                                     else "motif: ") + detail)
             else:
                 res.setdefault("motifs", []).append(detail)
 

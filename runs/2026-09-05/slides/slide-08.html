@@ -1,0 +1,255 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#221E18;
+  font-family:"Space Grotesk",sans-serif;}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+svg.ann{position:absolute;inset:0;}
+.kick{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:0.12em;color:#CFD6CC;}
+h1{position:absolute;font-family:"Fraunces",serif;font-weight:700;color:#F4F8FF;
+  line-height:0.97;letter-spacing:-0.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;}
+.body{position:absolute;font-family:"Space Grotesk",sans-serif;font-weight:400;
+  font-size:34px;line-height:1.36;color:#E4E9E1;}
+.mono{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:0.10em;color:#CFD6CC;font-variant-numeric:tabular-nums lining-nums;}
+/* technique 75, a knockout window punched in the plate behind an instrument label */
+.knock{background:rgba(20,14,9,0.90);padding:3px 10px;margin:-3px -10px;}
+.mono.tight{letter-spacing:0.06em;}
+.gold{color:#FFC72C;}
+/* THE SCALE CONTRACT, printed in the top right corner block of every plate.
+   emitted by shell() so a plate cannot ship without it. */
+.kconst{position:absolute;right:90px;top:80px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;line-height:1.05;letter-spacing:0.10em;color:#B7C0B8;text-align:right;
+  background:rgba(20,14,9,0.90);padding:3px 10px;margin:-3px -10px;}
+.ctr{position:absolute;right:90px;bottom:88px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:0.12em;color:#CFD6CC;background:rgba(20,14,9,0.90);
+  padding:5px 10px;margin:-5px -10px;}
+.wm{position:absolute;font-family:"Fraunces",serif;font-weight:800;font-size:34px;color:#F4F8FF;}
+.site{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:0.10em;color:#CFD6CC;}
+</style></head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="kconst">3.6x  &middot;  K = 0.25 px2 PER DOLLAR</div>
+
+<div class="kick knock" style="left:90px;top:80px;">PLATE 8</div>
+<h1 id="h1" data-min="52" data-max="76" data-lines="3" style="left:80px;top:126px;width:840px;">The money went to the candidate who wants data centers stopped.</h1>
+<div class="body" data-flow="36" style="left:80px;top:348px;width:760px;font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:42px;line-height:1.30;color:#F4F8FF;">"I think I failed to give full appreciation to the optics of this. Because, having known [Thomas] and the work of these other folks for a while, it was like, 'Oh, these are the good guys.'"</div>
+<div class="mono knock" data-flow="30" style="left:90px;top:652px;width:900px;line-height:1.52;">JONATHAN KREISS-TOMKINS, TO THE NORTHERN JOURNAL,<br>REPRINTED BY THE SAN FRANCISCO STANDARD.<br>HE DID NOT RESPOND TO THE STANDARD'S REQUEST.</div>
+<div class="mono knock" data-flow="34" style="left:90px;top:790px;width:900px;line-height:1.52;">NO PUBLISHED ACCOUNT REPORTS ANY DONOR ASKING FOR<br>OR RECEIVING ANYTHING. ANTHROPIC GAVE NOTHING AND<br>NO COMPANY STATEMENT ABOUT THE DONATIONS IS<br>REPORTED. EVERY GIFT WAS LAWFUL WHEN MADE.</div>
+<svg class="ann" width="1080" height="1350">
+  <text x="380" y="1099" font-size="24" fill="#CFD6CC" letter-spacing="0.08em" font-family="JetBrains Mono">A POLICY</text>
+  <text x="380" y="1149" font-size="24" fill="#CFD6CC" letter-spacing="0.08em" font-family="JetBrains Mono">A MEETING</text>
+  <text x="960" y="1085" font-size="24" fill="#CFD6CC" letter-spacing="0.08em" text-anchor="middle" font-family="JetBrains Mono">A JOB</text>
+  <text x="936" y="1188" font-size="24" fill="#CFD6CC" letter-spacing="0.08em" text-anchor="middle" font-family="JetBrains Mono">A FAVOR</text>
+  <text x="90" y="1024" font-size="24" fill="#FFC72C" letter-spacing="0.10em" font-family="JetBrains Mono">THE BOX IS ONE $4,000 MAXIMUM.</text>
+  <text x="90" y="1058" font-size="24" fill="#B7C0B8" letter-spacing="0.10em" font-family="JetBrains Mono">NOTHING IS INSIDE IT.</text>
+</svg>
+<div class="ctr">08 / 09</div>
+
+<script>
+
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  var _h1=document.getElementById('h1');
+  if(_h1 && window.AK && AK.fitText){
+    AK.fitText(_h1,{min:parseInt(_h1.dataset.min||'56',10),
+                    max:parseInt(_h1.dataset.max||'120',10),
+                    maxLines:parseInt(_h1.dataset.lines||'3',10)});
+  }
+  // every SVG label gets a plate MEASURED from its own text, never a typed width
+  if(window.AK && AK.svgPlateAll){
+    AK.svgPlateAll('svg.ann text',{padX:11,padY:5,fill:'rgba(20,14,9,0.90)',rx:2});
+  }
+  // FLOW PASS. blocks marked data-flow are pushed clear of whatever sits above
+  // them, so a headline that fits to three lines cannot land on the body copy.
+  (function(){
+    var prev=_h1?_h1.getBoundingClientRect():null;
+    var flow=[].slice.call(document.querySelectorAll('[data-flow]'));
+    flow.forEach(function(el){
+      var gap=parseInt(el.dataset.flow||'34',10);
+      var r=el.getBoundingClientRect();
+      if(prev && r.top < prev.bottom+gap){
+        el.style.top = Math.round(prev.bottom+gap) + 'px';
+      }
+      prev = el.getBoundingClientRect();
+    });
+  })();
+  // RESERVES, read off the laid-out DOM. the art is told where the words are.
+  var RESERVE=[];
+  [].slice.call(document.querySelectorAll('h1,.body,.mono,.kick,.kconst,.ctr,.wm,.site,svg.ann text,[data-flow]'))
+    .forEach(function(el){ var r=el.getBoundingClientRect();
+      if(r.width>0&&r.height>0) RESERVE.push([r.left-10,r.top-8,r.width+20,r.height+16]); });
+  function inType(x,y,rad){
+    for(var i=0;i<RESERVE.length;i++){var b=RESERVE[i];
+      if(x+rad>b[0]&&x-rad<b[0]+b[2]&&y+rad>b[1]&&y-rad<b[1]+b[3]) return true;}
+    return false;
+  }
+  var c=document.getElementById('art'), cx=c.getContext('2d'); cx.scale(2,2);
+  var W=1080,H=1350;
+  var K=0.25, LO=25.0, HI=140000.0, Y0=430.0, Y1=1250.0;
+  var L10=Math.log(10);
+  function rr(a){return Math.sqrt(a*K/Math.PI);}
+  function ry(a){var v=Y0+((Math.log(a)-Math.log(LO))/L10)/((Math.log(HI)-Math.log(LO))/L10)*(Y1-Y0);
+    return Math.max(Y0,Math.min(Y1,v));}
+  var rnd=AK.rng(20260905);
+  // ---- RAG SUBSTRATE. laid first, always. form only, never a quantity.
+  function rag(scale){
+    AK.reliefShade(cx,{x:0,y:0,w:W,h:H,scale:2,seed:20260905,
+      noiseScale:0.040/scale, octaves:5, warp:0.26, strength:1.7,
+      low:'#221E18', high:'#4C443A', ambient:0.46, diffuse:0.78,
+      lights:[{az:25,el:14,w:1.0}]});
+  }
+  // the ridge's shading, one gradient laid along the light. lit up-right, lee down-left.
+  function ridgeGrad(x,y,r){
+    var lg=cx.createLinearGradient(x+r*0.72,y-r*0.70,x-r*0.72,y+r*0.70);
+    lg.addColorStop(0.00,'#A8BDB4');
+    lg.addColorStop(0.13,'#6F8C86');
+    lg.addColorStop(0.34,'#3A4C47');
+    lg.addColorStop(0.58,'#16211F');
+    lg.addColorStop(1.00,'#080907');
+    return lg;
+  }
+  // COLLAPSED TOOTH inside a large body. the rag's own crumple carried through at
+  // low amplitude, then a fibre lay, so a close look finds paper and not a fill.
+  function inkTooth(x,y,r){
+    cx.save(); cx.clip();
+    var n1=Math.round(r*r*0.42);
+    for(var i=0;i<n1;i++){
+      var px=x-r+rnd()*2*r, py=y-r+rnd()*2*r;
+      var n=AK.fbm2(px*0.013,py*0.013,4), m=AK.fbm2(px*0.06,py*0.06,3);
+      cx.globalAlpha=0.12+0.34*n*m;
+      cx.fillStyle= (n+m)>1.02 ? '#4E6E68' : ((n+m)>0.74 ? '#2E4A50' : '#07161A');
+      cx.fillRect(px,py,1.1+n*2.0,1.0+m*1.6);
+    }
+    var n2=Math.round(r*r*0.024);
+    for(var f=0;f<n2;f++){
+      var fx=x-r+rnd()*2*r, fy=y-r+rnd()*2*r, ln=8+rnd()*30;
+      var an=-0.45+AK.fbm2(fx*0.004,fy*0.004,2)*0.9;
+      cx.globalAlpha=0.12+0.26*rnd();
+      cx.strokeStyle= rnd()>0.5 ? '#5C8078' : '#061A1E';
+      cx.lineWidth=0.7+rnd()*1.2;
+      cx.beginPath(); cx.moveTo(fx,fy); cx.lineTo(fx+Math.cos(an)*ln,fy+Math.sin(an)*ln); cx.stroke();
+    }
+    cx.globalAlpha=1;
+    var vg=cx.createRadialGradient(x-r*0.42,y+r*0.30,0,x-r*0.42,y+r*0.30,r*1.0);
+    vg.addColorStop(0,'rgba(8,9,7,0.60)'); vg.addColorStop(1,'rgba(8,9,7,0)');
+    cx.fillStyle=vg; cx.fillRect(x-r,y-r,2*r,2*r);
+    cx.restore(); cx.globalAlpha=1;
+  }
+  // ---- ONE DEPOSIT. ink is DARKER AND COLDER than the rag.
+  // NOTHING STANDS ON ANYTHING. the halo is concentric, so it can never read as
+  // a cast shadow, and the only directional term is the drying ring's own
+  // shading: lit on the up-light face, falling to its own lee on the down-left.
+  // hm is the soak multiplier. it is a rendering term and never a quantity, so a
+  // plate that packs marks tight may hold it in to stop the annuli compounding.
+  function dep(x,y,r,hm){
+    if(!(r>0)) return;
+    hm = hm || 1.85;
+    cx.save(); cx.globalCompositeOperation='multiply';
+    var g=cx.createRadialGradient(x,y,r*0.30,x,y,r*hm);
+    g.addColorStop(0,'rgba(44,58,62,1)');
+    g.addColorStop(0.58,'rgba(126,124,120,1)');
+    g.addColorStop(1,'rgba(255,255,255,1)');
+    cx.fillStyle=g; cx.beginPath(); cx.arc(x,y,r*hm,0,6.283); cx.fill(); cx.restore();
+    cx.beginPath();
+    var N = r>40?72:(r>6?40:14);
+    for(var a=0;a<=N;a++){ var th=a/N*6.283;
+      var q=r*(1+0.15*AK.fbm2(Math.cos(th)*2.1+x*0.03, Math.sin(th)*2.1+y*0.03, 3));
+      var px=x+Math.cos(th)*q, py=y+Math.sin(th)*q; a?cx.lineTo(px,py):cx.moveTo(px,py); }
+    cx.closePath();
+    cx.fillStyle='#0C1A1E'; cx.globalAlpha=0.95; cx.fill(); cx.globalAlpha=1;
+    if(r>=3.0){
+      // MINERAL DRYING RING. one stroke, shaded ACROSS the mark by the fill's own
+      // direction, so the ridge has a lit face and a lee face and is never a lamp.
+      // #C6D3CB is reached only at the crest, which is a few degrees of arc.
+      cx.save();
+      cx.lineWidth=Math.max(0.9,r*0.055);
+      cx.strokeStyle=ridgeGrad(x,y,r);
+      cx.globalAlpha=0.82; cx.stroke();
+      cx.restore(); cx.globalAlpha=1;
+    }
+    if(r>60){ inkTooth(x,y,r); }   // no body over 60 px is ever a flat field
+  }
+  // ---- gold viewport ticks for the NEXT plate (the plate chain)
+  function viewport(x,y,w,h){
+    cx.save(); cx.strokeStyle='#FFC72C'; cx.globalAlpha=0.75; cx.lineWidth=1.25;
+    var t=26;
+    [[x,y,1,1],[x+w,y,-1,1],[x,y+h,1,-1],[x+w,y+h,-1,-1]].forEach(function(p){
+      cx.beginPath(); cx.moveTo(p[0]+p[2]*t,p[1]); cx.lineTo(p[0],p[1]);
+      cx.lineTo(p[0],p[1]+p[3]*t); cx.stroke(); });
+    cx.restore();
+  }
+
+  function grade(){
+    AKPOST.grade(cx,{exposure:-0.12,saturation:0.94,contrast:1.06,
+      grain:{amount:0.045,size:1.3,seed:20260905},dither:true});
+  }
+
+  rag(3.6);
+  var M=3.6;
+  // THE BOUNDARY BOX. one cap area at 3.6x, and its INTERIOR IS BARE RAG. that
+  // emptiness is the whole argument, so the ink is placed away from it first and
+  // the clearance is asserted rather than eyeballed.
+  var S=Math.sqrt(4000*K)*M, BX=713, BY=1080;
+  var BLOOMS=[[230,1150,rr(32000)*M],[480,1300,rr(14000)*M],[1010,1330,rr(9000)*M]];
+  var clear=1e9;
+  BLOOMS.forEach(function(b){
+    dep(b[0],b[1],b[2]);
+    var hx=Math.max(BX-(b[0]+b[2]*1.85), b[0]-b[2]*1.85-(BX+S), 0);
+    var hy=Math.max(BY-(b[1]+b[2]*1.85), b[1]-b[2]*1.85-(BY+S), 0);
+    clear=Math.min(clear, Math.max(hx,hy));
+  });
+  cx.save();
+  cx.setLineDash([9,6]); cx.lineDashOffset=0;
+  cx.lineWidth=2; cx.strokeStyle='#FFC72C'; cx.globalAlpha=0.95;
+  cx.strokeRect(BX,BY,S,S);                       // all four walls, closed
+  cx.restore();
+  // four arrows travelling in from four bearings, stopping dead at the wall
+  var ARROWS=[[520,1105,BX-12,1105,"A POLICY"],
+              [520,1155,BX-12,1155,"A MEETING"],
+              [1020,1105,BX+S+12,1105,"A JOB"],
+              [1020,1155,BX+S+12,1155,"A FAVOR"]];
+  ARROWS.forEach(function(a){
+    var dx=a[2]-a[0], dy=a[3]-a[1], L=Math.sqrt(dx*dx+dy*dy), ux=dx/L, uy=dy/L;
+    cx.save();
+    cx.strokeStyle='#130F0B'; cx.lineWidth=5; cx.globalAlpha=0.85;
+    cx.beginPath(); cx.moveTo(a[0],a[1]); cx.lineTo(a[2],a[3]); cx.stroke();
+    cx.strokeStyle='#B7C0B8'; cx.lineWidth=1.6; cx.globalAlpha=0.95;
+    cx.beginPath(); cx.moveTo(a[0],a[1]); cx.lineTo(a[2],a[3]); cx.stroke();
+    // one marker instance, 3 to 1, identical on all four
+    cx.beginPath(); cx.moveTo(a[2],a[3]);
+    cx.lineTo(a[2]-ux*13-uy*4.3, a[3]-uy*13+ux*4.3);
+    cx.lineTo(a[2]-ux*13+uy*4.3, a[3]-uy*13-ux*4.3);
+    cx.closePath(); cx.fillStyle='#B7C0B8'; cx.fill();
+    cx.restore();
+  });
+  // `from` is the label's own end of the leader, which is what the gate pairs
+  // the words to; the drawn tail is the same point for the two side arrows and
+  // the label's anchor for the two that arrive on the vertical.
+  var LABAT={"A POLICY":[520,1105],"A MEETING":[520,1155],"A JOB":[1020,1105],"A FAVOR":[1020,1155]};
+  window.__akLeaders=ARROWS.map(function(a){
+    return {target:"the boundary the record stops at", at:[Math.round(a[2]),Math.round(a[3])],
+      to:[Math.round(a[2]),Math.round(a[3])], from:LABAT[a[4]], label:a[4]};
+  });
+  window.__akAssert=[{what:"the boundary box is one $4,000 maximum, to area, at 3.6x",
+    expect:Math.round(Math.sqrt(4000*K)*3.6*100)/100, actual:Math.round(S*100)/100,
+    tol:0.01, unit:"px side"},
+    {what:"no deposit or its soak reaches the box, so the interior is bare rag",
+     expect:1, actual:clear>0?1:0, tol:0, unit:"clear"}];
+  window.__akMotifs=[{what:"the boundary, whose interior is bare rag",
+    rect:[Math.round(BX),Math.round(BY),Math.round(S),Math.round(S)]}];
+  console.log('plate8 box clearance', Math.round(clear));
+  viewport(52,52,976,1246);        // plate 09 pulls BACK. its frame holds this one.
+
+  grade();
+})();
+</script></body></html>

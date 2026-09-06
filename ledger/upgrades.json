@@ -1992,6 +1992,51 @@
       ],
       "verification": "docs/gas-watch.json updated reads 2026-09-05 against a series ending 2026-09-05. The DeepGreen page's Event startDate reads 2026-09-04, the date of the acceptance notice, and an item with no opening milestone still falls back to first_seen rather than guessing. site_fresh_check OK, site_signoff PASS 18 of 18, gaswatch_pagecheck PASS.",
       "rollback": "Revert commit 1f22bcb's hunks in scripts/gaswatch_build.py and site_build.py's window_open_date."
+    },
+    {
+      "run_date": "2026-09-05",
+      "kind": "fix",
+      "area": "engine",
+      "change": "A <br> now extracts as a SPACE in render.py's in-page text record. The `text` and `full` fields are built by one added rule over textContent (a BR contributes one space) rather than by innerText, which would also apply text-transform and shift every downstream string comparison. `texts` and the per-line rects are unchanged.",
+      "trigger": "Run No.51 slide 09 authored `FOUR CERTIFIED<br>TICKETS.` and aggregate_check read the record as `FOUR CERTIFIEDTICKETS`, hard-failing an undeclared count over a word that does not exist. The gate was measuring a string the slide never drew. aggregate_check's own source comment had documented the glue as a fact to work around rather than a defect to fix.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py"
+      ],
+      "verification": "Reconstruction rendered through the pre-upgrade engine (fa3edf9) and this one: `'...2026.FOUR CERTIFIEDTICKETS. BRONSON AND CHURCH.'` becomes `'...2026. FOUR CERTIFIED TICKETS. BRONSON AND CHURCH.'`, and aggregate_check on the two reports reports the count over the non-word and over the real phrase respectively. This run's nine slides re-rendered against both engines, twice (the 11:2x sources and the 11:36 repair the showrunner made mid-verification, which the stale-render gate caught): 9/9 OK, 0 page errors, qa WARN with 0 fails and 12 warns on both sides, the same warn on the same line of the same slide, differing only in the message strings. examples/demo-deck QA output byte identical. aggregate_check PASS (12 detected, 12 declared), copy_sync_check PASS (106 strings), plan_drift_check PASS and --self-test PASS. NOTE: aggregate_check reads the 80-character `text` field, so the restored spaces moved this deck's detections from 13 to 12; the one that dropped is declared and re-derived anyway, and moving that gate to the 400-character `full` field is recommended to the maintainer rather than done here, because it finds 17 counts against 12 declared.",
+      "rollback": "Revert the `_flatText` hunk in render.py's IN_PAGE_QA_JS and restore `el.textContent` in the `text` and `full` fields. Note that this hunk was swept into ship(2026-09-05) 16bff13 by a concurrent commit rather than landing in the upgrade commit.",
+      "commit": "16bff13 (swept in by the ship commit; see the retro's section 3)"
+    },
+    {
+      "run_date": "2026-09-05",
+      "kind": "fix",
+      "area": "engine",
+      "change": "An assertion can declare WHERE its subject is. `at:[x,y]` with an optional `r` (default 12 design px) on a __akAssert entry becomes exactly the evidence record __akMotifs produces, so the elementsFromPoint census and the canvas-versus-page ink ratio judge whether the mark reached the page. qa.py FAILs a buried or painted-out subject with a message that names the assertion. Opt-in, and one shared JS routine now serves both declarations.",
+      "trigger": "Run No.51 slide 09 asserted the radius of the deck's one filled gold seal, the ninth state of a motif tracked through eight plates, derived it correctly from the deck constant, and passed. The seal sat inside an opaque mono knockout and never reached the page. A pixel critic found it on the third build round. Size is not visibility.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/assert_clearance_verify.py"
+      ],
+      "verification": "tests/assert_clearance_verify.py HOLDS over five fixtures: the seal inside an opaque knockout FAILS ('only 0% of the rect it declares is clear of opaque DOM (div.knock)'), the seal painted out by a later canvas op FAILS, the seal on clean rag and the seal under a 45 percent scrim both clear, and the same buried seal with no `at` is judged not at all, which is the proof the contract stays opt-in. This run's nine slides and examples/demo-deck re-rendered with no new fails or warns. The nine neighbouring engine reconstructions all HOLD, motif_survives_verify included.",
+      "rollback": "Revert the upgrade(2026-09-05) commit, or individually: drop `out.clearances` and the `at` block in render.py's assert collector, restore the motif loop in place of motifEvidence(), and restore the two message strings in qa.py. Nothing else reads the new field.",
+      "commit": "pending upgrade(2026-09-05)"
+    },
+    {
+      "run_date": "2026-09-05",
+      "kind": "fix",
+      "area": "engine",
+      "change": "render.py resolves every declared relief azimuth into the direction akrelief.js actually produces from it and PRINTS it on every render ('[light] slide-01.html: az 25 -> lit from the upper right, lee falls to the lower left'), and reads the slide's own inline-script comments for a lit or lee direction that disagrees. qa.py WARNs on a disagreement, naming the line, the claim and the resolution. The scan abstains on any comment about an interior surface, which reverses.",
+      "trigger": "Run No.51 wanted a grazing fill from the upper right, typed `lights:[{az:205,el:14,w:1.0}]` on all nine slides, which resolves to a light from the LOWER LEFT, and hand-shaded every drying ring, every debossment and the deck's written lee for the upper right. Two light directions coexisted in nine frames through three build rounds, five pixel critics and every machine gate, and the ATMOSPHERE block of the plan of record asserted both halves of the contradiction.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/light_direction_verify.py"
+      ],
+      "verification": "tests/light_direction_verify.py HOLDS: four resolver cases against lightVec by hand (az 25 upper right, az 205 lower left, az 315 upper left, az 135 lower right) and seven scan cases including four false-positive guards (a comment that agrees, an interior-wall comment, a comment about geometry, and a slide with two lights). Measured over the 58 slides on disk (out/2026-09-05, runs/2026-09-04 through 2026-09-01, runs/2026-08-31, examples/demo-deck): 15 azimuths, 37 direction claims, 0 conflicts. The reconstruction of this run's SECOND build, the same nine slides with az 205 restored, fires 26 conflicts on 8 of the 9; the ninth is plate 06, which abstains because every direction word on it is about the inside of a punch. This run's slides and the demo deck re-render with no new warns.",
+      "rollback": "Revert the upgrade(2026-09-05) commit, or individually: delete scan_light_direction() and its two calls in render.py's main loop, and the light_conflicts block in qa.py. The check adds a warn and reads nothing that other gates depend on.",
+      "commit": "pending upgrade(2026-09-05)"
     }
   ],
   "scan_log": [
@@ -2289,6 +2334,13 @@
       "searches": 5,
       "found": "5 searches, 2 fetches, 2 local experiments run in this engine rather than claims taken on trust. (1) A TAGGED PDF IS ONE PARAMETER AND THE MERGE THROWS IT AWAY. Playwright's page.pdf() here accepts tagged=True and it works: printed against this run's slides 01 and 02, each page carries a real /StructTreeRoot for about 2 KB, 0.03 percent of the file. assemble.vector_pdf then merges with pypdf.PdfWriter.add_page and the merged document has NO /StructTreeRoot; PdfWriter.append() drops it too (pypdf 6.17). Not local: pypdf, PyMuPDF and qpdf all lose the structure tree on merge (github.com/pymupdf/PyMuPDF/issues/2469, github.com/qpdf/qpdf/issues/490). Tags would need the nine slides printed as ONE Chromium document, which changes print CSS, page breaks and the resolved-asset path in the step that makes the deliverable. Redesign, not upgrade. (2) AND TAGS WOULD BUY LESS THAN THEY LOOK LIKE. 34 percent of the shipped PDF's extractable words, 266 of 778, come out as runs of single letters ('A D L 2 3 4 7 6 2'), which is the house's tracked mono kickers and labels: Chromium positions each glyph and every extractor inserts spaces at the gaps. Body copy and headlines extract cleanly and in the right reading order, kicker to counter. It matters because LinkedIn converts a document post to images and its Accessibility Mode reads back from the uploaded PDF's own content order, ignoring heading and list tags and never surfacing alt text (intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels/). So the deck's accessibility rests on the caption's deck-summary line, already a hard gate here, and on the PDF's reading order, currently correct. Tracking is a design decision and the maintainer's, not a gate. LinkedIn's own limits re-verified in passing: 300 pages, 100 MB, all formats served as PDF.",
       "outcome": "parked (knowledge/FIELD_NOTES.md, 2026-09-04 Phase 12 entry, both findings with source URLs). Nothing applied: the budget filled with three reactive fixes and the one change that looked like a one-liner is measurably undone by the merge step."
+    },
+    {
+      "run_date": "2026-09-05",
+      "focus": "(b) editorial dataviz and cartography technique. The stalest legal slot, last scanned 2026-08-29 (7 days), and distinct from the last three logged foci: 2026-09-04 accessibility and PDF, 2026-09-03 procedural art, 2026-09-02 headless Chromium. Relevant as well as stale: this deck IS a chart, its central device is area at a printed constant, and its most expensive craft problem was a 45 to 1 range of radii that produced a declared 2.0 px floor, a cohort the points probe could not judge and three rounds of raising the drawn floor.",
+      "searches": 8,
+      "found": "8 searches, 3 fetches, 2 substantive reads. (1) 'Lost in Magnitudes' (CHI 2025) enumerates the static design space for order-of-magnitude values and says plainly that the exponent must be carried by position, row or column and NOT by length, area or intensity above about five exponents; its E+M scale, s(v) = e(v) + (m(v)-1)/9, is about twenty lines of vanilla JS with a defined tick rule, and 'Beyond Log Scales' (IEEE TVCG 2026) shows E+M bar charts significantly preferred over logarithmic ones by the general public with higher confidence and lower mental demand at comparable accuracy. (2) The proportional-symbol literature's Flannery compensation (radius as value^0.5716) is a trap for this house specifically: a deck that prints K and invites reconstruction with a ruler can't inflate small marks to feel right. The legitimate cures are direct labels and a three-size legend near the data's extremes. (3) The controlled study of area-to-value legends and grid lines on cartograms (arXiv 2201.02995) is a NEGATIVE result worth keeping: the aids tighten the spread of estimates but bias them low, and slow comparison tasks without improving accuracy.",
+      "outcome": "parked (knowledge/FIELD_NOTES.md, 2026-09-05 Phase 12 entry, with both source URLs and the unblocking condition). Nothing applied: all three are encoding decisions a treatment director makes in Phase 6, not bounded engine changes, and the three upgrade slots were filled reactive-first by defects that cost this run three build rounds."
     }
   ]
 }

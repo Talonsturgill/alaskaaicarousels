@@ -13,6 +13,58 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-09-05/",
+      "url": "https://alaskaaihq.com/archive/2026-09-05/",
+      "title": "One Race Late. The limit and the money it missed.",
+      "summary": "One sheet holds every gift in the 2026 record, photographed nine times, down to the inside of a single deposit.",
+      "content_html": "<p><em>105 top Alaska donors match what six Bay Area donors gave governor candidate Jonathan Kreiss-Tomkins.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-05/og.jpg\" alt=\"One Race Late. The limit and the money it missed. cover slide\" width=\"1080\" height=\"1350\"></p><p>It takes 105 Alaska donors to match six people Outside.</p><p>Six gifts. $372,000. Every one from the Bay Area.</p><p>At this distance the median Alaska gift is a whole gift.</p><p>Alaska sent most of the gifts. Not most of the money.</p><p>86 donors carried 72.81 percent of it.</p><p>117,962 to 45,418.</p><p>The same ink, twice.</p><p>The money went to the candidate who wants data centers stopped.</p><p>Four tickets. Old rules.</p><h3>Sources</h3><ul><li><a href=\"https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx\">Alaska Public Offices Commission</a>, primary document</li><li><a href=\"https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/?initiative_id=23RCF2\">Alaska Division of Elections</a>, primary document</li><li><a href=\"https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/petition_id/23rcf2\">Alaska Division of Elections, 23RCF2 bill text</a>, primary document</li><li><a href=\"https://www.elections.alaska.gov/election-results/e/?id=26prim\">Alaska Division of Elections</a>, primary document</li><li><a href=\"https://www.elections.alaska.gov/candidates/?election=26genr\">Alaska Division of Elections</a>, primary document</li><li><a href=\"https://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin\">Alaska Public Media, Eric Stone</a>, report</li><li><a href=\"https://sfstandard.com/2026/08/31/anthropic-employees-alaska-governor-race-kreiss-tomkins/\">The San Francisco Standard, Emily Shugerman</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-09-05/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "It takes 105 Alaska donors to match six people Outside.\n\nSix gifts. $372,000. Every one from the Bay Area.\n\nAt this distance the median Alaska gift is a whole gift.\n\nAlaska sent most of the gifts. Not most of the money.\n\n86 donors carried 72.81 percent of it.\n\n117,962 to 45,418.\n\nThe same ink, twice.\n\nThe money went to the candidate who wants data centers stopped.\n\nFour tickets. Old rules.",
+      "date_published": "2026-09-05T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-05/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 46,
+        "sources": [
+          {
+            "url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+            "outlet": "Alaska Public Offices Commission",
+            "primary": true
+          },
+          {
+            "url": "https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/?initiative_id=23RCF2",
+            "outlet": "Alaska Division of Elections",
+            "primary": true
+          },
+          {
+            "url": "https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/petition_id/23rcf2",
+            "outlet": "Alaska Division of Elections, 23RCF2 bill text",
+            "primary": true
+          },
+          {
+            "url": "https://www.elections.alaska.gov/election-results/e/?id=26prim",
+            "outlet": "Alaska Division of Elections",
+            "primary": true
+          },
+          {
+            "url": "https://www.elections.alaska.gov/candidates/?election=26genr",
+            "outlet": "Alaska Division of Elections",
+            "primary": true
+          },
+          {
+            "url": "https://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin",
+            "outlet": "Alaska Public Media, Eric Stone",
+            "primary": false
+          },
+          {
+            "url": "https://sfstandard.com/2026/08/31/anthropic-employees-alaska-governor-race-kreiss-tomkins/",
+            "outlet": "The San Francisco Standard, Emily Shugerman",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-09-04/",
       "url": "https://alaskaaihq.com/archive/2026-09-04/",
       "title": "The Half That Lasts. Alaska's quiet land decision.",
@@ -2776,127 +2828,6 @@
           {
             "url": "https://www.kdlg.org/show/bristol-bay-fisheries-report/2026-07-06/bristol-bay-fisheries-report-july-6-2026",
             "outlet": "KDLG Bristol Bay Fisheries Report",
-            "primary": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "https://alaskaaihq.com/archive/2026-07-08/",
-      "url": "https://alaskaaihq.com/archive/2026-07-08/",
-      "title": "Alaska's AI Land Rush, Four Rooms, One Open Door",
-      "summary": "Alaska got more than 500 public comments on a $10 billion North Slope AI data center. Fewer than a dozen said yes.",
-      "content_html": "<p><em>Alaska got more than 500 public comments on a $10 billion North Slope AI data center. Fewer than a dozen said yes.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-08/og.jpg\" alt=\"Alaska's AI Land Rush, Four Rooms, One Open Door cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/\">Northern Journal</a>, report</li><li><a href=\"https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224224\">Alaska DNR Division of Oil and Gas (Online Public Notices)</a>, report</li><li><a href=\"https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817\">Alaska DNR Division of Oil and Gas (Online Public Notices)</a>, report</li><li><a href=\"https://northern.org/news/stak-energy-campus-what-the-states-lease-documents-reveal-about-scale-risk-and-unanswered-questions/\">Northern Alaska Environmental Center</a>, report</li><li><a href=\"https://www.countryjournal2020.com/2026/07/alaskans-say-no-hell-no-to-north-slope.html\">Copper River Country Journal (reprinting Herz)</a>, report</li><li><a href=\"https://www.af.mil/News/Article-Display/Article/4456660/daf-takes-steps-for-potential-alaskan-ai-data-centers/\">U.S. Air Force (official release)</a>, report</li><li><a href=\"https://www.alaskasnewssource.com/2026/06/09/us-military-plans-lease-alaska-land-ai-data-centers-community-responds/\">Alaska's News Source</a>, report</li><li><a href=\"https://www.newsminer.com/news/local_news/proposed-air-force-data-center-land-leases-raise-some-concerns/article_98cbed0c-6574-464a-8097-c054c46cb699.html\">Fairbanks Daily News-Miner</a>, report</li><li><a href=\"https://www.executivegov.com/articles/matthew-lohmeier-air-force-visit-alaska-jber-eielson\">ExecutiveGov</a>, report</li><li><a href=\"https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/\">Air &amp; Space Forces Magazine</a>, report</li><li><a href=\"https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html\">Fairbanks Daily News-Miner</a>, report</li><li><a href=\"https://fm.kuac.org/energy-and-the-environment/2026-05-28/gvea-plans-extraordinarily-large-increase-in-co-op-fuel-charge\">KUAC</a>, report</li><li><a href=\"https://alaskapublic.org/news/politics/alaska-legislature/2026-07-06/alaska-lawmakers-roll-out-draft-compromise-tax-cut-bill-for-the-proposed-aklng-gas-line\">Alaska Beacon via Alaska Public Media</a>, report</li><li><a href=\"https://alaskapublic.org/news/environment/2026-07-08/ai-drones-and-salmon-what-new-technology-could-mean-for-bristol-bay-sockeye-counts\">Alaska Public Media / KDLG</a>, report</li><li><a href=\"https://acmesmokedfish.com/pages/seafood-and-climate-initiatives\">Acme Smoked Fish Foundation (funder)</a>, report</li><li><a href=\"https://www.kdlg.org/show/bristol-bay-fisheries-report/2026-07-02/fish-numbers-july-2-2026\">KDLG Bristol Bay Fisheries Report</a>, report</li><li><a href=\"https://en.wikipedia.org/wiki/2026_Alaska_gubernatorial_election\">Wikipedia</a>, report</li><li><a href=\"https://akfireinfo.com/2026/06/26/air-resources-assist-with-several-new-lightning-fires-managed-by-u-s-wildland-fire-service/\">Alaska Wildland Fire Information (interagency)</a>, report</li><li><a href=\"https://akfireinfo.com/2026/07/06/cecil-fire-reaches-full-containment-big-fire-at-70-as-work-nears-end/\">Alaska Wildland Fire Information (interagency)</a>, report</li><li><a href=\"https://www.psu.edu/news/research/story/digital-twins-could-help-melt-mystery-alaskas-thawing-permafrost\">Penn State University (news release)</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-07-08/\">Read the full deck with all 9 slides</a></p>",
-      "content_text": "",
-      "date_published": "2026-07-08T17:00:00Z",
-      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-08/og.jpg",
-      "tags": [
-        "AlaskaEnergy",
-        "DataCenters",
-        "ArcticInfrastructure"
-      ],
-      "_alaska_ai": {
-        "slides": 9,
-        "claims_verified": 85,
-        "sources": [
-          {
-            "url": "https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
-            "outlet": "Northern Journal",
-            "primary": false
-          },
-          {
-            "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224224",
-            "outlet": "Alaska DNR Division of Oil and Gas (Online Public Notices)",
-            "primary": false
-          },
-          {
-            "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817",
-            "outlet": "Alaska DNR Division of Oil and Gas (Online Public Notices)",
-            "primary": false
-          },
-          {
-            "url": "https://northern.org/news/stak-energy-campus-what-the-states-lease-documents-reveal-about-scale-risk-and-unanswered-questions/",
-            "outlet": "Northern Alaska Environmental Center",
-            "primary": false
-          },
-          {
-            "url": "https://www.countryjournal2020.com/2026/07/alaskans-say-no-hell-no-to-north-slope.html",
-            "outlet": "Copper River Country Journal (reprinting Herz)",
-            "primary": false
-          },
-          {
-            "url": "https://www.af.mil/News/Article-Display/Article/4456660/daf-takes-steps-for-potential-alaskan-ai-data-centers/",
-            "outlet": "U.S. Air Force (official release)",
-            "primary": false
-          },
-          {
-            "url": "https://www.alaskasnewssource.com/2026/06/09/us-military-plans-lease-alaska-land-ai-data-centers-community-responds/",
-            "outlet": "Alaska's News Source",
-            "primary": false
-          },
-          {
-            "url": "https://www.newsminer.com/news/local_news/proposed-air-force-data-center-land-leases-raise-some-concerns/article_98cbed0c-6574-464a-8097-c054c46cb699.html",
-            "outlet": "Fairbanks Daily News-Miner",
-            "primary": false
-          },
-          {
-            "url": "https://www.executivegov.com/articles/matthew-lohmeier-air-force-visit-alaska-jber-eielson",
-            "outlet": "ExecutiveGov",
-            "primary": false
-          },
-          {
-            "url": "https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/",
-            "outlet": "Air & Space Forces Magazine",
-            "primary": false
-          },
-          {
-            "url": "https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html",
-            "outlet": "Fairbanks Daily News-Miner",
-            "primary": false
-          },
-          {
-            "url": "https://fm.kuac.org/energy-and-the-environment/2026-05-28/gvea-plans-extraordinarily-large-increase-in-co-op-fuel-charge",
-            "outlet": "KUAC",
-            "primary": false
-          },
-          {
-            "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-06/alaska-lawmakers-roll-out-draft-compromise-tax-cut-bill-for-the-proposed-aklng-gas-line",
-            "outlet": "Alaska Beacon via Alaska Public Media",
-            "primary": false
-          },
-          {
-            "url": "https://alaskapublic.org/news/environment/2026-07-08/ai-drones-and-salmon-what-new-technology-could-mean-for-bristol-bay-sockeye-counts",
-            "outlet": "Alaska Public Media / KDLG",
-            "primary": false
-          },
-          {
-            "url": "https://acmesmokedfish.com/pages/seafood-and-climate-initiatives",
-            "outlet": "Acme Smoked Fish Foundation (funder)",
-            "primary": false
-          },
-          {
-            "url": "https://www.kdlg.org/show/bristol-bay-fisheries-report/2026-07-02/fish-numbers-july-2-2026",
-            "outlet": "KDLG Bristol Bay Fisheries Report",
-            "primary": false
-          },
-          {
-            "url": "https://en.wikipedia.org/wiki/2026_Alaska_gubernatorial_election",
-            "outlet": "Wikipedia",
-            "primary": false
-          },
-          {
-            "url": "https://akfireinfo.com/2026/06/26/air-resources-assist-with-several-new-lightning-fires-managed-by-u-s-wildland-fire-service/",
-            "outlet": "Alaska Wildland Fire Information (interagency)",
-            "primary": false
-          },
-          {
-            "url": "https://akfireinfo.com/2026/07/06/cecil-fire-reaches-full-containment-big-fire-at-70-as-work-nears-end/",
-            "outlet": "Alaska Wildland Fire Information (interagency)",
-            "primary": false
-          },
-          {
-            "url": "https://www.psu.edu/news/research/story/digital-twins-could-help-melt-mystery-alaskas-thawing-permafrost",
-            "outlet": "Penn State University (news release)",
             "primary": false
           }
         ]

@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-09-06",
+  "updated": "2026-09-05",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -1447,7 +1447,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-09-01",
+      "last_updated": "2026-09-05",
       "history": [
         {
           "date": "2026-08-02",
@@ -1488,6 +1488,10 @@
         {
           "date": "2026-09-01",
           "note": "Re-verified against the state notice, id 224684. Proposals for RFP 2026-0200-0064 were due at 3:30 p.m. Alaska Daylight Time on August 28th, and that deadline has passed with no award or intent to award posted. The notice carries an archive date of August 31, 2026, so it may stop being reachable at that address."
+        },
+        {
+          "date": "2026-09-05",
+          "note": "Re-verified against the state public notice, id 224684. Proposals on solicitation 2026-0200-0064, Statewide Transcription Services, closed at 3:30 p.m. Alaska Daylight Time on August 28th, extended from August 24th by Amendment 1. No award and no intent to award has been posted. The notice's own archive date, August 31st, has passed, so the state has stopped surfacing it and evaluation is not public."
         }
       ],
       "url": "https://alaskaaihq.com/docket/alaska-statewide-transcription-rfp/"
@@ -2666,11 +2670,15 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-09-01",
+      "last_updated": "2026-09-05",
       "history": [
         {
           "date": "2026-09-01",
           "note": "Tracked. Resolution 2026-25 adopted August 27, 2026, verified against the borough clerk's action memorandum and the resolution text in the agenda packet, both retrieved through the borough's own meeting system. The moratorium item is titled Moratorium on Data Center Development in Alaska and appears identically under the state and the federal headings. The resolution's own words are state-owned or municipal lands. Two outlets printed and in place of or, so the record here follows the document. Nothing establishes that the borough asked for this in a prior year, so nothing here says it did."
+        },
+        {
+          "date": "2026-09-05",
+          "note": "Checked and unchanged. Resolution 2026-25 stands as adopted on August 27th and neither the Legislature nor the delegation has taken it up, which is expected while the Legislature is out of session. Mayor Grier Hopkins told Alaska's News Source on September 1st that the borough is separately working out how it would regulate data centers locally, saying the community wants to know what the long term impact is and where, if anywhere, they should go."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-request/"

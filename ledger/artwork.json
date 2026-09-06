@@ -1507,6 +1507,65 @@
         "AK.fitText",
         "AK.grainTile"
       ]
+    },
+    {
+      "run_date": "2026-09-05",
+      "carousel_no": 51,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE RETENTION SHEET. One dark absorbent sheet photographed nine times at nine DECLARED magnifications, 1.0, 1.6, 12, 1.0, 3.0, 1.0, 1.2, 3.6, 0.74, with a campaign's entire disclosure record soaked into it. Every gift is one deposit at 0.25 square pixels per dollar, one constant printed on the plates. y is log10 of the amount, x is category only. Nothing stands on anything, there is no ground plane and no cast shadow in nine frames, so the contact shadow failure class does not exist here rather than being passed.",
+      "atmosphere": "NEW: COAXIAL READ ON DAMP RAG. A near axial key almost down the lens, so matte rag scatters it away and a dried ink film returns it, plus ONE weak grazing fill at azimuth 25 elevation 14 whose only job is to throw a lee shadow off every drying ring. A lighting MODEL divergence rather than a parameter one, which matters because two of the last three atmospheres were raking keys.",
+      "depth_technique": "AK.reliefShade over the rag as a real per pixel Sobel normal field, plus soak halos composited in MULTIPLY so overlap darkens honestly, plus the drying ring as the one tack sharp plane. Four depth cues and no cast shadow anywhere. On plate 03 the ink interior carries three scales, 150,000 tooth specks, 9,000 fibre strokes and 520 mineral mottles, all clipped inside the bloom.",
+      "line_voice": "drafting, inverted. hand ink art carrying drafting annotation",
+      "continuity_device": "NEW: THE PLATE CHAIN. Plate n draws plate n+1's viewport on the sheet as gold corner ticks, so every exit IS the next entry and exactly one plate dead ends. Plus THE GAUGE, the $4,000 ring, changing STATE across the deck, absent, unlabelled, enormous, a unit of area, a threshold rule, embossed with no gold at all, a paired block, a boundary box, and finally inked solid.",
+      "hook_archetype": "NEW: THE MATCH THAT TAKES 105 PEOPLE. A count of people on one side against a count of people on the other, where the two sides are the same money.",
+      "palette_family": "peat and mineral. a warm organic dark with a cool mineral bloom, and the cool thing is the smallest thing in the frame",
+      "palette": "rag from #221E18 to #4C443A under a grazing fill, ink body #0C1A1E colder as well as darker than the paper, one mineral mid value at the drying edge, forget me not on plate 06 only, and gold reserved entirely for the rule",
+      "palette_hexes": [
+        "#080907",
+        "#221E18",
+        "#4C443A",
+        "#0C1A1E",
+        "#6F8C86",
+        "#8AA49C",
+        "#C6D3CB",
+        "#6EA5FF",
+        "#FFC72C",
+        "#F4F8FF",
+        "#CFD6CC"
+      ],
+      "type": "Fraunces opsz 144 wght 700 SOFT 100 WONK 1 for display, fitted with AK.fitText on every headline. Space Grotesk 400 at 34 px for body. JetBrains Mono 400 at 24 px tracked plus 10 percent for every figure and instrument line. NO STRING IN THE DECK RENDERS UNDER 24 px, which retires one recurring machine defect by construction.",
+      "type_pairing": "Fraunces + Space Grotesk + JetBrains Mono",
+      "narrative_structure": "argument. the record, the six, the proof of scale, the split, the concentration, the vote, the equivalence, the counter case, the start date",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 5,
+        "type_temperature": 5
+      },
+      "new_techniques_logged": [
+        "NEW: THE RETENTION SHEET",
+        "NEW: COAXIAL READ ON DAMP RAG",
+        "NEW: THE PLATE CHAIN",
+        "NEW: THE MATCH THAT TAKES 105 PEOPLE",
+        "THE GOLD RULE AS EDITORIAL GUARD. gold means the rule and never the money, so the palette itself prevents the deck reading as an attack on six named people."
+      ],
+      "techniques": [
+        "AK.reliefShade as substrate, laid first, form only",
+        "multiply soak halo so ink DARKENS whatever it crosses",
+        "fbm perturbed body polygon",
+        "mineral drying ring with a lee shadow offset down light",
+        "AK.fitText on every headline",
+        "AK.svgPlateAll for every SVG instrument label",
+        "a DOM measured type reserve handed to the placement loop",
+        "AKC.ramp",
+        "AKPOST.grade once per plate",
+        "technique 75 knockout windows",
+        "technique 67 phantom dash",
+        "technique 73 dimension call",
+        "technique 79 cased line",
+        "technique 82 marker arrowheads"
+      ],
+      "note": "THE ONE OBSERVATION THAT MADE THE DECK WAS A CRITIC'S, AND IT WAS ABOUT PHYSICS. The showrunner's prototype drew every deposit BRIGHTER than the sheet with a soft outward falloff, so the eye read emission. The cinematographer called them lamps rather than blooms and pointed out that a field of lamps has no scale argument in it, because light has brightness rather than size. Inverting the value fixed the deck. The second half of the same lesson arrived on the first full render, where the rag had been pushed so dark that the inverted ink had nothing to be darker THAN and only the ring read. Dark ink needs paper, not black.",
+      "corrections": "Two plan values were corrected mid-run and these fields carry the SHIPPED ones. Plate 09 is 0.74x, not the planned 0.85x, because at 0.85 the sheet left no margin and its edge could not read as an edge. The grazing fill is azimuth 25, not the planned 205, because akrelief.lightVec(205,14) resolves to a lower-left light while every drying ring and debossment in the deck assumes upper right, and the plan asserted az 205 AND a down-left lee, which cannot both be true."
     }
   ]
 }

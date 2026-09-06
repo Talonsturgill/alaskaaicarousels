@@ -6102,3 +6102,208 @@ is recomputing the thing you corrected.
 rebuilding at its own run date over a collection cron that had already written
 could set it EARLIER than the newest row in the same file. Floor a dataset's
 updated stamp at its own latest record, always.
+
+## 2026-09-05, Phase 1 craft refresh: one new number, one trend worth naming.
+
+**Documents did not just stay first, they widened the gap.** Socialinsider's
+2026 benchmark (1.3 million posts, 16,645 business pages, January 2024 through
+December 2025) puts native documents at 7.00 percent engagement, UP 14 PERCENT
+year over year, against multi-image at 6.45 and video at 6.00.
+CAROUSEL_CRAFT already carried the 7.00 figure; what is new is the direction.
+Video is the format everyone is being told to chase and it is third and not
+rising. The format bet this machine made is getting stronger, not weaker.
+https://www.socialinsider.io/social-media-benchmarks/linkedin
+
+**Tactile texture is now positioned as the counter-signal to generated art.**
+The 2026 illustration trend writeups converge on one thing worth taking
+seriously here: heavy grain, visible mark-making, print artifacts and material
+surfaces are being adopted specifically because they read as not-generated.
+That is not a new technique for this studio, which has run grain tiles and
+engraved line since the beginning. It is a new REASON, and it argues for
+spending the craft budget on surface and mark rather than on smoother rendering.
+Relevant because artwork craft has been the weakest scored criterion in eight
+of the last ten runs, and the recent answer has been more elaborate lighting
+rather than more evident hand.
+https://www.sessions.edu/notes-on-design/top-illustration-trends/
+
+## 2026-09-05, No.51. The retention sheet, and four lessons that cost rounds.
+
+**DARK INK NEEDS PAPER, NOT BLACK, and the deck failed in both directions
+before it worked.** The medium is a campaign's whole disclosure record soaked
+into one absorbent sheet, every gift a deposit at one printed constant. The
+showrunner's prototype drew each deposit BRIGHTER than the sheet with a soft
+outward falloff, and a treatment director killed it in one sentence before any
+render, those are not blooms, they are lamps, and a field of lamps has no scale
+argument in it because light has brightness rather than size. Correct, and
+worth more than any gate. The overcorrection then cost a round of its own. With
+the rag pushed to #130F0B the inverted ink had nothing to be darker THAN, the
+bodies vanished and only the mineral rim read, so the contact sheet showed pale
+cells on black. The working ground is a genuinely mid dark paper, #221E18 to
+#4C443A, with the ink at #0C1A1E on it.
+
+**A SITE THAT REFUSES A BROWSER MAY STILL ANSWER AN ORDINARY HTTP CLIENT.**
+`aws.state.ak.us`, the Alaska Public Offices Commission's campaign disclosure
+database, returns 403 to WebFetch and resets the connection to headless
+Chromium. It answers `python requests` with a normal user agent at HTTP 200.
+Three scouts and the fact-checker all recorded it as unreachable. The whole
+deck came out of that database once it was queried directly, ASP.NET viewstate
+and RadGrid paging included, 4,604 rows. Separately and worth its own line,
+CHROMIUM IN THIS CONTAINER CANNOT REACH THE OPEN INTERNET AT ALL, so any plan
+that involves driving a real page is dead before it starts.
+
+**A HAND PLACED BLOCK UNDER A FITTED HEADLINE IS A COLLISION WAITING TO
+RENDER.** `AK.fitText` changes a headline's height by design, so every `top`
+typed underneath it is a guess about an output. The first render carried eight
+text collisions and six canvas marks inside reserved type, all of it downstream
+of that plus hand-typed reserve rectangles. One pass fixed the class: mark the
+following blocks with a flow attribute, push each clear of the one above AFTER
+the fit, then build the art's type reserve from `getBoundingClientRect` on the
+laid out DOM. Same lesson the house already learned about never typing a plate
+width, applied to the whole page instead of one label.
+
+**AN AREA EQUIVALENCE CANNOT BE DRAWN AS A TILING.** The deck's central claim
+is that six gifts and 93 maximum contributions are the same quantity of ink.
+The plan clipped 93 cap-area cells INTO the six blooms. Twenty five squares can
+never tile a disc of twenty five times their area, so it shipped 43 cells under
+a label reading 93, and the frame's own count assertion caught it. Two blocks
+side by side at one constant prove the same thing exactly and can be checked as
+ink area.
+
+**And one about a gate rather than about art.** qa.py's `points` probe judges
+each declared mark against its cohort's own median ink. On a deck whose marks
+span 45 to 1 in radius there is no single cohort, the median is set by the
+giants, and every small mark reads as missing. Three rounds went into raising
+the drawn floor to satisfy it, each one distorting the encoding further.
+Declaring those marks as a cohort was the error, not the marks. The count is
+now asserted from the drawing loop's own counter against the data length, which
+is a thing the code can genuinely be wrong about.
+
+## 2026-09-05, No.51 continued. Three rebuild rounds, and what each one taught.
+
+The first pixel round scored the deck 4.8 against a threshold of 8.3. The run
+went back to Phase 8 rather than mailing a post-mortem, and did it twice more.
+These are the lessons that cost the rounds.
+
+**A CRITIC'S DIAGNOSIS IS RELIABLE. THEIR PRESCRIBED FIX IS NOT.** Plate 06's
+blind impressions read as convex beads instead of punches, which is exactly
+right and is the single worst thing that plate could do, since its whole
+argument is that the voters' shape carries no pigment. The critic then
+prescribed moving the lit rim to the upper-right inner arc, which is the BEAD
+direction. A pit lit from the upper right has its lit wall on the LOWER LEFT,
+because that is the wall facing the light. Implementing the prescription would
+have kept the defect and closed the finding. Read the diagnosis, derive the fix,
+and say in the reconciliation when you went the other way.
+
+**OVERCORRECTION IS THE SECOND FAILURE MODE AND IT COSTS THE SAME ROUND.**
+Twice in one run. The mineral ring was a uniform stroke of one value, which
+cannot be a ridge, only a lamp; the fix shaded it along the fill and the first
+attempt put a pale stop over a third of every ring, so every mark grew a bright
+rim and the ink stopped being darker than the rag, which is the deck's founding
+rule. Then the 105 counting rings read as bubbles floating off their marks; the
+fix dimmed them to 0.40 alpha at 1.0 px and the next critic searched the plate
+at full size and reported the cohort simply absent, on a deck whose cover
+headline is "It takes 105 Alaska donors to match six people Outside." Both were
+caught by looking at the render, not by a gate. Budget a look after every
+correction, especially the ones that feel obviously right.
+
+**A GATE THAT MEASURES WHOLE FILES PUNISHES FACTORING, AND IT IS RIGHT TO.**
+Pulling the shared deposit, ridge, tooth, seat and viewport helpers into the
+page template made every plate's HTML more alike and pushed bespoke_check from
+0.592 to 0.632, over the 0.60 fail line. The repair was not to weaken the gate
+but to emit only the helpers a plate actually calls, which took it to 0.577.
+Plate 06 draws no ink at all and was carrying the entire deposit routine. Nine
+identical copies of code half the plates never run is not nine bespoke frames.
+
+**TWO LIGHT DIRECTIONS IN ONE FRAME SURVIVE EVERY GATE UNTIL SOMEONE READS THE
+LIBRARY.** `akrelief.lightVec(205, 14)` resolves to [-0.41, +0.88, 0.24], a
+light from the LOWER LEFT, while every drying ring, every debossment and the
+deck's own written "lee-side shadow offset down-left" assume the UPPER RIGHT.
+The ATMOSPHERE block asserted az 205 AND a down-left lee, which cannot both be
+true, so the plan of record had been carrying a contradiction. The pixels of the
+marks were right and the substrate was wrong. az 25 is the same elevation from
+the direction the marks already assumed. Check an azimuth against the function
+that consumes it, not against the number you meant.
+
+**A KNOCKOUT WILL SILENTLY EAT A CANVAS MARK DRAWN UNDER IT, AND AN ASSERT ON
+THE MARK'S SIZE WILL NOT NOTICE.** Plate 09's inked gauge, the ninth state of a
+motif tracked through eight plates and the only filled gold in the deck, was
+placed at a coordinate that fell inside an opaque mono plate. The frame asserted
+its radius, the radius was correct, and the mark never reached the page. Assert
+CLEARANCE for anything whose whole job is to be seen, the way plate 08 now
+asserts that no deposit or soak reaches the boundary box's interior.
+
+**A TEMPLATE TOKEN INSIDE AN ART STRING IS NEVER EXPANDED.** The art blocks are
+substituted INTO the page template, so a `%(seed)s` written inside one reaches
+the browser verbatim and the plate dies with "Unexpected token '%'". Use the
+literal.
+
+**`<br>` CONCATENATES WITHOUT A SPACE IN EXTRACTED TEXT.** "FOUR CERTIFIED<br>
+TICKETS." comes back to the aggregate gate as "FOUR CERTIFIEDTICKETS", which it
+reads as an undeclared count on a word that does not exist. No phrase may
+straddle a hard break in a mono block. Break at sentence ends.
+
+**THE RECONCILIATION TABLE IS NOT PAPERWORK, IT IS THE THING FOUR CRITICS
+INDEPENDENTLY ASKED FOR.** Every round, the loudest shared finding across
+otherwise unrelated reviewers was that the dossiers described a build that no
+longer existed. A deck whose entire credibility argument is "the constants are
+printed so you can reconstruct any number" cannot be judged against a plan that
+disagrees with it. Write the row when the change is made, not at ship.
+
+
+## 2026-09-05, Phase 12 frontier scan. PARKED: how to draw 45 to 1.
+
+Focus (b), editorial dataviz and cartography, the stalest legal slot. Aimed at
+this run's hardest craft problem rather than at a gallery: the retention sheet
+put a range of 45 to 1 in RADIUS (a $10 gift is 0.89 px, a $50,000 gift is
+40 px) into AREA, and paid for it in a declared 2.0 px floor, a cohort the
+`points` probe could not judge, and three rounds of raising the drawn floor.
+Parked rather than applied, because every one of these is an ENCODING choice a
+treatment director makes in Phase 6 and none of them is a bounded engine
+change.
+
+**THE RESEARCH SAYS AREA IS THE WRONG CHANNEL FOR MAGNITUDE, AND NAMES THE
+RIGHT ONE.** "Lost in Magnitudes" (CHI 2025) enumerates the design space for
+static graphics whose values span orders of magnitude and lands on four
+guidelines. The first, AcM, is blunt: the EXPONENT must be carried by a highly
+discriminable channel, which means position, row or column, and explicitly NOT
+length, area or intensity, above about five exponents. The second, DeM, gives
+the mantissa its own positional channel. The third, CoM, says the mantissa
+channel has to express the transition BETWEEN exponents so neighbouring
+magnitudes stay comparable. Their synthesis is the E+M scale,
+`s(v) = e(v) + (m(v) - 1) / 9`: exponents are the major axis units, the
+mantissa fills each subinterval linearly, major ticks label exponents and one
+minor tick at m = 5 is enough to teach a reader that within-magnitude reading
+is linear. It is about twenty lines of vanilla JS and needs nothing vendored.
+The follow-up, "Beyond Log Scales" (IEEE TVCG, 2026), tested E+M bar charts
+against logarithmic ones with the general public: significantly preferred,
+higher confidence, lower mental demand, comparable accuracy. Cognitive
+psychology's reason is that people do not think logarithmically about large
+ranges, they think piecewise linearly inside scale words.
+https://arxiv.org/html/2404.15150v1
+https://hal.u-pec.fr/LISN-AVIZ/hal-05171203v1
+
+What that would mean here, and why it is parked. This deck's whole credibility
+argument is that AREA IS THE DOLLAR AMOUNT at one printed constant, so E+M is
+not a substitute for it; it is what the AXIS should have been, and plate 01
+already discovered that by hand when it added `$50 / $500 / $5,000 / $50,000`
+in round two. The next deck that needs a wide range should carry E+M on the
+axis and keep area for the equivalence beats only. Unblocking condition: a
+treatment director asking for it in a dossier, with the tick rule written down.
+
+**AND A WARNING ABOUT FIXING PERCEPTION.** The proportional-symbol literature
+records that readers underestimate area ratios, and offers Flannery
+compensation (radius as value to the power 0.5716 rather than 0.5) as the cure.
+THIS HOUSE MUST NEVER APPLY IT. A deck that prints K and invites a reader to
+reconstruct any number with a ruler can't quietly inflate the small marks to
+feel right; the compensation would make every printed constant a lie. The
+legitimate answers to the same problem are the ones this run reached anyway:
+direct labels on the marks that matter, and a size legend carrying at least
+three sizes near the extremes of the data.
+
+**AND ONE NEGATIVE RESULT WORTH KEEPING.** The controlled study of area-to-value
+legends and grid lines on contiguous area cartograms found the aids reduce the
+SPREAD of readers' estimates while introducing a systematic underestimate, and
+that for comparison tasks they slow readers down without improving accuracy.
+The authors recommend fitting the aid to the task rather than adding it by
+reflex. A unit grid behind an area block is not free.
+https://arxiv.org/abs/2201.02995

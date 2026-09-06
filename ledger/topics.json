@@ -2114,6 +2114,56 @@
       ],
       "sources_lead": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
       "note": "Six weeks after No.14 covered the same case file (2026-07-22, The Giveaway Surveyed, 8.86). Dedupe passed at 44 days and the divergence is deliberate and total: No.14 drew a gold parcel polygon on relief, this deck draws no boundary at all and inverts gold to mean the open comment window. The angle is different too, No.14 was the conveyance and this is the classification order riding under it."
+    },
+    {
+      "run_date": "2026-09-05",
+      "carousel_no": 51,
+      "headline": "One Race Late",
+      "topic": "Six people who list Anthropic as their employer gave $372,000 to the ticket that finished first in Alaska's August 18th, 2026 governor primary, 15.63 percent of a $2,379,290.20 record pulled in full from the Alaska Public Offices Commission. On the same ballot Alaskans passed initiative 23RCF2 restoring contribution limits, 117,962 to 45,418, and Alaska Public Media reported it takes effect after the November 3rd general election.",
+      "angle": "A LIMIT IS NOT A VERDICT, IT IS THE END OF GUESSING, AND THIS ONE STARTS ONE RACE LATE. Not an accusation. Every gift was lawful, the company gave nothing, no published account reports any donor asking for anything, and the money went to the candidate proposing a data center moratorium. The deck is about a rule's start date, drawn as one absorbent sheet with the whole record soaked into it at one printed constant.",
+      "entities": [
+        "Alaska Public Offices Commission",
+        "Anthropic",
+        "Jonathan Kreiss-Tomkins",
+        "Zac Johnson",
+        "Drake Thomas",
+        "Daniel Ziegler",
+        "Jan Leike",
+        "Steven Bills",
+        "Evan Hubinger",
+        "Tao Lin",
+        "Ballot Measure 1",
+        "initiative 23RCF2",
+        "Alaska Division of Elections",
+        "Bernadette Wilson",
+        "Tom Begich",
+        "Dave Bronson",
+        "Treg Taylor",
+        "Mike Dunleavy",
+        "AI Futures Project",
+        "Alignment Research Center",
+        "Jane Street",
+        "Alaska Public Media",
+        "San Francisco Standard"
+      ],
+      "keywords": [
+        "campaign finance",
+        "contribution limit",
+        "APOC",
+        "disclosure",
+        "governor race",
+        "ballot measure 1",
+        "23RCF2",
+        "effective date",
+        "donor concentration",
+        "out of state money",
+        "93 maximum contributions",
+        "data center moratorium",
+        "ranked choice",
+        "November 3rd"
+      ],
+      "sources_lead": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "note": "The scouts found the signal and none of them reached the record. The APOC database refuses a browser and refuses WebFetch and answers an ordinary HTTP client fine, so the showrunner queried it directly and paged the whole 4,604 row ledger out of the grid. That pull is what turned a national outlet's story into this page's own, and it added the sixth donor's name and all six amounts the reporting did not carry."
     }
   ]
 }

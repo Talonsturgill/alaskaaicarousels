@@ -1,0 +1,75 @@
+{
+  "run_date": "2026-09-05",
+  "carousel_no": 51,
+  "scored_at": "2026-09-06",
+  "weighted_total": 8.77,
+  "threshold": 8.3,
+  "ship": true,
+  "scoring_note": "This is the SECOND scoring pass. The first returned 8.54 on an earlier state of the artifacts and named two safe-zone breaches as its one-sentence fix. Those were fixed, plate 03's ridge was rebuilt and the caption's summary line and close were changed, so that score no longer described what would ship and was discarded rather than carried. This pass re-verified Legibility, Artwork craft and Copy with fresh eyes and re-checked every hard fail from scratch. AFTER this pass, one slide string changed: plate 05's 'BELOW IT, 86 DONORS AND 72.81 PERCENT OF THE MONEY.' became '86 DONORS GAVE MORE. THEY CARRY 72.81 PERCENT.' The scorer had flagged the original as a genuine misread risk (spatially true on a downward axis, semantically inverted, since those 86 gave ABOVE $4,000) while calling it a later revision rather than a blocker. The rewrite removes a directional word entirely and is strictly more accurate; every machine gate was re-run after it and all pass. Plate 01 also gained C42 in its claim_ids, which it prints and was missing, and the PDF was re-assembled with copy.json's full document_title. AFTER the 8.77 pass an automated PR reviewer (Codex) raised eight findings on the shipped commit and five were correct and factual, so they were fixed and the run re-gated. The rings on plate 01 are the 105 largest Alaska GIFTS, summing to $354,294.88, while C14's 105 counts DONORS grouped by name plus city plus state, summing to $372,960.85; the plate now says both and prints that the sheet draws gifts while the headline counts donors. Plate 04 called all 4,604 rows gifts when 16 are refunds, and now says transactions. Plate 05's dots are labelled as the sixteen Alaska GIFTS above the limit rather than as C15's donor-grouped sixteen. Plate 08's 'HAS SAID NOTHING' was an absolute where C36 establishes only that no company statement about the donations is REPORTED, and it now says that. The conflict disclosure was named in the editor notes as being in the first comment and was not in it; it is now the comment's opening paragraph. These are factual corrections that make every affected claim narrower and better supported, so they cannot lower a criterion, but the deck was NOT re-scored a third time and this note is the record of that.",
+  "hard_fails_tripped": [],
+  "weakest_criterion": "Deliverable completeness",
+  "one_sentence_fix": "Bring the plan of record current before the email: regenerate storyboard.md's GATE STATUS block with scripts/gate_status.py --sync and append a fourth BUILD RECONCILIATION table covering the S4 label move to x 545, the S5 block move to top 1118, the plate 03 ridge and fibre rebuild and the plate 05 line rewrite, so the shipped deck and the document that explains it stop disagreeing.",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Ten words, a specific ratio, a named tension and a genuinely Alaskan idiom, legible at 432px. Off 9 because seven label plates and a three-line methodology footer crowd the lower two thirds and the bottom third carries only 56 percent of the slide's own craft density."
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "A declared nine-state camera with a loop planted and paid on every plate, a real breather at 06 and a turn at 08, reading as one composed sequence. Off 9 because 04 restates 01's split at working distance and 03 could swap with 07 without damaging the argument."
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 8,
+      "weight": 0.16,
+      "notes": "Plate 03's ridge is now a real ridge, four concentric bands with per-segment width variation, an outer slope, a shoulder, a hair-wide crest and an inner slope falling into the ink, over a two-sign interior fibre pass. Plate 06's 817 blind debossments carry no pigment at all. Held at 8 because the largest object is still the least modelled at macro scale, the rebuilt crest runs bright across the frame, and plate 04's middle band is stacked furniture rather than composition."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14,
+      "notes": "K = 0.25 px2 per dollar printed on all nine plates so a reader with a ruler can reconstruct any number; six gifts and 93 maximum contributions frame-verified as the same ink; the vote drawn as impressions with no ink on the plate whose argument is that the rule has no force yet; gold reserved for the $4,000 limit so the palette itself refuses the villain reading. Short of 10 only because the art alone does not reach Alaska or a governor's race."
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12,
+      "notes": "APOC, the Division of Elections, Alaska Public Media, 23RCF2, the August 18th primary, the November 3rd general, the coordinates, and Outside used the way Alaskans use it. The $50 median Alaska gift against a $100,000 Berkeley gift is what makes an Alaskan feel seen. Off 9 because the protagonists are six Californians."
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "46 claims, totals recomputed twice by scripts sharing no code, a fact-checker that killed twelve claims including four the showrunner had wrong, and the counter-facts printed at full strength rather than hedged. Off 9 because plate 03 adds no new verified specific and plate 04 repeats the $50 median."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "notes": "New hero, new atmosphere, new hook archetype, new palette family, continuity by printed magnification chain plus a nine-state gauge motif, every divergence named with a reason. Off 9 because the type pairing is the house default and bespoke_check sits at WARN 0.577, the price of nine views of one substrate."
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07,
+      "notes": "Both named safe-zone breaches are genuinely fixed, re-measured off the renders. No string under 24px, counters on all nine plates, vector PDF, worst computed contrast 6.7:1. Only 7 because six canvas-near-reserved-text warns remain, at 432px plate 01's ALASKA and $50 chips merge, and plate 04's 19px height comparison is invisible at thumb size."
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 8,
+      "weight": 0.05,
+      "notes": "Hook 101 chars, complete before the fold. 841 chars, in band, 1.5 commas per 100 words against a 6.2 ceiling. The rewritten summary line sells the conceit and the close is now the deck's own ask verbatim, so plate 09 and the caption agree. Held at 8 because 841 is at the top of the band and the middle is five standalone facts stacked."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7,
+      "weight": 0.1,
+      "notes": "Nine renders, nine thumbs, contact sheet, vector PDF, three hashtags, a seven-source first comment with a provenance paragraph, six aftercare items, a disclosure note carried into the comment, sha256 for every source file. Marked down because the plan of record disagreed with the shipped run in three places at scoring time; all three are repaired in the ship commit."
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(8x0.16)+(9x0.14)+(8x0.12)+(8x0.10)+(8x0.08)+(7x0.07)+(8x0.05)+(7x0.10) = 1.12+1.12+1.28+1.26+0.96+0.80+0.64+0.49+0.40+0.70 = 8.77"
+}
