@@ -1264,6 +1264,41 @@
       "confidence": 0.93,
       "born": "2026-09-04",
       "evidence": "No.50 shipped three slides with body copy cut to fit: 34 words against a declared 46 on slide 03, 23 against 43 on slide 05, 36 against 47 on slide 07. Slide 03's cut removed the one sentence its own attribution qualifies, leaving claim C15 with no on-slide referent. All three were found by pixel critics reading the dossier, never by a gate."
+    },
+    {
+      "id": "dark-ink-needs-paper-not-black",
+      "instinct": "DARK INK NEEDS PAPER, NOT BLACK. A deck whose rule is that the ink is darker than its ground fails in two opposite directions. Draw the deposits BRIGHTER than the ground and they read as lamps, and light has brightness rather than size, so a field of them carries no scale argument at all. Push the ground to near black and the dark ink has nothing to be darker THAN, only the rim reads, and the frame becomes pale cells on black. The working value is a genuinely mid dark paper, here #221E18 to #4C443A, with the ink at #0C1A1E on it.",
+      "confidence": 0.95,
+      "born": "2026-09-05",
+      "evidence": "No.51. A treatment director diagnosed the prototype's emissive blooms as lamps before any render, and the first full render then overcorrected the ground so the contact sheet showed pale rings on black. Lifting the rag is the single edit that made the medium work."
+    },
+    {
+      "id": "a-403-to-a-browser-is-not-a-403-to-an-http-client",
+      "instinct": "A SITE THAT REFUSES A BROWSER MAY STILL ANSWER AN ORDINARY HTTP CLIENT. aws.state.ak.us returns 403 to WebFetch and resets the connection to headless Chromium, and answers python requests with a normal user agent at HTTP 200. Three scouts and a fact-checker all recorded it as unreachable. The whole deck came out of that database once it was queried directly, ASP.NET viewstate and grid paging included.",
+      "confidence": 0.9,
+      "born": "2026-09-05",
+      "evidence": "No.51. Six scouts returned one usable lead between them and the run's entire story came from an APOC pull no scout could perform. Chromium in this container cannot reach the open internet at all, which is a separate fact worth carrying."
+    },
+    {
+      "id": "the-points-probe-needs-one-cohort",
+      "instinct": "THE POINTS PROBE NEEDS ONE COHORT AND A DECK WITH A 45 TO 1 SIZE RANGE DOES NOT HAVE ONE. qa.py judges each declared mark against the cohort's own median ink, so where the largest mark is 89 px and the smallest is 2 px the median is set by the giants and every small mark reads as missing. Declaring them as one cohort is the error, not the marks. Assert the count from the drawing loop's own counter against the data length, and keep the points probe for a genuinely uniform population.",
+      "confidence": 0.85,
+      "born": "2026-09-05",
+      "evidence": "No.51 plate 01. The probe reported 67 of 230 sampled centres empty, then 5, then 4, across three rounds of raising the drawn floor, and every raise distorted the encoding further."
+    },
+    {
+      "id": "an-area-equivalence-cannot-be-drawn-as-a-tiling",
+      "instinct": "AN AREA EQUIVALENCE CANNOT BE DRAWN AS A TILING. Twenty five squares can never tile a disc of twenty five times their area, so a plan that clips N cap-area cells into a bloom will silently ship fewer cells than its own label claims. The same equivalence drawn as TWO BLOCKS at one constant is exact, checkable as ink area, and honest.",
+      "confidence": 0.9,
+      "born": "2026-09-05",
+      "evidence": "No.51 plate 07. The planned tiling shipped 43 cells under a label reading 93 and the frame's own count assertion caught it. Two blocks at 1.2x hold identical ink by construction."
+    },
+    {
+      "id": "let-the-fitted-headline-place-the-page",
+      "instinct": "A HAND PLACED BLOCK UNDER A FITTED HEADLINE IS A COLLISION WAITING TO RENDER. AK.fitText changes the headline's height by design, so every top coordinate typed underneath it is a guess about an output. Mark the blocks that follow with a flow attribute, push each clear of the one above after the fit, and then read the type reserve off the laid out DOM rather than typing rectangles. That single pass cleared text collisions and art-in-reserve failures on six of nine plates at once.",
+      "confidence": 0.9,
+      "born": "2026-09-05",
+      "evidence": "No.51. The first render carried eight text collisions and six canvas marks inside reserved type, all of them downstream of hand placement under fitted headlines and hand-typed reserves."
     }
   ]
 }
