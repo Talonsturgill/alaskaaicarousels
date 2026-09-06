@@ -6177,3 +6177,75 @@ the drawn floor to satisfy it, each one distorting the encoding further.
 Declaring those marks as a cohort was the error, not the marks. The count is
 now asserted from the drawing loop's own counter against the data length, which
 is a thing the code can genuinely be wrong about.
+
+## 2026-09-05, No.51 continued. Three rebuild rounds, and what each one taught.
+
+The first pixel round scored the deck 4.8 against a threshold of 8.3. The run
+went back to Phase 8 rather than mailing a post-mortem, and did it twice more.
+These are the lessons that cost the rounds.
+
+**A CRITIC'S DIAGNOSIS IS RELIABLE. THEIR PRESCRIBED FIX IS NOT.** Plate 06's
+blind impressions read as convex beads instead of punches, which is exactly
+right and is the single worst thing that plate could do, since its whole
+argument is that the voters' shape carries no pigment. The critic then
+prescribed moving the lit rim to the upper-right inner arc, which is the BEAD
+direction. A pit lit from the upper right has its lit wall on the LOWER LEFT,
+because that is the wall facing the light. Implementing the prescription would
+have kept the defect and closed the finding. Read the diagnosis, derive the fix,
+and say in the reconciliation when you went the other way.
+
+**OVERCORRECTION IS THE SECOND FAILURE MODE AND IT COSTS THE SAME ROUND.**
+Twice in one run. The mineral ring was a uniform stroke of one value, which
+cannot be a ridge, only a lamp; the fix shaded it along the fill and the first
+attempt put a pale stop over a third of every ring, so every mark grew a bright
+rim and the ink stopped being darker than the rag, which is the deck's founding
+rule. Then the 105 counting rings read as bubbles floating off their marks; the
+fix dimmed them to 0.40 alpha at 1.0 px and the next critic searched the plate
+at full size and reported the cohort simply absent, on a deck whose cover
+headline is "It takes 105 Alaska donors to match six people Outside." Both were
+caught by looking at the render, not by a gate. Budget a look after every
+correction, especially the ones that feel obviously right.
+
+**A GATE THAT MEASURES WHOLE FILES PUNISHES FACTORING, AND IT IS RIGHT TO.**
+Pulling the shared deposit, ridge, tooth, seat and viewport helpers into the
+page template made every plate's HTML more alike and pushed bespoke_check from
+0.592 to 0.632, over the 0.60 fail line. The repair was not to weaken the gate
+but to emit only the helpers a plate actually calls, which took it to 0.577.
+Plate 06 draws no ink at all and was carrying the entire deposit routine. Nine
+identical copies of code half the plates never run is not nine bespoke frames.
+
+**TWO LIGHT DIRECTIONS IN ONE FRAME SURVIVE EVERY GATE UNTIL SOMEONE READS THE
+LIBRARY.** `akrelief.lightVec(205, 14)` resolves to [-0.41, +0.88, 0.24], a
+light from the LOWER LEFT, while every drying ring, every debossment and the
+deck's own written "lee-side shadow offset down-left" assume the UPPER RIGHT.
+The ATMOSPHERE block asserted az 205 AND a down-left lee, which cannot both be
+true, so the plan of record had been carrying a contradiction. The pixels of the
+marks were right and the substrate was wrong. az 25 is the same elevation from
+the direction the marks already assumed. Check an azimuth against the function
+that consumes it, not against the number you meant.
+
+**A KNOCKOUT WILL SILENTLY EAT A CANVAS MARK DRAWN UNDER IT, AND AN ASSERT ON
+THE MARK'S SIZE WILL NOT NOTICE.** Plate 09's inked gauge, the ninth state of a
+motif tracked through eight plates and the only filled gold in the deck, was
+placed at a coordinate that fell inside an opaque mono plate. The frame asserted
+its radius, the radius was correct, and the mark never reached the page. Assert
+CLEARANCE for anything whose whole job is to be seen, the way plate 08 now
+asserts that no deposit or soak reaches the boundary box's interior.
+
+**A TEMPLATE TOKEN INSIDE AN ART STRING IS NEVER EXPANDED.** The art blocks are
+substituted INTO the page template, so a `%(seed)s` written inside one reaches
+the browser verbatim and the plate dies with "Unexpected token '%'". Use the
+literal.
+
+**`<br>` CONCATENATES WITHOUT A SPACE IN EXTRACTED TEXT.** "FOUR CERTIFIED<br>
+TICKETS." comes back to the aggregate gate as "FOUR CERTIFIEDTICKETS", which it
+reads as an undeclared count on a word that does not exist. No phrase may
+straddle a hard break in a mono block. Break at sentence ends.
+
+**THE RECONCILIATION TABLE IS NOT PAPERWORK, IT IS THE THING FOUR CRITICS
+INDEPENDENTLY ASKED FOR.** Every round, the loudest shared finding across
+otherwise unrelated reviewers was that the dossiers described a build that no
+longer existed. A deck whose entire credibility argument is "the constants are
+printed so you can reconstruct any number" cannot be judged against a plan that
+disagrees with it. Write the row when the change is made, not at ship.
+
