@@ -464,6 +464,35 @@ IN_PAGE_QA_JS = """
     }
     return false;
   };
+  /* A <br> IS A SPACE, AND textContent DOES NOT KNOW THAT (2026-09-05).
+     `el.textContent` concatenates its text nodes with nothing between them, so
+     the authored `FOUR CERTIFIED<br>TICKETS.` -- two words a reader sees on two
+     lines -- arrives in the record as `FOUR CERTIFIEDTICKETS`. Run No.51's
+     slide 09 shipped exactly that and aggregate_check read it as the count FOUR
+     asserted over a noun that does not exist, and hard-failed a line that was
+     correct on the page. The gate was measuring a string the slide never drew.
+     Every reader of this record (aggregate_check's count detector, copy_sync's
+     blob, the QA messages) wants the RENDERED reading, so the glue is removed
+     at the source rather than worked around one gate at a time.
+     `innerText` would do this and much more besides: it is layout-dependent and
+     applies text-transform, so an uppercased block would start arriving in a
+     case the author never wrote and every downstream string comparison would
+     shift under us. This is textContent with one rule added and nothing else
+     changed: a <br> contributes a single space. */
+  const _flatText = (el) => {
+    let s = "";
+    const dive = (n) => {
+      for (let c = n.firstChild; c; c = c.nextSibling) {
+        if (c.nodeType === 3) s += c.nodeValue;
+        else if (c.nodeType === 1) {
+          if ((c.tagName || "").toUpperCase() === "BR") s += " ";
+          else dive(c);
+        }
+      }
+    };
+    dive(el);
+    return s;
+  };
   const seenFam = new Set();
   const recorded = new Map();   // element -> index in out.text_nodes (for ancestry)
   const walk = document.createTreeWalker(document.body || de, NodeFilter.SHOW_ELEMENT);
@@ -476,7 +505,7 @@ IN_PAGE_QA_JS = """
     if (cs.display === "none" || cs.visibility === "hidden" || parseFloat(cs.opacity) === 0) continue;
     const r = el.getBoundingClientRect();
     if (r.width === 0 || r.height === 0) continue;
-    const txt = el.textContent.trim().replace(/\\s+/g, " ").slice(0, 80);
+    const txt = _flatText(el).trim().replace(/\\s+/g, " ").slice(0, 80);
     const fs = parseFloat(cs.fontSize);
     const fam = cs.fontFamily.split(",")[0].trim().replace(/["']/g, "");
     // For SVG text the ink is `fill`, not CSS `color`; the fill attribute or
@@ -587,7 +616,7 @@ IN_PAGE_QA_JS = """
     const node = {
       text: txt,
       texts: texts,
-      full: el.textContent.trim().replace(/\\s+/g, " ").slice(0, 400),
+      full: _flatText(el).trim().replace(/\\s+/g, " ").slice(0, 400),
       tag: (el.tagName || "").toLowerCase(),
       // TYPE NOBODY SIZED (2026-08-21): true when no author font-size applies
       // anywhere on this element's ancestor chain, so the UA stylesheet chose

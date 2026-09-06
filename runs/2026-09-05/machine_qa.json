@@ -1,0 +1,197 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 74% of this slide's own average craft density (top 82% / mid 93% / bottom 56% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "motifs": [
+        "'the Alaska lane': canvas 54.7 dE, page 76.8 dE, 73% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'the everywhere else lane': canvas 56.7 dE, page 75.2 dE, 90% of its rect is clear of opaque DOM (div.mono stands on the rest)"
+      ],
+      "scales": [
+        "'the amount axis, log10 dollars' runs 25 dollars at 430 to 140,000 dollars at 1250; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h1 'It takes 105 Alaska donors to match six peop' fits 3/3 lines at 87.5px"
+      ],
+      "asserts": [
+        "'every positive contribution in the record drew a deposit' holds: 4588 vs 4588 marks (within 0)",
+        "'the 105 largest Alaska donors are ringed, and their money equals the six' holds: 105 vs 105 rings (within 0)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "wrap drift: 'THE COMPANY GAVE NOTHING. SIX PEOPLE DID.ALL' declares 3 line(s) (<br> or preserved newline) and rendered 4. Anything positioned by counting rows off this block (canvas markers, struck fields, a leader's row) is now one or more rows out. Fix by giving the block the width its longest line needs, or white-space:nowrap, and read mark positions off getBoundingClientRect rather than a fixed pitch",
+        "canvas mark near reserved text: line 4 of 4 at (90,923) of 'THE COMPANY GAVE NOTHING. SIX PEOPLE DID' carries 76 px^2 of hard-edged canvas ink (densest 40px window 5.9%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "motifs": [
+        "'the deposit keyed 1': page 87.4 dE, 98% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'the deposit keyed 2': canvas 60.1 dE, page 64.0 dE, 98% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'the deposit keyed 3': canvas 39.5 dE, page 49.7 dE, 98% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'the deposit keyed 4': canvas 68.5 dE, page 71.8 dE, 97% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'the deposit keyed 5': canvas 65.6 dE, page 76.5 dE, 97% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'the deposit keyed 6': canvas 68.4 dE, page 75.3 dE, 89% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the deposit keyed 1, DRAKE THOMAS' lands 0.0px from its target",
+        "leader 'the deposit keyed 2, DANIEL ZIEGLER' lands 0.0px from its target",
+        "leader 'the deposit keyed 3, JAN LEIKE' lands 0.0px from its target",
+        "leader 'the deposit keyed 4, STEVEN BILLS' lands 0.0px from its target",
+        "leader 'the deposit keyed 5, EVAN HUBINGER' lands 0.0px from its target",
+        "leader 'the deposit keyed 6, TAO LIN' lands 0.0px from its target",
+        "leader 'the deposit keyed 1, DRAKE THOMAS' meets its label 0.0px away",
+        "leader 'the deposit keyed 2, DANIEL ZIEGLER' meets its label 0.0px away",
+        "leader 'the deposit keyed 3, JAN LEIKE' meets its label 0.0px away",
+        "leader 'the deposit keyed 4, STEVEN BILLS' meets its label 0.0px away",
+        "leader 'the deposit keyed 5, EVAN HUBINGER' meets its label 0.0px away",
+        "leader 'the deposit keyed 6, TAO LIN' meets its label 0.0px away"
+      ],
+      "fits": [
+        "h1 'Six gifts. $372,000.Every one from the Bay A' fits 2/2 lines at 74.5px"
+      ],
+      "asserts": [
+        "'all six gifts are drawn with their centres inside the frame' holds: 6 vs 6 blooms (within 0)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 3 of 3 at (80,258) of 'At this distance the median Alaska gift ' carries 79 px^2 of hard-edged canvas ink (densest 40px window 2.8%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "canvas mark near reserved text: line 1 of 5 at (80,393) of 'The largest one can't fit in the frame. ' carries 61 px^2 of hard-edged canvas ink (densest 40px window 3.8%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "motifs": [
+        "'the drying ridge of the $100,000 deposit': canvas 77.1 dE, page 79.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the median gift, entire': canvas 61.6 dE, page 63.7 dE, 89% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "fits": [
+        "h1 'At this distance the median Alaska gift is a' fits 3/3 lines at 70px"
+      ],
+      "asserts": [
+        "'the $4,000 gauge at 12x, radius from the deck constant' holds: 214.09 vs 214.09 px (within 0.01)",
+        "\"the dimension call's printed value is the radius it measures\" holds: 214.1 vs 214.1 px (within 0.05)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 6 of 7 at (94,547) of '2,705 of the 4,604 gifts came from Alask' carries 137 px^2 of hard-edged canvas ink (densest 40px window 3.4%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "canvas mark near reserved text: line 7 of 7 at (94,593) of '2,705 of the 4,604 gifts came from Alask' carries 336 px^2 of hard-edged canvas ink (densest 40px window 2.8%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "motifs": [
+        "'Alaska, all of it, as area at K': canvas 56.8 dE, page 93.0 dE, 83% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'California net of the six, as area at K': canvas 67.1 dE, page 76.5 dE, 86% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the top of the Alaska box' lands 0.0px from its target",
+        "leader 'the top of the Alaska box' meets its label 0.0px away"
+      ],
+      "fits": [
+        "h1 'Alaska sent most of the gifts.Not most of th' fits 2/2 lines at 77px"
+      ],
+      "asserts": [
+        "'the 105 largest Alaska donors are ringed' holds: 105 vs 105 rings (within 0)",
+        "'every containment is area at the deck constant, Alaska against California net' holds: 19.4 vs 19.4 px (within 0.05)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "axis census: 'the amount axis at 3.0x': the slide declares a mark at 727 and there is no measurable ink within 4px of it in the band, so the census has nothing to calibrate on. Either the mark did not draw, or its declared position is not where it drew.",
+        "canvas mark inside reserved text: line 1 of 4 at (90,1120) of 'THE SIX ARE NOT THE SIX LARGEST DONORS.T' carries 212 px^2 of hard-edged canvas ink (densest 40px window 7.6%) while this block's other lines sit on clean paper (0.3%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]",
+        "canvas mark inside reserved text: line 2 of 4 at (90,1156) of 'THE SIX ARE NOT THE SIX LARGEST DONORS.T' carries 207 px^2 of hard-edged canvas ink (densest 40px window 8.5%) while this block's other lines sit on clean paper (0.3%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]"
+      ],
+      "fits": [
+        "h1 '86 donors carried72.81 percent of it.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'the threshold rule sits at the log10 position of $4,000' holds: 726.6 vs 726.6 px (within 0.5)",
+        "'every Alaska donor above the limit whose mark is in frame carries a blue dot' holds: 14 vs 14 dots, counted over 14 declared marks (within 0)",
+        "'every Alaska donor above the limit whose mark is in frame carries a blue dot': 14 mark centres probed at r=14px, cohort median 82.9 dE, all present (weakest 80.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h1 '117,962 to 45,418.' fits 1/1 lines at 123px"
+      ],
+      "asserts": [
+        "'one impression per two hundred votes, 117,962 yes and 45,418 no' holds: 817 vs 817 marks, counted over 817 declared marks (within 0)",
+        "'one impression per two hundred votes, 117,962 yes and 45,418 no': 205 mark centres probed at r=14px, sampled every 4 marks, cohort median 54.6 dE, all present (weakest 53.4 dE)",
+        "'the mark is 0.77 of the lattice pitch, so the field cannot read as more votes than it hold' holds: 0.77 vs 0.77 of pitch (within 0.01)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the band of six gifts': canvas 53.9 dE, page 67.3 dE, 95% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'the band of 93 maximum contributions': canvas 56.2 dE, page 85.7 dE, 97% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "fits": [
+        "h1 'The same ink, twice.' fits 1/1 lines at 93.5px"
+      ],
+      "asserts": [
+        "'93 maximum contributions, one deposit each, at the deck constant' holds: 93 vs 93 marks, counted over 93 declared marks (within 0)",
+        "'93 maximum contributions, one deposit each, at the deck constant': 93 mark centres probed at r=14px, cohort median 4.0 dE, all present (weakest 3.5 dE)",
+        "'the two bands hold the same ink, six gifts against 93 maximums' holds: 133920 vs 133920 px2 (within 2678)",
+        "'every one of the 93 cells sits inside the lower band, none on bare rag' holds: 93 vs 93 cells (within 0)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the boundary, whose interior is bare rag': canvas 8.2 dE, page 92.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the boundary the record stops at' lands 0.0px from its target",
+        "leader 'the boundary the record stops at' lands 0.0px from its target",
+        "leader 'the boundary the record stops at' lands 0.0px from its target",
+        "leader 'the boundary the record stops at' lands 0.0px from its target",
+        "leader 'the boundary the record stops at' meets its label 9.0px away",
+        "leader 'the boundary the record stops at' meets its label 0.0px away",
+        "leader 'the boundary the record stops at' meets its label 23.0px away",
+        "leader 'the boundary the record stops at' meets its label 28.5px away"
+      ],
+      "fits": [
+        "h1 'The money went to the candidate who wants da' fits 3/3 lines at 75.5px"
+      ],
+      "asserts": [
+        "'the boundary box is one $4,000 maximum, to area, at 3.6x' holds: 113.84 vs 113.84 px side (within 0.01)",
+        "'no deposit or its soak reaches the box, so the interior is bare rag' holds: 1 vs 1 clear (within 0)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "canvas mark inside reserved text: line 3 of 4 at (90,736) of 'GENERAL ELECTION, NOVEMBER 3RD, 2026.FOU' carries 781 px^2 of hard-edged canvas ink (densest 40px window 5.2%) while this block's other lines sit on clean paper (0.1%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]",
+        "canvas mark near reserved text: line 4 of 4 at (90,772) of 'GENERAL ELECTION, NOVEMBER 3RD, 2026.FOU' carries 122 px^2 of hard-edged canvas ink (densest 40px window 3.3%) while this block's other lines sit on clean paper (0.1%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "motifs": [
+        "'the sheet's foot, the felted sediment of the whole record': canvas 44.8 dE, page 92.6 dE, 54% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "fits": [
+        "h1 'Four tickets.Old rules.' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'the inked gauge at 0.74x, radius from the deck constant' holds: 13.2 vs 13.2 px (within 0.01)",
+        "'every gift in the record is drawn, and lands on the sheet seen entire' holds: 4588 vs 4588 marks (within 0)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 12,
+  "verdict": "WARN"
+}

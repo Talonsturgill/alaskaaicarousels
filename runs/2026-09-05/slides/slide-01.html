@@ -1,0 +1,274 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#221E18;
+  font-family:"Space Grotesk",sans-serif;}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+svg.ann{position:absolute;inset:0;}
+.kick{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:0.12em;color:#CFD6CC;}
+h1{position:absolute;font-family:"Fraunces",serif;font-weight:700;color:#F4F8FF;
+  line-height:0.97;letter-spacing:-0.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;}
+.body{position:absolute;font-family:"Space Grotesk",sans-serif;font-weight:400;
+  font-size:34px;line-height:1.36;color:#E4E9E1;}
+.mono{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:0.10em;color:#CFD6CC;font-variant-numeric:tabular-nums lining-nums;}
+/* technique 75, a knockout window punched in the plate behind an instrument label */
+.knock{background:rgba(20,14,9,0.90);padding:3px 10px;margin:-3px -10px;}
+.mono.tight{letter-spacing:0.06em;}
+.gold{color:#FFC72C;}
+/* THE SCALE CONTRACT, printed in the top right corner block of every plate.
+   emitted by shell() so a plate cannot ship without it. */
+.kconst{position:absolute;right:90px;top:80px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;line-height:1.05;letter-spacing:0.10em;color:#B7C0B8;text-align:right;
+  background:rgba(20,14,9,0.90);padding:3px 10px;margin:-3px -10px;}
+.ctr{position:absolute;right:90px;bottom:88px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:0.12em;color:#CFD6CC;background:rgba(20,14,9,0.90);
+  padding:5px 10px;margin:-5px -10px;}
+.wm{position:absolute;font-family:"Fraunces",serif;font-weight:800;font-size:34px;color:#F4F8FF;}
+.site{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:0.10em;color:#CFD6CC;}
+</style></head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="kconst">1.0x  &middot;  K = 0.25 px2 PER DOLLAR</div>
+
+<div class="kick knock" style="left:90px;top:80px;">No. 51  &middot;  PLATE 1</div>
+<h1 id="h1" data-min="64" data-max="88" data-lines="3" style="left:80px;top:132px;width:820px;">It takes 105 Alaska donors to match six people Outside.</h1>
+<div class="mono knock" style="left:90px;top:1158px;width:760px;line-height:1.50;">y = log10 OF THE AMOUNT. x IS CATEGORY ONLY.<br>MARKS FLOORED AT 2.0 px. 4,588 GIFTS DRAWN.<br>OF 4,604 ROWS. THE REST ARE REFUNDS.</div>
+<div class="ctr">01 / 09</div>
+<svg class="ann" width="1080" height="1350">
+  <text x="126" y="485.9" font-size="24" fill="#B7C0B8" letter-spacing="0.10em" font-family="JetBrains Mono">$50</text>
+  <text x="126" y="704.6" font-size="24" fill="#B7C0B8" letter-spacing="0.10em" font-family="JetBrains Mono">$500</text>
+  <text x="126" y="923.4" font-size="24" fill="#B7C0B8" letter-spacing="0.10em" font-family="JetBrains Mono">$5,000</text>
+  <text x="126" y="1142.2" font-size="24" fill="#B7C0B8" letter-spacing="0.10em" font-family="JetBrains Mono">$50,000</text>
+  <text x="126" y="566" font-size="24" fill="#B7C0B8" letter-spacing="0.10em" font-family="JetBrains Mono">105 RINGED HERE.</text>
+  <text x="126" y="600" font-size="24" fill="#B7C0B8" letter-spacing="0.10em" font-family="JetBrains Mono">SAME MONEY AS THE SIX.</text>
+  <text x="126" y="452" font-size="24" fill="#CFD6CC" letter-spacing="0.10em" font-family="JetBrains Mono">ALASKA</text>
+  <text x="560" y="452" font-size="24" fill="#CFD6CC" letter-spacing="0.10em" font-family="JetBrains Mono">EVERYWHERE ELSE</text>
+</svg>
+
+<script>
+var HIST="26.10.h,2s.00.1a,2s.10.5,2y.00.1,4c.10.2,5k.00.x,5k.10.4,8c.00.1p,8c.10.4,9q.00.1,b4.00.m,b4.10.2,c3.10.1,dd.10.1,dw.00.73,dw.10.19,go.00.d,go.10.5,jg.00.4,jg.10.7,kl.10.1,l5.10.1,m5.00.1,m8.00.8,m8.10.1,nb.10.1,p0.00.e,p0.10.5,qk.10.1,rs.00.6l,rs.10.59,rt.10.2,t6.00.1,uk.00.1,uk.10.1,xc.00.6,yq.10.1,104.10.1,12w.00.1,12w.10.2,13o.00.1,14x.00.1,15o.00.1b,15o.10.12,18g.00.3,19u.00.1,1b8.00.2,1e0.00.5,1e0.10.1,1jk.00.z,1jk.10.1u,1lv.00.1,1mc.00.1,1xf.10.1,1xg.00.44,1xg.10.62,208.00.1,208.10.1,230.00.8,230.10.2,2bc.00.4,2bc.10.8,2e4.00.1,2g8.10.1,2p8.00.2i,2p8.10.5j,2s0.00.b,334.00.2,334.10.b,3kr.10.1,3s4.00.1,3uw.00.4u,3uw.10.fj,3xo.00.1,48s.10.1,4mo.10.1,5eg.00.1,5sc.00.4,5sc.10.6,66g.00.1,6sg.00.1,6sg.10.1,7bw.10.2,7n0.10.1,7ps.00.6g,7ps.10.iu,929.10.1,93s.00.2,9ho.10.1,9n8.10.4,bko.00.f,bko.10.h,di4.10.1,ei8.00.1,ew4.10.1,fcs.10.5,ffk.00.f,ffk.10.1j,fz0.10.1,ifw.10.2,jag.00.32,jag.10.5d,l7w.10.3,lj0.10.2,lok.00.1,lww.10.2,moo.10.1,mrg.10.1,n5c.00.3,n5c.10.j,o2o.10.1,oow.10.1,tec.10.1,upk.10.1,uv4.10.6,v90.00.1,x3o.10.2,xak.10.1,y89.10.1,znc.10.2,10vs.10.3,12kw.00.28,12kw.10.3s,12no.00.1,13qk.10.1,15o0.10.1,16a8.10.1,16fs.10.1,1720.10.1,1a2c.10.1,1aao.10.1,1ag8.10.1,1ape.10.1,1dds.10.1,1ebo.10.1,1lvc.10.2,1rfc.10.1,1xg0.00.1,22mo.10.1,255s.00.1z,255s.10.23,289g.10.1,2a5g.10.1,2ckg.10.1,2d14.10.1,2eq8.00.1,37qo.00.6,37qo.10.4,3iuo.10.1,4abk.00.b,4abk.10.8,4ey8.10.1,5cwg.00.a,5cwg.10.7,6fhc.00.4,79f4.10.1,7i28.00.5,9n80.00.1,apsw.00.p,apsw.10.9,aq40.00.1,bko0.10.1,cuyo.00.1,f04g.10.1,g2pc.00.2,h5a8.10.1,kkqo.00.1,lfls.00.k,lfls.10.1,nkrk.00.1,w5eo.00.2,yakg.00.2,16v7k.00.3,1hl0g.00.2,1hl0g.10.1,1satc.00.2,1wl4w.01.1,2dqf4.00.1,2z60w.00.4,2z60w.01.2,2z60w.10.1,4618g.00.1,4618g.01.2,526n4.00.1,5cwg0.10.1,5nm8w.00.1,5yc1s.01.1";
+var GIFTS=[];
+(function(){var R=HIST.split(',');for(var i=0;i<R.length;i++){
+  var f=R[i].split('.'), a=parseInt(f[0],36)/100, ak=f[1][0]==='1', an=f[1][1]==='1',
+      n=parseInt(f[2],36);
+  for(var j=0;j<n;j++) GIFTS.push([a,ak,an]);
+}})();
+GIFTS.sort(function(a,b){return a[0]-b[0];});
+
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  var _h1=document.getElementById('h1');
+  if(_h1 && window.AK && AK.fitText){
+    AK.fitText(_h1,{min:parseInt(_h1.dataset.min||'56',10),
+                    max:parseInt(_h1.dataset.max||'120',10),
+                    maxLines:parseInt(_h1.dataset.lines||'3',10)});
+  }
+  // every SVG label gets a plate MEASURED from its own text, never a typed width
+  if(window.AK && AK.svgPlateAll){
+    AK.svgPlateAll('svg.ann text',{padX:11,padY:5,fill:'rgba(20,14,9,0.90)',rx:2});
+  }
+  // FLOW PASS. blocks marked data-flow are pushed clear of whatever sits above
+  // them, so a headline that fits to three lines cannot land on the body copy.
+  (function(){
+    var prev=_h1?_h1.getBoundingClientRect():null;
+    var flow=[].slice.call(document.querySelectorAll('[data-flow]'));
+    flow.forEach(function(el){
+      var gap=parseInt(el.dataset.flow||'34',10);
+      var r=el.getBoundingClientRect();
+      if(prev && r.top < prev.bottom+gap){
+        el.style.top = Math.round(prev.bottom+gap) + 'px';
+      }
+      prev = el.getBoundingClientRect();
+    });
+  })();
+  // RESERVES, read off the laid-out DOM. the art is told where the words are.
+  var RESERVE=[];
+  [].slice.call(document.querySelectorAll('h1,.body,.mono,.kick,.kconst,.ctr,.wm,.site,svg.ann text,[data-flow]'))
+    .forEach(function(el){ var r=el.getBoundingClientRect();
+      if(r.width>0&&r.height>0) RESERVE.push([r.left-10,r.top-8,r.width+20,r.height+16]); });
+  function inType(x,y,rad){
+    for(var i=0;i<RESERVE.length;i++){var b=RESERVE[i];
+      if(x+rad>b[0]&&x-rad<b[0]+b[2]&&y+rad>b[1]&&y-rad<b[1]+b[3]) return true;}
+    return false;
+  }
+  var c=document.getElementById('art'), cx=c.getContext('2d'); cx.scale(2,2);
+  var W=1080,H=1350;
+  var K=0.25, LO=25.0, HI=140000.0, Y0=430.0, Y1=1250.0;
+  var L10=Math.log(10);
+  function rr(a){return Math.sqrt(a*K/Math.PI);}
+  function ry(a){var v=Y0+((Math.log(a)-Math.log(LO))/L10)/((Math.log(HI)-Math.log(LO))/L10)*(Y1-Y0);
+    return Math.max(Y0,Math.min(Y1,v));}
+  var rnd=AK.rng(20260905);
+  // ---- RAG SUBSTRATE. laid first, always. form only, never a quantity.
+  function rag(scale){
+    AK.reliefShade(cx,{x:0,y:0,w:W,h:H,scale:2,seed:20260905,
+      noiseScale:0.040/scale, octaves:5, warp:0.26, strength:1.7,
+      low:'#221E18', high:'#4C443A', ambient:0.46, diffuse:0.78,
+      lights:[{az:25,el:14,w:1.0}]});
+  }
+  // the ridge's shading, one gradient laid along the light. lit up-right, lee down-left.
+  function ridgeGrad(x,y,r){
+    var lg=cx.createLinearGradient(x+r*0.72,y-r*0.70,x-r*0.72,y+r*0.70);
+    lg.addColorStop(0.00,'#A8BDB4');
+    lg.addColorStop(0.13,'#6F8C86');
+    lg.addColorStop(0.34,'#3A4C47');
+    lg.addColorStop(0.58,'#16211F');
+    lg.addColorStop(1.00,'#080907');
+    return lg;
+  }
+  // COLLAPSED TOOTH inside a large body. the rag's own crumple carried through at
+  // low amplitude, then a fibre lay, so a close look finds paper and not a fill.
+  function inkTooth(x,y,r){
+    cx.save(); cx.clip();
+    var n1=Math.round(r*r*0.42);
+    for(var i=0;i<n1;i++){
+      var px=x-r+rnd()*2*r, py=y-r+rnd()*2*r;
+      var n=AK.fbm2(px*0.013,py*0.013,4), m=AK.fbm2(px*0.06,py*0.06,3);
+      cx.globalAlpha=0.12+0.34*n*m;
+      cx.fillStyle= (n+m)>1.02 ? '#4E6E68' : ((n+m)>0.74 ? '#2E4A50' : '#07161A');
+      cx.fillRect(px,py,1.1+n*2.0,1.0+m*1.6);
+    }
+    var n2=Math.round(r*r*0.024);
+    for(var f=0;f<n2;f++){
+      var fx=x-r+rnd()*2*r, fy=y-r+rnd()*2*r, ln=8+rnd()*30;
+      var an=-0.45+AK.fbm2(fx*0.004,fy*0.004,2)*0.9;
+      cx.globalAlpha=0.12+0.26*rnd();
+      cx.strokeStyle= rnd()>0.5 ? '#5C8078' : '#061A1E';
+      cx.lineWidth=0.7+rnd()*1.2;
+      cx.beginPath(); cx.moveTo(fx,fy); cx.lineTo(fx+Math.cos(an)*ln,fy+Math.sin(an)*ln); cx.stroke();
+    }
+    cx.globalAlpha=1;
+    var vg=cx.createRadialGradient(x-r*0.42,y+r*0.30,0,x-r*0.42,y+r*0.30,r*1.0);
+    vg.addColorStop(0,'rgba(8,9,7,0.60)'); vg.addColorStop(1,'rgba(8,9,7,0)');
+    cx.fillStyle=vg; cx.fillRect(x-r,y-r,2*r,2*r);
+    cx.restore(); cx.globalAlpha=1;
+  }
+  // ---- ONE DEPOSIT. ink is DARKER AND COLDER than the rag.
+  // NOTHING STANDS ON ANYTHING. the halo is concentric, so it can never read as
+  // a cast shadow, and the only directional term is the drying ring's own
+  // shading: lit on the up-light face, falling to its own lee on the down-left.
+  // hm is the soak multiplier. it is a rendering term and never a quantity, so a
+  // plate that packs marks tight may hold it in to stop the annuli compounding.
+  function dep(x,y,r,hm){
+    if(!(r>0)) return;
+    hm = hm || 1.85;
+    cx.save(); cx.globalCompositeOperation='multiply';
+    var g=cx.createRadialGradient(x,y,r*0.30,x,y,r*hm);
+    g.addColorStop(0,'rgba(44,58,62,1)');
+    g.addColorStop(0.58,'rgba(126,124,120,1)');
+    g.addColorStop(1,'rgba(255,255,255,1)');
+    cx.fillStyle=g; cx.beginPath(); cx.arc(x,y,r*hm,0,6.283); cx.fill(); cx.restore();
+    cx.beginPath();
+    var N = r>40?72:(r>6?40:14);
+    for(var a=0;a<=N;a++){ var th=a/N*6.283;
+      var q=r*(1+0.15*AK.fbm2(Math.cos(th)*2.1+x*0.03, Math.sin(th)*2.1+y*0.03, 3));
+      var px=x+Math.cos(th)*q, py=y+Math.sin(th)*q; a?cx.lineTo(px,py):cx.moveTo(px,py); }
+    cx.closePath();
+    cx.fillStyle='#0C1A1E'; cx.globalAlpha=0.95; cx.fill(); cx.globalAlpha=1;
+    if(r>=3.0){
+      // MINERAL DRYING RING. one stroke, shaded ACROSS the mark by the fill's own
+      // direction, so the ridge has a lit face and a lee face and is never a lamp.
+      // #C6D3CB is reached only at the crest, which is a few degrees of arc.
+      cx.save();
+      cx.lineWidth=Math.max(0.9,r*0.055);
+      cx.strokeStyle=ridgeGrad(x,y,r);
+      cx.globalAlpha=0.82; cx.stroke();
+      cx.restore(); cx.globalAlpha=1;
+    }
+    if(r>60){ inkTooth(x,y,r); }   // no body over 60 px is ever a flat field
+  }
+  // PLACEMENT. a mark never lands under type. the lane is scanned for a free
+  // seat rather than the mark being dropped where it collided or dropped entirely,
+  // which is what left the lower bands of plates 04 and 09 bare.
+  function seat(lo,hi,r,y0,pad){
+    pad = (pad===undefined) ? r*1.9+4 : pad;
+    // the mark may move freely in x, which is category only, and NEVER further
+    // in y than the declared jitter band, because y is log10 of the amount.
+    var jit=Math.max(7,r*0.5), best=null;
+    for(var t=0;t<90;t++){
+      var x=lo+r+rnd()*Math.max(1,hi-lo-2*r);
+      var y=y0+(rnd()-0.5)*2*jit;
+      if(!inType(x,y,pad)) return [x,y];
+      if(best===null) best=[x,y];
+      if(!inType(x,y,r)) best=[x,y];      // at least keep the BODY off the type
+    }
+    // no free seat. the mark is still drawn, because dropping a gift is a data
+    // lie, and every label on this deck carries its own knockout.
+    return best;
+  }
+  // ---- gold viewport ticks for the NEXT plate (the plate chain)
+  function viewport(x,y,w,h){
+    cx.save(); cx.strokeStyle='#FFC72C'; cx.globalAlpha=0.75; cx.lineWidth=1.25;
+    var t=26;
+    [[x,y,1,1],[x+w,y,-1,1],[x,y+h,1,-1],[x+w,y+h,-1,-1]].forEach(function(p){
+      cx.beginPath(); cx.moveTo(p[0]+p[2]*t,p[1]); cx.lineTo(p[0],p[1]);
+      cx.lineTo(p[0],p[1]+p[3]*t); cx.stroke(); });
+    cx.restore();
+  }
+
+  function grade(){
+    AKPOST.grade(cx,{exposure:-0.12,saturation:0.94,contrast:1.06,
+      grain:{amount:0.045,size:1.3,seed:20260905},dither:true});
+  }
+
+  rag(1.0);
+  // lane channels, a scored change in the tooth, hair weight
+  cx.save(); cx.globalAlpha=0.30; cx.strokeStyle='#2A2118'; cx.lineWidth=0.75;
+  [528,552].forEach(function(x){cx.beginPath();cx.moveTo(x,440);cx.lineTo(x,1290);cx.stroke();});
+  cx.restore();
+  // left margin scale, cased ticks. the values are set as type in the SVG layer.
+  cx.save(); cx.strokeStyle='#7E9A94'; cx.globalAlpha=0.60; cx.lineWidth=1.25;
+  [50,500,5000,50000].forEach(function(v){ var y=ry(v);
+    cx.beginPath(); cx.moveTo(36,y); cx.lineTo(66,y); cx.stroke();
+    cx.globalAlpha=0.35; cx.beginPath(); cx.moveTo(66,y); cx.lineTo(122,y); cx.stroke();
+    cx.globalAlpha=0.60; });
+  cx.beginPath(); cx.moveTo(51,ry(25)); cx.lineTo(51,ry(120000)); cx.globalAlpha=0.25; cx.stroke();
+  cx.restore();
+  var pos=GIFTS.slice().sort(function(a,b){return a[0]-b[0];});
+  // the 105 largest ALASKA deposits, whose combined area equals the six
+  var akSorted=pos.filter(function(g){return g[1];}).slice().sort(function(a,b){return b[0]-a[0];});
+  var ring105=akSorted.slice(0,105);
+  var ringSet=new Set(); ring105.forEach(function(g){ringSet.add(g);});
+  var placed=0, pts=[], ringPts=[];
+  for(var i=0;i<pos.length;i++){
+    var g=pos[i], r=Math.max(2.0,rr(g[0])), yy=ry(g[0]);
+    var lane=g[1]?[70,528]:[552,1010];
+    var st=seat(lane[0],lane[1],r,yy);
+    if(!st) continue;
+    dep(st[0],st[1],r); placed++; pts.push([st[0],st[1]]);
+    // the counting ring is INSTRUMENT GREY, never gold. gold is the rule alone.
+    // a floor on its radius so all 105 are countable, not only the large ones.
+    if(ringSet.has(g)){ cx.save(); cx.strokeStyle='#8AA49C'; cx.globalAlpha=0.85;
+      cx.lineWidth=1.6; cx.beginPath(); cx.arc(st[0],st[1],Math.max(8,r*1.4),0,6.283);
+      cx.stroke(); cx.restore(); ringPts.push([st[0],st[1]]); }
+  }
+  window.__akAssert=[
+    {what:"every positive contribution in the record drew a deposit",
+     expect:pos.length, actual:placed, tol:0, unit:"marks"},
+    {what:"the 105 largest Alaska donors are ringed, and their money equals the six",
+     expect:105, actual:ringPts.length, tol:0, unit:"rings"}];
+  window.__akMotifs=[{what:"the Alaska lane", rect:[70,470,458,780]},
+                     {what:"the everywhere else lane", rect:[552,470,458,780]}];
+  document.body.setAttribute('data-scale', JSON.stringify([{
+    what:"the amount axis, log10 dollars", axis:"y", unit:"dollars",
+    from:[430,25], to:[1250,140000], band:[36,66],
+    marks:[{at:Math.round(ry(50)),means:"$50, the median Alaska gift"},
+           {at:Math.round(ry(500)),means:"$500"},
+           {at:Math.round(ry(5000)),means:"$5,000"},
+           {at:Math.round(ry(50000)),means:"$50,000"}]}]));
+  viewport(362,478,675,844);        // plate 02, the 1.6x frame
+  console.log('plate1 placed',placed);
+
+  grade();
+})();
+</script></body></html>

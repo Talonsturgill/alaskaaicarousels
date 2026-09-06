@@ -1,0 +1,107 @@
+{
+  "run_date": "2026-09-05",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 1,
+      "text": "It takes 105 Alaska donors to match six people Outside.",
+      "fragment": "105 Alaska donors",
+      "member": "C14"
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "text": "Six gifts. $372,000.Every one from the Bay Area.",
+      "fragment": "Six gifts",
+      "subject": "gifts from people listing Anthropic as employer",
+      "members": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "2,705 of the 4,604 gifts came from Alaska addresses, 58.75 percent of them, carrying 26.56 percent of the money. The median Alaska gift is $50. California sent more, and it only sent more because six of its donors are on this sheet.",
+      "fragment": "4,604 gifts",
+      "member": "C11"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "text": "86 donors carried72.81 percent of it.",
+      "fragment": "86 donors",
+      "member": "C15"
+    },
+    {
+      "kind": "count",
+      "slide": 9,
+      "text": "Four tickets.Old rules.",
+      "fragment": "Four tickets",
+      "subject": "tickets certified for the November 3rd general election",
+      "members": [
+        "C43",
+        "C44",
+        "C45",
+        "C46"
+      ]
+    },
+    {
+      "kind": "design",
+      "slide": 1,
+      "text": "y = log10 OF THE AMOUNT. x IS CATEGORY ONLY.MARKS FLOORED AT 2.0 px. 4,588 GIFTS DRAWN.OF 4,604 ROWS. THE REST ARE REFUNDS.",
+      "fragment": "4,588 GIFTS",
+      "member": "C42",
+      "note": "the drawn count is the positive contributions, not the 4,604 transactions, and the next line says so"
+    },
+    {
+      "kind": "design",
+      "slide": 6,
+      "text": "ONE IMPRESSION PER TWO HUNDRED VOTES, ROUNDED. NO INK ON THIS PLATE.",
+      "fragment": "TWO HUNDRED VOTES",
+      "member": "C21",
+      "note": "the plate's own printed encoding ratio, derived from the certified totals in C21. 117,962 and 45,418 at one per two hundred give 590 and 227 impressions, 817 in all, which the frame counts."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 9,
+      "text": "GENERAL ELECTION, NOVEMBER 3RD, 2026.FOUR CERTIFIED TICKETS. BRONSON AND CHURCH.KREISS-TOMKINS AND JOHNSON. TAYLOR AND ENGLISH.WILSON AND SHOWER.",
+      "fragment": "FOUR CERTIFIED TICKETS",
+      "member": "C31"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 9,
+      "text": "KREISS-TOMKINS AND JOHNSON LED THE PRIMARYWITH 37,006 VOTES, 22.5 PERCENT OF 164,303.",
+      "fragment": "37,006 VOTES",
+      "member": "C30"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "RINGED. THE 105 ALASKA GIFTS THAT MATCH THE SIX.",
+      "fragment": "105 ALASKA GIFTS",
+      "member": "C14",
+      "note": "the 105 largest Alaska gifts, whose combined area at K equals the six's 93,000 px2. the same cohort plate 01's headline names."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "text": "THE SIX ARE NOT THE SIX LARGEST DONORS.THE LARGEST SIX CARRY 24.38 PERCENT.ALSO HERE. AI FUTURES PROJECT $70,000.ALIGNMENT RESEARCH CENTER $20,000.",
+      "fragment": "SIX LARGEST DONORS",
+      "member": "C40",
+      "note": "the guard against conflating the six with the six largest donors. C41 has the 86 who gave over $4,000 as exactly the 86 largest, and the six are not among the top six of them."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "SIX GIFTS. $372,000. 93,000 px2 AT 1.0x.",
+      "fragment": "SIX GIFTS",
+      "member": "C16"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-05/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 11551203,
+  "pdf_mb": 11.55,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-05/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-05/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-05/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-05/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-05/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-05/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-05/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-05/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-05/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-05/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "One Race Late. The limit and the money it missed.",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "cda0dc27ab871556148684b030120ed432f2786a90798cacfead68552502a74f",
+        "bytes": 8125881
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "8c455a99444c4a7fb9ce55d9703e0d121e6788b2191dd3057802fca203b90240",
+        "bytes": 6988917
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "febf7ad72d7443650691ee87efa68d8b832806dafdbf6f2d49799b0ea1168836",
+        "bytes": 7066309
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "0f9f934335f6a99b103f6fc55924765a7bfabef618f2313743a02834616a681c",
+        "bytes": 7863535
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "e2ee6f80b9520583001345d2994abac8b5b66da997b6eeed97d58edf79c6f9ce",
+        "bytes": 5743928
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "e7f21a0ada8ea36fc106b23a068bd462210c5fa67b65a70448be78197f7cb83f",
+        "bytes": 8655235
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "260eff2c9fafbc102bbc6ec781efa06023465476d55a04a6a20c5ba7c681a848",
+        "bytes": 7786123
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "07a70802f628f3ca4a59445cf81098c737f9349e524e91782f5e99eee3891f1a",
+        "bytes": 6982179
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "74d75f61b6855d76c4fc789545cefcd3fb42b77403331874d49a3ce57780b0f2",
+        "bytes": 8064581
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "6e5073fb9273756792c6b12cd75a7814bf9a5c09326b2fbc45dba3305ed79277",
+        "bytes": 16173
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "f82f9eb1fe6508bc8ebaccbb45aa71088dae46051cbb09f6bedf8867f0ba80c3",
+        "bytes": 16038
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "80a464dddbdca94ace8be5fc8eb7aea6667a98c9e61a82049937a5ee2f6353af",
+        "bytes": 16388
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "89963306ed9006fdaeb35123d662202769eb3aecd51e9c97bc114f95fab0ed91",
+        "bytes": 18177
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "d83ab0c0f1fc61edc91880bd21baae209e844c6019c898f0c7c03215dfd2a34e",
+        "bytes": 16765
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "0e518a6914f24bd1a1d9c6b99cfb209de1dbb440cf4061df3b505da04daa7891",
+        "bytes": 10286
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "1b239137063347192fbd26412df22d350e4ac6a378690e4cf9c593f953d3763c",
+        "bytes": 12934
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "9060ebd661b6d914c6e969c8be575af3738d5343bbb0588f3247a0c04f33519b",
+        "bytes": 13846
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "034daf77dea1484f895c1c544348c8f0f1f8ab1656baa7b46b65bbf50ddc098d",
+        "bytes": 17471
+      }
+    ]
+  }
+}

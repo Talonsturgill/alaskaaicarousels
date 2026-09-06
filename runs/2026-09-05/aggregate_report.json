@@ -1,0 +1,131 @@
+{
+  "run_dir": "out/2026-09-05",
+  "render_report": "out/2026-09-05/render/render_report.json",
+  "aggregates_file": "out/2026-09-05/aggregates.json",
+  "detected": 13,
+  "declared": 12,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "105 Alaska donors",
+      "text": "It takes 105 Alaska donors to match six people Outside.",
+      "n": 105,
+      "subject": "alaska donors"
+    },
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "4,588 GIFTS",
+      "text": "y = log10 OF THE AMOUNT. x IS CATEGORY ONLY.MARKS FLOORED AT 2.0 px. 4,588 GIFTS",
+      "n": 4588,
+      "subject": "gifts"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Six gifts",
+      "text": "Six gifts. $372,000.Every one from the Bay Area.",
+      "n": 6,
+      "subject": "gifts"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "4,604 gifts",
+      "text": "2,705 of the 4,604 gifts came from Alaska addresses, 58.75 percent of them, carr",
+      "n": 4604,
+      "subject": "gifts"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "105 ALASKA GIFTS",
+      "text": "RINGED. THE 105 ALASKA GIFTS THAT MATCH THE SIX.",
+      "n": 105,
+      "subject": "alaska gifts"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "86 donors",
+      "text": "86 donors carried72.81 percent of it.",
+      "n": 86,
+      "subject": "donors"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "SIX LARGEST DONORS",
+      "text": "THE SIX ARE NOT THE SIX LARGEST DONORS.THE LARGEST SIX CARRY 24.38 PERCENT.ALSO",
+      "n": 6,
+      "subject": "largest donors"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "86 DONORS",
+      "text": "86 DONORS GAVE MORE. THEY CARRY 72.81 PERCENT.",
+      "n": 86,
+      "subject": "donors"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "TWO HUNDRED VOTES",
+      "text": "ONE IMPRESSION PER TWO HUNDRED VOTES, ROUNDED. NO INK ON THIS PLATE.",
+      "n": 2,
+      "subject": "hundred votes"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "SIX GIFTS",
+      "text": "SIX GIFTS. $372,000. 93,000 px2 AT 1.0x.",
+      "n": 6,
+      "subject": "gifts"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "Four tickets",
+      "text": "Four tickets.Old rules.",
+      "n": 4,
+      "subject": "tickets"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "FOUR CERTIFIED TICKETS",
+      "text": "GENERAL ELECTION, NOVEMBER 3RD, 2026.FOUR CERTIFIED TICKETS. BRONSON AND CHURCH.",
+      "n": 4,
+      "subject": "certified tickets"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "37,006 VOTES",
+      "text": "KREISS-TOMKINS AND JOHNSON LED THE PRIMARYWITH 37,006 VOTES, 22.5 PERCENT OF 164",
+      "n": 37006,
+      "subject": "votes"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 1,
+      "text": "y = log10 OF THE AMOUNT. x IS CATEGORY ONLY.MARKS FLOORED AT 2.0 px. 4,588 GIFTS DRAWN.OF 4,604 ROWS. THE REST ARE REFUNDS.",
+      "note": "the drawn count is the positive contributions, not the 4,604 transactions, and the next line says so"
+    },
+    {
+      "slide": 6,
+      "text": "ONE IMPRESSION PER TWO HUNDRED VOTES, ROUNDED. NO INK ON THIS PLATE.",
+      "note": "the plate's own printed encoding ratio, derived from the certified totals in C21. 117,962 and 45,418 at one per two hundred give 590 and 227 impressions, 817 in all, which the frame counts."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "S4 'RINGED. THE 105 ALASKA GIFTS THAT MATCH THE SIX.' [from_claim]: the noun 'gift' does not appear in claim C14; check that the number is being attached to what the claim actually counts.",
+    "S7 'SIX GIFTS. $372,000. 93,000 px2 AT 1.0x.' [from_claim]: the noun 'gift' does not appear in claim C16; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

@@ -1,0 +1,466 @@
+{
+  "run_date": "2026-09-05",
+  "carousel_no": 51,
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "Drake Thomas of Berkeley, California, who lists Anthropic as his employer and Member of Technical Staff as his occupation, gave the Kreiss-Tomkins campaign $100,000 on May 7th, 2026 by electronic funds transfer.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Row read verbatim in the state's record by the fact-checker and by the showrunner independently."
+    },
+    {
+      "id": "C02",
+      "claim": "Daniel Ziegler of Berkeley, California, who lists Anthropic PBC as his employer and Machine Learning Researcher as his occupation, gave $70,000 on February 4th, 2026.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Row read verbatim. The employer string is filed as Anthropic PBC, so an employer grouping has to match both spellings."
+    },
+    {
+      "id": "C03",
+      "claim": "Jan Leike of San Francisco, California, who lists Anthropic as his employer and Technical Staff as his occupation, gave $70,000 on March 27th, 2026.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Row read verbatim. The state record spells the surname Leike. One outlet renders it Lieke. The state's spelling is used."
+    },
+    {
+      "id": "C04",
+      "claim": "Steven Bills of San Francisco, California, who lists Anthropic as his employer and AI Researcher as his occupation, gave $50,000 on February 4th, 2026.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Row read verbatim."
+    },
+    {
+      "id": "C05",
+      "claim": "Evan Hubinger of Alameda, California, who lists Anthropic as his employer and Research Scientist as his occupation, gave $50,000 on February 4th, 2026.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Row read verbatim."
+    },
+    {
+      "id": "C06",
+      "claim": "Tao Lin of Berkeley, California, who lists Anthropic as his employer and Technical Staff Member as his occupation, gave $32,000 on February 3rd, 2026.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Row read verbatim. The smallest and earliest of the six, and the one the published reporting did not name."
+    },
+    {
+      "id": "C07",
+      "claim": "The six gifts from people who list Anthropic or Anthropic PBC as their employer total $372,000.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows. Query is Campaign Disclosure Income, candidate name, report year 2026, election any, status Complete Not Amended, pulled 2026-09-05. 100,000 plus 70,000 plus 70,000 plus 50,000 plus 50,000 plus 32,000. Matches the published reporting to the dollar."
+    },
+    {
+      "id": "C08",
+      "claim": "All six of those gifts arrived by electronic funds transfer.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Payment Type reads Electronic Funds Transfer on all six rows."
+    },
+    {
+      "id": "C09",
+      "claim": "All six donors list San Francisco Bay Area addresses, three in Berkeley, two in San Francisco and one in Alameda.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Read off the City and State columns of the six rows."
+    },
+    {
+      "id": "C10",
+      "claim": "The six gifts were made between February 3rd and May 7th, 2026, every one of them before the August 18th primary.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Earliest Lin February 3rd, latest Thomas May 7th."
+    },
+    {
+      "id": "C11",
+      "claim": "The campaign's 2026 disclosure record holds 4,604 transactions totalling $2,379,290.20, which makes the six gifts 15.63 percent of everything it raised.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows. Query is Campaign Disclosure Income, candidate name, report year 2026, election any, status Complete Not Amended, pulled 2026-09-05. Recomputed twice by two separately written scripts that share no code, agreeing exactly."
+    },
+    {
+      "id": "C12",
+      "claim": "Alaska addresses supplied 2,705 of the 4,604 gifts, 58.75 percent of the count, and $632,035.75, 26.56 percent of the money. The median Alaska gift is $50.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows. Query is Campaign Disclosure Income, candidate name, report year 2026, election any, status Complete Not Amended, pulled 2026-09-05. Recomputed twice."
+    },
+    {
+      "id": "C13",
+      "claim": "California addresses supplied $969,843.36, more than Alaska's $632,035.75, and that gap exists because of the six gifts. Net of them California supplied $597,843.36, which is less than Alaska.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows. Query is Campaign Disclosure Income, candidate name, report year 2026, election any, status Complete Not Amended, pulled 2026-09-05. Stated with the caveat because the bare comparison would be misleading. All six Anthropic donors are Californian and their money is inside the California figure."
+    },
+    {
+      "id": "C14",
+      "claim": "It takes the 105 largest Alaska donors, summing to $372,960.85, to match what the six gave.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows. Query is Campaign Disclosure Income, candidate name, report year 2026, election any, status Complete Not Amended, pulled 2026-09-05. Donors grouped by contributor name plus city plus state, which is the closest identity the state publishes. Counted as donors and not as gifts."
+    },
+    {
+      "id": "C15",
+      "claim": "86 donors gave more than $4,000 in total and supplied $1,732,397.04, 72.81 percent of the money. Sixteen of the 86 are Alaskan and seventy are not.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows. Query is Campaign Disclosure Income, candidate name, report year 2026, election any, status Complete Not Amended, pulled 2026-09-05. Measured against $4,000 because that is the limit the new measure sets for a joint governor and lieutenant governor ticket. Donors grouped by name plus city plus state."
+    },
+    {
+      "id": "C16",
+      "claim": "Anthropic is the largest named employer in the record at $372,000, more than twice the next one, Jane Street at $155,000.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows. Query is Campaign Disclosure Income, candidate name, report year 2026, election any, status Complete Not Amended, pulled 2026-09-05. Employer strings grouped, with the non-employer entries retired, self, not employed, none and blank excluded. Anthropic and Anthropic PBC combined."
+    },
+    {
+      "id": "C17",
+      "claim": "The same record holds $70,000 across two gifts from Eli Lifland of the AI Futures Project and $20,000 from Eric Neyman of the Alignment Research Center, so the AI money in this campaign is wider than one company.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Rows read verbatim. Included because a deck that names Anthropic and stops is narrower than the record."
+    },
+    {
+      "id": "C18",
+      "claim": "Bernadette Wilson, who finished third in the primary, raised $499,391.31 across 2,379 transactions, of which 53.15 percent came from Alaska addresses.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows. Query is Campaign Disclosure Income, candidate name, report year 2026, election any, status Complete Not Amended, pulled 2026-09-05. Same query, run for the comparison candidate."
+    },
+    {
+      "id": "C19",
+      "claim": "Alaska ballot initiative 23RCF2 is titled An Act restoring campaign contribution limits for campaigns for state and local office, and its sponsors are Bruce Botelho, David Monson and Calvin Schrage.",
+      "source_url": "https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/?initiative_id=23RCF2",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Read off the state's petition status page."
+    },
+    {
+      "id": "C20",
+      "claim": "The measure passed with 117,962 votes in favour and 45,418 against, and the Division of Elections lists its status as approved by voters.",
+      "source_url": "https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/?initiative_id=23RCF2",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "The state's petition status page carries both counts and the status string."
+    },
+    {
+      "id": "C21",
+      "claim": "Those counts are 72.20 percent in favour and 27.80 percent against, of 163,380 votes cast on the measure.",
+      "source_url": "https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/?initiative_id=23RCF2",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Arithmetic on the two counts the state publishes. 117,962 plus 45,418 is 163,380."
+    },
+    {
+      "id": "C22",
+      "claim": "The measure sets a limit of $2,000 each election cycle on what an individual may give a candidate.",
+      "source_url": "https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/petition_id/23rcf2",
+      "source_outlet": "Alaska Division of Elections, 23RCF2 bill text",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "New AS 15.13.070(b)(1) in the initiative's own text reads $2,000 each election cycle. The unit is a cycle, not a single election."
+    },
+    {
+      "id": "C23",
+      "claim": "For a joint governor and lieutenant governor ticket the individual limit is $4,000 each election cycle rather than $2,000, and the limit for a group is $8,000.",
+      "source_url": "https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/petition_id/23rcf2",
+      "source_outlet": "Alaska Division of Elections, 23RCF2 bill text",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "New AS 15.13.070(g)(1) and (g)(2) in the initiative's own text. This is the limit that would govern the six gifts, because the candidate runs on a joint ticket."
+    },
+    {
+      "id": "C24",
+      "claim": "Measured against that $4,000 limit the six gifts run from 8 times it to 25 times it, and together they equal 93 maximum contributions.",
+      "source_url": "https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/petition_id/23rcf2",
+      "source_outlet": "Alaska Division of Elections, 23RCF2 bill text",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Arithmetic against the fetched bill text. 32,000 over 4,000 is 8. 100,000 over 4,000 is 25. 372,000 over 4,000 is 93."
+    },
+    {
+      "id": "C25",
+      "claim": "The measure's limits are adjusted for inflation once a decade.",
+      "source_url": "https://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin",
+      "source_outlet": "Alaska Public Media, Eric Stone",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "verified": true,
+      "note": "Verbatim, those limits would be adjusted for inflation once a decade in an effort to withstand court scrutiny."
+    },
+    {
+      "id": "C26",
+      "claim": "Alaska Public Media reported on the night of the vote that the measure would take effect after the November general election.",
+      "source_url": "https://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin",
+      "source_outlet": "Alaska Public Media, Eric Stone",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "verified": true,
+      "note": "Verbatim, if the ballot measure garners more than 50 percent of the vote, it would take effect after the November general election. This is the only published statement of the effective date the run could reach, it is a single secondary source and it is phrased conditionally, so it is printed attributed and with no date and no day count. The initiative's own text carries no effective date section."
+    },
+    {
+      "id": "C27",
+      "claim": "The August 18th primary was the only vote Alaskans got on the measure.",
+      "source_url": "https://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin",
+      "source_outlet": "Alaska Public Media, Eric Stone",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "verified": true,
+      "note": "Verbatim, the August primary is Alaskans' one and only chance to vote on the measure."
+    },
+    {
+      "id": "C28",
+      "claim": "Alaska has had no limit on individual campaign contributions since a federal appeals court ruling in 2021 that declared the state's voter approved $500 per year limit unconstitutionally low.",
+      "source_url": "https://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin",
+      "source_outlet": "Alaska Public Media, Eric Stone",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "verified": true,
+      "note": "Verbatim. The case name and the court could not be sourced in this run, so neither is printed. The source says per year, not per election."
+    },
+    {
+      "id": "C29",
+      "claim": "Governor Mike Dunleavy vetoed a bill passed by the Legislature in 2026 that sought identical limits, saying it would not do enough to limit self funded candidates from donating to their own campaigns.",
+      "source_url": "https://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin",
+      "source_outlet": "Alaska Public Media, Eric Stone",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "verified": true,
+      "note": "Verbatim. Establishes that the Legislature acted and the voters were the backstop."
+    },
+    {
+      "id": "C30",
+      "claim": "Jonathan Kreiss-Tomkins and Zac Johnson finished first in the August 18th, 2026 governor primary with 37,006 votes, 22.5 percent of 164,303 cast across seventeen tickets.",
+      "source_url": "https://www.elections.alaska.gov/election-results/e/?id=26prim",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-31",
+      "verified": true,
+      "note": "The Division of Elections marks the primary Official and last updated August 31st, 2026 at 2:53 pm. The per candidate figures were read off the state's own Election Summary Report and corroborated line by line against an independent tabulation of the same contest."
+    },
+    {
+      "id": "C31",
+      "claim": "Four tickets are certified for the November 3rd, 2026 general election, Bronson and Church, Kreiss-Tomkins and Johnson, Taylor and English, and Wilson and Shower.",
+      "source_url": "https://www.elections.alaska.gov/candidates/?election=26genr",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Read off the state's certified candidate list for the 2026 general election. Each is marked Certified and none is marked withdrawn."
+    },
+    {
+      "id": "C32",
+      "claim": "Tom Begich and Julia Hnilicka, who finished second in the primary with 34,172 votes, are not on that certified general election list.",
+      "source_url": "https://www.elections.alaska.gov/candidates/?election=26genr",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Verified as an absence from the state's certified list. The reason for the absence was not verifiable in this run and is not asserted."
+    },
+    {
+      "id": "C33",
+      "claim": "Kreiss-Tomkins has proposed banning data centre construction in Alaska until the Legislature passes comprehensive regulation on data centre development.",
+      "source_url": "https://sfstandard.com/2026/08/31/anthropic-employees-alaska-governor-race-kreiss-tomkins/",
+      "source_outlet": "The San Francisco Standard, Emily Shugerman",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-31",
+      "verified": true,
+      "note": "Verbatim, he recently debuted a proposal to ban data center construction in Alaska until the legislature passes comprehensive regulation on data center development."
+    },
+    {
+      "id": "C34",
+      "claim": "Asked about the donations, Kreiss-Tomkins said he failed to give full appreciation to the optics of this, and that having known Thomas and the work of these other folks for a while, it was like, oh, these are the good guys.",
+      "source_url": "https://sfstandard.com/2026/08/31/anthropic-employees-alaska-governor-race-kreiss-tomkins/",
+      "source_outlet": "The San Francisco Standard, Emily Shugerman",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-31",
+      "verified": true,
+      "note": "He said it to the Northern Journal and the San Francisco Standard reprinted it. The bracketed insertion naming Thomas is the outlet's."
+    },
+    {
+      "id": "C35",
+      "claim": "Kreiss-Tomkins did not respond to the San Francisco Standard's request for comment, so the remark above is his only published response.",
+      "source_url": "https://sfstandard.com/2026/08/31/anthropic-employees-alaska-governor-race-kreiss-tomkins/",
+      "source_outlet": "The San Francisco Standard, Emily Shugerman",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-31",
+      "verified": true,
+      "note": "Verbatim, Kreiss-Tomkins did not respond to a request for comment."
+    },
+    {
+      "id": "C36",
+      "claim": "Anthropic the company is not reported to have said anything about the donations, and the gifts are from individuals rather than from the company.",
+      "source_url": "https://sfstandard.com/2026/08/31/anthropic-employees-alaska-governor-race-kreiss-tomkins/",
+      "source_outlet": "The San Francisco Standard, Emily Shugerman",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-31",
+      "verified": true,
+      "note": "Absence established by direct interrogation of the article, which carries no company statement. These are personal contributions by people who list Anthropic as their employer, not corporate contributions."
+    },
+    {
+      "id": "C37",
+      "claim": "No published account reports that any of the six donors asked for or received a policy, a meeting, a job or any other favour.",
+      "source_url": "https://sfstandard.com/2026/08/31/anthropic-employees-alaska-governor-race-kreiss-tomkins/",
+      "source_outlet": "The San Francisco Standard, Emily Shugerman",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-31",
+      "verified": true,
+      "note": "Absence claim, scoped honestly to the one investigation that exists plus the state's disclosure record, which shows money in and nothing else. The only motive the reporting offers is a source saying some knew the candidate through AI safety circles and were eager to elect someone who shared their concerns."
+    },
+    {
+      "id": "C38",
+      "claim": "The six gifts were lawful when they were made, because Alaska had no individual contribution limit at the time.",
+      "source_url": "https://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin",
+      "source_outlet": "Alaska Public Media, Eric Stone",
+      "source_is_primary": false,
+      "date_of_source": "2026-08-18",
+      "verified": true,
+      "note": "Follows from the 2021 ruling leaving Alaska with no individual limit and from the February to May 2026 dates on the six gifts. Printed because reporting six lawful disclosed contributions without saying they were lawful would be the unfair version of this story."
+    },
+    {
+      "id": "C39",
+      "claim": "The measure's own applicability section says it does not apply to contributions made to influence the outcome of any election that occurred on or before its effective date.",
+      "source_url": "https://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/petition_id/23rcf2",
+      "source_outlet": "Alaska Division of Elections, 23RCF2 bill text",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Section 9 of the initiative text, fetched. The text carries no effective date section of its own."
+    },
+    {
+      "id": "C40",
+      "claim": "The six Anthropic employer donors are not the six largest donors to the campaign. The six largest carry 24.38 percent of the money against the Anthropic bloc's 15.63 percent.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows, donors grouped by contributor name plus city plus state. Query is Campaign Disclosure Income, candidate name, report year 2026, status Complete Not Amended, pulled 2026-09-05. Included deliberately. A deck that implies these six are the biggest money in the race would be asserting something the record does not say."
+    },
+    {
+      "id": "C41",
+      "claim": "3,262 donors appear in the record, and the 86 who gave more than $4,000 are exactly the 86 largest.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows, donors grouped by contributor name plus city plus state. Query is Campaign Disclosure Income, candidate name, report year 2026, status Complete Not Amended, pulled 2026-09-05. Checked because it is what licenses drawing the 86 as a point on a cumulative concentration curve. The 120 who gave over $2,000 are likewise exactly the 120 largest, at 76.80 percent."
+    },
+    {
+      "id": "C42",
+      "claim": "Of the 4,604 transactions in the record, 4,588 are positive contributions and the remainder are refunds or adjustments, which is why the gross of the positive gifts, $2,389,277.70, is higher than the net of $2,379,290.20.",
+      "source_url": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
+      "source_outlet": "Alaska Public Offices Commission",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-05",
+      "verified": true,
+      "note": "Arithmetic over the state's own disclosure rows. Counted because the deck draws one deposit per positive gift and has to say how many it drew. Recomputed twice."
+    },
+    {
+      "id": "C43",
+      "claim": "Dave Bronson and Josh Church are certified for the November 3rd, 2026 general election ballot for governor and lieutenant governor.",
+      "source_url": "https://www.elections.alaska.gov/candidates/?election=26genr",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Read off the state's certified candidate list, marked Certified and not withdrawn."
+    },
+    {
+      "id": "C44",
+      "claim": "Treg Taylor and Candi English are certified for the November 3rd, 2026 general election ballot for governor and lieutenant governor.",
+      "source_url": "https://www.elections.alaska.gov/candidates/?election=26genr",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Read off the state's certified candidate list, marked Certified and not withdrawn."
+    },
+    {
+      "id": "C45",
+      "claim": "Bernadette M. Wilson and Michael K. Shower are certified for the November 3rd, 2026 general election ballot for governor and lieutenant governor.",
+      "source_url": "https://www.elections.alaska.gov/candidates/?election=26genr",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Read off the state's certified candidate list, marked Certified and not withdrawn."
+    },
+    {
+      "id": "C46",
+      "claim": "Jonathan Kreiss-Tomkins and Zac Johnson are certified for the November 3rd, 2026 general election ballot for governor and lieutenant governor.",
+      "source_url": "https://www.elections.alaska.gov/candidates/?election=26genr",
+      "source_outlet": "Alaska Division of Elections",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-06",
+      "verified": true,
+      "note": "Read off the state's certified candidate list, marked Certified and not withdrawn."
+    }
+  ]
+}
