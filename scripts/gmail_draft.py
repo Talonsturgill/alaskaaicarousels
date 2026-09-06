@@ -481,6 +481,44 @@ def main():
                          '<div style="font-size:14px;color:#667085">None. '
                          'The machine ran to spec; no upgrades were needed.</div>')
 
+    # PHASE 3.6's OWN LINES. The routine requires these in every draft, clean or
+    # not, because they are the only report the maintainer gets that the live
+    # site and the gas watch page were looked at, and a silent pass is exactly
+    # what a broken site would also produce. Read from run_state's artifacts,
+    # which the run writes when it runs the checks. Never fatal.
+    signoff_html = ""
+    try:
+        _rs = json.loads((run / "run_state.json").read_text())
+        _art = _rs.get("artifacts", {}) or {}
+        _rows = []
+        for _label, _key in (("SITE SIGN-OFF", "site_signoff"),
+                             ("GAS WATCH", "gas_watch"),
+                             ("SITE FIXES", "site_fixes")):
+            _v = _art.get(_key)
+            if _key == "site_fixes" and not _v:
+                _v = "none. Nothing on the live site needed repair this run."
+            if _v:
+                _t = str(_v)
+                # the run often stores the line already prefixed with its label
+                if _t.upper().startswith(_label + ":"):
+                    _t = _t[len(_label) + 1:].strip()
+                _rows.append(f"<tr><th style='white-space:nowrap'>{esc(_label)}</th>"
+                             f"<td>{esc(_t)}</td></tr>")
+        if _rows:
+            signoff_html = (
+                '<h2>The live site, looked at today</h2>'
+                '<div style="font-size:13.5px;color:#667085;margin-bottom:8px">'
+                'Every published page and the Cook Inlet Gas Watch page are read '
+                'once a run. A clean pass is reported for the same reason a '
+                'failure is: silence is what a broken site would also produce.'
+                '</div>'
+                f'<table class="score">{"".join(_rows)}</table>')
+    except Exception:
+        signoff_html = ('<h2>The live site, looked at today</h2>'
+                        '<div class="flag">The run state carried no site sign-off '
+                        'or gas watch line. Treat that as UNREPORTED, not as clean.'
+                        '</div>')
+
     # Readership. A hosted dashboard is a thing somebody has to remember to
     # open, so the numbers ride the draft instead. Nineteen decks shipped before
     # anything measured whether they were read, which made every editorial call
@@ -542,6 +580,7 @@ def main():
   {docket_html}
 
   {reader_html}
+  {signoff_html}
   {upgrades_html}
 
   <h2>Aftercare (this is where reach is won)</h2>
