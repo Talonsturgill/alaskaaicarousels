@@ -6125,3 +6125,55 @@ Relevant because artwork craft has been the weakest scored criterion in eight
 of the last ten runs, and the recent answer has been more elaborate lighting
 rather than more evident hand.
 https://www.sessions.edu/notes-on-design/top-illustration-trends/
+
+## 2026-09-05, No.51. The retention sheet, and four lessons that cost rounds.
+
+**DARK INK NEEDS PAPER, NOT BLACK, and the deck failed in both directions
+before it worked.** The medium is a campaign's whole disclosure record soaked
+into one absorbent sheet, every gift a deposit at one printed constant. The
+showrunner's prototype drew each deposit BRIGHTER than the sheet with a soft
+outward falloff, and a treatment director killed it in one sentence before any
+render, those are not blooms, they are lamps, and a field of lamps has no scale
+argument in it because light has brightness rather than size. Correct, and
+worth more than any gate. The overcorrection then cost a round of its own. With
+the rag pushed to #130F0B the inverted ink had nothing to be darker THAN, the
+bodies vanished and only the mineral rim read, so the contact sheet showed pale
+cells on black. The working ground is a genuinely mid dark paper, #221E18 to
+#4C443A, with the ink at #0C1A1E on it.
+
+**A SITE THAT REFUSES A BROWSER MAY STILL ANSWER AN ORDINARY HTTP CLIENT.**
+`aws.state.ak.us`, the Alaska Public Offices Commission's campaign disclosure
+database, returns 403 to WebFetch and resets the connection to headless
+Chromium. It answers `python requests` with a normal user agent at HTTP 200.
+Three scouts and the fact-checker all recorded it as unreachable. The whole
+deck came out of that database once it was queried directly, ASP.NET viewstate
+and RadGrid paging included, 4,604 rows. Separately and worth its own line,
+CHROMIUM IN THIS CONTAINER CANNOT REACH THE OPEN INTERNET AT ALL, so any plan
+that involves driving a real page is dead before it starts.
+
+**A HAND PLACED BLOCK UNDER A FITTED HEADLINE IS A COLLISION WAITING TO
+RENDER.** `AK.fitText` changes a headline's height by design, so every `top`
+typed underneath it is a guess about an output. The first render carried eight
+text collisions and six canvas marks inside reserved type, all of it downstream
+of that plus hand-typed reserve rectangles. One pass fixed the class: mark the
+following blocks with a flow attribute, push each clear of the one above AFTER
+the fit, then build the art's type reserve from `getBoundingClientRect` on the
+laid out DOM. Same lesson the house already learned about never typing a plate
+width, applied to the whole page instead of one label.
+
+**AN AREA EQUIVALENCE CANNOT BE DRAWN AS A TILING.** The deck's central claim
+is that six gifts and 93 maximum contributions are the same quantity of ink.
+The plan clipped 93 cap-area cells INTO the six blooms. Twenty five squares can
+never tile a disc of twenty five times their area, so it shipped 43 cells under
+a label reading 93, and the frame's own count assertion caught it. Two blocks
+side by side at one constant prove the same thing exactly and can be checked as
+ink area.
+
+**And one about a gate rather than about art.** qa.py's `points` probe judges
+each declared mark against its cohort's own median ink. On a deck whose marks
+span 45 to 1 in radius there is no single cohort, the median is set by the
+giants, and every small mark reads as missing. Three rounds went into raising
+the drawn floor to satisfy it, each one distorting the encoding further.
+Declaring those marks as a cohort was the error, not the marks. The count is
+now asserted from the drawing loop's own counter against the data length, which
+is a thing the code can genuinely be wrong about.
