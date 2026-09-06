@@ -6249,3 +6249,61 @@ longer existed. A deck whose entire credibility argument is "the constants are
 printed so you can reconstruct any number" cannot be judged against a plan that
 disagrees with it. Write the row when the change is made, not at ship.
 
+
+## 2026-09-05, Phase 12 frontier scan. PARKED: how to draw 45 to 1.
+
+Focus (b), editorial dataviz and cartography, the stalest legal slot. Aimed at
+this run's hardest craft problem rather than at a gallery: the retention sheet
+put a range of 45 to 1 in RADIUS (a $10 gift is 0.89 px, a $50,000 gift is
+40 px) into AREA, and paid for it in a declared 2.0 px floor, a cohort the
+`points` probe could not judge, and three rounds of raising the drawn floor.
+Parked rather than applied, because every one of these is an ENCODING choice a
+treatment director makes in Phase 6 and none of them is a bounded engine
+change.
+
+**THE RESEARCH SAYS AREA IS THE WRONG CHANNEL FOR MAGNITUDE, AND NAMES THE
+RIGHT ONE.** "Lost in Magnitudes" (CHI 2025) enumerates the design space for
+static graphics whose values span orders of magnitude and lands on four
+guidelines. The first, AcM, is blunt: the EXPONENT must be carried by a highly
+discriminable channel, which means position, row or column, and explicitly NOT
+length, area or intensity, above about five exponents. The second, DeM, gives
+the mantissa its own positional channel. The third, CoM, says the mantissa
+channel has to express the transition BETWEEN exponents so neighbouring
+magnitudes stay comparable. Their synthesis is the E+M scale,
+`s(v) = e(v) + (m(v) - 1) / 9`: exponents are the major axis units, the
+mantissa fills each subinterval linearly, major ticks label exponents and one
+minor tick at m = 5 is enough to teach a reader that within-magnitude reading
+is linear. It is about twenty lines of vanilla JS and needs nothing vendored.
+The follow-up, "Beyond Log Scales" (IEEE TVCG, 2026), tested E+M bar charts
+against logarithmic ones with the general public: significantly preferred,
+higher confidence, lower mental demand, comparable accuracy. Cognitive
+psychology's reason is that people do not think logarithmically about large
+ranges, they think piecewise linearly inside scale words.
+https://arxiv.org/html/2404.15150v1
+https://hal.u-pec.fr/LISN-AVIZ/hal-05171203v1
+
+What that would mean here, and why it is parked. This deck's whole credibility
+argument is that AREA IS THE DOLLAR AMOUNT at one printed constant, so E+M is
+not a substitute for it; it is what the AXIS should have been, and plate 01
+already discovered that by hand when it added `$50 / $500 / $5,000 / $50,000`
+in round two. The next deck that needs a wide range should carry E+M on the
+axis and keep area for the equivalence beats only. Unblocking condition: a
+treatment director asking for it in a dossier, with the tick rule written down.
+
+**AND A WARNING ABOUT FIXING PERCEPTION.** The proportional-symbol literature
+records that readers underestimate area ratios, and offers Flannery
+compensation (radius as value to the power 0.5716 rather than 0.5) as the cure.
+THIS HOUSE MUST NEVER APPLY IT. A deck that prints K and invites a reader to
+reconstruct any number with a ruler can't quietly inflate the small marks to
+feel right; the compensation would make every printed constant a lie. The
+legitimate answers to the same problem are the ones this run reached anyway:
+direct labels on the marks that matter, and a size legend carrying at least
+three sizes near the extremes of the data.
+
+**AND ONE NEGATIVE RESULT WORTH KEEPING.** The controlled study of area-to-value
+legends and grid lines on contiguous area cartograms found the aids reduce the
+SPREAD of readers' estimates while introducing a systematic underestimate, and
+that for comparison tasks they slow readers down without improving accuracy.
+The authors recommend fitting the aid to the task rather than adding it by
+reflex. A unit grid behind an area block is not free.
+https://arxiv.org/abs/2201.02995

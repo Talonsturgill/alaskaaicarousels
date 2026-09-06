@@ -33,6 +33,7 @@ import base64
 import glob
 import hashlib
 import json
+import math
 import re
 import shutil
 import sys
@@ -1315,6 +1316,7 @@ IN_PAGE_QA_JS = """
      never carry the flag. */
   const MARK_PROBE_MAX = 240;
   out.asserts = [];
+  out.clearances = [];   // {what, rect, canvas} from an assertion's `at`, below
   try {
     const num = (v) => (typeof v === "number" && isFinite(v)) ? v : null;
     for (const a of (Array.isArray(window.__akAssert) ? window.__akAssert : []).slice(0, 60)) {
@@ -1331,6 +1333,37 @@ IN_PAGE_QA_JS = """
            centres. See marks_disperse() there for why counting cannot see it. */
         dispersed: !!(a && a.dispersed === true)
       };
+      /* A MARK'S SIZE IS NOT ITS VISIBILITY (2026-09-05). Run No.51's slide 09
+         asserted the radius of the deck's one filled gold seal -- the ninth
+         state of a motif tracked through eight plates -- derived it correctly
+         from the deck constant, and passed. The seal was drawn at a coordinate
+         that fell inside an opaque mono knockout, so it never reached the page,
+         and the assertion could not have noticed: it was arithmetic about how
+         BIG the mark is and the defect was about WHERE it is. A pixel critic
+         found it on the third build round.
+
+           window.__akAssert = [{ what: "the inked gauge at 0.74x",
+                                  expect: GR_EXPECT, actual: GR, tol: 0.01,
+                                  unit: "px", at: [880, 960], r: 13 }];
+
+         `at` is the mark's centre in design px and `r` its radius (default 12).
+         The pair is turned into exactly the record __akMotifs produces, so the
+         same two calibrated instruments run on it -- the elementsFromPoint
+         census that names what stands on the spot, and the canvas-versus-page
+         ink ratio -- with no second implementation and no new threshold. Opt-in
+         like every contract here: give it to anything whose whole job is to be
+         seen. */
+      const at = (a && Array.isArray(a.at) && a.at.length === 2 &&
+                  isFinite(+a.at[0]) && isFinite(+a.at[1])) ? [+a.at[0], +a.at[1]] : null;
+      if (at) {
+        rec.at = [Math.round(at[0] * 10) / 10, Math.round(at[1] * 10) / 10];
+        const rr = Math.max(2, Math.min(200, num(a && a.r) || 12));
+        out.clearances.push({
+          what: rec.what || "an assertion with no `what`",
+          rect: [at[0] - rr, at[1] - rr, 2 * rr, 2 * rr],
+          canvas: (a && typeof a.canvas === "string") ? a.canvas : null
+        });
+      }
       const pts = (a && Array.isArray(a.points)) ? a.points.slice(0, 20000) : null;
       if (pts) {
         let inside = 0, n = 0, bad = 0;
@@ -1414,7 +1447,11 @@ IN_PAGE_QA_JS = """
         ? "." + el.className.trim().split(/\\s+/)[0] : "";
       return (t + id + cl).slice(0, 60);
     };
-    for (const m of decl) {
+    /* ONE INSTRUMENT, TWO DECLARATIONS (2026-09-05). The evidence below is
+       gathered identically for a __akMotifs rect and for the box an
+       assertion's `at` names, so the clearance contract added that day reuses
+       this census and this readback rather than growing a second copy. */
+    const motifEvidence = (m) => {
       const r = (m && Array.isArray(m.rect) && m.rect.length === 4 &&
                  m.rect.every((n) => typeof n === "number" && isFinite(n)))
         ? m.rect.map(Number) : null;
@@ -1427,8 +1464,7 @@ IN_PAGE_QA_JS = """
       };
       if (!e.what || !r || r[2] < 3 || r[3] < 3) {
         e.error = "a motif declares {what, rect:[x,y,w,h]} in design px, w/h >= 3";
-        out.motifs.push(e);
-        continue;
+        return e;
       }
       const [mx, my, mw, mh] = r;
       /* the canvas the motif was drawn on: an explicit selector, else the
@@ -1510,6 +1546,13 @@ IN_PAGE_QA_JS = """
           e.error = "canvas readback failed (" + String(e2).slice(0, 60) + ")";
         }
       }
+      return e;
+    };
+    for (const m of decl) out.motifs.push(motifEvidence(m));
+    /* the clearance contract: an assertion that named where its subject is */
+    for (const c of out.clearances.slice(0, 12)) {
+      const e = motifEvidence(c);
+      e.from_assert = true;
       out.motifs.push(e);
     }
   } catch (e) {
@@ -1937,6 +1980,164 @@ def scan_vacuous_asserts(html: str, name: str) -> list:
     return hits
 
 
+# --- TWO LIGHT DIRECTIONS IN ONE FRAME (2026-09-05) -------------------------
+# `AK.reliefShade({lights:[{az:205, el:14}]})` resolves, through akrelief.js's
+# own lightVec(), to [-0.41, +0.88, 0.24]: a light from the LOWER LEFT, because
+# az is a compass bearing (clockwise from up) naming where the light IS. Run
+# No.51 wanted the upper right, typed 205 on all nine slides, and hand-shaded
+# every drying ring, every debossment and the deck's written "lee-side shadow
+# offset down-left" for a light from the upper right. Two light directions
+# coexisted in nine frames through three build rounds, five pixel critics and
+# every machine gate, and were found only when someone read the library.
+# Nothing anywhere resolved the number into a direction a human could disagree
+# with, and the plan of record asserted both halves of the contradiction.
+#
+# So, two things, and the first matters more than the second:
+#   1. RESOLVE AND SAY IT. Every declared azimuth is printed as the direction it
+#      actually produces ("az 205 -> lit from the lower left, lee falls to the
+#      upper right") at render time, on round one, next to the slide's name.
+#      There is no threshold in this and it can't be wrong.
+#   2. Compare it against the direction the slide's OWN inline-script comments
+#      claim. That is prose, so it is a WARN in qa.py and never a FAIL, and it
+#      abstains wherever prose is known to invert: an INTERIOR surface (a wall,
+#      a groove, the inside of a punch) is lit on the face TOWARD the light, so
+#      "the lit inner wall, lower left" is correct under a light from the upper
+#      right and reads like a contradiction to a machine. Any comment carrying
+#      an interior word is left alone.
+# Measured over the 58 slides on disk (out/2026-09-05, runs/2026-09-04,
+# runs/2026-09-03, runs/2026-09-02, runs/2026-09-01, runs/2026-08-31,
+# examples/demo-deck): 15 azimuths resolved, 37 direction claims read, and 0
+# conflicts on shipped art. The reconstruction of this run's SECOND build (the
+# same nine slides with az 205 restored) fires 26 conflicts on 8 of the 9; the
+# ninth is plate 06, which abstains because every direction word on it is about
+# the inside of a punch.
+LIGHT_AZ_RE = re.compile(r"\baz\s*:\s*(-?\d+(?:\.\d+)?)")
+LIGHT_VEC_RE = re.compile(r"\blightVec\s*\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)")
+# the four screen diagonals, as they get written in this house's comments
+DIR_TOKENS = [
+    (r"upper[ -]right|up[ -]right|top[ -]right|north[ -]?east", (1.0, -1.0)),
+    (r"upper[ -]left|up[ -]left|top[ -]left|north[ -]?west", (-1.0, -1.0)),
+    (r"lower[ -]right|down[ -]right|bottom[ -]right|south[ -]?east", (1.0, 1.0)),
+    (r"lower[ -]left|down[ -]left|bottom[ -]left|south[ -]?west", (-1.0, 1.0)),
+]
+DIR_RE = re.compile("|".join("(?P<d%d>%s)" % (i, p) for i, (p, _) in enumerate(DIR_TOKENS)), re.I)
+LIGHT_SENSE_RE = re.compile(r"\b(lit|light|lights|lighting|key|highlight|crest|glint|sheen)\b", re.I)
+LEE_SENSE_RE = re.compile(r"\b(lee|shadow|shadows|shadowed|shade|shaded|shading|umbra|dark side)\b", re.I)
+# prose about an INTERIOR surface inverts, so it is never read as a claim
+LIGHT_INVERTS_RE = re.compile(
+    r"\b(wall|walls|inner|interior|inside|cavity|pit|pits|groove|grooves|punch|"
+    r"punched|deboss|debossed|debossment|emboss|embossed|concave|convex|bead|"
+    r"beads|bowl|well|hollow|counter[ -]?sunk)\b", re.I)
+DIR_SENSE_WINDOW = 60      # chars before the token a sense word has to appear in
+COMPASS8 = ["up", "the upper right", "the right", "the lower right",
+            "down", "the lower left", "the left", "the upper left"]
+
+
+def _js_comments(js: str):
+    """Yield (offset, text) for every // and /* */ comment in a script body."""
+    i, n = 0, len(js)
+    while i < n:
+        two = js[i:i + 2]
+        if two == "//":
+            j = js.find("\n", i)
+            j = n if j < 0 else j
+            yield i, js[i + 2:j]
+            i = j
+        elif two == "/*":
+            j = js.find("*/", i + 2)
+            j = n if j < 0 else j + 2
+            yield i, js[i + 2:max(i + 2, j - 2)]
+            i = j
+        elif two in ('"', "'") or js[i] in "\"'`":
+            q = js[i]
+            i += 1
+            while i < n and js[i] != q:
+                i += 2 if js[i] == "\\" else 1
+            i += 1
+        else:
+            i += 1
+
+
+def light_from(az_deg: float):
+    """The screen-space xy of akrelief.js lightVec(az, el): where the light IS.
+    +x right, +y down, so az 25 gives (+0.42, -0.91), the upper right."""
+    a = math.radians(az_deg)
+    return (math.sin(a), -math.cos(a))
+
+
+def _dir_name(vx: float, vy: float) -> str:
+    """A screen vector as one of eight plain-language directions."""
+    k = int(round(math.degrees(math.atan2(vx, -vy)) / 45.0)) % 8
+    return COMPASS8[k]
+
+
+def scan_light_direction(html: str, name: str) -> dict:
+    """Resolve every declared relief azimuth, and read the slide's own comments
+    for directions that contradict it. Returns {lights: [...], conflicts: [...]}."""
+    lights, claims = [], []
+    for m in SCRIPT_RE.finditer(html):
+        attrs, body = m.group(1), m.group(2)
+        if re.search(r"\bsrc\s*=", attrs, re.I):
+            continue
+        tm = re.search(r"""\btype\s*=\s*["']?([^"'\s>]*)""", attrs, re.I)
+        if tm and tm.group(1).strip().lower() not in JS_TYPE_OK:
+            continue
+        body_start = m.start(2)
+        clean = _strip_js_comments(body)
+        for hit in LIGHT_AZ_RE.finditer(clean):
+            lights.append({"az": float(hit.group(1)),
+                           "line": html.count("\n", 0, body_start + hit.start()) + 1})
+        for hit in LIGHT_VEC_RE.finditer(clean):
+            lights.append({"az": float(hit.group(1)),
+                           "line": html.count("\n", 0, body_start + hit.start()) + 1})
+        for off, text in _js_comments(body):
+            if LIGHT_INVERTS_RE.search(text):
+                continue                  # an interior surface reverses; abstain
+            for dm in DIR_RE.finditer(text):
+                idx = [k for k, v in dm.groupdict().items() if v][0]
+                vx, vy = DIR_TOKENS[int(idx[1:])][1]
+                before = text[max(0, dm.start() - DIR_SENSE_WINDOW):dm.start()]
+                lit = LIGHT_SENSE_RE.search(before)
+                lee = LEE_SENSE_RE.search(before)
+                if not lit and not lee:
+                    continue              # a direction about geometry, not light
+                sense = "lee" if (lee and (not lit or lee.start() > lit.start())) else "lit"
+                claims.append({"sense": sense, "says": dm.group(0).lower(),
+                               "v": (vx, vy),
+                               "line": html.count("\n", 0, body_start + off) + 1})
+    conflicts = []
+    for c in claims:
+        agrees = False
+        for lg in lights:
+            lx, ly = light_from(lg["az"])
+            if c["sense"] == "lee":
+                lx, ly = -lx, -ly
+            if c["v"][0] * lx + c["v"][1] * ly > 0:   # within 90 degrees
+                agrees = True
+                break
+        if lights and not agrees:
+            az = lights[0]["az"]
+            lx, ly = light_from(az)
+            conflicts.append({
+                "line": c["line"], "sense": c["sense"], "says": c["says"],
+                "az": az,
+                "resolves": _dir_name(*((lx, ly) if c["sense"] == "lit" else (-lx, -ly)))})
+    if lights:
+        seen, parts = set(), []
+        for lg in lights:
+            if lg["az"] in seen:
+                continue
+            seen.add(lg["az"])
+            lx, ly = light_from(lg["az"])
+            parts.append("az %g -> lit from %s, lee falls to %s"
+                         % (lg["az"], _dir_name(lx, ly), _dir_name(-lx, -ly)))
+        print(f"    [light] {name}: " + "; ".join(parts))
+    for c in conflicts:
+        print("    [light] %s: line %d says the %s is %s, and az %g puts it at %s"
+              % (name, c["line"], c["sense"], c["says"], c["az"], c["resolves"]))
+    return {"lights": lights, "claims": claims, "conflicts": conflicts}
+
+
 def resolve_html(src: Path, resolved_dir: Path) -> Path:
     html = src.read_text()
     if re.search(r'src\s*=\s*["\']https?://|href\s*=\s*["\']https?://|url\(\s*["\']?https?://', html):
@@ -2038,6 +2239,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
            "collapsed_fits": [], "vacuous_asserts": [],
+           "lights": [], "light_conflicts": [],
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "declaration_misses": [],
@@ -2148,6 +2350,9 @@ def main():
             rec["nondeterminism"] = scan_nondeterminism(s.read_text(), s.name)
             rec["collapsed_fits"] = scan_collapsed_fit(s.read_text(), s.name)
             rec["vacuous_asserts"] = scan_vacuous_asserts(s.read_text(), s.name)
+            light = scan_light_direction(s.read_text(), s.name)
+            rec["lights"] = light["lights"]
+            rec["light_conflicts"] = light["conflicts"]
             rec["source"] = {"path": str(s), "sha1": source_sha1(s)}
             status = "OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])

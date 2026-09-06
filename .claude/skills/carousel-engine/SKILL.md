@@ -371,6 +371,27 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   element's background COLOUR, so a plate whose fill is only a background-image
   over a transparent colour is not counted as blocking. Reconstruction:
   `python tests/motif_survives_verify.py`.
+
+  **And an assertion about a mark can say WHERE the mark is** (2026-09-05).
+  Add `at` to any assertion whose subject is a thing that has to be SEEN, and
+  the same two instruments run on it:
+
+  ```js
+  window.__akAssert = [{ what: "the inked gauge at 0.74x, radius from K",
+                         expect: GR_FROM_K, actual: GR, tol: 0.01, unit: "px",
+                         at: [880, 960], r: 13 }];   // centre, radius, design px
+  ```
+
+  `r` defaults to 12 design px and the pair becomes the box the census and the
+  canvas-versus-page ink ratio read, so the verdicts and thresholds are the
+  motif gate's, unchanged. Run No.51's slide 09 asserted the RADIUS of the
+  deck's one filled gold seal, the ninth state of a motif tracked through eight
+  plates, derived it correctly from the deck constant, and passed: the seal was
+  drawn at a coordinate inside an opaque mono knockout and never reached the
+  page. A pixel critic found it on the third build round. Size is not
+  visibility, and an assertion that measures how big a mark is says nothing
+  about whether anyone can see it. Reconstruction:
+  `python tests/assert_clearance_verify.py`.
 - **Canvas has no elliptical gradient** (2026-08-26), so do not write one.
   `createRadialGradient` is a CIRCLE; pour it into `ctx.ellipse(cx,cy,rx,ry)`
   with `rx != ry` and the paint stops on the short axis while the ramp is still
@@ -556,6 +577,21 @@ them or every archive page goes blank.
   `lights: [{az,el,w}]`, and the old default ramp was a warm stone. Copy the
   same guard (`AK.optionContract(name, opts, allowed, notes)`) into any helper
   that grows an option list.
+  AZIMUTH IS WHERE THE LIGHT IS, CLOCKWISE FROM UP (2026-09-05). `az` goes
+  straight into `lightVec(az, el) = [cos(el)sin(az), -cos(el)cos(az), sin(el)]`
+  in screen space (+x right, +y DOWN), so **az 25 lights from the upper right
+  and its lee falls to the lower left; az 205 lights from the lower left**. Run
+  No.51 wanted the upper right, typed 205 on all nine slides, hand-shaded every
+  ring and debossment for the upper right, and carried two light directions in
+  nine frames through three build rounds, five pixel critics and every gate.
+  render.py now prints the resolution for every declared azimuth on every
+  render (`[light] slide-01.html: az 25 -> lit from the upper right, lee falls
+  to the lower left`) and qa.py **WARNs** when a direction the slide's own
+  inline-script comments claim disagrees with it. The comment side is prose, so
+  it is a warn and never a fail, and it abstains on any comment about an
+  INTERIOR surface (wall, groove, pit, punch, bead), which reverses: a pit lit
+  from the upper right has its LIT wall on the lower left. Reconstruction:
+  `python tests/light_direction_verify.py`.
 - `assets/js/akgeo.js` — Alaska projection + regional zoom (`AKGeo.*`).
   NEVER fitExtent to a small lon/lat bbox (renders a giant fill disc);
   use `AKGeo.zoomTo(proj, geo, lonlat, targetXY, zoom)` and draw the
