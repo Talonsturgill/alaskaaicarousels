@@ -6,7 +6,23 @@
 <atom:link href="https://alaskaaihq.com/docket/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Every AI infrastructure decision tracked in Alaska, as it moves. Comment windows, deadlines, votes and filings.</description>
 <language>en-us</language>
-<lastBuildDate>Fri, 04 Sep 2026 17:00:00 +0000</lastBuildDate>
+<lastBuildDate>Sat, 05 Sep 2026 17:00:00 +0000</lastBuildDate>
+<item>
+<title>Alaska's statewide speech-to-text contract</title>
+<link>https://alaskaaihq.com/docket/#alaska-statewide-transcription-rfp</link>
+<guid isPermaLink="false">alaska-ai-docket-alaska-statewide-transcription-rfp-2026-09-05</guid>
+<pubDate>Sat, 05 Sep 2026 17:00:00 +0000</pubDate>
+<category>procurement</category>
+<description>Alaska is soliciting one statewide contract to convert speech, live or recorded, into written text for general, medical and legal records. The notice says every state governmental entity may use the resulting contract, naming the Legislative Branch, the Court System, the University of Alaska, boards and commissions, cities, boroughs, school districts and federally recognized tribes. The public notice does not use the terms artificial intelligence, machine learning or automated speech recognition. A vendor solicitation, not a rulemaking, so no public comment period exists. Proposals closed August 28th and are evaluated privately. The notice and the named procurement officer are public, though the notice's own archive date has now passed. No award has been posted. Status, pending-decision.</description>
+</item>
+<item>
+<title>Fairbanks asks Juneau and Congress to pause data centers</title>
+<link>https://alaskaaihq.com/docket/#fnsb-2027-data-center-moratorium-request</link>
+<guid isPermaLink="false">alaska-ai-docket-fnsb-2027-data-center-moratorium-request-2026-09-05</guid>
+<pubDate>Sat, 05 Sep 2026 17:00:00 +0000</pubDate>
+<category>legislation</category>
+<description>On August 27, 2026 the Fairbanks North Star Borough Assembly adopted Resolution 2026-25, its list of 2027 state and federal legislative priorities, sponsored by the Assembly Committee of the Whole. The list carries 25 items, 21 state and 4 federal, and one item appears on both halves. It asks for a moratorium on the permitting, leasing or construction of new commercial data centers on state-owned or municipal lands in Alaska until standards exist for electrical demand, water consumption and shortages, environmental impacts, noise, air quality and land use pollution. Assemblymember Garrett Armstrong moved it onto the state list at an August 6th work session and an amendment replicated it onto the federal list. The request follows the Air Force offer of about 4,700 acres across twelve parcels at three Alaska installations, one of which, Eielson, is inside this borough. The adopted text reaches state and municipal land, not federal land, and KUAC reports Presiding Officer Scott Crass said by phone that federal land was intended too. The borough has already voted, so the room that was open is closed. What the resolution does is hand the question to two bodies that have not acted on it. A reader who wants the moratorium considered asks a legislator to carry it when the Legislature convenes in January 2027, or asks the congressional delegation to take up the federal half. The resolution itself, its full text and the meeting record are public through the borough clerk. Status, pending-decision.</description>
+</item>
 <item>
 <title>AIDEA's free state land for a Mat-Su data center park</title>
 <link>https://alaskaaihq.com/docket/#aidea-houston-industrial-park</link>
@@ -142,22 +158,6 @@
 <pubDate>Wed, 02 Sep 2026 17:00:00 +0000</pubDate>
 <category>procurement</category>
 <description>The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission. Contract negotiation is private and the Air Force runs no comment period. The reactor can't be built without a Nuclear Regulatory Commission license, and that review is the room where the public gets a formal say. Status, pending-decision.</description>
-</item>
-<item>
-<title>Alaska's statewide speech-to-text contract</title>
-<link>https://alaskaaihq.com/docket/#alaska-statewide-transcription-rfp</link>
-<guid isPermaLink="false">alaska-ai-docket-alaska-statewide-transcription-rfp-2026-09-01</guid>
-<pubDate>Tue, 01 Sep 2026 17:00:00 +0000</pubDate>
-<category>procurement</category>
-<description>Alaska is soliciting one statewide contract to convert speech, live or recorded, into written text for general, medical and legal records. The notice says every state governmental entity may use the resulting contract, naming the Legislative Branch, the Court System, the University of Alaska, boards and commissions, cities, boroughs, school districts and federally recognized tribes. The public notice does not use the terms artificial intelligence, machine learning or automated speech recognition. A vendor solicitation, not a rulemaking, so no public comment period exists. Proposals closed August 28th and are evaluated privately. The notice and the named procurement officer are public, though the notice's own archive date has now passed. No award has been posted. Status, pending-decision.</description>
-</item>
-<item>
-<title>Fairbanks asks Juneau and Congress to pause data centers</title>
-<link>https://alaskaaihq.com/docket/#fnsb-2027-data-center-moratorium-request</link>
-<guid isPermaLink="false">alaska-ai-docket-fnsb-2027-data-center-moratorium-request-2026-09-01</guid>
-<pubDate>Tue, 01 Sep 2026 17:00:00 +0000</pubDate>
-<category>legislation</category>
-<description>On August 27, 2026 the Fairbanks North Star Borough Assembly adopted Resolution 2026-25, its list of 2027 state and federal legislative priorities, sponsored by the Assembly Committee of the Whole. The list carries 25 items, 21 state and 4 federal, and one item appears on both halves. It asks for a moratorium on the permitting, leasing or construction of new commercial data centers on state-owned or municipal lands in Alaska until standards exist for electrical demand, water consumption and shortages, environmental impacts, noise, air quality and land use pollution. Assemblymember Garrett Armstrong moved it onto the state list at an August 6th work session and an amendment replicated it onto the federal list. The request follows the Air Force offer of about 4,700 acres across twelve parcels at three Alaska installations, one of which, Eielson, is inside this borough. The adopted text reaches state and municipal land, not federal land, and KUAC reports Presiding Officer Scott Crass said by phone that federal land was intended too. The borough has already voted, so the room that was open is closed. What the resolution does is hand the question to two bodies that have not acted on it. A reader who wants the moratorium considered asks a legislator to carry it when the Legislature convenes in January 2027, or asks the congressional delegation to take up the federal half. The resolution itself, its full text and the meeting record are public through the borough clerk. Status, pending-decision.</description>
 </item>
 <item>
 <title>HB 259, state utility standards for large data centers</title>

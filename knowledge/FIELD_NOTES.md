@@ -6102,3 +6102,26 @@ is recomputing the thing you corrected.
 rebuilding at its own run date over a collection cron that had already written
 could set it EARLIER than the newest row in the same file. Floor a dataset's
 updated stamp at its own latest record, always.
+
+## 2026-09-05, Phase 1 craft refresh: one new number, one trend worth naming.
+
+**Documents did not just stay first, they widened the gap.** Socialinsider's
+2026 benchmark (1.3 million posts, 16,645 business pages, January 2024 through
+December 2025) puts native documents at 7.00 percent engagement, UP 14 PERCENT
+year over year, against multi-image at 6.45 and video at 6.00.
+CAROUSEL_CRAFT already carried the 7.00 figure; what is new is the direction.
+Video is the format everyone is being told to chase and it is third and not
+rising. The format bet this machine made is getting stronger, not weaker.
+https://www.socialinsider.io/social-media-benchmarks/linkedin
+
+**Tactile texture is now positioned as the counter-signal to generated art.**
+The 2026 illustration trend writeups converge on one thing worth taking
+seriously here: heavy grain, visible mark-making, print artifacts and material
+surfaces are being adopted specifically because they read as not-generated.
+That is not a new technique for this studio, which has run grain tiles and
+engraved line since the beginning. It is a new REASON, and it argues for
+spending the craft budget on surface and mark rather than on smoother rendering.
+Relevant because artwork craft has been the weakest scored criterion in eight
+of the last ten runs, and the recent answer has been more elaborate lighting
+rather than more evident hand.
+https://www.sessions.edu/notes-on-design/top-illustration-trends/
