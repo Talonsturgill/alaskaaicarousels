@@ -11,7 +11,7 @@
     {
       "kind": "count",
       "slide": 2,
-      "text": "Six gifts. $372,000.Every one from the Bay Area.",
+      "text": "Six gifts. $372,000. Every one from the Bay Area.",
       "fragment": "Six gifts",
       "subject": "gifts from people listing Anthropic as employer",
       "members": [
@@ -25,22 +25,15 @@
     },
     {
       "kind": "from_claim",
-      "slide": 4,
-      "text": "2,705 of the 4,604 gifts came from Alaska addresses, 58.75 percent of them, carrying 26.56 percent of the money. The median Alaska gift is $50. California sent more, and it only sent more because six of its donors are on this sheet.",
-      "fragment": "4,604 gifts",
-      "member": "C11"
-    },
-    {
-      "kind": "from_claim",
       "slide": 5,
-      "text": "86 donors carried72.81 percent of it.",
+      "text": "86 donors carried 72.81 percent of it.",
       "fragment": "86 donors",
       "member": "C15"
     },
     {
       "kind": "count",
       "slide": 9,
-      "text": "Four tickets.Old rules.",
+      "text": "Four tickets. Old rules.",
       "fragment": "Four tickets",
       "subject": "tickets certified for the November 3rd general election",
       "members": [
@@ -53,7 +46,7 @@
     {
       "kind": "design",
       "slide": 1,
-      "text": "y = log10 OF THE AMOUNT. x IS CATEGORY ONLY.MARKS FLOORED AT 2.0 px. 4,588 GIFTS DRAWN.OF 4,604 ROWS. THE REST ARE REFUNDS.",
+      "text": "y = log10 OF THE AMOUNT. x IS CATEGORY ONLY. MARKS FLOORED AT 2.0 px. 4,588 GIFTS DRAWN OF 4,604 ROWS. THE REST ARE REFUNDS.",
       "fragment": "4,588 GIFTS",
       "member": "C42",
       "note": "the drawn count is the positive contributions, not the 4,604 transactions, and the next line says so"
@@ -69,29 +62,21 @@
     {
       "kind": "from_claim",
       "slide": 9,
-      "text": "GENERAL ELECTION, NOVEMBER 3RD, 2026.FOUR CERTIFIED TICKETS. BRONSON AND CHURCH.KREISS-TOMKINS AND JOHNSON. TAYLOR AND ENGLISH.WILSON AND SHOWER.",
+      "text": "GENERAL ELECTION, NOVEMBER 3RD, 2026. FOUR CERTIFIED TICKETS. BRONSON AND CHURCH. KREISS-TOMKINS AND JOHNSON. TAYLOR AND ENGLISH. WILSON AND SHOWER.",
       "fragment": "FOUR CERTIFIED TICKETS",
       "member": "C31"
     },
     {
       "kind": "from_claim",
       "slide": 9,
-      "text": "KREISS-TOMKINS AND JOHNSON LED THE PRIMARYWITH 37,006 VOTES, 22.5 PERCENT OF 164,303.",
+      "text": "KREISS-TOMKINS AND JOHNSON LED THE PRIMARY WITH 37,006 VOTES, 22.5 PERCENT OF 164,303.",
       "fragment": "37,006 VOTES",
       "member": "C30"
     },
     {
       "kind": "from_claim",
-      "slide": 4,
-      "text": "RINGED. THE 105 ALASKA GIFTS THAT MATCH THE SIX.",
-      "fragment": "105 ALASKA GIFTS",
-      "member": "C14",
-      "note": "the 105 largest Alaska gifts, whose combined area at K equals the six's 93,000 px2. the same cohort plate 01's headline names."
-    },
-    {
-      "kind": "from_claim",
       "slide": 5,
-      "text": "THE SIX ARE NOT THE SIX LARGEST DONORS.THE LARGEST SIX CARRY 24.38 PERCENT.ALSO HERE. AI FUTURES PROJECT $70,000.ALIGNMENT RESEARCH CENTER $20,000.",
+      "text": "THE SIX ARE NOT THE SIX LARGEST DONORS. THE LARGEST SIX CARRY 24.38 PERCENT. ALSO HERE. AI FUTURES PROJECT $70,000. ALIGNMENT RESEARCH CENTER $20,000.",
       "fragment": "SIX LARGEST DONORS",
       "member": "C40",
       "note": "the guard against conflating the six with the six largest donors. C41 has the 86 who gave over $4,000 as exactly the 86 largest, and the six are not among the top six of them."
@@ -102,6 +87,38 @@
       "text": "SIX GIFTS. $372,000. 93,000 px2 AT 1.0x.",
       "fragment": "SIX GIFTS",
       "member": "C16"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 1,
+      "text": "THE 105 LARGEST DONORS MATCH THE SIX.",
+      "fragment": "105 LARGEST DONORS",
+      "member": "C14",
+      "note": "C14 counts DONORS grouped by name plus city plus state, summing to $372,960.85. The rings on this plate are the 105 largest GIFTS, which sum to $354,294.88, and the plate says both, because the sheet draws gifts and a donor may give twice."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "2,705 of the 4,604 transactions came from Alaska addresses, 58.75 percent of them, carrying 26.56 percent of the money. The median Alaska gift is $50. California sent more, and it only sent more because six of its donors are on this sheet.",
+      "fragment": "4,604 transactions",
+      "member": "C12",
+      "note": "transactions, not gifts. 16 of the 4,604 rows are refunds or adjustments per C42, so 58.75 percent is a share of rows."
+    },
+    {
+      "kind": "design",
+      "slide": 4,
+      "text": "RINGED. THE 105 LARGEST ALASKA GIFTS.",
+      "fragment": "105 LARGEST ALASKA GIFTS",
+      "member": "C14",
+      "note": "what the ring cohort actually is, drawn from the transaction histogram. The donor-grouped claim is C14 and is carried in type on plate 01."
+    },
+    {
+      "kind": "design",
+      "slide": 5,
+      "text": "16 ALASKA GIFTS ABOVE THE LIMIT. 14 IN FRAME, DOTTED.",
+      "fragment": "16 ALASKA GIFTS",
+      "member": "C15",
+      "note": "the sheet draws gifts, so the dots mark the sixteen Alaska GIFTS above $4,000. C15's sixteen Alaska DONORS above $4,000 in aggregate is a donor-grouped figure this sheet's data cannot group, and it is carried in type by the headline's 86."
     }
   ]
 }

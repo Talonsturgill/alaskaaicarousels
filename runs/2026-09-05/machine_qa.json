@@ -4,11 +4,11 @@
       "file": "slide-01.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 74% of this slide's own average craft density (top 82% / mid 93% / bottom 56% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 82% / mid 82% / bottom 53% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
       ],
       "motifs": [
-        "'the Alaska lane': canvas 54.7 dE, page 76.8 dE, 73% of its rect is clear of opaque DOM (rect stands on the rest)",
-        "'the everywhere else lane': canvas 56.7 dE, page 75.2 dE, 90% of its rect is clear of opaque DOM (div.mono stands on the rest)"
+        "'the Alaska lane': canvas 54.5 dE, page 76.8 dE, 66% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'the everywhere else lane': canvas 57.3 dE, page 77.6 dE, 80% of its rect is clear of opaque DOM (rect stands on the rest)"
       ],
       "scales": [
         "'the amount axis, log10 dollars' runs 25 dollars at 430 to 140,000 dollars at 1250; 4 declared mark(s), and the band's census finds no others"
@@ -25,7 +25,7 @@
       "file": "slide-02.html",
       "fails": [],
       "warns": [
-        "wrap drift: 'THE COMPANY GAVE NOTHING. SIX PEOPLE DID.ALL' declares 3 line(s) (<br> or preserved newline) and rendered 4. Anything positioned by counting rows off this block (canvas markers, struck fields, a leader's row) is now one or more rows out. Fix by giving the block the width its longest line needs, or white-space:nowrap, and read mark positions off getBoundingClientRect rather than a fixed pitch",
+        "wrap drift: 'THE COMPANY GAVE NOTHING. SIX PEOPLE DID. AL' declares 3 line(s) (<br> or preserved newline) and rendered 4. Anything positioned by counting rows off this block (canvas markers, struck fields, a leader's row) is now one or more rows out. Fix by giving the block the width its longest line needs, or white-space:nowrap, and read mark positions off getBoundingClientRect rather than a fixed pitch",
         "canvas mark near reserved text: line 4 of 4 at (90,923) of 'THE COMPANY GAVE NOTHING. SIX PEOPLE DID' carries 76 px^2 of hard-edged canvas ink (densest 40px window 5.9%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
       ],
       "motifs": [
@@ -80,12 +80,12 @@
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "canvas mark near reserved text: line 6 of 7 at (94,547) of '2,705 of the 4,604 gifts came from Alask' carries 137 px^2 of hard-edged canvas ink (densest 40px window 3.4%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
-        "canvas mark near reserved text: line 7 of 7 at (94,593) of '2,705 of the 4,604 gifts came from Alask' carries 336 px^2 of hard-edged canvas ink (densest 40px window 2.8%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+        "canvas mark near reserved text: line 7 of 8 at (94,593) of '2,705 of the 4,604 transactions came fro' carries 370 px^2 of hard-edged canvas ink (densest 40px window 2.8%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "canvas mark inside reserved text: line 8 of 8 at (94,640) of '2,705 of the 4,604 transactions came fro' carries 267 px^2 of hard-edged canvas ink (densest 40px window 4.5%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]"
       ],
       "motifs": [
-        "'Alaska, all of it, as area at K': canvas 56.8 dE, page 93.0 dE, 83% of its rect is clear of opaque DOM (rect stands on the rest)",
-        "'California net of the six, as area at K': canvas 67.1 dE, page 76.5 dE, 86% of its rect is clear of opaque DOM (rect stands on the rest)"
+        "'Alaska, all of it, as area at K': canvas 55.9 dE, page 94.4 dE, 83% of its rect is clear of opaque DOM (rect stands on the rest)",
+        "'California net of the six, as area at K': canvas 65.7 dE, page 77.0 dE, 86% of its rect is clear of opaque DOM (rect stands on the rest)"
       ],
       "leaders": [
         "leader 'the top of the Alaska box' lands 0.0px from its target",
@@ -104,8 +104,8 @@
       "fails": [],
       "warns": [
         "axis census: 'the amount axis at 3.0x': the slide declares a mark at 727 and there is no measurable ink within 4px of it in the band, so the census has nothing to calibrate on. Either the mark did not draw, or its declared position is not where it drew.",
-        "canvas mark inside reserved text: line 1 of 4 at (90,1120) of 'THE SIX ARE NOT THE SIX LARGEST DONORS.T' carries 212 px^2 of hard-edged canvas ink (densest 40px window 7.6%) while this block's other lines sit on clean paper (0.3%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]",
-        "canvas mark inside reserved text: line 2 of 4 at (90,1156) of 'THE SIX ARE NOT THE SIX LARGEST DONORS.T' carries 207 px^2 of hard-edged canvas ink (densest 40px window 8.5%) while this block's other lines sit on clean paper (0.3%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]"
+        "canvas mark inside reserved text: line 1 of 4 at (90,1120) of 'THE SIX ARE NOT THE SIX LARGEST DONORS. ' carries 212 px^2 of hard-edged canvas ink (densest 40px window 7.6%) while this block's other lines sit on clean paper (0.3%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]",
+        "canvas mark inside reserved text: line 2 of 4 at (90,1156) of 'THE SIX ARE NOT THE SIX LARGEST DONORS. ' carries 207 px^2 of hard-edged canvas ink (densest 40px window 8.5%) while this block's other lines sit on clean paper (0.3%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]"
       ],
       "fits": [
         "h1 '86 donors carried72.81 percent of it.' fits 2/2 lines at 91.5px"
@@ -176,8 +176,8 @@
       "file": "slide-09.html",
       "fails": [],
       "warns": [
-        "canvas mark inside reserved text: line 3 of 4 at (90,736) of 'GENERAL ELECTION, NOVEMBER 3RD, 2026.FOU' carries 781 px^2 of hard-edged canvas ink (densest 40px window 5.2%) while this block's other lines sit on clean paper (0.1%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]",
-        "canvas mark near reserved text: line 4 of 4 at (90,772) of 'GENERAL ELECTION, NOVEMBER 3RD, 2026.FOU' carries 122 px^2 of hard-edged canvas ink (densest 40px window 3.3%) while this block's other lines sit on clean paper (0.1%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+        "canvas mark inside reserved text: line 3 of 4 at (90,736) of 'GENERAL ELECTION, NOVEMBER 3RD, 2026. FO' carries 781 px^2 of hard-edged canvas ink (densest 40px window 5.2%) while this block's other lines sit on clean paper (0.1%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended [marked data-overlap-ok]",
+        "canvas mark near reserved text: line 4 of 4 at (90,772) of 'GENERAL ELECTION, NOVEMBER 3RD, 2026. FO' carries 122 px^2 of hard-edged canvas ink (densest 40px window 3.3%) while this block's other lines sit on clean paper (0.1%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
       ],
       "motifs": [
         "'the sheet's foot, the felted sediment of the whole record': canvas 44.8 dE, page 92.6 dE, 54% of its rect is clear of opaque DOM (rect stands on the rest)"

@@ -10,7 +10,7 @@
     "closing_move": "NEW: THE START LINE",
     "hook_type": "comparative count"
   },
-  "first_comment": "Sources for today's deck.\n\nAlaska Public Offices Commission, Campaign Disclosure Income, report year 2026, status Complete Not Amended, pulled September 5th, 2026. 4,604 transactions, 4,588 of them positive, $2,379,290.20 net.\nhttps://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx\n\nAlaska Division of Elections, petition status for initiative 23RCF2, An Act restoring campaign contribution limits. YES 117,962, NO 45,418, approved by voters.\nhttps://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/?initiative_id=23RCF2\n\nAlaska Division of Elections, 23RCF2 bill text. New AS 15.13.070(b)(1) sets $2,000 each election cycle, and (g)(1) sets $4,000 for a joint governor and lieutenant governor candidacy.\nhttps://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/petition_id/23rcf2\n\nAlaska Division of Elections, 2026 primary results, marked Official and last updated August 31st, 2026.\nhttps://www.elections.alaska.gov/election-results/e/?id=26prim\n\nAlaska Division of Elections, certified candidates for the November 3rd, 2026 general election.\nhttps://www.elections.alaska.gov/candidates/?election=26genr\n\nEric Stone, Alaska Public Media, August 18th, 2026, on the measure's limits and when it takes effect.\nhttps://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin\n\nEmily Shugerman, The San Francisco Standard, August 31st, 2026, first reporting on the donations.\nhttps://sfstandard.com/2026/08/31/anthropic-employees-alaska-governor-race-kreiss-tomkins/\n\nEvery figure about the money is arithmetic over the state's own disclosure rows and was recomputed twice by separate code. Every gift reported here was lawful when it was made.",
+  "first_comment": "A disclosure. This deck was produced by an automated studio running on Claude, a model made by Anthropic, and it reports on donations by six people who list Anthropic as their employer. The company gave nothing and no company statement about the donations is reported. Every figure here is arithmetic over the State of Alaska's own disclosure rows, recomputed twice by separate code, and an adversarial fact-check dropped twelve claims before publication.\n\nSources for today's deck.\n\nAlaska Public Offices Commission, Campaign Disclosure Income, report year 2026, status Complete Not Amended, pulled September 5th, 2026. 4,604 transactions, 4,588 of them positive, $2,379,290.20 net.\nhttps://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx\n\nAlaska Division of Elections, petition status for initiative 23RCF2, An Act restoring campaign contribution limits. YES 117,962, NO 45,418, approved by voters.\nhttps://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/?initiative_id=23RCF2\n\nAlaska Division of Elections, 23RCF2 bill text. New AS 15.13.070(b)(1) sets $2,000 each election cycle, and (g)(1) sets $4,000 for a joint governor and lieutenant governor candidacy.\nhttps://www.elections.alaska.gov/petitions-and-ballot-measures/petition-status/petition_id/23rcf2\n\nAlaska Division of Elections, 2026 primary results, marked Official and last updated August 31st, 2026.\nhttps://www.elections.alaska.gov/election-results/e/?id=26prim\n\nAlaska Division of Elections, certified candidates for the November 3rd, 2026 general election.\nhttps://www.elections.alaska.gov/candidates/?election=26genr\n\nEric Stone, Alaska Public Media, August 18th, 2026, on the measure's limits and when it takes effect.\nhttps://alaskapublic.org/news/politics/elections/2026-08-18/campaign-finance-ballot-measure-passing-by-wide-margin\n\nEmily Shugerman, The San Francisco Standard, August 31st, 2026, first reporting on the donations.\nhttps://sfstandard.com/2026/08/31/anthropic-employees-alaska-governor-race-kreiss-tomkins/\n\nEvery figure about the money is arithmetic over the state's own disclosure rows and was recomputed twice by separate code. Every gift reported here was lawful when it was made.",
   "slides": [
     {
       "n": 1,
@@ -20,14 +20,15 @@
         "1.0x · K = 0.25 px2 PER DOLLAR",
         "No. 51 · PLATE 1",
         "It takes 105 Alaska donors to match six people Outside.",
-        "y = log10 OF THE AMOUNT. x IS CATEGORY ONLY.MARKS FLOORED AT 2.0 px. 4,588 GIFTS DRAWN.OF 4,604 ROWS. THE REST ARE REFUNDS.",
+        "y = log10 OF THE AMOUNT. x IS CATEGORY ONLY. MARKS FLOORED AT 2.0 px. 4,588 GIFTS DRAWN OF 4,604 ROWS. THE REST ARE REFUNDS.",
         "01 / 09",
         "$50",
         "$500",
         "$5,000",
         "$50,000",
-        "105 RINGED HERE.",
-        "SAME MONEY AS THE SIX.",
+        "105 RINGED. THE LARGEST ALASKA GIFTS.",
+        "THE 105 LARGEST DONORS MATCH THE SIX.",
+        "THE SHEET DRAWS GIFTS. A DONOR MAY GIVE TWICE.",
         "ALASKA",
         "EVERYWHERE ELSE"
       ],
@@ -46,9 +47,9 @@
       "strings": [
         "1.6x · K = 0.25 px2 PER DOLLAR",
         "PLATE 2",
-        "Six gifts. $372,000.Every one from the Bay Area.",
+        "Six gifts. $372,000. Every one from the Bay Area.",
         "Six people who list Anthropic or Anthropic PBC as their employer gave $372,000 between February 3rd and May 7th, 2026. That is 15.63 percent of everything the campaign raised.",
-        "THE COMPANY GAVE NOTHING. SIX PEOPLE DID.ALL SIX GAVE BY ELECTRONIC FUNDS TRANSFER.MARKS UNDER 2.0 px SIT AT A FLOOR. THE REST IS TO SCALE.",
+        "THE COMPANY GAVE NOTHING. SIX PEOPLE DID. ALL SIX GAVE BY ELECTRONIC FUNDS TRANSFER. MARKS UNDER 2.0 px SIT AT A FLOOR. THE REST IS TO SCALE.",
         "02 / 09",
         "THE SIX, AS FILED. THE NUMBER IS ON THE DEPOSIT.",
         "1 · DRAKE THOMAS $100,000 MAY 7TH BERKELEY",
@@ -108,16 +109,16 @@
       "strings": [
         "1.0x · K = 0.25 px2 PER DOLLAR",
         "PLATE 4",
-        "Alaska sent most of the gifts.Not most of the money.",
-        "2,705 of the 4,604 gifts came from Alaska addresses, 58.75 percent of them, carrying 26.56 percent of the money. The median Alaska gift is $50. California sent more, and it only sent more because six of its donors are on this sheet.",
-        "CALIFORNIA NET OF THE SIX, $597,843.36.ALASKA, $632,035.75. AHEAD BY $34,192.39.A RIVAL TICKET RUNS 53.15 PERCENT ALASKAN.",
+        "Alaska sent most of the gifts. Not most of the money.",
+        "2,705 of the 4,604 transactions came from Alaska addresses, 58.75 percent of them, carrying 26.56 percent of the money. The median Alaska gift is $50. California sent more, and it only sent more because six of its donors are on this sheet.",
+        "CALIFORNIA NET OF THE SIX, $597,843.36. ALASKA, $632,035.75. AHEAD BY $34,192.39. A RIVAL TICKET RUNS 53.15 PERCENT ALASKAN.",
         "04 / 09",
         "ALASKA, ALL OF IT",
         "CALIFORNIA, GROSS",
         "CALIFORNIA, NET OF THE SIX",
         "ONE $4,000 MAXIMUM, TO AREA",
         "EVERY BOX IS AREA AT K.",
-        "RINGED. THE 105 ALASKA GIFTS THAT MATCH THE SIX."
+        "RINGED. THE 105 LARGEST ALASKA GIFTS."
       ],
       "claim_ids": [
         "C11",
@@ -130,18 +131,18 @@
     {
       "n": 5,
       "kicker": "PLATE 5",
-      "headline": "86 donors carried72.81 percent of it.",
+      "headline": "86 donors carried 72.81 percent of it.",
       "strings": [
         "3.0x · K = 0.25 px2 PER DOLLAR",
         "PLATE 5",
-        "86 donors carried72.81 percent of it.",
+        "86 donors carried 72.81 percent of it.",
         "Alaska has had no limit on individual gifts since a federal appeals ruling in 2021 struck the state's $500 cap. Every gift here was lawful when made.",
-        "THE SIX ARE NOT THE SIX LARGEST DONORS.THE LARGEST SIX CARRY 24.38 PERCENT.ALSO HERE. AI FUTURES PROJECT $70,000.ALIGNMENT RESEARCH CENTER $20,000.",
+        "THE SIX ARE NOT THE SIX LARGEST DONORS. THE LARGEST SIX CARRY 24.38 PERCENT. ALSO HERE. AI FUTURES PROJECT $70,000. ALIGNMENT RESEARCH CENTER $20,000.",
         "05 / 09",
         "$4,000. THE LIMIT ALASKA JUST VOTED FOR.",
         "86 DONORS GAVE MORE. THEY CARRY 72.81 PERCENT.",
         "$2,000. THE SAME MEASURE'S GENERAL LIMIT.",
-        "16 OF THE 86 ARE ALASKAN. 14 ARE IN FRAME, DOTTED."
+        "16 ALASKA GIFTS ABOVE THE LIMIT. 14 IN FRAME, DOTTED."
       ],
       "claim_ids": [
         "C15",
@@ -186,7 +187,7 @@
         "PLATE 7",
         "The same ink, twice.",
         "The measure sets $4,000 each election cycle for a joint governor and lieutenant governor ticket. Six gifts in the upper band, 93 maximum contributions in the lower band, both drawn at the same constant.",
-        "THE BANDS HOLD THE SAME INK BY CONSTRUCTION.$2,000 IS THE GENERAL LIMIT.IT DOES NOT GOVERN A JOINT TICKET.",
+        "THE BANDS HOLD THE SAME INK BY CONSTRUCTION. $2,000 IS THE GENERAL LIMIT. IT DOES NOT GOVERN A JOINT TICKET.",
         "07 / 09",
         "SIX GIFTS. $372,000. 93,000 px2 AT 1.0x.",
         "93 AT THE $4,000 MAXIMUM. THE SAME 93,000 px2.",
@@ -210,8 +211,8 @@
         "PLATE 8",
         "The money went to the candidate who wants data centers stopped.",
         "\"I think I failed to give full appreciation to the optics of this. Because, having known [Thomas] and the work of these other folks for a while, it was like, 'Oh, these are the good guys.'\"",
-        "JONATHAN KREISS-TOMKINS, TO THE NORTHERN JOURNAL,REPRINTED BY THE SAN FRANCISCO STANDARD.HE DID NOT RESPOND TO THE STANDARD'S REQUEST.",
-        "NO PUBLISHED ACCOUNT REPORTS ANY DONOR ASKING FOROR RECEIVING ANYTHING. ANTHROPIC GAVE NOTHING ANDHAS SAID NOTHING. EVERY GIFT WAS LAWFUL WHEN MADE.",
+        "JONATHAN KREISS-TOMKINS, TO THE NORTHERN JOURNAL, REPRINTED BY THE SAN FRANCISCO STANDARD. HE DID NOT RESPOND TO THE STANDARD'S REQUEST.",
+        "NO PUBLISHED ACCOUNT REPORTS ANY DONOR ASKING FOR OR RECEIVING ANYTHING. ANTHROPIC GAVE NOTHING AND NO COMPANY STATEMENT ABOUT THE DONATIONS IS REPORTED. EVERY GIFT WAS LAWFUL WHEN MADE.",
         "A POLICY",
         "A MEETING",
         "A JOB",
@@ -236,10 +237,10 @@
       "strings": [
         "0.74x · K = 0.25 px2 PER DOLLAR",
         "PLATE 9",
-        "Four tickets.Old rules.",
+        "Four tickets. Old rules.",
         "Alaska Public Media reported on the night of the vote that the measure would take effect after the November general election. The initiative's own text says it does not apply to contributions made to influence an election that occurred on or before its effective date.",
-        "GENERAL ELECTION, NOVEMBER 3RD, 2026.FOUR CERTIFIED TICKETS. BRONSON AND CHURCH.KREISS-TOMKINS AND JOHNSON. TAYLOR AND ENGLISH.WILSON AND SHOWER.",
-        "KREISS-TOMKINS AND JOHNSON LED THE PRIMARYWITH 37,006 VOTES, 22.5 PERCENT OF 164,303.",
+        "GENERAL ELECTION, NOVEMBER 3RD, 2026. FOUR CERTIFIED TICKETS. BRONSON AND CHURCH. KREISS-TOMKINS AND JOHNSON. TAYLOR AND ENGLISH. WILSON AND SHOWER.",
+        "KREISS-TOMKINS AND JOHNSON LED THE PRIMARY WITH 37,006 VOTES, 22.5 PERCENT OF 164,303.",
         "Should a rule that passed with 72 percent wait for one more race?",
         "sources in comments",
         "ALASKA.AI",

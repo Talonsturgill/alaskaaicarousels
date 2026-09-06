@@ -15,7 +15,7 @@ At this distance the median Alaska gift is a whole gift.
 
 Alaska sent most of the gifts. Not most of the money.
 
-86 donors carried72.81 percent of it.
+86 donors carried 72.81 percent of it.
 
 117,962 to 45,418.
 
