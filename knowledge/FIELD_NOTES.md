@@ -7,6 +7,53 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-09-06 - No.52, the fisheries-monitoring deck
+
+Four lessons, all of them about the gap between a declaration and what actually
+drew.
+
+- **THE FALLBACK A DOSSIER RESERVES IS THE PLAN, NOT A DEFEAT.** Slide 05's own
+  risk flag named the exact outcome that happened, a gloved hand at arm's length
+  reading as a plush mitten with five equal sausages and no thumb, and it
+  reserved a crop to the palm, the thumb and two fingers. Three repair rounds
+  went into fixing the wide shot instead, and the flow critic still called that
+  frame the deck's predicted bail point. The crop was taken in round five and
+  the frame came back as a hand. **When a dossier reserves a fallback and the
+  named failure happens on the first render, take the fallback in the FIRST
+  repair round.** Anything else is spending the round cap on a shot the plan
+  already doubted.
+
+- **A CONTACT POOL NO WIDER THAN ITS OBJECT IS INVISIBLE, AND THE PROBE WILL
+  MEASURE THE OBJECT INSTEAD.** Two slides shipped declared contacts that the
+  machine passed and that were not measuring shadows at all. Slide 08's rect sat
+  on the camera's own mount plate at dL 55, because the pool was drawn to the
+  foot's own width and the object covered every pixel of it. Slide 04's rect
+  measured the strobe's own falloff across 115 px of open sediment at dL 25,
+  because every cast sat under the boulder that threw it. `qa.py` has a floor at
+  dL 4 and no ceiling, by design, so both read as strong. **Treat a declared dL
+  much over 30 as a mis-aimed rect until proven otherwise**, and build the pool
+  as an occluder that extends past the silhouette BEFORE it is blurred, so there
+  is a visible collar outside the object for the rect to land on. A long cast
+  and an attached collar are different things and a frame usually needs both.
+
+- **CHANGING A DECLARED COORDINATE IS ALWAYS A TWO-PLACE EDIT.** Slide 07's
+  `data-scale` was corrected from x 1000 to x 960 and the canvas variable that
+  DRAWS the axis was left at 1000, so two of the three declared marks had no ink
+  under them. Nothing else in the build noticed; the axis census did, and that is
+  what the census is for. After editing any declaration, grep the slide for the
+  number you just changed.
+
+- **A FILLED QUAD HAS A LATERAL EDGE, AND AN EDGE THROUGH A LABEL IS A RULE.**
+  The beam cones on 01 and the volumetric shafts on 09 each tripped the ring
+  test for this one reason. Light through water has no boundary, so draw those
+  shapes once into an offscreen and blur them before compositing. The same move
+  fixed a contrast failure on 01's kicker, because the cone's hottest gradient
+  stop had been placed at the apex, where the type is; volume scattering builds
+  with range, so the ramp belongs the other way round and the mass ends up in
+  the lower two thirds where this deck wants it anyway.
+
+---
+
 ## 2026-08-21 - Phase 1 craft refresh (No.39)
 
 Timeboxed study pass. The LinkedIn half returned nothing this file does not
