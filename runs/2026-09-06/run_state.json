@@ -78,12 +78,14 @@
       "docs/ rebuilt to 99 pages, 52 decks, 24 tracked decisions"
     ],
     "upgrade": [
-      "3 engine upgrades, committed as upgrade(2026-09-06)",
-      "out/2026-09-06/automation_retro.md"
+      "3 engine upgrades, commit 2a626d9ef3156e471c78ba560712142002224f9e",
+      "SHAs recorded in ledger/upgrades.json, no pending placeholders left",
+      "runs/2026-09-06/automation_retro.md"
     ],
     "gmail": [
-      "draft id r5847829907390166621, thread 1a07b6cdb8e3d73b",
+      "draft id r5847829907390166621, thread 1a07b79656c15bc4",
       "docket@alaskaaihq.com, DRAFT ONLY, nothing sent",
+      "regenerated and updated in place once the scorer's editor note was reaching it",
       "runs/2026-09-06/gmail_payload.json"
     ],
     "retro": [
