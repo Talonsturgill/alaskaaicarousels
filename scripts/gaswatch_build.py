@@ -180,7 +180,10 @@ def figures(series, model, figs=None):
     # rather than asserted. These are the numbers that justify a refit, or
     # refuse to. At zero checks they are absent, and the page says so instead
     # of implying an accuracy nobody has earned yet.
-    checks = [r.get("reconciliation") or {} for r in series]
+    # One collection can now carry delayed ACIS true-ups for older verified
+    # storage days. Collapse by the day each block describes so a later resolved
+    # block replaces its earlier unresolved attempt without double-counting.
+    checks = list(gc.reconciliation_index(series).values())
     scored = [c for c in checks
               if c.get("forecast_hdd65") is not None and c.get("actual_hdd65") is not None]
     f["accuracy_checks"] = len(scored)
@@ -203,7 +206,7 @@ def figures(series, model, figs=None):
 
     if latest:
         cin = latest["cingsa"]
-        der, rec = remodel(latest, model)
+        der, _ = remodel(latest, model)
         f.update({
             "as_of": latest["date"],
             "inventory_mcf": cin["inventory_mcf"],
@@ -226,7 +229,13 @@ def figures(series, model, figs=None):
             "peak_modeled_demand_mmcfd": der.get("peak_modeled_demand_mmcfd"),
         })
         # How much of a day's supply nothing public measures. This is the size
-        # of the hole, stated as a number rather than as an adjective.
+        # of the hole, stated as a number rather than as an adjective. Use the
+        # newest resolved day across the whole append-only reconciliation index,
+        # not only the primary block on the latest CINGSA record: a delayed ACIS
+        # true-up can legitimately live in reconciliation_trueups.
+        balances = [remodel_reconciliation(c, model) for c in checks
+                    if c.get("non_cingsa_supply_mmcfd") is not None]
+        rec = max(balances, key=lambda c: c["date"]) if balances else {}
         if rec.get("non_cingsa_supply_mmcfd") is not None and rec.get("modeled_demand_mmcfd"):
             f["balance_date"] = rec["date"]
             f["non_cingsa_supply_mmcfd"] = rec["non_cingsa_supply_mmcfd"]
@@ -471,6 +480,18 @@ def underclaims(model):
     return hits
 
 
+def remodel_reconciliation(recon, model):
+    """Recompute one stored reconciliation with the currently published model."""
+    recon = dict(recon or {})
+    if recon.get("actual_hdd65") is not None:
+        recon["modeled_demand_mmcfd"] = gc.demand(recon["actual_hdd65"], model)
+        w = recon.get("storage_withdrawal_mmcfd")
+        if w is not None:
+            recon["non_cingsa_supply_mmcfd"] = round(
+                recon["modeled_demand_mmcfd"] - w, 1)
+    return recon
+
+
 def remodel(rec, model):
     """(derived, reconciliation) recomputed from a record's measured inputs.
 
@@ -485,15 +506,9 @@ def remodel(rec, model):
     again, from the same stored inputs, with the coefficients being published.
     """
     der = dict(rec.get("derived") or {})
-    recon = dict(rec.get("reconciliation") or {})
+    recon = remodel_reconciliation(rec.get("reconciliation"), model)
     if der.get("peak_forecast_hdd") is not None:
         der["peak_modeled_demand_mmcfd"] = gc.demand(der["peak_forecast_hdd"], model)
-    if recon.get("actual_hdd65") is not None:
-        recon["modeled_demand_mmcfd"] = gc.demand(recon["actual_hdd65"], model)
-        w = recon.get("storage_withdrawal_mmcfd")
-        if w is not None:
-            recon["non_cingsa_supply_mmcfd"] = round(
-                recon["modeled_demand_mmcfd"] - w, 1)
     return der, recon
 
 
@@ -511,15 +526,14 @@ def residual_by_day(series, model):
     independently, once in the table and once in the chart, and fixed twice in
     parallel. A third reader of this data would have made it a third time.
 
-    Verified is the only filter. A residual needs a reconciliation, not an
-    inventory reading, so a record whose storage figure did not come through
-    still describes the day before it perfectly well.
+    The carrier record need not be verified. A residual needs a complete
+    reconciliation for its target day, not a current-day inventory reading, so
+    a record whose own storage figure did not come through can still true up an
+    older verified day perfectly well.
     """
     on_day = {}
-    for r in series:
-        if not r.get("verified"):
-            continue
-        recon = remodel(r, model)[1]
+    for recon in gc.reconciliation_index(series).values():
+        recon = remodel_reconciliation(recon, model)
         if recon.get("date") and recon.get("non_cingsa_supply_mmcfd") is not None:
             on_day[recon["date"]] = recon["non_cingsa_supply_mmcfd"]
     return on_day
@@ -1179,6 +1193,25 @@ def self_test():
           table_rows == [("2026-08-01", str(balance)), ("2026-08-02", "")],
           str(table_rows))
 
+    delayed_carrier = [
+        off_by_one[0],
+        {"date": "2026-08-02", "verified": False,
+         "cingsa": {"fetch_status": "parse_failed"},
+         "derived": {},
+         "reconciliation": {"date": "2026-08-01",
+                            "actual_hdd65": None,
+                            "storage_withdrawal_mmcfd": None,
+                            "non_cingsa_supply_mmcfd": None,
+                            "unresolved": True},
+         "reconciliation_trueups": [{"date": "2026-08-01",
+                                      "actual_hdd65": 12.0,
+                                      "storage_withdrawal_mmcfd": 40.0,
+                                      "non_cingsa_supply_mmcfd": balance}]},
+    ]
+    carried = residual_by_day(delayed_carrier, chart_model)
+    check("an unverified current record still publishes its older resolved true-up",
+          carried == {"2026-08-01": balance}, str(carried))
+
     # ONE tab stop, whatever the length. This is checked on a long synthetic
     # series because at today's three days the broken version and the fixed one
     # are both fine, and the difference only becomes a problem months out.
@@ -1586,6 +1619,16 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
             f'unverified in the data and carry no number forward from the day '
             f'before.</p>')
 
+    source_note = ""
+    latest = latest_verified(series)
+    if latest and (latest.get("cingsa") or {}).get("capacity_identity_mismatches"):
+        source_note = (
+            '<p class="sub" data-reveal>CINGSA\'s current capacity rows do not '
+            'match the arithmetic in its own definitions. This page preserves '
+            'the published Operating and Available values and does not choose a '
+            'correction. The storage reading comes from the separate inventory '
+            'table.</p>')
+
     balance = ""
     if "non_cingsa_supply_mmcfd" in f:
         # The regime clause is computed, never typed. The old sentence called
@@ -1730,6 +1773,7 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 {stat(noun(f["days_of_record"], "day") + " on record", f["days_of_record"],
       "collected daily")}
 </div>
+{source_note}
 
 
 <h2 id="what-this-is" data-reveal>What you are looking at</h2>

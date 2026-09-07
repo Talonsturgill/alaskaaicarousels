@@ -5395,23 +5395,48 @@
     },
     {
       "date": "2026-09-07",
-      "collected_utc": "2026-09-07T09:42:03Z",
-      "collector_version": "1.0",
-      "verified": false,
+      "collected_utc": "2026-09-07T18:14:43Z",
+      "collector_version": "1.1",
+      "verified": true,
       "cingsa": {
-        "fetch_status": "parse_failed",
-        "error": "ValueError: CINGSA layout changed, operating capacity is not facility less physical restrictions, so the rows did not land where expected",
-        "source_timestamp": null
+        "fetch_status": "ok",
+        "source_timestamp": "2026-09-07T00:38:00",
+        "source_timestamp_utc": "2026-09-07T08:38:00Z",
+        "inventory_mcf": 7597003,
+        "inventory_delta_mcf": 24504,
+        "storage_design_mcf": 13000000,
+        "inventory_pct_of_design": 58.4,
+        "withdrawal_design_mcfd": 215000,
+        "withdrawal_facility_mcfd": 166000,
+        "withdrawal_operating_mcfd": 150000,
+        "withdrawal_available_mcfd": 150000,
+        "withdrawal_restriction_mcfd": 0,
+        "injection_design_mcfd": 225000,
+        "injection_facility_mcfd": 206320,
+        "injection_operating_mcfd": 65660,
+        "injection_available_mcfd": 41156,
+        "injection_in_progress_mcfd": 24504,
+        "injection_restriction_mcfd": 65660,
+        "capacity_identity_mismatches": [
+          {
+            "stream": "injection",
+            "facility_capacity_mcfd": 206320,
+            "physical_restriction_mcfd": 65660,
+            "published_operating_capacity_mcfd": 65660,
+            "facility_less_restriction_mcfd": 140660
+          },
+          {
+            "stream": "withdrawal",
+            "facility_capacity_mcfd": 166000,
+            "physical_restriction_mcfd": 0,
+            "published_operating_capacity_mcfd": 150000,
+            "facility_less_restriction_mcfd": 166000
+          }
+        ],
+        "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only. CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
+        "source_age_hours": 9.6
       },
       "forecast": [
-        {
-          "date": "2026-09-07",
-          "hours": 23,
-          "mean_temp_f": 55.3,
-          "min_temp_f": 50,
-          "hdd65": 9.7,
-          "modeled_demand_mmcfd": 114
-        },
         {
           "date": "2026-09-08",
           "hours": 24,
@@ -5451,29 +5476,38 @@
           "min_temp_f": 50,
           "hdd65": 10.2,
           "modeled_demand_mmcfd": 116
+        },
+        {
+          "date": "2026-09-13",
+          "hours": 21,
+          "mean_temp_f": 53.2,
+          "min_temp_f": 48,
+          "hdd65": 11.8,
+          "modeled_demand_mmcfd": 121
         }
       ],
-      "forecast_source_updated": "2026-09-07T06:22:55+00:00",
+      "forecast_source_updated": "2026-09-07T14:28:38+00:00",
       "derived": {
         "peak_forecast_date": "2026-09-10",
         "peak_forecast_hdd": 12.3,
         "peak_modeled_demand_mmcfd": 123,
-        "forecast_window_demand_bcf": 0.71,
-        "storage_withdrawal_mmcfd": null,
+        "forecast_window_demand_bcf": 0.72,
+        "storage_withdrawal_mmcfd": -24.5,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": null,
+        "days_cover_at_peak": 61.8,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
         "date": "2026-09-06",
         "forecast_hdd65": 10.2,
-        "actual_hdd65": null,
-        "error": null,
-        "modeled_demand_mmcfd": null,
+        "actual_hdd65": 12.0,
+        "error": -1.8,
+        "modeled_demand_mmcfd": 122,
         "storage_withdrawal_mmcfd": null,
         "non_cingsa_supply_mmcfd": null,
         "basis": "observed HDD from ACIS PANC, measured inventory draw from the CINGSA record committed for that date",
-        "unresolved": true
+        "unresolved": true,
+        "unresolved_reason": "verified_storage_reading_unavailable"
       },
       "model": {
         "version": "2.0",
@@ -5507,18 +5541,17 @@
           "name": "cingsa_dashboard",
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
-          "fetch_status": "parse_failed",
-          "fetched_utc": "2026-09-07T09:42:04Z",
+          "fetch_status": "ok",
+          "fetched_utc": "2026-09-07T18:14:43Z",
           "http_status": 200,
-          "attempts": 1,
-          "error": "ValueError: CINGSA layout changed, operating capacity is not facility less physical restrictions, so the rows did not land where expected"
+          "attempts": 1
         },
         {
           "name": "nws_hourly_forecast",
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-07T09:42:04Z",
+          "fetched_utc": "2026-09-07T18:14:44Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -5527,15 +5560,59 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-07T09:42:04Z",
+          "fetched_utc": "2026-09-07T18:14:44Z",
           "http_status": 200,
           "attempts": 1
         }
       ],
       "flags": [
         "balance_unresolved",
-        "cingsa_fetch_failed"
-      ]
+        "cingsa_capacity_identity_mismatch",
+        "injection_restriction_active"
+      ],
+      "reconciliation_trueups": [
+        {
+          "date": "2026-08-28",
+          "forecast_hdd65": 11.0,
+          "actual_hdd65": 10.0,
+          "error": 1.0,
+          "modeled_demand_mmcfd": 115,
+          "storage_withdrawal_mmcfd": -37.5,
+          "non_cingsa_supply_mmcfd": 152.5,
+          "basis": "observed HDD from ACIS PANC, measured inventory draw from the CINGSA record committed for that date"
+        },
+        {
+          "date": "2026-08-29",
+          "forecast_hdd65": 10.4,
+          "actual_hdd65": 9.0,
+          "error": 1.4,
+          "modeled_demand_mmcfd": 112,
+          "storage_withdrawal_mmcfd": -31.4,
+          "non_cingsa_supply_mmcfd": 143.4,
+          "basis": "observed HDD from ACIS PANC, measured inventory draw from the CINGSA record committed for that date"
+        },
+        {
+          "date": "2026-08-30",
+          "forecast_hdd65": 13.1,
+          "actual_hdd65": 15.0,
+          "error": -1.9,
+          "modeled_demand_mmcfd": 132,
+          "storage_withdrawal_mmcfd": -29.3,
+          "non_cingsa_supply_mmcfd": 161.3,
+          "basis": "observed HDD from ACIS PANC, measured inventory draw from the CINGSA record committed for that date"
+        },
+        {
+          "date": "2026-09-04",
+          "forecast_hdd65": 8.7,
+          "actual_hdd65": 7.0,
+          "error": 1.7,
+          "modeled_demand_mmcfd": 105,
+          "storage_withdrawal_mmcfd": -20.5,
+          "non_cingsa_supply_mmcfd": 125.5,
+          "basis": "observed HDD from ACIS PANC, measured inventory draw from the CINGSA record committed for that date"
+        }
+      ],
+      "supersedes_unverified": "2026-09-07T09:42:03Z"
     }
   ]
 }
