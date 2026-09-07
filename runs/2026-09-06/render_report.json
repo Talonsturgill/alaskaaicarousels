@@ -47,20 +47,20 @@
           "anc": []
         },
         {
-          "text": "Two instruments on the same line, for years. That's the bill.",
+          "text": "Two instruments on the same line, in parallel. That's the bill.",
           "texts": [
             "Two instruments",
-            "on the same line, for years.",
+            "on the same line, in parallel.",
             "That's the bill."
           ],
-          "full": "Two instruments on the same line, for years. That's the bill.",
+          "full": "Two instruments on the same line, in parallel. That's the bill.",
           "tag": "h1",
           "unsized": false,
           "x": 80,
           "y": 300,
           "w": 880,
-          "h": 304,
-          "font_px": 103.5,
+          "h": 290,
+          "font_px": 98.5,
           "weight": "400",
           "family": "Instrument Serif",
           "color": "rgb(244, 248, 255)",
@@ -70,20 +70,20 @@
             [
               80,
               283,
-              562,
-              134
+              535,
+              129
             ],
             [
               80,
-              384,
-              876,
-              134
+              380,
+              879,
+              129
             ],
             [
               80,
-              486,
-              466,
-              134
+              476,
+              444,
+              129
             ]
           ],
           "wrap": {
@@ -201,11 +201,11 @@
         {
           "id": "hook",
           "tag": "h1",
-          "text": "Two instrumentson the same line, for years.That's the bill.",
+          "text": "Two instrumentson the same line, in parallel.That's the bill",
           "min": 88,
           "max": 118,
           "maxLines": 3,
-          "size": 103.5,
+          "size": 98.5,
           "lines": 3,
           "fit": true,
           "overflow_x": false,
@@ -2942,7 +2942,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4707,
+      "render_ms": 4738,
       "ok": true,
       "canvases": [
         {
@@ -2963,7 +2963,7 @@
       "leaders": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-06/slides/slide-01.html",
-        "sha1": "ca96baaa3e132ffc291b325f7a6d73dee00d2c54"
+        "sha1": "f14b6a2cebb82954889e77248137d1d708854c99"
       }
     },
     {
@@ -14707,16 +14707,16 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "OTOLITH, ABOUT 5 mm",
+          "text": "OTOLITH",
           "texts": [
-            "OTOLITH, ABOUT 5 mm"
+            "OTOLITH"
           ],
-          "full": "OTOLITH, ABOUT 5 mm",
+          "full": "OTOLITH",
           "tag": "text",
           "unsized": false,
-          "x": 120,
+          "x": 170,
           "y": 884,
-          "w": 314,
+          "w": 116,
           "h": 31,
           "font_px": 24,
           "weight": "400",
@@ -14726,9 +14726,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              120,
+              170,
               884,
-              314,
+              116,
               31
             ]
           ],
@@ -15916,7 +15916,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4113,
+      "render_ms": 4439,
       "ok": true,
       "canvases": [
         {
@@ -15949,12 +15949,12 @@
             286,
             930
           ],
-          "label": "OTOLITH, ABOUT 5 mm"
+          "label": "OTOLITH"
         }
       ],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-06/slides/slide-05.html",
-        "sha1": "f6d59cb73c3fe8eb787516267ac44d621fcd9d74"
+        "sha1": "e8d5d17b0ef997f60efa6026315aca1be2969275"
       }
     },
     {
@@ -16236,9 +16236,9 @@
       "fits": [],
       "asserts": [
         {
-          "what": "the 0.006 percent gear-contact square, drawn at true area",
-          "expect": 7.126289357021647,
-          "actual": 7.126289357021647,
+          "what": "the gear-contact square, drawn at the true area of the LESS THAN 0.006 percent bound",
+          "expect": 5.609278028409717,
+          "actual": 5.609278028409717,
           "tol": 0.05,
           "unit": "px",
           "dispersed": false,
@@ -18966,7 +18966,7 @@
           "blocker": "div"
         },
         {
-          "what": "the 0.006 percent gear-contact square, drawn at true area",
+          "what": "the gear-contact square, drawn at the true area of the LESS THAN 0.006 percent bound",
           "rect": [
             610,
             1044,
@@ -19281,18 +19281,18 @@
             24,
             40,
             37,
-            231,
-            215,
-            71,
-            228,
-            212,
-            70,
-            229,
-            214,
-            72,
-            233,
-            217,
-            72,
+            48,
+            57,
+            36,
+            99,
+            92,
+            34,
+            105,
+            101,
+            41,
+            48,
+            55,
+            35,
             23,
             38,
             34,
@@ -19329,18 +19329,18 @@
             25,
             42,
             38,
-            228,
-            212,
-            70,
+            103,
+            102,
+            42,
             225,
             210,
             69,
             225,
             210,
             70,
-            228,
-            213,
-            70,
+            104,
+            100,
+            41,
             29,
             44,
             42,
@@ -19377,18 +19377,18 @@
             23,
             41,
             36,
-            229,
-            214,
-            71,
+            105,
+            103,
+            44,
             226,
             211,
             71,
             226,
             211,
             71,
-            230,
-            214,
-            71,
+            104,
+            99,
+            38,
             17,
             29,
             26,
@@ -19425,18 +19425,18 @@
             17,
             30,
             27,
-            233,
-            217,
-            71,
-            230,
-            214,
-            71,
-            228,
-            213,
-            70,
-            232,
-            216,
-            71,
+            47,
+            55,
+            33,
+            106,
+            102,
+            43,
+            101,
+            97,
+            36,
+            46,
+            54,
+            33,
             24,
             39,
             35,
@@ -19762,7 +19762,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4025,
+      "render_ms": 3959,
       "ok": true,
       "canvases": [
         {
@@ -19783,7 +19783,7 @@
       "leaders": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-06/slides/slide-06.html",
-        "sha1": "4d6adff5dc9a57c980d8ff9e2b8adb8b6440768d"
+        "sha1": "5b6cceb8736f356d74cf0990450e4744b3eba3b8"
       }
     },
     {
@@ -30031,7 +30031,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 4412,
+      "render_ms": 4118,
       "ok": true,
       "canvases": [
         {
@@ -30045,14 +30045,14 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 40.2,
-          "variance": 1912
+          "variance": 1911.8
         }
       ],
       "breather": false,
       "leaders": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-06/slides/slide-09.html",
-        "sha1": "f1ef7c125f95228231d2a4f344a13ba71011c1d6"
+        "sha1": "84a12c5a97f8e0f62e886725eb0362b20434ddba"
       }
     }
   ]

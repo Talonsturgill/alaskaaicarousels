@@ -7,9 +7,13 @@ Canonical: https://alaskaaihq.com/archive/2026-09-06/
 
 ## The story
 
-Two instruments on the same line, for years. That's the bill.
+Two instruments on the same line, in parallel. That's the bill.
 
 The new instrument is allowed to be different.
+
+"Consistency in information that FIS data products provide is more important than consistency in FIS methods."
+
+Agreement is bought. It is never assumed.
 
 The framework calls for "incremental incorporation and calibration of new technologies" rather than "a wholesale replacement of existing methods that would disrupt the historical baseline of a time series" (C05). The most common way to do it is to run the old method and the new one in parallel for a fixed period (C07).
 
@@ -17,11 +21,21 @@ Ground the net can't cross.
 
 The camera can see it. It can't hold it.
 
+NOAA says the camera techniques "are not intended to replace hands-on sampling because physical specimens are essential for critical data, including age, feeding habits, and body condition" (C20). A near-infrared machine reads an otolith in 30 to 50 seconds, more than 10 times faster than a human at a microscope (C18).
+
+0.006%
+
 The framework's own figure for the share of total Alaska seabed area that bottom trawl survey gear contacts, offered against calls to ban extractive sampling (C08).
+
+The record is being pulled from two sides at once.
 
 The framework lists funding, vessel availability, new sampling objectives and new technology as human forces that break a time series (C09). NOAA says fish populations have shifted into deeper water or farther north where surveys have not traditionally been conducted (C12).
 
+Twelve days later, the same question, on a smaller boat.
+
 On September 15th, 2026 the North Pacific Council's Partial Coverage Fishery Monitoring Advisory Committee reviews the draft 2027 Annual Deployment Plan (C22, C23). The 2026 plan defines a no selection pool, vessels with no probability of carrying an observer or an electronic monitoring system on any trip that season (C28).
+
+The committee takes comment letters.
 
 The draft 2027 Annual Deployment Plan had not yet been posted on the meeting page as of September 6th, 2026 (C25). The Federal Register notice says public comment letters will be accepted and should be submitted electronically through the meeting page (C24).
 

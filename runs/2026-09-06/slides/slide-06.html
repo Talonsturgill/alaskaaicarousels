@@ -154,11 +154,22 @@ window.renderReady = new Promise(function (resolve) {
   cx.restore();
 
   /* ---- 3. THE ENCODING. The square's side is derived from the printed figure
-       and from the field's own width, so the type and the drawing cannot
-       disagree without the assertion catching it. ---- */
+       and from the field's own AREA, so the type and the drawing cannot
+       disagree without the assertion catching it.
+
+       THE FIRST BUILD USED FW ALONE AND WAS 1.61 TIMES TOO BIG. Taking the
+       side as FW * sqrt(FIGURE) makes the square FIGURE of a FW BY FW square,
+       and this field is 920 by 570, so the mark covered 0.00968 percent of it
+       and not 0.006. The assertion did not catch it because it compared the
+       drawing against the same wrong expression, which is a self-consistency
+       check and not a check. A share of an area has to come out of that area,
+       so the side is sqrt(FW * FH * FIGURE) and the assertion now names the
+       field's two dimensions separately. C08 states the figure as an upper
+       bound and the slide's own eyebrow says LESS THAN, so the mark is drawn
+       at the bound. ---- */
   var FIGURE = 0.00006;                      /* 0.006 percent, as printed */
-  var SIDE_FROM_FIGURE = FW * Math.sqrt(FIGURE);
-  var sq = { side: FW * Math.sqrt(FIGURE), x: 626, y: 1060 };
+  var SIDE_FROM_FIGURE = Math.sqrt(FW * FH * FIGURE);
+  var sq = { side: Math.sqrt(FW * FH * FIGURE), x: 626, y: 1060 };
   cx.save();
   cx.fillStyle = '#FFC72C';
   cx.beginPath();
@@ -217,7 +228,7 @@ window.renderReady = new Promise(function (resolve) {
      and `r` make the census run on a 7 px mark that could be drawn correctly
      and still never reach the page. */
   window.__akAssert = [{
-    what: 'the 0.006 percent gear-contact square, drawn at true area',
+    what: 'the gear-contact square, drawn at the true area of the LESS THAN 0.006 percent bound',
     expect: SIDE_FROM_FIGURE,
     actual: sq.side,
     tol: 0.05, unit: 'px',

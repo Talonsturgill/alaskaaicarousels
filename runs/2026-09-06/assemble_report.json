@@ -1,8 +1,8 @@
 {
   "pdf": "/home/user/alaskaaicarousels/out/2026-09-06/final/carousel.pdf",
   "pdf_mode": "vector",
-  "pdf_bytes": 18043750,
-  "pdf_mb": 18.04,
+  "pdf_bytes": 18026975,
+  "pdf_mb": 18.03,
   "slides": 9,
   "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-06/final/contact_sheet.png",
   "thumbs": [
@@ -17,12 +17,13 @@
     "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-09-thumb.png"
   ],
   "title": "Run Both Instruments, or Lose the Record",
+  "title_source": "copy.json",
   "sources": {
     "render_pngs": [
       {
         "name": "slide-01.png",
-        "sha256": "b2b52f55d4c3a102f05e8d54db03e970fc9c519f8e2de49f9bb5797d9ce981da",
-        "bytes": 7639686
+        "sha256": "95fe1cfcaab8fe6303025aad412fd37dbff3541cd3e7868d8f0cb631be41456f",
+        "bytes": 7644447
       },
       {
         "name": "slide-02.png",
@@ -41,13 +42,13 @@
       },
       {
         "name": "slide-05.png",
-        "sha256": "e98bca7077d17551f847a3b373852a56b179e5d1ca37b7613940cc78ee536c71",
-        "bytes": 6582823
+        "sha256": "aed390902e61c036adc3f4bf13e1422a523df9ade62b67c9f5b45c8455b6b1aa",
+        "bytes": 6586294
       },
       {
         "name": "slide-06.png",
-        "sha256": "780a15e5b2ab2793ab67030853b22b40172dddd62c69004befb05548fa6e9317",
-        "bytes": 6123704
+        "sha256": "5f04c948134aae05b20c095794d99601d0daf3fcd188dab1837bd1e81b786aa7",
+        "bytes": 6123351
       },
       {
         "name": "slide-07.png",
@@ -61,15 +62,15 @@
       },
       {
         "name": "slide-09.png",
-        "sha256": "6d5ee9a4a605abf5d972e0a01e9c458fc6632cd6df83265b43f047a4ae106870",
-        "bytes": 6746193
+        "sha256": "b3a87b978c10e3ac8e5ddd8710d3802a1e5c2c8a508d76352cdcd0460f3af19d",
+        "bytes": 6748998
       }
     ],
     "slide_html": [
       {
         "name": "slide-01.html",
-        "sha256": "0dfaa355853061e916c16a5815f214f6d58bd49a19ddb06f36e54848709c108a",
-        "bytes": 16081
+        "sha256": "1e70843fead0eb9433367a65ca77a3525c6d326b04879bab37a3e8a07ca017ed",
+        "bytes": 16083
       },
       {
         "name": "slide-02.html",
@@ -88,13 +89,13 @@
       },
       {
         "name": "slide-05.html",
-        "sha256": "40671b10bfe8436b4e4a960eb8cf74915a33ac54ee783517355cbd8aefe0db84",
-        "bytes": 18261
+        "sha256": "8d261efb4232d0071403d26b9b08f2cabdc02c7289861a0c0d2d137739d19242",
+        "bytes": 18237
       },
       {
         "name": "slide-06.html",
-        "sha256": "ecbc0876cc01f7046315223a203336b9ae244159e7f41872f33054ec70294ad1",
-        "bytes": 10258
+        "sha256": "1015f02591b933e8a2de0b5c183fc2a0e904b7b1b32f682bdf72ab11a78518a2",
+        "bytes": 11015
       },
       {
         "name": "slide-07.html",
@@ -108,8 +109,8 @@
       },
       {
         "name": "slide-09.html",
-        "sha256": "15bf574c8c10109aedc38ac2f8944a33d4e4d3db356145e43df8fdbadd7c2bc7",
-        "bytes": 14311
+        "sha256": "c8e737a2c596d2c7d4431f3a95ec1887a2dee90f744107b64815651633611c7e",
+        "bytes": 14654
       }
     ]
   }

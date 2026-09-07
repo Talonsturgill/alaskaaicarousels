@@ -15,8 +15,8 @@
     "pixel_review": "done",
     "flow_review": "done",
     "assemble": "done",
-    "scoring": "pending",
-    "ship": "pending",
+    "scoring": "done",
+    "ship": "done",
     "upgrade": "pending",
     "gmail": "pending",
     "retro": "pending"
@@ -70,6 +70,15 @@
       "1 flow critic, sequence 5.4, predicted bail point slide 05",
       "round 5 took the dossier's reserved fallback on 05, rebuilt 08's foot as one part, lit 09's horizon so the two hulls read, returned 09's counter to the bottom right",
       "two findings raised and NOT fixed and recorded as such in the reconciliation: the waterline's legibility on 2 frames of 9, and the gold budget carrying more than one meaning"
+    ],
+    "scoring": [
+      "out/2026-09-06/score_report.json",
+      "8.08 of 10 against a threshold of 7.70, zero hard fails",
+      "weakest criterion: artwork craft and genuine detail, 6"
+    ],
+    "ship": [
+      "runs/2026-09-06/ committed and pushed, PR 345 opened ready",
+      "docs/ rebuilt to 99 pages, 52 decks, 24 tracked decisions"
     ]
   }
 }

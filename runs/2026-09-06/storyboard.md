@@ -126,7 +126,7 @@ magnifications (09-05).
 
 **THIS DECK'S REQUIRED DIVERGENCE, stated explicitly.** Nothing here is a macro; the camera never gets
 closer to an object than a working distance and never enlarges anything, and slide 05 proves it by
-showing a 5 mm bone inside a 190 mm glove instead of blowing the bone up. It is daylight, all of it,
+showing a small bone inside a whole glove instead of blowing the bone up. It is daylight, all of it,
 and the darkest frame is lit by an overcast sky at noon seen from 96 m down. The ground carries almost
 all the strokes here and the only true straight lines in the deck are a steel wire and a boat rail,
 both objects. And magnification is held FIXED for nine frames while DEPTH changes, which is the
@@ -243,7 +243,7 @@ rather than a photograph.
 | C04 | 02 |
 | C05 | 03 |
 | C06 | 02 |
-| C07 | 03 |
+| C07 | 01, 03 |
 | C08 | 06 |
 | C09 | 07 |
 | C12 | 07 |
@@ -283,7 +283,7 @@ Plants the biggest one in the deck: two of everything is expensive, so who order
 **2. Copy, final.**
 
 Display, Instrument Serif, 3 lines, hand broken by sense (11 words, 61 characters):
-> Two instruments on the same line, for years.
+> Two instruments on the same line, in parallel.
 > That's the bill.
 
 Kicker, Archivo `wdth 88` 30 px tracked +8 percent (40 characters): `ALASKA FISHERIES SURVEYS · SEPTEMBER 2026`
@@ -683,7 +683,7 @@ Headline, Instrument Serif 82 px, 2 lines (44 characters):
 Body, Archivo 32 px (46 words):
 > NOAA says the camera techniques "are not intended to replace hands-on sampling because physical specimens are essential for critical data, including age, feeding habits, and body condition" (C20). A near-infrared machine reads an otolith in 30 to 50 seconds, more than 10 times faster than a human at a microscope (C18).
 
-Mono leader label: `OTOLITH · ABOUT 5 mm`
+Mono leader label: `OTOLITH`
 Mono: `05 / 09`
 
 **3. Reader takeaway.** The whole thing the survey is arguing about is a bone the size of a pencil tip,
@@ -701,7 +701,8 @@ nothing else. The glove is a heightfield through `AK.reliefShade` with an explic
 overcast key and fall into cool sky-fill shadow on their undersides. Wet nitrile carries a broad soft
 specular across the fingers, a gurry stain darkens the heel of the palm, and the glove's silhouette
 is outside-aligned against the darker water behind it so a light object on a light ground never loses
-its edge. In the palm sits one otolith at true relative scale, a 5 mm white speck in a 190 mm glove.
+its edge. In the palm sits one otolith, a white speck against a whole glove, drawn small because that
+is the argument and not because a dimension was measured.
 There is no table, no rail and no surface anything sits on in this frame, so the engine's
 seating gate has nothing to measure here and the slide declares nothing for it.
 
@@ -820,9 +821,10 @@ akpost grade, saturation 0.92, the deck's most desaturated frame.
 which is 7.128 px, sitting on a relief field 920 px wide. Its area against the field's area is exactly
 0.006 percent (C08). Nothing is magnified. The reader sees a dot and understands the number.
 
-Declared as `window.__akAssert = [{what:"the 0.006 percent contact square, drawn at true area",
-expect: SIDE_FROM_FIGURE, actual: sq.side, tol: 0.05, unit:"px", at:[620,1020], r:14}]`, where
-`SIDE_FROM_FIGURE` is derived from the printed figure and `sq.side` is the variable the drawing loop
+Declared as `window.__akAssert = [{what:"the gear-contact square, drawn at the true area of the LESS
+THAN 0.006 percent bound", expect: SIDE_FROM_FIGURE, actual: sq.side, tol: 0.05, unit:"px",
+at:[620,1020], r:14}]`, where `SIDE_FROM_FIGURE` is `Math.sqrt(FW * FH * FIGURE)`, taken from the
+field's own AREA and not from its width alone, and `sq.side` is the variable the drawing loop
 actually used, so the two can disagree. The `at` and `r` keys make the census and the canvas-versus-page
 ink ratio run on it, because a 7 px mark under a dimension call is exactly the kind of thing that can
 be drawn correctly and never reach the page.
@@ -1281,6 +1283,33 @@ sequence 5.4 and named slide 05 as the predicted bail point.
   single meaning was written over the top of it afterwards. Repointing it is a palette decision for the
   next deck, not a last-round edit, and it is filed as such.
 
+**AFTER THE SCORE, SIX FINDINGS FROM AN AUTOMATED REVIEWER ON THE OPEN PULL REQUEST.** All six were
+checked against the artifacts and all six were real, so all six were fixed. Three of them are the kind
+of defect no gate in this repo can currently see.
+
+1. **Slide 06's true-area square was 1.61 times too big.** The side was taken as `FW * sqrt(FIGURE)`,
+   which makes the mark that share of a FW BY FW square, and this field is 920 by 570. The mark covered
+   0.00968 percent of the relief field rather than 0.006. The `__akAssert` did not catch it because it
+   compared the drawing against the same wrong expression, which is a self-consistency check and not a
+   check. The side is now `sqrt(FW * FH * FIGURE)`, 5.609 px rather than 7.126, and the assertion names
+   the field's two dimensions. This is the one number the whole slide exists to draw.
+2. **The cover asserted a duration nothing supports.** "for years" carried no claim id and C07 says only
+   "operate them in parallel for some fixed period of time". The hook now reads "Two instruments on the
+   same line, in parallel. That's the bill." and C07 joins slide 01's claim set.
+3. **The otolith label printed a measurement no claim supplies.** None of the 33 verified claims carries
+   a species-specific otolith dimension, so ABOUT 5 mm was an unsourced number on a slide. The label now
+   reads OTOLITH and the dossier no longer says true relative scale for that object. The bone is still
+   drawn small, because that is the argument, but the deck stops claiming a measured ratio.
+4. **The closing slide broke its own declared ratio.** The cover draws the pair at 168 to 21, which is 8
+   to 1, and round five had enlarged only the DriX, leaving 78 to 26. Both hulls are now scaled together
+   at 120 to 15.
+5. **`run_state.json` still said scoring was pending** while carrying a finished score report, so a
+   crash-resume would have re-scored a scored run.
+6. **`copy.json` put the body paragraph in `headline` on five slides and left `body` empty**, and
+   `site_build.slide_alts()` reads only those two fields and truncates at 160 characters, so the
+   archive's alt text omitted every visible title and cut mid-sentence. Each slide now carries its
+   display line in `headline` and its paragraph in `body`.
+
 **And one thing the plan already said, restated because it held.** No WebGL anywhere. Every frame is
 Canvas 2D plus the committed AK benches, and no slide needed a GPU fallback design.
 
@@ -1291,17 +1320,17 @@ GATE STATUS -- generated by scripts/gate_status.py from the artifacts in out/202
 [PASS] render         9/9 slides OK, 0 page errors, 0 overflow warnings
 [WARN] qa.py          WARN, 0 fails, 13 warns
 [PASS] dossier_check  PASS, 9 dossiers, 0 fails, 0 warns
-[PASS] reconciled     BUILD RECONCILIATION present, 122 line(s), 11347 chars
+[PASS] reconciled     BUILD RECONCILIATION present, 147 line(s), 13555 chars
 [WARN] caption_check  PASS, 888 chars, hook 123, 3 hashtags
-[PASS] copy_sync      copy_sync_check: PASS -- 54 authored slide strings all present in the render
+[PASS] copy_sync      copy_sync_check: PASS -- 60 authored slide strings all present in the render
 [PASS] aggregate      aggregate_check: PASS -- 13 aggregate assertion(s) detected, 13 declared -> out/2026-09-06/aggregate_report.json
 [PASS] plan_drift     plan_drift_check: PASS -- 25 claims indexed, 0 declared counts checked, 0 body quote(s) checked, 0 drift(s)
-[PASS] bespoke        bespoke_check: PASS -- 9 slides, median pairwise art similarity 0.107 (fail at 0.60), max pair 0.224, drawn share 76% (120 drawn vs 38 block
+[PASS] bespoke        bespoke_check: PASS -- 9 slides, median pairwise art similarity 0.104 (fail at 0.60), max pair 0.224, drawn share 76% (120 drawn vs 38 block
 [PASS] scanner_sync   the live scan page still matches the routine contract
 [PASS] docket_dates   docket dates clean at 2026-09-06: 301 assertions over 6 fixtures and 24 ledger items
 [WARN] gas_watch      33 day(s) on record, 31 verified, no gaps, latest 2026-09-04, EIA through 202605 over 131 months, model misses by 6.82%, which is 3 days old
 [PASS] site_fresh     OK: docs/ is exactly a fresh build at --date 2026-09-06 (173 generated files)
-[PASS] assemble       9 slides, pdf vector 18.04 MB, 9 thumbs, sources verified
+[PASS] assemble       9 slides, pdf vector 18.03 MB, 9 thumbs, sources verified
 [PASS] score          8.08 / 10 vs threshold 7.7, scorer says passes=True
 [PASS] ship_gate      scored 8.08 against a threshold of 7.70
 [PASS] artifacts      every named artifact present, JSON parses, 9 slides valid

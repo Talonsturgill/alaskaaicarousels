@@ -129,8 +129,13 @@ window.renderReady = new Promise(function (resolve) {
   cx.fillStyle = fl;
   cx.fillRect(0, WATERLINE - 96, W, 100);
   cx.restore();
-  farHull(700, 78, true);
-  farHull(812, 26, false);
+  /* 168 to 21 on the cover, so 8 to 1 here as well. The pair is declared at
+     TRUE RELATIVE LENGTH in both frames and a payoff that quietly restates
+     the ratio is not a payoff. Both are scaled up rather than the small one
+     alone, which is what the first repair did and it made the DriX 2.7 times
+     too big against the ship. */
+  farHull(690, 120, true);
+  farHull(836, 15, false);
 
   /* ---- 3. THE MENISCUS. A band with real thickness and refraction structure,
        so the boundary is a physical thing rather than a drawn edge. ---- */
