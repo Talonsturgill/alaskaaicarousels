@@ -53,9 +53,9 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
-COLLECTOR_VERSION = "1.0"
+COLLECTOR_VERSION = "1.1"
 
-UA = "AlaskaAI-GasWatch/1.0 (+https://alaskaaihq.com; docket@alaskaaihq.com)"
+UA = "AlaskaAI-GasWatch/1.1 (+https://alaskaaihq.com; docket@alaskaaihq.com)"
 
 CINGSA_URL = "https://cingsa.com/operations/PublicDashBoard.html"
 NWS_HOURLY = "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly"
@@ -285,13 +285,26 @@ def parse_cingsa(raw):
     begin = row(cells, "Beginning Inventory", 1, lo=split)
     end = row(cells, "Ending Inventory", 1, lo=split)
 
-    # Published identity, worth asserting because a silent layout shuffle that
-    # still parses would otherwise pass every other check in this file.
-    if abs((inj_fac - inj_res) - inj_op) > 1 or abs((wd_fac - wd_res) - wd_op) > 1:
-        raise ValueError(
-            "CINGSA layout changed, operating capacity is not facility less "
-            "physical restrictions, so the rows did not land where expected"
-        )
+    # CINGSA defines operating capacity as facility capacity less physical
+    # restrictions. That identity was a useful structural guard until September
+    # 5th, 2026, when CINGSA's own labeled rows stopped satisfying its published
+    # definition while the inventory table and every row label remained intact.
+    # Rejecting the whole page discarded a valid storage reading. Preserve every
+    # published value exactly and make the source inconsistency explicit instead
+    # of either guessing which capacity is right or losing the inventory.
+    identity_mismatches = []
+    for stream, facility, restriction, operating in (
+            ("injection", inj_fac, inj_res, inj_op),
+            ("withdrawal", wd_fac, wd_res, wd_op)):
+        expected = facility - restriction
+        if abs(expected - operating) > 1:
+            identity_mismatches.append({
+                "stream": stream,
+                "facility_capacity_mcfd": int(facility),
+                "physical_restriction_mcfd": int(restriction),
+                "published_operating_capacity_mcfd": int(operating),
+                "facility_less_restriction_mcfd": int(expected),
+            })
     # Unit guard. Every check above passes if CINGSA restates the table in
     # MMcf instead of Mcf, because the rows still parse and the identities
     # still hold; every number would just be a thousand times too small and
@@ -331,16 +344,19 @@ def parse_cingsa(raw):
         "storage_design_mcf": int(design_volume),
         "inventory_pct_of_design": round(end / design_volume * 100, 1),
         "withdrawal_design_mcfd": int(wd_design),
+        "withdrawal_facility_mcfd": int(wd_fac),
         "withdrawal_operating_mcfd": int(wd_op),
         "withdrawal_available_mcfd": int(wd_av),
         "withdrawal_restriction_mcfd": int(wd_res),
         "injection_design_mcfd": int(inj_design),
+        "injection_facility_mcfd": int(inj_fac),
         "injection_operating_mcfd": int(inj_op),
         "injection_available_mcfd": int(inj_av),
         # Available is operating less nominations, so the difference is the
         # nominated injection actually in progress for the day.
         "injection_in_progress_mcfd": int(inj_op - inj_av),
         "injection_restriction_mcfd": int(inj_res),
+        "capacity_identity_mismatches": identity_mismatches,
         "operational_note": note,
     }
 
@@ -381,11 +397,19 @@ def parse_forecast(payload, model):
     return out, props.get("updateTime")
 
 
+def parse_acis_hdd_series(payload):
+    """Observed HDD values keyed by date, with missing observations omitted."""
+    out = {}
+    for row_ in json.loads(payload).get("data", []):
+        if len(row_) < 2 or row_[1] in ("M", "T", "", None):
+            continue
+        out[row_[0]] = float(row_[1])
+    return out
+
+
 def parse_acis_hdd(payload):
-    rows = json.loads(payload).get("data", [])
-    if rows and rows[0][1] not in ("M", "T", "", None):
-        return float(rows[0][1])
-    return None
+    values = parse_acis_hdd_series(payload)
+    return next(iter(values.values()), None)
 
 
 # ------------------------------------------------------------------ model
@@ -581,8 +605,10 @@ def read_ledger(path):
 # nothing at one run a day and becomes ledger bloat the moment the schedule
 # gets tighter, which is exactly what happened when it did.
 MEASURED = ("inventory_mcf", "inventory_delta_mcf", "inventory_pct_of_design",
-            "withdrawal_operating_mcfd", "withdrawal_restriction_mcfd",
-            "injection_operating_mcfd", "injection_in_progress_mcfd",
+            "withdrawal_facility_mcfd", "withdrawal_operating_mcfd",
+            "withdrawal_available_mcfd", "withdrawal_restriction_mcfd",
+            "injection_facility_mcfd", "injection_operating_mcfd",
+            "injection_available_mcfd", "injection_in_progress_mcfd",
             "injection_restriction_mcfd", "storage_design_mcf",
             "injection_design_mcfd")
 
@@ -643,6 +669,80 @@ def standing(records, date):
     return found
 
 
+def reconciliation_blocks(record):
+    """Every reconciliation a record carries, legacy block first.
+
+    The original schema carried exactly one block for the preceding day. The
+    retry queue is additive: a later collection can also carry older resolved
+    blocks in `reconciliation_trueups` without rewriting the published ledger.
+    """
+    blocks = []
+    primary = (record or {}).get("reconciliation")
+    if isinstance(primary, dict) and primary.get("date"):
+        blocks.append(primary)
+    for block in (record or {}).get("reconciliation_trueups") or []:
+        if isinstance(block, dict) and block.get("date"):
+            blocks.append(block)
+    return blocks
+
+
+def reconciliation_quality(block):
+    """Prefer a resolved balance, then the most populated partial block."""
+    if not block:
+        return -1
+    fields = ("forecast_hdd65", "actual_hdd65", "error",
+              "modeled_demand_mmcfd", "storage_withdrawal_mmcfd",
+              "non_cingsa_supply_mmcfd")
+    return (100 if block.get("non_cingsa_supply_mmcfd") is not None else 0) + sum(
+        block.get(key) is not None for key in fields)
+
+
+def reconciliation_index(records):
+    """Best append-only reconciliation block for each day it describes."""
+    out = {}
+    for record in records:
+        for block in reconciliation_blocks(record):
+            day = block["date"]
+            if reconciliation_quality(block) >= reconciliation_quality(out.get(day)):
+                out[day] = block
+    return out
+
+
+def unresolved_reconciliation_dates(records, before_date):
+    """Verified storage days before `before_date` still missing a balance."""
+    standings = {}
+    for record in records:
+        if record.get("date"):
+            standings[record["date"]] = record
+    reconciled = reconciliation_index(records)
+    return sorted(
+        day for day, record in standings.items()
+        if day < before_date and record.get("verified")
+        and (reconciled.get(day) or {}).get("non_cingsa_supply_mmcfd") is None
+    )
+
+
+def merge_reconciliation_history(prior, record):
+    """Carry prior true-ups across same-day CINGSA revisions without regression."""
+    best = {}
+    for source in (prior or {}, record):
+        for block in reconciliation_blocks(source):
+            day = block["date"]
+            if reconciliation_quality(block) >= reconciliation_quality(best.get(day)):
+                best[day] = block
+
+    primary = record.get("reconciliation") or {}
+    primary_day = primary.get("date")
+    if primary_day in best:
+        record["reconciliation"] = best.pop(primary_day)
+    trueups = [best[day] for day in sorted(best)]
+    if trueups:
+        record["reconciliation_trueups"] = trueups
+    else:
+        record.pop("reconciliation_trueups", None)
+    return record
+
+
 def forecast_hdd_for(records, date):
     """What the most recent earlier record predicted for this date."""
     for rec in reversed(records):
@@ -698,9 +798,13 @@ def reconcile(records, recon_date, actual_hdd, model):
     block["modeled_demand_mmcfd"] = demand(actual_hdd, model)
     prior = standing(records, recon_date)
     if not prior or not prior.get("verified"):
+        block["unresolved"] = True
+        block["unresolved_reason"] = "verified_storage_reading_unavailable"
         return block
     delta = (prior.get("cingsa") or {}).get("inventory_delta_mcf")
     if delta is None:
+        block["unresolved"] = True
+        block["unresolved_reason"] = "measured_inventory_delta_unavailable"
         return block
 
     # A negative inventory delta is a draw, which is a positive withdrawal.
@@ -740,6 +844,8 @@ def build_record(model, records, now, ak_today):
     verified = cingsa["fetch_status"] == "ok" and not stale
     if cingsa["fetch_status"] != "ok":
         flags.append("cingsa_fetch_failed")
+    if cingsa.get("capacity_identity_mismatches"):
+        flags.append("cingsa_capacity_identity_mismatch")
     if stale:
         flags.append("cingsa_stale")
 
@@ -756,7 +862,8 @@ def build_record(model, records, now, ak_today):
     return date, cingsa, verified, stale, flags, probes
 
 
-def finish_record(date, cingsa, verified, flags, probes, model, records, now):
+def finish_record(date, cingsa, verified, flags, probes, model, records, now,
+                  prior=None):
     forecast, forecast_updated = [], None
     fc_probe = Probe("nws_hourly_forecast", NWS_HOURLY)
     probes.append(fc_probe)
@@ -768,16 +875,18 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now):
             fc_probe.error = f"{type(exc).__name__}: {exc}"
 
     recon_date = (datetime.fromisoformat(date) - timedelta(days=1)).strftime("%Y-%m-%d")
+    pending_trueups = unresolved_reconciliation_dates(records, date)
+    wanted_hdd = sorted(set(pending_trueups + [recon_date]))
     acis_probe = Probe("acis_panc_hdd", ACIS_URL, method="POST")
     probes.append(acis_probe)
-    actual_hdd = None
+    observed_hdd = {}
     try:
         body = json.dumps({
-            "sid": "PANC", "sdate": recon_date, "edate": recon_date,
+            "sid": "PANC", "sdate": wanted_hdd[0], "edate": wanted_hdd[-1],
             "elems": [{"name": "hdd", "interval": "dly",
                        "base": model["hdd_base_f"]}],
         }).encode("utf-8")
-        actual_hdd = parse_acis_hdd(
+        observed_hdd = parse_acis_hdd_series(
             http(acis_probe, data=body,
                  headers={"Content-Type": "application/json"}))
     except Exception as exc:
@@ -813,9 +922,7 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now):
 
     # Resolve the balance before the flags are settled, so a day whose residual
     # could not be computed is visible in flags rather than only as a null.
-    recon = reconcile(records, recon_date, actual_hdd, model)
-    if recon.get("unresolved"):
-        flags.append("balance_unresolved")
+    recon = reconcile(records, recon_date, observed_hdd.get(recon_date), model)
     if cingsa.get("fetch_status") == "ok":
         if cingsa["withdrawal_restriction_mcfd"] > 0:
             flags.append("withdrawal_restriction_active")
@@ -848,6 +955,23 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now):
         "sources": [p.as_dict() for p in probes],
         "flags": sorted(set(flags)),
     }
+    trueups = []
+    for trueup_date in pending_trueups:
+        if trueup_date == recon_date:
+            continue
+        actual_hdd = observed_hdd.get(trueup_date)
+        if actual_hdd is None:
+            continue
+        block = reconcile(records, trueup_date, actual_hdd, model)
+        if block.get("non_cingsa_supply_mmcfd") is not None:
+            trueups.append(block)
+    if trueups:
+        record["reconciliation_trueups"] = trueups
+    record = merge_reconciliation_history(prior, record)
+    if record["reconciliation"].get("unresolved"):
+        record["flags"] = sorted(set(record["flags"] + ["balance_unresolved"]))
+    else:
+        record["flags"] = [f for f in record["flags"] if f != "balance_unresolved"]
     return record
 
 
@@ -983,6 +1107,53 @@ def self_test(model_path):
           act == "revision" and was == "2026-08-05T05:00:00",
           f"{act}, superseding {was}")
 
+    print("delayed reconciliation queue")
+    delayed = [
+        {"date": "2026-08-27", "verified": True,
+         "cingsa": {"inventory_delta_mcf": 20_000},
+         "forecast": [{"date": "2026-08-28", "hdd65": 8.0}]},
+        {"date": "2026-08-28", "verified": True,
+         "cingsa": {"inventory_delta_mcf": 30_000},
+         "forecast": [], "reconciliation": {
+             "date": "2026-08-27", "actual_hdd65": 7.0,
+             "modeled_demand_mmcfd": demand(7.0, model),
+             "storage_withdrawal_mmcfd": -20.0,
+             "non_cingsa_supply_mmcfd": demand(7.0, model) + 20.0}},
+        {"date": "2026-08-29", "verified": False,
+         "cingsa": {"fetch_status": "failed"},
+         "forecast": [], "reconciliation": {
+             "date": "2026-08-28", "actual_hdd65": None,
+             "modeled_demand_mmcfd": None,
+             "storage_withdrawal_mmcfd": None,
+             "non_cingsa_supply_mmcfd": None, "unresolved": True}},
+    ]
+    pending = unresolved_reconciliation_dates(delayed, "2026-08-29")
+    check("a verified day whose one ACIS attempt failed stays queued",
+          pending == ["2026-08-28"], str(pending))
+    repaired_balance = reconcile(delayed, "2026-08-28", 10.0, model)
+    check("a later observation resolves the queued mass balance",
+          repaired_balance["non_cingsa_supply_mmcfd"] is not None,
+          str(repaired_balance))
+    carrier = merge_reconciliation_history(delayed[-1], {
+        "date": "2026-08-29", "verified": False,
+        "reconciliation": delayed[-1]["reconciliation"],
+        "reconciliation_trueups": [repaired_balance],
+    })
+    check("an unverified current reading can still carry an older true-up",
+          reconciliation_index([carrier])["2026-08-28"]
+          ["non_cingsa_supply_mmcfd"] == repaired_balance["non_cingsa_supply_mmcfd"],
+          str(reconciliation_index([carrier])))
+    regressed = merge_reconciliation_history(carrier, {
+        "date": "2026-08-29", "verified": True,
+        "reconciliation": {"date": "2026-08-28", "actual_hdd65": None,
+                           "non_cingsa_supply_mmcfd": None,
+                           "unresolved": True},
+    })
+    check("a same-day source revision cannot erase a resolved true-up",
+          regressed["reconciliation"]["non_cingsa_supply_mmcfd"]
+          == repaired_balance["non_cingsa_supply_mmcfd"],
+          str(regressed["reconciliation"]))
+
     stale = notes_quoting_figures(model)
     check("no backtest note quotes a figure a refit would falsify",
           not stale, ", ".join(stale) or "prose carries no numerals")
@@ -1007,6 +1178,38 @@ def self_test(model_path):
     for key, want in expected.items():
         check(f"parses {key}", parsed.get(key) == want,
               f"got {parsed.get(key)}, expected {want}")
+    check("records no capacity identity warning when CINGSA's rows agree",
+          parsed["capacity_identity_mismatches"] == [],
+          str(parsed["capacity_identity_mismatches"]))
+
+    # The live September 7th shape: labels, units and inventory are intact, but
+    # CINGSA's published operating rows do not equal the arithmetic in its own
+    # definitions. The storage reading must survive, and the source conflict
+    # must remain machine visible without this collector choosing a winner.
+    inconsistent = (FIXTURE
+        .replace('<td class="data_item">206,320</td><td></td><td class="data_item">132,117</td></tr>\n'
+                 '<tr class="data_tabletr"><td class="row_item">Physical Restrictions</td>'
+                 '<td class="data_item">0</td><td></td><td class="data_item">0</td></tr>\n'
+                 '<tr class="data_tabletr"><td class="row_item">Operating Capacity</td>'
+                 '<td class="data_item">206,320</td><td></td><td class="data_item">132,117</td></tr>',
+                 '<td class="data_item">206,320</td><td></td><td class="data_item">166,000</td></tr>\n'
+                 '<tr class="data_tabletr"><td class="row_item">Physical Restrictions</td>'
+                 '<td class="data_item">65,660</td><td></td><td class="data_item">0</td></tr>\n'
+                 '<tr class="data_tabletr"><td class="row_item">Operating Capacity</td>'
+                 '<td class="data_item">65,660</td><td></td><td class="data_item">150,000</td></tr>'))
+    inconsistent_parsed = parse_cingsa(inconsistent)
+    check("keeps a labeled inventory when CINGSA's capacity arithmetic conflicts",
+          inconsistent_parsed["inventory_mcf"] == 6423571,
+          str(inconsistent_parsed["inventory_mcf"]))
+    check("preserves CINGSA's published operating capacities without correction",
+          inconsistent_parsed["injection_operating_mcfd"] == 65660
+          and inconsistent_parsed["withdrawal_operating_mcfd"] == 150000,
+          str((inconsistent_parsed["injection_operating_mcfd"],
+               inconsistent_parsed["withdrawal_operating_mcfd"])))
+    check("flags both published capacity identity conflicts",
+          [m["stream"] for m in inconsistent_parsed["capacity_identity_mismatches"]]
+          == ["injection", "withdrawal"],
+          str(inconsistent_parsed["capacity_identity_mismatches"]))
 
     # The specific trap. Design Capacity and Maximum Contracted Capacity each
     # appear in both tables, one a rate and one a volume. A parser that takes
@@ -1040,16 +1243,11 @@ def self_test(model_path):
                 .replace("6,388,680", "6,389")),
         ("deliverability restated in MMcf/d",
          FIXTURE.replace("132,117", "132").replace("206,320", "206")),
-        ("rows shuffled so the published identity breaks",
-         FIXTURE.replace('<td class="data_item">206,320</td><td></td>'
-                         '<td class="data_item">132,117</td></tr>\n'
-                         '<tr class="data_tabletr"><td class="row_item">Physical Restrictions</td>'
-                         '<td class="data_item">0</td><td></td><td class="data_item">0</td></tr>',
-                         '<td class="data_item">206,320</td><td></td>'
-                         '<td class="data_item">132,117</td></tr>\n'
-                         '<tr class="data_tabletr"><td class="row_item">Physical Restrictions</td>'
-                         '<td class="data_item">9,000</td><td></td>'
-                         '<td class="data_item">9,000</td></tr>')),
+        ("a labeled rate row stops being numeric",
+         FIXTURE.replace('<td class="data_item">0</td><td></td>'
+                         '<td class="data_item">0</td></tr>',
+                         '<td class="data_item">restricted</td><td></td>'
+                         '<td class="data_item">0</td></tr>', 1)),
     ]
     for label, mutated in broken:
         try:
@@ -1126,10 +1324,11 @@ def main():
     prior = standing(records, date)
     action, detail = what_to_do(prior, verified,
                                 cingsa.get("source_timestamp"), cingsa)
-    if action == "skip":
+    pending_trueups = unresolved_reconciliation_dates(records, date)
+    if action == "skip" and not pending_trueups:
         print(f"{date} needs nothing, {detail}.")
         return 0
-    if action == "refuse":
+    if action == "refuse" and not pending_trueups:
         print(f"{date} already has an unverified record and this attempt "
               f"also failed. Not stacking a second failure.")
         for probe in probes:
@@ -1138,7 +1337,29 @@ def main():
         return 3
 
     record = finish_record(date, cingsa, verified, flags, probes, model,
-                           records, now)
+                           records, now, prior)
+    before = reconciliation_index(records)
+    after = reconciliation_index([record])
+    resolved_trueups = [
+        day for day in pending_trueups
+        if (after.get(day) or {}).get("non_cingsa_supply_mmcfd") is not None
+        and (before.get(day) or {}).get("non_cingsa_supply_mmcfd") is None
+    ]
+    if action in ("skip", "refuse"):
+        if not resolved_trueups:
+            if action == "skip":
+                print(f"{date} needs nothing, {detail}; unresolved balance "
+                      f"dates are still awaiting observed weather.")
+                return 0
+            print(f"{date} already has an unverified record and this attempt "
+                  f"also failed. No older balance became resolvable.")
+            for probe in probes:
+                if probe.status != "ok":
+                    print(f"  {probe.name}, {probe.status}, {probe.error}")
+            return 3
+        action = "trueup"
+        detail = resolved_trueups
+
     if action == "repair":
         record["supersedes_unverified"] = detail
     elif action == "revision":
@@ -1149,6 +1370,9 @@ def main():
         print(f"{date} was restated by CINGSA, posting {detail} to "
               f"{cingsa.get('source_timestamp')}, inventory {prior_inv} to "
               f"{cingsa.get('inventory_mcf')}.")
+    elif action == "trueup":
+        record["reconciles_dates"] = detail
+        print("Resolved delayed balance data for " + ", ".join(detail) + ".")
 
     if args.dry_run:
         print(json.dumps(record, indent=2))
@@ -1177,6 +1401,10 @@ def main():
               f"{rec['modeled_demand_mmcfd']} less storage "
               f"{rec['storage_withdrawal_mmcfd']} gives non CINGSA supply "
               f"{rec['non_cingsa_supply_mmcfd']} MMcf/d")
+    if resolved_trueups:
+        print(f"  restored {len(resolved_trueups)} delayed balance "
+              f"{'day' if len(resolved_trueups) == 1 else 'days'}: "
+              + ", ".join(resolved_trueups))
     print(f"  flags {', '.join(record['flags']) or 'none'}")
 
     if not verified:
