@@ -17,9 +17,9 @@
     "assemble": "done",
     "scoring": "done",
     "ship": "done",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "done"
   },
   "artifacts": {
     "wake": [
@@ -30,10 +30,7 @@
     "docket": [
       "ledger/docket.json (5 items refreshed, 1 correction)"
     ],
-    "gas_watch": [
-      "SITE SIGN-OFF: PASS, 98 pages, 18 checks",
-      "GAS WATCH: PASS, read 2026-09-04, 33 days on record, chart present"
-    ],
+    "gas_watch": "SITE SIGN-OFF: PASS, 99 pages, 18 checks. GAS WATCH: PASS, current reading September 4th, 2026, 33 days on record, 31 verified, chart present.",
     "research": [
       "out/2026-09-06/scout_merge.md"
     ],
@@ -79,6 +76,20 @@
     "ship": [
       "runs/2026-09-06/ committed and pushed, PR 345 opened ready",
       "docs/ rebuilt to 99 pages, 52 decks, 24 tracked decisions"
+    ],
+    "upgrade": [
+      "3 engine upgrades, committed as upgrade(2026-09-06)",
+      "out/2026-09-06/automation_retro.md"
+    ],
+    "gmail": [
+      "draft id r5847829907390166621, thread 1a07b6cdb8e3d73b",
+      "docket@alaskaaihq.com, DRAFT ONLY, nothing sent",
+      "runs/2026-09-06/gmail_payload.json"
+    ],
+    "retro": [
+      "runs/2026-09-06/automation_retro.md",
+      "5 lessons appended to knowledge/FIELD_NOTES.md",
+      "3 instincts appended to ledger/instincts.json"
     ]
   }
 }
