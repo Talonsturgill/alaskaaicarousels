@@ -372,9 +372,16 @@ def main():
     # reader's, and nothing downstream looks. Both the scorer's brief and the
     # copywriter's ask for `editor_notes_for_email` as an array of sentences,
     # so the list is the EXPECTED shape and the string is the fallback.
+    # 2026-09-06: the SIXTH spelling, plain "editor_notes", and it cost the run
+    # the whole scorer's note: that No.52 cleared its threshold but landed
+    # under the standard bar and under all eight of the last scored runs, that
+    # two defects were knowingly left unfixed, and that the ask expires on
+    # September 15th. That is precisely the paragraph that can stop a post, and
+    # the draft rendered without it. Widening the list, again, is cheaper than
+    # hoping the next prompt matches.
     def _note_from(src):
         for k in ("editor_notes_for_email", "notes_for_the_email",
-                  "notes_for_email", "editor_note",
+                  "notes_for_email", "editor_note", "editor_notes",
                   "shortfall_note_for_email", "shortfall_note",
                   "honest_note_for_the_email", "honest_note"):
             v = src.get(k)

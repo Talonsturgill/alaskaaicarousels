@@ -2051,7 +2051,7 @@
       ],
       "verification": "CALIBRATED, not guessed. Every data-contacts pair in the eight decks that ship their slide sources plus this run and examples/demo-deck, 45 declarations: 40 sit at or under 94 px of separation, and the remaining 5 are 102, 112, 209, 255 and 307, so 96 falls in the empty part of the distribution and is also the window contact_probe.py already searches for the pool and the width technique 94a gives one. An upper bound on dL was measured and REJECTED: the 102 shipped contact readings in runs/*/machine_qa.json run to a median of 18.6 and a max of 62.2, so any dL ceiling that caught slide 08's 55 would fire on legitimately deep shipped shadows and would miss slide 04's 25 entirely. DEFECT RECONSTRUCTION, built from contact_probe's own measured trough on this run's own render: slide 08 with the shadow rect on the mount plate (x 289-313, dL 50.8, gap 111) and slide 04 with a 110 px straddle of open sediment (dL 21.6) both returned INFO under the old code and both WARN now, while the two SHIPPED declarations (gap 68 and 14) stay INFO. REGRESSION, measured before and after on three FROZEN render dirs, because out/2026-09-06 was being rewritten by a concurrent post-score correction pass during this phase: (a) the deck as it shipped, whose regenerated machine_qa.json compares byte-identical to runs/2026-09-06/machine_qa.json at WARN, 0 fails, 13 warns; (b) a copy of out/2026-09-06/render taken mid-correction; (c) examples/demo-deck. All three give byte-identical qa.py console output before and after the change. contact_probe.py --verify (which imports qa.py) is unchanged. gate_status.py --run out/2026-09-06, run against the shipped state, returned 18 rows and 0 FAIL with the qa row at 0 fails, 13 warns.",
       "rollback": "Revert the upgrade(2026-09-06) commit, or individually: delete CONTACT_PAIR_SPAN, _pair_gap() and _contact_reach() from qa.py and the four `+ reach` / `if reach:` lines in contact_reads(). It adds a warn and nothing else reads it.",
-      "commit": "pending upgrade(2026-09-06)"
+      "commit": "2a626d9ef3156e471c78ba560712142002224f9e"
     },
     {
       "run_date": "2026-09-06",
@@ -2064,7 +2064,7 @@
       ],
       "verification": "DEFECT RECONSTRUCTION on this run's own slide 07 render, declaring the marks on the un-drawn 1000 scale (620, 715, 1000) against a band drawn on the 960 one. Old code: 'the weakest declared mark (ink 0.9) is no stronger than the band's own texture (0.8) ... draw the marks so a reader can tell them from the ground'. New code, same input, same WARN verdict: '1 of this axis's 3 declared mark(s) carry no more ink than the band's own texture (0.8), while the strongest declared mark reads 50.1. Per mark: 620 (0 kilometres): ink 50.1, 715 (50 kilometres): ink 8.1, 1000 (200 kilometres): ink 0.9. ... The nearest mark-strength ink to the mark declared at 1000 is at 961, 39 px away'. The SHIPPED slide 07 declaration still returns INFO. NO NEW WARNS BY CONSTRUCTION: the new branch is reachable only when min(declared_ink) is at or below max(0.5, floor*1.2), which is exactly the condition the two pre-existing warn branches already tripped on, so no census that used to pass can now warn. An earlier draft of this fix flagged marks merely weaker than the strongest, which would have warned on a legitimate thick origin rule beside fine ticks; it was measured, rejected and removed before shipping. REGRESSION: byte-identical qa.py console output before and after on three frozen render dirs (the deck as it shipped, a mid-correction copy of out/2026-09-06/render, and examples/demo-deck).",
       "rollback": "Revert the upgrade(2026-09-06) commit, or individually: in qa.py delete CENSUS_ALT_MAX, _census_nearest_ink(), _census_ink_table() and the `strongest`/`floor_`/`weak`/`alternatives()` block in axis_census(), and restore the two original warn strings. No other gate reads any of it.",
-      "commit": "pending upgrade(2026-09-06)"
+      "commit": "2a626d9ef3156e471c78ba560712142002224f9e"
     },
     {
       "run_date": "2026-09-06",
@@ -2079,7 +2079,7 @@
       ],
       "verification": "THE DEFECT IS NOW UNREACHABLE, not merely detected. Re-ran assemble.py on out/2026-09-06 with --title deliberately wrong ('Two Instruments, One Line'): the built PDF's /Title reads 'Run Both Instruments, or Lose the Record', assemble_report title_source is 'copy.json', and the mismatch is printed to stderr. Vector mode, 9 slides, unchanged. Re-ran on examples/demo-deck, which has no copy.json: --title 'Engine Proof' is honoured, title_source '--title', vector mode, 4 slides. gate_status.py's assemble row still PASSes with the added report key.",
       "rollback": "Revert the upgrade(2026-09-06) commit, or individually: in assemble.py delete resolve_title() and the --copy argument and pass args.title to vector_pdf() again. The routine prompt's Phase 10 step 1 then has to go back to typing --title.",
-      "commit": "pending upgrade(2026-09-06)"
+      "commit": "2a626d9ef3156e471c78ba560712142002224f9e"
     }
   ],
   "scan_log": [
