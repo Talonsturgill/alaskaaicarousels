@@ -1566,6 +1566,67 @@
       ],
       "note": "THE ONE OBSERVATION THAT MADE THE DECK WAS A CRITIC'S, AND IT WAS ABOUT PHYSICS. The showrunner's prototype drew every deposit BRIGHTER than the sheet with a soft outward falloff, so the eye read emission. The cinematographer called them lamps rather than blooms and pointed out that a field of lamps has no scale argument in it, because light has brightness rather than size. Inverting the value fixed the deck. The second half of the same lesson arrived on the first full render, where the rag had been pushed so dark that the inverted ink had nothing to be darker THAN and only the ring read. Dark ink needs paper, not black.",
       "corrections": "Two plan values were corrected mid-run and these fields carry the SHIPPED ones. Plate 09 is 0.74x, not the planned 0.85x, because at 0.85 the sheet left no margin and its edge could not read as an edge. The grazing fill is azimuth 25, not the planned 205, because akrelief.lightVec(205,14) resolves to a lower-left light while every drying ring and debossment in the deck assumes upper right, and the plan asserted az 205 AND a down-left lee, which cannot both be true."
+    },
+    {
+      "run_date": "2026-09-06",
+      "carousel_no": 52,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE WATERLINE AS PROGRESS METER. One continuous body of water read at nine depths, with the surface's y position falling through the deck as the argument descends, near the top on 01 and near the bottom on 09. Seven of the nine frames have no ground plane at all, which deletes the contact-shadow defect class rather than passing it. HONEST NOTE, the device is legible on 01 and 09 and off frame or a sliver on the other seven, so it held as a composition discipline and did not hold as a reader-facing device.",
+      "atmosphere": "DOWNWELLING KEY AT ELEVATION 76 THROUGH PARTICULATE. A near overhead key read through a water column, so every object is lit from above with a key to fill ratio of 2.6 to 1 and the occlusion is a short collar rather than a long cast, plus one strobe frame on 04 at azimuth 214 that is the deck's only raking light and its only near-black.",
+      "depth_technique": "Extinction ramps mixed in OKLab per frame, a modelled thermocline on 07 built as forty accumulated billow layers with a nine pass crest, and AK.hachureField cut INTO lit sediment rather than drawn onto dark water.",
+      "line_voice": "cross contour. every solid is built from marks that wrap its own cylinder and die to nothing at the terminator, on the boulders of 04, the glove of 05 and the hachure fields of 01 and 03",
+      "continuity_device": "NEW: THE FIVE STRAND SHOT LINE THROUGH SIX STATES. One wire, hanging on 01 and 02, doubled on 03, cut on 07 where its five strands splay and each tip is a gold dot, worn as a wrist lanyard on 05, coiled on deck on 08 and descending and sealing into the Polaris on 09. The five strands are the five collaborating organizations and the count is checked. Plus the waterline above.",
+      "hook_archetype": "NEW: THE BILL NOBODY HAS PRICED. Name a cost that follows necessarily from a decision already made, then show that nobody has written it down.",
+      "palette_family": "diatom green and wet steel. a cold biological green for everything below the surface and a neutral galvanised grey for everything made, with exactly one warm frame",
+      "palette": "water from #04141A through #0A2C33 to #17565A with #7FD8BE as the only highlight, wet steel #8C9AA3 with specular #E4EEF2 for every instrument, seabed sediment #7E7458 lit and #16302E in shadow so the shadow keeps the water's hue and never goes to black, aragonite #F1EDE2 for the one 5 mm object the deck is about, safety orange #E2622A on three slides only and capped at 0.6 percent, gold #FFC72C at 1.2 percent or less per frame.",
+      "palette_hexes": [
+        "#04141A",
+        "#0A2C33",
+        "#17565A",
+        "#3FA88E",
+        "#7FD8BE",
+        "#0E1B26",
+        "#2B3D49",
+        "#6E7F8A",
+        "#8C9AA3",
+        "#E4EEF2",
+        "#7E7458",
+        "#16302E",
+        "#F1EDE2",
+        "#E2622A",
+        "#FFC72C",
+        "#F4F8FF",
+        "#A8BCC2"
+      ],
+      "type": "Instrument Serif 400 for display, fitted with AK.fitText on every headline. Archivo at wdth 88 wght 500, 32 px for body and 40 px for the single ask on 09. JetBrains Mono 400 at 24 px tracked plus 9 percent for every strip, figure and instrument label, with one halo idiom deck wide.",
+      "type_pairing": "Instrument Serif + Archivo + JetBrains Mono",
+      "narrative_structure": "argument. the bill, the permission, the price, a breather on ground the net cannot cross, the turn a camera cannot make, the keepable number, the record pulled from two sides, the same question on a smaller boat, the ask",
+      "variance_dials": {
+        "design_variance": 5,
+        "visual_density": 2,
+        "type_temperature": 3
+      },
+      "new_techniques_logged": [
+        "NEW: THE WATERLINE AS PROGRESS METER",
+        "NEW: THE FIVE STRAND SHOT LINE THROUGH SIX STATES",
+        "NEW: THE BILL NOBODY HAS PRICED",
+        "THE ATTACHED COLLAR. an occluder drawn WIDER than its object and then blurred, so a visible ring of occlusion survives outside the silhouette. A pool drawn to the object's own width is covered by the object and the probe measures the object instead.",
+        "THE ACCUMULATED CREST. a density step built from nine offset low alpha passes rather than one stroke, so the boundary is tone in a medium rather than a drawn line.",
+        "THE RECEDING WIRE. lineWidth and alpha ramped along a hanging line so it is nearly gone where the type is and full weight where it is cut, which is a depth cue and a reserve at once."
+      ],
+      "techniques": [
+        "AK.hachureField cut into lit ground, never drawn onto dark water",
+        "AK.fbm2 billow layers with a Kelvin-Helmholtz roll up term",
+        "continuous 64 step OKLab hypsometric LUT plus a hillshade term",
+        "computed boolean intersection outline of two ellipses, centroid sorted by atan2 so concatenated arcs cannot draw a chord",
+        "elliptical pours as a circle inside a transform, never createRadialGradient in an ellipse",
+        "offscreen plus one blur for every shape that would otherwise carry a hard lateral edge across type",
+        "capsule shading, where the round capped stroke that shades a part is also that part's silhouette",
+        "AK.fitText on every headline",
+        "AKPOST.grade with filmic tone mapping, bloom, grain and dither"
+      ],
+      "note": "The run's declared standing weakness attack was that the lower two thirds must carry every frame, and it was solved structurally rather than per slide. Hanging objects put mass low by physics and seven frames have no ground plane at all. Five editing rounds were used. Machine QA finished at zero fails and thirteen warnings with four slides fully clean.",
+      "corrections": "Three plan values were corrected mid run and these fields carry the SHIPPED ones. Slide 05 is a cropped palm with an opposed thumb and three splayed fingers, not the planned whole hand at arm's length, because the wide shot read as a mitten and the dossier had reserved this crop as its fallback. Slide 04's declared contact is the near foreground boulder's occlusion collar, not the keystone's cast, because the keystone's cast fell entirely under the keystone. Slide 07's projection axis ends at x 960 and not x 1000, in the declaration and in the drawing both."
     }
   ]
 }

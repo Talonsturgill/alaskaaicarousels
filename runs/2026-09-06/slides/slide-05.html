@@ -1,0 +1,412 @@
+<!doctype html>
+<!-- SLIDE 05 — THE TURN. The deck's first surface break and its only warm frame.
+     A gloved hand, palm up, no table under it, holding one otolith at TRUE
+     relative scale: 5 mm of aragonite in a 190 mm glove. A gold leader lands on
+     the bone's own coordinates. Nothing rests on anything, so no contact. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#0E1B26; position:relative; }
+  #art { position:absolute; inset:0; }
+  .grain { position:absolute; inset:0; opacity:0.06; mix-blend-mode:overlay; background-repeat:repeat; }
+  svg.ann { position:absolute; inset:0; }
+  h2 { position:absolute; left:80px; top:140px; width:840px;
+       font-family:"Instrument Serif",serif; font-weight:400; font-size:82px;
+       line-height:0.98; letter-spacing:-0.02em; color:#F4F8FF; }
+  .body { position:absolute; left:80px; top:340px; width:800px;
+          font-family:"Archivo",sans-serif; font-variation-settings:"wdth" 88,"wght" 500;
+          font-size:32px; line-height:1.38; color:#A8BCC2; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:400; font-size:24px;
+          letter-spacing:0.09em; color:#7E9AA0; opacity:0.78;  text-shadow: 0 0 5px #0E1B26, 0 0 11px #0E1B26, 0 0 2px #0E1B26; }
+  .counter { position:absolute; right:82px; bottom:74px; }
+</style>
+</head>
+<body data-encodes='[{"claim":"the thing the machines argue about is smaller than a fingernail and a person still has to pick it up","reads":"differ","a":[[496,1182,36,36]],"b":[[500,904,240,190]]}]'>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain"></div>
+<svg class="ann" width="1080" height="1350" viewBox="0 0 1080 1350">
+  <polyline id="leader" fill="none" stroke="#FFC72C" stroke-width="1.8"
+            stroke-dasharray="9 7" stroke-linecap="round"
+            points="286,930 366,1040 452,1146 508,1194"/>
+  <circle cx="514" cy="1200" r="5" fill="#FFC72C"/>
+  <text id="leaderLabel" data-decorative x="120" y="908" font-family="JetBrains Mono" font-size="24"
+        letter-spacing="2.1" fill="#A8BCC2" stroke="#0E1B26" stroke-width="5"
+        paint-order="stroke">OTOLITH, ABOUT 5 mm</text>
+</svg>
+<h2 id="head">The camera can see it. It can't hold it.</h2>
+<div class="body">NOAA says the camera techniques "are not intended to replace hands-on sampling because physical specimens are essential for critical data, including age, feeding habits, and body condition" (C20). A near-infrared machine reads an otolith in 30 to 50 seconds, more than 10 times faster than a human at a microscope (C18).</div>
+<div class="counter mono" data-decorative>05 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  document.fonts.ready.then(function () {
+
+  var SEED = 20260911;
+  AK.reseed(SEED);
+  var rnd = AK.rng(SEED);
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+  var WATERLINE = 520;
+
+  /* ---- 1. air. Flat Bering overcast, and the sea behind heavily defocused
+       because the lens is on the palm. ---- */
+  var sky = cx.createLinearGradient(0, 0, 0, WATERLINE + 40);
+  sky.addColorStop(0.00, '#0E1B26');
+  sky.addColorStop(0.62, '#2B3D49');
+  sky.addColorStop(1.00, '#6E7F8A');
+  cx.fillStyle = sky;
+  cx.fillRect(0, 0, W, WATERLINE + 40);
+
+  var sea = cx.createLinearGradient(0, WATERLINE, 0, H);
+  sea.addColorStop(0.00, AKC.mixOklab('#6E7F8A', '#17565A', 0.55));
+  sea.addColorStop(0.34, '#17565A');
+  sea.addColorStop(1.00, '#0A2C33');
+  cx.fillStyle = sea;
+  cx.fillRect(0, WATERLINE, W, H - WATERLINE);
+
+  /* defocused swell behind the hand, drawn once offscreen and blurred once */
+  var swell = document.createElement('canvas');
+  swell.width = 2160; swell.height = 2700;
+  var scx = swell.getContext('2d'); scx.scale(2, 2);
+  scx.strokeStyle = 'rgba(212,244,232,0.32)';
+  for (var r = 0; r < 26; r++) {
+    var yy = WATERLINE + 12 + r * 22;
+    scx.lineWidth = 2 + r * 0.5;
+    scx.beginPath();
+    for (var xx = -20; xx <= W + 20; xx += 6) {
+      var oy = yy + 9 * Math.sin(xx * 0.017 + r * 0.8)
+                  + 6 * AK.fbm2(xx * 0.004, r * 0.6, { octaves: 3 });
+      xx === -20 ? scx.moveTo(xx, oy) : scx.lineTo(xx, oy);
+    }
+    scx.stroke();
+  }
+  cx.save(); cx.filter = 'blur(16px)'; cx.drawImage(swell, 0, 0, W, H); cx.restore();
+
+  /* a reserve for the type. The sky is graded and the body copy runs across
+     its brightest part, so the ground under the words is darkened before a
+     single glyph is set. Composition first, scrim only where the grade fights
+     the type. */
+  var res = cx.createLinearGradient(0, 0, 0, 690);
+  res.addColorStop(0.00, 'rgba(8,16,24,0.00)');
+  res.addColorStop(0.16, 'rgba(8,16,24,0.88)');
+  res.addColorStop(0.74, 'rgba(8,16,24,0.84)');
+  res.addColorStop(0.92, 'rgba(8,16,24,0.52)');
+  res.addColorStop(1.00, 'rgba(8,16,24,0)');
+  cx.fillStyle = res;
+  cx.fillRect(0, 0, W, 690);
+
+  /* ---- 2. THE GLOVE, REBUILT ON THE DOSSIER'S OWN RESERVED FALLBACK.
+       The first build drew a whole hand at arm's length and it read as a plush
+       mitten: five near-equal sausages, no readable thumb, no knuckle. The
+       dossier reserved a fallback for exactly that outcome and this is it. The
+       camera moves in until the palm, the thumb and three fingers fill the
+       lower band and the wrist leaves the frame at the bottom. Four large soft
+       forms at different lengths, with an OPPOSED thumb, are the whole reason
+       a glove was chosen over a tray. ---- */
+  var GX = 210, GY = 760, GW = 680, GH = 620;
+
+  /* palm, thumb, then three fingers of visibly different length. The little
+     finger is off frame to the right, which is what a real crop does. */
+  var PALM  = [0.28, 0.86, 0.62, 0.72, 0.300];
+  /* THE THUMB IS OPPOSED, and that is the whole difference between a hand and
+     a mitten. It comes off the palm LOW, runs across rather than up, is half
+     again as thick as a finger and a third shorter, and the web between it and
+     the index is drawn. The first build gave it a finger's angle and a
+     finger's length and the frame read as five sausages. */
+  var THUMB = [0.31, 0.91, 0.01, 0.71, 0.127];
+  /* the three fingers SPLAY. Parallel tubes of similar length are what made
+     them read as one part cut into pieces. */
+  var RING  = [0.72, 0.72, 0.82, 0.27, 0.084];
+  var MID   = [0.58, 0.68, 0.58, 0.13, 0.092];
+  var INDEX = [0.44, 0.70, 0.35, 0.24, 0.088];
+  /* back to front, so the near parts overlap the far ones */
+  var CAPS  = [PALM, RING, MID, INDEX, THUMB];
+
+  function px(c) { return [GX + c[0] * GW, GY + c[1] * GH, GX + c[2] * GW, GY + c[3] * GH]; }
+  function radOf(c) { return c[4] * ((GW + GH) / 2); }
+  function capPath(ctx, c) {
+    var q = px(c), rad = radOf(c);
+    var ang = Math.atan2(q[3] - q[1], q[2] - q[0]);
+    ctx.beginPath();
+    ctx.arc(q[0], q[1], rad, ang + Math.PI / 2, ang - Math.PI / 2);
+    ctx.arc(q[2], q[3], rad, ang - Math.PI / 2, ang + Math.PI / 2);
+    ctx.closePath();
+  }
+
+  /* the boundary first and wider, so it is outside-aligned onto the darker
+     water and a light object on a light ground never loses its edge */
+  cx.save();
+  cx.lineCap = 'round';
+  cx.strokeStyle = 'rgba(38,14,6,0.92)';
+  CAPS.forEach(function (c) {
+    var q = px(c);
+    cx.lineWidth = 2 * radOf(c) + 11;
+    cx.beginPath(); cx.moveTo(q[0], q[1]); cx.lineTo(q[2], q[3]); cx.stroke();
+  });
+  cx.restore();
+
+  /* the key is broad and near vertical, so the lit band runs along the upper
+     left of every part and the terminator falls down its lower right */
+  function shadeCap(c) {
+    var q = px(c), rad = radOf(c);
+    var ang = Math.atan2(q[3] - q[1], q[2] - q[0]);
+    var nx2 = Math.sin(ang), ny2 = -Math.cos(ang);
+    var mx2 = (q[0] + q[2]) / 2, my2 = (q[1] + q[3]) / 2;
+    var g2 = cx.createLinearGradient(mx2 + nx2 * rad, my2 + ny2 * rad,
+                                     mx2 - nx2 * rad, my2 - ny2 * rad);
+    g2.addColorStop(0.00, '#FFE7CE');
+    g2.addColorStop(0.24, '#F7B583');
+    g2.addColorStop(0.60, '#D9773C');
+    g2.addColorStop(1.00, '#8E3F17');
+    cx.save();
+    cx.lineCap = 'round';
+    cx.strokeStyle = g2;
+    cx.lineWidth = 2 * rad;
+    cx.beginPath(); cx.moveTo(q[0], q[1]); cx.lineTo(q[2], q[3]); cx.stroke();
+    cx.restore();
+  }
+  CAPS.forEach(shadeCap);
+
+  /* THE LAY. The deck's other objects are built from marks and this one was a
+     gradient, which is two line voices in one deck. Each part now carries
+     cross contours that wrap its own cylinder and die to nothing at the
+     terminator, the same construction the boulders on 04 use. */
+  function layOver(c, alpha) {
+    var q = px(c), rad = radOf(c);
+    var ang = Math.atan2(q[3] - q[1], q[2] - q[0]);
+    var nxx = Math.sin(ang), nyy = -Math.cos(ang);
+    var uxx = Math.cos(ang), uyy = Math.sin(ang);
+    var L = Math.hypot(q[2] - q[0], q[3] - q[1]);
+    var n = Math.max(5, Math.round(L / 15));
+    cx.save();
+    capPath(cx, c); cx.clip();
+    cx.lineCap = 'round';
+    for (var i = -1; i <= n + 1; i++) {
+      var t = i / n;
+      var bx = q[0] + (q[2] - q[0]) * t, by = q[1] + (q[3] - q[1]) * t;
+      var jitter = 4 * AK.fbm2(i * 0.7, c[0] * 9.1, { octaves: 2 });
+      for (var sI = 0; sI < 26; sI++) {
+        var s0 = -1 + (sI / 26) * 2, s1 = -1 + ((sI + 1) / 26) * 2;
+        /* the mark is strongest where the cylinder turns and gone on the lit
+           crown and gone again in the core shadow */
+        var sm = (s0 + s1) / 2;
+        var w = Math.pow(Math.max(0, 1 - Math.abs(sm + 0.18) * 1.5), 1.1);
+        if (w < 0.03) continue;
+        function pt(s) {
+          var bulge = (1 - s * s) * rad * 0.26;
+          return [bx + nxx * s * rad + uxx * bulge + jitter * 0.2,
+                  by + nyy * s * rad + uyy * bulge + jitter * 0.2];
+        }
+        var a0 = pt(s0), a1 = pt(s1);
+        cx.strokeStyle = 'rgba(104,42,16,' + (alpha * w).toFixed(3) + ')';
+        cx.lineWidth = 0.8 + 1.9 * w;
+        cx.beginPath(); cx.moveTo(a0[0], a0[1]); cx.lineTo(a1[0], a1[1]); cx.stroke();
+      }
+    }
+    cx.restore();
+  }
+  CAPS.forEach(function (c) { layOver(c, 0.17); });
+
+  /* the web between thumb and index. One triangle of stretched nitrile, and
+     the single cheapest cue in the frame that this is a hand. */
+  (function web() {
+    var t = px(THUMB), i = px(INDEX), pm = px(PALM);
+    cx.save();
+    var wg = cx.createLinearGradient(t[0], t[1] - 60, i[0], i[1] + 20);
+    wg.addColorStop(0.00, '#E19B62');
+    wg.addColorStop(0.55, '#C06B33');
+    wg.addColorStop(1.00, '#8E3F17');
+    cx.fillStyle = wg;
+    cx.beginPath();
+    cx.moveTo(t[0] - 34, t[1] - 96);
+    cx.quadraticCurveTo(GX + 0.30 * GW, GY + 0.58 * GH, i[0] - 44, i[1] - 26);
+    cx.lineTo(i[0] + 6, i[1] + 30);
+    cx.quadraticCurveTo(GX + 0.34 * GW, GY + 0.74 * GH, t[0] + 6, t[1] - 60);
+    cx.closePath();
+    cx.fill();
+    cx.restore();
+  })();
+
+  /* where each finger and the thumb meet the palm, an occlusion pool, and a
+     web of nitrile between the finger roots */
+  cx.save();
+  capPath(cx, PALM); cx.clip();
+  [RING, MID, INDEX, THUMB].forEach(function (c) {
+    var q = px(c);
+    var og2 = cx.createRadialGradient(q[0], q[1], 4, q[0], q[1], 96);
+    og2.addColorStop(0.00, 'rgba(66,26,8,0.62)');
+    og2.addColorStop(1.00, 'rgba(66,26,8,0)');
+    cx.fillStyle = og2;
+    cx.beginPath(); cx.arc(q[0], q[1], 96, 0, Math.PI * 2); cx.fill();
+  });
+  /* the three palm creases of a hand held open, not three parallel rules */
+  cx.lineCap = 'round';
+  [[0.34, 0.74, 0.62, 0.80, 3.0], [0.32, 0.82, 0.58, 0.88, 2.4],
+   [0.40, 0.70, 0.44, 0.90, 2.0]].forEach(function (k) {
+    cx.strokeStyle = 'rgba(112,48,20,0.44)';
+    cx.lineWidth = k[4];
+    cx.beginPath();
+    var x0 = GX + k[0] * GW, y0 = GY + k[1] * GH;
+    var x1 = GX + k[2] * GW, y1 = GY + k[3] * GH;
+    for (var ct = 0; ct <= 1.0001; ct += 0.05) {
+      var cxp = x0 + (x1 - x0) * ct + 26 * Math.sin(ct * Math.PI) * (k[3] - k[1] > 0.1 ? 1 : 0.4);
+      var cyp = y0 + (y1 - y0) * ct - 20 * Math.sin(ct * Math.PI);
+      ct === 0 ? cx.moveTo(cxp, cyp) : cx.lineTo(cxp, cyp);
+    }
+    cx.stroke();
+  });
+  /* the nitrile's own tooth, so the zoom test finds a worked material */
+  for (var tt2 = 0; tt2 < 3000; tt2++) {
+    var tx = GX + rnd() * GW, ty = GY + rnd() * GH;
+    cx.fillStyle = rnd() > 0.5
+      ? 'rgba(255,231,206,' + (0.04 + rnd() * 0.11).toFixed(3) + ')'
+      : 'rgba(112,48,20,' + (0.03 + rnd() * 0.09).toFixed(3) + ')';
+    cx.beginPath(); cx.arc(tx, ty, 0.5 + rnd() * 1.5, 0, Math.PI * 2); cx.fill();
+  }
+  /* a gurry stain on the heel of the palm, because this glove has worked */
+  cx.globalAlpha = 0.24;
+  cx.fillStyle = '#4A2A1C';
+  cx.beginPath();
+  cx.ellipse(GX + 0.40 * GW, GY + 0.94 * GH, 96, 38, -0.16, 0, Math.PI * 2);
+  cx.fill();
+  cx.restore();
+
+  /* a knuckle crease across each finger, clipped to that finger, so the
+     fingers stop reading as one length of tube cut into pieces */
+  [[RING, 0.30], [MID, 0.34], [INDEX, 0.32]].forEach(function (e) {
+    var c = e[0], q = px(c), rad = radOf(c);
+    cx.save();
+    capPath(cx, c); cx.clip();
+    cx.lineCap = 'round';
+    [e[1], e[1] + 0.30].forEach(function (kt, ki) {
+      var bx = q[0] + (q[2] - q[0]) * kt, by = q[1] + (q[3] - q[1]) * kt;
+      var ang = Math.atan2(q[3] - q[1], q[2] - q[0]);
+      cx.strokeStyle = 'rgba(96,38,14,' + (0.40 - ki * 0.10).toFixed(2) + ')';
+      cx.lineWidth = 2.6 - ki * 0.6;
+      cx.beginPath();
+      for (var s2 = -1; s2 <= 1.0001; s2 += 0.1) {
+        var bul = (1 - s2 * s2) * rad * 0.34;
+        var kx2 = bx + Math.sin(ang) * s2 * rad + Math.cos(ang) * bul;
+        var ky2 = by - Math.cos(ang) * s2 * rad + Math.sin(ang) * bul;
+        s2 <= -1 + 1e-9 ? cx.moveTo(kx2, ky2) : cx.lineTo(kx2, ky2);
+      }
+      cx.stroke();
+    });
+    cx.restore();
+  });
+
+  /* wet nitrile, one broad soft specular across the knuckles */
+  cx.save();
+  cx.globalCompositeOperation = 'lighter';
+  cx.translate(GX + 0.50 * GW, GY + 0.52 * GH);
+  cx.rotate(-0.20);
+  cx.scale(2.4, 0.8);
+  var spec = cx.createRadialGradient(0, 0, 0, 0, 0, 100);
+  spec.addColorStop(0.00, 'rgba(244,248,255,0.22)');
+  spec.addColorStop(0.60, 'rgba(244,248,255,0.06)');
+  spec.addColorStop(1.00, 'rgba(244,248,255,0)');
+  cx.fillStyle = spec;
+  cx.beginPath(); cx.arc(0, 0, 100, 0, Math.PI * 2); cx.fill();
+  cx.restore();
+
+  /* ---- 3. THE LANYARD, the shot line WORN. It ran across the heel of the
+       palm as a bare steel curve and read as an unexplained blue crescent, so
+       it now enters from the left edge, takes a real catenary over open water
+       and passes behind the wrist, cased and laid like every other length of
+       this wire in the deck. ---- */
+  function lanyard(x0, y0, cxp, cyp, x1, y1) {
+    function at(t) {
+      return [(1 - t) * (1 - t) * x0 + 2 * (1 - t) * t * cxp + t * t * x1,
+              (1 - t) * (1 - t) * y0 + 2 * (1 - t) * t * cyp + t * t * y1];
+    }
+    cx.save();
+    cx.lineCap = 'round';
+    cx.strokeStyle = 'rgba(14,24,32,0.80)'; cx.lineWidth = 13.6;
+    cx.beginPath(); cx.moveTo(x0, y0); cx.quadraticCurveTo(cxp, cyp, x1, y1); cx.stroke();
+    cx.strokeStyle = '#94A2AB'; cx.lineWidth = 9.2;
+    cx.beginPath(); cx.moveTo(x0, y0); cx.quadraticCurveTo(cxp, cyp, x1, y1); cx.stroke();
+    cx.strokeStyle = 'rgba(232,242,246,0.42)'; cx.lineWidth = 1.3;
+    for (var lz = 0; lz < 30; lz++) {
+      var pA = at(lz / 29);
+      cx.beginPath(); cx.moveTo(pA[0] - 4.6, pA[1] - 3); cx.lineTo(pA[0] + 4.6, pA[1] + 8); cx.stroke();
+    }
+    cx.restore();
+  }
+  lanyard(-24, 1132, 214, 1272, 470, 1350);
+
+  /* ---- 4. THE OTOLITH, in the PALM and not on a finger. 5 mm of aragonite in
+       a 190 mm glove, at the same relative scale the first build carried and
+       never enlarged. Its own coordinates are what the leader terminates on. -- */
+  var OX = 514, OY = 1200, OR = 18;
+  cx.save();
+  /* the bone throws its own small pool onto the nitrile, so it sits IN the
+     palm rather than on top of the picture */
+  var opool = cx.createRadialGradient(OX + 4, OY + 6, 2, OX + 4, OY + 6, OR * 2.4);
+  opool.addColorStop(0.00, 'rgba(58,22,8,0.52)');
+  opool.addColorStop(1.00, 'rgba(58,22,8,0)');
+  cx.fillStyle = opool;
+  cx.beginPath(); cx.arc(OX + 4, OY + 6, OR * 2.4, 0, Math.PI * 2); cx.fill();
+  cx.restore();
+  cx.save();
+  cx.translate(OX, OY);
+  cx.rotate(0.32);
+  var og = cx.createRadialGradient(-6, -7, 1, 0, 0, OR);
+  og.addColorStop(0.00, '#FFFFFF');
+  og.addColorStop(0.42, '#F1EDE2');
+  og.addColorStop(1.00, '#B9AE97');
+  cx.fillStyle = og;
+  cx.beginPath();
+  cx.moveTo(-OR, 1);
+  cx.bezierCurveTo(-OR * 0.8, -OR * 0.9, OR * 0.3, -OR * 1.0, OR, -OR * 0.2);
+  cx.bezierCurveTo(OR * 0.9, OR * 0.7, OR * 0.1, OR * 0.9, -OR * 0.5, OR * 0.6);
+  cx.closePath();
+  cx.fill();
+  cx.strokeStyle = 'rgba(255,255,255,0.85)';
+  cx.lineWidth = 1.0;
+  cx.beginPath();
+  cx.moveTo(-OR * 0.9, -OR * 0.1);
+  cx.bezierCurveTo(-OR * 0.4, -OR * 0.7, OR * 0.4, -OR * 0.7, OR * 0.85, -OR * 0.2);
+  cx.stroke();
+  cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H,
+    exposure: 0.14, saturation: 1.05, contrast: 1.02, filmic: true,
+    lift: [0.006, 0.011, 0.018], gain: [1.012, 1.0, 0.985],
+    vignette: 0.08,
+    bloom: { threshold: 0.74, strength: 0.26, radius: 8 },
+    grain: { amount: 0.04, size: 2, seed: SEED },
+    dither: true, sharpen: 0.30
+  });
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED) + ')';
+  AK.fitText(document.getElementById('head'), { min: 60, max: 86, maxLines: 2 });
+
+  window.__akLeaders = [{
+    target: 'the otolith in the palm',
+    at: [OX, OY],
+    to: [514, 1200],
+    from: [286, 930],
+    label: 'OTOLITH, ABOUT 5 mm'
+  }];
+  window.__akMotifs = [
+    { what: 'the otolith, 5 mm of aragonite at true relative scale',
+      rect: [496, 1182, 36, 36], canvas: 'canvas#art' }
+  ];
+  resolve();
+  });
+});
+</script>
+</body>
+</html>

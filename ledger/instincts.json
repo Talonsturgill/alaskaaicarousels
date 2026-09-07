@@ -1299,6 +1299,27 @@
       "confidence": 0.9,
       "born": "2026-09-05",
       "evidence": "No.51. The first render carried eight text collisions and six canvas marks inside reserved type, all of them downstream of hand placement under fitted headlines and hand-typed reserves."
+    },
+    {
+      "id": "take-the-reserved-fallback-in-the-first-repair-round",
+      "instinct": "WHEN A DOSSIER RESERVES A FALLBACK AND THE FAILURE IT NAMED HAPPENS ON THE FIRST RENDER, TAKE THE FALLBACK THAT ROUND. A reserved fallback is not a defeat, it is the plan's own second branch, written by whoever understood the risk best while they still had time to think. Spending the round cap trying to rescue the shot the plan already doubted is how a run arrives at round five with the frame a critic calls its bail point.",
+      "confidence": 0.85,
+      "born": "2026-09-06",
+      "evidence": "No.52. Slide 05's risk flag named the exact outcome, a gloved hand at arm's length reading as a mitten with five equal sausages and no thumb, and reserved a crop to the palm, thumb and two fingers. Three repair rounds went into the wide shot. The crop was taken in round five and the frame came back as a hand."
+    },
+    {
+      "id": "a-contact-pool-must-be-wider-than-its-object",
+      "instinct": "A CONTACT POOL DRAWN NO WIDER THAN ITS OBJECT IS INVISIBLE, AND THE PROBE WILL MEASURE THE OBJECT INSTEAD. Build the occluder so it extends past the silhouette BEFORE it is blurred, so a collar survives outside the object for a rect to land on. qa.py has a dL floor and no ceiling by design, so a declared dL much over 30 is a mis-aimed rect until proven otherwise, not a strong shadow. A long cast and an attached collar are different things and most frames need both.",
+      "confidence": 0.9,
+      "born": "2026-09-06",
+      "evidence": "No.52. Two slides passed the machine with declared contacts that measured no shadow at all. Slide 08's rect sat on the camera's own mount plate at dL 55 and slide 04's measured the strobe's falloff across 115 px of open sediment at dL 25. Rebuilt as blurred collars wider than their objects, both landed inside the dossier's 8 to 16 band."
+    },
+    {
+      "id": "a-changed-declared-coordinate-is-a-two-place-edit",
+      "instinct": "AFTER EDITING ANY DECLARATION, GREP THE SLIDE FOR THE NUMBER YOU JUST CHANGED. A declared coordinate always has a twin in the code that draws the thing, and correcting one without the other produces a declaration that reads right and points at nothing. Nothing else in a build notices; only the census that exists for this reason does.",
+      "confidence": 0.85,
+      "born": "2026-09-06",
+      "evidence": "No.52. Slide 07's data-scale axis end was corrected from x 1000 to x 960 and the canvas variable that draws the axis was left at 1000, so two of three declared marks had no ink under them. The axis census caught it and reported the weakest mark at the same strength as the band's own texture."
     }
   ]
 }

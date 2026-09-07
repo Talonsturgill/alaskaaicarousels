@@ -1,0 +1,279 @@
+<!doctype html>
+<!-- SLIDE 07 — THE RECORD, PULLED FROM TWO SIDES. The deck's darkest frame.
+     96 m down at the northern edge of the grid. The shot line is CUT and its
+     five strands splay, which is the only frame where the five collaborating
+     organizations are individually visible. A modelled thermocline carries the
+     lower band. The projection bar declares its axis and every mark on it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#04141A; position:relative; }
+  #art { position:absolute; inset:0; }
+  .grain { position:absolute; inset:0; opacity:0.07; mix-blend-mode:overlay; background-repeat:repeat; }
+  h2 { position:absolute; left:80px; top:150px; width:800px;
+       font-family:"Instrument Serif",serif; font-weight:400; font-size:70px;
+       line-height:0.98; letter-spacing:-0.02em; color:#F4F8FF; }
+  .body { position:absolute; left:80px; top:344px; width:800px;
+          font-family:"Archivo",sans-serif; font-variation-settings:"wdth" 88,"wght" 500;
+          font-size:32px; line-height:1.38; color:#A8BCC2;
+          text-shadow: 0 0 6px #04141A, 0 0 12px #04141A, 0 0 3px #04141A; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:400; font-size:24px;
+          letter-spacing:0.09em; color:#7E9AA0; }
+  .caveat { position:absolute; left:80px; top:596px; width:920px; line-height:1.9;
+            opacity:1; letter-spacing:0.12em; color:#A8BCC2;
+            text-shadow: 0 0 6px #04141A, 0 0 12px #04141A, 0 0 3px #04141A; }
+  .barlab { position:absolute; top:1232px; transform:translateX(-50%);
+            font-family:"JetBrains Mono",monospace; font-size:24px;
+            letter-spacing:0.09em; color:#A8BCC2;
+            text-shadow: 0 0 6px #04141A, 0 0 12px #04141A; }
+  .counter { position:absolute; right:80px; top:1286px; }
+</style>
+</head>
+<body data-scale='[{"what":"the northward projection bar","axis":"x","unit":"kilometres","from":[620,0],"to":[960,200],"band":[1196,1216],"marks":[{"at":620,"means":"0 km, the last measured station"},{"at":705,"means":"50 km, the low end of the projection"},{"at":960,"means":"200 km, the high end of the projection"}]}]'>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain"></div>
+<h2 id="head">The record is being pulled from two sides at once.</h2>
+<div class="body">The framework lists funding, vessel availability, new sampling objectives and new technology as human forces that break a time series (C09). NOAA says fish populations have shifted into deeper water or farther north where surveys have not traditionally been conducted (C12).</div>
+<div class="caveat mono">
+  <div>MODEL PROJECTION, NOT OBSERVATION. MOST OF EIGHT STUDIED SPECIES</div>
+  <div>SHIFT 50 TO 200 km NORTH BY 2080 TO 2089 (C32)</div>
+  <div>FIVE STRANDS, FIVE COLLABORATING ORGANIZATIONS (C14)</div>
+</div>
+<div class="barlab" style="left:620px">0 km</div>
+<div class="barlab" style="left:705px">50</div>
+<div class="barlab" style="left:960px">200</div>
+<div class="counter mono" data-decorative>07 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  document.fonts.ready.then(function () {
+
+  var SEED = 20260913;
+  AK.reseed(SEED);
+  var rnd = AK.rng(SEED);
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* ---- 1. the deepest extinction ramp in the deck ---- */
+  var g = cx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0.00, AKC.mixOklab('#17565A', '#0A2C33', 0.42));
+  g.addColorStop(0.36, '#0A2C33');
+  g.addColorStop(0.72, AKC.mixOklab('#0A2C33', '#04141A', 0.66));
+  g.addColorStop(1.00, '#04141A');
+  cx.fillStyle = g;
+  cx.fillRect(0, 0, W, H);
+
+  /* ---- 2. THE THERMOCLINE. A density step drawn as accumulated tone with
+       real Kelvin-Helmholtz billow structure, so the reader sees a physical
+       boundary IN the medium rather than a drawn line. ---- */
+  function billowY(x, phase) {
+    return 940
+      + 34 * Math.sin(x * 0.0072 + phase)
+      + 22 * Math.sin(x * 0.0031 + phase * 1.7)
+      + 26 * AK.fbm2(x * 0.0026 + phase, 5.7, { octaves: 4 })
+      /* the roll-up: a steeper crest on the leading face of each billow */
+      + 16 * Math.pow(Math.max(0, Math.sin(x * 0.0072 + phase + 1.1)), 3);
+  }
+  for (var layer = 0; layer < 40; layer++) {
+    var ph = layer * 0.042;
+    var depth = layer / 39;
+    cx.save();
+    cx.globalAlpha = 0.055 + 0.115 * (1 - depth);
+    cx.fillStyle = AKC.mixOklab('#17565A', '#04141A', 0.26 + 0.58 * depth);
+    cx.beginPath();
+    cx.moveTo(-10, H + 10);
+    for (var bx = -10; bx <= W + 10; bx += 6) {
+      cx.lineTo(bx, billowY(bx, ph) + layer * 5.2);
+    }
+    cx.lineTo(W + 10, H + 10);
+    cx.closePath();
+    cx.fill();
+    cx.restore();
+  }
+  /* The crest is ACCUMULATED, not stroked. Nine offset passes at low alpha
+     build a band of tone whose upper edge is dense and whose lower edge dies
+     into the layers below, which is what a density step looks like when it is
+     lit from above and read through a hundred metres of particulate. */
+  for (var cr = 0; cr < 9; cr++) {
+    var crt = cr / 8;
+    cx.save();
+    cx.globalCompositeOperation = 'lighter';
+    cx.globalAlpha = 0.085 * (1 - crt) + 0.012;
+    cx.strokeStyle = AKC.mixOklab('#7FD8BE', '#0A2C33', 0.18 + 0.62 * crt);
+    cx.lineWidth = 2 + crt * 15;
+    cx.beginPath();
+    for (var cxx = -10; cxx <= W + 10; cxx += 5) {
+      var cy2 = billowY(cxx, 0) + crt * 13;
+      cxx === -10 ? cx.moveTo(cxx, cy2) : cx.lineTo(cxx, cy2);
+    }
+    cx.stroke();
+    cx.restore();
+  }
+
+  /* ---- 3. three dissolving station footprints at the left, the last three
+       from slide 03, fading into the extinction ramp ---- */
+  [[130, 1106, 112, 38, 1.00], [278, 1086, 86, 29, 0.62], [398, 1070, 64, 22, 0.33]]
+    .forEach(function (e) {
+      cx.save();
+      cx.globalCompositeOperation = 'lighter';
+      cx.translate(e[0], e[1]);
+      cx.scale(e[2] / 100, e[3] / 100);
+      var fg = cx.createRadialGradient(0, 0, 0, 0, 0, 100);
+      fg.addColorStop(0.00, 'rgba(176,198,160,' + (0.50 * e[4]).toFixed(3) + ')');
+      fg.addColorStop(0.62, 'rgba(154,140,104,' + (0.20 * e[4]).toFixed(3) + ')');
+      fg.addColorStop(1.00, 'rgba(154,140,104,0)');
+      cx.fillStyle = fg;
+      cx.beginPath(); cx.arc(0, 0, 100, 0, Math.PI * 2); cx.fill();
+      cx.restore();
+      /* a thin rim on each, so the three read as three and not as one smear */
+      cx.save();
+      cx.globalAlpha = 0.30 * e[4];
+      cx.strokeStyle = 'rgba(196,214,178,0.9)';
+      cx.lineWidth = 1.1;
+      cx.translate(e[0], e[1]); cx.scale(e[2] / 100, e[3] / 100);
+      cx.beginPath(); cx.arc(0, 0, 86, 0, Math.PI * 2); cx.stroke();
+      cx.restore();
+    });
+
+  /* ---- 4. THE CUT. Five strands, splayed, each tip a gold dot. This is the
+       only frame in the deck where the five are individually visible. ---- */
+  var CUTX = 486, CUTY = 980;
+  /* The line RECEDES. Up in the body-copy band it is far from the lens and
+     nearly gone; by the cut it is a full seven-pixel wire. That is a depth cue
+     and it is also why the line no longer sits on top of the type. */
+  function wireT(y) { return Math.min(1, Math.max(0, y / CUTY)); }
+  function wireX(y) { return (CUTX - 26) + 26 * wireT(y); }
+  cx.save();
+  cx.lineCap = 'butt';
+  for (var seg = 0; seg < 96; seg++) {
+    var y0 = (seg / 96) * CUTY, y1 = ((seg + 1) / 96) * CUTY + 0.6;
+    var wt = Math.pow(wireT((y0 + y1) / 2), 1.9);
+    cx.globalAlpha = 0.16 + 0.84 * wt;
+    cx.strokeStyle = 'rgba(2,10,14,0.62)'; cx.lineWidth = 3.4 + 6.2 * wt;
+    cx.beginPath(); cx.moveTo(wireX(y0), y0); cx.lineTo(wireX(y1), y1); cx.stroke();
+    cx.strokeStyle = '#8C9AA3'; cx.lineWidth = 2.2 + 4.8 * wt;
+    cx.beginPath(); cx.moveTo(wireX(y0), y0); cx.lineTo(wireX(y1), y1); cx.stroke();
+  }
+  cx.restore();
+  /* the lay of the braid, only where the wire is near enough to resolve one */
+  cx.save();
+  cx.lineCap = 'round';
+  cx.strokeStyle = 'rgba(228,238,242,0.40)'; cx.lineWidth = 1.2;
+  for (var lz = 0; lz < 74; lz++) {
+    var lt = lz / 73;
+    var lyp = lt * CUTY;
+    if (lyp < 690) continue;
+    var lxp = wireX(lyp);
+    cx.globalAlpha = Math.min(1, (lyp - 690) / 150);
+    cx.beginPath(); cx.moveTo(lxp - 3.4, lyp); cx.lineTo(lxp + 3.4, lyp + 8); cx.stroke();
+  }
+  cx.restore();
+
+  /* ---- 4b. THE READING RESERVE. Feathered at both ends so no boundary lands
+       in frame, and wide enough to carry the body block and the caveat. ---- */
+  var res = cx.createLinearGradient(0, 292, 0, 782);
+  res.addColorStop(0.00, 'rgba(4,20,26,0.00)');
+  res.addColorStop(0.15, 'rgba(4,20,26,0.72)');
+  res.addColorStop(0.74, 'rgba(4,20,26,0.68)');
+  res.addColorStop(0.92, 'rgba(4,20,26,0.38)');
+  res.addColorStop(1.00, 'rgba(4,20,26,0.00)');
+  cx.fillStyle = res;
+  cx.fillRect(0, 292, W, 490);
+
+  var STRANDS = 5;
+  for (var sIdx = 0; sIdx < STRANDS; sIdx++) {
+    var spread = (sIdx - (STRANDS - 1) / 2);
+    var ex = CUTX + spread * 27 + (rnd() - 0.5) * 6;
+    var ey = CUTY + 62 + Math.abs(spread) * 13 + rnd() * 12;
+    cx.save();
+    cx.lineCap = 'round';
+    cx.strokeStyle = 'rgba(2,10,14,0.55)'; cx.lineWidth = 4.4;
+    cx.beginPath();
+    cx.moveTo(CUTX, CUTY);
+    cx.quadraticCurveTo(CUTX + spread * 14, CUTY + 34, ex, ey);
+    cx.stroke();
+    cx.strokeStyle = '#8C9AA3'; cx.lineWidth = 2.6;
+    cx.beginPath();
+    cx.moveTo(CUTX, CUTY);
+    cx.quadraticCurveTo(CUTX + spread * 14, CUTY + 34, ex, ey);
+    cx.stroke();
+    cx.restore();
+    cx.save();
+    cx.fillStyle = '#FFC72C';
+    cx.beginPath(); cx.arc(ex, ey, 3.4, 0, Math.PI * 2); cx.fill();
+    cx.restore();
+  }
+
+  /* ---- 5. THE DECLARED AXIS. Nothing decorative may be drawn inside the
+       band from y 1196 to 1216 across the bar's span, because every mark in a
+       measured band is a quantity whatever it was drawn for. ---- */
+  var AX0 = 620, AX1 = 960, AY = 1206;
+  cx.save();
+  /* the rule is quiet and the marks are loud, because a census has to be able
+     to tell a mark from the ground it is drawn on */
+  cx.strokeStyle = 'rgba(228,238,242,0.42)';
+  cx.lineWidth = 1.2; cx.lineCap = 'butt';
+  cx.beginPath(); cx.moveTo(AX0, AY); cx.lineTo(AX1, AY); cx.stroke();
+  cx.strokeStyle = 'rgba(2,10,14,0.85)'; cx.lineWidth = 6.4;
+  [[AX0, 10], [AX0 + (AX1 - AX0) * 0.25, 8], [AX1, 10]].forEach(function (m) {
+    cx.beginPath(); cx.moveTo(m[0], AY - m[1] - 1); cx.lineTo(m[0], AY + m[1] + 1); cx.stroke();
+  });
+  cx.strokeStyle = '#F4FAFC'; cx.lineWidth = 3.4;
+  [[AX0, 10], [AX0 + (AX1 - AX0) * 0.25, 8], [AX1, 10]].forEach(function (m) {
+    cx.beginPath(); cx.moveTo(m[0], AY - m[1]); cx.lineTo(m[0], AY + m[1]); cx.stroke();
+  });
+  cx.restore();
+
+  /* ---- 6. the deck's heaviest marine snow, kept OUT of the scale band ---- */
+  for (var q = 0; q < 520; q++) {
+    var near = Math.pow(rnd(), 0.4);
+    var sx = rnd() * W, sy = 140 + Math.pow(rnd(), 0.95) * (H - 160);
+    if (sy > 1188 && sy < 1224 && sx > AX0 - 24 && sx < AX1 + 24) continue;
+    if (sy > 588 && sy < 748 && sx > 68 && sx < 1012) continue;   /* the caveat's own boxes */
+    cx.fillStyle = 'rgba(212,244,232,' + (0.06 + near * 0.26).toFixed(3) + ')';
+    cx.beginPath(); cx.arc(sx, sy, 0.6 + near * 2.4, 0, Math.PI * 2); cx.fill();
+  }
+  var agg = document.createElement('canvas');
+  agg.width = 2160; agg.height = 2700;
+  var acx = agg.getContext('2d'); acx.scale(2, 2);
+  acx.fillStyle = 'rgba(212,244,232,0.26)';
+  for (var a2 = 0; a2 < 80; a2++) {
+    acx.beginPath();
+    acx.arc(60 + rnd() * 300, 1180 + rnd() * 200, 3 + rnd() * 14, 0, Math.PI * 2);
+    acx.fill();
+  }
+  cx.save(); cx.filter = 'blur(11px)'; cx.drawImage(agg, 0, 0, W, H); cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H,
+    exposure: -0.04, saturation: 0.95, contrast: 1.09, filmic: true,
+    lift: [0.008, 0.014, 0.020], gain: [0.99, 1.0, 1.005],
+    vignette: 0.28,
+    bloom: { threshold: 0.80, strength: 0.20, radius: 7 },
+    grain: { amount: 0.05, size: 2, seed: SEED },
+    dither: true, sharpen: 0.32
+  });
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED) + ')';
+  AK.fitText(document.getElementById('head'), { min: 54, max: 72, maxLines: 2 });
+
+  window.__akMotifs = [
+    { what: 'the cut shot line and its five splayed strands',
+      rect: [402, 940, 176, 130], canvas: 'canvas#art' }
+  ];
+  resolve();
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!doctype html>
+<!-- SLIDE 02 — THE PERMISSION.
+     Camera 40 m down. One wire bridles into two instruments hanging at the same
+     depth in the same light, at TRUE relative scale: a bottom trawl mouth built
+     strand by strand, and a stereo camera rig shaded as a solid. Nothing rests
+     on anything. The argument is that they are allowed to look nothing alike. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#0A2C33; position:relative; }
+  #art { position:absolute; inset:0; }
+  .grain { position:absolute; inset:0; opacity:0.07; mix-blend-mode:overlay; background-repeat:repeat; }
+  h2 { position:absolute; left:80px; top:150px; width:820px;
+       font-family:"Instrument Serif",serif; font-weight:400; font-size:76px;
+       line-height:0.98; letter-spacing:-0.02em; color:#F4F8FF; }
+  .quote { position:absolute; left:80px; top:362px; width:780px;
+           font-family:"Archivo",sans-serif; font-variation-settings:"wdth" 88,"wght" 500;
+           font-size:34px; line-height:1.38; color:#A8BCC2; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:400; font-size:24px;
+          letter-spacing:0.09em; color:#EAF2F4; opacity:0.92;  text-shadow: 0 0 2px #02080B, 0 0 5px #02080B, 0 0 10px #02080B, 0 0 18px #02080B; }
+  .attrib { position:absolute; left:80px; top:596px; width:916px; line-height:1.75; }
+  .counter { position:absolute; right:84px; bottom:70px; }
+</style>
+</head>
+<body data-encodes='[{"claim":"two instruments allowed to look nothing alike hang on the same wire in the same water","reads":"differ","a":[[80,890,340,350]],"b":[[646,936,248,238]]}]'>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain"></div>
+<h2 id="head">The new instrument is allowed to be different.</h2>
+<div class="quote">"Consistency in information that FIS data products provide is more important than consistency in FIS methods."</div>
+<div class="attrib mono">
+  <div>KOTWICKI ET AL., ICES JOURNAL OF MARINE SCIENCE (C03, C04)</div>
+  <div>FIS, A FISHERIES INDEPENDENT SURVEY. FIVE COLLABORATORS (C14)</div>
+</div>
+<div class="counter mono">02 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  document.fonts.ready.then(function () {
+
+  var SEED = 20260908;
+  AK.reseed(SEED);
+  var rnd = AK.rng(SEED);
+  var cvs = document.getElementById('art');
+  var cx = cvs.getContext('2d');
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* ---- 1. the water at 40 m, the most saturated frame in the deck because
+       this is the depth where diatom green peaks on the Bering shelf. ---- */
+  var g = cx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0.00, AKC.mixOklab('#17565A', '#3FA88E', 0.34));
+  g.addColorStop(0.28, '#17565A');
+  g.addColorStop(0.66, AKC.mixOklab('#17565A', '#0A2C33', 0.68));
+  g.addColorStop(1.00, '#0A2C33');
+  cx.fillStyle = g;
+  cx.fillRect(0, 0, W, H);
+
+  /* a broad downwelling pool from the surface, key elevation 76 */
+  cx.save();
+  cx.globalCompositeOperation = 'lighter';
+  cx.translate(470, -180);
+  cx.scale(6.4, 9.2);
+  var pool = cx.createRadialGradient(0, 0, 0, 0, 0, 100);
+  pool.addColorStop(0.00, 'rgba(127,216,190,0.20)');
+  pool.addColorStop(0.55, 'rgba(63,168,142,0.08)');
+  pool.addColorStop(1.00, 'rgba(63,168,142,0)');
+  cx.fillStyle = pool;
+  cx.beginPath(); cx.arc(0, 0, 100, 0, Math.PI * 2); cx.fill();
+  cx.restore();
+
+  /* ---- 2. the shot line, five strands, bridling at y 700. The five strands
+       are the framework's five collaborating organizations. ---- */
+  function casedLine(ctx, pts, w, core, edge) {
+    ctx.save();
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.strokeStyle = edge; ctx.lineWidth = w + 2.2;
+    ctx.beginPath();
+    pts.forEach(function (p, i) { i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); });
+    ctx.stroke();
+    ctx.strokeStyle = core; ctx.lineWidth = w;
+    ctx.beginPath();
+    pts.forEach(function (p, i) { i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); });
+    ctx.stroke();
+    ctx.restore();
+  }
+  casedLine(cx, [[540, 0], [540, 700]], 6, '#8C9AA3', 'rgba(4,20,26,0.55)');
+  /* the lay of the rope, five strands read as a helical highlight */
+  cx.save();
+  cx.strokeStyle = 'rgba(228,238,242,0.30)';
+  cx.lineWidth = 1.1;
+  for (var ly = 0; ly < 700; ly += 11) {
+    cx.beginPath();
+    cx.moveTo(537, ly); cx.lineTo(543, ly + 7);
+    cx.stroke();
+  }
+  cx.restore();
+  casedLine(cx, [[540, 700], [300, 786], [258, 838]], 4.4, '#8C9AA3', 'rgba(4,20,26,0.5)');
+  casedLine(cx, [[540, 700], [700, 812], [720, 928]], 4.4, '#8C9AA3', 'rgba(4,20,26,0.5)');
+
+  /* a reserve for the display block. The shot line runs down x 540 straight
+     through the headline's first line, so the ground under the type is
+     darkened after the wire is drawn and before any glyph is set. */
+  var res2 = cx.createLinearGradient(0, 60, 0, 760);
+  res2.addColorStop(0.00, 'rgba(4,20,26,0.00)');
+  res2.addColorStop(0.24, 'rgba(4,20,26,0.62)');
+  res2.addColorStop(0.74, 'rgba(4,20,26,0.54)');
+  res2.addColorStop(1.00, 'rgba(4,20,26,0.00)');
+  cx.fillStyle = res2;
+  cx.fillRect(0, 60, W, 700);
+
+  /* ---- 3. THE TRAWL MOUTH. A funnel, not a disc. The mesh converges on a
+       throat set back and to the left, so the diamonds foreshorten into the
+       hole and the object reads as something water passes THROUGH. ---- */
+  var MX = 250, MY = 1050, MRX = 200, MRY = 226;
+  var TX = MX - 44, TY = MY - 26, TRX = 34, TRY = 40;   /* the throat */
+
+  function ringPoint(f, t) {           /* f 0 at the mouth, 1 at the throat */
+    var ex = MRX + (TRX - MRX) * f, ey = MRY + (TRY - MRY) * f;
+    var cxr = MX + (TX - MX) * f, cyr = MY + (TY - MY) * f;
+    return [cxr + ex * Math.cos(t), cyr + ey * Math.sin(t)];
+  }
+
+  /* the throat's darkness first, so the net is a hole in the water */
+  cx.save();
+  cx.beginPath();
+  for (var t0 = 0; t0 <= Math.PI * 2 + 0.01; t0 += 0.04) {
+    var hp = ringPoint(0, t0);
+    t0 === 0 ? cx.moveTo(hp[0], hp[1]) : cx.lineTo(hp[0], hp[1]);
+  }
+  cx.closePath();
+  var inner = cx.createRadialGradient(TX, TY, 4, MX, MY, MRX * 1.05);
+  inner.addColorStop(0.00, 'rgba(2,10,14,0.98)');
+  inner.addColorStop(0.38, 'rgba(4,20,26,0.90)');
+  inner.addColorStop(1.00, 'rgba(10,44,51,0.55)');
+  cx.fillStyle = inner;
+  cx.fill();
+  cx.clip();
+
+  /* twenty meridians running mouth to throat */
+  var netRamp = AKC.ramp('#17565A', { steps: 6, keyHue: 168, ambientHue: 232, drift: 14 });
+  for (var m = 0; m < 34; m++) {
+    var th = (m / 34) * Math.PI * 2;
+    var lit = 0.5 + 0.5 * Math.cos(th + 1.9);      /* key from above, el 76 */
+    cx.strokeStyle = netRamp[lit > 0.62 ? 4 : (lit > 0.3 ? 3 : 1)];
+    cx.globalAlpha = 0.30 + 0.50 * lit;
+    cx.lineWidth = 0.9 + 1.5 * lit;
+    cx.beginPath();
+    for (var f2 = 0; f2 <= 1.001; f2 += 0.05) {
+      var q = ringPoint(f2, th);
+      f2 === 0 ? cx.moveTo(q[0], q[1]) : cx.lineTo(q[0], q[1]);
+    }
+    cx.stroke();
+  }
+  /* and eighteen rings, tightening into the throat */
+  for (var r2 = 0; r2 < 18; r2++) {
+    var f3 = Math.pow(r2 / 17, 1.55);
+    cx.globalAlpha = 0.22 + 0.34 * (1 - f3);
+    cx.lineWidth = 0.7 + 1.4 * (1 - f3);
+    cx.strokeStyle = netRamp[2];
+    cx.beginPath();
+    for (var t3 = 0; t3 <= Math.PI * 2 + 0.01; t3 += 0.06) {
+      var rp = ringPoint(f3, t3);
+      t3 === 0 ? cx.moveTo(rp[0], rp[1]) : cx.lineTo(rp[0], rp[1]);
+    }
+    cx.closePath();
+    cx.stroke();
+  }
+  cx.globalAlpha = 1;
+  cx.restore();
+
+  /* the hoop, a lit tube with a crest on the key side */
+  cx.save();
+  cx.lineCap = 'round';
+  cx.strokeStyle = 'rgba(2,10,14,0.80)'; cx.lineWidth = 11;
+  cx.beginPath();
+  for (var t4 = 0; t4 <= Math.PI * 2 + 0.01; t4 += 0.03) {
+    var h4 = ringPoint(0, t4);
+    t4 === 0 ? cx.moveTo(h4[0], h4[1]) : cx.lineTo(h4[0], h4[1]);
+  }
+  cx.closePath(); cx.stroke();
+  cx.strokeStyle = 'rgba(140,154,163,0.92)'; cx.lineWidth = 5.5;
+  cx.beginPath();
+  for (var t5 = 0; t5 <= Math.PI * 2 + 0.01; t5 += 0.03) {
+    var h5 = ringPoint(0, t5);
+    t5 === 0 ? cx.moveTo(h5[0], h5[1]) : cx.lineTo(h5[0], h5[1]);
+  }
+  cx.closePath(); cx.stroke();
+  cx.strokeStyle = 'rgba(228,238,242,0.85)'; cx.lineWidth = 2.0;
+  cx.beginPath();
+  cx.ellipse(MX, MY - 1.6, MRX, MRY, 0, Math.PI * 1.06, Math.PI * 1.94);
+  cx.stroke();
+  cx.restore();
+
+  /* the codend, leaving the throat and trailing off below the mouth */
+  casedLine(cx, [[MX + 6, MY + MRY - 14], [MX - 34, MY + MRY + 52],
+                 [MX - 96, MY + MRY + 96]], 3.4, '#E2622A', 'rgba(2,10,14,0.6)');
+
+  /* ---- 4. THE STEREO RIG. Built from named parts and shaded per part, dark
+       because it is 40 m down. A relit heightfield gave a bright crumpled
+       plate on the first render, which read as foil rather than as anodised
+       aluminium, so the frame is drawn as tubes and the housing carries the
+       only shaded panel. ---- */
+  var RX = 640, RY = 930, RW = 250, RH = 240;
+
+  function tube(ctx, x1, y1, x2, y2, w, dark, litc) {
+    var ang = Math.atan2(y2 - y1, x2 - x1);
+    var nx = Math.sin(ang), ny = -Math.cos(ang);
+    var tg = ctx.createLinearGradient(x1 + nx * w / 2, y1 + ny * w / 2,
+                                      x1 - nx * w / 2, y1 - ny * w / 2);
+    tg.addColorStop(0.00, litc);
+    tg.addColorStop(0.34, litc);
+    tg.addColorStop(1.00, dark);
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = 'rgba(2,10,14,0.75)'; ctx.lineWidth = w + 3;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    ctx.strokeStyle = tg; ctx.lineWidth = w;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    ctx.restore();
+  }
+
+  /* the open frame: two uprights, a top rail, a bottom rail, one diagonal */
+  var L = RX, R = RX + RW, T = RY, Bm = RY + RH;
+  tube(cx, L, T, L, Bm, 11, '#16302E', '#5F7078');
+  tube(cx, R, T, R, Bm, 11, '#16302E', '#5F7078');
+  tube(cx, L, T, R, T, 11, '#16302E', '#6C7D85');
+  tube(cx, L, Bm, R, Bm, 11, '#16302E', '#4E5F67');
+  tube(cx, L, Bm, R, T, 7, '#16302E', '#48595F');
+
+  /* the housing, one shaded panel with a machined face */
+  var hOff = document.createElement('canvas');
+  hOff.width = 2160; hOff.height = 2700;
+  var hcx = hOff.getContext('2d'); hcx.scale(2, 2);
+  AK.reliefShade(hcx, {
+    x: L + 34, y: T + 96, w: RW - 68, h: 96, scale: 2, seed: SEED,
+    strength: 46, ambient: 0.20, diffuse: 0.86,
+    low: '#0E1F22', high: '#54666E',
+    lights: [{ az: 0, el: 76, w: 1 }],
+    height: function (nx2, ny2) {
+      var edge = Math.min(nx2, 1 - nx2, ny2, 1 - ny2);
+      var h = 0.55 + 0.30 * Math.min(1, edge * 7);
+      h += 0.05 * Math.sin(nx2 * 44);          /* machined ribs */
+      return Math.max(0, Math.min(1, h));
+    }
+  });
+  cx.drawImage(hOff, 0, 0, W, H);
+
+  /* two recessed lens ports, glass with one specular chip each */
+  [[L + 84, T + 190], [L + 166, T + 190]].forEach(function (p) {
+    cx.save();
+    cx.fillStyle = 'rgba(2,10,14,0.95)';
+    cx.beginPath(); cx.arc(p[0], p[1], 30, 0, Math.PI * 2); cx.fill();
+    var lg = cx.createRadialGradient(p[0] - 9, p[1] - 11, 2, p[0], p[1], 26);
+    lg.addColorStop(0.00, 'rgba(190,232,220,0.55)');
+    lg.addColorStop(0.34, 'rgba(23,86,90,0.80)');
+    lg.addColorStop(1.00, 'rgba(2,10,14,0.98)');
+    cx.fillStyle = lg;
+    cx.beginPath(); cx.arc(p[0], p[1], 26, 0, Math.PI * 2); cx.fill();
+    cx.strokeStyle = 'rgba(140,154,163,0.75)'; cx.lineWidth = 2.4;
+    cx.beginPath(); cx.arc(p[0], p[1], 28, 0, Math.PI * 2); cx.stroke();
+    cx.restore();
+  });
+
+  /* the gold serial plate, the frame's only saturated warm mark */
+  cx.save();
+  cx.fillStyle = '#FFC72C';
+  cx.beginPath(); cx.rect(L + 40, Bm - 26, 20, 7); cx.fill();
+  cx.restore();
+
+  /* wear, so it reads as a working instrument rather than a render */
+  cx.save();
+  cx.strokeStyle = 'rgba(228,238,242,0.20)';
+  for (var wsc = 0; wsc < 30; wsc++) {
+    cx.lineWidth = 0.5 + rnd() * 0.8;
+    var sx = L + 12 + rnd() * (RW - 24), sy = T + 12 + rnd() * (RH - 24);
+    cx.beginPath();
+    cx.moveTo(sx, sy); cx.lineTo(sx + (rnd() - 0.5) * 18, sy + (rnd() - 0.5) * 8);
+    cx.stroke();
+  }
+  cx.restore();
+
+  /* ---- 5. marine snow, this frame's densest, and one blurred near aggregate ---- */
+  for (var i2 = 0; i2 < 420; i2++) {
+    var near = Math.pow(rnd(), 0.5);
+    cx.fillStyle = 'rgba(212,244,232,' + (0.08 + near * 0.26).toFixed(3) + ')';
+    cx.beginPath();
+    cx.arc(rnd() * W, 90 + Math.pow(rnd(), 0.85) * (H - 110), 0.7 + near * 2.2, 0, Math.PI * 2);
+    cx.fill();
+  }
+  var agg = document.createElement('canvas');
+  agg.width = 2160; agg.height = 2700;
+  var acx = agg.getContext('2d'); acx.scale(2, 2);
+  acx.fillStyle = 'rgba(212,244,232,0.30)';
+  for (var a2 = 0; a2 < 70; a2++) {
+    acx.beginPath();
+    acx.arc(760 + rnd() * 340, 1130 + rnd() * 240, 3 + rnd() * 12, 0, Math.PI * 2);
+    acx.fill();
+  }
+  cx.save(); cx.filter = 'blur(10px)'; cx.drawImage(agg, 0, 0, W, H); cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H,
+    exposure: 0.02, saturation: 1.02, contrast: 1.05, filmic: true,
+    lift: [0.004, 0.012, 0.016], gain: [0.99, 1.005, 1.005],
+    vignette: 0.18,
+    bloom: { threshold: 0.76, strength: 0.24, radius: 7 },
+    grain: { amount: 0.045, size: 2, seed: SEED },
+    dither: true, sharpen: 0.32
+  });
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+  AK.fitText(document.getElementById('head'), { min: 58, max: 78, maxLines: 2 });
+
+  window.__akMotifs = [
+    { what: 'the trawl mouth, the old instrument', rect: [90, 900, 320, 340], canvas: 'canvas#art' },
+    { what: 'the stereo camera rig, the new instrument', rect: [650, 950, 230, 200], canvas: 'canvas#art' }
+  ];
+  resolve();
+  });
+});
+</script>
+</body>
+</html>

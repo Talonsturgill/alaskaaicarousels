@@ -1,0 +1,152 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 2 of 3 at (80,384) of 'Two instruments on the same line, for ye' carries 251 px^2 of hard-edged canvas ink (densest 40px window 2.2%) while this block's other lines sit on clean paper (0.2%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "busy art under text (bg edge density 0.05) beneath 'NOAA FISHERIES FRAMEWORK, SEPTEMBER 3RD,' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (21% of the ring around 'NOAA FISHERIES FRAMEWORK, SEPTEMBER 3RD,', spanning 18%) -- pixel critic verify the label is not crossed"
+      ],
+      "motifs": [
+        "'the gold overlap lens, where both instruments measured the same ground': canvas 62.4 dE, page 62.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hook 'Two instrumentson the same line, for years.T' fits 3/3 lines at 103.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 1 of 2 at (80,137) of 'The new instrument is allowed to be diff' carries 210 px^2 of hard-edged canvas ink (densest 40px window 4.4%) while this block's other lines sit on clean paper (0.2%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "canvas mark near reserved text: line 1 of 3 at (80,366) of '\"Consistency in information that FIS dat' carries 62 px^2 of hard-edged canvas ink (densest 40px window 2.3%) while this block's other lines sit on clean paper (0.3%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "canvas mark near reserved text: line 2 of 3 at (80,413) of '\"Consistency in information that FIS dat' carries 88 px^2 of hard-edged canvas ink (densest 40px window 2.5%) while this block's other lines sit on clean paper (0.3%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "canvas mark near reserved text: line 1 of 2 at (80,601) of 'KOTWICKI ET AL., ICES JOURNAL OF MARINE ' carries 105 px^2 of hard-edged canvas ink (densest 40px window 4.7%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "outside safe zone: '02 / 09' at 880,1249 116x31 (margin 80px)"
+      ],
+      "encodings": [
+        "'two instruments allowed to look nothing alike hang on the same wire in the same water': dE 9.1, AUC 0.79, visible 0%/0%, seen 0/0px at 432w"
+      ],
+      "motifs": [
+        "'the trawl mouth, the old instrument': canvas 66.7 dE, page 65.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the stereo camera rig, the new instrument': canvas 66.0 dE, page 60.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'The new instrument is allowed to be differen' fits 2/2 lines at 77.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the ground both instruments measured carries twice the detail of the ground only one measu': dE 13.0, AUC 0.86, visible 0%/0%, seen 0/0px at 432w"
+      ],
+      "motifs": [
+        "'the near station pair and its overlap lens': canvas 53.3 dE, page 55.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Agreement is bought. It is never assumed.' fits 2/2 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.05) beneath '3D STEREO CAMERA SYSTEMS, ALASKA FISHERI' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'FOR SURVEYING UNTRAWLABLE FISH HABITAT (' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the near foreground boulder, where its occlusion collar meets lit sediment': shadow L* 47.8 vs ground L* 59.5, dL 11.7 at 432w"
+      ],
+      "motifs": [
+        "'the rockfish silhouette at the edge of the strobe': canvas 18.3 dE, page 18.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Ground the net can't cross.' fits 1/1 lines at 65.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the thing the machines argue about is smaller than a fingernail and a person still has to ': dE 4.7, AUC 0.76, visible 100%/100%, seen 210/7296px at 432w"
+      ],
+      "motifs": [
+        "'the otolith, 5 mm of aragonite at true relative scale': canvas 73.0 dE, page 65.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the otolith in the palm' lands 0.0px from its target",
+        "leader 'the otolith in the palm' meets its label 15.0px away"
+      ],
+      "fits": [
+        "head 'The camera can see it. It can't hold it.' fits 2/2 lines at 85.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'ALASKA POLLOCK LANDINGS TOPPED 3 BILLION' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the multibeam relief field': canvas 24.8 dE, page 43.4 dE, 93% of its rect is clear of opaque DOM (div stands on the rest)",
+        "'the 0.006 percent gear-contact square, drawn at true area': canvas 100.5 dE, page 104.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "asserts": [
+        "'the 0.006 percent gear-contact square, drawn at true area' holds: 7.12629 vs 7.12629 px (within 0.05)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 1 of 2 at (80,138) of 'The record is being pulled from two side' carries 166 px^2 of hard-edged canvas ink (densest 40px window 2.2%) while this block's other lines sit on clean paper (0.2%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "canvas mark near reserved text: line 5 of 5 at (80,525) of 'The framework lists funding, vessel avai' carries 127 px^2 of hard-edged canvas ink (densest 40px window 2.5%) while this block's other lines sit on clean paper (0.2%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "motifs": [
+        "'the cut shot line and its five splayed strands': canvas 83.2 dE, page 82.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the northward projection bar' runs 0 kilometres at 620 to 200 kilometres at 960; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "head 'The record is being pulled from two sides at' fits 2/2 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the deployment plan sorts boats into watched by a machine, watched by a person, and watche': dE 6.2, AUC 0.65, visible 0%/0%, seen 0/0px at 432w"
+      ],
+      "contacts": [
+        "'the camera housing on the rail': shadow L* 72.9 vs ground L* 82.9, dL 10.0 at 432w"
+      ],
+      "motifs": [
+        "'the electronic monitoring camera on the rail': canvas 48.6 dE, page 48.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the empty bracket and its four bolt holes': canvas 80.2 dE, page 81.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Twelve days later, the same question, on a s' fits 2/2 lines at 69.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the sealed Polaris where the shot line ends': canvas 55.9 dE, page 59.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'The committee takes comment letters.' fits 1/1 lines at 69.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 13,
+  "verdict": "WARN"
+}

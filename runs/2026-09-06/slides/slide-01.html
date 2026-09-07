@@ -1,0 +1,383 @@
+<!doctype html>
+<!-- SLIDE 01 — COVER. THE BILL.
+     Camera 78 m down on the Bering shelf. Snell's window at y 168 carries two
+     hull silhouettes at true relative length. Two acoustic beam cones fall to
+     the seabed and land as two ensonified footprints that overlap in a gold
+     lens. Nothing rests on anything, so no contact shadow is declared. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#04141A; position:relative; }
+  #art { position:absolute; inset:0; }
+  .grain { position:absolute; inset:0; opacity:0.07; mix-blend-mode:overlay; background-repeat:repeat; }
+  .kicker { position:absolute; left:80px; top:232px;
+            font-family:"Archivo",sans-serif; font-variation-settings:"wdth" 88,"wght" 500;
+            font-size:30px; letter-spacing:0.08em; color:#A8BCC2; }
+  h1 { position:absolute; left:80px; top:300px; width:880px;
+       font-family:"Instrument Serif",serif; font-weight:400; font-size:118px;
+       line-height:0.98; letter-spacing:-0.02em; color:#F4F8FF; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:400; font-size:24px;
+          letter-spacing:0.09em; color:#7E9AA0; opacity:0.68;  text-shadow: 0 0 2px #02080B, 0 0 5px #02080B, 0 0 10px #02080B, 0 0 18px #02080B; }
+  .readout { position:absolute; left:80px; top:700px; line-height:1.7; }
+  .counter { position:absolute; right:82px; bottom:74px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain"></div>
+  <div class="kicker">ALASKA FISHERIES SURVEYS &middot; SEPTEMBER 2026</div>
+  <h1 id="hook">Two instruments<br>on the same line, for years.<br>That's the bill.</h1>
+  <div class="readout mono">
+    <div data-decorative>DEPTH 78 m &middot; KEY DOWNWELLING el 76 &middot; 57&deg;30'N 168&deg;00'W</div>
+    <div>NOAA FISHERIES FRAMEWORK, SEPTEMBER 3RD, 2026 (C01)</div>
+  </div>
+<div class="counter mono" data-decorative>01 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  document.fonts.ready.then(function () {
+
+  var SEED = 20260907;
+  AK.reseed(SEED);
+  var rnd = AK.rng(SEED);
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+
+  var W = 1080, H = 1350;
+  var WATERLINE = 168;
+  var SEABED_TOP = 900;
+
+  /* ---- 1. the water column. one gradient, stops mixed in OKLab so there is
+       no gray dead zone between the deep base and the lit mid water. ---- */
+  var col = cx.createLinearGradient(0, 0, 0, H);
+  var stops = [
+    [0.00, AKC.mixOklab('#3FA88E', '#0A2C33', 0.28)],
+    [0.13, '#17565A'],
+    [0.34, AKC.mixOklab('#17565A', '#0A2C33', 0.55)],
+    [0.62, '#0A2C33'],
+    [0.86, AKC.mixOklab('#0A2C33', '#04141A', 0.72)],
+    [1.00, '#04141A']
+  ];
+  stops.forEach(function (s) { col.addColorStop(s[0], s[1]); });
+  cx.fillStyle = col;
+  cx.fillRect(0, 0, W, H);
+
+  /* a reserve for the display zone. Snell's window is the brightest thing in
+     the deck and the kicker runs straight across its lower edge, so the ground
+     under the words is darkened before a glyph is set. */
+  var res1 = cx.createLinearGradient(0, 178, 0, 880);
+  res1.addColorStop(0.00, 'rgba(4,20,26,0.00)');
+  res1.addColorStop(0.11, 'rgba(4,20,26,0.56)');
+  res1.addColorStop(0.78, 'rgba(4,20,26,0.52)');
+  res1.addColorStop(1.00, 'rgba(4,20,26,0.00)');
+  window.__akReserve1 = res1;
+
+  /* ---- 2. Snell's window. refraction squeezes the whole sky into a bright
+       lens overhead. Circle inside a transform, never an elliptical gradient. ---- */
+  function pourEllipse(ctx, ecx, ecy, rx, ry, build) {
+    ctx.save();
+    ctx.translate(ecx, ecy);
+    ctx.scale(rx / 100, ry / 100);
+    var g = ctx.createRadialGradient(0, 0, 0, 0, 0, 100);
+    build(g);
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(0, 0, 100, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+  pourEllipse(cx, 540, WATERLINE - 26, 620, 190, function (g) {
+    g.addColorStop(0.00, 'rgba(127,216,190,0.92)');
+    g.addColorStop(0.34, 'rgba(63,168,142,0.58)');
+    g.addColorStop(0.70, 'rgba(23,86,90,0.22)');
+    g.addColorStop(1.00, 'rgba(23,86,90,0)');
+  });
+
+  /* the surface itself, a chop of short wavelets seen from below */
+  cx.save();
+  cx.strokeStyle = 'rgba(212,244,232,0.34)';
+  cx.lineWidth = 1.4;
+  cx.beginPath();
+  for (var wx = 0; wx <= W; wx += 3) {
+    var wy = WATERLINE
+           + 7 * Math.sin(wx * 0.041 + 1.2)
+           + 4 * Math.sin(wx * 0.113 + 3.1)
+           + 9 * AK.fbm2(wx * 0.006, 4.4, { octaves: 3 });
+    if (wx === 0) cx.moveTo(wx, wy); else cx.lineTo(wx, wy);
+  }
+  cx.stroke();
+  cx.restore();
+
+  /* ---- 3. two hulls in the window, at TRUE relative length.
+       A NOAA survey ship is about 64 m; a DriX uncrewed surface vehicle is
+       about 8 m. Eight to one, and the picture says so with no label. ---- */
+  function hull(ctx, hx, hy, len, depthOfHull, mastH) {
+    ctx.save();
+    ctx.fillStyle = '#0E1B26';
+    ctx.beginPath();
+    ctx.moveTo(hx - len / 2, hy);
+    ctx.lineTo(hx + len / 2, hy);
+    ctx.lineTo(hx + len / 2 - len * 0.10, hy + depthOfHull);
+    ctx.quadraticCurveTo(hx, hy + depthOfHull * 1.28, hx - len / 2 + len * 0.06, hy + depthOfHull * 0.72);
+    ctx.closePath();
+    ctx.fill();
+    if (mastH > 0) {
+      ctx.beginPath();
+      ctx.moveTo(hx + len * 0.06, hy);
+      ctx.lineTo(hx + len * 0.02, hy - mastH);
+      ctx.lineTo(hx + len * 0.10, hy - mastH);
+      ctx.lineTo(hx + len * 0.16, hy);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+  hull(cx, 402, WATERLINE - 4, 168, 15, 26);   /* the ship */
+  hull(cx, 664, WATERLINE - 4, 21, 5, 4);      /* the DriX */
+
+  /* ---- 4. the two beam cones. Filled quads, alpha falling with depth, and
+       a dashed axis down the middle of each so the geometry is legible. ---- */
+  function beam(ctx, apexX, apexY, halfAtBed, bedY, peak) {
+    /* Volume scattering BUILDS with range: an acoustic cone is faintest at
+       the transducer and brightest a long way down, not the other way round.
+       The first build put the cone's hottest stop at the apex, which is where
+       the kicker and the hook are set, and one cone edge measured 2.1 to 1
+       against the kicker. Inverting the ramp is the physical reading and it
+       also puts the mass in the lower two thirds, where this deck wants it. */
+    var g = ctx.createLinearGradient(0, apexY, 0, bedY);
+    g.addColorStop(0.00, 'rgba(127,216,190,' + (peak * 0.055) + ')');
+    g.addColorStop(0.11, 'rgba(127,216,190,' + (peak * 0.095) + ')');
+    g.addColorStop(0.42, 'rgba(63,168,142,' + (peak * 0.30) + ')');
+    g.addColorStop(0.74, 'rgba(63,168,142,' + (peak * 0.15) + ')');
+    g.addColorStop(1.00, 'rgba(63,168,142,0)');
+    /* Drawn offscreen and blurred, because a filled quad has a hard lateral
+       edge and a hard edge crossing a label is a rule as far as the ring test
+       is concerned. A sound cone has no boundary anyway. */
+    var bc = document.createElement('canvas');
+    bc.width = 2160; bc.height = 2700;
+    var bcx = bc.getContext('2d'); bcx.scale(2, 2);
+    bcx.fillStyle = g;
+    bcx.beginPath();
+    bcx.moveTo(apexX - 5, apexY);
+    bcx.lineTo(apexX + 5, apexY);
+    bcx.lineTo(apexX + halfAtBed, bedY);
+    bcx.lineTo(apexX - halfAtBed, bedY);
+    bcx.closePath();
+    bcx.fill();
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.filter = 'blur(9px)';
+    ctx.drawImage(bc, 0, 0, 1080, 1350);
+    ctx.restore();
+    ctx.save();
+    /* the axis is a hard-edged dashed rule, so it starts below the type block
+       rather than running through the hook */
+    ctx.setLineDash([9, 13]);
+    ctx.strokeStyle = 'rgba(127,216,190,0.30)';
+    ctx.lineWidth = 1.1;
+    ctx.beginPath(); ctx.moveTo(apexX, 786); ctx.lineTo(apexX, bedY); ctx.stroke();
+    ctx.restore();
+  }
+  beam(cx, 402, WATERLINE + 6, 214, 1146, 0.66);
+  beam(cx, 664, WATERLINE + 6, 166, 1146, 0.54);
+
+  cx.fillStyle = window.__akReserve1;
+  cx.fillRect(0, 170, W, 715);
+
+  /* ---- 5. the seabed. THE GROUND IS LIT FIRST, then the hachure is cut into
+       it. Drawing the strokes onto dark water and washing sediment over them
+       afterwards puts dark ink on a dark ground and the field disappears,
+       which is what the first render of this slide did. ---- */
+  var sedBase = cx.createLinearGradient(0, SEABED_TOP - 40, 0, H);
+  sedBase.addColorStop(0.00, 'rgba(126,116,88,0.06)');
+  sedBase.addColorStop(0.16, 'rgba(126,116,88,0.46)');
+  sedBase.addColorStop(0.55, 'rgba(140,128,96,0.74)');
+  sedBase.addColorStop(1.00, 'rgba(150,137,102,0.86)');
+  cx.fillStyle = sedBase;
+  cx.fillRect(0, SEABED_TOP - 40, W, H - SEABED_TOP + 40);
+
+  var GRID_W = 72, GRID_H = 40, grid = new Float32Array(GRID_W * GRID_H);
+  for (var gy = 0; gy < GRID_H; gy++) {
+    for (var gx2 = 0; gx2 < GRID_W; gx2++) {
+      var u = gx2 / (GRID_W - 1), v = gy / (GRID_H - 1);
+      var h = 0.44
+            + 0.30 * AK.fbm2(u * 3.1, v * 2.0 + 11.3, { octaves: 5 })
+            + 0.16 * Math.sin(u * 7.4 + v * 1.9)
+            - 0.22 * v;                        /* a shelf falling away from camera */
+      grid[gy * GRID_W + gx2] = Math.max(0, Math.min(1, h));
+    }
+  }
+  var heightAt = AK.hachureFromGrid(grid, GRID_W, GRID_H);
+  var bedStats = AK.hachureField(cx, {
+    x: 0, y: SEABED_TOP, w: W, h: H - SEABED_TOP, scale: 2, seed: SEED,
+    height: heightAt,
+    cell: 13, lenScale: 1.9, passes: 4,
+    sunAz: 315, sunEl: 34, sunJitter: 11,
+    color: '#16302E', alpha: 0.30,
+    minWidth: 0.45, maxWidth: 3.6,
+    probes: [
+      { name: 'far shelf', x: 120, y: SEABED_TOP + 20, w: 300, h: 90 },
+      { name: 'near scour', x: 620, y: 1220, w: 300, h: 110 }
+    ]
+  });
+
+  /* the water column carried back over the far edge of the bed, so the ground
+     recedes into the medium instead of stopping at a hard line */
+  var haze = cx.createLinearGradient(0, SEABED_TOP - 60, 0, SEABED_TOP + 150);
+  haze.addColorStop(0, 'rgba(10,44,51,0.85)');
+  haze.addColorStop(1, 'rgba(10,44,51,0)');
+  cx.fillStyle = haze;
+  cx.fillRect(0, SEABED_TOP - 60, W, 210);
+
+  /* ---- 6. the two ensonified footprints, and the gold lens where they
+       overlap. The overlap is the only saturated warm thing in the frame. ---- */
+  var A = { x: 402, y: 1132, rx: 206, ry: 84 };
+  var B = { x: 664, y: 1132, rx: 158, ry: 66 };
+
+  function footprint(e, peak) {
+    cx.save();
+    cx.globalCompositeOperation = 'lighter';
+    pourEllipse(cx, e.x, e.y, e.rx, e.ry, function (g) {
+      g.addColorStop(0.00, 'rgba(198,222,196,' + (peak * 0.20) + ')');
+      g.addColorStop(0.42, 'rgba(178,200,164,' + (peak * 0.15) + ')');
+      g.addColorStop(0.76, 'rgba(158,146,110,' + (peak * 0.10) + ')');
+      g.addColorStop(0.94, 'rgba(150,137,102,' + (peak * 0.05) + ')');
+      g.addColorStop(1.00, 'rgba(150,137,102,0)');
+    });
+    cx.restore();
+    /* the rim, so the footprint reads as a bounded measurement and not a glow */
+    cx.save();
+    cx.strokeStyle = 'rgba(127,216,190,0.62)';
+    cx.lineWidth = 2.2;
+    cx.setLineDash(e === A ? [] : [16, 9]);
+    cx.beginPath();
+    cx.ellipse(e.x, e.y, e.rx, e.ry, 0, 0, Math.PI * 2);
+    cx.stroke();
+    cx.restore();
+  }
+  footprint(A, 1.0);
+  footprint(B, 0.9);
+
+  /* the lens. A second hachure pass runs inside the intersection ONLY, so the
+     overlap literally carries twice the ground detail, and the gold is a thin
+     wash plus a rim rather than a solid chip. Two instruments looking at the
+     same ground is drawn as more information, not as a brighter colour. */
+  cx.save();
+  cx.beginPath(); cx.ellipse(A.x, A.y, A.rx, A.ry, 0, 0, Math.PI * 2); cx.clip();
+  cx.beginPath(); cx.ellipse(B.x, B.y, B.rx, B.ry, 0, 0, Math.PI * 2); cx.clip();
+  AK.hachureField(cx, {
+    x: 440, y: 1040, w: 220, h: 220, scale: 2, seed: SEED + 4,
+    height: heightAt, cell: 9, lenScale: 1.6, passes: 3,
+    sunAz: 315, sunEl: 34, sunJitter: 9,
+    color: '#16302E', alpha: 0.26, minWidth: 0.4, maxWidth: 2.6
+  });
+  cx.restore();
+  /* the lens OUTLINE, computed rather than eyeballed: walk each ellipse and
+     keep only the arc that lies inside the other, then stroke the two arcs as
+     one closed boundary. Two hand-placed arc sweeps drew a scribble on the
+     first render because neither knew where the other ellipse actually was. */
+  function inside(e, px, py) {
+    var dx = (px - e.x) / e.rx, dy = (py - e.y) / e.ry;
+    return dx * dx + dy * dy <= 1;
+  }
+  function arcInside(e, other) {
+    var pts = [], t;
+    for (t = 0; t < Math.PI * 2; t += Math.PI / 360) {
+      var px = e.x + e.rx * Math.cos(t), py = e.y + e.ry * Math.sin(t);
+      if (inside(other, px, py)) pts.push([px, py]);
+    }
+    return pts;
+  }
+  var lensPts = arcInside(A, B).concat(arcInside(B, A));
+  if (lensPts.length > 6) {
+    /* the intersection of two ellipses is CONVEX, so sorting every boundary
+       point by its angle about the centroid gives one clean closed outline.
+       Concatenating the two arcs in sample order does not, because each arc
+       wraps through t = 0 and the seam draws a chord across the lens. */
+    var lcx = 0, lcy = 0;
+    lensPts.forEach(function (p) { lcx += p[0]; lcy += p[1]; });
+    lcx /= lensPts.length; lcy /= lensPts.length;
+    lensPts.sort(function (m, n) {
+      return Math.atan2(m[1] - lcy, m[0] - lcx) - Math.atan2(n[1] - lcy, n[0] - lcx);
+    });
+    cx.save();
+    cx.strokeStyle = 'rgba(255,199,44,0.92)';
+    cx.lineWidth = 2.2;
+    cx.lineJoin = 'round';
+    cx.beginPath();
+    lensPts.forEach(function (p, i) { i ? cx.lineTo(p[0], p[1]) : cx.moveTo(p[0], p[1]); });
+    cx.closePath();
+    cx.stroke();
+    cx.restore();
+  }
+
+  /* ---- 7. marine snow. A discrete population, not a wash: a graded wash dies
+       at the 432 px downsample and a population of hard steps survives it. ---- */
+  var snow = [];
+  for (var i = 0; i < 340; i++) {
+    var near = Math.pow(rnd(), 0.55);
+    snow.push({
+      x: rnd() * W,
+      y: 200 + Math.pow(rnd(), 0.8) * (H - 220),
+      r: 0.7 + near * 2.0,
+      a: 0.09 + near * 0.26
+    });
+  }
+  cx.save();
+  snow.forEach(function (s) {
+    cx.fillStyle = 'rgba(212,244,232,' + s.a.toFixed(3) + ')';
+    cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, Math.PI * 2); cx.fill();
+  });
+  cx.restore();
+
+  /* one blurred near aggregate bleeding off the bottom-left corner, the
+     repoussoir foreground plane. Blurred once offscreen, never in a loop. */
+  var off = document.createElement('canvas');
+  off.width = 2160; off.height = 2700;
+  var ocx = off.getContext('2d');
+  ocx.scale(2, 2);
+  ocx.fillStyle = 'rgba(126,116,88,0.42)';
+  for (var k = 0; k < 90; k++) {
+    var px = -30 + rnd() * 300, py = 1180 + rnd() * 220;
+    ocx.beginPath(); ocx.arc(px, py, 3 + rnd() * 13, 0, Math.PI * 2); ocx.fill();
+  }
+  cx.save();
+  cx.filter = 'blur(11px)';
+  cx.drawImage(off, 0, 0, W, H);
+  cx.restore();
+
+  /* ---- 8. the film grade. One call, on the art canvas, after all drawing. ---- */
+  AKPOST.grade(cx, {
+    w: W, h: H,
+    exposure: 0.04, saturation: 0.98, contrast: 1.06, filmic: true,
+    lift: [0.006, 0.014, 0.018], gain: [0.99, 1.005, 1.01],
+    vignette: 0.22,
+    bloom: { threshold: 0.74, strength: 0.28, radius: 8 },
+    grain: { amount: 0.045, size: 2, seed: SEED },
+    dither: true, sharpen: 0.30
+  });
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED) + ')';
+
+  AK.fitText(document.getElementById('hook'), { min: 88, max: 118, maxLines: 3 });
+
+  window.__akMotifs = [
+    { what: 'the gold overlap lens, where both instruments measured the same ground',
+      rect: [508, 1082, 108, 128], canvas: 'canvas#art' }
+  ];
+
+  console.log('slide-01 hachure widthRatio', bedStats && bedStats.widthRatio);
+  resolve();
+  });
+});
+</script>
+</body>
+</html>

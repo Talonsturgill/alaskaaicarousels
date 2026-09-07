@@ -1,0 +1,280 @@
+<!doctype html>
+<!-- SLIDE 03 — THE PRICE. The deck's declared wordless claim.
+     Camera 3 m off the bottom, grazing, so the seabed recedes hard. Two wires,
+     both loaded. Twelve paired station footprints march away, each pair with
+     its own overlap. Inside the near pair's overlap a SECOND hachure pass runs,
+     so the ground where both instruments looked carries twice the detail. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#0A2C33; position:relative; }
+  #art { position:absolute; inset:0; }
+  .grain { position:absolute; inset:0; opacity:0.07; mix-blend-mode:overlay; background-repeat:repeat; }
+  h2 { position:absolute; left:300px; top:150px; width:700px;
+       font-family:"Instrument Serif",serif; font-weight:400; font-size:70px;
+       line-height:0.98; letter-spacing:-0.02em; color:#F4F8FF; }
+  .body { position:absolute; left:300px; top:330px; width:700px;
+          font-family:"Archivo",sans-serif; font-variation-settings:"wdth" 88,"wght" 500;
+          font-size:32px; line-height:1.38; color:#A8BCC2; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:400; font-size:24px;
+          letter-spacing:0.09em; color:#EAF2F4; opacity:0.92;  text-shadow: 0 0 2px #02080B, 0 0 5px #02080B, 0 0 10px #02080B, 0 0 18px #02080B; }
+  .notes { position:absolute; left:300px; top:648px; width:696px; line-height:1.9; }
+  .ticklab { position:absolute; left:300px; top:1216px; width:696px; opacity:1;
+             color:#F4F8FF;
+             text-shadow: 0 0 3px #02080B, 0 0 7px #02080B, 0 0 14px #02080B,
+                          0 0 22px #02080B, 0 0 30px #02080B; }
+  .counter { position:absolute; right:80px; bottom:70px; }
+</style>
+</head>
+<body data-encodes='[{"claim":"the ground both instruments measured carries twice the detail of the ground only one measured","reads":"differ","a":[[392,1012,96,78]],"b":[[276,1006,92,84]]}]'>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain"></div>
+<h2 id="head">Agreement is bought. It is never assumed.</h2>
+<div class="body">The framework calls for "incremental incorporation and calibration of new technologies" rather than "a wholesale replacement of existing methods that would disrupt the historical baseline of a time series" (C05). The most common way to do it is to run the old method and the new one in parallel for a fixed period (C07).</div>
+<div class="notes mono">
+  <div>SAME AREA IN 40 PERCENT LESS TIME WITH DriX ALONGSIDE, NOAA SAYS (C17)</div>
+  <div>SCHEMATIC. STATION POSITIONS ARE COMPOSITION, NOT SURVEY DATA.</div>
+</div>
+<div class="ticklab mono">SHIP ALONE 10 UNITS &middot; WITH DriX 6 &middot; PARALLEL PROJECTION</div>
+<div class="counter mono" data-decorative>03 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  document.fonts.ready.then(function () {
+
+  var SEED = 20260909;
+  AK.reseed(SEED);
+  var rnd = AK.rng(SEED);
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+  var HORIZON = 742;                 /* where the bed dissolves into the medium */
+
+  /* ---- 1. water above the bed, and the bed's own lit ground UNDER the
+       hachure, because dark ink on dark water is a field nobody can see. ---- */
+  var wg = cx.createLinearGradient(0, 0, 0, HORIZON + 90);
+  wg.addColorStop(0.00, AKC.mixOklab('#17565A', '#0A2C33', 0.30));
+  wg.addColorStop(0.62, '#0A2C33');
+  wg.addColorStop(1.00, AKC.mixOklab('#0A2C33', '#04141A', 0.55));
+  cx.fillStyle = wg;
+  cx.fillRect(0, 0, W, HORIZON + 90);
+
+  var bg2 = cx.createLinearGradient(0, HORIZON - 20, 0, H);
+  bg2.addColorStop(0.00, 'rgba(126,116,88,0.10)');
+  bg2.addColorStop(0.22, 'rgba(126,116,88,0.52)');
+  bg2.addColorStop(0.62, 'rgba(142,130,98,0.80)');
+  bg2.addColorStop(1.00, 'rgba(154,140,104,0.90)');
+  cx.fillStyle = bg2;
+  cx.fillRect(0, HORIZON - 20, W, H - HORIZON + 20);
+
+  /* ---- 2. the grazing-angle bed. Perspective squeezes the far field, so the
+       hachure runs in THREE bands with the cell shrinking as it recedes. ---- */
+  var GW = 90, GH = 54, grid = new Float32Array(GW * GH);
+  for (var j = 0; j < GH; j++) {
+    for (var i = 0; i < GW; i++) {
+      var u = i / (GW - 1), v = j / (GH - 1);
+      grid[j * GW + i] = Math.max(0, Math.min(1,
+        0.46 + 0.28 * AK.fbm2(u * 4.2, v * 5.6 + 3.3, { octaves: 5 })
+             + 0.14 * Math.sin(u * 11.0 + v * 4.4)          /* sediment ripple */
+             - 0.10 * v));
+    }
+  }
+  var heightAt = AK.hachureFromGrid(grid, GW, GH);
+  var bands = [
+    { y: HORIZON - 10, h: 120, cell: 6,  alpha: 0.20, maxW: 1.8 },
+    { y: HORIZON + 110, h: 210, cell: 10, alpha: 0.26, maxW: 2.8 },
+    { y: HORIZON + 320, h: H - (HORIZON + 320), cell: 15, alpha: 0.32, maxW: 4.0 }
+  ];
+  bands.forEach(function (b, k) {
+    AK.hachureField(cx, {
+      x: 0, y: b.y, w: W, h: b.h, scale: 2, seed: SEED + k,
+      height: heightAt, cell: b.cell, lenScale: 1.9, passes: 4,
+      sunAz: 315, sunEl: 34, sunJitter: 11,
+      color: '#16302E', alpha: b.alpha, minWidth: 0.4, maxWidth: b.maxW
+    });
+  });
+
+  /* the medium carried back over the far bed so it recedes into water */
+  var far = cx.createLinearGradient(0, HORIZON - 60, 0, HORIZON + 180);
+  far.addColorStop(0, 'rgba(10,44,51,0.92)');
+  far.addColorStop(1, 'rgba(10,44,51,0)');
+  cx.fillStyle = far;
+  cx.fillRect(0, HORIZON - 60, W, 240);
+
+  /* ---- 3. twelve paired station footprints, receding at 0.72^i, one pair for
+       each day between the framework story and the committee meeting. ---- */
+  var pairs = [];
+  for (var n = 0; n < 12; n++) {
+    var s = Math.pow(0.72, n * 0.55) * (n === 0 ? 1.62 : 1.0);
+    var py = 1136 - (1136 - HORIZON + 6) * (1 - Math.min(1, s));
+    var px = 430 + n * 62 * s;
+    pairs.push({ x: px, y: py, rx: 118 * s, ry: 40 * s, a: Math.pow(s, 0.9) });
+  }
+
+  function lit(e, dx, peak) {
+    cx.save();
+    cx.globalCompositeOperation = 'lighter';
+    cx.translate(e.x + dx, e.y);
+    cx.scale(e.rx / 100, e.ry / 100);
+    var gg = cx.createRadialGradient(0, 0, 0, 0, 0, 100);
+    gg.addColorStop(0.00, 'rgba(200,222,196,' + (peak * 0.30 * e.a) + ')');
+    gg.addColorStop(0.46, 'rgba(176,198,160,' + (peak * 0.20 * e.a) + ')');
+    gg.addColorStop(0.92, 'rgba(154,140,104,' + (peak * 0.06 * e.a) + ')');
+    gg.addColorStop(1.00, 'rgba(154,140,104,0)');
+    cx.fillStyle = gg;
+    cx.beginPath(); cx.arc(0, 0, 100, 0, Math.PI * 2); cx.fill();
+    cx.restore();
+  }
+  pairs.forEach(function (e) {
+    lit(e, -e.rx * 0.46, 1.0);
+    lit(e, +e.rx * 0.46, 0.88);
+    if (e.a > 0.42) {
+      cx.save();
+      cx.strokeStyle = 'rgba(228,238,242,' + (0.34 * e.a).toFixed(3) + ')';
+      cx.lineWidth = 1.4; cx.setLineDash([12, 8]);
+      cx.beginPath(); cx.ellipse(e.x - e.rx * 0.46, e.y, e.rx, e.ry, 0, 0, Math.PI * 2); cx.stroke();
+      /* the second instrument's footprint gets its own idiom, continuous and
+         rotated, so the intersection is unmistakably the intersection of two
+         distinct marks rather than one oval with a bright patch in it */
+      cx.setLineDash([]);
+      cx.strokeStyle = 'rgba(127,216,190,' + (0.46 * e.a).toFixed(3) + ')';
+      cx.lineWidth = 1.6;
+      cx.beginPath(); cx.ellipse(e.x + e.rx * 0.46, e.y, e.rx, e.ry, 0.24, 0, Math.PI * 2); cx.stroke();
+      cx.restore();
+    }
+  });
+
+  /* THE ENCODING. Inside the NEAR pair's intersection only, a second hachure
+     pass at a finer cell, so the overlapped ground literally carries twice the
+     information. Two instruments on the same ground is drawn as more detail. */
+  var N = pairs[0];
+  var LA = { x: N.x - N.rx * 0.46, y: N.y, rx: N.rx, ry: N.ry };
+  var LB = { x: N.x + N.rx * 0.46, y: N.y, rx: N.rx, ry: N.ry };
+  cx.save();
+  cx.beginPath(); cx.ellipse(LA.x, LA.y, LA.rx, LA.ry, 0, 0, Math.PI * 2); cx.clip();
+  cx.beginPath(); cx.ellipse(LB.x, LB.y, LB.rx, LB.ry, 0.24, 0, Math.PI * 2); cx.clip();
+  AK.hachureField(cx, {
+    x: 250, y: 1010, w: 400, h: 260, scale: 2, seed: SEED + 40,
+    height: heightAt, cell: 6, lenScale: 1.7, passes: 5,
+    sunAz: 300, sunEl: 30, sunJitter: 9,
+    color: '#16302E', alpha: 0.30, minWidth: 0.4, maxWidth: 2.4
+  });
+  cx.restore();
+
+  /* the lens outline, computed from the two ellipses rather than eyeballed */
+  function insideE(e, px, py, rot) {
+    var dx = px - e.x, dy = py - e.y;
+    var c = Math.cos(-(rot || 0)), sn = Math.sin(-(rot || 0));
+    var a = (dx * c - dy * sn) / e.rx, b = (dx * sn + dy * c) / e.ry;
+    return a * a + b * b <= 1;
+  }
+  var lp = [], tt;
+  for (tt = 0; tt < Math.PI * 2; tt += Math.PI / 360) {
+    var qa = [LA.x + LA.rx * Math.cos(tt), LA.y + LA.ry * Math.sin(tt)];
+    if (insideE(LB, qa[0], qa[1], 0.24)) lp.push(qa);
+    var ca = Math.cos(0.24), sa = Math.sin(0.24);
+    var ux = LB.rx * Math.cos(tt), uy = LB.ry * Math.sin(tt);
+    var qb = [LB.x + ux * ca - uy * sa, LB.y + ux * sa + uy * ca];
+    if (insideE(LA, qb[0], qb[1])) lp.push(qb);
+  }
+  if (lp.length > 6) {
+    var mx = 0, my = 0;
+    lp.forEach(function (p) { mx += p[0]; my += p[1]; });
+    mx /= lp.length; my /= lp.length;
+    lp.sort(function (p, q) {
+      return Math.atan2(p[1] - my, p[0] - mx) - Math.atan2(q[1] - my, q[0] - mx);
+    });
+    cx.save();
+    cx.strokeStyle = 'rgba(255,199,44,0.90)'; cx.lineWidth = 2.2; cx.lineJoin = 'round';
+    cx.beginPath();
+    lp.forEach(function (p, ii) { ii ? cx.lineTo(p[0], p[1]) : cx.moveTo(p[0], p[1]); });
+    cx.closePath(); cx.stroke();
+    cx.restore();
+  }
+
+  /* ---- 4. two wires, both taut and both loaded, owning the left edge ---- */
+  function wire(ctx, x1, x2, w) {
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = 'rgba(2,10,14,0.62)'; ctx.lineWidth = w + 2.6;
+    ctx.beginPath(); ctx.moveTo(x1, 0); ctx.lineTo(x2, 1104); ctx.stroke();
+    ctx.strokeStyle = '#8C9AA3'; ctx.lineWidth = w;
+    ctx.beginPath(); ctx.moveTo(x1, 0); ctx.lineTo(x2, 1104); ctx.stroke();
+    ctx.strokeStyle = 'rgba(228,238,242,0.42)'; ctx.lineWidth = 1.0;
+    ctx.beginPath(); ctx.moveTo(x1 - w * 0.28, 0); ctx.lineTo(x2 - w * 0.28, 1104); ctx.stroke();
+    ctx.restore();
+  }
+  wire(cx, 132, 176, 6.5);
+  wire(cx, 210, 268, 5.2);
+
+  /* ---- 5. the tick bar. Ten against six, in parallel projection with a
+       printed scale, which is C17's 40 percent drawn honestly. ---- */
+  var BX = 430, BY = 1264, TICK = 21;
+  cx.save();
+  cx.strokeStyle = 'rgba(228,238,242,0.80)'; cx.lineWidth = 1.6; cx.lineCap = 'butt';
+  for (var k2 = 0; k2 < 10; k2++) {
+    cx.beginPath();
+    cx.moveTo(BX + k2 * TICK, BY); cx.lineTo(BX + k2 * TICK, BY - 15);
+    cx.stroke();
+  }
+  cx.strokeStyle = 'rgba(255,199,44,0.92)'; cx.lineWidth = 2.4;
+  for (var k3 = 0; k3 < 6; k3++) {
+    cx.beginPath();
+    cx.moveTo(BX + k3 * TICK, BY + 12); cx.lineTo(BX + k3 * TICK, BY + 28);
+    cx.stroke();
+  }
+  cx.strokeStyle = 'rgba(228,238,242,0.45)'; cx.lineWidth = 1.0;
+  cx.beginPath(); cx.moveTo(BX, BY + 2); cx.lineTo(BX + 9 * TICK, BY + 2); cx.stroke();
+  cx.restore();
+
+  /* ---- 6. snow and one blurred foreground cobble bleeding off the bottom ---- */
+  for (var q2 = 0; q2 < 300; q2++) {
+    var near2 = Math.pow(rnd(), 0.45);
+    cx.fillStyle = 'rgba(212,244,232,' + (0.07 + near2 * 0.24).toFixed(3) + ')';
+    cx.beginPath();
+    cx.arc(rnd() * W, 120 + Math.pow(rnd(), 1.1) * (H - 140), 0.6 + near2 * 2.3, 0, Math.PI * 2);
+    cx.fill();
+  }
+  var cob = document.createElement('canvas');
+  cob.width = 2160; cob.height = 2700;
+  var ccx = cob.getContext('2d'); ccx.scale(2, 2);
+  ccx.fillStyle = 'rgba(74,68,52,0.90)';
+  ccx.beginPath();
+  ccx.moveTo(-40, 1350);
+  ccx.bezierCurveTo(20, 1240, 130, 1206, 214, 1252);
+  ccx.bezierCurveTo(268, 1282, 258, 1350, 258, 1350);
+  ccx.closePath(); ccx.fill();
+  cx.save(); cx.filter = 'blur(9px)'; cx.drawImage(cob, 0, 0, W, H); cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H,
+    exposure: 0.01, saturation: 0.97, contrast: 1.07, filmic: true,
+    lift: [0.006, 0.013, 0.017], gain: [0.995, 1.0, 1.0],
+    vignette: 0.24,
+    bloom: { threshold: 0.78, strength: 0.22, radius: 7 },
+    grain: { amount: 0.045, size: 2, seed: SEED },
+    dither: true, sharpen: 0.32
+  });
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED) + ')';
+  AK.fitText(document.getElementById('head'), { min: 54, max: 72, maxLines: 2 });
+
+  window.__akMotifs = [
+    { what: 'the near station pair and its overlap lens', rect: [280, 1040, 320, 180], canvas: 'canvas#art' }
+  ];
+  resolve();
+  });
+});
+</script>
+</body>
+</html>

@@ -2164,6 +2164,39 @@
       ],
       "sources_lead": "https://aws.state.ak.us/ApocReports/CampaignDisclosure/CDIncome.aspx",
       "note": "The scouts found the signal and none of them reached the record. The APOC database refuses a browser and refuses WebFetch and answers an ordinary HTTP client fine, so the showrunner queried it directly and paged the whole 4,604 row ledger out of the grid. That pull is what turned a national outlet's story into this page's own, and it added the sixth donor's name and all six amounts the reporting did not carry."
+    },
+    {
+      "run_date": "2026-09-06",
+      "carousel_no": 52,
+      "headline": "Two Instruments, One Line",
+      "topic": "NOAA Fisheries' September 3rd, 2026 framework for the future of fisheries-independent surveys says new technology is to be folded into the Alaska time series by incremental incorporation and calibration rather than wholesale replacement, which means running the old method and the new one in parallel for a fixed period and paying for both. Twelve days later the North Pacific Council's partial coverage committee reviews the draft 2027 Annual Deployment Plan, whose 2026 version defines a no selection pool of vessels with no probability of carrying an observer or an electronic monitoring system on any trip.",
+      "angle": "The cost of the overlap is the story. Nobody has priced the parallel period, and the same question about who pays to watch is being asked twice in one September, once for the survey fleet and once for the commercial fleet, by two documents no source connects.",
+      "entities": [
+        "NOAA Fisheries",
+        "Alaska Fisheries Science Center",
+        "North Pacific Fishery Management Council",
+        "Partial Coverage Fishery Monitoring Advisory Committee",
+        "NMFS",
+        "DriX",
+        "Earth Sciences New Zealand",
+        "Washington Department of Fish and Wildlife",
+        "Institute for Marine Research",
+        "Ifremer"
+      ],
+      "keywords": [
+        "fisheries-independent survey",
+        "time series calibration",
+        "electronic monitoring",
+        "annual deployment plan",
+        "observer coverage",
+        "uncrewed surface vehicle",
+        "otolith",
+        "bottom trawl survey",
+        "Bering Sea",
+        "pollock"
+      ],
+      "sources_lead": "NOAA Fisheries feature story, September 3rd, 2026",
+      "note": "Chosen off a saturated landscape. Seven of the last thirty days had gone to data centres, land and grid and three to elections, so the scouts were briefed off those wells and the fisheries-monitoring cluster was taken instead. The fact-checker materially sharpened the thesis, killed four assumptions the brief carried, and supplied C06, which is the sentence the whole deck now rests on."
     }
   ]
 }

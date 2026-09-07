@@ -1,0 +1,116 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-06/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 18043750,
+  "pdf_mb": 18.04,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-06/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-06/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Run Both Instruments, or Lose the Record",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "b2b52f55d4c3a102f05e8d54db03e970fc9c519f8e2de49f9bb5797d9ce981da",
+        "bytes": 7639686
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "f7921e1c5f795801e3dd9ca7d2eb041debf4ff27c9bcd18c6f1afedd7efacfe9",
+        "bytes": 7414177
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "17dafbd5d0ee66817b9bd9693da8a693184b5aceada49f9b9faca1eda37e5517",
+        "bytes": 7888615
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "55c2ea963c63f4460e6ab95f7b285dc462651b348e9c37773657e65b5b0124b2",
+        "bytes": 6230910
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "e98bca7077d17551f847a3b373852a56b179e5d1ca37b7613940cc78ee536c71",
+        "bytes": 6582823
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "780a15e5b2ab2793ab67030853b22b40172dddd62c69004befb05548fa6e9317",
+        "bytes": 6123704
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "f8c9ea2e74e37980cebe0d2a1a9d08b4db33cfcd0ac6a758e00c6128c81ed086",
+        "bytes": 6507224
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "b55562910ad1ab27a67b3fff4de76dc308a8688fc0315f33384e0733ef56a63f",
+        "bytes": 6443986
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "6d5ee9a4a605abf5d972e0a01e9c458fc6632cd6df83265b43f047a4ae106870",
+        "bytes": 6746193
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "0dfaa355853061e916c16a5815f214f6d58bd49a19ddb06f36e54848709c108a",
+        "bytes": 16081
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "a099f09005b12317ee6aad204c2fd759d1f6a1f89097a9164d1080c1cdebaa1f",
+        "bytes": 14082
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "27edb9c107da37ca3dc2ce82a858e159f69df7f6daf6d87d4ea3a8be7b74b721",
+        "bytes": 12896
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "6413d05fe73afb5c529355fe377e813c6a413edce85dc5f8b2b6e52781817d80",
+        "bytes": 13920
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "40671b10bfe8436b4e4a960eb8cf74915a33ac54ee783517355cbd8aefe0db84",
+        "bytes": 18261
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "ecbc0876cc01f7046315223a203336b9ae244159e7f41872f33054ec70294ad1",
+        "bytes": 10258
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "7ecf6a3881a2fee6f29b3f61b701df6e59b662e0c8c0a770632b10f7b505acda",
+        "bytes": 12734
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "e4d86717e58722ea2dc0273e71a512a1d68a1174f331c38da38f369e312caa75",
+        "bytes": 17868
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "15bf574c8c10109aedc38ac2f8944a33d4e4d3db356145e43df8fdbadd7c2bc7",
+        "bytes": 14311
+      }
+    ]
+  }
+}

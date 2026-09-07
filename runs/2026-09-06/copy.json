@@ -1,0 +1,193 @@
+{
+  "run_date": "2026-09-06",
+  "carousel_no": 52,
+  "document_title": "Run Both Instruments, or Lose the Record",
+  "post_copy": "When a machine takes a ship's place on a fish survey, how do you tell a change in the fish from a change in the instrument?\n\nNOAA Fisheries wrote up the framework on September 3rd. The instrument is allowed to change. What the survey reports is not. The common way to buy that is to run both instruments in parallel for a fixed period.\n\nA North Pacific Council committee reviews the draft 2027 deployment plan on September 15th. NMFS expected to monitor 1,473 partial coverage trips of 4,341 in 2026. One of three pools holds vessels with \"no probability of carrying an observer or EM system on any trips\" that season.\n\nSlide 06 draws the survey gear's seabed footprint at true area, and slide 08 sets the three pools on one rail where the third bracket is empty.\n\nHow much of the Alaska record should rest on trips that nothing watched?\n\n#AlaskaFisheries #NorthPacificCouncil #Groundfish",
+  "deck_summary_line": "Slide 06 draws the survey gear's seabed footprint at true area, and slide 08 sets the three pools on one rail where the third bracket is empty.",
+  "caption_meta": {
+    "opening_move": "QUESTION FIRST",
+    "structure": "ZOOM",
+    "closing_move": "COMPOSITION OF THE RECORD",
+    "first_words": "When a machine takes a ship's place on",
+    "hook_type": "the real fork, asked cold"
+  },
+  "first_comment": "Sources for this deck, primary first, with the full link on every line.\n\nNOAA Fisheries, the survey framework feature story published September 3rd, 2026 (C01) https://www.fisheries.noaa.gov/feature-story/charting-future-fisheries-independent-surveys\nICES Journal of Marine Science, the framework paper itself, Volume 83 Issue 7, July 16th, 2026 (C04, C05, C06, C07, C08) https://academic.oup.com/icesjms/article/83/7/fsag134/8735857\nFederal Register via GPO govinfo, notice of the September 15th, 2026 committee meeting, document 2026-17762 (C21, C22, C23, C24) https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17762.htm\nNOAA Fisheries Alaska Regional Office, the 2026 Annual Deployment Plan, source of the 1,473 of 4,341 trips figure and the no selection pool (C27, C28) https://www.fisheries.noaa.gov/resource/document/2026-annual-deployment-plan-observers-and-electronic-monitoring-groundfish-and\nNorth Pacific Fishery Management Council, the meeting page where the draft plan posts and where comment letters go (C25) https://meetings.npfmc.org/Meeting/Details/7158\nNOAA Fisheries, North Pacific Observer Program, the three partial coverage pools and more than 450 observers a year (C29, C30) https://www.fisheries.noaa.gov/alaska/fisheries-observers/north-pacific-observer-program\nNOAA Fisheries Alaska Regional Office, innovative technologies in Alaska marine ecosystems, DriX and machine otolith ageing (C17, C18, C19) https://www.fisheries.noaa.gov/alaska/sustainable-fisheries/innovative-technologies-expand-research-capabilities-alaska-marine-ecosystems\nNOAA Fisheries, Alaska pollock species page, 2024 landings over 3 billion pounds (C31) https://www.fisheries.noaa.gov/species/alaska-pollock\nNOAA Fisheries, the December 17th, 2024 feature on projected northward shifts, a model projection and not an observation (C32) https://www.fisheries.noaa.gov/feature-story/some-fish-and-crab-may-shift-further-north-alaskan-waters-previously-predicted\n\nEvery Alaska AI decision tracked here, with live deadlines, sits at https://alaskaaihq.com\n\nAnyone who has read a deployment plan or sat on one of these committees, add what the record misses.",
+  "aftercare": [
+    "Post Tuesday through Thursday between 8 a.m. and 11 a.m. Alaska time, and get this one out before the weekend, because the committee meets September 15th, 2026 (C22) and an ask that has expired reads as noise.",
+    "Paste the sources comment within about 60 seconds of posting, straight from the block above and unedited, so every raw URL survives the paste.",
+    "Open the post on a phone once the comment is live and confirm each link is tappable and none of them wrapped into the label above it.",
+    "Stay on the post for the first 60 to 90 minutes and answer every comment with something specific, a number or a page, never a thank you on its own.",
+    "Expect a fisheries reader to push on the 1,473 of 4,341 trips figure (C27), which is the 2026 plan's own expectation and not the 2027 draft, so say that plainly rather than defend the number.",
+    "If the draft 2027 Annual Deployment Plan posts to the meeting page before the meeting, add the direct link as a reply under the sources comment.",
+    "Send anyone asking where to write to https://meetings.npfmc.org/Meeting/Details/7158 instead of summarizing the comment process in a reply.",
+    "Note saves and comments at 48 hours against the last four decks, and write down whether the true area square on slide 06 pulled people in or slid past them."
+  ],
+  "editor_notes_for_email": "Slide 03 carries the deck's one declared wordless claim and is the frame worth checking before posting, since the ground both instruments measured takes a second hachure pass and therefore twice the detail, which is the argument drawn rather than stated. Slide 06's gold square is drawn at true area and is deliberately tiny, so it reads as a speck at feed scale, which is the point and will still be the thing one commenter calls a mistake. The glove on slide 05 is the only warm frame in nine and it does the deck's emotional work alone, so if any frame earns a repair round it is that one. Slide 07's northward bar is a model projection to 2080 to 2089 (C32) and the frame says so, though the caveat sits in mono at 0.68 opacity while the bar sits at full weight, and a fast scroller will take the bar and miss the hedge. With another round the fix would be moving that hedge up into the body copy beside the number instead of leaving it in the instrument voice underneath. Nothing in the locked caption reads as a factual error against claims.json, and the quoted no probability phrase matches C28 word for word.",
+  "slides": [
+    {
+      "n": 1,
+      "beat": "The bill",
+      "headline": "Two instruments on the same line, for years. That's the bill.",
+      "strings": [
+        "ALASKA FISHERIES SURVEYS · SEPTEMBER 2026",
+        "Two instruments on the same line, for years. That's the bill.",
+        "DEPTH 78 m · KEY DOWNWELLING el 76 · 57°30'N 168°00'W",
+        "NOAA FISHERIES FRAMEWORK, SEPTEMBER 3RD, 2026 (C01)",
+        "01 / 09"
+      ],
+      "claim_ids": [
+        "C01"
+      ]
+    },
+    {
+      "n": 2,
+      "beat": "The permission",
+      "headline": "The new instrument is allowed to be different.",
+      "strings": [
+        "The new instrument is allowed to be different.",
+        "\"Consistency in information that FIS data products provide is more important than consistency in FIS methods.\"",
+        "KOTWICKI ET AL., ICES JOURNAL OF MARINE SCIENCE (C03, C04)",
+        "FIS, A FISHERIES INDEPENDENT SURVEY. FIVE COLLABORATORS (C14)",
+        "02 / 09"
+      ],
+      "claim_ids": [
+        "C03",
+        "C04",
+        "C06",
+        "C14"
+      ]
+    },
+    {
+      "n": 3,
+      "beat": "The price",
+      "headline": "The framework calls for \"incremental incorporation and calibration of new technologies\" rather than \"a wholesale replacement of existing methods that would disrupt the historical baseline of a time series\" (C05). The most common way to do it is to run the old method and the new one in parallel for a fixed period (C07).",
+      "strings": [
+        "Agreement is bought. It is never assumed.",
+        "The framework calls for \"incremental incorporation and calibration of new technologies\" rather than \"a wholesale replacement of existing methods that would disrupt the historical baseline of a time series\" (C05). The most common way to do it is to run the old method and the new one in parallel for a fixed period (C07).",
+        "SAME AREA IN 40 PERCENT LESS TIME WITH DriX ALONGSIDE, NOAA SAYS (C17)",
+        "SCHEMATIC. STATION POSITIONS ARE COMPOSITION, NOT SURVEY DATA.",
+        "03 / 09"
+      ],
+      "claim_ids": [
+        "C05",
+        "C07",
+        "C17"
+      ]
+    },
+    {
+      "n": 4,
+      "beat": "Ground the net cannot reach",
+      "headline": "Ground the net can't cross.",
+      "strings": [
+        "Ground the net can't cross.",
+        "3D STEREO CAMERA SYSTEMS, ALASKA FISHERIES SCIENCE CENTER,",
+        "FOR SURVEYING UNTRAWLABLE FISH HABITAT (C19)",
+        "LIGHT SOURCE, RIG STROBE, az 214 el 28 · DEPTH 118 m",
+        "04 / 09"
+      ],
+      "claim_ids": [
+        "C19"
+      ]
+    },
+    {
+      "n": 5,
+      "beat": "The turn",
+      "headline": "The camera can see it. It can't hold it.",
+      "strings": [
+        "OTOLITH, ABOUT 5 mm",
+        "The camera can see it. It can't hold it.",
+        "NOAA says the camera techniques \"are not intended to replace hands-on sampling because physical specimens are essential for critical data, including age, feeding habits, and body condition\" (C20). A near-infrared machine reads an otolith in 30 to 50 seconds, more than 10 times faster than a human at a microscope (C18).",
+        "05 / 09"
+      ],
+      "claim_ids": [
+        "C18",
+        "C20"
+      ]
+    },
+    {
+      "n": 6,
+      "beat": "The keepable number",
+      "headline": "The framework's own figure for the share of total Alaska seabed area that bottom trawl survey gear contacts, offered against calls to ban extractive sampling (C08).",
+      "strings": [
+        "GEAR CONTACT, TRUE AREA",
+        "LESS THAN",
+        "0.006%",
+        "The framework's own figure for the share of total Alaska seabed area that bottom trawl survey gear contacts, offered against calls to ban extractive sampling (C08).",
+        "MULTIBEAM RELIEF · SYNTHETIC SUN az 315 el 45",
+        "NOT A PHOTOGRAPH",
+        "ALASKA POLLOCK LANDINGS TOPPED 3 BILLION POUNDS IN 2024 (C31)",
+        "06 / 09"
+      ],
+      "claim_ids": [
+        "C08",
+        "C31"
+      ]
+    },
+    {
+      "n": 7,
+      "beat": "Two sides at once",
+      "headline": "The framework lists funding, vessel availability, new sampling objectives and new technology as human forces that break a time series (C09). NOAA says fish populations have shifted into deeper water or farther north where surveys have not traditionally been conducted (C12).",
+      "strings": [
+        "The record is being pulled from two sides at once.",
+        "The framework lists funding, vessel availability, new sampling objectives and new technology as human forces that break a time series (C09). NOAA says fish populations have shifted into deeper water or farther north where surveys have not traditionally been conducted (C12).",
+        "MODEL PROJECTION, NOT OBSERVATION. MOST OF EIGHT STUDIED SPECIES",
+        "SHIFT 50 TO 200 km NORTH BY 2080 TO 2089 (C32)",
+        "FIVE STRANDS, FIVE COLLABORATING ORGANIZATIONS (C14)",
+        "0 km",
+        "50",
+        "200",
+        "07 / 09"
+      ],
+      "claim_ids": [
+        "C09",
+        "C12",
+        "C14",
+        "C32"
+      ]
+    },
+    {
+      "n": 8,
+      "beat": "The same question, on a smaller boat",
+      "headline": "On September 15th, 2026 the North Pacific Council's Partial Coverage Fishery Monitoring Advisory Committee reviews the draft 2027 Annual Deployment Plan (C22, C23). The 2026 plan defines a no selection pool, vessels with no probability of carrying an observer or an electronic monitoring system on any trip that season (C28).",
+      "strings": [
+        "Twelve days later, the same question, on a smaller boat.",
+        "On September 15th, 2026 the North Pacific Council's Partial Coverage Fishery Monitoring Advisory Committee reviews the draft 2027 Annual Deployment Plan (C22, C23). The 2026 plan defines a no selection pool, vessels with no probability of carrying an observer or an electronic monitoring system on any trip that season (C28).",
+        "THREE POOLS. NO SELECTION, EM TRIP SELECTION,",
+        "OBSERVER TRIP SELECTION (C29)",
+        "NMFS EXPECTED TO MONITOR 1,473 PARTIAL COVERAGE TRIPS OF 4,341 IN 2026 (C27)",
+        "MORE THAN 450 OBSERVERS A YEAR (C30)",
+        "TWELVE DAYS (C33). NO SOURCE CONNECTS THE TWO DOCUMENTS.",
+        "08 / 09"
+      ],
+      "claim_ids": [
+        "C22",
+        "C23",
+        "C27",
+        "C28",
+        "C29",
+        "C30",
+        "C33"
+      ]
+    },
+    {
+      "n": 9,
+      "beat": "One ask",
+      "headline": "The draft 2027 Annual Deployment Plan had not yet been posted on the meeting page as of September 6th, 2026 (C25). The Federal Register notice says public comment letters will be accepted and should be submitted electronically through the meeting page (C24).",
+      "strings": [
+        "The committee takes comment letters.",
+        "The draft 2027 Annual Deployment Plan had not yet been posted on the meeting page as of September 6th, 2026 (C25). The Federal Register notice says public comment letters will be accepted and should be submitted electronically through the meeting page (C24).",
+        "Read the draft before the meeting on September 15th, 2026 and send the committee a letter.",
+        "MEETING 8:30 a.m. TO 4 p.m. ALASKA TIME, SEPTEMBER 15TH, 2026 (C22)",
+        "SOURCES IN COMMENTS",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "09 / 09"
+      ],
+      "claim_ids": [
+        "C22",
+        "C24",
+        "C25"
+      ]
+    }
+  ]
+}
