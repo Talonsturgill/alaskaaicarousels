@@ -14,7 +14,11 @@ Produces:
 Usage:
   python .claude/skills/carousel-engine/assemble.py \
       --slides-dir out/run/slides --render-dir out/run/render \
-      --out-dir out/run/final [--title "Document title"]
+      --out-dir out/run/final
+
+The PDF's document title comes from copy.json's `document_title` (found beside
+--slides-dir, or named with --copy). --title is a fallback for decks that have
+no copy.json, and it loses to copy.json when both are present.
 
 Exit 0 on success. Writes assemble_report.json with sizes + mode used.
 """
@@ -202,12 +206,60 @@ def source_record(pngs, slides_dir: Path):
     return out
 
 
+DEFAULT_TITLE = "Alaska.Ai — Weekly Carousel"
+
+
+def resolve_title(arg_title, slides_dir: Path, copy_arg):
+    """COPY.JSON OWNS THE DOCUMENT TITLE (2026-09-06, run No.52).
+
+    The shipped PDF of run No.52 carried slide 07's headline as its document
+    title, because `--title` is typed by hand at the console and the hand typed
+    the wrong string. The scorer found it by opening the file. There was no
+    gate to add here: copy.json has carried `document_title` since the day the
+    copywriter started writing one, and it is the AUTHORITY -- the caption gate
+    already runs its ordinal-date and contraction tables over that exact field,
+    so it is the only title in a run that has been checked at all.
+
+    So the title stops being an argument the console can get wrong. copy.json
+    is found beside the slides dir (out/<date>/copy.json for out/<date>/slides)
+    or named with --copy, and when it declares a document_title that title
+    wins. A --title that disagrees is reported loudly and ignored rather than
+    honoured: this path exists so the wrong string can't reach the file.
+
+    Returns (title, source) where source is one of "copy.json", "--title",
+    "default".
+    """
+    path = Path(copy_arg) if copy_arg else Path(slides_dir).parent / "copy.json"
+    declared = None
+    if path.exists():
+        try:
+            declared = (json.loads(path.read_text()).get("document_title")
+                        or "").strip() or None
+        except Exception as e:
+            print("WARN: %s did not parse (%s); falling back to --title"
+                  % (path, e), file=sys.stderr)
+    if not declared:
+        if copy_arg:
+            print("WARN: %s declares no document_title; using --title" % path,
+                  file=sys.stderr)
+        return arg_title, ("--title" if arg_title != DEFAULT_TITLE else "default")
+    if arg_title != DEFAULT_TITLE and arg_title != declared:
+        print("WARN: --title %r does not match %s document_title %r. copy.json "
+              "wins: it is the field the caption gate checks, and a title typed "
+              "at the console is the one thing in this build nothing verifies."
+              % (arg_title, path, declared), file=sys.stderr)
+    return declared, "copy.json"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slides-dir", required=True, help="dir of slide-*.html (for vector pdf)")
     ap.add_argument("--render-dir", required=True, help="dir of rendered slide-*.png")
     ap.add_argument("--out-dir", required=True)
-    ap.add_argument("--title", default="Alaska.Ai — Weekly Carousel")
+    ap.add_argument("--copy", help="copy.json; defaults to one beside --slides-dir. "
+                                   "Its document_title is the PDF's title.")
+    ap.add_argument("--title", default=DEFAULT_TITLE,
+                    help="fallback only; copy.json's document_title wins")
     ap.add_argument("--width", type=int, default=1080)
     ap.add_argument("--height", type=int, default=1350)
     args = ap.parse_args()
@@ -230,9 +282,13 @@ def main():
         print("FAIL: no rendered slide-*.png found", file=sys.stderr)
         sys.exit(1)
 
+    title, title_source = resolve_title(args.title,
+                                        Path(args.slides_dir).resolve(),
+                                        args.copy)
+
     pdf_path = out_dir / "carousel.pdf"
     mode = "vector"
-    if not vector_pdf(Path(args.slides_dir).resolve(), pdf_path, args.width, args.height, args.title):
+    if not vector_pdf(Path(args.slides_dir).resolve(), pdf_path, args.width, args.height, title):
         mode = "raster-fallback"
         raster_pdf(pngs, pdf_path)
 
@@ -247,7 +303,8 @@ def main():
         "slides": len(pngs),
         "contact_sheet": str(sheet_path),
         "thumbs": thumbs,
-        "title": args.title,
+        "title": title,
+        "title_source": title_source,
         "sources": source_record(pngs, Path(args.slides_dir).resolve()),
     }
     (out_dir / "assemble_report.json").write_text(json.dumps(report, indent=2))

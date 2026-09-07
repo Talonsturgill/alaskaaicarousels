@@ -1,0 +1,161 @@
+{
+  "run_date": "2026-09-06",
+  "aggregates": [
+    {
+      "kind": "count",
+      "slide": 1,
+      "fragment": "Two instruments",
+      "text": "Two instruments on the same line, for years. That's the bill.",
+      "subject": "instruments working the same line",
+      "members": [
+        "C17"
+      ],
+      "items": [
+        "DriX",
+        "NOAA ships"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "fragment": "FIVE COLLABORATORS",
+      "text": "FIS, A FISHERIES INDEPENDENT SURVEY. FIVE COLLABORATORS (C14)",
+      "subject": "collaborating organizations",
+      "members": [
+        "C14"
+      ],
+      "items": [
+        "NOAA Fisheries",
+        "Earth Sciences New Zealand",
+        "Washington Department of Fish and Wildlife",
+        "Institute for Marine Research",
+        "Institut Francais de Recherche pour l'Exploitation de la Mer"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "fragment": "3 BILLION POUNDS",
+      "text": "ALASKA POLLOCK LANDINGS TOPPED 3 BILLION POUNDS IN 2024 (C31)",
+      "member": "C31"
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "fragment": "two sides",
+      "text": "The record is being pulled from two sides at once.",
+      "subject": "classes of force on the same time series",
+      "members": [
+        "C09"
+      ],
+      "items": [
+        "natural forces",
+        "anthropogenic actions"
+      ]
+    },
+    {
+      "kind": "design",
+      "slide": 7,
+      "fragment": "FIVE STRANDS",
+      "text": "FIVE STRANDS, FIVE COLLABORATING ORGANIZATIONS (C14)",
+      "note": "the five strands are a property of the ARTWORK, the deck's shot-line motif, drawn as five cased polylines in the slide's own loop. The line beside them names what the five stand for, which is the count that is checked separately"
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "fragment": "FIVE COLLABORATING ORGANIZATIONS",
+      "text": "FIVE STRANDS, FIVE COLLABORATING ORGANIZATIONS (C14)",
+      "subject": "collaborating organizations",
+      "members": [
+        "C14"
+      ],
+      "items": [
+        "NOAA Fisheries",
+        "Earth Sciences New Zealand",
+        "Washington Department of Fish and Wildlife",
+        "Institute for Marine Research",
+        "Institut Francais de Recherche pour l'Exploitation de la Mer"
+      ]
+    },
+    {
+      "kind": "duration",
+      "slide": 8,
+      "fragment": "Twelve days",
+      "text": "Twelve days later, the same question, on a smaller boat.",
+      "from": {
+        "claim": "C01",
+        "date": "2026-09-03"
+      },
+      "to": {
+        "claim": "C22",
+        "date": "2026-09-15"
+      }
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "fragment": "THREE POOLS",
+      "text": "THREE POOLS. NO SELECTION, EM TRIP SELECTION,",
+      "subject": "partial coverage pools",
+      "members": [
+        "C29"
+      ],
+      "items": [
+        "No Selection pool",
+        "EM Trip Selection pool",
+        "Observer Trip Selection pool"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "1,473 PARTIAL COVERAGE TRIPS",
+      "text": "NMFS EXPECTED TO MONITOR 1,473 PARTIAL COVERAGE TRIPS OF 4,341 IN 2026 (C27)",
+      "member": "C27"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "450 OBSERVERS",
+      "text": "MORE THAN 450 OBSERVERS A YEAR (C30)",
+      "member": "C30"
+    },
+    {
+      "kind": "duration",
+      "slide": 8,
+      "fragment": "TWELVE DAYS",
+      "text": "TWELVE DAYS (C33). NO SOURCE CONNECTS THE TWO DOCUMENTS.",
+      "from": {
+        "claim": "C01",
+        "date": "2026-09-03"
+      },
+      "to": {
+        "claim": "C22",
+        "date": "2026-09-15"
+      }
+    },
+    {
+      "kind": "design",
+      "slide": 3,
+      "fragment": "10 UNITS",
+      "text": "SHIP ALONE 10 UNITS · WITH DriX 6 · PARALLEL PROJECTION",
+      "note": "ten is the arbitrary base unit the bar beside it is DRAWN in, not a measurement of anything. Six is sixty percent of ten, which is the 40 percent less time C17 states, and the label says PARALLEL PROJECTION for that reason. No hour, day or kilometre is named anywhere on the slide."
+    },
+    {
+      "kind": "count",
+      "slide": 8,
+      "fragment": "TWO DOCUMENTS",
+      "text": "TWELVE DAYS (C33). NO SOURCE CONNECTS THE TWO DOCUMENTS.",
+      "subject": "documents twelve days apart, which no source joins",
+      "members": [
+        "C01",
+        "C23",
+        "C33"
+      ],
+      "items": [
+        "a feature story on the future of fisheries-independent surveys",
+        "the draft 2027 Annual Deployment Plan"
+      ]
+    }
+  ]
+}

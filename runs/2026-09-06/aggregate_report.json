@@ -1,0 +1,128 @@
+{
+  "run_dir": "out/2026-09-06",
+  "render_report": "out/2026-09-06/render/render_report.json",
+  "aggregates_file": "out/2026-09-06/aggregates.json",
+  "detected": 13,
+  "declared": 13,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "Two instruments",
+      "text": "Two instruments on the same line, in parallel. That's the bill.",
+      "n": 2,
+      "subject": "instruments"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "FIVE COLLABORATORS",
+      "text": "FIS, A FISHERIES INDEPENDENT SURVEY. FIVE COLLABORATORS (C14)",
+      "n": 5,
+      "subject": "collaborators"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "10 UNITS",
+      "text": "SHIP ALONE 10 UNITS \u00b7 WITH DriX 6 \u00b7 PARALLEL PROJECTION",
+      "n": 10,
+      "subject": "units"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "3 BILLION POUNDS",
+      "text": "ALASKA POLLOCK LANDINGS TOPPED 3 BILLION POUNDS IN 2024 (C31)",
+      "n": 3,
+      "subject": "billion pounds"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "two sides",
+      "text": "The record is being pulled from two sides at once.",
+      "n": 2,
+      "subject": "sides"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "FIVE STRANDS",
+      "text": "FIVE STRANDS, FIVE COLLABORATING ORGANIZATIONS (C14)",
+      "n": 5,
+      "subject": "strands"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "FIVE COLLABORATING ORGANIZATIONS",
+      "text": "FIVE STRANDS, FIVE COLLABORATING ORGANIZATIONS (C14)",
+      "n": 5,
+      "subject": "collaborating organizations"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "Twelve days",
+      "text": "Twelve days later, the same question, on a smaller boat.",
+      "n": 12,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "THREE POOLS",
+      "text": "THREE POOLS. NO SELECTION, EM TRIP SELECTION,",
+      "n": 3,
+      "subject": "pools"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "1,473 PARTIAL COVERAGE TRIPS",
+      "text": "NMFS EXPECTED TO MONITOR 1,473 PARTIAL COVERAGE TRIPS OF 4,341 IN 2026 (C27)",
+      "n": 1473,
+      "subject": "partial coverage trips"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "450 OBSERVERS",
+      "text": "MORE THAN 450 OBSERVERS A YEAR (C30)",
+      "n": 450,
+      "subject": "observers"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "TWELVE DAYS",
+      "text": "TWELVE DAYS (C33). NO SOURCE CONNECTS THE TWO DOCUMENTS.",
+      "n": 12,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "TWO DOCUMENTS",
+      "text": "TWELVE DAYS (C33). NO SOURCE CONNECTS THE TWO DOCUMENTS.",
+      "n": 2,
+      "subject": "documents"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 7,
+      "text": "FIVE STRANDS, FIVE COLLABORATING ORGANIZATIONS (C14)",
+      "note": "the five strands are a property of the ARTWORK, the deck's shot-line motif, drawn as five cased polylines in the slide's own loop. The line beside them names what the five stand for, which is the count that is checked separately"
+    },
+    {
+      "slide": 3,
+      "text": "SHIP ALONE 10 UNITS \u00b7 WITH DriX 6 \u00b7 PARALLEL PROJECTION",
+      "note": "ten is the arbitrary base unit the bar beside it is DRAWN in, not a measurement of anything. Six is sixty percent of ten, which is the 40 percent less time C17 states, and the label says PARALLEL PROJECTION for that reason. No hour, day or kilometre is named anywhere on the slide."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

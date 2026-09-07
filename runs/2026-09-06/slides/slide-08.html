@@ -1,0 +1,383 @@
+<!doctype html>
+<!-- SLIDE 08 — THE SAME QUESTION, ON A SMALLER BOAT. The deck's second wordless
+     claim. Dusk, camera at rail height on a small fixed-gear boat. Three objects
+     stand on one wet rail at true relative scale in one light: a bolted camera
+     housing, a clipboard nobody is holding, and an empty bracket with four bolt
+     holes. That is the three pools, photographed, and it needs no caption. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#0E1B26; position:relative; }
+  #art { position:absolute; inset:0; }
+  .grain { position:absolute; inset:0; opacity:0.07; mix-blend-mode:overlay; background-repeat:repeat; }
+  h2 { position:absolute; left:80px; top:140px; width:840px;
+       font-family:"Instrument Serif",serif; font-weight:400; font-size:68px;
+       line-height:0.98; letter-spacing:-0.02em; color:#F4F8FF; }
+  .body { position:absolute; left:80px; top:318px; width:820px;
+          font-family:"Archivo",sans-serif; font-variation-settings:"wdth" 88,"wght" 500;
+          font-size:32px; line-height:1.38; color:#A8BCC2; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:400; font-size:24px;
+          letter-spacing:0.09em; color:#C6D6DC;
+          text-shadow: 0 0 5px #0E1B26, 0 0 11px #0E1B26, 0 0 2px #0E1B26; }
+  .strips { position:absolute; left:80px; top:592px; width:916px; line-height:1.7; }
+  .lift { color:#F4F8FF; opacity:1;
+          text-shadow: 0 0 5px #0E1B26, 0 0 11px #0E1B26, 0 0 2px #0E1B26; }
+  .counter { position:absolute; right:80px; bottom:70px; }
+</style>
+</head>
+<body data-encodes='[{"claim":"the deployment plan sorts boats into watched by a machine, watched by a person, and watched by nothing","reads":"differ","a":[[196,930,148,148]],"b":[[750,930,148,148]]}]'
+      data-contacts='[{"what":"the camera housing on the rail","shadow":[[332,1002,24,10]],"ground":[[424,1002,24,10]]}]'>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain"></div>
+<h2 id="head">Twelve days later, the same question, on a smaller boat.</h2>
+<div class="body">On September 15th, 2026 the North Pacific Council's Partial Coverage Fishery Monitoring Advisory Committee reviews the draft 2027 Annual Deployment Plan (C22, C23). The 2026 plan defines a no selection pool, vessels with no probability of carrying an observer or an electronic monitoring system on any trip that season (C28).</div>
+<div class="strips mono">
+  <div>THREE POOLS. NO SELECTION, EM TRIP SELECTION,</div>
+  <div>OBSERVER TRIP SELECTION (C29)</div>
+  <div>NMFS EXPECTED TO MONITOR 1,473 PARTIAL COVERAGE TRIPS OF 4,341 IN 2026 (C27)</div>
+  <div class="lift">MORE THAN 450 OBSERVERS A YEAR (C30)</div>
+  <div class="lift">TWELVE DAYS (C33). NO SOURCE CONNECTS THE TWO DOCUMENTS.</div>
+</div>
+<div class="counter mono" data-decorative>08 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  document.fonts.ready.then(function () {
+
+  var SEED = 20260914;
+  AK.reseed(SEED);
+  var rnd = AK.rng(SEED);
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+  var RAILY = 1010, RAILR = 30;
+
+  /* ---- 1. dusk. Flat overcast falling to a bright band at the horizon. ---- */
+  var sky = cx.createLinearGradient(0, 0, 0, RAILY + 40);
+  sky.addColorStop(0.00, '#0E1B26');
+  sky.addColorStop(0.52, '#22323D');
+  sky.addColorStop(0.86, '#4E5F6B');
+  sky.addColorStop(1.00, '#6E7F8A');
+  cx.fillStyle = sky;
+  cx.fillRect(0, 0, W, RAILY + 40);
+
+  /* the sliver of water past the rail, the last the reader sees before the close */
+  var sea = cx.createLinearGradient(0, RAILY + 40, 0, H);
+  sea.addColorStop(0.00, AKC.mixOklab('#6E7F8A', '#17565A', 0.60));
+  sea.addColorStop(0.42, '#1B4148');
+  sea.addColorStop(1.00, '#0A2C33');
+  cx.fillStyle = sea;
+  cx.fillRect(0, RAILY + 40, W, H - RAILY - 40);
+  /* chop. Short lit facets, compressed toward the horizon, so the water is a
+     surface with a direction in it rather than a band of colour. */
+  cx.save();
+  cx.lineCap = 'round';
+  for (var ch = 0; ch < 340; ch++) {
+    var cu = Math.pow(rnd(), 2.1);
+    var chy = RAILY + 44 + cu * 250;
+    var near = cu;
+    var chx = rnd() * (W + 120) - 60;
+    var chw = 6 + near * 46;
+    cx.globalAlpha = 0.05 + near * 0.20;
+    cx.strokeStyle = near > 0.55 ? 'rgba(158,190,196,0.9)' : 'rgba(196,220,224,0.9)';
+    cx.lineWidth = 0.8 + near * 2.4;
+    cx.beginPath();
+    cx.moveTo(chx, chy);
+    cx.lineTo(chx + chw, chy + (rnd() - 0.5) * 3 * near);
+    cx.stroke();
+  }
+  cx.restore();
+
+  /* the deck below, thrown out of focus, drawn once offscreen and blurred once */
+  var deck = document.createElement('canvas');
+  deck.width = 2160; deck.height = 2700;
+  var dcx = deck.getContext('2d'); dcx.scale(2, 2);
+  var dg = dcx.createLinearGradient(0, 1108, 0, 1236);
+  dg.addColorStop(0.00, 'rgba(20,32,40,0.00)');
+  dg.addColorStop(0.44, 'rgba(20,32,40,0.62)');
+  dg.addColorStop(1.00, 'rgba(20,32,40,0.94)');
+  dcx.fillStyle = dg;
+  dcx.fillRect(0, 1108, W, H - 1108);
+  dcx.strokeStyle = 'rgba(110,127,138,0.30)';
+  dcx.lineWidth = 3;
+  for (var pl = 0; pl < 7; pl++) {
+    dcx.beginPath();
+    dcx.moveTo(-40 + pl * 190, 1150); dcx.lineTo(-160 + pl * 240, H);
+    dcx.stroke();
+  }
+  cx.save(); cx.filter = 'blur(13px)'; cx.drawImage(deck, 0, 0, W, H); cx.restore();
+
+  /* ---- 1b. THE READING RESERVE over the strip block, feathered at both ends
+       so no boundary lands in frame. The sky is brightening exactly where the
+       five strips run, and a strip that carries a claim id may not be the
+       lowest contrast thing in the frame. ---- */
+  var sres = cx.createLinearGradient(0, 534, 0, 892);
+  sres.addColorStop(0.00, 'rgba(14,27,38,0.00)');
+  sres.addColorStop(0.17, 'rgba(14,27,38,0.74)');
+  sres.addColorStop(0.72, 'rgba(14,27,38,0.70)');
+  sres.addColorStop(0.92, 'rgba(14,27,38,0.40)');
+  sres.addColorStop(1.00, 'rgba(14,27,38,0.00)');
+  cx.fillStyle = sres;
+  cx.fillRect(0, 534, W, 358);
+
+  /* ---- 2. THE RAIL. A relit cylinder, so the light WRAPS rather than sitting
+       on it as a stripe, plus a wet specular break-up so it is galvanised steel
+       in weather and not a clean gradient. It is bright by construction under a
+       broad key, which is what gives the three objects something to cast into. -- */
+  var rg = cx.createLinearGradient(0, RAILY - RAILR, 0, RAILY + RAILR);
+  rg.addColorStop(0.00, '#3B4C57');
+  rg.addColorStop(0.22, '#8C9AA3');
+  rg.addColorStop(0.36, '#E4EEF2');
+  rg.addColorStop(0.60, '#8C9AA3');
+  rg.addColorStop(1.00, '#22323D');
+  cx.fillStyle = rg;
+  cx.beginPath();
+  cx.roundRect ? cx.roundRect(-10, RAILY - RAILR, W + 20, RAILR * 2, RAILR)
+               : cx.rect(-10, RAILY - RAILR, W + 20, RAILR * 2);
+  cx.fill();
+
+  /* wet break-up along the crown, so the specular is a run of chips not a band */
+  cx.save();
+  cx.beginPath();
+  cx.rect(-10, RAILY - RAILR, W + 20, RAILR * 2);
+  cx.clip();
+  for (var wq = 0; wq < 380; wq++) {
+    var wx = rnd() * W;
+    var wy = RAILY - RAILR * 0.42 + (rnd() - 0.5) * 16;
+    var wr = 0.8 + rnd() * 3.4;
+    cx.fillStyle = rnd() > 0.45
+      ? 'rgba(228,238,242,' + (0.20 + rnd() * 0.55).toFixed(3) + ')'
+      : 'rgba(34,50,61,' + (0.14 + rnd() * 0.34).toFixed(3) + ')';
+    cx.beginPath(); cx.ellipse(wx, wy, wr * 1.7, wr * 0.7, 0, 0, Math.PI * 2); cx.fill();
+  }
+  /* rust weeping from the stanchion welds */
+  for (var rq = 0; rq < 5; rq++) {
+    var rx = 90 + rq * 230;
+    var rgr = cx.createLinearGradient(rx, RAILY - 6, rx, RAILY + RAILR);
+    rgr.addColorStop(0, 'rgba(150,74,32,0.42)');
+    rgr.addColorStop(1, 'rgba(150,74,32,0)');
+    cx.fillStyle = rgr;
+    cx.beginPath(); cx.ellipse(rx, RAILY + 10, 15, 22, 0, 0, Math.PI * 2); cx.fill();
+  }
+  cx.restore();
+
+  /* ---- 3. THREE OBJECTS at true relative scale, in one light, evenly spaced.
+       Watched by a machine, watched by a person, watched by nothing. ---- */
+
+  /* The occlusion pool under a foot, cast INTO a rail that is already lit.
+     It is deliberately WIDER than the foot it belongs to and blurred rather
+     than gradient-filled, for two reasons. A pool that never leaves the
+     object's own outline is invisible in the render, because the object is
+     drawn on top of it and covers the whole thing. And a key at elevation 76
+     is nearly overhead, so what a reader should see is a soft occlusion
+     collar hugging the silhouette, not a hard elliptical stain. */
+  function contact(ctx, ox, w2, strength) {
+    var oc = document.createElement('canvas');
+    oc.width = 2160; oc.height = 2700;
+    var occ = oc.getContext('2d'); occ.scale(2, 2);
+    occ.fillStyle = 'rgb(10,18,24)';
+    occ.beginPath();
+    occ.ellipse(ox, RAILY - 8, w2 / 2 + 30, 13, 0, 0, Math.PI * 2);
+    occ.fill();
+    ctx.save();
+    ctx.globalAlpha = strength;
+    ctx.filter = 'blur(12px)';
+    ctx.drawImage(oc, 0, 0, W, H);
+    ctx.restore();
+  }
+
+  /* (a) the electronic monitoring camera, bolted down, lens aimed at the rail */
+  (function camera(ox) {
+    contact(cx, ox, 118, 0.36);
+    var bodyG = cx.createLinearGradient(ox - 56, 940, ox + 56, 1010);
+    bodyG.addColorStop(0.00, '#8C9AA3');
+    bodyG.addColorStop(0.40, '#54666E');
+    bodyG.addColorStop(1.00, '#1B2A33');
+    cx.save();
+    cx.fillStyle = bodyG;
+    cx.beginPath();
+    cx.moveTo(ox - 54, 1000); cx.lineTo(ox - 46, 944);
+    cx.lineTo(ox + 46, 938);  cx.lineTo(ox + 54, 998);
+    cx.closePath(); cx.fill();
+    /* the housing dome and the lens */
+    cx.fillStyle = '#22323D';
+    cx.beginPath(); cx.ellipse(ox, 940, 50, 20, 0, Math.PI, Math.PI * 2); cx.fill();
+    var lens = cx.createRadialGradient(ox - 8, 968, 2, ox, 972, 26);
+    lens.addColorStop(0.00, 'rgba(228,238,242,0.72)');
+    lens.addColorStop(0.30, 'rgba(27,42,51,0.92)');
+    lens.addColorStop(1.00, 'rgba(6,12,16,0.98)');
+    cx.fillStyle = lens;
+    cx.beginPath(); cx.arc(ox, 972, 26, 0, Math.PI * 2); cx.fill();
+    cx.strokeStyle = 'rgba(140,154,163,0.85)'; cx.lineWidth = 2.4;
+    cx.beginPath(); cx.arc(ox, 972, 27, 0, Math.PI * 2); cx.stroke();
+    /* the mount and its four bolts, FILLED, which is the point of the third object */
+    cx.fillStyle = '#3B4C57';
+    cx.beginPath(); cx.rect(ox - 60, 998, 120, 14); cx.fill();
+    cx.fillStyle = '#E4EEF2';
+    [-44, -16, 16, 44].forEach(function (bx) {
+      cx.beginPath(); cx.arc(ox + bx, 1005, 4.4, 0, Math.PI * 2); cx.fill();
+    });
+    cx.restore();
+  })(270);
+
+  /* (b) the clipboard, hooked over the rail, nobody holding it */
+  (function clipboard(ox) {
+    contact(cx, ox, 92, 0.32);
+    cx.save();
+    cx.translate(ox, 986);
+    cx.rotate(-0.06);
+    var bd = cx.createLinearGradient(-52, -70, 52, 70);
+    bd.addColorStop(0.00, '#B9A87E');
+    bd.addColorStop(0.52, '#8C7E5C');
+    bd.addColorStop(1.00, '#4A4232');
+    cx.fillStyle = bd;
+    cx.beginPath(); cx.rect(-52, -70, 104, 140); cx.fill();
+    /* the paper, ruled, damp at the bottom edge */
+    cx.fillStyle = 'rgba(232,236,228,0.88)';
+    cx.beginPath(); cx.rect(-44, -56, 88, 112); cx.fill();
+    cx.strokeStyle = 'rgba(90,96,88,0.42)'; cx.lineWidth = 1;
+    for (var ln = 0; ln < 9; ln++) {
+      cx.beginPath(); cx.moveTo(-38, -42 + ln * 12); cx.lineTo(38, -42 + ln * 12); cx.stroke();
+    }
+    cx.fillStyle = 'rgba(120,128,116,0.34)';
+    cx.beginPath(); cx.rect(-44, 34, 88, 22); cx.fill();
+    /* the clip */
+    cx.fillStyle = '#8C9AA3';
+    cx.beginPath(); cx.rect(-22, -78, 44, 16); cx.fill();
+    cx.restore();
+    /* the pencil on a lanyard, the shot line's last state before the coil */
+    cx.save();
+    cx.strokeStyle = '#8C9AA3'; cx.lineWidth = 2.2; cx.lineCap = 'round';
+    cx.beginPath();
+    cx.moveTo(ox + 34, 930); cx.quadraticCurveTo(ox + 74, 966, ox + 58, 1022);
+    cx.stroke();
+    cx.restore();
+  })(540);
+
+  /* (c) the empty bracket. Four bolt HOLES, nothing in them, each ringed gold.
+     Rendered at the same craft as the two objects beside it, because an absence
+     drawn cheaply reads as a shortfall rather than as a fact. */
+  (function bracket(ox) {
+    /* (i) THE PALE PATCH. Galvanising the weather never reached, because
+       something stood on it for years. It is drawn on the rail BEFORE the
+       bracket, so the open middle of the bracket shows it and the third
+       object's whole claim is a rectangle of clean metal with nothing on it.
+       The occlusion goes on top of it, because the patch is base metal and
+       a shadow falls on base metal like it falls on anything else. */
+    cx.save();
+    var pp = cx.createLinearGradient(ox - 76, 0, ox + 76, 0);
+    pp.addColorStop(0.00, 'rgba(226,236,240,0.00)');
+    pp.addColorStop(0.13, 'rgba(226,236,240,0.34)');
+    pp.addColorStop(0.87, 'rgba(226,236,240,0.34)');
+    pp.addColorStop(1.00, 'rgba(226,236,240,0.00)');
+    cx.fillStyle = pp;
+    cx.beginPath(); cx.ellipse(ox, 992, 76, 21, 0, 0, Math.PI * 2); cx.fill();
+    cx.restore();
+
+    contact(cx, ox, 104, 0.27);
+
+    /* (ii) THE FOOT. ONE part, not two. The first build cut the plate into two
+       separate trapezoids in a value far darker than the rail, and at 432 px
+       that read as two small black devices bolted to the crown, which is the
+       opposite of what this object has to say. Galvanised steel on galvanised
+       steel sits close in value and is read by its edges and its seat, so the
+       foot is now mid steel, low, and bridged by a web across the open middle.
+       The rail's own crown still runs through that opening. */
+    cx.save();
+    var PT = 976, PB = 1002;
+    function footFace(x0, x1, top, bot, hi, lo) {
+      var pg = cx.createLinearGradient(0, top, 0, bot);
+      pg.addColorStop(0.00, hi);
+      pg.addColorStop(0.46, AKC.mixOklab(hi, lo, 0.55));
+      pg.addColorStop(1.00, lo);
+      cx.fillStyle = pg;
+      cx.beginPath();
+      cx.moveTo(x0, bot); cx.lineTo(x0 + 4, top);
+      cx.lineTo(x1 - 4, top); cx.lineTo(x1, bot);
+      cx.closePath(); cx.fill();
+    }
+    /* the web first, so the two pads read as the ends of one part */
+    footFace(ox - 20, ox + 20, 992, PB, '#5E6F79', '#3A4A54');
+    footFace(ox - 58, ox - 16, PT, PB, '#93A2AB', '#6C7D87');
+    footFace(ox + 16, ox + 58, PT, PB, '#93A2AB', '#6C7D87');
+    /* the sheared top edge catches the key, one hairline per pad */
+    cx.strokeStyle = 'rgba(216,230,236,0.62)'; cx.lineWidth = 1.2;
+    [[ox - 54, ox - 20], [ox + 20, ox + 54]].forEach(function (e) {
+      cx.beginPath(); cx.moveTo(e[0], PT); cx.lineTo(e[1], PT); cx.stroke();
+    });
+    /* the seat. Where the foot meets the crown there is a hard dark line and
+       nowhere else, which is the whole reason the part reads as bolted down. */
+    cx.strokeStyle = 'rgba(10,18,24,0.72)'; cx.lineWidth = 2.2;
+    cx.beginPath(); cx.moveTo(ox - 58, PB + 1); cx.lineTo(ox + 58, PB + 1); cx.stroke();
+    cx.restore();
+
+    /* (iii) FOUR RECESSES, not four discs. The key is above, so the far LOWER
+       inner wall of each bore is the lit one and the near upper lip is the
+       dark one. A hole drawn as a flat dot reads as a fastener. */
+    [[-44, 988], [-27, 986], [27, 986], [44, 988]].forEach(function (b) {
+      var hx = ox + b[0], hy = b[1];
+      cx.save();
+      var bore = cx.createLinearGradient(0, hy - 5, 0, hy + 5);
+      bore.addColorStop(0.00, '#05090C');
+      bore.addColorStop(0.60, '#0B1319');
+      bore.addColorStop(1.00, '#42555F');
+      cx.fillStyle = bore;
+      cx.beginPath(); cx.ellipse(hx, hy, 6.0, 4.2, 0, 0, Math.PI * 2); cx.fill();
+      cx.strokeStyle = 'rgba(200,218,228,0.72)'; cx.lineWidth = 1.5;
+      cx.beginPath(); cx.ellipse(hx, hy + 0.7, 5.1, 3.5, 0, 0.32, Math.PI - 0.32); cx.stroke();
+      cx.strokeStyle = 'rgba(8,14,18,0.80)'; cx.lineWidth = 1.3;
+      cx.beginPath(); cx.ellipse(hx, hy - 0.5, 5.7, 3.9, 0, Math.PI + 0.26, -0.26); cx.stroke();
+      /* the gold ring on the countersink, a hairline and never a disc */
+      cx.strokeStyle = 'rgba(255,199,44,0.90)'; cx.lineWidth = 1.6;
+      cx.beginPath(); cx.ellipse(hx, hy, 7.8, 5.4, 0, 0, Math.PI * 2); cx.stroke();
+      cx.restore();
+    });
+  })(824);
+
+  /* ---- 4. the groundline coil, blurred, bleeding off the bottom right. The
+       same five-strand rope as slide 07, on deck and out of the water. ---- */
+  var coil = document.createElement('canvas');
+  coil.width = 2160; coil.height = 2700;
+  var ccx = coil.getContext('2d'); ccx.scale(2, 2);
+  ccx.strokeStyle = 'rgba(168,84,44,0.80)';
+  ccx.lineWidth = 11; ccx.lineCap = 'round';
+  for (var lp = 0; lp < 5; lp++) {
+    ccx.beginPath();
+    ccx.ellipse(1044, 1316 + lp * 11, 96 - lp * 8, 31 - lp * 3, 0.16, 0, Math.PI * 2);
+    ccx.stroke();
+  }
+  cx.save(); cx.globalAlpha = 0.82; cx.filter = 'blur(9px)';
+  cx.drawImage(coil, 0, 0, W, H); cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H,
+    exposure: 0.0, saturation: 0.96, contrast: 1.06, filmic: true,
+    lift: [0.008, 0.013, 0.020], gain: [0.99, 1.0, 1.008],
+    vignette: 0.20,
+    bloom: { threshold: 0.78, strength: 0.22, radius: 7 },
+    grain: { amount: 0.045, size: 2, seed: SEED },
+    dither: true, sharpen: 0.34
+  });
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED) + ')';
+  AK.fitText(document.getElementById('head'), { min: 52, max: 70, maxLines: 2 });
+
+  window.__akMotifs = [
+    { what: 'the electronic monitoring camera on the rail', rect: [206, 934, 132, 84], canvas: 'canvas#art' },
+    { what: 'the empty bracket and its four bolt holes', rect: [762, 962, 124, 36], canvas: 'canvas#art' }
+  ];
+  resolve();
+  });
+});
+</script>
+</body>
+</html>

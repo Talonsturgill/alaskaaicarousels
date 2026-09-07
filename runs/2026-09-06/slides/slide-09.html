@@ -1,0 +1,345 @@
+<!doctype html>
+<!-- SLIDE 09 — CLOSE. ONE ASK.
+     A split-level frame with the waterline dead across at y 700, the only frame
+     where it is centred and still. Above it, first light and the cover's two
+     hulls seen from outside at true relative scale. Below it, the deck's final
+     extinction ramp with the shot line descending and SEALING into a gold
+     Polaris, the deck's one dead end and its last gold. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#0E1B26; position:relative; }
+  #art { position:absolute; inset:0; }
+  .grain { position:absolute; inset:0; opacity:0.07; mix-blend-mode:overlay; background-repeat:repeat; }
+  h2 { position:absolute; left:80px; top:150px; width:840px;
+       font-family:"Instrument Serif",serif; font-weight:400; font-size:72px;
+       line-height:0.98; letter-spacing:-0.02em; color:#F4F8FF; }
+  .body { position:absolute; left:80px; top:280px; width:820px;
+          font-family:"Archivo",sans-serif; font-variation-settings:"wdth" 88,"wght" 500;
+          font-size:32px; line-height:1.38; color:#A8BCC2; }
+  .ask { position:absolute; left:80px; top:540px; width:840px;
+         font-family:"Archivo",sans-serif; font-variation-settings:"wdth" 88,"wght" 600;
+         font-size:40px; line-height:1.26; color:#F4F8FF; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:400; font-size:24px;
+          letter-spacing:0.09em; color:#C6D6DC;
+          text-shadow: 0 0 5px #0E1B26, 0 0 11px #0E1B26, 0 0 2px #0E1B26; }
+  .meet { position:absolute; left:80px; top:644px; width:916px; line-height:1.60; }
+  .brand { position:absolute; left:80px; bottom:74px; text-align:left; }
+  .wordmark { font-family:"Instrument Serif",serif; font-size:34px; color:#F4F8FF;
+              letter-spacing:0.02em; }
+  .site { font-family:"JetBrains Mono",monospace; font-size:24px; letter-spacing:0.10em;
+          color:#A8BCC2; margin-top:4px; }
+  .counter { position:absolute; right:80px; bottom:74px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain"></div>
+<h2 id="head">The committee takes comment letters.</h2>
+<div class="body">The draft 2027 Annual Deployment Plan had not yet been posted on the meeting page as of September 6th, 2026 (C25). The Federal Register notice says public comment letters will be accepted and should be submitted electronically through the meeting page (C24).</div>
+<div class="ask">Read the draft before the meeting on September 15th, 2026 and send the committee a letter.</div>
+<div class="meet mono">
+  <div>MEETING 8:30 a.m. TO 4 p.m. ALASKA TIME, SEPTEMBER 15TH, 2026 (C22)</div>
+  <div>SOURCES IN COMMENTS</div>
+</div>
+<div class="brand">
+  <div class="wordmark">ALASKA.AI</div>
+  <div class="site">alaskaaihq.com</div>
+</div>
+<div class="counter mono" data-decorative>09 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhachure.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  document.fonts.ready.then(function () {
+
+  var SEED = 20260915;
+  AK.reseed(SEED);
+  var rnd = AK.rng(SEED);
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+  var WATERLINE = 800;
+
+  /* ---- 1. first light above, the final extinction ramp below ---- */
+  var sky = cx.createLinearGradient(0, 0, 0, WATERLINE);
+  sky.addColorStop(0.00, '#1B2C38');
+  sky.addColorStop(0.42, '#33475364'.slice(0,7));
+  sky.addColorStop(0.80, '#6E7F8A');
+  sky.addColorStop(1.00, '#A6B4B8');
+  cx.fillStyle = sky;
+  cx.fillRect(0, 0, W, WATERLINE);
+
+  var sea = cx.createLinearGradient(0, WATERLINE, 0, H);
+  sea.addColorStop(0.00, '#3FA88E');
+  sea.addColorStop(0.16, '#17565A');
+  sea.addColorStop(0.58, '#0A2C33');
+  sea.addColorStop(1.00, '#04141A');
+  cx.fillStyle = sea;
+  cx.fillRect(0, WATERLINE, W, H - WATERLINE);
+
+  /* a reserve under the type, because the sky grades up into first light and
+     the body copy runs straight across the brightest part of it */
+  var res9 = cx.createLinearGradient(0, 0, 0, 834);
+  res9.addColorStop(0.00, 'rgba(8,16,24,0.00)');
+  res9.addColorStop(0.14, 'rgba(8,16,24,0.90)');
+  res9.addColorStop(0.86, 'rgba(8,16,24,0.88)');
+  res9.addColorStop(0.97, 'rgba(8,16,24,0.44)');
+  res9.addColorStop(1.00, 'rgba(8,16,24,0)');
+  cx.fillStyle = res9;
+  cx.fillRect(0, 0, W, 834);
+
+  /* ---- 2. the two hulls, tiny and far off, at true relative length. These
+       are the cover's pair seen from OUTSIDE the water. ---- */
+  function farHull(hx, len, mast) {
+    cx.save();
+    cx.fillStyle = '#0E1B26';
+    cx.beginPath();
+    cx.moveTo(hx - len / 2, WATERLINE - 3);
+    cx.lineTo(hx + len / 2, WATERLINE - 3);
+    cx.lineTo(hx + len / 2 - len * 0.14, WATERLINE - 3 - len * 0.10);
+    cx.lineTo(hx - len / 2 + len * 0.08, WATERLINE - 3 - len * 0.09);
+    cx.closePath(); cx.fill();
+    if (mast) {
+      cx.beginPath();
+      cx.rect(hx + len * 0.04, WATERLINE - 3 - len * 0.30, len * 0.05, len * 0.22);
+      cx.fill();
+    }
+    cx.restore();
+  }
+  /* FIRST LIGHT ON THE HORIZON. The two hulls are the only thing in the deck
+     that can make this frame pay the cover, and they were dark shapes on a
+     sky the reading reserve had already darkened, so nobody could find them.
+     They now stand against a lit band, which is also what a Bering dawn does. */
+  cx.save();
+  cx.globalCompositeOperation = 'lighter';
+  var fl = cx.createLinearGradient(0, WATERLINE - 96, 0, WATERLINE + 4);
+  fl.addColorStop(0.00, 'rgba(150,168,178,0.00)');
+  fl.addColorStop(0.58, 'rgba(178,196,204,0.30)');
+  fl.addColorStop(0.94, 'rgba(214,228,234,0.52)');
+  fl.addColorStop(1.00, 'rgba(214,228,234,0.00)');
+  cx.fillStyle = fl;
+  cx.fillRect(0, WATERLINE - 96, W, 100);
+  cx.restore();
+  /* 168 to 21 on the cover, so 8 to 1 here as well. The pair is declared at
+     TRUE RELATIVE LENGTH in both frames and a payoff that quietly restates
+     the ratio is not a payoff. Both are scaled up rather than the small one
+     alone, which is what the first repair did and it made the DriX 2.7 times
+     too big against the ship. */
+  farHull(690, 120, true);
+  farHull(836, 15, false);
+
+  /* ---- 3. THE MENISCUS. A band with real thickness and refraction structure,
+       so the boundary is a physical thing rather than a drawn edge. ---- */
+  cx.save();
+  cx.beginPath();
+  cx.rect(0, WATERLINE - 40, W, 80);
+  cx.clip();
+  /* the compressed sky, refracted, seen through the underside of the surface */
+  for (var b = 0; b < 40; b++) {
+    var bt = b / 39;
+    var by = WATERLINE - 38 + bt * 76;
+    var squash = 1 - Math.abs(bt - 0.5) * 1.6;
+    cx.strokeStyle = 'rgba(' + Math.round(120 + 108 * squash) + ',' +
+                     Math.round(160 + 76 * squash) + ',' +
+                     Math.round(168 + 68 * squash) + ',' +
+                     (0.10 + 0.34 * squash).toFixed(3) + ')';
+    cx.lineWidth = 1.5 + squash * 2.0;
+    cx.beginPath();
+    for (var mx = -10; mx <= W + 10; mx += 5) {
+      var my = by
+             + 7 * Math.sin(mx * 0.023 + bt * 5.4)
+             + 4 * Math.sin(mx * 0.061 + bt * 2.1)
+             + 5 * AK.fbm2(mx * 0.006, bt * 3.3, { octaves: 3 });
+      mx === -10 ? cx.moveTo(mx, my) : cx.lineTo(mx, my);
+    }
+    cx.stroke();
+  }
+  cx.restore();
+
+  /* the surface's own bright line, the frame's horizon */
+  cx.save();
+  cx.strokeStyle = 'rgba(212,244,232,0.62)';
+  cx.lineWidth = 2.0;
+  cx.beginPath();
+  for (var sx2 = 0; sx2 <= W; sx2 += 4) {
+    var sy2 = WATERLINE + 4 * Math.sin(sx2 * 0.019) + 3 * AK.fbm2(sx2 * 0.005, 1.7, { octaves: 3 });
+    sx2 === 0 ? cx.moveTo(sx2, sy2) : cx.lineTo(sx2, sy2);
+  }
+  cx.stroke();
+  cx.restore();
+
+  /* ---- 4. the shot line, descending and SEALING. The deck's one dead end. ---- */
+  var PX = 620, PY = 1180;
+  cx.save();
+  cx.lineCap = 'round';
+  cx.strokeStyle = 'rgba(2,10,14,0.55)'; cx.lineWidth = 8.4;
+  cx.beginPath();
+  cx.moveTo(596, WATERLINE + 10);
+  cx.quadraticCurveTo(636, 940, PX, PY - 26);
+  cx.stroke();
+  cx.strokeStyle = '#77858C'; cx.lineWidth = 6;
+  cx.beginPath();
+  cx.moveTo(596, WATERLINE + 10);
+  cx.quadraticCurveTo(636, 940, PX, PY - 26);
+  cx.stroke();
+  cx.strokeStyle = 'rgba(228,238,242,0.22)'; cx.lineWidth = 1.0;
+  for (var lz = 0; lz < 34; lz++) {
+    var lt = lz / 33;
+    var lxp = (1 - lt) * (1 - lt) * 596 + 2 * (1 - lt) * lt * 636 + lt * lt * PX;
+    var lyp = (1 - lt) * (1 - lt) * (WATERLINE + 10) + 2 * (1 - lt) * lt * 940 + lt * lt * (PY - 26);
+    cx.beginPath(); cx.moveTo(lxp - 3, lyp - 2); cx.lineTo(lxp + 3, lyp + 6); cx.stroke();
+  }
+  cx.restore();
+
+  /* the Polaris, the deck's last gold, seated where the line ends */
+  (function polaris(sx3, sy3, r) {
+    cx.save();
+    cx.fillStyle = '#FFC72C';
+    cx.beginPath();
+    for (var i = 0; i < 8; i++) {
+      var ang = (i / 8) * Math.PI * 2 - Math.PI / 2;
+      var rr = (i % 2 === 0) ? r : r * 0.36;
+      var px3 = sx3 + rr * Math.cos(ang), py3 = sy3 + rr * Math.sin(ang);
+      i === 0 ? cx.moveTo(px3, py3) : cx.lineTo(px3, py3);
+    }
+    cx.closePath(); cx.fill();
+    cx.globalAlpha = 0.22;
+    cx.beginPath(); cx.arc(sx3, sy3, r * 2.1, 0, Math.PI * 2); cx.fill();
+    cx.restore();
+  })(PX, PY, 22);
+
+  /* ---- 4b. THE LOWER BAND. Volumetric shafts falling through Snell's window
+       and a lit pool around the seal, so the deepest third of the closing frame
+       carries modelled tone rather than a flat ramp. The first render of this
+       slide read 46 percent craft density in the bottom third against 76 in the
+       middle, which is the dead lower zone this deck exists to refuse. ---- */
+  /* Drawn offscreen and blurred once. A shaft is a filled quad and a filled
+     quad has a hard lateral edge; two of those ran through SOURCES IN COMMENTS
+     at the glyphs' own value, which the ring test reads as a rule through the
+     letterforms. Light through water has no edge to begin with. */
+  var shafts = document.createElement('canvas');
+  shafts.width = 2160; shafts.height = 2700;
+  var shx = shafts.getContext('2d'); shx.scale(2, 2);
+  for (var sh = 0; sh < 7; sh++) {
+    var topX = 180 + sh * 130 + 24 * Math.sin(sh * 1.7);
+    var spreadX = 96 + sh * 12;
+    var sg = shx.createLinearGradient(0, WATERLINE, 0, H);
+    sg.addColorStop(0.00, 'rgba(127,216,190,' + (0.10 - sh * 0.006).toFixed(3) + ')');
+    sg.addColorStop(0.52, 'rgba(63,168,142,' + (0.05 - sh * 0.004).toFixed(3) + ')');
+    sg.addColorStop(1.00, 'rgba(63,168,142,0)');
+    shx.fillStyle = sg;
+    shx.beginPath();
+    shx.moveTo(topX - 14, WATERLINE);
+    shx.lineTo(topX + 14, WATERLINE);
+    shx.lineTo(topX + spreadX + 40, H);
+    shx.lineTo(topX - spreadX - 40, H);
+    shx.closePath();
+    shx.fill();
+  }
+  cx.save();
+  cx.globalCompositeOperation = 'lighter';
+  cx.filter = 'blur(14px)';
+  cx.drawImage(shafts, 0, 0, W, H);
+  cx.restore();
+
+  /* a warm pool under the seal, laid down BEFORE the star, so the last gold
+     mark sits in light rather than floating in a void */
+  cx.save();
+  cx.globalCompositeOperation = 'lighter';
+  cx.translate(PX, PY + 40);
+  cx.scale(2.9, 1.5);
+  var seal = cx.createRadialGradient(0, 0, 0, 0, 0, 100);
+  seal.addColorStop(0.00, 'rgba(255,218,110,0.16)');
+  seal.addColorStop(0.46, 'rgba(63,168,142,0.09)');
+  seal.addColorStop(1.00, 'rgba(63,168,142,0)');
+  cx.fillStyle = seal;
+  cx.beginPath(); cx.arc(0, 0, 100, 0, Math.PI * 2); cx.fill();
+  cx.restore();
+
+  /* a drifting particulate floor, denser than the mid water, so the deepest
+     band resolves detail at full size instead of reading as a wash */
+  for (var fq = 0; fq < 420; fq++) {
+    var fy2 = 1010 + Math.pow(rnd(), 0.6) * 330;
+    var fnear = (fy2 - 1010) / 340;
+    cx.fillStyle = 'rgba(180,214,196,' + (0.05 + fnear * 0.20).toFixed(3) + ')';
+    cx.beginPath();
+    cx.arc(rnd() * W, fy2, 0.7 + fnear * 2.6, 0, Math.PI * 2);
+    cx.fill();
+  }
+  /* a slope-driven floor. The first repair added evenly spaced sinuous strokes,
+     which is the signature of contour lines over a gradient rather than a
+     surface that has been shaded, so the density number moved and the modelled
+     tone did not. This one is a real height field. */
+  var FG = 60, FH2 = 34, fgrid = new Float32Array(FG * FH2);
+  for (var fj = 0; fj < FH2; fj++) {
+    for (var fi = 0; fi < FG; fi++) {
+      fgrid[fj * FG + fi] = Math.max(0, Math.min(1,
+        0.5 + 0.34 * AK.fbm2(fi / FG * 4.4, fj / FH2 * 3.1 + 7.7, { octaves: 5 })
+            + 0.12 * Math.sin(fi / FG * 9.2 + fj / FH2 * 2.4)));
+    }
+  }
+  AK.hachureField(cx, {
+    x: 0, y: 1060, w: W, h: 290, scale: 2, seed: SEED + 3,
+    height: AK.hachureFromGrid(fgrid, FG, FH2),
+    cell: 10, lenScale: 1.8, passes: 3,
+    sunAz: 0, sunEl: 76, sunJitter: 10,
+    color: '#0A2225', alpha: 0.13, minWidth: 0.4, maxWidth: 2.8
+  });
+  cx.save();
+  cx.strokeStyle = 'rgba(23,86,90,0.26)';
+  for (var dw = 0; dw < 9; dw++) {
+    cx.lineWidth = 1.0 + dw * 0.24;
+    cx.beginPath();
+    for (var dx2 = -10; dx2 <= W + 10; dx2 += 7) {
+      var dy2 = 1052 + dw * 34
+              + 13 * Math.sin(dx2 * 0.0085 + dw * 0.7)
+              + 9 * AK.fbm2(dx2 * 0.0035, dw * 1.3, { octaves: 3 });
+      dx2 === -10 ? cx.moveTo(dx2, dy2) : cx.lineTo(dx2, dy2);
+    }
+    cx.stroke();
+  }
+  cx.restore();
+
+  /* ---- 5. the final marine snow, drifting in the last frame ---- */
+  for (var q = 0; q < 280; q++) {
+    var near = Math.pow(rnd(), 0.5);
+    cx.fillStyle = 'rgba(212,244,232,' + (0.07 + near * 0.24).toFixed(3) + ')';
+    cx.beginPath();
+    cx.arc(rnd() * W, WATERLINE + 46 + Math.pow(rnd(), 0.9) * (H - WATERLINE - 60),
+           0.6 + near * 2.2, 0, Math.PI * 2);
+    cx.fill();
+  }
+
+  AKPOST.grade(cx, {
+    w: W, h: H,
+    exposure: 0.03, saturation: 1.0, contrast: 1.04, filmic: true,
+    lift: [0.006, 0.012, 0.016], gain: [1.0, 1.005, 1.0],
+    vignette: 0.16,
+    bloom: { threshold: 0.74, strength: 0.26, radius: 8 },
+    grain: { amount: 0.045, size: 2, seed: SEED },
+    dither: true, sharpen: 0.30
+  });
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED) + ')';
+  AK.fitText(document.getElementById('head'), { min: 56, max: 72, maxLines: 1 });
+
+  window.__akMotifs = [
+    { what: 'the sealed Polaris where the shot line ends',
+      rect: [594, 1114, 52, 52], canvas: 'canvas#art' }
+  ];
+  resolve();
+  });
+});
+</script>
+</body>
+</html>

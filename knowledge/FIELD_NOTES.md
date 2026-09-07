@@ -7,6 +7,103 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-09-06 - No.52, the fisheries-monitoring deck
+
+Four lessons, all of them about the gap between a declaration and what actually
+drew.
+
+- **THE FALLBACK A DOSSIER RESERVES IS THE PLAN, NOT A DEFEAT.** Slide 05's own
+  risk flag named the exact outcome that happened, a gloved hand at arm's length
+  reading as a plush mitten with five equal sausages and no thumb, and it
+  reserved a crop to the palm, the thumb and two fingers. Three repair rounds
+  went into fixing the wide shot instead, and the flow critic still called that
+  frame the deck's predicted bail point. The crop was taken in round five and
+  the frame came back as a hand. **When a dossier reserves a fallback and the
+  named failure happens on the first render, take the fallback in the FIRST
+  repair round.** Anything else is spending the round cap on a shot the plan
+  already doubted.
+
+- **A CONTACT POOL NO WIDER THAN ITS OBJECT IS INVISIBLE, AND THE PROBE WILL
+  MEASURE THE OBJECT INSTEAD.** Two slides shipped declared contacts that the
+  machine passed and that were not measuring shadows at all. Slide 08's rect sat
+  on the camera's own mount plate at dL 55, because the pool was drawn to the
+  foot's own width and the object covered every pixel of it. Slide 04's rect
+  measured the strobe's own falloff across 115 px of open sediment at dL 25,
+  because every cast sat under the boulder that threw it. `qa.py` has a floor at
+  dL 4 and no ceiling, by design, so both read as strong. **Treat a declared dL
+  much over 30 as a mis-aimed rect until proven otherwise**, and build the pool
+  as an occluder that extends past the silhouette BEFORE it is blurred, so there
+  is a visible collar outside the object for the rect to land on. A long cast
+  and an attached collar are different things and a frame usually needs both.
+
+- **CHANGING A DECLARED COORDINATE IS ALWAYS A TWO-PLACE EDIT.** Slide 07's
+  `data-scale` was corrected from x 1000 to x 960 and the canvas variable that
+  DRAWS the axis was left at 1000, so two of the three declared marks had no ink
+  under them. Nothing else in the build noticed; the axis census did, and that is
+  what the census is for. After editing any declaration, grep the slide for the
+  number you just changed.
+
+- **A FILLED QUAD HAS A LATERAL EDGE, AND AN EDGE THROUGH A LABEL IS A RULE.**
+  The beam cones on 01 and the volumetric shafts on 09 each tripped the ring
+  test for this one reason. Light through water has no boundary, so draw those
+  shapes once into an offscreen and blur them before compositing. The same move
+  fixed a contrast failure on 01's kicker, because the cone's hottest gradient
+  stop had been placed at the apex, where the type is; volume scattering builds
+  with range, so the ramp belongs the other way round and the mass ends up in
+  the lower two thirds where this deck wants it anyway.
+
+---
+
+## 2026-09-06, Phase 12 frontier scan (f): agent workflow patterns. PARKED, plus one negative result worth not rediscovering.
+
+Two of this run's four defect classes were a MESSAGE problem, not a detection
+problem, so the scan went at the literature on validator feedback in agent
+repair loops. What it found was applied the same hour, in this run's two engine
+fixes; what is written down here is the part that is NOT safely boundable yet,
+and one thing measured and rejected.
+
+- **PARKED: a reserved fallback needs a TRIGGER, not just a reservation.**
+  Slide 05's dossier named the mitten outcome exactly and reserved a crop; the
+  failure it named happened on the FIRST render and three repair rounds went
+  into rescuing the original shot anyway. The workflow literature has the shape
+  of this: an analysis of 70 agent systems reports that agent loops commonly
+  carry no formal bound on recovery attempts and fail as either infinite retry
+  or premature abandonment, and that a recovery action needs an explicit
+  TRIGGER CONDITION as well as bounded scope. This house has the bound (the
+  five round cap) and no trigger. The obvious shape of the fix is
+  `dossier_check` listing every reserved fallback in the deck at the first
+  pixel-review boundary, so the showrunner has to answer for not taking one,
+  and it is parked rather than built because it needs a `risk`/`fallback`
+  schema that dossiers write consistently today only by habit, and because the
+  three upgrade slots this run were full of defects that each cost a round.
+  UNBLOCKING CONDITION: an audit of what the last ten runs' dossiers actually
+  put in their risk flags, so the check reads a field and not prose.
+  https://arxiv.org/html/2607.14167v1 (the applied half),
+  https://arxiv.org/html/2607.24300v1 (SEAL, on self-authored verification)
+
+- **NEGATIVE RESULT, measured here: there must not be an upper bound on a
+  contact shadow's dL.** It looks like the obvious cure for run No.52's two
+  mis-aimed contact declarations (dL 55 on a camera's own mount plate, dL 25
+  across open sediment) and it is not one. The 102 contact readings recorded in
+  `runs/*/machine_qa.json` run to a median of 18.6 and a maximum of 62.2, so a
+  ceiling low enough to catch the 55 fires on legitimately deep shipped
+  shadows, and nothing catches the 25 at all, which sits at the corpus median.
+  The signal that DOES separate them is geometric and is now the gate: how far
+  the declared ground sits from the declared shadow. Do not re-propose the dL
+  ceiling without new evidence.
+
+- **CORROBORATION, no change made.** SEAL's prescription for a self-improving
+  loop is a sealed external acceptance gate: fixed audit instances the agent
+  does not author, conservative rejection of regressions, complete rollback.
+  Phase 12 already has all three in different words (runs/ plus
+  examples/demo-deck as the fixed corpus, the never-weaken-a-gate rule, and the
+  single revertible `upgrade(<date>):` commit). Worth knowing the shape has a
+  name and a measurement behind it: across 35 model-game experiments every
+  self-authored policy reported above 0.70 while 15 of them deployed below
+  random.
+
+---
+
 ## 2026-08-21 - Phase 1 craft refresh (No.39)
 
 Timeboxed study pass. The LinkedIn half returned nothing this file does not

@@ -1,0 +1,21 @@
+{
+  "chars": 888,
+  "hook": "When a machine takes a ship's place on a fish survey, how do you tell a change in the fish from a change in the instrument?",
+  "hook_len": 123,
+  "commas": 4,
+  "comma_per_100": 0.48,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaFisheries",
+    "#NorthPacificCouncil",
+    "#Groundfish"
+  ],
+  "deck_summary": "Slide 06 draws the survey gear's seabed footprint at true area, and slide 08 sets the three pools on one rail where the third bracket is empty.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [
+    "HOOK: opens with a question; declarative openers test better"
+  ],
+  "verdict": "PASS",
+  "copy_fields_checked": 58
+}

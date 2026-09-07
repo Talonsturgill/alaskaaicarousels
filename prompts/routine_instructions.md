@@ -1009,8 +1009,13 @@ and a capped run is a shipping run.
 1. Build review assets:
 ```
 python .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slides \
-  --render-dir out/<date>/render --out-dir out/<date>/final --title "<document title>"
+  --render-dir out/<date>/render --out-dir out/<date>/final
 ```
+Do NOT type `--title`. Since 2026-09-06 assemble.py reads the PDF's document
+title out of `out/<date>/copy.json`'s `document_title`, the one title in the
+run the caption gate has actually checked, and a `--title` that disagrees is
+reported and ignored. No.52 shipped a PDF carrying slide 07's headline because
+that argument was typed by hand.
 1b. RECONCILE BEFORE THE CRITICS (hard ordering, 2026-07-25). Append the
    storyboard's BUILD RECONCILIATION section (every dossier number the build
    actually changed: camera azimuth, thicknesses, label sizes, planned

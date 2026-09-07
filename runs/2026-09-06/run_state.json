@@ -1,0 +1,84 @@
+{
+  "run_date": "2026-09-06",
+  "carousel_no": 52,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "wake": [
+      "out/2026-09-06/plan.md",
+      "out/2026-09-06/run_state.json"
+    ],
+    "craft_refresh": "nothing new; every finding traced to notes already in knowledge/FIELD_NOTES.md",
+    "docket": [
+      "ledger/docket.json (5 items refreshed, 1 correction)"
+    ],
+    "gas_watch": [
+      "SITE SIGN-OFF: PASS, 98 pages, 18 checks",
+      "GAS WATCH: PASS, read 2026-09-04, 33 days on record, chart present"
+    ],
+    "research": [
+      "out/2026-09-06/scout_merge.md"
+    ],
+    "selection": [
+      "out/2026-09-06/selection.md"
+    ],
+    "directors_room": [
+      "out/2026-09-06/storyboard.md"
+    ],
+    "copy": [
+      "out/2026-09-06/caption.txt",
+      "out/2026-09-06/copy.json",
+      "out/2026-09-06/caption_report.json"
+    ],
+    "art_build": [
+      "out/2026-09-06/slides/",
+      "out/2026-09-06/render/",
+      "out/2026-09-06/aggregates.json"
+    ],
+    "assemble": [
+      "out/2026-09-06/final/carousel.pdf",
+      "out/2026-09-06/final/contact_sheet.png",
+      "out/2026-09-06/final/thumbs/"
+    ],
+    "claims": [
+      "out/2026-09-06/claims.json"
+    ],
+    "pixel_review": [
+      "5 pixel critics, mean 5.26 (01 5.5, 02 6.8, 03 5.5, 04 4.5, 05 4.5, 06 5.0, 07 5.5, 08 4.0, 09 6.0)",
+      "round 4 grouped every finding by CAUSE: feathered reserves, blurred cone and shaft edges, two mis-aimed contact declarations, one composite axis label, the empty bracket's mass",
+      "machine QA went from 2 FAIL slides and 29 warnings to 0 fails and 13 warnings"
+    ],
+    "flow_review": [
+      "1 flow critic, sequence 5.4, predicted bail point slide 05",
+      "round 5 took the dossier's reserved fallback on 05, rebuilt 08's foot as one part, lit 09's horizon so the two hulls read, returned 09's counter to the bottom right",
+      "two findings raised and NOT fixed and recorded as such in the reconciliation: the waterline's legibility on 2 frames of 9, and the gold budget carrying more than one meaning"
+    ],
+    "scoring": [
+      "out/2026-09-06/score_report.json",
+      "8.08 of 10 against a threshold of 7.70, zero hard fails",
+      "weakest criterion: artwork craft and genuine detail, 6"
+    ],
+    "ship": [
+      "runs/2026-09-06/ committed and pushed, PR 345 opened ready",
+      "docs/ rebuilt to 99 pages, 52 decks, 24 tracked decisions"
+    ]
+  }
+}

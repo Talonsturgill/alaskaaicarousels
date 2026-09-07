@@ -1,0 +1,308 @@
+<!doctype html>
+<!-- SLIDE 04 — BREATHER. GROUND THE NET CAN'T CROSS.
+     Camera on the bottom at 118 m, lit only by the rig's own strobe from the
+     lower left. A boulder field in swelled-line intaglio, every boulder a
+     two-axis form so the lay wraps in both directions. One rockfish at the
+     edge of the light. This is the deck's only real contact condition and the
+     lit pool is laid down BEFORE anything is cast into it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#04141A; position:relative; }
+  #art { position:absolute; inset:0; }
+  .grain { position:absolute; inset:0; opacity:0.07; mix-blend-mode:overlay; background-repeat:repeat; }
+  h2 { position:absolute; left:80px; top:180px; width:660px;
+       font-family:"Instrument Serif",serif; font-weight:400; font-size:64px;
+       line-height:1.0; letter-spacing:-0.02em; color:#F4F8FF; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:400; font-size:24px;
+          letter-spacing:0.09em; color:#7E9AA0; opacity:0.74;  text-shadow: 0 0 5px #04141A, 0 0 11px #04141A, 0 0 2px #04141A; }
+  .notes { position:absolute; left:80px; top:300px; width:820px; line-height:1.85; }
+  .counter { position:absolute; right:80px; bottom:70px; }
+</style>
+</head>
+<body data-breather
+      data-contacts='[{"what":"the near foreground boulder, where its occlusion collar meets lit sediment","shadow":[[476,1086,26,10]],"ground":[[476,1062,26,10]]}]'>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain"></div>
+<h2 id="head">Ground the net can't cross.</h2>
+<div class="notes mono">
+  <div>3D STEREO CAMERA SYSTEMS, ALASKA FISHERIES SCIENCE CENTER,</div>
+  <div>FOR SURVEYING UNTRAWLABLE FISH HABITAT (C19)</div>
+  <div data-decorative>LIGHT SOURCE, RIG STROBE, az 214 el 28 &middot; DEPTH 118 m</div>
+</div>
+<div class="counter mono" data-decorative>04 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  document.fonts.ready.then(function () {
+
+  var SEED = 20260910;
+  AK.reseed(SEED);
+  var rnd = AK.rng(SEED);
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* the strobe. az 214 means it comes from the LOWER LEFT, so every lee shadow
+     falls up and to the right. One practical light, declared in the frame. */
+  var LX = 176, LY = 1286;
+
+  function strobeAt(px, py) {
+    var d = Math.hypot(px - LX, py - LY);
+    return Math.max(0, 1 - Math.pow(d / 1010, 1.10));
+  }
+
+  /* ---- 1. the dark. Beyond the strobe's reach the frame simply stops. ---- */
+  cx.fillStyle = '#04141A';
+  cx.fillRect(0, 0, W, H);
+
+  /* ---- 2. THE LIT POOL FIRST. A warm pool on the sediment under where the
+       boulders sit, wider than any cast, so there is something to subtract
+       from. A dark cast on a dark ground measures nothing and reads as
+       floating, which is the failure this ordering exists to prevent. ---- */
+  cx.save();
+  cx.globalCompositeOperation = 'lighter';
+  cx.translate(LX + 300, LY - 210);
+  cx.scale(7.4, 3.2);
+  var pool = cx.createRadialGradient(0, 0, 0, 0, 0, 100);
+  pool.addColorStop(0.00, 'rgba(148,136,102,0.86)');
+  pool.addColorStop(0.34, 'rgba(126,116,88,0.58)');
+  pool.addColorStop(0.68, 'rgba(88,84,66,0.24)');
+  pool.addColorStop(1.00, 'rgba(66,64,52,0)');
+  cx.fillStyle = pool;
+  cx.beginPath(); cx.arc(0, 0, 100, 0, Math.PI * 2); cx.fill();
+  cx.restore();
+
+  /* sediment grain, resolved in the near third so the zoom test finds material */
+  cx.save();
+  for (var s = 0; s < 5200; s++) {
+    var sx = rnd() * W, sy = 880 + Math.pow(rnd(), 0.7) * (H - 880);
+    var l2 = strobeAt(sx, sy);
+    if (l2 < 0.06) continue;
+    var near = (sy - 880) / (H - 880);
+    cx.fillStyle = 'rgba(' + Math.round(150 + 60 * l2) + ',' +
+                   Math.round(140 + 56 * l2) + ',' +
+                   Math.round(108 + 44 * l2) + ',' + (0.05 + 0.16 * l2 * near).toFixed(3) + ')';
+    cx.beginPath();
+    cx.arc(sx, sy, 0.5 + near * 1.9, 0, Math.PI * 2);
+    cx.fill();
+  }
+  cx.restore();
+
+  /* ---- 3. the boulders. Each is its OWN two-axis form, so the engraved lay
+       wraps in both directions and can't collapse into one-axis contours. ---- */
+  var boulders = [
+    { x: 655, y: 1010, rx: 116, ry:  84, rot: -0.14, key: true },
+    { x: 366, y: 1064, rx:  92, ry:  66, rot:  0.21 },
+    { x: 872, y: 1092, rx:  78, ry:  58, rot: -0.30 },
+    { x: 214, y: 1150, rx: 124, ry:  80, rot:  0.08 },
+    { x: 520, y: 1196, rx: 148, ry:  92, rot: -0.06 },
+    { x: 936, y: 1230, rx: 132, ry:  86, rot:  0.17 },
+    { x: 760, y: 946,  rx:  58, ry:  40, rot:  0.04 },
+    { x: 452, y: 928,  rx:  46, ry:  32, rot: -0.11 },
+    { x: 128, y: 962,  rx:  62, ry:  42, rot:  0.26 }
+  ];
+
+  function bouldPath(ctx, b) {
+    ctx.beginPath();
+    for (var t = 0; t <= Math.PI * 2 + 0.01; t += 0.09) {
+      var wob = 1 + 0.12 * AK.fbm2(Math.cos(t) * 1.6 + b.x * 0.01,
+                                   Math.sin(t) * 1.6 + b.y * 0.01, { octaves: 3 });
+      var px = b.x + b.rx * wob * Math.cos(t + b.rot);
+      var py = b.y + b.ry * wob * Math.sin(t + b.rot);
+      t === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+  }
+
+  /* the LEE shadow of every boulder, cast up and to the right from az 214,
+     into the pool that is already there */
+  boulders.forEach(function (b) {
+    var l3 = strobeAt(b.x, b.y);
+    if (l3 < 0.05) return;
+    cx.save();
+    /* THE CAST HAS TO LEAVE THE STONE. At an offset of half a radius the whole
+       shadow sat under the boulder that threw it, so the probe found the
+       strobe's own falloff instead and read 24.9 across it. A strobe this low
+       throws long: the cast now clears the lee edge and lands on open plate. */
+    cx.translate(b.x + b.rx * 0.92, b.y - b.ry * 0.58);
+    cx.scale(1.55, 0.50);
+    /* a two part cast, a tight core at the contact and a wide ambient falloff,
+       both softened so the shadow is a subtraction from a lit pool rather than a
+       pasted ellipse. The first two builds measured dL 23.7 and then 24.9
+       against a band of 8 to 16, so the cast carries about half the density it
+       carried then and the reading now sits inside the band the dossier set. */
+    var cg4 = cx.createRadialGradient(0, 0, b.rx * 0.14, 0, 0, b.rx * 0.98);
+    cg4.addColorStop(0.00, 'rgba(10,20,24,' + (0.112 + 0.133 * l3).toFixed(3) + ')');
+    cg4.addColorStop(0.44, 'rgba(10,20,24,' + (0.066 + 0.082 * l3).toFixed(3) + ')');
+    cg4.addColorStop(1.00, 'rgba(10,20,24,0)');
+    cx.fillStyle = cg4;
+    cx.beginPath(); cx.arc(0, 0, b.rx * 0.98, 0, Math.PI * 2); cx.fill();
+    cx.restore();
+  });
+
+  /* THE ATTACHED COLLAR. A long cast and a contact shadow are different
+     things, and this frame only had the first. The cast lies along the
+     strobe's own falloff, so nothing in it reads as a local dip; the collar
+     is the ambient occlusion at the foot, short and tight to the silhouette,
+     and it is what makes a stone SIT rather than hover. It is drawn under the
+     boulders, so only the ring outside each silhouette survives. */
+  boulders.forEach(function (b) {
+    var l5 = strobeAt(b.x, b.y);
+    var dens = 0.42 + 0.58 * l5;
+    cx.save();
+    cx.translate(b.x, b.y);
+    cx.rotate(b.rot);
+    cx.scale(b.rx / 100, b.ry / 100);
+    var ao = cx.createRadialGradient(0, 0, 0, 0, 0, 132);
+    ao.addColorStop(0.00, 'rgba(8,16,20,0)');
+    ao.addColorStop(0.70, 'rgba(8,16,20,0)');
+    ao.addColorStop(0.77, 'rgba(8,16,20,' + (0.34 * dens).toFixed(3) + ')');
+    ao.addColorStop(0.87, 'rgba(8,16,20,' + (0.24 * dens).toFixed(3) + ')');
+    ao.addColorStop(1.00, 'rgba(8,16,20,0)');
+    cx.fillStyle = ao;
+    cx.beginPath(); cx.arc(0, 0, 132, 0, Math.PI * 2); cx.fill();
+    cx.restore();
+  });
+
+  /* the boulders themselves, shaded by the strobe then engraved */
+  boulders.sort(function (a, b) { return a.y - b.y; });
+  boulders.forEach(function (b, bi) {
+    var l4 = strobeAt(b.x, b.y);
+    cx.save();
+    bouldPath(cx, b);
+    cx.clip();
+    /* form shading: the lit side faces the strobe, lower left */
+    cx.translate(b.x, b.y);
+    cx.scale(b.rx / 100, b.ry / 100);
+    var bg3 = cx.createRadialGradient(-52, 46, 4, 0, 0, 126);
+    var hi = Math.round(96 + 140 * l4), mid = Math.round(34 + 62 * l4), lo = Math.round(8 + 13 * l4);
+    bg3.addColorStop(0.00, 'rgb(' + hi + ',' + Math.round(hi * 0.94) + ',' + Math.round(hi * 0.76) + ')');
+    bg3.addColorStop(0.44, 'rgb(' + mid + ',' + Math.round(mid * 0.96) + ',' + Math.round(mid * 0.80) + ')');
+    bg3.addColorStop(1.00, 'rgb(' + lo + ',' + Math.round(lo * 1.3) + ',' + Math.round(lo * 1.4) + ')');
+    cx.fillStyle = bg3;
+    cx.beginPath(); cx.arc(0, 0, 120, 0, Math.PI * 2); cx.fill();
+    cx.restore();
+
+    /* the swelled-line lay, hand-run across the form in BOTH axes so no
+       boulder reads as a stack of contour lines */
+    cx.save();
+    bouldPath(cx, b);
+    cx.clip();
+    /* THE LAY WRAPS IN BOTH AXES. The first build ran straight parallel lines
+       across the right half of every boulder and clipped them at a hard vertical
+       seam, which is the one-axis collapse the dossier bought a mitigation for
+       and did not get. Each line is now a parametric curve on the ellipsoid, and
+       its width falls to ZERO at the terminator so no straight edge can survive. */
+    var nLines = Math.round(18 + b.rx * 0.30);
+    for (var q = 0; q < nLines; q++) {
+      var f = (q + 0.5) / nLines;              /* 0 at the lit pole, 1 at the lee */
+      var v3 = (f - 0.5) * Math.PI;            /* latitude on the ellipsoid */
+      cx.beginPath();
+      var drawn = false;
+      for (var u3 = -1.35; u3 <= 1.3501; u3 += 0.06) {
+        /* a small-circle on the ellipsoid, rotated into the boulder's own frame */
+        var ex3 = Math.cos(v3) * Math.sin(u3), ey3 = Math.sin(v3), ez3 = Math.cos(v3) * Math.cos(u3);
+        var lx = b.x + b.rx * (ex3 * Math.cos(b.rot) - ey3 * Math.sin(b.rot));
+        var ly = b.y + b.ry * (ex3 * Math.sin(b.rot) + ey3 * Math.cos(b.rot));
+        /* the strobe is lower left, so ndotl falls as the surface turns away */
+        var nd = Math.max(0, (-ex3 * 0.62 + ey3 * 0.44 + ez3 * 0.65));
+        if (nd > 0.86) { drawn = false; continue; }   /* nothing on the lit pole */
+        if (!drawn) { cx.moveTo(lx, ly); drawn = true; } else { cx.lineTo(lx, ly); }
+      }
+      var lee = 1 - Math.max(0, Math.min(1, Math.cos(v3)));
+      cx.lineWidth = (0.35 + 2.2 * Math.pow(lee, 0.85)) * (0.55 + 0.75 * l4);
+      cx.strokeStyle = 'rgba(4,12,15,' + (0.14 + 0.40 * lee).toFixed(3) + ')';
+      cx.stroke();
+    }
+    cx.restore();
+
+    /* the occlusion trough where the boulder meets sediment */
+    cx.save();
+    cx.strokeStyle = 'rgba(4,14,18,' + (0.34 + 0.40 * l4).toFixed(3) + ')';
+    cx.lineWidth = 3.4;
+    cx.beginPath();
+    cx.ellipse(b.x, b.y + b.ry * 0.90, b.rx * 0.88, b.ry * 0.16, 0, 0.15, Math.PI - 0.15);
+    cx.stroke();
+    cx.restore();
+  });
+
+  /* ---- 4. one rockfish, half in the light, at the edge of the strobe ---- */
+  (function rockfish(fx, fy, L) {
+    cx.save();
+    cx.translate(fx, fy);
+    cx.scale(L / 100, L / 100);
+    cx.fillStyle = 'rgba(12,26,30,0.94)';
+    cx.beginPath();
+    cx.moveTo(-96, 2);
+    cx.bezierCurveTo(-64, -34, 6, -42, 46, -20);
+    cx.lineTo(70, -34); cx.lineTo(74, -6);            /* dorsal spines to tail */
+    cx.lineTo(98, -26); cx.lineTo(90, 2); cx.lineTo(98, 30);
+    cx.lineTo(72, 12);
+    cx.bezierCurveTo(48, 34, -22, 40, -70, 20);
+    cx.closePath();
+    cx.fill();
+    /* the lit rim on the strobe side, lower left */
+    /* one filled silhouette only. The first build added an orange eye and a
+       gold belly arc, and gold means one thing deck-wide. */
+    cx.restore();
+  })(392, 962, 104);
+
+  /* ---- 5. the strobe housing's own glint, the frame's only gold ---- */
+  cx.save();
+  cx.fillStyle = '#FFC72C';
+  cx.beginPath(); cx.arc(LX - 22, LY - 84, 5.5, 0, Math.PI * 2); cx.fill();
+  cx.globalAlpha = 0.30;
+  cx.beginPath(); cx.arc(LX - 22, LY - 84, 18, 0, Math.PI * 2); cx.fill();
+  cx.restore();
+
+  /* the near-black band above the pool was flat. Put the medium into it. */
+  for (var vq = 0; vq < 260; vq++) {
+    var vx = rnd() * W, vy = 620 + rnd() * 420;
+    cx.fillStyle = 'rgba(180,196,180,' + (0.03 + rnd() * 0.09).toFixed(3) + ')';
+    cx.beginPath(); cx.arc(vx, vy, 0.6 + rnd() * 1.8, 0, Math.PI * 2); cx.fill();
+  }
+  cx.save();
+  cx.globalCompositeOperation = 'lighter';
+  cx.beginPath();
+  cx.moveTo(LX - 60, LY); cx.lineTo(LX + 40, LY);
+  cx.lineTo(940, 560); cx.lineTo(560, 520);
+  cx.closePath();
+  var scat = cx.createLinearGradient(LX, LY, 760, 540);
+  scat.addColorStop(0.00, 'rgba(148,136,102,0.16)');
+  scat.addColorStop(1.00, 'rgba(148,136,102,0)');
+  cx.fillStyle = scat; cx.fill();
+  cx.restore();
+
+  AKPOST.grade(cx, {
+    w: W, h: H,
+    exposure: 0.02, saturation: 0.94, contrast: 1.10, filmic: true,
+    lift: [0.008, 0.012, 0.014], gain: [1.01, 1.0, 0.985],
+    vignette: 0.30,
+    bloom: { threshold: 0.80, strength: 0.20, radius: 6 },
+    grain: { amount: 0.05, size: 2, seed: SEED },
+    dither: true, sharpen: 0.34
+  });
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + AK.grainTile(280, 52, SEED) + ')';
+  AK.fitText(document.getElementById('head'), { min: 48, max: 66, maxLines: 1 });
+
+  window.__akMotifs = [
+    { what: 'the rockfish silhouette at the edge of the strobe', rect: [246, 826, 120, 88], canvas: 'canvas#art' }
+  ];
+  resolve();
+  });
+});
+</script>
+</body>
+</html>
