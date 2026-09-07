@@ -21,7 +21,9 @@ python .claude/skills/carousel-engine/render.py \
 python .claude/skills/carousel-engine/qa.py --render-dir out/<run>/render   # machine_qa.json, exit!=0 on FAIL
 python .claude/skills/carousel-engine/assemble.py \
     --slides-dir out/<run>/slides --render-dir out/<run>/render \
-    --out-dir out/<run>/final --title "<document title>"            # carousel.pdf (VECTOR text) + contact sheet + thumbs
+    --out-dir out/<run>/final                                      # carousel.pdf (VECTOR text) + contact sheet + thumbs
+# the PDF's document title comes from out/<run>/copy.json's `document_title`;
+# --title is a fallback for decks with no copy.json, and loses to copy.json
 ```
 
 Prove the deck is bespoke before shipping it:
@@ -146,6 +148,17 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   trough and the lit-pool peak, and prints the entry to paste:
   `--render-dir <render> --slide N --base cx,cy` to propose one,
   `--slides-dir <slides> --verify` to read back what a built deck declares.
+
+  **The pair has to sit on the same piece of ground** (2026-09-06). There is
+  no upper bound on dL and there will not be one, but the two rects must be
+  within `qa.CONTACT_PAIR_SPAN` (96 design px) of each other, which is the
+  window contact_probe already searches for the pool and the width technique
+  94a gives a pool. Beyond it qa.py WARNs, because at that reach the number is
+  as easily the scene's own lighting falloff as it is a shadow: run No.52
+  passed a rect sitting on a camera's dark mount plate at dL 55, and a pair
+  straddling 115 px of open sediment at dL 25. If there is no lit ground
+  within 96 px of the foot, the pool was drawn no wider than the object and
+  the fix is to WIDEN THE POOL, never to reach further for something bright.
 
   Same rect grammar as `data-encodes`. qa.py takes the median CIELAB L* of
   each region AT 432px WIDE and **FAILS below 4.0 L\* of separation**, WARNs

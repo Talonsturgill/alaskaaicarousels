@@ -54,6 +54,56 @@ drew.
 
 ---
 
+## 2026-09-06, Phase 12 frontier scan (f): agent workflow patterns. PARKED, plus one negative result worth not rediscovering.
+
+Two of this run's four defect classes were a MESSAGE problem, not a detection
+problem, so the scan went at the literature on validator feedback in agent
+repair loops. What it found was applied the same hour, in this run's two engine
+fixes; what is written down here is the part that is NOT safely boundable yet,
+and one thing measured and rejected.
+
+- **PARKED: a reserved fallback needs a TRIGGER, not just a reservation.**
+  Slide 05's dossier named the mitten outcome exactly and reserved a crop; the
+  failure it named happened on the FIRST render and three repair rounds went
+  into rescuing the original shot anyway. The workflow literature has the shape
+  of this: an analysis of 70 agent systems reports that agent loops commonly
+  carry no formal bound on recovery attempts and fail as either infinite retry
+  or premature abandonment, and that a recovery action needs an explicit
+  TRIGGER CONDITION as well as bounded scope. This house has the bound (the
+  five round cap) and no trigger. The obvious shape of the fix is
+  `dossier_check` listing every reserved fallback in the deck at the first
+  pixel-review boundary, so the showrunner has to answer for not taking one,
+  and it is parked rather than built because it needs a `risk`/`fallback`
+  schema that dossiers write consistently today only by habit, and because the
+  three upgrade slots this run were full of defects that each cost a round.
+  UNBLOCKING CONDITION: an audit of what the last ten runs' dossiers actually
+  put in their risk flags, so the check reads a field and not prose.
+  https://arxiv.org/html/2607.14167v1 (the applied half),
+  https://arxiv.org/html/2607.24300v1 (SEAL, on self-authored verification)
+
+- **NEGATIVE RESULT, measured here: there must not be an upper bound on a
+  contact shadow's dL.** It looks like the obvious cure for run No.52's two
+  mis-aimed contact declarations (dL 55 on a camera's own mount plate, dL 25
+  across open sediment) and it is not one. The 102 contact readings recorded in
+  `runs/*/machine_qa.json` run to a median of 18.6 and a maximum of 62.2, so a
+  ceiling low enough to catch the 55 fires on legitimately deep shipped
+  shadows, and nothing catches the 25 at all, which sits at the corpus median.
+  The signal that DOES separate them is geometric and is now the gate: how far
+  the declared ground sits from the declared shadow. Do not re-propose the dL
+  ceiling without new evidence.
+
+- **CORROBORATION, no change made.** SEAL's prescription for a self-improving
+  loop is a sealed external acceptance gate: fixed audit instances the agent
+  does not author, conservative rejection of regressions, complete rollback.
+  Phase 12 already has all three in different words (runs/ plus
+  examples/demo-deck as the fixed corpus, the never-weaken-a-gate rule, and the
+  single revertible `upgrade(<date>):` commit). Worth knowing the shape has a
+  name and a measurement behind it: across 35 model-game experiments every
+  self-authored policy reported above 0.70 while 15 of them deployed below
+  random.
+
+---
+
 ## 2026-08-21 - Phase 1 craft refresh (No.39)
 
 Timeboxed study pass. The LinkedIn half returned nothing this file does not

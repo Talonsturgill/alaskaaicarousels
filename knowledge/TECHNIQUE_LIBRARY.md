@@ -717,7 +717,11 @@ annotation is the strongest pair):
     `w` spreads the tight cast to half that again and leaves no lit ground inside
     the window a reading is taken in; `scripts/contact_probe.py` searches 48px for
     the cast and 96px for the ground, so `w` belongs in the 70 to 110 range
-    whatever the object's width.
+    whatever the object's width. Since 2026-09-06 that is enforced from the
+    other end: qa.py WARNs when the declared shadow and ground rects are more
+    than 96 design px apart, because a pool no wider than its object leaves
+    nothing beside the foot to pair against and the author then reaches across
+    the picture for something bright. Widen the pool; never widen the reach.
     AND THE FLOOR IS NOT A TARGET. Tuned until they measured dL 35 to 45 against a
     4.0 floor and a known-good of 8.1, the pools read as stage spotlights. MEASURE
     THE PAIR, NEVER COMPUTE IT, and then look at the picture. D2

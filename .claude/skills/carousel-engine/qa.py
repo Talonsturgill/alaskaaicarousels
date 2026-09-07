@@ -1063,6 +1063,31 @@ def declaration_unparsed(attr, err):
 CONTACT_FAIL_DL = 4.0
 CONTACT_WARN_DL = 8.0
 
+# THE PAIR HAS TO BE ON THE SAME PIECE OF GROUND (2026-09-06, run No.52).
+# There is deliberately NO upper bound on dL, and that stays true: a deep
+# shadow is not a defect. But an unbounded dL means a rect that has wandered
+# onto some other surface reads as a triumphant shadow, and run No.52 shipped
+# two of them past this gate. Slide 08's declared shadow sat on the camera's
+# own dark mount plate and measured dL 55; slide 04's pair straddled 115 design
+# px of open sediment and measured dL 25, which was the strobe's falloff across
+# the frame and not a shadow at all. Five pixel critics found both by looking.
+#
+# The physical cause was the same twice: the lit pool was drawn no wider than
+# the object, so the object covered all of it and there was no lit ground left
+# beside the foot to pair against. The author then reached across the picture
+# for something bright, and the reach is the observable symptom.
+#
+# So the check is on the GEOMETRY of the declaration, not on its dL, and the
+# constant is not invented. contact_probe.py already searches 96 design px
+# either side of a foot for the pool it should pair against, and technique 94a
+# puts a pool's own width at 70 to 110 px. Measured against every declaration
+# in the eight decks that ship their slide sources (45 pairs): 40 sit at or
+# under 94 px and the remaining 5 are 102, 112, 209, 255 and 307. Both of run
+# No.52's defects reach 111 and 115. The line falls in the empty part of that
+# distribution, and it is a WARN because a far pair is a reading that may not
+# be measuring a shadow, not proof that it is not.
+CONTACT_PAIR_SPAN = 96.0   # design px between the two rects' nearest edges
+
 # WHERE THE CAST ACTUALLY IS (2026-08-29). None of these is a threshold on
 # whether a shadow reads: the verdict is decided by the two constants above and
 # is untouched. They bound a DIAGNOSTIC search that runs only once a shadow has
@@ -1180,6 +1205,47 @@ def _contact_aim(feed, s, rs, lg, d):
                round(gap((y0, y1, lrun)))))
 
 
+def _pair_gap(rs, rg):
+    """Design px between the nearest edges of the shadow and ground rect sets.
+
+    Zero when they touch or overlap. Rectilinear on each axis, combined as a
+    diagonal, so a ground rect stacked directly above a shadow rect (the shape
+    contact_probe warns about separately) is measured by its y offset alone.
+    """
+    def box(rects):
+        return (min(r[0] for r in rects), min(r[1] for r in rects),
+                max(r[0] + r[2] for r in rects), max(r[1] + r[3] for r in rects))
+    sx0, sy0, sx1, sy1 = box(rs)
+    gx0, gy0, gx1, gy1 = box(rg)
+    dx = max(0.0, gx0 - sx1, sx0 - gx1)
+    dy = max(0.0, gy0 - sy1, sy0 - gy1)
+    return (dx * dx + dy * dy) ** 0.5
+
+
+def _contact_reach(rs, rg):
+    """The far-pair sentence, or "" when the two rects are on the same ground.
+
+    Carries the three things a repair needs: WHERE (the measured gap), WHAT WAS
+    OBSERVED (the window a pool actually spans), and the ADMISSIBLE FIX. The
+    last one is the load-bearing part -- a message that names only the symptom
+    sent run No.52 hunting stroke weights for a round.
+    """
+    gap = _pair_gap(rs, rg)
+    if gap <= CONTACT_PAIR_SPAN:
+        return ""
+    return (" -- and the two rects are %.0f design px apart, past the %.0f px "
+            "window a contact pool spans: at that reach the difference between "
+            "them is as easily the scene's own lighting falloff, or a second "
+            "surface, as it is this object's shadow, and dL can't tell you "
+            "which. Pair the shadow against lit ground on the object's OWN "
+            "plate, within %.0f px of the foot. If there is no lit ground that "
+            "close, the pool was drawn no wider than the object and the fix is "
+            "to widen the pool, never to reach further for something bright. "
+            "`python3 scripts/contact_probe.py --render-dir <dir> --slides-dir "
+            "<dir> --verify` prints the profile this pair was read off."
+            % (gap, CONTACT_PAIR_SPAN, CONTACT_PAIR_SPAN))
+
+
 def contact_reads(img_arr, con, design_w, design_h):
     """MEASURE a declared contact shadow against the ground it claims to darken.
 
@@ -1230,6 +1296,8 @@ def contact_reads(img_arr, con, design_w, design_h):
     bits = "'%s': shadow L* %.1f vs ground L* %.1f, dL %.1f at %dw" % (
         what, ls, lg, d, FEED_W)
 
+    reach = _contact_reach(rs, rg)
+
     if d < CONTACT_FAIL_DL:
         extra = _contact_aim(feed, s, rs, lg, d)
         if lg < 12.0:
@@ -1241,11 +1309,13 @@ def contact_reads(img_arr, con, design_w, design_h):
                      "(a warm pool under the object), then cast the shadow"
                      % lg)
         return "fail", bits + (" -- below the %.1f L* floor, the object floats"
-                               % CONTACT_FAIL_DL) + extra
+                               % CONTACT_FAIL_DL) + extra + reach
     if d < CONTACT_WARN_DL:
         return "warn", bits + (" -- under the %.1f L* comfort band; it reads, "
                                "barely" % CONTACT_WARN_DL) + \
-            _contact_aim(feed, s, rs, lg, d)
+            _contact_aim(feed, s, rs, lg, d) + reach
+    if reach:
+        return "warn", bits + reach
     return "info", bits
 
 
@@ -1708,6 +1778,48 @@ CENSUS_MATCH_PX = 12   # a run this close to a declared mark IS that mark
 CENSUS_TEXTURE_N = 10  # runs beyond 3x declared + this: the band is texture
 
 
+# NAME THE MARK, AND NAME WHERE ITS INK ACTUALLY IS (2026-09-06, run No.52).
+# Slide 07 declared three marks on a scale whose endpoint had been corrected
+# from x 1000 to x 960 while the canvas variable that DRAWS the axis stayed at
+# 1000. Two of the three declared marks therefore had no ink under them at all
+# and the third, the shared origin, drew perfectly. The census caught it and
+# said "the weakest declared mark is no stronger than the band's own texture",
+# which is a true sentence describing a DRAWING WEIGHT problem, and the run
+# spent a round on stroke weights before anyone found the constant.
+#
+# One strong mark and two at the noise floor is a different diagnosis from
+# three uniformly faint marks, and the census already has the numbers to tell
+# them apart: it computes declared_ink per mark and then throws all but the
+# minimum away. The empirical result behind saying it this way rather than just
+# reporting the location: in the TextWorld repair study, feedback carrying
+# location plus observed value alone performed close to a raw validator error,
+# and it was the ADMISSIBLE ALTERNATIVE -- here, the nearest position that does
+# carry mark-strength ink -- that moved repair success 36 to 40 points.
+# https://arxiv.org/html/2607.14167v1
+CENSUS_ALT_MAX = 200       # design px to search for where the mark did draw
+
+
+def _census_nearest_ink(prof, origin, p, level, radius=CENSUS_ALT_MAX):
+    """Nearest position to design-px `p` where the band's profile reaches
+    `level`, searching outward. Returns (position, ink) or (None, None).
+
+    This is the admissible alternative: not "your mark is weak" but "there is
+    a mark-strength run of ink at 1000, 40 px from the 960 you declared".
+    """
+    i = int(round(p - origin))
+    for r in range(1, int(radius) + 1):
+        for j in (i - r, i + r):
+            if 0 <= j < len(prof) and prof[j] >= level:
+                return origin + j, float(prof[j])
+    return None, None
+
+
+def _census_ink_table(marks, declared_ink, unit, sc):
+    return ", ".join("%g (%s): ink %.1f" % (p, _census_fmt(_census_value(sc, p),
+                                                           unit), v)
+                     for p, v in zip(marks, declared_ink))
+
+
 def _census_value(sc, p):
     (p0, v0), (p1, v1) = sc["from"], sc["to"]
     if p1 == p0:
@@ -1877,21 +1989,67 @@ def axis_census(img_arr, sc, design_w, design_h):
 
     declared_ink = [peak_at(p) for p in marks]
     w = min(declared_ink)
+    strongest = max(declared_ink)
     floor_ = float(np.median(prof))
+    # A mark is DEAD when its own ink is at the band's noise floor, which is
+    # exactly the condition the two warn branches below already trip on. Nothing
+    # here can turn a census that used to pass into one that warns: `weak` is
+    # non-empty only when min(declared_ink) already crossed one of those two
+    # lines. This split re-routes a warn to a better sentence; it adds none.
+    dead_at = max(0.5, floor_ * 1.2)
+    weak = [p for p, v in zip(marks, declared_ink) if v <= dead_at]
+
+    def alternatives():
+        """Where each dead mark's ink actually is, if it is anywhere near."""
+        out = []
+        for p in weak:
+            q, v = _census_nearest_ink(prof, origin, p, max(strongest * 0.6,
+                                                            floor_ * 2.0))
+            if q is not None:
+                out.append("The nearest mark-strength ink to the mark declared "
+                           "at %g is at %g, %.0f px away (ink %.1f, and that "
+                           "position reads as %s)"
+                           % (p, q, abs(q - p), v,
+                              _census_fmt(_census_value(sc, q), unit)))
+        if not out:
+            return (" No mark-strength ink was found within %dpx of any of "
+                    "them, so those marks did not draw at all."
+                    % CENSUS_ALT_MAX)
+        return (" " + ". ".join(out[:3]) + ". A constant offset across several "
+                "marks is the signature of a scale corrected in `data-scale` "
+                "and left alone in the code that DRAWS it: check the axis "
+                "endpoint the canvas uses against the `to` this slide "
+                "declares, before touching any stroke weight.")
+
+    # SOME MARKS DREW AND SOME DID NOT. Checked before the uniform cases below,
+    # because it is a different defect wearing the same number.
+    if strongest > max(1.0, floor_ * 2.5) and len(weak) < len(marks) and weak:
+        return "warn", (
+            "'%s': %d of this axis's %d declared mark(s) carry no more ink "
+            "than the band's own texture (%.1f), while the strongest declared "
+            "mark reads %.1f. Per mark: %s. That spread is not a drawing-"
+            "weight problem; it is a mark that is not where it is declared.%s"
+            % (what, len(weak), len(marks), floor_, strongest,
+               _census_ink_table(marks, declared_ink, unit, sc),
+               alternatives()))
     if w <= 0.5:
         return "warn", (
             "'%s': the slide declares a mark at %g and there is no measurable "
             "ink within %dpx of it in the band, so the census has nothing to "
             "calibrate on. Either the mark did not draw, or its declared "
-            "position is not where it drew."
-            % (what, marks[int(np.argmin(declared_ink))], CENSUS_PEAK_R))
+            "position is not where it drew. Per mark: %s.%s"
+            % (what, marks[int(np.argmin(declared_ink))], CENSUS_PEAK_R,
+               _census_ink_table(marks, declared_ink, unit, sc),
+               alternatives()))
     if w <= floor_ * 1.2:
         return "warn", (
-            "'%s': the weakest declared mark (ink %.1f) is no stronger than the "
-            "band's own texture (%.1f), so no census can separate marks from "
-            "art here. Narrow the band to the strip the marks occupy, or draw "
-            "the marks so a reader can tell them from the ground."
-            % (what, w, floor_))
+            "'%s': the weakest declared mark (at %g, ink %.1f) is no stronger "
+            "than the band's own texture (%.1f), and the strongest declared "
+            "mark reads %.1f, so no census can separate marks from art here. "
+            "Per mark: %s. Narrow the band to the strip the marks occupy, or "
+            "draw the marks so a reader can tell them from the ground."
+            % (what, marks[int(np.argmin(declared_ink))], w, floor_, strongest,
+               _census_ink_table(marks, declared_ink, unit, sc)))
 
     thr = w
     runs, start = [], None
