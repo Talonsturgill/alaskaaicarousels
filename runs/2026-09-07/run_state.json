@@ -96,5 +96,10 @@
     "gmail": "pending",
     "retro": "pending"
   },
-  "notes": []
+  "notes": [],
+  "artifacts": {
+    "site_signoff": "PASS, 100 pages, 18 of 18 checks clean, read again after the merge brought main's gas watch commits in. Every page was also looked at by eye at desktop and phone width.",
+    "gas_watch": "PASS. 34 days on record, 32 verified, no gaps, latest reading 2026-09-07 at 7.62 Bcf and 58.6 percent of design, chart present, EIA cross check through 202605 over 131 months with the demand model missing by 6.82 percent. Read only. The collectors and both gas ledgers were not touched by this run and verify byte-identical to main.",
+    "site_fixes": "13 bare non-ordinal dates repaired in the docket's reader-facing access_note and summary fields, plus all 11 live docket items refreshed against primary sources. AND ONE REAL CORRECTION a review bot caught in this run's own work: the September 7th history note on the Enstar Cook Inlet item reintroduced July 24th as the petition filing date, which that item's own August 4th entry had corrected to July 23rd. Because the docket page and the feeds surface the latest history entry, the public record was contradicting its own correction. Fixed in 1ed2412; the August entries keep their original wording, because published history is not rewritten."
+  }
 }
