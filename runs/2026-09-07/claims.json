@@ -716,6 +716,23 @@
       "fetched": true,
       "confidence": 0.95,
       "notes": "This is what the shareholders asked for, not what BSNC did. BSNC is a DIFFERENT corporation from Koniag, which is the deck's subject, and slide 08 must never let the two blur. The petition is on the page as the register in which Alaskans argue about this, and for no other reason."
+    },
+    {
+      "id": "C56",
+      "claim": "The Leisnoi contract's obligated total exceeds the $20 million sole source review threshold by $632,119.41.",
+      "value": "$632,119.41",
+      "verbatim": "$20,632,119.41 minus $20,000,000.00",
+      "source_url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_HQ003425CE092_9700_-NONE-_-NONE-/",
+      "source_outlet": "Derived. USAspending.gov award record for the obligated total, and the Hunton Andrews Kurth briefing for the threshold.",
+      "source_is_primary": false,
+      "date_of_source": "2026-09-08",
+      "fetched": true,
+      "confidence": 0.9,
+      "derived_from": [
+        "C07",
+        "C42"
+      ],
+      "notes": "ARITHMETIC, NOT A NEW SOURCE. This is C07's obligated figure minus C42's threshold, both already verified, and it is printed on slide 08. Recorded as its own claim because the figure appeared on a frame with nothing carrying it, which the upgraded dossier_check caught after the fact. It inherits C42's softness: the threshold itself is a law firm's account of a memorandum no Pentagon page would serve, and slide 08 labels it as such. The subtraction is exact and can be checked by anyone with the two numbers."
     }
   ],
   "killed": [

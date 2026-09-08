@@ -105,8 +105,10 @@ window.renderReady=(async()=>{
       if(d<S-2||reserved(x,y)) continue; const near=Math.max(0,1-(d-S)/620), m=rs();
       cx.fillStyle='rgba(198,216,232,'+((0.05+0.32*m*m)*(0.30+0.70*near)).toFixed(3)+')';
       cx.beginPath(); cx.arc(x,y,m>0.95?1.6:(m>0.74?1.1:0.7),0,7); cx.fill(); }
-    const lim=cx.createRadialGradient(CX,CY,S-8,CX,CY,S+150);
-    lim.addColorStop(0,'rgba(104,164,214,0.34)'); lim.addColorStop(0.26,'rgba(60,110,160,0.15)');
+    const lim=cx.createRadialGradient(CX,CY,0,CX,CY,S+150);
+    const _i=(S-18)/(S+150), _l=(S-6)/(S+150), _m=_l+0.26*(1-_l);
+    lim.addColorStop(0,'rgba(104,164,214,0)'); lim.addColorStop(_i,'rgba(104,164,214,0)');
+    lim.addColorStop(_l,'rgba(104,164,214,0.34)'); lim.addColorStop(_m,'rgba(60,110,160,0.15)');
     lim.addColorStop(1,'rgba(30,60,100,0)');
     cx.globalCompositeOperation='lighter'; cx.fillStyle=lim; cx.fillRect(0,0,W,H); cx.restore(); }
 
@@ -127,9 +129,11 @@ window.renderReady=(async()=>{
   cx.restore();
   const kd2=document.createElement('div'); kd2.textContent='KODIAK';
   kd2.style.cssText='position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;'+
-    'letter-spacing:.10em;color:#9DB2C8;white-space:nowrap;text-shadow:0 0 4px #050A14,'+
-    '0 0 9px #050A14,1px 1px 0 #050A14,-1px -1px 0 #050A14;left:'+Math.round(kp[0]-42)+
-    'px;top:'+Math.round(kp[1]-58)+'px';
+    'letter-spacing:.10em;color:#C3D2E2;white-space:nowrap;text-shadow:0 0 5px #050A14,'+
+    '0 0 10px #050A14,0 0 16px rgba(5,10,20,0.9),1px 1px 0 #050A14,-1px -1px 0 #050A14,'+
+    '1px -1px 0 #050A14,-1px 1px 0 #050A14,2px 0 0 #050A14,-2px 0 0 #050A14,'+
+    '0 2px 0 #050A14,0 -2px 0 #050A14;left:'+Math.round(kp[0]-42)+
+    'px;top:'+Math.round(kp[1]-70)+'px';
   document.body.appendChild(kd2);
 
   /* ---- ISOTYPE. same-size dots, never enlarged ones. 1 dot = 100 people. */

@@ -118,14 +118,14 @@
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "busy art under text (bg edge density 0.04) beneath 'KODIAK' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
-        "art touching glyphs (6% of the ring around 'KODIAK', spanning 49%) -- pixel critic verify the label is not crossed"
+        "busy art under text (bg edge density 0.03) beneath 'KODIAK' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (3% of the ring around 'ONE DOT IS 100 SHAREHOLDERS', spanning 12%) -- pixel critic verify the label is not crossed"
       ],
       "asserts": [
         "'3,400 shareholders at incorporation, one dot per hundred' holds: 34 vs 34 marks, counted over 34 declared marks (within 0)",
-        "'3,400 shareholders at incorporation, one dot per hundred': 34 mark centres probed at r=10px, cohort median 34.7 dE, all present (weakest 33.5 dE)",
+        "'3,400 shareholders at incorporation, one dot per hundred': 34 mark centres probed at r=10px, cohort median 60.4 dE, all present (weakest 59.7 dE)",
         "'4,700 shareholders today, one dot per hundred' holds: 47 vs 47 marks, counted over 47 declared marks (within 0)",
-        "'4,700 shareholders today, one dot per hundred': 47 mark centres probed at r=10px, cohort median 61.3 dE, all present (weakest 60.5 dE)"
+        "'4,700 shareholders today, one dot per hundred': 47 mark centres probed at r=10px, cohort median 78.0 dE, all present (weakest 75.9 dE)"
       ]
     },
     {

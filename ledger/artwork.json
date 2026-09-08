@@ -1633,7 +1633,7 @@
       "carousel_no": 53,
       "slide_count": 9,
       "hero_structure": "NEW: THE CURVED TRANSECT AS A CAMERA MOVE. One 3,362 mile geodesic from Anchorage to the Pentagon, drawn across nine frames as a single continuous camera crawl, with a vertical instrument rail on every slide printing t and the miles travelled. The line is BROKEN on 01 to 03 where the comma hides a contract, HEALED on 04, stacked four deep on 05, ABSENT on 06 because arc length is zero where the work is actually performed, absent on 07, branching for the only time on 08, and whole from end to end on 09.",
-      "atmosphere": "TERMINATOR GRAZE, KEY AT AZ 142 EL 4. A near horizontal key so the deck is lit from the end the money is at and Alaska is the dark end of every frame, with a 6 to 1 key to fill ratio and an additive back-side atmospheric shell at the limb. HONEST NOTE, this nearly did not ship. The limb glow was authored as a radial gradient with an inner radius of S-6, and canvas paints every pixel inside that radius with the gradient's first stop, so a rim light was being added FLAT over the whole globe in lighter mode on SEVEN slides, erasing the terminator the whole deck depends on. It was found in Phase 8 and rebuilt as a true annulus.",
+      "atmosphere": "TERMINATOR GRAZE, KEY AT AZ 142 EL 4. A near horizontal key so the deck is lit from the end the money is at and Alaska is the dark end of every frame, with a 6 to 1 key to fill ratio and an additive back-side atmospheric shell at the limb. HONEST NOTE, this nearly did not ship. The limb glow was authored as a radial gradient with an inner radius of S-6, and canvas paints every pixel inside that radius with the gradient's first stop, so a rim light was being added FLAT over the whole globe in lighter mode on EIGHT slides, erasing the terminator the whole deck depends on. It was found in Phase 8 and rebuilt as a true annulus.",
       "depth_technique": "Orthographic d3 cartography matched frame for frame to a three.js orthographic camera on the same scale, so the drawn geodesic and the lit sphere are the same globe rather than two globes agreeing by eye. Plus a seeded starfield with a near-limb density ramp, and one GPU displaced-terrain frame on 06.",
       "line_voice": "instrument hairline. Four ranked weights carrying meaning rather than emphasis, the transect at 2.6px over a 5px dark casing, coastlines at 1.0 to 1.25px, state boundaries at 0.9px at 0.38 alpha, graticule at 0.75px at 0.14 alpha. Nothing is stroked for decoration.",
       "continuity_device": "Four devices. D1 the rail's t and mileage readout, checked against the drawn arc. D2 the arc's own state, which is the story. D3 the coordinate string, moving with the camera. D4 column alternation, type left with art right on 01 to 05, mirrored on 08.",
@@ -1685,14 +1685,15 @@
         "AK.fitText on every display line",
         "haloed text-shadow instead of plates, deck-wide"
       ],
-      "note": "THE STANDING WEAKNESS WAS ATTACKED STRUCTURALLY AND ONLY PARTLY WON. Artwork craft has been the weakest criterion in 7 of the last 10 runs at a mean of 6.7. This deck's answer was to delete the contact-shadow defect class by giving eight of nine frames nothing to stand on, and to reserve type space in the composition rather than defend it afterwards. The first build still shipped a near-black terrain frame, a flat additive wash over seven globes, and a gold constellation mark missing from all nine rails. The critics found all three. Next run should assume the LIGHTING is where the craft score lives, and check a frame's actual value range against the palette before writing a dossier around it.",
+      "note": "THE STANDING WEAKNESS WAS ATTACKED STRUCTURALLY AND ONLY PARTLY WON. Artwork craft has been the weakest criterion in 7 of the last 10 runs at a mean of 6.7. This deck's answer was to delete the contact-shadow defect class by giving eight of nine frames nothing to stand on, and to reserve type space in the composition rather than defend it afterwards. The first build still shipped a near-black terrain frame, a flat additive wash over seven globes, and a gold constellation mark missing from all nine rails. The critics found all three. Next run should assume the LIGHTING is where the craft score lives, and check a frame's actual value range against the palette before writing a dossier around it. PHASE 12 POSTSCRIPT. The eighth flat core proves the note above: the lighting IS where the craft score lives, and the repair that missed it missed it because it matched a NAME rather than measuring the drawing. Never repair a drawing defect by regex.",
       "corrections": [
-        "the limb glow annulus, seven slides",
+        "the limb glow annulus, EIGHT slides. Seven were caught in round 2 by matching S-6; the eighth was written S-8 and was found only in Phase 12, by a gate that measures the gradient rather than matching its name",
         "slide 06 relit, key 3.6 to 6.4 and sky 0.14 to 0.34",
         "the fixed Polaris added to all nine rails",
         "the ONE DAY call moved off the register rows on 05",
         "the PENTAGON label moved off the record block on 04",
-        "the ISOTYPE labels rebuilt clear of their own dot rows on 07"
+        "the ISOTYPE labels rebuilt clear of their own dot rows on 07",
+        "slide 07 relit and the KODIAK halo strengthened, which moved artwork craft from 7 to 8 and the deck from 8.78 to 9.07"
       ]
     }
   ]

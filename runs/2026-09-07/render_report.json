@@ -187,10 +187,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 1375.7545401713703,
-          "dev_right": 1402.3304984233234
+          "dev_right": 1402.3304984233234,
+          "ink_left": 1377.7545401713703,
+          "ink_right": 1399.7545401713703,
+          "ink_top": 1376.0497775745225,
+          "ink_bottom": 1408.0497775745225,
+          "sy": 2
         }
       ],
       "svg_plates": [],
@@ -2967,6 +2973,7 @@
       ],
       "css_unreadable": 0,
       "gradient_clips": [],
+      "flat_cores": [],
       "declaration_misses": [],
       "canvas_layer": {
         "ok": true,
@@ -2976,7 +2983,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 9196,
+      "render_ms": 11117,
       "ok": true,
       "canvases": [
         {
@@ -3578,6 +3585,7 @@
       "motifs": [],
       "css_unreadable": 0,
       "gradient_clips": [],
+      "flat_cores": [],
       "declaration_misses": [],
       "canvas_layer": {
         "ok": true,
@@ -3587,7 +3595,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 9087,
+      "render_ms": 10167,
       "ok": true,
       "canvases": [
         {
@@ -4068,10 +4076,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 273.4756789333348,
-          "dev_right": 332.0636000759129
+          "dev_right": 332.0636000759129,
+          "ink_left": 279.4756789333348,
+          "ink_right": 325.4756789333348,
+          "ink_top": 1035.5988162522112,
+          "ink_bottom": 1107.5988162522112,
+          "sy": 2
         }
       ],
       "svg_plates": [],
@@ -6848,6 +6862,7 @@
       ],
       "css_unreadable": 0,
       "gradient_clips": [],
+      "flat_cores": [],
       "declaration_misses": [],
       "canvas_layer": {
         "ok": true,
@@ -6857,7 +6872,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 9266,
+      "render_ms": 9968,
       "ok": true,
       "canvases": [
         {
@@ -8921,6 +8936,7 @@
       ],
       "css_unreadable": 0,
       "gradient_clips": [],
+      "flat_cores": [],
       "declaration_misses": [],
       "canvas_layer": {
         "ok": true,
@@ -8930,7 +8946,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 8949,
+      "render_ms": 8509,
       "ok": true,
       "canvases": [
         {
@@ -9518,10 +9534,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 107.1998291015625,
-          "dev_right": 212.8001708984375
+          "dev_right": 212.8001708984375,
+          "ink_left": 109.1998291015625,
+          "ink_right": 210.40008544921875,
+          "ink_top": 2320,
+          "ink_bottom": 2352,
+          "sy": 2
         },
         {
           "text": "2020",
@@ -9533,10 +9555,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 324.6998291015625,
-          "dev_right": 430.3001708984375
+          "dev_right": 430.3001708984375,
+          "ink_left": 326.6998291015625,
+          "ink_right": 427.90008544921875,
+          "ink_top": 2320,
+          "ink_bottom": 2352,
+          "sy": 2
         },
         {
           "text": "2021",
@@ -9548,10 +9576,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 542.1998291015625,
-          "dev_right": 647.8001708984375
+          "dev_right": 647.8001708984375,
+          "ink_left": 544.1998291015625,
+          "ink_right": 645.4000854492188,
+          "ink_top": 2320,
+          "ink_bottom": 2352,
+          "sy": 2
         },
         {
           "text": "2022",
@@ -9563,10 +9597,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 759.6998291015625,
-          "dev_right": 865.3001708984375
+          "dev_right": 865.3001708984375,
+          "ink_left": 761.6998291015625,
+          "ink_right": 862.9000854492188,
+          "ink_top": 2320,
+          "ink_bottom": 2352,
+          "sy": 2
         },
         {
           "text": "2023",
@@ -9578,10 +9618,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 977.1998291015625,
-          "dev_right": 1082.8001708984375
+          "dev_right": 1082.8001708984375,
+          "ink_left": 979.1998291015625,
+          "ink_right": 1080.4000854492188,
+          "ink_top": 2320,
+          "ink_bottom": 2352,
+          "sy": 2
         },
         {
           "text": "2024",
@@ -9593,10 +9639,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 1194.6998291015625,
-          "dev_right": 1300.3001708984375
+          "dev_right": 1300.3001708984375,
+          "ink_left": 1196.6998291015625,
+          "ink_right": 1295.9000854492188,
+          "ink_top": 2320,
+          "ink_bottom": 2352,
+          "sy": 2
         },
         {
           "text": "2025",
@@ -9608,10 +9660,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 1412.1998291015625,
-          "dev_right": 1517.8001708984375
+          "dev_right": 1517.8001708984375,
+          "ink_left": 1414.1998291015625,
+          "ink_right": 1515.4000854492188,
+          "ink_top": 2320,
+          "ink_bottom": 2352,
+          "sy": 2
         },
         {
           "text": "2026",
@@ -9623,10 +9681,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 1629.6998291015625,
-          "dev_right": 1735.3001708984375
+          "dev_right": 1735.3001708984375,
+          "ink_left": 1631.6998291015625,
+          "ink_right": 1732.9000854492188,
+          "ink_top": 2320,
+          "ink_bottom": 2352,
+          "sy": 2
         },
         {
           "text": "2027",
@@ -9638,10 +9702,16 @@
           "align": "center",
           "canvas_w": 2160,
           "canvas_h": 2700,
+          "canvas_id": "c1",
           "sx": 2,
           "skew": false,
           "dev_left": 1847.1998291015625,
-          "dev_right": 1952.8001708984375
+          "dev_right": 1952.8001708984375,
+          "ink_left": 1849.1998291015625,
+          "ink_right": 1952.4000854492188,
+          "ink_top": 2320,
+          "ink_bottom": 2352,
+          "sy": 2
         }
       ],
       "svg_plates": [],
@@ -9743,6 +9813,7 @@
       "motifs": [],
       "css_unreadable": 0,
       "gradient_clips": [],
+      "flat_cores": [],
       "declaration_misses": [],
       "canvas_layer": {
         "ok": true,
@@ -9752,7 +9823,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 7986,
+      "render_ms": 8363,
       "ok": true,
       "canvases": [
         {
@@ -13000,6 +13071,40 @@
       ],
       "css_unreadable": 0,
       "gradient_clips": [],
+      "flat_cores": [
+        {
+          "key": "4|96|fill|lighter",
+          "n": 1,
+          "how": "fill",
+          "r0": 4,
+          "r1": 96,
+          "a0": 0.5,
+          "col0": "rgba(132,170,208,0.50)",
+          "op": "lighter",
+          "alpha": 1,
+          "core_frac": 0,
+          "cx": 584,
+          "cy": 1912,
+          "canvas_w": 2160,
+          "canvas_h": 2700
+        },
+        {
+          "key": "2|52|fill|source-over",
+          "n": 1,
+          "how": "fill",
+          "r0": 2,
+          "r1": 52,
+          "a0": 0.95,
+          "col0": "rgba(2,5,11,0.95)",
+          "op": "source-over",
+          "alpha": 1,
+          "core_frac": 0,
+          "cx": 512,
+          "cy": 1914,
+          "canvas_w": 2160,
+          "canvas_h": 2700
+        }
+      ],
       "declaration_misses": [],
       "canvas_layer": {
         "ok": true,
@@ -13009,7 +13114,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 10039,
+      "render_ms": 10323,
       "ok": true,
       "canvases": [
         {
@@ -13375,19 +13480,19 @@
           "tag": "div",
           "unsized": false,
           "x": 208,
-          "y": 372,
+          "y": 360,
           "w": 101,
           "h": 31,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(157, 178, 200)",
+          "color": "rgb(195, 210, 226)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               208,
-              372,
+              360,
               101,
               31
             ]
@@ -13860,6 +13965,7 @@
       "motifs": [],
       "css_unreadable": 0,
       "gradient_clips": [],
+      "flat_cores": [],
       "declaration_misses": [],
       "canvas_layer": {
         "ok": true,
@@ -13869,7 +13975,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 9431,
+      "render_ms": 9394,
       "ok": true,
       "canvases": [
         {
@@ -13882,15 +13988,15 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 48.6,
-          "variance": 559.9
+          "mean": 12.7,
+          "variance": 159.8
         }
       ],
       "breather": true,
       "leaders": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-07/slides/slide-07.html",
-        "sha1": "9c067fc4bc7defe664f814686e04fd6e606ffdad"
+        "sha1": "c962ff5f1acda13b2d2173b358b0f8a04a6efcf9"
       }
     },
     {
@@ -17744,6 +17850,7 @@
       ],
       "css_unreadable": 0,
       "gradient_clips": [],
+      "flat_cores": [],
       "declaration_misses": [],
       "canvas_layer": {
         "ok": true,
@@ -17753,7 +17860,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 8542,
+      "render_ms": 9047,
       "ok": true,
       "canvases": [
         {
@@ -20844,6 +20951,7 @@
       ],
       "css_unreadable": 0,
       "gradient_clips": [],
+      "flat_cores": [],
       "declaration_misses": [],
       "canvas_layer": {
         "ok": true,
@@ -20853,7 +20961,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 8571,
+      "render_ms": 8719,
       "ok": true,
       "canvases": [
         {

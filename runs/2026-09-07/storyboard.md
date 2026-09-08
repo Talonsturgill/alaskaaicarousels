@@ -663,8 +663,8 @@ the buyers renamed and the sentence did not. Plants, where is any of it performe
   `KONIAG IT SYSTEMS   HQ003425CE012   $12,022,390.38   ENDS SEPTEMBER 10TH, 2025` [C21]
   `LEISNOI PROFESSIONAL SERVICES   HQ003425CE092   $20,632,119.41   BEGINS SEPTEMBER 11TH, 2025` [C22]
 - Dimension call, Unbounded 700, 64px, gold: `ONE DAY` [C22]
-- Mono, 26px: `2019   JOINT ARTIFICIAL INTELLIGENCE CENTER` [C19]
-- Mono, 26px: `2026   DEPUTY TO THE CHIEF DIGITAL AND ARTIFICIAL INTELLIGENCE OFFICE` [C13]
+- Mono, 26px: `THEN   JOINT ARTIFICIAL INTELLIGENCE CENTER` [C19]
+- Mono, 26px: `NOW   DEPUTY TO THE CHIEF DIGITAL AND ARTIFICIAL INTELLIGENCE OFFICE` [C13]
 - Guard, mono 24px: `OBLIGATED TO DATE, NOT CEILING. TUKNIK IS A WHOLLY OWNED SUBSIDIARY OF KONIAG GOVERNMENT SERVICES.` [C23]
 - Rail: `57.6N 112.4W . t 0.52 . 1,748 MI . 05 / 09`
 
@@ -853,7 +853,7 @@ reader who is not already saturated.
   `43 U.S.C. 1606(i)   70% OF TIMBER AND SUBSURFACE REVENUE, SHARED ACROSS TWELVE REGIONAL CORPORATIONS` [C31]
   `DIVIDEND            $33 PER SHARE, DISTRIBUTED JANUARY 27TH` [C33]
   `ELDER BENEFIT       $1,200` [C34]
-  `SHAREHOLDERS        4,700+ TODAY, 3,400 AT INCORPORATION IN 1971` [C35]
+  `SHAREHOLDERS        4,700+ TODAY, 3,400 AT INCORPORATION` [C35]
   `FOUNDATION          $10 MILLION+, 4,000+ SCHOLARSHIPS, 158 CURRENT` [C36]
 - Body, Manrope 500, 34px: `So this money comes home through one corporation's own channels.` (63 ch) [C37]
 - Guard, mono 24px: `8(a) IS ROUGHLY 4 PERCENT OF ALL FEDERAL CONTRACTING.` [C48]
@@ -940,7 +940,7 @@ their own register. Plants, what does Alaska AI mean then.
   `PERFORMED   NASHVILLE, TENNESSEE` [C40]
   `REPORTED    UP TO $63 MILLION, PER THE TENNESSEE LOOKOUT` [C41]
 - Body, Manrope 500, 34px: `Bering Straits shareholders petitioned their own corporation to divest from ICE detention work. 102 signatures.` (110 ch)
-- Threshold line, Manrope 500, 34px: `Sole source 8(a) awards above $20 million were ordered reviewed in January 2026. This one is $632,119.41 above that line. No review of it is on the record.` (152 ch) [C42]
+- Threshold line, Manrope 500, 34px: `Sole source 8(a) awards above $20 million were ordered reviewed in January 2026. The Leisnoi contract is $632,119.41 above that line. No review of it is on the record.` [C42][C07][C56]
 - Pull quote, Manrope 700, 36px: `"Nobody has quantified how much of that $13.5 billion runs through 8(a) contracts."` [C43]
 - Attribution, mono 24px: `ROSS JOHNSTON, COMMONWEALTH NORTH, ADN, JUNE 6TH, 2026` [C43]
 - Rail: `41.0N 82.1W . t 0.90 . 3,026 MI . 08 / 09`
@@ -1096,13 +1096,17 @@ and accepting that this frame is about the whole line rather than about place.
 
 # BUILD RECONCILIATION
 
-The build left the plan in twenty-two named places, and every one of them is a
-row in the table below with the reason it moved. Six are repairs to facts or to
-sourcing, seven are type that was crossing type, five are lighting or probes
-that were measuring the wrong thing, and the rest are placement. The largest
-single one is the limb glow: a radial gradient with an inner radius of S-6 was
-adding a rim light FLAT over the whole globe on seven slides, which was quietly
-erasing the az-142 terminator the entire deck is built on.
+The build left the plan in forty-five named places, one row each with the reason
+it moved, accumulated across five revision rounds and a Phase 12 pass. They fall
+into repairs to facts or sourcing, type that was crossing type, lighting or
+probes that were measuring the wrong thing, and placement. The largest single
+one is the limb glow: a radial gradient with a non-zero inner radius adds a rim
+light FLAT over the whole globe, because canvas paints every pixel inside that
+radius with stop 0. It was doing that on EIGHT of the nine slides and quietly
+erasing the az-142 terminator the entire deck is built on. Seven were repaired
+in round 2 by matching `S-6`; the eighth was written `S-8` and survived five
+more rounds until a gate that measures gradients rather than matching names
+found it in Phase 12.
 
 **WHERE THE BUILD LEFT THE PLAN, per slide.**
 
@@ -1151,6 +1155,9 @@ Written after the Phase 8 rounds, from the shipped render and not from memory.
 | 02 | The lead became "The shorter phrase is inside the longer one." | ROUND 5. It read "The longer phrase is inside the shorter one", which is the INVERSE of its own cited C03, "the longer phrase is a strict superset of the shorter one". On the frame carrying the argument, to an audience who run federal phrase search for a living. |
 | 05 | The buyer pair became THEN and NOW rather than 2019 and 2026. | ROUND 5. The JAIC-named contract in the record is 140D0421C0002, signed December 2020 to September 2021 (C19); the 2019 award C20 never names the JAIC. Pairing the year with the office asserted a mapping the record does not carry, the same class of inference as the 1971 line. The slide's argument is the RENAMING, and the year axis underneath already carries the chronology. |
 | caption | "runs back to 2019 and the Joint Artificial Intelligence Center" became two sentences. | ROUND 5. Same soft pairing as slide 05, in the copy. Splitting rather than adding a comma, because the comma budget is a hard fail and the house rule says split the sentence instead. |
+| 07 | The limb glow's EIGHTH flat-core instance was repaired, and the KODIAK label's halo strengthened. | PHASE 12. Round 2's annulus repair matched `createRadialGradient(CX,CY,S-6,...)` by regex; slide 07 used `S-8`, so it kept the flat additive wash for five more rounds. It is the frame every critic called a broad flat blue gradient and the reason artwork craft held at 7. The new engine gate found it by MEASUREMENT rather than by name, on its first run, and printed the stop-based annulus to write instead. Restoring the terminator then made the coastline read through the KODIAK label, so its halo went to the deck's full eight-direction stack. |
+| 05, 07 | Two dossier lines reconciled to the build, `2019 JOINT ARTIFICIAL INTELLIGENCE CENTER` to THEN and `3,400 AT INCORPORATION IN 1971` to `3,400 AT INCORPORATION`. | PHASE 12. Five repair rounds had left the PLAN behind the deck. The upgraded dossier figure check reads the planned copy against claims.json and caught both. |
+| 08 | $632,119.41 is now C56, recorded with `derived_from` C07 and C42. | PHASE 12. It was printed on a frame with no claim carrying it, and aggregate_check's shape detector never saw it because it is a difference rather than a count, a span or a ratio. It is exact arithmetic on two verified claims and inherits C42's softness, which slide 08 already labels. |
 | caption | The measured-silence beat the storyboard planned for was cut. | It did not survive the caption room, and the caption is the whole deck for a screen reader, so it may not braid in a strand no slide carries. |
 
 
@@ -1163,19 +1170,19 @@ GATE STATUS -- generated by scripts/gate_status.py from the artifacts in out/202
 [PASS] render         9/9 slides OK, 0 page errors, 0 overflow warnings
 [WARN] qa.py          WARN, 0 fails, 5 warns
 [PASS] dossier_check  PASS, 9 dossiers, 0 fails, 0 warns
-[PASS] reconciled     BUILD RECONCILIATION present, 42 table row(s), 12106 chars
+[PASS] reconciled     BUILD RECONCILIATION present, 45 table row(s), 13727 chars
 [PASS] caption_check  PASS, 776 chars, hook 118, 3 hashtags
 [PASS] copy_sync      copy_sync_check: PASS -- 99 authored slide strings all present in the render
 [PASS] aggregate      aggregate_check: PASS -- 13 aggregate assertion(s) detected, 13 declared -> out/2026-09-07/aggregate_report.json
 [PASS] plan_drift     plan_drift_check: PASS -- 35 claims indexed, 0 declared counts checked, 0 body quote(s) checked, 0 drift(s)
-[PASS] bespoke        bespoke_check: WARN -- 9 slides, median pairwise art similarity 0.430 (fail at 0.60), max pair 0.631, drawn share 76% (115 drawn vs 36 block
+[PASS] bespoke        bespoke_check: WARN -- 9 slides, median pairwise art similarity 0.431 (fail at 0.60), max pair 0.631, drawn share 76% (115 drawn vs 36 block
 [PASS] scanner_sync   the live scan page still matches the routine contract
 [PASS] docket_dates   docket dates clean at 2026-09-07: 301 assertions over 6 fixtures and 24 ledger items
 [PASS] gas_watch      34 day(s) on record, 32 verified, no gaps, latest 2026-09-07, EIA through 202605 over 131 months, model misses by 6.82%
 [PASS] site_fresh     OK: docs/ is exactly a fresh build at --date 2026-09-07 (175 generated files)
-[PASS] assemble       9 slides, pdf vector 8.88 MB, 9 thumbs, sources verified
-[PASS] score          8.78 / 10 vs threshold 7.7, scorer says passes=True
-[PASS] ship_gate      scored 8.78 against a threshold of 7.70
+[PASS] assemble       9 slides, pdf vector 8.95 MB, 9 thumbs, sources verified
+[PASS] score          9.07 / 10 vs threshold 7.7, scorer says passes=True
+[PASS] ship_gate      scored 9.07 against a threshold of 7.70
 [PASS] artifacts      every named artifact present, JSON parses, 9 slides valid
 >> 0 FAIL row(s). Paste this block verbatim into the run record.
 ```
