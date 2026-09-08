@@ -525,6 +525,32 @@ FB_WARN = 0.80
 EMPTY_PAINT_MIN = 3      # fewer than three is an edge-on triangle, not a routine
 EMPTY_PAINT_RATIO = 0.8  # the site has to have painted nothing nearly every time
 
+# A RING WITH A FILLED MIDDLE (2026-09-07). See render.py's gradient hook for
+# the physics. Fitted by re-rendering 40 slides (out/2026-09-07, runs/2026-09-06,
+# runs/2026-09-05, runs/2026-09-04, examples/demo-deck), which drew 158 flat
+# cores between them. Only the ones painted in an ADDITIVE composite are judged,
+# and there are seven: six honest ones covering 0.0000 to 0.0004 of their frame
+# (glow dots and a lit pool), and run No.53's own slide 07, still shipped, whose
+# core covers 1.2185 -- a disc wider than the frame, in `lighter`, at alpha 0.34
+# on a stop-0 blue. 0.02 sits in the empty three orders of magnitude between.
+#
+# The 151 non-additive cores are NOT judged, at any size, and the corpus says
+# why: run No.51's slide 03 lays a flat opaque disc over 0.75 of its frame in
+# `multiply` under every ink blot on the plate, and that is the soak halo the
+# mark is then drawn on top of. In source-over and multiply, a filled disc with
+# a soft edge is an ordinary way to draw and only the author knows which was
+# meant. In `lighter` it is light ADDED to every pixel of whatever is underneath,
+# which is never what a rim light is.
+FLAT_CORE_FRAC = 0.02    # core disc area / frame area before anything is said
+FLAT_CORE_ALPHA = 0.05   # alpha at stop 0 below which the disc is not ink
+ADDITIVE_OPS = {"lighter", "plus-lighter", "plus"}
+
+# TWO STRINGS ON ONE LINE MAY NOT SHARE A COLUMN (2026-09-07). See
+# same_line_overprint() for the run No.53 rounds this exists for and for the
+# corpus it was fitted against.
+SAME_LINE_MIN_X = 4.0    # design px of shared column; under this is a rounding edge
+SAME_LINE_VFRAC = 0.5    # share of the shorter box's height the two must both hold
+
 
 FEED_W = 432          # the thumb width the doctrine's legibility test uses
 
@@ -2234,6 +2260,73 @@ def text_collisions(nodes, min_overlap=0.30, min_px=8):
     return found
 
 
+def same_line_overprint(a_lines, b_lines):
+    """The worst (ix, iy, a_box, b_box) where two boxes SHARE A LINE and their
+    ink columns overlap, or None.
+
+    text_collisions() above needs the intersection to cover 30 percent of the
+    smaller line box, and that test is blind to the failure this house actually
+    ships: two strings on ONE baseline whose ENDS meet. Run No.53 paid two
+    capped scoring rounds for exactly that shape. Round 1 was capped for
+    overlapping text on four slides, all of them a label's last glyphs inside a
+    neighbouring column ("both endpoint labels' last glyphs were inside the
+    rail's own mono column"; "THE PENTAGON and NASHVILLE clamped on a guessed
+    W-276 constant and both ran into the rail"). The round-1 repair then created
+    a fifth, printing SERVICESHQ003425CE092 where a value column right-aligned
+    to the gutter landed on the longest of four names, and round 2 was capped
+    for that one. Every instance is a few characters of overprint, worth a few
+    per cent of either box, and every instance shreds the string it lands on.
+    Five pixel critics found them by eye, a round apart, twice.
+
+    So the test is geometric rather than proportional: the two boxes must share
+    at least half the shorter one's HEIGHT (which is what being on the same line
+    means, and what stacked blocks with tight leading never do) and at least
+    SAME_LINE_MIN_X of their horizontal span (which is what sharing a column
+    means). Measured over the 99 slides and 1,020 text nodes of the eleven
+    shipped render reports on disk, it fires ONCE, on run No.51 slide 04, where
+    the pair is marked data-overlap-ok and the overprint is deliberate. Relaxing
+    the vertical share to a third adds exactly one more, so the corpus has no
+    near misses on either side of the threshold.
+    """
+    worst = None
+    for ax, ay, aw, ah in a_lines:
+        for bx, by, bw, bh in b_lines:
+            iy = min(ay + ah, by + bh) - max(ay, by)
+            if iy < SAME_LINE_VFRAC * min(ah, bh):
+                continue
+            ix = min(ax + aw, bx + bw) - max(ax, bx)
+            if ix < SAME_LINE_MIN_X:
+                continue
+            if worst is None or ix > worst[0]:
+                worst = (ix, iy, (ax, ay, aw, ah), (bx, by, bw, bh))
+    return worst
+
+
+def canvas_text_boxes(cts, k):
+    """Canvas strings as design-px line boxes, for the two overprint tests.
+
+    text_collisions() and same_line_overprint() both work on DOM line boxes, and
+    canvas ink is not a DOM node: a deck that sets its type with fillText has no
+    collision gate at all. render.py now measures each string's ink box with
+    measureText's actualBoundingBox*, which carry textAlign and textBaseline
+    already; k converts device to design px. Skewed or rotated text is skipped,
+    exactly as the off-frame check skips it, because its box is not axis
+    aligned. Returns [(index, text, box)].
+    """
+    out = []
+    for i, ct in enumerate(cts):
+        if ct.get("skew") or ct.get("ink_left") is None:
+            continue
+        if not (ct.get("sx", 0) > 0 and ct.get("sy", 0) > 0):
+            continue
+        x0, x1 = ct["ink_left"] / k, ct["ink_right"] / k
+        y0, y1 = ct["ink_top"] / k, ct["ink_bottom"] / k
+        if x1 - x0 <= 0 or y1 - y0 <= 0:
+            continue
+        out.append((i, (ct.get("text") or "").strip(), [x0, y0, x1 - x0, y1 - y0]))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--render-dir", required=True)
@@ -2665,6 +2758,48 @@ def main():
             except Exception as e:  # a malformed record must never stop QA
                 res["warns"].append("gradient-clip record unreadable (%s)" % e)
 
+        # A RING WITH A FILLED MIDDLE (2026-09-07). render.py's gradient hook
+        # states the physics and the three conditions it records on; this is
+        # the verdict. Canvas paints everything inside a radial gradient's
+        # INNER circle with the colour at stop 0, so a concentric ramp with
+        # r0 > 0 and alpha at stop 0 draws a flat disc as well as a ring.
+        #
+        # FAIL when that disc is painted in an ADDITIVE composite over a
+        # material share of the frame, because there is no reading of `lighter`
+        # in which a constant wash across a fifth of a picture was the
+        # intention: it is light added to every pixel of whatever was under it,
+        # which is exactly how run No.53 erased its own terminator on seven
+        # slides. Nothing is said about a flat core in source-over or multiply,
+        # at any size; see the constants block for the corpus that decided that.
+        # The message carries the one-line repair.
+        for fc in rec.get("flat_cores", []):
+            try:
+                if str(fc.get("op", "")).lower() not in ADDITIVE_OPS:
+                    continue
+                if fc.get("a0", 0) < FLAT_CORE_ALPHA or fc.get("core_frac", 0) < FLAT_CORE_FRAC:
+                    continue
+                k = (fc.get("canvas_w") or (design_w * scale)) / max(1, design_w)
+                msg = (
+                    "a radial ramp with a filled middle at (%d,%d): "
+                    "createRadialGradient with an inner radius of %g and %s at "
+                    "stop 0 paints a FLAT disc of radius %g over %.0f%% of the "
+                    "frame before the ring even starts, in '%s'%s. Canvas has no "
+                    "annulus: every pixel inside the inner circle takes the "
+                    "colour at offset 0. Build the ring out of STOPS instead -- "
+                    "createRadialGradient(x,y,0, x,y,%g) with transparent at 0 "
+                    "and at %.3f, the band's colour at %.3f, transparent at 1."
+                    % (fc.get("cx", 0) / k, fc.get("cy", 0) / k,
+                       fc.get("r0", 0), fc.get("col0", "a colour"),
+                       fc.get("r0", 0), 100 * fc.get("core_frac", 0),
+                       fc.get("op", "source-over"),
+                       "" if fc.get("n", 1) < 2 else " (%d fills like this)" % fc["n"],
+                       fc.get("r1", 0),
+                       max(0.0, fc.get("r0", 0) - 8) / max(1e-6, fc.get("r1", 1)),
+                       fc.get("r0", 0) / max(1e-6, fc.get("r1", 1))))
+                res["fails"].append(msg)
+            except Exception as e:
+                res["warns"].append("flat-core record unreadable (%s)" % e)
+
         # DECLARED ART THAT NEVER REACHED THE SLIDE (2026-08-25). Opt-in like
         # the contracts above, and like them the FAIL is the slide
         # contradicting its own declaration: it says it drew a feature at a
@@ -2892,7 +3027,8 @@ def main():
         # data-overlap-ok. So a decorative party is now reported in the message
         # and changes nothing about the verdict.
         tnodes = rec.get("text_nodes", [])
-        for i, j, ratio in text_collisions(tnodes):
+        dom_hits = text_collisions(tnodes)
+        for i, j, ratio in dom_hits:
             a, b = tnodes[i], tnodes[j]
             dec = [n["text"][:24] for n in (a, b) if n.get("decorative")]
             msg = (f"text collision ({ratio:.0%} overprint): "
@@ -2907,6 +3043,89 @@ def main():
                             "data-overlap-ok if the layering is deliberate]"
                             % len(dec))
                 res["fails"].append(msg)
+
+        # TWO STRINGS ON ONE LINE, SHARING A COLUMN (2026-09-07). The area test
+        # above and this one are complementary: that one catches a block
+        # printed THROUGH another block, this one catches the ends of two
+        # strings meeting on one baseline, which is the shape that capped two
+        # of run No.53's five scoring rounds and which no proportional test can
+        # see. Same verdict as the area test, same demotion on
+        # data-overlap-ok, and data-decorative exempts nothing here either.
+        # Reported once per pair: a pair the area test already failed is not
+        # said twice.
+        said = {(i, j) for i, j, _ in dom_hits}
+        for i in range(len(tnodes)):
+            a = tnodes[i]
+            a_anc = set(a.get("anc") or [])
+            for j in range(i + 1, len(tnodes)):
+                if (i, j) in said:
+                    continue
+                b = tnodes[j]
+                if i in (b.get("anc") or []) or j in a_anc:
+                    continue
+                hit = same_line_overprint(
+                    a.get("lines") or [[a["x"], a["y"], a["w"], a["h"]]],
+                    b.get("lines") or [[b["x"], b["y"], b["w"], b["h"]]])
+                if not hit:
+                    continue
+                ix, iy, ab, bb = hit
+                msg = ("text on one line sharing a column: '%s' x '%s' share "
+                       "%.0fpx of column and %.0fpx of line height at "
+                       "(%.0f,%.0f) and (%.0f,%.0f) -- the ends of two strings "
+                       "on one baseline, which is legible in neither. Place the "
+                       "second from the MEASURED width of the first rather than "
+                       "from a constant, and assert the gap"
+                       % (a["text"][:36], b["text"][:36], ix, iy,
+                          ab[0], ab[1], bb[0], bb[1]))
+                if a.get("overlap_ok") or b.get("overlap_ok"):
+                    res["warns"].append(msg + " [marked data-overlap-ok]")
+                else:
+                    res["fails"].append(msg)
+
+        # AND BOTH TESTS ON CANVAS TYPE, WHICH HAD NEITHER (2026-09-07).
+        # render.py now measures every fillText's ink box, so canvas strings can
+        # be intersected exactly like DOM line boxes. Two guards, both to keep
+        # honest drawing silent: only strings on the SAME canvas are compared,
+        # since two canvases have a stacking order this cannot see, and
+        # IDENTICAL strings never collide with each other, because drawing the
+        # same text twice is how this house does a halo, a knockout and a weight
+        # pass. It cannot see a string a later fill painted over or a clearRect
+        # erased; those read as overprint, which is what the pixels would show
+        # if nothing covered them.
+        cts = rec.get("canvas_text", [])
+        kdev = scale
+        for c in cts:
+            if c.get("canvas_w"):
+                kdev = c["canvas_w"] / max(1, design_w)
+                break
+        cboxes = canvas_text_boxes(cts, max(1e-6, kdev))
+        for u in range(len(cboxes)):
+            iu, tu, bu = cboxes[u]
+            for v in range(u + 1, len(cboxes)):
+                iv, tv, bv = cboxes[v]
+                if cts[iu].get("canvas_id") != cts[iv].get("canvas_id"):
+                    continue
+                if tu == tv:
+                    continue
+                ix = min(bu[0] + bu[2], bv[0] + bv[2]) - max(bu[0], bv[0])
+                iy = min(bu[1] + bu[3], bv[1] + bv[3]) - max(bu[1], bv[1])
+                area = min(bu[2] * bu[3], bv[2] * bv[3])
+                ratio = (ix * iy) / area if (ix > 8 and iy > 8 and area > 0) else 0.0
+                line = same_line_overprint([bu], [bv])
+                if ratio < 0.30 and not line:
+                    continue
+                res["fails"].append(
+                    "canvas text collision (%s): '%s' x '%s'. The first spans x "
+                    "%.0f to %.0f and the second x %.0f to %.0f, sharing the "
+                    "line band y %.0f to %.0f, in design px. Canvas has no "
+                    "layout engine, so neither string knows the other is there: "
+                    "place the later one from the MEASURED width of the first "
+                    "(ctx.measureText) rather than from a constant, and assert "
+                    "the gap with window.__akAssert"
+                    % ("%.0f%% overprint" % (100 * ratio) if ratio >= 0.30
+                       else "%.0fpx of shared column on one line" % line[0],
+                       tu[:36], tv[:36], bu[0], bu[0] + bu[2], bv[0], bv[0] + bv[2],
+                       min(bu[1], bv[1]), max(bu[1] + bu[3], bv[1] + bv[3])))
 
         # TYPE NOBODY SIZED (2026-08-21). render.py reports, per text element,
         # whether ANY author font-size applies anywhere on its ancestor chain

@@ -49,6 +49,44 @@ log. A gate a slide OPTS INTO and that then silently does not run is worse than
 no gate: the record claims a check happened that did not. Caught here, it costs
 a keystroke; caught after a render, it costs a round.
 
+And (2026-09-07) it CROSS-CHECKS EVERY FIGURE IN THE PLANNED COPY AGAINST
+claims.json, which is the one place a fact can enter a deck without anyone
+noticing. brand.yaml has always said "every factual on-slide number/claim
+carries a claim-id in the dossier" and nothing enforced it, because every gate
+we own checks the claims that EXIST rather than the figures a dossier quotes:
+claims_check verifies each claim has a source, aggregate_check re-derives
+declared arithmetic, plan_drift compares the plan to the build. Run No.53's
+slide 08 planned and printed "102 SIGNATURES" plus a 102-mark struck field on
+the strength of a scout paragraph the first claims pass never turned into a
+claim and never killed, and all three of those gates passed. It was found by
+reading, during the Phase 8 pixel rounds, and verifying it late also CORRECTED
+it (shareholders and descendants, an early-December snapshot, 20 non-shareholder
+signatures excluded), which is three corrections that cost a re-render because
+the check happened after the art.
+
+And the same pass reads the claim's NOTES separately, because a number that
+lives only there is not verified. The same run printed "1971" twice in mono on
+its Alaska-facing frame for four scoring rounds; C35 verifies "3,400
+shareholders at incorporation" and the year existed only in the fact-checker's
+note as "consistent with 1971". It was almost certainly wrong (ANCSA was signed
+in 1971, the regional corporations incorporated in 1972), it capped round 3, and
+round 5 dropped a second inference of the same shape ("2019 JOINT ARTIFICIAL
+INTELLIGENCE CENTER", where the JAIC-named contract in the record is a 2020
+one). A note is the fact-checker reasoning. A claim is the fact-checker
+verifying. Only the second may print.
+
+A CITATION IS NOT A QUANTITY, though, and the first deck this ran on proved it:
+`43 U.S.C. 1606(i)` was read as the figures 43 and 1606 and failed as
+unverified, on a line whose claim was read at uscode.house.gov and whose SUBJECT
+is that citation. A title and a section number are an address in a book, and so
+are a CFR cite, a Federal Register volume and page, a public law number, an FCC
+or FERC docket and a notice id, all of which this project prints routinely and
+none of which is a measurement. They are recognised by SHAPE and blanked out of
+BOTH sides before any number is read: out of the copy, so the gate does not ask
+who verified a section number, and out of the claims, so a claim that merely
+mentions a statute cannot make a bare 1606 a verified figure somewhere else in
+the deck. Every other figure on the same line is still judged.
+
 Usage:
   python scripts/dossier_check.py --run-dir out/2026-07-26
   python scripts/dossier_check.py --run-dir out/2026-07-26 --json
@@ -271,6 +309,175 @@ def field_4a(body):
     return " ".join(x for x in lines if x).strip(), first
 
 
+# --- EVERY FIGURE IN THE PLANNED COPY, AGAINST claims.json (2026-09-07) ------
+# The field is the dossier's COPY block, the unit is a backticked string, which
+# is how SLIDE_DOSSIER_SPEC has the house quote the copy that will print, and
+# the token is a number NOT flanked by letters or digits, so a PIID
+# (140D0419C0047), a task order (70CDCR26FR0000034) and a docket number are
+# never shredded into fragments that mean nothing.
+COPY_FIELD_RE = re.compile(
+    r"^\s*(?:\*{1,2}|_{1,2})?\s*2[.)]?\s*\*{0,2}\s*COPY\b", re.I | re.M)
+NEXT_FIELD_RE = re.compile(
+    r"^\s*(?:\*{1,2}|_{1,2})?\s*(?:2[a-z]|3)[.)]", re.I | re.M)
+QUOTED_RE = re.compile(r"`([^`]*)`")
+NUM_RE = re.compile(r"(?<![A-Za-z0-9])\$?\d[\d,]*(?:\.\d+)?%?(?![A-Za-z0-9])")
+# A drawn dimension is a property of the artwork, not an assertion about Alaska.
+DESIGN_UNIT_RE = re.compile(r"^\s*(px|pt|deg|em|rem|ch|vw|vh)\b", re.I)
+# FIXED FURNITURE CARRIES THE DECK'S OWN GEOMETRY, NOT THE STORY'S FACTS. The
+# rail's coordinates, its t value, its arc distance and the progress counter are
+# computed from the composition and belong to no claim; they are also the one
+# thing on the frame no dossier's acceptance checklist owns. Matched on the
+# bullet's LABEL, the text before the colon, so it exempts a line and never a
+# document.
+FURNITURE_WORD_RE = re.compile(
+    r"\b(rail|counter|progress|footer|provenance|coordinates?|slug|wordmark"
+    r"|kicker|plate number|page number|site fixture)\b", re.I)
+# The author's escape hatch, and it is a declaration rather than a silence: the
+# number is a property of the drawing (a printed scale key, a dot-to-people
+# ratio). aggregate_check demands the same thing again at build time, in
+# aggregates.json, with the same word.
+DESIGN_TAG_RE = re.compile(r"\[design\]", re.I)
+# Two quoted strings that are never a factual assertion, matched on their whole
+# shape so nothing wider is exempted: the progress counter ("05 / 09"), which is
+# the deck's own pagination, and a variable-font axis setting ("wdth 88 wght
+# 700"), which is a type spec that happens to sit in backticks.
+COUNTER_ONLY_RE = re.compile(r"^\s*\d{1,2}\s*/\s*\d{1,2}\s*$")
+FONT_AXIS_RE = re.compile(
+    r"^\s*(?:(?:wdth|wght|opsz|slnt|ital|GRAD|CASL|MONO)\s+-?[\d.]+\s*)+$", re.I)
+
+# A CITATION IS NOT A QUANTITY (2026-09-07, the same day, from the showrunner's
+# first use of this gate). `43 U.S.C. 1606(i)` was read as the figures 43 and
+# 1606 and failed as unverified, on a line whose claim C31 was read at
+# uscode.house.gov and whose SUBJECT is that citation. A title number and a
+# section number are addresses in a book; so are a CFR cite, a public law
+# number, a FERC docket like P-15423-000 and a notice id, all of which this
+# project prints routinely and none of which is a measurement. They are
+# recognised by SHAPE and blanked out of the string before any number is read,
+# so every other figure on the same line is still judged: a bare number is never
+# skipped merely because a claim nearby mentions a statute.
+CITATION_RES = (
+    # 43 U.S.C. 1606(i)(1)(A), 43 USC 1606, 25 U.S.C. 3601
+    re.compile(r"\b\d+\s*U\.?\s?S\.?\s?C\.?\s*(?:§+\s*)?\d[\w().\-]*", re.I),
+    # 18 CFR 385.2010, 43 C.F.R. 2650.5
+    re.compile(r"\b\d+\s*C\.?\s?F\.?\s?R\.?\s*(?:§+\s*)?\d[\w().\-]*", re.I),
+    # 91 FR 55826, the Federal Register's volume and page
+    re.compile(r"\b\d+\s*F\.?\s?R\.?\s+\d[\d,]*", re.I),
+    # Public Law 92-203, Pub. L. No. 92-203
+    re.compile(r"\b(?:public\s+law|pub\.?\s*l\.?(?:\s*no\.?)?)\s*\d+\s*-\s*\d+", re.I),
+    # P-15423-000, EL24-1-000: a letter prefix bound to a number by a hyphen
+    re.compile(r"\b[A-Z]{1,4}-\d[\d\-]*"),
+    # WC 26-173, WT 17-310: an FCC-style bureau prefix, docket, year and number.
+    # The two-digit lead and the hyphen are required, so a spelled range ("22 TO
+    # 31") and a unit ("43 MW", which this house writes unit-last) cannot match.
+    re.compile(r"\b[A-Z]{2,3}\s\d{2}-\d{1,4}\b"),
+    # docket 22-1, id 224879, PIID W519TC26CA019, FR Doc 2026-12345
+    re.compile(r"\b(?:docket|piid|rin|fr\s+doc|solicitation|notice\s+id|case\s+no"
+               r"|id)\b\.?\s*(?:no\.?\s*)?(?=[\w.\-/]*\d)[\w.\-/]+", re.I),
+)
+
+
+def strip_citations(s):
+    """Blank every citation or identifier span, leaving the rest measurable."""
+    for rx in CITATION_RES:
+        s = rx.sub(" ", s)
+    return s
+
+
+def copy_field(body):
+    """The dossier's COPY block, or None."""
+    m = COPY_FIELD_RE.search(body)
+    if not m:
+        return None
+    rest = body[m.end():]
+    n = NEXT_FIELD_RE.search(rest)
+    return rest[:n.start()] if n else rest
+
+
+def num_tokens(s):
+    """(printed, normalised) for every number token in a string."""
+    out = []
+    for m in NUM_RE.finditer(s):
+        raw = m.group(0)
+        if DESIGN_UNIT_RE.match(s[m.end():]):
+            continue                       # 42px, 24pt: a drawn dimension
+        out.append((raw, raw.strip("$%").replace(",", "").rstrip(".")))
+    return out
+
+
+def claim_figures(claims):
+    """(verified, noted): every number the claims carry, split by WHERE it lives.
+
+    claim/value/verbatim are the fact-checker's verification. notes are the
+    fact-checker's reasoning, and reasoning is not a source."""
+    verified, noted = set(), {}
+    for c in claims:
+        cid = c.get("id", "?")
+        # Citations are blanked on THIS side too, so that a claim which merely
+        # mentions 43 U.S.C. 1606(i) cannot make a bare 1606 a verified figure
+        # somewhere else in the deck.
+        for f in ("claim", "value", "verbatim"):
+            for _, n in num_tokens(strip_citations(str(c.get(f) or ""))):
+                verified.add(n)
+        for _, n in num_tokens(strip_citations(str(c.get("notes") or ""))):
+            noted.setdefault(n, []).append(cid)
+    return verified, noted
+
+
+def figure_fails(no, body, verified, noted, run_date=""):
+    """FAIL lines for figures in this dossier's planned copy that no claim
+    verifies. Silent when there is no COPY block to read (field 2 is checked by
+    the storyboard gate itself, and a missing one is not this check's finding)."""
+    fails = []
+    block = copy_field(body)
+    if not block:
+        return fails
+    seen = set()
+    for line in block.splitlines():
+        label = line.split("`", 1)[0]
+        if FURNITURE_WORD_RE.search(label) or DESIGN_TAG_RE.search(line):
+            continue
+        # ONE FINDING PER LINE. A statute citation is two numbers and one fact
+        # ("43 U.S.C. 1606(i)"), and three messages about one line of copy read
+        # like three defects.
+        nowhere, from_notes = [], {}
+        for q in QUOTED_RE.findall(line):
+            if COUNTER_ONLY_RE.match(q) or FONT_AXIS_RE.match(q):
+                continue
+            if run_date:
+                q = q.replace(run_date, " ")   # the provenance stamp, not a fact
+            q = strip_citations(q)             # an address in a book, not a figure
+            for raw, n in num_tokens(q):
+                if n in verified or n in seen:
+                    continue
+                seen.add(n)
+                if n in noted:
+                    from_notes[raw] = noted[n]
+                else:
+                    nowhere.append(raw)
+        if from_notes:
+            cites = sorted({c for v in from_notes.values() for c in v})
+            fails.append(
+                f"slide {no:02d}: the planned copy prints "
+                f"{', '.join(from_notes)} and no claim VERIFIES that figure -- "
+                f"it appears only in the NOTES of {', '.join(cites)}, which is "
+                f"the fact-checker reasoning rather than the fact-checker "
+                f"verifying ({line.strip()[:80]!r}). Run No.53 printed 1971 "
+                f"twice in mono off a note reading 'consistent with 1971' and "
+                f"was probably wrong, because ANCSA was signed in 1971 and the "
+                f"regional corporations incorporated in 1972. Either verify it "
+                f"as its own claim or print what the claim carries")
+        if nowhere:
+            fails.append(
+                f"slide {no:02d}: the planned copy prints {', '.join(nowhere)} "
+                f"and NO claim in claims.json carries that figure at all "
+                f"({line.strip()[:80]!r}). Every factual on-slide number carries "
+                f"a claim-id (brand.yaml). Verify it as a claim before the art "
+                f"is built, kill the line, or -- if it is a property of the "
+                f"drawing rather than of the world -- mark the bullet [design], "
+                f"which aggregates.json will have to say again at build time")
+    return fails
+
+
 def check_slide(no, heading, body, breather_attr, contacts=None, built=False):
     fails, warns = [], []
     declared_breather = False
@@ -372,6 +579,24 @@ def main():
                 parse_fails[n] = declaration_parse_fails(n, src)
                 built.add(n)
 
+    # THE CLAIMS THE COPY LEANS ON. Read here rather than in check_slide so a
+    # run with no claims.json yet (this gate is also run standalone, and on old
+    # decks) says so once instead of judging nine dossiers against nothing.
+    verified, noted, claims_note = set(), {}, None
+    cj = rdir / "claims.json"
+    run_date = ""
+    if cj.exists():
+        try:
+            doc = json.loads(cj.read_text())
+            verified, noted = claim_figures(doc.get("claims") or [])
+            run_date = str(doc.get("run_date") or "")
+        except Exception as e:
+            claims_note = ("claims.json did not parse (%s), so the figure "
+                           "cross-check did not run" % e)
+    else:
+        claims_note = ("no claims.json beside the storyboard, so the figure "
+                       "cross-check did not run")
+
     out = {"slides": [], "fails": 0, "warns": 0}
     seen = set()
     for no, heading, body in sections:
@@ -381,6 +606,10 @@ def main():
         # An unparseable declaration is a fail whether or not the dossier
         # promised anything, so it is merged in outside check_slide().
         f = parse_fails.get(no, []) + f
+        if claims_note is None:
+            f = f + figure_fails(no, body, verified, noted, run_date)
+        elif no == sections[0][0]:
+            w = w + [claims_note]
         out["slides"].append({"slide": no, "fails": f, "warns": w})
         out["fails"] += len(f)
         out["warns"] += len(w)

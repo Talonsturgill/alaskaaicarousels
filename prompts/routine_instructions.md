@@ -704,6 +704,25 @@ This is where the deck is actually made. Spend real effort here.
    named it six consecutive runs, always at the ship gate where rebuilding
    four slides was no longer affordable, so it became a note six times
    instead of a fix. Here it costs one paragraph.
+   It also CROSS-CHECKS EVERY FIGURE in the dossier's COPY block against
+   claims.json (2026-09-07), because a fact can otherwise reach a render
+   without ever becoming a claim: run No.53 planned and printed "102
+   SIGNATURES" plus a 102-mark struck field off a scout paragraph no claim
+   carried, and printed "1971" twice in mono off a fact-checker NOTE reading
+   "consistent with 1971", which capped a scoring round and was probably wrong.
+   A number in quoted copy must appear in some claim's `claim`, `value` or
+   `verbatim` field; a number that appears only in a claim's `notes` is
+   reasoning rather than verification and FAILS by name. Fix it by verifying
+   the figure as its own claim or printing what the claim carries, never by
+   deleting the check. If the number is a property of the DRAWING rather than
+   of the world (a printed scale key, a dot-to-people ratio, a synthetic-sun
+   azimuth), mark that bullet `[design]`, which aggregates.json will have to
+   say again at build time. Rails, counters, kickers and other fixed furniture
+   are exempt already, and so are citations and identifiers by shape (43 U.S.C.
+   1606(i), 18 CFR 385, 91 FR 55826, Public Law 92-203, WC 26-173, P-15423-000,
+   a PIID, a notice id): a title and a section number are an address in a book
+   and not a measurement. A bare number is never exempt just because a claim
+   nearby mentions a statute.
    Verify: 6-12 slides (default 8-10); cover <= 12 words; slide 2 pays;
    a breather exists; a keepable data slide exists; single-ask close
    with "sources in comments" and the site fixture (alaskaaihq.com small

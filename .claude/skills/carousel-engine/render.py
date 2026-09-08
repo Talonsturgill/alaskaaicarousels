@@ -63,10 +63,24 @@ CHROMIUM_ARGS = [
 # canvas (2026-07-19: S7 loop labels + S8 annotations were cx.fillText and had
 # to be converted to DOM by hand; no gate saw the unauthored ones). The wrapper
 # only observes and forwards; it never alters the drawn frame.
+#
+# AND THE INK BOX, SO TWO CANVAS STRINGS CAN BE CAUGHT SHARING IT (2026-09-07,
+# run No.53). qa.py's text_collisions() has hard-failed overprinted DOM type
+# since the beginning, and canvas type was invisible to it: no node, no line
+# box, nothing to intersect. Run No.53 drew most of its type on canvas and paid
+# TWO capped scoring rounds for it. Round 1 was capped for overlapping text on
+# four slides; the round-2 repair right-aligned a value column to the gutter and
+# printed SERVICESHQ003425CE092, a fifth collision the repair itself created,
+# and round 2 was capped for that. Five pixel critics found them by eye, twice.
+# measureText's actualBoundingBox* give the exact glyph extents from the
+# alignment point and the baseline the call is using, so they carry textAlign
+# and textBaseline already; multiplied through the transform they are a device
+# box qa.py can intersect exactly like a DOM line box.
 CANVAS_TEXT_HOOK_JS = """
 (() => {
   try {
     window.__akCanvasText = [];
+    window.__akCanvasSeq = 0;
     const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
     if (!proto) return;
     for (const fn of ['fillText', 'strokeText']) {
@@ -87,12 +101,15 @@ CANVAS_TEXT_HOOK_JS = """
             var _e = { text: s.slice(0, 80), fn: fn, font: this.font || '' };
             try {
               var _t = this.getTransform ? this.getTransform() : null;
-              var _w = this.measureText(s).width;
+              var _m = this.measureText(s);
+              var _w = _m.width;
               _e.x = arguments[1]; _e.y = arguments[2];
               _e.w = _w;
               _e.align = this.textAlign || 'start';
               _e.canvas_w = this.canvas ? this.canvas.width : 0;
               _e.canvas_h = this.canvas ? this.canvas.height : 0;
+              _e.canvas_id = this.canvas ? (this.canvas.__akId ||
+                (this.canvas.__akId = 'c' + (++window.__akCanvasSeq))) : 'none';
               if (_t) {
                 _e.sx = _t.a; _t_b = _t.b;
                 _e.skew = (_t.b || 0) !== 0 || (_t.c || 0) !== 0;
@@ -102,6 +119,23 @@ CANVAS_TEXT_HOOK_JS = """
                 else if (_e.align === 'right' || _e.align === 'end') _x0 = arguments[1] - _w;
                 _e.dev_left = _t.a * _x0 + _t.e;
                 _e.dev_right = _t.a * (_x0 + _w) + _t.e;
+                /* THE INK BOX, for the canvas-text collision check (2026-09-07).
+                   measureText's actualBoundingBox* are measured from the
+                   alignment point textAlign gives and the line textBaseline
+                   gives, so they already carry both settings and need no
+                   correction here. They are the GLYPH extents, tighter than the
+                   advance width above, which is what a collision has to be
+                   judged on. dev_left/dev_right are left exactly as they were:
+                   the off-frame check is fitted to the advance. */
+                var _asc = _m.actualBoundingBoxAscent, _dsc = _m.actualBoundingBoxDescent;
+                var _il = _m.actualBoundingBoxLeft, _ir = _m.actualBoundingBoxRight;
+                if (isFinite(_asc) && isFinite(_dsc) && isFinite(_il) && isFinite(_ir)) {
+                  _e.ink_left = _t.a * (arguments[1] - _il) + _t.e;
+                  _e.ink_right = _t.a * (arguments[1] + _ir) + _t.e;
+                  _e.ink_top = _t.d * (arguments[2] - _asc) + _t.f;
+                  _e.ink_bottom = _t.d * (arguments[2] + _dsc) + _t.f;
+                  _e.sy = _t.d;
+                }
               }
             } catch (e2) {}
             window.__akCanvasText.push(_e);
@@ -139,10 +173,36 @@ CANVAS_TEXT_HOOK_JS = """
 # Everything is measured in user space, where both the path and the gradient
 # live, so the current transform distorts them together and cancels out.
 # The wrapper only observes and forwards; it never alters the drawn frame.
+#
+# A RING WITH A FILLED MIDDLE (2026-09-07, run No.53). The same hook, a second
+# reading, and it is the same lesson from the other end: canvas has no ring.
+# createRadialGradient(x,y,r0, x,y,r1) paints every pixel INSIDE r0 with the
+# colour at stop 0, so a concentric ramp whose first stop carries alpha is that
+# ramp PLUS a flat disc of radius r0. Run No.53 wrote
+#     createRadialGradient(CX,CY,S-6, CX,CY,S+96)   // "atmospheric limb"
+# on seven slides and filled it over the frame in `lighter`, which added a flat
+# wash across the whole globe and erased the az-142 terminator the entire deck
+# argues from. Five pixel critics reported it five different ways -- "flat
+# lighting", "no directional terminator", "a centred radial gradient" -- and
+# finding the one cause took reading three reports together, two build rounds
+# in. Nothing measured it, because every instrument was pointed at ink rather
+# than at the ramp that made it. The repair is one line (start the ramp at 0
+# and put the transparent stop at r0/r1), which is why catching it in round one
+# is worth this much machinery.
+#
+# Recorded when ALL of these hold, so that honest drawing stays silent:
+#   * the two circles are CONCENTRIC (a non-concentric ramp is a cone, which is
+#     how this deck's lit spheres are shaded, and its interior is not flat),
+#   * r0 > 0 and the alpha at stop 0 is over 0.01, so there IS a flat disc,
+#   * the paint reaches past r0 -- a fillRect containing the centre, or a fill
+#     of one concentric arc/ellipse at least as big as the core.
+# The numbers travel (r0, r1, the stop-0 colour and its alpha, the composite
+# operation, the core's share of the frame); qa.py holds every threshold.
 GRADIENT_CLIP_HOOK_JS = """
 (() => {
   try {
     window.__akGradientClip = [];
+    window.__akFlatCore = [];
     const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
     const gproto = window.CanvasGradient && window.CanvasGradient.prototype;
     if (!proto || !gproto) return;
@@ -154,7 +214,7 @@ GRADIENT_CLIP_HOOK_JS = """
     if (typeof origRad === 'function') {
       proto.createRadialGradient = function (x0, y0, r0, x1, y1, r1) {
         const g = origRad.apply(this, arguments);
-        try { meta.set(g, { x1: x1, y1: y1, r0: r0, r1: r1, stops: [] }); } catch (e) {}
+        try { meta.set(g, { x0: x0, y0: y0, x1: x1, y1: y1, r0: r0, r1: r1, stops: [] }); } catch (e) {}
         return g;
       };
     }
@@ -201,15 +261,64 @@ GRADIENT_CLIP_HOOK_JS = """
       return alphaOf(s[s.length - 1][1]);
     };
 
+    /* A RING WITH A FILLED MIDDLE (2026-09-07). createRadialGradient paints
+       every pixel INSIDE its inner circle with the colour at stop 0. So a
+       concentric ramp with r0 > 0 and any alpha at stop 0 is not an annulus:
+       it is that annulus plus a flat disc of radius r0. Recorded here with the
+       numbers; qa.py holds the thresholds and the verdict. */
+    const FLAT_MAX = 24;
+    const flatCore = (ctx, how, cover) => {
+      try {
+        if (window.__akFlatCore.length >= FLAT_MAX) return;
+        const m = meta.get(ctx.fillStyle);
+        if (!m || !(m.r0 > 0) || !m.stops.length) return;
+        if (Math.abs(m.x0 - m.x1) > 0.5 || Math.abs(m.y0 - m.y1) > 0.5) return;
+        const a0 = alphaAt(m.stops, 0);
+        if (!(a0 > 0.01)) return;
+        if (!cover(m)) return;                 /* the paint has to reach past r0 */
+        const t = ctx.getTransform ? ctx.getTransform() : null;
+        const sx = t ? Math.abs(t.a) : 1, sy = t ? Math.abs(t.d) : 1;
+        const cw = (ctx.canvas && ctx.canvas.width) || 0;
+        const ch = (ctx.canvas && ctx.canvas.height) || 0;
+        const frac = (cw && ch) ? Math.PI * (m.r0 * sx) * (m.r0 * sy) / (cw * ch) : 0;
+        const stops = m.stops.slice().sort((p, q) => p[0] - q[0]);
+        const key = [Math.round(m.r0), Math.round(m.r1), how,
+                     ctx.globalCompositeOperation].join('|');
+        const hit = window.__akFlatCore.find((z) => z.key === key);
+        if (hit) { hit.n++; return; }
+        window.__akFlatCore.push({
+          key: key, n: 1, how: how,
+          r0: +m.r0.toFixed(1), r1: +m.r1.toFixed(1),
+          a0: +a0.toFixed(3), col0: String(stops[0][1]).slice(0, 32),
+          op: ctx.globalCompositeOperation, alpha: +(ctx.globalAlpha).toFixed(3),
+          core_frac: +frac.toFixed(4),
+          cx: Math.round(t ? t.a * m.x1 + t.e : m.x1),
+          cy: Math.round(t ? t.d * m.y1 + t.f : m.y1),
+          canvas_w: cw, canvas_h: ch
+        });
+      } catch (e) {}
+    };
+
     const path = (ctx) => {
-      if (!ctx.__akPath) ctx.__akPath = { ell: [], other: 0 };
+      if (!ctx.__akPath) ctx.__akPath = { ell: [], arcs: [], other: 0 };
       return ctx.__akPath;
     };
     const origBegin = proto.beginPath;
     proto.beginPath = function () {
-      try { this.__akPath = { ell: [], other: 0 }; } catch (e) {}
+      try { this.__akPath = { ell: [], arcs: [], other: 0 }; } catch (e) {}
       return origBegin.apply(this, arguments);
     };
+    const origRect = proto.fillRect;
+    if (typeof origRect === 'function') {
+      proto.fillRect = function (x, y, w, h) {
+        try {
+          flatCore(this, 'fillRect', (m) =>
+            x <= m.x1 && m.x1 <= x + w && y <= m.y1 && m.y1 <= y + h &&
+            Math.min(Math.abs(w), Math.abs(h)) >= m.r0);
+        } catch (e) {}
+        return origRect.apply(this, arguments);
+      };
+    }
     const origEllipse = proto.ellipse;
     if (typeof origEllipse === 'function') {
       proto.ellipse = function (x, y, rx, ry) {
@@ -217,7 +326,16 @@ GRADIENT_CLIP_HOOK_JS = """
         return origEllipse.apply(this, arguments);
       };
     }
-    for (const fn of ['arc', 'arcTo', 'rect', 'roundRect', 'moveTo', 'lineTo',
+    const origArc = proto.arc;
+    if (typeof origArc === 'function') {
+      proto.arc = function (x, y, r) {
+        /* `other` still counts, so the ellipse check above is untouched; the
+           circle itself is kept for the flat-core cover test. */
+        try { const p = path(this); p.other++; p.arcs.push({ x: x, y: y, r: Math.abs(r) }); } catch (e) {}
+        return origArc.apply(this, arguments);
+      };
+    }
+    for (const fn of ['arcTo', 'rect', 'roundRect', 'moveTo', 'lineTo',
                       'quadraticCurveTo', 'bezierCurveTo']) {
       const orig = proto[fn];
       if (typeof orig !== 'function') continue;
@@ -232,6 +350,17 @@ GRADIENT_CLIP_HOOK_JS = """
       try {
         if (!(arguments.length && arguments[0] && typeof arguments[0] === 'object')) {
           const p = path(this);
+          /* one concentric disc, drawn as an arc or an ellipse, is the other
+             way a flat core reaches the frame */
+          const solo = (p.arcs.length === 1 && p.ell.length === 0 && p.other === 1)
+            ? { x: p.arcs[0].x, y: p.arcs[0].y, r: p.arcs[0].r }
+            : ((p.ell.length === 1 && p.arcs.length === 0 && p.other === 0)
+              ? { x: p.ell[0].x, y: p.ell[0].y, r: Math.min(p.ell[0].rx, p.ell[0].ry) }
+              : null);
+          if (solo) {
+            flatCore(this, 'fill', (m) =>
+              Math.hypot(solo.x - m.x1, solo.y - m.y1) <= 1 && solo.r >= m.r0);
+          }
           if (p.ell.length === 1 && p.other === 0 &&
               window.__akGradientClip.length < 40) {
             const e = p.ell[0], m = meta.get(this.fillStyle);
@@ -1562,6 +1691,9 @@ IN_PAGE_QA_JS = """
      while the slide drew. qa.py grades them. */
   out.gradient_clips = (Array.isArray(window.__akGradientClip)
                         ? window.__akGradientClip : []).slice(0, 40);
+  /* Radial ramps with a filled middle, from the same hook. */
+  out.flat_cores = (Array.isArray(window.__akFlatCore)
+                    ? window.__akFlatCore : []).slice(0, 24);
   return out;
 }
 """
@@ -2242,7 +2374,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "lights": [], "light_conflicts": [],
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
-           "gradient_clips": [], "declaration_misses": [],
+           "gradient_clips": [], "flat_cores": [], "declaration_misses": [],
            "canvas_layer": {"ok": False, "reason": "not attempted"},
            "render_ms": 0, "ok": False}
     t0 = time.time()
@@ -2269,7 +2401,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "canvas_text", "breather", "svg_plates",
                                        "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts", "motifs", "css_unreadable",
-                                       "gradient_clips", "declaration_misses",
+                                       "gradient_clips", "flat_cores",
+                                       "declaration_misses",
                                        "paint")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000

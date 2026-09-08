@@ -7,6 +7,55 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-09-07, Phase 12 frontier scan (d): typography and layout craft. TWO PARKED, one reconfirmed null.
+
+The stalest legal slot (last read 2026-08-31) and the right one for this run:
+two of No.53's five scoring rounds were capped by type crossing type, and the
+run's own weakest criterion is artwork craft. Six searches, three fetches. The
+reactive budget was already spent on three fixes, so both findings are parked
+with what it would take to build them.
+
+- **PARKED: the doctrine says "never orphan a preposition" and nothing measures
+  it.** DESIGN_DOCTRINE has required lines broken at sense boundaries since the
+  beginning, and it is enforced by eye, which means by a pixel critic, which
+  means by a round. The trade's own rules are finite and checkable: no line
+  ending in a preposition, an article or a conjunction; no line ending in a two
+  or three letter word; no two consecutive lines ending in a hyphen; no broken
+  emphasis of three words or fewer (https://24ways.org/2013/run-ragged/). The
+  blocker is that render.py records per-line RECTS and not per-line TEXT, so
+  nothing today knows which words ended a rendered line. The technique that
+  supplies it is a Range walk that extends the selection one character at a time
+  and watches getClientRects() gain a rectangle, which is where the break landed
+  (https://www.bennadel.com/blog/4310-detecting-rendered-line-breaks-in-a-text-node-in-javascript.htm ,
+  https://developer.mozilla.org/docs/Web/API/Range/getBoundingClientRect). That
+  is O(characters) client-rect calls per block on a page the engine already
+  measures twice, so it needs a cost measurement before it goes anywhere near
+  the hot path, and a rule set the house agrees with before it can be a verdict.
+  Parked as a design, not as code.
+
+- **PARKED: align a column on its INK, not on its advance origin.** Optical
+  margin alignment is the reason a "V", a "T" or an opening quote at a margin
+  reads as indented when it is mathematically flush; the fix is to offset by the
+  glyph's side bearing (https://en.wikipedia.org/wiki/Optical_margin_alignment).
+  Chromium does not support `hanging-punctuation`, so there is no CSS route, but
+  canvas has the numbers: `measureText().actualBoundingBoxLeft/Right` are the
+  distances from the alignment point to the INK
+  (https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/actualBoundingBoxLeft),
+  and as of this run render.py already records exactly those for every drawn
+  string, for the collision gate. So an `AK.inkAlign(cx, s, x)` helper is about
+  fifteen lines. It is parked because it is a VISUAL change with no defect
+  behind it in this run, and because the same measurement has known sign
+  quirks outside Chromium (Firefox bug 1646926, node-canvas issue 1909), which
+  is fine for this engine and would be a trap for anyone reusing the helper.
+
+- **RECONFIRMED NULL (third time): `text-wrap: balance` and `pretty`.** Both
+  still do what the notes of 2026-07-09 and 2026-08-20 said: balance is capped
+  at six lines in Chromium and pretty only touches the last four, so neither is
+  a line-break rule and neither replaces the measurement above.
+  https://blog.logrocket.com/css-text-wrap-balance-vs-text-wrap-pretty/
+
+---
+
 ## 2026-09-06 - No.52, the fisheries-monitoring deck
 
 Four lessons, all of them about the gap between a declaration and what actually

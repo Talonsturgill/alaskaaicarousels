@@ -23,7 +23,14 @@ plus the checklist.
    counts: kicker, headline (marked line breaks, ≤3 lines, broken by sense),
    body (25-50 words), annotations, labels, units, footer, counter. Straight
    quotes, no em/en dashes ever, numerals tabular. Each factual string
-   carries its claim-id from claims.json.
+   carries its claim-id from claims.json. Quote every string in backticks:
+   dossier_check reads the backticks and FAILS any figure in them that no
+   claim VERIFIES (a figure that lives only in a claim's `notes` is the
+   fact-checker reasoning, not verifying, and fails by name). A number that
+   belongs to the DRAWING rather than to the world gets `[design]` on its
+   bullet, which aggregates.json must say again at build time. Citations and
+   identifiers (43 U.S.C. 1606(i), 91 FR 55826, WC 26-173, a PIID) are exempt
+   by shape and need no tag; they are addresses, not measurements.
 3. **Reader takeaway** — the one sentence a scroller retains at 432px.
 
 ### B. COMPOSITION
