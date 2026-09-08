@@ -1,0 +1,108 @@
+{
+  "run_date": "2026-09-07",
+  "carousel_no": 53,
+  "round": 6,
+  "rounds_of_revision": 6,
+  "weighted_total": 9.07,
+  "merit_total": 9.07,
+  "threshold": 7.7,
+  "threshold_rung": "4+ revision rounds",
+  "threshold_flat": 8.3,
+  "clears_flat_threshold": true,
+  "ship": true,
+  "hard_fails_open": [],
+  "weakest_criterion": "Legibility and platform fitness",
+  "one_sentence_fix": "On slide 05 drop the four bars roughly 30px clear of the value rows above them, and push slide 08's 102-mark field about 40px right, so no figure in the deck reads as touching its own artwork at 432px.",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 8,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 9,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 9,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "score_history": [
+    {
+      "round": 1,
+      "merit": 8.18,
+      "capped": 6.9,
+      "cap_reason": "overlapping text on slides 03, 04, 06, 08"
+    },
+    {
+      "round": 2,
+      "merit": 8.77,
+      "capped": 6.9,
+      "cap_reason": "slide 05 SERVICESHQ003425CE092, a regression caused by the round-2 fix itself"
+    },
+    {
+      "round": 3,
+      "merit": 8.6,
+      "capped": 6.9,
+      "cap_reason": "slide 07 printed the year 1971 where C35 verifies only 'at incorporation'"
+    },
+    {
+      "round": 4,
+      "merit": 8.73,
+      "capped": null,
+      "cap_reason": null
+    },
+    {
+      "round": 5,
+      "merit": 8.78,
+      "capped": null,
+      "cap_reason": null
+    },
+    {
+      "round": 6,
+      "merit": 9.07,
+      "capped": null,
+      "cap_reason": null
+    }
+  ],
+  "editor_notes_for_email": "SHIPS at 9.07, no hard fail, the highest this deck has scored and above every run in the trailing ten. ARTWORK CRAFT MOVED 7 to 8, which is the standing weakness of the last ten runs finally shifting, and the reason is worth keeping. Slide 07 is no longer the broad flat blue gradient the scorer named twice: a Phase 12 gate that MEASURES radial gradients rather than matching their names found an EIGHTH flat-core instance there, five rounds after a regex repair caught seven by matching S-6 and missed this one because it was written S-8. Restoring the stop-based annulus brought the az-142 terminator back on that frame and it now survives a zoom test. It moved one notch and not two because what remains on 07 is composition rather than lighting, an empty upper-left quadrant and flat same-size ISOTYPE dots, and the deck's thinnest frame at zoom is now slide 04. THE FIELD NOTE IS: never repair a drawing defect by regex. WEAKEST IS NOW LEGIBILITY at 7, on three verified-legible squeakers rather than one, and the named fix is small: drop slide 05's bars about 30px clear of the value rows above them and push slide 08's 102-mark field about 40px right, so no figure in the deck reads as touching its own artwork at 432px. It is carried to the next brief rather than spent now, because the close rests on September 10th, 2026 and a passed deadline turns the payoff frame into old news. ONE THING TO HAVE AN ANSWER READY FOR, unchanged from round 5: slide 05's THE BUYERS RENAMED and the caption's 'Now it is the Deputy to the Chief Digital and Artificial Intelligence Office' assert a succession from the Joint AI Center to the CDAO that no single claim states; C19 names the JAIC on Tuknik 140D0421C0002 and C13 names the Deputy to the CDAO on Koniag Emerging Technologies W519TC26CA019, two different records, and the CDAO contract is not one of the four bars on slide 05 at all. The honest answer is that the deck shows a requirement sentence persisting across two differently named AI buying offices in the record, not an org chart. A MAINTAINER DECISION IS PENDING: config/scoring_rubric.yaml's header says the weights sum to 1.00 and they sum to 1.10, so every score this project has recorded sits on an inflated scale. Phase 12 deliberately did not touch it, because normalising without restating the thresholds in the same commit would silently move every future score against thresholds fitted on the old scale.",
+  "note": "Persisted by the showrunner from the scorer's returned JSON; the scorer agent has read-only tools. Round cards 1 through 5 are archived beside this file. Scored AFTER the Phase 12 relight of slide 07, so this card describes the artifact that actually ships."
+}

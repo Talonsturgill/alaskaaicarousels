@@ -1,0 +1,68 @@
+{
+  "run_date": "2026-09-07",
+  "carousel_no": 53,
+  "round": 1,
+  "weighted_total": 6.9,
+  "merit_total": 8.18,
+  "threshold": 8.3,
+  "ship": false,
+  "capped_by": "hard fail, overlapping text on slides 03, 04, 06 and 08",
+  "weakest_criterion": "Legibility and platform fitness",
+  "one_sentence_fix": "Open a hard 120px gutter to the left of the altitude rail and reflow the four colliding strings out of it, moving slide 03's dimension label clear of the case block, then re-render and re-score.",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 3,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 9,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "hard_fails_open": [
+    "clipped, overlapping or cut-off text in any render"
+  ],
+  "note": "ROUND 1 REPORT CARD, superseded by round 2. Persisted by the showrunner because the scorer agent has read-only tools and could not write it. The four named collisions and all three secondary findings were worked before re-scoring."
+}

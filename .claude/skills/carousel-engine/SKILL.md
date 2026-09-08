@@ -89,6 +89,25 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   overprint the scoring rubric hard-fails, and run No.49 lost two scoring
   rounds to that disagreement. Deliberate layering is `data-overlap-ok`,
   which is a different attribute and still demotes the FAIL to a WARN.
+- **Two strings on one line may not share a column** (2026-09-07). The
+  collision gate above needs the overprint to cover 30 percent of the smaller
+  line box, and the failure this studio actually ships is a few characters: a
+  label's last glyphs inside the rail's mono column, a value column
+  right-aligned onto the longest of four names
+  (`LEISNOI PROFESSIONAL SERVICESHQ003425CE092`, run No.53, which capped two
+  scoring rounds, one of them created by the repair to the other). qa.py now
+  also **FAILS** any two text boxes that share at least half the shorter one's
+  height and at least 4px of column, which is what being on one line and in one
+  column means; stacked blocks with tight leading never do both.
+  `data-overlap-ok` demotes it, `data-decorative` does not.
+  AND THE SAME TEST ON CANVAS TYPE, which had no collision gate at all before
+  this: render.py measures every `fillText`/`strokeText` ink box with
+  `measureText`'s `actualBoundingBox*` (which carry `textAlign` and
+  `textBaseline` already), so two canvas strings are now intersected exactly
+  like DOM line boxes. Identical strings never collide with each other, since
+  drawing the same text twice is how a halo or a knockout pass is done, and
+  only strings on the same canvas are compared. Reconstruction:
+  `python tests/overprint_verify.py`.
 - **Plates are sized from the MEASURED string, never a guessed constant**
   (2026-07-29): JetBrains Mono at 24px with 0.10em tracking advances exactly
   16.8px per character; hand-sizing at the eye's estimate of ~14 loses about
@@ -420,6 +439,22 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   is materially above the alpha at the long axis. A deliberately hard-edged
   ellipse is clipped equally on both axes and is not reported. Reconstruction:
   `python tests/gradient_clip_verify.py`.
+- **Canvas has no ring either** (2026-09-07), which is the same lesson from the
+  other end. `createRadialGradient(x,y,r0, x,y,r1)` paints every pixel INSIDE
+  `r0` with the colour at stop 0, so a concentric ramp whose first stop carries
+  alpha is that ring PLUS a flat disc of radius `r0`. Run No.53 wrote
+  `createRadialGradient(CX,CY,S-6, CX,CY,S+96)` as an "atmospheric limb" on
+  seven slides and filled it over the frame in `lighter`: a flat wash across
+  the whole globe that erased the az-142 terminator the entire deck argued
+  from. Five pixel critics each described a symptom of it and it took two build
+  rounds to find the one cause. Build the ring out of STOPS instead:
+  `createRadialGradient(x,y,0, x,y,r1)`, transparent at 0 AND at `r0/r1`, the
+  band's colour just outside that, transparent at 1. render.py's gradient hook
+  records every flat core it sees with its numbers, and qa.py **FAILS** one
+  painted in an additive composite (`lighter`, `plus-lighter`) over 2 percent
+  or more of the frame. Nothing is said about a flat core in `source-over` or
+  `multiply` at any size, because there a filled disc with a soft edge is an
+  ordinary way to draw (this deck's ink-soak halos are exactly that).
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without

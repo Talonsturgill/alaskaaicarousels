@@ -1320,6 +1320,55 @@
       "confidence": 0.85,
       "born": "2026-09-06",
       "evidence": "No.52. Slide 07's data-scale axis end was corrected from x 1000 to x 960 and the canvas variable that draws the axis was left at 1000, so two of three declared marks had no ink under them. The axis census caught it and reported the weakest mark at the same strength as the band's own texture."
+    },
+    {
+      "id": "a-radial-gradient-inner-radius-is-not-a-hole",
+      "instinct": "A CANVAS RADIAL GRADIENT DOES NOT LEAVE ITS INNER CIRCLE ALONE. createRadialGradient(x,y,r0,x,y,r1) fills every pixel inside r0 with stop 0, so an atmospheric rim authored as r0=S-6 paints the WHOLE disc, not the ring. In 'lighter' mode that is a flat additive wash over the subject, and it reads as a lighting choice rather than as a bug, which is why it survives a render, a qa pass and a first look. Author a rim as a gradient from 0 with transparent stops up to the limb.",
+      "confidence": 0.95,
+      "born": "2026-09-07",
+      "evidence": "No.53 shipped this on SEVEN of nine slides. It flattened the az-142 terminator the entire deck's thesis rests on, and it also inflated two encoding probes into passing for the wrong reason, so fixing the light broke the probes and exposed them."
+    },
+    {
+      "id": "a-median-probe-cannot-see-a-thin-feature",
+      "instinct": "qa's encoding probe takes the MEDIAN of a region, so a box drawn around a thin feature measures the ground twice and reports the same population. Any probe on a hairline, a comma, a bracket or a fan must sit INSIDE the ink, measured off the rendered PNG, or the feature must be made big enough to have a median. Author probe rects from the image, never from the camera arithmetic that placed the feature.",
+      "confidence": 0.9,
+      "born": "2026-09-07",
+      "evidence": "No.53. Slides 02 and 03 both declared 60x60 and 180x140 boxes around a 2px bracket and a 5.5px stroke. Both read under 4.0 dE. Measuring the render found a 12x12 box on the comma at median (224,203,48) against a 6x40 box on the stroke at (207,211,212)."
+    },
+    {
+      "id": "a-scout-note-is-not-a-claim",
+      "instinct": "BEFORE A DOSSIER QUOTES A NUMBER, GREP claims.json FOR IT. A figure can travel scout to storyboard to dossier to render without ever becoming a claim, and nothing between those steps checks. The aggregate gate is the first thing that looks, and by then it is in a shipped-quality render.",
+      "confidence": 0.9,
+      "born": "2026-09-07",
+      "evidence": "No.53. Slide 08 rendered '102 SIGNATURES' plus a 102-mark struck field on the strength of a scout paragraph the fact-checker never turned into a claim and never killed either. Verified late as C54 and C55, which also corrected the slide three ways: shareholders AND descendants, an early-December snapshot, and 20 non-shareholder signatures excluded."
+    },
+    {
+      "id": "fixed-furniture-is-easiest-to-forget",
+      "instinct": "THE BRAND'S FIXED MARK IS THE ONE ELEMENT NO SLIDE'S DOSSIER OWNS, so no slide's acceptance checklist defends it. Draw it from one shared constant appended to every slide in one pass, and check it with a deck-wide grep rather than per slide.",
+      "confidence": 0.8,
+      "born": "2026-09-07",
+      "evidence": "No.53's motif state table said gold appears on every slide as the fixed Polaris on the rail, which is what allowed slides 06, 07 and 08 to hold gold out as story ink. It was on none of the nine rails, so three consecutive frames carried no gold at all. Only the flow critic, which reads the deck as a sequence, saw it."
+    },
+    {
+      "id": "this-one-needs-an-antecedent-on-its-own-frame",
+      "instinct": "A CAROUSEL SLIDE TRAVELS ALONE. A pronoun whose antecedent is on an earlier slide is not merely unclear when the frame is screenshotted, it can be FALSE, because the reader attaches it to the only subject in front of them. Name the subject on every frame that carries a number about it.",
+      "confidence": 0.9,
+      "born": "2026-09-07",
+      "evidence": "No.53's slide 08 said 'This one is $632,119.41 above that line' beside an ICE task order at $17,456,917.40, which is two and a half million BELOW the threshold. The subject was a contract on slide 04. Read alone, the sentence asserted the opposite of the record on the deck's most repost-sensitive frame."
+    },
+    {
+      "id": "a-year-inferred-from-a-note-is-not-a-claim",
+      "instinct": "A DATE THE FACT-CHECKER REASONED TO IN A NOTE IS NOT A VERIFIED DATE. When a claim says 'at incorporation' or 'last year' and its notes say 'consistent with <year>', the slide must print the claim's own words, not the note's inference. The note exists to help the reader of claims.json, not to license a number on a frame, and the aggregate and claim gates cannot tell the two apart because both live in the same record.",
+      "confidence": 0.9,
+      "born": "2026-09-07",
+      "evidence": "No.53 printed '3,400 IN 1971' and '1971  3,400 SHAREHOLDERS' on slide 07 for four rounds. C35 says 'at incorporation'; only its notes field reasoned 'consistent with 1971'. It survived claims_check, aggregate_check, plan_drift, five pixel critics and two scoring rounds, and was caught on the third. It was also probably WRONG: ANCSA was signed in 1971 but the twelve regional corporations incorporated in 1972, on a deck whose thesis is that one character changes the answer."
+    },
+    {
+      "id": "a-fix-is-a-change-and-changes-regress",
+      "instinct": "RE-MEASURE THE THING THE FIX TOUCHED, not just the thing it fixed. A layout repair that moves a column, a label or a margin can create the same defect class one element over, and the run will not notice because the gate that caught the original is now green. Every repair round should end by re-running the SAME measurement that found the defect, across the whole deck rather than the repaired slide.",
+      "confidence": 0.9,
+      "born": "2026-09-07",
+      "evidence": "No.53's round 2 fixed four text collisions and introduced a fifth: right-aligning slide 05's value column to the gutter pulled it left onto the longest of four names and printed SERVICESHQ003425CE092. Merit had risen 8.18 to 8.77 and the run was still capped at 6.9. The repair that held was to place the column from a MEASURED widest-name width with an __akChecks assertion, because no constant can be right for four names of different lengths."
     }
   ]
 }

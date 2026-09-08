@@ -2197,6 +2197,45 @@
       ],
       "sources_lead": "NOAA Fisheries feature story, September 3rd, 2026",
       "note": "Chosen off a saturated landscape. Seven of the last thirty days had gone to data centres, land and grid and three to elections, so the scouts were briefed off those wells and the fisheries-monitoring cluster was taken instead. The fact-checker materially sharpened the thesis, killed four assumptions the brief carried, and supplied C06, which is the sentence the whole deck now rests on."
+    },
+    {
+      "run_date": "2026-09-07",
+      "carousel_no": 53,
+      "headline": "A Comma Hides $20,632,119.41",
+      "topic": "Two FPDS-NG contract searches filtered identically to vendors with an Alaska address, differing only in the phrase searched, return 24 records and 25 records and share ZERO records in common. The longer phrase is a strict superset of the shorter one, so its result set must be a subset of the other, and it is not. Three contracts worth $54,250,832.04 appear only in the narrower search, the largest a $20,632,119.41 Washington Headquarters Services AI contract held by Leisnoi Professional Services LLC. A comma immediately after the words artificial intelligence appears to break phrase matching, though the counts do not depend on that being the cause.",
+      "angle": "The public's own search for federal AI contracts with an Alaska name on them is broken, and no total, rank or share can honestly be published until it is fixed. So the deck publishes the transparency failure instead of the number, and closes on the query string a citizen would have to type to see all seven years at once.",
+      "entities": [
+        "FPDS-NG",
+        "USAspending",
+        "Leisnoi Professional Services LLC",
+        "Koniag IT Systems",
+        "Tuknik Government Services",
+        "Koniag Emerging Technologies",
+        "Koniag Services Inc",
+        "Washington Headquarters Services",
+        "Joint Artificial Intelligence Center",
+        "Deputy to the Chief Digital and Artificial Intelligence Office",
+        "University of Alaska Fairbanks",
+        "NASA",
+        "Bering Straits Native Corporation",
+        "Commonwealth North",
+        "43 U.S.C. 1606(i)"
+      ],
+      "primary_sources": [
+        "fpds.gov ATOM feed",
+        "api.usaspending.gov",
+        "uscode.house.gov",
+        "koniag-gs.com",
+        "nomenugget.com",
+        "kmxt.org",
+        "adn.com",
+        "alaskapublic.org",
+        "commonwealthnorth.org",
+        "hunton.com",
+        "leisnoi.com",
+        "koniageducation.org"
+      ],
+      "note": "The queued brief made pattern-completeness a hard PRECONDITION and that precondition FAILED, exactly as the brief allowed for. The failure is the story. Do not re-run this angle as a totals story until FPDS phrase matching is shown to be fixed."
     }
   ]
 }

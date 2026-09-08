@@ -7,6 +7,55 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-09-07, Phase 12 frontier scan (d): typography and layout craft. TWO PARKED, one reconfirmed null.
+
+The stalest legal slot (last read 2026-08-31) and the right one for this run:
+two of No.53's five scoring rounds were capped by type crossing type, and the
+run's own weakest criterion is artwork craft. Six searches, three fetches. The
+reactive budget was already spent on three fixes, so both findings are parked
+with what it would take to build them.
+
+- **PARKED: the doctrine says "never orphan a preposition" and nothing measures
+  it.** DESIGN_DOCTRINE has required lines broken at sense boundaries since the
+  beginning, and it is enforced by eye, which means by a pixel critic, which
+  means by a round. The trade's own rules are finite and checkable: no line
+  ending in a preposition, an article or a conjunction; no line ending in a two
+  or three letter word; no two consecutive lines ending in a hyphen; no broken
+  emphasis of three words or fewer (https://24ways.org/2013/run-ragged/). The
+  blocker is that render.py records per-line RECTS and not per-line TEXT, so
+  nothing today knows which words ended a rendered line. The technique that
+  supplies it is a Range walk that extends the selection one character at a time
+  and watches getClientRects() gain a rectangle, which is where the break landed
+  (https://www.bennadel.com/blog/4310-detecting-rendered-line-breaks-in-a-text-node-in-javascript.htm ,
+  https://developer.mozilla.org/docs/Web/API/Range/getBoundingClientRect). That
+  is O(characters) client-rect calls per block on a page the engine already
+  measures twice, so it needs a cost measurement before it goes anywhere near
+  the hot path, and a rule set the house agrees with before it can be a verdict.
+  Parked as a design, not as code.
+
+- **PARKED: align a column on its INK, not on its advance origin.** Optical
+  margin alignment is the reason a "V", a "T" or an opening quote at a margin
+  reads as indented when it is mathematically flush; the fix is to offset by the
+  glyph's side bearing (https://en.wikipedia.org/wiki/Optical_margin_alignment).
+  Chromium does not support `hanging-punctuation`, so there is no CSS route, but
+  canvas has the numbers: `measureText().actualBoundingBoxLeft/Right` are the
+  distances from the alignment point to the INK
+  (https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/actualBoundingBoxLeft),
+  and as of this run render.py already records exactly those for every drawn
+  string, for the collision gate. So an `AK.inkAlign(cx, s, x)` helper is about
+  fifteen lines. It is parked because it is a VISUAL change with no defect
+  behind it in this run, and because the same measurement has known sign
+  quirks outside Chromium (Firefox bug 1646926, node-canvas issue 1909), which
+  is fine for this engine and would be a trap for anyone reusing the helper.
+
+- **RECONFIRMED NULL (third time): `text-wrap: balance` and `pretty`.** Both
+  still do what the notes of 2026-07-09 and 2026-08-20 said: balance is capped
+  at six lines in Chromium and pretty only touches the last four, so neither is
+  a line-break rule and neither replaces the measurement above.
+  https://blog.logrocket.com/css-text-wrap-balance-vs-text-wrap-pretty/
+
+---
+
 ## 2026-09-06 - No.52, the fisheries-monitoring deck
 
 Four lessons, all of them about the gap between a declaration and what actually
@@ -6404,3 +6453,72 @@ that for comparison tasks they slow readers down without improving accuracy.
 The authors recommend fitting the aid to the task rather than adding it by
 reflex. A unit grid behind an area block is not free.
 https://arxiv.org/abs/2201.02995
+
+---
+
+## THE LIGHT WAS A ONE LINE BUG, AND IT WAS THE SCORE (No.53, 2026-09-07)
+
+Artwork craft has been the weakest criterion in seven of the last ten runs, at a
+mean of 6.7. No.53 planned against that in the storyboard: a grazing key at
+azimuth 142 and elevation 4, a stated thesis that Alaska is the dark end of
+every frame, and a decision to delete the contact-shadow defect class by giving
+eight of nine frames nothing to stand on. All of that was right and none of it
+reached the pixels, because of this:
+
+```js
+const lim = cx.createRadialGradient(CX,CY,S-6, CX,CY,S+96);
+lim.addColorStop(0,'rgba(84,140,192,0.26)');
+```
+
+An atmospheric rim, authored as a gradient whose inner radius is the limb. Canvas
+does not leave the inner circle alone. Every pixel inside `r0` is painted with
+stop 0, so in `lighter` mode that line adds a flat wash of light across the
+ENTIRE sphere. It shipped on seven of nine slides. The terminator the whole deck
+was built on was being erased by the same line on every frame that had one, and
+the frames still looked plausible, which is why nothing caught it: not the
+render, not qa, not the first read of the contact sheet. Five pixel critics
+reported it separately as "flat lighting", "no directional terminator" and "a
+centred radial gradient with a vignette", and it took reading their three
+reports together to find the one cause underneath.
+
+The repair is a true annulus, transparent out to the limb:
+
+```js
+const lim=cx.createRadialGradient(CX,CY,0,CX,CY,S+96);
+const _i=(S-14)/(S+96), _l=(S-4)/(S+96), _m=_l+0.30*(1-_l);
+lim.addColorStop(0,'rgba(84,140,192,0)');  lim.addColorStop(_i,'rgba(84,140,192,0)');
+lim.addColorStop(_l,'rgba(84,140,192,0.30)'); lim.addColorStop(_m,'rgba(52,96,142,0.12)');
+lim.addColorStop(1,'rgba(30,60,100,0)');
+```
+
+**Two second-order lessons, both worth more than the bug.**
+
+The first is that FIXING THE LIGHT BROKE TWO ENCODING PROBES, and that was the
+gate working. Slides 02 and 03 had been passing their `data-encodes` checks on
+the strength of the wash, not on the strength of the feature they declared. Once
+the wash went, both fell under the 4.0 dE floor and the gate said so. A probe
+that passes for the wrong reason is invisible until the wrong reason is removed.
+Re-authoring them taught the second rule the hard way: qa reads the MEDIAN of a
+region, so a 60x60 box around a 44px comma or a 180x140 box over a fan of 1.25px
+hairlines measures the background twice and reports one population. Author probe
+rects from the RENDERED PNG. On this deck a 12x12 box inside the comma read
+median (224,203,48) against a 6x40 box on the transect at (207,211,212), which
+is what the claim was always about.
+
+The second is about WHO FINDS WHAT. The five pixel critics, one per slide pair,
+each found real per-slide defects and none of them found the missing brand mark,
+because the fixed Polaris belongs to no slide's dossier and therefore appears on
+no slide's acceptance checklist. The flow critic, reading the deck as a
+sequence, found it in one pass: gold on 01 to 05, no gold at all on 06, 07 and
+08, gold again on 09. Fixed furniture is the class of defect that only a
+whole-deck reader can see. Draw it from one shared constant in one pass over
+every slide, and check it with a deck-wide grep, not per slide.
+
+**And one editorial rule that came out of the same round.** Slide 08 said "This
+one is $632,119.41 above that line" while the only contract named on that frame
+was an ICE task order at $17,456,917.40, two and a half million BELOW the
+threshold. The antecedent was on slide 04. A carousel slide travels alone, so a
+pronoun reaching back to an earlier frame is not merely unclear when the slide
+is screenshotted, it can be FALSE, because the reader attaches it to the only
+subject in front of them. Name the subject on every frame that carries a number
+about it.

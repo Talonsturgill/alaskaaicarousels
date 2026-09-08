@@ -1,0 +1,196 @@
+<!doctype html>
+<!-- SLIDE 04 — WHAT FELL IN THE GAP. The gap is healed, the arc is labelled at
+     both ends with leaders landing on their own projected coordinates, and the
+     Arlington terminus is the deck's only warm pixel, Indiana limestone. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#050A14;position:relative}
+  #art{position:absolute;inset:0}
+  #grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+         opacity:.07;pointer-events:none}
+  .lawful{position:absolute;left:80px;top:150px;width:900px;font-family:"JetBrains Mono",monospace;
+          font-weight:500;font-size:26px;letter-spacing:.12em;color:#EAF1FA}
+  .name{position:absolute;left:80px;top:212px;width:660px;font-family:"Manrope",sans-serif;
+        font-weight:700;font-size:44px;line-height:1.2;color:#EAF1FA}
+  .rec{position:absolute;left:80px;top:762px;width:620px;font-family:"JetBrains Mono",monospace;
+       font-weight:400;font-size:24px;line-height:1.60;letter-spacing:.03em;color:#9DB2C8;
+       font-variant-numeric:tabular-nums lining-nums;white-space:pre}
+  .lb{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;
+      letter-spacing:.08em;white-space:nowrap;text-shadow:0 0 4px #050A14,0 0 8px #050A14,
+      1px 1px 0 #050A14,-1px -1px 0 #050A14,1px -1px 0 #050A14,-1px 1px 0 #050A14}
+  #lb1{left:552px;top:286px;color:#8FA6BE}
+  #lb2{left:552px;top:668px;color:#D6D0C2}
+  .rec b{color:#EAF1FA;font-weight:500}
+  .bodyline{position:absolute;left:80px;bottom:150px;width:640px;font-family:"Manrope",sans-serif;
+        font-weight:500;font-size:34px;line-height:1.38;color:#9DB2C8}
+  .polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+  .rail{position:absolute;right:82px;top:120px;font-family:"JetBrains Mono",monospace;
+        font-weight:400;font-size:24px;letter-spacing:.10em;color:#8FA6BE;
+        writing-mode:vertical-rl;text-orientation:mixed}
+</style></head>
+<body>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div id="grain"></div>
+<div class="lawful">LAWFUL. 8(a) IS THE MECHANISM CONGRESS BUILT.</div>
+<div class="name">Leisnoi Professional Services LLC</div>
+<div class="rec"><b>PIID      </b>HQ003425CE092
+<b>OFFICE    </b>WASHINGTON HEADQUARTERS SERVICES
+<b>OBLIGATED </b>$20,632,119.41
+<b>ACTIONS   </b>8, CEILING MET TO THE CENT
+<b>MECHANISM </b>8(a) SOLE SOURCE, NAICS 541512
+<b>PERFORMED </b>WASHINGTON DC 20301
+<b>RUNS      </b>SEPTEMBER 11TH, 2025
+<b>THROUGH   </b>SEPTEMBER 10TH, 2026</div>
+<div class="lb" id="lb1">ANCHORAGE 61.22N 149.90W</div>
+<div class="lb" id="lb2">PENTAGON 38.87N 77.06W</div>
+<div class="bodyline">The vendor address is in Anchorage. The work is at the Pentagon.</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="rail">60.2N 125.1W . t 0.36 . 1,210 MI . 04 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script type="module">
+const W=1080,H=1350,SEED=20260907+4;
+const ANC=[-149.9003,61.2181], PEN=[-77.0563,38.8719];
+const S=940, CX=880, CY=176;
+const RESERVE=[[64,138,900,56],[64,202,680,112],[64,750,660,326],[64,1130,660,110],[536,276,452,40],[536,658,432,40],[956,110,66,742]];
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  function reserved(x,y){ for(const r of RESERVE){
+    if(x>r[0]-10&&x<r[0]+r[2]+10&&y>r[1]-10&&y<r[1]+r[3]+10) return true;} return false; }
+  function clipOut(){ cx.beginPath(); cx.rect(0,0,W,H);
+    for(const r of RESERVE) cx.rect(r[0]-8,r[1]-8,r[2]+16,r[3]+16); cx.clip('evenodd'); }
+
+  let ok=false, off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  try{
+    const THREE=await import('@@ASSETS@@/js/three.module.min.js');
+    const AKT=(await import('@@ASSETS@@/js/akthree.js')).init(THREE);
+    if(AKT.webglOK()){
+      const R=AKT.setup(off,{w:W,h:H,bg:0x050A14,exposure:0.88});
+      const hw=(W/2)/S,hh=(H/2)/S;
+      const cam=new THREE.OrthographicCamera(-hw,hw,hh,-hh,0.01,40);
+      cam.position.set(0,0,6); cam.lookAt(0,0,0); R.camera=cam;
+      const ox=(CX-W/2)/S, oy=-(CY-H/2)/S;
+      const globe=new THREE.Mesh(new THREE.SphereGeometry(1,192,128),
+        new THREE.MeshStandardMaterial({color:0x102338,roughness:0.70,metalness:0.10}));
+      globe.position.set(ox,oy,0); R.scene.add(globe);
+      AKT.environment(R,{intensity:0.16});
+      const az=142*Math.PI/180, el=4*Math.PI/180;
+      const kd=[Math.sin(az)*Math.cos(el),Math.cos(az)*Math.cos(el),Math.sin(el)];
+      const key=new THREE.DirectionalLight(0xBFD4EA,3.15);
+      key.position.set(kd[0]*8+ox,kd[1]*8+oy,kd[2]*8+6); R.scene.add(key);
+      const fill=new THREE.DirectionalLight(0x16283E,0.52);
+      fill.position.set(-kd[0]*8+ox,-kd[1]*8+oy,5); R.scene.add(fill);
+      R.scene.add(new THREE.AmbientLight(0x081221,0.55));
+      const shell=new THREE.Mesh(new THREE.SphereGeometry(1.045,160,110),
+        new THREE.MeshBasicMaterial({color:0x24486B,transparent:true,opacity:0.10,
+          side:THREE.BackSide,blending:THREE.AdditiveBlending,depthWrite:false}));
+      shell.position.set(ox,oy,0); R.scene.add(shell);
+      const shot=await AKT.snapshot(R);
+      if(shot&&shot.ok){ cx.drawImage(off,0,0,W,H); ok=true; }
+    }
+  }catch(e){ console.warn('gl',e&&e.message); }
+  if(!ok){ const g=cx.createRadialGradient(CX+400,CY+520,40,CX,CY,S);
+    g.addColorStop(0,'#22364F'); g.addColorStop(.5,'#102338'); g.addColorStop(1,'#070E1A');
+    cx.save(); cx.beginPath(); cx.arc(CX,CY,S,0,7); cx.clip(); cx.fillStyle=g;
+    cx.fillRect(0,0,W,H); cx.restore(); }
+
+  { const rs=AK.rng(SEED+91); cx.save();
+    for(let k=0;k<560;k++){ const x=rs()*W,y=rs()*H,d=Math.hypot(x-CX,y-CY);
+      if(d<S-2||reserved(x,y)) continue; const near=Math.max(0,1-(d-S)/520), m=rs();
+      cx.fillStyle='rgba(198,216,232,'+((0.05+0.30*m*m)*(0.35+0.65*near)).toFixed(3)+')';
+      cx.beginPath(); cx.arc(x,y,m>0.94?1.5:(m>0.72?1.05:0.7),0,7); cx.fill(); }
+    const lim=cx.createRadialGradient(CX,CY,0,CX,CY,S+96);
+    const _i=(S-14)/(S+96), _l=(S-4)/(S+96), _m=_l+0.30*(1-_l);
+    lim.addColorStop(0,'rgba(84,140,192,0)'); lim.addColorStop(_i,'rgba(84,140,192,0)');
+    lim.addColorStop(_l,'rgba(84,140,192,0.30)'); lim.addColorStop(_m,'rgba(52,96,142,0.12)');
+    lim.addColorStop(1,'rgba(30,60,100,0)');
+    cx.globalCompositeOperation='lighter'; cx.fillStyle=lim; cx.fillRect(0,0,W,H); cx.restore(); }
+
+  const CEN=[ANC[0]+28,Math.min(88,ANC[1]+6)];
+  function proj(g){ return d3.geoOrthographic().rotate([-CEN[0],-CEN[1],g])
+    .translate([CX,CY]).scale(S).clipAngle(90); }
+  let p0=proj(0),a0=p0(ANC),b0=p0(PEN);
+  let gm=Math.atan2(b0[0]-a0[0],b0[1]-a0[1])*180/Math.PI;
+  let P=proj(gm); if(Math.abs(P(ANC)[0]-P(PEN)[0])>140){ gm=-gm; P=proj(gm); }
+  const path=d3.geoPath(P,cx);
+
+  cx.save(); clipOut(); cx.lineWidth=.75; cx.strokeStyle='rgba(143,166,190,0.14)';
+  cx.beginPath(); path(d3.geoGraticule().step([15,10])()); cx.stroke(); cx.restore();
+
+  const ak=await (await fetch('@@ASSETS@@/geo/alaska-state.geo.json')).json();
+  let us=null;
+  try{ const t=await (await fetch('@@ASSETS@@/geo/us-states-10m.json')).json();
+       us=topojson.feature(t, t.objects[Object.keys(t.objects)[0]]); }catch(e){ us=null; }
+  cx.save(); clipOut(); cx.lineJoin='round';
+  if(us){ cx.lineWidth=1.0; cx.strokeStyle='rgba(110,138,166,0.42)';
+    cx.beginPath(); path(us); cx.stroke(); }
+  cx.lineWidth=4.0; cx.strokeStyle='rgba(5,10,20,0.85)'; cx.beginPath(); path(ak); cx.stroke();
+  cx.lineWidth=1.25; cx.strokeStyle='#6E8AA6'; cx.beginPath(); path(ak); cx.stroke(); cx.restore();
+
+  /* ---- THE HEALED ARC. the break from 01 to 03 is closed, and the segment
+         that was missing is the slide's gold. -------------------------------- */
+  const it=d3.geoInterpolate(ANC,PEN), N=560, pts=[];
+  for(let i=0;i<N;i++) pts.push(P(it(i/(N-1))));
+  function run(a,b,w,col){ cx.save(); clipOut(); cx.lineWidth=w; cx.strokeStyle=col;
+    cx.lineCap='butt'; cx.beginPath(); cx.moveTo(pts[a][0],pts[a][1]);
+    for(let i=a+1;i<=b;i++) cx.lineTo(pts[i][0],pts[i][1]); cx.stroke(); cx.restore(); }
+  run(0,N-1,5.6,'rgba(5,10,20,0.85)');
+  run(0,N-1,3.0,'#B9CCDD');
+  const h0=Math.round(N*0.42), h1=Math.round(N*0.54);
+  run(h0,h1,3.0,'#FFC72C');                     // the healed segment
+
+  /* ---- the two endpoints, labelled, leaders landing on their own coords -- */
+  const aPt=P(ANC), bPt=P(PEN);
+  cx.save(); clipOut();
+  cx.fillStyle='#5AC8F0'; cx.beginPath(); cx.arc(aPt[0],aPt[1],6,0,7); cx.fill();
+  cx.fillStyle='#D6D0C2'; cx.beginPath(); cx.arc(bPt[0],bPt[1],7,0,7); cx.fill();
+  cx.strokeStyle='rgba(214,208,194,0.55)'; cx.lineWidth=1.0;
+  cx.beginPath(); cx.arc(bPt[0],bPt[1],16,0,7); cx.stroke();
+  cx.restore();
+
+  // leaders run from the FIXED label anchors to each point's own coordinates
+  function leader(from,to,col){
+    cx.save(); clipOut(); cx.strokeStyle=col; cx.lineWidth=1.25; cx.lineCap='butt';
+    cx.beginPath(); cx.moveTo(from[0],from[1]);
+    cx.lineTo(from[0]+(to[0]-from[0])*0.55, from[1]);
+    cx.lineTo(to[0],to[1]); cx.stroke();
+    cx.fillStyle=col; cx.beginPath(); cx.arc(to[0],to[1],3.5,0,7); cx.fill(); cx.restore();
+  }
+  const aFrom=[552+236, 298];      // centre of #lb1, measured from its fixed box
+  const bFrom=[552+218, 680];      // centre of #lb2, lifted clear of the record block
+  leader(aFrom,aPt,'#8FA6BE');
+  leader(bFrom,bPt,'#D6D0C2');
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.20,saturation:0.95,contrast:1.14,filmic:true,
+    lift:[0.010,0.014,0.024],gain:[1.012,1.0,0.978],vignette:0.22,
+    bloom:{threshold:0.80,strength:0.22,radius:9},
+    grain:{amount:0.040,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.30});
+
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,46,SEED)+')';
+  await document.fonts.ready;
+
+  window.__akLeaders=[
+    {target:"Anchorage, the vendor address", at:[aPt[0],aPt[1]], to:[aPt[0],aPt[1]],
+     from:[aFrom[0],aFrom[1]], label:"ANCHORAGE 61.22N 149.90W"},
+    {target:"the Pentagon, the place of performance", at:[bPt[0],bPt[1]], to:[bPt[0],bPt[1]],
+     from:[bFrom[0],bFrom[1]], label:"PENTAGON 38.87N 77.06W"}];
+  window.__akMotifs=[{what:"the healed segment, where the gap stood on 01 to 03",
+    rect:[Math.round(Math.min(pts[h0][0],pts[h1][0])-16),Math.round(Math.min(pts[h0][1],pts[h1][1])-16),
+          Math.round(Math.abs(pts[h1][0]-pts[h0][0])+32),Math.round(Math.abs(pts[h1][1]-pts[h0][1])+32)]}];
+  document.body.setAttribute('data-encodes', JSON.stringify([{
+    claim:"the line ends on a pale warm point that is the only warm thing in the frame",
+    reads:"differ",
+    a:[[Math.round(bPt[0]-24),Math.round(bPt[1]-24),48,48]],
+    b:[[Math.round(aPt[0]-24),Math.round(aPt[1]-24),48,48]]}]));
+  return true;
+})();
+</script>
+</body></html>

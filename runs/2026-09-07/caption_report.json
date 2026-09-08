@@ -1,0 +1,19 @@
+{
+  "chars": 776,
+  "hook": "Search federal contracts for artificial intelligence among Alaska vendors and you get 24 records or 25 but never both.",
+  "hook_len": 118,
+  "commas": 7,
+  "comma_per_100": 0.94,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaAI",
+    "#FederalContracts",
+    "#ANCSA"
+  ],
+  "deck_summary": "Four contract numbers with their totals, and the two search results that don't share a single record.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 99
+}

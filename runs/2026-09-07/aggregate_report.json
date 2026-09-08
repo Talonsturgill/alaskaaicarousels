@@ -1,0 +1,123 @@
+{
+  "run_dir": "out/2026-09-07",
+  "render_report": "out/2026-09-07/render/render_report.json",
+  "aggregates_file": "out/2026-09-07/aggregates.json",
+  "detected": 13,
+  "declared": 13,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "24 RECORDS",
+      "text": "\"ARTIFICIAL INTELLIGENCE\" 24 RECORDS \"ARTIFICIAL INTELLIGENCE, AND MACHINE LEARN",
+      "n": 24,
+      "subject": "records"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "24 RECORDS",
+      "text": "24 RECORDS",
+      "n": 24,
+      "subject": "records"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "25 RECORDS",
+      "text": "25 RECORDS",
+      "n": 25,
+      "subject": "records"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "TWO NAMED FPDS-NG QUERIES",
+      "text": "COUNTS RETURNED BY TWO NAMED FPDS-NG QUERIES. VENDOR STATE AK. NOT A TOTAL.",
+      "n": 2,
+      "subject": "named fpds-ng queries"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "Four cases",
+      "text": "Four cases fit. A comma right after the phrase appears to break the match.",
+      "n": 4,
+      "subject": "cases"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "9 RECORDS",
+      "text": "PLACE OF PERFORMANCE ALASKA + \"MACHINE LEARNING\" 9 RECORDS ALL UNIVERSITY OF ALA",
+      "n": 9,
+      "subject": "records"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "9 RECORDS",
+      "text": "9 RECORDS",
+      "n": 9,
+      "subject": "records"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "Two very different things",
+      "text": "Two very different things are both called Alaska AI.",
+      "n": 2,
+      "subject": "very different things"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "9 NASA GRANTS",
+      "text": "FAIRBANKS, 9 NASA GRANTS",
+      "n": 9,
+      "subject": "nasa grants"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "3,400 SHAREHOLDERS",
+      "text": "AT INCORPORATION 3,400 SHAREHOLDERS",
+      "n": 3400,
+      "subject": "shareholders"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "100 SHAREHOLDERS",
+      "text": "ONE DOT IS 100 SHAREHOLDERS",
+      "n": 100,
+      "subject": "shareholders"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "5 billion runs",
+      "text": "\"Nobody has quantified how much of that $13.5 billion runs through 8(a) contract",
+      "n": 5,
+      "subject": "billion runs"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "102 SIGNATURES",
+      "text": "102 SIGNATURES",
+      "n": 102,
+      "subject": "signatures"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 7,
+      "text": "ONE DOT IS 100 SHAREHOLDERS",
+      "note": "The dot-to-shareholder ratio is a property of the artwork, the printed key to an isotype field. The quantities it encodes, 3,400 at incorporation and more than 4,700 today, are C35."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

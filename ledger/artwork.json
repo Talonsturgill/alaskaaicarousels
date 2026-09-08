@@ -1627,6 +1627,74 @@
       ],
       "note": "The run's declared standing weakness attack was that the lower two thirds must carry every frame, and it was solved structurally rather than per slide. Hanging objects put mass low by physics and seven frames have no ground plane at all. Five editing rounds were used. Machine QA finished at zero fails and thirteen warnings with four slides fully clean.",
       "corrections": "Three plan values were corrected mid run and these fields carry the SHIPPED ones. Slide 05 is a cropped palm with an opposed thumb and three splayed fingers, not the planned whole hand at arm's length, because the wide shot read as a mitten and the dossier had reserved this crop as its fallback. Slide 04's declared contact is the near foreground boulder's occlusion collar, not the keystone's cast, because the keystone's cast fell entirely under the keystone. Slide 07's projection axis ends at x 960 and not x 1000, in the declaration and in the drawing both. Four more were made after scoring, on an automated reviewer's findings, and these fields carry the SHIPPED values. Slide 06's true-area square is sqrt(FW * FH * FIGURE) and not FW * sqrt(FIGURE), so it is 5.609 px and not 7.126 and it finally covers the share it prints. The cover reads in parallel and not for years, because no claim carries a duration. The otolith label reads OTOLITH with no dimension, because no verified claim supplies one, so the object is drawn small without asserting a measured ratio. The closing pair is 120 to 15, the cover's own 8 to 1, rather than 78 to 26."
+    },
+    {
+      "run_date": "2026-09-07",
+      "carousel_no": 53,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE CURVED TRANSECT AS A CAMERA MOVE. One 3,362 mile geodesic from Anchorage to the Pentagon, drawn across nine frames as a single continuous camera crawl, with a vertical instrument rail on every slide printing t and the miles travelled. The line is BROKEN on 01 to 03 where the comma hides a contract, HEALED on 04, stacked four deep on 05, ABSENT on 06 because arc length is zero where the work is actually performed, absent on 07, branching for the only time on 08, and whole from end to end on 09.",
+      "atmosphere": "TERMINATOR GRAZE, KEY AT AZ 142 EL 4. A near horizontal key so the deck is lit from the end the money is at and Alaska is the dark end of every frame, with a 6 to 1 key to fill ratio and an additive back-side atmospheric shell at the limb. HONEST NOTE, this nearly did not ship. The limb glow was authored as a radial gradient with an inner radius of S-6, and canvas paints every pixel inside that radius with the gradient's first stop, so a rim light was being added FLAT over the whole globe in lighter mode on EIGHT slides, erasing the terminator the whole deck depends on. It was found in Phase 8 and rebuilt as a true annulus.",
+      "depth_technique": "Orthographic d3 cartography matched frame for frame to a three.js orthographic camera on the same scale, so the drawn geodesic and the lit sphere are the same globe rather than two globes agreeing by eye. Plus a seeded starfield with a near-limb density ramp, and one GPU displaced-terrain frame on 06.",
+      "line_voice": "instrument hairline. Four ranked weights carrying meaning rather than emphasis, the transect at 2.6px over a 5px dark casing, coastlines at 1.0 to 1.25px, state boundaries at 0.9px at 0.38 alpha, graticule at 0.75px at 0.14 alpha. Nothing is stroked for decoration.",
+      "continuity_device": "Four devices. D1 the rail's t and mileage readout, checked against the drawn arc. D2 the arc's own state, which is the story. D3 the coordinate string, moving with the camera. D4 column alternation, type left with art right on 01 to 05, mirrored on 08.",
+      "hook_archetype": "NEW: THE SEARCH THAT RETURNS TWO ANSWERS. Hand the reader a query they could run themselves, then show it returning two incompatible results.",
+      "palette_family": "terminator blue and limestone. A cold night-side blue for everything the camera flies over, one warm limestone for the destination point only, and ice blue reserved for the marks that mean Alaska performed.",
+      "palette": "night side #050A14 through #0B1626 and #16293F to a lit #2C4A6E and #3E6E96, secondary type #8FA6BE, primary type #EAF1FA, instrument mono #9DB2C8, ice blue #5AC8F0 for the zero-length marks at Anchorage and Fairbanks only, limestone #D6D0C2 for the Arlington point, gold #FFC72C for the fixed Polaris on every rail and for the comma, the disjointness bracket and the ONE DAY call.",
+      "palette_hexes": [
+        "#050A14",
+        "#0B1626",
+        "#102338",
+        "#16293F",
+        "#2C4A6E",
+        "#3E6E96",
+        "#7E93AB",
+        "#8FA6BE",
+        "#9DB2C8",
+        "#B4C6D8",
+        "#C3D2E2",
+        "#DCE7F1",
+        "#EAF1FA",
+        "#5AC8F0",
+        "#D6D0C2",
+        "#FFC72C"
+      ],
+      "type": "Unbounded 700 for display, fitted with AK.fitText on every headline. Manrope 700 and 500 for lead lines and body. JetBrains Mono 400 and 500 at 24 to 26px for every instrument, record block, rail and guard, tabular figures throughout.",
+      "type_pairing": "Unbounded over Manrope over JetBrains Mono",
+      "narrative_structure": "CURVED TRANSECT. Cover, evidence, mechanism, victim, succession, HARD CUT HOME, breather, counterweight, close.",
+      "variance_dials": {
+        "DESIGN_VARIANCE": 4,
+        "VISUAL_DENSITY": 2,
+        "TYPE_TEMPERATURE": 2
+      },
+      "new_techniques_logged": [
+        "the curved transect as a nine frame camera move with a checked mileage rail",
+        "the arc's own state as the continuity device, broken to healed to stacked to absent to branching to whole",
+        "clipOutsideReserves, an even-odd canvas clip that keeps every graticule, coastline and arc off the type columns by construction"
+      ],
+      "techniques": [
+        "akthree GPU PBR sphere on an orthographic camera matched to d3.geoOrthographic",
+        "akthree displaced ridged-fbm terrain with real cast shadows on 06",
+        "d3.geoInterpolate geodesics sampled at 512 points, with the drawn length summed and printed",
+        "topojson-client state outlines",
+        "seeded starfield with a near-limb density ramp",
+        "additive BackSide atmospheric shell",
+        "cabinet oblique three-face bar register on 05, bar length is TIME",
+        "ISOTYPE same-size dot rows on 07",
+        "struck punch-mark relief field on 08",
+        "akpost filmic grade with IGN dither on all nine",
+        "AK.fitText on every display line",
+        "haloed text-shadow instead of plates, deck-wide"
+      ],
+      "note": "THE STANDING WEAKNESS WAS ATTACKED STRUCTURALLY AND ONLY PARTLY WON. Artwork craft has been the weakest criterion in 7 of the last 10 runs at a mean of 6.7. This deck's answer was to delete the contact-shadow defect class by giving eight of nine frames nothing to stand on, and to reserve type space in the composition rather than defend it afterwards. The first build still shipped a near-black terrain frame, a flat additive wash over seven globes, and a gold constellation mark missing from all nine rails. The critics found all three. Next run should assume the LIGHTING is where the craft score lives, and check a frame's actual value range against the palette before writing a dossier around it. PHASE 12 POSTSCRIPT. The eighth flat core proves the note above: the lighting IS where the craft score lives, and the repair that missed it missed it because it matched a NAME rather than measuring the drawing. Never repair a drawing defect by regex.",
+      "corrections": [
+        "the limb glow annulus, EIGHT slides. Seven were caught in round 2 by matching S-6; the eighth was written S-8 and was found only in Phase 12, by a gate that measures the gradient rather than matching its name",
+        "slide 06 relit, key 3.6 to 6.4 and sky 0.14 to 0.34",
+        "the fixed Polaris added to all nine rails",
+        "the ONE DAY call moved off the register rows on 05",
+        "the PENTAGON label moved off the record block on 04",
+        "the ISOTYPE labels rebuilt clear of their own dot rows on 07",
+        "slide 07 relit and the KODIAK halo strengthened, which moved artwork craft from 7 to 8 and the deck from 8.78 to 9.07"
+      ]
     }
   ]
 }

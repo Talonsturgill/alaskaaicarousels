@@ -1,0 +1,214 @@
+<!doctype html>
+<!-- SLIDE 06 — HARD CUT HOME. The camera leaves the transect and comes back to
+     Alaska. No arc anywhere, because its length is zero here. Real displaced
+     terrain under the deck's one light, and the two ice-blue mark sets drawn
+     flat and same-size so a count is never encoded in perspective. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#050A14;position:relative}
+  #art{position:absolute;inset:0}
+  #grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+         opacity:.07;pointer-events:none}
+  .disp{position:absolute;left:80px;top:140px;width:640px;font-family:"Unbounded",sans-serif;
+        font-weight:700;font-size:92px;line-height:.98;letter-spacing:-.02em;color:#EAF1FA}
+  .rowA{position:absolute;left:80px;top:398px;width:856px;font-family:"JetBrains Mono",monospace;
+        font-weight:400;font-size:24px;line-height:1.74;letter-spacing:.03em;color:#DCE7F1;
+        text-shadow:0 0 5px #050A14,0 0 11px #050A14,1px 1px 0 #050A14,-1px -1px 0 #050A14,1px -1px 0 #050A14,-1px 1px 0 #050A14}
+  .rowB{position:absolute;left:80px;top:588px;width:856px;font-family:"JetBrains Mono",monospace;
+        font-weight:400;font-size:24px;line-height:1.74;letter-spacing:.03em;color:#DCE7F1;
+        text-shadow:0 0 5px #050A14,0 0 11px #050A14,1px 1px 0 #050A14,-1px -1px 0 #050A14,1px -1px 0 #050A14,-1px 1px 0 #050A14}
+  .rowA b,.rowB b{color:#EAF1FA;font-weight:500}
+  .bodyline{position:absolute;left:80px;bottom:186px;width:700px;font-family:"Manrope",sans-serif;
+        font-weight:500;font-size:34px;line-height:1.38;color:#EAF1FA}
+  .guard{position:absolute;left:80px;bottom:110px;width:920px;font-family:"JetBrains Mono",monospace;
+         font-size:24px;line-height:1.6;letter-spacing:.08em;color:#7E93AB}
+  .polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+  .rail{position:absolute;right:82px;top:120px;font-family:"JetBrains Mono",monospace;
+        font-weight:400;font-size:24px;letter-spacing:.10em;color:#8FA6BE;
+        writing-mode:vertical-rl;text-orientation:mixed}
+</style></head>
+<body data-contacts='[{"what":"the Anchorage mark, the deck&#39;s one Alaska performed AI contract, standing on the range","shadow":[[244,952,24,14]],"ground":[[324,950,26,14]]}]'>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div id="grain"></div>
+<div class="disp" id="dp">ARC LENGTH ZERO</div>
+<div class="rowA">
+  PLACE OF PERFORMANCE ALASKA + "ARTIFICIAL INTELLIGENCE" &nbsp; <b>1 RECORD</b><br>
+  W519TC26CA019 &nbsp; KONIAG EMERGING TECHNOLOGIES<br>
+  $5,267,244.80 &nbsp; ANCHORAGE 99503
+</div>
+<div class="rowB">
+  PLACE OF PERFORMANCE ALASKA + "MACHINE LEARNING"<br>&nbsp; <b>9 RECORDS</b><br>
+  ALL UNIVERSITY OF ALASKA FAIRBANKS. ALL NASA.<br>
+  $1,187,674.80 ACROSS THESE NINE.
+</div>
+<div class="bodyline">Two very different things are both called Alaska AI.</div>
+<div class="guard">WHAT THE QUERY RETURNS, NOT A CENSUS.<br>A COMMA WOULD HIDE ANY OTHER.</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="rail">62.0N 149.5W . t 0.01 . 34 MI . 06 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script type="module">
+const W=1080,H=1350,SEED=20260907+6;
+const RESERVE=[[64,130,660,250],[64,388,872,158],[64,578,872,158],[64,1080,716,96],
+               [64,1186,940,96],[956,110,66,742],[512,766,392,40],[236,984,300,40]];
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  function reserved(x,y){ for(const r of RESERVE){
+    if(x>r[0]-10&&x<r[0]+r[2]+10&&y>r[1]-10&&y<r[1]+r[3]+10) return true;} return false; }
+
+  /* ---- REAL DISPLACED TERRAIN. the only solid ground in the deck. ------- */
+  let ok=false, off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  try{
+    const THREE=await import('@@ASSETS@@/js/three.module.min.js');
+    const AKT=(await import('@@ASSETS@@/js/akthree.js')).init(THREE);
+    if(AKT.webglOK()){
+      const R=AKT.setup(off,{w:W,h:H,bg:0x050A14,exposure:1.22,fog:[0x14283F,8.4,19]});
+      AK.reseed(SEED);
+      const g=new THREE.PlaneGeometry(15,9,300,190);
+      const pos=g.attributes.position;
+      for(let i=0;i<pos.count;i++){
+        const px=pos.getX(i), py=pos.getY(i);
+        // ridged fbm: sharp crests, the Chugach and the Alaska Range read as ranges
+        let a=0.6,f=0.42,h=0;
+        for(let o=0;o<6;o++){
+          const n=AK.simplex2(px*f+11.3, py*f-4.7);
+          h+=a*(1-Math.abs(n))*(1-Math.abs(n));
+          a*=0.48; f*=2.07;
+        }
+        const spine=Math.exp(-Math.pow((py+0.7)/2.6,2));   // a range running east to west
+        pos.setZ(i, h*1.65*(0.35+0.95*spine) - 0.25);
+      }
+      g.computeVertexNormals();
+      const terra=new THREE.Mesh(g, new THREE.MeshStandardMaterial({
+        color:0x2C4A6E, roughness:0.82, metalness:0.02, flatShading:false}));
+      terra.rotation.x=-Math.PI/2.34; terra.position.set(0,-0.9,0);
+      terra.castShadow=true; terra.receiveShadow=true; R.scene.add(terra);
+      AKT.environment(R,{intensity:0.34});
+      // same deck light. az 142, and at this pitch it rakes the ranges.
+      const key=new THREE.DirectionalLight(0xBFD4EA,6.4);
+      key.position.set(5.2,2.1,-6.6); key.castShadow=true;
+      key.shadow.mapSize.set(2048,2048);
+      key.shadow.camera.left=-9; key.shadow.camera.right=9;
+      key.shadow.camera.top=9; key.shadow.camera.bottom=-9;
+      key.shadow.bias=-0.0006; key.shadow.radius=6; R.scene.add(key);
+      const fill=new THREE.DirectionalLight(0x1E3A58,1.05);
+      fill.position.set(-5,3,7); R.scene.add(fill);
+      R.scene.add(new THREE.AmbientLight(0x122438,1.15));
+      AKT.frame(R,{from:[0,3.05,7.4], look:[0,-0.35,-0.6], fov:46});
+      const shot=await AKT.snapshot(R);
+      if(shot&&shot.ok){ cx.drawImage(off,0,0,W,H); ok=true; }
+    }
+  }catch(e){ console.warn('gl',e&&e.message); }
+
+  if(!ok){   // designed Canvas fallback: banded relief under the same bearing
+    const rnd=AK.rng(SEED+3);
+    cx.fillStyle='#080F1C'; cx.fillRect(0,0,W,H);
+    for(let b=0;b<44;b++){
+      const y0=760+b*13;
+      cx.beginPath(); cx.moveTo(-20,y0);
+      for(let xx=-20;xx<=W+20;xx+=9){
+        const n=AK.simplex2(xx*0.0032+b*0.21, b*0.37);
+        cx.lineTo(xx, y0 - n*54*(1-b/60));
+      }
+      cx.lineTo(W+20,H); cx.lineTo(-20,H); cx.closePath();
+      const t=b/43;
+      cx.fillStyle='rgb('+Math.round(11+30*t)+','+Math.round(22+48*t)+','+Math.round(36+66*t)+')';
+      cx.fill();
+      cx.strokeStyle='rgba(180,208,232,'+(0.05+0.10*t).toFixed(2)+')'; cx.lineWidth=1; cx.stroke();
+    }
+  }
+
+  { const g=cx.createLinearGradient(0,352,0,806);
+    g.addColorStop(0.00,'rgba(5,10,20,0)');   g.addColorStop(0.14,'rgba(5,10,20,0.72)');
+    g.addColorStop(0.86,'rgba(5,10,20,0.72)'); g.addColorStop(1.00,'rgba(5,10,20,0)');
+    cx.fillStyle=g; cx.fillRect(0,352,W,454); }
+
+  /* ---- the two mark sets. FLAT and SAME SIZE, so no count is in perspective */
+  const A=[286,946];
+  const FB=[[600,838],[622,830],[644,838],[666,830],[688,838],[710,830],[732,838],[754,830],[776,838]];
+  // Fairbanks sits north of Anchorage in the frame; the nine are one place, so
+  // they are drawn as a tight rank rather than scattered across the state.
+  const uafCentres=[], marks=[];
+  cx.save();
+  function iceMark(p,r){
+    cx.save();
+    cx.shadowColor='rgba(90,200,240,0.55)'; cx.shadowBlur=16;
+    cx.fillStyle='#5AC8F0'; cx.beginPath(); cx.arc(p[0],p[1],r,0,7); cx.fill();
+    cx.restore();
+    cx.strokeStyle='rgba(90,200,240,0.45)'; cx.lineWidth=1.1;
+    cx.beginPath(); cx.arc(p[0],p[1],r+9,0,7); cx.stroke();
+  }
+  FB.forEach(p=>{ if(reserved(p[0],p[1])) return; iceMark(p,5); uafCentres.push(p); });
+
+  /* ---- THE DECK'S ONE CONTACT. The Anchorage mark is the only object in nine
+     slides that stands on ground, so it is the only place a contact shadow can
+     be honest. Cast at the deck's own bearing, then a tight seam at the foot,
+     both drawn BEFORE the mark so nothing floats. -------------------------- */
+  // the ground here is dark terrain, so a shadow alone has nothing to be darker
+  // THAN. Lay the key's pool on the raised site first, then cast across it.
+  cx.save(); cx.globalCompositeOperation='lighter';
+  cx.translate(A[0]+6,A[1]+10); cx.scale(1,0.40); cx.translate(-(A[0]+6),-(A[1]+10));
+  const pg=cx.createRadialGradient(A[0]+6,A[1]+10,4,A[0]+6,A[1]+10,96);
+  pg.addColorStop(0,'rgba(132,170,208,0.50)'); pg.addColorStop(0.48,'rgba(84,122,160,0.24)');
+  pg.addColorStop(1,'rgba(40,70,104,0)');
+  cx.fillStyle=pg; cx.beginPath(); cx.arc(A[0]+6,A[1]+10,96,0,7); cx.fill(); cx.restore();
+
+  const SX=A[0]-30, SY=A[1]+11;
+  cx.save();
+  cx.translate(SX,SY); cx.scale(1,0.42); cx.translate(-SX,-SY);
+  const sg=cx.createRadialGradient(SX,SY,2,SX,SY,52);
+  sg.addColorStop(0,'rgba(2,5,11,0.95)'); sg.addColorStop(0.46,'rgba(2,5,11,0.72)');
+  sg.addColorStop(1,'rgba(3,7,14,0)');
+  cx.fillStyle=sg; cx.beginPath(); cx.arc(SX,SY,52,0,7); cx.fill();
+  cx.restore();
+  cx.save(); cx.fillStyle='rgba(2,5,11,0.92)';
+  cx.beginPath(); cx.ellipse(A[0]-5,A[1]+15,24,6,0,0,7); cx.fill(); cx.restore();
+
+  iceMark(A,22);
+  cx.restore();
+
+  // direct labels, DOM so they stay vector
+  function tag(txt,x,y,col){
+    const d=document.createElement('div'); d.textContent=txt;
+    d.style.cssText='position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;'+
+      'letter-spacing:.08em;color:'+col+';white-space:nowrap;text-shadow:0 0 4px #050A14,'+
+      '0 0 9px #050A14,1px 1px 0 #050A14,-1px -1px 0 #050A14,1px -1px 0 #050A14,-1px 1px 0 #050A14;'+
+      'left:'+x+'px;top:'+y+'px';
+    document.body.appendChild(d); return d;
+  }
+  tag('ANCHORAGE 99503', A[0]-44, A[1]+44, '#5AC8F0');
+  tag('FAIRBANKS, 9 NASA GRANTS', 520, 776, '#5AC8F0');
+
+  /* ---- NO SCALE BAR HERE. This frame is displaced terrain, not a projection,
+     and both mark sets are placed by composition, so a printed distance would be
+     a precision claim the picture cannot support. The rail carries the camera's
+     own position and that is the only measured number on this slide. ---------- */
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.04,saturation:0.95,contrast:1.14,filmic:true,
+    lift:[0.010,0.014,0.024],gain:[1.012,1.0,0.978],vignette:0.24,
+    bloom:{threshold:0.80,strength:0.24,radius:9},
+    grain:{amount:0.042,size:2,seed:SEED},aberration:0.6,dither:true,sharpen:0.32});
+
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,46,SEED)+')';
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('dp'),{min:64,max:100,maxLines:2});
+
+  window.__akAssert=[{what:"9 UAF machine learning records, one mark each",
+    expect:9, points:uafCentres, unit:"marks"}];
+  window.__akMotifs=[{what:"the single Anchorage mark, the deck's only Alaska performed AI contract",
+    rect:[A[0]-30,A[1]-30,60,60]}];
+  document.body.setAttribute('data-encodes', JSON.stringify([{
+    claim:"where the work is actually performed there is no line at all, only ground",
+    reads:"differ",
+    a:[[A[0]-20,A[1]-20,40,40]],
+    b:[[A[0]+170,A[1]-20,40,40]]}]));
+  return true;
+})();
+</script>
+</body></html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<!-- SLIDE 03 — THE COMMA. The deck's hero panel. One geodesic pulled to hero
+     weight with its gap opened to 120px and a gold comma seated inside it, and
+     four case strings showing which descriptions the short phrase misses. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#050A14;position:relative}
+  #art{position:absolute;inset:0}
+  #grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+         opacity:.07;pointer-events:none}
+  .disp{position:absolute;right:150px;top:150px;width:620px;text-align:right;
+        font-family:"Unbounded",sans-serif;font-weight:700;font-size:96px;line-height:.98;
+        letter-spacing:-.02em;color:#EAF1FA}
+  .cases{position:absolute;right:150px;top:470px;width:620px;text-align:right;
+         font-family:"JetBrains Mono",monospace;font-weight:400;font-size:24px;line-height:2.05;
+         letter-spacing:.04em;color:#9DB2C8;white-space:nowrap}
+  .cases .g{color:#FFC72C;font-weight:500}
+  .cases .v{color:#EAF1FA}
+  .lead{position:absolute;left:80px;bottom:290px;width:640px;font-family:"Manrope",sans-serif;
+        font-weight:700;font-size:40px;line-height:1.26;color:#EAF1FA}
+  .guard{position:absolute;left:80px;bottom:118px;width:800px;font-family:"JetBrains Mono",monospace;
+         font-size:24px;line-height:1.62;letter-spacing:.09em;color:#7E93AB}
+  .polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+  .rail{position:absolute;right:82px;top:120px;font-family:"JetBrains Mono",monospace;
+        font-weight:400;font-size:24px;letter-spacing:.10em;color:#8FA6BE;
+        writing-mode:vertical-rl;text-orientation:mixed}
+</style></head>
+<body>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div id="grain"></div>
+<div class="disp" id="dp">THE MARK THAT HIDES</div>
+<div class="cases">
+  ARTIFICIAL INTELLIGENCE<span class="g">,</span> &nbsp; <span class="v">MISSED</span><br>
+  ARTIFICIAL INTELLIGENCE<span class="g">,</span> &nbsp; <span class="v">MISSED</span><br>
+  ARTIFICIAL INTELLIGENCE (AI) &nbsp; <span class="v">FOUND</span><br>
+  ARTIFICIAL INTELLIGENCE (AI) &nbsp; <span class="v">FOUND</span>
+</div>
+<div class="lead">Four cases fit. A comma right after the phrase appears to break the match.</div>
+<div class="guard">APPARENT MECHANISM, NOT A PROVEN ONE.<br>THE COUNTS DO NOT DEPEND ON IT.</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="rail">61.4N 136.4W . t 0.20 . 672 MI . 03 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script type="module">
+const W=1080,H=1350,SEED=20260907+3;
+const ANC=[-149.9003,61.2181], PEN=[-77.0563,38.8719];
+const S=1040, CX=300, CY=190;
+const RESERVE=[[296,140,650,270],[200,384,260,80],[296,450,650,260],[64,1000,656,140],[64,1180,816,110],[956,110,66,742]];
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  function reserved(x,y){ for(const r of RESERVE){
+    if(x>r[0]-10&&x<r[0]+r[2]+10&&y>r[1]-10&&y<r[1]+r[3]+10) return true;} return false; }
+  function clipOut(){ cx.beginPath(); cx.rect(0,0,W,H);
+    for(const r of RESERVE) cx.rect(r[0]-8,r[1]-8,r[2]+16,r[3]+16); cx.clip('evenodd'); }
+
+  let ok=false, off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  try{
+    const THREE=await import('@@ASSETS@@/js/three.module.min.js');
+    const AKT=(await import('@@ASSETS@@/js/akthree.js')).init(THREE);
+    if(AKT.webglOK()){
+      const R=AKT.setup(off,{w:W,h:H,bg:0x050A14,exposure:0.88});
+      const hw=(W/2)/S,hh=(H/2)/S;
+      const cam=new THREE.OrthographicCamera(-hw,hw,hh,-hh,0.01,40);
+      cam.position.set(0,0,6); cam.lookAt(0,0,0); R.camera=cam;
+      const ox=(CX-W/2)/S, oy=-(CY-H/2)/S;
+      const globe=new THREE.Mesh(new THREE.SphereGeometry(1,192,128),
+        new THREE.MeshStandardMaterial({color:0x102338,roughness:0.70,metalness:0.10}));
+      globe.position.set(ox,oy,0); R.scene.add(globe);
+      AKT.environment(R,{intensity:0.16});
+      const az=142*Math.PI/180, el=4*Math.PI/180;
+      const kd=[Math.sin(az)*Math.cos(el),Math.cos(az)*Math.cos(el),Math.sin(el)];
+      const key=new THREE.DirectionalLight(0xBFD4EA,3.15);
+      key.position.set(kd[0]*8+ox,kd[1]*8+oy,kd[2]*8+6); R.scene.add(key);
+      const fill=new THREE.DirectionalLight(0x16283E,0.52);
+      fill.position.set(-kd[0]*8+ox,-kd[1]*8+oy,5); R.scene.add(fill);
+      R.scene.add(new THREE.AmbientLight(0x081221,0.55));
+      const shell=new THREE.Mesh(new THREE.SphereGeometry(1.045,160,110),
+        new THREE.MeshBasicMaterial({color:0x24486B,transparent:true,opacity:0.10,
+          side:THREE.BackSide,blending:THREE.AdditiveBlending,depthWrite:false}));
+      shell.position.set(ox,oy,0); R.scene.add(shell);
+      const shot=await AKT.snapshot(R);
+      if(shot&&shot.ok){ cx.drawImage(off,0,0,W,H); ok=true; }
+    }
+  }catch(e){ console.warn('gl',e&&e.message); }
+  if(!ok){ const g=cx.createRadialGradient(CX+430,CY+540,40,CX,CY,S);
+    g.addColorStop(0,'#22364F'); g.addColorStop(.5,'#102338'); g.addColorStop(1,'#070E1A');
+    cx.save(); cx.beginPath(); cx.arc(CX,CY,S,0,7); cx.clip(); cx.fillStyle=g;
+    cx.fillRect(0,0,W,H); cx.restore(); }
+
+  { const rs=AK.rng(SEED+91); cx.save();
+    for(let k=0;k<560;k++){ const x=rs()*W,y=rs()*H,d=Math.hypot(x-CX,y-CY);
+      if(d<S-2||reserved(x,y)) continue; const near=Math.max(0,1-(d-S)/520), m=rs();
+      cx.fillStyle='rgba(198,216,232,'+((0.05+0.30*m*m)*(0.35+0.65*near)).toFixed(3)+')';
+      cx.beginPath(); cx.arc(x,y,m>0.94?1.5:(m>0.72?1.05:0.7),0,7); cx.fill(); }
+    const lim=cx.createRadialGradient(CX,CY,0,CX,CY,S+96);
+    const _i=(S-14)/(S+96), _l=(S-4)/(S+96), _m=_l+0.30*(1-_l);
+    lim.addColorStop(0,'rgba(84,140,192,0)'); lim.addColorStop(_i,'rgba(84,140,192,0)');
+    lim.addColorStop(_l,'rgba(84,140,192,0.30)'); lim.addColorStop(_m,'rgba(52,96,142,0.12)');
+    lim.addColorStop(1,'rgba(30,60,100,0)');
+    cx.globalCompositeOperation='lighter'; cx.fillStyle=lim; cx.fillRect(0,0,W,H); cx.restore(); }
+
+  const CEN=[ANC[0]+16,Math.min(88,ANC[1]+8)];
+  function proj(g){ return d3.geoOrthographic().rotate([-CEN[0],-CEN[1],g])
+    .translate([CX,CY]).scale(S).clipAngle(90); }
+  let p0=proj(0),a0=p0(ANC),b0=p0(PEN);
+  let gm=Math.atan2(b0[0]-a0[0],b0[1]-a0[1])*180/Math.PI;
+  let P=proj(gm); if(Math.abs(P(ANC)[0]-P(PEN)[0])>90){ gm=-gm; P=proj(gm); }
+  const path=d3.geoPath(P,cx);
+
+  cx.save(); clipOut(); cx.lineWidth=.75; cx.strokeStyle='rgba(143,166,190,0.14)';
+  cx.beginPath(); path(d3.geoGraticule().step([15,10])()); cx.stroke(); cx.restore();
+
+  const ak=await (await fetch('@@ASSETS@@/geo/alaska-state.geo.json')).json();
+  cx.save(); clipOut(); cx.lineJoin='round';
+  cx.lineWidth=4.0; cx.strokeStyle='rgba(5,10,20,0.85)'; cx.beginPath(); path(ak); cx.stroke();
+  cx.lineWidth=1.25; cx.strokeStyle='#5F7C99'; cx.beginPath(); path(ak); cx.stroke(); cx.restore();
+
+  /* ---- THE HERO ARC, pulled to hero weight, with a 120px gap ------------ */
+  const it=d3.geoInterpolate(ANC,PEN), N=560, pts=[];
+  for(let i=0;i<N;i++) pts.push(P(it(i/(N-1))));
+  let i0=Math.round(N*0.46), i1=i0, acc=0;
+  while(acc<120 && i1<N-2){ i1++; acc=Math.hypot(pts[i1][0]-pts[i0][0],pts[i1][1]-pts[i0][1]); }
+  function run(a,b,w,col,dash){ cx.save(); clipOut(); if(dash) cx.setLineDash(dash);
+    cx.lineWidth=w; cx.strokeStyle=col; cx.lineCap='butt';
+    cx.beginPath(); cx.moveTo(pts[a][0],pts[a][1]);
+    for(let i=a+1;i<=b;i++) cx.lineTo(pts[i][0],pts[i][1]); cx.stroke(); cx.restore(); }
+  run(0,i0,8.5,'rgba(5,10,20,0.85)'); run(i1,N-1,8.5,'rgba(5,10,20,0.85)');
+  run(0,i0,5.5,'#D3E2EF');            run(i1,N-1,5.5,'#D3E2EF');
+
+  const gm0=pts[i0], gm1=pts[i1];
+  const gmid=[(gm0[0]+gm1[0])/2,(gm0[1]+gm1[1])/2];
+
+  /* ---- the gold comma, seated in the gap, sized FROM the gap ----------- */
+  const commaPx=Math.round(acc/1.25);
+  cx.save();
+  cx.fillStyle='#FFC72C'; cx.font='700 '+commaPx+'px Unbounded, sans-serif';
+  cx.textAlign='center'; cx.textBaseline='middle';
+  cx.shadowColor='rgba(255,199,44,0.55)'; cx.shadowBlur=26;
+  cx.fillText(',', gmid[0], gmid[1]-commaPx*0.16);
+  cx.restore();
+
+  /* ---- dimension call across the gap, a SCREEN fact, not a story number - */
+  cx.save(); clipOut(); cx.strokeStyle='rgba(143,166,190,0.85)'; cx.lineWidth=1.25;
+  const nx=(gm1[1]-gm0[1]), ny=-(gm1[0]-gm0[0]);
+  const nl=Math.hypot(nx,ny), ux=nx/nl, uy=ny/nl, off2=64;
+  [gm0,gm1].forEach(q=>{ cx.beginPath();
+    cx.moveTo(q[0]+ux*10,q[1]+uy*10); cx.lineTo(q[0]+ux*(off2+8),q[1]+uy*(off2+8)); cx.stroke(); });
+  cx.beginPath(); cx.moveTo(gm0[0]+ux*off2,gm0[1]+uy*off2);
+  cx.lineTo(gm1[0]+ux*off2,gm1[1]+uy*off2); cx.stroke();
+  cx.restore();
+  const dimAt=[(gm0[0]+gm1[0])/2+ux*off2,(gm0[1]+gm1[1])/2+uy*off2];
+  const dl=document.createElement('div');
+  dl.innerHTML=Math.round(acc)+' PX<br>AT THIS SCALE';
+  dl.style.cssText='position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;'+
+    'letter-spacing:.09em;color:#9DB2C8;white-space:nowrap;text-shadow:0 0 4px #050A14,'+
+    '0 0 8px #050A14,1px 1px 0 #050A14,-1px -1px 0 #050A14,1px -1px 0 #050A14,-1px 1px 0 #050A14;'+
+    'line-height:1.34;text-align:left;'+
+    'left:'+Math.round(dimAt[0]+16)+'px;top:392px';
+  // and a stem from the label down to the dimension line it belongs to
+  cx.save(); cx.strokeStyle='rgba(143,166,190,0.55)'; cx.lineWidth=1.0;
+  cx.beginPath(); cx.moveTo(dimAt[0]+22, 462); cx.lineTo(dimAt[0]+22, dimAt[1]-10); cx.stroke();
+  cx.restore();
+  document.body.appendChild(dl);
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.20,saturation:0.95,contrast:1.14,filmic:true,
+    lift:[0.010,0.014,0.024],gain:[1.012,1.0,0.978],vignette:0.22,
+    bloom:{threshold:0.80,strength:0.24,radius:9},
+    grain:{amount:0.040,size:2,seed:SEED},aberration:0.8,dither:true,sharpen:0.30});
+
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,46,SEED)+')';
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('dp'),{min:54,max:100,maxLines:2});
+
+  window.__akLeaders=[{target:"the gap in the transect, measured across",
+    at:[dimAt[0],dimAt[1]], to:[dimAt[0],dimAt[1]], from:[dimAt[0]+22,456],
+    label:Math.round(acc)+" PX AT THIS SCALE"}];
+  window.__akMotifs=[{what:"the opened gap holding the comma",
+    rect:[Math.round(gmid[0]-commaPx),Math.round(gmid[1]-commaPx),commaPx*2,commaPx*2]}];
+  // REGIONS MEASURED OFF THE RENDER, not computed from the camera. qa takes the MEDIAN
+  // of each region, so a wide box around a thin feature measures background twice. These
+  // two sit inside the ink: the comma's own body, and the transect's 4.5px stroke.
+  document.body.setAttribute('data-encodes', JSON.stringify([{
+    claim:"the mark seated in the break is the only warm thing on a cold line",
+    reads:"differ",
+    a:[[142,520,12,12]],
+    b:[[151,340,6,40]]}]));
+  return true;
+})();
+</script>
+</body></html>

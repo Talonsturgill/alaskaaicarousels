@@ -1,0 +1,100 @@
+{
+  "run_date": "2026-09-07",
+  "carousel_no": 53,
+  "date_note": "Trigger fired at 2026-09-08T07:13Z, which is 2026-09-07 23:13 America/Anchorage. Routine defines the run date as the Anchorage date; runs/2026-09-07 did not exist, so this run takes 2026-09-07.",
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-07/plan.md",
+        "out/2026-09-07/run_state.json"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "2 searches, nothing new, FIELD_NOTES untouched per the phase rule"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-07/scout_merge.md"
+      ],
+      "note": "6 scouts, all returned. Beat D established the denominator verdict NOT ESTABLISHED with a reproducible proof, which became the deck's spine."
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-07/claims.json"
+      ],
+      "note": "55 claims, 44 primary, claims_check PASS. C54 and C55 were added LATE, during the Phase 8 pixel round, because slide 08 was found printing a scout figure that the first pass never turned into a claim."
+    },
+    "docket": {
+      "status": "done",
+      "note": "11 live items refreshed against primary sources, budget raised 6 to 11, 13 reader-facing date forms repaired",
+      "commit": "b50c6c2"
+    },
+    "gas_watch": {
+      "status": "done",
+      "note": "SITE SIGN-OFF PASS 99 pages 18 checks; GAS WATCH PASS read 2026-09-07, 34 days on record, chart present; pages read by eye at 1440 and 390 px"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-07/selection.md"
+      ],
+      "note": "queued brief's story, dedupe exit 0 soft overlaps only, ships as new story not an update"
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-07/storyboard.md"
+      ],
+      "note": "3 treatments, THE CURVED TRANSECT synthesised. 9 dossiers, dossier_check PASS."
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-07/caption.txt",
+        "out/2026-09-07/copy.json"
+      ],
+      "note": "2 candidates plus one reassigned round. caption_check PASS at 770 chars. Candidate A carried a Fairbanks strand no slide has; candidate B ran 851 over an 800 cap."
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-07/slides",
+        "out/2026-09-07/render"
+      ],
+      "note": "9 bespoke slides, qa 0 fails. bespoke_check median pairwise 0.455 against a 0.60 fail line, drawn share 77%."
+    },
+    "pixel_review": {
+      "status": "done",
+      "note": "5 pixel critics scored the first build 3.0 to 6.8 and a flow critic scored the sequence 7.4. Four rounds worked. The largest single finding was a limb-glow gradient adding a flat additive wash over the whole globe on seven slides, which was erasing the deck's declared terminator."
+    },
+    "flow_review": {
+      "status": "done",
+      "note": "flow-critic scored the sequence 7.4. Acted on the missing constellation mark, the breather's density, the weakest junction and the mixed-precision rail."
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-07/final"
+      ],
+      "note": "vector PDF, 8.96 MB, 9 slides, contact sheet and 9 thumbs."
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-09-07/score_report.json"
+      ],
+      "note": "FIVE scoring rounds. Merit 8.18, 8.77, 8.60, 8.73, 8.78. The first three were capped at 6.9 by one hard fail each, and two of those three were introduced or missed by earlier repair work rather than being original defects. Shipped at 8.78 against the 7.7 rung, which also clears the flat 8.3."
+    },
+    "ship": {
+      "status": "in_progress"
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "notes": []
+}
