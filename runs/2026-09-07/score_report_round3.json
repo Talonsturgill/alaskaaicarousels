@@ -1,0 +1,65 @@
+{
+  "run_date": "2026-09-07",
+  "carousel_no": 53,
+  "round": 3,
+  "merit_total": 8.6,
+  "weighted_total": 6.9,
+  "threshold": 7.7,
+  "rung": "4+ revision rounds",
+  "ship": false,
+  "capped_by": "hard fail, slide 07 printed the year 1971 twice where C35 verifies only 'at incorporation'",
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 7,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 9,
+      "weight": 0.1
+    }
+  ],
+  "note": "ROUND 3 REPORT CARD, superseded by round 4. Round 2's regression was cleared and legibility recovered from 5 to 7, but a claim-id defect that had been on the frame since the art build was found for the first time. Persisted by the showrunner because the scorer has read-only tools."
+}

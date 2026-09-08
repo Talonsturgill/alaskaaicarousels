@@ -1,0 +1,167 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the transect is lit at the Washington end and dark at the Alaska end': dE 9.8, AUC 0.95, visible 0%/100%, seen 0/3328px at 432w"
+      ],
+      "motifs": [
+        "'the break in the transect, the deck's continuity gap': canvas 107.3 dE, page 116.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'A COMMA HIDES' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.09) beneath 'SETS DISJOINT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (5% of the ring around 'SETS DISJOINT', spanning 65%) -- pixel critic verify the label is not crossed"
+      ],
+      "encodings": [
+        "'the only warm mark in the frame is the one saying the two sets share nothing': dE 100.8, AUC 1.00, visible 100%/100%, seen 25/90px at 432w"
+      ],
+      "leaders": [
+        "leader 'the broken fan, what the longer phrase returns' lands 0.0px from its target",
+        "leader 'the broken fan, what the longer phrase returns' meets its label 0.0px away"
+      ],
+      "fits": [
+        "co 'NOTHING IN COMMON' fits 2/2 lines at 82px"
+      ],
+      "asserts": [
+        "\"24 solid arcs, the short phrase's returns\" holds: 24 vs 24 marks, counted over 24 declared marks (within 0)",
+        "'24 solid arcs, the short phrase's returns': 24 mark centres probed at r=7px, cohort median 74.2 dE, all present (weakest 59.8 dE)",
+        "\"25 broken arcs, the longer phrase's returns\" holds: 25 vs 25 marks, counted over 25 declared marks (within 0)",
+        "'25 broken arcs, the longer phrase's returns': 25 mark centres probed at r=5px, cohort median 90.5 dE, all present (weakest 67.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the mark seated in the break is the only warm thing on a cold line': dE 72.1, AUC 0.97, visible 100%/100%, seen 20/32px at 432w"
+      ],
+      "motifs": [
+        "'the opened gap holding the comma': canvas 111.7 dE, page 112.1 dE, 99% of its rect is clear of opaque DOM (div stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the gap in the transect, measured across' lands 0.0px from its target",
+        "leader 'the gap in the transect, measured across' meets its label 0.0px away"
+      ],
+      "fits": [
+        "dp 'THE MARK THAT HIDES' fits 2/2 lines at 85px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the line ends on a pale warm point that is the only warm thing in the frame': dE 5.5, AUC 0.62, visible 100%/100%, seen 380/60px at 432w"
+      ],
+      "motifs": [
+        "'the healed segment, where the gap stood on 01 to 03': canvas 114.4 dE, page 114.8 dE, 88% of its rect is clear of opaque DOM (div#lb1.lb stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'Anchorage, the vendor address' lands 0.0px from its target",
+        "leader 'the Pentagon, the place of performance' lands 0.0px from its target",
+        "leader 'Anchorage, the vendor address' meets its label 0.0px away",
+        "leader 'the Pentagon, the place of performance' meets its label 0.0px away"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 76% of this slide's own average craft density (top 61% / mid 68% / bottom 43% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "scales": [
+        "'the year axis the four contract bars are drawn against' runs 2,019 years at 80 to 2,027 years at 950; 9 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the gap between the third and fourth contracts' lands 0.0px from its target",
+        "leader 'the gap between the third and fourth contracts' meets its label 14.0px away"
+      ],
+      "fits": [
+        "dp 'THE BUYERS RENAMED. THE SENTENCE DIDN'T.' fits 2/2 lines at 58px"
+      ],
+      "asserts": [
+        "'the one day gap drawn at true scale on the year axis' holds: 294 vs 294 milli-px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'where the work is actually performed there is no line at all, only ground': dE 82.5, AUC 1.00, visible 100%/100%, seen 256/256px at 432w"
+      ],
+      "contacts": [
+        "'the Anchorage mark, the deck's one Alaska performed AI contract, standing on the range': shadow L* 2.3 vs ground L* 10.4, dL 8.1 at 432w"
+      ],
+      "motifs": [
+        "'the single Anchorage mark, the deck's only Alaska performed AI contract': canvas 51.8 dE, page 52.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "dp 'ARC LENGTH ZERO' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'9 UAF machine learning records, one mark each' holds: 9 vs 9 marks, counted over 9 declared marks (within 0)",
+        "'9 UAF machine learning records, one mark each': 9 mark centres probed at r=12px, cohort median 82.6 dE, all present (weakest 79.7 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'KODIAK' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (6% of the ring around 'KODIAK', spanning 49%) -- pixel critic verify the label is not crossed"
+      ],
+      "asserts": [
+        "'3,400 shareholders at incorporation, one dot per hundred' holds: 34 vs 34 marks, counted over 34 declared marks (within 0)",
+        "'3,400 shareholders at incorporation, one dot per hundred': 34 mark centres probed at r=10px, cohort median 34.7 dE, all present (weakest 33.5 dE)",
+        "'4,700 shareholders today, one dot per hundred' holds: 47 vs 47 marks, counted over 47 declared marks (within 0)",
+        "'4,700 shareholders today, one dot per hundred': 47 mark centres probed at r=10px, cohort median 61.3 dE, all present (weakest 60.5 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the frame is lit at the end the money is at and dark at the Alaska end': dE 12.6, AUC 0.82, visible 78%/22%, seen 2446/689px at 432w"
+      ],
+      "motifs": [
+        "'the branch to Nashville, the only fork in the deck': canvas 73.0 dE, page 78.9 dE, 70% of its rect is clear of opaque DOM (div.rail stands on the rest)"
+      ],
+      "asserts": [
+        "'102 signatures, one struck mark each' holds: 102 vs 102 marks, counted over 102 declared marks (within 0)",
+        "'102 signatures, one struck mark each': 102 mark centres probed at r=13px, cohort median 76.0 dE, all present (weakest 73.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the line that was broken on the cover is whole, dark at one end and lit at the other': dE 15.8, AUC 0.88, visible 92%/100%, seen 1259/1332px at 432w"
+      ],
+      "motifs": [
+        "'the Polaris sealing the Anchorage end of the transect': canvas 87.6 dE, page 94.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "dp 'SEPTEMBER 10TH, 2026.' fits 2/2 lines at 81px"
+      ],
+      "asserts": [
+        "'the transect printed as 3,362 miles on the rail' holds: 3362 vs 3362 mi (within 6)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 5,
+  "verdict": "WARN"
+}

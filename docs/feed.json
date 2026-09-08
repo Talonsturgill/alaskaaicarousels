@@ -13,6 +13,178 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-09-07/",
+      "url": "https://alaskaaihq.com/archive/2026-09-07/",
+      "title": "Alaska AI Contracts and the Comma That Hides One",
+      "summary": "Four contract numbers with their totals, and the two search results that don't share a single record.",
+      "content_html": "<p><em>Search federal contracts for artificial intelligence among Alaska vendors and you get 24 records or 25 but never both.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-07/og.jpg\" alt=\"Alaska AI Contracts and the Comma That Hides One cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%22&amp;start=0\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%2C+AND+MACHINE+LEARNING%22&amp;start=0\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%2C+AND+MACHINE+LEARNING%22&amp;start=15\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%2C+AND+MACHINE+LEARNING%22&amp;start=10\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://api.usaspending.gov/api/v2/awards/CONT_AWD_HQ003425CE092_9700_-NONE-_-NONE-/\">USAspending.gov award record</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%2C+AND+MACHINE+LEARNING%22&amp;start=20\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://api.usaspending.gov/api/v2/awards/CONT_AWD_W519TC26CA019_9700_-NONE-_-NONE-/\">USAspending.gov award record</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=POP_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%22&amp;start=0\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=POP_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22MACHINE+LEARNING%22&amp;start=0\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=POP_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22MACHINE+LEARNING%22&amp;start=5\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://api.usaspending.gov/api/v2/awards/CONT_AWD_HQ003425CE012_9700_-NONE-_-NONE-/\">USAspending.gov award record</a>, primary document</li><li><a href=\"https://www.koniag-gs.com/tuknik-government-services/\">Koniag Government Services</a>, primary document</li><li><a href=\"https://www.koniag-gs.com/companies/\">Koniag Government Services</a>, primary document</li><li><a href=\"https://www.koniag-gs.com/koniag-ai-solutions/\">Koniag Government Services</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=VENDOR_NAME%3A%22KONIAG%22+SIGNED_DATE%3A%5B2026%2F08%2F25%2C2026%2F09%2F07%5D&amp;start=0\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=VENDOR_NAME%3A%22KONIAG%22+SIGNED_DATE%3A%5B2026%2F08%2F25%2C2026%2F09%2F07%5D&amp;start=25\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%2289303026CIM000014%22&amp;start=0\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://api.usaspending.gov/api/v2/awards/CONT_AWD_89303026CIM000014_8900_-NONE-_-NONE-/\">USAspending.gov award record</a>, primary document</li><li><a href=\"https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title43-section1606&amp;num=0&amp;edition=prelim\">Office of the Law Revision Counsel, United States Code</a>, primary document</li><li><a href=\"https://www.koniageducation.org/\">Koniag Education Foundation</a>, primary document</li><li><a href=\"https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%2270CDCR26FR0000034%22&amp;start=0\">Federal Procurement Data System FPDS-NG public ATOM feed</a>, primary document</li><li><a href=\"https://www.adn.com/opinions/2026/06/06/opinion-alaska-has-a-stake-in-a-federal-program-it-has-never-measured/\">Anchorage Daily News opinion, by Ross Johnston</a>, primary document</li><li><a href=\"https://www.commonwealthnorth.org/alaskas-8a-economy-whats-at-stake/\">Commonwealth North</a>, primary document</li><li><a href=\"https://leisnoi.com/\">Leisnoi, Inc.</a>, primary document</li><li><a href=\"https://leisnoi.com/companies/\">Leisnoi, Inc.</a>, primary document</li><li><a href=\"https://www.kmxt.org/news/2025-10-09/kodiaks-regional-native-corporation-is-growing-its-shareholders-dividends-finances\">KMXT Kodiak Public Broadcasting, reported by Davis Hovey</a>, report</li><li><a href=\"https://alaskapublic.org/news/2026-08-12/federal-documents-show-alaska-corporation-to-operate-ice-24-hour-call-center-in-tennessee\">Alaska Public Media, reported by Anita Wadhwani of the Tennessee Lookout</a>, report</li><li><a href=\"https://www.hunton.com/government-contracts-intelligence-briefing/department-of-war-takes-sledgehammer-to-8a-program\">Hunton Andrews Kurth government contracts briefing</a>, report</li><li><a href=\"https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request\">KUAC, reported by Patrick Gilchrist</a>, report</li><li><a href=\"https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html\">Fairbanks Daily News-Miner, reported by Jack Barnwell</a>, report</li><li><a href=\"https://www.nomenugget.com/news/shareholders-ask-bsnc-divest-ice-contracts\">The Nome Nugget, by Diana Haecker, January 8th, 2026</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-09-07/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "",
+      "date_published": "2026-09-07T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-07/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 55,
+        "sources": [
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%22&start=0",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%2C+AND+MACHINE+LEARNING%22&start=0",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%2C+AND+MACHINE+LEARNING%22&start=15",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%2C+AND+MACHINE+LEARNING%22&start=10",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_HQ003425CE092_9700_-NONE-_-NONE-/",
+            "outlet": "USAspending.gov award record",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%2C+AND+MACHINE+LEARNING%22&start=20",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_W519TC26CA019_9700_-NONE-_-NONE-/",
+            "outlet": "USAspending.gov award record",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=POP_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%22&start=0",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=POP_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22MACHINE+LEARNING%22&start=0",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=POP_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22MACHINE+LEARNING%22&start=5",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_HQ003425CE012_9700_-NONE-_-NONE-/",
+            "outlet": "USAspending.gov award record",
+            "primary": true
+          },
+          {
+            "url": "https://www.koniag-gs.com/tuknik-government-services/",
+            "outlet": "Koniag Government Services",
+            "primary": true
+          },
+          {
+            "url": "https://www.koniag-gs.com/companies/",
+            "outlet": "Koniag Government Services",
+            "primary": true
+          },
+          {
+            "url": "https://www.koniag-gs.com/koniag-ai-solutions/",
+            "outlet": "Koniag Government Services",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=VENDOR_NAME%3A%22KONIAG%22+SIGNED_DATE%3A%5B2026%2F08%2F25%2C2026%2F09%2F07%5D&start=0",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=VENDOR_NAME%3A%22KONIAG%22+SIGNED_DATE%3A%5B2026%2F08%2F25%2C2026%2F09%2F07%5D&start=25",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=PIID%3A%2289303026CIM000014%22&start=0",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_89303026CIM000014_8900_-NONE-_-NONE-/",
+            "outlet": "USAspending.gov award record",
+            "primary": true
+          },
+          {
+            "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title43-section1606&num=0&edition=prelim",
+            "outlet": "Office of the Law Revision Counsel, United States Code",
+            "primary": true
+          },
+          {
+            "url": "https://www.koniageducation.org/",
+            "outlet": "Koniag Education Foundation",
+            "primary": true
+          },
+          {
+            "url": "https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=PIID%3A%2270CDCR26FR0000034%22&start=0",
+            "outlet": "Federal Procurement Data System FPDS-NG public ATOM feed",
+            "primary": true
+          },
+          {
+            "url": "https://www.adn.com/opinions/2026/06/06/opinion-alaska-has-a-stake-in-a-federal-program-it-has-never-measured/",
+            "outlet": "Anchorage Daily News opinion, by Ross Johnston",
+            "primary": true
+          },
+          {
+            "url": "https://www.commonwealthnorth.org/alaskas-8a-economy-whats-at-stake/",
+            "outlet": "Commonwealth North",
+            "primary": true
+          },
+          {
+            "url": "https://leisnoi.com/",
+            "outlet": "Leisnoi, Inc.",
+            "primary": true
+          },
+          {
+            "url": "https://leisnoi.com/companies/",
+            "outlet": "Leisnoi, Inc.",
+            "primary": true
+          },
+          {
+            "url": "https://www.kmxt.org/news/2025-10-09/kodiaks-regional-native-corporation-is-growing-its-shareholders-dividends-finances",
+            "outlet": "KMXT Kodiak Public Broadcasting, reported by Davis Hovey",
+            "primary": false
+          },
+          {
+            "url": "https://alaskapublic.org/news/2026-08-12/federal-documents-show-alaska-corporation-to-operate-ice-24-hour-call-center-in-tennessee",
+            "outlet": "Alaska Public Media, reported by Anita Wadhwani of the Tennessee Lookout",
+            "primary": false
+          },
+          {
+            "url": "https://www.hunton.com/government-contracts-intelligence-briefing/department-of-war-takes-sledgehammer-to-8a-program",
+            "outlet": "Hunton Andrews Kurth government contracts briefing",
+            "primary": false
+          },
+          {
+            "url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
+            "outlet": "KUAC, reported by Patrick Gilchrist",
+            "primary": false
+          },
+          {
+            "url": "https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html",
+            "outlet": "Fairbanks Daily News-Miner, reported by Jack Barnwell",
+            "primary": false
+          },
+          {
+            "url": "https://www.nomenugget.com/news/shareholders-ask-bsnc-divest-ice-contracts",
+            "outlet": "The Nome Nugget, by Diana Haecker, January 8th, 2026",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-09-06/",
       "url": "https://alaskaaihq.com/archive/2026-09-06/",
       "title": "Run Both Instruments, or Lose the Record",
@@ -2788,72 +2960,6 @@
           {
             "url": "https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
             "outlet": "Northern Journal (Nathaniel Herz)",
-            "primary": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "https://alaskaaihq.com/archive/2026-07-10/",
-      "url": "https://alaskaaihq.com/archive/2026-07-10/",
-      "title": "The Machine That Hears a Mountain Think",
-      "summary": "Three Alaska volcanoes are on elevated alert at once, and an AI built in Fairbanks is what stands watch over them.",
-      "content_html": "<p><em>Three Alaska volcanoes are on elevated alert at once, and an AI built in Fairbanks is what stands watch over them.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-10/og.jpg\" alt=\"The Machine That Hears a Mountain Think cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://volcanoes.usgs.gov/hans-public/notice/DOI-USGS-AVO-2026-07-03T18:33:40+00:00\">volcanoes.usgs.gov</a>, primary document</li><li><a href=\"https://www.jvolcanica.org/ojs/index.php/volcanica/article/view/349\">jvolcanica.org</a>, primary document</li><li><a href=\"https://www.usgs.gov/observatories/avo\">usgs.gov</a>, primary document</li><li><a href=\"https://www.usgs.gov/programs/VHP/volcanic-alert-levels-characterize-conditions-us-volcanoes\">usgs.gov</a>, primary document</li><li><a href=\"https://avo.alaska.edu/volcano/great-sitkin\">avo.alaska.edu</a>, primary document</li><li><a href=\"https://avo.alaska.edu/volcano/kupreanof\">avo.alaska.edu</a>, primary document</li><li><a href=\"https://avo.alaska.edu/volcano/edgecumbe\">avo.alaska.edu</a>, primary document</li><li><a href=\"https://www.gi.alaska.edu/news/alaska-developed-volcano-monitoring-system-will-expand-across-us\">gi.alaska.edu</a>, report</li><li><a href=\"https://www.adn.com/opinions/2026/07/03/opinion-what-alaskas-governor-candidates-say-about-ai-and-why-it-matters/\">adn.com</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-07-10/\">Read the full deck with all 9 slides</a></p>",
-      "content_text": "",
-      "date_published": "2026-07-10T17:00:00Z",
-      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-10/og.jpg",
-      "tags": [
-        "AlaskaVolcanoes",
-        "VolcanoMonitoring",
-        "GeoAI"
-      ],
-      "_alaska_ai": {
-        "slides": 9,
-        "claims_verified": 27,
-        "sources": [
-          {
-            "url": "https://volcanoes.usgs.gov/hans-public/notice/DOI-USGS-AVO-2026-07-03T18:33:40+00:00",
-            "outlet": "volcanoes.usgs.gov",
-            "primary": true
-          },
-          {
-            "url": "https://www.jvolcanica.org/ojs/index.php/volcanica/article/view/349",
-            "outlet": "jvolcanica.org",
-            "primary": true
-          },
-          {
-            "url": "https://www.usgs.gov/observatories/avo",
-            "outlet": "usgs.gov",
-            "primary": true
-          },
-          {
-            "url": "https://www.usgs.gov/programs/VHP/volcanic-alert-levels-characterize-conditions-us-volcanoes",
-            "outlet": "usgs.gov",
-            "primary": true
-          },
-          {
-            "url": "https://avo.alaska.edu/volcano/great-sitkin",
-            "outlet": "avo.alaska.edu",
-            "primary": true
-          },
-          {
-            "url": "https://avo.alaska.edu/volcano/kupreanof",
-            "outlet": "avo.alaska.edu",
-            "primary": true
-          },
-          {
-            "url": "https://avo.alaska.edu/volcano/edgecumbe",
-            "outlet": "avo.alaska.edu",
-            "primary": true
-          },
-          {
-            "url": "https://www.gi.alaska.edu/news/alaska-developed-volcano-monitoring-system-will-expand-across-us",
-            "outlet": "gi.alaska.edu",
-            "primary": false
-          },
-          {
-            "url": "https://www.adn.com/opinions/2026/07/03/opinion-what-alaskas-governor-candidates-say-about-ai-and-why-it-matters/",
-            "outlet": "adn.com",
             "primary": false
           }
         ]

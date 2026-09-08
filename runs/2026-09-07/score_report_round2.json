@@ -1,0 +1,64 @@
+{
+  "run_date": "2026-09-07",
+  "carousel_no": 53,
+  "round": 2,
+  "merit_total": 8.77,
+  "weighted_total": 6.9,
+  "threshold_asked": 8.3,
+  "ship": false,
+  "capped_by": "hard fail, slide 05 register row 4 rendered as SERVICESHQ003425CE092, a regression caused by the round-2 fix itself",
+  "weakest_criterion": "Legibility and platform fitness",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 7,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 9,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 9,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 5,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "note": "ROUND 2 REPORT CARD, superseded by round 3. Persisted by the showrunner because the scorer agent has read-only tools. Merit rose 8.18 to 8.77 as the round-1 defects cleared; the cap came from a NEW defect this round's own fix introduced, which is the lesson worth keeping."
+}

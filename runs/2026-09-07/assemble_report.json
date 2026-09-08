@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-07/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 8879164,
+  "pdf_mb": 8.88,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-07/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-07/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-07/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-07/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-07/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-07/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-07/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-07/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-07/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-07/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Alaska AI Contracts and the Comma That Hides One",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "65f3066f33abf4c6574222b07181ef7b58e37982e7b9a1f5ea4feac6945e6294",
+        "bytes": 4739939
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "d692750f1cd081e1338e2f22656a6eb38622cba1340582e4d5855556ec2ee126",
+        "bytes": 5156088
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "6e44ee53715d8aae7d863c839304bed85bb8511b3a0a279fc5815e22d0706863",
+        "bytes": 5189048
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "6486ba92edae94bbd9f8e9e806c164f95b352c39877d18fff996cbe96fb36d25",
+        "bytes": 4948091
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "f96c818ac14f419f6cef0106981b018ab7c0ac6fbb0aaa52ea337ffd4a20b97d",
+        "bytes": 4783532
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "17cb9ed24a77088495536964768782d26ba621e3a5ad378dede6242a43e9b44a",
+        "bytes": 5199743
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "630dbc83aec11e5ab692fcec395e527a2dbcd08b075b70fbd40dc08438c7504d",
+        "bytes": 6493714
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "038c52d17e6fe2cee498007d22f6a54143700bc7daa819dbf027e8134a044bba",
+        "bytes": 5154852
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "e27f6404d5e3cc8e1c28213515d826439f79d8d96814263e47bc6d46f727c804",
+        "bytes": 5140256
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "47056e18e70692a5fa76b825b86a84048fa931a52974ed44a9a4b0eb5cdb27fc",
+        "bytes": 11321
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "6d93623adb1816019e96d4781be8e97d75e9d74881c75a57c38e83448f45dc1e",
+        "bytes": 13277
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "093a2fb47c973bfb47dc9ab9403eea194e2b240f044a7840783395e3825adef8",
+        "bytes": 11438
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "4fcce24c886f41d38960fe2eb8614fa350e210c0cda8ad44b44b53fdf875d09a",
+        "bytes": 11391
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "ae31fb34abcf3d55b0b96e8d2c4c281aee5993d78fd5c1dc20b496d19cc5b75d",
+        "bytes": 13850
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "1811e12ab73f11ee32aeb669067ba5c28ece1b4f9083748579b00d3051062145",
+        "bytes": 11658
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "8483adc69863b06406ed7d9536dcf9f81e9913454ab321338dc8c71f6a4526dc",
+        "bytes": 9998
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "bc47af8f8c3c962f36a5cec38ffa380a6666b5aa417dccca05cd30ace17c0672",
+        "bytes": 12781
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "35a5398c45aa60b4868740085ea333a6cac26abae261f8761c39f74dd85baf13",
+        "bytes": 11441
+      }
+    ]
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "run_date": "2026-09-07",
+  "carousel_no": 53,
+  "document_title": "Alaska AI Contracts and the Comma That Hides One",
+  "post_copy": "Search federal contracts for artificial intelligence among Alaska vendors and you get 24 records or 25 but never both.\n\nZero records in common. One contract ends September 10th, 2026. Leisnoi Professional Services, $20,632,119.41 obligated, 8(a) sole source.\n\nIt began September 11th, 2025. Koniag IT Systems ended the day before. The Kodiak linked line runs back to 2019. The Joint Artificial Intelligence Center is on it. Now it is the Deputy to the Chief Digital and Artificial Intelligence Office. The names changed. The sentence didn't. All of it is lawful.\n\nFour contract numbers with their totals, and the two search results that don't share a single record.\n\nWhat string should a citizen have to type to see all seven years at once?\n\n#AlaskaAI #FederalContracts #ANCSA",
+  "deck_summary_line": "Four contract numbers with their totals, and the two search results that don't share a single record.",
+  "caption_meta": {
+    "opening_move": "SECOND PERSON STAKE",
+    "structure": "REVERSE CHRONOLOGY",
+    "closing_move": "NEW: THE QUERY YOU WOULD HAVE TO TYPE",
+    "first_words": "Search federal contracts for artificial intelligence",
+    "hook_type": "a search anyone can run, returning two answers"
+  },
+  "first_comment": "Sources for this deck, primary first, with the full link on every line. Every FPDS-NG line is a live query URL, so you can run the search yourself and see the same counts.\n\nFPDS-NG public ATOM feed, vendor state Alaska, requirement description \"artificial intelligence\", the 24 record result (C01, C06, C19) https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%22&start=0\nFPDS-NG public ATOM feed, the same vendor state with the longer phrase \"artificial intelligence, and machine learning\", the 25 record result (C02, C20) https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=VENDOR_ADDRESS_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22ARTIFICIAL+INTELLIGENCE%2C+AND+MACHINE+LEARNING%22&start=0\nUSAspending award record for Leisnoi Professional Services, PIID HQ003425CE092, source of the $20,632,119.41 and the September 10th, 2026 end date (C07, C08, C10, C11, C12) https://api.usaspending.gov/api/v2/awards/CONT_AWD_HQ003425CE092_9700_-NONE-_-NONE-/\nUSAspending award record for Koniag IT Systems, PIID HQ003425CE012, the contract that ended the day before (C21, C22) https://api.usaspending.gov/api/v2/awards/CONT_AWD_HQ003425CE012_9700_-NONE-_-NONE-/\nUSAspending award record for the one AI contract performed in Alaska, Koniag Emerging Technologies, PIID W519TC26CA019 (C13, C14, C15) https://api.usaspending.gov/api/v2/awards/CONT_AWD_W519TC26CA019_9700_-NONE-_-NONE-/\nFPDS-NG, place of performance Alaska with \"machine learning\", the nine University of Alaska Fairbanks NASA records (C17, C18) https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=POP_STATE_NAME%3A%22ALASKA%22+DESCRIPTION_OF_REQUIREMENT%3A%22MACHINE+LEARNING%22&start=0\nKoniag Government Services, the page stating Tuknik is wholly owned by Koniag (C23, C24) https://www.koniag-gs.com/tuknik-government-services/\nUnited States Code, 43 U.S.C. 1606(i), the ANCSA revenue sharing section that covers timber and subsurface and does not reach contracting (C31, C32) https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title43-section1606&num=0&edition=prelim\nKMXT Kodiak, October 9th, 2025, Koniag shareholder and dividend figures (C33, C34, C35) https://www.kmxt.org/news/2025-10-09/kodiaks-regional-native-corporation-is-growing-its-shareholders-dividends-finances\nKoniag Education Foundation, the scholarship side of the same money (C36, C37) https://www.koniageducation.org/\nFPDS-NG, PIID 70CDCR26FR0000034, the Koniag Services ICE task order performed in Nashville (C38, C39, C40) https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&FEEDNAME=PUBLIC&VERSION=1.5.3&q=PIID%3A%2270CDCR26FR0000034%22&start=0\nAlaska Public Media, August 12th, 2026, on that call centre and the shareholder signatures (C41) https://alaskapublic.org/news/2026-08-12/federal-documents-show-alaska-corporation-to-operate-ice-24-hour-call-center-in-tennessee\nHunton, on the January 2026 order to review sole source 8(a) awards above $20 million (C42) https://www.hunton.com/government-contracts-intelligence-briefing/department-of-war-takes-sledgehammer-to-8a-program\nAnchorage Daily News opinion, June 6th, 2026, source of the Ross Johnston quote (C43, C44, C47) https://www.adn.com/opinions/2026/06/06/opinion-alaska-has-a-stake-in-a-federal-program-it-has-never-measured/\nCommonwealth North, Alaska's 8(a) economy, the $13.5 billion context (C45, C46, C48, C49) https://www.commonwealthnorth.org/alaskas-8a-economy-whats-at-stake/\nLeisnoi, the corporation's own site (C52, C53) https://leisnoi.com/\n\nEvery Alaska AI decision tracked here, with live deadlines, sits at https://alaskaaihq.com\n\nCorrections welcome from anyone who runs federal search for a living and knows why a comma changes a result set.",
+  "aftercare": [
+    "Post Tuesday through Thursday between 8 a.m. and 11 a.m. Alaska time, and get this one out before September 10th, 2026 (C11), because the whole close rests on a date that is days away and a passed deadline reads as old news.",
+    "Paste the sources comment within about 60 seconds of posting, straight from the block above and unedited, so every raw FPDS query URL survives the paste unbroken.",
+    "Open the post on a phone once the comment is live and confirm each query link is tappable and that none of the long FPDS URLs wrapped into the label above it.",
+    "Stay on the post for the first 60 to 90 minutes and answer every comment with a claim id, a number or a query string, never a thank you on its own.",
+    "Expect someone to say the two searches differ because one phrase is longer, so have the disjoint result ready. Zero records in common (C03), which a subset relationship can't produce.",
+    "Expect a second push on whether the comma is really the cause. Say what the deck says, that four cases fit and the mechanism is apparent rather than proven (C05, C06), and that the counts don't depend on it.",
+    "If anyone reads this as an accusation against Alaska Native corporations, point at slide 04 and slide 07, which say 8(a) is the mechanism Congress built and where the money goes when it comes home.",
+    "Note saves and comments at 48 hours against the last four decks, and write down whether the disjoint bracket on slide 02 or the four bar lengths on slide 05 were the frame people quoted back."
+  ],
+  "editor_notes_for_email": "Read slide 03 and slide 08 before posting. Slide 03 is the deck's argument and it is the one frame that is deliberately hedged on the page, because the comma mechanism is APPARENT, not proven, and the slide says so in its own guard line. If a reader takes that frame as a proven bug report the deck has overreached, so that guard line matters more than any other small type in the nine. Slide 08 is the counterweight and the frame most likely to be screenshotted out of context, since it sets an ICE task order beside the AI contracts; it is there because the same 8(a) mechanism buys both, and cutting it would make the deck a narrower and less honest thing. Slide 05's bars encode TIME and not dollars, which the slide states, and Koniag IT Systems' start is drawn hatched because the record does not carry one; a reader who measures the bars against the dollar figures printed beside them will find they disagree, and that is by design.\n\nTHREE THINGS THE PIXEL AND FLOW ROUNDS CHANGED that you should know about, because each was a real defect rather than a polish note.\n\nFirst, slide 08 was printing an unsourced fact. The 102-signature Bering Straits line came from a scout note that the first claims pass never turned into a claim, so it reached a render with no claim-id behind it. It was verified during the pixel round against The Nome Nugget of January 8th, 2026, and is now C54 and C55. Verifying it also corrected it three ways. The 102 are shareholders AND descendants, it is an early-December count, and it excludes 20 non-shareholder signatures. The slide now prints all three qualifiers.\n\nSecond, slide 08's threshold paragraph said \"This one is $632,119.41 above that line\", and \"this one\" had no antecedent on that frame. The only contract named there is the ICE task order at $17,456,917.40, which is BELOW the $20 million line, so the sentence as built said the opposite of the record. It now names the Leisnoi contract. The same paragraph now opens \"A law firm briefing reports that\", because C42 is non-primary and no Pentagon document was reachable.\n\nThird, a single line of drawing code was flattening seven of the nine frames. The atmospheric limb glow was a radial gradient with an inner radius of S-6, and canvas fills everything inside that radius with the gradient's first stop, so a rim light was being added FLAT over the whole globe in additive mode. That was quietly erasing the grazing terminator the entire deck is built on. It is now a true annulus, which is why the frames read lit rather than washed.\n\nAlso changed. Slide 09 lost the sentence \"The federal fiscal year ends September 30th\", because it carried no claim-id and claims.json has none for it. Slide 07 lost two rows and gained a KMXT attribution, because three non-primary background figures were being stated in the deck's own voice. Nothing in the locked caption reads as a factual error against claims.json, and the Johnston quote on slide 08 matches C43 word for word.",
+  "slides": [
+    {
+      "n": 1,
+      "beat": "Cover. The line, and what a comma costs.",
+      "strings": [
+        "A COMMA HIDES",
+        "$20,632,119.41",
+        "from the public's own search for AI contracts",
+        "FPDS-NG READ 2026-09-07",
+        "61.2181N 149.9003W . t 0.00 . 0 MI . 01 / 09"
+      ],
+      "claim_ids": [
+        "C07"
+      ]
+    },
+    {
+      "n": 2,
+      "beat": "The two queries, and the fact they share nothing.",
+      "strings": [
+        "The shorter phrase is inside the longer one. The narrower search returns more.",
+        "24 RECORDS",
+        "25 RECORDS",
+        "NOTHING IN COMMON",
+        "SETS DISJOINT",
+        "COUNTS RETURNED BY TWO NAMED FPDS-NG QUERIES. VENDOR STATE AK. NOT A TOTAL.",
+        "61.5N 143.2W . t 0.10 . 336 MI . 02 / 09"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "n": 3,
+      "beat": "The comma itself, at 121 pixels.",
+      "strings": [
+        "THE MARK THAT HIDES",
+        "MISSED",
+        "FOUND",
+        "121 PX AT THIS SCALE",
+        "Four cases fit. A comma right after the phrase appears to break the match.",
+        "APPARENT MECHANISM, NOT A PROVEN ONE. THE COUNTS DO NOT DEPEND ON IT.",
+        "61.4N 136.4W . t 0.20 . 672 MI . 03 / 09"
+      ],
+      "claim_ids": [
+        "C05",
+        "C06"
+      ]
+    },
+    {
+      "n": 4,
+      "beat": "What fell in the gap. Leisnoi, and where the work is.",
+      "strings": [
+        "LAWFUL. 8(a) IS THE MECHANISM CONGRESS BUILT.",
+        "Leisnoi Professional Services LLC",
+        "PIID",
+        "OFFICE",
+        "OBLIGATED",
+        "ACTIONS",
+        "MECHANISM",
+        "PERFORMED",
+        "RUNS",
+        "THROUGH",
+        "ANCHORAGE 61.22N 149.90W",
+        "PENTAGON 38.87N 77.06W",
+        "The vendor address is in Anchorage. The work is at the Pentagon.",
+        "60.2N 125.1W . t 0.36 . 1,210 MI . 04 / 09"
+      ],
+      "claim_ids": [
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "n": 5,
+      "beat": "Seven years, one day. The buyers renamed.",
+      "strings": [
+        "THE BUYERS RENAMED. THE SENTENCE DIDN'T.",
+        "THEN",
+        "NOW",
+        "SEPTEMBER 10TH, 2025 TO SEPTEMBER 11TH, 2025",
+        "TUKNIK GOVERNMENT SERVICES",
+        "140D0419C0047 $21,596,322.25",
+        "TUKNIK, JOINT AI CENTER",
+        "140D0421C0002 $24,210,536.43",
+        "KONIAG IT SYSTEMS",
+        "HQ003425CE012 $12,022,390.38",
+        "LEISNOI PROFESSIONAL SERVICES",
+        "HQ003425CE092 $20,632,119.41",
+        "BAR LENGTH IS TIME, NOT DOLLARS. FIGURES ARE OBLIGATED. TUKNIK IS WHOLLY OWNED BY KONIAG GOVERNMENT SERVICES.",
+        "57.6N 112.4W . t 0.52 . 1,748 MI . 05 / 09",
+        "JOINT ARTIFICIAL INTELLIGENCE CENTER",
+        "DEPUTY TO THE CHIEF DIGITAL AND",
+        "ARTIFICIAL INTELLIGENCE OFFICE",
+        "ONE DAY"
+      ],
+      "claim_ids": [
+        "C19",
+        "C20",
+        "C21",
+        "C22",
+        "C23",
+        "C13"
+      ]
+    },
+    {
+      "n": 6,
+      "beat": "Hard cut. Where the work actually lands.",
+      "strings": [
+        "ARC LENGTH ZERO",
+        "1 RECORD",
+        "9 RECORDS",
+        "Two very different things are both called Alaska AI.",
+        "ANCHORAGE 99503",
+        "FAIRBANKS, 9 NASA GRANTS",
+        "WHAT THE QUERY RETURNS, NOT A CENSUS. A COMMA WOULD HIDE ANY OTHER.",
+        "62.0N 149.5W . t 0.01 . 34 MI . 06 / 09"
+      ],
+      "claim_ids": [
+        "C13",
+        "C14",
+        "C16",
+        "C17",
+        "C18"
+      ]
+    },
+    {
+      "n": 7,
+      "beat": "Breather. What comes home to Kodiak.",
+      "strings": [
+        "The sharing rule covers resource revenue. It doesn't reach government contracting.",
+        "43 U.S.C. 1606(i)",
+        "DIVIDEND",
+        "SHAREHOLDERS",
+        "FOUNDATION",
+        "Does all of it come home?",
+        "DIVIDEND AND SHAREHOLDER FIGURES PER KMXT, OCTOBER 9TH, 2025.",
+        "KODIAK",
+        "AT INCORPORATION 3,400 SHAREHOLDERS",
+        "TODAY 4,700+",
+        "ONE DOT IS 100 SHAREHOLDERS",
+        "57.5N 152.2W . KODIAK . 07 / 09"
+      ],
+      "claim_ids": [
+        "C31",
+        "C32",
+        "C33",
+        "C35",
+        "C36",
+        "C37"
+      ]
+    },
+    {
+      "n": 8,
+      "beat": "The counterweight. The same mechanism buys other things.",
+      "strings": [
+        "The same mechanism buys other things.",
+        "KONIAG SERVICES INC",
+        "OBLIGATED",
+        "EFFECTIVE",
+        "THROUGH",
+        "PERFORMED",
+        "REPORTED",
+        "SOURCE",
+        "A law firm briefing reports that sole source 8(a) awards above $20 million were ordered reviewed in January 2026. The Leisnoi contract is $632,119.41 above that line. No review of it is on the record.",
+        "\"Nobody has quantified how much of that $13.5 billion runs through 8(a) contracts.\"",
+        "ROSS JOHNSTON, COMMONWEALTH NORTH, ADN, JUNE 6TH, 2026",
+        "THE PENTAGON",
+        "NASHVILLE",
+        "102 SIGNATURES",
+        "BERING STRAITS SHAREHOLDERS AND DESCENDANTS",
+        "41.0N 82.1W . t 0.90 . 3,026 MI . 08 / 09",
+        "BERING STRAITS IS NOT KONIAG.",
+        "THE PETITION ASKED BSNC TO DIVEST FROM ICE DETENTION.",
+        "102 IS AN EARLY DECEMBER COUNT. 20 OTHERS ALSO SIGNED."
+      ],
+      "claim_ids": [
+        "C38",
+        "C39",
+        "C40",
+        "C41",
+        "C42",
+        "C43",
+        "C54",
+        "C55"
+      ]
+    },
+    {
+      "n": 9,
+      "beat": "Close. The date, and the query you would have to type.",
+      "strings": [
+        "SEPTEMBER 10TH, 2026.",
+        "Leisnoi's period of performance ends that day. Whatever happens next shows up in the same public feed.",
+        "Which Alaska AI do you mean?",
+        "FPDS-NG. VENDOR STATE AK.",
+        "SEARCH THE REQUIREMENT DESCRIPTION FOR BOTH STRINGS,",
+        "WITH THE COMMA AND WITHOUT IT.",
+        "SOURCES IN COMMENTS",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "55.6184N 103.6097W . WHOLE ARC . 3,362 MI . 09 / 09"
+      ],
+      "claim_ids": [
+        "C11"
+      ]
+    }
+  ]
+}

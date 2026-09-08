@@ -1,0 +1,246 @@
+<!doctype html>
+<!-- SLIDE 05 — SEVEN YEARS, ONE DAY. The keepable slide. Four stacked geodesics
+     above, and below them the deck's ONE flat parallel-projection register: bar
+     length is TIME, on a printed and fully declared year axis. The gap between
+     the third and fourth bars is one day at true scale, and it is sub-pixel. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#050A14;position:relative}
+  #art{position:absolute;inset:0}
+  #grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+         opacity:.07;pointer-events:none}
+  .disp{position:absolute;left:80px;top:140px;width:850px;font-family:"Unbounded",sans-serif;
+        font-weight:700;font-size:84px;line-height:.98;letter-spacing:-.02em;color:#EAF1FA}
+  .offices{position:absolute;left:80px;top:396px;width:900px;font-family:"JetBrains Mono",monospace;
+           font-weight:400;font-size:25px;line-height:1.72;letter-spacing:.05em;color:#9DB2C8}
+  .offices b{color:#EAF1FA;font-weight:500}
+  .guard{position:absolute;left:80px;top:1188px;width:920px;font-family:"JetBrains Mono",monospace;
+         font-size:24px;line-height:1.6;letter-spacing:.05em;color:#8FA6BE;white-space:nowrap}
+  .polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+  .rail{position:absolute;right:82px;top:120px;font-family:"JetBrains Mono",monospace;
+        font-weight:400;font-size:24px;letter-spacing:.10em;color:#8FA6BE;
+        writing-mode:vertical-rl;text-orientation:mixed}
+</style></head>
+<body>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div id="grain"></div>
+<div class="disp" id="dp">THE BUYERS RENAMED. THE SENTENCE DIDN'T.</div>
+<div class="offices">
+  <b>THEN</b> &nbsp; JOINT ARTIFICIAL INTELLIGENCE CENTER<br>
+  <b>NOW</b> &nbsp; &nbsp;DEPUTY TO THE CHIEF DIGITAL AND<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; ARTIFICIAL INTELLIGENCE OFFICE
+</div>
+<div class="guard">BAR LENGTH IS TIME, NOT DOLLARS. FIGURES ARE OBLIGATED.<br>TUKNIK IS WHOLLY OWNED BY KONIAG GOVERNMENT SERVICES.</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="rail">57.6N 112.4W . t 0.52 . 1,748 MI . 05 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script type="module">
+const W=1080,H=1350,SEED=20260907+5;
+const ANC=[-149.9003,61.2181], PEN=[-77.0563,38.8719];
+const S=880, CX=560, CY=-190;                 // sphere sits high, register below
+const AX0=80, AX1=950, T0=2019.0, T1=2027.0; // the declared year axis
+const BANDY=1142;
+const RESERVE=[[64,130,870,250],[64,386,916,150],[312,694,396,140],[76,842,876,38],[76,910,876,38],[76,978,876,38],[76,1046,876,38],[64,1180,940,90],[956,110,66,742],[70,1126,940,66]];
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  function reserved(x,y){ for(const r of RESERVE){
+    if(x>r[0]-10&&x<r[0]+r[2]+10&&y>r[1]-10&&y<r[1]+r[3]+10) return true;} return false; }
+  function clipOut(){ cx.beginPath(); cx.rect(0,0,W,H);
+    for(const r of RESERVE) cx.rect(r[0]-8,r[1]-8,r[2]+16,r[3]+16); cx.clip('evenodd'); }
+
+  let ok=false, off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  try{
+    const THREE=await import('@@ASSETS@@/js/three.module.min.js');
+    const AKT=(await import('@@ASSETS@@/js/akthree.js')).init(THREE);
+    if(AKT.webglOK()){
+      const R=AKT.setup(off,{w:W,h:H,bg:0x050A14,exposure:0.88});
+      const hw=(W/2)/S,hh=(H/2)/S;
+      const cam=new THREE.OrthographicCamera(-hw,hw,hh,-hh,0.01,40);
+      cam.position.set(0,0,6); cam.lookAt(0,0,0); R.camera=cam;
+      const ox=(CX-W/2)/S, oy=-(CY-H/2)/S;
+      const globe=new THREE.Mesh(new THREE.SphereGeometry(1,192,128),
+        new THREE.MeshStandardMaterial({color:0x102338,roughness:0.70,metalness:0.10}));
+      globe.position.set(ox,oy,0); R.scene.add(globe);
+      AKT.environment(R,{intensity:0.16});
+      const az=142*Math.PI/180, el=4*Math.PI/180;
+      const kd=[Math.sin(az)*Math.cos(el),Math.cos(az)*Math.cos(el),Math.sin(el)];
+      const key=new THREE.DirectionalLight(0xBFD4EA,3.15);
+      key.position.set(kd[0]*8+ox,kd[1]*8+oy,kd[2]*8+6); R.scene.add(key);
+      const fill=new THREE.DirectionalLight(0x16283E,0.52);
+      fill.position.set(-kd[0]*8+ox,-kd[1]*8+oy,5); R.scene.add(fill);
+      R.scene.add(new THREE.AmbientLight(0x081221,0.55));
+      const shell=new THREE.Mesh(new THREE.SphereGeometry(1.045,160,110),
+        new THREE.MeshBasicMaterial({color:0x24486B,transparent:true,opacity:0.10,
+          side:THREE.BackSide,blending:THREE.AdditiveBlending,depthWrite:false}));
+      shell.position.set(ox,oy,0); R.scene.add(shell);
+      const shot=await AKT.snapshot(R);
+      if(shot&&shot.ok){ cx.drawImage(off,0,0,W,H); ok=true; }
+    }
+  }catch(e){ console.warn('gl',e&&e.message); }
+  if(!ok){ const g=cx.createRadialGradient(CX+380,CY+700,40,CX,CY,S);
+    g.addColorStop(0,'#22364F'); g.addColorStop(.5,'#102338'); g.addColorStop(1,'#070E1A');
+    cx.save(); cx.beginPath(); cx.arc(CX,CY,S,0,7); cx.clip(); cx.fillStyle=g;
+    cx.fillRect(0,0,W,H); cx.restore(); }
+
+  { const rs=AK.rng(SEED+91); cx.save();
+    for(let k=0;k<620;k++){ const x=rs()*W,y=rs()*H,d=Math.hypot(x-CX,y-CY);
+      if(d<S-2||reserved(x,y)) continue;
+      if(y>BANDY-26&&y<BANDY+46) continue;   // never inside the measured axis band
+      const near=Math.max(0,1-(d-S)/560), m=rs();
+      cx.fillStyle='rgba(198,216,232,'+((0.05+0.30*m*m)*(0.35+0.65*near)).toFixed(3)+')';
+      cx.beginPath(); cx.arc(x,y,m>0.94?1.5:(m>0.72?1.05:0.7),0,7); cx.fill(); }
+    const lim=cx.createRadialGradient(CX,CY,0,CX,CY,S+110);
+    const _i=(S-14)/(S+110), _l=(S-4)/(S+110), _m=_l+0.30*(1-_l);
+    lim.addColorStop(0,'rgba(84,140,192,0)'); lim.addColorStop(_i,'rgba(84,140,192,0)');
+    lim.addColorStop(_l,'rgba(84,140,192,0.30)'); lim.addColorStop(_m,'rgba(52,96,142,0.12)');
+    lim.addColorStop(1,'rgba(30,60,100,0)');
+    cx.globalCompositeOperation='lighter'; cx.fillStyle=lim; cx.fillRect(0,0,W,H); cx.restore(); }
+
+  /* ---- four stacked transects, atmospheric fade by age ------------------ */
+  const CEN=[ANC[0]+30,Math.min(88,ANC[1]+4)];
+  function proj(g){ return d3.geoOrthographic().rotate([-CEN[0],-CEN[1],g])
+    .translate([CX,CY]).scale(S).clipAngle(90); }
+  let p0=proj(0),a0=p0(ANC),b0=p0(PEN);
+  let gm=Math.atan2(b0[0]-a0[0],b0[1]-a0[1])*180/Math.PI;
+  let P=proj(gm);
+  const it=d3.geoInterpolate(ANC,PEN);
+  cx.save(); clipOut(); cx.lineCap='butt';
+  for(let j=0;j<4;j++){
+    const fade=Math.pow(j/3,1.4);
+    const dy=(j-1.5)*15;
+    cx.lineWidth=3.6; cx.strokeStyle='rgba(5,10,20,0.62)';
+    cx.beginPath();
+    for(let i=0;i<300;i++){ const q=P(it(i/299)); i?cx.lineTo(q[0],q[1]+dy):cx.moveTo(q[0],q[1]+dy); }
+    cx.stroke();
+    cx.lineWidth=1.9; cx.strokeStyle='rgba('+Math.round(120+70*fade)+','+Math.round(150+55*fade)+','+
+      Math.round(180+35*fade)+','+(0.42+0.44*fade).toFixed(2)+')';
+    cx.beginPath();
+    for(let i=0;i<300;i++){ const q=P(it(i/299)); i?cx.lineTo(q[0],q[1]+dy):cx.moveTo(q[0],q[1]+dy); }
+    cx.stroke();
+  }
+  cx.restore();
+
+  /* ---- THE REGISTER. flat parallel projection, bar length is TIME ------- */
+  const x=(t)=>AX0+(t-T0)/(T1-T0)*(AX1-AX0);
+  const ROWS=[
+    {y:880, a:2019.22, b:2023.12, soft:false,
+     l1:'TUKNIK GOVERNMENT SERVICES', l2:'140D0419C0047 $21,596,322.25'},
+    {y:948, a:2020.97, b:2021.73, soft:false,
+     l1:'TUKNIK, JOINT AI CENTER', l2:'140D0421C0002 $24,210,536.43'},
+    {y:1016, a:2025.20, b:2025.6932, soft:true,
+     l1:'KONIAG IT SYSTEMS', l2:'HQ003425CE012 $12,022,390.38'},
+    {y:1084, a:2025.6959, b:2026.6932, soft:false,
+     l1:'LEISNOI PROFESSIONAL SERVICES', l2:'HQ003425CE092 $20,632,119.41'}
+  ];
+  const DEPTH=9, BH=22;
+  cx.save();
+  ROWS.forEach((r)=>{
+    const x0=x(r.a), x1b=x(r.b);
+    // cabinet oblique: top face and right face, three-face light, one bearing
+    cx.fillStyle='rgba(5,10,20,0.55)';
+    cx.beginPath(); cx.moveTo(x0+DEPTH,r.y+BH); cx.lineTo(x1b+DEPTH,r.y+BH);
+    cx.lineTo(x1b+DEPTH+6,r.y+BH+7); cx.lineTo(x0+DEPTH+6,r.y+BH+7); cx.closePath(); cx.fill();
+    cx.fillStyle='#3E6E96';                                  // top face, +15L
+    cx.beginPath(); cx.moveTo(x0,r.y); cx.lineTo(x1b,r.y);
+    cx.lineTo(x1b+DEPTH,r.y-DEPTH); cx.lineTo(x0+DEPTH,r.y-DEPTH); cx.closePath(); cx.fill();
+    cx.fillStyle='#1E3A57';                                  // front face, base
+    cx.fillRect(x0,r.y,x1b-x0,BH);
+    cx.fillStyle='#16293F';                                  // right face, -15L
+    cx.beginPath(); cx.moveTo(x1b,r.y); cx.lineTo(x1b+DEPTH,r.y-DEPTH);
+    cx.lineTo(x1b+DEPTH,r.y+BH-DEPTH); cx.lineTo(x1b,r.y+BH); cx.closePath(); cx.fill();
+    if(r.soft){   // phantom left end: the start is not in the record read today
+      cx.save(); cx.fillStyle='#050A14'; cx.globalAlpha=0.55;
+      for(let k=0;k<7;k++) cx.fillRect(x0+k*9,r.y,4.5,BH);
+      cx.restore();
+    }
+  });
+  cx.restore();
+
+  /* ---- the declared axis. every tick has a meaning. -------------------- */
+  const marks=[];
+  cx.save(); cx.strokeStyle='rgba(143,166,190,0.55)'; cx.lineWidth=1.25;
+  cx.beginPath(); cx.moveTo(AX0,BANDY); cx.lineTo(AX1,BANDY); cx.stroke();
+  cx.fillStyle='#8FA6BE'; cx.font='400 22px "JetBrains Mono", monospace'; cx.textAlign='center';
+  for(let yr=2019; yr<=2027; yr++){
+    const px=x(yr);
+    cx.beginPath(); cx.moveTo(px,BANDY-7); cx.lineTo(px,BANDY+7); cx.stroke();
+    cx.fillText(String(yr), px, BANDY+34);
+    marks.push({at:Math.round(px), means:"the calendar year "+yr});
+  }
+  cx.restore();
+
+  /* ---- the ONE DAY call. it points at a gap smaller than the stroke. ---- */
+  const gx=x(2025.6932), gy=ROWS[2].y+BH+16;
+  cx.save(); clipOut(); cx.strokeStyle='#FFC72C'; cx.lineWidth=1.6; cx.lineCap='butt';
+  cx.beginPath(); cx.moveTo(gx,ROWS[2].y+BH+2); cx.lineTo(gx,748); cx.lineTo(714,748); cx.stroke();
+  cx.restore(); cx.save();
+  cx.fillStyle='#FFC72C'; cx.beginPath(); cx.arc(gx,ROWS[2].y+BH+2,3.5,0,7); cx.fill();
+  cx.restore();
+  const od=document.createElement('div');
+  od.innerHTML='ONE DAY<div style="font-family:\'JetBrains Mono\',monospace;font-weight:400;font-size:24px;letter-spacing:.05em;color:#9DB2C8;margin-top:6px;line-height:1.4">SEPTEMBER 10TH, 2025<br>TO SEPTEMBER 11TH, 2025</div>';
+  od.style.cssText='position:absolute;font-family:"Unbounded",sans-serif;font-weight:700;'+
+    'font-size:38px;letter-spacing:-.01em;color:#FFC72C;white-space:nowrap;'+
+    'text-shadow:0 0 5px #050A14,0 0 10px #050A14,1px 1px 0 #050A14,-1px -1px 0 #050A14;'+
+    'text-align:right;width:380px;left:320px;top:700px';
+  document.body.appendChild(od);
+
+  /* ---- row labels, DOM so they stay vector and measurable -------------- */
+  // THE VALUE COLUMN IS PLACED FROM MEASUREMENT, NEVER FROM A CONSTANT. Right
+  // aligning it to the gutter pulled it left onto the longest name and printed
+  // SERVICESHQ003425CE092. Its left edge is now the widest name plus a gap, so a
+  // collision is impossible whatever the font metrics turn out to be.
+  const NAMES=[], VALS=[];
+  ROWS.forEach((r)=>{
+    const base='position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;'+
+      'letter-spacing:0;white-space:nowrap;font-variant-numeric:tabular-nums;'+
+      'text-shadow:0 0 4px #050A14,0 0 8px #050A14;top:'+Math.round(r.y-32)+'px';
+    const nm=document.createElement('div');
+    nm.textContent=r.l1;
+    nm.style.cssText=base+';left:80px;color:#EAF1FA';
+    document.body.appendChild(nm); NAMES.push(nm);
+    const vl=document.createElement('div');
+    vl.textContent=r.l2;
+    vl.style.cssText=base+';left:0px;color:#8FA6BE';
+    document.body.appendChild(vl); VALS.push(vl);
+  });
+
+  await document.fonts.ready;
+  { const GAP=30, RIGHT=936;
+    const vx=Math.max(...NAMES.map(e=>e.offsetLeft+e.offsetWidth))+GAP;
+    const vw=Math.max(...VALS.map(e=>e.offsetWidth));
+    const x=Math.min(vx, RIGHT-vw);          // never past the gutter
+    VALS.forEach(e=>{ e.style.left=Math.round(x)+'px'; });
+    window.__akChecks=[{what:"the register's name and value columns cannot touch",
+      ok:(x >= Math.max(...NAMES.map(e=>e.offsetLeft+e.offsetWidth))+8) && (x+vw<=RIGHT)}];
+  }
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.20,saturation:0.95,contrast:1.14,filmic:true,
+    lift:[0.010,0.014,0.024],gain:[1.012,1.0,0.978],vignette:0.22,
+    bloom:{threshold:0.80,strength:0.20,radius:9},
+    grain:{amount:0.040,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.30});
+
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,46,SEED)+')';
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('dp'),{min:44,max:88,maxLines:2});
+
+  document.body.setAttribute('data-scale', JSON.stringify([{
+    what:"the year axis the four contract bars are drawn against",
+    axis:"x", unit:"years", from:[AX0,T0], to:[AX1,T1],
+    band:[BANDY-9,BANDY+9], marks:marks}]));
+  window.__akLeaders=[{target:"the gap between the third and fourth contracts",
+    at:[gx,ROWS[2].y+BH+2], to:[gx,ROWS[2].y+BH+2], from:[714,748], label:"ONE DAY"}];
+  window.__akAssert=[{what:"the one day gap drawn at true scale on the year axis",
+    expect:Math.round((x(2025.6959)-x(2025.6932))*1000),
+    actual:Math.round((AX1-AX0)/(T1-T0)*(2025.6959-2025.6932)*1000), tol:2, unit:"milli-px"}];
+  return true;
+})();
+</script>
+</body></html>

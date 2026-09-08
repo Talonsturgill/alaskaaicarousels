@@ -1,0 +1,238 @@
+<!doctype html>
+<!-- SLIDE 02 — THE TWO QUERIES. Two fans of geodesics leave the same coast and
+     never touch: 24 solid (what the short phrase returns) and 25 broken (what
+     the longer phrase returns). Zero records in common. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#050A14;position:relative}
+  #art{position:absolute;inset:0}
+  #grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+         opacity:.07;pointer-events:none}
+  .lead{position:absolute;left:80px;top:150px;width:610px;font-family:"Manrope",sans-serif;
+        font-weight:700;font-size:44px;line-height:1.24;color:#EAF1FA}
+  .q{position:absolute;left:80px;top:452px;width:712px;font-family:"JetBrains Mono",monospace;
+     font-weight:400;font-size:25px;line-height:1.80;color:#9DB2C8;letter-spacing:.04em;
+     font-variant-numeric:tabular-nums lining-nums}
+  .q b{color:#EAF1FA;font-weight:500}
+  .callout{position:absolute;left:80px;top:812px;width:600px;font-family:"Unbounded",sans-serif;
+           font-weight:700;font-size:76px;line-height:1.0;letter-spacing:-.02em;color:#EAF1FA}
+  .guard{position:absolute;left:80px;bottom:120px;width:790px;font-family:"JetBrains Mono",monospace;
+         font-size:24px;line-height:1.6;letter-spacing:.09em;color:#7E93AB}
+  .polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+  .rail{position:absolute;right:82px;top:120px;font-family:"JetBrains Mono",monospace;
+        font-weight:400;font-size:24px;letter-spacing:.10em;color:#8FA6BE;
+        writing-mode:vertical-rl;text-orientation:mixed}
+</style></head>
+<body>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div id="grain"></div>
+<div class="lead" id="ld">The shorter phrase is inside the longer one. The narrower search returns more.</div>
+<div class="q">
+  "ARTIFICIAL INTELLIGENCE"<br><b>24 RECORDS</b><br>
+  "ARTIFICIAL INTELLIGENCE, AND MACHINE LEARNING"<br><b>25 RECORDS</b>
+</div>
+<div class="callout" id="co">NOTHING IN COMMON</div>
+<div class="guard">COUNTS RETURNED BY TWO NAMED FPDS-NG QUERIES.<br>VENDOR STATE AK. NOT A TOTAL.</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="rail">61.5N 143.2W . t 0.10 . 336 MI . 02 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script type="module">
+const W=1080,H=1350,SEED=20260907+2;
+const ANC=[-149.9003,61.2181], PEN=[-77.0563,38.8719];
+const S=1092, CX=930, CY=250;
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+
+  let ok=false, off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  try{
+    const THREE=await import('@@ASSETS@@/js/three.module.min.js');
+    const AKT=(await import('@@ASSETS@@/js/akthree.js')).init(THREE);
+    if(AKT.webglOK()){
+      const R=AKT.setup(off,{w:W,h:H,bg:0x050A14,exposure:0.88});
+      const hw=(W/2)/S,hh=(H/2)/S;
+      const cam=new THREE.OrthographicCamera(-hw,hw,hh,-hh,0.01,40);
+      cam.position.set(0,0,6); cam.lookAt(0,0,0); R.camera=cam;
+      const ox=(CX-W/2)/S, oy=-(CY-H/2)/S;
+      const globe=new THREE.Mesh(new THREE.SphereGeometry(1,192,128),
+        new THREE.MeshStandardMaterial({color:0x102338,roughness:0.70,metalness:0.10}));
+      globe.position.set(ox,oy,0); R.scene.add(globe);
+      AKT.environment(R,{intensity:0.16});
+      const az=142*Math.PI/180, el=4*Math.PI/180;
+      const kd=[Math.sin(az)*Math.cos(el),Math.cos(az)*Math.cos(el),Math.sin(el)];
+      const key=new THREE.DirectionalLight(0xBFD4EA,3.15);
+      key.position.set(kd[0]*8+ox,kd[1]*8+oy,kd[2]*8+6); R.scene.add(key);
+      const fill=new THREE.DirectionalLight(0x16283E,0.52);
+      fill.position.set(-kd[0]*8+ox,-kd[1]*8+oy,5); R.scene.add(fill);
+      R.scene.add(new THREE.AmbientLight(0x081221,0.55));
+      const shell=new THREE.Mesh(new THREE.SphereGeometry(1.045,160,110),
+        new THREE.MeshBasicMaterial({color:0x24486B,transparent:true,opacity:0.10,
+          side:THREE.BackSide,blending:THREE.AdditiveBlending,depthWrite:false}));
+      shell.position.set(ox,oy,0); R.scene.add(shell);
+      const shot=await AKT.snapshot(R);
+      if(shot&&shot.ok){ cx.drawImage(off,0,0,W,H); ok=true; }
+    }
+  }catch(e){ console.warn('gl',e&&e.message); }
+  if(!ok){ const g=cx.createRadialGradient(CX+430,CY+540,40,CX,CY,S);
+    g.addColorStop(0,'#22364F'); g.addColorStop(.5,'#102338'); g.addColorStop(1,'#070E1A');
+    cx.save(); cx.beginPath(); cx.arc(CX,CY,S,0,7); cx.clip(); cx.fillStyle=g;
+    cx.fillRect(0,0,W,H); cx.restore(); }
+
+  const RESERVE=[[64,140,626,250],[64,440,728,310],[64,800,616,180],[64,1130,800,120],[956,110,66,742]];
+  function reserved(x,y){ for(const r of RESERVE){
+      if(x>r[0]-10&&x<r[0]+r[2]+10&&y>r[1]-10&&y<r[1]+r[3]+10) return true; } return false; }
+  function clipOutsideReserves(){
+    cx.beginPath(); cx.rect(0,0,W,H);
+    for(const r of RESERVE) cx.rect(r[0]-8,r[1]-8,r[2]+16,r[3]+16);
+    cx.clip('evenodd');
+  }
+  { const rs=AK.rng(SEED+91); cx.save();
+    for(let k=0;k<520;k++){ const x=rs()*W,y=rs()*H,d=Math.hypot(x-CX,y-CY);
+      if(d<S-2) continue; if(reserved(x,y)) continue; const near=Math.max(0,1-(d-S)/520), m=rs();
+      cx.fillStyle='rgba(198,216,232,'+((0.05+0.30*m*m)*(0.35+0.65*near)).toFixed(3)+')';
+      cx.beginPath(); cx.arc(x,y,m>0.94?1.5:(m>0.72?1.05:0.7),0,7); cx.fill(); }
+    const lim=cx.createRadialGradient(CX,CY,0,CX,CY,S+96);
+    const _i=(S-14)/(S+96), _l=(S-4)/(S+96), _m=_l+0.30*(1-_l);
+    lim.addColorStop(0,'rgba(84,140,192,0)'); lim.addColorStop(_i,'rgba(84,140,192,0)');
+    lim.addColorStop(_l,'rgba(84,140,192,0.30)'); lim.addColorStop(_m,'rgba(52,96,142,0.12)');
+    lim.addColorStop(1,'rgba(30,60,100,0)');
+    cx.globalCompositeOperation='lighter'; cx.fillStyle=lim; cx.fillRect(0,0,W,H); cx.restore(); }
+
+  const CEN=[ANC[0],Math.min(88,ANC[1]+10)];
+  function proj(g){ return d3.geoOrthographic().rotate([-CEN[0],-CEN[1],g])
+    .translate([CX,CY]).scale(S).clipAngle(90); }
+  let p0=proj(0),a0=p0(ANC),b0=p0(PEN);
+  let gm=Math.atan2(b0[0]-a0[0],b0[1]-a0[1])*180/Math.PI;
+  let P=proj(gm); if(Math.abs(P(ANC)[0]-P(PEN)[0])>6){ gm=-gm; P=proj(gm); }
+  const path=d3.geoPath(P,cx);
+  window.__akChecks={rollDeltaX:Math.abs(P(ANC)[0]-P(PEN)[0])};
+
+  cx.save(); clipOutsideReserves();
+  cx.lineWidth=.75; cx.strokeStyle='rgba(143,166,190,0.15)';
+  cx.beginPath(); path(d3.geoGraticule().step([15,10])()); cx.stroke(); cx.restore();
+
+  const ak=await (await fetch('@@ASSETS@@/geo/alaska-state.geo.json')).json();
+  cx.save(); clipOutsideReserves(); cx.lineJoin='round';
+  cx.lineWidth=4.0; cx.strokeStyle='rgba(5,10,20,0.85)'; cx.beginPath(); path(ak); cx.stroke();
+  cx.lineWidth=1.25; cx.strokeStyle='#6E8AA6'; cx.beginPath(); path(ak); cx.stroke(); cx.restore();
+
+  /* ---- THE TWO FANS. 24 solid + 25 broken, from one origin, never touching ---- */
+  const rnd=AK.rng(SEED);
+  function fanTarget(i,n,spreadDeg,biasDeg){
+    // a destination offset from the Pentagon along a spread of bearings
+    const f=(i/(n-1))-0.5;
+    return [PEN[0]+f*spreadDeg+biasDeg, PEN[1]+f*spreadDeg*0.42];
+  }
+  function arcPts(dst,samples){
+    const it=d3.geoInterpolate(ANC,dst), o=[];
+    for(let k=0;k<samples;k++) o.push(P(it(k/(samples-1))));
+    return o;
+  }
+  // the declared centre is the first mid-path sample that a reserve clip did
+  // NOT remove, so the declaration describes the picture and not the intent
+  function clearCentre(p){
+    for(let k=Math.floor(p.length*0.55);k<Math.floor(p.length*0.95);k++){
+      const q=p[k]; if(!reserved(q[0],q[1]) && q[0]>10 && q[0]<W-10 && q[1]>10 && q[1]<H-10) return q;
+    }
+    return p[Math.floor(p.length*0.62)];
+  }
+  const solidCentres=[], brokenCentres=[];
+
+  // 24 SOLID — what the short phrase returns
+  const SOLID=[];
+  for(let i=0;i<24;i++) SOLID.push(arcPts(fanTarget(i,24,26,-9),170));
+  cx.save(); clipOutsideReserves(); cx.lineCap='butt';
+  SOLID.forEach((p,i)=>{
+    cx.lineWidth=2.4; cx.strokeStyle='rgba(5,10,20,0.55)';
+    cx.beginPath(); cx.moveTo(p[0][0],p[0][1]); for(let k=1;k<p.length;k++) cx.lineTo(p[k][0],p[k][1]); cx.stroke();
+    cx.lineWidth=1.25; cx.strokeStyle='rgba(169,192,214,'+(0.62+0.24*rnd()).toFixed(2)+')';
+    cx.beginPath(); cx.moveTo(p[0][0],p[0][1]); for(let k=1;k<p.length;k++) cx.lineTo(p[k][0],p[k][1]); cx.stroke();
+    solidCentres.push(clearCentre(p));
+  });
+  cx.restore();
+
+  // 25 BROKEN — what the longer phrase returns. phantom dash, value-dropped.
+  const BROKEN=[];
+  for(let i=0;i<25;i++) BROKEN.push(arcPts(fanTarget(i,25,24,20),170));
+  cx.save(); clipOutsideReserves(); cx.setLineDash([26,4]); cx.lineCap='butt';
+  BROKEN.forEach((p)=>{
+    cx.lineWidth=3.0; cx.strokeStyle='rgba(5,10,20,0.70)';
+    cx.beginPath(); cx.moveTo(p[0][0],p[0][1]); for(let k=1;k<p.length;k++) cx.lineTo(p[k][0],p[k][1]); cx.stroke();
+    cx.lineWidth=1.5; cx.strokeStyle='rgba(122,170,214,0.92)';
+    cx.beginPath(); cx.moveTo(p[0][0],p[0][1]); for(let k=1;k<p.length;k++) cx.lineTo(p[k][0],p[k][1]); cx.stroke();
+    brokenCentres.push(clearCentre(p));
+  });
+  cx.restore();
+
+  /* ---- the gold bracket: the two sets share nothing --------------------- */
+  const sc=solidCentres[12], bc=brokenCentres[12];
+  // The bracket's gold terminators land ON these two arcs, so the mark probe for arc 12
+  // would be measuring the terminator, read a uniform gold field with no local edge, and
+  // report the arc missing. Re-sample those two arcs further back along their own paths;
+  // 25 arcs are still declared, one point each, none of them under gold.
+  function earlyCentre(p){
+    for(let k=Math.floor(p.length*0.20);k<Math.floor(p.length*0.45);k++){
+      const q=p[k]; if(!reserved(q[0],q[1]) && q[0]>10 && q[0]<W-10 && q[1]>10 && q[1]<H-10) return q;
+    }
+    return p[Math.floor(p.length*0.30)];
+  }
+  solidCentres[12]=earlyCentre(SOLID[12]);
+  brokenCentres[12]=earlyCentre(BROKEN[12]);
+  cx.save(); clipOutsideReserves(); cx.strokeStyle='#FFC72C'; cx.lineWidth=2.0; cx.lineCap='butt';
+  const bx=Math.max(742, Math.min(sc[0],bc[0])-26);   // never reaches the type column
+  cx.beginPath();
+  cx.moveTo(sc[0],sc[1]); cx.lineTo(bx,sc[1]); cx.lineTo(bx,bc[1]); cx.lineTo(bc[0],bc[1]);
+  cx.stroke();
+  cx.fillStyle='#FFC72C';
+  const TERM=[[sc[0],sc[1]],[bc[0],bc[1]]];
+  TERM.forEach(q=>{
+    cx.strokeStyle='rgba(5,10,20,0.9)'; cx.lineWidth=2.4;
+    cx.beginPath(); cx.arc(q[0],q[1],9,0,7); cx.stroke();
+    cx.fillStyle='#FFC72C'; cx.beginPath(); cx.arc(q[0],q[1],9,0,7); cx.fill();
+  });
+  cx.restore();
+  // the probe rides on the terminator the code actually drew, so it can never drift
+  const PA=[Math.round(sc[0]-6),Math.round(sc[1]-6),12,12];
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.20,saturation:0.95,contrast:1.14,filmic:true,
+    lift:[0.010,0.014,0.024],gain:[1.012,1.0,0.978],vignette:0.22,
+    bloom:{threshold:0.80,strength:0.22,radius:9},
+    grain:{amount:0.040,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.30});
+
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,46,SEED)+')';
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('co'),{min:60,max:84,maxLines:2});
+
+  window.__akAssert=[
+    {what:"24 solid arcs, the short phrase's returns", expect:24, points:solidCentres, unit:"marks"},
+    {what:"25 broken arcs, the longer phrase's returns", expect:25, points:brokenCentres, unit:"marks"}];
+  const lbl=document.createElement('div');
+  lbl.textContent='SETS DISJOINT';
+  lbl.style.cssText='position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;'+
+    'letter-spacing:.09em;color:#FFC72C;white-space:nowrap;'+'text-shadow:0 0 4px #050A14,0 0 8px #050A14,1px 1px 0 #050A14,-1px -1px 0 #050A14,1px -1px 0 #050A14,-1px 1px 0 #050A14;left:'+Math.round(bx+14)+'px;top:'+
+    Math.round(Math.max(sc[1],bc[1])+18)+'px';
+  document.body.appendChild(lbl);
+  // the rail column is reserved furniture; nothing else may enter it
+  lbl.style.left=Math.round(Math.min(bx+14, 936-lbl.offsetWidth))+'px';
+  window.__akLeaders=[{target:"the broken fan, what the longer phrase returns",
+    at:[bc[0],bc[1]], to:[bc[0],bc[1]], from:[bx+14,Math.max(sc[1],bc[1])+30], label:"SETS DISJOINT"}];
+  document.body.setAttribute('data-encodes', JSON.stringify([{
+    // MEASURED OFF THE RENDER. The first draft probed two 180x140 boxes over the two
+    // fans, and qa reads the MEDIAN of a region, so both boxes measured the ground the
+    // lines are drawn on rather than the lines: one population, twice. These two sit
+    // inside ink of two different temperatures.
+    claim:"the only warm mark in the frame is the one saying the two sets share nothing",
+    reads:"differ",
+    a:[PA],
+    b:[[764,328,24,24]]}]));
+  return true;
+})();
+</script>
+</body></html>

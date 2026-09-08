@@ -1,0 +1,196 @@
+<!doctype html>
+<!-- SLIDE 09 — CLOSE. The camera pulls all the way out and the whole transect
+     is in one frame for the first and only time, unbroken, sealing into the
+     gold Polaris at the Anchorage end. One ask. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#050A14;position:relative}
+  #art{position:absolute;inset:0}
+  #grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+         opacity:.07;pointer-events:none}
+  .disp{position:absolute;left:80px;top:146px;width:620px;font-family:"Unbounded",sans-serif;
+        font-weight:700;font-size:88px;line-height:.98;letter-spacing:-.02em;color:#EAF1FA}
+  .bodyline{position:absolute;left:80px;top:392px;width:540px;font-family:"Manrope",sans-serif;
+        font-weight:500;font-size:34px;line-height:1.38;color:#9DB2C8}
+  .ask{position:absolute;left:80px;bottom:396px;width:700px;font-family:"Manrope",sans-serif;
+       font-weight:700;font-size:40px;line-height:1.24;color:#EAF1FA}
+  .how{position:absolute;left:80px;bottom:250px;width:900px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;line-height:1.62;letter-spacing:.07em;color:#BCCEDF;text-shadow:0 0 4px #050A14,0 0 9px #050A14}
+  .src{position:absolute;left:80px;bottom:186px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.10em;color:#7E93AB}
+  .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:baseline;gap:18px}
+  .wm{font-family:"Unbounded",sans-serif;font-weight:700;font-size:34px;letter-spacing:.02em;
+      color:#EAF1FA}
+  .site{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.10em;color:#8FA6BE}
+  .polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+  .rail{position:absolute;right:82px;top:120px;font-family:"JetBrains Mono",monospace;
+        font-weight:400;font-size:24px;letter-spacing:.10em;color:#8FA6BE;
+        writing-mode:vertical-rl;text-orientation:mixed}
+</style></head>
+<body>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div id="grain"></div>
+<div class="disp" id="dp">SEPTEMBER 10TH, 2026.</div>
+<div class="bodyline">Leisnoi's period of performance ends that day. Whatever happens next shows up in the same public feed.</div>
+<div class="ask">Which Alaska AI do you mean?</div>
+<div class="how">FPDS-NG. VENDOR STATE AK.<br>SEARCH THE REQUIREMENT DESCRIPTION FOR BOTH STRINGS,<br>WITH THE COMMA AND WITHOUT IT.</div>
+<div class="src">SOURCES IN COMMENTS</div>
+<div class="mark"><span class="wm">ALASKA.AI</span><span class="site">alaskaaihq.com</span></div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="rail">55.6184N 103.6097W . WHOLE ARC . 3,362 MI . 09 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script type="module">
+const W=1080,H=1350,SEED=20260907+9;
+const ANC=[-149.9003,61.2181], PEN=[-77.0563,38.8719], MID=[-103.6097,55.6184];
+const S=400, CX=790, CY=760;
+const RESERVE=[[64,136,640,230],[64,378,560,210],[64,930,716,120],[64,1030,916,130],
+               [64,1150,420,50],[64,1220,520,80],[956,110,66,880]];
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  function reserved(x,y){ for(const r of RESERVE){
+    if(x>r[0]-10&&x<r[0]+r[2]+10&&y>r[1]-10&&y<r[1]+r[3]+10) return true;} return false; }
+  function clipOut(){ cx.beginPath(); cx.rect(0,0,W,H);
+    for(const r of RESERVE) cx.rect(r[0]-8,r[1]-8,r[2]+16,r[3]+16); cx.clip('evenodd'); }
+
+  let ok=false, off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  try{
+    const THREE=await import('@@ASSETS@@/js/three.module.min.js');
+    const AKT=(await import('@@ASSETS@@/js/akthree.js')).init(THREE);
+    if(AKT.webglOK()){
+      const R=AKT.setup(off,{w:W,h:H,bg:0x050A14,exposure:0.90});
+      const hw=(W/2)/S,hh=(H/2)/S;
+      const cam=new THREE.OrthographicCamera(-hw,hw,hh,-hh,0.01,40);
+      cam.position.set(0,0,6); cam.lookAt(0,0,0); R.camera=cam;
+      const ox=(CX-W/2)/S, oy=-(CY-H/2)/S;
+      const globe=new THREE.Mesh(new THREE.SphereGeometry(1,192,128),
+        new THREE.MeshStandardMaterial({color:0x102338,roughness:0.70,metalness:0.10}));
+      globe.position.set(ox,oy,0); R.scene.add(globe);
+      AKT.environment(R,{intensity:0.16});
+      const az=142*Math.PI/180, el=4*Math.PI/180;
+      const kd=[Math.sin(az)*Math.cos(el),Math.cos(az)*Math.cos(el),Math.sin(el)];
+      const key=new THREE.DirectionalLight(0xCBDDF0,3.6);   // 7:1, the layer clears
+      key.position.set(kd[0]*8+ox,kd[1]*8+oy,kd[2]*8+6); R.scene.add(key);
+      const fill=new THREE.DirectionalLight(0x16283E,0.51);
+      fill.position.set(-kd[0]*8+ox,-kd[1]*8+oy,5); R.scene.add(fill);
+      R.scene.add(new THREE.AmbientLight(0x081221,0.50));
+      const shell=new THREE.Mesh(new THREE.SphereGeometry(1.10,160,110),
+        new THREE.MeshBasicMaterial({color:0x2C5880,transparent:true,opacity:0.16,
+          side:THREE.BackSide,blending:THREE.AdditiveBlending,depthWrite:false}));
+      shell.position.set(ox,oy,0); R.scene.add(shell);
+      const shot=await AKT.snapshot(R);
+      if(shot&&shot.ok){ cx.drawImage(off,0,0,W,H); ok=true; }
+    }
+  }catch(e){ console.warn('gl',e&&e.message); }
+  if(!ok){ const g=cx.createRadialGradient(CX+180,CY+220,20,CX,CY,S);
+    g.addColorStop(0,'#26405E'); g.addColorStop(.5,'#102338'); g.addColorStop(1,'#070E1A');
+    cx.save(); cx.beginPath(); cx.arc(CX,CY,S,0,7); cx.clip(); cx.fillStyle=g;
+    cx.fillRect(0,0,W,H); cx.restore(); }
+
+  { const rs=AK.rng(SEED+91); cx.save();
+    for(let k=0;k<900;k++){ const x=rs()*W,y=rs()*H,d=Math.hypot(x-CX,y-CY);
+      if(d<S-2||reserved(x,y)) continue; const near=Math.max(0,1-(d-S)/700), m=rs();
+      cx.fillStyle='rgba(198,216,232,'+((0.05+0.32*m*m)*(0.28+0.72*near)).toFixed(3)+')';
+      cx.beginPath(); cx.arc(x,y,m>0.95?1.6:(m>0.74?1.1:0.7),0,7); cx.fill(); }
+    const lim=cx.createRadialGradient(CX,CY,0,CX,CY,S+190);
+    const _i=(S-14)/(S+190), _l=(S-4)/(S+190), _m=_l+0.30*(1-_l);
+    lim.addColorStop(0,'rgba(84,140,192,0)'); lim.addColorStop(_i,'rgba(84,140,192,0)');
+    lim.addColorStop(_l,'rgba(84,140,192,0.30)'); lim.addColorStop(_m,'rgba(52,96,142,0.12)');
+    lim.addColorStop(1,'rgba(30,60,100,0)');
+    cx.globalCompositeOperation='lighter'; cx.fillStyle=lim; cx.fillRect(0,0,W,H); cx.restore(); }
+
+  const P=d3.geoOrthographic().rotate([-MID[0],-MID[1],0])
+    .translate([CX,CY]).scale(S).clipAngle(90);
+  const path=d3.geoPath(P,cx);
+  cx.save(); clipOut(); cx.lineWidth=.75; cx.strokeStyle='rgba(143,166,190,0.14)';
+  cx.beginPath(); path(d3.geoGraticule().step([15,15])()); cx.stroke(); cx.restore();
+  let us=null;
+  try{ const t=await (await fetch('@@ASSETS@@/geo/us-states-10m.json')).json();
+       us=topojson.feature(t, t.objects[Object.keys(t.objects)[0]]); }catch(e){ us=null; }
+  const ak=await (await fetch('@@ASSETS@@/geo/alaska-state.geo.json')).json();
+  cx.save(); clipOut(); cx.lineJoin='round';
+  if(us){ cx.lineWidth=0.9; cx.strokeStyle='rgba(110,138,166,0.38)';
+    cx.beginPath(); path(us); cx.stroke(); }
+  cx.lineWidth=3.0; cx.strokeStyle='rgba(5,10,20,0.85)'; cx.beginPath(); path(ak); cx.stroke();
+  cx.lineWidth=1.1; cx.strokeStyle='#7E9AB6'; cx.beginPath(); path(ak); cx.stroke(); cx.restore();
+
+  /* ---- THE WHOLE TRANSECT, unbroken, for the first and only time ------- */
+  const it=d3.geoInterpolate(ANC,PEN), N=512, pts=[];
+  for(let i=0;i<N;i++) pts.push(P(it(i/(N-1))));
+  cx.save(); clipOut(); cx.lineCap='butt';
+  cx.lineWidth=5.0; cx.strokeStyle='rgba(5,10,20,0.85)';
+  cx.beginPath(); pts.forEach((q,i)=>i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1])); cx.stroke();
+  cx.lineWidth=2.6; cx.strokeStyle='#CFE0EE';
+  cx.beginPath(); pts.forEach((q,i)=>i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1])); cx.stroke();
+  cx.restore();
+
+  const aPt=P(ANC), bPt=P(PEN);
+  cx.save(); clipOut();
+  cx.lineWidth=3.0; cx.strokeStyle='rgba(5,10,20,0.85)';
+  cx.beginPath(); cx.arc(bPt[0],bPt[1],13,0,7); cx.stroke();
+  cx.lineWidth=1.6; cx.strokeStyle='rgba(214,208,194,0.88)';
+  cx.beginPath(); cx.arc(bPt[0],bPt[1],13,0,7); cx.stroke();
+  cx.fillStyle='#D6D0C2'; cx.beginPath(); cx.arc(bPt[0],bPt[1],5,0,7); cx.fill();
+  cx.restore();
+
+  /* ---- the drawn length IS the printed distance. derived, never typed. -- */
+  let drawnDeg=0;
+  for(let i=1;i<N;i++){
+    const A0=it((i-1)/(N-1)), A1=it(i/(N-1));
+    const p1=[A0[0]*Math.PI/180,A0[1]*Math.PI/180], p2=[A1[0]*Math.PI/180,A1[1]*Math.PI/180];
+    drawnDeg+=Math.acos(Math.min(1,Math.max(-1,
+      Math.sin(p1[1])*Math.sin(p2[1])+Math.cos(p1[1])*Math.cos(p2[1])*Math.cos(p2[0]-p1[0]))));
+  }
+  const drawnMiles=Math.round(drawnDeg*6371.0088*0.621371);
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.18,saturation:0.95,contrast:1.13,filmic:true,
+    lift:[0.010,0.014,0.024],gain:[1.012,1.0,0.978],vignette:0.20,
+    bloom:{threshold:0.80,strength:0.22,radius:9},
+    grain:{amount:0.040,size:2,seed:SEED},aberration:0.4,dither:true,sharpen:0.30});
+
+  /* ---- the Polaris seals the Anchorage end. DOM/SVG so the grade never
+         shifts a brand-exact mark. ---------------------------------------- */
+  const svgns='http://www.w3.org/2000/svg';
+  const sv=document.createElementNS(svgns,'svg');
+  sv.setAttribute('width',W); sv.setAttribute('height',H);
+  sv.style.cssText='position:absolute;inset:0;pointer-events:none';
+  const st=document.createElementNS(svgns,'path');
+  const R0=17, r0=5.4, cxp=aPt[0], cyp=aPt[1];
+  let d='';
+  for(let i=0;i<8;i++){
+    const ang=-Math.PI/2+i*Math.PI/4, rr=(i%2===0)?R0:r0;
+    d+=(i?'L':'M')+(cxp+Math.cos(ang)*rr).toFixed(2)+' '+(cyp+Math.sin(ang)*rr).toFixed(2)+' ';
+  }
+  d+='Z';
+  st.setAttribute('d',d); st.setAttribute('fill','#FFC72C');
+  const glow=document.createElementNS(svgns,'circle');
+  glow.setAttribute('cx',cxp); glow.setAttribute('cy',cyp); glow.setAttribute('r',26);
+  glow.setAttribute('fill','#FFC72C'); glow.setAttribute('opacity','0.16');
+  sv.appendChild(glow); sv.appendChild(st);
+  document.body.appendChild(sv);
+
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,46,SEED)+')';
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('dp'),{min:62,max:94,maxLines:2});
+
+  window.__akAssert=[{what:"the transect printed as 3,362 miles on the rail",
+    expect:3362, actual:drawnMiles, tol:6, unit:"mi"}];
+  window.__akMotifs=[{what:"the Polaris sealing the Anchorage end of the transect",
+    rect:[Math.round(cxp-30),Math.round(cyp-30),60,60]}];
+  document.body.setAttribute('data-encodes', JSON.stringify([{
+    claim:"the line that was broken on the cover is whole, dark at one end and lit at the other",
+    reads:"differ",
+    a:[[Math.round(bPt[0]-46),Math.round(bPt[1]-46),92,92]],
+    b:[[Math.round(aPt[0]-46),Math.round(aPt[1]-46),92,92]]}]));
+  return true;
+})();
+</script>
+</body></html>

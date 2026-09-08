@@ -1,0 +1,118 @@
+{
+  "run_date": "2026-09-07",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "24 RECORDS",
+      "text": "\"ARTIFICIAL INTELLIGENCE\" 24 RECORDS \"ARTIFICIAL INTELLIGENCE, AND MACHINE LEARN",
+      "member": "C01"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "24 RECORDS",
+      "text": "24 RECORDS",
+      "member": "C01"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "25 RECORDS",
+      "text": "25 RECORDS",
+      "member": "C02"
+    },
+    {
+      "kind": "count",
+      "slide": 2,
+      "fragment": "TWO NAMED FPDS-NG QUERIES",
+      "text": "COUNTS RETURNED BY TWO NAMED FPDS-NG QUERIES. VENDOR STATE AK. NOT A TOTAL.",
+      "subject": "named FPDS-NG queries",
+      "members": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "kind": "count",
+      "slide": 3,
+      "fragment": "Four cases",
+      "text": "Four cases fit. A comma right after the phrase appears to break the match.",
+      "subject": "cases",
+      "members": [
+        "C05",
+        "C06"
+      ],
+      "items": [
+        "artificial intelligence, and machine learning",
+        "artificial intelligence",
+        "(AI)",
+        "comma"
+      ],
+      "note": "The four cases are the four rendered rows on the slide, two MISSED and two FOUND, and they are the pattern C06 records across all 49 descriptions the two searches returned. C05 supplies the missed description read verbatim. The slide hedges this as apparent and not proven, and the counts do not depend on it."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "fragment": "9 RECORDS",
+      "text": "PLACE OF PERFORMANCE ALASKA + \"MACHINE LEARNING\" 9 RECORDS ALL UNIVERSITY OF ALA",
+      "member": "C17"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "fragment": "9 RECORDS",
+      "text": "9 RECORDS",
+      "member": "C17"
+    },
+    {
+      "kind": "count",
+      "slide": 6,
+      "fragment": "Two very different things",
+      "text": "Two very different things are both called Alaska AI.",
+      "subject": "very different things",
+      "members": [
+        "C16",
+        "C17"
+      ],
+      "note": "The two things are the one Alaska-performed artificial intelligence contract (C16, Koniag Emerging Technologies in Anchorage) and the nine Alaska-performed machine learning records (C17, all NASA grants to the University of Alaska Fairbanks). Both are printed on the slide directly above this line."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "fragment": "9 NASA GRANTS",
+      "text": "FAIRBANKS, 9 NASA GRANTS",
+      "member": "C17"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "3,400 SHAREHOLDERS",
+      "text": "1971 3,400 SHAREHOLDERS",
+      "member": "C35"
+    },
+    {
+      "kind": "design",
+      "slide": 7,
+      "fragment": "100 SHAREHOLDERS",
+      "text": "ONE DOT IS 100 SHAREHOLDERS",
+      "note": "The dot-to-shareholder ratio is a property of the artwork, the printed key to an isotype field. The quantities it encodes, 3,400 at incorporation and more than 4,700 today, are C35."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "5 billion runs",
+      "text": "\"Nobody has quantified how much of that $13.5 billion runs through 8(a) contract",
+      "member": "C43",
+      "note": "A false positive of the count detector, which split $13.5 billion at the decimal point and read 5 billion runs as a plural noun phrase. The string is a verbatim quotation carried by C43 and no number on this slide is derived."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "102 SIGNATURES",
+      "text": "102 SIGNATURESBERING STRAITS SHAREHOLDERS AND DESCENDANTS",
+      "member": "C54",
+      "note": "102 signatures from shareholders and descendants, as of early December, per C54. The slide prints and descendants and prints the as-of, because the 102 excludes the 20 non-shareholder signatures and is a snapshot of a live petition."
+    }
+  ]
+}
