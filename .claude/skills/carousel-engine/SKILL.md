@@ -161,6 +161,21 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
                          "ground":[[236,1248,608,30]]}]'>
   ```
 
+  **PUT IT IN THE MARKUP, NOT IN THE SCRIPT** (2026-09-09). `data-contacts`,
+  `data-scale` and `data-encodes` go on the `<body>` TAG as literal attributes.
+  Setting them with `document.body.setAttribute(...)` at the end of
+  `renderReady` looks equivalent and is not: render.py reads the live dom, so
+  qa.py measures them either way, but `dossier_check.py` runs BEFORE any render
+  and reads the tag out of the source, so a runtime write is invisible to it
+  and to its JSON parse check. Run No.54 wrote four that way, and the render
+  report carried the contacts while dossier_check failed all four slides for
+  declaring nothing. Both tools were right; only the markup is a surface both
+  can read. dossier_check now names the runtime write instead of guessing.
+  And if you generate the attribute with `json.dumps`, the argument is
+  `separators=(',', ':')`. The second element is the KEY separator, so
+  `(',', ' ')` writes `{"what" "x"}` and every one of your declarations
+  silently stops parsing; the same run did it to four attributes in one pass.
+
   Do not compute those rects off camera arithmetic; MEASURE them off the
   render with `scripts/contact_probe.py` (2026-08-26). It profiles the object's
   own base line at qa.py's feed width in qa.py's colour space, finds the cast
@@ -194,6 +209,38 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   convincing, measures 8.1. Related and not gated: a silhouette stroke on a
   LIGHT object must be outside-aligned onto the dark side, because a centred
   stroke puts half its width on paper it matches.
+- **A geometry helper contributes a subpath and never calls `beginPath()`**
+  (2026-09-09). The house draws an attached cast, and reserves type, with the
+  same idiom: a full-frame rect, then the shape, then an even-odd clip, so the
+  shape is a HOLE in everything.
+
+  ```js
+  cx.beginPath(); cx.rect(0, 0, W, H);   // everything...
+  sheetPath(cx);                          // ...except this
+  cx.clip('evenodd');
+  ```
+
+  `beginPath()` throws the current path away. Run No.54 refactored four slides'
+  cockled sheet outline onto a shared `sheetPath()` that opened with
+  `cx.beginPath()`, the full-frame rect vanished, the clip became the sheet
+  rather than everything-but-the-sheet, and four casts were drawn INSIDE their
+  own sheets where the sheet's fill covered them. Every render succeeded and
+  every frame looked plausible, because a missing shadow is an absence and not
+  an artefact. render.py now watches for it and qa.py **FAILS** a full-frame
+  path discarded before anything painted from it, and WARNs on any other.
+
+  **And even-odd cannot reserve overlapping boxes** (2026-09-09, same run). A
+  region covered by the outer shape plus TWO reserve rects has three crossings,
+  which is odd, which is inside again, so the art paints straight back into the
+  reserve exactly where two reserved elements touch. No.54's slide 02 reserved
+  a hanging subsection letter and the quotation beside it, their boxes
+  overlapped by 25px, and the set lines through the gap read as a broken glyph
+  at the slide's own focal point; qa.py called it "busy art under text", which
+  is the right flag with the wrong cause. Either merge the two rects, or draw
+  the art to a scratch canvas and punch the reserves out with
+  `globalCompositeOperation = 'destination-out'`, which is order-independent
+  and does not care how the boxes overlap. qa.py WARNs on the overlap and
+  prints both rects. Reconstruction: `python tests/clip_reserve_verify.py`.
 - **A mark on a measured axis is a quantity, whatever it was drawn for**
   (2026-08-16). If a POSITION in the artwork carries a number (a money rail, a
   timeline, a bar baseline, a dated span), the slide declares the scale and

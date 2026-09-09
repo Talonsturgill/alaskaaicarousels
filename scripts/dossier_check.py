@@ -172,6 +172,40 @@ DATA_CONTACTS_RE = re.compile(r"data-contacts\s*=\s*(['\"])(.*?)\1", re.I | re.S
 # the browser sees.
 BODY_JSON_ATTRS = ("data-contacts", "data-scale", "data-encodes")
 
+# A DECLARATION ON THE RIGHT SURFACE AT THE WRONG TIME (2026-09-09). render.py
+# reads the LIVE dom after renderReady resolves, so a slide that ends its draw
+# with document.body.setAttribute('data-contacts', ...) is measured by qa.py
+# exactly as if the attribute had been in the markup. This gate reads the body
+# TAG out of the source file, because it is meant to run BEFORE any render, and
+# it is blind to a runtime write. Run No.54 set the attribute that way on slides
+# 02, 04, 07 and 10: the render report carried their contacts, qa.py measured
+# them, and this gate failed all four for "declaring nothing". Both tools were
+# right about their own surface and nothing told the author which one wanted
+# what. So the runtime write is now NAMED, and the remedy is one edit.
+# The JSON parse check above is blind to it as well, which matters more: a
+# malformed runtime declaration is not caught until a render has been spent.
+_DATASET_KEY = {"data-contacts": "contacts", "data-scale": "scale",
+                "data-encodes": "encodes"}
+RUNTIME_SET_RE = {
+    a: re.compile(
+        r"setAttribute\s*\(\s*['\"]%s['\"]" % re.escape(a)
+        + r"|dataset\s*\.\s*%s\s*=[^=]" % k
+        + r"|dataset\s*\[\s*['\"]%s['\"]\s*\]\s*=[^=]" % k, re.I)
+    for a, k in _DATASET_KEY.items()}
+
+# json.dumps(..., separators=(',', ' ')) WRITES A SPACE WHERE THE KEY SEPARATOR
+# BELONGS (2026-09-09). It emits {"what" "x"} and json.loads answers
+# "Expecting ':' delimiter", which reads like a hand-typing slip rather than
+# like the one-character argument it is. Run No.54 put it into four
+# data-contacts attributes in a single generation pass, and it was only findable
+# because a gate printed the tail of the attribute it could not parse. The right
+# call is separators=(',', ':').
+SEPARATOR_HINT = (
+    " The error is 'Expecting :' and the attribute has a SPACE where the key "
+    "separator belongs, which is what json.dumps(..., separators=(',', ' ')) "
+    "emits -- the second element of that tuple is the KEY separator, not a "
+    "space to pad with. Write separators=(',', ':').")
+
 
 def attr_raw(body_tag, attr):
     """The raw text of a body attribute, or None if it is not there."""
@@ -195,6 +229,7 @@ def declaration_parse_fails(no, src):
         try:
             json.loads(raw)
         except Exception as e:
+            sep = SEPARATOR_HINT if "Expecting ':' delimiter" in str(e) else ""
             out.append(
                 f"slide {no:02d}: {attr} does not parse as JSON ({e}), so the "
                 "gate it feeds runs on nothing and reports nothing while the "
@@ -203,8 +238,40 @@ def declaration_parse_fails(no, src):
                 "single-quoted attribute (\"the method's publication\"), which "
                 "ends the attribute early and truncates the JSON: write it as "
                 "&#39; or spell the prose without it. Fix the declaration or "
-                "delete it, but do not leave a check that only looks like it ran")
+                "delete it, but do not leave a check that only looks like it ran"
+                + sep)
     return out
+
+
+def runtime_declarations(src):
+    """Which body-JSON contracts this slide writes at RUNTIME instead of putting
+    in the markup. See RUNTIME_SET_RE for why that splits this gate from qa.py.
+    An attribute present on the <body> tag is never reported, whatever else the
+    script does to it: this gate can read it, which is the whole point."""
+    b = BODY_TAG_RE.search(src)
+    tag = b.group(0) if b else ""
+    return [a for a in BODY_JSON_ATTRS
+            if attr_raw(tag, a) is None and RUNTIME_SET_RE[a].search(src)]
+
+
+def runtime_warn(runtime):
+    """ONE deck-level line for every contract written at runtime, not one per
+    slide. Measured over three shipped decks this fires on most slides of most
+    of them (10 declarations across 8 slides in run No.54, 8 across 7 in
+    No.53), and a warn that prints on nearly every row is wallpaper. The
+    aggregate keeps every location and costs one line."""
+    named = [f"slide {no:02d} {a}" for no in sorted(runtime) for a in runtime[no]]
+    if not named:
+        return []
+    return ["%d body declaration(s) are set at RUNTIME (setAttribute or "
+            "dataset) rather than on the <body> tag: %s. render.py reads the "
+            "LIVE dom after renderReady, so qa.py DOES measure them and the "
+            "render report carries them -- but this gate reads the body TAG out "
+            "of the source, so it is blind to them, and so is its JSON parse "
+            "check, which means a malformed declaration does not surface until "
+            "a render round has been spent. Both tools are right about their "
+            "own surface. A static attribute, <body data-contacts='[...]'>, is "
+            "the one surface both can read." % (len(named), ", ".join(named))]
 
 DECLARE_HOWTO = (
     "Declare it so qa.py's fitted contact gate can measure it: "
@@ -478,7 +545,8 @@ def figure_fails(no, body, verified, noted, run_date=""):
     return fails
 
 
-def check_slide(no, heading, body, breather_attr, contacts=None, built=False):
+def check_slide(no, heading, body, breather_attr, contacts=None, built=False,
+                runtime=()):
     fails, warns = [], []
     declared_breather = False
     text, first = field_4a(body)
@@ -530,7 +598,20 @@ def check_slide(no, heading, body, breather_attr, contacts=None, built=False):
     # not flagged. Only checked once the slide sources exist; before the build
     # there is nothing to point at.
     if built and CONTACT_PROMISE_RE.search(body):
-        if contacts is None:
+        if contacts is None and "data-contacts" in (runtime or ()):
+            # NOT "declares nothing". The slide declares it at runtime, qa.py
+            # measures it, and only this gate cannot see it. Saying the wrong
+            # thing here cost run No.54 four rows of a first-pass failure on
+            # four slides that were correct.
+            fails.append(
+                f"slide {no:02d}: the dossier promises a contact shadow and the "
+                "slide DOES declare data-contacts, but it sets it at RUNTIME "
+                "(setAttribute or dataset) rather than on the <body> tag. qa.py "
+                "reads the live dom and measures it; this gate reads the body "
+                "tag in the source and cannot. Move the declaration into the "
+                "markup as a static attribute and both tools read the same "
+                "thing. Nothing about the rects needs to change")
+        elif contacts is None:
             fails.append(
                 f"slide {no:02d}: the dossier promises a contact shadow and the "
                 "slide body declares no data-contacts, so qa.py's contact gate "
@@ -566,6 +647,7 @@ def main():
     attrs = {}
     contacts = {}
     parse_fails = {}
+    runtime = {}
     built = set()
     if sdir.is_dir():
         for p in sdir.glob("slide-*.html"):
@@ -577,6 +659,7 @@ def main():
                 attrs[n] = bool(b and "data-breather" in b.group(0))
                 contacts[n] = contacts_declared(src)
                 parse_fails[n] = declaration_parse_fails(n, src)
+                runtime[n] = runtime_declarations(src)
                 built.add(n)
 
     # THE CLAIMS THE COPY LEANS ON. Read here rather than in check_slide so a
@@ -602,10 +685,12 @@ def main():
     for no, heading, body in sections:
         seen.add(no)
         f, w = check_slide(no, heading, body, attrs.get(no),
-                           contacts.get(no), no in built)
+                           contacts.get(no), no in built, runtime.get(no, ()))
         # An unparseable declaration is a fail whether or not the dossier
         # promised anything, so it is merged in outside check_slide().
         f = parse_fails.get(no, []) + f
+        if no == sections[0][0]:
+            w = runtime_warn({k: v for k, v in runtime.items() if v}) + w
         if claims_note is None:
             f = f + figure_fails(no, body, verified, noted, run_date)
         elif no == sections[0][0]:

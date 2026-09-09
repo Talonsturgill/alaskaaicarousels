@@ -6615,3 +6615,61 @@ measurable claim measurably false. Measured off the render at three heights,
 both pages are 397.5 design px to within half a pixel. A critic's measurement is
 a hypothesis; the render is the evidence. Check the number before you rebuild
 the slide around it, and write down that you checked.
+
+### 2026-09-09, Phase 12 (the upgrade engineer, after the merge)
+
+Three of the four rules above are now MACHINERY rather than memory. The helper
+that opens its own path and the overlapping even-odd reserve are both watched by
+`render.py`'s clip hook and graded by `qa.py`; the declaration-surface split and
+the `json.dumps` separator are both named by `dossier_check.py`, with the repair
+in the message. `tests/clip_reserve_verify.py` and
+`tests/declaration_surface_verify.py` are the reconstructions. What follows is
+what was found and NOT built.
+
+**PARKED: the direction of a contact shadow.** Nothing in this repo looks at
+which WAY a cast falls. No.54's slide 01 threw thirteen contact ellipses down
+and right, into the light, on a deck whose key is az 118 and whose every other
+lee falls up and left, and a pixel critic found it by eye. `qa.py`'s existing
+light check (2026-09-05) compares a declared relief azimuth against the slide's
+own prose and cannot help here, because nothing tells a machine that a given
+ellipse is a shadow rather than a mark. The version that would work is a slide-
+contract change: a `lee:[dx,dy]` unit vector on each `data-contacts` entry,
+plus the deck's key azimuth declared once, and qa checks the sign of the dot
+product. That is a new required field on an opt-in declaration and it needs a
+migration story for every shipped deck, so it is a session of its own and not a
+Phase 12 slot. UNBLOCKS WHEN: the slide contract is opened for another reason,
+or a second deck pays for the same defect.
+
+**PARKED: promoting the even-odd overlap WARN to a FAIL.** The geometry is
+certain — the shared region is inside the clip and the art paints there — but
+run No.53 shipped five slides doing it, and on its slide 03 two of the four
+reported pairs are real unreserved regions between type blocks (164x26 and
+164x14 design px) while two are 6px slivers where only the 8px inflation
+touches. There is no gap between those two populations to put a threshold in,
+and any number picked today would be a fit to one helper's padding. UNBLOCKS
+WHEN: three or four more decks have been measured through the hook, or a slide
+declares its reserve padding so the gate can subtract it.
+
+**FRONTIER SCAN, focus (a), LinkedIn platform: corroboration, nothing applied.**
+LinkedIn's Feed rebuild (March 2026) replaced independent per-post scoring with
+a transformer Generative Recommender over more than 1,000 historical
+interactions. Its industrial write-up (*An Industrial-Scale Sequential
+Recommender for LinkedIn Feed Ranking*,
+https://arxiv.org/html/2602.12354v1) says the model optimises exactly two
+things: **Long Dwell**, "dwelling on a post longer than a specified threshold of
+time, DEPENDING ON THE POST-TYPE", and **Contribution**, a like/comment/share.
+The single most valuable context feature for predicting Long Dwell is bucketed
+dwell counts for the candidate post, 0-5s up to >60s, worth +2.5 percent
+absolute AUC on its own. LinkedIn's own engineering post on dwell
+(https://www.linkedin.com/blog/engineering/feed/understanding-feed-dwell-time)
+adds that on-feed dwell is counted only while at least HALF the update is
+visible, and that the retrieval history is filtered to positively-engaged posts.
+
+CAROUSEL_CRAFT has said "every swipe is dwell, and dwell is the metric" since
+the beginning, and that is now confirmed from the primary source rather than
+from the marketing literature. The one net-new nuance worth keeping: the
+threshold is per POST TYPE, so a document post competes against the dwell
+distribution of other DOCUMENT posts and not against video — and a skipped deck
+does not enter the interest graph at all, because the history the ranker reads
+is filtered to posts that were engaged with. Neither changes a gate. Nothing was
+applied and the two reactive fixes took the budget.

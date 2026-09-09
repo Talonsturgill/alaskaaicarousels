@@ -522,6 +522,289 @@ PAINT_HOOK_JS = """
 })();
 """
 
+# A PATH THROWN AWAY, AND A RESERVE THAT IS INSIDE AGAIN (2026-09-09, run
+# No.54). Two defects, one hook, because they are the same idiom read from both
+# ends. The idiom is the attached cast:
+#
+#     cx.beginPath(); cx.rect(0, 0, W, H); <the object's outline>;
+#     cx.clip('evenodd');                  // the object is now a HOLE
+#
+# 1. A GEOMETRY HELPER NEVER OPENS ITS OWN PATH. No.54 refactored the cockled
+#    sheet outline of four slides onto a shared sheetPath(), and that helper
+#    opened with cx.beginPath(). Canvas throws the current path away on
+#    beginPath, so the full-frame rect vanished, the clip became the object
+#    rather than everything-but-the-object, and the cast shadows of slides 02,
+#    03, 04 and 08 were drawn INSIDE their own sheets where the sheet's own fill
+#    covered them. Every render succeeded and every frame looked plausible,
+#    because a missing shadow is an absence and not an artefact. qa.py's contact
+#    gate caught two of the four, and only because their declared rects happened
+#    to sample the band the cast should have been in.
+#    So: a path that is BUILT and then discarded by a beginPath() with nothing
+#    painted from it is recorded, and the full-frame ones are the ones qa.py
+#    fails on. A full-frame subpath is never built by accident and never thrown
+#    away on purpose: it is either the outer ring of a reserve or the whole
+#    picture, and neither is something a helper's housekeeping should delete.
+#
+# 2. EVEN-ODD CANNOT RESERVE OVERLAPPING BOXES. The same run reserved type out
+#    of a band field by adding one rect per element to an even-odd clip. Two of
+#    the elements overlapped, and a region covered by the outer shape plus two
+#    rects has THREE crossings, which is odd, which is inside again -- so the
+#    art painted back into the reserve exactly where the two elements touched,
+#    reading as a broken glyph at the slide's own declared focal point. qa.py
+#    reported it as "busy art under text", the right flag with the wrong cause,
+#    which would never have led anyone to the fix.
+#    So: on every even-odd clip() and fill(), the AXIS-ALIGNED RECT subpaths are
+#    intersected pairwise. Rects only, and axis-aligned only, because for those
+#    the bounding box IS the geometry and an overlap is a proof rather than a
+#    guess. Everything else in the path is counted and not judged.
+#
+# The wrapper only observes and forwards; it never alters the drawn frame. The
+# current transform is cached per context and invalidated by the eight calls
+# that can change it, so the hot path (moveTo/lineTo in a stipple loop) costs a
+# WeakMap lookup and six multiplies rather than a DOMMatrix allocation. A stack
+# is taken only once a record is already going to be written.
+CLIP_RULE_HOOK_JS = """
+(() => {
+  try {
+    window.__akPathDiscard = [];   /* full-frame paths thrown away unpainted */
+    window.__akDiscardCount = 0;   /* every unpainted discard, full-frame or not */
+    window.__akEvenOdd = [];       /* every even-odd clip/fill, with its subpaths */
+    const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
+    if (!proto) return;
+    const CAP = 12;
+    const OPS_CAP = 24;
+    const SUB_CAP = 400;
+    const FULL_EDGE = 2;      /* device px of slack on each side of a full frame */
+    const MIN_OVER = 1.0;     /* device px in BOTH axes before two rects overlap */
+    const st = new WeakMap();
+    const stateOf = (c) => {
+      let s = st.get(c);
+      if (!s) { s = { subs: [], painted: true, t: null }; st.set(c, s); }
+      return s;
+    };
+    const xf = (s, c) => {
+      if (s.t === null) {
+        try { s.t = c.getTransform ? c.getTransform() : false; } catch (e) { s.t = false; }
+      }
+      return s.t;
+    };
+    /* The first stack frame that is NOT one of this hook's own wrappers. The
+       hook is installed by add_init_script, so every frame it owns reports as
+       <anonymous>; the slide's own code always carries its file:// URL. */
+    const site = (skip) => {
+      try {
+        const ls = (new Error()).stack.split('\\n');
+        let seen = 0;
+        for (let i = 1; i < ls.length && i < 12; i++) {
+          const l = ls[i].trim();
+          if (l.indexOf('<anonymous>') >= 0) continue;
+          if (seen++ < skip) continue;
+          return l.replace(/^at\\s+/, '')
+                  .replace(/file:\\/\\/\\S*?([^\\/]+:\\d+:\\d+)/, '$1').slice(0, 160);
+        }
+      } catch (e) {}
+      return '?';
+    };
+    const axisAligned = (t) => !t || (Math.abs(t.b) < 1e-6 && Math.abs(t.c) < 1e-6);
+    const open = (c, kind) => {
+      const s = stateOf(c);
+      s.painted = false;
+      if (s.subs.length >= SUB_CAP) return s.subs[s.subs.length - 1];
+      s.subs.push({ kind: kind, closed: (kind === 'rect'), axis: true,
+                    x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity });
+      return s.subs[s.subs.length - 1];
+    };
+    const tip = (c, kind) => {
+      const s = stateOf(c);
+      s.painted = false;
+      const last = s.subs[s.subs.length - 1];
+      if (!last || last.closed) return open(c, kind);
+      return last;
+    };
+    const put = (sp, t, x, y) => {
+      if (!sp || !isFinite(x) || !isFinite(y)) return;
+      const dx = t ? (t.a * x + t.c * y + t.e) : x;
+      const dy = t ? (t.b * x + t.d * y + t.f) : y;
+      if (dx < sp.x0) sp.x0 = dx;
+      if (dx > sp.x1) sp.x1 = dx;
+      if (dy < sp.y0) sp.y0 = dy;
+      if (dy > sp.y1) sp.y1 = dy;
+    };
+    const wrap = (name, fn) => {
+      const orig = proto[name];
+      if (typeof orig !== 'function') return;
+      proto[name] = function () {
+        try { fn(this, arguments); } catch (e) {}
+        return orig.apply(this, arguments);
+      };
+    };
+    /* Anything that can move the pen's frame of reference drops the cache. */
+    for (const name of ['save', 'restore', 'setTransform', 'transform',
+                        'translate', 'scale', 'rotate', 'resetTransform']) {
+      wrap(name, (c) => { stateOf(c).t = null; });
+    }
+    wrap('moveTo', (c, a) => { const s = stateOf(c); put(open(c, 'open'), xf(s, c), a[0], a[1]); });
+    wrap('lineTo', (c, a) => { const s = stateOf(c); put(tip(c, 'open'), xf(s, c), a[0], a[1]); });
+    wrap('quadraticCurveTo', (c, a) => {
+      const s = stateOf(c), sp = tip(c, 'open'), t = xf(s, c);
+      put(sp, t, a[0], a[1]); put(sp, t, a[2], a[3]);
+    });
+    wrap('bezierCurveTo', (c, a) => {
+      const s = stateOf(c), sp = tip(c, 'open'), t = xf(s, c);
+      put(sp, t, a[0], a[1]); put(sp, t, a[2], a[3]); put(sp, t, a[4], a[5]);
+    });
+    wrap('arcTo', (c, a) => {
+      const s = stateOf(c), sp = tip(c, 'open'), t = xf(s, c);
+      put(sp, t, a[0], a[1]); put(sp, t, a[2], a[3]);
+    });
+    const boxIn = (sp, t, x, y, w, h) => {
+      put(sp, t, x, y); put(sp, t, x + w, y);
+      put(sp, t, x, y + h); put(sp, t, x + w, y + h);
+    };
+    for (const name of ['rect', 'roundRect']) {
+      wrap(name, (c, a) => {
+        const s = stateOf(c), t = xf(s, c), sp = open(c, 'rect');
+        sp.axis = axisAligned(t);
+        boxIn(sp, t, a[0], a[1], a[2], a[3]);
+      });
+    }
+    wrap('arc', (c, a) => {
+      const s = stateOf(c), sp = tip(c, 'arc'), t = xf(s, c), r = Math.abs(a[2]);
+      sp.axis = false;
+      boxIn(sp, t, a[0] - r, a[1] - r, 2 * r, 2 * r);
+    });
+    wrap('ellipse', (c, a) => {
+      const s = stateOf(c), sp = tip(c, 'arc'), t = xf(s, c);
+      const r = Math.max(Math.abs(a[2]), Math.abs(a[3]));
+      sp.axis = false;
+      boxIn(sp, t, a[0] - r, a[1] - r, 2 * r, 2 * r);
+    });
+    wrap('closePath', (c) => {
+      const last = stateOf(c).subs[stateOf(c).subs.length - 1];
+      if (last) last.closed = true;
+    });
+
+    const real = (s) => s.subs.filter((sp) => isFinite(sp.x0));
+    const fullIndex = (subs, cw, ch) => {
+      for (let i = 0; i < subs.length; i++) {
+        const sp = subs[i];
+        if (sp.x0 <= FULL_EDGE && sp.y0 <= FULL_EDGE &&
+            sp.x1 >= cw - FULL_EDGE && sp.y1 >= ch - FULL_EDGE) return i;
+      }
+      return -1;
+    };
+    /* THE OUTER SHAPE OF AN EVEN-ODD RESERVE IS THE BIGGEST ONE. It is often
+       the full frame and just as often a region (a sheet, a band, a foot), and
+       either way every hole is inside it, so it necessarily has the largest
+       box. Excluding it by AREA rather than by full-frame-ness is what keeps
+       the overlap test quiet on a correct deck: measured across run No.54's
+       ten shipped slides, four of them punch reserves out of a region rect and
+       a full-frame-only rule reported all four as overlapping their own outer
+       shape. It also reads the case where the outer shape is not a rect at
+       all, which the hole test alone cannot see. */
+    const outerIndex = (subs) => {
+      let best = -1, area = -1;
+      for (let i = 0; i < subs.length; i++) {
+        const a = (subs[i].x1 - subs[i].x0) * (subs[i].y1 - subs[i].y0);
+        if (a > area) { area = a; best = i; }
+      }
+      return best;
+    };
+
+    const origBegin = proto.beginPath;
+    if (typeof origBegin === 'function') {
+      proto.beginPath = function () {
+        try {
+          const s = stateOf(this);
+          if (!s.painted && s.subs.length) {
+            const subs = real(s);
+            if (subs.length) {
+              window.__akDiscardCount++;
+              const cw = (this.canvas && this.canvas.width) || 0;
+              const ch = (this.canvas && this.canvas.height) || 0;
+              const f = fullIndex(subs, cw, ch);
+              const k = (f >= 0) ? f : outerIndex(subs);
+              const rec = {
+                full: f >= 0, n: subs.length, canvas_w: cw, canvas_h: ch,
+                x0: Math.round(subs[k].x0), y0: Math.round(subs[k].y0),
+                x1: Math.round(subs[k].x1), y1: Math.round(subs[k].y1),
+                discarded_at: site(0), built_at: site(1) };
+              /* A full-frame discard is the one qa.py fails on, so it always
+                 gets a slot even if a dozen ordinary ones came first. */
+              if (window.__akPathDiscard.length < CAP) {
+                window.__akPathDiscard.push(rec);
+              } else if (rec.full) {
+                for (let i = 0; i < window.__akPathDiscard.length; i++) {
+                  if (!window.__akPathDiscard[i].full) {
+                    window.__akPathDiscard[i] = rec;
+                    break;
+                  }
+                }
+              }
+            }
+          }
+          s.subs = [];
+          s.painted = true;
+          s.t = null;
+        } catch (e) {}
+        return origBegin.apply(this, arguments);
+      };
+    }
+
+    const record = (c, op, args) => {
+      /* fill(path2d) / clip(path2d) draw a path this hook never saw. */
+      if (args[0] && typeof args[0] === 'object') return;
+      const rule = (typeof args[0] === 'string') ? args[0]
+                 : (typeof args[1] === 'string') ? args[1] : 'nonzero';
+      if (rule !== 'evenodd') return;
+      if (window.__akEvenOdd.length >= OPS_CAP) return;
+      const s = stateOf(c);
+      const subs = real(s);
+      if (!subs.length) return;
+      const cw = (c.canvas && c.canvas.width) || 0;
+      const ch = (c.canvas && c.canvas.height) || 0;
+      const f = fullIndex(subs, cw, ch);
+      const outer = outerIndex(subs);
+      const holes = [];
+      for (let i = 0; i < subs.length; i++) {
+        if (i === outer) continue;
+        if (subs[i].kind === 'rect' && subs[i].axis) holes.push(subs[i]);
+      }
+      const over = [];
+      for (let i = 0; i < holes.length && over.length < 6; i++) {
+        for (let j = i + 1; j < holes.length && over.length < 6; j++) {
+          const a = holes[i], b = holes[j];
+          const iw = Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0);
+          const ih = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
+          if (iw >= MIN_OVER && ih >= MIN_OVER) {
+            over.push({ ax: Math.round(a.x0), ay: Math.round(a.y0),
+                        aw: Math.round(a.x1 - a.x0), ah: Math.round(a.y1 - a.y0),
+                        bx: Math.round(b.x0), by: Math.round(b.y0),
+                        bw: Math.round(b.x1 - b.x0), bh: Math.round(b.y1 - b.y0),
+                        iw: Math.round(iw), ih: Math.round(ih) });
+          }
+        }
+      }
+      window.__akEvenOdd.push({
+        op: op, n: subs.length, rects: holes.length, full: f >= 0,
+        overlaps: over, canvas_w: cw, canvas_h: ch,
+        at: over.length ? site(0) : '' });
+    };
+    for (const name of ['fill', 'clip', 'stroke', 'isPointInPath']) {
+      const orig = proto[name];
+      if (typeof orig !== 'function') continue;
+      proto[name] = function () {
+        try {
+          if (name === 'fill' || name === 'clip') record(this, name, arguments);
+          stateOf(this).painted = true;
+        } catch (e) {}
+        return orig.apply(this, arguments);
+      };
+    }
+  } catch (e) {}
+})();
+"""
+
 IN_PAGE_QA_JS = """
 () => {
   const W = window.innerWidth, H = window.innerHeight;
@@ -1694,6 +1977,13 @@ IN_PAGE_QA_JS = """
   /* Radial ramps with a filled middle, from the same hook. */
   out.flat_cores = (Array.isArray(window.__akFlatCore)
                     ? window.__akFlatCore : []).slice(0, 24);
+  /* Full-frame paths thrown away unpainted, and every even-odd clip/fill with
+     its subpath census, from CLIP_RULE_HOOK_JS. qa.py holds the verdicts. */
+  out.path_discards = (Array.isArray(window.__akPathDiscard)
+                       ? window.__akPathDiscard : []).slice(0, 12);
+  out.discard_count = window.__akDiscardCount || 0;
+  out.evenodd_ops = (Array.isArray(window.__akEvenOdd)
+                     ? window.__akEvenOdd : []).slice(0, 24);
   return out;
 }
 """
@@ -2382,6 +2672,13 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                             device_scale_factor=scale)
     page.add_init_script(CANVAS_TEXT_HOOK_JS)
     page.add_init_script(GRADIENT_CLIP_HOOK_JS)
+    # BEFORE the paint hook, deliberately. Each of these wraps whatever is on
+    # the prototype when it runs, so the LAST one installed sits outermost. The
+    # paint hook reads its call site off stack frame 2 and would attribute every
+    # fill in the deck to this hook's wrapper if this one were outside it; the
+    # clip hook walks the stack for the first frame that is not its own, so it
+    # does not care which side of the paint hook it is on.
+    page.add_init_script(CLIP_RULE_HOOK_JS)
     page.add_init_script(PAINT_HOOK_JS)
     page.on("console", lambda m: rec["console_errors"].append(m.text)
             if m.type in ("error",) else None)
@@ -2402,6 +2699,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts", "motifs", "css_unreadable",
                                        "gradient_clips", "flat_cores",
+                                       "path_discards", "discard_count",
+                                       "evenodd_ops",
                                        "declaration_misses",
                                        "paint")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
