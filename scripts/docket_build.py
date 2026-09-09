@@ -756,9 +756,38 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
     #
     # With no script the transform below is already the correct unzoomed
     # position, so the map is complete and clickable before anything runs.
-    def mk(layer, x, y, body, cls=""):
+    # HOW FAR A MARK'S INK REACHES PAST ITS OWN ANCHOR, measured and carried
+    # rather than guessed at the other end (2026-09-09). The fit routine in
+    # site_build has to leave room for a badge that is drawn at an offset from
+    # the dot it belongs to, and it used to reserve a flat 45 units on all four
+    # sides for it. That number was only ever true of the marks that existed
+    # when it was written. A three-member badge is 71 units wide, so its half
+    # width plus a 27-unit tether reaches 64 to the side, and widening the tap
+    # slots on 2026-09-09 pushed the two-member badges past 45 as well. Three
+    # pins then hung off the frame on a narrow phone and a landscape one, which
+    # is a thing the fit can't notice, because a constant can't be wrong in a
+    # way that a constant can detect.
+    #
+    # So each pin marker states its OWN reach, left, right, up and down, in
+    # unzoomed units and asymmetric because the geometry is. A wide badge hung
+    # to the west reserves width to the west and nothing to the east. Marks are
+    # repositioned rather than resized, so these are the true extents at every
+    # zoom once multiplied by the mark scale.
+    def mk(layer, x, y, body, cls="", ink=None):
+        d = f' data-ink="{ink[0]:.1f},{ink[1]:.1f},{ink[2]:.1f},{ink[3]:.1f}"' if ink else ""
         layer.append(f'<g class="mk{(" " + cls) if cls else ""}" data-x="{x:.1f}" '
-                     f'data-y="{y:.1f}" transform="translate({x:.1f},{y:.1f})">{body}</g>')
+                     f'data-y="{y:.1f}"{d} transform="translate({x:.1f},{y:.1f})">{body}</g>')
+
+    # The dot on the anchor is r 3.4, so a mark never reserves less than that
+    # even when its badge sits entirely to one side. The open-window pulse
+    # animates out to r 26 and is deliberately NOT counted: it is a fading
+    # decorative halo, and reserving for it on every live pin would shrink
+    # Alaska for ink that is transparent most of the time.
+    DOT_R = 3.4
+
+    def ink_reach(ox, oy, hx, hy):
+        return (max(DOT_R, hx - ox), max(DOT_R, hx + ox),
+                max(DOT_R, hy - oy), max(DOT_R, hy + oy))
 
     # A pulsing pin promises the reader a comment window is open RIGHT NOW, so
     # it reads the resolved access, not the ledger's. Without today it cannot
@@ -784,14 +813,18 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
                f'stroke-width="1.6" opacity="0.8">'
                f'<animate attributeName="r" values="8;26" dur="2.8s" repeatCount="indefinite"/>'
                f'<animate attributeName="opacity" values="0.8;0" dur="2.8s" repeatCount="indefinite"/>'
-               f'</circle>', cls=acls)
+               f'</circle>', cls=acls, ink=(8.8, 8.8, 8.8, 8.8))
         # The tether and the dot exist only when the label had to move. An
         # undisplaced badge is already sitting on the coordinate, so a dot under
         # it would just collide with its own number.
         if math.hypot(ox, oy) > 3.0:
+            # The tether runs from the dot to the badge, so it reaches exactly
+            # as far as the offset and only in that direction.
             mk(leads, ax, ay, f'<line class="pinlead" x1="0" y1="0" x2="{ox:.1f}" '
-                              f'y2="{oy:.1f}" stroke="{c}"/>', cls=acls)
-            mk(dots, ax, ay, f'<circle class="pindot" cx="0" cy="0" r="3.4" fill="{c}"/>', cls=acls)
+                              f'y2="{oy:.1f}" stroke="{c}"/>', cls=acls,
+               ink=ink_reach(ox / 2.0, oy / 2.0, abs(ox) / 2.0, abs(oy) / 2.0))
+            mk(dots, ax, ay, f'<circle class="pindot" cx="0" cy="0" r="3.4" fill="{c}"/>',
+               cls=acls, ink=(DOT_R, DOT_R, DOT_R, DOT_R))
         if len(members) == 1:
             n, it = members[0]
             # r 17 and not r 14 for the hit ring, which is the drawn badge's own
@@ -805,7 +838,9 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
                     f'<circle class="pinbadge" cx="{ox:.0f}" cy="{oy:.0f}" r="14" fill="#050b16" '
                     f'stroke="{c}" stroke-width="2.6"/><text x="{ox:.0f}" y="{oy + 5:.0f}" '
                     f'text-anchor="middle" class="pinnum" fill="{c}">{n}</text></a>')
-            mk(badges, ax, ay, body, cls=acls)
+            # The hit ring at r 17 is the widest thing here. The drawn badge is
+            # r 14 under a 2.6 stroke, so its ink stops at 15.3.
+            mk(badges, ax, ay, body, cls=acls, ink=ink_reach(ox, oy, 17.0, 17.0))
         else:
             bw = badge_w(g)
             x0 = ox - bw / 2.0
@@ -830,7 +865,10 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
                     f'pointer-events="all"/>'
                     f'<text x="{tx:.0f}" y="{oy + 5:.0f}" text-anchor="middle" class="pinnum" '
                     f'fill="{PIN_COLOR[acc(it)]}">{n}</text></a>')
-            mk(badges, ax, ay, "".join(parts), cls=acls)
+            # The pill is bw wide and 28 tall, centred on the offset, and its
+            # 2.6 stroke straddles that edge, so the ink stops 1.3 outside it.
+            mk(badges, ax, ay, "".join(parts), cls=acls,
+               ink=ink_reach(ox, oy, bw / 2.0 + 1.3, 15.3))
     pins = leads + badges + dots
     grid = "".join(f'<path class="gx gx-{tier}" d="{d}"/>' for tier, d in grid_paths(T))
     _taps_d = taps_path(T)

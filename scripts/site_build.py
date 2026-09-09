@@ -4753,26 +4753,33 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
        width test, which is why a tablet drew its badges at 20px for no reason. */
     mscale = Math.max(1, Math.min(3.4, 30 / (28 * ctm())));
 
-    var xs = [], ys = [];
+    /* EACH PIN STATES ITS OWN REACH, AND THE FIT BELIEVES IT (2026-09-09).
+       An anchor is a point and a badge is not. The badge hangs up to LEAD_MIN
+       off its dot and can be 71 units wide, so the ink reaches much further to
+       one side than the other, and the amount is a property of THAT pin. This
+       used to be a flat 45 units on all four sides of every anchor, a number
+       that described the marks in front of whoever wrote it. Widening the tap
+       targets made three badges outgrow it and they hung off the frame on a
+       320px phone and a landscape one, invisible to a constant.
+
+       data-ink is written by docket_build as left,right,up,down in unzoomed
+       units. Marks are repositioned rather than resized, so multiplying by the
+       mark scale gives the true extent at EVERY zoom, which is why the reach
+       is kept separate from the anchor below instead of padding it. */
+    var pinX = [], pinY = [], inkL = [], inkR = [], inkU = [], inkD = [];
     for (var i = 0; i < marks.length; i++) {
       if (!/pinmk/.test(marks[i].getAttribute('class') || '')) continue;
-      xs.push(+marks[i].getAttribute('data-x'));
-      ys.push(+marks[i].getAttribute('data-y'));
-    }
-    /* A badge sits up to LEAD_MIN from its anchor and is drawn at MARK scale,
-       so its ink reaches about 27 plus a 16 radius beyond the anchor and stays
-       that size at every zoom, because marks are repositioned and never
-       resized. That allowance therefore CANNOT be carried as padding on these
-       bounds: the bounds get multiplied by k, so at k = 0.4 the allowance
-       shrinks to 40 percent of the ink it is standing in for, and an anchor
-       that clears the sticky nav by arithmetic still puts its badge behind it.
-       It is carried in the SCALE SOLVE below instead, in screen units, where
-       it does not shrink. Bounds here are the anchors themselves. */
-    var INK = 45 * mscale, pad = 45 * mscale;
-    var x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
-    if (xs.length) {
-      x0 = Math.min.apply(null, xs) - pad; x1 = Math.max.apply(null, xs) + pad;
-      y0 = Math.min.apply(null, ys) - pad; y1 = Math.max.apply(null, ys) + pad;
+      var raw = (marks[i].getAttribute('data-ink') || '').split(',');
+      /* A mark with no declaration still gets the old allowance, so an older
+         page or a mark this build does not know about is framed loosely rather
+         than cropped. */
+      var il = raw.length === 4 ? +raw[0] : 45, ir = raw.length === 4 ? +raw[1] : 45,
+          iu = raw.length === 4 ? +raw[2] : 45, id = raw.length === 4 ? +raw[3] : 45;
+      pinX.push(+marks[i].getAttribute('data-x'));
+      pinY.push(+marks[i].getAttribute('data-y'));
+      /* Stored UNSCALED. The mark scale is solved below rather than assumed,
+         so the reach has to stay multipliable. */
+      inkL.push(il); inkR.push(ir); inkU.push(iu); inkD.push(id);
     }
 
     /* THE HOME VIEW FRAMES ALASKA, NOT THE PINS.
@@ -4785,11 +4792,28 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
        hangs off an edge. */
     var coast = mz.querySelector('.coast'), cb = null;
     if (coast && coast.getBBox) { try { cb = coast.getBBox(); } catch (e) { cb = null; } }
-    if (cb && cb.width && cb.height) {
-      x0 = Math.min(x0, cb.x); x1 = Math.max(x1, cb.x + cb.width);
-      y0 = Math.min(y0, cb.y); y1 = Math.max(y1, cb.y + cb.height);
+
+    /* What the drawing needs, at a given zoom, in viewBox units. The coastline
+       scales with k because it is inside the zoomed group. A pin's ANCHOR
+       scales with k too, but the ink it throws does not, because marks are
+       repositioned and never resized. Keeping the two apart is the whole point:
+       padding an anchor and then multiplying by k reserves only k of the room
+       the badge actually occupies, which is how a pin cleared the nav by
+       arithmetic and still sat behind it. */
+    function need(kk, m) {
+      var a = 1e9, b = -1e9, c = 1e9, d = -1e9;
+      if (cb && cb.width && cb.height) {
+        a = cb.x * kk; b = (cb.x + cb.width) * kk;
+        c = cb.y * kk; d = (cb.y + cb.height) * kk;
+      }
+      for (var j = 0; j < pinX.length; j++) {
+        a = Math.min(a, pinX[j] * kk - inkL[j] * m); b = Math.max(b, pinX[j] * kk + inkR[j] * m);
+        c = Math.min(c, pinY[j] * kk - inkU[j] * m); d = Math.max(d, pinY[j] * kk + inkD[j] * m);
+      }
+      return { x0: a, x1: b, y0: c, y1: d, w: b - a, h: d - c };
     }
-    if (x1 <= x0 || y1 <= y0) {
+
+    if (!pinX.length && !(cb && cb.width && cb.height)) {
       inset = 0; k = 1; minK = 1; tx = 0; ty = 0; clampT();
       home = { k: k, tx: tx, ty: ty };
       return;
@@ -4816,8 +4840,9 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     var nav = document.querySelector('.topnav');
     var top = Math.min(nav ? nav.getBoundingClientRect().height * px() : 0, v.h * 0.36);
 
-    var fits = (x1 - x0) <= v.w && (y1 - y0) <= (v.h - top) &&
-               x0 >= v.x0 && x1 <= v.x1 && y0 >= (v.y0 + top) && y1 <= v.y1;
+    var rest = need(1, mscale);
+    var fits = rest.x0 >= v.x0 && rest.x1 <= v.x1 &&
+               rest.y0 >= (v.y0 + top) && rest.y1 <= v.y1;
     if (fits) {
       inset = 0; k = 1; minK = 1; tx = 0; ty = 0; clampT();
       home = { k: k, tx: tx, ty: ty };
@@ -4825,59 +4850,88 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
     }
     inset = top;
     var uy0 = v.y0 + top, uh = Math.max(40, v.h - top);
-    /* The floor is NOT 1. preserveAspectRatio is slice, so the drawing is
+
+    /* SOLVE FOR THE ZOOM, DO NOT ESTIMATE IT.
+       The floor is NOT 1. preserveAspectRatio is slice, so the drawing is
        scaled to COVER the frame and the whole state is off screen at rest on
        almost every viewport. Getting it back means shrinking past the point of
        filling the frame, and a map with a little empty background beside it is
-       far better than one with the Aleutians cut off. */
-    /* The bounds above already carry one badge allowance, but in UNZOOMED
-       units, so at k below 1 it is worth only k of the ink it stands for. The
-       shortfall is the same allowance again in SCREEN units, taken off the
-       vertical only (the top edge is the one with a sticky nav behind it) and
-       capped at 8 percent of the usable height. Uncapped it is a large share
-       of a 219px landscape frame, and taking all of it shrank Alaska from 32
-       by 65 percent of its frame to 23 by 48, which trades a hidden pin for a
-       map nobody can read. The measured shortfall was under two units. */
-    k = Math.min(8, Math.max(0.28,
-        Math.min(v.w / (x1 - x0),
-                 Math.max(40, uh - Math.min(INK, uh * 0.08)) / (y1 - y0))));
-    minK = Math.min(1, k);
-    tx = (v.x0 + v.x1) / 2 - ((x0 + x1) / 2) * k;
-    ty = (uy0 + v.y1) / 2 - ((y0 + y1) / 2) * k;
-    clampT();
-    /* THE PAD SHRINKS WITH THE ZOOM AND THE INK DOES NOT (2026-09-04).
-       The bounds above are padded by 45 * mscale for the badge a mark can throw
-       beyond its anchor, in UNZOOMED units, and then multiplied by k. But a
-       mark is repositioned rather than resized, so its ink stays 45 * mscale
-       across at any k. Zoomed out to k = 0.4 the allowance is 40 percent of
-       what the mark actually occupies, so an anchor that clears the nav band by
-       arithmetic can still put its badge inside it. That is how the
-       northernmost pin came to sit six tenths of a pixel behind a 70px nav on
-       one landscape phone, and how correct data (four more open comment
-       windows, each earning a taller mark) tipped it over.
-       So measure what the fit actually produced and push it down if it is
-       short. One pass is enough: the nudge moves ty and nothing it depends on. */
-    var MARK_UP = 45 * mscale, worst = 1e9;
-    for (var q = 0; q < marks.length; q++) {
-      if (!/pinmk/.test(marks[q].getAttribute('class') || '')) continue;
-      worst = Math.min(worst, (+marks[q].getAttribute('data-y')) * k + ty - MARK_UP);
+       far better than one with the Aleutians cut off.
+
+       What is needed is the LARGEST k whose drawing still fits the usable
+       band. need() is a max of straight lines in k, so the width and height it
+       returns are convex and there is a single crossing to find. Twenty-eight
+       halvings settle it to about a millionth of the range, which is far below
+       a pixel, and it costs nothing a reader can feel.
+
+       This replaces a closed form that divided the frame by the bounds and
+       then corrected itself twice, once for a nav band and once for ink that
+       did not shrink with the zoom. Both corrections were arithmetic standing
+       in for a measurement, each was tuned against the one device that had
+       failed, and the second carried a cap of 8 percent of the usable height
+       that was itself tuned that way. Solving the real constraint needs
+       neither, and it holds for pins the tuning never saw. */
+    function ok(kk, m) {
+      var n = need(kk, m);
+      return n.w <= v.w && n.h <= uh;
     }
-    if (worst < 1e9) {
-      var want = v.y0 + inset, lowest = -1e9;
-      for (var q2 = 0; q2 < marks.length; q2++) {
-        if (!/pinmk/.test(marks[q2].getAttribute('class') || '')) continue;
-        lowest = Math.max(lowest, (+marks[q2].getAttribute('data-y')) * k + ty + MARK_UP);
+
+    /* THE MAP IS THE SUBJECT AND THE BADGE SIZE IS A WANT (2026-09-09).
+       A mark keeps its size at every zoom, so its ink is a fixed toll on the
+       frame and a bigger badge buys a smaller Alaska. Both can't be maximised
+       and the order matters: solving for the badge first fits every pin into a
+       219px landscape frame around a state drawn at 23 percent of its width,
+       which is a map nobody can read holding pins nobody needs.
+       So the map goes first. Find the largest zoom that fits with the badges at
+       the smallest size still worth tapping, then give the badges back as much
+       as that zoom will carry. The floor is the 24px the mobile suite calls
+       hittable, and never below 1, which is the size the badge is drawn at.
+       On a screen with room to spare the two solves agree and this is the same
+       30px badge it has always been. */
+    var mWant = mscale, mFloor = Math.max(1, Math.min(mWant, 24.5 / (28 * ctm())));
+
+    var lo = 0.28, hi = 8;
+    if (!ok(lo, mFloor)) {
+      /* Even at the floor the ink does not fit, so no zoom contains it. Take
+         the smallest zoom and centre: some badge will overhang, and shrinking
+         further would only trade it for a map too small to read. */
+      k = lo;
+    } else if (ok(hi, mFloor)) {
+      k = hi;
+    } else {
+      for (var it = 0; it < 28; it++) {
+        var mid = (lo + hi) / 2;
+        if (ok(mid, mFloor)) { lo = mid; } else { hi = mid; }
       }
-      /* Only take the slack that exists. Pushing further than the bottom
-         allows trades a pin behind the nav for pins off the foot of the map,
-         which is what the first attempt at this did.
-         AND DO NOT RE-CLAMP. clampT() re-centres ty whenever the drawing is
-         shorter than the usable band, which is exactly this case, so calling
-         it here threw the correction away and the pin stayed behind the nav
-         through three rounds of tuning the scale. */
-      var room = Math.max(0, v.y1 - lowest);
-      if (worst < want) { ty += Math.min(want - worst, room); }
+      k = lo;
     }
+    minK = Math.min(1, k);
+
+    /* Now spend whatever the chosen zoom left over on the badges. */
+    if (mWant > mFloor && ok(k, mFloor)) {
+      if (ok(k, mWant)) {
+        mscale = mWant;
+      } else {
+        var mlo = mFloor, mhi = mWant;
+        for (var mi = 0; mi < 20; mi++) {
+          var mm = (mlo + mhi) / 2;
+          if (ok(k, mm)) { mlo = mm; } else { mhi = mm; }
+        }
+        mscale = mlo;
+      }
+    } else {
+      mscale = mFloor;
+    }
+
+    /* Centre what the drawing needs inside the band a reader can see. Because
+       need() already carries every badge's own reach, this lands the ink
+       inside the frame rather than the anchors, and there is nothing left to
+       nudge afterwards. DO NOT call clampT() here: it re-centres on the
+       viewBox whenever the drawing is shorter than the band, which is exactly
+       this case, and it would throw the placement away. */
+    var fin = need(k, mscale);
+    tx = v.x0 + (v.w - fin.w) / 2 - fin.x0;
+    ty = uy0 + (uh - fin.h) / 2 - fin.y0;
     home = { k: k, tx: tx, ty: ty };
   }
 
