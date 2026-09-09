@@ -1,0 +1,331 @@
+<!doctype html>
+<!-- SLIDE 08 — COUNTERWEIGHT. Two agency pages side by side on the bench, each
+     under a bulldog clip, each carrying ONE highlighter swipe of the same length.
+     The equality is the argument: the state's two bodies describe the same grid
+     with opposite words and neither is given more room. The lengths are derived
+     from each page's own box rather than written twice, and asserted, so a critic
+     can measure the fairness instead of taking it on trust. There is no gold on
+     this slide except the datum, which passes behind both pages and reappears
+     between and beyond them, because the question survives both quotations. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#080D13}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+#grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+  opacity:.07;pointer-events:none}
+h2{position:absolute;left:104px;top:96px;width:648px;font-family:"Fraunces",serif;
+  font-weight:600;color:#F4F8FF;line-height:1.02;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  text-shadow:0 0 6px rgba(8,13,19,.92),0 0 14px rgba(8,13,19,.85);}
+/* on the pages. ink on bond, so the shadow is paper coloured and sits below. */
+.ph{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:24px;line-height:1.30;letter-spacing:.06em;color:#1A1710;
+  text-shadow:0 1px 0 rgba(255,252,244,.55);}
+.aea{color:#1F4A87;}
+.kw{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:600;
+  font-size:28px;line-height:1;letter-spacing:.02em;color:#14110B;
+  text-shadow:0 1px 0 rgba(255,252,244,.45);}
+.body{position:absolute;left:104px;top:948px;width:812px;font-family:"Space Grotesk",sans-serif;
+  font-weight:400;font-size:30px;line-height:1.36;color:#EDF3F8;
+  text-shadow:0 0 6px rgba(8,13,19,.92),0 0 13px rgba(8,13,19,.85);}
+.mn{position:absolute;left:104px;font-family:"JetBrains Mono",monospace;font-weight:400;
+  font-size:24px;line-height:1;letter-spacing:.10em;color:#C3CBD2;
+  font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:0 0 5px rgba(8,13,19,.94),0 0 11px rgba(8,13,19,.86);}
+.mn2{color:#96A2AD;}
+.polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+.ctr{position:absolute;right:90px;bottom:88px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:.12em;color:#C3CBD2;font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:0 0 5px rgba(8,13,19,.9);}
+</style></head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div id="grain"></div>
+<h2 id="h2">Alaska's own agencies use both words.</h2>
+
+<div class="ph" style="left:116px;top:344px;">RAILBELT RELIABILITY<br>COUNCIL</div>
+<div class="ph aea" style="left:624px;top:344px;">ALASKA ENERGY<br>AUTHORITY</div>
+<div class="kw" style="left:116px;top:626px;">ISLANDED RAILBELT</div>
+<div class="kw" style="left:624px;top:626px;">INTERCONNECTED</div>
+
+<div class="body" id="body">The Railbelt Reliability Council calls the Railbelt grid islanded. The Alaska Energy Authority calls the Alaska Intertie an integral part of the interconnected Bulk Electrical System. Both statements are on the record and they point in opposite directions.</div>
+<div class="mn" style="top:1178px;">RRC SAYS IT SERVES NEARLY THREE-QUARTERS OF ALASKANS</div>
+<div class="mn mn2" style="top:1216px;">AKRRC.ORG . AKENERGYAUTHORITY.ORG</div>
+
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="ctr">08 / 10</div>
+
+<script>
+const W=1080,H=1350,SEED=20260909+8;
+const AZ=118, EL=34, DATUM=900;
+const LDX=-Math.sin(AZ*Math.PI/180), LDY=Math.cos(AZ*Math.PI/180);   // toward the lee
+/* both pages are ONE box, instanced twice. every dimension the fairness claim
+   rests on comes from here, so the two pages cannot drift apart by hand. */
+const PW=396, PH=620, PY=300, MG=28;
+const PAGES=[{x:88}, {x:596}];   // the gap is wide enough to be lit bench
+const SWIPE=PW-2*MG-64;                   // the highlighter run, derived from the box
+const SY=618, SH=42;                      // where the swipe sits on the page
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h2'),{min:46,max:60,maxLines:2});
+  AK.fitText(document.getElementById('body'),{min:30,max:34,maxLines:5});
+  const rg=AK.rng(SEED+23);
+
+  /* Bond lying on a bench cockles. Both pages are the same stock, so both take
+     the same bow, and the fairness the slide claims stays in the swipes. */
+  function sheetPath(x,y,w,h,b){   // a SUBPATH: the caller owns beginPath
+    cx.moveTo(x,y);
+    cx.quadraticCurveTo(x+w*0.5, y-b,       x+w, y+b*0.32);
+    cx.quadraticCurveTo(x+w+b*0.8, y+h*0.5, x+w-b*0.26, y+h);
+    cx.quadraticCurveTo(x+w*0.5, y+h+b*0.9, x, y+h-b*0.24);
+    cx.quadraticCurveTo(x-b*0.7, y+h*0.5,   x, y);
+    cx.closePath();
+  }
+
+  cx.fillStyle='#0A0906'; cx.fillRect(0,0,W,H);
+
+  /* ---- the plywood bench ------------------------------------------------ */
+  for(let i=0;i<15000;i++){
+    const x=rg()*W, y=rg()*H, a=0.02+0.07*rg();
+    cx.fillStyle=(rg()>0.5?'rgba(150,138,120,':'rgba(9,7,5,')+a.toFixed(3)+')';
+    cx.fillRect(x,y,1+(rg()>0.9?2:0),1); }
+  for(let i=0;i<180;i++){                       // the coarse figure of the veneer
+    const x=rg()*W, y=rg()*H, len=48+rg()*150, ht=5+rg()*14, bow=(rg()-0.5)*18;
+    const g=cx.createLinearGradient(0,y,0,y+ht);
+    g.addColorStop(0,'rgba(10,7,5,'+(0.10+0.16*rg()).toFixed(3)+')');
+    g.addColorStop(.54,'rgba(176,160,138,'+(0.05+0.10*rg()).toFixed(3)+')');
+    g.addColorStop(1,'rgba(10,7,5,0)');
+    cx.fillStyle=g; cx.beginPath();
+    cx.moveTo(x,y); cx.quadraticCurveTo(x+len/2,y+bow,x+len,y);
+    cx.lineTo(x+len,y+ht); cx.quadraticCurveTo(x+len/2,y+bow+ht,x,y+ht);
+    cx.closePath(); cx.fill(); }
+  cx.save();                                    // the copy keeps its reserve
+  cx.beginPath(); cx.rect(0,0,W,H);
+  for(const el of document.querySelectorAll('.body,.mn,.ctr')){
+    const r=el.getBoundingClientRect();
+    cx.rect(r.left-10,r.top-6,r.width+20,r.height+12); }
+  cx.clip('evenodd');
+  for(let i=0;i<130;i++){                       // more figure where the key falls
+    const x=rg()*W, y=880+rg()*(H-880), len=54+rg()*160, ht=6+rg()*15, bow=(rg()-0.5)*20;
+    const g=cx.createLinearGradient(0,y,0,y+ht);
+    g.addColorStop(0,'rgba(10,7,5,'+(0.12+0.18*rg()).toFixed(3)+')');
+    g.addColorStop(.54,'rgba(180,164,142,'+(0.06+0.12*rg()).toFixed(3)+')');
+    g.addColorStop(1,'rgba(10,7,5,0)');
+    cx.fillStyle=g; cx.beginPath();
+    cx.moveTo(x,y); cx.quadraticCurveTo(x+len/2,y+bow,x+len,y);
+    cx.lineTo(x+len,y+ht); cx.quadraticCurveTo(x+len/2,y+bow+ht,x,y+ht);
+    cx.closePath(); cx.fill(); }
+  cx.restore();
+  for(let i=0;i<7;i++){ const y=52+i*196;       // plank seams
+    cx.fillStyle='rgba(8,6,4,0.44)'; cx.fillRect(0,y,W,3.0);
+    cx.fillStyle='rgba(198,184,162,0.13)'; cx.fillRect(0,y+3.0,W,1.4); }
+
+  /* ---- the coffee ring. a real annulus, dried darker where the meniscus
+          stood, sitting on the bench and passing UNDER the right page. ----- */
+  { const cxr=996, cyr=236, R=62;
+    cx.save(); cx.translate(cxr,cyr); cx.scale(1,0.94);
+    for(let i=0;i<520;i++){
+      const a=rg()*6.283, rr=R*(0.86+0.16*rg());
+      cx.fillStyle='rgba(74,48,22,'+(0.05+0.12*rg()).toFixed(3)+')';
+      cx.beginPath(); cx.arc(Math.cos(a)*rr,Math.sin(a)*rr,1.2+rg()*2.6,0,7); cx.fill(); }
+    cx.strokeStyle='rgba(58,36,16,0.34)'; cx.lineWidth=3.2;
+    cx.beginPath(); cx.arc(0,0,R,0,7); cx.stroke();
+    cx.strokeStyle='rgba(120,88,48,0.14)'; cx.lineWidth=1.4;
+    cx.beginPath(); cx.arc(0,0,R*0.90,0,7); cx.stroke();
+    cx.fillStyle='rgba(52,34,16,0.07)'; cx.beginPath(); cx.arc(0,0,R*0.90,0,7); cx.fill();
+    cx.restore(); }
+
+  /* ---- D1. Drawn BEFORE the pages, so it goes behind them and is whole
+          again in the gap and past both outside edges. -------------------- */
+  cx.fillStyle='#050807'; cx.fillRect(0,DATUM-1.6,W,4.2);
+  cx.fillStyle='#FFC72C'; cx.fillRect(0,DATUM,W,1.25);
+
+  /* ---- the lit pool the two pages then cast onto ------------------------ */
+  cx.save(); cx.globalCompositeOperation='screen';
+  cx.translate(600,1120); cx.scale(1,0.82);
+  const pool=cx.createRadialGradient(0,0,0,0,0,1000);
+  pool.addColorStop(0,'rgba(196,176,132,0.40)');
+  pool.addColorStop(.46,'rgba(140,124,92,0.22)');
+  pool.addColorStop(.76,'rgba(84,72,52,0.10)');
+  pool.addColorStop(1,'rgba(40,32,22,0)');
+  cx.fillStyle=pool; cx.beginPath(); cx.arc(0,0,1000,0,7); cx.fill(); cx.restore();
+
+  /* ---- THE TWO PAGES. one routine, run twice, so they are the same object - */
+  const stripes=[];
+  for(const p of PAGES){
+    const X=p.x, Y=PY;
+    /* the attached cast, thrown into the lee and clipped out of the page */
+    cx.save(); cx.globalCompositeOperation='multiply';
+    cx.beginPath(); cx.rect(0,0,W,H);
+    sheetPath(X-1,Y-1,PW+2,PH+2,6); cx.clip('evenodd');
+    for(let k=34;k>=1;k--){
+      const t=k/34, a=0.55*Math.pow(1-t,1.5);
+      cx.fillStyle='rgba(10,8,5,'+a.toFixed(3)+')';
+      cx.fillRect(X+LDX*k, Y+LDY*k, PW, PH); }
+    cx.restore();
+    cx.fillStyle='rgba(8,6,4,0.86)';                 // the anchor seam
+    cx.fillRect(X-4,Y-4,4.5,PH+8); cx.fillRect(X-4,Y-4,PW+8,4.5);
+
+    /* the sheet itself: a ramp, then laid lines, then fibre, then a sheen */
+    const g=cx.createLinearGradient(X+PW,Y+PH,X,Y);
+    g.addColorStop(0,'#F2EBDC'); g.addColorStop(.52,'#E3DAC6'); g.addColorStop(1,'#C9BFA8');
+    cx.fillStyle=g; cx.beginPath(); sheetPath(X,Y,PW,PH,6); cx.fill();
+    cx.save(); cx.beginPath(); sheetPath(X,Y,PW,PH,6); cx.clip();
+    for(let y=Y;y<Y+PH;y+=7){
+      cx.fillStyle='rgba(122,110,88,0.055)'; cx.fillRect(X,y,PW,1); }
+    for(let i=0;i<7200;i++){
+      const fx=X+rg()*PW, fy=Y+rg()*PH, l=1+rg()*4;
+      cx.fillStyle=(rg()>0.5?'rgba(255,252,244,':'rgba(96,84,64,')+(0.05+0.10*rg()).toFixed(3)+')';
+      cx.fillRect(fx,fy,l,1); }
+    const sh=cx.createLinearGradient(X+PW*0.2,Y+PH,X+PW,Y+PH*0.1);
+    sh.addColorStop(0,'rgba(255,252,244,0)'); sh.addColorStop(.5,'rgba(255,252,244,0.16)');
+    sh.addColorStop(1,'rgba(255,252,244,0)');
+    cx.fillStyle=sh; cx.fillRect(X,Y,PW,PH);
+    cx.restore();
+    /* the two sheets are not identical objects, only identical boxes: the left
+       one has been folded once and the right one torn out of a binder. */
+    cx.save(); cx.beginPath(); sheetPath(X,Y,PW,PH,6); cx.clip();
+    if(p===PAGES[0]){
+      const fy=860;
+      const fg=cx.createLinearGradient(0,fy-16,0,fy+3);
+      fg.addColorStop(0,'rgba(74,64,48,0)'); fg.addColorStop(1,'rgba(74,64,48,0.30)');
+      cx.fillStyle=fg; cx.fillRect(X,fy-16,PW,19);
+      cx.fillStyle='rgba(58,50,36,0.34)'; cx.fillRect(X,fy,PW,1.6);
+      cx.fillStyle='rgba(255,252,244,0.34)'; cx.fillRect(X,fy+1.6,PW,2.6);
+      const fg2=cx.createLinearGradient(0,fy+4,0,fy+22);
+      fg2.addColorStop(0,'rgba(255,252,244,0.16)'); fg2.addColorStop(1,'rgba(255,252,244,0)');
+      cx.fillStyle=fg2; cx.fillRect(X,fy+4,PW,18);
+    } else {
+      for(let i=0;i<900;i++){                    // the torn edge, fibre by fibre
+        const ty=Y+rg()*PH, w=2+rg()*13;
+        cx.fillStyle='rgba(255,252,244,'+(0.10+0.24*rg()).toFixed(3)+')';
+        cx.fillRect(X-w*0.35,ty,w,1.1);
+        cx.fillStyle='rgba(96,84,64,'+(0.06+0.14*rg()).toFixed(3)+')';
+        cx.fillRect(X-w*0.35,ty+1.1,w*0.8,1.0); }
+      cx.fillStyle='rgba(72,62,46,0.16)'; cx.fillRect(X,Y,7,PH);
+    }
+    cx.restore();
+
+    /* the contact on the key-side edges. No cast falls here, so what reads is
+       the occlusion the sheet's own thickness makes against the lit bench. */
+    cx.fillStyle='rgba(6,4,3,0.90)';
+    cx.fillRect(X+PW,Y,4.5,PH+4.5); cx.fillRect(X,Y+PH,PW+4.5,4.5);
+    { const ar=cx.createLinearGradient(X+PW+4.5,0,X+PW+26,0);
+      ar.addColorStop(0,'rgba(6,4,3,0.82)'); ar.addColorStop(1,'rgba(6,4,3,0)');
+      cx.fillStyle=ar; cx.fillRect(X+PW+4.5,Y,22,PH+4.5);
+      const ab=cx.createLinearGradient(0,Y+PH+4.5,0,Y+PH+26);
+      ab.addColorStop(0,'rgba(6,4,3,0.82)'); ab.addColorStop(1,'rgba(6,4,3,0)');
+      cx.fillStyle=ab; cx.fillRect(X,Y+PH+4.5,PW+26,22); }
+
+    /* the swipe. a translucent film with a heavier end where the pen stopped,
+       and a little bleed into the tooth. never a flat rectangle. */
+    const sx0=X+MG, sx1=sx0+SWIPE;
+    cx.save(); cx.globalCompositeOperation='multiply';
+    cx.beginPath(); sheetPath(X,Y,PW,PH,6); cx.clip();
+    const hl=cx.createLinearGradient(sx0,0,sx1,0);
+    hl.addColorStop(0,'rgba(200,192,112,0.74)');    // both ends carry the same
+    hl.addColorStop(.05,'rgba(214,206,124,0.86)');  // extra density, so neither
+    hl.addColorStop(.95,'rgba(214,206,124,0.84)');  // swipe ends in a mark the
+    hl.addColorStop(1,'rgba(200,192,112,0.76)');    // other one does not have
+    /* a chisel nib lays down a stroke with a rounded start and a rounded stop,
+       never a rectangle, and the swipe's two ends are where that shows */
+    cx.fillStyle=hl;
+    cx.beginPath();
+    cx.moveTo(sx0+SH*0.28, SY);
+    cx.lineTo(sx1-SH*0.20, SY);
+    cx.quadraticCurveTo(sx1+SH*0.16, SY+SH*0.5, sx1-SH*0.24, SY+SH);
+    cx.lineTo(sx0+SH*0.22, SY+SH);
+    cx.quadraticCurveTo(sx0-SH*0.20, SY+SH*0.5, sx0+SH*0.28, SY);
+    cx.closePath(); cx.fill();
+    for(let i=0;i<260;i++){                          // bleed into the fibre
+      const bx=sx0+rg()*SWIPE, by=(rg()>0.5?SY-1-rg()*4:SY+SH+rg()*4);
+      cx.fillStyle='rgba(214,206,124,'+(0.10+0.22*rg()).toFixed(3)+')';
+      cx.fillRect(bx,by,1+rg()*5,1.4); }
+    cx.restore();
+    stripes.push([sx0,sx1]);
+  }
+
+  /* ---- the printed matter, clipped out of every word the page carries --- */
+  cx.save();
+  cx.beginPath();
+  for(const p of PAGES) sheetPath(p.x+MG,PY+MG,PW-2*MG,PH-2*MG,4);
+  for(const el of document.querySelectorAll('.ph,.kw')){
+    const r=el.getBoundingClientRect();
+    cx.rect(r.left-8,r.top-4,r.width+16,r.height+8); }
+  cx.clip('evenodd');
+  for(const p of PAGES){
+    const X=p.x;
+    cx.fillStyle='rgba(26,23,16,0.34)';              // the rule under the head
+    cx.fillRect(X+MG,PY+118,PW-2*MG,2.0);
+    let y=PY+164, para=0;
+    while(y<PY+PH-MG-10){
+      const w=(PW-2*MG)*(0.62+0.36*rg());
+      cx.fillStyle='rgba(26,23,16,'+(0.30+0.13*rg()).toFixed(3)+')';
+      cx.fillRect(X+MG,y,w,3.2);
+      y+=17; if(++para%7===0) y+=16; }
+  }
+  cx.restore();
+
+  /* ---- the bulldog clips, folded steel, per face against the key -------- */
+  for(const p of PAGES){
+    const cxp=p.x+PW/2, ct=PY-30, cw=104, chh=52;
+    cx.save(); cx.globalCompositeOperation='multiply';   // the clip's own cast
+    for(let k=16;k>=1;k--){
+      const a=0.42*Math.pow(1-k/16,1.4);
+      cx.fillStyle='rgba(10,8,5,'+a.toFixed(3)+')';
+      cx.fillRect(cxp-cw/2+LDX*k, ct+LDY*k, cw, chh+22); }
+    cx.restore();
+    const f1=cx.createLinearGradient(cxp-cw/2,ct,cxp+cw/2,ct+chh);  // the front face
+    f1.addColorStop(0,'#202B34'); f1.addColorStop(.55,'#596773'); f1.addColorStop(1,'#95A2AD');
+    cx.fillStyle=f1; cx.beginPath();
+    cx.moveTo(cxp-cw/2,ct+chh); cx.lineTo(cxp-cw/2+13,ct);
+    cx.lineTo(cxp+cw/2-13,ct); cx.lineTo(cxp+cw/2,ct+chh); cx.closePath(); cx.fill();
+    cx.fillStyle='rgba(232,242,250,0.26)'; cx.fillRect(cxp-cw/2+13,ct,cw-26,2.4);
+    cx.fillStyle='rgba(6,10,14,0.62)'; cx.fillRect(cxp-cw/2,ct+chh-3.0,cw,3.0);
+    { const sp=cx.createRadialGradient(cxp-cw*0.18,ct+chh*0.24,1,cxp-cw*0.10,ct+chh*0.34,cw*0.52);
+      sp.addColorStop(0,'rgba(244,250,255,0.30)'); sp.addColorStop(1,'rgba(244,250,255,0)');
+      cx.fillStyle=sp; cx.beginPath();
+      cx.moveTo(cxp-cw/2,ct+chh); cx.lineTo(cxp-cw/2+13,ct);
+      cx.lineTo(cxp+cw/2-13,ct); cx.lineTo(cxp+cw/2,ct+chh); cx.closePath(); cx.fill(); }
+    for(const s of [-1,1]){                            // the two wire handles
+      cx.strokeStyle='#8C99A5'; cx.lineWidth=4.2; cx.beginPath();
+      cx.moveTo(cxp+s*20,ct+9); cx.quadraticCurveTo(cxp+s*54,ct-16,cxp+s*30,ct-27);
+      cx.stroke();
+      cx.strokeStyle='rgba(232,242,250,0.34)'; cx.lineWidth=1.4; cx.beginPath();
+      cx.moveTo(cxp+s*20+1.4,ct+10.4); cx.quadraticCurveTo(cxp+s*54+1.4,ct-14.6,cxp+s*30+1.4,ct-25.6);
+      cx.stroke(); }
+  }
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.08,saturation:0.97,contrast:1.12,filmic:true,
+    lift:[0.008,0.010,0.016],gain:[1.014,1.0,0.976],vignette:0.24,
+    bloom:{threshold:0.90,strength:0.10,radius:7},
+    grain:{amount:0.036,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.30});
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,52,SEED)+')';
+
+  /* the fairness is a measured property of the drawing, not a promise. Each
+     length is read back off the ends the loop actually used. */
+  const lenL=stripes[0][1]-stripes[0][0], lenR=stripes[1][1]-stripes[1][0];
+  window.__akAssert=[{
+    what:"the two highlighter swipes, each measured from its own page box, are the same length",
+    expect:0, actual:Math.round((lenR-lenL)*100)/100, tol:2, unit:"px"}];
+  document.body.setAttribute('data-contacts', JSON.stringify([
+    {what:"the left agency page lying on the plywood bench",
+     shadow:[[488,900,20,14]], ground:[[520,900,22,14]]},
+    {what:"the right agency page lying on the plywood bench",
+     shadow:[[568,900,22,14]], ground:[[520,900,22,14]]}]));
+  document.body.setAttribute('data-encodes', JSON.stringify([
+    {claim:"neither agency is given more room than the other",
+     reads:"same",
+     a:[[stripes[0][0],SY,SWIPE,SH]],
+     b:[[stripes[1][0],SY,SWIPE,SH]]}]));
+  return true;
+})();
+</script>
+</body></html>

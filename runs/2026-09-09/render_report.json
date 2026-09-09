@@ -1,0 +1,3949 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "EXECUTIVE ORDER 14421 . AUGUST 26TH, 2026",
+          "texts": [
+            "EXECUTIVE ORDER 14421 . AUGUST 26TH, 2026"
+          ],
+          "full": "EXECUTIVE ORDER 14421 . AUGUST 26TH, 2026",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 512,
+          "w": 746,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 237, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              512,
+              746,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "One sentence of federal law names Alaska. The order doesn't.",
+          "texts": [
+            "One sentence of federal law names Alaska. The order doesn't."
+          ],
+          "full": "One sentence of federal law names Alaska. The order doesn't.",
+          "tag": "h1",
+          "unsized": false,
+          "x": 150,
+          "y": 566,
+          "w": 790,
+          "h": 257,
+          "font_px": 87.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              554,
+              788,
+              108
+            ],
+            [
+              150,
+              640,
+              772,
+              108
+            ],
+            [
+              150,
+              726,
+              458,
+              108
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "BULK POWER SYSTEM . 69 KV AND ABOVE",
+          "texts": [
+            "BULK POWER SYSTEM . 69 KV AND ABOVE"
+          ],
+          "full": "BULK POWER SYSTEM . 69 KV AND ABOVE",
+          "tag": "div",
+          "unsized": false,
+          "x": 186,
+          "y": 922,
+          "w": 588,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 227, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              186,
+              922,
+              588,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "01 / 10",
+          "texts": [
+            "01 / 10"
+          ],
+          "full": "01 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 847,
+          "y": 1223,
+          "w": 143,
+          "h": 41,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 228, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              858,
+              1228,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "69",
+          "fn": "fillText",
+          "font": "bold 42px \"JetBrains Mono\", monospace",
+          "x": 824,
+          "y": 943,
+          "w": 50.572265625,
+          "align": "center",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 1597.427734375,
+          "dev_right": 1698.572265625,
+          "ink_left": 1601.427734375,
+          "ink_right": 1694,
+          "ink_top": 1843.8125,
+          "ink_bottom": 1909.8125,
+          "sy": 2
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "the rating field on the left is struck and the field beside it is bare metal",
+          "reads": "differ",
+          "a": [
+            [
+              808,
+              926,
+              32,
+              32
+            ]
+          ],
+          "b": [
+            [
+              886,
+              926,
+              32,
+              32
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the rating plate standing proud of the tank flank",
+          "shadow": [
+            [
+              80,
+              700,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              30,
+              700,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 316,
+        "sites": 8,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h1",
+          "tag": "h1",
+          "text": "One sentence of federal law names Alaska. The order doesn't.",
+          "min": 64,
+          "max": 112,
+          "maxLines": 3,
+          "size": 87.5,
+          "lines": 3,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-01.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 6644,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 62.8,
+          "variance": 1977
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-01.html",
+        "sha1": "808a81ebb10b7d055484edf14a4fa813e6636222"
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The law already answers this.",
+          "texts": [
+            "The law already answers this."
+          ],
+          "full": "The law already answers this.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 110,
+          "y": 126,
+          "w": 820,
+          "h": 72,
+          "font_px": 71.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              110,
+              117,
+              807,
+              88
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "(k)",
+          "texts": [
+            "(k)"
+          ],
+          "full": "(k)",
+          "tag": "div",
+          "unsized": false,
+          "x": 120,
+          "y": 394,
+          "w": 47,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              394,
+              47,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"The provisions of this section do not apply to Alaska or Hawaii.\"",
+          "texts": [
+            "\"The provisions of this section do not apply to Alaska or Hawaii.\""
+          ],
+          "full": "\"The provisions of this section do not apply to Alaska or Hawaii.\"",
+          "tag": "div",
+          "unsized": false,
+          "x": 170,
+          "y": 394,
+          "w": 740,
+          "h": 104,
+          "font_px": 40,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              170,
+              394,
+              727,
+              51
+            ],
+            [
+              170,
+              446,
+              510,
+              51
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "That is the entire subsection. It sits in the electric reliability section of th",
+          "texts": [
+            "That is the entire subsection. It sits in the electric reliability section of the Federal Power Act, the section that created the national reliability organization regime."
+          ],
+          "full": "That is the entire subsection. It sits in the electric reliability section of the Federal Power Act, the section that created the national reliability organization regime.",
+          "tag": "div",
+          "unsized": false,
+          "x": 170,
+          "y": 606,
+          "w": 700,
+          "h": 185,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(36, 31, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              170,
+              607,
+              686,
+              43
+            ],
+            [
+              170,
+              653,
+              657,
+              43
+            ],
+            [
+              170,
+              699,
+              652,
+              43
+            ],
+            [
+              170,
+              746,
+              637,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "16 U.S.C. 824o(k) SUBSECTION HEADED ALASKA AND HAWAII",
+          "texts": [
+            "16 U.S.C. 824o(k)",
+            "SUBSECTION HEADED ALASKA AND HAWAII"
+          ],
+          "full": "16 U.S.C. 824o(k) SUBSECTION HEADED ALASKA AND HAWAII",
+          "tag": "div",
+          "unsized": false,
+          "x": 170,
+          "y": 824,
+          "w": 588,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              170,
+              826,
+              286,
+              31
+            ],
+            [
+              170,
+              862,
+              588,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "02 / 10",
+          "texts": [
+            "02 / 10"
+          ],
+          "full": "02 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 869,
+          "y": 1233,
+          "w": 121,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 203, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              1233,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the statute page lying on the gravel apron",
+          "shadow": [
+            [
+              64,
+              640,
+              24,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              22,
+              640,
+              24,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 1294,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h2",
+          "tag": "h2",
+          "text": "The law already answers this.",
+          "min": 48,
+          "max": 72,
+          "maxLines": 2,
+          "size": 71.5,
+          "lines": 1,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-02.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 8088,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 103.5,
+          "variance": 8456.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-02.html",
+        "sha1": "0878b9d68b5dcab7a2c131b3b17bfa8a97f0970e"
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The order says why.",
+          "texts": [
+            "The order says why."
+          ],
+          "full": "The order says why.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 110,
+          "y": 112,
+          "w": 760,
+          "h": 74,
+          "font_px": 73.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              110,
+              103,
+              566,
+              91
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "91 FR 55995 . PUBLISHED AUGUST 31ST, 2026",
+          "texts": [
+            "91 FR 55995 . PUBLISHED AUGUST 31ST, 2026"
+          ],
+          "full": "91 FR 55995 . PUBLISHED AUGUST 31ST, 2026",
+          "tag": "div",
+          "unsized": false,
+          "x": 120,
+          "y": 288,
+          "w": 689,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              288,
+              689,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"The rapid growth of advanced manufacturing, data centers, artificial intelligen",
+          "texts": [
+            "\"The rapid growth of advanced manufacturing, data centers, artificial intelligence, and defense production has increased the Nation's dependence on abundant, reliable electricity and magnified the con"
+          ],
+          "full": "\"The rapid growth of advanced manufacturing, data centers, artificial intelligence, and defense production has increased the Nation's dependence on abundant, reliable electricity and magnified the consequences of a successful attack or supply disruption on the bulk-power system.\"",
+          "tag": "div",
+          "unsized": false,
+          "x": 166,
+          "y": 344,
+          "w": 748,
+          "h": 359,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(20, 17, 9)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              166,
+              344,
+              510,
+              43
+            ],
+            [
+              166,
+              389,
+              622,
+              43
+            ],
+            [
+              166,
+              434,
+              673,
+              43
+            ],
+            [
+              166,
+              479,
+              635,
+              43
+            ],
+            [
+              166,
+              524,
+              718,
+              43
+            ],
+            [
+              166,
+              568,
+              723,
+              43
+            ],
+            [
+              166,
+              613,
+              600,
+              43
+            ],
+            [
+              166,
+              658,
+              144,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "IEEPA . NATIONAL EMERGENCIES ACT",
+          "texts": [
+            "IEEPA . NATIONAL EMERGENCIES ACT"
+          ],
+          "full": "IEEPA . NATIONAL EMERGENCIES ACT",
+          "tag": "div",
+          "unsized": false,
+          "x": 166,
+          "y": 1002,
+          "w": 538,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              166,
+              1002,
+              538,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "69 KV",
+          "texts": [
+            "69 KV"
+          ],
+          "full": "69 KV",
+          "tag": "div",
+          "unsized": false,
+          "x": 908,
+          "y": 846,
+          "w": 84,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              908,
+              846,
+              84,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "03 / 10",
+          "texts": [
+            "03 / 10"
+          ],
+          "full": "03 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 869,
+          "y": 1233,
+          "w": 121,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 228, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              1233,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "UNUSUAL AND EXTRAORDINARY THREAT",
+          "fn": "fillText",
+          "font": "bold 28px \"JetBrains Mono\", monospace",
+          "x": 314.71875,
+          "y": 45,
+          "w": 539.4375,
+          "align": "center",
+          "canvas_w": 1259,
+          "canvas_h": 180,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 90,
+          "dev_right": 1168.875,
+          "ink_left": 92,
+          "ink_right": 1167.16015625,
+          "ink_top": 62.5625,
+          "ink_bottom": 106.5625,
+          "sy": 2
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the proof sheet lying on the steel bench",
+          "shadow": [
+            [
+              80,
+              640,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              30,
+              640,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 18,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h2",
+          "tag": "h2",
+          "text": "The order says why.",
+          "min": 50,
+          "max": 74,
+          "maxLines": 1,
+          "size": 73.5,
+          "lines": 1,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-03.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 6618,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 129.3,
+          "variance": 6812.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-03.html",
+        "sha1": "d988a7d8d27c6e93cfcded23d5830a7f9d6bc1ec"
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Two definitions, word for word the same.",
+          "texts": [
+            "Two definitions, word for word the same."
+          ],
+          "full": "Two definitions, word for word the same.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 104,
+          "y": 108,
+          "w": 800,
+          "h": 127,
+          "font_px": 63.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              100,
+              760,
+              78
+            ],
+            [
+              104,
+              164,
+              231,
+              78
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "16 U.S.C. 824o(a)(1)",
+          "texts": [
+            "16 U.S.C. 824o(a)(1)"
+          ],
+          "full": "16 U.S.C. 824o(a)(1)",
+          "tag": "div",
+          "unsized": false,
+          "x": 126,
+          "y": 334,
+          "w": 331,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              334,
+              331,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"facilities and control systems necessary for operating an interconnected electr",
+          "texts": [
+            "\"facilities and control systems necessary for operating an interconnected electric energy transmission network\""
+          ],
+          "full": "\"facilities and control systems necessary for operating an interconnected electric energy transmission network\"",
+          "tag": "div",
+          "unsized": false,
+          "x": 126,
+          "y": 388,
+          "w": 328,
+          "h": 241,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              388,
+              313,
+              39
+            ],
+            [
+              126,
+              428,
+              280,
+              39
+            ],
+            [
+              126,
+              468,
+              235,
+              39
+            ],
+            [
+              126,
+              509,
+              226,
+              39
+            ],
+            [
+              126,
+              549,
+              221,
+              39
+            ],
+            [
+              126,
+              589,
+              325,
+              39
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "EO 14421 SECTION 5(a)",
+          "texts": [
+            "EO 14421 SECTION 5(a)"
+          ],
+          "full": "EO 14421 SECTION 5(a)",
+          "tag": "div",
+          "unsized": false,
+          "x": 602,
+          "y": 334,
+          "w": 348,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              602,
+              334,
+              348,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"facilities and control systems necessary for operating an interconnected electr",
+          "texts": [
+            "\"facilities and control systems necessary for operating an interconnected electric energy transmission network\""
+          ],
+          "full": "\"facilities and control systems necessary for operating an interconnected electric energy transmission network\"",
+          "tag": "div",
+          "unsized": false,
+          "x": 602,
+          "y": 388,
+          "w": 328,
+          "h": 241,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              602,
+              388,
+              313,
+              39
+            ],
+            [
+              602,
+              428,
+              280,
+              39
+            ],
+            [
+              602,
+              468,
+              235,
+              39
+            ],
+            [
+              602,
+              509,
+              226,
+              39
+            ],
+            [
+              602,
+              549,
+              221,
+              39
+            ],
+            [
+              602,
+              589,
+              325,
+              39
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The statute carries a subsection about Alaska. The order carries a sentence abou",
+          "texts": [
+            "The statute carries a subsection about Alaska. The order carries a sentence about 69,000 volts."
+          ],
+          "full": "The statute carries a subsection about Alaska. The order carries a sentence about 69,000 volts.",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1006,
+          "w": 880,
+          "h": 91,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1007,
+              832,
+              43
+            ],
+            [
+              104,
+              1053,
+              731,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "04 / 10",
+          "texts": [
+            "04 / 10"
+          ],
+          "full": "04 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 869,
+          "y": 1233,
+          "w": 121,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 191, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              1233,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "only the right column has a gold line under it",
+          "reads": "differ",
+          "a": [
+            [
+              620,
+              898,
+              220,
+              6
+            ]
+          ],
+          "b": [
+            [
+              144,
+              898,
+              220,
+              6
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the two pages lying on the plywood bench",
+          "shadow": [
+            [
+              78,
+              600,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              28,
+              600,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 2047,
+        "sites": 10,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h2",
+          "tag": "h2",
+          "text": "Two definitions, word for word the same.",
+          "min": 44,
+          "max": 64,
+          "maxLines": 2,
+          "size": 63.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        },
+        {
+          "id": "colL",
+          "tag": "div",
+          "text": "\"facilities and control systems necessary for operating an i",
+          "min": 26,
+          "max": 32,
+          "maxLines": 6,
+          "size": 30,
+          "lines": 6,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        },
+        {
+          "id": "colR",
+          "tag": "div",
+          "text": "\"facilities and control systems necessary for operating an i",
+          "min": 26,
+          "max": 32,
+          "maxLines": 6,
+          "size": 30,
+          "lines": 6,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-04.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 7265,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 78.1,
+          "variance": 8563.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-04.html",
+        "sha1": "9ef08e406bfad32ea3428fe30de42ae184d3777d"
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "What the order calls covered equipment.",
+          "texts": [
+            "What the order calls covered equipment."
+          ],
+          "full": "What the order calls covered equipment.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 104,
+          "y": 104,
+          "w": 790,
+          "h": 127,
+          "font_px": 63.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              96,
+              701,
+              78
+            ],
+            [
+              104,
+              160,
+              278,
+              78
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SUBSTATION TRANSFORMERS",
+          "texts": [
+            "SUBSTATION TRANSFORMERS"
+          ],
+          "full": "SUBSTATION TRANSFORMERS",
+          "tag": "div",
+          "unsized": false,
+          "x": 152,
+          "y": 396,
+          "w": 800,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 242, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              152,
+              396,
+              362,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "UTILITY-SCALE AND OTHER GRID-CONNECTED INVERTERS",
+          "texts": [
+            "UTILITY-SCALE AND OTHER GRID-CONNECTED INVERTERS"
+          ],
+          "full": "UTILITY-SCALE AND OTHER GRID-CONNECTED INVERTERS",
+          "tag": "div",
+          "unsized": false,
+          "x": 152,
+          "y": 550,
+          "w": 800,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 242, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              152,
+              550,
+              756,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "BATTERY ENERGY STORAGE SYSTEMS",
+          "texts": [
+            "BATTERY ENERGY STORAGE SYSTEMS"
+          ],
+          "full": "BATTERY ENERGY STORAGE SYSTEMS",
+          "tag": "div",
+          "unsized": false,
+          "x": 152,
+          "y": 704,
+          "w": 800,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 242, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              152,
+              704,
+              473,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "UNINTERRUPTIBLE POWER SUPPLY SYSTEMS",
+          "texts": [
+            "UNINTERRUPTIBLE POWER SUPPLY SYSTEMS"
+          ],
+          "full": "UNINTERRUPTIBLE POWER SUPPLY SYSTEMS",
+          "tag": "div",
+          "unsized": false,
+          "x": 152,
+          "y": 858,
+          "w": 800,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 242, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              152,
+              858,
+              567,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "EO 14421 SECTION 5(b)",
+          "texts": [
+            "EO 14421 SECTION 5(b)"
+          ],
+          "full": "EO 14421 SECTION 5(b)",
+          "tag": "div",
+          "unsized": false,
+          "x": 152,
+          "y": 948,
+          "w": 353,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 203, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              152,
+              948,
+              353,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Section 5(b) lists these among the bulk-power system electric equipment the orde",
+          "texts": [
+            "Section 5(b) lists these among the bulk-power system electric equipment the order reaches. The last of them is qualified in the order as supporting critical infrastructure."
+          ],
+          "full": "Section 5(b) lists these among the bulk-power system electric equipment the order reaches. The last of them is qualified in the order as supporting critical infrastructure.",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1024,
+          "w": 820,
+          "h": 182,
+          "font_px": 34,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(220, 228, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1025,
+              764,
+              43
+            ],
+            [
+              104,
+              1071,
+              820,
+              43
+            ],
+            [
+              104,
+              1116,
+              633,
+              43
+            ],
+            [
+              104,
+              1162,
+              553,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "05 / 10",
+          "texts": [
+            "05 / 10"
+          ],
+          "full": "05 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 869,
+          "y": 1233,
+          "w": 121,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              1233,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the legend plate standing proud of the tank flank",
+          "shadow": [
+            [
+              74,
+              620,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              24,
+              620,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 447,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h2",
+          "tag": "h2",
+          "text": "What the order calls covered equipment.",
+          "min": 44,
+          "max": 64,
+          "maxLines": 2,
+          "size": 63.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [
+        {
+          "what": "four struck rows, one per category the claim body names",
+          "expect": 4,
+          "actual": 4,
+          "tol": 0,
+          "unit": "marks",
+          "dispersed": false,
+          "points_n": 4,
+          "points_bad": 0,
+          "offframe": 0,
+          "actual_declared": null,
+          "points_xy": [
+            [
+              540,
+              407
+            ],
+            [
+              540,
+              561
+            ],
+            [
+              540,
+              715
+            ],
+            [
+              540,
+              869
+            ]
+          ],
+          "points_xy_stride": 1
+        }
+      ],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-05.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 7211,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 51.6,
+          "variance": 1275.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-05.html",
+        "sha1": "ec7859abbc0189edbf2dcfb137ac19305a519bd8"
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "One line, twice the threshold.",
+          "texts": [
+            "One line, twice the threshold."
+          ],
+          "full": "One line, twice the threshold.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 104,
+          "y": 906,
+          "w": 700,
+          "h": 56,
+          "font_px": 55.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(239, 244, 250)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              899,
+              618,
+              68
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The Alaska Intertie runs 170 miles between Willow and Healy. The Alaska Energy A",
+          "texts": [
+            "The Alaska Intertie runs 170 miles between Willow and Healy. The Alaska Energy Authority puts it at 138 kilovolts. The order's line is 69,000 volts."
+          ],
+          "full": "The Alaska Intertie runs 170 miles between Willow and Healy. The Alaska Energy Authority puts it at 138 kilovolts. The order's line is 69,000 volts.",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1030,
+          "w": 660,
+          "h": 177,
+          "font_px": 32,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(214, 222, 231)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1032,
+              654,
+              40
+            ],
+            [
+              104,
+              1076,
+              552,
+              40
+            ],
+            [
+              104,
+              1120,
+              568,
+              40
+            ],
+            [
+              104,
+              1164,
+              411,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "200 m",
+          "texts": [
+            "200 m"
+          ],
+          "full": "200 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 906,
+          "y": 150,
+          "w": 84,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 176, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              906,
+              150,
+              84,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "06 / 10",
+          "texts": [
+            "06 / 10"
+          ],
+          "full": "06 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 847,
+          "y": 1223,
+          "w": 143,
+          "h": 41,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 228, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              858,
+              1228,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the concrete pier standing on the frozen apron",
+          "shadow": [
+            [
+              34,
+              1046,
+              24,
+              12
+            ]
+          ],
+          "ground": [
+            [
+              10,
+              1150,
+              26,
+              12
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 12912,
+        "sites": 11,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h2",
+          "tag": "h2",
+          "text": "One line, twice the threshold.",
+          "min": 40,
+          "max": 56,
+          "maxLines": 2,
+          "size": 55.5,
+          "lines": 1,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-06.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 5935,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 32.2,
+          "variance": 946.9
+        }
+      ],
+      "breather": true,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-06.html",
+        "sha1": "ed36abe08c88b8e164f6e302f8ebb78736a4240f"
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Alaska sits above the threshold.",
+          "texts": [
+            "Alaska sits above the threshold."
+          ],
+          "full": "Alaska sits above the threshold.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 104,
+          "y": 86,
+          "w": 790,
+          "h": 60,
+          "font_px": 59.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              79,
+              714,
+              73
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "345",
+          "texts": [
+            "345"
+          ],
+          "full": "345",
+          "tag": "div",
+          "unsized": false,
+          "x": 84,
+          "y": 328,
+          "w": 64,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(183, 194, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              103,
+              324,
+              45,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "300",
+          "texts": [
+            "300"
+          ],
+          "full": "300",
+          "tag": "div",
+          "unsized": false,
+          "x": 84,
+          "y": 419,
+          "w": 64,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(183, 194, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              103,
+              415,
+              45,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "200",
+          "texts": [
+            "200"
+          ],
+          "full": "200",
+          "tag": "div",
+          "unsized": false,
+          "x": 84,
+          "y": 622,
+          "w": 64,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(183, 194, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              103,
+              618,
+              45,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "100",
+          "texts": [
+            "100"
+          ],
+          "full": "100",
+          "tag": "div",
+          "unsized": false,
+          "x": 84,
+          "y": 825,
+          "w": 64,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(183, 194, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              103,
+              821,
+              45,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "0",
+          "texts": [
+            "0"
+          ],
+          "full": "0",
+          "tag": "div",
+          "unsized": false,
+          "x": 84,
+          "y": 1028,
+          "w": 64,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(183, 194, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              133,
+              1024,
+              15,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "345 kV",
+          "texts": [
+            "345 kV"
+          ],
+          "full": "345 kV",
+          "tag": "div",
+          "unsized": false,
+          "x": 284,
+          "y": 325,
+          "w": 109,
+          "h": 28,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 246, 250)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              284,
+              320,
+              109,
+              37
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA INTERTIE, AS BUILT",
+          "texts": [
+            "ALASKA INTERTIE, AS BUILT"
+          ],
+          "full": "ALASKA INTERTIE, AS BUILT",
+          "tag": "div",
+          "unsized": false,
+          "x": 404,
+          "y": 328,
+          "w": 372,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 218, 225)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              404,
+              324,
+              372,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "138 kV",
+          "texts": [
+            "138 kV"
+          ],
+          "full": "138 kV",
+          "tag": "div",
+          "unsized": false,
+          "x": 284,
+          "y": 745,
+          "w": 109,
+          "h": 28,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 246, 250)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              284,
+              740,
+              109,
+              37
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "INTERTIE, OPERATING",
+          "texts": [
+            "INTERTIE, OPERATING"
+          ],
+          "full": "INTERTIE, OPERATING",
+          "tag": "div",
+          "unsized": false,
+          "x": 404,
+          "y": 748,
+          "w": 283,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 218, 225)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              404,
+              744,
+              283,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "115 kV",
+          "texts": [
+            "115 kV"
+          ],
+          "full": "115 kV",
+          "tag": "div",
+          "unsized": false,
+          "x": 284,
+          "y": 792,
+          "w": 109,
+          "h": 28,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 246, 250)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              284,
+              787,
+              109,
+              37
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "DEEPGREEN CABLE, PROPOSED",
+          "texts": [
+            "DEEPGREEN CABLE, PROPOSED"
+          ],
+          "full": "DEEPGREEN CABLE, PROPOSED",
+          "tag": "div",
+          "unsized": false,
+          "x": 404,
+          "y": 795,
+          "w": 372,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 218, 225)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              404,
+              791,
+              372,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "69 kV",
+          "texts": [
+            "69 kV"
+          ],
+          "full": "69 kV",
+          "tag": "div",
+          "unsized": false,
+          "x": 284,
+          "y": 885,
+          "w": 91,
+          "h": 28,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              284,
+              880,
+              91,
+              37
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE ORDER'S OWN THRESHOLD",
+          "texts": [
+            "THE ORDER'S OWN THRESHOLD"
+          ],
+          "full": "THE ORDER'S OWN THRESHOLD",
+          "tag": "div",
+          "unsized": false,
+          "x": 404,
+          "y": 888,
+          "w": 372,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              404,
+              884,
+              372,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "FAIRBANKS",
+          "texts": [
+            "FAIRBANKS"
+          ],
+          "full": "FAIRBANKS",
+          "tag": "div",
+          "unsized": false,
+          "x": 806,
+          "y": 296,
+          "w": 134,
+          "h": 26,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(127, 178, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              806,
+              293,
+              134,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "DELTA JUNCTION",
+          "texts": [
+            "DELTA",
+            "JUNCTION"
+          ],
+          "full": "DELTA JUNCTION",
+          "tag": "div",
+          "unsized": false,
+          "x": 806,
+          "y": 352,
+          "w": 119,
+          "h": 53,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(127, 178, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              806,
+              349,
+              74,
+              31
+            ],
+            [
+              806,
+              375,
+              119,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "HOMER",
+          "texts": [
+            "HOMER"
+          ],
+          "full": "HOMER",
+          "tag": "div",
+          "unsized": false,
+          "x": 806,
+          "y": 906,
+          "w": 74,
+          "h": 26,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(127, 178, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              806,
+              903,
+              74,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SELDOVIA",
+          "texts": [
+            "SELDOVIA"
+          ],
+          "full": "SELDOVIA",
+          "tag": "div",
+          "unsized": false,
+          "x": 806,
+          "y": 952,
+          "w": 119,
+          "h": 26,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(127, 178, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              806,
+              949,
+              119,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "CHUGACH NEARLY 89,000 MEMBERS",
+          "texts": [
+            "CHUGACH NEARLY 89,000 MEMBERS"
+          ],
+          "full": "CHUGACH NEARLY 89,000 MEMBERS",
+          "tag": "div",
+          "unsized": false,
+          "x": 284,
+          "y": 1082,
+          "w": 445,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(127, 178, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              284,
+              1078,
+              445,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "HOMER ELECTRIC 26,181 MEMBER-OWNERS",
+          "texts": [
+            "HOMER ELECTRIC 26,181 MEMBER-OWNERS"
+          ],
+          "full": "HOMER ELECTRIC 26,181 MEMBER-OWNERS",
+          "tag": "div",
+          "unsized": false,
+          "x": 284,
+          "y": 1112,
+          "w": 538,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(127, 178, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              284,
+              1108,
+              538,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Three Alaska figures sit above the line and none below it. Five utilities run ne",
+          "texts": [
+            "Three Alaska figures sit above the line and none below it. Five utilities run nearly 700 miles between those towns."
+          ],
+          "full": "Three Alaska figures sit above the line and none below it. Five utilities run nearly 700 miles between those towns.",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1196,
+          "w": 740,
+          "h": 66,
+          "font_px": 25.5,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(220, 228, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1196,
+              698,
+              32
+            ],
+            [
+              104,
+              1229,
+              684,
+              32
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "07 / 10",
+          "texts": [
+            "07 / 10"
+          ],
+          "full": "07 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 869,
+          "y": 1231,
+          "w": 121,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 203, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              1231,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the gauge board lying on the plywood bench",
+          "shadow": [
+            [
+              884,
+              1192,
+              64,
+              12
+            ]
+          ],
+          "ground": [
+            [
+              884,
+              1220,
+              64,
+              12
+            ]
+          ]
+        }
+      ],
+      "scales": [
+        {
+          "what": "the voltage ladder, linear in kilovolts against a printed scale",
+          "axis": "y",
+          "unit": "kilovolts",
+          "from": [
+            1040,
+            0
+          ],
+          "to": [
+            340,
+            345
+          ],
+          "band": [
+            206,
+            262
+          ],
+          "marks": [
+            {
+              "at": 340,
+              "means": "345 kV, the Alaska Intertie as built"
+            },
+            {
+              "at": 760,
+              "means": "138 kV, the Alaska Intertie operating"
+            },
+            {
+              "at": 807,
+              "means": "115 kV, the proposed DeepGreen cable, a study permit"
+            },
+            {
+              "at": 900,
+              "means": "69 kV, the order's own threshold"
+            },
+            {
+              "at": 1040,
+              "means": "0 kV, the foot of the scale"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 3212,
+        "sites": 12,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h2",
+          "tag": "h2",
+          "text": "Alaska sits above the threshold.",
+          "min": 44,
+          "max": 60,
+          "maxLines": 2,
+          "size": 59.5,
+          "lines": 1,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        },
+        {
+          "id": "foot",
+          "tag": "div",
+          "text": "Three Alaska figures sit above the line and none below it. F",
+          "min": 24,
+          "max": 26,
+          "maxLines": 2,
+          "size": 25.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-07.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 6837,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 54.6,
+          "variance": 2257
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-07.html",
+        "sha1": "9261b67d2b1f212be2eac6e958be08fee285245b"
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Alaska's own agencies use both words.",
+          "texts": [
+            "Alaska's own agencies use both words."
+          ],
+          "full": "Alaska's own agencies use both words.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 104,
+          "y": 96,
+          "w": 648,
+          "h": 121,
+          "font_px": 59.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              89,
+              591,
+              73
+            ],
+            [
+              104,
+              150,
+              272,
+              73
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RAILBELT RELIABILITY COUNCIL",
+          "texts": [
+            "RAILBELT RELIABILITY",
+            "COUNCIL"
+          ],
+          "full": "RAILBELT RELIABILITY COUNCIL",
+          "tag": "div",
+          "unsized": false,
+          "x": 116,
+          "y": 344,
+          "w": 317,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              116,
+              344,
+              317,
+              31
+            ],
+            [
+              116,
+              375,
+              111,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "ALASKA ENERGY AUTHORITY",
+          "texts": [
+            "ALASKA ENERGY",
+            "AUTHORITY"
+          ],
+          "full": "ALASKA ENERGY AUTHORITY",
+          "tag": "div",
+          "unsized": false,
+          "x": 624,
+          "y": 344,
+          "w": 206,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(31, 74, 135)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              624,
+              344,
+              206,
+              31
+            ],
+            [
+              624,
+              375,
+              143,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "ISLANDED RAILBELT",
+          "texts": [
+            "ISLANDED RAILBELT"
+          ],
+          "full": "ISLANDED RAILBELT",
+          "tag": "div",
+          "unsized": false,
+          "x": 116,
+          "y": 626,
+          "w": 295,
+          "h": 28,
+          "font_px": 28,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 17, 11)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              116,
+              621,
+              295,
+              37
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "INTERCONNECTED",
+          "texts": [
+            "INTERCONNECTED"
+          ],
+          "full": "INTERCONNECTED",
+          "tag": "div",
+          "unsized": false,
+          "x": 624,
+          "y": 626,
+          "w": 243,
+          "h": 28,
+          "font_px": 28,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 17, 11)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              624,
+              621,
+              243,
+              37
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The Railbelt Reliability Council calls the Railbelt grid islanded. The Alaska En",
+          "texts": [
+            "The Railbelt Reliability Council calls the Railbelt grid islanded. The Alaska Energy Authority calls the Alaska Intertie an integral part of the interconnected Bulk Electrical System. Both statements "
+          ],
+          "full": "The Railbelt Reliability Council calls the Railbelt grid islanded. The Alaska Energy Authority calls the Alaska Intertie an integral part of the interconnected Bulk Electrical System. Both statements are on the record and they point in opposite directions.",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 948,
+          "w": 812,
+          "h": 214,
+          "font_px": 31.5,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(237, 243, 248)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              949,
+              786,
+              40
+            ],
+            [
+              104,
+              992,
+              710,
+              40
+            ],
+            [
+              104,
+              1035,
+              806,
+              40
+            ],
+            [
+              104,
+              1077,
+              773,
+              40
+            ],
+            [
+              104,
+              1120,
+              684,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RRC SAYS IT SERVES NEARLY THREE-QUARTERS OF ALASKANS",
+          "texts": [
+            "RRC SAYS IT SERVES NEARLY THREE-QUARTERS OF ALASKANS"
+          ],
+          "full": "RRC SAYS IT SERVES NEARLY THREE-QUARTERS OF ALASKANS",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1178,
+          "w": 874,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 203, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1174,
+              874,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AKRRC.ORG . AKENERGYAUTHORITY.ORG",
+          "texts": [
+            "AKRRC.ORG . AKENERGYAUTHORITY.ORG"
+          ],
+          "full": "AKRRC.ORG . AKENERGYAUTHORITY.ORG",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1216,
+          "w": 554,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 162, 173)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1212,
+              554,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "08 / 10",
+          "texts": [
+            "08 / 10"
+          ],
+          "full": "08 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 869,
+          "y": 1231,
+          "w": 121,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 203, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              1231,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "neither agency is given more room than the other",
+          "reads": "same",
+          "a": [
+            [
+              116,
+              618,
+              276,
+              42
+            ]
+          ],
+          "b": [
+            [
+              624,
+              618,
+              276,
+              42
+            ]
+          ],
+          "a_visible_frac": 0.4,
+          "b_visible_frac": 0.48
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the left agency page lying on the plywood bench",
+          "shadow": [
+            [
+              488,
+              900,
+              20,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              520,
+              900,
+              22,
+              14
+            ]
+          ]
+        },
+        {
+          "what": "the right agency page lying on the plywood bench",
+          "shadow": [
+            [
+              568,
+              900,
+              22,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              520,
+              900,
+              22,
+              14
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 840,
+        "sites": 9,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h2",
+          "tag": "h2",
+          "text": "Alaska's own agencies use both words.",
+          "min": 46,
+          "max": 60,
+          "maxLines": 2,
+          "size": 59.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        },
+        {
+          "id": "body",
+          "tag": "div",
+          "text": "The Railbelt Reliability Council calls the Railbelt grid isl",
+          "min": 30,
+          "max": 34,
+          "maxLines": 5,
+          "size": 31.5,
+          "lines": 5,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [
+        {
+          "what": "the two highlighter swipes, each measured from its own page box, are the same length",
+          "expect": 0,
+          "actual": 0,
+          "tol": 2,
+          "unit": "px",
+          "dispersed": false
+        }
+      ],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-08.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 6008,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 83.2,
+          "variance": 8128.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-08.html",
+        "sha1": "14ee4908e59dad2677dfd41c31ef5ea3b8c5e0ff"
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "One question is open.",
+          "texts": [
+            "One question is open."
+          ],
+          "full": "One question is open.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 104,
+          "y": 96,
+          "w": 800,
+          "h": 63,
+          "font_px": 61.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              89,
+              502,
+              76
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Question A-2 of the DOE request for information asks commenters to identify any ",
+          "texts": [
+            "Question A-2 of the DOE request for information asks commenters to identify any equipment-specific voltage, capacity, connectivity, function, location, or criticality thresholds. The words Alaska, Haw"
+          ],
+          "full": "Question A-2 of the DOE request for information asks commenters to identify any equipment-specific voltage, capacity, connectivity, function, location, or criticality thresholds. The words Alaska, Hawaii, islanded and non-contiguous appear nowhere in it.",
+          "tag": "div",
+          "unsized": false,
+          "x": 165,
+          "y": 430,
+          "w": 563,
+          "h": 277,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Space Grotesk",
+          "color": "rgb(21, 25, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              165,
+              432,
+              486,
+              49
+            ],
+            [
+              166,
+              468,
+              553,
+              50
+            ],
+            [
+              167,
+              508,
+              441,
+              47
+            ],
+            [
+              168,
+              546,
+              444,
+              48
+            ],
+            [
+              169,
+              581,
+              506,
+              49
+            ],
+            [
+              170,
+              618,
+              533,
+              50
+            ],
+            [
+              171,
+              658,
+              448,
+              48
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "OCTOBER 9TH, 2026",
+          "texts": [
+            "OCTOBER 9TH, 2026"
+          ],
+          "full": "OCTOBER 9TH, 2026",
+          "tag": "div",
+          "unsized": false,
+          "x": 177,
+          "y": 873,
+          "w": 449,
+          "h": 56,
+          "font_px": 44,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(255, 199, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              177,
+              868,
+              449,
+              66
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE RFI INFORMS IMPLEMENTATION",
+          "texts": [
+            "THE RFI INFORMS IMPLEMENTATION"
+          ],
+          "full": "THE RFI INFORMS IMPLEMENTATION",
+          "tag": "div",
+          "unsized": false,
+          "x": 179,
+          "y": 951,
+          "w": 504,
+          "h": 37,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 231, 241)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              179,
+              947,
+              505,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RULES COME AT 120 DAYS",
+          "texts": [
+            "RULES COME AT 120 DAYS"
+          ],
+          "full": "RULES COME AT 120 DAYS",
+          "tag": "div",
+          "unsized": false,
+          "x": 180,
+          "y": 995,
+          "w": 370,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 231, 241)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              180,
+              991,
+              370,
+              41
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RIN 1901-AB79 . 91 FR 57322",
+          "texts": [
+            "RIN 1901-AB79 . 91 FR 57322"
+          ],
+          "full": "RIN 1901-AB79 . 91 FR 57322",
+          "tag": "div",
+          "unsized": false,
+          "x": 181,
+          "y": 1049,
+          "w": 441,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 188, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              181,
+              1045,
+              441,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "09 / 10",
+          "texts": [
+            "09 / 10"
+          ],
+          "full": "09 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 869,
+          "y": 1231,
+          "w": 121,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 243, 248)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              1231,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the inspection tag hanging against the transformer plate",
+          "shadow": [
+            [
+              94,
+              846,
+              24,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              40,
+              846,
+              24,
+              14
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 282,
+        "sites": 18,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "h2",
+          "tag": "h2",
+          "text": "One question is open.",
+          "min": 48,
+          "max": 62,
+          "maxLines": 2,
+          "size": 61.5,
+          "lines": 1,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        },
+        {
+          "id": "tbody",
+          "tag": "div",
+          "text": "Question A-2 of the DOE request for information asks comment",
+          "min": 24,
+          "max": 30,
+          "maxLines": 7,
+          "size": 28,
+          "lines": 7,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-09.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 8939,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 116,
+          "variance": 4588.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-09.html",
+        "sha1": "896f227591fbd7d321270d624dd6757938a001c3"
+      }
+    },
+    {
+      "file": "slide-10.html",
+      "png": "slide-10.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Nobody has said Alaska is in. Nobody has said Alaska is out.",
+          "texts": [
+            "Nobody has said Alaska is in. Nobody has said Alaska is out."
+          ],
+          "full": "Nobody has said Alaska is in. Nobody has said Alaska is out.",
+          "tag": "div",
+          "unsized": false,
+          "x": 176,
+          "y": 392,
+          "w": 688,
+          "h": 115,
+          "font_px": 55.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(25, 21, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              176,
+              386,
+              618,
+              68
+            ],
+            [
+              176,
+              444,
+              647,
+              68
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Which threshold should Alaska ask DOE to write down?",
+          "texts": [
+            "Which threshold should Alaska ask DOE to write down?"
+          ],
+          "full": "Which threshold should Alaska ask DOE to write down?",
+          "tag": "div",
+          "unsized": false,
+          "x": 176,
+          "y": 572,
+          "w": 688,
+          "h": 88,
+          "font_px": 33.5,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(36, 31, 23)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              176,
+              572,
+              674,
+              43
+            ],
+            [
+              176,
+              616,
+              199,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SOURCES IN COMMENTS . RIN 1901-AB79",
+          "texts": [
+            "SOURCES IN COMMENTS . RIN 1901-AB79"
+          ],
+          "full": "SOURCES IN COMMENTS . RIN 1901-AB79",
+          "tag": "div",
+          "unsized": false,
+          "x": 176,
+          "y": 730,
+          "w": 580,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              176,
+              726,
+              580,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "COMMENTS CLOSE OCTOBER 9TH, 2026",
+          "texts": [
+            "COMMENTS CLOSE OCTOBER 9TH, 2026"
+          ],
+          "full": "COMMENTS CLOSE OCTOBER 9TH, 2026",
+          "tag": "div",
+          "unsized": false,
+          "x": 176,
+          "y": 766,
+          "w": 530,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              176,
+              762,
+              530,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1116,
+          "w": 204,
+          "h": 34,
+          "font_px": 34,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1112,
+              204,
+              42
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 104,
+          "y": 1170,
+          "w": 228,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 203, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1166,
+              228,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "10 / 10",
+          "texts": [
+            "10 / 10"
+          ],
+          "full": "10 / 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 869,
+          "y": 1231,
+          "w": 121,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 203, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              1231,
+              121,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the blank tag lying on the plywood bench",
+          "shadow": [
+            [
+              404,
+              926,
+              64,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              404,
+              960,
+              64,
+              14
+            ]
+          ]
+        },
+        {
+          "what": "the steel scribe lying across the tag",
+          "shadow": [
+            [
+              694,
+              896,
+              24,
+              12
+            ]
+          ],
+          "ground": [
+            [
+              694,
+              858,
+              24,
+              12
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 611,
+        "sites": 8,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": "line",
+          "tag": "div",
+          "text": "Nobody has said Alaska is in. Nobody has said Alaska is out.",
+          "min": 38,
+          "max": 56,
+          "maxLines": 2,
+          "size": 55.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        },
+        {
+          "id": "ask",
+          "tag": "div",
+          "text": "Which threshold should Alaska ask DOE to write down?",
+          "min": 28,
+          "max": 34,
+          "maxLines": 2,
+          "size": 33.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-10.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 6377,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 83.6,
+          "variance": 8483.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-09/slides/slide-10.html",
+        "sha1": "ec20749f295273dc35adabad1ea977e8fce33db9"
+      }
+    }
+  ]
+}

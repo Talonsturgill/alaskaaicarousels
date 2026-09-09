@@ -1695,6 +1695,56 @@
         "the ISOTYPE labels rebuilt clear of their own dot rows on 07",
         "slide 07 relit and the KODIAK halo strengthened, which moved artwork craft from 7 to 8 and the deck from 8.78 to 9.07"
       ]
+    },
+    {
+      "run_date": "2026-09-09",
+      "carousel_no": 54,
+      "slide_count": 10,
+      "hero_structure": "NEW: THE STAMPED FIELD AND THE PRINTED PAGE. The deck alternates between things a threshold is STRUCK INTO and things a definition is PRINTED ON, and the argument is which of the two the reader trusts. Steel on 01, 03, 05, 06, 07 and 09, paper on 02, 04 and 08, and 10 returns to the blank tag with nothing written on it yet. Every steel frame carries relief the light can be read off, every paper frame carries a cockled sheet with its own cast, and the one frame that is both, 07's gauge board, is where the numbers live.",
+      "atmosphere": "sodium lamp and galvanized steel, a yard at night lit by one low warm key from the lower right, az 118 el 34, with the bench frames warm on plywood and the yard frames cold on zinc",
+      "depth_technique": "occlusion plus attached cast plus a lit pool laid down first, with a real depth-of-field pass on 09 where the tag is the focal plane and the plate behind it goes off focus up the frame",
+      "line_voice": "instrument",
+      "continuity_device": "motif: a gold datum holding y=900 on all ten frames, struck into steel on 01, passing behind the pages on 08, BECOMING the 69 kV row of the ladder on 07, carrying a tick and going phantom-dashed past the date on 09, and turning up at its right terminal on 10 to rise into the Polaris and seal",
+      "hook_archetype": "NEW: THE SENTENCE THAT ISNT THERE",
+      "palette_family": "sodium-zinc",
+      "palette": "galvanized zinc and sodium lamp, with bond paper as the only warm field and forget-me-not reserved for Alaska institutions",
+      "palette_hexes": [
+        "#0E1822",
+        "#7C8996",
+        "#C3CBD2",
+        "#F2EBDC",
+        "#C9BFA8",
+        "#FFC72C",
+        "#7FB2FF"
+      ],
+      "type": "Fraunces display, Space Grotesk support, JetBrains Mono instrument",
+      "type_pairing": "Fraunces opsz 144 SOFT 100 WONK 1 + Space Grotesk + JetBrains Mono tabular lining",
+      "narrative_structure": "argument",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 5
+      },
+      "new_techniques_logged": [
+        "NEW: THE STAMPED FIELD AND THE PRINTED PAGE (hero structure)",
+        "NEW: THE SENTENCE THAT ISNT THERE (hook archetype)",
+        "NEW: CUTTER-RADIUS POCKETS. A milled pocket cannot have sharp internal corners, so its outline is built with arcTo at the tool's radius and its walls are stroked ONCE with a gradient across the key's axis. One stroke lights the lee wall and the lit lip together and follows the curve round, where four straight bands lie at every corner.",
+        "NEW: THE COCKLED SHEET. Paper lying on a surface never has four straight edges. One bowed quadratic outline serves as the fill, the clip AND the cast silhouette, which also makes it impossible for the cast to drift out of register with the sheet.",
+        "NEW: THE RELIEF REVERSAL. Slide 09's stamped type is RAISED, lit on its lower-right with its lee thrown up and left, the exact opposite of the struck plates on 01 and 05. Used once in the deck, on the one object that carries an instruction rather than a fact."
+      ],
+      "techniques": [
+        "reliefShade macro crown",
+        "zinc spangle as facet-normal lambert",
+        "AKENGRAVE two-axis bench",
+        "d3-free schematic strip",
+        "phantom dash by pathLength symmetry",
+        "parallel projection ladder linear in kV",
+        "translucent multiply highlighter with a chisel nib",
+        "two-strand helical tie wire",
+        "knurl population with per-facet lambert"
+      ],
+      "note": "The deck's two bookends are the SAME aluminium seen the other way round: slide 01's brushed lay runs at 14 degrees and slide 10's at 104, and slide 10's tag is slide 09's tag flipped blank side up. The only frame with no gold but the datum is 08, held out deliberately so the state's own voice owns it.",
+      "corrections": []
     }
   ]
 }

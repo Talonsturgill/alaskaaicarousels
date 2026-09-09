@@ -1,0 +1,71 @@
+{
+  "run_dir": "out/2026-09-09",
+  "render_report": "out/2026-09-09/render/render_report.json",
+  "aggregates_file": "out/2026-09-09/aggregates.json",
+  "detected": 7,
+  "declared": 7,
+  "detections": [
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Two definitions",
+      "text": "Two definitions, word for word the same.",
+      "n": 2,
+      "subject": "definitions"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "170 miles",
+      "text": "The Alaska Intertie runs 170 miles between Willow and Healy. The Alaska Energy A",
+      "n": 170,
+      "subject": "miles"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "89,000 MEMBERS",
+      "text": "CHUGACH NEARLY 89,000 MEMBERS",
+      "n": 89000,
+      "subject": "members"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "26,181 MEMBER-OWNERS",
+      "text": "HOMER ELECTRIC 26,181 MEMBER-OWNERS",
+      "n": 26181,
+      "subject": "member-owners"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Three Alaska figures",
+      "text": "Three Alaska figures sit above the line and none below it. Five utilities run ne",
+      "n": 3,
+      "subject": "alaska figures"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Five utilities",
+      "text": "Three Alaska figures sit above the line and none below it. Five utilities run ne",
+      "n": 5,
+      "subject": "utilities"
+    },
+    {
+      "slide": 9,
+      "kind": "duration",
+      "fragment": "120 DAYS",
+      "text": "RULES COME AT 120 DAYS",
+      "n": 120,
+      "unit": "days"
+    }
+  ],
+  "not_rederived": [],
+  "fails": [],
+  "warns": [
+    "S7 'Five utilities run nearly 700 miles between thos' [from_claim]: the noun 'utility' does not appear in claim C26; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

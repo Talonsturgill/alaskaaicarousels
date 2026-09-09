@@ -1,0 +1,241 @@
+<!doctype html>
+<!-- SLIDE 04 — THE HINGE. Two pages on the shop bench, set at identical size,
+     measure, leading and colour, sharing their clause word for word. The gold
+     datum runs under the RIGHT column only and stops at the gutter with a 45
+     degree cut, because the statute column has no such line. The bench is
+     AKENGRAVE on a genuinely two-axis form so the lay wraps the plank instead
+     of collapsing onto one iso-line. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#1A150F}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+#grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+  opacity:.07;pointer-events:none}
+h2{position:absolute;left:104px;top:108px;width:800px;font-family:"Fraunces",serif;
+  font-weight:600;color:#F4F8FF;line-height:1.0;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  text-shadow:0 0 6px rgba(16,12,7,.9),0 0 14px rgba(16,12,7,.8);}
+.ch{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:24px;letter-spacing:.09em;color:#1A1710;opacity:.78;
+  text-shadow:0 0 4px #EDE5D6,0 0 8px #EDE5D6;}
+.col{position:absolute;width:328px;font-family:"Space Grotesk",sans-serif;
+  font-weight:400;font-size:32px;line-height:1.34;color:#1A1710;}
+#chL{left:126px;top:334px;} #chR{left:602px;top:334px;}
+#colL{left:126px;top:388px;} #colR{left:602px;top:388px;}
+.turn{position:absolute;left:104px;top:1006px;width:880px;font-family:"Space Grotesk",sans-serif;
+  font-weight:500;font-size:34px;line-height:1.34;color:#F4F8FF;
+  text-shadow:0 0 6px rgba(16,12,7,.9),0 0 13px rgba(16,12,7,.85);}
+.polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+.ctr{position:absolute;right:90px;bottom:86px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:.12em;color:#C9BFA8;font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:0 0 5px rgba(16,12,7,.9);}
+</style></head><body
+  data-contacts='[{"what":"the two pages lying on the plywood bench","shadow":[[78,600,26,10]],"ground":[[28,600,26,10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div id="grain"></div>
+<h2 id="h2">Two definitions, word for word the same.</h2>
+<div class="ch" id="chL">16 U.S.C. 824o(a)(1)</div>
+<div class="col" id="colL">"facilities and control systems necessary for operating an interconnected electric energy transmission network"</div>
+<div class="ch" id="chR">EO 14421 SECTION 5(a)</div>
+<div class="col" id="colR">"facilities and control systems necessary for operating an interconnected electric energy transmission network"</div>
+<div class="turn">The statute carries a subsection about Alaska. The order carries a sentence about 69,000 volts.</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="ctr">04 / 10</div>
+
+<script>
+const W=1080,H=1350,SEED=20260909+4;
+const AZ=118, EL=34, DATUM=900;
+const LX=104, RX=580, PW=376, PY=300, PH=628;   // the two sheets
+const GUT=LX+PW+((RX)-(LX+PW))/2;
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h2'),{min:44,max:64,maxLines:2});
+  AK.fitText(document.getElementById('colL'),{min:26,max:32,maxLines:6});
+  AK.fitText(document.getElementById('colR'),{min:26,max:32,maxLines:6});
+  // the two columns share one size, so they can never diverge typographically
+  const fs=Math.min(parseFloat(getComputedStyle(document.getElementById('colL')).fontSize),
+                    parseFloat(getComputedStyle(document.getElementById('colR')).fontSize));
+  document.getElementById('colL').style.fontSize=fs+'px';
+  document.getElementById('colR').style.fontSize=fs+'px';
+  const rg=AK.rng(SEED+9);
+
+  /* Two sheets of the same stock, so they cockle the same way and the frame's
+     one measurable difference stays the gold line and not the paper. Drawn as
+     one bowed outline used for the fill, the clip and the cast. */
+  function sheetPath(x,y,w,h,b){   // a SUBPATH: the caller owns beginPath
+    cx.moveTo(x,y);
+    cx.quadraticCurveTo(x+w*0.5, y-b,       x+w, y+b*0.30);
+    cx.quadraticCurveTo(x+w+b*0.7, y+h*0.5, x+w-b*0.28, y+h);
+    cx.quadraticCurveTo(x+w*0.5, y+h+b*0.8, x, y+h-b*0.22);
+    cx.quadraticCurveTo(x-b*0.6, y+h*0.5,   x, y);
+    cx.closePath();
+  }
+
+  cx.fillStyle='#120E09'; cx.fillRect(0,0,W,H);
+
+  /* ---- THE PLYWOOD BENCH. two-axis form, plank crown across u and a saw-scar
+         ramp across v, so the lay wraps rather than knotting. --------------- */
+  const eng=AKENGRAVE.create({seed:SEED, light:{azDeg:AZ, elDeg:EL}});
+  eng.reserve(AKENGRAVE.boxesFor("h2,.ch,.col,.turn,.ctr"));
+  eng.surface(cx,{
+    region:[0,0,W,H],
+    form:(x,y)=> 26*Math.cos((x-540)/236) + 17*Math.sin((y-300)/196)
+               + 9*AK.fbm2(x*0.0032,y*0.0052,3),
+    tone:(x,y)=> 0.34 + 0.24*AK.fbm2(x*0.0014,y*0.0026,3)
+               + 0.10*Math.sin((y+x*0.35)/318),
+    budget:{main:5.0, cross:6.4, dots:true},
+    inkLo:'#241E18', inkHi:'#6E6152', alpha:1.0, seedDeg:37});
+  for(let i=0;i<9;i++){                        // plank joints, lit stroke pairs
+    const y=104+i*152;
+    cx.fillStyle='rgba(10,7,4,0.52)'; cx.fillRect(0,y,W,3.2);
+    cx.fillStyle='rgba(206,192,170,0.13)'; cx.fillRect(0,y+3.2,W,1.4);
+  }
+
+  /* THE SAME TABLE AS 08. Both frames declare one bench with the camera
+     translated, and a shared texture does not say that, a shared object does.
+     08 carries this ring whole near its right edge; here the camera sits
+     further left, so the same ring is cut by the frame. */
+  { const cxr=1072, cyr=304, R=62;
+    cx.save(); cx.beginPath(); cx.rect(0,0,W,H); cx.clip();
+    cx.translate(cxr,cyr); cx.scale(1,0.94);
+    for(let i=0;i<420;i++){
+      const a=rg()*6.283, rr=R*(0.86+0.16*rg());
+      cx.fillStyle='rgba(74,48,22,'+(0.05+0.12*rg()).toFixed(3)+')';
+      cx.beginPath(); cx.arc(Math.cos(a)*rr,Math.sin(a)*rr,1.2+rg()*2.6,0,7); cx.fill(); }
+    cx.strokeStyle='rgba(58,36,16,0.34)'; cx.lineWidth=3.2;
+    cx.beginPath(); cx.arc(0,0,R,0,7); cx.stroke();
+    cx.strokeStyle='rgba(120,88,48,0.14)'; cx.lineWidth=1.4;
+    cx.beginPath(); cx.arc(0,0,R*0.90,0,7); cx.stroke();
+    cx.fillStyle='rgba(52,34,16,0.07)'; cx.beginPath(); cx.arc(0,0,R*0.90,0,7); cx.fill();
+    cx.restore(); }
+
+  /* ---- the steel strip cut in at the far left edge ---------------------- */
+  { const sw=62;
+    const sg=cx.createLinearGradient(0,0,sw,H);
+    sg.addColorStop(0,'#1B242C'); sg.addColorStop(.5,'#5C6874'); sg.addColorStop(1,'#141B22');
+    cx.fillStyle=sg; cx.fillRect(0,0,sw,H);
+    for(let i=0;i<1500;i++){
+      const y=rg()*H, x0=rg()*sw, L=10+rg()*46, a=0.03+0.10*rg();
+      cx.strokeStyle=(rg()>0.5?'rgba(226,233,238,':'rgba(14,19,25,')+a.toFixed(3)+')';
+      cx.lineWidth=0.75; cx.beginPath(); cx.moveTo(x0,y);
+      cx.lineTo(x0+L*0.97,y+L*0.24); cx.stroke(); }
+    cx.fillStyle='rgba(255,215,154,0.30)'; cx.fillRect(sw-2.2,0,2.2,H);
+    cx.fillStyle='rgba(6,9,13,0.72)'; cx.fillRect(sw,0,5,H);
+  }
+
+  /* ---- pools, casts, sheets. both sheets built by ONE loop so they cannot
+         differ in construction, which is the slide's whole argument. ------ */
+  const dx=-Math.sin(AZ*Math.PI/180), dy=Math.cos(AZ*Math.PI/180);
+  for(const sx of [LX, RX]){
+    cx.save(); cx.globalCompositeOperation='screen';
+    cx.translate(sx+PW*0.5, PY+PH*0.5); cx.scale(1,0.86);
+    const pool=cx.createRadialGradient(0,0,0,0,0,430);
+    pool.addColorStop(0,'rgba(196,178,140,0.30)');
+    pool.addColorStop(.58,'rgba(140,124,94,0.14)');
+    pool.addColorStop(1,'rgba(60,50,34,0)');
+    cx.fillStyle=pool; cx.beginPath(); cx.arc(0,0,430,0,7); cx.fill(); cx.restore();
+
+    cx.save(); cx.globalCompositeOperation='multiply';
+    cx.beginPath(); cx.rect(0,0,W,H);
+    sheetPath(sx-2,PY-2,PW+4,PH+4,6); cx.clip('evenodd');
+    for(let k=38;k>=1;k--){
+      const t=k/38, a=0.58*Math.pow(1-t,1.5);
+      cx.fillStyle='rgba(14,10,6,'+a.toFixed(3)+')';
+      cx.fillRect(sx+dx*k, PY+dy*k, PW, PH); }
+    cx.restore();
+    cx.fillStyle='rgba(9,6,4,0.86)';
+    cx.fillRect(sx-5,PY-5,5.5,PH+10); cx.fillRect(sx-5,PY-5,PW+10,5.5);
+
+    cx.save(); cx.beginPath(); sheetPath(sx,PY,PW,PH,6); cx.clip();
+    const pg=cx.createLinearGradient(sx+PW,PY,sx,PY+PH);
+    pg.addColorStop(0,'#F2EBDC'); pg.addColorStop(.54,'#E1D9C7'); pg.addColorStop(1,'#C2B9A5');
+    cx.fillStyle=pg; cx.beginPath(); sheetPath(sx,PY,PW,PH,6); cx.fill();
+    for(let i=0;i<4200;i++){
+      const x=sx+rg()*PW, y=PY+rg()*PH, a=0.02+0.05*rg();
+      cx.fillStyle=(rg()>0.5?'rgba(255,252,244,':'rgba(66,58,44,')+a.toFixed(3)+')';
+      cx.fillRect(x,y,1,1); }
+    cx.restore();
+    cx.strokeStyle='rgba(70,62,48,0.30)'; cx.lineWidth=1.0;
+    cx.beginPath(); sheetPath(sx+.5,PY+.5,PW-1,PH-1,6); cx.stroke();
+  }
+
+  /* ---- the set lines that are the rest of each page, clipped out of type - */
+  { cx.save();
+    cx.beginPath(); sheetPath(LX,PY,PW,PH,6); sheetPath(RX,PY,PW,PH,6);
+    for(const el of document.querySelectorAll('.ch,.col')){
+      const r=el.getBoundingClientRect();
+      cx.rect(r.left-13, r.top-9, r.width+26, r.height+18); }
+    cx.clip('evenodd');
+    /* Both pages take the SAME rag from the same seed, because identity is this
+       frame's whole product and two different randomisations are a second
+       difference on a slide that promises exactly one. And both stop at 862, so
+       the band the datum runs through is blank paper on both sheets and the gold
+       line under the right column is the only thing in it. */
+    for(const sx of [LX,RX]){
+      const rg2=AK.rng(SEED+77);
+      for(let y=PY+34; y<862; y+=14.2){
+        const r=rg2(), w=(r<0.13)? PW*(0.26+0.5*r*7) : PW-64;
+        cx.fillStyle='rgba(30,26,18,'+(0.42+0.18*r).toFixed(3)+')';
+        cx.fillRect(sx+32, y, Math.max(36,w), 2.4); } }
+    cx.restore(); }
+
+  /* ---- D1. under the RIGHT column only, 45 degree cut at the gutter ------ */
+  /* #FFC72C at 1.25px on cream paper is about 1.1:1, which is the same failure
+     slide 03's label had. The casing has to do more work where the line crosses
+     the sheet, and the core has to weigh more, so the gold reads as an underline
+     belonging to the right definition rather than as a line passing behind it. */
+  cx.fillStyle='#0B0803'; cx.fillRect(GUT,DATUM-1.6,W-GUT,4.2);
+  cx.fillStyle='#FFC72C'; cx.fillRect(GUT,DATUM,W-GUT,1.25);
+  { const px0=Math.max(GUT,RX-6), px1=RX+PW+6;      // the paper crossing only
+    cx.fillStyle='rgba(26,23,16,0.88)'; cx.fillRect(px0,DATUM-3.0,px1-px0,7.0);
+    cx.fillStyle='#FFC72C'; cx.fillRect(px0,DATUM-0.4,px1-px0,2.2);
+    cx.fillStyle='rgba(255,226,174,0.55)'; cx.fillRect(px0,DATUM+1.8,px1-px0,1.2); }
+  cx.fillStyle='#FFC72C'; cx.beginPath();
+  cx.moveTo(GUT,DATUM-6); cx.lineTo(GUT+7,DATUM+1.25); cx.lineTo(GUT,DATUM+1.25);
+  cx.closePath(); cx.fill();
+
+  /* ---- the pencil across the gutter, six faces on one key --------------- */
+  { const px=GUT-16, py=1176, L=250, wdt=17;
+    cx.save(); cx.translate(px,py); cx.rotate(-0.30);
+    cx.fillStyle='rgba(8,5,3,0.60)';
+    cx.beginPath(); cx.ellipse(L*0.5+6,wdt*0.5+7,L*0.48,8,0,0,7); cx.fill();
+    const faces=[['#2E2A20',-0.5],['#57503C',0.15],['#8A7F60',0.75],['#5E5642',0.35]];
+    let yy=0;
+    for(const f of faces){ const fh=wdt/faces.length;
+      cx.fillStyle=f[0]; cx.fillRect(0,yy,L,fh+0.5);
+      cx.fillStyle='rgba(255,215,154,'+(0.05+0.16*Math.max(0,f[1])).toFixed(3)+')';
+      cx.fillRect(0,yy+fh-1.1,L,1.1); yy+=fh; }
+    cx.fillStyle='#C9BFA8'; cx.beginPath();
+    cx.moveTo(L,0); cx.lineTo(L+26,wdt*0.5); cx.lineTo(L,wdt); cx.closePath(); cx.fill();
+    cx.fillStyle='#16120B'; cx.beginPath();
+    cx.moveTo(L+18,wdt*0.36); cx.lineTo(L+26,wdt*0.5); cx.lineTo(L+18,wdt*0.64); cx.closePath(); cx.fill();
+    cx.restore(); }
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.11,saturation:0.95,contrast:1.12,filmic:true,
+    lift:[0.008,0.010,0.016],gain:[1.014,1.0,0.976],vignette:0.24,
+    bloom:{threshold:0.87,strength:0.11,radius:7},
+    grain:{amount:0.036,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.29});
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,50,SEED)+')';
+
+  document.body.setAttribute('data-encodes', JSON.stringify([
+    /* The rects are cut to where the datum ACTUALLY drew, read off the render
+       at y 900 to 902, not to the arithmetic that positioned it. A 20px band
+       around a 2px rule is 90 percent the same paper on both sides, which is
+       the two regions agreeing about the paper rather than about the gold. */
+    {claim:"only the right column has a gold line under it",
+     reads:"differ",
+     a:[[RX+40,DATUM-2,220,6]],
+     b:[[LX+40,DATUM-2,220,6]]}]));
+  return true;
+})();
+</script>
+</body></html>

@@ -1369,6 +1369,27 @@
       "confidence": 0.9,
       "born": "2026-09-07",
       "evidence": "No.53's round 2 fixed four text collisions and introduced a fifth: right-aligning slide 05's value column to the gutter pulled it left onto the longest of four names and printed SERVICESHQ003425CE092. Merit had risen 8.18 to 8.77 and the run was still capped at 6.9. The repair that held was to place the column from a MEASURED widest-name width with an __akChecks assertion, because no constant can be right for four names of different lengths."
+    },
+    {
+      "id": "a-path-helper-never-opens-its-own-path",
+      "instinct": "A GEOMETRY HELPER CONTRIBUTES A SUBPATH AND NEVER CALLS beginPath(). The attached-cast idiom is beginPath(); rect(0,0,W,H); <object outline>; clip('evenodd'), so the object is a hole in a full-frame clip. Refactor that outline into a helper that opens with beginPath and the full-frame rect is silently discarded, the clip becomes the object, and the cast is drawn INSIDE the object where its own fill hides it. Nothing looks wrong, because a missing shadow is an absence and not an artefact.",
+      "confidence": 0.95,
+      "born": "2026-09-09",
+      "evidence": "No.54 refactored four paper slides onto a shared sheetPath() for the cockled outline and lost the casts on 02, 03, 04 and 08 in one commit. Only the contact gate caught it, and only on the two slides whose declared rects happened to sample the right band; the other two rendered clean and wrong."
+    },
+    {
+      "id": "evenodd-cannot-reserve-overlapping-boxes",
+      "instinct": "EVEN-ODD CANNOT EXPRESS 'EVERYTHING EXCEPT THESE BOXES' WHEN THE BOXES OVERLAP. A region covered by the outer shape plus two element rects has three crossings, which is odd, which is inside again, so art paints back into the reserve exactly where two reserved elements touch. Reserve type by drawing the art to a scratch canvas and punching the boxes out with globalCompositeOperation='destination-out', which is order-independent.",
+      "confidence": 0.9,
+      "born": "2026-09-09",
+      "evidence": "No.54 slide 02 reserved a hanging subsection letter and the quotation it hangs beside. Their boxes overlapped by 25px and set lines painted into the gap, reading as a broken glyph at the slide's own declared focal point. Machine QA called it 'busy art under text', which is the right flag with the wrong cause and would never have led to the fix."
+    },
+    {
+      "id": "a-critics-measurement-is-a-hypothesis",
+      "instinct": "MEASURE A CRITIC'S MEASUREMENT BEFORE REBUILDING THE SLIDE AROUND IT. Pixel critics report numbers read off a render by eye, and a wrong one can send a round at the deck's load-bearing claim. Re-derive any measurement a critic uses to call a claim false, from the PNG, and write down that the check was made.",
+      "confidence": 0.85,
+      "born": "2026-09-09",
+      "evidence": "No.54's 07/08 critic reported slide 08's two agency pages as 5.6 percent different in width, which would have made the deck's one measurable honesty claim measurably false. Sampled off the render at three heights, both pages are 397.5 design px to within half a pixel. Acting on it would have rebuilt a correct slide."
     }
   ]
 }

@@ -551,6 +551,42 @@ ADDITIVE_OPS = {"lighter", "plus-lighter", "plus"}
 SAME_LINE_MIN_X = 4.0    # design px of shared column; under this is a rounding edge
 SAME_LINE_VFRAC = 0.5    # share of the shorter box's height the two must both hold
 
+# A PATH THROWN AWAY, AND A RESERVE THAT IS INSIDE AGAIN (2026-09-09). See
+# render.py's CLIP_RULE_HOOK_JS for the two defects and what it records. Two
+# instruments, deliberately two different strengths, and the corpus is why.
+#
+# FITTED OVER 32 SHIPPED SLIDES: out/2026-09-09 (ten), examples/demo-deck (four),
+# runs/2026-09-07 (nine), runs/2026-09-05 (nine), re-rendered through the hook.
+#
+#   * A FULL-FRAME PATH DISCARDED UNPAINTED -> FAIL. Zero of the 32 slides do
+#     it, including the four this defect actually bit, because they were
+#     repaired before they shipped. The reconstruction in
+#     tests/clip_reserve_verify.py fires. There is nothing to tune: a path with
+#     a full-frame subpath that nothing painted from is either the attached-cast
+#     idiom having lost its outer rect or work done for nothing, and no drawing
+#     wants either. Non-full-frame discards WARN on the same evidence (also zero
+#     over the 32).
+#
+#   * TWO OVERLAPPING RECT RESERVES IN ONE EVEN-ODD CLIP -> WARN, not a FAIL,
+#     and the reason is in the corpus. The geometry is certain -- the outer
+#     shape plus two rects is three crossings, which is odd, which is INSIDE,
+#     so the reserve is not reserved there and the art paints back in -- but
+#     whether the region carries visible ink is not what this instrument
+#     measures. Run No.53 SHIPPED five slides doing it: its clipOut() helper
+#     punches six to ten padded rects out of a frame rect, and on slide 03 two
+#     of the four reported pairs are real element overlaps (164x26 and 164x14
+#     design px of unreserved paper between two type blocks) while two are 6px
+#     slivers where only the 8px padding touches. There is no gap between those
+#     two populations to put a threshold in, and inventing one would be fitting
+#     to one helper's padding. So this reports rather than judges, and it
+#     reports the geometry and the repair: qa.py already FAILS the visible
+#     outcome (label crossed by art, a canvas mark inside a reserved block), and
+#     what those flags have never carried is the CAUSE. No.54's own instance was
+#     reported as "busy art under text", the right flag with the wrong cause,
+#     and nobody would have reached the fix from it.
+EVENODD_MIN_OVERLAP = 1.0   # design px in BOTH axes; render.py measures in device px
+EVENODD_MAX_WARNS = 6       # distinct pairs named per slide before the tail count
+
 
 FEED_W = 432          # the thumb width the doctrine's legibility test uses
 
@@ -2799,6 +2835,90 @@ def main():
                 res["fails"].append(msg)
             except Exception as e:
                 res["warns"].append("flat-core record unreadable (%s)" % e)
+
+        # A FULL-FRAME PATH THROWN AWAY (2026-09-09). render.py's clip hook
+        # states the idiom and what it records; this is the verdict. The cost of
+        # missing it is silence: run No.54 lost the cast shadows of four slides
+        # to one refactor and every render looked plausible, because a missing
+        # shadow is an absence and not an artefact.
+        for pd in rec.get("path_discards", []):
+            try:
+                k = (pd.get("canvas_w") or (design_w * scale)) / max(1, design_w)
+                box = ("(%d,%d) %dx%d design px"
+                       % (pd.get("x0", 0) / k, pd.get("y0", 0) / k,
+                          (pd.get("x1", 0) - pd.get("x0", 0)) / k,
+                          (pd.get("y1", 0) - pd.get("y0", 0)) / k))
+                where = pd.get("discarded_at") or "?"
+                built = pd.get("built_at") or "?"
+                if pd.get("full"):
+                    res["fails"].append(
+                        "a full-frame path was thrown away before anything painted "
+                        "it: the path was open at %s when %s called beginPath(), "
+                        "which discards it. The path was %d subpath(s) and one of "
+                        "them covered the whole frame, %s. That is the attached-cast "
+                        "idiom losing its outer rect -- beginPath(); rect(0,0,W,H); "
+                        "<outline>; clip('evenodd') reserves everything EXCEPT the "
+                        "object, and without the rect the clip becomes the object, "
+                        "so the cast is drawn inside it where the object's own fill "
+                        "hides it. A geometry helper contributes a subpath and never "
+                        "opens its own path: delete the beginPath() at %s, or build "
+                        "the frame rect AFTER calling the helper."
+                        % (built, where, pd.get("n", 0), box, where))
+                else:
+                    res["warns"].append(
+                        "a path was built and thrown away unpainted: %s built %d "
+                        "subpath(s), largest %s, and %s called beginPath() before "
+                        "any fill, stroke or clip. Nothing was drawn from it. Either "
+                        "paint it or stop building it -- and if a helper is doing "
+                        "the discarding, see the full-frame case: a helper contributes "
+                        "a subpath and never calls beginPath()."
+                        % (built, pd.get("n", 0), box, where))
+            except Exception as e:
+                res["warns"].append("path-discard record unreadable (%s)" % e)
+
+        # AN EVEN-ODD RESERVE THAT IS INSIDE AGAIN (2026-09-09). Same hook. The
+        # rects are the ones render.py kept after excluding the outer shape by
+        # area, so this is comparing holes against holes. Deduped by geometry
+        # and call site, because a reserve helper is normally called once per
+        # art layer and would otherwise say the same thing seven times.
+        seen_ov = {}
+        for eo in rec.get("evenodd_ops", []):
+            try:
+                k = (eo.get("canvas_w") or (design_w * scale)) / max(1, design_w)
+                for ov in eo.get("overlaps", []):
+                    if (ov["iw"] / k < EVENODD_MIN_OVERLAP
+                            or ov["ih"] / k < EVENODD_MIN_OVERLAP):
+                        continue
+                    key = (eo.get("at") or "?", ov["ax"], ov["ay"], ov["aw"],
+                           ov["ah"], ov["bx"], ov["by"], ov["bw"], ov["bh"])
+                    if key in seen_ov:
+                        continue
+                    seen_ov[key] = (eo, ov, k)
+            except Exception as e:
+                res["warns"].append("even-odd record unreadable (%s)" % e)
+        for i, (eo, ov, k) in enumerate(seen_ov.values()):
+            if i >= EVENODD_MAX_WARNS:
+                res["warns"].append(
+                    "even-odd reserve: %d more overlapping pair(s) on this slide, "
+                    "same cause" % (len(seen_ov) - EVENODD_MAX_WARNS))
+                break
+            res["warns"].append(
+                "two boxes reserved out of the same even-odd %s overlap, so the "
+                "reserve is not reserved where they touch: (%d,%d) %dx%d and "
+                "(%d,%d) %dx%d share %dx%d design px, at %s. Under even-odd a "
+                "region covered by the outer shape plus TWO rects has three "
+                "crossings, which is odd, which is inside again, and the art "
+                "paints straight back into the gap between the two elements. "
+                "Even-odd can't express 'everything except these boxes' when the "
+                "boxes overlap. Draw the art to a scratch canvas and punch the "
+                "boxes out with globalCompositeOperation='destination-out', which "
+                "is order-independent, or merge the two rects into one. If the "
+                "shared strip is only the padding you inflated each box by and "
+                "the elements themselves do not touch, this is harmless."
+                % (eo.get("op", "clip"),
+                   ov["ax"] / k, ov["ay"] / k, ov["aw"] / k, ov["ah"] / k,
+                   ov["bx"] / k, ov["by"] / k, ov["bw"] / k, ov["bh"] / k,
+                   ov["iw"] / k, ov["ih"] / k, eo.get("at") or "?"))
 
         # DECLARED ART THAT NEVER REACHED THE SLIDE (2026-08-25). Opt-in like
         # the contracts above, and like them the FAIL is the slide

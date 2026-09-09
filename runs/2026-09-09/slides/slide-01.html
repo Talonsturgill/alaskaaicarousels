@@ -1,0 +1,280 @@
+<!doctype html>
+<!-- SLIDE 01 — COVER. The claim struck into a transformer's rating plate.
+     The plate is the reserve AND the picture: brushed lay, oil film, four bolt
+     heads with their own casts, and the display cut into the metal. The tank
+     below it is ONE reliefShade pass on a macro form; every fin, the belt and
+     the fasteners are drawn afterwards as lit stroke pairs on the same key. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#04080B}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+#grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+  opacity:.07;pointer-events:none}
+h1{position:absolute;left:150px;top:566px;width:790px;font-family:"Fraunces",serif;
+  font-weight:600;color:#F4F8FF;line-height:.98;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  text-shadow:-2px -2px 0 rgba(4,8,11,.85), 2px 3px 0 rgba(255,215,154,.28);}
+.kick{position:absolute;left:150px;top:512px;font-family:"JetBrains Mono",monospace;
+  font-weight:500;font-size:26px;letter-spacing:.10em;color:#E6EDF2;
+  text-shadow:0 0 4px #0B1219,0 0 8px #0B1219,1px 1px 0 #0B1219,-1px -1px 0 #0B1219;}
+.flange{position:absolute;left:186px;top:922px;font-family:"JetBrains Mono",monospace;
+  font-weight:400;font-size:24px;letter-spacing:.10em;color:#DCE3E8;
+  text-shadow:0 0 4px #0B1219,0 0 9px #0B1219,1px 1px 0 #0B1219,-1px -1px 0 #0B1219;}
+.polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+.ctr{position:absolute;right:90px;bottom:86px;padding:5px 11px;background:rgba(4,8,11,.68);border-radius:4px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:.12em;color:#DCE4EA;font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:-1px -1px 0 rgba(4,8,11,.92),0 0 6px rgba(4,8,11,.96),0 0 14px rgba(4,8,11,.88);}
+</style></head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div id="grain"></div>
+<div class="kick">EXECUTIVE ORDER 14421 . AUGUST 26TH, 2026</div>
+<h1 id="h1">One sentence of federal law names Alaska. The order doesn't.</h1>
+<div class="flange">BULK POWER SYSTEM . 69 KV AND ABOVE</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="ctr">01 / 10</div>
+
+<script>
+const W=1080,H=1350,SEED=20260909+1;
+const AZ=118, EL=34;                       // the deck's one key, declared once
+const PX=110, PY=470, PW=880, PH=500;      // the rating plate
+const DATUM=900;                           // the 69 kV datum, fixed deck-wide
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h1'),{min:64,max:112,maxLines:3});
+
+  /* ---- yard night, and the frost-smoke band ------------------------------ */
+  const sky=cx.createLinearGradient(0,0,0,H);
+  sky.addColorStop(0,'#04080B'); sky.addColorStop(.28,'#0A1420'); sky.addColorStop(1,'#0E1A26');
+  cx.fillStyle=sky; cx.fillRect(0,0,W,H);
+  { const hz=cx.createLinearGradient(0,176,0,318);
+    hz.addColorStop(0,'rgba(60,76,88,0)'); hz.addColorStop(.5,'rgba(60,76,88,0.16)');
+    hz.addColorStop(1,'rgba(60,76,88,0)');
+    cx.fillStyle=hz; cx.fillRect(0,176,W,142); }
+
+  /* ---- the tank flank. ONE reliefShade pass, ONE spatial frequency ------- */
+  AK.reliefShade(cx,{
+    x:0, y:250, w:W, h:1100, scale:2, seed:SEED, strength:150,
+    height:(u,v)=>{
+      const cyl=Math.sqrt(Math.max(0,1-Math.pow((u-0.5)*1.86,2)));
+      const belly=1-0.14*Math.pow(Math.max(0,v-0.66)/0.34,2);
+      const crown=1-0.07*Math.pow(Math.max(0,0.12-v)/0.12,2);
+      return Math.max(0,Math.min(1,cyl*belly*crown*0.94));
+    },
+    lights:[{az:AZ,el:EL,w:1.0}],
+    ambient:0.18, diffuse:1.0, gamma:1.06,
+    low:'#0E1A26', high:'#6C7A87',
+    mask:(u,v)=>Math.min(1, v/0.02)});
+
+  /* ---- fins, belt, fasteners: drawn AFTER, as lit stroke pairs ----------- */
+  const NF=13, rs=AK.rng(SEED+7);
+  cx.save(); cx.beginPath(); cx.rect(0,250,W,1100); cx.clip();
+  for(let i=0;i<NF;i++){
+    const u=(i+0.5)/NF, x=u*W;
+    const cyl=Math.sqrt(Math.max(0,1-Math.pow((u-0.5)*1.86,2)));
+    if(cyl<=0) continue;
+    const wpx=Math.max(1.2, 11*cyl);
+    const lam=0.20+0.80*(0.5+0.5*Math.sin((u-0.5)*Math.PI));
+    cx.fillStyle='rgba(4,8,11,'+(0.40*cyl+0.10).toFixed(3)+')';
+    cx.fillRect(x-wpx/2-2.6, 268, 2.6, 1070);
+    cx.fillStyle='rgba(28,36,44,'+(0.24*cyl).toFixed(3)+')';
+    cx.fillRect(x-wpx/2, 268, wpx, 1070);
+    cx.fillStyle='rgba(255,215,154,'+(0.06+0.24*lam*cyl).toFixed(3)+')';
+    cx.fillRect(x+wpx/2-1.6, 268, 1.8, 1070);
+  }
+  const BELT=1016;
+  cx.fillStyle='rgba(4,8,11,0.58)'; cx.fillRect(0,BELT-8,W,10);
+  cx.fillStyle='rgba(255,215,154,0.24)'; cx.fillRect(0,BELT+2,W,2.2);
+  for(let i=0;i<9;i++){
+    const x=54+i*((W-108)/8), y=BELT-3;
+    cx.fillStyle='rgba(4,6,9,0.62)';
+    cx.beginPath(); cx.ellipse(x-4.3,y-2.3,8.5,3.6,0,0,7); cx.fill();
+    const bg=cx.createRadialGradient(x-2.6,y-2.6,0.8,x,y,9);
+    bg.addColorStop(0,'#C3CBD2'); bg.addColorStop(.58,'#6C767C'); bg.addColorStop(1,'#20262B');
+    cx.fillStyle=bg; cx.beginPath(); cx.arc(x,y,7.2,0,7); cx.fill();
+  }
+  /* ---- the LOWER RADIATOR BANK. tighter pitch, its own lit stroke pairs,
+         because the frame's bottom band has to carry modelled tone and a bare
+         flank between the belt and the foot is exactly the dead lower zone this
+         run is attacking. ------------------------------------------------- */
+  const NR=27;
+  for(let i=0;i<NR;i++){
+    const u=(i+0.5)/NR, x=u*W;
+    const cyl=Math.sqrt(Math.max(0,1-Math.pow((u-0.5)*1.78,2)));
+    if(cyl<=0) continue;
+    const wr=Math.max(1.0, 9.5*cyl);
+    const lam=0.18+0.82*(0.5+0.5*Math.sin((u-0.5)*Math.PI));
+    /* a cooling fin is pressed tube, so it returns in a half round at each end
+       rather than stopping square against the manifold */
+    const fy0=1046, fy1=1314, rr=wr/2;
+    cx.fillStyle='rgba(24,32,40,'+(0.30*cyl).toFixed(3)+')';
+    cx.beginPath();
+    cx.moveTo(x-rr, fy0+rr);
+    cx.arc(x, fy0+rr, rr, Math.PI, 0);
+    cx.lineTo(x+rr, fy1-rr);
+    cx.arc(x, fy1-rr, rr, 0, Math.PI);
+    cx.closePath(); cx.fill();
+    cx.strokeStyle='rgba(4,8,11,'+(0.46*cyl+0.12).toFixed(3)+')';
+    cx.lineWidth=2.4; cx.beginPath();
+    cx.moveTo(x-rr-1.2, fy0+rr); cx.lineTo(x-rr-1.2, fy1-rr); cx.stroke();
+    cx.strokeStyle='rgba(255,215,154,'+(0.07+0.30*lam*cyl).toFixed(3)+')';
+    cx.lineWidth=1.7; cx.beginPath();
+    cx.moveTo(x+rr-0.8, fy0+rr); cx.lineTo(x+rr-0.8, fy1-rr); cx.stroke();
+    // each fin's own header stub, top and bottom, so the bank reads as plumbing
+    cx.strokeStyle='rgba(255,215,154,'+(0.05+0.22*lam*cyl).toFixed(3)+')';
+    cx.lineWidth=2.0; cx.beginPath();
+    cx.moveTo(x-rr, 1041); cx.lineTo(x+rr+1.5, 1041);
+    cx.moveTo(x-rr, 1313); cx.lineTo(x+rr+1.5, 1313); cx.stroke();
+  }
+  // the manifolds the bank hangs between, each a lit stroke pair
+  for(const my of [1034, 1306]){
+    cx.fillStyle='rgba(4,8,11,0.62)'; cx.fillRect(0,my-7,W,8);
+    cx.fillStyle='rgba(200,212,222,0.16)'; cx.fillRect(0,my+1,W,2.6);
+    cx.fillStyle='rgba(255,215,154,0.20)'; cx.fillRect(0,my+3.4,W,1.4);
+  }
+  // an oil level gauge, a real fitting, off-axis right
+  { const gx=642, gy=1096, gw=34, gh=150;
+    cx.fillStyle='rgba(4,8,11,0.66)'; cx.fillRect(gx-3,gy-3,gw+6,gh+6);
+    const gg=cx.createLinearGradient(gx,gy,gx+gw,gy+gh);
+    gg.addColorStop(0,'#1D262F'); gg.addColorStop(.5,'#55636F'); gg.addColorStop(1,'#151C24');
+    cx.fillStyle=gg; cx.fillRect(gx,gy,gw,gh);
+    cx.fillStyle='rgba(168,117,46,0.55)'; cx.fillRect(gx+5,gy+58,gw-10,gh-64);
+    cx.fillStyle='rgba(255,215,154,0.42)'; cx.fillRect(gx+gw-2.2,gy,2.2,gh);
+    for(let t=0;t<7;t++){ cx.fillStyle='rgba(226,233,238,0.30)';
+      cx.fillRect(gx+gw-13, gy+14+t*20, 9, 1.2); }
+  }
+
+  cx.restore();
+
+  /* ---- THE LIT GROUND the plate sits in, screened BEFORE the plate ------- */
+  cx.save(); cx.globalCompositeOperation='screen';
+  cx.translate(PX+PW*0.46, PY+PH*0.46); cx.scale(1, 0.62);
+  const pool=cx.createRadialGradient(0,0,0,0,0,760);
+  pool.addColorStop(0,'rgba(150,168,186,0.30)');
+  pool.addColorStop(.55,'rgba(104,122,144,0.14)');
+  pool.addColorStop(1,'rgba(40,52,70,0)');
+  cx.fillStyle=pool; cx.beginPath(); cx.arc(0,0,760,0,7); cx.fill(); cx.restore();
+
+  /* ---- THE CAST. az 118 lights from the lower right, so the lee falls UP AND
+         LEFT. The cast is therefore the object's own silhouette offset along
+         that direction and clipped OUT of the object, never a quad hung off the
+         bottom edge, which would throw the shadow back across the thing casting
+         it. A hard narrow seam is drawn last down the lit and shaded edges,
+         because a directional cast keeps its darkest point off the foot and the
+         seam is what says ATTACHED. ---------------------------------------- */
+  const dx=-Math.sin(AZ*Math.PI/180), dy=Math.cos(AZ*Math.PI/180);
+  cx.save(); cx.globalCompositeOperation='multiply';
+  cx.beginPath(); cx.rect(0,0,W,H); cx.rect(PX-2,PY-2,PW+4,PH+4); cx.clip('evenodd');
+  for(let k=46;k>=1;k--){
+    const t=k/46, a=0.62*Math.pow(1-t,1.5);
+    cx.fillStyle='rgba(10,14,20,'+a.toFixed(3)+')';
+    cx.fillRect(PX+dx*k, PY+dy*k, PW, PH);
+  }
+  cx.restore();
+  cx.fillStyle='rgba(6,9,13,0.88)';
+  cx.fillRect(PX-5,PY-5,5.5,PH+10);            // seam, shaded edge
+  cx.fillRect(PX-5,PY-5,PW+10,5.5);
+  cx.fillStyle='rgba(6,9,13,0.42)';
+  cx.fillRect(PX+PW-0.5,PY,4.0,PH);        // seam, lit edge, lighter
+
+  /* ---- THE RATING PLATE. brushed lay, oil film, bolts ------------------- */
+  cx.save();
+  cx.beginPath(); cx.roundRect(PX,PY,PW,PH,9); cx.clip();
+  const pg=cx.createLinearGradient(PX,PY,PX+PW*0.68,PY+PH);
+  pg.addColorStop(0,'#27333D'); pg.addColorStop(.46,'#5B6874'); pg.addColorStop(1,'#1C252E');
+  cx.fillStyle=pg; cx.fillRect(PX,PY,PW,PH);
+  const LAY=14*Math.PI/180;
+  for(let i=0;i<4200;i++){
+    const y=PY+rs()*PH, x0=PX+rs()*PW, L=22+rs()*120, a=0.03+0.10*rs();
+    cx.strokeStyle=(rs()>0.5?'rgba(226,233,238,':'rgba(16,22,29,')+a.toFixed(3)+')';
+    cx.lineWidth=0.75; cx.beginPath(); cx.moveTo(x0,y);
+    cx.lineTo(x0+L*Math.cos(LAY), y+L*Math.sin(LAY)); cx.stroke();
+  }
+  for(let i=0;i<260;i++){
+    const x=PX+rs()*PW,y=PY+rs()*PH,r=10+rs()*44;
+    const og=cx.createRadialGradient(x,y,0,x,y,r);
+    og.addColorStop(0,'rgba(58,44,22,'+(0.04+0.09*rs()).toFixed(3)+')');
+    og.addColorStop(1,'rgba(58,44,22,0)');
+    cx.fillStyle=og; cx.beginPath(); cx.arc(x,y,r,0,7); cx.fill();
+  }
+  cx.restore();
+  cx.strokeStyle='rgba(232,238,244,0.42)'; cx.lineWidth=1.25;
+  cx.beginPath(); cx.roundRect(PX+.6,PY+.6,PW-1.2,PH-1.2,9); cx.stroke();
+  cx.strokeStyle='rgba(6,10,14,0.70)'; cx.lineWidth=2.0;
+  cx.beginPath(); cx.roundRect(PX+4,PY+4,PW-8,PH-8,7); cx.stroke();
+
+  const BOLTS=[[PX+34,PY+34],[PX+PW-34,PY+34],[PX+34,PY+PH-34],[PX+PW-34,PY+PH-34]];
+  for(const b of BOLTS){
+    cx.fillStyle='rgba(4,7,10,0.60)';
+    cx.beginPath(); cx.ellipse(b[0]-4.9,b[1]-2.6,10,4.2,0,0,7); cx.fill();
+    const bg=cx.createRadialGradient(b[0]-3,b[1]-3,1,b[0],b[1],11);
+    bg.addColorStop(0,'#D2D9DE'); bg.addColorStop(.56,'#727C84'); bg.addColorStop(1,'#232A31');
+    cx.fillStyle=bg; cx.beginPath(); cx.arc(b[0],b[1],9,0,7); cx.fill();
+    cx.strokeStyle='rgba(255,215,154,0.30)'; cx.lineWidth=1.0;
+    cx.beginPath(); cx.arc(b[0]+1.4,b[1]+1.6,9,0.6,2.2); cx.stroke();
+  }
+
+  /* ---- the struck 69 and the bare field beside it ---------------------- */
+  const SX=792, SY=910, SW=64;   // wholly below the datum's casing, which ends at 902.6
+  /* A struck field carries the punch's nose radius at every corner, and its
+     walls run round that curve. One ramp across the key's axis lights the lee
+     wall and the lit lip together, which is what a single strike actually does. */
+  function troughPath(x,y,w,h,r){
+    cx.beginPath(); cx.moveTo(x+r,y);
+    cx.arcTo(x+w,y,x+w,y+h,r); cx.arcTo(x+w,y+h,x,y+h,r);
+    cx.arcTo(x,y+h,x,y,r); cx.arcTo(x,y,x+w,y,r);
+    cx.closePath();
+  }
+  function trough(x,y,w,h){
+    const tg=cx.createLinearGradient(x,y,x+w*0.6,y+h);
+    tg.addColorStop(0,'rgba(12,18,25,0.86)'); tg.addColorStop(1,'rgba(46,57,68,0.72)');
+    troughPath(x,y,w,h,7); cx.fillStyle=tg; cx.fill();
+    const wg=cx.createLinearGradient(x,y,x+w,y+h);
+    wg.addColorStop(0,'rgba(4,8,11,0.92)');
+    wg.addColorStop(.5,'rgba(36,46,56,0.28)');
+    wg.addColorStop(1,'rgba(255,215,154,0.72)');
+    cx.save(); troughPath(x,y,w,h,7); cx.clip();
+    troughPath(x,y,w,h,7); cx.strokeStyle=wg; cx.lineWidth=6.4; cx.stroke(); cx.restore();
+  }
+  trough(SX,SY,SW,SW);
+  trough(SX+SW+14,SY,SW,SW);
+  cx.save();
+  cx.fillStyle='#FFC72C';
+  cx.font='700 42px "JetBrains Mono", monospace'; cx.textAlign='center'; cx.textBaseline='middle';
+  cx.fillText('69', SX+SW/2, SY+SW/2+1);
+  cx.restore();
+
+  /* ---- D1, the 69 kV datum, cased ---------------------------------------- */
+  cx.fillStyle='#04080B'; cx.fillRect(0,DATUM-1.6,W,4.2);
+  cx.fillStyle='#FFC72C'; cx.fillRect(0,DATUM,W,1.25);
+
+  /* ---- the inspection tag's tie wire, cut by the right edge -------------- */
+  cx.save(); cx.strokeStyle='rgba(195,203,210,0.70)'; cx.lineWidth=2.0; cx.lineCap='butt';
+  cx.beginPath(); cx.moveTo(W,196); cx.bezierCurveTo(1032,212,1006,250,1022,292); cx.stroke();
+  cx.strokeStyle='rgba(4,8,11,0.65)'; cx.lineWidth=1.0;
+  cx.beginPath(); cx.moveTo(W,200); cx.bezierCurveTo(1034,216,1008,254,1024,296); cx.stroke();
+  cx.restore();
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.10,saturation:0.95,contrast:1.12,filmic:true,
+    lift:[0.008,0.012,0.020],gain:[1.014,1.0,0.976],vignette:0.22,
+    bloom:{threshold:0.86,strength:0.14,radius:8},
+    grain:{amount:0.036,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.30});
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,52,SEED)+')';
+
+  document.body.setAttribute('data-contacts', JSON.stringify([{"what": "the rating plate standing proud of the tank flank", "shadow": [[80, 700, 26, 10]], "ground": [[30, 700, 26, 10]]}]));
+  document.body.setAttribute('data-encodes', JSON.stringify([
+    {claim:"the rating field on the left is struck and the field beside it is bare metal",
+     reads:"differ",
+     a:[[SX+16,SY+16,32,32]],
+     b:[[SX+SW+30,SY+16,32,32]]}]));
+  return true;
+})();
+</script>
+</body></html>

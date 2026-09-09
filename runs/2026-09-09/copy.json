@@ -1,0 +1,228 @@
+{
+  "run_date": "2026-09-09",
+  "carousel_no": 54,
+  "document_title": "The Sentence That Isn't in Executive Order 14421",
+  "post_copy": "One sentence in federal law says the grid reliability rules don't apply to Alaska. Executive Order 14421 carries no sentence like it.\n\nThe order borrows the statute's definition of the bulk-power system almost word for word. It adds a threshold the statute never had at 69,000 volts. The Alaska Energy Authority puts the Alaska Intertie at 138 kilovolts and calls it part of the interconnected Bulk Electrical System. The Railbelt Reliability Council calls the same grid islanded.\n\nDOE takes written comments through October 9th, 2026. Its rules are due 120 days from the order.\n\nBoth definitions sit side by side in the deck at identical size, and the order's stated reason names data centers and artificial intelligence.\n\nWhich Alaska institution should put the Railbelt's voltages in front of DOE before that window closes?\n\n#AlaskaEnergy #Railbelt #BulkPowerSystem",
+  "deck_summary_line": "Both definitions sit side by side in the deck at identical size, and the order's stated reason names data centers and artificial intelligence.",
+  "caption_meta": {
+    "opening_move": "CONTRADICTION",
+    "structure": "COUNTDOWN",
+    "closing_move": "NEW: WHO FILES BEFORE THE WINDOW CLOSES",
+    "first_words": "One sentence in federal law says the grid",
+    "hook_type": "the contradiction stated flat, one sentence of statute set against its absence from a nine business day old order"
+  },
+  "first_comment": "Sources for this deck, primary first, with the full link on every line. The Federal Register documents are cited on their GPO govinfo mirrors, which do not redirect.\n\nExecutive Order 14421 of August 26th, 2026, Declaring a National Emergency To Secure the United States Bulk-Power System, published at 91 FR 55995 on August 31st, 2026. Source of the definition, the 69,000 volt sentence, the covered equipment list, the stated reason and the 120 day rule deadline (C01, C02, C03, C04, C05, C06, C07, C08, C09, C10, C12) https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm\nDepartment of Energy request for information, Securing the United States Bulk-Power System, RIN 1901-AB79 at 91 FR 57322, published September 9th, 2026. Source of Question A-2 and the October 9th, 2026 comment date (C13, C14, C15, C16, C17, C18, C19) https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm\nOffice of the Law Revision Counsel, United States Code, 16 U.S.C. 824o, subsection (k) headed Alaska and Hawaii (C20) https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title16-section824o&num=0&edition=prelim\nCornell Legal Information Institute, the same reliability section reproduced, source of the statute's own bulk-power system definition (C21, C22) https://www.law.cornell.edu/uscode/text/16/824o\nRailbelt Reliability Council, standards development page, the islanded Railbelt grid phrase (C24) https://www.akrrc.org/standards-2\nRailbelt Reliability Council, frequently asked questions, the interconnected Railbelt bulk electric system footprint from Fairbanks and Delta Junction south to Homer and Seldovia (C25) https://www.akrrc.org/faqs\nRailbelt Reliability Council, about page, five load-serving utilities across nearly 700 miles and the nearly three-quarters of Alaska's population figure (C26, C27, C28) https://www.akrrc.org/about-rrc\nAlaska Energy Authority, Alaska Intertie, 170 miles between Willow and Healy, built to 345 kilovolt standards, operating at 138 kilovolts, and the integral part of the interconnected Bulk Electrical System phrase (C29, C30, C31) https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Alaska-Intertie\nChugach Electric Association, about page, nearly 89,000 members at over 113,000 metered locations (C33) https://www.chugachelectric.com/about-us\nHomer Electric Association, about page, 26,181 member-owners (C34) https://www.homerelectric.com/about-us/\nFederal Energy Regulatory Commission notice of preliminary permit application, Project No. 15423-000, the approximately 3.5 mile 115 kilovolt DeepGreen Cook Inlet subsea cable (C37, C38) https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm\n\nThe docket behind this deck, with every open comment window and the date it shuts, lives at https://alaskaaihq.com\n\nCorrections and added context welcome, especially from anyone who has filed comments at DOE or written a Railbelt reliability standard.",
+  "aftercare": [
+    "Post Tuesday through Thursday between 8 a.m. and 11 a.m. Alaska time, and get it out well ahead of October 9th, 2026 (C16), because the close asks a reader to act inside a comment window that shuts that day.",
+    "Paste the sources comment within 60 seconds of posting, straight from the block above and unedited, so every raw govinfo and uscode.house.gov URL lands as plain text a reader can copy.",
+    "Stay on the post for the first 90 minutes and answer every comment with a claim id, a voltage or a date, never a thank you on its own.",
+    "Expect the objection that the order obviously reaches Alaska, and answer it with slide 08 rather than a position. Nobody has said Alaska is in and nobody has said Alaska is out, which is the deck's whole point.",
+    "Note saves and comments at 48 hours against the last four decks, and write down whether the two identical columns on slide 04 or the voltage ladder on slide 07 was the frame people quoted back."
+  ],
+  "editor_notes_for_email": "Read slide 04, slide 08 and slide 07 before posting.\n\nSlide 04 is the deck's whole argument and the frame most likely to be misread. It sets the statute's definition and the order's definition at identical size, measure and colour, and the only difference drawn is a gold line under the right column. The missing Alaska sentence in Executive Order 14421 is drawn as an absence of ink, never as a deletion, because C12 is an absence claim at 0.85 confidence. Nothing on that frame says Alaska is excluded or included, and nothing should be added in a comment that does.\n\nSlide 08 is the counterweight and it is what keeps this deck from reading as an accusation. The Alaska Energy Authority calls the Alaska Intertie an integral part of the interconnected Bulk Electrical System (C31), which cuts toward the order reaching Alaska, and it is given the same page size and the same highlighter length as the Railbelt Reliability Council's word islanded (C24). If a reader takes the deck as a claim that Alaska is out, that slide is the answer, and the equality is measurable rather than asserted.\n\nSlide 07 carries every number someone will screenshot. The DeepGreen row is phantom-dashed and labelled PROPOSED because Project No. 15423-000 is a preliminary permit and not a built line (C37, C38). The ladder is linear in kilovolts against a printed scale, so the distance between 138 kV and the order's 69 kV is measured rather than claimed. One string on that slide compresses two sources. The foot reads that five utilities run nearly 700 miles between those towns, where the council's own wording is five load-serving utilities interconnected across nearly 700 miles (C26, C28) and the four towns come from its footprint description (C25). If a Railbelt engineer pushes on that sentence, quote the council's wording back.\n\nFOUR THINGS THE BUILD CHANGED against the storyboard, all of them in copy that actually rendered, so the strings here are the render and not the dossier. Slide 05's body was rewritten, the four quoted categories now live in the four struck rows and the body attributes the supporting critical infrastructure qualifier to the order rather than stating it flat. Slide 07's ladder rows were retitled and its strip caption folded into the foot, so a separate five utilities line no longer exists as its own string. Slide 08's foot now says the council SAYS it serves nearly three-quarters of Alaskans, which attributes C27 on the slide as the hedge list requires. Slide 09 dropped the 180 day Federal Acquisition Regulation line, so C11 is verified in claims.json and prints nowhere in the deck, and the tag now carries only the 120 day rule deadline.\n\nNothing in the locked caption reads as a factual error against claims.json. The 120 day line matches C10, the October 9th, 2026 date matches C16, and both Alaska Energy Authority phrases match C30 and C31 word for word.",
+  "slides": [
+    {
+      "n": 1,
+      "beat": "Cover. The claim struck into a transformer's rating plate.",
+      "strings": [
+        "EXECUTIVE ORDER 14421 . AUGUST 26TH, 2026",
+        "One sentence of federal law names Alaska. The order doesn't.",
+        "BULK POWER SYSTEM . 69 KV AND ABOVE",
+        "01 / 10"
+      ],
+      "claim_ids": [
+        "C01",
+        "C06",
+        "C12",
+        "C20"
+      ]
+    },
+    {
+      "n": 2,
+      "beat": "The sentence itself, on the page it lives on.",
+      "strings": [
+        "The law already answers this.",
+        "(k)",
+        "\"The provisions of this section do not apply to Alaska or Hawaii.\"",
+        "That is the entire subsection. It sits in the electric reliability section of the Federal Power Act, the section that created the national reliability organization regime.",
+        "16 U.S.C. 824o(k) SUBSECTION HEADED ALASKA AND HAWAII",
+        "02 / 10"
+      ],
+      "claim_ids": [
+        "C20",
+        "C21"
+      ]
+    },
+    {
+      "n": 3,
+      "beat": "The order's own stated reason, in its own words.",
+      "strings": [
+        "The order says why.",
+        "91 FR 55995 . PUBLISHED AUGUST 31ST, 2026",
+        "\"The rapid growth of advanced manufacturing, data centers, artificial intelligence, and defense production has increased the Nation's dependence on abundant, reliable electricity and magnified the consequences of a successful attack or supply disruption on the bulk-power system.\"",
+        "IEEPA . NATIONAL EMERGENCIES ACT",
+        "69 KV",
+        "03 / 10"
+      ],
+      "claim_ids": [
+        "C03",
+        "C04",
+        "C08",
+        "C09"
+      ]
+    },
+    {
+      "n": 4,
+      "beat": "The hinge. Both definitions in one frame, word for word the same, then diverging.",
+      "strings": [
+        "Two definitions, word for word the same.",
+        "16 U.S.C. 824o(a)(1)",
+        "\"facilities and control systems necessary for operating an interconnected electric energy transmission network\"",
+        "EO 14421 SECTION 5(a)",
+        "The statute carries a subsection about Alaska. The order carries a sentence about 69,000 volts.",
+        "04 / 10"
+      ],
+      "claim_ids": [
+        "C01",
+        "C05",
+        "C06",
+        "C12",
+        "C20",
+        "C22"
+      ]
+    },
+    {
+      "n": 5,
+      "beat": "The inventory. The covered equipment, struck down the tank as a field table.",
+      "strings": [
+        "What the order calls covered equipment.",
+        "SUBSTATION TRANSFORMERS",
+        "UTILITY-SCALE AND OTHER GRID-CONNECTED INVERTERS",
+        "BATTERY ENERGY STORAGE SYSTEMS",
+        "UNINTERRUPTIBLE POWER SUPPLY SYSTEMS",
+        "EO 14421 SECTION 5(b)",
+        "Section 5(b) lists these among the bulk-power system electric equipment the order reaches. The last of them is qualified in the order as supporting critical infrastructure.",
+        "05 / 10"
+      ],
+      "claim_ids": [
+        "C07"
+      ]
+    },
+    {
+      "n": 6,
+      "beat": "Breather. One line in the country, at twice the threshold.",
+      "strings": [
+        "One line, twice the threshold.",
+        "The Alaska Intertie runs 170 miles between Willow and Healy. The Alaska Energy Authority puts it at 138 kilovolts. The order's line is 69,000 volts.",
+        "200 m",
+        "06 / 10"
+      ],
+      "claim_ids": [
+        "C06",
+        "C29",
+        "C30"
+      ]
+    },
+    {
+      "n": 7,
+      "beat": "Keepable data. The voltage ladder and the Railbelt strip, measured against the gold datum.",
+      "strings": [
+        "Alaska sits above the threshold.",
+        "345",
+        "300",
+        "200",
+        "100",
+        "0",
+        "345 kV",
+        "ALASKA INTERTIE, AS BUILT",
+        "138 kV",
+        "INTERTIE, OPERATING",
+        "115 kV",
+        "DEEPGREEN CABLE, PROPOSED",
+        "69 kV",
+        "THE ORDER'S OWN THRESHOLD",
+        "FAIRBANKS",
+        "DELTA JUNCTION",
+        "HOMER",
+        "SELDOVIA",
+        "CHUGACH NEARLY 89,000 MEMBERS",
+        "HOMER ELECTRIC 26,181 MEMBER-OWNERS",
+        "Three Alaska figures sit above the line and none below it. Five utilities run nearly 700 miles between those towns.",
+        "07 / 10"
+      ],
+      "claim_ids": [
+        "C06",
+        "C25",
+        "C26",
+        "C28",
+        "C30",
+        "C33",
+        "C34",
+        "C37",
+        "C38"
+      ]
+    },
+    {
+      "n": 8,
+      "beat": "Counterweight. Alaska's own agencies use both words, islanded and interconnected.",
+      "strings": [
+        "Alaska's own agencies use both words.",
+        "RAILBELT RELIABILITY COUNCIL",
+        "ALASKA ENERGY AUTHORITY",
+        "ISLANDED RAILBELT",
+        "INTERCONNECTED",
+        "The Railbelt Reliability Council calls the Railbelt grid islanded. The Alaska Energy Authority calls the Alaska Intertie an integral part of the interconnected Bulk Electrical System. Both statements are on the record and they point in opposite directions.",
+        "RRC SAYS IT SERVES NEARLY THREE-QUARTERS OF ALASKANS",
+        "AKRRC.ORG . AKENERGYAUTHORITY.ORG",
+        "08 / 10"
+      ],
+      "claim_ids": [
+        "C24",
+        "C27",
+        "C31"
+      ]
+    },
+    {
+      "n": 9,
+      "beat": "The window. Question A-2, the four words absent from it, and the date.",
+      "strings": [
+        "One question is open.",
+        "Question A-2 of the DOE request for information asks commenters to identify any equipment-specific voltage, capacity, connectivity, function, location, or criticality thresholds. The words Alaska, Hawaii, islanded and non-contiguous appear nowhere in it.",
+        "OCTOBER 9TH, 2026",
+        "THE RFI INFORMS IMPLEMENTATION",
+        "RULES COME AT 120 DAYS",
+        "RIN 1901-AB79 . 91 FR 57322",
+        "09 / 10"
+      ],
+      "claim_ids": [
+        "C10",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19"
+      ]
+    },
+    {
+      "n": 10,
+      "beat": "Close. The honest position, and one ask.",
+      "strings": [
+        "Nobody has said Alaska is in. Nobody has said Alaska is out.",
+        "Which threshold should Alaska ask DOE to write down?",
+        "SOURCES IN COMMENTS . RIN 1901-AB79",
+        "COMMENTS CLOSE OCTOBER 9TH, 2026",
+        "ALASKA.AI",
+        "alaskaaihq.com",
+        "10 / 10"
+      ],
+      "claim_ids": [
+        "C12",
+        "C15",
+        "C16",
+        "C19"
+      ]
+    }
+  ]
+}

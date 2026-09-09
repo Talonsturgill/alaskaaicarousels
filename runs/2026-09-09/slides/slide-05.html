@@ -1,0 +1,232 @@
+<!doctype html>
+<!-- SLIDE 05 — THE INVENTORY. The tank's second legend plate, square on, with
+     the order's four quoted categories struck as four milled rows at identical
+     depth. No fifth row, and no count of the full inventory anywhere, because
+     that count lives only in a claim's notes. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#05090E}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+#grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+  opacity:.07;pointer-events:none}
+h2{position:absolute;left:104px;top:104px;width:790px;font-family:"Fraunces",serif;
+  font-weight:600;color:#F4F8FF;line-height:1.0;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  text-shadow:0 0 6px rgba(4,8,11,.9),0 0 14px rgba(4,8,11,.8);}
+.row{position:absolute;left:152px;width:800px;font-family:"JetBrains Mono",monospace;
+  font-weight:500;font-size:25px;letter-spacing:.03em;color:#EDF2F6;
+  text-shadow:-1px -1px 0 rgba(4,8,11,.95),1px 2px 0 rgba(255,215,154,.30),
+              0 0 5px rgba(4,8,11,.9);}
+.body{position:absolute;left:104px;top:1024px;width:820px;font-family:"Space Grotesk",sans-serif;
+  font-weight:400;font-size:34px;line-height:1.34;color:#DCE4EA;
+  text-shadow:0 0 6px rgba(4,8,11,.92),0 0 13px rgba(4,8,11,.85);}
+.foot{position:absolute;left:152px;top:948px;font-family:"JetBrains Mono",monospace;
+  font-weight:400;font-size:24px;letter-spacing:.10em;color:#C3CBD2;
+  text-shadow:0 0 4px rgba(4,8,11,.95),0 0 9px rgba(4,8,11,.9);}
+.polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+.ctr{position:absolute;right:90px;bottom:86px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:.12em;color:#F4F8FF;font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:-1px -1px 0 rgba(4,8,11,.92),0 0 6px rgba(4,8,11,.96),0 0 14px rgba(4,8,11,.88);}
+</style></head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div id="grain"></div>
+<h2 id="h2">What the order calls covered equipment.</h2>
+<div class="row" style="top:396px;">SUBSTATION TRANSFORMERS</div>
+<div class="row" style="top:550px;">UTILITY-SCALE AND OTHER GRID-CONNECTED INVERTERS</div>
+<div class="row" style="top:704px;">BATTERY ENERGY STORAGE SYSTEMS</div>
+<div class="row" style="top:858px;">UNINTERRUPTIBLE POWER SUPPLY SYSTEMS</div>
+<div class="foot">EO 14421 SECTION 5(b)</div>
+<div class="body">Section 5(b) lists these among the bulk-power system electric equipment the order reaches. The last of them is qualified in the order as supporting critical infrastructure.</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="ctr">05 / 10</div>
+
+<script>
+const W=1080,H=1350,SEED=20260909+5;
+const AZ=118, EL=34, DATUM=900;
+const PX=104, PY=300, PW=872, PH=690;
+const ROWS=[396,550,704,858];   // last trough bottoms at 896, the datum is its baseline
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h2'),{min:44,max:64,maxLines:2});
+  const rg=AK.rng(SEED+11);
+
+  const sky=cx.createLinearGradient(0,0,0,H);
+  sky.addColorStop(0,'#04080B'); sky.addColorStop(.5,'#0A1420'); sky.addColorStop(1,'#101B27');
+  cx.fillStyle=sky; cx.fillRect(0,0,W,H);
+
+  /* ---- the tank behind, ONE reliefShade pass on a macro form ------------ */
+  AK.reliefShade(cx,{
+    x:0, y:210, w:W, h:1140, scale:2, seed:SEED, strength:140,
+    height:(u,v)=>{
+      const cyl=Math.sqrt(Math.max(0,1-Math.pow((u-0.5)*1.72,2)));
+      const drop=1-0.16*Math.pow(Math.max(0,v-0.60)/0.40,1.8);
+      return Math.max(0,Math.min(1,cyl*drop*0.93));
+    },
+    lights:[{az:AZ,el:EL,w:1.0}],
+    ambient:0.19, diffuse:0.98, gamma:1.05,
+    low:'#101B27', high:'#66737F',
+    mask:(u,v)=>Math.min(1, v/0.02)});
+  { const NF=19;                               // the tank's own fins, after
+    for(let i=0;i<NF;i++){
+      const u=(i+0.5)/NF, x=u*W;
+      const cyl=Math.sqrt(Math.max(0,1-Math.pow((u-0.5)*1.72,2)));
+      if(cyl<=0) continue;
+      const wr=Math.max(1.1, 10*cyl), lam=0.2+0.8*(0.5+0.5*Math.sin((u-0.5)*Math.PI));
+      cx.fillStyle='rgba(4,8,11,'+(0.42*cyl+0.10).toFixed(3)+')';
+      cx.fillRect(x-wr/2-2.4, 226, 2.4, 1110);
+      cx.fillStyle='rgba(255,215,154,'+(0.06+0.26*lam*cyl).toFixed(3)+')';
+      cx.fillRect(x+wr/2-1.5, 226, 1.7, 1110); } }
+
+  /* ---- the lit pool the plate is mounted in ----------------------------- */
+  cx.save(); cx.globalCompositeOperation='screen';
+  cx.translate(PX+PW*0.48, PY+PH*0.50); cx.scale(1,0.74);
+  const pool=cx.createRadialGradient(0,0,0,0,0,740);
+  pool.addColorStop(0,'rgba(158,178,196,0.32)');
+  pool.addColorStop(.56,'rgba(108,128,150,0.15)');
+  pool.addColorStop(1,'rgba(40,52,70,0)');
+  cx.fillStyle=pool; cx.beginPath(); cx.arc(0,0,740,0,7); cx.fill(); cx.restore();
+
+  /* ---- the plate's cast, offset up-light, clipped out of the plate ------- */
+  const dx=-Math.sin(AZ*Math.PI/180), dy=Math.cos(AZ*Math.PI/180);
+  cx.save(); cx.globalCompositeOperation='multiply';
+  cx.beginPath(); cx.rect(0,0,W,H); cx.rect(PX-2,PY-2,PW+4,PH+4); cx.clip('evenodd');
+  for(let k=44;k>=1;k--){
+    const t=k/44, a=0.62*Math.pow(1-t,1.5);
+    cx.fillStyle='rgba(10,14,20,'+a.toFixed(3)+')';
+    cx.fillRect(PX+dx*k, PY+dy*k, PW, PH); }
+  cx.restore();
+  cx.fillStyle='rgba(6,9,13,0.88)';
+  cx.fillRect(PX-5,PY-5,5.5,PH+10); cx.fillRect(PX-5,PY-5,PW+10,5.5);
+
+  /* ---- THE LEGEND PLATE ------------------------------------------------- */
+  cx.save(); cx.beginPath(); cx.roundRect(PX,PY,PW,PH,8); cx.clip();
+  const pg=cx.createLinearGradient(PX,PY,PX+PW*0.66,PY+PH);
+  pg.addColorStop(0,'#242F39'); pg.addColorStop(.48,'#57646F'); pg.addColorStop(1,'#1A222A');
+  cx.fillStyle=pg; cx.fillRect(PX,PY,PW,PH);
+  const LAY=11*Math.PI/180;
+  for(let i=0;i<4600;i++){
+    const y=PY+rg()*PH, x0=PX+rg()*PW, L=26+rg()*140, a=0.03+0.10*rg();
+    cx.strokeStyle=(rg()>0.5?'rgba(224,232,238,':'rgba(14,20,27,')+a.toFixed(3)+')';
+    cx.lineWidth=0.75; cx.beginPath(); cx.moveTo(x0,y);
+    cx.lineTo(x0+L*Math.cos(LAY), y+L*Math.sin(LAY)); cx.stroke(); }
+  for(let i=0;i<190;i++){
+    const x=PX+rg()*PW,y=PY+rg()*PH,r=12+rg()*46;
+    const og=cx.createRadialGradient(x,y,0,x,y,r);
+    og.addColorStop(0,'rgba(58,44,22,'+(0.04+0.08*rg()).toFixed(3)+')');
+    og.addColorStop(1,'rgba(58,44,22,0)');
+    cx.fillStyle=og; cx.beginPath(); cx.arc(x,y,r,0,7); cx.fill(); }
+  cx.restore();
+
+  /* the plate between the rows is where a hand rests and a rag wipes, so it
+     carries the wear. Material, never a mark that could be counted as a fifth
+     row, because the frame's whole discipline is that there are four. */
+  cx.save(); cx.beginPath(); cx.roundRect(PX,PY,PW,PH,8); cx.clip();
+  for(let i=0;i<110;i++){
+    const cxp=PX+rg()*PW, cyp=PY+rg()*PH, r=18+rg()*86;
+    const a0=rg()*6.283, sw=0.4+rg()*2.0;
+    cx.strokeStyle='rgba(226,238,248,'+(0.022+0.042*rg()).toFixed(3)+')';
+    cx.lineWidth=0.7+rg()*1.3;
+    cx.beginPath(); cx.arc(cxp,cyp,r,a0,a0+sw); cx.stroke();
+    cx.strokeStyle='rgba(6,10,15,'+(0.018+0.034*rg()).toFixed(3)+')';
+    cx.beginPath(); cx.arc(cxp,cyp+1.3,r,a0,a0+sw); cx.stroke(); }
+  for(let i=0;i<22;i++){
+    const x0=PX+rg()*PW, y0=PY+rg()*PH, L=26+rg()*130, an=(rg()-0.5)*0.8;
+    cx.strokeStyle='rgba(232,244,252,'+(0.03+0.06*rg()).toFixed(3)+')';
+    cx.lineWidth=0.8+rg()*1.1; cx.beginPath();
+    cx.moveTo(x0,y0); cx.lineTo(x0+Math.cos(an)*L,y0+Math.sin(an)*L); cx.stroke(); }
+  cx.restore();
+
+  /* ---- FOUR MILLED ROWS at identical depth, and no fifth ---------------- */
+  /* A row struck with a round-nosed punch carries the tool's radius at every
+     corner, and its walls run round that curve. Stroking the outline with a
+     ramp across the key's axis lights the whole wall in one pass, which is why
+     the lee wall and the lit lip are no longer four separate straight bands. */
+  function rowPath(x0,y0,x1,y1,r){
+    cx.beginPath(); cx.moveTo(x0+r,y0);
+    cx.arcTo(x1,y0,x1,y1,r); cx.arcTo(x1,y1,x0,y1,r);
+    cx.arcTo(x0,y1,x0,y0,r); cx.arcTo(x0,y0,x1,y0,r);
+    cx.closePath();
+  }
+  for(const ry of ROWS){
+    const y=ry-16, h=54, x0=PX+30, x1=PX+PW-30;
+    rowPath(x0,y,x1,y+h,9);
+    cx.fillStyle='rgba(10,16,23,0.44)'; cx.fill();
+    const wg=cx.createLinearGradient(x0,y,x1,y+h);
+    wg.addColorStop(0,'rgba(4,8,11,0.82)');
+    wg.addColorStop(.48,'rgba(38,50,62,0.30)');
+    wg.addColorStop(1,'rgba(255,215,154,0.52)');
+    cx.save(); rowPath(x0,y,x1,y+h,9); cx.clip();
+    rowPath(x0,y,x1,y+h,9);
+    cx.strokeStyle=wg; cx.lineWidth=5.4; cx.stroke(); cx.restore();
+  }
+  for(let i=0;i<3;i++){                          // the rules between the rows
+    const y=(ROWS[i]+ROWS[i+1])/2 - 8;
+    cx.fillStyle='rgba(6,10,15,0.55)'; cx.fillRect(PX+30,y,PW-60,0.9); }
+
+  cx.strokeStyle='rgba(232,238,244,0.36)'; cx.lineWidth=1.25;
+  cx.beginPath(); cx.roundRect(PX+.6,PY+.6,PW-1.2,PH-1.2,8); cx.stroke();
+  cx.strokeStyle='rgba(6,10,14,0.70)'; cx.lineWidth=2.0;
+  cx.beginPath(); cx.roundRect(PX+4,PY+4,PW-8,PH-8,6); cx.stroke();
+  for(const b of [[PX+32,PY+32],[PX+PW-32,PY+32],[PX+32,PY+PH-32],[PX+PW-32,PY+PH-32]]){
+    cx.fillStyle='rgba(4,7,10,0.62)';
+    cx.beginPath(); cx.ellipse(b[0]+4,b[1]+5,10,4.2,0,0,7); cx.fill();
+    const bg=cx.createRadialGradient(b[0]-3,b[1]-3,1,b[0],b[1],11);
+    bg.addColorStop(0,'#D2D9DE'); bg.addColorStop(.56,'#727C84'); bg.addColorStop(1,'#232A31');
+    cx.fillStyle=bg; cx.beginPath(); cx.arc(b[0],b[1],9,0,7); cx.fill(); }
+
+  /* ---- D1, the baseline the field table stands on ----------------------- */
+  cx.fillStyle='#04080B'; cx.fillRect(0,DATUM-1.6,W,4.2);
+  cx.fillStyle='#FFC72C'; cx.fillRect(0,DATUM,W,1.25);
+
+  /* the flank is a cylinder and its belly turns out of the key. Darkening the
+     turn is what the form does anyway, and it is what gives the body copy its
+     ground without laying a panel over the tank. */
+  { const bg=cx.createLinearGradient(0,946,0,1290);
+    bg.addColorStop(0,'rgba(9,16,25,0)');
+    bg.addColorStop(.34,'rgba(9,16,25,0.40)');
+    bg.addColorStop(.78,'rgba(9,16,25,0.52)');
+    bg.addColorStop(1,'rgba(9,16,25,0.34)');
+    cx.fillStyle=bg; cx.fillRect(0,946,W,344); }
+
+  /* ---- the weld bead at the frame's foot -------------------------------- */
+  { const by=1272;
+    cx.fillStyle='rgba(4,8,11,0.60)'; cx.fillRect(0,by-11,W,13);
+    for(let x=-8;x<W+8;x+=9){        // each ripple's lee, up and left of its crest
+      cx.fillStyle='rgba(4,8,11,0.55)';
+      cx.save(); cx.translate(x+5.5,by-5); cx.scale(1,6/11);
+      cx.beginPath(); cx.arc(0,0,10,0,7); cx.fill(); cx.restore(); }
+    /* Canvas has no elliptical gradient. Pouring a circular ramp into a squat
+       ellipse stops the paint on the short axis while the ramp still carries
+       alpha, which leaves a hard arc across every ripple. Build the ramp on a
+       CIRCLE inside a transform instead, and the falloff is round in the
+       bead's own space and elliptical on the frame, which is what it is. */
+    for(let x=-8;x<W+8;x+=9){
+      cx.save(); cx.translate(x+8.5,by-3); cx.scale(1,6/11);
+      const g=cx.createRadialGradient(-3.5,-1.8,1,0,0,11);
+      g.addColorStop(0,'rgba(255,215,154,0.42)'); g.addColorStop(.62,'rgba(198,212,224,0.16)'); g.addColorStop(1,'rgba(198,212,224,0)');
+      cx.fillStyle=g; cx.beginPath(); cx.arc(0,0,11,0,7); cx.fill(); cx.restore(); }
+    cx.fillStyle='rgba(255,215,154,0.22)'; cx.fillRect(0,by+2,W,1.8); }
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.10,saturation:0.95,contrast:1.12,filmic:true,
+    lift:[0.008,0.011,0.018],gain:[1.013,1.0,0.978],vignette:0.23,
+    bloom:{threshold:0.86,strength:0.13,radius:8},
+    grain:{amount:0.036,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.30});
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,52,SEED)+')';
+
+  document.body.setAttribute('data-contacts', JSON.stringify([
+    {what:"the legend plate standing proud of the tank flank",
+     shadow:[[74,620,26,10]], ground:[[24,620,26,10]]}]));
+  window.__akAssert=[{what:"four struck rows, one per category the claim body names",
+    expect:4, points:ROWS.map(function(y){return [PX+PW*0.5, y+11];}), unit:"marks"}];
+  return true;
+})();
+</script>
+</body></html>

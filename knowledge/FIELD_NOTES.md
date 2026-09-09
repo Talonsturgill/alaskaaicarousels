@@ -6522,3 +6522,154 @@ pronoun reaching back to an earlier frame is not merely unclear when the slide
 is screenshotted, it can be FALSE, because the reader attaches it to the only
 subject in front of them. Name the subject on every frame that carries a number
 about it.
+
+---
+
+## 2026-09-09, Phase 1 craft refresh. THE FIRST COMMENT MAY NO LONGER BE FREE.
+
+Two searches, one finding, and it touches a standing house contract rather than
+the art. Every deck this machine ships prints "sources in comments" on the close
+slide and hands the maintainer a paste-ready first-comment block of raw URLs.
+That design rests on a rule the craft file states as (H) confidence, no links in
+the post body, sources go in the first comment. The first half is holding. The
+second half is now contested.
+
+- The 2026 van der Blom pass over roughly 1.3 million posts is being reported as
+  one external link in the BODY costing about 18.8 percent of median reach, well
+  below the 40 to 60 percent this file has carried since July. The direction is
+  unchanged, the size is smaller.
+- The newer claim is that the comment workaround is itself detected. Reports
+  describe LinkedIn suppressing comments that carry external links, and
+  identifying "bridge" posts whose whole shape is a funnel to a link one click
+  down. Figures quoted run to 80 percent of comment visibility.
+- The evidence is not settled and should not be treated as settled. The same
+  sweep of sources carries studies from 19 percent to 60 percent, at least one
+  finding no effect, and LinkedIn's own position that there is no penalty. That
+  spread is what a weak measurement looks like.
+  https://www.forbes.com/sites/jodiecook/2026/07/30/the-linkedin-link-penalty-cutting-your-reach-by-60/
+  https://www.tryordinal.com/blog/linkedin-link-penalty-study
+
+WHAT THIS RUN DID ABOUT IT, WHICH IS NOTHING. The first-comment block is a
+copy/paste contract with the maintainer, written into the routine as a hard rule
+in three places, and a marketing-blog consensus is not the evidence that moves a
+maintainer rule. It is raised in this run's draft as a proposal instead. The
+honest framing for that conversation is that the sources block is not only a
+reach tactic. It is the verification record, the thing that makes a claim
+checkable, and this publication's whole argument is that its numbers can be
+checked. If the comment is being suppressed, the answer is more likely to be
+that the deck page at alaskaaihq.com carries the record and the comment points
+at one URL on our own domain, not that the record stops being published.
+
+Unblocking condition for a change here, in one sentence. The maintainer says so,
+or a first-party LinkedIn source says so.
+
+## 2026-09-09 (No. 54) — FOUR WAYS A DECLARATION LIES QUIETLY
+
+Every one of these shipped green through a gate that was looking straight at it.
+
+**A path helper that calls `beginPath()` cannot build an even-odd clip.** The
+idiom for an attached cast is `beginPath(); rect(0,0,W,H); <object outline>;
+clip('evenodd')`, so the object is a hole in a full-frame clip and the cast is
+drawn everywhere except inside the object. Refactoring the outline into a
+`sheetPath()` helper that opens with `cx.beginPath()` silently discards the
+full-frame rect, and the clip becomes the object itself. The cast is then drawn
+INSIDE the sheet, where the sheet's own fill covers it. Four slides lost their
+contact shadows at once and the renders looked fine, because a missing shadow
+is not a visible artefact, it is an absence. Only the contact gate caught it,
+and only on the two slides whose declared rects happened to sample the right
+band. RULE: a geometry helper contributes a SUBPATH and never opens one. The
+caller owns `beginPath`. Name it so, in the helper's own comment.
+
+**Even-odd cannot express "everything except these boxes" when the boxes
+overlap.** Slide 02 reserved its type by adding one rect per element to an
+even-odd clip. `.sec` (a hanging subsection letter) overlapped `.sub` (the
+quotation), and a region covered by the sheet rect plus two element rects has
+three crossings, which is odd, which is INSIDE. The set lines painted straight
+back into the hole reserved for the letter and read as a broken glyph at the
+slide's declared focal point. Machine QA called it "busy art under text", which
+is the right flag with the wrong cause, and it would never have been fixed from
+that description. RULE: reserve type by drawing the art to a scratch canvas and
+punching the boxes out with `globalCompositeOperation='destination-out'`. It is
+order-independent and it does not care how the reserves overlap.
+
+**`dossier_check` reads `data-contacts` off the `<body>` TAG in the source, not
+the value the slide sets at runtime.** Four slides set it with
+`document.body.setAttribute(...)` at the end of `renderReady`. The render report
+carried the contacts, qa.py measured them, and dossier_check still failed all
+four for declaring nothing, because it greps the markup. Both are right: qa
+wants what rendered, the dossier gate wants a promise it can read before a
+render is spent. RULE: if a dossier promises a contact shadow, the declaration
+goes in the `<body>` tag as a literal attribute. Runtime `setAttribute` is for
+values the drawing has to compute.
+
+**`json.dumps(..., separators=(',', ' '))` writes a space where the key
+separator belongs.** The tuple is `(item_separator, key_separator)`, so that
+call emits `{"what" "the board"}`, which is not JSON. It went into four
+`data-contacts` attributes at once. The gate that caught it prints the tail of
+the attribute, which is the only reason it was findable. RULE: `(',', ':')`, and
+`json.loads` the attribute back before writing the file.
+
+ONE MORE, about critics. The 07/08 pixel critic reported the two agency pages on
+slide 08 as 5.6 percent different in width, which would have made the deck's one
+measurable claim measurably false. Measured off the render at three heights,
+both pages are 397.5 design px to within half a pixel. A critic's measurement is
+a hypothesis; the render is the evidence. Check the number before you rebuild
+the slide around it, and write down that you checked.
+
+### 2026-09-09, Phase 12 (the upgrade engineer, after the merge)
+
+Three of the four rules above are now MACHINERY rather than memory. The helper
+that opens its own path and the overlapping even-odd reserve are both watched by
+`render.py`'s clip hook and graded by `qa.py`; the declaration-surface split and
+the `json.dumps` separator are both named by `dossier_check.py`, with the repair
+in the message. `tests/clip_reserve_verify.py` and
+`tests/declaration_surface_verify.py` are the reconstructions. What follows is
+what was found and NOT built.
+
+**PARKED: the direction of a contact shadow.** Nothing in this repo looks at
+which WAY a cast falls. No.54's slide 01 threw thirteen contact ellipses down
+and right, into the light, on a deck whose key is az 118 and whose every other
+lee falls up and left, and a pixel critic found it by eye. `qa.py`'s existing
+light check (2026-09-05) compares a declared relief azimuth against the slide's
+own prose and cannot help here, because nothing tells a machine that a given
+ellipse is a shadow rather than a mark. The version that would work is a slide-
+contract change: a `lee:[dx,dy]` unit vector on each `data-contacts` entry,
+plus the deck's key azimuth declared once, and qa checks the sign of the dot
+product. That is a new required field on an opt-in declaration and it needs a
+migration story for every shipped deck, so it is a session of its own and not a
+Phase 12 slot. UNBLOCKS WHEN: the slide contract is opened for another reason,
+or a second deck pays for the same defect.
+
+**PARKED: promoting the even-odd overlap WARN to a FAIL.** The geometry is
+certain — the shared region is inside the clip and the art paints there — but
+run No.53 shipped five slides doing it, and on its slide 03 two of the four
+reported pairs are real unreserved regions between type blocks (164x26 and
+164x14 design px) while two are 6px slivers where only the 8px inflation
+touches. There is no gap between those two populations to put a threshold in,
+and any number picked today would be a fit to one helper's padding. UNBLOCKS
+WHEN: three or four more decks have been measured through the hook, or a slide
+declares its reserve padding so the gate can subtract it.
+
+**FRONTIER SCAN, focus (a), LinkedIn platform: corroboration, nothing applied.**
+LinkedIn's Feed rebuild (March 2026) replaced independent per-post scoring with
+a transformer Generative Recommender over more than 1,000 historical
+interactions. Its industrial write-up (*An Industrial-Scale Sequential
+Recommender for LinkedIn Feed Ranking*,
+https://arxiv.org/html/2602.12354v1) says the model optimises exactly two
+things: **Long Dwell**, "dwelling on a post longer than a specified threshold of
+time, DEPENDING ON THE POST-TYPE", and **Contribution**, a like/comment/share.
+The single most valuable context feature for predicting Long Dwell is bucketed
+dwell counts for the candidate post, 0-5s up to >60s, worth +2.5 percent
+absolute AUC on its own. LinkedIn's own engineering post on dwell
+(https://www.linkedin.com/blog/engineering/feed/understanding-feed-dwell-time)
+adds that on-feed dwell is counted only while at least HALF the update is
+visible, and that the retrieval history is filtered to positively-engaged posts.
+
+CAROUSEL_CRAFT has said "every swipe is dwell, and dwell is the metric" since
+the beginning, and that is now confirmed from the primary source rather than
+from the marketing literature. The one net-new nuance worth keeping: the
+threshold is per POST TYPE, so a document post competes against the dwell
+distribution of other DOCUMENT posts and not against video — and a skipped deck
+does not enter the interest graph at all, because the history the ranker reads
+is filtered to posts that were engaged with. Neither changes a gate. Nothing was
+applied and the two reactive fixes took the budget.

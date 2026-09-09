@@ -1,0 +1,254 @@
+<!doctype html>
+<!-- SLIDE 06 — BREATHER, declared. One Alaska Intertie structure at blue hour,
+     the deck's only long shot and its coldest frame. The rest is in the word
+     count, not in the craft: the concrete pier in the foreground is the most
+     modelled surface in the run and it carries the whole text, cast into its
+     face like a date stamped in wet concrete. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aksnow.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#060B14}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+#grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+  opacity:.07;pointer-events:none}
+h2{position:absolute;left:104px;top:906px;width:700px;font-family:"Fraunces",serif;
+  font-weight:600;color:#EFF4FA;line-height:1.0;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  text-shadow:-3px -3px 0 rgba(6,11,20,.96), 2px 3px 0 rgba(255,215,154,.24),
+              0 0 8px rgba(6,11,20,.8);}
+.body{position:absolute;left:104px;top:1030px;width:660px;font-family:"Space Grotesk",sans-serif;
+  font-weight:400;font-size:32px;line-height:1.38;color:#D6DEE7;
+  text-shadow:-1px -1px 0 rgba(6,11,20,.9), 1px 2px 0 rgba(255,215,154,.16),
+              0 0 7px rgba(6,11,20,.85);}
+.dist{position:absolute;right:90px;top:150px;font-family:"JetBrains Mono",monospace;
+  font-weight:400;font-size:24px;letter-spacing:.10em;color:#9FB0BE;
+  text-shadow:0 0 5px rgba(6,11,20,.9);}
+.polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+.ctr{position:absolute;right:90px;bottom:86px;padding:5px 11px;background:rgba(5,9,16,.66);border-radius:4px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:.12em;color:#DCE4EA;font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:-1px -1px 0 rgba(4,8,11,.92),0 0 6px rgba(4,8,11,.96),0 0 14px rgba(4,8,11,.88);}
+</style></head><body data-breather>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div id="grain"></div>
+<h2 id="h2">One line, twice the threshold.</h2>
+<div class="body">The Alaska Intertie runs 170 miles between Willow and Healy. The Alaska Energy Authority puts it at 138 kilovolts. The order's line is 69,000 volts.</div>
+<div class="dist">200 m</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="ctr">06 / 10</div>
+
+<script>
+const W=1080,H=1350,SEED=20260909+6;
+const AZ=118, EL=34, DATUM=900;
+const HZ=352;                                  // the conductor's height
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h2'),{min:40,max:56,maxLines:2});
+  const rg=AK.rng(SEED+13);
+
+  /* ---- blue hour sky, the deck's coldest frame -------------------------- */
+  const sky=cx.createLinearGradient(0,0,0,780);
+  sky.addColorStop(0,'#050A13'); sky.addColorStop(.44,'#0D1A2A'); sky.addColorStop(1,'#20364A');
+  cx.fillStyle=sky; cx.fillRect(0,0,W,780);
+  { const g=cx.createLinearGradient(0,540,0,780);          // the last warmth, low
+    g.addColorStop(0,'rgba(232,163,61,0)'); g.addColorStop(1,'rgba(232,163,61,0.16)');
+    cx.fillStyle=g; cx.fillRect(0,540,W,240); }
+
+  /* ---- the far ridge, then the near spruce. scale 0.72^i, atmosphere lerp */
+  function ridge(y0, amp, col, alpha, step){
+    cx.beginPath(); cx.moveTo(0,H);
+    for(let x=0;x<=W;x+=step){
+      const n=AK.fbm2(x*0.0022+y0*0.01, y0*0.003, 4);
+      cx.lineTo(x, y0 - amp*n - amp*0.36*AK.fbm2(x*0.011,y0*0.02,2));
+    }
+    cx.lineTo(W,H); cx.closePath();
+    cx.fillStyle=col; cx.globalAlpha=alpha; cx.fill(); cx.globalAlpha=1;
+  }
+  ridge(742, 74, '#1B2C3E', 0.92, 5);
+  ridge(788, 52, '#132131', 0.95, 4);
+  { const fog=cx.createLinearGradient(0,700,0,860);        // frost smoke in the valley
+    fog.addColorStop(0,'rgba(120,150,176,0)'); fog.addColorStop(.5,'rgba(120,150,176,0.22)');
+    fog.addColorStop(1,'rgba(120,150,176,0)');
+    cx.fillStyle=fog; cx.fillRect(0,700,W,160); }
+  /* TWO spruce populations, not one. The far stand is smaller, lerped toward the
+     ridge's own blue so the air between them is visible, and the near stand is
+     larger and near black and overlaps the pier's chamfer, so the occlusion is
+     explicit rather than implied. One flat silhouette was doing the work of two
+     planes and the frame lost its middle distance. */
+  for(let i=0;i<52;i++){                         // far stand, 0.72 scale, hazed
+    const x=rg()*W, hgt=(34+rg()*84)*0.72, y=838+rg()*26, wdt=hgt*0.24;
+    cx.fillStyle='rgba(24,40,58,'+(0.62+0.20*rg()).toFixed(3)+')';
+    cx.beginPath(); cx.moveTo(x,y-hgt);
+    for(let s=0;s<6;s++){ const t=s/5, yy=y-hgt+t*hgt, ww=wdt*t;
+      cx.lineTo(x+ww, yy); cx.lineTo(x+ww*0.62, yy+hgt/8); }
+    cx.lineTo(x,y);
+    for(let s=5;s>=0;s--){ const t=s/5, yy=y-hgt+t*hgt, ww=wdt*t;
+      cx.lineTo(x-ww*0.62, yy+hgt/8); cx.lineTo(x-ww, yy); }
+    cx.closePath(); cx.fill(); }
+  // near stand, 1.25 scale, crowns overlapping the pier's chamfer
+  for(let i=0;i<74;i++){
+    const x=rg()*W, hgt=(48+rg()*130)*1.25, y=884+rg()*40, wdt=hgt*0.22;
+    cx.fillStyle='rgba(4,9,14,'+(0.84+0.14*rg()).toFixed(3)+')';
+    cx.beginPath(); cx.moveTo(x,y-hgt);
+    for(let s=0;s<6;s++){ const t=s/5, yy=y-hgt+t*hgt, ww=wdt*t;
+      cx.lineTo(x+ww, yy); cx.lineTo(x+ww*0.62, yy+hgt/8); }
+    cx.lineTo(x,y);
+    for(let s=5;s>=0;s--){ const t=s/5, yy=y-hgt+t*hgt, ww=wdt*t;
+      cx.lineTo(x-ww*0.62, yy+hgt/8); cx.lineTo(x-ww, yy); }
+    cx.closePath(); cx.fill(); }
+
+  /* ---- THE LATTICE STRUCTURE, depth-weighted wireframe ------------------ */
+  { const bx=744, by=856, tw=196, bw=92, ht=560;
+    function leg(sgn){ return [[bx+sgn*bw/2, by],[bx+sgn*tw/2*0.30, by-ht*0.62],[bx+sgn*tw/2*0.22, by-ht]]; }
+    const L=leg(-1), R=leg(1);
+    cx.lineCap='butt';
+    for(let i=0;i<26;i++){                       // the lattice web
+      const t=i/25, tz=1-0.45*t;
+      const yA=by-ht*t, yB=by-ht*Math.min(1,t+1/25);
+      const xa=bx-(bw/2+(tw/2*0.22-bw/2)*t), xb=bx+(bw/2+(tw/2*0.22-bw/2)*t);
+      const xa2=bx-(bw/2+(tw/2*0.22-bw/2)*(t+1/25)), xb2=bx+(bw/2+(tw/2*0.22-bw/2)*(t+1/25));
+      /* the brace running down-right is the near face and takes the key; the one
+         running down-left is the far face, seen through the tower */
+      cx.strokeStyle='rgba(121,136,148,'+(0.42*tz).toFixed(3)+')'; cx.lineWidth=0.6*tz;
+      cx.beginPath(); cx.moveTo(xb,yA); cx.lineTo(xa2,yB); cx.stroke();
+      cx.strokeStyle='rgba(196,212,226,'+(0.34*tz).toFixed(3)+')'; cx.lineWidth=1.35*tz;
+      cx.beginPath(); cx.moveTo(xa,yA); cx.lineTo(xb2,yB); cx.stroke();
+      cx.strokeStyle='rgba(200,214,224,'+(0.20*tz).toFixed(3)+')'; cx.lineWidth=1.0*tz;
+      cx.beginPath(); cx.moveTo(xa,yA); cx.lineTo(xb,yA); cx.stroke();
+    }
+    for(const P of [L,R]){                       // the legs, hero weight
+      cx.strokeStyle='rgba(8,14,20,0.9)'; cx.lineWidth=5.0;
+      cx.beginPath(); cx.moveTo(P[0][0],P[0][1]); cx.lineTo(P[1][0],P[1][1]); cx.lineTo(P[2][0],P[2][1]); cx.stroke();
+      cx.strokeStyle='#8FA0AE'; cx.lineWidth=2.6;
+      cx.beginPath(); cx.moveTo(P[0][0],P[0][1]); cx.lineTo(P[1][0],P[1][1]); cx.lineTo(P[2][0],P[2][1]); cx.stroke();
+      cx.strokeStyle='rgba(255,215,154,0.30)'; cx.lineWidth=1.0;
+      cx.beginPath(); cx.moveTo(P[0][0]+1.4,P[0][1]); cx.lineTo(P[1][0]+1.4,P[1][1]); cx.lineTo(P[2][0]+1.4,P[2][1]); cx.stroke();
+    }
+    // the crossarm and its insulator strings, drawn but never counted in copy
+    cx.strokeStyle='#8FA0AE'; cx.lineWidth=3.0;
+    cx.beginPath(); cx.moveTo(bx-150, by-ht+16); cx.lineTo(bx+150, by-ht+16); cx.stroke();
+    for(const ix of [bx-118, bx, bx+118]){
+      for(let d=0;d<7;d++){
+        cx.fillStyle='rgba(196,208,216,'+(0.42-0.02*d).toFixed(3)+')';
+        cx.beginPath(); cx.ellipse(ix, by-ht+28+d*9, 6.5, 3.4, 0, 0, 7); cx.fill(); } }
+  }
+
+  /* ---- THE CONDUCTOR. a real catenary, running off BOTH edges ----------- */
+  { function cat(x){ const a=1900, x0=744; return HZ + a*(Math.cosh((x-x0)/a)-1); }
+    cx.strokeStyle='rgba(6,11,18,0.85)'; cx.lineWidth=4.6;
+    cx.beginPath(); for(let x=-10;x<=W+10;x+=4){ x===-10?cx.moveTo(x,cat(x)):cx.lineTo(x,cat(x)); } cx.stroke();
+    cx.strokeStyle='#A9BAC7'; cx.lineWidth=2.2;
+    cx.beginPath(); for(let x=-10;x<=W+10;x+=4){ x===-10?cx.moveTo(x,cat(x)):cx.lineTo(x,cat(x)); } cx.stroke();
+    cx.strokeStyle='rgba(255,215,154,0.26)'; cx.lineWidth=0.9;
+    cx.beginPath(); for(let x=-10;x<=W+10;x+=4){ x===-10?cx.moveTo(x,cat(x)+1.4):cx.lineTo(x,cat(x)+1.4); } cx.stroke(); }
+
+  /* ---- THE PIER. the most modelled surface in the deck, and the type's
+         ground. one reliefShade pass, then form-board seams and rime. ----- */
+  const QX=64, QY=890, QW=880, QH=460;
+  /* The apron the pier stands on. Snow at blue hour is not black, it holds the
+     last of the sky and whatever the key spills onto it, and a pier standing on
+     it throws a cast up and left. Without both, the pier had only a seam under
+     it and read as pasted onto the frame rather than standing in it. */
+  { cx.save(); cx.globalCompositeOperation='screen';
+    cx.translate(210,1180); cx.scale(1,0.52);
+    const ap=cx.createRadialGradient(0,0,0,0,0,470);
+    ap.addColorStop(0,'rgba(150,178,206,0.34)');
+    ap.addColorStop(.48,'rgba(96,124,154,0.16)');
+    ap.addColorStop(1,'rgba(30,46,66,0)');
+    cx.fillStyle=ap; cx.beginPath(); cx.arc(0,0,470,0,7); cx.fill(); cx.restore();
+    for(let i=0;i<2600;i++){                      // the apron's own frozen tooth
+      const x=rg()*QX*1.9, y=QY-70+rg()*(H-QY+70);
+      const lit=Math.max(0,1-Math.hypot(x-210,(y-1180)/0.52)/470);
+      if(lit<=0) continue;
+      cx.fillStyle=(rg()>0.45?'rgba(206,224,242,':'rgba(8,14,24,')+((0.05+0.16*rg())*lit).toFixed(3)+')';
+      cx.beginPath(); cx.ellipse(x,y,0.9+rg()*2.4,0.6+rg()*1.4,0,0,7); cx.fill(); }
+    const ldx=-Math.sin(AZ*Math.PI/180), ldy=Math.cos(AZ*Math.PI/180);
+    cx.save(); cx.globalCompositeOperation='multiply';   // the pier's own cast
+    cx.beginPath(); cx.rect(0,0,W,H); cx.rect(QX-2,QY-2,QW+4,QH+4); cx.clip('evenodd');
+    for(let k=46;k>=1;k--){
+      const t=k/46, a=0.66*Math.pow(1-t,1.35);
+      cx.fillStyle='rgba(6,11,20,'+a.toFixed(3)+')';
+      cx.fillRect(QX+ldx*k, QY+ldy*k, QW, QH); }
+    cx.restore(); }
+  AK.reliefShade(cx,{
+    x:QX, y:QY, w:QW, h:QH, scale:2, seed:SEED, strength:96,
+    height:(u,v)=>{
+      const batter=1-0.10*v;
+      const face=0.62+0.20*Math.cos((u-0.42)*2.4);
+      const seam=0.035*Math.sin(v*Math.PI*3.0);
+      return Math.max(0,Math.min(1,(face*batter)+seam));
+    },
+    lights:[{az:AZ,el:EL,w:1.0}],
+    ambient:0.22, diffuse:0.94, gamma:1.06,
+    low:'#141F2B', high:'#7C8B98',
+    mask:(u,v)=>Math.min(1, Math.min(u,1-u)/0.02)});
+  for(let i=0;i<5200;i++){                       // aggregate pocking
+    const x=QX+rg()*QW, y=QY+rg()*QH, r=0.9+rg()*2.2;
+    cx.fillStyle='rgba(6,11,17,'+(0.10+0.26*rg()).toFixed(3)+')';
+    cx.beginPath(); cx.arc(x,y,r,0,7); cx.fill();
+    cx.fillStyle='rgba(226,236,244,'+(0.05+0.14*rg()).toFixed(3)+')';
+    cx.beginPath(); cx.arc(x+r*0.6,y+r*0.6,r*0.55,0,7); cx.fill(); }
+  for(const sy of [QY+8, QY+120, QY+140, QY+346]){             // form-board seams
+    cx.fillStyle='rgba(6,11,17,0.52)'; cx.fillRect(QX,sy,QW,3.4);
+    cx.fillStyle='rgba(255,215,154,0.18)'; cx.fillRect(QX,sy+3.4,QW,1.4); }
+  { const ax=828, ay=QY+56;                      // the anchor bolt and its runnel
+    cx.fillStyle='rgba(6,11,17,0.62)';
+    cx.beginPath(); cx.ellipse(ax+4,ay+5,15,6,0,0,7); cx.fill();
+    const bg=cx.createRadialGradient(ax-4,ay-4,1,ax,ay,15);
+    bg.addColorStop(0,'#CBD5DC'); bg.addColorStop(.58,'#6B767E'); bg.addColorStop(1,'#1E262D');
+    cx.fillStyle=bg; cx.beginPath(); cx.arc(ax,ay,12,0,7); cx.fill();
+    const ru=cx.createLinearGradient(ax,ay,ax-16,QY+QH);
+    ru.addColorStop(0,'rgba(148,86,34,0.42)'); ru.addColorStop(1,'rgba(148,86,34,0)');
+    cx.fillStyle=ru; cx.fillRect(ax-13,ay,26,QH-56); }
+  for(let i=0;i<420;i++){                        // rime along the top chamfer
+    const x=QX+rg()*QW, y=QY+rg()*16;
+    cx.fillStyle='rgba(230,238,245,'+(0.10+0.24*rg()).toFixed(3)+')';
+    cx.beginPath(); cx.ellipse(x,y,1.4+rg()*3.0,0.9+rg()*1.3,0,0,7); cx.fill(); }
+  cx.fillStyle='rgba(255,215,154,0.24)'; cx.fillRect(QX,QY,QW,2.0);
+  cx.fillStyle='rgba(6,11,17,0.80)'; cx.fillRect(QX-5,QY-5,5.5,QH+10);
+
+  /* ---- the reserve. The copy is set on the pier, and a pier is a lit
+     modelled surface, so the block gets a real one: the concrete falls into
+     shade where the copy sits, feathered on every edge so it reads as the
+     light going off the face and never as a panel laid on top. ----------- */
+  /* NOT a panel. Nothing in this deck is a plate invented to hold text, and a
+     feathered rectangle laid over the pier was exactly that. The copy already
+     sits inside one of the pier's own form-board cells, the one between the
+     seams at QY+152 and QY+308, so that BOARD sits a few millimetres proud of
+     its neighbours and takes less of the key. The cell's own edges bound the
+     shade, which is why it reads as the concrete and not as a card. */
+  for(const [cy0,cy1] of [[QY+8,QY+120],[QY+140,QY+346]]){
+    cx.save(); cx.beginPath(); cx.rect(QX,cy0,QW,cy1-cy0); cx.clip();
+    const cg=cx.createLinearGradient(QX,cy0,QX+QW*0.72,cy1);
+    cg.addColorStop(0,'rgba(4,8,13,0.74)');
+    cg.addColorStop(.62,'rgba(4,8,13,0.62)');
+    cg.addColorStop(1,'rgba(4,8,13,0.34)');
+    cx.fillStyle=cg; cx.fillRect(QX,cy0,QW,cy1-cy0);
+    cx.fillStyle='rgba(3,6,11,0.55)'; cx.fillRect(QX,cy0,QW,5.0);   // the proud lip's lee
+    cx.fillStyle='rgba(214,228,242,0.10)'; cx.fillRect(QX,cy1-3.4,QW,3.4);
+    cx.restore(); }
+
+  /* ---- D1, sitting low while the conductor crosses far above it --------- */
+  cx.fillStyle='#060B14'; cx.fillRect(0,DATUM-1.6,W,4.2);
+  cx.fillStyle='#FFC72C'; cx.fillRect(0,DATUM,W,1.25);
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.14,saturation:0.92,contrast:1.12,filmic:true,
+    lift:[0.010,0.014,0.024],gain:[1.006,1.0,0.990],vignette:0.26,
+    bloom:{threshold:0.88,strength:0.12,radius:9},
+    grain:{amount:0.038,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.28});
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,54,SEED)+')';
+
+  document.body.setAttribute('data-contacts', JSON.stringify([
+    {what:"the concrete pier standing on the frozen apron",
+     shadow:[[QX-30,1046,24,12]], ground:[[10,1150,26,12]]}]));
+  return true;
+})();
+</script>
+</body></html>

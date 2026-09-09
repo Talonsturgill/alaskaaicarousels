@@ -1,0 +1,128 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-09/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 37088880,
+  "pdf_mb": 37.09,
+  "slides": 10,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-09/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-09-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-09/final/thumbs/slide-10-thumb.png"
+  ],
+  "title": "The Sentence That Isn't in Executive Order 14421",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "4b1088cb36d099ce87779531a3a78cb1cb580515292b773017c467643eb3372a",
+        "bytes": 6659928
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "c2faee4c338252fae066329aa391a4238b4da9f4e18efad6cf3b888ededf51e8",
+        "bytes": 7359463
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "a83d29ed0237ab299ad4f4f199ef8b4bc3abf7f3db126ebc6e5ed64aa81fcfdb",
+        "bytes": 5171050
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "9befff64539bd34543b0d94561efc01929733ea184fed1815d2ba7a376090d5c",
+        "bytes": 6329209
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "d388823ae8799dc936b091b6577882a65cd6c2a6774c3bf51bde001c0777f6fb",
+        "bytes": 7265081
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "3065ae27744a5771499a07dbc4bd3570a65629acbf18a32c60940461a5fdf177",
+        "bytes": 6245453
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "ee606d777752f87d51504d1a77ed1e0e7296d3111ade2492071b72ecffb3a288",
+        "bytes": 6557113
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "032146b514cf30b59a96f57cccfc200454462bfb36a181409d3917aeffda56a1",
+        "bytes": 5800857
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "83dfe261f0f99222af2dadd22ec6af833b830b6e4384f342522633b3771a3686",
+        "bytes": 7307198
+      },
+      {
+        "name": "slide-10.png",
+        "sha256": "6824e088ae56223ef9f30a96c7d02c7d9fefa8559f887da657131546f1e99ebf",
+        "bytes": 5938248
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "4b919aecb8c8f355fc313d5b05b60c237cc778fa7ce5c59cf0cf8f4d169de337",
+        "bytes": 14836
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "f4591100d976907cf115df6807e89b8cc818c734622520135d5e1b454d16f92a",
+        "bytes": 12733
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "9cd16641f838ac22a6910a9a7f43e8afec6ee19a9ab49721b2625ab845fc2e10",
+        "bytes": 12227
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "3ad64867dc57889cccf7c4d5b3c17ef87b3d820e9ac3974154d41c545f3e8559",
+        "bytes": 13378
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "3101d6945241ec2e266697b3a043a95d43a88af5f72abe788dd6e753cb3b00fa",
+        "bytes": 12830
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "846aa687193a34a1d25fbd35d81a348da03be5a860d2bb7b010f64e6ed68e959",
+        "bytes": 15123
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "1717b26e4e768108ee9eaee153b4bedb911f0508415024c2d817d0ed3f963d94",
+        "bytes": 23417
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "f9078ee47a65e7fab99b506c5f24bba76b3ebd0c08962579941c88d81c738e8b",
+        "bytes": 18153
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "6eac2ee25e1194e4649dc0ef74705417959940aa58e88eed5f55398655d9b4a3",
+        "bytes": 20936
+      },
+      {
+        "name": "slide-10.html",
+        "sha256": "03ac53e49612a163fbd6c319d211f7349d29bbce528dd4ef5a84c4880d979416",
+        "bytes": 14039
+      }
+    ]
+  }
+}

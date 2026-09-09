@@ -1,0 +1,52 @@
+# The Sentence That Isn't in Executive Order 14421
+
+> One sentence in federal law says the grid reliability rules don't apply to Alaska. Executive Order 14421 carries no sentence like it.
+
+Published 2026-09-09 by Alaska AI. 10 slides.
+Canonical: https://alaskaaihq.com/archive/2026-09-09/
+
+## What we verified
+
+- Executive Order 14421 is dated August 26th, 2026. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- The title of Executive Order 14421 is Declaring a National Emergency To Secure the United States Bulk-Power System. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- Executive Order 14421 was published in the Federal Register on August 31st, 2026 beginning at page 55995 of volume 91. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- The order's stated rationale names data centers and artificial intelligence as drivers of the Nation's dependence on reliable electricity. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- Section 5(a) of the order defines the bulk-power system around facilities necessary for operating an interconnected electric energy transmission network. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- The order's own definition covers transmission lines rated at 69,000 volts or more and excludes local distribution facilities. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- Section 5(b) lists substation transformers, grid-connected inverters, battery energy storage systems and uninterruptible power supply systems among covered bulk-power system electric equipment. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- The order is issued under the International Emergency Economic Powers Act and the National Emergencies Act. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- The order declares a national emergency with respect to the foreign supply of bulk-power system electric equipment. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- The order gives the Secretary of Energy 120 days to publish rules or regulations implementing its authorities. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- The order gives the Secretary of Energy 180 days to submit recommended revisions to the Federal Acquisition Regulation. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- No geographic exclusion appears in the text of Executive Order 14421 as published, and the words Alaska, Hawaii, islanded and non-contiguous appear nowhere in it. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm), primary document, 2026-08-31.
+- The Department of Energy Office of Cybersecurity, Energy Security, and Emergency Response published a request for information titled Securing the United States Bulk-Power System. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm), primary document, 2026-09-09.
+- The DOE request for information was published on September 9th, 2026 starting at page 57322 of Federal Register volume 91. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm), primary document, 2026-09-09.
+- The DOE request for information carries the Regulation Identifier Number 1901-AB79. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm), primary document, 2026-09-09.
+- Comments on the DOE request for information are accepted on or before October 9th, 2026. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm), primary document, 2026-09-09.
+- Question A-2 of the request for information asks commenters to identify equipment-specific voltage, capacity, connectivity, function, location or criticality thresholds. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm), primary document, 2026-09-09.
+- DOE states the request for information is meant to inform its actions to implement the executive order. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm), primary document, 2026-09-09.
+- The DOE request for information as published raises no geographic or islanded system question, and the words Alaska, Hawaii, islanded and non-contiguous appear nowhere in it. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm), primary document, 2026-09-09.
+- Section 215 of the Federal Power Act states that its provisions do not apply to Alaska or Hawaii. [Office of the Law Revision Counsel, United States Code](https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title16-section824o&num=0&edition=prelim), primary document, 2026-09-09.
+- The Railbelt Reliability Council describes itself as Alaska's first electric reliability organization. [Railbelt Reliability Council](https://akrrc.org/), primary document, 2026-09-09.
+- The Railbelt Reliability Council calls the Railbelt grid islanded. [Railbelt Reliability Council](https://www.akrrc.org/standards-2), primary document, 2026-09-09.
+- The interconnected Railbelt bulk electric system serves a geographic area entirely inside Alaska. [Railbelt Reliability Council](https://www.akrrc.org/faqs), primary document, 2026-09-09.
+- Five load-serving electric utilities are interconnected on the Alaska Railbelt. [Railbelt Reliability Council](https://www.akrrc.org/about-rrc), primary document, 2026-09-09.
+- The Railbelt Reliability Council says the Railbelt grid serves nearly three-quarters of Alaska's population. [Railbelt Reliability Council](https://www.akrrc.org/about-rrc), primary document, 2026-09-09.
+- The Railbelt utilities are interconnected across nearly 700 miles. [Railbelt Reliability Council](https://www.akrrc.org/about-rrc), primary document, 2026-09-09.
+- The Alaska Intertie is owned by the Alaska Energy Authority and runs 170 miles between Willow and Healy. [Alaska Energy Authority](https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Alaska-Intertie), primary document, 2026-09-09.
+- The Alaska Intertie was built to 345 kilovolt standards and operates at 138 kilovolts, per the Alaska Energy Authority. [Alaska Energy Authority](https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Alaska-Intertie), primary document, 2026-09-09.
+- The Alaska Energy Authority calls the Alaska Intertie an integral part of the interconnected bulk electrical system for the Railbelt region. [Alaska Energy Authority](https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Alaska-Intertie), primary document, 2026-09-09.
+- Chugach Electric Association serves nearly 89,000 members at over 113,000 metered locations. [Chugach Electric Association](https://www.chugachelectric.com/about-us), primary document, 2026-09-09.
+- Homer Electric Association reports 26,181 member-owners. [Homer Electric Association](https://www.homerelectric.com/about-us/), primary document, 2026-09-09.
+- Alaska generated 6,690,506 megawatthours of electricity in 2024. [U.S. Energy Information Administration](https://www.eia.gov/electricity/state/alaska/), primary document, 2024-12-31.
+- Alaska's average retail electricity price across all sectors in 2024 was 22.17 cents per kilowatthour. [U.S. Energy Information Administration](https://www.eia.gov/electricity/state/alaska/), primary document, 2024-12-31.
+- FERC accepted for filing a preliminary permit application from DeepGreen Cook Inlet SPV, LLC under Project No. 15423-000. [Federal Energy Regulatory Commission via Federal Register](https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm), primary document, 2026-09-04.
+- The DeepGreen Cook Inlet project proposes an approximately 3.5 mile 115 kilovolt hybrid power and fiber-optic armored subsea cable. [Federal Energy Regulatory Commission via Federal Register](https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm), primary document, 2026-09-04.
+- The DeepGreen Cook Inlet project proposes 66 modular subsea-compute hives described as data center pods. [Federal Energy Regulatory Commission via Federal Register](https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm), primary document, 2026-09-04.
+- The DeepGreen Cook Inlet project proposes approximately 330 to 350 marine hydrokinetic turbines. [Federal Energy Regulatory Commission via Federal Register](https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm), primary document, 2026-09-04.
+- The FERC notice puts the DeepGreen project's estimated annual generation at 100 megawatts. [Federal Energy Regulatory Commission via Federal Register](https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm), primary document, 2026-09-04.
+- Comments and competing applications on the DeepGreen preliminary permit are due by 5 p.m. Eastern on November 2nd, 2026. [Federal Energy Regulatory Commission via Federal Register](https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm), primary document, 2026-09-04.
+- 16 U.S.C. 824o is the Federal Power Act electric reliability section that created the national electric reliability organization regime. [Cornell Legal Information Institute](https://www.law.cornell.edu/uscode/text/16/824o), report, 2026-09-09.
+- The Federal Power Act reliability section defines the bulk-power system in nearly the same words the executive order uses. [Cornell Legal Information Institute](https://www.law.cornell.edu/uscode/text/16/824o), report, 2026-09-09.
+
+Slides and the deck PDF are linked from the canonical page.

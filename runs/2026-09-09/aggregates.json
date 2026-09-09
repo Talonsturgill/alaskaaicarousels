@@ -1,0 +1,71 @@
+{
+  "run_date": "2026-09-09",
+  "aggregates": [
+    {
+      "kind": "count",
+      "slide": 4,
+      "fragment": "Two definitions",
+      "text": "Two definitions, word for word the same.",
+      "subject": "definitions",
+      "members": [
+        "C22",
+        "C05"
+      ],
+      "note": "The two are the statute's definition at 16 U.S.C. 824o(a)(1) (C22) and the order's at EO 14421 section 5(a) (C05). Both are printed on this frame, in full, at identical size and measure."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "fragment": "170 miles",
+      "text": "The Alaska Intertie runs 170 miles between Willow and Healy.",
+      "member": "C29"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "89,000 MEMBERS",
+      "text": "CHUGACH NEARLY 89,000 MEMBERS",
+      "member": "C33"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "26,181 MEMBER-OWNERS",
+      "text": "HOMER ELECTRIC 26,181 MEMBER-OWNERS",
+      "member": "C34"
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "fragment": "Three Alaska figures",
+      "text": "Three Alaska figures sit above the line and none below it.",
+      "subject": "Alaska figures",
+      "members": [
+        "C30",
+        "C38"
+      ],
+      "note": "The three are 345 kV as built and 138 kV operating on the Alaska Intertie (both carried by C30, whose page gives the construction figure and the operating figure) and the proposed 115 kV DeepGreen cable (C38). All three are drawn as rows on this slide's ladder above the 69 kV datum, and no fourth Alaska figure appears anywhere in the deck.",
+      "items": [
+        "345 kV",
+        "138 kV",
+        "115 kV"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "fragment": "Five utilities",
+      "text": "Five utilities run nearly 700 miles between those towns.",
+      "member": "C26",
+      "note": "C26 counts five load-serving utilities and names them in its notes as Golden Valley Electric Association, Matanuska Electric Association, Chugach Electric Association, Homer Electric Association and Seward Electric System. The nearly 700 miles in the same sentence is C28."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 9,
+      "fragment": "120 DAYS",
+      "text": "RULES COME AT 120 DAYS",
+      "member": "C10",
+      "note": "C10's own value is 120 days, printed on the tag exactly as the order states it. The deck never prints the landing date, because the order states an interval and not a date, and no source carries the date."
+    }
+  ]
+}

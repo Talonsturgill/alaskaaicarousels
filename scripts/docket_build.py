@@ -697,8 +697,15 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
     # measures 16.2 px and two of them abutted with no gap at all. On the phone
     # map that rendered items 13 and 15 as the single number 1315. A slot has to
     # be at least as wide as the thing standing in it.
+    # The gap is also the TAP TARGET, which is why it is 9.0 and not the 5.0 it
+    # shipped at until 2026-09-09. On a shared-coordinate badge each number is
+    # its own link, and a link's slot is the only ground it may claim, because
+    # anything wider steals the tap belonging to the number beside it. Measured
+    # on a 390px phone that day, a one-digit slot gave a 9 by 19 CSS px target
+    # and a two-digit slot 17 by 19, against a finger that needs about 44. The
+    # slot is now the full 28-unit height of the badge and four units wider.
     PIN_CH = 8.1        # JBMono advance at the 13.5px set in .pinnum
-    PIN_GAP = 5.0       # visible air between neighbouring numbers
+    PIN_GAP = 9.0       # visible air between neighbouring numbers, and the tap
     def slot_w(g):
         return PIN_CH * max(len(str(n)) for n, _ in g[2]) + PIN_GAP
     def badge_w(g):
@@ -787,7 +794,14 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
             mk(dots, ax, ay, f'<circle class="pindot" cx="0" cy="0" r="3.4" fill="{c}"/>', cls=acls)
         if len(members) == 1:
             n, it = members[0]
+            # r 17 and not r 14 for the hit ring, which is the drawn badge's own
+            # radius. The collision solver holds single badges at least 34 units
+            # apart centre to centre, so two 17-unit rings meet and never
+            # overlap, and the target grows from about 30 to about 36 CSS px on
+            # a phone without any pin claiming ground next door.
             body = (f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
+                    f'<circle class="pintap" cx="{ox:.0f}" cy="{oy:.0f}" r="17" '
+                    f'fill="transparent" pointer-events="all"/>'
                     f'<circle class="pinbadge" cx="{ox:.0f}" cy="{oy:.0f}" r="14" fill="#050b16" '
                     f'stroke="{c}" stroke-width="2.6"/><text x="{ox:.0f}" y="{oy + 5:.0f}" '
                     f'text-anchor="middle" class="pinnum" fill="{c}">{n}</text></a>')
@@ -804,8 +818,16 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
             sw = slot_w(g)
             for i, (n, it) in enumerate(members):
                 tx = x0 + 10.0 + sw * i + sw / 2.0
+                # The hit rect comes FIRST and inside the anchor, so the link
+                # owns its whole slot rather than the glyph alone. fill is a
+                # colour and not none, and pointer-events is forced, because a
+                # shape with no paint is not hit-tested under the default
+                # visiblePainted and the target would silently stay the glyph.
                 parts.append(
                     f'<a href="#{esc(it["id"])}" aria-label="{esc(it["title"])}">'
+                    f'<rect class="pintap" x="{tx - sw / 2.0:.1f}" y="{oy - 14:.0f}" '
+                    f'width="{sw:.1f}" height="28" fill="transparent" '
+                    f'pointer-events="all"/>'
                     f'<text x="{tx:.0f}" y="{oy + 5:.0f}" text-anchor="middle" class="pinnum" '
                     f'fill="{PIN_COLOR[acc(it)]}">{n}</text></a>')
             mk(badges, ax, ay, "".join(parts), cls=acls)

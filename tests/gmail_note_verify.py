@@ -50,6 +50,31 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 
+# The same field names, in the same order, that gmail_draft._note_from walks.
+# Kept here rather than imported because that function is a closure inside
+# build_html; if the two lists ever drift, step 6 says so by reporting a source
+# that carries no note at all.
+NOTE_KEYS = ("editor_notes_for_email", "notes_for_the_email", "notes_for_email",
+             "editor_note", "editor_notes", "shortfall_note_for_email",
+             "shortfall_note", "honest_note_for_the_email", "honest_note")
+
+
+def source_note(doc):
+    """The value gmail_draft will render from this document, or None."""
+    for k in NOTE_KEYS:
+        v = doc.get(k)
+        if v is None or v == "":
+            continue
+        if isinstance(v, (list, tuple)):
+            items = [str(x).strip() for x in v if str(x).strip()]
+            if items:
+                return items
+            continue
+        if str(v).strip():
+            return str(v)
+    return None
+
+
 def load_gmail_draft():
     spec = importlib.util.spec_from_file_location(
         "gmail_draft", ROOT / "scripts" / "gmail_draft.py")
@@ -227,12 +252,31 @@ def main():
                 else:
                     sec = m.group(1)
                     assert_no_repr(sec, "end to end (%s)" % e2e, fails)
+                    # THE SHAPE OF THE SOURCE DECIDES WHAT THE HTML MUST HAVE
+                    # (2026-09-09). This demanded an <li> whatever the sources
+                    # carried, and the scorer and copywriter have been writing
+                    # the note as PROSE rather than as an array for months, so
+                    # it reported "a list note rendered without bullets" on
+                    # every run including the ones it was written against
+                    # (2026-09-09, 2026-09-07 and 2026-09-06 all fail it at
+                    # HEAD). gmail_draft._note_html is right and always was: a
+                    # list becomes bullets, a string keeps its line breaks. A
+                    # reconstruction that cries wolf every run is worse than no
+                    # reconstruction, because it teaches the operator to skip
+                    # the suite -- and this run's Phase 12 nearly charged it to
+                    # an unrelated engine change.
+                    shapes = [type(source_note(json.loads((rd / f).read_text())))
+                              for f in ("score_report.json", "copy.json")
+                              if (rd / f).exists()]
                     if "None." in sec:
                         fails.append("end to end (%s): note rendered 'None.'"
                                      % e2e)
-                    elif "<li>" not in sec:
+                    elif list in shapes and "<li>" not in sec:
                         fails.append("end to end (%s): a list note rendered "
                                      "without bullets" % e2e)
+                    elif list not in shapes and str not in shapes:
+                        fails.append("end to end (%s): a note was rendered from "
+                                     "sources that carry none" % e2e)
         checks += 1
 
     if fails:

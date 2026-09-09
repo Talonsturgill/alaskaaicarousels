@@ -13,6 +13,88 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-09-09/",
+      "url": "https://alaskaaihq.com/archive/2026-09-09/",
+      "title": "The Sentence That Isn't in Executive Order 14421",
+      "summary": "Both definitions sit side by side in the deck at identical size, and the order's stated reason names data centers and artificial intelligence.",
+      "content_html": "<p><em>One sentence in federal law says the grid reliability rules don't apply to Alaska. Executive Order 14421 carries no sentence like it.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-09/og.jpg\" alt=\"The Sentence That Isn't in Executive Order 14421 cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm\">Federal Register via GPO govinfo</a>, primary document</li><li><a href=\"https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm\">Federal Register via GPO govinfo</a>, primary document</li><li><a href=\"https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title16-section824o&amp;num=0&amp;edition=prelim\">Office of the Law Revision Counsel, United States Code</a>, primary document</li><li><a href=\"https://akrrc.org/\">Railbelt Reliability Council</a>, primary document</li><li><a href=\"https://www.akrrc.org/standards-2\">Railbelt Reliability Council</a>, primary document</li><li><a href=\"https://www.akrrc.org/faqs\">Railbelt Reliability Council</a>, primary document</li><li><a href=\"https://www.akrrc.org/about-rrc\">Railbelt Reliability Council</a>, primary document</li><li><a href=\"https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Alaska-Intertie\">Alaska Energy Authority</a>, primary document</li><li><a href=\"https://www.chugachelectric.com/about-us\">Chugach Electric Association</a>, primary document</li><li><a href=\"https://www.homerelectric.com/about-us/\">Homer Electric Association</a>, primary document</li><li><a href=\"https://www.eia.gov/electricity/state/alaska/\">U.S. Energy Information Administration</a>, primary document</li><li><a href=\"https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://www.law.cornell.edu/uscode/text/16/824o\">Cornell Legal Information Institute</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-09-09/\">Read the full deck with all 10 slides</a></p>",
+      "content_text": "",
+      "date_published": "2026-09-09T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-09/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 10,
+        "claims_verified": 41,
+        "sources": [
+          {
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-31/html/2026-17843.htm",
+            "outlet": "Federal Register via GPO govinfo",
+            "primary": true
+          },
+          {
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18370.htm",
+            "outlet": "Federal Register via GPO govinfo",
+            "primary": true
+          },
+          {
+            "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title16-section824o&num=0&edition=prelim",
+            "outlet": "Office of the Law Revision Counsel, United States Code",
+            "primary": true
+          },
+          {
+            "url": "https://akrrc.org/",
+            "outlet": "Railbelt Reliability Council",
+            "primary": true
+          },
+          {
+            "url": "https://www.akrrc.org/standards-2",
+            "outlet": "Railbelt Reliability Council",
+            "primary": true
+          },
+          {
+            "url": "https://www.akrrc.org/faqs",
+            "outlet": "Railbelt Reliability Council",
+            "primary": true
+          },
+          {
+            "url": "https://www.akrrc.org/about-rrc",
+            "outlet": "Railbelt Reliability Council",
+            "primary": true
+          },
+          {
+            "url": "https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Alaska-Intertie",
+            "outlet": "Alaska Energy Authority",
+            "primary": true
+          },
+          {
+            "url": "https://www.chugachelectric.com/about-us",
+            "outlet": "Chugach Electric Association",
+            "primary": true
+          },
+          {
+            "url": "https://www.homerelectric.com/about-us/",
+            "outlet": "Homer Electric Association",
+            "primary": true
+          },
+          {
+            "url": "https://www.eia.gov/electricity/state/alaska/",
+            "outlet": "U.S. Energy Information Administration",
+            "primary": true
+          },
+          {
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm",
+            "outlet": "Federal Energy Regulatory Commission via Federal Register",
+            "primary": true
+          },
+          {
+            "url": "https://www.law.cornell.edu/uscode/text/16/824o",
+            "outlet": "Cornell Legal Information Institute",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-09-07/",
       "url": "https://alaskaaihq.com/archive/2026-09-07/",
       "title": "Alaska AI Contracts and the Comma That Hides One",
@@ -2924,42 +3006,6 @@
           {
             "url": "https://www.faa.gov/uas/programs_partnerships/test_sites",
             "outlet": "faa.gov",
-            "primary": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "https://alaskaaihq.com/archive/2026-07-11/",
-      "url": "https://alaskaaihq.com/archive/2026-07-11/",
-      "title": "Cook Inlet gas storage, the RCA's no, and AI's gigawatt",
-      "summary": "On July 10, state regulators rejected Alaska's plan to store a single winter of Cook Inlet gas.",
-      "content_html": "<p><em>On July 10, state regulators rejected Alaska's plan to store a single winter of Cook Inlet gas.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-11/og.jpg\" alt=\"Cook Inlet gas storage, the RCA's no, and AI's gigawatt cover slide\" width=\"1080\" height=\"1350\"></p><p>Alaska's gas machine, in cutaway.</p><p>And the valve that just shut.</p><p>Five parts move gas from rock to furnace</p><p>Reservoir trap, wellhead, pipeline, storage cavern, and the state regulator's valve. Part four is a battery for deep winter. Right now, it sits empty.</p><p>Enough for an average day. Not for January.</p><p>Cook Inlet's aging fields can meet a normal day, but not a deep-cold peak, and there is little storage to bridge the gap. A former state senator's op-ed warns of a Southcentral shortfall by 2027.</p><p>Turn a dead reservoir into a winter battery</p><p>Enstar proposed buying the depleted Kenai Loop Pool from AIX Energy and refilling it to hold 25 billion cubic feet, close to half a year's gas, for about $240 million and up to $12 a month on the average bill.</p><p>Every fix runs through one valve</p><p>The Regulatory Commission of Alaska decides whether a utility's plan is prudent before customers ever pay for it.</p><p>The regulator shut the valve</p><p>On July 10 the RCA denied the plan, calling it an &quot;extraordinary request&quot; that &quot;lacked basic information about the project.&quot; The order ran 17 pages. Enstar's president said the company suspended the project.</p><p>Can it hold?</p><p>Now measure what wants to plug in</p><p>One proposed North Slope AI campus, from STAK Energy, would generate &quot;a gigawatt or more, some 30% more than urban Alaska's peak demand.&quot; More than $10 billion at full buildout. Its comment window closes July 17.</p><p>Store one winter first?</p><h3>Sources</h3><ul><li><a href=\"https://www.adn.com/business-economy/energy/2026/07/10/state-regulators-reject-enstar-gas-storage-plan-raising-questions-about-solution-to-cook-inlet-shortage/\">Anchorage Daily News (Alex DeMarban)</a>, report</li><li><a href=\"https://www.adn.com/opinions/2026/07/06/opinion-alaska-needs-energy-that-works-now-and-lasts/\">Anchorage Daily News (op-ed, Lesil McGuire)</a>, report</li><li><a href=\"https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/\">Northern Journal (Nathaniel Herz)</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-07-11/\">Read the full deck with all 9 slides</a></p>",
-      "content_text": "Alaska's gas machine, in cutaway.\n\nAnd the valve that just shut.\n\nFive parts move gas from rock to furnace\n\nReservoir trap, wellhead, pipeline, storage cavern, and the state regulator's valve. Part four is a battery for deep winter. Right now, it sits empty.\n\nEnough for an average day. Not for January.\n\nCook Inlet's aging fields can meet a normal day, but not a deep-cold peak, and there is little storage to bridge the gap. A former state senator's op-ed warns of a Southcentral shortfall by 2027.\n\nTurn a dead reservoir into a winter battery\n\nEnstar proposed buying the depleted Kenai Loop Pool from AIX Energy and refilling it to hold 25 billion cubic feet, close to half a year's gas, for about $240 million and up to $12 a month on the average bill.\n\nEvery fix runs through one valve\n\nThe Regulatory Commission of Alaska decides whether a utility's plan is prudent before customers ever pay for it.\n\nThe regulator shut the valve\n\nOn July 10 the RCA denied the plan, calling it an \"extraordinary request\" that \"lacked basic information about the project.\" The order ran 17 pages. Enstar's president said the company suspended the project.\n\nCan it hold?\n\nNow measure what wants to plug in\n\nOne proposed North Slope AI campus, from STAK Energy, would generate \"a gigawatt or more, some 30% more than urban Alaska's peak demand.\" More than $10 billion at full buildout. Its comment window closes July 17.\n\nStore one winter first?",
-      "date_published": "2026-07-11T17:00:00Z",
-      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-11/og.jpg",
-      "tags": [
-        "CookInletGas",
-        "AlaskaEnergy",
-        "DataCenterPower"
-      ],
-      "_alaska_ai": {
-        "slides": 9,
-        "claims_verified": 16,
-        "sources": [
-          {
-            "url": "https://www.adn.com/business-economy/energy/2026/07/10/state-regulators-reject-enstar-gas-storage-plan-raising-questions-about-solution-to-cook-inlet-shortage/",
-            "outlet": "Anchorage Daily News (Alex DeMarban)",
-            "primary": false
-          },
-          {
-            "url": "https://www.adn.com/opinions/2026/07/06/opinion-alaska-needs-energy-that-works-now-and-lasts/",
-            "outlet": "Anchorage Daily News (op-ed, Lesil McGuire)",
-            "primary": false
-          },
-          {
-            "url": "https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
-            "outlet": "Northern Journal (Nathaniel Herz)",
             "primary": false
           }
         ]
