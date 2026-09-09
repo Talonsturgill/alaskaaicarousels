@@ -1,0 +1,156 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the rating field on the left is struck and the field beside it is bare metal': dE 49.0, AUC 0.74, visible 100%/100%, seen 169/169px at 432w"
+      ],
+      "contacts": [
+        "'the rating plate standing proud of the tank flank': shadow L* 1.6 vs ground L* 14.3, dL 12.6 at 432w"
+      ],
+      "fits": [
+        "h1 'One sentence of federal law names Alaska. Th' fits 3/3 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the statute page lying on the gravel apron': shadow L* 1.9 vs ground L* 6.6, dL 4.6 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "busy art under text (bg edge density 0.06) beneath '(k)' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "canvas mark near reserved text: line 3 of 4 at (170,699) of 'That is the entire subsection. It sits i' carries 233 px^2 of hard-edged canvas ink (densest 40px window 2.8%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "busy art under text (bg edge density 0.22) beneath '02 / 10' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "fits": [
+        "h2 'The law already answers this.' fits 1/2 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'UNUSUAL AND EXTRAORDINARY THREAT' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "busy art under text (bg edge density 0.06) beneath '91 FR 55995 . PUBLISHED AUGUST 31ST, 202' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'IEEPA . NATIONAL EMERGENCIES ACT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the proof sheet lying on the steel bench': shadow L* 1.9 vs ground L* 27.0, dL 25.1 at 432w"
+      ],
+      "fits": [
+        "h2 'The order says why.' fits 1/1 lines at 73.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath '16 U.S.C. 824o(a)(1)' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'EO 14421 SECTION 5(a)' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "encodings": [
+        "'only the right column has a gold line under it': dE 50.0, AUC 1.00, visible 100%/100%, seen 176/176px at 432w"
+      ],
+      "contacts": [
+        "'the two pages lying on the plywood bench': shadow L* 2.1 vs ground L* 46.2, dL 44.1 at 432w"
+      ],
+      "fits": [
+        "h2 'Two definitions, word for word the same.' fits 2/2 lines at 63.5px",
+        "colL '\"facilities and control systems necessary fo' fits 6/6 lines at 30px",
+        "colR '\"facilities and control systems necessary fo' fits 6/6 lines at 30px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 1 of 4 at (104,1025) of 'Section 5(b) lists these among the bulk-' carries 95 px^2 of hard-edged canvas ink (densest 40px window 2.1%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "contacts": [
+        "'the legend plate standing proud of the tank flank': shadow L* 1.6 vs ground L* 14.2, dL 12.6 at 432w"
+      ],
+      "fits": [
+        "h2 'What the order calls covered equipment.' fits 2/2 lines at 63.5px"
+      ],
+      "asserts": [
+        "'four struck rows, one per category the claim body names' holds: 4 vs 4 marks, counted over 4 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the concrete pier standing on the frozen apron': shadow L* 1.5 vs ground L* 13.0, dL 11.5 at 432w"
+      ],
+      "fits": [
+        "h2 'One line, twice the threshold.' fits 1/2 lines at 55.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the gauge board lying on the plywood bench': shadow L* 2.9 vs ground L* 18.0, dL 15.1 at 432w"
+      ],
+      "scales": [
+        "'the voltage ladder, linear in kilovolts against a printed scale' runs 0 kilovolts at 1040 to 345 kilovolts at 340; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'Alaska sits above the threshold.' fits 1/2 lines at 59.5px",
+        "foot 'Three Alaska figures sit above the line and ' fits 2/2 lines at 25.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'neither agency is given more room than the other': dE 1.2, AUC 0.54, visible 40%/48%, seen 748/905px at 432w"
+      ],
+      "contacts": [
+        "'the left agency page lying on the plywood bench': shadow L* 4.9 vs ground L* 15.1, dL 10.2 at 432w",
+        "'the right agency page lying on the plywood bench': shadow L* 6.7 vs ground L* 15.1, dL 8.3 at 432w"
+      ],
+      "fits": [
+        "h2 'Alaska's own agencies use both words.' fits 2/2 lines at 59.5px",
+        "body 'The Railbelt Reliability Council calls the R' fits 5/5 lines at 31.5px"
+      ],
+      "asserts": [
+        "'the two highlighter swipes, each measured from its own page box, are the same length' holds: 0 vs 0 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (4% of the ring around 'OCTOBER 9TH, 2026', spanning 56%) -- pixel critic verify the label is not crossed"
+      ],
+      "contacts": [
+        "'the inspection tag hanging against the transformer plate': shadow L* 1.4 vs ground L* 27.6, dL 26.2 at 432w"
+      ],
+      "fits": [
+        "h2 'One question is open.' fits 1/2 lines at 61.5px",
+        "tbody 'Question A-2 of the DOE request for informat' fits 7/7 lines at 28px"
+      ]
+    },
+    {
+      "file": "slide-10.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the blank tag lying on the plywood bench': shadow L* 7.9 vs ground L* 22.5, dL 14.6 at 432w",
+        "'the steel scribe lying across the tag': shadow L* 37.8 vs ground L* 87.6, dL 49.8 at 432w"
+      ],
+      "fits": [
+        "line 'Nobody has said Alaska is in. Nobody has sai' fits 2/2 lines at 55.5px",
+        "ask 'Which threshold should Alaska ask DOE to wri' fits 2/2 lines at 33.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 11,
+  "verdict": "WARN"
+}

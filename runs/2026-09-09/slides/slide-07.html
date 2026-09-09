@@ -1,0 +1,412 @@
+<!doctype html>
+<!-- SLIDE 07 — KEEPABLE DATA. A galvanized gauge board lying on the bench,
+     milled into fields. A scale pocket at the far left, then a raised land
+     carrying the ladder's troughs, then a label pocket, then the strip pocket.
+     The land between the pockets is the only place the ladder's marks are cut,
+     which is why the declared band sits on bare zinc and nothing else does.
+     LEFT, a voltage ladder linear in kilovolts against a printed scale ticked
+     every 25 kV, with the gold 69 kV datum inlaid as its own row, so the deck's
+     continuity device and the deck's data become the same object. RIGHT, the
+     Railbelt as a north to south strip from Fairbanks and Delta Junction down to
+     Homer and Seldovia, engraved in forget-me-not because those are Alaska's own
+     institutions' figures. The DeepGreen row is phantom-dashed because a
+     preliminary permit is a study permit and a solid rule would claim a line
+     that is not built. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#080D13}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+#grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+  opacity:.07;pointer-events:none}
+h2{position:absolute;left:104px;top:86px;width:790px;font-family:"Fraunces",serif;
+  font-weight:600;color:#F4F8FF;line-height:1.0;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  text-shadow:0 0 6px rgba(8,13,19,.92),0 0 14px rgba(8,13,19,.85);}
+/* every string on this board sits in a milled pocket, so the type is light on
+   a dark ground everywhere and the bright zinc is never behind a word. */
+.num{position:absolute;left:284px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:28px;line-height:1;letter-spacing:.05em;color:#F2F6FA;
+  font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:-1px -1px 0 rgba(5,8,12,.92),0 0 7px rgba(5,8,12,.9);}
+.des{position:absolute;left:404px;font-family:"JetBrains Mono",monospace;font-weight:400;
+  font-size:24px;line-height:1;letter-spacing:.02em;color:#D2DAE1;
+  font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:-1px -1px 0 rgba(5,8,12,.92),0 0 7px rgba(5,8,12,.9);}
+.gold{color:#FFC72C;text-shadow:-1px -1px 0 rgba(5,8,12,.94),0 0 8px rgba(5,8,12,.9);}
+.sn{position:absolute;left:84px;width:64px;text-align:right;font-family:"JetBrains Mono",monospace;
+  font-weight:400;font-size:24px;line-height:1;letter-spacing:.02em;color:#B7C2CD;
+  font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:-1px -1px 0 rgba(5,8,12,.9),0 0 7px rgba(5,8,12,.88);}
+/* forget-me-not, and it appears nowhere on this slide but here. */
+.tn{position:absolute;left:806px;font-family:"JetBrains Mono",monospace;font-weight:400;
+  font-size:24px;line-height:1.10;letter-spacing:.02em;color:#7FB2FF;
+  text-shadow:-1px -1px 0 rgba(4,7,12,.94),0 0 8px rgba(4,7,12,.9);}
+.mem{position:absolute;left:284px;font-family:"JetBrains Mono",monospace;font-weight:400;
+  font-size:24px;line-height:1;letter-spacing:.04em;color:#7FB2FF;
+  font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:-1px -1px 0 rgba(4,7,12,.94),0 0 8px rgba(4,7,12,.9);}
+.foot{position:absolute;left:104px;top:1196px;width:740px;font-family:"Space Grotesk",sans-serif;
+  font-weight:400;font-size:26px;line-height:1.30;color:#DCE4EA;
+  text-shadow:0 0 6px rgba(8,13,19,.92),0 0 13px rgba(8,13,19,.85);}
+.polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+.ctr{position:absolute;right:90px;bottom:88px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:.12em;color:#C3CBD2;font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:0 0 5px rgba(8,13,19,.9);}
+</style></head><body
+  data-contacts='[{"what":"the gauge board lying on the plywood bench","shadow":[[884,1192,64,12]],"ground":[[884,1220,64,12]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div id="grain"></div>
+<h2 id="h2">Alaska sits above the threshold.</h2>
+
+<div class="sn" style="top:328px;">345</div>
+<div class="sn" style="top:419px;">300</div>
+<div class="sn" style="top:622px;">200</div>
+<div class="sn" style="top:825px;">100</div>
+<div class="sn" style="top:1028px;">0</div>
+
+<div class="num" style="top:325px;">345 kV</div>
+<div class="des" style="top:328px;">ALASKA INTERTIE, AS BUILT</div>
+<div class="num" style="top:745px;">138 kV</div>
+<div class="des" style="top:748px;">INTERTIE, OPERATING</div>
+<div class="num" style="top:792px;">115 kV</div>
+<div class="des" style="top:795px;">DEEPGREEN CABLE, PROPOSED</div>
+<div class="num gold" style="top:885px;">69 kV</div>
+<div class="des gold" style="top:888px;">THE ORDER'S OWN THRESHOLD</div>
+
+<div class="tn" style="top:296px;">FAIRBANKS</div>
+<div class="tn" style="top:352px;">DELTA<br>JUNCTION</div>
+<div class="tn" style="top:906px;">HOMER</div>
+<div class="tn" style="top:952px;">SELDOVIA</div>
+
+<div class="mem" style="top:1082px;">CHUGACH NEARLY 89,000 MEMBERS</div>
+<div class="mem" style="top:1112px;">HOMER ELECTRIC 26,181 MEMBER-OWNERS</div>
+
+<div class="foot" id="foot">Three Alaska figures sit above the line and none below it. Five utilities run nearly 700 miles between those towns.</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="ctr">07 / 10</div>
+
+<script>
+const W=1080,H=1350,SEED=20260909+7;
+const AZ=118, EL=34, DATUM=900;
+/* the light, resolved once. lee falls up and left, as on 01 through 06. */
+const LDX=-Math.sin(AZ*Math.PI/180), LDY=Math.cos(AZ*Math.PI/180);   // toward the lee
+const LIT=Math.atan2(-LDY,-LDX);                                     // toward the key
+const BX=76, BY=214, BW=940, BH=974;             // the gauge board, 76..1016
+const FLANGE=1148;                               // the board's lower flange line
+/* the ladder, solved so 69 kV lands exactly on the deck's datum */
+const V0=1040, V345=340;                          // 0 kV and 345 kV in design px
+function yv(v){ return V0 - (v/345)*(V0-V345); }
+const TICKX0=206, TICKX1=262;                     // the band the scale owns
+const SCX=158;                                    // the printed rule, outside the band
+/* the milled pockets. the band sits on the raised land BETWEEN two of them,
+   so the only ink inside it is a mark the slide declares. */
+const POCKETS=[[76,196,300,1070],                 // the scale channel
+               [272,790,320,362],                 // a slot per ladder row, each
+               [272,790,740,782],                 //   cut to its own line, so the
+               [272,790,787,829],                 //   zinc stays the ground and
+               [272,790,880,922],                 //   only the words are sunk
+               [800,1004,268,1040],               // the Railbelt strip
+               [272,1004,1074,1140]];             // the member counts
+const RX=982;                                     // the Railbelt route
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h2'),{min:44,max:60,maxLines:2});
+  AK.fitText(document.getElementById('foot'),{min:24,max:26,maxLines:2});
+  const rg=AK.rng(SEED+17);
+
+  cx.fillStyle='#070C11'; cx.fillRect(0,0,W,H);
+
+  /* ---- the plywood bench under the board ------------------------------- */
+  for(let i=0;i<12000;i++){
+    const x=rg()*W, y=rg()*H, a=0.02+0.06*rg();
+    cx.fillStyle=(rg()>0.5?'rgba(150,132,98,':'rgba(8,6,4,')+a.toFixed(3)+')';
+    cx.fillRect(x,y,1+(rg()>0.9?2:0),1); }
+  for(let i=0;i<9;i++){ const y=64+i*158;
+    cx.fillStyle='rgba(8,6,4,0.42)'; cx.fillRect(0,y,W,2.6);
+    cx.fillStyle='rgba(255,215,154,0.10)'; cx.fillRect(0,y+2.6,W,1.2); }
+
+  /* ---- the key falling on the bench. it is centred low and right, where the
+          key actually is, so the bench in FRONT of the board is the lit ground
+          the board's own edge then casts its contact onto. ----------------- */
+  cx.save(); cx.globalCompositeOperation='screen';
+  cx.translate(700,1150); cx.scale(1,0.86);
+  const pool=cx.createRadialGradient(0,0,0,0,0,720);
+  pool.addColorStop(0,'rgba(186,200,214,0.40)');
+  pool.addColorStop(.44,'rgba(132,150,168,0.23)');
+  pool.addColorStop(1,'rgba(30,42,58,0)');
+  cx.fillStyle=pool; cx.beginPath(); cx.arc(0,0,720,0,7); cx.fill(); cx.restore();
+
+  /* ---- the board's cast, thrown into the lee and clipped out of itself -- */
+  cx.save(); cx.globalCompositeOperation='multiply';
+  cx.beginPath(); cx.rect(0,0,W,H); cx.rect(BX-2,BY-2,BW+4,BH+4); cx.clip('evenodd');
+  for(let k=46;k>=1;k--){
+    const t=k/46, a=0.62*Math.pow(1-t,1.5);
+    cx.fillStyle='rgba(8,12,18,'+a.toFixed(3)+')';
+    cx.fillRect(BX+LDX*k, BY+LDY*k, BW, BH); }
+  cx.restore();
+
+  /* ---- THE BOARD. one pass, one spatial frequency: the macro crown ------ */
+  AK.reliefShade(cx,{
+    x:BX, y:BY, w:BW, h:BH, scale:2, seed:SEED, strength:98,
+    height:(u,v)=>{
+      const cu=1-Math.pow(Math.abs(u-0.46)*1.56,1.9);
+      const cv2=1-Math.pow(Math.abs(v-0.42)*1.60,2.0);
+      return Math.max(0,Math.min(1, 0.22+0.62*Math.max(0,cu)*Math.max(0,cv2)));
+    },
+    lights:[{az:AZ,el:EL,w:1.0}],
+    ambient:0.22, diffuse:0.92, gamma:1.02,
+    low:'#0E1822', high:'#7C8996',
+    mask:(u,v)=>Math.min(1, Math.min(u,1-u,v,1-v)/0.0022)});
+
+  cx.save(); cx.beginPath(); cx.rect(BX,BY,BW,BH); cx.clip();
+
+  /* mid frequency, painted and not shaded: the oil canning of rolled sheet */
+  for(let i=0;i<7;i++){
+    const y0=BY+(i+rg()*0.5)*BH/7, hgt=58+rg()*76, sk=(rg()-0.5)*180;
+    const g=cx.createLinearGradient(0,y0,0,y0+hgt);
+    g.addColorStop(0,'rgba(6,10,15,0.13)');
+    g.addColorStop(.52,'rgba(198,212,226,0.07)');
+    g.addColorStop(1,'rgba(6,10,15,0.10)');
+    cx.fillStyle=g; cx.beginPath();
+    cx.moveTo(BX,y0); cx.lineTo(BX+BW,y0+sk*0.12);
+    cx.lineTo(BX+BW,y0+hgt+sk*0.12); cx.lineTo(BX,y0+hgt); cx.closePath(); cx.fill(); }
+
+  /* high frequency: the zinc spangle. small crystals, each lit on its own
+     facet normal, kept faint enough to stay a grain and not a cloud. */
+  for(let i=0;i<3000;i++){
+    const cxp=BX+rg()*BW, cyp=BY+rg()*BH, r=4+rg()*13, n=5+((rg()*3)|0);
+    const fa=rg()*6.283, rot=rg()*6.283;
+    const lam=0.5+0.5*Math.cos(fa-LIT);            // the facet against the key
+    cx.beginPath();
+    for(let k=0;k<n;k++){ const a=rot+k/n*6.283, rr=r*(0.64+0.44*rg());
+      const px=cxp+Math.cos(a)*rr, py=cyp+Math.sin(a)*rr*0.86;
+      k?cx.lineTo(px,py):cx.moveTo(px,py); }
+    cx.closePath();
+    const s=0.025+0.058*Math.pow(Math.abs(lam-0.5)*2,1.25);
+    cx.fillStyle=(lam>0.5?'rgba(216,229,241,':'rgba(11,18,26,')+s.toFixed(3)+')';
+    cx.fill();
+    if(lam>0.93){                                  // the crystal's own bright edge
+      cx.strokeStyle='rgba(232,242,252,'+(0.03+0.05*rg()).toFixed(3)+')';
+      cx.lineWidth=0.9; cx.stroke(); }
+  }
+
+  /* the wear a board that gets handled carries: swirl scuffs from a rag and
+     a few straight scratches, weighted to the lower half where hands reach. */
+  for(let i=0;i<130;i++){
+    const cxp=BX+rg()*BW, cyp=BY+BH*(0.42+0.58*rg()), r=16+rg()*74;
+    const a0=rg()*6.283, sw=0.5+rg()*2.2;
+    cx.strokeStyle='rgba(226,238,248,'+(0.028+0.05*rg()).toFixed(3)+')';
+    cx.lineWidth=0.8+rg()*1.5;
+    cx.beginPath(); cx.arc(cxp,cyp,r,a0,a0+sw); cx.stroke();
+    cx.strokeStyle='rgba(6,10,15,'+(0.020+0.04*rg()).toFixed(3)+')';
+    cx.beginPath(); cx.arc(cxp,cyp+1.4,r,a0,a0+sw); cx.stroke(); }
+  for(let i=0;i<26;i++){
+    const x0=BX+rg()*BW, y0=BY+BH*(0.46+0.54*rg()), L=30+rg()*140, an=(rg()-0.5)*0.9;
+    cx.strokeStyle='rgba(232,244,252,'+(0.04+0.07*rg()).toFixed(3)+')';
+    cx.lineWidth=0.9+rg()*1.2; cx.beginPath();
+    cx.moveTo(x0,y0); cx.lineTo(x0+Math.cos(an)*L,y0+Math.sin(an)*L); cx.stroke(); }
+
+  /* ---- the milled pockets. floor, then shaded up-left walls and lit
+          lower-right walls, so each one reads as cut and not as printed. -- */
+  /* A pocket is cut with a round end mill, so every internal corner carries the
+     cutter's radius and the walls follow that curve round. Stroking the outline
+     with a gradient across the key's axis lights the whole wall correctly in
+     one pass, instead of four straight bands that lie at the corners. */
+  function pocketPath(x0,y0,x1,y1,r){
+    cx.beginPath(); cx.moveTo(x0+r,y0);
+    cx.arcTo(x1,y0,x1,y1,r); cx.arcTo(x1,y1,x0,y1,r);
+    cx.arcTo(x0,y1,x0,y0,r); cx.arcTo(x0,y0,x1,y0,r);
+    cx.closePath();
+  }
+  for(const p of POCKETS){
+    const x0=p[0], x1=p[1], y0=p[2], y1=p[3];
+    const r=Math.min(9, (x1-x0)/2-1, (y1-y0)/2-1);
+    pocketPath(x0,y0,x1,y1,r);
+    cx.fillStyle='rgba(7,12,18,0.66)'; cx.fill();
+    const fl=cx.createLinearGradient(x0,y0,x1,y1);   // the floor still catches a little
+    fl.addColorStop(0,'rgba(9,15,22,0.26)'); fl.addColorStop(1,'rgba(150,168,186,0.09)');
+    cx.fillStyle=fl; cx.fill();
+    const wg=cx.createLinearGradient(x0,y0,x1,y1);   // lee wall to key wall, round the cut
+    wg.addColorStop(0,'rgba(4,7,11,0.82)');
+    wg.addColorStop(.46,'rgba(52,66,80,0.34)');
+    wg.addColorStop(1,'rgba(226,238,248,0.44)');
+    cx.save(); pocketPath(x0,y0,x1,y1,r); cx.clip();
+    pocketPath(x0,y0,x1,y1,r);
+    cx.strokeStyle=wg; cx.lineWidth=7.4; cx.stroke(); cx.restore();
+  }
+
+  /* ---- the printed scale. a tick every 25 kV, all of it outside the band - */
+  cx.fillStyle='rgba(5,9,14,0.80)'; cx.fillRect(SCX-1.6,V345-18,4.2,(V0-V345)+36);
+  cx.fillStyle='rgba(226,236,246,0.46)'; cx.fillRect(SCX+2.0,V345-18,1.5,(V0-V345)+36);
+  for(let v=0;v<=345;v+=25){
+    const y=yv(v), maj=(v%100===0), len=maj?28:14;
+    cx.fillStyle='rgba(5,9,14,0.72)'; cx.fillRect(SCX,y-0.4,len,3.4);
+    cx.fillStyle='rgba(236,244,250,'+(maj?0.70:0.46)+')'; cx.fillRect(SCX,y+0.2,len,1.7); }
+  { const y=yv(345);                               // the head of the scale
+    cx.fillStyle='rgba(5,9,14,0.72)'; cx.fillRect(SCX,y-0.4,28,3.4);
+    cx.fillStyle='rgba(236,244,250,0.70)'; cx.fillRect(SCX,y+0.2,28,1.7); }
+
+  /* ---- THE LADDER, cut into the raised land between the two pockets ----- */
+  const MARKS=[[345,'345 kV, the Alaska Intertie as built'],
+               [138,'138 kV, the Alaska Intertie operating'],
+               [115,'115 kV, the proposed DeepGreen cable, a study permit'],
+               [69, "69 kV, the order's own threshold"],
+               [0,  '0 kV, the foot of the scale']];
+  for(const m of MARKS){
+    const y=yv(m[0]);
+    if(m[0]===69) continue;                        // the datum mills its own
+    if(m[0]===115){                                // phantom, a study permit
+      cx.save();
+      cx.strokeStyle='rgba(5,9,14,0.82)'; cx.lineWidth=4.6;
+      cx.setLineDash([13,5,4,5,4,5]); cx.lineDashOffset=0;
+      cx.beginPath(); cx.moveTo(TICKX0,y+0.4); cx.lineTo(TICKX1,y+0.4); cx.stroke();
+      cx.strokeStyle='rgba(240,247,252,0.86)'; cx.lineWidth=2.4;
+      cx.beginPath(); cx.moveTo(TICKX0,y+1.9); cx.lineTo(TICKX1,y+1.9); cx.stroke();
+      cx.restore(); continue; }
+    cx.fillStyle='rgba(5,9,14,0.88)'; cx.fillRect(TICKX0,y-1.2,TICKX1-TICKX0,5.6);
+    cx.fillStyle='rgba(244,250,253,0.92)'; cx.fillRect(TICKX0,y+1.6,TICKX1-TICKX0,2.6);
+  }
+
+  /* ---- THE RAILBELT, engraved into the strip pocket --------------------- */
+  cx.fillStyle='rgba(4,7,12,0.80)'; cx.fillRect(RX-2.4,300,5.6,700);
+  cx.fillStyle='rgba(127,178,255,0.72)'; cx.fillRect(RX-0.4,300,2.4,700);
+  for(const sy of [308,378,918,964]){        // one tick per named town, and no others
+    cx.fillStyle='rgba(4,7,12,0.84)'; cx.fillRect(RX-14,sy-1.6,28,5.0);
+    cx.fillStyle='rgba(127,178,255,0.88)'; cx.fillRect(RX-13,sy-0.6,26,2.4); }
+  for(const uy of [420,520,620,720,830]){                    // five utility marks
+    cx.fillStyle='rgba(3,6,10,0.86)';
+    cx.beginPath(); cx.arc(RX+1.8,uy+1.8,8.6,0,7); cx.fill();
+    cx.fillStyle='#080F1A'; cx.beginPath(); cx.arc(RX,uy,7.4,0,7); cx.fill();
+    cx.strokeStyle='#7FB2FF'; cx.lineWidth=2.5;
+    cx.beginPath(); cx.arc(RX,uy,7.4,0,7); cx.stroke(); }
+
+  /* ---- the lower flange: a dirt line, then a bolt row with contact ------ */
+  /* the flange is a step in the plate, so it has a wall, a floor and a lip */
+  { const st=cx.createLinearGradient(0,FLANGE,0,FLANGE+16);
+    st.addColorStop(0,'rgba(3,6,10,0.86)'); st.addColorStop(1,'rgba(3,6,10,0)');
+    cx.fillStyle='rgba(3,6,10,0.80)'; cx.fillRect(BX,FLANGE,BW,4.4);
+    cx.fillStyle='rgba(226,238,248,0.30)'; cx.fillRect(BX,FLANGE+4.4,BW,2.2);
+    cx.fillStyle=st; cx.fillRect(BX,FLANGE+6.6,BW,16); }
+  { const lip=cx.createLinearGradient(0,BY+BH-16,0,BY+BH);
+    lip.addColorStop(0,'rgba(6,10,16,0)'); lip.addColorStop(1,'rgba(232,244,252,0.20)');
+    cx.fillStyle=lip; cx.fillRect(BX,BY+BH-16,BW,16); }
+  for(let i=0;i<26;i++){                                      // the dirt that collects
+    const x=BX+rg()*BW, w=6+rg()*44;
+    cx.fillStyle='rgba(6,9,13,'+(0.10+0.20*rg()).toFixed(3)+')';
+    cx.fillRect(x,FLANGE-2+rg()*5,w,2+rg()*3); }
+  for(let i=0;i<7;i++){
+    const x=BX+78+i*(BW-156)/6, y=1172, r=12.4;
+    cx.fillStyle='rgba(120,134,148,0.20)';                // the washer under the head
+    cx.beginPath(); cx.arc(x,y,r+5.4,0,7); cx.fill();
+    cx.strokeStyle='rgba(6,10,15,0.44)'; cx.lineWidth=1.4;
+    cx.beginPath(); cx.arc(x,y,r+5.4,0,7); cx.stroke();
+    /* the lee, tight against the head and clipped out of it, so the head
+       occludes its own shadow instead of wearing it as a ring */
+    cx.fillStyle='rgba(4,7,11,0.52)';
+    cx.beginPath(); cx.arc(x+LDX*3.4,y+LDY*3.4,r+2.6,0,7);
+    cx.arc(x,y,r,0,7,true); cx.fill('evenodd');
+    const g=cx.createLinearGradient(x-r,y-r,x+r,y+r);      // dark in the lee, lit to the key
+    g.addColorStop(0,'#2B3945'); g.addColorStop(.54,'#71808C'); g.addColorStop(1,'#A8B5C0');
+    cx.fillStyle=g; cx.beginPath(); cx.arc(x,y,r,0,7); cx.fill();
+    { const sp=cx.createRadialGradient(x-r*0.34,y-r*0.30,0.6,x-r*0.2,y-r*0.16,r*0.95);
+      sp.addColorStop(0,'rgba(246,251,255,0.44)'); sp.addColorStop(1,'rgba(246,251,255,0)');
+      cx.fillStyle=sp; cx.beginPath(); cx.arc(x,y,r,0,7); cx.fill(); }
+    cx.fillStyle='rgba(7,11,17,0.44)';                    // the driver slot, not a pupil
+    cx.fillRect(x-r*0.62,y-1.2,r*1.24,2.4);
+    cx.strokeStyle='rgba(10,15,21,0.50)'; cx.lineWidth=1.0;
+    cx.beginPath(); cx.arc(x,y,r,2.2,5.0); cx.stroke(); }
+  cx.restore();
+
+  /* the board's rolled edge, then the contact where its front edge meets the
+     bench: a hard seam, then the occlusion that fades into the lit ground. */
+  cx.strokeStyle='rgba(232,242,250,0.22)'; cx.lineWidth=2.0;
+  cx.beginPath(); cx.moveTo(BX+BW-1,BY); cx.lineTo(BX+BW-1,BY+BH); cx.lineTo(BX,BY+BH); cx.stroke();
+  cx.fillStyle='rgba(3,5,9,0.92)'; cx.fillRect(BX,BY+BH,BW,4.0);
+  { const ao=cx.createLinearGradient(0,BY+BH+4,0,BY+BH+26);
+    ao.addColorStop(0,'rgba(3,5,9,0.86)'); ao.addColorStop(1,'rgba(3,5,9,0)');
+    cx.fillStyle=ao; cx.fillRect(BX,BY+BH+4,BW,22); }
+  cx.fillStyle='rgba(4,7,11,0.90)';                    // the lee side seams
+  cx.fillRect(BX-5,BY-5,5.5,BH+10); cx.fillRect(BX-5,BY-5,BW+10,5.5);
+
+  /* ---- D1 as the 69 kV row: a gold-filled inlaid groove with a shoulder.
+     The groove runs BEHIND this row's raised letters, so it is clipped out of
+     their measured boxes rather than printed across them. ----------------- */
+  cx.save();
+  cx.beginPath(); cx.rect(0,DATUM-12,W,24);
+  { /* ONE box spanning the whole gold row. Punching each string separately left
+       the gap between them open, and a short gold stroke between two words is an
+       en dash to every reader who sees it. */
+    let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+    for(const el of document.querySelectorAll('.gold')){
+      const r=el.getBoundingClientRect();
+      x0=Math.min(x0,r.left); x1=Math.max(x1,r.right);
+      y0=Math.min(y0,r.top);  y1=Math.max(y1,r.bottom); }
+    cx.rect(x0-9,y0-3,(x1-x0)+18,(y1-y0)+6); }
+  cx.clip('evenodd');
+  cx.fillStyle='rgba(5,9,14,0.88)'; cx.fillRect(0,DATUM-4.5,W,10);
+  cx.fillStyle='#FFC72C'; cx.fillRect(0,DATUM,W,1.3);
+  cx.fillStyle='rgba(255,215,154,0.44)'; cx.fillRect(0,DATUM+1.3,W,1.2);
+  cx.restore();
+  cx.fillStyle='rgba(4,7,11,0.94)'; cx.fillRect(TICKX0-5,DATUM-7.5,TICKX1-TICKX0+10,16);
+  cx.fillStyle='#FFC72C'; cx.fillRect(TICKX0,DATUM-4.4,TICKX1-TICKX0,9.0);
+  cx.fillStyle='#FFE2AE'; cx.fillRect(TICKX0,DATUM+2.8,TICKX1-TICKX0,2.2);
+
+
+  /* ---- the bench in front of the board is the lit part of the frame, so its
+     plywood actually shows its grain there. Drawn after the pool and after the
+     occlusion, because this is wood the key is falling on. ----------------- */
+  cx.save();
+  cx.beginPath(); cx.rect(0,BY+BH+8,W,H-(BY+BH+8)); cx.clip();
+  for(let i=0;i<9000;i++){
+    const x=rg()*W, y=BY+BH+8+rg()*(H-BY-BH-8);
+    const lit=Math.max(0,1-Math.hypot(x-700,(y-1150)/0.86)/560);
+    const a=(0.05+0.16*rg())*lit;
+    cx.fillStyle=(rg()>0.46?'rgba(196,172,128,':'rgba(10,7,5,')+a.toFixed(3)+')';
+    cx.fillRect(x,y,2+(rg()>0.85?5:0),1); }
+  /* the coarse figure. plywood's face veneer reads at this size, not at the
+     size of a grain mark, and it is what survives the eye at feed scale. */
+  for(let i=0;i<170;i++){
+    const y=BY+BH+10+rg()*(H-BY-BH-10), x=rg()*W;
+    const lit=Math.max(0,1-Math.hypot(x-700,(y-1150)/0.86)/620);
+    if(lit<=0) continue;
+    const len=44+rg()*130, ht=5+rg()*13, bow=(rg()-0.5)*16;
+    const g=cx.createLinearGradient(0,y-ht,0,y+ht);
+    const up=(0.10+0.16*rg())*lit, dn=(0.07+0.13*rg())*lit;
+    g.addColorStop(0,'rgba(10,7,5,'+up.toFixed(3)+')');
+    g.addColorStop(.52,'rgba(206,180,134,'+dn.toFixed(3)+')');
+    g.addColorStop(1,'rgba(10,7,5,0)');
+    cx.fillStyle=g; cx.beginPath();
+    cx.moveTo(x,y); cx.quadraticCurveTo(x+len/2,y+bow,x+len,y);
+    cx.lineTo(x+len,y+ht); cx.quadraticCurveTo(x+len/2,y+bow+ht,x,y+ht);
+    cx.closePath(); cx.fill(); }
+  for(let i=0;i<4;i++){                       // the plank seams, lit on the key side
+    const y=1206+i*44, lit=Math.max(0,1-Math.abs(y-1180)/340);
+    cx.fillStyle='rgba(8,6,4,'+(0.46*lit).toFixed(3)+')'; cx.fillRect(0,y,W,3.4);
+    cx.fillStyle='rgba(220,196,152,'+(0.26*lit).toFixed(3)+')'; cx.fillRect(0,y+3.4,W,1.8); }
+  cx.restore();
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.10,saturation:0.96,contrast:1.14,filmic:true,
+    lift:[0.008,0.011,0.018],gain:[1.012,1.0,0.980],vignette:0.22,
+    bloom:{threshold:0.90,strength:0.10,radius:7},
+    grain:{amount:0.036,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.30});
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,52,SEED)+')';
+
+  document.body.setAttribute('data-scale', JSON.stringify([{
+    what:"the voltage ladder, linear in kilovolts against a printed scale",
+    axis:"y", unit:"kilovolts",
+    from:[V0, 0], to:[V345, 345],
+    band:[TICKX0, TICKX1],
+    marks: MARKS.map(function(m){ return {at: yv(m[0]), means: m[1]}; })
+  }]));
+  return true;
+})();
+</script>
+</body></html>

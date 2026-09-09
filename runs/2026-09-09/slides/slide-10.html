@@ -1,0 +1,253 @@
+<!doctype html>
+<!-- SLIDE 10 — CLOSE. The same tag as 09, flipped blank side up on the bench,
+     with a machinist's scribe lying across its lower-right corner and nothing
+     written on it yet. The brushed lay runs at 90 degrees to slide 01's, so the
+     two bookends are visibly the same material seen the other way round. One
+     ask, and then it stops. D1 makes its last move here: the datum that has held
+     y 900 for ten frames turns up at its right terminal and rises into the
+     Polaris that has sat in the corner the whole time, which is the deck's only
+     closed gold form. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#080D13}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+#grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+  opacity:.07;pointer-events:none}
+/* on the tag's own face. dark ink on light aluminium, because 09 owns the
+   deck's one relief reversal and a close should not compete with it. */
+.line{position:absolute;left:176px;top:392px;width:688px;font-family:"Fraunces",serif;
+  font-weight:600;color:#191510;line-height:1.04;letter-spacing:-.015em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  text-shadow:0 1px 0 rgba(255,255,255,.42);}
+.ask{position:absolute;left:176px;top:572px;width:688px;font-family:"Space Grotesk",sans-serif;
+  font-weight:500;font-size:34px;line-height:1.32;color:#241F17;
+  text-shadow:0 1px 0 rgba(255,255,255,.38);}
+.tmn{position:absolute;left:176px;font-family:"JetBrains Mono",monospace;font-weight:400;
+  font-size:24px;line-height:1;letter-spacing:.09em;color:#1A1710;
+  font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:0 1px 0 rgba(255,255,255,.40);}
+/* on the bench, not on the tag. */
+.mark{position:absolute;left:104px;top:1116px;font-family:"Fraunces",serif;font-weight:800;
+  font-size:34px;line-height:1;letter-spacing:.06em;color:#F4F8FF;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 0;
+  text-shadow:0 0 6px rgba(8,13,19,.92),0 0 14px rgba(8,13,19,.86);}
+.site{position:absolute;left:104px;top:1170px;font-family:"JetBrains Mono",monospace;
+  font-weight:400;font-size:24px;line-height:1;letter-spacing:.08em;color:#C3CBD2;
+  text-shadow:0 0 5px rgba(8,13,19,.94),0 0 11px rgba(8,13,19,.86);}
+.polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+.ctr{position:absolute;right:90px;bottom:88px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:.12em;color:#C3CBD2;font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:0 0 5px rgba(8,13,19,.9);}
+</style></head><body
+  data-contacts='[{"what":"the blank tag lying on the plywood bench","shadow":[[404,926,64,14]],"ground":[[404,960,64,14]]},{"what":"the steel scribe lying across the tag","shadow":[[694,896,24,12]],"ground":[[694,858,24,12]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div id="grain"></div>
+
+<div class="line" id="line">Nobody has said Alaska is in. Nobody has said Alaska is out.</div>
+<div class="ask" id="ask">Which threshold should Alaska ask DOE to write down?</div>
+<div class="tmn" style="top:730px;">SOURCES IN COMMENTS . RIN 1901-AB79</div>
+<div class="tmn" style="top:766px;">COMMENTS CLOSE OCTOBER 9TH, 2026</div>
+
+<div class="mark">ALASKA.AI</div>
+<div class="site">alaskaaihq.com</div>
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="ctr">10 / 10</div>
+
+<script>
+const W=1080,H=1350,SEED=20260909+10;
+const AZ=118, EL=34, DATUM=900;
+const LDX=-Math.sin(AZ*Math.PI/180), LDY=Math.cos(AZ*Math.PI/180);   // toward the lee
+const TX=120, TY=300, TW=800, TH=620;                // the tag, flipped and blank
+const POL=[988, 87];                                 // where the datum is going
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('line'),{min:38,max:56,maxLines:2});
+  AK.fitText(document.getElementById('ask'),{min:28,max:34,maxLines:2});
+  const rg=AK.rng(SEED+31);
+
+  cx.fillStyle='#0A0906'; cx.fillRect(0,0,W,H);
+
+  /* ---- the plywood bench, as 07 and 08. D3 register BENCH, returned. ---- */
+  for(let i=0;i<15000;i++){
+    const x=rg()*W, y=rg()*H, a=0.02+0.07*rg();
+    cx.fillStyle=(rg()>0.5?'rgba(158,138,102,':'rgba(9,7,5,')+a.toFixed(3)+')';
+    cx.fillRect(x,y,1+(rg()>0.9?2:0),1); }
+  for(let i=0;i<220;i++){
+    const x=rg()*W, y=rg()*H, len=48+rg()*160, ht=5+rg()*15, bow=(rg()-0.5)*18;
+    const g=cx.createLinearGradient(0,y,0,y+ht);
+    g.addColorStop(0,'rgba(10,7,5,'+(0.10+0.17*rg()).toFixed(3)+')');
+    g.addColorStop(.54,'rgba(198,172,126,'+(0.05+0.11*rg()).toFixed(3)+')');
+    g.addColorStop(1,'rgba(10,7,5,0)');
+    cx.fillStyle=g; cx.beginPath();
+    cx.moveTo(x,y); cx.quadraticCurveTo(x+len/2,y+bow,x+len,y);
+    cx.lineTo(x+len,y+ht); cx.quadraticCurveTo(x+len/2,y+bow+ht,x,y+ht);
+    cx.closePath(); cx.fill(); }
+  for(let i=0;i<7;i++){ const y=76+i*192;
+    cx.fillStyle='rgba(8,6,4,0.44)'; cx.fillRect(0,y,W,3.0);
+    cx.fillStyle='rgba(214,190,146,0.13)'; cx.fillRect(0,y+3.0,W,1.4); }
+
+  /* ---- the key on the bench, low and to the right, as the yard frames ---- */
+  cx.save(); cx.globalCompositeOperation='screen';
+  cx.translate(620,1040); cx.scale(1,0.85);
+  const pool=cx.createRadialGradient(0,0,0,0,0,860);
+  pool.addColorStop(0,'rgba(196,176,132,0.42)');
+  pool.addColorStop(.42,'rgba(142,126,94,0.23)');
+  pool.addColorStop(.74,'rgba(86,74,54,0.10)');
+  pool.addColorStop(1,'rgba(40,32,22,0)');
+  cx.fillStyle=pool; cx.beginPath(); cx.arc(0,0,860,0,7); cx.fill(); cx.restore();
+
+  /* ---- the tag's cast, into the lee, clipped out of the tag ------------- */
+  cx.save(); cx.globalCompositeOperation='multiply';
+  cx.beginPath(); cx.rect(0,0,W,H);
+  cx.moveTo(TX+26,TY); cx.arcTo(TX+TW,TY,TX+TW,TY+TH,26);
+  cx.arcTo(TX+TW,TY+TH,TX,TY+TH,26); cx.arcTo(TX,TY+TH,TX,TY,26);
+  cx.arcTo(TX,TY,TX+TW,TY,26); cx.closePath();
+  cx.clip('evenodd');
+  for(let k=38;k>=1;k--){
+    const t=k/38, a=0.60*Math.pow(1-t,1.4);
+    cx.fillStyle='rgba(9,7,5,'+a.toFixed(3)+')';
+    cx.fillRect(TX+LDX*k, TY+LDY*k, TW, TH); }
+  cx.restore();
+
+  /* ---- THE TAG, blank side up. Same ramp as 09, lay turned 90 degrees from
+     slide 01's, so it is the same material seen the other way round. ------ */
+  /* the same die-blanked outline as 09, seen from the other side */
+  function tagPath(r){
+    cx.beginPath(); cx.moveTo(TX+r,TY);
+    cx.arcTo(TX+TW,TY,TX+TW,TY+TH,r); cx.arcTo(TX+TW,TY+TH,TX,TY+TH,r);
+    cx.arcTo(TX,TY+TH,TX,TY,r); cx.arcTo(TX,TY,TX+TW,TY,r);
+    cx.closePath();
+  }
+  const tg=cx.createLinearGradient(TX+TW,TY+TH,TX,TY);
+  tg.addColorStop(0,'#E6EEF5'); tg.addColorStop(.50,'#C2CFDA'); tg.addColorStop(1,'#8B99A5');
+  tagPath(26); cx.fillStyle=tg; cx.fill();
+  cx.save(); tagPath(26); cx.clip();
+  { const lay=104*Math.PI/180;                       // 01 brushed at 14, this at 104
+    for(let i=0;i<7000;i++){
+      const x=TX+rg()*TW, y=TY+rg()*TH*1.15-60, len=26+rg()*150;
+      cx.strokeStyle=(rg()>0.5?'rgba(255,255,255,':'rgba(46,58,70,')+(0.020+0.050*rg()).toFixed(3)+')';
+      cx.lineWidth=0.6+rg()*1.2;
+      cx.beginPath(); cx.moveTo(x,y);
+      cx.lineTo(x+Math.cos(lay)*len, y+Math.sin(lay)*len); cx.stroke(); } }
+  for(let i=0;i<44;i++){                             // handling marks
+    const x=TX+rg()*TW, y=TY+rg()*TH, r=14+rg()*58;
+    const g=cx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,'rgba(64,78,92,'+(0.04+0.06*rg()).toFixed(3)+')');
+    g.addColorStop(1,'rgba(64,78,92,0)');
+    cx.fillStyle=g; cx.beginPath(); cx.arc(x,y,r,0,7); cx.fill(); }
+  cx.restore();
+  { const re=cx.createLinearGradient(0,TY+TH-14,0,TY+TH);   // the rolled lower edge
+    re.addColorStop(0,'rgba(255,255,255,0)'); re.addColorStop(1,'rgba(255,255,255,0.44)');
+    cx.fillStyle=re; cx.fillRect(TX,TY+TH-14,TW,14);
+    cx.fillStyle='rgba(6,10,15,0.44)'; cx.fillRect(TX,TY,TW,3.2);
+    cx.fillStyle='rgba(6,10,15,0.34)'; cx.fillRect(TX,TY,3.2,TH); }
+  /* the punched eyelet, the same hole 09 hangs by, now lying on its back */
+  cx.fillStyle='rgba(6,10,15,0.82)';
+  cx.beginPath(); cx.arc(TX+62,TY+58,20,0,7); cx.fill();
+  cx.strokeStyle='rgba(255,255,255,0.44)'; cx.lineWidth=2.8;
+  cx.beginPath(); cx.arc(TX+63.4,TY+59.4,22,0,7); cx.stroke();
+  /* the contact all round: hard seam, then occlusion into the lit bench */
+  cx.fillStyle='rgba(5,4,3,0.90)';
+  cx.fillRect(TX+TW,TY,4.5,TH+4.5); cx.fillRect(TX,TY+TH,TW+4.5,4.5);
+  { const ab=cx.createLinearGradient(0,TY+TH+4.5,0,TY+TH+28);
+    ab.addColorStop(0,'rgba(5,4,3,0.58)'); ab.addColorStop(1,'rgba(5,4,3,0)');
+    cx.fillStyle=ab; cx.fillRect(TX,TY+TH+4.5,TW+28,13);
+    const ar=cx.createLinearGradient(TX+TW+4.5,0,TX+TW+28,0);
+    ar.addColorStop(0,'rgba(5,4,3,0.84)'); ar.addColorStop(1,'rgba(5,4,3,0)');
+    cx.fillStyle=ar; cx.fillRect(TX+TW+4.5,TY,24,TH+4.5); }
+
+  /* ---- D1's last state. It has held y 900 for ten frames; here it turns up
+     at its right terminal and rises into the Polaris, and seals. --------- */
+  { const path=(w,st)=>{
+      cx.strokeStyle=st; cx.lineWidth=w; cx.lineJoin='round'; cx.lineCap='butt';
+      cx.beginPath(); cx.moveTo(0,DATUM+0.6); cx.lineTo(968,DATUM+0.6);
+      cx.quadraticCurveTo(POL[0],DATUM+0.6, POL[0],DATUM-32);
+      cx.lineTo(POL[0], POL[1]+16); cx.stroke(); };
+    path(4.4,'#05080B'); path(1.25,'#FFC72C'); }
+
+  /* ---- THE SCRIBE, lying across the tag's lower-right corner. It is the
+     frame's scale reference, so it is a real tool and not a bar. --------- */
+  { const x0=596, y0=884, x1=1012, y1=1024;
+    const ang=Math.atan2(y1-y0,x1-x0), L=Math.hypot(x1-x0,y1-y0), R=13.5;
+    cx.save(); cx.translate(x0,y0); cx.rotate(ang);
+    /* its own cast, tight, onto whatever it is lying on */
+    cx.save(); cx.globalCompositeOperation='multiply';
+    for(let k=13;k>=1;k--){
+      const a=0.52*Math.pow(1-k/13,1.2);
+      cx.fillStyle='rgba(6,5,4,'+a.toFixed(3)+')';
+      cx.fillRect(-14+LDX*k*1.3, -R+LDY*k*1.3, L+28, R*2); }
+    cx.restore();
+    /* the body: a cylinder, so the ramp runs across the short axis */
+    const bg=cx.createLinearGradient(0,-R,0,R);
+    bg.addColorStop(0,'#1D242B'); bg.addColorStop(.30,'#63707C');
+    bg.addColorStop(.62,'#C4D1DC'); bg.addColorStop(.86,'#7E8B97'); bg.addColorStop(1,'#232B33');
+    cx.fillStyle=bg; cx.fillRect(0,-R,L-92,R*2);
+    /* the knurled grip, each diamond facet catching the key on its lower right */
+    for(let i=0;i<30;i++){
+      for(let j=0;j<9;j++){
+        const kx=96+i*11.4, ky=-R+2.4+j*(R*2-4.8)/8.5;
+        if(kx>L-160) continue;
+        const lam=0.42+0.58*((j+ (i%2?0.5:0))/9);
+        cx.beginPath();
+        cx.moveTo(kx,ky); cx.lineTo(kx+5.4,ky-3.0);
+        cx.lineTo(kx+10.8,ky); cx.lineTo(kx+5.4,ky+3.0); cx.closePath();
+        cx.fillStyle='rgba(236,246,254,'+(0.05+0.22*lam).toFixed(3)+')'; cx.fill();
+        cx.strokeStyle='rgba(6,10,15,0.20)'; cx.lineWidth=0.7; cx.stroke(); } }
+    /* the taper and the hardened point */
+    cx.beginPath();
+    cx.moveTo(L-92,-R); cx.lineTo(L-16,-2.4); cx.lineTo(L,0);
+    cx.lineTo(L-16,2.4); cx.lineTo(L-92,R); cx.closePath();
+    const pg=cx.createLinearGradient(0,-R,0,R);
+    pg.addColorStop(0,'#161C22'); pg.addColorStop(.58,'#B7C4D0'); pg.addColorStop(1,'#2A333B');
+    cx.fillStyle=pg; cx.fill();
+    cx.strokeStyle='rgba(255,255,255,0.34)'; cx.lineWidth=1.4;
+    cx.beginPath(); cx.moveTo(4,R*0.42); cx.lineTo(L-96,R*0.42); cx.stroke();
+    cx.fillStyle='rgba(6,10,15,0.44)'; cx.fillRect(88,-R,4.0,R*2);
+    cx.restore(); }
+
+  /* ---- the bench in front of the tag is the lit part of the frame, so its
+     veneer actually shows its figure there, and the wordmark sits on that
+     surface rather than on a plate. The copy keeps its own reserve. ------- */
+  cx.save();
+  cx.beginPath(); cx.rect(0,TY+TH+10,W,H-(TY+TH+10));
+  for(const el of document.querySelectorAll('.mark,.site,.ctr')){
+    const r=el.getBoundingClientRect();
+    cx.rect(r.left-12,r.top-8,r.width+24,r.height+16); }
+  cx.clip('evenodd');
+  for(let i=0;i<190;i++){
+    const x=rg()*W, y=TY+TH+10+rg()*(H-TY-TH-10);
+    const lit=Math.max(0,1-Math.hypot(x-620,(y-1080)/0.85)/700);
+    if(lit<=0) continue;
+    const len=52+rg()*160, ht=6+rg()*16, bow=(rg()-0.5)*20;
+    const g=cx.createLinearGradient(0,y,0,y+ht);
+    g.addColorStop(0,'rgba(10,7,5,'+((0.13+0.19*rg())*lit).toFixed(3)+')');
+    g.addColorStop(.54,'rgba(206,180,134,'+((0.07+0.13*rg())*lit).toFixed(3)+')');
+    g.addColorStop(1,'rgba(10,7,5,0)');
+    cx.fillStyle=g; cx.beginPath();
+    cx.moveTo(x,y); cx.quadraticCurveTo(x+len/2,y+bow,x+len,y);
+    cx.lineTo(x+len,y+ht); cx.quadraticCurveTo(x+len/2,y+bow+ht,x,y+ht);
+    cx.closePath(); cx.fill(); }
+  for(let i=0;i<5;i++){                        // the seams, lit where the key falls
+    const y=1012+i*68, lit=Math.max(0,1-Math.abs(y-1080)/380);
+    cx.fillStyle='rgba(8,6,4,'+(0.44*lit).toFixed(3)+')'; cx.fillRect(0,y,W,3.4);
+    cx.fillStyle='rgba(220,196,152,'+(0.24*lit).toFixed(3)+')'; cx.fillRect(0,y+3.4,W,1.8); }
+  cx.restore();
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.07,saturation:0.97,contrast:1.11,filmic:true,
+    lift:[0.008,0.010,0.016],gain:[1.014,1.0,0.976],vignette:0.18,
+    bloom:{threshold:0.90,strength:0.10,radius:7},
+    grain:{amount:0.036,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.30});
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,52,SEED)+')';
+
+  return true;
+})();
+</script>
+</body></html>

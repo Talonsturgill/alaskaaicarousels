@@ -1,0 +1,379 @@
+<!doctype html>
+<!-- SLIDE 09 — THE WINDOW. Back to the yard. A hand-stamped aluminium inspection
+     tag wire-tied through the transformer plate's bolt, hanging a degree and a
+     half off vertical in front of the brushed lay and throwing its swing shadow
+     onto it. The tag's stamped type is RAISED, lit on its lower-right and casting
+     its lee up and left, the exact reverse of the struck plate on 01 and 05, and
+     that reversal is the deck's one deliberate one. The date is struck deep and
+     gold-filled, the datum carries a gold tick at it, and to the right of that
+     tick the datum goes phantom-dashed, because left of it is decided record and
+     right of it is not. Only the RIN appears, never the docket string, and the
+     slide never says the request for information sets the scope. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#080D13}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}
+#grain{position:absolute;inset:0;background-repeat:repeat;mix-blend-mode:overlay;
+  opacity:.07;pointer-events:none}
+h2{position:absolute;left:104px;top:96px;width:800px;font-family:"Fraunces",serif;
+  font-weight:600;color:#F4F8FF;line-height:1.02;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  text-shadow:0 0 6px rgba(8,13,19,.92),0 0 14px rgba(8,13,19,.85);}
+/* the tag hangs off vertical, so its type hangs with it. */
+#tag{position:absolute;left:110px;top:326px;width:740px;height:820px;
+  transform:rotate(-1.5deg);transform-origin:0 0;}
+#tag>*{position:absolute;}
+/* the tag's own printed instruction field. ink, not relief. */
+.tbody{left:52px;top:120px;width:556px;font-family:"Space Grotesk",sans-serif;
+  font-weight:400;font-size:28px;line-height:1.34;color:#15191D;
+  text-shadow:0 1px 0 rgba(240,248,255,.44);}
+/* THE REVERSAL. A raised letter lit from the lower right carries its lit face
+   there and throws its lee up and left. 01 and 05 are struck and do the opposite. */
+.raised{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+  line-height:1;letter-spacing:.10em;color:#DCE7F1;
+  font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:-2.4px -2.4px 2.4px rgba(2,5,8,.80), 1.5px 1.5px 2.2px rgba(255,212,148,.44);}
+.cite{color:#AEBCC8;font-weight:400;letter-spacing:.08em;}
+/* struck deep and gold-filled, so it reads sunk while the mono reads proud. */
+.date{left:52px;top:560px;font-family:"Fraunces",serif;font-weight:700;font-size:44px;
+  line-height:1;letter-spacing:.02em;color:#FFC72C;
+  font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 0;
+  text-shadow:1.6px 1.6px .8px rgba(255,244,214,.40), -2.0px -2.0px 1.6px rgba(2,4,7,.85);}
+.polaris{position:absolute;right:83px;top:78px;width:18px;height:18px;line-height:0}
+.ctr{position:absolute;right:90px;bottom:88px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:.12em;color:#EDF3F8;font-variant-numeric:tabular-nums lining-nums;
+  text-shadow:-1px -1px 0 rgba(5,8,12,.9),0 0 6px rgba(5,8,12,.95),0 0 13px rgba(5,8,12,.88);}
+</style></head><body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div id="grain"></div>
+<h2 id="h2">One question is open.</h2>
+
+<div id="tag">
+  <div class="tbody" id="tbody">Question A-2 of the DOE request for information asks commenters to identify any equipment-specific voltage, capacity, connectivity, function, location, or criticality thresholds. The words Alaska, Hawaii, islanded and non-contiguous appear nowhere in it.</div>
+  <div class="date" id="date">OCTOBER 9TH, 2026</div>
+  <div class="raised" style="left:52px;top:640px;">THE RFI INFORMS IMPLEMENTATION</div>
+  <div class="raised" style="left:52px;top:680px;">RULES COME AT 120 DAYS</div>
+  <div class="raised cite" style="left:52px;top:736px;">RIN 1901-AB79 . 91 FR 57322</div>
+</div>
+
+<div class="polaris"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 0 L10.15 7.85 L18 9 L10.15 10.15 L9 18 L7.85 10.15 L0 9 L7.85 7.85 Z" fill="#FFC72C"/><circle cx="9" cy="9" r="1.5" fill="#FFC72C"/></svg></div>
+<div class="ctr">09 / 10</div>
+
+<script>
+const W=1080,H=1350,SEED=20260909+9;
+const AZ=118, EL=34, DATUM=900;
+const LDX=-Math.sin(AZ*Math.PI/180), LDY=Math.cos(AZ*Math.PI/180);   // toward the lee
+const TX=110, TY=326, TW=740, TH=820, ROT=-1.5*Math.PI/180;
+const EYE=[86,46];                                  // the punched eyelet, tag local
+window.renderReady=(async()=>{
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('h2'),{min:48,max:62,maxLines:2});
+  AK.fitText(document.getElementById('tbody'),{min:24,max:30,maxLines:7});
+  const rg=AK.rng(SEED+29);
+  const L2F=(x,y)=>[TX+x*Math.cos(ROT)-y*Math.sin(ROT), TY+x*Math.sin(ROT)+y*Math.cos(ROT)];
+
+  cx.fillStyle='#0A1017'; cx.fillRect(0,0,W,H);
+
+  /* ---- THE TRANSFORMER PLATE, the yard wall this tag hangs on. Same object
+     as 01 at a shifted region and its own brushed seed, and held SOFT, because
+     the tag is what the eye is on. -------------------------------------- */
+  AK.reliefShade(cx,{
+    x:0, y:0, w:W, h:H, scale:2, seed:SEED+3, strength:104,
+    height:(u,v)=>{
+      const crown=1-0.30*Math.pow((u-0.62)*1.5,2);
+      const swell=1-0.22*Math.pow((v-0.34)*1.7,2);
+      return Math.max(0,Math.min(1,0.20+0.66*crown*swell));
+    },
+    lights:[{az:AZ,el:EL,w:1.0}],
+    ambient:0.24, diffuse:0.88, gamma:1.04,
+    low:'#141E27', high:'#5E6C78'});
+  { const lay=8*Math.PI/180;                        // the brushed lay, a new seed
+    cx.save();
+    for(let i=0;i<9000;i++){
+      const x=rg()*W*1.2-60, y=rg()*H, len=40+rg()*300;
+      const a=0.020+0.055*rg();
+      cx.strokeStyle=(rg()>0.5?'rgba(206,220,232,':'rgba(9,14,20,')+a.toFixed(3)+')';
+      cx.lineWidth=0.7+rg()*1.5;
+      cx.beginPath(); cx.moveTo(x,y);
+      cx.lineTo(x+Math.cos(lay)*len, y+Math.sin(lay)*len); cx.stroke(); }
+    cx.restore(); }
+  for(let i=0;i<140;i++){                           // oil mottle and weather
+    const x=rg()*W, y=rg()*H, r=18+rg()*90;
+    const g=cx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,'rgba(8,12,18,'+(0.05+0.08*rg()).toFixed(3)+')');
+    g.addColorStop(1,'rgba(8,12,18,0)');
+    cx.fillStyle=g; cx.beginPath(); cx.arc(x,y,r,0,7); cx.fill(); }
+
+  /* the plate is a fabrication, so it has stiffeners and hardware on it. Held
+     soft, because the tag is what the eye is meant to be on. */
+  for(const ry of [252, 1074]){
+    cx.fillStyle='rgba(5,9,14,0.34)'; cx.fillRect(0,ry,W,7.0);
+    cx.fillStyle='rgba(214,228,240,0.16)'; cx.fillRect(0,ry+7.0,W,3.0);
+    const rg2=cx.createLinearGradient(0,ry+10,0,ry+34);
+    rg2.addColorStop(0,'rgba(214,228,240,0.10)'); rg2.addColorStop(1,'rgba(214,228,240,0)');
+    cx.fillStyle=rg2; cx.fillRect(0,ry+10,W,24); }
+  for(const b of [[934,320],[934,470],[934,620],[1010,395],[1010,545]]){
+    cx.fillStyle='rgba(5,8,12,0.40)';
+    cx.beginPath(); cx.arc(b[0]+LDX*5,b[1]+LDY*5,17,0,7); cx.fill();
+    const bg2=cx.createLinearGradient(b[0]-15,b[1]-15,b[0]+15,b[1]+15);
+    bg2.addColorStop(0,'#2A3640'); bg2.addColorStop(.54,'#6E7C88');
+    bg2.addColorStop(1,'#A0AEBA');
+    cx.fillStyle=bg2; cx.beginPath(); cx.arc(b[0],b[1],14.5,0,7); cx.fill();
+    cx.fillStyle='rgba(6,10,15,0.34)'; cx.beginPath(); cx.arc(b[0],b[1],6.0,0,7); cx.fill(); }
+
+  /* what runs down a plate that lives outdoors. Weathering below the lower
+     stiffener, where water sits on the ledge and then leaves. */
+  for(let i=0;i<58;i++){
+    const x=rg()*W, y=1084+rg()*26, len=40+rg()*120, w=3+rg()*16;
+    const g=cx.createLinearGradient(0,y,0,y+len);
+    g.addColorStop(0,'rgba(38,30,20,'+(0.16+0.20*rg()).toFixed(3)+')');
+    g.addColorStop(1,'rgba(38,30,20,0)');
+    cx.fillStyle=g; cx.fillRect(x,y,w,len);
+    cx.fillStyle='rgba(226,238,248,'+(0.03+0.05*rg()).toFixed(3)+')';
+    cx.fillRect(x+w,y,1.2,len*0.7); }
+  for(const b of [[934,1108],[1010,1108]]){
+    cx.fillStyle='rgba(5,8,12,0.40)';
+    cx.beginPath(); cx.arc(b[0]+LDX*5,b[1]+LDY*5,17,0,7); cx.fill();
+    const bg3=cx.createLinearGradient(b[0]-15,b[1]-15,b[0]+15,b[1]+15);
+    bg3.addColorStop(0,'#2A3640'); bg3.addColorStop(.54,'#6E7C88');
+    bg3.addColorStop(1,'#A0AEBA');
+    cx.fillStyle=bg3; cx.beginPath(); cx.arc(b[0],b[1],14.5,0,7); cx.fill();
+    cx.fillStyle='rgba(6,10,15,0.34)'; cx.beginPath(); cx.arc(b[0],b[1],6.0,0,7); cx.fill(); }
+
+  /* the plate's lower flange and its weld bead, running the frame's foot */
+  { const fy=1182;
+    cx.fillStyle='rgba(5,9,14,0.72)'; cx.fillRect(0,fy,W,5.0);
+    cx.fillStyle='rgba(212,226,238,0.24)'; cx.fillRect(0,fy+5.0,W,2.4);
+    for(let i=0;i<70;i++){                          // the bead, ripple by ripple
+      const bx=i*16+rg()*7, by=fy+22+Math.sin(i*0.7)*3.2;
+      const g=cx.createLinearGradient(bx,by-13,bx+9,by+13);
+      g.addColorStop(0,'#26333E'); g.addColorStop(.46,'#8D9BA7'); g.addColorStop(1,'#1B242D');
+      cx.fillStyle=g; cx.beginPath();
+      cx.ellipse(bx,by,10.5,13.5,0.28,0,7); cx.fill();
+      cx.strokeStyle='rgba(232,244,252,0.16)'; cx.lineWidth=1.1;
+      cx.beginPath(); cx.ellipse(bx+1.4,by+1.4,9.0,12.0,0.28,-0.4,1.9); cx.stroke(); }
+    cx.fillStyle='rgba(4,7,11,0.52)'; cx.fillRect(0,fy+40,W,10);
+    for(const [hy,hh,al] of [[fy-16,16,0.16],[fy+46,22,0.14]]){
+      const hz=cx.createLinearGradient(0,hy,0,hy+hh);
+      hz.addColorStop(0,'rgba(104,72,40,0)');
+      hz.addColorStop(.5,'rgba(104,72,40,'+al+')');
+      hz.addColorStop(1,'rgba(104,72,40,0)');
+      cx.fillStyle=hz; cx.fillRect(0,hy,W,hh); } }
+
+  /* ---- DEPTH OF FIELD. The tag is the focal plane and the plate is a metre
+     behind it, so the plate goes off focus with distance up the frame. Done as
+     a real blurred copy masked back in, not as a wash, because a wash lowers
+     contrast everywhere and defocus only lowers detail. ------------------- */
+  { const off=document.createElement('canvas');
+    off.width=cv.width; off.height=cv.height;
+    const oc=off.getContext('2d');
+    oc.filter='blur(3.4px)'; oc.drawImage(cv,0,0); oc.filter='none';
+    const m=oc.createLinearGradient(0,0,0,cv.height);
+    m.addColorStop(0,'rgba(0,0,0,1)');
+    m.addColorStop(.26,'rgba(0,0,0,0.62)');
+    m.addColorStop(.50,'rgba(0,0,0,0.12)');
+    m.addColorStop(.62,'rgba(0,0,0,0)');
+    oc.globalCompositeOperation='destination-in';
+    oc.fillStyle=m; oc.fillRect(0,0,off.width,off.height);
+    cx.save(); cx.setTransform(1,0,0,1,0,0); cx.drawImage(off,0,0); cx.restore(); }
+
+  /* ---- the lit pool on the plate, which the tag then casts onto --------- */
+  cx.save(); cx.globalCompositeOperation='screen';
+  cx.translate(690,880); cx.scale(1,0.90);
+  const pool=cx.createRadialGradient(0,0,0,0,0,760);
+  pool.addColorStop(0,'rgba(178,196,214,0.34)');
+  pool.addColorStop(.46,'rgba(120,138,158,0.17)');
+  pool.addColorStop(1,'rgba(28,40,54,0)');
+  cx.fillStyle=pool; cx.beginPath(); cx.arc(0,0,760,0,7); cx.fill(); cx.restore();
+
+  /* ---- the tie wire: two strands, twisted, each with its own specular ---- */
+  { const e=L2F(EYE[0],EYE[1]), bolt=[e[0]-16, 176];
+    for(const ph of [0, Math.PI]){
+      cx.strokeStyle='rgba(4,8,12,0.62)'; cx.lineWidth=5.6;
+      cx.beginPath();
+      for(let t=0;t<=1.001;t+=0.02){
+        const x=bolt[0]+(e[0]-bolt[0])*t+Math.sin(t*13+ph)*5.4;
+        const y=bolt[1]+(e[1]-bolt[1])*t;
+        t?cx.lineTo(x,y):cx.moveTo(x,y); }
+      cx.stroke();
+      cx.strokeStyle='#8B99A5'; cx.lineWidth=3.4; cx.beginPath();
+      for(let t=0;t<=1.001;t+=0.02){
+        const x=bolt[0]+(e[0]-bolt[0])*t+Math.sin(t*13+ph)*5.4;
+        const y=bolt[1]+(e[1]-bolt[1])*t;
+        t?cx.lineTo(x,y):cx.moveTo(x,y); }
+      cx.stroke();
+      cx.strokeStyle='rgba(236,246,254,0.46)'; cx.lineWidth=1.2; cx.beginPath();
+      for(let t=0;t<=1.001;t+=0.02){
+        const x=bolt[0]+(e[0]-bolt[0])*t+Math.sin(t*13+ph)*5.4+1.1;
+        const y=bolt[1]+(e[1]-bolt[1])*t+1.1;
+        t?cx.lineTo(x,y):cx.moveTo(x,y); }
+      cx.stroke(); }
+    /* the bolt the wire is tied through */
+    const bg=cx.createLinearGradient(bolt[0]-16,bolt[1]-16,bolt[0]+16,bolt[1]+16);
+    bg.addColorStop(0,'#232F3A'); bg.addColorStop(.54,'#75838F'); bg.addColorStop(1,'#AEBBC6');
+    cx.fillStyle='rgba(4,7,11,0.62)';
+    cx.beginPath(); cx.arc(bolt[0]+LDX*4,bolt[1]+LDY*4,20,0,7); cx.fill();
+    cx.fillStyle=bg; cx.beginPath(); cx.arc(bolt[0],bolt[1],17,0,7); cx.fill();
+    cx.fillStyle='rgba(6,10,15,0.50)'; cx.beginPath(); cx.arc(bolt[0],bolt[1],7,0,7); cx.fill(); }
+
+  /* ---- THE TAG, in its own hanging frame ------------------------------- */
+  cx.save(); cx.translate(TX,TY); cx.rotate(ROT);
+
+  /* the swing cast, thrown into the lee onto the lit plate, with a soft term */
+  cx.save(); cx.globalCompositeOperation='multiply';
+  cx.beginPath(); cx.rect(-400,-400,W+800,H+800);
+  cx.moveTo(26,0); cx.arcTo(TW,0,TW,TH,26); cx.arcTo(TW,TH,0,TH,26);
+  cx.arcTo(0,TH,0,0,26); cx.arcTo(0,0,TW,0,26); cx.closePath();
+  cx.clip('evenodd');
+  /* the reach grows down the tag's length, because the pivot is the eyelet and
+     the free edge swings furthest from the plate behind it */
+  for(let k=44;k>=1;k--){
+    const t=k/44, a=0.58*Math.pow(1-t,1.45);
+    cx.fillStyle='rgba(5,9,14,'+a.toFixed(3)+')';
+    for(let b=0;b<9;b++){
+      const u0=b/9, u1=(b+1)/9, reach=1.28*(0.55+0.85*u0);
+      cx.fillRect(LDX*k*reach, TH*u0+LDY*k*reach, TW, TH*(u1-u0)+1.5); } }
+  cx.restore();
+
+  /* the sheet: aluminium, brighter than the plate. A tag is blanked with a die,
+     so its corners carry a radius and never come to a point. */
+  function tagPath(x0,y0,x1,y1,r){
+    cx.beginPath(); cx.moveTo(x0+r,y0);
+    cx.arcTo(x1,y0,x1,y1,r); cx.arcTo(x1,y1,x0,y1,r);
+    cx.arcTo(x0,y1,x0,y0,r); cx.arcTo(x0,y0,x1,y0,r);
+    cx.closePath();
+  }
+  const tg=cx.createLinearGradient(TW,TH,0,0);
+  tg.addColorStop(0,'#E6EEF5'); tg.addColorStop(.50,'#C2CFDA'); tg.addColorStop(1,'#8B99A5');
+  tagPath(0,0,TW,TH,26); cx.fillStyle=tg; cx.fill();
+  cx.save(); tagPath(0,0,TW,TH,26); cx.clip();
+  const lay2=88*Math.PI/180;                        // the tag's own lay, near vertical
+  for(let i=0;i<5200;i++){
+    const x=rg()*TW, y=rg()*TH*1.1-40, len=24+rg()*130;
+    cx.strokeStyle=(rg()>0.5?'rgba(255,255,255,':'rgba(46,58,70,')+(0.020+0.048*rg()).toFixed(3)+')';
+    cx.lineWidth=0.6+rg()*1.2;
+    cx.beginPath(); cx.moveTo(x,y);
+    cx.lineTo(x+Math.cos(lay2)*len, y+Math.sin(lay2)*len); cx.stroke(); }
+  for(let i=0;i<40;i++){                             // handling marks
+    const x=rg()*TW, y=rg()*TH, r=14+rg()*54;
+    const g=cx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,'rgba(64,78,92,'+(0.04+0.06*rg()).toFixed(3)+')');
+    g.addColorStop(1,'rgba(64,78,92,0)');
+    cx.fillStyle=g; cx.beginPath(); cx.arc(x,y,r,0,7); cx.fill(); }
+  cx.restore();
+  { const re=cx.createLinearGradient(0,TH-14,0,TH);  // the rolled lower edge
+    re.addColorStop(0,'rgba(255,255,255,0)'); re.addColorStop(1,'rgba(255,255,255,0.42)');
+    cx.fillStyle=re; cx.fillRect(0,TH-14,TW,14);
+    cx.fillStyle='rgba(6,10,15,0.44)'; cx.fillRect(0,0,TW,3.2);
+    cx.fillStyle='rgba(6,10,15,0.34)'; cx.fillRect(0,0,3.2,TH); }
+
+  /* the punched eyelet, a real hole with a rolled rim */
+  cx.save();
+  cx.fillStyle='rgba(6,10,15,0.86)';
+  cx.beginPath(); cx.arc(EYE[0],EYE[1],21,0,7); cx.fill();
+  cx.strokeStyle='rgba(255,255,255,0.46)'; cx.lineWidth=3.0;
+  cx.beginPath(); cx.arc(EYE[0]+1.4,EYE[1]+1.4,23,0,7); cx.stroke();
+  cx.strokeStyle='rgba(6,10,15,0.42)'; cx.lineWidth=2.0;
+  cx.beginPath(); cx.arc(EYE[0]-1.2,EYE[1]-1.2,23,0,7); cx.stroke();
+  cx.restore();
+
+  /* the fields the stamp actually went into. Struck deep, so each has a shaded
+     upper-left wall and a lit lower-right one, and the letters read out of the
+     dark rather than off the bright aluminium, which is where the gold died. */
+  for(const f of [[40,546,560,74],[40,624,560,152]]){
+    const [fx,fy2,fw,fh]=f;
+    tagPath(fx,fy2,fx+fw,fy2+fh,8);
+    cx.fillStyle='rgba(11,16,22,0.88)'; cx.fill();
+    const ff=cx.createLinearGradient(fx,fy2,fx+fw,fy2+fh);
+    ff.addColorStop(0,'rgba(4,7,11,0.55)'); ff.addColorStop(1,'rgba(120,140,162,0.16)');
+    cx.fillStyle=ff; cx.fill();
+    const fw2=cx.createLinearGradient(fx,fy2,fx+fw,fy2+fh);   // walls, lee to key
+    fw2.addColorStop(0,'rgba(2,4,7,0.80)');
+    fw2.addColorStop(.5,'rgba(60,76,92,0.26)');
+    fw2.addColorStop(1,'rgba(255,255,255,0.46)');
+    cx.save(); tagPath(fx,fy2,fx+fw,fy2+fh,8); cx.clip();
+    tagPath(fx,fy2,fx+fw,fy2+fh,8);
+    cx.strokeStyle=fw2; cx.lineWidth=7.0; cx.stroke(); cx.restore(); }
+
+  /* the tie threads the hole. Drawn INSIDE the tag transform and after the
+     eyelet, because the last run of wire lies on the tag's own face and a tie
+     that stops above the tag is a tag hanging from nothing. */
+  for(const ph of [0, Math.PI]){
+    const wob=(t)=>Math.sin(t*9+ph)*4.2;
+    const seg=(w,st)=>{
+      cx.strokeStyle=st; cx.lineWidth=w; cx.lineCap='round'; cx.beginPath();
+      for(let t=0;t<=1.001;t+=0.04){
+        const x=EYE[0]-14+28*t+wob(t), y=-54+(EYE[1]+54)*t;
+        t?cx.lineTo(x,y):cx.moveTo(x,y); }
+      cx.stroke(); };
+    seg(5.6,'rgba(4,8,12,0.62)'); seg(3.4,'#8B99A5');
+    cx.strokeStyle='rgba(236,246,254,0.46)'; cx.lineWidth=1.2; cx.beginPath();
+    for(let t=0;t<=1.001;t+=0.04){
+      const x=EYE[0]-14+28*t+wob(t)+1.1, y=-54+(EYE[1]+54)*t+1.1;
+      t?cx.lineTo(x,y):cx.moveTo(x,y); }
+    cx.stroke(); }
+  { cx.strokeStyle='rgba(4,8,12,0.58)'; cx.lineWidth=5.4;   // the bight through the hole
+    cx.beginPath(); cx.arc(EYE[0],EYE[1],14.5,-2.5,1.1); cx.stroke();
+    cx.strokeStyle='#96A4B0'; cx.lineWidth=3.2;
+    cx.beginPath(); cx.arc(EYE[0],EYE[1],14.5,-2.5,1.1); cx.stroke();
+    cx.strokeStyle='rgba(236,246,254,0.44)'; cx.lineWidth=1.1;
+    cx.beginPath(); cx.arc(EYE[0]+1.0,EYE[1]+1.0,14.5,-2.2,0.9); cx.stroke();
+    cx.fillStyle='rgba(4,7,11,0.42)';                        // where it bears on the lip
+    cx.beginPath(); cx.ellipse(EYE[0]+9,EYE[1]+9,7,3.6,0.5,0,7); cx.fill(); }
+
+  /* the tag's own rule, dividing the printed field from the stamped one */
+  cx.fillStyle='rgba(28,36,44,0.34)'; cx.fillRect(52,430,TW-104,2.2);
+  cx.fillStyle='rgba(255,255,255,0.30)'; cx.fillRect(52,432.2,TW-104,1.4);
+
+  /* the two deadlines, embossed onto the object rather than only written */
+  { const ty=786, x0=52, span=TW-104;
+    cx.fillStyle='rgba(28,36,44,0.26)'; cx.fillRect(x0,ty,span,2.0);
+    cx.fillStyle='rgba(255,255,255,0.26)'; cx.fillRect(x0,ty+2.0,span,1.2);
+    for(const d of [120]){
+      const x=x0+span*(d/240);
+      cx.fillStyle='rgba(6,10,15,0.44)'; cx.fillRect(x-2.2,ty-15,4.4,32);
+      cx.fillStyle='rgba(255,255,255,0.52)'; cx.fillRect(x+1.6,ty-13.4,2.4,29); } }
+  cx.restore();
+
+  /* ---- D1. Solid to the tick at the struck date, phantom-dashed past it,
+     because left of that tick is decided record and right of it is not. --- */
+  const dEl=document.getElementById('date').getBoundingClientRect();
+  const TICK=dEl.left;
+  cx.save();                                        // the strike stands proud of it
+  cx.beginPath(); cx.rect(0,DATUM-26,W,52);
+  cx.rect(dEl.left-9,dEl.top-4,dEl.width+18,dEl.height+8);
+  cx.clip('evenodd');
+  cx.fillStyle='#05080B'; cx.fillRect(0,DATUM-1.6,TICK,4.2);
+  cx.fillStyle='#FFC72C'; cx.fillRect(0,DATUM,TICK,1.25);
+  cx.fillStyle='rgba(5,8,11,0.80)'; cx.fillRect(TICK-3.0,DATUM-19,6.4,38);
+  cx.fillStyle='#FFC72C'; cx.fillRect(TICK-1.6,DATUM-17,3.2,34);
+  cx.strokeStyle='#05080B'; cx.lineWidth=4.2; cx.setLineDash([30,5,6,5,6,5]);
+  const DSTART=Math.max(TICK+4, dEl.right+40);   // clear of the date, not just clipped by it
+  cx.beginPath(); cx.moveTo(DSTART,DATUM+0.4); cx.lineTo(W,DATUM+0.4); cx.stroke();
+  cx.strokeStyle='#FFC72C'; cx.lineWidth=1.25;
+  cx.beginPath(); cx.moveTo(DSTART,DATUM+0.6); cx.lineTo(W,DATUM+0.6); cx.stroke();
+  cx.restore();
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.09,saturation:0.96,contrast:1.13,filmic:true,
+    lift:[0.008,0.011,0.018],gain:[1.012,1.0,0.980],vignette:0.24,
+    bloom:{threshold:0.90,strength:0.11,radius:7},
+    grain:{amount:0.036,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.30});
+  document.getElementById('grain').style.backgroundImage='url('+AK.grainTile(280,52,SEED)+')';
+
+  const edge=L2F(0,520);                             // the tag's own left edge
+  const ex=Math.round(edge[0]), ey=Math.round(edge[1]);
+  document.body.setAttribute('data-contacts', JSON.stringify([
+    {what:"the inspection tag hanging against the transformer plate",
+     shadow:[[ex-30,ey,24,14]], ground:[[ex-84,ey,24,14]]}]));
+  return true;
+})();
+</script>
+</body></html>

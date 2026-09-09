@@ -1,0 +1,58 @@
+{
+  "run_date": "2026-09-09",
+  "carousel_no": 54,
+  "date_note": "runs/2026-09-09 did not exist at wake; 2026-09-08 had no run (no runs/2026-09-08 dir, last ship 2026-09-07 No.53). Today's Anchorage date was free, so the run takes it per the standing rule.",
+  "branch": "tsturg/wonderful-maxwell-r1lccr",
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "pending",
+    "art_build": "pending",
+    "pixel_review": "pending",
+    "flow_review": "pending",
+    "assemble": "pending",
+    "scoring": "pending",
+    "ship": "pending",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "plan": "out/2026-09-09/plan.md",
+    "scout_merge": "out/2026-09-09/scout_merge.md",
+    "selection": "out/2026-09-09/selection.md",
+    "site_look": "out/2026-09-09/site_look/",
+    "claims": "out/2026-09-09/claims.json",
+    "caption_assignments": "out/2026-09-09/caption_assignments.md",
+    "storyboard": "out/2026-09-09/storyboard.md"
+  },
+  "notes": {
+    "site_signoff": "PASS, 100 pages, 18 checks. gaswatch pagecheck PASS, 15 checks. One defect found by eye and fixed, docket map pin tap targets.",
+    "docket": "8 items refreshed at --budget 8. watch.json BASIS sweep failed with a 503 on the 8th; both Federal Register candidates dropped, one already tracked and one with no AI nexus.",
+    "search_budget": "Phase 1 spent 4, six scouts spent 148.",
+    "claims": "41 verified, 39 primary, claims_check PASS. 13 kills, four of which corrected the selection: the DOE docket string prints two ways so the deck cites RIN 1901-AB79 only; the FERC docket is Project No. 15423-000 with no P prefix; the RFI informs implementation and does not set scope; and interconnected DOES appear in the order so the absence claim is limited to Alaska, Hawaii, islanded and non-contiguous.",
+    "open_prs": "Two PRs are open on the repo and neither belongs to this run. #317, ready and not draft, is run No.40's branch from 2026-08-22, eighteen days old. Its artifacts never reached main, there is no runs/2026-08-22 directory and no ledger/topics.json entry for that date, so that deck exists only on its branch and its archive page was never built. Reported in the draft rather than merged, because merging an eighteen day old run branch would insert a retroactive topics entry and rebuild docs against a stale date, and that is the maintainer's call. #299 is a draft parking an unshipped NSF awards story after a duplicate-run collision and looks deliberate.",
+    "directors_room": "Three lenses, systems-illustrator / editorial-essayist / field-documentarian, rotated off No.53s trio. All three converged independently on sodium az 118 el 34 and on a nameplate as the modelled reserve, which is the key the run prototype proved before any of them read the plan. Winner is the essayists argument and its 69 kV datum device. The documentarian found the crack in all three, that an engraved Federal Power Act nameplate does not exist in the world, so the hinge reverts to two columns of type on the document material each speaker actually uses. Four director self critiques accepted, including cutting four materials to three and adding a Railbelt strip map to slide 07 to buy back the geography. dossier_check PASS, 10 dossiers, 0 fails, 0 warns, first pass.",
+    "build": "All ten slides built and rendered. machine_qa 0 fails deck-wide (verdict WARN). dossier_check PASS, copy_sync PASS (65 strings), aggregate_check PASS (7 declared), plan_drift PASS after reconciling six claims-index rows, caption_check PASS, style_lint clean, bespoke_check WARN at 45 percent drawn share. Carousel number is 54, from ledger/topics.json ending at 53; the copywriter's brief said 55 and was wrong.",
+    "bug_found": "sheetPath called cx.beginPath() and was used inside an evenodd clip built on cx.rect(0,0,W,H), which wiped the outer rect and drew four slides' casts INSIDE their own sheets where the sheet fill then hid them. Slides 02, 03, 04, 08 all lost their contact shadows silently. Helper now contributes a subpath only.",
+    "static_declarations": "dossier_check reads data-contacts off the <body> TAG in source, not the runtime value, so slides 02, 04, 07 and 10 were failing while their contacts existed. Moved those four to static attributes. json.dumps needs separators=(',',':'); (',',' ') silently writes a space where the key separator belongs.",
+    "score": "Two rounds. Round 1 merit 8.26 capped 6.9 by slide 06's headline at 4.0:1. Round 2 merit 8.47, no hard fail, ships against 8.3.",
+    "pdf": "shrink_pdfs.py DECLINED this deck's PDF: every candidate image fell below the 42 dB PSNR floor (35.9 to 40.1 dB), because the art is high frequency spangle, stipple and grain that does not survive a 192 to 144 DPI resample. The routine says a declined shrink is the correct outcome and there is no flag to force past it, so carousel.pdf ships at 37.09 MB and the Gmail draft says so."
+  },
+  "phases_done": [
+    "copy",
+    "art_build",
+    "pixel_review_spawned",
+    "pixel_review",
+    "flow_review",
+    "assemble",
+    "scoring",
+    "ship"
+  ]
+}

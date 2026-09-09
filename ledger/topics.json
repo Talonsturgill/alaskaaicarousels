@@ -2236,6 +2236,37 @@
         "koniageducation.org"
       ],
       "note": "The queued brief made pattern-completeness a hard PRECONDITION and that precondition FAILED, exactly as the brief allowed for. The failure is the story. Do not re-run this angle as a totals story until FPDS phrase matching is shown to be fixed."
+    },
+    {
+      "run_date": "2026-09-09",
+      "carousel_no": 54,
+      "headline": "The Sentence That Isn't in Executive Order 14421",
+      "topic": "Executive Order 14421 of August 26th, 2026, published at 91 FR 55995, borrows 16 U.S.C. 824o(a)(1)'s definition of the bulk-power system almost word for word and adds a threshold the statute never had, 69,000 volts and above. The statute carries subsection (k), headed Alaska and Hawaii, reading in full that the provisions of this section do not apply to Alaska or Hawaii. The order carries no sentence like it. Every Alaska transmission figure in the deck sits above the threshold: the Alaska Intertie built to 345 kV and operating at 138 kV, and the proposed 115 kV DeepGreen Cook Inlet cable under FERC preliminary permit 15423-000. The Railbelt Reliability Council calls the same grid islanded while the Alaska Energy Authority calls the Intertie an integral part of the interconnected Bulk Electrical System. DOE's request for information, RIN 1901-AB79 at 91 FR 57322, asks at Question A-2 for equipment-specific thresholds and never uses the words Alaska, Hawaii, islanded or non-contiguous. Comments close October 9th, 2026 and rules are due at 120 days.",
+      "angle": "NOBODY HAS SAID ALASKA IS IN AND NOBODY HAS SAID ALASKA IS OUT, and the deck refuses to say either. It is an absence claim carried as an absence of ink rather than as a deletion, counterweighted on slide 08 by Alaska's own two agencies using opposite words with equal room on the page. The close asks one question, which threshold Alaska should ask DOE to write down, inside a comment window that shuts October 9th, 2026.",
+      "entities": [
+        "Executive Order 14421",
+        "Department of Energy",
+        "16 U.S.C. 824o",
+        "Federal Power Act",
+        "Railbelt Reliability Council",
+        "Alaska Energy Authority",
+        "Alaska Intertie",
+        "Chugach Electric Association",
+        "Homer Electric Association",
+        "Golden Valley Electric Association",
+        "Matanuska Electric Association",
+        "Seward Electric System",
+        "DeepGreen",
+        "Federal Energy Regulatory Commission",
+        "IEEPA",
+        "National Emergencies Act",
+        "Willow",
+        "Healy",
+        "Fairbanks",
+        "Delta Junction",
+        "Homer",
+        "Seldovia"
+      ]
     }
   ]
 }

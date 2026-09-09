@@ -1,0 +1,84 @@
+{
+  "run_date": "2026-09-09",
+  "carousel_no": 54,
+  "round": 2,
+  "rounds_of_revision": 2,
+  "weighted_total": 8.47,
+  "merit_total": 8.47,
+  "threshold": 8.3,
+  "threshold_rung": "under 4 revision rounds",
+  "threshold_flat": 8.3,
+  "clears_flat_threshold": true,
+  "ship": true,
+  "hard_fails_open": [],
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "one_sentence_fix": "Fill slide 07's empty galvanized field between the 345 and 138 rows with the board's own machined structure the way slide 05's three bare bands were just fixed, because it is the deck's largest dead region and it sits on the one slide readers screenshot.",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "score_history": [
+    {
+      "round": 1,
+      "merit": 8.26,
+      "capped": 6.9,
+      "cap_reason": "slide 06's headline at 4.0:1 worst-point contrast on the pier's lit face, with the 01 and 06 counters at 3.5 and 4.3 riding along"
+    },
+    {
+      "round": 2,
+      "merit": 8.47,
+      "capped": null,
+      "cap_reason": "no hard fail open; the contrast cap was cleared by giving the head its own form board and both counters their own struck fields"
+    }
+  ],
+  "editor_notes_for_email": "SHIPS at 8.47 against a threshold of 8.3, no hard fails, not rounded. The round-1 cap was slide 06's headline at 4.0:1 on the pier's lit face; it now sits on a shaded form board and both progress counters sit in their own struck fields. Verified two ways: machine_qa carries ZERO contrast warns deck-wide, down from three, and slides 01 and 06 return no warns of any kind.\n\nRead slide 04, then 08, then 07 before posting. 04 is the whole argument and the frame most likely to be misread, and nothing in a comment should say Alaska is excluded or included, because C12 is an absence claim at 0.85 confidence. 08 is what keeps the deck from reading as an accusation and is the answer to the inevitable objection that the order obviously covers Alaska, so answer with that slide rather than with a position. 07 carries every number anyone will screenshot.\n\nCHECK THE SHIPPED PDF SIZE in runs/2026-09-09/ before attaching anything. The pre-ship file is 37.11 MB against a 2 to 25 MB band; shrink_pdfs.py at Phase 11 resamples the art layer 192 to 144 DPI behind a 42 dB PSNR floor without touching vector text and should roughly halve it, but the scorer counted that as a projection rather than a measured fact.\n\nKnown and accepted, not oversights: slide 03's rubber stamp is a raster, so it is invisible to the LinkedIn ranker and to accessibility, which is documented in the reconciliation; one page rule on slide 02 still lands on the body's third line at the baseline, a warn rather than a strike-through; C02, the order's title, and C11, the 180 day acquisition line, are verified and deliberately unprinted, so do not add either in a comment.\n\nFor the NEXT deck rather than this one: artwork craft is the weakest criterion at 6 and carries the largest weight in the rubric. Four defects still stand, slide 07's empty board middle, slide 06's featureless sky and bead insulators, slide 02's apron still reading as stucco, and the single declared plywood bench rendering as three different materials across 04, 08 and 10. No slide climbed the rendered ladder in this run.",
+  "note": "Two rounds. Round 1 scored 8.26 on merit and was capped at 6.9 by one hard fail. A low score is a work order, so the run went back to Phase 8, fixed the named defect and its two follow-ons, and re-scored. Six critics ran before scoring, five pixel and one flow, and their round cleared two hard-fails of its own, a gold stroke on 07 that read as an en dash and a swipe end on 08 that read as a hyphen, plus a light-direction error on thirteen contact shadows on slide 01 and two even-odd clip bugs. Two critic findings were declined with measurements and both declines are recorded in BUILD RECONCILIATION."
+}
