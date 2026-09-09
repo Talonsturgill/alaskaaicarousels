@@ -6562,3 +6562,56 @@ at one URL on our own domain, not that the record stops being published.
 
 Unblocking condition for a change here, in one sentence. The maintainer says so,
 or a first-party LinkedIn source says so.
+
+## 2026-09-09 (No. 54) — FOUR WAYS A DECLARATION LIES QUIETLY
+
+Every one of these shipped green through a gate that was looking straight at it.
+
+**A path helper that calls `beginPath()` cannot build an even-odd clip.** The
+idiom for an attached cast is `beginPath(); rect(0,0,W,H); <object outline>;
+clip('evenodd')`, so the object is a hole in a full-frame clip and the cast is
+drawn everywhere except inside the object. Refactoring the outline into a
+`sheetPath()` helper that opens with `cx.beginPath()` silently discards the
+full-frame rect, and the clip becomes the object itself. The cast is then drawn
+INSIDE the sheet, where the sheet's own fill covers it. Four slides lost their
+contact shadows at once and the renders looked fine, because a missing shadow
+is not a visible artefact, it is an absence. Only the contact gate caught it,
+and only on the two slides whose declared rects happened to sample the right
+band. RULE: a geometry helper contributes a SUBPATH and never opens one. The
+caller owns `beginPath`. Name it so, in the helper's own comment.
+
+**Even-odd cannot express "everything except these boxes" when the boxes
+overlap.** Slide 02 reserved its type by adding one rect per element to an
+even-odd clip. `.sec` (a hanging subsection letter) overlapped `.sub` (the
+quotation), and a region covered by the sheet rect plus two element rects has
+three crossings, which is odd, which is INSIDE. The set lines painted straight
+back into the hole reserved for the letter and read as a broken glyph at the
+slide's declared focal point. Machine QA called it "busy art under text", which
+is the right flag with the wrong cause, and it would never have been fixed from
+that description. RULE: reserve type by drawing the art to a scratch canvas and
+punching the boxes out with `globalCompositeOperation='destination-out'`. It is
+order-independent and it does not care how the reserves overlap.
+
+**`dossier_check` reads `data-contacts` off the `<body>` TAG in the source, not
+the value the slide sets at runtime.** Four slides set it with
+`document.body.setAttribute(...)` at the end of `renderReady`. The render report
+carried the contacts, qa.py measured them, and dossier_check still failed all
+four for declaring nothing, because it greps the markup. Both are right: qa
+wants what rendered, the dossier gate wants a promise it can read before a
+render is spent. RULE: if a dossier promises a contact shadow, the declaration
+goes in the `<body>` tag as a literal attribute. Runtime `setAttribute` is for
+values the drawing has to compute.
+
+**`json.dumps(..., separators=(',', ' '))` writes a space where the key
+separator belongs.** The tuple is `(item_separator, key_separator)`, so that
+call emits `{"what" "the board"}`, which is not JSON. It went into four
+`data-contacts` attributes at once. The gate that caught it prints the tail of
+the attribute, which is the only reason it was findable. RULE: `(',', ':')`, and
+`json.loads` the attribute back before writing the file.
+
+ONE MORE, about critics. The 07/08 pixel critic reported the two agency pages on
+slide 08 as 5.6 percent different in width, which would have made the deck's one
+measurable claim measurably false. Measured off the render at three heights,
+both pages are 397.5 design px to within half a pixel. A critic's measurement is
+a hypothesis; the render is the evidence. Check the number before you rebuild
+the slide around it, and write down that you checked.
