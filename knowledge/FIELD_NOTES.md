@@ -6522,3 +6522,43 @@ pronoun reaching back to an earlier frame is not merely unclear when the slide
 is screenshotted, it can be FALSE, because the reader attaches it to the only
 subject in front of them. Name the subject on every frame that carries a number
 about it.
+
+---
+
+## 2026-09-09, Phase 1 craft refresh. THE FIRST COMMENT MAY NO LONGER BE FREE.
+
+Two searches, one finding, and it touches a standing house contract rather than
+the art. Every deck this machine ships prints "sources in comments" on the close
+slide and hands the maintainer a paste-ready first-comment block of raw URLs.
+That design rests on a rule the craft file states as (H) confidence, no links in
+the post body, sources go in the first comment. The first half is holding. The
+second half is now contested.
+
+- The 2026 van der Blom pass over roughly 1.3 million posts is being reported as
+  one external link in the BODY costing about 18.8 percent of median reach, well
+  below the 40 to 60 percent this file has carried since July. The direction is
+  unchanged, the size is smaller.
+- The newer claim is that the comment workaround is itself detected. Reports
+  describe LinkedIn suppressing comments that carry external links, and
+  identifying "bridge" posts whose whole shape is a funnel to a link one click
+  down. Figures quoted run to 80 percent of comment visibility.
+- The evidence is not settled and should not be treated as settled. The same
+  sweep of sources carries studies from 19 percent to 60 percent, at least one
+  finding no effect, and LinkedIn's own position that there is no penalty. That
+  spread is what a weak measurement looks like.
+  https://www.forbes.com/sites/jodiecook/2026/07/30/the-linkedin-link-penalty-cutting-your-reach-by-60/
+  https://www.tryordinal.com/blog/linkedin-link-penalty-study
+
+WHAT THIS RUN DID ABOUT IT, WHICH IS NOTHING. The first-comment block is a
+copy/paste contract with the maintainer, written into the routine as a hard rule
+in three places, and a marketing-blog consensus is not the evidence that moves a
+maintainer rule. It is raised in this run's draft as a proposal instead. The
+honest framing for that conversation is that the sources block is not only a
+reach tactic. It is the verification record, the thing that makes a claim
+checkable, and this publication's whole argument is that its numbers can be
+checked. If the comment is being suppressed, the answer is more likely to be
+that the deck page at alaskaaihq.com carries the record and the comment points
+at one URL on our own domain, not that the record stops being published.
+
+Unblocking condition for a change here, in one sentence. The maintainer says so,
+or a first-party LinkedIn source says so.
