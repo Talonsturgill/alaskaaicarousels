@@ -1,0 +1,8 @@
+draft_id: r-7608231868921018896
+message_id: 1a085e79adbee6d3
+thread_id: 1a085e79adbee6d3
+subject: Alaska.Ai - LinkedIn Carousel No. 54 - 2026-09-09 - The Sentence That Isn't in Executive Order 14421
+to: docket@alaskaaihq.com
+state: DRAFT, never sent
+note: the payload addresses the account-relative `me`, which the Gmail connector rejects as an
+      address, so the draft was created against the mailbox itself. Same inbox either way.
