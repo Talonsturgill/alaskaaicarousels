@@ -1,0 +1,292 @@
+<!doctype html>
+<!-- No.55 SLIDE 02 — THE TURN. Twelve struck counters on an arc, 8 gold faces
+     (votes in force), 4 open paper faces, 3 of the 4 carrying a SPONSOR stamp.
+     The engraved lay follows a TORUS SECTION so it wraps the arc's form.
+     Key az 296 el 26. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F0EADD; font-family:"Bricolage Grotesque",sans-serif; position:relative; }
+  #art { position:absolute; inset:0; }
+  #grain { position:absolute; inset:0; background-repeat:repeat;
+           mix-blend-mode:overlay; opacity:0.06; pointer-events:none; }
+  h2 { position:absolute; left:96px; top:186px; width:760px;
+       font-family:"Instrument Serif",serif; font-weight:400; font-size:78px;
+       line-height:1.02; letter-spacing:-0.02em; color:#2B2F35; }
+  .body { position:absolute; left:96px; top:392px; width:660px;
+          font-size:38px; font-weight:400; line-height:1.36; color:#2B2F35;
+          font-variation-settings:"wght" 400,"wdth" 96; }
+  .body .fig { font-family:"JetBrains Mono",monospace; font-weight:500;
+               font-variant-numeric:tabular-nums lining-nums; }
+  .arclbl { position:absolute; left:96px; top:1156px;
+            font-family:"JetBrains Mono",monospace; font-size:26px; font-weight:500;
+            letter-spacing:0.09em; text-transform:uppercase; color:#6B6255; }
+  .counter { position:absolute; right:96px; top:96px; font-family:"JetBrains Mono",monospace;
+             font-size:24px; font-weight:500; color:#46586A; font-variant-numeric:tabular-nums; }
+  .stamp { position:absolute; left:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+           font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+  .mark { position:absolute; right:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.14em; color:#6B6255; }
+</style>
+</head>
+<body data-contacts='[{"what":"counter 01 on the arc","shadow":[[256,994,26,10]],"ground":[[228,994,26,10]]},{"what":"counter 12 on the arc","shadow":[[808,994,26,10]],"ground":[[713,994,26,10]]}]'
+      data-encodes='[{"claim":"eight faces are filled and four are open","reads":"differ","a":[300,880,200,96],"b":[640,900,200,96]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div id="grain" data-decorative></div>
+  <h2 data-reserve>Three of the four no votes wrote the rule.</h2>
+  <div class="body" data-reserve>Keith McCormick, Daniel Volland and Sydney Scout proposed AO 2026-108. All three voted against the money. They lost <span class="fig">8</span> to <span class="fig">4</span> on the night of September 1st, 2026.</div>
+  <div class="arclbl" data-reserve="mono">Tally, not a seating map</div>
+  <div class="counter" data-reserve="mono">02 / 09</div>
+  <div class="stamp" data-reserve="mono">SECOND IMPRESSION &middot; REPORTED</div>
+  <div class="mark" data-reserve="mono">ALASKA.AI</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const W = 1080, H = 1350, SEED = 20260910;
+  const cv = document.getElementById("art"), cx = cv.getContext("2d");
+  cx.scale(2, 2);
+  const P = { base:"#F0EADD", high:"#FBF7EE", tooth:"#E4DCCB", trough:"#CFC4AE",
+              ink:"#2B2F35", slate:"#46586A", ctx:"#6B6255", hatch:"#9A9182", gold:"#FFC72C" };
+  const mix = (a,b,t) => AKC.mixOklab(a, b, Math.max(0, Math.min(1, t)));
+  /* A struck or lit shape is never a perfect axis-aligned box. These draw the
+     same regions as irregular closed paths, which is both fewer rectangles and
+     a truer edge: paper under a plate does not give a ruler-straight boundary. */
+  function pathRect(x, y, w, h, jit, seed) {
+    jit = jit == null ? 1.1 : jit;
+    const r = AK.rng((seed || 1) + 97);
+    const pts = [];
+    const stepX = Math.max(10, w / 8), stepY = Math.max(8, h / 4);
+    for (let t = 0; t <= w; t += stepX) pts.push([x + t, y + (r() - 0.5) * jit]);
+    for (let t = 0; t <= h; t += stepY) pts.push([x + w + (r() - 0.5) * jit, y + t]);
+    for (let t = w; t >= 0; t -= stepX) pts.push([x + t, y + h + (r() - 0.5) * jit]);
+    for (let t = h; t >= 0; t -= stepY) pts.push([x + (r() - 0.5) * jit, y + t]);
+    cx.beginPath();
+    pts.forEach((p, i) => i === 0 ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]));
+    cx.closePath();
+  }
+  function fillQuad(x, y, w, h, style, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.fillStyle = style; cx.fill();
+  }
+  function strokeQuad(x, y, w, h, style, lw, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.strokeStyle = style; cx.lineWidth = lw; cx.stroke();
+  }
+
+  const rnd = AK.rng(SEED + 2);
+
+  cx.fillStyle = P.base; cx.fillRect(0, 0, W, H);
+
+  /* ---------- the arc, and the torus section the lay will wrap -------------- */
+  const PIV = { x:540, y:1520, r:620 };            /* pivot below the frame */
+  const A0 = -Math.PI * 0.5 - 0.455, A1 = -Math.PI * 0.5 + 0.455;
+  const N = 12;
+  function seatAt(i) {
+    const t = N === 1 ? 0.5 : i / (N - 1);
+    const a = A0 + (A1 - A0) * t;
+    return { x: PIV.x + Math.cos(a) * PIV.r, y: PIV.y + Math.sin(a) * PIV.r, a: a, t: t };
+  }
+  /* Torus section. Height falls off with distance from the arc's centreline, and
+     ALSO varies along the arc, so the form is two-axis and the lay cannot
+     collapse onto a single iso-line. */
+  function torus(x, y) {
+    const dx = x - PIV.x, dy = y - PIV.y;
+    const d = Math.hypot(dx, dy) - PIV.r;
+    const along = Math.atan2(dy, dx);
+    const band = Math.exp(-(d * d) / (2 * 54 * 54));
+    const roll = 0.88 + 0.12 * Math.sin(along * 2.2 + 0.9);
+    return band * roll;
+  }
+
+  /* laid paper */
+  cx.save(); cx.lineWidth = 0.75;
+  for (let y = 4; y < H; y += 3.1) {
+    cx.beginPath();
+    for (let x = 0; x <= W; x += 10) {
+      const yy = y + torus(x, y) * 3.2;
+      x === 0 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+    }
+    cx.strokeStyle = "rgba(154,145,130,0.07)"; cx.stroke();
+  }
+  cx.restore();
+
+  /* ---------- SPONSOR stamps, set as DOM and not painted ------------------- */
+  /* These three were fillText on the canvas. A canvas string has no line box,
+     so it ships as a bitmap in the vector PDF, it is invisible to the ranker
+     and to a screen reader, and qa.py cannot check the one thing that matters
+     about a leader's label: that the label sits where the leader points. Set
+     as DOM at exactly the coordinates the plate is struck at, they become
+     real text, they get checked, and eng.reserve below picks them up because
+     they are in the document before the boxes are measured. */
+  const SPONSOR_SEATS = [8, 9, 10];
+  const stampBox = [];
+  SPONSOR_SEATS.forEach((i, j) => {
+    const s = seatAt(i);
+    /* The stagger fans DOWN-LEFT. It used to walk right at 132 a step, which
+       put the third plate's right edge at 1065 and off the safe zone; that
+       went unseen only because the label was canvas paint and nothing checks
+       where paint lands. At the 24px mobile floor the plate needs 144px, so
+       the third stamp would have left the frame outright. */
+    const lx = s.x - 150 + j * 70, ly = s.y + 132 + j * 52;
+    const d = document.createElement("div");
+    d.className = "mono spn";
+    d.setAttribute("data-reserve", "mono");
+    /* slide 02 has no shared .mono rule, so the face is set here or the label
+       silently falls back to the body's Bricolage Grotesque */
+    d.style.cssText = "position:absolute;left:" + (lx - 72) + "px;top:" + (ly - 22) +
+                      "px;width:144px;height:36px;line-height:36px;text-align:center;" +
+                      'font-family:"JetBrains Mono",monospace;font-weight:500;' +
+                      "font-size:24px;letter-spacing:0.09em;text-transform:uppercase;" +
+                      "color:#46586A;";
+    d.textContent = "SPONSOR";
+    document.body.appendChild(d);
+    stampBox.push({ i: i, lx: lx, ly: ly, s: s });
+  });
+
+  /* ---------- engraved lay wrapping the arc -------------------------------- */
+  const eng = AKENGRAVE.create({ seed:SEED, light:{ azDeg:296, elDeg:26 } });
+  eng.reserve(AKENGRAVE.boxesFor("[data-reserve]"));
+  eng.surface(cx, {
+    region:[150, 826, 800, 300],
+    form:(x, y) => torus(x, y) * 34,
+    tone:(x, y) => { const t = torus(x, y); return t < 0.18 ? 0.98 : 0.42 + 0.20 * (1 - t); },
+    budget:{ main:5.2, cross:7.4 }, wMax:3.0, crossDeg:71, seedDeg:44, step:5,
+    feather:20, inkLo:"#8E8471", inkHi:"#CFC4AE", alpha:0.92
+  });
+
+  /* ---------- the arc guide, a round-cap dot rhythm ------------------------ */
+  cx.save();
+  cx.strokeStyle = "rgba(110,98,85,0.42)"; cx.lineWidth = 2.2;
+  cx.lineCap = "round"; cx.setLineDash([0, 14]);
+  cx.beginPath();
+  for (let k = 0; k <= 200; k++) {
+    const a = A0 - 0.06 + (A1 - A0 + 0.12) * (k / 200);
+    const px = PIV.x + Math.cos(a) * PIV.r, py = PIV.y + Math.sin(a) * PIV.r;
+    k === 0 ? cx.moveTo(px, py) : cx.lineTo(px, py);
+  }
+  cx.stroke(); cx.restore();
+
+  /* ---------- twelve struck counters -------------------------------------- */
+  const GOLD = [0,1,2,3,4,5,6,7];            /* eight yes votes, in force */
+  const OPEN = [8,9,10,11];                  /* four no votes */
+  const SPONSORS = [8,9,10];                 /* three of the four wrote the rule */
+  const R = 31;
+
+  function litPool(x, y, w, h) {
+    const g = cx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0, "rgba(251,247,238,0)");
+    g.addColorStop(0.42, "rgba(251,247,238,0.66)");
+    g.addColorStop(1, "rgba(251,247,238,0)");
+    cx.save(); cx.globalCompositeOperation = "screen";
+    cx.fillStyle = g; pathRect(x, y, w, h, 2.4, 11); cx.fill(); cx.restore();
+  }
+
+  for (let i = 0; i < N; i++) {
+    const s = seatAt(i), filled = GOLD.indexOf(i) >= 0;
+    /* obliquity grows toward the limbs, so the disc foreshortens */
+    const ob = 1 - 0.22 * Math.abs(s.t - 0.5) * 2;
+    litPool(s.x - R - 42, s.y + R - 16, 2 * R + 84, 84);
+    /* two-part cast, thrown down-light and to the right */
+    /* A foreshortened contact is not a FAINTER contact. The same occlusion is
+       packed into less area, so as `ob` falls toward the limbs the pool must
+       deepen or the seats at each end read as floating. The limb seats, 01 and
+       12, are exactly the two this deck declares a contact pair on, and 01 was
+       measuring dL 5.5 against an 8.0 comfort band because the alpha was flat
+       while the ellipse shrank. Compensate on both parts. */
+    const deep = 1 + 1.85 * (1 - ob);
+    cx.save();
+    cx.fillStyle = "rgba(138,128,110," + Math.min(0.70, 0.36 * deep) + ")";
+    cx.beginPath(); cx.ellipse(s.x + 13, s.y + R + 15, R * 1.02, 14 * ob, 0, 0, 7); cx.fill();
+    cx.fillStyle = "rgba(98,89,74," + Math.min(0.96, 0.66 * deep) + ")";
+    cx.beginPath(); cx.ellipse(s.x + 6, s.y + R + 7, R * 0.80, 8.6 * ob, 0, 0, 7); cx.fill();
+    cx.restore();
+    /* bite bevel as a shaded annulus, per-sector against the key */
+    for (let k = 0; k < 48; k++) {
+      const a0 = k / 48 * Math.PI * 2, a1 = (k + 1) / 48 * Math.PI * 2;
+      const nx = Math.cos(a0 + 0.065), ny = Math.sin(a0 + 0.065);
+      /* key az 296deg -> direction (cos296, sin296) in screen space */
+      const lx = Math.cos(296 * Math.PI / 180), ly = Math.sin(296 * Math.PI / 180);
+      const nd = Math.max(0, -(nx * lx + ny * ly));
+      cx.fillStyle = mix("#B3A88F", "#FBF7EE", nd);
+      cx.beginPath();
+      cx.arc(s.x, s.y, R, a0, a1); cx.arc(s.x, s.y, R - 6, a1, a0, true);
+      cx.closePath(); cx.fill();
+    }
+    /* the face */
+    cx.beginPath(); cx.arc(s.x, s.y, R - 6, 0, 7);
+    if (filled) {
+      const g = cx.createLinearGradient(s.x - R, s.y - R, s.x + R, s.y + R);
+      g.addColorStop(0, "#FFDA6E"); g.addColorStop(0.55, P.gold); g.addColorStop(1, "#D9A61C");
+      cx.fillStyle = g; cx.fill();
+      cx.strokeStyle = P.ink; cx.lineWidth = 1.8; cx.stroke();
+    } else {
+      cx.fillStyle = P.base; cx.fill();
+      cx.strokeStyle = P.slate; cx.lineWidth = 1.6; cx.stroke();
+      /* an open socket reads as a hole: an inner lee crescent */
+      cx.save(); cx.beginPath(); cx.arc(s.x, s.y, R - 7, 0, 7); cx.clip();
+      cx.fillStyle = "rgba(154,145,130,0.34)";
+      cx.beginPath(); cx.arc(s.x - 5, s.y - 5, R - 7, 0, 7); cx.fill();
+      cx.fillStyle = P.base;
+      cx.beginPath(); cx.arc(s.x - 9, s.y - 9, R - 8, 0, 7); cx.fill();
+      cx.restore();
+    }
+  }
+
+  /* ---------- SPONSOR stamps and their leaders ---------------------------- */
+  const leaders = [];
+  cx.save();
+  for (let j = 0; j < stampBox.length; j++) {
+    const i = stampBox[j].i, s = stampBox[j].s;
+    const lx = stampBox[j].lx, ly = stampBox[j].ly;
+    /* leader: a world-coordinate polyline that ENDS on the counter's own centre */
+    cx.strokeStyle = "rgba(70,88,106,0.75)"; cx.lineWidth = 1.25;
+    cx.beginPath();
+    cx.moveTo(lx, ly - 24);
+    cx.lineTo(lx, ly - 48);
+    cx.lineTo(s.x, s.y + R + 18);
+    cx.lineTo(s.x, s.y);
+    cx.stroke();
+    cx.fillStyle = "rgba(70,88,106,0.9)";
+    cx.beginPath(); cx.arc(s.x, s.y, 4.2, 0, 7); cx.fill();
+    /* the stamp itself, struck into the sheet */
+    cx.fillStyle = "rgba(251,247,238,0.9)";
+    pathRect(lx - 72, ly - 22, 144, 36, 1.1, 81); cx.fill();
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    strokeQuad(lx - 72, ly - 22, 144, 36, "rgba(70,88,106,0.55)", 1.0, 1.0, 82);
+    leaders.push({ target:"no vote " + (i + 1) + ", a sponsor of AO 2026-108",
+                   at:[s.x, s.y], to:[s.x, s.y], from:[lx, ly - 22], label:"SPONSOR" });
+  }
+  cx.restore();
+  window.__akLeaders = leaders;
+
+  /* ---------- registration fixture --------------------------------------- */
+  (function reg(){
+    const rx = 984, ry = 176, r = 20;
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.arc(rx, ry, r, 0, 7); cx.stroke();
+    cx.beginPath(); cx.moveTo(rx-r-8,ry); cx.lineTo(rx+r+8,ry);
+    cx.moveTo(rx,ry-r-8); cx.lineTo(rx,ry+r+8); cx.stroke();
+    cx.fillStyle = P.gold; cx.beginPath();
+    for (let i=0;i<8;i++){const a=i*Math.PI/4,rr=(i%2===0)?7.5:2.6;
+      const px=rx+Math.cos(a)*rr,py=ry+Math.sin(a)*rr; i===0?cx.moveTo(px,py):cx.lineTo(px,py);}
+    cx.closePath(); cx.fill();
+  })();
+
+  if (window.AKPOST && AKPOST.grade) {
+    AKPOST.grade(cx, { exposure:-0.06, saturation:0.94, contrast:1.03, sharpen:0.30,
+                       dither:true, aberration:0,
+                       bloom:{ threshold:0.90, strength:0.08, radius:8 } });
+  }
+  document.getElementById("grain").style.backgroundImage =
+    "url(" + AK.grainTile(280, 52, SEED) + ")";
+})();
+</script>
+</body>
+</html>

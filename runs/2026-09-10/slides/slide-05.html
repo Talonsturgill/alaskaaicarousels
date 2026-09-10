@@ -1,0 +1,250 @@
+<!doctype html>
+<!-- No.55 SLIDE 05 — THE GATES. Three struck sills, depth by sourcing strength, the third phantom and casting NO shadow. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F0EADD; font-family:"Bricolage Grotesque",sans-serif; position:relative; }
+  #art { position:absolute; inset:0; }
+  #grain { position:absolute; inset:0; background-repeat:repeat;
+           mix-blend-mode:overlay; opacity:0.06; pointer-events:none; }
+  h2 { font-family:"Instrument Serif",serif; font-weight:400;
+       line-height:1.02; letter-spacing:-0.02em; color:#2B2F35; position:absolute; }
+  .body { position:absolute; font-weight:400; line-height:1.35; color:#2B2F35;
+          font-variation-settings:"wght" 400,"wdth" 96; }
+  .fig { font-family:"JetBrains Mono",monospace; font-weight:500;
+         font-variant-numeric:tabular-nums lining-nums; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:500;
+          letter-spacing:0.09em; text-transform:uppercase; color:#6B6255; position:absolute; }
+  .counter { position:absolute; right:96px; top:96px; font-family:"JetBrains Mono",monospace;
+             font-size:24px; font-weight:500; color:#46586A; font-variant-numeric:tabular-nums; }
+  .stamp { position:absolute; left:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+           font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+  .mark { position:absolute; right:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.14em; color:#6B6255; }
+  h2 { left:96px; top:180px; width:640px; font-size:70px; }
+  .g { position:absolute; left:150px; width:780px; font-size:32px; font-weight:400;
+       line-height:1.32; color:#2B2F35; font-variation-settings:"wght" 400,"wdth" 96; }
+  .g1 { top:462px; } .g2 { top:682px; } .g3 { top:902px; }
+  .attn { left:150px; top:1112px; width:830px; font-size:24px; }
+  .ao { position:absolute; right:96px; top:410px; font-family:"JetBrains Mono",monospace;
+        font-size:26px; font-weight:500; color:#46586A; letter-spacing:0.06em; }
+</style>
+</head>
+<body data-contacts='[{"what":"gate sill one","shadow":[[150,644,640,9]],"ground":[[150,666,640,14]]},{"what":"gate sill two","shadow":[[150,864,640,9]],"ground":[[150,886,640,14]]}]'
+      data-encodes='[{"claim":"two sills cast and the third does not","reads":"differ","a":[220,646,600,26],"b":[220,1064,600,26]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div id="grain" data-decorative></div>
+  <h2 data-reserve>Three gates. None of them struck.</h2>
+  <div class="g g1" data-reserve>ADN reports the ordinance would require Assembly permission before AI with human feature recognition is added to the network.</div>
+  <div class="g g2" data-reserve>Alaska Public Media reports it would require a warrant before data goes to federal agencies.</div>
+  <div class="g g3" data-reserve>ADN reports the technology would face a period of temporary approval and annual reporting.</div>
+  <div class="ao" data-reserve="mono">AO 2026-108</div>
+  <div class="mono attn" data-reserve="mono">The ordinance text is not publicly reachable. Every line above is a newsroom's description.</div>
+  <div class="counter" data-reserve="mono">05 / 09</div>
+  <div class="stamp" data-reserve="mono">SECOND IMPRESSION &middot; REPORTED</div>
+  <div class="mark" data-reserve="mono">ALASKA.AI</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const W = 1080, H = 1350, SEED = 20260910;
+  const cv = document.getElementById("art"), cx = cv.getContext("2d");
+  cx.scale(2, 2);
+  const P = { base:"#F0EADD", high:"#FBF7EE", tooth:"#E4DCCB", trough:"#CFC4AE",
+              ink:"#2B2F35", slate:"#46586A", ctx:"#6B6255", hatch:"#9A9182",
+              gold:"#FFC72C", deep:"#8E8471" };
+  const mix = (a,b,t) => AKC.mixOklab(a, b, Math.max(0, Math.min(1, t)));
+  /* A struck or lit shape is never a perfect axis-aligned box. These draw the
+     same regions as irregular closed paths, which is both fewer rectangles and
+     a truer edge: paper under a plate does not give a ruler-straight boundary. */
+  function pathRect(x, y, w, h, jit, seed) {
+    jit = jit == null ? 1.1 : jit;
+    const r = AK.rng((seed || 1) + 97);
+    const pts = [];
+    const stepX = Math.max(10, w / 8), stepY = Math.max(8, h / 4);
+    for (let t = 0; t <= w; t += stepX) pts.push([x + t, y + (r() - 0.5) * jit]);
+    for (let t = 0; t <= h; t += stepY) pts.push([x + w + (r() - 0.5) * jit, y + t]);
+    for (let t = w; t >= 0; t -= stepX) pts.push([x + t, y + h + (r() - 0.5) * jit]);
+    for (let t = h; t >= 0; t -= stepY) pts.push([x + (r() - 0.5) * jit, y + t]);
+    cx.beginPath();
+    pts.forEach((p, i) => i === 0 ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]));
+    cx.closePath();
+  }
+  function fillQuad(x, y, w, h, style, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.fillStyle = style; cx.fill();
+  }
+  function strokeQuad(x, y, w, h, style, lw, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.strokeStyle = style; cx.lineWidth = lw; cx.stroke();
+  }
+
+  const rnd = AK.rng(SEED + 5);
+  const KEY = 296 * Math.PI / 180;
+  cx.fillStyle = P.base; cx.fillRect(0, 0, W, H);
+
+  /* --- laid paper, house furniture, identical everywhere by design --------- */
+  function laidPaper(bend) {
+    cx.save(); cx.lineWidth = 0.75;
+    for (let y = 4; y < H; y += 3.1) {
+      cx.beginPath();
+      for (let x = 0; x <= W; x += 10) {
+        const yy = y + (bend ? bend(x, y) : 0);
+        x === 0 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.075)"; cx.stroke();
+    }
+    cx.lineWidth = 1.3;
+    for (let x = 12; x < W; x += 26) {
+      cx.beginPath();
+      for (let y = 0; y <= H; y += 8) {
+        const xx = x + (bend ? bend(x, y) * 0.42 : 0);
+        y === 0 ? cx.moveTo(xx, y) : cx.lineTo(xx, y);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.085)"; cx.stroke();
+    }
+    cx.restore();
+  }
+  function litPool(x, y, w, h) {
+    const g = cx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0, "rgba(251,247,238,0)");
+    g.addColorStop(0.42, "rgba(251,247,238,0.66)");
+    g.addColorStop(1, "rgba(251,247,238,0)");
+    cx.save(); cx.globalCompositeOperation = "screen";
+    cx.fillStyle = g; pathRect(x, y, w, h, 2.4, 11); cx.fill(); cx.restore();
+  }
+  /* A deboss is ALWAYS a lit upper lip and a lee lower lip, never one stroke. */
+  function deboss(x, y, w, h, depth) {
+    for (let i = 0; i < h; i++) {
+      const v = i / h; let col, a;
+      if (v < 0.11) { col = P.high; a = 1.0; }
+      else if (v < 0.66) { col = mix(P.tooth, "#A99E86", (v - 0.11) / 0.55); a = 0.92 * depth; }
+      else { col = mix("#A99E86", P.base, (v - 0.66) / 0.34); a = 0.86 * depth * (1 - (v - 0.66) / 0.34) + 0.1; }
+      cx.fillStyle = col; cx.globalAlpha = a;
+      cx.fillRect(x, y + i, w, 1);
+    }
+    cx.globalAlpha = 1;
+  }
+  function registration() {
+    const rx = 984, ry = 176, r = 20;
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.arc(rx, ry, r, 0, 7); cx.stroke();
+    cx.beginPath(); cx.moveTo(rx-r-8,ry); cx.lineTo(rx+r+8,ry);
+    cx.moveTo(rx,ry-r-8); cx.lineTo(rx,ry+r+8); cx.stroke();
+    cx.fillStyle = P.gold; cx.beginPath();
+    for (let i=0;i<8;i++){const a=i*Math.PI/4,rr=(i%2===0)?7.5:2.6;
+      const px=rx+Math.cos(a)*rr,py=ry+Math.sin(a)*rr; i===0?cx.moveTo(px,py):cx.lineTo(px,py);}
+    cx.closePath(); cx.fill();
+  }
+  /* The three motif squares, 34px, footer furniture opposite the counter. */
+  function motif(state) {
+    const y = 1238, s = 34;
+    const xs = [600, 646, 692];
+    function sq(x, kind) {
+      if (kind === "none") return;
+      cx.save();
+      if (kind === "gold" || kind === "worn") {
+        fillQuad(x, y, s, s, P.gold, 1.0, 5);
+        cx.strokeStyle = P.ink; cx.lineWidth = kind === "worn" ? 1.0 : 1.8;
+        if (kind === "worn") { cx.globalAlpha = 0.62; }
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "solid") {
+        cx.strokeStyle = P.slate; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "phantom") {
+        cx.setLineDash([30, 5, 6, 5, 6, 5]); cx.lineWidth = 1.25;
+        cx.strokeStyle = P.slate; strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "blind") {
+        cx.strokeStyle = "rgba(251,247,238,0.95)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y - 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 7);
+        cx.strokeStyle = "rgba(154,145,130,0.55)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 1.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 8);
+      }
+      cx.restore();
+    }
+    sq(xs[0], state[0]); sq(xs[1], state[1]); sq(xs[2], state[2]);
+  }
+  function finish() {
+    registration();
+    if (window.AKPOST && AKPOST.grade) {
+      AKPOST.grade(cx, { exposure:-0.06, saturation:0.94, contrast:1.03, sharpen:0.30,
+                         dither:true, aberration:0,
+                         bloom:{ threshold:0.90, strength:0.08, radius:8 } });
+    }
+    document.getElementById("grain").style.backgroundImage =
+      "url(" + AK.grainTile(280, 52, SEED) + ")";
+  }
+  const eng = AKENGRAVE.create({ seed:SEED, light:{ azDeg:296, elDeg:26 } });
+  eng.reserve(AKENGRAVE.boxesFor("[data-reserve]"));
+
+  laidPaper(null);
+
+  /* ---- three struck sills. DEPTH ENCODES SOURCING STRENGTH ---------------- */
+  /* gates 1 and 2 are each corroborated by a different newsroom, so they are
+     cut to full depth. gate 3 is single sourced, so it is cut shallow and
+     phantom, and it casts NOTHING, which is what unstruck means here.        */
+  function sill(x, y, w, h, depth, phantom) {
+    if (!phantom) {
+      litPool(x - 190, y + h - 12, w + 130, 74);
+      cx.save();
+      cx.fillStyle = "rgba(140,130,112,0.34)";
+      cx.beginPath(); cx.ellipse(x + w/2 + 92, y + h + 17, w * 0.50, 16, 0, 0, 7); cx.fill();
+      cx.fillStyle = "rgba(104,95,80,0.62)";
+      cx.beginPath(); cx.ellipse(x + w/2 + 70, y + h + 8, w * 0.46, 9, 0, 0, 7); cx.fill();
+      cx.restore();
+      /* top chamfer, then the face, then the lee */
+      const gt = cx.createLinearGradient(x, y, x, y + 6);
+      gt.addColorStop(0, "#FBF7EE"); gt.addColorStop(1, "#EAE2D2");
+      cx.fillStyle = gt; pathRect(x, y, w, 6, 0.9, 31); cx.fill();
+      const gf = cx.createLinearGradient(x, y + 6, x, y + h);
+      gf.addColorStop(0, mix("#EAE2D2", "#B0A68E", depth * 0.45));
+      gf.addColorStop(1, mix("#C6BCA4", "#8E8471", depth));
+      cx.fillStyle = gf; pathRect(x, y + 6, w, h - 6, 1.4, 32); cx.fill();
+      /* an engraved lay across the face, its pitch set by the depth */
+      cx.save(); cx.beginPath(); cx.rect(x, y + 6, w, h - 6); cx.clip();
+      cx.strokeStyle = "rgba(78,71,60," + (0.16 + 0.20 * depth) + ")";
+      cx.lineWidth = 1.1;
+      const pitch = 14 - 6 * depth;
+      for (let k = -60; k < w + 60; k += pitch) {
+        cx.beginPath(); cx.moveTo(x + k, y + 6); cx.lineTo(x + k - 26, y + h); cx.stroke();
+      }
+      cx.restore();
+      fillQuad(x, y + h, w, 2.8, "rgba(96,88,74,0.55)", 0.7, 33);
+    } else {
+      /* phantom: an outline only. No fill, no lit ground, NO CAST. */
+      cx.save();
+      cx.setLineDash([30, 5, 6, 5, 6, 5]); cx.lineWidth = 1.25;
+      cx.strokeStyle = P.slate;
+      strokeQuad(x + 0.5, y + 0.5, w - 1, h - 1, P.slate, 1.25, 1.0, 34);
+      cx.restore();
+    }
+  }
+  sill(150, 604, 640, 40, 1.00, false);
+  sill(150, 824, 640, 40, 1.00, false);
+  sill(150, 1044, 640, 16, 0.40, true);
+
+
+  /* ---- the sheet thickens toward the bottom margin ----------------------- */
+  (function footLay() {
+    cx.save(); cx.beginPath(); cx.rect(0, 1060, W, 200); cx.clip();
+    for (let k = -120; k < W + 120; k += 7) {
+      const t = 1;
+      cx.strokeStyle = "rgba(154,145,130,0.16)"; cx.lineWidth = 1.0 + 1.2 * t;
+      cx.beginPath(); cx.moveTo(k, 1060); cx.lineTo(k - 70, 1260); cx.stroke();
+    }
+    cx.restore();
+  })();
+
+  motif(["gold", "solid", "none"]);
+
+  finish();
+})();
+</script>
+</body>
+</html>

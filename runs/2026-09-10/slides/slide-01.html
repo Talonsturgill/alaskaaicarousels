@@ -1,0 +1,307 @@
+<!doctype html>
+<!-- No.55 SLIDE 01 — COVER. "THE STRUCK REGISTER".
+     A deboss trough holding the display line, two struck squares at hero scale
+     (A gold and filled, B empty inside a phantom outline), and the plate's bite
+     edge and bevel carrying the lower third. Key az 296 el 26. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F0EADD; font-family:"Bricolage Grotesque",sans-serif; position:relative; }
+  #art { position:absolute; inset:0; }
+  .strap { position:absolute; left:96px; top:150px; width:840px;
+           font-family:"JetBrains Mono",monospace; font-size:26px; font-weight:500;
+           letter-spacing:0.09em; text-transform:uppercase; color:#6B6255; }
+  .disp { position:absolute; left:96px; top:330px; width:872px;
+          font-family:"Instrument Serif",serif; font-weight:400; font-size:104px;
+          line-height:0.99; letter-spacing:-0.02em; color:#2B2F35; }
+  .disp .fig { font-family:"JetBrains Mono",monospace; font-weight:500; font-size:88px;
+               font-variant-numeric:tabular-nums lining-nums; letter-spacing:-0.015em; }
+  .counter { position:absolute; right:96px; top:96px; font-family:"JetBrains Mono",monospace;
+             font-size:24px; font-weight:500; color:#46586A; font-variant-numeric:tabular-nums; }
+  .stamp { position:absolute; left:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+           font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+  .mark { position:absolute; right:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.14em; color:#6B6255; }
+  /* Grain is a small REPEATING TILE on its own layer, never a full-frame
+     turbulence rect. AK.grainTile returns a data URL for exactly this. */
+  #grain { position:absolute; inset:0; background-repeat:repeat;
+           mix-blend-mode:overlay; opacity:0.06; pointer-events:none; }
+</style>
+</head>
+<body data-contacts='[{"what":"struck square A, the money","shadow":[[261,950,26,10]],"ground":[[318,950,26,10]]},{"what":"struck square B, the rule","shadow":[[468,950,26,10]],"ground":[[383,950,26,10]]}]'
+      data-encodes='[{"claim":"one item is filled and one is empty","reads":"differ","a":[150,792,158,158],"b":[408,792,158,158]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div id="grain" data-decorative></div>
+  <div class="strap" data-reserve>UPDATE TO NO. 40 &middot; ANCHORAGE ASSEMBLY, SEPTEMBER 1ST, 2026</div>
+  <div class="disp" data-reserve>UPDATE. <span class="fig">$598,998</span> passed <span class="fig">8</span> to <span class="fig">4</span>.<br>The rule got no vote.</div>
+  <div class="counter" data-reserve="mono">01 / 09</div>
+  <div class="stamp" data-reserve="mono">SECOND IMPRESSION &middot; REPORTED</div>
+  <div class="mark" data-reserve="mono">ALASKA.AI</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const W = 1080, H = 1350, SEED = 20260910;
+  const cv = document.getElementById("art"), cx = cv.getContext("2d");
+  cx.scale(2, 2);
+
+  const P = { base:"#F0EADD", high:"#FBF7EE", tooth:"#E4DCCB", trough:"#CFC4AE",
+              ink:"#2B2F35", slate:"#46586A", ctx:"#6B6255", hatch:"#9A9182", gold:"#FFC72C" };
+  /* AKC exposes mixOklab, not mix. One helper, used everywhere below. */
+  const mix = (a, b, t) => AKC.mixOklab(a, b, Math.max(0, Math.min(1, t)));
+  /* A struck or lit shape is never a perfect axis-aligned box. These draw the
+     same regions as irregular closed paths, which is both fewer rectangles and
+     a truer edge: paper under a plate does not give a ruler-straight boundary. */
+  function pathRect(x, y, w, h, jit, seed) {
+    jit = jit == null ? 1.1 : jit;
+    const r = AK.rng((seed || 1) + 97);
+    const pts = [];
+    const stepX = Math.max(10, w / 8), stepY = Math.max(8, h / 4);
+    for (let t = 0; t <= w; t += stepX) pts.push([x + t, y + (r() - 0.5) * jit]);
+    for (let t = 0; t <= h; t += stepY) pts.push([x + w + (r() - 0.5) * jit, y + t]);
+    for (let t = w; t >= 0; t -= stepX) pts.push([x + t, y + h + (r() - 0.5) * jit]);
+    for (let t = h; t >= 0; t -= stepY) pts.push([x + (r() - 0.5) * jit, y + t]);
+    cx.beginPath();
+    pts.forEach((p, i) => i === 0 ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]));
+    cx.closePath();
+  }
+  function fillQuad(x, y, w, h, style, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.fillStyle = style; cx.fill();
+  }
+  function strokeQuad(x, y, w, h, style, lw, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.strokeStyle = style; cx.lineWidth = lw; cx.stroke();
+  }
+
+
+
+  /* A pressed band is NOT a stack of scanline rects. It is one closed path with
+     an irregular top and bottom edge, filled with a vertical gradient, because
+     paper under pressure never gives a ruler-straight lip. One fill, real edge. */
+  function pressedBand(y0, y1, stops, amp, freq, phase) {
+    amp = amp == null ? 1.6 : amp; freq = freq == null ? 0.009 : freq;
+    phase = phase || 0;
+    const g = cx.createLinearGradient(0, y0, 0, y1);
+    stops.forEach(s => g.addColorStop(s[0], s[1]));
+    cx.save(); cx.beginPath();
+    for (let x = -12; x <= W + 12; x += 9) {
+      const yy = y0 + Math.sin(x * freq + phase) * amp + Math.sin(x * freq * 2.7 + 1.3) * amp * 0.4;
+      x === -12 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+    }
+    for (let x = W + 12; x >= -12; x -= 9) {
+      const yy = y1 + Math.sin(x * freq * 1.4 + phase + 2.2) * amp * 1.2;
+      cx.lineTo(x, yy);
+    }
+    cx.closePath(); cx.fillStyle = g; cx.fill(); cx.restore();
+  }
+  /* A stipple population is DRAWN work, and it is how a pressed floor keeps its
+     tooth without a single rectangle. */
+  function toothField(x0, y0, w, h, n, seed) {
+    const r = AK.rng(seed);
+    cx.save();
+    for (let i = 0; i < n; i++) {
+      const tx = x0 + r() * w, ty = y0 + r() * h;
+      const a = 0.06 + r() * 0.20, rr = 0.5 + r() * 1.15;
+      cx.fillStyle = "rgba(64,58,48," + a + ")";
+      cx.beginPath(); cx.arc(tx, ty, rr, 0, 7); cx.fill();
+    }
+    cx.restore();
+  }
+
+  /* ---------- the sheet: laid paper, chain lines, and the trough's dent ---- */
+  cx.fillStyle = P.base; cx.fillRect(0, 0, W, H);
+
+  /* The deboss trough. A section function in BOTH axes so the lay never
+     collapses onto one iso-line: depth across y, plus a slow swell along x. */
+  const TR = { x0:60, x1:1140, y0:288, y1:672 };          /* runs off the right edge */
+  function troughDepth(x, y) {
+    if (y < TR.y0 || y > TR.y1 || x < TR.x0) return 0;
+    const v = (y - TR.y0) / (TR.y1 - TR.y0);              /* 0..1 across the channel */
+    const prof = Math.sin(Math.PI * v);                   /* 0 at lips, 1 at floor */
+    /* The channel has to vary ALONG its length, not just across it. At 0.0042
+       the swell's period was 1496px, so over a 1020px region the form was a
+       function of y alone: the gradient pointed one way everywhere, every
+       stroke retraced the same iso-line, and the lay printed as one knotted
+       ribbon (AK ENGRAVE alignment 0.94). A struck channel in damp paper does
+       undulate down its length. Two terms, one long and one short, and the
+       short one is phase-shifted BY DEPTH so the floor and the lips do not
+       swell in step. */
+    const swell = 0.80
+                + 0.20 * Math.sin((x - TR.x0) * 0.0135 + 0.7)
+                + 0.07 * Math.sin((x - TR.x0) * 0.0310 + v * 3.1);
+    return prof * swell;
+  }
+
+  /* Laid paper: chain lines every 26px, laid lines every 3.1px, both BENDING
+     where they cross the trough and the bite bevel. That bend is the detail
+     that reads as pressure rather than as a drawn band. */
+  const BITE = { y:1046, h:186 };
+  function bendAt(x, y) {
+    let d = troughDepth(x, y) * 9.5;
+    if (y > BITE.y && y < BITE.y + BITE.h) {
+      const v = (y - BITE.y) / BITE.h;
+      d += Math.sin(Math.PI * v) * 6.2;
+    }
+    return d;
+  }
+  cx.save();
+  cx.lineWidth = 0.75;
+  for (let y = 4; y < H; y += 3.1) {                       /* laid lines */
+    cx.beginPath();
+    for (let x = 0; x <= W; x += 8) {
+      const yy = y + bendAt(x, y) * 0.55;
+      x === 0 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+    }
+    cx.strokeStyle = "rgba(154,145,130,0.075)";
+    cx.stroke();
+  }
+  cx.lineWidth = 1.35;
+  for (let x = 12; x < W; x += 26) {                       /* chain lines */
+    cx.beginPath();
+    for (let y = 0; y <= H; y += 6) {
+      const xx = x + bendAt(x, y) * 0.42;
+      y === 0 ? cx.moveTo(xx, y) : cx.lineTo(xx, y);
+    }
+    cx.strokeStyle = "rgba(154,145,130,0.085)";
+    cx.stroke();
+  }
+  cx.restore();
+
+  /* ---------- the trough itself, as a LIT and LEE pair, never one stroke --- */
+  (function drawTrough() {
+    pressedBand(TR.y0, TR.y0 + 42, [[0, "#FBF7EE"], [1, "#E9E1D0"]], 2.2, 0.0072, 0.4);
+    pressedBand(TR.y0 + 40, TR.y1 - 46, [[0, "#E4DCCB"], [0.55, "#B9AE96"], [1, "#C8BDA5"]], 2.6, 0.0051, 1.1);
+    pressedBand(TR.y1 - 48, TR.y1 + 6, [[0, "#C8BDA5"], [1, "#EFE8DA"]], 2.0, 0.0064, 2.7);
+    toothField(TR.x0, TR.y0 + 46, W - TR.x0, TR.y1 - TR.y0 - 92, 1400, SEED + 31);
+  })();
+
+  /* ---------- engraved lay inside the trough, reserved around the type ----- */
+  const eng = AKENGRAVE.create({ seed:SEED, light:{ azDeg:296, elDeg:26 } });
+  eng.reserve(AKENGRAVE.boxesFor("[data-reserve]"));
+  eng.surface(cx, {
+    region:[TR.x0, TR.y0, W - TR.x0, TR.y1 - TR.y0],
+    form:(x, y) => troughDepth(x, y) * 26,
+    tone:(x, y) => { const d = troughDepth(x, y); return d < 0.06 ? 0.98 : 0.34 + 0.14 * d; },
+    budget:{ main:3.6, cross:0 }, wMax:3.4, crossDeg:62, seedDeg:18, step:5,
+    feather:20, inkLo:"#8E8471", inkHi:"#CFC4AE", alpha:0.95
+  });
+
+  /* ---------- the plate's bite edge and bevel, the lower third ------------- */
+  (function biteEdge() {
+    pressedBand(BITE.y, BITE.y + 16, [[0, "#FBF7EE"], [1, "#EFE7D6"]], 1.8, 0.0068, 0.9);
+    pressedBand(BITE.y + 14, BITE.y + BITE.h * 0.62, [[0, "#E4DCCB"], [1, "#AFA48C"]], 2.4, 0.0047, 2.1);
+    pressedBand(BITE.y + BITE.h * 0.60, BITE.y + BITE.h, [[0, "#AFA48C"], [1, "#F0EADD"]], 2.2, 0.0058, 3.4);
+    toothField(0, BITE.y + 18, W, BITE.h - 30, 900, SEED + 44);
+    /* deckle fibres at the right corner: a POPULATION of lit filaments, each
+       with its own lee, never a wash. */
+    const rnd = AK.rng(SEED + 7);
+    for (let i = 0; i < 150; i++) {
+      const fx = 820 + rnd() * 250, fy = BITE.y + 6 + rnd() * (BITE.h - 20);
+      const len = 7 + rnd() * 20, ang = -0.28 + rnd() * 0.5;
+      cx.strokeStyle = "rgba(203,196,174,0.55)"; cx.lineWidth = 1.1;
+      cx.beginPath(); cx.moveTo(fx, fy);
+      cx.lineTo(fx + Math.cos(ang) * len, fy + Math.sin(ang) * len); cx.stroke();
+      cx.strokeStyle = "rgba(251,247,238,0.75)"; cx.lineWidth = 0.8;
+      cx.beginPath(); cx.moveTo(fx, fy - 1);
+      cx.lineTo(fx + Math.cos(ang) * len * 0.8, fy - 1 + Math.sin(ang) * len * 0.8); cx.stroke();
+    }
+  })();
+
+  /* ---------- the two struck squares -------------------------------------- */
+  function litPool(cxx, x, y, w, h) {
+    /* A lit ground is SCREENED over the surface, never painted on it. */
+    const g = cxx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0, "rgba(251,247,238,0.0)");
+    g.addColorStop(0.45, "rgba(251,247,238,0.62)");
+    g.addColorStop(1, "rgba(251,247,238,0.0)");
+    cxx.save(); cxx.globalCompositeOperation = "screen";
+    cxx.fillStyle = g; pathRect(x, y, w, h, 2.4, 11); cxx.fill(); cxx.restore();
+  }
+  function struckSquare(x, y, s, filled) {
+    /* lit ground first, so the cast has something to subtract from */
+    litPool(cx, x - 26, y + s - 8, s + 52, 74);
+    /* two-part cast, thrown DOWN-LIGHT (key az 296 means the lee falls right) */
+    cx.save();
+    cx.fillStyle = "rgba(138,128,110,0.38)";
+    cx.beginPath(); cx.ellipse(x + s / 2 + 16, y + s + 18, s * 0.66, 18, 0, 0, 7); cx.fill();
+    cx.fillStyle = "rgba(98,89,74,0.66)";
+    cx.beginPath(); cx.ellipse(x + s / 2 + 7, y + s + 8, s * 0.50, 10, 0, 0, 7); cx.fill();
+    cx.restore();
+    /* the bite bevel, four trapezoids each shaded by its own facing */
+    const b = 7, L = { top:"#FBF7EE", left:"#F3EEE2", right:"#C9BFA9", bot:"#BEB4A0" };
+    const quad = (p, c) => { cx.fillStyle = c; cx.beginPath(); cx.moveTo(p[0], p[1]);
+      for (let i = 2; i < p.length; i += 2) cx.lineTo(p[i], p[i + 1]); cx.closePath(); cx.fill(); };
+    quad([x, y, x + s, y, x + s - b, y + b, x + b, y + b], L.top);
+    quad([x, y, x + b, y + b, x + b, y + s - b, x, y + s], L.left);
+    quad([x + s, y, x + s, y + s, x + s - b, y + s - b, x + s - b, y + b], L.right);
+    quad([x, y + s, x + b, y + s - b, x + s - b, y + s - b, x + s, y + s], L.bot);
+    /* the face */
+    cx.fillStyle = filled ? P.gold : P.base;
+    pathRect(x + b, y + b, s - 2 * b, s - 2 * b, 1.0, 71); cx.fill();
+    if (filled) {
+      const g2 = cx.createLinearGradient(x, y, x + s, y + s);
+      g2.addColorStop(0, "rgba(255,218,110,0.55)"); g2.addColorStop(1, "rgba(214,164,26,0.35)");
+      cx.fillStyle = g2; pathRect(x + b, y + b, s - 2 * b, s - 2 * b, 1.0, 72); cx.fill();
+      cx.strokeStyle = P.ink; cx.lineWidth = 2.0;
+      strokeQuad(x + b, y + b, s - 2 * b, s - 2 * b, cx.strokeStyle, cx.lineWidth, 0.9, 73);
+    } else {
+      cx.save(); cx.setLineDash([30, 5, 6, 5, 6, 5]); cx.lineWidth = 1.25;
+      cx.strokeStyle = P.slate; strokeQuad(x + b, y + b, s - 2 * b, s - 2 * b, cx.strokeStyle, cx.lineWidth, 0.9, 73); cx.restore();
+    }
+  }
+  struckSquare(150, 792, 158, true);
+  struckSquare(408, 792, 158, false);
+
+  /* the tally struck into square A's face, as debossed counters. Canvas type is
+     forbidden for READING copy; these are struck marks and are declared. */
+  (function tally() {
+    cx.save();
+    cx.font = '500 52px "JetBrains Mono", monospace';
+    cx.textAlign = "center"; cx.textBaseline = "middle";
+    cx.fillStyle = "rgba(96,70,10,0.92)";
+    cx.fillText("8", 150 + 52, 792 + 81);
+    cx.fillText("4", 150 + 106, 792 + 81);
+    cx.fillStyle = "rgba(255,244,198,0.62)";
+    cx.fillText("8", 150 + 52, 792 + 78.6);
+    cx.fillText("4", 150 + 106, 792 + 78.6);
+    cx.restore();
+  })();
+
+  /* ---------- registration mark and Polaris (house fixture) --------------- */
+  (function registration() {
+    const rx = 984, ry = 176, r = 20;
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.arc(rx, ry, r, 0, 7); cx.stroke();
+    cx.beginPath(); cx.moveTo(rx - r - 8, ry); cx.lineTo(rx + r + 8, ry);
+    cx.moveTo(rx, ry - r - 8); cx.lineTo(rx, ry + r + 8); cx.stroke();
+    cx.fillStyle = P.gold;
+    cx.beginPath();
+    for (let i = 0; i < 8; i++) {
+      const a = i * Math.PI / 4, rr = (i % 2 === 0) ? 7.5 : 2.6;
+      const px = rx + Math.cos(a) * rr, py = ry + Math.sin(a) * rr;
+      i === 0 ? cx.moveTo(px, py) : cx.lineTo(px, py);
+    }
+    cx.closePath(); cx.fill();
+  })();
+
+  /* ---------- grain tile, then the film grade ---------------------------- */
+  if (window.AKPOST && AKPOST.grade) {
+    /* grade takes the CONTEXT, exposure is in STOPS, and bloom is an object. */
+    AKPOST.grade(cx, { exposure:-0.06, saturation:0.94, contrast:1.03,
+                       sharpen:0.30, dither:true, aberration:0,
+                       bloom:{ threshold:0.90, strength:0.08, radius:8 } });
+  }
+  /* grain LAST, as a DOM tile above the graded canvas */
+  document.getElementById("grain").style.backgroundImage =
+    "url(" + AK.grainTile(280, 52, SEED) + ")";
+})();
+</script>
+</body>
+</html>

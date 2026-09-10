@@ -1745,6 +1745,59 @@
       ],
       "note": "The deck's two bookends are the SAME aluminium seen the other way round: slide 01's brushed lay runs at 14 degrees and slide 10's at 104, and slide 10's tag is slide 09's tag flipped blank side up. The only frame with no gold but the datum is 08, held out deliberately so the state's own voice owns it.",
       "corrections": []
+    },
+    {
+      "run_date": "2026-09-10",
+      "carousel_no": 55,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE STRUCK REGISTER. Intaglio on light laid paper: every frame is a plate pressed into damp stock, and the argument is carried by WHAT IS STRUCK versus WHAT IS LEFT BLANK. Two struck squares hold the state of the two agenda items across all nine frames, gold for passed and open for not voted, and the deck ends on an empty square because that is what is true on September 10th. The first light-ground deck after ten consecutive dark ones.",
+      "atmosphere": "a printer's bench under a north window, one cool low key from the upper left at az 296 el 26, 5:1, on unbleached laid stock with visible chain and laid lines",
+      "depth_technique": "deboss and emboss read off a single declared key, with a lit pool laid down before every struck form and a two-part cast beyond it; relief is always a lit upper lip plus a lee lower lip, never one stroke",
+      "line_voice": "instrument",
+      "continuity_device": "motif: the two struck squares, carried in the footer gutter of all nine frames, changing state as the story does and ending empty",
+      "hook_archetype": "NEW: TIMELINE COLLAPSE. Two things the reader assumed were sequential turn out to have happened in one room on one night.",
+      "palette_family": "laid-paper-and-burin",
+      "palette": "unbleached laid stock, slate ink, one gold accent",
+      "palette_hexes": [
+        "#F0EADD",
+        "#FBF7EE",
+        "#E4DCCB",
+        "#CFC4AE",
+        "#2B2F35",
+        "#46586A",
+        "#6B6255",
+        "#9A9182",
+        "#FFC72C"
+      ],
+      "type": "Instrument Serif display, Bricolage Grotesque body, JetBrains Mono figures",
+      "type_pairing": "Instrument Serif + Bricolage Grotesque wght 400-600 wdth 96-100 + JetBrains Mono tabular lining, under the law that every figure is mono and the serif never touches a number",
+      "narrative_structure": "argument",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 2
+      },
+      "new_techniques_logged": [
+        "NEW: THE STRUCK REGISTER (hero structure)",
+        "NEW: TIMELINE COLLAPSE (hook archetype)",
+        "NEW: THE BLURRED-RECTANGLE RESERVE PUNCH. A radial destination-out punch has an outer radius of half the box's longest side, so on a wide line of type it fades out before the ends of the run and the first and last words keep the field over them. Set oc.filter to a blur and fillRect the measured box instead: the punch then follows the shape of the thing being reserved, and a headline and a mono stamp are both covered end to end.",
+        "NEW: OBLIQUITY-COMPENSATED CONTACT. A foreshortened contact is not a fainter contact. The same occlusion packed into less area must deepen as the form turns away, or objects at the limbs of an arc read as floating while the ones at its centre sit down."
+      ],
+      "techniques": [
+        "intaglio deboss with declared key",
+        "engraved lay over a two-axis form",
+        "destination-out type reserve punching",
+        "measured contact pairs",
+        "log-rule axis with graded tick depths",
+        "pressed band as one gradient-filled irregular path",
+        "blind emboss (attempted and withdrawn)"
+      ],
+      "note": "WEAKEST CRITERION AND THE STANDING WORK ORDER: Artwork craft scored 6 of 10. Contact shadows on 01, 02, 03, 05, 07 and 09 are DETACHED elliptical pools while eight dossier acceptance boxes promise attached seams. The named fix, from the scorer, is the ATTACHED COLLAR technique already logged under No.52: draw the occluder wider than its object, then blur, so a ring of occlusion survives outside the silhouette, and draw the hard near-unblurred seam LAST at the object's own foot. Do this before anything else on the next deck that stands objects on a plate. Two further craft debts named the same round: slide 05 is two hatched slabs and about three-quarters bare paper, and the rectangle punches on 07 and 08 are legible AS rectangles in the footer.",
+      "corrections": [
+        "The Municipality of Anchorage blind emboss was attempted on slide 04 and WITHDRAWN. It rendered as concentric ovals reading as a fingerprint whorl, and dots:true inside it would have asserted camera locations no claim supports. The deck therefore carries no Alaskan geography in its artwork, which all three treatment directors independently named as its weakness. Shortfall disclosed in the dossier rather than papered over.",
+        "Slide 04's data-encodes was withdrawn: the claim is spatial and the gate measures tone.",
+        "Slide 04's data-scale was withdrawn: the axis is base-10 logarithmic and qa.axis_census interpolates linearly, which its own docstring forbids declaring against."
+      ]
     }
   ]
 }

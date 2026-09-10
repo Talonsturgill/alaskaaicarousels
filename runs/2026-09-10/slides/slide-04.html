@@ -1,0 +1,389 @@
+<!doctype html>
+<!-- No.55 SLIDE 04 — THE DECADE RULE. A log axis with five kinds of number and five kinds of mark, over a BLIND EMBOSS of the Municipality of Anchorage. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F0EADD; font-family:"Bricolage Grotesque",sans-serif; position:relative; }
+  #art { position:absolute; inset:0; }
+  #grain { position:absolute; inset:0; background-repeat:repeat;
+           mix-blend-mode:overlay; opacity:0.06; pointer-events:none; }
+  h2 { font-family:"Instrument Serif",serif; font-weight:400;
+       line-height:1.02; letter-spacing:-0.02em; color:#2B2F35; position:absolute; }
+  .body { position:absolute; font-weight:400; line-height:1.35; color:#2B2F35;
+          font-variation-settings:"wght" 400,"wdth" 96; }
+  .fig { font-family:"JetBrains Mono",monospace; font-weight:500;
+         font-variant-numeric:tabular-nums lining-nums; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:500;
+          letter-spacing:0.09em; text-transform:uppercase; color:#6B6255; position:absolute; }
+  .counter { position:absolute; right:96px; top:96px; font-family:"JetBrains Mono",monospace;
+             font-size:24px; font-weight:500; color:#46586A; font-variant-numeric:tabular-nums; }
+  .stamp { position:absolute; left:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+           font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+  .mark { position:absolute; right:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.14em; color:#6B6255; }
+  h2 { left:96px; top:176px; width:900px; font-size:70px; }
+  h2 .fig { font-family:"JetBrains Mono",monospace; font-weight:500; font-size:66px;
+            font-variant-numeric:tabular-nums lining-nums; }
+  .decl { left:96px; top:300px; font-size:24px; }
+  .find { position:absolute; left:96px; top:498px; width:700px; font-size:40px;
+          line-height:1.26; color:#2B2F35; font-variation-settings:"wght" 600,"wdth" 100; }
+  .body { left:96px; top:620px; width:470px; font-size:30px; }
+  .np { left:96px; top:1094px; width:880px; font-size:24px; letter-spacing:0.07em; }
+  .cav { left:96px; top:1044px; width:880px; font-size:24px; letter-spacing:0.07em; }
+  .ml { position:absolute; font-family:"JetBrains Mono",monospace; font-size:24px;
+        font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:#6B6255; }
+</style>
+</head>
+<!-- NO data-scale ON THIS SLIDE, DELIBERATELY. The axis is base-10 logarithmic
+     and qa.axis_census interpolates LINEARLY between `from` and `to`; its own
+     contract says a log axis must not declare one. A declaration here would
+     make the deck print false values about itself (582 px means 100 on this
+     rule and a linear read calls it 405). Withdrawn rather than reshaped to
+     pass. The marks are enumerated in the dossier instead, field 11a. -->
+<body>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div id="grain" data-decorative></div>
+  <h2 data-reserve><span class="fig">750</span> is the ceiling, not the count.</h2>
+  <div class="mono decl" data-reserve="mono">Log scale, base 10. Each decade is ten times the last.</div>
+  <div class="find" data-reserve>The gap from <span class="fig">11</span> to <span class="fig">238</span> is wider than the gap from <span class="fig">238</span> to <span class="fig">750</span>.</div>
+  <div class="body" data-reserve>Registered means APD knows the camera exists. Integrated means APD can pull the feed, through a CORE device from Axon.</div>
+  <div class="mono cav" data-reserve="mono">Chief Case says APD can't come close to that ceiling.</div>
+  <div class="mono np" data-reserve="mono">216 (August 20th) counted residents, not cameras. Not plotted.</div>
+  <div class="ml" data-reserve="mono" style="left:96px;  top:926px;">11 integrated &middot; Aug 27th</div>
+  <div class="ml" data-reserve="mono" style="left:216px; top:970px;">about 15 at launch</div>
+  <div class="ml" data-reserve="mono" style="left:596px; top:926px;">238 registered &middot; Aug 27th</div>
+  <div class="ml" data-reserve="mono" style="left:596px; top:700px; width:400px;">more than 250<br>municipal traffic cameras</div>
+  <div class="ml" data-reserve="mono" style="left:796px; top:970px;">750 ceiling</div>
+  <div class="counter" data-reserve="mono">04 / 09</div>
+  <div class="stamp" data-reserve="mono">SECOND IMPRESSION &middot; REPORTED</div>
+  <div class="mark" data-reserve="mono">ALASKA.AI</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const W = 1080, H = 1350, SEED = 20260910;
+  const cv = document.getElementById("art"), cx = cv.getContext("2d");
+  cx.scale(2, 2);
+  const P = { base:"#F0EADD", high:"#FBF7EE", tooth:"#E4DCCB", trough:"#CFC4AE",
+              ink:"#2B2F35", slate:"#46586A", ctx:"#6B6255", hatch:"#9A9182",
+              gold:"#FFC72C", deep:"#8E8471" };
+  const mix = (a,b,t) => AKC.mixOklab(a, b, Math.max(0, Math.min(1, t)));
+  /* A struck or lit shape is never a perfect axis-aligned box. These draw the
+     same regions as irregular closed paths, which is both fewer rectangles and
+     a truer edge: paper under a plate does not give a ruler-straight boundary. */
+  function pathRect(x, y, w, h, jit, seed) {
+    jit = jit == null ? 1.1 : jit;
+    const r = AK.rng((seed || 1) + 97);
+    const pts = [];
+    const stepX = Math.max(10, w / 8), stepY = Math.max(8, h / 4);
+    for (let t = 0; t <= w; t += stepX) pts.push([x + t, y + (r() - 0.5) * jit]);
+    for (let t = 0; t <= h; t += stepY) pts.push([x + w + (r() - 0.5) * jit, y + t]);
+    for (let t = w; t >= 0; t -= stepX) pts.push([x + t, y + h + (r() - 0.5) * jit]);
+    for (let t = h; t >= 0; t -= stepY) pts.push([x + (r() - 0.5) * jit, y + t]);
+    cx.beginPath();
+    pts.forEach((p, i) => i === 0 ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]));
+    cx.closePath();
+  }
+  function fillQuad(x, y, w, h, style, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.fillStyle = style; cx.fill();
+  }
+  function strokeQuad(x, y, w, h, style, lw, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.strokeStyle = style; cx.lineWidth = lw; cx.stroke();
+  }
+
+  const rnd = AK.rng(SEED + 4);
+  const KEY = 296 * Math.PI / 180;
+  cx.fillStyle = P.base; cx.fillRect(0, 0, W, H);
+
+  /* --- laid paper, house furniture, identical everywhere by design --------- */
+  function laidPaper(bend) {
+    cx.save(); cx.lineWidth = 0.75;
+    for (let y = 4; y < H; y += 3.1) {
+      cx.beginPath();
+      for (let x = 0; x <= W; x += 10) {
+        const yy = y + (bend ? bend(x, y) : 0);
+        x === 0 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.075)"; cx.stroke();
+    }
+    cx.lineWidth = 1.3;
+    for (let x = 12; x < W; x += 26) {
+      cx.beginPath();
+      for (let y = 0; y <= H; y += 8) {
+        const xx = x + (bend ? bend(x, y) * 0.42 : 0);
+        y === 0 ? cx.moveTo(xx, y) : cx.lineTo(xx, y);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.085)"; cx.stroke();
+    }
+    cx.restore();
+  }
+  function litPool(x, y, w, h) {
+    const g = cx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0, "rgba(251,247,238,0)");
+    g.addColorStop(0.42, "rgba(251,247,238,0.66)");
+    g.addColorStop(1, "rgba(251,247,238,0)");
+    cx.save(); cx.globalCompositeOperation = "screen";
+    cx.fillStyle = g; pathRect(x, y, w, h, 2.4, 11); cx.fill(); cx.restore();
+  }
+  /* A deboss is ALWAYS a lit upper lip and a lee lower lip, never one stroke. */
+  function deboss(x, y, w, h, depth) {
+    for (let i = 0; i < h; i++) {
+      const v = i / h; let col, a;
+      if (v < 0.11) { col = P.high; a = 1.0; }
+      else if (v < 0.66) { col = mix(P.tooth, "#A99E86", (v - 0.11) / 0.55); a = 0.92 * depth; }
+      else { col = mix("#A99E86", P.base, (v - 0.66) / 0.34); a = 0.86 * depth * (1 - (v - 0.66) / 0.34) + 0.1; }
+      cx.fillStyle = col; cx.globalAlpha = a;
+      cx.fillRect(x, y + i, w, 1);
+    }
+    cx.globalAlpha = 1;
+  }
+  function registration() {
+    const rx = 984, ry = 176, r = 20;
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.arc(rx, ry, r, 0, 7); cx.stroke();
+    cx.beginPath(); cx.moveTo(rx-r-8,ry); cx.lineTo(rx+r+8,ry);
+    cx.moveTo(rx,ry-r-8); cx.lineTo(rx,ry+r+8); cx.stroke();
+    cx.fillStyle = P.gold; cx.beginPath();
+    for (let i=0;i<8;i++){const a=i*Math.PI/4,rr=(i%2===0)?7.5:2.6;
+      const px=rx+Math.cos(a)*rr,py=ry+Math.sin(a)*rr; i===0?cx.moveTo(px,py):cx.lineTo(px,py);}
+    cx.closePath(); cx.fill();
+  }
+  /* The three motif squares, 34px, footer furniture opposite the counter. */
+  function motif(state) {
+    const y = 1238, s = 34;
+    const xs = [600, 646, 692];
+    function sq(x, kind) {
+      if (kind === "none") return;
+      cx.save();
+      if (kind === "gold" || kind === "worn") {
+        fillQuad(x, y, s, s, P.gold, 1.0, 5);
+        cx.strokeStyle = P.ink; cx.lineWidth = kind === "worn" ? 1.0 : 1.8;
+        if (kind === "worn") { cx.globalAlpha = 0.62; }
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "solid") {
+        cx.strokeStyle = P.slate; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "phantom") {
+        cx.setLineDash([30, 5, 6, 5, 6, 5]); cx.lineWidth = 1.25;
+        cx.strokeStyle = P.slate; strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "blind") {
+        cx.strokeStyle = "rgba(251,247,238,0.95)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y - 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 7);
+        cx.strokeStyle = "rgba(154,145,130,0.55)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 1.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 8);
+      }
+      cx.restore();
+    }
+    sq(xs[0], state[0]); sq(xs[1], state[1]); sq(xs[2], state[2]);
+  }
+  function finish() {
+    registration();
+    if (window.AKPOST && AKPOST.grade) {
+      AKPOST.grade(cx, { exposure:-0.06, saturation:0.94, contrast:1.03, sharpen:0.30,
+                         dither:true, aberration:0,
+                         bloom:{ threshold:0.90, strength:0.08, radius:8 } });
+    }
+    document.getElementById("grain").style.backgroundImage =
+      "url(" + AK.grainTile(280, 52, SEED) + ")";
+  }
+  const eng = AKENGRAVE.create({ seed:SEED, light:{ azDeg:296, elDeg:26 } });
+  eng.reserve(AKENGRAVE.boxesFor("[data-reserve]"));
+
+
+  /* A pressed band is NOT a stack of scanline rects. It is one closed path with
+     an irregular top and bottom edge, filled with a vertical gradient, because
+     paper under pressure never gives a ruler-straight lip. One fill, real edge. */
+  function pressedBand(y0, y1, stops, amp, freq, phase) {
+    amp = amp == null ? 1.6 : amp; freq = freq == null ? 0.009 : freq;
+    phase = phase || 0;
+    const g = cx.createLinearGradient(0, y0, 0, y1);
+    stops.forEach(s => g.addColorStop(s[0], s[1]));
+    cx.save(); cx.beginPath();
+    for (let x = -12; x <= W + 12; x += 9) {
+      const yy = y0 + Math.sin(x * freq + phase) * amp + Math.sin(x * freq * 2.7 + 1.3) * amp * 0.4;
+      x === -12 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+    }
+    for (let x = W + 12; x >= -12; x -= 9) {
+      const yy = y1 + Math.sin(x * freq * 1.4 + phase + 2.2) * amp * 1.2;
+      cx.lineTo(x, yy);
+    }
+    cx.closePath(); cx.fillStyle = g; cx.fill(); cx.restore();
+  }
+  /* A stipple population is DRAWN work, and it is how a pressed floor keeps its
+     tooth without a single rectangle. */
+  function toothField(x0, y0, w, h, n, seed) {
+    const r = AK.rng(seed);
+    cx.save();
+    for (let i = 0; i < n; i++) {
+      const tx = x0 + r() * w, ty = y0 + r() * h;
+      const a = 0.06 + r() * 0.20, rr = 0.5 + r() * 1.15;
+      cx.fillStyle = "rgba(64,58,48," + a + ")";
+      cx.beginPath(); cx.arc(tx, ty, rr, 0, 7); cx.fill();
+    }
+    cx.restore();
+  }
+
+  laidPaper(null);
+
+  /* THE BLIND EMBOSS IS NOT SHIPPED. The intent was the Municipality of
+     Anchorage driven into the sheet with no ink, to give the deck a place. The
+     boundary path did not resolve at render time and the fallback drew nested
+     concentric ovals, which read as a topographic bowl or, worse on this story,
+     as a fingerprint whorl. An irregular polygon reads as a place; nested rings
+     read as a whorl. Shipping nothing is the honest outcome, and the shortfall
+     is disclosed in the email rather than papered over. */
+
+  /* ---- the engraved shelf the rule sits in ------------------------------- */
+  const SH = { y:790, h:170 };
+  (function shelf() {
+    pressedBand(SH.y, SH.y + 18, [[0, "#FBF7EE"], [1, "#EDE5D4"]], 2.0, 0.0069, 0.5);
+    pressedBand(SH.y + 16, SH.y + SH.h * 0.72, [[0, "#E4DCCB"], [1, "#B6AC94"]], 2.6, 0.0048, 1.7);
+    pressedBand(SH.y + SH.h * 0.70, SH.y + SH.h, [[0, "#B6AC94"], [1, "#F0EADD"]], 2.2, 0.0061, 3.1);
+    toothField(0, SH.y + 22, W, SH.h - 40, 1200, SEED + 52);
+  })();
+  (function shelfLay() {
+    const r = AK.rng(SEED + 52);
+    cx.save(); cx.beginPath(); cx.rect(0, SH.y, W, SH.h); cx.clip();
+    cx.lineCap = "butt";
+    for (let k = -160; k < W + 160; k += 4.6) {
+      let px = null, py = null;
+      for (let y = SH.y; y <= SH.y + SH.h; y += 6) {
+        const t = (y - SH.y) / SH.h;
+        const swell = Math.sin(Math.PI * t);
+        const x = k + 0.22 * (y - SH.y) + Math.sin(y * 0.02 + k * 0.006) * 2.2;
+        if (px !== null) {
+          cx.beginPath(); cx.moveTo(px, py); cx.lineTo(x, y);
+          cx.lineWidth = 0.35 + 2.0 * swell * (0.6 + 0.4 * r());
+          cx.strokeStyle = "rgba(112,102,84," + (0.40 * (0.3 + 0.7 * swell)) + ")";
+          cx.stroke();
+        }
+        px = x; py = y;
+      }
+    }
+    cx.restore();
+    /* punch the type's measured boxes back out of the lay */
+    const R = AKENGRAVE.boxesFor("[data-reserve]", { padBody: 18, padMono: 14 });
+    cx.save(); cx.globalCompositeOperation = "destination-out";
+    R.forEach(function (b) {
+      const g = cx.createRadialGradient(b[0]+b[2]/2, b[1]+b[3]/2, 0,
+                                        b[0]+b[2]/2, b[1]+b[3]/2, Math.max(b[2],b[3])/2 + 22);
+      g.addColorStop(0, "rgba(0,0,0,1)"); g.addColorStop(0.74, "rgba(0,0,0,1)");
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      cx.fillStyle = g; cx.fillRect(b[0]-26, b[1]-26, b[2]+52, b[3]+52);
+    });
+    cx.restore();
+  })();
+
+  /* ---- THE MEASURED AXIS. Five kinds of number, five kinds of mark. ------- */
+  const AX = { x0:150, x1:960, v0:10, v1:750, y:855 };
+  const PER = (AX.x1 - AX.x0) / (Math.log10(AX.v1) - Math.log10(AX.v0));
+  const xOf = v => AX.x0 + (Math.log10(v) - Math.log10(AX.v0)) * PER;
+
+  /* the rule itself: a cased TAPERED POLYGON, never a stroked rectangle */
+  (function rule() {
+    cx.beginPath();
+    cx.moveTo(AX.x0 - 14, AX.y - 3.0); cx.lineTo(AX.x1 + 6, AX.y - 2.0);
+    cx.lineTo(AX.x1 + 6, AX.y + 2.0); cx.lineTo(AX.x0 - 14, AX.y + 3.0);
+    cx.closePath();
+    cx.fillStyle = P.slate; cx.fill();
+    cx.fillStyle = "rgba(96,88,74,0.42)";
+    cx.fillRect(AX.x0 - 14, AX.y + 3.0, (AX.x1 + 20) - AX.x0, 1.6);
+  })();
+
+  /* THE DECADE RULE, drawn as a rule and not as a hint. The slide's whole
+     argument is that 11 to 238 is a longer walk than 238 to 750, and that is
+     only readable if the crowding of the subdivisions is VISIBLE: they bunch
+     toward the top of each decade, and the eye reads the compression before it
+     reads a single number. The earlier pass drew them 11px long in hatch grey
+     and the structure vanished into the paper. Ticks are graded in three
+     depths, decade > half-decade > subdivision, the way an engraved scale is
+     cut. Nothing enters the band undeclared. */
+  cx.save();
+  cx.lineCap = "butt";
+  [20,30,40,50,60,70,80,90,200,300,400,500].forEach(v => {
+    const x = xOf(v);
+    /* 50 and 500 are the half-decades and are cut deeper, which is what makes
+       the two decades legible AS decades rather than as one long ramp. */
+    const half = (v === 50 || v === 500);
+    cx.strokeStyle = half ? "rgba(107,98,85,0.92)" : "rgba(107,98,85,0.78)";
+    cx.lineWidth = half ? 2.2 : 1.8;
+    cx.beginPath();
+    cx.moveTo(x, AX.y + 5); cx.lineTo(x, AX.y + (half ? 34 : 24)); cx.stroke();
+  });
+  [[10,"10"],[100,"100"]].forEach(([v,lab]) => {
+    const x = xOf(v);
+    /* the decade cut runs through the rule, above and below, so it reads as a
+       division of the scale rather than a mark hung off the bottom of it */
+    cx.strokeStyle = P.ink; cx.lineWidth = 3.0;
+    cx.beginPath(); cx.moveTo(x, AX.y - 12); cx.lineTo(x, AX.y + 46); cx.stroke();
+    cx.strokeStyle = "rgba(251,247,238,0.55)"; cx.lineWidth = 1.2;
+    cx.beginPath(); cx.moveTo(x + 2.4, AX.y - 10); cx.lineTo(x + 2.4, AX.y + 44); cx.stroke();
+    cx.font = '500 24px "JetBrains Mono", monospace'; cx.fillStyle = P.ink;
+    cx.textAlign = "center"; cx.fillText(lab, x, AX.y + 72);
+  });
+  cx.restore();
+
+  /* MARK 1, a MEASURED POINT: a filled struck disc */
+  function measuredPoint(x) {
+    litPool(x - 30, AX.y - 40, 60, 42);
+    cx.fillStyle = "rgba(140,131,115,0.42)";
+    cx.beginPath(); cx.ellipse(x + 5, AX.y - 12, 12, 5, 0, 0, 7); cx.fill();
+    const g = cx.createRadialGradient(x - 5, AX.y - 24, 2, x, AX.y - 19, 14);
+    g.addColorStop(0, "#7E90A6"); g.addColorStop(1, "#33465C");
+    cx.fillStyle = g; cx.beginPath(); cx.arc(x, AX.y - 19, 13, 0, 7); cx.fill();
+    cx.strokeStyle = "#22303F"; cx.lineWidth = 1.4; cx.stroke();
+  }
+  measuredPoint(xOf(11));
+  measuredPoint(xOf(238));
+
+  /* MARK 2, an APPROXIMATION: a soft disc inside a tolerance bracket */
+  (function approx() {
+    const x = xOf(15), a = xOf(12.4), b = xOf(18.2);
+    cx.strokeStyle = P.slate; cx.lineWidth = 1.5;
+    cx.beginPath();
+    cx.moveTo(a, AX.y - 46); cx.lineTo(a, AX.y - 30); cx.lineTo(b, AX.y - 30); cx.lineTo(b, AX.y - 46);
+    cx.stroke();
+    const g = cx.createRadialGradient(x, AX.y - 19, 1, x, AX.y - 19, 12);
+    g.addColorStop(0, "rgba(70,88,106,0.85)"); g.addColorStop(1, "rgba(70,88,106,0.06)");
+    cx.fillStyle = g; cx.beginPath(); cx.arc(x, AX.y - 19, 12, 0, 7); cx.fill();
+  })();
+
+  /* MARK 3, a LOWER BOUND: a stem to an open chevron on a second row */
+  (function lowerBound() {
+    const x = xOf(250);
+    cx.strokeStyle = P.slate; cx.lineWidth = 1.8;
+    cx.beginPath(); cx.moveTo(x, AX.y - 8); cx.lineTo(x, AX.y - 54); cx.stroke();
+    cx.lineWidth = 3.0; cx.lineCap = "butt";
+    cx.beginPath();
+    cx.moveTo(x - 3, AX.y - 68); cx.lineTo(x + 15, AX.y - 54); cx.lineTo(x - 3, AX.y - 40);
+    cx.stroke();
+  })();
+
+  /* MARK 4, a CEILING: a struck stop bar, and a hatch field past it */
+  (function ceiling() {
+    const x = xOf(750);
+    cx.fillStyle = P.slate; cx.fillRect(x - 2.5, AX.y - 26, 5, 52);
+    cx.save(); cx.beginPath(); cx.rect(x, AX.y - 30, W - x, 60); cx.clip();
+    cx.strokeStyle = "rgba(154,145,130,0.55)"; cx.lineWidth = 1.3;
+    for (let k = 0; k < 220; k += 9) {
+      cx.beginPath(); cx.moveTo(x + k, AX.y + 30); cx.lineTo(x + k + 30, AX.y - 30); cx.stroke();
+    }
+    cx.restore();
+  })();
+
+
+  motif(["gold", "phantom", "none"]);
+
+  finish();
+})();
+</script>
+</body>
+</html>

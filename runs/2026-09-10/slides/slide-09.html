@@ -1,0 +1,292 @@
+<!doctype html>
+<!-- No.55 SLIDE 09 — CLOSE. The burnished band, three motif squares at scale with B still empty, one ask, one date. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F0EADD; font-family:"Bricolage Grotesque",sans-serif; position:relative; }
+  #art { position:absolute; inset:0; }
+  #grain { position:absolute; inset:0; background-repeat:repeat;
+           mix-blend-mode:overlay; opacity:0.06; pointer-events:none; }
+  h2 { font-family:"Instrument Serif",serif; font-weight:400;
+       line-height:1.02; letter-spacing:-0.02em; color:#2B2F35; position:absolute; }
+  .body { position:absolute; font-weight:400; line-height:1.35; color:#2B2F35;
+          font-variation-settings:"wght" 400,"wdth" 96; }
+  .fig { font-family:"JetBrains Mono",monospace; font-weight:500;
+         font-variant-numeric:tabular-nums lining-nums; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:500;
+          letter-spacing:0.09em; text-transform:uppercase; color:#6B6255; position:absolute; }
+  .counter { position:absolute; right:96px; top:96px; font-family:"JetBrains Mono",monospace;
+             font-size:24px; font-weight:500; color:#46586A; font-variant-numeric:tabular-nums; }
+  .stamp { position:absolute; left:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+           font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+  .mark { position:absolute; right:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.14em; color:#6B6255; }
+  .disp { position:absolute; left:96px; top:352px; width:872px;
+          font-family:"Instrument Serif",serif; font-weight:400; font-size:74px;
+          line-height:1.02; letter-spacing:-0.02em; color:#2B2F35; }
+  .disp .fig { font-family:"JetBrains Mono",monospace; font-weight:500; font-size:70px;
+               font-variant-numeric:tabular-nums lining-nums; }
+  .body { left:96px; top:646px; width:640px; font-size:33px; }
+  .ask { position:absolute; left:96px; top:812px; width:640px; font-size:40px;
+         line-height:1.2; color:#2B2F35; font-variation-settings:"wght" 600,"wdth" 100; }
+  .src { left:96px; top:916px; font-size:24px; }
+  .site { position:absolute; right:96px; bottom:118px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.10em; color:#6B6255; }
+  .coord { position:absolute; left:96px; bottom:44px; font-family:"JetBrains Mono",monospace;
+           font-size:19px; font-weight:500; letter-spacing:0.10em; color:#9A9182; }
+</style>
+</head>
+<body data-contacts='[{"what":"the money square on the burnished band","shadow":[[173,1080,26,10]],"ground":[[226,1080,26,10]]},{"what":"the 2023 square on the burnished band","shadow":[[283,1080,26,10]],"ground":[[226,1080,26,10]]}]'
+      data-encodes='[{"claim":"two squares filled and one empty, at the end","reads":"differ","a":[150,1010,160,70],"b":[390,1010,70,70]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div id="grain" data-decorative></div>
+  <div class="disp" data-reserve>The rule is expected back on <span class="fig">September 15th, 2026</span>.</div>
+  <div class="body" data-reserve>Sponsors plan to bring AO 2026-108 back to the Assembly. Public testimony is how a resident gets read into the record.</div>
+  <div class="ask" data-reserve>Save this. The date is September 15th, 2026.</div>
+  <div class="mono src" data-reserve="mono">Sources in comments</div>
+  <div class="site" data-reserve="mono">alaskaaihq.com</div>
+  <div class="coord" data-decorative>61&deg;13'N &middot; 149&deg;54'W</div>
+  <div class="counter" data-reserve="mono">09 / 09</div>
+  <div class="stamp" data-reserve="mono">SECOND IMPRESSION &middot; REPORTED</div>
+  <div class="mark" data-reserve="mono">ALASKA.AI</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const W = 1080, H = 1350, SEED = 20260910;
+  const cv = document.getElementById("art"), cx = cv.getContext("2d");
+  cx.scale(2, 2);
+  const P = { base:"#F0EADD", high:"#FBF7EE", tooth:"#E4DCCB", trough:"#CFC4AE",
+              ink:"#2B2F35", slate:"#46586A", ctx:"#6B6255", hatch:"#9A9182",
+              gold:"#FFC72C", deep:"#8E8471" };
+  const mix = (a,b,t) => AKC.mixOklab(a, b, Math.max(0, Math.min(1, t)));
+  /* A struck or lit shape is never a perfect axis-aligned box. These draw the
+     same regions as irregular closed paths, which is both fewer rectangles and
+     a truer edge: paper under a plate does not give a ruler-straight boundary. */
+  function pathRect(x, y, w, h, jit, seed) {
+    jit = jit == null ? 1.1 : jit;
+    const r = AK.rng((seed || 1) + 97);
+    const pts = [];
+    const stepX = Math.max(10, w / 8), stepY = Math.max(8, h / 4);
+    for (let t = 0; t <= w; t += stepX) pts.push([x + t, y + (r() - 0.5) * jit]);
+    for (let t = 0; t <= h; t += stepY) pts.push([x + w + (r() - 0.5) * jit, y + t]);
+    for (let t = w; t >= 0; t -= stepX) pts.push([x + t, y + h + (r() - 0.5) * jit]);
+    for (let t = h; t >= 0; t -= stepY) pts.push([x + (r() - 0.5) * jit, y + t]);
+    cx.beginPath();
+    pts.forEach((p, i) => i === 0 ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]));
+    cx.closePath();
+  }
+  function fillQuad(x, y, w, h, style, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.fillStyle = style; cx.fill();
+  }
+  function strokeQuad(x, y, w, h, style, lw, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.strokeStyle = style; cx.lineWidth = lw; cx.stroke();
+  }
+
+  const rnd = AK.rng(SEED + 9);
+  const KEY = 296 * Math.PI / 180;
+  cx.fillStyle = P.base; cx.fillRect(0, 0, W, H);
+
+  /* --- laid paper, house furniture, identical everywhere by design --------- */
+  function laidPaper(bend) {
+    cx.save(); cx.lineWidth = 0.75;
+    for (let y = 4; y < H; y += 3.1) {
+      cx.beginPath();
+      for (let x = 0; x <= W; x += 10) {
+        const yy = y + (bend ? bend(x, y) : 0);
+        x === 0 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.075)"; cx.stroke();
+    }
+    cx.lineWidth = 1.3;
+    for (let x = 12; x < W; x += 26) {
+      cx.beginPath();
+      for (let y = 0; y <= H; y += 8) {
+        const xx = x + (bend ? bend(x, y) * 0.42 : 0);
+        y === 0 ? cx.moveTo(xx, y) : cx.lineTo(xx, y);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.085)"; cx.stroke();
+    }
+    cx.restore();
+  }
+  function litPool(x, y, w, h) {
+    const g = cx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0, "rgba(251,247,238,0)");
+    g.addColorStop(0.42, "rgba(251,247,238,0.66)");
+    g.addColorStop(1, "rgba(251,247,238,0)");
+    cx.save(); cx.globalCompositeOperation = "screen";
+    cx.fillStyle = g; pathRect(x, y, w, h, 2.4, 11); cx.fill(); cx.restore();
+  }
+  /* A deboss is ALWAYS a lit upper lip and a lee lower lip, never one stroke. */
+  function deboss(x, y, w, h, depth) {
+    for (let i = 0; i < h; i++) {
+      const v = i / h; let col, a;
+      if (v < 0.11) { col = P.high; a = 1.0; }
+      else if (v < 0.66) { col = mix(P.tooth, "#A99E86", (v - 0.11) / 0.55); a = 0.92 * depth; }
+      else { col = mix("#A99E86", P.base, (v - 0.66) / 0.34); a = 0.86 * depth * (1 - (v - 0.66) / 0.34) + 0.1; }
+      cx.fillStyle = col; cx.globalAlpha = a;
+      cx.fillRect(x, y + i, w, 1);
+    }
+    cx.globalAlpha = 1;
+  }
+  function registration() {
+    const rx = 984, ry = 176, r = 20;
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.arc(rx, ry, r, 0, 7); cx.stroke();
+    cx.beginPath(); cx.moveTo(rx-r-8,ry); cx.lineTo(rx+r+8,ry);
+    cx.moveTo(rx,ry-r-8); cx.lineTo(rx,ry+r+8); cx.stroke();
+    cx.fillStyle = P.gold; cx.beginPath();
+    for (let i=0;i<8;i++){const a=i*Math.PI/4,rr=(i%2===0)?7.5:2.6;
+      const px=rx+Math.cos(a)*rr,py=ry+Math.sin(a)*rr; i===0?cx.moveTo(px,py):cx.lineTo(px,py);}
+    cx.closePath(); cx.fill();
+  }
+  /* The three motif squares, 34px, footer furniture opposite the counter. */
+  function motif(state) {
+    const y = 1238, s = 34;
+    const xs = [600, 646, 692];
+    function sq(x, kind) {
+      if (kind === "none") return;
+      cx.save();
+      if (kind === "gold" || kind === "worn") {
+        fillQuad(x, y, s, s, P.gold, 1.0, 5);
+        cx.strokeStyle = P.ink; cx.lineWidth = kind === "worn" ? 1.0 : 1.8;
+        if (kind === "worn") { cx.globalAlpha = 0.62; }
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "solid") {
+        cx.strokeStyle = P.slate; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "phantom") {
+        cx.setLineDash([30, 5, 6, 5, 6, 5]); cx.lineWidth = 1.25;
+        cx.strokeStyle = P.slate; strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "blind") {
+        cx.strokeStyle = "rgba(251,247,238,0.95)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y - 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 7);
+        cx.strokeStyle = "rgba(154,145,130,0.55)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 1.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 8);
+      }
+      cx.restore();
+    }
+    sq(xs[0], state[0]); sq(xs[1], state[1]); sq(xs[2], state[2]);
+  }
+  function finish() {
+    registration();
+    if (window.AKPOST && AKPOST.grade) {
+      AKPOST.grade(cx, { exposure:-0.06, saturation:0.94, contrast:1.03, sharpen:0.30,
+                         dither:true, aberration:0,
+                         bloom:{ threshold:0.90, strength:0.08, radius:8 } });
+    }
+    document.getElementById("grain").style.backgroundImage =
+      "url(" + AK.grainTile(280, 52, SEED) + ")";
+  }
+  const eng = AKENGRAVE.create({ seed:SEED, light:{ azDeg:296, elDeg:26 } });
+  eng.reserve(AKENGRAVE.boxesFor("[data-reserve]"));
+
+  laidPaper(null);
+
+  /* ---- THE BURNISHED BAND. The mezzotint move run in reverse at the close.
+     The plate is burnished until the light comes back, and a burnished light
+     always keeps a trace of the grain that was there before it. -------------- */
+  const BB = { y0:1000, y1:1180 };
+  (function burnish() {
+    /* the residue lay: strokes thinning through the weight ladder as they
+       rise into the light, with a GRADED falloff rather than an edge */
+    cx.save();
+    cx.beginPath(); cx.rect(0, BB.y0, W, BB.y1 - BB.y0); cx.clip();
+    for (let k = -240; k < W + 240; k += 6.5) {
+      for (let seg = 0; seg < (BB.y1 - BB.y0); seg += 9) {
+        const t = 1 - seg / (BB.y1 - BB.y0);          /* 1 at the bottom */
+        const a = 0.30 * t * t;
+        if (a < 0.012) continue;
+        cx.strokeStyle = "rgba(122,113,96," + a + ")";
+        cx.lineWidth = [0.75, 1.25, 2.0][Math.min(2, Math.floor(t * 3))];
+        cx.beginPath();
+        cx.moveTo(k + seg * 0.42, BB.y1 - seg);
+        cx.lineTo(k + (seg + 9) * 0.42, BB.y1 - seg - 9);
+        cx.stroke();
+      }
+    }
+    cx.restore();
+    /* a screened lift at the top of the band so the falloff has no edge */
+    const g = cx.createLinearGradient(0, BB.y0 - 40, 0, BB.y0 + 90);
+    g.addColorStop(0, "rgba(251,247,238,0.85)");
+    g.addColorStop(1, "rgba(251,247,238,0)");
+    cx.save(); cx.globalCompositeOperation = "screen";
+    cx.fillStyle = g; cx.fillRect(0, BB.y0 - 40, W, 130); cx.restore();
+  })();
+
+  /* ---- the Scotch rule above the ask, the deck's ONE laid rule ------------ */
+  (function scotch() {
+    fillQuad(96, 776, 640, 3.2, "rgba(70,88,106,0.85)", 0.6, 64);
+    fillQuad(96, 783, 640, 1.1, "rgba(70,88,106,0.5)", 0.5, 65);
+  })();
+
+  /* ---- the three struck squares at scale. B is EMPTY, and that is the deck. */
+  function bigSquare(x, y, s, kind) {
+    const b = 5;
+    if (kind !== "empty") {
+      litPool(x - 48, y + s - 14, s + 96, 84);
+      cx.fillStyle = "rgba(138,128,110,0.38)";
+      cx.beginPath(); cx.ellipse(x + s/2 + 12, y + s + 15, s * 0.66, 13, 0, 0, 7); cx.fill();
+      cx.fillStyle = "rgba(94,85,70,0.70)";
+      cx.beginPath(); cx.ellipse(x + s/2 + 5, y + s + 7, s * 0.52, 8, 0, 0, 7); cx.fill();
+    }
+    const quad = (p, c) => { cx.fillStyle = c; cx.beginPath(); cx.moveTo(p[0], p[1]);
+      for (let i = 2; i < p.length; i += 2) cx.lineTo(p[i], p[i+1]); cx.closePath(); cx.fill(); };
+    if (kind === "empty") {
+      cx.save(); cx.lineWidth = 1.8; cx.strokeStyle = P.slate;
+      strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6); cx.restore();
+      return;
+    }
+    const worn = kind === "worn";
+    /* a worn plate has SOFTER bite edges than a crisp one */
+    if (worn) {
+      cx.save(); cx.beginPath();
+      const r = 7;
+      cx.moveTo(x + r, y); cx.arcTo(x + s, y, x + s, y + s, r);
+      cx.arcTo(x + s, y + s, x, y + s, r); cx.arcTo(x, y + s, x, y, r);
+      cx.arcTo(x, y, x + s, y, r); cx.closePath(); cx.clip();
+    }
+    quad([x, y, x + s, y, x + s - b, y + b, x + b, y + b], "#FBF7EE");
+    quad([x, y, x + b, y + b, x + b, y + s - b, x, y + s], "#F1EBDD");
+    quad([x + s, y, x + s, y + s, x + s - b, y + s - b, x + s - b, y + b], "#C6BCA4");
+    quad([x, y + s, x + b, y + s - b, x + s - b, y + s - b, x + s, y + s], "#B9AE96");
+    const g = cx.createLinearGradient(x, y, x + s, y + s);
+    g.addColorStop(0, "#FFDA6E"); g.addColorStop(0.55, P.gold); g.addColorStop(1, "#D9A61C");
+    cx.fillStyle = g; pathRect(x + b, y + b, s - 2*b, s - 2*b, 1.0, 61); cx.fill();
+    cx.strokeStyle = P.ink; cx.lineWidth = worn ? 1.0 : 1.8;
+    cx.globalAlpha = worn ? 0.6 : 1;
+    strokeQuad(x + b, y + b, s - 2*b, s - 2*b, P.ink, cx.lineWidth, 0.9, 62);
+    cx.globalAlpha = 1;
+    if (worn) cx.restore();
+  }
+  bigSquare(150, 1010, 70, "gold");
+  bigSquare(240, 1010, 70, "worn");
+  bigSquare(390, 1010, 70, "empty");
+
+  /* the Polaris set ABOVE the empty square, which is the close's one gesture */
+  (function polarisAbove() {
+    const px = 425, py = 972;
+    cx.fillStyle = P.gold; cx.beginPath();
+    for (let i = 0; i < 8; i++) {
+      const a = i * Math.PI / 4 - Math.PI / 2, rr = (i % 2 === 0) ? 11 : 3.8;
+      const x = px + Math.cos(a) * rr, y = py + Math.sin(a) * rr;
+      i === 0 ? cx.moveTo(x, y) : cx.lineTo(x, y);
+    }
+    cx.closePath(); cx.fill();
+  })();
+
+  motif(["none", "none", "none"]);
+
+  finish();
+})();
+</script>
+</body>
+</html>

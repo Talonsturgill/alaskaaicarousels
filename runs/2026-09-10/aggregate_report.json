@@ -1,0 +1,117 @@
+{
+  "run_dir": "out/2026-09-10",
+  "render_report": "out/2026-09-10/render/render_report.json",
+  "aggregates_file": "out/2026-09-10/aggregates.json",
+  "detected": 12,
+  "declared": 12,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "span",
+      "fragment": "8 to 4",
+      "text": "UPDATE. $598,998 passed 8 to 4. The rule got no vote.",
+      "from_n": 8,
+      "to_n": 4
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "four no votes",
+      "text": "Three of the four no votes wrote the rule.",
+      "n": 4,
+      "subject": "no votes"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "598,998 comes",
+      "text": "The $598,998 comes from federal asset forfeitures, per a memorandum submitted to",
+      "n": 598998,
+      "subject": "comes"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "ten times",
+      "text": "Log scale, base 10. Each decade is ten times the last.",
+      "n": 10,
+      "subject": "times"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "250 municipal traffic cameras",
+      "text": "more than 250 municipal traffic cameras",
+      "n": 250,
+      "subject": "municipal traffic cameras"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "Three gates",
+      "text": "Three gates. None of them struck.",
+      "n": 3,
+      "subject": "gates"
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "14 days",
+      "text": "All scanned license plate data is automatically deleted after 14 days.",
+      "n": 14,
+      "unit": "days"
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "5 days",
+      "text": "Traffic camera footage is overwritten every 3 to 5 days.",
+      "n": 5,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "Fourteen days",
+      "text": "Fourteen days, read twice.",
+      "n": 14,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "14 days",
+      "text": "How long a scanned plate lives. Deleted after 14 days, per APD's own page.",
+      "n": 14,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "5 days",
+      "text": "Traffic footage overwritten every 3 to 5 days",
+      "n": 5,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "duration",
+      "fragment": "fourteen day",
+      "text": "Two fourteen day windows. The same length, not the same thing.",
+      "n": 14,
+      "unit": "day"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 4,
+      "text": "Log scale, base 10. Each decade is ten times the last.",
+      "note": "the printed scale declaration. A property of the drawn axis, not an assertion about Alaska."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "S3 'The $598,998 comes from federal asset forfeiture' [from_claim]: the noun 'come' does not appear in claim C05; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

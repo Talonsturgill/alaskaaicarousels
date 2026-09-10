@@ -1,0 +1,109 @@
+{
+ "run_date": "2026-09-10",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "UPDATE. $598,998 passed 8 to 4. The rule got no vote.",
+   "fragment": "8 to 4",
+   "member": "C02",
+   "note": "the recorded tally, printed exactly as the claim carries it."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "Three of the four no votes wrote the rule.",
+   "fragment": "four no votes",
+   "member": "C04",
+   "note": "C04 states four members voted against and names all four. The THREE is C14 crossed with C04, the three of them who also sponsored the ordinance."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "The $598,998 comes from federal asset forfeitures, per a memorandum submitted to",
+   "fragment": "598,998 comes",
+   "member": "C05"
+  },
+  {
+   "kind": "design",
+   "slide": 4,
+   "text": "Log scale, base 10. Each decade is ten times the last.",
+   "fragment": "ten times",
+   "note": "the printed scale declaration. A property of the drawn axis, not an assertion about Alaska."
+  },
+  {
+   "kind": "count",
+   "slide": 5,
+   "text": "Three gates. None of them struck.",
+   "fragment": "Three gates",
+   "subject": "reported ordinance provisions",
+   "members": [
+    "C16",
+    "C17",
+    "C18"
+   ],
+   "note": "one gate per reported provision. Each is a newsroom's description and is attributed as such on the slide."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "All scanned license plate data is automatically deleted after 14 days.",
+   "fragment": "14 days",
+   "member": "C25",
+   "note": "stated as 14 days on APD's own page, not derived."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "Traffic camera footage is overwritten every 3 to 5 days.",
+   "fragment": "5 days",
+   "member": "C26",
+   "note": "stated as 3 to 5 days on APD's own page, not derived."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Fourteen days, read twice.",
+   "fragment": "Fourteen days",
+   "member": "C25",
+   "note": "the same 14 days as C25, spelled out in the headline."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "How long a scanned plate lives. Deleted after 14 days, per APD's own page.",
+   "fragment": "14 days",
+   "member": "C25"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Traffic footage overwritten every 3 to 5 days",
+   "fragment": "5 days",
+   "member": "C26"
+  },
+  {
+   "kind": "duration",
+   "slide": 8,
+   "text": "Two fourteen day windows. The same length, not the same thing.",
+   "fragment": "fourteen day",
+   "note": "The FIRST window is C25's 14 days. The SECOND is September 1st (C03) to September 15th (C13), which is also 14 days. The slide labels the coincidence as a coincidence in the same type block rather than implying a cause.",
+   "from": {
+    "claim": "C03",
+    "date": "2026-09-01"
+   },
+   "to": {
+    "claim": "C13",
+    "date": "2026-09-15"
+   }
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "more than 250 municipal traffic cameras",
+   "fragment": "250 municipal traffic cameras",
+   "member": "C33",
+   "note": "A LOWER BOUND stated in the claim, not derived. Drawn as a chevron rather than a point for exactly that reason, and the unit, municipal traffic cameras, is carried in the label because the slide's whole job is that different numbers have different units."
+  }
+ ]
+}
