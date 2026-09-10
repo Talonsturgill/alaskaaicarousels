@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-09-10-glacier-sped-up-twice",
+      "date": "2026-09-10",
+      "title": "The Glacier That Sped Up Twice",
+      "caption": "Sentinel-1 radar mapped seven active rock glaciers near McCarthy and found two seasonal speedups in parts of Sourdough Peak. The surface motion was checked; the proposed underground mechanism still needs direct sensors.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-10-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-10-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-10-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-10-poster_thumb.jpg"
+    },
+    {
       "id": "2026-09-06-the-hive-is-still-paper",
       "date": "2026-09-06",
       "title": "The Hive Is Still Paper",
