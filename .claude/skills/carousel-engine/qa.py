@@ -224,7 +224,7 @@ WORST_FAIL = 3.0        # worst-cell ratio on primary text that is a FAIL
 WORST_WARN = 4.5        # the rubric's own hard-fail line, reported as a WARN below it
 
 
-def contrast_worst_cell(img_arr, node, scale):
+def contrast_worst_cell(img_arr, node, scale, cells_out=None):
     """Contrast at the WORST POINT of a text node, not averaged over its bbox.
 
     Added 2026-07-31. contrast_estimate() takes ONE background value, the median
@@ -241,6 +241,11 @@ def contrast_worst_cell(img_arr, node, scale):
     from that CELL's own non-ink pixels, and returns the minimum ratio over every
     cell carrying real glyph ink, or None if nothing was measurable. Tightens the
     existing check; it never raises a ratio the old one reported.
+
+    `cells_out`, when given, collects (line_index, cell_centre_x_in_design_px,
+    ratio, line_w, line_h) for every cell measured. Nothing here uses it to
+    decide anything: it is what _reserve_shape_hint() reads to tell a graded
+    ground apart from a reserve of the wrong SHAPE (2026-09-10).
     """
     color = parse_css_color(node.get("color"))
     if color is None:
@@ -249,7 +254,7 @@ def contrast_worst_cell(img_arr, node, scale):
     H, W = img_arr.shape[:2]
     lt = rel_luminance(color)
     worst = None
-    for bx, by, bw, bh in lines:
+    for li, (bx, by, bw, bh) in enumerate(lines):
         y0, y1 = max(0, int(by * scale)), min(H, int((by + bh) * scale))
         if y1 - y0 < 8:
             continue
@@ -270,7 +275,60 @@ def contrast_worst_cell(img_arr, node, scale):
             lo, hi = min(lt, lb), max(lt, lb)
             r = (hi + 0.05) / (lo + 0.05)
             worst = r if worst is None else min(worst, r)
+            if cells_out is not None:
+                cells_out.append((li, (cx0 + cx1) / 2.0 / scale, r, bw, bh))
     return worst
+
+
+# A RESERVE OF THE WRONG SHAPE, NOT A GRADED GROUND (2026-09-10, run No.55).
+# The house punches type out of an offscreen field with destination-out, and the
+# idiom shipped with a RADIAL gradient whose outer radius is half the box's
+# longest side. On a 900px line of type that circle has faded to nothing well
+# before the ends of the line, so the field stays over the first and last words
+# while the middle is cleanly reserved. The gate saw it correctly and described
+# it as a graded ground ("give it a reserve or move it"), which is the one
+# repair that was already there. Two of run No.55's contrast findings were this,
+# and both died on one change: punch a BLURRED RECTANGLE instead.
+#
+# The fingerprint is in numbers the walk above already computes and throws away:
+# the worst cells are at the two ENDS of a long line whose MIDDLE is healthy.
+# A genuinely graded ground falls off in ONE direction, so its worst cell is at
+# one end and its best at the other, and it does not trip this.
+RESERVE_SHAPE_ASPECT = 2.5   # a "long" line: width this many times its height
+RESERVE_SHAPE_GAP = 1.5      # contrast ratio the middle must beat the ends by
+
+
+def _reserve_shape_hint(cells):
+    """The sentence naming a radial punch on a long box, or "".
+
+    Appended only to a finding already decided by WORST_FAIL / WORST_WARN, so it
+    can neither pass nor fail a line of type.
+    """
+    best = None
+    for li in {c[0] for c in cells}:
+        row = sorted((c for c in cells if c[0] == li), key=lambda c: c[1])
+        if len(row) < 4 or row[0][3] < RESERVE_SHAPE_ASPECT * row[0][4]:
+            continue
+        ends = min(row[0][2], row[-1][2])
+        mid = float(np.median([c[2] for c in row[1:-1]]))
+        if ends >= WORST_WARN or mid < max(WORST_WARN, ends + RESERVE_SHAPE_GAP):
+            continue
+        # both ends have to be worse than the middle, or it is a graded ground
+        if max(row[0][2], row[-1][2]) >= mid:
+            continue
+        if best is None or ends < best[0]:
+            best = (ends, mid, row[0][3])
+    if best is None:
+        return ""
+    return (" -- and the two ENDS of this %dpx line are the worst of it (%.1f) "
+            "while its middle reads %.1f, which is the fingerprint of a RADIAL "
+            "destination-out reserve: the outer radius is half the box's longest "
+            "side, so the circle fades out before the ends of a long run of type "
+            "and the field stays over the first and last words. Punch a BLURRED "
+            "RECTANGLE instead (AKENGRAVE.punchReserves, or ctx.filter='blur(9px)' "
+            "then fillRect per box); it follows the shape of the box, so a wide "
+            "headline and a small mono stamp are both covered end to end"
+            % (round(best[2]), best[0], best[1]))
 
 
 BUSY_INK_DIST = 90      # sum-abs RGB distance under which a pixel counts as glyph ink
@@ -639,7 +697,39 @@ def _rank_auc(x, y):
     return max(a, 1.0 - a)
 
 
-def encoding_reads(img_arr, enc, design_w, design_h):
+# RESERVING TYPE INVALIDATES A REGION AIMED UNDER IT (2026-09-10, run No.55).
+# The house punches the measured type boxes back out of a field, so the art is
+# GONE exactly where the copy sits. Slide 07 declared a dense-vs-sparse hatch
+# encoding over ground that included its own body copy; the moment the reserve
+# was punched correctly the two regions collapsed to dE 0.8, and the failure
+# message said the probe was measuring the same thing twice, which sent the
+# repair at the hatch. The art was fine. The probe was aimed at the hole.
+#
+# So the failure names this first when it applies. It is a MESSAGE, not a
+# verdict: no threshold here can pass or fail a slide, and the encoding floor
+# above is untouched.
+ENC_TYPE_SHARE = 0.25      # of a declared region covered by measured type
+ENC_TYPE_PAD = 12.0        # design px, the pad a reserve adds around a box
+
+
+def _enc_type_share(rects, boxes):
+    """Share of a declared region's area that measured type sits on."""
+    if not rects or not boxes:
+        return 0.0
+    area = sum(max(0.0, r[2]) * max(0.0, r[3]) for r in rects)
+    if area <= 0:
+        return 0.0
+    hit = 0.0
+    for x, y, w, h in rects:
+        for bx, by, bw, bh in boxes:
+            ix = min(x + w, bx + bw + ENC_TYPE_PAD) - max(x, bx - ENC_TYPE_PAD)
+            iy = min(y + h, by + bh + ENC_TYPE_PAD) - max(y, by - ENC_TYPE_PAD)
+            if ix > 0 and iy > 0:
+                hit += ix * iy          # over-counts overlapping boxes, on purpose
+    return min(1.0, hit / area)
+
+
+def encoding_reads(img_arr, enc, design_w, design_h, text_boxes=None):
     """MEASURE a declared wordless encoding. Deliberately does not judge it.
 
     Built 2026-07-29 to close the standing artwork-craft weakness (lowest
@@ -726,6 +816,10 @@ def encoding_reads(img_arr, enc, design_w, design_h):
     that direction to fit one against, and guessing is what this docstring
     exists to prevent.
 
+    `text_boxes` (design px) is not part of any judgment: it is what the failure
+    message reads to tell "your art does not encode anything" apart from "you
+    aimed the probe at ground the type is reserved out of". See _enc_type_share.
+
     Returns (verdict, detail) where verdict is "info", "warn" or "fail".
     """
     if enc.get("error"):
@@ -784,6 +878,18 @@ def encoding_reads(img_arr, enc, design_w, design_h):
             '"reads":"same" (an absence or sameness claim). Measured %s'
             % (said, detail))
     if reads == "differ" and n < ENC_DIFFER_MIN_DE:
+        sa = _enc_type_share(ra, text_boxes or [])
+        sb = _enc_type_share(rb, text_boxes or [])
+        if max(sa, sb) >= ENC_TYPE_SHARE:
+            return "fail", (
+                "%s. The slide declares reads:\"differ\" and the two regions are "
+                "%.1f dE apart, under the %.1f floor -- and BEFORE the art: "
+                "%.0f%% of region A and %.0f%% of region B is ground that "
+                "measured TEXT sits on. The house reserves type by punching the "
+                "art out of it, so a probe aimed there is measuring the hole and "
+                "not the encoding. Re-aim both regions at ground clear of type "
+                "and measure again before changing anything about the drawing."
+                % (detail, n, ENC_DIFFER_MIN_DE, sa * 100, sb * 100))
         return "fail", (
             "%s. The slide declares reads:\"differ\" and the two regions are "
             "%.1f dE apart at %dpx wide, under the %.1f floor: at feed scale "
@@ -1876,6 +1982,130 @@ def _census_nearest_ink(prof, origin, p, level, radius=CENSUS_ALT_MAX):
     return None, None
 
 
+# A 4-NUMBER `band` IS A SILENT MIS-DECLARATION (2026-09-10, run No.55).
+# `band` is the strip ACROSS the axis and takes TWO numbers. Written as an
+# [x, y, w, h] rect it still parsed: render.py kept the first two and this file
+# asked for two. Both slides in No.55 that declared a scale did it (slide 04
+# declared [130,790,860,130] so the census read y130-790 while the ticks drew at
+# y859; slide 08 declared [170,640,740,72] and read y170-640 while the rule drew
+# at y676), every mark came back at ink 0.0 to 0.6, and both rounds of repair
+# went to stroke weights. Nothing was wrong with the drawing either time.
+#
+# It is a FAIL, not a warn, for the reason an unparseable declaration is: the
+# census RAN, printed values about this deck, and every one of them was about a
+# strip of the frame the scale does not own. The message carries the admissible
+# alternative -- the [y0,y1] an [x,y,w,h] rect was probably meant to say -- for
+# the same measured reason the census's other messages do.
+def _band_arity(what, axis, bd):
+    nums = [v for v in bd if isinstance(v, (int, float))]
+    guess = ""
+    if len(bd) == 4 and len(nums) == 4:
+        # the strip across an x axis is a y strip, and vice versa
+        i = 1 if axis == "x" else 0
+        j = 3 if axis == "x" else 2
+        guess = ('. Read as an [x,y,w,h] rect those four numbers put the strip '
+                 'across this %s axis at "band":[%g,%g], which is very likely '
+                 "what was meant"
+                 % (axis, bd[i], bd[i] + bd[j]))
+    return ("'%s': \"band\" declares %d numbers and it takes exactly 2. It is "
+            "not the artwork's rect: it is [%s0,%s1], the strip the scale owns "
+            "ACROSS its own axis, the one the pixel census samples. The engine "
+            "read the first two, %s, and censused that strip, so every number "
+            "this axis reported was measured somewhere the scale does not "
+            "live%s."
+            % (what, len(bd), "y" if axis == "x" else "x",
+               "y" if axis == "x" else "x",
+               ", ".join("%g" % v for v in bd[:2]) if len(nums) >= 2
+               else "what it could", guess))
+
+
+# WHEN NO DECLARED MARK CARRIES INK, SUSPECT THE BAND BEFORE THE DRAWING
+# (2026-09-10, run No.55). "Every mark reads 0.0" is the fingerprint of a band
+# aimed off the marks, and it is indistinguishable, in words, from art drawn too
+# faint to see. So when EVERY declared mark is dead the census stops describing
+# the strip it was given and goes looking, across the axis, for the strip where
+# those same marks do carry ink. Same shape as the contact check's aim hunt
+# (_contact_aim, 2026-08-29), same rule: it runs only after a verdict is already
+# decided, it appends a sentence, and it can neither pass nor fail a slide.
+CENSUS_HUNT_MULT = 4.0     # search this many band heights either side
+CENSUS_HUNT_MIN = 120.0    # design px, floor on that window
+CENSUS_HUNT_MAX = 460.0    # ... and ceiling, so it stays a local question
+CENSUS_HUNT_SHARE = 0.6    # a row must carry this share of the declared marks
+
+
+def _census_band_hunt(img_arr, design_w, marks, axis, lo, hi, band):
+    """The strip across the axis where the declared marks DO have ink, or "".
+
+    Pure measurement on the render: for each declared mark, the profile of ink
+    down the perpendicular axis in a bounded window around the declared band;
+    then the longest run of rows where at least CENSUS_HUNT_SHARE of the marks
+    are simultaneously at their own strongest. Reports only a run that does not
+    overlap the band the slide declared, because when it does overlap there is
+    nothing to say: the band is aimed right and the marks are simply faint.
+    """
+    bh = max(1.0, band[1] - band[0])
+    win = min(CENSUS_HUNT_MAX, max(CENSUS_HUNT_MIN, CENSUS_HUNT_MULT * bh))
+    ns = img_arr.shape[1] / float(design_w)
+    p0 = max(0.0, band[0] - win)
+    p1 = band[1] + win
+    if axis == "x":
+        r0, r1 = int(p0 * ns), int(p1 * ns)
+        c0, c1 = int(lo * ns), int(hi * ns)
+    else:
+        r0, r1 = int(lo * ns), int(hi * ns)
+        c0, c1 = int(p0 * ns), int(p1 * ns)
+    r0, c0 = max(0, r0), max(0, c0)
+    r1, c1 = min(img_arr.shape[0], r1), min(img_arr.shape[1], c1)
+    if r1 - r0 < 8 or c1 - c0 < 8:
+        return ""
+    win_lab = _srgb_to_lab(img_arr[r0:r1, c0:c1])[..., 0]
+    if axis == "y":
+        win_lab = win_lab.T                     # rows: across the axis
+    # deviation from each row's own ground, so a graded field does not read as ink
+    dev = np.abs(win_lab - np.median(win_lab, axis=1, keepdims=True))
+    origin_perp = (r0 if axis == "x" else c0) / ns
+    origin_axis = lo
+
+    hits = np.zeros(dev.shape[0], dtype=int)
+    for p in marks:
+        i = int(round((p - origin_axis) * ns))
+        a, b = max(0, i - int(round(2 * ns))), min(dev.shape[1], i + int(round(2 * ns)) + 1)
+        if b - a < 1:
+            continue
+        col = dev[:, a:b].max(axis=1)
+        top = float(col.max())
+        if top < 1.0:                           # this mark drew nowhere near here
+            continue
+        hits += (col >= 0.5 * top)
+    need = max(2, int(round(CENSUS_HUNT_SHARE * len(marks))))
+    best, cur = None, None
+    for i in range(len(hits) + 1):
+        on = i < len(hits) and hits[i] >= need
+        if on and cur is None:
+            cur = i
+        elif not on and cur is not None:
+            if best is None or (i - cur) > (best[1] - best[0]):
+                best = (cur, i)
+            cur = None
+    if best is None:
+        return ""
+    y0 = origin_perp + best[0] / ns
+    y1 = origin_perp + best[1] / ns
+    if y1 > band[0] and y0 < band[1]:
+        return ""                               # already inside the declared band
+    off = band[0] - y1 if y1 <= band[0] else y0 - band[1]
+    return (" CHECK THE BAND BEFORE THE DRAWING: at least %d of the %d declared "
+            "marks carry their own strongest ink across %s %d-%d, which is %d px "
+            "%s the band this slide declares (%g-%g). A band that misses the "
+            "marks reports every one of them as dead, which looks exactly like a "
+            "drawing-weight problem and is not one. Move the band onto the marks. "
+            "(If \"band\" was written as an [x,y,w,h] rect, that is the whole "
+            "defect: it takes two numbers, the strip across the axis.)"
+            % (need, len(marks), "y" if axis == "x" else "x", round(y0),
+               round(y1), round(off),
+               "before" if y1 <= band[0] else "past", band[0], band[1]))
+
+
 def _census_ink_table(marks, declared_ink, unit, sc):
     return ", ".join("%g (%s): ink %.1f" % (p, _census_fmt(_census_value(sc, p),
                                                            unit), v)
@@ -1961,6 +2191,9 @@ def axis_census(img_arr, sc, design_w, design_h):
     axis = (sc.get("axis") or "x").lower()[:1]
     unit = sc.get("unit") or ""
     frm, to, band = sc.get("from"), sc.get("to"), sc.get("band")
+    bd = sc.get("band_declared")
+    if isinstance(bd, list) and len(bd) != 2:
+        return "fail", _band_arity(what, axis, bd)
     ok = (axis in ("x", "y") and isinstance(frm, list) and isinstance(to, list)
           and len(frm) == 2 and len(to) == 2 and isinstance(band, list)
           and len(band) == 2)
@@ -2064,9 +2297,15 @@ def axis_census(img_arr, sc, design_w, design_h):
     def alternatives():
         """Where each dead mark's ink actually is, if it is anywhere near."""
         out = []
+        # The level has to be a real ink level. When the whole band is blank
+        # (the aimed-off-the-marks case) both terms below go to zero and the
+        # search returns the first noise sample beside the mark, which prints as
+        # "the nearest mark-strength ink is 1 px away (ink 0.0)" -- a sentence
+        # that contradicts itself and sends the repair to the axis arithmetic.
+        # 0.5 is the same "no measurable ink" line the branch below already uses.
         for p in weak:
             q, v = _census_nearest_ink(prof, origin, p, max(strongest * 0.6,
-                                                            floor_ * 2.0))
+                                                            floor_ * 2.0, 0.5))
             if q is not None:
                 out.append("The nearest mark-strength ink to the mark declared "
                            "at %g is at %g, %.0f px away (ink %.1f, and that "
@@ -2082,6 +2321,12 @@ def axis_census(img_arr, sc, design_w, design_h):
                 "and left alone in the code that DRAWS it: check the axis "
                 "endpoint the canvas uses against the `to` this slide "
                 "declares, before touching any stroke weight.")
+
+    def band_hunt():
+        """Appended only when EVERY declared mark is dead; see _census_band_hunt."""
+        if len(weak) < len(marks):
+            return ""
+        return _census_band_hunt(img_arr, design_w, marks, axis, lo, hi, band)
 
     # SOME MARKS DREW AND SOME DID NOT. Checked before the uniform cases below,
     # because it is a different defect wearing the same number.
@@ -2099,19 +2344,19 @@ def axis_census(img_arr, sc, design_w, design_h):
             "'%s': the slide declares a mark at %g and there is no measurable "
             "ink within %dpx of it in the band, so the census has nothing to "
             "calibrate on. Either the mark did not draw, or its declared "
-            "position is not where it drew. Per mark: %s.%s"
+            "position is not where it drew. Per mark: %s.%s%s"
             % (what, marks[int(np.argmin(declared_ink))], CENSUS_PEAK_R,
                _census_ink_table(marks, declared_ink, unit, sc),
-               alternatives()))
+               alternatives(), band_hunt()))
     if w <= floor_ * 1.2:
         return "warn", (
             "'%s': the weakest declared mark (at %g, ink %.1f) is no stronger "
             "than the band's own texture (%.1f), and the strongest declared "
             "mark reads %.1f, so no census can separate marks from art here. "
             "Per mark: %s. Narrow the band to the strip the marks occupy, or "
-            "draw the marks so a reader can tell them from the ground."
+            "draw the marks so a reader can tell them from the ground.%s"
             % (what, marks[int(np.argmin(declared_ink))], w, floor_, strongest,
-               _census_ink_table(marks, declared_ink, unit, sc)))
+               _census_ink_table(marks, declared_ink, unit, sc), band_hunt()))
 
     thr = w
     runs, start = [], None
@@ -2726,6 +2971,15 @@ def main():
         # DECLARED ENCODING DOES NOT READ (2026-07-29). Opt-in: a slide that
         # declares nothing is not judged here, so this can never block a deck
         # that has not adopted the contract.
+        # The measured type boxes, for the message only: see _enc_type_share.
+        tboxes = []
+        for tn in rec.get("text_nodes", []):
+            if tn.get("decorative"):
+                continue
+            for ln in (tn.get("lines") or [[tn.get("x"), tn.get("y"),
+                                            tn.get("w"), tn.get("h")]]):
+                if all(isinstance(v, (int, float)) for v in ln):
+                    tboxes.append([float(v) for v in ln])
         for enc in rec.get("encodings", []):
             # AN UNPARSEABLE DECLARATION IS ITS OWN FAILURE (2026-08-29), and it
             # is reported without a prefix because the gate below never ran: see
@@ -2734,7 +2988,8 @@ def main():
                 res["fails"].append(
                     declaration_unparsed("data-encodes", enc["error"]))
                 continue
-            verdict, detail = encoding_reads(arr, enc, design_w, design_h)
+            verdict, detail = encoding_reads(arr, enc, design_w, design_h,
+                                             tboxes)
             if verdict == "fail":
                 # THE DIRECTION CONTRACT (2026-08-08). Still not a judgment of
                 # whether the encoding WORKS -- no threshold through those
@@ -3331,18 +3586,22 @@ def main():
             # WORST-POINT contrast (2026-07-31). The line above averages the
             # background over the whole box, which passes a line whose lit end is
             # unreadable. This measures the rubric's actual rule.
-            wc = contrast_worst_cell(arr, node, scale)
+            wcells = []
+            wc = contrast_worst_cell(arr, node, scale, wcells)
             if wc is not None and (ratio is None or wc < ratio - 0.15):
+                # WHICH cells are the bad ones, before the generic advice: see
+                # _reserve_shape_hint() for the run No.55 defect it names.
+                shape = _reserve_shape_hint(wcells)
                 if primary and wc < WORST_FAIL:
                     res["fails"].append(
                         f"contrast {wc:.1f} at WORST POINT on '{node['text'][:40]}' "
                         f"(box mean reads {ratio:.1f}) -- the ground under this line "
-                        f"is graded; give it a reserve or move it")
+                        f"is graded; give it a reserve or move it" + shape)
                 elif wc < WORST_WARN:
                     res["warns"].append(
                         f"worst-point contrast {wc:.1f} on '{node['text'][:40]}' "
                         f"(box mean {ratio:.1f}) -- below the rubric's 4.5 line "
-                        f"somewhere along the run of the text")
+                        f"somewhere along the run of the text" + shape)
             # canvas/bitmap-under-text tripwire (WARN only): the DOM collision
             # gate cannot see canvas ink, so busy art crossing a text line box
             # is otherwise invisible to the machine (2026-07-10 S3/S4 arcs).

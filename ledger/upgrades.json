@@ -2171,6 +2171,51 @@
       "verification": "HOLDS at 8 checks on 2026-09-09, 2026-09-07 and 2026-09-06, all three of which carry a prose note, AND on 2026-08-27, which is the run the test was written against and the one that carries a LIST note, so the <li> branch is still exercised and the No.42 repr regression is still caught. The red fixtures in steps 1 to 5, including the exact No.42 payload, are untouched.",
       "rollback": "Revert the upgrade(2026-09-09) commit, or individually: in tests/gmail_note_verify.py delete NOTE_KEYS and source_note() and restore step 6's `elif \"<li>\" not in sec` branch.",
       "commit": "the upgrade(2026-09-09) commit on branch tsturg/wonderful-maxwell-r1lccr; resolve with `git log --grep 'upgrade(2026-09-09)' --format=%H`. Not a literal sha because the sha cannot be written into the commit that carries it -- stamping it and amending changes it again, which is why the 2026-09-07 entries point at 2a02242, an object this repo does not have."
+    },
+    {
+      "run_date": "2026-09-10",
+      "kind": "fix",
+      "area": "engine",
+      "change": "A `data-scale` \"band\" that is not exactly two numbers is a hard FAIL that names the strip an [x,y,w,h] rect was probably meant to declare, and a census in which EVERY declared mark reads dead now hunts ACROSS the axis for the strip those same marks do occupy and prints it under the heading CHECK THE BAND BEFORE THE DRAWING. render.py carries the raw declaration alongside the two numbers it used to silently keep; the alternatives line no longer offers 'the nearest mark-strength ink' at ink 0.0 when the whole band is blank.",
+      "trigger": "Both slides in this run that declared a scale wrote `band` as an artwork rect: slide 04 declared [130,790,860,130] so the census sampled y130-790 while its ticks drew at y859, and slide 08 declared [170,640,740,72] and sampled y170-640 while its rule drew at y676. render.py kept the first two numbers and qa.py wanted two, so nothing complained; every mark reported ink 0.0 to 0.6 and the message ('no stronger than the band's own texture') describes a drawing that is too faint. Two repair rounds went to stroke weights. Nothing was wrong with either drawing.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        "tests/axis_band_verify.py"
+      ],
+      "verification": "tests/axis_band_verify.py ALL HOLD, three fixtures on one drawing: the [x,y,w,h] band FAILS and names \"band\":[660,700]; the same slide with band [660,700] is clean and its census reads all five marks; a two-number band aimed at blank ground WARNs and locates the marks' own strip at y678-708, which is where the ticks are drawn. Corpus regression: this run's nine slides re-rendered and re-judged, findings byte-identical to the shipped machine_qa.json (PASS); examples/demo-deck re-rendered and judged against a stashed-tree baseline, findings byte-identical (WARN, the same five). tests/clip_reserve_verify.py, tests/assert_clearance_verify.py and tests/empty_paint_verify.py still hold.",
+      "rollback": "Revert the upgrade(2026-09-10) commit, or individually: drop `band_declared` from render.py's scale block, and in qa.py delete _band_arity, _census_band_hunt, the band_declared branch in axis_census and the two band_hunt() call sites.",
+      "commit": "the upgrade(2026-09-10) commit on branch claude/carousel-2026-09-10; resolve with `git log --grep 'upgrade(2026-09-10)' --format=%H`"
+    },
+    {
+      "run_date": "2026-09-10",
+      "kind": "fix",
+      "area": "assets",
+      "change": "AKENGRAVE.punchReserves(ctx, boxes, {blur, pad}) is the committed way to knock measured type boxes out of a painted field: destination-out blurred RECTANGLES, on the offscreen canvas, one blur per box. The radial form is out of SKILL.md and TECHNIQUE_LIBRARY 93, and qa.py's worst-point contrast finding now names the radial punch as the cause when the two ENDS of a long line are its worst cells and its middle is healthy.",
+      "trigger": "Slide 08 inherited the radial destination-out punch from the documented idiom and carried two worst-point contrast findings for it. A radial punch's outer radius is half the box's longest side, so on a 900px line of type the circle has faded to nothing before the ends of the line and the field stays over the first and last words. The gate measured it correctly and called it a graded ground, whose printed repair ('give it a reserve or move it') was the thing already there.",
+      "files": [
+        "assets/js/akengrave.js",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "knowledge/TECHNIQUE_LIBRARY.md",
+        "tests/reserve_punch_verify.py"
+      ],
+      "verification": "tests/reserve_punch_verify.py ALL HOLD, two fixtures on one drawing: the radial punch FAILS at contrast 3.0 at worst point against a box mean of 15.7 and the finding now reads 'the two ENDS of this 850px line are the worst of it (3.0) while its middle reads 15.7 ... the fingerprint of a RADIAL destination-out reserve'; the same slide punched with AKENGRAVE.punchReserves has no worst-point finding at all, which is also the helper's own proof in Chromium against measured [data-reserve] boxes. Corpus regression as above: this run's nine slides and examples/demo-deck both byte-identical to their baselines, so the new sentence fires on nothing that ships.",
+      "rollback": "Revert the upgrade(2026-09-10) commit, or individually: delete punchReserves and its API entry from assets/js/akengrave.js, and in qa.py delete _reserve_shape_hint, the cells_out argument to contrast_worst_cell and the two `+ shape` call sites.",
+      "commit": "the upgrade(2026-09-10) commit on branch claude/carousel-2026-09-10; resolve with `git log --grep 'upgrade(2026-09-10)' --format=%H`"
+    },
+    {
+      "run_date": "2026-09-10",
+      "kind": "fix",
+      "area": "engine",
+      "change": "When a reads:\"differ\" encoding fails the dE floor and a quarter or more of either declared region is ground that MEASURED TEXT sits on, qa.py says that first and names it as the cause, because the house reserves type by punching the art out of it and a probe aimed there measures the hole. The floor, the verdict and the message for regions clear of type are unchanged.",
+      "trigger": "Slide 07's dense-vs-sparse hatch encoding collapsed to dE 0.8 the moment its reserve was punched correctly, and the failure message sent the repair at the hatch ('this probe is measuring the same thing twice ... open the PNG and author the rects from that'). The art was fine and the regions were aimed under the body copy.",
+      "files": [
+        ".claude/skills/carousel-engine/qa.py"
+      ],
+      "verification": "Reconstruction rendered and judged: two regions laid over a reserved headline fail with '100% of region A and 100% of region B is ground that measured TEXT sits on ... a probe aimed there is measuring the hole and not the encoding'. Negative control in the same slide: two regions on clear ground get the ORIGINAL message word for word, and a third declaration that genuinely reads (dE 9.7, AUC 0.73) still passes as info. Corpus regression as above: byte-identical findings on this run's nine slides and on examples/demo-deck.",
+      "rollback": "Revert the upgrade(2026-09-10) commit, or individually: in qa.py delete _enc_type_share, ENC_TYPE_SHARE/ENC_TYPE_PAD, the new branch above the differ FAIL, the text_boxes parameter and the tboxes block in the caller.",
+      "commit": "the upgrade(2026-09-10) commit on branch claude/carousel-2026-09-10; resolve with `git log --grep 'upgrade(2026-09-10)' --format=%H`"
     }
   ],
   "scan_log": [
@@ -2496,6 +2541,13 @@
       "searches": 5,
       "found": "5 searches, 3 fetches, 2 substantive reads, and the result is CORROBORATION of house doctrine from primary sources rather than a change to it. (1) LinkedIn rebuilt Feed ranking in March 2026 onto a transformer Generative Recommender over more than 1,000 historical interactions. Its industrial write-up (https://arxiv.org/html/2602.12354v1) says the model optimises exactly two things, LONG DWELL, 'dwelling on a post longer than a specified threshold of time, depending on the post-type', and CONTRIBUTION, a like/comment/share; and that the single most valuable context feature for predicting Long Dwell is bucketed dwell counts for the candidate post, 0-5s up to >60s, worth +2.5 percent absolute AUC alone. (2) LinkedIn's own engineering post on dwell (https://www.linkedin.com/blog/engineering/feed/understanding-feed-dwell-time) adds that on-feed dwell is counted only while at least HALF the update is visible, and the retrieval history is filtered to positively-engaged posts, so a skipped deck never enters the interest graph at all. CAROUSEL_CRAFT has said 'every swipe is dwell, and dwell is the metric' since the beginning and it is now confirmed from the source rather than from the marketing literature. The one net-new nuance: the threshold is PER POST TYPE, so a document post competes against the dwell distribution of other documents and not against video, which is an argument for slide count and depth rather than for brevity. Nothing here is a bounded engine change and nothing contradicts an existing gate. The much-repeated secondary claims about 2026 reach multipliers all trace to vendor blog posts with no method, and were not used.",
       "outcome": "nothing usable applied; parked to knowledge/FIELD_NOTES.md (2026-09-09 Phase 12 block) with both source URLs. The three upgrade slots filled reactive-first with defects that cost this run build rounds, which is the rule."
+    },
+    {
+      "run_date": "2026-09-10",
+      "focus": "(e) headless-Chromium/Playwright rendering capabilities. The stalest legal slot, last scanned 2026-09-02 (8 days), and distinct from the last three logged foci: 2026-09-09 LinkedIn platform, 2026-09-07 typography and layout, 2026-09-06 agent/automation workflow. Relevant as well as stale: every defect this run cost a round for is a canvas composite idiom, and the question of whether Chromium now does the offscreen-punch-composite dance natively is answerable in the engine's own binary.",
+      "searches": 5,
+      "found": "5 searches, 2 fetches, and 4 probes run against the Chromium render.py actually launches rather than against a compatibility table. (1) CANVAS2D LAYERS, THE ONE THAT WOULD MATTER, IS NOT AVAILABLE HERE. beginLayer()/endLayer() apply filter, globalAlpha, globalCompositeOperation and shadow to a GROUP of draws as one, which is precisely the offscreen-canvas-plus-drawImage pattern this house hand-writes for every reserve punch (https://github.com/fserb/canvas2D/blob/master/spec/layers.md). Probed in Chromium 141.0.7390.37: `typeof ctx.beginLayer` is 'undefined' by default AND under --enable-blink-features=CanvasContextLayers, and 'function' only under --enable-experimental-web-platform-features. Under that flag a blurred destination-out punch through a layer measures alpha 17 at the hole's centre, 112 at its edge, 255 outside, the same picture the one-line ctx.filter idiom already draws, so the gain is confined to punches of several ops at once and the price is a global experimental-features flag on every render of every deck. Parked. (2) HTML-IN-CANVAS (drawElement/placeElement, Google I/O 2026) would put real DOM type inside canvas art and invert the whole reserve idiom; absent in this binary even under the experimental flag. Parked. (3) CORROBORATION, no change: the standing advice on reproducible headless text, --font-render-hinting=none, --disable-lcd-text and --force-color-profile=srgb, is already all three in render.py's CHROMIUM_ARGS. Chrome 141's release notes (https://developer.chrome.com/release-notes/141) carry nothing for canvas, type, fonts, printing or headless.",
+      "outcome": "parked (knowledge/FIELD_NOTES.md, 2026-09-10 Phase 12 block, with the source URLs and the measured flag state). Nothing applied: the three upgrade slots filled reactive-first with defects that each cost this run a render-and-regate cycle, which is the rule."
     }
   ]
 }

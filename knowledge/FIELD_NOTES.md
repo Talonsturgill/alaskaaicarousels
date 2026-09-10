@@ -6746,3 +6746,56 @@ where the text is. Slide 07's declared regions collapsed from a real dense/spars
 contrast to dE 0.8 for precisely this reason. Aim encoding rects at ground that
 is clear of type in BOTH regions, and re-measure off the render after any change
 to the reserve pass.
+
+### 2026-09-10, Phase 12 (the upgrade engineer, after the merge)
+
+Three of the four lessons above are MACHINERY now rather than memory. A `band`
+that is not exactly two numbers is a hard fail in `qa.py` that prints the
+`[y0,y1]` an `[x,y,w,h]` rect was probably meant to say; a census where EVERY
+declared mark reads dead hunts across the axis for the strip those marks do
+occupy and names it, before anyone touches a stroke weight; the radial punch is
+gone from the documented idiom, replaced by `AKENGRAVE.punchReserves` (blurred
+rectangles), and the contrast gate now recognises the ends-worse-than-middle
+signature and names the radial punch as its cause. `tests/axis_band_verify.py`
+and `tests/reserve_punch_verify.py` are the reconstructions. The encoding
+failure also names a probe aimed at reserved ground before it blames the art.
+
+**PARKED: the log axis that declares a `data-scale`.** `axis_census` interpolates
+LINEARLY and its own docstring says a log axis must not declare one, and nothing
+enforces it, so a log-mapped rule prints values that are simply false about the
+deck. The check that would work compares each mark's own value against the
+linear reading, and the only place a mark's value lives today is `means`, which
+is PROSE. Measured against the six `data-scale` declarations in the shipped
+corpus, a first-number-in-the-string parse reads 10, 23, 28 and 29 out of "APRIL
+10TH POSTED", "APRIL 23RD INDUSTRY DAY" and their siblings on an axis whose
+values are 0 to 139 days: four of the six parse to nonsense, and two of those
+are monotone, which is most of what a fit test has to work with. A heuristic
+that confidently says something false about a deck is the opposite of what this
+gate is for. The version that works is a contract addition, an optional numeric
+`"value"` on each mark, checked against the linear reading and silent when
+absent; that is a slide-contract change with a documentation and adoption story,
+so it is its own session. Until then the discipline stands: withdraw the
+declaration and enumerate the marks in the dossier.
+
+**PARKED: Canvas2D layers, measured in this engine's own binary.**
+`beginLayer()`/`endLayer()` apply `filter`, `globalAlpha`,
+`globalCompositeOperation` and shadow to a GROUP of draws as one, which is
+exactly the offscreen-canvas-plus-drawImage pattern this house writes by hand
+(https://github.com/fserb/canvas2D/blob/master/spec/layers.md). Probed in the
+Chromium the engine actually launches, 141.0.7390.37: `beginLayer` is
+`undefined` by default and by `--enable-blink-features=CanvasContextLayers`, and
+a `function` only under `--enable-experimental-web-platform-features`. Under
+that flag a destination-out blurred punch through a layer measures alpha 17 at
+the centre of the hole, 112 at its edge and 255 outside it, which is the same
+picture the one-line `ctx.filter` idiom already draws. So the gain is only for
+punches of several ops at once, and the price is a global experimental-features
+flag on every render of every deck. Not worth it; revisit when the API ships
+unflagged. Also probed and absent even under the flag: the I/O 2026 HTML-in-
+Canvas API (`drawElement`/`placeElement`), which would put real DOM type inside
+canvas art and invert the whole reserve idiom.
+
+**CORROBORATION, no change: headless determinism.** The 2018-2020 body of
+advice on reproducible headless text (`--font-render-hinting=none`,
+`--disable-lcd-text`, `--force-color-profile=srgb`) is already in
+`render.py`'s `CHROMIUM_ARGS`, all three. Chrome 141's release notes carry
+nothing for canvas, type, fonts, printing or headless.

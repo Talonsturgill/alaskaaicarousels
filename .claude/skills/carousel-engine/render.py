@@ -1456,6 +1456,20 @@ IN_PAGE_QA_JS = """
         from: Array.isArray(sp.from) ? sp.from.slice(0, 2) : null,
         to: Array.isArray(sp.to) ? sp.to.slice(0, 2) : null,
         band: Array.isArray(sp.band) ? sp.band.slice(0, 2).map(Math.round) : null,
+        /* THE ARITY, AND THE NUMBERS THAT WERE THROWN AWAY (2026-09-10, No.55).
+           `band` is TWO numbers, the strip ACROSS the axis. Written as an
+           [x,y,w,h] rect it parsed anyway, because the slice above kept the
+           first two and qa.py found two numbers where it wanted two. Both
+           slides in this run that declared a scale did exactly that, the census
+           sampled a strip the rule does not occupy, and every mark reported ink
+           0.0 -- which reads as a drawing-weight problem and is not one. So the
+           raw declaration travels with the truncation, and qa.py FAILS a band
+           that is not exactly two numbers, naming the strip an [x,y,w,h] rect
+           was probably meant to say. */
+        band_declared: Array.isArray(sp.band)
+          ? sp.band.slice(0, 4).map(function (v) {
+              return typeof v === "number" && isFinite(v) ? v : null; })
+          : null,
         marks: (Array.isArray(sp.marks) ? sp.marks : []).slice(0, 60).map(m => ({
           at: (m && typeof m.at === "number") ? Math.round(m.at) : null,
           means: (m && typeof m.means === "string") ? m.means.trim().slice(0, 90) : ""
