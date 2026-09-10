@@ -2185,7 +2185,7 @@
       ],
       "verification": "tests/axis_band_verify.py ALL HOLD, three fixtures on one drawing: the [x,y,w,h] band FAILS and names \"band\":[660,700]; the same slide with band [660,700] is clean and its census reads all five marks; a two-number band aimed at blank ground WARNs and locates the marks' own strip at y678-708, which is where the ticks are drawn. Corpus regression: this run's nine slides re-rendered and re-judged, findings byte-identical to the shipped machine_qa.json (PASS); examples/demo-deck re-rendered and judged against a stashed-tree baseline, findings byte-identical (WARN, the same five). tests/clip_reserve_verify.py, tests/assert_clearance_verify.py and tests/empty_paint_verify.py still hold.",
       "rollback": "Revert the upgrade(2026-09-10) commit, or individually: drop `band_declared` from render.py's scale block, and in qa.py delete _band_arity, _census_band_hunt, the band_declared branch in axis_census and the two band_hunt() call sites.",
-      "commit": "the upgrade(2026-09-10) commit on branch claude/carousel-2026-09-10; resolve with `git log --grep 'upgrade(2026-09-10)' --format=%H`"
+      "commit": "d22d970b8628c0b97892bc1e1752e7ea47b39258 -- the upgrade(2026-09-10) commit on branch claude/carousel-2026-09-10. Stamped by the follow-up commit, because a commit cannot carry its own sha: re-resolve with `git log --grep 'upgrade(2026-09-10)' --format=%H` if this history is ever rewritten."
     },
     {
       "run_date": "2026-09-10",
@@ -2202,7 +2202,7 @@
       ],
       "verification": "tests/reserve_punch_verify.py ALL HOLD, two fixtures on one drawing: the radial punch FAILS at contrast 3.0 at worst point against a box mean of 15.7 and the finding now reads 'the two ENDS of this 850px line are the worst of it (3.0) while its middle reads 15.7 ... the fingerprint of a RADIAL destination-out reserve'; the same slide punched with AKENGRAVE.punchReserves has no worst-point finding at all, which is also the helper's own proof in Chromium against measured [data-reserve] boxes. Corpus regression as above: this run's nine slides and examples/demo-deck both byte-identical to their baselines, so the new sentence fires on nothing that ships.",
       "rollback": "Revert the upgrade(2026-09-10) commit, or individually: delete punchReserves and its API entry from assets/js/akengrave.js, and in qa.py delete _reserve_shape_hint, the cells_out argument to contrast_worst_cell and the two `+ shape` call sites.",
-      "commit": "the upgrade(2026-09-10) commit on branch claude/carousel-2026-09-10; resolve with `git log --grep 'upgrade(2026-09-10)' --format=%H`"
+      "commit": "d22d970b8628c0b97892bc1e1752e7ea47b39258 -- the upgrade(2026-09-10) commit on branch claude/carousel-2026-09-10. Stamped by the follow-up commit, because a commit cannot carry its own sha: re-resolve with `git log --grep 'upgrade(2026-09-10)' --format=%H` if this history is ever rewritten."
     },
     {
       "run_date": "2026-09-10",
@@ -2215,7 +2215,7 @@
       ],
       "verification": "Reconstruction rendered and judged: two regions laid over a reserved headline fail with '100% of region A and 100% of region B is ground that measured TEXT sits on ... a probe aimed there is measuring the hole and not the encoding'. Negative control in the same slide: two regions on clear ground get the ORIGINAL message word for word, and a third declaration that genuinely reads (dE 9.7, AUC 0.73) still passes as info. Corpus regression as above: byte-identical findings on this run's nine slides and on examples/demo-deck.",
       "rollback": "Revert the upgrade(2026-09-10) commit, or individually: in qa.py delete _enc_type_share, ENC_TYPE_SHARE/ENC_TYPE_PAD, the new branch above the differ FAIL, the text_boxes parameter and the tboxes block in the caller.",
-      "commit": "the upgrade(2026-09-10) commit on branch claude/carousel-2026-09-10; resolve with `git log --grep 'upgrade(2026-09-10)' --format=%H`"
+      "commit": "d22d970b8628c0b97892bc1e1752e7ea47b39258 -- the upgrade(2026-09-10) commit on branch claude/carousel-2026-09-10. Stamped by the follow-up commit, because a commit cannot carry its own sha: re-resolve with `git log --grep 'upgrade(2026-09-10)' --format=%H` if this history is ever rewritten."
     }
   ],
   "scan_log": [
