@@ -5807,17 +5807,17 @@
     },
     {
       "date": "2026-09-10",
-      "collected_utc": "2026-09-10T12:17:11Z",
+      "collected_utc": "2026-09-10T17:16:41Z",
       "collector_version": "1.1",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-09-10T01:02:00",
-        "source_timestamp_utc": "2026-09-10T09:02:00Z",
-        "inventory_mcf": 7654975,
-        "inventory_delta_mcf": 13950,
+        "source_timestamp": "2026-09-10T09:00:00",
+        "source_timestamp_utc": "2026-09-10T17:00:00Z",
+        "inventory_mcf": 7648351,
+        "inventory_delta_mcf": 7326,
         "storage_design_mcf": 13000000,
-        "inventory_pct_of_design": 58.9,
+        "inventory_pct_of_design": 58.8,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_facility_mcfd": 166000,
         "withdrawal_operating_mcfd": 150000,
@@ -5826,8 +5826,8 @@
         "injection_design_mcfd": 225000,
         "injection_facility_mcfd": 206320,
         "injection_operating_mcfd": 65660,
-        "injection_available_mcfd": 51710,
-        "injection_in_progress_mcfd": 13950,
+        "injection_available_mcfd": 58333,
+        "injection_in_progress_mcfd": 7327,
         "injection_restriction_mcfd": 65660,
         "capacity_identity_mismatches": [
           {
@@ -5846,17 +5846,9 @@
           }
         ],
         "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only. CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.",
-        "source_age_hours": 3.3
+        "source_age_hours": 0.3
       },
       "forecast": [
-        {
-          "date": "2026-09-10",
-          "hours": 21,
-          "mean_temp_f": 53.5,
-          "min_temp_f": 45,
-          "hdd65": 11.5,
-          "modeled_demand_mmcfd": 120
-        },
         {
           "date": "2026-09-11",
           "hours": 24,
@@ -5896,17 +5888,25 @@
           "min_temp_f": 50,
           "hdd65": 10.1,
           "modeled_demand_mmcfd": 116
+        },
+        {
+          "date": "2026-09-16",
+          "hours": 21,
+          "mean_temp_f": 53.7,
+          "min_temp_f": 49,
+          "hdd65": 11.3,
+          "modeled_demand_mmcfd": 120
         }
       ],
-      "forecast_source_updated": "2026-09-10T10:53:00+00:00",
+      "forecast_source_updated": "2026-09-10T15:53:48+00:00",
       "derived": {
-        "peak_forecast_date": "2026-09-10",
-        "peak_forecast_hdd": 11.5,
+        "peak_forecast_date": "2026-09-16",
+        "peak_forecast_hdd": 11.3,
         "peak_modeled_demand_mmcfd": 120,
         "forecast_window_demand_bcf": 0.7,
-        "storage_withdrawal_mmcfd": -13.9,
+        "storage_withdrawal_mmcfd": -7.3,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 63.8,
+        "days_cover_at_peak": 63.7,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -5952,7 +5952,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-10T12:17:11Z",
+          "fetched_utc": "2026-09-10T17:16:42Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -5961,7 +5961,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-10T12:17:11Z",
+          "fetched_utc": "2026-09-10T17:16:42Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -5970,7 +5970,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-10T12:17:12Z",
+          "fetched_utc": "2026-09-10T17:16:42Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -5979,9 +5979,7 @@
         "cingsa_capacity_identity_mismatch",
         "injection_restriction_active"
       ],
-      "reconciles_dates": [
-        "2026-09-09"
-      ]
+      "supersedes_posting": "2026-09-10T01:02:00"
     }
   ]
 }
