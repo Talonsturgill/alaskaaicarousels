@@ -652,6 +652,15 @@ annotation is the strongest pair):
     and No.27 went further and made `form` a STORY QUANTITY on every slide, with
     each frame printing `SURFACE = <what> (<claim-id>)`. That turns the craft into
     an editorial argument and it is the strongest use of this bench so far.
+    `AKENGRAVE.punchReserves(ctx, boxes, {blur, pad})` IS THE OTHER HALF OF THE
+    RESERVE, for a field the SLIDE's own loop drew rather than the bench: a
+    destination-out punch of BLURRED RECTANGLES on the offscreen canvas, before
+    the composite. Never a radial gradient. A radial punch's outer radius is half
+    the box's longest side, so on a 900px line of type the circle fades out
+    before the ends of the line and the field stays over the first and last
+    words; qa.py reads that as a worst-point contrast failure against a healthy
+    box mean and now names the cause. No.55 inherited the radial form on two
+    slides and both findings died on the one change.
     `reserve()` IS THE STRUCTURAL KILL FOR TEXT AGAINST GEOMETRY, a hard fail in
     3 of 10 runs, because qa.py's collision walk is DOM-only. It takes MEASURED
     boxes after `fonts.ready` and multiplies lay density to zero inside them with

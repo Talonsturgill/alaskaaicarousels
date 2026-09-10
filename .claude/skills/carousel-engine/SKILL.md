@@ -241,6 +241,29 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   `globalCompositeOperation = 'destination-out'`, which is order-independent
   and does not care how the boxes overlap. qa.py WARNs on the overlap and
   prints both rects. Reconstruction: `python tests/clip_reserve_verify.py`.
+
+  **And the punch is a BLURRED RECTANGLE, never a radial gradient**
+  (2026-09-10). A radial punch cannot reserve a long box: its outer radius is
+  half the box's longest side, so on a 900px line of type the circle has faded
+  to nothing well before the ends of the line and the field stays over the
+  first and last words while the middle is cleanly reserved. qa.py reports that
+  as a worst-point contrast failure against a HEALTHY box mean, and now names
+  the cause when the two ends of a long line are its worst cells. Run No.55
+  inherited the radial form on two slides and both findings died on this one
+  change:
+
+  ```js
+  const off = AKENGRAVE.drawOffscreen(W, H, g => { /* the field */ });
+  AKENGRAVE.punchReserves(off.getContext('2d'),
+                          AKENGRAVE.boxesFor('[data-reserve]'), {blur: 9});
+  cx.drawImage(off, 0, 0, W, H);
+  ```
+
+  A rect follows the SHAPE of the thing being reserved, so a wide headline and
+  a small mono stamp are both covered end to end, and the blur keeps the burin
+  fade the gradient was there to provide. `ctx.filter` applies PER DRAW OP, so
+  punch once on the offscreen canvas and never inside a stroke loop.
+  Reconstruction: `python tests/reserve_punch_verify.py`.
 - **A mark on a measured axis is a quantity, whatever it was drawn for**
   (2026-08-16). If a POSITION in the artwork carries a number (a money rail, a
   timeline, a bar baseline, a dated span), the slide declares the scale and

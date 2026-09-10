@@ -1,0 +1,335 @@
+<!doctype html>
+<!-- No.55 SLIDE 08 — FOURTEEN DAYS, READ TWICE. A linear day rule read in two directions, with two engraved lays at two pitches. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F0EADD; font-family:"Bricolage Grotesque",sans-serif; position:relative; }
+  #art { position:absolute; inset:0; }
+  #grain { position:absolute; inset:0; background-repeat:repeat;
+           mix-blend-mode:overlay; opacity:0.06; pointer-events:none; }
+  h2 { font-family:"Instrument Serif",serif; font-weight:400;
+       line-height:1.02; letter-spacing:-0.02em; color:#2B2F35; position:absolute; }
+  .body { position:absolute; font-weight:400; line-height:1.35; color:#2B2F35;
+          font-variation-settings:"wght" 400,"wdth" 96; }
+  .fig { font-family:"JetBrains Mono",monospace; font-weight:500;
+         font-variant-numeric:tabular-nums lining-nums; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:500;
+          letter-spacing:0.09em; text-transform:uppercase; color:#6B6255; position:absolute; }
+  .counter { position:absolute; right:96px; top:96px; font-family:"JetBrains Mono",monospace;
+             font-size:24px; font-weight:500; color:#46586A; font-variant-numeric:tabular-nums; }
+  .stamp { position:absolute; left:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+           font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+  .mark { position:absolute; right:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.14em; color:#6B6255; }
+  h2 { left:96px; top:172px; width:620px; font-size:66px; }
+  .ab { position:absolute; left:190px; top:430px; width:700px; font-size:33px;
+        line-height:1.32; color:#2B2F35; font-variation-settings:"wght" 400,"wdth" 96; }
+  .bl { position:absolute; left:190px; top:800px; width:700px; font-size:33px;
+        line-height:1.32; color:#2B2F35; font-variation-settings:"wght" 400,"wdth" 96; }
+  .brk { left:190px; top:556px; font-size:24px; }
+  .hon { left:96px; top:1032px; width:900px; font-size:24px; }
+  .st2 { position:absolute; left:96px; top:404px; font-family:"JetBrains Mono",monospace;
+         font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+</style>
+</head>
+<body data-scale='[{"what":"the fourteen day rule","axis":"x","unit":"days","from":[190,0],"to":[890,14],"band":[676,710],"marks":[{"at":190,"means":"day 0. Above, the moment a plate is scanned. Below, September 1st 2026, the night of the vote"},{"at":240,"means":"day 1"},{"at":290,"means":"day 2"},{"at":340,"means":"day 3, and the left end of the traffic overwrite bracket"},{"at":390,"means":"day 4"},{"at":440,"means":"day 5, and the right end of the traffic overwrite bracket"},{"at":490,"means":"day 6"},{"at":540,"means":"day 7"},{"at":590,"means":"day 8"},{"at":640,"means":"day 9"},{"at":690,"means":"day 10"},{"at":740,"means":"day 11"},{"at":790,"means":"day 12"},{"at":840,"means":"day 13"},{"at":890,"means":"day 14. Above, scanned plate data is deleted. Below, September 15th 2026"}]}]'
+      data-encodes='[{"claim":"the same length read in two directions","reads":"differ","a":[200,306,620,44],"b":[200,1160,620,44]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div id="grain" data-decorative></div>
+  <h2 data-reserve>Fourteen days, read twice.</h2>
+  <div class="ab" data-reserve>How long a scanned plate lives. Deleted after <span class="fig">14</span> days, per APD's own page.</div>
+  <div class="mono brk" data-reserve="mono">Traffic footage overwritten every 3 to 5 days</div>
+  <div class="bl" data-reserve>How long the rule waited. September 1st, 2026 to September 15th, 2026.</div>
+  <div class="mono hon" data-reserve="mono">Two fourteen day windows. The same length, not the same thing.</div>
+  <div class="st2" data-reserve="mono">FIRST IMPRESSION &middot; PRIMARY SOURCE, ABOVE</div>
+  <div class="counter" data-reserve="mono">08 / 09</div>
+  <div class="stamp" data-reserve="mono">SECOND IMPRESSION &middot; BELOW</div>
+  <div class="mark" data-reserve="mono">ALASKA.AI</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const W = 1080, H = 1350, SEED = 20260910;
+  const cv = document.getElementById("art"); let cx = cv.getContext("2d");
+  cx.scale(2, 2);
+  const P = { base:"#F0EADD", high:"#FBF7EE", tooth:"#E4DCCB", trough:"#CFC4AE",
+              ink:"#2B2F35", slate:"#46586A", ctx:"#6B6255", hatch:"#9A9182",
+              gold:"#FFC72C", deep:"#8E8471" };
+  const mix = (a,b,t) => AKC.mixOklab(a, b, Math.max(0, Math.min(1, t)));
+  /* A struck or lit shape is never a perfect axis-aligned box. These draw the
+     same regions as irregular closed paths, which is both fewer rectangles and
+     a truer edge: paper under a plate does not give a ruler-straight boundary. */
+  function pathRect(x, y, w, h, jit, seed) {
+    jit = jit == null ? 1.1 : jit;
+    const r = AK.rng((seed || 1) + 97);
+    const pts = [];
+    const stepX = Math.max(10, w / 8), stepY = Math.max(8, h / 4);
+    for (let t = 0; t <= w; t += stepX) pts.push([x + t, y + (r() - 0.5) * jit]);
+    for (let t = 0; t <= h; t += stepY) pts.push([x + w + (r() - 0.5) * jit, y + t]);
+    for (let t = w; t >= 0; t -= stepX) pts.push([x + t, y + h + (r() - 0.5) * jit]);
+    for (let t = h; t >= 0; t -= stepY) pts.push([x + (r() - 0.5) * jit, y + t]);
+    cx.beginPath();
+    pts.forEach((p, i) => i === 0 ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]));
+    cx.closePath();
+  }
+  function fillQuad(x, y, w, h, style, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.fillStyle = style; cx.fill();
+  }
+  function strokeQuad(x, y, w, h, style, lw, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.strokeStyle = style; cx.lineWidth = lw; cx.stroke();
+  }
+
+  const rnd = AK.rng(SEED + 8);
+  const KEY = 296 * Math.PI / 180;
+  cx.fillStyle = P.base; cx.fillRect(0, 0, W, H);
+
+  /* --- laid paper, house furniture, identical everywhere by design --------- */
+  function laidPaper(bend) {
+    cx.save(); cx.lineWidth = 0.75;
+    for (let y = 4; y < H; y += 3.1) {
+      cx.beginPath();
+      for (let x = 0; x <= W; x += 10) {
+        const yy = y + (bend ? bend(x, y) : 0);
+        x === 0 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.075)"; cx.stroke();
+    }
+    cx.lineWidth = 1.3;
+    for (let x = 12; x < W; x += 26) {
+      cx.beginPath();
+      for (let y = 0; y <= H; y += 8) {
+        const xx = x + (bend ? bend(x, y) * 0.42 : 0);
+        y === 0 ? cx.moveTo(xx, y) : cx.lineTo(xx, y);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.085)"; cx.stroke();
+    }
+    cx.restore();
+  }
+  function litPool(x, y, w, h) {
+    const g = cx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0, "rgba(251,247,238,0)");
+    g.addColorStop(0.42, "rgba(251,247,238,0.66)");
+    g.addColorStop(1, "rgba(251,247,238,0)");
+    cx.save(); cx.globalCompositeOperation = "screen";
+    cx.fillStyle = g; pathRect(x, y, w, h, 2.4, 11); cx.fill(); cx.restore();
+  }
+  /* A deboss is ALWAYS a lit upper lip and a lee lower lip, never one stroke. */
+  function deboss(x, y, w, h, depth) {
+    for (let i = 0; i < h; i++) {
+      const v = i / h; let col, a;
+      if (v < 0.11) { col = P.high; a = 1.0; }
+      else if (v < 0.66) { col = mix(P.tooth, "#A99E86", (v - 0.11) / 0.55); a = 0.92 * depth; }
+      else { col = mix("#A99E86", P.base, (v - 0.66) / 0.34); a = 0.86 * depth * (1 - (v - 0.66) / 0.34) + 0.1; }
+      cx.fillStyle = col; cx.globalAlpha = a;
+      cx.fillRect(x, y + i, w, 1);
+    }
+    cx.globalAlpha = 1;
+  }
+  function registration() {
+    const rx = 984, ry = 176, r = 20;
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.arc(rx, ry, r, 0, 7); cx.stroke();
+    cx.beginPath(); cx.moveTo(rx-r-8,ry); cx.lineTo(rx+r+8,ry);
+    cx.moveTo(rx,ry-r-8); cx.lineTo(rx,ry+r+8); cx.stroke();
+    cx.fillStyle = P.gold; cx.beginPath();
+    for (let i=0;i<8;i++){const a=i*Math.PI/4,rr=(i%2===0)?7.5:2.6;
+      const px=rx+Math.cos(a)*rr,py=ry+Math.sin(a)*rr; i===0?cx.moveTo(px,py):cx.lineTo(px,py);}
+    cx.closePath(); cx.fill();
+  }
+  /* The three motif squares, 34px, footer furniture opposite the counter. */
+  function motif(state) {
+    const y = 1238, s = 34;
+    const xs = [600, 646, 692];
+    function sq(x, kind) {
+      if (kind === "none") return;
+      cx.save();
+      if (kind === "gold" || kind === "worn") {
+        fillQuad(x, y, s, s, P.gold, 1.0, 5);
+        cx.strokeStyle = P.ink; cx.lineWidth = kind === "worn" ? 1.0 : 1.8;
+        if (kind === "worn") { cx.globalAlpha = 0.62; }
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "solid") {
+        cx.strokeStyle = P.slate; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "phantom") {
+        cx.setLineDash([30, 5, 6, 5, 6, 5]); cx.lineWidth = 1.25;
+        cx.strokeStyle = P.slate; strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "blind") {
+        cx.strokeStyle = "rgba(251,247,238,0.95)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y - 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 7);
+        cx.strokeStyle = "rgba(154,145,130,0.55)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 1.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 8);
+      }
+      cx.restore();
+    }
+    sq(xs[0], state[0]); sq(xs[1], state[1]); sq(xs[2], state[2]);
+  }
+  function finish() {
+    registration();
+    if (window.AKPOST && AKPOST.grade) {
+      AKPOST.grade(cx, { exposure:-0.06, saturation:0.94, contrast:1.03, sharpen:0.30,
+                         dither:true, aberration:0,
+                         bloom:{ threshold:0.90, strength:0.08, radius:8 } });
+    }
+    document.getElementById("grain").style.backgroundImage =
+      "url(" + AK.grainTile(280, 52, SEED) + ")";
+  }
+  const eng = AKENGRAVE.create({ seed:SEED, light:{ azDeg:296, elDeg:26 } });
+  eng.reserve(AKENGRAVE.boxesFor("[data-reserve]"));
+
+  laidPaper(null);
+
+  const AX = { x0:190, x1:890, y:676, days:14 };
+  const PD = (AX.x1 - AX.x0) / AX.days;                  /* 50.0 px per day */
+
+  /* ---- TWO LAYS AT TWO PITCHES. The mirrored read is carried by the
+     ENGRAVING, not by colour. Fine mechanical above, coarse hand below.
+     Both forms carry an x term so the iso-lines are not parallel to the
+     seeding raster, which is the lay-collapse case. --------------------- */
+  /* THE MIRRORED READ IS CARRIED BY THE ENGRAVING, not by colour. Above the
+     rule a fine mechanical lay at tight pitch, the machine's clock. Below it a
+     coarse hand lay at wide pitch and a different angle, the chamber's clock.
+     Same key, same light, same ink. */
+  const RESERVED = AKENGRAVE.boxesFor("[data-reserve]", { padBody: 20, padMono: 16 });
+  function layField(y0, y1, pitch, ang, wMax, alpha, seed, wob, grow) {
+    const r = AK.rng(seed);
+    const off = document.createElement("canvas");
+    off.width = W * 2; off.height = H * 2;
+    const oc = off.getContext("2d"); oc.scale(2, 2);
+    const real = cx, cxSaved = cx;
+    cx = oc;                                    /* draw the field offscreen */
+    cx.save(); cx.beginPath(); cx.rect(0, y0, W, y1 - y0); cx.clip();
+    cx.lineCap = "butt";
+    const dx = Math.tan(ang) * (y1 - y0);
+    for (let k = -Math.abs(dx) - 80; k < W + Math.abs(dx) + 80; k += pitch) {
+      const jitter = 0.62 + 0.38 * r();
+      let px = null, py = null;
+      for (let y = y0; y <= y1; y += 6) {
+        const t = (y - y0) / (y1 - y0);
+        const swell = grow ? Math.pow(t, 0.55) : Math.sin(Math.PI * t);
+        const x = k + Math.tan(ang) * (y - y0) + Math.sin(y * 0.013 + k * 0.01) * wob;
+        if (px !== null) {
+          /* ONE STROKE PER SEGMENT, so the line actually swells with the form */
+          cx.beginPath(); cx.moveTo(px, py); cx.lineTo(x, y);
+          cx.lineWidth = 0.35 + wMax * swell * jitter;
+          cx.strokeStyle = "rgba(92,83,66," + (alpha * (0.34 + 0.66 * swell) * jitter) + ")";
+          cx.stroke();
+        }
+        px = x; py = y;
+      }
+    }
+    cx.restore();
+    /* punch the type's own measured boxes out of the field, with a feather so
+       the boundary reads as a burin fading rather than a rectangular hole */
+    /* A RADIAL punch cannot reserve a LONG box. The gradient's outer radius is
+       half the box's longest side, so on a 900px line of type the circle has
+       already faded to nothing well before the ends of the run, and the first
+       and last words keep the field over them. That is what a worst-point
+       contrast failure "somewhere along the run of the text" is, against a
+       healthy box mean. Punch a blurred RECTANGLE instead: it follows the
+       shape of the thing being reserved, so a wide line and a small stamp are
+       both covered end to end, and the blur keeps the burin fade. */
+    oc.save(); oc.globalCompositeOperation = "destination-out";
+    oc.filter = "blur(9px)";
+    oc.fillStyle = "rgba(0,0,0,1)";
+    RESERVED.forEach(function (b) {
+      oc.fillRect(b[0] - 7, b[1] - 7, b[2] + 14, b[3] + 14);
+    });
+    oc.filter = "none";
+    oc.restore();
+    cx = cxSaved;
+    cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0);
+    cx.drawImage(off, 0, 0); cx.restore();
+  }
+  layField(292, 640, 6.0, 0.20, 1.5, 0.30, SEED + 71, 1.6, false);
+  /* the coarse HAND lay below the rule, the chamber's clock. Densest at the
+     bottom margin, which is where the burin bites deepest and where this
+     frame's mass belongs. */
+  layField(AX.y + 40, 1320, 7.5, -0.34, 5.6, 1.0, SEED + 72, 4.2, true);
+
+  /* ---- the day rule, a cased tapered polygon with a modeled bite edge ---- */
+  (function rule() {
+    /* casing so the rule survives both grounds */
+    cx.fillStyle = P.base;
+    pathRect(AX.x0 - 22, AX.y - 8, (AX.x1 - AX.x0) + 44, 16, 1.0, 51); cx.fill();
+    cx.beginPath();
+    cx.moveTo(AX.x0 - 16, AX.y - 2.5); cx.lineTo(AX.x1 + 8, AX.y - 2.0);
+    cx.lineTo(AX.x1 + 8, AX.y + 2.0); cx.lineTo(AX.x0 - 16, AX.y + 2.5);
+    cx.closePath(); cx.fillStyle = P.slate; cx.fill();
+    fillQuad(AX.x0 - 16, AX.y + 2.5, (AX.x1 + 24) - AX.x0, 1.5, "rgba(96,88,74,0.45)", 0.6, 52);
+  })();
+
+  /* 15 integer day ticks. 0, 7 and 14 labelled and taller. Nothing else. */
+  cx.save();
+  cx.font = '500 22px "JetBrains Mono", monospace';
+  cx.textAlign = "center";
+  for (let d = 0; d <= AX.days; d++) {
+    const x = AX.x0 + d * PD, big = (d === 0 || d === 7 || d === 14);
+    cx.strokeStyle = big ? P.slate : "rgba(107,98,85,0.88)";
+    cx.lineWidth = big ? 3.6 : 2.4;
+    const h = big ? 30 : 28;
+    cx.beginPath(); cx.moveTo(x, AX.y + 4); cx.lineTo(x, AX.y + 4 + h); cx.stroke();
+    if (big) { cx.fillStyle = P.slate; cx.fillText(String(d), x, AX.y + 52); }
+  }
+  cx.restore();
+
+  /* the 3 to 5 day bracket, ABOVE the line only */
+  (function bracket() {
+    const a = AX.x0 + 3 * PD, b = AX.x0 + 5 * PD, y = AX.y - 26;
+    cx.save(); cx.strokeStyle = P.slate; cx.lineWidth = 1.6;
+    cx.beginPath(); cx.moveTo(a, y - 12); cx.lineTo(a, y + 6);
+    cx.moveTo(b, y - 12); cx.lineTo(b, y + 6); cx.stroke();
+    cx.beginPath(); cx.moveTo(a, y); cx.lineTo(b, y); cx.stroke();
+    const head = (x, dir) => { cx.beginPath(); cx.moveTo(x, y);
+      cx.lineTo(x + dir * 15, y - 5.0); cx.lineTo(x + dir * 15, y + 5.0);
+      cx.closePath(); cx.fillStyle = P.slate; cx.fill(); };
+    head(a, 1); head(b, -1);
+    cx.restore();
+  })();
+
+  /* the struck stop at day 14, crossing the rule and read both ways */
+  (function stop() {
+    const x = AX.x1;
+    fillQuad(x - 3, AX.y - 34, 6, 68, P.slate, 0.7, 53);
+    fillQuad(x + 3, AX.y - 34, 2.2, 68, "rgba(96,88,74,0.42)", 0.6, 54);
+  })();
+
+  /* the two termini drop into the lower third, each ending on a struck marker,
+     so the frame's bottom carries the below-the-line read rather than nothing */
+  (function dropLines() {
+    [[AX.x0, "SEPTEMBER 1ST"], [AX.x1, "SEPTEMBER 15TH"]].forEach(function (d, i) {
+      const x = d[0];
+      cx.save();
+      cx.strokeStyle = "rgba(70,88,106,0.72)"; cx.lineWidth = 1.6;
+      cx.setLineDash([14, 7]);
+      cx.beginPath(); cx.moveTo(x, AX.y + 62); cx.lineTo(x, 1096); cx.stroke();
+      cx.setLineDash([]);
+      /* a struck marker, lit upper lip and lee, sitting on the hand lay */
+      litPool(x - 62, 1096, 124, 54);
+      cx.fillStyle = "rgba(100,91,75,0.62)";
+      cx.beginPath(); cx.ellipse(x + 7, 1136, 34, 8, 0, 0, 7); cx.fill();
+      const g = cx.createLinearGradient(x - 30, 1100, x + 30, 1132);
+      g.addColorStop(0, "#FBF7EE"); g.addColorStop(1, "#BEB49C");
+      cx.fillStyle = g; pathRect(x - 30, 1100, 60, 30, 1.1, 55 + i); cx.fill();
+      strokeQuad(x - 30, 1100, 60, 30, P.slate, 1.6, 1.0, 57 + i);
+      cx.fillStyle = "rgba(96,88,74,0.58)"; 
+      fillQuad(x - 30, 1130, 60, 2.6, "rgba(96,88,74,0.58)", 0.6, 59 + i);
+      cx.restore();
+    });
+  })();
+
+  motif(["gold", "solid", "worn"]);
+
+  finish();
+})();
+</script>
+</body>
+</html>

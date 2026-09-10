@@ -1,0 +1,69 @@
+{
+ "run_date": "2026-09-10",
+ "carousel_no": 55,
+ "weighted_total": 8.2,
+ "threshold": 7.7,
+ "ship": true,
+ "scoring_cycle": 2,
+ "hard_fails_all_pass": true,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "score": 6,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "score": 8,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density and factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "score": 8,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice and hook",
+   "score": 8,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 6,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(8x0.14)+(8x0.14)+(6x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(7x0.08)+(8x0.07)+(8x0.05)+(6x0.10) = 1.12+1.12+0.96+1.12+0.96+0.80+0.56+0.56+0.40+0.60 = 8.20. No hard fail, so no 6.9 cap applies.",
+ "weakest_criterion": "Artwork craft and genuine detail",
+ "one_sentence_fix": "Replace every detached elliptical shadow pool on slides 01, 02, 03, 05, 07 and 09 with the two-part contact the dossier already promises, a hard near-unblurred occlusion seam drawn LAST at the object's own foot plus the wider ambient term beyond it, using the ATTACHED COLLAR technique already logged in ledger/artwork.json under No.52 (draw the occluder wider than its object, then blur, so a ring of occlusion survives outside the silhouette), because that single change fixes the deck-wide physics inconsistency that is costing the heaviest-weighted criterion and it simultaneously stops slide 02's dark pools from reading as a third counter state.",
+ "disclosed_shortfalls": [
+  "The Municipality of Anchorage blind emboss stays withdrawn from slide 04, so the deck carries no Alaskan geography in its artwork. It rendered as a fingerprint whorl and asserting camera locations would have been this deck's worst available error.",
+  "Contact shadows are detached elliptical pools rather than the attached two-part contacts eight dossier acceptance boxes promise. This is the weakest criterion and the named work order for the next deck."
+ ],
+ "notes": "Scored by the scorer agent on the repaired render. The agent had no write tool, so this file was persisted by the showrunner from its returned JSON without alteration to any score, weight or total."
+}

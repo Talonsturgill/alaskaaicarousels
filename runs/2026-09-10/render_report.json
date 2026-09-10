@@ -1,0 +1,4689 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "UPDATE TO NO. 40 \u00b7 ANCHORAGE ASSEMBLY, SEPTEMBER 1ST, 2026",
+          "texts": [
+            "UPDATE TO NO. 40 \u00b7 ANCHORAGE ASSEMBLY, SEPTEMBER 1ST, 2026"
+          ],
+          "full": "UPDATE TO NO. 40 \u00b7 ANCHORAGE ASSEMBLY, SEPTEMBER 1ST, 2026",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 150,
+          "w": 840,
+          "h": 70,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              150,
+              682,
+              35
+            ],
+            [
+              96,
+              185,
+              341,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "UPDATE. $598,998 passed 8 to 4. The rule got no vote.",
+          "texts": [
+            "UPDATE.",
+            "passed",
+            "to",
+            ".",
+            "The rule got no vote."
+          ],
+          "full": "UPDATE. $598,998 passed 8 to 4. The rule got no vote.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 330,
+          "w": 872,
+          "h": 309,
+          "font_px": 104,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              313,
+              318,
+              135
+            ],
+            [
+              96,
+              416,
+              239,
+              135
+            ],
+            [
+              387,
+              416,
+              96,
+              135
+            ],
+            [
+              535,
+              416,
+              20,
+              135
+            ],
+            [
+              96,
+              519,
+              671,
+              135
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "$598,998",
+          "texts": [
+            "$598,998"
+          ],
+          "full": "$598,998",
+          "tag": "span",
+          "unsized": false,
+          "x": 414,
+          "y": 326,
+          "w": 412,
+          "h": 116,
+          "font_px": 88,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              414,
+              326,
+              412,
+              116
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "8",
+          "texts": [
+            "8"
+          ],
+          "full": "8",
+          "tag": "span",
+          "unsized": false,
+          "x": 335,
+          "y": 429,
+          "w": 51,
+          "h": 116,
+          "font_px": 88,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              335,
+              429,
+              51,
+              116
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "4",
+          "texts": [
+            "4"
+          ],
+          "full": "4",
+          "tag": "span",
+          "unsized": false,
+          "x": 483,
+          "y": 429,
+          "w": 51,
+          "h": 116,
+          "font_px": 88,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              483,
+              429,
+              51,
+              116
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "01 / 09",
+          "texts": [
+            "01 / 09"
+          ],
+          "full": "01 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 883,
+          "y": 96,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              883,
+              96,
+              101,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SECOND IMPRESSION \u00b7 REPORTED",
+          "texts": [
+            "SECOND IMPRESSION \u00b7 REPORTED"
+          ],
+          "full": "SECOND IMPRESSION \u00b7 REPORTED",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1241,
+          "w": 464,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1241,
+              464,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 824,
+          "y": 1241,
+          "w": 160,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1241,
+              160,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "8",
+          "fn": "fillText",
+          "font": "500 52px \"JetBrains Mono\", monospace",
+          "x": 202,
+          "y": 873,
+          "w": 31.200027465820312,
+          "align": "center",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 372.7999725341797,
+          "dev_right": 435.2000274658203,
+          "ink_left": 378.7999725341797,
+          "ink_right": 428.7999725341797,
+          "ink_top": 1696.375,
+          "ink_bottom": 1776.375,
+          "sy": 2
+        },
+        {
+          "text": "4",
+          "fn": "fillText",
+          "font": "500 52px \"JetBrains Mono\", monospace",
+          "x": 256,
+          "y": 873,
+          "w": 31.200027465820312,
+          "align": "center",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 480.7999725341797,
+          "dev_right": 543.2000274658203,
+          "ink_left": 486.7999725341797,
+          "ink_right": 532.7999725341797,
+          "ink_top": 1698.375,
+          "ink_bottom": 1774.375,
+          "sy": 2
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "one item is filled and one is empty",
+          "reads": "differ",
+          "a": [
+            [
+              150,
+              792,
+              158,
+              158
+            ]
+          ],
+          "b": [
+            [
+              408,
+              792,
+              158,
+              158
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "struck square A, the money",
+          "shadow": [
+            [
+              261,
+              950,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              318,
+              950,
+              26,
+              10
+            ]
+          ]
+        },
+        {
+          "what": "struck square B, the rule",
+          "shadow": [
+            [
+              468,
+              950,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              383,
+              950,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 2533,
+        "sites": 10,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-01.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3336,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 214.7,
+          "variance": 253.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-10/slides/slide-01.html",
+        "sha1": "8b35079f6c89a6b3d2be68c4b99465e8ab5f8ce3"
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Three of the four no votes wrote the rule.",
+          "texts": [
+            "Three of the four no votes wrote the rule."
+          ],
+          "full": "Three of the four no votes wrote the rule.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 186,
+          "w": 760,
+          "h": 159,
+          "font_px": 78,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              175,
+              632,
+              101
+            ],
+            [
+              96,
+              255,
+              359,
+              101
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Keith McCormick, Daniel Volland and Sydney Scout proposed AO 2026-108. All three",
+          "texts": [
+            "Keith McCormick, Daniel Volland and Sydney Scout proposed AO 2026-108. All three voted against the money. They lost",
+            "to",
+            "on the night of September 1st, 2026."
+          ],
+          "full": "Keith McCormick, Daniel Volland and Sydney Scout proposed AO 2026-108. All three voted against the money. They lost 8 to 4 on the night of September 1st, 2026.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 392,
+          "w": 660,
+          "h": 259,
+          "font_px": 38,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              395,
+              599,
+              45
+            ],
+            [
+              96,
+              447,
+              621,
+              45
+            ],
+            [
+              96,
+              498,
+              649,
+              45
+            ],
+            [
+              96,
+              551,
+              70,
+              45
+            ],
+            [
+              189,
+              551,
+              51,
+              45
+            ],
+            [
+              263,
+              551,
+              441,
+              45
+            ],
+            [
+              96,
+              603,
+              148,
+              45
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "8",
+          "texts": [
+            "8"
+          ],
+          "full": "8",
+          "tag": "span",
+          "unsized": false,
+          "x": 166,
+          "y": 547,
+          "w": 23,
+          "h": 50,
+          "font_px": 38,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              166,
+              547,
+              23,
+              50
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "4",
+          "texts": [
+            "4"
+          ],
+          "full": "4",
+          "tag": "span",
+          "unsized": false,
+          "x": 241,
+          "y": 547,
+          "w": 23,
+          "h": 50,
+          "font_px": 38,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              241,
+              547,
+              23,
+              50
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "Tally, not a seating map",
+          "texts": [
+            "Tally, not a seating map"
+          ],
+          "full": "Tally, not a seating map",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1156,
+          "w": 431,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1156,
+              431,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "texts": [
+            "02 / 09"
+          ],
+          "full": "02 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 883,
+          "y": 96,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              883,
+              96,
+              101,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SECOND IMPRESSION \u00b7 REPORTED",
+          "texts": [
+            "SECOND IMPRESSION \u00b7 REPORTED"
+          ],
+          "full": "SECOND IMPRESSION \u00b7 REPORTED",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1241,
+          "w": 464,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1241,
+              464,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 824,
+          "y": 1241,
+          "w": 160,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1241,
+              160,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SPONSOR",
+          "texts": [
+            "SPONSOR"
+          ],
+          "full": "SPONSOR",
+          "tag": "div",
+          "unsized": false,
+          "x": 445,
+          "y": 1023,
+          "w": 144,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              459,
+              1025,
+              116,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SPONSOR",
+          "texts": [
+            "SPONSOR"
+          ],
+          "full": "SPONSOR",
+          "tag": "div",
+          "unsized": false,
+          "x": 565,
+          "y": 1088,
+          "w": 144,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              579,
+              1090,
+              116,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SPONSOR",
+          "texts": [
+            "SPONSOR"
+          ],
+          "full": "SPONSOR",
+          "tag": "div",
+          "unsized": false,
+          "x": 684,
+          "y": 1156,
+          "w": 144,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              698,
+              1158,
+              116,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "eight faces are filled and four are open",
+          "reads": "differ",
+          "a": [
+            [
+              300,
+              880,
+              200,
+              96
+            ]
+          ],
+          "b": [
+            [
+              640,
+              900,
+              200,
+              96
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "counter 01 on the arc",
+          "shadow": [
+            [
+              256,
+              994,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              228,
+              994,
+              26,
+              10
+            ]
+          ]
+        },
+        {
+          "what": "counter 12 on the arc",
+          "shadow": [
+            [
+              808,
+              994,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              713,
+              994,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 818,
+        "sites": 12,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-02.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3149,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 222,
+          "variance": 120.4
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "no vote 9, a sponsor of AO 2026-108",
+          "to": [
+            667.3,
+            913.2
+          ],
+          "at": [
+            667.3,
+            913.2
+          ],
+          "from": [
+            517.3,
+            1023.2
+          ],
+          "label": "SPONSOR"
+        },
+        {
+          "target": "no vote 10, a sponsor of AO 2026-108",
+          "to": [
+            717,
+            925.8
+          ],
+          "at": [
+            717,
+            925.8
+          ],
+          "from": [
+            637,
+            1087.8
+          ],
+          "label": "SPONSOR"
+        },
+        {
+          "target": "no vote 11, a sponsor of AO 2026-108",
+          "to": [
+            765.5,
+            942.5
+          ],
+          "at": [
+            765.5,
+            942.5
+          ],
+          "from": [
+            755.5,
+            1156.5
+          ],
+          "label": "SPONSOR"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-10/slides/slide-02.html",
+        "sha1": "f2c0e4ec342d995e44e738dd2ec4762c35e15270"
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "What the money is, and what it is not.",
+          "texts": [
+            "What the money is, and what it is not."
+          ],
+          "full": "What the money is, and what it is not.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 180,
+          "w": 740,
+          "h": 151,
+          "font_px": 74,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              169,
+              731,
+              96
+            ],
+            [
+              96,
+              244,
+              141,
+              96
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The $598,998 comes from federal asset forfeitures, per a memorandum submitted to",
+          "texts": [
+            "The",
+            "comes from federal asset forfeitures, per a memorandum submitted to the Assembly. Chief Sean Case says it moves the crime center to its final location."
+          ],
+          "full": "The $598,998 comes from federal asset forfeitures, per a memorandum submitted to the Assembly. Chief Sean Case says it moves the crime center to its final location.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 812,
+          "w": 420,
+          "h": 244,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              815,
+              55,
+              36
+            ],
+            [
+              295,
+              815,
+              166,
+              36
+            ],
+            [
+              96,
+              856,
+              398,
+              36
+            ],
+            [
+              96,
+              896,
+              411,
+              36
+            ],
+            [
+              96,
+              937,
+              356,
+              36
+            ],
+            [
+              96,
+              977,
+              406,
+              36
+            ],
+            [
+              96,
+              1018,
+              249,
+              36
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "$598,998",
+          "texts": [
+            "$598,998"
+          ],
+          "full": "$598,998",
+          "tag": "span",
+          "unsized": false,
+          "x": 151,
+          "y": 812,
+          "w": 144,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              151,
+              812,
+              144,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "The Assembly approved $11.8 million last year for the underlying system. ADN rep",
+          "texts": [
+            "The Assembly approved",
+            "last year for the underlying system. ADN reported the Assembly considered a",
+            "ThunderCat contract."
+          ],
+          "full": "The Assembly approved $11.8 million last year for the underlying system. ADN reported the Assembly considered a $600,000 ThunderCat contract.",
+          "tag": "div",
+          "unsized": false,
+          "x": 566,
+          "y": 812,
+          "w": 420,
+          "h": 246,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              815,
+              324,
+              36
+            ],
+            [
+              692,
+              857,
+              217,
+              36
+            ],
+            [
+              566,
+              897,
+              315,
+              36
+            ],
+            [
+              566,
+              938,
+              303,
+              36
+            ],
+            [
+              566,
+              979,
+              178,
+              36
+            ],
+            [
+              566,
+              1020,
+              279,
+              36
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "$11.8 million",
+          "texts": [
+            "$11.8 million"
+          ],
+          "full": "$11.8 million",
+          "tag": "span",
+          "unsized": false,
+          "x": 566,
+          "y": 812,
+          "w": 414,
+          "h": 82,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              890,
+              812,
+              90,
+              40
+            ],
+            [
+              566,
+              854,
+              126,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "$600,000",
+          "texts": [
+            "$600,000"
+          ],
+          "full": "$600,000",
+          "tag": "span",
+          "unsized": false,
+          "x": 744,
+          "y": 976,
+          "w": 144,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              744,
+              976,
+              144,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "Different appropriations. Not one total.",
+          "texts": [
+            "Different appropriations. Not one total."
+          ],
+          "full": "Different appropriations. Not one total.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 706,
+          "w": 718,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              706,
+              718,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "texts": [
+            "03 / 09"
+          ],
+          "full": "03 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 883,
+          "y": 96,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              883,
+              96,
+              101,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SECOND IMPRESSION \u00b7 REPORTED",
+          "texts": [
+            "SECOND IMPRESSION \u00b7 REPORTED"
+          ],
+          "full": "SECOND IMPRESSION \u00b7 REPORTED",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1241,
+          "w": 464,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1241,
+              464,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 824,
+          "y": 1241,
+          "w": 160,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1241,
+              160,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "a dimension bracket that does not close",
+          "reads": "differ",
+          "a": [
+            [
+              330,
+              753,
+              110,
+              12
+            ]
+          ],
+          "b": [
+            [
+              486,
+              753,
+              110,
+              12
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the stop block on the sheet",
+          "shadow": [
+            [
+              150,
+              1172,
+              760,
+              9
+            ]
+          ],
+          "ground": [
+            [
+              150,
+              1192,
+              760,
+              14
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 44,
+        "sites": 14,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-03.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 2964,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 220.6,
+          "variance": 209.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-10/slides/slide-03.html",
+        "sha1": "383db78182f120a240fc1ab934421b04e5d8439e"
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "750 is the ceiling, not the count.",
+          "texts": [
+            "is the ceiling, not the count."
+          ],
+          "full": "750 is the ceiling, not the count.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 176,
+          "w": 900,
+          "h": 71,
+          "font_px": 70,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              211,
+              166,
+              618,
+              91
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "750",
+          "texts": [
+            "750"
+          ],
+          "full": "750",
+          "tag": "span",
+          "unsized": false,
+          "x": 96,
+          "y": 168,
+          "w": 115,
+          "h": 87,
+          "font_px": 66,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              168,
+              115,
+              87
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            0
+          ]
+        },
+        {
+          "text": "Log scale, base 10. Each decade is ten times the last.",
+          "texts": [
+            "Log scale, base 10. Each decade is ten times the last."
+          ],
+          "full": "Log scale, base 10. Each decade is ten times the last.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 300,
+          "w": 894,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              300,
+              894,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The gap from 11 to 238 is wider than the gap from 238 to 750.",
+          "texts": [
+            "The gap from",
+            "to",
+            "is wider than the gap from",
+            "to",
+            "."
+          ],
+          "full": "The gap from 11 to 238 is wider than the gap from 238 to 750.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 498,
+          "w": 700,
+          "h": 103,
+          "font_px": 40,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              500,
+              256,
+              48
+            ],
+            [
+              400,
+              500,
+              57,
+              48
+            ],
+            [
+              528,
+              500,
+              250,
+              48
+            ],
+            [
+              96,
+              551,
+              249,
+              48
+            ],
+            [
+              417,
+              551,
+              57,
+              48
+            ],
+            [
+              546,
+              551,
+              8,
+              48
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "11",
+          "texts": [
+            "11"
+          ],
+          "full": "11",
+          "tag": "span",
+          "unsized": false,
+          "x": 352,
+          "y": 496,
+          "w": 48,
+          "h": 53,
+          "font_px": 40,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              352,
+              496,
+              48,
+              53
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "238",
+          "texts": [
+            "238"
+          ],
+          "full": "238",
+          "tag": "span",
+          "unsized": false,
+          "x": 456,
+          "y": 496,
+          "w": 72,
+          "h": 53,
+          "font_px": 40,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              456,
+              496,
+              72,
+              53
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "238",
+          "texts": [
+            "238"
+          ],
+          "full": "238",
+          "tag": "span",
+          "unsized": false,
+          "x": 345,
+          "y": 547,
+          "w": 72,
+          "h": 53,
+          "font_px": 40,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              345,
+              547,
+              72,
+              53
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "750",
+          "texts": [
+            "750"
+          ],
+          "full": "750",
+          "tag": "span",
+          "unsized": false,
+          "x": 474,
+          "y": 547,
+          "w": 72,
+          "h": 53,
+          "font_px": 40,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              474,
+              547,
+              72,
+              53
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "Registered means APD knows the camera exists. Integrated means APD can pull the ",
+          "texts": [
+            "Registered means APD knows the camera exists. Integrated means APD can pull the feed, through a CORE device from Axon."
+          ],
+          "full": "Registered means APD knows the camera exists. Integrated means APD can pull the feed, through a CORE device from Axon.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 620,
+          "w": 470,
+          "h": 162,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              622,
+              444,
+              36
+            ],
+            [
+              96,
+              663,
+              428,
+              36
+            ],
+            [
+              96,
+              703,
+              420,
+              36
+            ],
+            [
+              96,
+              744,
+              315,
+              36
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Chief Case says APD can't come close to that ceiling.",
+          "texts": [
+            "Chief Case says APD can't come close to that ceiling."
+          ],
+          "full": "Chief Case says APD can't come close to that ceiling.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1044,
+          "w": 880,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1044,
+              852,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "216 (August 20th) counted residents, not cameras. Not plotted.",
+          "texts": [
+            "216 (August 20th) counted residents, not cameras. Not plotted."
+          ],
+          "full": "216 (August 20th) counted residents, not cameras. Not plotted.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1094,
+          "w": 880,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1094,
+              852,
+              31
+            ],
+            [
+              96,
+              1125,
+              129,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "11 integrated \u00b7 Aug 27th",
+          "texts": [
+            "11 integrated \u00b7 Aug 27th"
+          ],
+          "full": "11 integrated \u00b7 Aug 27th",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 926,
+          "w": 380,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              926,
+              380,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "about 15 at launch",
+          "texts": [
+            "about 15 at launch"
+          ],
+          "full": "about 15 at launch",
+          "tag": "div",
+          "unsized": false,
+          "x": 216,
+          "y": 970,
+          "w": 285,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              216,
+              970,
+              285,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "238 registered \u00b7 Aug 27th",
+          "texts": [
+            "238 registered \u00b7 Aug 27th"
+          ],
+          "full": "238 registered \u00b7 Aug 27th",
+          "tag": "div",
+          "unsized": false,
+          "x": 596,
+          "y": 926,
+          "w": 396,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              596,
+              926,
+              396,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "more than 250 municipal traffic cameras",
+          "texts": [
+            "more than 250",
+            "municipal traffic cameras"
+          ],
+          "full": "more than 250 municipal traffic cameras",
+          "tag": "div",
+          "unsized": false,
+          "x": 596,
+          "y": 700,
+          "w": 400,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              596,
+              700,
+              206,
+              31
+            ],
+            [
+              596,
+              731,
+              396,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "750 ceiling",
+          "texts": [
+            "750 ceiling"
+          ],
+          "full": "750 ceiling",
+          "tag": "div",
+          "unsized": false,
+          "x": 796,
+          "y": 970,
+          "w": 174,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              796,
+              970,
+              174,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "texts": [
+            "04 / 09"
+          ],
+          "full": "04 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 883,
+          "y": 96,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              883,
+              96,
+              101,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SECOND IMPRESSION \u00b7 REPORTED",
+          "texts": [
+            "SECOND IMPRESSION \u00b7 REPORTED"
+          ],
+          "full": "SECOND IMPRESSION \u00b7 REPORTED",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1241,
+          "w": 464,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1241,
+              464,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 824,
+          "y": 1241,
+          "w": 160,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1241,
+              160,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "10",
+          "fn": "fillText",
+          "font": "500 24px \"JetBrains Mono\", monospace",
+          "x": 150,
+          "y": 927,
+          "w": 28.7999267578125,
+          "align": "center",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 271.2000732421875,
+          "dev_right": 328.7999267578125,
+          "ink_left": 275.2000732421875,
+          "ink_right": 326,
+          "ink_top": 1818,
+          "ink_bottom": 1854,
+          "sy": 2
+        },
+        {
+          "text": "100",
+          "fn": "fillText",
+          "font": "500 24px \"JetBrains Mono\", monospace",
+          "x": 581.9858853757308,
+          "y": 927,
+          "w": 43.19989013671875,
+          "align": "center",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 1120.771880614743,
+          "dev_right": 1207.1716608881804,
+          "ink_left": 1124.771880614743,
+          "ink_right": 1204.371734130368,
+          "ink_top": 1818,
+          "ink_bottom": 1854,
+          "sy": 2
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 1213,
+        "sites": 9,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [
+        {
+          "key": "1|12|fill|source-over",
+          "n": 1,
+          "how": "fill",
+          "r0": 1,
+          "r1": 12,
+          "a0": 0.85,
+          "col0": "rgba(70,88,106,0.85)",
+          "op": "source-over",
+          "alpha": 1,
+          "core_frac": 0,
+          "cx": 452,
+          "cy": 1672,
+          "canvas_w": 2160,
+          "canvas_h": 2700
+        }
+      ],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-04.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3051,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 116.2,
+          "variance": 12220.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-10/slides/slide-04.html",
+        "sha1": "83d2ef4b1d55f1357a72e37d318de6366c12bc8f"
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Three gates. None of them struck.",
+          "texts": [
+            "Three gates. None of them struck."
+          ],
+          "full": "Three gates. None of them struck.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 180,
+          "w": 640,
+          "h": 143,
+          "font_px": 70,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              170,
+              581,
+              91
+            ],
+            [
+              96,
+              241,
+              154,
+              91
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ADN reports the ordinance would require Assembly permission before AI with human",
+          "texts": [
+            "ADN reports the ordinance would require Assembly permission before AI with human feature recognition is added to the network."
+          ],
+          "full": "ADN reports the ordinance would require Assembly permission before AI with human feature recognition is added to the network.",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 462,
+          "w": 780,
+          "h": 127,
+          "font_px": 32,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              463,
+              721,
+              39
+            ],
+            [
+              150,
+              505,
+              771,
+              39
+            ],
+            [
+              150,
+              547,
+              308,
+              39
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Alaska Public Media reports it would require a warrant before data goes to feder",
+          "texts": [
+            "Alaska Public Media reports it would require a warrant before data goes to federal agencies."
+          ],
+          "full": "Alaska Public Media reports it would require a warrant before data goes to federal agencies.",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 682,
+          "w": 780,
+          "h": 84,
+          "font_px": 32,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              683,
+              758,
+              39
+            ],
+            [
+              150,
+              725,
+              519,
+              39
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ADN reports the technology would face a period of temporary approval and annual ",
+          "texts": [
+            "ADN reports the technology would face a period of temporary approval and annual reporting."
+          ],
+          "full": "ADN reports the technology would face a period of temporary approval and annual reporting.",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 902,
+          "w": 780,
+          "h": 84,
+          "font_px": 32,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              903,
+              712,
+              39
+            ],
+            [
+              150,
+              945,
+              584,
+              39
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AO 2026-108",
+          "texts": [
+            "AO 2026-108"
+          ],
+          "full": "AO 2026-108",
+          "tag": "div",
+          "unsized": false,
+          "x": 795,
+          "y": 410,
+          "w": 189,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              795,
+              410,
+              189,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The ordinance text is not publicly reachable. Every line above is a newsroom's d",
+          "texts": [
+            "The ordinance text is not publicly reachable. Every line above is a newsroom's description."
+          ],
+          "full": "The ordinance text is not publicly reachable. Every line above is a newsroom's description.",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 1112,
+          "w": 830,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              1112,
+              745,
+              31
+            ],
+            [
+              150,
+              1143,
+              745,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "texts": [
+            "05 / 09"
+          ],
+          "full": "05 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 883,
+          "y": 96,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              883,
+              96,
+              101,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SECOND IMPRESSION \u00b7 REPORTED",
+          "texts": [
+            "SECOND IMPRESSION \u00b7 REPORTED"
+          ],
+          "full": "SECOND IMPRESSION \u00b7 REPORTED",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1241,
+          "w": 464,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1241,
+              464,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 824,
+          "y": 1241,
+          "w": 160,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1241,
+              160,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "two sills cast and the third does not",
+          "reads": "differ",
+          "a": [
+            [
+              220,
+              646,
+              600,
+              26
+            ]
+          ],
+          "b": [
+            [
+              220,
+              1064,
+              600,
+              26
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "gate sill one",
+          "shadow": [
+            [
+              150,
+              644,
+              640,
+              9
+            ]
+          ],
+          "ground": [
+            [
+              150,
+              666,
+              640,
+              14
+            ]
+          ]
+        },
+        {
+          "what": "gate sill two",
+          "shadow": [
+            [
+              150,
+              864,
+              640,
+              9
+            ]
+          ],
+          "ground": [
+            [
+              150,
+              886,
+              640,
+              14
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 14,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-05.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 2866,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 221.2,
+          "variance": 166.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-10/slides/slide-05.html",
+        "sha1": "c608d6958397cf258a8d26582c419cc24269f84b"
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "CODE.",
+          "texts": [
+            "CODE."
+          ],
+          "full": "CODE.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 296,
+          "w": 260,
+          "h": 167,
+          "font_px": 128,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              296,
+              260,
+              167
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"Code is not going to keep up with technology.\"",
+          "texts": [
+            "\"Code is not going to keep up with technology.\""
+          ],
+          "full": "\"Code is not going to keep up with technology.\"",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 508,
+          "w": 760,
+          "h": 56,
+          "font_px": 43,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              507,
+              710,
+              56
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Chief Sean Case, to the Assembly in August, via ADN",
+          "texts": [
+            "Chief Sean Case, to the Assembly in August, via ADN"
+          ],
+          "full": "Chief Sean Case, to the Assembly in August, via ADN",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 676,
+          "w": 845,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              676,
+              845,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"Let's put this into code now, so that when power changes, when the political wi",
+          "texts": [
+            "\"Let's put this into code now, so that when power changes, when the political winds shift, as they always do, we have protections for the people, no matter who is overseeing and implementing the syste"
+          ],
+          "full": "\"Let's put this into code now, so that when power changes, when the political winds shift, as they always do, we have protections for the people, no matter who is overseeing and implementing the system.\"",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 872,
+          "w": 900,
+          "h": 224,
+          "font_px": 43,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              871,
+              879,
+              56
+            ],
+            [
+              96,
+              927,
+              873,
+              56
+            ],
+            [
+              96,
+              983,
+              894,
+              56
+            ],
+            [
+              96,
+              1039,
+              411,
+              56
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Assembly member Sydney Scout, via Alaska Public Media",
+          "texts": [
+            "Assembly member Sydney Scout, via Alaska Public Media"
+          ],
+          "full": "Assembly member Sydney Scout, via Alaska Public Media",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1156,
+          "w": 878,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1156,
+              878,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "texts": [
+            "06 / 09"
+          ],
+          "full": "06 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 883,
+          "y": 96,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              883,
+              96,
+              101,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SECOND IMPRESSION \u00b7 REPORTED",
+          "texts": [
+            "SECOND IMPRESSION \u00b7 REPORTED"
+          ],
+          "full": "SECOND IMPRESSION \u00b7 REPORTED",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1241,
+          "w": 464,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1241,
+              464,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 824,
+          "y": 1241,
+          "w": 160,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1241,
+              160,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "one word cut through the middle, two halves either side",
+          "reads": "differ",
+          "a": [
+            [
+              120,
+              780,
+              700,
+              26
+            ]
+          ],
+          "b": [
+            [
+              120,
+              700,
+              700,
+              26
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 0.67
+        }
+      ],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 1139,
+        "sites": 4,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-06.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 2869,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 221.1,
+          "variance": 194.2
+        }
+      ],
+      "breather": true,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-10/slides/slide-06.html",
+        "sha1": "f61d6d15bd9cdf66ded8203f24f2dd33e16632e8"
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "What is already in code. And what is only practice.",
+          "texts": [
+            "What is already in code. And what is only practice."
+          ],
+          "full": "What is already in code. And what is only practice.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 170,
+          "w": 840,
+          "h": 135,
+          "font_px": 66,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              161,
+              753,
+              85
+            ],
+            [
+              96,
+              228,
+              280,
+              85
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "In code",
+          "texts": [
+            "In code"
+          ],
+          "full": "In code",
+          "tag": "div",
+          "unsized": false,
+          "x": 110,
+          "y": 432,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              110,
+              432,
+              123,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Published practice",
+          "texts": [
+            "Published practice"
+          ],
+          "full": "Published practice",
+          "tag": "div",
+          "unsized": false,
+          "x": 590,
+          "y": 432,
+          "w": 315,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              590,
+              432,
+              315,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Municipal use of facial recognition technology was officially banned by the Anch",
+          "texts": [
+            "Municipal use of facial recognition technology was officially banned by the Anchorage Assembly in 2023, per APD's own page."
+          ],
+          "full": "Municipal use of facial recognition technology was officially banned by the Anchorage Assembly in 2023, per APD's own page.",
+          "tag": "div",
+          "unsized": false,
+          "x": 110,
+          "y": 700,
+          "w": 396,
+          "h": 261,
+          "font_px": 33,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              110,
+              701,
+              328,
+              40
+            ],
+            [
+              110,
+              745,
+              341,
+              40
+            ],
+            [
+              110,
+              788,
+              357,
+              40
+            ],
+            [
+              110,
+              832,
+              367,
+              40
+            ],
+            [
+              110,
+              875,
+              330,
+              40
+            ],
+            [
+              110,
+              919,
+              78,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "All scanned license plate data is automatically deleted after 14 days.",
+          "texts": [
+            "All scanned license plate data is automatically deleted after",
+            "days."
+          ],
+          "full": "All scanned license plate data is automatically deleted after 14 days.",
+          "tag": "div",
+          "unsized": false,
+          "x": 590,
+          "y": 492,
+          "w": 400,
+          "h": 118,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              590,
+              493,
+              391,
+              36
+            ],
+            [
+              590,
+              532,
+              385,
+              36
+            ],
+            [
+              626,
+              572,
+              76,
+              36
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "14",
+          "texts": [
+            "14"
+          ],
+          "full": "14",
+          "tag": "span",
+          "unsized": false,
+          "x": 590,
+          "y": 569,
+          "w": 36,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              590,
+              569,
+              36,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "Traffic camera footage is overwritten every 3 to 5 days.",
+          "texts": [
+            "Traffic camera footage is overwritten every",
+            "to",
+            "days."
+          ],
+          "full": "Traffic camera footage is overwritten every 3 to 5 days.",
+          "tag": "div",
+          "unsized": false,
+          "x": 590,
+          "y": 646,
+          "w": 400,
+          "h": 79,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              590,
+              647,
+              329,
+              36
+            ],
+            [
+              590,
+              687,
+              242,
+              36
+            ],
+            [
+              850,
+              687,
+              41,
+              36
+            ],
+            [
+              909,
+              687,
+              76,
+              36
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "3",
+          "texts": [
+            "3"
+          ],
+          "full": "3",
+          "tag": "span",
+          "unsized": false,
+          "x": 832,
+          "y": 684,
+          "w": 18,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              832,
+              684,
+              18,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            6
+          ]
+        },
+        {
+          "text": "5",
+          "texts": [
+            "5"
+          ],
+          "full": "5",
+          "tag": "span",
+          "unsized": false,
+          "x": 891,
+          "y": 684,
+          "w": 18,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              684,
+              18,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            6
+          ]
+        },
+        {
+          "text": "The camera registry is voluntary, the owner keeps control at all times, and APD ",
+          "texts": [
+            "The camera registry is voluntary, the owner keeps control at all times, and APD must obtain permission to access video."
+          ],
+          "full": "The camera registry is voluntary, the owner keeps control at all times, and APD must obtain permission to access video.",
+          "tag": "div",
+          "unsized": false,
+          "x": 590,
+          "y": 762,
+          "w": 400,
+          "h": 195,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              590,
+              763,
+              294,
+              36
+            ],
+            [
+              590,
+              802,
+              356,
+              36
+            ],
+            [
+              590,
+              841,
+              367,
+              36
+            ],
+            [
+              590,
+              880,
+              346,
+              36
+            ],
+            [
+              590,
+              919,
+              177,
+              36
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "APD does not use Flock cameras.",
+          "texts": [
+            "APD does not use Flock cameras."
+          ],
+          "full": "APD does not use Flock cameras.",
+          "tag": "div",
+          "unsized": false,
+          "x": 590,
+          "y": 990,
+          "w": 400,
+          "h": 78,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              590,
+              991,
+              310,
+              36
+            ],
+            [
+              590,
+              1030,
+              119,
+              36
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Every line on this slide comes from the Anchorage Police Department's own Safe A",
+          "texts": [
+            "Every line on this slide comes from the Anchorage Police Department's own Safe Anchorage page."
+          ],
+          "full": "Every line on this slide comes from the Anchorage Police Department's own Safe Anchorage page.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1150,
+          "w": 880,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1150,
+              788,
+              31
+            ],
+            [
+              96,
+              1181,
+              708,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "texts": [
+            "07 / 09"
+          ],
+          "full": "07 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 883,
+          "y": 96,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              883,
+              96,
+              101,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "FIRST IMPRESSION \u00b7 PRIMARY SOURCE",
+          "texts": [
+            "FIRST IMPRESSION \u00b7 PRIMARY SOURCE"
+          ],
+          "full": "FIRST IMPRESSION \u00b7 PRIMARY SOURCE",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1241,
+          "w": 546,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1241,
+              546,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 824,
+          "y": 1241,
+          "w": 160,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1241,
+              160,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "2023",
+          "fn": "fillText",
+          "font": "500 96px \"JetBrains Mono\", monospace",
+          "x": 242.8,
+          "y": 583.8,
+          "w": 230.39990234375,
+          "align": "center",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 255.20009765625002,
+          "dev_right": 715.99990234375,
+          "ink_left": 269.20009765625,
+          "ink_right": 700.799951171875,
+          "ink_top": 1075.975,
+          "ink_bottom": 1221.975,
+          "sy": 2
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "one column is cut dense and one is cut sparse",
+          "reads": "differ",
+          "a": [
+            [
+              372,
+              478,
+              158,
+              180
+            ]
+          ],
+          "b": [
+            [
+              592,
+              478,
+              158,
+              180
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 0.26
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the foot rib under the practice column",
+          "shadow": [
+            [
+              566,
+              1114,
+              424,
+              9
+            ]
+          ],
+          "ground": [
+            [
+              566,
+              1134,
+              424,
+              14
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 12,
+        "sites": 9,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-07.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 5423,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 217.6,
+          "variance": 355.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-10/slides/slide-07.html",
+        "sha1": "e37f195ce53a55d30e6ccc97ef9fa71d3939abab"
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Fourteen days, read twice.",
+          "texts": [
+            "Fourteen days, read twice."
+          ],
+          "full": "Fourteen days, read twice.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 96,
+          "y": 172,
+          "w": 620,
+          "h": 67,
+          "font_px": 66,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              163,
+              542,
+              85
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "How long a scanned plate lives. Deleted after 14 days, per APD's own page.",
+          "texts": [
+            "How long a scanned plate lives. Deleted after",
+            "days, per APD's own page."
+          ],
+          "full": "How long a scanned plate lives. Deleted after 14 days, per APD's own page.",
+          "tag": "div",
+          "unsized": false,
+          "x": 190,
+          "y": 430,
+          "w": 700,
+          "h": 88,
+          "font_px": 33,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              190,
+              432,
+              653,
+              40
+            ],
+            [
+              190,
+              476,
+              373,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "14",
+          "texts": [
+            "14"
+          ],
+          "full": "14",
+          "tag": "span",
+          "unsized": false,
+          "x": 843,
+          "y": 429,
+          "w": 40,
+          "h": 44,
+          "font_px": 33,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              843,
+              429,
+              40,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "Traffic footage overwritten every 3 to 5 days",
+          "texts": [
+            "Traffic footage overwritten every 3 to 5 days"
+          ],
+          "full": "Traffic footage overwritten every 3 to 5 days",
+          "tag": "div",
+          "unsized": false,
+          "x": 190,
+          "y": 556,
+          "w": 745,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              190,
+              556,
+              745,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "How long the rule waited. September 1st, 2026 to September 15th, 2026.",
+          "texts": [
+            "How long the rule waited. September 1st, 2026 to September 15th, 2026."
+          ],
+          "full": "How long the rule waited. September 1st, 2026 to September 15th, 2026.",
+          "tag": "div",
+          "unsized": false,
+          "x": 190,
+          "y": 800,
+          "w": 700,
+          "h": 87,
+          "font_px": 33,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              190,
+              801,
+              663,
+              40
+            ],
+            [
+              190,
+              845,
+              354,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Two fourteen day windows. The same length, not the same thing.",
+          "texts": [
+            "Two fourteen day windows. The same length, not the same thing."
+          ],
+          "full": "Two fourteen day windows. The same length, not the same thing.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1032,
+          "w": 900,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1032,
+              828,
+              31
+            ],
+            [
+              96,
+              1063,
+              182,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "FIRST IMPRESSION \u00b7 PRIMARY SOURCE, ABOVE",
+          "texts": [
+            "FIRST IMPRESSION \u00b7 PRIMARY SOURCE, ABOVE"
+          ],
+          "full": "FIRST IMPRESSION \u00b7 PRIMARY SOURCE, ABOVE",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 404,
+          "w": 662,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              404,
+              662,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "texts": [
+            "08 / 09"
+          ],
+          "full": "08 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 883,
+          "y": 96,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              883,
+              96,
+              101,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SECOND IMPRESSION \u00b7 BELOW",
+          "texts": [
+            "SECOND IMPRESSION \u00b7 BELOW"
+          ],
+          "full": "SECOND IMPRESSION \u00b7 BELOW",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1241,
+          "w": 414,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1241,
+              414,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 824,
+          "y": 1241,
+          "w": 160,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1241,
+              160,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "0",
+          "fn": "fillText",
+          "font": "500 22px \"JetBrains Mono\", monospace",
+          "x": 190,
+          "y": 728,
+          "w": 13.200042724609375,
+          "align": "center",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 366.7999572753906,
+          "dev_right": 393.2000427246094,
+          "ink_left": 368.7999572753906,
+          "ink_right": 390.7999572753906,
+          "ink_top": 1424,
+          "ink_bottom": 1456,
+          "sy": 2
+        },
+        {
+          "text": "7",
+          "fn": "fillText",
+          "font": "500 22px \"JetBrains Mono\", monospace",
+          "x": 540,
+          "y": 728,
+          "w": 13.200042724609375,
+          "align": "center",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 1066.7999572753906,
+          "dev_right": 1093.2000427246094,
+          "ink_left": 1068.7999572753906,
+          "ink_right": 1092.7999572753906,
+          "ink_top": 1424,
+          "ink_bottom": 1456,
+          "sy": 2
+        },
+        {
+          "text": "14",
+          "fn": "fillText",
+          "font": "500 22px \"JetBrains Mono\", monospace",
+          "x": 890,
+          "y": 728,
+          "w": 26.40008544921875,
+          "align": "center",
+          "canvas_w": 2160,
+          "canvas_h": 2700,
+          "canvas_id": "c1",
+          "sx": 2,
+          "skew": false,
+          "dev_left": 1753.5999145507812,
+          "dev_right": 1806.4000854492188,
+          "ink_left": 1755.5999145507812,
+          "ink_right": 1802,
+          "ink_top": 1424,
+          "ink_bottom": 1456,
+          "sy": 2
+        }
+      ],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "the same length read in two directions",
+          "reads": "differ",
+          "a": [
+            [
+              200,
+              306,
+              620,
+              44
+            ]
+          ],
+          "b": [
+            [
+              200,
+              1160,
+              620,
+              44
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "scales": [
+        {
+          "what": "the fourteen day rule",
+          "axis": "x",
+          "unit": "days",
+          "from": [
+            190,
+            0
+          ],
+          "to": [
+            890,
+            14
+          ],
+          "band": [
+            676,
+            710
+          ],
+          "marks": [
+            {
+              "at": 190,
+              "means": "day 0. Above, the moment a plate is scanned. Below, September 1st 2026, the night of the v"
+            },
+            {
+              "at": 240,
+              "means": "day 1"
+            },
+            {
+              "at": 290,
+              "means": "day 2"
+            },
+            {
+              "at": 340,
+              "means": "day 3, and the left end of the traffic overwrite bracket"
+            },
+            {
+              "at": 390,
+              "means": "day 4"
+            },
+            {
+              "at": 440,
+              "means": "day 5, and the right end of the traffic overwrite bracket"
+            },
+            {
+              "at": 490,
+              "means": "day 6"
+            },
+            {
+              "at": 540,
+              "means": "day 7"
+            },
+            {
+              "at": 590,
+              "means": "day 8"
+            },
+            {
+              "at": 640,
+              "means": "day 9"
+            },
+            {
+              "at": 690,
+              "means": "day 10"
+            },
+            {
+              "at": 740,
+              "means": "day 11"
+            },
+            {
+              "at": 790,
+              "means": "day 12"
+            },
+            {
+              "at": 840,
+              "means": "day 13"
+            },
+            {
+              "at": 890,
+              "means": "day 14. Above, scanned plate data is deleted. Below, September 15th 2026"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 18,
+        "sites": 8,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-08.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 7320,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 214.3,
+          "variance": 682.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-10/slides/slide-08.html",
+        "sha1": "cd2e24f34d034a408279b5de4d8075adc6e6a40d"
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The rule is expected back on September 15th, 2026.",
+          "texts": [
+            "The rule is expected back on",
+            "."
+          ],
+          "full": "The rule is expected back on September 15th, 2026.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 352,
+          "w": 872,
+          "h": 151,
+          "font_px": 74,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              341,
+              660,
+              96
+            ],
+            [
+              906,
+              416,
+              14,
+              96
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "September 15th, 2026",
+          "texts": [
+            "September 15th, 2026"
+          ],
+          "full": "September 15th, 2026",
+          "tag": "span",
+          "unsized": false,
+          "x": 96,
+          "y": 418,
+          "w": 810,
+          "h": 92,
+          "font_px": 70,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              418,
+              810,
+              92
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            0
+          ]
+        },
+        {
+          "text": "Sponsors plan to bring AO 2026-108 back to the Assembly. Public testimony is how",
+          "texts": [
+            "Sponsors plan to bring AO 2026-108 back to the Assembly. Public testimony is how a resident gets read into the record."
+          ],
+          "full": "Sponsors plan to bring AO 2026-108 back to the Assembly. Public testimony is how a resident gets read into the record.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 646,
+          "w": 640,
+          "h": 134,
+          "font_px": 33,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              648,
+              632,
+              40
+            ],
+            [
+              96,
+              693,
+              579,
+              40
+            ],
+            [
+              96,
+              737,
+              489,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Save this. The date is September 15th, 2026.",
+          "texts": [
+            "Save this. The date is September 15th, 2026."
+          ],
+          "full": "Save this. The date is September 15th, 2026.",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 812,
+          "w": 640,
+          "h": 96,
+          "font_px": 40,
+          "weight": "400",
+          "family": "Bricolage Grotesque",
+          "color": "rgb(43, 47, 53)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              812,
+              605,
+              48
+            ],
+            [
+              96,
+              860,
+              195,
+              48
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Sources in comments",
+          "texts": [
+            "Sources in comments"
+          ],
+          "full": "Sources in comments",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 916,
+          "w": 315,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              916,
+              315,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 749,
+          "y": 1201,
+          "w": 235,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              749,
+              1201,
+              235,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "61\u00b013'N \u00b7 149\u00b054'W",
+          "texts": [
+            "61\u00b013'N \u00b7 149\u00b054'W"
+          ],
+          "full": "61\u00b013'N \u00b7 149\u00b054'W",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1281,
+          "w": 239,
+          "h": 25,
+          "font_px": 19,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 145, 130)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1281,
+              239,
+              25
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "texts": [
+            "09 / 09"
+          ],
+          "full": "09 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 883,
+          "y": 96,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 88, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              883,
+              96,
+              101,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SECOND IMPRESSION \u00b7 REPORTED",
+          "texts": [
+            "SECOND IMPRESSION \u00b7 REPORTED"
+          ],
+          "full": "SECOND IMPRESSION \u00b7 REPORTED",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1241,
+          "w": 464,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1241,
+              464,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 824,
+          "y": 1241,
+          "w": 160,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 98, 85)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1241,
+              160,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "two squares filled and one empty, at the end",
+          "reads": "differ",
+          "a": [
+            [
+              150,
+              1010,
+              160,
+              70
+            ]
+          ],
+          "b": [
+            [
+              390,
+              1010,
+              70,
+              70
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the money square on the burnished band",
+          "shadow": [
+            [
+              173,
+              1080,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              226,
+              1080,
+              26,
+              10
+            ]
+          ]
+        },
+        {
+          "what": "the 2023 square on the burnished band",
+          "shadow": [
+            [
+              283,
+              1080,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              226,
+              1080,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 20,
+        "sites": 8,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-09.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 2806,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 222.9,
+          "variance": 88.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-10/slides/slide-09.html",
+        "sha1": "b9400563dd5613fa877b0fcdd9152d24930eeaa9"
+      }
+    }
+  ]
+}

@@ -345,7 +345,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-06",
+      "last_updated": "2026-09-10",
       "history": [
         {
           "date": "2026-07-08",
@@ -438,6 +438,10 @@
         {
           "date": "2026-09-06",
           "note": "Correction. Since September 1st this entry has said developer proposals were due 5 p.m. Eastern on May 29th, 2026 and that the solicitation record archived June 13th. Those are the first posting's dates. The operative version of solicitation AFCEC-26-R-0006, posted June 16th, 2026 and re-read today on SAM.gov, carries a response deadline of 5 p.m. Eastern on June 29th, 2026 and an archive date of July 14th, 2026, and its award date, number and amount are all still empty."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Checked and unchanged. The enhanced use lease offering still stands as posted, about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station, with leases running up to 50 years and proposals having been due May 29th, 2026. The Air Force set no public selection or award date when it posted the offering, and none has been announced since, so a decision here arrives without a calendar."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -1075,7 +1079,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-09-09",
+      "last_updated": "2026-09-10",
       "history": [
         {
           "date": "2026-07-17",
@@ -1212,6 +1216,10 @@
         {
           "date": "2026-09-09",
           "note": "Re-verified today against Alaska DNR Online Public Notices id 224930, ADL 234762. The notice states the public comment period remains open from July 10th through September 14th, 2026. Five days are left. The two virtual public meetings it announced, August 27th and September 2nd, have both been held, and no final finding or best interest decision has been published."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Re-verified against the state's extension notice, Alaska DNR Online Public Notices id 224879, published August 19th, 2026. Written comment on ADL 234762 closes at 5:00 p.m. Monday, September 14th, 2026, four days out, and the notice archives the day after. Comments go to Daniel Jenkins at the Division of Mining, Land and Water, by email to dmlwprogramsupport@alaska.gov, by fax to 907-269-8916, or by mail to 550 W. 7th Ave. Ste. 1050, Anchorage, AK 99501."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1562,7 +1570,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-09-06",
+      "last_updated": "2026-09-10",
       "history": [
         {
           "date": "2026-08-02",
@@ -1611,6 +1619,10 @@
         {
           "date": "2026-09-06",
           "note": "Checked and unchanged. The state notice for request for information 02-101-27, Automatic Compliance and Data Integration CDL, still shows Amendment One, issued August 7th, 2026, as the current posting, with no later amendment and no award. Vendor responses were due August 20th, 2026 at 2 p.m., so that window stays closed. The notice still prints neither artificial intelligence nor machine learning."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Checked and unchanged. The state notice for request for information 02-101-27, Automatic Compliance and Data Integration CDL, still shows Amendment One as the current posting, with responses due at 2:00 p.m. on August 20th, 2026 and an archive date of August 21st, 2026. No award, cancellation or follow-on solicitation has been posted."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1892,7 +1904,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-06",
+      "last_updated": "2026-09-10",
       "history": [
         {
           "date": "2026-08-06",
@@ -1925,6 +1937,10 @@
         {
           "date": "2026-09-06",
           "note": "Checked and unchanged, re-verified against Air and Space Forces Magazine's account of the announcement. What the Air Force issued is a notice of intent to award and not a signed contract. Oklo would build and operate a 5 megawatt microreactor at Eielson, the price and the rate the Air Force pays for power are still to be settled in negotiation, and Nuclear Regulatory Commission approval remains a step ahead of it."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Checked and unchanged. The notice of intent to award Oklo a 30 year firm fixed price agreement for up to 5 megawatts at Eielson is still a notice rather than a signed contract. Environmental analysis, contract negotiation and a Nuclear Regulatory Commission license all remain ahead of it, and the Air Force has put the reactor in service before 2030 without naming a nearer date."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -2304,8 +2320,8 @@
         },
         {
           "date": "2026-09-14",
-          "label": "Next regular board meeting",
-          "kind": "milestone"
+          "label": "Board takes second reading and action on BP 5131.9 Academic Honesty, and first reading and action on AR 5131.9",
+          "kind": "decision"
         }
       ],
       "location": {
@@ -2343,10 +2359,20 @@
           "url": "https://www.kdll.org/local-news/2026-08-03/school-board-considers-classroom-screen-time-limits",
           "outlet": "KDLL 91.9 FM",
           "date": "2026-08-03"
+        },
+        {
+          "url": "https://egov.kpbsd.org/agenda/673",
+          "outlet": "KPBSD E-Governance",
+          "date": "2026-09-10"
+        },
+        {
+          "url": "https://egov.kpbsd.org/agenda/670",
+          "outlet": "KPBSD E-Governance",
+          "date": "2026-09-10"
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-09-09",
+      "last_updated": "2026-09-10",
       "history": [
         {
           "date": "2026-08-09",
@@ -2391,6 +2417,10 @@
         {
           "date": "2026-09-09",
           "note": "Checked and unchanged. The district's meeting portal still shows August 3rd, 2026 as its most recent posted business, carrying the Policy Review Committee agenda, the revised regular business meeting and the work sessions of that day. Nothing is posted yet for the September 14th regular board meeting, five days out. BP 5131.9 Academic Honesty and AR 6161.4 Acceptable Use and Internet Safety, the two documents that carry the district's artificial intelligence language, stand where the August readings left them."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The district has posted its September 14th, 2026 agendas and the academic honesty rules are on them for a vote. The Regular Business Meeting carries BP 5131.9 Academic Honesty for second reading and action, and AR 5131.9 Academic Honesty for first reading and action, alongside BP 1114 Communication Using Electronic Media for second reading and action. The Policy Review Committee meets the same day on a separate list that includes BP and AR 6161.5, High-Quality Instruction and Purposeful Use of Technology. Neither agenda uses the words artificial intelligence, which is worth stating plainly, because AR 5131.9 is the regulation the district brought forward in relation to the inclusion of AI and the agenda language does not say so."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpbsd-ai-policy-package/"
@@ -2502,10 +2532,14 @@
         {
           "date": "2026-09-07",
           "note": "Re-verified against the Federal Register notice itself, published September 4th, 2026. The commission's docket is P-15423-000 and comments, motions to intervene and competing applications are due by 5:00 p.m. Eastern on November 2nd, 2026. DeepGreen Cook Inlet SPV, LLC describes roughly 330 to 350 turbines and 66 subsea data center pods in Upper Cook Inlet."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Re-verified against the Federal Register notice of September 4th, 2026. The record on Project No. P-15423-000, DeepGreen Cook Inlet SPV, LLC, stays open until 5:00 p.m. Eastern Time on November 2nd, 2026 for comments, motions to intervene, competing applications and notices of intent to file competing applications. The notice describes approximately 330 to 350 marine hydrokinetic turbines and an estimated 100 megawatts of annual generation. The Commission contact is Christopher Brosman at 202-502-8573."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-07",
+      "last_updated": "2026-09-10",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {

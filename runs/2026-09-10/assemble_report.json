@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-10/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 6321778,
+  "pdf_mb": 6.32,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-10/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-10/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-10/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-10/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-10/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-10/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-10/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-10/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-10/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-10/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "One Agenda. Two Items. One Vote.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "3d61b305358b1e00db84d396be3be07c47e3a6c3806120d1ac614d495ccac30f",
+        "bytes": 1512626
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "5e25e39d55de74dec0687603aa33d3e61e197a592ff6ec1e45e04d2e36a365c7",
+        "bytes": 1642794
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "d2e09942a4a96e75bedf1b2e16770e1ba9e9be986c63a9076331dd1bc6066a48",
+        "bytes": 1533770
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "689f822d078e32c735c6bdd0a88beb0089445b29f21676b01324c356adb9ee30",
+        "bytes": 1903206
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "b0a5f38aae68fd25368f57c953c00c3bf5d17093b4f7a4c5f4ea302030458c2b",
+        "bytes": 1480929
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "df750fb36aef61bdd9ba548f9424310e7050fd1e4f690ed11ddb036322ba57ad",
+        "bytes": 1527031
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "aa7d30702e9bd68885b38a5e7fe8092785a23e80642934cab8b112f126031d00",
+        "bytes": 1956549
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "e65462f39795a183f15322ff052d3d1725cd0e15bba145a3fe66856c5177e449",
+        "bytes": 3262416
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "6c7d440713e2422342ff496bc33bc490ae138fefda9f5569b733e0df88a41d37",
+        "bytes": 1338898
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "0765c3550c7a78df2d24760a8158be270183aa74d50761d8c607e9e6c646737e",
+        "bytes": 15784
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "c10f0e2f4cc28587f58926963b1dc7a471f6848cbecc14e790f71277c3bebab9",
+        "bytes": 14897
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "a14b3cdec169f66f373f22be51ea3dd6bc1e39d9e653bfe8466b37ab85e2c51c",
+        "bytes": 15432
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "c435ac1edf32de2b4cc0e4e1bdc6b37952b5aea900e9af20231e6dada947f24f",
+        "bytes": 19597
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "dee1b61980ca0d1f67bcb20cfe2dc4801c372eba9544a059e73b51d4f1728615",
+        "bytes": 12579
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "3dabab53650a987294b56fe99ff439d261bc08dfd629a31c2b1c9c5b324e127f",
+        "bytes": 13098
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "8fa7a59ce1b2ff2567dc297c9955a49b5e26e7a72d9f4250729db91f4cb74875",
+        "bytes": 16433
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "eda9f5e3b37e3e549ab3005b454c2507d7c8053ab788d0526bb1e0c140c7ea94",
+        "bytes": 17482
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "8effe41550015739d7acc60788ef9e844faf9f55daad48c479b80e7967bc255e",
+        "bytes": 14687
+      }
+    ]
+  }
+}

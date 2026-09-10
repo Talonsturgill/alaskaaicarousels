@@ -1,0 +1,271 @@
+<!doctype html>
+<!-- No.55 SLIDE 06 — BREATHER. CODE, twice, no gloss. One deep kerf full width carries the lower third. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F0EADD; font-family:"Bricolage Grotesque",sans-serif; position:relative; }
+  #art { position:absolute; inset:0; }
+  #grain { position:absolute; inset:0; background-repeat:repeat;
+           mix-blend-mode:overlay; opacity:0.06; pointer-events:none; }
+  h2 { font-family:"Instrument Serif",serif; font-weight:400;
+       line-height:1.02; letter-spacing:-0.02em; color:#2B2F35; position:absolute; }
+  .body { position:absolute; font-weight:400; line-height:1.35; color:#2B2F35;
+          font-variation-settings:"wght" 400,"wdth" 96; }
+  .fig { font-family:"JetBrains Mono",monospace; font-weight:500;
+         font-variant-numeric:tabular-nums lining-nums; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:500;
+          letter-spacing:0.09em; text-transform:uppercase; color:#6B6255; position:absolute; }
+  .counter { position:absolute; right:96px; top:96px; font-family:"JetBrains Mono",monospace;
+             font-size:24px; font-weight:500; color:#46586A; font-variant-numeric:tabular-nums; }
+  .stamp { position:absolute; left:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+           font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+  .mark { position:absolute; right:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.14em; color:#6B6255; }
+  .word { position:absolute; left:96px; top:296px;
+          font-family:"Instrument Serif",serif; font-weight:400; font-size:128px;
+          letter-spacing:-0.03em; color:#2B2F35; }
+  .q { position:absolute; left:96px; font-family:"Instrument Serif",serif;
+       font-style:italic; font-weight:400; font-size:43px; line-height:1.30; color:#2B2F35; }
+  .q1 { top:508px; width:760px; }
+  .q2 { top:872px; width:900px; }
+  .a { position:absolute; left:96px; font-family:"JetBrains Mono",monospace;
+       font-size:24px; font-weight:500; letter-spacing:0.09em;
+       text-transform:uppercase; color:#6B6255; }
+  .a1 { top:676px; } .a2 { top:1156px; }
+</style>
+</head>
+<body data-breather
+      data-encodes='[{"claim":"one word cut through the middle, two halves either side","reads":"differ","a":[120,780,700,26],"b":[120,700,700,26]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div id="grain" data-decorative></div>
+  <div class="word" data-reserve>CODE.</div>
+  <div class="q q1" data-reserve>"Code is not going to keep up with technology."</div>
+  <div class="a a1" data-reserve="mono">Chief Sean Case, to the Assembly in August, via ADN</div>
+  <div class="q q2" data-reserve>"Let's put this into code now, so that when power changes, when the political winds shift, as they always do, we have protections for the people, no matter who is overseeing and implementing the system."</div>
+  <div class="a a2" data-reserve="mono">Assembly member Sydney Scout, via Alaska Public Media</div>
+  <div class="counter" data-reserve="mono">06 / 09</div>
+  <div class="stamp" data-reserve="mono">SECOND IMPRESSION &middot; REPORTED</div>
+  <div class="mark" data-reserve="mono">ALASKA.AI</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const W = 1080, H = 1350, SEED = 20260910;
+  const cv = document.getElementById("art"), cx = cv.getContext("2d");
+  cx.scale(2, 2);
+  const P = { base:"#F0EADD", high:"#FBF7EE", tooth:"#E4DCCB", trough:"#CFC4AE",
+              ink:"#2B2F35", slate:"#46586A", ctx:"#6B6255", hatch:"#9A9182",
+              gold:"#FFC72C", deep:"#8E8471" };
+  const mix = (a,b,t) => AKC.mixOklab(a, b, Math.max(0, Math.min(1, t)));
+  /* A struck or lit shape is never a perfect axis-aligned box. These draw the
+     same regions as irregular closed paths, which is both fewer rectangles and
+     a truer edge: paper under a plate does not give a ruler-straight boundary. */
+  function pathRect(x, y, w, h, jit, seed) {
+    jit = jit == null ? 1.1 : jit;
+    const r = AK.rng((seed || 1) + 97);
+    const pts = [];
+    const stepX = Math.max(10, w / 8), stepY = Math.max(8, h / 4);
+    for (let t = 0; t <= w; t += stepX) pts.push([x + t, y + (r() - 0.5) * jit]);
+    for (let t = 0; t <= h; t += stepY) pts.push([x + w + (r() - 0.5) * jit, y + t]);
+    for (let t = w; t >= 0; t -= stepX) pts.push([x + t, y + h + (r() - 0.5) * jit]);
+    for (let t = h; t >= 0; t -= stepY) pts.push([x + (r() - 0.5) * jit, y + t]);
+    cx.beginPath();
+    pts.forEach((p, i) => i === 0 ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]));
+    cx.closePath();
+  }
+  function fillQuad(x, y, w, h, style, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.fillStyle = style; cx.fill();
+  }
+  function strokeQuad(x, y, w, h, style, lw, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.strokeStyle = style; cx.lineWidth = lw; cx.stroke();
+  }
+
+  const rnd = AK.rng(SEED + 6);
+  const KEY = 296 * Math.PI / 180;
+  cx.fillStyle = P.base; cx.fillRect(0, 0, W, H);
+
+  /* --- laid paper, house furniture, identical everywhere by design --------- */
+  function laidPaper(bend) {
+    cx.save(); cx.lineWidth = 0.75;
+    for (let y = 4; y < H; y += 3.1) {
+      cx.beginPath();
+      for (let x = 0; x <= W; x += 10) {
+        const yy = y + (bend ? bend(x, y) : 0);
+        x === 0 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.075)"; cx.stroke();
+    }
+    cx.lineWidth = 1.3;
+    for (let x = 12; x < W; x += 26) {
+      cx.beginPath();
+      for (let y = 0; y <= H; y += 8) {
+        const xx = x + (bend ? bend(x, y) * 0.42 : 0);
+        y === 0 ? cx.moveTo(xx, y) : cx.lineTo(xx, y);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.085)"; cx.stroke();
+    }
+    cx.restore();
+  }
+  function litPool(x, y, w, h) {
+    const g = cx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0, "rgba(251,247,238,0)");
+    g.addColorStop(0.42, "rgba(251,247,238,0.66)");
+    g.addColorStop(1, "rgba(251,247,238,0)");
+    cx.save(); cx.globalCompositeOperation = "screen";
+    cx.fillStyle = g; pathRect(x, y, w, h, 2.4, 11); cx.fill(); cx.restore();
+  }
+  /* A deboss is ALWAYS a lit upper lip and a lee lower lip, never one stroke. */
+  function deboss(x, y, w, h, depth) {
+    for (let i = 0; i < h; i++) {
+      const v = i / h; let col, a;
+      if (v < 0.11) { col = P.high; a = 1.0; }
+      else if (v < 0.66) { col = mix(P.tooth, "#A99E86", (v - 0.11) / 0.55); a = 0.92 * depth; }
+      else { col = mix("#A99E86", P.base, (v - 0.66) / 0.34); a = 0.86 * depth * (1 - (v - 0.66) / 0.34) + 0.1; }
+      cx.fillStyle = col; cx.globalAlpha = a;
+      cx.fillRect(x, y + i, w, 1);
+    }
+    cx.globalAlpha = 1;
+  }
+  function registration() {
+    const rx = 984, ry = 176, r = 20;
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.arc(rx, ry, r, 0, 7); cx.stroke();
+    cx.beginPath(); cx.moveTo(rx-r-8,ry); cx.lineTo(rx+r+8,ry);
+    cx.moveTo(rx,ry-r-8); cx.lineTo(rx,ry+r+8); cx.stroke();
+    cx.fillStyle = P.gold; cx.beginPath();
+    for (let i=0;i<8;i++){const a=i*Math.PI/4,rr=(i%2===0)?7.5:2.6;
+      const px=rx+Math.cos(a)*rr,py=ry+Math.sin(a)*rr; i===0?cx.moveTo(px,py):cx.lineTo(px,py);}
+    cx.closePath(); cx.fill();
+  }
+  /* The three motif squares, 34px, footer furniture opposite the counter. */
+  function motif(state) {
+    const y = 1238, s = 34;
+    const xs = [600, 646, 692];
+    function sq(x, kind) {
+      if (kind === "none") return;
+      cx.save();
+      if (kind === "gold" || kind === "worn") {
+        fillQuad(x, y, s, s, P.gold, 1.0, 5);
+        cx.strokeStyle = P.ink; cx.lineWidth = kind === "worn" ? 1.0 : 1.8;
+        if (kind === "worn") { cx.globalAlpha = 0.62; }
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "solid") {
+        cx.strokeStyle = P.slate; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "phantom") {
+        cx.setLineDash([30, 5, 6, 5, 6, 5]); cx.lineWidth = 1.25;
+        cx.strokeStyle = P.slate; strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "blind") {
+        cx.strokeStyle = "rgba(251,247,238,0.95)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y - 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 7);
+        cx.strokeStyle = "rgba(154,145,130,0.55)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 1.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 8);
+      }
+      cx.restore();
+    }
+    sq(xs[0], state[0]); sq(xs[1], state[1]); sq(xs[2], state[2]);
+  }
+  function finish() {
+    registration();
+    if (window.AKPOST && AKPOST.grade) {
+      AKPOST.grade(cx, { exposure:-0.06, saturation:0.94, contrast:1.03, sharpen:0.30,
+                         dither:true, aberration:0,
+                         bloom:{ threshold:0.90, strength:0.08, radius:8 } });
+    }
+    document.getElementById("grain").style.backgroundImage =
+      "url(" + AK.grainTile(280, 52, SEED) + ")";
+  }
+  const eng = AKENGRAVE.create({ seed:SEED, light:{ azDeg:296, elDeg:26 } });
+  eng.reserve(AKENGRAVE.boxesFor("[data-reserve]"));
+
+  /* The kerf's section, so the chain lines bend into it on BOTH sides. */
+  const K = { y:748, h:86 };
+  function kerfBend(x, y) {
+    if (y < K.y - 26 || y > K.y + K.h + 26) return 0;
+    const v = (y - (K.y - 26)) / (K.h + 52);
+    return Math.sin(Math.PI * v) * 8.4 * (0.9 + 0.1 * Math.sin(x * 0.008));
+  }
+
+  /* A pressed band is NOT a stack of scanline rects. It is one closed path with
+     an irregular top and bottom edge, filled with a vertical gradient, because
+     paper under pressure never gives a ruler-straight lip. One fill, real edge. */
+  function pressedBand(y0, y1, stops, amp, freq, phase) {
+    amp = amp == null ? 1.6 : amp; freq = freq == null ? 0.009 : freq;
+    phase = phase || 0;
+    const g = cx.createLinearGradient(0, y0, 0, y1);
+    stops.forEach(s => g.addColorStop(s[0], s[1]));
+    cx.save(); cx.beginPath();
+    for (let x = -12; x <= W + 12; x += 9) {
+      const yy = y0 + Math.sin(x * freq + phase) * amp + Math.sin(x * freq * 2.7 + 1.3) * amp * 0.4;
+      x === -12 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+    }
+    for (let x = W + 12; x >= -12; x -= 9) {
+      const yy = y1 + Math.sin(x * freq * 1.4 + phase + 2.2) * amp * 1.2;
+      cx.lineTo(x, yy);
+    }
+    cx.closePath(); cx.fillStyle = g; cx.fill(); cx.restore();
+  }
+  /* A stipple population is DRAWN work, and it is how a pressed floor keeps its
+     tooth without a single rectangle. */
+  function toothField(x0, y0, w, h, n, seed) {
+    const r = AK.rng(seed);
+    cx.save();
+    for (let i = 0; i < n; i++) {
+      const tx = x0 + r() * w, ty = y0 + r() * h;
+      const a = 0.06 + r() * 0.20, rr = 0.5 + r() * 1.15;
+      cx.fillStyle = "rgba(64,58,48," + a + ")";
+      cx.beginPath(); cx.arc(tx, ty, rr, 0, 7); cx.fill();
+    }
+    cx.restore();
+  }
+
+  laidPaper(kerfBend);
+
+  /* ---- THE KERF. The only heavily worked passage on a quiet slide -------- */
+  (function kerf() {
+    /* a shallow V with a 3px flat at the bottom, drawn as graded bands */
+    pressedBand(K.y, K.y + 14, [[0, "#FBF7EE"], [1, "#F2ECDF"]], 1.6, 0.0075, 0.3);
+    pressedBand(K.y + 12, K.y + K.h * 0.52, [[0, "#E4DCCB"], [1, "#7E7563"]], 2.4, 0.0053, 1.5);
+    pressedBand(K.y + K.h * 0.50, K.y + K.h * 0.64, [[0, "#7E7563"], [1, "#8A8069"]], 1.4, 0.0088, 2.6);
+    pressedBand(K.y + K.h * 0.62, K.y + K.h, [[0, "#9A9182"], [1, "#E9E2D2"]], 2.2, 0.0060, 3.9);
+    /* paper tooth visible on the floor */
+    toothField(0, K.y + K.h * 0.42, W, K.h * 0.26, 1100, SEED + 61);
+    /* the lit upper lip burns along its whole length */
+    cx.strokeStyle = "rgba(255,253,247,0.92)"; cx.lineWidth = 2.4;
+    cx.beginPath();
+    for (let x = 0; x <= W; x += 6) cx.lineTo(x, K.y + 1.5 + Math.sin(x * 0.011) * 1.0);
+    cx.stroke();
+  })();
+
+  /* ---- the deck's lowest tone budget, so the kerf is the only mass ------- */
+  eng.surface(cx, {
+    region:[0, K.y - 8, W, K.h + 16],
+    form:(x, y) => {
+      const v = (y - K.y) / K.h;
+      if (v < 0 || v > 1) return 0;
+      return Math.sin(Math.PI * v) * 30 + 16 * Math.sin(x * 0.0113 + 2.1) + 7 * Math.sin(x * 0.0041);
+    },
+    tone:(x, y) => {
+      const v = (y - K.y) / K.h;
+      if (v < 0.10 || v > 0.92) return 0.98;
+      return 0.42;
+    },
+    budget:{ main:9.0, cross:0 }, wMax:2.6, seedDeg:37, step:6,
+    feather:20, inkLo:"#6E6656", inkHi:"#B5AB95", alpha:0.9
+  });
+
+  motif(["blind", "blind", "none"]);
+
+  finish();
+})();
+</script>
+</body>
+</html>

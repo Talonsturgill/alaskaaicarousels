@@ -1,0 +1,133 @@
+{
+  "document_title": "One Agenda. Two Items. One Vote.",
+  "run_date": "2026-09-10",
+  "carousel_no": 55,
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "UPDATE TO NO. 40 · ANCHORAGE ASSEMBLY, SEPTEMBER 1ST, 2026",
+      "headline": "UPDATE. $598,998 passed 8 to 4. The rule got no vote.",
+      "claim_ids": [
+        "C05",
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "n": 2,
+      "headline": "Three of the four no votes wrote the rule.",
+      "body": "Keith McCormick, Daniel Volland and Sydney Scout proposed AO 2026-108. All three voted against the money. They lost 8 to 4 on the night of September 1st, 2026.",
+      "claim_ids": [
+        "C02",
+        "C03",
+        "C04",
+        "C14"
+      ]
+    },
+    {
+      "n": 3,
+      "headline": "What the money is, and what it is not.",
+      "body": "The $598,998 comes from federal asset forfeitures, per a memorandum submitted to the Assembly. Chief Sean Case says it moves the crime center to its final location. The Assembly approved $11.8 million last year for the underlying system. ADN reported the Assembly considered a $600,000 ThunderCat contract.",
+      "claim_ids": [
+        "C05",
+        "C35",
+        "C24",
+        "C19"
+      ]
+    },
+    {
+      "n": 4,
+      "headline": "750 is the ceiling, not the count.",
+      "body": "The gap from 11 to 238 is wider than the gap from 238 to 750. Registered means APD knows the camera exists. Integrated means APD can pull the feed, through a CORE device from Axon.",
+      "claim_ids": [
+        "C22",
+        "C23",
+        "C21",
+        "C33",
+        "C07",
+        "C08",
+        "C20",
+        "C36"
+      ]
+    },
+    {
+      "n": 5,
+      "headline": "Three gates. None of them struck.",
+      "body": "ADN reports the ordinance would require Assembly permission before AI with human feature recognition is added to the network. Alaska Public Media reports it would require a warrant before data goes to federal agencies. ADN reports the technology would face a period of temporary approval and annual reporting.",
+      "claim_ids": [
+        "C16",
+        "C17",
+        "C18",
+        "C12"
+      ]
+    },
+    {
+      "n": 6,
+      "headline": "CODE.",
+      "body": "\"Let's put this into code now, so that when power changes, when the political winds shift, as they always do, we have protections for the people, no matter who is overseeing and implementing the system.\"",
+      "claim_ids": [
+        "C09",
+        "C11"
+      ],
+      "kicker": "\"Code is not going to keep up with technology.\"",
+      "attributions": [
+        "Chief Sean Case, to the Assembly in August, via ADN",
+        "Assembly member Sydney Scout, via Alaska Public Media"
+      ]
+    },
+    {
+      "n": 7,
+      "headline": "What is already in code. And what is only practice.",
+      "body": "Municipal use of facial recognition technology was officially banned by the Anchorage Assembly in 2023, per APD's own page. All scanned license plate data is automatically deleted after 14 days. Traffic camera footage is overwritten every 3 to 5 days. The camera registry is voluntary, the owner keeps control at all times, and APD must obtain permission to access video. APD does not use Flock cameras.",
+      "claim_ids": [
+        "C28",
+        "C25",
+        "C26",
+        "C37",
+        "C27"
+      ]
+    },
+    {
+      "n": 8,
+      "headline": "Fourteen days, read twice.",
+      "body": "How long a scanned plate lives. Deleted after 14 days, per APD's own page. How long the rule waited. September 1st, 2026 to September 15th, 2026.",
+      "claim_ids": [
+        "C25",
+        "C26",
+        "C03",
+        "C13"
+      ]
+    },
+    {
+      "n": 9,
+      "headline": "The rule is expected back on September 15th, 2026.",
+      "body": "Sponsors plan to bring AO 2026-108 back to the Assembly. Public testimony is how a resident gets read into the record.",
+      "claim_ids": [
+        "C13",
+        "C12"
+      ],
+      "ask": "Save this. The date is September 15th, 2026."
+    }
+  ],
+  "post_copy": "A hearing on Anchorage's police AI rule was set for September 1st, 2026. The camera money passed 8 to 4 that night. The rule got no vote.\n\n$598,998 in federal asset forfeiture money for the Real Time Crime Center.\nThree of the four no votes wrote the ordinance.\nADN reports it would require Assembly permission before AI with human feature recognition joins the network.\nAnchorage banned municipal facial recognition in 2023, per APD's own page.\n\nThe carousel plots the network's real size on a log rule. 11 cameras integrated against 238 registered as of August 27th, 2026, under a 750 ceiling.\n\nSponsors plan to bring it back on September 15th, 2026. What does a no vote from the rule's own authors buy once the money is already spent?\n\n#AnchorageAssembly #SurveillanceOversight #AlaskaPolicy",
+  "deck_summary_line": "The carousel plots the network's real size on a log rule. 11 cameras integrated against 238 registered as of August 27th, 2026, under a 750 ceiling.",
+  "first_comment": "Sources for Carousel No. 55, Anchorage's police camera money and AO 2026-108.\n\nAnchorage Police Department, Safe Anchorage (primary, the 2023 facial recognition ban, the 14 day and 3 to 5 day retention, the voluntary registry, no Flock cameras) https://www.anchoragepolice.com/safe\nAlaska Public Media, Assembly approves crime center upgrade, holds off on privacy protections, September 3rd, 2026 https://alaskapublic.org/news/public-safety/2026-09-03/anchorage-assembly-approves-600k-police-crime-center-upgrade-holds-off-on-updating-privacy-protections\nAnchorage Daily News, Zachariah Hughes, police and Assembly members clash over technology and surveillance tools, August 31st, 2026 https://www.adn.com/alaska-news/anchorage/2026/08/31/anchorage-police-and-assembly-members-clash-over-technology-and-surveillance-tools/\nAnchorage Daily News, Bella Biondini, police may expand surveillance capabilities, August 20th, 2026 https://www.adn.com/alaska-news/anchorage/2026/08/20/anchorage-police-may-expand-surveillance-capabilities-some-assembly-members-want-privacy-protections-first/\nAlaska's News Source, Joe Allgood, inside the Real Time Crime Center, August 27th, 2026 https://www.alaskasnewssource.com/2026/08/28/looking-inside-anchorage-polices-real-time-crime-center/\nAlaska Public Media, Wesley Early, Assembly weighs surveillance upgrade, August 21st, 2026 https://alaskapublic.org/news/anchorage/2026-08-21/as-anchorage-assembly-weighs-police-surveillance-upgrade-some-members-want-privacy-protections-first\n\nThe ordinance's own text was not publicly reachable. muni.org and anchorage.legistar.com both refuse automated retrieval, so every description of what AO 2026-108 would do is a newsroom's and is attributed as such on the slides.\n\nThe full verified record, all 41 claims with outlets and dates, is at https://alaskaaihq.com/archive/2026-09-10/",
+  "aftercare": [
+    "Post Tuesday to Thursday, 8 to 11am Alaska time.",
+    "Paste the first comment immediately, inside the first 60 seconds.",
+    "Reply substantively to every comment in the first 60 to 90 minutes. A dead first hour is rarely recovered.",
+    "If a commenter asks whether Anchorage runs facial recognition, the answer is no and the Assembly banned municipal use of it in 2023, per APD's own page. Do not soften that.",
+    "If a commenter asks for the ordinance text, say plainly that it is not publicly reachable and that every provision on the deck is attributed to the newsroom that reported it.",
+    "The September 15th, 2026 meeting is the live hook. Anyone who asks how to testify can be pointed at the Assembly's own testimony process.",
+    "Watch for saves and sends rather than likes. Slide 04 is the one built to be saved."
+  ],
+  "editor_notes_for_email": "This is an EXPLICIT UPDATE to Carousel No.40 of August 25th, 2026, which covered the same ordinance before the hearing. The dedupe gate fired a LIKELY DUPLICATE and the update route is the one way through it, so the cover says UPDATE and names what changed. Two corrections the fact-checker forced, both worth knowing. The vote was Tuesday September 1st, not September 3rd. And municipal facial recognition was ALREADY BANNED by the Anchorage Assembly in 2023, which is on APD's own page and is why slide 07 leads with what is already in code. The ordinance text itself was never obtainable, so every provision is attributed to a newsroom on the slide and in the caption.",
+  "caption_meta": {
+    "opening_move": "TIMELINE COLLAPSE",
+    "structure": "PUNCH THEN PROOF",
+    "closing_move": "NEW: WHAT A LOSING VOTE BUYS",
+    "first_8_words": "A hearing on Anchorage's police AI rule was",
+    "hook_type": "timeline collapse, a date that was set against what happened on it",
+    "critic_note": "Candidate B won. The critic's one fix replaced the closing paragraph, killing a two-horn fork burned on 2026-08-13 and a NEW: label that restated No.40's own hook archetype on the same story."
+  }
+}

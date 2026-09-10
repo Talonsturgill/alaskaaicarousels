@@ -6673,3 +6673,129 @@ distribution of other DOCUMENT posts and not against video — and a skipped dec
 does not enter the interest graph at all, because the history the ranker reads
 is filtered to posts that were engaged with. Neither changes a gate. Nothing was
 applied and the two reactive fixes took the budget.
+
+### 2026-09-10, Phase 1 craft refresh (No. 55)
+
+**Mezzotint is the technique this deck's reserve problem has been asking for.**
+The recurring warn trio (busy art under text, canvas mark near reserved text,
+art touching glyphs) has been answered on four recent decks by muting art under
+the type, which flattens the lower zone and is exactly what the artwork-craft
+criterion then marks down. Mezzotint inverts it. The plate is rocked to a full
+dark ground first, and every light in the image is SCRAPED and BURNISHED out of
+that ground, so a highlight is a worked passage rather than an unworked one. The
+detail that matters here is that a burnished light still carries faint traces of
+the original rocker pits, which is a reserve with texture in it. RULE, worth
+trying on this deck: a type reserve is BURNISHED out of the field, never plated
+over it, and it keeps a residue of the field's own grain so the band reads as
+worked rather than wiped. (Sources: Jackson's Art, worldofprintmaking.com,
+npg.org.uk glossary, escherinhetpaleis.nl, 2026-09-10.)
+
+**LinkedIn 2026, two secondary claims worth watching, neither actioned.** The
+marketing literature now reports that saves and sends outrank likes as ranking
+signals, and that a Q1 2026 classifier update penalises reach on prose that
+reads as templated. Both are consistent with the primary LinkedIn engineering
+sources logged on 2026-09-09 (Long Dwell plus Contribution), and neither is
+primary itself, so nothing is changed on their strength. The templated-prose
+finding, if it holds, prices the anti-template law in CAPTION_CRAFT in reach
+rather than only in taste. Recheck when a primary source appears.
+
+## 2026-09-10, No.55, Phase 8 repairs. Four engine lessons, all measured.
+
+**A RADIAL PUNCH CAN'T RESERVE A LONG BOX, and this is why a contrast
+failure reads "somewhere along the run of the text".** The offscreen
+destination-out reserve idiom shipped here with a radial gradient whose outer
+radius is `Math.max(b[2], b[3]) / 2 + pad`. On a 900px line of type that circle
+has faded to nothing well before the ends of the line, so the field stays over
+the first and last words while the middle is cleanly reserved. qa.py reports it
+as a worst-point contrast below the rubric line against a HEALTHY box mean, and
+that signature, bad worst point plus fine mean, is the tell. Punch a BLURRED
+RECTANGLE instead: `oc.filter = "blur(9px)"` then `fillRect` per box. It follows
+the shape of the thing being reserved, so a wide headline and a small mono stamp
+are both covered end to end, and the blur keeps the burin fade that the radial
+gradient was there to provide. Slide 08's two contrast warns died on this one
+change.
+
+**A 4-NUMBER `band` IS A SILENT MIS-DECLARATION, and it cost two slides their
+census.** `data-scale`'s `band` is the strip ACROSS the axis and takes TWO
+numbers, `[y0, y1]` for an x axis. Written as an `[x, y, w, h]` rect it still
+parses, because qa.py reads `band[0], band[1]` and finds two numbers there. On
+slide 04 that meant the census sampled y130 to y790 while the ticks drew at y859,
+and on slide 08 y170 to y640 while the rule drew at y676. Both reported every
+mark as ink 0.0 to 0.6 and both looked like a drawing-weight problem. Neither
+was. CHECK THE BAND FIRST when a census says the marks did not draw.
+
+**THE CENSUS READS THE MEDIAN DOWN THE BAND, so a mark must cross more than
+half the strip to register at all.** Slide 08's eleven unnamed day ticks covered
+19px of a 72px band, which is 26 percent, and read as texture no matter how dark
+they were. Two levers, and both are legitimate: cut the mark deeper, or narrow
+the band to the strip the scale actually owns. Doing both is usually right,
+because a band far taller than the marks is itself a mis-description.
+
+**A LOG AXIS MUST NOT DECLARE A `data-scale`, and axis_census says so in its own
+docstring.** It interpolates LINEARLY between `from` and `to`. Declared over a
+base-10 rule, every value it prints about your slide is false: 582px means 100
+and the linear read calls it 405. The temptation on a red census is to move the
+marks until the numbers agree, which bakes the lie in. Withdraw the declaration,
+enumerate the marks in the dossier, and say why. Same discipline as withdrawing
+an unmeasurable `data-encodes`.
+
+**And one about the encodings themselves.** After type reserves are properly
+punched, an encoding region that overlaps body copy stops measuring the art and
+starts measuring the paragraphs, because the punch removes the field exactly
+where the text is. Slide 07's declared regions collapsed from a real dense/sparse
+contrast to dE 0.8 for precisely this reason. Aim encoding rects at ground that
+is clear of type in BOTH regions, and re-measure off the render after any change
+to the reserve pass.
+
+### 2026-09-10, Phase 12 (the upgrade engineer, after the merge)
+
+Three of the four lessons above are MACHINERY now rather than memory. A `band`
+that is not exactly two numbers is a hard fail in `qa.py` that prints the
+`[y0,y1]` an `[x,y,w,h]` rect was probably meant to say; a census where EVERY
+declared mark reads dead hunts across the axis for the strip those marks do
+occupy and names it, before anyone touches a stroke weight; the radial punch is
+gone from the documented idiom, replaced by `AKENGRAVE.punchReserves` (blurred
+rectangles), and the contrast gate now recognises the ends-worse-than-middle
+signature and names the radial punch as its cause. `tests/axis_band_verify.py`
+and `tests/reserve_punch_verify.py` are the reconstructions. The encoding
+failure also names a probe aimed at reserved ground before it blames the art.
+
+**PARKED: the log axis that declares a `data-scale`.** `axis_census` interpolates
+LINEARLY and its own docstring says a log axis must not declare one, and nothing
+enforces it, so a log-mapped rule prints values that are simply false about the
+deck. The check that would work compares each mark's own value against the
+linear reading, and the only place a mark's value lives today is `means`, which
+is PROSE. Measured against the six `data-scale` declarations in the shipped
+corpus, a first-number-in-the-string parse reads 10, 23, 28 and 29 out of "APRIL
+10TH POSTED", "APRIL 23RD INDUSTRY DAY" and their siblings on an axis whose
+values are 0 to 139 days: four of the six parse to nonsense, and two of those
+are monotone, which is most of what a fit test has to work with. A heuristic
+that confidently says something false about a deck is the opposite of what this
+gate is for. The version that works is a contract addition, an optional numeric
+`"value"` on each mark, checked against the linear reading and silent when
+absent; that is a slide-contract change with a documentation and adoption story,
+so it is its own session. Until then the discipline stands: withdraw the
+declaration and enumerate the marks in the dossier.
+
+**PARKED: Canvas2D layers, measured in this engine's own binary.**
+`beginLayer()`/`endLayer()` apply `filter`, `globalAlpha`,
+`globalCompositeOperation` and shadow to a GROUP of draws as one, which is
+exactly the offscreen-canvas-plus-drawImage pattern this house writes by hand
+(https://github.com/fserb/canvas2D/blob/master/spec/layers.md). Probed in the
+Chromium the engine actually launches, 141.0.7390.37: `beginLayer` is
+`undefined` by default and by `--enable-blink-features=CanvasContextLayers`, and
+a `function` only under `--enable-experimental-web-platform-features`. Under
+that flag a destination-out blurred punch through a layer measures alpha 17 at
+the centre of the hole, 112 at its edge and 255 outside it, which is the same
+picture the one-line `ctx.filter` idiom already draws. So the gain is only for
+punches of several ops at once, and the price is a global experimental-features
+flag on every render of every deck. Not worth it; revisit when the API ships
+unflagged. Also probed and absent even under the flag: the I/O 2026 HTML-in-
+Canvas API (`drawElement`/`placeElement`), which would put real DOM type inside
+canvas art and invert the whole reserve idiom.
+
+**CORROBORATION, no change: headless determinism.** The 2018-2020 body of
+advice on reproducible headless text (`--font-render-hinting=none`,
+`--disable-lcd-text`, `--force-color-profile=srgb`) is already in
+`render.py`'s `CHROMIUM_ARGS`, all three. Chrome 141's release notes carry
+nothing for canvas, type, fonts, printing or headless.

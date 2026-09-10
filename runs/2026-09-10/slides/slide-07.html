@@ -1,0 +1,320 @@
+<!doctype html>
+<!-- No.55 SLIDE 07 — WHAT IS ALREADY IN CODE. Two-column register, dense crosshatch against sparse parallels, the 2023 tile struck gold. IN CODE reads FIRST. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F0EADD; font-family:"Bricolage Grotesque",sans-serif; position:relative; }
+  #art { position:absolute; inset:0; }
+  #grain { position:absolute; inset:0; background-repeat:repeat;
+           mix-blend-mode:overlay; opacity:0.06; pointer-events:none; }
+  h2 { font-family:"Instrument Serif",serif; font-weight:400;
+       line-height:1.02; letter-spacing:-0.02em; color:#2B2F35; position:absolute; }
+  .body { position:absolute; font-weight:400; line-height:1.35; color:#2B2F35;
+          font-variation-settings:"wght" 400,"wdth" 96; }
+  .fig { font-family:"JetBrains Mono",monospace; font-weight:500;
+         font-variant-numeric:tabular-nums lining-nums; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:500;
+          letter-spacing:0.09em; text-transform:uppercase; color:#6B6255; position:absolute; }
+  .counter { position:absolute; right:96px; top:96px; font-family:"JetBrains Mono",monospace;
+             font-size:24px; font-weight:500; color:#46586A; font-variant-numeric:tabular-nums; }
+  .stamp { position:absolute; left:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+           font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+  .mark { position:absolute; right:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.14em; color:#6B6255; }
+  h2 { left:96px; top:170px; width:840px; font-size:66px; }
+  .ch { position:absolute; font-family:"JetBrains Mono",monospace; font-size:25px;
+        font-weight:500; letter-spacing:0.10em; text-transform:uppercase; color:#46586A; }
+  .e1 { position:absolute; left:110px; top:700px; width:396px; font-size:33px;
+        line-height:1.32; color:#2B2F35; font-variation-settings:"wght" 500,"wdth" 96; }
+  .er { position:absolute; left:590px; width:400px; font-size:30px; line-height:1.30;
+        color:#2B2F35; font-variation-settings:"wght" 400,"wdth" 96; }
+  .src { left:96px; top:1150px; width:880px; font-size:24px; letter-spacing:0.07em; }
+</style>
+</head>
+<body data-contacts='[{"what":"the foot rib under the practice column","shadow":[[566,1114,424,9]],"ground":[[566,1134,424,14]]}]'
+      data-encodes='[{"claim":"one column is cut dense and one is cut sparse","reads":"differ","a":[372,478,158,180],"b":[592,478,158,180]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div id="grain" data-decorative></div>
+  <h2 data-reserve>What is already in code. And what is only practice.</h2>
+  <div class="ch" data-reserve="mono" style="left:110px; top:432px;">In code</div>
+  <div class="ch" data-reserve="mono" style="left:590px; top:432px;">Published practice</div>
+  <div class="e1" data-reserve>Municipal use of facial recognition technology was officially banned by the Anchorage Assembly in 2023, per APD's own page.</div>
+  <div class="er" data-reserve style="top:492px;">All scanned license plate data is automatically deleted after <span class="fig">14</span> days.</div>
+  <div class="er" data-reserve style="top:646px;">Traffic camera footage is overwritten every <span class="fig">3</span> to <span class="fig">5</span> days.</div>
+  <div class="er" data-reserve style="top:762px;">The camera registry is voluntary, the owner keeps control at all times, and APD must obtain permission to access video.</div>
+  <div class="er" data-reserve style="top:990px;">APD does not use Flock cameras.</div>
+  <div class="mono src" data-reserve="mono">Every line on this slide comes from the Anchorage Police Department's own Safe Anchorage page.</div>
+  <div class="counter" data-reserve="mono">07 / 09</div>
+  <div class="stamp" data-reserve="mono">FIRST IMPRESSION &middot; PRIMARY SOURCE</div>
+  <div class="mark" data-reserve="mono">ALASKA.AI</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const W = 1080, H = 1350, SEED = 20260910;
+  const cv = document.getElementById("art"), cx = cv.getContext("2d");
+  cx.scale(2, 2);
+  const P = { base:"#F0EADD", high:"#FBF7EE", tooth:"#E4DCCB", trough:"#CFC4AE",
+              ink:"#2B2F35", slate:"#46586A", ctx:"#6B6255", hatch:"#9A9182",
+              gold:"#FFC72C", deep:"#8E8471" };
+  const mix = (a,b,t) => AKC.mixOklab(a, b, Math.max(0, Math.min(1, t)));
+  /* A struck or lit shape is never a perfect axis-aligned box. These draw the
+     same regions as irregular closed paths, which is both fewer rectangles and
+     a truer edge: paper under a plate does not give a ruler-straight boundary. */
+  function pathRect(x, y, w, h, jit, seed) {
+    jit = jit == null ? 1.1 : jit;
+    const r = AK.rng((seed || 1) + 97);
+    const pts = [];
+    const stepX = Math.max(10, w / 8), stepY = Math.max(8, h / 4);
+    for (let t = 0; t <= w; t += stepX) pts.push([x + t, y + (r() - 0.5) * jit]);
+    for (let t = 0; t <= h; t += stepY) pts.push([x + w + (r() - 0.5) * jit, y + t]);
+    for (let t = w; t >= 0; t -= stepX) pts.push([x + t, y + h + (r() - 0.5) * jit]);
+    for (let t = h; t >= 0; t -= stepY) pts.push([x + (r() - 0.5) * jit, y + t]);
+    cx.beginPath();
+    pts.forEach((p, i) => i === 0 ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]));
+    cx.closePath();
+  }
+  function fillQuad(x, y, w, h, style, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.fillStyle = style; cx.fill();
+  }
+  function strokeQuad(x, y, w, h, style, lw, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.strokeStyle = style; cx.lineWidth = lw; cx.stroke();
+  }
+
+  const rnd = AK.rng(SEED + 7);
+  const KEY = 296 * Math.PI / 180;
+  cx.fillStyle = P.base; cx.fillRect(0, 0, W, H);
+
+  /* --- laid paper, house furniture, identical everywhere by design --------- */
+  function laidPaper(bend) {
+    cx.save(); cx.lineWidth = 0.75;
+    for (let y = 4; y < H; y += 3.1) {
+      cx.beginPath();
+      for (let x = 0; x <= W; x += 10) {
+        const yy = y + (bend ? bend(x, y) : 0);
+        x === 0 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.075)"; cx.stroke();
+    }
+    cx.lineWidth = 1.3;
+    for (let x = 12; x < W; x += 26) {
+      cx.beginPath();
+      for (let y = 0; y <= H; y += 8) {
+        const xx = x + (bend ? bend(x, y) * 0.42 : 0);
+        y === 0 ? cx.moveTo(xx, y) : cx.lineTo(xx, y);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.085)"; cx.stroke();
+    }
+    cx.restore();
+  }
+  function litPool(x, y, w, h) {
+    const g = cx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0, "rgba(251,247,238,0)");
+    g.addColorStop(0.42, "rgba(251,247,238,0.66)");
+    g.addColorStop(1, "rgba(251,247,238,0)");
+    cx.save(); cx.globalCompositeOperation = "screen";
+    cx.fillStyle = g; pathRect(x, y, w, h, 2.4, 11); cx.fill(); cx.restore();
+  }
+  /* A deboss is ALWAYS a lit upper lip and a lee lower lip, never one stroke. */
+  function deboss(x, y, w, h, depth) {
+    for (let i = 0; i < h; i++) {
+      const v = i / h; let col, a;
+      if (v < 0.11) { col = P.high; a = 1.0; }
+      else if (v < 0.66) { col = mix(P.tooth, "#A99E86", (v - 0.11) / 0.55); a = 0.92 * depth; }
+      else { col = mix("#A99E86", P.base, (v - 0.66) / 0.34); a = 0.86 * depth * (1 - (v - 0.66) / 0.34) + 0.1; }
+      cx.fillStyle = col; cx.globalAlpha = a;
+      cx.fillRect(x, y + i, w, 1);
+    }
+    cx.globalAlpha = 1;
+  }
+  function registration() {
+    const rx = 984, ry = 176, r = 20;
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.arc(rx, ry, r, 0, 7); cx.stroke();
+    cx.beginPath(); cx.moveTo(rx-r-8,ry); cx.lineTo(rx+r+8,ry);
+    cx.moveTo(rx,ry-r-8); cx.lineTo(rx,ry+r+8); cx.stroke();
+    cx.fillStyle = P.gold; cx.beginPath();
+    for (let i=0;i<8;i++){const a=i*Math.PI/4,rr=(i%2===0)?7.5:2.6;
+      const px=rx+Math.cos(a)*rr,py=ry+Math.sin(a)*rr; i===0?cx.moveTo(px,py):cx.lineTo(px,py);}
+    cx.closePath(); cx.fill();
+  }
+  /* The three motif squares, 34px, footer furniture opposite the counter. */
+  function motif(state) {
+    const y = 1238, s = 34;
+    const xs = [670, 716, 762];
+    function sq(x, kind) {
+      if (kind === "none") return;
+      cx.save();
+      if (kind === "gold" || kind === "worn") {
+        fillQuad(x, y, s, s, P.gold, 1.0, 5);
+        cx.strokeStyle = P.ink; cx.lineWidth = kind === "worn" ? 1.0 : 1.8;
+        if (kind === "worn") { cx.globalAlpha = 0.62; }
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "solid") {
+        cx.strokeStyle = P.slate; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "phantom") {
+        cx.setLineDash([30, 5, 6, 5, 6, 5]); cx.lineWidth = 1.25;
+        cx.strokeStyle = P.slate; strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "blind") {
+        cx.strokeStyle = "rgba(251,247,238,0.95)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y - 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 7);
+        cx.strokeStyle = "rgba(154,145,130,0.55)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 1.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 8);
+      }
+      cx.restore();
+    }
+    sq(xs[0], state[0]); sq(xs[1], state[1]); sq(xs[2], state[2]);
+  }
+  function finish() {
+    registration();
+    if (window.AKPOST && AKPOST.grade) {
+      AKPOST.grade(cx, { exposure:-0.06, saturation:0.94, contrast:1.03, sharpen:0.30,
+                         dither:true, aberration:0,
+                         bloom:{ threshold:0.90, strength:0.08, radius:8 } });
+    }
+    document.getElementById("grain").style.backgroundImage =
+      "url(" + AK.grainTile(280, 52, SEED) + ")";
+  }
+  const eng = AKENGRAVE.create({ seed:SEED, light:{ azDeg:296, elDeg:26 } });
+  eng.reserve(AKENGRAVE.boxesFor("[data-reserve]"));
+
+  laidPaper(null);
+
+  /* ---- the register frame, drafting furniture ---------------------------- */
+  (function frame() {
+    cx.strokeStyle = "rgba(70,88,106,0.75)"; cx.lineWidth = 2.5;
+    cx.strokeRect(96, 400, 888, 720);
+    cx.strokeStyle = "rgba(70,88,106,0.30)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.moveTo(540, 400); cx.lineTo(540, 1120); cx.stroke();
+    cx.beginPath(); cx.moveTo(96, 470); cx.lineTo(984, 470); cx.stroke();
+    [618, 772, 976].forEach(y => {
+      cx.beginPath(); cx.moveTo(540, y); cx.lineTo(984, y); cx.stroke();
+    });
+  })();
+
+  /* ---- MATERIAL CODE. Hatch density encodes legal status. ---------------- */
+  /* IN CODE is a dense 45 and 135 crosshatch, worked and solid.
+     PUBLISHED PRACTICE is sparse 45 parallels, and it THINS as it descends,
+     so the bottom band shows the material literally running out.
+
+     BOTH FIELDS ARE CUT AROUND THE TYPE, NOT PLATED UNDER IT. eng.reserve()
+     governs the engrave library's own lay and has no reach into these two
+     hand-drawn loops, so the hatch was crossing every line of body copy in
+     both columns. They are drawn to an offscreen canvas, the measured type
+     boxes are punched out of it with destination-out, and the result is
+     composited once. destination-out is the right operator rather than an
+     even-odd clip because the boxes overlap and a clip cannot reserve
+     overlapping regions. The feather keeps the cut from reading as a
+     rectangle stamped into the plate.                                       */
+  const RESERVED = AKENGRAVE.boxesFor("[data-reserve]", { padBody: 9, padMono: 7 });
+  const off = document.createElement("canvas");
+  off.width = 2160; off.height = 2700;
+  const oc = off.getContext("2d"); oc.scale(2, 2);
+
+  function crosshatch(g, x, y, w, h, pitch, alpha, both) {
+    g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip();
+    g.strokeStyle = "rgba(70,88,106," + alpha + ")"; g.lineWidth = 1.05;
+    for (let k = -h; k < w + h; k += pitch) {
+      g.beginPath(); g.moveTo(x + k, y); g.lineTo(x + k + h, y + h); g.stroke();
+    }
+    if (both) {
+      for (let k = -h; k < w + h; k += pitch) {
+        g.beginPath(); g.moveTo(x + k, y + h); g.lineTo(x + k + h, y); g.stroke();
+      }
+    }
+    g.restore();
+  }
+  crosshatch(oc, 98, 472, 440, 646, 5.0, 0.60, true);
+
+  /* the practice field, thinning downward through the weight ladder */
+  oc.save(); oc.beginPath(); oc.rect(542, 472, 440, 646); oc.clip();
+  for (let k = -646; k < 440 + 646; k += 34) {
+    for (let seg = 0; seg < 646; seg += 12) {
+      const t = seg / 646;
+      oc.strokeStyle = "rgba(154,145,130," + (0.54 * (1 - t * 0.86)) + ")";
+      oc.lineWidth = [2.0, 1.25, 0.75][Math.min(2, Math.floor(t * 3))];
+      oc.beginPath();
+      oc.moveTo(542 + k + seg, 472 + seg);
+      oc.lineTo(542 + k + seg + 12, 472 + seg + 12);
+      oc.stroke();
+    }
+  }
+  oc.restore();
+
+  oc.save();
+  oc.globalCompositeOperation = "destination-out";
+  /* a blurred RECTANGLE, not a radial gradient: a radial punch's outer radius
+     is half the box's longest side, so a wide line of type keeps the field
+     over its first and last words. See the same note on slide 08. */
+  oc.filter = "blur(7px)";
+  oc.fillStyle = "rgba(0,0,0,1)";
+  RESERVED.forEach(function (b) {
+    oc.fillRect(b[0] - 5, b[1] - 5, b[2] + 10, b[3] + 10);
+  });
+  oc.filter = "none";
+  oc.restore();
+  cx.drawImage(off, 0, 0, 1080, 1350);
+
+  /* ---- the 2023 big-number tile, embossed, gold rim, struck DEEPEST ------- */
+  (function tile2023() {
+    const x = 130, y = 520, w = 230, h = 132;
+    litPool(x - 24, y + h - 14, w + 48, 66);
+    cx.fillStyle = "rgba(148,139,123,0.30)";
+    cx.beginPath(); cx.ellipse(x + w/2 + 15, y + h + 15, w * 0.50, 15, 0, 0, 7); cx.fill();
+    const g = cx.createLinearGradient(x, y, x + w, y + h);
+    g.addColorStop(0, "#FBF7EE"); g.addColorStop(0.6, "#EAE2D2"); g.addColorStop(1, "#C0B69E");
+    cx.fillStyle = g; pathRect(x, y, w, h, 1.2, 41); cx.fill();
+    /* milled gold rim, because the 2023 ban IS an Assembly decision in force */
+    cx.strokeStyle = P.gold; cx.lineWidth = 5.0; cx.strokeRect(x + 3, y + 3, w - 6, h - 6);
+    cx.strokeStyle = "rgba(180,138,20,0.6)"; cx.lineWidth = 1.2;
+    for (let k = 0; k < w - 12; k += 6) {
+      cx.beginPath(); cx.moveTo(x + 6 + k, y + 1.5); cx.lineTo(x + 6 + k, y + 6.5); cx.stroke();
+      cx.beginPath(); cx.moveTo(x + 6 + k, y + h - 6.5); cx.lineTo(x + 6 + k, y + h - 1.5); cx.stroke();
+    }
+    strokeQuad(x, y, w, h, P.ink, 1.4, 1.0, 42);
+    /* the numeral, struck in relief. mono, per the deck's type law. */
+    cx.save();
+    cx.font = '500 96px "JetBrains Mono", monospace';
+    cx.textAlign = "center"; cx.textBaseline = "middle";
+    cx.fillStyle = "rgba(255,253,247,0.9)";
+    cx.fillText("2023", x + w/2 - 2.2, y + h/2 - 2.2);
+    cx.fillStyle = "rgba(112,102,85,0.92)";
+    cx.fillText("2023", x + w/2 + 1.2, y + h/2 + 1.2);
+    cx.fillStyle = "#5C5445";
+    cx.fillText("2023", x + w/2, y + h/2);
+    cx.restore();
+  })();
+
+  /* ---- the foot rib under the practice column, the lower third ----------- */
+  (function footRib() {
+    const x = 566, y = 1074, w = 424, h = 40;
+    litPool(x - 200, y + h - 14, w + 140, 80);
+    cx.fillStyle = "rgba(136,126,108,0.40)";
+    cx.beginPath(); cx.ellipse(x + w/2 + 84, y + h + 16, w * 0.50, 15, 0, 0, 7); cx.fill();
+    cx.fillStyle = "rgba(96,87,72,0.62)";
+    cx.beginPath(); cx.ellipse(x + w/2 + 64, y + h + 7, w * 0.46, 8, 0, 0, 7); cx.fill();
+    const gt = cx.createLinearGradient(x, y, x, y + 9);
+    gt.addColorStop(0, "#FBF7EE"); gt.addColorStop(1, "#E7DFCF");
+    cx.fillStyle = gt; pathRect(x, y, w, 9, 1.0, 43); cx.fill();
+    const gf = cx.createLinearGradient(x, y + 9, x, y + h);
+    gf.addColorStop(0, "#DCD3C1"); gf.addColorStop(1, "#A2977F");
+    cx.fillStyle = gf; pathRect(x, y + 9, w, h - 9, 1.4, 44); cx.fill();
+    fillQuad(x, y + h, w, 3.0, "rgba(96,88,74,0.58)", 0.8, 45);
+  })();
+
+  motif(["gold", "solid", "worn"]);
+
+  finish();
+})();
+</script>
+</body>
+</html>

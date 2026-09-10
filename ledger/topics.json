@@ -2267,6 +2267,30 @@
         "Homer",
         "Seldovia"
       ]
+    },
+    {
+      "run_date": "2026-09-10",
+      "carousel_no": 55,
+      "headline": "One Agenda. Two Items. One Vote.",
+      "topic": "On the night of Tuesday September 1st, 2026 the Anchorage Assembly took two surveillance items off one agenda. A $598,998 appropriation of federal asset forfeiture money for the police Real Time Crime Center passed 8 to 4. AO 2026-108, the ordinance by Keith McCormick, Sydney Scout and Daniel Volland that would write surveillance rules into Anchorage code, got no vote at all, and three of the four no votes on the money were the ordinance's own sponsors. Sponsors plan to bring it back on September 15th, 2026. ADN reports the ordinance would require Assembly permission before AI with human feature recognition joins the network and would require a warrant before data goes to federal agencies. The camera network stood at 238 registered and 11 integrated for direct access as of August 27th, 2026, against a 750 feed ceiling and an $11.8 million prior appropriation, with Chief Sean Case saying APD can't come close to that ceiling. APD's own Safe Anchorage page establishes that municipal use of facial recognition was already banned by the Assembly in 2023, that scanned plate data is deleted after 14 days, that traffic footage is overwritten every 3 to 5 days, and that APD does not use Flock cameras. The ordinance text itself is not publicly reachable: muni.org and anchorage.legistar.com refuse automated fetch, so every description of its provisions is a newsroom's.",
+      "angle": "ONE NIGHT, ONE AGENDA, TWO ITEMS, ONE OUTCOME. Shipped as an explicit UPDATE to No.40, whose own title was a countdown to this hearing. The spine is the word CODE, meant as municipal code by Chief Case ('Code is not going to keep up with technology') and by Assembly member Sydney Scout ('Let's put this into code now, so that when power changes, when the political winds shift, as they always do, we have protections for the people'), with a LinkedIn audience hearing the software sense underneath without being told to.",
+      "entities": [
+        "Anchorage Assembly",
+        "Anchorage Police Department",
+        "Real Time Crime Center",
+        "AO 2026-108",
+        "Keith McCormick",
+        "Sydney Scout",
+        "Daniel Volland",
+        "Sean Case",
+        "ThunderCat Technology",
+        "Suzanne LaFrance",
+        "Alaska Public Media",
+        "Anchorage Daily News",
+        "Alaska Landmine",
+        "Axon",
+        "Flock Safety"
+      ]
     }
   ]
 }

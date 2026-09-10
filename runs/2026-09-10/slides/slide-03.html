@@ -1,0 +1,302 @@
+<!doctype html>
+<!-- No.55 SLIDE 03 — THE MONEY. Two embossed seals at IDENTICAL size, a BROKEN dimension bracket, and a stop block carrying the lower third. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F0EADD; font-family:"Bricolage Grotesque",sans-serif; position:relative; }
+  #art { position:absolute; inset:0; }
+  #grain { position:absolute; inset:0; background-repeat:repeat;
+           mix-blend-mode:overlay; opacity:0.06; pointer-events:none; }
+  h2 { font-family:"Instrument Serif",serif; font-weight:400;
+       line-height:1.02; letter-spacing:-0.02em; color:#2B2F35; position:absolute; }
+  .body { position:absolute; font-weight:400; line-height:1.35; color:#2B2F35;
+          font-variation-settings:"wght" 400,"wdth" 96; }
+  .fig { font-family:"JetBrains Mono",monospace; font-weight:500;
+         font-variant-numeric:tabular-nums lining-nums; }
+  .mono { font-family:"JetBrains Mono",monospace; font-weight:500;
+          letter-spacing:0.09em; text-transform:uppercase; color:#6B6255; position:absolute; }
+  .counter { position:absolute; right:96px; top:96px; font-family:"JetBrains Mono",monospace;
+             font-size:24px; font-weight:500; color:#46586A; font-variant-numeric:tabular-nums; }
+  .stamp { position:absolute; left:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+           font-size:24px; font-weight:500; letter-spacing:0.09em; color:#6B6255; }
+  .mark { position:absolute; right:96px; bottom:78px; font-family:"JetBrains Mono",monospace;
+          font-size:24px; font-weight:500; letter-spacing:0.14em; color:#6B6255; }
+  h2 { left:96px; top:180px; width:740px; font-size:74px; }
+  .body { left:96px; top:812px; width:420px; font-size:30px; }
+  .body2 { position:absolute; left:566px; top:812px; width:420px; font-size:30px;
+           font-weight:400; line-height:1.35; color:#2B2F35;
+           font-variation-settings:"wght" 400,"wdth" 96; }
+  .brk { left:96px; top:706px; font-size:26px; }
+</style>
+</head>
+<body data-contacts='[{"what":"the stop block on the sheet","shadow":[[150,1172,760,9]],"ground":[[150,1192,760,14]]}]'
+      data-encodes='[{"claim":"a dimension bracket that does not close","reads":"differ","a":[330,753,110,12],"b":[486,753,110,12]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div id="grain" data-decorative></div>
+  <h2 data-reserve>What the money is, and what it is not.</h2>
+  <div class="body" data-reserve>The <span class="fig">$598,998</span> comes from federal asset forfeitures, per a memorandum submitted to the Assembly. Chief Sean Case says it moves the crime center to its final location.</div>
+  <div class="body2" data-reserve>The Assembly approved <span class="fig">$11.8 million</span> last year for the underlying system. ADN reported the Assembly considered a <span class="fig">$600,000</span> ThunderCat contract.</div>
+  <div class="mono brk" data-reserve="mono">Different appropriations. Not one total.</div>
+  <div class="counter" data-reserve="mono">03 / 09</div>
+  <div class="stamp" data-reserve="mono">SECOND IMPRESSION &middot; REPORTED</div>
+  <div class="mark" data-reserve="mono">ALASKA.AI</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const W = 1080, H = 1350, SEED = 20260910;
+  const cv = document.getElementById("art"), cx = cv.getContext("2d");
+  cx.scale(2, 2);
+  const P = { base:"#F0EADD", high:"#FBF7EE", tooth:"#E4DCCB", trough:"#CFC4AE",
+              ink:"#2B2F35", slate:"#46586A", ctx:"#6B6255", hatch:"#9A9182",
+              gold:"#FFC72C", deep:"#8E8471" };
+  const mix = (a,b,t) => AKC.mixOklab(a, b, Math.max(0, Math.min(1, t)));
+  /* A struck or lit shape is never a perfect axis-aligned box. These draw the
+     same regions as irregular closed paths, which is both fewer rectangles and
+     a truer edge: paper under a plate does not give a ruler-straight boundary. */
+  function pathRect(x, y, w, h, jit, seed) {
+    jit = jit == null ? 1.1 : jit;
+    const r = AK.rng((seed || 1) + 97);
+    const pts = [];
+    const stepX = Math.max(10, w / 8), stepY = Math.max(8, h / 4);
+    for (let t = 0; t <= w; t += stepX) pts.push([x + t, y + (r() - 0.5) * jit]);
+    for (let t = 0; t <= h; t += stepY) pts.push([x + w + (r() - 0.5) * jit, y + t]);
+    for (let t = w; t >= 0; t -= stepX) pts.push([x + t, y + h + (r() - 0.5) * jit]);
+    for (let t = h; t >= 0; t -= stepY) pts.push([x + (r() - 0.5) * jit, y + t]);
+    cx.beginPath();
+    pts.forEach((p, i) => i === 0 ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]));
+    cx.closePath();
+  }
+  function fillQuad(x, y, w, h, style, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.fillStyle = style; cx.fill();
+  }
+  function strokeQuad(x, y, w, h, style, lw, jit, seed) {
+    pathRect(x, y, w, h, jit, seed); cx.strokeStyle = style; cx.lineWidth = lw; cx.stroke();
+  }
+
+  const rnd = AK.rng(SEED + 3);
+  const KEY = 296 * Math.PI / 180;
+  cx.fillStyle = P.base; cx.fillRect(0, 0, W, H);
+
+  /* --- laid paper, house furniture, identical everywhere by design --------- */
+  function laidPaper(bend) {
+    cx.save(); cx.lineWidth = 0.75;
+    for (let y = 4; y < H; y += 3.1) {
+      cx.beginPath();
+      for (let x = 0; x <= W; x += 10) {
+        const yy = y + (bend ? bend(x, y) : 0);
+        x === 0 ? cx.moveTo(x, yy) : cx.lineTo(x, yy);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.075)"; cx.stroke();
+    }
+    cx.lineWidth = 1.3;
+    for (let x = 12; x < W; x += 26) {
+      cx.beginPath();
+      for (let y = 0; y <= H; y += 8) {
+        const xx = x + (bend ? bend(x, y) * 0.42 : 0);
+        y === 0 ? cx.moveTo(xx, y) : cx.lineTo(xx, y);
+      }
+      cx.strokeStyle = "rgba(154,145,130,0.085)"; cx.stroke();
+    }
+    cx.restore();
+  }
+  function litPool(x, y, w, h) {
+    const g = cx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0, "rgba(251,247,238,0)");
+    g.addColorStop(0.42, "rgba(251,247,238,0.66)");
+    g.addColorStop(1, "rgba(251,247,238,0)");
+    cx.save(); cx.globalCompositeOperation = "screen";
+    cx.fillStyle = g; pathRect(x, y, w, h, 2.4, 11); cx.fill(); cx.restore();
+  }
+  /* A deboss is ALWAYS a lit upper lip and a lee lower lip, never one stroke. */
+  function deboss(x, y, w, h, depth) {
+    for (let i = 0; i < h; i++) {
+      const v = i / h; let col, a;
+      if (v < 0.11) { col = P.high; a = 1.0; }
+      else if (v < 0.66) { col = mix(P.tooth, "#A99E86", (v - 0.11) / 0.55); a = 0.92 * depth; }
+      else { col = mix("#A99E86", P.base, (v - 0.66) / 0.34); a = 0.86 * depth * (1 - (v - 0.66) / 0.34) + 0.1; }
+      cx.fillStyle = col; cx.globalAlpha = a;
+      cx.fillRect(x, y + i, w, 1);
+    }
+    cx.globalAlpha = 1;
+  }
+  function registration() {
+    const rx = 984, ry = 176, r = 20;
+    cx.strokeStyle = "rgba(70,88,106,0.55)"; cx.lineWidth = 1.0;
+    cx.beginPath(); cx.arc(rx, ry, r, 0, 7); cx.stroke();
+    cx.beginPath(); cx.moveTo(rx-r-8,ry); cx.lineTo(rx+r+8,ry);
+    cx.moveTo(rx,ry-r-8); cx.lineTo(rx,ry+r+8); cx.stroke();
+    cx.fillStyle = P.gold; cx.beginPath();
+    for (let i=0;i<8;i++){const a=i*Math.PI/4,rr=(i%2===0)?7.5:2.6;
+      const px=rx+Math.cos(a)*rr,py=ry+Math.sin(a)*rr; i===0?cx.moveTo(px,py):cx.lineTo(px,py);}
+    cx.closePath(); cx.fill();
+  }
+  /* The three motif squares, 34px, footer furniture opposite the counter. */
+  function motif(state) {
+    const y = 1238, s = 34;
+    const xs = [600, 646, 692];
+    function sq(x, kind) {
+      if (kind === "none") return;
+      cx.save();
+      if (kind === "gold" || kind === "worn") {
+        fillQuad(x, y, s, s, P.gold, 1.0, 5);
+        cx.strokeStyle = P.ink; cx.lineWidth = kind === "worn" ? 1.0 : 1.8;
+        if (kind === "worn") { cx.globalAlpha = 0.62; }
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "solid") {
+        cx.strokeStyle = P.slate; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "phantom") {
+        cx.setLineDash([30, 5, 6, 5, 6, 5]); cx.lineWidth = 1.25;
+        cx.strokeStyle = P.slate; strokeQuad(x + 0.5, y + 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 6);
+      } else if (kind === "blind") {
+        cx.strokeStyle = "rgba(251,247,238,0.95)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y - 0.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 7);
+        cx.strokeStyle = "rgba(154,145,130,0.55)"; cx.lineWidth = 1.6;
+        strokeQuad(x + 0.5, y + 1.5, s - 1, s - 1, cx.strokeStyle, cx.lineWidth, 0.9, 8);
+      }
+      cx.restore();
+    }
+    sq(xs[0], state[0]); sq(xs[1], state[1]); sq(xs[2], state[2]);
+  }
+  function finish() {
+    registration();
+    if (window.AKPOST && AKPOST.grade) {
+      AKPOST.grade(cx, { exposure:-0.06, saturation:0.94, contrast:1.03, sharpen:0.30,
+                         dither:true, aberration:0,
+                         bloom:{ threshold:0.90, strength:0.08, radius:8 } });
+    }
+    document.getElementById("grain").style.backgroundImage =
+      "url(" + AK.grainTile(280, 52, SEED) + ")";
+  }
+  const eng = AKENGRAVE.create({ seed:SEED, light:{ azDeg:296, elDeg:26 } });
+  eng.reserve(AKENGRAVE.boxesFor("[data-reserve]"));
+
+  laidPaper(null);
+
+  /* ---- two embossed seals, drawn at IDENTICAL size on purpose ------------- */
+  /* Two struck warrant plates, drawn at IDENTICAL size on purpose. Sizing them
+     to value would invite the $12.4 million sum the fact-checker killed. */
+  function plate(x, y, w, h) {
+    litPool(x - 40, y + h - 16, w + 80, 78);
+    cx.save();
+    cx.fillStyle = "rgba(138,128,110,0.34)";
+    cx.beginPath(); cx.ellipse(x + w/2 + 22, y + h + 16, w * 0.56, 15, 0, 0, 7); cx.fill();
+    cx.fillStyle = "rgba(98,89,74,0.60)";
+    cx.beginPath(); cx.ellipse(x + w/2 + 9, y + h + 7, w * 0.52, 8, 0, 0, 7); cx.fill();
+    cx.restore();
+    /* the milled edge: short flutes along all four sides, each shaded by facing */
+    const F = 4;
+    for (let k = 0; k < w; k += 7) {
+      cx.strokeStyle = "rgba(251,247,238,0.92)"; cx.lineWidth = 2.2;
+      cx.beginPath(); cx.moveTo(x + k, y); cx.lineTo(x + k + 4, y + F); cx.stroke();
+      cx.strokeStyle = "rgba(150,140,122,0.75)"; cx.lineWidth = 2.2;
+      cx.beginPath(); cx.moveTo(x + k, y + h); cx.lineTo(x + k + 4, y + h - F); cx.stroke();
+    }
+    for (let k = 0; k < h; k += 7) {
+      cx.strokeStyle = "rgba(244,239,228,0.85)"; cx.lineWidth = 2.0;
+      cx.beginPath(); cx.moveTo(x, y + k); cx.lineTo(x + F, y + k + 4); cx.stroke();
+      cx.strokeStyle = "rgba(160,150,130,0.70)"; cx.lineWidth = 2.0;
+      cx.beginPath(); cx.moveTo(x + w, y + k); cx.lineTo(x + w - F, y + k + 4); cx.stroke();
+    }
+    /* the embossed face, lit from the upper left */
+    const g = cx.createLinearGradient(x, y, x + w, y + h);
+    g.addColorStop(0, "#FBF7EE"); g.addColorStop(0.58, "#E9E2D3"); g.addColorStop(1, "#C3B9A1");
+    cx.fillStyle = g; pathRect(x + 5, y + 5, w - 10, h - 10, 1.1, 91); cx.fill();
+    /* the gold rule around the face, because both ARE decisions in force */
+    strokeQuad(x + 12, y + 12, w - 24, h - 24, P.gold, 3.6, 0.9, 92);
+    /* a raised ledger band across the plate, with its own lee */
+    const gb = cx.createLinearGradient(0, y + h * 0.44, 0, y + h * 0.66);
+    gb.addColorStop(0, "#FBF7EE"); gb.addColorStop(1, "#B7AC94");
+    cx.fillStyle = gb; pathRect(x + 22, y + h * 0.44, w - 44, h * 0.22, 1.0, 93); cx.fill();
+    /* engraved lay across the face so it is worked metal, not a filled box */
+    cx.save(); pathRect(x + 12, y + 12, w - 24, h - 24, 0.8, 94); cx.clip();
+    cx.strokeStyle = "rgba(120,110,92,0.20)"; cx.lineWidth = 1.0;
+    for (let k = -h; k < w + h; k += 6) {
+      cx.beginPath(); cx.moveTo(x + k, y); cx.lineTo(x + k + h, y + h); cx.stroke();
+    }
+    cx.restore();
+  }
+  plate(206, 470, 188, 168);
+  plate(686, 470, 188, 168);
+
+  /* ---- the BROKEN dimension bracket, and it is the slide's focal point ---- */
+  (function brokenBracket() {
+    const y = 760;
+    cx.save();
+    cx.strokeStyle = P.slate; cx.lineWidth = 4.2;
+    /* extension lines, 4px gap and 6px overshoot */
+    cx.beginPath(); cx.moveTo(300, 642 + 4); cx.lineTo(300, y + 6);
+    cx.moveTo(780, 642 + 4); cx.lineTo(780, y + 6); cx.stroke();
+    /* left half reaches in and STOPS */
+    cx.lineWidth = 6.0;
+    cx.beginPath(); cx.moveTo(300, y); cx.lineTo(452, y); cx.stroke();
+    cx.beginPath(); cx.moveTo(300, y); cx.lineTo(322, y - 8.0); cx.lineTo(322, y + 8.0);
+    cx.closePath(); cx.fillStyle = P.slate; cx.fill();
+    /* right half reaches in and STOPS */
+    cx.beginPath(); cx.moveTo(780, y); cx.lineTo(628, y); cx.stroke();
+    cx.lineWidth = 4.2;
+    cx.beginPath(); cx.moveTo(780, y); cx.lineTo(758, y - 8.0); cx.lineTo(758, y + 8.0);
+    cx.closePath(); cx.fill();
+    /* the gap, phantom dashed, which is the refusal drawn */
+    cx.setLineDash([9, 9]); cx.lineWidth = 1.0;
+    cx.globalAlpha = 0.45;
+    cx.beginPath(); cx.moveTo(452, y); cx.lineTo(628, y); cx.stroke();
+    cx.globalAlpha = 1;
+    cx.restore();
+  })();
+
+  /* ---- the stop block: three modeled planes carrying the lower third ------ */
+  (function stopBlock() {
+    const x = 150, y = 1108, w = 760, h = 64, d = 22;
+    litPool(x - 210, y + h - 16, w + 150, 88);
+    cx.save();
+    cx.fillStyle = "rgba(138,128,110,0.36)";
+    cx.beginPath(); cx.ellipse(x + w/2 + 96, y + h + 20, w * 0.50, 19, 0, 0, 7); cx.fill();
+    cx.fillStyle = "rgba(96,87,72,0.64)";
+    cx.beginPath(); cx.ellipse(x + w/2 + 72, y + h + 9, w * 0.47, 10, 0, 0, 7); cx.fill();
+    cx.restore();
+    /* top face, graded left to right as the surface falls away from the key */
+    for (let i = 0; i < d; i++) {
+      const t = i / d;
+      cx.fillStyle = mix("#FBF7EE", "#D8CFBB", t);
+      cx.beginPath();
+      cx.moveTo(x + d - i, y - d + i); cx.lineTo(x + w + d - i, y - d + i);
+      cx.lineTo(x + w + d - i - 1, y - d + i + 1); cx.lineTo(x + d - i - 1, y - d + i + 1);
+      cx.closePath(); cx.fill();
+    }
+    cx.fillStyle = "#EFE7D7";
+    cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x + d, y - d);
+    cx.lineTo(x + w + d, y - d); cx.lineTo(x + w, y); cx.closePath(); cx.fill();
+    /* front bevel */
+    const gb = cx.createLinearGradient(x, y, x, y + 16);
+    gb.addColorStop(0, "#FBF7EE"); gb.addColorStop(1, "#C3B9A1");
+    cx.fillStyle = gb; pathRect(x, y, w, 16, 1.4, 21); cx.fill();
+    /* left face, in full lee, carrying the coarsest lay on the slide */
+    fillQuad(x, y + 16, w, h - 16, "#9A9182", 1.6, 22);
+    cx.save(); cx.beginPath(); cx.rect(x, y + 16, w, h - 16); cx.clip();
+    cx.strokeStyle = "rgba(70,64,54,0.34)"; cx.lineWidth = 1.4;
+    for (let k = -80; k < w + 80; k += 9) {
+      cx.beginPath(); cx.moveTo(x + k, y + 16); cx.lineTo(x + k - 34, y + h); cx.stroke();
+    }
+    cx.restore();
+    /* the hard contact seam, drawn LAST, nearly unblurred */
+    fillQuad(x, y + h, w, 3.2, "rgba(96,88,74,0.60)", 0.8, 23);
+    fillQuad(x - 6, y + h + 3.2, w + 12, 5, "rgba(126,117,101,0.34)", 1.0, 24);
+  })();
+
+  motif(["gold", "phantom", "none"]);
+
+  finish();
+})();
+</script>
+</body>
+</html>

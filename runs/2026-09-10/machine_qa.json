@@ -1,0 +1,109 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'one item is filled and one is empty': dE 65.2, AUC 0.92, visible 100%/100%, seen 4032/4032px at 432w"
+      ],
+      "contacts": [
+        "'struck square A, the money': shadow L* 62.0 vs ground L* 89.5, dL 27.5 at 432w",
+        "'struck square B, the rule': shadow L* 62.0 vs ground L* 90.2, dL 28.3 at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'eight faces are filled and four are open': dE 4.1, AUC 0.71, visible 100%/100%, seen 3040/3040px at 432w"
+      ],
+      "contacts": [
+        "'counter 01 on the arc': shadow L* 82.6 vs ground L* 90.7, dL 8.1 at 432w",
+        "'counter 12 on the arc': shadow L* 48.0 vs ground L* 90.6, dL 42.6 at 432w"
+      ],
+      "leaders": [
+        "leader 'no vote 9, a sponsor of AO 2026-108' lands 0.0px from its target",
+        "leader 'no vote 10, a sponsor of AO 2026-108' lands 0.0px from its target",
+        "leader 'no vote 11, a sponsor of AO 2026-108' lands 0.0px from its target",
+        "leader 'no vote 9, a sponsor of AO 2026-108' meets its label 0.0px away",
+        "leader 'no vote 10, a sponsor of AO 2026-108' meets its label 0.2px away",
+        "leader 'no vote 11, a sponsor of AO 2026-108' meets its label 0.0px away"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'a dimension bracket that does not close': dE 10.9, AUC 0.80, visible 100%/100%, seen 220/220px at 432w"
+      ],
+      "contacts": [
+        "'the stop block on the sheet': shadow L* 61.7 vs ground L* 85.3, dL 23.6 at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'two sills cast and the third does not': dE 15.5, AUC 0.95, visible 100%/100%, seen 2400/2640px at 432w"
+      ],
+      "contacts": [
+        "'gate sill one': shadow L* 66.5 vs ground L* 87.1, dL 20.6 at 432w",
+        "'gate sill two': shadow L* 66.5 vs ground L* 87.1, dL 20.6 at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'one word cut through the middle, two halves either side': dE 28.5, AUC 1.00, visible 100%/67%, seen 2800/1876px at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'one column is cut dense and one is cut sparse': dE 11.2, AUC 0.84, visible 100%/26%, seen 4608/1198px at 432w"
+      ],
+      "contacts": [
+        "'the foot rib under the practice column': shadow L* 62.2 vs ground L* 85.3, dL 23.1 at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the same length read in two directions': dE 18.0, AUC 0.92, visible 100%/100%, seen 4464/4216px at 432w"
+      ],
+      "scales": [
+        "'the fourteen day rule' runs 0 days at 190 to 14 days at 890; 15 declared mark(s), and the band's census finds no others"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'two squares filled and one empty, at the end': dE 59.8, AUC 0.87, visible 100%/100%, seen 1792/784px at 432w"
+      ],
+      "contacts": [
+        "'the money square on the burnished band': shadow L* 60.5 vs ground L* 90.9, dL 30.4 at 432w",
+        "'the 2023 square on the burnished band': shadow L* 58.3 vs ground L* 90.9, dL 32.6 at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

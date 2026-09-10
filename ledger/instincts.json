@@ -1390,6 +1390,48 @@
       "confidence": 0.85,
       "born": "2026-09-09",
       "evidence": "No.54's 07/08 critic reported slide 08's two agency pages as 5.6 percent different in width, which would have made the deck's one measurable honesty claim measurably false. Sampled off the render at three heights, both pages are 397.5 design px to within half a pixel. Acting on it would have rebuilt a correct slide."
+    },
+    {
+      "id": "radial-punch-cannot-reserve-a-long-box",
+      "instinct": "A RADIAL DESTINATION-OUT PUNCH CANNOT RESERVE A LONG BOX. Its outer radius is half the box's longest side, so on a wide line of type the circle has faded to nothing well before the ends of the run and the field stays over the first and last words while the middle reserves cleanly. The signature in qa.py is a worst-point contrast below the rubric line against a HEALTHY box mean. Punch a BLURRED RECTANGLE instead: set the offscreen context's filter to a blur and fillRect the measured box, so the punch follows the shape of the thing being reserved.",
+      "confidence": 0.9,
+      "born": "2026-09-10",
+      "evidence": "No.55 slide 08 carried two worst-point contrast warns (3.5 and 4.5 against a 4.6 box mean) on its two widest mono lines while its short labels were clean. The reserve pass was already running offscreen with destination-out, which is why the defect survived a round: the technique was right and the punch SHAPE was wrong. Swapping the radial gradient for a 9px-blurred fillRect cleared both warns in one render, and the same change on slide 07 cleared its busy-art-under-text warn."
+    },
+    {
+      "id": "four-number-band-is-a-silent-misdeclaration",
+      "instinct": "data-scale's `band` is the strip ACROSS the axis and takes TWO numbers. Written as a 4-number [x,y,w,h] rect it STILL PARSES, because qa.py reads band[0] and band[1] and finds two numbers there, so the census silently samples a strip the rule does not occupy and reports every mark as no-ink. It presents as a drawing-weight problem and is not one. CHECK THE BAND FIRST when a census says the marks did not draw.",
+      "confidence": 0.95,
+      "born": "2026-09-10",
+      "evidence": "No.55 shipped the same malformation on two slides in one deck. Slide 04 declared band [130,790,860,130] and the census read y130 to y790 while the ticks drew at y859. Slide 08 declared [170,640,740,72] and the census read y170 to y640 while the rule drew at y676. Both reported 15 of 19 and 5 of 15 marks at ink 0.0 to 0.6, and both looked like faint drawing. Correcting slide 08's band to [676,710] immediately produced real per-mark ink and revealed the actual, different defect underneath."
+    },
+    {
+      "id": "census-reads-the-median-down-the-band",
+      "instinct": "THE AXIS CENSUS TAKES THE MEDIAN DOWN THE BAND, so a mark must cross MORE THAN HALF the strip to register at all, however dark it is drawn. Two legitimate levers: cut the mark deeper, or narrow the band to the strip the scale actually owns. A band far taller than its marks is itself a mis-description, so doing both is usually right.",
+      "confidence": 0.85,
+      "born": "2026-09-10",
+      "evidence": "No.55 slide 08's eleven unnamed day ticks covered 19px of a 72px band, 26 percent, and read as texture at ink 0.3 while the named days read 7.8 to 50.8. Lengthening them to 28px and narrowing the band to 34px cleared the census in one render. Darkening alone would not have: the median is a geometric threshold, not an ink one."
+    },
+    {
+      "id": "a-log-axis-must-not-declare-a-data-scale",
+      "instinct": "A LOGARITHMIC AXIS MUST NOT DECLARE A data-scale. qa.axis_census interpolates LINEARLY between `from` and `to` and says so in its own docstring, so declared over a base-10 rule every value it prints about the slide is false. The temptation on a red census is to move the marks until the numbers agree, which bakes the lie into the artifact. Withdraw the declaration, enumerate the marks in the dossier, and say why.",
+      "confidence": 0.9,
+      "born": "2026-09-10",
+      "evidence": "No.55 slide 04 declared a base-10 rule where 582px means 100. The linear read called that position 405 cameras and printed it in the warn text as the slide's own reading. The withdrawal was scored explicitly and credited as honest rather than evasive: 'a declaration would have made the deck print false values about itself, so enumerating the marks in the dossier is the correct call.'"
+    },
+    {
+      "id": "reserve-punching-invalidates-encoding-regions",
+      "instinct": "ONCE TYPE RESERVES ARE PUNCHED PROPERLY, ANY data-encodes REGION OVERLAPPING BODY COPY STOPS MEASURING THE ART AND STARTS MEASURING THE PARAGRAPHS, because the punch removes the field exactly where the text is. After any change to a reserve pass, re-measure every encoding region off the new render and re-aim it at ground that is clear of type in BOTH halves of the pair.",
+      "confidence": 0.85,
+      "born": "2026-09-10",
+      "evidence": "No.55 slide 07's dense-versus-sparse encoding collapsed from a real material contrast to dE 0.8 the moment its two hatch fields were correctly punched, because both declared regions were mostly body copy. Re-aiming them to strips clear of the 2023 tile and of both columns' text restored the measurement without touching the art. The same punch widening broke slide 08's lower encoding region, which sat under the footer type."
+    },
+    {
+      "id": "a-foreshortened-contact-is-not-a-fainter-contact",
+      "instinct": "A FORESHORTENED CONTACT IS NOT A FAINTER CONTACT. The same occlusion packed into less area must DEEPEN as the form turns away from the viewer, or objects at the limbs of an arc read as floating while the ones at its centre sit down. Scale the cast's alpha by obliquity, not just its ellipse.",
+      "confidence": 0.8,
+      "born": "2026-09-10",
+      "evidence": "No.55 slide 02 squashed each counter's cast ellipse by obliquity while holding alpha flat, and counter 01 at the arc's left limb measured dL 5.5 against an 8.0 comfort band while the centre counters read 20 to 36. Scaling alpha by 1 + 1.85 x (1 - obliquity) cleared it. The opposite fix, brightening the lit pool beside the object, was tried and REVERTED: the pool spans the cast as well as the ground, so it lifts both and dL fell to 2.3."
     }
   ]
 }

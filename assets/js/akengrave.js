@@ -522,9 +522,52 @@
     return out;
   }
 
+  /* ---------------------------------------------------------- punchReserves
+   * Knock measured type boxes back OUT of a field that is already painted.
+   * `eng.reserve()` is the right tool when the bench draws the field; this is
+   * for the other case, a field drawn by the slide's own loop and composited.
+   *
+   * A BLURRED RECTANGLE, NEVER A RADIAL GRADIENT (2026-09-10, run No.55). The
+   * idiom shipped here as a radial punch, and a radial punch cannot reserve a
+   * long box: its outer radius is half the box's longest side, so on a 900px
+   * line of type the circle has faded to nothing well before the ends and the
+   * field stays over the first and last words. qa.py reports that as a worst-
+   * point contrast failure against a HEALTHY box mean, and it cost run No.55
+   * two contrast findings. A blurred rect follows the SHAPE of the thing being
+   * reserved, so a wide headline and a small mono stamp are both covered end to
+   * end, and the blur keeps the burin fade the gradient was there to provide.
+   *
+   * ctx.filter applies PER DRAW OP (see the header note), so this is O(boxes)
+   * blurs and not O(strokes): call it once, on the offscreen canvas, after the
+   * field is drawn and before it is composited.
+   *
+   *   var off = AKENGRAVE.drawOffscreen(W, H, function (g) { ...field... });
+   *   AKENGRAVE.punchReserves(off.getContext("2d"),
+   *                           AKENGRAVE.boxesFor("[data-reserve]"), {blur: 9});
+   *   cx.drawImage(off, 0, 0, W, H);
+   */
+  function punchReserves(ctx, boxes, opts) {
+    opts = opts || {};
+    var blur = opts.blur == null ? 9 : opts.blur;
+    var pad = opts.pad == null ? blur * 0.8 : opts.pad;
+    if (!ctx || !boxes || !boxes.length) return 0;
+    ctx.save();
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.filter = blur > 0 ? "blur(" + blur + "px)" : "none";
+    ctx.fillStyle = "rgba(0,0,0,1)";
+    for (var i = 0; i < boxes.length; i++) {
+      var b = boxes[i];
+      ctx.fillRect(b[0] - pad, b[1] - pad, b[2] + 2 * pad, b[3] + 2 * pad);
+    }
+    ctx.filter = "none";
+    ctx.restore();
+    return boxes.length;
+  }
+
   var API = {
     create: function (o) { return new Engraver(o); },
     boxesFor: boxesFor,
+    punchReserves: punchReserves,
     drawOffscreen: drawOffscreen,
     TOKENS: TOKENS,
     snapToken: snapToken,
