@@ -6698,3 +6698,51 @@ sources logged on 2026-09-09 (Long Dwell plus Contribution), and neither is
 primary itself, so nothing is changed on their strength. The templated-prose
 finding, if it holds, prices the anti-template law in CAPTION_CRAFT in reach
 rather than only in taste. Recheck when a primary source appears.
+
+## 2026-09-10, No.55, Phase 8 repairs. Four engine lessons, all measured.
+
+**A RADIAL PUNCH CAN'T RESERVE A LONG BOX, and this is why a contrast
+failure reads "somewhere along the run of the text".** The offscreen
+destination-out reserve idiom shipped here with a radial gradient whose outer
+radius is `Math.max(b[2], b[3]) / 2 + pad`. On a 900px line of type that circle
+has faded to nothing well before the ends of the line, so the field stays over
+the first and last words while the middle is cleanly reserved. qa.py reports it
+as a worst-point contrast below the rubric line against a HEALTHY box mean, and
+that signature, bad worst point plus fine mean, is the tell. Punch a BLURRED
+RECTANGLE instead: `oc.filter = "blur(9px)"` then `fillRect` per box. It follows
+the shape of the thing being reserved, so a wide headline and a small mono stamp
+are both covered end to end, and the blur keeps the burin fade that the radial
+gradient was there to provide. Slide 08's two contrast warns died on this one
+change.
+
+**A 4-NUMBER `band` IS A SILENT MIS-DECLARATION, and it cost two slides their
+census.** `data-scale`'s `band` is the strip ACROSS the axis and takes TWO
+numbers, `[y0, y1]` for an x axis. Written as an `[x, y, w, h]` rect it still
+parses, because qa.py reads `band[0], band[1]` and finds two numbers there. On
+slide 04 that meant the census sampled y130 to y790 while the ticks drew at y859,
+and on slide 08 y170 to y640 while the rule drew at y676. Both reported every
+mark as ink 0.0 to 0.6 and both looked like a drawing-weight problem. Neither
+was. CHECK THE BAND FIRST when a census says the marks did not draw.
+
+**THE CENSUS READS THE MEDIAN DOWN THE BAND, so a mark must cross more than
+half the strip to register at all.** Slide 08's eleven unnamed day ticks covered
+19px of a 72px band, which is 26 percent, and read as texture no matter how dark
+they were. Two levers, and both are legitimate: cut the mark deeper, or narrow
+the band to the strip the scale actually owns. Doing both is usually right,
+because a band far taller than the marks is itself a mis-description.
+
+**A LOG AXIS MUST NOT DECLARE A `data-scale`, and axis_census says so in its own
+docstring.** It interpolates LINEARLY between `from` and `to`. Declared over a
+base-10 rule, every value it prints about your slide is false: 582px means 100
+and the linear read calls it 405. The temptation on a red census is to move the
+marks until the numbers agree, which bakes the lie in. Withdraw the declaration,
+enumerate the marks in the dossier, and say why. Same discipline as withdrawing
+an unmeasurable `data-encodes`.
+
+**And one about the encodings themselves.** After type reserves are properly
+punched, an encoding region that overlaps body copy stops measuring the art and
+starts measuring the paragraphs, because the punch removes the field exactly
+where the text is. Slide 07's declared regions collapsed from a real dense/sparse
+contrast to dE 0.8 for precisely this reason. Aim encoding rects at ground that
+is clear of type in BOTH regions, and re-measure off the render after any change
+to the reserve pass.
