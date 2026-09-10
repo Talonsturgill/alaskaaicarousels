@@ -6673,3 +6673,28 @@ distribution of other DOCUMENT posts and not against video — and a skipped dec
 does not enter the interest graph at all, because the history the ranker reads
 is filtered to posts that were engaged with. Neither changes a gate. Nothing was
 applied and the two reactive fixes took the budget.
+
+### 2026-09-10, Phase 1 craft refresh (No. 55)
+
+**Mezzotint is the technique this deck's reserve problem has been asking for.**
+The recurring warn trio (busy art under text, canvas mark near reserved text,
+art touching glyphs) has been answered on four recent decks by muting art under
+the type, which flattens the lower zone and is exactly what the artwork-craft
+criterion then marks down. Mezzotint inverts it. The plate is rocked to a full
+dark ground first, and every light in the image is SCRAPED and BURNISHED out of
+that ground, so a highlight is a worked passage rather than an unworked one. The
+detail that matters here is that a burnished light still carries faint traces of
+the original rocker pits, which is a reserve with texture in it. RULE, worth
+trying on this deck: a type reserve is BURNISHED out of the field, never plated
+over it, and it keeps a residue of the field's own grain so the band reads as
+worked rather than wiped. (Sources: Jackson's Art, worldofprintmaking.com,
+npg.org.uk glossary, escherinhetpaleis.nl, 2026-09-10.)
+
+**LinkedIn 2026, two secondary claims worth watching, neither actioned.** The
+marketing literature now reports that saves and sends outrank likes as ranking
+signals, and that a Q1 2026 classifier update penalises reach on prose that
+reads as templated. Both are consistent with the primary LinkedIn engineering
+sources logged on 2026-09-09 (Long Dwell plus Contribution), and neither is
+primary itself, so nothing is changed on their strength. The templated-prose
+finding, if it holds, prices the anti-template law in CAPTION_CRAFT in reach
+rather than only in taste. Recheck when a primary source appears.
