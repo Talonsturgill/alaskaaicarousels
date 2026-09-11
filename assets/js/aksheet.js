@@ -360,11 +360,44 @@
       }
     }
 
+    /* THE SECOND PLANE. #39 Cabinet Extrusion. Without a top face the object is
+     * one rectangle of horizontal grain, which reads as a plank; with one, the
+     * fore edge below it is unmistakably the EDGE of something. The face
+     * recedes up and to the right, which is where S.LIGHT at az 168 puts the
+     * far corner, and it is the lit plane because it faces the sky. Depth is a
+     * fraction of thickness so a thin held-back volume gets a thin face. */
+    var dep = Math.max(5, Math.min(26, t * 0.30));
+    var sk = dep * 0.55;
+    var tg = cx.createLinearGradient(x, y - dep, x + w, y);
+    tg.addColorStop(0, mix(S.C.docEdgeLit, S.C.docBoard, 0.42));
+    tg.addColorStop(0.58, mix(S.C.docEdgeLit, S.C.docBoard, 0.22));
+    tg.addColorStop(1, mix(S.C.docEdgeLit, S.C.docBoard, 0.50));
+    cx.fillStyle = tg;
+    cx.beginPath();
+    cx.moveTo(x, y);
+    cx.lineTo(x + sk, y - dep);
+    cx.lineTo(x + w + sk, y - dep);
+    cx.lineTo(x + w, y);
+    cx.closePath();
+    cx.fill();
+    /* the arris, where the two planes meet, and it is the hardest edge here */
+    cx.strokeStyle = "rgba(250,246,236,0.30)";
+    cx.lineWidth = 1.25;
+    cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x + w, y); cx.stroke();
+
     /* the outer silhouette at hero weight, per the profile-heaviest rule */
     cx.strokeStyle = "rgba(28,34,28,0.92)";
     cx.lineWidth = 5.5;
     cx.lineJoin = "miter";
-    cx.strokeRect(x, y, w, t);
+    cx.beginPath();
+    cx.moveTo(x, y + t);
+    cx.lineTo(x, y);
+    cx.lineTo(x + sk, y - dep);
+    cx.lineTo(x + w + sk, y - dep);
+    cx.lineTo(x + w, y);
+    cx.lineTo(x + w, y + t);
+    cx.closePath();
+    cx.stroke();
 
     /* published divisions, struck across the fore edge */
     if (o.divisions) {
@@ -385,10 +418,15 @@
        * twenty and six labels shipped off their plates on 2026-07-29 doing
        * exactly that. */
       var tx = x + o.tab * w, tw = o.tabW || 170;
+      /* THE PLATE CLEARS THE ARRIS. Once the volume gained a top face the tab
+       * sat astride the edge where the two planes meet, so the hard arris ran
+       * through the baseline of its own label and the glyphs read as crossed.
+       * The plate now stands clear above it and its own drop seam marks where
+       * it meets the face. */
       cx.fillStyle = S.C.gold;
-      cx.fillRect(tx, y - 30, tw, 32);
+      cx.fillRect(tx, y - 44, tw, 34);
       cx.fillStyle = "rgba(20,24,18,0.30)";
-      cx.fillRect(tx, y + 1, tw, 3);
+      cx.fillRect(tx, y - 10, tw, 3);
     }
     cx.restore();
   };
