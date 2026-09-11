@@ -328,17 +328,36 @@
      * the light. This is the object's texture and it must survive the zoom
      * test, so it is a population and not a gradient. */
     var leaves = Math.max(40, Math.round(t * 2.4));
+    var pitch = t / leaves;
     for (var i = 0; i < leaves; i++) {
-      var ty = y + (i + 0.5) * (t / leaves);
+      var ty = y + (i + 0.5) * pitch;
       var jitter = (rnd() - 0.5) * 1.6;
       var lit = 0.12 + 0.88 * Math.pow(i / leaves, 0.62);  /* light from below */
-      var g = cx.createLinearGradient(x, ty, x + w, ty);
+      /* EVERY LEAF IS A SHEET, NOT A STRIPE. A run of full-width bands at one
+       * pitch is a ruled gradient and reads as a striped slab, which is what
+       * five critics saw on No.56's hero. Three things make it paper. Each
+       * leaf starts and stops at its own x, so the stack has a ragged fore
+       * edge the way a real one does. About one in nine terminates well short
+       * of the silhouette, which is the single strongest cue that these are
+       * separate objects and not a texture. And each carries a hairline seam
+       * on its lee side, so the eye finds an edge between leaves rather than a
+       * tonal ramp across them. */
+      var x0 = x + rnd() * 3.2;
+      var x1 = x + w - rnd() * 3.2;
+      if (rnd() < 0.11) { x1 -= w * (0.06 + rnd() * 0.22); }
+      var g = cx.createLinearGradient(x0, ty, x1, ty);
       g.addColorStop(0, "rgba(0,0,0,0)");
-      g.addColorStop(0.06, mix(S.C.docEdgeLit, S.C.docBoard, 1 - lit));
-      g.addColorStop(0.94, mix(S.C.docEdgeLit, S.C.docBoard, 1 - lit * 0.86));
+      g.addColorStop(0.05, mix(S.C.docEdgeLit, S.C.docBoard, 1 - lit));
+      /* the longitudinal falloff: the far end of the run sits back in space */
+      g.addColorStop(0.62, mix(S.C.docEdgeLit, S.C.docBoard, 1 - lit * 0.90));
+      g.addColorStop(0.95, mix(S.C.docEdgeLit, S.C.docBoard, 1 - lit * 0.72));
       g.addColorStop(1, "rgba(0,0,0,0)");
       cx.fillStyle = g;
-      cx.fillRect(x, ty + jitter, w, (t / leaves) * 0.78);
+      cx.fillRect(x0, ty + jitter, x1 - x0, pitch * 0.78);
+      if (pitch > 2.2) {
+        cx.fillStyle = "rgba(26,22,16," + (0.10 + 0.16 * (1 - lit)).toFixed(3) + ")";
+        cx.fillRect(x0, ty + jitter + pitch * 0.78, x1 - x0, Math.max(0.75, pitch * 0.14));
+      }
     }
 
     /* the outer silhouette at hero weight, per the profile-heaviest rule */
