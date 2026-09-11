@@ -1,0 +1,136 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B1724}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:78px;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 100,"wght" 700;font-size:26px;letter-spacing:0.12em;color:#9AA7B0}
+.ct{position:absolute;left:760px;top:80px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.10em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+h2{position:absolute;left:80px;top:800px;width:840px;margin:0;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 116,"wght" 640;font-size:64px;line-height:1.02;letter-spacing:-0.018em;color:#F4F8FF}
+.bd{position:absolute;left:80px;top:940px;width:800px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.30;font-weight:500;color:#C3D4DD}
+.iso{position:absolute;left:80px;top:1226px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.08em;color:#9AA7B0}
+
+</style></head>
+<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[833, 1202, 26, 10]], "ground": [[743, 1202, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>03 / 09</div>
+<h2 data-reserve>This is the ground<br>that can be drawn.</h2>
+<p class="bd" data-reserve>Enstar sells gas to almost half of Alaska's population and gets nearly all of its supply from Hilcorp. Southcentral runs more than 70 percent of its electricity on gas, per Alaska Public Media citing ISER.</p>
+<div class="iso" data-reserve>ALMOST HALF, 4.5 FIGURES OF 10</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/akrelief.js"></script>
+<script src="@@ASSETS@@/js/aksheet.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:46, max:68, maxLines:2});
+  const ak = await (await fetch("@@ASSETS@@/geo/alaska-state.geo.json")).json();
+  const cv=document.getElementById('art'), cx=cv.getContext('2d');
+  cx.scale(2,2);
+  const S=AKSHEET,C=S.C,rnd=AK.rng(20260911+3);
+  const WIN=[80,224,920,540];
+  AKSTIPPLE.reserve('[data-reserve]');
+  // margin tone: a broad lateral swell, denser under the ISOTYPE row
+  S.marginField(cx,{seed:20260911+3,count:22000,
+    basins:[[80,792,860,150,1.00],[80,944,720,190,0.96],[80,1150,940,120,0.90]],
+    form:function(x,y){
+      const u=x/1080,v=y/1350;
+      const swell=0.46*Math.exp(-Math.pow(v-0.92,2)/0.030);
+      const side=0.22*(1-Math.abs(u-0.5)*1.5);
+      return 0.18+swell+Math.max(0,side)*0.6+0.10*AK.fbm2(u*2.6,v*2.8,4);
+    }});
+
+  AKPARCEL.band(cx,{depth:0.12,sky:"#0B1926",draw:function(bx){
+    const w=S.window(bx,WIN);
+    w.fillStyle="#3B4F59"; w.fillRect(WIN[0],WIN[1],WIN[2],WIN[3]);
+    const proj=AKGeo.alaskaProjection(ak,[[0,0],[1080,1350]]);
+    AKGeo.zoomTo(proj,ak,[-151.6,61.2],[540,494],3.4);
+    proj.clipExtent([[WIN[0],WIN[1]],[WIN[0]+WIN[2],WIN[1]+WIN[3]]]);
+    const p=d3.geoPath(proj,w);
+    w.beginPath(); p(ak);
+    const lg=w.createLinearGradient(0,WIN[1],0,WIN[1]+WIN[3]);
+    lg.addColorStop(0,"#6B7166"); lg.addColorStop(0.62,"#8E937F"); lg.addColorStop(1,"#B0B49F");
+    w.fillStyle=lg; w.fill();
+    // AERIAL PERSPECTIVE AS AN ELEVATION-KEYED CONTRAST GAIN: high ground keeps
+    // its lit-to-shaded range, lowlands compress. Drawn as a ridge population
+    // whose stroke contrast rises with the ridge's own height.
+    w.save(); w.beginPath(); p(ak); w.clip();
+    // the surface grain first, so the ridges are struck INTO a textured ground
+    // rather than floating on a flat fill. Density follows the same height
+    // field the ridges do, so high ground is coarse and lowland is smooth, and
+    // the two passes read as one landform instead of two effects.
+    AKSTIPPLE.field(w,{seed:20260911+31,count:13000,
+      box:[WIN[0],WIN[1],WIN[0]+WIN[2],WIN[1]+WIN[3]],
+      ramp:["#5C6157","#6F7466","#848975","#9AA086","#B2B79C"],
+      radius:function(q){return 0.5+1.1*q;},
+      alpha:function(q){return 0.10+0.30*q;},
+      height:function(x,y){
+        const hgt=Math.max(0,AK.fbm2(x*0.0042,y*0.0052,5));
+        return Math.max(0,Math.min(1,Math.pow(hgt,1.25)));
+      }});
+    for(let i=0;i<1900;i++){
+      const rx=WIN[0]+rnd()*WIN[2], ry=WIN[1]+rnd()*WIN[3];
+      const hgt=Math.max(0,AK.fbm2(rx*0.0042,ry*0.0052,5));
+      const gain=0.22+1.05*Math.pow(hgt,1.5);
+      const len=16+hgt*54;
+      const ang=-0.5+AK.fbm2(rx*0.003,ry*0.003,2)*2.2;
+      w.beginPath();
+      w.moveTo(rx,ry);
+      w.lineTo(rx+Math.cos(ang)*len, ry+Math.sin(ang)*len*0.5);
+      w.strokeStyle="rgba(34,38,29,"+(0.26*gain).toFixed(3)+")";
+      w.lineWidth=0.75+hgt*1.6; w.stroke();
+      w.beginPath();
+      w.moveTo(rx,ry-1.8);
+      w.lineTo(rx+Math.cos(ang)*len*0.8, ry-1.8+Math.sin(ang)*len*0.5*0.8);
+      w.strokeStyle="rgba(242,248,238,"+(0.22*gain).toFixed(3)+")";
+      w.lineWidth=0.75; w.stroke();
+    }
+    w.restore();
+    w.beginPath(); p(ak); w.strokeStyle="rgba(234,240,236,0.82)"; w.lineWidth=2.0; w.stroke();
+
+    S.closeWindow(w,WIN);
+  }});
+
+  // ISOTYPE row, ten figures, the fifth partial, modelled in low relief
+  const FW=40, GAP=14, Y0=1160;
+  for(let i=0;i<10;i++){
+    const fx=612+0, x0=80+i*(FW+GAP);
+    const lit = i<5;
+    const part = (i===4);
+    const off=document.createElement('canvas'); off.width=FW*2; off.height=104;
+    const oc=off.getContext('2d'); oc.scale(2,2);
+    oc.fillStyle = lit ? "#6EA5FF" : "#48555F";
+    // a plain standing figure: head + body, drawn per figure so none is a copy
+    oc.beginPath(); oc.arc(FW/2,12,9,0,Math.PI*2); oc.fill();
+    oc.beginPath();
+    oc.moveTo(FW/2-13,26); oc.lineTo(FW/2+13,26);
+    oc.lineTo(FW/2+10,52); oc.lineTo(FW/2-10,52); oc.closePath(); oc.fill();
+    if(part){ oc.globalCompositeOperation="destination-out"; oc.fillRect(FW/2,0,FW,60); }
+    cx.save();
+    cx.drawImage(off,x0,Y0-6,FW,52);
+    cx.restore();
+    // each figure gets its own contact seam on the margin plane
+    S.seam(cx,x0+6,x0+FW-6,Y0+46,0.34);
+  }
+
+  cx.strokeStyle="rgba(120,142,158,0.30)"; cx.lineWidth=0.75;
+  cx.beginPath(); cx.moveTo(80,160); cx.lineTo(1000,160); cx.stroke();
+  const ip=AKGeo.alaskaProjection(ak,[[4,18],[108,94]]);
+  S.indexDiagram(cx,d3.geoPath(ip)(ak),[48,48,36,26]);
+  S.litPool(cx,836,1216,208,40);
+  S.cast(cx,836,1204,94,{dy:2,k:3.0});
+  S.document(cx,{x:672,y:1176,w:328,thick:26,alpha:0.40,seed:563});
+  S.seam(cx,672,1000,1200,0.66);
+
+  AKPOST.grade(cx,{exposure:0.04,saturation:1.04,contrast:1.06,filmic:true,dither:true,grain:{amount:0.045,size:2,seed:20260913},sharpen:0.30});
+  return true;
+})();
+</script></body></html>

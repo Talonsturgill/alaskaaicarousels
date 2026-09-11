@@ -1432,6 +1432,20 @@
       "confidence": 0.8,
       "born": "2026-09-10",
       "evidence": "No.55 slide 02 squashed each counter's cast ellipse by obliquity while holding alpha flat, and counter 01 at the arc's left limb measured dL 5.5 against an 8.0 comfort band while the centre counters read 20 to 36. Scaling alpha by 1 + 1.85 x (1 - obliquity) cleared it. The opposite fix, brightening the lit pool beside the object, was tried and REVERTED: the pool spans the cast as well as the ground, so it lifts both and dL fell to 2.3."
+    },
+    {
+      "id": "a-difference-has-two-sides",
+      "instinct": "A GATE THAT MEASURES A DIFFERENCE CAN BE SATISFIED FROM THE WRONG SIDE. qa.py's contact check reads dL as ground minus shadow, so a run can widen it by lighting the ground instead of deepening the shadow, and pass. A ground lit brighter than the object standing on it is an object floating over a LIGHT SOURCE, which is the same defect the gate exists to catch. When a check subtracts two measurements, ask which term you moved.",
+      "confidence": 0.9,
+      "born": "2026-09-11",
+      "evidence": "No.56 raised aksheet.litPool to widen dL and qa.py returned PASS on all nine slides. Five pixel critics then read those nine slides in five separate sessions with no knowledge of each other, and every one of them called the pool a lens flare, a bloom, a glow sticker or a blob. The fix was to cut the pool to a peak of 0.28 and add a k strength to cast, which LOWERED the numbers to 6.1 through 10.1 and produced a better picture. TECHNIQUE_LIBRARY 94a already warned about overshooting and this run did it anyway, because 94a reads as advice about a number and the real rule is about which term you move."
+    },
+    {
+      "id": "an-encoding-that-looks-like-data-is-not-checked-by-anything",
+      "instinct": "NO GATE CAN ASK WHETHER AN UNDECLARED MARK THAT LOOKS LIKE DATA IS DATA. Every check in this repo verifies that a DECLARED quantity is present and correct. A slide can therefore draw thirty four bars whose lengths came from a noise function, pass claims, dossier, aggregate, plan-drift and machine QA, and ship a small multiple that encodes nothing. If a mark reads as a measurement, it has to BE one.",
+      "confidence": 0.9,
+      "born": "2026-09-11",
+      "evidence": "No.56 slide 06 drew 34 struck cells whose 'value' bar length came from AK.fbm2. It looked exactly like a per-day reading. Fixed by driving every bar from ledger/gaswatch.jsonl over a stated 49 to 60 window, with the two empty cells being the two days the ledger actually records as unverified rather than an arbitrary pair. Logged for Phase 12 as the most valuable unguarded surface currently in the machine."
     }
   ]
 }

@@ -1,0 +1,120 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the closed tariff volume on the margin plane': shadow L* 2.7 vs ground L* 8.8, dL 6.1 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "leaders": [
+        "leader 'the CINGSA storage field tick' lands 0.0px from its target",
+        "leader 'the CINGSA storage field tick' meets its label 27.0px away"
+      ],
+      "fits": [
+        "h1 'The gas is measured.The order that takes iti' fits 3/3 lines at 73.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the tariff volume on the margin plane': shadow L* 5.4 vs ground L* 14.0, dL 8.6 at 432w"
+      ],
+      "scales": [
+        "'the Bcf rail' runs 0 Bcf at 200 to 13 Bcf at 1000; 15 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'The level is measuredevery morning.' fits 2/2 lines at 55.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the tariff volume on the margin plane': shadow L* 5.0 vs ground L* 11.3, dL 6.3 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "fits": [
+        "h2 'This is the groundthat can be drawn.' fits 2/2 lines at 67.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 80% of this slide's own average craft density (top 64% / mid 67% / bottom 47% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "contact shadow: 'the tariff volume on the margin plane': shadow L* 5.0 vs ground L* 12.0, dL 6.9 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "scales": [
+        "'the phantom Enstar storage gap rail' runs 0 Bcf at 744 to 4 Bcf at 1000; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'The cushion is acharacterisation.' fits 2/2 lines at 61.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the tariff volume on the margin plane': shadow L* 3.9 vs ground L* 13.1, dL 9.2 at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 89% / mid 63% / bottom 53% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "contact shadow: 'the tariff volume on the margin plane': shadow L* 4.8 vs ground L* 12.7, dL 7.9 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "busy art under text (bg edge density 0.04) beneath 'MMCF/D = 80.868 + 3.439 x HDD65' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "fits": [
+        "h2 'Two of thirty six days carry no reading.' fits 2/2 lines at 65.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the tariff volume on the margin plane': shadow L* 3.4 vs ground L* 11.8, dL 8.4 at 432w"
+      ],
+      "leaders": [
+        "leader 'the one struck division, human needs and occupancy' lands 0.0px from its target",
+        "leader 'the one struck division, human needs and occupancy' meets its label 12.0px away"
+      ],
+      "fits": [
+        "h2 'Section 1200 is titledInterruption.' fits 2/2 lines at 54px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the tariff volume on the margin plane': shadow L* 5.8 vs ground L* 15.3, dL 9.5 at 432w"
+      ],
+      "leaders": [
+        "leader 'Kenai, where the council heard it' lands 0.0px from its target",
+        "leader 'Kenai, where the council heard it' meets its label 0.0px away"
+      ],
+      "fits": [
+        "h2 'The order reaches the publicthrough one mayo' fits 2/2 lines at 62.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the closed volume, sealed, on the margin plane': shadow L* 3.6 vs ground L* 13.8, dL 10.1 at 432w"
+      ],
+      "fits": [
+        "h2 'Should the order of cuts be publicbefore the' fits 2/2 lines at 56px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 7,
+  "verdict": "WARN"
+}

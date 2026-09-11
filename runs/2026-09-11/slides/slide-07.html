@@ -1,0 +1,125 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B1724}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:78px;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 100,"wght" 700;font-size:26px;letter-spacing:0.12em;color:#9AA7B0}
+.ct{position:absolute;left:600px;width:244px;text-align:right;top:80px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.10em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+h2{position:absolute;left:80px;top:240px;width:600px;margin:0;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 116,"wght" 700;font-size:84px;line-height:1.0;letter-spacing:-0.022em;color:#F4F8FF}
+.bd{position:absolute;left:80px;top:1034px;width:672px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.28;font-weight:500;color:#C3D4DD}
+.tab{position:absolute;left:161px;top:703px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.06em;color:#14202C}
+.dm{position:absolute;left:80px;top:664px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.05em;color:#8FA0AC}
+.pr{position:absolute;left:80px;top:1198px;width:920px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.02em;color:#8FA0AC}
+.hn{position:absolute;left:700px;top:586px;width:300px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.42;letter-spacing:0.02em;color:#F4F8FF}
+</style></head>
+<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[531, 984, 26, 10]], "ground": [[433, 984, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>07 / 09</div>
+<h2 data-reserve><span style="white-space:nowrap">Section 1200</span> is titled<br>Interruption.</h2>
+<div class="tab" data-overlap-ok>SECTION 1200 INTERRUPTION</div>
+<div class="dm" data-reserve>THICKNESS DRAWN. NO UNITS. NOT A TARIFF DIAGRAM.</div>
+<div class="hn" data-reserve>HUMAN NEEDS AND OCCUPANCY, HIGHEST</div>
+<p class="bd" data-reserve>It is published on Enstar's own tariff page. Enstar says reductions would be phased by customer class under the tariff. The divisions below the top one are not drawn here.</p>
+<div class="pr" data-reserve>THE SECTION'S TEXT DID NOT EXTRACT. NOTHING BELOW THE TOP PRIORITY IS DRAWN, BECAUSE NOTHING BELOW IT IS PUBLISHED.</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/aksheet.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:52, max:84, maxLines:2});
+  const ak = await (await fetch("@@ASSETS@@/geo/alaska-state.geo.json")).json();
+  const cv=document.getElementById('art'), cx=cv.getContext('2d');
+  cx.scale(2,2);
+  const S=AKSHEET,C=S.C,rnd=AK.rng(20260911+7);
+  const WIN=[700,224,284,280];      // THE REGISTER SHIFT: a sheet with a margin
+  AKSTIPPLE.reserve('[data-reserve]'); //   becomes a margin with a sheet
+  S.marginField(cx,{seed:20260911+7,count:19000,basinDepth:0.96,
+    basins:[[80,232,580,330,1.00],[80,996,660,150,1.00],[692,578,320,130,1.00],[80,1196,940,52,1.00]],
+    form:function(x,y){
+      const u=x/1080,v=y/1350;
+      // a broad pool of light under where the object sits, so the cast has
+      // something to subtract from
+      const pool=0.44*Math.exp(-(Math.pow(u-0.50,2)/0.18+Math.pow(v-0.66,2)/0.028));
+      return 0.14+pool+0.10*(1-v)*0.5+0.08*AK.fbm2(u*2.4,v*2.6,4);
+    }});
+
+  AKPARCEL.band(cx,{depth:0.20,sky:"#0B1926",draw:function(bx){
+    const w=S.window(bx,WIN);
+    w.fillStyle="#3E525C"; w.fillRect(WIN[0],WIN[1],WIN[2],WIN[3]);
+    const proj=AKGeo.alaskaProjection(ak,[[0,0],[1080,1350]]);
+    AKGeo.zoomTo(proj,ak,[-151.26,60.68],[842,354],6.0);
+    proj.clipExtent([[WIN[0],WIN[1]],[WIN[0]+WIN[2],WIN[1]+WIN[3]]]);
+    const p=d3.geoPath(proj,w);
+    w.beginPath(); p(ak);
+    const lg=w.createLinearGradient(0,WIN[1],0,WIN[1]+WIN[3]);
+    lg.addColorStop(0,"#767C6E"); lg.addColorStop(1,"#9DA28F");
+    w.fillStyle=lg; w.fill();
+    w.beginPath(); p(ak); w.strokeStyle="rgba(232,240,234,0.78)"; w.lineWidth=2.0; w.stroke();
+    S.closeWindow(w,WIN);
+  }});
+
+  // ---- THE HERO. The volume, full width, seen END ON, face turned away.
+  const DX0=120, DW=840, DY=744, DT=240;
+  S.litPool(cx,DX0+DW/2,DY+DT+14,460,44);
+  S.cast(cx,DX0+DW/2,DY+DT+2,104,{dy:2,wide:2.3,k:2.5});
+  S.document(cx,{x:DX0,y:DY,w:DW,thick:DT,tab:0.030,tabW:432,seed:567,
+                 divisions:[0.085]});
+  S.seam(cx,DX0,DX0+DW,DY+DT-2,0.80);
+  // the dimension call on the volume's thickness, fine weight, 6px overshoot
+  cx.strokeStyle="rgba(214,228,234,0.66)"; cx.lineWidth=1.25; cx.lineCap="butt";
+  cx.beginPath();
+  cx.moveTo(DX0-26,DY); cx.lineTo(DX0-6,DY);
+  cx.moveTo(DX0-26,DY+DT); cx.lineTo(DX0-6,DY+DT);
+  cx.moveTo(DX0-16,DY); cx.lineTo(DX0-16,DY+DT);
+  cx.stroke();
+  // the caliper's own reading, printed in the margin above it, because an
+  // unlabelled dimension line measures nothing
+  // (the string itself is the .dm block in the markup)
+
+  // the undivided run below the one struck division, drawn as leaves, not as void
+  cx.save();
+  cx.beginPath(); cx.rect(DX0,DY+0.085*DT+6,DW,DT-0.085*DT-8); cx.clip();
+  const NLEAF=Math.round((DT-0.085*DT-10)/4.2);
+  for(let i=0;i<NLEAF;i++){
+    const yy=DY+0.085*DT+8+i*((DT-0.085*DT-10)/NLEAF);
+    cx.strokeStyle="rgba(60,52,38,0.20)"; cx.lineWidth=0.75;
+    cx.beginPath(); cx.moveTo(DX0+8,yy); cx.lineTo(DX0+DW-8,yy); cx.stroke();
+  }
+  cx.restore();
+
+  // the leader from the priority note to the one struck division it names.
+  // Authored as a world-coordinate polyline ending ON the division's own y.
+  const DIVY=Math.round(DY+0.085*DT), LX=880;
+  const poly=[[860,666],[LX,706],[LX,DIVY]];
+  cx.lineCap="butt"; cx.lineJoin="miter";
+  cx.strokeStyle="rgba(8,14,20,0.72)"; cx.lineWidth=4.25;   // casing
+  cx.beginPath(); cx.moveTo(poly[0][0],poly[0][1]);
+  for(let i=1;i<poly.length;i++) cx.lineTo(poly[i][0],poly[i][1]);
+  cx.stroke();
+  cx.strokeStyle="rgba(226,238,244,0.82)"; cx.lineWidth=1.25;
+  cx.beginPath(); cx.moveTo(poly[0][0],poly[0][1]);
+  for(let i=1;i<poly.length;i++) cx.lineTo(poly[i][0],poly[i][1]);
+  cx.stroke();
+  cx.beginPath(); cx.arc(LX,DIVY,4,0,Math.PI*2);
+  cx.fillStyle="rgba(226,238,244,0.92)"; cx.fill();
+  window.__akLeaders=[{target:"the one struck division, human needs and occupancy",
+    at:[LX,DIVY], to:[LX,DIVY], from:[860,666],
+    label:"HUMAN NEEDS AND OCCUPANCY, HIGHEST"}];
+
+  cx.strokeStyle="rgba(120,142,158,0.30)"; cx.lineWidth=0.75;
+  cx.beginPath(); cx.moveTo(80,160); cx.lineTo(1000,160); cx.stroke();
+  const ip=AKGeo.alaskaProjection(ak,[[4,18],[108,94]]);
+  S.indexDiagram(cx,d3.geoPath(ip)(ak),[62,58,9,7]);
+
+  AKPOST.grade(cx,{exposure:0.04,saturation:1.04,contrast:1.07,filmic:true,dither:true,grain:{amount:0.045,size:2,seed:20260917},sharpen:0.32});
+  return true;
+})();
+</script></body></html>

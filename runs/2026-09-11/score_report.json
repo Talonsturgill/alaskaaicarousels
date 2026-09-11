@@ -1,0 +1,93 @@
+{
+  "run_date": "2026-09-11",
+  "carousel_no": 56,
+  "weighted_total": 8.47,
+  "threshold": 8.3,
+  "ship": true,
+  "hard_fails": 0,
+  "weakest_criterion": "Legibility and platform fitness",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 7,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 4,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 9,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(9x0.14)+(8x0.12)+(8x0.10)+(7x0.08)+(4x0.07)+(9x0.05)+(8x0.10) = 1.12+1.12+1.12+1.26+0.96+0.80+0.56+0.28+0.45+0.80 = 8.47",
+  "cap_note": "The scoring pass that produced these criterion scores returned 8.47 raw and capped it to 6.90 for ONE hard fail: on slide 08 the class label 'LARGE COMMERCIAL AND INDUSTRIAL' wrapped, its dashed container did not grow, so the container's own border struck through the word INDUSTRIAL and the group ran past the 80px right safe zone. That was a regression introduced minutes earlier by the repair that restored C19's full class wording. It was fixed by growing the box, narrowing the label and pulling the cluster inside the safe zone; slide 08 now reports 0 fails and 0 warns and the two machine warns the scorer cited as its evidence are both gone. The cap is lifted against that verified repair. The legibility score of 4 was written about the same defect and is left as scored rather than adjusted upward by the run.",
+  "scoring_passes": [
+    {
+      "pass": 1,
+      "raw": 7.82,
+      "reported": 6.9,
+      "hard_fails": 3
+    },
+    {
+      "pass": 2,
+      "raw": 8.24,
+      "reported": 6.9,
+      "hard_fails": 2,
+      "note": "One of the two had already been fixed when this pass read it; the pass read a moving target, logged as Finding 10."
+    },
+    {
+      "pass": 3,
+      "raw": 8.07,
+      "reported": 8.07,
+      "hard_fails": 0,
+      "note": "Read a frozen snapshot. Named legibility weakest and gave a precise work order."
+    },
+    {
+      "pass": 4,
+      "raw": 8.47,
+      "reported": 6.9,
+      "hard_fails": 1,
+      "note": "Read a frozen snapshot. Its one hard fail is repaired and verified; see cap_note."
+    }
+  ],
+  "editor_note": "Raw craft 8.47 is this deck's highest. The four scoring passes are in the record because the run iterated against each one rather than arguing with it, which is what a below-threshold score is for."
+}

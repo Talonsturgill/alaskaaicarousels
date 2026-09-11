@@ -1,0 +1,38 @@
+{
+  "run_date": "2026-09-11",
+  "carousel_no": 56,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "in_progress",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "plan": "out/2026-09-11/plan.md",
+    "site_signoff": "SITE SIGN-OFF: PASS, 102 pages, 18 checks",
+    "gas_watch": "GAS WATCH: WARN, read 2026-09-10, 36 days on record, chart present, one day gap at 2026-09-08 (cron ledger, report only)",
+    "scout_merge": "out/2026-09-11/scout_merge.md",
+    "selection": "out/2026-09-11/selection.md",
+    "claims": "out/2026-09-11/claims.json (45 claims, 16 primary, claims_check PASS)",
+    "storyboard_header_draft": "out/2026-09-11/storyboard_header_draft.md"
+  },
+  "notes": [
+    "Phase 7 closed 2026-09-11: qa.py WARN with 0 fails, dossier_check PASS 9/9, plan_drift PASS, reconciled PASS. The contact triple was rebuilt on six slides after the render measured the first attempt backwards.",
+    "Phase 8/9 closed 2026-09-11. Five pixel critics (mean 4.7 on the first pass) and one flow critic (7.2). Three rounds of fixes. Machine gate WARN, 0 fails, 7 warns. One hard fail caught by a critic and no gate: slide 03 drew Yukon as ocean.",
+    "Phase 10 iterations: scorer pass 1 returned 7.82 uncapped, 6.9 capped, 3 hard fails. Pass 2 returned 8.24 uncapped, 6.9 capped, 2 hard fails, one of which the run had already fixed mid-flight. Pass 3 reads a frozen snapshot at out/2026-09-11/review/ so its verdict names a version that still exists."
+  ]
+}

@@ -1,0 +1,149 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B1724}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:78px;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 100,"wght" 700;font-size:26px;letter-spacing:0.12em;color:#9AA7B0}
+.ct{position:absolute;left:600px;width:244px;text-align:right;top:80px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.10em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+h2{position:absolute;left:80px;top:836px;width:640px;margin:0;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 76,"wght" 640;font-size:62px;line-height:1.02;letter-spacing:-0.012em;color:#F4F8FF}
+.bd{position:absolute;left:80px;top:966px;width:680px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.28;font-weight:500;color:#C3D4DD}
+.arg{position:absolute;left:80px;top:1140px;width:900px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.26;font-weight:500;color:#9AA7B0}
+.at{position:absolute;left:80px;top:1232px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.04em;color:#8FA0AC}
+.rel{position:absolute;left:632px;top:352px;width:368px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.05em;color:#C3D4DD}
+.l1{position:absolute;left:632px;top:450px;width:330px;line-height:1.30;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.04em;color:#9AA7B0}
+.l2{position:absolute;left:632px;top:634px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.04em;color:#6EA5FF}
+.ns{position:absolute;left:668px;top:716px;width:300px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.42;letter-spacing:0.02em;color:#7E8C96}
+</style></head>
+<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[796, 346, 26, 10]], "ground": [[706, 346, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>08 / 09</div>
+<h2 data-reserve>The order reaches the public<br>through one mayor.</h2>
+<p class="bd" data-reserve>Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayors on August 21st, 2026, then told his city council what Enstar described.</p>
+<p class="arg" data-reserve>A data center buys power, and Southcentral makes more than 70 percent of its power from gas.</p>
+<div class="at" data-reserve>KENAI CITY COUNCIL, SEPTEMBER 2ND, 2026. HOMER NEWS.</div>
+<div class="rel" data-reserve>AS THE MAYOR DESCRIBED IT</div>
+<div class="l1" data-reserve>LARGE COMMERCIAL AND INDUSTRIAL</div>
+<div class="l2" data-reserve>RESIDENTIAL</div>
+<div class="ns" data-reserve>SEATED IN NO PUBLISHED SLOT</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/aksheet.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:42, max:64, maxLines:2});
+  const ak = await (await fetch("@@ASSETS@@/geo/alaska-state.geo.json")).json();
+  const cv=document.getElementById('art'), cx=cv.getContext('2d');
+  cx.scale(2,2);
+  const S=AKSHEET,C=S.C,rnd=AK.rng(20260911+8);
+  const WIN=[80,224,480,560];        // LEFT: real ground, coordinated and scaled
+  AKSTIPPLE.reserve('[data-reserve]');
+  S.marginField(cx,{seed:20260911+8,count:16000,basinDepth:0.96,
+    basins:[[80,828,660,150,1.00],[80,972,680,180,1.00],[80,1142,680,100,1.00],[80,1232,560,52,1.00],[624,404,380,60,1.00],[624,552,380,60,1.00],[624,652,380,110,1.00]],
+    form:function(x,y){
+      const u=x/1080,v=y/1350;
+      // the RIGHT half is the emptier ground, by construction
+      const left=0.34*Math.exp(-Math.pow(u-0.26,2)/0.10);
+      return 0.13+left+0.26*Math.exp(-Math.pow(v-0.94,2)/0.024)+0.08*AK.fbm2(u*2.6,v*2.6,4);
+    }});
+
+  AKPARCEL.band(cx,{depth:0.10,sky:"#0B1926",draw:function(bx){
+    const w=S.window(bx,WIN);
+    w.fillStyle="#3B4F59"; w.fillRect(WIN[0],WIN[1],WIN[2],WIN[3]);
+    const proj=AKGeo.alaskaProjection(ak,[[0,0],[1080,1350]]);
+    AKGeo.zoomTo(proj,ak,[-150.4,60.9],[320,500],3.6);
+    proj.clipExtent([[WIN[0],WIN[1]],[WIN[0]+WIN[2],WIN[1]+WIN[3]]]);
+    const p=d3.geoPath(proj,w);
+    w.beginPath(); p(ak);
+    const lg=w.createLinearGradient(0,WIN[1],0,WIN[1]+WIN[3]);
+    lg.addColorStop(0,"#6E7466"); lg.addColorStop(1,"#A2A794");
+    w.fillStyle=lg; w.fill();
+    // a fine hatched relief, drawn only where the ground rises: the LEFT half
+    // is worked ground, which is the whole point of the split
+    w.save(); w.beginPath(); p(ak); w.clip();
+    AKSTIPPLE.field(w,{seed:20260911+81,count:6400,
+      box:[WIN[0],WIN[1],WIN[0]+WIN[2],WIN[1]+WIN[3]],
+      ramp:["#5A5F55","#6C7164","#808673","#959B84","#ADB398"],
+      radius:function(q){return 0.5+1.1*q;},
+      alpha:function(q){return 0.08+0.26*q;},
+      height:function(x,y){
+        const h=Math.max(0,AK.fbm2(x*0.0044,y*0.0054,5));
+        return Math.max(0,Math.min(1,Math.pow(h,1.25)));
+      }});
+    for(let i=0;i<1500;i++){
+      const hx=WIN[0]+rnd()*WIN[2], hy=WIN[1]+rnd()*WIN[3];
+      const h=Math.max(0,AK.fbm2(hx*0.006,hy*0.007,4));
+      if(h<0.42) continue;
+      const L=7+h*17, a=1.9+AK.fbm2(hx*0.004,hy*0.004,2)*1.4;
+      w.beginPath(); w.moveTo(hx,hy);
+      w.lineTo(hx+Math.cos(a)*L,hy+Math.sin(a)*L);
+      w.strokeStyle="rgba(40,44,35,"+(0.10+0.20*h).toFixed(3)+")";
+      w.lineWidth=0.75+h*0.9; w.stroke();
+    }
+    w.restore();
+    w.beginPath(); p(ak); w.strokeStyle="rgba(232,240,234,0.80)"; w.lineWidth=2.0; w.stroke();
+    // the one SOLID gold tick: the MEETING is documented and dated
+    const k=proj([-151.24,60.55]);
+    w.strokeStyle=C.gold; w.lineWidth=5.5; w.lineCap="butt";
+    w.beginPath(); w.moveTo(k[0],k[1]-14); w.lineTo(k[0],k[1]+14); w.stroke();
+    window.__K=k;
+    S.closeWindow(w,WIN);
+  }});
+
+  // ---- RIGHT: margin holding the volume and two labels seated in NOTHING
+  S.litPool(cx,812,360,320,44);
+  S.cast(cx,812,348,94,{dy:2,k:2.3});
+  S.document(cx,{x:624,y:250,w:376,thick:96,alpha:0.80,seed:568});
+  S.seam(cx,624,1000,344,0.66);
+  // the two class labels float: a phantom outline with no slot under it, and
+  // the outlines are OPEN on the margin side so neither box ever closes. A
+  // closed box under a rulebook is a published slot; an open one is a hand
+  // drawing round something it was told about.
+  cx.setLineDash([30,5,6,5,6,5]); cx.lineWidth=1.25; cx.lineCap="butt";
+  function openBox(y,h,stroke){
+    cx.strokeStyle=stroke;
+    cx.beginPath();
+    cx.moveTo(624,y); cx.lineTo(976,y);
+    cx.lineTo(976,y+h); cx.lineTo(624,y+h);
+    cx.stroke();
+  }
+  openBox(438,98,"rgba(154,167,176,0.72)");
+  openBox(622,64,"rgba(110,165,255,0.66)");
+  // a phantom arrow between them, terminating 14px SHORT of the lower box, so
+  // the sequence is asserted by nobody and arrives nowhere
+  cx.strokeStyle="rgba(154,167,176,0.58)";
+  cx.beginPath(); cx.moveTo(800,544); cx.lineTo(800,596); cx.stroke();
+  cx.setLineDash([]);
+  cx.beginPath(); cx.moveTo(800,608); cx.lineTo(794,596); cx.lineTo(806,596); cx.closePath();
+  cx.fillStyle="rgba(154,167,176,0.58)"; cx.fill();
+  // the brace: it embraces BOTH boxes, so the denial is an annotation on the
+  // pair and not a third item under them
+  cx.setLineDash([]); cx.strokeStyle="rgba(126,140,150,0.80)"; cx.lineWidth=1.25;
+  cx.beginPath();
+  cx.moveTo(616,438); cx.lineTo(604,438); cx.lineTo(604,686); cx.lineTo(616,686);
+  cx.moveTo(604,562); cx.lineTo(592,562);
+  cx.stroke();
+  cx.beginPath(); cx.moveTo(592,562); cx.lineTo(592,730); cx.lineTo(660,730); cx.stroke();
+
+  cx.strokeStyle="rgba(120,142,158,0.30)"; cx.lineWidth=0.75;
+  cx.beginPath(); cx.moveTo(80,160); cx.lineTo(1000,160); cx.stroke();
+  const ip=AKGeo.alaskaProjection(ak,[[4,18],[108,94]]);
+  S.indexDiagram(cx,d3.geoPath(ip)(ak),[50,54,30,22]);
+
+  const K=window.__K;
+  window.__akLeaders=[{target:"Kenai, where the council heard it",
+    at:[Math.round(K[0]),Math.round(K[1])],
+    to:[Math.round(K[0]),Math.round(K[1])],
+    from:[100,1234],
+    label:"KENAI CITY COUNCIL, SEPTEMBER 2ND, 2026"}];
+  AKPOST.grade(cx,{exposure:0.04,saturation:1.03,contrast:1.06,filmic:true,dither:true,grain:{amount:0.045,size:2,seed:20260918},sharpen:0.30});
+  return true;
+})();
+</script></body></html>

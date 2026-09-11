@@ -1,0 +1,156 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B1724}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:78px;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 100,"wght" 700;font-size:26px;letter-spacing:0.12em;color:#9AA7B0}
+.ct{position:absolute;left:760px;top:80px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.10em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+h2{position:absolute;left:80px;top:668px;width:680px;margin:0;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 76,"wght" 640;font-size:62px;line-height:1.02;letter-spacing:-0.012em;color:#F4F8FF}
+.bd{position:absolute;left:80px;top:806px;width:624px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.30;font-weight:500;color:#C3D4DD}
+.q{position:absolute;left:80px;top:966px;width:624px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.20;font-weight:500;color:#F4F8FF}
+.at{position:absolute;left:80px;top:1174px;width:620px;line-height:1.30;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.06em;color:#9AA7B0}
+.gd{position:absolute;left:744px;top:836px;width:262px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.42;letter-spacing:0.02em;color:#9AA7B0}
+.ax0{position:absolute;left:744px;top:1224px;font-family:"JetBrains Mono",monospace;font-size:18px;letter-spacing:0.06em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+.ax1{position:absolute;left:840px;top:1224px;width:160px;text-align:right;font-family:"JetBrains Mono",monospace;font-size:18px;letter-spacing:0.06em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+.ax3{position:absolute;left:912px;top:1146px;font-family:"JetBrains Mono",monospace;font-size:18px;letter-spacing:0.06em;color:#9AA7B0;font-variant-numeric:tabular-nums lining-nums}
+.gd2{position:absolute;left:744px;top:1022px;width:262px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.42;letter-spacing:0.02em;color:#9AA7B0}
+</style></head>
+<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[866, 822, 26, 10]], "ground": [[776, 822, 26, 10]]}]' data-scale='[{"what":"the phantom Enstar storage gap rail","axis":"x","unit":"Bcf","from":[744,0],"to":[1000,4.0],"band":[1180,1206],"marks":[{"at":744,"means":"0 Bcf"},{"at":808,"means":"1 Bcf"},{"at":872,"means":"2 Bcf"},{"at":936,"means":"3 Bcf, the gap Enstar described to lawmakers"},{"at":1000,"means":"4 Bcf"}]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>04 / 09</div>
+<h2 data-reserve>The cushion is a<br>characterisation.</h2>
+<p class="bd" data-reserve>Enstar president John Sims told state lawmakers in August the utility was about 3 Bcf short of ideal storage.</p>
+<p class="q" data-reserve>"This doesn't mean we will be short this many days this winter. Rather, it demonstrates how tight the situation is and our reduced resources to respond to unexpected events."</p>
+<div class="at" data-reserve>HARLEY HEDLUND<br>ENSTAR COMMUNICATIONS MANAGER</div>
+<div class="gd" data-reserve>18 DAYS AT NORMAL OR COLDER, AS KENAI'S MAYOR RELAYED IT</div>
+<div class="ax0" data-decorative>0</div>
+<div class="ax1" data-decorative>4 BCF</div>
+<div class="ax3" data-decorative>3</div>
+<div class="gd2" data-reserve>3 BCF, ON ITS OWN AXIS. NOT SHEET 02'S FIELD DESIGN SCALE.</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/aksheet.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:50, max:62, maxLines:2});
+  const ak = await (await fetch("@@ASSETS@@/geo/alaska-state.geo.json")).json();
+  const cv=document.getElementById('art'), cx=cv.getContext('2d');
+  cx.scale(2,2);
+  const S=AKSHEET,C=S.C,rnd=AK.rng(20260911+4);
+  const WIN=[120,264,840,350];
+  AKSTIPPLE.reserve('[data-reserve]');
+  // margin tone: the SAME swell as sheet 03, run at lower ink, because this is
+  // the same ground under a weaker claim and the comparison has to be exact
+  S.marginField(cx,{seed:20260911+4,count:13500,
+    basins:[[80,650,700,190,1.00],[80,800,700,170,1.00],[80,960,700,230,1.00],[736,820,290,180,1.00],[736,1014,290,180,1.00],[80,1168,660,90,1.00]],
+    basinDepth:0.94,
+    form:function(x,y){
+      const u=x/1080,v=y/1350;
+      const swell=0.34*Math.exp(-Math.pow(v-0.92,2)/0.030);
+      const side=0.16*(1-Math.abs(u-0.5)*1.5);
+      return 0.14+swell+Math.max(0,side)*0.6+0.08*AK.fbm2(u*2.6,v*2.8,4);
+    }});
+
+  AKPARCEL.band(cx,{depth:0.12,sky:"#0B1926",draw:function(bx){
+    const w=S.window(bx,WIN);
+    w.fillStyle="#33454E"; w.fillRect(WIN[0],WIN[1],WIN[2],WIN[3]);
+    const proj=AKGeo.alaskaProjection(ak,[[0,0],[1080,1350]]);
+    AKGeo.zoomTo(proj,ak,[-151.6,61.2],[540,440],3.4);
+    proj.clipExtent([[WIN[0],WIN[1]],[WIN[0]+WIN[2],WIN[1]+WIN[3]]]);
+    const p=d3.geoPath(proj,w);
+    // the SAME extent as sheet 03, drawn at lower ink: a comparison, not a move
+    w.beginPath(); p(ak);
+    const lg=w.createLinearGradient(0,WIN[1],0,WIN[1]+WIN[3]);
+    lg.addColorStop(0,"#5A6059"); lg.addColorStop(1,"#7C8173");
+    w.fillStyle=lg; w.fill();
+    // the SAME landform pass as sheet 03, run at 55 percent of its ink: the
+    // ground is the same, the CERTAINTY is not, so the evidence grade is
+    // carried by ink level and line grammar rather than by an absence of craft.
+    w.save(); w.beginPath(); p(ak); w.clip();
+    AKSTIPPLE.field(w,{seed:20260911+41,count:5200,
+      box:[WIN[0],WIN[1],WIN[0]+WIN[2],WIN[1]+WIN[3]],
+      ramp:["#4E5349","#5E6357","#6F7566","#828878","#969C8A"],
+      radius:function(q){return 0.5+1.0*q;},
+      alpha:function(q){return 0.06+0.17*q;},
+      height:function(x,y){
+        const h=Math.max(0,AK.fbm2(x*0.0042,y*0.0052,5));
+        return Math.max(0,Math.min(1,Math.pow(h,1.25)));
+      }});
+    for(let i=0;i<560;i++){
+      const rx=WIN[0]+rnd()*WIN[2], ry=WIN[1]+rnd()*WIN[3];
+      const hgt=Math.max(0,AK.fbm2(rx*0.0042,ry*0.0052,5));
+      if(hgt<0.30) continue;
+      const gain=0.22+1.05*Math.pow(hgt,1.5);
+      const len=12+hgt*44;
+      const ang=-0.5+AK.fbm2(rx*0.003,ry*0.003,2)*2.2;
+      w.beginPath(); w.moveTo(rx,ry);
+      w.lineTo(rx+Math.cos(ang)*len, ry+Math.sin(ang)*len*0.5);
+      w.strokeStyle="rgba(38,42,33,"+(0.11*gain).toFixed(3)+")";
+      w.lineWidth=0.75+hgt*1.1; w.stroke();
+      w.beginPath(); w.moveTo(rx,ry-1.5);
+      w.lineTo(rx+Math.cos(ang)*len*0.8, ry-1.5+Math.sin(ang)*len*0.5*0.8);
+      w.strokeStyle="rgba(240,246,236,"+(0.09*gain).toFixed(3)+")";
+      w.lineWidth=0.75; w.stroke();
+    }
+    w.restore();
+    w.beginPath(); p(ak);
+    w.setLineDash([30,7,6,7]); w.strokeStyle="rgba(224,234,230,0.82)"; w.lineWidth=2.5; w.stroke();
+    w.setLineDash([30,7,6,7]); w.lineDashOffset=6;
+    w.strokeStyle="rgba(224,234,230,0.42)"; w.lineWidth=0.75;
+    w.strokeRect(WIN[0]-6,WIN[1]-6,WIN[2]+12,WIN[3]+12); w.lineDashOffset=0;
+    w.setLineDash([]);
+    S.closeWindow(w,WIN,{phantom:true});
+  }});
+
+  // the phantom 3 Bcf rail, on its OWN axis, physically offset from sheet 02's
+  const GX=(b)=>744+(b/4.0)*256;
+  cx.setLineDash([30,5,6,5,6,5]); cx.lineCap="butt";
+  cx.strokeStyle="rgba(154,167,176,0.80)"; cx.lineWidth=1.25;
+  cx.beginPath(); cx.moveTo(744,1214); cx.lineTo(1000,1214); cx.stroke();
+  cx.setLineDash([]);
+  for(let i=0;i<=4;i++){
+    const x=GX(i);
+    cx.strokeStyle="rgba(154,167,176,0.70)"; cx.lineWidth=1.25;
+    cx.beginPath(); cx.moveTo(x,1182); cx.lineTo(x,1204); cx.stroke();
+  }
+  cx.strokeStyle="rgba(178,190,199,0.95)"; cx.lineWidth=3.5;
+  cx.beginPath(); cx.moveTo(GX(3),1180); cx.lineTo(GX(3),1206); cx.stroke();
+
+  // #70 SCOTCH RULE between the body and the quote. Without it the quote reads
+  // as the next sentence of the same statement, which is a provenance error
+  // made by layout rather than by copy.
+  cx.strokeStyle="rgba(78,100,116,0.92)"; cx.lineWidth=4.0; cx.lineCap="butt";
+  cx.beginPath(); cx.moveTo(80,944); cx.lineTo(704,944); cx.stroke();
+  cx.strokeStyle="rgba(78,100,116,0.62)"; cx.lineWidth=0.75;
+  cx.beginPath(); cx.moveTo(80,951); cx.lineTo(704,951); cx.stroke();
+
+  // the 18 relayed day ticks, OUTSIDE every declared band by construction
+  for(let i=0;i<18;i++){
+    const x=746+i*14;
+    cx.strokeStyle="rgba(154,167,176,0.55)"; cx.lineWidth=1.25;
+    cx.beginPath(); cx.moveTo(x,986); cx.lineTo(x,1004); cx.stroke();
+  }
+
+  cx.strokeStyle="rgba(120,142,158,0.30)"; cx.lineWidth=0.75;
+  cx.beginPath(); cx.moveTo(80,160); cx.lineTo(1000,160); cx.stroke();
+  const ip=AKGeo.alaskaProjection(ak,[[4,18],[108,94]]);
+  cx.save(); cx.setLineDash([4,3]);
+  S.indexDiagram(cx,d3.geoPath(ip)(ak),[48,48,36,26]);
+  cx.restore();
+  S.litPool(cx,872,836,218,44);
+  S.cast(cx,872,824,94,{dy:2,k:3.0});
+  S.document(cx,{x:744,y:800,w:256,thick:22,alpha:0.48,seed:564});
+  S.seam(cx,744,1000,820,0.66);
+
+  AKPOST.grade(cx,{exposure:0.04,saturation:1.02,contrast:1.05,filmic:true,dither:true,grain:{amount:0.045,size:2,seed:20260914},sharpen:0.30});
+  return true;
+})();
+</script></body></html>

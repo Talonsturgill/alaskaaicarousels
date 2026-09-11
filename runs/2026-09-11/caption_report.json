@@ -1,0 +1,19 @@
+{
+  "chars": 836,
+  "hook": "Enstar, the gas utility for almost half of Alaska's population, publishes a tariff section numbered 1200 and titled Interruption.",
+  "hook_len": 129,
+  "commas": 7,
+  "comma_per_100": 0.89,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#CookInletGas",
+    "#UtilityTariffs",
+    "#SouthcentralAlaska"
+  ],
+  "deck_summary": "A 36 cell grid of the daily readings with the 2 unverified days left empty, and the tariff volume drawn end on with only its top step marked.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 75
+}
