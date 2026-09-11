@@ -110,3 +110,32 @@ The scorer's standing note on voice: this caption reported rather than took a
 position. The strongest line available, that the only public account of the
 order is one man repeating a meeting, was in the deck's takeaway and the editor
 notes and never in the caption. The house voice is allowed to say the thing.
+
+## PHASE 12 WAS DEFERRED AND THE WORK IS WAITING FOR YOU
+
+This run did not spawn the upgrade engineer. It was already late, the owner said
+so mid-run, and the right call was to ship the deck rather than edit the machine
+at the end of a long session.
+
+`runs/2026-09-11/automation_retro.md` carries ELEVEN findings written up in full,
+each with a proposed fix. The four highest value, in order:
+
+1. **An absolute ceiling on the contact check's ground patch**, independent of
+   dL. The gate measures a difference and a difference has two sides. One extra
+   sample per slide, and the margin median is already computed.
+2. **A geodata sanity check.** `assets/geo/ak-transmission-69kv.geo.json` and
+   `ak-generation-20mw.geo.json` are committed, non-trivial in size, and hold
+   ZERO features. A dossier planned two layers around them and no gate said a
+   word, because fetch, parse and geoPath all succeed silently on an empty
+   collection. Either backfill them or delete them.
+3. **A staleness stamp on the GATE STATUS block.** A generated block that reads
+   FAIL is an unfinished artifact whatever the underlying state is, and a scorer
+   correctly failed this run for one that had gone stale minutes earlier.
+4. **Snapshot what a reviewer reads.** Three times this run a reviewer judged
+   artifacts the run was still changing. Copying the render dir to
+   `out/<date>/review/<n>/` before a review round fixed it, and it should be the
+   default rather than something a run improvises halfway through.
+
+Also index `aksheet.js`'s new `S.contact` shape if one is built, and note that
+the chassis's margin FURNITURE (rules, rails, axis ticks) does not consult the
+reserve, which is where all four of this run's art-on-type instances came from.
