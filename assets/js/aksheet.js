@@ -469,9 +469,20 @@
       cx.stroke(new Path2D(pathD));
     }
     if (extentRect) {
+      /* A MINIMUM FOOTPRINT, because this mark's job is to be recognisably the
+       * same object on all nine sheets while its rect changes. No.56 drew the
+       * Kenai extent as a 9 by 7 box that read as a gold dot at 432px, next to
+       * sheets whose extent filled the key, and a device that changes ink and
+       * size every frame cannot prove discontinuity: it does not read as one
+       * device. 10 design px a side is the floor at which the box is still a
+       * box in the feed. */
+      var ex = extentRect[0], ey = extentRect[1];
+      var ew = extentRect[2], eh = extentRect[3];
+      if (ew < 10) { ex -= (10 - ew) / 2; ew = 10; }
+      if (eh < 10) { ey -= (10 - eh) / 2; eh = 10; }
       cx.strokeStyle = S.C.gold;
       cx.lineWidth = 2.0;
-      cx.strokeRect(extentRect[0], extentRect[1], extentRect[2], extentRect[3]);
+      cx.strokeRect(ex, ey, ew, eh);
     }
     cx.restore();
   };
