@@ -774,3 +774,44 @@ annotation is the strongest pair):
     under the door, lifts at the sill where the threshold returns what the pool
     throws at it, and carries the door's rib pitch through it as shallow arches.
     Eleven lines, 5.0 dE, and the reading is now the slide's own. D1
+
+95. **The Sheet And Its Margin** — `aksheet.js` (`AKSHEET`, alias `S`). A deck
+    chassis built for No.56, deliberately a MODULE rather than per-slide code so
+    `bespoke_check` strips it as harness and it costs the variety budget nothing.
+    The form is a printed map sheet. Art lives inside a neatline window and type
+    lives in the margin outside it, which makes "art touching glyphs" impossible
+    by construction rather than by care. That was the point: artwork craft had
+    been the weakest criterion in 7 of 10 runs and type-on-art was the recurring
+    mechanism.
+    `S.W/H/HEADER/MARGIN/BOTTOM_SAFE` are the frame constants and BOTTOM_SAFE is
+    1270, which is where type must END and not where it may start.
+    `S.LIGHT` is declared ONCE for the deck (az 168, el 24, key to fill 4.0) and
+    never varies per slide, because a deck whose light moves reads as nine
+    scenes.
+    `S.marginField(cx,{form,basins,basinDepth,seed,count})` is the margin tone
+    and `form` is REQUIRED. `basins` are the reserve, expressed as ramped
+    distance to a rect list, so the field's own density falls where the words go.
+    `S.window`/`S.closeWindow` clip the art, lay an inner shadow and a 2px
+    occlusion seam. `S.document` is the edge-on volume, seen along its length so
+    it shows thickness and a tab and NEVER a readable face, which is the literal
+    truth of a public instrument the public can't read. Pass `tabW`; never let a
+    label size its own plate.
+    `S.litPool`, `S.cast` and `S.seam` are the contact triple and the order is
+    pool, cast, seam. See 95a. D1
+
+95a. **The Contact Pair Goes Side By Side** — measured on No.56 after six slides
+    failed the same way. A `data-contacts` declaration whose ground rect is
+    STACKED under its shadow rect measures the lit pool's dark outer edge, not
+    the cast, and the pair comes out with the shadow 13 to 15 L* LIGHTER than the
+    ground it stands on. A pool is brightest at its centre. The two rects belong
+    side by side at the object's own BASE LINE, the shadow over the cast trough
+    and the ground over the pool peak beside it.
+    There is a second error that hides under the first. A cast placed at
+    `foot+14` contributes almost nothing at the base line, because the tight cast
+    term is about 7.5 design px in half-height; the pair then measures 1.8 L*
+    with the sign correct and the author goes looking for a palette problem. Put
+    the cast at `foot+2` and the pool centre at `foot+14`. The six slides went
+    from failing to 12.6 through 14.9 L*, against a 4.0 floor.
+    Never guess either rect. `scripts/contact_probe.py --slide N --base cx,cy`
+    measures the render and writes the declaration, and `--verify` re-measures
+    every declaration the built deck carries. D1
