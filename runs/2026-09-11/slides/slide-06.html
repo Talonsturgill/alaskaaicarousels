@@ -1,0 +1,144 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B1724}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:78px;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 100,"wght" 700;font-size:26px;letter-spacing:0.12em;color:#9AA7B0}
+.ct{position:absolute;left:600px;width:244px;text-align:right;top:80px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.10em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+h2{position:absolute;left:80px;top:840px;width:840px;margin:0;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 116,"wght" 640;font-size:62px;line-height:1.02;letter-spacing:-0.018em;color:#F4F8FF}
+.bd{position:absolute;left:80px;top:984px;width:560px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.30;font-weight:500;color:#C3D4DD}
+.mod{position:absolute;left:80px;top:1214px;font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.02em;color:#F4F8FF;font-variant-numeric:tabular-nums lining-nums}
+.leg{position:absolute;left:700px;top:980px;width:300px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.42;letter-spacing:0.03em;color:#9AA7B0}
+.nr{position:absolute;font-family:"JetBrains Mono",monospace;font-size:19px;letter-spacing:0.04em;color:#B6C4CE}
+.key{position:absolute;left:80px;top:1160px;width:920px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.30;letter-spacing:0.03em;color:#8FA0AC}
+.nv{position:absolute;left:700px;top:1214px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.06em;color:#C3D4DD}
+</style></head>
+<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[523, 1274, 26, 10]], "ground": [[433, 1274, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>06 / 09</div>
+<h2 data-reserve>Two of thirty six days carry no reading.</h2>
+<p class="bd" data-reserve>A failed day carries no number forward. Demand model 2.0 is published in full. Its demand is modeled, not measured.</p>
+<div class="nr" id="nr1" data-decorative>NO<br>READING</div>
+<div class="nr" id="nr2" data-decorative>NO<br>READING</div>
+<div class="leg" data-reserve>36 DAYS ON RECORD<br>2 UNVERIFIED<br>BAR SCALE 49 TO 60<br>PERCENT OF DESIGN</div>
+<div class="key" data-reserve>AUGUST 5TH TO SEPTEMBER 10TH. EACH BAR IS THAT DAY.</div>
+<div class="mod" data-reserve>MMCF/D = 80.868 + 3.439 x HDD65</div>
+<div class="nv" data-reserve>NO SAFETY VERDICT.</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/aksheet.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:44, max:66, maxLines:2});
+  const ak = await (await fetch("@@ASSETS@@/geo/alaska-state.geo.json")).json();
+  const cv=document.getElementById('art'), cx=cv.getContext('2d');
+  cx.scale(2,2);
+  const S=AKSHEET,C=S.C,rnd=AK.rng(20260911+6);
+  const WIN=[80,224,920,560];
+  AKSTIPPLE.reserve('[data-reserve]');
+  S.marginField(cx,{seed:20260911+6,count:15000,basinDepth:0.96,
+    basins:[[80,830,860,150,1.00],[80,976,660,180,1.00],[696,968,320,170,1.00],[80,1150,880,60,1.00],[80,1206,600,60,1.00],[690,1206,326,60,1.00]],
+    form:function(x,y){
+      const u=x/1080,v=y/1350;
+      return 0.15+0.34*Math.exp(-Math.pow(v-0.93,2)/0.026)+0.16*(1-u)*0.5+0.08*AK.fbm2(u*2.8,v*2.4,4);
+    }});
+
+  // the window IS the record: a 6 by 6 grid of days over a ghost basemap
+  AKPARCEL.band(cx,{depth:0.06,sky:"#0B1926",draw:function(bx){
+    const w=S.window(bx,WIN);
+    w.fillStyle="#16242F"; w.fillRect(WIN[0],WIN[1],WIN[2],WIN[3]);
+    // ghost basemap at 8 percent
+    const proj=AKGeo.alaskaProjection(ak,[[0,0],[1080,1350]]);
+    AKGeo.zoomTo(proj,ak,[-151.3,60.6],[540,500],3.0);
+    proj.clipExtent([[WIN[0],WIN[1]],[WIN[0]+WIN[2],WIN[1]+WIN[3]]]);
+    const p=d3.geoPath(proj,w);
+    w.beginPath(); p(ak); w.strokeStyle="rgba(190,208,214,0.08)"; w.lineWidth=2.0; w.stroke();
+    // 36 cells, 34 struck with a value, 2 drawn as phantom outlines with NO value
+    const CW=132, CH=72, GX=98, GY=244, PX=14, PY=13;
+    // the 36 days on record, 2026-08-05 through 2026-09-10, percent of design,
+    // read from ledger/gaswatch.jsonl. null is a day with no verified reading.
+    const PCT=[50.0,50.3,50.6,51.0,51.3,51.6,51.9,52.2,52.5,52.9,53.3,53.5,
+               53.8,54.1,54.4,54.6,54.9,55.2,55.5,55.8,56.1,56.0,56.5,56.9,
+               57.2,57.2,57.3,57.5,57.6,57.7,57.7,null,null,58.6,58.8,58.8];
+    const LO=49.0, HI=60.0;
+    for(let r=0;r<6;r++){
+      for(let c=0;c<6;c++){
+        const i=r*6+c, x=GX+c*(CW+PX), y=GY+r*(CH+PY);
+        const v=PCT[i];
+        if(v===null){
+          w.setLineDash([7,4]); w.lineWidth=1.25;
+          w.strokeStyle="rgba(154,167,176,0.78)";
+          w.strokeRect(x,y,CW,CH); w.setLineDash([]);
+          (window.__NR = window.__NR || []).push([Math.round(x),Math.round(y)]);
+        } else {
+          // each cell is a low-relief plate with its own lit face and seam
+          const g=w.createLinearGradient(0,y,0,y+CH);
+          const k=0.20+0.34*(1-r/6)+0.10*((c%3)/3);
+          g.addColorStop(0,"rgba(126,150,168,"+(0.26+k*0.5).toFixed(3)+")");
+          g.addColorStop(1,"rgba(52,74,92,"+(0.30+k*0.4).toFixed(3)+")");
+          w.fillStyle=g; w.fillRect(x,y,CW,CH);
+          w.strokeStyle="rgba(198,216,226,0.24)"; w.lineWidth=0.75;
+          w.strokeRect(x+0.5,y+0.5,CW-1,CH-1);
+          // THE STRUCK VALUE, and it is the day's own reading. Bar length is
+          // that day's percent of design across a fixed 49 to 60 window, so the
+          // row-on-row growth a reader sees is the growth the field had.
+          const frac=Math.max(0,Math.min(1,(v-LO)/(HI-LO)));
+          w.strokeStyle="rgba(226,238,242,0.72)"; w.lineWidth=2.0;
+          w.beginPath(); w.moveTo(x+12,y+CH-15); w.lineTo(x+12+(CW-24)*frac,y+CH-15); w.stroke();
+          // the window's own floor mark, so a bar is read against a span and
+          // not against the cell edge
+          w.strokeStyle="rgba(226,238,242,0.22)"; w.lineWidth=0.75;
+          w.beginPath(); w.moveTo(x+12,y+CH-9); w.lineTo(x+CW-12,y+CH-9); w.stroke();
+          w.fillStyle="rgba(8,14,20,0.34)"; w.fillRect(x+2,y+CH,CW-4,3);
+        }
+      }
+    }
+    S.closeWindow(w,WIN);
+  }});
+
+  // the NO READING labels, seated on the two phantom cells from their own
+  // drawn coordinates so a moved grid can never leave them behind
+  (window.__NR||[]).forEach(function(pt,i){
+    const el=document.getElementById(i===0?"nr1":"nr2");
+    if(el){ el.style.left=(pt[0]+10)+"px"; el.style.top=(pt[1]+24)+"px"; }
+  });
+
+  // the sheet's one gold beyond the index rect, under the statement that is
+  // both measured and written down
+  cx.strokeStyle=C.gold; cx.lineWidth=4.0; cx.lineCap="butt";
+  cx.beginPath(); cx.moveTo(700,1134); cx.lineTo(1000,1134); cx.stroke();
+
+  // the model string sits on a machined rail, the bottom band's modelled tone
+  S.rail(cx,80,640,1226,30,606);
+
+  cx.strokeStyle="rgba(120,142,158,0.30)"; cx.lineWidth=0.75;
+  cx.beginPath(); cx.moveTo(80,160); cx.lineTo(1000,160); cx.stroke();
+  // THE REVEAL: the index diagram has been the record all along
+  cx.save();
+  cx.strokeStyle="rgba(160,182,198,0.42)"; cx.lineWidth=0.75;
+  for(let r=0;r<6;r++) for(let c=0;c<6;c++){
+    const x=868+c*19, y=44+r*19;
+    if((r*6+c)===20||(r*6+c)===32){ cx.setLineDash([3,2]); } else { cx.setLineDash([]); }
+    cx.strokeRect(x,y,16,16);
+  }
+  cx.setLineDash([]);
+  cx.strokeStyle=C.gold; cx.lineWidth=2.0;
+  cx.strokeRect(868,44,112,112);
+  cx.restore();
+  S.litPool(cx,540,1288,420,44);
+  S.cast(cx,540,1276,100,{dy:2,k:3.0});
+  S.document(cx,{x:80,y:1252,w:920,thick:22,alpha:0.50,seed:566});
+  S.seam(cx,80,1000,1272,0.70);
+
+  AKPOST.grade(cx,{exposure:0.04,saturation:1.03,contrast:1.06,filmic:true,dither:true,grain:{amount:0.045,size:2,seed:20260916},sharpen:0.30});
+  return true;
+})();
+</script></body></html>

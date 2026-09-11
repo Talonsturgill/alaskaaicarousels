@@ -1,0 +1,93 @@
+{
+  "run_dir": "out/2026-09-11",
+  "render_report": "out/2026-09-11/render/render_report.json",
+  "aggregates_file": "out/2026-09-11/aggregates.json",
+  "detected": 8,
+  "declared": 8,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "ratio",
+      "fragment": "65 OF 13",
+      "text": "7.65 OF 13.0 BCF",
+      "n": 65,
+      "of": 13
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "7,648 DOTS",
+      "text": "ONE DOT = 1 MMCF 7,648 DOTS DRAWN",
+      "n": 7648,
+      "subject": "dots"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "5 FIGURES",
+      "text": "ALMOST HALF, 4.5 FIGURES OF 10",
+      "n": 5,
+      "subject": "figures"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "18 DAYS",
+      "text": "18 DAYS AT NORMAL OR COLDER, AS KENAI'S MAYOR RELAYED IT",
+      "n": 18,
+      "unit": "days"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "65 DEGREES",
+      "text": "ENSTAR SAID MODEST THERMOSTAT ADJUSTMENTS DOWN TO 65 DEGREES, WHERE SAFE AND PRA",
+      "n": 65,
+      "subject": "degrees"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "six days",
+      "text": "Two of thirty six days carry no reading.",
+      "n": 6,
+      "unit": "days"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "36 DAYS",
+      "text": "36 DAYS ON RECORD 2 UNVERIFIED BAR SCALE 49 TO 60 PERCENT OF DESIGN",
+      "n": 36,
+      "unit": "days"
+    },
+    {
+      "slide": 6,
+      "kind": "span",
+      "fragment": "49 TO 60",
+      "text": "36 DAYS ON RECORD 2 UNVERIFIED BAR SCALE 49 TO 60 PERCENT OF DESIGN",
+      "from_n": 49,
+      "to_n": 60
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 2,
+      "text": "ONE DOT = 1 MMCF 7,648 DOTS DRAWN",
+      "note": "A property of the DRAWING, not of the world. The stipple field is generated at one dot per MMcf of the measured inventory in C01, 7,648,351 Mcf, so the dot count is the drawing's own scale constant and the slide prints that constant beside it."
+    },
+    {
+      "slide": 6,
+      "text": "36 DAYS ON RECORD 2 UNVERIFIED BAR SCALE 49 TO 60 PERCENT OF DESIGN",
+      "note": "The DRAWING's own axis window, printed so the encoding is stated rather than asserted. Each struck cell's bar length is that day's percent of design from ledger/gaswatch.jsonl, mapped across a fixed 49 to 60 window. The observed series runs 50.0 to 58.8, so the window is wider than the data at both ends on purpose and no bar ever touches either edge. 49 and 60 are scale constants of the plot and are not claims about the field. The span August 5th to September 10th, 2026 is the first and last date of the 36 records this sheet draws, read from the same ledger; it is stated so the grid has a time axis a reader can check rather than 36 anonymous chips."
+    },
+    {
+      "slide": 3,
+      "text": "ALMOST HALF, 4.5 FIGURES OF 10",
+      "note": "A property of the DRAWING. C29 says Enstar sells gas to almost half of Alaska's population, and this sheet draws that as ten identical figures with four and a half filled. The line states the drawing's own tally so a reader counting marks and a reader reading words arrive at the same place. It asserts no share more precise than C29's own 'almost half', and the half figure is drawn half because the claim is approximate."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

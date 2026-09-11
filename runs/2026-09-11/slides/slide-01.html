@@ -1,0 +1,189 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B1724}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:78px;font-family:Archivo,sans-serif;
+    font-variation-settings:"wdth" 100,"wght" 700;font-size:26px;letter-spacing:0.12em;color:#9AA7B0}
+.ct{position:absolute;left:760px;top:80px;font-family:"JetBrains Mono",monospace;font-size:24px;
+    letter-spacing:0.10em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+h1{position:absolute;left:80px;top:764px;width:860px;margin:0;font-family:Archivo,sans-serif;
+   font-variation-settings:"wdth" 116,"wght" 700;font-size:92px;line-height:1.02;
+   letter-spacing:-0.02em;color:#F4F8FF}
+.lbl{position:absolute;left:80px;top:1096px;font-family:"JetBrains Mono",monospace;font-size:24px;
+     letter-spacing:0.10em;color:#7E8C96}
+.rd{position:absolute;left:80px;top:1128px;font-family:"JetBrains Mono",monospace;font-size:28px;
+    letter-spacing:0.06em;color:#F4F8FF;font-variant-numeric:tabular-nums lining-nums}
+.st{position:absolute;left:80px;top:1172px;font-family:"JetBrains Mono",monospace;font-size:24px;
+    letter-spacing:0.08em;color:#7E8C96}
+.tab{position:absolute;left:676px;top:1142px;font-family:"JetBrains Mono",monospace;font-size:24px;
+     letter-spacing:0.08em;color:#14202C}
+.dm{position:absolute;left:80px;top:1196px;font-family:"JetBrains Mono",monospace;font-size:24px;
+    letter-spacing:0.06em;color:#6A7A85;font-variant-numeric:tabular-nums lining-nums}
+.le{position:absolute;left:246px;top:392px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.06em;color:#11202B}
+.co{position:absolute;left:80px;top:1240px;font-family:"JetBrains Mono",monospace;font-size:20px;
+    letter-spacing:0.10em;color:#8797A3}
+</style></head>
+<body data-contacts='[{"what": "the closed tariff volume on the margin plane", "shadow": [[811, 1239, 26, 10]], "ground": [[721, 1239, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>01 / 09</div>
+<h1 data-reserve>The gas is measured.<br>The order that takes it<br>is not.</h1>
+<div class="lbl" data-reserve>COOK INLET STORAGE</div>
+<div class="rd" data-reserve>7.65 OF 13.0 BCF</div>
+<div class="st" data-reserve>READ SEPTEMBER 10TH, 2026</div>
+<div class="tab" data-overlap-ok>SECTION 1200</div>
+<div class="le" data-overlap-ok>CINGSA FIELD</div>
+<div class="dm" data-reserve>THICKNESS = 58.8 PERCENT OF DESIGN</div>
+<div class="co" data-decorative>60&deg;33'N &middot; 151&deg;16'W</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/aksheet.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h1'), {min:54, max:96, maxLines:3});
+  const ak = await (await fetch("@@ASSETS@@/geo/alaska-state.geo.json")).json();
+  const cv=document.getElementById('art'), cx=cv.getContext('2d');
+  cx.scale(2,2);
+  const S=AKSHEET, C=S.C, rnd=AK.rng(20260911+1);
+  const WIN=[96,200,888,500];
+
+  AKSTIPPLE.reserve('[data-reserve]');
+  // margin tone: a slow plane falling away from the key at az 168, plus one broad lobe
+  S.marginField(cx,{seed:20260911+1,count:23000,
+    basins:[[80,752,880,300,1.00],[80,1088,470,120,0.88]],
+    form:function(x,y){
+      const u=x/1080,v=y/1350;
+      const plane=0.30+0.34*(1-v)*0.6+0.20*u;
+      const lobe=0.30*Math.exp(-(Math.pow(u-0.30,2)/0.16+Math.pow(v-0.86,2)/0.05));
+      return plane*0.55+lobe+0.10*AK.fbm2(u*2.4,v*2.4,4);
+    }});
+
+  // ---- the window: Cook Inlet basin, a cold overcast sheet
+  AKPARCEL.band(cx,{depth:0.10,sky:"#0B1926",draw:function(bx){
+    const w=S.window(bx,WIN);
+    // water ground
+    const wg=w.createLinearGradient(0,WIN[1],0,WIN[1]+WIN[3]);
+    wg.addColorStop(0,"#5C6B70"); wg.addColorStop(0.55,C.water); wg.addColorStop(1,"#43535A");
+    w.fillStyle=wg; w.fillRect(WIN[0],WIN[1],WIN[2],WIN[3]);
+    // tidal silt streaks: long, low-amplitude, following the inlet's axis
+    for(let i=0;i<260;i++){
+      const sy=WIN[1]+rnd()*WIN[3];
+      const sx=WIN[0]+rnd()*WIN[2];
+      const len=60+rnd()*300;
+      const amp=3+rnd()*9;
+      const al=0.03+rnd()*0.11;
+      w.beginPath(); w.moveTo(sx,sy);
+      for(let t=0;t<=len;t+=14){
+        w.lineTo(sx+t, sy+Math.sin((sx+t)*0.011+i)*amp*(1-t/len));
+      }
+      w.strokeStyle="rgba(196,208,206,"+al.toFixed(3)+")";
+      w.lineWidth=0.75+rnd()*1.1; w.lineCap="butt"; w.stroke();
+    }
+    // land, projected, stroke-only at zoom 4.2
+    const proj=AKGeo.alaskaProjection(ak,[[0,0],[1080,1350]]);
+    AKGeo.zoomTo(proj,ak,[-151.30,60.60],[540,450],4.2);
+    proj.clipExtent([[WIN[0],WIN[1]],[WIN[0]+WIN[2],WIN[1]+WIN[3]]]);
+    const p=d3.geoPath(proj,w);
+    // land is LAND: a lit ground with aerial perspective keyed to distance from the key
+    w.beginPath(); p(ak);
+    const lg2=w.createLinearGradient(0,WIN[1],0,WIN[1]+WIN[3]);
+    lg2.addColorStop(0,"#6E7368"); lg2.addColorStop(0.5,"#8A8F80"); lg2.addColorStop(1,"#A7AC9B");
+    w.fillStyle=lg2; w.fill();
+    // THE LAND IS WORKED, not filled. Artwork craft has been the weakest
+    // criterion in 7 of the last 10 runs and every critic this run named the
+    // window as the place the detail budget never reached. Two passes, keyed to
+    // ONE height field so they read as one landform: a surface grain whose
+    // density follows elevation, then a ridge population whose stroke contrast
+    // rises with the ridge's own height, which is aerial perspective expressed
+    // as a contrast gain rather than as a haze.
+    w.save(); w.beginPath(); p(ak); w.clip();
+    AKSTIPPLE.field(w,{seed:20260922,count:7600,
+      box:[WIN[0],WIN[1],WIN[0]+WIN[2],WIN[1]+WIN[3]],
+      ramp:["#5C6157","#6F7466","#848975","#9AA086","#B2B79C"],
+      radius:function(q){return 0.5+1.1*q;},
+      alpha:function(q){return 0.09+0.28*q;},
+      height:function(x,y){
+        const h=Math.max(0,AK.fbm2(x*0.0042,y*0.0052,5));
+        return Math.max(0,Math.min(1,Math.pow(h,1.25)));
+      }});
+    for(let i=0;i<760;i++){
+      const rx=WIN[0]+rnd()*WIN[2], ry=WIN[1]+rnd()*WIN[3];
+      const hgt=Math.max(0,AK.fbm2(rx*0.0042,ry*0.0052,5));
+      if(hgt<0.28) continue;
+      const gain=0.22+1.05*Math.pow(hgt,1.5);
+      const len=14+hgt*52;
+      const ang=-0.5+AK.fbm2(rx*0.003,ry*0.003,2)*2.2;
+      w.beginPath(); w.moveTo(rx,ry);
+      w.lineTo(rx+Math.cos(ang)*len, ry+Math.sin(ang)*len*0.5);
+      w.strokeStyle="rgba(38,42,33,"+(0.19*gain).toFixed(3)+")";
+      w.lineWidth=0.75+hgt*1.5; w.stroke();
+      w.beginPath(); w.moveTo(rx,ry-1.7);
+      w.lineTo(rx+Math.cos(ang)*len*0.8, ry-1.7+Math.sin(ang)*len*0.5*0.8);
+      w.strokeStyle="rgba(240,246,236,"+(0.16*gain).toFixed(3)+")";
+      w.lineWidth=0.75; w.stroke();
+    }
+    w.restore();
+    w.beginPath(); p(ak); w.strokeStyle="rgba(232,240,236,0.88)"; w.lineWidth=2.0; w.stroke();
+    // graticule at hair weight, receding scale gradient toward the top
+    const gr=d3.geoGraticule().step([1,0.5]);
+    w.beginPath(); p(gr()); w.strokeStyle="rgba(180,198,206,0.14)"; w.lineWidth=0.75; w.stroke();
+    // the CINGSA tick, the one measured mark, hero weight
+    const cs=proj([-151.26,60.68]);
+    w.strokeStyle="#F4F8FF"; w.lineWidth=2.0; w.lineCap="butt";
+    w.beginPath(); w.moveTo(cs[0],cs[1]-16); w.lineTo(cs[0],cs[1]+16); w.stroke();
+    w.beginPath(); w.moveTo(cs[0]-14,cs[1]); w.lineTo(cs[0]+14,cs[1]); w.stroke();
+    window.__CS=cs;
+    S.closeWindow(w,WIN);
+  }});
+
+  // ---- the bottom margin: the closed, edge-on volume
+  S.litPool(cx,820,1253,190,44);
+  S.cast(cx,820,1241,98,{dy:2,k:3.0});
+  S.document(cx,{x:640,y:1180,w:360,thick:58.8,tab:0.06,tabW:212,seed:561});
+  S.seam(cx,640,1000,1239,0.70);
+
+  // index diagram + header rule
+  cx.strokeStyle="rgba(120,142,158,0.30)"; cx.lineWidth=0.75;
+  cx.beginPath(); cx.moveTo(80,160); cx.lineTo(1000,160); cx.stroke();
+  const ip=AKGeo.alaskaProjection(ak,[[4,18],[108,94]]);
+  S.indexDiagram(cx,d3.geoPath(ip)(ak),[52,52,26,18]);
+
+  // THE LEADER, ACTUALLY DRAWN, and drawn SHORT and INSIDE. The first attempt
+  // ran the margin and turned up the frame's right edge, where it was colinear
+  // with the neatline and closed an accidental rectangle in the map. A leader
+  // that parallels a neatline is furniture. This one lives in the window's own
+  // quiet ground and terminates on the mark it names.
+  (function(){
+    const cs=window.__CS;
+    const poly=[[cs[0],cs[1]],[cs[0]-96,cs[1]-74],[cs[0]-206,cs[1]-74]];
+    cx.lineCap="butt"; cx.lineJoin="miter";
+    cx.strokeStyle="rgba(28,36,30,0.55)"; cx.lineWidth=3.5;        // casing
+    cx.beginPath(); cx.moveTo(poly[0][0],poly[0][1]);
+    for(let i=1;i<poly.length;i++) cx.lineTo(poly[i][0],poly[i][1]);
+    cx.stroke();
+    cx.strokeStyle="rgba(250,252,248,0.92)"; cx.lineWidth=1.25;
+    cx.beginPath(); cx.moveTo(poly[0][0],poly[0][1]);
+    for(let i=1;i<poly.length;i++) cx.lineTo(poly[i][0],poly[i][1]);
+    cx.stroke();
+    cx.beginPath(); cx.arc(cs[0],cs[1],4,0,Math.PI*2);
+    cx.fillStyle="rgba(250,252,248,0.95)"; cx.fill();
+    window.__LE=[Math.round(cs[0])-206,Math.round(cs[1])-74];
+  })();
+
+  window.__akLeaders=[{target:"the CINGSA storage field tick",
+    at:[Math.round(window.__CS[0]),Math.round(window.__CS[1])],
+    to:[Math.round(window.__CS[0]),Math.round(window.__CS[1])],
+    from:window.__LE, label:"CINGSA FIELD"}];
+
+  AKPOST.grade(cx,{exposure:0.04,saturation:1.04,contrast:1.06,filmic:true,dither:true,grain:{amount:0.045,size:2,seed:20260911},sharpen:0.30});
+  return true;
+})();
+</script></body></html>

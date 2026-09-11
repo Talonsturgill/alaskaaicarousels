@@ -1,0 +1,66 @@
+{
+  "run_date": "2026-09-11",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 1,
+      "text": "7.65 OF 13.0 BCF",
+      "fragment": "65 OF 13",
+      "member": "C02",
+      "note": "Not an aggregate. The measured reading and the design volume are two separate verified figures printed side by side, C02 at 7.65 Bcf and C03 at 13.0 Bcf, and no arithmetic is performed on them anywhere in the deck."
+    },
+    {
+      "kind": "design",
+      "slide": 2,
+      "text": "ONE DOT = 1 MMCF 7,648 DOTS DRAWN",
+      "fragment": "7,648 DOTS",
+      "note": "A property of the DRAWING, not of the world. The stipple field is generated at one dot per MMcf of the measured inventory in C01, 7,648,351 Mcf, so the dot count is the drawing's own scale constant and the slide prints that constant beside it."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "18 DAYS AT NORMAL OR COLDER, AS KENAI'S MAYOR RELAYED IT",
+      "fragment": "18 DAYS",
+      "member": "C16",
+      "note": "Carried straight from C16 and never re-derived. The attribution rides on the same line, because C16 is a mayor relaying what Enstar's president said and the conditional, at normal to slightly colder temperatures, belongs to the figure. The conditional was restored to the rendered line after scoring, because C16's own note says it is part of the figure."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "text": "MODEST THERMOSTAT ADJUSTMENTS DOWN TO 65 DEGREES, WHERE SAFE AND PRACTICAL, COULD HELP",
+      "fragment": "65 DEGREES",
+      "member": "C21",
+      "note": "A thermostat setting, not a count. Carried verbatim from C21 with its three qualifiers intact, modest, where safe and practical, and could help."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "text": "Two of thirty six days carry no reading.",
+      "fragment": "six days",
+      "member": "C09",
+      "note": "C09's claim field reads that of the 36 days on record, 2 carry no verified reading. The slide prints exactly that relation. The figure 34 appears only in C09's notes and is deliberately NOT printed anywhere in this deck, which is the correction dossier_check forced at planning time."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "text": "36 DAYS ON RECORD 2 UNVERIFIED",
+      "fragment": "36 DAYS",
+      "member": "C08",
+      "note": "C08 carries 36 days on record verbatim. The days belong to the RECORD kept by the Cook Inlet Gas Watch and never to the gas, which is why no string in this deck attaches a day count to the word storage."
+    },
+    {
+      "kind": "design",
+      "slide": 6,
+      "text": "36 DAYS ON RECORD 2 UNVERIFIED BAR SCALE 49 TO 60 PERCENT OF DESIGN",
+      "fragment": "49 TO 60",
+      "note": "The DRAWING's own axis window, printed so the encoding is stated rather than asserted. Each struck cell's bar length is that day's percent of design from ledger/gaswatch.jsonl, mapped across a fixed 49 to 60 window. The observed series runs 50.0 to 58.8, so the window is wider than the data at both ends on purpose and no bar ever touches either edge. 49 and 60 are scale constants of the plot and are not claims about the field. The span August 5th to September 10th, 2026 is the first and last date of the 36 records this sheet draws, read from the same ledger; it is stated so the grid has a time axis a reader can check rather than 36 anonymous chips."
+    },
+    {
+      "kind": "design",
+      "slide": 3,
+      "text": "ALMOST HALF, 4.5 FIGURES OF 10",
+      "fragment": "5 FIGURES",
+      "note": "A property of the DRAWING. C29 says Enstar sells gas to almost half of Alaska's population, and this sheet draws that as ten identical figures with four and a half filled. The line states the drawing's own tally so a reader counting marks and a reader reading words arrive at the same place. It asserts no share more precise than C29's own 'almost half', and the half figure is drawn half because the claim is approximate."
+    }
+  ]
+}

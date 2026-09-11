@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B1724}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm2{position:absolute;left:80px;top:1092px;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 100,"wght" 700;font-size:44px;letter-spacing:0.08em;color:#F4F8FF}
+.ct{position:absolute;left:760px;top:80px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.10em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+.wm{position:absolute;left:80px;top:78px;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 100,"wght" 700;font-size:26px;letter-spacing:0.12em;color:#9AA7B0}
+h2{position:absolute;left:80px;top:620px;width:860px;margin:0;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 100,"wght" 640;font-size:72px;line-height:1.04;letter-spacing:-0.016em;color:#F4F8FF}
+.site{position:absolute;left:80px;top:1162px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.06em;color:#9AA7B0}
+.src{position:absolute;left:80px;top:1204px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.04em;color:#7E8C96}
+.co{position:absolute;left:748px;top:1202px;font-family:"JetBrains Mono",monospace;font-size:20px;letter-spacing:0.08em;color:#8797A3}
+</style></head>
+<body data-contacts='[{"what": "the closed volume, sealed, on the margin plane", "shadow": [[536, 1001, 26, 10]], "ground": [[433, 1001, 26, 10]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>09 / 09</div>
+<h2 data-reserve>Should the order of cuts be public<br>before the next large load is sited?</h2>
+<div class="wm2">ALASKA.AI</div>
+<div class="site">alaskaaihq.com</div>
+<div class="src">Sources in comments.</div>
+<div class="co" data-decorative>60&deg;33'N &middot; 151&deg;16'W</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/aksheet.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:46, max:72, maxLines:2});
+  const ak = await (await fetch("@@ASSETS@@/geo/alaska-state.geo.json")).json();
+  const cv=document.getElementById('art'), cx=cv.getContext('2d');
+  cx.scale(2,2);
+  const S=AKSHEET,C=S.C,rnd=AK.rng(20260911+9);
+  AKSTIPPLE.reserve('[data-reserve]');
+  S.marginField(cx,{seed:20260911+9,count:14000,basinDepth:0.96,
+    basins:[[80,612,880,180,1.00],[80,1084,520,180,1.00]],
+    form:function(x,y){
+      const u=x/1080,v=y/1350;
+      const pool=0.40*Math.exp(-(Math.pow(u-0.50,2)/0.14+Math.pow(v-0.70,2)/0.030));
+      return 0.13+pool+0.08*AK.fbm2(u*2.2,v*2.4,4);
+    }});
+
+  // the index diagram at FULL SIZE, centred, sealed: the record, complete
+  const ip=AKGeo.alaskaProjection(ak,[[0,0],[216,216]]);
+  cx.save(); cx.translate(432,262);
+  cx.strokeStyle="rgba(160,182,198,0.46)"; cx.lineWidth=0.75;
+  cx.stroke(new Path2D(d3.geoPath(ip)(ak)));
+  for(let r=0;r<6;r++) for(let c=0;c<6;c++){
+    const x=8+c*34, y=8+r*34;
+    const miss=((r*6+c)===20||(r*6+c)===32);
+    cx.setLineDash(miss?[4,3]:[]);
+    cx.strokeStyle= miss ? "rgba(154,167,176,0.60)" : "rgba(188,208,220,0.34)";
+    cx.lineWidth=0.75; cx.strokeRect(x,y,28,28);
+  }
+  cx.setLineDash([]);
+  cx.strokeStyle=C.gold; cx.lineWidth=2.0; cx.strokeRect(0,0,216,216);
+  cx.restore();
+
+  // the closed volume, sealed, with Polaris seated on its edge
+  S.litPool(cx,540,1015,420,44);
+  S.cast(cx,540,1003,104,{dy:2,k:2.3});
+  S.document(cx,{x:80,y:942,w:920,thick:58.8,seed:569});
+  S.seam(cx,80,1000,1000,0.76);
+  // Polaris, the four point gold star, seated on the closed edge
+  (function(px,py,r){
+    cx.save(); cx.translate(px,py);
+    const g=cx.createRadialGradient(1.4,3.0,0,1.4,3.0,r*1.55);
+    g.addColorStop(0,"rgba(255,218,110,0.30)"); g.addColorStop(1,"rgba(255,218,110,0)");
+    cx.fillStyle=g; cx.beginPath(); cx.arc(1.4,3.0,r*1.55,0,Math.PI*2); cx.fill();
+    cx.beginPath();
+    for(let i=0;i<4;i++){
+      const a=i*Math.PI/2;
+      cx.lineTo(Math.cos(a)*r, Math.sin(a)*r);
+      cx.lineTo(Math.cos(a+Math.PI/4)*r*0.30, Math.sin(a+Math.PI/4)*r*0.30);
+    }
+    cx.closePath(); cx.fillStyle=C.gold; cx.fill();
+    cx.restore();
+  })(540,940,21);
+
+  cx.strokeStyle="rgba(120,142,158,0.30)"; cx.lineWidth=0.75;
+  cx.beginPath(); cx.moveTo(80,160); cx.lineTo(1000,160); cx.stroke();
+
+  AKPOST.grade(cx,{exposure:0.03,saturation:1.03,contrast:1.05,filmic:true,dither:true,grain:{amount:0.042,size:2,seed:20260919},sharpen:0.28});
+  return true;
+})();
+</script></body></html>

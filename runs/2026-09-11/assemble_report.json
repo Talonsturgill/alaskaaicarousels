@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-11/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7880912,
+  "pdf_mb": 7.88,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-11/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-11/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-11/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-11/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-11/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-11/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-11/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-11/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-11/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-11/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Section 1200 Is Called Interruption",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "f7eeea8ab83428724b72681ff7c191d75608d8e57b88fc59a67a554460a16719",
+        "bytes": 5857464
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "d0447a7a32e5f81fea40ade9abd0f1e1c1c4044299034b13c10b6e66b495794c",
+        "bytes": 6295617
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "f2a64ba728bd48d97a3941db9a6185c8db12139de463a79d652616b907559597",
+        "bytes": 5985547
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "fe63a8bf9732c166565a8d2bf541c3b6d5688977ebc55ad6dd01d2a631d3d389",
+        "bytes": 5691656
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "7ddf4689701609d04e9ea4e5c6878c9d280c6b4882945c94f88d96f3c982dc66",
+        "bytes": 5707519
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "a15a1fc9cc1e42f59a6abe6ddf1b734ef017595eebdd05489910ef310c465dd2",
+        "bytes": 6027791
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "d4c91aae56b7fe31c919650f1adfc1575bbdb9cf3844bd851252e5ef15528678",
+        "bytes": 5708036
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "645d78d33d342a395f0ad80ef794bf5b70289d35ed413647d912255e64b11fbf",
+        "bytes": 5883893
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "805c3db13ba127e195844ff65458933fd858e175e49b1b009ff3b4d01c02b817",
+        "bytes": 5303389
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "54ba5011fff16e97055bf21810237cf83cd2a6e0f05ad439d9d69556aa03d43d",
+        "bytes": 10051
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "34b7338691f852beb037b84c3b960bbac186799b6167185b56a57ce71ab259c3",
+        "bytes": 7901
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "3edf538fe48d378eeac672fa728105ebe06d080f810af3171f2f1f5126352aea",
+        "bytes": 7182
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "200bd6f74f3d0c1b9cccf0ad63fe5117b216252ad6c85494ad9e5db66e7877a0",
+        "bytes": 9652
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "bf008aad78fd221628a88de45cc17ad2b387e248a9374b36bb4394a6ecab5bae",
+        "bytes": 11494
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "29c8022df05656ed30685d5dcbb1e84e4b375b434000d2fd8152e665c6d00bf4",
+        "bytes": 8519
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "9cdc008f51a91f056229e59d5b9cfc262c7c41476bc63317184b71ad5ca709f0",
+        "bytes": 7456
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "f71809d279b3de48d2c7c07bd222b2ab88217c627f1fb45014bcf9231649c8c8",
+        "bytes": 8798
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "f52e199490e9faf164f87a7222e5ccbed15667c1472c4a40c7cefc4604f90a18",
+        "bytes": 5040
+      }
+    ]
+  }
+}

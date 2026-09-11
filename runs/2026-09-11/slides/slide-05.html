@@ -1,0 +1,199 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B1724}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:78px;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 100,"wght" 700;font-size:26px;letter-spacing:0.12em;color:#9AA7B0}
+.ct{position:absolute;left:760px;top:80px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.10em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
+h2{position:absolute;left:80px;top:958px;width:920px;margin:0;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 116,"wght" 640;font-size:46px;line-height:1.02;letter-spacing:-0.016em;color:#F4F8FF}
+.d65{position:absolute;left:348px;top:666px;padding:4px 8px;background:rgba(11,23,36,0.88);font-family:"JetBrains Mono",monospace;font-size:26px;letter-spacing:0.04em;color:#F4F8FF;font-variant-numeric:tabular-nums lining-nums}
+.tg1{position:absolute;left:766px;top:578px;padding:5px 9px;background:rgba(11,23,36,0.90);font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.04em;color:#DCE6EC;font-variant-numeric:tabular-nums lining-nums}
+.tg2{position:absolute;left:766px;top:496px;padding:5px 9px;background:rgba(11,23,36,0.90);font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.04em;color:#DCE6EC;font-variant-numeric:tabular-nums lining-nums}
+.m1{position:absolute;left:80px;top:1034px;width:440px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.46;letter-spacing:0.03em;color:#C3D4DD}
+.m2{position:absolute;left:560px;top:1034px;width:440px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.46;letter-spacing:0.03em;color:#8FA0AC}
+</style></head>
+<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[838, 1298, 26, 10]], "ground": [[751, 1298, 26, 10]]}]' data-breather>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>05 / 09</div>
+<h2 data-reserve>One lever is available this winter.</h2>
+<div class="d65" data-overlap-ok>65</div>
+<div class="tg1" data-overlap-ok>Q1 2027</div>
+<div class="tg2" data-overlap-ok>Q4 2029</div>
+<div class="m1" data-reserve>ENSTAR SAID MODEST THERMOSTAT ADJUSTMENTS DOWN TO 65 DEGREES, WHERE SAFE AND PRACTICAL, COULD HELP REDUCE DEMAND DURING PERIODS OF EXTREME COLD.</div>
+<div class="m2" data-reserve>ENSTAR DOES NOT NOW ANTICIPATE COSMOPOLITAN GAS BEFORE Q1 2027. A NIKISKI IMPORT PROJECT MAY NOT BE READY BEFORE Q4 2029, AS KENAI'S MAYOR RELAYED IT.</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akstipple.js"></script>
+<script src="@@ASSETS@@/js/akparcel.js"></script>
+<script src="@@ASSETS@@/js/aksheet.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  const ak = await (await fetch("@@ASSETS@@/geo/alaska-state.geo.json")).json();
+  const cv=document.getElementById('art'), cx=cv.getContext('2d');
+  cx.scale(2,2);
+  const S=AKSHEET,C=S.C,rnd=AK.rng(20260911+5);
+  const WIN=[56,200,968,740];
+  AKSTIPPLE.reserve('[data-reserve]');
+  S.marginField(cx,{seed:20260911+5,count:12000,basinDepth:0.96,
+    basins:[[80,942,920,100,1.00],[80,1026,460,230,1.00],[554,1026,460,200,1.00]],
+    form:function(x,y){
+      const u=x/1080,v=y/1350;
+      return 0.13+0.30*Math.exp(-Math.pow(v-0.95,2)/0.020)+0.07*AK.fbm2(u*2.0,v*2.2,3);
+    }});
+
+  // ONE band only. Fewer layers IS the rest.
+  AKPARCEL.band(cx,{depth:0.30,sky:"#17293A",draw:function(bx){
+    const w=S.window(bx,WIN);
+    const sg=w.createLinearGradient(0,WIN[1],0,WIN[1]+WIN[3]);
+    sg.addColorStop(0,"#5E7078"); sg.addColorStop(1,"#4A5E68");
+    w.fillStyle=sg; w.fillRect(WIN[0],WIN[1],WIN[2],WIN[3]);
+    // OUT OF SCOPE GROUND, NOT SEA. This sheet carries the deck's widest extent
+    // by declaration, so the Canada border is in frame and cannot be moved off
+    // it. Filling the complement of alaska-state.geo.json with the inlet water
+    // tone would assert that the Yukon is ocean, which is what sheet 03 was
+    // moved west to stop doing. The land east of the 141st meridian gets its
+    // own desaturated ground, well under the state's ink, so it reads as ground
+    // outside the subject rather than as water.
+    w.save();
+    w.beginPath(); w.moveTo(812,WIN[1]); w.lineTo(1024,WIN[1]);
+    w.lineTo(1024,742); w.lineTo(986,704); w.lineTo(922,616);
+    w.lineTo(868,548); w.closePath(); w.clip();
+    const og=w.createLinearGradient(0,WIN[1],0,600);
+    og.addColorStop(0,"#4A5248"); og.addColorStop(1,"#59614F");
+    w.fillStyle=og; w.fillRect(WIN[0],WIN[1],WIN[2],WIN[3]);
+    w.restore();
+    const proj=AKGeo.alaskaProjection(ak,[[0,0],[1080,1350]]);
+    AKGeo.zoomTo(proj,ak,[-154.8,59.5],[540,600],1.6);
+    proj.clipExtent([[WIN[0],WIN[1]],[WIN[0]+WIN[2],WIN[1]+WIN[3]]]);
+    const p=d3.geoPath(proj,w);
+    w.beginPath(); p(ak);
+    const lg=w.createLinearGradient(0,WIN[1],0,WIN[1]+WIN[3]);
+    lg.addColorStop(0,"#8A9080"); lg.addColorStop(1,"#B4B9A4");
+    w.fillStyle=lg; w.fill();
+    // THE LAND IS WORKED, not filled. Artwork craft has been the weakest
+    // criterion in 7 of the last 10 runs and every critic this run named the
+    // window as the place the detail budget never reached. Two passes, keyed to
+    // ONE height field so they read as one landform: a surface grain whose
+    // density follows elevation, then a ridge population whose stroke contrast
+    // rises with the ridge's own height, which is aerial perspective expressed
+    // as a contrast gain rather than as a haze.
+    w.save(); w.beginPath(); p(ak); w.clip();
+    AKSTIPPLE.field(w,{seed:20260962,count:9000,
+      box:[WIN[0],WIN[1],WIN[0]+WIN[2],WIN[1]+WIN[3]],
+      ramp:["#5C6157","#6F7466","#848975","#9AA086","#B2B79C"],
+      radius:function(q){return 0.5+1.1*q;},
+      alpha:function(q){return 0.09+0.28*q;},
+      height:function(x,y){
+        const h=Math.max(0,AK.fbm2(x*0.0042,y*0.0052,5));
+        return Math.max(0,Math.min(1,Math.pow(h,1.25)));
+      }});
+    for(let i=0;i<900;i++){
+      const rx=WIN[0]+rnd()*WIN[2], ry=WIN[1]+rnd()*WIN[3];
+      const hgt=Math.max(0,AK.fbm2(rx*0.0042,ry*0.0052,5));
+      if(hgt<0.28) continue;
+      const gain=0.22+1.05*Math.pow(hgt,1.5);
+      const len=14+hgt*52;
+      const ang=-0.5+AK.fbm2(rx*0.003,ry*0.003,2)*2.2;
+      w.beginPath(); w.moveTo(rx,ry);
+      w.lineTo(rx+Math.cos(ang)*len, ry+Math.sin(ang)*len*0.5);
+      w.strokeStyle="rgba(38,42,33,"+(0.19*gain).toFixed(3)+")";
+      w.lineWidth=0.75+hgt*1.5; w.stroke();
+      w.beginPath(); w.moveTo(rx,ry-1.7);
+      w.lineTo(rx+Math.cos(ang)*len*0.8, ry-1.7+Math.sin(ang)*len*0.5*0.8);
+      w.strokeStyle="rgba(240,246,236,"+(0.16*gain).toFixed(3)+")";
+      w.lineWidth=0.75; w.stroke();
+    }
+    w.restore();
+    w.beginPath(); p(ak); w.strokeStyle="rgba(234,241,235,0.82)"; w.lineWidth=2.0; w.stroke();
+    // two PHANTOM extents, sized to named areas only, NO facility drawn
+    const COS=proj([-151.9,59.8]), NIK=proj([-151.3,60.7]);
+    w.setLineDash([18,5,6,5]); w.lineWidth=2.0; w.strokeStyle="rgba(226,236,242,0.88)";
+    w.strokeRect(COS[0]-34,COS[1]-21,68,42);
+    w.strokeRect(NIK[0]-34,NIK[1]-21,68,42);
+    w.setLineDash([]);
+    // leaders out to the margin-side tags, cased, each terminating on its box
+    [[COS,596],[NIK,514]].forEach(function(e){
+      const pt=e[0], ty=e[1];
+      const poly=[[pt[0]+34,pt[1]],[742,pt[1]],[742,ty],[760,ty]];
+      w.lineCap="butt"; w.lineJoin="miter";
+      w.strokeStyle="rgba(14,24,32,0.62)"; w.lineWidth=3.5;
+      w.beginPath(); w.moveTo(poly[0][0],poly[0][1]);
+      for(let i=1;i<poly.length;i++) w.lineTo(poly[i][0],poly[i][1]);
+      w.stroke();
+      w.strokeStyle="rgba(232,242,248,0.88)"; w.lineWidth=1.25;
+      w.beginPath(); w.moveTo(poly[0][0],poly[0][1]);
+      for(let i=1;i<poly.length;i++) w.lineTo(poly[i][0],poly[i][1]);
+      w.stroke();
+    });
+    S.closeWindow(w,WIN);
+  }});
+
+  // THE DIAL, MOVED BACK INSIDE THE NEATLINE where the dossier put it. It sat
+  // in the bottom margin with the document, so the whole detail budget on a
+  // 968 by 760 sheet was two objects huddled where the labels are, and the
+  // largest region of the frame carried no mark at all. A breather is quiet.
+  // Quiet is not unbuilt.
+  const DX=372, DY=598, R=112;
+  S.litPool(cx,DX,DY+R+14,300,44);
+  S.cast(cx,DX,DY+R+2,104,{dy:2,k:3.0});
+  const rg=cx.createRadialGradient(DX-R*0.22,DY+R*0.30,4,DX,DY,R);
+  rg.addColorStop(0,"#69747D"); rg.addColorStop(0.45,"#525D66"); rg.addColorStop(1,"#363F47");
+  cx.beginPath(); cx.arc(DX,DY,R,0,Math.PI*2); cx.fillStyle=rg; cx.fill();
+  cx.strokeStyle="rgba(214,226,232,0.34)"; cx.lineWidth=2.0; cx.stroke();
+  // knurled rim, 84 tapered strokes, so the cap is a machined thing and not a
+  // radial-gradient sphere with a highlight painted on it
+  for(let i=0;i<84;i++){
+    const a=i*(Math.PI*2/84);
+    const lit=0.14+0.24*Math.max(0,Math.cos(a-Math.PI*0.62));
+    cx.beginPath();
+    cx.moveTo(DX+Math.cos(a)*(R-9),DY+Math.sin(a)*(R-9));
+    cx.lineTo(DX+Math.cos(a)*(R-1),DY+Math.sin(a)*(R-1));
+    cx.strokeStyle="rgba(226,236,242,"+lit.toFixed(3)+")"; cx.lineWidth=1.25; cx.stroke();
+  }
+  // machined grain across the cap face, following one turning direction
+  cx.save(); cx.beginPath(); cx.arc(DX,DY,R-14,0,Math.PI*2); cx.clip();
+  for(let i=0;i<220;i++){
+    const a=rnd()*Math.PI*2, rr=Math.sqrt(rnd())*(R-16);
+    const px=DX+Math.cos(a)*rr, py=DY+Math.sin(a)*rr;
+    const t=a+Math.PI/2, len=6+rnd()*16;
+    cx.beginPath(); cx.moveTo(px,py); cx.lineTo(px+Math.cos(t)*len,py+Math.sin(t)*len);
+    cx.strokeStyle=(i%3===0)?"rgba(228,238,244,0.10)":"rgba(16,24,30,0.13)";
+    cx.lineWidth=0.75; cx.stroke();
+  }
+  cx.restore();
+  cx.beginPath(); cx.arc(DX,DY,R-26,0,Math.PI*2);
+  cx.strokeStyle="rgba(20,28,34,0.45)"; cx.lineWidth=3.5; cx.stroke();
+  for(let i=0;i<24;i++){
+    const a=-Math.PI*0.78+ i*(Math.PI*1.56/23);
+    const inr = (i%4===0)? R-50 : R-38;
+    cx.beginPath();
+    cx.moveTo(DX+Math.cos(a)*inr,DY+Math.sin(a)*inr);
+    cx.lineTo(DX+Math.cos(a)*(R-14),DY+Math.sin(a)*(R-14));
+    cx.strokeStyle="rgba(222,232,238,0.55)"; cx.lineWidth=(i%4===0)?1.25:0.75; cx.stroke();
+  }
+  const a65=-Math.PI*0.78+ 10*(Math.PI*1.56/23);
+  cx.beginPath();
+  cx.moveTo(DX+Math.cos(a65)*(R-58),DY+Math.sin(a65)*(R-58));
+  cx.lineTo(DX+Math.cos(a65)*(R-6),DY+Math.sin(a65)*(R-6));
+  cx.strokeStyle=C.gold; cx.lineWidth=5.5; cx.lineCap="butt"; cx.stroke();
+  S.seam(cx,DX-96,DX+96,DY+R-3,0.52);
+
+  cx.strokeStyle="rgba(120,142,158,0.30)"; cx.lineWidth=0.75;
+  cx.beginPath(); cx.moveTo(80,160); cx.lineTo(1000,160); cx.stroke();
+  const ip=AKGeo.alaskaProjection(ak,[[4,18],[108,94]]);
+  S.indexDiagram(cx,d3.geoPath(ip)(ak),[30,46,68,46]);
+  S.litPool(cx,850,1312,230,40);
+  S.cast(cx,850,1300,94,{dy:2,k:3.0});
+  S.document(cx,{x:700,y:1276,w:300,thick:22,alpha:0.50,seed:565});
+  S.seam(cx,700,1000,1296,0.66);
+
+  AKPOST.grade(cx,{exposure:0.03,saturation:1.02,contrast:1.04,filmic:true,dither:true,grain:{amount:0.042,size:2,seed:20260915},sharpen:0.26});
+  return true;
+})();
+</script></body></html>

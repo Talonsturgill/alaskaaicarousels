@@ -1,0 +1,3756 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 78,
+          "w": 170,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              78,
+              170,
+              28
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "texts": [
+            "01 / 09"
+          ],
+          "full": "01 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 760,
+          "y": 80,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              760,
+              80,
+              118,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The gas is measured. The order that takes it is not.",
+          "texts": [
+            "The gas is measured.",
+            "The order that takes it",
+            "is not."
+          ],
+          "full": "The gas is measured. The order that takes it is not.",
+          "tag": "h1",
+          "unsized": false,
+          "x": 80,
+          "y": 764,
+          "w": 860,
+          "h": 225,
+          "font_px": 73.5,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              761,
+              837,
+              80
+            ],
+            [
+              80,
+              836,
+              859,
+              80
+            ],
+            [
+              80,
+              911,
+              234,
+              80
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "COOK INLET STORAGE",
+          "texts": [
+            "COOK INLET STORAGE"
+          ],
+          "full": "COOK INLET STORAGE",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1096,
+          "w": 302,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1096,
+              302,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "7.65 OF 13.0 BCF",
+          "texts": [
+            "7.65 OF 13.0 BCF"
+          ],
+          "full": "7.65 OF 13.0 BCF",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1128,
+          "w": 296,
+          "h": 37,
+          "font_px": 28,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1128,
+              296,
+              37
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "READ SEPTEMBER 10TH, 2026",
+          "texts": [
+            "READ SEPTEMBER 10TH, 2026"
+          ],
+          "full": "READ SEPTEMBER 10TH, 2026",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1172,
+          "w": 408,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1172,
+              408,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SECTION 1200",
+          "texts": [
+            "SECTION 1200"
+          ],
+          "full": "SECTION 1200",
+          "tag": "div",
+          "unsized": false,
+          "x": 676,
+          "y": 1142,
+          "w": 196,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 32, 44)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              676,
+              1142,
+              196,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "CINGSA FIELD",
+          "texts": [
+            "CINGSA FIELD"
+          ],
+          "full": "CINGSA FIELD",
+          "tag": "div",
+          "unsized": false,
+          "x": 246,
+          "y": 392,
+          "w": 190,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 32, 43)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              246,
+              392,
+              190,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THICKNESS = 58.8 PERCENT OF DESIGN",
+          "texts": [
+            "THICKNESS = 58.8 PERCENT OF DESIGN"
+          ],
+          "full": "THICKNESS = 58.8 PERCENT OF DESIGN",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1196,
+          "w": 539,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(106, 122, 133)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1196,
+              539,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "60\u00b033'N \u00b7 151\u00b016'W",
+          "texts": [
+            "60\u00b033'N \u00b7 151\u00b016'W"
+          ],
+          "full": "60\u00b033'N \u00b7 151\u00b016'W",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1240,
+          "w": 252,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(135, 151, 163)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1240,
+              252,
+              26
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the closed tariff volume on the margin plane",
+          "shadow": [
+            [
+              811,
+              1239,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              721,
+              1239,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 30606,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h1",
+          "text": "The gas is measured.The order that takes itis not.",
+          "min": 54,
+          "max": 96,
+          "maxLines": 3,
+          "size": 73.5,
+          "lines": 3,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-01.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 6843,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 49.6,
+          "variance": 3471.6
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the CINGSA storage field tick",
+          "to": [
+            542,
+            439
+          ],
+          "at": [
+            542,
+            439
+          ],
+          "from": [
+            336,
+            365
+          ],
+          "label": "CINGSA FIELD"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-11/slides/slide-01.html",
+        "sha1": "c763a3295fde8f522e09d97318c599c747f00bcf"
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 78,
+          "w": 170,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              78,
+              170,
+              28
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "texts": [
+            "02 / 09"
+          ],
+          "full": "02 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 760,
+          "y": 80,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              760,
+              80,
+              118,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "58.8",
+          "texts": [
+            "58.8"
+          ],
+          "full": "58.8",
+          "tag": "div",
+          "unsized": false,
+          "x": 716,
+          "y": 300,
+          "w": 271,
+          "h": 101,
+          "font_px": 112,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              716,
+              289,
+              271,
+              122
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "PERCENT OF DESIGN",
+          "texts": [
+            "PERCENT OF DESIGN"
+          ],
+          "full": "PERCENT OF DESIGN",
+          "tag": "div",
+          "unsized": false,
+          "x": 720,
+          "y": 424,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              720,
+              424,
+              286,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ONE DOT = 1 MMCF 7,648 DOTS DRAWN",
+          "texts": [
+            "ONE DOT = 1 MMCF",
+            "7,648 DOTS DRAWN"
+          ],
+          "full": "ONE DOT = 1 MMCF 7,648 DOTS DRAWN",
+          "tag": "div",
+          "unsized": false,
+          "x": 720,
+          "y": 494,
+          "w": 280,
+          "h": 70,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              720,
+              495,
+              246,
+              31
+            ],
+            [
+              720,
+              530,
+              246,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "The level is measured every morning.",
+          "texts": [
+            "The level is measured",
+            "every morning."
+          ],
+          "full": "The level is measured every morning.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 836,
+          "w": 640,
+          "h": 113,
+          "font_px": 55.5,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              833,
+              637,
+              61
+            ],
+            [
+              80,
+              890,
+              434,
+              61
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Cook Inlet storage read 7,648,351 Mcf on September 10th, 2026. Design volume is ",
+          "texts": [
+            "Cook Inlet storage read 7,648,351 Mcf on September 10th, 2026. Design volume is not what the field can deliver on any given day."
+          ],
+          "full": "Cook Inlet storage read 7,648,351 Mcf on September 10th, 2026. Design volume is not what the field can deliver on any given day.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 988,
+          "w": 680,
+          "h": 129,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(195, 212, 221)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              987,
+              602,
+              44
+            ],
+            [
+              80,
+              1030,
+              655,
+              44
+            ],
+            [
+              80,
+              1073,
+              633,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "WITHDRAWAL 150,000 MCF/D OF 215,000 DESIGN",
+          "texts": [
+            "WITHDRAWAL 150,000 MCF/D OF 215,000 DESIGN"
+          ],
+          "full": "WITHDRAWAL 150,000 MCF/D OF 215,000 DESIGN",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1170,
+          "w": 920,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1170,
+              665,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the tariff volume on the margin plane",
+          "shadow": [
+            [
+              836,
+              734,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              761,
+              734,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [
+        {
+          "what": "the Bcf rail",
+          "axis": "x",
+          "unit": "Bcf",
+          "from": [
+            200,
+            0
+          ],
+          "to": [
+            1000,
+            13
+          ],
+          "band": [
+            1230,
+            1258
+          ],
+          "band_declared": [
+            1230,
+            1258
+          ],
+          "marks": [
+            {
+              "at": 200,
+              "means": "0 Bcf"
+            },
+            {
+              "at": 261,
+              "means": "1 Bcf"
+            },
+            {
+              "at": 323,
+              "means": "2 Bcf"
+            },
+            {
+              "at": 384,
+              "means": "3 Bcf"
+            },
+            {
+              "at": 446,
+              "means": "4 Bcf"
+            },
+            {
+              "at": 507,
+              "means": "5 Bcf"
+            },
+            {
+              "at": 569,
+              "means": "6 Bcf"
+            },
+            {
+              "at": 630,
+              "means": "7 Bcf"
+            },
+            {
+              "at": 671,
+              "means": "7.65 Bcf, the measured reading"
+            },
+            {
+              "at": 692,
+              "means": "8 Bcf"
+            },
+            {
+              "at": 753,
+              "means": "9 Bcf"
+            },
+            {
+              "at": 815,
+              "means": "10 Bcf"
+            },
+            {
+              "at": 876,
+              "means": "11 Bcf"
+            },
+            {
+              "at": 938,
+              "means": "12 Bcf"
+            },
+            {
+              "at": 1000,
+              "means": "13.0 Bcf, design volume"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 28654,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "The level is measuredevery morning.",
+          "min": 46,
+          "max": 70,
+          "maxLines": 2,
+          "size": 55.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-02.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3935,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44.8,
+          "variance": 3263.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-11/slides/slide-02.html",
+        "sha1": "4f11651a4d4a5a2f5dd6a5d6bd29b03e1734fc8c"
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 78,
+          "w": 170,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              78,
+              170,
+              28
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "texts": [
+            "03 / 09"
+          ],
+          "full": "03 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 760,
+          "y": 80,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              760,
+              80,
+              118,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "This is the ground that can be drawn.",
+          "texts": [
+            "This is the ground",
+            "that can be drawn."
+          ],
+          "full": "This is the ground that can be drawn.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 800,
+          "w": 840,
+          "h": 138,
+          "font_px": 67.5,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              797,
+              630,
+              73
+            ],
+            [
+              80,
+              866,
+              658,
+              73
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Enstar sells gas to almost half of Alaska's population and gets nearly all of it",
+          "texts": [
+            "Enstar sells gas to almost half of Alaska's population and gets nearly all of its supply from Hilcorp. Southcentral runs more than 70 percent of its electricity on gas, per Alaska Public Media citing "
+          ],
+          "full": "Enstar sells gas to almost half of Alaska's population and gets nearly all of its supply from Hilcorp. Southcentral runs more than 70 percent of its electricity on gas, per Alaska Public Media citing ISER.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 940,
+          "w": 800,
+          "h": 166,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(195, 212, 221)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              938,
+              776,
+              44
+            ],
+            [
+              80,
+              980,
+              656,
+              44
+            ],
+            [
+              80,
+              1021,
+              680,
+              44
+            ],
+            [
+              80,
+              1063,
+              797,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ALMOST HALF, 4.5 FIGURES OF 10",
+          "texts": [
+            "ALMOST HALF, 4.5 FIGURES OF 10"
+          ],
+          "full": "ALMOST HALF, 4.5 FIGURES OF 10",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1226,
+          "w": 490,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1226,
+              490,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the tariff volume on the margin plane",
+          "shadow": [
+            [
+              833,
+              1202,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              743,
+              1202,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 35025,
+        "sites": 8,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "This is the groundthat can be drawn.",
+          "min": 46,
+          "max": 68,
+          "maxLines": 2,
+          "size": 67.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-03.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4417,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 47.8,
+          "variance": 3016.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-11/slides/slide-03.html",
+        "sha1": "d408c684308342427b5daaa26725db80da95dc78"
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 78,
+          "w": 170,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              78,
+              170,
+              28
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "texts": [
+            "04 / 09"
+          ],
+          "full": "04 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 760,
+          "y": 80,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              760,
+              80,
+              118,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The cushion is a characterisation.",
+          "texts": [
+            "The cushion is a",
+            "characterisation."
+          ],
+          "full": "The cushion is a characterisation.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 668,
+          "w": 680,
+          "h": 125,
+          "font_px": 61.5,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              665,
+              356,
+              67
+            ],
+            [
+              80,
+              728,
+              381,
+              67
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Enstar president John Sims told state lawmakers in August the utility was about ",
+          "texts": [
+            "Enstar president John Sims told state lawmakers in August the utility was about 3 Bcf short of ideal storage."
+          ],
+          "full": "Enstar president John Sims told state lawmakers in August the utility was about 3 Bcf short of ideal storage.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 806,
+          "w": 624,
+          "h": 125,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(195, 212, 221)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              804,
+              559,
+              44
+            ],
+            [
+              80,
+              846,
+              619,
+              44
+            ],
+            [
+              80,
+              887,
+              407,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "\"This doesn't mean we will be short this many days this winter. Rather, it demon",
+          "texts": [
+            "\"This doesn't mean we will be short this many days this winter. Rather, it demonstrates how tight the situation is and our reduced resources to respond to unexpected events.\""
+          ],
+          "full": "\"This doesn't mean we will be short this many days this winter. Rather, it demonstrates how tight the situation is and our reduced resources to respond to unexpected events.\"",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 966,
+          "w": 624,
+          "h": 192,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              963,
+              587,
+              44
+            ],
+            [
+              80,
+              1001,
+              472,
+              44
+            ],
+            [
+              80,
+              1040,
+              591,
+              44
+            ],
+            [
+              80,
+              1078,
+              609,
+              44
+            ],
+            [
+              80,
+              1117,
+              311,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "HARLEY HEDLUND ENSTAR COMMUNICATIONS MANAGER",
+          "texts": [
+            "HARLEY HEDLUND",
+            "ENSTAR COMMUNICATIONS MANAGER"
+          ],
+          "full": "HARLEY HEDLUND ENSTAR COMMUNICATIONS MANAGER",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1174,
+          "w": 620,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1174,
+              222,
+              31
+            ],
+            [
+              80,
+              1205,
+              459,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "18 DAYS AT NORMAL OR COLDER, AS KENAI'S MAYOR RELAYED IT",
+          "texts": [
+            "18 DAYS AT NORMAL OR COLDER, AS KENAI'S MAYOR RELAYED IT"
+          ],
+          "full": "18 DAYS AT NORMAL OR COLDER, AS KENAI'S MAYOR RELAYED IT",
+          "tag": "div",
+          "unsized": false,
+          "x": 744,
+          "y": 836,
+          "w": 262,
+          "h": 136,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              744,
+              837,
+              253,
+              31
+            ],
+            [
+              744,
+              871,
+              193,
+              31
+            ],
+            [
+              744,
+              905,
+              193,
+              31
+            ],
+            [
+              744,
+              939,
+              149,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "0",
+          "texts": [
+            "0"
+          ],
+          "full": "0",
+          "tag": "div",
+          "unsized": false,
+          "x": 744,
+          "y": 1224,
+          "w": 12,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              744,
+              1224,
+              12,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "4 BCF",
+          "texts": [
+            "4 BCF"
+          ],
+          "full": "4 BCF",
+          "tag": "div",
+          "unsized": false,
+          "x": 840,
+          "y": 1224,
+          "w": 160,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              941,
+              1224,
+              59,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "3",
+          "texts": [
+            "3"
+          ],
+          "full": "3",
+          "tag": "div",
+          "unsized": false,
+          "x": 912,
+          "y": 1146,
+          "w": 12,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              912,
+              1146,
+              12,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "3 BCF, ON ITS OWN AXIS. NOT SHEET 02'S FIELD DESIGN SCALE.",
+          "texts": [
+            "3 BCF, ON ITS OWN AXIS. NOT SHEET 02'S FIELD DESIGN SCALE."
+          ],
+          "full": "3 BCF, ON ITS OWN AXIS. NOT SHEET 02'S FIELD DESIGN SCALE.",
+          "tag": "div",
+          "unsized": false,
+          "x": 744,
+          "y": 1022,
+          "w": 262,
+          "h": 136,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              744,
+              1023,
+              253,
+              31
+            ],
+            [
+              744,
+              1057,
+              223,
+              31
+            ],
+            [
+              744,
+              1091,
+              253,
+              31
+            ],
+            [
+              744,
+              1125,
+              89,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the tariff volume on the margin plane",
+          "shadow": [
+            [
+              866,
+              822,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              776,
+              822,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [
+        {
+          "what": "the phantom Enstar storage gap rail",
+          "axis": "x",
+          "unit": "Bcf",
+          "from": [
+            744,
+            0
+          ],
+          "to": [
+            1000,
+            4
+          ],
+          "band": [
+            1180,
+            1206
+          ],
+          "band_declared": [
+            1180,
+            1206
+          ],
+          "marks": [
+            {
+              "at": 744,
+              "means": "0 Bcf"
+            },
+            {
+              "at": 808,
+              "means": "1 Bcf"
+            },
+            {
+              "at": 872,
+              "means": "2 Bcf"
+            },
+            {
+              "at": 936,
+              "means": "3 Bcf, the gap Enstar described to lawmakers"
+            },
+            {
+              "at": 1000,
+              "means": "4 Bcf"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 18705,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "The cushion is acharacterisation.",
+          "min": 50,
+          "max": 62,
+          "maxLines": 2,
+          "size": 61.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-04.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4094,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 28,
+          "variance": 1364.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-11/slides/slide-04.html",
+        "sha1": "30abb06ce22e123f04bf0e0c16dae399fa0bf074"
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 78,
+          "w": 170,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              78,
+              170,
+              28
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "texts": [
+            "05 / 09"
+          ],
+          "full": "05 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 760,
+          "y": 80,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              760,
+              80,
+              118,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "One lever is available this winter.",
+          "texts": [
+            "One lever is available this winter."
+          ],
+          "full": "One lever is available this winter.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 958,
+          "w": 920,
+          "h": 47,
+          "font_px": 46,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              956,
+              786,
+              50
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "65",
+          "texts": [
+            "65"
+          ],
+          "full": "65",
+          "tag": "div",
+          "unsized": false,
+          "x": 348,
+          "y": 666,
+          "w": 49,
+          "h": 43,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              356,
+              670,
+              33,
+              35
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Q1 2027",
+          "texts": [
+            "Q1 2027"
+          ],
+          "full": "Q1 2027",
+          "tag": "div",
+          "unsized": false,
+          "x": 766,
+          "y": 578,
+          "w": 126,
+          "h": 41,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 230, 236)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              775,
+              583,
+              108,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Q4 2029",
+          "texts": [
+            "Q4 2029"
+          ],
+          "full": "Q4 2029",
+          "tag": "div",
+          "unsized": false,
+          "x": 766,
+          "y": 496,
+          "w": 126,
+          "h": 41,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 230, 236)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              775,
+              501,
+              108,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ENSTAR SAID MODEST THERMOSTAT ADJUSTMENTS DOWN TO 65 DEGREES, WHERE SAFE AND PRA",
+          "texts": [
+            "ENSTAR SAID MODEST THERMOSTAT ADJUSTMENTS DOWN TO 65 DEGREES, WHERE SAFE AND PRACTICAL, COULD HELP REDUCE DEMAND DURING PERIODS OF EXTREME COLD."
+          ],
+          "full": "ENSTAR SAID MODEST THERMOSTAT ADJUSTMENTS DOWN TO 65 DEGREES, WHERE SAFE AND PRACTICAL, COULD HELP REDUCE DEMAND DURING PERIODS OF EXTREME COLD.",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1034,
+          "w": 440,
+          "h": 210,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 212, 221)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1036,
+              438,
+              31
+            ],
+            [
+              80,
+              1071,
+              333,
+              31
+            ],
+            [
+              80,
+              1106,
+              348,
+              31
+            ],
+            [
+              80,
+              1141,
+              423,
+              31
+            ],
+            [
+              80,
+              1176,
+              363,
+              31
+            ],
+            [
+              80,
+              1211,
+              197,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ENSTAR DOES NOT NOW ANTICIPATE COSMOPOLITAN GAS BEFORE Q1 2027. A NIKISKI IMPORT",
+          "texts": [
+            "ENSTAR DOES NOT NOW ANTICIPATE COSMOPOLITAN GAS BEFORE Q1 2027. A NIKISKI IMPORT PROJECT MAY NOT BE READY BEFORE Q4 2029, AS KENAI'S MAYOR RELAYED IT."
+          ],
+          "full": "ENSTAR DOES NOT NOW ANTICIPATE COSMOPOLITAN GAS BEFORE Q1 2027. A NIKISKI IMPORT PROJECT MAY NOT BE READY BEFORE Q4 2029, AS KENAI'S MAYOR RELAYED IT.",
+          "tag": "div",
+          "unsized": false,
+          "x": 560,
+          "y": 1034,
+          "w": 440,
+          "h": 210,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 160, 172)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              560,
+              1036,
+              287,
+              31
+            ],
+            [
+              560,
+              1071,
+              408,
+              31
+            ],
+            [
+              560,
+              1106,
+              378,
+              31
+            ],
+            [
+              560,
+              1141,
+              378,
+              31
+            ],
+            [
+              560,
+              1176,
+              363,
+              31
+            ],
+            [
+              560,
+              1211,
+              378,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the tariff volume on the margin plane",
+          "shadow": [
+            [
+              838,
+              1298,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              751,
+              1298,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 21009,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-05.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4626,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 51.6,
+          "variance": 2130.9
+        }
+      ],
+      "breather": true,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-11/slides/slide-05.html",
+        "sha1": "0cd72a4db7e7740e4d5e2e16873986aae29838b1"
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 78,
+          "w": 170,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              78,
+              170,
+              28
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "texts": [
+            "06 / 09"
+          ],
+          "full": "06 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 600,
+          "y": 80,
+          "w": 244,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              726,
+              80,
+              118,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Two of thirty six days carry no reading.",
+          "texts": [
+            "Two of thirty six days carry no reading."
+          ],
+          "full": "Two of thirty six days carry no reading.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 840,
+          "w": 840,
+          "h": 134,
+          "font_px": 65.5,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              837,
+              726,
+              72
+            ],
+            [
+              80,
+              904,
+              578,
+              72
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "A failed day carries no number forward. Demand model 2.0 is published in full. I",
+          "texts": [
+            "A failed day carries no number forward. Demand model 2.0 is published in full. Its demand is modeled, not measured."
+          ],
+          "full": "A failed day carries no number forward. Demand model 2.0 is published in full. Its demand is modeled, not measured.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 984,
+          "w": 560,
+          "h": 166,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(195, 212, 221)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              982,
+              448,
+              44
+            ],
+            [
+              80,
+              1024,
+              438,
+              44
+            ],
+            [
+              80,
+              1065,
+              448,
+              44
+            ],
+            [
+              80,
+              1107,
+              363,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "NO READING",
+          "texts": [
+            "NO",
+            "READING"
+          ],
+          "full": "NO READING",
+          "tag": "div",
+          "unsized": false,
+          "x": 254,
+          "y": 693,
+          "w": 85,
+          "h": 50,
+          "font_px": 19,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(182, 196, 206)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              254,
+              693,
+              24,
+              25
+            ],
+            [
+              254,
+              718,
+              85,
+              25
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "NO READING",
+          "texts": [
+            "NO",
+            "READING"
+          ],
+          "full": "NO READING",
+          "tag": "div",
+          "unsized": false,
+          "x": 400,
+          "y": 693,
+          "w": 85,
+          "h": 50,
+          "font_px": 19,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(182, 196, 206)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              400,
+              693,
+              24,
+              25
+            ],
+            [
+              400,
+              718,
+              85,
+              25
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "36 DAYS ON RECORD 2 UNVERIFIED BAR SCALE 49 TO 60 PERCENT OF DESIGN",
+          "texts": [
+            "36 DAYS ON RECORD",
+            "2 UNVERIFIED",
+            "BAR SCALE 49 TO 60",
+            "PERCENT OF DESIGN"
+          ],
+          "full": "36 DAYS ON RECORD 2 UNVERIFIED BAR SCALE 49 TO 60 PERCENT OF DESIGN",
+          "tag": "div",
+          "unsized": false,
+          "x": 700,
+          "y": 980,
+          "w": 300,
+          "h": 136,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              700,
+              981,
+              257,
+              31
+            ],
+            [
+              700,
+              1015,
+              181,
+              31
+            ],
+            [
+              700,
+              1049,
+              272,
+              31
+            ],
+            [
+              700,
+              1083,
+              257,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
+          "anc": []
+        },
+        {
+          "text": "AUGUST 5TH TO SEPTEMBER 10TH. EACH BAR IS THAT DAY.",
+          "texts": [
+            "AUGUST 5TH TO SEPTEMBER 10TH. EACH BAR IS THAT DAY."
+          ],
+          "full": "AUGUST 5TH TO SEPTEMBER 10TH. EACH BAR IS THAT DAY.",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1160,
+          "w": 920,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 160, 172)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1160,
+              771,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "MMCF/D = 80.868 + 3.439 x HDD65",
+          "texts": [
+            "MMCF/D = 80.868 + 3.439 x HDD65"
+          ],
+          "full": "MMCF/D = 80.868 + 3.439 x HDD65",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1214,
+          "w": 481,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1214,
+              481,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "NO SAFETY VERDICT.",
+          "texts": [
+            "NO SAFETY VERDICT."
+          ],
+          "full": "NO SAFETY VERDICT.",
+          "tag": "div",
+          "unsized": false,
+          "x": 700,
+          "y": 1214,
+          "w": 285,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 212, 221)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              700,
+              1214,
+              285,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the tariff volume on the margin plane",
+          "shadow": [
+            [
+              523,
+              1274,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              433,
+              1274,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 15005,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "Two of thirty six days carry no reading.",
+          "min": 44,
+          "max": 66,
+          "maxLines": 2,
+          "size": 65.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-06.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3931,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 28.6,
+          "variance": 921.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-11/slides/slide-06.html",
+        "sha1": "34256372cff4927898afa6661a9c8faf8291bea0"
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 78,
+          "w": 170,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              78,
+              170,
+              28
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "texts": [
+            "07 / 09"
+          ],
+          "full": "07 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 600,
+          "y": 80,
+          "w": 244,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              726,
+              80,
+              118,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Section 1200 is titled Interruption.",
+          "texts": [
+            "is titled",
+            "Interruption."
+          ],
+          "full": "Section 1200 is titled Interruption.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 240,
+          "w": 600,
+          "h": 108,
+          "font_px": 54,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              460,
+              238,
+              219,
+              58
+            ],
+            [
+              80,
+              292,
+              352,
+              58
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Section 1200",
+          "texts": [
+            "Section 1200"
+          ],
+          "full": "Section 1200",
+          "tag": "span",
+          "unsized": false,
+          "x": 80,
+          "y": 238,
+          "w": 380,
+          "h": 58,
+          "font_px": 54,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              238,
+              380,
+              58
+            ]
+          ],
+          "wrap": null,
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "SECTION 1200 INTERRUPTION",
+          "texts": [
+            "SECTION 1200 INTERRUPTION"
+          ],
+          "full": "SECTION 1200 INTERRUPTION",
+          "tag": "div",
+          "unsized": false,
+          "x": 161,
+          "y": 703,
+          "w": 396,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 32, 44)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              161,
+              703,
+              396,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THICKNESS DRAWN. NO UNITS. NOT A TARIFF DIAGRAM.",
+          "texts": [
+            "THICKNESS DRAWN. NO UNITS. NOT A TARIFF DIAGRAM."
+          ],
+          "full": "THICKNESS DRAWN. NO UNITS. NOT A TARIFF DIAGRAM.",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 664,
+          "w": 749,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 160, 172)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              664,
+              749,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "HUMAN NEEDS AND OCCUPANCY, HIGHEST",
+          "texts": [
+            "HUMAN NEEDS AND OCCUPANCY, HIGHEST"
+          ],
+          "full": "HUMAN NEEDS AND OCCUPANCY, HIGHEST",
+          "tag": "div",
+          "unsized": false,
+          "x": 700,
+          "y": 586,
+          "w": 300,
+          "h": 68,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              700,
+              587,
+              223,
+              31
+            ],
+            [
+              700,
+              621,
+              268,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "It is published on Enstar's own tariff page. Enstar says reductions would be pha",
+          "texts": [
+            "It is published on Enstar's own tariff page. Enstar says reductions would be phased by customer class under the tariff. The divisions below the top one are not drawn here."
+          ],
+          "full": "It is published on Enstar's own tariff page. Enstar says reductions would be phased by customer class under the tariff. The divisions below the top one are not drawn here.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 1034,
+          "w": 672,
+          "h": 164,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(195, 212, 221)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1032,
+              617,
+              44
+            ],
+            [
+              80,
+              1073,
+              643,
+              44
+            ],
+            [
+              80,
+              1114,
+              670,
+              44
+            ],
+            [
+              80,
+              1155,
+              563,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE SECTION'S TEXT DID NOT EXTRACT. NOTHING BELOW THE TOP PRIORITY IS DRAWN, BEC",
+          "texts": [
+            "THE SECTION'S TEXT DID NOT EXTRACT. NOTHING BELOW THE TOP PRIORITY IS DRAWN, BECAUSE NOTHING BELOW IT IS PUBLISHED."
+          ],
+          "full": "THE SECTION'S TEXT DID NOT EXTRACT. NOTHING BELOW THE TOP PRIORITY IS DRAWN, BECAUSE NOTHING BELOW IT IS PUBLISHED.",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1198,
+          "w": 920,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 160, 172)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1198,
+              848,
+              31
+            ],
+            [
+              80,
+              1229,
+              848,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the tariff volume on the margin plane",
+          "shadow": [
+            [
+              531,
+              984,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              433,
+              984,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 19006,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "Section 1200 is titledInterruption.",
+          "min": 52,
+          "max": 84,
+          "maxLines": 2,
+          "size": 54,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-07.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3749,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 39.3,
+          "variance": 3262.3
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the one struck division, human needs and occupancy",
+          "to": [
+            880,
+            764
+          ],
+          "at": [
+            880,
+            764
+          ],
+          "from": [
+            860,
+            666
+          ],
+          "label": "HUMAN NEEDS AND OCCUPANCY, HIGHEST"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-11/slides/slide-07.html",
+        "sha1": "b8354a76b84cd42a4506209991e617a8b8754197"
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 78,
+          "w": 170,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              78,
+              170,
+              28
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "texts": [
+            "08 / 09"
+          ],
+          "full": "08 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 600,
+          "y": 80,
+          "w": 244,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              726,
+              80,
+              118,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The order reaches the public through one mayor.",
+          "texts": [
+            "The order reaches the public",
+            "through one mayor."
+          ],
+          "full": "The order reaches the public through one mayor.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 836,
+          "w": 640,
+          "h": 128,
+          "font_px": 62.5,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              833,
+              639,
+              68
+            ],
+            [
+              80,
+              897,
+              433,
+              68
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayor",
+          "texts": [
+            "Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayors on August 21st, 2026, then told his city council what Enstar described."
+          ],
+          "full": "Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayors on August 21st, 2026, then told his city council what Enstar described.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 966,
+          "w": 680,
+          "h": 164,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(195, 212, 221)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              964,
+              646,
+              44
+            ],
+            [
+              80,
+              1005,
+              660,
+              44
+            ],
+            [
+              80,
+              1046,
+              647,
+              44
+            ],
+            [
+              80,
+              1087,
+              345,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "A data center buys power, and Southcentral makes more than 70 percent of its pow",
+          "texts": [
+            "A data center buys power, and Southcentral makes more than 70 percent of its power from gas."
+          ],
+          "full": "A data center buys power, and Southcentral makes more than 70 percent of its power from gas.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 1140,
+          "w": 900,
+          "h": 81,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1138,
+              839,
+              44
+            ],
+            [
+              80,
+              1178,
+              564,
+              44
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "KENAI CITY COUNCIL, SEPTEMBER 2ND, 2026. HOMER NEWS.",
+          "texts": [
+            "KENAI CITY COUNCIL, SEPTEMBER 2ND, 2026. HOMER NEWS."
+          ],
+          "full": "KENAI CITY COUNCIL, SEPTEMBER 2ND, 2026. HOMER NEWS.",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1232,
+          "w": 799,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 160, 172)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1232,
+              799,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AS THE MAYOR DESCRIBED IT",
+          "texts": [
+            "AS THE MAYOR DESCRIBED IT"
+          ],
+          "full": "AS THE MAYOR DESCRIBED IT",
+          "tag": "div",
+          "unsized": false,
+          "x": 632,
+          "y": 352,
+          "w": 368,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 212, 221)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              632,
+              352,
+              343,
+              31
+            ],
+            [
+              632,
+              383,
+              31,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "LARGE COMMERCIAL AND INDUSTRIAL",
+          "texts": [
+            "LARGE COMMERCIAL AND INDUSTRIAL"
+          ],
+          "full": "LARGE COMMERCIAL AND INDUSTRIAL",
+          "tag": "div",
+          "unsized": false,
+          "x": 632,
+          "y": 450,
+          "w": 330,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              632,
+              450,
+              307,
+              31
+            ],
+            [
+              632,
+              481,
+              154,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RESIDENTIAL",
+          "texts": [
+            "RESIDENTIAL"
+          ],
+          "full": "RESIDENTIAL",
+          "tag": "div",
+          "unsized": false,
+          "x": 632,
+          "y": 634,
+          "w": 169,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(110, 165, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              632,
+              634,
+              169,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "SEATED IN NO PUBLISHED SLOT",
+          "texts": [
+            "SEATED IN NO PUBLISHED SLOT"
+          ],
+          "full": "SEATED IN NO PUBLISHED SLOT",
+          "tag": "div",
+          "unsized": false,
+          "x": 668,
+          "y": 716,
+          "w": 300,
+          "h": 68,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              668,
+              717,
+              179,
+              31
+            ],
+            [
+              668,
+              751,
+              208,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the tariff volume on the margin plane",
+          "shadow": [
+            [
+              796,
+              346,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              706,
+              346,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 22251,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "The order reaches the publicthrough one mayor.",
+          "min": 42,
+          "max": 64,
+          "maxLines": 2,
+          "size": 62.5,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-08.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 4217,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.9,
+          "variance": 2197.2
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "Kenai, where the council heard it",
+          "to": [
+            274,
+            544
+          ],
+          "at": [
+            274,
+            544
+          ],
+          "from": [
+            100,
+            1234
+          ],
+          "label": "KENAI CITY COUNCIL, SEPTEMBER 2ND, 2026"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-11/slides/slide-08.html",
+        "sha1": "42f7c2df4abe2371c0b08ee1e5962b6942fe0f36"
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 78,
+          "w": 170,
+          "h": 28,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              78,
+              170,
+              28
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "texts": [
+            "09 / 09"
+          ],
+          "full": "09 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 760,
+          "y": 80,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              760,
+              80,
+              118,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Should the order of cuts be public before the next large load is sited?",
+          "texts": [
+            "Should the order of cuts be public",
+            "before the next large load is sited?"
+          ],
+          "full": "Should the order of cuts be public before the next large load is sited?",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 620,
+          "w": 860,
+          "h": 116,
+          "font_px": 56,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              618,
+              834,
+              61
+            ],
+            [
+              80,
+              676,
+              854,
+              61
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1092,
+          "w": 271,
+          "h": 48,
+          "font_px": 44,
+          "weight": "400",
+          "family": "Archivo",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1092,
+              271,
+              48
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1162,
+          "w": 222,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(154, 167, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1162,
+              222,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "Sources in comments.",
+          "texts": [
+            "Sources in comments."
+          ],
+          "full": "Sources in comments.",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1204,
+          "w": 307,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 140, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1204,
+              307,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "60\u00b033'N \u00b7 151\u00b016'W",
+          "texts": [
+            "60\u00b033'N \u00b7 151\u00b016'W"
+          ],
+          "full": "60\u00b033'N \u00b7 151\u00b016'W",
+          "tag": "div",
+          "unsized": false,
+          "x": 748,
+          "y": 1202,
+          "w": 245,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(135, 151, 163)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              748,
+              1202,
+              245,
+              26
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the closed volume, sealed, on the margin plane",
+          "shadow": [
+            [
+              536,
+              1001,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              433,
+              1001,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 14006,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [
+        {
+          "id": null,
+          "tag": "h2",
+          "text": "Should the order of cuts be publicbefore the next large load",
+          "min": 46,
+          "max": 72,
+          "maxLines": 2,
+          "size": 56,
+          "lines": 2,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": false
+        }
+      ],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-09.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3382,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 16.1,
+          "variance": 716.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-11/slides/slide-09.html",
+        "sha1": "6ebdcb3156dc9546385aa7996d177059c764574f"
+      }
+    }
+  ]
+}

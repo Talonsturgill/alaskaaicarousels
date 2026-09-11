@@ -1798,6 +1798,34 @@
         "Slide 04's data-encodes was withdrawn: the claim is spatial and the gate measures tone.",
         "Slide 04's data-scale was withdrawn: the axis is base-10 logarithmic and qa.axis_census interpolates linearly, which its own docstring forbids declaring against."
       ]
+    },
+    {
+      "run_date": "2026-09-11",
+      "carousel_no": 56,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE SHEET AND ITS MARGIN. Every frame is a printed map sheet. All art lives inside a neatline window and ALL type lives in the margin outside it, so art crossing glyphs is impossible by construction rather than by care. Nine DISCRETE extents, never a continuous medium crawled across nine frames. The chassis is committed as assets/js/aksheet.js and indexed as TECHNIQUE_LIBRARY 95.",
+      "atmosphere": "overcast Southcentral daylight, one exposure across all nine frames, key az 168 el 24 at 4:1, declared once in S.LIGHT and never varied per sheet",
+      "depth_technique": "neatline window with an inner shadow and a 2px occlusion seam; the contact triple in the order pool, cast, seam, with the pool as a LIFT at peak 0.28 and separation earned from the cast's k strength; the edge-on volume as a cabinet extrusion with a lit top face and a struck arris",
+      "line_voice": "instrument",
+      "continuity_device": "motif: the edge-on tariff volume on all nine sheets, changing state (held back 02 to 06, HERO on 07, sealed on 09); plus the index diagram in every header whose gold extent rect changes with each sheet and which becomes the 36 cell record on 06 and is revealed at full size on 09",
+      "hook_archetype": "NEW: THE OBJECT YOU CAN SEE AND CAN'T READ. A real numbered public instrument, drawn edge on so it shows thickness and a tab and never a readable face, because that is the literal truth of what anyone outside can see of it.",
+      "palette_family": "inlet-silt-under-overcast",
+      "palette": "inlet silt and slate under overcast, one gold accent",
+      "palette_hexes": [
+        "#0B1724",
+        "#4E6474",
+        "#8C7A5E",
+        "#CBBFA6",
+        "#F4F8FF",
+        "#C3D4DD",
+        "#9AA7B0",
+        "#6EA5FF",
+        "#FFC72C"
+      ],
+      "type": "Archivo display with a live width axis, Manrope body, JetBrains Mono figures",
+      "type_pairing": "Archivo wdth 116 for what is written down and wdth 76 for what is relayed, as a visible EVIDENCE GRADE; Manrope 500 body at the 32px floor; JetBrains Mono tabular for every figure",
+      "narrative_structure": "argument",
+      "note": "The chassis was a structural answer to the standing weakness and it half worked. 'canvas mark near reserved text', present in 4 of the last 10 runs, went to ZERO. Artwork craft still scored 7, because the detail budget stayed in the margin where the annotation furniture already was: five of nine windows shipped closer to a plate than a drawing. The lesson for the next deck is in next_run_brief.md, and it is that a safe margin does not draw the picture."
     }
   ]
 }
