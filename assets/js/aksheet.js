@@ -204,18 +204,36 @@
 
   /* ---------------- the contact triple ---------------- */
 
-  /* 1. LIGHT THE GROUND FIRST. The pool's ramp must HOLD before it falls, or a
-   * pool spent at half radius lights only the strip the cast then covers. */
+  /* 1. LIGHT THE GROUND FIRST, AND FAINTLY. The pool's ramp must HOLD before it
+   * falls, or a pool spent at half radius lights only the strip the cast then
+   * covers.
+   *
+   * THE POOL IS A LIFT, NOT A LAMP. On No.56 every one of five pixel critics
+   * independently called this a lens flare, a glow sticker, a bloom, a blob, on
+   * nine slides out of nine, while the machine contact gate read PASS on all of
+   * them. The cause was a run tuning the pool UP to widen dL, because dL is
+   * measured as ground minus shadow and the pool is the cheap half of that
+   * subtraction. It is also the wrong half. A contact reads because the SHADOW
+   * is dark, and a ground lit past the object it carries is a light source with
+   * an object floating over it, which is the failure the gate was built to
+   * catch wearing the gate's own PASS.
+   *
+   * So the ceiling here is deliberate and low. Peak alpha 0.28 puts the pool a
+   * dozen L* over a near-black margin, which is all a plane needs to say it is
+   * a plane, and it is less than half what read as a lamp. Below about 0.18 the
+   * ground runs out of headroom and the cast has nothing left to subtract from,
+   * which is the same failure from the other side.
+   * Earn dL from `cast`'s `k`, never from here. */
   S.litPool = function (cx, x, y, rx, ry, tint) {
     var R = 100;
     cx.save();
     cx.translate(x, y);
     cx.scale(rx / R, ry / R);
     var g = cx.createRadialGradient(0, 0, 0, 0, 0, R);
-    g.addColorStop(0.00, tint || "rgba(150,168,186,0.34)");
-    g.addColorStop(0.46, tint ? tint : "rgba(150,168,186,0.30)");
-    g.addColorStop(0.74, "rgba(120,138,156,0.13)");
-    g.addColorStop(1.00, "rgba(120,138,156,0)");
+    g.addColorStop(0.00, tint || "rgba(142,160,178,0.28)");
+    g.addColorStop(0.46, tint ? tint : "rgba(142,160,178,0.24)");
+    g.addColorStop(0.74, "rgba(112,130,148,0.10)");
+    g.addColorStop(1.00, "rgba(112,130,148,0)");
     cx.fillStyle = g;
     cx.beginPath();
     cx.arc(0, 0, R, 0, Math.PI * 2);
@@ -223,18 +241,32 @@
     cx.restore();
   };
 
-  /* 2. THEN CAST. `w` is the FOOT, not the silhouette: 70 to 110 design px. */
+  /* 2. THEN CAST, AND THIS IS WHERE THE SEPARATION COMES FROM. `w` is the FOOT,
+   * not the silhouette: 70 to 110 design px. `k` scales both terms together
+   * (default 1); raise it when the pair measures short, because darkening the
+   * cast is the honest way to widen dL and brightening the pool is not.
+   *
+   * The cast is BIASED along the deck's own light by default. S.LIGHT.azDeg is
+   * 168, which is south southeast, so the shadow falls down and slightly left
+   * of the foot. A cast centred on the object radiates evenly and reads as a
+   * halo no matter how dark it is, because a symmetric shadow is not a shadow,
+   * it is a vignette. Pass dx/dy to override. */
   S.cast = function (cx, cxp, cyp, w, opts) {
     var o = opts || {};
     var R = 100, wide = o.wide == null ? 2.1 : o.wide;
+    var k = o.k == null ? 1 : o.k;
+    /* the light's own push, unit vector in screen px, scaled to the foot */
+    var az = (S.LIGHT.azDeg - 180) * Math.PI / 180;
+    var bx = o.bx == null ? -Math.sin(az) * w * 0.16 : o.bx;
+    var by = o.by == null ? Math.cos(az) * w * 0.07 : o.by;
     cx.save();
-    cx.translate(cxp, cyp);
+    cx.translate(cxp + bx, cyp + by);
     /* wide ambient term */
     cx.save();
     cx.scale((w * wide) / (2 * R), (w * 0.34) / (2 * R));
     var ga = cx.createRadialGradient(0, 0, 0, 0, 0, R);
-    ga.addColorStop(0, "rgba(20,26,22,0.16)");
-    ga.addColorStop(1, "rgba(20,26,22,0)");
+    ga.addColorStop(0, "rgba(10,16,13," + Math.min(0.95, 0.30 * k).toFixed(3) + ")");
+    ga.addColorStop(1, "rgba(10,16,13,0)");
     cx.fillStyle = ga;
     cx.beginPath(); cx.arc(0, 0, R, 0, Math.PI * 2); cx.fill();
     cx.restore();
@@ -243,8 +275,8 @@
     cx.translate(o.dx || 0, o.dy || 0);
     cx.scale(w / (2 * R), (w * 0.16) / (2 * R));
     var gt = cx.createRadialGradient(0, 0, 0, 0, 0, R);
-    gt.addColorStop(0, "rgba(14,18,15,0.46)");
-    gt.addColorStop(1, "rgba(14,18,15,0)");
+    gt.addColorStop(0, "rgba(6,10,8," + Math.min(0.98, 0.72 * k).toFixed(3) + ")");
+    gt.addColorStop(1, "rgba(6,10,8,0)");
     cx.fillStyle = gt;
     cx.beginPath(); cx.arc(0, 0, R, 0, Math.PI * 2); cx.fill();
     cx.restore();
