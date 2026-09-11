@@ -8,6 +8,7 @@ canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
 h2{position:absolute;left:80px;top:836px;width:640px;margin:0;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 76,"wght" 640;font-size:62px;line-height:1.02;letter-spacing:-0.012em;color:#F4F8FF}
 .bd{position:absolute;left:80px;top:966px;width:680px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.28;font-weight:500;color:#C3D4DD}
 .arg{position:absolute;left:80px;top:1140px;width:900px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.26;font-weight:500;color:#9AA7B0}
+.wmk{position:absolute;left:700px;top:1240px;width:300px;text-align:right;font-family:"JetBrains Mono",monospace;font-size:20px;letter-spacing:0.08em;color:#46545F}
 .at{position:absolute;left:80px;top:1232px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.04em;color:#8FA0AC}
 .rel{position:absolute;left:632px;top:352px;width:368px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.05em;color:#C3D4DD}
 .l1{position:absolute;left:632px;top:450px;width:330px;line-height:1.30;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.04em;color:#9AA7B0}
@@ -19,9 +20,10 @@ h2{position:absolute;left:80px;top:836px;width:640px;margin:0;font-family:Archiv
 <div class="wm">ALASKA.AI</div>
 <div class="ct" data-decorative>08 / 09</div>
 <h2 data-reserve>The order reaches the public<br>through one mayor.</h2>
-<p class="bd" data-reserve>Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayors on August 21st, 2026, then told his city council what Enstar described.</p>
+<p class="bd" data-reserve>Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayors on August 21st, then told his city council what Enstar described.</p>
 <p class="arg" data-reserve>A data center buys power, and Southcentral makes more than 70 percent of its power from gas.</p>
-<div class="at" data-reserve>KENAI CITY COUNCIL, SEPTEMBER 2ND, 2026. HOMER NEWS.</div>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
+<div class="at" data-reserve>KENAI CITY COUNCIL, SEPTEMBER 2ND. HOMER NEWS.</div>
 <div class="rel" data-reserve>AS THE MAYOR DESCRIBED IT</div>
 <div class="l1" data-reserve>LARGE COMMERCIAL AND INDUSTRIAL</div>
 <div class="l2" data-reserve>RESIDENTIAL</div>
@@ -142,7 +144,7 @@ window.renderReady = (async function(){
     at:[Math.round(K[0]),Math.round(K[1])],
     to:[Math.round(K[0]),Math.round(K[1])],
     from:[100,1234],
-    label:"KENAI CITY COUNCIL, SEPTEMBER 2ND, 2026"}];
+    label:"KENAI CITY COUNCIL, SEPTEMBER 2ND"}];
   AKPOST.grade(cx,{exposure:0.04,saturation:1.03,contrast:1.06,filmic:true,dither:true,grain:{amount:0.045,size:2,seed:20260918},sharpen:0.30});
   return true;
 })();

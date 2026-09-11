@@ -89,6 +89,55 @@ DATE_FORMS = [
      "abbreviated month", "spell the month out with an ordinal day, e.g. August 10th"),
 ]
 
+# THE YEAR IS DROPPED WHEN IT IS THIS YEAR (owner rule, 2026-09-11).
+#
+# "September 10th, 2026" in a caption about something that happened yesterday is
+# the register of a court filing, not of a person talking, and the owner heard it
+# as the page saying the date weird. A reader on LinkedIn in September 2026 knows
+# what year it is. So in prose a reader sees, a date inside the RUN'S OWN
+# CALENDAR YEAR carries no year: "September 10th", "August 21st".
+#
+# The year comes back the moment it is doing work:
+#   - a different calendar year, where it is the whole point ("Q4 2029", "the
+#     first quarter of 2027", "August 6th, 2025")
+#   - an ISO stamp in a ledger field, a filename or a claim record
+#   - the first-comment SOURCE BLOCK, where a dated citation is a citation and a
+#     reader may be archiving it
+#
+# Deliberately NOT a blanket ban. A rule that stripped every year would break the
+# supply-route dates this very deck is built on, which are years out and mean
+# nothing without them.
+CITATION_FIELDS = ("first_comment",)
+
+# MONTHS is rebound below as a word tuple for a different check, and a function
+# resolves a global at call time, so the alternation this rule needs is pinned
+# here under its own name rather than borrowed.
+# CASE-INSENSITIVE ON PURPOSE. Slide furniture is set in mono caps, so the
+# first version of this rule read the caption and missed "READ SEPTEMBER 10TH,
+# 2026" set 28px on the cover, which is the surface the owner was actually
+# looking at when the rule was made.
+_YEAR_RX = re.compile(
+    r"\b(January|February|March|April|May|June|July|August|September|October"
+    r"|November|December)\s+(\d{1,2})(st|nd|rd|th)\s*,\s*(\d{4})\b", re.I)
+
+
+def redundant_year_hits(text, run_year, where):
+    """Month-day-year dates whose year is the run's own year, in reader prose.
+
+    Returns a list of (matched_text, suggestion). Skips anything inside a URL,
+    which _URLISH_STRIP has usually removed already, and skips a bare "Month YYYY"
+    with no day, which is a period and not a date.
+    """
+    if not run_year:
+        return []
+    out = []
+    for m in _YEAR_RX.finditer(text):
+        if m.group(4) != str(run_year):
+            continue
+        out.append((m.group(0), "%s %s%s" % (m.group(1), m.group(2), m.group(3))))
+    return out
+
+
 # COMMA DISCIPLINE (owner rule 2026-08-05: "reduce comma usage by 10% on the captions
 # moving forward"). MEASURED AGAINST THIS DECK'S OWN CAPTIONS, not the weekly repo's.
 # Across the 22 captions shipped as of that date the mean here was 6.88 commas per 100
@@ -922,13 +971,18 @@ def check_slide_first_person(copy):
 
 
 def check_copy_dates(copy):
-    """Run the house DATE_FORMS table over copy.json's reader-facing prose.
+    """Run the house DATE_FORMS table over copy.json's reader-facing prose,
+    then the redundant-year rule over the same strings.
 
-    Widens an existing gate to the surfaces it was always supposed to cover;
-    adds no rule of its own. Returns a list of failure strings. Every hit is
-    reported, not just the first: run No.29's first_comment carried six.
+    Widens an existing gate to the surfaces it was always supposed to cover.
+    Returns a list of failure strings. Every hit is reported, not just the
+    first: run No.29's first_comment carried six.
     """
     fails = []
+    run_year = None
+    rd = copy.get("run_date") or ""
+    if re.match(r"^(\d{4})-", rd):
+        run_year = int(rd[:4])
     for path, raw in copy_prose(copy):
         text = _URLISH_STRIP.sub(" ", raw)
         for rx, what, fix in DATE_FORMS:
@@ -937,6 +991,17 @@ def check_copy_dates(copy):
                     "DATE (copy.json %s): '%s' is the %s form - %s (owner rule "
                     "2026-08-05). ISO is still right for a citation stamp, but "
                     "this is prose a reader sees." % (path, m.group(0), what, fix))
+        # the source block is a citation surface and keeps its years
+        if path.split(".")[0].split("[")[0] in CITATION_FIELDS:
+            continue
+        for hit, better in redundant_year_hits(text, run_year, path):
+            fails.append(
+                "YEAR (copy.json %s): '%s' carries the run's own year - write "
+                "'%s' (owner rule 2026-09-11). A reader in %s knows what year it "
+                "is, and the year here reads as a court filing rather than a "
+                "person talking. The year stays for a DIFFERENT calendar year, "
+                "for an ISO stamp, and in the first-comment source block."
+                % (path, hit, better, run_year))
     return fails
 
 

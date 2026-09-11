@@ -305,6 +305,14 @@ python .claude/skills/carousel-engine/assemble.py --slides-dir examples/demo-dec
 
 Dates take the ordinal, month first: "August 10th", never "10 August" and never a bare
 "August 10" (owner, 2026-08-05). ISO stays correct for a citation stamp or a ledger field.
+AND THE YEAR IS DROPPED WHEN IT IS THIS YEAR (owner, 2026-09-11). A reader on LinkedIn in
+September knows what year September is, and "September 10th, 2026" about something that
+happened yesterday is the register of a court filing. Write "September 10th". The year
+comes back only when it is doing work: a DIFFERENT calendar year ("Q4 2029", "August 6th,
+2025"), an ISO stamp in a ledger field or filename, or the first-comment source block,
+where a dated citation is a citation. Enforced on the caption AND on every slide string by
+scripts/caption_check.py, case-insensitively, because the surface that prompted the rule
+was mono caps on a cover.
 Captions run under 6.2 commas per 100 words, ten percent below this deck's own shipped mean.
 Both are enforced as hard fails in scripts/caption_check.py and spelled out in config/brand.yaml.
 Write "can't", never "cannot" (owner, 2026-07-30). It was enforced on captions and

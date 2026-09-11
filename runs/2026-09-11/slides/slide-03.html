@@ -7,15 +7,17 @@ canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
 .ct{position:absolute;left:760px;top:80px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.10em;color:#7E8C96;font-variant-numeric:tabular-nums lining-nums}
 h2{position:absolute;left:80px;top:800px;width:840px;margin:0;font-family:Archivo,sans-serif;font-variation-settings:"wdth" 116,"wght" 640;font-size:64px;line-height:1.02;letter-spacing:-0.018em;color:#F4F8FF}
 .bd{position:absolute;left:80px;top:940px;width:800px;margin:0;font-family:Manrope,sans-serif;font-size:32px;line-height:1.30;font-weight:500;color:#C3D4DD}
+.wmk{position:absolute;left:700px;top:1240px;width:300px;text-align:right;font-family:"JetBrains Mono",monospace;font-size:20px;letter-spacing:0.08em;color:#46545F}
 .iso{position:absolute;left:80px;top:1226px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.08em;color:#9AA7B0}
 
 </style></head>
-<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[833, 1202, 26, 10]], "ground": [[743, 1202, 26, 10]]}]'>
+<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[821, 1176, 26, 10]], "ground": [[731, 1176, 26, 10]]}]'>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="wm">ALASKA.AI</div>
 <div class="ct" data-decorative>03 / 09</div>
 <h2 data-reserve>This is the ground<br>that can be drawn.</h2>
 <p class="bd" data-reserve>Enstar sells gas to almost half of Alaska's population and gets nearly all of its supply from Hilcorp. Southcentral runs more than 70 percent of its electricity on gas, per Alaska Public Media citing ISER.</p>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
 <div class="iso" data-reserve>ALMOST HALF, 4.5 FIGURES OF 10</div>
 
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -125,10 +127,10 @@ window.renderReady = (async function(){
   cx.beginPath(); cx.moveTo(80,160); cx.lineTo(1000,160); cx.stroke();
   const ip=AKGeo.alaskaProjection(ak,[[4,18],[108,94]]);
   S.indexDiagram(cx,d3.geoPath(ip)(ak),[48,48,36,26]);
-  S.litPool(cx,836,1216,208,40);
-  S.cast(cx,836,1204,94,{dy:2,k:3.0});
-  S.document(cx,{x:672,y:1176,w:328,thick:26,alpha:0.40,seed:563});
-  S.seam(cx,672,1000,1200,0.66);
+  S.litPool(cx,836,1190,208,40);
+  S.cast(cx,836,1178,94,{dy:2,k:3.0});
+  S.document(cx,{x:672,y:1150,w:328,thick:26,alpha:0.40,seed:563});
+  S.seam(cx,672,1000,1174,0.66);
 
   AKPOST.grade(cx,{exposure:0.04,saturation:1.04,contrast:1.06,filmic:true,dither:true,grain:{amount:0.045,size:2,seed:20260913},sharpen:0.30});
   return true;

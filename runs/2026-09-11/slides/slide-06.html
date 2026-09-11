@@ -10,10 +10,11 @@ h2{position:absolute;left:80px;top:840px;width:840px;margin:0;font-family:Archiv
 .mod{position:absolute;left:80px;top:1214px;font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.02em;color:#F4F8FF;font-variant-numeric:tabular-nums lining-nums}
 .leg{position:absolute;left:700px;top:980px;width:300px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.42;letter-spacing:0.03em;color:#9AA7B0}
 .nr{position:absolute;font-family:"JetBrains Mono",monospace;font-size:19px;letter-spacing:0.04em;color:#B6C4CE}
+.wmk{position:absolute;left:700px;top:1240px;width:300px;text-align:right;font-family:"JetBrains Mono",monospace;font-size:20px;letter-spacing:0.08em;color:#46545F}
 .key{position:absolute;left:80px;top:1160px;width:920px;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.30;letter-spacing:0.03em;color:#8FA0AC}
-.nv{position:absolute;left:700px;top:1214px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.06em;color:#C3D4DD}
+.nv{position:absolute;left:700px;top:1198px;font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:0.06em;color:#C3D4DD}
 </style></head>
-<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[523, 1274, 26, 10]], "ground": [[433, 1274, 26, 10]]}]'>
+<body data-contacts='[{"what": "the tariff volume on the margin plane", "shadow": [[518, 1298, 26, 10]], "ground": [[433, 1298, 26, 10]]}]'>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="wm">ALASKA.AI</div>
 <div class="ct" data-decorative>06 / 09</div>
@@ -22,6 +23,7 @@ h2{position:absolute;left:80px;top:840px;width:840px;margin:0;font-family:Archiv
 <div class="nr" id="nr1" data-decorative>NO<br>READING</div>
 <div class="nr" id="nr2" data-decorative>NO<br>READING</div>
 <div class="leg" data-reserve>36 DAYS ON RECORD<br>2 UNVERIFIED<br>BAR SCALE 49 TO 60<br>PERCENT OF DESIGN</div>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
 <div class="key" data-reserve>AUGUST 5TH TO SEPTEMBER 10TH. EACH BAR IS THAT DAY.</div>
 <div class="mod" data-reserve>MMCF/D = 80.868 + 3.439 x HDD65</div>
 <div class="nv" data-reserve>NO SAFETY VERDICT.</div>
@@ -133,10 +135,10 @@ window.renderReady = (async function(){
   cx.strokeStyle=C.gold; cx.lineWidth=2.0;
   cx.strokeRect(868,44,112,112);
   cx.restore();
-  S.litPool(cx,540,1288,420,44);
-  S.cast(cx,540,1276,100,{dy:2,k:3.0});
-  S.document(cx,{x:80,y:1252,w:920,thick:22,alpha:0.50,seed:566});
-  S.seam(cx,80,1000,1272,0.70);
+  S.litPool(cx,540,1312,420,42);
+  S.cast(cx,540,1300,100,{dy:2,k:3.0});
+  S.document(cx,{x:80,y:1276,w:920,thick:22,alpha:0.50,seed:566});
+  S.seam(cx,80,1000,1296,0.70);
 
   AKPOST.grade(cx,{exposure:0.04,saturation:1.03,contrast:1.06,filmic:true,dither:true,grain:{amount:0.045,size:2,seed:20260916},sharpen:0.30});
   return true;
