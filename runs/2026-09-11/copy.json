@@ -2,7 +2,7 @@
   "run_date": "2026-09-11",
   "carousel_no": 56,
   "document_title": "Section 1200 Is Called Interruption",
-  "post_copy": "Enstar, the gas utility for almost half of Alaska's population, publishes a tariff section numbered 1200 and titled Interruption.\n\nCook Inlet storage read 7.65 of 13.0 Bcf on September 10th, 2026, or 58.8 percent of design. Enstar says any reductions would be phased by customer class under that tariff, with facilities serving human needs and occupancy ranked highest.\n\nThe public learns where a large commercial and industrial load sits only because Kenai Mayor Henry Knackstedt told his city council what Enstar described to Southcentral mayors on August 21st, 2026.\n\nA 36 cell grid of the daily readings with the 2 unverified days left empty, and the tariff volume drawn end on with only its top step marked.\n\nShould the order of cuts be public before the next large load is sited?\n\n#CookInletGas #UtilityTariffs #SouthcentralAlaska",
+  "post_copy": "Enstar, the gas utility for almost half of Alaska's population, publishes a tariff section numbered 1200 and titled Interruption.\n\nCook Inlet storage read 7.65 of 13.0 Bcf on September 10th, or 58.8 percent of design. Enstar says any reductions would be phased by customer class under that tariff, with facilities serving human needs and occupancy ranked highest.\n\nThe public learns where a large commercial and industrial load sits only because Kenai Mayor Henry Knackstedt told his city council what Enstar described to Southcentral mayors on August 21st.\n\nA 36 cell grid of the daily readings with the 2 unverified days left empty, and the tariff volume drawn end on with only its top step marked.\n\nShould the order of cuts be public before the next large load is sited?\n\n#CookInletGas #UtilityTariffs #SouthcentralAlaska",
   "deck_summary_line": "A 36 cell grid of the daily readings with the 2 unverified days left empty, and the tariff volume drawn end on with only its top step marked.",
   "caption_meta": {
     "opening_move": "NEW:OBJECT FIRST",
@@ -10,7 +10,7 @@
     "closing_move": "NEW:PUBLISH IT BEFORE THE NEXT LOAD",
     "note": "The close was changed after scoring. The caption and slide 09 had been asking two different questions, which splits the comment prompt at the moment it matters, so the caption now closes on the deck's own ask, verbatim."
   },
-  "first_comment": "Sources for this one, in order of how much weight they carry.\n\nCook Inlet Gas Watch, this page's own daily reading of CINGSA's public dashboard. 7.65 of 13.0 Bcf, 58.8 percent of design, read September 10th, 2026. 36 days on record, 2 of them unverified. https://alaskaaihq.com/gas-watch/\nCINGSA public dashboard, the underlying source, which keeps no archive. https://cingsa.com/operations/PublicDashBoard.html\nEnstar Natural Gas, tariff information, where Section 1200 Interruption is listed. https://www.enstarnaturalgas.com/tariff-information/\nEnstar Natural Gas, current regulatory filings, docket U-26-003. https://www.enstarnaturalgas.com/current-regulatory-filings/\nHomer News, September 10th, 2026, Jeffrey Kennett, on the storage gap, the phasing by customer class and Mayor Knackstedt's account. https://www.homernews.com/2026/09/10/winter-gas-shortfall-comes-into-sharper-focus-for-southcentral-alaska/\nAlaska Public Media, September 9th, 2026, Ava White and Ashlyn O'Hara, on the Southcentral gas picture. https://alaskapublic.org/programs/alaska-economic-report/2026-09-09/what-to-know-about-the-southcentral-alaska-gas-crunch\n\nOne limit worth stating. The text of Section 1200 did not extract, so nothing here claims to have read it. What the section is called comes from Enstar's own tariff page. Where a large commercial and industrial load sits in the order comes from Kenai Mayor Henry Knackstedt's account to his city council of what Enstar described to Southcentral mayors on August 21st, 2026.",
+  "first_comment": "Sources for this one, in order of how much weight they carry.\n\nCook Inlet Gas Watch, this page's own daily reading of CINGSA's public dashboard. 7.65 of 13.0 Bcf, 58.8 percent of design, read September 10th, 2026. 36 days on record, 2 of them unverified. https://alaskaaihq.com/gas-watch/\nCINGSA public dashboard, the underlying source, which keeps no archive. https://cingsa.com/operations/PublicDashBoard.html\nEnstar Natural Gas, tariff information, where Section 1200 Interruption is listed. https://www.enstarnaturalgas.com/tariff-information/\nEnstar Natural Gas, current regulatory filings, docket U-26-003. https://www.enstarnaturalgas.com/current-regulatory-filings/\nHomer News, September 10th, 2026, Jeffrey Kennett, on the storage gap, the phasing by customer class and Mayor Knackstedt's account. https://www.homernews.com/2026/09/10/winter-gas-shortfall-comes-into-sharper-focus-for-southcentral-alaska/\nAlaska Public Media, September 9th, 2026, Ava White and Ashlyn O'Hara, on the Southcentral gas picture. https://alaskapublic.org/programs/alaska-economic-report/2026-09-09/what-to-know-about-the-southcentral-alaska-gas-crunch\n\nOne limit worth stating. The text of Section 1200 did not extract, so nothing here claims to have read it. What the section is called comes from Enstar's own tariff page. Where a large commercial and industrial load sits in the order comes from Kenai Mayor Henry Knackstedt's account to his city council of what Enstar described to Southcentral mayors on August 21st.",
   "slides": [
     {
       "n": 1,
@@ -26,10 +26,11 @@
         "The gas is measured. The order that takes it is not.",
         "COOK INLET STORAGE",
         "7.65 OF 13.0 BCF",
-        "READ SEPTEMBER 10TH, 2026",
+        "READ SEPTEMBER 10TH",
         "SECTION 1200",
         "CINGSA FIELD",
         "THICKNESS = 58.8 PERCENT OF DESIGN",
+        "alaskaaihq.com",
         "60°33'N · 151°16'W"
       ]
     },
@@ -49,10 +50,11 @@
         "PERCENT OF DESIGN",
         "ONE DOT = 1 MMCF 7,648 DOTS DRAWN",
         "The level is measured every morning.",
-        "Cook Inlet storage read 7,648,351 Mcf on September 10th, 2026. Design volume is not what the field can deliver on any given day.",
+        "Cook Inlet storage read 7,648,351 Mcf on September 10th. Design volume is not what the field can deliver on any given day.",
+        "alaskaaihq.com",
         "WITHDRAWAL 150,000 MCF/D OF 215,000 DESIGN"
       ],
-      "body": "Cook Inlet storage read 7,648,351 Mcf on September 10th, 2026. Design volume is not what the field can deliver on any given day."
+      "body": "Cook Inlet storage read 7,648,351 Mcf on September 10th. Design volume is not what the field can deliver on any given day."
     },
     {
       "n": 3,
@@ -65,6 +67,7 @@
         "03 / 09",
         "This is the ground that can be drawn.",
         "Enstar sells gas to almost half of Alaska's population and gets nearly all of its supply from Hilcorp. Southcentral runs more than 70 percent of its electricity on gas, per Alaska Public Media citing ISER.",
+        "alaskaaihq.com",
         "ALMOST HALF, 4.5 FIGURES OF 10"
       ],
       "body": "Enstar sells gas to almost half of Alaska's population and gets nearly all of its supply from Hilcorp. Southcentral runs more than 70 percent of its electricity on gas, per Alaska Public Media citing ISER."
@@ -85,6 +88,7 @@
         "\"This doesn't mean we will be short this many days this winter. Rather, it demonstrates how tight the situation is and our reduced resources to respond to unexpected events.\"",
         "HARLEY HEDLUND ENSTAR COMMUNICATIONS MANAGER",
         "18 DAYS AT NORMAL OR COLDER, AS KENAI'S MAYOR RELAYED IT",
+        "alaskaaihq.com",
         "0",
         "4 BCF",
         "3",
@@ -106,6 +110,7 @@
         "65",
         "Q1 2027",
         "Q4 2029",
+        "alaskaaihq.com",
         "ENSTAR SAID MODEST THERMOSTAT ADJUSTMENTS DOWN TO 65 DEGREES, WHERE SAFE AND PRACTICAL, COULD HELP REDUCE DEMAND DURING PERIODS OF EXTREME COLD.",
         "ENSTAR DOES NOT NOW ANTICIPATE COSMOPOLITAN GAS BEFORE Q1 2027. A NIKISKI IMPORT PROJECT MAY NOT BE READY BEFORE Q4 2029, AS KENAI'S MAYOR RELAYED IT."
       ]
@@ -127,6 +132,7 @@
         "NO READING",
         "NO READING",
         "36 DAYS ON RECORD 2 UNVERIFIED BAR SCALE 49 TO 60 PERCENT OF DESIGN",
+        "alaskaaihq.com",
         "AUGUST 5TH TO SEPTEMBER 10TH. EACH BAR IS THAT DAY.",
         "MMCF/D = 80.868 + 3.439 x HDD65",
         "NO SAFETY VERDICT."
@@ -148,7 +154,8 @@
         "THICKNESS DRAWN. NO UNITS. NOT A TARIFF DIAGRAM.",
         "HUMAN NEEDS AND OCCUPANCY, HIGHEST",
         "It is published on Enstar's own tariff page. Enstar says reductions would be phased by customer class under the tariff. The divisions below the top one are not drawn here.",
-        "THE SECTION'S TEXT DID NOT EXTRACT. NOTHING BELOW THE TOP PRIORITY IS DRAWN, BECAUSE NOTHING BELOW IT IS PUBLISHED."
+        "alaskaaihq.com",
+        "THE SECTION'S TEXT DID NOT EXTRACT. NOTHING BELOW THE TOP PRIORITY IS PUBLISHED."
       ],
       "body": "It is published on Enstar's own tariff page. Enstar says reductions would be phased by customer class under the tariff. The divisions below the top one are not drawn here."
     },
@@ -163,15 +170,16 @@
         "ALASKA.AI",
         "08 / 09",
         "The order reaches the public through one mayor.",
-        "Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayors on August 21st, 2026, then told his city council what Enstar described.",
+        "Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayors on August 21st, then told his city council what Enstar described.",
         "A data center buys power, and Southcentral makes more than 70 percent of its power from gas.",
-        "KENAI CITY COUNCIL, SEPTEMBER 2ND, 2026. HOMER NEWS.",
+        "alaskaaihq.com",
+        "KENAI CITY COUNCIL, SEPTEMBER 2ND. HOMER NEWS.",
         "AS THE MAYOR DESCRIBED IT",
         "LARGE COMMERCIAL AND INDUSTRIAL",
         "RESIDENTIAL",
         "SEATED IN NO PUBLISHED SLOT"
       ],
-      "body": "Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayors on August 21st, 2026, then told his city council what Enstar described."
+      "body": "Kenai Mayor Henry Knackstedt met Enstar's president and other Southcentral mayors on August 21st, then told his city council what Enstar described."
     },
     {
       "n": 9,
@@ -182,7 +190,6 @@
         "Should the order of cuts be public before the next large load is sited?",
         "ALASKA.AI",
         "alaskaaihq.com",
-        "Sources in comments.",
         "60°33'N · 151°16'W"
       ]
     }
@@ -192,7 +199,7 @@
     "Paste the first comment within 60 seconds of posting.",
     "Reply to every comment in the first 60 to 90 minutes.",
     "If anyone asks whether Southcentral will run short this winter, the answer is that this deck does not say, and neither does Enstar.",
-    "The one number to repeat if asked is 7.65 of 13.0 Bcf, read September 10th, 2026."
+    "The one number to repeat if asked is 7.65 of 13.0 Bcf, read September 10th."
   ],
   "editor_notes_for_email": "The deck's spine changed twice and got better both times. At the claims gate the original thesis died: there is no published tariff text ranking large commercial ahead of residential. What survived is sharper. Section 1200 exists and is titled Interruption on Enstar's own page, Enstar confirms only that phasing is by customer class with human needs highest, and the ORDER below that reaches the public solely through Kenai's mayor relaying a meeting. Then at scoring the AI line died too. Slide 08 had read 'A data center is a large commercial and industrial customer', which carried no claim id because no source says it, and on inspection it is also the weakest inference in the deck, since a Southcentral data center buys ELECTRICITY and the route to this order runs through the power plant. It now reads 'A data center buys power, and Southcentral makes more than 70 percent of its power from gas', which is C28 and is both true and stronger. Nothing in the deck predicts a shortage. C10, the 63.7 days of cover figure, is excluded on the record and the reason is written into the storyboard. Slide 06 prints NO SAFETY VERDICT, Enstar's own refusal to forecast is the largest block on slide 04, and the mayor's account is fenced on slide 08 by open boxes, a narrower type width, a dated attribution naming Homer News, and the total absence of the word tariff on that sheet. One editorial flag for you. No.27 on August 6th ran an adjacent Enstar gas beat, 36 days back, which clears the 30 day rule but is the same lane, and neither the deck nor the caption acknowledges it."
 }

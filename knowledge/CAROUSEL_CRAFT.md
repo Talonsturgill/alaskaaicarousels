@@ -55,12 +55,18 @@ swipe extends dwell. We build keepable reference artifacts, not applause.
 - **Open loops**: end slide n with unresolved tension that slide n+1 pays
   off; the single most effective swipe tactic. (M)
 - ★ **Final slide = ONE ask.** Rotate: save this / debate question / follow.
-  Never stack asks. Promotional content loses 60-70% reach — we are
-  educational, always. The brand close carries the Alaska.Ai mark + one line,
-  and ALWAYS the site, alaskaaihq.com, set small in the mono face near the
-  mark. It is a fixture like the wordmark, not the ask; it never replaces
-  or crowds the single ask. A source note ("sources in comments") belongs
-  here. (H)
+  Never stack asks. Promotional content loses 60-70% reach, we are
+  educational, always. The brand close carries the Alaska.Ai mark + one line.
+  The site, alaskaaihq.com, is a fixture like the wordmark and it belongs on
+  EVERY slide, not just this one (owner, 2026-09-11): bottom of the frame,
+  small, mono, low contrast, a watermark rather than a line of copy. The
+  reason is simple and the owner gave it: a reader who stops on slide 04
+  should still be able to see where this came from, and the close is the
+  frame a scroller is least likely to reach. It never crowds the single ask.
+  NO SOURCE NOTE. "Sources in comments" was removed from the artwork on
+  2026-09-11 (owner). The first comment still carries the sources and the
+  aftercare still says to paste it within 60 seconds; the slide just stops
+  spending type on saying so. (H)
 - **Engineered for saves**: every deck should contain at least one keepable
   element — a numbers table, a map, a checklist, a timeline. (M-H)
 - Assume the PDF is downloadable and judged standalone (download is an
@@ -79,10 +85,11 @@ swipe extends dwell. We build keepable reference artifacts, not applause.
   covers (doubles as accessibility for screen readers, since documents have
   NO alt text) → one genuine, debatable question (+77% comments). Never
   duplicate slide text verbatim. (M-H)
-- ★ **No links in the post body** (−40-60% measured; LinkedIn PM confirms
-  value-mediated demotion — same outcome). Sources go in the FIRST COMMENT
-  (paste block we provide), posted within ~60s. Print "sources in comments"
-  on the close slide. (H)
+- ★ **No links in the post body** (40-60% measured; LinkedIn PM confirms
+  value-mediated demotion, same outcome). Sources go in the FIRST COMMENT
+  (paste block we provide), posted within ~60s. Do NOT print "sources in
+  comments" on any slide: removed by the owner on 2026-09-11. The site
+  watermark on every frame is what carries provenance now. (H)
 - ★ **Exactly 3 hashtags, niche > broad, at the very end.** Hashtag following
   is dead (Oct 2024); 3-5 can slightly reduce visibility; ≥6 reads spam. Three
   satisfies discoverability hygiene without cost. (H)

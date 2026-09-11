@@ -41,8 +41,9 @@ brand:
     # OWNER RULE 2026-08-05: "rn ur saying '10 August', the normal way to say it is August 10th."
     # The live instance was runs/2026-08-04/caption.txt, "Comments close 28 August at 5:00 p.m."
     # Ten of the captions shipped before this rule carried a wrong form, so it is a habit, not a slip.
-    rule: "In any sentence a human READS OR HEARS, write the month name first and the day as an ordinal. August 10th. Never '10 August', never a bare 'August 10', never 'the 10th of August', never an abbreviated month in prose. A YEAR DOES NOT SUSPEND THE ORDINAL: write 'August 27th, 2026'."
-    good: ["August 10th", "Comments close August 28th", "August 27th, 2026", "August 2026 (no day, so no ordinal)"]
+    rule: "In any sentence a human READS OR HEARS, write the month name first and the day as an ordinal. August 10th. Never '10 August', never a bare 'August 10', never 'the 10th of August', never an abbreviated month in prose. A YEAR DOES NOT SUSPEND THE ORDINAL: write 'August 27th, 2026'. AND DROP THE YEAR WHEN IT IS THE CURRENT YEAR (owner, 2026-09-11): about something that happened this year, write 'September 10th' and not 'September 10th, 2026'. The year returns only for a DIFFERENT calendar year, for an ISO stamp, and in the first-comment source block."
+    good: ["August 10th", "Comments close August 28th", "August 27th, 2026 (only if 2026 is NOT the run's year)", "August 2026 (no day, so no ordinal)"]
+    drop_the_year_when: "the date is inside the run's own calendar year. 'September 10th', never 'September 10th, 2026', in the caption and on the slides alike. Enforced case-insensitively by scripts/caption_check.py redundant_year_hits, because the string that prompted the rule was mono caps on a cover."
     bad: ["10 August", "August 10", "Aug 10", "the 10th of August", "10th August", "August 27, 2026"]
     applies_to: "the LinkedIn caption, slide copy that is a SENTENCE, and the Gmail draft's prose."
     iso_is_still_correct_for: "filenames, ledger and JSON fields, and a PROVENANCE STAMP in a source list, where the date is a citation rather than a sentence. Read it aloud: if it sounds like a person talking, it takes the ordinal."
@@ -152,13 +153,15 @@ brand:
     ends_with: engagement_question
     deck_summary_line: true          # 1-2 plain lines describing the deck (accessibility + ranker)
     comma_per_100_chars: 1.05        # budget, hashtags excluded; 10% under the 26-caption mean of 1.17
-    date_form: month_first_ordinal   # "August 10th"; with a year, "August 27th, 2026"
+    date_form: month_first_ordinal   # "August 10th". THIS year: no year at all. A different year: "August 6th, 2025".
 
 visual:
   # The constellation system: FIXED marks every deck, everything else rotates.
   constellation:
     wordmark: "ALASKA.AI"                    # set in the deck's display face
-    site: "alaskaaihq.com"                   # ALWAYS on the close slide, small, mono face, near the mark
+    site: "alaskaaihq.com"                   # ON EVERY SLIDE (owner, 2026-09-11), bottom of the frame, small, mono, subtle
+    site_placement: "Bottom of EVERY slide, not just the close. Mono, 18 to 20px, low contrast against the margin (around #46545F on the dark register), inside the 80px safe zone, clear of the 1270 type floor. It is a WATERMARK, not a line of copy: a reader scrolling the deck should be able to find where this came from on whatever frame they stopped on, without it ever competing with the slide's own type. data-decorative, because it is a fixture and not a claim. The owner asked for this on 2026-09-11 after noticing the URL only appeared on the last frame, which is the frame a scroller is least likely to reach."
+    source_note: false                       # REMOVED 2026-09-11 (owner). "Sources in comments." no longer prints on any slide.
     polaris_star: true                       # the 4-point gold star glyph appears once per deck minimum
     progress_counter: "NN / NN in JetBrains Mono"
     coordinates_footer: "location-relevant, e.g. 61°13'N · 149°54'W (mark data-decorative)"
