@@ -6799,3 +6799,42 @@ advice on reproducible headless text (`--font-render-hinting=none`,
 `--disable-lcd-text`, `--force-color-profile=srgb`) is already in
 `render.py`'s `CHROMIUM_ARGS`, all three. Chrome 141's release notes carry
 nothing for canvas, type, fonts, printing or headless.
+
+### 2026-09-11, Phase 1 craft refresh (No. 56)
+
+**Aerial perspective is an ELEVATION-keyed contrast modulation, not the
+depth-layer lerp the doctrine already carries.** DESIGN_DOCTRINE section 4 cue 1
+fades layers toward the sky by (i/n)^1.4, which is a DISTANCE rule and is
+correct for a camera looking sideways. The cartographic version, which is the
+one that applies to any top-down or near-top-down Alaska field, keys the
+modulation to HEIGHT instead. Jenny and Patterson (Cartography and Geographic
+Information Science 48(1), 2021) state it plainly. High terrain is rendered with
+strong luminance contrast between its lit and shaded faces, low terrain with
+compressed contrast, so the lowlands read as further away even though they are
+the same distance from the lens. The practical form is a per-pixel contrast gain
+g(h) around a mid grey, rising with normalised height, applied AFTER the
+Lambertian shade and BEFORE any color ramp. That is a one-line change to a
+reliefShade pass and it is the cheapest expressive gain available to a
+top-down slide. Worth trying on any deck whose field is a terrain, a density
+surface or a heat field. (Sources: tandfonline.com/doi/abs/10.1080/15230406.2020.1813052,
+shadedrelief.com, icaci.org ICC2013 391_proceeding, 2026-09-11.)
+
+**Swiss rock hachure, parked rather than applied.** The two primary papers on
+automatic Swiss style rock depiction (Geisthovel and Hurni, ICC 2013; Jenny,
+Paris session) are image-only PDFs and returned no readable text through
+WebFetch, so the construction rules stay unverified. The one rule that came
+through secondary sources and is safe to repeat is the drawing ORDER, which
+inverts the usual habit. Ridge and gully skeleton lines first, then shading
+begun on the DARK slopes, then worked gradually toward the brightest peaks. A
+field drawn dark-first and lightened toward the focal point is the same
+discipline as the mezzotint note logged on 2026-09-10, arrived at from a
+different craft. UNBLOCKS WHEN: a text-bearing source for the hachure spacing
+and weight rules turns up.
+
+**LinkedIn 2026, corroboration only, nothing applied.** Secondary aggregators
+now put document carousels at 6.60 to 7.00 percent engagement against native
+video's 5.60, and report that documents are 12.92 percent of all SAVED posts
+against roughly 5 percent of posted content, a 2.6x over-index. Slide count 8 to
+10 is repeated as the completion sweet spot with a cliff above 12. All three
+agree with what CAROUSEL_CRAFT already says from the primary LinkedIn
+engineering sources, and none of them is primary, so no gate moves.
