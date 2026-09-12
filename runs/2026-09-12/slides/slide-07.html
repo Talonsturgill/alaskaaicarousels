@@ -104,7 +104,7 @@ window.renderReady = (async function(){
 
   ['lb1','lb2','lb3','lpbr','lnv'].forEach(function(id){
     AKFIT.plate(document.getElementById(id),
-      {padX:12, padY:7, fill:"rgba(3,9,14,0.66)", radius:3, note:"dial label " + id});
+      {padX:12, padY:7, fill:"rgba(3,9,14,0.34)", radius:3, note:"dial label " + id});
   });
 
   var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:100, depth:0.98, pad:24});

@@ -124,11 +124,11 @@ window.renderReady = (async function(){
   // EVERY LABEL AND EVERY BALLOON IN ITS OWN MEASURED CONTAINER
   ['l1','l2','l3','l4','l5'].forEach(function(id){
     AKFIT.plate(document.getElementById(id),
-      {padX:12, padY:7, fill:"rgba(5,20,26,0.62)", radius:3, note:"mono label " + id});
+      {padX:12, padY:7, fill:"rgba(5,20,26,0.34)", radius:3, note:"mono label " + id});
   });
   ['r100','r200','r300','r400'].forEach(function(id){
     AKFIT.plate(document.getElementById(id),
-      {padX:10, padY:6, fill:"rgba(4,16,22,0.66)", radius:3, note:"rail numeral " + id});
+      {padX:10, padY:6, fill:"rgba(4,16,22,0.34)", radius:3, note:"rail numeral " + id});
   });
   /* BALLOON 8 CARRIES THE HEDGE. Drawn like the other seven it asserts an
    * eighth source in use, which is the opposite of what the body of that
@@ -139,7 +139,7 @@ window.renderReady = (async function(){
     if (ph) document.getElementById(o.id).style.color = '#7D8F94';
     AKFIT.plate(document.getElementById(o.id),
       {padX:10, padY:8, minWidth:40, minHeight:40, radius:20,
-       fill:"rgba(4,17,23,0.86)", stroke: ph ? "#7D8F94" : "#5E838C",
+       fill:"rgba(4,17,23,0.72)", feather:0, stroke: ph ? "#7D8F94" : "#5E838C",
        strokeWidth:1.5, dash: ph, note:"balloon " + o.id});
   });
 
@@ -148,8 +148,8 @@ window.renderReady = (async function(){
   var off = AKENGRAVE.drawOffscreen(W, H, function(g){
     S.water(g, {y0:0, y1:H, top:"#0C2E38", bed:"#08202A", steps:48});
     // no lid in this window, so the rays run out of frame rather than turning
-    S.rays(g, {seed:570331, x:OBJ[3].x, y:OBJ[3].y, count:22, fan:[-0.82,0.88],
-      curve:0.0019, step:5, maxLen:2400, alpha:0.20, width:1.4,
+    S.rays(g, {seed:570331, x:OBJ[3].x, y:OBJ[3].y, count:30, fan:[-1.02,1.06],
+      curve:0.0017, step:5, maxLen:2800, alpha:0.26, width:1.5,
       blend:"screen", bedY:H+400, atten:atten, clip:[0,0,RAIL_X-70,H],
       iceAt:function(){ return -600; }});
     S.marine(g, {rFloor:1.10, aFloor:0.16, seed:570311, count:4600, y0:0, y1:H,
@@ -193,8 +193,17 @@ window.renderReady = (async function(){
         for (var i2=28;i2>=0;i2--){
           var u2=i2/28; poly.push([x - w/2 + u2*w, y + h/2 + 7*sc*Math.sin(Math.PI*u2)]);
         }
-        S.profile(g, poly, {fill:"#0A2530", weight:2.0, heavyMul:1.6, threshold:-0.12,
-          light:"rgba(185,214,218,0.72)", lee:"rgba(2,8,11,0.9)"});
+        var kb = S.contrast(y);
+        var bgb = g.createLinearGradient(0, y - h/2 - 9*sc, 0, y + h/2 + 7*sc);
+        bgb.addColorStop(0.00, AKC.mixOklab("#0A2530", "#2E5364", 0.9 * kb));
+        bgb.addColorStop(0.46, AKC.mixOklab("#0A2530", "#15333F", 0.6 * kb));
+        bgb.addColorStop(1.00, "#04141C");
+        g.fillStyle = bgb;
+        g.beginPath(); poly.forEach(function(q,j){ j?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]); });
+        g.closePath(); g.fill();
+        S.profile(g, poly, {weight:2.0, heavyMul:1.7, threshold:-0.12,
+          light:"rgba(185,214,218," + (0.62 * kb).toFixed(3) + ")",
+          lee:"rgba(2,8,11,0.94)"});
       } else {
         // a mooring package on a riser that continues below the frame edge
         var w = 28*sc, h = 70*sc;
@@ -215,11 +224,27 @@ window.renderReady = (async function(){
         } else {
           g.strokeStyle = "rgba(120,150,158,0.40)"; g.lineWidth = 1.5;
           g.beginPath(); g.moveTo(x, y+h/2); g.lineTo(x, H+20); g.stroke();
-          S.profile(g, poly, {fill:"#0A2530", weight:2.0, heavyMul:1.7, threshold:-0.10,
-            light:"rgba(185,214,218,0.70)", lee:"rgba(2,8,11,0.92)"});
-          // the lit cap, which is the one genuinely bright face on the body
-          g.fillStyle = "rgba(185,214,218,0.80)";
-          g.fillRect(x - w/2 + 2, y - h/2 + 1.5, w - 4, 3.0);
+          /* A VALUE LADDER ON THE FACE. Filled flat at #0A2530 and outlined,
+           * these bodies are a bright rim around a near black interior, which
+           * the scorer read as flat filled rectangles with a light cap. A
+           * downwelling key lands on the top of a body and falls away down its
+           * face, so the fill does that and the profile's ranks read against
+           * it. The gain falls with depth through AKICE.contrast, which is what
+           * makes the column read as a volume rather than a stack. */
+          var k = S.contrast(y);
+          var bg = g.createLinearGradient(0, y - h/2, 0, y + h/2);
+          bg.addColorStop(0.00, AKC.mixOklab("#0A2530", "#2A4D5C", 0.86 * k));
+          bg.addColorStop(0.44, AKC.mixOklab("#0A2530", "#14313C", 0.55 * k));
+          bg.addColorStop(1.00, "#04141C");
+          g.fillStyle = bg;
+          g.beginPath(); poly.forEach(function(q,j){ j?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]); });
+          g.closePath(); g.fill();
+          S.profile(g, poly, {weight:2.0, heavyMul:1.8, threshold:-0.10,
+            light:"rgba(185,214,218," + (0.60 * k).toFixed(3) + ")",
+            lee:"rgba(2,8,11,0.94)"});
+          // the lit cap, the one genuinely bright face, and it dims with depth
+          g.fillStyle = "rgba(185,214,218," + (0.82 * k).toFixed(3) + ")";
+          g.fillRect(x - w/2 + 3, y - h/2 + 1.5, w - 6, 2.8);
         }
       }
 
@@ -244,15 +269,21 @@ window.renderReady = (async function(){
        * 30 s EVERY 4 h and DRAWN as a ratio of counts on frame 06, which is
        * where that argument belongs. No quantity is encoded in its size. */
       var pa = -Math.PI/2;
-      g.strokeStyle = "rgba(2,9,14,0.95)"; g.lineWidth = 6.5; g.lineCap = "butt";
+      /* AND IT HAS TO EXIST AT 432 PX. The tick at 3.4 by 14 design px is 1.4
+       * by 5.6 at feed size, and the scorer reported the whole of this frame's
+       * gold state as drawn but sub visible, which leaves D2's state table with
+       * a functional hole on its third frame. A source mark is a POSITION and
+       * carries no quantity in its size, so size is free here: 5.5 by 26 design
+       * px is 2.2 by 10 at feed size, which is a mark. */
+      g.strokeStyle = "rgba(2,9,14,0.96)"; g.lineWidth = 9.5; g.lineCap = "butt";
       g.beginPath();
-      g.moveTo(x + Math.cos(pa)*(r-8), y + Math.sin(pa)*(r-8));
-      g.lineTo(x + Math.cos(pa)*(r+8), y + Math.sin(pa)*(r+8));
+      g.moveTo(x + Math.cos(pa)*(r-14), y + Math.sin(pa)*(r-14));
+      g.lineTo(x + Math.cos(pa)*(r+13), y + Math.sin(pa)*(r+13));
       g.stroke();
-      g.strokeStyle = "#FFC72C"; g.lineWidth = 3.4;
+      g.strokeStyle = "#FFC72C"; g.lineWidth = 5.5;
       g.beginPath();
-      g.moveTo(x + Math.cos(pa)*(r-7), y + Math.sin(pa)*(r-7));
-      g.lineTo(x + Math.cos(pa)*(r+7), y + Math.sin(pa)*(r+7));
+      g.moveTo(x + Math.cos(pa)*(r-13), y + Math.sin(pa)*(r-13));
+      g.lineTo(x + Math.cos(pa)*(r+12), y + Math.sin(pa)*(r+12));
       g.stroke();
     }
   });

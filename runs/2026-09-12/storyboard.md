@@ -879,8 +879,15 @@ its own lane. Seed is `20260912 + slide index`.
    gradient, the three dials at one size but progressively lower contrast with
    depth; the cabinet extrusion's own three-face tone; one key light at az 12.
 
-6. **Continuity device state.** D1 window 1,000 to 3,000 m, held IDENTICAL to
-   slide 06. The water does not change between the beat before the turn and the
+6. **Continuity device state.** D1 window 1,000 to 3,000 m. **CORRECTED
+   2026-09-12, ROUND 3.** This section said the window was held IDENTICAL to
+   slide 06 and it is not: 06 runs 800 to 2,600 m and this frame runs 1,000 to
+   3,000, which the arc table has said all along. The scorer caught the
+   contradiction and it matters, because the unchanged environment argument this
+   frame leans on was resting on a sentence that was false. The argument still
+   holds in the form the arc table supports, which is that the window ADVANCES
+   by the smallest step in the deck, 200 m against the 300 to 600 m elsewhere,
+   so the instrument changes and the water very nearly does not. The water does not change between the beat before the turn and the
    turn, which is the unchanged-environment discipline: the instrument moved and
    the world did not. D2, gold appears on two needle caps and is WITHHELD from the
    third dial entirely. D3, enters 1,192, exits 520. D4, water top `#03090C`.
@@ -1143,11 +1150,11 @@ reason, because the plan is a plan and the render is the artifact.
 | 03 | Headline is `30 seconds, / every four hours, / all year.` rather than the planned `Up to six moorings, / two drifting buoys.` Body is 42 words rather than 48. Two labels reset on two lines. | The copy room's measured call: both planned headline lines ran 19 characters against a 17 character budget, and the up to six hedge survives intact in the body. |
 | 03 | Ticks are 100, 200, 300 and 400 m. The planned 50 m tick is gone. | Its numeral lands in the counter's lane at the top of the frame, and a mark clamped away from its own tick is worse than no mark. |
 | 03 | The rail band carries a washed lane. | Proto finding 4's own remedy. The census measures declared marks against the band's texture and the ray field was that texture. |
-| 04 | 1,000 m lands at y 1180 rather than at the frame's bottom edge, so the mapping's nominal window ends 170 px above the frame. | The acceptance test is that the glider sits exactly on the 1,000 m tick, and a mapping that puts 1,000 m at y 1350 puts the deck's one aurora object half off the bottom. That is the prototype's third finding verbatim. |
+| 04 | 1,000 m lands at y 1040 rather than at the frame's bottom edge, so the mapping's nominal window ends 310 px above the frame. (This row said 1180 until ROUND 3; 1180 was the first build's answer and a pixel critic measured the glider as parked on the trim at that value.) | The acceptance test is that the glider sits exactly on the 1,000 m tick, and a mapping that puts 1,000 m at y 1350 puts the deck's one aurora object half off the bottom. That is the prototype's third finding verbatim. |
 | 04 | The mote population is drawn in the slide rather than through `AKICE.marine`, with a size floor, and the count is 6,392 rather than 3,000. | `marine`'s radius falls to 0.55 px by the bottom of a window, which is right where motes are atmosphere and wrong on the one frame where they ARE the subject. 6,392 is 639,237 square kilometres at one mote per 100, so the count stays a datum. Measured: at 3,000 the centre of the frame read as bare gradient. |
 | 04 | The single gold arc is at alpha 0.30, not the planned 0.18. | At 0.18 over water this dark it composites to an olive smudge. |
 | 04 | `data-breather` is not set, as the dossier intended. | `dossier_check` warns that qa.py will fail frame balance without it. qa.py then measured the frame and passed. The warn is a stale prediction and the attribute stays off. |
-| 05 | The four zone labels stand each at its own rim angle rather than in a left hand column. | A column of labels with four targets all near x 300 makes four leaders that cross each other's type. Measured: 87 px^2 of leader ink inside the 55 m label's second line. |
+| 05 | The four zone labels stand in a left hand column at x 80, each with a leader that leaves by the side its own target is beyond, or vertically at the target's own x when the target is inside the label's span. | **THIS ROW WAS WRONG UNTIL ROUND 3 AND THAT IS HOW THE RUN'S ONE HARD FAIL SURVIVED SIX REVIEW ROOMS.** It claimed the labels stood at their own rim angles, which was an arrangement tried and abandoned, and nobody re-read the artifact against the row. What shipped at x 120 put the widest label's right edge 9 px from the prose column, which reads at 432 px as one run-on string, DEPLOYMENT AND RECOVERYThe 55 metre zone applies. A reconciliation table that misdescribes the render is worse than no table, because every reader downstream trusts it. |
 | 05 | The four circles are knocked out of the reserve boxes on their own surface. | A circle takes no basin and at 411 px the largest runs through the right hand column. |
 | 06 | Tick alphas are 0.92 and 0.52, not the planned 0.62 and 0.30. | Measured: at 0.30 a 0.75 px tick on `#03090C` water does not exist, and the deck's strongest single image came back as a faint gold patch on bare black. The argument is a ratio of counts and it is carried by how much of the field is lit. |
 | 06 | Ticks are 1.5 px tall and the field is drawn on the slide canvas rather than the offscreen. | `AKENGRAVE.drawOffscreen` returns a 1x surface, where a 0.75 px mark resolves to a grey smear. |
@@ -1172,21 +1179,21 @@ GATE STATUS -- generated by scripts/gate_status.py from the artifacts in out/202
 [PASS] render         9/9 slides OK, 0 page errors, 0 overflow warnings
 [PASS] qa.py          PASS, 0 fails, 0 warns
 [WARN] dossier_check  WARN, 9 dossiers, 0 fails, 1 warns
-[PASS] reconciled     BUILD RECONCILIATION present, 24 table row(s), 6572 chars
+[PASS] reconciled     BUILD RECONCILIATION present, 24 table row(s), 7216 chars
 [PASS] caption_check  PASS, 825 chars, hook 109, 3 hashtags
 [PASS] copy_sync      copy_sync_check: PASS -- 70 authored slide strings all present in the render
 [PASS] aggregate      aggregate_check: PASS -- 17 aggregate assertion(s) detected, 17 declared -> out/2026-09-12/aggregate_report.json
 [PASS] plan_drift     plan_drift_check: PASS -- 32 claims indexed, 0 declared counts checked, 0 body quote(s) checked, 0 drift(s)
-[PASS] bespoke        bespoke_check: PASS -- 9 slides, median pairwise art similarity 0.126 (fail at 0.60), max pair 0.452, drawn share 65% (58 drawn vs 31 blocky
+[PASS] bespoke        bespoke_check: PASS -- 9 slides, median pairwise art similarity 0.122 (fail at 0.60), max pair 0.452, drawn share 65% (58 drawn vs 31 blocky
 [PASS] scanner_sync   the live scan page still matches the routine contract
 [PASS] docket_dates   docket dates clean at 2026-09-12: 317 assertions over 6 fixtures and 25 ledger items
 [WARN] gas_watch      37 day(s) on record, 1 missing from the series, first 2026-09-08
-[FAIL] site_fresh     FAIL: docs/ is not what site_build.py builds from the committed data at --date 2026-09-12.
-[PASS] assemble       9 slides, pdf vector 8.47 MB, 9 thumbs, sources verified
+[PASS] site_fresh     OK: docs/ is exactly a fresh build at --date 2026-09-12 (184 generated files)
+[PASS] assemble       9 slides, pdf vector 8.48 MB, 9 thumbs, sources verified
 [n/a ] score          score_report.json missing
 [FAIL] ship_gate      score_report.json missing. The run cannot ship or stop until it has been scored. ITERATE, do not stop. weakest: ?
 [PASS] artifacts      every named artifact present, JSON parses, 9 slides valid
->> 2 FAIL row(s). Fix the artifact, not the sentence.
+>> 1 FAIL row(s). Fix the artifact, not the sentence.
 ```
 
 

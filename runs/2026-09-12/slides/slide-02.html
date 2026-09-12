@@ -96,7 +96,7 @@ window.renderReady = (async function(){
   // AKFIT.guard fails the render if one stops enclosing its string.
   ['la','lb','lc','lf'].forEach(function(id){
     AKFIT.plate(document.getElementById(id),
-      {padX:13, padY:7, fill:"rgba(5,20,26,0.60)", radius:3, note:"mono label " + id});
+      {padX:13, padY:7, fill:"rgba(5,20,26,0.34)", radius:3, note:"mono label " + id});
   });
 
   // pad 30, not 16. Fraunces at line-height 1.04 puts ink OUTSIDE its own line

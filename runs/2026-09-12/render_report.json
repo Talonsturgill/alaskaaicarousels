@@ -354,7 +354,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3260,
+      "render_ms": 3426,
       "ok": true,
       "canvases": [
         {
@@ -1026,7 +1026,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3715,
+      "render_ms": 3783,
       "ok": true,
       "canvases": [
         {
@@ -1115,7 +1115,7 @@
       "evenodd_ops": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-02.html",
-        "sha1": "7d134db1018884c75401a83668c0f5275f43750d"
+        "sha1": "e2ba9cb9810f5e5af962ac8f57e79d499aeea518"
       }
     },
     {
@@ -1955,7 +1955,7 @@
       "light_conflicts": [],
       "paint": {
         "fills": 1383,
-        "sites": 3,
+        "sites": 4,
         "site_cap": false,
         "empty": []
       },
@@ -1974,7 +1974,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2819,
+      "render_ms": 2864,
       "ok": true,
       "canvases": [
         {
@@ -1987,8 +1987,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 21.4,
-          "variance": 73.5
+          "mean": 21.5,
+          "variance": 77.4
         }
       ],
       "breather": false,
@@ -2031,7 +2031,7 @@
       "evenodd_ops": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-03.html",
-        "sha1": "6745a289298c2c97c2cb4043ef60f62612005634"
+        "sha1": "47df80afc97e35c6a682f758fbaf521512915ae5"
       }
     },
     {
@@ -2584,7 +2584,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3028,
+      "render_ms": 2755,
       "ok": true,
       "canvases": [
         {
@@ -2641,7 +2641,7 @@
       "evenodd_ops": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-04.html",
-        "sha1": "d170a001138c5c86275d296eca55fd529e99ea05"
+        "sha1": "17b1e1af5164988349210059cd9af1452e9135cb"
       }
     },
     {
@@ -2876,14 +2876,7 @@
             ]
           ],
           "wrap": null,
-          "anc": [],
-          "occluded": {
-            "w": 3,
-            "h": 14,
-            "frac": 0.008,
-            "by": "DIV",
-            "by_text": ""
-          }
+          "anc": []
         },
         {
           "text": "The 55 metre zone applies during deployment and recovery, not for the year the s",
@@ -2894,7 +2887,7 @@
           "tag": "p",
           "unsized": false,
           "x": 520,
-          "y": 940,
+          "y": 972,
           "w": 474,
           "h": 174,
           "font_px": 32,
@@ -2906,38 +2899,31 @@
           "lines": [
             [
               520,
-              941,
+              973,
               404,
               40
             ],
             [
               520,
-              985,
+              1017,
               363,
               40
             ],
             [
               520,
-              1028,
+              1060,
               459,
               40
             ],
             [
               520,
-              1072,
+              1104,
               352,
               40
             ]
           ],
           "wrap": null,
-          "anc": [],
-          "occluded": {
-            "w": 3,
-            "h": 40,
-            "frac": 0.007,
-            "by": "DIV",
-            "by_text": ""
-          }
+          "anc": []
         },
         {
           "text": "UNDER 15 m ESTIMATED TTS RANGE",
@@ -2948,7 +2934,7 @@
           "full": "UNDER 15 m ESTIMATED TTS RANGE",
           "tag": "div",
           "unsized": false,
-          "x": 120,
+          "x": 80,
           "y": 562,
           "w": 323,
           "h": 67,
@@ -2960,13 +2946,13 @@
           "overlap_ok": false,
           "lines": [
             [
-              120,
+              80,
               561,
               170,
               34
             ],
             [
-              120,
+              80,
               595,
               323,
               34
@@ -2987,8 +2973,8 @@
           "full": "55 m DEPLOYMENT AND RECOVERY",
           "tag": "div",
           "unsized": false,
-          "x": 120,
-          "y": 912,
+          "x": 80,
+          "y": 906,
           "w": 391,
           "h": 67,
           "font_px": 25,
@@ -2999,14 +2985,14 @@
           "overlap_ok": false,
           "lines": [
             [
-              120,
-              911,
+              80,
+              905,
               68,
               34
             ],
             [
-              120,
-              945,
+              80,
+              939,
               391,
               34
             ]
@@ -3026,8 +3012,8 @@
           "full": "183 m OTHER OBSERVED MAMMALS",
           "tag": "div",
           "unsized": false,
-          "x": 96,
-          "y": 1014,
+          "x": 80,
+          "y": 1010,
           "w": 374,
           "h": 67,
           "font_px": 25,
@@ -3038,14 +3024,14 @@
           "overlap_ok": false,
           "lines": [
             [
-              96,
-              1013,
+              80,
+              1009,
               85,
               34
             ],
             [
-              96,
-              1047,
+              80,
+              1043,
               374,
               34
             ]
@@ -3065,8 +3051,8 @@
           "full": "457 m OBSERVED CETACEANS",
           "tag": "div",
           "unsized": false,
-          "x": 96,
-          "y": 1116,
+          "x": 80,
+          "y": 1114,
           "w": 306,
           "h": 67,
           "font_px": 25,
@@ -3077,14 +3063,14 @@
           "overlap_ok": false,
           "lines": [
             [
-              96,
-              1115,
+              80,
+              1113,
               85,
               34
             ],
             [
-              96,
-              1149,
+              80,
+              1147,
               306,
               34
             ]
@@ -3252,7 +3238,7 @@
       "lights": [],
       "light_conflicts": [],
       "paint": {
-        "fills": 1063,
+        "fills": 974,
         "sites": 3,
         "site_cap": false,
         "empty": []
@@ -3272,7 +3258,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3403,
+      "render_ms": 3448,
       "ok": true,
       "canvases": [
         {
@@ -3285,8 +3271,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 12.1,
-          "variance": 119
+          "mean": 12,
+          "variance": 107
         }
       ],
       "breather": false,
@@ -3302,8 +3288,8 @@
             779.5
           ],
           "from": [
-            457,
-            594.8
+            377.1,
+            640.5
           ],
           "label": "UNDER 15 m"
         },
@@ -3318,8 +3304,8 @@
             841.5
           ],
           "from": [
-            525,
-            944.8
+            372,
+            893
           ],
           "label": "55 m"
         },
@@ -3334,8 +3320,8 @@
             887.7
           ],
           "from": [
-            484,
-            1046.8
+            466,
+            1042.8
           ],
           "label": "183 m"
         },
@@ -3350,8 +3336,8 @@
             1167.4
           ],
           "from": [
-            416,
-            1148.8
+            398,
+            1146.8
           ],
           "label": "457 m"
         }
@@ -3361,7 +3347,7 @@
       "evenodd_ops": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-05.html",
-        "sha1": "8433d8961d63de1d52a74537301df0c17ff605f3"
+        "sha1": "15451cb05250e7ad84aec0dd93a0dfc1ba9a3336"
       }
     },
     {
@@ -3928,7 +3914,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2376,
+      "render_ms": 2508,
       "ok": true,
       "canvases": [
         {
@@ -3941,8 +3927,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 9.5,
-          "variance": 62.6
+          "mean": 10.5,
+          "variance": 193.2
         }
       ],
       "breather": false,
@@ -4001,7 +3987,7 @@
       "evenodd_ops": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-06.html",
-        "sha1": "22835e1b3ef8b6607775074785d5e87137b007e9"
+        "sha1": "259d85f712162bb99db9bb6dd05531533408614a"
       }
     },
     {
@@ -4623,7 +4609,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2616,
+      "render_ms": 2304,
       "ok": true,
       "canvases": [
         {
@@ -4728,7 +4714,7 @@
       "evenodd_ops": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-07.html",
-        "sha1": "79b1b41d6aa4703534e5ac2279fdcd8a8031fc1a"
+        "sha1": "c8f46f3c77409d187bd7095b723f13f3e07532a4"
       }
     },
     {
@@ -5252,7 +5238,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2555,
+      "render_ms": 2618,
       "ok": true,
       "canvases": [
         {
@@ -5293,7 +5279,7 @@
       "evenodd_ops": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-08.html",
-        "sha1": "44efe01da0b8a27f65eba70f6b325b86ecadafae"
+        "sha1": "fcde9da8b4207ea091b0678bef4bed2b695e3a39"
       }
     },
     {
@@ -5510,7 +5496,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2346,
+      "render_ms": 2256,
       "ok": true,
       "canvases": [
         {

@@ -522,6 +522,133 @@ PAINT_HOOK_JS = """
 })();
 """
 
+# --- THE INK CENSUS: WHICH COLOURS THIS FRAME ACTUALLY PAINTED WITH ----------
+# (2026-09-12, run No.57, three defects in one deck and no gate could see any.)
+#
+# That deck's whole argument was one auditable sentence: #FFC72C is what the
+# record knows, #7D8F94 is what it does not. The first build broke it three ways
+# and passed claims, dossier, aggregate, plan-drift, copy-sync and machine QA at
+# zero fails and zero warns.
+#   1. AKICE.rays DEFAULTED to [255,199,44], so three frames called it with no
+#      rgb and two shipped a warm fan across drawn geometry the deck itself
+#      marks [design], the one category the law forbids warmth.
+#   2. The provenance mark, a fixture on all nine frames, was set in the
+#      undetermined ink, which takes that ink's meaning away from the phantom
+#      dashes and from UND.
+#   3. Slide 03's eight gold source ticks rendered as ZERO gold pixels: a 0.75
+#      degree arc at r 46 is six tenths of a pixel and a degenerate subpath gets
+#      no cap, so the deck's gold thread simply skipped its third frame.
+#
+# THE OBVIOUS INSTRUMENT DOES NOT WORK, AND THIS WAS MEASURED BEFORE THIS HOOK
+# WAS WRITTEN. "Count the pixels near each law hex" catches only the third.
+# Reconstructed on this run's own slides and measured:
+#   - Gold rays put back on slides 01 and 08 changed 81k and 242k pixels and
+#     moved the count of gold-hued pixels by 0 and by 0. Gold at alpha 0.34 over
+#     cool ice composites to a desaturated green: [70,142,155] becomes
+#     [81,136,125], which is nowhere near #FFC72C at any hue tolerance and any
+#     chroma floor. The eye reads it as warmth because warmth is RELATIVE; the
+#     absolute pixel value is not gold at all.
+#   - #7D8F94 is unfindable by tolerance: the anti-aliased edge of every light
+#     cool ink in the deck passes through it, so frames that never used it carry
+#     1,727 to 40,027 pixels within dE 4 of it. There is no threshold there.
+# So the forbidden direction is answered at the SOURCE OF THE PAINT, where it is
+# exact and needs no threshold: what colour was the brush. The pixel side then
+# answers only the question it is good at, whether a promised ink survived to
+# the frame, and qa.py holds both verdicts.
+#
+# This records, per distinct colour, the number of drawing ops that used it, the
+# highest effective alpha any of them carried (colour alpha times globalAlpha)
+# and whether it came from a canvas fill, a canvas stroke, canvas text, a
+# gradient stop, DOM text or an SVG attribute. Gradient stops are resolved
+# through a WeakMap on addColorStop, because a ramp is how this house paints and
+# a string-only census would miss a gold falloff entirely. Ops under the
+# destination-*/xor composite family are skipped: those paint no colour, only
+# geometry, so their brush is not evidence of anything.
+INK_HOOK_JS = """
+(() => {
+  try {
+    const rep = window.__akInk = { inks: {}, cap: false, ops: 0 };
+    const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
+    if (!proto) return;
+    const MAX = 160;
+    const stops = new WeakMap();
+    const gp = window.CanvasGradient && window.CanvasGradient.prototype;
+    if (gp && typeof gp.addColorStop === 'function') {
+      const origStop = gp.addColorStop;
+      gp.addColorStop = function (o, c) {
+        try {
+          let a = stops.get(this);
+          if (!a) { a = []; stops.set(this, a); }
+          if (a.length < 16) a.push(String(c));
+        } catch (e) {}
+        return origStop.apply(this, arguments);
+      };
+    }
+    /* Alpha of a colour string; anything unreadable counts as opaque, which can
+       only make the census LOUDER and never quieter. */
+    const alphaOf = (c) => {
+      c = String(c == null ? '' : c).trim().toLowerCase();
+      if (c === 'transparent') return 0;
+      let m = c.match(/^rgba?\\(([^)]+)\\)$/) || c.match(/^hsla?\\(([^)]+)\\)$/);
+      if (m) {
+        const p = m[1].split(/[,\\/\\s]+/).filter((s) => s.length);
+        if (p.length >= 4) {
+          const v = parseFloat(p[3]);
+          return isFinite(v) ? Math.max(0, Math.min(1, p[3].indexOf('%') >= 0 ? v / 100 : v)) : 1;
+        }
+        return 1;
+      }
+      m = c.match(/^#([0-9a-f]{8})$/);
+      if (m) return parseInt(m[1].slice(6), 16) / 255;
+      m = c.match(/^#([0-9a-f]{4})$/);
+      if (m) return parseInt(m[1].slice(3) + m[1].slice(3), 16) / 255;
+      return 1;
+    };
+    const ERASE = { 'destination-out': 1, 'destination-in': 1, 'destination-atop': 1,
+                    'destination-over': 0, 'xor': 1, 'copy': 0 };
+    const note = (col, kind, alpha) => {
+      const c = String(col == null ? '' : col).trim().toLowerCase().slice(0, 44);
+      if (!c) return;
+      const key = kind + '|' + c;
+      let e = rep.inks[key];
+      if (!e) {
+        if (Object.keys(rep.inks).length >= MAX) { rep.cap = true; return; }
+        e = rep.inks[key] = { kind: kind, color: c, ops: 0, amax: 0 };
+      }
+      e.ops++;
+      rep.ops++;
+      if (alpha > e.amax) e.amax = Math.round(alpha * 1000) / 1000;
+    };
+    const brush = (ctx, style, kind) => {
+      try {
+        if (ERASE[ctx.globalCompositeOperation]) return;
+        const ga = typeof ctx.globalAlpha === 'number' ? ctx.globalAlpha : 1;
+        if (!(ga > 0)) return;
+        if (style == null) return;
+        if (typeof style === 'string') { note(style, kind, ga * alphaOf(style)); return; }
+        const ss = stops.get(style);
+        if (ss) { for (let i = 0; i < ss.length; i++) note(ss[i], kind, ga * alphaOf(ss[i])); }
+        else note('<pattern>', kind, ga);
+      } catch (e) {}
+    };
+    const wrapInk = (name, kind, which) => {
+      const orig = proto[name];
+      if (typeof orig !== 'function') return;
+      proto[name] = function () {
+        try { brush(this, which === 'f' ? this.fillStyle : this.strokeStyle, kind); } catch (e) {}
+        return orig.apply(this, arguments);
+      };
+    };
+    wrapInk('fill', 'fill', 'f');
+    wrapInk('fillRect', 'fill', 'f');
+    wrapInk('stroke', 'stroke', 's');
+    wrapInk('strokeRect', 'stroke', 's');
+    wrapInk('fillText', 'canvas-text', 'f');
+    wrapInk('strokeText', 'canvas-text', 's');
+  } catch (e) {}
+})();
+"""
+
 # A PATH THROWN AWAY, AND A RESERVE THAT IS INSIDE AGAIN (2026-09-09, run
 # No.54). Two defects, one hook, because they are the same idiom read from both
 # ends. The idiom is the attached cast:
@@ -1600,6 +1727,94 @@ IN_PAGE_QA_JS = """
         .slice(0, 12);
     }
   } catch (e) {}
+
+  /* THE INK LAW, DECLARED AND CENSUSED (2026-09-12). See INK_HOOK_JS for the
+     three defects and for the measurements that ruled out the pixels-only
+     instrument. A deck whose argument rests on colour says so per frame:
+
+       <body data-ink='[{"hex":"#FFC72C","means":"what the record knows",
+                         "state":"present"},
+                        {"hex":"#6EA5FF","means":"a stock with a number",
+                         "state":"absent"}]'>
+
+     `state` is "present" (this frame promises the reader this ink) or "absent"
+     (the law forbids this ink here). qa.py fails an absent ink that any brush
+     used, and a present ink that no brush used or that reached the frame as
+     zero pixels. `means` is carried through into the failure text so the message
+     names the argument and not just a hex. */
+  out.ink_law = [];
+  try {
+    const idecl = (document.body && document.body.dataset.ink) || "";
+    const ispecs = idecl ? JSON.parse(idecl) : [];
+    for (const sp of (Array.isArray(ispecs) ? ispecs : [ispecs])) {
+      out.ink_law.push({
+        hex: String((sp && sp.hex) || "").trim().slice(0, 9),
+        means: String((sp && sp.means) || "").trim().slice(0, 90),
+        state: String((sp && sp.state) || "").trim().toLowerCase().slice(0, 8),
+        min_px: (sp && typeof sp.min_px === "number") ? Math.round(sp.min_px) : null
+      });
+    }
+  } catch (e) {
+    out.ink_law.push({ error: String(e).slice(0, 140) });
+  }
+
+  /* The census itself: every colour a brush actually carried. Canvas ops come
+     from INK_HOOK_JS; DOM text and SVG geometry are read here off the laid-out
+     page, because the provenance mark that broke the law this run was CSS on a
+     div and slide 09's gold was an SVG fill attribute, and a canvas-only census
+     would have been blind to both. */
+  out.inks = [];
+  out.ink_cap = false;
+  try {
+    const acc = {};
+    const add = (col, kind, alpha) => {
+      const c = String(col == null ? "" : col).trim().toLowerCase().slice(0, 44);
+      if (!c || c === "none" || c === "transparent") return;
+      const k = kind + "|" + c;
+      if (!acc[k]) {
+        if (Object.keys(acc).length >= 240) { out.ink_cap = true; return; }
+        acc[k] = { kind: kind, color: c, ops: 0, amax: 0 };
+      }
+      acc[k].ops++;
+      if (alpha > acc[k].amax) acc[k].amax = Math.round(alpha * 1000) / 1000;
+    };
+    const ir = window.__akInk;
+    if (ir && ir.inks) {
+      for (const k of Object.keys(ir.inks)) {
+        const e = ir.inks[k];
+        if (!acc[k]) {
+          if (Object.keys(acc).length >= 240) { out.ink_cap = true; continue; }
+          acc[k] = { kind: e.kind, color: e.color, ops: 0, amax: 0 };
+        }
+        acc[k].ops += e.ops;
+        if (e.amax > acc[k].amax) acc[k].amax = e.amax;
+      }
+      if (ir.cap) out.ink_cap = true;
+    }
+    for (const el of document.querySelectorAll("body *")) {
+      const cs = getComputedStyle(el);
+      const tag = el.tagName.toLowerCase();
+      if (tag === "svg" || el.ownerSVGElement) {
+        const op = parseFloat(cs.opacity);
+        const o = isFinite(op) ? op : 1;
+        const fo = parseFloat(cs.fillOpacity), so = parseFloat(cs.strokeOpacity);
+        if (cs.fill) add(cs.fill, "svg-fill", o * (isFinite(fo) ? fo : 1));
+        if (cs.stroke) add(cs.stroke, "svg-stroke", o * (isFinite(so) ? so : 1));
+        continue;
+      }
+      /* DOM text: only where there is text to ink. An empty positioned div's
+         inherited colour paints nothing and is not evidence. */
+      let txt = "";
+      for (const n of el.childNodes) if (n.nodeType === 3) txt += n.nodeValue;
+      if (!txt.trim()) continue;
+      const op2 = parseFloat(cs.opacity);
+      add(cs.color, "dom-text", isFinite(op2) ? op2 : 1);
+    }
+    out.inks = Object.keys(acc).map((k) => acc[k])
+      .sort((a, b) => b.ops - a.ops).slice(0, 160);
+  } catch (e) {
+    out.inks = [{ error: String(e).slice(0, 140) }];
+  }
 
   /* ANNOTATION LEADERS (2026-08-07). A leader line that stops in open field
      looks exactly like a leader reaching something small, which is why run
@@ -2694,6 +2909,10 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     # does not care which side of the paint hook it is on.
     page.add_init_script(CLIP_RULE_HOOK_JS)
     page.add_init_script(PAINT_HOOK_JS)
+    # OUTSIDE the paint hook, deliberately: this one never reads a stack, so it
+    # cannot confuse anyone's call-site attribution, and installing it last means
+    # it sees the brush for every op the page makes.
+    page.add_init_script(INK_HOOK_JS)
     page.on("console", lambda m: rec["console_errors"].append(m.text)
             if m.type in ("error",) else None)
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))

@@ -248,15 +248,22 @@
       if (feather && isFlat) {
         var mid = String(o.fill).replace(/rgba?\(([^)]*)\)/i, function (m, inner) {
           var parts = inner.split(",");
-          if (parts.length === 4) parts[3] = " " + (parseFloat(parts[3]) * 0.78).toFixed(3);
+          if (parts.length === 4) parts[3] = " " + (parseFloat(parts[3]) * 0.62).toFixed(3);
           return "rgba(" + parts.join(",") + ")";
         });
         var zero = String(o.fill).replace(/rgba?\(([^)]*)\)/i, function (m, inner) {
           var parts = inner.split(",").slice(0, 3);
           return "rgba(" + parts.join(",") + ", 0)";
         });
-        d.style.background = "radial-gradient(ellipse 74% 88% at 50% 50%, "
-          + o.fill + " 0%, " + mid + " 58%, " + zero + " 100%)";
+        /* THE FEATHER HAS TO BE SOFT ENOUGH TO NOT READ AS A BOX, and the
+         * first attempt was not. An ellipse at 74 by 88 percent with its
+         * falloff starting at 58 percent still reads as a dark rectangle with
+         * rounded corners at feed size, which the run's scorer reported as the
+         * chassis fix not having landed. It had landed and it was too tight.
+         * The falloff now starts immediately and the ellipse is well inside
+         * the box, so what a reader sees is a patch of quieter water. */
+        d.style.background = "radial-gradient(ellipse 64% 76% at 50% 50%, "
+          + o.fill + " 0%, " + mid + " 34%, " + zero + " 100%)";
       } else {
         d.style.background = o.fill;
       }
@@ -354,7 +361,7 @@
    */
   function guard(opts) {
     var o = opts || {};
-    optionContract("AKFIT.guard", o, ["safe", "tol", "quiet"]);
+    optionContract("AKFIT.guard", o, ["safe", "tol", "quiet", "minGap"]);
     var s = o.safe == null ? SAFE : o.safe;
     var tol = o.tol == null ? 1.0 : o.tol;
     var bad = [], i;
@@ -374,6 +381,60 @@
           ". The container was measured before something changed the string, the " +
           "font size or the position. Rebuild the plate after that change, or " +
           "narrow the measure so the line fits.");
+      }
+    }
+
+    /* ---- TWO TEXT BLOCKS MAY NOT SHARE A BAND WITH NOTHING BETWEEN THEM ----
+     *
+     * THE DEFECT THIS EXISTS FOR (2026-09-12, run No.57, one hard fail). Slide
+     * 05 set a mono label, `55 m / DEPLOYMENT AND RECOVERY`, in its left column
+     * and a prose paragraph, `The 55 metre zone applies during deployment and
+     * recovery...`, in its right, and the two shared one baseline with NINE
+     * pixels between them. Nothing overlapped, so qa.py's text-collision gate
+     * was silent, correctly: it measures overprint. And this bench was silent
+     * too, because it had been built to guard CONTAINER WIDTH and every
+     * container held its own string perfectly. At 432 px nine design pixels is
+     * under four, and the shipped thumb reads as one run-on string,
+     * `DEPLOYMENT AND RECOVERYThe 55 metre zone applies`. The scorer called it
+     * and capped the run.
+     *
+     * A measured container bench that does not also bench the space BETWEEN
+     * neighbouring blocks is half a fix, and the half it skipped is the half
+     * that broke. So: any two [data-reserve] elements whose line boxes overlap
+     * vertically by more than a third of the shorter box, and whose horizontal
+     * gap is under `minGap`, is a breach. 24 px is the floor, which is about 10
+     * px at feed size and slightly wider than a word space at the body size.
+     *
+     * It judges ELEMENTS and not lines, because the failure is two blocks
+     * reading as one and a block is what a reader takes in. Overlapping pairs
+     * are left to qa.py, which measures them better.
+     */
+    var minGap = o.minGap == null ? 24 : o.minGap;
+    if (minGap > 0) {
+      var blocks = els("[data-reserve]"), rects = [], bi;
+      for (bi = 0; bi < blocks.length; bi++) {
+        var br = inkRect(blocks[bi]);
+        if (br.w > 0 && br.h > 0) rects.push({ el: blocks[bi], r: br });
+      }
+      for (bi = 0; bi < rects.length; bi++) {
+        for (var bj = bi + 1; bj < rects.length; bj++) {
+          var A = rects[bi].r, B = rects[bj].r;
+          var vOver = Math.min(A.bottom, B.bottom) - Math.max(A.y, B.y);
+          if (vOver <= Math.min(A.h, B.h) / 3) continue;
+          var gap = (A.x >= B.right) ? A.x - B.right
+                  : (B.x >= A.right) ? B.x - A.right : -1;
+          if (gap < 0 || gap >= minGap) continue;
+          bad.push("two text blocks share a band with " + gap.toFixed(1) +
+            "px between them. '" +
+            String(rects[bi].el.textContent || "").trim().slice(0, 34) +
+            "' and '" +
+            String(rects[bj].el.textContent || "").trim().slice(0, 34) +
+            "' overlap vertically by " + vOver.toFixed(0) + "px and the floor is " +
+            minGap + "px. At 432 px that gap is " + (gap * 0.4).toFixed(1) +
+            "px and the two will read as ONE string. Nothing overlaps, so qa.py's " +
+            "collision gate cannot see this. Move one block out of the other's " +
+            "band, or take " + (minGap - gap).toFixed(0) + "px more measure.");
+        }
       }
     }
 

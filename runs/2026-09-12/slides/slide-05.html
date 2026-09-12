@@ -16,7 +16,7 @@ h2{position:absolute;left:540px;top:240px;width:460px;text-align:right;margin:0;
   font-size:60px;line-height:1.03;letter-spacing:-0.015em;color:#F4F8FF}
 .bd{position:absolute;left:520px;top:452px;width:474px;text-align:left;margin:0;
   font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:34px;line-height:1.38;color:#D8ECEE}
-.band{position:absolute;left:520px;top:940px;width:474px;text-align:left;margin:0;
+.band{position:absolute;left:520px;top:972px;width:474px;text-align:left;margin:0;
   font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:32px;line-height:1.36;color:#BAD6DA}
 .la{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
   letter-spacing:0.08em;line-height:1.34;color:#BAD6DA}
@@ -100,10 +100,15 @@ window.renderReady = (async function(){
    * did exactly that and qa.py found 87 px^2 of leader inside the 55 m label's
    * second line. Each label now stands just outside its own rim at its own
    * angle, which is how a range card is drawn anyway. */
-  document.getElementById('z15').style.cssText  += ';left:120px;top:562px';
-  document.getElementById('z55').style.cssText  += ';left:120px;top:912px';
-  document.getElementById('z183').style.cssText += ';left:96px;top:1014px';
-  document.getElementById('z457').style.cssText += ';left:96px;top:1116px';
+  /* THE LEFT COLUMN ENDS 53 PX CLEAR OF THE RIGHT ONE. At x 120 the widest
+   * label, DEPLOYMENT AND RECOVERY at 23 characters, reached x 507 against a
+   * prose column starting at 520, and the two read at feed size as one string,
+   * DEPLOYMENT AND RECOVERYThe 55 metre zone applies. That was the run's one
+   * hard fail and it capped the score. AKFIT.guard now refuses it outright. */
+  document.getElementById('z15').style.cssText  += ';left:80px;top:562px';
+  document.getElementById('z55').style.cssText  += ';left:80px;top:906px';
+  document.getElementById('z183').style.cssText += ';left:80px;top:1010px';
+  document.getElementById('z457').style.cssText += ';left:80px;top:1114px';
   // THE LEVEL A FINDING MOVES TO THE TOP LEFT, out of the right column. That
   // column already carries a 38 word body and a four line clarification, and
   // the flow room named this frame the deck's bail point for exactly that
@@ -114,7 +119,7 @@ window.renderReady = (async function(){
 
   ['z15','z55','z183','z457','zla'].forEach(function(id){
     AKFIT.plate(document.getElementById(id),
-      {padX:12, padY:7, fill:"rgba(3,12,18,0.62)", radius:3, note:"zone label " + id});
+      {padX:12, padY:7, fill:"rgba(3,12,18,0.34)", radius:3, note:"zone label " + id});
   });
 
   var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:104, depth:0.98, pad:26});
@@ -222,24 +227,35 @@ window.renderReady = (async function(){
      * right edge heading up and left crosses back over the short first line and
      * lands 96 px^2 of hard edged ink inside it. Picking the edge by the larger
      * component of the direction to the target makes that impossible. */
-    /* EVERY CALL ON THIS FRAME LEAVES BY A SIDE, never by the top or bottom.
-     * Four labels stand in one left hand stack and every rim is above most of
-     * them, so a leader that exits vertically turns diagonally across whatever
-     * label lies between, which is what happened three times here. Side exit
-     * plus a straight 60 px run clears the stack before any turn. */
-    var mx = b.x + b.w/2, my = b.y + b.h/2;
-    var dx = target[0] - mx, from;
-    from = dx > 0 ? [b.right + 14, my] : [b.x - 14, my];
+    /* THE EXIT IS DECIDED BY THE BOX EDGES, NOT BY ITS CENTRE, and that is the
+     * whole difference between a leader that crosses its own label and one that
+     * does not. Three earlier rules all compared the target to the box CENTRE
+     * and all three failed, because a target inside the box's own x span is
+     * neither left nor right of it: aimed sideways the leader turns back
+     * through the label it came from, and aimed at the centre's side it crosses
+     * a neighbour. So a target BEYOND an edge leaves by that edge with a short
+     * straight run first, and a target within the box's span leaves vertically
+     * AT THE TARGET'S OWN X, which makes the leader a clean perpendicular that
+     * can cross nothing. The run is 26 px, not 60, because 60 put the elbow
+     * inside the prose column on this frame. */
+    var mx = b.x + b.w/2, my = b.y + b.h/2, from, via;
+    if (target[0] > b.right) {
+      from = [b.right + 12, my]; via = [from[0] + 26, my];
+    } else if (target[0] < b.x) {
+      from = [b.x - 12, my];     via = [from[0] - 26, my];
+    } else {
+      var vy = (target[1] < my) ? b.y - 12 : b.bottom + 12;
+      from = [target[0], vy];    via = from;
+    }
     /* A SIDE EXIT GETS AN ELBOW, which is library 72's own idiom and here it is
      * load bearing rather than decorative. A leader that leaves a label's side
      * and then turns diagonally re-enters the row it came from, and on this
      * frame the 183 m call did exactly that: 130 px^2 of it landed inside the
      * 55 m label's second line, through three separate re-aimings. Sixty
      * pixels of straight run clears the whole stack before the turn. */
-    var via = [from[0] + (from[0] > mx ? 60 : -60), from[1]];
     cx.strokeStyle = "rgba(186,214,218,0.80)"; cx.lineWidth = 1.25;
     cx.beginPath(); cx.moveTo(from[0], from[1]);
-    if (via) cx.lineTo(via[0], via[1]);
+    if (via[0] !== from[0] || via[1] !== from[1]) cx.lineTo(via[0], via[1]);
     cx.lineTo(target[0], target[1]); cx.stroke();
     var tail = via;
     if (z.r < 20){

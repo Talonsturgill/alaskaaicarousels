@@ -90,7 +90,7 @@ window.renderReady = (async function(){
 
   ['lt','lc','lship','lrest'].forEach(function(id){
     AKFIT.plate(document.getElementById(id),
-      {padX:12, padY:7, fill:"rgba(3,10,16,0.72)", radius:3, note:"mono label " + id});
+      {padX:12, padY:7, fill:"rgba(3,10,16,0.34)", radius:3, note:"mono label " + id});
   });
   ['r1000','r1500','r2000'].forEach(function(id){
     var el = document.getElementById(id);
@@ -99,7 +99,7 @@ window.renderReady = (async function(){
     el.style.textAlign = 'right';
     el.style.left = (RAIL_X - 26 - 120) + 'px';
     el.style.top = (S.depth({r1000:1000, r1500:1500, r2000:2000}[id]) - 17) + 'px';
-    AKFIT.plate(el, {padX:10, padY:6, fill:"rgba(3,9,14,0.66)", radius:3,
+    AKFIT.plate(el, {padX:10, padY:6, fill:"rgba(3,9,14,0.34)", radius:3,
                      note:"rail numeral " + id});
   });
 
@@ -200,8 +200,12 @@ window.renderReady = (async function(){
         // 0.62 and 1.2 px. The denominator has to survive a five times
         // downsample or the lit band has nothing to be a fraction OF, which
         // is the one thing this frame exists to show.
-        cx.fillStyle = "rgba(125,143,148," + (0.62 * aq).toFixed(3) + ")";
-        cx.fillRect(p[0], p[1], CW - 2.2, 1.2);
+        /* 0.80 and 1.7 px. The scorer read this field, the deck's billed
+         * strongest single image, as dissolving to noise at 432 px, which
+         * leaves the lit band with nothing to be a fraction OF. The ratio
+         * of 132 to 2,058 is untouched; only the ink that carries it moves. */
+        cx.fillStyle = "rgba(125,143,148," + (0.80 * aq).toFixed(3) + ")";
+        cx.fillRect(p[0], p[1], CW - 2.0, 1.7);
       }
     }
   })();

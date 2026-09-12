@@ -84,11 +84,11 @@ window.renderReady = (async function(){
 
   ['lj','lg','ld'].forEach(function(id){
     AKFIT.plate(document.getElementById(id),
-      {padX:12, padY:7, fill:"rgba(4,14,20,0.62)", radius:3, note:"mono label " + id});
+      {padX:12, padY:7, fill:"rgba(4,14,20,0.34)", radius:3, note:"mono label " + id});
   });
   ['r500','r600','r800','r1000'].forEach(function(id){
     AKFIT.plate(document.getElementById(id),
-      {padX:10, padY:6, fill:"rgba(3,12,18,0.66)", radius:3, note:"rail numeral " + id});
+      {padX:11, padY:6, fill:"rgba(3,12,18,0.50)", radius:3, note:"rail numeral " + id});
   });
 
   var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:108, depth:0.98, pad:26});

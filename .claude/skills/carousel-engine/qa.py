@@ -3669,10 +3669,25 @@ def main():
                     else:
                         res["fails"].append(msg)
 
-        out["fails"] += len(res["fails"])
-        out["warns"] += len(res["warns"])
         out["slides"].append(res)
 
+    # THE TOTALS ARE DERIVED, NOT ACCUMULATED (2026-09-12, run No.57). They used
+    # to be summed by two `out["fails"] += ...` lines at the FOOT of the
+    # per-slide loop, which every `continue` above them jumped. The missing-PNG
+    # branch is exactly such a `continue`: it appended its FAIL to the slide row,
+    # printed it to the terminal, and never counted it, so a slide whose render
+    # threw produced machine_qa.json {"fails": 0, "warns": 0, "verdict":
+    # "PASS"} and exit 0. Reconstructed on disk this run: render.py hard-failed
+    # slide-01, qa.py printed `FAIL: png missing` and then `verdict: PASS`.
+    #
+    # It matters beyond the terminal because nothing downstream reads the
+    # terminal: machine_qa.json is what gate_status.py parses, what the scorer is
+    # handed and what the run record reports, and all three would be told a deck
+    # with a missing image passed clean. Summing the rows that were actually
+    # written cannot be skipped by any future early exit, so the class is closed
+    # rather than the one instance patched.
+    out["fails"] = sum(len(s["fails"]) for s in out["slides"])
+    out["warns"] = sum(len(s["warns"]) for s in out["slides"])
     out["verdict"] = "FAIL" if out["fails"] else ("WARN" if out["warns"] else "PASS")
     (rdir / "machine_qa.json").write_text(json.dumps(out, indent=2))
     for s in out["slides"]:
