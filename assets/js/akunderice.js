@@ -660,10 +660,19 @@
     var o = opts || {}, R = 100;
     var k = o.k == null ? 1 : o.k;
     var wide = o.wide == null ? 2.0 : o.wide;
-    /* the key's own push, tiny at el 62 */
+    /* the key's own push, tiny at el 62.
+     *
+     * A CAST FALLS AWAY FROM THE LIGHT AND THIS MOVED IT TOWARD IT
+     * (2026-09-12, found by a code review of run No.57). `a` is the ANTI-light
+     * azimuth and is right: for az 12 it gives the screen direction (-0.21,
+     * +0.98), left and down, which is the lower left lee this file's own
+     * LIGHT docstring promises. Both components were then NEGATED again, so
+     * the default push came out up and to the right, toward the key, against
+     * the direction S.profile lights every silhouette in the deck by. One sign
+     * each, applied once. */
     var a = (S.LIGHT.azDeg - 180) * Math.PI / 180;
-    var bx = o.bx == null ? -Math.sin(a) * w * 0.07 : o.bx;
-    var by = o.by == null ? Math.cos(a) * w * 0.04 : o.by;
+    var bx = o.bx == null ? Math.sin(a) * w * 0.07 : o.bx;
+    var by = o.by == null ? -Math.cos(a) * w * 0.04 : o.by;
     cx.save();
     cx.translate(fx + bx, fy + by);
     cx.save();
@@ -735,6 +744,10 @@
     cx.stroke();
 
     var marks = [], i;
+    /* the outermost tick this call actually drew, so the returned band covers
+     * the marks rather than the spine alone. 2 is the spine's own half width
+     * and is the floor for a rail with no ticks at all. */
+    var longestTick = 2;
     for (i = 0; i < ticks.length; i++) {
       var m = ticks[i][0], label = ticks[i][1];
       var y = S.depth(m);
@@ -765,6 +778,8 @@
        * with weight: full weight, full ink, dropped 8 px below the numeral's
        * centre line so nothing beside a glyph sits at its cap middle. */
       var major = ticks[i][2] !== false;
+      var tickLen = major ? 17 : 11;
+      if (tickLen > longestTick) longestTick = tickLen;
       cx.strokeStyle = o.tickInk || ink;
       cx.lineWidth = major ? 2.2 : 1.6;
       /* AND IT GOES OUTWARD, past the spine, away from the numeral. A vertical
@@ -774,7 +789,7 @@
        * take for punctuation, and the tick stays at exactly its own depth. */
       cx.beginPath();
       cx.moveTo(x, y);
-      cx.lineTo(x + (major ? 17 : 11), y);
+      cx.lineTo(x + tickLen, y);
       cx.stroke();
       marks.push({ at: Math.round(y), means: label });
     }
@@ -786,7 +801,14 @@
         unit: o.unit || "metres below the ice",
         from: [Math.round(S.depth(w.d0)), w.d0],
         to: [Math.round(S.depth(w.d1)), w.d1],
-        band: [Math.round(x - bandW), Math.round(x + 2)],
+        /* THE BAND HAS TO COVER THE TICKS (2026-09-12, found by a code review
+         * of run No.57). Every tick is drawn OUTWARD to x+11 or x+17 and this
+         * band stopped at x+2, so a slide that declared the axis from this
+         * return value would have declared a band excluding most of each
+         * mark's ink, which is the exact census argument that cost this run
+         * four rounds. No.57 hard-typed [1012,1034] instead, which is the
+         * symptom of a return value nobody could trust. */
+        band: [Math.round(x - bandW), Math.round(x + longestTick)],
         marks: marks
       }
     };

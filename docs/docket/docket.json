@@ -2919,11 +2919,6 @@
           "kind": "milestone"
         }
       ],
-      "location": {
-        "name": "Beaufort and eastern Chukchi seas, 204 km off the Alaska coast at the nearest point",
-        "lon": -150.0,
-        "lat": 72.0
-      },
       "sources": [
         {
           "url": "https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm",
@@ -2952,6 +2947,10 @@
         {
           "date": "2026-09-12",
           "note": "Added from today's verified claims. NMFS issued the Office of Naval Research an incidental harassment authorization for Year 9 of its Arctic Research Activities, published September 10th, 2026 at 91 FR 57547, effective September 14th, 2026 through September 13th, 2027. Signed September 4th by Kimberly Damon-Randall, Director of the NMFS Office of Protected Resources, filed September 9th. The authorization covers Level B harassment of beluga whale and Arctic ringed seal, and states that take by Level A harassment is neither anticipated nor authorized. Two figures in the record are worth tracking as this series continues. The stock table gives the Beaufort Sea beluga abundance as 39,258 from a 1992 survey, and gives the Arctic ringed seal stock abundance as undetermined, with its potential biological removal also undetermined, for the one species here listed as threatened under the Endangered Species Act. The finding relies on a Biological Opinion the NMFS Alaska Regional Office issued on September 13th, 2022. No authorized take figure is recorded here, because the take table could not be read from the Federal Register text or XML on any route tried and an abundance estimate is not a take."
+        },
+        {
+          "date": "2026-09-12",
+          "note": "Location dropped the same day it was added, and the record says so rather than quietly losing a field. The item shipped with an exact point, 72.0 north and 150.0 west, standing in for a study area of about 639,237 square kilometres across the Beaufort and eastern Chukchi seas, the high seas and part of Canada's exclusive economic zone. No claim in the run's verified set establishes those coordinates, and the site publishes a location as schema.org GeoCoordinates and as a pin on the docket map, so a representative point was being published as a measured fact. The area itself is in this item's summary and in the deck, where it belongs. The validator's own remedy text is the one taken here, that an item keeps its page and its row without claiming a spot on the map."
         }
       ],
       "url": "https://alaskaaihq.com/docket/onr-arctic-iha-year-9/"

@@ -1474,6 +1474,20 @@
       "confidence": 0.86,
       "born": "2026-09-12",
       "evidence": "No.57 shipped one hard fail through six rooms behind a reconciliation row describing a layout that never rendered, corrected it, and then the round 3 scorer found two more rows of the same table still misdescribing the render. Row 01 read NOTHING, BUILT AS PLANNED about the one frame whose dial position the run deliberately refused to move, and the refusal is argued three pages later in the same document. Row 02 named a kicker string that copy.json's own note records being replaced twice."
+    },
+    {
+      "id": "test-the-branch-this-deck-does-not-take",
+      "instinct": "TEST THE BRANCH THIS DECK DOES NOT TAKE. A gate that reads the render can only see the code path the render used. When a helper takes a colour, hand it a hex AND an rgba; when it takes a container, hand it a wrapped one; when it reports success, make it fail once on purpose and check that it says so.",
+      "confidence": 0.9,
+      "born": "2026-09-12",
+      "evidence": "No.57 shipped at 8.72 with seventeen green gate rows and an outside code review then reproduced seven defects. Five were code paths this deck missed. AKFIT.plate's feather accepted a hex fill and then built three identical opaque stops, which is the hard edged rectangle the feather exists to prevent, and the deck passed rgba() on all nine frames. AKFIT.clamp could return dx 0 for a cluster that does not fit, a false pass from the function whose job is to report the fit. AKICE.rail returned a band ending at the spine while drawing ticks 17 px outward."
+    },
+    {
+      "id": "read-the-checks-on-the-head-you-are-merging",
+      "instinct": "READ THE CHECKS ON THE HEAD YOU ARE ABOUT TO MERGE. Not the ones you remember passing, and not the local gate table, which is a different set of checks from CI's.",
+      "confidence": 0.92,
+      "born": "2026-09-12",
+      "evidence": "No.57 merged with two CI checks red on its own head. ask_answers.py had failed because the new docket item's decider matched no agency rule, so the site could not say who decided it, and the mobile suite had failed on two landscape devices because the item's new map pin sat under the sticky nav. Both notifications arrived in the same batch, after the merge. Local gate_status was 0 FAIL the whole time, because it does not run either check."
     }
   ]
 }

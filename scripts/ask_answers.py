@@ -152,6 +152,14 @@ AGENCY_RULES = [
     # no recognised agency the same hour the item landed.
     (r"Federal Communications Commission|\bFCC\b", "the FCC",
      ("fcc", "federal communications", "federal communications commission")),
+    # Ordered here for the reason the FCC note above gives, specific phrases
+    # before bare words. Added 2026-09-12 with the first NMFS item, the Navy's
+    # Year 9 Arctic acoustic authorization, and the self-test caught it the same
+    # way it caught the FCC one: an item with no recognised agency, which is a
+    # reader asking who decided this and being handed nothing.
+    (r"National Marine Fisheries|NOAA Fisheries|\bNMFS\b", "NOAA Fisheries",
+     ("nmfs", "noaa", "noaa fisheries", "national marine fisheries",
+      "office of protected resources")),
     (r"Air Force", "the Air Force", ("air force", "usaf", "afb")),
     (r"\bArmy\b", "the Army", ("army", "us army")),
     (r"Nuclear Regulatory Commission", "the NRC", ("nrc", "nuclear regulatory")),

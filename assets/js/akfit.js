@@ -119,6 +119,42 @@
              right: r.left + r.width, bottom: r.top + r.height };
   }
 
+  /* `#rgb`, `#rgba`, `#rrggbb` and `#rrggbbaa` to an `rgba()` string, so the
+   * feather below has four channels to work with whatever the caller typed. */
+  function hexToRgba(h) {
+    var v = String(h).trim().replace(/^#/, "");
+    if (v.length === 3 || v.length === 4) v = v.split("").map(function (c) { return c + c; }).join("");
+    if (v.length !== 6 && v.length !== 8) return String(h);
+    var n = function (i) { return parseInt(v.substr(i, 2), 16); };
+    var a = v.length === 8 ? (n(6) / 255) : 1;
+    return "rgba(" + n(0) + ", " + n(2) + ", " + n(4) + ", " + a.toFixed(3) + ")";
+  }
+
+  /* WHERE AN ABSOLUTE CHILD'S ZERO ACTUALLY IS (2026-09-12, found by a code
+   * review of run No.57). `inkRect` returns VIEWPORT coordinates, and `plate`
+   * applies them as `left`/`top` to a sibling of the text, whose origin is the
+   * nearest positioned ancestor. When that ancestor is offset from the
+   * viewport the offset is counted twice and the plate lands away from the
+   * text it was measured from, which `guard()` then reports as a plate that
+   * does not enclose its string. No.57 set every label directly on `body`, so
+   * the two origins coincided and the bug was invisible. This returns the
+   * containing block's own viewport origin, which is (0,0) for that case, so
+   * the deck's geometry is unchanged and a wrapped one is now correct. */
+  function originOf(el) {
+    var p = el && el.parentNode;
+    while (p && p.nodeType === 1 && p !== document.documentElement) {
+      var cs = global.getComputedStyle(p);
+      if (cs.position !== "static" || cs.transform !== "none" ||
+          cs.filter !== "none" || cs.perspective !== "none") {
+        var r = p.getBoundingClientRect();
+        return { x: r.left + (parseFloat(cs.borderLeftWidth) || 0),
+                 y: r.top + (parseFloat(cs.borderTopWidth) || 0) };
+      }
+      p = p.parentNode;
+    }
+    return { x: 0, y: 0 };
+  }
+
   /* The INK box rather than the element box. A block element is as wide as its
    * width property whatever the text does, so measuring the element tells you
    * about the CSS and not about the string. A Range over the text nodes gives
@@ -230,8 +266,10 @@
     /* the stroke is drawn INSIDE the declared box via box-sizing, so the border
      * never eats into the padding the text was measured for */
     d.style.boxSizing = "border-box";
-    d.style.left = x.toFixed(2) + "px";
-    d.style.top = y.toFixed(2) + "px";
+    /* viewport measurement, containing-block placement. See originOf. */
+    var org = originOf(textEl);
+    d.style.left = (x - org.x).toFixed(2) + "px";
+    d.style.top = (y - org.y).toFixed(2) + "px";
     d.style.width = w.toFixed(2) + "px";
     d.style.height = h.toFixed(2) + "px";
     /* A CONTAINER MAY NOT BE A HARD EDGED RECTANGLE (2026-09-12). Five pixel
@@ -245,13 +283,24 @@
     if (o.fill) {
       var feather = o.feather == null ? 1 : o.feather;
       var isFlat = /^(#|rgb)/i.test(String(o.fill).trim());
+      /* A HEX FILL IS A FLAT FILL AND THE FEATHER HAD TO BE TOLD SO
+       * (2026-09-12, found by a code review of run No.57). `isFlat` accepted
+       * `#05141a` and both replacements below only ever matched `rgba?(...)`,
+       * so for a hex the three gradient stops came out IDENTICAL and opaque.
+       * The result is a uniformly filled hard edged rectangle, which is the
+       * exact defect this feather exists to prevent, arriving silently for
+       * every caller who types a hex. No.57 passed rgba() on all nine frames
+       * and so never saw it. Hex is normalised to rgba first, and the deck's
+       * own rgba path is untouched. */
+      var flat = String(o.fill).trim();
+      if (feather && /^#/.test(flat)) flat = hexToRgba(flat);
       if (feather && isFlat) {
-        var mid = String(o.fill).replace(/rgba?\(([^)]*)\)/i, function (m, inner) {
+        var mid = String(flat).replace(/rgba?\(([^)]*)\)/i, function (m, inner) {
           var parts = inner.split(",");
           if (parts.length === 4) parts[3] = " " + (parseFloat(parts[3]) * 0.62).toFixed(3);
           return "rgba(" + parts.join(",") + ")";
         });
-        var zero = String(o.fill).replace(/rgba?\(([^)]*)\)/i, function (m, inner) {
+        var zero = String(flat).replace(/rgba?\(([^)]*)\)/i, function (m, inner) {
           var parts = inner.split(",").slice(0, 3);
           return "rgba(" + parts.join(",") + ", 0)";
         });
@@ -263,7 +312,7 @@
          * The falloff now starts immediately and the ellipse is well inside
          * the box, so what a reader sees is a patch of quieter water. */
         d.style.background = "radial-gradient(ellipse 64% 76% at 50% 50%, "
-          + o.fill + " 0%, " + mid + " 34%, " + zero + " 100%)";
+          + flat + " 0%, " + mid + " 34%, " + zero + " 100%)";
       } else {
         d.style.background = o.fill;
       }
@@ -312,6 +361,21 @@
     var list = els(sel);
     var u = union(list, 0);
     if (!u) return { dx: 0, dy: 0 };
+
+    /* A TRANSLATION CANNOT FIX A CLUSTER THAT DOES NOT FIT (2026-09-12, found
+     * by a code review of run No.57). With a cluster wider than R - L the two
+     * corrections below fight: the first pulls its right edge in, the second
+     * pushes its left edge back, and the second wins. A cluster already flush
+     * left even reduces to dx 0 and returns as though nothing were wrong,
+     * which is a silent false pass from the one function whose whole job is to
+     * report that the group is inside the box. Only a narrower cluster or a
+     * wider box fixes this, so it breaches rather than lying. */
+    if (u.w > (R - L) + 0.5 || u.h > (B - T) + 0.5)
+      breach("AKFIT.clamp: the cluster `" + sel + "` measures " +
+             u.w.toFixed(1) + "x" + u.h.toFixed(1) + " and the box it has to sit " +
+             "in is " + (R - L).toFixed(1) + "x" + (B - T).toFixed(1) + ". Moving it " +
+             "cannot make it fit. Narrow the cluster or widen the box." +
+             (o.note ? " (" + o.note + ")" : ""));
 
     var dx = 0, dy = 0;
     if (u.right > R) dx = -(u.right - R);
