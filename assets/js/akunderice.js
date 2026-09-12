@@ -476,7 +476,15 @@
     var maxLen = o.maxLen == null ? 3000 : o.maxLen;
     var iceAt = o.iceAt || function () { return S.depth(0); };
     var bedY = o.bedY == null ? S.H : o.bedY;
-    var col = o.rgb || [255, 199, 44];
+    /* THE DEFAULT WAS GOLD AND THAT WAS A TRAP (2026-09-12). A ray family is
+     * DRAWN geometry, `[design]`, and a deck whose colour law reserves
+     * #FFC72C for what the record KNOWS cannot have its most-used field
+     * function reach for gold when a caller says nothing. Run No.57 called
+     * S.rays on three frames without an rgb and shipped a warm fan across two
+     * of them; two pixel critics reported it as a colour law breach and both
+     * were right. The default is now the ice family, which is what a ray in
+     * this water looks like anyway, and gold is available only on request. */
+    var col = o.rgb || [216, 236, 238];
     var a0 = o.alpha == null ? 0.34 : o.alpha;
     var wid = o.width == null ? 1.5 : o.width;
     var rnd = AK.rng(o.seed);
@@ -725,12 +733,31 @@
        * so the answer is not to declare it more quietly, it is to DRAW IT. The
        * rank survives as length and as a half step in weight, never as ink the
        * gate can't see. */
+      /* THE TICK MAY NOT READ AS PUNCTUATION (2026-09-12). Drawn at the
+       * numeral's own optical weight, at its own cap middle, eight pixels after
+       * its last glyph, an 18 px tick IS an em dash, and this house prints
+       * none. Four pixel critics on one run read the rail as "50 m --",
+       * "100 m --", "1,500 m --". So the tick is shorter, thinner, darker than
+       * the type, and it is dropped below the numeral's baseline: it now reads
+       * as hardware attached to the spine rather than as a mark after a word. */
+      /* AND IT STILL HAS TO BE FINDABLE. The first attempt at this fix dropped
+       * the tick to 1.6 px in a dimmer ink and the axis census immediately
+       * reported every declared mark as no stronger than the band's own
+       * texture, which is the 2026-09-11 defect arriving from the other
+       * direction. The separation from the type is bought with POSITION, not
+       * with weight: full weight, full ink, dropped 8 px below the numeral's
+       * centre line so nothing beside a glyph sits at its cap middle. */
       var major = ticks[i][2] !== false;
-      cx.strokeStyle = ink;
+      cx.strokeStyle = o.tickInk || ink;
       cx.lineWidth = major ? 2.2 : 1.6;
+      /* AND IT GOES OUTWARD, past the spine, away from the numeral. A vertical
+       * offset moves the MARK, which the census correctly reports as a mark
+       * that is not where it is declared. Drawing outward leaves nothing at all
+       * between the numeral and the spine, so there is nothing a reader can
+       * take for punctuation, and the tick stays at exactly its own depth. */
       cx.beginPath();
-      cx.moveTo(x - (major ? 18 : 11), y);
-      cx.lineTo(x, y);
+      cx.moveTo(x, y);
+      cx.lineTo(x + (major ? 17 : 11), y);
       cx.stroke();
       marks.push({ at: Math.round(y), means: label });
     }
@@ -765,7 +792,9 @@
   S.railLabels = function (items, opts) {
     var o = opts || {}, out = [], i;
     var x = o.x == null ? 1000 : o.x;
-    var gap = o.gap == null ? 26 : o.gap;
+    /* 38, not 26. See S.rail's tick note: the numeral needs enough air that
+     * nothing beside it can be read as punctuation. */
+    var gap = o.gap == null ? 38 : o.gap;
     var w = o.width == null ? 120 : o.width;
     var top = o.top == null ? 74 : o.top;
     var bottom = o.bottom == null ? S.H - 74 : o.bottom;

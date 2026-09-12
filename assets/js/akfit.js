@@ -200,8 +200,8 @@
   function plate(textEl, opts) {
     var o = opts || {};
     optionContract("AKFIT.plate", o, ["padX", "padY", "padTop", "padBottom",
-      "fill", "stroke", "strokeWidth", "dash", "radius", "className", "minWidth",
-      "minHeight", "zIndex", "note", "opacity"]);
+      "fill", "feather", "stroke", "strokeWidth", "dash", "radius", "className",
+      "minWidth", "minHeight", "zIndex", "note", "opacity"]);
     if (!textEl || !textEl.getBoundingClientRect)
       breach("AKFIT.plate: first argument must be an element, got " + typeof textEl);
 
@@ -234,7 +234,33 @@
     d.style.top = y.toFixed(2) + "px";
     d.style.width = w.toFixed(2) + "px";
     d.style.height = h.toFixed(2) + "px";
-    if (o.fill) d.style.background = o.fill;
+    /* A CONTAINER MAY NOT BE A HARD EDGED RECTANGLE (2026-09-12). Five pixel
+     * critics on one run reported plates built here as "flat hard-edged
+     * near-black rectangles", which is verbatim the prototype defect the
+     * run's own brief had already banned in the art layer. A flat `background`
+     * colour is exactly that. So a plain colour fill is FEATHERED into a
+     * radial falloff by default: the ink still sits on quieter ground and the
+     * box has no locatable edge. Pass `feather: 0` for a case that genuinely
+     * wants a struck edge, or pass a gradient of your own as `fill`. */
+    if (o.fill) {
+      var feather = o.feather == null ? 1 : o.feather;
+      var isFlat = /^(#|rgb)/i.test(String(o.fill).trim());
+      if (feather && isFlat) {
+        var mid = String(o.fill).replace(/rgba?\(([^)]*)\)/i, function (m, inner) {
+          var parts = inner.split(",");
+          if (parts.length === 4) parts[3] = " " + (parseFloat(parts[3]) * 0.78).toFixed(3);
+          return "rgba(" + parts.join(",") + ")";
+        });
+        var zero = String(o.fill).replace(/rgba?\(([^)]*)\)/i, function (m, inner) {
+          var parts = inner.split(",").slice(0, 3);
+          return "rgba(" + parts.join(",") + ", 0)";
+        });
+        d.style.background = "radial-gradient(ellipse 74% 88% at 50% 50%, "
+          + o.fill + " 0%, " + mid + " 58%, " + zero + " 100%)";
+      } else {
+        d.style.background = o.fill;
+      }
+    }
     if (o.stroke) {
       d.style.border = sw.toFixed(2) + "px " + (o.dash ? "dashed" : "solid") + " " + o.stroke;
     }
