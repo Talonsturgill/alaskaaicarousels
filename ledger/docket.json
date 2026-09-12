@@ -2838,6 +2838,83 @@
           "note": "Checked and unchanged. Resolution 2026-25 was adopted on August 27th, 2026 and the moratorium request is still the one item standing on both the state and the federal half of the borough's 25 priorities. Mayor Grier Hopkins told Alaska's News Source the borough heard the community loud and clear, and that residents want it worked out how data centers can best be regulated and where, if anywhere, they should go in the borough. The state half can't be taken up before the 35th Alaska Legislature convenes on January 19th, 2027."
         }
       ]
+    },
+    {
+      "id": "onr-arctic-iha-year-9",
+      "title": "The Navy's permit for an under-ice robot navigation grid",
+      "kind": "regulatory-docket",
+      "status": "decided",
+      "decider": "NOAA National Marine Fisheries Service, Office of Protected Resources",
+      "public_access": "closed",
+      "access_note": "The record on this one is shut. NMFS took comment for 30 days after publishing the proposed authorization on July 22nd, 2026 and received three comment letters, all from private citizens, then issued the authorization on September 10th, 2026. There is no open filing path now. The next door is the Year 10 renewal, which the Year 9 proposal already invited comment on inside its own action line, and no renewal notice has published. Anyone who wants standing in Year 10 should watch the Federal Register for a proposed authorization under docket RTID 0648-XF889 or its successor.",
+      "summary": "NMFS has authorized the Office of Naval Research to harass marine mammals incidental to Year 9 of its Arctic Research Activities in the Beaufort and Chukchi seas, and what the authorization covers is an acoustic navigation grid. Up to six moored sources at 900 to 950 Hz and two drifting ice gateway buoys will transmit a 30 second pulse every four hours for one year, so that gliders operating under sea ice can fix a position by trilateration from those sources rather than by dead reckoning. The study area is about 639,237 square kilometres across the US Exclusive Economic Zone, the high seas north of Alaska and part of the Canadian Exclusive Economic Zone, coming within 204 kilometres of the Alaska coast at its nearest point. A research cruise of 22 days is planned to begin September 22nd, 2026 aboard R/V Sikuliaq, US Coast Guard Cutter HEALY or another vessel, while the sound sources stay in the water for twelve months. The authorization covers Level B harassment only and states that take by Level A harassment is neither anticipated nor authorized.",
+      "key_dates": [
+        {
+          "date": "2026-07-22",
+          "label": "Proposed authorization published at 91 FR 46055, opening a 30 day comment period",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-04",
+          "label": "Authorization signed by the Director of the NMFS Office of Protected Resources",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-10",
+          "label": "Authorization issued and published at 91 FR 57547",
+          "kind": "decision"
+        },
+        {
+          "date": "2026-09-14",
+          "label": "Authorization takes effect",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-22",
+          "label": "First research cruise planned to begin, 22 days in September and October",
+          "kind": "milestone"
+        },
+        {
+          "date": "2027-09-13",
+          "label": "Authorization expires, one year being the statutory maximum",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Beaufort and eastern Chukchi seas, 204 km off the Alaska coast at the nearest point",
+        "lon": -150.0,
+        "lat": 72.0
+      },
+      "sources": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm",
+          "outlet": "Federal Register via GPO govinfo, NOAA National Marine Fisheries Service",
+          "date": "2026-09-10"
+        },
+        {
+          "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt",
+          "outlet": "Federal Register plain text, NOAA National Marine Fisheries Service",
+          "date": "2026-09-10"
+        },
+        {
+          "url": "https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt",
+          "outlet": "Federal Register plain text, NOAA National Marine Fisheries Service",
+          "date": "2026-07-22"
+        },
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-07-22/html/2026-14816.htm",
+          "outlet": "Federal Register via GPO govinfo, NOAA National Marine Fisheries Service",
+          "date": "2026-07-22"
+        }
+      ],
+      "first_seen": "2026-09-12",
+      "last_updated": "2026-09-12",
+      "history": [
+        {
+          "date": "2026-09-12",
+          "note": "Added from today's verified claims. NMFS issued the Office of Naval Research an incidental harassment authorization for Year 9 of its Arctic Research Activities, published September 10th, 2026 at 91 FR 57547, effective September 14th, 2026 through September 13th, 2027. Signed September 4th by Kimberly Damon-Randall, Director of the NMFS Office of Protected Resources, filed September 9th. The authorization covers Level B harassment of beluga whale and Arctic ringed seal, and states that take by Level A harassment is neither anticipated nor authorized. Two figures in the record are worth tracking as this series continues. The stock table gives the Beaufort Sea beluga abundance as 39,258 from a 1992 survey, and gives the Arctic ringed seal stock abundance as undetermined, with its potential biological removal also undetermined, for the one species here listed as threatened under the Endangered Species Act. The finding relies on a Biological Opinion the NMFS Alaska Regional Office issued on September 13th, 2022. No authorized take figure is recorded here, because the take table could not be read from the Federal Register text or XML on any route tried and an abundance estimate is not a take."
+        }
+      ]
     }
   ]
 }
