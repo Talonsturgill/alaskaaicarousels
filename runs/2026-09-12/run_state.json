@@ -18,8 +18,8 @@
     "scoring": "done",
     "ship": "done",
     "upgrade": "done",
-    "gmail": "in_progress",
-    "retro": "pending"
+    "gmail": "done",
+    "retro": "done"
   },
   "artifacts": {
     "wake": [
@@ -29,9 +29,7 @@
     "craft_refresh": [
       "knowledge/FIELD_NOTES.md (2026-09-12 entry)"
     ],
-    "gas_watch": [
-      "out/2026-09-12/site_signoff.md"
-    ],
+    "gas_watch": "WARN, and it is a REPORT rather than a task. 38 days on record with one missing at 2026-09-08, which sits immediately after the seven run collector outage PR #347 repaired on 09-07. Cron writes that series and a routine run may not touch it. The page itself is correct: its chart matches the record over 36 verified days, every numeral traces to a computation, the feed parses at 38 records and agrees with the ledger, and today's 7.70 Bcf reading reaches the page that publishes it. Someone who can edit the collector should look at the gap.",
     "research": [
       "out/2026-09-12/scout_merge.md"
     ],
@@ -79,6 +77,15 @@
     "upgrade": [
       "ledger/upgrades.json (3 entries)",
       "out/2026-09-12/automation_retro.md"
+    ],
+    "site_signoff": "PASS. 105 pages and 18 of 18 checks clean, read in the BUILT directory rather than in the builder, and re-run after main's cron commits were merged in and docs/ was rebuilt from the merged state.",
+    "site_fixes": "none. Nothing on the live site needed repair this run. The one thing this run did to docs/ was rebuild it, twice, after main moved underneath it.",
+    "gmail": [
+      "runs/2026-09-12/gmail_draft_id.txt (draft r-2547555366909666644)"
+    ],
+    "retro": [
+      "runs/2026-09-12/showrunner_arc.md",
+      "runs/2026-09-12/next_run_brief.md"
     ]
   },
   "date_note": "runs/2026-09-12/ did not exist at wake; date taken normally.",
@@ -91,5 +98,7 @@
   "dedupe": "exit 1, two LIKELY DUPLICATE rows (No.44 14 days, No.52 6 days), both read in full, semantic call is not a repeat. Recorded in selection.md.",
   "thesis": "The permit knows the machine position to the metre and does not know the animal number at all. Beaufort beluga counted in 1992, Arctic ringed seal abundance UND, on a one year instrument in its ninth year with three public comment letters.",
   "dossier_gate": "PASS, 9 dossiers, 0 fails, 0 warns",
-  "state_note": "Phase 12 found this file shipping with seven phases still reading pending while the commits proved they had run. gate_status reads run_state.json only for parseability and never looks at the phases dict, so nothing caught it. Corrected by hand here and recommended as a gate row in the next run's brief."
+  "state_note": "Phase 12 found this file shipping with seven phases still reading pending while the commits proved they had run. gate_status reads run_state.json only for parseability and never looks at the phases dict, so nothing caught it. Corrected by hand here and recommended as a gate row in the next run's brief.",
+  "status": "complete",
+  "completed_utc": "2026-09-12T17:45:00Z"
 }
