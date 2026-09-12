@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-09-12-the-question-comes-first",
+      "date": "2026-09-12",
+      "title": "The Question Comes First",
+      "caption": "UAA has a new dry EEG system for its AI and Robotics Lab. Students and faculty have trained, with reading and programming studies planned.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-12-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-12-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-12-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-09-12-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-09-11-over-the-missing-road",
       "date": "2026-09-11",
       "title": "Over the Missing Road",
