@@ -744,6 +744,45 @@
     };
   };
 
+  /* ---------------- the fixtures, placed from the mapping and clamped ---------------- */
+
+  /* Depth labels are the one piece of type in this deck whose POSITION is a
+   * measurement, so they are placed from `S.depth` and never from a typed top.
+   * They are then clamped inside the frame, because the mapping will happily put
+   * the 0 m label above the top edge and the prototype shipped exactly that,
+   * half a label hanging off the frame on a slide every gate passed.
+   *
+   * `items` is [[elementId, metres], ...]. Returns what it placed, including any
+   * label it had to clamp, so a dossier can say so rather than a critic finding
+   * it. A clamped label is a HINT that the window is wrong for the marks, and the
+   * honest fix is usually to move the tick rather than to let the label drift off
+   * its own line.
+   */
+  S.railLabels = function (items, opts) {
+    var o = opts || {}, out = [], i;
+    var x = o.x == null ? 1000 : o.x;
+    var gap = o.gap == null ? 26 : o.gap;
+    var w = o.width == null ? 120 : o.width;
+    var top = o.top == null ? 74 : o.top;
+    var bottom = o.bottom == null ? S.H - 74 : o.bottom;
+    for (i = 0; i < items.length; i++) {
+      var el = document.getElementById(items[i][0]);
+      if (!el) throw new Error("AKICE.railLabels: no element #" + items[i][0]);
+      var y = S.depth(items[i][1]);
+      el.style.position = "absolute";
+      el.style.width = w + "px";
+      el.style.textAlign = "right";
+      el.style.left = (x - gap - w) + "px";
+      var h = el.getBoundingClientRect().height || 24;
+      var ty = y - h / 2, clamped = false;
+      if (ty < top) { ty = top; clamped = true; }
+      if (ty + h > bottom) { ty = bottom - h; clamped = true; }
+      el.style.top = ty.toFixed(2) + "px";
+      out.push({ id: items[i][0], metres: items[i][1], y: Math.round(y), clamped: clamped });
+    }
+    return out;
+  };
+
   /* ---------------- small utilities ---------------- */
 
   function parseHex(h) {
