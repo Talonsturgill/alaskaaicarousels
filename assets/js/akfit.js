@@ -365,16 +365,48 @@
           s + "px safe zone. Move it, or narrow it, and do NOT shrink the type to " +
           "win the fight (body floor is 32px).");
       }
-      /* an overflow of two design px or less is subpixel layout, not a clip */
-      if (el.scrollHeight > el.clientHeight + 2 && el.clientHeight > 0) {
+      /* AN OVERFLOW ONLY MATTERS IF THE ELEMENT CAN ACTUALLY CLIP, and getting
+       * this wrong is how a guard starts crying wolf. Two cases are NOT defects
+       * and both are ordinary house practice:
+       *
+       * 1. Display type set at `line-height` below 1. The glyphs legitimately
+       *    exceed their own line boxes, so `scrollHeight` runs past
+       *    `clientHeight` on every correctly set headline in this deck. Nothing
+       *    is clipped, because an auto-height block with visible overflow has no
+       *    edge to clip against. This fired on the chassis prototype's h2 at
+       *    line-height 0.98 and the headline was perfect.
+       * 2. An auto-height block, full stop. Its box grows to its content by
+       *    definition, so the comparison is meaningless there.
+       *
+       * So the check runs only where a clip is POSSIBLE, and the one condition
+       * that decides it is whether the element's own overflow is visible.
+       * VISIBLE OVERFLOW NEVER CUTS ANYTHING, whatever height the box has: the
+       * text simply paints outside the box. It may then collide with something
+       * below it, which is a real defect and is qa.py's text-collision gate to
+       * catch, not this one's.
+       *
+       * AND DO NOT REACH FOR A COMPUTED HEIGHT TO DECIDE IT. The first version
+       * of this check also fired when `getComputedStyle(el).height` was not
+       * "auto", on the reasoning that an explicit height is a box the text can
+       * outgrow. Computed height is the USED height and resolves to a pixel
+       * value for every rendered element, so that condition was true always and
+       * the guard failed the chassis prototype's headline twice in a row while
+       * the headline was perfect. A guard that cries wolf costs a review round,
+       * which is what the five-round cap was written about. */
+      var cs = global.getComputedStyle(el);
+      var clipsY = cs.overflowY && cs.overflowY !== "visible";
+      var clipsX = cs.overflowX && cs.overflowX !== "visible";
+      if (clipsY && el.scrollHeight > el.clientHeight + 2 && el.clientHeight > 0) {
         bad.push("`" + (el.className || el.tagName) + "` overflows its own box by " +
-          (el.scrollHeight - el.clientHeight) + "px of height, so its last line is " +
-          "clipped. A clean clip is invisible in a screenshot. Grow the box or " +
-          "shorten the string.");
+          (el.scrollHeight - el.clientHeight) + "px of height, and the box can clip " +
+          "(overflow-y " + cs.overflowY + ", height " + cs.height + "), so its last " +
+          "line is cut. A clean clip is invisible in a screenshot. Grow the box or " +
+          "shorten the string, and do NOT shrink the type.");
       }
-      if (el.scrollWidth > el.clientWidth + 2 && el.clientWidth > 0) {
+      if (clipsX && el.scrollWidth > el.clientWidth + 2 && el.clientWidth > 0) {
         bad.push("`" + (el.className || el.tagName) + "` overflows its own box by " +
-          (el.scrollWidth - el.clientWidth) + "px of width.");
+          (el.scrollWidth - el.clientWidth) + "px of width, and overflow-x is " +
+          cs.overflowX + ", so it is cut.");
       }
     }
 

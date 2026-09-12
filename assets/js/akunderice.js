@@ -565,11 +565,22 @@
       var m = ticks[i][0], label = ticks[i][1];
       var y = S.depth(m);
       if (y < S.depth(w.d0) - 1 || y > S.depth(w.d1) + 1) continue;
+      /* EVERY DECLARED MARK HAS TO BE FINDABLE IN THE RENDER, which is a
+       * stronger requirement than being visible to a designer. qa.py's axis
+       * census measures the ink at each declared mark against the band's own
+       * texture and reports a mark it can't find as "not where it is declared".
+       * The prototype for this deck drew its two minor ticks at 1.0 px in the
+       * faint ink and the census found 10.7 and 8.8 against a band texture of
+       * 9.2, so two of five declared marks read as absent. A minor tick is
+       * still a mark on a measured axis and there is no decorative tick on one,
+       * so the answer is not to declare it more quietly, it is to DRAW IT. The
+       * rank survives as length and as a half step in weight, never as ink the
+       * gate can't see. */
       var major = ticks[i][2] !== false;
-      cx.strokeStyle = major ? ink : faint;
-      cx.lineWidth = major ? 2.0 : 1.0;
+      cx.strokeStyle = ink;
+      cx.lineWidth = major ? 2.2 : 1.6;
       cx.beginPath();
-      cx.moveTo(x - (major ? 16 : 8), y);
+      cx.moveTo(x - (major ? 18 : 11), y);
       cx.lineTo(x, y);
       cx.stroke();
       marks.push({ at: Math.round(y), means: label });
